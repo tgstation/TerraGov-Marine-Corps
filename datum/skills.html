@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;skills - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/skills.html#var">Var Details</a> - <a href="datum/skills.html#proc">Proc Details</a></header>
+<main>
+<h1>skills <aside>/<a href="datum.html">datum</a>/<a href="datum/skills.html">skills</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/datums/skills.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;skills.dm 43"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/skills.html#var/stamina">stamina</a></th><td>Effects stamina regen rate and regen delay</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/skills.html#proc/getList">getList</a></th><td>returns an assoc list (SKILL_X = VALUE) of all skills for this skill datum</td></tr>
+            <tr><th><a href="datum/skills.html#proc/getPercent">getPercent</a></th><td>returns how many % of skills the user has of max_rating. rating should be a SKILL_X define</td></tr>
+            <tr><th><a href="datum/skills.html#proc/getRating">getRating</a></th><td>returns number value of the skill rating. rating should be a SKILL_X define</td></tr>
+            <tr><th><a href="datum/skills.html#proc/modifyAllRatings">modifyAllRatings</a></th><td>acts as [/proc/modifyRating] but instead modifies all values rather than several specific ones</td></tr>
+            <tr><th><a href="datum/skills.html#proc/modifyRating">modifyRating</a></th><td>returns/gets a new skills datum with values changed according to the args passed</td></tr>
+            <tr><th><a href="datum/skills.html#proc/setRating">setRating</a></th><td>acts as [/proc/modifyRating] but sets the rating directly rather than modify it</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/stamina"><aside class="declaration">var </aside>stamina
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/datums/skills.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;skills.dm 67"/></a></h3>
+        <p>Effects stamina regen rate and regen delay</p><h2 id="proc">Proc Details</h2><h3 id="proc/getList"><aside class="declaration">proc </aside>getList<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/datums/skills.dm#L200">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;skills.dm 200"/></a></aside>
+        </h3>
+        <p>returns an assoc list (SKILL_X = VALUE) of all skills for this skill datum</p><h3 id="proc/getPercent"><aside class="declaration">proc </aside>getPercent<aside>(rating, max_rating) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/datums/skills.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;skills.dm 192"/></a></aside>
+        </h3>
+        <p>returns how many % of skills the user has of max_rating. rating should be a SKILL_X define</p><h3 id="proc/getRating"><aside class="declaration">proc </aside>getRating<aside>(rating) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/datums/skills.dm#L196">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;skills.dm 196"/></a></aside>
+        </h3>
+        <p>returns number value of the skill rating. rating should be a SKILL_X define</p><h3 id="proc/modifyAllRatings"><aside class="declaration">proc </aside>modifyAllRatings<aside>(difference) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/datums/skills.dm#L138">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;skills.dm 138"/></a></aside>
+        </h3>
+        <p>acts as [/proc/modifyRating] but instead modifies all values rather than several specific ones</p><h3 id="proc/modifyRating"><aside class="declaration">proc </aside>modifyRating<aside>(unarmed, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/datums/skills.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;skills.dm 114"/></a></aside>
+        </h3>
+        <p>returns/gets a new skills datum with values changed according to the args passed</p><h3 id="proc/setRating"><aside class="declaration">proc </aside>setRating<aside>(unarmed, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/datums/skills.dm#L160">
+        <img src="git.png" width="16" height="16" title="code&#x2F;datums&#x2F;skills.dm 160"/></a></aside>
+        </h3>
+        <p>acts as [/proc/modifyRating] but sets the rating directly rather than modify it</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04">eb91ace</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

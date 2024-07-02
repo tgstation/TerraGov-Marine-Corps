@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj.html#var">Var Details</a> - <a href="obj.html#proc">Proc Details</a></header>
+<main>
+<h1>obj <aside>/<a href="obj.html">obj</a></aside><aside> inherits /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj.html#var/coverage">coverage</a></th><td>Odds of a projectile hitting the object, if the object is dense</td></tr>
+            <tr><th><a href="obj.html#var/damtype">damtype</a></th><td>damage type to deal when this obj is attacking something</td></tr>
+            <tr><th><a href="obj.html#var/destroy_sound">destroy_sound</a></th><td>Sound this object makes when destroyed</td></tr>
+            <tr><th><a href="obj.html#var/force">force</a></th><td>damage amount to deal when this obj is attacking something</td></tr>
+            <tr><th><a href="obj.html#var/hard_armor">hard_armor</a></th><td>Modifies the AP of incoming attacks</td></tr>
+            <tr><th><a href="obj.html#var/hit_sound">hit_sound</a></th><td>Sound when hit</td></tr>
+            <tr><th><a href="obj.html#var/icon_preview">icon_preview</a></th><td>Icon to use as a 32x32 preview in crafting menus and such</td></tr>
+            <tr><th><a href="obj.html#var/integrity_failure">integrity_failure</a></th><td>Integrety below this number causes special behavior</td></tr>
+            <tr><th><a href="obj.html#var/max_integrity">max_integrity</a></th><td>Max object HP</td></tr>
+            <tr><th><a href="obj.html#var/obj_flags">obj_flags</a></th><td>Object behavior flags</td></tr>
+            <tr><th><a href="obj.html#var/obj_integrity">obj_integrity</a></th><td>Object HP</td></tr>
+            <tr><th><a href="obj.html#var/penetration">penetration</a></th><td>The amount of armor penetration the object has when attacking something</td></tr>
+            <tr><th><a href="obj.html#var/req_access">req_access</a></th><td>ID access where all are required to access this object</td></tr>
+            <tr><th><a href="obj.html#var/req_one_access">req_one_access</a></th><td>ID access where any one is required to access this object</td></tr>
+            <tr><th><a href="obj.html#var/soft_armor">soft_armor</a></th><td>%-reduction-based armor.</td></tr>
+            <tr><th><a href="obj.html#var/throwforce">throwforce</a></th><td>Base throw damage. Throwforce needs to be at least 1 else it causes runtimes with shields</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj.html#proc/GetExplosionBlock">GetExplosionBlock</a></th><td>returns how much the object blocks an explosion. Used by subtypes.</td></tr>
+            <tr><th><a href="obj.html#proc/can_climb_over">can_climb_over</a></th><td>Signal handler to check if you can move from one low object to another</td></tr>
+            <tr><th><a href="obj.html#proc/clear_internal_item">clear_internal_item</a></th><td>Called to clear a stored item var, currently for the deployable element</td></tr>
+            <tr><th><a href="obj.html#proc/deconstruct">deconstruct</a></th><td>the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.</td></tr>
+            <tr><th><a href="obj.html#proc/do_projectile_hit">do_projectile_hit</a></th><td>50% better protection when shooting from outside accurate range.
+Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.</td></tr>
+            <tr><th><a href="obj.html#proc/get_internal_item">get_internal_item</a></th><td>Called to return an internally stored item, currently for the deployable element</td></tr>
+            <tr><th><a href="obj.html#proc/hud_set_machine_health">hud_set_machine_health</a></th><td>Makes sentry health visible</td></tr>
+            <tr><th><a href="obj.html#proc/modify_max_integrity">modify_max_integrity</a></th><td>changes max_integrity while retaining current health percentage, returns TRUE if the obj got broken.</td></tr>
+            <tr><th><a href="obj.html#proc/obj_break">obj_break</a></th><td>called after the obj takes damage and integrity is below integrity_failure level</td></tr>
+            <tr><th><a href="obj.html#proc/obj_destruction">obj_destruction</a></th><td>what happens when the obj's integrity reaches zero.</td></tr>
+            <tr><th><a href="obj.html#proc/on_try_exit">on_try_exit</a></th><td>Handles extra checks for things trying to exit this objects turf</td></tr>
+            <tr><th><a href="obj.html#proc/play_attack_sound">play_attack_sound</a></th><td>the sound played when the obj is damaged.</td></tr>
+            <tr><th><a href="obj.html#proc/repair_damage">repair_damage</a></th><td>Increase obj_integrity and record it to the repairer's stats</td></tr>
+            <tr><th><a href="obj.html#proc/welder_repair_act">welder_repair_act</a></th><td>Handles welder based repair of objects, normally called by welder_act</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/coverage"><aside class="declaration">var </aside>coverage
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 41"/></a></h3>
+        <p>Odds of a projectile hitting the object, if the object is dense</p><h3 id="var/damtype"><aside class="declaration">var </aside>damtype
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L14">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 14"/></a></h3>
+        <p>damage type to deal when this obj is attacking something</p><h3 id="var/destroy_sound"><aside class="declaration">var </aside>destroy_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 35"/></a></h3>
+        <p>Sound this object makes when destroyed</p><h3 id="var/force"><aside class="declaration">var </aside>force
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L12">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 12"/></a></h3>
+        <p>damage amount to deal when this obj is attacking something</p><h3 id="var/hard_armor"><aside class="declaration">var </aside>hard_armor
+            <aside>&ndash; /<a href="datum.html">datum</a>/armor</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 21"/></a></h3>
+        <p>Modifies the AP of incoming attacks</p><h3 id="var/hit_sound"><aside class="declaration">var </aside>hit_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 33"/></a></h3>
+        <p>Sound when hit</p><h3 id="var/icon_preview"><aside class="declaration">var </aside>icon_preview
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 8"/></a></h3>
+        <p>Icon to use as a 32x32 preview in crafting menus and such</p><h3 id="var/integrity_failure"><aside class="declaration">var </aside>integrity_failure
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 27"/></a></h3>
+        <p>Integrety below this number causes special behavior</p><h3 id="var/max_integrity"><aside class="declaration">var </aside>max_integrity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 25"/></a></h3>
+        <p>Max object HP</p><h3 id="var/obj_flags"><aside class="declaration">var </aside>obj_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 31"/></a></h3>
+        <p>Object behavior flags</p><h3 id="var/obj_integrity"><aside class="declaration">var </aside>obj_integrity
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 23"/></a></h3>
+        <p>Object HP</p><h3 id="var/penetration"><aside class="declaration">var </aside>penetration
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L16">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 16"/></a></h3>
+        <p>The amount of armor penetration the object has when attacking something</p><h3 id="var/req_access"><aside class="declaration">var </aside>req_access
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 37"/></a></h3>
+        <p>ID access where all are required to access this object</p><h3 id="var/req_one_access"><aside class="declaration">var </aside>req_one_access
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 39"/></a></h3>
+        <p>ID access where any one is required to access this object</p><h3 id="var/soft_armor"><aside class="declaration">var </aside>soft_armor
+            <aside>&ndash; /<a href="datum.html">datum</a>/armor</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 19"/></a></h3>
+        <p>%-reduction-based armor.</p><h3 id="var/throwforce"><aside class="declaration">var </aside>throwforce
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 29"/></a></h3>
+        <p>Base throw damage. Throwforce needs to be at least 1 else it causes runtimes with shields</p><h2 id="proc">Proc Details</h2><h3 id="proc/GetExplosionBlock"><aside class="declaration">proc </aside>GetExplosionBlock<aside>(explosion_dir) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/obj_defense.dm#L189">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;obj_defense.dm 189"/></a></aside>
+        </h3>
+        <p>returns how much the object blocks an explosion. Used by subtypes.</p><h3 id="proc/can_climb_over"><aside class="declaration">proc </aside>can_climb_over<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/mover) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 150"/></a></aside>
+        </h3>
+        <p>Signal handler to check if you can move from one low object to another</p><h3 id="proc/clear_internal_item"><aside class="declaration">proc </aside>clear_internal_item<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L294">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 294"/></a></aside>
+        </h3>
+        <p>Called to clear a stored item var, currently for the deployable element</p><h3 id="proc/deconstruct"><aside class="declaration">proc </aside>deconstruct<aside>(disassembled) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/obj_defense.dm#L149">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;obj_defense.dm 149"/></a></aside>
+        </h3>
+        <p>the obj is deconstructed into pieces, whether through careful disassembly or when destroyed.</p><h3 id="proc/do_projectile_hit">do_projectile_hit<aside>(/<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a>/proj) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/projectile.dm#L687">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;projectile.dm 687"/></a></aside>
+        </h3>
+        <p>50% better protection when shooting from outside accurate range.
+Accuracy over 100 increases the chance of squeezing the bullet past the structure's uncovered areas.</p><h3 id="proc/get_internal_item"><aside class="declaration">proc </aside>get_internal_item<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L290">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 290"/></a></aside>
+        </h3>
+        <p>Called to return an internally stored item, currently for the deployable element</p><h3 id="proc/hud_set_machine_health"><aside class="declaration">proc </aside>hud_set_machine_health<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/data_huds.dm#L649">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;data_huds.dm 649"/></a></aside>
+        </h3>
+        <p>Makes sentry health visible</p><h3 id="proc/modify_max_integrity"><aside class="declaration">proc </aside>modify_max_integrity<aside>(new_max, can_break, damage_type, new_failure_integrity) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/obj_defense.dm#L169">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;obj_defense.dm 169"/></a></aside>
+        </h3>
+        <p>changes max_integrity while retaining current health percentage, returns TRUE if the obj got broken.</p><h3 id="proc/obj_break"><aside class="declaration">proc </aside>obj_break<aside>(damage_flag) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/obj_defense.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;obj_defense.dm 156"/></a></aside>
+        </h3>
+        <p>called after the obj takes damage and integrity is below integrity_failure level</p><h3 id="proc/obj_destruction"><aside class="declaration">proc </aside>obj_destruction<aside>(damage_amount, damage_type, damage_flag, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/blame_mob) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/obj_defense.dm#L161">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;obj_defense.dm 161"/></a></aside>
+        </h3>
+        <p>what happens when the obj's integrity reaches zero.</p><h3 id="proc/on_try_exit"><aside class="declaration">proc </aside>on_try_exit<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/mover, direction, /list/knownblockers) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L131">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 131"/></a></aside>
+        </h3>
+        <p>Handles extra checks for things trying to exit this objects turf</p><h3 id="proc/play_attack_sound"><aside class="declaration">proc </aside>play_attack_sound<aside>(damage_amount, damage_type, damage_flag) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/obj_defense.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;obj_defense.dm 37"/></a></aside>
+        </h3>
+        <p>the sound played when the obj is damaged.</p><h3 id="proc/repair_damage"><aside class="declaration">proc </aside>repair_damage<aside>(repair_amount, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/obj_defense.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;obj_defense.dm 28"/></a></aside>
+        </h3>
+        <p>Increase obj_integrity and record it to the repairer's stats</p><h3 id="proc/welder_repair_act"><aside class="declaration">proc </aside>welder_repair_act<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, repair_amount, repair_time, repair_threshold, skill_required, fuel_req, fumble_time) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/objs.dm#L298">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;objs.dm 298"/></a></aside>
+        </h3>
+        <p>Handles welder based repair of objects, normally called by welder_act</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04">eb91ace</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

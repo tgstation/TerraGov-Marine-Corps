@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;admin.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/admin.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/admin.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/__DEFINES/admin.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;admin.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/admin.html#define/MESSAGE_FLAG_ADMIN">MESSAGE_FLAG_ADMIN</a></th><td>Spam filter info that this message is admin-related and shouldn't count towards admin spam limit (not needed currently due to admins bypassing it but eh!)</td></tr>
+        <tr><th><a href="code/__DEFINES/admin.html#define/MESSAGE_FLAG_MENTOR">MESSAGE_FLAG_MENTOR</a></th><td>Spam filter info that this message is mentor-related and shouldn't count towards a mentor's spam limit.</td></tr>
+        <tr><th><a href="code/__DEFINES/admin.html#define/MAX_KEYPRESS_COMMANDLENGTH">MAX_KEYPRESS_COMMANDLENGTH</a></th><td>Max length of a keypress command before it's considered to be a forged packet/bogus command</td></tr>
+        <tr><th><a href="code/__DEFINES/admin.html#define/MAX_COMMANDS_PER_KEY">MAX_COMMANDS_PER_KEY</a></th><td>Maximum keys that can be bound to one button</td></tr>
+        <tr><th><a href="code/__DEFINES/admin.html#define/MAX_KEYPRESS_AUTOKICK">MAX_KEYPRESS_AUTOKICK</a></th><td>Max amount of keypress messages per second over two seconds before client is autokicked</td></tr>
+        <tr><th><a href="code/__DEFINES/admin.html#define/HELD_KEY_BUFFER_LENGTH">HELD_KEY_BUFFER_LENGTH</a></th><td>Length of held key buffer</td></tr>
+        <tr><th><a href="code/__DEFINES/admin.html#define/MAX_KEYS_PER_KEYBIND">MAX_KEYS_PER_KEYBIND</a></th><td>Maximum keys allowed per keybind</td></tr>
+        <tr><th><a href="code/__DEFINES/admin.html#define/POLICY_VERB_HEADER">POLICY_VERB_HEADER</a></th><td>Shown on top of policy verb window</td></tr>
+        <tr><th><a href="code/__DEFINES/admin.html#define/ADMINSAY_PING_UNDERLINE_NAME_INDEX">ADMINSAY_PING_UNDERLINE_NAME_INDEX</a></th><td>for asay pings, this is the index in the return list for <a href="global.html#proc/check_admin_pings" title="/global">/proc/check_admin_pings</a> that contains the message modified with underlines for the spotted names</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ADMINSAY_PING_UNDERLINE_NAME_INDEX"><aside class="declaration">#define </aside>ADMINSAY_PING_UNDERLINE_NAME_INDEX
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/__DEFINES/admin.dm#L144">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;admin.dm 144"/></a>
+    </h3>
+    <p>for asay pings, this is the index in the return list for <a href="global.html#proc/check_admin_pings" title="/global">/proc/check_admin_pings</a> that contains the message modified with underlines for the spotted names</p><h3 id="define/HELD_KEY_BUFFER_LENGTH"><aside class="declaration">#define </aside>HELD_KEY_BUFFER_LENGTH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/__DEFINES/admin.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;admin.dm 102"/></a>
+    </h3>
+    <p>Length of held key buffer</p><h3 id="define/MAX_COMMANDS_PER_KEY"><aside class="declaration">#define </aside>MAX_COMMANDS_PER_KEY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/__DEFINES/admin.dm#L98">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;admin.dm 98"/></a>
+    </h3>
+    <p>Maximum keys that can be bound to one button</p><h3 id="define/MAX_KEYPRESS_AUTOKICK"><aside class="declaration">#define </aside>MAX_KEYPRESS_AUTOKICK
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/__DEFINES/admin.dm#L100">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;admin.dm 100"/></a>
+    </h3>
+    <p>Max amount of keypress messages per second over two seconds before client is autokicked</p><h3 id="define/MAX_KEYPRESS_COMMANDLENGTH"><aside class="declaration">#define </aside>MAX_KEYPRESS_COMMANDLENGTH
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/__DEFINES/admin.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;admin.dm 96"/></a>
+    </h3>
+    <p>Max length of a keypress command before it's considered to be a forged packet/bogus command</p><h3 id="define/MAX_KEYS_PER_KEYBIND"><aside class="declaration">#define </aside>MAX_KEYS_PER_KEYBIND
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/__DEFINES/admin.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;admin.dm 104"/></a>
+    </h3>
+    <p>Maximum keys allowed per keybind</p><h3 id="define/MESSAGE_FLAG_ADMIN"><aside class="declaration">#define </aside>MESSAGE_FLAG_ADMIN
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/__DEFINES/admin.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;admin.dm 90"/></a>
+    </h3>
+    <p>Spam filter info that this message is admin-related and shouldn't count towards admin spam limit (not needed currently due to admins bypassing it but eh!)</p><h3 id="define/MESSAGE_FLAG_MENTOR"><aside class="declaration">#define </aside>MESSAGE_FLAG_MENTOR
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/__DEFINES/admin.dm#L91">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;admin.dm 91"/></a>
+    </h3>
+    <p>Spam filter info that this message is mentor-related and shouldn't count towards a mentor's spam limit.</p><h3 id="define/POLICY_VERB_HEADER"><aside class="declaration">#define </aside>POLICY_VERB_HEADER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/__DEFINES/admin.dm#L107">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;admin.dm 107"/></a>
+    </h3>
+    <p>Shown on top of policy verb window</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04">eb91ace</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

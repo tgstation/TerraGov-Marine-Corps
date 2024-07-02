@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;fire - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/fire.html#var">Var Details</a> - <a href="obj/fire.html#proc">Proc Details</a></header>
+<main>
+<h1>fire <aside>/<a href="obj.html">obj</a>/<a href="obj/fire.html">fire</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 8"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/fire.html#var/burn_decay">burn_decay</a></th><td>How many burn ticks we lose per process</td></tr>
+            <tr><th><a href="obj/fire.html#var/burn_level">burn_level</a></th><td>Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature</td></tr>
+            <tr><th><a href="obj/fire.html#var/burn_ticks">burn_ticks</a></th><td>tracks for how many process ticks the fire will exist.Can be reduced by other sources</td></tr>
+            <tr><th><a href="obj/fire.html#var/flame_color">flame_color</a></th><td>The color the flames and associated particles appear</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/fire.html#proc/affect_mob">affect_mob</a></th><td>Called on all objects on a turf on process(). Doesn't include the turf itself</td></tr>
+            <tr><th><a href="obj/fire.html#proc/affect_obj">affect_obj</a></th><td>Called on all objs on the turf we are on</td></tr>
+            <tr><th><a href="obj/fire.html#proc/affect_turf">affect_turf</a></th><td>Called on the turf we are currently burning</td></tr>
+            <tr><th><a href="obj/fire.html#proc/effect_smoke">effect_smoke</a></th><td>Effects applied from smokes</td></tr>
+            <tr><th><a href="obj/fire.html#proc/on_cross">on_cross</a></th><td>Effects applied to anything that crosses a burning turf</td></tr>
+            <tr><th><a href="obj/fire.html#proc/set_fire">set_fire</a></th><td>Sets the fire_base object to the correct colour and fire_base values, and applies the initial effects to any mob on the turf</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/burn_decay"><aside class="declaration">var </aside>burn_decay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 28"/></a></h3>
+        <p>How many burn ticks we lose per process</p><h3 id="var/burn_level"><aside class="declaration">var </aside>burn_level
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 26"/></a></h3>
+        <p>Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature</p><h3 id="var/burn_ticks"><aside class="declaration">var </aside>burn_ticks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L22">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 22"/></a></h3>
+        <p>tracks for how many process ticks the fire will exist.Can be reduced by other sources</p><h3 id="var/flame_color"><aside class="declaration">var </aside>flame_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L24">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 24"/></a></h3>
+        <p>The color the flames and associated particles appear</p><h2 id="proc">Proc Details</h2><h3 id="proc/affect_mob"><aside class="declaration">proc </aside>affect_mob<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/<a href="mob/living/carbon.html">carbon</a>/affected) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L117">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 117"/></a></aside>
+        </h3>
+        <p>Called on all objects on a turf on process(). Doesn't include the turf itself</p><h3 id="proc/affect_obj"><aside class="declaration">proc </aside>affect_obj<aside>(/<a href="obj.html">obj</a>/affected) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 125"/></a></aside>
+        </h3>
+        <p>Called on all objs on the turf we are on</p><h3 id="proc/affect_turf"><aside class="declaration">proc </aside>affect_turf<aside>(/<a href="turf.html">turf</a>/affected) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L121">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 121"/></a></aside>
+        </h3>
+        <p>Called on the turf we are currently burning</p><h3 id="proc/effect_smoke">effect_smoke<aside>(/<a href="obj.html">obj</a>/<a href="obj/effect/particle_effect/smoke.html">effect/particle_effect/smoke</a>/affecting_smoke) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L106">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 106"/></a></aside>
+        </h3>
+        <p>Effects applied from smokes</p><h3 id="proc/on_cross"><aside class="declaration">proc </aside>on_cross<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/crosser, oldloc, oldlocs) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L101">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 101"/></a></aside>
+        </h3>
+        <p>Effects applied to anything that crosses a burning turf</p><h3 id="proc/set_fire"><aside class="declaration">proc </aside>set_fire<aside>(burn_ticks, burn_level, f_color, fire_stacks, fire_damage) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/modules/projectiles/guns/_shared_ammo_objects.dm#L76">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;projectiles&#x2F;guns&#x2F;_shared_ammo_objects.dm 76"/></a></aside>
+        </h3>
+        <p>Sets the fire_base object to the correct colour and fire_base values, and applies the initial effects to any mob on the turf</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04">eb91ace</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

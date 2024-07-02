@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;structure&#x2F;door - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/structure/door.html#var">Var Details</a> - <a href="obj/structure/door.html#proc">Proc Details</a></header>
+<main>
+<h1>door <aside>/<a href="obj.html">obj</a>/<a href="obj/structure.html">structure</a>/<a href="obj/structure/door.html">door</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 15"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/structure/door.html#var/base_name">base_name</a></th><td>The name of the door, assigned at initialization; use this instead of initial(name)</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/close_sound">close_sound</a></th><td>Sound when closed</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/closing_time">closing_time</a></th><td>How long it takes to close the door; will be the same as opening_time if not set</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/construction_steps">construction_steps</a></th><td>Steps in sequential order to de/construct this door; make this list null if you do not want this door to be built or taken apart</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/construction_steps_index">construction_steps_index</a></th><td>What step in the de/construction process this door is on; 1 means it is fully built</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/delay_timer">delay_timer</a></th><td>Reference to the timer that closes or opens a door</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/door_flags">door_flags</a></th><td>Door specific flags</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/knocking_sound">knocking_sound</a></th><td>Sound when knocking on a door</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/lock">lock</a></th><td>Reference to the lock installed on this door</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/locked_sound">locked_sound</a></th><td>Sound when locked and trying to open</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/material_amount">material_amount</a></th><td>How many units of material this door is made of</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/material_type">material_type</a></th><td>What material the door is made of; used for repairs and deconstruction</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/open_sound">open_sound</a></th><td>Sound when opened</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/opening_time">opening_time</a></th><td>How long it takes to open the door; recommended to not make this the entire length of the animation for &quot;feel&quot; reasons</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/slam_sound">slam_sound</a></th><td>Sound when trying to use violence against a door</td></tr>
+            <tr><th><a href="obj/structure/door.html#var/tool_action_time">tool_action_time</a></th><td>How long each step of de/construction takes</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/attempt_to_close">attempt_to_close</a></th><td>Proper way to close a door; use close() if you just want it magically closed</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/attempt_to_open">attempt_to_open</a></th><td>Proper way to open a door; use open() if you just want it magically opened</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/auto_close">auto_close</a></th><td>Handles automatically closing a door</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/close">close</a></th><td>Used in any instance where you only want to close a door</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/do_construction">do_construction</a></th><td>Build the door</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/do_deconstruction">do_deconstruction</a></th><td>Deconstruct the door</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/door_combat">door_combat</a></th><td>Why is this a separate proc? Because resin doors need to override this otherwise benos will be getting slapped by their own doors</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/drop_materials">drop_materials</a></th><td>Handle spawning materials when deconstructed/destroyed</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/eject_lock">eject_lock</a></th><td>Is used whenever the lock is forcibly removed from the door, like from an explosion or being kicked open	//Nevermind, explosion code doesn't pass an origin</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/force_door_open">force_door_open</a></th><td>Separated this proc so that individual doors can override this if they want to change how it is forced open; do not call this, use attempt_to_open()</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/get_burn_damage_multiplier">get_burn_damage_multiplier</a></th><td>Takes extra damage if our attacking item does burn damage</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/handle_door_force_close_cooldown">handle_door_force_close_cooldown</a></th><td>To prevent near instantly killing people with door slams; will return FALSE if the cooldown is still active, TRUE if it is not and will start the cooldown</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/handle_door_force_open_cooldown">handle_door_force_open_cooldown</a></th><td>To prevent doing 5 kicks a second; will return FALSE if the cooldown is still active, TRUE if it is not and will start the cooldown</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/handle_repairs">handle_repairs</a></th><td>Repairs the door with the material provided, assuming it matches the material type of the door</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/handle_tools">handle_tools</a></th><td>Reduce line copy and pasting by having one proc do (most of) them</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/initialize_lock">initialize_lock</a></th><td>Separate proc for creating a lock if a door is meant to spawn with one</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/on_exited">on_exited</a></th><td>Used for auto closing with full tile doors as this is called only when an atom completely exits the tile this door is on</td></tr>
+            <tr><th><a href="obj/structure/door.html#proc/open">open</a></th><td>Used in any instance where you only want to open a door</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/base_name"><aside class="declaration">var </aside>base_name
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 28"/></a></h3>
+        <p>The name of the door, assigned at initialization; use this instead of initial(name)</p><h3 id="var/close_sound"><aside class="declaration">var </aside>close_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 40"/></a></h3>
+        <p>Sound when closed</p><h3 id="var/closing_time"><aside class="declaration">var </aside>closing_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 50"/></a></h3>
+        <p>How long it takes to close the door; will be the same as opening_time if not set</p><h3 id="var/construction_steps"><aside class="declaration">var </aside>construction_steps
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 54"/></a></h3>
+        <p>Steps in sequential order to de/construct this door; make this list null if you do not want this door to be built or taken apart</p><h3 id="var/construction_steps_index"><aside class="declaration">var </aside>construction_steps_index
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L56">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 56"/></a></h3>
+        <p>What step in the de/construction process this door is on; 1 means it is fully built</p><h3 id="var/delay_timer"><aside class="declaration">var </aside>delay_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 52"/></a></h3>
+        <p>Reference to the timer that closes or opens a door</p><h3 id="var/door_flags"><aside class="declaration">var </aside>door_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 30"/></a></h3>
+        <p>Door specific flags</p><h3 id="var/knocking_sound"><aside class="declaration">var </aside>knocking_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 46"/></a></h3>
+        <p>Sound when knocking on a door</p><h3 id="var/lock"><aside class="declaration">var </aside>lock
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/lock.html">lock</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 32"/></a></h3>
+        <p>Reference to the lock installed on this door</p><h3 id="var/locked_sound"><aside class="declaration">var </aside>locked_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 42"/></a></h3>
+        <p>Sound when locked and trying to open</p><h3 id="var/material_amount"><aside class="declaration">var </aside>material_amount
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L36">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 36"/></a></h3>
+        <p>How many units of material this door is made of</p><h3 id="var/material_type"><aside class="declaration">var </aside>material_type
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L34">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 34"/></a></h3>
+        <p>What material the door is made of; used for repairs and deconstruction</p><h3 id="var/open_sound"><aside class="declaration">var </aside>open_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L38">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 38"/></a></h3>
+        <p>Sound when opened</p><h3 id="var/opening_time"><aside class="declaration">var </aside>opening_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L48">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 48"/></a></h3>
+        <p>How long it takes to open the door; recommended to not make this the entire length of the animation for &quot;feel&quot; reasons</p><h3 id="var/slam_sound"><aside class="declaration">var </aside>slam_sound
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 44"/></a></h3>
+        <p>Sound when trying to use violence against a door</p><h3 id="var/tool_action_time"><aside class="declaration">var </aside>tool_action_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 58"/></a></h3>
+        <p>How long each step of de/construction takes</p><h2 id="proc">Proc Details</h2><h3 id="proc/attempt_to_close"><aside class="declaration">proc </aside>attempt_to_close<aside>(/<a href="mob.html">mob</a>/user, instant, slammed, forced) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L656">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 656"/></a></aside>
+        </h3>
+        <p>Proper way to close a door; use close() if you just want it magically closed</p>
+<ul>
+<li>user - Set this if a mob type is closing this door</li>
+<li>instant - TRUE if you want to close it instantly</li>
+<li>slammed - TRUE if you want to close it through violent means</li>
+<li>forced - TRUE if you want to guarantee closing it</li>
+</ul><h3 id="proc/attempt_to_open"><aside class="declaration">proc </aside>attempt_to_open<aside>(/<a href="mob.html">mob</a>/user, instant, slammed, forced, direction_from_opener, bumped, damage) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L551">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 551"/></a></aside>
+        </h3>
+        <p>Proper way to open a door; use open() if you just want it magically opened</p>
+<ul>
+<li>Returns TRUE for instant opening so that Cross() can return TRUE as well, to allow for non-delayed movement</li>
+<li>user - Set this if a mob type is opening this door</li>
+<li>instant - TRUE if you want to open it instantly</li>
+<li>slammed - TRUE if you want to open it through violent means</li>
+<li>forced - TRUE if you want to guarantee opening it</li>
+<li>direction_from_opener - use angle2dir(Get_Angle(src, opening_atom)) if it is being forcibly opened or if a mob is opening this</li>
+<li>bumped - TRUE if a mob is trying to open this door by walking into it; used for changing the visible message</li>
+<li>damage - By default 10, use this to inflict damage on the door when forced open</li>
+</ul><h3 id="proc/auto_close"><aside class="declaration">proc </aside>auto_close<aside>(/<a href="mob.html">mob</a>/door_closer) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L717">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 717"/></a></aside>
+        </h3>
+        <p>Handles automatically closing a door</p><h3 id="proc/close"><aside class="declaration">proc </aside>close<aside>(instant, slammed, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L683">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 683"/></a></aside>
+        </h3>
+        <p>Used in any instance where you only want to close a door</p>
+<ul>
+<li>instant - TRUE if you want to close it instantly</li>
+<li>slammed - TRUE if you want to close it through violent means</li>
+<li>silent - TRUE if you don't want to play the closing sound (does not affect the slamming sound)</li>
+</ul><h3 id="proc/do_construction"><aside class="declaration">proc </aside>do_construction<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L418">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 418"/></a></aside>
+        </h3>
+        <p>Build the door</p><h3 id="proc/do_deconstruction"><aside class="declaration">proc </aside>do_deconstruction<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L405">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 405"/></a></aside>
+        </h3>
+        <p>Deconstruct the door</p><h3 id="proc/door_combat"><aside class="declaration">proc </aside>door_combat<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L790">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 790"/></a></aside>
+        </h3>
+        <p>Why is this a separate proc? Because resin doors need to override this otherwise benos will be getting slapped by their own doors</p><h3 id="proc/drop_materials"><aside class="declaration">proc </aside>drop_materials<aside>(disassembled) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 125"/></a></aside>
+        </h3>
+        <p>Handle spawning materials when deconstructed/destroyed</p><h3 id="proc/eject_lock"><aside class="declaration">proc </aside>eject_lock<aside>(direction, range, speed) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L531">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 531"/></a></aside>
+        </h3>
+        <p>Is used whenever the lock is forcibly removed from the door, like from an explosion or being kicked open	//Nevermind, explosion code doesn't pass an origin</p><h3 id="proc/force_door_open"><aside class="declaration">proc </aside>force_door_open<aside>(/<a href="mob.html">mob</a>/user, forced, damage, bumped, leg_flags) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L474">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 474"/></a></aside>
+        </h3>
+        <p>Separated this proc so that individual doors can override this if they want to change how it is forced open; do not call this, use attempt_to_open()</p><h3 id="proc/get_burn_damage_multiplier"><aside class="declaration">proc </aside>get_burn_damage_multiplier<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/attacking_item, /<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, bonus_damage) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L210">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 210"/></a></aside>
+        </h3>
+        <p>Takes extra damage if our attacking item does burn damage</p><h3 id="proc/handle_door_force_close_cooldown"><aside class="declaration">proc </aside>handle_door_force_close_cooldown<aside>(/<a href="mob.html">mob</a>/door_opener, cooldown) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L466">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 466"/></a></aside>
+        </h3>
+        <p>To prevent near instantly killing people with door slams; will return FALSE if the cooldown is still active, TRUE if it is not and will start the cooldown</p><h3 id="proc/handle_door_force_open_cooldown"><aside class="declaration">proc </aside>handle_door_force_open_cooldown<aside>(/<a href="mob.html">mob</a>/door_opener, cooldown) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L458">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 458"/></a></aside>
+        </h3>
+        <p>To prevent doing 5 kicks a second; will return FALSE if the cooldown is still active, TRUE if it is not and will start the cooldown</p><h3 id="proc/handle_repairs"><aside class="declaration">proc </aside>handle_repairs<aside>(/<a href="mob.html">mob</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/stack.html">stack</a>/material) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L229">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 229"/></a></aside>
+        </h3>
+        <p>Repairs the door with the material provided, assuming it matches the material type of the door</p>
+<ul>
+<li>user - The mob repairing the door</li>
+<li>material - The material used to repair the door</li>
+<li>The repair amount is proportional to the value of material_amount and scales with the max_integrity</li>
+<li>For example: a door has 4 material_amount, so every 1 material used will repair 25% of the door's integrity; this will repair 25 points if the max_integrity is 100</li>
+<li>Like barricade repairs, this process is repeated automatically until the door is fully repaired or the material runs out</li>
+</ul><h3 id="proc/handle_tools"><aside class="declaration">proc </aside>handle_tools<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/tool) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L371">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 371"/></a></aside>
+        </h3>
+        <p>Reduce line copy and pasting by having one proc do (most of) them</p><h3 id="proc/initialize_lock"><aside class="declaration">proc </aside>initialize_lock<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L82">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 82"/></a></aside>
+        </h3>
+        <p>Separate proc for creating a lock if a door is meant to spawn with one</p><h3 id="proc/on_exited"><aside class="declaration">proc </aside>on_exited<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/AM, direction) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L751">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 751"/></a></aside>
+        </h3>
+        <p>Used for auto closing with full tile doors as this is called only when an atom completely exits the tile this door is on</p><h3 id="proc/open"><aside class="declaration">proc </aside>open<aside>(instant, slammed, silent) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/game/objects/structures/doors.dm#L625">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;structures&#x2F;doors.dm 625"/></a></aside>
+        </h3>
+        <p>Used in any instance where you only want to open a door</p>
+<ul>
+<li>instant - TRUE if you want to open it instantly</li>
+<li>slammed - TRUE if you want to open it through violent means</li>
+<li>silent - TRUE if you don't want to play the opening sound (does not affect the slamming sound)</li>
+</ul></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04">eb91ace</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

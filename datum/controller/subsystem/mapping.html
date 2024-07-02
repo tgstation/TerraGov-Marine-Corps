@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;mapping - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/mapping.html#var">Var Details</a> - <a href="datum/controller/subsystem/mapping.html#proc">Proc Details</a></header>
+<main>
+<h1>mapping <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/mapping.html">mapping</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/critical_planes">critical_planes</a></th><td>List of plane masters that are of critical priority</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/gravity_by_z_level">gravity_by_z_level</a></th><td>shows the gravity value for each z level</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/groundmap_voted">groundmap_voted</a></th><td>If true, non-admin players will not be able to initiate a vote to change groundmap</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/last_round_player_count">last_round_player_count</a></th><td>The number of connected clients for the previous round</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/max_plane_offset">max_plane_offset</a></th><td>The largest plane offset we've generated so far</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/modular_templates">modular_templates</a></th><td>list of all modular mapping templates</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/plane_offset_blacklist">plane_offset_blacklist</a></th><td>List of planes that do not allow for offsetting</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/plane_offset_to_true">plane_offset_to_true</a></th><td>Assoc list of string plane values to their true, non offset representation</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/plane_to_offset">plane_to_offset</a></th><td>Assoc list of string plane to the plane's offset value</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/render_offset_blacklist">render_offset_blacklist</a></th><td>List of render targets that do not allow for offsetting</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/shipmap_voted">shipmap_voted</a></th><td>If true, non-admin players will not be able to initiate a vote to change shipmap</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/true_to_offset_planes">true_to_offset_planes</a></th><td>Assoc list of true string plane values to a list of all potential offset planess</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/z_level_to_lowest_plane_offset">z_level_to_lowest_plane_offset</a></th><td>List of z level (as number) -&gt; The lowest plane offset in that z stack</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/z_level_to_plane_offset">z_level_to_plane_offset</a></th><td>List of z level (as number) -&gt; plane offset of that z level
+Used to maintain the plane cube</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#var/z_level_to_stack">z_level_to_stack</a></th><td>List of z level (as number) -&gt; list of all z levels vertically connected to ours
+Useful for fast grouping lookups and such</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/calculate_default_z_level_gravities">calculate_default_z_level_gravities</a></th><td>Generates baseline gravity levels for all z-levels based off traits</td></tr>
+            <tr><th><a href="datum/controller/subsystem/mapping.html#proc/calculate_z_level_gravity">calculate_z_level_gravity</a></th><td>Calculates the gravity for a z-level</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/critical_planes"><aside class="declaration">var </aside>critical_planes
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 47"/></a></h3>
+        <p>List of plane masters that are of critical priority</p><h3 id="var/gravity_by_z_level"><aside class="declaration">var </aside>gravity_by_z_level
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L65">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 65"/></a></h3>
+        <p>shows the gravity value for each z level</p><h3 id="var/groundmap_voted"><aside class="declaration">var </aside>groundmap_voted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L58">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 58"/></a></h3>
+        <p>If true, non-admin players will not be able to initiate a vote to change groundmap</p><h3 id="var/last_round_player_count"><aside class="declaration">var </aside>last_round_player_count
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L62">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 62"/></a></h3>
+        <p>The number of connected clients for the previous round</p><h3 id="var/max_plane_offset"><aside class="declaration">var </aside>max_plane_offset
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 49"/></a></h3>
+        <p>The largest plane offset we've generated so far</p><h3 id="var/modular_templates"><aside class="declaration">var </aside>modular_templates
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L15">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 15"/></a></h3>
+        <p>list of all modular mapping templates</p><h3 id="var/plane_offset_blacklist"><aside class="declaration">var </aside>plane_offset_blacklist
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 43"/></a></h3>
+        <p>List of planes that do not allow for offsetting</p><h3 id="var/plane_offset_to_true"><aside class="declaration">var </aside>plane_offset_to_true
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 37"/></a></h3>
+        <p>Assoc list of string plane values to their true, non offset representation</p><h3 id="var/plane_to_offset"><aside class="declaration">var </aside>plane_to_offset
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 41"/></a></h3>
+        <p>Assoc list of string plane to the plane's offset value</p><h3 id="var/render_offset_blacklist"><aside class="declaration">var </aside>render_offset_blacklist
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 45"/></a></h3>
+        <p>List of render targets that do not allow for offsetting</p><h3 id="var/shipmap_voted"><aside class="declaration">var </aside>shipmap_voted
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L60">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 60"/></a></h3>
+        <p>If true, non-admin players will not be able to initiate a vote to change shipmap</p><h3 id="var/true_to_offset_planes"><aside class="declaration">var </aside>true_to_offset_planes
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 39"/></a></h3>
+        <p>Assoc list of true string plane values to a list of all potential offset planess</p><h3 id="var/z_level_to_lowest_plane_offset"><aside class="declaration">var </aside>z_level_to_lowest_plane_offset
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 33"/></a></h3>
+        <p>List of z level (as number) -&gt; The lowest plane offset in that z stack</p><h3 id="var/z_level_to_plane_offset"><aside class="declaration">var </aside>z_level_to_plane_offset
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 28"/></a></h3>
+        <p>List of z level (as number) -&gt; plane offset of that z level
+Used to maintain the plane cube</p><h3 id="var/z_level_to_stack"><aside class="declaration">var </aside>z_level_to_stack
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 31"/></a></h3>
+        <p>List of z level (as number) -&gt; list of all z levels vertically connected to ours
+Useful for fast grouping lookups and such</p><h2 id="proc">Proc Details</h2><h3 id="proc/calculate_default_z_level_gravities"><aside class="declaration">proc </aside>calculate_default_z_level_gravities<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L411">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 411"/></a></aside>
+        </h3>
+        <p>Generates baseline gravity levels for all z-levels based off traits</p><h3 id="proc/calculate_z_level_gravity"><aside class="declaration">proc </aside>calculate_z_level_gravity<aside>(z_level_number) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04/code/controllers/subsystem/mapping.dm#L416">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;mapping.dm 416"/></a></aside>
+        </h3>
+        <p>Calculates the gravity for a z-level</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/eb91aceb9f2d7c7ca5c2447014fba91cf684fe04">eb91ace</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
