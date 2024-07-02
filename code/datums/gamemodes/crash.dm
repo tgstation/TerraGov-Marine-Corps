@@ -200,6 +200,12 @@
 	var/larva_surplus = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
 	if(larva_surplus < 1)
 		return //Things are balanced, no burrowed needed
+	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
+		if(!H.job)
+			continue
+		var/obj/item/card/id/user_id =  H.get_idcard()
+		for(var/i in user_id.marine_points)
+			user_id.marine_points[i] += 1
 	xeno_job.add_job_positions(1)
 	xeno_hive.update_tier_limits()
 

@@ -597,9 +597,7 @@
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
 "cs" = (
-/obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 2
-	},
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cv" = (
@@ -744,6 +742,14 @@
 	},
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
+"fG" = (
+/obj/machinery/cloning/vats,
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
+"gd" = (
+/obj/machinery/gibber/apc,
+/turf/open/floor/mainship/sterile/dark,
+/area/shuttle/canterbury/medical)
 "nN" = (
 /obj/machinery/quick_vendor/beginner,
 /turf/open/floor/mainship/red/full,
@@ -853,7 +859,7 @@ bi
 bo
 bw
 bG
-bK
+fG
 bR
 bZ
 cf
@@ -876,7 +882,7 @@ bj
 bo
 aC
 bH
-bK
+cs
 bS
 ca
 ce
@@ -899,7 +905,7 @@ zE
 bo
 by
 bI
-cs
+cJ
 cJ
 YI
 cd
@@ -922,7 +928,7 @@ aT
 bo
 bz
 bI
-bK
+gd
 bU
 cb
 cg
