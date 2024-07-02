@@ -231,6 +231,10 @@
 /obj/structure/cable,
 /turf/open/floor/podhatch/floor,
 /area/icy_caves/outpost/engineering)
+"aX" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/outside)
 "aY" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail)
@@ -600,12 +604,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail)
-"cQ" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/snow/layer1,
-/area/icy_caves/outpost/LZ1)
 "cR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -1098,6 +1096,20 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/south)
+"fm" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/misc/paperbin,
+/obj/item/tool/stamp,
+/turf/open/floor/wood,
+/area/icy_caves/outpost/office)
+"fp" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "fq" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -1340,12 +1352,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
-"hv" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/paperbin,
-/obj/item/tool/stamp,
-/turf/open/floor/wood,
-/area/icy_caves/outpost/office)
 "hy" = (
 /obj/machinery/light{
 	dir = 4
@@ -2325,6 +2331,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
+"mF" = (
+/obj/structure/table/wood,
+/obj/item/tool/kitchen/knife/ritual,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/cult,
+/area/icy_caves/caves/chapel)
 "mG" = (
 /obj/machinery/light{
 	dir = 4
@@ -2388,13 +2400,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
-"mW" = (
-/obj/structure/table/wood,
-/obj/effect/landmark/corpsespawner/colonist,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/spawner/random/misc/plushie,
-/turf/open/floor/cult,
-/area/icy_caves/caves/chapel)
 "mX" = (
 /obj/machinery/light{
 	dir = 4
@@ -2696,6 +2701,10 @@
 	dir = 9
 	},
 /area/icy_caves/caves/alienstuff)
+"oB" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside)
 "oF" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
@@ -2943,13 +2952,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
-"pM" = (
-/obj/structure/table/wood,
-/obj/item/storage/bible/booze,
-/obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/effect/spawner/random/weaponry/gun,
-/turf/open/floor/cult,
-/area/icy_caves/caves/chapel)
 "pO" = (
 /obj/item/ammo_casing,
 /turf/open/floor/tile/dark,
@@ -3023,6 +3025,14 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/refinery)
+"qe" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp,
+/obj/item/tool/pen/blue{
+	pixel_x = 5
+	},
+/turf/open/floor/wood,
+/area/icy_caves/outpost/office)
 "qf" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -3716,6 +3726,12 @@
 	dir = 1
 	},
 /area/icy_caves/outpost/security)
+"sO" = (
+/obj/structure/table/wood/gambling,
+/obj/effect/spawner/random/weaponry/gun,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/icy_caves/caves/underground_cafeteria)
 "sP" = (
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northwestmonorail/breakroom)
@@ -4447,6 +4463,13 @@
 /obj/machinery/microwave,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
+"wm" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/misc/paperbin,
+/obj/item/tool/stamp,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood,
+/area/icy_caves/outpost/office)
 "wn" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/tile/dark,
@@ -4752,12 +4775,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/cult,
 /area/icy_caves/caves/south)
-"xP" = (
-/obj/structure/table/wood,
-/obj/item/tool/kitchen/knife/ritual,
-/obj/effect/decal/cleanable/blood,
-/turf/open/floor/cult,
-/area/icy_caves/caves/chapel)
 "xR" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/garage)
@@ -4792,14 +4809,6 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
-"yc" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/lamp,
-/obj/item/tool/pen/blue{
-	pixel_x = 5
-	},
-/turf/open/floor/wood,
-/area/icy_caves/outpost/office)
 "yd" = (
 /obj/structure/monorail,
 /obj/machinery/door/poddoor/mainship/indestructible{
@@ -5175,6 +5184,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
+"zR" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/outside)
 "zS" = (
 /obj/machinery/floodlight/landing,
 /obj/machinery/landinglight/lz1,
@@ -6001,12 +6016,6 @@
 "DD" = (
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
-"DE" = (
-/obj/structure/table/wood/gambling,
-/obj/effect/spawner/random/weaponry/gun,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/wood,
-/area/icy_caves/caves/underground_cafeteria)
 "DG" = (
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/tile/dark,
@@ -7568,6 +7577,13 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail/hallway)
+"Ld" = (
+/obj/structure/table/wood,
+/obj/item/storage/bible/booze,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/effect/spawner/random/weaponry/gun,
+/turf/open/floor/cult,
+/area/icy_caves/caves/chapel)
 "Le" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood,
@@ -8414,10 +8430,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/icy_caves/outpost/outside)
-"OY" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/LZ1)
 "OZ" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/plating,
@@ -8540,6 +8552,11 @@
 /obj/structure/urinal,
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
+"PK" = (
+/obj/item/toy/dice/d20,
+/obj/structure/table/wood/gambling,
+/turf/open/floor/wood,
+/area/icy_caves/caves/underground_cafeteria)
 "PM" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8
@@ -8949,14 +8966,6 @@
 	},
 /turf/open/floor/wood,
 /area/icy_caves/caves/underground_cafeteria)
-"RE" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "RJ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -9147,11 +9156,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/northwestmonorail/hallway)
-"SQ" = (
-/obj/item/toy/dice/d20,
-/obj/structure/table/wood/gambling,
-/turf/open/floor/wood,
-/area/icy_caves/caves/underground_cafeteria)
 "SR" = (
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/northern)
@@ -9528,10 +9532,6 @@
 	dir = 4
 	},
 /area/icy_caves/outpost/medbay)
-"UL" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/open/floor/tile/dark,
-/area/icy_caves/outpost/LZ1)
 "UM" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -9623,6 +9623,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"Vg" = (
+/obj/structure/table/wood,
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/spawner/random/misc/plushie,
+/turf/open/floor/cult,
+/area/icy_caves/caves/chapel)
 "Vh" = (
 /obj/effect/decal/remains/human,
 /obj/effect/decal/cleanable/blood,
@@ -10456,13 +10463,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
-"YS" = (
-/obj/structure/table/wood,
-/obj/effect/spawner/random/misc/paperbin,
-/obj/item/tool/stamp,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/wood,
-/area/icy_caves/outpost/office)
 "YT" = (
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
@@ -13167,7 +13167,7 @@ pR
 pR
 SU
 OW
-cQ
+zR
 Uu
 Vk
 uw
@@ -13323,7 +13323,7 @@ pR
 pR
 pR
 pR
-cQ
+zR
 Uu
 bU
 uw
@@ -13479,7 +13479,7 @@ pR
 XO
 XO
 XO
-cQ
+zR
 UE
 XW
 uw
@@ -13635,7 +13635,7 @@ pR
 pR
 OW
 XO
-cQ
+zR
 WD
 XW
 uw
@@ -14420,11 +14420,11 @@ XT
 XT
 TT
 TT
-OY
-UL
-RE
-OY
-OY
+aX
+oB
+fp
+aX
+aX
 KJ
 XT
 XT
@@ -14437,8 +14437,8 @@ XT
 XT
 XT
 XT
-UL
-UL
+oB
+oB
 XT
 XT
 XT
@@ -18422,7 +18422,7 @@ ZI
 ZI
 PE
 vD
-DE
+sO
 PW
 kH
 Sx
@@ -18578,7 +18578,7 @@ ZP
 ZP
 PE
 vD
-SQ
+PK
 Iz
 JJ
 Qm
@@ -21589,7 +21589,7 @@ Ix
 MV
 NK
 MR
-yc
+qe
 QY
 FZ
 li
@@ -21745,7 +21745,7 @@ Ka
 MZ
 lg
 Ys
-hv
+fm
 Rb
 FZ
 li
@@ -22165,8 +22165,8 @@ BT
 Vn
 Vn
 Vn
-xP
-mW
+mF
+Vg
 nr
 oG
 RR
@@ -22213,7 +22213,7 @@ Ff
 MV
 NK
 MR
-yc
+qe
 QY
 FZ
 li
@@ -22369,7 +22369,7 @@ Kb
 MZ
 zw
 OC
-YS
+wm
 Rb
 FZ
 li
@@ -22632,7 +22632,7 @@ ZI
 ZI
 ZI
 BT
-pM
+Ld
 Tg
 yr
 BT
