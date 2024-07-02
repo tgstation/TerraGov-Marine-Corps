@@ -97,6 +97,9 @@
 
 ///returns TRUE if we are permitted to evo to the next caste FALSE otherwise
 /mob/living/carbon/xenomorph/proc/upgrade_possible()
+	if(!(upgrade in GLOB.xenoupgradetiers))
+		stack_trace("Upgrade isn't in upgrade list, incorrect define provided")
+		return FALSE
 	if(HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return FALSE
 	if(upgrade == XENO_UPGRADE_NORMAL)
