@@ -69,7 +69,7 @@
 
 /obj/item/alien_embryo/proc/process_growth()
 
-	if(stage <= 4)
+	if(stage <= 5)
 		counter += 2.5 //Free burst time in ~7/8 min.
 
 	if(affected_mob.reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
@@ -82,7 +82,7 @@
 		counter += 2.5 //Doubles larval growth progress. Burst time in ~4 min.
 		adjust_boost_timer(-1)
 
-	if(stage < 5 && counter >= 120)
+	if(stage < 6 && counter >= 120)
 		counter = 0
 		stage++
 		log_combat(affected_mob, null, "had their embryo advance to stage [stage]")
@@ -90,10 +90,25 @@
 		C.med_hud_set_status()
 		affected_mob.jitter(stage * 5)
 
+	var/points = 0 // Variable for larva to be added every second a marine is infected with a embryo
+	var/psy_points = 0 // Variable for psypoints every second
+
+// Point maths goes as following:
+// At max level, a embryo generates 1 new larva every 312.5s (5.2m) and 125 strategic psypoints in the same time.
+// This sounds like a lot, however it also takes 8 minutes for a larva to reach max level (Call of the younger excluded).
+// Thus, embryos are important for marines to remove in order to deny the xeno's point and larva generation.
+// On the flipside, early level embryos generate a lot less points, with a level 1 embryo generating 1 new larva every 167 minutes and 125 psypoints in that time.
+
 	switch(stage)
+		if(1)
+			points = 0.0006
+			psy_points = 0.025
+
 		if(2)
 			if(prob(2))
 				to_chat(affected_mob, span_warning("[pick("Your chest hurts a little bit", "Your stomach hurts")]."))
+			points = 0.0012
+			psy_points = 0.05
 		if(3)
 			if(prob(2))
 				to_chat(affected_mob, span_warning("[pick("Your throat feels sore", "Mucous runs down the back of your throat")]."))
@@ -103,23 +118,32 @@
 					affected_mob.take_limb_damage(1)
 			else if(prob(2))
 				affected_mob.emote("[pick("sneeze", "cough")]")
+			points = 0.0024
+			psy_points = 0.01
 		if(4)
 			if(prob(1))
-				if(!affected_mob.IsUnconscious())
-					affected_mob.visible_message(span_danger("\The [affected_mob] starts shaking uncontrollably!"), \
-												span_danger("You start shaking uncontrollably!"))
-					affected_mob.Unconscious(20 SECONDS)
-					affected_mob.jitter(105)
-					affected_mob.take_limb_damage(1)
+				affected_mob.visible_message(span_danger("\The [affected_mob] starts shaking uncontrollably!"), \
+				span_danger("You start shaking uncontrollably!"))
+				affected_mob.jitter(50)
+			points = 0.0048
+			psy_points = 0.2
+		if(5)
 			if(prob(2))
 				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
-		if(5)
-			become_larva()
+				affected_mob.jitter(105)
+				affected_mob.take_limb_damage(1)
+			points = 0.0096
+			psy_points = 0.4
 		if(6)
-			larva_autoburst_countdown--
-			if(!larva_autoburst_countdown)
-				var/mob/living/carbon/xenomorph/larva/L = locate() in affected_mob
-				L?.initiate_burst(affected_mob)
+			if(prob(0.5))
+				affected_mob.Unconscious(4 SECONDS)
+				to_chat(affected_mob, span_warning("[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")]."))
+			points = 0.0192
+			psy_points = 0.8
+	if(points > 0 && hivenumber == XENO_HIVE_NORMAL) // We check if points are greater than 0 and if your hive is normal in order to prevent valhalla embryos from generating points.
+		SSjob.GetJobType(/datum/job/xenomorph).add_job_points(points)
+		SSpoints.add_strategic_psy_points(hivenumber, psy_points)
+		SSpoints.add_tactical_psy_points(hivenumber, psy_points * 0.25) // tactical points are always reduced by a quarter.
 
 
 //We look for a candidate. If found, we spawn the candidate as a larva.
