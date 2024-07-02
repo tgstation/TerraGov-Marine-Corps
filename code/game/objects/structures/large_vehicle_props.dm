@@ -80,7 +80,6 @@
 	bound_height = 32
 	bound_width = 128
 	resistance_flags = XENO_DAMAGEABLE
-	density = TRUE
 	max_integrity = 1000 //mega hauler trucks are still tanks that soak up fire
 	coverage = 95
 	soft_armor = list(MELEE = 30, BULLET = 90, LASER = 95, ENERGY = 55, BOMB = 60, BIO = 10, FIRE = 10, ACID = 10)
@@ -118,7 +117,6 @@
 	icon_state = "SUV"
 	bound_height = 32
 	bound_width = 64
-	density = TRUE
 	coverage = 75
 
 /obj/structure/prop/urban/vehicles/large/suv/suv_1
@@ -162,7 +160,6 @@
 	bound_height = 32
 	bound_width = 64
 	max_integrity = 120
-	density = TRUE
 
 /obj/structure/prop/urban/vehicles/large/truck/truck1
 	icon_state = "zentruck2"
@@ -200,7 +197,6 @@
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	bound_height = 32
 	bound_width = 64
-	density = TRUE
 
 /obj/structure/prop/urban/vehicles/large/big_truck/largetruck1
 	icon_state = "zenithlongtruck2"
@@ -246,7 +242,6 @@
 	icon = 'icons/obj/structures/prop/urban/vehiclesexpanded.dmi'
 	bound_height = 32
 	bound_width = 64
-	density = TRUE
 
 /obj/structure/prop/urban/vehicles/large/colonycrawlers/mining
 	icon_state = "miningcrawler1"

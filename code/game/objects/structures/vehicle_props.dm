@@ -3,6 +3,7 @@
 	icon_state = "SUV"
 	max_integrity = 100
 	resistance_flags = XENO_DAMAGEABLE
+	density = TRUE
 	///used to determine the probability that a car will detonate upon being destroyed
 	var/explosion_probability = 1
 
@@ -34,7 +35,6 @@
 	icon_state = "meridian_red"
 	bound_height = 32
 	bound_width = 64
-	density = TRUE
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = XENO_DAMAGEABLE
 	coverage = 40
