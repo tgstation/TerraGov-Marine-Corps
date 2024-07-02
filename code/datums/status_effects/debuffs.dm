@@ -435,6 +435,7 @@
 
 /datum/status_effect/spacefreeze/tick()
 	owner.adjustFireLoss(40)
+	owner.ExtinguishMob()
 
 /datum/status_effect/spacefreeze/light
 	id = "spacefreeze_light"
