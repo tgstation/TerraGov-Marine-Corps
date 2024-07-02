@@ -298,6 +298,8 @@
 	coords["targ_x"] = T.x
 	coords["targ_y"] = T.y
 	say("Remote targeting set by [user]. COORDINATES: X:[coords["targ_x"]] Y:[coords["targ_y"]] OFFSET: X:[coords["dial_x"]] Y:[coords["dial_y"]]")
+	if(get_dist(loc, T) < minimum_range)
+		say("Warning: Remote target currently too close for mortar bombardment. Distance to Target: [get_dist(loc, T)]. Minimum Range: [minimum_range]")
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
 ///perform any individual sprite-specific visuals here
