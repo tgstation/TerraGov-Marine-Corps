@@ -353,7 +353,7 @@
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "adB" = (
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "adE" = (
@@ -678,7 +678,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "agk" = (
@@ -1357,7 +1357,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "aml" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "amo" = (
@@ -2189,7 +2189,7 @@
 /turf/open/floor/urban/wood/darkerwood,
 /area/lv759/indoors/colonial_marshals/head_office)
 "atl" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
@@ -9044,7 +9044,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_factory)
 "bEk" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "bEm" = (
@@ -9242,7 +9242,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "bFU" = (
@@ -11225,7 +11225,7 @@
 /obj/item/tool/pickaxe{
 	pixel_y = -3
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "bWH" = (
@@ -12295,7 +12295,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_street)
 "ceV" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "ceZ" = (
@@ -15883,7 +15883,7 @@
 	},
 /area/lv759/indoors/caves/central_caves)
 "cLp" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "cLt" = (
@@ -18422,7 +18422,7 @@
 /turf/open/floor/prison,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "dgz" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "dgB" = (
@@ -20207,7 +20207,7 @@
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "dvQ" = (
 /obj/structure/platform_decoration/urban/rockdark,
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "dvY" = (
@@ -20274,7 +20274,7 @@
 /turf/open/floor/urban/tile/tilered,
 /area/lv759/indoors/bar)
 "dwA" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "dwB" = (
@@ -21008,7 +21008,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "dDB" = (
@@ -22723,7 +22723,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "dTJ" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "dTK" = (
@@ -25908,7 +25908,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "ewu" = (
@@ -26412,7 +26412,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "eBK" = (
@@ -27698,7 +27698,7 @@
 	dir = 8
 	},
 /obj/structure/prop/urban/fakeplatforms/rockplatform,
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "eMz" = (
@@ -31054,7 +31054,7 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "fqE" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "fqJ" = (
@@ -31760,7 +31760,7 @@
 	},
 /area/lv759/indoors/nt_office/pressroom)
 "fwy" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "fwF" = (
@@ -33948,7 +33948,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "fOM" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "fON" = (
@@ -35365,7 +35365,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "gbv" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "gbw" = (
@@ -46306,7 +46306,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "hSZ" = (
@@ -47374,7 +47374,7 @@
 	},
 /area/lv759/indoors/hospital/central_hallway)
 "idn" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /obj/effect/landmark/weed_node,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
@@ -48701,7 +48701,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "ioG" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "ioL" = (
@@ -52089,7 +52089,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hallwaynorth)
 "iTW" = (
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "iTY" = (
@@ -54104,7 +54104,7 @@
 /turf/open/floor/urban/metal/bluemetalfull,
 /area/lv759/indoors/spaceport/flight_control_room)
 "jjN" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "jjQ" = (
@@ -55178,7 +55178,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "jsY" = (
@@ -55462,7 +55462,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "jvj" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
@@ -56059,7 +56059,7 @@
 /turf/open/floor/floorthree,
 /area/lv759/indoors/NTmart)
 "jAI" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
 	dir = 6
@@ -57862,7 +57862,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "jSX" = (
@@ -58916,7 +58916,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "kbW" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "kch" = (
@@ -59569,7 +59569,7 @@
 /turf/open/floor/prison/darkyellow,
 /area/lv759/indoors/garage_workshop)
 "kih" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "kio" = (
@@ -66518,7 +66518,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 8
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "ltL" = (
@@ -70091,7 +70091,7 @@
 /turf/open/floor/officesquares,
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator)
 "lXY" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "lYd" = (
@@ -70161,7 +70161,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "lYR" = (
@@ -72061,7 +72061,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/botany/botany_mainroom)
 "moW" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "moZ" = (
@@ -76317,7 +76317,7 @@
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
 "nad" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "nam" = (
@@ -77770,7 +77770,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/caves/north_caves)
 "nlT" = (
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "nlU" = (
@@ -79936,7 +79936,7 @@
 /obj/structure/platform_decoration/urban/rockdark{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "nEG" = (
@@ -83584,7 +83584,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 8
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "okK" = (
@@ -93265,7 +93265,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "pUy" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "pUE" = (
@@ -94287,7 +94287,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "qcM" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "qcO" = (
@@ -95274,7 +95274,7 @@
 	dir = 8
 	},
 /obj/structure/platform/urban/metalplatform2,
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "qkH" = (
@@ -97584,7 +97584,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "qIt" = (
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
@@ -99807,7 +99807,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 8
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "rcI" = (
@@ -99977,7 +99977,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/north_west_street)
 "res" = (
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
 	dir = 4
@@ -100978,7 +100978,7 @@
 /turf/closed/wall/urban/colony,
 /area/lv759/indoors/apartment/eastbedroomsstorage)
 "rmq" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
@@ -102060,7 +102060,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "rvE" = (
@@ -102277,7 +102277,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/spaceport/docking_bay_2)
 "ryb" = (
-/obj/structure/prop/urban/cavedecor/stalagmite5,
+/obj/structure/rock/dark/stalagmite/five,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
@@ -103773,7 +103773,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "rLV" = (
@@ -106516,7 +106516,7 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "skr" = (
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /obj/effect/landmark/weed_node,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
@@ -106557,7 +106557,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite3,
+/obj/structure/rock/dark/stalagmite/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "skN" = (
@@ -107263,7 +107263,7 @@
 /area/lv759/outdoors/colony_streets/central_streets)
 "sqL" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "sqM" = (
@@ -107941,7 +107941,7 @@
 /turf/open/floor/plating/heatinggrate,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "swN" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "swP" = (
@@ -109383,7 +109383,7 @@
 /turf/closed/wall/r_wall/white_research_wall,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "sJj" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab";
 	dir = 4
@@ -114407,7 +114407,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_west_street)
 "tAD" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
@@ -116701,7 +116701,7 @@
 	},
 /area/lv759/indoors/hospital/maintenance_north)
 "tUB" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "tUG" = (
@@ -117539,7 +117539,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "uaS" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "uaX" = (
@@ -121856,7 +121856,7 @@
 	},
 /area/lv759/indoors/power_plant/fusion_generators)
 "uLt" = (
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "uLy" = (
@@ -126977,7 +126977,7 @@
 	},
 /area/lv759/indoors/derelict_ship)
 "vDJ" = (
-/obj/structure/prop/urban/cavedecor/stalagmite0,
+/obj/structure/rock/dark/stalagmite,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_west_caves)
 "vDL" = (
@@ -128041,7 +128041,7 @@
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
 "vNf" = (
-/obj/structure/prop/hybrisa/engineer/spacejockey,
+/obj/structure/prop/urban/engineer/spacejockey,
 /turf/open/engineership/engineer_floor1,
 /area/lv759/indoors/derelict_ship)
 "vNh" = (
@@ -128269,7 +128269,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/caves/central_caves)
 "vOS" = (
-/obj/structure/prop/urban/cavedecor/stalagmite2,
+/obj/structure/rock/dark/stalagmite/two,
 /obj/effect/landmark/weed_node,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
@@ -129985,7 +129985,7 @@
 /area/lv759/indoors/recycling_plant)
 "wcv" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/prop/urban/cavedecor/stalagmite1,
+/obj/structure/rock/dark/stalagmite/one,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "wcx" = (
@@ -136749,7 +136749,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4
 	},
-/obj/structure/prop/urban/cavedecor/stalagmite4,
+/obj/structure/rock/dark/stalagmite/four,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "xjv" = (

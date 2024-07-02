@@ -162,6 +162,29 @@
 /obj/structure/rock/dark/small/three
 	icon_state = "bouldersmalldark3"
 
+// Cave props
+/obj/structure/rock/dark/stalagmite
+/obj/structure/prop/urban/cavedecor
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
+	name = "stalagmite"
+	icon_state = "stalagmite"
+	desc = "A cave stalagmite."
+
+/obj/structure/rock/dark/stalagmite/one
+	icon_state = "stalagmite1"
+
+/obj/structure/rock/dark/stalagmite/two
+	icon_state = "stalagmite2"
+
+/obj/structure/rock/dark/stalagmite/three
+	icon_state = "stalagmite3"
+
+/obj/structure/rock/dark/stalagmite/four
+	icon_state = "stalagmite4"
+
+/obj/structure/rock/dark/stalagmite/five
+	icon_state = "stalagmite5"
+
 //randomised icons
 /obj/structure/rock/variable
 	///number of icon variants this object has
