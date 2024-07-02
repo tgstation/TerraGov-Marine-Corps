@@ -151,6 +151,10 @@
 		return
 	new_xeno.upgrade_stored = upgrade_stored
 	while(new_xeno.upgrade_stored >= new_xeno.xeno_caste?.upgrade_threshold && new_xeno.upgrade_possible())
+		if(!new_xeno.upgrade_next()) //Upgrade tier wasn't set properly, let's avoid looping forever
+			qdel(new_xeno)
+			stack_trace("[src] tried to evolve and upgrade, but the castes upgrade tier wasn't valid.")
+			return
 		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
