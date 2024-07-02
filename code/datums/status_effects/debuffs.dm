@@ -435,13 +435,13 @@
 
 /datum/status_effect/spacefreeze/tick()
 	owner.adjustFireLoss(40)
-	owner.ExtinguishMob()
+	owner.fire_stacks = max(owner.fire_stacks - 10,0)
 
 /datum/status_effect/spacefreeze/light
 	id = "spacefreeze_light"
 
 /datum/status_effect/spacefreeze/light/tick()
-	owner.ExtinguishMob()
+	owner.fire_stacks = max(owner.fire_stacks - 6 ,0)
 	if(owner.stat == DEAD)
 		return
 	owner.adjustFireLoss(10)
