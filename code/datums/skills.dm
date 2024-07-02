@@ -587,6 +587,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	rifles = SKILL_RIFLES_TRAINED
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/sl/pmc/special_forces
 	name = "Special Force Leader"
@@ -600,6 +601,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_ENGI
+	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/specialist
 	name = SQUAD_SPECIALIST
@@ -638,6 +640,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/specialist/pmc
 	name = "PMC Specialist"
 	engineer = SKILL_ENGINEER_METAL
+	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/specialist/upp
 	name = "UPP Specialist"

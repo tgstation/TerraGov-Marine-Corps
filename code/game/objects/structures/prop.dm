@@ -808,6 +808,54 @@
 	resistance_flags = RESIST_ALL
 	density = TRUE
 
+/obj/structure/prop/mainship/prop_so/icc_one
+	name = "Terry Maxson"
+	desc = "A member of the ICC high command, he controls and maintains the entirety of ICC."
+	icon_state = "ICC_officer_one"
+
+/obj/structure/prop/mainship/prop_so/icc_two
+	name = "Cassandra Maximus"
+	desc = "A member of the ICC high command, she manages what goes through and out of ICC."
+	icon_state = "ICC_officer_two"
+
+/obj/structure/prop/mainship/prop_so/icc_three
+	name = "Kay Moody"
+	desc = "A member of the ICC high command, she manages all the trainings between the drill sergeants."
+	icon_state = "ICC_officer_three"
+
+/obj/structure/prop/mainship/prop_iccinf
+	name = "ICC infantry"
+	desc = "One of the protectors, he seems to be prepping. Best to leave them be."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "ICC_standard"
+	resistance_flags = RESIST_ALL
+	density = TRUE
+
+/obj/structure/prop/mainship/prop_iccinf/guard
+	name = "ICC guard"
+	desc = "He's always on the watch, don't distract them."
+	icon_state = "ICC_guard"
+
+/obj/structure/prop/mainship/prop_iccinf/guard_specialist
+	name = "ICC specialist"
+	desc = "The armor he wears is so... bulky. Seems to be preparing, leave them be."
+	icon_state = "ICC_guard_specialist"
+
+/obj/structure/prop/mainship/prop_iccinf/armed
+	name = "ICC infantry"
+	desc = "One of the protectors, armed with the L-4034 trenchgun. He doesn't want to joke around."
+	icon_state = "ICC_standard_armed"
+
+/obj/structure/prop/mainship/prop_iccinf/guard/armed
+	name = "ICC guard"
+	desc = "He's on guard duty. Handling a L-11 sharpshooter rifle. He doesn't have time to talk"
+	icon_state = "ICC_guard_armed"
+
+/obj/structure/prop/mainship/prop_iccinf/guard_specialist/armed
+	name = "ICC specialist"
+	desc = "Wearing 'Cuirassier' body armor, armed with a ML-41 assault machine gun, he seems fully prepared for combat!"
+	icon_state = "ICC_guard_armed"
+
 /obj/structure/prop/templedoor
 	name = "Strange Temple"
 	icon = 'icons/obj/doors/Doorsand.dmi'
