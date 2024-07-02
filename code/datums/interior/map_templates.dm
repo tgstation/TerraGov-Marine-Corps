@@ -28,3 +28,7 @@
 /datum/map_template/interior/som_tank
 	name = "SOM tank interior template"
 	filename = "som_tank"
+
+/datum/map_template/interior/autoloader_tank
+	name = "TGMC autoloader equipped tank "
+	filename = "tgmc_auto_tank"

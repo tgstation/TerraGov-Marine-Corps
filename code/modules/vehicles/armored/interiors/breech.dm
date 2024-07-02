@@ -270,3 +270,74 @@
 	name = "Tank weapon"
 	mouse_opacity  = MOUSE_OPACITY_TRANSPARENT
 	layer = ABOVE_MOB_PLATFORM_LAYER
+
+
+/obj/structure/gun_breech/autoloader
+	name = "autoloader"
+	desc = "An autoloader used to replace a loader at the expense of longer reload times"
+	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
+	icon_state = "autoloader_breech"
+	resistance_flags = RESIST_ALL
+
+	//all shells loaded, in order
+	var/list/shells = list()
+	//max shells
+	var/max_shells = 3
+	//time to load the ready rack
+	var/rack_reload_time = 3 SECONDS
+	//autoloader time to reload from readyrack
+	var/autoloader_reload_time = 0.75 SECONDS //is the reload time really 1 second for the breech? (ive never seen a man reload a tank that fast)
+	//check to see if loading is happening
+	var/loading = FALSE
+
+///loads the autoloader's ready rack
+/obj/structure/gun_breech/autoloader/do_load(mob/living/user, obj/item/armored_weapon/weapon, obj/item/ammo_magazine/mag)
+	user.temporarilyRemoveItemFromInventory(mag)
+	mag.forceMove(src)
+	shells += mag
+	for(var/mob/occupant AS in owner.interior.occupants)
+		occupant.hud_used.update_ammo_hud(owner.primary_weapon, list(
+			shells[1].default_ammo.hud_state,
+			shells[1].default_ammo.hud_state_empty),
+			shells.len
+		)
+
+/obj/structure/gun_breech/autoloader/proc/begin_autoloader_load_gun()
+	if(shells.len <= 0)
+		say("Autoloader Empty!" ) // Yeah localize this to the gunner. FIX!!
+		return
+	if(owner.primary_weapon.ammo)
+		return
+	if(loading)
+		say("Autoloader Busy!" )
+		return
+	loading = TRUE
+	var/timer = addtimer(CALLBACK(src, PROC_REF(autoloader_load_gun)), autoloader_reload_time, TIMER_STOPPABLE)
+	playsound(src, 'sound/vehicles/weapons/ltb_reload.ogg', 60, FALSE)
+
+
+/obj/structure/gun_breech/autoloader/proc/autoloader_load_gun()
+
+	owner.primary_weapon.ammo = shells[1]
+
+	for(var/mob/occupant AS in owner.interior.occupants)
+		occupant.hud_used.update_ammo_hud(owner.primary_weapon, list(
+			shells[1].default_ammo.hud_state,
+			shells[1].default_ammo.hud_state_empty),
+			shells.len - 1
+		)
+	shells -= shells[1]
+	loading = FALSE
+
+
+	flick("autoloader_breech_reload",src)
+
+
+///checks to perform while reloading
+/obj/structure/gun_breech/autoloader/reload_checks(mob/user)
+	var/obj/item/armored_weapon/weapon = is_secondary ? owner.secondary_weapon : owner.primary_weapon
+	if(!weapon)
+		balloon_alert(user, "no weapon")
+		return FALSE
+	return TRUE
+
