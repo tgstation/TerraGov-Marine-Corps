@@ -441,6 +441,7 @@
 	id = "spacefreeze_light"
 
 /datum/status_effect/spacefreeze/light/tick()
+	owner.ExtinguishMob()
 	if(owner.stat == DEAD)
 		return
 	owner.adjustFireLoss(10)
