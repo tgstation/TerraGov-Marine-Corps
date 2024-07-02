@@ -835,7 +835,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/casino)
 "ahH" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/caves/north_caves)
 "ahM" = (
@@ -3562,7 +3562,7 @@
 /turf/open/floor/mainship,
 /area/lv759/indoors/power_plant/fusion_generators)
 "aGQ" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
+/obj/structure/rock/dark/large/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "aGR" = (
@@ -5032,7 +5032,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/northeast)
 "aSG" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "aSJ" = (
@@ -6027,7 +6027,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/landing_zone_2)
 "baS" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "baT" = (
@@ -6324,7 +6324,7 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_northeast)
 "beq" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1{
+/obj/structure/rock/dark/small{
 	layer = 4
 	},
 /turf/open/urbanshale/layer1,
@@ -7282,7 +7282,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/medical_storage)
 "boi" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "boq" = (
@@ -8559,7 +8559,7 @@
 /turf/open/floor/wood/variable,
 /area/lv759/indoors/jacks_surplus)
 "bzo" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "bzq" = (
@@ -12415,7 +12415,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "cge" = (
 /obj/structure/platform/urban/metalplatform2,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "cgf" = (
@@ -12457,7 +12457,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/maintenance)
 "cgu" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2,
+/obj/structure/rock/dark/wide/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "cgw" = (
@@ -14560,7 +14560,7 @@
 	pixel_x = 20;
 	pixel_y = 28
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "czK" = (
@@ -18333,7 +18333,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/east_hallway)
 "dfK" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "dfQ" = (
@@ -18395,9 +18395,9 @@
 	},
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "dgo" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /obj/structure/prop/urban/misc/fake/pipes/pipe1,
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/floor/officetiles,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "dgq" = (
@@ -21221,7 +21221,7 @@
 /turf/open/urban/dropship/dropship3,
 /area/lv759/indoors/nt_research_complex/changingroom)
 "dGv" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "dGy" = (
@@ -22116,7 +22116,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/power_plant/equipment_east)
 "dOt" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "dOy" = (
@@ -22396,7 +22396,7 @@
 /turf/open/floor/marked,
 /area/lv759/outdoors/colony_streets/north_street)
 "dRA" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "dRI" = (
@@ -27630,7 +27630,7 @@
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/colonial_marshals/armory_firingrange)
 "eLS" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "eLT" = (
@@ -27816,8 +27816,8 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "eNV" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "eNW" = (
@@ -28066,7 +28066,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "eQb" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "eQe" = (
@@ -31406,7 +31406,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/hallway_north_locker)
 "ftk" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/colony_streets/north_street)
 "ftl" = (
@@ -31462,7 +31462,7 @@
 /turf/open/floor/prison,
 /area/lv759/indoors/nt_research_complex_entrance)
 "ftN" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "ftO" = (
@@ -34580,7 +34580,7 @@
 /turf/open/urban/street/sidewalk,
 /area/lv759/outdoors/colony_streets/central_streets)
 "fUq" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "fUs" = (
@@ -35081,7 +35081,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/hangarbay)
 "fYM" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "fYN" = (
@@ -41124,8 +41124,8 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "hbD" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
+/obj/structure/rock/dark/small/three,
 /obj/machinery/light/small/blue{
 	dir = 8
 	},
@@ -42768,7 +42768,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/lv759/indoors/nt_office/floor)
 "hoX" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "hoY" = (
@@ -45658,7 +45658,7 @@
 /turf/open/engineership/engineer_floor5,
 /area/lv759/indoors/derelict_ship)
 "hNJ" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "hNM" = (
@@ -46681,7 +46681,7 @@
 	},
 /area/lv759/outdoors/north_west_caves_outdoors)
 "hWI" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "hWO" = (
@@ -47226,7 +47226,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/reception)
 "ibU" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "ibW" = (
@@ -48217,7 +48217,7 @@
 	dir = 6;
 	pixel_y = 34
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "ikM" = (
@@ -50405,7 +50405,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/cargo)
 "iFb" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "iFe" = (
@@ -50750,7 +50750,7 @@
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 1
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "iIo" = (
@@ -52124,7 +52124,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/hospital/operation)
 "iUo" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "iUt" = (
@@ -58312,7 +58312,7 @@
 /area/lv759/indoors/garage_workshop_storage)
 "jWO" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/nt_research_complex_entrance)
 "jWU" = (
@@ -59595,7 +59595,7 @@
 /turf/open/urban/street/underground_unweedable,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "kiA" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "kiD" = (
@@ -60899,7 +60899,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/power_plant/fusion_generators)
 "kuR" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "kvd" = (
@@ -60968,7 +60968,7 @@
 	},
 /area/lv759/indoors/nt_research_complex/cargo)
 "kvG" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "kvP" = (
@@ -61242,7 +61242,7 @@
 	},
 /area/lv759/indoors/nt_research_complex_entrance)
 "kxW" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "kxZ" = (
@@ -62681,7 +62681,7 @@
 	},
 /area/lv759/indoors/caves/north_west_caves)
 "kLB" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "kLF" = (
@@ -65972,7 +65972,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "lnQ" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "lnU" = (
@@ -68314,7 +68314,7 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lJS" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "lJX" = (
@@ -68363,7 +68363,7 @@
 /turf/open/floor/podhatch/floor,
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "lKs" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1{
+/obj/structure/rock/dark/large{
 	layer = 4
 	},
 /turf/open/urbanshale/layer1,
@@ -68829,7 +68829,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lNW" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "lNY" = (
@@ -70562,7 +70562,7 @@
 /turf/open/floor/prison/plate,
 /area/lv759/outdoors/colony_streets/central_streets)
 "mcD" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mcI" = (
@@ -71407,8 +71407,8 @@
 	},
 /area/lv759/outdoors/colony_streets/east_central_street)
 "mjN" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "mjV" = (
@@ -72035,8 +72035,8 @@
 	},
 /area/lv759/outdoors/colony_streets/central_streets)
 "moL" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "moS" = (
@@ -72756,7 +72756,7 @@
 /turf/closed/wall/urban,
 /area/lv759/indoors/hospital/emergency_room)
 "muS" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "mva" = (
@@ -75757,7 +75757,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/flight_control_room)
 "mWh" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "mWi" = (
@@ -76741,7 +76741,7 @@
 /turf/open/floor/marked,
 /area/lv759/indoors/power_plant/gas_generators)
 "nds" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "ndy" = (
@@ -76999,7 +76999,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "nfV" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /obj/effect/landmark/weed_node,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
@@ -77658,7 +77658,7 @@
 /turf/open/floor/urban/tile/tilewhitecheckered,
 /area/lv759/indoors/nt_research_complex/medical_annex)
 "nkt" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
+/obj/structure/rock/dark/large/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "nkw" = (
@@ -79328,7 +79328,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_street)
 "nyZ" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "nzd" = (
@@ -79945,7 +79945,7 @@
 /turf/open/floor/urban/tile/tileblackcheckered,
 /area/lv759/indoors/casino)
 "nEI" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "nEK" = (
@@ -80516,7 +80516,7 @@
 /turf/open/shuttle/escapepod,
 /area/lv759/indoors/electical_systems/substation2)
 "nKq" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "nKs" = (
@@ -85329,7 +85329,7 @@
 /turf/open/floor/urban/tile/tilebeige,
 /area/lv759/indoors/mining_outpost/east_command)
 "oCB" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "oCD" = (
@@ -88224,7 +88224,7 @@
 	},
 /area/lv759/outdoors/colony_streets/north_east_street)
 "pdD" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1,
+/obj/structure/rock/dark/wide,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/caves/north_caves)
 "pdH" = (
@@ -89223,7 +89223,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "plT" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1{
+/obj/structure/rock/dark/large{
 	layer = 2.9
 	},
 /obj/effect/landmark/weed_node,
@@ -90177,7 +90177,7 @@
 	},
 /area/lv759/indoors/meridian/meridian_office)
 "ptZ" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "pug" = (
@@ -90999,7 +90999,7 @@
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/colony_streets/south_east_street)
 "pzR" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2,
+/obj/structure/rock/dark/wide/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "pzX" = (
@@ -92009,7 +92009,7 @@
 /turf/open/ground/sandrock,
 /area/lv759/indoors/caves/central_caves)
 "pIA" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
+/obj/structure/rock/dark/large/three,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/caves/central_caves)
 "pID" = (
@@ -93960,7 +93960,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "pZK" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/central_streets)
 "pZM" = (
@@ -95278,7 +95278,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "qkH" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer2,
 /area/lv759/indoors/caves/central_caves)
 "qkJ" = (
@@ -97559,7 +97559,7 @@
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/spaceport/engineering)
 "qHO" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "qHQ" = (
@@ -103221,14 +103221,14 @@
 	},
 /area/lv759/indoors/nt_security/checkpoint_east)
 "rGV" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1{
+/obj/structure/rock/dark/small{
 	layer = 4
 	},
 /obj/structure/prop/urban/fakeplatforms/rockplatform{
 	dir = 4;
 	layer = 4
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1{
+/obj/structure/rock/dark/small{
 	layer = 4
 	},
 /turf/open/urbanshale/layer1,
@@ -108225,7 +108225,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "syY" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_caves)
 "szd" = (
@@ -110368,7 +110368,7 @@
 /turf/open/engineership/engineer_floor4,
 /area/lv759/indoors/derelict_ship)
 "sRv" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "sRx" = (
@@ -112448,7 +112448,7 @@
 /obj/structure/barricade/handrail/strata{
 	layer = 3.1
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tix" = (
@@ -112616,8 +112616,8 @@
 /turf/closed/wall/urban,
 /area/lv759/indoors/spaceport/cuppajoes)
 "tkO" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
+/obj/structure/rock/dark/large/two,
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
@@ -114706,7 +114706,7 @@
 /turf/open/floor/plating,
 /area/lv759/outdoors/landing_zone_2)
 "tDO" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
+/obj/structure/rock/dark/large/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "tEa" = (
@@ -115476,7 +115476,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "tKo" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "tKu" = (
@@ -116469,7 +116469,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
 "tSA" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "tSD" = (
@@ -118410,7 +118410,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/lv759/indoors/hospital/east_hallway)
 "uiz" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2,
+/obj/structure/rock/dark/large/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/central_caves)
 "uiD" = (
@@ -123662,7 +123662,7 @@
 /obj/structure/platform/urban/metalplatform2{
 	dir = 1
 	},
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "vbO" = (
@@ -124124,7 +124124,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/spaceport/communications_office)
 "veR" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2,
+/obj/structure/rock/dark/wide/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "veS" = (
@@ -124312,7 +124312,7 @@
 	},
 /area/lv759/indoors/recycling_plant)
 "vgz" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/north_street)
 "vgB" = (
@@ -125817,7 +125817,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "vsW" = (
 /obj/structure/lattice/autosmooth,
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "vta" = (
@@ -131016,7 +131016,7 @@
 	},
 /area/lv759/indoors/power_plant/fusion_generators)
 "wls" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "wly" = (
@@ -131348,7 +131348,7 @@
 	},
 /area/lv759/indoors/hospital/central_hallway)
 "woB" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/east_caves)
 "woE" = (
@@ -132408,7 +132408,7 @@
 /turf/open/floor/officetiles,
 /area/lv759/indoors/spaceport/starglider)
 "wzb" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3,
+/obj/structure/rock/dark/small/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/landing_zone_2)
 "wze" = (
@@ -132652,7 +132652,7 @@
 	},
 /area/lv759/indoors/spaceport/docking_bay_1)
 "wBc" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/west_caves)
 "wBg" = (
@@ -135893,7 +135893,7 @@
 /turf/open/floor/plating,
 /area/lv759/indoors/nt_research_complex/mainlabs)
 "xda" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1,
+/obj/structure/rock/dark/large,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/north_east_caves)
 "xdc" = (
@@ -136923,7 +136923,7 @@
 /turf/open/floor/urban/metal/stripe_red,
 /area/lv759/indoors/caves/west_caves)
 "xlm" = (
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2,
+/obj/structure/rock/dark/wide/two,
 /turf/open/urbanshale/layer2,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "xls" = (
@@ -137196,7 +137196,7 @@
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/caveplateau)
 "xnK" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/caves/south_west_caves)
 "xnM" = (
@@ -137385,7 +137385,7 @@
 /turf/closed/wall/r_wall/urban,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room)
 "xpD" = (
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3,
+/obj/structure/rock/dark/large/three,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "xpF" = (
@@ -138714,7 +138714,7 @@
 	},
 /area/lv759/indoors/nt_office)
 "xBh" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/indoors/nt_research_complex_entrance)
 "xBm" = (
@@ -141252,7 +141252,7 @@
 /turf/open/floor/prison/cellstripe,
 /area/lv759/indoors/power_plant/telecomms)
 "xYr" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1,
+/obj/structure/rock/dark/small,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/north_west_caves_outdoors)
 "xYv" = (
@@ -142011,7 +142011,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "yfm" = (
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2,
+/obj/structure/rock/dark/small/two,
 /turf/open/urbanshale/layer1,
 /area/lv759/outdoors/colony_streets/east_central_street)
 "yfs" = (

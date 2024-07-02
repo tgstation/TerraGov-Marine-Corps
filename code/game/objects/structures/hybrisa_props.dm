@@ -901,68 +901,6 @@
 	layer = 5
 
 // Cave props
-
-/obj/structure/prop/urban/boulders
-	icon = 'icons/obj/structures/boulder_largedark.dmi'
-	icon_state = "boulder_largedark1"
-
-	max_integrity = 250
-	coverage = 100
-	soft_armor = list(MELEE = 75, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 100, FIRE = 100, ACID = 25)
-	density = TRUE
-	anchored = TRUE
-	layer = ABOVE_TURF_LAYER
-	allow_pass_flags = PASSABLE|PASS_DEFENSIVE_STRUCTURE
-
-/obj/structure/prop/urban/boulders/large_boulderdark
-	name = "boulder"
-	desc = "A large rock. It's not cooking anything."
-	icon = 'icons/obj/structures/boulder_largedark.dmi'
-	icon_state = "boulder_largedark1"
-	density = TRUE
-	bound_height = 64
-	bound_width = 64
-
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark1
-	icon_state = "boulder_largedark1"
-
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark2
-	icon_state = "boulder_largedark2"
-
-/obj/structure/prop/urban/boulders/large_boulderdark/boulder_dark3
-	icon_state = "boulder_largedark3"
-
-/obj/structure/prop/urban/boulders/wide_boulderdark
-	name = "boulder"
-	desc = "A large rock. It's not cooking anything."
-	icon = 'icons/obj/structures/boulder_widedark.dmi'
-	icon_state = "boulderwidedark"
-	density = TRUE
-	bound_height = 32
-	bound_width = 64
-
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder1
-	icon_state = "boulderwidedark"
-
-/obj/structure/prop/urban/boulders/wide_boulderdark/wide_boulder2
-	icon_state = "boulderwidedark2"
-
-/obj/structure/prop/urban/boulders/smallboulderdark
-	name = "boulder"
-	icon_state = "bouldersmalldark1"
-	desc = "A large rock. It's not cooking anything."
-	icon = 'icons/obj/structures/boulder_small.dmi'
-	density = TRUE
-
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark1
-	icon_state = "bouldersmalldark1"
-
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark2
-	icon_state = "bouldersmalldark2"
-
-/obj/structure/prop/urban/boulders/smallboulderdark/boulder_dark3
-	icon_state = "bouldersmalldark3"
-
 /obj/structure/prop/urban/cavedecor
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	name = "stalagmite"
