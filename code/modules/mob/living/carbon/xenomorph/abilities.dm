@@ -1195,6 +1195,7 @@
 // ***************************************
 /datum/action/ability/xeno_action/psychic_influence
 	name = "Psychic Influence"
+	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
 	action_icon_state = "psychic_whisper"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_INFLUENCE,
@@ -1253,6 +1254,7 @@
 /////////////////////////////////
 /datum/action/ability/activable/xeno/devour
 	name = "Devour"
+	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
 	action_icon_state = "abduct"
 	desc = "Devour your victim to be able to carry it faster."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
