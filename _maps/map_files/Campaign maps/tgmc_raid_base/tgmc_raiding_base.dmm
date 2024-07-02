@@ -4084,7 +4084,9 @@
 /turf/open/floor/carpet/blue,
 /area/campaign/tgmc_raiding/underground/command/captain)
 "qC" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /obj/structure/desertdam/decals/road/edge/long,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
@@ -4641,7 +4643,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
 "sL" = (
-/obj/structure/prop/vehicle/van,
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/garage)
 "sM" = (
@@ -10071,7 +10075,9 @@
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "Or" = (
-/obj/structure/prop/vehicle/van,
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/garage)

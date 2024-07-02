@@ -3855,7 +3855,9 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "uk" = (
-/obj/structure/prop/vehicle/truck/destructible,
+/obj/structure/prop/vehicle/truck/destructible{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "um" = (

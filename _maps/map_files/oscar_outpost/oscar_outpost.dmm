@@ -8349,7 +8349,9 @@
 	pixel_x = 39;
 	pixel_y = 26
 	},
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /obj/structure/reagent_dispensers/beerkeg{
 	pixel_x = 29;
 	pixel_y = 21

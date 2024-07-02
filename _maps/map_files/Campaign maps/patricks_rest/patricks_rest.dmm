@@ -2225,7 +2225,9 @@
 /turf/open/floor/mainship/tcomms,
 /area/patricks_rest/surface/building/science)
 "jT" = (
-/obj/structure/prop/vehicle/van,
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/ground/colonycent)
 "jU" = (
@@ -4421,7 +4423,9 @@
 /turf/open/floor/mainship/sterile/purple,
 /area/patricks_rest/surface/building/science)
 "tS" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
@@ -7760,7 +7764,9 @@
 /turf/open/floor/prison/darkpurple/full,
 /area/patricks_rest/surface/building/residential_e)
 "Kv" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/surface/building/ore_storage)
 "Kw" = (
@@ -7986,7 +7992,9 @@
 /area/patricks_rest/surface/building/command)
 "Lz" = (
 /obj/structure/desertdam/decals/road/line,
-/obj/structure/prop/vehicle/truck/truckcargo,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/ground/colonycent)
 "LB" = (
@@ -10426,7 +10434,9 @@
 	},
 /area/patricks_rest/surface/building/security_post_cargo)
 "WW" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/patricks_rest/ground/colonycent)
 "WX" = (
