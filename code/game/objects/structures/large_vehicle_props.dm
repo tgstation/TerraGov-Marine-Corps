@@ -13,7 +13,7 @@
 
 /obj/structure/prop/urban/vehicles/large/update_overlays()
 	. = ..()
-	switch(dir)
+	switch(dir) //Todo: Consolidate the overlays into a single overlay state per icon instead of 4
 		if(NORTH)
 			. += image(icon, src, "[initial(icon_state)]_top_r", layer = ABOVE_ALL_MOB_LAYER)
 		if(SOUTH)
@@ -29,13 +29,6 @@
 	icon_state = "ambulance"
 	bound_height = 32
 	bound_width = 96
-
-/obj/structure/prop/urban/vehicles/large/ambulance/Initialize(mapload)
-	. = ..()
-	if(dir == NORTH || dir == EAST)
-		overlays += image(icon, src, "[initial(icon_state)]_top_r", layer = ABOVE_ALL_MOB_LAYER)
-	if(dir == SOUTH || dir == WEST)
-		overlays += image(icon, src, "[initial(icon_state)]_top_l", layer = ABOVE_ALL_MOB_LAYER)
 
 // Armored Truck
 
@@ -187,7 +180,7 @@
 /obj/structure/prop/urban/vehicles/large/truck/mining
 	name = "mining supply truck"
 	icon_state = "truck_mining"
-	desc = "Seems to be broken down.
+	desc = "Seems to be broken down."
 
 // large trucks
 /obj/structure/prop/urban/vehicles/large/big_truck
