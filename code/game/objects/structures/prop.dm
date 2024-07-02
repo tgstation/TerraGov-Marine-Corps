@@ -1215,7 +1215,7 @@
 
 /obj/structure/prop/vehicle/truck/setDir(newdir)
 	. = ..()
-	if(newdir & (WEST|EAST))
+	if(dir & (WEST|EAST))
 		bound_height = 32
 		bound_width = 64
 		pixel_x = 0
