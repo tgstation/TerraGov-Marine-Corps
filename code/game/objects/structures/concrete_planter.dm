@@ -10,18 +10,22 @@
 
 /obj/structure/concrete_planter/Initialize(mapload)
 	. = ..()
-	if(dir & (EAST|WEST))
-		pixel_x += -4
-		bound_width = 64
-		bound_height = 32
-	else
-		pixel_y += -7
-		bound_width = 32
-		bound_height = 64
+	setDir(dir)
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
 	)
 	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/concrete_planter/setDir(newdir)
+	. = ..()
+	if(dir & (EAST|WEST))
+		pixel_x = -4
+		bound_width = 32
+		bound_height = 64
+	else
+		pixel_y = -7
+		bound_width = 64
+		bound_height = 32
 
 /obj/structure/concrete_planter/seat
 	name = "concrete seated planter"

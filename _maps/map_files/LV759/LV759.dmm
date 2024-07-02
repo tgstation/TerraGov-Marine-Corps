@@ -131905,7 +131905,7 @@
 "wtQ" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/concrete_planter{
-	dir = 8,
+	dir = 8
 	},
 /turf/open/urban/street/cement2,
 /area/lv759/outdoors/colony_streets/east_central_street)
