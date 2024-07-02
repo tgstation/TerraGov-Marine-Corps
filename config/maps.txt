@@ -20,6 +20,10 @@ map bigred_v2
 	minplayers 25
 endmap
 
+map icarus_military_port
+        minplayers 25
+endmap
+
 map ice_colony_v2
 	minplayers 40
 endmap
