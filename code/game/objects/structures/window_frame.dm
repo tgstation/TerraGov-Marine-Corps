@@ -62,15 +62,15 @@
 		new /obj/alien/weeds(loc)
 	return ..()
 
-/obj/structure/window_frame/attackby(obj/item/I, mob/user, params)
+/obj/structure/window_frame/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(istype(I, sheet_type))
-		var/obj/item/stack/sheet/sheet = I
+	if(istype(attacking_item, sheet_type))
+		var/obj/item/stack/sheet/sheet = attacking_item
 		if(sheet.get_amount() < 2)
-			to_chat(user, span_warning("You need more [I] to install a new window."))
+			to_chat(user, span_warning("You need more [attacking_item] to install a new window."))
 			return
 		user.visible_message(span_notice("[user] starts installing a new glass window on the frame."), \
 		span_notice("You start installing a new window on the frame."))
@@ -84,6 +84,14 @@
 		sheet.use(2)
 		new window_type(loc) //This only works on Theseus windows!
 		qdel(src)
+
+	if(user.a_intent == INTENT_HARM)
+		return
+
+	if(!(obj_flags & CAN_BE_HIT))
+		return
+
+	return attacking_item.attack_obj(src, user)
 
 /obj/structure/window_frame/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()
