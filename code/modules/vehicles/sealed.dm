@@ -5,6 +5,8 @@
 	var/headlights_toggle = FALSE
 	///Modifiers for directional damage reduction
 	var/list/facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
+	///Current owning faction
+	var/faction
 
 /obj/vehicle/sealed/generate_actions()
 	. = ..()

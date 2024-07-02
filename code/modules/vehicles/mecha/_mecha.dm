@@ -190,8 +190,6 @@
 	var/ui_y = 600
 	/// ref to screen object that displays in the middle of the UI
 	var/atom/movable/screen/mech_view/ui_view
-	///Current owning faction
-	var/faction
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
