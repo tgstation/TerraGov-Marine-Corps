@@ -198,12 +198,11 @@
 /obj/structure/door/resin/force_door_open(mob/user, bumped, leg_flags)
 	if(isxeno(user))
 		return TRUE
-	if(ishuman(mover))
-		var/mob/living/carbon/human/H = mover
-		if(!. && H.faction == FACTION_CLF && !open)
-			toggle_state()
-			return TRUE
-	return ..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(!. && H.faction == FACTION_CLF)
+			if(!CHECK_BITFIELD(door_flags, DOOR_OPEN))
+				return TRUE
 
 /obj/structure/door/resin/open(instant, slammed, silent)
 	. = ..()

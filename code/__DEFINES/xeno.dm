@@ -139,13 +139,13 @@ GLOBAL_LIST_INIT(plant_images_list, list(
 
 //List of resin structure images
 GLOBAL_LIST_INIT(resin_images_list, list(
-		RESIN_WALL = image('icons/Xeno/construction.dmi', icon_state = RESIN_WALL),
-		RESIN_MEMBRANE = image('icons/Xeno/construction.dmi', icon_state = RESIN_MEMBRANE),
-		STICKY_RESIN = image('icons/Xeno/construction.dmi', icon_state = STICKY_RESIN),
-		RESIN_DOOR = image('icons/Xeno/construction.dmi', icon_state = RESIN_DOOR),
-		RESIN_NEST = image('icons/Xeno/construction.dmi', icon_state = RESIN_NEST),
-		WALL_RESIN_NEST = image('icons/Xeno/construction.dmi', icon_state = WALL_RESIN_NEST),
-		RESIN_LIGHTTOWER = image('icons/Xeno/construction.dmi', icon_state = LIGHT_TOWER)
+		RESIN_WALL = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_WALL),
+		RESIN_MEMBRANE = image('ntf_modular/icons/Xeno/construction.dmi', icon_state = RESIN_MEMBRANE),
+		STICKY_RESIN = image('icons/Xeno/actions/construction.dmi', icon_state = STICKY_RESIN),
+		RESIN_DOOR = image('icons/Xeno/actions/construction.dmi', icon_state = RESIN_DOOR),
+		RESIN_NEST = image('ntf_modular/icons/Xeno/construction.dmi', icon_state = RESIN_NEST),
+		WALL_RESIN_NEST = image('ntf_modular/icons/Xeno/construction.dmi', icon_state = WALL_RESIN_NEST),
+		RESIN_LIGHTTOWER = image('ntf_modular/icons/Xeno/construction.dmi', icon_state = LIGHT_TOWER)
 		))
 
 //List of special resin structure images

@@ -78,6 +78,7 @@
 	name = "\improper P-1911 AP magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy/ap
 	caliber = CALIBER_45ACP
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
 	icon_state = "1911_ap"
 	icon_state_mini = "mag_pistol_green"
 	max_rounds = 10

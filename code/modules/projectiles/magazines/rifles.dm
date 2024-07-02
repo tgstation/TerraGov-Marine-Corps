@@ -51,6 +51,7 @@
 
 /obj/item/ammo_magazine/rifle/standard_carbine/rubber
 	name = "\improper AR-18 rubber magazine (10x24mm)"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
 	icon_state = "t18_r"
 	default_ammo = /datum/ammo/bullet/rifle/rubber
 
@@ -76,6 +77,7 @@
 
 /obj/item/ammo_magazine/rifle/standard_assaultrifle/rubber
 	name = "\improper AR-12 rubber magazine (10x24mm)"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
 	icon_state = "t12_r"
 	default_ammo = /datum/ammo/bullet/rifle/rubber
 
@@ -449,6 +451,7 @@
 
 /obj/item/ammo_magazine/rifle/tx11/rubber
 	name = "\improper AR-11 combat rifle rubber magazine"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
 	icon_state = "tx11_r"
 	default_ammo = /datum/ammo/bullet/rifle/hv/rubber
 //-------------------------------------------------------
@@ -464,6 +467,7 @@
 
 /obj/item/ammo_magazine/rifle/standard_skirmishrifle/rubber
 	name = "\improper AR-21 skirmish rifle rubber magazine"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
 	icon_state = "t21_r"
 	default_ammo = /datum/ammo/bullet/rifle/heavy/rubber
 

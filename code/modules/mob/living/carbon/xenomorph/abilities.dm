@@ -1332,6 +1332,7 @@
 //Xeno Larval Growth Sting
 /datum/action/ability/activable/xeno/larval_growth_sting
 	name = "Larval Growth Sting"
+	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
 	action_icon_state = "larval_growth"
 	desc = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
 
@@ -1341,7 +1342,7 @@
 	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/larval_growth_sting/on_cooldown_finish()
-	playsound(owner.loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	playsound(owner.loc, SFX_ALIEN_DROOL, 25, 1)
 	to_chat(owner, "<span class='xenodanger'>We feel our growth toxin glands refill. We can use Growth Sting again.</span>")
 	return ..()
 
@@ -1602,6 +1603,7 @@
 
 /datum/action/ability/activable/xeno/impregnate
 	name = "Impregnate"
+	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
 	action_icon_state = "impregnate"
 	desc = "Infect your victim with a young one without a facehugger. This will burn them a bit due to acidic release."
 	cooldown_duration = 30 SECONDS
@@ -1842,6 +1844,7 @@
 //totally not stolen from punch code
 /datum/action/ability/activable/xeno/tail_stab
 	name = "Tail Stab"
+	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
 	action_icon_state = "tail_attack"
 	desc = "Strike a target within two tiles with a sharp tail for armor-piercing damage, stagger and slowdown. Deals more AP, damage, stagger and slowdown to grappled targets, structures and machinery."
 	ability_cost = 30

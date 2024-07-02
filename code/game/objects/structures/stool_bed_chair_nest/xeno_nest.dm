@@ -134,6 +134,7 @@
 /obj/structure/bed/nest/wall
 	name = "wall alien nest"
 	desc = "It's a wall of thick, sticky resin as a nest."
+	icon = 'ntf_modular/icons/xeno/Effects.dmi'
 	icon_state = "nestwall"
 	allow_pass_flags = null
 	buckle_lying = 0
@@ -188,9 +189,7 @@
 			buckling_x = 0
 			layer = 3
 	buckling_mob.pixel_y = buckling_y
-	buckling_mob.old_y = buckling_y
 	buckling_mob.pixel_x = buckling_x
-	buckling_mob.old_x = buckling_x
 
 /obj/structure/bed/nest/wall/user_unbuckle_mob(mob/living/buckled_mob)
 	. = ..()

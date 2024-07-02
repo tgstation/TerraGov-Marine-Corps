@@ -59,8 +59,6 @@
 	. = ..()
 	buckling_mob.pixel_y += buckling_y
 	buckling_mob.pixel_x += buckling_x
-	buckling_mob.old_y = buckling_y
-	buckling_mob.old_x = buckling_x
 	if(base_bed_icon)
 		density = TRUE
 	update_icon()

@@ -465,6 +465,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper NT-CyberGhost Prototype"
 	desc = "NineTails Brand Prototype presence reduction device, it is attached at the back of most plate carriers and other armor, it was made generally for testing before it could be integrated into a smaller case and to be a cybernetic addition to one's body, this one does not perform as well as the real thing, and it's sorta bulky. Unlike the real cyberware, this one lacks the ability to real-time wipe user's image from observation tools."
+	icon = 'ntf_modular/icons/obj/storage/storage.dmi'
 	icon_state = "scout_cloak"
 	var/camo_active = 0
 	var/camo_active_timer = 0

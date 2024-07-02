@@ -69,8 +69,8 @@
 // ***************************************
 /datum/action/ability/activable/xeno/defile
 	name = "Defile"
+	action_icon = 'ntf_modular/icons/xeno/actions.dmi'
 	action_icon_state = "defiler_sting"
-	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Channel to inject an adjacent target with an accelerant that violently reacts with xeno toxins, releasing gas and dealing heavy tox damage in proportion to the amount in their system."
 
 	ability_cost = 100
@@ -418,7 +418,7 @@
 		DEFILER_HEMODILE = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_HEMODILE),
 		DEFILER_TRANSVITOX = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_TRANSVITOX),
 		DEFILER_OZELOMELYN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_OZELOMELYN),
-		DEFILER_APHROTOXIN = image('ntf_modular/icons/actions/xeno.dmi', icon_state = DEFILER_APHROTOXIN),
+		DEFILER_APHROTOXIN = image('ntf_modular/icons/xeno/actions.dmi', icon_state = DEFILER_APHROTOXIN),
 		)
 	var/toxin_choice = show_radial_menu(owner, owner, defiler_toxin_images_list, radius = 48)
 	if(!toxin_choice)
