@@ -723,13 +723,14 @@
 /obj/item/storage/pouch/surgery/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.sprite_slots = 1
-	storage_datum.storage_slots = 12
+	storage_datum.storage_slots = 13
 	storage_datum.max_storage_space = 24
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/tool/surgery,
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
 		/obj/item/tweezers_advanced,
+		/obj/item/tool/soap,
 	))
 
 /obj/item/storage/pouch/surgery/PopulateContents()

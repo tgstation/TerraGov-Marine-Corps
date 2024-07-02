@@ -137,7 +137,7 @@
 	))
 
 /datum/storage/internal/surgery_webbing
-	storage_slots = 12
+	storage_slots = 13
 	max_storage_space = 24
 
 /datum/storage/internal/surgery_webbing/New(atom/parent)
@@ -147,6 +147,7 @@
 		/obj/item/stack/nanopaste,
 		/obj/item/tweezers,
 		/obj/item/tweezers_advanced,
+		/obj/item/tool/soap,
 	))
 
 /datum/storage/internal/holster
