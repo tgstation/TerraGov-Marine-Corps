@@ -75,6 +75,9 @@
 	///modifier to view range when manning a control chair
 	var/vis_range_mod = 0
 
+	var/obj/effect/turret_toss_holder/holder_obj
+	///the standard object that holds the sprite that gets tossed
+
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
 	if(interior)
@@ -154,12 +157,46 @@
 	if(Adjacent(entering_thing, src))
 		return list(get_turf(entering_thing))
 
+/obj/effect/turret_toss_holder/
+	name = "turret explosion holder"
+	desc = "You shouldn't see this."
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/turret_toss_holder/proc/cleanup_turret_toss()
+	playsound(src, "sound/effects/metal_crash.ogg", 45)
+	new /obj/effect/temp_visual/heavyimpact(get_offset_target_turf(get_turf(src),7,4))
+	//new /obj/effect/temp_visual/explosion(get_offset_target_turf(get_turf(src),7,4), 7, LIGHT_COLOR_LAVA, FALSE, TRUE)
+	qdel(src)
+
 /obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
 	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE) //destroy sound is normally very quiet
 	new /obj/effect/temp_visual/explosion(get_turf(src), 7, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	for(var/mob/living/nearby_mob AS in occupants + cheap_get_living_near(src, 7))
 		shake_camera(nearby_mob, 4, 2)
+
+	//play the turret toss
+	do_toss()
 	return ..()
+	
+/obj/vehicle/sealed/armored/proc/do_toss()
+	holder_obj = new()
+	//get the turret
+	holder_obj.appearance = turret_overlay.appearance
+	//grab the turret and place it at the CENTER OF THE TAANK
+	holder_obj.pixel_x =  pixel_x
+	holder_obj.pixel_y =  pixel_y
+	holder_obj.pixel_z = pixel_z
+
+	//move to the tank
+	holder_obj.forceMove(get_turf(src))
+	//animation_toss_flick(holder_obj) //the animation
+	var/direction = 1
+	holder_obj.transform *= 0.75
+	holder_obj.opacity = 1
+	playsound(src, "sound/weapons/guns/misc/howitzer_whistle.ogg", 45)
+	animate(holder_obj, transform = matrix(120 * direction, MATRIX_ROTATE), alpha = 185, pixel_x = rand(-4,4), pixel_y = SCREEN_PIXEL_SIZE	, time = 5.3, easing = SINE_EASING|EASE_IN)
+	animate(transform = matrix(240 * direction, MATRIX_ROTATE), pixel_x = 0, pixel_y = 0, time = 8)
+	addtimer(CALLBACK(holder_obj, TYPE_PROC_REF(/obj/effect/turret_toss_holder,cleanup_turret_toss)), 1.6 SECONDS, TIMER_CLIENT_TIME)
 
 /obj/vehicle/sealed/armored/update_icon_state()
 	. = ..()
