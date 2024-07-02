@@ -16,7 +16,6 @@
 	var/boost_timer = 0
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/admin = FALSE
-	var/datum/job/xeno_job
 
 
 /obj/item/alien_embryo/Initialize(mapload)
@@ -30,7 +29,6 @@
 	if(iscarbon(affected_mob))
 		var/mob/living/carbon/C = affected_mob
 		C.med_hud_set_status()
-	xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 
 
 /obj/item/alien_embryo/Destroy()
@@ -143,7 +141,7 @@
 			points = 0.0192
 			psy_points = 0.8
 	if(points > 0 && hivenumber == XENO_HIVE_NORMAL) // We check if points are greater than 0 and if your hive is normal in order to prevent valhalla embryos from generating points.
-		xeno_job.add_job_points(points)
+		SSjob.GetJobType(/datum/job/xenomorph).add_job_points(points)
 		SSpoints.add_strategic_psy_points(hivenumber, psy_points)
 		SSpoints.add_tactical_psy_points(hivenumber, psy_points * 0.25) // tactical points are always reduced by a quarter.
 
