@@ -24,8 +24,6 @@
 	///a very temporary list of overlays to add
 	var/list/add_overlays
 
-	///Lazy assoc list for managing filters attached to us
-	var/list/filter_data
 
 	///Related to do_after/do_mob overlays, I can't get my hopes high.
 	var/list/display_icons
@@ -516,71 +514,10 @@ directive is properly returned.
 			//we were deleted
 			return
 
-///Add filters by priority to an atom
-/atom/proc/add_filter(name,priority,list/params)
-	LAZYINITLIST(filter_data)
-	var/list/p = params.Copy()
-	p["priority"] = priority
-	filter_data[name] = p
-	update_filters()
-
-///Sorts our filters by priority and reapplies them
-/atom/proc/update_filters()
-	filters = null
-	filter_data = sortTim(filter_data, GLOBAL_PROC_REF(cmp_filter_data_priority), TRUE)
-	for(var/f in filter_data)
-		var/list/data = filter_data[f]
-		var/list/arguments = data.Copy()
-		arguments -= "priority"
-		filters += filter(arglist(arguments))
-	UNSETEMPTY(filter_data)
-
-/atom/proc/transition_filter(name, time, list/new_params, easing, loop)
-	var/filter = get_filter(name)
-	if(!filter)
-		return
-
-	var/list/old_filter_data = filter_data[name]
-
-	var/list/params = old_filter_data.Copy()
-	for(var/thing in new_params)
-		params[thing] = new_params[thing]
-
-	animate(filter, new_params, time = time, easing = easing, loop = loop)
-	for(var/param in params)
-		filter_data[name][param] = params[param]
-
-/atom/proc/change_filter_priority(name, new_priority)
-	if(!filter_data || !filter_data[name])
-		return
-
-	filter_data[name]["priority"] = new_priority
-	update_filters()
-
-/obj/item/update_filters()
+/obj/item/update_filters() // tivi todo move this to items
 	. = ..()
 	for(var/datum/action/A AS in actions)
 		A.update_button_icon()
-
-///returns a filter in the managed filters list by name
-/atom/proc/get_filter(name)
-	if(filter_data && filter_data[name])
-		return filters[filter_data.Find(name)]
-
-///removes a filter from the atom
-/atom/proc/remove_filter(name_or_names)
-	if(!filter_data)
-		return
-	var/list/names = islist(name_or_names) ? name_or_names : list(name_or_names)
-
-	for(var/name in names)
-		if(filter_data[name])
-			filter_data -= name
-	update_filters()
-
-/atom/proc/clear_filters()
-	filter_data = null
-	filters = null
 
 /*
 	Atom Colour Priority System

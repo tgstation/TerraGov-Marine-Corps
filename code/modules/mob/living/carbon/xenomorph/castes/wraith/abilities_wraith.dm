@@ -326,7 +326,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	teleport_debuff_aoe(banishment_target)
 	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5))
-	addtimer(CALLBACK(banishment_target, TYPE_PROC_REF(/atom, remove_filter), "wraith_banishment_filter"), 1 SECONDS)
+	addtimer(CALLBACK(banishment_target, TYPE_PROC_REF(/datum, remove_filter), "wraith_banishment_filter"), 1 SECONDS)
 
 	if(isliving(banishment_target))
 		var/mob/living/living_target = banishment_target
