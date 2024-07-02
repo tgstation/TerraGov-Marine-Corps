@@ -14,11 +14,11 @@
 		return
 	afterattack(target, user, TRUE, params) // TRUE: clicking something Adjacent
 
-//Called before any other attack proc.
+///Called before any other attack proc.
 /obj/item/proc/preattack(atom/target, mob/user, params)
 	return FALSE
 
-//Checks if the item can work as a tool, calling the appropriate tool behavior on the target
+///Checks if the item can work as a tool, calling the appropriate tool behavior on the target
 /obj/item/proc/tool_attack_chain(mob/user, atom/target)
 	switch(tool_behaviour)
 		if(TOOL_CROWBAR)
@@ -40,7 +40,6 @@
 		if(TOOL_FULTON)
 			return target.fulton_act(user, src)
 
-
 ///Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
 /obj/item/proc/attack_self(mob/user)
 	SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_SELF, user)
@@ -57,6 +56,8 @@
 
 /atom/proc/attackby(obj/item/attacking_item, mob/user, params)
 	SIGNAL_HANDLER_DOES_SLEEP
+	if(user.next_attack > world.time)
+		return TRUE
 	add_fingerprint(user, "attackby", attacking_item)
 	if(SEND_SIGNAL(src, COMSIG_ATOM_ATTACKBY, attacking_item, user, params) & COMPONENT_NO_AFTERATTACK)
 		return TRUE
@@ -87,10 +88,8 @@
 	user.do_attack_animation(O, used_item = src)
 	return O.attacked_by(src, user)
 
-
 /atom/movable/proc/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 	return FALSE
-
 
 /obj/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 	user.visible_message(span_warning("[user] hits [src] with [attacking_item]!"),
@@ -99,7 +98,6 @@
 	var/power = attacking_item.force + round(attacking_item.force * MELEE_SKILL_DAM_BUFF * user.skills.getRating(SKILL_MELEE_WEAPONS))
 	take_damage(power, attacking_item.damtype, MELEE, blame_mob = user)
 	return TRUE
-
 
 /obj/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 	. = ..()
@@ -125,7 +123,6 @@
 	span_notice("You grab [attached_clamp.loaded] with [attached_clamp]."))
 
 /mob/living/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
-
 	var/message_verb = "attacked"
 	if(LAZYLEN(attacking_item.attack_verb))
 		message_verb = pick(attacking_item.attack_verb)
@@ -166,22 +163,21 @@
 
 	return TRUE
 
-
 /mob/living/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(.)
 		return TRUE
-	user.changeNext_move(I.attack_speed)
+	user.next_attack = world.time + I.attack_speed
 	return I.attack(src, user)
 
-
-// has_proximity is TRUE if this afterattack was called on something adjacent, in your square, or on your person.
-// Click parameters is the params string from byond Click() code, see that documentation.
+/**
+ * has_proximity is TRUE if this afterattack was called on something adjacent, in your square, or on your person.
+ * Click parameters is the params string from byond Click() code, see that documentation.
+*/
 /obj/item/proc/afterattack(atom/target, mob/user, has_proximity, click_parameters)
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK, target, user, has_proximity, click_parameters)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK, target, user, has_proximity, click_parameters)
 	return
-
 
 /obj/item/proc/attack(mob/living/M, mob/living/user)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK, M, user) & COMPONENT_ITEM_NO_ATTACK)
@@ -275,9 +271,6 @@
 		return FALSE
 	return FALSE
 
-
-
-
 ///////////////
 ///RIGHT CLICK CODE FROM HERE
 ///
@@ -311,13 +304,14 @@
 	user.changeNext_move(attacking_item.attack_speed_alternate)
 	return attacking_item.attack_alternate(src, user)
 
-// has_proximity is TRUE if this afterattack was called on something adjacent, in your square, or on your person.
-// Click parameters is the params string from byond Click() code, see that documentation.
+/**
+ * has_proximity is TRUE if this afterattack was called on something adjacent, in your square, or on your person.
+ * Click parameters is the params string from byond Click() code, see that documentation.
+*/
 /obj/item/proc/afterattack_alternate(atom/target, mob/user, has_proximity, click_parameters)
 	SEND_SIGNAL(src, COMSIG_ITEM_AFTERATTACK_ALTERNATE, target, user, has_proximity, click_parameters)
 	SEND_SIGNAL(user, COMSIG_MOB_ITEM_AFTERATTACK_ALTERNATE, target, user, has_proximity, click_parameters)
 	return
-
 
 /**
  * attack_alternate
