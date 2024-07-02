@@ -314,8 +314,9 @@
 	if(W.directional_opacity != old_directional_opacity)
 		W.reconsider_lights()
 
-	if(thisarea.lighting_effect)
+	if(thisarea.area_has_base_lighting)
 		W.add_overlay(thisarea.lighting_effect)
+		W.luminosity = 1
 
 	if(!W.smoothing_behavior == NO_SMOOTHING)
 		return W
