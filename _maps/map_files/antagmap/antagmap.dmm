@@ -143,7 +143,7 @@
 	outside = 0
 	})
 "be" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -355,7 +355,7 @@
 /area/mainship/groundhq/som/medical/morgue)
 "ct" = (
 /obj/machinery/light/mainship,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/whistle,
 /obj/item/megaphone,
 /turf/open/floor/wood,
@@ -641,7 +641,7 @@
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
 "er" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "es" = (
@@ -1375,7 +1375,7 @@
 	})
 "iG" = (
 /obj/structure/cable,
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
@@ -1676,7 +1676,7 @@
 	name = "SOM Field Commander's Office"
 	})
 "ke" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
@@ -1973,7 +1973,7 @@
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "lF" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /obj/item/reagent_containers/hypospray/advanced/peridaxonplus,
 /turf/open/floor/plating/ground/dirt,
@@ -2802,7 +2802,7 @@
 /area/mainship/groundhq/ntf/patrol_base/command)
 "pE" = (
 /obj/alien/weeds/node/resting,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_y = 5
 	},
@@ -3370,7 +3370,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "sR" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/reagent_containers/food/drinks/bottle/davenport,
 /obj/item/flashlight/lamp/green,
@@ -3820,7 +3820,7 @@
 	dir = 5
 	},
 /obj/effect/spawner/random/misc/paperbin,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/iron/grimy,
 /area/mainship/groundhq/som/living/numbertwobunks{
@@ -4236,7 +4236,7 @@
 	name = "SOM Preparation"
 	})
 "xw" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/hallway/primary/tram{
@@ -4391,7 +4391,7 @@
 	name = "SOM Bridge"
 	})
 "yd" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/camera_advanced/overwatch/som,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -4517,7 +4517,7 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "ze" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = 12;
 	pixel_y = 7
@@ -4800,7 +4800,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/door_control/old{
 	name = "Privacy shutters";
 	id = "SOMFC1"
@@ -4939,7 +4939,7 @@
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "BI" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/machinery/computer/communications/antag{
 	dir = 1
@@ -5014,7 +5014,7 @@
 	name = "SOM Bridge"
 	})
 "Cg" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/iron/grimy,
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
@@ -5056,7 +5056,7 @@
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
 "Cr" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
 /obj/item/tool/pen/red,
@@ -5521,7 +5521,7 @@
 	name = "SOM Field Commander's Office"
 	})
 "EO" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/taperecorder,
 /obj/item/storage/briefcase,
 /obj/item/clipboard{
@@ -5673,7 +5673,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer,
 /turf/open/floor/wood/alt_three,
 /area/canora_desert/surface/building/som_admiral{
@@ -5749,7 +5749,7 @@
 /area/riptide/inside/syndicatestarboard)
 "FT" = (
 /obj/item/tool/pen/blue,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/ai_node,
 /turf/open/floor/iron/grimy,
 /area/mainship/groundhq/som/living/numbertwobunks{
@@ -5862,7 +5862,7 @@
 	})
 "GJ" = (
 /obj/structure/cable,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/communications/antag,
 /turf/open/floor/iron/grimy,
 /area/mainship/groundhq/som/living/numbertwobunks{
@@ -6287,7 +6287,7 @@
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
 "IX" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/cigar,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6883,7 +6883,7 @@
 	name = "SOM Torture Chamber"
 	})
 "Mu" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/xeno_iff_tag/som,
 /obj/item/xeno_iff_tag/som,
 /obj/item/xeno_iff_tag/som,
@@ -7296,7 +7296,7 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Om" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/cable,
@@ -8030,7 +8030,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/power/apc,
 /turf/open/floor/wood/alt_three,
 /area/canora_desert/surface/building/som_admiral{
@@ -9310,7 +9310,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/computer3_part/storage/hdd{
 	pixel_x = -6
 	},

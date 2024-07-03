@@ -13295,7 +13295,7 @@
 /area/lv624/ground/filtration)
 "lRR" = (
 /obj/alien/weeds/node/resting,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_y = 5
 	},
@@ -13581,7 +13581,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "mfk" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_x = 12;
 	pixel_y = 7
@@ -14032,7 +14032,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "mBS" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/engineering/lobby{
@@ -16683,7 +16683,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage/dome)
 "pyc" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/cable,
@@ -21438,7 +21438,7 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/caves/east1/garbledradio)
 "uiy" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/plating/ground/dirt,
 /area/deltastation/engineering/lobby{
 	name = "CLF engineering";

@@ -553,6 +553,17 @@
 	new /obj/item/ammo_magazine/pistol/m1911/ap(src)
 	INVOKE_ASYNC(src, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
 
+/obj/item/storage/holster/belt/pistol/g22/tranq/Initialize(mapload)
+	. = ..()
+	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/g22/tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	new /obj/item/ammo_magazine/pistol/g22tranq(src)
+	INVOKE_ASYNC(src, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_gun)
+
 /obj/item/storage/holster/belt/pistol/m4a3/vp70/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/vp70(src)
 	new /obj/item/ammo_magazine/pistol/vp70(src)
