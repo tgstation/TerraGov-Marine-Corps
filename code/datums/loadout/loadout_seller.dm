@@ -61,6 +61,7 @@
 	if(length(unique_items_list))
 		id.marine_buy_choices[CAT_ESS] = 0
 		sell_rest_of_essential_kit(loadout, user)
+	id.id_flags |= USED_GHMME
 
 /// If one item from essential kit was bought, we sell the rest and put in on the ground
 /datum/loadout_seller/proc/sell_rest_of_essential_kit(datum/loadout/loadout, mob/user)
