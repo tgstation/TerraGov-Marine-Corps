@@ -1749,6 +1749,8 @@
 /obj/structure/prop/urban/misc/machinery/computers
 	name = "computer"
 	icon_state = "mapping_comp"
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 80
 
 /obj/structure/prop/urban/misc/machinery/computers/computerwhite/computer1
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
@@ -1795,6 +1797,8 @@
 /obj/structure/prop/urban/misc/machinery/screens
 	name = "monitor"
 	desc = "A screen, useful for broadcasting events. It looks like it's seen better days."
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 50
 
 /obj/structure/prop/urban/misc/machinery/screens/frame
 	icon_state = "frame"
@@ -2366,6 +2370,8 @@
 	set_bound_height = 64
 	set_bound_width = 64
 	layer = ABOVE_MOB_LAYER
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 80
 
 /obj/structure/prop/urban/signs/casniosign
 	name = "casino sign"

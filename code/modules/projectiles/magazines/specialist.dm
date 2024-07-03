@@ -426,6 +426,7 @@
 	name = "\improper MG-100 Vindicator powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System.\nClick the icon in the top left to reload your MG-100."
 	icon_state = "powerpack"
+	worn_icon_state = "powerpack"
 	icon = 'icons/obj/items/ammo/powerpack.dmi'
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BACK
@@ -437,21 +438,21 @@
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/ammo_magazine/minigun_powerpack/snow
-	icon_state = "snow"
+	icon_state = "powerpack_snow"
 	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/fancy
-	icon_state = "fancy"
+	icon_state = "powerpack_fancy"
 	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/merc
-	icon_state = "merc"
+	icon_state = "powerpack_merc"
 	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/smartgun
 	name = "\improper SG-85 powerpack"
 	desc = "A reinforced backpack heavy with the IFF altered ammunition, onboard micro generator, and extensive cooling system which enables the SG-85 gatling gun to operate. \nUse the SG-85 on the backpack itself to connect them."
-	icon_state = "sg"
+	icon_state = "powerpack_sg"
 	magazine_flags = MAGAZINE_WORN|MAGAZINE_REFILLABLE
 	default_ammo = /datum/ammo/bullet/smart_minigun
 	current_rounds = 1000

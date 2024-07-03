@@ -281,12 +281,12 @@
 		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
 	linked = new xeno_wanted(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 
-/obj/machinery/button/valhalla/xeno_button
+/obj/machinery/button/valhalla/marine_spawner
 	name = "Marine spawner"
 	///The list of outfits we can equip on the humans we're spawning
 	var/outfit_list = list()
 
-/obj/machinery/button/valhalla/xeno_button/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/machinery/button/valhalla/marine_spawner/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	var/list/job_outfits = list()
 	for(var/type in subtypesof(/datum/outfit/job))
 		if(istype(type, /datum/outfit))
@@ -305,6 +305,31 @@
 	QDEL_NULL(linked)
 	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 		to_chat(xeno_attacker, span_warning("An error occured, yell at the coders."))
+		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
+	linked = new /mob/living/carbon/human(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+	if(selected_outfit == "Naked" || !selected_outfit)
+		return
+	linked.equipOutfit(job_outfits[selected_outfit], FALSE)
+
+/obj/machinery/button/valhalla/marine_spawner/attack_hand(mob/living/user)
+	var/list/job_outfits = list()
+	for(var/type in subtypesof(/datum/outfit/job))
+		if(istype(type, /datum/outfit))
+			continue
+		var/datum/outfit/out = type
+		if(initial(out.can_be_admin_equipped))
+			job_outfits[initial(out.name)] = out
+
+	job_outfits = sortList(job_outfits)
+	job_outfits.Insert(1, "Naked")
+
+	var/datum/outfit/selected_outfit = tgui_input_list(usr, "Which outfit do you want the human to wear?", "Human spawn", job_outfits)
+	if(!selected_outfit)
+		return
+
+	QDEL_NULL(linked)
+	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+		to_chat(user, span_warning("An error occured, yell at the coders."))
 		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
 	linked = new /mob/living/carbon/human(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 	if(selected_outfit == "Naked" || !selected_outfit)
