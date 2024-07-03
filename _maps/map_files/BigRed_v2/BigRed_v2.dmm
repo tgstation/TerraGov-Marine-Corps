@@ -11211,7 +11211,7 @@
 "jKm" = (
 /obj/structure/sign/kiddieplaque{
 	name = "Notice to personnel";
-	desc = ""Due to the large amount of personnel breaking in through the roof, the nature reserve is now permanently closed. Any employees found stuck inside will have their pay cut.""
+	desc = "Due to the large amount of personnel jumping in through the roof, getting stuck , then mauled by the monkeys, the nature reserve is now permanently shut. From now on any employees found stuck inside will have their pay cut."
 	},
 /turf/open/floor/grass,
 /area/bigredv2/outside/engineering)
