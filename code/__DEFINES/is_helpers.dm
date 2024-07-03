@@ -91,6 +91,7 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define issurvivorjob(J) (istype(J, /datum/job/survivor))
 #define ischaplainjob(J) (istype(J, /datum/job/survivor/chaplain))
 #define isxenosjob(J) (istype(J, /datum/job/xenomorph))
+#define isfallenjob(J) (istype(J, /datum/job/fallen))
 
 //Monkey sub-species
 

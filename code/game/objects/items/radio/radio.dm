@@ -253,6 +253,10 @@
 	if(!talking_movable.IsVocal())
 		return
 
+	var/mob/living/carbon/human/talker = talking_movable
+	if(isfallenjob(talker.job)) // prevents any of the valhalla jobs from talking to the living
+		return
+
 	if(use_command)
 		spans |= SPAN_COMMAND
 
