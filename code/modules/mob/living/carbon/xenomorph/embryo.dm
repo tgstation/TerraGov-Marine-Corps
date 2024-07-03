@@ -141,7 +141,8 @@
 			points = 0.0192
 			psy_points = 0.8
 	if(points > 0 && hivenumber == XENO_HIVE_NORMAL) // We check if points are greater than 0 and if your hive is normal in order to prevent valhalla embryos from generating points.
-		SSjob.GetJobType(/datum/job/xenomorph).add_job_points(points)
+		var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+		xeno_job.add_job_points(points)
 		SSpoints.add_strategic_psy_points(hivenumber, psy_points)
 		SSpoints.add_tactical_psy_points(hivenumber, psy_points * 0.25) // tactical points are always reduced by a quarter.
 
