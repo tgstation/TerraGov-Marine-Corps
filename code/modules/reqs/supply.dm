@@ -333,7 +333,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
-			packs += SP.type
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
 			cost += SP.cost
 		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["deniedrequests"] = list()
@@ -535,7 +538,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
-			packs += SP.type
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
 			cost += SP.cost
 		.["requests"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["deniedrequests"] = list()
