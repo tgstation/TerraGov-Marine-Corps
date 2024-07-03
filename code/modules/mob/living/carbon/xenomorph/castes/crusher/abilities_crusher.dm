@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/stomp
 	name = "Stomp"
 	action_icon_state = "stomp"
+	action_icon = 'icons/Xeno/actions/crusher.dmi'
 	desc = "Knocks all adjacent targets away and down."
 
 	ability_cost = 100
@@ -65,6 +66,7 @@
 /datum/action/ability/activable/xeno/cresttoss
 	name = "Crest Toss"
 	action_icon_state = "cresttoss"
+	action_icon = 'icons/Xeno/actions/crusher.dmi'
 	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
 
 	ability_cost = 75
@@ -172,6 +174,7 @@
 /datum/action/ability/activable/xeno/advance
 	name = "Rapid Advance"
 	action_icon_state = "crest_defense"
+	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
 
 	ability_cost = 175

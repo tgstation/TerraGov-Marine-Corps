@@ -187,7 +187,7 @@
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! No deployable object detected on the drop pad.")]")
 		return
 
-	supply_beacon.drop_location.visible_message(span_boldnotice("A supply drop appears suddendly!"))
+	supply_beacon.drop_location.visible_message(span_boldnotice("A supply drop appears suddenly!"))
 	playsound(supply_beacon.drop_location,'sound/effects/phasein.ogg', 50, TRUE)
 	playsound(supply_pad.loc,'sound/effects/phasein.ogg', 50, TRUE)
 	for(var/obj/C in supplies)

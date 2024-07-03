@@ -13,8 +13,6 @@
 
 	pixel_x = -16
 	pixel_y = -3
-	old_x = -16
-	old_y = -3
 
 
 /mob/living/carbon/xenomorph/bull/handle_special_state()

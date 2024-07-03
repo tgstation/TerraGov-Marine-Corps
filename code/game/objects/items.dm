@@ -253,6 +253,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 /obj/item/examine(mob/user)
 	. = ..()
+	. += EXAMINE_SECTION_BREAK
 	. += "[gender == PLURAL ? "They are" : "It is"] a [weight_class_to_text(w_class)] item."
 
 /obj/item/attack_ghost(mob/dead/observer/user)
@@ -301,19 +302,19 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/facepaint) && colorable_allowed != NONE)
-		color_item(I, user)
+/obj/item/attackby(obj/item/attacking_item, mob/user, params)
+	if(istype(attacking_item, /obj/item/facepaint) && colorable_allowed != NONE)
+		color_item(attacking_item, user)
 		return TRUE
 
 	. = ..()
 	if(.)
 		return TRUE
 
-	if(!istype(I, /obj/item/storage))
+	if(!istype(attacking_item, /obj/item/storage))
 		return
 
-	var/obj/item/storage/S = I
+	var/obj/item/storage/S = attacking_item
 
 	if(!S.storage_datum.use_to_pickup || !isturf(loc))
 		return
@@ -342,9 +343,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	else if(S.storage_datum.can_be_inserted(src, user))
 		S.storage_datum.handle_item_insertion(src, FALSE, user)
 
-/obj/item/attackby_alternate(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/facepaint))
-		alternate_color_item(I, user)
+/obj/item/attackby_alternate(obj/item/attacking_item, mob/user, params)
+	if(istype(attacking_item, /obj/item/facepaint))
+		alternate_color_item(attacking_item, user)
 		return TRUE
 
 	. = ..()
@@ -1515,3 +1516,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Returns whether this is considered beneficial if embedded in a mob
 /obj/item/proc/is_beneficial_implant()
 	return FALSE
+
+///Mult on submerge height for changing the alpha of submerged items
+#define ITEM_LIQUID_TURF_ALPHA_MULT 11
+
+/obj/item/set_submerge_level(turf/new_loc, turf/old_loc, submerge_icon, submerge_icon_state, duration)
+	var/old_alpha_mod = istype(old_loc) ? old_loc.get_submerge_height(TRUE) : 0
+	var/new_alpha_mod = istype(new_loc) ? new_loc.get_submerge_height(TRUE) : 0
+
+	alpha -= (new_alpha_mod - old_alpha_mod) * ITEM_LIQUID_TURF_ALPHA_MULT
+
+#undef ITEM_LIQUID_TURF_ALPHA_MULT

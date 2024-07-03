@@ -38,13 +38,12 @@
 	sundering = 30
 	airburst_multiplier = 0.5
 
-/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/victim, obj/projectile/proj)
-	staggerstun(victim, proj,  max_range = 30)
-	airburst(victim, proj)
+/datum/ammo/bullet/sniper/flak/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	airburst(target_mob, proj)
 
 /datum/ammo/bullet/sniper/svd
 	name = "crude sniper bullet"
-	handful_icon_state = "crude sniper bullet"
+	handful_icon_state = "crude_sniper"
 	hud_state = "sniper_crude"
 	handful_amount = 5
 	damage = 75
@@ -53,7 +52,7 @@
 
 /datum/ammo/bullet/sniper/martini
 	name = "crude heavy sniper bullet"
-	handful_icon_state = "crude heavy sniper bullet"
+	handful_icon_state = "crude_heavy_sniper"
 	hud_state = "sniper_crude"
 	handful_amount = 5
 	ammo_behavior_flags = AMMO_BALLISTIC
@@ -63,11 +62,11 @@
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 10 SECONDS
 
-/datum/ammo/bullet/sniper/martini/on_hit_mob(mob/M, obj/projectile/proj)
-	if(!isliving(M))
+/datum/ammo/bullet/sniper/martini/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!isliving(target_mob))
 		return
 
-	var/mob/living/living_victim = M
+	var/mob/living/living_victim = target_mob
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 /datum/ammo/bullet/sniper/elite
@@ -97,8 +96,8 @@
 	sundering = 10
 	damage_falloff = 0.25
 
-/datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/M, obj/projectile/P)
-	staggerstun(M, P, knockback = 4, slowdown = 1.5, stagger = 2 SECONDS, max_range = 17)
+/datum/ammo/bullet/sniper/pfc/flak/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, knockback = 4, slowdown = 1.5, stagger = 2 SECONDS, max_range = 17)
 
 
 /datum/ammo/bullet/sniper/auto

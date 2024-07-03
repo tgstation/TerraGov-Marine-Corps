@@ -11,7 +11,7 @@
 	to_chat(H, "<B>While you are [pick("enlisted as", "officially", "part-time officially", "privately")] [pick("an employee", "a security officer", "an officer")], much of your work is off the books. You work as a skilled rapid-response contractor.</b>")
 	to_chat(H, "")
 	to_chat(H, "<B>Today, a NTC vessel, [SSmapping.configs[SHIP_MAP].map_name], has sent out a distress signal on the orbit of [SSmapping.configs[GROUND_MAP].map_name]. Your time is running short, get your shuttle launching!</b>")
-	to_chat(H, "<B>Make sure the Corporate Liaison is safe.</b>")
+	to_chat(H, "<B>Make sure the Operations Officer is safe.</b>")
 	to_chat(H, "<B>If there is no Liaison, eliminate the threat and cooperate with the Captain before returning back home.</b>")
 
 

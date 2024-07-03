@@ -62,6 +62,7 @@
 /obj/item/explosive/grenade/smokebomb/aphrotoxin
 	name = "\improper NT-2 Aphrotoxin gas grenade"
 	desc = "A gas grenade containing a strong aphrodisiac synthesized from xenomorphs, causes intense lust, weakness on legs and stumbling around."
+	icon = 'ntf_modular/icons/obj/ammo/grenades.dmi'
 	icon_state = "grenade_aphro"
 	worn_icon_state = "grenade_aphro"
 	hud_state = "grenade_aphro"

@@ -236,15 +236,15 @@
 		if("PMCDSL")
 			. = size ? "APTL" : "Assets Protection Team Leader"
 		if("NT1")
-			. = size ? "INT" : "Corporate Intern"
+			. = size ? "CE" : "Corporate Employee"
 		if("NT2")
-			. = size ? "ASSOC" : "Corporate Associate"
+			. = size ? "CSVSR" : "Corporate Supervisor"
 		if("NT3")
-			. = size ? "PTNR" : "Corporate Partner"
+			. = size ? "SNRO" : "Corporate Senior Officer"
 		if("NT4")
-			. = size ? "ANLST" : "Corporate Analyst"
+			. = size ? "MNGR" : "Corporate Manager"
 		if("NT5")
-			. = size ? "SPVR" : "Corporate Supervisor"
+			. = size ? "CO" : "Corporate Chief Officer"
 		if("E1")
 			. = size ? "PVT" : "Private"
 		if("E2")

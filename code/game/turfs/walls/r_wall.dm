@@ -59,7 +59,6 @@
 	walltype = "chigusa"
 	base_icon_state = "chigusa"
 
-
 //Kutjevo
 
 /turf/closed/wall/r_wall/kutjevo
@@ -98,3 +97,37 @@
 
 /turf/closed/wall/r_wall/prison_unmeltable/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
 	return
+
+/turf/closed/wall/r_wall/bunker
+	icon = 'icons/turf/walls/junkwall.dmi'
+	icon_state = "junkwall-0"
+	base_icon_state = "junkwall"
+
+/turf/closed/wall/r_wall/white_research_wall
+	icon = 'icons/turf/walls/white_research_wall.dmi'
+	icon_state = "white_research_wall-0"
+	base_icon_state = "white_research_wall"
+
+/turf/closed/wall/r_wall/urban
+	name = "reinforced metal walls"
+	desc = "A thick and chunky metal wall ribbed with reinforced steel. The surface is barren and imposing."
+	icon = 'icons/turf/walls/hybrisa_colony_walls.dmi'
+	icon_state = "wall-reinforced"
+	walltype = "wall"
+	base_icon_state = "hybrisa_colony_walls"
+
+/turf/closed/wall/r_wall/urban/invincible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
+/turf/closed/wall/r_wall/engineership
+	name = "strange metal wall"
+	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
+	icon = 'icons/turf/walls/engineer_walls.dmi'
+	icon_state = "engineer_walls-0"
+	walltype = "wall"
+	base_icon_state = "engineer_walls"
+
+/turf/closed/wall/r_wall/engineership/invincible
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"

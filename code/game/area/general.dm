@@ -7,6 +7,8 @@
 	power_light = 0
 	power_equip = 0
 	power_environ = 0
+	max_ambience_cooldown = 180 SECONDS
+	min_ambience_cooldown = 180 SECONDS
 	ambience = list('sound/ambience/ambispace.ogg')
 	temperature = TCMB
 	pressure = 0

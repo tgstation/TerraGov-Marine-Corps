@@ -33,6 +33,7 @@
 	desc = "A pistol magazine."
 	caliber = CALIBER_9X19
 	icon_state = "m4a3"
+	icon = 'icons/obj/items/ammo/pistol.dmi'
 	max_rounds = 14
 	w_class = WEIGHT_CLASS_SMALL
 	default_ammo = /datum/ammo/bullet/pistol
@@ -77,6 +78,7 @@
 	name = "\improper P-1911 AP magazine (.45)"
 	default_ammo = /datum/ammo/bullet/pistol/heavy/ap
 	caliber = CALIBER_45ACP
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
 	icon_state = "1911_ap"
 	icon_state_mini = "mag_pistol_green"
 	max_rounds = 10

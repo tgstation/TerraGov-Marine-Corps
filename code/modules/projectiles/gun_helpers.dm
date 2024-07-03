@@ -219,7 +219,8 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return target
 	if(!istype(target, /atom/movable/screen/click_catcher))
 		return null
-	return params2turf(modifiers["screen-loc"], get_turf(user), user.client)
+	var/loctoget = user.client?.eye ? user.client.eye : user
+	return params2turf(modifiers["screen-loc"], get_turf(loctoget), user.client)
 
 //----------------------------------------------------------
 					//				   \\

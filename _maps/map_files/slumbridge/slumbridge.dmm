@@ -1527,7 +1527,7 @@
 /turf/open/floor/wood,
 /area/slumbridge/inside/colony/bar)
 "bjd" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/pistol/m1911,
 /obj/item/ammo_magazine/pistol/m1911,
 /obj/item/ammo_magazine/pistol/m1911,
@@ -3365,7 +3365,7 @@
 /turf/open/floor,
 /area/slumbridge/inside/engi/engineroom)
 "cxu" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/emails,
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/pmcdome/dorms)
@@ -3465,7 +3465,7 @@
 /turf/open/floor/prison/kitchen,
 /area/slumbridge/inside/colony/kitchen)
 "cBw" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/med_data,
 /turf/open/floor/tile/cmo,
 /area/slumbridge/inside/medical/cmo)
@@ -5204,7 +5204,7 @@
 /turf/open/floor/tile/dark/brown2,
 /area/slumbridge/inside/colony/orestorage)
 "dSD" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
 	},
@@ -5941,7 +5941,7 @@
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/outerringnorth)
 "exY" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/tile/dark/green2{
 	dir = 8
 	},
@@ -9108,7 +9108,7 @@
 /turf/open/floor/wood,
 /area/slumbridge/inside/colony/bar)
 "gWy" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -11660,7 +11660,7 @@
 /turf/open/floor/prison/blackfloor,
 /area/slumbridge/inside/colony/vault)
 "iGv" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/greytide,
 /obj/effect/spawner/random/misc/greytide,
 /turf/open/floor/wood/variable/mosaic,
@@ -12395,7 +12395,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/outside/southeast)
 "jmg" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/reagentgrinder,
 /turf/open/floor/tile/dark/green2{
 	dir = 8
@@ -12577,7 +12577,7 @@
 /area/slumbridge/inside/sombase/east)
 "jsh" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/toy/dice/d20,
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/pmcdome/dorms)
@@ -12657,7 +12657,7 @@
 	},
 /area/slumbridge/inside/sombase/hangar)
 "jup" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/prop/mainship/gelida/register{
 	dir = 4
 	},
@@ -14050,7 +14050,7 @@
 	},
 /area/slumbridge/inside/houses/dorms)
 "kwX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/window/reinforced,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/mainship/floor,
@@ -14534,11 +14534,13 @@
 /turf/open/floor/prison/plate,
 /area/slumbridge/inside/prison/innerring)
 "kQw" = (
-/obj/structure/curtain/medical,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/foyer)
 "kQI" = (
@@ -15658,7 +15660,7 @@
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/innerring)
 "lEX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -16937,7 +16939,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/colony/construction)
 "mzF" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/crew,
 /turf/open/floor/tile/cmo,
 /area/slumbridge/inside/medical/cmo)
@@ -17282,7 +17284,7 @@
 /area/slumbridge/inside/pmcdome)
 "mOy" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/toy/dice,
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/pmcdome/dorms)
@@ -17438,7 +17440,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/slumbridge/outside/southwest)
 "mVO" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/window/reinforced,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/mainship/black/corner{
@@ -18017,7 +18019,7 @@
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/outerringsouth)
 "nrJ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/trash/tray,
 /obj/item/tool/kitchen/utensil/pspoon{
 	pixel_x = -9
@@ -18771,7 +18773,7 @@
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/pmcdome/dorms)
 "nOC" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/taperecorder,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
@@ -19039,7 +19041,7 @@
 /turf/open/floor/tile/dark/purple2,
 /area/slumbridge/inside/zeta/south)
 "nYP" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/dark/green2{
 	dir = 8
@@ -20042,7 +20044,7 @@
 /turf/open/floor/tile/yellow/full,
 /area/slumbridge/inside/engi/central)
 "oMP" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/med_data/laptop,
 /obj/item/tool/screwdriver,
 /obj/machinery/light,
@@ -20455,7 +20457,7 @@
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/innerring)
 "pdj" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/door/window/right{
 	dir = 2
 	},
@@ -20723,7 +20725,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/caves/northwestcaves)
 "ppE" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/newspaper,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -20734,7 +20736,7 @@
 /turf/open/floor/mainship/ai,
 /area/slumbridge/inside/houses/recreational)
 "pqm" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ammo_magazine/shotgun/beanbag,
 /obj/item/weapon/gun/shotgun/pump/trenchgun,
 /obj/machinery/light{
@@ -20976,7 +20978,9 @@
 /turf/open/floor/prison/kitchen,
 /area/slumbridge/inside/prison/innerring)
 "pwt" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/foyer)
 "pwA" = (
@@ -21332,7 +21336,7 @@
 /turf/open/floor/tile/purple/taupepurple,
 /area/slumbridge/inside/houses/recreational)
 "pMQ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/food_or_drink/wine,
 /turf/open/floor/plating,
 /area/slumbridge/inside/colony/kitchen)
@@ -21445,7 +21449,7 @@
 /turf/open/floor/wood,
 /area/slumbridge/inside/houses/dorms)
 "pPl" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -7;
 	pixel_y = -1
@@ -23477,7 +23481,7 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "rkT" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /turf/open/floor/wood/variable/mosaic,
 /area/slumbridge/caves/southeastcaves/garbledradio)
 "rkU" = (
@@ -24664,7 +24668,7 @@
 /turf/closed/wall/r_wall,
 /area/slumbridge/inside/engi/engineroom)
 "saM" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/nuke_disk_candidate,
 /turf/open/floor/tile/cmo,
@@ -25553,7 +25557,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/caves/minedrock)
 "sJw" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /turf/open/floor/wood/variable/wide/damaged,
 /area/slumbridge/caves/southeastcaves/garbledradio)
 "sJH" = (
@@ -26377,7 +26381,7 @@
 /turf/open/floor/tile/green/whitegreen,
 /area/slumbridge/inside/medical/southern)
 "trn" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/tile/dark/blue2/corner{
 	dir = 1
@@ -26503,7 +26507,7 @@
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/landingzonetwo)
 "twh" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/item/toy/dice/d20,
 /obj/item/trash/barcaridine,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -27068,7 +27072,7 @@
 /turf/open/liquid/lava/side,
 /area/slumbridge/outside/northwest)
 "tSt" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/wood,
 /area/slumbridge/inside/colony/bar)
@@ -27267,7 +27271,7 @@
 /turf/open/floor/grass,
 /area/slumbridge/caves/mining)
 "tZp" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/tile/dark/green2{
 	dir = 8
@@ -27532,7 +27536,7 @@
 	},
 /area/slumbridge/inside/houses/dorms)
 "ukf" = (
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/slumbridge/inside/prison/outerringsouth)
 "ukh" = (
@@ -28785,7 +28789,7 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/slumbridge/outside/northwest)
 "viB" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/window/reinforced,
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -29957,7 +29961,7 @@
 /turf/open/floor/plating/icefloor,
 /area/shuttle/drop2/lz2)
 "vVk" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer3,
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/pmcdome/dorms)
@@ -32551,7 +32555,7 @@
 	},
 /area/slumbridge/landingzonetwo)
 "xOD" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/newspaper,
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/outerringsouth)

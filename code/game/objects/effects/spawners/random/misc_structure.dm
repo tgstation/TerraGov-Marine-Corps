@@ -301,7 +301,7 @@
 	icon_state = "random_wood_table"
 	spawn_loot_chance = 95
 	loot = list(
-		/obj/structure/table/woodentable = 99,
+		/obj/structure/table/wood = 99,
 		/obj/effect/spawner/random/engineering/wood = 1,
 	)
 
@@ -356,6 +356,7 @@
 /obj/effect/spawner/random/misc/structure/curtain
 	name = "curtain spawner"
 	icon_state = "random_curtain"
+	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/curtain/temple = 9,
 		/obj/structure/curtain/open/temple = 1,
@@ -364,6 +365,7 @@
 /obj/effect/spawner/random/misc/structure/curtain/medical
 	name = "medical curtain spawner"
 	icon_state = "random_med_curtain"
+	spawn_with_original_direction = TRUE
 	loot = list(
 		/obj/structure/curtain/medical = 9,
 		/obj/structure/curtain/open/medical = 1,
@@ -637,4 +639,285 @@
 	loot = list(
 		/obj/structure/window/reinforced/west = 35,
 		/obj/effect/spawner/random/misc/shard = 1,
+	)
+
+/obj/effect/spawner/random/misc/structure/large
+	name = "base large structure spawner"
+	icon_state = null
+
+/obj/effect/spawner/random/misc/structure/large/car
+	name = "random car spawner"
+	icon_state = "carone"
+	icon = 'icons/effects/random/64x64.dmi'
+	spawn_with_original_direction = TRUE
+	spawn_loot_chance = 35
+	loot = list(
+		/obj/effect/spawner/random/misc/structure/large/car/red,
+		/obj/effect/spawner/random/misc/structure/large/car/black,
+		/obj/effect/spawner/random/misc/structure/large/car/purple,
+		/obj/effect/spawner/random/misc/structure/large/car/pink,
+		/obj/effect/spawner/random/misc/structure/large/car/blue,
+		/obj/effect/spawner/random/misc/structure/large/car/taxi,
+		/obj/effect/spawner/random/misc/structure/large/car/cop,
+		/obj/effect/spawner/random/misc/structure/large/car/light_blue,
+		/obj/effect/spawner/random/misc/structure/large/car/desat_blue,
+		/obj/effect/spawner/random/misc/structure/large/car/turquoise,
+		/obj/effect/spawner/random/misc/structure/large/car/brown,
+		/obj/effect/spawner/random/misc/structure/large/car/generic,
+		/obj/effect/spawner/random/misc/structure/large/car/orange,
+		/obj/effect/spawner/random/misc/structure/large/car/green,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/carone
+	name = "random car spawner damage one"
+	icon_state = "carone"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/red/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/black/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/purple/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/pink/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/blue/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/taxi/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/cop/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/light_blue/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/turquoise/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/brown/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/generic/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/orange/damageone,
+		/obj/structure/prop/urban/vehicles/meridian/green/damageone,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/cartwo
+	name = "random car spawner damage two"
+	icon_state = "cartwo"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/red/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/black/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/purple/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/pink/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/blue/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/taxi/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/cop/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/light_blue/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/turquoise/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/brown/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/generic/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/orange/damagetwo,
+		/obj/structure/prop/urban/vehicles/meridian/green/damagetwo,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/carthree
+	name = "random car spawner damage three"
+	icon_state = "carthree"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/red/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/black/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/purple/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/pink/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/blue/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/taxi/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/cop/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/light_blue/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/turquoise/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/brown/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/generic/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/orange/damagethree,
+		/obj/structure/prop/urban/vehicles/meridian/green/damagethree,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/carfour
+	name = "random car spawner damage four"
+	icon_state = "carfour"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/red/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/black/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/purple/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/pink/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/blue/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/taxi/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/cop/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/light_blue/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/turquoise/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/brown/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/generic/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/orange/damagefour,
+		/obj/structure/prop/urban/vehicles/meridian/green/damagefour,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/carfive
+	name = "random car spawner damage five"
+	icon_state = "carfive"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/red/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/black/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/purple/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/pink/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/blue/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/taxi/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/cop/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/light_blue/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/turquoise/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/brown/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/generic/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/orange/damagefive,
+		/obj/structure/prop/urban/vehicles/meridian/green/damagefive,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/red
+	name = "random car spawner red"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/red = 75,
+		/obj/structure/prop/urban/vehicles/meridian/red/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/red/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/red/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/red/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/red/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/blue
+	name = "random car spawner blue"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/blue = 75,
+		/obj/structure/prop/urban/vehicles/meridian/blue/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/blue/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/blue/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/blue/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/blue/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/green
+	name = "random car spawner green"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/green = 75,
+		/obj/structure/prop/urban/vehicles/meridian/green/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/green/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/green/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/green/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/green/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/black
+	name = "random car spawner black"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/black = 75,
+		/obj/structure/prop/urban/vehicles/meridian/black/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/black/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/black/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/black/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/black/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/brown
+	name = "random car spawner brown"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/brown = 75,
+		/obj/structure/prop/urban/vehicles/meridian/brown/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/brown/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/brown/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/brown/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/brown/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/cop
+	name = "random car spawner cop"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/cop = 75,
+		/obj/structure/prop/urban/vehicles/meridian/cop/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/cop/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/cop/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/cop/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/cop/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/desat_blue
+	name = "random car spawner desat blue"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue = 75,
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/desat_blue/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/light_blue
+	name = "random car spawner light blue"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/light_blue = 75,
+		/obj/structure/prop/urban/vehicles/meridian/light_blue/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/light_blue/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/light_blue/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/light_blue/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/light_blue/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/pink
+	name = "random car spawner pink"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/pink = 75,
+		/obj/structure/prop/urban/vehicles/meridian/pink/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/pink/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/pink/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/pink/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/pink/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/purple
+	name = "random car spawner purple"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/purple = 75,
+		/obj/structure/prop/urban/vehicles/meridian/purple/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/purple/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/purple/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/purple/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/purple/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/turquoise
+	name = "random car spawner turquoise"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/turquoise = 75,
+		/obj/structure/prop/urban/vehicles/meridian/turquoise/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/turquoise/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/turquoise/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/turquoise/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/turquoise/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/orange
+	name = "random car spawner orange"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/orange = 75,
+		/obj/structure/prop/urban/vehicles/meridian/orange/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/orange/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/orange/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/orange/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/orange/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/generic
+	name = "random car spawner generic"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/generic = 75,
+		/obj/structure/prop/urban/vehicles/meridian/generic/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/generic/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/generic/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/generic/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/generic/damagefive = 10,
+	)
+
+/obj/effect/spawner/random/misc/structure/large/car/taxi
+	name = "random car spawner taxi"
+	loot = list(
+		/obj/structure/prop/urban/vehicles/meridian/taxi = 75,
+		/obj/structure/prop/urban/vehicles/meridian/taxi/damageone = 35,
+		/obj/structure/prop/urban/vehicles/meridian/taxi/damagetwo = 35,
+		/obj/structure/prop/urban/vehicles/meridian/taxi/damagethree = 20,
+		/obj/structure/prop/urban/vehicles/meridian/taxi/damagefour = 10,
+		/obj/structure/prop/urban/vehicles/meridian/taxi/damagefive = 10,
 	)

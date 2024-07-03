@@ -18,7 +18,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
 "cd" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/clothing/gloves/botanic_leather,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/living/hydro)
@@ -33,7 +33,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
 "dm" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "dt" = (
@@ -62,7 +62,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle)
 "gU" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/living/hydro)
@@ -74,7 +74,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/campaign/jungle_outpost/ground/jungle)
 "iy" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/shovel,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/living/hydro)
@@ -139,7 +139,7 @@
 /turf/open/liquid/water/river/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
 "mD" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/seeds/sugarcaneseed,
 /turf/open/floor/wood,
@@ -162,7 +162,7 @@
 	},
 /area/campaign/jungle_outpost/ground/jungle)
 "rn" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/scythe,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/living/hydro)
@@ -243,7 +243,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder2,
 /area/campaign/jungle_outpost/ground/jungle)
 "Fe" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/clothing/gloves/botanic_leather,
 /obj/item/clothing/suit/storage/apron,
 /turf/open/floor/wood,
@@ -264,7 +264,7 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle)
 "Gl" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/analyzer/plant_analyzer,
 /obj/item/tool/hatchet{
 	pixel_x = 6;

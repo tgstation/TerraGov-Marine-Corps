@@ -55,6 +55,9 @@
 #define COOLDOWN_ARMORED_HORN "cooldown_armored_horn"
 #define COOLDOWN_WHISTLE_BLOW "cooldown_whistle_blow"
 #define COOLDOWN_WHISTLE_WARCRY "cooldown_whistle_warcry"
+#define COOLDOWN_ARMORED_SMOKE "cooldown_armored_smoke"
+#define COOLDOWN_FORCE_OPEN_DOOR "cooldown_force_open_door"
+#define COOLDOWN_FORCE_CLOSE_DOOR "cooldown_force_close_door"
 
 //Mecha cooldowns
 #define COOLDOWN_MECHA "mecha"
