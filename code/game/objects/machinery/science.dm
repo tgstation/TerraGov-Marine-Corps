@@ -99,6 +99,7 @@
 	icon_state = "Pathogenic_Isolator_syringein_on"
 
 /obj/machinery/science/microscope
+	name = "Microscope"
 	icon_state = "microscope"
 
 /obj/machinery/science/microscope/slide
