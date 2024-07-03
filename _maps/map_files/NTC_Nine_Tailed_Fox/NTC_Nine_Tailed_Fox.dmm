@@ -780,14 +780,7 @@
 	},
 /obj/item/megaphone,
 /obj/effect/ai_node,
-/obj/item/weapon/gun/pistol/g22/tranq,
-/obj/item/ammo_magazine/pistol/g22tranq,
-/obj/item/ammo_magazine/pistol/g22tranq,
-/obj/item/ammo_magazine/pistol/g22tranq,
-/obj/item/ammo_magazine/pistol/g22tranq,
-/obj/item/ammo_magazine/pistol/g22tranq,
-/obj/item/ammo_magazine/pistol/g22tranq,
-/obj/item/ammo_magazine/pistol/g22tranq,
+/obj/item/storage/holster/belt/pistol/g22/tranq,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
