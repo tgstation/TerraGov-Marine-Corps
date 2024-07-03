@@ -21274,6 +21274,10 @@
 	dir = 1
 	},
 /area/sulaco/hallway/central_hall)
+"qoU" = (
+/obj/machinery/telecomms/server/presets/alpha,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "qpo" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -68856,7 +68860,7 @@ aaV
 aYM
 bdx
 baz
-baz
+qoU
 baz
 bbs
 baz

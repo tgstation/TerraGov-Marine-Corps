@@ -94,4 +94,11 @@ GLOBAL_LIST_EMPTY(default_lighting_underlays_by_z)
 	// Of note. Most of the cost in this proc is here, I think because color matrix'd underlays DO NOT cache well, which is what adding to underlays does
 	// We use underlays because objects on each tile would fuck with maptick. if that ever changes, use an object for this instead
 	affected_turf.underlays += current_underlay
-	affected_turf.luminosity = set_luminosity
+
+	if(set_luminosity)
+		affected_turf.luminosity = set_luminosity
+		return
+	var/area/turf_area = affected_turf.loc
+	//We are not lit by static light OR dynamic light.
+	if(!LAZYLEN(affected_turf.hybrid_lights_affecting) && !turf_area.base_lighting_alpha)
+		affected_turf.luminosity = 0

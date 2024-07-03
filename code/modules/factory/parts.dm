@@ -912,3 +912,12 @@ GLOBAL_LIST_INIT(ac_recipe, list(
 /obj/item/factory_part/ac_flak/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.ac_recipe
+
+/obj/item/factory_part/cigarette
+	name = "\improper Cigarette pack"
+	desc = "An incomplete pack of cigarettes."
+	result = /obj/item/clothing/mask/cigarette
+
+/obj/item/factory_part/cigarette/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.equipment_recipe

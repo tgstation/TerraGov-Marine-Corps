@@ -24,9 +24,10 @@
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 1
 	var/foldabletype //To fold into an item (e.g. roller bed item)
-	/// pixel x shift to give to the buckled mob
+	///pixel x shift to give to the buckled mob
 	var/buckling_x = 0
-	var/buckling_y = 0 //pixel y shift to give to the buckled mob.
+	///pixel y shift to give to the buckled mob. This stacks with the lying down pixel shift when relevant
+	var/buckling_y = 3
 	var/obj/structure/closet/bodybag/buckled_bodybag
 	var/accepts_bodybag = FALSE //Whether you can buckle bodybags to this bed
 	var/base_bed_icon //Used by beds that change sprite when something is buckled to them
@@ -235,7 +236,7 @@
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 0 //Pulling something on wheels is easy
-	buckling_y = 6
+	buckling_y = 9
 	foldabletype = /obj/item/roller
 	accepts_bodybag = TRUE
 	base_bed_icon = "roller"

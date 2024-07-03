@@ -2541,3 +2541,8 @@ FACTORY
 	name = "Deplyable security camera refill"
 	contains = list(/obj/item/factory_refill/deployable_camera_refill)
 	cost = 100
+
+/datum/supply_packs/factory/cigarette_refill
+	name = "500 Cigarettes refill"
+	contains = list(/obj/item/factory_refill/cigarette_refill)
+	cost = 500

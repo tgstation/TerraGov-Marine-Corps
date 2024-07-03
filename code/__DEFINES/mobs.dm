@@ -922,3 +922,6 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define CARBON_NO_CHEST_BURST 0
 #define CARBON_IS_CHEST_BURSTING 1
 #define CARBON_CHEST_BURSTED 2
+
+///Pixel_y offset when lying down
+#define CARBON_LYING_Y_OFFSET -6
