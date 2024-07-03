@@ -173,7 +173,7 @@
 	deltimer(current_timer)
 	current_timer = null
 	completed_segments = min(completed_segments + 1, total_segments)
-	if(completed_segments == 5 && GLOB.master_mode == "Crash")
+	if(completed_segments == 5 && iscrashgamemode(SSticker.mode))
 		for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
 			if(!H.job)
 				continue
