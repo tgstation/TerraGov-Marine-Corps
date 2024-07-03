@@ -395,12 +395,12 @@
 			var/atom/movable/screen/plane_master/floor/OT = affected_mob.hud_used.plane_masters["[FLOOR_PLANE]"]
 			var/atom/movable/screen/plane_master/game_world/GW = affected_mob.hud_used.plane_masters["[GAME_PLANE]"]
 
-			addtimer(CALLBACK(OT, TYPE_PROC_REF(/atom, remove_filter), "rage_outcry"), 1 SECONDS)
+			addtimer(CALLBACK(OT, TYPE_PROC_REF(/datum, remove_filter), "rage_outcry"), 1 SECONDS)
 			GW.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
 			animate(GW.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
 			OT.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
 			animate(OT.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
-			addtimer(CALLBACK(GW, TYPE_PROC_REF(/atom, remove_filter), "rage_outcry"), 1 SECONDS)
+			addtimer(CALLBACK(GW, TYPE_PROC_REF(/datum, remove_filter), "rage_outcry"), 1 SECONDS)
 
 	X.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 

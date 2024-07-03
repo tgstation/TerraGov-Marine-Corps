@@ -1341,7 +1341,7 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 	var/height_to_use = (64 - AM_icon.Height()) * 0.5 //gives us the right height based on AM's icon height relative to the 64 high alpha mask
 
 	if(!new_height && !new_depth)
-		GLOB.submerge_filter_timer_list[ref(src)] = addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, remove_filter), AM_SUBMERGE_MASK), duration, TIMER_STOPPABLE)
+		GLOB.submerge_filter_timer_list[ref(src)] = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, remove_filter), AM_SUBMERGE_MASK), duration, TIMER_STOPPABLE)
 		REMOVE_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
 	else if(!HAS_TRAIT(src, TRAIT_SUBMERGED)) //we use a trait to avoid some edge cases if things are moving fast or unusually
 		if(GLOB.submerge_filter_timer_list[ref(src)])
