@@ -1,0 +1,7 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - balance: "Boiler - Zoom reduced to about miniscope range (4 tiles)"
+  - balance: "Boiler - Opaque gas is back"
+  - balance: "Boiler - Boiler gas radius reduced from 4 to 3 tile radius"
+  - balance: "Boiler - Able to shoot within 5 tiles of yourself"
