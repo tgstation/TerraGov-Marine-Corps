@@ -4793,7 +4793,7 @@
 	},
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "aQG" = (
-/obj/docking_port/stationary/marine_dropship/lz2,
+/obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/prison/darkred/full,
 /area/lv759/outdoors/landing_zone_1)
 "aQH" = (
