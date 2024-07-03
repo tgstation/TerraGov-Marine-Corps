@@ -9958,6 +9958,9 @@
 /obj/item/flashlight,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"hdf" = (
+/turf/open/floor/grass,
+/area/bigredv2/outside/engineering)
 "hdR" = (
 /obj/effect/ai_node,
 /obj/machinery/landinglight/lz1,
@@ -10372,6 +10375,10 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/east)
+"ihJ" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/grass,
+/area/bigredv2/outside/engineering)
 "ihU" = (
 /obj/effect/ai_node,
 /turf/open/floor/freezer,
@@ -11201,6 +11208,13 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
+"jKm" = (
+/obj/structure/sign/kiddieplaque{
+	name = "Notice to personnel";
+	desc = ""Due to the large amount of personnel breaking in through the roof, the nature reserve is now permanently closed. Any employees found stuck inside will have their pay cut.""
+	},
+/turf/open/floor/grass,
+/area/bigredv2/outside/engineering)
 "jLr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -14916,6 +14930,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
+"sns" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/grass,
+/area/bigredv2/outside/engineering)
 "snO" = (
 /obj/structure/table/wood,
 /obj/item/paper/Court,
@@ -15813,6 +15831,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"urD" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grass,
+/area/bigredv2/outside/engineering)
 "urU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -28019,7 +28041,7 @@ wDz
 aXK
 gCQ
 gCQ
-pLv
+urD
 xyM
 hwc
 uNS
@@ -28236,7 +28258,7 @@ aaa
 cRz
 gCQ
 gCQ
-bme
+hdf
 xyM
 hwc
 uNS
@@ -28452,8 +28474,8 @@ aaa
 aaa
 aaa
 gCQ
-bme
-bme
+jKm
+ihJ
 xyM
 xzw
 uNS
@@ -28668,9 +28690,9 @@ aaa
 aaa
 aaa
 aaa
-bme
-bme
-pLv
+hdf
+sns
+urD
 xyM
 hwc
 uNS
@@ -28885,9 +28907,9 @@ aaa
 aaa
 aaa
 aaa
-bme
-bme
-bme
+hdf
+hdf
+hdf
 xyM
 hwc
 eFj
@@ -29102,9 +29124,9 @@ aaa
 aaa
 aaa
 aaa
-pLv
-bme
-bme
+urD
+hdf
+hdf
 xyM
 hwc
 hwc
@@ -29319,9 +29341,9 @@ aaa
 aaa
 aaa
 aaa
-bme
-bme
-bme
+hdf
+sns
+hdf
 xyM
 xzw
 hwc
@@ -29536,9 +29558,9 @@ aaa
 aaa
 aaa
 aaa
-bme
-pLv
-bme
+ihJ
+urD
+hdf
 blJ
 boi
 boi
