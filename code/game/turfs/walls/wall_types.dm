@@ -501,3 +501,43 @@
 	icon_state = "engineer_walls-0"
 	walltype = "wall"
 	base_icon_state = "engineer_walls"
+
+/turf/closed/wall/shuttle
+	name = "shuttle hull"
+	desc = "Lightweight and not very sturdy for the sake of fuel efficiency."
+	icon = 'icons/turf/walls/testwall.dmi'
+	icon_state = "testwall-0"
+	base_icon_state = "testwall"
+	max_integrity = 200
+	//Pretty bad at resisting regular damage but raising bio and fire as these are sealed and survive atmospheric re-entries
+	soft_armor = list(MELEE = 0, BULLET = 25, LASER = 25, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 70, ACID = 0)
+	girder_type = /obj/structure/shuttle_girder
+
+	//Smoothing stuff so that the walls don't try to connect to non-shuttle walls on the ground
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE)
+	canSmoothWith = list(
+		SMOOTH_GROUP_SHUTTLE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_SHUTTERS,
+	)
+
+/turf/closed/wall/shuttle/examine(mob/user)
+	. = ..()
+	. += "Integrity: [span_bold("[wall_integrity]/[max_integrity]")]"
+
+//You can't disassemble these walls
+/turf/closed/wall/shuttle/deconstruction_steps(obj/item/I, mob/user)
+	return FALSE
+
+//Override the parent proc so repair amount is based on the wall's max integrity
+/turf/closed/wall/shuttle/welder_act(mob/living/user, obj/item/I)
+	if(wall_integrity >= max_integrity)
+		return FALSE
+
+	return welder_repair_act(user, I, max_integrity/5, 5 SECONDS, 0, SKILL_CONSTRUCTION_METAL, fuel_req = 1)
+
+/turf/closed/wall/shuttle/armored
+	name = "reinforced shuttle hull"
+	desc = "Structural reinforcements make this more durable than the hulls of most shuttles."
+	max_integrity = 400
+	girder_type = /obj/structure/shuttle_girder/armored

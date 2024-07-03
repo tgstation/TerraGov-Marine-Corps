@@ -52,6 +52,8 @@
 		SMOOTH_GROUP_GIRDER,
 	)
 
+	var/girder_type = /obj/structure/girder
+
 /turf/closed/wall/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
@@ -230,7 +232,7 @@
 
 
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
-	var/obj/structure/girder/G = new /obj/structure/girder(src)
+	var/obj/structure/girder/G = new girder_type(src)
 	G.update_icon()
 
 	if(destroyed_girder)
@@ -327,166 +329,222 @@
 	else if(isplasmacutter(I) && !user.do_actions)
 		return
 
-	else if(wall_integrity < max_integrity && iswelder(I))
-		var/obj/item/tool/weldingtool/WT = I
-		if(!WT.remove_fuel(0, user))
-			to_chat(user, span_warning("You need more welding fuel to complete this task."))
-			return
-
-		user.visible_message(span_notice("[user] starts repairing the damage to [src]."),
-		span_notice("You start repairing the damage to [src]."))
-		add_overlay(GLOB.welding_sparks)
-		playsound(src, 'sound/items/welder.ogg', 25, 1)
-		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || !iswallturf(src) || !WT?.isOn())
-			cut_overlay(GLOB.welding_sparks)
-			return
-
-		user.visible_message(span_notice("[user] finishes repairing the damage to [src]."),
-		span_notice("You finish repairing the damage to [src]."))
-		cut_overlay(GLOB.welding_sparks)
-		repair_damage(250, user)
-
 	else
-		//DECONSTRUCTION
-		switch(d_state)
-			if(0)
-				if(iswelder(I))
-					var/obj/item/tool/weldingtool/WT = I
-					playsound(src, 'sound/items/welder.ogg', 25, 1)
-					user.visible_message(span_notice("[user] begins slicing through the outer plating."),
-					span_notice("You begin slicing through the outer plating."))
-					add_overlay(GLOB.welding_sparks)
-
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						cut_overlay(GLOB.welding_sparks)
-						return
-
-					if(!iswallturf(src) || !WT?.isOn())
-						cut_overlay(GLOB.welding_sparks)
-						return
-
-					d_state = 1
-					user.visible_message(span_notice("[user] slices through the outer plating."),
-					span_notice("You slice through the outer plating."))
-					cut_overlay(GLOB.welding_sparks)
-			if(1)
-				if(isscrewdriver(I))
-					user.visible_message(span_notice("[user] begins removing the support lines."),
-					span_notice("You begin removing the support lines."))
-					playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
-
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						return
-
-					if(!iswallturf(src))
-						return
-
-					d_state = 2
-					user.visible_message(span_notice("[user] removes the support lines."),
-					span_notice("You remove the support lines."))
-			if(2)
-				if(iswelder(I))
-					var/obj/item/tool/weldingtool/WT = I
-					user.visible_message(span_notice("[user] begins slicing through the metal cover."),
-					span_notice("You begin slicing through the metal cover."))
-					add_overlay(GLOB.welding_sparks)
-					playsound(src, 'sound/items/welder.ogg', 25, 1)
-
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						cut_overlay(GLOB.welding_sparks)
-						return
-
-					if(!iswallturf(src) || !WT?.isOn())
-						cut_overlay(GLOB.welding_sparks)
-						return
-
-					d_state = 3
-					user.visible_message(span_notice("[user] presses firmly on the cover, dislodging it."),
-					span_notice("You press firmly on the cover, dislodging it."))
-					cut_overlay(GLOB.welding_sparks)
-			if(3)
-				if(iscrowbar(I))
-					user.visible_message(span_notice("[user] struggles to pry off the cover."),
-					span_notice("You struggle to pry off the cover."))
-					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
-
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						return
-
-					if(!iswallturf(src))
-						return
-
-					d_state = 4
-					user.visible_message(span_notice("[user] pries off the cover."),
-					span_notice("You pry off the cover."))
-			if(4)
-				if(iswrench(I))
-					user.visible_message(span_notice("[user] starts loosening the anchoring bolts securing the support rods."),
-					span_notice("You start loosening the anchoring bolts securing the support rods."))
-					playsound(src, 'sound/items/ratchet.ogg', 25, 1)
-
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						return
-
-					if(!iswallturf(src))
-						return
-
-					d_state = 5
-					user.visible_message(span_notice("[user] removes the bolts anchoring the support rods."),
-					span_notice("You remove the bolts anchoring the support rods."))
-			if(5)
-				if(iswirecutter(I))
-					user.visible_message(span_notice("[user] begins uncrimping the hydraulic lines."),
-					span_notice("You begin uncrimping the hydraulic lines."))
-					playsound(src, 'sound/items/wirecutter.ogg', 25, 1)
-
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						return
-
-					if(!iswallturf(src))
-						return
-
-					d_state = 6
-					user.visible_message(span_notice("[user] finishes uncrimping the hydraulic lines."),
-					span_notice("You finish uncrimping the hydraulic lines."))
-			if(6)
-				if(iscrowbar(I))
-					user.visible_message(span_notice("[user] struggles to pry off the inner sheath."),
-					span_notice("You struggle to pry off the inner sheath."))
-					playsound(src, 'sound/items/crowbar.ogg', 25, 1)
-
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						return
-
-					if(!iswallturf(src))
-						return
-
-					d_state = 7
-					user.visible_message(span_notice("[user] pries off the inner sheath."),
-					span_notice("You pry off the inner sheath."))
-			if(7)
-				if(iswelder(I))
-					var/obj/item/tool/weldingtool/WT = I
-					user.visible_message(span_notice("[user] begins slicing through the final layer."),
-					span_notice("You begin slicing through the final layer."))
-					playsound(src, 'sound/items/welder.ogg', 25, 1)
-					add_overlay(GLOB.welding_sparks)
-
-					if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
-						cut_overlay(GLOB.welding_sparks)
-						return
-
-					if(!iswallturf(src) || !WT?.isOn())
-						cut_overlay(GLOB.welding_sparks)
-						return
-
-					new /obj/item/stack/rods(src)
-					user.visible_message(span_notice("The support rods drop out as [user] slices through the final layer."),
-					span_notice("The support rods drop out as you slice through the final layer."))
-					cut_overlay(GLOB.welding_sparks)
-					dismantle_wall()
+		if(deconstruction_steps())
+			return TRUE
 
 		return attack_hand(user)
+
+/turf/closed/wall/welder_act(mob/living/user, obj/item/I)
+	if(wall_integrity >= max_integrity)
+		return FALSE
+
+	return welder_repair_act(user, I, 250, 5 SECONDS, fuel_req = 1)
+
+///Handle process of repairing a wall with a welder; same welder_repair_act() on /obj/
+/turf/closed/wall/proc/welder_repair_act(mob/living/user, obj/item/I, repair_amount = 150, repair_time = 5 SECONDS, repair_threshold = 0, skill_required = SKILL_ENGINEER_DEFAULT, fuel_req = 2, fumble_time)
+	if(user.do_actions)
+		balloon_alert(user, "busy")
+		return FALSE
+
+	if(user.a_intent == INTENT_HARM)
+		return FALSE
+
+	var/obj/item/tool/weldingtool/welder = I
+
+	if(!welder.tool_use_check(user, fuel_req))
+		return FALSE
+
+	for(var/obj/effect/xenomorph/acid/A in loc)
+		if(A.acid_t == src)
+			balloon_alert(user, "It's melting")
+			return TRUE
+
+	if(wall_integrity <= max_integrity * repair_threshold)
+		return BELOW_INTEGRITY_THRESHOLD
+
+	if(wall_integrity >= max_integrity)
+		balloon_alert(user, "already repaired")
+		return TRUE
+
+	if(user.skills.getRating(SKILL_ENGINEER) < skill_required)
+		user.visible_message(span_notice("[user] fumbles around figuring out how to repair [src]."),
+		span_notice("You fumble around figuring out how to repair [src]."))
+		if(!do_after(user, (fumble_time ? fumble_time : repair_time) * (skill_required - user.skills.getRating(SKILL_ENGINEER)), NONE, src, BUSY_ICON_BUILD))
+			return TRUE
+
+	if(user.skills.getRating(SKILL_ENGINEER) > skill_required)
+		repair_amount *= (1+(0.1*(user.skills.getRating(SKILL_ENGINEER) - (skill_required + 1))))
+
+	repair_time *= welder.toolspeed
+	balloon_alert_to_viewers("starting repair...")
+	add_overlay(GLOB.welding_sparks)
+	while(wall_integrity < max_integrity)
+		playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+		welder.eyecheck(user)
+		if(!do_after(user, repair_time, NONE, src, BUSY_ICON_FRIENDLY))
+			cut_overlay(GLOB.welding_sparks)
+			balloon_alert(user, "interrupted!")
+			return TRUE
+
+		if(wall_integrity <= max_integrity * repair_threshold || wall_integrity >= max_integrity)
+			cut_overlay(GLOB.welding_sparks)
+			return TRUE
+
+		if(!welder.remove_fuel(fuel_req))
+			balloon_alert(user, "not enough fuel")
+			cut_overlay(GLOB.welding_sparks)
+			return TRUE
+
+		repair_damage(repair_amount, user)
+		update_icon()
+
+	balloon_alert_to_viewers("repaired")
+	playsound(loc, 'sound/items/welder2.ogg', 25, TRUE)
+	cut_overlay(GLOB.welding_sparks)
+	return TRUE
+
+///Separate proc to handle the physical deconstruction of walls by players; returns TRUE if an attempt was made or successful
+/turf/closed/wall/proc/deconstruction_steps(obj/item/I, mob/user)
+	switch(d_state)
+		if(0)
+			if(iswelder(I))
+				var/obj/item/tool/weldingtool/WT = I
+				playsound(src, 'sound/items/welder.ogg', 25, 1)
+				user.visible_message(span_notice("[user] begins slicing through the outer plating."),
+				span_notice("You begin slicing through the outer plating."))
+				add_overlay(GLOB.welding_sparks)
+
+				if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					cut_overlay(GLOB.welding_sparks)
+					return TRUE
+
+				if(!iswallturf(src) || !WT?.isOn())
+					cut_overlay(GLOB.welding_sparks)
+					return TRUE
+
+				d_state = 1
+				user.visible_message(span_notice("[user] slices through the outer plating."),
+				span_notice("You slice through the outer plating."))
+				cut_overlay(GLOB.welding_sparks)
+		if(1)
+			if(isscrewdriver(I))
+				user.visible_message(span_notice("[user] begins removing the support lines."),
+				span_notice("You begin removing the support lines."))
+				playsound(src, 'sound/items/screwdriver.ogg', 25, 1)
+
+				if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					return TRUE
+
+				if(!iswallturf(src))
+					return TRUE
+
+				d_state = 2
+				user.visible_message(span_notice("[user] removes the support lines."),
+				span_notice("You remove the support lines."))
+		if(2)
+			if(iswelder(I))
+				var/obj/item/tool/weldingtool/WT = I
+				user.visible_message(span_notice("[user] begins slicing through the metal cover."),
+				span_notice("You begin slicing through the metal cover."))
+				add_overlay(GLOB.welding_sparks)
+				playsound(src, 'sound/items/welder.ogg', 25, 1)
+
+				if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					cut_overlay(GLOB.welding_sparks)
+					return TRUE
+
+				if(!iswallturf(src) || !WT?.isOn())
+					cut_overlay(GLOB.welding_sparks)
+					return TRUE
+
+				d_state = 3
+				user.visible_message(span_notice("[user] presses firmly on the cover, dislodging it."),
+				span_notice("You press firmly on the cover, dislodging it."))
+				cut_overlay(GLOB.welding_sparks)
+		if(3)
+			if(iscrowbar(I))
+				user.visible_message(span_notice("[user] struggles to pry off the cover."),
+				span_notice("You struggle to pry off the cover."))
+				playsound(src, 'sound/items/crowbar.ogg', 25, 1)
+
+				if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					return TRUE
+
+				if(!iswallturf(src))
+					return TRUE
+
+				d_state = 4
+				user.visible_message(span_notice("[user] pries off the cover."),
+				span_notice("You pry off the cover."))
+		if(4)
+			if(iswrench(I))
+				user.visible_message(span_notice("[user] starts loosening the anchoring bolts securing the support rods."),
+				span_notice("You start loosening the anchoring bolts securing the support rods."))
+				playsound(src, 'sound/items/ratchet.ogg', 25, 1)
+
+				if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					return TRUE
+
+				if(!iswallturf(src))
+					return TRUE
+
+				d_state = 5
+				user.visible_message(span_notice("[user] removes the bolts anchoring the support rods."),
+				span_notice("You remove the bolts anchoring the support rods."))
+		if(5)
+			if(iswirecutter(I))
+				user.visible_message(span_notice("[user] begins uncrimping the hydraulic lines."),
+				span_notice("You begin uncrimping the hydraulic lines."))
+				playsound(src, 'sound/items/wirecutter.ogg', 25, 1)
+
+				if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					return TRUE
+
+				if(!iswallturf(src))
+					return TRUE
+
+				d_state = 6
+				user.visible_message(span_notice("[user] finishes uncrimping the hydraulic lines."),
+				span_notice("You finish uncrimping the hydraulic lines."))
+		if(6)
+			if(iscrowbar(I))
+				user.visible_message(span_notice("[user] struggles to pry off the inner sheath."),
+				span_notice("You struggle to pry off the inner sheath."))
+				playsound(src, 'sound/items/crowbar.ogg', 25, 1)
+
+				if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					return TRUE
+
+				if(!iswallturf(src))
+					return TRUE
+
+				d_state = 7
+				user.visible_message(span_notice("[user] pries off the inner sheath."),
+				span_notice("You pry off the inner sheath."))
+		if(7)
+			if(iswelder(I))
+				var/obj/item/tool/weldingtool/WT = I
+				user.visible_message(span_notice("[user] begins slicing through the final layer."),
+				span_notice("You begin slicing through the final layer."))
+				playsound(src, 'sound/items/welder.ogg', 25, 1)
+				add_overlay(GLOB.welding_sparks)
+
+				if(!do_after(user, 6 SECONDS, NONE, src, BUSY_ICON_BUILD))
+					cut_overlay(GLOB.welding_sparks)
+					return TRUE
+
+				if(!iswallturf(src) || !WT?.isOn())
+					cut_overlay(GLOB.welding_sparks)
+					return TRUE
+
+				new /obj/item/stack/rods(src)
+				user.visible_message(span_notice("The support rods drop out as [user] slices through the final layer."),
+				span_notice("The support rods drop out as you slice through the final layer."))
+				cut_overlay(GLOB.welding_sparks)
+				dismantle_wall()
+
+	return TRUE
 
 /turf/closed/wall/get_acid_delay()
 	return 5 SECONDS

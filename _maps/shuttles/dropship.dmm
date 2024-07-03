@@ -47,7 +47,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "i" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/window/framed/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/dropship/alamo)
 "j" = (
@@ -214,9 +214,6 @@
 	},
 /turf/open/floor/iron/textured,
 /area/shuttle/dropship/alamo)
-"J" = (
-/turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/dropship/alamo)
 "K" = (
 /obj/structure/bed/chair/dropship/doublewide/left,
 /obj/structure/bed/chair/dropship/doublewide/right,
@@ -297,7 +294,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "X" = (
-/turf/closed/wall/mainship,
+/turf/closed/wall/shuttle,
 /area/shuttle/dropship/alamo)
 "Y" = (
 /obj/structure/engine/thruster{
@@ -504,7 +501,7 @@ c
 c
 p
 x
-J
+X
 D
 n
 "}

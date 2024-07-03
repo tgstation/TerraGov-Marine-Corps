@@ -267,7 +267,7 @@
 /turf/open/floor/iron/smooth_large,
 /area/shuttle/dropship/alamo)
 "Re" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
+/obj/structure/window/framed/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/dropship/alamo)
 "RP" = (
@@ -310,21 +310,24 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/dropship/alamo)
+"ZR" = (
+/turf/closed/wall/shuttle,
+/area/shuttle/dropship/alamo)
 
 (1,1,1) = {"
-mB
-mB
-mB
-mB
-mB
-mB
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
 VL
 sx
 sx
 sx
 sx
 VL
-mB
+ZR
 Hp
 xo
 sx
@@ -335,17 +338,17 @@ Ea
 Ea
 Ea
 Ea
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
 "}
 (3,1,1) = {"
 nY
@@ -363,7 +366,7 @@ MH
 Xe
 HX
 aA
-mB
+ZR
 "}
 (4,1,1) = {"
 nY
@@ -399,7 +402,7 @@ AE
 AE
 AE
 gK
-mB
+ZR
 "}
 (6,1,1) = {"
 mB
@@ -417,7 +420,7 @@ AE
 AE
 AE
 RP
-mB
+ZR
 "}
 (7,1,1) = {"
 uE
@@ -435,7 +438,7 @@ AE
 AE
 AE
 Su
-mB
+ZR
 "}
 (8,1,1) = {"
 nY
@@ -471,7 +474,7 @@ PM
 HX
 HX
 aA
-mB
+ZR
 "}
 (10,1,1) = {"
 nY
@@ -479,32 +482,32 @@ Ea
 Ea
 Ea
 Ea
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
-mB
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
 "}
 (11,1,1) = {"
-mB
-mB
-mB
-mB
-mB
-mB
+ZR
+ZR
+ZR
+ZR
+ZR
+ZR
 VL
 sx
 sx
 sx
 sx
 VL
-mB
+ZR
 TN
 Nk
 sx

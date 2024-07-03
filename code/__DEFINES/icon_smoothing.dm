@@ -71,8 +71,9 @@
 #define SMOOTH_GROUP_RIVER S_TURF(39)
 #define SMOOTH_GROUP_ICE_WALL S_TURF(40)
 #define SMOOTH_GROUP_SAND S_TURF(41)
+#define SMOOTH_GROUP_SHUTTLE S_TURF(42)
 
-#define MAX_S_TURF SMOOTH_GROUP_ICE_WALL //Always match this value with the one above it.
+#define MAX_S_TURF SMOOTH_GROUP_SHUTTLE //Always match this value with the one above it.
 
 
 #define S_OBJ(num) (MAX_S_TURF + 1 + num)

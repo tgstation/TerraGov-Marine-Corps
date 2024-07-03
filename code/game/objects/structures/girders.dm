@@ -374,3 +374,51 @@
 	girder_state = GIRDER_BUILDING1_WELDED
 	reinforcement = GIRDER_REINF_PLASTEEL
 	max_integrity = 500
+
+//Not a child of /girder/ because it would need a lot of stuff overwritten or changed on the parent
+/obj/structure/shuttle_girder
+	name = "girder"
+	desc = "A large structural assembly made out of metal. It requires some layers of metal before it can be considered a wall."
+	icon = 'icons/obj/smooth_objects/girder_broke.dmi'
+	icon_state = "girder-0"
+	base_icon_state = "girder"
+	resistance_flags = RESIST_ALL
+	anchored = TRUE
+	///What type of wall to spawn when this girder is repaired
+	var/wall_type = /turf/closed/wall/shuttle
+	///Item consumed when repairing
+	var/obj/item/stack/repaired_by = /obj/item/stack/sheet/metal
+	///How many stacks is needed to repair
+	var/amount_needed_for_repairs = 4
+
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE)
+	canSmoothWith = list(
+		SMOOTH_GROUP_SHUTTLE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_SHUTTERS,
+	)
+
+/obj/structure/shuttle_girder/examine(mob/user)
+	. = ..()
+	. += "Apply [amount_needed_for_repairs] sheets of [repaired_by::name] to rebuild the wall."
+
+/obj/structure/shuttle_girder/attackby(obj/item/attacking_item, mob/user, params)
+	. = ..()
+	if(istype(attacking_item, repaired_by))
+		var/obj/item/stack/repair_item = attacking_item
+		if(repair_item.get_amount() < amount_needed_for_repairs)
+			balloon_alert(user, "Lacking enough materials!")
+			return FALSE
+
+		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_BUILD) || !repair_item.use(amount_needed_for_repairs))
+			return FALSE
+
+		playsound(src, 'sound/weapons/genhit.ogg', 25, 1)
+		new wall_type()
+		qdel(src)
+
+/obj/structure/shuttle_girder/armored
+	wall_type = /turf/closed/wall/shuttle/armored
+	repaired_by = /obj/item/stack/sheet/plasteel
+	amount_needed_for_repairs = 2

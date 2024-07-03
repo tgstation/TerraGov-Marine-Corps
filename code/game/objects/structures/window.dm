@@ -12,7 +12,6 @@
 	allow_pass_flags = PASS_GLASS
 	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	coverage = 20
-	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
 	max_integrity = 15
 	///Optimization for dynamic explosion block values, for things whose explosion block is dependent on certain conditions.
 	var/real_explosion_block = 0
@@ -165,46 +164,56 @@
 	if(I.item_flags & NOBLUDGEON)
 		return
 
-	else if(isscrewdriver(I) && deconstructable)
-		dismantle = TRUE
-		if(reinf && state >= 1)
-			state = 3 - state
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			to_chat(user, (state == 1 ? span_notice("You have unfastened the window from the frame.") : span_notice("You have fastened the window to the frame.")))
-		else if(reinf && state == 0 && !static_frame)
-			anchored = !anchored
-			update_nearby_icons()
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			to_chat(user, (anchored ? span_notice("You have fastened the frame to the floor.") : span_notice("You have unfastened the frame from the floor.")))
-		else if(!reinf && !static_frame)
-			anchored = !anchored
-			update_nearby_icons()
-			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-			to_chat(user, (anchored ? span_notice("You have fastened the window to the floor.") : span_notice("You have unfastened the window.")))
-		else if(!reinf || (static_frame && state == 0))
-			deconstruct(TRUE)
+/obj/structure/window/screwdriver_act(mob/living/user, obj/item/I)
+	if(!deconstructable)
+		return FALSE
 
-	else if(iscrowbar(I) && reinf && state <= 1 && deconstructable)
-		dismantle = TRUE
-		state = 1 - state
-		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
-		to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
+	if(reinf && state >= 1)
+		state = 3 - state
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+		to_chat(user, (state == 1 ? span_notice("You have unfastened the window from the frame.") : span_notice("You have fastened the window to the frame.")))
+	else if(reinf && state == 0 && !static_frame)
+		anchored = !anchored
+		update_nearby_icons()
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+		to_chat(user, (anchored ? span_notice("You have fastened the frame to the floor.") : span_notice("You have unfastened the frame from the floor.")))
+	else if(!reinf && !static_frame)
+		anchored = !anchored
+		update_nearby_icons()
+		playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
+		to_chat(user, (anchored ? span_notice("You have fastened the window to the floor.") : span_notice("You have unfastened the window.")))
+	else if(!reinf || (static_frame && state == 0))
+		deconstruct(TRUE)
 
+	return TRUE
+
+/obj/structure/window/crowbar_act(mob/living/user, obj/item/I)
+	if(!reinf || state > 1 || !deconstructable)
+		return FALSE
+
+	state = 1 - state
+	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
+	to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
+	return TRUE
 
 /obj/structure/window/deconstruct(disassembled = TRUE)
+	drop_materials(disassembled)
+	return ..()
+
+///Handle dropping materials when deconstructing or breaking a window
+/obj/structure/window/proc/drop_materials(disassembled = TRUE)
 	if(disassembled)
 		if(reinf)
 			new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 		else
 			new /obj/item/stack/sheet/glass/glass(loc, 2)
-	else
-		new shardtype(loc)
-		if(is_full_window())
-			new shardtype(loc)
-		if(reinf)
-			new /obj/item/stack/rods(loc)
-	return ..()
+		return
 
+	new shardtype(loc)
+	if(is_full_window())
+		new shardtype(loc)
+	if(reinf)
+		new /obj/item/stack/rods(loc)
 
 /obj/structure/window/verb/rotate()
 	set name = "Rotate Window Counter-Clockwise"
@@ -768,3 +777,69 @@
 	reinf = TRUE
 	dir = 5
 	window_frame = /obj/structure/window_frame/junk_frame
+
+/obj/structure/window/framed/shuttle
+	name = "shuttle window"
+	desc = "Tough shuttle window that resists the vacuum of space and pressures of atmospheric re-entry. Use a screwdriver to remove the glass from the frame."
+	icon = 'icons/obj/smooth_objects/ship_window.dmi'
+	icon_state = "window-reinforced"
+	basestate = "ship_window"
+	base_icon_state = "ship_window"
+	allow_pass_flags = NONE	//Since these are stronger and it would be unfair to benos, make them block lasers
+	deconstructable = FALSE
+	coverage = 100
+	//Stronger than your average window but this puts it on par with the normal shuttle walls
+	max_integrity = 200
+	soft_armor = list(MELEE = 0, BULLET = 25, LASER = 25, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 70, ACID = 0)
+	window_frame = /obj/structure/window_frame/shuttle
+
+	smoothing_groups = list(SMOOTH_GROUP_SHUTTLE)
+	canSmoothWith = list(
+		SMOOTH_GROUP_SHUTTLE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_SHUTTERS,
+	)
+
+/obj/structure/window/framed/shuttle/examine(mob/user)
+	. = ..()
+	. += "Integrity: [span_bold("[obj_integrity]/[max_integrity]")]"
+
+//Reduce deconstruction to one step because shuttle engineers WILL be doing this a lot
+/obj/structure/window/framed/shuttle/screwdriver_act(mob/living/user, obj/item/I)
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		return
+
+	deconstruct()
+	return TRUE
+
+//Don't need crowbar'ing
+/obj/structure/window/framed/shuttle/crowbar_act(mob/living/user, obj/item/I)
+	return FALSE
+
+//Override so the amount of materials spawned depends on integrity
+/obj/structure/window/framed/shuttle/drop_materials(disassembled = TRUE)
+	//Drop 2 sheets if at full health, 1 sheet if above 50% health, otherwise none
+	var/drop_amount = FLOOR(obj_integrity/max_integrity * 2, 1)
+	if(disassembled && drop_amount)
+		if(reinf)
+			new /obj/item/stack/sheet/glass/reinforced(loc, drop_amount)
+		else
+			new /obj/item/stack/sheet/glass/glass(loc, drop_amount)
+		return
+
+	new shardtype(loc)
+	if(is_full_window())
+		new shardtype(loc)
+	if(reinf)
+		new /obj/item/stack/rods(loc)
+
+//Always leave behind the frame
+/obj/structure/window/framed/deconstruct(disassembled, leave_frame)
+	leave_frame = TRUE
+	return ..()
+
+/obj/structure/window/framed/shuttle/armored
+	name = "armored shuttle window"
+	max_integrity = 400
+	window_frame = /obj/structure/window_frame/shuttle/armored
+	reinf = TRUE

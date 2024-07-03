@@ -229,3 +229,25 @@
 	base_icon_state = "col_window_frame"
 
 /obj/structure/window_frame/urban/colony/engineering/reinforced
+
+/obj/structure/window_frame/shuttle
+	name = "shuttle window frame"
+	desc = "Structural frame of a shuttle window."
+	icon = 'icons/obj/smooth_objects/ship_window_frame.dmi'
+	icon_state = "ship_window_frame-0"
+	basestate = "ship_window_frame"
+	base_icon_state = "ship_window_frame"
+	density = FALSE
+	resistance_flags = RESIST_ALL
+	alpha = 150	//No sprites for broken window frames so just make them transparent
+	sheet_type = /obj/item/stack/sheet/glass
+	window_type = /obj/structure/window/framed/shuttle
+
+/obj/structure/window_frame/shuttle/examine(mob/user)
+	. = ..()
+	. += "Apply [sheet_type::name] to the frame to rebuild the window."
+
+/obj/structure/window_frame/shuttle/armored
+	name = "armored shuttle window frame"
+	sheet_type = /obj/item/stack/sheet/glass/reinforced
+	window_type = /obj/structure/window/framed/shuttle/armored

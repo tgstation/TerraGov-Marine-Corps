@@ -34,7 +34,7 @@
 /obj/structure/sign/directions/command{
 	dir = 4
 	},
-/turf/closed/wall/mainship,
+/turf/closed/wall/shuttle,
 /area/shuttle/dropship/alamo)
 "ga" = (
 /obj/machinery/light{
@@ -148,10 +148,10 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/dropship/alamo)
 "yY" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /obj/machinery/door/poddoor/shutters/transit/open{
 	dir = 8
 	},
+/obj/structure/window/framed/shuttle,
 /turf/open/floor/plating/mainship,
 /area/shuttle/dropship/alamo)
 "zg" = (
@@ -212,7 +212,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "HE" = (
-/turf/closed/wall/mainship,
+/turf/closed/wall/shuttle,
 /area/shuttle/dropship/alamo)
 "IP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -298,10 +298,7 @@
 /turf/open/floor/plating/mainship/striped,
 /area/shuttle/dropship/alamo)
 "QU" = (
-/obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
-/obj/machinery/door/poddoor/shutters/transit/open{
-	dir = 1
-	},
+/obj/structure/window/framed/shuttle,
 /turf/open/floor/plating,
 /area/shuttle/dropship/alamo)
 "RE" = (
