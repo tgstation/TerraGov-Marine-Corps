@@ -117,4 +117,4 @@
 	qdel(src)
 
 /obj/item/clothing/suit/storage/marine/boomvest/fast
-	detonate_time = 5
+	detonate_time = 0.5 SECONDS
