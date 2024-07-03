@@ -94,7 +94,9 @@ const Exports = (props) => {
         {export_history.map((exp) => (
           <Table.Row key={exp.id}>
             <Table.Cell>{exp.name}</Table.Cell>
-            <Table.Cell>{exp.points} points</Table.Cell>
+            <Table.Cell>
+              {exp.amount} x {exp.points} points ({exp.total})
+            </Table.Cell>
           </Table.Row>
         ))}
       </Table>

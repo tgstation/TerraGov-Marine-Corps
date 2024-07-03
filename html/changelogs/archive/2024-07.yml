@@ -1,0 +1,41 @@
+2024-07-01:
+  Apple-107:
+  - bugfix: doubled-up windows on Outrider Tadpole
+  Ldip999:
+  - bugfix: Fixed inability to create squads on Sulaco
+  - bugfix: Webmap fixed
+  Notamaniac:
+  - imageadd: TE Powerpacks now has an overlay that changes color depending on their
+      remanining charge
+2024-07-03:
+  Barnet2:
+  - balance: Boiler - Zoom reduced to about miniscope range (4 tiles)
+  - balance: Boiler - Opaque gas is back
+  - balance: Boiler - Boiler gas radius reduced from 4 to 3 tile radius
+  - balance: Boiler - Able to shoot within 5 tiles of yourself
+  Helg2:
+  - bugfix: fixed powerpacks worn icon states.
+  Ldip999:
+  - qol: Same as last rows in req export history now stack
+  - imageadd: Sprite for active radiopack
+  - code_imp: Modified radiopack code to initialize beacon with aditional parameters
+  Lumipharon:
+  - bugfix: 'Campaign: Respawning in campaign now DNR''s your body like it used to'
+  Notamaniac:
+  - bugfix: Fixed Strain Swapping not being instant and relying on evo timer
+  Wisemonster:
+  - rscadd: Added a surgery practice area to marine Valhalla.
+  - code_imp: Modified the marine spawner buttons in xeno Valhalla to be usable by
+      marines.
+  - balance: The research facility on LV-759 has been significantly damaged by the
+      xeno outbreak there, making it easier for the xenos to move around.
+  - balance: Removed most of the sandbags by the area just outside of the research
+      facility on LV-759
+  - balance: Removed some sandbags scattered around the streets of LV-759
+  - balance: Removed some more shutters at the road security checkpoints on LV-759
+  - balance: Signs, computers/machinery, and monitors on LV-759 have had their health
+      decreased from 500 to between 50-80, and can now be slashed.
+  - rscdel: Removed a pair of tactical binoculars from LV-759
+  - rscdel: Removed some platforms by east colony street and the pool on LV-759
+  blackdav123:
+  - rscadd: Engineering storage modules can now hold miner upgrades.

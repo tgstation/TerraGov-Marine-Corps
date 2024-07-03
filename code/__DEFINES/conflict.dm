@@ -131,6 +131,7 @@
 #define MAGAZINE_HANDFUL (1<<1)
 #define MAGAZINE_WORN (1<<2)
 #define MAGAZINE_REFUND_IN_CHAMBER (1<<3)
+#define MAGAZINE_NOT_FABRICABLE (1<<4)
 
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up

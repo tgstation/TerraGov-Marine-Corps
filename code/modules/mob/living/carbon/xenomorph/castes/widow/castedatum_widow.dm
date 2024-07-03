@@ -83,7 +83,7 @@
 
 	// *** Abilities *** ///
 	resin_max_range = 1 //Widow can place resin structures from 1 tile away
-	
+
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
@@ -100,5 +100,6 @@
 		/datum/action/ability/xeno_action/attach_spiderlings,
 		/datum/action/ability/activable/xeno/cannibalise,
 		/datum/action/ability/activable/xeno/spiderling_mark,
+		/datum/action/ability/xeno_action/sow,
 		/datum/action/ability/activable/xeno/web_hook,
 	)

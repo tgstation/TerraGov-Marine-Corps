@@ -17,6 +17,9 @@
 	set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/tank/ltb_cannon,
 		/obj/item/ammo_magazine/tank/ltaap_chaingun,
+		/obj/item/ammo_magazine/tank/ltb_cannon/heavy,
+		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
 		/obj/item/ammo_magazine/tank/volkite_carronade,
 		/obj/item/ammo_magazine/tank/particle_lance,
 		/obj/item/ammo_magazine/tank/coilgun,
