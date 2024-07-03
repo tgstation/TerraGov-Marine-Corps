@@ -335,7 +335,9 @@
 	if(selected_outfit == "Naked" || !selected_outfit)
 		return
 	linked.equipOutfit(job_outfits[selected_outfit], TRUE)
-	linked.wear_ear = null //Prevents the valhalla marines from getting access to headsets
+	linked.wear_ear = null
+	linked.r_hand = null
+	linked.l_hand = null //Prevents the valhalla marines from getting access to headsets and ASRS tablets
 
 /obj/machinery/button/valhalla/vehicle_button
 	name = "Vehicle Spawner"
