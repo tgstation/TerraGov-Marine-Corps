@@ -334,7 +334,8 @@
 	linked = new /mob/living/carbon/human(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 	if(selected_outfit == "Naked" || !selected_outfit)
 		return
-	linked.equipOutfit(job_outfits[selected_outfit], FALSE)
+	linked.equipOutfit(job_outfits[selected_outfit], TRUE)
+	linked.wear_ear = null //Prevents the valhalla marines from getting access to headsets
 
 /obj/machinery/button/valhalla/vehicle_button
 	name = "Vehicle Spawner"
