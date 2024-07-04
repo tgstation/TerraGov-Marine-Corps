@@ -58,6 +58,8 @@ GLOBAL_LIST_EMPTY(campaign_objectives)
 GLOBAL_LIST_EMPTY(campaign_structures)
 ///List of all mech spawners in campaign mode
 GLOBAL_LIST_EMPTY(campaign_mech_spawners)
+///List of all tank spawners in campaign mode
+GLOBAL_LIST_EMPTY(campaign_tank_spawners)
 ///Locations for rewards to spawn by faction
 GLOBAL_LIST_EMPTY(campaign_reward_spawners)
 ///List of all teleporter arrays

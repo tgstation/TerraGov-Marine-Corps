@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Campaign: Replaced Mech War with Combined Arms"
+  - rscadd: "Added vehicle deployment for vehicle in Campaign"
