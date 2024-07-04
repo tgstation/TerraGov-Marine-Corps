@@ -341,7 +341,8 @@
 
 /obj/machinery/button/valhalla/vehicle_button/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	var/list/spawnable_vehicles = list(/obj/vehicle/sealed/armored/multitile,
-	/obj/vehicle/sealed/armored/multitile/apc)
+	/obj/vehicle/sealed/armored/multitile/apc,
+	)
 
 	var/selected_vehicle = tgui_input_list(usr, "Which vehicle do you want to spawn?", "Vehicle spawn", spawnable_vehicles)
 	if(!selected_vehicle)
@@ -355,6 +356,7 @@
 
 /obj/machinery/button/valhalla/vehicle_button/attack_hand(mob/living/user)
 	var/list/spawnable_vehicles = list(/obj/vehicle/sealed/armored/multitile,
+	/obj/vehicle/sealed/armored/multitile/som_tank,
 	/obj/vehicle/sealed/armored/multitile/apc)
 
 	var/selected_vehicle = tgui_input_list(usr, "Which vehicle do you want to spawn?", "Vehicle spawn", spawnable_vehicles)
