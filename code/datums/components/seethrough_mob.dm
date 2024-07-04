@@ -42,6 +42,7 @@
 	render_source_atom.render_source = "*transparent_bigmob[personal_uid]"
 
 	action = new(src)
+	action.give_action(parent)
 
 /datum/component/seethrough_mob/Destroy(force)
 	QDEL_NULL(render_source_atom)
