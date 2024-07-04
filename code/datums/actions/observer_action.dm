@@ -63,7 +63,9 @@
 	if(new_mob.stat == DEAD)
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
 		return FALSE
-
+	switch(tgui_alert(owner, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD mob", list("Yes", "No",)))
+		if("No")
+			return
 	if(isxeno(new_mob))
 		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
 		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(owner))
