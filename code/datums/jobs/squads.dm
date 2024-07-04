@@ -449,7 +449,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 			if(!(GLOB.department_radio_keys[letter] && !(letter in radio_blacklist))
 				key_prefix = letter
 				break
-	if(GLOB.department_radio_keys[key_prefix] || radio_blacklist[key_prefix])
+	if(GLOB.department_radio_keys[key_prefix] || key_prefix in radio_blacklist)
 		//okay... mustve been a very short name, randomly pick things from the alphabet now
 		for(var/letter in shuffle(GLOB.alphabet))
 			if(! (GLOB.department_radio_keys[letter] || radio_blacklist[letter]))
