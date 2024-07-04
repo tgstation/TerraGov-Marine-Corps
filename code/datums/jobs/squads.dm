@@ -444,7 +444,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	LAZYADDASSOCSIMPLE(GLOB.reverseradiochannels, "[freq]", radio_channel_name)
 	new_squad.faction = squad_faction
 	var/key_prefix = lowertext_name[1]
-	if(GLOB.department_radio_keys[key_prefix] || radio_blacklist[key_prefix])
+	if(GLOB.department_radio_keys[key_prefix] || key_prefix in radio_blacklist)
 		for(var/letter in splittext(lowertext_name, ""))
 			if(! (GLOB.department_radio_keys[letter] || radio_blacklist[letter]))
 				key_prefix = letter
