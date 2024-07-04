@@ -1042,11 +1042,10 @@
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "bgz" = (
-/obj/machinery/vending/cigarette,
-/obj/effect/turf_decal/warning_stripes/thick{
-	dir = 8
+/obj/machinery/bioprinter/stocked,
+/turf/open/floor/mainship/sterile/corner{
+	dir = 1
 	},
-/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "bgM" = (
 /obj/structure/table,
@@ -1417,6 +1416,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
+"bMr" = (
+/obj/machinery/vending/MarineMed/valhalla,
+/turf/open/floor/mainship/sterile/corner,
 /area/centcom/valhalla)
 "bMv" = (
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -2442,6 +2445,13 @@
 	},
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/grass,
+/area/centcom/valhalla)
+"dgG" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8
+	},
+/obj/machinery/vending/cigarette,
+/turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "dgR" = (
 /obj/structure/sign/vacuum,
@@ -4887,7 +4897,7 @@
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
 "gEX" = (
-/obj/machinery/button/valhalla/xeno_button{
+/obj/machinery/button/valhalla/marine_spawner{
 	link = "marineright"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -5166,7 +5176,7 @@
 /turf/open/floor/tile/cafe,
 /area/centcom/valhalla)
 "hda" = (
-/obj/machinery/button/valhalla/xeno_button{
+/obj/machinery/button/valhalla/marine_spawner{
 	link = "marinetop"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -5180,7 +5190,7 @@
 /turf/open/floor/plating/scorched,
 /area/centcom/valhalla)
 "heB" = (
-/obj/machinery/button/valhalla/xeno_button{
+/obj/machinery/button/valhalla/marine_spawner{
 	link = "marineleft"
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -5320,6 +5330,13 @@
 	dir = 1
 	},
 /area/centcom/valhalla)
+"hnH" = (
+/obj/machinery/door/airlock/mainship/medical/or/free_access{
+	dir = 2;
+	name = "\improper Medical Airlock"
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/valhalla)
 "hnQ" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -5358,6 +5375,12 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/structure/closet/crate,
 /turf/open/floor/tile/dark/gray,
+/area/centcom/valhalla)
+"hqA" = (
+/obj/machinery/vending/medical/valhalla,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
 /area/centcom/valhalla)
 "hrg" = (
 /obj/item/storage/box/bodybags{
@@ -6714,6 +6737,12 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla)
+"jvT" = (
+/obj/machinery/button/valhalla/marine_spawner{
+	link = "marinesurgeryright"
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/valhalla)
 "jxN" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -7513,6 +7542,12 @@
 	},
 /turf/open/floor,
 /area/tdome)
+"kvr" = (
+/obj/machinery/button/valhalla/marine_spawner{
+	link = "marinesurgeryleft"
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/valhalla)
 "kxq" = (
 /obj/structure/closet/crate,
 /obj/machinery/firealarm{
@@ -8223,6 +8258,14 @@
 /obj/structure/table,
 /obj/item/storage/donut_box,
 /turf/open/floor/grimy,
+/area/centcom/valhalla)
+"lIu" = (
+/obj/machinery/optable,
+/obj/effect/landmark/valhalla/marine_spawner_landmark{
+	where = "surgeryleft"
+	},
+/obj/item/tank/anesthetic,
+/turf/open/floor/mainship/sterile/dark,
 /area/centcom/valhalla)
 "lIC" = (
 /turf/closed/wall/mainship,
@@ -10710,6 +10753,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
+"pwE" = (
+/obj/machinery/bioprinter/stocked,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
+/area/centcom/valhalla)
 "pwR" = (
 /obj/machinery/door/firedoor,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -12385,6 +12434,9 @@
 	},
 /turf/open/floor/tile/lightred/full,
 /area/centcom/valhalla)
+"sgT" = (
+/turf/open/floor/mainship/sterile/side,
+/area/centcom/valhalla)
 "sis" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/machinery/air_alarm{
@@ -12784,6 +12836,11 @@
 /obj/item/toy/deck/kotahi,
 /turf/open/floor/tile/vault{
 	dir = 5
+	},
+/area/centcom/valhalla)
+"sGi" = (
+/turf/open/floor/mainship/sterile/side{
+	dir = 8
 	},
 /area/centcom/valhalla)
 "sGw" = (
@@ -13921,6 +13978,14 @@
 /obj/effect/turf_decal/tile/pink,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"utb" = (
+/obj/machinery/optable,
+/obj/effect/landmark/valhalla/marine_spawner_landmark{
+	where = "surgeryright"
+	},
+/obj/item/tank/anesthetic,
+/turf/open/floor/mainship/sterile/dark,
+/area/centcom/valhalla)
 "utM" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/structure/closet/crate/freezer,
@@ -14028,6 +14093,12 @@
 	pixel_y = 2
 	},
 /turf/open/floor/tile/cafe,
+/area/centcom/valhalla)
+"uCL" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/sterile/side{
+	dir = 1
+	},
 /area/centcom/valhalla)
 "uEe" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/on,
@@ -19734,8 +19805,8 @@ xrI
 xrI
 xrI
 xrI
-vQc
-jYG
+xrI
+xrI
 jYG
 jYG
 jYG
@@ -19868,12 +19939,12 @@ xrI
 xrI
 xrI
 xrI
-wQi
 xrI
-xrI
-xrI
-jYG
-jYG
+box
+box
+box
+box
+box
 box
 box
 box
@@ -20007,11 +20078,11 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-jYG
-jYG
-jYG
+box
+bgz
+sGi
+sGi
+jKv
 box
 nKg
 jWH
@@ -20145,11 +20216,11 @@ xrI
 xrI
 xrI
 xrI
-xrI
-xrI
-xrI
-jYG
-jYG
+box
+uCL
+kvr
+lIu
+sgT
 box
 foh
 jWH
@@ -20283,11 +20354,11 @@ xrI
 vQc
 vQc
 xXc
-xXc
-vQc
-vQc
-jYG
-jYG
+box
+hqA
+rfF
+rfF
+sgT
 box
 lPX
 oNZ
@@ -20421,11 +20492,11 @@ fmR
 fmR
 vQc
 fmR
-vQc
-fmR
-fmR
-fmR
-jYG
+box
+uCL
+jvT
+utb
+sgT
 box
 nKg
 jWH
@@ -20559,11 +20630,11 @@ fmR
 fmR
 fmR
 fmR
-fmR
-fmR
-fmR
-vQc
-fmR
+box
+pwE
+rfF
+rfF
+sgT
 box
 foh
 jWH
@@ -20697,19 +20768,19 @@ fWu
 fWu
 fWu
 fWu
-fWu
-fWu
-fWu
-fWu
-fWu
 box
-bgz
+bMr
+fgO
+fgO
+bEo
+hnH
+mCI
 rBJ
 mCI
 lMV
 xgU
 lMV
-mCI
+dgG
 gMl
 gJS
 myT
@@ -20836,9 +20907,9 @@ fmR
 fmR
 fmR
 aEn
-bcm
-fmR
-fmR
+box
+bRv
+bRv
 bjQ
 box
 bog

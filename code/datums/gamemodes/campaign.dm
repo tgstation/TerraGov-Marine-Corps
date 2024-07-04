@@ -375,8 +375,17 @@
 				ready_candidate?.client?.screen?.Cut()
 				qdel(ready_candidate)
 				return
+
+			var/mob/living/carbon/human/human_current
 			if(isobserver(candidate))
+				var/mob/dead/observer/observer_candidate = candidate
+				if(!isnull(observer_candidate.can_reenter_corpse))
+					human_current = observer_candidate.can_reenter_corpse.resolve()
 				qdel(candidate)
+			else if(ishuman(candidate))
+				human_current = candidate
+
+			human_current?.set_undefibbable(TRUE)
 
 
 ///Actually respawns the player, if still able
