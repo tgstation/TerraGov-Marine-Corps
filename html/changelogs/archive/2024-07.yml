@@ -39,3 +39,17 @@
   - rscdel: Removed some platforms by east colony street and the pool on LV-759
   blackdav123:
   - rscadd: Engineering storage modules can now hold miner upgrades.
+2024-07-04:
+  Apple-107:
+  - bugfix: APC/Tank should now be able to get to Tadpole on Theseus and Arachne
+  Dragonfruits:
+  - imageadd: Replaced title screen 13 with updated remake
+  Joe13413:
+  - imageadd: Added visual clarity to windows on Kutjevo Refinery and Meridian Riptide
+  Ldip999:
+  - qol: Req export history no longer displays worthless items
+  - bugfix: Webmap fixed even if there are spaces in the map name
+  Runian:
+  - balance: Shrike and Hivemind's healing ability no longer cancels if target moves.
+  TiviPlus:
+  - code_imp: backend code now supports mob height

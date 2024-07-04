@@ -1,4 +1,0 @@
-author: "Apple-107"
-delete-after: True
-changes:
-  - bugfix: "APC/Tank should now be able to get to Tadpole on Theseus and Arachne"
