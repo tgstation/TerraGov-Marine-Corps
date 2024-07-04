@@ -6,15 +6,15 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(SSticker.admin_delay_notice && alert(usr, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", "Yes", "No") != "Yes")
+	if(SSticker.admin_delay_notice && tgui_alert(usr, "Are you sure? An admin has already delayed the round end for the following reason: [SSticker.admin_delay_notice]", "Confirmation", list("Yes", "No"), 0) != "Yes")
 		return
 
-	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "Restart the game world?", "Restart", list("Yes", "No"), 0) != "Yes")
 		return
 
 	var/message = FALSE
 	if(CONFIG_GET(string/restart_message))
-		switch(alert("Send the new round message?", "Message", "Yes", "No", "Cancel"))
+		switch(tgui_alert(usr, "Send the new round message?", "Message", list("Yes", "No", "Cancel"), 0))
 			if("Yes")
 				message = TRUE
 			if("Cancel")
