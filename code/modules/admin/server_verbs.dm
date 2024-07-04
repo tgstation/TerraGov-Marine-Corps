@@ -336,7 +336,7 @@
 	if(!SSticker)
 		return
 
-	var/newtime = input("Set a new time in seconds. Set -1 for indefinite delay.", "Set Delay", round(SSticker.GetTimeLeft())) as num|null
+	var/newtime = tgui_input_number(usr, "Set a new time in seconds. Set -1 for indefinite delay.", "Set Delay", round(SSticker.GetTimeLeft()), timeout = 0)
 	if(SSticker.current_state > GAME_STATE_PREGAME)
 		return
 	if(isnull(newtime))
