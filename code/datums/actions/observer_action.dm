@@ -99,7 +99,6 @@
 	new_mob.transfer_mob(owner)
 	var/mob/living/carbon/human/H = new_mob
 	H.on_transformation()
-	//H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
 
 //respawn button for campaign gamemode
 /datum/action/observer_action/campaign_respawn
