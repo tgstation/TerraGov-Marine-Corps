@@ -417,7 +417,7 @@
 GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 ///initializes a new custom squad. all args mandatory
 /proc/create_squad(squad_name, squad_color, mob/living/carbon/human/creator)
-	var/radio_blacklist = list(MODE_KEY_BINARY = MODE_KEY_BINARY, MODE_KEY_R_HAND = MODE_KEY_R_HAND, MODE_KEY_L_HAND = MODE_KEY_L_HAND, MODE_KEY_INTERCOM = MODE_KEY_INTERCOM, MODE_KEY_DEPARTMENT , MODE_KEY_DEPARTMENT)
+	var/list/radio_blacklist = list(MODE_KEY_BINARY, MODE_KEY_R_HAND, MODE_KEY_L_HAND, MODE_KEY_INTERCOM, MODE_KEY_DEPARTMENT)
 	//Create the squad
 	if(!squad_name)
 		return
