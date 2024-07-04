@@ -16,6 +16,7 @@
 	var/boost_timer = 0
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/admin = FALSE
+	///The source of the facehugger's xeno that spawned/threw/dropped the hugger.
 	var/mob/living/carbon/xenomorph/source
 
 /obj/item/alien_embryo/Initialize(mapload)
