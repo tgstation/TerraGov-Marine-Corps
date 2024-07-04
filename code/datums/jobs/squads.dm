@@ -446,7 +446,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	var/key_prefix = lowertext_name[1]
 	if(GLOB.department_radio_keys[key_prefix] || key_prefix in radio_blacklist)
 		for(var/letter in splittext(lowertext_name, ""))
-			if(! (GLOB.department_radio_keys[letter] || radio_blacklist[letter]))
+			if(!(GLOB.department_radio_keys[letter] && !(letter in radio_blacklist))
 				key_prefix = letter
 				break
 	if(GLOB.department_radio_keys[key_prefix] || radio_blacklist[key_prefix])
