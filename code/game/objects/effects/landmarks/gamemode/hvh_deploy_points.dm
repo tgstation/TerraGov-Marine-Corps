@@ -26,7 +26,11 @@
 	GLOB.patrol_point_list -= src
 	return ..()
 
-/obj/effect/landmark/patrol_point/proc/do_deployment(atom/movable/movable_to_move, mob/living/user)
+///Moves the AM and sets up the effects
+/obj/effect/landmark/patrol_point/proc/do_deployment(atom/movable/movable_to_move, list/mobs_moving)
+	if(ismob(mobs_moving))
+		mobs_moving = list(mobs_moving)
+
 	if(isliving(movable_to_move))
 		var/mob/living_to_move = movable_to_move
 		new /atom/movable/effect/rappel_rope(loc)
@@ -34,6 +38,9 @@
 		add_spawn_protection(living_to_move)
 	else
 		movable_to_move.forceMove(loc)
+		if(isvehicle(movable_to_move))
+			var/obj/vehicle/moved_vehicle = movable_to_move
+			mobs_moving += moved_vehicle.occupants
 
 	movable_to_move.add_filter(PATROL_POINT_RAPPEL_EFFECT, 2, drop_shadow_filter(y = -RAPPEL_HEIGHT, color = COLOR_TRANSPARENT_SHADOW, size = 4))
 	var/shadow_filter = movable_to_move.get_filter(PATROL_POINT_RAPPEL_EFFECT)
@@ -45,11 +52,10 @@
 	animate(movable_to_move, pixel_y = movable_to_move.pixel_y - RAPPEL_HEIGHT, time = RAPPEL_DURATION)
 	animate(shadow_filter, y = 0, size = 0.9, time = RAPPEL_DURATION, flags = ANIMATION_PARALLEL)
 
-	addtimer(CALLBACK(src, PROC_REF(end_rappel), user, movable_to_move, current_layer), RAPPEL_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(end_rappel), movable_to_move, current_layer, mobs_moving), RAPPEL_DURATION)
 
-	if(!user)
-		return
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED, user)
+	for(var/user in mobs_moving)
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED, user)
 
 ///Temporarily applies godmode to prevent spawn camping
 /obj/effect/landmark/patrol_point/proc/add_spawn_protection(mob/living/user)
@@ -58,14 +64,15 @@
 	addtimer(CALLBACK(src, PROC_REF(remove_spawn_protection), user), 10 SECONDS)
 
 ///Ends the rappel effects
-/obj/effect/landmark/patrol_point/proc/end_rappel(mob/living/user, atom/movable/movable_to_move, original_layer)
+/obj/effect/landmark/patrol_point/proc/end_rappel(atom/movable/movable_to_move, original_layer, list/mobs_moving)
 	movable_to_move.remove_filter(PATROL_POINT_RAPPEL_EFFECT)
 	movable_to_move.layer = original_layer
 	SEND_SIGNAL(movable_to_move, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
-	if(ismecha(movable_to_move))
+	if(ismecha(movable_to_move) || isarmoredvehicle(movable_to_move))
 		new /obj/effect/temp_visual/rappel_dust(loc, 3)
 		playsound(loc, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
-	shake_camera(user, 0.2 SECONDS, 0.5)
+	for(var/user in mobs_moving)
+		shake_camera(user, 0.2 SECONDS, 0.5)
 
 ///Removes spawn protection godmode
 /obj/effect/landmark/patrol_point/proc/remove_spawn_protection(mob/user)

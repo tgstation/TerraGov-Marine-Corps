@@ -31,11 +31,14 @@
 	engine_sound = SFX_HOVER_TANK
 	engine_sound_length = 1.2 SECONDS
 	vis_range_mod = 4
+	faction = FACTION_SOM
 
 /obj/vehicle/sealed/armored/multitile/som_tank/Initialize(mapload)
 	. = ..()
 	add_filter("shadow", 2, drop_shadow_filter(0, -8, 1))
 	animate_hover()
+	var/obj/item/tank_module/module = new /obj/item/tank_module/ability/smoke_launcher()
+	module.on_equip(src)
 
 /obj/vehicle/sealed/armored/multitile/som_tank/generate_actions()
 	. = ..()

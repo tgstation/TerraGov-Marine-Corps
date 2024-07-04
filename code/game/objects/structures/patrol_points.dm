@@ -12,7 +12,7 @@
 	var/obj/effect/landmark/patrol_point/linked_point = null
 
 /obj/structure/patrol_point/Initialize(mapload)
-	..()
+	. = ..()
 
 	return INITIALIZE_HINT_LATELOAD
 
@@ -45,10 +45,10 @@
 /obj/structure/patrol_point/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
 	if(!Adjacent(user))
 		return
-	activate_point(user, mecha_clicker)
+	activate_point(mecha_clicker, user)
 
 ///Handles sending someone and/or something through the patrol_point
-/obj/structure/patrol_point/proc/activate_point(mob/living/user, atom/movable/thing_to_move)
+/obj/structure/patrol_point/proc/activate_point(atom/movable/thing_to_move, mob/user)
 	if(!thing_to_move)
 		return
 	if(!linked_point)
@@ -128,3 +128,37 @@
 /obj/structure/patrol_point/som_24
 	id = "SOM_24"
 	icon_state = "patrol_point_2"
+
+/obj/structure/patrol_point/tank
+	name = "vehicle deploy point"
+	desc = "A one way ticket to the combat zone for vehicles of all sizes."
+
+/obj/structure/patrol_point/tank/Initialize(mapload)
+	. = ..()
+	RegisterSignal(get_turf(src), COMSIG_ATOM_ENTERED, PROC_REF(atom_enter))
+
+/obj/structure/patrol_point/tank/attack_hand(mob/living/user)
+	return //vehicles only
+
+///Checks if the entering thing should be deployed
+/obj/structure/patrol_point/tank/proc/atom_enter(turf/source, atom/movable/entering)
+	SIGNAL_HANDLER
+	if(!isvehicle(entering))
+		return
+	activate_point(entering, null)
+
+/obj/structure/patrol_point/tank/tgmc_one
+	icon_state = "vehicle_point_1"
+	id = "TGMC_11"
+
+/obj/structure/patrol_point/tank/tgmc_two
+	icon_state = "vehicle_point_2"
+	id = "TGMC_21"
+
+/obj/structure/patrol_point/tank/som_one
+	icon_state = "vehicle_point_1"
+	id = "SOM_11"
+
+/obj/structure/patrol_point/tank/som_two
+	icon_state = "vehicle_point_2"
+	id = "SOM_21"
