@@ -313,6 +313,10 @@
 
 /obj/machinery/button/valhalla/marine_spawner/attack_hand(mob/living/user)
 	var/list/job_outfits = list()
+	var/list/item_blacklist = list(
+		/obj/item/supplytablet,
+		/obj/item/radio/headset
+	)
 	for(var/type in subtypesof(/datum/outfit/job))
 		if(istype(type, /datum/outfit))
 			continue
@@ -335,9 +339,10 @@
 	if(selected_outfit == "Naked" || !selected_outfit)
 		return
 	linked.equipOutfit(job_outfits[selected_outfit], TRUE)
-	linked.wear_ear = null
-	linked.r_hand = null
-	linked.l_hand = null //Prevents the valhalla marines from getting access to headsets and ASRS tablets
+	for(var/obj/item/to_be_removed_item in linked.contents)
+		for(var/obj/item/bad_item in item_blacklist)
+			if(to_be_removed_item == bad_item)
+				qdel(linked.contents[to_be_removed_item]) // Prevents blacklisted items from being spawned, like ASRS tablets and headsets
 
 /obj/machinery/button/valhalla/vehicle_button
 	name = "Vehicle Spawner"
