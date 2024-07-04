@@ -151,11 +151,10 @@
 		return
 	new_xeno.upgrade_stored = upgrade_stored
 	while(new_xeno.upgrade_stored >= new_xeno.xeno_caste?.upgrade_threshold && new_xeno.upgrade_possible())
-		if(!new_xeno.upgrade_next()) //Upgrade tier wasn't set properly, let's avoid looping forever
+		if(!new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)) //Upgrade tier wasn't set properly, let's avoid looping forever
 			qdel(new_xeno)
 			stack_trace("[src] tried to evolve and upgrade, but the castes upgrade tier wasn't valid.")
 			return
-		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
 	for(var/obj/item/W in contents) //Drop stuff
@@ -219,7 +218,8 @@
 
 	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
-		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
+		if(!new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)) //This return shouldn't be possible to trigger, unless you varedit upgrade right on the tick the xeno evos
+			return
 	var/atom/movable/screen/zone_sel/selector = new_xeno.hud_used?.zone_sel
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
