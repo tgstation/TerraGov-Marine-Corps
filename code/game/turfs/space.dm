@@ -93,7 +93,6 @@
 		if(!spaceman.has_status_effect(debuff_type))
 			spaceman.apply_status_effect(debuff_type)
 
-
 /turf/open/space/Exited(atom/movable/leaver, direction)
 	if(isliving(leaver))
 		var/step = get_step(src, direction)
