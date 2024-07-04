@@ -370,11 +370,19 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["export_history"] = list()
 	var/id = 0
+	var/lastexport = ""
 	for(var/datum/export_report/report AS in SSpoints.export_history)
 		if(report.faction != user.faction)
 			continue
-		.["export_history"] += list(list("id" = id, "name" = report.export_name, "points" = report.points))
-		id++
+		if(report.points == 0)
+			continue
+		if(report.export_name == lastexport)
+			.["export_history"][id]["amount"] += 1
+			.["export_history"][id]["total"] += report.points
+		else
+			.["export_history"] += list(list("id" = id, "name" = report.export_name, "points" = report.points, "amount" = 1, total = report.points))
+			id++
+			lastexport = report.export_name
 	.["shopping_history"] = list()
 	for(var/datum/supply_order/SO AS in SSpoints.shopping_history)
 		if(SO.faction != user.faction)
@@ -608,7 +616,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 
 /obj/item/storage/backpack/marine/radiopack/Initialize(mapload, ...)
 	. = ..()
-	AddComponent(/datum/component/beacon)
+	AddComponent(/datum/component/beacon, FALSE, 0, icon_state + "_active")
 
 /obj/item/storage/backpack/marine/radiopack/examine(mob/user)
 	. = ..()

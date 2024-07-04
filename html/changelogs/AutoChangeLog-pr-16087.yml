@@ -1,9 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - rscadd: "Replaced neon announcement colors with less saturated ones"
-  - rscadd: "Helpful stuff, like using gauze or pills, has a green span in chat"
-  - rscadd: "Admin announcements play sound and look more obvious"
-  - rscadd: "Custom Information plays sound"
-  - rscadd: "New examine block style"
-  - rscadd: "Campaign missions and gamemodes use large red announcement blocks"
