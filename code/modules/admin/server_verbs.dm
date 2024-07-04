@@ -228,15 +228,14 @@
 		return
 
 	var/msg = "has started the round early."
-
 	if(SSticker.setup_failed)
-		if(alert("Previous setup failed. Would you like to try again, bypassing the checks? Win condition checking will also be paused.", "Start Round", "Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Previous setup failed. Would you like to try again, bypassing the checks? Win condition checking will also be paused.", "Start Round", list("Yes", "No"),  0) != "Yes")
 			return
 		msg += " Bypassing roundstart checks."
 		SSticker.bypass_checks = TRUE
 		SSticker.roundend_check_paused = TRUE
 
-	else if(alert("Are you sure you want to start the round early?", "Start Round", "Yes", "No") == "No")
+	else if(tgui_alert(usr, "Are you sure you want to start the round early?", "Start Round", list("Yes", "No"), 0) != "Yes")
 		return
 
 	if(SSticker.current_state == GAME_STATE_STARTUP)
