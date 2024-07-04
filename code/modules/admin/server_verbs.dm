@@ -505,7 +505,7 @@
 
 		maprotatechoices[mapname] = VM
 
-	var/chosenmap = input("Choose a ship map to change to", "Change Ship Map") as null|anything in maprotatechoices
+	var/chosenmap = tgui_input_list(usr, "Choose a ship map to change to", "Change Ship Map", maprotatechoices, timeout = 0)
 	if(!chosenmap)
 		return
 
