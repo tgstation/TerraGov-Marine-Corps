@@ -94,6 +94,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/recycle_points_denied = 0
 	var/huggers_created = 0
 	var/impregnations = 0
+	var/psylarva_larva = 0
+	var/psylarva_psy = 0
 
 	//Close air support
 	var/cas_cannon_shots = 0
@@ -250,7 +252,10 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Gave birth to [huggers_created] hugger\s."
 	if(impregnations)
 		support_stats += "Impregnated [impregnations] host\s."
-
+	if(psylarva_larva)
+		support_stats += "Generated [psylarva_larva] larvas using larval huggers"
+	if(psylarva_psy)
+		support_stats += "Generated [psylarva_psy] psypoints using larval huggers"
 	if(LAZYLEN(support_stats))
 		stats += "<hr>"
 		stats += support_stats

@@ -16,7 +16,7 @@
 	var/boost_timer = 0
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/admin = FALSE
-
+	var/mob/living/carbon/xenomorph/source
 
 /obj/item/alien_embryo/Initialize(mapload)
 	. = ..()
@@ -145,6 +145,12 @@
 		xeno_job.add_job_points(points)
 		SSpoints.add_strategic_psy_points(hivenumber, psy_points)
 		SSpoints.add_tactical_psy_points(hivenumber, psy_points * 0.25) // tactical points are always reduced by a quarter.
+		if(source?.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[source.ckey]
+			personal_statistics.psylarva_larva+= points / xeno_job.job_points_needed
+			personal_statistics.psylarva_psy += psy_points
+		GLOB.round_statistics.larva_from_larvapsy += points / xeno_job.job_points_needed
+		GLOB.round_statistics.psypoints_from_larvapsy += psy_points
 
 
 //We look for a candidate. If found, we spawn the candidate as a larva.
