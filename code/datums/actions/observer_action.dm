@@ -85,13 +85,21 @@
 	if(is_banned_from(owner.ckey, new_mob?.job?.title))
 		to_chat(owner, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
 		return
+
+	if(!ishuman(new_mob))
+		message_admins(span_adminnotice("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
+		log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
+		new_mob.transfer_mob(owner)
+		return
+	if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(owner.client.prefs.real_name))
+		to_chat(usr, "<span class='warning'>Someone has already joined the round with this character name. Please pick another.<spawn>")
+		return
 	message_admins(span_adminnotice("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
 	log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
 	new_mob.transfer_mob(owner)
-	if(!ishuman(new_mob))
-		return
 	var/mob/living/carbon/human/H = new_mob
-	H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
+	H.on_transformation()
+	//H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
 
 //respawn button for campaign gamemode
 /datum/action/observer_action/campaign_respawn
