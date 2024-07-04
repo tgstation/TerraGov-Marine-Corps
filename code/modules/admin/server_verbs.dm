@@ -308,7 +308,6 @@
 	log_admin("[key_name(usr)] set the respawn time to [SSticker.mode?.respawn_time * 0.1] seconds.")
 	message_admins("[ADMIN_TPMONTY(usr)] set the respawn time to [SSticker.mode?.respawn_time * 0.1] seconds.")
 
-
 /datum/admins/proc/end_round()
 	set category = "Server"
 	set name = "End Round"
@@ -320,15 +319,15 @@
 	if(!SSticker?.mode)
 		return
 
-	if(alert("Are you sure you want to end the round?", "End Round", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "Are you sure you want to end the round?", "End Round", list("Yes", "No"), 0) != "Yes")
 		return
 
-	var/winstate = input(usr, "What do you want the round end state to be?", "End Round") as null|anything in list("Custom", "Admin Intervention") + SSticker.mode.round_end_states
+	var/winstate = tgui_input_list(usr, "What do you want the round end state to be?", "End Round", list("Custom", "Admin Intervention") + SSticker.mode.round_end_states, timeout = 0)
 	if(!winstate)
 		return
 
 	if(winstate == "Custom")
-		winstate = input(usr, "Please enter a custom round end state.", "End Round") as null|text
+		winstate = tgui_input_text(usr, "Please enter a custom round end state.", "End Round", timeout = 0)
 		if(!winstate)
 			return
 
@@ -337,7 +336,6 @@
 
 	log_admin("[key_name(usr)] has made the round end early - [winstate].")
 	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early - [winstate].")
-
 
 /datum/admins/proc/delay_start()
 	set category = "Server"
