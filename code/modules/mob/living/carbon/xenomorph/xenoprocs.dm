@@ -573,3 +573,11 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+
+///Fixes the lack of see through by turning the action button off and on again
+/mob/living/carbon/xenomorph/verb/fix_seethrough()
+	set name = "Fix Seethrough"
+	set desc = "Reinitializes your seethrough component."
+	set category = "Alien"
+	var/datum/component/seethrough_mob/stm = GetComponent(/datum/component/seethrough_mob)
+	stm.ResetAction()

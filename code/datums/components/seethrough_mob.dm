@@ -16,6 +16,8 @@
 	var/initial_render_target_value
 	///This component's personal uid
 	var/personal_uid
+	///Action for toggling see through
+	var/datum/action/ability/xeno_action/toggle_seethrough/action
 
 /datum/component/seethrough_mob/Initialize(target_alpha = 170, animation_time = 0.5 SECONDS, clickthrough = TRUE)
 	. = ..()
@@ -39,8 +41,7 @@
 
 	render_source_atom.render_source = "*transparent_bigmob[personal_uid]"
 
-	var/datum/action/ability/xeno_action/toggle_seethrough/action = new(src)
-	action.give_action(parent)
+	action = new(src)
 
 /datum/component/seethrough_mob/Destroy(force)
 	QDEL_NULL(render_source_atom)
@@ -102,6 +103,10 @@
 	UnregisterSignal(fool, COMSIG_MOB_LOGOUT)
 	clear_image(trickery_image, fool.client)
 
+///Resets the seethrough action button
+/datum/component/seethrough_mob/proc/ResetAction()
+	action.remove_action(parent)
+	action.give_action(parent)
 /datum/component/seethrough_mob/proc/toggle_active(datum/action/ability)
 	is_active = !is_active
 	if(is_active)
