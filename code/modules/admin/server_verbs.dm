@@ -28,7 +28,6 @@
 	spawn(50)
 		world.Reboot(message)
 
-
 /datum/admins/proc/shutdown_server()
 	set category = "Server"
 	set name = "Shutdown Server"
@@ -138,7 +137,6 @@
 	sleep(world.tick_lag) //so messages can get sent to players.
 	qdel(world) //there are a few ways to shutdown the server, but this is by far my favorite
 
-
 /datum/admins/proc/toggle_ooc()
 	set category = "Server"
 	set name = "Toggle OOC"
@@ -157,7 +155,6 @@
 	log_admin("[key_name(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
 	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
 
-
 /datum/admins/proc/toggle_looc()
 	set category = "Server"
 	set name = "Toggle LOOC"
@@ -173,10 +170,8 @@
 		CONFIG_SET(flag/looc_enabled, TRUE)
 		to_chat(world, span_boldnotice("LOOC channel has been enabled!"))
 
-
 	log_admin("[key_name(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
 	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
-
 
 /datum/admins/proc/toggle_deadchat()
 	set category = "Server"
@@ -196,7 +191,6 @@
 	log_admin("[key_name(usr)] [GLOB.dsay_allowed ? "enabled" : "disabled"] deadchat.")
 	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.dsay_allowed ? "enabled" : "disabled"] deadchat.")
 
-
 /datum/admins/proc/toggle_deadooc()
 	set category = "Server"
 	set name = "Toggle Dead OOC"
@@ -214,7 +208,6 @@
 
 	log_admin("[key_name(usr)] [GLOB.dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
 	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
-
 
 /datum/admins/proc/start()
 	set category = "Server"
@@ -253,7 +246,6 @@
 	log_admin("[key_name(usr)] [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] [msg]")
 
-
 /datum/admins/proc/toggle_join()
 	set category = "Server"
 	set name = "Toggle Joining"
@@ -272,7 +264,6 @@
 	log_admin("[key_name(usr)] [GLOB.enter_allowed ? "enabled" : "disabled"] new player joining.")
 	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.enter_allowed ? "enabled" : "disabled"] new player joining.")
 
-
 /datum/admins/proc/toggle_respawn()
 	set category = "Server"
 	set name = "Toggle Respawn"
@@ -290,7 +281,6 @@
 
 	log_admin("[key_name(usr)] [GLOB.respawn_allowed ? "enabled" : "disabled"] respawning.")
 	message_admins("[ADMIN_TPMONTY(usr)] [GLOB.respawn_allowed ? "enabled" : "disabled"] respawning.")
-
 
 /datum/admins/proc/set_respawn_time(time as num)
 	set category = "Server"
@@ -364,7 +354,6 @@
 		log_admin("[key_name(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 		message_admins("[ADMIN_TPMONTY(usr)] set the pre-game delay to [DisplayTimeText(newtime)].")
 
-
 /datum/admins/proc/delay_end()
 	set category = "Server"
 	set name = "Delay Round End"
@@ -393,7 +382,6 @@
 	log_admin("[key_name(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].")
 	message_admins("<hr><h4>[ADMIN_TPMONTY(usr)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr>")
 
-
 /datum/admins/proc/toggle_gun_restrictions()
 	set name = "Toggle Gun Restrictions"
 	set category = "Server"
@@ -412,7 +400,6 @@
 
 	log_admin("[key_name(usr)] has [CONFIG_GET(flag/remove_gun_restrictions) ? "enabled" : "disabled"] gun restrictions.")
 	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/remove_gun_restrictions) ? "enabled" : "disabled"] gun restrictions.")
-
 
 /datum/admins/proc/toggle_synthetic_restrictions()
 	set category = "Server"
@@ -433,7 +420,6 @@
 	log_admin("[key_name(src)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
 	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
 
-
 /datum/admins/proc/reload_admins()
 	set category = "Server"
 	set name = "Reload Admins"
@@ -449,7 +435,6 @@
 
 	log_admin("[key_name(src)] manually reloaded admins.")
 	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
-
 
 /datum/admins/proc/change_ground_map()
 	set category = "Server"
@@ -480,7 +465,7 @@
 
 		maprotatechoices[mapname] = VM
 
-	var/chosenmap = input("Choose a ground map to change to", "Change Ground Map") as null|anything in maprotatechoices
+	var/chosenmap = tgui_input_list(usr, "Choose a ground map to change to", "Change Ground Map", maprotatechoices, timeout = 0)
 	if(!chosenmap)
 		return
 
@@ -491,7 +476,6 @@
 
 	log_admin("[key_name(usr)] changed the map to [VM.map_name].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed the map to [VM.map_name].")
-
 
 /datum/admins/proc/change_ship_map()
 	set category = "Server"
@@ -533,7 +517,6 @@
 
 	log_admin("[key_name(usr)] changed the ship map to [VM.map_name].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed the ship map to [VM.map_name].")
-
 
 /datum/admins/proc/panic_bunker()
 	set category = "Server"
