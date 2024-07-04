@@ -24,7 +24,7 @@ GLOBAL_LIST_INIT(surgery_steps, init_surgery())
 	var/list/allowed_tools = null //Array of type path referencing tools that can be used for this step, and how well are they suited for it
 	var/list/allowed_species = null //List of names referencing species that this step applies to.
 	var/list/disallowed_species = null
-
+	///Surgery skill required for this surgery step to start without the innitial fumble delay. By default it's SKILL_SURGERY_PROFESSIONAL (3). For reference, squaddies are 0, command is 1, corpsman is 2, researcher is 3, synths and doctors are 4, and CMO is 5
 	var/surgery_skill_required = SKILL_SURGERY_PROFESSIONAL
 
 	var/min_duration = 0 //Minimum duration of the step
