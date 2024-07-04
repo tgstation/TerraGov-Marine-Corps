@@ -286,7 +286,8 @@
 	///The list of outfits we can equip on the humans we're spawning
 	var/outfit_list = list()
 
-/obj/machinery/button/valhalla/marine_spawner/proc/list_spawnable_humans(mob/living/user)
+/// Generates a list of jobs datums to have
+/obj/machinery/button/valhalla/marine_spawner/proc/spawn_humans(mob/living/user)
 	var/list/job_outfits = list()
 	for(var/type in subtypesof(/datum/outfit/job))
 		if(istype(type, /datum/outfit))
@@ -298,7 +299,7 @@
 	job_outfits = sortList(job_outfits)
 	job_outfits.Insert(1, "Naked")
 
-	var/datum/outfit/selected_outfit = tgui_input_list(usr, "Which outfit do you want the human to wear?", "Human spawn", job_outfits)
+	var/datum/outfit/selected_outfit = tgui_input_list(user, "Which outfit do you want the human to wear?", "Human spawn", job_outfits)
 	if(!selected_outfit)
 		return
 
@@ -312,10 +313,10 @@
 	linked.equipOutfit(job_outfits[selected_outfit], FALSE)
 
 /obj/machinery/button/valhalla/marine_spawner/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	list_spawnable_humans(user = xeno_attacker)
+	spawn_humans(xeno_attacker)
 
 /obj/machinery/button/valhalla/marine_spawner/attack_hand(mob/living/user)
-	list_spawnable_humans()
+	spawn_humans(user)
 	var/list/item_blacklist = typecacheof(list(
 		/obj/item/supplytablet,
 		/obj/item/radio/headset,
@@ -327,11 +328,13 @@
 /obj/machinery/button/valhalla/vehicle_button
 	name = "Vehicle Spawner"
 
-/obj/machinery/button/valhalla/vehicle_button/proc/list_spawnable_vehicles(mob/living/user, list/spawnable_vehicles = list(
-	/obj/vehicle/sealed/armored/multitile,
-	/obj/vehicle/sealed/armored/multitile/apc
-))
-	var/selected_vehicle = tgui_input_list(usr, "Which vehicle do you want to spawn?", "Vehicle spawn", spawnable_vehicles)
+/obj/machinery/button/valhalla/vehicle_button/proc/spawn_vehicles(mob/living/user)
+	var/list/spawnable_vehicles = list(
+		/obj/vehicle/sealed/armored/multitile,
+		/obj/vehicle/sealed/armored/multitile/apc
+	)
+
+	var/selected_vehicle = tgui_input_list(user, "Which vehicle do you want to spawn?", "Vehicle spawn", spawnable_vehicles)
 	if(!selected_vehicle)
 		return
 
@@ -342,9 +345,9 @@
 	linked = new selected_vehicle(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 
 /obj/machinery/button/valhalla/vehicle_button/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	list_spawnable_vehicles(user = xeno_attacker)
+	spawn_vehicles(xeno_attacker)
 
 /obj/machinery/button/valhalla/vehicle_button/attack_hand(mob/living/user)
-	list_spawnable_vehicles()
+	spawn_vehicles(user)
 
 #undef DOOR_FLAG_OPEN_ONLY
