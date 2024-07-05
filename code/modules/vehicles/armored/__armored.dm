@@ -461,7 +461,7 @@
 	else
 		try_easy_load(I, user)
 		return
-	if(length(primary_weapon.ammo_magazine) >= primary_weapon.maximum_magazines)
+	if(length(weapon_to_load.ammo_magazine) >= weapon_to_load.maximum_magazines)
 		balloon_alert(user, "magazine already full")
 		return
 	user.temporarilyRemoveItemFromInventory(I)
@@ -518,7 +518,7 @@
 		return
 	if(istype(I, /obj/item/ammo_magazine))
 		if(!secondary_weapon)
-			balloon_alert(user, "no primary weapon")
+			balloon_alert(user, "no secondary weapon")
 			return
 		if(!(I.type in secondary_weapon.accepted_ammo))
 			balloon_alert(user, "not accepted ammo")
