@@ -417,9 +417,8 @@
 /obj/structure/window/framed/update_nearby_icons()
 	QUEUE_SMOOTH_NEIGHBORS(src)
 
-/obj/structure/window/framed/update_icon()
-	QUEUE_SMOOTH(src)
-	return ..()
+/obj/structure/window/framed/update_icon_state()
+	QUEUE_SMOOTH(src) //we update icon state through the smoothing system exclusively
 
 /obj/structure/window/framed/deconstruct(disassembled = TRUE, leave_frame = TRUE)
 	if(window_frame && leave_frame)

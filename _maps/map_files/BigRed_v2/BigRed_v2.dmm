@@ -571,7 +571,9 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/lambda_lab)
 "ahA" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "ahB" = (
@@ -13042,7 +13044,9 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast/garbledradio)
 "nVY" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
 "nWz" = (

@@ -91364,7 +91364,9 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/security/detectives_office/private_investigators_office)
 "sDd" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
+/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+	dir = 8
+	},
 /turf/open/floor/asteroidfloor,
 /area/deltastation/external/landingzone)
 "sDf" = (

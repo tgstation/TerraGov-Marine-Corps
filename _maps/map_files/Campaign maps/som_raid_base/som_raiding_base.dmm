@@ -1444,7 +1444,9 @@
 /turf/closed/mineral/smooth,
 /area/campaign/som_raiding/outpost/req)
 "hU" = (
-/obj/structure/prop/vehicle/truck/destructible,
+/obj/structure/prop/vehicle/truck/destructible{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/campaign/som_raiding/outpost/tunnel)
 "hW" = (
@@ -2728,7 +2730,9 @@
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle/south)
 "oz" = (
-/obj/structure/prop/vehicle/truck/destructible,
+/obj/structure/prop/vehicle/truck/destructible{
+	dir = 8
+	},
 /obj/effect/turf_decal/box,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/som_raiding/outpost/req/north)
@@ -3896,7 +3900,9 @@
 	},
 /area/campaign/som_raiding/outpost/command)
 "va" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
+/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/som_raiding/outpost/req/north)
 "vb" = (
