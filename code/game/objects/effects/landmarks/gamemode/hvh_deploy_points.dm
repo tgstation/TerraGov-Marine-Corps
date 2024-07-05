@@ -25,15 +25,15 @@
 
 	deploy_turfs = filled_circle_turfs(src, 5)
 	for(var/turf/turf AS in deploy_turfs)
-		if(!turf.density)
-			continue
-		if(!isspaceturf(turf))
+		if(turf.density || isspaceturf(turf))
+			deploy_turfs -= turf
 			continue
 		for(var/atom/movable/AM AS in turf)
 			if(!AM.density)
 				continue
 			deploy_turfs -= turf
 			break
+
 
 /obj/effect/landmark/patrol_point/Destroy()
 	GLOB.patrol_point_list -= src
