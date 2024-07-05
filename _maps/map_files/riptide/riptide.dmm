@@ -16091,7 +16091,9 @@
 /area/riptide/outside/southjungle)
 "lox" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
+/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/riptide/inside/landingzoneone)
 "loN" = (
@@ -17616,7 +17618,9 @@
 /turf/open/floor/plating,
 /area/riptide/outside/beachlzone)
 "msE" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
+/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/outside/volcano)
 "msJ" = (

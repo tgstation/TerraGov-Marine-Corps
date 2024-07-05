@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Added a work around to avoid multitile bound issues related to z-level expansion"

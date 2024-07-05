@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - code_imp: "Fixed an issue with wrong ordered args in transition_filters()"

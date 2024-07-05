@@ -571,7 +571,9 @@
 	},
 /area/orion_outpost/surface/building/engineering)
 "cQ" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostcent)
 "cR" = (
@@ -1217,7 +1219,9 @@
 	},
 /area/orion_outpost/ground/outpostw)
 "fQ" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/ground/outposts)
 "fR" = (
@@ -2266,7 +2270,9 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/ground/outposts)
 "kU" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
+/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -2277,7 +2283,9 @@
 	},
 /area/orion_outpost/surface/building/ammodepot)
 "kX" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
 "kY" = (
@@ -2304,7 +2312,9 @@
 	},
 /area/orion_outpost/ground/outpostw)
 "le" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposte)
 "lf" = (
@@ -2647,7 +2657,9 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/command)
 "mN" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostnw)
 "mP" = (
@@ -2780,7 +2792,9 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
 "np" = (
-/obj/structure/prop/vehicle/van,
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostsw)
 "nq" = (
@@ -5168,7 +5182,9 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostnw)
 "yy" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostsw)
 "yz" = (
@@ -5819,7 +5835,9 @@
 /turf/open/floor/podhatch/floor,
 /area/orion_outpost/surface/building/crashedufo)
 "BO" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/train_yard)
 "BP" = (
@@ -9370,7 +9388,9 @@
 	},
 /area/orion_outpost/surface/building/engineering)
 "ST" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
 "SU" = (
@@ -9656,7 +9676,9 @@
 	},
 /area/orion_outpost/surface/building/prep)
 "Uh" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/train_yard)
