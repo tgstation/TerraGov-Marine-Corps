@@ -581,10 +581,6 @@
 	dir = 4
 	},
 /area/campaign/som_raiding/outpost/req/qm)
-"dp" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/ground/grass/weedable,
-/area/campaign/som_raiding/ground/jungle/north)
 "dt" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/dark,
@@ -753,6 +749,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/security/south_post)
+"ep" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/tile/dark,
+/area/campaign/som_raiding/outpost/living)
 "eq" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor/plating/ground/concrete,
@@ -1330,10 +1330,6 @@
 	dir = 6
 	},
 /area/campaign/som_raiding/outpost/req/qm)
-"hs" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/ground/grass/weedable,
-/area/campaign/som_raiding/ground/jungle/south_west)
 "ht" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 8
@@ -1736,10 +1732,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/command/telecom)
-"jo" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/ground/grass/weedable,
-/area/campaign/som_raiding/ground/jungle/north)
 "jp" = (
 /obj/structure/flora/grass/tallgrass/autosmooth,
 /obj/effect/landmark/mob_spawner/farwa,
@@ -2424,11 +2416,6 @@
 /obj/structure/rock/variable/jungle,
 /turf/open/floor/plating/ground/dirtgrassborder2/corner,
 /area/campaign/som_raiding/ground/jungle/south_west)
-"mT" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/obj/structure/flora/jungle/bush,
-/turf/open/ground/grass/weedable,
-/area/campaign/som_raiding/ground/jungle/south_west)
 "mU" = (
 /turf/open/floor/plating,
 /area/campaign/som_raiding/cave/tunnel)
@@ -3112,10 +3099,6 @@
 /obj/effect/turf_decal/sandedge/corner,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/som_raiding/outpost/tunnel/west)
-"qL" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/ground/grass/weedable,
-/area/campaign/som_raiding/ground/jungle/north)
 "qM" = (
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/floor/tile/dark/brown2,
@@ -3879,10 +3862,6 @@
 	dir = 8
 	},
 /area/campaign/som_raiding/outpost/living/briefing)
-"uW" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/tile/dark,
-/area/campaign/som_raiding/outpost/living)
 "uY" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/tile/dark,
@@ -4423,12 +4402,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/campaign/som_raiding/outpost/req/qm)
-"xS" = (
-/obj/effect/landmark/patrol_point/som/som_11,
-/turf/open/floor/tile/dark/green2{
-	dir = 1
-	},
-/area/campaign/som_raiding/outpost/living)
 "xT" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -4481,10 +4454,6 @@
 /obj/structure/girder,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/campaign/som_raiding/outpost/security/south_post)
-"ym" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/tile/dark,
-/area/campaign/som_raiding/outpost/living)
 "yo" = (
 /obj/structure/largecrate/supply/ammo/m41a,
 /obj/machinery/light{
@@ -5553,10 +5522,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/req/north)
-"Em" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/ground/grass/weedable,
-/area/campaign/som_raiding/ground/jungle/south_west)
 "En" = (
 /turf/open/floor/plating/ground/concrete/edge,
 /area/campaign/som_raiding/outpost/tunnel)
@@ -6634,10 +6599,6 @@
 /obj/item/paper,
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/command/telecom)
-"Kq" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner,
-/area/campaign/som_raiding/ground/jungle/south_west)
 "Ks" = (
 /turf/open/floor/tile/dark/green2{
 	dir = 1
@@ -6727,6 +6688,12 @@
 	dir = 8
 	},
 /area/campaign/som_raiding/outpost/medbay)
+"KT" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 8
+	},
+/area/campaign/som_raiding/ground/jungle/south_west)
 "KU" = (
 /obj/machinery/vending/nanomed{
 	dir = 1
@@ -6981,12 +6948,6 @@
 	dir = 9
 	},
 /area/campaign/som_raiding/outpost/security/southeast_post)
-"Mn" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner{
-	dir = 8
-	},
-/area/campaign/som_raiding/ground/jungle/south_west)
 "Mo" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/blue2{
@@ -7282,10 +7243,6 @@
 	},
 /turf/open/floor/tile/dark/gray,
 /area/campaign/som_raiding/outpost/req/qm)
-"NL" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/ground/grass/weedable,
-/area/campaign/som_raiding/ground/jungle/south_west)
 "NO" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/tile/dark,
@@ -9147,10 +9104,6 @@
 "XP" = (
 /turf/closed/mineral/smooth,
 /area/campaign/som_raiding/outpost/req/aux)
-"XS" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
-/turf/open/ground/grass/weedable,
-/area/campaign/som_raiding/ground/jungle/south_west)
 "XT" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9422,12 +9375,6 @@
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile/corner,
 /area/campaign/som_raiding/outpost/medbay)
-"Zw" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/tile/dark/green2{
-	dir = 1
-	},
-/area/campaign/som_raiding/outpost/living)
 "Zx" = (
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/campaign/som_raiding/outpost/engineering)
@@ -9979,7 +9926,7 @@ eW
 ke
 JW
 Pc
-jo
+JW
 JW
 JW
 eW
@@ -10097,7 +10044,7 @@ rL
 rL
 rL
 Fw
-NL
+Fw
 Fw
 Fw
 Fw
@@ -10129,7 +10076,7 @@ eW
 eW
 JW
 OG
-Mt
+JW
 JW
 JW
 JW
@@ -10398,12 +10345,12 @@ rL
 rL
 rL
 Fw
-XS
+Fw
 Fw
 Ov
 Fw
 IQ
-mT
+Ov
 Fw
 Fw
 Fw
@@ -10434,7 +10381,7 @@ eY
 JW
 iv
 yq
-JW
+Mt
 JW
 JW
 JW
@@ -10583,7 +10530,7 @@ Rd
 yz
 OW
 eY
-dp
+JW
 JW
 JW
 JW
@@ -10856,7 +10803,7 @@ Fw
 Fw
 Fw
 Fw
-Kq
+Uf
 dT
 Fw
 Fw
@@ -10888,7 +10835,7 @@ yz
 OW
 OW
 eY
-qL
+JW
 JW
 JW
 Pc
@@ -11159,7 +11106,7 @@ IQ
 Fw
 HZ
 uJ
-FF
+KT
 FF
 XA
 Fw
@@ -12998,7 +12945,7 @@ Fw
 Fw
 UF
 Fw
-Fw
+IF
 Fw
 Fw
 Fw
@@ -13153,11 +13100,11 @@ dC
 dC
 dC
 dC
-Mn
+dT
 Fw
 Fw
 Fw
-Em
+Fw
 Fw
 UO
 rL
@@ -13611,9 +13558,9 @@ Fw
 Fw
 Fw
 UO
-IF
 Fw
-hs
+Fw
+Fw
 rL
 rL
 rL
@@ -30957,7 +30904,7 @@ bX
 Yi
 Yi
 Yi
-ym
+Yi
 IT
 mW
 mW
@@ -31408,7 +31355,7 @@ yz
 OW
 OW
 dW
-Zw
+Ks
 Yi
 Yi
 Yi
@@ -31563,7 +31510,7 @@ dW
 pb
 Cu
 Cu
-Yi
+ep
 Cu
 Cu
 Cu
@@ -31864,12 +31811,12 @@ yz
 OW
 OW
 dW
-xS
+Ks
 Yi
 Yi
 Yi
 Yi
-uW
+Yi
 uM
 GU
 GU

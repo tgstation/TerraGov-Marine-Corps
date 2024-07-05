@@ -3183,6 +3183,10 @@
 	dir = 4
 	},
 /area/lv759/indoors/nt_research_complex/hallwaycentral)
+"aDQ" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating,
+/area/lv759/outdoors/landing_zone_2)
 "aDT" = (
 /obj/item/spacecash/c1{
 	pixel_x = 12;
@@ -4794,6 +4798,7 @@
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "aQG" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/prison/darkred/full,
 /area/lv759/outdoors/landing_zone_1)
 "aQH" = (
@@ -58031,6 +58036,14 @@
 	},
 /turf/open/urban/street/cement3,
 /area/lv759/outdoors/landing_zone_2)
+"jUL" = (
+/obj/item/ammo_casing/bullet,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	color = "#a6aeab"
+	},
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/prison,
+/area/lv759/indoors/nt_research_complex_entrance)
 "jUO" = (
 /obj/structure/stairs/seamless/edge{
 	color = "#a6aeab";
@@ -123041,6 +123054,10 @@
 /obj/structure/sign/safety/maintenance,
 /turf/open/floor/urban/metal/zbrownfloor1,
 /area/lv759/indoors/meridian/meridian_foyer)
+"uXm" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/kutjevo/colors/orange,
+/area/lv759/indoors/spaceport/docking_bay_1)
 "uXq" = (
 /obj/effect/urban/decal/dirt,
 /obj/effect/landmark/weed_node,
@@ -146502,7 +146519,7 @@ iKJ
 wOV
 aek
 opQ
-onz
+uXm
 xvr
 ylY
 vKj
@@ -147992,7 +148009,7 @@ dlL
 nsF
 sRS
 pPs
-tzk
+jUL
 uAr
 tzk
 caY
@@ -185174,7 +185191,7 @@ dog
 dog
 dog
 dog
-dog
+aDQ
 plt
 plt
 dog

@@ -38,10 +38,6 @@
 "adq" = (
 /turf/closed/wall/mainship/gray,
 /area/rocinante_base/ground/underground/caveN)
-"adr" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/ground/base_nw)
 "adz" = (
 /obj/structure/closet/radiation,
 /obj/machinery/light{
@@ -332,10 +328,6 @@
 	dir = 6
 	},
 /area/rocinante_base/surface/building/security/medical_sec)
-"azv" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/ground/base_nw)
 "azC" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -377,10 +369,6 @@
 	dir = 4
 	},
 /area/rocinante_base/surface/building/security/medical_sec)
-"aCK" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/ground/base_nw)
 "aDG" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
@@ -521,10 +509,6 @@
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/ground/southern_containers)
-"aLr" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/rocinante_base/ground/underground/caveS)
 "aLJ" = (
 /obj/structure/prop/brokenvendor/engivend,
 /obj/machinery/light{
@@ -810,10 +794,6 @@
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_base/surface/building/science/research_lab)
-"bbz" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/ground/base_nw)
 "bbI" = (
 /obj/structure/table/black,
 /turf/open/floor/mainship/red{
@@ -2722,7 +2702,6 @@
 /turf/open/floor/mainship/red,
 /area/rocinante_base/surface/building/administration)
 "dPW" = (
-/obj/effect/landmark/patrol_point/som/som_23,
 /obj/machinery/light,
 /turf/open/floor/mainship/red{
 	dir = 6
@@ -8327,12 +8306,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/rocinante_base/surface/building/tramstation/tramstation_e)
-"lIS" = (
-/obj/effect/landmark/patrol_point/som/som_21,
-/turf/open/floor/mainship/red{
-	dir = 4
-	},
-/area/rocinante_base/surface/building/tramstation/tramstation_e)
 "lJp" = (
 /obj/structure/prop/brokenvendor/surplusclothes,
 /obj/machinery/light{
@@ -8481,10 +8454,6 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/plating/ground/dirt_alt,
 /area/rocinante_base/ground/base_n)
-"lUj" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/ground/base_sw)
 "lUF" = (
 /obj/structure/prop/brokenvendor/surplusclothes,
 /turf/open/floor/mainship/black{
@@ -8933,12 +8902,6 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/rocinante_base/surface/building/living/barracks)
-"mDz" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/mainship/red{
-	dir = 10
-	},
-/area/rocinante_base/surface/building/tramstation/tramstation_e)
 "mDN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/secdoor/glass{
 	dir = 2
@@ -10749,10 +10712,6 @@
 	dir = 8
 	},
 /area/rocinante_base/surface/building/security/command_sec)
-"pcb" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/ground/base_sw)
 "pci" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
@@ -12018,10 +11977,6 @@
 "qTi" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_base/surface/building/medical)
-"qTk" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/rocinante_base/ground/underground/caveS)
 "qTm" = (
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/security/command_sec)
@@ -12131,10 +12086,6 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/plating/ground/snow,
 /area/rocinante_base/ground/base_e)
-"raL" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/rocinante_base/ground/underground/caveS)
 "rbV" = (
 /obj/structure/desertdam/decals/road/line,
 /turf/open/floor/plating/ground/concrete,
@@ -12968,6 +12919,10 @@
 /obj/structure/largecrate,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/command_hall)
+"snf" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/ground/base_nw)
 "snu" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
@@ -14863,7 +14818,6 @@
 	},
 /area/rocinante_base/surface/building/security/hub)
 "uJB" = (
-/obj/effect/landmark/patrol_point/som/som_24,
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
 	},
@@ -15439,6 +15393,11 @@
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/office_n)
+"vwG" = (
+/obj/structure/monorail,
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating/ground/concrete,
+/area/rocinante_base/surface/building/tram_line)
 "vwO" = (
 /obj/machinery/door/airlock/mainship/marine,
 /turf/open/floor/mainship/mono,
@@ -16552,10 +16511,6 @@
 /obj/machinery/newscaster,
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_base/surface/building/science/research_lab)
-"wRP" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/ground/base_sw)
 "wRU" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -17760,11 +17715,11 @@ fIa
 pjR
 pjR
 pjR
-aCK
 vpt
 vpt
 vpt
-bbz
+vpt
+vpt
 pjR
 pjR
 pjR
@@ -18179,7 +18134,7 @@ oWD
 oWD
 wme
 wme
-lUj
+wme
 oWD
 oWD
 oWD
@@ -18487,7 +18442,7 @@ wme
 wme
 wme
 wme
-rYn
+wme
 oWD
 oWD
 nZQ
@@ -18518,7 +18473,7 @@ pjR
 pjR
 pjR
 pjR
-azv
+vpt
 vpt
 vpt
 vpt
@@ -18938,7 +18893,7 @@ wme
 wme
 wme
 wme
-wme
+rYn
 wme
 wme
 wme
@@ -19124,7 +19079,7 @@ dSy
 tbH
 pjR
 pjR
-adr
+vpt
 vpt
 vpt
 vpt
@@ -19243,11 +19198,11 @@ wme
 wme
 wme
 wme
-pcb
+wme
 oWD
 oWD
 oWD
-wRP
+wme
 wme
 oWD
 nZQ
@@ -19434,7 +19389,7 @@ vpt
 vpt
 vpt
 juk
-bwq
+snf
 eIN
 vpt
 vpt
@@ -46372,7 +46327,7 @@ uJB
 mDb
 exR
 ylA
-mDz
+lrv
 dXo
 hJi
 hJi
@@ -46607,7 +46562,7 @@ tit
 tit
 tit
 tit
-cCg
+tit
 tit
 mAb
 lJV
@@ -46755,7 +46710,7 @@ tit
 tit
 tit
 tit
-tit
+cCg
 tit
 tit
 tit
@@ -46799,7 +46754,7 @@ kTN
 eWK
 dAb
 lCR
-evt
+vwG
 evt
 evt
 evt
@@ -47207,13 +47162,13 @@ tit
 tit
 tit
 tit
-raL
 tit
 tit
 tit
 tit
 tit
-qTk
+tit
+tit
 tit
 mAb
 mAb
@@ -47281,7 +47236,7 @@ lWF
 oCm
 mDb
 gUI
-lIS
+lWF
 lWF
 lWF
 dPW
@@ -47362,7 +47317,7 @@ tit
 tit
 tit
 tit
-aLr
+tit
 tit
 tit
 tit

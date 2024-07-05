@@ -474,8 +474,8 @@
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som/hanger)
 "fS" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 8
+/obj/structure/stairs/seamless/edge{
+	dir = 1
 	},
 /turf/open/floor/mainship/white{
 	dir = 4
@@ -726,7 +726,7 @@
 	},
 /area/mainship/patrol_base/som/medical)
 "je" = (
-/obj/structure/stairs/seamless/platform_vert{
+/obj/structure/stairs/seamless/edge_vert{
 	dir = 4
 	},
 /turf/open/floor/mainship/white,
@@ -803,6 +803,12 @@
 	dir = 1
 	},
 /turf/open/floor/mainship_hull,
+/area/mainship/patrol_base/som/hanger)
+"kc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/hanger)
 "kn" = (
 /obj/machinery/computer/teleporter,
@@ -984,7 +990,7 @@
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
 "mR" = (
-/obj/structure/stairs/seamless/platform_vert{
+/obj/structure/stairs/seamless/edge_vert{
 	dir = 8
 	},
 /turf/open/floor/mainship/white,
@@ -1208,9 +1214,7 @@
 	},
 /area/mainship/patrol_base/som)
 "pz" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 4
-	},
+/obj/structure/stairs/seamless/edge,
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
@@ -1407,10 +1411,6 @@
 "rE" = (
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som/barracks)
-"rK" = (
-/obj/structure/patrol_point/som_23,
-/turf/open/shuttle/elevator/grating,
-/area/mainship/patrol_base/som/hanger)
 "rL" = (
 /obj/structure/ship_ammo/railgun,
 /turf/open/floor/mainship/red{
@@ -1418,8 +1418,8 @@
 	},
 /area/mainship/patrol_base/som)
 "rT" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 1
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/mainship/white{
 	dir = 4
@@ -1544,6 +1544,10 @@
 /obj/structure/prop/mainship/mission_planning_system,
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som)
+"tD" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/som/hanger)
 "tJ" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/mainship_hull,
@@ -1859,10 +1863,6 @@
 /area/mainship/patrol_base/som/barracks)
 "wG" = (
 /turf/open/floor/bcircuit/anim,
-/area/mainship/patrol_base/som/hanger)
-"wI" = (
-/obj/structure/patrol_point/som_24,
-/turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "wL" = (
 /obj/machinery/light{
@@ -2442,7 +2442,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Dw" = (
-/obj/structure/stairs/seamless/platform,
+/obj/structure/stairs/seamless/edge{
+	dir = 4
+	},
 /turf/open/floor/mainship/white{
 	dir = 8
 	},
@@ -4073,10 +4075,6 @@
 /area/mainship/patrol_base/som)
 "Yy" = (
 /turf/open/floor/mainship_hull/gray,
-/area/mainship/patrol_base/som/hanger)
-"YN" = (
-/obj/structure/patrol_point/som_22,
-/turf/open/shuttle/elevator/grating,
 /area/mainship/patrol_base/som/hanger)
 "YO" = (
 /obj/structure/ship_ammo/cas/rocket/widowmaker,
@@ -7056,7 +7054,7 @@ EU
 zI
 fX
 Qu
-rK
+fX
 zI
 EU
 pk
@@ -7176,9 +7174,9 @@ QK
 Ud
 iY
 ev
-YN
+fX
 Qu
-wI
+fX
 zn
 GV
 Iu
@@ -7298,9 +7296,9 @@ QK
 Ud
 dy
 xO
-ev
 zI
-zn
+zI
+zI
 yy
 AQ
 Iu
@@ -7309,9 +7307,9 @@ ag
 Ud
 dy
 xO
-ev
 zI
-zn
+zI
+zI
 yy
 AQ
 Iu
@@ -7420,9 +7418,9 @@ QK
 Ud
 hw
 iY
-hs
+kc
 qa
-Gu
+tD
 GV
 hw
 Iu
@@ -7431,9 +7429,9 @@ ag
 Ud
 hw
 iY
-hs
+kc
 jO
-Gu
+tD
 GV
 hw
 Iu
@@ -10002,12 +10000,12 @@ PG
 ye
 FA
 FA
+Ir
 FA
 FA
 FA
 FA
-FA
-FA
+Ir
 FA
 FA
 FA

@@ -1673,6 +1673,10 @@
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand4)
+"aRA" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle3)
 "aRC" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/liquid/water/river/autosmooth,
@@ -2597,10 +2601,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/secure_storage)
-"boY" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle5)
 "bpj" = (
 /obj/structure/flora/jungle/vines/heavy,
 /obj/structure/flora/jungle/vines/heavy,
@@ -5193,10 +5193,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
-"ebN" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "ebP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -5537,12 +5533,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/comms)
-"exE" = (
-/obj/structure/flora/jungle/vines,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle3)
 "eyl" = (
 /obj/structure/bed/chair,
 /turf/open/floor/tile/white,
@@ -6184,10 +6174,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
-"fof" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "foG" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/tile/dark/brown2/corner{
@@ -6345,10 +6331,6 @@
 	dir = 8
 	},
 /area/lv624/lazarus/fitness)
-"fxE" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "fxN" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -6966,12 +6948,6 @@
 	dir = 9
 	},
 /area/lv624/lazarus/sleep_female)
-"ggI" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 4
-	},
-/area/lv624/ground/jungle1)
 "ggT" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -7247,10 +7223,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
-"gAy" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle3)
 "gAO" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/flora/jungle/vines/heavy,
@@ -8189,10 +8161,6 @@
 "hGA" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
-"hGB" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "hGO" = (
 /obj/machinery/newscaster{
 	dir = 8
@@ -9127,11 +9095,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage/dome)
-"iHd" = (
-/obj/structure/flora/jungle/vines,
-/obj/effect/landmark/patrol_point/som/som_11,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle3)
 "iHH" = (
 /obj/structure/stairs/corner_seamless{
 	dir = 1
@@ -9472,6 +9435,7 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
 "jaS" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
 	},
@@ -14378,11 +14342,6 @@
 /obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
-"oMV" = (
-/obj/structure/flora/jungle/vines,
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/tile/whiteyellow/full,
-/area/lv624/ground/ruin)
 "oMX" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -17340,7 +17299,6 @@
 /area/lv624/lazarus/sandtemple/garbledradio)
 "sac" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/patrol_point/tgmc_13,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle5)
 "sae" = (
@@ -21231,10 +21189,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
-"wtF" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "wui" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -21914,10 +21868,6 @@
 /obj/item/shard,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/overgrown)
-"wZr" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "wZK" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
@@ -22347,7 +22297,6 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
 "xuC" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
@@ -25203,7 +25152,7 @@ bch
 bch
 bch
 bch
-iHd
+bck
 mOs
 tgT
 psZ
@@ -25746,7 +25695,7 @@ mcU
 tnW
 vXW
 kTm
-oMV
+mcU
 kPr
 ujI
 bch
@@ -25932,7 +25881,7 @@ qkL
 kPr
 jZc
 bch
-gAy
+bch
 tgT
 psZ
 "}
@@ -26101,7 +26050,7 @@ nbQ
 bIw
 jNj
 lTN
-bch
+aRA
 mQx
 bch
 cUA
@@ -27388,7 +27337,7 @@ kUD
 kUD
 kUD
 ctp
-exE
+cUA
 tgT
 psZ
 "}
@@ -27612,7 +27561,7 @@ gKr
 gKr
 gKr
 gKr
-fxE
+abc
 abc
 abc
 abc
@@ -28155,7 +28104,7 @@ gKr
 gKr
 gKr
 gKr
-hGB
+abc
 abc
 abc
 abc
@@ -29062,12 +29011,12 @@ evp
 evp
 evp
 aym
-sXN
+abc
 abc
 abc
 abc
 kLK
-abc
+sXN
 abc
 abc
 abc
@@ -31066,7 +31015,7 @@ gKr
 gKr
 gKr
 gKr
-wZr
+abc
 eoT
 eoT
 abc
@@ -59979,7 +59928,7 @@ gKr
 gKr
 gKr
 gKr
-fof
+aah
 aah
 aah
 aah
@@ -61440,7 +61389,7 @@ mcN
 dUK
 aah
 mcN
-ebN
+aah
 aah
 aah
 dUK
@@ -61617,7 +61566,7 @@ gKr
 gKr
 gKr
 gKr
-wOK
+aah
 aah
 aah
 dUK
@@ -61804,7 +61753,7 @@ aah
 aah
 jsZ
 aah
-aah
+wOK
 aah
 sDq
 sDq
@@ -61945,7 +61894,7 @@ xdc
 lHV
 bqX
 mqj
-ggI
+mqj
 eqC
 bdk
 bdk
@@ -62172,7 +62121,7 @@ aah
 mcN
 aah
 aah
-wtF
+aah
 sDq
 sDq
 sDq
@@ -62662,7 +62611,7 @@ mOs
 ssi
 wrP
 ssi
-boY
+wrP
 mOs
 mOs
 mOs
