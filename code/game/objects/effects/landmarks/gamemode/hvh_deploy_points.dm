@@ -21,7 +21,7 @@
 	GLOB.patrol_point_list += src
 	if(!(SSticker?.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS))
 		return
-	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, minimap_icon))
+	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon))
 
 	deploy_turfs = filled_circle_turfs(src, 5)
 	for(var/turf/turf AS in deploy_turfs)
