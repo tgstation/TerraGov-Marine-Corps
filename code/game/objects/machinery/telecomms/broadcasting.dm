@@ -200,23 +200,37 @@
 		hearer.Hear(rendered, virt, language, message, frequency, spans)
 
 
-	//Now we can handle radio TTS for squads
+	//Check that speaker isn't banned from TTS
+	var/atom/movable/speaker = virt?.source
+	var/banned = FALSE
+	if(ismob(speaker))
+		var/mob/potential_user = speaker
+		if(is_banned_from(potential_user.ckey, "TTS"))
+			banned = TRUE
 
-	var/mob/living/carbon/human/speaker = virt.source
-	if(speaker.voice && !is_banned_from(speaker.ckey, "TTS"))
+	//If they aren't, handle radio TTS
+	if(speaker && speaker.voice && !banned)
 		var/headset_target = HEADSET_TTS_ALL
 		if((FREQ_ALPHA < frequency && frequency < FREQ_CUSTOM_SQUAD_MAX) || (FREQ_ZULU < frequency && frequency < MAX_ERT_FREQ))
 			headset_target = HEADSET_TTS_SQUAD
-			if(speaker?.assigned_squad.squad_leader == speaker)
-				headset_target = HEADSET_TTS_SL_ONLY //Lower the bar if the speaker is the active aSL
+			if(ishuman(speaker))
+				var/mob/living/carbon/human/human_speaker = speaker
+				if(human_speaker && human_speaker.assigned_squad.squad_leader == speaker)
+					headset_target = HEADSET_TTS_SL_ONLY //Lower the bar if the speaker is the active aSL
 
 		if(speaker in receive)
 			receive -= speaker //This list isn't used again, so we can just cut out the original speaker from it so TTS doesn't play twice
 
 		for(var/mob/living/carbon/human/potential_hearer in receive)
-			var/obj/item/radio/headset/radio = potential_hearer.wear_ear
-			if(radio.squad_tts_mode >= headset_target && potential_hearer.stat < UNCONSCIOUS && potential_hearer.client?.prefs.muted & MUTE_TTS)
-				INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), potential_hearer, html_decode(message), language, speaker.voice, potential_hearer.voice_filter, local = TRUE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO)
+			if(potential_hearer.stat >= UNCONSCIOUS || potential_hearer.client?.prefs.muted & MUTE_TTS)
+				continue
+			if(istype(potential_hearer.wear_ear, /obj/item/radio/headset))
+				var/obj/item/radio/headset/radio = potential_hearer.wear_ear
+				if(radio.squad_tts_mode < headset_target)
+					continue
+
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), potential_hearer, html_decode(message), language, speaker.voice, potential_hearer.voice_filter, local = TRUE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO)
+
 
 	var/spans_part = ""
 	if(length(spans))
