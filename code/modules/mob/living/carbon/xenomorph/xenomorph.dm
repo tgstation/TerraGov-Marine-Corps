@@ -213,6 +213,8 @@
 			return XENO_UPGRADE_PRIMO
 		if(XENO_UPGRADE_PRIMO)
 			return XENO_UPGRADE_PRIMO
+		if(XENO_UPGRADE_BASETYPE)
+			return XENO_UPGRADE_BASETYPE
 		else
 			stack_trace("Logic for handling this Upgrade tier wasn't written")
 
@@ -226,6 +228,8 @@
 			return XENO_UPGRADE_NORMAL
 		if(XENO_UPGRADE_PRIMO)
 			return XENO_UPGRADE_NORMAL
+		if(XENO_UPGRADE_BASETYPE)
+			return XENO_UPGRADE_BASETYPE
 		else
 			stack_trace("Logic for handling this Upgrade tier wasn't written")
 
