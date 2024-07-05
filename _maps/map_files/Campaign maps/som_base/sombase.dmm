@@ -7902,7 +7902,9 @@
 /turf/open/floor/mainship/sterile/corner,
 /area/rocinante_base/surface/building/medical)
 "lfy" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/ground/underground/caveN)
 "lgo" = (
@@ -9164,7 +9166,9 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/security/brig)
 "mYm" = (
-/obj/structure/prop/vehicle/van,
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/surface/landing/landing_pad_one_external)
 "mYO" = (
@@ -10986,7 +10990,9 @@
 	},
 /area/rocinante_base/surface/building/security/command_sec)
 "ptA" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/ground/base_cent)
 "puB" = (
@@ -13481,7 +13487,9 @@
 	},
 /area/rocinante_base/surface/building/cargo/vehicle_garage)
 "sUK" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
@@ -14105,7 +14113,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_base/surface/building/science/bio_lab)
 "tNW" = (
-/obj/structure/prop/vehicle/van,
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/ground/base_w)
 "tOl" = (
@@ -15424,7 +15434,9 @@
 	},
 /area/rocinante_base/surface/building/living/prep)
 "vvE" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/surface/building/cargo/southern_aux)
 "vwm" = (
@@ -15846,7 +15858,9 @@
 /turf/open/floor/mainship/som/sw,
 /area/rocinante_base/surface/building/administration)
 "vYI" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/surface/landing/landing_pad_two_external)
 "vYY" = (

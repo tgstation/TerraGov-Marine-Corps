@@ -2047,7 +2047,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "zd" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "zk" = (
@@ -3899,7 +3901,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som/hanger)
 "WB" = (
-/obj/structure/prop/vehicle/truck,
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},

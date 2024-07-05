@@ -2054,7 +2054,9 @@
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/daedalusprison/inside/engineering)
 "bLB" = (
-/obj/structure/prop/vehicle/truck/destructible,
+/obj/structure/prop/vehicle/truck/destructible{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/daedalusprison/inside/garage)
 "bLJ" = (
@@ -4987,7 +4989,9 @@
 /turf/open/floor/prison/darkred,
 /area/daedalusprison/inside/centralhalls)
 "eeH" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
+/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/daedalusprison/inside/garage)
 "eeZ" = (
@@ -16835,7 +16839,9 @@
 /turf/open/floor/plating/ground/snow/layer2,
 /area/daedalusprison/outside/south)
 "nNx" = (
-/obj/structure/prop/vehicle/truck/destructible,
+/obj/structure/prop/vehicle/truck/destructible{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/daedalusprison/outside/east)
 "nNB" = (
