@@ -53,3 +53,12 @@
   - balance: Shrike and Hivemind's healing ability no longer cancels if target moves.
   TiviPlus:
   - code_imp: backend code now supports mob height
+2024-07-05:
+  Lumipharon:
+  - bugfix: fixed a flicker issue with windows when taking damage
+  - rscadd: 'Campaign: Replaced Mech War with Combined Arms'
+  - rscadd: Added vehicle deployment for vehicle in Campaign
+  - code_imp: Fixed an issue with wrong ordered args in transition_filters()
+  - bugfix: fixed some visual issues with shutters
+  tyeagg:
+  - balance: clf suicide vest detonates faster
