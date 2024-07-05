@@ -76,6 +76,8 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
+		/datum/outfit/quick/civilwar/bluecoat,
+		/datum/outfit/quick/civilwar/redcoat,
 	)
 
 	for(var/X in loadout_list)
@@ -215,7 +217,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 			var/obj/item/card/id/user_id = usr.get_idcard() //ui.user better?
 			var/user_job = user_id.rank
 			user_job = replacetext(user_job, "Fallen ", "") //So that jobs in valhalla can vend a loadout too
-			if(selected_loadout.jobtype != user_job)
+			if(selected_loadout.jobtype != user_job && selected_loadout.requirejob != FALSE)
 				to_chat(usr, span_warning("You are not in the right job for this loadout!"))
 				return
 			if(user_id.id_flags & USED_GHMME) //Same check here, in case they opened the UI before vending a loadout somehow
@@ -246,4 +248,14 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"SOM Squad Medic",
 		"SOM Squad Veteran",
 		"SOM Squad Leader",
+	)
+
+/obj/machinery/quick_vendor/civilwar
+	categories = list(
+		"Bluecoat"
+	)
+
+/obj/machinery/quick_vendor/civilwar/redcoat
+	categories = list(
+		"Redcoat",
 	)

@@ -5,6 +5,8 @@
 	var/quantity = -1
 	///What job this loadout is associated with. Used for tabs and access.
 	var/jobtype = "Squad Marine"
+	///Restricts loadouts to a specific job. Set to false to allow any job to take the loadout.
+	var/requirejob = TRUE
 
 
 /datum/outfit/quick/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -2227,6 +2229,7 @@
 /datum/outfit/quick/civilwar
 	name = "Civil War base"
 	desc = "Base for redcoat and bluecoat loadouts."
+	requirejob = FALSE
 
 	shoes = /obj/item/clothing/shoes/marinechief
 	head = /obj/item/clothing/head/redcoat
