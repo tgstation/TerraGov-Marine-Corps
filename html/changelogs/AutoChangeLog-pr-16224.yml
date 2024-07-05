@@ -1,0 +1,4 @@
+author: "Ldip999"
+delete-after: True
+changes:
+  - bugfix: "Fixes custom squads being assigned tokens that were already in use by non radio prefixes"
