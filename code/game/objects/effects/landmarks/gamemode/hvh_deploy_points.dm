@@ -29,7 +29,11 @@
 			continue
 		if(!isspaceturf(turf))
 			continue
-		deploy_turfs -= turf
+		for(var/atom/movable/AM AS in turf)
+			if(!AM.density)
+				continue
+			deploy_turfs -= turf
+			break
 
 /obj/effect/landmark/patrol_point/Destroy()
 	GLOB.patrol_point_list -= src
