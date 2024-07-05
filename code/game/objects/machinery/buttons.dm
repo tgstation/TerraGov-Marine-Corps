@@ -286,7 +286,7 @@
 	///The list of outfits we can equip on the humans we're spawning
 	var/outfit_list = list()
 
-/// Generates a list of jobs datums to have
+/// Generates a list of jobs datums to spawn on a mob
 /obj/machinery/button/valhalla/marine_spawner/proc/spawn_humans(mob/living/user)
 	var/list/job_outfits = list()
 	for(var/type in subtypesof(/datum/outfit/job))
@@ -328,6 +328,7 @@
 /obj/machinery/button/valhalla/vehicle_button
 	name = "Vehicle Spawner"
 
+/// Generates a list of vehicles to spawn
 /obj/machinery/button/valhalla/vehicle_button/proc/spawn_vehicles(mob/living/user)
 	var/list/spawnable_vehicles = list(
 		/obj/vehicle/sealed/armored/multitile,
