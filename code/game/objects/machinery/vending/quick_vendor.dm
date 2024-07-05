@@ -76,8 +76,6 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
-		/datum/outfit/quick/civilwar/bluecoat,
-		/datum/outfit/quick/civilwar/redcoat,
 	)
 
 	for(var/X in loadout_list)
@@ -248,14 +246,4 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"SOM Squad Medic",
 		"SOM Squad Veteran",
 		"SOM Squad Leader",
-	)
-
-/obj/machinery/quick_vendor/civilwar
-	categories = list(
-		"Bluecoat"
-	)
-
-/obj/machinery/quick_vendor/civilwar/redcoat
-	categories = list(
-		"Redcoat",
 	)
