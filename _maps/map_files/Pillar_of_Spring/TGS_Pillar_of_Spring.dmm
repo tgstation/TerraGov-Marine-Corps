@@ -2719,6 +2719,10 @@
 	dir = 1
 	},
 /area/mainship/engineering/engineering_workshop)
+"dtA" = (
+/obj/structure/largecrate/guns,
+/turf/open/floor/mainship/office,
+/area/mainship/hallways/hangar)
 "dtC" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 2
@@ -2738,6 +2742,17 @@
 	},
 /turf/open/floor/mainship/yellow_cargo,
 /area/mainship/squads/general)
+"dul" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 4
+	},
+/obj/machinery/landinglight/tadpole{
+	dir = 4;
+	pixel_x = -4
+	},
+/obj/structure/dropship_equipment/shuttle/rappel_system,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "duo" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -3463,6 +3478,12 @@
 /obj/machinery/vending/security,
 /turf/open/floor/mainship/red/full,
 /area/mainship/command/cic)
+"eoR" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "ess" = (
 /obj/structure/safe,
 /obj/item/moneybag,
@@ -3775,6 +3796,14 @@
 	dir = 9
 	},
 /area/mainship/living/pilotbunks)
+"eMs" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "eMx" = (
 /obj/machinery/light/mainship,
 /turf/open/floor/mainship/mono,
@@ -4018,6 +4047,12 @@
 	dir = 6
 	},
 /area/mainship/squads/req)
+"fbN" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "fbP" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -7112,6 +7147,9 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/holopad,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 10
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar)
 "iXQ" = (
@@ -7842,6 +7880,14 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/shipboard/firing_range)
+"kch" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hallways/hangar)
 "kcC" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -8235,9 +8281,7 @@
 /area/mainship/engineering/upper_engineering)
 "kBO" = (
 /obj/structure/largecrate/supply/ammo/standard_ammo,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
+/turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "kBR" = (
 /obj/machinery/door/airlock/mainship/maint/core,
@@ -11061,6 +11105,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/crew_quarters/toilet)
+"nKp" = (
+/obj/machinery/vending/weapon,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "nLi" = (
 /obj/structure/barricade/metal{
 	dir = 1
@@ -11506,11 +11556,6 @@
 /obj/effect/soundplayer/deltaplayer,
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
-"opn" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/largecrate/guns,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "opA" = (
 /obj/machinery/cryopod/right,
 /obj/structure/sign/safety/cryogenic,
@@ -12581,10 +12626,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/port_hallway)
 "pBR" = (
-/obj/structure/largecrate/supply/supplies/water,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
+/obj/machinery/vending/lasgun,
+/turf/open/floor/mainship/office,
 /area/mainship/hallways/hangar)
 "pCd" = (
 /obj/structure/closet/secure_closet/engineering_personal,
@@ -13727,17 +13770,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hull/lower_hull)
-"qQF" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 4
-	},
-/obj/machinery/landinglight/tadpole{
-	dir = 4;
-	pixel_x = -4
-	},
-/obj/item/clothing/head/warning_cone,
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "qQR" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -15377,10 +15409,8 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/starboard_hallway)
 "tem" = (
-/obj/machinery/vending/lasgun,
-/turf/open/floor/mainship/orange{
-	dir = 4
-	},
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/orange,
 /area/mainship/hallways/hangar)
 "tet" = (
 /obj/machinery/camera/autoname/mainship{
@@ -16098,6 +16128,12 @@
 	dir = 8
 	},
 /area/mainship/medical/lower_medical)
+"tUa" = (
+/obj/structure/largecrate/supply/supplies/water,
+/turf/open/floor/mainship/orange{
+	dir = 1
+	},
+/area/mainship/hallways/hangar)
 "tUZ" = (
 /obj/machinery/firealarm,
 /turf/open/floor/mainship/mono,
@@ -16208,17 +16244,16 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/port_hallway)
 "uay" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
+/obj/machinery/vending/marineFood,
+/turf/open/floor/mainship/orange{
+	dir = 6
 	},
-/obj/item/clothing/head/warning_cone,
-/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "ubh" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 8
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/orange{
+	dir = 4
 	},
-/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "ubk" = (
 /obj/structure/table/mainship/nometal,
@@ -17368,12 +17403,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/aft_hallway)
-"vwd" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 9
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hallways/hangar)
 "vwh" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Bathroom"
@@ -17646,6 +17675,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/item/spare_cord,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "vSo" = (
@@ -17654,6 +17684,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/command/airoom)
+"vSz" = (
+/obj/structure/largecrate/supply/supplies/flares,
+/turf/open/floor/mainship/orange{
+	dir = 9
+	},
+/area/mainship/hallways/hangar)
 "vSE" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -19259,7 +19295,7 @@
 /obj/machinery/researchcomp,
 /obj/machinery/researchcomp,
 /turf/open/floor/mainship/orange{
-	dir = 8
+	dir = 10
 	},
 /area/mainship/hallways/hangar)
 "xJd" = (
@@ -50264,7 +50300,7 @@ hgl
 acq
 fMh
 uKp
-wXN
+vSz
 vZK
 wXN
 ttb
@@ -50520,10 +50556,10 @@ feK
 hSb
 kLu
 eaH
-opn
-pBR
+uKp
+tUa
 kBO
-pBR
+dtA
 pBR
 tem
 tzk
@@ -50777,13 +50813,13 @@ dEC
 eAd
 hap
 uxC
-lXN
-uay
+uKp
+fbN
+eoR
+nKp
 ubh
 uay
-ubh
-uay
-vwd
+tzk
 aWk
 dpY
 fsp
@@ -51035,12 +51071,12 @@ lcE
 kNb
 uCO
 iXB
-uCO
-uCO
-uCO
-uCO
-uCO
-uCO
+kch
+kch
+kch
+kch
+kch
+eMs
 xGr
 qST
 rEw
@@ -51808,10 +51844,10 @@ dpY
 nYk
 pqC
 kwS
-qQF
 rzU
 tRG
 vDH
+dul
 vSd
 orC
 mXm

@@ -12318,6 +12318,10 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
+"fec" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "fel" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -13381,6 +13385,18 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/mainship/living/basketball)
+"gDs" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/tadpole{
+	dir = 1;
+	pixel_y = -4
+	},
+/obj/item/spare_cord,
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "gEJ" = (
 /obj/machinery/door_control/mainship/droppod{
 	dir = 4
@@ -14179,6 +14195,17 @@
 	dir = 8
 	},
 /area/sulaco/marine)
+"hBn" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/tadpole{
+	dir = 1;
+	pixel_y = -4
+	},
+/obj/structure/dropship_equipment/shuttle/rappel_system,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "hBC" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/roller,
@@ -22586,6 +22613,7 @@
 /obj/machinery/camera/autoname{
 	dir = 4
 	},
+/obj/machinery/vending/weapon,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/hangar)
 "rXx" = (
@@ -27487,6 +27515,13 @@
 	dir = 8
 	},
 /area/mainship/living/basketball)
+"yfF" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "yfI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/dropship_equipment/shuttle/sentry_holder,
@@ -65875,12 +65910,12 @@ aPF
 aPF
 aPF
 aPF
-aPF
-aPF
-aQr
+nav
+hQp
+yfF
 rXl
-aPF
-aPF
+kgo
+fec
 aPF
 aPF
 aPF
@@ -67939,7 +67974,7 @@ aPZ
 aPZ
 aPZ
 rhc
-qqt
+hBn
 aPF
 aPF
 aPF
@@ -68196,7 +68231,7 @@ sMl
 sMl
 sMl
 lMr
-qqt
+gDs
 aPF
 aPF
 aPF
