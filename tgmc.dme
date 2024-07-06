@@ -1190,6 +1190,7 @@
 #include "code\game\objects\structures\patrol_points.dm"
 #include "code\game\objects\structures\platforms.dm"
 #include "code\game\objects\structures\prop.dm"
+#include "code\game\objects\structures\rappel_system.dm"
 #include "code\game\objects\structures\razorwire.dm"
 #include "code\game\objects\structures\reagent_dispensers.dm"
 #include "code\game\objects\structures\rocks.dm"
