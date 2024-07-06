@@ -62,3 +62,18 @@
   - bugfix: fixed some visual issues with shutters
   tyeagg:
   - balance: clf suicide vest detonates faster
+2024-07-06:
+  Ldip999:
+  - bugfix: Fixes custom squads being assigned tokens that were already in use by
+      non radio prefixes
+  Lumipharon:
+  - bugfix: fixed some issues with truck prop positioning and hitboxes
+  - code_imp: Cleaned up some LV prop code
+  - bugfix: Added a work around to avoid multitile bound issues related to z-level
+      expansion
+  Notamaniac:
+  - bugfix: Blank shotgun shells should no longer show up as an error
+  Wisemonster:
+  - bugfix: Fixed an issue with headsets and ASRS tablets in Valhalla
+  ivanmixo:
+  - rscdel: Deleted a dead var on the marine xalhalla spawner
