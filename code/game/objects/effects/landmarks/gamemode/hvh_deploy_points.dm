@@ -87,7 +87,7 @@
 	SEND_SIGNAL(movable_to_move, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
 	if(ismecha(movable_to_move) || isarmoredvehicle(movable_to_move))
 		new /obj/effect/temp_visual/rappel_dust(movable_to_move.loc, 3)
-		playsound(movable_to_move.loc, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
+		playsound(movable_to_move.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
 	for(var/user in mobs_moving)
 		shake_camera(user, 0.2 SECONDS, 0.5)
 
