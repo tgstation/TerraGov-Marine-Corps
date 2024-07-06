@@ -38,7 +38,7 @@
 		origin.pre_retract()
 		return
 
-	if(!do_after(C, 5 SECONDS, TRUE, remote_eye, BUSY_ICON_BAR))
+	if(!do_after(C, 5 SECONDS, NONE, remote_eye, BUSY_ICON_BAR))
 		return
 
 	origin.deploy_rope(target_turf)
@@ -175,7 +175,7 @@
 			balloon_alert(user, "The cord isn't damaged.")
 			return
 		balloon_alert(user, "You start replacing the rappel cord...")
-		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 			return
 		if(!rope) //If the rappel is bugged, fix it
 			rope = new(src)
@@ -197,7 +197,9 @@
 ///Disabled rappels repair themselves after the cord is placed back in.
 /obj/structure/dropship_equipment/shuttle/rappel_system/proc/self_repair()
 	rappel_condition = RAPPEL_CONDITION_GOOD
-	QDEL_NULL(disabled_smoke)
+	if(disabled_smoke)
+		QDEL_NULL(disabled_smoke)
+	update_icon_state()
 	balloon_alert_to_viewers("[src] pings happily as it finishes its self-repair cycle.")
 	playsound(src, 'sound/machines/ping.ogg', 50, FALSE)
 
@@ -278,33 +280,38 @@
 	rope.forceMove(src)
 
 //When tad leaves, disable active rappels
-/obj/structure/dropship_equipment/shuttle/rappel_system/on_arrival()
-	if(rappel_state >= RAPPEL_STATE_USABLE)
-		if(rappel_condition == RAPPEL_CONDITION_HOOKED) //Tadpole is moving with ropes hooked, so the ropes will snap
-			var/turf/target_floor = get_turf(rope)
-			target_floor.balloon_alert_to_viewers("As the dropship tries to leave, the rappel cord is ripped out from above, disabling it!")
-			balloon_alert_to_viewers("The force of the tadpole pulls on the rappel cord, causing a horrible screeching sound as something breaks!")
-			break_rappel()
-			return
+/obj/structure/dropship_equipment/shuttle/rappel_system/on_launch()
+	if(rappel_condition == RAPPEL_CONDITION_HOOKED) //Tadpole is moving with ropes hooked, so the ropes will snap
+		var/turf/target_floor = get_turf(rope)
+		target_floor.balloon_alert_to_viewers("As the dropship tries to leave, the rappel cord is ripped out from above, disabling it!")
+		balloon_alert_to_viewers("The force of the tadpole pulls on the rappel cord, causing a horrible screeching sound as something breaks!")
+		break_rappel()
+		return
+
+	if(rappel_state >= RAPPEL_STATE_USABLE) //Otherwise, tadpole retracts rappels normally
 		pre_retract()
 
 ///Handles xeno attacks on the system; called by the rappel rope whenever attack_alien() is called on the rope
 /obj/structure/dropship_equipment/shuttle/rappel_system/proc/attack_rappel(mob/living/carbon/xenomorph/attacker)
 	//Stops the pilot bringing up the rappel to prevent it being disabled
 	rappel_condition = RAPPEL_CONDITION_HOOKED
+	var/previously_retracting = FALSE //Lets us continue retracting the rope if it was previously
 	if(rappel_state == RAPPEL_STATE_RETRACTING)
 		rappel_state = RAPPEL_STATE_USABLE
+		previously_retracting = TRUE
 	update_icon_state()
 	attacker.balloon_alert_to_viewers("[attacker] tears at the rappel!","You start tearing up [src] to disable the host's sky-rope system!")
 	step(attacker, get_dir(attacker, src))
 	balloon_alert_to_viewers("The system starts visibly buckling...")
 	playsound(rope, 'sound/effects/grillehit.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/grillehit.ogg', 50, TRUE)
-	if(!do_after(attacker, 5 SECONDS, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(attacker, 5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		rappel_condition = RAPPEL_CONDITION_GOOD
 		rappel_state = RAPPEL_STATE_USABLE
 		update_icon_state()
 		balloon_alert_to_viewers("The system stops buckling.")
+		if(previously_retracting)
+			pre_retract()
 		return
 
 	attacker.balloon_alert_to_viewers("[attacker] rips the rappel cord out from above, disabling it!","You have disabled their sky-rope!")
@@ -312,7 +319,12 @@
 	break_rappel()
 
 ///Disables the rappel system, retracting any active ropes in the process.
-/obj/structure/dropship_equipment/shuttle/rappel_system/proc/break_rappel(mob/living/carbon/xenomorph/attacker)
+/obj/structure/dropship_equipment/shuttle/rappel_system/proc/break_rappel()
+	if(rappel_condition <= RAPPEL_CONDITION_DISABLED) //Already broken!
+		return
+	rappel_condition = RAPPEL_CONDITION_DAMAGED
+	rappel_state = RAPPEL_STATE_RETRACTING
+
 	playsound(rope, 'sound/effects/metal_crash.ogg', 50, TRUE)
 	playsound(rope, 'sound/effects/sparks1.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/metal_crash.ogg', 50, TRUE)
@@ -325,11 +337,10 @@
 	sparks.attach(rope)
 	sparks.start()
 
-	disabled_smoke = new(src, /particles/mecha_smoke)
-	disabled_smoke.particles.position = list(0,5,0)
+	if(!disabled_smoke)
+		disabled_smoke = new(src, /particles/mecha_smoke)
+		disabled_smoke.particles.position = list(0,5,0)
 
-	rappel_condition = RAPPEL_CONDITION_DAMAGED
-	rappel_state = RAPPEL_STATE_RETRACTING
 	update_icon_state()
 	retract_rope()
 
@@ -373,15 +384,17 @@
 		user.unbuckle_all_mobs(TRUE)
 		return
 
-	step(user, get_dir(user, src))
+	if(!step(user, get_dir(user, src)))
+		user.balloon_alert("Something is blocking you from reaching the rappel system!")
+		return
 	user.balloon_alert_to_viewers(user, "begins clipping to the rappel...")
 
 	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
 		user.balloon_alert("You fumble around figuring out how to use the rappel system...")
-		if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_UNSKILLED) || user.lying_angle || user.anchored)
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_UNSKILLED) || user.lying_angle || user.anchored)
 			return
 
-	if(!do_after(user, 4 SECONDS, TRUE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
+	if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		return
 	user.forceMove(get_turf(parent_system))
 
