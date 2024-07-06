@@ -234,7 +234,6 @@
 	update_gun_appearance(weapon_type)
 	if(weapon_type.type == /obj/item/armored_weapon/coilgun)
 		flick("[ammo_overlay.icon_state]_flick", ammo_overlay)
-		//playsound(src, 'sound/vehicles/weapons/coilgun_cycle.ogg', 60, FALSE)
 
 ///Updates breech and barrel vis_obj appearance
 /obj/structure/gun_breech/som/proc/update_gun_appearance(obj/item/armored_weapon/current_weapon)
