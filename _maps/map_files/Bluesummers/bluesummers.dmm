@@ -105,6 +105,13 @@
 	dir = 4
 	},
 /area/bluesummers/caves/cloning)
+"aG" = (
+/obj/effect/spawner/random/misc/plant{
+	pixel_x = 7;
+	pixel_y = 8
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "aH" = (
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/inside/biodome)
@@ -272,6 +279,10 @@
 	dir = 1
 	},
 /area/bluesummers/inside/chapel)
+"br" = (
+/obj/machinery/power/apc/drained,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "bu" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/largecrate/random/case/small,
@@ -310,6 +321,29 @@
 	dir = 1
 	},
 /area/bluesummers/inside/industrial)
+"bG" = (
+/obj/structure/table/wood,
+/obj/item/paper{
+	pixel_x = -6;
+	pixel_y = 6
+	},
+/obj/item/paper{
+	pixel_x = 2;
+	pixel_y = 3
+	},
+/obj/item/paper{
+	pixel_x = 1
+	},
+/obj/item/storage/bible{
+	pixel_x = 9;
+	pixel_y = -5
+	},
+/obj/item/tool/pen{
+	pixel_y = -2;
+	pixel_x = -6
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "bH" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -395,6 +429,10 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating,
 /area/bluesummers/inside/space_port)
+"ce" = (
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
+/turf/open/floor/plating,
+/area/bluesummers/inside/chapel)
 "cf" = (
 /turf/open/floor/plating,
 /area/bluesummers/caves/northwest)
@@ -469,6 +507,13 @@
 	dir = 5
 	},
 /area/bluesummers/inside/engineering/office)
+"cF" = (
+/obj/structure/bed/chair/office/dark/east{
+	pixel_x = 7;
+	pixel_y = 5
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "cG" = (
 /obj/structure/lattice,
 /obj/machinery/light{
@@ -798,6 +843,9 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/recreation)
+"er" = (
+/turf/open/floor/carpet/black,
+/area/bluesummers/inside/chapel)
 "et" = (
 /obj/structure/monorail{
 	dir = 5
@@ -833,6 +881,21 @@
 	dir = 8
 	},
 /area/bluesummers/inside/biodome)
+"eE" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass{
+	pixel_x = -10
+	},
+/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass{
+	pixel_x = -2;
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/cup/glass/drinkingglass/shotglass{
+	pixel_x = 8;
+	pixel_y = -2
+	},
+/turf/open/floor/carpet/black,
+/area/bluesummers/inside/chapel)
 "eF" = (
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/plating,
@@ -1002,6 +1065,13 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering/plant)
+"fG" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/medical/surgical,
+/turf/open/floor/mainship/emerald{
+	dir = 1
+	},
+/area/bluesummers/caves/cloning)
 "fH" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /turf/open/floor/mainship/floor,
@@ -1141,6 +1211,12 @@
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/space_port)
+"gA" = (
+/obj/structure/table/wood,
+/obj/item/storage/backpack/cultpack,
+/obj/item/rosary,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "gB" = (
 /turf/open/floor/plating,
 /area/bluesummers/caves/cloning)
@@ -1266,6 +1342,19 @@
 	dir = 8
 	},
 /area/bluesummers/inside/industrial)
+"hh" = (
+/obj/structure/table/wood,
+/obj/item/paper/prison_station/chapel_program,
+/obj/item/paper/prison_station/chapel_program{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/paper/prison_station/chapel_program{
+	pixel_x = -9;
+	pixel_y = 3
+	},
+/turf/open/floor/carpet/black,
+/area/bluesummers/inside/chapel)
 "hi" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -1275,6 +1364,10 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/bluesummers/inside/engineering)
+"hk" = (
+/obj/structure/bed/chair/west,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "hn" = (
 /obj/machinery/door/airlock/mainship/marine{
 	dir = 2
@@ -1343,6 +1436,13 @@
 /obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/wall/mainship/outer,
 /area/bluesummers/caves/cryostorage)
+"hG" = (
+/obj/structure/table/mainship,
+/obj/item/storage/surgical_tray,
+/turf/open/floor/mainship/emerald{
+	dir = 5
+	},
+/area/bluesummers/caves/cloning)
 "hH" = (
 /obj/machinery/door/airlock/multi_tile/mainship/personalglass,
 /turf/open/floor/mainship/stripesquare,
@@ -1522,6 +1622,14 @@
 	dir = 8
 	},
 /area/bluesummers/inside/engineering/plant/control)
+"ix" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/britcup{
+	pixel_x = -5;
+	pixel_y = 6
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "iz" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/tile/dark,
@@ -1622,10 +1730,20 @@
 	},
 /turf/open/floor/wood,
 /area/bluesummers/inside/recreation)
+"iW" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "jb" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/liquid/water/river,
 /area/bluesummers/inside/biodome)
+"jc" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "jd" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -1730,6 +1848,13 @@
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/orange,
 /area/bluesummers/inside/engineering/office)
+"jF" = (
+/obj/item/shard{
+	pixel_x = 6
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "jG" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -1751,6 +1876,10 @@
 "jN" = (
 /turf/closed/wall/mainship,
 /area/bluesummers/caves/cryostorage)
+"jO" = (
+/obj/structure/closet/wardrobe/chaplain_black,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "jQ" = (
 /obj/effect/turf_decal/bot_white,
 /obj/effect/spawner/random/machinery/machine_frame,
@@ -1939,6 +2068,10 @@
 	dir = 6
 	},
 /area/bluesummers/inside/hydroponics/south)
+"kF" = (
+/obj/structure/cryopods,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "kJ" = (
 /obj/effect/spawner/random/machinery/photocopier,
 /obj/structure/sign/safety/fridge{
@@ -2124,6 +2257,20 @@
 	dir = 1
 	},
 /area/bluesummers/inside/recreation)
+"lC" = (
+/obj/item/shard{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/shard{
+	pixel_x = 6
+	},
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bluesummers/inside/chapel/office)
 "lD" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship/orange/full,
@@ -2207,6 +2354,15 @@
 /obj/structure/sign/safety/hydro,
 /turf/open/floor/mainship/green/full,
 /area/bluesummers/inside/hydroponics/south)
+"ma" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/mapping_helpers/light/broken,
+/turf/open/floor/mainship/emerald{
+	dir = 8
+	},
+/area/bluesummers/caves/cloning)
 "mb" = (
 /obj/effect/urban/decal/trash/six,
 /turf/open/floor/mainship/green{
@@ -2235,6 +2391,9 @@
 	dir = 9
 	},
 /area/bluesummers/inside/hydroponics/south)
+"mg" = (
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "mh" = (
 /obj/machinery/door/airlock/engineering{
 	name = "\improper Industrial Airlock";
@@ -2312,6 +2471,12 @@
 /obj/structure/largecrate/cow,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/hydroponics/south)
+"mz" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/bluesummers/inside/chapel)
 "mA" = (
 /obj/machinery/light{
 	dir = 8
@@ -2347,6 +2512,12 @@
 	dir = 8
 	},
 /area/bluesummers/inside/industrial)
+"mI" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/bluesummers/caves/cloning)
 "mJ" = (
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest/garbledradio)
@@ -2387,6 +2558,13 @@
 /obj/machinery/cloning/vats,
 /turf/open/floor/mainship/emerald,
 /area/bluesummers/caves/cloning)
+"mS" = (
+/obj/structure/table/wood,
+/obj/item/storage/donut_box{
+	pixel_y = 10
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "mT" = (
 /obj/structure/largecrate/random/mini/med{
 	pixel_x = -8;
@@ -2510,6 +2688,25 @@
 /obj/machinery/power/apc/drained,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/hydroponics)
+"nD" = (
+/obj/structure/table/wood,
+/obj/item/paper{
+	pixel_y = 5;
+	pixel_x = 4
+	},
+/obj/item/paper{
+	pixel_x = 1
+	},
+/obj/item/paper{
+	pixel_x = -2;
+	pixel_y = 10
+	},
+/obj/effect/spawner/random/misc/table_lighting{
+	pixel_x = 8;
+	pixel_y = 2
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "nE" = (
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/cloning)
@@ -2610,6 +2807,10 @@
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating,
 /area/bluesummers/outside/southeast/roofed)
+"oi" = (
+/obj/effect/spawner/random/misc/plant,
+/turf/open/floor/carpet/black,
+/area/bluesummers/inside/chapel)
 "oj" = (
 /obj/machinery/hydroponics/slashable,
 /turf/open/floor/mainship/floor,
@@ -2700,6 +2901,8 @@
 /area/bluesummers/inside/engineering)
 "oO" = (
 /obj/effect/urban/decal/trash/three,
+/obj/machinery/light,
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/mainship/emerald,
 /area/bluesummers/caves/cloning)
 "oP" = (
@@ -2793,6 +2996,12 @@
 "pr" = (
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering/office)
+"pt" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bluesummers/inside/chapel)
 "pu" = (
 /obj/structure/flora/tree/joshua,
 /turf/open/floor/plating/ground/drought,
@@ -2910,6 +3119,17 @@
 "qe" = (
 /turf/closed/wall/mainship,
 /area/bluesummers/outside/south/roofed)
+"qf" = (
+/obj/structure/filingcabinet/nondense{
+	pixel_x = 6;
+	pixel_y = 19
+	},
+/obj/structure/filingcabinet/nondense{
+	pixel_x = -7;
+	pixel_y = 19
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "qg" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/machinery/microwave,
@@ -2952,6 +3172,12 @@
 "qq" = (
 /turf/open/floor/plating,
 /area/bluesummers/caves/west)
+"qr" = (
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "qs" = (
 /obj/effect/urban/decal/trash/four,
 /obj/structure/noticeboard{
@@ -2990,6 +3216,10 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/bluesummers/inside/recreation)
+"qH" = (
+/obj/machinery/light,
+/turf/open/floor/carpet/black,
+/area/bluesummers/inside/chapel)
 "qI" = (
 /turf/open/floor/plating,
 /area/bluesummers/outside/southeast)
@@ -3024,6 +3254,10 @@
 	dir = 4
 	},
 /area/bluesummers/inside/industrial)
+"qR" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "qS" = (
 /obj/machinery/conveyor{
 	dir = 5;
@@ -3073,6 +3307,13 @@
 	dir = 8
 	},
 /area/bluesummers/inside/engineering)
+"rl" = (
+/obj/item/shard{
+	pixel_x = -11
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "rm" = (
 /obj/structure/window_frame/mainship,
 /obj/item/shard,
@@ -3328,6 +3569,12 @@
 	dir = 1
 	},
 /area/bluesummers/inside/hydroponics/south)
+"sE" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 2
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "sG" = (
 /obj/machinery/light,
 /turf/open/floor/plating/mainship,
@@ -3513,6 +3760,11 @@
 /obj/machinery/light,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/industrial)
+"tM" = (
+/obj/machinery/light,
+/obj/effect/mapping_helpers/light/broken,
+/turf/open/floor/mainship/emerald,
+/area/bluesummers/caves/cloning)
 "tO" = (
 /turf/open/liquid/water,
 /area/bluesummers/caves/cryostorage)
@@ -3684,6 +3936,12 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/office)
+"uB" = (
+/obj/structure/bed/chair/west{
+	pixel_x = -8
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "uC" = (
 /obj/structure/prop/vehicle/crane/destructible/damaged{
 	dir = 8
@@ -3877,6 +4135,22 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/ground/grass/weedable/patch,
 /area/bluesummers/inside/biodome)
+"vK" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/cup/glass/bottle/wine{
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/cup/glass/bottle/wine{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/shard{
+	pixel_x = -10;
+	pixel_y = 1
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "vL" = (
 /obj/machinery/camera/autoname/lz_camera,
 /obj/effect/turf_decal/sandytile/sandyplating,
@@ -3892,6 +4166,11 @@
 	dir = 6
 	},
 /area/bluesummers/inside/engineering/plant/control)
+"vR" = (
+/obj/machinery/power/apc/drained,
+/obj/effect/mapping_helpers/broken_apc/highchance,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/industrial)
 "vS" = (
 /obj/structure/sign/hydro/two{
 	dir = 4
@@ -3905,6 +4184,10 @@
 	dir = 8
 	},
 /area/bluesummers/inside/industrial)
+"vX" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "vY" = (
 /turf/closed/wall/mainship,
 /area/bluesummers/caves/northeast/garbledradio)
@@ -4072,6 +4355,14 @@
 "wQ" = (
 /turf/open/floor/plating/scorched,
 /area/bluesummers/inside/hydroponics)
+"wR" = (
+/obj/structure/table/wood,
+/obj/item/storage/bible{
+	pixel_x = 8;
+	pixel_y = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "wT" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /obj/machinery/light{
@@ -4211,6 +4502,13 @@
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/garage)
+"xO" = (
+/obj/structure/lattice,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/inside/chapel/office)
 "xP" = (
 /obj/machinery/door_control{
 	id = "Exercise Wing";
@@ -4338,13 +4636,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/hydroponics)
-"yE" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/effect/mapping_helpers/broken_apc/highchance,
-/turf/open/floor/plating,
-/area/bluesummers/inside/industrial)
 "yF" = (
 /obj/structure/punching_bag,
 /turf/open/floor/plating,
@@ -4527,6 +4818,25 @@
 	},
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/garage)
+"zQ" = (
+/obj/structure/table/wood,
+/obj/structure/prop/urban/misc/coffeestuff/coffeemachine2{
+	pixel_x = 5;
+	pixel_y = 15
+	},
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = -6;
+	pixel_y = 4
+	},
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = 9;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = 2
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "zS" = (
 /turf/closed/wall/mainship,
 /area/bluesummers/outside/northeast/roofed)
@@ -4921,6 +5231,10 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/bluesummers/inside/recreation)
+"Cg" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "Cj" = (
 /obj/effect/spawner/random/engineering/technology_scanner,
 /obj/structure/rack,
@@ -5168,14 +5482,45 @@
 	dir = 8
 	},
 /area/bluesummers/inside/industrial)
+"DS" = (
+/obj/item/shard{
+	pixel_x = -11
+	},
+/obj/item/shard{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/shard{
+	pixel_x = 6
+	},
+/obj/item/shard{
+	pixel_x = -4;
+	pixel_y = -12
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/bluesummers/inside/chapel/office)
 "DT" = (
 /obj/structure/window_frame/mainship,
 /obj/item/shard,
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering/office)
+"DV" = (
+/obj/structure/table/wood,
+/obj/item/storage/bible{
+	pixel_x = -4
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "DZ" = (
 /obj/machinery/door/airlock/research,
 /turf/open/floor/mainship/emerald/full,
+/area/bluesummers/caves/cloning)
+"Eb" = (
+/obj/machinery/optable,
+/turf/open/floor/mainship/emerald{
+	dir = 1
+	},
 /area/bluesummers/caves/cloning)
 "Ec" = (
 /obj/docking_port/stationary/marine_dropship/lz1,
@@ -5499,6 +5844,11 @@
 	dir = 4
 	},
 /area/bluesummers/inside/industrial)
+"FW" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/snacks/sandwiches/bread,
+/turf/open/floor/carpet/black,
+/area/bluesummers/inside/chapel)
 "FX" = (
 /obj/machinery/conveyor_switch{
 	id = "industrialwing"
@@ -5602,6 +5952,21 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering)
+"GI" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/cup/glass/bottle/wine{
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/cup/glass/bottle/wine{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/glass/bottle/wine{
+	pixel_x = -7;
+	pixel_y = 3
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "GJ" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/mainship/orange{
@@ -5612,6 +5977,10 @@
 /obj/structure/bed/chair/office/dark/north,
 /turf/open/floor/mainship/orange/full,
 /area/bluesummers/inside/engineering/office)
+"GM" = (
+/obj/structure/bookcase,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "GN" = (
 /obj/structure/table/mainship,
 /obj/item/stack/medical/heal_pack/ointment,
@@ -5672,6 +6041,11 @@
 	dir = 9
 	},
 /area/bluesummers/inside/engineering/plant/control)
+"Hc" = (
+/obj/structure/bookcase,
+/obj/item/storage/bible,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "Hf" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/food_or_drink/packagedbar,
@@ -5708,10 +6082,20 @@
 /obj/structure/largecrate/cow,
 /turf/open/floor/mainship/green,
 /area/bluesummers/inside/biodome)
+"Hq" = (
+/obj/machinery/light,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "Hr" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark2,
 /area/bluesummers/inside/recreation)
+"Hs" = (
+/obj/machinery/optable,
+/turf/open/floor/mainship/emerald{
+	dir = 8
+	},
+/area/bluesummers/caves/cloning)
 "Ht" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark/brown2/corner{
@@ -5916,6 +6300,12 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating,
 /area/bluesummers/inside/garage)
+"IN" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "IP" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/plating/plating_catwalk,
@@ -5948,6 +6338,12 @@
 	},
 /turf/open/floor/mainship/green/corner,
 /area/bluesummers/inside/hydroponics)
+"IX" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "IY" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/misc/table_lighting,
@@ -6138,6 +6534,21 @@
 	dir = 10
 	},
 /area/bluesummers/inside/hydroponics/south)
+"Kj" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/cup/glass/bottle/wine{
+	pixel_y = 6
+	},
+/obj/item/reagent_containers/cup/glass/bottle/wine{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/reagent_containers/cup/glass/bottle/wine{
+	pixel_x = -7;
+	pixel_y = 3
+	},
+/turf/open/floor/carpet/black,
+/area/bluesummers/inside/chapel)
 "Kl" = (
 /obj/structure/lattice,
 /obj/structure/disposalpipe/broken{
@@ -6155,6 +6566,14 @@
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/bluesummers/inside/biodome)
+"Kq" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/mainship/emerald{
+	dir = 8
+	},
+/area/bluesummers/caves/cloning)
 "Ks" = (
 /turf/open/floor/mainship/orange/corner{
 	dir = 8
@@ -6217,6 +6636,15 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass/weedable/patch,
 /area/bluesummers/inside/biodome)
+"KI" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/optable,
+/turf/open/floor/mainship/emerald{
+	dir = 4
+	},
+/area/bluesummers/caves/cloning)
 "KJ" = (
 /turf/open/floor/plating,
 /area/bluesummers/outside/south)
@@ -6231,6 +6659,16 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering)
+"KQ" = (
+/obj/machinery/computer/cloning_console/vats,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/mapping_helpers/light/broken,
+/turf/open/floor/mainship/emerald{
+	dir = 4
+	},
+/area/bluesummers/caves/cloning)
 "KV" = (
 /obj/machinery/door_control{
 	id = "Industrial Wing";
@@ -6275,6 +6713,17 @@
 	dir = 1
 	},
 /area/bluesummers/inside/engineering)
+"Lk" = (
+/obj/item/shard{
+	pixel_x = -11
+	},
+/obj/item/shard{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "Ll" = (
 /obj/structure/table/mainship,
 /obj/item/tool/analyzer/plant_analyzer,
@@ -6373,6 +6822,10 @@
 /area/bluesummers/inside/industrial)
 "LI" = (
 /obj/structure/closet/radiation,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/mainship/emerald{
 	dir = 6
 	},
@@ -6762,6 +7215,12 @@
 "NI" = (
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/southeast/roofed)
+"NK" = (
+/obj/structure/bed/chair/north{
+	pixel_y = 12
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "NL" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -6887,6 +7346,10 @@
 /obj/structure/closet/crate/explosives,
 /turf/open/floor/tile/dark,
 /area/bluesummers/inside/industrial)
+"Oy" = (
+/obj/structure/bed/chair/east,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "Oz" = (
 /obj/structure/sign/hydro/three{
 	dir = 8
@@ -6939,6 +7402,7 @@
 "OP" = (
 /obj/structure/table/mainship,
 /obj/machinery/science/athogenic_Isolator/on,
+/obj/machinery/light,
 /turf/open/floor/mainship/emerald,
 /area/bluesummers/caves/cloning)
 "OQ" = (
@@ -7284,6 +7748,11 @@
 	dir = 8
 	},
 /area/bluesummers/caves/cloning)
+"Qz" = (
+/obj/item/rosary,
+/obj/effect/landmark/corpsespawner/colonist,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "QA" = (
 /obj/structure/cryofeed,
 /turf/open/liquid/water,
@@ -7373,6 +7842,13 @@
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating,
 /area/bluesummers/caves/cryostorage/garbledradio)
+"QY" = (
+/obj/structure/lattice,
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/inside/chapel)
 "Rd" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/metal/nooffset,
@@ -7516,6 +7992,10 @@
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/hydroponics)
+"RQ" = (
+/obj/machinery/light,
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/inside/chapel)
 "RR" = (
 /obj/machinery/unboxer{
 	anchored = 1;
@@ -7603,6 +8083,14 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/industrial)
+"Sx" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = 9;
+	pixel_y = 3
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "SB" = (
 /turf/open/floor/mainship_hull,
 /area/bluesummers/caves/martian)
@@ -7806,6 +8294,20 @@
 	dir = 1
 	},
 /area/bluesummers/inside/industrial)
+"Tx" = (
+/obj/item/shard{
+	pixel_x = -11
+	},
+/obj/item/shard{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/shard{
+	pixel_x = 6
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/bluesummers/inside/chapel/office)
 "Tz" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grass/weedable/patch/grassyellow,
@@ -7814,6 +8316,17 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/bluesummers/inside/hydroponics)
+"TE" = (
+/obj/structure/bed/chair/pew{
+	dir = 9
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/tile/chapel{
+	dir = 4
+	},
+/area/bluesummers/inside/chapel)
 "TG" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/green/full,
@@ -7986,6 +8499,10 @@
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
 /area/bluesummers/inside/space_port)
+"UC" = (
+/obj/effect/spawner/random/misc/plant,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "UD" = (
 /obj/machinery/light{
 	dir = 4
@@ -8022,6 +8539,21 @@
 	},
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/inside/biodome)
+"UN" = (
+/obj/item/shard{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/item/shard{
+	pixel_x = 6
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating,
+/area/bluesummers/inside/chapel/office)
+"UO" = (
+/obj/structure/bookcase,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "UR" = (
 /obj/machinery/door/airlock/mainship/marine,
 /turf/open/floor/mainship/green/full,
@@ -8332,6 +8864,13 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/industrial)
+"WC" = (
+/obj/effect/spawner/random/misc/plant,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/bluesummers/inside/chapel)
 "WD" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/plating,
@@ -8490,6 +9029,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/office)
+"Xr" = (
+/obj/item/reagent_containers/spray/cleaner,
+/turf/open/floor/plating,
+/area/bluesummers/caves/cloning)
 "Xv" = (
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/mining)
@@ -8505,12 +9048,30 @@
 "Xy" = (
 /turf/open/floor/plating,
 /area/bluesummers/outside/north)
+"Xz" = (
+/obj/structure/filingcabinet/nondense{
+	pixel_x = 6;
+	pixel_y = 19
+	},
+/obj/structure/filingcabinet/nondense{
+	pixel_x = -7;
+	pixel_y = 19
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "XA" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/biodome)
+"XC" = (
+/obj/machinery/power/apc/drained,
+/obj/effect/mapping_helpers/broken_apc,
+/turf/open/floor/mainship/emerald{
+	dir = 1
+	},
+/area/bluesummers/caves/cloning)
 "XD" = (
 /obj/structure/cryofeed/right,
 /turf/open/liquid/water,
@@ -8629,6 +9190,14 @@
 	dir = 1
 	},
 /area/bluesummers/inside/industrial)
+"Yk" = (
+/obj/item/shard{
+	pixel_x = -4;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "Ym" = (
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/southwest/roofed)
@@ -8713,6 +9282,10 @@
 	dir = 5
 	},
 /area/bluesummers/caves/cloning)
+"YC" = (
+/obj/machinery/door/airlock/mainship/generic,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "YD" = (
 /obj/structure/window_frame/mainship,
 /obj/item/shard,
@@ -8883,6 +9456,13 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/bluesummers/caves/martian)
+"Zw" = (
+/obj/effect/spawner/random/misc/plant{
+	pixel_x = -8;
+	pixel_y = 8
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "Zy" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -8892,6 +9472,10 @@
 /obj/effect/spawner/random/machinery/hydrotray,
 /turf/open/floor/plating,
 /area/bluesummers/inside/hydroponics)
+"ZC" = (
+/obj/machinery/light/small,
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel/office)
 "ZD" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -10821,8 +11405,8 @@ Is
 Is
 Gf
 gB
-yP
-yP
+Vp
+Vp
 Vp
 Vp
 Vp
@@ -11003,8 +11587,8 @@ Is
 Is
 at
 gB
-nE
-yP
+Vp
+Vp
 Vp
 Vp
 Vp
@@ -11183,9 +11767,9 @@ Is
 Vp
 Vp
 yP
-Nn
+XC
 Bc
-gB
+Gf
 yP
 Vp
 Vp
@@ -11367,7 +11951,7 @@ Vp
 yP
 mo
 Bc
-hd
+tM
 yP
 Vp
 Vp
@@ -12095,7 +12679,7 @@ Vp
 nE
 gB
 vp
-vp
+ma
 vp
 vp
 YB
@@ -13196,7 +13780,7 @@ LI
 PM
 PM
 yP
-gB
+mI
 nE
 VT
 jW
@@ -13551,7 +14135,7 @@ Vp
 Gf
 mW
 iS
-mW
+KQ
 iS
 mW
 VL
@@ -14111,9 +14695,9 @@ Vp
 yP
 at
 vp
-vp
-vp
-YB
+Kq
+Hs
+hG
 yP
 PB
 Is
@@ -14291,7 +14875,7 @@ Vp
 Vp
 Vp
 yP
-Nn
+Eb
 at
 Gf
 nE
@@ -14473,7 +15057,7 @@ Vp
 Vp
 Vp
 yP
-Nn
+fG
 Nn
 Bc
 Gf
@@ -14838,8 +15422,8 @@ Vp
 Vp
 Vp
 nE
-gB
-iS
+Xr
+KI
 iS
 gB
 Gf
@@ -14909,7 +15493,7 @@ LK
 Rp
 Un
 wf
-PZ
+vR
 PZ
 yt
 JZ
@@ -15271,7 +15855,7 @@ Vp
 Vp
 Vp
 cG
-yE
+Rp
 wf
 vD
 ka
@@ -19815,10 +20399,10 @@ pd
 pd
 pd
 pd
-ON
-ON
-ON
-ON
+wR
+DV
+NK
+UC
 pd
 pd
 pd
@@ -19994,17 +20578,17 @@ Vl
 pd
 pd
 pd
+GM
+UC
+pd
+uB
 ON
-ON
+QY
+IG
 pd
 ON
 ON
-Dv
-ON
-pd
-ON
-ON
-pd
+ce
 Wk
 Wk
 Vl
@@ -20176,11 +20760,11 @@ Vl
 pd
 Be
 ML
-ON
+IG
 Dv
 pd
 pd
-ON
+YC
 pd
 pd
 pd
@@ -20358,15 +20942,15 @@ Vl
 pd
 ny
 pd
+IG
 ON
-ON
-ON
-ON
-ON
-ON
-ON
-ON
-ON
+sE
+IG
+IG
+Qz
+IG
+IG
+IG
 Dv
 pd
 Vl
@@ -20540,16 +21124,16 @@ Wk
 pd
 dx
 pd
-ON
-ON
+qf
+IG
 pd
-ON
-ON
-ON
-ON
-ON
-ON
-ON
+UC
+IG
+IG
+IN
+IG
+IG
+UC
 pd
 Wk
 Vl
@@ -20722,14 +21306,14 @@ Vl
 pd
 PY
 pd
-ON
-ON
+IG
+Hq
 pd
 pd
 pd
 pd
 pd
-ON
+YC
 pd
 pd
 pd
@@ -20904,16 +21488,16 @@ pd
 pd
 Dy
 ML
-ON
-ON
+IG
+IG
 pd
-IG
-IG
+Kj
+eE
+FW
 ON
-ON
-IG
-IG
-IG
+er
+er
+oi
 pd
 pd
 pd
@@ -21081,24 +21665,24 @@ Vl
 Vl
 pd
 pd
-ON
-ON
+Hc
+GM
 pd
 pd
-pd
-ON
-ON
 pd
 IG
+qr
+pd
+hh
 ON
 Dv
 Dy
 ON
-IG
-IG
+er
+er
+pt
 ON
-ON
-IG
+oi
 pd
 pd
 Vl
@@ -21264,14 +21848,14 @@ pd
 pd
 ON
 ON
-ON
-ON
+IG
+UC
 pd
-pd
-ON
-ON
 pd
 IG
+IG
+pd
+WC
 Mt
 ON
 Dy
@@ -21443,17 +22027,17 @@ Vl
 Vl
 Wk
 pd
-ON
+jc
 ON
 Dy
 ON
-ON
-ON
-ON
-ON
-ON
-ON
 IG
+vX
+IG
+IG
+IG
+vX
+er
 RI
 ON
 ON
@@ -21628,21 +22212,21 @@ pd
 ON
 Dv
 ON
-ON
-ON
-ON
-ON
-ON
-ON
-ON
 IG
+IG
+IG
+IG
+IG
+IG
+IG
+er
 Mt
 QS
 sc
 xM
 dO
 ON
-HD
+er
 PW
 UU
 Qi
@@ -21810,10 +22394,10 @@ pd
 ON
 ON
 ON
-ON
-ON
+mS
+zQ
 pd
-ON
+UC
 ON
 ON
 pd
@@ -21823,12 +22407,12 @@ fA
 Mt
 zu
 HD
-fA
-Mt
+er
+er
 zu
 HD
 fA
-IG
+oi
 dx
 Vl
 Vl
@@ -21989,9 +22573,9 @@ rB
 rB
 hw
 pd
+Oy
 ON
-ON
-Dy
+RQ
 pd
 pd
 pd
@@ -22005,12 +22589,12 @@ ON
 Fg
 Qg
 ZG
-QS
-RI
+er
+er
 Mu
 bo
 Qi
-IG
+er
 Vz
 hw
 rB
@@ -22171,11 +22755,11 @@ rB
 hw
 hw
 pd
+ix
+IG
 ON
-ON
-ON
-ON
-ON
+IG
+IG
 pd
 Vp
 Vp
@@ -22187,12 +22771,12 @@ Dy
 ON
 QS
 HD
-EV
-Mt
+er
+er
 QS
 HD
 EV
-IG
+er
 pd
 hw
 hw
@@ -22353,10 +22937,10 @@ rB
 rB
 rB
 dx
-ON
-ON
-ON
-ON
+Sx
+IG
+IG
+IG
 ON
 Vp
 Vp
@@ -22366,15 +22950,15 @@ Vp
 Vp
 Vp
 pd
-sc
+TE
 aY
 dO
-zu
-HD
+er
+er
 Mu
 UU
 Yn
-IG
+qH
 pd
 rB
 rB
@@ -22535,7 +23119,7 @@ rB
 rB
 rB
 Vz
-ON
+hk
 ON
 ON
 ON
@@ -22551,7 +23135,7 @@ Vp
 Dv
 ON
 RI
-fA
+er
 ON
 Dv
 RI
@@ -23280,7 +23864,7 @@ pz
 kc
 kc
 ON
-kc
+mz
 kc
 kc
 ON
@@ -23461,7 +24045,7 @@ pM
 pM
 pM
 pM
-uf
+qR
 pM
 pM
 pd
@@ -23636,15 +24220,15 @@ Dy
 Dv
 Dv
 hQ
-uf
-uf
-uf
+UN
+Lk
+vK
 pM
-uf
-uf
-uf
-uf
-uf
+Xz
+Zw
+IX
+mg
+Cg
 pM
 rB
 rB
@@ -23818,15 +24402,15 @@ pd
 Dv
 Dy
 Wn
-uf
-uf
-uf
+jF
+mg
+GI
 pM
-uf
+br
 Wn
-uf
-uf
-uf
+mg
+aG
+UO
 pM
 rB
 rB
@@ -24000,10 +24584,10 @@ pd
 pd
 Dy
 pM
-uf
-uf
-uf
-uf
+lC
+Yk
+rl
+iW
 uf
 hQ
 pM
@@ -24183,14 +24767,14 @@ rB
 rB
 pM
 hQ
-uf
-uf
+Tx
+mg
 pM
+Xz
 uf
+iW
 uf
-uf
-uf
-uf
+jO
 pM
 hw
 hw
@@ -24366,13 +24950,13 @@ hw
 pM
 Wn
 Wn
-uf
+GI
 pM
-uf
-uf
+cF
+ZC
 pM
-Wn
-uf
+xO
+gA
 pM
 rB
 rB
@@ -24546,14 +25130,14 @@ rB
 hw
 hw
 pM
-uf
-uf
-uf
+DS
+Tx
+GI
 pM
-uf
-uf
+bG
+nD
 pM
-uf
+kF
 pM
 pM
 rB
