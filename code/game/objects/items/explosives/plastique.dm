@@ -144,7 +144,7 @@
 		update_icon()
 	return ..()
 
-/obj/item/explosive/plastique/ex_act()
+/obj/item/explosive/plastique/ex_act(severity)
 	if(QDELETED(src))
 		return
 	if(severity = EXPLODE_DEVASTATE)
