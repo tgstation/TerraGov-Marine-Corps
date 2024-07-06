@@ -147,7 +147,7 @@
 /obj/item/explosive/plastique/ex_act(severity)
 	if(QDELETED(src))
 		return
-	if(severity = EXPLODE_DEVASTATE)
+	if(severity == EXPLODE_DEVASTATE)
 		take_damage(INFINITY, BRUTE, BOMB, 0)
 
 ///Handles the actual explosion effects
