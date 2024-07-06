@@ -315,6 +315,13 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/southeast)
+"bE" = (
+/obj/structure/bookcase,
+/obj/item/album{
+	pixel_y = -8
+	},
+/turf/open/floor/tile/dark,
+/area/bluesummers/inside/chapel)
 "bF" = (
 /obj/machinery/mineral/unloading_machine,
 /turf/open/floor/tile/dark/brown2{
@@ -1424,6 +1431,10 @@
 /area/bluesummers/inside/space_port)
 "hA" = (
 /obj/structure/table/mainship,
+/obj/item/papermap{
+	pixel_x = -3;
+	pixel_y = 5
+	},
 /turf/open/floor/mainship/orange/full,
 /area/bluesummers/inside/engineering/office)
 "hD" = (
@@ -3205,6 +3216,7 @@
 /area/bluesummers/inside/engineering)
 "qA" = (
 /obj/structure/table/mainship,
+/obj/item/papermap,
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering/office)
 "qC" = (
@@ -8552,6 +8564,7 @@
 /area/bluesummers/inside/chapel/office)
 "UO" = (
 /obj/structure/bookcase,
+/obj/item/album,
 /turf/open/floor/tile/dark,
 /area/bluesummers/inside/chapel/office)
 "UR" = (
@@ -21666,7 +21679,7 @@ Vl
 pd
 pd
 Hc
-GM
+bE
 pd
 pd
 pd

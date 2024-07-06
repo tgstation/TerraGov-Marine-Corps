@@ -133,14 +133,14 @@
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/papermap
-	name = "Paper Map"
+	name = "\improper paper map"
 	desc = "An ancient tool used by primitives to help them navigate."
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "map"
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/album
-	name = "Photo Album"
+	name = "\improper photo album"
 	desc = "An album book full of someone's important memories."
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "album"
