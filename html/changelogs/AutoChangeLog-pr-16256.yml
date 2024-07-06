@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - rscdel: "Deleted a dead var on the marine xalhalla spawner"
