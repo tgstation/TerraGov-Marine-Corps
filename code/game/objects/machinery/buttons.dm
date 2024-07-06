@@ -283,8 +283,6 @@
 
 /obj/machinery/button/valhalla/marine_spawner
 	name = "Marine spawner"
-	///The list of outfits we can equip on the humans we're spawning
-	var/outfit_list = list()
 
 /// Generates a list of jobs datums to spawn on a mob
 /obj/machinery/button/valhalla/marine_spawner/proc/spawn_humans(mob/living/user)
