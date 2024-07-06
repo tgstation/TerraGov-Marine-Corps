@@ -90,6 +90,10 @@
 #define TIMER_DEBUG
 #endif
 
+/// If this is uncommented, Autowiki will generate edits and shut down the server.
+/// Prefer the autowiki build target instead.
+#define AUTOWIKI
+
 #ifdef TGS
 // TGS performs its own build of dm.exe, but includes a prepended TGS define.
 #define CBT
