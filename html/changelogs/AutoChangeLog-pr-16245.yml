@@ -1,0 +1,6 @@
+author: "Ldip999"
+delete-after: True
+changes:
+  - qol: "Makes large orders easier to read"
+  - bugfix: "Fixes bug that can crash game on particularly large orders"
+  - code_imp: "Vastly optimized req request packets"

@@ -44,9 +44,8 @@
 				continue
 			if(istype(A, /obj/machinery/atmospherics))
 				atmos_machines += A
-	for(var/area/area AS in areas) //areas are init'd when the first turf is generated, some somethings in init are not done correctly
-		area.update_base_lighting()
-		area.reg_in_areas_in_z()
+
+	SSmapping.reg_in_areas_in_z(areas)
 	SSatoms.InitializeAtoms(atoms)
 	SSmachines.setup_template_powernets(cables)
 

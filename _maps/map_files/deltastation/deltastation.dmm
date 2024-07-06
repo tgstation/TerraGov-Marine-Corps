@@ -41394,6 +41394,12 @@
 	},
 /turf/open/floor/grass,
 /area/deltastation/hallway/secondary/exit/departure_lounge)
+"iua" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 8
+	},
+/turf/open/floor/iron,
+/area/deltastation/maintenance/department/eva/abandoned)
 "iun" = (
 /obj/structure/rack,
 /turf/open/floor/plating,
@@ -52349,6 +52355,11 @@
 	},
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/electrical)
+"kHy" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/iron,
+/area/deltastation/maintenance/department/eva/abandoned)
 "kHB" = (
 /obj/structure/table/wood,
 /obj/item/coin/phoron,
@@ -54081,6 +54092,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/project)
+"laU" = (
+/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+	dir = 8
+	},
+/turf/open/floor/asteroidfloor,
+/area/deltastation/external/landingzone)
 "laY" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/effect/turf_decal/sandedge/corner2{
@@ -57392,12 +57409,6 @@
 /obj/effect/spawner/random/misc/structure/emcloset,
 /turf/open/floor/iron,
 /area/deltastation/asteroidcaves/derelictwest)
-"lJs" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/turf/open/floor/iron,
-/area/deltastation/maintenance/department/eva/abandoned)
 "lJu" = (
 /obj/effect/turf_decal/tile/transparent/red{
 	dir = 8
@@ -91308,10 +91319,6 @@
 /obj/structure/filingcabinet/security,
 /turf/open/floor/iron/grimy,
 /area/deltastation/security/detectives_office/private_investigators_office)
-"sDd" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
-/turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
 "sDf" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -92590,11 +92597,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/deltastation/security/detectives_office/private_investigators_office)
-"sPT" = (
-/obj/effect/turf_decal/warning_stripes/box,
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/iron,
-/area/deltastation/maintenance/department/eva/abandoned)
 "sQe" = (
 /obj/effect/spawner/random/misc/structure/girder,
 /turf/open/floor/plating,
@@ -150851,7 +150853,7 @@ mSh
 xNx
 hEg
 lxr
-lJs
+iua
 imT
 wee
 cbS
@@ -151621,7 +151623,7 @@ knV
 gDt
 rym
 tro
-sPT
+kHy
 wWX
 iPH
 swV
@@ -166040,7 +166042,7 @@ toH
 toH
 kZL
 xuY
-sDd
+laU
 dfm
 dNh
 toH

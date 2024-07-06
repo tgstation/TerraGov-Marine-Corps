@@ -1120,10 +1120,6 @@
 "gc" = (
 /turf/closed/wall,
 /area/lv624/lazarus/security)
-"gd" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "ge" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -1858,6 +1854,11 @@
 /obj/structure/flora/jungle/vines,
 /obj/structure/cable,
 /turf/open/ground/grass/weedable,
+/area/lv624/lazarus/spaceport2)
+"jK" = (
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 10
+	},
 /area/lv624/lazarus/spaceport2)
 "jL" = (
 /obj/machinery/light{
@@ -3035,6 +3036,10 @@
 "qf" = (
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
+"qg" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "qi" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/tool,
@@ -3080,10 +3085,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
-"qu" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "qv" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -3850,10 +3851,6 @@
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
-"uk" = (
-/obj/structure/prop/vehicle/truck/destructible,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/jungle9)
 "um" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
@@ -4531,11 +4528,6 @@
 /obj/item/trash/plate,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
-"xT" = (
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 10
-	},
-/area/lv624/lazarus/spaceport2)
 "xU" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -6376,6 +6368,12 @@
 /area/lv624/lazarus/spaceport2)
 "Hi" = (
 /turf/closed/shuttle/dropship_regular/interior_corner,
+/area/lv624/ground/jungle9)
+"Hj" = (
+/obj/structure/prop/vehicle/truck/destructible{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
 "Hk" = (
 /obj/structure/table,
@@ -8483,6 +8481,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/lv624/lazarus/spaceport)
+"RE" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "RF" = (
 /obj/machinery/sleeper,
 /turf/open/floor/tile/blue/taupeblue{
@@ -8884,10 +8886,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle7)
-"TE" = (
-/obj/effect/landmark/patrol_point/som/som_11,
-/turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
 "TF" = (
 /mob/living/simple_animal/cat/kitten,
 /turf/open/floor/tile/green/whitegreenfull,
@@ -9597,6 +9595,10 @@
 /obj/effect/ai_node,
 /turf/open/liquid/water/river,
 /area/lv624/lazarus/fitness)
+"Xc" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/west1)
 "Xd" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/pizzapasta/meatballspaghetti,
@@ -10806,7 +10808,7 @@ FC
 vt
 Br
 vX
-qu
+Xc
 vX
 vt
 vt
@@ -10996,7 +10998,7 @@ ek
 ek
 yp
 yp
-xT
+jK
 Um
 vA
 xz
@@ -11201,7 +11203,7 @@ Ux
 Ux
 Ux
 Ux
-TE
+RE
 Ux
 GF
 YP
@@ -14801,7 +14803,7 @@ Zp
 Zp
 Ui
 Du
-uk
+Hj
 yn
 ft
 ft
@@ -19521,7 +19523,7 @@ OP
 OP
 OP
 OP
-gd
+qg
 tI
 KE
 fw

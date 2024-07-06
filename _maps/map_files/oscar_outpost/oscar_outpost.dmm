@@ -329,10 +329,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/underground)
-"cs" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "cv" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/food_or_drink/outdoors_snacks,
@@ -1021,6 +1017,10 @@
 /obj/item/attachable/extended_barrel,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
+"gT" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "gU" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
@@ -8087,6 +8087,32 @@
 /obj/effect/spawner/random/engineering/fuelcell/fullweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
+"Sc" = (
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 12;
+	pixel_y = 26
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 25;
+	pixel_y = 26
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 16;
+	pixel_y = 21
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 39;
+	pixel_y = 26
+	},
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 29;
+	pixel_y = 21
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/village/fairgrounds)
 "Se" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -8316,30 +8342,6 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
-"SN" = (
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 12;
-	pixel_y = 26
-	},
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 25;
-	pixel_y = 26
-	},
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 16;
-	pixel_y = 21
-	},
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 39;
-	pixel_y = 26
-	},
-/obj/structure/prop/vehicle/truck,
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 29;
-	pixel_y = 21
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "SP" = (
 /obj/structure/table/wood/rustic,
 /obj/structure/prop/mainship/gelida/register,
@@ -16830,7 +16832,7 @@ ZC
 IV
 IV
 IV
-cs
+gT
 IV
 IV
 IV
@@ -39199,7 +39201,7 @@ DX
 kQ
 px
 hV
-SN
+Sc
 Ta
 Ta
 Ta

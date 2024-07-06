@@ -2015,6 +2015,10 @@
 	},
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/security)
+"kg" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/north_east)
 "kh" = (
 /obj/structure/flora/tree/jungle/small,
 /obj/structure/flora/jungle/grass/thin,
@@ -2030,10 +2034,6 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/outpost/science)
-"kl" = (
-/obj/effect/landmark/patrol_point/som/som_21,
-/turf/open/ground/grass/weedable,
-/area/campaign/jungle_outpost/ground/jungle/north_east)
 "km" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/engibelt,
@@ -2467,6 +2467,12 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"mk" = (
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/jungle_outpost/outpost/req/depot)
 "ml" = (
 /obj/machinery/light{
 	dir = 8
@@ -2491,12 +2497,6 @@
 	},
 /turf/closed/wall/r_wall,
 /area/campaign/jungle_outpost/outpost/science)
-"mr" = (
-/obj/effect/landmark/patrol_point/som/som_11,
-/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
-	dir = 1
-	},
-/area/campaign/jungle_outpost/ground/jungle/south_west)
 "ms" = (
 /obj/structure/platform{
 	dir = 4
@@ -2744,6 +2744,12 @@
 	dir = 1
 	},
 /area/campaign/jungle_outpost/ground/jungle)
+"nM" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/south_west)
 "nN" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof,
@@ -5279,6 +5285,10 @@
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass/weedable,
 /area/campaign/jungle_outpost/ground/jungle/north_east)
+"Aw" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating/ground/dirt2,
+/area/campaign/jungle_outpost/ground/jungle/north_west)
 "Ax" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -8298,10 +8308,6 @@
 	dir = 4
 	},
 /area/campaign/jungle_outpost/ground/jungle)
-"Qa" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating/ground/dirt2,
-/area/campaign/jungle_outpost/ground/jungle/north_west)
 "Qb" = (
 /turf/closed/wall,
 /area/campaign/jungle_outpost/outpost/security)
@@ -9250,10 +9256,6 @@
 	dir = 8
 	},
 /area/campaign/jungle_outpost/outpost/science/south)
-"UI" = (
-/obj/structure/prop/vehicle/truck,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/jungle_outpost/outpost/req/depot)
 "UJ" = (
 /turf/closed/gm/dense,
 /area/campaign/jungle_outpost/ground/jungle)
@@ -11247,7 +11249,7 @@ BV
 Lt
 Fe
 RS
-Qa
+Aw
 RS
 OP
 Fe
@@ -11385,7 +11387,7 @@ Gd
 Ft
 Xz
 CG
-mr
+nM
 Dp
 Xz
 Xz
@@ -19881,7 +19883,7 @@ zi
 zi
 zi
 zi
-UI
+mk
 pr
 WV
 EX
@@ -20782,7 +20784,7 @@ zi
 zi
 zi
 zi
-UI
+mk
 zi
 zi
 RY
@@ -32374,7 +32376,7 @@ KU
 Ex
 Ho
 EU
-kl
+kg
 EU
 YU
 Jr

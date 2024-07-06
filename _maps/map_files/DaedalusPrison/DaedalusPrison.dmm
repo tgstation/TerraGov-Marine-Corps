@@ -2053,10 +2053,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/daedalusprison/inside/engineering)
-"bLB" = (
-/obj/structure/prop/vehicle/truck/destructible,
-/turf/open/floor/plating/ground/concrete,
-/area/daedalusprison/inside/garage)
 "bLJ" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
@@ -2424,10 +2420,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark/green2,
 /area/daedalusprison/inside/colonydorms)
-"cbo" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/northwest/garbledradio)
 "cbp" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/prison/plate,
@@ -4990,10 +4982,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/darkred,
 /area/daedalusprison/inside/centralhalls)
-"eeH" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
-/turf/open/floor/plating/ground/concrete,
-/area/daedalusprison/inside/garage)
 "eeZ" = (
 /turf/closed/wall,
 /area/daedalusprison/inside/hydroponics)
@@ -5887,6 +5875,12 @@
 	dir = 10
 	},
 /area/daedalusprison/inside/mechanicshop)
+"eRC" = (
+/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/daedalusprison/inside/garage)
 "eRN" = (
 /obj/structure/table/mainship,
 /obj/item/tool/minihoe,
@@ -7200,6 +7194,10 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/security/office)
+"fTQ" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/daedalusprison/inside/landingzoneone)
 "fTR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -7504,6 +7502,10 @@
 	dir = 8
 	},
 /area/daedalusprison/inside/mechanicshop)
+"gkO" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating/ground/ice,
+/area/daedalusprison/caves/northwest/garbledradio)
 "glb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -11476,6 +11478,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/daedalusprison/inside/chapel)
+"jAA" = (
+/obj/structure/prop/vehicle/truck/destructible{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/daedalusprison/outside/east)
 "jBa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
@@ -16818,10 +16826,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer2,
 /area/daedalusprison/outside/south)
-"nNx" = (
-/obj/structure/prop/vehicle/truck/destructible,
-/turf/open/floor/plating/ground/concrete,
-/area/daedalusprison/outside/east)
 "nNB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/glass,
@@ -27101,6 +27105,12 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/security/office)
+"wbI" = (
+/obj/structure/prop/vehicle/truck/destructible{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/daedalusprison/inside/garage)
 "wcn" = (
 /obj/machinery/light{
 	dir = 8
@@ -27160,10 +27170,6 @@
 	dir = 1
 	},
 /area/daedalusprison/inside/habitationsouth)
-"weM" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating,
-/area/daedalusprison/inside/landingzoneone)
 "weO" = (
 /turf/open/floor/prison/green,
 /area/daedalusprison/inside/northmeetingroom)
@@ -42073,7 +42079,7 @@ sLx
 liI
 liI
 dXG
-cbo
+gkO
 avY
 aeT
 vXd
@@ -63574,7 +63580,7 @@ uLT
 oOP
 afh
 aif
-nNx
+jAA
 aif
 aif
 mJy
@@ -63777,10 +63783,10 @@ kVY
 hCI
 oOP
 oSI
-eeH
+eRC
 oSI
 oSI
-bLB
+wbI
 oSI
 das
 oOP
@@ -64413,17 +64419,17 @@ oFS
 oFS
 oOP
 oSI
-bLB
+wbI
 oSI
 oSI
-eeH
+eRC
 oSI
 oSI
 kkz
 aif
 aif
 aif
-nNx
+jAA
 aif
 mJy
 jdm
@@ -71897,7 +71903,7 @@ sHQ
 sHQ
 sHQ
 sHQ
-weM
+fTQ
 sHQ
 sHQ
 gfH

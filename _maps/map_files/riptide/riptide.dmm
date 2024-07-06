@@ -969,11 +969,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/riptide/caves/tram)
-"aLU" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/obj/effect/landmark/patrol_point/som/som_21,
-/turf/open/ground,
-/area/riptide/outside/westislands)
 "aMl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2473,6 +2468,11 @@
 	dir = 8
 	},
 /area/riptide/caves/pmc/prison)
+"bLI" = (
+/obj/structure/flora/jungle/grass,
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/ground/grass/weedable,
+/area/riptide/outside/northislands)
 "bLO" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/effect/ai_node,
@@ -3679,11 +3679,6 @@
 	dir = 9
 	},
 /area/riptide/inside/engineering/bridge)
-"cBr" = (
-/obj/effect/turf_decal/riverdecal,
-/obj/effect/landmark/patrol_point/som/som_11,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/riptide/caves/north2)
 "cBx" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/whitepurple{
@@ -3827,6 +3822,11 @@
 	dir = 1
 	},
 /area/riptide/inside/syndicatecheckpoint)
+"cGI" = (
+/obj/effect/turf_decal/riverdecal,
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/riptide/caves/north2)
 "cGS" = (
 /obj/structure/mine_structure/wooden/support_wall/t_bar,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -8871,11 +8871,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric,
 /turf/open/floor/plating,
 /area/riptide/caves/pmc/prison)
-"geC" = (
-/obj/structure/flora/jungle/grass,
-/obj/effect/landmark/patrol_point/tgmc_11,
-/turf/open/ground/grass/weedable,
-/area/riptide/outside/northislands)
 "geH" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -9857,6 +9852,13 @@
 	},
 /turf/open/floor/plating,
 /area/riptide/caves/tram)
+"gTn" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/riptide/inside/landingzoneone)
 "gTD" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/plate,
@@ -12971,6 +12973,11 @@
 	dir = 1
 	},
 /area/riptide/outside/river)
+"jlB" = (
+/obj/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/riptide/caves/south)
 "jlF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_magazine/pistol/holdout,
@@ -16084,11 +16091,6 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southjungle)
-"lox" = (
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/riptide/inside/landingzoneone)
 "loN" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 8
@@ -17610,10 +17612,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/riptide/outside/beachlzone)
-"msE" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
-/turf/open/floor/plating/ground/concrete,
-/area/riptide/outside/volcano)
 "msJ" = (
 /obj/structure/cable,
 /turf/open/floor/prison/darkred{
@@ -19846,6 +19844,11 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/eastbeach)
+"nSO" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/ground,
+/area/riptide/outside/westislands)
 "nSS" = (
 /turf/open/floor/tile/dark,
 /area/riptide/inside/engineering/cave)
@@ -21648,11 +21651,6 @@
 "phd" = (
 /turf/open/floor/iron/smooth,
 /area/riptide/caves/pmc/lobby)
-"phj" = (
-/obj/effect/landmark/excavation_site_spawner,
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/riptide/caves/south)
 "phm" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating,
@@ -29866,6 +29864,12 @@
 /obj/machinery/smartfridge,
 /turf/open/floor/prison/kitchen,
 /area/riptide/inside/beachsushi)
+"uxg" = (
+/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/riptide/outside/volcano)
 "uxt" = (
 /obj/structure/platform_decoration{
 	dir = 8
@@ -36645,7 +36649,7 @@ aCL
 nHt
 dQr
 dQr
-lox
+gTn
 dQr
 dQr
 vwF
@@ -39276,7 +39280,7 @@ gqo
 gqo
 qEa
 qEa
-aLU
+nSO
 bQo
 bQo
 gxv
@@ -39477,7 +39481,7 @@ soJ
 iMN
 qeS
 qeS
-geC
+bLI
 ren
 teY
 ujj
@@ -53170,7 +53174,7 @@ bmn
 cRL
 foU
 foU
-msE
+uxg
 bmn
 gfJ
 hMq
@@ -65980,7 +65984,7 @@ wpy
 wpy
 wpy
 wpy
-cBr
+cGI
 wpy
 wpy
 wpy
@@ -68798,7 +68802,7 @@ cDu
 aqo
 aqo
 aqo
-phj
+jlB
 aqo
 aqo
 jtf

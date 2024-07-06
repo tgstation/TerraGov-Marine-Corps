@@ -84,6 +84,12 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
+"aX" = (
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/mainship/patrol_base/som)
 "ba" = (
 /obj/effect/turf_decal/siding,
 /turf/open/floor/mainship/som/s,
@@ -279,6 +285,12 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som/hanger)
+"dC" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 4
+	},
+/turf/open/floor/mainship/white,
+/area/mainship/patrol_base/som/hanger)
 "dF" = (
 /obj/machinery/camera/autoname/mainship/somship,
 /obj/effect/turf_decal/trimline/blue/arrow_cw{
@@ -473,14 +485,6 @@
 	},
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som/hanger)
-"fS" = (
-/obj/structure/stairs/seamless/edge{
-	dir = 1
-	},
-/turf/open/floor/mainship/white{
-	dir = 4
-	},
-/area/mainship/patrol_base/som/hanger)
 "fX" = (
 /obj/structure/patrol_point/som_21,
 /turf/open/shuttle/elevator/grating,
@@ -632,6 +636,10 @@
 "hI" = (
 /turf/open/floor/mainship_hull/gray,
 /area/mainship/patrol_base/som)
+"hJ" = (
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/som/hanger)
 "hT" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 4
@@ -668,6 +676,14 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/patrol_base/som/barracks)
+"in" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 4
+	},
+/turf/open/floor/mainship/white{
+	dir = 8
+	},
+/area/mainship/patrol_base/som/hanger)
 "ir" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 4
@@ -725,12 +741,6 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/som/medical)
-"je" = (
-/obj/structure/stairs/seamless/edge_vert{
-	dir = 4
-	},
-/turf/open/floor/mainship/white,
-/area/mainship/patrol_base/som/hanger)
 "jg" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som{
 	dir = 8
@@ -803,12 +813,6 @@
 	dir = 1
 	},
 /turf/open/floor/mainship_hull,
-/area/mainship/patrol_base/som/hanger)
-"kc" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/hanger)
 "kn" = (
 /obj/machinery/computer/teleporter,
@@ -989,12 +993,6 @@
 /obj/machinery/telecomms/processor/preset_two,
 /turf/open/floor/mainship,
 /area/mainship/patrol_base/som)
-"mR" = (
-/obj/structure/stairs/seamless/edge_vert{
-	dir = 8
-	},
-/turf/open/floor/mainship/white,
-/area/mainship/patrol_base/som/hanger)
 "mT" = (
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/mainship,
@@ -1213,12 +1211,6 @@
 	dir = 8
 	},
 /area/mainship/patrol_base/som)
-"pz" = (
-/obj/structure/stairs/seamless/edge,
-/turf/open/floor/mainship/white{
-	dir = 8
-	},
-/area/mainship/patrol_base/som/hanger)
 "pF" = (
 /obj/vehicle/ridden/wheelchair,
 /turf/open/floor/mainship/sterile/corner{
@@ -1417,14 +1409,6 @@
 	dir = 1
 	},
 /area/mainship/patrol_base/som)
-"rT" = (
-/obj/structure/stairs/seamless/edge{
-	dir = 8
-	},
-/turf/open/floor/mainship/white{
-	dir = 4
-	},
-/area/mainship/patrol_base/som/hanger)
 "rX" = (
 /obj/structure/ship_ammo/cas/rocket/fatty,
 /turf/open/floor/plating/ground/concrete,
@@ -1544,10 +1528,6 @@
 /obj/structure/prop/mainship/mission_planning_system,
 /turf/open/floor/mainship_hull,
 /area/mainship/patrol_base/som)
-"tD" = (
-/obj/machinery/light,
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/som/hanger)
 "tJ" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/mainship_hull,
@@ -2046,10 +2026,6 @@
 /obj/structure/ship_ammo/railgun,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
-"zd" = (
-/obj/structure/prop/vehicle/truck,
-/turf/open/floor/plating/ground/concrete,
-/area/mainship/patrol_base/som)
 "zk" = (
 /obj/machinery/telecomms/server/presets/charlie,
 /turf/open/floor/mainship,
@@ -2441,14 +2417,6 @@
 /obj/item/tool/hand_labeler,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
-"Dw" = (
-/obj/structure/stairs/seamless/edge{
-	dir = 4
-	},
-/turf/open/floor/mainship/white{
-	dir = 8
-	},
-/area/mainship/patrol_base/som/hanger)
 "DB" = (
 /obj/structure/somcas/three/left{
 	dir = 4
@@ -2917,6 +2885,12 @@
 	dir = 4
 	},
 /area/mainship/patrol_base/som)
+"Jp" = (
+/obj/structure/stairs/seamless/edge,
+/turf/open/floor/mainship/white{
+	dir = 8
+	},
+/area/mainship/patrol_base/som/hanger)
 "Jx" = (
 /turf/open/floor/mainship/green{
 	dir = 4
@@ -3058,6 +3032,14 @@
 /area/mainship/patrol_base/som/barracks)
 "LF" = (
 /turf/open/floor/mainship/red{
+	dir = 1
+	},
+/area/mainship/patrol_base/som)
+"LJ" = (
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
 /area/mainship/patrol_base/som)
@@ -3360,6 +3342,12 @@
 /area/mainship/patrol_base/som/barracks)
 "Pj" = (
 /turf/closed/mineral/smooth/indestructible,
+/area/mainship/patrol_base/som/hanger)
+"Pm" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/som/hanger)
 "Po" = (
 /obj/machinery/light{
@@ -3682,6 +3670,14 @@
 	},
 /turf/open/floor/freezer,
 /area/mainship/patrol_base/som/barracks)
+"TG" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 8
+	},
+/turf/open/floor/mainship/white{
+	dir = 4
+	},
+/area/mainship/patrol_base/som/hanger)
 "TK" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/mainship/sterile/side{
@@ -3791,6 +3787,12 @@
 "Va" = (
 /turf/open/floor/mainship/red,
 /area/mainship/patrol_base/som/command)
+"Vb" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 8
+	},
+/turf/open/floor/mainship/white,
+/area/mainship/patrol_base/som/hanger)
 "Vd" = (
 /obj/machinery/prop/computer/tadpole{
 	dir = 4
@@ -3900,12 +3902,6 @@
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som/hanger)
-"WB" = (
-/obj/structure/prop/vehicle/truck,
-/turf/open/floor/plating/ground/concrete/lines{
-	dir = 1
-	},
-/area/mainship/patrol_base/som)
 "WL" = (
 /obj/structure/bed/chair/comfy/black,
 /obj/structure/prop/mainship/prop_so/som,
@@ -3939,6 +3935,14 @@
 /obj/structure/somcas/one/left,
 /turf/open/floor/mainship_hull/gray,
 /area/mainship/patrol_base/som)
+"WX" = (
+/obj/structure/stairs/seamless/edge{
+	dir = 1
+	},
+/turf/open/floor/mainship/white{
+	dir = 4
+	},
+/area/mainship/patrol_base/som/hanger)
 "WZ" = (
 /obj/structure/prop/mainship/prop_so/som{
 	dir = 4
@@ -6910,9 +6914,9 @@ Uk
 Uk
 Uk
 vz
-WB
+LJ
 Aw
-zd
+aX
 Aw
 Aw
 Aw
@@ -7418,9 +7422,9 @@ QK
 Ud
 hw
 iY
-kc
+Pm
 qa
-tD
+hJ
 GV
 hw
 Iu
@@ -7429,9 +7433,9 @@ ag
 Ud
 hw
 iY
-kc
+Pm
 jO
-tD
+hJ
 GV
 hw
 Iu
@@ -9963,11 +9967,11 @@ Cr
 eT
 uN
 cS
-Dw
+in
 sA
 sA
 sA
-pz
+Jp
 cS
 eO
 eT
@@ -10213,7 +10217,7 @@ wG
 wG
 wG
 eT
-mR
+Vb
 eT
 eT
 UL
@@ -10701,7 +10705,7 @@ wG
 wG
 wG
 eT
-je
+dC
 eT
 eT
 Ga
@@ -10939,11 +10943,11 @@ Cr
 eT
 Ga
 EC
-rT
+TG
 vH
 vH
 vH
-fS
+WX
 EC
 Xg
 eT

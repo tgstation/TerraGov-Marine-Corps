@@ -570,10 +570,6 @@
 /obj/item/tool/surgery/scalpel/manager,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/lambda_lab)
-"ahA" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "ahB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 1;
@@ -8453,10 +8449,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
-"dSS" = (
-/obj/machinery/light,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "dVz" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/marking/asteroidwarning{
@@ -12226,6 +12218,12 @@
 	},
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/caves/northeast/garbledradio)
+"miE" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
 "mjU" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -12715,10 +12713,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/space_port)
-"nqf" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
 "nqK" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -13018,14 +13012,20 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast/garbledradio)
-"nVY" = (
-/obj/structure/prop/vehicle/truck,
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "nWz" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/west)
+"nXq" = (
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/turf/open/floor/plating,
+/area/bigredv2/outside/space_port)
+"nZm" = (
+/obj/machinery/light,
+/turf/open/floor/asteroidfloor,
+/area/bigredv2/outside/space_port)
 "oaq" = (
 /obj/machinery/light,
 /turf/open/floor,
@@ -16600,6 +16600,10 @@
 /obj/effect/spawner/modularmap/bigred/dorms,
 /turf/open/space/basic,
 /area/space)
+"waG" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "waY" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/n)
@@ -21811,7 +21815,7 @@ ocx
 azc
 kTn
 azc
-dSS
+nZm
 dHg
 sfX
 gLv
@@ -23548,7 +23552,7 @@ ieL
 jjg
 jjg
 jjg
-nqf
+waG
 jjg
 jjg
 jjg
@@ -25734,9 +25738,9 @@ iwK
 iwK
 jTC
 iwK
-nVY
+nXq
 iwK
-nVY
+nXq
 iwK
 jQJ
 iwK
@@ -25946,7 +25950,7 @@ iwK
 epc
 iwK
 iwK
-ahA
+miE
 iwK
 iwK
 jTC

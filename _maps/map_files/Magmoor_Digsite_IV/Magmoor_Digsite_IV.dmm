@@ -732,6 +732,12 @@
 	dir = 8
 	},
 /area/magmoor/civilian/rnr)
+"azR" = (
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines,
+/area/magmoor/compound/southeast)
 "azT" = (
 /obj/structure/curtain/medical,
 /obj/effect/landmark/excavation_site_spawner,
@@ -3653,6 +3659,10 @@
 "cvM" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/cargo,
+/area/magmoor/landing/two)
+"cvS" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating,
 /area/magmoor/landing/two)
 "cws" = (
 /obj/structure/table/wood{
@@ -9899,10 +9909,6 @@
 	dir = 6
 	},
 /area/magmoor/command/office/main)
-"gLM" = (
-/obj/structure/prop/vehicle/van,
-/turf/open/floor/plating/ground/concrete/lines,
-/area/magmoor/compound/southeast)
 "gLV" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
@@ -10577,10 +10583,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/liquid/lava/autosmoothing/catwalk,
 /area/magmoor/cave/north)
-"htg" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating,
-/area/magmoor/landing)
 "htj" = (
 /obj/structure/rock/basalt/alt2,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -15437,6 +15439,12 @@
 	dir = 8
 	},
 /area/magmoor/research/containment)
+"kKM" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/magmoor/civilian/jani)
 "kLb" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/purple/corner{
@@ -16634,12 +16642,6 @@
 	dir = 4
 	},
 /area/magmoor/landing)
-"lEa" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 1
-	},
-/area/magmoor/compound)
 "lEj" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -19010,10 +19012,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/magmoor/cave/southwest)
-"nsL" = (
-/obj/effect/landmark/patrol_point/som/som_21,
-/turf/open/floor/plating,
-/area/magmoor/landing/two)
 "nsX" = (
 /obj/structure/cable,
 /obj/structure/stairs/seamless{
@@ -20239,6 +20237,14 @@
 	},
 /turf/open/floor/grass,
 /area/magmoor/civilian/rnr)
+"osR" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 1
+	},
+/area/magmoor/compound)
 "osT" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -22858,10 +22864,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/east)
-"qfw" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
-/turf/open/floor/plating/ground/concrete,
-/area/magmoor/civilian/jani)
 "qfD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -29405,6 +29407,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
+"uKx" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/magmoor/landing)
 "uKO" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -45956,7 +45962,7 @@ nlP
 nlP
 nlP
 nlP
-htg
+uKx
 nlP
 kWj
 nlP
@@ -53587,7 +53593,7 @@ kKp
 hIT
 hIT
 hIT
-lEa
+osR
 jvl
 inQ
 rVY
@@ -62239,7 +62245,7 @@ oGk
 rtA
 sbF
 rtA
-qfw
+kKM
 atm
 sBq
 pqW
@@ -69465,7 +69471,7 @@ kOZ
 uwv
 eFL
 uwv
-gLM
+azR
 kOZ
 jRL
 jRL
@@ -73393,7 +73399,7 @@ ogT
 ogT
 ogT
 ogT
-nsL
+cvS
 fpI
 ogT
 ogT

@@ -248,7 +248,7 @@
 	carbon_owner.Move(get_step_towards(carbon_owner, A), get_dir(src, A))
 	carbon_owner.face_atom(A)
 	activate_particles(owner.dir)
-	playsound(owner, "sound/effects/alien_tail_swipe3.ogg", 50, 0, 5)
+	playsound(owner, 'sound/effects/alien/tail_swipe3.ogg', 50, 0, 5)
 	owner.visible_message(span_danger("[owner] Swing their weapon in a deadly arc!"))
 
 	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
