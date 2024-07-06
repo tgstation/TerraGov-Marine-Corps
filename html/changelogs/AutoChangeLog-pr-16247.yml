@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - bugfix: "Blank shotgun shells should no longer show up as an error"
