@@ -222,6 +222,15 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 				to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
 				return FALSE
 			if(user_id.id_flags & CAN_BUY_LOADOUT)
+				var/obj/item/card/id/dogtag/full/ptscheck = new /obj/item/card/id/dogtag/full
+				for(var/points in user_id.marine_points)
+					if(user_id.marine_points[points] != ptscheck.marine_points[points])
+						to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
+						return FALSE
+				for(var/option in user_id.marine_buy_choices)
+					if(user_id.marine_buy_choices[option] != ptscheck.marine_buy_choices[option])
+						to_chat(ui.user, span_warning("Access denied, continue using the GHHME."))
+						return FALSE
 				user_id.id_flags &= ~CAN_BUY_LOADOUT
 				selected_loadout.quantity --
 				if(drop_worn_items)
