@@ -124,7 +124,7 @@
 	equipment_list = list(
 		/obj/item/armored_weapon/coilgun = 1,
 		/obj/item/armored_weapon/secondary_mlrs = 1,
-		/obj/item/ammo_magazine/tank/coilgun = 15,
+		/obj/item/ammo_magazine/tank/coilgun = 40,
 		/obj/item/ammo_magazine/tank/secondary_mlrs = 8,
 	)
 
