@@ -173,8 +173,8 @@
 	refill_amount = 50
 
 /obj/item/factory_refill/pizza_refill
-	name = "box of rounded pizza plates"
-	desc = "A box with round pizza plates inside. Used to refill Unboxers. These will become Pizzas, once finished."
+	name = "box of rounded metal plates (Pizza)"
+	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become "Pizzas", once finished."
 	refill_type = /obj/item/factory_part/pizza
 
 /obj/item/factory_refill/plastique_refill
