@@ -39,6 +39,12 @@
 	dir = 8
 	},
 /area/outpost/arrivals)
+"ai" = (
+/obj/structure/lattice,
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/orion_outpost/surface/building/engineering)
 "aj" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/storage/testroom)
@@ -60,12 +66,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/dark,
 /area/deltastation/engineering)
-"am" = (
-/obj/structure/prop/mainship/cannon_cables,
-/turf/open/floor/mainship_hull/dir{
-	dir = 1
-	},
-/area/space)
 "an" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -223,10 +223,6 @@
 	dir = 8
 	},
 /area/bigredv2/caves/lambda_lab)
-"aR" = (
-/obj/structure/prop/mainship/cannon_cables,
-/turf/open/floor/mainship_hull/dir,
-/area/space)
 "aS" = (
 /obj/structure/cargo_container/ch_red{
 	dir = 1
@@ -501,14 +497,6 @@
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
-"bS" = (
-/obj/structure/prop/mainship/massdiver{
-	dir = 4
-	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 4
-	},
-/area/space)
 "bT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -565,16 +553,14 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/medical)
+"cd" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/hallway/primary/aft)
 "ce" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/sulaco/unmeltable,
 /area/orion_outpost/surface/landing_pad_external)
-"cf" = (
-/obj/structure/prop/mainship/massdiver{
-	dir = 4
-	},
-/turf/open/floor/mainship_hull,
-/area/space)
 "cg" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -789,6 +775,11 @@
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor/plating,
 /area/bigredv2/outside/e)
+"cW" = (
+/obj/structure/prop/mainship/holobarrier/passthrough,
+/obj/effect/forcefield,
+/turf/open/space/basic,
+/area/space)
 "cX" = (
 /obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/mainship/mono,
@@ -830,13 +821,6 @@
 /obj/item/coin/iron,
 /turf/open/floor/wood,
 /area/library)
-"df" = (
-/obj/structure/dropship_equipment/electronics/spotlights,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/mainship/floor,
-/area/ai_monitored/storage/secure)
 "dg" = (
 /obj/structure/cable,
 /turf/open/shuttle/dropship/floor,
@@ -945,6 +929,10 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
+"dB" = (
+/obj/structure/grille/fence,
+/turf/open/floor/mainship/mono,
+/area/ai_monitored/storage/secure)
 "dC" = (
 /turf/open/floor/prison/darkred{
 	dir = 8
@@ -970,10 +958,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/lambda_lab)
-"dH" = (
-/obj/structure/prop/mainship/pipeprop/manifold,
-/turf/open/floor/mainship_hull/dir,
-/area/space)
 "dI" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -1359,6 +1343,10 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/mainship,
 /area/prison/security/briefing)
+"fe" = (
+/obj/effect/ai_node,
+/turf/open/floor/mainship/mono,
+/area/hallway/primary/aft)
 "ff" = (
 /turf/closed/shuttle/dropship1/interiormisc,
 /area/construction)
@@ -1514,6 +1502,9 @@
 /obj/structure/largecrate/random/case/small,
 /turf/open/floor/mainship/cargo,
 /area/bigredv2/outside/cargo)
+"fH" = (
+/turf/open/floor/plating,
+/area/campaign/jungle_outpost/outpost/living/bathroom)
 "fI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -1949,12 +1940,25 @@
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/mainship/red/full,
 /area/mainship)
+"ho" = (
+/obj/structure/prop/mainship/holobarrier/passthrough,
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/space)
 "hp" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
+"hq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/campaign/jungle_outpost/outpost/living/bathroom)
 "hr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -2309,6 +2313,12 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_smg,
 /turf/open/floor/mainship/cargo,
 /area/ai_monitored/storage/secure)
+"iH" = (
+/obj/structure/lattice,
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/orion_outpost/surface/building/engineering)
 "iI" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -2436,6 +2446,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/landing_pad_external)
+"jj" = (
+/obj/structure/lattice,
+/turf/open/floor/mainship_hull/dir{
+	dir = 1
+	},
+/area/orion_outpost/surface/building/engineering)
 "jk" = (
 /obj/structure/largecrate/supply/machine,
 /turf/open/floor/plating,
@@ -2451,6 +2467,11 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/security)
+"jn" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 5
+	},
+/area/orion_outpost/surface/building/engineering)
 "jo" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/wood,
@@ -2466,11 +2487,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship/white,
 /area/bigredv2/caves/lambda_lab)
-"js" = (
-/obj/item/mecha_parts/mecha_equipment/generator/greyscale,
-/obj/structure/prop/mainship/generator/tesla_coil,
-/turf/open/floor/mainship_hull,
-/area/space)
 "jt" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/mono,
@@ -2891,6 +2907,11 @@
 /obj/machinery/computer/security/marinemainship,
 /turf/open/floor/plating/mainship,
 /area/assembly/robotics)
+"kY" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 1
+	},
+/area/orion_outpost/surface/building/engineering)
 "kZ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -3278,6 +3299,9 @@
 /obj/effect/landmark/corpsespawner/engineer,
 /turf/open/floor/plating/mainship,
 /area/outpost/arrivals)
+"mv" = (
+/turf/open/floor/mainship_hull/dir,
+/area/orion_outpost/surface/building/engineering)
 "mw" = (
 /turf/closed/shuttle/dropship1/window{
 	dir = 8
@@ -3316,8 +3340,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/door/airlock/mainship/generic/bathroom/toilet,
-/turf/open/floor/mainship/sterile/dark,
+/turf/open/floor/plating,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "mE" = (
 /turf/closed/wall/mainship,
@@ -3837,11 +3860,6 @@
 	dir = 5
 	},
 /area/daedalusprison/inside/security)
-"oC" = (
-/obj/structure/cable,
-/obj/machinery/door/airlock/multi_tile/mainship/generic,
-/turf/open/floor/mainship/mono,
-/area/mainship/living/briefing)
 "oD" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship,
@@ -3891,7 +3909,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
-/turf/closed/wall/mainship,
+/turf/open/floor/mainship/sterile/dark,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "oN" = (
 /obj/structure/cargo_container/nt{
@@ -4241,6 +4259,13 @@
 /obj/item/tool/mop,
 /turf/open/floor/plating/mainship,
 /area/maintenance/cargo)
+"qd" = (
+/obj/structure/prop/mainship/holobarrier/passthrough,
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull/dir{
+	dir = 1
+	},
+/area/space)
 "qe" = (
 /obj/structure/table/reinforced,
 /obj/item/paper/manifest,
@@ -4337,6 +4362,14 @@
 "qv" = (
 /turf/closed/wall/sulaco/unmeltable,
 /area/mainship/living/briefing)
+"qw" = (
+/obj/structure/lattice,
+/obj/structure/prop/mainship/holobarrier/passthrough,
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull/dir{
+	dir = 6
+	},
+/area/space)
 "qx" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -5535,6 +5568,13 @@
 "va" = (
 /turf/open/floor/plating/mainship,
 /area/gelida/indoors/a_block/hallway)
+"vb" = (
+/obj/structure/prop/mainship/holobarrier/passthrough,
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull/dir{
+	dir = 10
+	},
+/area/space)
 "vc" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -6189,6 +6229,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/bigredv2/outside/c)
+"xu" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/orion_outpost/surface/building/engineering)
 "xv" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -6703,10 +6748,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bigredv2/outside/e)
-"zl" = (
-/obj/structure/ship_rail_gun,
-/turf/open/floor/mainship_hull/dir,
-/area/space)
 "zm" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -6771,6 +6812,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/ai_monitored/storage/secure)
+"zy" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/prison/darkpurple/full,
+/area/bigredv2/caves/lambda_lab)
 "zz" = (
 /obj/machinery/light,
 /turf/open/floor/plating,
@@ -6902,6 +6947,10 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/plating/mainship,
 /area/construction)
+"zY" = (
+/obj/structure/lattice,
+/turf/open/space/basic,
+/area/orion_outpost/surface/building/engineering)
 "zZ" = (
 /obj/machinery/light{
 	dir = 4
@@ -7091,6 +7140,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/mainship,
 /area/outpost/arrivals)
+"AM" = (
+/obj/structure/lattice,
+/turf/open/floor/mainship_hull/dir,
+/area/orion_outpost/surface/building/engineering)
 "AN" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/prison/darkpurple/full,
@@ -7189,12 +7242,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/northeast)
-"Bg" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 2
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/living/briefing)
 "Bh" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -7458,6 +7505,11 @@
 	dir = 1
 	},
 /area/bigredv2/outside/medical)
+"Ce" = (
+/obj/structure/prop/mainship/holobarrier/passthrough,
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull,
+/area/space)
 "Cf" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -7578,11 +7630,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/deltastation/engineering)
-"CC" = (
-/obj/structure/prop/mainship/cannon_cables,
-/obj/structure/prop/mainship/cannon_cable_connector,
-/turf/open/floor/mainship_hull/dir,
-/area/space)
 "CD" = (
 /obj/machinery/light{
 	dir = 8
@@ -7686,19 +7733,28 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/landing_pad2_external)
+"CX" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/library)
 "CY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
 	on = 1
-	},
-/obj/structure/toilet{
-	dir = 8
 	},
 /obj/machinery/light/small{
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
+"CZ" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 10
+	},
+/area/orion_outpost/surface/building/engineering)
 "Da" = (
 /obj/effect/ai_node,
 /obj/structure/barricade/guardrail{
@@ -8175,6 +8231,10 @@
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/mainship/blue,
 /area/mainship)
+"EQ" = (
+/obj/structure/grille/fence,
+/turf/open/floor/plating,
+/area/ai_monitored/storage/secure)
 "ER" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -8225,7 +8285,6 @@
 /area/outpost/arrivals)
 "EZ" = (
 /obj/machinery/vending/nanomed,
-/obj/structure/nuke_disk_candidate,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/medical)
 "Fa" = (
@@ -8306,6 +8365,11 @@
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/e)
+"Fp" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/orion_outpost/surface/building/engineering)
 "Fq" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -8472,10 +8536,6 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/north)
-"FW" = (
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/ai_monitored/storage/secure)
 "FX" = (
 /obj/structure/closet/crate/secure/nanotrasen,
 /turf/open/floor/plating,
@@ -8765,10 +8825,6 @@
 	},
 /turf/closed/wall/mainship,
 /area/prison/security/checkpoint)
-"Hb" = (
-/obj/structure/orbital_cannon,
-/turf/open/floor/mainship_hull/dir,
-/area/space)
 "Hc" = (
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/engineering)
@@ -8790,19 +8846,8 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"Hg" = (
-/obj/structure/ship_rail_gun,
-/obj/structure/orbital_cannon,
-/obj/structure/prop/mainship/cannon_cable_connector,
-/turf/open/floor/mainship_hull/dir{
-	dir = 4
-	},
-/area/space)
 "Hh" = (
 /obj/effect/landmark/corpsespawner,
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "Hi" = (
@@ -9240,10 +9285,6 @@
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/briefing)
-"IO" = (
-/obj/structure/flora/ausbushes/yellowbush,
-/turf/open/floor/plating/ground/dirt,
-/area/bigredv2/outside/dorms)
 "IP" = (
 /obj/machinery/door/poddoor/mainship/ammo,
 /turf/open/floor/mainship/mono,
@@ -9449,7 +9490,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
-/turf/open/floor/mainship/floor,
+/turf/open/floor/plating/plating_catwalk,
 /area/ai_monitored/storage/secure)
 "JA" = (
 /obj/structure/cargo_container/hd_blue{
@@ -9579,10 +9620,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship)
-"JZ" = (
-/obj/item/mecha_parts/mecha_equipment/generator/greyscale/upgraded,
-/turf/open/floor/mainship_hull/dir,
-/area/space)
 "Ka" = (
 /obj/structure/cable,
 /obj/docking_port/stationary/crashmode,
@@ -10031,6 +10068,11 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/wood,
 /area/crew_quarters/cafeteria)
+"LI" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 9
+	},
+/area/orion_outpost/surface/building/engineering)
 "LJ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/closed/wall/mainship,
@@ -10131,6 +10173,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/mainship)
+"Me" = (
+/obj/structure/prop/mainship/holobarrier/passthrough,
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull/dir{
+	dir = 4
+	},
+/area/space)
 "Mf" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -10163,6 +10212,13 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/assembly/robotics)
+"Mk" = (
+/obj/structure/prop/mainship/holobarrier/passthrough,
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull/dir{
+	dir = 6
+	},
+/area/space)
 "Ml" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood,
@@ -10691,11 +10747,6 @@
 "Og" = (
 /turf/open/floor/plating,
 /area/library)
-"Oh" = (
-/obj/structure/lattice,
-/obj/item/mecha_parts/mecha_equipment/generator/greyscale/upgraded,
-/turf/open/floor/mainship_hull/dir,
-/area/space)
 "Oi" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -10772,6 +10823,12 @@
 /obj/structure/prop/vehicle/crawler/destructible,
 /turf/open/floor/mainship/mono,
 /area/prison/security/briefing)
+"Ow" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/campaign/jungle_outpost/outpost/living/bathroom)
 "Ox" = (
 /turf/open/floor/prison/darkred{
 	dir = 4
@@ -11151,10 +11208,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/gelida/indoors/a_block/hallway)
-"PR" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
-/turf/closed/wall/mainship,
-/area/campaign/jungle_outpost/outpost/living/bathroom)
 "PS" = (
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 4
@@ -11290,6 +11343,13 @@
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 8
 	},
+/area/ai_monitored/storage/secure)
+"Qr" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
 /area/ai_monitored/storage/secure)
 "Qs" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -11488,6 +11548,9 @@
 /area/construction)
 "Re" = (
 /obj/docking_port/stationary/crashmode,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "Rf" = (
@@ -11495,6 +11558,10 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/landing_pad2_external)
+"Rg" = (
+/obj/structure/grille/fence,
+/turf/open/floor/plating,
+/area/campaign/jungle_outpost/outpost/living/bathroom)
 "Rh" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -11665,11 +11732,6 @@
 /obj/structure/largecrate/random/case,
 /turf/open/floor/plating/mainship,
 /area/outpost/arrivals)
-"RR" = (
-/obj/structure/ship_rail_gun,
-/obj/structure/prop/mainship/cannon_cable_connector,
-/turf/open/floor/mainship_hull,
-/area/space)
 "RS" = (
 /obj/structure/barricade/guardrail{
 	dir = 4
@@ -12403,6 +12465,12 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/janitor)
+"Us" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/campaign/jungle_outpost/outpost/living/bathroom)
 "Ut" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/plating/mainship,
@@ -12712,9 +12780,6 @@
 	dir = 5
 	},
 /area/space)
-"VD" = (
-/turf/open/floor/mainship,
-/area/space)
 "VE" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/mainship/stripesquare,
@@ -12957,13 +13022,6 @@
 /obj/item/storage/box/MRE,
 /turf/open/floor/wood,
 /area/bigredv2/outside/dorms)
-"Ww" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/ai_monitored/storage/secure)
 "Wx" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/bigredv2/outside/cargo)
@@ -13028,6 +13086,14 @@
 	},
 /turf/open/floor/plating,
 /area/janitor)
+"WI" = (
+/obj/structure/lattice,
+/obj/structure/prop/mainship/holobarrier/passthrough,
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull/dir{
+	dir = 1
+	},
+/area/space)
 "WJ" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -13137,10 +13203,6 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/daedalusprison/inside/security)
-"Xc" = (
-/obj/structure/window/framed/mainship/gray,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/living/briefing)
 "Xd" = (
 /turf/closed/wall/mainship/white,
 /area/bigredv2/outside/medical)
@@ -13263,10 +13325,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/security)
-"Xz" = (
-/obj/structure/ship_rail_gun,
-/turf/open/floor/mainship_hull,
-/area/space)
 "XA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -13408,7 +13466,6 @@
 "Ya" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/rifle/icc_battlecarbine,
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/ai_monitored/storage/secure)
 "Yb" = (
@@ -13442,6 +13499,11 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/southeast)
+"Yi" = (
+/turf/open/floor/mainship_hull/dir{
+	dir = 6
+	},
+/area/orion_outpost/surface/building/engineering)
 "Yj" = (
 /obj/machinery/door/poddoor/mainship/ammo{
 	dir = 2
@@ -13464,16 +13526,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/daedalusprison/inside/security)
-"Yo" = (
-/obj/structure/prop/mainship/cannon_cable_connector,
-/turf/open/floor/mainship_hull/dir,
-/area/space)
-"Yp" = (
-/obj/structure/flora/ausbushes/yellowbush,
-/turf/open/floor/plating/ground/dirtgrassborder{
-	dir = 8
-	},
-/area/bigredv2/outside/cargo)
 "Yq" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/mainship,
@@ -13517,6 +13569,11 @@
 /obj/structure/lattice,
 /turf/open/floor/mainship/mono,
 /area/construction/hallway)
+"Yz" = (
+/obj/structure/prop/mainship/holobarrier/passthrough,
+/obj/effect/forcefield,
+/turf/open/floor/mainship_hull/dir,
+/area/space)
 "YA" = (
 /obj/effect/landmark/corpsespawner,
 /turf/open/floor/wood,
@@ -13725,12 +13782,6 @@
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/c)
-"Zq" = (
-/obj/structure/prop/mainship/massdiver{
-	dir = 8
-	},
-/turf/open/floor/mainship_hull,
-/area/space)
 "Zr" = (
 /obj/structure/closet/crate/science,
 /obj/item/clothing/glasses/science,
@@ -13763,6 +13814,9 @@
 	},
 /turf/open/floor/mainship,
 /area/bigredv2/outside/c)
+"Zw" = (
+/turf/open/floor/plating,
+/area/ai_monitored/storage/secure)
 "Zx" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /obj/effect/forcefield,
@@ -22287,16 +22341,16 @@ CR
 CR
 CR
 CR
-gh
-gh
-gh
-gh
-gh
-gh
-gh
-gh
-gh
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -22544,16 +22598,16 @@ CR
 CR
 CR
 CR
-dY
-il
-cI
-bS
-cI
-Hg
-cI
-cI
-aX
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -22801,16 +22855,16 @@ CR
 CR
 CR
 CR
-dY
-lf
-gd
-js
-gd
-Xz
-gd
-gd
-lB
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -23058,16 +23112,16 @@ CR
 CR
 CR
 CR
-dY
-lf
-gd
-Zq
-gd
-Xz
-gd
-gd
-lB
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -23315,16 +23369,16 @@ CR
 CR
 CR
 CR
-dY
-lf
-gd
-cf
-gd
-RR
-gd
-gd
-lB
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -23572,16 +23626,16 @@ CR
 CR
 CR
 CR
-dY
-lf
-gd
-js
-gd
-Xz
-gd
-gd
-lB
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -23829,16 +23883,16 @@ CR
 CR
 CR
 CR
-dY
-lf
-gd
-Zq
-lf
-zl
-gd
-gd
-lB
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -24086,16 +24140,16 @@ CR
 CR
 CR
 CR
-dY
-vm
-vm
-vm
-lf
-aR
-vm
-vm
-vm
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -24343,16 +24397,16 @@ CR
 CR
 CR
 CR
-dY
-il
-cI
-aX
-lf
-lB
-il
-cI
-aX
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -24600,16 +24654,16 @@ CR
 CR
 CR
 CR
-dY
-lf
-vm
-JZ
-lf
-Hb
-lf
-vm
-lB
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -24857,16 +24911,16 @@ CR
 CR
 CR
 CR
-dY
-sC
-vm
-Oh
-am
-CC
-sC
-vm
-vy
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -25114,16 +25168,16 @@ CR
 CR
 CR
 CR
-dY
-sC
-vm
-vy
-lf
-dH
-sC
-vm
-vy
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -25371,16 +25425,16 @@ CR
 CR
 CR
 CR
-dY
-lf
-vm
-lB
-lf
-Yo
-lf
-vm
-lB
-dY
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
+CR
 CR
 CR
 CR
@@ -25628,16 +25682,16 @@ CR
 CR
 CR
 CR
-dY
-VD
-VD
-VD
-VD
-VD
-VD
-VD
-VD
-dY
+gh
+gh
+gh
+gh
+gh
+gh
+gh
+gh
+gh
+gh
 CR
 CR
 CR
@@ -36663,7 +36717,7 @@ CR
 kR
 hX
 hX
-hX
+ou
 hX
 hX
 hX
@@ -36676,7 +36730,7 @@ XW
 XW
 XW
 XW
-XW
+fe
 XW
 dc
 XW
@@ -36934,7 +36988,7 @@ XW
 XW
 XW
 XW
-XW
+cd
 dc
 XW
 XW
@@ -38967,8 +39021,8 @@ gZ
 is
 Gx
 Gx
-Cb
-AT
+gZ
+CX
 wh
 AT
 Cb
@@ -39224,7 +39278,7 @@ ob
 ue
 ob
 ob
-uq
+ob
 rD
 HK
 Og
@@ -39481,7 +39535,7 @@ ob
 nG
 ob
 kd
-uq
+ob
 rD
 HK
 Og
@@ -39738,7 +39792,7 @@ KI
 RU
 FS
 KI
-uq
+ob
 rD
 VN
 FB
@@ -39995,7 +40049,7 @@ ob
 TK
 ob
 KI
-uq
+ob
 Qf
 Og
 qK
@@ -40252,7 +40306,7 @@ ob
 nG
 ob
 KI
-uq
+ob
 rD
 zj
 qK
@@ -40509,7 +40563,7 @@ gZ
 is
 Qh
 Qd
-uq
+ob
 rD
 rD
 IV
@@ -40788,7 +40842,7 @@ tE
 tE
 tE
 tE
-Yp
+tE
 SH
 yB
 Xl
@@ -41801,7 +41855,7 @@ te
 sy
 Yd
 Yd
-Yd
+hx
 Yd
 Yd
 Yd
@@ -41811,7 +41865,7 @@ Re
 Yd
 Yd
 Yd
-Yd
+hx
 Yd
 Yd
 kB
@@ -42059,14 +42113,14 @@ Ob
 kB
 kB
 kB
-pE
+kB
 kB
 IR
 pE
 kB
 kB
 kB
-pE
+kB
 kB
 kB
 kB
@@ -42315,16 +42369,16 @@ WT
 rO
 Yd
 Yd
-UW
-UW
-UW
-UW
-UW
-UW
+Yd
+Yd
+Yd
+Yd
+Yd
+Yd
 oM
-PR
-PR
-PR
+eW
+eW
+eW
 eW
 eW
 eW
@@ -42576,11 +42630,11 @@ Yd
 Hh
 Yd
 Yd
-hx
+Yd
 Yd
 Tg
 Yd
-hx
+Yd
 Yd
 Yd
 UW
@@ -42830,16 +42884,16 @@ UW
 Yd
 Yd
 Yd
+MQ
 Yd
 Yd
 Yd
-Yd
-Yd
+MQ
 Tg
 Yd
-Yd
-Yd
-Yd
+fH
+fH
+fH
 UW
 Gy
 LC
@@ -43093,10 +43147,10 @@ UW
 Ci
 UW
 mD
-UW
-Ci
-UW
-Ci
+fH
+fH
+fH
+Yd
 UW
 Gy
 Bu
@@ -43349,10 +43403,10 @@ Yd
 UW
 Yd
 UW
-Tg
-UW
+hq
+fH
 Yd
-UW
+fH
 Yd
 UW
 Gy
@@ -43607,10 +43661,10 @@ UW
 NJ
 UW
 CY
-UW
-NJ
-UW
-NJ
+fH
+Ow
+fH
+Us
 UW
 Ul
 Ul
@@ -43863,11 +43917,11 @@ wM
 wM
 wM
 wM
-wM
-wM
-wM
-wM
-wM
+fH
+Rg
+Rg
+Rg
+Rg
 wM
 wM
 wM
@@ -44120,11 +44174,11 @@ cI
 cI
 cI
 cI
-cI
-cI
-sC
-vy
-cI
+Me
+xu
+jj
+AM
+Me
 cI
 cI
 cI
@@ -44377,11 +44431,11 @@ CR
 CR
 CR
 CR
-CR
-lB
-lf
-lB
-lf
+cW
+mv
+kY
+mv
+qd
 Rs
 Rs
 CR
@@ -44634,11 +44688,11 @@ CR
 CR
 CR
 CR
-CR
-lf
-sC
-vy
-lB
+cW
+kY
+jj
+AM
+Yz
 Rs
 Rs
 CR
@@ -44891,11 +44945,11 @@ CR
 CR
 CR
 CR
-CR
-lB
-lf
-lB
-lf
+cW
+mv
+kY
+mv
+qd
 Rs
 Rs
 CR
@@ -45148,11 +45202,11 @@ CR
 CR
 CR
 CR
-CR
-lB
-sC
-vy
-lf
+cW
+mv
+jj
+AM
+qd
 Rs
 Rs
 CR
@@ -45405,11 +45459,11 @@ CR
 CR
 CR
 CR
-CR
-lf
-lf
-lB
-lB
+cW
+kY
+kY
+mv
+Yz
 CR
 CR
 CR
@@ -45662,11 +45716,11 @@ CR
 CR
 CR
 CR
-CR
-lB
-sC
-vy
-lf
+cW
+mv
+jj
+AM
+qd
 CR
 CR
 CR
@@ -45907,8 +45961,8 @@ iY
 iY
 ni
 iY
-Ln
 iY
+Ln
 dZ
 RV
 gP
@@ -45919,11 +45973,11 @@ CR
 CR
 CR
 CR
-CR
-VC
-sC
-vy
-dr
+cW
+kY
+jj
+AM
+qw
 CR
 CR
 CR
@@ -46176,11 +46230,11 @@ CR
 CR
 CR
 CR
-CR
-CR
-sC
-vy
-lf
+cW
+kY
+jj
+AM
+qd
 CR
 CR
 CR
@@ -46433,11 +46487,11 @@ CR
 CR
 CR
 CR
-CR
-CR
-sC
-vy
-lf
+cW
+kY
+jj
+AM
+qd
 kh
 WD
 WD
@@ -46685,16 +46739,16 @@ UP
 iY
 RI
 RI
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-sC
-vy
-lf
+cW
+cW
+cW
+cW
+cW
+cW
+jn
+jj
+AM
+qd
 kh
 WD
 RK
@@ -46941,17 +46995,17 @@ IH
 wN
 xA
 ts
-RI
-CR
-il
-aX
-Rs
-Rs
-il
-aX
-kx
-kx
-aX
+iY
+LI
+LI
+CZ
+zY
+zY
+LI
+CZ
+Fp
+Fp
+vb
 kh
 WD
 ku
@@ -47198,17 +47252,17 @@ xg
 wN
 xA
 ts
-RI
-sC
-lf
-lB
-sC
-vy
-sC
-lk
-lk
-lk
-lB
+iY
+jj
+kY
+mv
+jj
+AM
+jj
+iH
+iH
+iH
+Yz
 kh
 WD
 RK
@@ -47455,17 +47509,17 @@ wg
 wN
 xA
 Ui
-RI
-sC
-lf
-lB
-sC
-vy
-sC
-vm
-vm
-vm
-lB
+iY
+jj
+kY
+mv
+jj
+AM
+jj
+ai
+ai
+ai
+Yz
 kh
 WD
 ku
@@ -47712,17 +47766,17 @@ eI
 wN
 xA
 iY
-RI
-CR
-VC
-hk
-Rs
-Rs
-VC
-hk
-cI
-cI
-hk
+iY
+jn
+jn
+Yi
+zY
+zY
+jn
+Yi
+xu
+xu
+Mk
 kh
 WD
 WD
@@ -47970,16 +48024,16 @@ UP
 iY
 RI
 RI
-CR
-CR
-CR
-CR
-CR
-CR
-CR
-sC
-vy
-lf
+cW
+cW
+cW
+cW
+cW
+cW
+LI
+jj
+AM
+qd
 kh
 kh
 kh
@@ -48232,11 +48286,11 @@ CR
 CR
 CR
 CR
-CR
-CR
-sC
-vy
-lf
+cW
+kY
+jj
+AM
+qd
 kh
 kh
 kh
@@ -48489,11 +48543,11 @@ CR
 CR
 CR
 CR
-CR
-CR
-sC
-vy
-sC
+cW
+kY
+jj
+AM
+WI
 CR
 CR
 CR
@@ -48746,11 +48800,11 @@ CR
 CR
 CR
 CR
-CR
-CR
-sC
-vy
-lf
+cW
+kY
+jj
+AM
+qd
 CR
 CR
 CR
@@ -49003,11 +49057,11 @@ CR
 CR
 CR
 CR
-CR
-CR
-sC
-vy
-lf
+cW
+kY
+jj
+AM
+qd
 CR
 CR
 CR
@@ -49260,11 +49314,11 @@ CR
 CR
 CR
 CR
-CR
-il
-sC
-vy
-aX
+cW
+kY
+jj
+AM
+vb
 CR
 CR
 CR
@@ -49517,11 +49571,11 @@ CR
 CR
 CR
 CR
-CR
-lf
-lf
-lB
-lB
+cW
+kY
+kY
+mv
+Yz
 CR
 CR
 CR
@@ -49774,11 +49828,11 @@ CR
 CR
 CR
 CR
-CR
-lf
-sC
-vy
-lB
+cW
+kY
+jj
+AM
+Yz
 CR
 CR
 CR
@@ -50031,11 +50085,11 @@ CR
 CR
 CR
 CR
-CR
-lf
-sC
-vy
-lB
+cW
+kY
+jj
+AM
+Yz
 CR
 CR
 CR
@@ -50288,11 +50342,11 @@ CR
 CR
 CR
 CR
-CR
-lf
-lf
-lB
-lB
+cW
+kY
+kY
+mv
+Yz
 CR
 CR
 CR
@@ -50545,11 +50599,11 @@ CR
 CR
 CR
 CR
-CR
-lf
-sC
-vy
-lB
+cW
+kY
+jj
+AM
+Yz
 CR
 CR
 CR
@@ -50802,11 +50856,11 @@ kx
 kx
 kx
 kx
-kx
-lf
-lf
-lB
-lB
+ho
+kY
+kY
+mv
+Yz
 il
 kx
 kx
@@ -51059,11 +51113,11 @@ gd
 gd
 gd
 gd
-gd
-VC
-sC
-vy
-dr
+Ce
+jn
+jj
+AM
+qw
 wJ
 wJ
 wJ
@@ -51273,12 +51327,12 @@ KC
 Jk
 Jk
 Jk
-Jk
-gS
+GC
+GC
 Mt
-Bg
-gS
-Xc
+GC
+GC
+pc
 qv
 qv
 qv
@@ -51302,10 +51356,10 @@ IX
 Jh
 Jh
 Jh
-XJ
+fa
 Pc
 fr
-XJ
+fa
 Jh
 Jh
 Jh
@@ -51316,11 +51370,11 @@ tt
 tt
 tt
 tt
-tt
-tt
-tt
-tt
-tt
+dB
+EQ
+Zw
+Zw
+dB
 tt
 tt
 tt
@@ -51539,7 +51593,7 @@ pa
 sq
 Qv
 sq
-oC
+FF
 sq
 sq
 ZS
@@ -51570,13 +51624,13 @@ Pc
 Pc
 sk
 yP
-TB
+Qr
 ar
 ar
 Bi
-df
 Bi
-Ww
+Bi
+Zw
 TB
 iG
 iG
@@ -51827,13 +51881,13 @@ Uw
 Pc
 sk
 cH
-TB
+Pw
 TB
 Mi
 Jz
+Zw
 Bw
-Bw
-FW
+TB
 rm
 gw
 gw
@@ -52053,7 +52107,7 @@ Vz
 FA
 FA
 FA
-Jk
+FA
 Xx
 GC
 GC
@@ -52084,12 +52138,12 @@ Yt
 yj
 sk
 qk
-TB
-TB
-TB
+Pw
+Pw
+Pw
 tR
 zx
-Pw
+MW
 Ya
 TB
 Mm
@@ -53589,7 +53643,7 @@ GC
 GC
 Pm
 GC
-GC
+gE
 Jk
 Mp
 KG
@@ -53844,7 +53898,7 @@ Jk
 iK
 Jk
 Jk
-Jk
+gS
 ri
 pA
 Jk
@@ -53855,8 +53909,8 @@ Jk
 Jk
 QR
 UO
-Jk
-Jk
+gS
+gS
 gS
 gS
 Jk
@@ -54384,10 +54438,10 @@ fW
 ry
 ry
 ry
-IO
 ry
 ry
-IO
+ry
+ry
 BL
 UD
 wk
@@ -61598,7 +61652,7 @@ QX
 vo
 ik
 Br
-fR
+zy
 fR
 Br
 aZ
