@@ -127,11 +127,6 @@
 	SIGNAL_HANDLER
 	qdel(src, TRUE)
 
-/obj/hitbox/onTransitZ(old_z, new_z)
-	. = ..()
-	for(var/mob/living/tank_desant AS in tank_desants)
-		continue //fug
-
 ///when the owner moves, let's move with them!
 /obj/hitbox/proc/root_move(atom/movable/mover, atom/oldloc, direction, forced, list/turf/old_locs)
 	SIGNAL_HANDLER
