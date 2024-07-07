@@ -278,6 +278,12 @@
 	refill_type = /obj/item/factory_part/smartgunner_targetrifle_magazine
 	refill_amount = 20
 
+/obj/item/factory_refill/smartgunner_targetrifle_ammobin_refill
+	name = "box of rounded metal plates"
+	desc = "A box with round metal plates inside. Used to refill Unboxers."
+	refill_type = /obj/item/factory_part/smartgunner_targetrifle_ammobin
+	refill_amount = 10
+
 /obj/item/factory_refill/auto_sniper_magazine_refill
 	name = "box of rounded metal plates"
 	desc = "A box with round metal plates inside. Used to refill Unboxers."
