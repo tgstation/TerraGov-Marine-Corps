@@ -88,7 +88,7 @@
 
 /obj/docking_port/stationary/shuttle/lz1
 	name = "Landing Zone One"
-	id = "lz1"
+	id = DOCKING_PORT_LZ1
 
 /obj/docking_port/stationary/shuttle/lz1/Initialize(mapload)
 	. = ..()
@@ -100,12 +100,7 @@
 
 /obj/docking_port/stationary/shuttle/lz2
 	name = "Landing Zone Two"
-	id = "lz2"
-
-/obj/docking_port/stationary/shuttle/lz2/Initialize(mapload)
-	. = ..()
-	var/area/area = get_area(src)
-	area.area_flags |= MARINE_BASE
+	id = DOCKING_PORT_LZ2
 
 /obj/docking_port/stationary/shuttle/lz2/prison
 	name = "LZ2: Civ Residence Hangar"
@@ -329,7 +324,7 @@
 	screen_overlay = "dropship_console_emissive"
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_SHUTTLE, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
-	possible_destinations = list("lz1", "lz2", SHUTTLE_DROPSHIP)
+	possible_destinations = list(DOCKING_PORT_LZ1, DOCKING_PORT_LZ2, SHUTTLE_DROPSHIP)
 	opacity = FALSE
 
 /obj/machinery/computer/shuttle/marine_dropship/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
@@ -586,14 +581,14 @@
 	. = ..()
 	for(var/trait in SSmapping.configs[SHIP_MAP].environment_traits)
 		if(ZTRAIT_DOUBLE_SHIPS in trait)
-			possible_destinations.Remove("lz1")
+			possible_destinations.Remove(DOCKING_PORT_LZ1)
 
 /obj/machinery/computer/shuttle/marine_dropship/two
 	name = "\improper 'Normandy' flight controls"
 	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	icon_state = "dropship_console2"
 	screen_overlay = "dropship_console2_emissive"
-	possible_destinations = list("lz1", "lz2", SHUTTLE_DROPSHIP, SHUTTLE_NORMANDY)
+	possible_destinations = list(DOCKING_PORT_LZ1, DOCKING_PORT_LZ2, SHUTTLE_DROPSHIP, SHUTTLE_NORMANDY)
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
 	. = ..()

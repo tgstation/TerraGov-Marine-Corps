@@ -59,6 +59,10 @@
 #define ENGINE_COEFF_MAX 2
 #define ENGINE_DEFAULT_MAXSPEED_ENGINES 5
 
+//Docking port IDs
+#define DOCKING_PORT_LZ1 "lz1"
+#define DOCKING_PORT_LZ2 "lz2"
+
 //Docking error flags
 #define DOCKING_SUCCESS 0
 #define DOCKING_BLOCKED (1<<0)
@@ -117,9 +121,14 @@
 #define SHUTTLE_SUPPLY "supply"
 #define SHUTTLE_VEHICLE_SUPPLY "vehicle_supply"
 
+///Shuttle works fine, no issues
 #define HIJACK_STATE_NORMAL 0
+///Shuttle has been summoned by a hijacker, but not yet under their control
 #define HIJACK_STATE_CALLED_DOWN 1
-#define HIJACK_STATE_CRASHING 2
-#define HIJACK_STATE_CONTROLLED 3
+///Shuttle is under the control of a hijacker
+#define HIJACK_STATE_CONTROLLED 2
+///It's joever, shuttle is crashing into the main ship
+#define HIJACK_STATE_CRASHING 3
 
+///Portion of living humans on the battlefield must be below this number for the shuttle to be summoned
 #define ALIVE_HUMANS_FOR_CALLDOWN 0.1

@@ -403,6 +403,11 @@
 		return
 	#endif
 
+	//Prevent shipside hijacks because there is a lot of issues to deal with (hive left behind dies, what to do about psy points reset, no King teleport, etc)
+	if(SSmapping.level_trait(saboteur.z, ZTRAIT_MARINE_MAIN_SHIP))
+		to_chat(saboteur, span_xenowarning("We cannot leave our sisters behind!"))
+		return
+
 	balloon_alert_to_viewers("Corrupting controls!", vision_distance = 20)	//Make sure everyone can see it, even those looking through scopes
 	if(!do_after(saboteur, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
@@ -410,7 +415,7 @@
 	to_chat(saboteur, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flying."))
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, src)
 	dropship.set_idle()
-	dropship.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
+	dropship.set_hijack_state(HIJACK_STATE_CONTROLLED)
 	dropship.start_hijack_timer()
 	dropship.unlock_all()
 	xeno_control(saboteur)
@@ -420,20 +425,15 @@
 	if(!CHECK_BITFIELD(user.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT) || CHECK_BITFIELD(machine_stat, BROKEN))
 		return
 
-	var/is_shipside = SSmapping.level_trait(user.z, ZTRAIT_MARINE_MAIN_SHIP)
 	var/choice = tgui_alert(user, "What next?", "Shuttle Control", list("Board Main Vessel", "Declare Victory", "Cancel"))
 	switch(choice)
 		if("Board Main Vessel")
 			if(CHECK_BITFIELD(machine_stat, BROKEN))
 				return
 
-			hijack(user, is_shipside)
+			hijack(user)
 
 		if("Declare Victory")
-			if(is_shipside)	//Can't declare victory shipside, would be too easy
-				to_chat(user, span_xenowarning("This is no victory!"))
-				return
-
 			var/humans_on_ground = 0
 			for(var/i in SSmapping.levels_by_trait(ZTRAIT_GROUND))
 				for(var/mob/living/carbon/human/human AS in GLOB.humans_by_zlevel["[i]"])
@@ -470,7 +470,7 @@
 	set_broken()
 
 ///Processes for sending a hijacked shuttle to the main ship
-/obj/machinery/computer/camera_advanced/shuttle_docker/flyable/dropship/proc/hijack(mob/living/carbon/xenomorph/user, shipside)
+/obj/machinery/computer/camera_advanced/shuttle_docker/flyable/dropship/proc/hijack(mob/living/carbon/xenomorph/user)
 	if(!dropship)
 		stack_trace("No dropship found in hijack(), HOW?")
 		return
@@ -486,10 +486,6 @@
 	user.hive.on_shuttle_hijack(dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 	SSevacuation.scuttle_flags &= ~FLAGS_SDEVAC_TIMELOCK
-
-	if(shipside)	//Ooo stealthy beno, the marines have no idea
-		return
-
 	//var/time_to_crash = 120 * (GLOB.current_orbit/3) SECONDS
 	var/time_to_crash = 20 SECONDS
 	priority_announce(

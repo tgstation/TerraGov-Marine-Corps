@@ -166,13 +166,13 @@
 	req_one_access = list(ACCESS_MARINE_SHUTTLE, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	shuttleId = SHUTTLE_DROPSHIP
 	compatible_control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
-	possible_destinations = list("lz1", "lz2", SHUTTLE_DROPSHIP)
+	possible_destinations = list(DOCKING_PORT_LZ1, DOCKING_PORT_LZ2, SHUTTLE_DROPSHIP)
 
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two
 	name = "\improper 'Normandy' dropship console"
 	desc = "The remote controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
 	shuttleId = SHUTTLE_NORMANDY
-	possible_destinations = list("lz1", "lz2", SHUTTLE_DROPSHIP, SHUTTLE_NORMANDY)
+	possible_destinations = list(DOCKING_PORT_LZ1, DOCKING_PORT_LZ2, SHUTTLE_DROPSHIP, SHUTTLE_NORMANDY)
 
 /obj/machinery/computer/shuttle/shuttle_control/canterbury
 	name = "\improper 'Canterbury' shuttle console"
