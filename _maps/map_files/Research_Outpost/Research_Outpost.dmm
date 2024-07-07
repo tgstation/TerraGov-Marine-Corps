@@ -741,10 +741,6 @@
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north_west)
-"dX" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south_west)
 "dY" = (
 /obj/machinery/light{
 	dir = 1
@@ -1092,10 +1088,6 @@
 /obj/item/radio,
 /turf/open/floor/tile/dark,
 /area/outpost/science/rd_office)
-"fy" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south_east)
 "fz" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/tile/dark,
@@ -1595,10 +1587,6 @@
 	dir = 4
 	},
 /area/outpost/lz1)
-"hU" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north_east)
 "hV" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 9
@@ -1832,10 +1820,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
-"iS" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north_east)
 "iT" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/cavetodirt,
@@ -3263,10 +3247,6 @@
 	dir = 5
 	},
 /area/outpost/hallway/south_west)
-"po" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south_west)
 "pp" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/purple2{
@@ -4468,10 +4448,6 @@
 	dir = 8
 	},
 /area/outpost/hallway/south_west)
-"uT" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south_east)
 "uU" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/north)
@@ -5079,10 +5055,6 @@
 "xD" = (
 /turf/open/floor/tile/damaged/three,
 /area/outpost/cargo)
-"xE" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south_east)
 "xF" = (
 /obj/effect/landmark/corpsespawner/doctor,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -6313,10 +6285,6 @@
 /obj/machinery/landinglight/lz1,
 /turf/open/floor/marking/asteroidwarning,
 /area/outpost/lz1)
-"DI" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north_west)
 "DJ" = (
 /obj/machinery/bioprinter{
 	stored_metal = 1000
@@ -6816,10 +6784,6 @@
 	dir = 5
 	},
 /area/outpost/caves/north_west)
-"FU" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south_west)
 "FX" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2{
@@ -7092,10 +7056,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/caves/south_east)
-"Hu" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north_west)
 "Hw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
@@ -7803,10 +7763,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark,
 /area/outpost/engineering)
-"KN" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north_east)
 "KO" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -9491,10 +9447,6 @@
 "SB" = (
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/hallway/west)
-"SE" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north_west)
 "SJ" = (
 /obj/machinery/light{
 	dir = 1
@@ -10092,6 +10044,12 @@
 	dir = 1
 	},
 /area/outpost/science/research)
+"Vy" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/outpost/caves/north_east)
 "Vz" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
@@ -10332,10 +10290,6 @@
 	dir = 1
 	},
 /area/outpost/caves/south)
-"WF" = (
-/obj/effect/landmark/patrol_point/som/som_21,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north_east)
 "WH" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark,
@@ -14630,7 +14584,7 @@ yW
 yW
 vp
 yW
-oS
+ho
 ho
 ho
 ho
@@ -14764,7 +14718,7 @@ vp
 yW
 yW
 ho
-ho
+oS
 cz
 ho
 yW
@@ -15030,7 +14984,7 @@ yW
 ho
 ho
 ho
-po
+ho
 yW
 yW
 gw
@@ -15748,7 +15702,7 @@ Cp
 Cp
 Cp
 Cp
-Hu
+Cp
 Cp
 Cp
 Cp
@@ -16002,7 +15956,7 @@ yW
 yW
 yW
 ja
-Sh
+Cp
 Cp
 Cp
 Cp
@@ -16141,7 +16095,7 @@ Cp
 Cp
 Zj
 Cp
-DI
+Cp
 yW
 Cp
 Cp
@@ -16214,7 +16168,7 @@ Hc
 yW
 vp
 ja
-FU
+ho
 ho
 ho
 Uu
@@ -16268,7 +16222,7 @@ yW
 ja
 Cp
 Cp
-Cp
+Sh
 Cp
 Cp
 ja
@@ -16396,7 +16350,7 @@ yW
 yW
 yW
 yW
-SE
+Cp
 Zj
 Zj
 Zj
@@ -16878,7 +16832,7 @@ yW
 ho
 ho
 ho
-dX
+ho
 yW
 yW
 gw
@@ -25774,7 +25728,7 @@ zJ
 Jl
 BR
 BR
-iS
+Yx
 zJ
 zJ
 ja
@@ -26302,7 +26256,7 @@ zJ
 BR
 BR
 Hn
-RI
+Vy
 xp
 er
 er
@@ -26561,7 +26515,7 @@ yW
 yW
 ja
 zJ
-WF
+Yx
 pJ
 BR
 BR
@@ -26702,7 +26656,7 @@ RM
 BR
 Yx
 zJ
-hU
+Yx
 yW
 ct
 Yx
@@ -27357,7 +27311,7 @@ ja
 zJ
 Yx
 Yx
-KN
+Yx
 zJ
 pJ
 pJ
@@ -28746,7 +28700,7 @@ yW
 yW
 yW
 yW
-fy
+Hm
 Hm
 Hm
 yW
@@ -29534,11 +29488,11 @@ vr
 Qz
 Dk
 TD
-xE
+Hm
 Hm
 Ht
 Hm
-Hm
+OM
 Hm
 Hm
 My
@@ -30068,7 +30022,7 @@ Hm
 Hm
 Hm
 Hm
-uT
+Hm
 Eg
 gw
 gw
@@ -30460,7 +30414,7 @@ mO
 du
 yW
 yW
-OM
+Hm
 Hm
 Hm
 Eg

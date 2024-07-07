@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("apc sparks")
 			target.playsound_local(source, SFX_SPARKS, 35, TRUE)
 		if("hugged")
-			target.playsound_local(source, 'sound/effects/alien_egg_move.ogg', 35, TRUE)
+			target.playsound_local(source, 'sound/effects/alien/egg_move.ogg', 35, TRUE)
 			sleep(1 SECONDS)
 			target.playsound_local(source, pick(SFX_MALE_HUGGED, SFX_FEMALE_HUGGED), 35, TRUE)
 		if("weed placed")

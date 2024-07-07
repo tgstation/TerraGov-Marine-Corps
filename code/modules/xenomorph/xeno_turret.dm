@@ -68,7 +68,7 @@
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
-	playsound(loc,'sound/effects/xeno_turret_death.ogg', 70)
+	playsound(loc,'sound/effects/alien/turret_death.ogg', 70)
 	return ..()
 
 /obj/structure/xeno/xeno_turret/ex_act(severity)

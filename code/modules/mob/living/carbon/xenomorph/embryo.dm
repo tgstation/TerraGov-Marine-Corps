@@ -151,7 +151,7 @@
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)
 		to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva inside a host! Move to burst out of it!"))
-		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+		new_xeno << sound('sound/effects/alien/new_larva.ogg')
 
 	stage = 6
 

@@ -732,6 +732,12 @@
 	dir = 8
 	},
 /area/magmoor/civilian/rnr)
+"azR" = (
+/obj/structure/prop/vehicle/van{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete/lines,
+/area/magmoor/compound/southeast)
 "azT" = (
 /obj/structure/curtain/medical,
 /obj/effect/landmark/excavation_site_spawner,
@@ -1335,10 +1341,6 @@
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/arrival/east)
-"aVO" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/north)
 "aWn" = (
 /turf/open/floor/mainship/floor,
 /area/magmoor/research/containment)
@@ -2437,10 +2439,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/floor,
 /area/magmoor/landing)
-"bFL" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southwest)
 "bGc" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -3044,10 +3042,6 @@
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/floor/wood,
 /area/magmoor/civilian/bar)
-"ccP" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northwest)
 "cdc" = (
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/power)
@@ -3440,10 +3434,6 @@
 	dir = 6
 	},
 /area/magmoor/compound/southeast)
-"cqk" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northwest)
 "cqt" = (
 /obj/machinery/vending/snack,
 /obj/machinery/light{
@@ -3669,6 +3659,10 @@
 "cvM" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/cargo,
+/area/magmoor/landing/two)
+"cvS" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating,
 /area/magmoor/landing/two)
 "cws" = (
 /obj/structure/table/wood{
@@ -4905,10 +4899,6 @@
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/concrete,
 /area/magmoor/compound)
-"dqQ" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southwest)
 "drq" = (
 /obj/structure/sign/engie{
 	dir = 8
@@ -5053,11 +5043,6 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/medical/cmo)
-"dvL" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southeast)
 "dvQ" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -5698,10 +5683,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/magmoor/mining)
-"dRf" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southeast)
 "dRi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 9
@@ -6626,10 +6607,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/tile/red/full,
 /area/magmoor/security/infocenter)
-"eAy" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southwest)
 "eAF" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -8219,10 +8196,6 @@
 	dir = 8
 	},
 /area/magmoor/compound/east)
-"fCS" = (
-/obj/effect/landmark/patrol_point/som/som_21,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southeast)
 "fCT" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/prison/kitchen,
@@ -8340,10 +8313,6 @@
 	},
 /turf/open/floor/tile/purple,
 /area/magmoor/civilian/jani)
-"fHt" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northeast)
 "fHE" = (
 /obj/machinery/atmospherics/components/unary/outlet_injector,
 /turf/open/floor/engine,
@@ -9940,10 +9909,6 @@
 	dir = 6
 	},
 /area/magmoor/command/office/main)
-"gLM" = (
-/obj/structure/prop/vehicle/van,
-/turf/open/floor/plating/ground/concrete/lines,
-/area/magmoor/compound/southeast)
 "gLV" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
@@ -10156,10 +10121,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/civilian/rnr)
-"gXO" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southeast)
 "gYy" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark2,
@@ -15478,6 +15439,12 @@
 	dir = 8
 	},
 /area/magmoor/research/containment)
+"kKM" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/magmoor/civilian/jani)
 "kLb" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/purple/corner{
@@ -16675,12 +16642,6 @@
 	dir = 4
 	},
 /area/magmoor/landing)
-"lEa" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
-/turf/open/floor/plating/ground/mars/dirttosand{
-	dir = 1
-	},
-/area/magmoor/compound)
 "lEj" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -17122,10 +17083,6 @@
 	dir = 8
 	},
 /area/magmoor/civilian/cryostasis)
-"lTG" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/southwest)
 "lTN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -20280,6 +20237,14 @@
 	},
 /turf/open/floor/grass,
 /area/magmoor/civilian/rnr)
+"osR" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 1
+	},
+/area/magmoor/compound)
 "osT" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -22258,10 +22223,6 @@
 /obj/machinery/computer/med_data/laptop,
 /turf/open/floor/wood,
 /area/magmoor/medical/lobby)
-"pHz" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/north)
 "pHD" = (
 /obj/structure/flora/pottedplant/one,
 /turf/open/floor/tile/dark2,
@@ -22707,10 +22668,6 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /turf/open/floor/tile/white,
 /area/magmoor/civilian/pool)
-"pWp" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/magmoor/cave/northwest)
 "pWV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -22907,10 +22864,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/security/arrivals/east)
-"qfw" = (
-/obj/structure/prop/vehicle/truck/truckcargo,
-/turf/open/floor/plating/ground/concrete,
-/area/magmoor/civilian/jani)
 "qfD" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -29454,6 +29407,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/magmoor/engi/atmos)
+"uKx" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/magmoor/landing)
 "uKO" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -35397,7 +35354,7 @@ rxl
 rxl
 rxl
 rxl
-ccP
+efw
 efw
 rxl
 rxl
@@ -36323,7 +36280,7 @@ rxl
 rxl
 rxl
 rxl
-cqk
+efw
 efw
 efw
 efw
@@ -37263,7 +37220,7 @@ efw
 lfn
 efw
 efw
-efw
+ehk
 pvY
 efw
 efw
@@ -37499,7 +37456,7 @@ sUk
 efw
 efw
 efw
-pWp
+efw
 rxl
 rxl
 rxl
@@ -37964,7 +37921,7 @@ evv
 sUk
 sUk
 efw
-ehk
+efw
 rxl
 rxl
 rxl
@@ -41594,7 +41551,7 @@ dwS
 dwS
 dwS
 dwS
-bFL
+dwS
 rxl
 rxl
 rxl
@@ -41821,7 +41778,7 @@ rxl
 rxl
 rxl
 rxl
-dqQ
+dwS
 dwS
 dwS
 dwS
@@ -42521,13 +42478,13 @@ iLH
 iLH
 iLH
 iLH
-lTG
+dwS
 dwS
 dwS
 dwS
 lAc
 dwS
-eAy
+dwS
 iLH
 rxl
 rxl
@@ -46005,7 +45962,7 @@ nlP
 nlP
 nlP
 nlP
-nlP
+uKx
 nlP
 kWj
 nlP
@@ -53636,7 +53593,7 @@ kKp
 hIT
 hIT
 hIT
-lEa
+osR
 jvl
 inQ
 rVY
@@ -62288,7 +62245,7 @@ oGk
 rtA
 sbF
 rtA
-qfw
+kKM
 atm
 sBq
 pqW
@@ -63785,7 +63742,7 @@ kcd
 kcd
 pPr
 ofS
-kcd
+iLE
 kcd
 kcd
 awr
@@ -69514,7 +69471,7 @@ kOZ
 uwv
 eFL
 uwv
-gLM
+azR
 kOZ
 jRL
 jRL
@@ -70547,7 +70504,7 @@ wYx
 fWe
 eQY
 rxl
-aVO
+kcd
 kcd
 kcd
 kcd
@@ -71244,9 +71201,9 @@ rxl
 rxl
 rxl
 rxl
-iLE
 kcd
-pHz
+kcd
+kcd
 rxl
 kcd
 kcd
@@ -72174,7 +72131,7 @@ rxl
 rxl
 xaR
 lwH
-fHt
+lwH
 rxl
 rxl
 rxl
@@ -73010,7 +72967,7 @@ oGr
 oGr
 oGr
 oGr
-dvL
+lKQ
 rxl
 rxl
 rxl
@@ -73442,7 +73399,7 @@ ogT
 ogT
 ogT
 ogT
-ogT
+cvS
 fpI
 ogT
 ogT
@@ -74410,7 +74367,7 @@ rxl
 rxl
 oGr
 oGr
-dRf
+oGr
 rxl
 rxl
 rxl
@@ -75340,7 +75297,7 @@ oGr
 rxl
 rxl
 rxl
-fCS
+oGr
 oGr
 oGr
 rxl
@@ -76506,7 +76463,7 @@ rxl
 rxl
 oGr
 lKQ
-gXO
+oGr
 rxl
 rxl
 rxl

@@ -1209,6 +1209,21 @@
 	bound_width = 64
 	resistance_flags = RESIST_ALL
 
+/obj/structure/prop/vehicle/truck/Initialize(mapload)
+	. = ..()
+	setDir(dir)
+
+/obj/structure/prop/vehicle/truck/setDir(newdir)
+	. = ..()
+	if(dir & (WEST|EAST))
+		bound_height = 32
+		bound_width = 64
+		pixel_x = 0
+	else
+		bound_height = 64
+		bound_width = 32
+		pixel_x = -16
+
 /obj/structure/prop/vehicle/truck/destructible
 	max_integrity = 150
 	resistance_flags = XENO_DAMAGEABLE

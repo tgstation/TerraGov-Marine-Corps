@@ -4654,7 +4654,7 @@
 	pixel_y = 0
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = "or2privacyshutter";
+	id = "or1privacyshutter";
 	name = "\improper Privacy Shutters"
 	},
 /obj/structure/window/framed/mainship/white,
@@ -13623,7 +13623,7 @@
 "qMJ" = (
 /obj/machinery/door/poddoor/shutters/opened/medbay,
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = "or2privacyshutter";
+	id = "or1privacyshutter";
 	name = "\improper Privacy Shutters"
 	},
 /obj/structure/window/framed/mainship/white,
