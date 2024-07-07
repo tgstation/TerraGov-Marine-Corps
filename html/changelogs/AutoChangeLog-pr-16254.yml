@@ -1,5 +1,0 @@
-author: "Wisemonster"
-delete-after: True
-changes:
-  - rscadd: "Added the SOM tank and it's guns/ammo to marine Valhalla"
-  - rscadd: "Added a mech computer to the Valhalla vehicle area."

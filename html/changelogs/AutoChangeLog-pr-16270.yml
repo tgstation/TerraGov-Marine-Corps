@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: True
-changes:
-  - code_imp: "Added some sanity checks to upgrading and evoing at full upgrade"

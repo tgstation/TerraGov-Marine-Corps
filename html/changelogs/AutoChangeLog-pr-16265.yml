@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Fixes an incorrect icon state for coilgun ammo in the storage rack"
-  - bugfix: "Fixes a bug with tank MLRS ammo"
