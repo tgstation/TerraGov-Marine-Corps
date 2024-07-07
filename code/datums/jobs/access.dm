@@ -311,6 +311,12 @@
 			. = size ? "LtCol" : "Lieutenant Colonel"
 		if("MO6")
 			. = size ? "Col" : "Colonel"
+		if("MO7")
+			. = size ? "BGen" : "Brigadier General"
+		if("MO8")
+			. = size ? "MajGen" : "Major General"
+		if("MO9")
+			. = size ? "LtGen" : "Lieutenant General"
 		if("M10")
 			. = size ? "Gen" : "General"
 		if("UPP1")
