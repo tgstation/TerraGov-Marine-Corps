@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Updated how HvH Deploy points function to avoid tanks clipping into walls"
