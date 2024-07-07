@@ -440,6 +440,7 @@
 	id = "spacefreeze_light"
 
 /datum/status_effect/spacefreeze/light/tick()
+	owner.fire_stacks = max(owner.fire_stacks - 6, 0)
 	if(owner.stat == DEAD)
 		return
 	owner.adjustFireLoss(10)
