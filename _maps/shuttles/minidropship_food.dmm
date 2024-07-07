@@ -118,7 +118,7 @@
 	},
 /area/shuttle/dropship/mini)
 "D" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/computer/camera_advanced/shuttle_docker/flyable,
 /obj/machinery/camera/autoname/mainship/dropship_two{
 	dir = 4
 	},

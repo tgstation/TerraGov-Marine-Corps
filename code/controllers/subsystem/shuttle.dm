@@ -19,7 +19,6 @@ SUBSYSTEM_DEF(shuttle)
 
 	var/list/escape_pods = list()
 	var/list/ert_shuttles = list()
-	var/list/dropships = list()
 	var/obj/docking_port/mobile/crashmode/canterbury = null
 
 	var/list/orderhistory = list()
@@ -460,8 +459,6 @@ SUBSYSTEM_DEF(shuttle)
 	// plugging the existing shuttles old values in works fine.
 	preview_shuttle.timer = timer
 	preview_shuttle.mode = mode
-
-	preview_shuttle.register()
 
 	// TODO indicate to the user that success happened, rather than just
 	// blanking the modification tab

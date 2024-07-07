@@ -90,7 +90,7 @@
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/dropship/mini)
 "J" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/computer/camera_advanced/shuttle_docker/flyable,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/dropship/mini)
 "P" = (

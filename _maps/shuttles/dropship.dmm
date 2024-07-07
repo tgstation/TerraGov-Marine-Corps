@@ -80,7 +80,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/test,
+/obj/machinery/computer/camera_advanced/shuttle_docker/flyable/dropship,
 /turf/open/floor/iron/textured{
 	color = "#555555"
 	},

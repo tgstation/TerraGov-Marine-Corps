@@ -49,7 +49,7 @@
 	notify_ai(src, "<b> Electronic corruption detected at [A]! Controls overridden! </b>" , source = lockedship, action = NOTIFY_AI_ALERT, notify_volume = 15)
 
 ///Receive notifications about the tad control equipment being destroyed
-/mob/living/silicon/ai/proc/receive_tad_warning(datum/source, obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ruinedtad)
+/mob/living/silicon/ai/proc/receive_tad_warning(datum/source, obj/machinery/computer/camera_advanced/shuttle_docker/flyable/ruinedtad)
 	SIGNAL_HANDLER
 	to_chat(src, span_notice("Telemetry from our mini dropship reports that the controls have become nonfunctional!"))
 	notify_ai(src, "<b> Telemetry from our mini dropship reports that the controls have become nonfunctional! </b>", ai_sound = 'sound/voice/alien/4_xeno_roars.ogg', source = ruinedtad, action = NOTIFY_AI_ALERT, notify_volume = 15)

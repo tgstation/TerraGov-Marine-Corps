@@ -2109,6 +2109,7 @@
 #include "code\modules\shuttle\shuttle_console.dm"
 #include "code\modules\shuttle\shuttle_mapping_assets.dm"
 #include "code\modules\shuttle\shuttle_rotate.dm"
+#include "code\modules\shuttle\shuttle_summoning.dm"
 #include "code\modules\shuttle\gamemodes\crash.dm"
 #include "code\modules\surgery\amputation.dm"
 #include "code\modules\surgery\bones.dm"

@@ -420,6 +420,7 @@
 
 /obj/docking_port/mobile/Initialize(mapload)
 	. = ..()
+	register()
 
 	if(!id)
 		id = "[length(SSshuttle.mobile)]"

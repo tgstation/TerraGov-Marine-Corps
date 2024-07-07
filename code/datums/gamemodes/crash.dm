@@ -183,8 +183,8 @@
 	if(!num_humans) // no humans left on planet to try and restart it.
 		addtimer(VARSET_CALLBACK(src, marines_evac, CRASH_EVAC_COMPLETED), 10 SECONDS)
 
-/datum/game_mode/infestation/crash/can_summon_dropship(mob/user)
-	to_chat(src, span_warning("This power doesn't work in this gamemode."))
+/datum/game_mode/infestation/crash/summon_dropship(mob/user)
+	user.balloon_alert("Disabled in this mode")
 	return FALSE
 
 /datum/game_mode/infestation/crash/proc/balance_scales()

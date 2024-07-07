@@ -17,7 +17,7 @@
 	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
 	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/hijack,
+		/mob/living/carbon/xenomorph/proc/summon_dropship,
 	)
 
 /mob/living/carbon/xenomorph/king/Initialize(mapload)

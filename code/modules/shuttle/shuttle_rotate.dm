@@ -91,6 +91,6 @@ If ever any of these procs are useful for non-shuttles, rename it to proc/rotate
 	params = ROTATE_DIR	//Do not rotate offsets, light fixtures already handle them when changing direction
 	return ..()
 
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/shuttleRotate(rotation, params)
+/obj/machinery/computer/camera_advanced/shuttle_docker/flyable/shuttleRotate(rotation, params)
 	params = ROTATE_DIR
 	return ..()

@@ -41,6 +41,8 @@
 	var/jammed = FALSE
 	/// If the user wants to see with night vision on
 	var/nvg_vision_mode = FALSE
+	///What ceiling tier this shuttle is blocked by
+	var/max_ceiling_tier = CEILING_METAL
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Initialize(mapload)
 	. = ..()
@@ -58,6 +60,9 @@
 		if(jumpto_ports[S.id])
 			z_lock |= S.z
 	whitelist_turfs = typecacheof(whitelist_turfs)
+	assign_shuttle()
+	if(shuttle_port)
+		shuttle_port.shuttle_computer = src
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/Destroy()
 	if(my_port?.get_docked())
@@ -83,6 +88,10 @@
 		return
 	..()
 
+///Assigns the shuttle_port to the shuttle that matches this console's shuttleId
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/assign_shuttle()
+	shuttle_port = SSshuttle.getShuttle(shuttleId)
+
 ///Change the fly state of the shuttle, called when a new shuttle port is reached
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/shuttle_arrived()
 	return
@@ -102,7 +111,7 @@
 		actions += place_action
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/CreateEye()
-	shuttle_port = SSshuttle.getShuttle(shuttleId)
+	assign_shuttle()
 	if(QDELETED(shuttle_port))
 		shuttle_port = null
 		return
@@ -181,25 +190,7 @@
 				to_chat(current_user, span_warning("Unknown object detected in landing zone. Please designate another location."))
 		return
 
-	/// Create one use port that deleted after fly off, to not lose information that is needed to properly fly off.
-	if(my_port?.get_docked())
-		my_port.unregister()
-		my_port.delete_after = TRUE
-		my_port.id = null
-		my_port.name = "Old [my_port.name]"
-		my_port = null
-
-	if(!my_port)
-		my_port = new()
-		my_port.unregister()
-		my_port.name = shuttlePortName
-		my_port.id = shuttlePortId
-		my_port.height = shuttle_port.height
-		my_port.width = shuttle_port.width
-		my_port.dheight = shuttle_port.dheight
-		my_port.dwidth = shuttle_port.dwidth
-		my_port.hidden = shuttle_port.hidden
-		my_port.register(TRUE)
+	create_landing_port()
 	my_port.setDir(the_eye.dir)
 	my_port.forceMove(locate(eyeobj.x - x_offset, eyeobj.y - y_offset, eyeobj.z))
 
@@ -227,6 +218,27 @@
 	if(!designating_target_loc || !current_user || (eyeobj.loc != designating_target_loc) || (machine_stat & (NOPOWER|BROKEN)) )
 		return FALSE
 	return TRUE
+
+///Create a disposable port that is deleted after taking off; used for emergency landings
+/obj/machinery/computer/camera_advanced/shuttle_docker/proc/create_landing_port()
+	if(my_port?.get_docked())
+		my_port.unregister()
+		my_port.delete_after = TRUE
+		my_port.id = null
+		my_port.name = "Old [my_port.name]"
+		my_port = null
+
+	if(!my_port)
+		my_port = new()
+		my_port.unregister()
+		my_port.name = shuttlePortName
+		my_port.id = shuttlePortId
+		my_port.height = shuttle_port.height
+		my_port.width = shuttle_port.width
+		my_port.dheight = shuttle_port.dheight
+		my_port.dwidth = shuttle_port.dwidth
+		my_port.hidden = shuttle_port.hidden
+		my_port.register(TRUE)
 
 /// Handles the rotation of the shuttle
 /obj/machinery/computer/camera_advanced/shuttle_docker/proc/rotateLandingSpot()
@@ -300,7 +312,7 @@
 	if(!T || T.x == 1 || T.y == 1 || T.x == world.maxx - 1 || T.y == world.maxy - 1)
 		return SHUTTLE_DOCKER_BLOCKED
 	var/area/turf_area = get_area(T)
-	if(turf_area.ceiling >= CEILING_METAL)
+	if(turf_area.ceiling >= max_ceiling_tier)
 		return SHUTTLE_DOCKER_BLOCKED
 	// If it's one of our shuttle areas assume it's ok to be there
 	if(shuttle_port.shuttle_areas[T.loc])

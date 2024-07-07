@@ -6,13 +6,35 @@
 		/datum/job/terragov/squad/engineer = 10,
 	)
 	/// If we are shipside or groundside
-	var/round_stage = INFESTATION_MARINE_DEPLOYMENT
+	var/round_stage = INFESTATION_PRE_GAME
 	/// Timer used to calculate how long till the hive collapse due to no ruler
 	var/orphan_hive_timer
 	/// Time between two bioscan
 	var/bioscan_interval = 15 MINUTES
 	/// State of the nuke
 	var/planet_nuked = INFESTATION_NUKE_NONE
+
+/datum/game_mode/infestation/New()
+	. = ..()
+	RegisterSignals(SSdcs, list(
+		COMSIG_GLOB_OPEN_SHUTTERS_EARLY,
+		COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,
+		COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,
+		COMSIG_GLOB_TADPOLE_LAUNCHED,
+		COMSIG_GLOB_DROPPOD_LANDED
+		),
+		PROC_REF(begin_game))
+
+///Sets the round_stage to INFESTATION_MARINE_DEPLOYMENT when the game starts
+/datum/game_mode/infestation/proc/begin_game()
+	round_stage = INFESTATION_MARINE_DEPLOYMENT
+	UnregisterSignal(SSdcs, list(
+		COMSIG_GLOB_OPEN_SHUTTERS_EARLY,
+		COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE,
+		COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND,
+		COMSIG_GLOB_TADPOLE_LAUNCHED,
+		COMSIG_GLOB_DROPPOD_LANDED
+		))
 
 /datum/game_mode/infestation/post_setup()
 	. = ..()

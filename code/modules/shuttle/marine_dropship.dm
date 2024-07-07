@@ -124,14 +124,6 @@
 	height = 13
 	width = 9
 
-#define HIJACK_STATE_NORMAL "hijack_state_normal"
-#define HIJACK_STATE_CALLED_DOWN "hijack_state_called_down"
-#define HIJACK_STATE_CRASHING "hijack_state_crashing"
-#define HIJACK_STATE_UNLOCKED "hijack_state_unlocked"
-
-#define LOCKDOWN_TIME 6 MINUTES
-#define GROUND_LOCKDOWN_TIME 3 MINUTES
-
 /obj/docking_port/mobile/marine_dropship
 	name = "marine dropship"
 	dir = SOUTH
@@ -159,10 +151,6 @@
 	var/static/first_landing = TRUE
 	///If this dropship can play the takeoff announcement
 	var/takeoff_alarm_locked = FALSE
-
-/obj/docking_port/mobile/marine_dropship/register()
-	. = ..()
-	SSshuttle.dropships += src
 
 /obj/docking_port/mobile/marine_dropship/enterTransit()
 	. = ..()
@@ -230,11 +218,6 @@
 	for(var/obj/machinery/door/airlock/multi_tile/mainship/dropshiprear/D AS in rear_airlocks)
 		D.aiControlDisabled = should_lock
 
-/obj/docking_port/mobile/marine_dropship/Destroy(force)
-	. = ..()
-	if(force)
-		SSshuttle.dropships -= src
-
 /obj/docking_port/mobile/marine_dropship/initiate_docking(obj/docking_port/stationary/new_dock, movement_direction, force=FALSE)
 	if(crashing)
 		force = TRUE
@@ -263,9 +246,10 @@
 	name = "Alamo"
 	id = SHUTTLE_DROPSHIP
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
-	callTime = 1 SECONDS
-	rechargeTime = 1 SECONDS
-	prearrivalTime = 1 SECONDS
+	//ignitionTime = 2 SECONDS
+	callTime = 10 SECONDS
+	rechargeTime = 10 SECONDS
+	prearrivalTime = 10 SECONDS
 
 /obj/docking_port/mobile/marine_dropship/two
 	name = "Normandy"
@@ -286,27 +270,24 @@
 		return
 	unlock_all()
 
-/obj/docking_port/mobile/marine_dropship/proc/reset_hijack()
-	if(hijack_state == HIJACK_STATE_CALLED_DOWN || hijack_state == HIJACK_STATE_UNLOCKED)
-		set_hijack_state(HIJACK_STATE_NORMAL)
-		silicon_lock_airlocks(FALSE)
-
-/obj/docking_port/mobile/marine_dropship/proc/summon_dropship_to(obj/docking_port/stationary/S)
-	if(hijack_state != HIJACK_STATE_NORMAL)
-		return
-	unlock_all()
-	do_start_hijack_timer()
-	switch(mode)
-		if(SHUTTLE_IDLE)
-			set_hijack_state(HIJACK_STATE_CALLED_DOWN)
-			request_to(S)
-		if(SHUTTLE_RECHARGING)
-			set_hijack_state(HIJACK_STATE_CALLED_DOWN)
-			playsound(loc,'sound/effects/alert.ogg', 50)
-			addtimer(CALLBACK(src, PROC_REF(request_to), S), 15 SECONDS)
-
-/obj/docking_port/mobile/marine_dropship/proc/do_start_hijack_timer(hijack_time = LOCKDOWN_TIME)
+/obj/docking_port/mobile/marine_dropship/proc/start_hijack_timer(hijack_time = 2 MINUTES)
 	addtimer(CALLBACK(src, PROC_REF(reset_hijack)), hijack_time)
+
+///Process for resetting a ship to it's normal non-hijacked state
+/obj/docking_port/mobile/marine_dropship/proc/reset_hijack()
+	if(hijack_state == HIJACK_STATE_CRASHING)
+		return
+
+	set_hijack_state(HIJACK_STATE_NORMAL)
+	silicon_lock_airlocks(FALSE)
+	priority_announce(
+		"Dropship control integrity restored.",
+		"Dropship Hijack Reset",
+		type = ANNOUNCEMENT_PRIORITY,
+		color_override = "green")
+	xeno_message("Our hive has lost control of the metal bird.")
+	if(shuttle_computer)
+		SStgui.close_uis(shuttle_computer)	//Close any open UIs on the console to make xenos have to re-corrupt
 
 /obj/docking_port/mobile/marine_dropship/proc/request_to(obj/docking_port/stationary/S)
 	set_idle()
@@ -325,10 +306,8 @@
 			light.turn_on()
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
-	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
+	if(hijack_state)
 		return "Control integrity compromised"
-	else if(hijack_state == HIJACK_STATE_UNLOCKED)
-		return "Remote control compromised"
 	return ..() + (timeleft(cycle_timer) ? (" Automatic cycle : [round(timeleft(cycle_timer) / 10 + 20, 1)] seconds before departure towards [previous.name]") : "")
 
 
@@ -337,145 +316,6 @@
 		to_chat(user, span_warning("Control integrity compromised!"))
 		return FALSE
 	return ..()
-
-
-/mob/living/carbon/xenomorph/proc/hijack()
-	set category = "Alien"
-	set name = "Hijack Dropship"
-	set desc = "Call down the dropship to the closest LZ or unlock the doors"
-
-	if(!SSticker?.mode)
-		to_chat(src, span_warning("This power doesn't work in this gamemode."))
-
-	if(!(hive.hive_flags & HIVE_CAN_HIJACK))
-		to_chat(src, span_warning("Our hive lacks the psychic prowess to hijack the bird."))
-		return
-
-	var/datum/game_mode/D = SSticker.mode
-
-	if(!D.can_summon_dropship(src))
-		return
-
-	to_chat(src, span_warning("You begin calling down the shuttle."))
-	if(!do_after(src, 80, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
-		to_chat(src, span_warning("You stop."))
-		return
-
-	if(!D.can_summon_dropship(src))
-		return
-
-	D.announce_bioscans()
-
-	var/obj/docking_port/stationary/port = D.summon_dropship(src)
-	if(!port)
-		to_chat(src, span_warning("Something went wrong."))
-		return
-	message_admins("[ADMIN_TPMONTY(src)] has summoned the dropship")
-	log_admin("[key_name(src)] has summoned the dropship")
-	hive?.xeno_message("[src] has summoned down the metal bird to [port], gather to her now!")
-	priority_announce("Unknown external interference with dropship control. Shutting down autopilot.", "Critical Dropship Alert", type = ANNOUNCEMENT_PRIORITY, color_override = "red")
-
-
-#define ALIVE_HUMANS_FOR_CALLDOWN 0.1
-
-/datum/game_mode/proc/can_summon_dropship(mob/user)
-	if(user.do_actions)
-		user.balloon_alert(user, span_warning("Busy"))
-		return FALSE
-	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
-		to_chat(user, span_warning("It's too early to call it. We must wait [DisplayTimeText(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK - world.time, 1)]."))
-		return FALSE
-	if(!is_ground_level(user.z))
-		to_chat(user, span_warning("We can't call the bird from here!"))
-		return FALSE
-	var/obj/docking_port/mobile/marine_dropship/D
-	for(var/k in SSshuttle.dropships)
-		var/obj/docking_port/mobile/M = k
-		if(M.control_flags & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
-			D = M
-	if(is_ground_level(D.z))
-		var/locked_sides = 0
-		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.left_airlocks)
-			if(!DH.locked)
-				continue
-			locked_sides++
-			break
-		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.right_airlocks)
-			if(!DH.locked)
-				continue
-			locked_sides++
-			break
-		for(var/obj/machinery/door/airlock/dropship_hatch/DH AS in D.rear_airlocks)
-			if(!DH.locked)
-				continue
-			locked_sides++
-			break
-		if(!locked_sides)
-			to_chat(user, span_warning("The bird is already on the ground, open and vulnerable."))
-			return FALSE
-		if(locked_sides < 3 && !isdropshiparea(get_area(user)))
-			to_chat(user, span_warning("At least one side is still unlocked!"))
-			return FALSE
-		to_chat(user, span_xenodanger("We crack open the metal bird's shell."))
-		if(D.hijack_state != HIJACK_STATE_NORMAL)
-			return FALSE
-		to_chat(user, span_warning("We begin overriding the shuttle lockdown. This will take a while..."))
-		if(!do_after(user, 30 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
-			to_chat(user, span_warning("We cease overriding the shuttle lockdown."))
-			return FALSE
-		if(!is_ground_level(D.z))
-			to_chat(user, span_warning("The bird has left meanwhile, try again."))
-			return FALSE
-		D.unlock_all()
-		if(D.mode != SHUTTLE_IGNITING)
-			D.set_hijack_state(HIJACK_STATE_UNLOCKED)
-			D.do_start_hijack_timer(GROUND_LOCKDOWN_TIME)
-			to_chat(user, span_warning("We were unable to prevent the bird from flying as it is already taking off."))
-		D.silicon_lock_airlocks(TRUE)
-		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
-		playsound(user, SFX_ALIEN_ROAR, 50)
-		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control.", "Dropship Lock Alert", type = ANNOUNCEMENT_PRIORITY, color_override = "red")
-		return FALSE
-	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
-		to_chat(user, span_warning("The bird's mind is currently active. We need to wait until it's more vulnerable..."))
-		return FALSE
-	var/humans_on_ground = 0
-	for(var/i in SSmapping.levels_by_trait(ZTRAIT_GROUND))
-		for(var/m in GLOB.humans_by_zlevel["[i]"])
-			var/mob/living/carbon/human/H = m
-			if(isnestedhost(H))
-				continue
-			if(H.faction == FACTION_XENO)
-				continue
-			humans_on_ground++
-	if(length(GLOB.alive_human_list) && ((humans_on_ground / length(GLOB.alive_human_list)) > ALIVE_HUMANS_FOR_CALLDOWN))
-		to_chat(user, span_warning("There's too many tallhosts still on the ground. They interfere with our psychic field. We must dispatch them before we are able to do this."))
-		return FALSE
-	return TRUE
-
-// summon dropship to closest lz to A
-/datum/game_mode/proc/summon_dropship(atom/A)
-	var/list/lzs = list()
-	for(var/i in SSshuttle.stationary)
-		var/obj/docking_port/stationary/S = i
-		if(S.z != A.z)
-			continue
-		if(S.id == "lz1" || S.id == "lz2")
-			lzs[S] = get_dist(S, A)
-	if(!length(lzs))
-		stack_trace("couldn't find any lzs to call down the dropship to")
-		return FALSE
-	var/obj/docking_port/stationary/closest = lzs[1]
-	for(var/j in lzs)
-		if(lzs[j] < lzs[closest])
-			closest = j
-	var/obj/docking_port/mobile/marine_dropship/D
-	for(var/k in SSshuttle.dropships)
-		var/obj/docking_port/mobile/M = k
-		if(M.control_flags & SHUTTLE_MARINE_PRIMARY_DROPSHIP)
-			D = M
-	D.summon_dropship_to(closest)
-	return closest
 
 // ************************************************	//
 //													//
@@ -496,18 +336,13 @@
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode //Minor QOL, any xeno can check the console after a leader hijacks
 	if(!(xeno_attacker.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT) && (infestation_mode.round_stage != INFESTATION_MARINE_CRASHING))
 		return
-	#ifndef TESTING
-	if(SSticker.round_start_time + SHUTTLE_HIJACK_LOCK > world.time)
-		to_chat(xeno_attacker, span_xenowarning("It's too early to do this!"))
-		return
-	#endif
 	var/obj/docking_port/mobile/marine_dropship/shuttle = SSshuttle.getShuttle(shuttleId)
 	if(shuttle.hijack_state != HIJACK_STATE_CALLED_DOWN && shuttle.hijack_state != HIJACK_STATE_CRASHING) //Process of corrupting the controls
 		to_chat(xeno_attacker, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flying."))
 		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_DROPSHIP_CONTROLS_CORRUPTED, src)
 		shuttle.set_idle()
 		shuttle.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
-		shuttle.do_start_hijack_timer()
+		shuttle.start_hijack_timer()
 		shuttle.unlock_all()
 	interact(xeno_attacker) //Open the UI
 

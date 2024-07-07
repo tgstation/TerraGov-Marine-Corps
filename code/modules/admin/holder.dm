@@ -411,7 +411,6 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 	/datum/admins/proc/change_security_level,
 	/datum/admins/proc/edit_appearance,
 	/datum/admins/proc/offer,
-	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/open_shuttlepanel,
 	/datum/admins/proc/xeno_panel,
 	/datum/admins/proc/view_faxes,

@@ -144,7 +144,7 @@
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/test,
+/obj/machinery/computer/camera_advanced/shuttle_docker/flyable/dropship,
 /turf/open/floor/iron/smooth_large,
 /area/shuttle/dropship/alamo)
 "AE" = (

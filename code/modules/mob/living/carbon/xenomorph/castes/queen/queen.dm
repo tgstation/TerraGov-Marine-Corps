@@ -19,7 +19,7 @@
 
 	var/breathing_counter = 0
 	inherent_verbs = list(
-		/mob/living/carbon/xenomorph/proc/hijack,
+		/mob/living/carbon/xenomorph/proc/summon_dropship,
 	)
 
 // ***************************************

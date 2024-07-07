@@ -94,7 +94,7 @@
 /turf/open/floor/iron/smooth,
 /area/shuttle/dropship/alamo)
 "nF" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/test,
+/obj/machinery/computer/camera_advanced/shuttle_docker/flyable/dropship,
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},

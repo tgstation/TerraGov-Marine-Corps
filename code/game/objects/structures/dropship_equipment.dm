@@ -59,11 +59,12 @@
 	installed_equipment = loaded_equipment
 	loaded_equipment.ship_base = src
 
+	/* TO-DO: REMOVE THIS STUPID WAY TO LINK EQUIPMENT TO SHUTTLES
 	for(var/obj/docking_port/mobile/marine_dropship/S in SSshuttle.dropships)
 		if(S.id == ship_tag)
 			loaded_equipment.linked_shuttle = S
 			S.equipments += loaded_equipment
-			break
+			break*/
 
 	loaded_equipment.pixel_x = equipment_offset_x
 	loaded_equipment.pixel_y = equipment_offset_y

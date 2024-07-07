@@ -163,7 +163,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/dropship/mini)
 "G" = (
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
+/obj/machinery/computer/camera_advanced/shuttle_docker/flyable,
 /obj/machinery/camera/autoname/mainship/dropship_two,
 /obj/machinery/light{
 	dir = 4
