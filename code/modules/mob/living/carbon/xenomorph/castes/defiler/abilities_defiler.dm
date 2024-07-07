@@ -178,7 +178,7 @@
 	var/obj/effect/abstract/particle_holder/particle_holder
 
 /datum/action/ability/xeno_action/emit_neurogas/on_cooldown_finish()
-	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
+	playsound(owner.loc, 'sound/effects/alien/new_larva.ogg', 50, 0)
 	to_chat(owner, span_xenodanger("We feel our dorsal vents bristle with heated gas. We can emit Noxious Gas again."))
 	return ..()
 
@@ -295,7 +295,7 @@
 	)
 
 /datum/action/ability/activable/xeno/inject_egg_neurogas/on_cooldown_finish()
-	playsound(owner.loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
+	playsound(owner.loc, 'sound/effects/alien/new_larva.ogg', 50, 0)
 	to_chat(owner, span_xenodanger("We feel our stinger fill with toxins. We can inject an egg with gas again."))
 	return ..()
 
@@ -496,7 +496,7 @@
 
 /datum/action/ability/xeno_action/reagent_slash/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to infuse our spines with toxins again."))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
 // Toggles particles on or off, depending on the defined var.

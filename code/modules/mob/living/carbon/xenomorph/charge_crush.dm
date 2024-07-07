@@ -526,15 +526,14 @@
 	return PRECRUSH_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.
 
 
-/obj/structure/mineral_door/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
-	if(!anchored)
+/obj/structure/door/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
+	if(!anchored || !density)
 		return ..()
-	if(!open)
-		toggle_state(charger)
-	if(density)
+
+	attempt_to_open(charger, TRUE, TRUE, angle2dir(Get_Angle(src, charger)), TRUE)
+	if(!CHECK_BITFIELD(door_flags, DOOR_OPEN))
 		return PRECRUSH_STOPPED
-	charger.visible_message(span_danger("[charger] slams [src] open!"),
-	span_xenowarning("We slam [src] open!"))
+
 	return PRECRUSH_PLOWED
 
 

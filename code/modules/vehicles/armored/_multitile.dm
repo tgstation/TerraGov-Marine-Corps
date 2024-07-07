@@ -83,6 +83,7 @@
 	move_delay = 0.6 SECONDS
 	glide_size = 2.5
 	vis_range_mod = 4
+	faction = FACTION_TERRAGOV
 	ram_damage = 130
 
 /obj/vehicle/sealed/armored/multitile/campaign/Initialize(mapload)

@@ -388,6 +388,11 @@
 	. = ..()
 	UnregisterSignal(unequipper, COMSIG_CLICK_RIGHT)
 
+/obj/item/storage/backpack/marine/duffelbag/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
+	if(item_flags & IN_INVENTORY && loc.Adjacent(neighbor)) //Special check to ensure that worn duffels are adjacent
+		return TRUE
+	return ..()
+
 ///Allows non-wearers to access this inventory
 /obj/item/storage/backpack/marine/duffelbag/proc/on_rclick_duffel_wearer(datum/source, mob/clicker)
 	SIGNAL_HANDLER

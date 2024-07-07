@@ -116,16 +116,22 @@
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 
 /datum/game_mode/hvh/campaign/end_round_fluff()
-	to_chat(world, span_round_header("Campaign concluded"))
-	to_chat(world, span_round_header("|[round_finished]|"))
-
+	var/announcement_body = ""
 	switch(round_finished)
 		if(MODE_COMBAT_PATROL_SOM_MINOR)
-			to_chat(world, span_round_body("Brave SOM forces are reporting decisive victories against the imperialist TerraGov forces across the planet, forcing their disorganised and chaotic retreat. \
-			With the planet now liberated, the Sons of Mars welcome the people of Palmaria into the light of a new day, ready to help them into a better future as brothers."))
+			announcement_body = "Brave SOM forces are reporting decisive victories against the imperialist TerraGov forces across the planet, forcing their disorganised and chaotic retreat. \
+			With the planet now liberated, the Sons of Mars welcome the people of Palmaria into the light of a new day, ready to help them into a better future as brothers."
 		if(MODE_COMBAT_PATROL_MARINE_MINOR)
-			to_chat(world, span_round_body("TGMC forces have routed the terrorist SOM forces across the planet, destroying their strongholds and returning possession of stolen property to their legitimate corporate owners. \
-			With the SOM threat removed, TerraGov peacekeeping forces begin to move in to ensure a rapid return to law and order, restoring stability, safety, and a guarantee of Palmaria's economic development to the benefit of all citizens."))
+			announcement_body = "TGMC forces have routed the terrorist SOM forces across the planet, destroying their strongholds and returning possession of stolen property to their legitimate corporate owners. \
+			With the SOM threat removed, TerraGov peacekeeping forces begin to move in to ensure a rapid return to law and order, restoring stability, safety, and a guarantee of Palmaria's economic development to the benefit of all citizens."
+
+	send_ooc_announcement(
+		sender_override = "Round Concluded",
+		title = round_finished,
+		text = announcement_body,
+		play_sound = FALSE,
+		style = "game"
+	)
 
 	var/sound/som_track
 	var/sound/tgmc_track
@@ -369,8 +375,17 @@
 				ready_candidate?.client?.screen?.Cut()
 				qdel(ready_candidate)
 				return
+
+			var/mob/living/carbon/human/human_current
 			if(isobserver(candidate))
+				var/mob/dead/observer/observer_candidate = candidate
+				if(!isnull(observer_candidate.can_reenter_corpse))
+					human_current = observer_candidate.can_reenter_corpse.resolve()
 				qdel(candidate)
+			else if(ishuman(candidate))
+				human_current = candidate
+
+			human_current?.set_undefibbable(TRUE)
 
 
 ///Actually respawns the player, if still able

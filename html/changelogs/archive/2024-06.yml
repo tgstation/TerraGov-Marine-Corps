@@ -368,3 +368,56 @@
   - balance: Widow Primo now includes the sow ability
   - balance: The impact AoE damage of pyrogen's fireball will now inflict 2 stacks
       of melting fire on hit.
+2024-06-30:
+  Barnet2:
+  - balance: Disallows AI railgun to target FOB
+  Ldip999:
+  - bugfix: Command now can talk on custom squad radios
+  Lumipharon:
+  - bugfix: fixed tank desants being effected by razor, sticky and fire the vehicle
+      crosses
+  - bugfix: fixed some minor offset issues with lying on beds
+  - rscadd: Added some effects when a tank is destroyed
+  - bugfix: fixed an issue with turfs going dark in some cases
+  - code_imp: Fixed a lighting runtime when late loading z-levels
+  - balance: rebalanced C4 and Dev explosions now seriously damage tanks
+  - balance: Added AP and cannister shells to tank
+  - balance: Tank weapons are better at bypassing cover, especially at close range
+  - balance: Added a stronger HE round for HvH
+  - balance: Tank shells no longer target turf
+  - balance: Tank move delay reduced to 0.75 seconds from 0.9 seconds
+  - balance: Tank windup/failure to fire does not apply full CD any more
+  - balance: tank windup is not interrupted by movement
+  - code_imp: Cleaned up some directional burst projectile code
+  - admin: Added a campaign admin control panel
+  - bugfix: fixed a couple of bugs with bike mounted guns
+  - bugfix: After images are no longer mouse opaque
+  Naaanii:
+  - rscadd: Reqtorio can now produce 500 cigarettes.
+  Neocloudy:
+  - rscadd: Replaced neon announcement colors with less saturated ones
+  - rscadd: Helpful stuff, like using gauze or pills, has a green span in chat
+  - rscadd: Admin announcements play sound and look more obvious
+  - rscadd: Custom Information plays sound
+  - rscadd: New examine block style
+  - rscadd: Campaign missions and gamemodes use large red announcement blocks
+  RipGrayson:
+  - rscadd: Added a new map, LV759
+  - imageadd: Added a ton of urban icons done by zenith_zero
+  - imageadd: Added a number of new windows and frames, partially done by me.
+  XElectricX:
+  - rscadd: Good doors.
+  - rscdel: Bad doors.
+  - qol: Doors auto open when approached. They also auto close when exiting (only
+      on help intent). Can be instantly opened if on harm intent. Doors cannot be
+      closed if a person is on the tile, unless the door is not full-tile (but can
+      be forced to close if on harm intent).
+  - balance: Resin doors are faster and can trap marines. Non-resin doors can be used
+      to beat people to death.
+  - code_imp: Completely new door code that facilitates mapper and player creativity.
+  - refactor: More modular doors (non-airlocks) with an accompanying lock and key
+      system.
+  Xander3359:
+  - bugfix: fixed being unable to take pills out of a pill bottle in someones duffel
+  - code_imp: items in storage now check a flag IN_STORAGE instead of type checking
+  - qol: Hyposprays can inject their entire storage at once.

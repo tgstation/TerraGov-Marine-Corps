@@ -19,8 +19,14 @@
 	ADD_TRAIT(mounted_gun, TRAIT_NODROP, MOUNTED_TRAIT)
 	RegisterSignal(mounted_gun, COMSIG_ITEM_DROPPED, PROC_REF(on_weapon_drop))
 
+/obj/item/vehicle_module/mounted_gun/Destroy()
+	if(mounted_gun)
+		QDEL_NULL(mounted_gun)
+	return ..()
+
 /obj/item/vehicle_module/mounted_gun/on_unbuckle(datum/source, mob/living/unbuckled_mob, force = FALSE)
-	unbuckled_mob.dropItemToGround(mounted_gun, TRUE)
+	if(mounted_gun.loc == unbuckled_mob)
+		unbuckled_mob.dropItemToGround(mounted_gun, TRUE)
 	return ..()
 
 ///Handles the weapon being dropped. The only way this should happen is if they unbuckle, and this makes sure they can't just take the gun and run off with it.

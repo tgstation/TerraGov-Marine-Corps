@@ -1,0 +1,103 @@
+2024-07-01:
+  Apple-107:
+  - bugfix: doubled-up windows on Outrider Tadpole
+  Ldip999:
+  - bugfix: Fixed inability to create squads on Sulaco
+  - bugfix: Webmap fixed
+  Notamaniac:
+  - imageadd: TE Powerpacks now has an overlay that changes color depending on their
+      remanining charge
+2024-07-03:
+  Barnet2:
+  - balance: Boiler - Zoom reduced to about miniscope range (4 tiles)
+  - balance: Boiler - Opaque gas is back
+  - balance: Boiler - Boiler gas radius reduced from 4 to 3 tile radius
+  - balance: Boiler - Able to shoot within 5 tiles of yourself
+  Helg2:
+  - bugfix: fixed powerpacks worn icon states.
+  Ldip999:
+  - qol: Same as last rows in req export history now stack
+  - imageadd: Sprite for active radiopack
+  - code_imp: Modified radiopack code to initialize beacon with aditional parameters
+  Lumipharon:
+  - bugfix: 'Campaign: Respawning in campaign now DNR''s your body like it used to'
+  Notamaniac:
+  - bugfix: Fixed Strain Swapping not being instant and relying on evo timer
+  Wisemonster:
+  - rscadd: Added a surgery practice area to marine Valhalla.
+  - code_imp: Modified the marine spawner buttons in xeno Valhalla to be usable by
+      marines.
+  - balance: The research facility on LV-759 has been significantly damaged by the
+      xeno outbreak there, making it easier for the xenos to move around.
+  - balance: Removed most of the sandbags by the area just outside of the research
+      facility on LV-759
+  - balance: Removed some sandbags scattered around the streets of LV-759
+  - balance: Removed some more shutters at the road security checkpoints on LV-759
+  - balance: Signs, computers/machinery, and monitors on LV-759 have had their health
+      decreased from 500 to between 50-80, and can now be slashed.
+  - rscdel: Removed a pair of tactical binoculars from LV-759
+  - rscdel: Removed some platforms by east colony street and the pool on LV-759
+  blackdav123:
+  - rscadd: Engineering storage modules can now hold miner upgrades.
+2024-07-04:
+  Apple-107:
+  - bugfix: APC/Tank should now be able to get to Tadpole on Theseus and Arachne
+  Dragonfruits:
+  - imageadd: Replaced title screen 13 with updated remake
+  Joe13413:
+  - imageadd: Added visual clarity to windows on Kutjevo Refinery and Meridian Riptide
+  Ldip999:
+  - qol: Req export history no longer displays worthless items
+  - bugfix: Webmap fixed even if there are spaces in the map name
+  Runian:
+  - balance: Shrike and Hivemind's healing ability no longer cancels if target moves.
+  TiviPlus:
+  - code_imp: backend code now supports mob height
+2024-07-05:
+  Lumipharon:
+  - bugfix: fixed a flicker issue with windows when taking damage
+  - rscadd: 'Campaign: Replaced Mech War with Combined Arms'
+  - rscadd: Added vehicle deployment for vehicle in Campaign
+  - code_imp: Fixed an issue with wrong ordered args in transition_filters()
+  - bugfix: fixed some visual issues with shutters
+  tyeagg:
+  - balance: clf suicide vest detonates faster
+2024-07-06:
+  Ldip999:
+  - bugfix: Fixes custom squads being assigned tokens that were already in use by
+      non radio prefixes
+  Lumipharon:
+  - bugfix: fixed some issues with truck prop positioning and hitboxes
+  - code_imp: Cleaned up some LV prop code
+  - bugfix: Added a work around to avoid multitile bound issues related to z-level
+      expansion
+  Notamaniac:
+  - bugfix: Blank shotgun shells should no longer show up as an error
+  Wisemonster:
+  - bugfix: Fixed an issue with headsets and ASRS tablets in Valhalla
+  ivanmixo:
+  - rscdel: Deleted a dead var on the marine xalhalla spawner
+2024-07-07:
+  Ldip999:
+  - bugfix: Adds 3 missing squad telecoms to sulaco
+  - bugfix: Pillar of Spring medbay shutters 1 are now linked to it's proper button
+  - qol: Makes large orders easier to read
+  - bugfix: Fixes bug that can crash game on particularly large orders
+  - code_imp: Vastly optimized req request packets
+  - bugfix: Fixed AI double spawning
+  Lumipharon:
+  - bugfix: fixed a fueltank runtime
+  - bugfix: Fixes an incorrect icon state for coilgun ammo in the storage rack
+  - bugfix: Fixes a bug with tank MLRS ammo
+  - rscadd: Guns can be fired offhand with right click
+  - rscadd: Updated how HvH Deploy points function to avoid tanks clipping into walls
+  - rscadd: 'Campaign: Coilgun'
+  - code_imp: Cleaned up some baselight code
+  Notamaniac:
+  - code_imp: Added some sanity checks to upgrading and evoing at full upgrade
+  - balance: The area east of LZ2 has been converted into a nature reserve that you
+      can no longer pod into and get stuck in.
+  Wisemonster:
+  - rscadd: Added marine spawners to the firing range of Valhalla
+  - rscadd: Added the SOM tank and it's guns/ammo to marine Valhalla
+  - rscadd: Added a mech computer to the Valhalla vehicle area.
