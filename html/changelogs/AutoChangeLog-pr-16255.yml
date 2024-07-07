@@ -1,0 +1,4 @@
+author: "Ldip999"
+delete-after: True
+changes:
+  - bugfix: "Adds 3 missing squad telecoms to sulaco"
