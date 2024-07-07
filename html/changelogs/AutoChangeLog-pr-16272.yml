@@ -1,0 +1,4 @@
+author: "Ldip999"
+delete-after: True
+changes:
+  - bugfix: "Pillar of Spring medbay shutters 1 are now linked to it's proper button"
