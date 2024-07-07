@@ -174,7 +174,7 @@
 
 /obj/item/factory_refill/pizza_refill
 	name = "box of rounded metal plates (Pizza)"
-	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become "Pizzas", once finished."
+	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become 'Pizzas', once finished."
 	refill_type = /obj/item/factory_part/pizza
 
 /obj/item/factory_refill/plastique_refill
