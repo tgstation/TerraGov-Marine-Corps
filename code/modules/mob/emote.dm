@@ -58,7 +58,7 @@
 
 
 /datum/emote/custom/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)
-	message = params
+	message = user.say_emphasis(params)
 	return ..()
 
 

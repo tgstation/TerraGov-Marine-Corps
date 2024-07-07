@@ -50,7 +50,7 @@
 	if(!message)
 		return
 
-	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+	message = trim(copytext_char(say_emphasis(message), 1, MAX_MESSAGE_LEN))
 
 	// Italicize it
 	message = "<i>[message]</i>"
@@ -66,7 +66,7 @@
 	if(!message)
 		return
 
-	message = trim(copytext_char(sanitize(message), 1, MAX_MESSAGE_LEN))
+	message = trim(copytext_char(say_emphasis(message), 1, MAX_MESSAGE_LEN))
 
 	// Italicize it
 	message = "<i>[message]</i>"
