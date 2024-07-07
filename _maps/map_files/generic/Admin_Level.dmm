@@ -3195,6 +3195,9 @@
 /area/centcom/valhalla)
 "dXi" = (
 /obj/item/stack/sheet/metal/large_stack,
+/obj/effect/landmark/valhalla/marine_spawner_landmark{
+	where = "shootingrightclose"
+	},
 /turf/open/floor/plating/scorched,
 /area/centcom/valhalla)
 "dXm" = (
@@ -3537,6 +3540,13 @@
 /obj/effect/decal/cleanable/blood,
 /obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/plating,
+/area/centcom/valhalla)
+"eFc" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/button/valhalla/marine_spawner{
+	link = "marineshootingleftfar"
+	},
+/turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla)
 "eFg" = (
 /obj/machinery/air_alarm{
@@ -5770,6 +5780,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/gray,
 /area/centcom/valhalla)
+"hUs" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/button/valhalla/marine_button{
+	link = "xenofar1"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/centcom/valhalla)
 "hUt" = (
 /obj/structure/plasticflaps,
 /turf/open/floor/plating,
@@ -7027,6 +7044,10 @@
 	},
 /turf/open/floor/freezer,
 /area/centcom/valhalla)
+"jQz" = (
+/obj/machinery/computer/mech_builder,
+/turf/open/floor/plating,
+/area/centcom/valhalla)
 "jQD" = (
 /obj/machinery/atmospherics/components/unary/portables_connector/visible{
 	dir = 4
@@ -7726,6 +7747,13 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
+"kKq" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/button/valhalla/marine_spawner{
+	link = "marineshootingrightclose"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/centcom/valhalla)
 "kKv" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/structure/window{
@@ -8299,6 +8327,13 @@
 	dir = 6
 	},
 /area/centcom/valhalla)
+"lJA" = (
+/obj/effect/turf_decal/warning_stripes/thick,
+/obj/machinery/button/valhalla/marine_spawner{
+	link = "marineshootingrightfar"
+	},
+/turf/open/floor/mainship/stripesquare,
+/area/centcom/valhalla)
 "lKz" = (
 /obj/machinery/computer/secure_data{
 	dir = 8
@@ -8621,6 +8656,12 @@
 	},
 /obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/dark,
+/area/centcom/valhalla)
+"miD" = (
+/obj/effect/landmark/valhalla/marine_spawner_landmark{
+	where = "shootingrightfar"
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/centcom/valhalla)
 "mjv" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -13965,6 +14006,13 @@
 	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
+"usv" = (
+/obj/effect/turf_decal/sandedge/corner2,
+/obj/effect/landmark/valhalla/marine_spawner_landmark{
+	where = "shootingleftfar"
+	},
+/turf/open/floor/plating,
+/area/centcom/valhalla)
 "usY" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -14409,6 +14457,9 @@
 "veZ" = (
 /obj/item/explosive/grenade/flare/on,
 /obj/effect/turf_decal/sandedge,
+/obj/effect/landmark/valhalla/marine_spawner_landmark{
+	where = "shootingleftclose"
+	},
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "vgc" = (
@@ -16603,11 +16654,11 @@
 /turf/closed/wall/r_wall/unmeltable,
 /area/centcom/valhalla)
 "xVT" = (
-/obj/machinery/button/valhalla/marine_button{
-	link = "xenofar1"
-	},
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
+	},
+/obj/machinery/button/valhalla/marine_spawner{
+	link = "marineshootingleftclose"
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla)
@@ -21029,7 +21080,7 @@ ivs
 ivs
 mvZ
 boq
-boq
+jQz
 boq
 nUd
 aMq
@@ -24878,7 +24929,7 @@ jvi
 boq
 boq
 qhT
-hdk
+hUs
 jcx
 ivs
 cHJ
@@ -25392,7 +25443,7 @@ boq
 dAJ
 boq
 mGD
-hdk
+jvR
 jcx
 kqf
 cHJ
@@ -25642,14 +25693,14 @@ aMq
 aMq
 dlQ
 bbO
-jvi
+usv
 fdy
 boq
 boq
 xpm
 boq
 ghB
-jvR
+eFc
 rht
 iVt
 wqU
@@ -30268,14 +30319,14 @@ aRf
 awi
 aMq
 aMq
-aMq
+miD
 aMq
 aMq
 aMq
 bbR
 boq
 geA
-ade
+lJA
 hDu
 ioO
 ivu
@@ -30532,7 +30583,7 @@ bPK
 eDF
 fdy
 ghq
-hdk
+ade
 cto
 ipO
 jcI
@@ -30789,7 +30840,7 @@ boq
 eFA
 boq
 ghq
-hdk
+dur
 cKm
 ivi
 jdm
@@ -31046,7 +31097,7 @@ dXi
 eFA
 boq
 ghB
-dur
+kKq
 hGL
 ivs
 jdS

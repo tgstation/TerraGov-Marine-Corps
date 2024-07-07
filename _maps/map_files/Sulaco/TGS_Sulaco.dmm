@@ -14115,6 +14115,10 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
+"hwZ" = (
+/obj/machinery/telecomms/server/presets/delta,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "hxe" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -19412,6 +19416,10 @@
 /obj/structure/prop/mainship/name_stencil/G,
 /turf/open/floor/mainship_hull/gray,
 /area/space)
+"nTx" = (
+/obj/machinery/telecomms/server/presets/charlie,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "nTZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/red/corner{
@@ -27159,6 +27167,10 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/prison,
 /area/sulaco/hallway/lower_foreship)
+"xJu" = (
+/obj/machinery/telecomms/server/presets/bravo,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "xKc" = (
 /obj/machinery/air_alarm,
 /turf/open/floor/prison,
@@ -68861,7 +68873,7 @@ aYM
 bdx
 baz
 qoU
-baz
+xJu
 bbs
 baz
 aZH
@@ -69118,7 +69130,7 @@ aYM
 jFN
 baz
 bcF
-baz
+nTx
 bbt
 ulO
 aZI
@@ -69374,7 +69386,7 @@ atn
 aYM
 baz
 baz
-baz
+hwZ
 baz
 baz
 vVS

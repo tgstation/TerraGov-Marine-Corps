@@ -4768,6 +4768,7 @@
 /area/lv759/indoors/colonial_marshals/prisoners_recreation_area)
 "aQG" = (
 /obj/docking_port/stationary/marine_dropship/lz2,
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/prison/darkred/full,
 /area/lv759/outdoors/landing_zone_1)
 "aQH" = (
@@ -33560,6 +33561,10 @@
 	},
 /turf/open/floor/redfour,
 /area/lv759/indoors/nt_research_complex/weaponresearchlabtesting)
+"fLX" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating,
+/area/lv759/outdoors/landing_zone_2)
 "fLY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -37395,6 +37400,10 @@
 /obj/effect/spawner/random/misc/structure/girder,
 /turf/open/floor/plating,
 /area/lv759/indoors/apartment/northapartments)
+"gsB" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/kutjevo/colors/orange,
+/area/lv759/indoors/spaceport/docking_bay_1)
 "gsF" = (
 /obj/structure/bed/urban/hospital/hospitaldivider{
 	dir = 1
@@ -65287,6 +65296,14 @@
 	},
 /turf/open/floor/urban/tile/tilewhite,
 /area/lv759/indoors/nt_research_complex/mainlabs)
+"liF" = (
+/obj/item/ammo_casing/bullet,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	color = "#a6aeab"
+	},
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/prison,
+/area/lv759/indoors/nt_research_complex_entrance)
 "liG" = (
 /obj/effect/urban/decal/road/lines4,
 /obj/effect/urban/decal/road/road_stop/three{
@@ -146484,7 +146501,7 @@ iKJ
 wOV
 aek
 opQ
-onz
+gsB
 xvr
 ylY
 vKj
@@ -147974,7 +147991,7 @@ dlL
 nsF
 sRS
 pPs
-tzk
+liF
 uAr
 tzk
 caY
@@ -185156,7 +185173,7 @@ dog
 dog
 dog
 dog
-dog
+fLX
 plt
 plt
 dog

@@ -62,3 +62,42 @@
   - bugfix: fixed some visual issues with shutters
   tyeagg:
   - balance: clf suicide vest detonates faster
+2024-07-06:
+  Ldip999:
+  - bugfix: Fixes custom squads being assigned tokens that were already in use by
+      non radio prefixes
+  Lumipharon:
+  - bugfix: fixed some issues with truck prop positioning and hitboxes
+  - code_imp: Cleaned up some LV prop code
+  - bugfix: Added a work around to avoid multitile bound issues related to z-level
+      expansion
+  Notamaniac:
+  - bugfix: Blank shotgun shells should no longer show up as an error
+  Wisemonster:
+  - bugfix: Fixed an issue with headsets and ASRS tablets in Valhalla
+  ivanmixo:
+  - rscdel: Deleted a dead var on the marine xalhalla spawner
+2024-07-07:
+  Ldip999:
+  - bugfix: Adds 3 missing squad telecoms to sulaco
+  - bugfix: Pillar of Spring medbay shutters 1 are now linked to it's proper button
+  - qol: Makes large orders easier to read
+  - bugfix: Fixes bug that can crash game on particularly large orders
+  - code_imp: Vastly optimized req request packets
+  - bugfix: Fixed AI double spawning
+  Lumipharon:
+  - bugfix: fixed a fueltank runtime
+  - bugfix: Fixes an incorrect icon state for coilgun ammo in the storage rack
+  - bugfix: Fixes a bug with tank MLRS ammo
+  - rscadd: Guns can be fired offhand with right click
+  - rscadd: Updated how HvH Deploy points function to avoid tanks clipping into walls
+  - rscadd: 'Campaign: Coilgun'
+  - code_imp: Cleaned up some baselight code
+  Notamaniac:
+  - code_imp: Added some sanity checks to upgrading and evoing at full upgrade
+  - balance: The area east of LZ2 has been converted into a nature reserve that you
+      can no longer pod into and get stuck in.
+  Wisemonster:
+  - rscadd: Added marine spawners to the firing range of Valhalla
+  - rscadd: Added the SOM tank and it's guns/ammo to marine Valhalla
+  - rscadd: Added a mech computer to the Valhalla vehicle area.

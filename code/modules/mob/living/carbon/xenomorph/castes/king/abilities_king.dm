@@ -375,7 +375,7 @@
 			particles_type = /particles/zero_form
 	particles = new(owner, particles_type)
 	beam = owner.loc.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
-	playsound(owner, 'sound/effects/king_beam_charge.ogg', 80)
+	playsound(owner, 'sound/effects/alien/king_beam_charge.ogg', 80)
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 

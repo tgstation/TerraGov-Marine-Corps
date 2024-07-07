@@ -988,13 +988,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/cargo/storage)
-"ed" = (
-/obj/structure/monorail{
-	dir = 4
-	},
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/tgmc_raiding/underground/tunnel/west)
 "ef" = (
 /obj/machinery/light{
 	dir = 8
@@ -3300,6 +3293,7 @@
 /obj/structure/monorail{
 	dir = 5
 	},
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
 "nn" = (
@@ -4964,10 +4958,6 @@
 /obj/item/attachable/motiondetector,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/prep)
-"ub" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "uc" = (
 /obj/machinery/griddle,
 /turf/open/floor/prison,
@@ -5317,10 +5307,6 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway/east)
-"vu" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "vv" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint/free_access,
 /turf/open/floor/plating,
@@ -5590,13 +5576,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/firing_range)
-"wy" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/obj/structure/desertdam/decals/road{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "wz" = (
 /obj/structure/window/framed/chigusa,
 /turf/open/floor/mainship/floor,
@@ -5862,11 +5841,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/south)
-"xD" = (
-/obj/structure/monorail,
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/tgmc_raiding/underground/tunnel/west)
 "xE" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -5989,10 +5963,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/tunnel/west)
-"ya" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "yb" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/tgmc_raiding/underground/maintenance/security)
@@ -6315,10 +6285,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/general/firing_range)
-"zl" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "zm" = (
 /obj/machinery/door/airlock/mainship/engineering/glass{
 	dir = 1
@@ -7108,10 +7074,6 @@
 /obj/item/clothing/glasses/hud/health,
 /turf/open/floor/mainship/sterile/dark,
 /area/campaign/tgmc_raiding/underground/medbay)
-"CB" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "CC" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/mainship/blue{
@@ -7476,10 +7438,6 @@
 /obj/structure/bed/chair/sofa/corsat/verticaltop,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/tunnel/station)
-"Eb" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "Ed" = (
 /obj/structure/cargo_container/hd,
 /turf/open/floor/plating/ground/concrete,
@@ -8558,6 +8516,11 @@
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/prison/marked,
 /area/campaign/tgmc_raiding/colony/indoor/supermarket)
+"Ix" = (
+/obj/structure/rock/basalt/pile/alt,
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "Iy" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/blue{
@@ -8772,10 +8735,6 @@
 	},
 /turf/open/floor/tile/showroom,
 /area/campaign/tgmc_raiding/underground/living/bathroom/south)
-"Jo" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/tgmc_raiding/underground/tunnel/west)
 "Jp" = (
 /obj/machinery/light{
 	dir = 1
@@ -9113,6 +9072,11 @@
 	},
 /turf/open/floor/mainship/blue,
 /area/campaign/tgmc_raiding/underground/command)
+"KC" = (
+/obj/structure/flora/desert/grass,
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating/ground/mars/random/sand,
+/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "KD" = (
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/colony/indoor/housing/southeast)
@@ -9551,10 +9515,6 @@
 	dir = 1
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
-"Mo" = (
-/obj/effect/landmark/patrol_point/som/som_11,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "Mp" = (
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/floor,
@@ -10626,10 +10586,6 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/colony/indoor/storage)
-"QN" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/tgmc_raiding/underground/tunnel/west)
 "QO" = (
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/mainship/blue{
@@ -11326,10 +11282,6 @@
 	dir = 8
 	},
 /area/campaign/tgmc_raiding/underground/general/hallway/west)
-"TA" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "TB" = (
 /obj/structure/rack,
 /turf/open/floor/prison,
@@ -12201,10 +12153,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/offices)
-"Xe" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/campaign/tgmc_raiding/colony/outdoor/southwest)
 "Xf" = (
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
@@ -12763,10 +12711,6 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/cargo)
-"Zv" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/campaign/tgmc_raiding/colony/outdoor/southeast)
 "Zw" = (
 /obj/structure/cable,
 /turf/open/floor/prison/darkyellow/full,
@@ -13209,7 +13153,7 @@ MU
 MU
 tg
 ws
-zl
+tg
 vl
 tg
 tc
@@ -13511,7 +13455,7 @@ tg
 tg
 tg
 tg
-TA
+tg
 tg
 tg
 wl
@@ -13664,10 +13608,10 @@ vl
 tg
 tg
 vl
-vl
+KC
 tg
 tg
-vu
+tg
 tc
 "}
 (6,1,1) = {"
@@ -13969,7 +13913,7 @@ tg
 tg
 tg
 tg
-Xe
+tg
 tg
 tg
 tc
@@ -14131,7 +14075,7 @@ Qv
 Ml
 Da
 Da
-QN
+Da
 Da
 Da
 Da
@@ -14286,7 +14230,7 @@ Sp
 Sp
 nl
 Sp
-xD
+Sp
 Sp
 Sp
 Sp
@@ -14433,7 +14377,7 @@ tc
 (11,1,1) = {"
 Qv
 Ml
-Jo
+Da
 Da
 Da
 cP
@@ -14740,7 +14684,7 @@ iw
 iw
 Om
 Da
-ed
+cP
 Da
 Om
 iw
@@ -31449,7 +31393,7 @@ XU
 XU
 XU
 XU
-wy
+XU
 XU
 XU
 wb
@@ -31597,8 +31541,8 @@ qf
 KR
 qf
 qf
-LX
 qf
+LX
 qf
 qf
 qf
@@ -32058,7 +32002,7 @@ yR
 yR
 iU
 iU
-ub
+iU
 iU
 wb
 "}
@@ -32359,7 +32303,7 @@ pE
 yR
 iU
 iU
-Eb
+iU
 iU
 iU
 yR
@@ -34792,7 +34736,7 @@ iU
 iU
 yR
 iU
-CB
+iU
 iU
 iU
 Be
@@ -34941,7 +34885,7 @@ KR
 VU
 pE
 iU
-ya
+iU
 iU
 iU
 iU
@@ -35095,7 +35039,7 @@ pE
 iU
 iU
 iU
-UX
+Ix
 iU
 yR
 iU
@@ -35250,7 +35194,7 @@ sP
 iU
 iU
 yR
-Zv
+iU
 iU
 wb
 "}
@@ -35399,7 +35343,7 @@ pE
 iU
 IO
 iU
-Mo
+iU
 iU
 iU
 yR

@@ -4562,10 +4562,6 @@
 	dir = 8
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"aQK" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
 "aRg" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -8252,10 +8248,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside)
-"drv" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating,
-/area/bigredv2/outside/space_port)
 "dst" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -8465,7 +8457,6 @@
 /area/bigredv2/outside/bar)
 "dSS" = (
 /obj/machinery/light,
-/obj/effect/landmark/patrol_point/tgmc_23,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/space_port)
 "dVz" = (
@@ -8951,6 +8942,10 @@
 	dir = 1
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside)
+"eWj" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "eXw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -9025,10 +9020,6 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
-"ffN" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
 "fgb" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
@@ -9085,6 +9076,10 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/space_port)
+"fhJ" = (
+/obj/structure/flora/ausbushes/brflowers,
+/turf/open/floor/grass,
+/area/bigredv2/outside/engineering)
 "fhY" = (
 /turf/open/floor/carpet/side{
 	dir = 4
@@ -10980,10 +10975,6 @@
 	dir = 4
 	},
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
-"jsF" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/northeast)
 "jsL" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -11858,6 +11849,13 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/mineral/smooth/bigred,
 /area/bigredv2/caves/rock)
+"lup" = (
+/obj/structure/sign/kiddieplaque{
+	name = "Notice to personnel";
+	desc = "Due to the large amount of personnel jumping in through the roof, getting stuck , then mauled by the monkeys, the nature reserve is now permanently shut. From now on any employees found stuck inside will have their pay cut."
+	},
+/turf/open/floor/grass,
+/area/bigredv2/outside/engineering)
 "luD" = (
 /obj/machinery/landinglight/lz2{
 	dir = 4
@@ -11940,10 +11938,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/purple2,
 /area/bigredv2/caves/lambda_lab)
-"lFa" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/asteroidfloor,
-/area/bigredv2/outside/space_port)
 "lFi" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -12292,12 +12286,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/telecomm)
-"mqH" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/marking/asteroidwarning{
-	dir = 1
-	},
-/area/bigredv2/outside/space_port)
 "mqU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -15341,6 +15329,10 @@
 	dir = 4
 	},
 /area/bigredv2/caves/lambda_lab)
+"tqC" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grass,
+/area/bigredv2/outside/engineering)
 "tqP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/scientist,
@@ -16400,6 +16392,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/east/garbledradio)
+"vCV" = (
+/turf/open/floor/grass,
+/area/bigredv2/outside/engineering)
 "vDw" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -17002,6 +16997,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
+"wTx" = (
+/obj/structure/flora/grass/brown,
+/turf/open/floor/grass,
+/area/bigredv2/outside/engineering)
 "wTz" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 9
@@ -21409,7 +21408,7 @@ dHg
 dHg
 dHg
 dHg
-lFa
+azc
 bOC
 kRS
 pLY
@@ -23575,7 +23574,7 @@ ieL
 jjg
 jjg
 jjg
-jjg
+eWj
 jjg
 jjg
 jjg
@@ -23787,7 +23786,7 @@ gCQ
 gCQ
 hYk
 dHg
-mqH
+ocx
 ieL
 jjg
 jjg
@@ -25957,7 +25956,7 @@ gCQ
 gCQ
 hYk
 dHg
-drv
+iwK
 bBr
 iwK
 iwK
@@ -28023,7 +28022,7 @@ wDz
 aXK
 gCQ
 gCQ
-pLv
+tqC
 xyM
 hwc
 uNS
@@ -28240,7 +28239,7 @@ aaa
 cRz
 gCQ
 gCQ
-bme
+vCV
 xyM
 hwc
 uNS
@@ -28456,8 +28455,8 @@ aaa
 aaa
 aaa
 gCQ
-bme
-bme
+lup
+fhJ
 xyM
 xzw
 uNS
@@ -28672,9 +28671,9 @@ aaa
 aaa
 aaa
 aaa
-bme
-bme
-pLv
+vCV
+wTx
+tqC
 xyM
 hwc
 uNS
@@ -28889,9 +28888,9 @@ aaa
 aaa
 aaa
 aaa
-bme
-bme
-bme
+vCV
+vCV
+vCV
 xyM
 hwc
 eFj
@@ -29106,9 +29105,9 @@ aaa
 aaa
 aaa
 aaa
-pLv
-bme
-bme
+tqC
+vCV
+vCV
 xyM
 hwc
 hwc
@@ -29323,9 +29322,9 @@ aaa
 aaa
 aaa
 aaa
-bme
-bme
-bme
+vCV
+wTx
+vCV
 xyM
 xzw
 hwc
@@ -29540,9 +29539,9 @@ aaa
 aaa
 aaa
 aaa
-bme
-pLv
-bme
+fhJ
+tqC
+vCV
 blJ
 boi
 boi
@@ -61780,7 +61779,7 @@ gCQ
 gCQ
 gCQ
 gCQ
-ffN
+vyZ
 vyZ
 vyZ
 vyZ
@@ -62870,8 +62869,8 @@ mtc
 mtc
 mtc
 vyZ
-jsF
 vyZ
+qiV
 kKe
 kKe
 vyZ
@@ -64177,7 +64176,7 @@ vyZ
 vyZ
 vyZ
 vyZ
-aQK
+vyZ
 gCQ
 gCQ
 gCQ
@@ -65034,7 +65033,7 @@ gCQ
 gCQ
 gCQ
 gCQ
-qiV
+vyZ
 vyZ
 vyZ
 gCQ

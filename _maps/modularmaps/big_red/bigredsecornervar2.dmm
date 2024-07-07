@@ -382,13 +382,6 @@
 /obj/structure/prop/brokenvendor/brokenuniformvendor,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
-"mh" = (
-/obj/effect/turf_decal/sandedge{
-	dir = 4
-	},
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/mainship/mono,
-/area/bigredv2/caves/rustedpreparea)
 "ms" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 8
@@ -494,11 +487,6 @@
 	},
 /obj/structure/prop/brokenvendor/brokenweaponsrack,
 /turf/open/floor/mainship/mono,
-/area/bigredv2/caves/rustedpreparea)
-"oF" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/rustedpreparea)
 "oI" = (
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/corpsman,
@@ -610,10 +598,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/rustedpreparea)
-"rW" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/rustedpreparea)
 "rZ" = (
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/southeast/garbledradio)
@@ -668,6 +652,10 @@
 /area/bigredv2/caves/rustedpreparea)
 "tH" = (
 /obj/effect/landmark/start/job/xenomorph,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/bigredv2/caves/southeast)
+"ue" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "uv" = (
@@ -1232,13 +1220,6 @@
 	},
 /obj/item/shard,
 /turf/open/floor/mainship/floor,
-/area/bigredv2/caves/rustedpreparea)
-"JI" = (
-/obj/effect/turf_decal/sandedge{
-	dir = 1
-	},
-/obj/effect/landmark/patrol_point/tgmc_11,
-/turf/open/floor/mainship/mono,
 /area/bigredv2/caves/rustedpreparea)
 "JR" = (
 /obj/structure/table/mainship,
@@ -2956,7 +2937,7 @@ oh
 AT
 oh
 Ym
-oh
+ue
 TC
 oh
 oh
@@ -2986,7 +2967,7 @@ hu
 wF
 md
 KU
-mh
+nF
 Lq
 zm
 FP
@@ -3253,7 +3234,7 @@ FP
 Xd
 UR
 UR
-rW
+UR
 UR
 fn
 Vl
@@ -3400,7 +3381,7 @@ KU
 KU
 KU
 KU
-JI
+Bl
 UR
 UR
 FP
@@ -3599,7 +3580,7 @@ ke
 UR
 UR
 Xd
-oF
+ji
 KU
 KU
 iQ

@@ -1126,6 +1126,13 @@
 	dir = 4
 	},
 /area/whiskey_outpost)
+"fB" = (
+/obj/effect/turf_decal/grassdecal/corner2{
+	dir = 4
+	},
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "fC" = (
 /obj/structure/platform_decoration{
 	dir = 6
@@ -2695,6 +2702,10 @@
 /turf/open/floor/mainship/emerald{
 	dir = 8
 	},
+/area/whiskey_outpost)
+"nv" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating,
 /area/whiskey_outpost)
 "nz" = (
 /obj/effect/turf_decal/grassdecal/corner,
@@ -6959,6 +6970,10 @@
 /obj/effect/turf_decal/lvsanddecal/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/west)
+"PS" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/liquid/water/river,
+/area/whiskey_outpost/outside/north)
 "PV" = (
 /obj/structure/catwalk,
 /obj/effect/turf_decal/riverdecal/edge{
@@ -6984,6 +6999,11 @@
 /obj/structure/sign/safety/medical_supplies,
 /turf/closed/wall,
 /area/whiskey_outpost)
+"Qo" = (
+/obj/effect/turf_decal/grassdecal/corner,
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "Qp" = (
 /obj/structure/barricade/plasteel{
 	dir = 1
@@ -11657,7 +11677,7 @@ gF
 gF
 gF
 gF
-gF
+nv
 gF
 gF
 gF
@@ -12726,7 +12746,7 @@ Sz
 aF
 Hq
 vi
-fn
+fB
 CV
 NW
 NW
@@ -20803,7 +20823,7 @@ Sz
 Sz
 iu
 sh
-rN
+Qo
 pY
 Hq
 NW
@@ -21951,7 +21971,7 @@ cx
 cx
 nJ
 Eb
-cx
+PS
 cx
 nJ
 cx
