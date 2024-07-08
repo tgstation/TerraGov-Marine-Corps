@@ -1299,3 +1299,40 @@
 /area/sensor_tower_2
 	name = "Sensor tower 2"
 	icon_state = "sensor"
+
+//LZ (Landing Zone) areas
+/area/landing_zone
+	name = "Landing Zone One"
+	icon_state = "landingzone1"
+	area_flags = MARINE_BASE
+	minimap_color = MINIMAP_AREA_LZ
+
+/area/landing_zone/domed
+	ceiling = CEILING_GLASS
+	outside = FALSE
+
+/area/landing_zone/enclosed
+	ceiling = CEILING_METAL
+	outside = FALSE
+
+/area/landing_zone/two
+	name = "Landing Zone Two"
+	icon_state = "landingzone2"
+
+/area/landing_zone/two/domed
+	ceiling = CEILING_GLASS
+	outside = FALSE
+
+/area/landing_zone/two/enclosed
+	ceiling = CEILING_METAL
+	outside = FALSE
+
+//LZ 1 for Ice Colony
+/area/landing_zone/aerodrome
+	name = "Aerodrome"
+	ceiling = CEILING_GLASS	//I think it's a glass ceiling?
+	outside = FALSE
+
+//LZ 2 for Ice Colony
+/area/landing_zone/two/emergency
+	name = "Emergency Landing Pad"

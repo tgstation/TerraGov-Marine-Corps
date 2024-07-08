@@ -2484,7 +2484,7 @@
 "cNu" = (
 /obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating/kutjevo,
-/area/shuttle/drop2/kutjevo)
+/area/landing_zone/two/domed)
 "cNE" = (
 /obj/structure/platform/metalplatform{
 	dir = 1
@@ -14338,7 +14338,7 @@
 /area/kutjevo/interior/oob)
 "ppX" = (
 /turf/open/floor/plating/kutjevo,
-/area/shuttle/drop2/kutjevo)
+/area/landing_zone/two/domed)
 "prv" = (
 /obj/structure/platform/metalplatform,
 /turf/open/floor/kutjevo/multi_tiles{

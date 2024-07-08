@@ -9977,7 +9977,7 @@
 "hhJ" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "hjp" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -10025,7 +10025,7 @@
 "hoQ" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "hpV" = (
 /obj/effect/turf_decal/sandedge/corner,
 /turf/open/floor/marking/asteroidwarning{
@@ -10871,7 +10871,7 @@
 /area/bigredv2/caves/southwest)
 "jjg" = (
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "jjL" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -10897,7 +10897,7 @@
 "jlI" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "jnj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/bigred,
@@ -14377,7 +14377,7 @@
 /area/bigredv2/outside/cargo)
 "rid" = (
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "rin" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -15229,7 +15229,7 @@
 "tej" = (
 /obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "teq" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -16617,7 +16617,7 @@
 "waG" = (
 /obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "waY" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/outside/n)
@@ -17224,7 +17224,7 @@
 "xvj" = (
 /obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "xvL" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast)

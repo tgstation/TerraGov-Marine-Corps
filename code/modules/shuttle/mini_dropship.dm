@@ -39,10 +39,10 @@
 	var/origin_port_id = SHUTTLE_MINI
 	/// The user of the ui
 	var/mob/living/ui_user
-	/// How long before you can launch tadpole after a landing
-	var/launching_delay = 10 SECONDS
 	///Minimap for use while in landing cam mode
 	var/datum/action/minimap/marine/external/tadmap
+	///Has any shuttle landed outside of a landing zone? Static var shared by all flyable shuttle computers
+	var/static/landed_outside_lz = FALSE
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/flyable/Initialize(mapload)
 	..()
@@ -122,39 +122,43 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/flyable/shuttle_arrived()
 	if(fly_state == next_fly_state)
 		return
+
 	fly_state = next_fly_state
+	//Send a signal to begin the game early if a shuttle landed outside an LZ
+	if(!landed_outside_lz && fly_state == SHUTTLE_ON_GROUND && !ispath(my_port?.area_type, /area/landing_zone))
+		landed_outside_lz = TRUE
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SHUTTLE_LANDED_OUTSIDE_LANDING_ZONE)
+
 	if(fly_state == SHUTTLE_IN_SPACE)
 		shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit)
+
 	if(to_transit)
 		to_transit = FALSE
 		next_fly_state = destination_fly_state
 		return
-	if(fly_state == SHUTTLE_ON_GROUND)
-		TIMER_COOLDOWN_START(src, COOLDOWN_TADPOLE_LAUNCHING, launching_delay)
+
 	if(fly_state != SHUTTLE_IN_ATMOSPHERE)
 		return
+
 	shuttle_port.assigned_transit.reserved_area.set_turf_type(/turf/open/space/transit/atmos)
 	open_prompt = TRUE
 
 ///The action of taking off and sending the shuttle to the atmosphere
 /obj/machinery/computer/camera_advanced/shuttle_docker/flyable/proc/take_off(remote_controlled)
 	assign_shuttle()
+	if(shuttle_port.mode != SHUTTLE_IDLE)
+		if(!remote_controlled)
+			balloon_alert(ui_user, "Engines not ready")
+		return
 
 	#ifndef TESTING
 	if(!(shuttle_port.shuttle_flags & GAMEMODE_IMMUNE) && world.time < SSticker.round_start_time + SSticker.mode.deploy_time_lock)
 		if(!remote_controlled)
-			to_chat(ui_user, span_warning("The mothership is too far away from the theatre of operation, we cannot take off."))
+			balloon_alert(ui_user, "Too early to take off")
 		return
 	#endif
 
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TADPOLE_LAUNCHING))
-		if(!remote_controlled)
-			to_chat(ui_user, span_warning("The dropship's engines are not ready yet"))
-		return
-
-	TIMER_COOLDOWN_START(src, COOLDOWN_TADPOLE_LAUNCHING, launching_delay) // To stop spamming
 	shuttle_port.shuttle_computer = src
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LAUNCHED)
 	if(fly_state == SHUTTLE_ON_GROUND)
 		next_fly_state = SHUTTLE_IN_ATMOSPHERE
 		shuttle_port.callTime = SHUTTLE_TAKEOFF_GROUND_CALLTIME
@@ -368,7 +372,6 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/flyable/dropship
 	shuttleId = SHUTTLE_DROPSHIP
 	origin_port_id = SHUTTLE_DROPSHIP
-	launching_delay = 1 SECONDS
 	whitelist_turfs = list(/turf/open/ground, /turf/open/floor, /turf/open/liquid/water, /turf/closed/gm)
 	view_range = 2
 	max_ceiling_tier = CEILING_OBSTRUCTED
@@ -378,10 +381,6 @@
 /obj/machinery/computer/camera_advanced/shuttle_docker/flyable/dropship/assign_shuttle()
 	. = ..()
 	dropship = shuttle_port
-
-/obj/machinery/computer/camera_advanced/shuttle_docker/flyable/dropship/shuttle_arrived()
-	//TO DO: do an if(fly_state == GROUNDED && isLZarea()), but requires unifying all LZ areas... pain
-	return ..()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/flyable/dropship/allowed(mob/M)
 	if(dropship.hijack_state)
@@ -399,7 +398,7 @@
 
 	#ifndef TESTING
 	var/datum/game_mode/infestation/infestation_mode = SSticker.mode
-	if(!CHECK_BITFIELD(user.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT) || infestation_mode.round_stage == INFESTATION_MARINE_CRASHING)
+	if(!CHECK_BITFIELD(saboteur.xeno_caste.caste_flags, CASTE_IS_INTELLIGENT) || infestation_mode.round_stage == INFESTATION_MARINE_CRASHING)
 		return
 	#endif
 
@@ -409,7 +408,7 @@
 		return
 
 	balloon_alert_to_viewers("Corrupting controls!", vision_distance = 20)	//Make sure everyone can see it, even those looking through scopes
-	if(!do_after(saboteur, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(saboteur, 30 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 
 	to_chat(saboteur, span_xenowarning("We corrupt the bird's controls, unlocking the doors and preventing it from flying."))
@@ -486,18 +485,16 @@
 	user.hive.on_shuttle_hijack(dropship)
 	playsound(src, 'sound/misc/queen_alarm.ogg')
 	SSevacuation.scuttle_flags &= ~FLAGS_SDEVAC_TIMELOCK
-	//var/time_to_crash = 120 * (GLOB.current_orbit/3) SECONDS
-	var/time_to_crash = 20 SECONDS
+	var/time_to_crash = 120 * (GLOB.current_orbit/3) SECONDS
 	priority_announce(
-		"Unscheduled dropship departure detected from operational area. Hijack likely.",
+		"Unscheduled dropship departure detected from operational area. Hijack likely. ETA: [time_to_crash / 10] SECONDS.",
 		"Critical Dropship Alert",
-		"ETA: [time_to_crash / 10] SECONDS",
-		ANNOUNCEMENT_PRIORITY,
-		'sound/AI/hijack.ogg',
+		type = ANNOUNCEMENT_PRIORITY,
+		sound = 'sound/AI/hijack.ogg',
 		color_override = "red")
 	user.hive.xeno_message("The metal bird will impact the tallhost hive in [time_to_crash / 10] SECONDS!")
 
-	if(SHUTTLE_IDLE && fly_state == SHUTTLE_ON_GROUND)
+	if(dropship.mode == SHUTTLE_IDLE && fly_state == SHUTTLE_ON_GROUND)
 		dropship.callTime = 10 SECONDS	//Arbitrary amount of time so that the shuttle doesn't immediately go from atmosphere to space
 		take_off(TRUE)	//Send the shuttle to the atmosphere first
 
@@ -532,20 +529,17 @@
 	my_port.setDir(summoner.dir)
 
 	var/time_until_takeoff = dropship.timeLeft(1)
-	if(time_until_takeoff)
-		priority_announce(
-			"Dropship compromised by foreign actor. Interference preventing remote control. Take-off in: [time_until_takeoff / 10] SECONDS",
-			"Dropship Hijack Alert",
-			type = ANNOUNCEMENT_PRIORITY,
-			color_override = "red")
-		addtimer(CALLBACK(src, PROC_REF(summon_towards)), time_until_takeoff)
-		return
-
 	priority_announce(
-		"Dropship compromised by foreign actor. Interference preventing remote control. TAKE-OFF IMMINENT.",
+		"Dropship compromised by foreign actor. Interference preventing remote control. \
+		Location: [get_area_name(summoner, TRUE)]. [time_until_takeoff ? "Take-off in: [time_until_takeoff / 10] SECONDS" : "TAKE-OFF IMMINENT"].",
 		"Dropship Hijack Alert",
 		type = ANNOUNCEMENT_PRIORITY,
 		color_override = "red")
+
+	if(time_until_takeoff)
+		addtimer(CALLBACK(src, PROC_REF(summon_towards)), time_until_takeoff)
+		return
+
 	summon_towards()
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/flyable/dropship/proc/summon_towards()

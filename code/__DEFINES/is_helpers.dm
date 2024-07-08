@@ -315,6 +315,7 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 // Shuttles
 #define isshuttleturf(T) (length(T.baseturfs) && (/turf/baseturf_skipover/shuttle in T.baseturfs))
 #define isdropshiparea(A) (istype(A, /area/shuttle/dropship))
+#define islandingzonearea(A) (istype(A, /area/landing_zone))
 
 // Xeno hives
 #define isnormalhive(hive) (istype(hive, /datum/hive_status/normal))

@@ -52,29 +52,6 @@
 	name = "Ice Cliffs"
 	icon_state = "cliff_blocked"
 
-//Landing Pad for the Rasp. THIS IS NOT THE SHUTTLE AREA
-/area/ice_colony/exterior/surface/landing_pad
-	name = "Aerodrome Landing Pad"
-	icon_state = "landing_pad"
-	area_flags = MARINE_BASE
-	outside = FALSE
-	always_unpowered = FALSE
-	minimap_color = MINIMAP_AREA_LZ
-
-//Landing Pad for the Vindi. THIS IS NOT THE SHUTTLE AREA
-/area/ice_colony/exterior/surface/landing_pad2
-	name = "Emergency Landing Pad"
-	icon_state = "landing_pad"
-	area_flags = MARINE_BASE
-	outside = FALSE
-	always_unpowered = FALSE
-	minimap_color = MINIMAP_AREA_LZ
-
-//Everything around the physical landing pad
-/area/ice_colony/exterior/surface/landing_pad_external
-	name = "Aerodrome Landing Valley"
-	icon_state = "landing_pad_ext"
-
 //Aerodrome Container Yard
 /area/ice_colony/exterior/surface/container_yard
 	name = "Aerodrome Container Yard"

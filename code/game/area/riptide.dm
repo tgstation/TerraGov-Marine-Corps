@@ -372,9 +372,3 @@
 	icon_state = "tcomsatcham"
 	area_flags = NO_DROPPOD
 	requires_power = FALSE
-
-/area/riptide/inside/landingzoneone
-	name = "Landing Zone One"
-	icon_state = "landingzone1"
-	area_flags = NO_DROPPOD|MARINE_BASE
-	minimap_color = MINIMAP_AREA_LZ

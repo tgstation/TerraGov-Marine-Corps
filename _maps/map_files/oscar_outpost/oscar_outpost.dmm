@@ -44,7 +44,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "av" = (
 /obj/effect/landmark/start/job/medicalofficer,
 /turf/open/floor/mainship/sterile,
@@ -1020,7 +1020,7 @@
 "gT" = (
 /obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "gU" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
@@ -1241,7 +1241,7 @@
 	},
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "iB" = (
 /obj/structure/closet/crate,
 /obj/item/weapon/gun/shotgun/pump,
@@ -3294,7 +3294,7 @@
 "wr" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "wu" = (
 /obj/machinery/bioprinter{
 	stored_metal = 125
@@ -3314,7 +3314,7 @@
 "wE" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "wG" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -4909,7 +4909,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "Ev" = (
 /obj/structure/prop/vehicle/crane{
 	dir = 4
@@ -6053,7 +6053,7 @@
 /area/oscar_outpost/base)
 "IV" = (
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "IY" = (
 /obj/structure/closet/crate,
 /obj/item/ammo_magazine/smg/ppsh,
@@ -7052,7 +7052,7 @@
 	},
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "NA" = (
 /obj/structure/closet/crate/medical,
 /turf/open/floor/wood,
@@ -9066,7 +9066,7 @@
 /obj/docking_port/stationary/shuttle/lz1,
 /obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "Wy" = (
 /obj/machinery/marine_selector/clothes/engi,
 /turf/open/floor/tile/dark,

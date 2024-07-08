@@ -147,7 +147,7 @@
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 4
 	},
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "akR" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2
@@ -170,7 +170,7 @@
 "amw" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "amG" = (
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -476,7 +476,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "aJn" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2
@@ -931,7 +931,7 @@
 /area/rocinante_base/surface/building/train_station)
 "bjX" = (
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "bln" = (
 /obj/structure/rock/crystal/small,
 /turf/open/ground/grass/weedable/patch,
@@ -1403,7 +1403,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
 	},
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "bUF" = (
 /turf/closed/mineral/smooth{
 	color = "#c2e4ff"
@@ -1725,7 +1725,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "cmD" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#5b7857"
@@ -1742,17 +1742,17 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "cnH" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 8
 	},
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "cnN" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 5
 	},
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "cnZ" = (
 /obj/structure/stairs/seamless{
 	dir = 8
@@ -2908,7 +2908,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "eeD" = (
 /obj/structure/monorail{
 	dir = 4
@@ -2936,7 +2936,7 @@
 /area/rocinante_base/surface/building/living/prep)
 "ega" = (
 /turf/open/floor/plating/ground/dirt_alt,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "egg" = (
 /obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile/dark,
@@ -3130,7 +3130,7 @@
 "eqD" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "erp" = (
 /turf/closed/shuttle/dropship_regular/interior_corner{
 	dir = 1
@@ -3144,7 +3144,7 @@
 /area/rocinante_base/ground/base_s)
 "erF" = (
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "erQ" = (
 /turf/open/floor/mainship/sterile/side,
 /area/rocinante_base/surface/building/medical)
@@ -3239,7 +3239,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "eBw" = (
 /obj/structure/bed/chair/sofa/corsat/left,
 /obj/structure/platform/metalplatform,
@@ -3457,7 +3457,7 @@
 /area/rocinante_base/ground/base_w)
 "eRg" = (
 /turf/closed/mineral/smooth/snowrock,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "eRl" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
 	dir = 2
@@ -4247,7 +4247,7 @@
 /area/rocinante_base/surface/building/cargo/southern_aux)
 "fQo" = (
 /turf/open/floor/plating/ground/concrete/edge,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "fQr" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/concrete,
@@ -4590,7 +4590,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "gsV" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -4607,7 +4607,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "guy" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 1
@@ -4845,7 +4845,7 @@
 /area/rocinante_base/surface/building/administration/central_com)
 "gLg" = (
 /turf/closed/mineral/smooth/snowrock,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "gLF" = (
 /obj/structure/largecrate/supply,
 /obj/structure/cable,
@@ -5243,7 +5243,7 @@
 /area/rocinante_base/surface/building/science/tele_lab)
 "hkO" = (
 /turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "hlm" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/corner,
@@ -5503,7 +5503,7 @@
 "hBY" = (
 /obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "hCQ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/purple/side{
@@ -6025,7 +6025,7 @@
 "iuc" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "iuw" = (
 /turf/open/floor/mainship/black{
 	dir = 4
@@ -6048,7 +6048,7 @@
 /area/rocinante_base/surface/building/office_n)
 "iuP" = (
 /turf/open/floor/plating/ground/concrete/lines,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "ivc" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -6195,7 +6195,7 @@
 "iEn" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "iEq" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 10
@@ -6263,7 +6263,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
 	},
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "iHA" = (
 /obj/structure/prop/mainship/protolathe/medical,
 /turf/open/floor/mainship/sterile/dark,
@@ -6383,7 +6383,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "iNz" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/blue{
@@ -6651,7 +6651,7 @@
 "jns" = (
 /obj/structure/desertdam/decals/road/line,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "jnL" = (
 /obj/structure/platform/rockcliff{
 	dir = 4
@@ -6738,7 +6738,7 @@
 /area/rocinante_base/ground/base_nw)
 "jul" = (
 /turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "juM" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/mainship/red{
@@ -6878,7 +6878,7 @@
 "jFG" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "jFQ" = (
 /turf/open/floor/mainship/sterile/purple/side{
 	dir = 5
@@ -7834,7 +7834,7 @@
 "kYd" = (
 /obj/structure/flora/tree/pine,
 /turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "kZu" = (
 /obj/structure/largecrate/random/case/double,
 /turf/open/floor/mainship/sterile/dark,
@@ -7897,7 +7897,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "lgo" = (
 /obj/structure/window/framed/mainship/gray,
 /turf/open/floor/mainship/mono,
@@ -8306,7 +8306,7 @@
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 4
 	},
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "lGm" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
@@ -8595,7 +8595,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "mgM" = (
 /obj/machinery/light{
 	dir = 1
@@ -8948,7 +8948,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 9
 	},
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "mGp" = (
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/mainship/sterile/purple/side{
@@ -9057,7 +9057,7 @@
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 1
 	},
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "mTc" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/red{
@@ -9323,7 +9323,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "niL" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass{
 	dir = 2
@@ -9377,7 +9377,7 @@
 /area/rocinante_base/surface/building/science/break_room)
 "nlv" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "nlB" = (
 /obj/item/storage/toolbox/electrical,
 /obj/structure/prop/mainship/gelida/powerccable,
@@ -9519,7 +9519,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "nuc" = (
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -9937,7 +9937,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
 	},
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "obh" = (
 /obj/structure/stairs/seamless{
 	dir = 8
@@ -10811,7 +10811,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "phI" = (
 /obj/structure/platform/rockcliff{
 	dir = 8
@@ -10821,7 +10821,7 @@
 "phK" = (
 /obj/structure/table/black,
 /turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "phV" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -10840,7 +10840,7 @@
 /area/rocinante_base/ground/base_e)
 "piQ" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "pjg" = (
 /obj/structure/stairs/seamless{
 	dir = 4
@@ -11025,7 +11025,7 @@
 "pzK" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "pzS" = (
 /obj/structure/bed/chair/alt,
 /turf/open/floor/mainship/white/full,
@@ -11069,7 +11069,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "pCU" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -11363,12 +11363,12 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "pXu" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 1
 	},
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "pXD" = (
 /obj/structure/platform/metalplatform{
 	dir = 10
@@ -11388,7 +11388,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "qbj" = (
 /obj/structure/table/black,
 /turf/open/floor/mainship/mono,
@@ -11406,7 +11406,7 @@
 "qcQ" = (
 /obj/structure/table/black,
 /turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "qcX" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/black{
@@ -11526,13 +11526,13 @@
 /area/rocinante_base/surface/building/security/hub)
 "qkw" = (
 /turf/open/floor/plating/ground/concrete/lines,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "qkG" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "qlr" = (
 /obj/structure/table/reinforced,
 /obj/structure/sink{
@@ -12185,7 +12185,7 @@
 /area/rocinante_base/surface/building/medical)
 "rfF" = (
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "rfG" = (
 /obj/structure/closet/secure_closet/security,
 /obj/machinery/light,
@@ -12235,7 +12235,7 @@
 /obj/structure/prop/mainship/hangar_stencil,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "rit" = (
 /turf/open/floor/mainship/blue,
 /area/rocinante_base/surface/building/living/barracks)
@@ -12349,7 +12349,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "rtp" = (
 /obj/machinery/computer/camera,
 /turf/open/floor/mainship/mono,
@@ -12408,7 +12408,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "rxZ" = (
 /obj/structure/bed/chair/sofa/corsat/verticalsouth,
 /turf/open/floor/mainship/red{
@@ -12430,7 +12430,7 @@
 "rzM" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "rAe" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship/gray,
@@ -13020,7 +13020,7 @@
 "suk" = (
 /obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "suS" = (
 /obj/item/ammo_casing,
 /obj/item/weapon/gun/pistol/m1911,
@@ -13030,7 +13030,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 10
 	},
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "svr" = (
 /obj/machinery/door/airlock/mainship/generic/glass,
 /turf/open/floor/scorched/two,
@@ -13689,7 +13689,7 @@
 "tlW" = (
 /obj/structure/flora/tree/pine,
 /turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "tmv" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/mono,
@@ -13740,7 +13740,7 @@
 "tqA" = (
 /obj/structure/desertdam/decals/road/line,
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "trc" = (
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile/dark,
@@ -13863,7 +13863,7 @@
 /area/rocinante_base/ground/base_s)
 "tBn" = (
 /turf/open/floor/plating/ground/concrete/edge,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "tBu" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/rocinante_base/ground/base_cent)
@@ -14851,7 +14851,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "uLo" = (
 /obj/effect/landmark/corpsespawner/security,
 /turf/open/floor/mainship/sterile/dark,
@@ -15463,7 +15463,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "vBr" = (
 /obj/machinery/computer/som_two{
 	dir = 4
@@ -15586,7 +15586,7 @@
 /area/rocinante_base/surface/building/tramstation/tramstation_cent)
 "vJY" = (
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "vKt" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/rocinante_base/ground/base_s)
@@ -16282,7 +16282,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "wAL" = (
 /obj/structure/bed/chair/sofa/corsat/verticaltop,
 /turf/open/floor/mainship/red{
@@ -16417,7 +16417,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "wIk" = (
 /obj/machinery/door/airlock/mainship/engineering,
 /turf/open/floor/mainship/mono,
@@ -16706,7 +16706,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "xfz" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 8
@@ -16833,7 +16833,7 @@
 "xmx" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass/weedable/patch,
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "xmB" = (
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/plating/ground/concrete,
@@ -16904,7 +16904,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/rocinante_base/surface/landing/landing_pad_one)
+/area/landing_zone)
 "xqP" = (
 /obj/structure/cable,
 /obj/machinery/light,
@@ -17305,7 +17305,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/rocinante_base/surface/landing/landing_pad_two)
+/area/landing_zone/two)
 "xTA" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -17364,7 +17364,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 10
 	},
-/area/rocinante_base/surface/landing/landing_pad_two_external)
+/area/landing_zone/two)
 "xYT" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -17469,7 +17469,7 @@
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 8
 	},
-/area/rocinante_base/surface/landing/landing_pad_one_external)
+/area/landing_zone)
 "yhc" = (
 /turf/open/floor/plating/ground/snow,
 /area/rocinante_base/ground/base_nw)

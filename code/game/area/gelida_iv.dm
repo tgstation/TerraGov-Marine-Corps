@@ -22,50 +22,6 @@
 	name = "gelida - Out Of Bounds"
 	icon_state = "unknown"
 
-//Landing Zone 1
-
-/area/gelida/landing_zone_1
-	name = "Landing Zone One"
-	icon_state = "explored"
-	area_flags = MARINE_BASE
-	outside = FALSE
-	minimap_color = MINIMAP_AREA_LZ
-
-/area/shuttle/drop1/gelida
-	name = "Gelida IV - Dropship Alamo Landing Zone"
-	icon_state = "away1"
-	area_flags = MARINE_BASE
-	outside = FALSE
-	minimap_color = MINIMAP_AREA_LZ
-
-/area/gelida/landing_zone_1/lz1_console
-	name = "Gelida IV - Dropship Alamo Console"
-	icon_state = "tcomsatcham"
-	requires_power = FALSE
-	outside = FALSE
-	minimap_color = MINIMAP_AREA_LZ
-
-//Landing Zone 2
-
-/area/gelida/landing_zone_2
-	name = "Gelida IV - Landing Zone Two"
-	icon_state = "explored"
-	area_flags = MARINE_BASE
-	outside = FALSE
-	minimap_color = MINIMAP_AREA_LZ
-
-/area/shuttle/drop2/gelida
-	name = "Gelida IV - Dropship Normandy Landing Zone"
-	icon_state = "away2"
-	area_flags = MARINE_BASE
-	minimap_color = MINIMAP_AREA_LZ
-
-/area/gelida/landing_zone_2/lz2_console
-	name = "Gelida IV - Dropship Normandy Console"
-	icon_state = "tcomsatcham"
-	requires_power = FALSE
-	minimap_color = MINIMAP_AREA_LZ
-
 //Landing Zone 3 & 4
 
 /area/gelida/landing_zone_forecon

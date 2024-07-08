@@ -4,13 +4,13 @@
 /area/space)
 "aai" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "aan" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/tile/dark/brown2{
 	dir = 9
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "aao" = (
 /obj/machinery/power/monitor{
 	name = "Main Power Grid Monitoring"
@@ -45,7 +45,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "aaA" = (
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -90,7 +90,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "abr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor/tile/dark/yellow2/corner{
@@ -218,7 +218,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "acV" = (
 /obj/machinery/power/apc/drained{
 	dir = 8
@@ -255,7 +255,7 @@
 	name = "\improper Colony Requesitions Storage Pod"
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "adx" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
@@ -275,7 +275,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "adC" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
@@ -298,11 +298,11 @@
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "adJ" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "adM" = (
 /obj/structure/dispenser,
 /turf/open/floor/tile/dark/yellow2{
@@ -447,14 +447,14 @@
 /obj/structure/cable,
 /obj/structure/closet/crate,
 /turf/open/floor/tile/dark,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "afb" = (
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/northwest)
 "afd" = (
 /turf/open/floor/plating,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "afi" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
@@ -855,7 +855,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ahD" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/buildable/empty/dist,
@@ -996,7 +996,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "aiH" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/ice_colony/exterior/underground/caves/ice_w)
@@ -1085,7 +1085,7 @@
 	id = "lower_garbage"
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ajk" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1107,11 +1107,11 @@
 	id = "lower_garbage"
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ajp" = (
 /obj/structure/closet/crate,
 /turf/open/floor/tile/dark,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ajq" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
@@ -1182,7 +1182,7 @@
 "ajG" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/tile/dark,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ajH" = (
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 4
@@ -1210,7 +1210,7 @@
 	pixel_x = -24
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ajR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
@@ -1221,13 +1221,13 @@
 /obj/structure/cable,
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/tile/dark,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ajW" = (
 /obj/vehicle/train/cargo/engine,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ajX" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/mineral/phoron{
@@ -1299,7 +1299,7 @@
 /obj/item/stack/sheet/mineral/phoron,
 /obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "aks" = (
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation/smes)
@@ -1535,7 +1535,7 @@
 "alQ" = (
 /obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "alS" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
@@ -3309,7 +3309,7 @@
 "avT" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "avW" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3750,12 +3750,12 @@
 "aym" = (
 /obj/structure/grille/smoothing,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ayn" = (
 /obj/structure/grille/smoothing,
 /obj/structure/sign/electricshock,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ayp" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/surface/hydroponics/south)
@@ -3767,7 +3767,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ays" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -4358,7 +4358,7 @@
 /area/ice_colony/surface/dorms)
 "aBi" = (
 /turf/closed/wall/r_wall,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "aBk" = (
 /obj/machinery/light,
 /obj/structure/cable,
@@ -7823,11 +7823,11 @@
 "aWq" = (
 /obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "aWr" = (
 /obj/machinery/landinglight/lz2,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aWt" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -8087,7 +8087,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aXC" = (
 /obj/structure/rack,
 /obj/item/clothing/mask/gas,
@@ -8149,7 +8149,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aXT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -8227,7 +8227,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aYq" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -8267,15 +8267,15 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aYC" = (
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aYE" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aYF" = (
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor/warnplate,
@@ -8289,23 +8289,23 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aYI" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aYO" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aYQ" = (
 /turf/open/floor/plating/warning{
 	dir = 9
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aYR" = (
 /obj/structure/rack,
 /obj/item/storage/box/lightstick/red,
@@ -8348,7 +8348,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aZl" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -8412,11 +8412,11 @@
 /area/ice_colony/surface/hydroponics/south)
 "aZR" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aZS" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "aZT" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -8595,7 +8595,7 @@
 "bbf" = (
 /obj/structure/ice_sign,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bbk" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
@@ -8650,7 +8650,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bbv" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -8785,7 +8785,7 @@
 /area/ice_colony/underground/westroadtunnel)
 "bcD" = (
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad_external)
+/area/landing_zone)
 "bcF" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/plating/icefloor,
@@ -8920,7 +8920,7 @@
 /turf/open/floor/plating/warning{
 	dir = 10
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bdm" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /obj/machinery/light{
@@ -8956,7 +8956,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bdt" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/freezer,
@@ -9060,13 +9060,13 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bdT" = (
 /obj/machinery/landinglight/lz2,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bdU" = (
 /obj/structure/bigDelivery,
 /turf/open/floor/freezer,
@@ -9738,7 +9738,7 @@
 "bhO" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "bhT" = (
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -10835,7 +10835,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "boL" = (
 /obj/structure/cable,
 /obj/structure/closet/crate,
@@ -12965,7 +12965,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bDE" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/storage/highsec)
@@ -13668,7 +13668,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bGX" = (
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /obj/structure/cable,
@@ -16167,7 +16167,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bRy" = (
 /obj/structure/cargo_container/green{
 	dir = 1
@@ -16195,7 +16195,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bRN" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/security/free_access{
@@ -16534,7 +16534,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bUB" = (
 /obj/structure/curtain/black,
 /obj/structure/largecrate/guns/merc,
@@ -16726,13 +16726,13 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bVy" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bVA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -16995,7 +16995,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bWY" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -17166,7 +17166,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bXT" = (
 /obj/structure/table,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -17399,14 +17399,14 @@
 /area/ice_colony/surface/excavationbarracks)
 "bZR" = (
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bZS" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/lz2{
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bZU" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/lz2{
@@ -17415,7 +17415,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bZV" = (
 /obj/structure/cable,
 /obj/machinery/landinglight/lz2{
@@ -17424,7 +17424,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "bZZ" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -17592,13 +17592,13 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "cdW" = (
 /obj/structure/prop/mainship/hangar_stencil,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ceb" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/chapel{
@@ -17989,7 +17989,7 @@
 "cHJ" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "cHT" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/engivend,
 /turf/open/floor/tile/dark/yellow2{
@@ -18123,13 +18123,13 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "cUl" = (
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "cUB" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -18375,7 +18375,7 @@
 	},
 /obj/effect/spawner/random/engineering/shovel,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "dhk" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -18402,7 +18402,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "dol" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -18413,7 +18413,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "dpq" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/ice,
@@ -18712,7 +18712,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "dKD" = (
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/freezer,
@@ -18888,7 +18888,7 @@
 "dSj" = (
 /obj/effect/spawner/random/engineering/metal/nooffset,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "dTb" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/dark/blue2{
@@ -18952,7 +18952,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "dXS" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -18985,7 +18985,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ebs" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	dir = 1;
@@ -19030,7 +19030,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "eeV" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/ice_colony/exterior/surface/taxiway)
@@ -19299,7 +19299,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "eDV" = (
 /turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves/open/garbledradio)
@@ -19316,7 +19316,7 @@
 "eEN" = (
 /obj/effect/spawner/random/engineering/shovel,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "eEZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -19408,7 +19408,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "eOt" = (
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen/blue,
@@ -19437,7 +19437,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "eSd" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -19921,7 +19921,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "fvS" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -20296,7 +20296,7 @@
 "fYO" = (
 /obj/structure/largecrate/supply/supplies/coifs,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "fZW" = (
 /turf/closed/mineral/smooth/darkfrostwall,
 /area/ice_colony/exterior/underground/caves/ice_se)
@@ -20323,7 +20323,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/structure/handheld_lighting,
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "gek" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/cable,
@@ -20399,7 +20399,7 @@
 /obj/effect/spawner/random/engineering/pickaxe,
 /obj/item/storage/box/lightstick/red,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "gje" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/darkfrostwall,
@@ -20582,7 +20582,7 @@
 "gxc" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "gyr" = (
 /obj/effect/spawner/random/engineering/structure/tank/waterweighted,
 /turf/open/floor/plating,
@@ -20601,7 +20601,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "gzM" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/tile/dark2,
@@ -21042,7 +21042,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "hft" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/dark2,
@@ -21092,7 +21092,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "hkc" = (
 /obj/machinery/light{
 	dir = 1
@@ -21323,12 +21323,12 @@
 /area/ice_colony/surface/clinic/treatment)
 "hyh" = (
 /turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "hyV" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/mineral/smooth/bluefrostwall,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "hzq" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral/smooth/darkfrostwall,
@@ -21381,7 +21381,7 @@
 "hDJ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "hEn" = (
 /obj/machinery/door/airlock/mainship/maint/free_access{
 	dir = 1;
@@ -21484,7 +21484,7 @@
 /area/ice_colony/exterior/surface/valley/west)
 "hOW" = (
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "hPw" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/tile/red/whitered{
@@ -21731,7 +21731,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ilt" = (
 /obj/effect/spawner/random/misc/structure/flavorvending,
 /turf/open/floor/wood,
@@ -21862,7 +21862,7 @@
 	},
 /obj/machinery/button/door/open_only/landing_zone/lz2,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "izd" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -22195,7 +22195,7 @@
 "iSS" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "iSW" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -23143,7 +23143,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "kgG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -23320,7 +23320,7 @@
 "ktc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "ktg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -23540,7 +23540,7 @@
 "kER" = (
 /obj/effect/decal/cleanable/blood/oil/armorblood,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "kFo" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/weed_node,
@@ -23591,7 +23591,7 @@
 "kIu" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "kJs" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -23908,7 +23908,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "lmF" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/structure/handheld_lighting,
@@ -24397,7 +24397,7 @@
 "lPy" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "lPE" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
@@ -24487,7 +24487,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "lSY" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 1
@@ -24929,10 +24929,10 @@
 "mxc" = (
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "mxE" = (
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad_external)
+/area/landing_zone)
 "mxW" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 8
@@ -24963,7 +24963,7 @@
 "mAf" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/darkfrostwall,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "mAj" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms/canteen)
@@ -25285,7 +25285,7 @@
 "mXX" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad_external)
+/area/landing_zone)
 "mYa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -25348,7 +25348,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ncW" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/tile/dark/brown2{
@@ -25371,7 +25371,7 @@
 /area/ice_colony/surface/dorms/restroom_w)
 "ndH" = (
 /turf/closed/mineral/smooth/darkfrostwall,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ndY" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -25747,7 +25747,7 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/machinery/light,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "nzS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
@@ -26072,7 +26072,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "nVH" = (
 /obj/structure/fence,
 /obj/effect/ai_node,
@@ -26097,7 +26097,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "nXs" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/warning,
@@ -26146,7 +26146,7 @@
 "oaD" = (
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "obQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -26250,7 +26250,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "oji" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/tile/vault{
@@ -26484,7 +26484,7 @@
 /area/ice_colony/underground/hallway/south_east/garbledradio)
 "oAn" = (
 /turf/closed/mineral/smooth/bluefrostwall,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "oBc" = (
 /obj/effect/spawner/random/misc/structure/closet/welding,
 /turf/open/floor/plating,
@@ -26665,12 +26665,12 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "oJy" = (
 /obj/effect/spawner/random/engineering/pickaxe,
 /obj/structure/rack,
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "oJX" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/landmark/weed_node,
@@ -26752,7 +26752,7 @@
 "oPs" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "oPx" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating/icefloor,
@@ -26841,7 +26841,7 @@
 /area/ice_colony/underground/requesition)
 "oWx" = (
 /turf/closed/wall/r_wall,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "oXg" = (
 /obj/machinery/air_alarm,
 /turf/open/floor/tile/dark/yellow2{
@@ -26897,7 +26897,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "paz" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /obj/machinery/power/apc/drained{
@@ -27140,7 +27140,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "pyD" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/darkfrostwall,
@@ -27224,14 +27224,14 @@
 "pEz" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "pEE" = (
 /turf/open/floor/tile/darkgreen/darkgreen2/corner,
 /area/ice_colony/underground/medical/lobby/garbledradio)
 "pEO" = (
 /obj/effect/turf_underlay/icefloor,
 /turf/closed/mineral/smooth/bluefrostwall,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "pET" = (
 /obj/item/weapon/gun/shotgun/pump/cmb,
 /obj/effect/decal/cleanable/blood,
@@ -27250,7 +27250,7 @@
 "pGe" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "pGl" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -27428,7 +27428,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "pRS" = (
 /obj/structure/sink,
 /turf/open/floor/tile/white,
@@ -27544,7 +27544,7 @@
 "pZF" = (
 /obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "pZH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -27932,7 +27932,7 @@
 "qBy" = (
 /obj/effect/spawner/random/engineering/metal/nooffset,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "qDt" = (
 /obj/structure/closet/fireaxecabinet{
 	pixel_y = 31
@@ -27949,7 +27949,7 @@
 /area/ice_colony/surface/garage/three)
 "qDA" = (
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "qDY" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -28210,7 +28210,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "qXO" = (
 /obj/effect/decal/cleanable/flour,
 /turf/open/floor/tile/dark,
@@ -28375,7 +28375,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "rgq" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/wood,
@@ -28490,7 +28490,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "rkN" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -28525,7 +28525,7 @@
 "rmf" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "rnH" = (
 /obj/machinery/light{
 	dir = 1
@@ -29525,7 +29525,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "swN" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -29543,7 +29543,7 @@
 "sxd" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "sxv" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -29620,11 +29620,11 @@
 "sBA" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "sCC" = (
 /obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "sCK" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 1
@@ -29641,7 +29641,7 @@
 "sED" = (
 /obj/effect/spawner/random/engineering/shovel,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "sEH" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -29834,7 +29834,7 @@
 /area/ice_colony/surface/dorms)
 "sQr" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "sRe" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/wood,
@@ -30099,7 +30099,7 @@
 /area/ice_colony/underground/medical/treatment/garbledradio)
 "tjg" = (
 /turf/open/floor/plating/ground/snow/layer2,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "tjV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -30126,7 +30126,7 @@
 "tkL" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "tlj" = (
 /obj/effect/spawner/random/misc/plant,
 /obj/machinery/light,
@@ -30157,7 +30157,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "tlW" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -30275,7 +30275,7 @@
 "tsU" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "ttC" = (
 /obj/effect/turf_decal/warning_stripes/linethick{
 	dir = 4
@@ -30396,7 +30396,7 @@
 "txy" = (
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "txz" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
@@ -30506,7 +30506,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "tGM" = (
 /obj/structure/table/reinforced,
 /obj/structure/cable,
@@ -31092,7 +31092,7 @@
 "uxH" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "uxK" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -31161,7 +31161,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "uCG" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/yellow2,
@@ -31175,7 +31175,7 @@
 "uEc" = (
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "uEp" = (
 /obj/machinery/light{
 	dir = 8
@@ -31190,7 +31190,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "uER" = (
 /obj/effect/ai_node,
 /obj/machinery/landinglight/lz1{
@@ -31199,7 +31199,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "uFO" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/machinery/light,
@@ -31365,7 +31365,7 @@
 "uOi" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "uOT" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/tile/dark/brown2{
@@ -31481,7 +31481,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad)
+/area/landing_zone/aerodrome)
 "uWf" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth/bluefrostwall,
@@ -31956,7 +31956,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/brown2,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "vCh" = (
 /obj/structure/bed/chair,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -32090,7 +32090,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "vNw" = (
 /obj/item/lightstick/anchored,
 /obj/effect/landmark/weed_node,
@@ -32397,7 +32397,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/icefloor,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "wkx" = (
 /turf/open/floor/tile/red/whitered{
 	dir = 4
@@ -32540,7 +32540,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "wsD" = (
 /obj/structure/cable,
 /turf/open/floor/plating/icefloor/warnplate{
@@ -33043,7 +33043,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "xbs" = (
 /obj/effect/spawner/random/engineering/structure/atmospherics_portable/icecolony,
 /obj/structure/cable,
@@ -33074,7 +33074,7 @@
 "xdf" = (
 /obj/structure/sign/safety/hazard,
 /turf/open/floor/plating/icefloor/warnplate,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "xdX" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor/plating,
@@ -33133,7 +33133,7 @@
 /turf/open/floor/tile/dark/brown2{
 	dir = 10
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "xiY" = (
 /obj/structure/toilet{
 	dir = 8
@@ -33549,7 +33549,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "xBI" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -33680,7 +33680,7 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "xGZ" = (
 /turf/open/floor/tile/dark,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "xHa" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -33849,7 +33849,7 @@
 /area/ice_colony/exterior/surface/valley/west)
 "xSc" = (
 /turf/closed/mineral/smooth/bluefrostwall,
-/area/ice_colony/exterior/surface/landing_pad2)
+/area/landing_zone/two/emergency)
 "xSv" = (
 /obj/effect/spawner/random/misc/plant,
 /obj/machinery/light{

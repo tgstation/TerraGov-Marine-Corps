@@ -34,8 +34,6 @@
 
 /// shuttle is immune to gamemode timer restrictions
 #define GAMEMODE_IMMUNE (1<<0)
-#define SHUTTLE_LAND_IN_BUILDINGS (1<<1)
-#define SHUTTLE_LAND_OVER_RESIN (1<<2)
 
 // Ripples, effects that signal a shuttle's arrival
 #define SHUTTLE_RIPPLE_TIME 100

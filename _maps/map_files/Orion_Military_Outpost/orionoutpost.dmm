@@ -25,7 +25,7 @@
 "aq" = (
 /obj/structure/prop/mainship/hangar_stencil,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "at" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 1
@@ -196,7 +196,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "bm" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/mainship/orange{
@@ -221,7 +221,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "br" = (
 /obj/structure/table/mainship,
 /obj/item/weapon/gun/pistol/vp78,
@@ -358,7 +358,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "bX" = (
 /obj/machinery/newscaster,
 /turf/closed/wall/mainship/gray,
@@ -399,7 +399,7 @@
 "ch" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "ci" = (
 /turf/open/floor/mainship/green/corner{
 	dir = 1
@@ -988,7 +988,7 @@
 /area/orion_outpost/surface/building/atc)
 "eW" = (
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "eX" = (
 /obj/structure/platform,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -1033,7 +1033,7 @@
 "fj" = (
 /obj/machinery/landinglight/lz1,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "fk" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/orange,
@@ -1068,7 +1068,7 @@
 /area/orion_outpost/ground/outpostsw)
 "ft" = (
 /turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "fu" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 6
@@ -1152,7 +1152,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "fM" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -1230,7 +1230,7 @@
 /area/orion_outpost/surface/building/cargo)
 "gg" = (
 /turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "gh" = (
 /obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/blue{
@@ -1280,7 +1280,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "gB" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer3/laptop,
@@ -1345,7 +1345,7 @@
 "gQ" = (
 /obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "gR" = (
 /obj/item/mortal_shell/howitzer/incendiary,
 /turf/open/floor/mainship/black/full,
@@ -1358,7 +1358,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "gX" = (
 /obj/structure/platform{
 	dir = 10
@@ -1394,7 +1394,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "hp" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
@@ -1568,7 +1568,7 @@
 /area/orion_outpost/surface/building/atc)
 "ik" = (
 /turf/open/floor/plating/ground/concrete/lines,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "il" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -1775,7 +1775,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "jk" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 4
@@ -1860,7 +1860,7 @@
 /area/orion_outpost/ground/outposts)
 "jF" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "jG" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/orange,
@@ -1992,7 +1992,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "kn" = (
 /obj/machinery/light{
 	dir = 1
@@ -2002,7 +2002,7 @@
 "ko" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "kp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -2141,7 +2141,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "kW" = (
 /turf/open/floor/mainship/black{
 	dir = 8
@@ -2803,7 +2803,7 @@
 "od" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "oe" = (
 /obj/effect/turf_decal/riverdecal,
 /obj/effect/ai_node,
@@ -3502,7 +3502,7 @@
 "rr" = (
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "rs" = (
 /obj/machinery/vending/snack,
 /obj/machinery/light{
@@ -3629,7 +3629,7 @@
 "rS" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "rT" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -3678,7 +3678,7 @@
 "sf" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "sg" = (
 /obj/machinery/light{
 	dir = 1
@@ -3738,7 +3738,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "sy" = (
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
@@ -3802,7 +3802,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "sL" = (
 /obj/structure/rack,
 /obj/item/weapon/gun/shotgun/pump/cmb,
@@ -3944,7 +3944,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "tq" = (
 /obj/item/storage/toolbox/mechanical,
 /obj/structure/platform,
@@ -4015,7 +4015,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "tK" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
@@ -4134,7 +4134,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "uv" = (
 /obj/structure/prop/mainship/mission_planning_system,
 /obj/structure/platform,
@@ -4350,7 +4350,7 @@
 "vz" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/concrete/lines,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "vA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -4391,7 +4391,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "vM" = (
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/ground/underground/caveS/garbledradio)
@@ -4570,7 +4570,7 @@
 /obj/effect/landmark/dropship_start_location,
 /obj/machinery/landinglight/lz1,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "wI" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete/edge{
@@ -4666,7 +4666,7 @@
 "xc" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/mineral/smooth,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "xd" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -4726,7 +4726,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "xt" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
@@ -4789,7 +4789,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "xJ" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -5090,7 +5090,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "zb" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/plating,
@@ -5114,7 +5114,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "zi" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/underground/caveS)
@@ -5221,7 +5221,7 @@
 /area/orion_outpost/surface/building/vehicledepot)
 "zI" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "zJ" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/mainship/mono,
@@ -5512,7 +5512,7 @@
 "Bf" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "Bg" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
@@ -5583,7 +5583,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "By" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /obj/machinery/light{
@@ -5607,7 +5607,7 @@
 "BD" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "BE" = (
 /turf/open/floor/mainship/blue{
 	dir = 4
@@ -5621,7 +5621,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "BH" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth,
@@ -5689,7 +5689,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "Cb" = (
 /obj/structure/flora/pottedplant/one,
 /turf/open/floor/mainship/blue{
@@ -5729,7 +5729,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 4
 	},
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "Ci" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth,
@@ -5789,7 +5789,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "Cw" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
@@ -6161,7 +6161,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "Ei" = (
 /obj/effect/landmark/corpsespawner/marine,
 /obj/effect/decal/cleanable/blood,
@@ -6264,11 +6264,11 @@
 "EJ" = (
 /obj/machinery/landinglight/lz2,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "EL" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "EM" = (
 /turf/open/floor/mainship/red{
 	dir = 8
@@ -6298,7 +6298,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "EU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -6542,7 +6542,7 @@
 /area/orion_outpost/surface/building/ammodepot)
 "Gs" = (
 /turf/closed/mineral/smooth,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "Gu" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/mainship/mono,
@@ -6559,7 +6559,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "Gy" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 8
@@ -6575,13 +6575,13 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "GB" = (
 /obj/machinery/landinglight/lz1{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "GC" = (
 /obj/structure/prop/brokenvendor/brokenspecialistvendor/leader,
 /turf/open/floor/mainship/green{
@@ -6638,7 +6638,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "GR" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 2
@@ -6693,7 +6693,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "He" = (
 /turf/open/floor/mainship/orange/corner,
 /area/orion_outpost/surface/building/cargo)
@@ -6977,7 +6977,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 8
 	},
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "Iz" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -6994,7 +6994,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "IJ" = (
 /obj/item/stack/rods,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -7353,7 +7353,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "KA" = (
 /obj/structure/desertdam/decals/road/edge/long{
 	dir = 1
@@ -7904,7 +7904,7 @@
 "MZ" = (
 /obj/machinery/button/door/open_only/landing_zone/lz2,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "Na" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/mono,
@@ -8011,7 +8011,7 @@
 "Nt" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "Nu" = (
 /obj/structure/mecha_wreckage/ripley,
 /turf/open/floor/mainship/mono,
@@ -8077,7 +8077,7 @@
 /area/orion_outpost/surface/building/atc)
 "NN" = (
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "NO" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile/corner{
@@ -8186,7 +8186,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "On" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/concrete,
@@ -8279,7 +8279,7 @@
 /area/orion_outpost/surface/building/tadpolepad)
 "OK" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "OL" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -8312,7 +8312,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "OV" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 6
@@ -8380,7 +8380,7 @@
 /turf/open/floor/plating/ground/concrete/lines{
 	dir = 1
 	},
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "Pl" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -8507,7 +8507,7 @@
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "PX" = (
 /obj/structure/table/mainship,
 /obj/machinery/light{
@@ -8615,7 +8615,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "Qw" = (
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
@@ -8851,7 +8851,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "RD" = (
 /obj/structure/sink{
 	dir = 4
@@ -8875,7 +8875,7 @@
 "RJ" = (
 /obj/machinery/button/door/open_only/landing_zone,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "RL" = (
 /obj/structure/curtain/open/shower,
 /turf/open/floor/mainship/sterile/dark,
@@ -8954,7 +8954,7 @@
 "Sh" = (
 /obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad_2)
+/area/landing_zone/two/enclosed)
 "Si" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9032,7 +9032,7 @@
 "SA" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "SB" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/normalweighted,
 /turf/open/floor/plating/ground/concrete,
@@ -9517,10 +9517,10 @@
 "UQ" = (
 /obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating,
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "UR" = (
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "US" = (
 /obj/structure/barricade/metal{
 	dir = 4
@@ -9589,7 +9589,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "Vl" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -9813,7 +9813,7 @@
 "Wk" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "Wl" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -9894,7 +9894,7 @@
 "WB" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "WC" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/marine/engineer,
@@ -9903,7 +9903,7 @@
 "WD" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "WE" = (
 /obj/structure/stairs/seamless{
 	dir = 8
@@ -9942,7 +9942,7 @@
 /area/orion_outpost/surface/building/administration)
 "WO" = (
 /turf/closed/mineral/smooth,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "WP" = (
 /obj/structure/sink,
 /turf/open/floor/mainship/sterile/dark,
@@ -10435,7 +10435,7 @@
 "Zj" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
-/area/orion_outpost/surface/landing_pad2_external)
+/area/landing_zone/two/enclosed)
 "Zk" = (
 /obj/machinery/door/poddoor/mainship/open,
 /obj/structure/desertdam/decals/road/line{
@@ -10468,7 +10468,7 @@
 "Zq" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/orion_outpost/surface/landing_pad_external)
+/area/landing_zone/enclosed)
 "Zs" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/mono,
@@ -10565,7 +10565,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/orion_outpost/surface/landing_pad)
+/area/landing_zone/enclosed)
 "ZT" = (
 /obj/effect/landmark/corpsespawner/marine,
 /turf/open/floor/mainship/floor,

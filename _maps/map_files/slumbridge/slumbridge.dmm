@@ -59,7 +59,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "adG" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/bottle/ammonia,
@@ -121,7 +121,7 @@
 	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "afO" = (
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/mainship/silver{
@@ -146,7 +146,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "ahn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -169,7 +169,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "ahL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -221,7 +221,7 @@
 "akB" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "akH" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreenfull,
@@ -679,7 +679,7 @@
 "aEa" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "aEf" = (
 /obj/structure/platform/nondense{
 	dir = 6
@@ -773,7 +773,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "aIE" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/white,
@@ -1081,11 +1081,11 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark/red2,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "aTl" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "aTp" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /obj/structure/cable,
@@ -1169,7 +1169,7 @@
 "aVn" = (
 /obj/machinery/light,
 /turf/open/floor/tile/darkish,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "aVu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -1194,7 +1194,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "aWH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1489,7 +1489,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "bim" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -1509,7 +1509,7 @@
 "biF" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/platebot,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "biH" = (
 /obj/structure/platform/metalplatform/nondense{
 	dir = 8
@@ -1572,9 +1572,6 @@
 	dir = 8
 	},
 /area/slumbridge/inside/pmcdome)
-"bkz" = (
-/turf/open/floor/plating/icefloor,
-/area/shuttle/drop1/lz1)
 "bkN" = (
 /obj/effect/spawner/random/misc/structure/suit_storage,
 /turf/open/floor/tile/green/whitegreenfull,
@@ -1754,7 +1751,7 @@
 	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "bpU" = (
 /obj/machinery/door/airlock/mainship/medical/free_access{
 	name = "\improper Medical Clinic Morgue"
@@ -2159,7 +2156,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark/red2/corner,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "bEC" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -2520,7 +2517,7 @@
 "bPI" = (
 /obj/machinery/light,
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "bQt" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -2629,7 +2626,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "bVT" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/full,
@@ -2692,10 +2689,10 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "bYh" = (
 /turf/closed/wall/r_wall,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "bYo" = (
 /turf/open/floor/plating/ground/snow,
 /area/slumbridge/outside/southwest)
@@ -2866,7 +2863,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 9
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "cfj" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/gm/dense,
@@ -2895,7 +2892,7 @@
 "cgP" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "chf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3003,7 +3000,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "clf" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -3419,7 +3416,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "cAA" = (
 /turf/open/floor/mainship/red,
 /area/slumbridge/inside/sombase/hangar)
@@ -3477,7 +3474,7 @@
 /area/slumbridge/inside/hydrotreatment)
 "cCV" = (
 /turf/open/floor/tile/darkish,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "cDj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3827,7 +3824,7 @@
 	},
 /obj/structure/prop/mainship/hangar_stencil,
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "cPr" = (
 /obj/effect/spawner/random/misc/structure/stool,
 /obj/effect/decal/cleanable/dirt,
@@ -3924,7 +3921,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "cUn" = (
 /obj/structure/stairs{
 	dir = 1
@@ -4068,7 +4065,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "dal" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4135,7 +4132,7 @@
 "ddr" = (
 /obj/structure/cable,
 /turf/open/floor/tile/darkish,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "ddx" = (
 /obj/structure/table,
 /obj/item/trash/pistachios,
@@ -4536,7 +4533,7 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "duf" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/liquid/water/river/autosmooth,
@@ -4759,7 +4756,7 @@
 "dCW" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/red/whitered/full,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "dCX" = (
 /obj/machinery/vending/nanomed,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5210,7 +5207,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "dSU" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/silver/corner{
@@ -5350,7 +5347,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "dYp" = (
 /obj/structure/lattice,
 /turf/open/floor/plating,
@@ -5387,7 +5384,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "dZM" = (
 /obj/structure/closet/secure_closet/atmos_personal,
 /turf/open/floor,
@@ -5706,7 +5703,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 5
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "epp" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/plating/asteroidwarning{
@@ -5844,7 +5841,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "evn" = (
 /obj/effect/ai_node,
 /turf/open/liquid/water/river/autosmooth,
@@ -5942,7 +5939,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "eza" = (
 /obj/item/tool/pickaxe,
 /turf/open/floor/cult,
@@ -6367,7 +6364,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "eUX" = (
 /obj/effect/turf_decal/tracks/claw1/bloody{
 	dir = 4
@@ -6438,7 +6435,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "eWB" = (
 /turf/open/floor/mainship/red/corner{
 	dir = 4
@@ -6449,7 +6446,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "eXg" = (
 /obj/structure/prop/mainship/gelida/powerccable,
 /turf/open/floor/plating/ground/snow,
@@ -6643,7 +6640,7 @@
 "fft" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "ffv" = (
 /obj/structure/prop/radio_prop,
 /turf/closed/wall,
@@ -6655,7 +6652,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "ffK" = (
 /obj/structure/monorail{
 	dir = 4
@@ -6819,7 +6816,7 @@
 /area/slumbridge/inside/engi/central)
 "fnu" = (
 /turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "fnD" = (
 /turf/closed/mineral/smooth,
 /area/slumbridge/caves/mining)
@@ -7105,7 +7102,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "fxI" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/yellow{
@@ -7179,7 +7176,7 @@
 	pixel_y = -2
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "fAy" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/mainship/floor,
@@ -7385,7 +7382,7 @@
 "fKN" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "fLg" = (
 /obj/structure/bed,
 /turf/open/floor/plating,
@@ -7398,7 +7395,7 @@
 "fLs" = (
 /obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /turf/open/floor/prison/cleanmarked,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "fLE" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	dir = 4
@@ -7713,7 +7710,7 @@
 /area/slumbridge/inside/engi/engineroom)
 "fUH" = (
 /turf/open/floor/tile/dark/red2/corner,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "fUZ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/whiteyellow/corner{
@@ -7738,7 +7735,7 @@
 "fVX" = (
 /obj/machinery/light,
 /turf/open/floor/tile/dark/yellow2,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "fWg" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
@@ -8221,7 +8218,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "gnY" = (
 /obj/effect/ai_node,
 /turf/open/liquid/water/river,
@@ -8248,7 +8245,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "gpb" = (
 /obj/machinery/chem_dispenser,
 /turf/open/floor/tile/blue/whitebluefull,
@@ -8328,7 +8325,7 @@
 "gsR" = (
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "gta" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/white,
@@ -8454,7 +8451,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "gxU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8493,7 +8490,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "gyO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -8684,7 +8681,7 @@
 "gGN" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "gGU" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -8816,7 +8813,7 @@
 "gLi" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "gLu" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -8905,7 +8902,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "gON" = (
 /obj/structure/safe,
 /turf/open/floor/prison/blackfloor,
@@ -8990,7 +8987,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "gTH" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -9091,7 +9088,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "gWJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -9294,7 +9291,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "hej" = (
 /obj/machinery/pipedispenser,
 /turf/open/floor/tile/yellow/full,
@@ -9327,7 +9324,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/ice,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "hgh" = (
 /obj/effect/spawner/gibspawner/human,
 /turf/open/floor/mainship/plate,
@@ -9376,7 +9373,7 @@
 "hhy" = (
 /obj/structure/stairs/seamless/edge,
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "hhA" = (
 /obj/structure/catwalk,
 /obj/structure/platform/nondense,
@@ -9457,7 +9454,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/platebotc,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "hld" = (
 /obj/structure/cable,
 /obj/effect/landmark/xeno_resin_door,
@@ -9476,7 +9473,7 @@
 "hlB" = (
 /obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "hlC" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/food_or_drink/outdoors_snacks,
@@ -9643,7 +9640,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "hrr" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -9735,7 +9732,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "huS" = (
 /obj/structure/prop/mainship/gelida/smallwire,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -9796,7 +9793,7 @@
 "hwh" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/platebotc,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "hwj" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/blue,
@@ -9834,7 +9831,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "hxB" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/tile/dark,
@@ -10195,7 +10192,7 @@
 /area/slumbridge/outside/southeast)
 "hJy" = (
 /turf/open/floor/tile/red/whitered/full,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "hKo" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
 	dir = 2
@@ -10268,7 +10265,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "hMK" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 9
@@ -10468,7 +10465,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "hUh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10729,11 +10726,11 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "icC" = (
 /obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "idd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -11245,7 +11242,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "isW" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/whitered{
@@ -11582,7 +11579,7 @@
 /area/slumbridge/inside/medical/foyer)
 "iEk" = (
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "iEl" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
@@ -11704,7 +11701,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "iJF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -11813,7 +11810,7 @@
 "iNm" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "iNz" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/tool,
@@ -11947,7 +11944,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "iTJ" = (
 /obj/structure/rock,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -11976,7 +11973,7 @@
 "iUB" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "iUL" = (
 /obj/item/stack/sheet/metal,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12262,7 +12259,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "jhW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light,
@@ -12413,7 +12410,7 @@
 "jnn" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "jnD" = (
 /obj/machinery/sleeper,
 /turf/open/floor/prison/whitegreen,
@@ -12454,7 +12451,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "jpd" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -12474,7 +12471,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 9
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "jpQ" = (
 /obj/structure/rock/basalt/pile/alt3,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -12571,7 +12568,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "jsP" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/mainship/secure/free_access{
@@ -12610,7 +12607,7 @@
 	dir = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "jun" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -12728,7 +12725,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "jyz" = (
 /obj/effect/spawner/gibspawner/human,
 /obj/effect/ai_node,
@@ -12823,7 +12820,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "jCa" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
@@ -13046,7 +13043,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "jKs" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -13588,7 +13585,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/tile/darkish,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "kfS" = (
 /obj/structure/closet/wardrobe/chemistry_white,
 /turf/open/floor/mainship/sterile,
@@ -13629,7 +13626,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/platebotc,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "kip" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 10
@@ -13985,7 +13982,7 @@
 /obj/structure/closet/crate,
 /obj/effect/spawner/random/weaponry/gun,
 /turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "kwD" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -14409,7 +14406,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "kOG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -14560,7 +14557,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "kRv" = (
 /obj/effect/turf_decal/tracks/claw1/bloody{
 	dir = 4
@@ -14665,7 +14662,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "kUg" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/cryofeed/right{
@@ -14696,7 +14693,7 @@
 "kVI" = (
 /obj/machinery/light,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "kVJ" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/ai,
@@ -14795,7 +14792,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "kYK" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
@@ -15073,7 +15070,7 @@
 /area/slumbridge/inside/medical/foyer)
 "ljt" = (
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "ljx" = (
 /obj/effect/turf_decal/riverdecal,
 /turf/open/liquid/water/river/autosmooth/deep,
@@ -15083,7 +15080,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "lka" = (
 /obj/structure/prop/mainship/telecomms/hub,
 /turf/open/floor/mainship/tcomms,
@@ -15109,7 +15106,7 @@
 "lmC" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/ice,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "lmQ" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 1
@@ -15732,7 +15729,7 @@
 "lKd" = (
 /obj/effect/spawner/random/misc/structure/crate,
 /turf/open/floor/plating/platebot,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "lKr" = (
 /obj/machinery/computer/emails{
 	density = 0
@@ -15755,7 +15752,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "lKG" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -15927,7 +15924,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "lPH" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -16019,7 +16016,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "lSI" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/sign/safety/maintenance{
@@ -16098,7 +16095,7 @@
 "lVB" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "lVG" = (
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/colony/orestorage)
@@ -16366,7 +16363,7 @@
 "mfW" = (
 /obj/structure/cargo_container/green,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "mgf" = (
 /obj/machinery/miner/damaged/platinum,
 /turf/open/floor/cult,
@@ -16444,7 +16441,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "miQ" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/landmark/weed_node,
@@ -16692,7 +16689,7 @@
 "mrs" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "mrF" = (
 /obj/structure/closet/crate/medical,
 /turf/open/floor/plating,
@@ -16720,7 +16717,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "mua" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
@@ -16742,7 +16739,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "muU" = (
 /turf/open/liquid/lava/side{
 	dir = 4
@@ -17119,7 +17116,7 @@
 "mJo" = (
 /obj/machinery/landinglight/lz2,
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "mJq" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
@@ -17269,7 +17266,7 @@
 /area/slumbridge/inside/medical/morgue)
 "mQb" = (
 /turf/open/floor/tile/dark/red2,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "mQB" = (
 /obj/structure/girder,
 /turf/open/floor/plating,
@@ -17508,7 +17505,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "nar" = (
 /obj/item/ore/glass,
 /turf/open/floor/plating/ground/mars/random/cave/rock{
@@ -17586,7 +17583,7 @@
 /obj/machinery/light,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "ndp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -17896,7 +17893,7 @@
 "nmn" = (
 /obj/effect/spawner/random/misc/structure/crate,
 /turf/open/floor/plating/icefloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "nmr" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/slumbridge/outside/southwest)
@@ -17996,7 +17993,7 @@
 /obj/structure/cable,
 /obj/machinery/light,
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "nst" = (
 /obj/machinery/light{
 	dir = 1
@@ -18162,7 +18159,7 @@
 /area/slumbridge/inside/prison/outerringsouth)
 "nwg" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "nwh" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 1
@@ -18201,7 +18198,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "nxh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -18221,7 +18218,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "nxF" = (
 /obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/mainship/tcomms,
@@ -18362,7 +18359,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 10
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "nCw" = (
 /obj/machinery/light,
 /turf/open/floor,
@@ -18529,7 +18526,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "nHy" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/darkred,
@@ -18645,7 +18642,7 @@
 "nLo" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/icefloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "nLp" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -18656,7 +18653,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock{
 	dir = 4
 	},
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "nLw" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/spawner/gibspawner/human,
@@ -18804,7 +18801,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "nTb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -18853,7 +18850,7 @@
 "nUU" = (
 /obj/effect/decal/cleanable/blood/oil/armorblood,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "nUY" = (
 /obj/item/ore/slag{
 	pixel_x = -1
@@ -19008,7 +19005,7 @@
 /area/slumbridge/inside/colony/headoffice)
 "nZy" = (
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "nZR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19200,7 +19197,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "ohp" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -19388,7 +19385,7 @@
 /area/slumbridge/inside/colony/northerndome)
 "ooG" = (
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "ooY" = (
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
@@ -19760,11 +19757,11 @@
 "oCu" = (
 /obj/structure/cargo_container/hd_blue,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "oCE" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "oCR" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mainship/floor,
@@ -20052,7 +20049,7 @@
 /area/slumbridge/outside/northwest)
 "oPI" = (
 /turf/open/floor/plating/icefloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "oPJ" = (
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /obj/effect/decal/cleanable/dirt,
@@ -20259,13 +20256,13 @@
 /area/slumbridge/inside/medical/chemistry)
 "oXX" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "oYm" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "oYP" = (
 /obj/structure/table/mainship,
 /obj/machinery/light,
@@ -20335,7 +20332,7 @@
 "pbh" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "pbo" = (
 /obj/structure/inflatable/door,
 /turf/open/floor/tile/dark/blue2{
@@ -20402,7 +20399,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "pdh" = (
 /obj/machinery/flasher,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -20435,7 +20432,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "peo" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -20477,7 +20474,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/platebotc,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "phf" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/mainship/striped{
@@ -20560,7 +20557,7 @@
 /area/slumbridge/outside/southwest/nearlz)
 "pjL" = (
 /turf/closed/wall/r_wall,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "pkq" = (
 /obj/machinery/light{
 	dir = 4
@@ -20568,7 +20565,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "pky" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark,
@@ -20582,7 +20579,7 @@
 "plp" = (
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "plD" = (
 /obj/structure/closet/cabinet,
 /obj/effect/spawner/random/clothing/coloredgloves,
@@ -20778,7 +20775,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "psz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21026,7 +21023,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "pzO" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/shuttle/escapepod,
@@ -21248,7 +21245,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "pMh" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -21486,7 +21483,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "pTC" = (
 /turf/open/floor/prison/greenblue{
 	dir = 9
@@ -21573,7 +21570,7 @@
 "pXb" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "pXg" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
@@ -21589,7 +21586,7 @@
 "pXp" = (
 /obj/structure/cargo_container/hd,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "pXL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/liquid_fuel,
@@ -21644,7 +21641,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "pZl" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/tile/yellow,
@@ -21653,7 +21650,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "pZQ" = (
 /turf/open/floor/wood/variable/wide,
 /area/slumbridge/caves/southeastcaves/garbledradio)
@@ -22115,7 +22112,7 @@
 "qoI" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "qpw" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -22258,7 +22255,7 @@
 "qvG" = (
 /obj/effect/decal/cleanable/blood/oil/armorblood,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "qvX" = (
 /obj/machinery/vending/cola,
 /obj/structure/window/reinforced{
@@ -22490,7 +22487,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "qDW" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	on = 1
@@ -22564,7 +22561,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "qFT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22636,7 +22633,7 @@
 "qJo" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "qJx" = (
 /obj/machinery/computer/intel_computer,
 /obj/effect/decal/cleanable/dirt,
@@ -22685,7 +22682,7 @@
 /area/slumbridge/caves/mining)
 "qKi" = (
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "qKk" = (
 /obj/effect/spawner/random/misc/structure/directional_window/west,
 /obj/structure/closet/secure_closet/medical1/colony,
@@ -22810,7 +22807,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "qNY" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22986,7 +22983,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "qUr" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
@@ -23077,7 +23074,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "qWX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -23114,7 +23111,7 @@
 "qYu" = (
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "qYy" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/ground/grass/weedable/patch,
@@ -23333,7 +23330,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "rie" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -23380,7 +23377,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "rju" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/plating,
@@ -23620,7 +23617,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "rrr" = (
 /turf/open/floor/tile/barber,
 /area/slumbridge/inside/houses/surgery)
@@ -23746,7 +23743,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "rvU" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirt,
@@ -23810,7 +23807,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "ryG" = (
 /obj/structure/bed/chair/wood/normal{
 	dir = 4
@@ -24039,7 +24036,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "rGT" = (
 /turf/open/floor/prison/green/corner{
 	dir = 1
@@ -24147,7 +24144,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/icefloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "rLd" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
@@ -24446,14 +24443,14 @@
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 1
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "rVX" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "rWl" = (
 /obj/machinery/light{
 	dir = 1
@@ -24508,7 +24505,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/platebotc,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "rXs" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/ground/grass/weedable/patch,
@@ -24695,7 +24692,7 @@
 "scD" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "scW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -24800,7 +24797,7 @@
 /area/slumbridge/inside/houses/dorms)
 "sfW" = (
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "sfY" = (
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -24864,7 +24861,7 @@
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "siI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -25022,7 +25019,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "srf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25230,7 +25227,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "szJ" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating,
@@ -25755,7 +25752,7 @@
 "sTu" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "sUj" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -25856,7 +25853,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "sXV" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -25922,7 +25919,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/platebotc,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "tad" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -26298,7 +26295,7 @@
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "tql" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/mainship/tcomms,
@@ -26445,7 +26442,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "twh" = (
 /obj/structure/table/wood/gambling,
 /obj/item/toy/dice/d20,
@@ -26515,7 +26512,7 @@
 /area/slumbridge/inside/prison/outerringsouth)
 "tyh" = (
 /turf/open/floor/plating/platebot,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "tyn" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -26749,7 +26746,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "tGz" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/blue,
@@ -27174,7 +27171,7 @@
 "tYb" = (
 /obj/machinery/landinglight/lz1,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "tYL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -27323,7 +27320,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "uer" = (
 /obj/effect/spawner/random/misc/trash,
 /obj/effect/decal/cleanable/dirt,
@@ -28130,7 +28127,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "uMM" = (
 /turf/open/liquid/lava/single_intersection/direction{
 	dir = 8
@@ -28326,7 +28323,7 @@
 /area/slumbridge/outside/northeast)
 "uSH" = (
 /turf/open/floor/plating/platebot,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "uTe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -28357,7 +28354,7 @@
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "uUn" = (
 /obj/effect/ai_node,
 /obj/structure/platform_decoration{
@@ -28496,7 +28493,7 @@
 "uZV" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "vad" = (
 /obj/machinery/door/airlock/mainship/secure/free_access{
 	dir = 1;
@@ -28643,7 +28640,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/platebotc,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "vgr" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
@@ -28651,7 +28648,7 @@
 	dir = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "vgv" = (
 /obj/structure/flora/jungle/vines,
 /obj/effect/landmark/weed_node,
@@ -28760,7 +28757,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "vjP" = (
 /obj/effect/spawner/random/misc/structure/stool,
 /turf/open/floor/wood,
@@ -28860,7 +28857,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "vnm" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
@@ -28926,7 +28923,7 @@
 "voW" = (
 /obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "vpa" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
@@ -29225,7 +29222,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "vAq" = (
 /turf/open/liquid/lava/single/middle{
 	dir = 1
@@ -29287,7 +29284,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "vCu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -29369,7 +29366,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "vEm" = (
 /obj/machinery/light{
 	dir = 8
@@ -29427,7 +29424,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "vHC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29604,7 +29601,7 @@
 "vMK" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "vMN" = (
 /obj/effect/landmark/corpsespawner/doctor/regular,
 /turf/open/floor/tile/blue/taupebluecorner,
@@ -29631,7 +29628,7 @@
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "vOb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29878,7 +29875,7 @@
 "vVe" = (
 /obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "vVk" = (
 /obj/structure/table/wood,
 /obj/machinery/computer3,
@@ -29905,7 +29902,7 @@
 /turf/open/floor/tile/dark/red2/corner{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "vVJ" = (
 /obj/structure/stairs/seamless{
 	dir = 4
@@ -30139,7 +30136,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "wfg" = (
 /obj/machinery/door/airlock/prison/horizontal/open,
 /turf/open/floor/prison/red/full,
@@ -30244,7 +30241,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "wic" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -30328,7 +30325,7 @@
 "wki" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "wkv" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -30450,7 +30447,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two)
 "wpq" = (
 /obj/item/trash/kepler{
 	pixel_y = 15
@@ -30522,7 +30519,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "wrd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -30812,7 +30809,7 @@
 "wAW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "wBa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -31132,7 +31129,7 @@
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "wNe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -31303,7 +31300,7 @@
 /area/slumbridge/outside/southwest)
 "wTB" = (
 /turf/open/floor/plating/platebotc,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "wTD" = (
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
@@ -31322,7 +31319,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "wUB" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /turf/open/floor/plating/ground/dirt,
@@ -31342,7 +31339,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 1
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "wUW" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/yellow{
@@ -31699,7 +31696,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/platebotc,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "xiF" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/engibelt,
@@ -31793,7 +31790,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "xnx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -32104,7 +32101,7 @@
 "xAA" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "xAV" = (
 /obj/machinery/light{
 	dir = 1
@@ -32268,7 +32265,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "xGE" = (
 /obj/structure/largecrate/random/barrel/red,
 /turf/open/floor/marking/bot,
@@ -32369,7 +32366,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "xKx" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -32468,7 +32465,7 @@
 /turf/open/floor/tile/dark/purple2/corner{
 	dir = 4
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "xOD" = (
 /obj/structure/table/wood,
 /obj/item/newspaper,
@@ -32594,7 +32591,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "xTr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -32631,7 +32628,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/mainship,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "xUC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -32705,7 +32702,7 @@
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "xWQ" = (
 /obj/structure/girder/reinforced,
 /obj/structure/platform/metalplatform/nondense{
@@ -32758,7 +32755,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "xYR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -32843,7 +32840,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone)
 "ycz" = (
 /obj/structure/stairs,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -33034,7 +33031,7 @@
 /area/slumbridge/outside/northwest)
 "yif" = (
 /turf/open/floor,
-/area/slumbridge/landingzoneone)
+/area/landing_zone)
 "yik" = (
 /obj/machinery/door/window/right{
 	dir = 1
@@ -33061,7 +33058,7 @@
 /area/slumbridge/outside/northeast)
 "yiz" = (
 /turf/open/floor/tile/dark/yellow2,
-/area/slumbridge/landingzonetwo)
+/area/landing_zone/two)
 "yiG" = (
 /turf/open/floor/marking/loadingarea{
 	dir = 1
@@ -37540,25 +37537,25 @@ qKi
 qKi
 tYb
 xGy
-bkz
+oPI
 scD
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 nUU
 scD
-bkz
+oPI
 nwg
 aWu
 qKi
@@ -37721,25 +37718,25 @@ qKi
 qKi
 tYb
 xGy
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 mrs
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 nwg
 aWu
 qKi
@@ -37902,25 +37899,25 @@ qKi
 qKi
 tYb
 xGy
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
 icC
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 nwg
 aWu
 qKi
@@ -38083,25 +38080,25 @@ bXQ
 qKi
 tYb
 xGy
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 nwg
 aWu
 qKi
@@ -38264,25 +38261,25 @@ qKi
 gsR
 tYb
 xGy
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
 mrs
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
 hlB
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 nwg
 aWu
 qKi
@@ -38445,25 +38442,25 @@ qKi
 qKi
 tYb
 xGy
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 mrs
-bkz
+oPI
 nwg
 aWu
 qKi
@@ -38626,25 +38623,25 @@ qKi
 qKi
 tYb
 xGy
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 nUU
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 nwg
 aWu
 qKi
@@ -38807,25 +38804,25 @@ bXQ
 qKi
 tYb
 xGy
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 nwg
 aWu
 qKi
@@ -38988,25 +38985,25 @@ qKi
 lVB
 tYb
 xGy
-bkz
+oPI
 scD
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
+oPI
 nUU
-bkz
-bkz
-bkz
+oPI
+oPI
+oPI
 scD
-bkz
+oPI
 nwg
 aWu
 qKi

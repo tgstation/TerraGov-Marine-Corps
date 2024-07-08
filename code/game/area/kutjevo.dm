@@ -8,18 +8,6 @@
 	temperature = 308.7 //kelvin, 35c, 95f
 	minimap_color = MINIMAP_AREA_ENGI
 
-/area/shuttle/drop1/kutjevo
-	name = "Kutjevo - Dropship Alamo Landing Zone"
-	icon_state = "shuttle"
-	icon = 'icons/turf/area_kutjevo.dmi'
-
-/area/shuttle/drop2/kutjevo
-	name = "Kutjevo - Dropship Normandy Landing Zone"
-	icon_state = "shuttle2"
-	icon = 'icons/turf/area_kutjevo.dmi'
-	area_flags = MARINE_BASE
-	minimap_color = MINIMAP_AREA_LZ
-
 /area/kutjevo/exterior
 	name = "Kutjevo - Exterior"
 	ceiling = CEILING_NONE

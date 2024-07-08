@@ -241,9 +241,8 @@
 	name = "Alamo"
 	id = SHUTTLE_DROPSHIP
 	control_flags = SHUTTLE_MARINE_PRIMARY_DROPSHIP
-	//ignitionTime = 2 SECONDS
-	callTime = 10 SECONDS
-	rechargeTime = 10 SECONDS
+	callTime = 30 SECONDS
+	rechargeTime = 5 SECONDS
 	prearrivalTime = 10 SECONDS
 
 /obj/docking_port/mobile/marine_dropship/two
@@ -265,7 +264,8 @@
 		return
 	unlock_all()
 
-/obj/docking_port/mobile/marine_dropship/proc/start_hijack_timer(hijack_time = 2 MINUTES)
+///Start the countdown for how long until control of the dropship is returned to the marines
+/obj/docking_port/mobile/marine_dropship/proc/start_hijack_timer(hijack_time = 6 MINUTES)
 	addtimer(CALLBACK(src, PROC_REF(reset_hijack)), hijack_time)
 
 ///Process for resetting a ship to it's normal non-hijacked state

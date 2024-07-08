@@ -285,7 +285,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "akq" = (
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
@@ -563,7 +563,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "arW" = (
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
@@ -1990,7 +1990,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "baw" = (
 /obj/structure/flora/jungle/vines/heavy,
 /obj/structure/flora/jungle/vines,
@@ -2872,7 +2872,7 @@
 /obj/docking_port/stationary/shuttle/lz1,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "bAn" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -3175,7 +3175,7 @@
 "bQV" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "bRp" = (
 /obj/structure/rack,
 /obj/item/clothing/under/color/black,
@@ -3306,7 +3306,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "cae" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -3988,7 +3988,7 @@
 /area/lv624/lazarus/fitness)
 "cRC" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "cSr" = (
 /turf/open/floor/marking/warning{
 	dir = 8
@@ -4468,7 +4468,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "dsm" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/plating/ground/dirt,
@@ -6763,7 +6763,7 @@
 "gfm" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "gft" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship/open{
@@ -7108,7 +7108,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "gEc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -7807,7 +7807,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "hww" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -8028,7 +8028,7 @@
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "hIf" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	name = "Corporate Dome"
@@ -9092,7 +9092,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "iSJ" = (
 /obj/effect/decal/cleanable/cobweb2,
 /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
@@ -9712,7 +9712,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "jFe" = (
 /obj/effect/ai_node,
 /turf/open/liquid/water/river/autosmooth/deep,
@@ -10397,7 +10397,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "kqq" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -10758,7 +10758,7 @@
 "kLN" = (
 /obj/machinery/landinglight/lz1,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "kMj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -10862,7 +10862,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "kSG" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/comms)
@@ -10973,7 +10973,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "kZT" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/ai_node,
@@ -11004,7 +11004,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "lbt" = (
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/tile/whiteyellow/full,
@@ -11020,7 +11020,7 @@
 "lcv" = (
 /obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "lcT" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -11530,7 +11530,7 @@
 /area/lv624/lazarus/crashed_ship)
 "lKP" = (
 /turf/open/floor/plating/asteroidfloor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "lLn" = (
 /turf/open/floor/marking/loadingarea{
 	dir = 1
@@ -12366,7 +12366,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "mGL" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/jungle/vines/heavy,
@@ -13603,7 +13603,7 @@
 "ohD" = (
 /obj/effect/decal/cleanable/blood/oil/armorblood,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "ohH" = (
 /obj/structure/flora/grass/green,
 /turf/open/ground/grass,
@@ -14725,7 +14725,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "pGL" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -14896,7 +14896,7 @@
 /area/lv624/ground/jungle9)
 "pSp" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "pSz" = (
 /obj/machinery/door/airlock/colony/medical/hydroponics{
 	dir = 1
@@ -14992,7 +14992,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "pWW" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -15289,7 +15289,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "qqt" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -15591,7 +15591,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "qLx" = (
 /obj/structure/cable,
 /obj/structure/stairs/seamless{
@@ -15707,7 +15707,7 @@
 "qQD" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "qRg" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/platebot,
@@ -16430,7 +16430,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "rBu" = (
 /obj/structure/table,
 /obj/item/tool/shovel/spade,
@@ -17363,7 +17363,7 @@
 /area/lv624/lazarus/fitness)
 "szs" = (
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "sAv" = (
 /obj/item/clothing/suit/redtag,
 /obj/structure/closet/athletic_mixed,
@@ -18138,7 +18138,7 @@
 	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "tuF" = (
 /obj/item/clothing/glasses/regular,
 /turf/open/floor/tile/purple/whitepurple{
@@ -18947,7 +18947,7 @@
 	dir = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "urf" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -18974,7 +18974,7 @@
 "urD" = (
 /obj/machinery/landinglight/lz2,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "urF" = (
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/blue/whiteblue{
@@ -19508,10 +19508,10 @@
 	dir = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "uYE" = (
 /turf/closed/gm/dense,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "uYJ" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -20087,7 +20087,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "vFe" = (
 /obj/structure/bed/alien{
 	color = "#aba9a9"
@@ -20202,7 +20202,7 @@
 	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "vMc" = (
 /obj/structure/table,
 /obj/item/megaphone,
@@ -20267,7 +20267,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "vPf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -20821,7 +20821,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "wvT" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport)
@@ -21395,7 +21395,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "wVU" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -21590,7 +21590,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "xgM" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
@@ -22219,7 +22219,7 @@
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "xMs" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
@@ -22239,7 +22239,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "xNj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -22533,7 +22533,7 @@
 "ycR" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "yda" = (
 /obj/structure/flora/jungle/vines{
 	pixel_y = 1
@@ -22546,7 +22546,7 @@
 /area/lv624/ground/jungle5)
 "ydT" = (
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "yem" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,

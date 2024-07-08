@@ -25,6 +25,11 @@
 		summoner.balloon_alert(summoner, "Can't call it from here")
 		return FALSE
 
+	var/area/summoned_area = get_area(summoner)
+	if(summoned_area.ceiling >= CEILING_OBSTRUCTED)	//Make sure they can't call it somewhere like caves, making it impossible for marines to reach
+		summoner.balloon_alert(summoner, "Ceiling too thick")
+		return FALSE
+
 	var/humans_on_ground = 0
 	for(var/i in SSmapping.levels_by_trait(ZTRAIT_GROUND))
 		for(var/mob/living/carbon/human/human AS in GLOB.humans_by_zlevel["[i]"])
@@ -50,7 +55,7 @@
 		stack_trace("No primary dropship found in SSshuttle's mobile list!")
 		return FALSE
 
-	if(shuttle.hijack_state != HIJACK_STATE_NORMAL)
+	if(shuttle.hijack_state)
 		summoner.balloon_alert(summoner, "Already summoned")
 		return FALSE
 

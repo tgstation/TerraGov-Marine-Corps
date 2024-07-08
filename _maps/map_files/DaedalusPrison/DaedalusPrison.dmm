@@ -455,7 +455,7 @@
 "aud" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "aui" = (
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/prison/darkred,
@@ -1605,7 +1605,7 @@
 "bsT" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "btm" = (
 /obj/structure/closet/secure_closet/security,
 /obj/structure/window/reinforced{
@@ -4155,7 +4155,7 @@
 "dxi" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "dxp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4173,7 +4173,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "dxK" = (
 /turf/closed/wall/r_wall/prison,
 /area/daedalusprison/inside/janitorial)
@@ -4610,7 +4610,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "dQm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -5032,7 +5032,7 @@
 	dir = 6
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "ehY" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/cellstripe,
@@ -7171,7 +7171,7 @@
 "fTQ" = (
 /obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "fTR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -7390,7 +7390,7 @@
 /area/daedalusprison/inside/barracks)
 "gfH" = (
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "gfL" = (
 /obj/structure/punching_bag,
 /turf/open/floor/prison/red{
@@ -7446,7 +7446,7 @@
 "gju" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "gjy" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/red{
@@ -10245,7 +10245,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "iEZ" = (
 /turf/open/floor/prison/darkred/full,
 /area/daedalusprison/inside/barracks)
@@ -10464,7 +10464,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "iMp" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/cable,
@@ -12573,7 +12573,7 @@
 "kte" = (
 /obj/structure/prison_sign,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "ktk" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -13252,7 +13252,7 @@
 /obj/structure/cable,
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "kVY" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/prison,
@@ -14955,7 +14955,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "mrA" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison,
@@ -15795,7 +15795,7 @@
 "mVQ" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "mVR" = (
 /obj/item/weapon/gun/revolver/judge,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -15885,7 +15885,7 @@
 /area/daedalusprison/inside/hydroponics)
 "mYW" = (
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "mZv" = (
 /obj/structure/table/mainship,
 /obj/machinery/processor,
@@ -15997,7 +15997,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "ngg" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/chapel,
@@ -20213,7 +20213,7 @@
 	dir = 10
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "qwC" = (
 /obj/effect/spawner/random/misc/structure/crate,
 /turf/open/floor/tile/dark/brown2{
@@ -20989,7 +20989,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "rjo" = (
 /obj/item/stack/barbed_wire,
 /turf/open/floor/prison/darkred{
@@ -21958,7 +21958,7 @@
 "rTY" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "rTZ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
@@ -22460,7 +22460,7 @@
 "sqb" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "sql" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison,
@@ -22600,7 +22600,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "swm" = (
 /obj/structure/prop/mainship/gelida/smallwire{
 	dir = 1
@@ -22679,7 +22679,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "szj" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
@@ -22968,7 +22968,7 @@
 /area/daedalusprison/inside/sportstorage)
 "sHQ" = (
 /turf/open/floor/plating,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "sHR" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
@@ -23805,7 +23805,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/snow/layer2,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "tpV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
@@ -24426,7 +24426,7 @@
 "tRj" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "tRr" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -25069,7 +25069,7 @@
 /obj/machinery/power/apc/drained,
 /obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "utB" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -26200,7 +26200,7 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "vnz" = (
 /obj/machinery/disposal,
 /turf/open/floor/prison/whitegreen{
@@ -26561,7 +26561,7 @@
 /obj/docking_port/stationary/shuttle/lz1,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "vFH" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/ground/ice,
@@ -27583,7 +27583,7 @@
 	dir = 2
 	},
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "wqR" = (
 /turf/closed/wall/r_wall/prison,
 /area/daedalusprison/inside/lobby)
@@ -28337,7 +28337,7 @@
 "wWU" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "wWV" = (
 /obj/structure/table/mainship,
 /obj/item/t_scanner,
@@ -28575,7 +28575,7 @@
 /area/daedalusprison/inside/chapel)
 "xfe" = (
 /turf/closed/wall/r_wall,
-/area/daedalusprison/inside/landingzoneone)
+/area/landing_zone/domed)
 "xfr" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/cargo_container/gorg{

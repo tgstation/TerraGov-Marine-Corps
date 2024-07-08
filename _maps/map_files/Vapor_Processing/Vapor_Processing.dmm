@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ad" = (
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "ae" = (
 /turf/closed/wall,
 /area/maintenance/apmaint)
@@ -14,34 +14,34 @@
 "ai" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/asteroidfloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "aj" = (
 /obj/structure/barricade/wooden{
 	dir = 1
 	},
 /obj/machinery/landinglight/lz2,
 /turf/open/floor/plating/asteroidwarning/down,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "aq" = (
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "as" = (
 /obj/docking_port/stationary/shuttle/lz2,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "av" = (
 /obj/structure/dispenser,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "ax" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "az" = (
 /obj/structure/largecrate,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "aB" = (
 /obj/structure/barricade/wooden{
 	dir = 4
@@ -52,7 +52,7 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "aC" = (
 /obj/structure/closet/emcloset,
 /turf/open/floor/plating,
@@ -68,7 +68,7 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "aL" = (
 /obj/machinery/landinglight/lz2{
 	dir = 8
@@ -76,13 +76,13 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "aN" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "aR" = (
 /obj/structure/barricade/wooden{
 	dir = 8
@@ -93,7 +93,7 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "aT" = (
 /obj/structure/barricade/wooden,
 /obj/machinery/landinglight/lz2{
@@ -102,7 +102,7 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "ba" = (
 /turf/open/floor/plating,
 /area/maintenance/apmaint)
@@ -147,13 +147,13 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "bp" = (
 /obj/structure/cargo_container/horizontal{
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "bq" = (
 /obj/structure/dispenser,
 /turf/open/floor/plating,
@@ -161,7 +161,7 @@
 "br" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "bs" = (
 /turf/closed/wall,
 /area/lv624/lazarus/hydroponics)
@@ -268,16 +268,16 @@
 /area/lv624/lazarus/fitness)
 "bZ" = (
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "cb" = (
 /obj/docking_port/stationary/shuttle/lz1,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "cd" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "cl" = (
 /obj/structure/largecrate/random,
 /obj/structure/cable,
@@ -335,34 +335,34 @@
 "cO" = (
 /obj/structure/largecrate/supply/machine,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "cP" = (
 /obj/structure/largecrate/supply/generator,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "cQ" = (
 /obj/structure/cargo_container/green,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "cR" = (
 /obj/structure/cargo_container/green{
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "cS" = (
 /obj/structure/cargo_container/green{
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "cT" = (
 /turf/closed/wall,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "cU" = (
 /obj/machinery/light,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "cV" = (
 /turf/closed/wall,
 /area/lv624/lazarus/internal_affairs)
@@ -382,7 +382,7 @@
 "da" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "db" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox/meat{
@@ -392,17 +392,17 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "dc" = (
 /obj/structure/table/mainship,
 /obj/machinery/microwave,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "dd" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "de" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -412,11 +412,11 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "df" = (
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "dg" = (
 /obj/structure/largecrate/random,
 /obj/machinery/power/apc/drained,
@@ -453,18 +453,18 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "do" = (
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "dp" = (
 /obj/item/storage/backpack/satchel/med,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "dq" = (
 /obj/machinery/door/window,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "ds" = (
 /obj/machinery/light{
 	dir = 1
@@ -513,11 +513,11 @@
 "dC" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "dF" = (
 /obj/structure/table/mainship,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "dI" = (
 /obj/structure/cable,
 /obj/structure/window/reinforced{
@@ -1199,7 +1199,7 @@
 	},
 /obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "hO" = (
 /turf/closed/wall,
 /area/vapor_processing/cargo3)
@@ -1879,7 +1879,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "lb" = (
 /obj/machinery/computer/aifixer,
 /turf/open/floor/tile/blue/whiteblue{
@@ -2061,17 +2061,17 @@
 /area/lv624/lazarus/robotics)
 "mc" = (
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "md" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "me" = (
 /obj/structure/largecrate,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "mf" = (
 /obj/item/weapon/gun/flamer/hydro_cannon,
 /obj/machinery/light{
@@ -2119,11 +2119,11 @@
 "mr" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "ms" = (
 /obj/structure/reagent_dispensers/watertank,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "mt" = (
 /obj/machinery/light{
 	dir = 8
@@ -2162,19 +2162,19 @@
 "mB" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "mC" = (
 /obj/structure/cargo_container/red{
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "mD" = (
 /obj/structure/cargo_container/red{
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "mE" = (
 /obj/structure/cable,
 /turf/open/floor,
@@ -2225,7 +2225,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "mY" = (
 /obj/machinery/portable_atmospherics/pump,
 /obj/structure/cable,
@@ -2417,7 +2417,7 @@
 "ot" = (
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "ow" = (
 /obj/structure/table,
 /obj/structure/cable,
@@ -2463,7 +2463,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "oO" = (
 /obj/structure/reagent_dispensers/watertank,
 /obj/machinery/light{
@@ -2481,19 +2481,19 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "oX" = (
 /obj/structure/cargo_container{
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "oY" = (
 /obj/structure/cargo_container{
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "pa" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/grass,
@@ -2572,7 +2572,7 @@
 /obj/structure/cable,
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "px" = (
 /obj/structure/bed/roller,
 /obj/structure/window/reinforced{
@@ -2641,11 +2641,11 @@
 /area/crew_quarters/sleep_male)
 "pK" = (
 /turf/closed/wall,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "pN" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "pO" = (
 /obj/structure/table/mainship,
 /obj/item/pizzabox/meat{
@@ -2655,17 +2655,17 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "pP" = (
 /obj/structure/table/mainship,
 /obj/machinery/microwave,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "pQ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "pS" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood,
@@ -2677,21 +2677,21 @@
 /obj/structure/largecrate,
 /obj/structure/cable,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "pW" = (
 /obj/machinery/vending/snack,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "pY" = (
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "qa" = (
 /obj/machinery/door/window,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "qb" = (
 /obj/structure/closet/firecloset,
 /obj/machinery/light,
@@ -2703,17 +2703,17 @@
 "qe" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "qh" = (
 /obj/structure/table/mainship,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "qj" = (
 /obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "qk" = (
 /obj/structure/table/flipped,
 /obj/machinery/chem_dispenser/beer,
@@ -3792,14 +3792,14 @@
 "wD" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "wI" = (
 /obj/effect/ai_node,
 /obj/machinery/landinglight/lz1{
 	dir = 8
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "wL" = (
 /obj/machinery/atmospherics/pipe/manifold/general/visible,
 /obj/effect/decal/cleanable/blood,
@@ -3808,7 +3808,7 @@
 "wM" = (
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "wX" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/yellow,
@@ -3829,7 +3829,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "xq" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/grass,
@@ -3860,7 +3860,7 @@
 "yb" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "yc" = (
 /obj/effect/ai_node,
 /turf/open/floor/grass,
@@ -3880,7 +3880,7 @@
 /obj/item/storage/backpack/satchel/med,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "yD" = (
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/plating,
@@ -3926,11 +3926,11 @@
 	},
 /obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "za" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "ze" = (
 /obj/structure/table/flipped,
 /obj/effect/spawner/random/engineering/tech_supply,
@@ -3970,7 +3970,7 @@
 	},
 /obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "zV" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/dmg1,
@@ -4041,7 +4041,7 @@
 	},
 /obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "AS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/scorched/two,
@@ -4057,7 +4057,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "Bc" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor{
 	dir = 2
@@ -4070,7 +4070,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "Bg" = (
 /obj/machinery/door/airlock/glass_engineering{
 	dir = 2
@@ -4261,7 +4261,7 @@
 /obj/item/toy/deck,
 /obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/wood,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "Em" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/engineer/rig,
@@ -4367,7 +4367,7 @@
 	dir = 1
 	},
 /turf/closed/wall,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "FJ" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/grass,
@@ -4522,11 +4522,11 @@
 "IF" = (
 /obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "IH" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "IL" = (
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
@@ -4682,7 +4682,7 @@
 "Ll" = (
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "Lm" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -4745,7 +4745,7 @@
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "Mg" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -4787,7 +4787,7 @@
 "Mz" = (
 /obj/machinery/landinglight/lz1,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "MD" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -4883,7 +4883,7 @@
 "Oa" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "Oh" = (
 /obj/structure/cable,
 /turf/closed/wall,
@@ -4969,7 +4969,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "Pl" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/dmg2,
@@ -4989,7 +4989,7 @@
 	name = "Colonist Ethan Peser"
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "Pv" = (
 /obj/effect/landmark/corpsespawner/doctor{
 	corpseback = null;
@@ -5007,7 +5007,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "PD" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/central1)
@@ -5025,7 +5025,7 @@
 "PN" = (
 /obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "PR" = (
 /obj/effect/landmark/supplyspawner/food,
 /obj/structure/cable,
@@ -5061,7 +5061,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "Qu" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -5205,7 +5205,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "SJ" = (
 /obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/whiteyellow/full,
@@ -5400,7 +5400,7 @@
 /obj/effect/ai_node,
 /obj/machinery/landinglight/lz1,
 /turf/open/floor,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "VC" = (
 /obj/effect/landmark/start/job/survivor,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -5577,7 +5577,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "XE" = (
 /obj/machinery/door/airlock/glass{
 	dir = 2
@@ -5724,7 +5724,7 @@
 /obj/item/toy/deck,
 /obj/effect/spawner/random/engineering/tech_supply,
 /turf/open/floor/wood,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "ZO" = (
 /obj/effect/landmark/corpsespawner/miner{
 	corpseback = null;

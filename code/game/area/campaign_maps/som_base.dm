@@ -33,29 +33,6 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_CAVES
 
-//landingZone
-/area/rocinante_base/surface/landing
-
-/area/rocinante_base/surface/landing/landing_pad_one
-	name = "Landing Pad 1"
-	icon_state = "landing_pad"
-	minimap_color = MINIMAP_AREA_LZ
-
-/area/rocinante_base/surface/landing/landing_pad_one_external
-	name = "Landing Zone 1"
-	icon_state = "landing_pad_ext"
-	minimap_color = MINIMAP_AREA_LZ
-
-/area/rocinante_base/surface/landing/landing_pad_two
-	name = "Landing Pad 2"
-	icon_state = "landing_pad"
-	minimap_color = MINIMAP_AREA_LZ
-
-/area/rocinante_base/surface/landing/landing_pad_two_external
-	name = "Landing Zone 2"
-	icon_state = "landing_pad_ext"
-	minimap_color = MINIMAP_AREA_LZ
-
 //BaseGround
 /area/rocinante_base/ground/base_se
 	name ="Southeast Base"

@@ -457,7 +457,7 @@
 "cN" = (
 /obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "cP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -727,7 +727,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "el" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/effect/ai_node,
@@ -1481,7 +1481,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "hV" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/components/unary/vent_pump{
@@ -2365,7 +2365,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "mE" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
@@ -3034,7 +3034,7 @@
 "qg" = (
 /obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "qi" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/tool,
@@ -3304,7 +3304,7 @@
 "rz" = (
 /obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "rB" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
@@ -5275,7 +5275,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "BB" = (
 /obj/machinery/light{
 	dir = 8
@@ -6395,7 +6395,7 @@
 "Hu" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "Hw" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -6706,7 +6706,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "IX" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/blood,
@@ -7033,7 +7033,7 @@
 /area/lv624/lazarus/canteen)
 "KE" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "KF" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -9;
@@ -7086,7 +7086,7 @@
 /area/lv624/ground/jungle5)
 "KT" = (
 /turf/open/floor/plating/icefloor,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "KW" = (
 /turf/open/ground/coast/corner2{
 	dir = 1
@@ -7942,7 +7942,7 @@
 /area/lv624/lazarus/security)
 "OP" = (
 /turf/open/floor/plating,
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "OQ" = (
 /obj/structure/flora/ausbushes/leafybush{
 	pixel_x = 11
@@ -8458,7 +8458,7 @@
 "RE" = (
 /obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "RF" = (
 /obj/machinery/sleeper,
 /turf/open/floor/tile/blue/taupeblue{
@@ -8707,7 +8707,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/shuttle/drop1/lz1)
+/area/landing_zone/domed)
 "SQ" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
@@ -9033,7 +9033,7 @@
 /area/lv624/ground/caves/rock)
 "Ux" = (
 /turf/open/floor/plating,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "Uz" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
@@ -9940,7 +9940,7 @@
 /area/lv624/lazarus/research/caves)
 "YP" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/shuttle/drop2/lz2)
+/area/landing_zone/two/domed)
 "YQ" = (
 /obj/structure/bed/chair/pew{
 	dir = 6

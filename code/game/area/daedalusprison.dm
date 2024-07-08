@@ -411,12 +411,6 @@
 	minimap_color = MINIMAP_AREA_COLONY
 	always_unpowered = TRUE
 
-/area/daedalusprison/inside/landingzoneone
-	name = "Landing Zone One"
-	icon_state = "landingzone1"
-	area_flags = NO_DROPPOD|MARINE_BASE
-	minimap_color = MINIMAP_AREA_LZ
-
 /area/daedalusprison/inside/telecomms
 	name = "Telecomms"
 	icon_state = "tcomsatcham"
