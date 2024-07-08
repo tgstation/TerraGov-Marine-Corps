@@ -309,7 +309,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	title = TRANSPORT_OFFICER
 	paygrade = "WO"
 	comm_title = "TO"
-	total_positions = 1
+	total_positions = 2
 	access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_SHUTTLE, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_SHUTTLE, ACCESS_MARINE_PILOT, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO, ACCESS_MARINE_RO, ACCESS_MARINE_MEDBAY)
 	skills_type = /datum/skills/transportofficer
