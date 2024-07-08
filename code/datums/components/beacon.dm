@@ -133,10 +133,11 @@
 
 ///Deactivates the beacon
 /datum/component/beacon/proc/deactivate(atom/movable/source, mob/user)
-	if(length(user?.do_actions))
-		user.balloon_alert(user, "Busy!")
-		active = TRUE
-		return
+	if(user)
+		if(length(user?.do_actions))
+			user.balloon_alert(user, "Busy!")
+			active = TRUE
+			return
 	if(source.anchored)
 		if(user)
 			var/delay = max(1 SECONDS, anchor_time * 0.5 - 2 SECONDS * user.skills.getRating(SKILL_LEADERSHIP)) //Half as long as setting it up.
@@ -161,6 +162,21 @@
 	active = FALSE //this is here because of attack hand
 	source.update_appearance()
 
+///Updates position and name of the beacon, or alternatively turns if off if it's in a blacklisted area.
+/datum/component/beacon/proc/updatepos(obj/item/storage/backpack/marine/radiopack/source)
+
+	var/turf/location = get_turf(source)
+	var/area/A = get_area(location)
+	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+		source.balloon_alert_to_viewers("This won't work if you're standing deep underground.")
+		deactivate(source)
+	if(istype(A, /area/shuttle/dropship))
+		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or it won't transmit.")
+		deactivate(source)
+	beacon_datum.drop_location = location
+	beacon_datum.name = "[activator.name] + [A]"
+	source.update_appearance()
+
 ///Adds an extra line of instructions to the examine
 /datum/component/beacon/proc/on_examine(atom/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
@@ -175,7 +191,7 @@
 /datum/component/beacon/proc/on_update_name(atom/source, updates)
 	SIGNAL_HANDLER
 	if(active)
-		source.name += " - [get_area(source)] - [activator]"
+		source.name = initial(source.name) + " - [get_area(source)] - [activator]" //Otherwise updatepos would stack the position - name
 		return
 	source.name = initial(source.name)
 

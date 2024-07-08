@@ -636,6 +636,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 /obj/item/storage/backpack/marine/radiopack/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/beacon, FALSE, 0, icon_state + "_active")
+	START_PROCESSING(SSobj, src)
 
 /obj/item/storage/backpack/marine/radiopack/examine(mob/user)
 	. = ..()
@@ -647,6 +648,11 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!supply_interface)
 		supply_interface = new(src)
 	return supply_interface.interact(user)
+
+/obj/item/storage/backpack/marine/radiopack/process()
+	var/datum/component/beacon/b = GetComponent(/datum/component/beacon)
+	if(b.active)
+		b.updatepos(src)
 
 /obj/docking_port/mobile/supply/vehicle
 	railing_gear_name = "vehicle"
