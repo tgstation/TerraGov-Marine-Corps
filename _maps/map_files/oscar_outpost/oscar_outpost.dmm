@@ -470,10 +470,6 @@
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
-"do" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "dq" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
@@ -1021,6 +1017,10 @@
 /obj/item/attachable/extended_barrel,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
+"gT" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "gU" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
@@ -3415,10 +3415,6 @@
 	dir = 1
 	},
 /area/oscar_outpost)
-"xj" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "xk" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/under/brown,
@@ -4513,10 +4509,6 @@
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
-"CF" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "CH" = (
 /obj/machinery/space_heater,
 /turf/open/floor/wood,
@@ -5956,10 +5948,6 @@
 /obj/item/tool/weldingtool,
 /turf/open/floor,
 /area/oscar_outpost/village)
-"IH" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "II" = (
 /obj/structure/closet/crate,
 /obj/item/tool/wrench,
@@ -7691,10 +7679,6 @@
 /obj/item/weapon/gun/smg/m25,
 /turf/open/floor,
 /area/oscar_outpost/village)
-"Qk" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "Ql" = (
 /obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
@@ -8103,6 +8087,32 @@
 /obj/effect/spawner/random/engineering/fuelcell/fullweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
+"Sc" = (
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 12;
+	pixel_y = 26
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 25;
+	pixel_y = 26
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 16;
+	pixel_y = 21
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 39;
+	pixel_y = 26
+	},
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 29;
+	pixel_y = 21
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/village/fairgrounds)
 "Se" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -8332,30 +8342,6 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
-"SN" = (
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 12;
-	pixel_y = 26
-	},
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 25;
-	pixel_y = 26
-	},
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 16;
-	pixel_y = 21
-	},
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 39;
-	pixel_y = 26
-	},
-/obj/structure/prop/vehicle/truck,
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 29;
-	pixel_y = 21
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "SP" = (
 /obj/structure/table/wood/rustic,
 /obj/structure/prop/mainship/gelida/register,
@@ -8822,10 +8808,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/west)
-"Vl" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "Vm" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/machinery/landinglight/lz1{
@@ -9582,10 +9564,6 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
-"Yw" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "Yx" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -16854,7 +16832,7 @@ ZC
 IV
 IV
 IV
-IV
+gT
 IV
 IV
 IV
@@ -30929,7 +30907,7 @@ DU
 GY
 zI
 DP
-IH
+DP
 DP
 sV
 VM
@@ -31432,9 +31410,9 @@ DU
 DU
 GY
 nU
-CF
 DP
-do
+DP
+DP
 sV
 sV
 sV
@@ -31936,7 +31914,7 @@ DU
 DU
 GY
 zI
-Vl
+DP
 el
 DP
 nU
@@ -39223,7 +39201,7 @@ DX
 kQ
 px
 hV
-SN
+Sc
 Ta
 Ta
 Ta
@@ -40491,7 +40469,7 @@ VN
 VN
 Ta
 Ta
-Qk
+Ta
 Ta
 Ta
 Ta
@@ -40739,10 +40717,10 @@ Ta
 Ta
 Ta
 Ta
-Ta
-Ta
-Ta
 Bl
+Ta
+Ta
+Ta
 Ta
 Ta
 oj
@@ -40992,7 +40970,7 @@ Ta
 PE
 Ta
 Ta
-Yw
+Ta
 Ta
 lg
 Ta
@@ -41498,7 +41476,7 @@ VI
 VQ
 VI
 ZP
-xj
+Ta
 lO
 id
 lI

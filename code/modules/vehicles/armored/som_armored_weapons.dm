@@ -126,6 +126,8 @@
 	windup_sound = 'sound/vehicles/weapons/coil_charge.ogg'
 	windup_delay = 0.6 SECONDS
 	projectile_delay = 3 SECONDS
+	maximum_magazines = 3
+	rearm_time = 0.5 SECONDS
 	///Power setting of the weapon. Effect the projectile fired
 	var/power_level = COILGUN_MED_POWER
 	///Current ammo override to use based on power level

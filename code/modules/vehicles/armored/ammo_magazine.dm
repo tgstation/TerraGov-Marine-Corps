@@ -141,8 +141,8 @@
 	icon_state = "coilgun"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/rocket/coilgun/holder //this doesn't strictly matter since its overridden
+	loading_sound = 'sound/vehicles/weapons/coilgun_cycle.ogg'
 	max_rounds = 8
-	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
 /obj/item/ammo_magazine/tank/secondary_flamer_tank
 	name = "napalm stream tank"

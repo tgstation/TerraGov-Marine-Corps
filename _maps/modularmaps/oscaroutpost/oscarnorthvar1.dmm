@@ -343,14 +343,6 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/north)
-"da" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
-"dd" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "dg" = (
 /obj/item/storage/belt/lifesaver/full,
 /obj/structure/table/reinforced/prison,
@@ -440,10 +432,6 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
-"el" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "er" = (
 /obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
@@ -579,10 +567,6 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
-"fe" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "fj" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -594,10 +578,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
-"fm" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "fz" = (
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -648,10 +628,6 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
-"fL" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "fQ" = (
 /obj/structure/flora/ausbushes/grassybush{
 	name = "shrivelled barley bush"
@@ -6573,7 +6549,7 @@ ZE
 ZE
 ZE
 ZE
-fL
+ZE
 ZE
 ZE
 ZE
@@ -6884,7 +6860,7 @@ ZE
 ZE
 ZE
 ZE
-fe
+ZE
 ZE
 ZE
 ZE
@@ -7037,7 +7013,7 @@ ZE
 ZE
 ZE
 ZE
-fm
+ZE
 ZE
 ZE
 ZE
@@ -10599,9 +10575,9 @@ ZE
 ZE
 ZE
 ZE
-dd
 ZE
-el
+ZE
+ZE
 ZE
 ZE
 ZE
@@ -10907,7 +10883,7 @@ ZE
 ZE
 ZE
 ZE
-da
+ZE
 ZE
 ZE
 ZE
@@ -17731,7 +17707,7 @@ ZE
 ZE
 ZE
 ZE
-fe
+ZE
 ZE
 ZE
 ZE
@@ -18039,7 +18015,7 @@ LR
 Up
 ZE
 ZE
-el
+ZE
 ZE
 ZE
 cy
@@ -18197,7 +18173,7 @@ ZE
 ZE
 ZE
 ZE
-dd
+ZE
 ZE
 ZE
 ZE

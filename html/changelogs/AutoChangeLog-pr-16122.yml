@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - balance: "Shrike and Hivemind's healing ability no longer cancels if target moves."
