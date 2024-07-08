@@ -178,8 +178,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "aN" = (
-/obj/structure/bed/chair/dropship/doublewide/right/bravo,
-/obj/structure/bed/chair/dropship/doublewide/left/alpha,
+/obj/machinery/vending/marineFood,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 8
 	},
@@ -207,11 +206,10 @@
 /turf/open/shuttle/dropship/three,
 /area/shuttle/dropship/alamo)
 "aU" = (
-/obj/structure/bed/chair/dropship/doublewide/right,
-/obj/structure/bed/chair/dropship/doublewide/left,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/vending/MarineMed,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1
 	},
@@ -227,7 +225,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "aX" = (
-/obj/machinery/vending/snack/alamo,
+/obj/machinery/vending/weapon,
 /turf/open/shuttle/dropship/thirtyeight,
 /area/shuttle/dropship/alamo)
 "aY" = (
@@ -260,7 +258,7 @@
 "bd" = (
 /obj/docking_port/mobile/marine_dropship/one,
 /turf/closed/shuttle/dropship1/aislewindow{
-	dir = 1
+	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "be" = (
@@ -271,8 +269,7 @@
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "bi" = (
-/obj/structure/bed/chair/dropship/doublewide/right,
-/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/machinery/vending/medical/shipside,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bj" = (
@@ -335,11 +332,10 @@
 /turf/closed/shuttle/dropship1/edge/alt,
 /area/shuttle/dropship/alamo)
 "bD" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/vending/engivend,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1
 	},
@@ -488,11 +484,10 @@
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "ez" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 4
 	},
+/obj/machinery/vending/armor_supply,
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "gl" = (
@@ -504,11 +499,10 @@
 	},
 /area/shuttle/dropship/alamo)
 "hm" = (
-/obj/structure/bed/chair/dropship/doublewide/left,
-/obj/structure/bed/chair/dropship/doublewide/right,
 /obj/item/radio/intercom/dropship{
 	dir = 4
 	},
+/obj/machinery/vending/medical/shipside,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "ie" = (
@@ -536,14 +530,10 @@
 	dir = 1
 	},
 /area/shuttle/dropship/alamo)
-"jS" = (
-/turf/closed/shuttle/dropship1/aislewindow{
-	dir = 8
-	},
-/area/shuttle/dropship/alamo)
 "li" = (
-/turf/closed/shuttle/dropship1/aislewindow{
-	dir = 4
+/obj/machinery/autodoc,
+/turf/open/shuttle/dropship/floor/out{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "me" = (
@@ -563,8 +553,7 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "og" = (
-/obj/structure/bed/chair/dropship/doublewide/right/delta,
-/obj/structure/bed/chair/dropship/doublewide/left/charlie,
+/obj/machinery/vending/tool,
 /turf/open/shuttle/dropship/floor/out{
 	dir = 4
 	},
@@ -578,8 +567,33 @@
 "pw" = (
 /turf/open/shuttle/dropship/thirtythree,
 /area/shuttle/dropship/alamo)
+"rm" = (
+/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/machinery/computer/autodoc_console,
+/turf/open/shuttle/dropship/floor/out{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
+"se" = (
+/obj/machinery/vending/marineFood,
+/turf/open/shuttle/dropship/floor/out,
+/area/shuttle/dropship/alamo)
 "sk" = (
 /turf/open/shuttle/dropship/thirtyseven,
+/area/shuttle/dropship/alamo)
+"sD" = (
+/obj/structure/bed/chair/dropship/doublewide/right/delta,
+/obj/structure/bed/chair/dropship/doublewide/left/charlie,
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/dropship/alamo)
+"sQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/vending/MarineMed,
+/turf/open/shuttle/dropship/floor/out{
+	dir = 1
+	},
 /area/shuttle/dropship/alamo)
 "tf" = (
 /turf/open/shuttle/dropship/thirtysix,
@@ -611,11 +625,23 @@
 	dir = 8
 	},
 /area/shuttle/dropship/alamo)
+"CH" = (
+/obj/structure/bed/chair/dropship/doublewide/left/alpha,
+/obj/structure/bed/chair/dropship/doublewide/right/bravo,
+/turf/open/shuttle/dropship/floor/out{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
 "Dp" = (
 /turf/open/shuttle/dropship/ten,
 /area/shuttle/dropship/alamo)
 "DE" = (
 /turf/open/shuttle/dropship/nine,
+/area/shuttle/dropship/alamo)
+"DK" = (
+/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/machinery/computer/autodoc_console,
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "FA" = (
 /turf/closed/shuttle/dropship1/enginetwo{
@@ -661,7 +687,7 @@
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "Yd" = (
-/obj/machinery/vending/cola/alamo,
+/obj/machinery/vending/weapon,
 /turf/open/shuttle/dropship/thirtynine,
 /area/shuttle/dropship/alamo)
 "Zx" = (
@@ -723,7 +749,7 @@ ao
 aq
 aE
 aX
-bD
+sQ
 hm
 ez
 Dp
@@ -771,7 +797,7 @@ aB
 aZ
 aN
 aK
-jI
+CH
 aI
 aI
 me
@@ -794,7 +820,7 @@ aC
 bn
 ba
 di
-jS
+li
 li
 bd
 MG
@@ -817,9 +843,9 @@ aD
 aK
 og
 aK
-jI
-aI
-aI
+rm
+DK
+sD
 me
 DE
 aS
@@ -863,7 +889,7 @@ aE
 Yd
 aU
 bi
-me
+se
 Dp
 bw
 aM

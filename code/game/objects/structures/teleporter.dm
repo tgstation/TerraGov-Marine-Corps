@@ -57,9 +57,9 @@
 	var/obj/machinery/deployable/teleporter/deployed_linked_teleporter = kit.linked_teleporter.loc
 	var/obj/item/teleporter_kit/linked_kit = deployed_linked_teleporter.get_internal_item()
 
-	if(deployed_linked_teleporter.z != z)
-		to_chat(user, span_warning("[src] and [deployed_linked_teleporter] are too far apart!"))
-		return
+//	if(deployed_linked_teleporter.z != z)
+//		to_chat(user, span_warning("[src] and [deployed_linked_teleporter] are too far apart!"))
+//		return
 
 	if(!deployed_linked_teleporter.powered() && (!linked_kit?.cell || linked_kit.cell.charge < TELEPORTING_COST))
 		to_chat(user, span_warning("[deployed_linked_teleporter] is not powered!"))

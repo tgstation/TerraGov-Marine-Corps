@@ -106,7 +106,7 @@
 	config_entry_value = FALSE
 
 /datum/config_entry/number/marine_respawn
-	config_entry_value = 30 MINUTES
+	config_entry_value = 5 MINUTES
 	max_val = 30 MINUTES
 	min_val = 0
 

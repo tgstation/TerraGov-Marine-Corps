@@ -3,8 +3,8 @@
 /datum/storage/backpack
 	max_w_class = WEIGHT_CLASS_NORMAL
 	storage_slots = null
-	max_storage_space = 24
-	access_delay = 1.5 SECONDS
+	max_storage_space = 30
+//	access_delay = 1.5 SECONDS
 
 /datum/storage/backpack/should_access_delay(obj/item/item, mob/user, taking_out)
 	if(!taking_out) // Always allow items to be tossed in instantly
@@ -24,7 +24,7 @@
 	max_storage_space = 400 // can store a ton of shit!
 
 /datum/storage/backpack/satchel //Smaller, but no delay
-	max_storage_space = 15
+	max_storage_space = 30
 	access_delay = 0
 
 /datum/storage/backpack/tech/New(atom/parent)
@@ -65,7 +65,7 @@
 	max_storage_space = 30
 
 /datum/storage/backpack/dispenser
-	max_storage_space = 48
+	max_storage_space = 50
 
 /datum/storage/backpack/dispenser/open(mob/user)
 	var/obj/item/dispenser = parent

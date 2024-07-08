@@ -29,7 +29,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 25, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = 15, ACID = 100)
+	soft_armor = list(MELEE = 25, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 20, BIO = 20, FIRE = -15, ACID = 100)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "xenominion"

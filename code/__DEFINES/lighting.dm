@@ -15,7 +15,7 @@
 #define ALPHA_TO_INTENSITY(alpha) (-(((clamp(alpha, 0, 22) - 22) / 6) ** 4) + 255)
 
 
-#define LIGHT_RANGE_FIRE 3 //How many tiles standard fires glow.
+#define LIGHT_RANGE_FIRE 4 //How many tiles standard fires glow.
 
 #define LIGHTING_PLANE_ALPHA_VISIBLE 255
 #define LIGHTING_PLANE_ALPHA_NV_TRAIT 245
@@ -26,7 +26,7 @@
 
 #define FLASH_LIGHT_DURATION 2
 #define FLASH_LIGHT_POWER 3
-#define FLASH_LIGHT_RANGE 3.8
+#define FLASH_LIGHT_RANGE 5
 
 // Emissive blocking.
 /// Uses vis_overlays to leverage caching so that very few new items need to be made for the overlay. For anything that doesn't change outline or opaque area much or at all.
@@ -81,7 +81,7 @@ do { \
 //Bay lighting engine shit, not in /code/modules/lighting because BYOND is being shit about it	//thats how defines work, hello?
 #define LIGHTING_INTERVAL 5 // frequency, in 1/10ths of a second, of the lighting process
 
-#define MOVABLE_MAX_RANGE 7
+#define MOVABLE_MAX_RANGE 8
 
 #define LIGHTING_FALLOFF 1 // type of falloff to use for lighting; 1 for circular, 2 for square
 #define LIGHTING_LAMBERTIAN 0 // use lambertian shading for light sources

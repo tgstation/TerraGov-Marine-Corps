@@ -242,7 +242,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "computer"
 	screen_overlay = "supply"
-	req_access = list(ACCESS_MARINE_CARGO)
+//	req_access = list(ACCESS_MARINE_CARGO)
 	circuit = /obj/item/circuitboard/computer/supplycomp
 	var/datum/supply_ui/SU
 	///Id of the shuttle controlled

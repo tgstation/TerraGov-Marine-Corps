@@ -14,3 +14,8 @@
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
+
+/mob/living/carbon/xenomorph/spitter/on_death()
+	///We QDEL them as cleanup and preventing them from being sold
+	QDEL_IN(src, TIME_TO_DISSOLVE)
+	return ..()

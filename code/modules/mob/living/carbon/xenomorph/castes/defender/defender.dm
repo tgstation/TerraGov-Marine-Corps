@@ -51,3 +51,8 @@
 /mob/living/carbon/xenomorph/defender/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/throw_parry)
+
+/mob/living/carbon/xenomorph/defender/on_death()
+	///We QDEL them as cleanup and preventing them from being sold
+	QDEL_IN(src, TIME_TO_DISSOLVE)
+	return ..()

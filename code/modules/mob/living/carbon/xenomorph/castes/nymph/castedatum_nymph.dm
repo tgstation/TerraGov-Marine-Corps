@@ -11,7 +11,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 8
+	melee_damage = 4
 
 	// *** Speed *** //
 	speed = 0
@@ -28,7 +28,7 @@
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 10, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 10, FIRE = -20, ACID = 10)
 
 	minimap_icon = "xenominion"
 
