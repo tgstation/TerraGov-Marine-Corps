@@ -85,7 +85,7 @@
 
 /obj/item/stack/sandbags/examine(mob/user)
 	. = ..()
-	. += span_notice("Right click to empty the [src].")
+	. += span_notice("Right click to empty [src].")
 
 /obj/item/stack/sandbags/large_stack
 	amount = 25
@@ -103,13 +103,13 @@
 		to_chat(user, span_warning("You are too busy to empty [src]!"))
 		return
 
-	to_chat(user, span_notice("You start emptying the [src]."))	
+	to_chat(user, span_notice("You start emptying [src]."))	
 	while(get_amount() > 0)
 		if(!do_after(user, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE, user))
-			to_chat(user, span_notice("You stop emptying the [src]."))
+			to_chat(user, span_notice("You stop emptying [src]."))
 			break
 		if(zero_amount())
-			to_chat(user, span_notice("You finish emptying the [src]."))
+			to_chat(user, span_notice("You finish emptying [src]."))
 		// check if we can stuff it into the user's hands
 		var/obj/item/stack/sandbag = user.get_inactive_held_item()
 		if(istype(sandbag, /obj/item/stack/sandbags_empty))
