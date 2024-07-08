@@ -31,7 +31,7 @@
 "abp" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "acj" = (
 /obj/structure/fence,
 /obj/effect/turf_decal/riverdecal/edge{
@@ -285,7 +285,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "akq" = (
 /turf/open/floor/plating,
 /area/lv624/ground/sand8)
@@ -563,7 +563,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "arW" = (
 /turf/open/ground/grass,
 /area/lv624/ground/jungle7)
@@ -1180,7 +1180,7 @@
 /turf/open/floor/marking/warning{
 	dir = 5
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "aFx" = (
 /turf/open/floor/marking/warning,
 /area/lv624/ground/sand2)
@@ -1481,7 +1481,7 @@
 /turf/open/floor/marking/warning{
 	dir = 5
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "aNz" = (
 /obj/machinery/door_control{
 	dir = 8;
@@ -1677,7 +1677,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "aSg" = (
 /obj/structure/table/wood,
 /obj/item/storage/box/donkpockets,
@@ -1767,7 +1767,7 @@
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/ai_node,
 /turf/open/floor/tile/neutral,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "aUf" = (
 /obj/machinery/door/airlock/mainship/research/open/free_access{
 	name = "\improper Research Dome"
@@ -1779,7 +1779,7 @@
 	dir = 5
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "aUW" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/landmark/weed_node,
@@ -1990,7 +1990,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "baw" = (
 /obj/structure/flora/jungle/vines/heavy,
 /obj/structure/flora/jungle/vines,
@@ -2050,7 +2050,7 @@
 /turf/open/floor/marking/loadingarea{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "bcb" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -2096,7 +2096,7 @@
 	dir = 1
 	},
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "bcX" = (
 /obj/structure/flora/grass/green,
 /turf/open/liquid/water/river/autosmooth,
@@ -2152,7 +2152,7 @@
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "bdQ" = (
 /obj/structure/catwalk,
 /turf/open/liquid/water/river/autosmooth,
@@ -2872,7 +2872,7 @@
 /obj/docking_port/stationary/shuttle/lz1,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "bAn" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -3068,7 +3068,7 @@
 "bLZ" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "bMj" = (
 /obj/structure/rack,
 /obj/item/radio/survivor,
@@ -3172,10 +3172,6 @@
 /obj/structure/stairs/corner_seamless,
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
-"bQV" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/plating/asteroidfloor,
-/area/landing_zone/domed)
 "bRp" = (
 /obj/structure/rack,
 /obj/item/clothing/under/color/black,
@@ -3216,7 +3212,7 @@
 "bTL" = (
 /obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "bTV" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3306,7 +3302,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "cae" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
@@ -3595,7 +3591,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "ctS" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	name = "Corporate Dome"
@@ -3766,7 +3762,7 @@
 "cEb" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "cEi" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating,
@@ -3988,12 +3984,12 @@
 /area/lv624/lazarus/fitness)
 "cRC" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "cSr" = (
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "cSO" = (
 /obj/structure/disposalpipe/junction/flipped{
 	dir = 1
@@ -4468,7 +4464,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "dsm" = (
 /obj/effect/decal/remains/xeno,
 /turf/open/floor/plating/ground/dirt,
@@ -4538,7 +4534,7 @@
 /turf/open/floor/marking/warning{
 	dir = 6
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "dxA" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
@@ -4639,7 +4635,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "dCn" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/bomb_supply,
@@ -4761,7 +4757,7 @@
 "dKU" = (
 /obj/structure/cargo_container,
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "dLj" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/landmark/weed_node,
@@ -4850,7 +4846,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "dPf" = (
 /obj/structure/table/wood,
 /obj/item/taperecorder,
@@ -4865,7 +4861,7 @@
 /area/lv624/lazarus/quartstorage/outdoors)
 "dPP" = (
 /turf/open/floor/tile/neutral,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "dQe" = (
 /turf/closed/wall,
 /area/lv624/ground/jungle9)
@@ -4900,7 +4896,7 @@
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "dSi" = (
 /obj/structure/flora/jungle/plantbot1/alien,
 /turf/open/liquid/water/river/autosmooth,
@@ -4930,7 +4926,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "dTk" = (
 /obj/structure/table/wood/gambling,
 /obj/effect/landmark/weed_node,
@@ -5142,7 +5138,7 @@
 "edz" = (
 /obj/structure/sign/safety/hazard,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "edH" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/stairs/seamless{
@@ -5372,13 +5368,13 @@
 /area/lv624/ground/sand3)
 "euA" = (
 /turf/closed/gm/dense,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "eva" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/warning/corner{
 	dir = 1
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "evm" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -5510,7 +5506,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "eEh" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -5528,7 +5524,7 @@
 "eHW" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "eIy" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -5659,7 +5655,7 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "eQx" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Nexus Dome Canteen"
@@ -5785,7 +5781,7 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "eYN" = (
 /obj/structure/window_frame/colony,
 /obj/structure/flora/jungle/vines,
@@ -5842,7 +5838,7 @@
 "fcJ" = (
 /obj/structure/largecrate/random/case,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "fdc" = (
 /turf/open/floor/tile/chapel{
 	dir = 1
@@ -6028,7 +6024,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "flS" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/tile/whiteyellow/full,
@@ -6056,7 +6052,7 @@
 "fnB" = (
 /obj/structure/lazarus_sign,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "fnP" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/landmark/weed_node,
@@ -6376,7 +6372,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "fIH" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -6460,7 +6456,7 @@
 	dir = 1
 	},
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "fPI" = (
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall,
@@ -6549,7 +6545,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "fWV" = (
 /obj/effect/decal/remains/human,
 /obj/item/ammo_casing,
@@ -6763,7 +6759,7 @@
 "gfm" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "gft" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/machinery/door/poddoor/mainship/open{
@@ -6900,7 +6896,7 @@
 "gkh" = (
 /obj/machinery/light/small,
 /turf/open/floor/marking/warning,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "gkV" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 5
@@ -7008,7 +7004,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "guX" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -7108,7 +7104,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "gEc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -7222,7 +7218,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "gLx" = (
 /obj/structure/stairs/corner_seamless,
 /turf/open/floor/plating/ground/dirt,
@@ -7490,7 +7486,7 @@
 /turf/open/floor/marking/loadingarea{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "hdp" = (
 /obj/effect/spawner/random/weaponry/gun/machineguns,
 /turf/open/floor/tile/white,
@@ -7597,7 +7593,7 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "hiU" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -7693,7 +7689,7 @@
 "hny" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "hnK" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 4
@@ -7807,7 +7803,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "hww" = (
 /obj/effect/ai_node,
 /turf/open/floor,
@@ -8028,7 +8024,7 @@
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "hIf" = (
 /obj/machinery/door/airlock/mainship/generic/corporate{
 	name = "Corporate Dome"
@@ -8046,7 +8042,7 @@
 "hJt" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "hKX" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -8057,7 +8053,7 @@
 "hLf" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "hLz" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
@@ -8135,7 +8131,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "hOY" = (
 /obj/structure/window_frame/wood,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -8153,7 +8149,7 @@
 	dir = 9
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "hQb" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -8269,7 +8265,7 @@
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "hVZ" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/platebot,
@@ -8289,7 +8285,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "hWC" = (
 /obj/structure/bookcase,
 /obj/item/book/manual/engineering_construction,
@@ -8699,7 +8695,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "iwX" = (
 /obj/structure/stairs/seamless{
 	dir = 4
@@ -8981,7 +8977,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "iMr" = (
 /obj/structure/table,
 /obj/item/trash/candy,
@@ -9034,7 +9030,7 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "iOp" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/o2,
@@ -9092,7 +9088,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "iSJ" = (
 /obj/effect/decal/cleanable/cobweb2,
 /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine,
@@ -9384,7 +9380,7 @@
 "jkz" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "jlq" = (
 /turf/open/liquid/water/river/autosmooth/deep,
 /area/lv624/ground/river2)
@@ -9392,7 +9388,7 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/structure/cable,
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "jlC" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -9712,7 +9708,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "jFe" = (
 /obj/effect/ai_node,
 /turf/open/liquid/water/river/autosmooth/deep,
@@ -9756,7 +9752,7 @@
 	dir = 9
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "jHG" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Communications Dome"
@@ -9939,7 +9935,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "jOV" = (
 /obj/structure/closet,
 /obj/structure/window/reinforced{
@@ -10228,7 +10224,7 @@
 /turf/open/floor/marking/warning/corner{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "kif" = (
 /obj/structure/table,
 /turf/open/floor/freezer,
@@ -10319,7 +10315,7 @@
 "kmP" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/warning,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "knh" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
@@ -10335,7 +10331,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "knD" = (
 /obj/machinery/light{
 	dir = 1
@@ -10397,7 +10393,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "kqq" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -10407,7 +10403,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "kry" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirt,
@@ -10442,7 +10438,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "ksl" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
@@ -10675,7 +10671,7 @@
 "kHn" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "kHD" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -10736,7 +10732,7 @@
 "kKQ" = (
 /obj/structure/sign/safety/hazard,
 /turf/closed/gm/dense,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "kKT" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor,
@@ -10758,7 +10754,7 @@
 "kLN" = (
 /obj/machinery/landinglight/lz1,
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "kMj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -10795,7 +10791,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "kPr" = (
 /turf/closed/wall/r_wall/chigusa,
 /area/lv624/ground/ruin)
@@ -10862,7 +10858,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "kSG" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/comms)
@@ -10973,7 +10969,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "kZT" = (
 /obj/effect/turf_decal/sandytile,
 /obj/effect/ai_node,
@@ -11004,7 +11000,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "lbt" = (
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/tile/whiteyellow/full,
@@ -11020,7 +11016,7 @@
 "lcv" = (
 /obj/docking_port/stationary/shuttle/lz2,
 /turf/open/floor/plating/icefloor,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "lcT" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -11095,7 +11091,7 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "lfN" = (
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -11119,7 +11115,7 @@
 /turf/open/floor/marking/warning{
 	dir = 5
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "liM" = (
 /turf/open/floor/plating,
 /area/lv624/lazarus/toilet)
@@ -11191,7 +11187,7 @@
 	dir = 4
 	},
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "lne" = (
 /turf/open/liquid/water/river/autosmooth,
 /area/lv624/ground/sand6)
@@ -11423,7 +11419,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "lEk" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -11528,9 +11524,6 @@
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/vault,
 /area/lv624/lazarus/crashed_ship)
-"lKP" = (
-/turf/open/floor/plating/asteroidfloor,
-/area/landing_zone/domed)
 "lLn" = (
 /turf/open/floor/marking/loadingarea{
 	dir = 1
@@ -12029,7 +12022,7 @@
 /area/lv624/ground/sand2)
 "mlv" = (
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "mlF" = (
 /obj/structure/table,
 /obj/effect/decal/remains/human,
@@ -12088,7 +12081,7 @@
 /turf/open/floor/marking/warning/corner{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "moV" = (
 /obj/effect/spawner/random/misc/structure/girder/regularweighted,
 /turf/open/floor/plating,
@@ -12297,7 +12290,7 @@
 /turf/open/floor/marking/warning/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "mBO" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 10
@@ -12366,7 +12359,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "mGL" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/jungle/vines/heavy,
@@ -12456,7 +12449,7 @@
 "mLd" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "mMS" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced{
@@ -12723,7 +12716,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "naG" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass/grass2,
@@ -12826,7 +12819,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "ngA" = (
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage/dome)
@@ -13025,7 +13018,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "nwS" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -13208,7 +13201,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "nJf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -13390,7 +13383,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/neutral,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "nVb" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
@@ -13456,7 +13449,7 @@
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "nZT" = (
 /obj/effect/ai_node,
 /turf/open/liquid/water/river/autosmooth,
@@ -13540,7 +13533,7 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "odE" = (
 /turf/open/floor/plating,
 /area/lv624/ground/river1)
@@ -13567,7 +13560,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "ofP" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/turf_decal/riverdecal/edge,
@@ -13603,7 +13596,7 @@
 "ohD" = (
 /obj/effect/decal/cleanable/blood/oil/armorblood,
 /turf/open/floor/plating/icefloor,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "ohH" = (
 /obj/structure/flora/grass/green,
 /turf/open/ground/grass,
@@ -13840,7 +13833,7 @@
 "ozj" = (
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "ozm" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/ground/grass,
@@ -14453,7 +14446,7 @@
 	dir = 5
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "pmS" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/internal_affairs)
@@ -14594,7 +14587,7 @@
 /turf/open/floor/marking/warning/corner{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "pxs" = (
 /obj/item/ammo_casing,
 /obj/item/ammo_casing,
@@ -14703,7 +14696,7 @@
 /turf/open/floor/marking/warning{
 	dir = 6
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "pEV" = (
 /obj/structure/rack,
 /obj/structure/extinguisher_cabinet{
@@ -14725,7 +14718,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "pGL" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -14858,7 +14851,7 @@
 /turf/open/floor/marking/warning{
 	dir = 6
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "pQB" = (
 /obj/structure/flora/jungle/vines/heavy,
 /turf/open/liquid/water/river/autosmooth/deep,
@@ -14896,7 +14889,7 @@
 /area/lv624/ground/jungle9)
 "pSp" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "pSz" = (
 /obj/machinery/door/airlock/colony/medical/hydroponics{
 	dir = 1
@@ -14908,7 +14901,7 @@
 "pSL" = (
 /obj/structure/cable,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "pSQ" = (
 /obj/machinery/door_control{
 	id = "secure_blast";
@@ -14922,7 +14915,7 @@
 /turf/open/floor/marking/warning/corner{
 	dir = 1
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "pTl" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 1
@@ -14992,7 +14985,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "pWW" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -15166,7 +15159,7 @@
 /turf/open/floor/marking/warning/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "qhd" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 8
@@ -15262,7 +15255,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "qpo" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -15289,7 +15282,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "qqt" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -15591,7 +15584,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "qLx" = (
 /obj/structure/cable,
 /obj/structure/stairs/seamless{
@@ -15652,7 +15645,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "qOp" = (
 /obj/structure/flora/jungle/vines,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -15679,7 +15672,7 @@
 /obj/effect/ai_node,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "qPo" = (
 /obj/structure/flora/jungle/planttop1,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -15707,7 +15700,7 @@
 "qQD" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/icefloor,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "qRg" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/platebot,
@@ -15727,7 +15720,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "qSi" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/engine/cult,
@@ -15779,7 +15772,7 @@
 	dir = 4
 	},
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "qVt" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -15970,7 +15963,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "rdL" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 10
@@ -16152,7 +16145,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "rms" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -16357,7 +16350,7 @@
 /turf/open/floor/marking/warning{
 	dir = 9
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "rxF" = (
 /obj/item/ammo_casing,
 /obj/item/ammo_casing,
@@ -16430,7 +16423,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "rBu" = (
 /obj/structure/table,
 /obj/item/tool/shovel/spade,
@@ -16623,7 +16616,7 @@
 "rJe" = (
 /obj/item/tool/crowbar,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "rJm" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
@@ -16653,7 +16646,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "rKU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -16672,7 +16665,7 @@
 "rLY" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "rMB" = (
 /obj/structure/flora/jungle/vines,
 /obj/effect/spawner/random/misc/structure/supplycrate,
@@ -16698,7 +16691,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "rOA" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /obj/structure/flora/jungle/vines,
@@ -16711,7 +16704,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "rOQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -16769,7 +16762,7 @@
 /area/lv624/lazarus/armory)
 "rRx" = (
 /turf/closed/gm/dense,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "rRG" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/cup/glass/drinkingglass,
@@ -16917,7 +16910,7 @@
 /area/lv624/lazarus/main_hall)
 "rXQ" = (
 /turf/open/floor/plating/asteroidfloor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "rXV" = (
 /obj/structure/bed,
 /turf/open/floor/tile/purple/taupepurple{
@@ -17072,7 +17065,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "seL" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_tunnel_spawn,
@@ -17262,7 +17255,7 @@
 	dir = 8
 	},
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "ssc" = (
 /obj/structure/foamedmetal,
 /obj/structure/flora/jungle/vines/heavy,
@@ -17293,7 +17286,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "suH" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/weed_node,
@@ -17363,7 +17356,7 @@
 /area/lv624/lazarus/fitness)
 "szs" = (
 /turf/open/floor/plating/icefloor,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "sAv" = (
 /obj/item/clothing/suit/redtag,
 /obj/structure/closet/athletic_mixed,
@@ -17587,7 +17580,7 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "sRc" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -17765,12 +17758,12 @@
 /area/lv624/ground/caves/central4/garbledradio)
 "tbe" = (
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "tbf" = (
 /turf/open/floor/marking/warning/corner{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "tbw" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /obj/item/ammo_casing,
@@ -18088,7 +18081,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "tsB" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/warning,
@@ -18138,7 +18131,7 @@
 	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "tuF" = (
 /obj/item/clothing/glasses/regular,
 /turf/open/floor/tile/purple/whitepurple{
@@ -18196,7 +18189,7 @@
 "txt" = (
 /obj/structure/largecrate/random/secure,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "txH" = (
 /obj/structure/table,
 /obj/item/stack/sheet/plasteel{
@@ -18276,7 +18269,7 @@
 "tBK" = (
 /obj/structure/flora/jungle/vines,
 /turf/closed/gm/dense,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "tBS" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/barber,
@@ -18310,7 +18303,7 @@
 "tFj" = (
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "tFo" = (
 /obj/item/stack/sheet/wood{
 	amount = 2
@@ -18326,7 +18319,7 @@
 /area/lv624/lazarus/canteen)
 "tGn" = (
 /turf/open/ground/grass,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "tGp" = (
 /obj/structure/table/wood,
 /obj/item/megaphone,
@@ -18368,7 +18361,7 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "tIj" = (
 /obj/structure/stairs/seamless{
 	dir = 8
@@ -18380,7 +18373,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "tIC" = (
 /obj/structure/flora/jungle/planttop1,
 /turf/open/liquid/water/river/autosmooth,
@@ -18409,7 +18402,7 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "tJx" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/ground/grass,
@@ -18521,7 +18514,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "tRR" = (
 /obj/machinery/door/poddoor/mainship{
 	dir = 1;
@@ -18538,7 +18531,7 @@
 /area/lv624/lazarus/internal_affairs)
 "tSf" = (
 /turf/closed/wall/r_wall,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "tSr" = (
 /obj/structure/largecrate/supply,
 /obj/item/clothing/under/rank/engineer,
@@ -18604,7 +18597,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "tUO" = (
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
@@ -18741,7 +18734,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "uec" = (
 /obj/structure/cryofeed/right,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -18916,7 +18909,7 @@
 /area/lv624/lazarus/quartstorage)
 "uoM" = (
 /turf/open/floor/marking/warning/corner,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "upl" = (
 /obj/structure/cable,
 /turf/open/floor/tile/whiteyellow/full,
@@ -18947,7 +18940,7 @@
 	dir = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "urf" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -18974,7 +18967,7 @@
 "urD" = (
 /obj/machinery/landinglight/lz2,
 /turf/open/floor/plating,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "urF" = (
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/tile/blue/whiteblue{
@@ -19043,7 +19036,7 @@
 /area/lv624/lazarus/comms)
 "uvP" = (
 /turf/open/floor/marking/warning,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "uvU" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -19246,7 +19239,7 @@
 "uIG" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/neutral,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "uIT" = (
 /obj/structure/bed/chair/comfy/black,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -19291,7 +19284,7 @@
 "uMc" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "uMQ" = (
 /obj/structure/flora/jungle/vines/heavy,
 /turf/closed/wall,
@@ -19423,7 +19416,7 @@
 "uVx" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "uVA" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -19491,7 +19484,7 @@
 /area/lv624/lazarus/sandtemple/garbledradio)
 "uYo" = (
 /turf/open/floor/marking/warning,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "uYA" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -19508,10 +19501,7 @@
 	dir = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/landing_zone/domed)
-"uYE" = (
-/turf/closed/gm/dense,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "uYJ" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -19534,11 +19524,11 @@
 /turf/open/floor/marking/warning/corner{
 	dir = 1
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "vbA" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "vcW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -19680,7 +19670,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "vjE" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/structure/flora/jungle/vines,
@@ -19883,7 +19873,7 @@
 "vuc" = (
 /obj/effect/turf_decal/tracks/human1/wet,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "vuO" = (
 /turf/closed/wall/r_wall,
 /area/lv624/ground/jungle3)
@@ -19909,7 +19899,7 @@
 /area/lv624/ground/compound/se)
 "vvX" = (
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "vwk" = (
 /obj/structure/flora/jungle/vines,
 /obj/effect/ai_node,
@@ -19932,7 +19922,7 @@
 /turf/open/floor/marking/warning{
 	dir = 10
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "vxi" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
@@ -20013,7 +20003,7 @@
 "vBV" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking/warning,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "vCc" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
@@ -20087,7 +20077,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "vFe" = (
 /obj/structure/bed/alien{
 	color = "#aba9a9"
@@ -20153,7 +20143,7 @@
 /area/lv624/ground/caves/central4)
 "vHO" = (
 /turf/open/floor/marking/warning/corner,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "vIn" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirt,
@@ -20182,7 +20172,7 @@
 "vJM" = (
 /obj/structure/sign/safety/hazard,
 /turf/open/floor/marking/warning,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "vKm" = (
 /obj/structure/girder/displaced,
 /turf/open/liquid/water/river/autosmooth/deep,
@@ -20202,7 +20192,7 @@
 	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "vMc" = (
 /obj/structure/table,
 /obj/item/megaphone,
@@ -20251,7 +20241,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "vND" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -20267,7 +20257,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "vPf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -20381,7 +20371,7 @@
 /area/lv624/lazarus/fitness)
 "vVq" = (
 /turf/open/floor/marking/bot,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "vVs" = (
 /obj/structure/fence,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
@@ -20415,7 +20405,7 @@
 "vWz" = (
 /obj/structure/sign/safety/hazard,
 /turf/closed/wall/r_wall,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "vXj" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
@@ -20561,11 +20551,11 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "wfA" = (
 /obj/structure/flora/jungle/vines/heavy,
 /turf/closed/gm/dense,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "wfH" = (
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/plating/ground/dirt,
@@ -20596,7 +20586,7 @@
 /turf/open/floor/marking/warning{
 	dir = 1
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "wid" = (
 /obj/effect/decal/cleanable/blood/splatter/animated,
 /obj/item/ammo_casing,
@@ -20707,7 +20697,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "wnB" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/item/ammo_casing,
@@ -20816,15 +20806,15 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "wvz" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "wvT" = (
 /turf/closed/wall/r_wall,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "wvV" = (
 /obj/structure/flora/jungle/vines/heavy{
 	pixel_x = -28
@@ -20999,7 +20989,7 @@
 "wEr" = (
 /obj/structure/cargo_container,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "wEB" = (
 /obj/structure/table/wood,
 /obj/machinery/light/small,
@@ -21162,7 +21152,7 @@
 /turf/open/floor/marking/warning{
 	dir = 8
 	},
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "wKS" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/quartstorage/outdoors)
@@ -21325,7 +21315,7 @@
 "wTQ" = (
 /obj/machinery/light,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "wTT" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/ground/grass,
@@ -21390,12 +21380,12 @@
 "wVL" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "wVT" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "wVU" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -21548,13 +21538,13 @@
 /turf/open/floor/marking/warning{
 	dir = 4
 	},
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "xfb" = (
 /obj/structure/cargo_container/nt{
 	dir = 4
 	},
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "xfv" = (
 /obj/structure/window/reinforced,
 /obj/structure/largecrate/supply/supplies/flares,
@@ -21590,7 +21580,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "xgM" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass,
@@ -21781,7 +21771,7 @@
 /area/storage/testroom)
 "xoN" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "xoT" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle10)
@@ -22219,7 +22209,7 @@
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "xMs" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/ground/grass,
@@ -22239,7 +22229,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/landing_zone/two/domed)
+/area/landing_zone/two/domed/west_port)
 "xNj" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -22355,7 +22345,7 @@
 /obj/structure/flora/jungle/vines,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/closed/wall/r_wall,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "xTV" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -22403,7 +22393,7 @@
 "xWW" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "xXn" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/liquid/water/river/autosmooth,
@@ -22474,10 +22464,10 @@
 "yaB" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/closed/wall/r_wall,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "ybc" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "ybg" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/turf_decal/riverdecal,
@@ -22533,7 +22523,7 @@
 "ycR" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "yda" = (
 /obj/structure/flora/jungle/vines{
 	pixel_y = 1
@@ -22546,7 +22536,7 @@
 /area/lv624/ground/jungle5)
 "ydT" = (
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/east_port)
 "yem" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
@@ -22607,7 +22597,7 @@
 "yin" = (
 /obj/machinery/floodlight/colony,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport)
+/area/landing_zone/domed/east_port)
 "yiq" = (
 /obj/effect/ai_node,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
@@ -22722,7 +22712,7 @@
 "yls" = (
 /obj/structure/cargo_container/nt,
 /turf/open/floor,
-/area/lv624/lazarus/spaceport2)
+/area/landing_zone/two/domed/west_port)
 "ylZ" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/jungle1)
@@ -60753,8 +60743,8 @@ wvT
 rXQ
 udV
 wvT
-mOs
-mOs
+euA
+euA
 bNN
 sFU
 sFU
@@ -60931,10 +60921,10 @@ lOL
 cCc
 cCc
 lOL
-uYE
-bQV
-lKP
-uYE
+euA
+rLY
+rXQ
+euA
 bNN
 sFU
 iol

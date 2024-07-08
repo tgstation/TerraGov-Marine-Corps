@@ -67,7 +67,7 @@
 "abJ" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "abZ" = (
 /obj/structure/cable,
 /turf/open/floor/tile/red/whitered{
@@ -768,7 +768,7 @@
 "aEZ" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "aFl" = (
 /obj/machinery/miner/damaged,
 /turf/open/ground/grass/weedable,
@@ -1216,7 +1216,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "aZh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -1377,7 +1377,7 @@
 "bgi" = (
 /obj/structure/cargo_container/hd,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "bgp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -1588,7 +1588,7 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "bpN" = (
 /obj/structure/table,
 /turf/open/floor/tile/red/whitered{
@@ -2642,7 +2642,7 @@
 "ciA" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "ciD" = (
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 5
@@ -2696,7 +2696,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "cle" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -2979,7 +2979,7 @@
 	},
 /obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "cvR" = (
 /turf/open/floor/tile/red/whitered{
 	dir = 6
@@ -3056,7 +3056,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "cCd" = (
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor/free_access{
 	dir = 1;
@@ -3123,7 +3123,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "cDJ" = (
 /obj/structure/flora/grass/tallgrass/hideable,
 /turf/open/ground/grass/weedable,
@@ -3151,7 +3151,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "cEA" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/landmark/weed_node,
@@ -3317,7 +3317,7 @@
 "cKe" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "cKx" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -3509,7 +3509,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "cWH" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4365,7 +4365,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "dHt" = (
 /obj/structure/bed/chair/nometal,
 /turf/open/floor,
@@ -4446,7 +4446,7 @@
 "dKV" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "dLc" = (
 /obj/machinery/door/airlock/maintenance{
 	dir = 1
@@ -5495,7 +5495,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "eDS" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark/brown2{
@@ -5760,7 +5760,7 @@
 "ePr" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "ePE" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
@@ -6487,7 +6487,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "fuQ" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
@@ -7628,7 +7628,7 @@
 "gjD" = (
 /obj/effect/landmark/campaign_structure/asat_system,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "gjR" = (
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/biologics)
@@ -7861,7 +7861,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "gtK" = (
 /turf/open/floor,
 /area/lawankaoutpost/colony/hydroponics)
@@ -8498,7 +8498,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "haj" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grass/weedable,
@@ -8532,7 +8532,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "hbB" = (
 /obj/structure/table/wood,
 /obj/item/tool/stamp,
@@ -8955,7 +8955,7 @@
 "hyK" = (
 /obj/structure/cable,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "hyW" = (
 /obj/structure/table,
 /obj/effect/spawner/random/misc/trash,
@@ -9494,7 +9494,7 @@
 	},
 /obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "hVC" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
@@ -9550,7 +9550,7 @@
 "hYh" = (
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "hYi" = (
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
@@ -9649,7 +9649,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "idb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -9847,7 +9847,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "ikQ" = (
 /obj/structure/barricade/metal,
 /turf/open/floor/tile/white,
@@ -10156,7 +10156,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "iAQ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/tile/red/full,
@@ -10502,7 +10502,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "iPD" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/closed/wall,
@@ -11079,7 +11079,7 @@
 	dir = 9
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "jkc" = (
 /obj/machinery/light{
 	dir = 8
@@ -11142,7 +11142,7 @@
 /obj/structure/cable,
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "jmR" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -11828,7 +11828,7 @@
 "jSm" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "jSt" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -13113,7 +13113,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "kZn" = (
 /obj/structure/tankholder/oxygenthree,
 /turf/open/floor/tile/dark/brown2{
@@ -13549,7 +13549,7 @@
 /area/lawankaoutpost/colony/chapel)
 "lpx" = (
 /turf/closed/wall/r_wall,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "lpz" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark2,
@@ -13995,7 +13995,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "lKe" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -14088,7 +14088,7 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "lMM" = (
 /obj/structure/table,
 /obj/effect/spawner/random/food_or_drink/beer,
@@ -14372,7 +14372,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "lXk" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/taupeblue{
@@ -15376,7 +15376,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "mSt" = (
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -15862,7 +15862,7 @@
 "nmE" = (
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "nmP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -16008,7 +16008,7 @@
 "nso" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "nsy" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -4;
@@ -16032,7 +16032,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "nsW" = (
 /obj/structure/fence,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -16073,7 +16073,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "nuv" = (
 /obj/structure/flora/jungle/vines{
 	pixel_y = 1
@@ -16093,7 +16093,7 @@
 	dir = 5
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "nuR" = (
 /obj/structure/table,
 /obj/item/ashtray/glass,
@@ -16126,7 +16126,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "nvO" = (
 /obj/structure/table,
 /obj/item/tool/wrench,
@@ -16391,7 +16391,7 @@
 /area/lawankaoutpost/colony/operations_hall)
 "nFU" = (
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "nGg" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
@@ -16422,7 +16422,7 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "nHp" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -16516,7 +16516,7 @@
 "nJW" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "nKe" = (
 /obj/effect/landmark/campaign_structure/barricade/sandbags/asat{
 	dir = 1
@@ -16817,7 +16817,7 @@
 	},
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "nXz" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/effect/spawner/random/misc/structure/supplycrate,
@@ -16910,7 +16910,7 @@
 "nZg" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "nZm" = (
 /obj/machinery/disposal,
 /turf/open/floor/tile/blue/whiteblue{
@@ -17121,7 +17121,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "ojM" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
@@ -17838,7 +17838,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "oMK" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/weaponry/melee,
@@ -17956,7 +17956,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "oRh" = (
 /obj/structure/flora/ausbushes/pointybush,
 /turf/open/ground/grass/weedable,
@@ -18040,11 +18040,11 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "oUf" = (
 /obj/machinery/light,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "oUt" = (
 /obj/machinery/chem_dispenser/soda{
 	dir = 8
@@ -18121,7 +18121,7 @@
 /obj/structure/cable,
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "oWK" = (
 /obj/machinery/light{
 	dir = 4
@@ -18699,7 +18699,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "puu" = (
 /obj/structure/closet/coffin,
 /obj/item/grown/sunflower,
@@ -18760,7 +18760,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "pwQ" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/green/whitegreen{
@@ -18871,7 +18871,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "pAl" = (
 /obj/item/storage/firstaid/fire,
 /obj/structure/table,
@@ -18908,7 +18908,7 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "pBF" = (
 /obj/effect/spawner/random/medical/structure/crate/medsupplies/alwaysspawns,
 /turf/open/floor/tile/dark,
@@ -18933,7 +18933,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "pCN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -19158,7 +19158,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "pLu" = (
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner{
 	dir = 8
@@ -19219,7 +19219,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "pNM" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/ground/grass/weedable,
@@ -19630,7 +19630,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "qis" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -19943,7 +19943,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "quI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -20019,7 +20019,7 @@
 "qym" = (
 /obj/structure/table,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "qyn" = (
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner{
 	dir = 4
@@ -20229,7 +20229,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "qKn" = (
 /obj/structure/rack,
 /obj/structure/rack,
@@ -20377,7 +20377,7 @@
 "qRf" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "qRi" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
@@ -20619,7 +20619,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "rae" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /obj/effect/ai_node,
@@ -20718,7 +20718,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "reC" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen,
@@ -21045,7 +21045,7 @@
 /obj/structure/cable,
 /obj/effect/spawner/random/misc/structure/crate,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "rps" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -21085,7 +21085,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "rqT" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -21467,7 +21467,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "rFC" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -4;
@@ -21562,7 +21562,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "rJM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -21617,7 +21617,7 @@
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "rMX" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/landing_zone/domed)
@@ -22033,7 +22033,7 @@
 /obj/structure/cable,
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "shs" = (
 /obj/effect/decal/cleanable/rune,
 /turf/open/floor/cult,
@@ -22612,7 +22612,7 @@
 	dir = 8
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "sEp" = (
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/brown/full,
@@ -22849,7 +22849,7 @@
 "sOu" = (
 /obj/structure/cargo_container,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "sOA" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/tool,
@@ -23060,7 +23060,7 @@
 "sXl" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "sXr" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/tile/dark2,
@@ -23749,7 +23749,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "tyh" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -9;
@@ -23931,7 +23931,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "tGU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -24120,7 +24120,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "tMc" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/tcomms,
@@ -24406,7 +24406,7 @@
 /area/lawankaoutpost/outside/southeast)
 "uaC" = (
 /turf/closed/wall/r_wall,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "uaK" = (
 /turf/open/floor/tile/red/whitered{
 	dir = 1
@@ -24767,7 +24767,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "utG" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -24922,7 +24922,7 @@
 "uzx" = (
 /obj/effect/spawner/random/misc/structure/crate,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "uzP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/corpsespawner/colonist,
@@ -25106,7 +25106,7 @@
 "uGv" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "uHh" = (
 /obj/effect/decal/cleanable/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25506,7 +25506,7 @@
 	dir = 4
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "uWU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25619,7 +25619,7 @@
 	dir = 9
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "vcL" = (
 /obj/item/tool/mop,
 /turf/open/floor/freezer,
@@ -26181,7 +26181,7 @@
 "vCz" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "vCA" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = 13;
@@ -26693,7 +26693,7 @@
 /obj/structure/cable,
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/dirt,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "vYf" = (
 /obj/machinery/light{
 	dir = 8;
@@ -26814,7 +26814,7 @@
 "wcJ" = (
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "wcT" = (
 /obj/machinery/mineral/processing_unit_console,
 /turf/closed/wall,
@@ -27067,7 +27067,7 @@
 	name = "\improper Spaceport"
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "wjd" = (
 /obj/structure/flora/grass/tallgrass/hideable/tallgrasscorner{
 	color = "#798963";
@@ -27565,7 +27565,7 @@
 /area/lawankaoutpost/colony/atmos)
 "wEk" = (
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "wES" = (
 /obj/structure/table,
 /obj/effect/spawner/random/machinery/random_broken_computer/small,
@@ -27786,7 +27786,7 @@
 "wNg" = (
 /obj/structure/cargo_container,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "wNZ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -28246,7 +28246,7 @@
 	dir = 5
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "xgq" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -28602,7 +28602,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "xvx" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/tile/red/whitered{
@@ -28672,7 +28672,7 @@
 "xxT" = (
 /obj/machinery/light,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzoneone)
+/area/landing_zone/domed)
 "xyf" = (
 /obj/structure/table,
 /obj/machinery/computer3/laptop,
@@ -28908,7 +28908,7 @@
 "xHR" = (
 /obj/structure/cable,
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "xHV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29142,7 +29142,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "xSy" = (
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/dark/yellow2{
@@ -29342,7 +29342,7 @@
 	dir = 1
 	},
 /turf/open/floor,
-/area/lawankaoutpost/colony/landingzonetwo)
+/area/landing_zone/two/domed)
 "xYV" = (
 /obj/structure/cable,
 /turf/open/floor/plating,

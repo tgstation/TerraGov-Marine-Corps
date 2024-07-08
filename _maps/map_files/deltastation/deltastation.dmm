@@ -843,7 +843,7 @@
 "aiI" = (
 /obj/effect/spawner/random/misc/structure/emcloset,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "aiN" = (
 /obj/machinery/chem_master/condimaster{
 	name = "CondiMaster Neo"
@@ -1611,12 +1611,12 @@
 /area/deltastation/engineering/atmos/mix)
 "arC" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "arT" = (
 /obj/structure/prop/vehicle/crawler,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "asc" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light{
@@ -3384,7 +3384,7 @@
 /area/deltastation/cargo/sorting)
 "aKr" = (
 /turf/closed/wall/r_wall,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "aKy" = (
 /obj/structure/table,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -3930,7 +3930,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "aQp" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/stripes/line{
@@ -4891,7 +4891,7 @@
 "aZA" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/icefloor/warnplate,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "aZC" = (
 /obj/structure/closet/secure_closet/freezer/meat,
 /turf/open/floor/iron/freezer,
@@ -4951,7 +4951,7 @@
 /obj/effect/spawner/random/medical/organ,
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "baz" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -6058,7 +6058,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "bmC" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/siding/white/corner{
@@ -6407,7 +6407,7 @@
 /obj/machinery/light,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "bqg" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -6622,7 +6622,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/icefloor/warnplate,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "bse" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -7209,7 +7209,7 @@
 "bxB" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "bxE" = (
 /obj/effect/turf_decal/tile/transparent/red/half/contrasted,
 /obj/structure/sign/securearea{
@@ -7458,7 +7458,7 @@
 "bzl" = (
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "bzp" = (
 /obj/effect/turf_decal/tile/transparent/red/diagonal_centre,
 /obj/effect/turf_decal/tile/transparent/blue/diagonal_edge,
@@ -7718,7 +7718,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "bCj" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/landmark/weed_node,
@@ -8789,7 +8789,7 @@
 "bPd" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "bPf" = (
 /obj/effect/spawner/random/misc/structure/closet/regular,
 /obj/item/storage/box/mousetraps,
@@ -9668,7 +9668,7 @@
 "bYh" = (
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "bYi" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral{
@@ -9886,7 +9886,7 @@
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "caL" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -10890,7 +10890,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "cma" = (
 /obj/effect/turf_decal/tile/transparent/neutral/diagonal_centre,
 /obj/effect/turf_decal/tile/transparent/red/diagonal_centre,
@@ -11159,7 +11159,7 @@
 "cpc" = (
 /obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "cpq" = (
 /obj/effect/turf_decal/tile/transparent/yellow{
 	dir = 1
@@ -11855,7 +11855,7 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "cxm" = (
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
 	dir = 4
@@ -12239,7 +12239,7 @@
 /obj/effect/turf_decal/sandedge,
 /obj/effect/spawner/random/misc/structure/wood_barricade,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "cBF" = (
 /obj/effect/turf_decal/tile/transparent/red/half/contrasted{
 	dir = 1
@@ -13068,7 +13068,7 @@
 /obj/structure/cable,
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "cLG" = (
 /obj/effect/turf_decal/tile/transparent/green{
 	dir = 1
@@ -13455,7 +13455,7 @@
 /turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 8
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "cQq" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -13687,10 +13687,10 @@
 /area/deltastation/engineering/hallway)
 "cSG" = (
 /turf/closed/wall/r_wall/unmeltable,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "cSK" = (
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "cSP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14391,7 +14391,7 @@
 "cZI" = (
 /obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "cZL" = (
 /obj/machinery/light_switch,
 /turf/closed/wall,
@@ -14918,7 +14918,7 @@
 "dfm" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "dfx" = (
 /obj/effect/turf_decal/tile/transparent/brown/anticorner/contrasted{
 	dir = 1
@@ -15804,7 +15804,7 @@
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "dod" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -16495,7 +16495,7 @@
 /obj/effect/spawner/random/misc/folder,
 /obj/effect/spawner/random/misc/paperbin,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "dvE" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -16521,7 +16521,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "dwn" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/stripes/line{
@@ -16579,7 +16579,7 @@
 /obj/effect/spawner/random/decal/blood,
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "dwO" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/turf_decal/stripes/line{
@@ -17808,7 +17808,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "dHU" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/conveyor{
@@ -18401,7 +18401,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "dNz" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -18553,7 +18553,7 @@
 /obj/effect/turf_decal/warning_stripes,
 /obj/structure/cable,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "dPa" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -19592,7 +19592,7 @@
 /obj/machinery/power/apc,
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "dXQ" = (
 /obj/structure/table,
 /turf/open/floor/iron,
@@ -19813,7 +19813,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "dZU" = (
 /obj/structure/table,
 /turf/open/floor/iron/dark,
@@ -21794,7 +21794,7 @@
 	},
 /obj/structure/cargo_container/green,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "etI" = (
 /obj/effect/turf_decal/tile/transparent/neutral{
 	dir = 1
@@ -22137,7 +22137,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "exf" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -23166,7 +23166,7 @@
 "eHE" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "eHG" = (
 /obj/machinery/hydroponics/soil,
 /obj/effect/decal/cleanable/dirt,
@@ -23646,7 +23646,7 @@
 "eMl" = (
 /obj/machinery/recharge_station,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "eMt" = (
 /obj/effect/turf_decal/tile/transparent/purple{
 	dir = 1
@@ -23907,7 +23907,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "eOX" = (
 /obj/effect/turf_decal/tile/transparent/brown{
 	dir = 4
@@ -25008,7 +25008,7 @@
 /obj/effect/landmark/corpsespawner/engineer/regular,
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "fce" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/opened{
@@ -25120,7 +25120,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "fcx" = (
 /obj/effect/landmark/xeno_resin_door{
 	dir = 1
@@ -26612,7 +26612,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "fru" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/tool/wirecutters,
@@ -27237,7 +27237,7 @@
 /obj/machinery/landinglight/lz1,
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "fyj" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -28068,7 +28068,7 @@
 "fGK" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "fGM" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -28740,7 +28740,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "fNv" = (
 /obj/effect/spawner/random/engineering/structure/random_tank_holder,
 /turf/open/floor/plating,
@@ -30307,7 +30307,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "gdq" = (
 /obj/effect/turf_decal/trimline/yellow/corner,
 /obj/effect/decal/cleanable/dirt,
@@ -30729,13 +30729,13 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "ghT" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "ghW" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron,
@@ -31904,7 +31904,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/computer/secure_data,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "guh" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -32052,7 +32052,7 @@
 /obj/machinery/landinglight/lz1,
 /obj/structure/cable,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "gvc" = (
 /obj/machinery/grill,
 /turf/open/floor/iron/cafeteria,
@@ -32063,7 +32063,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "gvh" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
@@ -33347,7 +33347,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "gIm" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -34812,7 +34812,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "gYw" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/structure/cable,
@@ -34948,7 +34948,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "har" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -36233,7 +36233,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "hmi" = (
 /obj/effect/landmark/xeno_resin_door,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -36268,7 +36268,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "hmL" = (
 /obj/effect/turf_decal/tile/transparent/yellow{
 	dir = 1
@@ -36599,7 +36599,7 @@
 "hqh" = (
 /obj/structure/closet/lawcloset,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "hqi" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/siding/white/corner{
@@ -39015,7 +39015,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "hTr" = (
 /turf/open/floor/iron/white,
 /area/deltastation/medical/chemistry)
@@ -39928,7 +39928,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "icW" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -43311,7 +43311,7 @@
 "iNo" = (
 /obj/structure/cargo_container/nt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "iNv" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -45925,7 +45925,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "jqr" = (
 /obj/structure/cable,
 /turf/open/floor/iron,
@@ -46004,7 +46004,7 @@
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "jrx" = (
 /obj/machinery/door/poddoor/shutters/opened{
 	dir = 2;
@@ -48057,7 +48057,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "jOH" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
 	dir = 1
@@ -48613,7 +48613,7 @@
 "jUb" = (
 /obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "jUe" = (
 /obj/structure/plasticflaps,
 /obj/machinery/navbeacon{
@@ -48846,7 +48846,7 @@
 "jVW" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "jWg" = (
 /obj/machinery/door/poddoor/opened{
 	id = "aiuploadwindow";
@@ -49063,7 +49063,7 @@
 /obj/structure/table,
 /obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "jYi" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder{
@@ -50571,7 +50571,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "kpj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -50862,7 +50862,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "ktn" = (
 /obj/effect/mapping_helpers/simple_pipes/general/visible,
 /turf/open/floor/plating,
@@ -51157,7 +51157,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "kvV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/iron/dark,
@@ -51593,7 +51593,7 @@
 "kzI" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "kzX" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 5
@@ -53943,7 +53943,7 @@
 /area/deltastation/hallway/secondary/entry)
 "kZL" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "kZR" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -54068,7 +54068,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "laY" = (
 /obj/structure/window/framed/colony/reinforced,
 /obj/effect/turf_decal/sandedge/corner2{
@@ -54759,7 +54759,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "liD" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -55444,7 +55444,7 @@
 /obj/structure/table,
 /obj/machinery/computer/security,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "lpM" = (
 /obj/machinery/shower{
 	dir = 4
@@ -56153,7 +56153,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "lxi" = (
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/iron,
@@ -56392,7 +56392,7 @@
 "lzu" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "lzw" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -56503,7 +56503,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "lAO" = (
 /obj/structure/disposaloutlet{
 	dir = 8
@@ -60090,7 +60090,7 @@
 "mkO" = (
 /obj/effect/turf_decal/sandedge/corner,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "mkS" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -60193,7 +60193,7 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "mma" = (
 /obj/effect/turf_decal/plaque/three{
 	dir = 4
@@ -61396,7 +61396,7 @@
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/metal,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "mzW" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -61571,7 +61571,7 @@
 "mCb" = (
 /obj/effect/spawner/random/misc/structure/filingcabinet,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "mCd" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -62291,7 +62291,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "mJE" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /obj/effect/turf_decal/box,
@@ -62597,7 +62597,7 @@
 "mMC" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "mMI" = (
 /obj/structure/prop/mainship/turretprop{
 	dir = 4;
@@ -62689,7 +62689,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "mNL" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -63169,7 +63169,7 @@
 	},
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "mTN" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -64508,7 +64508,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "niV" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/decal/cleanable/dirt,
@@ -64550,7 +64550,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "njg" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -65026,10 +65026,10 @@
 /obj/effect/spawner/random/misc/structure/directional_window/east,
 /obj/effect/spawner/random/misc/structure/directional_window,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "npG" = (
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "npV" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/machinery/newscaster,
@@ -65341,7 +65341,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "nsf" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -66452,7 +66452,7 @@
 "nDv" = (
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "nDH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -66519,7 +66519,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "nEz" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line,
@@ -66748,7 +66748,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "nHM" = (
 /obj/structure/disposalpipe/junction,
 /obj/structure/cable,
@@ -67902,7 +67902,7 @@
 /obj/effect/turf_decal/sandedge,
 /obj/effect/spawner/random/misc/structure/wood_barricade,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "nVl" = (
 /turf/open/floor/iron/dark,
 /area/deltastation/asteroidcaves/exteriorasteroids)
@@ -68232,7 +68232,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "nXV" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -68423,7 +68423,7 @@
 "nZF" = (
 /obj/structure/cargo_container/ch_red,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "nZG" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	dir = 1
@@ -68989,7 +68989,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "ofZ" = (
 /obj/structure/cable,
 /obj/structure/sign/securearea,
@@ -69663,7 +69663,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "ooG" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -69931,7 +69931,7 @@
 	dir = 5
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "orl" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	dir = 1;
@@ -69956,7 +69956,7 @@
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "ors" = (
 /obj/effect/turf_decal/tile/transparent/neutral{
 	dir = 8
@@ -71207,7 +71207,7 @@
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/structure/largecrate/random,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "oCX" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/stripes/line{
@@ -72820,7 +72820,7 @@
 "oUx" = (
 /obj/effect/turf_decal/warning_stripes/linethick,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "oUy" = (
 /obj/effect/turf_decal/tile/transparent/purple/fourcorners,
 /obj/effect/turf_decal/stripes/line{
@@ -73049,7 +73049,7 @@
 "oXe" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "oXi" = (
 /obj/machinery/light{
 	dir = 8
@@ -73213,7 +73213,7 @@
 "oYU" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "oZf" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -73549,7 +73549,7 @@
 	},
 /obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "pcp" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -73601,7 +73601,7 @@
 "pcN" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "pcY" = (
 /obj/machinery/air_alarm{
 	dir = 8
@@ -74645,7 +74645,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "poc" = (
 /obj/effect/turf_decal/plaque/one,
 /turf/open/floor/iron/edge,
@@ -75243,7 +75243,7 @@
 /obj/effect/spawner/random/weaponry/melee,
 /obj/effect/spawner/random/engineering/insulatedgloves,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "ptX" = (
 /obj/structure/extinguisher_cabinet,
 /obj/effect/spawner/random/medical/structure/rollerbed,
@@ -75610,7 +75610,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "pwB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/stripes/corner{
@@ -75863,7 +75863,7 @@
 "pyT" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "pyY" = (
 /obj/effect/spawner/random/misc/structure/directional_window/north,
 /obj/machinery/power/apc/drained,
@@ -76135,7 +76135,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "pCl" = (
 /obj/effect/turf_decal/stripes/corner,
 /obj/effect/decal/cleanable/dirt,
@@ -76162,7 +76162,7 @@
 "pCr" = (
 /obj/effect/spawner/random/misc/structure/fire_closet,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "pCt" = (
 /obj/machinery/newscaster,
 /turf/closed/wall/r_wall,
@@ -76220,7 +76220,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "pCP" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/sandedge/corner2{
@@ -77800,7 +77800,7 @@
 /turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 4
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "pRt" = (
 /obj/machinery/newscaster{
 	dir = 8
@@ -77862,7 +77862,7 @@
 "pSe" = (
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "pSs" = (
 /obj/effect/turf_decal/tile/transparent/brown{
 	dir = 1
@@ -78362,7 +78362,7 @@
 /obj/effect/spawner/random/misc/trash,
 /obj/effect/spawner/random/medical/pillbottle,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "pYw" = (
 /obj/effect/turf_decal/bot/left,
 /turf/open/floor/iron,
@@ -79340,7 +79340,7 @@
 /area/deltastation/maintenance/fore)
 "qgB" = (
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "qgC" = (
 /obj/effect/turf_decal/trimline/neutral/filled/line{
 	dir = 4
@@ -79860,7 +79860,7 @@
 "qlX" = (
 /obj/effect/turf_decal/sandedge/corner2,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "qlZ" = (
 /obj/effect/spawner/random/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -79963,7 +79963,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "qny" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /turf/open/floor/iron,
@@ -80034,7 +80034,7 @@
 	pixel_y = 9
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "qox" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -80924,7 +80924,7 @@
 "qxv" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "qxx" = (
 /obj/machinery/vending/cigarette,
 /obj/structure/extinguisher_cabinet{
@@ -81323,7 +81323,7 @@
 /turf/open/floor/plating/icefloor/warnplate/corner{
 	dir = 1
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "qBp" = (
 /turf/closed/wall,
 /area/deltastation/science/robotics/lab)
@@ -81422,7 +81422,7 @@
 /obj/effect/spawner/random/medical/pillbottle,
 /obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "qCg" = (
 /obj/effect/spawner/random/misc/structure/rad_closet,
 /obj/effect/decal/cleanable/dirt,
@@ -82184,7 +82184,7 @@
 /obj/effect/spawner/random/misc/structure/barrel,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "qKc" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/spawner/random/misc/plant,
@@ -84463,7 +84463,7 @@
 "rjt" = (
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "rjv" = (
 /obj/structure/door_assembly/door_assembly_mhatch,
 /obj/effect/decal/cleanable/dirt,
@@ -84833,7 +84833,7 @@
 	},
 /obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive/multiple,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "rnl" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner{
@@ -85371,7 +85371,7 @@
 	dir = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "rsC" = (
 /obj/effect/spawner/random/machinery/status_display,
 /turf/closed/wall/r_wall,
@@ -85853,7 +85853,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "rxt" = (
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted,
 /obj/effect/decal/cleanable/dirt,
@@ -86157,7 +86157,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "rCb" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on{
@@ -86676,7 +86676,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "rGS" = (
 /obj/effect/turf_decal/warning_stripes/box/empty,
 /obj/effect/decal/cleanable/dirt,
@@ -87071,7 +87071,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "rKr" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/decal/cleanable/dirt,
@@ -87261,7 +87261,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "rMb" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -87542,7 +87542,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "rQn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -87885,7 +87885,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "rTA" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	dir = 1;
@@ -87964,7 +87964,7 @@
 "rUC" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "rUF" = (
 /obj/structure/rack,
 /obj/effect/turf_decal/stripes/line,
@@ -88954,7 +88954,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "sga" = (
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
@@ -90794,7 +90794,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "syr" = (
 /obj/machinery/light{
 	dir = 1
@@ -90819,7 +90819,7 @@
 "syC" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "syE" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/tile/transparent/green{
@@ -91487,7 +91487,7 @@
 /area/deltastation/engineering/atmos)
 "sFr" = (
 /turf/open/floor/plating/icefloor/warnplate/corner,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "sFt" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 1
@@ -91600,7 +91600,7 @@
 "sGz" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "sGE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock/maintenance_hatch{
@@ -92041,7 +92041,7 @@
 	},
 /obj/effect/spawner/random/misc/structure/wood_barricade,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "sKW" = (
 /obj/structure/bed/chair/pew,
 /turf/open/floor/tile/chapel{
@@ -93063,7 +93063,7 @@
 "sWq" = (
 /obj/effect/spawner/random/misc/structure/wood_barricade,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "sWF" = (
 /obj/structure/window,
 /obj/effect/decal/cleanable/dirt,
@@ -93320,7 +93320,7 @@
 "sYK" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/icefloor/warnplate,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "sYL" = (
 /obj/machinery/newscaster,
 /turf/closed/wall,
@@ -93862,7 +93862,7 @@
 	dir = 9
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "teR" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/ai_node,
@@ -94201,7 +94201,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "tik" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
@@ -94851,7 +94851,7 @@
 /area/deltastation/security/checkpoint/medical/medsci)
 "toH" = (
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "toI" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -95639,7 +95639,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "twO" = (
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
 	dir = 8
@@ -96099,7 +96099,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "tBG" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -96888,7 +96888,7 @@
 	dir = 4
 	},
 /turf/closed/wall/r_wall,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "tKH" = (
 /obj/machinery/computer/prisoner{
 	dir = 4
@@ -97195,7 +97195,7 @@
 "tNx" = (
 /obj/effect/spawner/random/engineering/structure/random_tank_holder,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "tNF" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
@@ -97239,7 +97239,7 @@
 /obj/structure/cable,
 /obj/effect/spawner/random/misc/structure/wood_barricade,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "tNT" = (
 /obj/effect/turf_decal/siding/green,
 /obj/structure/flora/ausbushes,
@@ -97647,7 +97647,7 @@
 /obj/docking_port/stationary/shuttle/lz1,
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "tRG" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -98022,7 +98022,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "tVu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -98607,7 +98607,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "ubC" = (
 /obj/effect/spawner/random/misc/structure/directional_window/north,
 /obj/structure/prop/mainship/holobarrier,
@@ -99277,7 +99277,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "uit" = (
 /obj/effect/turf_decal/tile/transparent/neutral/anticorner/contrasted{
 	dir = 8
@@ -99512,7 +99512,7 @@
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "uku" = (
 /obj/effect/turf_decal/tile/transparent/neutral{
 	dir = 8
@@ -100466,7 +100466,7 @@
 "uuC" = (
 /obj/effect/turf_decal/sandedge,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "uuL" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 1
@@ -100627,7 +100627,7 @@
 "uwa" = (
 /obj/structure/cargo_container/horizontal,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "uwb" = (
 /obj/structure/table/wood,
 /obj/machinery/light_switch,
@@ -100780,7 +100780,7 @@
 "uxM" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "uxN" = (
 /obj/effect/spawner/random/misc/structure/office_chair_or_metal/dark/east,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -101312,7 +101312,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "uDo" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -101801,7 +101801,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "uJe" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/structure/cable,
@@ -101933,7 +101933,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "uJU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -102218,7 +102218,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "uMw" = (
 /obj/effect/turf_decal/tile/transparent/red/half/contrasted{
 	dir = 8
@@ -102674,7 +102674,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "uRa" = (
 /obj/effect/spawner/random/misc/structure/girder,
 /turf/open/floor/plating,
@@ -103748,7 +103748,7 @@
 "vci" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "vco" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window{
 	dir = 4
@@ -103981,7 +103981,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "veI" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -104220,7 +104220,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "vhy" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/turf_decal/tile/transparent/blue/anticorner/contrasted{
@@ -104920,7 +104920,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "vom" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -105545,7 +105545,7 @@
 "vuJ" = (
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "vuK" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "Library Access"
@@ -105711,7 +105711,7 @@
 /obj/structure/rack/nometal,
 /obj/item/binoculars,
 /turf/open/floor/plating/dmg1,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "vwb" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -105750,7 +105750,7 @@
 /obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "vwx" = (
 /obj/effect/landmark/start/job/xenomorph,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -107443,7 +107443,7 @@
 "vNf" = (
 /obj/effect/turf_decal/sandedge,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "vNj" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -108236,7 +108236,7 @@
 	pixel_y = 3
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "vVX" = (
 /obj/machinery/newscaster{
 	dir = 4
@@ -108379,7 +108379,7 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "vXu" = (
 /obj/effect/spawner/random/misc/structure/wood_barricade,
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window,
@@ -108459,7 +108459,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "vYu" = (
 /obj/effect/turf_decal/tile/transparent/neutral/half/contrasted{
 	dir = 4
@@ -108689,7 +108689,7 @@
 /obj/effect/spawner/random/misc/folder,
 /obj/item/tool/pen/blue,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "waK" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -109760,7 +109760,7 @@
 	dir = 1
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "wkX" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -110500,7 +110500,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "wsQ" = (
 /obj/effect/mapping_helpers/simple_pipes/orange/visible,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -110774,7 +110774,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "wvy" = (
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/eva/abandoned)
@@ -111361,7 +111361,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "wAG" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -112144,7 +112144,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "wIx" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -112220,7 +112220,7 @@
 "wJj" = (
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating/dmg3,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "wJs" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /turf/open/floor/iron,
@@ -112833,7 +112833,7 @@
 	dir = 4
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "wPc" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
@@ -112901,7 +112901,7 @@
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "wPT" = (
 /obj/structure/cable,
 /obj/structure/extinguisher_cabinet,
@@ -113089,7 +113089,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "wRJ" = (
 /obj/structure/lattice,
 /obj/structure/prop/mainship/holobarrier,
@@ -113378,7 +113378,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/landing_zone/domed)
+/area/landing_zone/domed/delta)
 "wVj" = (
 /turf/closed/wall/r_wall/unmeltable,
 /area/deltastation/security/range)
@@ -113807,7 +113807,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xaj" = (
 /obj/effect/spawner/random/misc/structure/stool,
 /obj/machinery/light/small{
@@ -114226,7 +114226,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xfo" = (
 /obj/effect/turf_decal/tile/transparent/green{
 	dir = 8
@@ -115047,7 +115047,7 @@
 	},
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xnU" = (
 /obj/structure/closet/toolcloset,
 /obj/item/radio/intercom,
@@ -115069,7 +115069,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xou" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/decal/cleanable/dirt,
@@ -115372,7 +115372,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xqQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small{
@@ -115391,7 +115391,7 @@
 /obj/effect/spawner/random/engineering/cable,
 /obj/structure/largecrate/random,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xrh" = (
 /obj/machinery/door/airlock/external{
 	dir = 1;
@@ -115468,7 +115468,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xsa" = (
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
@@ -115670,7 +115670,7 @@
 "xuo" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xux" = (
 /obj/effect/turf_decal/tile/transparent/blue/fourcorners,
 /obj/effect/landmark/weed_node,
@@ -115702,7 +115702,7 @@
 /area/deltastation/hallway/secondary/entry)
 "xuY" = (
 /turf/open/floor/asteroidfloor,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xve" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/securearea{
@@ -116540,7 +116540,7 @@
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xCr" = (
 /obj/machinery/newscaster,
 /turf/closed/wall/r_wall,
@@ -116859,7 +116859,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xFM" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/open/floor/iron/freezer,
@@ -118401,7 +118401,7 @@
 "xTV" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/plating,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xTW" = (
 /obj/effect/turf_decal/tile/transparent/blue{
 	dir = 1
@@ -118501,7 +118501,7 @@
 /obj/effect/spawner/random/decal/blood,
 /obj/structure/bed/chair/office/dark,
 /turf/open/floor/tile/dark,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xUT" = (
 /obj/effect/spawner/random/misc/structure/office_chair_or_metal/dark,
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
@@ -118743,7 +118743,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xXK" = (
 /turf/closed/wall/r_wall,
 /area/deltastation/command/heads_quarters/hop)
@@ -118802,7 +118802,7 @@
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating/dmg2,
-/area/deltastation/external/landingzone)
+/area/landing_zone/domed/delta)
 "xYo" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,

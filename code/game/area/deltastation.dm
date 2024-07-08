@@ -1360,9 +1360,8 @@
 /area/deltastation/maintenance/external/port/bow
 	name = "\improper Port Bow External Hull Access"
 
-/area/deltastation/external/landingzone
-	name = "\improper Delta Station landing zone"
-	icon_state = "ship"
+/area/landing_zone/domed/delta
+	name = "\improper Delta Station Landing Zone"
 	area_flags = MARINE_BASE
 	minimap_color = MINIMAP_AREA_LZ
 

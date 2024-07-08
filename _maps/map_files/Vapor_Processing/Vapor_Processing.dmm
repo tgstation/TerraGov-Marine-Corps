@@ -3606,6 +3606,13 @@
 	},
 /turf/closed/wall/wood,
 /area/crew_quarters/sleep_male)
+"ui" = (
+/obj/machinery/power/apc/drained{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/landing_zone/two/domed)
 "uj" = (
 /obj/structure/table,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3758,6 +3765,16 @@
 /obj/effect/ai_node,
 /turf/open/floor/scorched/two,
 /area/lv624/lazarus/research)
+"wg" = (
+/obj/machinery/landinglight/lz1{
+	dir = 1
+	},
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/turf/open/floor,
+/area/landing_zone/domed)
 "wi" = (
 /obj/structure/cable,
 /turf/open/floor/prison/yellow{
@@ -4974,6 +4991,11 @@
 /obj/effect/decal/cleanable/blood/gibs/xeno,
 /turf/open/floor/plating/dmg2,
 /area/lv624/lazarus/research)
+"Pn" = (
+/obj/structure/largecrate/supply/machine,
+/obj/structure/cable,
+/turf/open/floor,
+/area/landing_zone/two/domed)
 "Pr" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/central2)
@@ -6697,7 +6719,7 @@ aq
 aT
 ad
 ad
-ad
+ui
 cT
 de
 dq
@@ -6799,8 +6821,8 @@ aq
 aT
 Ll
 ad
-cO
-ad
+Pn
+df
 df
 df
 df
@@ -7170,7 +7192,7 @@ bZ
 bZ
 bZ
 bZ
-AX
+wg
 ot
 me
 mc

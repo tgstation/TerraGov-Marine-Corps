@@ -26,10 +26,11 @@
 ////////////////////////////Single-area shuttles////////////////////////////
 /area/shuttle/dropship
 	area_flags = MARINE_BASE|NO_CONSTRUCTION
-	requires_power = TRUE
+	requires_power = FALSE	//Remove this when Tadpoles remapped and tested to see if ERT shuttles still function
 
 /area/shuttle/dropship/alamo
 	name = "Dropship Alamo"
+	requires_power = TRUE
 
 /area/shuttle/dropship/normandy
 	name = "Dropship Normandy"

@@ -234,16 +234,6 @@
 	ceiling = CEILING_METAL
 	outside = FALSE
 
-/area/bigredv2/outside/space_port
-	name = "Space Port"
-	icon_state = "green"
-	area_flags = MARINE_BASE
-	ceiling = CEILING_NONE
-	outside = FALSE
-	minimap_color = MINIMAP_AREA_LZ
-
-/area/bigredv2/outside/space_port/two
-
 /area/bigredv2/outside/telecomm
 	name = "Telecommunications"
 	icon_state = "ass_line"

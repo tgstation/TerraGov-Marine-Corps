@@ -63,12 +63,12 @@
 	icon_state = "landing_pad_taxiway"
 
 //LZ 1
-/area/landing_zone/domed/aerodrome
-	name = "Aerodrome"
+/area/landing_zone/enclosed/emergency
+	name = "Emergency Landing Pad"
 
 //LZ 2
-/area/landing_zone/two/emergency
-	name = "Emergency Landing Pad"
+/area/landing_zone/two/domed/aerodrome
+	name = "Aerodrome"
 
 //
 // Valleys

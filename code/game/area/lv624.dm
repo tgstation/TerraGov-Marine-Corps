@@ -481,14 +481,10 @@
 	area_flags = NO_DROPPOD
 	requires_power = FALSE
 
-/area/lv624/lazarus/spaceport
+//LZ 1
+/area/landing_zone/domed/east_port
 	name = "\improper Eastern Space Port"
-	icon_state = "landingzone1"
-	area_flags = NO_DROPPOD|MARINE_BASE
-	minimap_color = MINIMAP_AREA_LZ
 
-/area/lv624/lazarus/spaceport2
+//LZ 2
+/area/landing_zone/two/domed/west_port
 	name = "\improper Western Space Port"
-	icon_state = "landingzone2"
-	area_flags = NO_DROPPOD|MARINE_BASE
-	minimap_color = MINIMAP_AREA_LZ

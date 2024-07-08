@@ -4256,7 +4256,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "cXV" = (
 /obj/structure/girder/displaced,
 /turf/open/floor/tile/damaged/thermite,
@@ -6222,7 +6222,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "epq" = (
 /obj/effect/ai_node,
 /turf/open/ground/coast{
@@ -7802,7 +7802,7 @@
 "fwO" = (
 /obj/effect/decal/cleanable/blood/oil/armorblood,
 /turf/open/floor/plating/icefloor,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "fwS" = (
 /obj/structure/rack,
 /turf/open/floor/wood/alt_two,
@@ -8992,7 +8992,7 @@
 "gkl" = (
 /obj/machinery/camera/autoname/lz_camera,
 /turf/open/floor/plating/icefloor,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "gkD" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/ground/grass/weedable,
@@ -9177,7 +9177,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "gqv" = (
 /obj/effect/decal/remains/robot,
 /turf/open/floor/tile/darkish,
@@ -9423,7 +9423,7 @@
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mech_bay_recharge_floor,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "gzY" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -10537,7 +10537,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "hsV" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/ground/grass/weedable,
@@ -11595,7 +11595,7 @@
 	dir = 4
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "ilG" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -12416,7 +12416,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "iRu" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -12427,7 +12427,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "iRE" = (
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/riptide/outside/southjungle)
@@ -13909,7 +13909,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "jSu" = (
 /obj/item/trash/semki,
 /obj/effect/decal/cleanable/dirt,
@@ -14089,7 +14089,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "jZf" = (
 /obj/structure/rock/basalt/pile,
 /obj/effect/ai_node,
@@ -16419,7 +16419,7 @@
 "lAZ" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/plating/icefloor,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "lBe" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/ground,
@@ -22695,7 +22695,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "pQb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/lvsanddecal/full,
@@ -29589,7 +29589,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "umN" = (
 /obj/machinery/light{
 	dir = 4
@@ -29838,7 +29838,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "uwB" = (
 /obj/structure/flora/jungle/vines,
 /obj/effect/turf_decal/riverdecal,
@@ -31192,7 +31192,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "vtm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -31257,7 +31257,7 @@
 "vuR" = (
 /obj/machinery/landinglight/lz1,
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "vuV" = (
 /obj/structure/platform/nondense,
 /turf/open/floor/plating/ground/concrete,
@@ -31512,7 +31512,7 @@
 	dir = 8
 	},
 /turf/open/floor/mech_bay_recharge_floor,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "vDB" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark,
@@ -31886,7 +31886,7 @@
 /area/riptide/inside/medical/surgery)
 "vTm" = (
 /turf/open/floor/plating/icefloor,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "vTA" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/tile/green/whitegreenfull,
@@ -32980,7 +32980,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "wIf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -33019,7 +33019,7 @@
 "wIX" = (
 /obj/docking_port/stationary/shuttle/lz1,
 /turf/open/floor/plating/icefloor,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "wJb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -33372,7 +33372,7 @@
 /area/riptide/outside/beachlzone)
 "wXG" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/landing_zone/domed)
+/area/landing_zone/enclosed)
 "wXR" = (
 /obj/machinery/miner/damaged,
 /turf/open/ground/grass/weedable,

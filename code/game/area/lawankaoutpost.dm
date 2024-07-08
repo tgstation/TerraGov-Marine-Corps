@@ -207,15 +207,3 @@
 /area/lawankaoutpost/colony/cabin
 	name = "South Cabin"
 	icon_state = "crew_quarters"
-
-/area/lawankaoutpost/colony/landingzoneone
-	name = "Landing Zone One"
-	icon_state = "landingzone1"
-	area_flags = NO_DROPPOD|MARINE_BASE
-	minimap_color = MINIMAP_AREA_LZ
-
-/area/lawankaoutpost/colony/landingzonetwo
-	name = "Landing Zone Two"
-	icon_state = "landingzone2"
-	area_flags = NO_DROPPOD|MARINE_BASE
-	minimap_color = MINIMAP_AREA_LZ
