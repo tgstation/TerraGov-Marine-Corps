@@ -85,7 +85,7 @@
 
 /obj/item/stack/sandbags/examine(mob/user)
 	. = ..()
-	. += span_notice("Right click to empty [src].")
+	. += span_notice("Right click while selected to empty [src].")
 
 /obj/item/stack/sandbags/large_stack
 	amount = 25
@@ -105,20 +105,17 @@
 
 	to_chat(user, span_notice("You start emptying [src]."))	
 	while(get_amount() > 0)
-		if(!do_after(user, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE, user))
+		if(!do_after(user, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, user))
 			to_chat(user, span_notice("You stop emptying [src]."))
 			break
 		if(zero_amount())
 			to_chat(user, span_notice("You finish emptying [src]."))
 		// check if we can stuff it into the user's hands
+		use(1)
 		var/obj/item/stack/sandbag = user.get_inactive_held_item()
-		if(istype(sandbag, /obj/item/stack/sandbags_empty))
-			sandbag.add(1)
+		if(istype(sandbag, /obj/item/stack/sandbags_empty) && sandbag.add(1))
 			continue
 		var/obj/item/stack/sandbags_empty/E = new(get_turf(user))
-		if(!sandbag)
-			user.put_in_hands(E)
+		if(!sandbag && user.put_in_hands(E))
 			continue
-		E.add(1)
 		E.add_to_stacks(user)
-		use(1)
