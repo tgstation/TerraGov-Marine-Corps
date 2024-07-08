@@ -123,6 +123,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/mission_shrapnel_removed = 0
 	var/mission_traps_created = 0
 	var/mission_grenades_primed = 0
+	var/mission_heals = 0
+	var/mission_integrity_repaired = 0
 
 /datum/personal_statistics/New()
 	. = ..()
@@ -312,6 +314,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	mission_shrapnel_removed = 0
 	mission_traps_created = 0
 	mission_grenades_primed = 0
+	mission_heals = 0
+	mission_integrity_repaired = 0
 
 ///Returns the credit bonus based on stats from the current mission
 /datum/personal_statistics/proc/get_mission_reward()
@@ -330,6 +334,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus += mission_shrapnel_removed * 3
 	credit_bonus += mission_traps_created * 4
 	credit_bonus += mission_grenades_primed * 2
+	credit_bonus += mission_heals * 1
+	credit_bonus += integrity_repaired * 0.1
 
 	return max(floor(credit_bonus), 0)
 
@@ -428,6 +434,7 @@ The alternative is scattering them everywhere under their respective objects whi
 				//If a receiving mob exists, we tally up to the user mob's stats that it performed a heal
 				if(receiver)
 					personal_statistics_user.heals++
+					personal_statistics_user.mission_heals++
 				else
 					personal_statistics_user.self_heals++
 			is_healing = TRUE
@@ -445,6 +452,7 @@ The alternative is scattering them everywhere under their respective objects whi
 	//If a receiving mob exists, we tally up to the user mob's stats that it performed a heal
 	if(receiver)
 		personal_statistics_user.heals++
+		personal_statistics_user.mission_heals++
 	else
 		personal_statistics_user.self_heals++
 	return TRUE
