@@ -11,7 +11,6 @@
 	circuit = null
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_MACHINE_TGUI
-	req_access = list(ACCESS_MARINE_SHUTTLE)
 	///To determine where to spawn the shuttle; should match an existing /obj/docking_port/stationary's id var; if null, user is provided choices
 	var/dock_id = ""
 	///If TRUE, computer deletes itself after a shuttle is spawned
@@ -117,14 +116,14 @@
 
 /obj/machinery/computer/shuttle_picker/dropship
 	desc = "A computer for selecting a model from a range of large shuttles."
-	req_access = list(ACCESS_MARINE_SHUTTLE)
+	req_access = list(ACCESS_MARINE_PILOT)
 	dock_id = SHUTTLE_DROPSHIP
 	available_shuttles = /datum/map_template/shuttle/flyable/dropship
 	single_use = TRUE
 
 /obj/machinery/computer/shuttle_picker/mini
 	desc = "A computer for selecting a model from a range of small shuttles."
-	req_access = list(ACCESS_MARINE_SHUTTLE)
+	req_access = list(ACCESS_MARINE_PILOT)
 	dock_id = SHUTTLE_MINI
 	available_shuttles = /datum/map_template/shuttle/flyable/mini
 	single_use = TRUE

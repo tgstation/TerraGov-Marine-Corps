@@ -952,7 +952,9 @@
 	pixel_x = 0
 	pixel_y = 0
 	layer = BELOW_OBJ_LAYER	//Covers almost the whole tile, don't want it to hide stuff below it
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS
 	exit_direction = null
+	max_integrity = 100
 	permitted_weapons = list(/obj/item/armored_weapon/dropship_machinegun)
 
 /obj/vehicle/sealed/armored/turret/Initialize(mapload)

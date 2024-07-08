@@ -375,6 +375,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	ammo = /obj/item/ammo_magazine/tank/dropship_machinegun
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/dropship_machinegun)
+	maximum_magazines = 5
 	projectile_delay = 0.3 SECONDS
 	rearm_time = 1 SECONDS
 

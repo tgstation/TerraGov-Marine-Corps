@@ -525,6 +525,11 @@
 	. = ..()
 	. += "Integrity: [span_bold("[wall_integrity]/[max_integrity]")]"
 
+//Always leave behind a girder when destroyed
+/turf/closed/wall/shuttle/make_girder(destroyed_girder)
+	destroyed_girder = FALSE
+	return ..()
+
 //You can't disassemble these walls
 /turf/closed/wall/shuttle/deconstruction_steps(obj/item/I, mob/user)
 	return FALSE

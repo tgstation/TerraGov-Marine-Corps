@@ -17,7 +17,7 @@
 	light_range = 10
 	exit_direction = SOUTH
 	///Tank bitflags
-	var/armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS
+	var/armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_CAN_HONK
 	///Sound file(s) to play when we drive around
 	var/engine_sound = 'sound/ambience/tank_driving.ogg'
 	///frequency to play the sound with
@@ -142,7 +142,8 @@
 /obj/vehicle/sealed/armored/generate_actions()
 	if(armored_flags & ARMORED_HAS_HEADLIGHTS)
 		initialize_controller_action_type(/datum/action/vehicle/sealed/armored/toggle_lights, VEHICLE_CONTROL_SETTINGS)
-	initialize_controller_action_type(/datum/action/vehicle/sealed/armored/horn, VEHICLE_CONTROL_SETTINGS)
+	if(armored_flags & ARMORED_CAN_HONK)
+		initialize_controller_action_type(/datum/action/vehicle/sealed/armored/horn, VEHICLE_CONTROL_SETTINGS)
 	if(interior)
 		return
 	initialize_passenger_action_type(/datum/action/vehicle/sealed/armored/eject)
