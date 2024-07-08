@@ -99,7 +99,7 @@
 	action_icon_state = "neuroclaws_off"
 
 /datum/action/ability/xeno_action/toxic_slash/on_cooldown_finish()
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	owner.balloon_alert(owner, "Toxic Slash ready")
 	return ..()
 
@@ -171,7 +171,7 @@
 	HEAL_XENO_DAMAGE(xeno_owner, drain_potency, FALSE)
 	xeno_owner.gain_plasma(drain_potency * 3.5)
 	xeno_owner.do_attack_animation(xeno_target, ATTACK_EFFECT_DRAIN_STING)
-	playsound(owner.loc, 'sound/effects/alien_tail_swipe1.ogg', 30)
+	playsound(owner.loc, 'sound/effects/alien/tail_swipe1.ogg', 30)
 	xeno_owner.visible_message(message = span_xenowarning("\A [xeno_owner] stings [xeno_target]!"), self_message = span_xenowarning("We sting [xeno_target]!"))
 	debuff.stacks -= round(debuff.stacks * 0.7)
 	succeed_activate()

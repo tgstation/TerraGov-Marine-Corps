@@ -96,7 +96,7 @@
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
-	playsound(get_turf(xeno), 'sound/effects/fireball.ogg', 50)
+	playsound(get_turf(xeno), 'sound/effects/alien/fireball.ogg', 50)
 
 	var/obj/projectile/magic_bullshit = new(get_turf(src))
 	magic_bullshit.generate_bullet(/datum/ammo/xeno/fireball)
@@ -250,7 +250,7 @@
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
-	playsound(get_turf(xeno), 'sound/effects/prepare.ogg', 50)
+	playsound(get_turf(xeno), 'sound/effects/alien/prepare.ogg', 50)
 
 	var/list/pickable_turfs = RANGE_TURFS(1, xeno)
 	for(var/amount in 1 to PYROGEN_FIRESTORM_TORNADE_COUNT)
@@ -332,7 +332,7 @@
 		return
 
 	beam = owner.loc.beam(targets[length(targets)], "heatray", beam_type = /obj/effect/ebeam)
-	playsound(owner, 'sound/effects/firebeam.ogg', 80)
+	playsound(owner, 'sound/effects/alien/firebeam.ogg', 80)
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, HEATRAY_BEAM_ABILITY_TRAIT)
 	RegisterSignals(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
 	started_firing = world.time

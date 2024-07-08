@@ -1350,7 +1350,7 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 		add_filter(AM_SUBMERGE_MASK, 1, alpha_mask_filter(0, height_to_use - AM_SUBMERGE_MASK_HEIGHT, icon(submerge_icon, submerge_icon_state), null, MASK_INVERSE))
 		ADD_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
 
-	transition_filter(AM_SUBMERGE_MASK, duration, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)))
+	transition_filter(AM_SUBMERGE_MASK, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)), duration)
 	animate(src, pixel_y = depth_diff, time = duration, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
 
 ///overrides the turf's normal footstep sound
