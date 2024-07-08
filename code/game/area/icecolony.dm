@@ -61,6 +61,15 @@
 /area/ice_colony/exterior/surface/taxiway
 	name = "Aerodrome Taxiway"
 	icon_state = "landing_pad_taxiway"
+
+//LZ 1
+/area/landing_zone/domed/aerodrome
+	name = "Aerodrome"
+
+//LZ 2
+/area/landing_zone/two/emergency
+	name = "Emergency Landing Pad"
+
 //
 // Valleys
 // This is for all the areas mostly surrounded by mountains

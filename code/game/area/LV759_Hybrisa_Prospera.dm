@@ -35,73 +35,61 @@
 	always_unpowered = TRUE
 
 // Landing Zone 1
-/area/lv759/outdoors/landing_zone_1
+/area/landing_zone/hospital
 	name = "Nova Medica Hospital Complex - Emergency Response Landing Zone One"
+	icon = 'icons/turf/hybrisareas.dmi'
 	icon_state = "medical_lz1"
-	minimap_color = MINIMAP_AREA_LZ
-	ceiling = CEILING_NONE
-	always_unpowered = FALSE
 
-/area/lv759/indoors/landing_zone_1/flight_control_room
+//This isn't actually part of the LZ so not a child of landing_zone/hospital
+/area/lv759/indoors/flight_control_room
 	name = "Nova Medica Hospital Complex - Emergency Response Landing Zone One - Flight Control Room"
 	icon_state = "hybrisa"
-	ceiling = CEILING_METAL
 
-/area/lv759/indoors/landing_zone_1/lz1_console
-	name = "Nova Medica Hospital Complex - Emergency Response Landing Zone One - Dropship Alamo Console"
-	icon_state = "hybrisa"
-	requires_power = FALSE
-	ceiling = CEILING_METAL
-
-// Landing Zone 2
-/area/lv759/outdoors/landing_zone_2
-	name = "KMCC Interstellar Freight Hub - Landing Zone Two"
+// Landing Zone 2 - Will not actually count as one for gameplay purposes, just flavor
+/area/lv759/outdoors/kmcc
+	name = "KMCC Interstellar Freight Hub - Hangar"
+	icon = 'icons/turf/hybrisareas.dmi'
 	icon_state = "mining_lz2"
-	minimap_color = MINIMAP_AREA_LZ
-	ceiling = CEILING_NONE
 	area_flavor = AREA_FLAVOR_URBAN
 
-/area/lv759/indoors/landing_zone_2
+/area/lv759/indoors/kmcc
+	name = "KMCC Interstellar Freight Hub"
 	icon_state = "hybrisa"
 	minimap_color = MINIMAP_AREA_ESCAPE
 
-/area/lv759/indoors/landing_zone_2/kmcc_hub_flight_control_room
+/area/lv759/indoors/kmcc/kmcc_hub_flight_control_room
 	name = "KMCC Interstellar Freight Hub - Flight Control Room"
 
-/area/lv759/indoors/landing_zone_2/kmcc_hub_security
+/area/lv759/indoors/kmcc/kmcc_hub_security
 	name = "KMCC Interstellar Freight Hub - Security Checkpoint Office"
 	icon_state = "security_checkpoint"
 
-/area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north
+/area/lv759/indoors/kmcc/kmcc_hub_lounge_north
 	name = "KMCC Interstellar Freight Hub - Passenger Departures - Lounge North"
 
-/area/lv759/indoors/landing_zone_2/kmcc_hub_fuel
+/area/lv759/indoors/kmcc/kmcc_hub_fuel
 	name = "KMCC Interstellar Freight Hub - Fuel Storage & Maintenance - North"
 	minimap_color = MINIMAP_AREA_ENGI
 
-/area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south
+/area/lv759/indoors/kmcc/kmcc_hub_lounge_south
 	name = "KMCC Interstellar Freight Hub - Passenger Departures - Lounge South"
 
-/area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_hallway
+/area/lv759/indoors/kmcc/kmcc_hub_lounge_hallway
 	name = "KMCC Interstellar Freight Hub - Passenger Departures - Hallway"
 
-/area/lv759/indoors/landing_zone_2/kmcc_hub_south_office
+/area/lv759/indoors/kmcc/kmcc_hub_south_office
 	name = "KMCC Interstellar Freight Hub - Passenger Departures - South Office"
 
-/area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance
+/area/lv759/indoors/kmcc/kmcc_hub_maintenance
 	name = "KMCC Interstellar Freight Hub - Passenger Departures - Maintenance"
 	minimap_color = MINIMAP_AREA_ENGI
 
-/area/lv759/indoors/landing_zone_2/kmcc_hub/lz2_console
-	name = "KMCC Interstellar Freight Hub - Dropship Normandy Console"
-	requires_power = FALSE
-
-/area/lv759/indoors/landing_zone_2/kmcc_hub_cargo
+/area/lv759/indoors/kmcc/kmcc_hub_cargo
 	name = "KMCC Interstellar Freight Hub - Cargo Processing Center"
 	icon_state = "mining_cargo"
 	minimap_color = MINIMAP_AREA_REQ
 
-/area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north
+/area/lv759/indoors/kmcc/kmcc_hub_maintenance_north
 	name = "KMCC Interstellar Freight Hub - Cargo Processing Center - Maintenance"
 	icon_state = "mining"
 	minimap_color = MINIMAP_AREA_ENGI

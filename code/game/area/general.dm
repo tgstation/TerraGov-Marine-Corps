@@ -1326,13 +1326,3 @@
 /area/landing_zone/two/enclosed
 	ceiling = CEILING_METAL
 	outside = FALSE
-
-//LZ 1 for Ice Colony
-/area/landing_zone/aerodrome
-	name = "Aerodrome"
-	ceiling = CEILING_GLASS	//I think it's a glass ceiling?
-	outside = FALSE
-
-//LZ 2 for Ice Colony
-/area/landing_zone/two/emergency
-	name = "Emergency Landing Pad"
