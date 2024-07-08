@@ -257,3 +257,8 @@
 	ceiling = NONE
 	outside = TRUE
 
+/area/bluesummers/inside/robotics
+	name = "Robotics Wing"
+	icon_state = "toxlab"
+	minimap_color = MINIMAP_AREA_RESEARCH
+
