@@ -23,22 +23,21 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 
 	//Anti-recursion checks
 	var/static/error_lock_reference = null
-	try
-		if (error_lock_reference)
-			var/datum/world_error_lock/error_lock = locate(error_lock_reference)
-			if (istype(error_lock))
-				return //we are currently processing an error
-		
-		var/datum/world_error_lock/error_lock = new()
-		error_lock_reference = ref(error_lock)
-	catch ()
-		error_lock_reference = null
+	
+	if (error_lock_reference)
+		var/datum/world_error_lock/error_lock = locate(error_lock_reference)
+		if (istype(error_lock))
+			return ..() //we are currently processing an error
+	
+	var/datum/world_error_lock/error_lock = new()
+	error_lock_reference = ref(error_lock)
 
 	else if(copytext(E.name, 1, 18) == "Out of resources!")//18 == length() of that string + 1
 		log_world("BYOND out of memory. Restarting ([E?.file]:[E?.line])")
 		TgsEndProcess()
 		. = ..()
 		Reboot(ping = 1)
+		error_lock_reference = null
 		return
 
 	var/static/list/error_last_seen = list()
@@ -46,6 +45,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 												If negative, starts at -1, and goes down by 1 each time that error gets skipped*/
 
 	if(!error_last_seen) // A runtime is occurring too early in start-up initialization
+		error_lock_reference = null
 		return ..()
 
 	var/erroruid = "[E.file][E.line]"
@@ -59,6 +59,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 	if(cooldown < 0)
 		error_cooldown[erroruid]-- //Used to keep track of skip count for this error
 		GLOB.total_runtimes_skipped++
+		error_lock_reference = null
 		return //Error is currently silenced, skip handling it
 	//Handle cooldowns and silencing spammy errors
 	var/silencing = FALSE
@@ -145,3 +146,4 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 	// This writes the regular format (unwrapping newlines and inserting timestamps as needed).
 	if (logger) 
 		log_runtime("runtime error: [E.name]\n[E.desc]")
+	error_lock_reference = null
