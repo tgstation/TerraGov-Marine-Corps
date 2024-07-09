@@ -1,0 +1,4 @@
+author: "Ldip999"
+delete-after: True
+changes:
+  - qol: "Supply beacons on the maps now have a brown background and a red flashing tip, hopefully making them easier to see."
