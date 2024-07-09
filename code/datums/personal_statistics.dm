@@ -39,7 +39,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/melee_damage = 0
 
 	var/mechs_destroyed = 0
-
+	var/tanks_destroyed = 0
 	//We are watching
 	var/friendly_fire_damage = 0
 
@@ -120,6 +120,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/mission_objective_captured = 0
 	var/mission_objective_decaptured = 0
 	var/mission_mechs_destroyed = 0
+	var/mission_tanks_destroyed = 0
 	var/mission_shrapnel_removed = 0
 	var/mission_traps_created = 0
 	var/mission_grenades_primed = 0
@@ -311,6 +312,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	mission_objective_captured = 0
 	mission_objective_decaptured = 0
 	mission_mechs_destroyed = 0
+	mission_tanks_destroyed = 0
 	mission_shrapnel_removed = 0
 	mission_traps_created = 0
 	mission_grenades_primed = 0
@@ -331,6 +333,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	credit_bonus += mission_objective_captured * 20
 	credit_bonus += mission_objective_decaptured * 20
 	credit_bonus += mission_mechs_destroyed * 20
+	credit_bonus += mission_tanks_destroyed * 50
 	credit_bonus += mission_shrapnel_removed * 3
 	credit_bonus += mission_traps_created * 4
 	credit_bonus += mission_grenades_primed * 2
