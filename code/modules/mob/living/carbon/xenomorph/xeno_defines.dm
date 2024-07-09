@@ -241,7 +241,7 @@
 ///returns the basetype caste to get what the base caste is (e.g base rav not primo or strain rav)
 /datum/xeno_caste/proc/get_base_caste_type()
 	var/datum/xeno_caste/current_type = type
-	while(initial(current_type.upgrade) != XENO_UPGRADE_BASETYPE)
+	while(istype(current_type) && initial(current_type.upgrade) != XENO_UPGRADE_BASETYPE)
 		current_type = initial(current_type.parent_type)
 	return current_type
 
