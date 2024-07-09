@@ -13720,6 +13720,7 @@
 /obj/structure/barricade/guardrail{
 	dir = 8
 	},
+/obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/mainship/mono,
 /area/mainship)
 "aZf" = (
@@ -14006,6 +14007,12 @@
 	dir = 9
 	},
 /area/bigredv2/outside/e)
+"fTz" = (
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/turf/open/floor/mainship_hull,
+/area/construction/hallway)
 "ghv" = (
 /obj/structure/prop/mainship/shieldwall,
 /obj/structure/prop/mainship/holobarrier/passthrough,
@@ -14030,11 +14037,21 @@
 /obj/structure/ship_ammo/cas/rocket/fatty,
 /turf/open/floor/plating/mainship,
 /area/mainship)
+"hYp" = (
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship)
 "irR" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/mainship_hull/dir{
 	dir = 5
 	},
+/area/mainship)
+"iCM" = (
+/obj/structure/largecrate/supply/ammo,
+/turf/open/floor/mainship_hull,
 /area/mainship)
 "iOp" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
@@ -14047,6 +14064,10 @@
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/e)
+"lBZ" = (
+/obj/structure/largecrate/mule,
+/turf/open/floor/mainship_hull,
+/area/mainship)
 "lRe" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /obj/structure/prop/mainship/shieldwall,
@@ -14055,6 +14076,24 @@
 "lYk" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
+	},
+/turf/open/floor/mainship_hull,
+/area/mainship)
+"mig" = (
+/obj/structure/grille/fence,
+/turf/open/floor/plating,
+/area/library)
+"mNC" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/mainship)
+"ohb" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
 	},
 /turf/open/floor/mainship_hull,
 /area/mainship)
@@ -14068,12 +14107,35 @@
 "pJt" = (
 /turf/open/floor/plating,
 /area/construction)
+"pMp" = (
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 8
+	},
+/area/mainship)
+"qBP" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/barricade/guardrail{
+	dir = 1
+	},
+/turf/open/floor/mainship_hull/dir{
+	dir = 9
+	},
+/area/mainship)
 "qSV" = (
 /obj/structure/prop/mainship/shieldwall,
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/mainship_hull/dir{
 	dir = 9
 	},
+/area/mainship)
+"rnh" = (
+/obj/structure/largecrate/guns/merc,
+/turf/open/floor/mainship_hull,
 /area/mainship)
 "ssF" = (
 /obj/structure/ship_ammo/cas/rocket/widowmaker,
@@ -14089,12 +14151,31 @@
 	dir = 9
 	},
 /area/mainship)
+"tRp" = (
+/obj/structure/cable,
+/obj/structure/barricade/wooden{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship)
 "vSi" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/mainship/terragov/west{
 	dir = 4
 	},
 /area/mainship/living/briefing)
+"vYy" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating,
+/area/library)
+"wcC" = (
+/obj/structure/largecrate/supply/explosives,
+/turf/open/floor/mainship_hull,
+/area/mainship)
+"wwO" = (
+/obj/structure/powerloader_wreckage,
+/turf/open/floor/mainship/tcomms,
+/area/mainship)
 "wXY" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/mainship_hull,
@@ -39417,10 +39498,10 @@ aTK
 aob
 aob
 aob
-arD
+vYy
 aHK
 aOg
-ash
+mig
 aaG
 aaG
 agL
@@ -39674,10 +39755,10 @@ aTK
 aob
 akd
 aob
-arD
+mig
 aHK
 aOg
-ash
+mig
 aSX
 ayR
 auQ
@@ -44302,7 +44383,7 @@ ani
 aiY
 aiY
 aiY
-adZ
+aSG
 aKL
 aKL
 aKL
@@ -47123,7 +47204,7 @@ aUP
 aiY
 aiY
 aHH
-adZ
+aSG
 aLp
 aBc
 aLp
@@ -47380,7 +47461,7 @@ aiY
 alM
 aiY
 aDS
-adZ
+aSG
 aoK
 aBc
 aLp
@@ -47636,8 +47717,8 @@ aiY
 aiY
 aiY
 aiY
-aLp
-adZ
+wwO
+aSG
 axE
 aBc
 aLp
@@ -50467,9 +50548,9 @@ agd
 aAC
 aiY
 aiY
-aiY
-ani
-aiY
+hYp
+tRp
+hYp
 aSG
 aiY
 aiY
@@ -50984,12 +51065,12 @@ aiY
 aiY
 ani
 aiY
-aLI
-aFp
-aFp
-aFp
-aFp
-aFp
+qBP
+mNC
+mNC
+mNC
+mNC
+pMp
 aFp
 adZ
 adZ
@@ -51241,12 +51322,12 @@ aiY
 aiY
 ani
 aiY
-aKL
-aKL
-aKL
-aKL
-aKL
-aKL
+ohb
+iCM
+wcC
+lBZ
+rnh
+ohb
 aKL
 aKL
 adZ
@@ -51499,10 +51580,10 @@ aPc
 afr
 afa
 aXJ
-aXJ
-aXJ
-aXJ
-aXJ
+fTz
+fTz
+fTz
+fTz
 ask
 ask
 ask
