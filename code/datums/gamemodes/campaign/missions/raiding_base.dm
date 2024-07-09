@@ -70,9 +70,6 @@
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 		new beacon_type(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
 
-	spawn_mech(starting_faction, 0, 0, 3)
-	spawn_mech(hostile_faction, 0, 2)
-
 	var/tanks_to_spawn = 0
 	var/mechs_to_spawn = 0
 	var/current_pop = length(GLOB.clients)
