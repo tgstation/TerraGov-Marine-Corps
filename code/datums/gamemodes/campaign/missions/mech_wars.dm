@@ -110,13 +110,18 @@
 	. = ..()
 	if(outcome)
 		return
-	if(!ismecha(mission_obj) && !isarmoredvehicle(mission_obj))
+	var/kill_reward = 0
+	if(ismecha(mission_obj))
+		kill_reward = 10
+	if(isarmoredvehicle(mission_obj))
+		kill_reward = 30
+	if(!kill_reward)
 		return
 	var/obj/vehicle/sealed/obj_vehicle = mission_obj
 	if(obj_vehicle.faction == hostile_faction)
-		start_team_cap_points += 10
+		start_team_cap_points += kill_reward
 	else if(obj_vehicle.faction == starting_faction)
-		hostile_team_cap_points += 10
+		hostile_team_cap_points += kill_reward
 
 
 /datum/campaign_mission/tdm/mech_wars/som
