@@ -379,9 +379,6 @@
 /obj/effect/landmark/nuke_spawn,
 /turf/open/floor/mainship/stripesquare,
 /area/bigredv2/caves/southeast)
-"abv" = (
-/turf/closed/shuttle/dropship1/finright,
-/area/construction)
 "abw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
@@ -1770,10 +1767,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/outpost/arrivals)
-"agG" = (
-/obj/structure/dropship_piece/one/wing/right/top,
-/turf/open/floor/plating/mainship,
-/area/construction)
 "agH" = (
 /turf/open/floor/plating,
 /area/construction/qmaint)
@@ -2089,10 +2082,6 @@
 /turf/open/floor/mainship/mono,
 /area/bigredv2/caves/southeast)
 "ahS" = (
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/construction)
 "ahT" = (
@@ -3652,10 +3641,6 @@
 /obj/structure/monorail{
 	dir = 6
 	},
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "tcomms"
-	},
 /turf/open/floor/mainship_hull,
 /area/construction)
 "anP" = (
@@ -4305,15 +4290,6 @@
 /obj/item/flashlight/pen,
 /turf/open/floor/plating/mainship,
 /area/assembly/robotics)
-"aqn" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "tcomms"
-	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 4
-	},
-/area/construction)
 "aqo" = (
 /obj/structure/dropship_piece/one/corner/rearright,
 /turf/open/floor/plating,
@@ -4626,9 +4602,6 @@
 /obj/structure/cargo_container/gorg,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southwest)
-"arB" = (
-/turf/open/shuttle/dropship/floor/out,
-/area/construction)
 "arC" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
@@ -5501,10 +5474,6 @@
 /turf/open/floor/mainship/stripesquare,
 /area/deltastation/engineering)
 "auV" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "tcomms"
-	},
 /turf/open/floor/mainship/mono,
 /area/construction)
 "auW" = (
@@ -5687,11 +5656,6 @@
 "avE" = (
 /turf/open/floor/plating/mainship,
 /area/daedalusprison/inside/security)
-"avF" = (
-/turf/closed/shuttle/dropship1/edge/alt{
-	dir = 4
-	},
-/area/construction)
 "avG" = (
 /obj/structure/table/mainship,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -7118,10 +7082,6 @@
 /obj/structure/monorail{
 	dir = 10
 	},
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "tcomms"
-	},
 /turf/open/floor/mainship_hull,
 /area/construction)
 "aAS" = (
@@ -7782,11 +7742,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/outpost/arrivals)
-"aDn" = (
-/turf/closed/shuttle/dropship1/finright{
-	dir = 8
-	},
-/area/construction)
 "aDo" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/floor/plating/ground/dirt,
@@ -7809,13 +7764,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/mainship,
 /area/maintenance/cargo)
-"aDt" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 4
-	},
-/obj/structure/dropship_piece/one/wing/right/bottom,
-/turf/open/floor/plating/mainship,
-/area/construction)
 "aDu" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 1
@@ -8251,11 +8199,6 @@
 /obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/mono,
 /area/bigredv2/outside/medical)
-"aFa" = (
-/turf/open/shuttle/dropship/floor/out{
-	dir = 1
-	},
-/area/construction)
 "aFb" = (
 /obj/structure/cargo_container/ch_green,
 /turf/open/floor/mainship/cargo,
@@ -8508,10 +8451,6 @@
 /area/bigredv2/caves/lambda_lab)
 "aFY" = (
 /obj/structure/monorail,
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "tcomms"
-	},
 /turf/open/floor/mainship_hull,
 /area/construction)
 "aFZ" = (
@@ -8975,14 +8914,6 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/caves/lambda_lab)
-"aHM" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/shuttle/dropship/floor/out{
-	dir = 1
-	},
-/area/construction)
 "aHN" = (
 /obj/machinery/light{
 	dir = 8
@@ -9819,9 +9750,10 @@
 /turf/open/floor/plating/mainship,
 /area/construction/hallway)
 "aKO" = (
-/turf/closed/shuttle/dropship1/finright{
-	dir = 1
-	},
+/obj/structure/lattice,
+/obj/structure/grille,
+/obj/structure/grille,
+/turf/open/floor/plating/mainship,
 /area/construction)
 "aKP" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -10086,6 +10018,9 @@
 /obj/structure/closet/walllocker/hydrant/extinguisher{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/shuttle/dropship/floor/out,
 /area/construction)
 "aLT" = (
@@ -10194,11 +10129,6 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/mainship/mono,
 /area/ai_monitored/storage/secure)
-"aMn" = (
-/turf/closed/shuttle/dropship1/finright{
-	dir = 4
-	},
-/area/construction)
 "aMo" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/shuttle/dropship/floor,
@@ -13674,15 +13604,6 @@
 	dir = 5
 	},
 /area/space)
-"aYW" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "tcomms"
-	},
-/turf/open/floor/mainship_hull/dir{
-	dir = 8
-	},
-/area/construction)
 "aYX" = (
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/laser_projector,
 /turf/open/floor/mainship/cargo,
@@ -14115,6 +14036,13 @@
 	dir = 8
 	},
 /area/mainship)
+"qiN" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/construction)
 "qBP" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -14158,6 +14086,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship)
+"uLR" = (
+/obj/structure/cable,
+/turf/closed/wall/mainship,
+/area/construction)
 "vSi" = (
 /obj/structure/prop/mainship/holobarrier/passthrough,
 /turf/open/floor/mainship/terragov/west{
@@ -55918,8 +55850,8 @@ afS
 aLS
 arG
 atT
-aHM
-arB
+aQA
+aQA
 aLy
 aLy
 aQA
@@ -56161,7 +56093,7 @@ aWk
 aWk
 aWk
 aWk
-aYW
+atN
 atN
 atN
 aQA
@@ -56188,7 +56120,7 @@ aQA
 aQA
 aQA
 aUU
-aaT
+ahS
 azX
 aas
 aRu
@@ -56697,8 +56629,8 @@ ahC
 ahC
 ahC
 aaU
-adl
-adl
+qiN
+uLR
 adl
 adl
 atL
@@ -57189,7 +57121,7 @@ akv
 arH
 arH
 arH
-aqn
+anl
 anl
 anl
 ahZ
@@ -57456,8 +57388,8 @@ aPy
 aoA
 axz
 aXV
-afS
-arB
+aQA
+aQA
 aQA
 aQA
 aVa
@@ -57711,12 +57643,12 @@ aQA
 aQA
 aIl
 aRB
-aMn
+arJ
 aKO
-abv
-avF
-aFa
-arB
+aAF
+aAF
+aQA
+aQA
 aLy
 aLy
 aQA
@@ -57968,9 +57900,9 @@ aQA
 aQA
 aQA
 aQA
-agG
-aDn
-aDt
+aQA
+arJ
+aQA
 aQA
 aQA
 aQA
