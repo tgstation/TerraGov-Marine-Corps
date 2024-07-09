@@ -8783,9 +8783,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/westroadtunnel)
-"bcD" = (
-/turf/open/floor/plating/ground/snow/layer0,
-/area/landing_zone)
 "bcF" = (
 /obj/vehicle/train/cargo/trolley,
 /turf/open/floor/plating/icefloor,
@@ -24926,7 +24923,7 @@
 /area/landing_zone/enclosed/emergency)
 "mxE" = (
 /turf/open/floor/plating/ground/ice,
-/area/landing_zone)
+/area/ice_colony/exterior/surface/taxiway)
 "mxW" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 8
@@ -25279,7 +25276,7 @@
 "mXX" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2,
 /turf/open/floor/plating/ground/ice,
-/area/landing_zone)
+/area/landing_zone/two/domed/aerodrome)
 "mYa" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -61673,7 +61670,7 @@ vPZ
 vPZ
 aKC
 tiC
-bcD
+aZJ
 hKV
 uSg
 qFy

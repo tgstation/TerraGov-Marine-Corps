@@ -1053,6 +1053,11 @@
 	},
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"hi" = (
+/obj/effect/landmark/start/job/squadspecialist,
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost/base)
 "hl" = (
 /obj/effect/turf_decal/warning_stripes/linethick,
 /obj/structure/rack,
@@ -1512,6 +1517,13 @@
 /obj/item/reagent_containers/food/condiment/saltshaker,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
+"kf" = (
+/obj/structure/barricade/metal{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "kl" = (
 /obj/structure/bed/chair/comfy,
 /obj/machinery/light{
@@ -6217,6 +6229,13 @@
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
+"Jy" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/hyper{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
+/area/oscar_outpost)
 "Jz" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
@@ -14326,12 +14345,12 @@ is
 HN
 fC
 OP
-TE
-OP
-OP
-OP
-TE
-OP
+gt
+ff
+ff
+ff
+gt
+ff
 OP
 wM
 WC
@@ -14578,7 +14597,7 @@ xm
 OP
 OP
 IK
-PN
+je
 QS
 PN
 PN
@@ -14830,7 +14849,7 @@ Ov
 Me
 Zr
 Tp
-vH
+Lh
 vH
 Tp
 Tp
@@ -15082,7 +15101,7 @@ Tp
 Tp
 Tp
 Tp
-OP
+ff
 OP
 Tp
 hT
@@ -15334,7 +15353,7 @@ iL
 OP
 qn
 Ur
-TE
+gt
 fU
 Tp
 YD
@@ -15575,18 +15594,18 @@ TV
 XG
 FG
 bk
-XY
-OP
-is
-OP
-is
-OP
-OP
-iL
-Cj
-OP
-OP
-pa
+kf
+ff
+Fj
+ff
+Fj
+ff
+ff
+dN
+OZ
+ff
+ff
+hi
 OP
 Tp
 wu
@@ -15827,7 +15846,7 @@ Ij
 RK
 Ex
 bk
-XY
+kf
 OP
 is
 OP
@@ -16079,7 +16098,7 @@ wl
 JO
 cN
 kE
-XY
+kf
 OP
 is
 OP
@@ -16331,7 +16350,7 @@ bk
 Ng
 Ng
 bk
-XY
+kf
 RY
 cD
 OP
@@ -16583,7 +16602,7 @@ bk
 Ng
 bk
 bk
-bk
+Jy
 Ng
 Tx
 Tx
