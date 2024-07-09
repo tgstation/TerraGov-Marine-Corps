@@ -24,6 +24,8 @@
 	var/datum/effect_system/spark_spread/sparks
 	///The cooldown for using the defib, applied to shocking *and* toggling
 	COOLDOWN_DECLARE(defib_cooldown)
+	///Whenever the defib will work through armor
+	var/piercing = FALSE
 
 
 /obj/item/defibrillator/suicide_act(mob/user)
@@ -149,7 +151,7 @@
 	if(patient.stat != DEAD)
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Patient is not in a valid state. Operation aborted."))
 		return FALSE
-	if(patient.wear_suit && (patient.wear_suit.atom_flags & CONDUCT)) // something conductive on their chest
+	if(patient.wear_suit && (patient.wear_suit.atom_flags & CONDUCT) && !piercing) // something conductive on their chest
 		user.visible_message(span_warning("[icon2html(src, viewers(user))] \The [src] buzzes: Paddles registering >100,000 ohms. Remove interfering suit or armor and try again."))
 		return FALSE
 	return TRUE
@@ -348,3 +350,9 @@
 /obj/item/defibrillator/internal/update_icon()
 	. = ..()
 	parent_obj.update_icon()
+
+
+/obj/item/defibrillator/piercing
+	name = "Advanced piercing defibrillator"
+	desc = "A device that delivers powerful shocks to resuscitate incapacitated patients. This one is an advanced, very expensive model, reserved only for crucial frontline engagements, able to resuscitate patients without stripping them of their armor, as the paddles create nano conduits that pierce the material until they detect skin, delivering the shock to the patient underneath."
+	piercing = TRUE

@@ -22,7 +22,7 @@
 
 /datum/loadout_item/suit_slot/som_light_shield/overclocked/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator/piercing, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/som_light_shield/overclocked/engineer
 	item_typepath = /obj/item/clothing/suit/modular/som/light/shield_overclocked/engineer
@@ -60,7 +60,7 @@
 
 /datum/loadout_item/suit_slot/som_medium_shield/overclocked/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator/piercing, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/som_medium_shield/overclocked/engineer
 	item_typepath = /obj/item/clothing/suit/modular/som/shield_overclocked/engineer
@@ -133,7 +133,7 @@
 
 /datum/loadout_item/suit_slot/som_heavy_tyr/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator/piercing, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/som_heavy_tyr/engineer
 	item_typepath = /obj/item/clothing/suit/modular/som/heavy/lorica/engineer
@@ -214,7 +214,7 @@
 
 /datum/loadout_item/suit_slot/som_medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator/piercing, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/som_medic/light
 	name = "L armor"

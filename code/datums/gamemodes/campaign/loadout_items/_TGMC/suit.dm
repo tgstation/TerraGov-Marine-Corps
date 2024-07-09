@@ -52,7 +52,7 @@
 
 /datum/loadout_item/suit_slot/light_shield/overclocked/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator/piercing, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/light_shield/overclocked/engineer
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked/engineer
@@ -84,7 +84,7 @@
 
 /datum/loadout_item/suit_slot/medium_shield/overclocked/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator/piercing, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/medium_shield/overclocked/engineer
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/shield_overclocked/engineer
@@ -146,7 +146,7 @@
 
 /datum/loadout_item/suit_slot/heavy_tyr/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator/piercing, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/heavy_tyr/engineer
 	item_typepath = /obj/item/clothing/suit/modular/xenonauten/heavy/tyr_two/engineer
@@ -198,7 +198,7 @@
 
 /datum/loadout_item/suit_slot/medium_mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	wearer.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/defibrillator/piercing, SLOT_IN_SUIT)
 
 //engineer
 /datum/loadout_item/suit_slot/medium_engineer
