@@ -44,7 +44,7 @@
 		return
 
 	if(shuttingdown)
-		if(tgui_alert(usr, "Are you use you want to cancel the shutdown initiated by [shuttingdown]?", "Cancel the shutdown?", list("Yes, cancel the shutdown", "No"), 0) != "Yes, cancel the shutdown")
+		if(tgui_alert(usr, "Are you use you want to cancel the shutdown initiated by [shuttingdown]?", "Cancel the shutdown?", list("No", "Yes, cancel the shutdown", "No"), 0) != "Yes, cancel the shutdown")
 			return
 		message_admins("[ADMIN_TPMONTY(usr)] Cancelled the server shutdown that [shuttingdown] started.")
 		timeouts[shuttingdown] = world.time
@@ -55,11 +55,11 @@
 		to_chat(usr, span_danger("You must wait 2 minutes after your shutdown attempt is aborted before you can try again."))
 		return
 
-	if(tgui_alert(usr, "Are you sure you want to shutdown the server? Only somebody with remote access to the server can turn it back on.", "Shutdown Server?", list("Shutdown Server", "Cancel"), 0) != "Shutdown Server")
+	if(tgui_alert(usr, "Are you sure you want to shutdown the server? Only somebody with remote access to the server can turn it back on.", "Shutdown Server?", list("Cancel", "Shutdown Server", "Cancel"), 0) != "Shutdown Server")
 		return
 
 	if(!SSticker)
-		if(tgui_alert(usr, "The game ticker does not exist, normal checks will be bypassed.", "Continue Shutting Down Server?", list("Continue Shutting Down Server", "Cancel"), 0) != "Continue Shutting Down Server")
+		if(tgui_alert(usr, "The game ticker does not exist, normal checks will be bypassed.", "Continue Shutting Down Server?", list("Cancel", "Continue Shutting Down Server", "Cancel"), 0) != "Continue Shutting Down Server")
 			return
 	else
 		var/required_state_message = "The server must be in either pre-game and the start must be delayed or already started with the end delayed to shutdown the server."
@@ -68,7 +68,7 @@
 			return
 		if (SSticker.current_state == GAME_STATE_PLAYING || SSticker.current_state == GAME_STATE_SETTING_UP)
 			#ifdef TGS_V3_API
-			if(tgui_alert(usr, "The round is currently in progress, continue with shutdown?", "Continue Shutting Down Server?", list("Continue Shutting Down Server", "Cancel"), 0) != "Continue Shutting Down Server")
+			if(tgui_alert(usr, "The round is currently in progress, continue with shutdown?", "Continue Shutting Down Server?", list("Cancel", "Continue Shutting Down Server", "Cancel"), 0) != "Continue Shutting Down Server")
 				return
 			waitforroundend = TRUE
 			#else
@@ -90,7 +90,7 @@
 		shuttingdown = null
 		return
 
-	if(tgui_alert(usr, "ARE YOU SURE YOU WANT TO SHUTDOWN THE SERVER? ONLY SOMEBODY WITH REMOTE ACCESS TO THE SERVER CAN TURN IT BACK ON.", "Shutdown Server?", list("Yes! Shutdown The Server!", "Cancel"), 0) != "Yes! Shutdown The Server!")
+	if(tgui_alert(usr, "ARE YOU SURE YOU WANT TO SHUTDOWN THE SERVER? ONLY SOMEBODY WITH REMOTE ACCESS TO THE SERVER CAN TURN IT BACK ON.", "Shutdown Server?", list("Cancel", "Yes! Shutdown The Server!", "Cancel"), 0) != "Yes! Shutdown The Server!")
 		message_admins("[ADMIN_TPMONTY(usr)] decided against shutting down the server.")
 		shuttingdown = null
 		return
