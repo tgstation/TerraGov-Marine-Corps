@@ -582,20 +582,6 @@
 	refill_type = /obj/item/factory_part/deployable_camera
 	refill_amount = 30
 
-///not sure why we have duplicate entries here, but ok
-
-/obj/item/factory_refill/deployable_floodlight_refill
-	name = "box of rounded metal plates (Floodlights)"
-	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become Portable Floodlights, once finished."
-	refill_type = /obj/item/factory_part/deployable_floodlight
-	refill_amount = 10
-
-/obj/item/factory_refill/deployable_camera_refill
-	name = "box of rounded metal plates (Overwatch)"
-	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become deployable overwatch camereas, once finished."
-	refill_type = /obj/item/factory_part/deployable_camera
-	refill_amount = 30
-
 /obj/item/factory_refill/cigarette_refill
 	name = "box of rounded metal plates (Cigarettes)"
 	desc = "A box with unfinished cigarettes inside. Used to refill Unboxers."
