@@ -154,11 +154,20 @@
 	if(Adjacent(entering_thing, src))
 		return list(get_turf(entering_thing))
 
-/obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE) //destroy sound is normally very quiet
 	new /obj/effect/temp_visual/explosion(get_turf(src), 7, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	for(var/mob/living/nearby_mob AS in occupants + cheap_get_living_near(src, 7))
 		shake_camera(nearby_mob, 4, 2)
+	if(istype(blame_mob) && blame_mob.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
+		if(faction == blame_mob.faction)
+			personal_statistics.tanks_destroyed --
+			personal_statistics.mission_tanks_destroyed --
+		else
+			personal_statistics.tanks_destroyed ++
+			personal_statistics.mission_tanks_destroyed ++
+
 	return ..()
 
 /obj/vehicle/sealed/armored/update_icon_state()

@@ -224,6 +224,7 @@
 	if(user?.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.integrity_repaired += repair_amount
+		personal_statistics.mission_integrity_repaired += repair_amount
 		personal_statistics.times_repaired++
 	wall_integrity += repair_amount
 	update_icon()
