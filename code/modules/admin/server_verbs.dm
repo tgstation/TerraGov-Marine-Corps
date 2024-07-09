@@ -368,7 +368,7 @@
 			return
 		SSticker.admin_delay_notice = null
 	else
-		var/reason = tgui_input_text(usr, "Enter a reason for delaying the round end", "Round Delay Reason", timeout = 0)
+		var/reason = input(usr, "Enter a reason for delaying the round end", "Round Delay Reason") as null|text
 		if(!reason)
 			return
 		if(SSticker.admin_delay_notice)
