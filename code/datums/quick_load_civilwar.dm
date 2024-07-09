@@ -7,7 +7,7 @@
 /datum/outfit/quick/civilwar
 	name = "Civil War base"
 	desc = "Base for redcoat and bluecoat loadouts."
-	requirejob = FALSE
+	require_job = FALSE
 
 	shoes = /obj/item/clothing/shoes/marinechief
 	head = /obj/item/clothing/head/redcoat
