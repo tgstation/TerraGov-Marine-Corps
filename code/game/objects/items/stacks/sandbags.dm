@@ -100,18 +100,20 @@
 	if(get_amount() < 1)
 		return
 	if(LAZYLEN(user.do_actions))
-		to_chat(user, span_warning("You are too busy to empty [src]!"))
+		user.balloon_alert(user, "You are already busy.")
 		return
 
-	to_chat(user, span_notice("You start emptying [src]."))	
+	user.balloon_alert(user, "You start emptying [src].")
 	while(get_amount() > 0)
 		if(!do_after(user, 0.5 SECONDS, IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, user))
-			to_chat(user, span_notice("You stop emptying [src]."))
+			user.balloon_alert(user, "You stop emptying [src].")
 			break
-		if(zero_amount())
-			to_chat(user, span_notice("You finish emptying [src]."))
 		// check if we can stuff it into the user's hands
-		use(1)
+		if(!use(1))
+			break
+		if(amount < 1)
+			user.balloon_alert(user, "You finish emptying [src].")
+			break
 		var/obj/item/stack/sandbag = user.get_inactive_held_item()
 		if(istype(sandbag, /obj/item/stack/sandbags_empty) && sandbag.add(1))
 			continue
@@ -119,3 +121,4 @@
 		if(!sandbag && user.put_in_hands(E))
 			continue
 		E.add_to_stacks(user)
+
