@@ -7,4 +7,4 @@
 
 /obj/item/supply_beacon/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/beacon, TRUE, 60, "motion_2")
+	AddComponent(/datum/component/beacon, TRUE, 60, "motion_2", src)
