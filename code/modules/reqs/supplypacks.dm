@@ -769,7 +769,6 @@ WEAPONS
 	cost = 600
 	containertype = null
 
-
 /datum/supply_packs/weapons/rpgoneuse
 	name = "RL-72 Disposable RPG"
 	contains = list(/obj/item/weapon/gun/launcher/rocket/oneuse)
