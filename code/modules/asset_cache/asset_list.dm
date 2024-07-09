@@ -11,7 +11,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	return GLOB.asset_datums[type] || new type()
 
 /proc/get_asset_datum(type)
-	var/datum/asset/loaded_asset = GLOB.asset_datums[type] || new type()
+	var/datum/asset/loaded_asset = GLOB?.asset_datums?[type] || new type()
 	return loaded_asset.ensure_ready()
 
 /datum/asset
@@ -28,7 +28,7 @@ GLOBAL_LIST_EMPTY(asset_datums)
 	var/cross_round_cachable = FALSE
 
 /datum/asset/New()
-	GLOB.asset_datums[type] = src
+	GLOB.asset_datums?[type] = src
 	register()
 
 /// Stub that allows us to react to something trying to get us
