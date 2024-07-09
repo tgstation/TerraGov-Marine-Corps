@@ -23,16 +23,18 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 
 	//Anti-recursion checks
 	var/static/error_lock_reference = null
-	
-	if (error_lock_reference)
-		var/datum/world_error_lock/error_lock = locate(error_lock_reference)
-		if (istype(error_lock))
-			return ..() //we are currently processing an error
-	
-	var/datum/world_error_lock/error_lock = new()
-	error_lock_reference = ref(error_lock)
+	try
+		if (error_lock_reference)
+			var/datum/world_error_lock/error_lock = locate(error_lock_reference)
+			if (istype(error_lock))
+				return //we are currently processing an error
 
-	else if(copytext(E.name, 1, 18) == "Out of resources!")//18 == length() of that string + 1
+		var/datum/world_error_lock/error_lock = new()
+		error_lock_reference = ref(error_lock)
+	catch
+		error_lock_reference = null
+
+	if(copytext(E.name, 1, 18) == "Out of resources!")//18 == length() of that string + 1
 		log_world("BYOND out of memory. Restarting ([E?.file]:[E?.line])")
 		TgsEndProcess()
 		. = ..()
