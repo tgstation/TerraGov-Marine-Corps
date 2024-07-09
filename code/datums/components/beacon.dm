@@ -180,10 +180,10 @@
 	var/area/A = get_area(location)
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		source.balloon_alert_to_viewers("This won't work if you're standing deep underground.")
-		deactivate(source)
+		INVOKE_ASYNC(src, PROC_REF(deactivate), sourceitem)
 	if(istype(A, /area/shuttle/dropship))
 		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or it won't transmit.")
-		deactivate(source)
+		INVOKE_ASYNC(src, PROC_REF(deactivate), sourceitem)
 	src.beacon_datum.drop_location = location
 	src.beacon_datum.name = "[src.activator.name] + [A]"
 	sourceitem.update_appearance()
