@@ -245,7 +245,7 @@
 	var/list/drivers = return_drivers()
 	if(length(drivers))
 		pilot = drivers[1]
-	A.vehicle_collision(src, get_dir(src, A), get_turf(loc), get_turf(loc), pilot)
+	A.vehicle_collision(src, get_dir(src, A), pilot)
 
 /obj/vehicle/sealed/armored/auto_assign_occupant_flags(mob/new_occupant)
 	if(interior) //handled by interior seats
