@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Tanks are worth 30 points in Combined Arms instead of 10"
+  - balance: "Combat Patrol mission's point goal is reduced from 400 to 375"

@@ -375,9 +375,15 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/datum/supply_order/SO = LAZYACCESSASSOC(SSpoints.shoppinglist, faction, key)
 		.["awaiting_delivery_orders"]++
 		var/list/packs = list()
-		for(var/datum/supply_packs/SP AS in SO.pack)
-			packs += SP.type
-		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "packs" = packs, "authed_by" = SO.authorised_by))
+		var/cost = 0
+		for(var/P in SO.pack)
+			var/datum/supply_packs/SP = P
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
+			cost += SP.cost
+		.["awaiting_delivery"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["export_history"] = list()
 	var/id = 0
 	var/lastexport = ""
@@ -401,7 +407,10 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		var/cost = 0
 		for(var/P in SO.pack)
 			var/datum/supply_packs/SP = P
-			packs += SP.type
+			if(packs[SP.type])
+				packs[SP.type] += 1
+			else
+				packs[SP.type] = 1
 			cost += SP.cost
 		.["shopping_history"] += list(list("id" = SO.id, "orderer" = SO.orderer, "orderer_rank" = SO.orderer_rank, "reason" = SO.reason, "cost" = cost, "packs" = packs, "authed_by" = SO.authorised_by))
 	.["shopping_list_cost"] = 0
