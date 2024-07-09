@@ -1,0 +1,4 @@
+author: "jonash07"
+delete-after: True
+changes:
+  - bugfix: "fixed the reagent scanner's sprite"
