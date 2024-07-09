@@ -5389,11 +5389,6 @@
 	dir = 8
 	},
 /area/lv759/indoors/spaceport/cargo)
-"aVz" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
-	dir = 2
-	},
-/turf/closed/mineral/smooth/black_stone/indestructible)
 "aVA" = (
 /obj/machinery/light,
 /obj/effect/urban/decal/dirt,
@@ -185141,7 +185136,7 @@ lwn
 (211,1,1) = {"
 lwn
 lwn
-aVz
+xnl
 aWQ
 aWQ
 aWQ
