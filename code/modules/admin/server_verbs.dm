@@ -364,7 +364,7 @@
 		return
 
 	if(SSticker.admin_delay_notice)
-		if(tgui_alert(usr, "Do you want to remove the round end delay?", "Delay Round End", list("Yes", "No"), 0) != "Yes")
+		if(alert(usr, "Do you want to remove the round end delay?", "Delay Round End", "Yes", "No") != "Yes")
 			return
 		SSticker.admin_delay_notice = null
 	else
