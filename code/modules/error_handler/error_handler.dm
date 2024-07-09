@@ -3,6 +3,9 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 
 #define ERROR_USEFUL_LEN 2
 
+///dummy datum to keep errors from stack overflowing
+/datum/world_error_lock
+
 /world/Error(exception/E, datum/e_src)
 	GLOB.total_runtimes++
 
@@ -17,6 +20,19 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 		//if we got to here without silently ending, the byond bug has been fixed.
 		log_world("The bug with recursion runtimes has been fixed. Please remove the snowflake check from world/Error in [__FILE__]:[__LINE__]")
 		return //this will never happen.
+
+	//Anti-recursion checks
+	var/static/error_lock_reference = null
+	try
+		if (error_lock_reference)
+			var/datum/world_error_lock/error_lock = locate(error_lock_reference)
+			if (istype(error_lock))
+				return //we are currently processing an error
+		
+		var/datum/world_error_lock/error_lock = new()
+		error_lock_reference = ref(error_lock)
+	catch
+		error_lock_reference = null
 
 	else if(copytext(E.name, 1, 18) == "Out of resources!")//18 == length() of that string + 1
 		log_world("BYOND out of memory. Restarting ([E?.file]:[E?.line])")
@@ -127,4 +143,5 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 
 
 	// This writes the regular format (unwrapping newlines and inserting timestamps as needed).
-	log_runtime("runtime error: [E.name]\n[E.desc]")
+	if (logger) 
+		log_runtime("runtime error: [E.name]\n[E.desc]")
