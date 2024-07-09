@@ -31,7 +31,7 @@ GLOBAL_VAR_INIT(total_runtimes_skipped, 0)
 		
 		var/datum/world_error_lock/error_lock = new()
 		error_lock_reference = ref(error_lock)
-	catch
+	catch ()
 		error_lock_reference = null
 
 	else if(copytext(E.name, 1, 18) == "Out of resources!")//18 == length() of that string + 1
