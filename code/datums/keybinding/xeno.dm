@@ -1115,6 +1115,12 @@
 	description = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	keybind_signal = COMSIG_XENOABILITY_LANDSLIDE
 
+/datum/keybinding/xeno/cancel_landslide
+	name = "Cancel Landslide"
+	full_name = "Behemoth: Cancel Landslide"
+	description = "Cancels landslide without having to select the ability"
+	keybind_signal = COMSIG_XENOABILITY_CANCEL_LANDSLIDE
+
 /datum/keybinding/xeno/earth_riser
 	name = "Earth Riser"
 	full_name = "Behemoth: Earth Riser"
