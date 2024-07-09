@@ -1,0 +1,4 @@
+author: "Ldip999"
+delete-after: True
+changes:
+  - qol: "Taken over SSD mobs will now load your active character slot if possible"
