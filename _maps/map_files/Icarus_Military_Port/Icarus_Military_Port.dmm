@@ -9673,12 +9673,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/construction/hallway)
-"aKO" = (
-/obj/structure/lattice,
-/obj/structure/grille,
-/obj/structure/grille,
-/turf/open/floor/plating/mainship,
-/area/construction)
 "aKP" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /obj/structure/cable,
@@ -57557,7 +57551,7 @@ aQA
 aIl
 aRB
 arJ
-aKO
+arJ
 aAF
 aAF
 aQA
