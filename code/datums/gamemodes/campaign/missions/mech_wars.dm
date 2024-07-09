@@ -11,6 +11,7 @@
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the area of operation. Minor Victory: Eliminate more hostiles than you lose."
 	mission_start_delay = 3 MINUTES //since there is actual mech prep time required
+	capture_point_target = 400
 	starting_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
 	hostile_faction_additional_rewards = "Mechanised units will be allocated to your battalion for use in future missions."
 	outro_message = list(
