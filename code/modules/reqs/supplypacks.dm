@@ -759,9 +759,16 @@ WEAPONS
 	cost = 200
 
 /datum/supply_packs/weapons/back_fuel_tank_x
-	name = "X-fuel back tank"
+	name = "X-fuel backpack"
 	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank/X)
 	cost = 600
+
+/datum/supply_packs/weapons/fueltank
+	name = "X-fuel tank"
+	contains = list(/obj/structure/reagent_dispensers/fueltank/xfuel)
+	cost = 600
+	containertype = null
+
 
 /datum/supply_packs/weapons/rpgoneuse
 	name = "RL-72 Disposable RPG"
