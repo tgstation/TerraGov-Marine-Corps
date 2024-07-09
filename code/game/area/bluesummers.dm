@@ -262,3 +262,7 @@
 	icon_state = "toxlab"
 	minimap_color = MINIMAP_AREA_RESEARCH
 
+/area/bluesummers/inside/captains_office
+	name = "Captain's Office"
+	icon_state = "captain"
+	minimap_color = MINIMAP_AREA_COMMAND
