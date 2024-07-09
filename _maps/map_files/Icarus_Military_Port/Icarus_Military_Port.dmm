@@ -13732,10 +13732,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/construction)
-"aZh" = (
-/obj/structure/window/framed/mainship/gray,
-/turf/closed/wall/mainship,
-/area/orion_outpost/surface/building/engineering)
 "aZi" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile/side,
@@ -47668,7 +47664,7 @@ aku
 aku
 aku
 aku
-aZh
+atm
 amy
 apk
 agu
