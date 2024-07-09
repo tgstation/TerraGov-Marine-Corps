@@ -526,6 +526,8 @@
 	if(!mech_faction)
 		return
 	var/total_count = (heavy_mech + medium_mech + light_mech)
+	if(!total_count)
+		return
 	for(var/obj/effect/landmark/campaign/vehicle_spawner/mech/mech_spawner AS in GLOB.campaign_mech_spawners[mech_faction])
 		if(!heavy_mech && !medium_mech && !light_mech)
 			break
@@ -547,6 +549,8 @@
 ///spawns mechs for a faction
 /datum/campaign_mission/proc/spawn_tank(tank_faction, quantity, override_message)
 	if(!tank_faction)
+		return
+	if(!quantity)
 		return
 	var/remaining_count = quantity
 	for(var/obj/effect/landmark/campaign/vehicle_spawner/tank/tank_spawner AS in GLOB.campaign_tank_spawners[tank_faction])
