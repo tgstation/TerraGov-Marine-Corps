@@ -470,14 +470,14 @@
 	else
 		try_easy_load(I, user)
 		return
-	if(length(weapon_to_load.ammo_magazine) >= weapon_to_load.maximum_magazines)
+	if((length(weapon_to_load.ammo_magazine) >= weapon_to_load.maximum_magazines) && weapon_to_load.ammo)
 		balloon_alert(user, "magazine already full")
 		return
 	user.temporarilyRemoveItemFromInventory(I)
 	I.forceMove(weapon_to_load)
 	if(!weapon_to_load.ammo)
 		weapon_to_load.ammo = I
-		balloon_alert(user, "primary gun loaded")
+		balloon_alert(user, "weapon loaded")
 		for(var/mob/occupant AS in occupants)
 			occupant?.hud_used?.update_ammo_hud(weapon_to_load, list(weapon_to_load.ammo.default_ammo.hud_state, weapon_to_load.ammo.default_ammo.hud_state_empty), weapon_to_load.ammo.current_rounds)
 	else
@@ -523,29 +523,6 @@
 		gunner_utility_module.on_unequip(user)
 		balloon_alert(user, "detached")
 		return
-	if(interior?.secondary_breech) // if interior handle by gun breech
-		return
-	if(istype(I, /obj/item/ammo_magazine))
-		if(!secondary_weapon)
-			balloon_alert(user, "no secondary weapon")
-			return
-		if(!(I.type in secondary_weapon.accepted_ammo))
-			balloon_alert(user, "not accepted ammo")
-			return
-		if(length(secondary_weapon.ammo_magazine) >= secondary_weapon.maximum_magazines)
-			balloon_alert(user, "magazine already full")
-			return
-		user.temporarilyRemoveItemFromInventory(I)
-		I.forceMove(secondary_weapon)
-		if(!secondary_weapon.ammo)
-			secondary_weapon.ammo = I
-			balloon_alert(user, "secondary gun loaded")
-			for(var/mob/occupant AS in occupants)
-				occupant?.hud_used?.update_ammo_hud(secondary_weapon, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
-		else
-			secondary_weapon.ammo_magazine += I
-			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")
-
 
 /obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
