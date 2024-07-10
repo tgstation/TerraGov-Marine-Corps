@@ -482,11 +482,11 @@
 
 /obj/item/reagent_containers/hypospray/advanced/peridaxonplus
 	name = "Peridaxon+ hypospray"
-	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
-	amount_per_transfer_from_this = 3
+	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Comes with built in Anti-Toxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 12
 	list_reagents = list(
-		/datum/reagent/medicine/peridaxon_plus = 20,
-		/datum/reagent/medicine/hyronalin = 40,
+		/datum/reagent/medicine/peridaxon_plus = 5,
+		/datum/reagent/medicine/dylovene = 55,
 	)
 	description_overlay = "Pe+"
 
@@ -507,6 +507,16 @@
 	core_name = "hypospray"
 	volume = 120
 	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30, 60, 120)
+
+/obj/item/reagent_containers/hypospray/advanced/big/peridaxonplus
+	name = "Big Peridaxon+ hypospray"
+	desc = "A MK2 hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Comes with built in Anti-Toxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 12
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon_plus = 10,
+		/datum/reagent/medicine/dylovene = 110,
+	)
+	description_overlay = "Pe+"
 
 /obj/item/reagent_containers/hypospray/advanced/big/bicaridine
 	name = "big bicaridine hypospray"
