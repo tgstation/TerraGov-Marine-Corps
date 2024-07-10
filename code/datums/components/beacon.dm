@@ -14,10 +14,8 @@
 	var/active_icon_state = ""
 	///The mob who activated this beacon
 	var/mob/activator
-	///Contains the item the beacon was innitially created with
-	var/obj/item/sourceitem
 
-/datum/component/beacon/Initialize(_anchor = FALSE, _anchor_time = 0, _active_icon_state = "", _sourceitem)
+/datum/component/beacon/Initialize(_anchor = FALSE, _anchor_time = 0, _active_icon_state = "")
 	. = ..()
 	if(_anchor && !_anchor_time || !_anchor && _anchor_time)
 		stack_trace("The beacon component has been added to [parent.type] and is missing either the anchor var or the time to anchor")
@@ -27,7 +25,6 @@
 	anchor = _anchor
 	anchor_time = _anchor_time
 	active_icon_state = _active_icon_state
-	sourceitem = _sourceitem
 
 /datum/component/beacon/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(on_attack_self))
@@ -132,7 +129,7 @@
 	beacon_datum = new /datum/supply_beacon("[user.name] + [A]", get_turf(source), user.faction)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
-	if(source.loc)
+	if( istype(source.loc, /mob))
 		RegisterSignal(source.loc, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
 	RegisterSignal(source, COMSIG_ITEM_EQUIPPED, PROC_REF(equip))
 	RegisterSignal(source, COMSIG_ITEM_DROPPED, PROC_REF(dropped))
@@ -176,17 +173,18 @@
 ///Updates position and name of the beacon, or alternatively turns if off if it's in a blacklisted area.
 /datum/component/beacon/proc/updatepos(atom/movable/source)
 	SIGNAL_HANDLER
-	var/turf/location = get_turf(sourceitem)
+	var/turf/location = get_turf(parent)
 	var/area/A = get_area(location)
 	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		source.balloon_alert_to_viewers("This won't work if you're standing deep underground.")
-		INVOKE_ASYNC(src, PROC_REF(deactivate), sourceitem)
+		INVOKE_ASYNC(src, PROC_REF(deactivate), parent)
 	if(istype(A, /area/shuttle/dropship))
 		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or it won't transmit.")
-		INVOKE_ASYNC(src, PROC_REF(deactivate), sourceitem)
+		INVOKE_ASYNC(src, PROC_REF(deactivate), parent)
 	src.beacon_datum.drop_location = location
 	src.beacon_datum.name = "[src.activator.name] + [A]"
-	sourceitem.update_appearance()
+	var/atom/movable/p = parent
+	p.update_appearance()
 
 ///Called on picking up or otherwise equipping the beacon
 /datum/component/beacon/proc/equip(obj/item/source)
