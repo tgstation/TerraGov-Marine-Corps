@@ -33,6 +33,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
+	use_state_flags = ABILITY_USE_LYING
 	/// The offset in a direction for zoom_in
 	var/tile_offset = 5
 	/// The size of the zoom for zoom_in
