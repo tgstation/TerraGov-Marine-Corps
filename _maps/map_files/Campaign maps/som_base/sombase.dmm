@@ -274,7 +274,7 @@
 /turf/open/floor/mainship/white/full,
 /area/rocinante_base/surface/building/lz_control)
 "atk" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/no_flags,
 /obj/machinery/light,
 /turf/open/floor/mainship/black,
 /area/rocinante_base/surface/building/cargo/vehicle_garage)
@@ -2551,7 +2551,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/rocinante_base/ground/base_w)
 "dBX" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/no_flags,
 /turf/open/floor/mainship/blue{
 	dir = 10
 	},
@@ -2590,7 +2590,7 @@
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_base/surface/building/administration/south_com)
 "dGQ" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/no_flags,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/living/barracks)
@@ -7260,7 +7260,7 @@
 	},
 /area/rocinante_base/surface/building/administration)
 "kjN" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/no_flags,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/administration/command)
 "kjO" = (
@@ -10212,7 +10212,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/ground/southern_containers)
 "orZ" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/no_flags,
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
@@ -10645,7 +10645,7 @@
 /turf/open/floor/mainship/sterile/white,
 /area/rocinante_base/surface/building/living/barracks)
 "oUS" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/no_flags,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/ground/base_cent)
 "oVs" = (
@@ -12450,7 +12450,7 @@
 /turf/open/floor/mainship/red,
 /area/rocinante_base/surface/building/science/complex_hall_e)
 "rBc" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/no_flags,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/administration/north_com)
 "rBO" = (
@@ -12901,7 +12901,7 @@
 	},
 /area/rocinante_base/surface/building/cargo/vehicle_garage)
 "slV" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/no_flags,
 /turf/open/floor/mainship/blue{
 	dir = 4
 	},
@@ -13382,7 +13382,7 @@
 	},
 /area/rocinante_base/surface/building/command_hall)
 "sRP" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/no_flags,
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/administration/air_com)
 "sRU" = (
@@ -14638,7 +14638,7 @@
 /turf/open/ground/grass/weedable/patch,
 /area/rocinante_base/ground/base_se)
 "uyr" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/cic_maptable/no_flags,
 /turf/open/floor/mainship/blue{
 	dir = 5
 	},
@@ -17185,7 +17185,7 @@
 /turf/open/floor/mainship/mono,
 /area/rocinante_base/surface/building/living/chapel_ne)
 "xJE" = (
-/obj/machinery/computer/nuke_disk_generator/green,
+/obj/structure/table/reinforced,
 /turf/open/floor/mainship/sterile/side,
 /area/rocinante_base/surface/building/medical)
 "xKs" = (
