@@ -94,9 +94,10 @@
 /datum/action/ability/xeno_action/select_reagent/baneling/select_reagent_radial()
 	// This is cursed, don't copy this code its the WRONG way to do this.
 	// TODO: generate this from GLOB.baneling_chem_type_list
+	action_icon = 'icons/Xeno/actions/baneling.dmi'
 	var/static/list/reagent_images_list = list(
-		DEFILER_NEUROTOXIN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_NEUROTOXIN),
-		BANELING_ACID = image('icons/Xeno/actions/boiler.dmi', icon_state = BANELING_ACID_ICON),
+		DEFILER_NEUROTOXIN = image('icons/Xeno/actions/baneling.dmi', icon_state = DEFILER_NEUROTOXIN),
+		BANELING_ACID = image('icons/Xeno/actions/baneling.dmi', icon_state = BANELING_ACID),
 		)
 	var/toxin_choice = show_radial_menu(owner, owner, reagent_images_list, radius = 48)
 	if(!toxin_choice)
