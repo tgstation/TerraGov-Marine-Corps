@@ -252,7 +252,7 @@
 	volume = 9
 	list_reagents = list(
 		/datum/reagent/medicine/peridaxon_plus = 3,
-		/datum/reagent/medicine/hyrolin = 6,
+		/datum/reagent/medicine/hyronalin = 6,
 	)
 	description_overlay = "Pe+"
 
