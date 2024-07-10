@@ -481,6 +481,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
+	if(glob.round_stastistics.runner_items_stolen)
+		parts += "[glob.round_statistics.runner_items_stolen] items stolen by runners."
 
 	if(GLOB.round_statistics.sandevistan_uses)
 		var/sandevistan_text = "[GLOB.round_statistics.sandevistan_uses] number of times someone was boosted by a sandevistan"
