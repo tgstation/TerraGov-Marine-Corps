@@ -209,8 +209,8 @@
 
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.7
-	scatter = 6
-	scatter_unwielded = 12
+	scatter = 9
+	scatter_unwielded = 15
 
 	damage_falloff_mult = 0.75
 
