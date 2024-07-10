@@ -28,7 +28,6 @@
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
-	evolve_min_xenos = 8
 	maximum_active_caste = 1
 	death_evolution_delay = 5 MINUTES
 	deevolves_to = /mob/living/carbon/xenomorph/drone

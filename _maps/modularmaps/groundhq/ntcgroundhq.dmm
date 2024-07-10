@@ -306,7 +306,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "alW" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /obj/machinery/door_control{
 	id = "bar4";
@@ -315,7 +315,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "amZ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/clipboard,
 /obj/item/tool/lighter/zippo,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
@@ -1392,7 +1392,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/upper_engineering)
 "bEC" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/barricade/metal{
 	dir = 8
 	},
@@ -2157,7 +2157,7 @@
 /turf/open/floor/mainship,
 /area/lv624/lazarus/armory)
 "cvI" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /obj/item/ashtray/bronze,
 /obj/item/tool/lighter/zippo,
@@ -2640,7 +2640,7 @@
 	name = "HQ Western hallways"
 	})
 "cVW" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/fancy/candle_box,
 /obj/item/storage/fancy/candle_box,
 /obj/item/tool/candle,
@@ -2663,7 +2663,7 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/squads/req)
 "cYq" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/camera_film,
 /obj/item/camera,
 /turf/open/floor/mainship/mono,
@@ -2862,7 +2862,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
 "diS" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/secure_data{
 	dir = 8
 	},
@@ -2901,7 +2901,7 @@
 	static_lighting = 1
 	})
 "dkU" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /obj/machinery/door_control{
 	id = "bar1";
@@ -3221,7 +3221,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "dHd" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
 	pixel_x = -7
 	},
@@ -3404,7 +3404,7 @@
 	name = "Ground CEO Office"
 	})
 "dPp" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/emails,
 /obj/machinery/button/door/open_only/landing_zone{
 	req_one_access = list(40)
@@ -3512,7 +3512,7 @@
 	static_lighting = 1
 	})
 "dTH" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
@@ -3556,7 +3556,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/sensors)
 "dWT" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/skills{
 	dir = 4
 	},
@@ -3715,7 +3715,7 @@
 /turf/open/floor/plating,
 /area/mainship/living/basketball)
 "ecX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/double,
 /obj/item/ammo_magazine/shotgun/buckshot,
 /obj/item/weapon/claymore/mercsword/machete,
@@ -4259,7 +4259,7 @@
 	name = "HQ Western hallways"
 	})
 "eOa" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/pickaxe,
 /obj/item/tool/pickaxe/drill,
 /obj/item/tool/hatchet,
@@ -4572,7 +4572,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
 "ffI" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /turf/open/floor/wood,
 /area/lv624/ground/caves{
 	ceiling = 2;
@@ -4680,7 +4680,7 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "foH" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/lighter/random,
 /obj/structure/cable,
 /turf/open/floor/wood,
@@ -4844,7 +4844,7 @@
 	},
 /area/mainship/living/basketball)
 "fzN" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/camera_advanced,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
@@ -4861,7 +4861,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar2)
 "fAI" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pizzabox/meat{
 	pixel_y = 8
 	},
@@ -5452,7 +5452,7 @@
 	name = "HQ Western hallways"
 	})
 "goX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /obj/item/ashtray/glass,
 /turf/open/floor/wood,
@@ -6094,7 +6094,7 @@
 	},
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "hdz" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light,
 /obj/item/camera,
 /turf/open/floor/wood,
@@ -6330,7 +6330,7 @@
 	always_unpowered = 0
 	})
 "hst" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/outpost/brig/wardens_office{
@@ -6353,7 +6353,7 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/ntf/dorm2)
 "huh" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/deck,
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
@@ -6786,7 +6786,7 @@
 	name = "HQ Northwest Hallways"
 	})
 "hSA" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/clipboard{
 	pixel_x = 5
 	},
@@ -6891,7 +6891,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/medical/medical_science)
 "hWa" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/deck,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
@@ -7013,7 +7013,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/bridgebunks)
 "ide" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/skills,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/corporateliaison)
@@ -7341,7 +7341,7 @@
 	name = "Groundside Common Squads Preparation"
 	})
 "iyI" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pizzabox/meat{
 	pixel_y = 8
 	},
@@ -7519,7 +7519,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/hangar)
 "iHT" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/bible,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /turf/open/floor/carpet{
@@ -7646,7 +7646,7 @@
 /area/mainship/groundhq/ntf/living/chapel)
 "iNQ" = (
 /obj/machinery/microwave,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "iOv" = (
@@ -8334,7 +8334,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "jCI" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "jCK" = (
@@ -8548,7 +8548,7 @@
 /area/mainship/groundhq/ntf/command/cic)
 "jLr" = (
 /obj/machinery/chem_dispenser/soda,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/book/manual/barman_recipes,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
@@ -8742,7 +8742,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/engineering/upper_engine_monitoring)
 "jVV" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -8784,7 +8784,7 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "jXU" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
@@ -9293,7 +9293,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "kJX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/portable_vendor/corporate{
 	req_role = /datum/job/terragov/command/ceo;
 	req_access = list(202);
@@ -9971,7 +9971,7 @@
 	name = "Worker Preperations"
 	})
 "luX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/communications{
 	dir = 4
 	},
@@ -10257,7 +10257,7 @@
 	name = "HQ Western hallways"
 	})
 "lNP" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/glass/rag,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
@@ -10871,7 +10871,7 @@
 	},
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "mwB" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
 "mxi" = (
@@ -11020,7 +11020,7 @@
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "mJy" = (
 /obj/machinery/chem_dispenser/beer,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/shaker,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
@@ -11521,7 +11521,7 @@
 	static_lighting = 1
 	})
 "noD" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pizzabox/margherita,
 /obj/item/clothing/glasses/meson,
 /obj/item/flashlight/lantern,
@@ -11844,7 +11844,7 @@
 	name = "HQ Central Hallways"
 	})
 "nJj" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/marine_card{
 	dir = 4
 	},
@@ -12380,7 +12380,7 @@
 	always_unpowered = 0
 	})
 "oqJ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
 /obj/item/reagent_containers/food/drinks/bottle/bluecuracao,
 /obj/item/reagent_containers/food/drinks/bottle/absinthe,
@@ -12950,7 +12950,7 @@
 	static_lighting = 1
 	})
 "oXV" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ore/coal,
 /obj/item/ore/gold,
 /turf/open/floor/plating/ground/dirt,
@@ -13545,7 +13545,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "pCK" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/plating,
 /area/mainship/groundhq/ntf/living/chapel)
 "pDd" = (
@@ -13723,7 +13723,7 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/coffee/cafe_latte,
 /obj/item/supplytablet{
 	home_id = "supply_hq"
@@ -14440,7 +14440,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison{
 	name = "Ground CEO Office"
@@ -14496,7 +14496,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/officer_study)
 "qKb" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -14751,7 +14751,7 @@
 	name = "HQ Western hallways"
 	})
 "qUY" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/tool/pickaxe/jackhammer,
 /obj/item/tool/shovel,
 /obj/item/tool/shovel/spade,
@@ -15522,7 +15522,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/cic)
 "rIy" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
 /turf/open/floor/wood,
@@ -15767,7 +15767,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
 "saP" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/ashtray/plastic,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -15926,7 +15926,7 @@
 	always_unpowered = 0
 	})
 "skX" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/reagentgrinder,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
@@ -16006,7 +16006,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "stS" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/fancy/candle_box,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
@@ -16112,7 +16112,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/spacetwinkie,
 /obj/item/storage/box/ntc_mre,
 /obj/item/storage/box/nt_mre,
@@ -16583,7 +16583,7 @@
 /turf/open/floor/grass,
 /area/mainship/groundhq/ntf/living/starboard_garden)
 "tby" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/deck,
 /turf/open/floor/wood,
 /area/centcom/practice/medical{
@@ -17212,7 +17212,7 @@
 	name = "HQ Central Hallways"
 	})
 "tYD" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/clipboard,
 /obj/item/paper,
 /obj/item/paper,
@@ -18118,7 +18118,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/hallways/ntf/dorm2)
 "vdh" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/emails,
 /turf/open/floor/wood,
 /area/mainship/hallways/ntf/dorm1)
@@ -18166,7 +18166,7 @@
 /turf/open/floor/mainship,
 /area/lv624/lazarus/armory)
 "vik" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/barricade/metal{
 	dir = 8
 	},
@@ -18282,7 +18282,7 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "vqa" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/structure/sink{
 	pixel_y = 15
 	},
@@ -18587,7 +18587,7 @@
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "vGb" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /turf/open/floor/carpet{
 	dir = 6;
@@ -18965,7 +18965,7 @@
 /turf/open/floor/plating/mainship/striped,
 /area/mainship/groundhq/ntf/hallways/hangar)
 "was" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -19280,7 +19280,7 @@
 /turf/closed/wall,
 /area/mainship/living/grunt_rnr)
 "wtj" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/snacks/cracker,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
@@ -19580,7 +19580,7 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "wKi" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
@@ -19736,7 +19736,7 @@
 	name = "Groundside Common Squads Preparation"
 	})
 "wSm" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/bible{
 	desc = "As the legendary US Army chaplain once said, 'There are no Athiests in fancy offices'.";
 	name = "Holy Bible"
@@ -19901,7 +19901,7 @@
 	name = "Ground CEO Office"
 	})
 "xaR" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/computer/camera_advanced,
 /turf/open/floor/wood,
 /area/outpost/brig/wardens_office{
@@ -20382,7 +20382,7 @@
 	name = "HQ Central Hallways"
 	})
 "xNr" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/fancy/cigar,
 /obj/item/clothing/mask/cigarette/pipe{
 	pixel_y = 5
@@ -20616,7 +20616,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/medical/medical_science)
 "xZN" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/folder/red,
 /obj/item/folder/red,
 /obj/structure/paper_bin,

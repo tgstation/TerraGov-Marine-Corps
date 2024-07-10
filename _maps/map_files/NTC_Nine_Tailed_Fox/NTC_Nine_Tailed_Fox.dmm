@@ -160,7 +160,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "ahJ" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/emails,
 /obj/machinery/light{
 	dir = 8
@@ -169,6 +168,7 @@
 	id = "wyoffice3";
 	name = "Window Shutters"
 	},
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -780,6 +780,7 @@
 	},
 /obj/item/megaphone,
 /obj/effect/ai_node,
+/obj/item/storage/holster/belt/pistol/g22/tranq,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
@@ -1003,11 +1004,11 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/engineering/ce_room)
 "aTb" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/communications{
 	dir = 4
 	},
 /obj/item/clothing/mask/cigarette/emergency,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -1545,7 +1546,7 @@
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/hull/lower_hull)
 "brs" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey,
 /obj/item/ashtray/glass,
 /obj/effect/ai_node,
@@ -1862,7 +1863,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/living/cryo_cells)
 "bEn" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/toy/plush/rouny,
 /obj/effect/spawner/random/misc/plushie,
 /obj/item/toy/deck/kotahi,
@@ -3292,7 +3293,7 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "cNP" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/flask/barflask,
 /obj/item/reagent_containers/food/drinks/bottle/davenport,
 /obj/item/flashlight/lamp/green,
@@ -3358,6 +3359,7 @@
 "cPJ" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname,
+/obj/structure/flora/pottedplant/twentyone,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
@@ -4018,10 +4020,10 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "dBV" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/secure_data{
 	dir = 8
 	},
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
@@ -4355,9 +4357,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "dTI" = (
-/obj/structure/table/woodentable,
 /obj/structure/paper_bin,
 /obj/item/tool/pen/blue,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "dTM" = (
@@ -4564,7 +4566,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/self_destruct)
 "eeM" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
@@ -5006,7 +5008,6 @@
 /turf/open/floor/grass,
 /area/mainship/living/port_garden)
 "eEx" = (
-/obj/structure/table/woodentable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -5014,6 +5015,7 @@
 	pixel_y = 10
 	},
 /obj/item/flashlight/lamp,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet{
 	dir = 6;
 	icon_state = "carpetside"
@@ -5991,7 +5993,6 @@
 	name = "Shipside Medbay"
 	})
 "fxz" = (
-/obj/structure/filingcabinet,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
@@ -6086,8 +6087,8 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "fBl" = (
-/obj/structure/table/woodentable,
 /obj/effect/ai_node,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
@@ -6213,10 +6214,10 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "fGt" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/skills{
 	dir = 4
 	},
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet{
 	icon_state = "carpetside";
 	dir = 4
@@ -6939,7 +6940,7 @@
 	name = "Security Checkpoint"
 	})
 "glW" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
@@ -7140,7 +7141,7 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/engineering/ce_room)
 "gxo" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/pizzabox/meat{
 	pixel_y = 8
 	},
@@ -8013,7 +8014,7 @@
 	name = "Ship Floor 3 Hallways"
 	})
 "hhd" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/carpet/side,
 /area/mainship/living/officer_study)
 "hht" = (
@@ -8616,7 +8617,6 @@
 	name = "Research"
 	})
 "hSU" = (
-/obj/structure/table/woodentable,
 /obj/item/clipboard,
 /obj/item/tool/lighter/zippo,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
@@ -8628,6 +8628,7 @@
 /obj/item/taperecorder,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet{
 	dir = 1;
 	icon_state = "carpetside"
@@ -8938,7 +8939,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engine_core)
 "ifv" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/clipboard{
 	pixel_x = 5
 	},
@@ -9484,7 +9485,7 @@
 	name = "Shipside Medbay"
 	})
 "iGg" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/paper,
 /obj/item/tool/pen,
 /turf/open/floor/wood,
@@ -9768,8 +9769,8 @@
 	name = "Kitchen"
 	})
 "iTR" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/camera_advanced,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
@@ -10194,11 +10195,11 @@
 	},
 /area/mainship/squads/general)
 "jow" = (
-/obj/structure/table/woodentable,
 /obj/item/storage/fancy/cigarettes/dromedaryco,
 /obj/item/ashtray/bronze,
 /obj/item/tool/lighter/zippo,
 /obj/machinery/door_control/mainship/corporate,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "jpw" = (
@@ -10382,7 +10383,7 @@
 	},
 /area/mainship/squads/general)
 "jAQ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/fancy/cigar,
 /obj/item/reagent_containers/food/drinks/bottle/whiskey{
 	pixel_x = 8
@@ -10619,7 +10620,6 @@
 	outside = 1
 	})
 "jKo" = (
-/obj/structure/table/woodentable,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -10628,6 +10628,7 @@
 	id = "wyoffice2";
 	name = "Window Shutters"
 	},
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet{
 	dir = 9;
 	icon_state = "carpetside"
@@ -11853,7 +11854,7 @@
 	outside = 0
 	})
 "kND" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/chapel/office)
 "kNL" = (
@@ -12505,11 +12506,11 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "lmi" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/camera_advanced,
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -12670,10 +12671,10 @@
 	outside = 0
 	})
 "ltG" = (
-/obj/structure/flora/pottedplant/twentyone,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/filingcabinet,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
@@ -12999,7 +13000,6 @@
 /obj/machinery/computer/security/telescreen{
 	pixel_y = 10
 	},
-/obj/structure/table/woodentable,
 /obj/item/spacecash/bundle{
 	worth = 5000000;
 	desc = "They are worth 5000000 dollars.";
@@ -13009,6 +13009,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/spacedrugs,
 /obj/item/reagent_containers/hypospray/autoinjector/spacedrugs,
 /obj/item/reagent_containers/hypospray/autoinjector/spacedrugs,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -13213,7 +13214,7 @@
 	outside = 0
 	})
 "lPe" = (
-/obj/structure/mineral_door/wood,
+/obj/structure/door/mineral_door/wood,
 /turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -13225,7 +13226,7 @@
 	name = "Shipside Medbay"
 	})
 "lPQ" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
 /obj/item/reagent_containers/food/drinks/bottle/bluecuracao,
 /obj/item/reagent_containers/food/drinks/bottle/absinthe,
@@ -13868,7 +13869,7 @@
 /area/mainship/command/self_destruct)
 "msc" = (
 /obj/item/toy/deck/kotahi,
-/obj/structure/table/gamblingtable,
+/obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "msB" = (
@@ -13958,13 +13959,13 @@
 	},
 /area/mainship/command/self_destruct)
 "mwN" = (
-/obj/structure/table/woodentable,
 /obj/item/flashlight/lamp,
 /obj/item/assembly/prox_sensor,
 /obj/item/assembly/prox_sensor,
 /obj/item/tool/lighter/zippo,
 /obj/item/ammo_magazine/packet/mateba,
 /obj/item/ammo_magazine/packet/mateba,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet{
 	dir = 6;
 	icon_state = "carpetside"
@@ -15144,9 +15145,9 @@
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
 "nMR" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/skills,
 /obj/machinery/door_control/mainship/corporate,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "nNl" = (
@@ -15762,7 +15763,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/hallways/workerprep)
 "omb" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/deck,
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
@@ -16363,7 +16364,7 @@
 /turf/closed/wall/mainship/outer,
 /area/mainship/hull/upper_hull)
 "oKd" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/flashlight/lamp,
 /obj/machinery/light{
 	dir = 1
@@ -16454,10 +16455,10 @@
 /turf/open/floor/mainship/floor,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
 "oRf" = (
-/obj/structure/table/woodentable,
 /obj/item/camera_film,
 /obj/item/camera,
 /obj/machinery/computer/marine_card,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "oSa" = (
@@ -16488,7 +16489,6 @@
 	name = "Research"
 	})
 "oSX" = (
-/obj/structure/table/woodentable,
 /obj/machinery/computer/marine_card{
 	dir = 4
 	},
@@ -16498,6 +16498,7 @@
 	pixel_y = 10;
 	pixel_x = -5
 	},
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -17076,7 +17077,7 @@
 	name = "Kitchen"
 	})
 "pAd" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/donut_box,
 /turf/open/floor/carpet,
 /area/mainship/living/officer_study)
@@ -18101,7 +18102,7 @@
 /turf/open/floor/prison/kitchen,
 /area/mainship/living/officer_study)
 "qAC" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
 "qAM" = (
@@ -18969,7 +18970,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "rqS" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/camera,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
@@ -19209,7 +19210,7 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "rCo" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/table_lighting,
 /turf/open/floor/wood,
 /area/mainship/living/tankerbunks)
@@ -19759,13 +19760,13 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/on/layer1{
 	dir = 8
 	},
-/obj/structure/table/woodentable,
 /obj/item/reagent_containers/food/drinks/coffee/cafe_latte,
 /obj/item/supplytablet{
 	home_id = "supply_hq"
 	},
 /obj/item/pizzabox/meat,
 /obj/effect/ai_node,
+/obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/sulaco/liaison/quarters{
 	outside = 0;
@@ -20528,7 +20529,7 @@
 	outside = 0
 	})
 "sQc" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -25352,7 +25353,7 @@
 	},
 /area/mainship/squads/general)
 "xsu" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/storage/bible,
 /turf/open/floor/wood,
 /area/mainship/living/chapel)
@@ -26066,7 +26067,7 @@
 	name = "Shipside Corpsec Office"
 	})
 "yaT" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/folder/red,
 /obj/item/folder/red,
 /obj/structure/paper_bin,
@@ -26257,13 +26258,13 @@
 	name = "Shipside Medbay"
 	})
 "yme" = (
-/obj/structure/table/woodentable,
 /obj/item/portable_vendor/corporate{
 	req_role = /datum/job/terragov/command/ceo;
 	req_access = list(202);
 	max_points = 100;
 	points = 10000
 	},
+/obj/structure/table/wood/fancy,
 /turf/open/floor/carpet{
 	dir = 5;
 	icon_state = "carpetside"

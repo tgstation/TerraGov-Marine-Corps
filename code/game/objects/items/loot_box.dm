@@ -572,7 +572,7 @@
 	else
 		new /obj/item/bodybag/tarp(src)
 	new /obj/item/storage/box/stuns(src)
-	new /obj/item/weapon/gun/pistol/g22/tranq(src)
+	new /obj/item/storage/holster/belt/pistol/g22/tranq(src)
 	new /obj/item/ammo_magazine/pistol/g22tranq(src)
 	new /obj/item/ammo_magazine/pistol/g22tranq(src)
 	new /obj/item/ammo_magazine/pistol/g22tranq(src)
