@@ -246,13 +246,13 @@
 
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus
 	name = "peridaxon Plus autoinjector"
-	desc = "An auto-injector loaded with 2 doses of Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Comes with built in Anti-Toxin Medication. !DO NOT USE IN ACTIVE COMBAT!"
+	desc = "An auto-injector loaded with 3 doses of Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Comes with built in Anti-Toxin Medication. !DO NOT USE IN ACTIVE COMBAT!"
 	icon_state = "VioWhite"
-	amount_per_transfer_from_this = 12
-	volume = 24
+	amount_per_transfer_from_this = 3
+	volume = 9
 	list_reagents = list(
-		/datum/reagent/medicine/peridaxon_plus = 2,
-		/datum/reagent/medicine/dylovene = 22,
+		/datum/reagent/medicine/peridaxon_plus = 3,
+		/datum/reagent/medicine/hyrolin = 6,
 	)
 	description_overlay = "Pe+"
 
