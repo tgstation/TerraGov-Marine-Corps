@@ -108,3 +108,38 @@
   - rscadd: 'Campaign: Marines 3rd tank spawn comes with LTAAP'
   blackdav123:
   - rscadd: 'Added :trol: emoji'
+2024-07-10:
+  Ldip999:
+  - qol: Supply beacons on the maps now have a brown background and a red flashing
+      tip, hopefully making them easier to see.
+  - qol: Kitting is now recorded for round end personal stats
+  - qol: Isotonic autoinjector now has a tag
+  - rscadd: Reward for healing in campaign
+  - rscadd: Reward for repairing in campaign
+  - rscadd: Reward for blowing up tanks
+  - bugfix: fixed supply bluescreening
+  - qol: Taken over SSD mobs will now load your active character slot if possible
+  - bugfix: Ordering req console now the proper width
+  - balance: Corpsman can now suture without fumbling
+  - code_imp: Dynamic surgery skill requirements
+  Lumipharon:
+  - bugfix: fixed afterimage opacity for real
+  - balance: Tanks are worth 30 points in Combined Arms instead of 10
+  - balance: Combat Patrol mission's point goal is reduced from 400 to 375
+  - bugfix: fixed tanks ramming mechs for triple damage
+  - bugfix: fixed some inconsistancies with vehicle ramming
+  - balance: C4 is immune to all explosions below devastate.
+  - balance: Mecha heavy cannon no longer pierces mechs or tanks
+  - bugfix: fixed being unable to directly load a tank weapon that required external
+      loading
+  - bugfix: Riding a tank across z-levels will no longer curse you to death
+  - bugfix: fixed a broken sprite for empty cannister shot
+  Wisemonster:
+  - rscadd: Added a keybind for canceling behemoth's landslide charge
+  Xander3359:
+  - balance: Xenos no longer need evo points to evolve in prep phase
+  blackdav123:
+  - bugfix: Tad windows can now all be slashed.
+  jonash07:
+  - bugfix: fixed the technician backpack's sprite
+  - bugfix: fixed the reagent scanner's sprite

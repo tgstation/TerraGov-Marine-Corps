@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed tanks ramming mechs for triple damage"
-  - bugfix: "fixed some inconsistancies with vehicle ramming"

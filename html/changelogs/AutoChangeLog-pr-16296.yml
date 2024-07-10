@@ -1,6 +1,0 @@
-author: "Ldip999"
-delete-after: True
-changes:
-  - rscadd: "Reward for healing in campaign"
-  - rscadd: "Reward for repairing in campaign"
-  - rscadd: "Reward for blowing up tanks"

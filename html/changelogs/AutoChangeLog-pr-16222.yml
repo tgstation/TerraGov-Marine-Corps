@@ -1,5 +1,0 @@
-author: "Ldip999"
-delete-after: True
-changes:
-  - balance: "Corpsman can now suture without fumbling"
-  - code_imp: "Dynamic surgery skill requirements"
