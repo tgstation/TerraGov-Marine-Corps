@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Campaign: Some missions with mechs now scale number of mechs and tanks with player pop"
