@@ -486,7 +486,7 @@
 	amount_per_transfer_from_this = 3
 	list_reagents = list(
 		/datum/reagent/medicine/peridaxon_plus = 20,
-		/datum/reagent/medicine/hyrolin = 40,
+		/datum/reagent/medicine/hyronalin = 40,
 	)
 	description_overlay = "Pe+"
 
