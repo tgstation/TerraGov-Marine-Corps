@@ -482,11 +482,11 @@
 
 /obj/item/reagent_containers/hypospray/advanced/peridaxonplus
 	name = "Peridaxon+ hypospray"
-	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Comes with built in Anti-Toxin. !DO NOT USE IN ACTIVE COMBAT!"
-	amount_per_transfer_from_this = 12
+	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Administer with Anti-Toxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 3
 	list_reagents = list(
-		/datum/reagent/medicine/peridaxon_plus = 5,
-		/datum/reagent/medicine/dylovene = 55,
+		/datum/reagent/medicine/peridaxon_plus = 20,
+		/datum/reagent/medicine/hyrolin = 40,
 	)
 	description_overlay = "Pe+"
 
