@@ -83,7 +83,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/sentinel/retrograde
 	upgrade_name = ""
 	caste_name = "Retrograde Sentinel"
-	display_name = "Retrograde Sentinel"
+	display_name = "Sentinel"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A weak ranged combat alien. This one seems to have a different kind of spit."
 
