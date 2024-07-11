@@ -63,9 +63,8 @@
 	if(new_mob.stat == DEAD)
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
 		return FALSE
-	switch(tgui_alert(owner, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD mob", list("Yes", "No",)))
-		if("No")
-			return
+	if(tgui_alert(owner, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD mob", list("Yes", "No",)) != "Yes")
+		return
 	if(isxeno(new_mob))
 		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
 		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(owner))
@@ -100,7 +99,10 @@
 	log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
 	new_mob.transfer_mob(owner)
 	var/mob/living/carbon/human/H = new_mob
+	var/datum/job/j = H.job
+	var/datum/outfit/job/o = j.outfit
 	H.on_transformation()
+	o.handle_id(H)
 
 //respawn button for campaign gamemode
 /datum/action/observer_action/campaign_respawn
