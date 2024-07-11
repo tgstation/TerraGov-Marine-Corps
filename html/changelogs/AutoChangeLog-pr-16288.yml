@@ -1,5 +1,0 @@
-author: "Fallouttec"
-delete-after: True
-changes:
-  - qol: "changed the names of factory refills, they all now have either a unique name or an added suffix to denote which factory item this refill produces."
-  - qol: "descriptions of all factory refills now also mention which item these will produce once completed."
