@@ -143,3 +143,23 @@
   jonash07:
   - bugfix: fixed the technician backpack's sprite
   - bugfix: fixed the reagent scanner's sprite
+2024-07-11:
+  Arturlang:
+  - rscadd: You can now right click full sandbags to empty them,
+  Fallouttec:
+  - qol: changed the names of factory refills, they all now have either a unique name
+      or an added suffix to denote which factory item this refill produces.
+  - qol: descriptions of all factory refills now also mention which item these will
+      produce once completed.
+  Helg2:
+  - admin: server verbs now use tgui alerts and inputs instead of byond ones.
+  Lumipharon:
+  - rscadd: 'Campaign: added some implants to the mission reward tables'
+  - bugfix: 'Campaign: fixed a couple of mapping issues on the Rocinante base map'
+  - balance: 'Campaign: Some missions with mechs now scale number of mechs and tanks
+      with player pop'
+  - code_imp: Fixed a missing mapper icon for deploy points
+  Notamaniac:
+  - bugfix: Baneling acid icon now shows correctly
+  WinterDarkraven:
+  - spellcheck: X-fuel backpacks are renamed from "Type X back fuel tank" in req
