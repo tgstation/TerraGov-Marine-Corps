@@ -362,7 +362,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
 	var/turf/T = get_turf(boiler_owner) //Where the boiler is.
 	var/smoke_range = 2 //How far the smoke sets.
-	var/added_bombard_delay = boiler_owner.xeno_caste.bomb_delay + 10 SECONDS - ((boiler_owner.neuro_ammo + boiler_owner.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS)) //The cooldown of Bombard that is added when this ability is used. It is the calculation of Bombard cooldown + 10 seconds.
+	var/added_bombard_delay = boiler_owner.xeno_caste.bomb_delay + 8.5 SECONDS - ((boiler_owner.neuro_ammo + boiler_owner.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS)) //The cooldown of Bombard that is added when this ability is used. It is the calculation of Bombard cooldown + 10 seconds.
 
 	if(istype(boiler_owner.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		emitted_gas = new /datum/effect_system/smoke_spread/xeno/acid/opaque(boiler_owner)
