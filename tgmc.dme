@@ -391,7 +391,7 @@
 #include "code\datums\personal_statistics.dm"
 #include "code\datums\progressbar.dm"
 #include "code\datums\quick_load_beginners.dm"
-#include "code\datums\quick_load_civilwar.dm"
+#include "code\datums\quick_load_civil_war.dm"
 #include "code\datums\quick_load_outfits.dm"
 #include "code\datums\quick_load_robots.dm"
 #include "code\datums\recipe.dm"
