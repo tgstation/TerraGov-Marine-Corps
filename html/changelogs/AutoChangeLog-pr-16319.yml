@@ -1,7 +1,0 @@
-author: "Ldip999"
-delete-after: True
-changes:
-  - bugfix: "SSD takeover confirmation doesn't automatically assume yes"
-  - bugfix: "SSD takeover now updates your ID as well"
-  - bugfix: "SSD takeover now uses your synth name on synths"
-  - bugfix: "SSD takeover now changes your voice too"

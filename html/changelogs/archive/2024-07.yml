@@ -163,3 +163,17 @@
   - bugfix: Baneling acid icon now shows correctly
   WinterDarkraven:
   - spellcheck: X-fuel backpacks are renamed from "Type X back fuel tank" in req
+2024-07-12:
+  Cheese:
+  - qol: Boilers, queens, and bulls can now use their long range vision while resting.
+  Joe13413:
+  - balance: removed nutriment from zoom pills
+  Ldip999:
+  - bugfix: SSD takeover confirmation doesn't automatically assume yes
+  - bugfix: SSD takeover now updates your ID as well
+  - bugfix: SSD takeover now uses your synth name on synths
+  - bugfix: SSD takeover now changes your voice too
+  Lumipharon:
+  - balance: Added a welder bag for SOM in campaign as a default back slot item
+  jonash07:
+  - bugfix: fixed the empty mortar bags sprite
