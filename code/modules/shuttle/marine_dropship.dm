@@ -996,7 +996,7 @@
 
 /obj/structure/dropship_piece/glassone/tadpole
 	icon_state = "shuttle_glass1"
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	allow_pass_flags = PASS_GLASS
 
@@ -1007,7 +1007,7 @@
 /obj/structure/dropship_piece/glasstwo/tadpole
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_glass2"
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	allow_pass_flags = PASS_GLASS
 
@@ -1015,7 +1015,7 @@
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_single_window"
 	allow_pass_flags = PASS_GLASS
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 
 /obj/structure/dropship_piece/tadpole/cockpit

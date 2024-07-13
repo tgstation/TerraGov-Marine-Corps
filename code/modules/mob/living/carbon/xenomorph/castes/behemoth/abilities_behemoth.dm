@@ -236,6 +236,7 @@
 	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LANDSLIDE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CANCEL_LANDSLIDE,
 	)
 	/// Whether this ability is currently active or not.
 	var/ability_active = FALSE
@@ -243,6 +244,10 @@
 	var/current_charges = 1
 	/// The maximum amount of charges we can have.
 	var/maximum_charges = 1
+
+/datum/action/ability/activable/xeno/landslide/alternate_action_activate()
+	if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
+		INVOKE_ASYNC(src, PROC_REF(use_ability))
 
 /datum/action/ability/activable/xeno/landslide/give_action(mob/living/L)
 	. = ..()

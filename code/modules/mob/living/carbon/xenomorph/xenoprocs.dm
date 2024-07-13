@@ -326,7 +326,7 @@
 
 
 /mob/living/carbon/xenomorph/proc/zoom_in(tileoffset = 5, viewsize = 12)
-	if(stat || resting)
+	if(stat)
 		if(xeno_flags & XENO_ZOOMED)
 			zoom_out()
 			return
