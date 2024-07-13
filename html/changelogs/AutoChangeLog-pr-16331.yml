@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Campaign: SOM medic and engineer MPI loadouts now come with a UGL"
+  - bugfix: "Campaign: SOM medics correctly receive the AP V-21 if they have the SMG perk"
+  - bugfix: "Campaign: TGMC standards get SMG mags in their pouches if they chose the SMG belt holster"
