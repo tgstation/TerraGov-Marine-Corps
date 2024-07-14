@@ -204,3 +204,8 @@ GLOBAL_LIST_INIT(food_buffs, list(
 		/datum/status_effect/food/haste = 1,
 	),
 ))
+
+
+///Food trash flags
+#define FOOD_TRASH_POPABLE (1<<0)
+#define FOOD_TRASH_OPENABLE (1<<1)

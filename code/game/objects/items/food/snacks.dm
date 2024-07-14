@@ -18,43 +18,6 @@
 	w_class = WEIGHT_CLASS_TINY
 	crafting_complexity = FOOD_COMPLEXITY_2
 
-/obj/item/food/candy/bronx
-	name = "\improper South Bronx Paradise bar"
-	desc = "Lose weight, guaranteed! Caramel Mocha Flavor. Something about product consumption..."
-	icon_state = "bronx"
-	inhand_icon_state = "candy"
-	trash_type = /obj/item/trash/candy
-	food_reagents = list(
-		/datum/reagent/consumable/nutriment = 4,
-		/datum/reagent/consumable/sugar = 2,
-		/datum/reagent/yuck = 1,
-	)
-	junkiness = 10
-	bite_consumption = 10
-	tastes = list("candy" = 5, "weight loss" = 4, "insect larva" = 1)
-	foodtypes = JUNKFOOD | RAW | BUGS
-	custom_price = 80
-	w_class = WEIGHT_CLASS_TINY
-	var/revelation = FALSE
-
-/obj/item/food/candy/bronx/make_edible()
-	. = ..()
-	AddComponent(/datum/component/edible, on_consume = CALLBACK(src, PROC_REF(on_consume)))
-
-/obj/item/food/candy/bronx/proc/on_consume(mob/living/eater)
-	if(ishuman(eater))
-		var/mob/living/carbon/human/carl = eater
-		var/datum/disease/disease = new /datum/disease/parasite()
-		carl.ForceContractDisease(disease, make_copy = FALSE, del_on_fail = TRUE)
-
-/obj/item/food/candy/bronx/examine(mob/user)
-	. = ..()
-	if(!revelation && !isobserver(user))
-		. += span_notice("Geeze, you need to get to get your eyes checked. You should look again...")
-
-		name = "\improper South Bronx Parasite bar"
-		desc = "Lose weight, guaranteed! Caramel Mocha Flavor! WARNING: PRODUCT NOT FIT FOR HUMAN CONSUMPTION. CONTAINS LIVE DIAMPHIDIA SPECIMENS."
-		revelation = TRUE
 
 /obj/item/food/sosjerky
 	name = "\improper Scaredy's Private Reserve Beef Jerky"
@@ -129,7 +92,6 @@
 	tastes = list("dried raisins" = 1)
 	foodtypes = JUNKFOOD | FRUIT | SUGAR
 	food_flags = FOOD_FINGER_FOOD
-	custom_price = PAYCHECK_CREW * 0.7
 	w_class = WEIGHT_CLASS_SMALL
 	crafting_complexity = FOOD_COMPLEXITY_1
 
@@ -152,7 +114,6 @@
 	junkiness = 25
 	foodtypes = JUNKFOOD | GRAIN | SUGAR
 	food_flags = FOOD_FINGER_FOOD
-	custom_price = PAYCHECK_LOWER
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/food/candy_trash
@@ -162,7 +123,6 @@
 	desc = "The leftover from a smoked-out candy cigarette. Can be eaten!"
 	food_reagents = list(
 		/datum/reagent/consumable/sugar = 4,
-		/datum/reagent/ash = 3,
 	)
 	junkiness = 10 //powergame trash food by buying candy cigs in bulk and eating them when they extinguish
 	foodtypes = JUNKFOOD | SUGAR
@@ -173,8 +133,6 @@
 	desc = "The leftover from a smoked-out candy cigarette. Smells like nicotine...?"
 	food_reagents = list(
 		/datum/reagent/consumable/sugar = 4,
-		/datum/reagent/ash = 3,
-		/datum/reagent/drug/nicotine = 1,
 	)
 
 /obj/item/food/cheesiehonkers
@@ -226,7 +184,6 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 2)
 	tastes = list("peanuts" = 4, "anger" = 1)
 	foodtypes = JUNKFOOD | NUTS
-	custom_price = PAYCHECK_CREW * 0.8 //nuts are expensive in real life, and this is the best food in the vendor.
 	junkiness = 10 //less junky than other options, since peanuts are a decently healthy snack option
 	w_class = WEIGHT_CLASS_SMALL
 	grind_results = list(/datum/reagent/consumable/peanut_butter = 5, /datum/reagent/consumable/nutriment/fat/oil = 2)
@@ -321,10 +278,6 @@ GLOBAL_LIST_INIT(safe_peanut_types, populate_safe_peanut_types())
 	foodtypes = JUNKFOOD
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/cnds/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is letting [src] melt in [user.p_their()] hand! It looks like [user.p_theyre()] trying to commit suicide!"))
-	return TOXLOSS
-
 /obj/item/food/cnds/caramel
 	name = "caramel C&Ds"
 	desc = "Stuffed with sugary sweet caramel, making them a diabetic's worst nightmare."
@@ -393,7 +346,6 @@ GLOBAL_LIST_INIT(safe_peanut_types, populate_safe_peanut_types())
 	) //a healthy but expensive snack
 	tastes = list("pistachios" = 4, "subtle sweetness" = 1)
 	foodtypes = JUNKFOOD | NUTS
-	custom_price = PAYCHECK_CREW//pistachios are even more expensive.
 	junkiness = 10 //on par with peanuts
 	w_class = WEIGHT_CLASS_SMALL
 	grind_results = list(/datum/reagent/consumable/peanut_butter = 5, /datum/reagent/consumable/nutriment/fat/oil = 2)
@@ -409,7 +361,6 @@ GLOBAL_LIST_INIT(safe_peanut_types, populate_safe_peanut_types())
 	) //1 cornoil is equal to 1.33 nutriment
 	tastes = list("sunflowers" = 5)
 	foodtypes = JUNKFOOD | NUTS
-	custom_price = PAYCHECK_LOWER * 0.4 //sunflowers are cheap in real life.
 	bite_consumption = 1
 	junkiness = 25
 	w_class = WEIGHT_CLASS_SMALL
@@ -440,7 +391,6 @@ GLOBAL_LIST_INIT(safe_peanut_types, populate_safe_peanut_types())
 		/datum/reagent/consumable/salt = 3,
 	)
 	junkiness = 20
-	custom_price = PAYCHECK_LOWER * 0.8  //we are filled to the brim with flavor
 	tastes = list("fried corn" = 1)
 	foodtypes = JUNKFOOD | FRIED
 	w_class = WEIGHT_CLASS_SMALL
@@ -609,61 +559,6 @@ GLOBAL_LIST_INIT(safe_peanut_types, populate_safe_peanut_types())
 
 /obj/item/food/sticko/random/Initialize(mapload)
 	var/random_flavour = pick(subtypesof(/obj/item/food/sticko) - /obj/item/food/sticko/random)
-	var/obj/item/food/sample = new random_flavour(loc)
-	name = sample.name
-	desc = sample.desc
-	food_reagents = sample.food_reagents
-	tastes = sample.tastes
-
-	qdel(sample)
-
-	. = ..()
-
-/obj/item/food/shok_roks
-	name = "\improper Shok-Roks - Stormcloud Candy flavour"
-	desc = "You've heard of Snap-Roks, now get ready for Shok-Roks: the popping candy for Ethereals! Available in 5 exciting flavours, of which this bag contains Stormcloud Candy- like cotton candy, but electric!"
-	icon_state = "shok_roks_candy"
-	trash_type = /obj/item/trash/shok_roks
-	food_reagents = list(
-		/datum/reagent/consumable/liquidelectricity/enriched = 2,
-		/datum/reagent/consumable/sugar = 3
-	)
-	tastes = list("sugar" = 1, "lightning" = 1)
-
-/obj/item/food/shok_roks/citrus
-	name = "\improper Shok-Roks - Cirrus Citrus flavour"
-	desc = "You've heard of Snap-Roks, now get ready for Shok-Roks: the popping candy for Ethereals! Available in 5 exciting flavours, of which this bag contains Cirrus Citrus- all the citrus flavour, none of the real citrus extract."
-	icon_state = "shok_roks_citrus"
-	trash_type = /obj/item/trash/shok_roks/citrus
-	tastes = list("citrus" = 1, "lightning" = 1)
-
-/obj/item/food/shok_roks/berry
-	name = "\improper Shok-Roks - Berry Storm flavour"
-	desc = "You've heard of Snap-Roks, now get ready for Shok-Roks: the popping candy for Ethereals! Available in 5 exciting flavours, of which this bag contains Berry Storm- filled with non-descript sour berry flavour!"
-	icon_state = "shok_roks_berry"
-	trash_type = /obj/item/trash/shok_roks/berry
-	tastes = list("sour berry" = 1, "lightning" = 1)
-
-/obj/item/food/shok_roks/tropical
-	name = "\improper Shok-Roks - Tropical Thunder flavour"
-	desc = "You've heard of Snap-Roks, now get ready for Shok-Roks: the popping candy for Ethereals! Available in 5 exciting flavours, of which this bag contains Tropical Thunder- all the tropical fruits! ALL OF THEM!"
-	icon_state = "shok_roks_tropical"
-	trash_type = /obj/item/trash/shok_roks/tropical
-	tastes = list("tropical fruits" = 1, "lightning" = 1)
-
-/obj/item/food/shok_roks/lanternfruit
-	name = "\improper Shok-Roks - Lightning Lanternfruit flavour"
-	desc = "You've heard of Snap-Roks, now get ready for Shok-Roks: the popping candy for Ethereals! Available in 5 exciting flavours, of which this bag contains Lightning Lanternfruit- the only Sprout-native fruit in any Shok-Rok flavour."
-	icon_state = "shok_roks_lanternfruit"
-	trash_type = /obj/item/trash/shok_roks/lanternfruit
-	tastes = list("sour pear" = 1, "lightning" = 1)
-
-/obj/item/food/shok_roks/random
-	name = "\improper Shok-Roks - Hidden Hurricane flavour"
-	desc = "You've heard of Snap-Roks, now get ready for Shok-Roks: the popping candy for Ethereals! Available in 5 exciting flavours, any of which could be in this bag!"
-
-/obj/item/food/shok_roks/random/Initialize(mapload)
-	var/random_flavour = pick(subtypesof(/obj/item/food/shok_roks) - /obj/item/food/shok_roks/random)
 	var/obj/item/food/sample = new random_flavour(loc)
 	name = sample.name
 	desc = sample.desc

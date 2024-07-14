@@ -3,7 +3,6 @@
 /// but bear in mind it will(should) have other reagents along side it.
 /datum/reagent/consumable/nutriment/soup
 	name = "Soup"
-	chemical_flags = NONE
 	nutriment_factor = 12 // Slightly less to that of nutriment as soups will come with nutriments in tow
 	burning_temperature = 520
 	default_container = /obj/item/reagent_containers/cup/bowl

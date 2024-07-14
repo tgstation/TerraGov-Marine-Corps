@@ -366,3 +366,7 @@
 		return MONKEY_HEIGHT_MEDIUM
 
 	return mob_height
+
+
+/mob/living/carbon/human/proc/get_organ_slot(var/string)
+	return internal_organs_by_name["heart"]

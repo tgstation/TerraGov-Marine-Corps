@@ -63,7 +63,8 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 	var/medbayblacklist = FALSE
 	///If true allow foam and smoke to transfer reagent into dead mobs
 	var/reactindeadmob = TRUE
-
+	///how this taste compares to others. Higher values means it is more noticable
+	var/taste_mult = 1
 	///The default reagent container for the reagent, used for icon generation
 	var/obj/item/reagent_containers/default_container = /obj/item/reagent_containers/cup/bottle
 
@@ -196,3 +197,32 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 		if(is_type_in_typecache(R, purge_list))
 			count--
 			L.reagents.remove_reagent(R.type,purge_rate)
+
+
+///Called when a mob is exposed to the reagent
+/datum/reagent/proc/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume, show_message = TRUE, touch_protection = 0)
+	SHOULD_CALL_PARENT(TRUE)
+
+	. = SEND_SIGNAL(src, COMSIG_REAGENT_EXPOSE_MOB, exposed_mob, methods, reac_volume, show_message, touch_protection)
+	reaction_mob(exposed_mob, methods, reac_volume, show_message, touch_protection)
+
+///Called when an object is exposed to a reagent
+/datum/reagent/proc/expose_obj(obj/exposed_obj, reac_volume)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return SEND_SIGNAL(src, COMSIG_REAGENT_EXPOSE_OBJ, exposed_obj, reac_volume)
+
+///Called when a turf is exposed to a reagent
+/datum/reagent/proc/expose_turf(turf/exposed_turf, reac_volume)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return SEND_SIGNAL(src, COMSIG_REAGENT_EXPOSE_TURF, exposed_turf, reac_volume)
+
+
+/**
+ * Called when this chemical is processed in a hydroponics tray.
+ *
+ * Can affect plant's health, stats, or cause the plant to react in certain ways.
+ */
+/datum/reagent/proc/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
+	return

@@ -593,7 +593,7 @@
 			Shake(duration = 1 SECONDS)
 
 	cycles--
-	use_energy(active_power_usage)
+	use_power(active_power_usage)
 	addtimer(CALLBACK(src, PROC_REF(cook_loop), type, cycles, wait, cooker), wait)
 
 /obj/machinery/microwave/proc/remove_smoke()
@@ -752,7 +752,7 @@
 	if(cell_powered && !cell.use(charge_rate))
 		charge_loop_finish(cooker)
 
-	use_energy(charge_rate * (0.5 - efficiency * 0.12)) //Some of the power gets lost as heat.
+	use_power(charge_rate * (0.5 - efficiency * 0.12)) //Some of the power gets lost as heat.
 	charge_cell(charge_rate * (0.5 + efficiency * 0.12), vampire_cell) //Cell gets charged, which further uses power.
 
 

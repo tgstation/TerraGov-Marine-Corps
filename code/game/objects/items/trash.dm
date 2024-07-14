@@ -369,3 +369,58 @@
 	icon_state = "coffeecuppajoelidstack"
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 1
+
+/obj/item/trash/energybar
+	name = "energybar wrapper"
+	icon_state = "energybar"
+
+/obj/item/trash/peanuts
+	name = "\improper Gallery peanuts packet"
+	desc = "This thread is trash!"
+	icon_state = "peanuts"
+
+/obj/item/trash/cnds
+	name = "\improper C&Ds packet"
+	icon_state = "cnds"
+
+
+/obj/item/trash/semki/healthy
+	name = "nibbled sunflower seeds"
+	icon_state = "sunseeds"
+
+/obj/item/trash/boritos
+	name = "boritos bag"
+	icon_state = "boritos"
+
+/obj/item/trash/boritos/green
+	icon_state = "boritosgreen"
+
+/obj/item/trash/boritos/red
+	icon_state = "boritosred"
+
+/obj/item/trash/boritos/purple
+	icon_state = "boritospurple"
+
+/obj/item/trash/hot_shots
+	name = "\improper Hot Shots box"
+	icon_state = "hot_shots"
+
+/obj/item/trash/sticko
+	name = "\improper Sticko box"
+	icon_state = "sticko"
+
+/obj/item/trash/sticko/matcha
+	icon_state = "sticko_matcha"
+
+/obj/item/trash/sticko/nutty
+	icon_state = "sticko_nutty"
+
+/obj/item/trash/sticko/pineapple
+	icon_state = "sticko_pineapple"
+
+/obj/item/trash/sticko/yuyake
+	icon_state = "sticko_yuyake"
+
+/obj/item/trash/shrimp_chips
+	name = "shrimp chips"
+	icon_state = "shrimp_chips"

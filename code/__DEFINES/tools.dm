@@ -10,9 +10,10 @@
 #define TOOL_MINING "mining"
 #define TOOL_SHOVEL "shovel"
 #define TOOL_FULTON "fulton"
-
+#define TOOL_ROLLINGPIN "rolling pin"
 #define TOOL_KNIFE "knife"
-
+#define TOOL_SCALPEL "scalpel"
+#define TOOL_SAW "saw"
 // If delay between the start and the end of tool operation is less than MIN_TOOL_SOUND_DELAY,
 // tool sound is only played when op is started. If not, it's played twice.
 #define MIN_TOOL_SOUND_DELAY 20
@@ -45,6 +46,12 @@
 			return "strap"	//I guess?
 		if(TOOL_KNIFE)
 			return "slice"
+		if(TOOL_ROLLINGPIN)
+			return "flatten"
+		if(TOOL_SCALPEL)
+			return "incisize"
+		if(TOOL_SAW)
+			return "saw"
 	return "[tool_type] does not exist!!!"
 
 /// Return when an item interaction is successful.

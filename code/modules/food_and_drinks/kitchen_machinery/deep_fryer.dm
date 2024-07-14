@@ -153,7 +153,7 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 				asomnia_hadders += smeller
 		visible_message(span_warning("[src] emits an acrid smell!"), ignored_mobs = asomnia_hadders)
 
-	use_energy(active_power_usage)
+	use_power(active_power_usage)
 
 /obj/machinery/deepfryer/Exited(atom/movable/gone, direction)
 	. = ..()

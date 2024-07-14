@@ -682,4 +682,25 @@
 	resistance_flags = XENO_DAMAGEABLE
 	max_integrity = 80
 
+/**
+ * Adjust Pests.
+ * Raises the tray's pest level stat by a given amount.
+ * * adjustamt - Determines how much the pest level will be adjusted upwards or downwards.
+ */
+/obj/machinery/hydroponics/proc/adjust_pestlevel(amt)
+	pestlevel = (clamp(pestlevel + amt, 0, 10), FALSE)
+
+
+/**
+ * Adjust Weeds.
+ * Raises the plant's weed level stat by a given amount.
+ * * adjustamt - Determines how much the weed level will be adjusted upwards or downwards.
+ */
+/obj/machinery/hydroponics/proc/adjust_weedlevel (amt)
+	weedlevel = (clamp(weedlevel + amt, 0, 10), FALSE)
+
+
+/obj/machinery/hydroponics/proc/adjust_plant_health(amt)
+	health = (clamp(plant_health + amt, 0, myseed?.endurance), FALSE)
+
 #undef HYDRO_SPEED_MULTIPLIER

@@ -1020,3 +1020,7 @@ below 100 is not dizzy
 		return
 
 	adjust_timed_status_effect(duration * 1 SECONDS, impediments[chosen])
+
+///Callback proc to tone down spam from multiple sizzling frying oil dipping.
+/mob/living/proc/unfry_mob()
+	REMOVE_TRAIT(src, TRAIT_OIL_FRIED, "cooking_oil_react")

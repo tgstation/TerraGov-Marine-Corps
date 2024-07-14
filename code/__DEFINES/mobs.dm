@@ -993,3 +993,10 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 ///Pixel_y offset when lying down
 #define CARBON_LYING_Y_OFFSET -6
+/// By defining the effect multiplier this way, it'll exactly adjust all effects according to how they originally were with the 0.4 metabolism
+#define REAGENTS_EFFECT_MULTIPLIER (REAGENTS_METABOLISM / 0.4)
+/// Shorthand for the above define for ease of use in equations and the like
+#define REM REAGENTS_EFFECT_MULTIPLIER
+
+/// How much nutrition eating clothes as moth gives and drains
+#define CLOTHING_NUTRITION_GAIN 15
