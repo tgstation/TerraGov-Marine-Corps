@@ -1,4 +1,0 @@
-author: "Cheese"
-delete-after: True
-changes:
-  - rscadd: "The amount of items runners steal is now tracked."
