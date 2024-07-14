@@ -11,6 +11,7 @@
 #define TOOL_SHOVEL "shovel"
 #define TOOL_FULTON "fulton"
 
+#define TOOL_KNIFE "knife"
 
 // If delay between the start and the end of tool operation is less than MIN_TOOL_SOUND_DELAY,
 // tool sound is only played when op is started. If not, it's played twice.
@@ -42,6 +43,8 @@
 			return "dig"
 		if(TOOL_FULTON)
 			return "strap"	//I guess?
+		if(TOOL_KNIFE)
+			return "slice"
 	return "[tool_type] does not exist!!!"
 
 /// Return when an item interaction is successful.
