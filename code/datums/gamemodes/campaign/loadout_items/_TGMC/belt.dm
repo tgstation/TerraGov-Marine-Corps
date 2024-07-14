@@ -68,6 +68,7 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. \
 	This version is designed for the SMG-25, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	ui_icon = "m25"
+	req_desc = "Requires an SMG-25, MG-27 or FL-84."
 	item_typepath = /obj/item/storage/holster/m25
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(
@@ -78,6 +79,17 @@
 
 /datum/loadout_item/belt/smg_holster/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m25/holstered(wearer), SLOT_IN_HOLSTER)
+	var/ammo_type = /obj/item/ammo_magazine/smg/m25
+	if(istype(wearer.r_store, /obj/item/storage/pouch/magazine))
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+	if(wearer.skills.getRating(SKILL_SMGS) >= SKILL_SMGS_TRAINED)
+		ammo_type = /obj/item/ammo_magazine/smg/m25/ap
+	if(istype(wearer.l_store, /obj/item/storage/pouch/magazine))
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/belt/machete
 	name = "Machete"

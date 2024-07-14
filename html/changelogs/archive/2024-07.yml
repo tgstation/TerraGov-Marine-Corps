@@ -143,3 +143,55 @@
   jonash07:
   - bugfix: fixed the technician backpack's sprite
   - bugfix: fixed the reagent scanner's sprite
+2024-07-11:
+  Arturlang:
+  - rscadd: You can now right click full sandbags to empty them,
+  Fallouttec:
+  - qol: changed the names of factory refills, they all now have either a unique name
+      or an added suffix to denote which factory item this refill produces.
+  - qol: descriptions of all factory refills now also mention which item these will
+      produce once completed.
+  Helg2:
+  - admin: server verbs now use tgui alerts and inputs instead of byond ones.
+  Lumipharon:
+  - rscadd: 'Campaign: added some implants to the mission reward tables'
+  - bugfix: 'Campaign: fixed a couple of mapping issues on the Rocinante base map'
+  - balance: 'Campaign: Some missions with mechs now scale number of mechs and tanks
+      with player pop'
+  - code_imp: Fixed a missing mapper icon for deploy points
+  Notamaniac:
+  - bugfix: Baneling acid icon now shows correctly
+  WinterDarkraven:
+  - spellcheck: X-fuel backpacks are renamed from "Type X back fuel tank" in req
+2024-07-12:
+  Cheese:
+  - qol: Boilers, queens, and bulls can now use their long range vision while resting.
+  Joe13413:
+  - balance: removed nutriment from zoom pills
+  Ldip999:
+  - bugfix: SSD takeover confirmation doesn't automatically assume yes
+  - bugfix: SSD takeover now updates your ID as well
+  - bugfix: SSD takeover now uses your synth name on synths
+  - bugfix: SSD takeover now changes your voice too
+  Lumipharon:
+  - balance: Added a welder bag for SOM in campaign as a default back slot item
+  jonash07:
+  - bugfix: fixed the empty mortar bags sprite
+2024-07-14:
+  Cheese:
+  - rscadd: The amount of items runners steal is now tracked.
+  Lumipharon:
+  - balance: 'Campaign: SOM medic and engineer MPI loadouts now come with a UGL'
+  - bugfix: 'Campaign: SOM medics correctly receive the AP V-21 if they have the SMG
+      perk'
+  - bugfix: 'Campaign: TGMC standards get SMG mags in their pouches if they chose
+      the SMG belt holster'
+  - bugfix: Certain random events will no longer happen in the campaign gamemode
+  Notamaniac:
+  - bugfix: Syntheised instruments should no longer be off key
+  Pariah919:
+  - balance: DMR no longer has minimum range penalties and has mildly higher penetration.
+  blackdav123:
+  - rscadd: Added redcoat and bluecoat loadouts.
+  - rscadd: Added a full martini belt.
+  - rscadd: Added civil war quick equip vendors.
