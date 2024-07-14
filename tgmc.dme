@@ -439,6 +439,7 @@
 #include "code\datums\components\companion.dm"
 #include "code\datums\components\connect_loc_behalf.dm"
 #include "code\datums\components\connect_mob_behalf.dm"
+#include "code\datums\components\customizable_reagent_holder.dm"
 #include "code\datums\components\deployable_item.dm"
 #include "code\datums\components\dripping.dm"
 #include "code\datums\components\grillable.dm"
