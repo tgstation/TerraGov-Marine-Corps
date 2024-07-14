@@ -349,6 +349,11 @@
 	owner_turned(null, null, owner.dir)
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.runner_items_stolen++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_items_stolen")
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.items_snatched++
 
 ///Signal handler to update the item overlay when the owner is changing dir
 /datum/action/ability/activable/xeno/snatch/proc/owner_turned(datum/source, old_dir, new_dir)
