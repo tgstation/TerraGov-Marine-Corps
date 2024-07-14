@@ -35,10 +35,13 @@
 	minimap_color = MINIMAP_AREA_REQ_CAVE
 	always_unpowered = FALSE
 
+/area/bluesummers/caves/mining/drill
+	name = "Stampede Terraforming Drill"
+	icon_state = "mining_eva"
+
 /area/bluesummers/caves/mining/south
 	name = "South Terraforming Wing"
 	icon_state = "mining_storage"
-	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bluesummers/caves/cryostorage
 	name = "Cryogenics Storage Wing"
@@ -61,7 +64,7 @@
 	name = "Restricted Cloning Wing"
 	icon_state = "research"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 	always_unpowered = FALSE
 
 /area/bluesummers/caves/dorms

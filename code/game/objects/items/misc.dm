@@ -132,7 +132,7 @@
 	worn_icon_state = "rosary"
 	w_class = WEIGHT_CLASS_TINY
 
-/obj/item/papermap
+/obj/item/paper_map
 	name = "\improper paper map"
 	desc = "An ancient tool used by primitives to help them navigate."
 	icon = 'icons/obj/items/paper.dmi'
