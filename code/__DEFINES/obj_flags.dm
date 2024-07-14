@@ -16,6 +16,7 @@
 #define BLOCKS_CONSTRUCTION_DIR (1<<6)
 ///! Can we ignore density when building on this object? (for example, directional windows and grilles)
 #define IGNORE_DENSITY (1<<7)
+#define UNIQUE_RENAME (1<<8)
 
 
 //Fire and Acid stuff, for resistance_flags

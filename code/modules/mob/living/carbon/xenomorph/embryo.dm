@@ -3,8 +3,7 @@
 	desc = "All slimy and yucky."
 	icon = 'icons/Xeno/castes/larva.dmi'
 	icon_state = "Embryo"
-	var/grinder_datum = /datum/reagent/consumable/larvajelly //good ol cookin
-	var/grinder_amount = 5
+	grind_results = list(/datum/reagent/consumable/larvajelly = 5) //Larba: Friend or food? More likely than you think
 	var/mob/living/affected_mob
 	///The stage of the bursts, with worsening effects.
 	var/stage = 0

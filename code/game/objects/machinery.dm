@@ -16,7 +16,8 @@
 	var/machine_max_charge = 0
 	var/power_channel = EQUIP
 	var/list/component_parts //list of all the parts used to build it, if made from certain kinds of frames.
-
+	///Is an UI panel already open for this machine? Used mainly for radial wheels
+	var/panel_open = FALSE
 	var/wrenchable = FALSE
 	var/obj/item/circuitboard/circuit // Circuit to be created and inserted when the machinery is created
 	var/mob/living/carbon/human/operator
@@ -468,3 +469,9 @@
 	machine_stat |= DISABLED
 	density = FALSE
 	update_icon()
+
+/obj/machinery/proc/try_put_in_hand(obj/object, mob/living/user)
+	if(!issilicon(user) && in_range(src, user))
+		user.put_in_hands(object)
+	else
+		object.forceMove(drop_location())

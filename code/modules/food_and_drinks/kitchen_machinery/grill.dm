@@ -1,33 +1,88 @@
-//I JUST WANNA GRILL FOR GOD'S SAKE
-
+///The fuel amount wasted as heat
 #define GRILL_FUELUSAGE_IDLE 0.5
+///The fuel amount used to actually grill the item
 #define GRILL_FUELUSAGE_ACTIVE 5
 
 /obj/machinery/grill
-	name = "grill"
-	desc = "Just like the old days."
-	icon = 'icons/obj/kitchen.dmi'
+	name = "Barbeque grill"
+	desc = "Just like the old days. Smokes items over a light heat"
+	icon = 'icons/obj/machines/kitchen.dmi'
 	icon_state = "grill_open"
 	density = TRUE
-	layer = BELOW_OBJ_LAYER
+	pass_flags_self = PASSMACHINE | LETPASSTHROW
+	processing_flags = START_PROCESSING_MANUALLY
 	use_power = NO_POWER_USE
+
+	///The amount of fuel gained from stacks or reagents
 	var/grill_fuel = 0
-	var/obj/item/reagent_containers/food/grilled_item
+	///The item we are trying to grill
+	var/obj/item/food/grilled_item
+	///The amount of time the food item has spent on the grill
 	var/grill_time = 0
+	///Sound loop for the sizzling sound
 	var/datum/looping_sound/grill/grill_loop
 
 /obj/machinery/grill/Initialize(mapload)
 	. = ..()
-	grill_loop = new(null, FALSE)
-	START_PROCESSING(SSmachines, src)
+	create_reagents(30, NO_REACT)
+	grill_loop = new(src, FALSE)
+	register_context()
 
 /obj/machinery/grill/Destroy()
+	QDEL_NULL(grilled_item)
 	QDEL_NULL(grill_loop)
-	grilled_item = null
 	return ..()
 
+/obj/machinery/grill/on_deconstruction(disassembled)
+	if(!QDELETED(grilled_item))
+		grilled_item.forceMove(drop_location())
+
+	new /obj/item/assembly/igniter(loc)
+	new /obj/item/stack/sheet/iron(loc, 5)
+	new /obj/item/stack/rods(loc, 5)
+
+	if(grill_fuel > 0)
+		var/datum/effect_system/fluid_spread/smoke/bad/smoke = new
+		smoke.set_up(1, holder = src, location = loc)
+		smoke.start()
+
+/obj/machinery/grill/add_context(atom/source, list/context, obj/item/held_item, mob/user)
+	. = NONE
+	if(isnull(held_item) || (held_item.item_flags & ABSTRACT) || (held_item.flags_1 & HOLOGRAM_1) || (held_item.resistance_flags & INDESTRUCTIBLE))
+		return
+
+	if(istype(held_item, /obj/item/stack/sheet/mineral/coal) || istype(held_item, /obj/item/stack/sheet/mineral/wood))
+		context[SCREENTIP_CONTEXT_LMB] = "Add fuel"
+		return CONTEXTUAL_SCREENTIP_SET
+	else if(is_reagent_container(held_item) && held_item.is_open_container() && held_item.reagents.total_volume)
+		context[SCREENTIP_CONTEXT_LMB] = "Add fuel"
+		return CONTEXTUAL_SCREENTIP_SET
+	else if(IS_EDIBLE(held_item) && !HAS_TRAIT(held_item, TRAIT_NODROP))
+		context[SCREENTIP_CONTEXT_LMB] = "Add item"
+		return CONTEXTUAL_SCREENTIP_SET
+	else if(held_item.tool_behaviour == TOOL_WRENCH)
+		context[SCREENTIP_CONTEXT_LMB] = "[anchored ? "Un" : ""]anchor"
+		return CONTEXTUAL_SCREENTIP_SET
+	else if(!anchored && held_item.tool_behaviour == TOOL_CROWBAR)
+		context[SCREENTIP_CONTEXT_LMB] = "Deconstruct"
+		return CONTEXTUAL_SCREENTIP_SET
+
+/obj/machinery/grill/examine(mob/user)
+	. = ..()
+
+	. += span_notice("Add fuel via wood/coal stacks or any open container having a good fuel source")
+	. += span_notice("Monkey energy > Oil > Welding fuel > Ethanol. Others cause bad effects")
+	. += span_notice("Place any food item on top via hand to start grilling")
+
+	if(!anchored)
+		. += span_notice("It can be [EXAMINE_HINT("pried")] apart.")
+	if(anchored)
+		. += span_notice("Its [EXAMINE_HINT("anchored")] in place.")
+	else
+		. += span_warning("It needs to be [EXAMINE_HINT("anchored")] to work.")
+
 /obj/machinery/grill/update_icon_state()
-	if(grilled_item)
+	if(!QDELETED(grilled_item))
 		icon_state = "grill"
 		return ..()
 	if(grill_fuel > 0)
@@ -36,163 +91,216 @@
 	icon_state = "grill_open"
 	return ..()
 
-/obj/machinery/grill/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/stack/sheet/wood))
-		var/obj/item/stack/S = I
-		var/stackamount = S.get_amount()
-		to_chat(user, span_notice("You put [stackamount] [I]s in [src]."))
-		grill_fuel += (100 * stackamount)
-		S.use(stackamount)
-		update_icon()
-		return
+/obj/machinery/grill/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(gone == grilled_item)
+		grill_time = 0
+		grill_loop.stop()
+		grilled_item = null
 
-	if(isgrabitem(I) && grab_interact(I, user))
-		user.changeNext_move(GRAB_SLAM_DELAY)
+/obj/machinery/grill/attack_hand(mob/living/user, list/modifiers)
+	if(!QDELETED(grilled_item))
+		balloon_alert(user, "item removed")
+		grilled_item.forceMove(drop_location())
+		update_appearance(UPDATE_ICON_STATE)
 		return TRUE
 
-	if(grill_fuel <= 0)
-		to_chat(user, span_warning("No fuel!"))
-		return ..()
-
-	if(I.resistance_flags & INDESTRUCTIBLE)
-		to_chat(user, span_warning("You don't feel it would be wise to grill [I]..."))
-		return ..()
-
-	//else if(IS_EDIBLE(I))
-	else if(istype(I, /obj/item/reagent_containers/food))
-		if(HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ITEM_ABSTRACT|DELONDROP)))
-			return ..()
-		else if(HAS_TRAIT(I, TRAIT_FOOD_GRILLED))
-			to_chat(user, span_notice("[I] has already been grilled!"))
-			return
-		else if(grill_fuel <= 0)
-			to_chat(user, span_warning("There is not enough fuel!"))
-			return
-		else if(!grilled_item && user.transferItemToLoc(I, src))
-			grilled_item = I
-			RegisterSignal(grilled_item, COMSIG_GRILL_COMPLETED, PROC_REF(GrillCompleted))
-			ADD_TRAIT(grilled_item, TRAIT_FOOD_GRILLED, "boomers")
-			to_chat(user, span_notice("You put the [grilled_item] on [src]."))
-			update_icon()
-			grill_loop.start(src)
-
-			return
-
 	return ..()
-
-/obj/machinery/grill/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
-	if(grill_fuel <= 0)
-		return ..()
-
-	if(!isliving(grab.grabbed_thing))
-		return
-
-	var/mob/living/grabbed_mob = grab.grabbed_thing
-	if(user.a_intent != INTENT_HARM)
-		return
-
-	if(user.grab_state <= GRAB_AGGRESSIVE)
-		to_chat(user, span_warning("You need a better grip to do that!"))
-		return
-
-	if(user.do_actions)
-		return
-
-	user.visible_message(span_danger("[user] starts to press [grabbed_mob] onto the [src]!"))
-
-	if(!do_after(user, 0.5 SECONDS, NONE, grabbed_mob, BUSY_ICON_DANGER) || QDELETED(src))
-		return
-
-	user.visible_message(span_danger("[user] slams [grabbed_mob] onto the [src]!"))
-	grabbed_mob.apply_damage(40, BURN, BODY_ZONE_HEAD, FIRE, updating_health = TRUE)
-	playsound(src, "sound/machines/grill/frying.ogg", 100, null, 9)
-	grabbed_mob.emote("scream")
-	return TRUE
-
-/obj/machinery/grill/process(delta_time)
-	..()
-	update_icon()
-	if(grill_fuel <= 0)
-		return
-	else
-		grill_fuel -= GRILL_FUELUSAGE_IDLE * 2
-		if(prob(5))
-			var/datum/effect_system/smoke_spread/bad/smoke = new
-			smoke.set_up(1, loc)
-			smoke.start()
-	if(grilled_item)
-		SEND_SIGNAL(grilled_item, COMSIG_ITEM_GRILLED, src, 2)
-		grill_time += 2
-		grill_fuel -= GRILL_FUELUSAGE_ACTIVE * 2
-		grilled_item.AddComponent(/datum/component/sizzle)
-
-/obj/machinery/grill/Exited(atom/movable/gone, direction)
-	if(gone == grilled_item)
-		finish_grill()
-		grilled_item = null
-	return ..()
-
-
-/obj/machinery/grill/handle_atom_del(atom/A)
-	if(A == grilled_item)
-		grilled_item = null
-	return ..()
-
-/obj/machinery/grill/wrench_act(mob/living/user, obj/item/I)
-	..()
-	balloon_alert(user, "You begin [anchored ? "un" : ""]securing...")
-	I.play_tool_sound(src, 50)
-	//as long as we're the same anchored state and we're either on a floor or are anchored, toggle our anchored state
-	if(!I.use_tool(src, user, 2 SECONDS))
-		return FALSE
-	balloon_alert(user, "You [anchored ? "un" : ""]secure.")
-	anchored = !anchored
-	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
-	return TRUE
-
-/obj/machinery/grill/deconstruct(disassembled = TRUE)
-	finish_grill()
-	if(!(atom_flags & NODECONSTRUCT))
-		new /obj/item/stack/sheet/metal(loc, 5)
-		new /obj/item/stack/rods(loc, 5)
-	..()
 
 /obj/machinery/grill/attack_ai(mob/user)
-	return
+	return //the ai can't physically flip the lid for the grill
 
-/obj/machinery/grill/attack_hand(mob/user, list/modifiers)
-	if(grilled_item)
-		to_chat(user, span_notice("You take out [grilled_item] from [src]."))
-		grilled_item.forceMove(drop_location())
-		update_icon()
+
+/// Makes grill fuel from a unit of stack
+/obj/machinery/grill/proc/burn_stack()
+	PRIVATE_PROC(TRUE)
+
+	//compute boost from wood or coal
+	var/boost
+	for(var/obj/item/stack in contents)
+		boost = 5 * (GRILL_FUELUSAGE_IDLE + GRILL_FUELUSAGE_ACTIVE)
+		if(istype(stack, /obj/item/stack/sheet/mineral/coal))
+			boost *= 2
+		if(stack.use(1))
+			grill_fuel += boost
+	update_appearance(UPDATE_ICON_STATE)
+
+/obj/machinery/grill/item_interaction(mob/living/user, obj/item/weapon, list/modifiers)
+	if(user.combat_mode || (weapon.item_flags & ABSTRACT) || (weapon.flags_1 & HOLOGRAM_1) || (weapon.resistance_flags & INDESTRUCTIBLE))
+		return NONE
+
+	if(istype(weapon, /obj/item/stack/sheet/mineral/coal) || istype(weapon, /obj/item/stack/sheet/mineral/wood))
+		if(!QDELETED(grilled_item))
+			return NONE
+		if(!anchored)
+			balloon_alert(user, "anchor it first!")
+			return ITEM_INTERACT_BLOCKING
+
+		//required for amount subtypes
+		var/target_type
+		if(istype(weapon, /obj/item/stack/sheet/mineral/coal))
+			target_type = /obj/item/stack/sheet/mineral/coal
+		else
+			target_type = /obj/item/stack/sheet/mineral/wood
+
+		//transfer or merge stacks if we have enough space
+		var/merged = FALSE
+		var/obj/item/stack/target = weapon
+		for(var/obj/item/stack/stored in contents)
+			if(!istype(stored, target_type))
+				continue
+			if(stored.amount == MAX_STACK_SIZE)
+				balloon_alert(user, "no space!")
+				return ITEM_INTERACT_BLOCKING
+			target.merge(stored)
+			merged = TRUE
+			break
+		if(!merged)
+			weapon.forceMove(src)
+
+		to_chat(user, span_notice("You add [src] to the fuel stack."))
+		if(!grill_fuel)
+			burn_stack()
+			begin_processing()
+		return ITEM_INTERACT_SUCCESS
+
+	if(is_reagent_container(weapon) && weapon.is_open_container())
+		var/obj/item/reagent_containers/container = weapon
+		if(!QDELETED(grilled_item))
+			return NONE
+		if(!anchored)
+			balloon_alert(user, "anchor it first!")
+			return ITEM_INTERACT_BLOCKING
+
+		var/transfered_amount = weapon.reagents.trans_to(src, container.amount_per_transfer_from_this)
+		if(transfered_amount)
+			//reagents & their effects on fuel
+			var/static/list/fuel_map = list(
+				/datum/reagent/consumable/monkey_energy = 4,
+				/datum/reagent/fuel/oil = 3,
+				/datum/reagent/fuel = 2,
+				/datum/reagent/consumable/ethanol = 1
+			)
+
+			//compute extra fuel to be obtained from everything transfered
+			var/boost
+			var/additional_fuel = 0
+			for(var/datum/reagent/stored as anything in reagents.reagent_list)
+				boost = fuel_map[stored.type]
+				if(!boost) //anything we don't recognize as fuel has inverse effects
+					boost = -1
+				boost = boost * stored.volume * (GRILL_FUELUSAGE_IDLE + GRILL_FUELUSAGE_ACTIVE)
+				additional_fuel += boost
+
+			//add to fuel source
+			reagents.clear_reagents()
+			grill_fuel += additional_fuel
+			if(grill_fuel <= 0) //can happen if you put water or something
+				grill_fuel = 0
+			else
+				begin_processing()
+			update_appearance(UPDATE_ICON_STATE)
+
+			//feedback
+			to_chat(user, span_notice("You transfer [transfered_amount]u to the fuel source."))
+			return ITEM_INTERACT_SUCCESS
+
+		balloon_alert(user, "no fuel transfered!")
+		return ITEM_INTERACT_BLOCKING
+
+	if(IS_EDIBLE(weapon))
+		//sanity checks
+		if(!anchored)
+			balloon_alert(user, "anchor first!")
+			return ITEM_INTERACT_BLOCKING
+		if(HAS_TRAIT(weapon, TRAIT_NODROP))
+			return ..()
+		if(!QDELETED(grilled_item))
+			balloon_alert(user, "remove item first!")
+			return ITEM_INTERACT_BLOCKING
+		if(grill_fuel <= 0)
+			balloon_alert(user, "no fuel!")
+			return ITEM_INTERACT_BLOCKING
+		if(!user.transferItemToLoc(weapon, src))
+			balloon_alert(user, "[weapon] is stuck in your hand!")
+			return ITEM_INTERACT_BLOCKING
+
+		//add the item on the grill
+		grill_time = 0
+		grilled_item = weapon
+		var/datum/component/sizzle/sizzle = grilled_item.GetComponent(/datum/component/sizzle)
+		if(!isnull(sizzle))
+			grill_time = sizzle.time_elapsed()
+		to_chat(user, span_notice("You put the [grilled_item] on [src]."))
+		update_appearance(UPDATE_ICON_STATE)
+		grill_loop.start()
+		return ITEM_INTERACT_SUCCESS
+
+	return NONE
+
+/obj/machinery/grill/wrench_act(mob/living/user, obj/item/tool)
+	if(user.combat_mode)
+		return NONE
+
+	. = ITEM_INTERACT_BLOCKING
+	if(default_unfasten_wrench(user, tool) == SUCCESSFUL_UNFASTEN)
+		return ITEM_INTERACT_SUCCESS
+
+/obj/machinery/grill/crowbar_act(mob/living/user, obj/item/tool)
+	if(user.combat_mode)
+		return NONE
+
+	. = ITEM_INTERACT_BLOCKING
+	if(anchored)
+		balloon_alert(user, "unanchor first!")
 		return
-	return ..()
 
-/obj/machinery/grill/proc/finish_grill()
-	switch(grill_time) //no 0-20 to prevent spam
-		if(20 to 30)
-			grilled_item.name = "lightly-grilled [grilled_item.name]"
-			grilled_item.desc = "[grilled_item.desc] It's been lightly grilled."
-		if(30 to 80)
-			grilled_item.name = "grilled [grilled_item.name]"
-			grilled_item.desc = "[grilled_item.desc] It's been grilled."
-			//grilled_item.foodtype |= FRIED
-		if(80 to 100)
-			grilled_item.name = "heavily grilled [grilled_item.name]"
-			grilled_item.desc = "[grilled_item.desc] It's been heavily grilled."
-			//grilled_item.foodtype |= FRIED
-		if(100 to INFINITY) //grill marks reach max alpha
-			grilled_item.name = "Powerfully Grilled [grilled_item.name]"
-			grilled_item.desc = "A [grilled_item.name]. Reminds you of your wife, wait, no, it's prettier!"
-			//grilled_item.foodtype |= FRIED
-	grill_time = 0
-	UnregisterSignal(grilled_item, COMSIG_GRILL_COMPLETED)
-	grill_loop.stop()
+	if(default_deconstruction_crowbar(tool, ignore_panel = TRUE))
+		return ITEM_INTERACT_SUCCESS
 
-///Called when a food is transformed by the grillable component
-/obj/machinery/grill/proc/GrillCompleted(obj/item/source, atom/grilled_result)
-	SIGNAL_HANDLER
-	grilled_item = grilled_result //use the new item!!
+/obj/machinery/grill/process(seconds_per_tick)
+	if(!anchored)
+		return PROCESS_KILL
+
+	var/fuel_usage = GRILL_FUELUSAGE_IDLE * seconds_per_tick
+	if(grill_fuel < fuel_usage)
+		grill_fuel = 0
+		burn_stack()
+		if(grill_fuel < fuel_usage) //could not make any fuel
+			return PROCESS_KILL
+
+	//use fuel, create smoke puffs for immersion
+	grill_fuel -= fuel_usage
+	if(SPT_PROB(0.5, seconds_per_tick))
+		var/datum/effect_system/fluid_spread/smoke/bad/smoke = new
+		smoke.set_up(1, holder = src, location = loc)
+		smoke.start()
+
+	fuel_usage = GRILL_FUELUSAGE_ACTIVE * seconds_per_tick
+	if(!QDELETED(grilled_item))
+		//check to see if we need to burn more fuel
+		if(grill_fuel < fuel_usage)
+			burn_stack()
+			if(grill_fuel < fuel_usage) //could not make any fuel
+				return
+
+		//grill the item
+		var/last_grill_time = grill_time
+		grill_time += seconds_per_tick * 10 //convert to deciseconds
+		grilled_item.reagents.add_reagent(/datum/reagent/consumable/char, 0.5 * seconds_per_tick)
+		grilled_item.AddComponent(/datum/component/sizzle, grill_time)
+
+		//check to see if we have grilled our item to perfection
+		var/time_limit = 20 SECONDS
+		var/datum/component/grillable/custom_grilling = grilled_item.GetComponent(/datum/component/grillable)
+		if(!isnull(custom_grilling))
+			time_limit = custom_grilling.required_cook_time
+		if(grill_time >= time_limit)
+			grilled_item.RemoveElement(/datum/element/grilled_item, last_grill_time)
+			grilled_item.AddElement(/datum/element/grilled_item, grill_time)
+
+		//use fuel
+		grill_fuel -= fuel_usage
 
 /obj/machinery/grill/unwrenched
 	anchored = FALSE

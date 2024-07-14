@@ -51,3 +51,7 @@
 	if(!istype(destination))
 		return
 	destination.blood_type = blood_type
+
+///Is the mouth covered by a mask that has the flag COVERMOUTH
+/mob/living/carbon/proc/is_mouth_covered()
+	return (wear_mask && (wear_mask.inventory_flags & COVERMOUTH))
