@@ -689,4 +689,8 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"XENO_MOBHUD" = XENO_MOBHUD,
 		"XENO_ROUNY" = XENO_ROUNY,
 	),
+	"food_flags", list(
+		"FOOD_FINGER_FOOD" = FOOD_FINGER_FOOD,
+		"FOOD_IN_CONTAINER" = FOOD_IN_CONTAINER,
+	),
 ))

@@ -111,13 +111,8 @@ GLOBAL_LIST_INIT(food_quality_description, list(
 /// Finger food can be eaten while walking / running around
 #define FOOD_FINGER_FOOD (1<<1)
 
-DEFINE_BITFIELD(food_flags, list(
-	"FOOD_FINGER_FOOD" = FOOD_FINGER_FOOD,
-	"FOOD_IN_CONTAINER" = FOOD_IN_CONTAINER,
-))
 
 #define STOP_SERVING_BREAKFAST (15 MINUTES)
-
 
 #define IS_EDIBLE(O) (O.GetComponent(/datum/component/edible))
 
@@ -190,3 +185,22 @@ DEFINE_BITFIELD(food_flags, list(
 
 /// How much milk is needed to make butter on a reagent grinder
 #define MILK_TO_BUTTER_COEFF 25
+
+/// Crafted food buffs grouped by crafting_complexity
+GLOBAL_LIST_INIT(food_buffs, list(
+	FOOD_COMPLEXITY_1 = list(
+		/datum/status_effect/food/haste = 1,
+	),
+	FOOD_COMPLEXITY_2 = list(
+		/datum/status_effect/food/haste = 1,
+	),
+	FOOD_COMPLEXITY_3 = list(
+		/datum/status_effect/food/haste = 1,
+	),
+	FOOD_COMPLEXITY_4 = list(
+		/datum/status_effect/food/haste = 1,
+	),
+	FOOD_COMPLEXITY_5 = list(
+		/datum/status_effect/food/haste = 1,
+	),
+))
