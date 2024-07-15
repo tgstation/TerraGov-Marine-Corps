@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - qol: "Defender can now use regenerate skin while resting."
