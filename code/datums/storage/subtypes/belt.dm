@@ -139,7 +139,6 @@
 		)
 	)
 
-
 /datum/storage/belt/security/tactical
 	storage_slots = 9
 
@@ -151,10 +150,6 @@
 /datum/storage/belt/marine/New(atom/parent)
 	. = ..()
 	set_holdable(list(
-		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/explosive/grenade/flare/civilian,
-		/obj/item/explosive/grenade/flare,
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/cell/lasgun,
 		/obj/item/ammo_magazine/smg,
@@ -163,17 +158,11 @@
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
 		/obj/item/ammo_magazine/railgun,
-		/obj/item/explosive/grenade,
-		/obj/item/explosive/mine,
-		/obj/item/reagent_containers/food/snacks,
 	))
 
 /datum/storage/belt/marine/sectoid/New(atom/parent)
 	. = ..()
 	set_holdable(list(
-		/obj/item/weapon/combat_knife,
-		/obj/item/attachable/bayonetknife,
-		/obj/item/explosive/grenade,
 		/obj/item/ammo_magazine/rifle,
 		/obj/item/cell/lasgun,
 		/obj/item/ammo_magazine/smg,
@@ -181,7 +170,7 @@
 		/obj/item/ammo_magazine/revolver,
 		/obj/item/ammo_magazine/sniper,
 		/obj/item/ammo_magazine/handful,
-		/obj/item/explosive/grenade,
+		/obj/item/ammo_magazine/railgun,
 		/obj/item/tool/crowbar,
 	))
 
