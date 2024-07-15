@@ -13,7 +13,10 @@
 		slot_r_hand_str = 'icons/mob/inhands/items/large_flag_right.dmi',
 	)
 	w_class = WEIGHT_CLASS_HUGE
-	force = 25
+	force = 55
+	attack_speed = 15
+	attack_verb = list("stabbed", "thrust", "smashed", "thumped", "bashed", "attacked", "clubbed", "speared", "jabbed", "torn", "gored")
+	sharp = IS_SHARP_ITEM_BIG
 	throw_speed = 1
 	throw_range = 2
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 50, ACID = 50)
