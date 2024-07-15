@@ -6,17 +6,14 @@
 	icon = 'icons/turf/area_prison_v3_fiorina.dmi'
 	//ambience = list('figuresomethingout.ogg')
 	icon_state = "fiorina"
-	can_build_special = TRUE //T-Comms structure
-	temperature = T20C
 	ceiling = CEILING_GLASS
 	minimap_color = MINIMAP_AREA_COLONY
 
 /area/fiorina/oob
 	name = "Fiorina - Out Of Bounds"
 	icon_state = "oob"
-	ceiling = CEILING_MAX
-	is_resin_allowed = FALSE
-	flags_area = AREA_NOTUNNEL
+	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = null
 
 /area/fiorina/maintenance
 	name = "Fiorina - Maintenance"
@@ -27,8 +24,8 @@
 /area/fiorina/tumor
 	name = "Fiorina - Resin Tumor"
 	icon_state = "tumor0"
-	temperature = 309.15 //its uh, gettin' kinda warm in here SL...
-	ceiling = CEILING_UNDERGROUND_METAL_BLOCK_CAS
+	ceiling = CEILING_DEEP_UNDERGROUND
+
 /area/fiorina/tumor/deep
 	icon_state = "tumor0-deep"
 
@@ -50,6 +47,7 @@
 	name = "Fiorina - Engineering Sector"
 	icon_state = "tumor2"
 	minimap_color = MINIMAP_AREA_ENGI
+	ceiling = CEILING_UNDERGROUND
 
 /area/fiorina/tumor/servers
 	name = "Fiorina - Research Servers"
@@ -68,9 +66,7 @@
 	icon_state = "lz"
 	ceiling = CEILING_GLASS
 	name = "Fiorina - LZ"
-	is_landing_zone = TRUE
 	minimap_color = MINIMAP_AREA_LZ
-	is_resin_allowed = FALSE
 
 /area/fiorina/lz/near_lzI
 	name = "Fiorina - LZ1 Aux Port"
@@ -91,12 +87,10 @@
 /area/shuttle/drop1/prison_v3
 	name = "Fiorina - Dropship Alamo Landing Zone"
 	icon_state = "shuttle"
-	is_resin_allowed = FALSE
 
 /area/shuttle/drop2/prison_v3
 	name = "Fiorina - Normandy Landing Zone"
 	icon_state = "shuttle2"
-	is_resin_allowed = FALSE
 
 //STATION AREAS AAAA
 /area/fiorina/station
@@ -139,6 +133,7 @@
 /area/fiorina/station/park
 	name = "Fiorina - Park"
 	icon_state = "station0"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/fiorina/station/transit_hub
 	name = "Fiorina - Transit Hub"
@@ -171,9 +166,6 @@
 /area/fiorina/station/telecomm
 	name = "Fiorina - Communications Relay"
 	icon_state = "ass_line"
-	is_resin_allowed = FALSE
-	ceiling_muffle = FALSE
-	base_muffle = MUFFLE_LOW
 
 /area/fiorina/station/telecomm/lz1_cargo
 	name = "Fiorina - LZ1 Cargo Communications Relay"
@@ -183,7 +175,6 @@
 
 /area/fiorina/station/telecomm/lz1_tram
 	name = "Fiorina - LZ1 Aux Port Communications Relay"
-	is_landing_zone = TRUE
 
 /area/fiorina/station/telecomm/lz1_engineering
 	name = "Fiorina - Engineering Primary Communications Relay"
