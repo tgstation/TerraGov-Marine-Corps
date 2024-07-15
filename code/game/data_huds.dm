@@ -630,11 +630,18 @@
 	var/static/image/protection_icon = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "hold")
 	var/static/image/marksman_icon = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "focus")
 	var/static/image/flag_icon = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "flag")
+	var/static/image/flag_lost_icon = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "flag_lost")
 
 	mobility_aura ? holder.add_overlay(mobility_icon) : holder.cut_overlay(mobility_icon)
 	protection_aura ? holder.add_overlay(protection_icon) : holder.cut_overlay(protection_icon)
 	marksman_aura ? holder.add_overlay(marksman_icon) : holder.cut_overlay(marksman_icon)
-	flag_aura ? holder.add_overlay(flag_icon) : holder.cut_overlay(flag_icon)
+	if(flag_aura > 0)
+		holder.add_overlay(flag_icon)
+	else if(flag_aura < 0)
+		holder.add_overlay(flag_lost_icon)
+	else
+		holder.cut_overlay(flag_icon)
+		holder.cut_overlay(flag_lost_icon)
 
 //Only called when an aura is added or removed
 /mob/living/carbon/human/update_aura_overlay()

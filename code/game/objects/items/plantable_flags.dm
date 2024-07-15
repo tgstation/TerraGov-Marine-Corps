@@ -59,6 +59,7 @@
 	name = "Flag of Xenomorphs"
 	country_name = "Xenomorph"
 
+#define LOST_FLAG_AURA_STRENGTH -2
 /obj/item/plantable_flag
 	name = "\improper TerraGov flag"
 	desc = "A flag bearing the symbol of TerraGov. It flutters in the breeze heroically. This one looks ready to be planted into the ground."
@@ -78,16 +79,17 @@
 	var/deployable_item = /obj/structure/plantable_flag
 	///The faction this belongs to
 	var/faction = FACTION_TERRAGOV
-	///The type of pheromone currently being emitted.
+	///Aura emitter
 	var/datum/aura_bearer/current_aura
-
+	///Range of the aura
 	var/aura_radius = 10
-
+	///Strength of the aura
 	var/aura_strength = 3
 
 /obj/item/plantable_flag/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/deployable_item, deployable_item, 2 SECONDS, 2 SECONDS)
+	current_aura = SSaura.add_emitter(src, AURA_HUMAN_FLAG, aura_radius, aura_strength, -1, faction)
 	update_aura()
 
 /obj/item/plantable_flag/Moved()
@@ -96,11 +98,14 @@
 
 /obj/item/plantable_flag/proc/update_aura()
 	if(isturf(loc))
-		if(current_aura)
-			QDEL_NULL(current_aura)
+		current_aura.strength = LOST_FLAG_AURA_STRENGTH
 		return
-	if(!current_aura)
-		current_aura = SSaura.add_emitter(src, AURA_HUMAN_FLAG, aura_radius, aura_strength, -1, faction)
+	if(isliving(loc))
+		var/mob/living/living_holder = loc
+		if(living_holder.faction == faction)
+			current_aura.strength = aura_strength
+		else
+			current_aura.strength = LOST_FLAG_AURA_STRENGTH
 
 /obj/item/plantable_flag/som
 	name = "\improper SOM flag"

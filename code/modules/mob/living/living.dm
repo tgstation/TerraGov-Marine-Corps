@@ -32,7 +32,7 @@
 
 ///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
 /mob/living/proc/receive_aura(aura_type, strength)
-	if(received_auras[aura_type] > strength)
+	if(received_auras[aura_type] && received_auras[aura_type] > strength)
 		return
 	received_auras[aura_type] = strength
 
