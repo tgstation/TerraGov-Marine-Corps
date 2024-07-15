@@ -85,6 +85,8 @@
 	var/aura_radius = 10
 	///Strength of the aura
 	var/aura_strength = 3
+	/// The range in tiles which the flag makes people warcry
+	var/warcry_range = 5
 
 /obj/item/plantable_flag/Initialize(mapload)
 	. = ..()
@@ -96,6 +98,11 @@
 	. = ..()
 	update_aura()
 
+/obj/item/plantable_flag/attack_self(mob/user)
+	. = ..()
+	lift_flag(user)
+
+///Updates the aura strength based on where its currently located
 /obj/item/plantable_flag/proc/update_aura()
 	if(isturf(loc))
 		current_aura.strength = LOST_FLAG_AURA_STRENGTH
@@ -106,6 +113,25 @@
 			current_aura.strength = aura_strength
 		else
 			current_aura.strength = LOST_FLAG_AURA_STRENGTH
+
+///Waves the flag around heroically
+/obj/item/plantable_flag/proc/lift_flag(mob/user)
+	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_WHISTLE_WARCRY))
+		to_chat(user, span_notice("You have to wait a while to rally your troops..."))
+		return
+
+	TIMER_COOLDOWN_START(user, COOLDOWN_WHISTLE_WARCRY, 1 MINUTES)
+	user.visible_message(span_warning("[user] lifts up [src] triumphantly!"))
+	playsound(get_turf(src), 'sound/items/plantable_flag/flag_raised.ogg', 75)
+	addtimer(CALLBACK(src, PROC_REF(do_warcry), user), 1 SECONDS)
+
+///Triggers a mass warcry from your faction
+/obj/item/plantable_flag/proc/do_warcry(mob/user)
+	for(var/mob/living/carbon/human/human in get_hearers_in_view(warcry_range, user.loc))
+		if(human.faction != faction)
+			continue
+		human.emote("warcry", intentional = TRUE)
+		CHECK_TICK
 
 /obj/item/plantable_flag/som
 	name = "\improper SOM flag"
@@ -132,7 +158,7 @@
 
 	internal_item = WEAKREF(_internal_item)
 
-	var/obj/item/new_internal_item = internal_item.resolve()
+	var/obj/item/plantable_flag/new_internal_item = internal_item.resolve()
 
 	name = new_internal_item.name
 	desc = new_internal_item.desc
@@ -140,6 +166,8 @@
 	soft_armor = new_internal_item.soft_armor
 	hard_armor = new_internal_item.hard_armor
 	update_appearance(UPDATE_ICON_STATE)
+	if(deployer)
+		new_internal_item.lift_flag(deployer)
 
 /obj/structure/plantable_flag/get_internal_item()
 	return internal_item?.resolve()
