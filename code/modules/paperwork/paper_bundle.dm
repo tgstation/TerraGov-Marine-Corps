@@ -120,8 +120,8 @@
 			else
 				dat+= "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>"
 			human_user << browse(dat, "window=[name]")
-		else if(istype(src[page], /obj/item/photo))
-			var/obj/item/photo/P = src[page]
+		else if(istype(page, /obj/item/photo))
+			var/obj/item/photo/P = page
 			human_user << browse_rsc(P.picture.picture_icon, "tmp_photo.png")
 			human_user << browse(dat + "<html><head><title>[P.name]</title></head>" \
 			+ "<body style='overflow:hidden'>" \
