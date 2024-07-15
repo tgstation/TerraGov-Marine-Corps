@@ -631,6 +631,8 @@
 			tempname += "hold"
 		if(marksman_aura)
 			tempname += "focus"
+		//if(flag_aura)
+		//	tempname += "flag"
 		if(tempname)
 			holder.icon = 'icons/mob/hud/aura.dmi'
 			holder.icon_state = "[tempname]"

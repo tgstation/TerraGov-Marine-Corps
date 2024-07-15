@@ -1,7 +1,7 @@
 /obj/item/flag_base
 	name = "basic flag"
 	desc = "It's a one time use flag built into a telescoping pole ripe for planting."
-	icon = 'icons/obj/items/plantable_flag.dmi'
+	icon = 'icons/obj/items/flags/plantable_flag.dmi'
 	icon_state = "flag_collapsed"
 	force = 3
 	throwforce = 2
@@ -58,3 +58,113 @@
 /obj/item/flag_base/xeno_flag
 	name = "Flag of Xenomorphs"
 	country_name = "Xenomorph"
+
+/obj/item/plantable_flag
+	name = "\improper TerraGov flag"
+	desc = "A flag bearing the symbol of TerraGov. It flutters in the breeze heroically. This one looks ready to be planted into the ground."
+	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
+	icon_state = "flag_tgmc"
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/items/large_flag_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/items/large_flag_right.dmi',
+	)
+	w_class = WEIGHT_CLASS_HUGE
+	force = 25
+	throw_speed = 1
+	throw_range = 2
+	///The item this deploys into
+	var/deployable_item = /obj/structure/plantable_flag
+	///The faction this belongs to
+	var/faction = FACTION_TERRAGOV
+	///The type of pheromone currently being emitted.
+	var/datum/aura_bearer/current_aura
+
+	var/aura_radius = 10
+
+	var/aura_strength = 3
+
+/obj/item/plantable_flag/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/deployable_item, deployable_item, 2 SECONDS, 2 SECONDS)
+	update_aura()
+
+/obj/item/plantable_flag/Move()
+	. = ..()
+	if(!.)
+		return
+	update_aura()
+
+/obj/item/plantable_flag/update_aura()
+	if(isturf(loc))
+		if(current_aura)
+			QDEL_NULL(current_aura)
+		return
+	if(!current_aura)
+		current_aura = SSaura.add_emitter(src, AURA_HUMAN_FLAG, aura_radius, aura_strength, -1, faction)
+
+/obj/item/plantable_flag/som
+	name = "\improper SOM flag"
+	desc = "A flag bearing the symbol of the Sons of Mars. It flutters in the breeze heroically. This one looks ready to be planted into the ground."
+	icon_state = "flag_som"
+	faction = FACTION_SOM
+
+/obj/structure/plantable_flag
+	name = "flag"
+	desc = "A flag of something. This one looks like you could dismantle it."
+	icon = 'icons/obj/items/flags/plantable_flag_large.dmi'
+	pixel_x = 9
+	pixel_y = 12
+	layer = ABOVE_ALL_MOB_LAYER
+	max_integrity = 800
+	resistance_flags = RESIST_ALL //maybe placeholder
+	///Weakref to item that is deployed to create src
+	var/datum/weakref/internal_item
+
+/obj/structure/plantable_flag/Initialize(mapload, _internal_item, mob/deployer)
+	. = ..()
+	if(!internal_item && !_internal_item)
+		return INITIALIZE_HINT_QDEL
+
+	internal_item = WEAKREF(_internal_item)
+
+	var/obj/item/new_internal_item = internal_item.resolve()
+
+	name = new_internal_item.name
+	desc = new_internal_item.desc
+	icon = new_internal_item.icon
+	soft_armor = new_internal_item.soft_armor
+	hard_armor = new_internal_item.hard_armor
+	update_appearance(UPDATE_ICON_STATE)
+
+/obj/structure/plantable_flag/get_internal_item()
+	return internal_item?.resolve()
+
+/obj/structure/plantable_flag/clear_internal_item()
+	internal_item = null
+
+/obj/structure/plantable_flag/update_icon_state()
+	var/obj/item/current_internal_item = internal_item.resolve()
+	icon_state = "[current_internal_item.icon_state]_planted"
+
+///Dissassembles the device
+/obj/structure/plantable_flag/proc/disassemble(mob/user)
+	var/obj/item/current_internal_item = get_internal_item()
+	if(!current_internal_item)
+		return
+	if(current_internal_item.item_flags & DEPLOYED_NO_PICKUP)
+		balloon_alert(user, "Cannot disassemble")
+		return
+	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+
+/obj/structure/plantable_flag/MouseDrop(over_object, src_location, over_location)
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/user = usr
+	if(over_object != user || !in_range(src, user))
+		return
+	var/obj/item/current_internal_item = get_internal_item()
+	if(!current_internal_item)
+		return
+	disassemble(user)

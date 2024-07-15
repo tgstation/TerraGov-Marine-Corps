@@ -14,6 +14,7 @@
 	set_mobility_aura(received_auras[AURA_HUMAN_MOVE] || 0)
 	protection_aura = received_auras[AURA_HUMAN_HOLD] || 0
 	set_marksman_aura_aura(received_auras[AURA_HUMAN_FOCUS] || 0)
+	set_flag_aura(received_auras[AURA_HUMAN_FLAG] || 0)
 
 	//Natural recovery; enhanced by hold/protection aura.
 	if(protection_aura)
@@ -40,3 +41,16 @@
 		return
 	marksman_aura = new_aura
 	SEND_SIGNAL(src, COMSIG_HUMAN_MARKSMAN_AURA_CHANGED, marksman_aura)
+
+///Updates the flag aura if it is actually changing
+/mob/living/carbon/human/proc/set_flag_aura(new_aura)
+	if(flag_aura == new_aura)
+		return
+	health_threshold_crit += flag_aura * 10
+	flag_aura = new_aura
+	health_threshold_crit -= flag_aura * 10
+
+	//if(flag_aura)
+	//	add_movespeed_modifier(MOVESPEED_ID_MOBILITY_AURA, TRUE, 0, NONE, TRUE, -(0.1 + 0.1 * flag_aura))
+	//	return
+	//remove_movespeed_modifier(MOVESPEED_ID_MOBILITY_AURA)
