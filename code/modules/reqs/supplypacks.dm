@@ -2505,12 +2505,12 @@ FACTORY
 /datum/supply_packs/factory/heavy_isg_he_refill
 	name = "FK-88 Flak HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_he_refill)
-	cost = 300
+	cost = 200
 
 /datum/supply_packs/factory/heavy_isg_sabot_refill
 	name = "FK-88 Flak APFDS shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_sabot_refill)
-	cost = 400
+	cost = 225
 
 /datum/supply_packs/factory/ac_hv_refill
 	name = "ATR-22 High Velocity magazine assembly refill"
