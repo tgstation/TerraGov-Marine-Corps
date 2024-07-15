@@ -2167,7 +2167,7 @@
 /turf/open/floor/mainship/cargo/arrow,
 /area/magmoor/engi)
 "bwo" = (
-/obj/structure/computerframe,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/purple{
 	dir = 1
 	},
@@ -11899,6 +11899,12 @@
 	},
 /turf/open/liquid/lava/autosmoothing/catwalk,
 /area/magmoor/compound/north)
+"iqB" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/magmoor/engi)
 "iqM" = (
 /obj/machinery/door/airlock/mainship/engineering/glass{
 	name = "\improper Observation Deck"
@@ -15877,10 +15883,10 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/computer/intel_computer,
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -19295,8 +19301,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/storage)
 "nFZ" = (
-/obj/structure/table/mainship,
-/obj/machinery/prop/computer/PC,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -19369,6 +19374,12 @@
 	},
 /turf/open/floor/grass,
 /area/magmoor/civilian/rnr)
+"nHT" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
+/turf/open/floor/mainship/green{
+	dir = 4
+	},
+/area/magmoor/hydroponics/north)
 "nIo" = (
 /obj/structure/rock/basalt/pile/alt2,
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -19487,6 +19498,10 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/magmoor/medical/treatment)
+"nPT" = (
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
+/turf/open/floor/mainship/mono,
+/area/magmoor/civilian/arrival)
 "nQe" = (
 /obj/structure/table/mainship,
 /obj/item/trash/tray,
@@ -19746,7 +19761,7 @@
 /turf/open/floor/plating/ground/concrete/edge,
 /area/magmoor/compound/north)
 "oat" = (
-/obj/structure/table/reinforced,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 8
 	},
@@ -25187,7 +25202,7 @@
 /turf/open/floor/freezer,
 /area/magmoor/civilian/clean/toilet)
 "rOQ" = (
-/obj/structure/rack,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 1
 	},
@@ -26115,6 +26130,7 @@
 /obj/machinery/air_alarm{
 	dir = 4
 	},
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/wood,
 /area/magmoor/medical/breakroom)
 "syA" = (
@@ -28722,7 +28738,7 @@
 /turf/open/floor/grass,
 /area/magmoor/civilian/clean)
 "umS" = (
-/obj/machinery/computer3,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -33595,6 +33611,7 @@
 /area/magmoor/engi/storage)
 "xDW" = (
 /obj/machinery/light,
+/obj/effect/spawner/random/machinery/random_broken_computer/intel,
 /turf/open/floor/mainship/blue{
 	dir = 6
 	},
@@ -43557,7 +43574,7 @@ tky
 ybU
 kJp
 llg
-cbr
+nHT
 csb
 tDx
 jMC
@@ -52008,7 +52025,7 @@ lrw
 pSu
 pSu
 cvs
-pSu
+nPT
 cIl
 eTo
 pUx
@@ -60787,7 +60804,7 @@ rxA
 slR
 xce
 neY
-ilf
+iqB
 smc
 fkr
 rVx
