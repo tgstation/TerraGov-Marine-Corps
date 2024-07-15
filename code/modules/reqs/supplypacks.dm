@@ -1069,6 +1069,12 @@ EXPLOSIVES
 	cost = 100
 	available_against_xeno_only = TRUE
 
+/datum/supply_packs/explosives/tactical_binos
+	name = "Rangefinding Binoculars"
+	contains = list(/obj/item/binoculars/tactical/range)
+	cost = 100
+	available_against_xeno_only = TRUE
+
 /*******************************************************************************
 ARMOR
 *******************************************************************************/
