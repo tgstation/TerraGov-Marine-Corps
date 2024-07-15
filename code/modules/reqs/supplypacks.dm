@@ -2268,6 +2268,11 @@ FACTORY
 	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_magazine_refill)
 	cost = 250
 
+/datum/supply_packs/factory/smartgun_targetrifle_ammobin_refill
+	name = "SG-62 ammo bin parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_ammobin_refill)
+	cost = 250
+
 /datum/supply_packs/factory/autosniper_magazine_refill
 	name = "SR-81 IFF Auto Sniper magazine assembly refill"
 	contains = list(/obj/item/factory_refill/auto_sniper_magazine_refill)
@@ -2420,12 +2425,12 @@ FACTORY
 /datum/supply_packs/factory/mortar_shell_flare_refill
 	name = "Mortar Flare shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_flare_refill)
-	cost = 100
+	cost = 50
 
 /datum/supply_packs/factory/mortar_shell_smoke_refill
 	name = "Mortar Smoke shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_smoke_refill)
-	cost = 100
+	cost = 50
 
 /datum/supply_packs/factory/mlrs_rocket_refill
 	name = "MLRS High Explosive rocket assembly refill"
@@ -2505,12 +2510,12 @@ FACTORY
 /datum/supply_packs/factory/heavy_isg_he_refill
 	name = "FK-88 Flak HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_he_refill)
-	cost = 300
+	cost = 200
 
 /datum/supply_packs/factory/heavy_isg_sabot_refill
 	name = "FK-88 Flak APFDS shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_sabot_refill)
-	cost = 400
+	cost = 225
 
 /datum/supply_packs/factory/ac_hv_refill
 	name = "ATR-22 High Velocity magazine assembly refill"

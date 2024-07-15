@@ -177,3 +177,21 @@
   - balance: Added a welder bag for SOM in campaign as a default back slot item
   jonash07:
   - bugfix: fixed the empty mortar bags sprite
+2024-07-14:
+  Cheese:
+  - rscadd: The amount of items runners steal is now tracked.
+  Lumipharon:
+  - balance: 'Campaign: SOM medic and engineer MPI loadouts now come with a UGL'
+  - bugfix: 'Campaign: SOM medics correctly receive the AP V-21 if they have the SMG
+      perk'
+  - bugfix: 'Campaign: TGMC standards get SMG mags in their pouches if they chose
+      the SMG belt holster'
+  - bugfix: Certain random events will no longer happen in the campaign gamemode
+  Notamaniac:
+  - bugfix: Syntheised instruments should no longer be off key
+  Pariah919:
+  - balance: DMR no longer has minimum range penalties and has mildly higher penetration.
+  blackdav123:
+  - rscadd: Added redcoat and bluecoat loadouts.
+  - rscadd: Added a full martini belt.
+  - rscadd: Added civil war quick equip vendors.

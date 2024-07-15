@@ -263,6 +263,13 @@
 	default_ammo = /datum/ammo/bullet/shotgun/incendiary
 	caliber = CALIBER_12G
 
+/obj/item/ammo_magazine/handful/martini
+	name = "The handful of crude heavy sniper bullet (.557/440)"
+	icon_state = "crude_heavy_sniper"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/sniper/martini
+	caliber = CALIBER_557
+
 /obj/item/ammo_magazine/handful/micro_grenade
 	name = "handful of airburst micro grenades (10g)"
 	icon_state = "micro_grenade_airburst"
