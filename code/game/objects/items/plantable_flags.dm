@@ -1,3 +1,9 @@
+///Range of the aura
+#define FLAG_AURA_RANGE 10
+///The range in tiles which the flag makes people warcry
+#define FLAG_WARCRY_RANGE 5
+///Strength of the aura
+#define FLAG_AURA_STRENGTH 3
 ///Penalty aura for losing or otherwise disgracing the flag
 #define LOST_FLAG_AURA_STRENGTH -2
 
@@ -20,25 +26,17 @@
 	throw_speed = 1
 	throw_range = 2
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 50, ACID = 50)
-	///The item this deploys into
-	var/deployable_item = /obj/structure/plantable_flag
 	///The faction this belongs to
 	var/faction = FACTION_TERRAGOV
 	///Aura emitter
 	var/datum/aura_bearer/current_aura
-	///Range of the aura
-	var/aura_radius = 10
-	///Strength of the aura
-	var/aura_strength = 3
-	/// The range in tiles which the flag makes people warcry
-	var/warcry_range = 5
 
 /obj/item/plantable_flag/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/deployable_item, deployable_item, 1 SECONDS, 3 SECONDS)
+	AddComponent(/datum/component/deployable_item, /obj/structure/plantable_flag, 1 SECONDS, 3 SECONDS)
 	AddComponent(/datum/component/shield, SHIELD_PURE_BLOCKING, list(MELEE = 35, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 
-	current_aura = SSaura.add_emitter(src, AURA_HUMAN_FLAG, aura_radius, aura_strength, -1, faction)
+	current_aura = SSaura.add_emitter(src, AURA_HUMAN_FLAG, FLAG_AURA_RANGE, FLAG_AURA_STRENGTH, -1, faction)
 	update_aura()
 
 /obj/item/plantable_flag/Moved()
@@ -71,7 +69,7 @@
 	if(isliving(loc))
 		var/mob/living/living_holder = loc
 		if(living_holder.faction == faction)
-			current_aura.strength = aura_strength
+			current_aura.strength = FLAG_AURA_STRENGTH
 		else
 			current_aura.strength = LOST_FLAG_AURA_STRENGTH
 
@@ -88,7 +86,7 @@
 
 ///Triggers a mass warcry from your faction
 /obj/item/plantable_flag/proc/do_warcry(mob/user)
-	for(var/mob/living/carbon/human/human in get_hearers_in_view(warcry_range, user.loc))
+	for(var/mob/living/carbon/human/human in get_hearers_in_view(FLAG_WARCRY_RANGE, user.loc))
 		if(human.faction != faction)
 			continue
 		human.emote("warcry", intentional = TRUE)
