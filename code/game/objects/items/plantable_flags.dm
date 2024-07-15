@@ -1,5 +1,7 @@
 ///Range of the aura
 #define FLAG_AURA_RANGE 10
+///Range of the aura when deployed
+#define FLAG_AURA_DEPLOYED_RANGE 14
 ///The range in tiles which the flag makes people warcry
 #define FLAG_WARCRY_RANGE 5
 ///Strength of the aura
@@ -33,10 +35,29 @@
 
 /obj/item/plantable_flag/Initialize(mapload)
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
 	AddComponent(/datum/component/deployable_item, /obj/structure/plantable_flag, 1 SECONDS, 3 SECONDS)
 	AddComponent(/datum/component/shield, SHIELD_PURE_BLOCKING, list(MELEE = 35, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
 
 	current_aura = SSaura.add_emitter(src, AURA_HUMAN_FLAG, FLAG_AURA_RANGE, FLAG_AURA_STRENGTH, -1, faction)
+	update_aura()
+
+/obj/item/plantable_flag/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	SSaura.add_emitter(get_turf(src), AURA_HUMAN_FLAG, INFINITY, LOST_FLAG_AURA_STRENGTH, 900, faction)
+
+	if(istype(blame_mob) && blame_mob.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
+		if(faction == blame_mob.faction) //prepare for court martial
+			personal_statistics.flags_destroyed ++
+			personal_statistics.mission_flags_destroyed ++
+		else
+			personal_statistics.flags_destroyed ++
+			personal_statistics.mission_flags_destroyed ++
+
+	return ..()
+
+/obj/item/plantable_flag/toggle_deployment_flag(deployed)
+	. = ..()
 	update_aura()
 
 /obj/item/plantable_flag/Moved()
@@ -63,15 +84,17 @@
 
 ///Updates the aura strength based on where its currently located
 /obj/item/plantable_flag/proc/update_aura()
+	current_aura.range = item_flags & IS_DEPLOYED ? FLAG_AURA_DEPLOYED_RANGE : FLAG_AURA_RANGE
 	if(isturf(loc))
 		current_aura.strength = LOST_FLAG_AURA_STRENGTH
 		return
-	if(isliving(loc))
-		var/mob/living/living_holder = loc
-		if(living_holder.faction == faction)
-			current_aura.strength = FLAG_AURA_STRENGTH
-		else
-			current_aura.strength = LOST_FLAG_AURA_STRENGTH
+	if(!isliving(loc))
+		return
+	var/mob/living/living_holder = loc
+	if(living_holder.faction == faction)
+		current_aura.strength = FLAG_AURA_STRENGTH
+	else
+		current_aura.strength = LOST_FLAG_AURA_STRENGTH //this explicitly lets enemies deploy it for the extended debuff range
 
 ///Waves the flag around heroically
 /obj/item/plantable_flag/proc/lift_flag(mob/user)
@@ -91,6 +114,20 @@
 			continue
 		human.emote("warcry", intentional = TRUE)
 		CHECK_TICK
+
+///End of mission bonuses
+/obj/item/plantable_flag/proc/mission_end(datum/source, datum/campaign_mission/completed_mission, winning_faction)
+	SIGNAL_HANDLER
+	if(!isliving(loc))
+		return
+	var/mob/living/controlling_mob = loc
+	if(!controlling_mob.ckey)
+		return
+	if(faction == controlling_mob.faction)
+		return //will this change?
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[controlling_mob.ckey]
+	personal_statistics.flags_captured ++
+	personal_statistics.mission_flags_captured ++
 
 /obj/item/plantable_flag/som
 	name = "\improper SOM flag"
