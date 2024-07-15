@@ -90,13 +90,11 @@
 	AddComponent(/datum/component/deployable_item, deployable_item, 2 SECONDS, 2 SECONDS)
 	update_aura()
 
-/obj/item/plantable_flag/Move()
+/obj/item/plantable_flag/Moved()
 	. = ..()
-	if(!.)
-		return
 	update_aura()
 
-/obj/item/plantable_flag/update_aura()
+/obj/item/plantable_flag/proc/update_aura()
 	if(isturf(loc))
 		if(current_aura)
 			QDEL_NULL(current_aura)

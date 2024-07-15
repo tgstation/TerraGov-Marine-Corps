@@ -620,32 +620,32 @@
 /datum/atom_hud/order
 	hud_icons = list(ORDER_HUD)
 
+///Updates aura hud icons
 /mob/living/carbon/human/proc/hud_set_order()
 	var/image/holder = hud_list[ORDER_HUD]
-	holder.icon_state = ""
-	if(stat != DEAD)
-		var/tempname = ""
-		if(mobility_aura)
-			tempname += "move"
-		if(protection_aura)
-			tempname += "hold"
-		if(marksman_aura)
-			tempname += "focus"
-		//if(flag_aura)
-		//	tempname += "flag"
-		if(tempname)
-			holder.icon = 'icons/mob/hud/aura.dmi'
-			holder.icon_state = "[tempname]"
+	if(stat == DEAD)
+		holder.overlays.Cut()
+		return
+	var/static/image/mobility_icon = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "move")
+	var/static/image/protection_icon = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "hold")
+	var/static/image/marksman_icon = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "focus")
+	var/static/image/flag_icon = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "flag")
 
-	hud_list[ORDER_HUD] = holder
+	mobility_aura ? holder.add_overlay(mobility_icon) : holder.cut_overlay(mobility_icon)
+	protection_aura ? holder.add_overlay(protection_icon) : holder.cut_overlay(protection_icon)
+	marksman_aura ? holder.add_overlay(marksman_icon) : holder.cut_overlay(marksman_icon)
+	flag_aura ? holder.add_overlay(flag_icon) : holder.cut_overlay(flag_icon)
 
 //Only called when an aura is added or removed
 /mob/living/carbon/human/update_aura_overlay()
 	var/image/holder = hud_list[ORDER_HUD]
-	holder.overlays.Cut()
-	for(var/aura_type in command_aura_allowed)
-		if(emitted_auras.Find(aura_type))
-			holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]_aura")
+	var/static/image/mobility_source = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "move_aura")
+	var/static/image/protection_source = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "hold_aura")
+	var/static/image/marksman_source = image(icon = 'icons/mob/hud/aura.dmi', icon_state = "focus_aura")
+
+	emitted_auras.Find(AURA_HUMAN_MOVE) ? holder.add_overlay(mobility_source) : holder.cut_overlay(mobility_source)
+	emitted_auras.Find(AURA_HUMAN_HOLD) ? holder.add_overlay(protection_source) : holder.cut_overlay(protection_source)
+	emitted_auras.Find(AURA_HUMAN_FOCUS) ? holder.add_overlay(marksman_source) : holder.cut_overlay(marksman_source)
 
 ///Makes sentry health visible
 /obj/proc/hud_set_machine_health()
