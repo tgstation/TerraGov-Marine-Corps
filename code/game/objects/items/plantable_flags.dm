@@ -36,10 +36,15 @@
 /obj/item/plantable_flag/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
+	if(isturf(loc))
+		item_flags |= DEPLOY_ON_INITIALIZE
 	AddComponent(/datum/component/deployable_item, /obj/structure/plantable_flag, 1 SECONDS, 3 SECONDS)
 	AddComponent(/datum/component/shield, SHIELD_PURE_BLOCKING, list(MELEE = 35, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0))
-
 	current_aura = SSaura.add_emitter(src, AURA_HUMAN_FLAG, FLAG_AURA_RANGE, FLAG_AURA_STRENGTH, -1, faction)
+	return INITIALIZE_HINT_LATELOAD
+
+/obj/item/plantable_flag/LateInitialize()
+	. = ..()
 	update_aura()
 
 /obj/item/plantable_flag/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
@@ -84,6 +89,8 @@
 
 ///Updates the aura strength based on where its currently located
 /obj/item/plantable_flag/proc/update_aura()
+	if(!current_aura)
+		return
 	current_aura.range = item_flags & IS_DEPLOYED ? FLAG_AURA_DEPLOYED_RANGE : FLAG_AURA_RANGE
 	if(isturf(loc))
 		current_aura.strength = LOST_FLAG_AURA_STRENGTH
