@@ -2420,12 +2420,12 @@ FACTORY
 /datum/supply_packs/factory/mortar_shell_flare_refill
 	name = "Mortar Flare shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_flare_refill)
-	cost = 100
+	cost = 50
 
 /datum/supply_packs/factory/mortar_shell_smoke_refill
 	name = "Mortar Smoke shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_smoke_refill)
-	cost = 100
+	cost = 50
 
 /datum/supply_packs/factory/mlrs_rocket_refill
 	name = "MLRS High Explosive rocket assembly refill"
