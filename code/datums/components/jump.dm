@@ -74,8 +74,12 @@
 		return
 
 	if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
-		to_chat(jumper, span_warning("Catch your breath!"))
-		return
+		if(isrobot(jumper) || issynth(jumper))
+			to_chat(jumper, span_warning("Your leg servos do not allow you to jump!"))
+			return
+		else
+			to_chat(jumper, span_warning("Catch your breath!"))
+			return
 
 	var/effective_jump_duration = jump_duration
 	var/effective_jump_height = jump_height
