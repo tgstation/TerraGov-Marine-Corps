@@ -75,6 +75,7 @@
 	force = 25
 	throw_speed = 1
 	throw_range = 2
+	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 50, ACID = 50)
 	///The item this deploys into
 	var/deployable_item = /obj/structure/plantable_flag
 	///The faction this belongs to
@@ -101,6 +102,20 @@
 /obj/item/plantable_flag/attack_self(mob/user)
 	. = ..()
 	lift_flag(user)
+
+/obj/item/plantable_flag/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(500, BRUTE, BOMB)
+		if(EXPLODE_HEAVY)
+			take_damage(150, BRUTE, BOMB)
+		if(EXPLODE_LIGHT)
+			take_damage(75, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(15, BRUTE, BOMB)
+
+/obj/item/plantable_flag/fire_act(burn_level)
+	take_damage(burn_level * 3, BURN, FIRE)
 
 ///Updates the aura strength based on where its currently located
 /obj/item/plantable_flag/proc/update_aura()
@@ -146,8 +161,7 @@
 	pixel_x = 9
 	pixel_y = 12
 	layer = ABOVE_ALL_MOB_LAYER
-	max_integrity = 800
-	resistance_flags = RESIST_ALL //maybe placeholder
+	resistance_flags = XENO_DAMAGEABLE
 	///Weakref to item that is deployed to create src
 	var/datum/weakref/internal_item
 
@@ -178,6 +192,20 @@
 /obj/structure/plantable_flag/update_icon_state()
 	var/obj/item/current_internal_item = internal_item.resolve()
 	icon_state = "[current_internal_item.icon_state]_planted"
+
+/obj/structure/plantable_flag/ex_act(severity)
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(500, BRUTE, BOMB)
+		if(EXPLODE_HEAVY)
+			take_damage(150, BRUTE, BOMB)
+		if(EXPLODE_LIGHT)
+			take_damage(75, BRUTE, BOMB)
+		if(EXPLODE_WEAK)
+			take_damage(15, BRUTE, BOMB)
+
+/obj/structure/plantable_flag/fire_act(burn_level)
+	take_damage(burn_level, BURN, FIRE)
 
 ///Dissassembles the device
 /obj/structure/plantable_flag/proc/disassemble(mob/user)
