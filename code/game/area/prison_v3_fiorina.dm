@@ -25,6 +25,7 @@
 	name = "Fiorina - Resin Tumor"
 	icon_state = "tumor0"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	minimap_color = MINIMAP_AREA_CAVES
 
 /area/fiorina/tumor/deep
 	icon_state = "tumor0-deep"
@@ -36,7 +37,6 @@
 /area/fiorina/tumor/ship
 	name = "Fiorina - Scavenger Ship 'NSV Renault'"
 	icon_state = "tumor1"
-	requires_power = 0
 	minimap_color = MINIMAP_AREA_SHIP
 
 /area/fiorina/tumor/civres
@@ -52,12 +52,12 @@
 /area/fiorina/tumor/servers
 	name = "Fiorina - Research Servers"
 	icon_state = "tumor2"
-	minimap_color = MINIMAP_AREA_RESEARCH
 
 /area/fiorina/tumor/ice_lab
 	name = "Fiorina - Cryogenic Research Labs"
 	icon_state = "tumor3"
-	minimap_color = MINIMAP_AREA_RESEARCH
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+	ceiling = CEILING_UNDERGROUND
 
 
 
@@ -101,6 +101,7 @@
 /area/fiorina/station/lowsec
 	name = "Fiorina - Low Security Cells"
 	icon_state = "station1"
+	minimap_color = MINIMAP_AREA_CELL_VIP
 
 /area/fiorina/station/power_ring
 	name = "Fiorina - Engineering Ring"
@@ -138,10 +139,12 @@
 /area/fiorina/station/transit_hub
 	name = "Fiorina - Transit Hub"
 	icon_state = "station1"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /area/fiorina/station/central_ring
 	name = "Fiorina - Central Ring"
 	icon_state = "station2"
+	minimap_color = MINIMAP_AREA_LIVING_CAVE
 
 /area/fiorina/station/chapel
 	name = "Fiorina - Chapel"
@@ -150,6 +153,7 @@
 /area/fiorina/station/civres_blue
 	name = "Fiorina - Blue Block Residences"
 	icon_state = "station1"
+	minimap_color = MINIMAP_AREA_REQ
 
 /area/fiorina/station/medbay
 	name = "Fiorina - Medical Bay"
