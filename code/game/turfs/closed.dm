@@ -562,6 +562,12 @@
 /turf/closed/shuttle/dropship1/edge
 	icon_state = "shuttle_interior_edge"
 
+/turf/closed/shuttle/dropship1/interiormisc/three
+	icon_state = "shuttle_interior_misc_three"
+
+/turf/closed/shuttle/dropship1/edge/misc
+	icon_state = "shuttle_exterior_edge"
+
 /turf/closed/shuttle/dropship1/edge/alt
 	icon_state = "shuttle_interior_edgealt"
 
@@ -593,6 +599,12 @@
 /turf/closed/shuttle/dropship1/enginethree
 	icon_state = "shuttle_interior_backengine3"
 
+/turf/closed/shuttle/dropship1/corners/alt
+	icon_state = "shuttle_exterior_corners_alt"
+
+/turf/closed/shuttle/dropship1/corners/interior
+	icon_state = "shuttle_interior_corners"
+
 /turf/closed/shuttle/dropship1/enginefour
 	icon_state = "shuttle_interior_backengine4"
 
@@ -621,6 +633,9 @@
 
 /turf/closed/shuttle/dropship1/interiormisc
 	icon_state = "shuttle_interior_threeside"
+
+/turf/closed/shuttle/dropship1/interiormisc/two
+	icon_state = "shuttle_interior_misc"
 
 /turf/closed/shuttle/dropship1/cornersalt
 	icon_state = "shuttle_interior_corneralt"
