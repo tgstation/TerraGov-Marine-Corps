@@ -117,7 +117,7 @@
 			var/datum/reagent/consumable/ethanol/booze = distill_reagent
 			data["quality"] = quality
 			data["boozepwr"] = round(initial(booze.boozepwr) * reagent_purity * 2) // default boozepwr at 50% purity
-			reagents.add_reagent(distill_reagent, reagent.volume, data, added_purity = reagent_purity)
+			reagents.add_reagent(distill_reagent, reagent.volume, data)
 		else
 			var/data = list()
 			data["names"] = list("[initial(name)]" = 1)
@@ -128,7 +128,7 @@
 				data["tastes"] = list(wine_flavor = 1)
 			else
 				data["tastes"] = list(tastes[1] = 1)
-			reagents.add_reagent(/datum/reagent/consumable/ethanol/fruit_wine, reagent.volume, data, added_purity = reagent_purity)
+			reagents.add_reagent(/datum/reagent/consumable/ethanol/fruit_wine, reagent.volume, data)
 		reagents.del_reagent(reagent.type)
 
 /obj/item/food/grown/grind(datum/reagents/target_holder, mob/user)
@@ -137,15 +137,14 @@
 
 	var/grind_results_num = LAZYLEN(grind_results)
 	if(grind_results_num)
-		var/average_purity = reagents.get_average_purity()
-		var/total_nutriment_amount = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment, type_check = REAGENT_SUB_TYPE)
+		var/total_nutriment_amount = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment)
 		var/single_reagent_amount = grind_results_num > 1 ? round(total_nutriment_amount / grind_results_num, CHEMICAL_QUANTISATION_LEVEL) : total_nutriment_amount
-		reagents.remove_reagent(/datum/reagent/consumable/nutriment, total_nutriment_amount, include_subtypes = TRUE)
+		reagents.remove_reagent(/datum/reagent/consumable/nutriment, total_nutriment_amount)
 		for(var/reagent in grind_results)
-			reagents.add_reagent(reagent, single_reagent_amount, added_purity = average_purity)
+			reagents.add_reagent(reagent, single_reagent_amount)
 
 	if(reagents && target_holder)
-		reagents.trans_to(target_holder, reagents.total_volume, transferred_by = user)
+		reagents.trans_to(target_holder, reagents.total_volume)
 	return TRUE
 
 #undef BITE_SIZE_POTENCY_MULTIPLIER

@@ -92,3 +92,5 @@
 /// If present, this reagent will not be affected by the mob's metabolism at all, meaning it exits at a fixed rate for all mobs.
 /// Supercedes [REAGENT_REVERSE_METABOLISM].
 #define REAGENT_UNAFFECTED_BY_METABOLISM (1<<11)
+///The minimum volume of reagents than can be operated on.
+#define CHEMICAL_QUANTISATION_LEVEL 0.0001

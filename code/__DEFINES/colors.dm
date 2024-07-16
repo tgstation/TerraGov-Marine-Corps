@@ -298,3 +298,13 @@ Important note: colors can end up significantly different from the basic html pi
 #define COLLOR_WALL_BULLETPROOF "#ed99f6"
 #define COLOR_WALL_FIREPROOF "#ff696e"
 #define COLOR_WALL_HARDY "#6699ff"
+
+
+//Colors for Bioluminescence plant traits.
+#define COLOR_BIOLUMINESCENCE_STANDARD "#C3E381"
+#define COLOR_BIOLUMINESCENCE_SHADOW "#AAD84B"
+#define COLOR_BIOLUMINESCENCE_YELLOW "#FFFF66"
+#define COLOR_BIOLUMINESCENCE_GREEN "#99FF99"
+#define COLOR_BIOLUMINESCENCE_BLUE "#6699FF"
+#define COLOR_BIOLUMINESCENCE_PURPLE "#D966FF"
+#define COLOR_BIOLUMINESCENCE_PINK "#FFB3DA"

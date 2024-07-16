@@ -145,6 +145,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	///Grinder var:A reagent list containing the reagents this item produces when ground up in a grinder - this can be an empty list to allow for reagent transferring only
 	var/list/grind_results
+	///A reagent the nutriments are converted into when the item is juiced.
+	var/datum/reagent/consumable/juice_typepath
 
 
 
@@ -1528,8 +1530,29 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 #undef ITEM_LIQUID_TURF_ALPHA_MULT
 
-
+///Called upon microwaving
 /obj/item/proc/microwave_act(obj/machinery/microwave/microwave_source, mob/microwaver, randomize_pixel_offset)
 	SHOULD_CALL_PARENT(TRUE)
 
 	return SEND_SIGNAL(src, COMSIG_ITEM_MICROWAVE_ACT, microwave_source, microwaver, randomize_pixel_offset)
+
+///Will it blend?
+/obj/item/proc/blend_requirements(obj/machinery/reagentgrinder/R)
+	return TRUE
+
+///Called BEFORE the object is ground up - use this to change grind results based on conditions. Return "-1" to prevent the grinding from occurring
+/obj/item/proc/on_grind()
+	return SEND_SIGNAL(src, COMSIG_ITEM_ON_GRIND)
+
+///Grind item, adding grind_results to item's reagents and transfering to target_holder if specified
+/obj/item/proc/grind(datum/reagents/target_holder, mob/user)
+	. = FALSE
+	if(on_grind() == -1)
+		return
+
+	if(length(grind_results))
+		target_holder.add_reagent_list(grind_results)
+		. = TRUE
+	if(reagents?.total_volume)
+		reagents.trans_to(target_holder, reagents.total_volume)
+		. = TRUE

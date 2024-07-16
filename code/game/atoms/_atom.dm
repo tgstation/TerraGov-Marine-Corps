@@ -1089,3 +1089,11 @@ directive is properly returned.
 ///Interaction for using a grab on an atom
 /atom/proc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return
+
+///Returns the src and all recursive contents as a list.
+/atom/proc/get_all_contents()
+	. = list(src)
+	var/i = 0
+	while(i < length(.))
+		var/atom/checked_atom = .[++i]
+		. += checked_atom.contents
