@@ -195,3 +195,18 @@
   - rscadd: Added redcoat and bluecoat loadouts.
   - rscadd: Added a full martini belt.
   - rscadd: Added civil war quick equip vendors.
+2024-07-16:
+  Barnet2:
+  - rscadd: Fumo dolls re-added, you can find them in the arcade prize pool!
+  Fallouttec:
+  - balance: Changed price of Mortar Flare and Smoke Refills for Factory, they now
+      cost 50 points per refill item
+  - balance: changed the price of FK-88 ammo refills for Factory to be 200 for HE
+      and 225 for APFDS shells
+  Ldip999:
+  - rscadd: Added SG-62 ammo bins to reqtorio
+  blackdav123:
+  - qol: Defender can now use regenerate skin while resting.
+  - rscadd: Added 10 more intel computers to Magmoor.
+  jonash07:
+  - code_imp: removed useless powerloader code
