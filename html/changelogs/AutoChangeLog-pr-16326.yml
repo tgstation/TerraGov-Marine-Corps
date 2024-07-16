@@ -1,0 +1,6 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - rscadd: "Adds acid shroud for boiler; creates a small smokescreen on yourself for LoS block to (potentially) escape a chasing marine. It resets the cooldown of Bombard + 10 seconds, so only use it when you have to!"
+  - balance: "Increases boiler zoom by 2"
+  - balance: "Reduces normal boiler glob range to zoom range"
