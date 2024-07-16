@@ -86,6 +86,9 @@
 	icon_state = "powerloader_open"
 	buckled_mob.drop_all_held_items() //drop the clamp when unbuckling
 
+/obj/vehicle/ridden/powerloader/welder_act(mob/living/user, obj/item/I)
+	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
+
 /obj/vehicle/ridden/powerloader/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = FALSE, silent) //check_loc needs to be FALSE here.
 	if(buckling_mob != user)
 		return FALSE
