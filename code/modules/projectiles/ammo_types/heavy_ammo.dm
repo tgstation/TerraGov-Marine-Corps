@@ -31,14 +31,27 @@
 	shrapnel_chance = 25
 	sundering = 2.5
 
+/datum/ammo/bullet/minigun_light
+	name = "minigun bullet"
+	hud_state = "minigun"
+	hud_state_empty = "smartgun_empty"
+	accurate_range = 6
+	damage = 16
+	penetration = 15
+	shrapnel_chance = 15
+	sundering = 1.5
+
+
 /datum/ammo/bullet/minigun/ltaap
 	name = "chaingun bullet"
 	damage = 30
 	penetration = 35
 	sundering = 1
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_IFF
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_IFF|AMMO_SNIPER
 	damage_falloff = 1
-	accuracy = 80
+	accurate_range = 7
+	accuracy = 10
+	barricade_clear_distance = 4
 
 /datum/ammo/bullet/auto_cannon
 	name = "autocannon high-velocity bullet"
@@ -140,6 +153,11 @@
 	sundering = 0
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
+
+/datum/ammo/bullet/apfsds/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	if(ishitbox(target_obj) || ismecha(target_obj) || isarmoredvehicle(target_obj))
+		proj.damage *= 1.5
+		proj.proj_max_range = 0
 
 /datum/ammo/bullet/coilgun // ICC coilgun
 	name = "high-velocity tungsten slug"

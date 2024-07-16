@@ -11284,6 +11284,10 @@
 /obj/machinery/disposal,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
+"dRE" = (
+/obj/machinery/telecomms/server/presets/bravo,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "dRH" = (
 /obj/machinery/air_alarm,
 /obj/machinery/light/mainship{
@@ -13281,6 +13285,10 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
+"gtC" = (
+/obj/machinery/telecomms/server/presets/delta,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "guu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -15378,6 +15386,10 @@
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
+"iSE" = (
+/obj/machinery/telecomms/server/presets/charlie,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "iSO" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -21274,6 +21286,10 @@
 	dir = 1
 	},
 /area/sulaco/hallway/central_hall)
+"qoU" = (
+/obj/machinery/telecomms/server/presets/alpha,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "qpo" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -68856,8 +68872,8 @@ aaV
 aYM
 bdx
 baz
-baz
-baz
+qoU
+dRE
 bbs
 baz
 aZH
@@ -69114,7 +69130,7 @@ aYM
 jFN
 baz
 bcF
-baz
+iSE
 bbt
 ulO
 aZI
@@ -69370,7 +69386,7 @@ atn
 aYM
 baz
 baz
-baz
+gtC
 baz
 baz
 vVS

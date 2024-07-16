@@ -4654,7 +4654,7 @@
 	pixel_y = 0
 	},
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = "or2privacyshutter";
+	id = "or1privacyshutter";
 	name = "\improper Privacy Shutters"
 	},
 /obj/structure/window/framed/mainship/white,
@@ -7664,8 +7664,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/shipboard/weapon_room)
 "jPT" = (
-/obj/structure/curtain/medical,
 /obj/effect/ai_node,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "jQH" = (
@@ -7743,13 +7745,15 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
 "jVv" = (
-/obj/structure/curtain/medical,
 /obj/structure/sign/nosmoking_2{
 	dir = 1
 	},
 /obj/item/trash/cigbutt,
 /obj/machinery/light/mainship{
 	dir = 1
+	},
+/obj/structure/curtain/medical{
+	dir = 4
 	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
@@ -9998,7 +10002,9 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "mwj" = (
-/obj/structure/curtain/medical,
+/obj/structure/curtain/medical{
+	dir = 4
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "mxg" = (
@@ -13617,7 +13623,7 @@
 "qMJ" = (
 /obj/machinery/door/poddoor/shutters/opened/medbay,
 /obj/machinery/door/poddoor/shutters/mainship{
-	id = "or2privacyshutter";
+	id = "or1privacyshutter";
 	name = "\improper Privacy Shutters"
 	},
 /obj/structure/window/framed/mainship/white,

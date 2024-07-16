@@ -172,12 +172,10 @@
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/Proj)
 	if(exploding)
 		return FALSE
-
-	. = ..()
-
 	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)))
 		log_attack("[key_name(Proj.firer)] detonated a fuel tank with a projectile at [AREACOORD(src)].")
 		explode()
+	return ..()
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	explode()
@@ -248,6 +246,11 @@
 
 	qdel(src)
 
+/obj/structure/reagent_dispensers/fueltank/spacefuel
+	name = "spacecraft fuel-mix tank"
+	desc = "A fuel tank mix with fuel designed for various spacecraft, very combustible.";
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi';
+
 /obj/structure/reagent_dispensers/water_cooler
 	name = "water cooler"
 	desc = "A machine that dispenses water to drink."
@@ -260,6 +263,8 @@
 	list_reagents = list(/datum/reagent/water = 500)
 	coverage = 20
 
+/obj/structure/reagent_dispensers/water_cooler/nondense
+	density = FALSE
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"

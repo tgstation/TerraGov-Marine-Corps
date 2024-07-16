@@ -346,29 +346,40 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		close(M)
 		return
 
-///Called when you RIGHT click on parent with an empty hand
-///Attempts to draw an object from our storage
+
+/**
+ * Called when you RIGHT click on parent with an empty hand
+ * Attempts to draw an object from our storage
+ */
 /datum/storage/proc/on_attack_hand_alternate(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.Adjacent(user))
 		INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user)
 
-///Called when you alt + left click on parent
-///Attempts to draw an object from our storage
+/**
+ * Called when you alt + left click on parent
+ * Attempts to draw an object from our storage
+ */
+
 /datum/storage/proc/on_alt_click(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(parent.Adjacent(user))
 		INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user)
 
-///Called when you alt + right click on parent
-///Opens the inventory of our storage
+/**
+ * Called when you alt + right click on parent
+ * Opens the inventory of our storage
+ */
+
 /datum/storage/proc/on_alt_right_click(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(parent.Adjacent(user))
 		open(user)
 
-///Called when you ctrl + left click on parent
-///Attempts to draw an object from out storage, but it draw from the left side instead of the right
+/**
+ * Called when you ctrl + left click on parent
+ * Attempts to draw an object from out storage, but it draw from the left side instead of the right
+ */
 /datum/storage/proc/on_ctrl_click(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(parent.Adjacent(user))
@@ -401,14 +412,19 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(parent.loc != user && parent.loc.loc != user) //loc.loc handles edge case of storage attached to an item attached to another item (modules/boots)
 		return COMPONENT_NO_MOUSEDROP
 
-	if(!user.restrained() && !user.stat)
-		switch(over_object.name)
-			if("r_hand")
-				INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
-				return COMPONENT_NO_MOUSEDROP
-			if("l_hand")
-				INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
-				return COMPONENT_NO_MOUSEDROP
+	if(user.restrained() || user.stat)
+		return COMPONENT_NO_MOUSEDROP
+
+	put_storage_in_hand(source, over_object, user)
+	return COMPONENT_NO_MOUSEDROP
+
+///Wrapper that puts the storage into our chosen hand
+/datum/storage/proc/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
+	switch(over_object.name)
+		if("r_hand")
+			INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
+		if("l_hand")
+			INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
 
 ///Removes item_to_put_in_hand from the storage it's currently in, and then places it into our right hand
 /datum/storage/proc/put_item_in_r_hand(obj/item/item_to_put_in_hand, mob/user)

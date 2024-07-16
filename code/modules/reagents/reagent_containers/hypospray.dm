@@ -9,7 +9,7 @@
 	worn_icon_state = "hypo"
 	icon_state = "hypo"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30)
+	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30, 60)
 	volume = 60
 	reagent_flags = OPENCONTAINER
 	equip_slot_flags = ITEM_SLOT_BELT
@@ -490,12 +490,31 @@
 	)
 	description_overlay = "Pe+"
 
+/obj/item/reagent_containers/hypospray/advanced/peridaxonplus_medkit
+	name = "Peridaxon+ hypospray"
+	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 3
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon_plus = 6,
+		/datum/reagent/medicine/hyronalin = 12,
+	)
+	description_overlay = "Pe+"
+
 /obj/item/reagent_containers/hypospray/advanced/quickclotplus
 	name = "Quickclot+ hypospray"
 	desc = "A hypospray loaded with quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
 	amount_per_transfer_from_this = 5
 	list_reagents = list(
 		/datum/reagent/medicine/quickclotplus = 60,
+	)
+	description_overlay = "Qk+"
+
+/obj/item/reagent_containers/hypospray/advanced/quickclotplus_medkit
+	name = "Quickclot+ hypospray"
+	desc = "A hypospray loaded with quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/medicine/quickclotplus = 30,
 	)
 	description_overlay = "Qk+"
 
@@ -506,6 +525,7 @@
 	icon_state = "hypomed"
 	core_name = "hypospray"
 	volume = 120
+	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30, 60, 120)
 
 /obj/item/reagent_containers/hypospray/advanced/big/bicaridine
 	name = "big bicaridine hypospray"

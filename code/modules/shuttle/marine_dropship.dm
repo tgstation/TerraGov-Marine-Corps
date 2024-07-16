@@ -996,7 +996,7 @@
 
 /obj/structure/dropship_piece/glassone/tadpole
 	icon_state = "shuttle_glass1"
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	allow_pass_flags = PASS_GLASS
 
@@ -1007,7 +1007,7 @@
 /obj/structure/dropship_piece/glasstwo/tadpole
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_glass2"
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	allow_pass_flags = PASS_GLASS
 
@@ -1015,7 +1015,7 @@
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_single_window"
 	allow_pass_flags = PASS_GLASS
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 
 /obj/structure/dropship_piece/tadpole/cockpit
@@ -1265,6 +1265,39 @@
 	icon_state = "brown_rearwing_rrrb"
 	opacity = FALSE
 
+/obj/structure/dropship_piece/four/dropshipfront
+	icon_state = "dropshipfrontwhite1"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/dropshipventone
+	icon_state = "dropshipvent1"
+
+/obj/structure/dropship_piece/four/dropshipventtwo
+	icon_state = "dropshipvent2"
+
+/obj/structure/dropship_piece/four/dropshipwingtopone
+	icon_state = "dropshipwingtop1"
+
+/obj/structure/dropship_piece/four/dropshipwingtoptwo
+	icon_state = "dropshipwingtop2"
+
+/obj/structure/dropship_piece/four/dropshipventthree
+	icon_state = "dropshipvent3"
+
+/obj/structure/dropship_piece/four/dropshipventfour
+	icon_state = "dropshipvent4"
+
+/obj/structure/dropship_piece/four/rearwing/lefttop
+	icon_state = "white_rearwing_lt"
+
+/obj/structure/dropship_piece/four/rearwing/righttop
+	icon_state = "white_rearwing_rt"
+
+/obj/structure/dropship_piece/four/rearwing/leftbottom
+	icon_state = "white_rearwing_lb"
+
+/obj/structure/dropship_piece/four/rearwing/rightbottom
+	icon_state = "white_rearwing_rb"
 
 //Dropship control console
 

@@ -153,6 +153,9 @@
 	var/prefix = (hive.prefix || xeno_caste.upgrade_name) ? "[hive.prefix][xeno_caste.upgrade_name] " : ""
 	if(!client?.prefs.show_xeno_rank || !client)
 		name = prefix + "[xeno_caste.display_name] ([nicknumber])"
+		real_name = name
+		if(mind)
+			mind.name = name
 		return
 	switch(playtime_mins)
 		if(0 to 600)
@@ -201,6 +204,8 @@
 			return 0
 
 /mob/living/carbon/xenomorph/proc/upgrade_next()
+	if(!(upgrade in GLOB.xenoupgradetiers))
+		CRASH("Invalid upgrade tier set for caste!")
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)
 			return XENO_UPGRADE_INVALID
@@ -208,8 +213,14 @@
 			return XENO_UPGRADE_PRIMO
 		if(XENO_UPGRADE_PRIMO)
 			return XENO_UPGRADE_PRIMO
+		if(XENO_UPGRADE_BASETYPE)
+			return XENO_UPGRADE_BASETYPE
+		else
+			stack_trace("Logic for handling this Upgrade tier wasn't written")
 
 /mob/living/carbon/xenomorph/proc/upgrade_prev()
+	if(!(upgrade in GLOB.xenoupgradetiers))
+		CRASH("Invalid upgrade tier set for caste!")
 	switch(upgrade)
 		if(XENO_UPGRADE_INVALID)
 			return XENO_UPGRADE_INVALID
@@ -217,6 +228,10 @@
 			return XENO_UPGRADE_NORMAL
 		if(XENO_UPGRADE_PRIMO)
 			return XENO_UPGRADE_NORMAL
+		if(XENO_UPGRADE_BASETYPE)
+			return XENO_UPGRADE_BASETYPE
+		else
+			stack_trace("Logic for handling this Upgrade tier wasn't written")
 
 /mob/living/carbon/xenomorph/proc/setup_job()
 	var/datum/job/xenomorph/xeno_job = SSjob.type_occupations[xeno_caste.job_type]

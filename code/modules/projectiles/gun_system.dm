@@ -282,6 +282,8 @@
 	var/gun_accuracy_mod = 0
 	///The actual scatter value of the fired projectile
 	var/gun_scatter = 0
+	///If specified, the gun can only fire in a cone forwards with an angle of this var
+	var/gun_fire_angle = null
 
 /*
  *  HEAT MECHANIC VARS
@@ -720,8 +722,14 @@
 	if(modifiers["right"])
 		modifiers -= "right"
 		params = list2params(modifiers)
-		active_attachable?.start_fire(source, object, location, control, params, bypass_checks)
-		return
+		if(gun_user.get_active_held_item() == src)
+			active_attachable?.start_fire(source, object, location, control, params, bypass_checks)
+			return
+		if(gun_user.get_inactive_held_item() != src)
+			return
+		if(gun_user.Adjacent(object))
+			return
+		bypass_checks = TRUE
 	if(gun_on_cooldown(gun_user))
 		return
 	if(!bypass_checks)
@@ -828,6 +836,8 @@
 ///Wrapper proc to complete the whole firing process.
 /obj/item/weapon/gun/proc/Fire()
 	if(!target || !(gun_user || istype(loc, /obj/machinery/deployable/mounted/sentry)) || !(CHECK_BITFIELD(item_flags, IS_DEPLOYED) || able_to_fire(gun_user)) || windup_checked == WEAPON_WINDUP_CHECKING)
+		return NONE
+	if(gun_fire_angle && (get_between_angles(Get_Angle(get_turf(src), target), dir2angle(loc.dir)) > (gun_fire_angle / 2)))
 		return NONE
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING

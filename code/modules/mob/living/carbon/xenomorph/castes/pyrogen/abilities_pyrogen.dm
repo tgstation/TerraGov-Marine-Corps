@@ -96,7 +96,7 @@
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
-	playsound(get_turf(xeno), 'sound/effects/fireball.ogg', 50)
+	playsound(get_turf(xeno), 'sound/effects/alien/fireball.ogg', 50)
 
 	var/obj/projectile/magic_bullshit = new(get_turf(src))
 	magic_bullshit.generate_bullet(/datum/ammo/xeno/fireball)
@@ -200,7 +200,7 @@
 			qdel(src)
 			return
 	else if(isobj(target) && !istype(target, /obj/effect/xenomorph/firenado))
-		if(!istype(target, /obj/structure/mineral_door/resin) && !istype(target, /obj/structure/xeno))
+		if(!istype(target, /obj/structure/door/resin) && !istype(target, /obj/structure/xeno))
 			var/obj/object = target
 			object.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
 			qdel(src)
@@ -250,7 +250,7 @@
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
-	playsound(get_turf(xeno), 'sound/effects/prepare.ogg', 50)
+	playsound(get_turf(xeno), 'sound/effects/alien/prepare.ogg', 50)
 
 	var/list/pickable_turfs = RANGE_TURFS(1, xeno)
 	for(var/amount in 1 to PYROGEN_FIRESTORM_TORNADE_COUNT)
@@ -332,7 +332,7 @@
 		return
 
 	beam = owner.loc.beam(targets[length(targets)], "heatray", beam_type = /obj/effect/ebeam)
-	playsound(owner, 'sound/effects/firebeam.ogg', 80)
+	playsound(owner, 'sound/effects/alien/firebeam.ogg', 80)
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, HEATRAY_BEAM_ABILITY_TRAIT)
 	RegisterSignals(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
 	started_firing = world.time
@@ -359,9 +359,12 @@
 
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(isvehicle(victim))
-				var/obj/vehicle/veh_victim = victim
-				veh_victim.take_damage(PYROGEN_HEATRAY_HIT_DAMAGE, BURN, FIRE)
+			else if(isvehicle(victim) || ishitbox(victim))
+				var/obj/obj_victim = victim
+				var/damage_add = 0
+				if(ismecha(obj_victim))
+					damage_add = 20
+				obj_victim.take_damage((PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE + damage_add), BURN, FIRE)
 	if(world.time - started_firing > PYROGEN_HEATRAY_MAXDURATION)
 		stop_beaming()
 		return

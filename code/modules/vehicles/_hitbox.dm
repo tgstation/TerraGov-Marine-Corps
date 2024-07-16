@@ -134,21 +134,19 @@
 	direction = get_dir(oldloc, mover)
 	var/move_dist = get_dist(oldloc, mover)
 	forceMove(mover.loc)
+	var/new_z = (z != oldloc.z)
 	for(var/mob/living/tank_desant AS in tank_desants)
 		tank_desant.set_glide_size(root.glide_size)
-		tank_desant.forceMove(get_step(tank_desant, direction))
-		if(isxeno(tank_desant) || move_dist > 1)
+		tank_desant.forceMove(new_z ? loc : get_step(tank_desant, direction)) //For simplicity we just move desants to the middle of the tank on z change to avoid various issues
+		if(isxeno(tank_desant))
 			continue
 		if(move_dist > 1)
 			continue
 		if(!tank_desant.l_hand || !tank_desant.r_hand)
 			continue
 		balloon_alert(tank_desant, "poor grip!")
-		var/away_dir = get_dir(tank_desant, root)
-		if(!away_dir)
-			away_dir = pick(GLOB.alldirs)
-		away_dir = REVERSE_DIR(away_dir)
-		var/turf/target = get_step(get_step(root, away_dir), away_dir)
+		var/away_dir = REVERSE_DIR(get_dir(tank_desant, root) || pick(GLOB.alldirs))
+		var/turf/target = get_ranged_target_turf(tank_desant, away_dir, 3)
 		tank_desant.throw_at(target, 3, 3, root)
 
 ///called when the tank is off movement cooldown and someone tries to move it

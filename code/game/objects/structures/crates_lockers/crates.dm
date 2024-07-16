@@ -226,6 +226,19 @@
 	icon_opened = "open_trashcart"
 	icon_closed = "closed_trashcart"
 
+/obj/structure/closet/crate/trashcart/Initialize(mapload, ...)
+	. = ..()
+	if(opened)
+		density = FALSE
+
+/obj/structure/closet/crate/trashcart/food
+	desc = "A heavy, metal foodcart with wheels."
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi';
+	icon_state = "foodcart2"
+	icon_closed = "foodcart2"
+	icon_opened = "foodcart2_open"
+	name = "food cart"
+
 /obj/structure/closet/crate/wayland
 	name = "Wayland crate"
 	desc = "A crate with a Wayland insignia on it."

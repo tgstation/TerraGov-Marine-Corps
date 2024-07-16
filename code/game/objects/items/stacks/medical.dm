@@ -87,6 +87,7 @@
 			patient.balloon_alert(user, "Stopped tending")
 			return
 		var/affected = heal_limb(affecting, unskilled_penalty)
+		record_healing(user,M)
 		generate_treatment_messages(user, patient, affecting, affected)
 		use(1)
 		affecting = null
@@ -133,8 +134,8 @@
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
-	user.visible_message(span_notice("[user] treats the wounds on [patient]'s [target_limb.display_name] with [src]."),
-	span_notice("You treat the wounds on [patient]'s [target_limb.display_name] with [src].") )
+	user.visible_message(span_green("[user] treats the wounds on [patient]'s [target_limb.display_name] with [src]."),
+	span_green("You treat the wounds on [patient]'s [target_limb.display_name] with [src].") )
 
 /obj/item/stack/medical/heal_pack/gauze
 	name = "roll of gauze"
@@ -148,8 +149,8 @@
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
-	user.visible_message(span_notice("[user] bandages [patient]'s [target_limb.display_name]."),
-		span_notice("You bandage [patient]'s [target_limb.display_name].") )
+	user.visible_message(span_green("[user] bandages [patient]'s [target_limb.display_name]."),
+		span_green("You bandage [patient]'s [target_limb.display_name].") )
 
 /obj/item/stack/medical/heal_pack/ointment
 	name = "ointment"
@@ -164,8 +165,8 @@
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
-	user.visible_message(span_notice("[user] salves wounds on [patient]'s [target_limb.display_name]."),
-	span_notice("You salve wounds on [patient]'s [target_limb.display_name]."))
+	user.visible_message(span_green("[user] salves wounds on [patient]'s [target_limb.display_name]."),
+	span_green("You salve wounds on [patient]'s [target_limb.display_name]."))
 
 /obj/item/stack/medical/heal_pack/gauze/sectoid
 	name = "\improper healing resin pack"
@@ -196,8 +197,8 @@
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
-	user.visible_message(span_notice("[user] cleans [patient]'s [target_limb.display_name] and seals its wounds with bioglue."),
-		span_notice("You clean and seal all the wounds on [patient]'s [target_limb.display_name]."))
+	user.visible_message(span_green("[user] cleans [patient]'s [target_limb.display_name] and seals its wounds with bioglue."),
+		span_green("You clean and seal all the wounds on [patient]'s [target_limb.display_name]."))
 
 /obj/item/stack/medical/heal_pack/advanced/burn_pack
 	name = "advanced burn kit"
@@ -211,8 +212,8 @@
 	if(!success)
 		to_chat(user, span_warning("The wounds on [patient]'s [target_limb.display_name] have already been treated."))
 		return
-	user.visible_message(span_notice("[user] covers the wounds on [patient]'s [target_limb.display_name] with regenerative membrane."),
-	span_notice("You cover the wounds on [patient]'s [target_limb.display_name] with regenerative membrane."))
+	user.visible_message(span_green("[user] covers the wounds on [patient]'s [target_limb.display_name] with regenerative membrane."),
+	span_green("You cover the wounds on [patient]'s [target_limb.display_name] with regenerative membrane."))
 
 /obj/item/stack/medical/splint
 	name = "medical splints"

@@ -24,8 +24,6 @@
 	///a very temporary list of overlays to add
 	var/list/add_overlays
 
-	///Lazy assoc list for managing filters attached to us
-	var/list/filter_data
 
 	///Related to do_after/do_mob overlays, I can't get my hopes high.
 	var/list/display_icons
@@ -321,7 +319,13 @@ directive is properly returned.
 
 	if(length(result))
 		for(var/i in 1 to (length(result) - 1))
-			result[i] += "\n"
+			if(result[i] != EXAMINE_SECTION_BREAK)
+				result[i] += "\n"
+			else
+				// remove repeated <hr's> and ones on the ends.
+				if((i == 1) || (i == length(result)) || (result[i - 1] == EXAMINE_SECTION_BREAK))
+					result.Cut(i, i + 1)
+					i--
 
 	to_chat(src, examine_block(span_infoplain(result.Join())))
 	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
@@ -349,16 +353,18 @@ directive is properly returned.
 	SHOULD_CALL_PARENT(TRUE)
 	var/examine_string = get_examine_string(user, thats = TRUE)
 	if(examine_string)
-		. = list("[examine_string].")
+		. = list("[examine_string].", EXAMINE_SECTION_BREAK)
 	else
 		. = list()
 
 	if(desc)
 		. += desc
 	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
+		. += EXAMINE_SECTION_BREAK
 		. += span_notice("The codex has <a href='?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
 
 	if((get_dist(user,src) <= 2) && reagents)
+		. += EXAMINE_SECTION_BREAK
 		if(reagents.reagent_flags & TRANSPARENT)
 			. += "It contains:"
 			if(length(reagents.reagent_list)) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
@@ -508,71 +514,10 @@ directive is properly returned.
 			//we were deleted
 			return
 
-///Add filters by priority to an atom
-/atom/proc/add_filter(name,priority,list/params)
-	LAZYINITLIST(filter_data)
-	var/list/p = params.Copy()
-	p["priority"] = priority
-	filter_data[name] = p
-	update_filters()
-
-///Sorts our filters by priority and reapplies them
-/atom/proc/update_filters()
-	filters = null
-	filter_data = sortTim(filter_data, GLOBAL_PROC_REF(cmp_filter_data_priority), TRUE)
-	for(var/f in filter_data)
-		var/list/data = filter_data[f]
-		var/list/arguments = data.Copy()
-		arguments -= "priority"
-		filters += filter(arglist(arguments))
-	UNSETEMPTY(filter_data)
-
-/atom/proc/transition_filter(name, time, list/new_params, easing, loop)
-	var/filter = get_filter(name)
-	if(!filter)
-		return
-
-	var/list/old_filter_data = filter_data[name]
-
-	var/list/params = old_filter_data.Copy()
-	for(var/thing in new_params)
-		params[thing] = new_params[thing]
-
-	animate(filter, new_params, time = time, easing = easing, loop = loop)
-	for(var/param in params)
-		filter_data[name][param] = params[param]
-
-/atom/proc/change_filter_priority(name, new_priority)
-	if(!filter_data || !filter_data[name])
-		return
-
-	filter_data[name]["priority"] = new_priority
-	update_filters()
-
-/obj/item/update_filters()
+/obj/item/update_filters() // tivi todo move this to items
 	. = ..()
 	for(var/datum/action/A AS in actions)
 		A.update_button_icon()
-
-///returns a filter in the managed filters list by name
-/atom/proc/get_filter(name)
-	if(filter_data && filter_data[name])
-		return filters[filter_data.Find(name)]
-
-///removes a filter from the atom
-/atom/proc/remove_filter(name_or_names)
-	if(!filter_data)
-		return
-	var/list/names = islist(name_or_names) ? name_or_names : list(name_or_names)
-
-	for(var/name in names)
-		if(filter_data[name])
-			filter_data -= name
-	update_filters()
-
-/atom/proc/clear_filters()
-	filter_data = null
-	filters = null
 
 /*
 	Atom Colour Priority System

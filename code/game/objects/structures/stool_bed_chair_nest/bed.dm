@@ -24,9 +24,10 @@
 	var/buildstacktype = /obj/item/stack/sheet/metal
 	var/buildstackamount = 1
 	var/foldabletype //To fold into an item (e.g. roller bed item)
-	/// pixel x shift to give to the buckled mob
+	///pixel x shift to give to the buckled mob
 	var/buckling_x = 0
-	var/buckling_y = 0 //pixel y shift to give to the buckled mob.
+	///pixel y shift to give to the buckled mob. This stacks with the lying down pixel shift when relevant
+	var/buckling_y = 3
 	var/obj/structure/closet/bodybag/buckled_bodybag
 	var/accepts_bodybag = FALSE //Whether you can buckle bodybags to this bed
 	var/base_bed_icon //Used by beds that change sprite when something is buckled to them
@@ -235,7 +236,7 @@
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 0 //Pulling something on wheels is easy
-	buckling_y = 6
+	buckling_y = 9
 	foldabletype = /obj/item/roller
 	accepts_bodybag = TRUE
 	base_bed_icon = "roller"
@@ -788,3 +789,67 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 		linked_beds_deployed -= stretcherbed
 		return TRUE
 	return FALSE
+
+
+//bedroll
+/obj/structure/bed/bedroll
+	name = "unfolded bedroll"
+	desc = "Perfect for those long missions, when there's nowhere else to sleep, you remembered to bring at least one thing of comfort."
+	icon = 'icons/obj/rollerbed.dmi'
+	icon_state = "bedroll_o"
+	buckling_y = 0
+	foldabletype = /obj/item/roller/bedroll
+	accepts_bodybag = FALSE
+	buildstacktype = null
+
+/obj/item/roller/bedroll
+	name = "folded bedroll"
+	desc = "A standard issue USCMC bedroll, They've been in service for as long as you can remember. The tag on it states to unfold it before rest, but who needs rules anyway, right?"
+	icon = 'icons/obj/rollerbed.dmi'
+	icon_state = "bedroll"
+	rollertype = /obj/structure/bed/bedroll
+
+//Hospital Rollers (non foldable)
+
+/obj/structure/bed/roller/hospital
+	name = "hospital bed"
+	icon = 'icons/obj/rollerbed.dmi'
+	icon_state = "bigrollerempty_up"
+	foldabletype = null
+	base_bed_icon = "bigrollerempty"
+
+/obj/structure/bed/roller/hospital/bloody
+	base_bed_icon = "bigrollerbloodempty"
+
+/obj/structure/bed/roller/hospital_empty
+	icon_state = "bigrollerempty2_down"
+	foldabletype = null
+
+/obj/structure/bed/roller/hospital_empty/bigrollerempty
+	icon_state = "bigrollerempty_down"
+	buckling_y = 2
+	base_bed_icon = "bigrollerempty"
+
+/obj/structure/bed/roller/hospital_empty/bigrollerempty2
+	icon_state = "bigrollerempty2_down"
+	buckling_y = 2
+	base_bed_icon = "bigrollerempty2"
+
+/obj/structure/bed/roller/hospital_empty/bigrollerempty3
+	icon_state = "bigrollerempty3_down"
+	buckling_y = 2
+	base_bed_icon = "bigrollerempty3"
+
+/obj/structure/bed/roller/hospital_empty/bigrollerbloodempty
+	icon_state = "bigrollerbloodempty_down"
+	buckling_y = 2
+	base_bed_icon = "bigrollerbloodempty"
+
+// Hospital divider (not a bed)
+/obj/structure/bed/urban/hospital/hospitaldivider
+	name = "hospital divider"
+	desc = "A hospital divider for privacy."
+	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
+	icon_state = "hospitalcurtain"
+	layer = ABOVE_MOB_LAYER
+	anchored = TRUE
