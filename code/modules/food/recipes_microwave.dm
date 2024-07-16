@@ -3,7 +3,7 @@
 
 
 /datum/recipe/friedegg
-	reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
+	reagents = list(/datum/reagent/consumable/salt = 1, /datum/reagent/consumable/blackpepper = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/egg,
 	)
@@ -450,14 +450,14 @@
 			return 0
 
 /datum/recipe/meatsteak
-	reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
+	reagents = list(/datum/reagent/consumable/salt = 1, /datum/reagent/consumable/blackpepper = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat,
 	)
 	result = /obj/item/reagent_containers/food/snacks/meatsteak
 
 /datum/recipe/syntisteak
-	reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
+	reagents = list(/datum/reagent/consumable/salt = 1, /datum/reagent/consumable/blackpepper = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/meat/syntiflesh,
 	)
@@ -649,7 +649,7 @@
 	result = /obj/item/reagent_containers/food/snacks/sandwiches/creamcheesebread
 
 /datum/recipe/monkeysdelight
-	reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
+	reagents = list(/datum/reagent/consumable/salt = 1, /datum/reagent/consumable/blackpepper = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/flour,
 		/obj/item/reagent_containers/food/snacks/monkeycube,
@@ -658,7 +658,7 @@
 	result = /obj/item/reagent_containers/food/snacks/monkeysdelight
 
 /datum/recipe/baguette
-	reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
+	reagents = list(/datum/reagent/consumable/salt = 1, /datum/reagent/consumable/blackpepper = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/dough,
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -818,7 +818,7 @@
 	result = /obj/item/reagent_containers/food/snacks/spesslaw
 
 /datum/recipe/superbiteburger
-	reagents = list(/datum/reagent/consumable/sodiumchloride = 5, /datum/reagent/consumable/blackpepper = 5)
+	reagents = list(/datum/reagent/consumable/salt = 5, /datum/reagent/consumable/blackpepper = 5)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/burger/bigbite,
 		/obj/item/reagent_containers/food/snacks/dough,
@@ -1074,14 +1074,14 @@
 		return being_cooked
 
 /datum/recipe/cracker
-	reagents = list(/datum/reagent/consumable/sodiumchloride = 1)
+	reagents = list(/datum/reagent/consumable/salt = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/doughslice,
 	)
 	result = /obj/item/reagent_containers/food/snacks/cracker
 
 /datum/recipe/stuffing
-	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
+	reagents = list(/datum/reagent/water = 5, /datum/reagent/consumable/salt = 1, /datum/reagent/consumable/blackpepper = 1)
 	items = list(
 		/obj/item/reagent_containers/food/snacks/sandwiches/bread,
 	)

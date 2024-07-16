@@ -162,20 +162,6 @@
 	foodtypes = GRAIN | FRUIT | VEGETABLES
 	w_class = WEIGHT_CLASS_SMALL
 
-/obj/item/food/energybar
-	name = "\improper High-power energy bars"
-	icon_state = "energybar"
-	desc = "An energy bar with a lot of punch, you probably shouldn't eat this if you're not an Ethereal."
-	trash_type = /obj/item/trash/energybar
-	food_reagents = list(
-		/datum/reagent/consumable/nutriment = 3,
-		/datum/reagent/consumable/liquidelectricity/enriched = 3,
-	)
-	tastes = list("pure electricity" = 3, "fitness" = 2)
-	foodtypes = TOXIC
-	food_flags = FOOD_FINGER_FOOD
-	w_class = WEIGHT_CLASS_SMALL
-
 /obj/item/food/peanuts
 	name = "\improper Gallery's peanuts"
 	desc = "A favourite amongst the terminally angry."

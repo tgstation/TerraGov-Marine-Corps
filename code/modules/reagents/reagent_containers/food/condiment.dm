@@ -113,7 +113,7 @@
 				desc = "Leaves the tongue numb in its passage."
 				icon_state = "coldsauce"
 				center_of_mass = list("x"=16, "y"=6)
-			if(/datum/reagent/consumable/sodiumchloride)
+			if(/datum/reagent/consumable/salt)
 				name = "Salt Shaker"
 				desc = "Salt. From space oceans, presumably."
 				icon_state = "saltshaker"
@@ -163,7 +163,7 @@
 	possible_transfer_amounts = list(1,20) //for clown turning the lid off
 	amount_per_transfer_from_this = 1
 	volume = 20
-	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 20)
+	list_reagents = list(/datum/reagent/consumable/salt = 20)
 
 /obj/item/reagent_containers/food/condiment/peppermill
 	name = "Pepper Mill"

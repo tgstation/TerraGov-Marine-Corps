@@ -85,7 +85,7 @@
 /datum/chemical_reaction/potassium_chloride
 	name = "Potassium Chloride"
 	results = list(/datum/reagent/toxin/potassium_chloride = 2)
-	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/potassium = 1)
+	required_reagents = list(/datum/reagent/consumable/salt = 1, /datum/reagent/potassium = 1)
 
 /datum/chemical_reaction/potassium_chlorophoride
 	name = "Potassium Chlorophoride"
@@ -110,7 +110,7 @@
 /datum/chemical_reaction/lipozine
 	name = "Lipozine"
 	results = list(/datum/reagent/lipozine = 3)
-	required_reagents = list(/datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/ethanol = 1, /datum/reagent/radium = 1)
+	required_reagents = list(/datum/reagent/consumable/salt = 1, /datum/reagent/consumable/ethanol = 1, /datum/reagent/radium = 1)
 
 /datum/chemical_reaction/phoronsolidification
 	name = "Solid Phoron"

@@ -75,11 +75,9 @@
 
 	RegisterSignal(src, COMSIG_ATOM_REAGENT_EXAMINE, PROC_REF(allow_reagent_scan))
 
-	var/ice_cream_day = check_holidays(ICE_CREAM_DAY) //ice cream vats are more "robust" on this holiday
 
-	create_reagents(ice_cream_day ? 400 : 300, NO_REACT|TRANSPARENT)
+	create_reagents(300, NO_REACT|TRANSPARENT)
 	reagents.chem_temp = T0C //So ice doesn't melt
-	register_context()
 
 	if(preinstall_reagents)
 		for(var/reagent in icecream_vat_reagents)
@@ -89,26 +87,6 @@
 	. = ..()
 	if(gone == custom_ice_cream_beaker)
 		custom_ice_cream_beaker = null
-
-/obj/machinery/icecream_vat/add_context(atom/source, list/context, obj/item/held_item, mob/living/user)
-	if(held_item)
-		if(is_reagent_container(held_item))
-			context[SCREENTIP_CONTEXT_LMB] = "Insert beaker"
-			context[SCREENTIP_CONTEXT_RMB] = "Transfer beaker reagents"
-		else if(istype(held_item, /obj/item/food/icecream))
-			context[SCREENTIP_CONTEXT_LMB] = "Take scoop of [selected_flavour] ice cream"
-		else if(istype(held_item, /obj/item/kitchen/spoon) || istype(held_item, /obj/item/kitchen/spoon/soup_ladle))
-			context[SCREENTIP_CONTEXT_RMB] = "Spill reagent"
-		return CONTEXTUAL_SCREENTIP_SET
-
-	switch(vat_mode)
-		if(VAT_MODE_ICECREAM)
-			context[SCREENTIP_CONTEXT_LMB] = "Select flavor"
-			context[SCREENTIP_CONTEXT_RMB] = "Change mode to cones"
-		if(VAT_MODE_CONES)
-			context[SCREENTIP_CONTEXT_LMB] = "Make cone"
-			context[SCREENTIP_CONTEXT_RMB] = "Change mode to flavors"
-	return CONTEXTUAL_SCREENTIP_SET
 
 /obj/machinery/icecream_vat/examine(mob/user)
 	. = ..()

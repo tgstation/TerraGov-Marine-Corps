@@ -248,22 +248,6 @@
 	. = ..()
 	AddComponent(/datum/component/edible, on_consume = CALLBACK(src, PROC_REF(OnConsume)))
 
-/obj/item/food/bubblegum/bubblegum/proc/OnConsume(mob/living/eater, mob/living/feeder)
-	if(iscarbon(eater))
-		hallucinate(eater)
-
-///This proc has a 5% chance to have a bubblegum line appear, with an 85% chance for just text and 15% for a bubblegum hallucination and scarier text.
-/obj/item/food/bubblegum/bubblegum/proc/hallucinate(mob/living/carbon/victim)
-	if(prob(95)) //cursed by bubblegum
-		return
-	if(prob(15))
-		victim.cause_hallucination(/datum/hallucination/oh_yeah, "bubblegum bubblegum", haunt_them = TRUE)
-	else
-		to_chat(victim, span_warning("[pick("You hear faint whispers.", "You smell ash.", "You feel hot.", "You hear a roar in the distance.")]"))
-
-/obj/item/food/bubblegum/bubblegum/suicide_act(mob/living/user)
-	user.say(";[pick(BUBBLEGUM_HALLUCINATION_LINES)]")
-	return ..()
 
 /obj/item/food/gumball
 	name = "gumball"
@@ -271,11 +255,11 @@
 	icon = 'icons/obj/food/lollipop.dmi'
 	icon_state = "gumball"
 	worn_icon_state = "bubblegum"
-	food_reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/sal_acid = 2, /datum/reagent/medicine/oxandrolone = 2) //Kek
+	food_reagents = list(/datum/reagent/consumable/sugar = 5, /datum/reagent/medicine/bicaridine = 2, /datum/reagent/medicine/kelotane = 2) //Kek
 	tastes = list("candy")
 	foodtypes = JUNKFOOD
 	food_flags = FOOD_FINGER_FOOD
-	slot_flags = ITEM_SLOT_MASK
+	equip_slot_flags = ITEM_SLOT_MASK
 	w_class = WEIGHT_CLASS_TINY
 	venue_value = FOOD_PRICE_WORTHLESS
 

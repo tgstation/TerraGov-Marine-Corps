@@ -54,7 +54,7 @@
 	var/obj/item/reagent_containers/glass/reagent_canister/inner
 	///List of chemicals we fill up our pouch with on Initialize()
 	var/list/chemicals_to_fill = list(
-		/datum/reagent/consumable/sodiumchloride = 1200,
+		/datum/reagent/consumable/salt = 1200,
 	)
 
 /obj/item/storage/pouch/pressurized_reagent_pouch/Initialize(mapload)

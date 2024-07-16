@@ -40,7 +40,7 @@
 	required_catalysts = list(/datum/reagent/toxin/phoron = 5)
 
 /datum/chemical_reaction/sodiumchloriderecipe
-	results = list(/datum/reagent/consumable/sodiumchloride = 2)
+	results = list(/datum/reagent/consumable/salt = 2)
 	required_reagents = list(/datum/reagent/sodium = 1, /datum/reagent/chlorine = 1)
 
 /datum/chemical_reaction/cheesewheelrecipe

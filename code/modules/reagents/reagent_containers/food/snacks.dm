@@ -319,7 +319,7 @@
 	icon_state = "chips"
 	trash = /obj/item/trash/chips
 	filling_color = "#E8C31E"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/sodiumchloride = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/salt = 1)
 	tastes = list("salt" = 1, "crisps" = 1)
 
 /obj/item/reagent_containers/food/snacks/cookie
@@ -407,7 +407,7 @@
 	desc = "A fried egg, with a touch of salt and pepper."
 	icon_state = "friedegg"
 	filling_color = "#FFDF78"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/salt = 1, /datum/reagent/consumable/blackpepper = 1)
 	tastes = list("egg" = 4, "salt" = 1, "pepper" = 1)
 
 /obj/item/reagent_containers/food/snacks/boiledegg
@@ -501,15 +501,6 @@
 	bitesize = 3
 	tastes = list("fish" = 1, "breadcrumbs" = 1)
 
-/obj/item/reagent_containers/food/snacks/hugemushroomslice
-	name = "huge mushroom slice"
-	desc = "A slice from a huge mushroom."
-	icon = 'icons/obj/items/food/meat.dmi'
-	icon_state = "hugemushroomslice"
-	filling_color = "#E0D7C5"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/psilocybin = 3)
-	bitesize = 6
-	tastes = list("mushroom" = 1)
 
 /obj/item/reagent_containers/food/snacks/tomatomeat
 	name = "tomato slice"
@@ -722,7 +713,7 @@
 	icon = 'icons/obj/items/food/packaged.dmi'
 	trash = /obj/item/trash/sosjerky
 	filling_color = "#631212"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/sodiumchloride = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 1, /datum/reagent/consumable/sugar = 3, /datum/reagent/consumable/salt = 2)
 	bitesize = 2
 	tastes = list("dried meat" = 1)
 
@@ -835,7 +826,7 @@
 	icon_state = "meatsteak"
 	trash = /obj/item/trash/plate
 	filling_color = "#7A3D11"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sodiumchloride = 1, /datum/reagent/consumable/blackpepper = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/salt = 1, /datum/reagent/consumable/blackpepper = 1)
 	bitesize = 3
 	tastes = list("meat" = 1)
 
@@ -944,7 +935,7 @@
 	icon_state = "monkeysdelight"
 	trash = /obj/item/trash/tray
 	filling_color = "#5C3C11"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/consumable/sodiumchloride = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/consumable/salt = 1)
 	bitesize = 6
 	tastes = list("the jungle" = 1, "banana" = 1)
 
@@ -954,7 +945,7 @@
 	icon = 'icons/obj/items/food/bread.dmi'
 	icon_state = "baguette"
 	filling_color = "#E3D796"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/consumable/sodiumchloride = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/blackpepper = 1, /datum/reagent/consumable/salt = 1)
 	bitesize = 3
 	tastes = list("bread" = 1)
 
@@ -967,16 +958,6 @@
 	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/toxin/carpotoxin = 3)
 	bitesize = 3
 	tastes = list("fish" = 1, "chips" = 1)
-
-/obj/item/reagent_containers/food/snacks/rofflewaffles
-	name = "Rohffle Waffles"
-	desc = "Waffles from Rohffle. Co."
-	icon_state = "rofflewaffles"
-	trash = /obj/item/trash/waffles
-	filling_color = "#FF00F7"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/psilocybin = 8)
-	bitesize = 4
-	tastes = list("waffle" = 1, "mushrooms" = 1)
 
 /obj/item/reagent_containers/food/snacks/stewedsoymeat
 	name = "Stewed Soy Meat"
@@ -1379,7 +1360,7 @@
 	icon_state = "hot_dogs"
 	bitesize = 2
 	package = TRUE
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sodiumchloride = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/salt = 2)
 	tastes = list("dough" = 1, "chicken" = 1)
 
 /obj/item/reagent_containers/food/snacks/packaged_hdogs/attack_self(mob/user as mob)
@@ -1397,7 +1378,7 @@
 	icon_state = "upp_ration"
 	bitesize = 2
 	package = TRUE
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/sodiumchloride = 0.5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/salt = 0.5)
 	var/variation = null
 
 
@@ -1453,7 +1434,7 @@
 	icon_state = "kepler"
 	bitesize = 2
 	trash = /obj/item/trash/kepler
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sodiumchloride = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/salt = 1)
 	tastes = list("chips" = 2)
 
 //Wrapped candy bars
@@ -1559,13 +1540,13 @@
 	switch(newflavor)
 		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders")
 			icon_state = "entree"
-			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/sodiumchloride = 1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/salt = 1)
 		if("meatballs", "cheese spread", "beef turnover", "mashed potatoes")
 			icon_state = "side"
-			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/sodiumchloride = 1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/salt = 1)
 		if("biscuit", "pretzels", "peanuts", "cracker")
 			icon_state = "snack"
-			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/sodiumchloride = 1)
+			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/salt = 1)
 		if("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "crayon")
 			icon_state = "dessert"
 			list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/sugar = 1)

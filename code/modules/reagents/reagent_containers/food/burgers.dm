@@ -151,7 +151,7 @@
 	desc = "Forget the Big Mac. THIS is the future!"
 	icon_state = "bigbiteburger"
 	filling_color = "#E3D681"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 14, /datum/reagent/consumable/sodiumchloride = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 14, /datum/reagent/consumable/salt = 2)
 	bitesize = 3
 	tastes = list("bun" = 4)
 
@@ -280,7 +280,7 @@
 	icon_state = "burger"
 	bitesize = 3
 	package = TRUE
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/sodiumchloride = 2)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/salt = 2)
 	tastes = list("bun" = 4, "soy protein" = 2) //Cheap fridge burgers.
 
 /obj/item/reagent_containers/food/snacks/burger/packaged_burger/attack_self(mob/user as mob)

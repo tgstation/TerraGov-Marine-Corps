@@ -8,7 +8,7 @@
 	reagent_flags = DRAWABLE
 	amount_per_transfer_from_this = 10
 	volume = 30
-	list_reagents = list(/datum/reagent/consumable/sodiumchloride = 30)
+	list_reagents = list(/datum/reagent/consumable/salt = 30)
 
 /obj/item/reagent_containers/hypospray/autoinjector/update_icon_state()
 	. = ..()
