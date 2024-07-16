@@ -472,15 +472,6 @@
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
 		return
 
-	if(cell_powered && cell?.charge < TIER_1_CELL_CHARGE_RATE * efficiency)
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		balloon_alert(cooker, "no power draw!")
-		return
-
-	if(cooker && HAS_TRAIT(cooker, TRAIT_CURSED) && prob(7))
-		muck()
-		return
-
 	if(prob(max((5 / efficiency) - 5, dirty * 5))) //a clean unupgraded microwave has no risk of failure
 		muck()
 		return
@@ -490,15 +481,6 @@
 	for(var/atom/movable/potential_fooditem as anything in ingredients)
 		if(IS_EDIBLE(potential_fooditem))
 			non_food_ingedients--
-		if(istype(potential_fooditem, /obj/item/modular_computer) && prob(75))
-			pda_failure = TRUE
-			notify_ghosts(
-				"[cooker] has overheated their PDA!",
-				source = src,
-				notify_flags = NOTIFY_CATEGORY_NOFLASH,
-				header = "Hunger Games: Catching Fire",
-			)
-
 	// If we're cooking non-food items we can fail randomly
 	if(length(non_food_ingedients) && prob(min(dirty * 5, 100)))
 		start_can_fail(cooker)
@@ -507,10 +489,6 @@
 	start(cooker)
 
 /obj/machinery/microwave/proc/wzhzhzh()
-	if(cell_powered && !isnull(cell))
-		if(!cell.use(TIER_1_CELL_CHARGE_RATE * efficiency))
-			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-			return
 
 	visible_message(span_notice("\The [src] turns on."), null, span_hear("You hear a microwave humming."))
 	operating = TRUE
