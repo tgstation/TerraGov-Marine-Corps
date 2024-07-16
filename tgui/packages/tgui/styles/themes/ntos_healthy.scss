@@ -7,15 +7,13 @@
 @use 'sass:meta';
 
 @use '../colors.scss' with (
-  $primary: #24e8b7,
-  $label: #24e8b7,
-  $good: #24e8b7,
-  $average: #24e8b7,
-  // $fg-map-keys: (),
-  // $bg-map-keys: (),
+  $primary: #24dbe8,
+  $label: #24dbe8,
+  $good: #24dbe8,
+  $average: #24dbe8
 );
 @use '../base.scss' with (
-  $color-bg: #121b18,
+  $color-bg: #121b1b,
   $color-bg-grad-spread: 0%
 );
 
@@ -25,11 +23,16 @@
 
   // Components
   @include meta.load-css(
+    '../components/NoticeBox.scss',
+    $with: ('background-color': #137b83)
+  );
+
+  @include meta.load-css(
     '../components/Button.scss',
     $with: (
-      'color-default': #24e8ad40,
-      'color-disabled': #4a6a5f,
-      'color-selected': rgba(36, 232, 190, 0.25)
+      'color-default': #24e8e840,
+      'color-disabled': #4a696a,
+      'color-selected': rgba(36, 232, 232, 0.25)
     )
   );
   @include meta.load-css(
@@ -40,7 +43,7 @@
     '../components/ProgressBar.scss',
     $with: (
       'background-color': rgba(0, 0, 0, 0.5),
-      'color-default-fill': rgba(36, 232, 183, 0.65)
+      'color-default-fill': rgba(36, 219, 232, 0.65)
     )
   );
   @include meta.load-css('../components/Modal.scss');
@@ -51,7 +54,7 @@
   @include meta.load-css('../layouts/Window.scss');
   @include meta.load-css(
     '../layouts/TitleBar.scss',
-    $with: ('background-color': rgba(36, 232, 167, 0.25))
+    $with: ('background-color': rgba(36, 219, 232, 0.25))
   );
 
   .Layout__content {
@@ -62,41 +65,45 @@
         transparent 2.5px,
         transparent 5px
       ),
-      radial-gradient(rgba(0, 97, 73, 0.75), black 120%);
+      radial-gradient(rgba(0, 90, 97, 0.75), black 120%);
     background-size: 100%, 100%;
     background-position: center, center;
   }
-
   .Button {
     font: Inconsolata;
-    color: #24e8b7;
+    color: #24dbe8;
   }
   .Button:hover,
   .Button:focus {
-    color: #24e8b7;
+    color: #24dbe8;
     background-color: #24e8ce5e;
     transition: 0.1s;
   }
   .Button--selected {
-    color: #24e8b7;
+    color: #24dbe8;
   }
-
   body {
     color: white;
     font: 1.3rem Inconsolata;
   }
+  .Section {
+    border-radius: 0.16em;
+  }
   .Section__titleText {
-    color: #24e8b7;
+    color: #24dbe8;
   }
   .Tab {
-    color: #24e8b7;
+    color: #24dbe8;
   }
   .Tab--selected {
-    color: #24e8b7;
-    border: 2px solid #24e8b7;
+    color: #24dbe8;
+    border: 2px solid #24dbe8;
     background-color: rgba(232, 212, 36, 0.25);
   }
   ::selection {
     background: #0080ff;
+  }
+  .NoticeBox {
+    border-radius: 0.16em;
   }
 }

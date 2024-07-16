@@ -43,6 +43,7 @@ type MedScannerData = {
   implants: number;
   hugged: number;
   advice: any;
+  accessible_theme: boolean;
 };
 
 export const MedScanner = (props) => {
@@ -55,12 +56,21 @@ export const MedScanner = (props) => {
     blood_amount,
     internal_bleeding,
     advice,
+    accessible_theme,
   } = data;
   return (
     <Window
       width={515}
       height={615}
-      theme={species === 'robot' ? 'ntos_rusty' : 'ntos_healthy'}
+      theme={
+        accessible_theme
+          ? species === 'robot'
+            ? 'hackerman'
+            : 'default'
+          : species === 'robot'
+            ? 'ntos_rusty'
+            : 'ntos_healthy'
+      }
     >
       <Window.Content scrollable>
         <PatientBasics />
@@ -98,6 +108,8 @@ const PatientBasics = () => {
     revivable_string,
 
     ssd,
+
+    accessible_theme,
   } = data;
   return (
     <Section
@@ -107,6 +119,10 @@ const PatientBasics = () => {
           icon="info"
           tooltip="Most elements of this window have a tooltip for additional information. Hover your mouse over something for clarification!"
           color="transparent"
+          mt={
+            /* with the "hackerman" theme, the buttons have this ugly outline that messes with the section titlebar, let's fix that */
+            accessible_theme ? (species === 'robot' ? '-5px' : '0px') : '0px'
+          }
         >
           Tooltips - hover for info
         </Button>
@@ -156,7 +172,16 @@ const PatientBasics = () => {
         </LabeledList.Item>
         {dead ? (
           <LabeledList.Item label="Revivable">
-            <Box color={revivable_boolean ? 'label' : 'red'} bold={1}>
+            <Box
+              color={
+                revivable_boolean
+                  ? accessible_theme
+                    ? 'yellow'
+                    : 'label'
+                  : 'red'
+              }
+              bold={1}
+            >
               {revivable_string}
             </Box>
           </LabeledList.Item>
@@ -248,7 +273,7 @@ const PatientChemicals = (props) => {
   const { data } = useBackend<MedScannerData>();
   const { has_chemicals, has_unknown_chemicals, chemicals_lists } = data;
   const chemicals = Object.values(chemicals_lists);
-  return has_chemicals ? (
+  return (
     <Section title="Chemical Contents">
       {has_unknown_chemicals ? (
         <Tooltip content="There are unknown reagents detected inside the patient. Proceed with caution.">
@@ -286,14 +311,14 @@ const PatientChemicals = (props) => {
         ))}
       </LabeledList>
     </Section>
-  ) : null;
+  );
 };
 
 const PatientLimbs = (props) => {
   const row_bg_color = 'rgba(255, 255, 255, .05)';
   let row_transparency = 0;
   const { data } = useBackend<MedScannerData>();
-  const { limb_data_lists, species } = data;
+  const { limb_data_lists, species, accessible_theme } = data;
   const limb_data = Object.values(limb_data_lists);
   return (
     <Section title="Limbs Damaged">
@@ -411,7 +436,9 @@ const PatientLimbs = (props) => {
                         color={
                           limb.limb_type === 'Robotic'
                             ? species === 'robot'
-                              ? 'label'
+                              ? accessible_theme
+                                ? 'lime'
+                                : 'label'
                               : 'pink'
                             : 'tan'
                         }
@@ -532,7 +559,7 @@ const PatientBlood = (props) => {
 
 const PatientAdvice = (props) => {
   const { data } = useBackend<MedScannerData>();
-  const { advice, species } = data;
+  const { advice, species, accessible_theme } = data;
   return (
     <Section title="Treatment Advice">
       <Stack vertical>
@@ -549,7 +576,13 @@ const PatientAdvice = (props) => {
                 <Icon
                   name={advice.icon}
                   ml={0.2}
-                  color={species === 'robot' ? 'label' : advice.color}
+                  color={
+                    accessible_theme
+                      ? advice.color
+                      : species === 'robot'
+                        ? 'label'
+                        : advice.color
+                  }
                 />
                 <Box inline width={'5px'} />
                 {advice.advice}

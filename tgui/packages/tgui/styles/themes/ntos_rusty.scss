@@ -11,8 +11,6 @@
   $label: #e8aa24,
   $good: #e8aa24,
   $average: #e8aa24,
-  // $fg-map-keys: (),
-  // $bg-map-keys: (),
 );
 @use '../base.scss' with (
   $color-bg: #1b1812,
@@ -24,6 +22,11 @@
   @include meta.load-css('../atomic/color.scss');
 
   // Components
+  @include meta.load-css(
+    '../components/NoticeBox.scss',
+    $with: ('background-color': #836f13)
+  );
+
   @include meta.load-css(
     '../components/Button.scss',
     $with: (
@@ -66,7 +69,6 @@
     background-size: 100%, 100%;
     background-position: center, center;
   }
-
   .Button {
     font: Inconsolata;
     color: #e8aa24;
@@ -80,10 +82,12 @@
   .Button--selected {
     color: #e8aa24;
   }
-
   body {
     color: white;
     font: 1.3rem Inconsolata;
+  }
+  .Section{
+    border-radius: 0.16em;
   }
   .Section__titleText {
     color: #e8aa24;
@@ -98,5 +102,8 @@
   }
   ::selection {
     background: #0080ff;
+  }
+  .NoticeBox {
+    border-radius: 0.16em;
   }
 }
