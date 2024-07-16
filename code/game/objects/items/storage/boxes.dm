@@ -968,7 +968,7 @@
 /obj/item/storage/box/visual/magazine/compact/lasrifle
 	name = "LR-73 cell box"
 	desc = "A box specifically designed to hold a large amount of TX-73 cells."
-	closed_overlay = "mag_box_small_overlay_tx73"
+	closed_overlay = "mag_box_small_overlay_lr73"
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/Initialize(mapload, ...)
 	. = ..()
