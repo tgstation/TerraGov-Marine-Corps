@@ -327,3 +327,5 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define ismaroonobjective(O) (istype(O, /datum/objective/maroon))
 #define isstealobjective(O) (istype(O, /datum/objective/steal))
 #define isassassinateobjective(O) (istype(O, /datum/objective/assassinate))
+
+#define isstack(A) (istype(A, /obj/item/stack))

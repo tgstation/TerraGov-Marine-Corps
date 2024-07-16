@@ -108,12 +108,12 @@
 		add_tray_to_oven(item, user)
 
 /obj/machinery/oven/item_interaction(mob/living/user, obj/item/item, list/modifiers)
-	if(open && used_tray && item.atom_storage)
+	if(open && used_tray && item.storage_datum)
 		return used_tray.item_interaction(user, item, modifiers)
 	return NONE
 
 /obj/machinery/oven/item_interaction_secondary(mob/living/user, obj/item/tool, list/modifiers)
-	if(open && used_tray && tool.atom_storage)
+	if(open && used_tray && tool.storage_datum)
 		return used_tray.item_interaction_secondary(user, tool, modifiers)
 	return NONE
 
@@ -253,15 +253,15 @@
 	biggest_w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/plate/oven_tray/item_interaction_secondary(mob/living/user, obj/item/item, list/modifiers)
-	if(isnull(item.atom_storage))
+	if(isnull(item.storage_datum))
 		return NONE
 
 	for(var/obj/tray_item in src)
-		item.atom_storage.attempt_insert(tray_item, user, TRUE)
+		item.storage_datum.attempt_insert(tray_item, user, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/item/plate/oven_tray/item_interaction(mob/living/user, obj/item/item, list/modifiers)
-	if(isnull(item.atom_storage))
+	if(isnull(item.storage_datum))
 		return NONE
 
 	if(length(contents) >= max_items)
@@ -280,7 +280,7 @@
 			continue
 		if(length(contents) >= max_items)
 			break
-		if(item.atom_storage.attempt_remove(tray_item, src))
+		if(item.storage_datum.attempt_remove(tray_item, src))
 			loaded++
 			AddToPlate(tray_item, user)
 	if(loaded)

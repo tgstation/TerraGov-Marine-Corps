@@ -168,3 +168,34 @@
 		S.amount = S.max_amount
 
 	return ..(S,new_location,user)
+
+
+
+
+/datum/storage/bag/tray
+	storage_slots = 8; //the number of plant pieces it can carry.
+	max_storage_space = 16 //Doesn't matter what this is, so long as it's more or equal to storage_slots * plants.w_class
+	max_w_class = WEIGHT_CLASS_BULKY
+
+/datum/storage/bag/tray/New(atom/parent)
+	. = ..()
+	can_dump_contents = TRUE
+	set_holdable(list(
+		/obj/item/cigarette,
+		/obj/item/food,
+		/obj/item/kitchen,
+		/obj/item/lighter,
+		/obj/item/organ,
+		/obj/item/plate,
+		/obj/item/reagent_containers/condiment,
+		/obj/item/reagent_containers/cup,
+		/obj/item/rollingpaper,
+		/obj/item/storage/box/gum,
+		/obj/item/storage/box/matches,
+		/obj/item/storage/fancy,
+		/obj/item/trash,
+	),list(
+		/obj/item/plate/oven_tray,
+		/obj/item/reagent_containers/cup/soup_pot,
+	))
+	//Should cover: Bottles, Beakers, Bowls, Booze, Glasses, Food, Food Containers, Food Trash, Organs, Tobacco Products, Lighters, and Kitchen Tools.

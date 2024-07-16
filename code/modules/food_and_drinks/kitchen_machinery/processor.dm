@@ -103,7 +103,7 @@
 				continue
 			var/datum/food_processor_process/recipe = PROCESSOR_SELECT_RECIPE(content_item)
 			if(recipe)
-				if(attacking_storage.atom_storage.attempt_remove(content_item, src))
+				if(attacking_storage.storage_datum.attempt_remove(content_item, src))
 					LAZYADD(processor_contents, content_item)
 					loaded++
 

@@ -474,8 +474,8 @@
 
 /obj/item/storage/fancy/coffee_cart_rack/Initialize(mapload)
 	. = ..()
-	atom_storage.max_slots = 4
-	atom_storage.set_holdable(/obj/item/coffee_cartridge)
+	storage_datum.max_slots = 4
+	storage_datum.set_holdable(/obj/item/coffee_cartridge)
 
 /*
  * impressa coffee maker

@@ -131,7 +131,6 @@
 	///Image that get's underlayed under the sprite of the holster
 	var/image/holstered_item_underlay
 
-
 /datum/storage/New(atom/parent)
 	. = ..()
 	if(!istype(parent))
@@ -247,6 +246,8 @@
 	RegisterSignal(parent, ATOM_RECALCULATE_STORAGE_SPACE, PROC_REF(recalculate_storage_space))
 	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(update_verbs))
 	RegisterSignal(parent, COMSIG_ITEM_QUICK_EQUIP, PROC_REF(on_quick_equip_request))
+
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK_OBJ, PROC_REF(dump_contents))
 
 ///Unregisters our signals from parent. Used when parent loses storage but is not destroyed
 /datum/storage/proc/unregister_storage_signals(atom/parent)

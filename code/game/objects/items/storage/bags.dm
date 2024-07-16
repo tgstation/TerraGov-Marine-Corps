@@ -114,3 +114,54 @@
 	desc = "A bag for carrying lots of cash. It's got a big dollar sign printed on the front."
 	w_class = WEIGHT_CLASS_SMALL
 	storage_type = /datum/storage/bag/cash
+
+
+/*
+ * Trays - Agouri
+ */
+/obj/item/storage/bag/tray
+	name = "serving tray"
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "tray"
+	worn_icon_state = "tray"
+	desc = "A metal tray to lay food on."
+	force = 5
+	throwforce = 10
+	throw_speed = 3
+	throw_range = 5
+	equip_slot_flags  = ITEM_SLOT_BELT
+	storage_type = /datum/storage/bag/tray
+
+/obj/item/storage/bag/tray/attack(mob/living/M, mob/living/user)
+	. = ..()
+	if(prob(50))
+		playsound(M, 'sound/items/trayhit1.ogg', 50, TRUE)
+	else
+		playsound(M, 'sound/items/trayhit2.ogg', 50, TRUE)
+
+	if(ishuman(M))
+		if(prob(10))
+			M.Paralyze(40)
+
+
+/obj/item/storage/bag/tray/update_overlays()
+	. = ..()
+	for(var/obj/item/I in contents)
+		var/mutable_appearance/I_copy = new(I)
+		I_copy.plane = FLOAT_PLANE
+		I_copy.layer = FLOAT_LAYER
+		. += I_copy
+
+/obj/item/storage/bag/tray/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
+	. = ..()
+	update_appearance()
+
+/obj/item/storage/bag/tray/Exited(atom/movable/gone, direction)
+	. = ..()
+	update_appearance()
+
+/obj/item/storage/bag/tray/cafeteria
+	name = "cafeteria tray"
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "foodtray"
+	desc = "A cheap metal tray to pile today's meal onto."

@@ -81,15 +81,15 @@
 		return ..()
 
 /obj/machinery/griddle/item_interaction_secondary(mob/living/user, obj/item/item, list/modifiers)
-	if(isnull(item.atom_storage))
+	if(isnull(item.storage_datum))
 		return NONE
 
 	for(var/obj/tray_item in griddled_objects)
-		item.atom_storage.attempt_insert(tray_item, user, TRUE)
+		item.storage_datum.attempt_insert(tray_item, user, TRUE)
 	return ITEM_INTERACT_SUCCESS
 
 /obj/machinery/griddle/item_interaction(mob/living/user, obj/item/item, list/modifiers)
-	if(isnull(item.atom_storage))
+	if(isnull(item.storage_datum))
 		return NONE
 
 	if(length(contents) >= max_items)
@@ -108,7 +108,7 @@
 			continue
 		if(length(contents) >= max_items)
 			break
-		if(item.atom_storage.attempt_remove(tray_item, src))
+		if(item.storage_datum.attempt_remove(tray_item, src))
 			loaded++
 			AddToGrill(tray_item, user)
 	if(loaded)

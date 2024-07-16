@@ -475,3 +475,30 @@
 		user.put_in_hands(object)
 	else
 		object.forceMove(drop_location())
+///Moving stuff around
+/obj/machinery/proc/default_unfasten_wrench(mob/living/user, obj/item/tool)
+	tool.play_tool_sound(src)
+	if(anchored)
+		balloon_alert(user, "unsecured")
+		anchored = FALSE
+	else
+		balloon_alert(user, "secured")
+		anchored = TRUE
+	return TRUE
+///Opening/closing maintenance hatch
+/obj/machinery/proc/default_deconstruction_screwdriver(mob/user, icon_state_open, icon_state_closed, obj/item/screwdriver)
+	if(screwdriver.tool_behaviour != TOOL_SCREWDRIVER)
+		return FALSE
+
+	screwdriver.play_tool_sound(src, 50)
+	if(CHECK_BITFIELD(machine_stat, MAINT))
+		DISABLE_BITFIELD(machine_stat, MAINT)
+	else
+		ENABLE_BITFIELD(machine_stat, MAINT)
+	if(panel_open)
+		icon_state = icon_state_open
+		to_chat(user, span_notice("You open the maintenance hatch of [src]."))
+	else
+		icon_state = icon_state_closed
+		to_chat(user, span_notice("You close the maintenance hatch of [src]."))
+	return TRUE

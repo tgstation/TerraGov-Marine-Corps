@@ -1527,3 +1527,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	alpha -= (new_alpha_mod - old_alpha_mod) * ITEM_LIQUID_TURF_ALPHA_MULT
 
 #undef ITEM_LIQUID_TURF_ALPHA_MULT
+
+
+/obj/item/proc/microwave_act(obj/machinery/microwave/microwave_source, mob/microwaver, randomize_pixel_offset)
+	SHOULD_CALL_PARENT(TRUE)
+
+	return SEND_SIGNAL(src, COMSIG_ITEM_MICROWAVE_ACT, microwave_source, microwaver, randomize_pixel_offset)

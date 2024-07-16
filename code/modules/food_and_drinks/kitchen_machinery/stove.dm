@@ -123,7 +123,7 @@
  * * user: the entity adding ingredients via a container to a soup pot. Must not be null.
  */
 /obj/item/reagent_containers/cup/soup_pot/proc/transfer_from_container_to_pot(obj/item/transfer_from, mob/user)
-	if(!transfer_from.atom_storage)
+	if(!transfer_from.storage_datum)
 		return
 
 	var/obj/item/storage/tray = transfer_from
@@ -135,7 +135,7 @@
 		if(LAZYLEN(added_ingredients) >= max_ingredients)
 			balloon_alert(user, "it's full!")
 			return TRUE
-		if(tray.atom_storage.attempt_remove(tray_item, src))
+		if(tray.storage_datum.attempt_remove(tray_item, src))
 			loaded++
 			LAZYADD(added_ingredients, tray_item)
 	if(loaded)

@@ -86,8 +86,8 @@
 		ingredients -= gone
 		if(!QDELING(gone) && ingredients.len && isitem(gone))
 			var/obj/item/itemized_ingredient = gone
-			itemized_ingredient.pixel_x = itemized_ingredient.base_pixel_x + rand(-6, 6)
-			itemized_ingredient.pixel_y = itemized_ingredient.base_pixel_y + rand(-5, 6)
+			itemized_ingredient.pixel_x = itemized_ingredient.pixel_x + rand(-6, 6)
+			itemized_ingredient.pixel_y = itemized_ingredient.pixel_y + rand(-5, 6)
 	return ..()
 
 /obj/machinery/microwave/on_deconstruction(disassembled)
@@ -105,16 +105,11 @@
 /obj/machinery/microwave/RefreshParts()
 	. = ..()
 	efficiency = 0
-	for(/obj/item/stock_parts/micro_laser/micro_laser in component_parts)
-		efficiency += micro_laser.tier
-	for(var/obj/item/stock_partsmatter_bin/matter_bin in component_parts)
-		max_n_of_items = 10 * matter_bin.tier
+	for(var/obj/item/stock_parts/micro_laser/micro_laser in component_parts)
+		efficiency += micro_laser.rating
+	for(var/obj/item/stock_parts/matter_bin/matter_bin in component_parts)
+		max_n_of_items = 10 * matter_bin.rating
 		break
-	for(var/obj/item/stock_partscapacitor/capacitor in component_parts)
-		if(capacitor.tier >= 2)
-			vampire_charging_capable = TRUE
-			visible_message(span_notice("The [EXAMINE_HINT("Charge Ready")] light on \the [src] flickers to life."))
-			break
 
 /obj/machinery/microwave/examine(mob/user)
 	. = ..()
@@ -146,12 +141,7 @@
 
 	if(!(machine_stat & (NOPOWER|BROKEN)))
 		. += "[span_notice("The status display reads:")]\n"+\
-		"[span_notice("- Mode: <b>[vampire_charging_enabled ? "Charge" : "Cook"]</b>.")]\n"+\
-		"[span_notice("- Capacity: <b>[max_n_of_items]</b> items.")]\n"+\
-		span_notice("- Power: <b>[efficiency * TIER_1_CELL_CHARGE_RATE]W</b>.")
-
-		if(cell_powered)
-			. += span_notice("- Charge: <b>[isnull(cell) ? "INSERT CELL" : "[round(cell.percent())]%"]</b>.")
+		"[span_notice("- Capacity: <b>[max_n_of_items]</b> items.")]\n"
 
 #define MICROWAVE_INGREDIENT_OVERLAY_SIZE 24
 
@@ -166,12 +156,6 @@
 
 	for(var/atom/movable/ingredient as anything in ingredients)
 		var/image/ingredient_overlay = image(ingredient, src)
-
-		var/list/icon_dimensions = get_icon_dimensions(ingredient.icon)
-		ingredient_overlay.transform = ingredient_overlay.transform.Scale(
-			MICROWAVE_INGREDIENT_OVERLAY_SIZE / icon_dimensions["width"],
-			MICROWAVE_INGREDIENT_OVERLAY_SIZE / icon_dimensions["height"],
-		)
 
 		ingredient_overlay.pixel_x = ingredient_shifts_x[(ingredient_count % ingredient_shifts_x.len) + 1]
 		ingredient_overlay.pixel_y = ingredient_shifts_y[(ingredient_count % ingredient_shifts_y.len) + 1]
@@ -190,10 +174,7 @@
 		door_icon_state = "[base_icon_state]door_open"
 		border_icon_state = "[base_icon_state]mwo"
 	else if(operating)
-		if(vampire_charging_enabled)
-			door_icon_state = "[base_icon_state]door_charge"
-		else
-			door_icon_state = "[base_icon_state]door_on"
+		door_icon_state = "[base_icon_state]door_on"
 		border_icon_state = "[base_icon_state]mw1"
 	else
 		door_icon_state = "[base_icon_state]door_off"
@@ -210,24 +191,8 @@
 	if(!open)
 		. += "[base_icon_state]door_handle"
 
-	if(!(machine_stat & NOPOWER) || cell_powered)
+	if(!(machine_stat & NOPOWER))
 		. += emissive_appearance(icon, "emissive_[border_icon_state]", src, alpha = src.alpha)
-
-	if(cell_powered && !isnull(cell))
-		switch(cell.percent())
-			if(75 to 100)
-				. += mutable_appearance(icon, "[base_icon_state]cell_100")
-				. += emissive_appearance(icon, "[base_icon_state]cell_100", src, alpha = src.alpha)
-			if(50 to 75)
-				. += mutable_appearance(icon, "[base_icon_state]cell_75")
-				. += emissive_appearance(icon, "[base_icon_state]cell_75", src, alpha = src.alpha)
-			if(25 to 50)
-				. += mutable_appearance(icon, "[base_icon_state]cell_25")
-				. += emissive_appearance(icon, "[base_icon_state]cell_25", src, alpha = src.alpha)
-			else
-				. += mutable_appearance(icon, "[base_icon_state]cell_0")
-				. += emissive_appearance(icon, "[base_icon_state]cell_0", src, alpha = src.alpha)
-
 	return .
 
 #undef MICROWAVE_INGREDIENT_OVERLAY_SIZE
@@ -305,42 +270,13 @@
 	update_appearance()
 	return ITEM_INTERACT_SUCCESS
 
-/obj/machinery/microwave/tool_act(mob/living/user, obj/item/tool, list/modifiers)
-	if(!tool.tool_behaviour)
-		return ..()
-	if(operating)
-		return ITEM_INTERACT_SKIP_TO_ATTACK // Don't use tools if we're operating
-	if(dirty >= MAX_MICROWAVE_DIRTINESS)
-		return ITEM_INTERACT_SKIP_TO_ATTACK // Don't insert items if we're dirty
-	if(panel_open && is_wire_tool(tool))
-		wires.interact(user)
-		return ITEM_INTERACT_SUCCESS
-	return ..()
-
-/obj/machinery/microwave/item_interaction(mob/living/user, obj/item/item, list/modifiers)
+/obj/machinery/microwave/attackby(mob/living/user, obj/item/attacking_item, params)
 	if(operating)
 		return NONE
 
 	if(broken > NOT_BROKEN)
 		balloon_alert(user, "it's broken!")
 		return ITEM_INTERACT_BLOCKING
-
-	if(istype(item, /obj/item/stock_parts/power_store/cell) && cell_powered)
-		var/swapped = FALSE
-		if(!isnull(cell))
-			cell.forceMove(drop_location())
-			if(!HAS_SILICON_ACCESS(user) && Adjacent(user))
-				user.put_in_hands(cell)
-			cell = null
-			swapped = TRUE
-		if(!user.transferItemToLoc(item, src))
-			update_appearance()
-			return ITEM_INTERACT_BLOCKING
-		cell = item
-		balloon_alert(user, "[swapped ? "swapped" : "inserted"] cell")
-		update_appearance()
-		return ITEM_INTERACT_SUCCESS
-
 	if(!anchored)
 		balloon_alert(user, "not secured!")
 		return ITEM_INTERACT_BLOCKING
@@ -349,17 +285,13 @@
 		balloon_alert(user, "it's too dirty!")
 		return ITEM_INTERACT_BLOCKING
 
-	if(vampire_charging_capable && istype(item, /obj/item/modular_computer) && ingredients.len > 0)
-		balloon_alert(user, "max 1 device!")
-		return ITEM_INTERACT_BLOCKING
-
-	if(istype(item, /obj/item/storage))
-		var/obj/item/storage/tray = item
+	if(istype(attacking_item, /obj/item/storage))
+		var/obj/item/storage/tray = attacking_item
 		var/loaded = 0
 
-		if(!istype(item, /obj/item/storage/bag/tray))
+		if(!istype(attacking_item, /obj/item/storage/bag/tray))
 			// Non-tray dumping requires a do_after
-			to_chat(user, span_notice("You start dumping out the contents of [item] into [src]..."))
+			to_chat(user, span_notice("You start dumping out the contents of [attacking_item] into [src]..."))
 			if(!do_after(user, 2 SECONDS, target = tray))
 				return ITEM_INTERACT_BLOCKING
 
@@ -369,7 +301,7 @@
 			if(ingredients.len >= max_n_of_items)
 				balloon_alert(user, "it's full!")
 				return ITEM_INTERACT_BLOCKING
-			if(tray.atom_storage.attempt_remove(tray_item, src))
+			if(tray.storage_datum.remove_from_storage(tray_item, src, user))
 				loaded++
 				ingredients += tray_item
 		if(loaded)
@@ -378,17 +310,17 @@
 			update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
-	if(item.w_class <= WEIGHT_CLASS_NORMAL && !user.combat_mode)
+	if(attacking_item.w_class <= WEIGHT_CLASS_NORMAL && user.a_intent == INTENT_HELP)
 		if(ingredients.len >= max_n_of_items)
 			balloon_alert(user, "it's full!")
 			return ITEM_INTERACT_BLOCKING
-		if(!user.transferItemToLoc(item, src))
+		if(!user.transferItemToLoc(attacking_item, src))
 			balloon_alert(user, "it's stuck to your hand!")
 			return ITEM_INTERACT_BLOCKING
 
-		ingredients += item
+		ingredients += attacking_item
 		open(autoclose = 0.6 SECONDS)
-		user.visible_message(span_notice("[user] adds \a [item] to \the [src]."), span_notice("You add [item] to \the [src]."))
+		user.visible_message(span_notice("[user] adds \a [attacking_item] to \the [src]."), span_notice("You add [attacking_item] to \the [src]."))
 		update_appearance()
 		return ITEM_INTERACT_SUCCESS
 
@@ -409,7 +341,7 @@
 	var/choice = show_radial_menu(user, src, radial_options, require_near = TRUE)
 
 	// post choice verification
-	if(operating || panel_open || (!vampire_charging_capable && !anchored) || !user.can_perform_action(src, ALLOW_SILICON_REACH))
+	if(operating || panel_open || !anchored)
 		return
 	if(machine_stat & NOPOWER)
 		return
@@ -418,10 +350,6 @@
 		if("eject")
 			eject()
 		if("cook")
-			vampire_charging_enabled = FALSE
-			start_cycle(user)
-		if("charge")
-			vampire_charging_enabled = TRUE
 			start_cycle(user)
 		if("examine")
 			examine(user)
@@ -445,13 +373,6 @@
 /obj/machinery/microwave/proc/start_cycle(mob/user)
 	if(wire_mode_swap)
 		spark()
-		if(vampire_charging_enabled)
-			cook(user)
-		else
-			charge(user)
-
-	else if(vampire_charging_enabled)
-		charge(user)
 	else
 		cook(user)
 
@@ -492,7 +413,7 @@
 
 	visible_message(span_notice("\The [src] turns on."), null, span_hear("You hear a microwave humming."))
 	operating = TRUE
-	set_light(l_range = 1.5, l_power = 1.2, l_on = TRUE)
+	set_light(l_range = 1.5, l_power = 1.2)
 	soundloop.start()
 	update_appearance()
 
@@ -550,26 +471,6 @@
 				pre_success(cooker)
 		return
 
-	if(cycles == 1) //Only needs to try to shock mobs once, towards the end of the loop
-		var/successful_shock
-		var/list/microwave_contents = list()
-		microwave_contents += get_all_contents() //Mobs are often hid inside of mob holders, which could be fried and made into a burger...
-		for(var/mob/living/victim in microwave_contents)
-			if(victim.electrocute_act(shock_damage = 100, source = src, siemens_coeff = 1, flags = SHOCK_NOGLOVES))
-				successful_shock = TRUE
-				if(victim.stat == DEAD) //This is mostly so humans that can_be_held don't get gibbed from one microwave run alone, but mice become burnt messes
-					victim.gib()
-					muck()
-		if(successful_shock) //We only want to give feedback once, regardless of how many mobs got shocked
-			var/list/cant_smell = list()
-			for(var/mob/smeller in get_hearers_in_view(DEFAULT_MESSAGE_RANGE, src))
-				if(HAS_TRAIT(smeller, TRAIT_ANOSMIA))
-					cant_smell += smeller
-			visible_message(span_danger("You smell a burnt smell coming from [src]!"), ignored_mobs = cant_smell)
-			particles = new /particles/smoke()
-			addtimer(CALLBACK(src, PROC_REF(remove_smoke)), 10 SECONDS)
-			Shake(duration = 1 SECONDS)
-
 	cycles--
 	use_power(active_power_usage)
 	addtimer(CALLBACK(src, PROC_REF(cook_loop), type, cycles, wait, cooker), wait)
@@ -579,8 +480,6 @@
 
 /obj/machinery/microwave/power_change()
 	. = ..()
-	if(cell_powered)
-		return
 
 	if((machine_stat & NOPOWER) && operating)
 		pre_fail()
@@ -598,9 +497,6 @@
 		pda_failure = FALSE // in case they repair it after this, reset
 		broken = REALLY_BROKEN
 		explosion(src, heavy_impact_range = 1, light_impact_range = 2, flame_range = 1)
-
-	var/cursed_chef = cooker && HAS_TRAIT(cooker, TRAIT_CURSED)
-	var/metal_amount = 0
 	for(var/obj/item/cooked_item in ingredients)
 		var/sigreturn = cooked_item.microwave_act(src, cooker, randomize_pixel_offset = ingredients.len)
 		if(sigreturn & COMPONENT_MICROWAVE_SUCCESS)
@@ -609,20 +505,6 @@
 				dirty += cooked_stack.amount
 			else
 				dirty++
-
-		metal_amount += (cooked_item.custom_materials?[GET_MATERIAL_REF(/datum/material/iron)] || 0)
-
-	if(cursed_chef && (metal_amount || prob(5)))  // If we're unlucky and have metal, we're guaranteed to explode
-		spark()
-		broken = REALLY_BROKEN
-		explosion(src, light_impact_range = 2, flame_range = 1)
-
-	if(metal_amount)
-		spark()
-		broken = REALLY_BROKEN
-		if(prob(max(metal_amount / 2, 33)))
-			explosion(src, heavy_impact_range = 1, light_impact_range = 2)
-
 	after_finish_loop()
 
 /obj/machinery/microwave/proc/pre_fail()
@@ -644,7 +526,7 @@
 	after_finish_loop()
 
 /obj/machinery/microwave/proc/after_finish_loop()
-	set_light(l_on = FALSE)
+	set_light_on(FALSE)
 	soundloop.stop()
 	eject()
 	open(autoclose = 2 SECONDS)
@@ -659,156 +541,11 @@
 	open = FALSE
 	update_appearance()
 
-/**
- * The start of the charge loop
- *
- * * cooker - The mob that initiated the cook cycle, can be null if no apparent mob triggered it (such as via emp)
- */
-/obj/machinery/microwave/proc/vampire(mob/cooker)
-	var/obj/item/modular_computer/vampire_pda = LAZYACCESS(ingredients, 1)
-	if(isnull(vampire_pda))
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		after_finish_loop()
-		return
-
-	vampire_cell = vampire_pda.internal_cell
-	if(isnull(vampire_cell))
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		after_finish_loop()
-		return
-
-	wzhzhzh()
-	var/vampire_charge_amount = vampire_cell.maxcharge - vampire_cell.charge
-	charge_loop(vampire_charge_amount, cooker = cooker)
-
-/obj/machinery/microwave/proc/charge(mob/cooker)
-	if(!vampire_charging_capable)
-		balloon_alert(cooker, "needs upgrade!")
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		return
-
-	if(operating || broken > 0 || panel_open || dirty >= MAX_MICROWAVE_DIRTINESS)
-		return
-
-	if(wire_disabled)
-		audible_message("[src] buzzes.")
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-		return
-
-	// We should only be charging PDAs
-	for(var/atom/movable/potential_item as anything in ingredients)
-		if(!istype(potential_item, /obj/item/modular_computer))
-			balloon_alert(cooker, "pda only!")
-			playsound(src, 'sound/machines/buzz-sigh.ogg', 50, FALSE)
-			eject()
-			return
-
-	vampire(cooker)
-
-/**
- * The actual cook loop started via [proc/start] or [proc/start_can_fail]
- *
- * * type - the type of charging, determined via how this iteration of cook_loop is called, and determines the result
- * * time - how many loops are left, base case for recursion
- * * wait - deciseconds between loops
- * * cooker - The mob that initiated the cook cycle, can be null if no apparent mob triggered it (such as via emp)
- */
-/obj/machinery/microwave/proc/charge_loop(vampire_charge_amount, wait = max(12 - 2 * efficiency, 2), mob/cooker) // standard wait is 10
-	if(machine_stat & BROKEN)
-		pre_fail()
-		return
-
-	if(!vampire_charge_amount || !length(ingredients) || isnull(cell) || !cell.charge || vampire_charge_amount < 25)
-		vampire_cell = null
-		charge_loop_finish(cooker)
-		return
-
-	var/charge_rate = vampire_cell.chargerate * (1 + ((efficiency - 1) * 0.25))
-	if(charge_rate > vampire_charge_amount)
-		charge_rate = vampire_charge_amount
-
-	if(cell_powered && !cell.use(charge_rate))
-		charge_loop_finish(cooker)
-
-	use_power(charge_rate * (0.5 - efficiency * 0.12)) //Some of the power gets lost as heat.
-	charge_cell(charge_rate * (0.5 + efficiency * 0.12), vampire_cell) //Cell gets charged, which further uses power.
-
-
-	vampire_charge_amount = vampire_cell.maxcharge - vampire_cell.charge
-
-	addtimer(CALLBACK(src, PROC_REF(charge_loop), vampire_charge_amount, wait, cooker), wait)
-
 /obj/machinery/microwave/power_change()
 	. = ..()
 	if((machine_stat & NOPOWER) && operating)
 		pre_fail()
 		eject()
-
-/**
- * Called when the charge_loop is done successfully, no dirty mess or whatever
- *
- * * cooker - The mob that initiated the cook cycle, can be null if no apparent mob triggered it (such as via emp)
- */
-/obj/machinery/microwave/proc/charge_loop_finish(mob/cooker)
-	operating = FALSE
-	var/cursed_chef = cooker && HAS_TRAIT(cooker, TRAIT_CURSED)
-	if(cursed_chef && prob(5))
-		spark()
-		broken = REALLY_BROKEN
-		explosion(src, light_impact_range = 2, flame_range = 1)
-
-	// playsound(src, 'sound/machines/chime.ogg', 50, FALSE)
-	after_finish_loop()
-
-/// Type of microwave that automatically turns it self on erratically. Probably don't use this outside of the holodeck program "Microwave Paradise".
-/// You could also live your life with a microwave that will continously run in the background of everything while also not having any power draw. I think the former makes more sense.
-/obj/machinery/microwave/hell
-	desc = "Cooks and boils stuff. This one appears to be a bit... off."
-	use_power = NO_POWER_USE
-	idle_power_usage = 0
-	active_power_usage = 0
-
-/obj/machinery/microwave/hell/Initialize(mapload)
-	. = ..()
-	//We want there to be some chance of them getting a working microwave (eventually).
-	if(prob(95))
-		//The microwave should turn off asynchronously from any other microwaves that initialize at the same time. Keep in mind this will not turn off, since there is nothing to call the proc that ends this microwave's looping
-		addtimer(CALLBACK(src, PROC_REF(wzhzhzh)), rand(0.5 SECONDS, 3 SECONDS))
-
-/obj/machinery/microwave/engineering
-	name = "wireless microwave oven"
-	desc = "For the hard-working tradesperson who's in the middle of nowhere and just wants to warm up their pastry-based savoury item from an overpriced vending machine."
-	base_icon_state = "engi_"
-	icon_state = "engi_mw_complete"
-	circuit = /obj/item/circuitboard/machine/microwave/engineering
-	light_color = LIGHT_COLOR_BABY_BLUE
-	// We don't use area power, we always use the cell
-	use_power = NO_POWER_USE
-	cell_powered = TRUE
-	vampire_charging_capable = TRUE
-	ingredient_shifts_x = list(
-		0,
-		5,
-		-5,
-		3,
-		-3,
-	)
-	ingredient_shifts_y = list(
-		0,
-		2,
-		-2,
-	)
-
-/obj/machinery/microwave/engineering/Initialize(mapload)
-	. = ..()
-	if(mapload)
-		cell = new /obj/item/stock_parts/power_store/cell/upgraded/plus
-	update_appearance()
-
-/obj/machinery/microwave/engineering/cell_included/Initialize(mapload)
-	. = ..()
-	cell = new /obj/item/stock_parts/power_store/cell/upgraded/plus
-	update_appearance()
 
 #undef MICROWAVE_NORMAL
 #undef MICROWAVE_MUCK

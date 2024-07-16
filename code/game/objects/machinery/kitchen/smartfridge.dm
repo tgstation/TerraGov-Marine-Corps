@@ -23,6 +23,7 @@
 	var/shoot_inventory = 0
 	var/locked = 0
 	var/visible_contents = TRUE
+	var/obj/item/storage/bag/compatiblebag = /obj/item/storage/bag/plants
 
 /obj/machinery/smartfridge/Initialize(mapload)
 	. = ..()
@@ -90,8 +91,8 @@
 							"<span class='notice'>You add \the [I] to \the [src].")
 		updateUsrDialog()
 
-	else if(istype(I, /obj/item/storage/bag/plants))
-		var/obj/item/storage/bag/plants/P = I
+	else if(istype(I, compatiblebag))
+		var/obj/item/storage/bag/P = I
 		var/plants_loaded = 0
 		for(var/obj/G in P.contents)
 			if(!accept_check(G))
@@ -315,3 +316,19 @@
 
 /obj/machinery/smartfridge/seeds/nopower
 	use_power = NO_POWER_USE
+
+
+// ----------------------------
+//  Food smartfridge
+// ----------------------------
+/obj/machinery/smartfridge/food
+	desc = "A refrigerated storage unit for food."
+
+/obj/machinery/smartfridge/food/accept_check(obj/item/weapon)
+	if(weapon.w_class >= WEIGHT_CLASS_BULKY)
+		return FALSE
+	if(IS_EDIBLE(weapon))
+		return TRUE
+	if(istype(weapon, /obj/item/reagent_containers/cup/bowl) && weapon.reagents?.total_volume > 0)
+		return TRUE
+	return FALSE
