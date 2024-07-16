@@ -247,8 +247,6 @@
 	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(update_verbs))
 	RegisterSignal(parent, COMSIG_ITEM_QUICK_EQUIP, PROC_REF(on_quick_equip_request))
 
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK_OBJ, PROC_REF(dump_contents))
-
 ///Unregisters our signals from parent. Used when parent loses storage but is not destroyed
 /datum/storage/proc/unregister_storage_signals(atom/parent)
 	UnregisterSignal(parent, list(

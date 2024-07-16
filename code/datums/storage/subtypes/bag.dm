@@ -179,17 +179,15 @@
 
 /datum/storage/bag/tray/New(atom/parent)
 	. = ..()
-	can_dump_contents = TRUE
 	set_holdable(list(
-		/obj/item/cigarette,
+		/obj/item/clothing/mask/cigarette,
 		/obj/item/food,
 		/obj/item/kitchen,
-		/obj/item/lighter,
+		/obj/item/tool/lighter,
 		/obj/item/organ,
 		/obj/item/plate,
 		/obj/item/reagent_containers/condiment,
 		/obj/item/reagent_containers/cup,
-		/obj/item/rollingpaper,
 		/obj/item/storage/box/gum,
 		/obj/item/storage/box/matches,
 		/obj/item/storage/fancy,
