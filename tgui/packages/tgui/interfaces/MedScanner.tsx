@@ -46,7 +46,7 @@ type MedScannerData = {
   accessible_theme: boolean;
 };
 
-export const MedScanner = (props) => {
+export const MedScanner = () => {
   const { data } = useBackend<MedScannerData>();
   const {
     species,
@@ -269,9 +269,9 @@ const PatientBasics = () => {
   );
 };
 
-const PatientChemicals = (props) => {
+const PatientChemicals = () => {
   const { data } = useBackend<MedScannerData>();
-  const { has_chemicals, has_unknown_chemicals, chemicals_lists } = data;
+  const { has_unknown_chemicals, chemicals_lists } = data;
   const chemicals = Object.values(chemicals_lists);
   return (
     <Section title="Chemical Contents">
@@ -314,7 +314,7 @@ const PatientChemicals = (props) => {
   );
 };
 
-const PatientLimbs = (props) => {
+const PatientLimbs = () => {
   const row_bg_color = 'rgba(255, 255, 255, .05)';
   let row_transparency = 0;
   const { data } = useBackend<MedScannerData>();
@@ -493,7 +493,7 @@ const PatientLimbs = (props) => {
   );
 };
 
-const PatientOrgans = (props) => {
+const PatientOrgans = () => {
   const { data } = useBackend<MedScannerData>();
   const { damaged_organs } = data;
   return (
@@ -520,7 +520,7 @@ const PatientOrgans = (props) => {
   );
 };
 
-const PatientBlood = (props) => {
+const PatientBlood = () => {
   const { data } = useBackend<MedScannerData>();
   const {
     blood_amount,
@@ -557,7 +557,7 @@ const PatientBlood = (props) => {
   );
 };
 
-const PatientAdvice = (props) => {
+const PatientAdvice = () => {
   const { data } = useBackend<MedScannerData>();
   const { advice, species, accessible_theme } = data;
   return (
