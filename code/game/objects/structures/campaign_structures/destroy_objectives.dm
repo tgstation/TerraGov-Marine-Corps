@@ -216,7 +216,7 @@
 /obj/effect/landmark/campaign_structure/nt_pod
 	name = "Mysterious pod"
 	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
-	icon_state = "alien_pod"
+	icon_state = "alien_pod_mapper"
 	mission_types = list(/datum/campaign_mission/destroy_mission/base_rescue)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/nt_pod
 
@@ -224,17 +224,14 @@
 	name = "Mysterious pod"
 	desc = "A large sealed pod, containing something huge and monstrous in its murky center."
 	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
-	icon_state = "alien_pod_mapper"
+	icon_state = "alien_pod"
 	bound_height = 64
 	bound_width = 64
 	pixel_y = 10
 
 /obj/structure/campaign_objective/destruction_objective/nt_pod/Initialize(mapload)
 	. = ..()
-	update_appearance(UPDATE_ICON)
-
-/obj/structure/campaign_objective/destruction_objective/nt_pod/update_icon_state()
-	icon_state = "alien_pod"
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/structure/campaign_objective/destruction_objective/nt_pod/update_overlays()
 	. = ..()
