@@ -660,13 +660,41 @@
 
 	return do_stock(item_to_stock, user, show_feedback, record)
 
-///Actually does the restock
+///Actually does the restock. Overridden by lasgun vendor for snowflake behaviour
 /obj/machinery/vending/proc/do_stock(obj/item/item_to_stock, mob/user, show_feedback = TRUE, datum/vending_product/record)
 	if(!record.attempt_restock(item_to_stock, user, show_feedback))
 		display_message_and_visuals(user, enable = TRUE, message = null, state = VENDING_RESTOCK_DENY)
 		return FALSE
 	display_message_and_visuals(user, show_feedback, "Restocked", VENDING_RESTOCK_ACCEPT)
 	return TRUE //Item restocked, no reason to go on.
+
+/obj/machinery/vending/lasgun/do_stock(obj/item/item_to_stock, mob/user, show_feedback = TRUE, datum/vending_product/record)
+	//Special snowflake handling of cells
+	if(!iscell(item_to_stock))
+		return ..()
+
+	var/recharge_amount = 0 //the amount of charge required to fully charge our cell
+	var/obj/item/cell/cell = item_to_stock
+	if(cell.charge < cell.maxcharge)
+		// Item is not full. Time to try to recharge
+		recharge_amount = cell.maxcharge - cell.charge
+		if(machine_current_charge == 0)
+			display_message_and_visuals(user, show_feedback, "No power!", VENDING_RESTOCK_DENY)
+			return FALSE
+		else if(machine_current_charge < recharge_amount) // Not enough but some charge remaining so partially recharge cell and move on
+			cell.give(machine_current_charge)
+			machine_current_charge = 0
+			cell.update_icon()
+			display_message_and_visuals(user, show_feedback, "Cell charged partially! [round(cell.percent())]%.", VENDING_RESTOCK_RECHARGE)
+			playsound(loc, 'sound/machines/hydraulics_1.ogg', 25, 0, 1)
+			return FALSE
+		else
+			machine_current_charge -= recharge_amount
+			cell.give(recharge_amount)
+			if(!record.attempt_restock(item_to_stock, user, show_feedback))
+				return FALSE
+			display_message_and_visuals(user, show_feedback, "Restocked and recharged", VENDING_RESTOCK_ACCEPT_RECHARGE)
+			return TRUE
 
 /**
  * A few checks to make sure the item we are trying to restock is allowed to be restocked
