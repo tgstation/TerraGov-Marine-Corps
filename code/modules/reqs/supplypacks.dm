@@ -1562,12 +1562,6 @@ ENGINEERING
 	contains = list(/obj/effect/teleporter_linker)
 	cost = 500
 
-/datum/supply_packs/engineering/field_charger
-	name = "Mobile Field Charger"
-	contains = list(/obj/machinery/vending/lasgun)
-	cost = 200
-	containertype = null
-
 /*******************************************************************************
 SUPPLIES
 *******************************************************************************/
