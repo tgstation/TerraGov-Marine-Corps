@@ -139,7 +139,7 @@
 ///Deactivates the beacon
 /datum/component/beacon/proc/deactivate(atom/movable/source, mob/user)
 	if(user)
-		if(length(user?.do_actions))
+		if(length(user.do_actions))
 			user.balloon_alert(user, "Busy!")
 			active = TRUE
 			return
@@ -178,9 +178,11 @@
 	if(istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		source.balloon_alert_to_viewers("This won't work if you're standing deep underground.")
 		INVOKE_ASYNC(src, PROC_REF(deactivate), parent)
+		return
 	if(istype(A, /area/shuttle/dropship))
 		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or it won't transmit.")
 		INVOKE_ASYNC(src, PROC_REF(deactivate), parent)
+		return
 	beacon_datum.drop_location = location
 	beacon_datum.name = "[src.activator.name] + [A]"
 	var/atom/movable/p = parent
