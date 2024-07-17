@@ -102,7 +102,11 @@
 			return FALSE
 	user.visible_message(span_notice("[user] begins attaching a module to [src]'s sockets."))
 	to_chat(user, span_info("You begin installing the [upgrade] on the miner."))
-	if(!do_after(user, 15 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+		var/repair_time_Upgrade = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
+	else
+		var/repair_time_Upgrade = 2 SECONDS
+	if(!do_after(user, repair_time_Upgrade, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	switch(upgrade.uptype)
 		if(MINER_RESISTANT)
@@ -146,7 +150,11 @@
 			return FALSE
 		to_chat(user, span_info("You begin uninstalling the [miner_upgrade_type] from the miner!"))
 		user.visible_message(span_notice("[user] begins dismantling the [miner_upgrade_type] from the miner."))
-		if(!do_after(user, 30 SECONDS, NONE, src, BUSY_ICON_BUILD))
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+		var/repair_time_Remove = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
+	else
+		var/repair_time_Remove = 2 SECONDS
+		if(!do_after(user, repair_time_Remove, NONE, src, BUSY_ICON_BUILD))
 			return FALSE
 		user.visible_message(span_notice("[user] dismantles the [miner_upgrade_type] from the miner!"))
 		var/obj/item/upgrade
@@ -182,7 +190,11 @@
 	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 	span_notice("You start welding [src]'s internal damage."))
 	add_overlay(GLOB.welding_sparks)
-	if(!do_after(user, 200, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+		var/repair_time_Welding = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
+	else
+		var/repair_time_Welding = 2 SECONDS
+	if(!do_after(user, repair_time_Welding, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(weldingtool, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 		cut_overlay(GLOB.welding_sparks)
 		return FALSE
 	if(miner_status != MINER_DESTROYED )
@@ -209,7 +221,11 @@
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
 	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 	span_notice("You start securing [src]'s wiring."))
-	if(!do_after(user, 120, NONE, src, BUSY_ICON_BUILD))
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+		var/repair_time_Wirecut = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
+	else
+		var/repair_time_Wirecut = 2 SECONDS
+	if(!do_after(user, repair_time_Wirecut, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_MEDIUM_DAMAGE)
 		return FALSE
@@ -233,7 +249,11 @@
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 	span_notice("You start repairing [src]'s tubing and plating."))
-	if(!do_after(user, 150, NONE, src, BUSY_ICON_BUILD))
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+		var/repair_time_Wrench = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
+	else
+		var/repair_time_Wrench = 2 SECONDS
+	if(!do_after(user, repair_time_Wrench, NONE, src, BUSY_ICON_BUILD))
 		return FALSE
 	if(miner_status != MINER_SMALL_DAMAGE)
 		return FALSE
