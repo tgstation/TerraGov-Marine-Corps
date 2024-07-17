@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - bugfix: "Synths and robots no longer get a \"catch your breath\" message when trying to jump, instead a silicon specific message"
