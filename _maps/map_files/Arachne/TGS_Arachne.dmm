@@ -14502,7 +14502,7 @@
 /turf/open/floor/plating,
 /area/mainship/squads/req)
 "lWc" = (
-/obj/machinery/vending/lasgun,
+/obj/machinery/power/field_charger,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},

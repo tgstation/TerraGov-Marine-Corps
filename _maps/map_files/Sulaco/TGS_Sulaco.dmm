@@ -8893,7 +8893,7 @@
 /turf/open/floor/wood,
 /area/sulaco/liaison)
 "baQ" = (
-/obj/machinery/vending/lasgun,
+/obj/machinery/power/field_charger,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/firealarm,
 /turf/open/floor/prison,
