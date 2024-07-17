@@ -5,7 +5,6 @@
 	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/officer/full
 	jobs_supported = list(FIELD_COMMANDER)
-	item_blacklist = list(/obj/item/storage/holster/blade/officer/full = ITEM_SLOT_BELT)
 
 /datum/loadout_item/suit_store/officer_sword/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -38,7 +37,6 @@
 	ui_icon = "m1911c"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 	jobs_supported = list(FIELD_COMMANDER)
-	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander = ITEM_SLOT_BELT)
 
 /datum/loadout_item/suit_store/fc_pistol/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_ACCESSORY)
@@ -276,8 +274,8 @@
 	Has two firemodes, with a standard reflecting shot, or a more powerful AOE overcharged shot. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
-	unlock_cost = 400
-	purchase_cost = 50
+	unlock_cost = 300
+	purchase_cost = 90
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/suit_store/main_gun/field_commander/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -307,8 +305,8 @@
 	Has three firemodes, with a standard high ROF mode, a piercing shatter shot, or a melting blast mode. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/standard
-	unlock_cost = 400
-	purchase_cost = 50
+	unlock_cost = 300
+	purchase_cost = 90
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/suit_store/main_gun/field_commander/plasma_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

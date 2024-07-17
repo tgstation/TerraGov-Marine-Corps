@@ -63,6 +63,9 @@
 	///Boolean to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.
 	var/area_limited_icon_smoothing = FALSE
 
+	///string used to determine specific icon variants when structures are used in an area
+	var/area_flavor = AREA_FLAVOR_NONE
+
 /area/New()
 	// This interacts with the map loader, so it needs to be set immediately
 	// rather than waiting for atoms to initialize.
@@ -87,10 +90,14 @@
 
 	if(!static_lighting)
 		blend_mode = BLEND_MULTIPLY
-
 	reg_in_areas_in_z()
 
 	update_base_lighting()
+
+	if(area_flags & CANNOT_NUKE | area_flags & NEAR_FOB)
+		if(get_area_name(src) in GLOB.nuke_ineligible_site)
+			return
+		GLOB.nuke_ineligible_site += get_area_name(src)
 
 	return INITIALIZE_HINT_LATELOAD
 

@@ -248,7 +248,7 @@
 	carbon_owner.Move(get_step_towards(carbon_owner, A), get_dir(src, A))
 	carbon_owner.face_atom(A)
 	activate_particles(owner.dir)
-	playsound(owner, "sound/effects/alien_tail_swipe3.ogg", 50, 0, 5)
+	playsound(owner, 'sound/effects/alien/tail_swipe3.ogg', 50, 0, 5)
 	owner.visible_message(span_danger("[owner] Swing their weapon in a deadly arc!"))
 
 	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
@@ -260,14 +260,13 @@
 		if(!ishuman(victim))
 			var/obj/obj_victim = victim
 			obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
-			if(!obj_victim.anchored && obj_victim.move_resist < MOVE_FORCE_VERY_STRONG)
-				obj_victim.knockback(owner, 1, 2)
+			obj_victim.knockback(owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 			continue
 		var/mob/living/carbon/human/human_victim = victim
 		if(human_victim.lying_angle)
 			continue
 		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)
-		human_victim.knockback(owner, 1, 2)
+		human_victim.knockback(owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 		human_victim.adjust_stagger(1 SECONDS)
 		playsound(human_victim, "sound/weapons/wristblades_hit.ogg", 25, 0, 5)
 		shake_camera(human_victim, 2, 1)

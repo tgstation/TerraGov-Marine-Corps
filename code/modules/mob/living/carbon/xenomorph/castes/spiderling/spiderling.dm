@@ -13,8 +13,6 @@
 	health = 250
 	maxHealth = 250
 	plasma_stored = 200
-	pixel_x = 0
-	old_x = 0
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -2
@@ -119,8 +117,6 @@
 	SIGNAL_HANDLER
 	if(!isliving(target))
 		return
-	if(target.stat != CONSCIOUS)
-		return
 	if(mob_parent?.get_xeno_hivenumber() == target.get_xeno_hivenumber())
 		return
 	atom_to_walk_to = target
@@ -133,11 +129,6 @@
 		return
 	if(Adjacent(atom_to_walk_to))
 		return
-	if(isliving(atom_to_walk_to))
-		var/mob/living/victim = atom_to_walk_to
-		if(victim.stat != CONSCIOUS)
-			change_action(ESCORTING_ATOM, escorted_atom)
-			return
 	mob_parent.face_atom(atom_to_walk_to)
 	mob_parent.UnarmedAttack(atom_to_walk_to, mob_parent)
 

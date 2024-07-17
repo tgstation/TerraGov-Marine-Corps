@@ -8,6 +8,7 @@
 /datum/action/ability/activable/xeno/pounce/runner
 	desc = "Leap at your target, tackling and disarming them. Alternate use toggles Savage off or on."
 	action_icon_state = "pounce_savage_on"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	ability_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RUNNER_POUNCE,
@@ -56,7 +57,7 @@
 	if(COOLDOWN_CHECK(src, savage_cooldown))
 		button.cut_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
 		owner.balloon_alert(owner, "Savage ready")
-		owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+		owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 		STOP_PROCESSING(SSprocessing, src)
 		return
 	button.cut_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
@@ -77,6 +78,7 @@
 /datum/action/ability/xeno_action/evasion
 	name = "Evasion"
 	action_icon_state = "evasion_on"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. \
 			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early."
 	ability_cost = 75
@@ -97,7 +99,7 @@
 /datum/action/ability/xeno_action/evasion/on_cooldown_finish()
 	. = ..()
 	owner.balloon_alert(owner, "Evasion ready")
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
 /datum/action/ability/xeno_action/evasion/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -147,7 +149,7 @@
 	RegisterSignal(owner, COMSIG_LIVING_PRE_THROW_IMPACT, PROC_REF(evasion_throw_dodge))
 	GLOB.round_statistics.runner_evasions++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_evasions")
-	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 1 SECONDS)
+	TIMER_COOLDOWN_START(src, COOLDOWN_EVASION_ACTIVATION, 0.3 SECONDS)
 
 /datum/action/ability/xeno_action/evasion/ai_should_start_consider()
 	return TRUE
@@ -255,14 +257,14 @@
 	xeno_owner.visible_message(span_warning("[xeno_owner] effortlessly dodges the [proj.name]!"), \
 	span_xenodanger("We effortlessly dodge the [proj.name]![(RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks) > 0 && evasion_stacks > 0 ? " We must dodge [RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD - evasion_stacks] more projectile damage before [src]'s cooldown refreshes." : ""]"))
 	xeno_owner.add_filter("runner_evasion", 2, gauss_blur_filter(5))
-	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/atom, remove_filter), "runner_evasion"), 0.5 SECONDS)
+	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "runner_evasion"), 0.5 SECONDS)
 	xeno_owner.do_jitter_animation(4000)
 	if(evasion_stacks >= RUNNER_EVASION_COOLDOWN_REFRESH_THRESHOLD && cooldown_remaining()) //We have more evasion stacks than needed to refresh our cooldown, while being on cooldown.
 		clear_cooldown()
 		if(auto_evasion && xeno_owner.plasma_stored >= ability_cost)
 			action_activate()
 	var/turf/current_turf = get_turf(xeno_owner) //location of after image SFX
-	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
+	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien/tail_swipe1.ogg', 'sound/effects/alien/tail_swipe2.ogg'), 25, 1) //sound effects
 	var/obj/effect/temp_visual/after_image/after_image
 	for(var/i=0 to 2) //number of after images
 		after_image = new /obj/effect/temp_visual/after_image(current_turf, owner) //Create the after image.
@@ -275,6 +277,7 @@
 /datum/action/ability/activable/xeno/snatch
 	name = "Snatch"
 	action_icon_state = "snatch"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Take an item equipped by your target in your mouth, and carry it away."
 	ability_cost = 75
 	cooldown_duration = 60 SECONDS
@@ -335,7 +338,7 @@
 	if(!stolen_item)
 		victim.balloon_alert(owner, "Snatch failed, no item")
 		return fail_activate()
-	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30)
+	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30)
 	victim.dropItemToGround(stolen_item, TRUE)
 	stolen_item.forceMove(owner)
 	stolen_appearance = mutable_appearance(stolen_item.icon, stolen_item.icon_state)
@@ -346,6 +349,11 @@
 	owner_turned(null, null, owner.dir)
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.runner_items_stolen++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_items_stolen")
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.items_snatched++
 
 ///Signal handler to update the item overlay when the owner is changing dir
 /datum/action/ability/activable/xeno/snatch/proc/owner_turned(datum/source, old_dir, new_dir)
@@ -383,6 +391,6 @@
 	stolen_item.forceMove(get_turf(owner))
 	stolen_item = null
 	owner.overlays -= stolen_appearance
-	playsound(owner, 'sound/voice/alien_pounce2.ogg', 30, frequency = -1)
+	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 

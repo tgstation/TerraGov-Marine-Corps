@@ -74,6 +74,9 @@
 		return
 
 	if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
+		if(isrobot(jumper) || issynth(jumper))
+			to_chat(jumper, span_warning("Your leg servos do not allow you to jump!"))
+			return
 		to_chat(jumper, span_warning("Catch your breath!"))
 		return
 
@@ -98,6 +101,7 @@
 	jumper.adjustStaminaLoss(stamina_cost)
 	jumper.pass_flags |= effective_jumper_allow_pass_flags
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	jumper.add_nosubmerge_trait(JUMP_COMPONENT)
 	RegisterSignal(parent, COMSIG_MOB_THROW, PROC_REF(jump_throw))
 
 	jumper.add_filter(JUMP_COMPONENT, 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
@@ -122,7 +126,7 @@
 /datum/component/jump/proc/end_jump(mob/living/jumper, original_pass_flags)
 	jumper.remove_filter(JUMP_COMPONENT)
 	jumper.pass_flags = original_pass_flags
-	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	jumper.remove_traits(list(TRAIT_SILENT_FOOTSTEPS, TRAIT_NOSUBMERGE), JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
 	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)
 	UnregisterSignal(parent, COMSIG_MOB_THROW)

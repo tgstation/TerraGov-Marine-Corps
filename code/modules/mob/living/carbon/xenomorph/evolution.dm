@@ -141,7 +141,7 @@
 
 ///Actually changes the xenomorph to another caste
 /mob/living/carbon/xenomorph/proc/finish_evolve(new_mob_type)
-	var/mob/living/carbon/xenomorph/new_xeno = new new_mob_type(get_turf(src))
+	var/mob/living/carbon/xenomorph/new_xeno = new new_mob_type(get_turf(src), TRUE)
 
 	if(!istype(new_xeno))
 		//Something went horribly wrong!
@@ -151,10 +151,12 @@
 		return
 	new_xeno.upgrade_stored = upgrade_stored
 	while(new_xeno.upgrade_stored >= new_xeno.xeno_caste?.upgrade_threshold && new_xeno.upgrade_possible())
-		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
+		if(!new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)) //Upgrade tier wasn't set properly, let's avoid looping forever
+			qdel(new_xeno)
+			stack_trace("[src] tried to evolve and upgrade, but the castes upgrade tier wasn't valid.")
+			return
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
-
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
 
@@ -167,6 +169,8 @@
 	new_xeno.nicknumber = nicknumber
 	new_xeno.hivenumber = hivenumber
 	new_xeno.transfer_to_hive(hivenumber)
+	new_xeno.generate_name() // This is specifically for numbered xenos who want to keep their previous number instead of a random new one.
+	new_xeno.hive?.update_ruler() // Since ruler wasn't set during initialization, update ruler now.
 	transfer_observers_to(new_xeno)
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
@@ -214,7 +218,8 @@
 
 	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
-		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
+		if(!new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)) //This return shouldn't be possible to trigger, unless you varedit upgrade right on the tick the xeno evos
+			return
 	var/atom/movable/screen/zone_sel/selector = new_xeno.hud_used?.zone_sel
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
@@ -248,7 +253,7 @@
 		balloon_alert(src, "The restraints are too restricting to allow us to evolve")
 		return FALSE
 
-	if(isnull(get_evolution_options()) || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
+	if(length(get_evolution_options()) < 1 || (!HAS_TRAIT(src, TRAIT_STRAIN_SWAP) && !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED)) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO)) // todo: why does this flag still exist?
 		balloon_alert(src, "We are already the apex of form and function. Let's go forth and spread the hive!")
 		return FALSE
 
@@ -331,7 +336,7 @@
 			else if(isxenodrone(src) && new_caste_type != /datum/xeno_caste/shrike)
 				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!"))
 				return FALSE
-		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
+		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold && !SSresinshaping.active)
 			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))
 			return FALSE
 	return TRUE

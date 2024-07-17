@@ -1,0 +1,4 @@
+author: "Ldip999"
+delete-after: True
+changes:
+  - bugfix: "Loadout vendor now applies the GHMME flag"

@@ -4,7 +4,6 @@ GLOBAL_DATUM_INIT(marine_main_ship, /datum/marine_main_ship, new)
 /datum/marine_main_ship
 
 	var/obj/structure/orbital_cannon/orbital_cannon
-	var/list/ob_type_fuel_requirements
 
 	var/obj/structure/ship_rail_gun/rail_gun
 

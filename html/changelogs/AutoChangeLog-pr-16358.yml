@@ -1,0 +1,4 @@
+author: "Ldip999"
+delete-after: True
+changes:
+  - code_imp: "Implemented SPT_PROB and SPT_PROB_RATE"
