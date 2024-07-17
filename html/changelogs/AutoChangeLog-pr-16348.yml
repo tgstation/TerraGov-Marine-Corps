@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Campaign: NT base rescue objective no longer layers over c4 attached to it"
