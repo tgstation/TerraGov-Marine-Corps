@@ -33,7 +33,7 @@
 /obj/machinery/power/field_charger/examine(mob/user)
 	. = ..()
 	. += "Charge: [span_bold("[PERCENT(machine_current_charge/machine_max_charge)]%")]"
-	. += "Integrity: [span_bold("[obj_integrity]/[max_integrity]")]"	//Not a percentage so players can see the exact values of both current and max integrity
+	. += "Integrity: [span_bold("[PERCENT(obj_integrity/max_integrity)]%")]"
 	. += "Has [span_bold("[LAZYLEN(stored_cells)]")] objects stored."
 
 /obj/machinery/power/field_charger/update_icon_state()
