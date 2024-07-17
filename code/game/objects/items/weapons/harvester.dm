@@ -17,7 +17,7 @@
 
 /obj/item/weapon/sword/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, 30, TRUE)
+	AddComponent(/datum/component/harvester)
 
 /obj/item/weapon/sword/harvester/equipped(mob/user, slot)
 	. = ..()
@@ -49,7 +49,7 @@
 
 /obj/item/weapon/combat_knife/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, 5, TRUE)
+	AddComponent(/datum/component/harvester, 5)
 
 /obj/item/weapon/combat_knife/harvester/equipped(mob/user, slot)
 	. = ..()
@@ -76,7 +76,7 @@
 
 /obj/item/weapon/twohanded/spear/tactical/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, 30, TRUE)
+	AddComponent(/datum/component/harvester)
 
 //Vali Claymore (That thing was too big to be called a sword. Too big, too thick, too heavy, and too rough, it was more like a large hunk of iron.)
 /obj/item/weapon/twohanded/glaive/harvester
@@ -94,7 +94,7 @@
 
 /obj/item/weapon/twohanded/glaive/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, 60, TRUE)
+	AddComponent(/datum/component/harvester, 60)
 
 /obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
 	. = ..()
