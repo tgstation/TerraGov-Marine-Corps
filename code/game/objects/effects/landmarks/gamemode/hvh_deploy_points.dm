@@ -6,13 +6,14 @@
 /obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
 	icon = 'icons/effects/campaign_effects.dmi'
-	icon_state = "blue_1"
 	///ID to link with an associated start point
 	var/id = null
 	///Faction this belongs to for minimap purposes
 	var/faction = FACTION_TERRAGOV
 	///minimap icon state
 	var/minimap_icon = "patrol_1"
+	///List of open turfs around the point to deploy onto
+	var/list/deploy_turfs
 
 /obj/effect/landmark/patrol_point/Initialize(mapload)
 	. = ..()
@@ -20,7 +21,19 @@
 	GLOB.patrol_point_list += src
 	if(!(SSticker?.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS))
 		return
-	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips.dmi', null, minimap_icon))
+	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon))
+
+	deploy_turfs = filled_circle_turfs(src, 5)
+	for(var/turf/turf AS in deploy_turfs)
+		if(turf.density || isspaceturf(turf))
+			deploy_turfs -= turf
+			continue
+		for(var/atom/movable/AM AS in turf)
+			if(!AM.density)
+				continue
+			deploy_turfs -= turf
+			break
+
 
 /obj/effect/landmark/patrol_point/Destroy()
 	GLOB.patrol_point_list -= src
@@ -28,16 +41,20 @@
 
 ///Moves the AM and sets up the effects
 /obj/effect/landmark/patrol_point/proc/do_deployment(atom/movable/movable_to_move, list/mobs_moving)
+	var/turf/target_turf = loc
+	if(!isarmoredvehicle(movable_to_move)) //multitile vehicles can have clipping issues otherwise
+		target_turf = pick(deploy_turfs)
+
 	if(ismob(mobs_moving))
 		mobs_moving = list(mobs_moving)
 
 	if(isliving(movable_to_move))
 		var/mob/living_to_move = movable_to_move
-		new /atom/movable/effect/rappel_rope(loc)
-		living_to_move.trainteleport(loc)
+		new /atom/movable/effect/rappel_rope(target_turf)
+		living_to_move.trainteleport(target_turf)
 		add_spawn_protection(living_to_move)
 	else
-		movable_to_move.forceMove(loc)
+		movable_to_move.forceMove(target_turf)
 		if(isvehicle(movable_to_move))
 			var/obj/vehicle/moved_vehicle = movable_to_move
 			mobs_moving += moved_vehicle.occupants
@@ -69,8 +86,8 @@
 	movable_to_move.layer = original_layer
 	SEND_SIGNAL(movable_to_move, COMSIG_MOVABLE_PATROL_DEPLOYED, TRUE, 1.5, 2)
 	if(ismecha(movable_to_move) || isarmoredvehicle(movable_to_move))
-		new /obj/effect/temp_visual/rappel_dust(loc, 3)
-		playsound(loc, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
+		new /obj/effect/temp_visual/rappel_dust(movable_to_move.loc, 3)
+		playsound(movable_to_move.loc, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
 	for(var/user in mobs_moving)
 		shake_camera(user, 0.2 SECONDS, 0.5)
 
@@ -79,89 +96,31 @@
 	user.status_flags &= ~GODMODE
 
 /obj/effect/landmark/patrol_point/tgmc_11
-	name = "TGMC exit point 11"
-	id = "TGMC_11"
-
-/obj/effect/landmark/patrol_point/tgmc_12
-	name = "TGMC exit point 12"
-	id = "TGMC_12"
-
-/obj/effect/landmark/patrol_point/tgmc_13
-	name = "TGMC exit point 13"
-	id = "TGMC_13"
-
-/obj/effect/landmark/patrol_point/tgmc_14
-	name = "TGMC exit point 14"
-	id = "TGMC_14"
+	name = "TGMC exit point 1"
+	id = "TGMC_1"
+	icon_state = "blue_1"
 
 /obj/effect/landmark/patrol_point/tgmc_21
-	name = "TGMC exit point 21"
-	id = "TGMC_21"
-	icon_state = "blue_2"
-	minimap_icon = "patrol_2"
-
-/obj/effect/landmark/patrol_point/tgmc_22
-	name = "TGMC exit point 22"
-	id = "TGMC_22"
-	icon_state = "blue_2"
-	minimap_icon = "patrol_2"
-
-/obj/effect/landmark/patrol_point/tgmc_23
-	name = "TGMC exit point 23"
-	id = "TGMC_23"
-	icon_state = "blue_2"
-	minimap_icon = "patrol_2"
-
-/obj/effect/landmark/patrol_point/tgmc_24
-	name = "TGMC exit point 24"
-	id = "TGMC_24"
+	name = "TGMC exit point 2"
+	id = "TGMC_2"
 	icon_state = "blue_2"
 	minimap_icon = "patrol_2"
 
 /obj/effect/landmark/patrol_point/som
 	faction = FACTION_SOM
-	icon_state = "red_1"
-	minimap_icon = "som_patrol_1"
 
 /obj/effect/landmark/patrol_point/som/som_11
-	name = "SOM exit point 11"
-	id = "SOM_11"
-
-/obj/effect/landmark/patrol_point/som/som_12
-	name = "SOM exit point 12"
-	id = "SOM_12"
-
-/obj/effect/landmark/patrol_point/som/som_13
-	name = "SOM exit point 13"
-	id = "SOM_13"
-
-/obj/effect/landmark/patrol_point/som/som_14
-	name = "SOM exit point 14"
-	id = "SOM_14"
+	name = "SOM exit point 1"
+	icon_state = "red_1"
+	id = "SOM_1"
+	minimap_icon = "som_patrol_1"
 
 /obj/effect/landmark/patrol_point/som/som_21
-	name = "SOM exit point 21"
-	id = "SOM_21"
+	name = "SOM exit point 2"
+	id = "SOM_2"
 	icon_state = "red_2"
 	minimap_icon = "som_patrol_2"
 
-/obj/effect/landmark/patrol_point/som/som_22
-	name = "SOM exit point 22"
-	id = "SOM_22"
-	icon_state = "red_2"
-	minimap_icon = "som_patrol_2"
-
-/obj/effect/landmark/patrol_point/som/som_23
-	name = "SOM exit point 23"
-	id = "SOM_23"
-	icon_state = "red_2"
-	minimap_icon = "som_patrol_2"
-
-/obj/effect/landmark/patrol_point/som/som_24
-	name = "SOM exit point 24"
-	id = "SOM_24"
-	icon_state = "red_2"
-	minimap_icon = "som_patrol_2"
 
 /atom/movable/effect/rappel_rope
 	name = "rope"

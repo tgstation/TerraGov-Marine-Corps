@@ -74,7 +74,7 @@
 
 
 /obj/effect/landmark/campaign/vehicle_spawner/tank
-	name = "TGMC tank spawner"
+	name = "TGMC LTB tank spawner"
 	icon_state = "tank_spawner"
 	vehicle_type = /obj/vehicle/sealed/armored/multitile/campaign
 	///List of gear the tank spawns with
@@ -117,6 +117,15 @@
 	for(var/i = 1 to 4)
 		new /obj/item/pamphlet/tank_crew(pamphlet_turf)
 
+/obj/effect/landmark/campaign/vehicle_spawner/tank/ltaap_chaingun
+	name = "TGMC LTAAP tank spawner"
+	equipment_list = list(
+		/obj/item/armored_weapon/ltaap = 1,
+		/obj/item/armored_weapon/secondary_weapon = 1,
+		/obj/item/ammo_magazine/tank/ltaap_chaingun = 20,
+		/obj/item/ammo_magazine/tank/secondary_cupola = 10,
+	)
+
 /obj/effect/landmark/campaign/vehicle_spawner/tank/som
 	name = "SOM tank spawner - coilgun"
 	faction = FACTION_SOM
@@ -124,7 +133,7 @@
 	equipment_list = list(
 		/obj/item/armored_weapon/coilgun = 1,
 		/obj/item/armored_weapon/secondary_mlrs = 1,
-		/obj/item/ammo_magazine/tank/coilgun = 15,
+		/obj/item/ammo_magazine/tank/coilgun = 40,
 		/obj/item/ammo_magazine/tank/secondary_mlrs = 8,
 	)
 

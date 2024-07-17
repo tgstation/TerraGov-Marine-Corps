@@ -1239,7 +1239,7 @@
 	},
 /area/mainship/patrol_base/command)
 "rp" = (
-/obj/structure/patrol_point/tgmc_12,
+/obj/structure/patrol_point/tgmc_11,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "rq" = (
@@ -1252,7 +1252,7 @@
 /turf/open/floor/plating,
 /area/mainship/patrol_base)
 "rB" = (
-/obj/structure/patrol_point/tgmc_22,
+/obj/structure/patrol_point/tgmc_21,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "rJ" = (
@@ -1309,6 +1309,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/command)
+"sE" = (
+/obj/effect/landmark/campaign/vehicle_spawner/tank/ltaap_chaingun,
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
 "sF" = (
 /turf/open/floor/mainship/blue{
 	dir = 4
@@ -1416,14 +1420,6 @@
 /obj/machinery/vending/engivend,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base)
-"uf" = (
-/obj/structure/patrol_point/tgmc_13,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base/hanger)
-"um" = (
-/obj/structure/patrol_point/tgmc_23,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/patrol_base/hanger)
 "ur" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/blue,
@@ -1749,10 +1745,6 @@
 	dir = 4
 	},
 /area/mainship/patrol_base)
-"yy" = (
-/obj/structure/patrol_point/tgmc_14,
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/hanger)
 "yF" = (
 /obj/structure/dropship_piece/tadpole/engine{
 	dir = 1;
@@ -1763,10 +1755,6 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/turf/open/floor/mainship/mono,
-/area/mainship/patrol_base/hanger)
-"yH" = (
-/obj/structure/patrol_point/tgmc_24,
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/hanger)
 "yJ" = (
@@ -31518,7 +31506,7 @@ bE
 hs
 CX
 VS
-Wj
+sE
 mR
 bu
 ef
@@ -35861,8 +35849,8 @@ ba
 bi
 kM
 iX
-uf
-yy
+mw
+rp
 uQ
 ba
 Bn
@@ -37555,8 +37543,8 @@ ba
 bi
 kM
 iX
-um
-yH
+mL
+rB
 uQ
 ba
 Bn

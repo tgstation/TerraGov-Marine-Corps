@@ -194,6 +194,8 @@
 			/obj/item/ammo_magazine/packet/standardautoshotgun = -1,
 			/obj/item/ammo_magazine/packet/standardautoshotgun/flechette = -1,
 			/obj/item/ammo_magazine/packet/p4570 = -1,
+			/obj/item/ammo_magazine/packet/p41ae = -1,
+			/obj/item/ammo_magazine/packet/p41ae_squashhead = -1,
 			/obj/item/storage/box/visual/magazine = -1,
 			/obj/item/storage/box/visual/grenade = -1,
 			/obj/structure/closet/crate/mass_produced_crate = 5,
@@ -1567,6 +1569,16 @@
 			/obj/item/tank_module/ability/zoom = -1,
 			/obj/item/tank_module/ability/smoke_launcher = -1,
 			/obj/item/tank_module/interior/medical = -1,
+		),
+		"SOM Assault Vehicle" = list(
+			/obj/item/armored_weapon/volkite_carronade = -1,
+			/obj/item/armored_weapon/particle_lance = -1,
+			/obj/item/armored_weapon/coilgun = -1,
+			/obj/item/armored_weapon/secondary_mlrs = -1,
+			/obj/item/ammo_magazine/tank/volkite_carronade = -1,
+			/obj/item/ammo_magazine/tank/particle_lance = -1,
+			/obj/item/ammo_magazine/tank/coilgun = -1,
+			/obj/item/ammo_magazine/tank/secondary_mlrs = -1,
 		),
 	)
 

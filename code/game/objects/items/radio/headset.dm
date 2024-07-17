@@ -210,7 +210,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 ///Explodes the headset if you put on an enemy's headset
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	balloon_alert_to_viewers("Explodes")
-	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
+	playsound(user, 'sound/effects/explosion/micro1.ogg', 50, 1)
 	if(wearer)
 		wearer.ex_act(EXPLODE_LIGHT)
 	qdel(src)

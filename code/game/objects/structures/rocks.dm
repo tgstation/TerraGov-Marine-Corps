@@ -164,11 +164,11 @@
 
 // Cave props
 /obj/structure/rock/dark/stalagmite
-/obj/structure/prop/urban/cavedecor
 	icon = 'icons/obj/structures/prop/urban/urbanrandomprops.dmi'
 	name = "stalagmite"
 	icon_state = "stalagmite"
 	desc = "A cave stalagmite."
+	density = FALSE
 
 /obj/structure/rock/dark/stalagmite/one
 	icon_state = "stalagmite1"
@@ -215,6 +215,7 @@
 	icon = 'icons/obj/structures/cave_decor.dmi'
 	icon_state = "stalagmite"
 	icon_variants = 6
+	density = FALSE
 
 /obj/structure/rock/variable/jungle
 	name = "rock"

@@ -79,14 +79,12 @@
 /obj/structure/gun_breech/proc/do_load(mob/living/user, obj/item/armored_weapon/weapon, obj/item/ammo_magazine/mag)
 	user.temporarilyRemoveItemFromInventory(mag)
 	mag.forceMove(weapon)
-	weapon.ammo = mag
+	weapon.ammo_magazine +=mag
+	if(weapon.ammo)
+		return
+	weapon.reload()
+	update_appearance(UPDATE_ICON)
 	user.say(is_secondary ? "Loaded!" : "Up!")
-	for(var/mob/occupant AS in owner.interior.occupants)
-		occupant.hud_used.update_ammo_hud(weapon, list(
-			mag.default_ammo.hud_state,
-			mag.default_ammo.hud_state_empty),
-			mag.current_rounds
-		)
 
 ///Unloads the weapon attached to the breech
 /obj/structure/gun_breech/proc/do_unload(mob/living/user, obj/item/armored_weapon/weapon)
@@ -94,6 +92,8 @@
 	user.put_in_hands(weapon.ammo)
 	weapon.ammo.update_appearance()
 	weapon.ammo = null
+	weapon.reload()
+	update_appearance(UPDATE_ICON)
 
 ///checks to perform while reloading
 /obj/structure/gun_breech/proc/reload_checks(mob/user)
@@ -101,7 +101,7 @@
 	if(!weapon)
 		balloon_alert(user, "no weapon")
 		return FALSE
-	if(weapon.ammo)
+	if(weapon.ammo && length(weapon.ammo_magazine) >= weapon.maximum_magazines)
 		balloon_alert(user, "already loaded")
 		return FALSE
 	return TRUE
@@ -234,7 +234,6 @@
 	update_gun_appearance(weapon_type)
 	if(weapon_type.type == /obj/item/armored_weapon/coilgun)
 		flick("[ammo_overlay.icon_state]_flick", ammo_overlay)
-		playsound(src, 'sound/vehicles/weapons/coilgun_cycle.ogg', 60, FALSE)
 
 ///Updates breech and barrel vis_obj appearance
 /obj/structure/gun_breech/som/proc/update_gun_appearance(obj/item/armored_weapon/current_weapon)
@@ -255,7 +254,7 @@
 		pixel_x = -12
 		pixel_y = -32
 		barrel_overlay.pixel_y = 76
-		ammo_overlay.icon_state = "[icon_state]_[weapon_type?.ammo?.current_rounds]"
+		ammo_overlay.icon_state = "[icon_state]_[length(weapon_type?.ammo_magazine) + weapon_type.ammo.current_rounds]"
 	else if(weapon_type.type == /obj/item/armored_weapon/particle_lance)
 		pixel_x = -8
 		pixel_y = -7

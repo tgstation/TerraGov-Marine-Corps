@@ -252,6 +252,13 @@
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 	hotkey_keys = list("R")
 
+/datum/keybinding/xeno/acid_shroud
+	name = "acid_shroud"
+	full_name = "Boiler: Acid Shroud"
+	description = "Create a smokescreen for a getaway."
+	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD
+	hotkey_keys = list("Q")
+
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
 	full_name = "Bull: Plow Charge"
@@ -1114,6 +1121,12 @@
 	full_name = "Behemoth: Landslide"
 	description = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	keybind_signal = COMSIG_XENOABILITY_LANDSLIDE
+
+/datum/keybinding/xeno/cancel_landslide
+	name = "Cancel Landslide"
+	full_name = "Behemoth: Cancel Landslide"
+	description = "Cancels landslide without having to select the ability"
+	keybind_signal = COMSIG_XENOABILITY_CANCEL_LANDSLIDE
 
 /datum/keybinding/xeno/earth_riser
 	name = "Earth Riser"
