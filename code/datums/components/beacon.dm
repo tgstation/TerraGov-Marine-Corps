@@ -181,8 +181,8 @@
 	if(istype(A, /area/shuttle/dropship))
 		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or it won't transmit.")
 		INVOKE_ASYNC(src, PROC_REF(deactivate), parent)
-	src.beacon_datum.drop_location = location
-	src.beacon_datum.name = "[src.activator.name] + [A]"
+	beacon_datum.drop_location = location
+	beacon_datum.name = "[src.activator.name] + [A]"
 	var/atom/movable/p = parent
 	p.update_appearance()
 
