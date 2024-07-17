@@ -384,7 +384,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 						advice += temp_advice
 				else
 					advice += temp_advice
-			var/datum/internal_organ/brain/brain = patient.internal_organs_by_name["brain"]
+			var/datum/internal_organ/brain/brain = patient.get_organ_slot(ORGAN_SLOT_BRAIN)
 			if(brain.organ_status != ORGAN_HEALTHY)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of alkysine.",
@@ -397,7 +397,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 						advice += temp_advice
 				else
 					advice += temp_advice
-			var/datum/internal_organ/eyes/eyes = patient.internal_organs_by_name["eyes"]
+			var/datum/internal_organ/eyes/eyes = patient.get_organ_slot(ORGAN_SLOT_EYES)
 			if(eyes.organ_status != ORGAN_HEALTHY)
 				temp_advice = list(list(
 					"advice" = "Administer a single dose of imidazoline.",

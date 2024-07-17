@@ -43,7 +43,7 @@
 	L.setDrowsyness(L.drowsyness, 20)
 	if(ishuman(L)) //Critical overdose causes total blackout and heart damage. Too much stimulant
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		E.take_damage(0.5*effect_str, TRUE)
 	if(prob(10))
 		L.emote(pick("twitch","blink_r","shiver"))
@@ -161,7 +161,7 @@
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		if(E)
 			E.take_damage(3*effect_str, TRUE)
 
@@ -377,7 +377,7 @@
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/H = L
-	var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+	var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 	if(E)
 		E.take_damage(0.5*effect_str, TRUE)
 
@@ -385,7 +385,7 @@
 	L.apply_damages(2*effect_str, 2*effect_str)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+		var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 		if(E)
 			E.take_damage(1.5*effect_str, TRUE)
 
@@ -619,7 +619,7 @@
 	L.adjust_blindness(-5)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+		var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 		if(E)
 			E.heal_organ_damage(effect_str)
 	return ..()
@@ -904,7 +904,7 @@
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
 	if(prob(15) && ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/affected_organ = pick("heart","lungs","liver","kidneys")
+		var/affected_organ = pick(ORGAN_SLOT_HEART,ORGAN_SLOT_LUNGS,ORGAN_SLOT_LIVER,ORGAN_SLOT_KIDNEYS)
 		var/datum/internal_organ/I = H.internal_organs_by_name[affected_organ]
 		I.take_damage(5.5*effect_str)
 
@@ -913,7 +913,7 @@
 /datum/reagent/medicine/ultrazine/overdose_process(mob/living/L, metabolism)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		if(E)
 			E.take_damage(0.5*effect_str, TRUE)
 	else
@@ -926,7 +926,7 @@
 		L.adjustToxLoss(1.5*effect_str)
 	else
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		if(E)
 			E.take_damage(1.5*effect_str, TRUE)
 
