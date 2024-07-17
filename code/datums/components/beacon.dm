@@ -167,7 +167,7 @@
 	var/turf/location = get_turf(parent)
 	var/area/Area = get_area(location)
 	if(check_for_blacklist(source))
-		deactivate(source)
+		INVOKE_ASYNC(src, PROC_REF(deactivate), source)
 		return
 	beacon_datum.drop_location = location
 	beacon_datum.name = "[src.activator.name] + [Area]"
