@@ -175,7 +175,7 @@
 	SIGNAL_HANDLER
 	var/turf/location = get_turf(parent)
 	var/area/A = get_area(location)
-	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
+	if(istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
 		source.balloon_alert_to_viewers("This won't work if you're standing deep underground.")
 		INVOKE_ASYNC(src, PROC_REF(deactivate), parent)
 	if(istype(A, /area/shuttle/dropship))
