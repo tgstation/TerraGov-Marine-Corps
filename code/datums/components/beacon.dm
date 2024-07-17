@@ -192,6 +192,7 @@
 /datum/component/beacon/proc/equip(obj/item/source)
 	SIGNAL_HANDLER
 	RegisterSignal(source.loc, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
+
 ///Called on dropping the beacon
 /datum/component/beacon/proc/dropped(obj/item/source)
 	SIGNAL_HANDLER
