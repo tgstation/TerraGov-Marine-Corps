@@ -102,7 +102,7 @@
 			return FALSE
 	user.visible_message(span_notice("[user] begins attaching a module to [src]'s sockets."))
 	to_chat(user, span_info("You begin installing the [upgrade] on the miner."))
-	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 		var/repair_time_Upgrade = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 	else
 		var/repair_time_Upgrade = 2 SECONDS
@@ -150,7 +150,7 @@
 			return FALSE
 		to_chat(user, span_info("You begin uninstalling the [miner_upgrade_type] from the miner!"))
 		user.visible_message(span_notice("[user] begins dismantling the [miner_upgrade_type] from the miner."))
-	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 		var/repair_time_Remove = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 	else
 		var/repair_time_Remove = 2 SECONDS
@@ -190,7 +190,7 @@
 	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
 	span_notice("You start welding [src]'s internal damage."))
 	add_overlay(GLOB.welding_sparks)
-	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 		var/repair_time_Welding = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 	else
 		var/repair_time_Welding = 2 SECONDS
@@ -221,7 +221,7 @@
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, TRUE)
 	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
 	span_notice("You start securing [src]'s wiring."))
-	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 		var/repair_time_Wirecut = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 	else
 		var/repair_time_Wirecut = 2 SECONDS
@@ -249,7 +249,7 @@
 	playsound(loc, 'sound/items/ratchet.ogg', 25, TRUE)
 	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
 	span_notice("You start repairing [src]'s tubing and plating."))
-	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_MASTER)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
 		var/repair_time_Wrench = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 	else
 		var/repair_time_Wrench = 2 SECONDS
