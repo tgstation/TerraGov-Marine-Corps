@@ -177,3 +177,64 @@
   - balance: Added a welder bag for SOM in campaign as a default back slot item
   jonash07:
   - bugfix: fixed the empty mortar bags sprite
+2024-07-14:
+  Cheese:
+  - rscadd: The amount of items runners steal is now tracked.
+  Lumipharon:
+  - balance: 'Campaign: SOM medic and engineer MPI loadouts now come with a UGL'
+  - bugfix: 'Campaign: SOM medics correctly receive the AP V-21 if they have the SMG
+      perk'
+  - bugfix: 'Campaign: TGMC standards get SMG mags in their pouches if they chose
+      the SMG belt holster'
+  - bugfix: Certain random events will no longer happen in the campaign gamemode
+  Notamaniac:
+  - bugfix: Syntheised instruments should no longer be off key
+  Pariah919:
+  - balance: DMR no longer has minimum range penalties and has mildly higher penetration.
+  blackdav123:
+  - rscadd: Added redcoat and bluecoat loadouts.
+  - rscadd: Added a full martini belt.
+  - rscadd: Added civil war quick equip vendors.
+2024-07-16:
+  Barnet2:
+  - rscadd: Fumo dolls re-added, you can find them in the arcade prize pool!
+  Fallouttec:
+  - balance: Changed price of Mortar Flare and Smoke Refills for Factory, they now
+      cost 50 points per refill item
+  - balance: changed the price of FK-88 ammo refills for Factory to be 200 for HE
+      and 225 for APFDS shells
+  Ldip999:
+  - rscadd: Added SG-62 ammo bins to reqtorio
+  blackdav123:
+  - qol: Defender can now use regenerate skin while resting.
+  - rscadd: Added 10 more intel computers to Magmoor.
+  jonash07:
+  - code_imp: removed useless powerloader code
+2024-07-17:
+  Barnet2:
+  - rscadd: Adds acid shroud for boiler; creates a small smokescreen on yourself for
+      LoS block to (potentially) escape a chasing marine. It resets the cooldown of
+      Bombard + 10 seconds, so only use it when you have to!
+  - balance: Increases boiler zoom by 2
+  - balance: Reduces normal boiler glob range to zoom range
+  - bugfix: Synths and robots no longer get a "catch your breath" message when trying
+      to jump, instead a silicon specific message
+  Fallouttec:
+  - rscadd: Added Rangefinders to Requisitions for 200 Points, comes with free Fire
+      Support Encryption Key!
+  Ldip999:
+  - balance: Medic medkit pouches now contain QC+ and Pe+ exactly like the medic autoinjector
+      pouch
+  Lumipharon:
+  - rscdel: Removed the flash powder reaction
+  - code_imp: Made some 515.1640 compatibility fixes
+  - balance: 'Campaign: Increased purchase cost of plasma weapons by 50 credits'
+  - balance: 'Campaign: Decreased unlock cost of plasma weaponry by 100 credits'
+  - balance: 'Campaign: Increased the cost of Advanced SMG training by 100 credits'
+  RipGrayson:
+  - bugfix: Fixed stalagmites on LV759 being invisible
+  Wisemonster:
+  - spellcheck: Changed the TGMC campaign tank's description to reflect it fighting
+      the SOM
+  Xander3359:
+  - balance: You can now open worn duffelbags with a 2 second channel

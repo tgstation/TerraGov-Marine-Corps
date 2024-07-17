@@ -191,6 +191,10 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
+/mob/living/carbon/xenomorph/sentinel/retrograde/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_ONE_THRESHOLD
+
 //----SENTINEL END----//
 //================//
 //-----SPITTER START-----//
