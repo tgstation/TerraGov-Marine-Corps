@@ -10,6 +10,12 @@
 #define MINER_RESISTANT "reinforced components"
 #define MINER_OVERCLOCKED "high-efficiency drill"
 
+#define repair_time_Upgrade
+#define repair_time_Remove
+#define repair_time_Welding
+#define repair_time_Wirecut
+#define repair_time_Wrench
+
 #define PHORON_CRATE_SELL_AMOUNT 150
 #define PLATINUM_CRATE_SELL_AMOUNT 300
 #define PHORON_DROPSHIP_BONUS_AMOUNT 15
