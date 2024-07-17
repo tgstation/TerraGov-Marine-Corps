@@ -197,6 +197,7 @@ directive is properly returned.
 	return acid_strength >= current_acid.acid_strength
 
 /atom/proc/on_reagent_change()
+	SIGNAL_HANDLER
 	return
 
 /atom/proc/Bumped(atom/movable/AM)

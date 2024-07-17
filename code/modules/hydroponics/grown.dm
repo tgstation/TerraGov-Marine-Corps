@@ -104,11 +104,7 @@
 
 /// Turns the nutriments and vitamins into the distill reagent or fruit wine
 /obj/item/food/grown/proc/ferment()
-	var/reagent_purity = seed.get_reagent_purity()
-	var/purity_above_base = clamp((reagent_purity - 0.5) * 2, 0, 1)
-	var/quality_min = DRINK_NICE
-	var/quality_max = DRINK_FANTASTIC
-	var/quality = round(LERP(quality_min, quality_max, purity_above_base))
+	var/quality = 1
 	for(var/datum/reagent/reagent in reagents.reagent_list)
 		if(reagent.type != /datum/reagent/consumable/nutriment && reagent.type != /datum/reagent/consumable/nutriment/vitamin)
 			continue
@@ -116,13 +112,13 @@
 			var/data = list()
 			var/datum/reagent/consumable/ethanol/booze = distill_reagent
 			data["quality"] = quality
-			data["boozepwr"] = round(initial(booze.boozepwr) * reagent_purity * 2) // default boozepwr at 50% purity
+			data["boozepwr"] = round(initial(booze.boozepwr)) // default boozepwr at 50% purity
 			reagents.add_reagent(distill_reagent, reagent.volume, data)
 		else
 			var/data = list()
 			data["names"] = list("[initial(name)]" = 1)
 			data["color"] = filling_color || reagent.color // filling_color is not guaranteed to be set for every plant. try to use it if we have it, otherwise use the reagent's color var
-			data["boozepwr"] = round(wine_power * reagent_purity * 2) // default boozepwr at 50% purity
+			data["boozepwr"] = round(wine_power) // default boozepwr at 50% purity
 			data["quality"] = quality
 			if(wine_flavor)
 				data["tastes"] = list(wine_flavor = 1)

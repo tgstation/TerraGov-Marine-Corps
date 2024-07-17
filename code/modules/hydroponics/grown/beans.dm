@@ -77,7 +77,6 @@
 	user.visible_message(span_notice("[user] crushes [src] into a pat of butter."), span_notice("You crush [src] into something that resembles butter."))
 	playsound(user, 'sound/effects/blobattack.ogg', 50, TRUE)
 	var/obj/item/food/butterslice/butties = new(null)
-	butties.reagents.set_all_reagents_purity(seed.get_reagent_purity())
 	qdel(src)
 	user.put_in_hands(butties)
 	return TRUE
@@ -98,8 +97,7 @@
 	icon_dead = "bean-dead"
 	growing_icon = 'icons/obj/service/hydroponics/growing_fruits.dmi'
 	genes = list(/datum/plant_gene/trait/never_mutate, /datum/plant_gene/trait/repeated_harvest)
-	mutatelist = list(/obj/item/seeds/greenbean/jump)
-	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/medicine/c2/multiver = 0.04) //They're good for you!
+	reagents_add = list(/datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/medicine/ryetalyn = 0.04) //They're good for you!
 	graft_gene = /datum/plant_gene/trait/never_mutate
 
 /obj/item/food/grown/greenbeans
@@ -111,29 +109,4 @@
 	foodtypes = FRUIT
 	tastes = list("beans" = 1)
 
-// Jumping Bean
-/obj/item/seeds/greenbean/jump
-	name = "pack of jumping bean seeds"
-	desc = "These seeds grow into jumping bean plants."
-	icon_state = "seed-jumpingbean"
-	species = "jumpingbean"
-	plantname = "Jumping Bean Plants"
-	product = /obj/item/food/grown/jumpingbeans
-	yield = 2
-	instability = 18
-	maturation = 8
-	production = 4
-	potency = 20
-	genes = list(/datum/plant_gene/trait/stable_stats, /datum/plant_gene/trait/repeated_harvest)
-	mutatelist = null
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.05, /datum/reagent/ants = 0.1) //IRL jumping beans contain insect larve, hence the ants
-	graft_gene = /datum/plant_gene/trait/stable_stats
-	rarity = PLANT_MODERATELY_RARE
 
-/obj/item/food/grown/jumpingbeans
-	seed = /obj/item/seeds/greenbean/jump
-	name = "jumping bean"
-	desc = "Umm, what's causing it to move like that?"
-	icon_state = "jumpingbean"
-	foodtypes = FRUIT | BUGS
-	tastes = list("bugs" = 1)

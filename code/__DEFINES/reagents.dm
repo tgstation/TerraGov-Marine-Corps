@@ -19,8 +19,9 @@
 #define AMOUNT_SKILLCHECK (1<<6)
 ///For containers without volume meters on (e.g. drinking glasses, cans, sprays)
 #define AMOUNT_ESTIMEE (1<<7)
-
 #define NO_REACT (1<<8)
+///Allows items to be dunked into this container for transfering reagents. Used in conjunction with the dunkable component.
+#define DUNKABLE (1<<9)
 
 // Is an open container for all intents and purposes.
 #define OPENCONTAINER (REFILLABLE | DRAINABLE | TRANSPARENT)
@@ -92,5 +93,6 @@
 /// If present, this reagent will not be affected by the mob's metabolism at all, meaning it exits at a fixed rate for all mobs.
 /// Supercedes [REAGENT_REVERSE_METABOLISM].
 #define REAGENT_UNAFFECTED_BY_METABOLISM (1<<11)
+//Used in holder.dm/equlibrium.dm to set values and volume limits
 ///The minimum volume of reagents than can be operated on.
-#define CHEMICAL_QUANTISATION_LEVEL 0.0001
+#define CHEMICAL_QUANTISATION_LEVEL 0.0001 //stops floating point errors causing issues with checking reagent amounts

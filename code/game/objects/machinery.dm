@@ -502,3 +502,33 @@
 		icon_state = icon_state_closed
 		to_chat(user, span_notice("You close the maintenance hatch of [src]."))
 	return TRUE
+
+///updates the use_power var for this machine and updates its static power usage from its area to reflect the new value
+/obj/machinery/proc/update_use_power(new_use_power)
+	SHOULD_CALL_PARENT(TRUE)
+	if(new_use_power == use_power)
+		return FALSE
+
+	unset_static_power()
+
+	var/new_usage = 0
+	switch(new_use_power)
+		if(IDLE_POWER_USE)
+			new_usage = idle_power_usage
+		if(ACTIVE_POWER_USE)
+			new_usage = active_power_usage
+
+	if(use_power == NO_POWER_USE)
+		setup_area_power_relationship()
+	else if(new_use_power == NO_POWER_USE)
+		remove_area_power_relationship()
+
+	static_power_usage = new_usage
+
+	if(new_usage)
+		var/area/our_area = get_area(src)
+		our_area?.addStaticPower(new_usage, DYNAMIC_TO_STATIC_CHANNEL(power_channel))
+
+	use_power = new_use_power
+
+	return TRUE

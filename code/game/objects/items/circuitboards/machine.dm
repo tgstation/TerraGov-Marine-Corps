@@ -221,7 +221,7 @@ to destroy them and players will be able to make replacements.
 	build_path = /obj/machinery/coffeemaker
 	req_components = list(
 		/obj/item/stack/sheet/glass = 1,
-		/obj/item/reagent_containers/cup/beaker = 2,
+		/obj/item/reagent_containers/glass/beaker = 2,
 		/obj/item/stock_parts/capacitor = 1,
 		/obj/item/stock_parts/micro_laser = 1,
 	)
@@ -231,7 +231,15 @@ to destroy them and players will be able to make replacements.
 	build_path = /obj/machinery/coffeemaker/impressa
 	req_components = list(
 		/obj/item/stack/sheet/glass = 1,
-		/obj/item/reagent_containers/cup/beaker = 2,
+		/obj/item/reagent_containers/glass/beaker = 2,
 		/obj/item/stock_parts/capacitor = 1,
 		/obj/item/stock_parts/micro_laser = 2,
 	)
+
+/obj/item/circuitboard/machine/hydroponics
+	name = "Hydroponics Tray"
+	build_path = /obj/machinery/hydroponics/constructable
+	req_components = list(
+		/obj/item/stock_parts/matter_bin = 2,
+		/obj/item/stock_parts/manipulator = 1,
+		/obj/item/stack/sheet/glass = 1)

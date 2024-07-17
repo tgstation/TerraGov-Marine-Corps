@@ -200,14 +200,13 @@
 	else if(istype(O,/obj/machinery/hydroponics))
 		var/obj/machinery/hydroponics/tray = O
 
-		if(tray.seed)
-			tray.health -= rand(30,50)
+		if(tray.myseed)
+			tray.adjust_plant_health(-rand(30,50))
 			if(tray.pestlevel > 0)
 				tray.pestlevel -= 2
 			if(tray.weedlevel > 0)
 				tray.weedlevel -= 3
-			tray.toxins += 4
-			tray.check_level_sanity()
+			tray.toxic += 4
 			tray.update_icon()
 
 /datum/reagent/toxin/sleeptoxin
@@ -716,3 +715,18 @@
 			L.Losebreath(3)
 
 	return ..()
+
+/datum/reagent/toxin/coffeepowder
+	name = "Coffee Grounds"
+	description = "Finely ground coffee beans, used to make coffee."
+	reagent_state = SOLID
+	color = "#5B2E0D" // rgb: 91, 46, 13
+	toxpwr = 0.5
+
+/datum/reagent/toxin/teapowder
+	name = "Ground Tea Leaves"
+	description = "Finely shredded tea leaves, used for making tea."
+	reagent_state = SOLID
+	color = "#7F8400" // rgb: 127, 132, 0
+	toxpwr = 0.1
+	taste_description = "green tea"

@@ -40,3 +40,7 @@
 #define PROJECTILE_HIT (1<<1)
 ///This projectile will ignore non targetted mobs
 #define PROJECTILE_PRECISE_TARGET (1<<2)
+
+/// Flags for sharpness in obj/item
+#define SHARP_EDGED (1<<0)
+#define SHARP_POINTY (1<<1)

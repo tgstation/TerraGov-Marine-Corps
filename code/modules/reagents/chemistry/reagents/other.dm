@@ -643,3 +643,82 @@
 	custom_metabolism = REAGENTS_METABOLISM * 0.1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+
+//////////////////////////////////Hydroponics stuff///////////////////////////////
+
+/datum/reagent/plantnutriment
+	name = "Generic Nutriment"
+	description = "Some kind of nutriment. You can't really tell what it is. You should probably report it, along with how you obtained it."
+	color = COLOR_BLACK // RBG: 0, 0, 0
+	var/tox_prob = 0
+	taste_description = "plant food"
+
+/datum/reagent/plantnutriment/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	. = ..()
+	if(SPT_PROB(tox_prob, seconds_per_tick))
+		if(affected_mob.adjustToxLoss(1))
+			return UPDATE_MOB_HEALTH
+
+/datum/reagent/plantnutriment/eznutriment
+	name = "E-Z Nutrient"
+	description = "Contains electrolytes. It's what plants crave."
+	color = "#376400" // RBG: 50, 100, 0
+	tox_prob = 5
+
+/datum/reagent/plantnutriment/eznutriment/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
+	var/obj/item/seeds/myseed = mytray.myseed
+	if(!isnull(myseed))
+		myseed.adjust_instability(0.2)
+		myseed.adjust_potency(round(volume * 0.3))
+		myseed.adjust_yield(round(volume * 0.1))
+
+/datum/reagent/plantnutriment/left4zednutriment
+	name = "Left 4 Zed"
+	description = "Unstable nutriment that makes plants mutate more often than usual."
+	color = "#1A1E4D" // RBG: 26, 30, 77
+	tox_prob = 13
+
+/datum/reagent/plantnutriment/left4zednutriment/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
+
+	mytray.adjust_plant_health(round(volume * 0.1))
+	mytray.myseed?.adjust_instability(round(volume * 0.2))
+
+/datum/reagent/plantnutriment/robustharvestnutriment
+	name = "Robust Harvest"
+	description = "Very potent nutriment that slows plants from mutating."
+	color = "#9D9D00" // RBG: 157, 157, 0
+	tox_prob = 8
+
+/datum/reagent/plantnutriment/robustharvestnutriment/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
+	var/obj/item/seeds/myseed = mytray.myseed
+	if(!isnull(myseed))
+		myseed.adjust_instability(-0.25)
+		myseed.adjust_potency(round(volume * 0.1))
+		myseed.adjust_yield(round(volume * 0.2))
+
+/datum/reagent/plantnutriment/endurogrow
+	name = "Enduro Grow"
+	description = "A specialized nutriment, which decreases product quantity and potency, but strengthens the plants endurance."
+	color = "#a06fa7" // RBG: 160, 111, 167
+	tox_prob = 8
+
+/datum/reagent/plantnutriment/endurogrow/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
+	var/obj/item/seeds/myseed = mytray.myseed
+	if(!isnull(myseed))
+		myseed.adjust_potency(-round(volume * 0.1))
+		myseed.adjust_yield(-round(volume * 0.075))
+		myseed.adjust_endurance(round(volume * 0.35))
+
+/datum/reagent/plantnutriment/liquidearthquake
+	name = "Liquid Earthquake"
+	description = "A specialized nutriment, which increases the plant's production speed, as well as it's susceptibility to weeds."
+	color = "#912e00" // RBG: 145, 46, 0
+	tox_prob = 13
+
+/datum/reagent/plantnutriment/liquidearthquake/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
+
+	var/obj/item/seeds/myseed = mytray.myseed
+	if(!isnull(myseed))
+		myseed.adjust_weed_rate(round(volume * 0.1))
+		myseed.adjust_weed_chance(round(volume * 0.3))
+		myseed.adjust_production(-round(volume * 0.075))

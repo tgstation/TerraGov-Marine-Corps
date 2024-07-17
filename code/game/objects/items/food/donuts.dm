@@ -4,7 +4,7 @@
 	name = "donut"
 	desc = "Goes great with robust coffee."
 	icon = 'icons/obj/food/donuts.dmi'
-	inhand_icon_state = "donut1"
+	worn_icon_state  = "donut1"
 	bite_consumption = 5
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/sugar = 3)
 	tastes = list("donut" = 1)
@@ -27,7 +27,7 @@
 ///Override for checkliked callback
 /obj/item/food/donut/make_edible()
 	. = ..()
-	AddComponent(/datum/component/edible, check_liked = CALLBACK(src, PROC_REF(check_liked)))
+	AddComponent(/datum/component/edible)
 
 /obj/item/food/donut/proc/decorate_donut()
 	if(is_decorated || !decorated_icon)
@@ -35,7 +35,7 @@
 	is_decorated = TRUE
 	name = "[decorated_adjective] [name]"
 	icon_state = decorated_icon //delish~!
-	inhand_icon_state = "donut2"
+	worn_icon_state  = "donut2"
 	reagents.add_reagent(/datum/reagent/consumable/sprinkles, 1)
 	return TRUE
 
@@ -43,40 +43,9 @@
 /obj/item/food/donut/proc/in_box_sprite()
 	return "[icon_state]_inbox"
 
-///Override for checkliked in edible component, because all cops LOVE donuts
-/obj/item/food/donut/proc/check_liked(mob/living/carbon/human/consumer)
-	var/obj/item/organ/internal/liver/liver = consumer.get_organ_slot(ORGAN_SLOT_LIVER)
-	if(!HAS_TRAIT(consumer, TRAIT_AGEUSIA) && liver && HAS_TRAIT(liver, TRAIT_LAW_ENFORCEMENT_METABOLISM))
-		return FOOD_LIKED
-
 //Use this donut ingame
 /obj/item/food/donut/plain
 	icon_state = "donut"
-
-/obj/item/food/donut/chaos
-	name = "chaos donut"
-	desc = "Like life, it never quite tastes the same."
-	icon_state = "donut_chaos"
-	bite_consumption = 10
-	tastes = list("donut" = 3, "chaos" = 1)
-	is_decorated = TRUE
-	crafting_complexity = FOOD_COMPLEXITY_3
-
-/obj/item/food/donut/chaos/Initialize(mapload)
-	. = ..()
-	extra_reagent = pick(
-		/datum/reagent/consumable/nutriment,
-		/datum/reagent/consumable/capsaicin,
-		/datum/reagent/consumable/frostoil,
-		/datum/reagent/drug/krokodil,
-		/datum/reagent/toxin/plasma,
-		/datum/reagent/consumable/coco,
-		/datum/reagent/toxin/slimejelly,
-		/datum/reagent/consumable/banana,
-		/datum/reagent/consumable/berryjuice,
-		/datum/reagent/medicine/omnizine,
-	)
-	reagents.add_reagent(extra_reagent, 3)
 
 /obj/item/food/donut/meat
 	name = "Meat Donut"

@@ -133,6 +133,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 
 
+
+
 	//Coloring vars
 	///Some defines to determine if the item is allowed to be recolored.
 	var/colorable_allowed = NONE
@@ -148,6 +150,8 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	///A reagent the nutriments are converted into when the item is juiced.
 	var/datum/reagent/consumable/juice_typepath
 
+	///All items with sharpness of SHARP_EDGED or higher will automatically get the butchering component.
+	var/sharpness = NONE
 
 
 /obj/item/Initialize(mapload)
@@ -1556,3 +1560,37 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(reagents?.total_volume)
 		reagents.trans_to(target_holder, reagents.total_volume)
 		. = TRUE
+
+///Called BEFORE the object is ground up - use this to change grind results based on conditions. Return "-1" to prevent the grinding from occurring
+/obj/item/proc/on_juice()
+	if(!juice_typepath)
+		return -1
+	return SEND_SIGNAL(src, COMSIG_ITEM_ON_JUICE)
+
+
+///Juice item, converting nutriments into juice_typepath and transfering to target_holder if specified
+/obj/item/proc/juice(datum/reagents/target_holder, mob/user)
+	if(on_juice() == -1 || !reagents?.total_volume)
+		return FALSE
+
+	if(ispath(juice_typepath))
+		reagents.convert_reagent(/datum/reagent/consumable/nutriment, juice_typepath, include_source_subtypes = FALSE)
+		reagents.convert_reagent(/datum/reagent/consumable/nutriment/vitamin, juice_typepath, include_source_subtypes = FALSE)
+	reagents.trans_to(target_holder, reagents.total_volume)
+
+	return TRUE
+
+/**
+ * Called on the item before it hits something
+ *
+ * Arguments:
+ * * atom/A - The atom about to be hit
+ * * mob/living/user - The mob doing the htting
+ * * params - click params such as alt/shift etc
+ *
+ * See: [/obj/item/proc/melee_attack_chain]
+ */
+/obj/item/proc/pre_attack(atom/A, mob/living/user, params) //do stuff before attackby!
+	if(SEND_SIGNAL(src, COMSIG_ITEM_PRE_ATTACK, A, user, params) & COMPONENT_CANCEL_ATTACK_CHAIN)
+		return TRUE
+	return FALSE //return TRUE to avoid calling attackby after this proc does stuff

@@ -7,7 +7,6 @@
 	icon_state = "seed" // Unknown plant seed - these shouldn't exist in-game.
 	worn_icon_state = "seed"
 	w_class = WEIGHT_CLASS_TINY
-	resistance_flags = FLAMMABLE
 	/// Name of plant when planted.
 	var/plantname = "Plants"
 	/// A type path. The thing that is created when the plant is harvested.
@@ -92,14 +91,6 @@
 			genes += new /datum/plant_gene/reagent(reag_id, reagents_add[reag_id])
 		reagents_from_genes() //quality coding
 
-	var/static/list/hovering_item_typechecks = list(
-		/obj/item/plant_analyzer = list(
-			SCREENTIP_CONTEXT_LMB = "Scan seed stats",
-			SCREENTIP_CONTEXT_RMB = "Scan seed chemicals"
-		),
-	)
-
-	AddElement(/datum/element/contextual_screentip_item_typechecks, hovering_item_typechecks)
 
 /obj/item/seeds/Destroy()
 	// No AS ANYTHING here, because the list/genes could have typepaths in it.
@@ -113,10 +104,6 @@
 /obj/item/seeds/examine(mob/user)
 	. = ..()
 	. += span_notice("Use a pen on it to rename it or change its description.")
-	if(reagents_add && user.can_see_reagents())
-		. += span_notice("- Plant Reagents -")
-		for(var/datum/plant_gene/reagent/reagent_gene in genes)
-			. += span_notice("- [reagent_gene.get_name()] -")
 
 /// Copy all the variables from one seed to a new instance of the same seed and return it.
 /obj/item/seeds/proc/Copy()
@@ -169,21 +156,6 @@
 
 
 
-/obj/item/seeds/bullet_act(obj/projectile/Proj) //Works with the Somatoray to modify plant variables.
-	if(istype(Proj, /obj/projectile/energy/flora/yield))
-		var/rating = 1
-		if(istype(loc, /obj/machinery/hydroponics))
-			var/obj/machinery/hydroponics/H = loc
-			rating = H.rating
-
-		if(yield == 0)//Oh god don't divide by zero you'll doom us all.
-			adjust_yield(1 * rating)
-		else if(prob(1/(yield * yield) * 100))//This formula gives you diminishing returns based on yield. 100% with 1 yield, decreasing to 25%, 11%, 6, 4, 2...
-			adjust_yield(1 * rating)
-	else
-		return ..()
-
-
 // Harvest procs
 /obj/item/seeds/proc/getYield()
 	var/return_yield = yield
@@ -226,7 +198,6 @@
 			t_prod = new t_prod(output_loc, new_seed = mutated_seed)
 			t_prod.transform = initial(t_prod.transform)
 			t_prod.transform *= TRANSFORM_USING_VARIABLE(t_prod.seed.potency, 100) + 0.5
-			ADD_TRAIT(t_prod, TRAIT_PLANT_WILDMUTATE, INNATE_TRAIT)
 			t_amount++
 			if(t_prod.seed)
 				t_prod.seed.set_instability(round(instability * 0.5))
@@ -266,7 +237,6 @@
 		reagent_max += reagents_add[rid]
 	if(IS_EDIBLE(T) || istype(T, /obj/item/grown))
 		var/obj/item/food/grown/grown_edible = T
-		var/reagent_purity = get_reagent_purity()
 		for(var/rid in reagents_add)
 			var/reagent_overflow_mod = reagents_add[rid]
 			if(reagent_max > 1)
@@ -278,7 +248,7 @@
 				data = list("blood_type" = "O-")
 			if(istype(grown_edible) && (rid == /datum/reagent/consumable/nutriment || rid == /datum/reagent/consumable/nutriment/vitamin))
 				data = grown_edible.tastes // apple tastes of apple.
-			T.reagents.add_reagent(rid, amount, data, added_purity = reagent_purity)
+			T.reagents.add_reagent(rid, amount, data)
 
 		//Handles the juicing trait, swaps nutriment and vitamins for that species various juices if they exist. Mutually exclusive with distilling.
 		if(get_gene(/datum/plant_gene/trait/juicing) && grown_edible.juice_typepath)
@@ -295,7 +265,6 @@
 			T.reagents.remove_reagent(/datum/reagent/consumable/nutriment, num_nutriment)
 			T.reagents.chem_temp = min(1000, (T.reagents.chem_temp + num_nutriment * 25))
 			T.reagents.handle_reactions()
-			playsound(T.loc, 'sound/effects/wounds/sizzle2.ogg', 5)
 		// Cools down the plant's contents by 5 kelvin per 1 unit of nutriment. Mutually exclusive with heating.
 		else if(get_gene(/datum/plant_gene/trait/chem_cooling))
 			T.visible_message(span_notice("[T] releases a blast of hot air, consuming its nutriments to cool its contents."))
@@ -303,14 +272,6 @@
 			T.reagents.chem_temp = max(3, (T.reagents.chem_temp + num_nutriment * -5))
 			T.reagents.handle_reactions()
 			playsound(T.loc, 'sound/effects/space_wind.ogg', 50)
-
-/// Returns reagent purity based on seed stats
-/obj/item/seeds/proc/get_reagent_purity()
-	var/purity_from_lifespan = lifespan / 400 //up to +25% for lifespan
-	var/purity_from_endurance = endurance / 400 //up to +25% for endurance
-	var/purity_from_instability = rand(-instability, instability) / 400  //up to +-25% at random for instability
-	var/result_purity = clamp(0.5 + purity_from_lifespan + purity_from_endurance + purity_from_instability, 0, 1) //50% base + stats
-	return result_purity
 
 /// Setters procs ///
 
@@ -462,18 +423,14 @@
 	return
 
 /obj/item/seeds/attackby(obj/item/O, mob/user, params)
-	if(IS_WRITING_UTENSIL(O))
+	if(istype(O,/obj/item/tool/pen))
 		var/choice = tgui_input_list(usr, "What would you like to change?", "Seed Alteration", list("Plant Name", "Seed Description", "Product Description"))
 		if(isnull(choice))
-			return
-		if(!user.can_perform_action(src))
 			return
 		switch(choice)
 			if("Plant Name")
 				var/newplantname = reject_bad_text(tgui_input_text(user, "Write a new plant name", "Plant Name", plantname, 20))
 				if(isnull(newplantname))
-					return
-				if(!user.can_perform_action(src))
 					return
 				name = "[LOWER_TEXT(newplantname)]"
 				plantname = newplantname
@@ -481,16 +438,12 @@
 				var/newdesc = tgui_input_text(user, "Write a new seed description", "Seed Description", desc, 180)
 				if(isnull(newdesc))
 					return
-				if(!user.can_perform_action(src))
-					return
 				desc = newdesc
 			if("Product Description")
 				if(product && !productdesc)
 					productdesc = initial(product.desc)
 				var/newproductdesc = tgui_input_text(user, "Write a new product description", "Product Description", productdesc, 180)
 				if(isnull(newproductdesc))
-					return
-				if(!user.can_perform_action(src))
 					return
 				productdesc = newproductdesc
 

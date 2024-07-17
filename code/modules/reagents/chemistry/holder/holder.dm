@@ -1,5 +1,3 @@
-#define CHEMICAL_QUANTISATION_LEVEL 0.0001 //stops floating point errors causing issues with checking reagent amounts
-
 /datum/reagents
 	/// The reagents being held
 	var/list/datum/reagent/reagent_list = list()
@@ -168,13 +166,15 @@
  * * show_message - passed through to [/datum/reagents/proc/react_single]
  * * round_robin - if round_robin=TRUE, so transfer 5 from 15 water, 15 sugar and 15 plasma becomes 10, 15, 15 instead of 13.3333, 13.3333 13.3333. Good if you hate floating point errors
  */
-/datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier = 1, preserve_data = 1, no_react = 0)//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
+/datum/reagents/proc/trans_to(obj/target, amount = 1, multiplier = 1, datum/reagent/target_id, preserve_data = 1, no_react = 0)//if preserve_data=0, the reagents data will be lost. Usefull if you use data for some strange stuff and don't want it to be transferred.
 	var/list/cached_reagents = reagent_list
 	if (!target || !total_volume)
 		return
 	if (amount < 0)
 		return
-
+	if(!isnull(target_id) && !ispath(target_id))
+		stack_trace("invalid target reagent id [target_id] passed to trans_to")
+		return FALSE
 	var/datum/reagents/R
 	if(istype(target, /datum/reagents))
 		R = target
@@ -183,15 +183,22 @@
 			return
 		R = target.reagents
 	amount = min(min(amount, total_volume), R.maximum_volume-R.total_volume)
-	var/part = amount / total_volume
 	var/trans_data = null
+	var/part = isnull(target_id) ? (amount / total_volume) : 1
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/T = reagent
 		var/transfer_amount = T.volume * part
+		if(!isnull(target_id))
+			if(T.type == target_id)
+				transfer_amount = min(amount, T.volume)
+			else
+				continue
 		if(preserve_data)
 			trans_data = copy_data(T)
 		R.add_reagent(T.type, transfer_amount * multiplier, trans_data, chem_temp, no_react = 1) //we only handle reaction after every reagent has been transfered.
 		remove_reagent(T.type, transfer_amount)
+		if(!isnull(target_id))
+			break
 
 	update_total()
 	R.update_total()
@@ -818,3 +825,36 @@
 				random_reagents += R
 	var/picked_reagent = pick(random_reagents)
 	return picked_reagent
+
+
+/**
+ * Turn one reagent into another, preserving volume, temp, purity, ph
+ * Arguments
+ *
+ * * [source_reagent_typepath][/datum/reagent] - the typepath of the reagent you are trying to convert
+ * * [target_reagent_typepath][/datum/reagent] - the final typepath the source_reagent_typepath will be converted into
+ * * multiplier - the multiplier applied on the source_reagent_typepath volume before converting
+ * * include_source_subtypes- if TRUE will convert all subtypes of source_reagent_typepath into target_reagent_typepath as well
+ */
+/datum/reagents/proc/convert_reagent(
+	datum/reagent/source_reagent_typepath,
+	datum/reagent/target_reagent_typepath,
+	multiplier = 1,
+	include_source_subtypes = FALSE
+)
+	if(!ispath(source_reagent_typepath))
+		stack_trace("invalid reagent path passed to convert reagent [source_reagent_typepath]")
+		return FALSE
+
+	var/reagent_amount
+	if(include_source_subtypes)
+		var/list/reagent_type_list = typecacheof(source_reagent_typepath)
+		for(var/datum/reagent/reagent as anything in reagent_list)
+			if(reagent.type in reagent_type_list)
+				reagent_amount += reagent.volume
+				remove_reagent(reagent.type, reagent.volume * multiplier)
+	else
+		var/datum/reagent/source_reagent = has_reagent(source_reagent_typepath)
+		reagent_amount = source_reagent.volume
+		remove_reagent(source_reagent_typepath, reagent_amount)
+	add_reagent(target_reagent_typepath, reagent_amount * multiplier, reagtemp = chem_temp)

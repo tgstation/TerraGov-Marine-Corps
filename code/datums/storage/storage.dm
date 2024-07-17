@@ -1059,3 +1059,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			return
 	var/obj/item/drawn_item = start_from_left ? parent.contents[1] : parent.contents[length(parent.contents)]
 	drawn_item.attack_hand(user)
+
+/datum/storage/proc/attempt_insert(obj/item/to_insert, mob/user, messages = TRUE)
+	if(!can_be_inserted(to_insert,user,messages))
+		return
+	handle_item_insertion(to_insert,TRUE,user)
