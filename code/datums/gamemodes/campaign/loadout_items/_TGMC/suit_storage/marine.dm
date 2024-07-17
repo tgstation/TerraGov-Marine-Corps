@@ -758,8 +758,8 @@
 	Has two firemodes, with a standard reflecting shot, or a more powerful AOE overcharged shot. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/smg/motion_sensor
-	unlock_cost = 400
-	purchase_cost = 50
+	unlock_cost = 300
+	purchase_cost = 90
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -791,8 +791,8 @@
 	Has three firemodes, with a standard high ROF mode, a piercing shatter shot, or a melting blast mode. Like all plasma weapons, it can rapidly build up heat and overheat, rendering it inoperable for a period if used incorrectly."
 	ui_icon = "lasergun"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/plasma/rifle/standard
-	unlock_cost = 400
-	purchase_cost = 50
+	unlock_cost = 300
+	purchase_cost = 90
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
 /datum/loadout_item/suit_store/main_gun/marine/plasma_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)

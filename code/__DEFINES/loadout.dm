@@ -656,7 +656,7 @@ GLOBAL_LIST_INIT(synthetic_clothes_listed_products, list(
 		/obj/item/clothing/shoes/black = list(CAT_SHO, "Black Shoes", 0, "synth-armor"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch", 0, "black"),
 		/obj/item/storage/pouch/construction/full = list(CAT_POU, "Construction pouch", 0, "black"),
-		/obj/item/storage/pouch/medkit/medic = list(CAT_POU, "Medkit pouch", 0, "black"),
+		/obj/item/storage/pouch/medkit/doctor = list(CAT_POU, "Medkit pouch", 0, "black"),
 		/obj/item/storage/pouch/surgery = list(CAT_POU, "White surgical pouch", 0, "black"),
 		/obj/item/storage/pouch/field_pouch/full = list(CAT_POU, "Field pouch", 0, "black"),
 		/obj/item/clothing/head/modular/style/cap = list(CAT_SHN, "TGMC cap", 0, "synth-rcmarmstorage"),

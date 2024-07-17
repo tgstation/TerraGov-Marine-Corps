@@ -77,7 +77,7 @@
 /datum/action/ability/activable/xeno/cresttoss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_xenowarning("<b>We can now crest toss again.</b>"))
-	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	playsound(X, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	return ..()
 
 /datum/action/ability/activable/xeno/cresttoss/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -184,7 +184,7 @@
 
 /datum/action/ability/activable/xeno/advance/on_cooldown_finish()
 	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
-	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	playsound(owner, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	return ..()
 
 /datum/action/ability/activable/xeno/advance/can_use_ability(atom/A, silent = FALSE, override_flags)

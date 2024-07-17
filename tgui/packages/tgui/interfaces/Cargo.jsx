@@ -51,7 +51,7 @@ export const Cargo = (props) => {
     : null;
 
   return (
-    <Window width={900} height={700}>
+    <Window width={1100} height={700}>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
           <Menu />
@@ -94,7 +94,9 @@ const Exports = (props) => {
         {export_history.map((exp) => (
           <Table.Row key={exp.id}>
             <Table.Cell>{exp.name}</Table.Cell>
-            <Table.Cell>{exp.points} points</Table.Cell>
+            <Table.Cell>
+              {exp.amount} x {exp.points} points ({exp.total})
+            </Table.Cell>
           </Table.Row>
         ))}
       </Table>
@@ -307,18 +309,21 @@ const Packs = (props) => {
   const { act, data } = useBackend();
   const { packs } = props;
 
-  return packs.map((pack) => <Pack pack={pack} key={pack} />);
+  return Object.keys(packs).map((pack) => (
+    <Pack pack={pack} key={pack} amount={packs[pack]} />
+  ));
 };
 
 const Pack = (props) => {
   const { act, data } = useBackend();
-  const { pack } = props;
+  const { pack, amount } = props;
   const { supplypackscontents } = data;
   const { name, cost, contains } = supplypackscontents[pack];
+
   return !!contains && contains.constructor === Object ? (
     <Collapsible
       color="gray"
-      title={<PackName cost={cost} name={name} pl={0} />}
+      title={<PackName cost={cost} name={name} pl={0} amount={amount} />}
     >
       <Table>
         <PackContents contains={contains} />
@@ -330,12 +335,12 @@ const Pack = (props) => {
 };
 
 const PackName = (props) => {
-  const { cost, name, pl } = props;
-
+  const { cost, name, pl, amount } = props;
   return (
     <Box inline pl={pl}>
-      <Box textAlign="right" inline width="65px">
-        {cost} points
+      <Box textAlign="right" inline width="140px">
+        {amount ? amount + 'x' : ''}
+        {cost} points {amount ? '(' + amount * cost + ')' : ''}
       </Box>
       <Box width="15px" inline />
       <Box inline>{name}</Box>
@@ -566,7 +571,7 @@ export const CargoRequest = (props) => {
     : null;
 
   return (
-    <Window width={900} height={700}>
+    <Window width={1100} height={700}>
       <Flex height="650px" align="stretch">
         <Flex.Item width="280px">
           <Menu readOnly={1} />

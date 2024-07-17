@@ -1,9 +1,0 @@
-author: "XElectricX"
-delete-after: True
-changes:
-  - rscadd: "Good doors."
-  - rscdel: "Bad doors."
-  - qol: "Doors auto open when approached. They also auto close when exiting (only on help intent). Can be instantly opened if on harm intent. Doors cannot be closed if a person is on the tile, unless the door is not full-tile (but can be forced to close if on harm intent)."
-  - balance: "Resin doors are faster and can trap marines. Non-resin doors can be used to beat people to death."
-  - code_imp: "Completely new door code that facilitates mapper and player creativity."
-  - refactor: "More modular doors (non-airlocks) with an accompanying lock and key system."
