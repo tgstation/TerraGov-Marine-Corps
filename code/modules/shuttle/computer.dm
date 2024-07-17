@@ -1,7 +1,9 @@
 /obj/machinery/computer/shuttle
 	name = "shuttle console"
 	desc = "A shuttle control computer."
-	icon_state = "syndishuttle"
+	icon_state = "computer"
+	screen_overlay = "syndishuttle"
+	broken_icon = "computer_red_broken"
 	req_access = list( )
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/shuttleId

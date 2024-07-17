@@ -11,6 +11,9 @@
 
 	idle_power_usage = 60
 	active_power_usage = 3000
+	light_range = 1.5
+	light_power = 0.5
+	light_color = LIGHT_COLOR_BLUE
 
 	var/gives_webbing = FALSE
 	var/vendor_role //to be compared with job.type to only allow those to use that machine.
@@ -26,13 +29,29 @@
 	///The faction of that vendor, can be null
 	var/faction
 
+/obj/machinery/marine_selector/Initialize(mapload)
+	. = ..()
+	update_icon()
+
 /obj/machinery/marine_selector/update_icon()
+	. = ..()
+	if(is_operational())
+		set_light(initial(light_range))
+	else
+		set_light(0)
+
+/obj/machinery/marine_selector/update_icon_state()
+	. = ..()
 	if(is_operational())
 		icon_state = initial(icon_state)
 	else
 		icon_state = "[initial(icon_state)]-off"
 
-
+/obj/machinery/marine_selector/update_overlays()
+	. = ..()
+	if(!is_operational())
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 /obj/machinery/marine_selector/can_interact(mob/user)
 	. = ..()
@@ -45,11 +64,11 @@
 			to_chat(user, span_warning("Access denied. Your assigned role doesn't have access to this machinery."))
 			return FALSE
 
-		var/obj/item/card/id/I = H.get_idcard()
-		if(!istype(I)) //not wearing an ID
+		var/obj/item/card/id/user_id = H.get_idcard()
+		if(!istype(user_id)) //not wearing an ID
 			return FALSE
 
-		if(I.registered_name != H.real_name)
+		if(user_id.registered_name != H.real_name)
 			return FALSE
 
 		if(lock_flags & JOB_LOCK && vendor_role && !istype(H.job, vendor_role))
@@ -126,13 +145,16 @@
 				return
 
 			var/idx = text2path(params["vend"])
-			var/obj/item/card/id/I = usr.get_idcard()
+			var/obj/item/card/id/user_id = usr.get_idcard()
 
 			var/list/L = listed_products[idx]
 			var/item_category = L[1]
 			var/cost = L[3]
 
-			if(use_points && (item_category in I.marine_points) && I.marine_points[item_category] < cost)
+			if(!(user_id.id_flags & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
+				to_chat(usr, span_warning("Access denied. You have already vended a loadout."))
+				return FALSE
+			if(use_points && (item_category in user_id.marine_points) && user_id.marine_points[item_category] < cost)
 				to_chat(usr, span_warning("Not enough points."))
 				if(icon_deny)
 					flick(icon_deny, src)
@@ -145,9 +167,9 @@
 					flick(icon_deny, src)
 				return
 
-			if(item_category in I.marine_buy_choices)
-				if(I.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
-					I.marine_buy_choices[item_category] -= 1
+			if(item_category in user_id.marine_buy_choices)
+				if(user_id.marine_buy_choices[item_category] && GLOB.marine_selector_cats[item_category])
+					user_id.marine_buy_choices[item_category] -= 1
 				else
 					if(cost == 0)
 						to_chat(usr, span_warning("You can't buy things from this category anymore."))
@@ -162,7 +184,7 @@
 			else
 				vended_items += new idx(loc)
 
-			playsound(src, "vending", 25, 0)
+			playsound(src, SFX_VENDING, 25, 0)
 
 			if(icon_vend)
 				flick(icon_vend, src)
@@ -175,15 +197,15 @@
 					vended_items += new /obj/item/radio/headset/mainship/marine(loc, H.assigned_squad, vendor_role)
 					if(istype(H.job, /datum/job/terragov/squad/leader))
 						vended_items += new /obj/item/hud_tablet(loc, vendor_role, H.assigned_squad)
+						vended_items += new /obj/item/squad_transfer_tablet(loc)
 
 			for (var/obj/item/vended_item in vended_items)
 				vended_item.on_vend(usr, faction, auto_equip = TRUE)
 
-			if(use_points && (item_category in I.marine_points))
-				I.marine_points[item_category] -= cost
+			if(use_points && (item_category in user_id.marine_points))
+				user_id.marine_points[item_category] -= cost
 			. = TRUE
-
-	updateUsrDialog()
+			user_id.id_flags |= USED_GHMME
 
 /obj/machinery/marine_selector/clothes
 	name = "GHMME Automated Closet"
@@ -365,6 +387,11 @@
 	lock_flags = JOB_LOCK
 	gives_webbing = FALSE
 
+/obj/machinery/marine_selector/clothes/commander/valhalla
+	vendor_role = /datum/job/fallen/marine/fieldcommander
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/clothes/commander/Initialize(mapload)
 	. = ..()
 	listed_products = list(
@@ -407,7 +434,7 @@
 		/obj/item/storage/pouch/general/large = list(CAT_POU, "General pouch", 0, "black"),
 		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Magazine pouch", 0, "black"),
 		/obj/item/storage/holster/flarepouch/full = list(CAT_POU, "Flare pouch", 0, "black"),
-		/obj/item/storage/pouch/medical_injectors/firstaid = list(CAT_POU, "Combat injector pouch", 0,"orange"),
+		/obj/item/storage/pouch/medical_injectors/standard = list(CAT_POU, "Combat injector pouch", 0,"orange"),
 		/obj/item/storage/pouch/medkit/firstaid = list(CAT_POU, "Firstaid pouch", 0, "orange"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0, "black"),
 		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (grenades included)", 0,"black"),
@@ -427,6 +454,8 @@
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
+
+
 
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"
@@ -680,6 +709,7 @@
 	)
 
 /obj/effect/vendor_bundle/stretcher
+	desc = "A standard-issue TerraGov Marine Corps corpsman medivac stretcher. Comes with an extra beacon, but multiple beds can be linked to one beacon."
 	gear_to_spawn = list(
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
@@ -688,7 +718,7 @@
 /obj/effect/vendor_bundle/engi
 	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
-		/obj/item/explosive/grenade/chem_grenade/razorburn_smol,
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small,
 		/obj/item/clothing/gloves/marine/insulated,
 		/obj/item/cell/high,
 		/obj/item/lightreplacer,
@@ -707,8 +737,8 @@
 /obj/effect/vendor_bundle/leader
 	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
-		/obj/item/beacon/supply_beacon,
-		/obj/item/beacon/supply_beacon,
+		/obj/item/supply_beacon,
+		/obj/item/supply_beacon,
 		/obj/item/whistle,
 		/obj/item/compass,
 		/obj/item/binoculars/tactical,
@@ -719,7 +749,7 @@
 /obj/effect/vendor_bundle/commander
 	gear_to_spawn = list(
 		/obj/item/explosive/plastique,
-		/obj/item/beacon/supply_beacon,
+		/obj/item/supply_beacon,
 		/obj/item/healthanalyzer,
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
@@ -732,8 +762,6 @@
 		/obj/item/stack/sheet/plasteel/medium_stack,
 		/obj/item/stack/sheet/metal/large_stack,
 		/obj/item/tool/weldingtool/hugetank,
-		/obj/item/lightreplacer,
-		/obj/item/healthanalyzer,
 		/obj/item/tool/handheld_charger,
 		/obj/item/defibrillator,
 		/obj/item/medevac_beacon,
@@ -742,6 +770,8 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+		/obj/item/cell/high,
+		/obj/item/circuitboard/apc,
 	)
 
 /obj/effect/vendor_bundle/white_dress

@@ -2,36 +2,33 @@
 // *********** Bull charge types
 // ***************************************
 
-/datum/action/xeno_action/activable/bull_charge
+/datum/action/ability/activable/xeno/bull_charge
 	name = "Plow Charge"
 	action_icon_state = "bull_charge"
-	desc = "The plow charge is similar to the crusher charge, as it deals damage and throws anyone hit out of your way. Hitting a host does not stop or slow you down."
-	ability_name = "plow charge"
+	desc = "When you hit a host, knock them out of your way while continuing your charge undeterred. The force of your charge also disarms them."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BULLCHARGE,
 	)
 	var/new_charge_type = CHARGE_BULL
 
 
-/datum/action/xeno_action/activable/bull_charge/on_activation()
+/datum/action/ability/activable/xeno/bull_charge/on_selection()
 	SEND_SIGNAL(owner, COMSIG_XENOACTION_TOGGLECHARGETYPE, new_charge_type)
 
 
-/datum/action/xeno_action/activable/bull_charge/headbutt
+/datum/action/ability/activable/xeno/bull_charge/headbutt
 	name = "Headbutt Charge"
 	action_icon_state = "bull_headbutt"
-	desc = "The headbutt charge, when it hits a host, stops your charge while knocking them down stunned for some time."
-	ability_name = "headbutt charge"
+	desc = "When you hit a host, stops your charge while headbutting them, flinging them in the air and stunning them for some time."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BULLHEADBUTT,
 	)
 	new_charge_type = CHARGE_BULL_HEADBUTT
 
-/datum/action/xeno_action/activable/bull_charge/gore
+/datum/action/ability/activable/xeno/bull_charge/gore
 	name = "Gore Charge"
 	action_icon_state = "bull_gore"
-	desc = "The gore charge, when it hits a host, stops your charge while dealing a large amount of damage where you are targeting dependant on your charge speed."
-	ability_name = "gore charge"
+	desc = "When you hit a host, stops your charge while piercing them for a large amount of damage where you are targeting, in addition to injecting the Ozelomelyn toxin."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BULLGORE,
 	)

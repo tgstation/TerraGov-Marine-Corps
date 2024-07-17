@@ -2,17 +2,17 @@
 	name = "clipboard"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "clipboard"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
-	item_state = "clipboard"
+	worn_icon_state = "clipboard"
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 10
 	var/obj/item/tool/pen/haspen		//The stored pen.
 	var/obj/item/toppaper	//The topmost piece of paper.
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 /obj/item/clipboard/Initialize(mapload)
 	. = ..()
@@ -35,18 +35,21 @@
 
 			return
 
-/obj/item/clipboard/update_icon()
-	overlays.Cut()
+/obj/item/clipboard/update_overlays()
+	. = ..()
+
 	if(toppaper)
-		overlays += toppaper.icon_state
-		overlays += toppaper.overlays
+		. += toppaper.icon_state
+		. += toppaper.overlays
 	if(haspen)
-		overlays += "clipboard_pen"
-	overlays += "clipboard_over"
+		. += "clipboard_pen"
+	. += "clipboard_over"
 
 
 /obj/item/clipboard/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
 		user.drop_held_item()
@@ -68,21 +71,21 @@
 
 	var/dat
 	if(haspen)
-		dat += "<A href='?src=\ref[src];pen=1'>Remove Pen</A><BR><HR>"
+		dat += "<A href='?src=[text_ref(src)];pen=1'>Remove Pen</A><BR><HR>"
 	else
-		dat += "<A href='?src=\ref[src];addpen=1'>Add Pen</A><BR><HR>"
+		dat += "<A href='?src=[text_ref(src)];addpen=1'>Add Pen</A><BR><HR>"
 
 	//The topmost paper. I don't think there's any way to organise contents in byond, so this is what we're stuck with.	-Pete
 	if(toppaper)
 		var/obj/item/paper/P = toppaper
-		dat += "<A href='?src=\ref[src];write=\ref[P]'>Write</A> <A href='?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR><HR>"
+		dat += "<A href='?src=[text_ref(src)];write=[text_ref(P)]'>Write</A> <A href='?src=[text_ref(src)];remove=[text_ref(P)]'>Remove</A> - <A href='?src=[text_ref(src)];read=[text_ref(P)]'>[P.name]</A><BR><HR>"
 
 	for(var/obj/item/paper/P in src)
 		if(P==toppaper)
 			continue
-		dat += "<A href='?src=\ref[src];remove=\ref[P]'>Remove</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
+		dat += "<A href='?src=[text_ref(src)];remove=[text_ref(P)]'>Remove</A> - <A href='?src=[text_ref(src)];read=[text_ref(P)]'>[P.name]</A><BR>"
 	for(var/obj/item/photo/Ph in src)
-		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
+		dat += "<A href='?src=[text_ref(src)];remove=[text_ref(Ph)]'>Remove</A> - <A href='?src=[text_ref(src)];look=[text_ref(Ph)]'>[Ph.name]</A><BR>"
 
 	var/datum/browser/popup = new(user, "clipboard", "<div align='center'>Clipboard</div>")
 	popup.set_content(dat)

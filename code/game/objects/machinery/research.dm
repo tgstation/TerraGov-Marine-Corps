@@ -48,7 +48,6 @@
 			RES_TIER_UNCOMMON = list(
 				/obj/item/research_product/money/uncommon,
 				/obj/item/implanter/blade,
-				/obj/item/attachable/shoulder_mount,
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,
@@ -65,7 +64,6 @@
 			RES_TIER_UNCOMMON = list(
 				/obj/item/research_product/money/uncommon,
 				/obj/item/implanter/chem/blood,
-				/obj/item/attachable/shoulder_mount,
 			),
 			RES_TIER_RARE = list(
 				/obj/item/research_product/money/rare,
@@ -90,6 +88,8 @@
 
 /obj/machinery/researchcomp/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(researching || !istype(I, /obj/item/research_resource))
 		return
 
@@ -248,16 +248,10 @@
 	)
 
 /obj/item/research_resource/xeno
+	name = "Xenomorph research material"
 	research_type = RES_XENO
 	icon = 'icons/obj/alien_autopsy.dmi'
 	icon_state = "sample_0"
-
-/obj/item/research_resource/xeno/Initialize(mapload)
-	. = ..()
-	icon_state = "sample_[rand(0, 11)]"
-
-/obj/item/research_resource/xeno/tier_one
-	name = "Xenomorph research material - tier 1"
 	color = "#f0bee3"
 	reward_probs = list(
 		RES_TIER_BASIC = 100,
@@ -266,35 +260,9 @@
 		RES_TIER_RARE = 1,
 	)
 
-/obj/item/research_resource/xeno/tier_two
-	name = "Xenomorph research material - tier 2"
-	color = "#d6e641"
-	reward_probs = list(
-		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 40,
-		RES_TIER_UNCOMMON = 20,
-		RES_TIER_RARE = 6,
-	)
-
-/obj/item/research_resource/xeno/tier_three
-	name = "Xenomorph research material - tier 3"
-	color = "#e43939"
-	reward_probs = list(
-		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 50,
-		RES_TIER_UNCOMMON = 40,
-		RES_TIER_RARE = 10,
-	)
-
-/obj/item/research_resource/xeno/tier_four
-	name = "Xenomorph research material - tier 4"
-	color = "#a800ad"
-	reward_probs = list(
-		RES_TIER_BASIC = 100,
-		RES_TIER_COMMON = 50,
-		RES_TIER_UNCOMMON = 40,
-		RES_TIER_RARE = 50,
-	)
+/obj/item/research_resource/xeno/Initialize(mapload)
+	. = ..()
+	icon_state = "sample_[rand(0, 11)]"
 
 ///
 ///Items designed to be products of research

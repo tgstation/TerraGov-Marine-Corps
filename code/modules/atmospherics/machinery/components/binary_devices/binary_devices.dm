@@ -18,4 +18,4 @@
 	..()
 
 /obj/machinery/atmospherics/components/binary/getNodeConnects()
-	return list(turn(dir, 180), dir)
+	return list(REVERSE_DIR(dir), dir)

@@ -1045,7 +1045,6 @@
 /area/bigredv2/outside/admin_building)
 "OE" = (
 /obj/structure/cable,
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},

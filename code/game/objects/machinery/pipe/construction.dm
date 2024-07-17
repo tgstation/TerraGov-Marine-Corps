@@ -16,11 +16,11 @@ Buildable meters
 	throwforce = 7
 	icon = 'icons/obj/items/pipe_item.dmi'
 	icon_state = "simple"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
-	item_state = "buildpipe"
+	worn_icon_state = "buildpipe"
 	w_class = WEIGHT_CLASS_NORMAL
 	level = 2
 	var/piping_layer = PIPING_LAYER_DEFAULT
@@ -130,6 +130,8 @@ Buildable meters
 
 /obj/item/pipe/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(user.incapacitated())
 		return FALSE
 	if(iswrench(I))
@@ -185,11 +187,11 @@ Buildable meters
 	desc = "A meter that can be laid on pipes."
 	icon = 'icons/obj/items/pipe_item.dmi'
 	icon_state = "meter"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
-	item_state = "buildpipe"
+	worn_icon_state = "buildpipe"
 	w_class = WEIGHT_CLASS_BULKY
 	var/piping_layer = PIPING_LAYER_DEFAULT
 

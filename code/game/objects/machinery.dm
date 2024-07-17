@@ -30,7 +30,7 @@
 	component_parts = list()
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
-		current_turf.flags_atom |= AI_BLOCKED
+		current_turf.atom_flags |= AI_BLOCKED
 
 
 /obj/machinery/Destroy()
@@ -41,7 +41,7 @@
 	operator = null
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
-		current_turf.flags_atom &= ~ AI_BLOCKED
+		current_turf.atom_flags &= ~ AI_BLOCKED
 	return ..()
 
 /obj/machinery/proc/is_operational()
@@ -49,7 +49,7 @@
 
 
 /obj/machinery/proc/default_deconstruction_crowbar(obj/item/crowbar, ignore_panel = 0, custom_deconstruct = FALSE)
-	. = !(flags_atom & NODECONSTRUCT) && crowbar.tool_behaviour == TOOL_CROWBAR
+	. = !(atom_flags & NODECONSTRUCT) && crowbar.tool_behaviour == TOOL_CROWBAR
 	if(!. || custom_deconstruct)
 		return
 	crowbar.play_tool_sound(src, 50)
@@ -65,7 +65,7 @@
 	return TRUE
 
 /obj/machinery/deconstruct(disassembled = TRUE)
-	if(!(flags_atom & NODECONSTRUCT))
+	if(!(atom_flags & NODECONSTRUCT))
 		on_deconstruction()
 		if(length(component_parts))
 			spawn_frame(disassembled)

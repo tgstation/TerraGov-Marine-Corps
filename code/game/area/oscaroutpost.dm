@@ -84,6 +84,7 @@
 	name = "Oscar Outpost Fairgrounds"
 	icon_state = "green"
 	ceiling = CEILING_NONE
+	requires_power = FALSE
 
 /area/oscar_outpost/village/abandonedbase
 	name = "Oscar Outpost Base Zeta"

@@ -342,7 +342,7 @@
 	return ..()
 
 
-/mob/living/simple_animal/hostile/proc/summon_backup(distance, exact_faction_match)
+/mob/living/simple_animal/hostile/proc/summon_backup(distance, eABILITY_faction_match)
 	playsound(loc, 'sound/machines/chime.ogg', 50, 1, -1)
 	for(var/mob/living/simple_animal/hostile/M in oview(distance, targets_from))
 		if(faction == M.faction)
@@ -386,14 +386,14 @@
 	var/obj/projectile/P = new(startloc)
 	playsound(src, projectilesound, 100, 1)
 	P.generate_bullet(GLOB.ammo_list[ammotype])
-	P.fire_at(targeted_atom, src)
+	P.fire_at(targeted_atom, src, src)
 
 
 /mob/living/simple_animal/hostile/proc/CanSmashTurfs(turf/T)
 	return iswallturf(T) || ismineralturf(T)
 
 
-/mob/living/simple_animal/hostile/Move(atom/newloc, dir , step_x , step_y)
+/mob/living/simple_animal/hostile/Move(atom/newloc, direction, glide_size_override)
 	if(dodging && approaching_target && prob(dodge_prob) && isturf(loc) && isturf(newloc))
 		return dodge(newloc,dir)
 	else

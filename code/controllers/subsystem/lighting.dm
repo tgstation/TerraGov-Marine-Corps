@@ -35,10 +35,11 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 	var/updators_num = 0
-	for(updators_num in 1 to length(static_sources_queue))
-		var/datum/static_light_source/L = static_sources_queue[updators_num]
-
+	for(var/datum/static_light_source/L AS in static_sources_queue)
+		updators_num++
 		L.update_corners()
+		if(QDELETED(L))
+			updators_num--
 
 		L.needs_update = LIGHTING_NO_UPDATE
 		if(init_tick_checks)
@@ -51,11 +52,13 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 
-	for(updators_num in 1 to length(corners_queue))
-		var/datum/static_lighting_corner/C = corners_queue[updators_num]
-
+	updators_num = 0
+	for(var/datum/static_lighting_corner/C AS in corners_queue)
+		updators_num++
 		C.needs_update = FALSE //update_objects() can call qdel if the corner is storing no data
 		C.update_objects()
+		if(QDELETED(C))
+			updators_num--
 		if(init_tick_checks)
 			CHECK_TICK
 		else if (MC_TICK_CHECK)
@@ -66,10 +69,11 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 
-	for(updators_num in 1 to length(objects_queue))
-		var/datum/static_lighting_object/O = objects_queue[updators_num]
-
+	updators_num = 0
+	for(var/datum/static_lighting_object/O AS in objects_queue)
+		updators_num++
 		if (QDELETED(O))
+			updators_num--
 			continue
 		O.update()
 		O.needs_update = FALSE
@@ -83,8 +87,9 @@ SUBSYSTEM_DEF(lighting)
 	if(!init_tick_checks)
 		MC_SPLIT_TICK
 
-	for(updators_num in 1 to length(mask_queue))
-		var/atom/movable/lighting_mask/mask_to_update = mask_queue[updators_num]
+	updators_num = 0
+	for(var/atom/movable/lighting_mask/mask_to_update AS in mask_queue)
+		updators_num++
 
 		mask_to_update.calculate_lighting_shadows()
 		if(init_tick_checks)
@@ -97,3 +102,16 @@ SUBSYSTEM_DEF(lighting)
 /datum/controller/subsystem/lighting/Recover()
 	initialized = SSlighting.initialized
 	return ..()
+
+///sets up light objects for a particular z level. Used for late loading
+/datum/controller/subsystem/lighting/proc/create_lighting_objects_for_z(z_level)
+	for(var/area/new_area in world)
+		if(new_area.z != z_level)
+			continue
+		if(!new_area.static_lighting)
+			continue
+
+		for(var/turf/T in new_area)
+			new/datum/static_lighting_object(T)
+			CHECK_TICK
+		CHECK_TICK

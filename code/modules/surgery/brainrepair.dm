@@ -41,6 +41,7 @@
 	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
 	if(sponge)
 		sponge.damage = 0
+	return ..()
 
 /datum/surgery_step/brain/bone_chips/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, jabbing \the [tool] in [target]'s brain!"), \
@@ -74,6 +75,7 @@
 	var/datum/internal_organ/brain/sponge = target.internal_organs_by_name["brain"]
 	if(sponge)
 		sponge.damage = BONECHIPS_MAX_DAMAGE
+	return ..()
 
 /datum/surgery_step/brain/hematoma/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message(span_warning("[user]'s hand slips, bruising [target]'s brain with \the [tool]!"), \

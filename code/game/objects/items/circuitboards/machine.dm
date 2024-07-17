@@ -88,6 +88,8 @@ to destroy them and players will be able to make replacements.
 
 /obj/item/circuitboard/machine/unary_atmos/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		machine_dir = turn(machine_dir, 90)

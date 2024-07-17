@@ -10,7 +10,7 @@
 	for(var/obj/machinery/camera/C in L)
 		var/list/tempnetwork = C.network & available_networks
 		if(length(tempnetwork))
-			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
+			T["[C.c_tag][C.can_use() ? "" : " (Deactivated)"]"] = C
 
 	return T
 

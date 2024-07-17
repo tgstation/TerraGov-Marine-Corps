@@ -27,7 +27,7 @@
 
 
 /obj/add_blood(b_color)
-	if(flags_atom & NOBLOODY)
+	if(atom_flags & NOBLOODY)
 		return FALSE
 	if(b_color)
 		blood_color = b_color
@@ -84,14 +84,11 @@
 	update_inv_gloves()	//handles bloody hands overlays and updating
 	return TRUE
 
-
-
-
-
-
+///Removes blood from our atom
 /atom/proc/clean_blood()
-	blood_color = null
-	return 1
+	if(blood_color)
+		blood_color = null
+		return TRUE
 
 /obj/item/clean_blood()
 	. = ..()
@@ -104,80 +101,47 @@
 	. = ..()
 	transfer_blood = 0
 
-/mob/living/carbon/human/clean_blood(clean_feet)
+/mob/clean_blood()
+	. = ..()
+	r_hand?.clean_blood()
+	l_hand?.clean_blood()
+	if(wear_mask?.clean_blood())
+		update_inv_wear_mask()
+
+/mob/living/carbon/clean_blood()
+	. = ..()
+	if(back?.clean_blood())
+		update_inv_back()
+
+/mob/living/carbon/human/clean_blood()
+	. = ..()
 	germ_level = 0
-	if(gloves)
-		if(gloves.clean_blood())
-			update_inv_gloves()
-	else
+
+	if(head?.clean_blood())
+		update_inv_head()
+
+	if(wear_suit?.clean_blood())
+		update_inv_wear_suit()
+
+	if(w_uniform?.clean_blood())
+		update_inv_w_uniform()
+
+	if(!gloves?.clean_blood())
 		blood_color = null
 		bloody_hands = 0
-		update_inv_gloves()
+	update_inv_gloves()
 
-	if(clean_feet && !shoes)
+	if(!shoes?.clean_blood())
 		feet_blood_color = null
-		update_inv_shoes()
-		return TRUE
+	update_inv_shoes()
 
-///Washes the blood and such off a mob
-/mob/living/proc/clean_mob()
-	clean_blood()
+	if(glasses?.clean_blood())
+		update_inv_glasses()
 
-/mob/living/carbon/clean_mob()
-	. = ..()
-	if(r_hand)
-		r_hand.clean_blood()
-	if(l_hand)
-		l_hand.clean_blood()
-	if(back)
-		if(back.clean_blood())
-			update_inv_back(0)
-	if(!ishuman(src))
-		if(wear_mask)//if the mob is not human, it cleans the mask without asking for bitflags
-			if(wear_mask.clean_blood())
-				update_inv_wear_mask()
+	if(wear_ear?.clean_blood())
+		update_inv_ears()
 
-/mob/living/carbon/human/clean_mob()
-	. = ..()
-	var/washgloves = TRUE
-	var/washshoes = TRUE
-	var/washmask = TRUE
-	var/washears = TRUE
-	var/washglasses = TRUE
-	if(wear_suit)
-		washgloves = !(wear_suit.flags_inv_hide & HIDEGLOVES)
-		washshoes = !(wear_suit.flags_inv_hide & HIDESHOES)
-		if(wear_suit.clean_blood())
-			update_inv_wear_suit()
-	else if(w_uniform)
-		if(w_uniform.clean_blood())
-			update_inv_w_uniform()
-	if(head)
-		washmask = !(head.flags_inv_hide & HIDEMASK)
-		washglasses = !(head.flags_inv_hide & HIDEEYES)
-		washears = !(head.flags_inv_hide & HIDEEARS)
-		if(head.clean_blood())
-			update_inv_head()
-	if(wear_mask)
-		if(washears)
-			washears = !(wear_mask.flags_inv_hide & HIDEEARS)
-		if(washglasses)
-			washglasses = !(wear_mask.flags_inv_hide & HIDEEYES)
-		if(washmask && wear_mask.clean_blood())
-			update_inv_wear_mask()
-	if(gloves && washgloves)
-		if(gloves.clean_blood())
-			update_inv_gloves()
-	if(shoes && washshoes)
-		if(shoes.clean_blood())
-			update_inv_shoes()
-	if(glasses && washglasses)
-		if(glasses.clean_blood())
-			update_inv_glasses()
-	if(wear_ear && washears)
-		if(wear_ear.clean_blood())
-			update_inv_ears()
-	if(belt)
-		if(belt.clean_blood())
-			update_inv_belt()
-	clean_blood(washshoes)
+	if(belt?.clean_blood())
+		update_inv_belt()
+
+	return TRUE

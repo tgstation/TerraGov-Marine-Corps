@@ -5,13 +5,13 @@
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	obj_flags = CAN_BE_HIT
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR
 	var/base_state = "left"
 	max_integrity = 50
 	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	use_power = FALSE
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	allow_pass_flags = PASS_GLASS
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
@@ -40,11 +40,12 @@
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
-	playsound(src, "shatter", 50, 1)
+	playsound(src, SFX_SHATTER, 50, 1)
 	return ..()
 
 
-/obj/machinery/door/window/update_icon()
+/obj/machinery/door/window/update_icon_state()
+	. = ..()
 	if(operating)
 		return
 	icon_state = density ? base_state : "[base_state]open"
@@ -128,6 +129,8 @@
 
 /obj/machinery/door/window/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(operating)
 		return TRUE
@@ -136,7 +139,7 @@
 		playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 		user.visible_message("[user] starts to remove the electronics from the windoor.", "You start to remove electronics from the windoor.")
 
-		if(!do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 40, NONE, src, BUSY_ICON_BUILD))
 			return TRUE
 
 		to_chat(user, span_notice("You removed the windoor electronics!"))

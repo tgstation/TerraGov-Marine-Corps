@@ -21,7 +21,7 @@
 
 /datum/component/udder/UnregisterFromParent()
 	QDEL_NULL(udder)
-	QDEL_NULL(on_milk_callback)
+	on_milk_callback = null
 	UnregisterSignal(parent, list(COMSIG_ATOM_EXAMINE, COMSIG_ATOM_ATTACKBY))
 
 ///signal called on parent being examined
@@ -90,7 +90,9 @@
  * also useful for changing initial amounts in reagent holder (cows start with milk, gutlunches start empty)
  */
 /obj/item/udder/proc/initial_conditions()
-	reagents.add_reagent(/datum/reagent/consumable/drink/milk, 20)
+	if(!udder_mob)
+		return
+	reagents.add_reagent(/datum/reagent/consumable/milk, 20)
 	START_PROCESSING(SSobj, src)
 
 /**
@@ -100,7 +102,7 @@
  */
 /obj/item/udder/proc/generate()
 	if(prob(5))
-		reagents.add_reagent(/datum/reagent/consumable/drink/milk, rand(5, 10))
+		reagents.add_reagent(/datum/reagent/consumable/milk, rand(5, 10))
 		if(on_generate_callback)
 			on_generate_callback.Invoke(reagents.total_volume, reagents.maximum_volume)
 

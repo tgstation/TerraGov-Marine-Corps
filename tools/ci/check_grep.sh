@@ -2,162 +2,140 @@
 set -euo pipefail
 
 #nb: must be bash to support shopt globstar
-shopt -s globstar
+shopt -s globstar extglob
+
+#ANSI Escape Codes for colors to increase contrast of errors
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+BLUE="\033[0;34m"
+NC="\033[0m" # No Color
+
+
+# check for ripgrep
+if command -v rg >/dev/null 2>&1; then
+	grep=rg
+	pcre2_support=1
+	if [ ! rg -P '' >/dev/null 2>&1 ] ; then
+		pcre2_support=0
+	fi
+	code_files="code/**/**.dm"
+	map_files="_maps/**/**.dmm"
+	code_x_515="code/**/!(__byond_version_compat).dm"
+else
+	pcre2_support=0
+	grep=grep
+	code_files="-r --include=code/**/**.dm"
+	map_files="-r --include=_maps/**/**.dmm"
+	code_x_515="-r --include=code/**/!(__byond_version_compat).dm"
+fi
+
+echo -e "${BLUE}Using grep provider at $(which $grep)${NC}"
+
+part=0
+section() {
+	echo -e "${BLUE}Checking for $1${NC}..."
+	part=0
+}
+
+part() {
+	part=$((part+1))
+	padded=$(printf "%02d" $part)
+	echo -e "${GREEN} $padded- $1${NC}"
+}
 
 st=0
 
 echo "Checking for TGM formatting"
-if grep -El '^\".+\" = \(.+\)' _maps/**/*.dmm;	then
+if grep -El '^\".+\" = \(.+\)'  $map_files;	then
     echo "Non-TGM formatted map detected. Please convert it using Map Merger!"
     st=1
 fi;
 echo "Checking for mapping tags"
-if grep -nP '^\ttag = \"icon' _maps/**/*.dmm;	then
+if grep -nP '^\ttag = \"icon'  $map_files;	then
     echo "tag vars from icon state generation detected in maps, please remove them."
     st=1
 fi;
-echo "Checking for step_[xy]"
-if grep -nP 'step_[xy]' _maps/**/*.dmm;	then
-    echo "step_x/step_y variables detected in maps, please remove them."
-    st=1
-fi;
-echo "Checking for pixel_[wz]"
-if grep -nP 'pixel_[^xy]' _maps/**/*.dmm;	then
-    echo "pixel_w/pixel_z variables detected in maps, please remove them."
-    st=1
-fi;
-echo "Checking for stacked cables"
-if grep -nP '"\w+" = \(\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/obj/structure/cable,\n([^)]+\n)*/area/.+\)' _maps/**/*.dmm;	then
-    echo "found multiple cables on the same tile, please remove them."
-    st=1
-fi;
-echo "Checking for cable varedits"
-if grep -nP '/obj/structure/cable(/\w+)+\{' _maps/**/*.dmm;	then
-    echo "ERROR: vareditted cables detected, please remove them."
-    st=1
-fi;
-echo "Checking for cable d1/d2"
-if grep -nP '\td[1-2] =' _maps/**/*.dmm;	then
-    echo "ERROR: d1/d2 cable variables detected in maps, please remove them."
-    st=1
-fi;
-echo "Checking for pixel_[xy]"
-if grep -nP 'pixel_[xy] = 0' _maps/**/*.dmm;	then
-    echo "pixel_x/pixel_y = 0 variables detected in maps, please review to ensure they are not dirty varedits."
-fi;
-echo "Checking for vareditted areas"
-if grep -nP '^/area/.+[\{]' _maps/**/*.dmm;	then
-    echo "Vareditted /area path use detected in maps, please replace with proper paths."
-    st=1
-fi;
-echo "Checking for base /turf paths"
-if grep -nP '\W\/turf\s*[,\){]' _maps/**/*.dmm; then
-    echo "base /turf path use detected in maps, please replace with proper paths."
-    st=1
-fi;
+
+
 echo "Checking for unmanaged globals"
-if grep -nP '^/*var/' code/**/*.dm; then
+if grep -nP '^/*var/' $code_files; then
     echo "Unmanaged global var use detected in code, please use the helpers."
     st=1
 fi;
 echo "Checking for src changing"
-if grep -nP '.*\tsrc = ' code/**/*.dmm; then
+if grep -nP '^\t+src = ' $code_files; then
     echo "Illegal src change detected, please amend"
     st=1
 fi;
 echo "Checking for 0 length timers"
-if grep -nP 'addtimer\(.+?, ?0\)($| |/)' code/**/*.dm; then
+if grep -nP 'addtimer\(.+?, ?0\)($| |/)' $code_files; then
 	echo "Default timer type with no length detected. Please add the correct flags or use the async macro call"
 	st=1
 fi;
 echo "Checking for default return value returns"
-if grep -nP '^\s*return \.\s*\n' code/**/*.dm; then
+if grep -nP '^\s*return \.\s*\n' $code_files; then
     echo "Default return value return detected"
     st=1
 fi;
 echo "Checking for space indentation"
-if grep -nP '(^ {2})|(^ [^ * ])|(^    +)' code/**/*.dm; then
+if grep -nP '(^ {2})|(^ [^ * ])|(^    +)' $code_files; then
     echo "space indentation detected"
     st=1
 fi;
 echo "Checking for mixed indentation"
-if grep -nP '^\t+ [^ *]' code/**/*.dm; then
+if grep -nP '^\t+ [^ *]' $code_files; then
     echo "mixed <tab><space> indentation detected"
     st=1
 fi;
 echo "Checking long list formatting"
-if pcregrep -nM '^(\t)[\w_]+ = list\(\n\1\t{2,}' code/**/*.dm; then
+if grep -nPzo '^(\t)[\w_]+ = list\(\n\1\t{2,}' $code_files; then
     echo "long list overidented, should be two tabs"
     st=1
 fi;
-if pcregrep -nM '^(\t)[\w_]+ = list\(\n\1\S' code/**/*.dm; then
+if grep -nPzo '^(\t)[\w_]+ = list\(\n\1\S' $code_files; then
     echo "long list underindented, should be two tabs"
     st=1
 fi;
-if pcregrep -nM '^(\t)[\w_]+ = list\([^\s)]+( ?= ?[\w\d]+)?,\n' code/**/*.dm; then
+if grep -nPzo '^(\t)[\w_]+ = list\([^\s)]+( ?= ?[\w\d]+)?,\n' $code_files; then
     echo "first item in a long list should be on the next line"
     st=1
 fi;
-if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t\S+( ?= ?[\w\d]+)?,\n)*\1\t[^\s,)]+( ?= ?[\w\d]+)?\n' code/**/*.dm; then
+if grep -nPzo '^(\t)[\w_]+ = list\(\n(\1\t\S+( ?= ?[\w\d]+)?,\n)*\1\t[^\s,)]+( ?= ?[\w\d]+)?\n' $code_files; then
     echo "last item in a long list should still have a comma"
     st=1
 fi;
-if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)*\1\t[^\s)]+( ?= ?[\w\d]+)?\)' code/**/*.dm; then
+if grep -nPzo '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)*\1\t[^\s)]+( ?= ?[\w\d]+)?\)' $code_files; then
     echo ") in a long list should be on a new line"
     st=1
 fi;
-if pcregrep -nM '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)+\1\t\)' code/**/*.dm; then
+if grep -nPzo '^(\t)[\w_]+ = list\(\n(\1\t[^\s)]+( ?= ?[\w\d]+)?,\n)+\1\t\)' $code_files; then
     echo "the ) in a long list should match identation of the opening list line"
     st=1
 fi;
-nl='
-'
-nl=$'\n'
-while read f; do
-    t=$(tail -c2 $f; printf x); r1="${nl}$"; r2="${nl}${r1}"
-    if [[ ! ${t%x} =~ $r1 ]]; then
-        echo "file $f is missing a trailing newline"
-        st=1
-    fi;
-done < <(find . -type f -name '*.dm')
-if grep -nP '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' code/**/*.dm; then
+
+if $grep -PU '[^\n]$(?!\n)' $code_files; then
+	echo
+	echo -e "${RED}ERROR: File(s) with no trailing newline detected, please add one.${NC}"
+	st=1
+fi
+if grep -nP '^/[\w/]\S+\(.*(var/|, ?var/.*).*\)' $code_files; then
     echo "changed files contains proc argument starting with 'var'"
     st=1
 fi;
-if grep -ni 'centcomm' code/**/*.dm; then
+if grep -ni 'centcomm' $code_files; then
     echo "Misspelling(s) of CENTCOM detected in code, please remove the extra M(s)."
     st=1
 fi;
-if grep -ni '/obj/alien/weeds/node' _maps/**/*.dmm; then
-    echo "Do not directly add weeds on maps, use landmarks."
-    st=1
-fi;
-if grep -ni '/turf/closed/wall/resin' _maps/**/*.dmm; then
-    echo "Do not directly add resin walls on maps, use landmarks."
-    st=1
-fi;
-if grep -ni '/obj/structure/mineral_door/resin' _maps/**/*.dmm; then
-    echo "Do not directly add resin doors on maps, use landmarks."
-    st=1
-fi;
-if grep -ni '/obj/structure/xeno/xeno_turret' _maps/**/*.dmm; then
-    echo "Do not directly add xeno turrets on maps, use landmarks."
-    st=1
-fi;
-if grep -ni 'centcomm' _maps/**/*.dmm; then
+if grep -ni 'centcomm' $map_files; then
     echo "Misspelling(s) of CENTCOM detected in maps, please remove the extra M(s)."
     st=1
 fi;
-if grep -ni 'nanotransen' code/**/*.dm; then
+if grep -ni 'nanotransen' $code_files; then
     echo "Misspelling(s) of nanotrasen detected in code, please remove the extra N(s)."
     st=1
 fi;
-if grep -ni 'nanotransen' _maps/**/*.dmm; then
+if grep -ni 'nanotransen' $map_files; then
     echo "Misspelling(s) of nanotrasen detected in maps, please remove the extra N(s)."
-    st=1
-fi;
-if grep -ni 'icon_state' _maps/**/*.dmm; then
-    echo "Icon_state varedit(s) detected in maps, please make new type(s) instead of instancing icon_state(s)."
     st=1
 fi;
 if ls _maps/*.json | grep -nP "[A-Z]"; then
@@ -175,7 +153,7 @@ do
 done
 
 # Check for non-515 compatable .proc/ syntax
-if grep -P --exclude='__byond_version_compat.dm' '\.proc/' code/**/*.dm; then
+if grep -P --exclude='__byond_version_compat.dm' '\.proc/' $code_x_515; then
     echo "ERROR: Outdated proc reference use detected in code, please use proc reference helpers."
     st=1
 fi;

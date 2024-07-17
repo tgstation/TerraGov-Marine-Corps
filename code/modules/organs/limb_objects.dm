@@ -1,7 +1,7 @@
 
 /obj/item/limb
 	icon = 'icons/mob/human_races/r_human.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/bodyparts_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/bodyparts_right.dmi',
 	)
@@ -93,7 +93,7 @@
 
 			overlays.Add(facial) // icon.Blend(facial, ICON_OVERLAY)
 
-	if(H.h_style && !(H.head && (H.head.flags_inv_hide & HIDETOPHAIR)))
+	if(H.h_style && !(H.head && (H.head.inv_hide_flags & HIDETOPHAIR)))
 		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[H.h_style]
 		if(hair_style)
 			var/icon/hair = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
@@ -121,10 +121,12 @@
 	brainmob = new(src)
 	brainmob.name = H.real_name
 	brainmob.real_name = H.real_name
+	brainmob.faction = H.faction
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 	brainmob.container = src
 	brainmob.copy_known_languages_from(H, TRUE)
+	brainmob.job = H.job
 
 //synthetic head, allowing brain mob inside to talk
 /obj/item/limb/head/synth

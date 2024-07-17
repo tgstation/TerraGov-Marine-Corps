@@ -7,7 +7,7 @@
 /obj/item/tool/analyzer/plant_analyzer
 	name = "plant analyzer"
 	icon_state = "hydro"
-	item_state = "analyzer"
+	worn_icon_state = "analyzer"
 
 /obj/item/tool/analyzer/plant_analyzer/attack_self(mob/user as mob)
 	return 0
@@ -183,8 +183,8 @@
 /obj/item/reagent_containers/glass/fertilizer/Initialize(mapload)
 	. = ..()
 
-	pixel_x = rand(-5.0, 5)
-	pixel_y = rand(-5.0, 5)
+	pixel_x = rand(-5, 5)
+	pixel_y = rand(-5, 5)
 
 	if(fertilizer)
 		reagents.add_reagent(fertilizer,10)

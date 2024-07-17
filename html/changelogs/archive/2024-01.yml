@@ -1,0 +1,348 @@
+2024-01-01:
+  DeltaFire15:
+  - bugfix: Injectors can inject (valid) non-carbon things again.
+  Wisemonster:
+  - balance: Weeds and xenos can no longer hide under rear attach points
+  - spellcheck: Renamed rear attach points to interior attach points
+  ivanmixo:
+  - code_imp: Refactored wheelchairs
+  - balance: Some minor wheelchair balance, check the PR for more details
+2024-01-02:
+  Helg2:
+  - qol: AI can now click maptable again to close it if it's open.
+  Lumipharon:
+  - bugfix: fixed unrelenting force causing shuffle issues in certain directions
+  - bugfix: fixed some storage exploits
+  - qol: The campaign status screen is now accessible via action button instead of
+      verb
+  - qol: The campaign status screen is now accessible to ghosts of the right faction
+2024-01-03:
+  Barnet2:
+  - rscadd: Marine Food Vendors are now present in all requisition areas.
+  - qol: All ships now have cigarette vendors guaranteed to spawn in
+  Helg2:
+  - bugfix: '[Magmoor] Canterbury now won''t crash directly into the xeno''s silo.'
+  - rscadd: '[Arachne] Added more shutters here and there.'
+  - bugfix: Cleaned some parts of Sulaco. Like levitating button to droppods and transparent
+      telecomms shutters.
+  ivanmixo:
+  - bugfix: VV topic fix
+2024-01-05:
+  AusarAtkin:
+  - qol: Add larva to valhalla vendor
+  Lumipharon:
+  - admin: Only headmins and above can delete clients
+  - code_imp: Some backend improvements to campaign overview UI
+  Wisemonster:
+  - qol: The chameleon badge, cape, kama, and reflective belt can be attached to uniforms
+      that are being worn.
+  Xander3359:
+  - admin: move osay to admin category and view tags to debug category
+  - code_imp: Lowercasify "Vars"
+2024-01-06:
+  Lumipharon:
+  - code_imp: Fix icon2base64 for real
+  Pariah919:
+  - balance: Readds AMR lase hit slowdown.
+  ivanmixo:
+  - bugfix: The "Alt-click to rotate" bit should pop up properly when examining now
+  - code_imp: Fixed some weird implementations of the examine signal
+  - qol: AI eyes can hear stuff the camera eye hears
+  - qol: AI eyes can see runechat from mobs (and objects) talking around them
+2024-01-08:
+  Helg2:
+  - qol: Overheal is now located after the main health in status tab.
+  Pariah919:
+  - rscadd: Two new type of missiles, the Swansong and Monarch.
+  - rscadd: CAS bombs and bomblets. 200, 400, and 1000lb bombs. 50lb and 75lb bombs.
+  - balance: CAS Missiles have been entirely rebalanced into classes.
+  - balance: The classes are ATGM (3s/AGM), Heavy(6s/PGHM), Normal (4s/PGLM).
+  - balance: You can no longer attach lasguns nor tesla to lasgun pouches for magazine
+      use.
+  - balance: Marines can no longer access handheld tanglefoot grenades, all other
+      forms of tangle (AGLS, Mortar, etc) are untouched.
+  ivanmixo:
+  - refactor: Cleaned up hud icons and overlays
+  yyzsong:
+  - balance: Ravager, Gorger, and puppeteer will no longer be affected by pepperball
+2024-01-09:
+  Helg2:
+  - bugfix: '[Icy Caves] Added missing pipe for the second landing zone.'
+  Lumipharon:
+  - balance: CQC skill now does +5 max damage instead of +1
+  SplinterGP:
+  - bugfix: glass can't turn into other glass types by merging it into a reinforced/phoron
+      glass stack
+  ivanmixo:
+  - bugfix: Various fixes to the strip menu, check the PR
+  - rscdel: Removes the HE GL54 nades from req
+2024-01-10:
+  DeltaFire15:
+  - bugfix: It should be less likely for you to go DNR in cases where you shouldn't
+      be DNR.
+  Dikozda:
+  - spellcheck: fix typo in jelly message
+  Pariah919:
+  - bugfix: Some CAS bombs were broken in the CAS update icon wise, this should fix
+      them.
+  XElectricX, ivanmixo:
+  - rscadd: Added a TGMC retired veteran ERT
+2024-01-11:
+  Barnet2:
+  - spellcheck: Hatchling xeno rank is replaced with young, prime is now the top xeno
+      rank
+  ivanmixo:
+  - qol: Spatial agent glasses have all huds now
+  yyzsong:
+  - rscdel: Removes Big Red office variant 4
+2024-01-12:
+  Barnet2:
+  - balance: 'Daedalus Prison: Removed two miners, more preweed, medical cannot be
+      landed in by tad, and outskirt cave walls are actually pcable'
+  - spellcheck: Darkfrost hull walls are now named "tough rock"
+  Helg2:
+  - bugfix: fixed balloon alert for king's primo laser, which you probably won't even
+      see.
+  Lumipharon:
+  - bugfix: fixed abilities not updating their icon correctly on use in some cases
+  - bugfix: Fixed some instances where throw bounces would behave funnily
+  - bugfix: Harvester bicard no longer heals dead bodies or robots
+  - bugfix: fixed a couple of uncommon throw bugs
+  - balance: Adds weapon skill functionality, for a future campaign release
+  TiviPlus:
+  - rscadd: Psy points have been split into tactical and strategic psy points
+  ivanmixo:
+  - qol: Defiler egg injection has more feedback now
+  - bugfix: Opening the defiler egg mid progress bar makes the injection fail
+  yyzsong:
+  - rscadd: 'New Gorger primordial: Oppose. Staggers and slows nearby marines while
+      healing nearby xenomorphs, at a cost. Replaces current primordial ability, Rejuvenate'
+  - rscdel: Rejuvenate
+2024-01-13:
+  Barnet2:
+  - rscdel: Research Outpost is no longer votable when Nuclear War is selected.
+  ivanmixo:
+  - code_imp: Ported update_appearance, alternative_appearance and ssvisoverlays
+  - refactor: Refactored almost every instance of update_icon, update_icon_state and
+      update_overlays
+2024-01-14:
+  RipGrayson:
+  - bugfix: Fixed some improper stairs on the EORG maps.
+  Wisemonster:
+  - balance: The Minion Spawner now uses tactical points instead of strategic.
+  Xander3359:
+  - rscdel: Removes the NVG-only smartgunner option.
+  - qol: Adds a "Smartguns/IFF" to the valhalla vendor
+  ivanmixo:
+  - bugfix: Fixed an exploit related to hudglasses
+2024-01-15:
+  Lumipharon:
+  - rscadd: Added a new perk system for Campaign mode
+  - rscadd: Added a new customisable loadout system for Campaign mode
+  - qol: Jetpacks and blinkdrives now use activable actions, so have bindable hotkeys
+  - code_imp: Reworked some action code
+  - bugfix: fixed an issue with AMR lase continuously trying to turn off
+  - qol: Ability type actions now display their cooldown remaining
+  ivanmixo:
+  - bugfix: Punching an APC as warrior should update the icon properly now
+2024-01-16:
+  Barnet2:
+  - balance: Xenos can build further into LZ 2 Engineering roundstart on Big Red,
+      APCs for the outdoor areas on Big Red are now outside instead of inside.
+  Pariah919:
+  - rscadd: Plasma guns, cannon and rifle, alongside the backpack used to power them,
+      and the chargepacks used to power that.
+  - rscadd: Added a variable to powerpacks to only allow charging certain cell types,
+      currently only applied to plasma chargepacks however.
+  - balance: TE Powerpacks only charge TE lasgun cells.
+  ivanmixo:
+  - code_imp: Readded bullet holes and made the code less bad
+2024-01-17:
+  Lumipharon:
+  - qol: Campaign loadouts have default options selected
+  - balance: adjusted a few campaign loadout and perk things
+  - qol: Maptables with draw functionality are accessible to all users, but the draw
+      features remain leadership locked
+  - bugfix: fixed some actions interacting with other actions incorrectly
+  - code_imp: cleaned up some more action code
+  - bugfix: Added some missing campaign landmarks to BR
+  Pariah919:
+  - balance: Runner can no longer slash in invasion.
+  TiviPlus:
+  - rscadd: Added acid pools, a sunder healing structure for xenos purchasable with
+      tactical psychic points
+  - rscdel: Removed split second delay on magharness
+  - bugfix: Fix flamer back tank disconnecting with magharness
+  - rscadd: Added resin gargoyles, a xeno structure that alerts xenos to nearby enemies
+  ivanmixo:
+  - qol: You can now click the tunnel you want to go to on the minimap instead of
+      picking from a list
+  - balance: The basic scout rifle ammo now deals 5 sunder down from 12, but has double
+      the armor penetration (30, up from 20)
+  - balance: The impact scout rifle ammo now deals 6.5 sunder (down from 12.5), but
+      has double the armor penetration (20, up from 10)
+  - rscdel: Removed longtad
+  - bugfix: Various runtime fixes, see the PR
+2024-01-18:
+  Lumipharon:
+  - bugfix: fixed an issue with ghost actions when observing before gamestart
+  - bugfix: fixed missing light armour for SOM squaddies in campaign
+  Pariah919:
+  - bugfix: You can no longer get plasma guns on crash.
+  - bugfix: You can find plasma guns in valhalla.
+  Wisemonster:
+  - balance: Reduced the price of the minion spawner from 600 to 400 tac points
+  Xander3359:
+  - qol: MarineMed pill bottles can be restocked.
+  - qol: Defibbing a dead marine will turn on their camera
+  ivanmixo:
+  - bugfix: Fixes the AMR for real now
+  - admin: Added a prompt to the reload admins verb
+  novaepee:
+  - imageadd: porting health analyzer from Paradise
+  the TGMC community:
+  - spellcheck: 2024 tips update
+2024-01-19:
+  Lumipharon:
+  - bugfix: fixed defaults in campaign loadouts
+  - qol: Campaign loadout UI defaults to the job tab for your current job
+  RipGrayson:
+  - rscadd: Added more map helpers.
+  - imageadd: Added icons for the new map helpers.
+  novaepee:
+  - bugfix: east facing mob sprite for sg-62
+2024-01-20:
+  Pariah919:
+  - balance: Removes vertical grip off SG-29.
+  SomrNetwork:
+  - rscadd: Crasher body armor in marine_armor.dmi
+  - rscadd: New swat mask for SpecOps
+  - rscadd: "SpecOps Medic\n/ \U0001F191"
+  ivanmixo:
+  - qol: Widened the hive status tgui window
+  - balance: Marines cannot skip past xenos diagonally if there's an obstacle between
+      them, check the PR for a more clear explanation
+  - balance: Radiopack and AI drone beacon don't work in deep caves anymore
+2024-01-21:
+  DeltaFire15:
+  - bugfix: Xenomorph pounce abilities no longer bypass shields.
+  - bugfix: Runner Savage only triggers if the pounce didn't fail.
+  - bugfix: Thrown objects should now behave more reasonable after passing a portal,
+      for cases such as bouncing.
+  Xander3359:
+  - refactor: Click code is now somewhat cleaner and more standardized
+  - code_imp: Adds attack_self_alternate(), this gets called when an item in-hand
+      is right-clicked
+  - bugfix: You can now right click any hypospray in-hand to change the injection
+      size
+  coldironwarrior:
+  - rscadd: three new helmet cosmetics, selectable as trinkets in character setup
+  ivanmixo:
+  - bugfix: Fix acid pools having bad flags
+  - bugfix: Ghosts actually bob up and down now
+2024-01-22:
+  ivanmixo:
+  - bugfix: Fixed magharness keeping the item in your suit slot after you take the
+      suit off
+  - code_imp: Split up the fullscreen overlay dmi file, this may help with lag when
+      they get loaded
+  - balance: Gave DBs a 0.7 damage multiplier, like the SH-39
+2024-01-23:
+  Lewdcifer:
+  - rscdel: Removed Russian Red from standard access in HvX.
+  Xander3359:
+  - bugfix: fixed a few click-related issues
+  ivanmixo:
+  - bugfix: Your ghost keeps bobbing even after you stop orbiting stuff now
+2024-01-24:
+  SomrNetwork:
+  - rscadd: "suitlight to crasher body armor\n/ \U0001F191"
+  XElectricX:
+  - bugfix: Toggle Weather Sound verb has correct message.
+  - bugfix: Toggle Ambience verb stops ambience that is currently playing.
+  - bugfix: Hide statpanel scroll bar when not needed.
+2024-01-25:
+  SomrNetwork:
+  - rscdel: "Flak armor\n/ \U0001F191"
+  ivanmixo:
+  - balance: Xenomorph resting now blocks you from unresting for 2 seconds, instead
+      of it being a 2 second progress bar to get up
+  usnpeepoo:
+  - bugfix: Puppeteers radial menu for blessings now have the correct icon in place
+2024-01-26:
+  DeltaFire15:
+  - bugfix: Various HUD elements now display revivability more accurately.
+  - bugfix: Another case that would randomly DNR you has been fixed.
+  - bugfix: Defib messages & failures should be less likely to display in incorrect
+      situations.
+  - bugfix: Minimap icons should no longer display as DNR for now fixed cases.
+  Xander3359:
+  - bugfix: Spit slash RMB works again
+  ivanmixo:
+  - qol: Xenomorphs can now see their current regenerative power in their status panel
+  - balance: Nanites have been rebalanced to be a sidegrade to BKTT, check the PR
+      for more details
+2024-01-27:
+  SomrNetwork:
+  - rscadd: "flak stats to crasher\n/ \U0001F191"
+  novaepee:
+  - balance: remove TL-172 Defensive Shield from crash and nuclear war
+2024-01-28:
+  Barnet2:
+  - balance: All xenomorphs with acid now have strong acid during prep (Nuclear War)
+  - balance: Xenomorphs can now evolve to any caste above their tier and T4, with
+      exceptions made for the T4's and larva
+  - balance: Magmoor disks are now sorted into 3 preset sets.
+  Helg2:
+  - bugfix: '[Big Red] connected the pipes on few atmos variants.'
+  Pariah919:
+  - rscadd: Added new ML-14 MG to ICC, and backpack.
+  - rscadd: ICC Heavy armor 'Cuirassier'.
+  ivanmixo:
+  - balance: MBX is now two handed only
+  - refactor: Refactored beacons into a component
+2024-01-29:
+  Aporhtonoma:
+  - balance: squad order skill require from 3 to 2
+  Barnet2:
+  - bugfix: Fixes various bugs with evolution
+  Lewdcifer:
+  - rscdel: 'Reverted all click changes in #14896, #14880, and #14747.'
+  Lumipharon:
+  - balance: SOM armour no longer has superior bullet armour compared to marines.
+      Still retains a slight weakness to lasers
+  - bugfix: Lorica armour has equal slowdown to tyr 2
+  - rscadd: Added some more loadout choices for marines in campaign
+  - bugfix: fixed miniguns and SADAR being unwieldable
+  - balance: 'Campaign: Medical skill perk now gives access to improved first aid
+      pouches for roles that don''t already have it'
+  - rscadd: New shield overclock perk for improved shield module performance and availability
+  - balance: Removed some RR from campaign
+  - bugfix: 'Campaign: Base SMG-25 loadout has its missing gear added'
+  - balance: Campaign has an autobalance check at the start of every mission to try
+      balance team numbers
+  - balance: Weapon X in campaign mode heals faster
+  - balance: Campaign VP target reduced to 7 from 12 until round ending missions are
+      added
+  Neocloudy:
+  - rscadd: chat styles from tgstation
+  - rscadd: brighter channel, ooc and deadchat colors on dark mode
+  - rscadd: announcement blocks/dividers with striped effects, used for priority/minor
+      announcements and sending command orders
+  SomrNetwork:
+  - rscadd: 'medskill to speccops
+
+      /:cl'
+  coldironwarrior:
+  - rscadd: Any plushies (or gnomes) now help heal cloneloss a little faster while
+      you sleep; share the bed with them and make sure you bring a blanket!
+2024-01-30:
+  Lumipharon:
+  - bugfix: fixed stagger blocking blink drive and jetpack
+  Pariah919:
+  - rscadd: Added new SMG-45, heavy submachinegun for marines.
+2024-01-31:
+  Lumipharon:
+  - balance: Ravager, Hunter and Mantis now have some AP on their melee attacks
+  efzapa:
+  - imageadd: Energy Sword sprite changed.

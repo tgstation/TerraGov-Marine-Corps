@@ -7,6 +7,7 @@
 		/datum/map_template/modular/prison,
 		/datum/map_template/modular/bigred,
 		/datum/map_template/modular/end_of_round,
+		/datum/map_template/interior,
 	)
 
 /datum/unit_test/map_templates/Run()

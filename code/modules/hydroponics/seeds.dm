@@ -3,7 +3,7 @@
 	name = "packet of seeds"
 	icon = 'icons/obj/items/seeds.dmi'
 	icon_state = "seed"
-	flags_atom = NONE
+	atom_flags = NONE
 	w_class = WEIGHT_CLASS_TINY
 
 	var/seed_type
@@ -20,12 +20,17 @@
 	seed = GLOB.seed_types[seed_type]
 	update_appearance()
 
-//Updates strings and icon appropriately based on seed datum.
-/obj/item/seeds/proc/update_appearance()
+/obj/item/seeds/update_appearance()
+	. = ..()
 	icon_state = seed.packet_icon
-	name = "packet of [seed.seed_name] [seed.seed_noun]"
-	desc = "It has a picture of [seed.display_name] on the front."
 
+/obj/item/seeds/update_name(updates)
+	. = ..()
+	name = "packet of [seed.seed_name] [seed.seed_noun]"
+
+/obj/item/seeds/update_desc(updates)
+	. = ..()
+	desc = "It has a picture of [seed.display_name] on the front."
 
 /obj/item/seeds/poppyseed
 	name = "poppy seed"

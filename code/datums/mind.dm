@@ -41,7 +41,10 @@
 
 	/// List of antag datums on this mind
 	var/list/antag_datums
-	var/assigned_role
+	var/datum/job/assigned_role
+
+	///List of learned recipe TYPES.
+	var/list/learned_recipes
 
 /datum/mind/New(key)
 	src.key = key
@@ -53,6 +56,18 @@
 		QDEL_NULL(initial_account)
 	return ..()
 
+/datum/mind/serialize_list(list/options, list/semvers)
+	. = ..()
+
+	.["key"] = key
+	.["name"] = name
+	.["memory"] = memory
+	.["antag_datums"] = antag_datums
+	.["assigned_role"] = assigned_role.title
+	.["current"] = current
+
+	SET_SERIALIZATION_SEMVER(semvers, "1.0.0")
+	return .
 
 /datum/mind/proc/transfer_to(mob/new_character, force_key_move = FALSE)
 	if(current)	// remove ourself from our old body's mind variable

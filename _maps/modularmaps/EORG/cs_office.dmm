@@ -4,8 +4,8 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
-	dir = 8
+/obj/structure/stairs/seamless/edge{
+	dir = 4
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -279,9 +279,7 @@
 	desc = "You can't get in. Heh.";
 	name = "Blocker"
 	},
-/turf/closed/wall/mainship/gray/outer{
-	icon = null
-	},
+/turf/open/floor/plating/ground/snow/layer2,
 /area/deathmatch)
 "hl" = (
 /obj/effect/decal/cleanable/dirt,
@@ -625,6 +623,11 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/deathmatch)
+"pm" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/seamless/edge,
+/turf/open/floor/tile/dark,
+/area/deathmatch)
 "pn" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/tile/dark/blue2{
@@ -814,6 +817,13 @@
 /area/deathmatch)
 "tn" = (
 /turf/open/floor/tile/dark/blue2,
+/area/deathmatch)
+"tp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/seamless/edge{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "tv" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
@@ -1104,6 +1114,13 @@
 /obj/effect/landmark/deathmatch,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark2,
+/area/deathmatch)
+"zD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/stairs/seamless/edge{
+	dir = 1
+	},
+/turf/open/floor/tile/dark,
 /area/deathmatch)
 "zR" = (
 /obj/structure/cargo_container/hd,
@@ -1452,8 +1469,8 @@
 /area/deathmatch)
 "HB" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
-	dir = 4
+/obj/structure/stairs/seamless/edge{
+	dir = 8
 	},
 /turf/open/floor/tile/dark,
 /area/deathmatch)
@@ -1558,11 +1575,6 @@
 	dir = 6
 	},
 /area/deathmatch)
-"KH" = (
-/turf/closed/wall/mainship/gray/outer{
-	icon = null
-	},
-/area/deathmatch)
 "KK" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 10
@@ -1574,7 +1586,7 @@
 /area/deathmatch)
 "Le" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/stairs/edge{
+/obj/structure/stairs/seamless{
 	dir = 8
 	},
 /turf/open/floor/tile/dark,
@@ -1847,9 +1859,7 @@
 /area/deathmatch)
 "Qw" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
-/turf/closed/wall/mainship/gray/outer{
-	icon = null
-	},
+/turf/open/floor/plating,
 /area/deathmatch)
 "QF" = (
 /obj/structure/bed/chair/comfy/black,
@@ -2121,8 +2131,8 @@
 /obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /obj/item/tool/kitchen/rollingpin,
 /obj/item/clothing/head/chefhat,
-/obj/item/clothing/suit/chef/classic,
-/obj/item/clothing/suit/chef,
+/obj/item/clothing/suit/storage/chef/classic,
+/obj/item/clothing/suit/storage/chef,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)
 "Xo" = (
@@ -2250,7 +2260,7 @@
 /turf/open/floor/stairs,
 /area/deathmatch)
 "ZD" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/deathmatch)
 "ZF" = (
 /obj/structure/table,
@@ -2885,7 +2895,7 @@ qe
 qe
 ad
 Le
-Le
+pm
 Xv
 Mr
 Mr
@@ -3365,8 +3375,8 @@ ZD
 ZD
 ZD
 Xv
-Le
-Le
+tp
+pm
 Nm
 YU
 YU
@@ -3421,7 +3431,7 @@ gE
 WK
 Nm
 HB
-HB
+zD
 Nm
 Xv
 "}
@@ -3461,8 +3471,8 @@ ZD
 ZD
 ZD
 Xv
-Le
-Le
+tp
+pm
 If
 Jz
 tl
@@ -3519,7 +3529,7 @@ WK
 WK
 uX
 WK
-KH
+gY
 "}
 (27,1,1) = {"
 Xv
@@ -3567,7 +3577,7 @@ IQ
 uX
 uX
 WK
-KH
+gY
 "}
 (28,1,1) = {"
 Qw
@@ -3615,7 +3625,7 @@ WK
 WK
 WK
 gE
-KH
+gY
 "}
 (29,1,1) = {"
 Qw
@@ -3663,7 +3673,7 @@ uX
 NM
 WK
 ND
-KH
+gY
 "}
 (30,1,1) = {"
 Xv
@@ -3711,7 +3721,7 @@ uX
 WK
 uX
 WK
-KH
+gY
 "}
 (31,1,1) = {"
 Qw
@@ -3759,7 +3769,7 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (32,1,1) = {"
 Qw
@@ -3807,7 +3817,7 @@ WK
 WK
 wn
 WK
-KH
+gY
 "}
 (33,1,1) = {"
 Xv
@@ -3855,7 +3865,7 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (34,1,1) = {"
 Qw
@@ -3903,7 +3913,7 @@ do
 xB
 xB
 xB
-KH
+gY
 "}
 (35,1,1) = {"
 Qw
@@ -3951,7 +3961,7 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (36,1,1) = {"
 Xv
@@ -3999,7 +4009,7 @@ uX
 WK
 WK
 WK
-KH
+gY
 "}
 (37,1,1) = {"
 Xv
@@ -4047,10 +4057,10 @@ WK
 rP
 uX
 WK
-KH
+gY
 "}
 (38,1,1) = {"
-KH
+gY
 RE
 WK
 cc
@@ -4095,10 +4105,10 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (39,1,1) = {"
-KH
+gY
 WK
 WK
 uX
@@ -4143,10 +4153,10 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (40,1,1) = {"
-KH
+gY
 ds
 tI
 uX
@@ -4191,10 +4201,10 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (41,1,1) = {"
-KH
+gY
 kV
 WK
 uX
@@ -4239,10 +4249,10 @@ uX
 WK
 WK
 WK
-KH
+gY
 "}
 (42,1,1) = {"
-KH
+gY
 WK
 Bx
 WK
@@ -4287,10 +4297,10 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (43,1,1) = {"
-KH
+gY
 WK
 WK
 WK
@@ -4335,10 +4345,10 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (44,1,1) = {"
-KH
+gY
 WK
 uX
 WK
@@ -4383,10 +4393,10 @@ uX
 WK
 WK
 WK
-KH
+gY
 "}
 (45,1,1) = {"
-KH
+gY
 WK
 WK
 WK
@@ -4431,20 +4441,20 @@ WK
 WK
 WK
 WK
-KH
+gY
 "}
 (46,1,1) = {"
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
 Xv
 Xv
 Xv
@@ -4462,22 +4472,22 @@ Xv
 Xv
 Xv
 Xv
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
-KH
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
+gY
 "}

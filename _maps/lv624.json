@@ -2,6 +2,9 @@
     "map_name": "LV624",
     "map_path": "map_files/LV624",
     "map_file": "LV624.dmm",
+	"disk_sets": {
+		"basic": 1
+	},
     "armor": "jungle",
 	"quickbuilds": 1400,
 	"announce_text": "A faint distress signal has been picked up by our scanners, which have tracked the source to a third generation colony, known as LV-624. Through use of bluespace drive tech, the ship has jumped within range of the colony. TGMC, gear up and get ready to respond!",

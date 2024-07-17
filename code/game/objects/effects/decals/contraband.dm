@@ -36,6 +36,7 @@
 
 /obj/structure/sign/poster/Initialize(mapload)
 	. = ..()
+	icon = 'icons/obj/contraband.dmi'
 	switch(dir)
 		if(NORTH)
 			pixel_y = 30
@@ -62,6 +63,8 @@
 
 /obj/structure/sign/poster/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(iswirecutter(I))
 		playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 		if(ruined)

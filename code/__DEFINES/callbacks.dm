@@ -28,3 +28,6 @@
 
 ///Set a var to x in y time
 #define VARSET_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), ##datum, NAMEOF(##datum, ##var), ##var_value)
+/// Same as VARSET_CALLBACK, but uses a weakref to the datum.
+/// Use this if the timer is exceptionally long.
+#define VARSET_WEAK_CALLBACK(datum, var, var_value) CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(___callbackvarset), WEAKREF(##datum), NAMEOF(##datum, ##var), ##var_value)

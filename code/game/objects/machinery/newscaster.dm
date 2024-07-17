@@ -10,7 +10,7 @@
 	name = "newspaper"
 	desc = "An issue of The Griffon, the newspaper circulating aboard Nanotrasen Space Stations."
 	icon = 'icons/obj/items/paper.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/books_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/books_right.dmi',
 	)

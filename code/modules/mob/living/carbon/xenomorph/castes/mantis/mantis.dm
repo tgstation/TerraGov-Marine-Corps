@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/mantis
-	caste_base_type = /mob/living/carbon/xenomorph/mantis
+	caste_base_type = /datum/xeno_caste/mantis
 	name = "Mantis"
 	desc = "A red, violent alien with four legs and two deadly scythes. Its eyes hone sharply onto its prey..."
 	icon = 'icons/Xeno/castes/mantis.dmi'

@@ -1,4 +1,5 @@
 #define TRACKING_ID_MARINE_COMMANDER "marine-commander"
+#define TRACKING_ID_SOM_COMMANDER "som-commander"
 
 SUBSYSTEM_DEF(direction)
 	name = "Direction"
@@ -38,6 +39,7 @@ SUBSYSTEM_DEF(direction)
 /datum/controller/subsystem/direction/Initialize()
 	// Static squads/factions can be defined here for tracking
 	init_squad(TRACKING_ID_MARINE_COMMANDER)
+	init_squad(TRACKING_ID_SOM_COMMANDER)
 	for (var/hivenumber in GLOB.hive_datums)
 		var/datum/hive_status/HS = GLOB.hive_datums[hivenumber]
 		init_squad(hivenumber, HS.living_xeno_ruler)

@@ -55,9 +55,11 @@
 	. = ..()
 	if(!.)
 		return
+	ADD_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	ADD_TRAIT(owner, TRAIT_FLOORED, TRAIT_STATUS_EFFECT(id))
 
 /datum/status_effect/incapacitating/knockdown/on_remove()
+	REMOVE_TRAIT(owner, TRAIT_INCAPACITATED, TRAIT_STATUS_EFFECT(id))
 	REMOVE_TRAIT(owner, TRAIT_FLOORED, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
@@ -142,24 +144,24 @@
 	return ..()
 
 /datum/status_effect/incapacitating/sleeping/tick()
-	if(owner.maxHealth)
-		var/health_ratio = owner.health / owner.maxHealth
-		var/healing = BASE_HEAL_RATE //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
-		if((locate(/obj/structure/bed) in owner.loc))
-			healing += (2 * BASE_HEAL_RATE)
-		else if((locate(/obj/structure/table) in owner.loc))
-			healing += BASE_HEAL_RATE
-		for(var/obj/item/bedsheet/bedsheet in range(owner.loc,0))
-			if(bedsheet.loc != owner.loc) //bedsheets in your backpack/neck don't give you comfort
-				continue
-			healing += BASE_HEAL_RATE
-			break //Only count the first bedsheet
-		if(health_ratio > -0.5)
-			owner.adjustBruteLoss(healing)
-			owner.adjustFireLoss(healing)
-			owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
-			owner.adjustStaminaLoss(healing * 100)
-			owner.adjustCloneLoss(healing * health_ratio * 0.8)
+	if(!owner.maxHealth)
+		return
+	var/health_ratio = owner.health / owner.maxHealth
+	var/healing = BASE_HEAL_RATE //set for a base of 0.25 healed per 2-second interval asleep in a bed with covers.
+	if((locate(/obj/structure/bed) in owner.loc))
+		healing += (2 * BASE_HEAL_RATE)
+	else if((locate(/obj/structure/table) in owner.loc))
+		healing += BASE_HEAL_RATE
+	if(locate(/obj/item/bedsheet) in owner.loc)
+		healing += BASE_HEAL_RATE
+		if((locate(/obj/item/toy/plush) in owner.loc)) // plushie bonus in bed with a blanket
+			healing += 0.75 * BASE_HEAL_RATE // plushie bonus in bed with a blanket
+	if(health_ratio > -0.5)
+		owner.adjustBruteLoss(healing)
+		owner.adjustFireLoss(healing)
+		owner.adjustToxLoss(healing * 0.5, TRUE, TRUE)
+		owner.adjustStaminaLoss(healing * 100)
+		owner.adjustCloneLoss(healing * health_ratio * 0.8)
 	if(human_owner?.drunkenness)
 		human_owner.drunkenness *= 0.997 //reduce drunkenness by 0.3% per tick, 6% per 2 seconds
 	if(prob(20))
@@ -389,6 +391,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(HAS_TRAIT(owner, TRAIT_SLOWDOWNIMMUNE))
+		return
 	owner.add_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SLOWDOWN, TRUE, 0, NONE, TRUE, debuff_slowdown)
 
 /datum/status_effect/incapacitating/harvester_slowdown/on_remove()
@@ -422,6 +426,7 @@
 	return ..()
 
 /datum/status_effect/spacefreeze
+	alert_type = /atom/movable/screen/alert/status_effect/spacefreeze
 	id = "spacefreeze"
 
 /datum/status_effect/spacefreeze/on_creation(mob/living/new_owner)
@@ -430,6 +435,14 @@
 
 /datum/status_effect/spacefreeze/tick()
 	owner.adjustFireLoss(40)
+
+/datum/status_effect/spacefreeze/light
+	id = "spacefreeze_light"
+
+/datum/status_effect/spacefreeze/light/tick()
+	if(owner.stat == DEAD)
+		return
+	owner.adjustFireLoss(10)
 
 ///irradiated mob
 /datum/status_effect/incapacitating/irradiated
@@ -534,20 +547,140 @@
 
 /// Resisting the debuff will allow the debuff's owner to remove some stacks from themselves.
 /datum/status_effect/stacking/intoxicated/proc/resist_debuff()
+	if(!debuff_owner)
+		return
 	if(length(debuff_owner.do_actions))
 		return
-	if(!do_after(debuff_owner, 5 SECONDS, TRUE, debuff_owner, BUSY_ICON_GENERIC))
+	if(!do_after(debuff_owner, 5 SECONDS, NONE, debuff_owner, BUSY_ICON_GENERIC))
 		debuff_owner?.balloon_alert(debuff_owner, "Interrupted")
-		return
-	if(!debuff_owner)
 		return
 	playsound(debuff_owner, 'sound/effects/slosh.ogg', 30)
 	debuff_owner.balloon_alert(debuff_owner, "Succeeded")
 	stacks -= SENTINEL_INTOXICATED_RESIST_REDUCTION
 	if(stacks > 0)
 		resist_debuff() // We repeat ourselves as long as the debuff persists.
-		return
 
+
+// ***************************************
+// *********** Melting fire
+// ***************************************
+/datum/status_effect/stacking/melting_fire
+	id = "melting_fire"
+	tick_interval = 2 SECONDS
+	stack_decay = 1
+	stacks = 1
+	max_stacks = 10
+	consumed_on_threshold = FALSE
+	/// Owner of the debuff is limited to carbons.
+	var/mob/living/carbon/debuff_owner
+	/// Used for the fire effect.
+	var/obj/vis_melt_fire/visual_fire
+	/// Xenomorph which created the debuff.
+	var/mob/living/carbon/xenomorph/debuff_creator
+
+/obj/vis_melt_fire
+	name = "ouch ouch ouch"
+	icon = 'icons/mob/OnFire.dmi'
+	layer = ABOVE_MOB_LAYER
+	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
+
+/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply)
+	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD)
+		qdel(src)
+		return
+	. = ..()
+	visual_fire = new
+	visual_fire.icon_state = "melting_low_stacks"
+	debuff_owner = new_owner
+	debuff_owner.vis_contents += visual_fire
+	debuff_owner.balloon_alert(debuff_owner, "Melting fire")
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
+	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
+
+/// on remove has owner set to null
+/datum/status_effect/stacking/melting_fire/on_remove()
+	owner.vis_contents -= visual_fire
+	debuff_owner = null
+	QDEL_NULL(visual_fire)
+	return ..()
+
+/datum/status_effect/stacking/melting_fire/tick()
+	. = ..()
+	if(!debuff_owner)
+		qdel(src)
+		return
+	if(debuff_owner.stat == DEAD || debuff_owner.status_flags & GODMODE)
+		qdel(src)
+		return
+	debuff_owner.take_overall_damage(PYROGEN_DAMAGE_PER_STACK * stacks, BURN, ACID, updating_health = TRUE)
+	if(stacks > 4)
+		visual_fire.icon_state = "melting_high_stacks"
+	else
+		visual_fire.icon_state = "melting_low_stacks"
+	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
+	if(QDELETED(debuff_creator))
+		return
+	debuff_creator.gain_plasma(5, TRUE)
+
+
+/// Called when the debuff's owner uses the Resist action for this debuff.
+/datum/status_effect/stacking/melting_fire/proc/call_resist_debuff()
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(resist_debuff)) // grilled cheese sandwich
+
+/// Resisting the debuff will allow the debuff's owner to remove some stacks from themselves.
+/datum/status_effect/stacking/melting_fire/proc/resist_debuff()
+	if(!debuff_owner)
+		qdel(src)
+		return
+	if(length(debuff_owner.do_actions))
+		return
+	debuff_owner.spin(30, 1.5)
+	add_stacks(-PYROGEN_MELTING_FIRE_STACKS_PER_RESIST)
+	debuff_owner.Paralyze(3 SECONDS)
+	if(stacks > 0)
+		debuff_owner.visible_message(span_danger("[debuff_owner] rolls on the floor, trying to put themselves out!"), \
+		span_notice("You stop, drop, and roll!"), null, 5)
+		return
+	debuff_owner.visible_message(span_danger("[debuff_owner] has successfully extinguished themselves!"), \
+	span_notice("You extinguish yourself."), null, 5)
+	qdel(src)
+
+
+
+// ***************************************
+// *********** dread
+// ***************************************
+/atom/movable/screen/alert/status_effect/dread
+	name = "Dread"
+	desc = "A dreadful presence. You are slowed down until this expires."
+	icon_state = "dread"
+
+/datum/status_effect/dread
+	id = "dread"
+	status_type = STATUS_EFFECT_REPLACE
+	tick_interval = 2 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/dread
+
+/datum/status_effect/dread/on_creation(mob/living/new_owner, set_duration)
+	owner = new_owner
+	duration = set_duration
+	return ..()
+
+/datum/status_effect/dread/tick()
+	. = ..()
+	var/mob/living/living_owner = owner
+	living_owner.do_jitter_animation(250)
+
+/datum/status_effect/dread/on_apply()
+	. = ..()
+	if(!.)
+		return
+	owner.add_movespeed_modifier(MOVESPEED_ID_XENO_DREAD, TRUE, 0, NONE, TRUE, 0.4)
+
+/datum/status_effect/dread/on_remove()
+	owner.remove_movespeed_modifier(MOVESPEED_ID_XENO_DREAD)
+	return ..()
 
 // ***************************************
 // *********** Melting
@@ -774,3 +907,10 @@
 	scale = generator(GEN_VECTOR, list(0.6, 0.6), list(1, 1), NORMAL_RAND)
 	friction = -0.05
 	color = "#818181"
+
+/atom/movable/screen/alert/status_effect/spacefreeze
+	name = "Freezing"
+	desc = "Space is very very cold, who would've thought?"
+	icon_state = "cold3"
+
+

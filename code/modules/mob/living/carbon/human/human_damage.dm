@@ -1,7 +1,9 @@
+#define MAX_BRAINLOSS 200
+
 //Updates the mob's health from limbs and mob damage variables
 /mob/living/carbon/human/updatehealth()
 	if(status_flags & GODMODE)
-		health = species.total_health
+		health = maxHealth
 		set_stat(CONSCIOUS)
 		return
 	var/total_burn = 0
@@ -14,14 +16,14 @@
 	var/tox_l = ((species.species_flags & NO_POISON) ? 0 : getToxLoss())
 	var/clone_l = getCloneLoss()
 
-	health = species.total_health - oxy_l - tox_l - clone_l - total_burn - total_brute
+	health = maxHealth - oxy_l - tox_l - clone_l - total_burn - total_brute
 
 	update_stat()
 	med_pain_set_perceived_health()
 	med_hud_set_health()
 	med_hud_set_status()
 
-	var/health_deficiency = max((maxHealth - health), staminaloss)
+	var/health_deficiency = max(1 - (health / maxHealth) * 100, staminaloss)
 
 	if(health_deficiency >= 50)
 		add_movespeed_modifier(MOVESPEED_ID_DAMAGE_SLOWDOWN, TRUE, 0, NONE, TRUE, health_deficiency / 50)
@@ -38,7 +40,7 @@
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
 			sponge.take_damage(amount, silent)
-			sponge.damage = clamp(sponge.damage, 0, maxHealth*2)
+			sponge.damage = clamp(sponge.damage, 0, MAX_BRAINLOSS)
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -53,7 +55,7 @@
 	if(species?.has_organ["brain"])
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
-			sponge.damage = clamp(amount, 0, maxHealth*2)
+			sponge.damage = clamp(amount, 0, MAX_BRAINLOSS)
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -68,7 +70,7 @@
 	if(species?.has_organ["brain"])
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge) //Make sure they actually have a brain
-			brainloss = min(sponge.damage,maxHealth*2)
+			brainloss = min(sponge.damage, MAX_BRAINLOSS)
 		else
 			brainloss = 200 //No brain!
 	else

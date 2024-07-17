@@ -7,13 +7,13 @@
 	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/containers_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/containers_right.dmi',
 	)
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 8
-	hitsound = "swing_hit"
+	hitsound = SFX_SWING_HIT
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
@@ -132,17 +132,15 @@
 			playsound(src, "sound/machines/fax.ogg", 5)
 			balloon_alert(user, "fabricating")
 			fabricating = TRUE
-			update_overlays()
+			update_appearance()
 			addtimer(CALLBACK(src, PROC_REF(do_vend), L[3], user), 1 SECONDS)
-
-	updateUsrDialog()
 
 /obj/item/portable_vendor/proc/do_vend(thing, mob/user)
 	var/obj/IT = new thing(get_turf(src))
 	if(loc == user)
 		user.put_in_hands(IT)
 	fabricating = FALSE
-	update_overlays()
+	update_appearance()
 
 /obj/item/portable_vendor/update_overlays()
 	. = ..()
@@ -163,7 +161,7 @@
 /obj/item/portable_vendor/Initialize(mapload)
 	. = ..()
 	START_PROCESSING(SSobj, src)
-	update_overlays()
+	update_appearance()
 
 /obj/item/portable_vendor/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -175,7 +173,7 @@
 	T.visible_message(span_warning("[src] shudders as its internal components break apart!"))
 	broken = 1
 	STOP_PROCESSING(SSobj, src)
-	update_overlays()
+	update_appearance()
 
 	playsound(src, 'sound/effects/sparks4.ogg', 60, 1)
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -183,9 +181,10 @@
 	s.start()
 
 /obj/item/portable_vendor/emp_act(severity)
-	if (broken)
+	. = ..()
+	if(broken)
 		return
-	if (prob(40*severity))
+	if(prob(100 - (severity * 20)))
 		malfunction()
 
 /obj/item/portable_vendor/ex_act(severity)

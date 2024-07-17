@@ -1,0 +1,13 @@
+{
+	"exoskeleton":[
+		{
+			"type": "hyperscale",
+			"icon_state": "exoskeleton"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"exoskeleton_no_color",
+			"blend_mode":"overlay"
+		}
+	]
+}

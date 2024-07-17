@@ -9,6 +9,8 @@
 
 /obj/machinery/seed_extractor/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	// Fruits and vegetables.
 	if(istype(I, /obj/item/reagent_containers/food/snacks/grown) || istype(I, /obj/item/grown))
 		if(!user.temporarilyRemoveItemFromInventory(I))

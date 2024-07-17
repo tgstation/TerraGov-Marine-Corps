@@ -16,7 +16,7 @@
  * Doesn't support any event scheduled for more than 100 ticks in the future, as it has no secondary queue by design
  */
 SUBSYSTEM_DEF(automatedfire)
-	name = "Automated fire"
+	name = "Autofire"
 	flags = SS_TICKER | SS_NO_INIT
 	wait = 1
 	priority = FIRE_PRIORITY_AUTOFIRE
@@ -32,7 +32,7 @@ SUBSYSTEM_DEF(automatedfire)
 	/// List of buckets, each bucket holds every shooter that has to shoot this byond tick
 	var/list/bucket_list = list()
 	/// Reference to the next shooter before we clean shooter.next
-	var/var/datum/component/automatedfire/next_shooter
+	var/datum/component/automatedfire/next_shooter
 
 /datum/controller/subsystem/automatedfire/PreInit()
 	bucket_list.len = BUCKET_LEN
@@ -180,7 +180,7 @@ SUBSYSTEM_DEF(automatedfire)
 	SIGNAL_HANDLER
 	var/obj/projectile/newshot = new(loc)
 	newshot.generate_bullet(ammo)
-	newshot.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
+	newshot.fire_at(target, null, src, ammo.max_range, ammo.shell_speed)
 
 /datum/component/automatedfire/xeno_turret_autofire
 	///Delay between two shots

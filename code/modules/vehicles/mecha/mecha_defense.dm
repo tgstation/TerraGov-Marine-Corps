@@ -36,25 +36,27 @@
 		to_chat(occupants, "[icon2html(src, occupants)][span_danger("[gear] is critically damaged!")]")
 		playsound(src, gear.destroy_sound, 50)
 
-/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration)
+/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = TRUE, attack_dir, armour_penetration, mob/living/blame_mob)
 	var/damage_taken = ..()
 	if(damage_taken <= 0 || obj_integrity < 0)
 		return damage_taken
 
+	log_message("Took [damage_taken] points of damage. Damage type: [damage_type]", LOG_MECHA)
+	if(damage_taken < 5)
+		return damage_taken //its only a scratch
 	spark_system.start()
 	try_deal_internal_damage(damage_taken)
-	if(damage_taken >= 5 || prob(33))
-		to_chat(occupants, "[icon2html(src, occupants)][span_userdanger("Taking damage!")]")
-	log_message("Took [damage_taken] points of damage. Damage type: [damage_type]", LOG_MECHA)
+	to_chat(occupants, "[icon2html(src, occupants)][span_userdanger("Taking damage!")]")
 
 	return damage_taken
 
-/obj/vehicle/sealed/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir, armour_penetration)
+/obj/vehicle/sealed/mecha/modify_by_armor(damage_amount, armor_type, penetration, def_zone, attack_dir)
 	. = ..()
-	if(attack_dir)
-		var/facing_modifier = get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
-		if(.)
-			. *= facing_modifier
+	if(!.)
+		return
+	if(!attack_dir)
+		return
+	. *= get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
 
 /obj/vehicle/sealed/mecha/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
@@ -69,20 +71,41 @@
 /obj/vehicle/sealed/mecha/bullet_act(obj/projectile/hitting_projectile, def_zone, piercing_hit) //wrapper
 	log_message("Hit by projectile. Type: [hitting_projectile]([hitting_projectile.ammo.damage_type]).", LOG_MECHA, color="red")
 	// yes we *have* to run the armor calc proc here I love tg projectile code too
-	try_damage_component(run_obj_armor(
-		damage_amount = hitting_projectile.damage,
-		damage_type = hitting_projectile.ammo.damage_type,
-		damage_flag = hitting_projectile.ammo.armor_type,
-		attack_dir = REVERSE_DIR(hitting_projectile.dir),
-		armour_penetration = hitting_projectile.ammo.penetration,
-	), hitting_projectile.def_zone)
+	try_damage_component(
+		modify_by_armor(hitting_projectile.damage, hitting_projectile.ammo.armor_type, hitting_projectile.ammo.penetration, attack_dir = REVERSE_DIR(hitting_projectile.dir)),
+		hitting_projectile.def_zone,
+	)
 	return ..()
 
-/obj/vehicle/sealed/mecha/ex_act(severity, target)
+/obj/vehicle/sealed/mecha/ex_act(severity)
 	log_message("Affected by explosion of severity: [severity].", LOG_MECHA, color="red")
-	return ..()
+	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return
+	if(!(atom_flags & PREVENT_CONTENTS_EXPLOSION))
+		contents_explosion(severity)
+	if(QDELETED(src))
+		return
+	var/stagger_duration
+	switch(severity)
+		if(EXPLODE_DEVASTATE)
+			take_damage(rand(1200, 1800), BRUTE, BOMB, 0)
+			stagger_duration = 7 SECONDS
+		if(EXPLODE_HEAVY)
+			take_damage(rand(400, 600), BRUTE, BOMB, 0)
+			stagger_duration = 5 SECONDS
+		if(EXPLODE_LIGHT)
+			take_damage(rand(150, 300), BRUTE, BOMB, 0)
+			stagger_duration = 2 SECONDS
+		if(EXPLODE_WEAK)
+			take_damage(rand(50, 100), BRUTE, BOMB, 0)
 
-/obj/vehicle/sealed/mecha/contents_explosion(severity, target)
+	if(!stagger_duration)
+		return
+	for(var/mob/living/living_occupant AS in occupants)
+		living_occupant.Stagger(stagger_duration)
+
+/obj/vehicle/sealed/mecha/contents_explosion(severity)
+	. = ..()
 	severity--
 
 	switch(severity)
@@ -108,6 +131,7 @@
 				SSexplosions.weakMovAtom += trackers
 
 /obj/vehicle/sealed/mecha/handle_atom_del(atom/A)
+	. = ..()
 	if(A in occupants) //todo does not work and in wrong file
 		LAZYREMOVE(occupants, A)
 		icon_state = initial(icon_state)+"-open"
@@ -115,18 +139,27 @@
 
 /obj/vehicle/sealed/mecha/emp_act(severity)
 	. = ..()
-	if(get_charge())
-		use_power((cell.charge/3)/(severity*2))
-		take_damage(30 / severity, BURN, ENERGY, 1)
+	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	use_power((cell.maxcharge * 0.2) / (severity))
+	take_damage(400 / severity, BURN, ENERGY)
+
+	for(var/mob/living/living_occupant AS in occupants)
+		living_occupant.Stagger((6 - severity) SECONDS)
+
 	log_message("EMP detected", LOG_MECHA, color="red")
 
+	var/disable_time = (4 - severity) SECONDS
+	if(!disable_time)
+		return
 	if(!equipment_disabled && LAZYLEN(occupants)) //prevent spamming this message with back-to-back EMPs
 		to_chat(occupants, span_warning("Error -- Connection to equipment control unit has been lost."))
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	mecha_flags |= MECHA_EMPED
+	update_appearance(UPDATE_OVERLAYS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/vehicle/sealed/mecha, restore_equipment)), disable_time, TIMER_UNIQUE | TIMER_OVERRIDE)
 	equipment_disabled = TRUE
 	set_mouse_pointer()
 
-/obj/vehicle/sealed/mecha/fire_act() //Check if we should ignite the pilot of an open-canopy mech
+/obj/vehicle/sealed/mecha/fire_act(burn_level) //Check if we should ignite the pilot of an open-canopy mech
 	. = ..()
 	if(enclosed || mecha_flags & SILICON_PILOT)
 		return
@@ -134,6 +167,12 @@
 		if(cookedalive.fire_stacks < 5)
 			cookedalive.adjust_fire_stacks(1)
 			cookedalive.IgniteMob()
+
+/obj/vehicle/sealed/mecha/lava_act()
+	if(resistance_flags & INDESTRUCTIBLE)
+		return FALSE
+	take_damage(80, BURN, FIRE, armour_penetration = 30)
+	return TRUE
 
 /obj/vehicle/sealed/mecha/attackby_alternate(obj/item/weapon, mob/user, params)
 	if(istype(weapon, /obj/item/mecha_parts))
@@ -209,7 +248,7 @@
 	if(!attacking_item.force)
 		return
 
-	var/damage_taken = take_damage(attacking_item.force, attacking_item.damtype, MELEE, 1)
+	var/damage_taken = take_damage(attacking_item.force, attacking_item.damtype, MELEE, attack_dir = get_dir(src, attacking_item), blame_mob = user)
 	try_damage_component(damage_taken, user.zone_selected)
 
 	var/hit_verb = length(attacking_item.attack_verb) ? "[pick(attacking_item.attack_verb)]" : "hit"
@@ -223,7 +262,7 @@
 	log_combat(user, src, "attacked", attacking_item)
 	log_message("Attacked by [user]. Item - [attacking_item], Damage - [damage_taken]", LOG_MECHA)
 
-/obj/vehicle/sealed/mecha/attack_generic(mob/user, damage_amount, damage_type, damage_flag, effects, armor_penetration)
+/obj/vehicle/sealed/mecha/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = 0)
 	. = ..()
 	if(.)
 		try_damage_component(., user.zone_selected)

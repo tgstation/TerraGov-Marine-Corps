@@ -7,7 +7,7 @@
 #define CAN_ATTACH "can_attach"
 #define PIXEL_SHIFT_X "pixel_shift_x"
 #define PIXEL_SHIFT_Y "pixel_shift_y"
-#define FLAGS_ATTACH_FEATURES "flags_attach_features"
+#define FLAGS_ATTACH_FEATURES "attach_features_flags"
 #define ATTACH_DELAY "attach_delay"
 #define DETACH_DELAY "detach_delay"
 #define ATTACH_SKILL "attach_skill"
@@ -19,7 +19,7 @@
 #define MOB_PIXEL_SHIFT_Y "mob_pixel_shift_y"
 #define ATTACHMENT_LAYER "attachment_layer"
 
-//flags_attach_features
+//attach_features_flags
 #define ATTACH_REMOVABLE (1<<0)
 #define ATTACH_ACTIVATION (1<<1)
 #define ATTACH_SAME_ICON (1<<2)
@@ -28,6 +28,7 @@
 #define ATTACH_NO_HANDS (1<<5)
 #define ATTACH_BYPASS_ALLOWED_LIST (1<<6)
 #define ATTACH_DIFFERENT_MOB_ICON_STATE (1<<7)
+#define ATTACH_GREYSCALE_PARENT_COPY (1<<8)
 
 //gun attachment slot defines
 #define ATTACHMENT_SLOT_RAIL "rail"
@@ -60,3 +61,8 @@
 #define ATTACHMENT_SLOT_CAPE "cape"
 #define ATTACHMENT_SLOT_CAPE_HIGHLIGHT "cape_highlight"
 #define ATTACHMENT_SLOT_KAMA "kama"
+
+#define ATTACHMENT_SLOT_KNEE_SECONDARY_COLOR "knee_secondary_color"
+#define ATTACHMENT_SLOT_ARM_SECONDARY_COLOR "arm_secondary_color"
+#define ATTACHMENT_SLOT_CHEST_SECONDARY_COLOR "chest_secondary_color"
+#define ATTACHMENT_SLOT_HELM_SECONDARY_COLOR "helm_secondary_color"

@@ -1,6 +1,17 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Section, LabeledList, Grid, ColorBox } from '../../components';
-import { ToggleFieldPreference, TextFieldPreference, SelectFieldPreference, LoopingSelectionPreference } from './FieldPreferences';
+import {
+  Button,
+  ColorBox,
+  LabeledList,
+  Section,
+  Stack,
+} from '../../components';
+import {
+  LoopingSelectionPreference,
+  SelectFieldPreference,
+  TextFieldPreference,
+  ToggleFieldPreference,
+} from './FieldPreferences';
 
 const ParallaxNumToString = (integer) => {
   let returnval = '';
@@ -26,20 +37,14 @@ const ParallaxNumToString = (integer) => {
   return returnval;
 };
 
-export const GameSettings = (props, context) => {
-  const { act, data } = useBackend<GameSettingData>(context);
-  const {
-    ui_style_color,
-    scaling_method,
-    pixel_size,
-    parallax,
-    quick_equip,
-    is_admin,
-  } = data;
+export const GameSettings = (props) => {
+  const { act, data } = useBackend<GameSettingData>();
+  const { ui_style_color, scaling_method, pixel_size, parallax, is_admin } =
+    data;
   return (
     <Section title="Game Settings">
-      <Grid>
-        <Grid.Column>
+      <Stack fill>
+        <Stack.Item grow>
           <Section title="Window settings">
             <LabeledList>
               <ToggleFieldPreference
@@ -138,10 +143,17 @@ export const GameSettings = (props, context) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Use directional attacks"
+                value="directional_attacks"
+                action="directional_attacks"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
             </LabeledList>
           </Section>
-        </Grid.Column>
-        <Grid.Column>
+        </Stack.Item>
+        <Stack.Item grow>
           <Section title="Message settings">
             <LabeledList>
               <ToggleFieldPreference
@@ -204,10 +216,10 @@ export const GameSettings = (props, context) => {
               />
             </LabeledList>
           </Section>
-        </Grid.Column>
-      </Grid>
-      <Grid>
-        <Grid.Column>
+        </Stack.Item>
+      </Stack>
+      <Stack>
+        <Stack.Item grow>
           <Section title="UI settings">
             <LabeledList>
               <SelectFieldPreference
@@ -252,6 +264,13 @@ export const GameSettings = (props, context) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
+              <ToggleFieldPreference
+                label="Radial laser gun wheel"
+                value="radiallasersgunpref"
+                action="radiallasersgunpref"
+                leftLabel={'Enabled'}
+                rightLabel={'Disabled'}
+              />
               <LoopingSelectionPreference
                 label="Scaling Method"
                 value={scaling_method}
@@ -269,29 +288,11 @@ export const GameSettings = (props, context) => {
               />
             </LabeledList>
           </Section>
-        </Grid.Column>
-        <Grid.Column>
-          <Section title="Keybinding Settings">
-            <LabeledList>
-              {quick_equip.map((equip_slot, index_slot) => (
-                <>
-                  <Box>Quick equip #{index_slot + 1}</Box>
-                  <Button
-                    key={equip_slot}
-                    content={equip_slot}
-                    onClick={() =>
-                      act('change_quick_equip', { selection: index_slot + 1 })
-                    }
-                  />
-                </>
-              ))}
-            </LabeledList>
-          </Section>
-        </Grid.Column>
-      </Grid>
-      {is_admin && (
-        <Grid>
-          <Grid.Column>
+        </Stack.Item>
+      </Stack>
+      {!!is_admin && (
+        <Stack>
+          <Stack.Item grow>
             <Section title="Administration (admin only)">
               <LabeledList>
                 <ToggleFieldPreference
@@ -310,8 +311,8 @@ export const GameSettings = (props, context) => {
                 />
               </LabeledList>
             </Section>
-          </Grid.Column>
-        </Grid>
+          </Stack.Item>
+        </Stack>
       )}
     </Section>
   );

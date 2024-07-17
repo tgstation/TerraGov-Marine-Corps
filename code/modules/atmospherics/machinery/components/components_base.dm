@@ -35,12 +35,13 @@
 
 	var/connected = 0 //Direction bitset
 
-	for(var/i in 1 to device_type) //adds intact pieces
-		if(nodes[i])
-			var/obj/machinery/atmospherics/node = nodes[i]
-			var/image/img = get_pipe_underlay("pipe_intact", get_dir(src, node), node.pipe_color)
-			underlays += img
-			connected |= img.dir
+	if(nodes)
+		for(var/i in 1 to device_type) //adds intact pieces
+			if(nodes[i])
+				var/obj/machinery/atmospherics/node = nodes[i]
+				var/image/img = get_pipe_underlay("pipe_intact", get_dir(src, node), node.pipe_color)
+				underlays += img
+				connected |= img.dir
 
 	for(var/direction in GLOB.cardinals)
 		if((initialize_directions & direction) && !(connected & direction))

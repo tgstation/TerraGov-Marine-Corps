@@ -34,6 +34,9 @@
 /obj/effect/turf_decal/tile/full/brown
 	color = "#443529"
 
+/obj/effect/turf_decal/tile/white
+	icon_state = "whitedecal"
+
 /obj/effect/turf_decal/tile/gray
 	icon_state = "graydecal"
 

@@ -1,11 +1,6 @@
 /// Percentage of tick to leave for master controller to run
 #define MAPTICK_MC_MIN_RESERVE 40
-/// internal_tick_usage is updated every tick by extools
-#ifdef USE_EXTOOLS
-#define MAPTICK_LAST_INTERNAL_TICK_USAGE ((GLOB.internal_tick_usage / world.tick_lag) * 100)
-#else
 #define MAPTICK_LAST_INTERNAL_TICK_USAGE (world.map_cpu)
-#endif
 /// Amount of a tick to reserve for byond if MAPTICK_LAST_INTERNAL_TICK_USAGE is 0 or not working.
 #define TICK_BYOND_RESERVE 2
 /// Tick limit while running normally

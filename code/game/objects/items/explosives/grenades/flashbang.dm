@@ -2,7 +2,7 @@
 	name = "flashbang"
 	desc = "A grenade sometimes used by police, civilian or military, to stun targets with a flash, then a bang. May cause hearing loss, and induce feelings of overwhelming rage in victims."
 	icon_state = "flashbang2"
-	item_state = "flashbang2"
+	worn_icon_state = "flashbang2"
 	hud_state = "flashbang"
 	arm_sound = 'sound/weapons/armbombpin_2.ogg'
 	///This is a cluster weapon, or part of one
@@ -25,7 +25,7 @@
 
 /obj/item/explosive/grenade/flashbang/prime()
 	var/turf/target_turf = get_turf(src)
-	playsound(target_turf, "flashbang", 65)
+	playsound(target_turf, SFX_FLASHBANG, 65)
 	for(var/mob/living/carbon/victim in hearers(max_range, target_turf))
 		if(!HAS_TRAIT(victim, TRAIT_FLASHBANGIMMUNE))
 			bang(target_turf, victim)
@@ -46,6 +46,11 @@
 				ear_safety += 2
 			if(istype(H.head, /obj/item/clothing/head/helmet/riot))
 				ear_safety += 2
+			if(istype(H.head, /obj/item/clothing/head/helmet/marine/veteran/pmc/commando))
+				ear_safety += INFINITY
+				inner_range = null
+				outer_range = null
+				max_range = null
 
 	if(get_dist(M, T) <= inner_range)
 		inner_effect(T, M, ear_safety)
@@ -93,75 +98,12 @@
 		M.apply_effect(8 SECONDS, STUN)
 		M.adjust_ear_damage(rand(0, 1),6)
 
-
-/obj/item/explosive/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
-	desc = "Use of this weapon may constiute a war crime in your area, consult your local captain."
-	name = "clusterbang"
-	icon_state = "clusterbang"
-
-/obj/item/explosive/grenade/flashbang/clusterbang/prime()
-	var/clusters = rand(4,8)
-	var/segments = 0
-	var/randomness = clusters
-	while(randomness-- > 0)
-		if(prob(35))
-			segments++
-			clusters--
-
-	while(clusters-- > 0)
-		new /obj/item/explosive/grenade/flashbang/cluster(loc)//Launches flashbangs
-
-	while(segments-- > 0)
-		new /obj/item/explosive/grenade/flashbang/clusterbang/segment(loc)//Creates a 'segment' that launches a few more flashbangs
-
-	qdel(src)
-
-/obj/item/explosive/grenade/flashbang/clusterbang/segment
-	desc = "A smaller segment of a clusterbang. Better run."
-	name = "clusterbang segment"
-	icon_state = "clusterbang_segment"
-
-/obj/item/explosive/grenade/flashbang/clusterbang/segment/Initialize(mapload) //Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
-	. = ..()
-	playsound(loc, 'sound/weapons/armbomb.ogg', 25, TRUE, 6)
-	icon_state = "clusterbang_segment_active"
-	active = TRUE
-	banglet = TRUE
-	var/stepdist = rand(1,4)//How far to step
-	var/temploc = loc//Saves the current location to know where to step away from
-	walk_away(src,temploc,stepdist)//I must go, my people need me
-	addtimer(CALLBACK(src, PROC_REF(prime)), rand(1.5,6) SECONDS)
-
-/obj/item/explosive/grenade/flashbang/clusterbang/segment/prime()
-	var/clusters = rand(4,8)
-	var/randomness = clusters
-	while(randomness-- > 0)
-		if(prob(35))
-			clusters--
-
-	while(clusters-- > 0)
-		new /obj/item/explosive/grenade/flashbang/cluster(loc)
-
-	qdel(src)
-
-/obj/item/explosive/grenade/flashbang/cluster/Initialize(mapload)//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
-	. = ..()
-	playsound(loc, 'sound/weapons/armbomb.ogg', 25, TRUE, 6)
-	icon_state = "flashbang_active"
-	active = TRUE
-	banglet = TRUE
-	var/stepdist = rand(1,3)
-	var/temploc = loc
-	walk_away(src,temploc,stepdist)
-	addtimer(CALLBACK(src, PROC_REF(prime)), rand(1.5,6) SECONDS)
-
-
 //Slows and staggers instead of hardstunning, balanced for HvH
 /obj/item/explosive/grenade/flashbang/stun
 	name = "stun grenade"
 	desc = "A grenade designed to disorientate the senses of anyone caught in the blast radius with a blinding flash of light and viciously loud noise. Repeated use can cause deafness."
 	icon_state = "flashbang2"
-	item_state = "flashbang2"
+	worn_icon_state = "flashbang2"
 	inner_range = 3
 	det_time = 2 SECONDS
 	mp_only = FALSE

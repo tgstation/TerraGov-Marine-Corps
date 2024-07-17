@@ -20,8 +20,7 @@
 
 /obj/effect/spawner/random/engineering/technology_scanner
 	name = "Random Scanner"
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "atmos"
+	icon_state = "random_scanner"
 	loot = list(
 		/obj/item/t_scanner = 4,
 		/obj/item/radio = 2,
@@ -204,8 +203,8 @@
 	icon_state = "random_glass"
 	spawn_loot_chance = 90
 	loot = list(
-		/obj/item/stack/sheet/glass = 25,
-		/obj/item/stack/sheet/glass/large_stack = 1,
+		/obj/item/stack/sheet/glass/glass = 25,
+		/obj/item/stack/sheet/glass/glass/large_stack = 1,
 	)
 
 /obj/effect/spawner/random/engineering/insulatedgloves

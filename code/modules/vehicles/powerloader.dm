@@ -28,12 +28,12 @@
 		PC.linked_powerloader = src
 	AddElement(/datum/element/ridable, /datum/component/riding/vehicle/powerloader)
 
-/obj/vehicle/ridden/powerloader/Move(newloc, newdir)
-	if(dir == newdir)
+/obj/vehicle/ridden/powerloader/Move(atom/newloc, direction, glide_size_override)
+	if(dir == direction)
 		playsound(src, pick(move_sounds), 40, TRUE)
 		return ..()
 	playsound(src, pick(change_dir_sounds), 40, TRUE)
-	setDir(newdir)
+	setDir(direction)
 	return TRUE
 
 /obj/vehicle/ridden/powerloader/attack_powerloader(mob/living/user, obj/item/powerloader_clamp/attached_clamp)
@@ -46,6 +46,8 @@
 
 /obj/vehicle/ridden/powerloader/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!isscrewdriver(I))
 		return
@@ -66,7 +68,7 @@
 		span_danger("[user] tries to move you out of [src]!")
 		)
 	var/olddir = dir
-	if(!do_after(user, 3 SECONDS, TRUE, src, BUSY_ICON_HOSTILE) || dir != olddir)
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE) || dir != olddir)
 		return TRUE //True to intercept the click. No need for further actions after this.
 	silent = TRUE
 	. = ..()
@@ -139,7 +141,7 @@
 	force = 20
 	// ITEM_ABSTRACT to prevent placing the item on a table/closet.
 	// DELONDROP to prevent giving the clamp to others.
-	flags_item = ITEM_ABSTRACT|DELONDROP
+	item_flags = ITEM_ABSTRACT|DELONDROP
 	var/obj/vehicle/ridden/powerloader/linked_powerloader
 	var/obj/loaded
 
@@ -176,7 +178,8 @@
 
 	return target.attack_powerloader(user, src)
 
-/obj/item/powerloader_clamp/update_icon()
+/obj/item/powerloader_clamp/update_icon_state()
+	. = ..()
 	if(loaded)
 		icon_state = "loader_clamp_full"
 	else

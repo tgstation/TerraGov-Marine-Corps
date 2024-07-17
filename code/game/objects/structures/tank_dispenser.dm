@@ -24,14 +24,18 @@
 	update_icon()
 
 
-/obj/structure/dispenser/update_icon()
-	overlays.Cut()
+/obj/structure/dispenser/update_overlays()
+	. = ..()
 	switch(oxygentanks)
-		if(1 to 3)	overlays += "oxygen-[oxygentanks]"
-		if(4 to INFINITY) overlays += "oxygen-4"
+		if(1 to 3)
+			. += "oxygen-[oxygentanks]"
+		if(4 to INFINITY)
+			. += "oxygen-4"
 	switch(phorontanks)
-		if(1 to 4)	overlays += "phoron-[phorontanks]"
-		if(5 to INFINITY) overlays += "phoron-5"
+		if(1 to 4)
+			. += "phoron-[phorontanks]"
+		if(5 to INFINITY)
+			. += "phoron-5"
 
 /obj/structure/dispenser/interact(mob/user)
 	. = ..()
@@ -39,8 +43,8 @@
 		return
 
 	var/dat
-	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=\ref[src];oxygen=1'>Dispense</A>" : "empty"]<br>"
-	dat += "Phoron tanks: [phorontanks] - [phorontanks ? "<A href='?src=\ref[src];phoron=1'>Dispense</A>" : "empty"]"
+	dat += "Oxygen tanks: [oxygentanks] - [oxygentanks ? "<A href='?src=[text_ref(src)];oxygen=1'>Dispense</A>" : "empty"]<br>"
+	dat += "Phoron tanks: [phorontanks] - [phorontanks ? "<A href='?src=[text_ref(src)];phoron=1'>Dispense</A>" : "empty"]"
 
 	var/datum/browser/popup = new(user, "dispense", "<div align='center'>[src]</div>")
 	popup.set_content(dat)
@@ -49,6 +53,8 @@
 
 /obj/structure/dispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tank/oxygen) || istype(I, /obj/item/tank/air) || istype(I, /obj/item/tank/anesthetic))
 		if(oxygentanks >= 10)

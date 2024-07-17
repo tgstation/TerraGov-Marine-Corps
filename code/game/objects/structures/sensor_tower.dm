@@ -36,9 +36,10 @@
 	update_icon()
 
 /obj/structure/sensor_tower/update_icon_state()
+	. = ..()
 	icon_state = initial(icon_state)
 	if(current_timer || activated)
-		icon_state += "_loyalist"
+		icon_state += "_tgmc"
 
 /obj/structure/sensor_tower/attack_hand(mob/living/user)
 	if(!ishuman(user))
@@ -61,7 +62,7 @@
 		return
 
 	balloon_alert(user, "You begin to stop the activation process!")
-	if(!do_after(user, deactivate_time, TRUE, src))
+	if(!do_after(user, deactivate_time, NONE, src))
 		return
 	if(activated)
 		balloon_alert(user, "This sensor tower is already fully activated, you cannot deactivate it!")
@@ -77,7 +78,7 @@
 	if(!attacker_state_check(user))
 		return
 	balloon_alert_to_viewers("Activating sensor tower...")
-	if(!do_after(user, activate_time, TRUE, src))
+	if(!do_after(user, activate_time, NONE, src))
 		return
 	if(!attacker_state_check(user))
 		return
@@ -124,7 +125,7 @@
 	toggle_game_timer(SENSOR_CAP_ADDITION_TIME_BONUS)
 	update_icon()
 
-	var/datum/game_mode/combat_patrol/sensor_capture/mode = SSticker.mode
+	var/datum/game_mode/hvh/combat_patrol/sensor_capture/mode = SSticker.mode
 	mode.sensors_activated += 1
 
 	playsound(src, 'sound/machines/ping.ogg', 25, 1)
@@ -154,10 +155,10 @@
 
 ///Pauses or restarts the gamemode timer
 /obj/structure/sensor_tower/proc/toggle_game_timer(addition_time)
-	var/datum/game_mode/combat_patrol/sensor_capture/mode = SSticker.mode
+	var/datum/game_mode/hvh/combat_patrol/sensor_capture/mode = SSticker.mode
 
 	if(mode.game_timer == SENSOR_CAP_TIMER_PAUSED)
-		mode.game_timer = addtimer(CALLBACK(mode, TYPE_PROC_REF(/datum/game_mode/combat_patrol, set_game_end)), remaining_game_time + addition_time, TIMER_STOPPABLE)
+		mode.game_timer = addtimer(CALLBACK(mode, TYPE_PROC_REF(/datum/game_mode/hvh/combat_patrol, set_game_end)), remaining_game_time + addition_time, TIMER_STOPPABLE)
 		return
 
 	remaining_game_time = timeleft(mode.game_timer)
@@ -172,6 +173,6 @@
 /obj/structure/sensor_tower/proc/update_control_minimap_icon()
 	SSminimaps.remove_marker(src)
 	if(activated)
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid]_on_full"))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid]_on_full", VERY_HIGH_FLOAT_LAYER))
 	else
-		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid][current_timer ? "_on" : "_off"]"))
+		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "relay_[towerid][current_timer ? "_on" : "_off"]", VERY_HIGH_FLOAT_LAYER))

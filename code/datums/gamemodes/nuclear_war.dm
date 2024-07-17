@@ -1,14 +1,15 @@
 /datum/game_mode/infestation/nuclear_war
 	name = "Nuclear War"
 	config_tag = "Nuclear War"
-	silo_scaling = 2
-	flags_round_type = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD
-	flags_xeno_abilities = ABILITY_NUCLEARWAR
+	silo_scaling = 1.5
+	round_type_flags = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD|MODE_FORCE_CUSTOMSQUAD_UI
+	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	valid_job_types = list(
 		/datum/job/terragov/command/captain = 1,
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/command/staffofficer = 4,
-		/datum/job/terragov/command/pilot = 2,
+		/datum/job/terragov/command/pilot = 1,
+		/datum/job/terragov/command/transportofficer = 1,
 		/datum/job/terragov/engineering/chief = 1,
 		/datum/job/terragov/engineering/tech = 2,
 		/datum/job/terragov/requisitions/officer = 1,
@@ -18,6 +19,8 @@
 		/datum/job/terragov/civilian/liaison = 1,
 		/datum/job/terragov/silicon/synthetic = 1,
 		/datum/job/terragov/command/mech_pilot = 0,
+		/datum/job/terragov/command/assault_crewman = 0,
+		/datum/job/terragov/command/transport_crewman = 1,
 		/datum/job/terragov/silicon/ai = 1,
 		/datum/job/terragov/squad/engineer = 1,
 		/datum/job/terragov/squad/corpsman = 1,
@@ -37,7 +40,8 @@
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	. = ..()
 
-	SSpoints.add_psy_points(XENO_HIVE_NORMAL, 2 * SILO_PRICE + 4 * XENO_TURRET_PRICE)
+	SSpoints.add_strategic_psy_points(XENO_HIVE_NORMAL, 1400)
+	SSpoints.add_tactical_psy_points(XENO_HIVE_NORMAL, 300)
 
 	for(var/obj/effect/landmark/corpsespawner/corpse AS in GLOB.corpse_landmarks_list)
 		corpse.create_mob()

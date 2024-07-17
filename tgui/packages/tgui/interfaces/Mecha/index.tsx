@@ -4,11 +4,11 @@ import { MainData } from './data';
 import { MaintMode } from './MaintMode';
 import { OperatorMode } from './OperatorMode';
 
-export const Mecha = (props, context) => {
-  const { data } = useBackend<MainData>(context);
+export const Mecha = (props) => {
+  const { data } = useBackend<MainData>();
   if (data.isoperator) {
     return (
-      <Window theme={'ntos'}>
+      <Window theme={'ntos'} width={1240} height={670}>
         <Window.Content>
           <OperatorMode />
         </Window.Content>

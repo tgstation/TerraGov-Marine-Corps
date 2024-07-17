@@ -1,16 +1,26 @@
+Go to Valhalla to experiment with loadouts and weapons. You don't reset your respawn time in Valhalla!
+Fire disables pheromones, use this information to your advantage.
+Catch larval facehuggers by having an empty hand and throw mode on.
+Standing in a corner on harm intent stops you from behing shuffled, unless you're a marine and a xenomorph on help intent walks into you.
+Jumping will allow you to throw grenades farther, and over allies. Yeet those grenades to xenomorphs!
+Hunger will slow you down. A single protein bar will fill everyone's stomach. Take an extra protein bar too much and you become slower (ironic) and fat.
+If you are low on blood, eating food can help you replenish blood.
+Roll on snow to instantly extinguish fire.
 Putting an instrument in your armor slot allows you to still be able to play it, charge into battle with song!
 Many maps spawn with free metal, plasteel and other important supplies in key spots. As a marine, remember to grab them and as a xeno, make sure to melt them.
 Trading your life for a Xenomorph's is almost always worth it.
 You do not need to be in harm intent to point blank xenomorphs!
 The mini map (green icon on the top of the screen) helps you know where the frontline is at and where revivable marines are. You can keybind it in game preferences.
 No round has ever been won behind a barricade.
+You can refill the marine jetpack with flamer tanks.
+Jetpacks can fly over most things. Use them to escape your poor decisions of overextending.
 If the main push is stagnating and the area is congested, try to coordinate with a few others and go to a different area.
 When pushing into an area, check the flanks. Especially so in caves and enclosed spaces.
 Resin structures are weaker to melee than they are to bullets. Take out your knives, swords and bayonets!
 Always clear weeds and alien structures as you advance. A resin maze forces marines to engage in CQC against xenomorphs, which decreases your survival rate. That said, this increases your PB chances!
 Always check for traps beneath loose objects on weeds - it could save your FACE!
 As a human, you can do almost anything if you put your mind to it; it just takes time.
-You can link plasteel barricades together using a crowbar. Click one, and then click one adjacent. Repeat as needed.
+Any marine can link plasteel barricades together using a crowbar. Click one, and then click one adjacent. Repeat as needed.
 A lone marine is a dead marine and a happy xeno. Stick together!
 Be mindful when using hand grenades. Getting stunned or knocked over after priming a grenade will drop it at your feet. This is obviously very dangerous for not only you, but your friends as well.
 Watch out for friendly fire and marines not in aim mode. Make sure you're not walking into anyone's firing line, and make sure no one else is in yours!
@@ -33,7 +43,7 @@ Blue weeds and purple sticky resin slow you down. Get rid of them!
 During Self Destruct, green control rods are armed control rods. Each rods take 3 minutes to rise, forcing marines to hold Self Destruct for a total of 20 minutes. Collect all six!
 A fit marine can carry many weapons: in their armor, belt, even hanging from their back.
 Requisitions has many supplies to enhance the combat power of marine units, such as attachments, ammunition, and other toys; ask their crew what's in store and you may be pleasantly surprised. DISCLAIMER: Extra gears' availability is dependent on supply.
-As a marine, you can climb over waist-high obstacles like sandbags, window frames or tables by "SpecialClicking" (Default: CTRL+click) on them or drag-clicking yourself onto them.
+As a marine, you can climb over waist-high obstacles like sandbags, window frames or tables by CTRL+clicking them or drag-clicking yourself onto them.
 You can jump over waist-high obstacles like platforms, tables, and window frames, for a small stamina cost (Default: Spacebar).
 The Terra Experimental laser rifles have a mode selector that can be switched using the Unique Action command (Default: Spacebar). Some modes are better than other modes in specific circumstances.
 You can remove armor pieces (leg pieces, arm pieces and chest pieces) and armor modules (Valkyrie, Baldur, etc.) from the XM-02 Combat Exoskeleton by Alt+clicking the exoskeleton.
@@ -45,10 +55,14 @@ To throw a grenade, Activate (Default: Z) the grenade while in the active hand. 
 Quickly store items to a container (bags, satchels, belts, pouches) by pressing the Quick Equip (Default: E) key while holding an item and having a container open.
 Press Quick Equip (Default: E) while you are not holding an item to the active hand to draw the weapon from whatever preferred slot (Default: Suit Storage, can be customized at the Preferences tab) you selected, otherwise you will pull out any item from a container.
 Stasis bags do not pause xenomorph infection entirely, they only slow progress by a lot.
-Stasis bags prevents the DNR (do not revive) timer from ticking, meaning that if corpsmen have a lot of patients, they can prevent brain death via stasis bags.
+Stasis bags prevents brain death timer from ticking, meaning that if corpsmen have a lot of patients, they can prevent brain death via stasis bags.
 In the Crash gamemode, cooperate as a marine! Work as a squad to capture the disks and to detonate the nuclear bomb.
 In the Crash gamemode, remember that your objective is to secure all three disks, put the disks into the nuclear device and head home while the bomb is active. Xenos will keep on respawning until all of the marines are dead.
 While securing a FOB or securing a disk site, do not wander around outside! You will risk death by xenos who are comfy in sieging down the place.
+Spaceacillin loses effectiveness against severe wound infections. Polyhexanide will pick where it left off at, at the cost of some toxin damage and drowsiness.
+Russian Red and Neuraline injectors share the same healing property as Inaprovaline, however will also heal severe organ damage.
+Wash your hands before surgery, in the field or shipside.
+An entire MRE can fit in your boot.
 As an ERT member, stay with your teammates! Don't cower or seperate from them.
 As a marine, say '*medic' to call out for medical attention. You can keybind this in game preferences.
 As a human, hold and press Alt key (by default) to sprint, you will drain stamina while doing so.
@@ -70,6 +84,7 @@ As a corpsman or engineer, your number one priority is NOT hunting down xenomorp
 As a doctor, the cryotubes are excellent at dealing with basic damage.
 As a doctor, the cryotubes heal internal bleeding and fractures, although slowly.
 As a doctor, surgery time from fastest to slowest is: by hand, Autodoc manual, Autodoc automatic.
+As a doctor, the autodoc drains a lot of energy, this can cause a power outage and prevent medevac beacons from working!
 As a doctor, the white webbing vest fits on your scrubs and can hold surgical tools.
 As a doctor, wear the surgical apron to help prevent infection while doing surgery.
 As a doctor, you've got access to the chemistry machine. Experiment to find the best medications.
@@ -81,12 +96,26 @@ As an engineer, det packs can be set on demolition mode for an explosive trap.
 As an engineer, you build barricades the fastest.
 As an engineer, repair the mining wells. These mining machines will mine phoron or platinum that can be used for requisitions, earning them more points!
 As an engineer, placing turrets on open spaces and without defenses is a poor choice.
-As a corpsman, the medevac stretcher needs to be linked to an active, powered beacon for it to teleport the patient.
+You can use a Terra experimental cell as a discount power cell!
+You can upgrade metal barricades by clicking them with metal!
+Bring at least 1 cell and 1 power control module to fix APCs for disks or intelligence computers.
+The caustic upgrade prevents xenos from spewing acid all over an undefended barricade.
+You can electrify razor wire, just place wire under razor and connect them to an ACTIVE power source like a phoron generator.
+Razor wire can stop a crusher's charge, but it needs to be fully repaired for it to actually stop one.
+ALWAYS keep a 1-tile distance from barricade you're fixing, unless you want to be a dinner for nearby fishing xenomorph.
+If you are sure a barricade will fail and cause a breach, just make barricade behind that one, and move it forward, no need to risk your life in a breach.
+RO lazy? Lack of materials keeps being a pain in the back? Don't worry any longer, there are plenty of chairs and tables around the area of operation which you can deconstruct for metal!
+You can use a handheld cell charger to recharge both batteries and Terra experimental cells.
+As a corpsman, the MEDEVAC stretcher needs to be linked to an active, powered beacon for it to teleport the patient.
+As a corpsman, you can prevent anyone from moving your MEDEVAC beacon by locking it with your ID.
+As a corpsman, if there's no medbay staff, put the MEDEVAC beacon in the hallway right outside the medbay door since  the autodoc will drain medbay's APC of power, therefore preventing you from MEDEVACing your patient.
 As a corpsman, the marines are counting on you to fix them up.
 As a corpsman, scan before you treat and you can't be beat.
+As a corpsman, if you see nanites in your patient's system, DO NOT give them hypervene.
 As a corpsman or doctor, remember that your HUD will tell you how much time is left to defibrillate a patient. From highest to lowest: yellow, orange and red.
 As a corpsman, remember to bring extra kelotane or dermaline to heal burn damage. Xenos love acid and burning marines.
-As a corpsman, hypervene is useful. Use it to purge deadly neurotoxins and larva-boosting growth hormones.
+As a corpsman, hypervene is useful. Use it to purge deadly xenomorph toxins.
+As a corpsman, locate a place that you won't impede traffic, that way you don't get pushed by marines while aiding marines.
 The B18 armor from Requisitions has an built-in medical system. The Valkyrie Automedical Armor System can do the same for other armors.
 The V1 tarp (available from Requisitions) will blend you into the tile you're on once you cover yourself with it.
 The FL-84 flamethrower has an inbuilt fire extinguisher as an attachment.
@@ -99,13 +128,12 @@ You can memorialize fallen marines by using their dogtags on the ship's memorial
 There are water canteens in the vendors. Stay hydrated.
 If a corpsman is tending to you, try and hold still.
 Moving around with broken bones is dangerous. It can cause organ damage, which requires immediate medical attention.
-Jetpacks can fly over most things. Use them to escape your poor decisions.
 You can fit pocket pistols in your boots.
-Ammo is plentiful. Bring a box with you.
+Ammo is infinite, but carrying ammo is finite. Bring a box with you.
 The RO works very hard. Be nice to them.
 While using aim mode, bipods and red-dot-sights allow you to shoot faster.
 Chemrette cigarettes can be very useful.
-Sleeping will slowly heal cloneloss.
+Sleeping will slowly heal cloneloss. To faciliate this, a bed and a blanket will increase healing off cloneloss.
 As a mech-pilot, speed is not very important.
 As a mech-pilot, keep a close eye on your teamates. You lead the front!
 As a mech-pilot, the only weapon that has IFF is the sniper, everything else can friendly-fire marines.
@@ -146,7 +174,7 @@ Medbay may sometimes run out of power. To avoid this, scream at your nearest eng
 Doctor's Delight is one of the few healing chemicals that cannot be overdosed.
 Nanites are often not worth the risks.
 You can fit more than water in a canteen.
-15u from a standard inaprovaline injector will instantly heal 30% of all damage on someone in critical condition. They are in a critical state when they are laying on the ground, look asleep, and are gasping for air!
+15u from a standard inaprovaline injector will instantly heal 30% of all damage on someone in critical condition. Marines in a critical state will be laying on the ground, sleeping, and gasping for air!
 There is a bazaar of weapons and tactics. Don't be afraid to find your niche!
 Always stick to your squad, or at least have a buddy.
 Walking to and from the FOB by yourself is an easy way to die.

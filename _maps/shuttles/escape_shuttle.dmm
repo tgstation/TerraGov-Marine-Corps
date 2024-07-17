@@ -1,4 +1,9 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/machinery/cryopod/evacuation,
+/obj/machinery/light,
+/turf/open/floor/plating/mainship,
+/area/shuttle/escape_pod)
 "c" = (
 /turf/open/space/basic,
 /area/shuttle/escape_pod)
@@ -15,7 +20,7 @@
 /turf/open/shuttle/escapepod/eight,
 /area/shuttle/escape_pod)
 "g" = (
-/obj/machinery/cryopod/evacuation,
+/obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/escapepod/zero,
 /area/shuttle/escape_pod)
 "h" = (
@@ -33,9 +38,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/escape_pod)
 "l" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
 /turf/open/shuttle/escapepod/plain,
 /area/shuttle/escape_pod)
 "m" = (
@@ -45,11 +47,15 @@
 /turf/open/floor/plating/mainship,
 /area/shuttle/escape_pod)
 "n" = (
-/obj/structure/bed/chair/dropship/passenger,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
 /turf/open/shuttle/escapepod/six,
 /area/shuttle/escape_pod)
 "o" = (
-/obj/machinery/cryopod/evacuation,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
 /turf/open/shuttle/escapepod/ten,
 /area/shuttle/escape_pod)
 "q" = (
@@ -57,11 +63,20 @@
 /obj/docking_port/mobile/escape_pod/escape_shuttle,
 /turf/open/floor/plating/mainship,
 /area/shuttle/escape_pod)
+"t" = (
+/obj/machinery/cryopod/evacuation,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/shuttle/escape_pod)
 "R" = (
 /turf/closed/shuttle/escapeshuttle,
 /area/shuttle/escape_pod)
 "T" = (
-/obj/structure/bed/chair/dropship/passenger,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 1
+	},
 /turf/open/shuttle/escapepod/eleven,
 /area/shuttle/escape_pod)
 
@@ -85,11 +100,11 @@ R
 "}
 (3,1,1) = {"
 R
-d
+t
 f
 k
 T
-d
+b
 R
 "}
 (4,1,1) = {"
@@ -112,37 +127,37 @@ R
 "}
 (6,1,1) = {"
 R
-d
+t
 f
 k
 T
-d
+b
 R
 "}
 (7,1,1) = {"
 R
-R
+d
 g
 l
 o
-R
+d
 R
 "}
 (8,1,1) = {"
-c
 R
 h
+d
 m
+d
 R
 R
-c
 "}
 (9,1,1) = {"
 c
-c
 R
 i
+i
+i
 R
-c
 c
 "}

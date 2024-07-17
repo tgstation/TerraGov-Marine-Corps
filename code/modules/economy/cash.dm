@@ -18,6 +18,8 @@
 
 /obj/item/spacecash/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/spacecash) && !istype(I, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/bundle/bundle
@@ -45,8 +47,12 @@
 	desc = "They are worth 0 dollars."
 	worth = 0
 
-/obj/item/spacecash/bundle/update_icon()
-	overlays.Cut()
+/obj/item/spacecash/bundle/update_desc(updates)
+	. = ..()
+	desc = "They are worth [worth] dollars."
+
+/obj/item/spacecash/bundle/update_overlays()
+	. = ..()
 	var/sum = worth
 	var/num = 0
 	for(var/i in list(1000,500,200,100,50,20,10,1))
@@ -58,15 +64,14 @@
 			M.Translate(rand(-6, 6), rand(-4, 8))
 			M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 			banknote.transform = M
-			overlays += banknote
+			. += banknote
 	if(num == 0) // Less than one thaler, let's just make it look like 1 for ease
 		var/image/banknote = image('icons/obj/stack_objects.dmi', "spacecash1")
 		var/matrix/M = matrix()
 		M.Translate(rand(-6, 6), rand(-4, 8))
 		M.Turn(pick(-45, -27.5, 0, 0, 0, 0, 0, 0, 0, 27.5, 45))
 		banknote.transform = M
-		overlays += banknote
-	desc = "They are worth [worth] dollars."
+		. += banknote
 
 /obj/item/spacecash/bundle/attack_self(mob/user)
 	var/oldloc = loc
@@ -76,7 +81,7 @@
 	if(gc_destroyed || loc != oldloc) return
 
 	src.worth -= amount
-	src.update_icon()
+	src.update_appearance()
 	if(!worth)
 		usr.temporarilyRemoveItemFromInventory(src)
 	if(amount in list(1000,500,200,100,50,20,1))
@@ -86,7 +91,7 @@
 	else
 		var/obj/item/spacecash/bundle/bundle = new (usr.loc)
 		bundle.worth = amount
-		bundle.update_icon()
+		bundle.update_appearance()
 		user.put_in_hands(bundle)
 	if(!worth)
 		qdel(src)
@@ -143,7 +148,7 @@
 		return
 	var/obj/item/spacecash/bundle/bundle = new (spawnloc)
 	bundle.worth = sum
-	bundle.update_icon()
+	bundle.update_appearance()
 	if (ishuman(human_user) && !human_user.get_active_held_item())
 		human_user.put_in_hands(bundle)
 

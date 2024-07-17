@@ -27,7 +27,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ax" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)
@@ -59,7 +59,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "bb" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
@@ -231,7 +231,7 @@
 /turf/open/floor/tile/green/whitegreencorner,
 /area/bigredv2/outside/medical)
 "eN" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "eQ" = (
@@ -744,7 +744,7 @@
 /turf/open/floor/tile/darkish,
 /area/bigredv2/outside/medical)
 "pg" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -815,7 +815,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "rs" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
@@ -1351,7 +1351,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Bn" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "BC" = (
@@ -2280,7 +2280,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Vd" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
@@ -2401,7 +2401,7 @@
 	},
 /area/bigredv2/outside/medical)
 "WE" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
 	},
@@ -2416,7 +2416,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "WZ" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},

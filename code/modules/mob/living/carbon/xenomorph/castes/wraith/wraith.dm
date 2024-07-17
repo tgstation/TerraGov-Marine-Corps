@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/wraith
-	caste_base_type = /mob/living/carbon/xenomorph/wraith
+	caste_base_type = /datum/xeno_caste/wraith
 	name = "Wraith"
 	desc = "A strange tendriled alien. The air around it warps and shimmers like a heat mirage."
 	icon = 'icons/Xeno/castes/wraith.dmi'
@@ -11,7 +11,7 @@
 	pixel_x = -16
 	old_x = -16
 	tier = XENO_TIER_TWO
-	upgrade = XENO_UPGRADE_ZERO
+	upgrade = XENO_UPGRADE_NORMAL
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)

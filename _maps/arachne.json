@@ -1,0 +1,6 @@
+{
+    "map_name": "Arachne",
+    "map_path": "map_files/Arachne",
+    "map_file": "TGS_Arachne.dmm",
+    "traits": [{"Marine Main Ship": true}]
+}

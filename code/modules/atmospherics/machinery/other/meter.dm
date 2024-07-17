@@ -56,12 +56,14 @@
 
 /obj/machinery/meter/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(iswrench(I))
 		return wrench_act(user, I)
 
 /obj/machinery/meter/wrench_act(mob/user, obj/item/I)
 	to_chat(user, span_notice("You begin to unfasten \the [src]..."))
-	if(do_after(user, 40, TRUE, src, BUSY_ICON_BUILD))
+	if(do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_BUILD))
 		user.visible_message(
 			"[user] unfastens \the [src].",
 			span_notice("You unfasten \the [src]."),
@@ -70,7 +72,7 @@
 	return TRUE
 
 /obj/machinery/meter/deconstruct(disassembled = TRUE)
-	if(!(flags_atom & NODECONSTRUCT))
+	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/pipe_meter(loc)
 	return ..()
 

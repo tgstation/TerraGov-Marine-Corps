@@ -18,6 +18,7 @@
 
 /mob/living/silicon/Initialize(mapload)
 	. = ..()
+	GLOB.silicon_mobs += src
 	radio = new(src)
 	if(SStts.tts_enabled)
 		voice = pick(SStts.available_speakers)
@@ -25,6 +26,7 @@
 
 /mob/living/silicon/Destroy()
 	QDEL_NULL(radio)
+	GLOB.silicon_mobs -= src
 	return ..()
 
 
@@ -69,10 +71,11 @@
 
 
 /mob/living/silicon/contents_explosion(severity)
-	return
+	return ..()
 
 
 /mob/living/silicon/emp_act(severity)
+	. = ..()
 	switch(severity)
 		if(1)
 			Stun(rand(10 SECONDS, 20 SECONDS))
@@ -84,7 +87,6 @@
 
 	to_chat(src, span_danger("*BZZZT*"))
 	to_chat(src, span_warning("Warning: Electromagnetic pulse detected."))
-	return ..()
 
 /mob/living/silicon/apply_effect(effect = 0, effecttype = STUN, updating_health = FALSE)
 	return FALSE

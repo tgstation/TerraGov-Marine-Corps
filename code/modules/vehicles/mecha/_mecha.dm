@@ -22,9 +22,9 @@
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
 	move_force = MOVE_FORCE_VERY_STRONG
-	move_resist = MOVE_FORCE_OVERPOWERING
+	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
-	flags_atom = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
+	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
 	force = 5
@@ -80,8 +80,6 @@
 	var/internal_tank_valve = ONE_ATMOSPHERE
 	///The internal air tank obj of the mech
 	var/obj/machinery/portable_atmospherics/canister/air/internal_tank
-	///Internal air mix datum
-	var/datum/gas_mixture/cabin_air
 	///The connected air port, if we have one
 	var/obj/machinery/atmospherics/components/unary/portables_connector/connected_port
 
@@ -192,13 +190,15 @@
 	var/ui_y = 600
 	/// ref to screen object that displays in the middle of the UI
 	var/atom/movable/screen/mech_view/ui_view
+	///Current owning faction
+	var/faction
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
 
 /obj/vehicle/sealed/mecha/Initialize(mapload)
 	. = ..()
-	ui_view = new(null, src)
+	ui_view = new(null, null, src)
 	if(enclosed)
 		internal_tank = new (src)
 	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
@@ -268,7 +268,16 @@
 		mech_status_hud.remove_from_hud(src)
 	return ..()
 
-/obj/vehicle/sealed/mecha/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/vehicle/sealed/mecha/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	if(istype(blame_mob) && blame_mob.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
+		if(faction == blame_mob.faction)
+			personal_statistics.mechs_destroyed -- //bruh
+			personal_statistics.mission_mechs_destroyed --
+		else
+			personal_statistics.mechs_destroyed ++
+			personal_statistics.mission_mechs_destroyed ++
+
 	spark_system?.start()
 
 	var/mob/living/silicon/ai/unlucky_ais
@@ -301,6 +310,37 @@
 /obj/vehicle/sealed/mecha/update_icon_state()
 	icon_state = get_mecha_occupancy_state()
 	return ..()
+
+/obj/vehicle/sealed/mecha/update_overlays()
+	. = ..()
+	if(mecha_flags & MECHA_EMPED)
+		. += image('icons/effects/effects.dmi', src, "shieldsparkles")
+
+/obj/vehicle/sealed/mecha/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	for(var/mob/living/future_pancake in loc)
+		if(future_pancake.mob_size > MOB_SIZE_HUMAN)
+			return
+		if(!future_pancake.lying_angle && future_pancake.mob_size == MOB_SIZE_HUMAN)
+			continue
+		run_over(future_pancake)
+
+///Crushing the mob underfoot
+/obj/vehicle/sealed/mecha/proc/run_over(mob/living/crushed)
+	playsound(src, 'sound/effects/splat.ogg', 50, TRUE)
+	add_mob_blood(crushed)
+	var/turf/below_us = get_turf(src)
+	below_us.add_mob_blood(crushed)
+
+	if(crushed.stat == DEAD)
+		return
+	log_combat(src, crushed, "stomped on", addition = "(DAMTYPE: [uppertext(BRUTE)])")
+	crushed.visible_message(
+		span_danger("[src] crushes [crushed]!"),
+		span_userdanger("[src] steps on you!"),
+	)
+	crushed.emote(pick("scream", "pain"))
+	crushed.take_overall_damage(rand(10, 30) * move_delay, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
 
 /**
  * Toggles Weapons Safety
@@ -344,6 +384,7 @@
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/mech_toggle_lights, VEHICLE_CONTROL_SETTINGS)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/mech_view_stats, VEHICLE_CONTROL_SETTINGS)
 	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/strafe, VEHICLE_CONTROL_DRIVE)
+	initialize_controller_action_type(/datum/action/vehicle/sealed/mecha/reload, VEHICLE_CONTROL_EQUIPMENT)
 
 /obj/vehicle/sealed/mecha/proc/get_mecha_occupancy_state()
 	if((mecha_flags & SILICON_PILOT) && silicon_icon_state)
@@ -360,7 +401,9 @@
 	return TRUE
 
 /obj/vehicle/sealed/mecha/proc/restore_equipment()
+	mecha_flags &= ~MECHA_EMPED
 	equipment_disabled = FALSE
+	update_appearance(UPDATE_OVERLAYS)
 	for(var/mob/mob_occupant AS in occupants)
 		SEND_SOUND(mob_occupant, sound('sound/items/timer.ogg', volume=50))
 		to_chat(mob_occupant, span_notice("Equipment control unit has been rebooted successfully."))
@@ -480,12 +523,12 @@
 	if(LAZYACCESS(modifiers, MIDDLE_CLICK))
 		set_safety(user)
 		return COMSIG_MOB_CLICK_CANCELED
+	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
+		return target.mech_shift_click(src, user)
 	if(weapons_safety)
 		return
 	if(isAI(user)) //For AIs: If safeties are off, use mech functions. If safeties are on, use AI functions.
 		. = COMSIG_MOB_CLICK_CANCELED
-	if(modifiers[SHIFT_CLICK]) //Allows things to be examined.
-		return
 	if(!isturf(target) && !isturf(target.loc)) // Prevents inventory from being drilled
 		return
 	if(completely_disabled || is_currently_ejecting || (mecha_flags & CANNOT_INTERACT))
@@ -508,7 +551,7 @@
 	if(internal_damage & MECHA_INT_CONTROL_LOST)
 		target = pick(view(3,target))
 	var/mob/living/livinguser = user
-	if(!(livinguser in return_controllers_with_flag(VEHICLE_CONTROL_EQUIPMENT)))
+	if(!is_equipment_controller(user))
 		balloon_alert(user, "wrong seat for equipment!")
 		return
 	var/obj/item/mecha_parts/mecha_equipment/selected
@@ -557,8 +600,8 @@
 ///Displays a special speech bubble when someone inside the mecha speaks
 /obj/vehicle/sealed/mecha/proc/display_speech_bubble(datum/source, list/speech_args)
 	SIGNAL_HANDLER
-	var/list/speech_bubble_recipients = get_hearers_in_view(7,src)
-	for(var/mob/M in speech_bubble_recipients)
+	var/list/speech_bubble_recipients = list()
+	for(var/mob/M in get_hearers_in_view(7,src))
 		if(M.client)
 			speech_bubble_recipients.Add(M.client)
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)

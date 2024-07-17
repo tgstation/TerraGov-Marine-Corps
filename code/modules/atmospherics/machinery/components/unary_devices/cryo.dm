@@ -3,14 +3,17 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell
 	name = "cryo cell"
 	icon = 'icons/obj/machines/cryogenics2.dmi'
-	icon_state = "cell-off"
+	icon_state = "cell_mapper"
 	density = TRUE
 	max_integrity = 350
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 100, BOMB = 0, BIO = 100, FIRE = 30, ACID = 30)
-	layer = ABOVE_WINDOW_LAYER
+	layer = ABOVE_MOB_LAYER
 	pipe_flags = PIPING_ONE_PER_TURF|PIPING_DEFAULT_LAYER_ONLY
 	interaction_flags = INTERACT_MACHINE_TGUI
 	can_see_pipes = FALSE
+	light_range = 2
+	light_power = 0.5
+	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 
 	var/autoeject = FALSE
 	var/release_notice = FALSE
@@ -42,6 +45,7 @@
 	initialize_directions = dir
 	beaker = new /obj/item/reagent_containers/glass/beaker/cryomix
 	radio = new(src)
+	update_icon()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/process_occupant()
 	if(!occupant)
@@ -59,7 +63,7 @@
 		occupant.adjustOxyLoss(-1)
 	if (occupant.getToxLoss())
 		occupant.adjustToxLoss(-1)
-	occupant.heal_limb_damage(1, 1, updating_health = TRUE)
+	occupant.heal_overall_damage(1, 1, updating_health = TRUE)
 	var/has_cryo = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/cryoxadone) >= 1
 	var/has_clonexa = occupant.reagents.get_reagent_amount(/datum/reagent/medicine/clonexadone) >= 1
 	var/has_cryo_medicine = has_cryo || has_clonexa
@@ -107,16 +111,28 @@
 	. = ..()
 	if(A == beaker)
 		beaker = null
-		updateUsrDialog()
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_icon()
+	. = ..()
+	if(!on)
+		set_light(0)
+	else
+		set_light(initial(light_range))
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/update_icon_state()
+	. = ..()
 	if(!on)
-		icon_state = "cell-off"
-		return
+		icon_state = "cell_off"
+	else
+		icon_state = "cell_on"
 	if(occupant)
-		icon_state = "cell-occupied"
+		icon_state += "_occupied"
+
+/obj/machinery/atmospherics/components/unary/cryo_cell/update_overlays()
+	. = ..()
+	if(!on)
 		return
-	icon_state = "cell-on"
+	. += emissive_appearance(icon, "cell_emissive", alpha = src.alpha)
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/run_anim(anim_up, image/occupant_overlay)
 	if(!on || !occupant || !is_operational())
@@ -140,7 +156,7 @@
 		occupant.client.eye = occupant.client.mob
 		occupant.client.perspective = MOB_PERSPECTIVE
 	if(occupant in contents)
-		occupant.forceMove(get_step(loc, SOUTH))	//this doesn't account for walls or anything, but i don't forsee that being a problem.
+		occupant.forceMove(get_step(loc, dir))
 	if (occupant.bodytemperature < 261 && occupant.bodytemperature >= 70) //Patch by Aranclanos to stop people from taking burn damage after being ejected
 		occupant.bodytemperature = 261									  // Changed to 70 from 140 by Zuhayr due to reoccurance of bug.
 	if(auto_eject) //Turn off and announce if auto-ejected because patient is recovered or dead.
@@ -151,6 +167,7 @@
 			if(dead)
 				reason = "<b>Reason for release:</b> Patient death."
 			radio.talk_into(src, "Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]", RADIO_CHANNEL_MEDICAL)
+	occupant.record_time_in_cryo()
 	occupant = null
 	update_icon()
 
@@ -163,11 +180,9 @@
 	..()
 	if(machine_stat & (NOPOWER|BROKEN))
 		turn_off()
-		updateUsrDialog()
 		return
 
 	if(!on)
-		updateUsrDialog()
 		stop_processing()
 		return
 
@@ -183,7 +198,6 @@
 			turn_off()
 			idle_ticks_until_shutdown = 60 //reset idle ticks
 
-	updateUsrDialog()
 	return TRUE
 
 
@@ -209,6 +223,8 @@
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers/glass))
 
@@ -242,9 +258,12 @@
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 
-	if(!istype(I, /obj/item/grab))
+/obj/machinery/atmospherics/components/unary/cryo_cell/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	. = ..()
+	if(.)
 		return
-
+	if(isxeno(user))
+		return
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, span_notice("\ [src] is non-functional!"))
 		return
@@ -253,35 +272,31 @@
 		to_chat(user, span_notice("\ [src] is already occupied!"))
 		return
 
-	var/obj/item/grab/G = I
-	var/mob/M
+	var/mob/grabbed_mob
 
-	if(ismob(G.grabbed_thing))
-		M = G.grabbed_thing
+	if(ismob(grab.grabbed_thing))
+		grabbed_mob = grab.grabbed_thing
 
-	else if(istype(G.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
-		var/obj/structure/closet/bodybag/cryobag/C = G.grabbed_thing
-		if(!C.bodybag_occupant)
+	else if(istype(grab.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/cryobag = grab.grabbed_thing
+		if(!cryobag.bodybag_occupant)
 			to_chat(user, span_warning("The stasis bag is empty!"))
 			return
-		M = C.bodybag_occupant
-		C.open()
-		user.start_pulling(M)
+		grabbed_mob = cryobag.bodybag_occupant
+		cryobag.open()
+		user.start_pulling(grabbed_mob)
 
-	if(!M)
-		return
-
-	if(!ishuman(M))
+	if(!ishuman(grabbed_mob))
 		to_chat(user, span_notice("\ [src] is compatible with humanoid anatomies only!"))
 		return
 
-	if(M.abiotic())
+	if(grabbed_mob.abiotic())
 		to_chat(user, span_warning("Subject cannot have abiotic items on."))
 		return
 
-	put_mob(M, TRUE)
+	put_mob(grabbed_mob, TRUE)
 
-	updateUsrDialog()
+	return TRUE
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob, put_in = null)
 	if (machine_stat & (NOPOWER|BROKEN))
@@ -304,6 +319,7 @@
 	if(M.health > -100 && (M.health < 0 || M.IsSleeping()))
 		to_chat(M, span_boldnotice("You feel a cold liquid surround you. Your skin starts to freeze up."))
 	occupant = M
+	occupant.time_entered_cryo = world.time
 	update_icon()
 	return TRUE
 
@@ -416,7 +432,6 @@
 		if("notice")
 			release_notice = !release_notice
 			. = TRUE
-	updateUsrDialog()
 
 /obj/machinery/atmospherics/components/unary/cryo_cell/proc/turn_on()
 	if (machine_stat & (NOPOWER|BROKEN))
@@ -429,15 +444,15 @@
 /obj/machinery/atmospherics/components/unary/cryo_cell/can_crawl_through()
 	return // can't ventcrawl in or out of cryo.
 
-/obj/machinery/atmospherics/components/unary/cryo_cell/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/machinery/atmospherics/components/unary/cryo_cell/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
-		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(X.status_flags & INCORPOREAL || X.do_actions)
+	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(!do_after(X, 2 SECONDS))
+	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	go_out()

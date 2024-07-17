@@ -4,14 +4,15 @@
 
 /obj/item/chameleon
 	name = "chameleon-projector"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "shield0"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
-	item_icons = list(
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/engineering_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/engineering_right.dmi',
 	)
-	item_state = "electronic"
+	worn_icon_state = "electronic"
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 5
@@ -31,6 +32,7 @@
 	return ..()
 
 /obj/item/chameleon/dropped(mob/user)
+	. = ..()
 	disrupt(user)
 
 /obj/item/chameleon/equipped(mob/user, slot)

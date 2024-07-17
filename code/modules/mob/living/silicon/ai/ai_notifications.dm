@@ -23,7 +23,7 @@
 	alertnotification.add_overlay(alert_overlay)
 
 ///Receive notifications about OB laser dots that have been deployed
-/mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/OB/incoming_laser)
+/mob/living/silicon/ai/proc/receive_laser_ob(datum/source, obj/effect/overlay/temp/laser_target/ob/incoming_laser)
 	SIGNAL_HANDLER
 	to_chat(src, span_notice("Orbital Bombardment laser detected. Target: [AREACOORD_NO_Z(incoming_laser)]"))
 	notify_ai(src, "<b> An Orbital Bombardment laser</b> has been detected at [AREACOORD_NO_Z(incoming_laser)]!", ai_sound = 'sound/effects/obalarm.ogg', source = incoming_laser, action = NOTIFY_AI_ALERT, notify_volume = 15)
@@ -80,4 +80,4 @@
 	SIGNAL_HANDLER
 	var/area/A = get_area(callingholopad)
 	to_chat(src, span_notice("Your presence is requested at [A]!"))
-	notify_ai(src, "<b> Your presence is requested at [A]! </b>", source = callingholopad, action = NOTIFY_AI_ALERT, notify_volume = 15)
+	notify_ai(src, "<b> Your presence is requested at [A]! </b>", source = callingholopad, action = NOTIFY_AI_ALERT, notify_volume = 35)

@@ -1,5 +1,7 @@
 /obj/machinery/computer/general_air_control
-	icon_state = "tank"
+	icon_state = "computer"
+	screen_overlay = "tank"
+	broken_icon = "computer_blue_broken"
 	var/frequency = 1439
 	var/list/sensors = list()
 
@@ -84,9 +86,6 @@
 
 
 /obj/machinery/computer/general_air_control/large_tank_control
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "tank"
-
 	frequency = 1441
 	var/input_tag
 	var/output_tag
@@ -108,27 +107,27 @@
 	if(input_info)
 		var/power = (input_info["power"])
 		var/volume_rate = round(input_info["volume_rate"], 0.1)
-		output += "<B>Input</B>: [power?("Injecting"):("On Hold")] <A href='?src=\ref[src];in_refresh_status=1'>Refresh</A><BR>Flow Rate Limit: [volume_rate] L/s<BR>"
-		output += "Command: <A href='?src=\ref[src];in_toggle_injector=1'>Toggle Power</A> <A href='?src=\ref[src];in_set_flowrate=1'>Set Flow Rate</A><BR>"
+		output += "<B>Input</B>: [power?("Injecting"):("On Hold")] <A href='?src=[text_ref(src)];in_refresh_status=1'>Refresh</A><BR>Flow Rate Limit: [volume_rate] L/s<BR>"
+		output += "Command: <A href='?src=[text_ref(src)];in_toggle_injector=1'>Toggle Power</A> <A href='?src=[text_ref(src)];in_set_flowrate=1'>Set Flow Rate</A><BR>"
 
 	else
-		output += "<FONT color='red'>ERROR: Can not find input port</FONT> <A href='?src=\ref[src];in_refresh_status=1'>Search</A><BR>"
+		output += "<FONT color='red'>ERROR: Can not find input port</FONT> <A href='?src=[text_ref(src)];in_refresh_status=1'>Search</A><BR>"
 
-	output += "Flow Rate Limit: <A href='?src=\ref[src];adj_input_flow_rate=-100'>-</A> <A href='?src=\ref[src];adj_input_flow_rate=-10'>-</A> <A href='?src=\ref[src];adj_input_flow_rate=-1'>-</A> <A href='?src=\ref[src];adj_input_flow_rate=-0.1'>-</A> [round(input_flow_setting, 0.1)] L/s <A href='?src=\ref[src];adj_input_flow_rate=0.1'>+</A> <A href='?src=\ref[src];adj_input_flow_rate=1'>+</A> <A href='?src=\ref[src];adj_input_flow_rate=10'>+</A> <A href='?src=\ref[src];adj_input_flow_rate=100'>+</A><BR>"
+	output += "Flow Rate Limit: <A href='?src=[text_ref(src)];adj_input_flow_rate=-100'>-</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=-10'>-</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=-1'>-</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=-0.1'>-</A> [round(input_flow_setting, 0.1)] L/s <A href='?src=[text_ref(src)];adj_input_flow_rate=0.1'>+</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=1'>+</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=10'>+</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=100'>+</A><BR>"
 
 	output += "<BR>"
 
 	if(output_info)
 		var/power = (output_info["power"])
 		var/output_pressure = output_info["internal"]
-		output += {"<B>Output</B>: [power?("Open"):("On Hold")] <A href='?src=\ref[src];out_refresh_status=1'>Refresh</A><BR>
+		output += {"<B>Output</B>: [power?("Open"):("On Hold")] <A href='?src=[text_ref(src)];out_refresh_status=1'>Refresh</A><BR>
 Max Output Pressure: [output_pressure] kPa<BR>"}
-		output += "Command: <A href='?src=\ref[src];out_toggle_power=1'>Toggle Power</A> <A href='?src=\ref[src];out_set_pressure=1'>Set Pressure</A><BR>"
+		output += "Command: <A href='?src=[text_ref(src)];out_toggle_power=1'>Toggle Power</A> <A href='?src=[text_ref(src)];out_set_pressure=1'>Set Pressure</A><BR>"
 
 	else
-		output += "<FONT color='red'>ERROR: Can not find output port</FONT> <A href='?src=\ref[src];out_refresh_status=1'>Search</A><BR>"
+		output += "<FONT color='red'>ERROR: Can not find output port</FONT> <A href='?src=[text_ref(src)];out_refresh_status=1'>Search</A><BR>"
 
-	output += "Max Output Pressure Set: <A href='?src=\ref[src];adj_pressure=-1000'>-</A> <A href='?src=\ref[src];adj_pressure=-100'>-</A> <A href='?src=\ref[src];adj_pressure=-10'>-</A> <A href='?src=\ref[src];adj_pressure=-1'>-</A> [pressure_setting] kPa <A href='?src=\ref[src];adj_pressure=1'>+</A> <A href='?src=\ref[src];adj_pressure=10'>+</A> <A href='?src=\ref[src];adj_pressure=100'>+</A> <A href='?src=\ref[src];adj_pressure=1000'>+</A><BR>"
+	output += "Max Output Pressure Set: <A href='?src=[text_ref(src)];adj_pressure=-1000'>-</A> <A href='?src=[text_ref(src)];adj_pressure=-100'>-</A> <A href='?src=[text_ref(src)];adj_pressure=-10'>-</A> <A href='?src=[text_ref(src)];adj_pressure=-1'>-</A> [pressure_setting] kPa <A href='?src=[text_ref(src)];adj_pressure=1'>+</A> <A href='?src=[text_ref(src)];adj_pressure=10'>+</A> <A href='?src=[text_ref(src)];adj_pressure=100'>+</A> <A href='?src=[text_ref(src)];adj_pressure=1000'>+</A><BR>"
 
 	return output
 
@@ -197,9 +196,6 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 	addtimer(CALLBACK(src, PROC_REF(updateUsrDialog)), 5)
 
 /obj/machinery/computer/general_air_control/supermatter_core
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "tank"
-
 	frequency = 1438
 	var/input_tag
 	var/output_tag
@@ -221,27 +217,27 @@ Max Output Pressure: [output_pressure] kPa<BR>"}
 	if(input_info)
 		var/power = (input_info["power"])
 		var/volume_rate = round(input_info["volume_rate"], 0.1)
-		output += "<B>Coolant Input</B>: [power?("Injecting"):("On Hold")] <A href='?src=\ref[src];in_refresh_status=1'>Refresh</A><BR>Flow Rate Limit: [volume_rate] L/s<BR>"
-		output += "Command: <A href='?src=\ref[src];in_toggle_injector=1'>Toggle Power</A> <A href='?src=\ref[src];in_set_flowrate=1'>Set Flow Rate</A><BR>"
+		output += "<B>Coolant Input</B>: [power?("Injecting"):("On Hold")] <A href='?src=[text_ref(src)];in_refresh_status=1'>Refresh</A><BR>Flow Rate Limit: [volume_rate] L/s<BR>"
+		output += "Command: <A href='?src=[text_ref(src)];in_toggle_injector=1'>Toggle Power</A> <A href='?src=[text_ref(src)];in_set_flowrate=1'>Set Flow Rate</A><BR>"
 
 	else
-		output += "<FONT color='red'>ERROR: Can not find input port</FONT> <A href='?src=\ref[src];in_refresh_status=1'>Search</A><BR>"
+		output += "<FONT color='red'>ERROR: Can not find input port</FONT> <A href='?src=[text_ref(src)];in_refresh_status=1'>Search</A><BR>"
 
-	output += "Flow Rate Limit: <A href='?src=\ref[src];adj_input_flow_rate=-100'>-</A> <A href='?src=\ref[src];adj_input_flow_rate=-10'>-</A> <A href='?src=\ref[src];adj_input_flow_rate=-1'>-</A> <A href='?src=\ref[src];adj_input_flow_rate=-0.1'>-</A> [round(input_flow_setting, 0.1)] L/s <A href='?src=\ref[src];adj_input_flow_rate=0.1'>+</A> <A href='?src=\ref[src];adj_input_flow_rate=1'>+</A> <A href='?src=\ref[src];adj_input_flow_rate=10'>+</A> <A href='?src=\ref[src];adj_input_flow_rate=100'>+</A><BR>"
+	output += "Flow Rate Limit: <A href='?src=[text_ref(src)];adj_input_flow_rate=-100'>-</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=-10'>-</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=-1'>-</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=-0.1'>-</A> [round(input_flow_setting, 0.1)] L/s <A href='?src=[text_ref(src)];adj_input_flow_rate=0.1'>+</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=1'>+</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=10'>+</A> <A href='?src=[text_ref(src)];adj_input_flow_rate=100'>+</A><BR>"
 
 	output += "<BR>"
 
 	if(output_info)
 		var/power = (output_info["power"])
 		var/pressure_limit = output_info["external"]
-		output += {"<B>Core Outpump</B>: [power?("Open"):("On Hold")] <A href='?src=\ref[src];out_refresh_status=1'>Refresh</A><BR>
+		output += {"<B>Core Outpump</B>: [power?("Open"):("On Hold")] <A href='?src=[text_ref(src)];out_refresh_status=1'>Refresh</A><BR>
 Min Core Pressure: [pressure_limit] kPa<BR>"}
-		output += "Command: <A href='?src=\ref[src];out_toggle_power=1'>Toggle Power</A> <A href='?src=\ref[src];out_set_pressure=1'>Set Pressure</A><BR>"
+		output += "Command: <A href='?src=[text_ref(src)];out_toggle_power=1'>Toggle Power</A> <A href='?src=[text_ref(src)];out_set_pressure=1'>Set Pressure</A><BR>"
 
 	else
-		output += "<FONT color='red'>ERROR: Can not find output port</FONT> <A href='?src=\ref[src];out_refresh_status=1'>Search</A><BR>"
+		output += "<FONT color='red'>ERROR: Can not find output port</FONT> <A href='?src=[text_ref(src)];out_refresh_status=1'>Search</A><BR>"
 
-	output += "Min Core Pressure Set: <A href='?src=\ref[src];adj_pressure=-100'>-</A> <A href='?src=\ref[src];adj_pressure=-50'>-</A> <A href='?src=\ref[src];adj_pressure=-10'>-</A> <A href='?src=\ref[src];adj_pressure=-1'>-</A> [pressure_setting] kPa <A href='?src=\ref[src];adj_pressure=1'>+</A> <A href='?src=\ref[src];adj_pressure=10'>+</A> <A href='?src=\ref[src];adj_pressure=50'>+</A> <A href='?src=\ref[src];adj_pressure=100'>+</A><BR>"
+	output += "Min Core Pressure Set: <A href='?src=[text_ref(src)];adj_pressure=-100'>-</A> <A href='?src=[text_ref(src)];adj_pressure=-50'>-</A> <A href='?src=[text_ref(src)];adj_pressure=-10'>-</A> <A href='?src=[text_ref(src)];adj_pressure=-1'>-</A> [pressure_setting] kPa <A href='?src=[text_ref(src)];adj_pressure=1'>+</A> <A href='?src=[text_ref(src)];adj_pressure=10'>+</A> <A href='?src=[text_ref(src)];adj_pressure=50'>+</A> <A href='?src=[text_ref(src)];adj_pressure=100'>+</A><BR>"
 
 	return output
 
@@ -311,7 +307,8 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 
 /obj/machinery/computer/general_air_control/fuel_injection
 	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "atmos"
+	icon_state = "computer_small"
+	screen_overlay = "atmos"
 
 	var/device_tag
 	var/list/device_info
@@ -358,18 +355,18 @@ Min Core Pressure: [pressure_limit] kPa<BR>"}
 	if(device_info)
 		var/power = device_info["power"]
 		var/volume_rate = device_info["volume_rate"]
-		output += {"Status: [power?("Injecting"):("On Hold")] <A href='?src=\ref[src];refresh_status=1'>Refresh</A><BR>
+		output += {"Status: [power?("Injecting"):("On Hold")] <A href='?src=[text_ref(src)];refresh_status=1'>Refresh</A><BR>
 Rate: [volume_rate] L/sec<BR>"}
 
 		if(automation)
-			output += "Automated Fuel Injection: <A href='?src=\ref[src];toggle_automation=1'>Engaged</A><BR>"
+			output += "Automated Fuel Injection: <A href='?src=[text_ref(src)];toggle_automation=1'>Engaged</A><BR>"
 			output += "Injector Controls Locked Out<BR>"
 		else
-			output += "Automated Fuel Injection: <A href='?src=\ref[src];toggle_automation=1'>Disengaged</A><BR>"
-			output += "Injector: <A href='?src=\ref[src];toggle_injector=1'>Toggle Power</A> <A href='?src=\ref[src];injection=1'>Inject (1 Cycle)</A><BR>"
+			output += "Automated Fuel Injection: <A href='?src=[text_ref(src)];toggle_automation=1'>Disengaged</A><BR>"
+			output += "Injector: <A href='?src=[text_ref(src)];toggle_injector=1'>Toggle Power</A> <A href='?src=[text_ref(src)];injection=1'>Inject (1 Cycle)</A><BR>"
 
 	else
-		output += "<FONT color='red'>ERROR: Can not find device</FONT> <A href='?src=\ref[src];refresh_status=1'>Search</A><BR>"
+		output += "<FONT color='red'>ERROR: Can not find device</FONT> <A href='?src=[text_ref(src)];refresh_status=1'>Search</A><BR>"
 
 	return output
 

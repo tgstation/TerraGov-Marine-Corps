@@ -28,7 +28,7 @@
 	var/constrdir = REVERSE_DIR(user.dir)
 	var/constrloc = user.loc
 
-	if(!do_after(user, 30, TRUE, wall, BUSY_ICON_BUILD))
+	if(!do_after(user, 30, NONE, wall, BUSY_ICON_BUILD))
 		return
 
 	new /obj/structure/camera_assembly(constrloc, constrdir)
@@ -81,6 +81,8 @@
 
 /obj/structure/camera_assembly/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
+	if(.)
+		return
 
 	switch(state)
 		if(STATE_WRENCHED)
@@ -173,7 +175,7 @@
 
 
 /obj/structure/camera_assembly/deconstruct(disassembled = TRUE)
-	if(!(flags_atom & NODECONSTRUCT))
+	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/stack/sheet/metal(loc)
 	return ..()
 

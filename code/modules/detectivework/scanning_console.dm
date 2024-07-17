@@ -1,6 +1,8 @@
 /obj/machinery/computer/forensic_scanning
 	name = "high-res forensic scanning computer"
-	icon_state = "forensic"
+	icon_state = "computer"
+	screen_overlay = "forensic"
+	broken_icon = "computer_red_broken"
 
 	var/screen = "database"
 	var/authenticated = 0
@@ -131,15 +133,15 @@
 
 	var/dat
 	if(!authenticated)
-		dat += "<a href='?src=\ref[src];operation=login'>{Log In}</a>"
+		dat += "<a href='?src=[text_ref(src)];operation=login'>{Log In}</a>"
 	else
-		dat += "<a href='?src=\ref[src];operation=logout'>{Log Out}</a>"
+		dat += "<a href='?src=[text_ref(src)];operation=logout'>{Log Out}</a>"
 		dat += "|"
-		dat += "<a href='?src=\ref[src];operation=screen;screen=database'>Database</a>"
+		dat += "<a href='?src=[text_ref(src)];operation=screen;screen=database'>Database</a>"
 		dat += "|"
-		dat += "<a href='?src=\ref[src];operation=screen;screen=details'>Record details</a>"
+		dat += "<a href='?src=[text_ref(src)];operation=screen;screen=details'>Record details</a>"
 		dat += "|"
-		dat += "<a href='?src=\ref[src];operation=screen;screen=scan'>Scanning</a>"
+		dat += "<a href='?src=[text_ref(src)];operation=screen;screen=scan'>Scanning</a>"
 		dat +="<br><hr><br>"
 		switch(screen)
 			if("database")	//Database screen
@@ -147,7 +149,7 @@
 				var/list/filternames = list("Object"="name", "Area"="area", "Fingerprints"="fprints", "Fibers"="fibers", "DNA"="blood", "Label"="label")
 				for(var/filter in filternames)
 					var/fname = filternames[filter]
-					dat += "<br>[filter]: <a href='?src=\ref[src];operation=filter;filter=[fname]'>[filter_list[fname] ? jointext(filter_list[fname], ",") : "All"]</a>"
+					dat += "<br>[filter]: <a href='?src=[text_ref(src)];operation=filter;filter=[fname]'>[filter_list[fname] ? jointext(filter_list[fname], ",") : "All"]</a>"
 
 				current_list = get_filtered_set()
 				dat+= "<br><hr><br>"
@@ -157,16 +159,16 @@
 					dat += "<table><tr>"
 					dat += "<th>Object</th><th>Area</th><th>Fingerprints</th><th>Fibers</th><th>Blood</th><th>Label</th></tr>"
 					for(var/datum/data/record/forensic/record in current_list)
-						dat += "<tr><td><a href='?src=\ref[src];operation=details;identifier=[record.uid]'>[record.fields["name"]]</td>"
+						dat += "<tr><td><a href='?src=[text_ref(src)];operation=details;identifier=[record.uid]'>[record.fields["name"]]</td>"
 						dat += "<td>[record.fields["area"]]</td>"
 						for(var/criteria in list("fprints", "fibers", "blood"))
 							var/list/data = record.fields[criteria]
 							dat += "<td>[length(data) ? length(data) : "None"]</td>"
 						dat += "<td>[record.fields["label"] ? record.fields["label"] : ""]</td>"
-						dat += "<td><a href='?src=\ref[src];operation=delete;identifier=[record.uid]'>Delete</a></td>"
+						dat += "<td><a href='?src=[text_ref(src)];operation=delete;identifier=[record.uid]'>Delete</a></td>"
 						dat += "</tr>"
 					dat += "</table>"
-					dat += "<a href='?src=\ref[src];operation=printall'>Print all listed</a><br>"
+					dat += "<a href='?src=[text_ref(src)];operation=printall'>Print all listed</a><br>"
 
 			if("details")	//Details screen
 				if(!current)
@@ -174,18 +176,18 @@
 				else
 					dat += get_printable_data(current)
 					dat += "<b>Labels:</b> "
-					dat += "<a href='?src=\ref[src];operation=label'>[current.fields["label"] ? current.fields["label"] : "None"]</a><br>"
-					dat += "<a href='?src=\ref[src];operation=print'>Print record</a><br>"
+					dat += "<a href='?src=[text_ref(src)];operation=label'>[current.fields["label"] ? current.fields["label"] : "None"]</a><br>"
+					dat += "<a href='?src=[text_ref(src)];operation=print'>Print record</a><br>"
 
 			if("scan")	//Scanning screen
-				dat += "Object: <a href='?src=\ref[src];operation=object'>[scanning ? scanning.name : "-----"]</a><br>"
+				dat += "Object: <a href='?src=[text_ref(src)];operation=object'>[scanning ? scanning.name : "-----"]</a><br>"
 				if (scanning)
 					if (scan_progress > 0)
 						dat += "Scan in progress."
-						dat += " <a href='?src=\ref[src];operation=cancel'>Cancel</a><br>"
+						dat += " <a href='?src=[text_ref(src)];operation=cancel'>Cancel</a><br>"
 					else
-						dat += "<a href='?src=\ref[src];operation=scan'>Scan</a><br>"
-				dat += "Insert fingerprint card here: <a href='?src=\ref[src];operation=card'>-----</a>"
+						dat += "<a href='?src=[text_ref(src)];operation=scan'>Scan</a><br>"
+				dat += "Insert fingerprint card here: <a href='?src=[text_ref(src)];operation=card'>-----</a>"
 
 	var/datum/browser/popup = new(user, "fscanner", "<div align='center'>Forensic Console</div>")
 	popup.set_content(dat)

@@ -71,7 +71,7 @@
 	smoke_visuals = new(source, /particles/impact_smoke)
 	smoke_visuals.particles.position = list(position_offset, position_offset)
 	smoke_visuals.particles.velocity = list(x_component_smoke, y_component_smoke)
-	if(debris && !(P.ammo.flags_ammo_behavior & AMMO_ENERGY || P.ammo.flags_ammo_behavior & AMMO_XENO))
+	if(debris && !(P.ammo.ammo_behavior_flags & AMMO_ENERGY || P.ammo.ammo_behavior_flags & AMMO_XENO))
 		debris_visuals = new(source, /particles/debris)
 		debris_visuals.particles.position = generator(GEN_CIRCLE, position_offset, position_offset)
 		debris_visuals.particles.velocity = list(x_component, y_component)
@@ -83,9 +83,9 @@
 	smoke_visuals.layer = ABOVE_OBJ_LAYER + 0.01
 	if(P.ammo.sound_bounce)
 		var/pitch = 0
-		if(P.ammo.flags_ammo_behavior & AMMO_SOUND_PITCH)
+		if(P.ammo.ammo_behavior_flags & AMMO_SOUND_PITCH)
 			pitch = 55000
-		playsound(source, P.ammo.sound_bounce, 50, 1, frequency = pitch)
+		playsound(source, P.ammo.sound_bounce, 50, TRUE, 4, 5, pitch)
 	addtimer(CALLBACK(src, PROC_REF(remove_ping), src, smoke_visuals, debris_visuals), 0.7 SECONDS)
 
 /datum/element/debris/proc/remove_ping(hit, obj/effect/abstract/particle_holder/smoke_visuals, obj/effect/abstract/particle_holder/debris_visuals)

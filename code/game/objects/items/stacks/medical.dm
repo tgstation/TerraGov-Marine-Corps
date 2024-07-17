@@ -5,7 +5,7 @@
 /obj/item/stack/medical
 	name = "medical pack"
 	singular_name = "medical pack"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/medical_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/medical_right.dmi',
 	)
@@ -80,7 +80,7 @@
 	var/list/patient_limbs = patient.limbs.Copy()
 	patient_limbs -= affecting
 	while(affecting)
-		if(!do_mob(user, patient, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(can_affect_limb), affecting)))
+		if(!do_after(user, SKILL_TASK_VERY_EASY / (unskilled_penalty ** 2), NONE, patient, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(can_affect_limb), affecting)))
 			patient.balloon_alert(user, "Stopped tending")
 			return
 		var/affected = heal_limb(affecting, unskilled_penalty)
@@ -177,25 +177,9 @@
 
 /obj/item/stack/medical/heal_pack/advanced
 	dir = NORTH
-	flags_atom = DIRLOCK
+	atom_flags = DIRLOCK
 	skill_level_needed = SKILL_MEDICAL_PRACTICED
 	unskilled_delay = SKILL_TASK_EASY
-
-/obj/item/stack/medical/heal_pack/advanced/update_icon_state()
-	if(max_amount < 1 || amount > max_amount)
-		return
-	var/percentage = round(amount / max_amount) * 100
-	switch(percentage)
-		if(1 to 20)
-			setDir(SOUTH)
-		if(21 to 40)
-			setDir(EAST)
-		if(41 to 60)
-			setDir(SOUTHEAST)
-		if(61 to 80)
-			setDir(WEST)
-		if(81 to INFINITY)
-			setDir(NORTH)
 
 /obj/item/stack/medical/heal_pack/advanced/bruise_pack
 	name = "advanced trauma kit"
@@ -249,7 +233,7 @@
 		if(user.do_actions)
 			M.balloon_alert(user, "already busy")
 			return FALSE
-		if(!do_mob(user, M, unskilled_delay, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
+		if(!do_after(user, unskilled_delay, NONE, M, BUSY_ICON_UNSKILLED, BUSY_ICON_MEDICAL))
 			return FALSE
 
 	var/datum/limb/affecting = .

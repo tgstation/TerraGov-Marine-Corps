@@ -8,6 +8,7 @@
 	anchored = FALSE
 
 /obj/structure/closet/coffin/update_icon_state()
+	. = ..()
 	if(!opened)
 		icon_state = icon_closed
 	else

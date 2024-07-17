@@ -5,7 +5,7 @@
 
 /datum/map_config
 	// Metadata
-	var/config_filename = "_maps/LV624.json"
+	var/config_filename = "_maps/vapor_processing.json"
 	var/defaulted = TRUE  // set to FALSE by LoadConfig() succeeding
 	// Config from maps.txt
 	var/config_max_users = 0
@@ -13,13 +13,15 @@
 	var/voteweight = 1
 
 	// Config actually from the JSON - default values
-	var/map_name = "LV624"
-	var/map_path = "map_files/LV624"
-	var/map_file = "LV624.dmm"
+	var/map_name = "Vapor Processing"
+	var/map_path = "map_files/Vapor_Processing"
+	var/map_file = "Vapor_Processing.dmm"
 
 	var/traits = null
 	var/space_empty_levels = 1
 	var/list/environment_traits = list()
+	///Which disk sets this map has, key-value = name - weight for choosing.
+	var/list/disk_sets = list()
 	var/armor_style = "default"
 	var/quickbuilds = 1000
 	var/list/gamemodes = list()
@@ -70,9 +72,9 @@
 			return
 		switch(maptype)
 			if(GROUND_MAP)
-				return LoadConfig("_maps/lv624.json", error_if_missing, maptype)
+				return LoadConfig("_maps/vapor_processing.json", error_if_missing, maptype)
 			if(SHIP_MAP)
-				return LoadConfig("_maps/pillar_of_spring.json", error_if_missing, maptype)
+				return LoadConfig("_maps/debugdalus.json", error_if_missing, maptype)
 
 	var/json = file(filename)
 	if(!json)
@@ -156,6 +158,12 @@
 
 	if(json["quickbuilds"])
 		quickbuilds = json["quickbuilds"]
+
+	if(islist(json["disk_sets"]))
+		disk_sets = json["disk_sets"]
+	else if(!isnull(json["disk_sets"]))
+		log_world("map_config disk sets are not a list!")
+		return
 
 	if(islist(json["environment_traits"]))
 		environment_traits = json["environment_traits"]

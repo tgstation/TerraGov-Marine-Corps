@@ -33,18 +33,18 @@
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/drone/elder/Zeta(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/drone/Zeta(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/spitter/mature/Zeta(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/spitter/Zeta(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
-	. = new /mob/living/carbon/xenomorph/hunter/mature/Zeta(spawn_loc, TRUE)
+	. = new /mob/living/carbon/xenomorph/hunter/Zeta(spawn_loc, TRUE)
 	M.transfer_to(., TRUE)
 	print_backstory(.)
 

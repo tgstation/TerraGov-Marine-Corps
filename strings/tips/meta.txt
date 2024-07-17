@@ -23,3 +23,4 @@ There are no such things as macros, only keybinds.
 Communication, be it from a marine to a marine, a drone to the queen, or command to everyone, is vital and information on flanks can change how the entire round plays out.
 As an alien or marine, be careful of the flank, regardless of if the push is going well or stalling out.
 Half of getting good is knowing to be aggressive. The other half is knowing when not to be aggressive.
+When talking, surround what you type (without the quotes) with "__", "++" or "||" to underline, bold, or italicize what you say. You combine these modifiers too!

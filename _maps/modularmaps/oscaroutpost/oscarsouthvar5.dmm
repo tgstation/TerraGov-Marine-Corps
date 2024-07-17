@@ -222,7 +222,7 @@
 "dG" = (
 /obj/structure/closet,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/clothing/under/marine/veteran,
 /obj/machinery/light/small{
 	dir = 1
@@ -808,7 +808,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "ko" = (
-/obj/machinery/autodoc_console{
+/obj/machinery/computer/autodoc_console{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -1078,7 +1078,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "mS" = (
-/obj/machinery/body_scanconsole{
+/obj/machinery/computer/body_scanconsole{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -2524,17 +2524,6 @@
 	},
 /turf/open/floor/plating,
 /area/oscar_outpost/village/abandonedbase)
-"Jl" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
-/obj/structure/cable,
-/obj/machinery/door/poddoor/mainship/indestructible{
-	dir = 2;
-	id = "zetalockdown"
-	},
-/turf/closed/mineral/smooth,
-/area/oscar_outpost/village/abandonedbase)
 "Jp" = (
 /obj/machinery/light{
 	dir = 4
@@ -3181,7 +3170,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "TS" = (
-/obj/machinery/sleep_console{
+/obj/machinery/computer/sleep_console{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -3443,17 +3432,17 @@
 "XI" = (
 /obj/structure/closet,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/clothing/under/marine/veteran,
 /obj/machinery/light/small,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "XP" = (
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 9
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
@@ -5769,7 +5758,7 @@ Xn
 Xn
 Xn
 Xn
-Jl
+JX
 Qz
 Ae
 vF

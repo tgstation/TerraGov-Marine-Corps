@@ -5,6 +5,9 @@
     "environment_traits": {
         "COLD": true
     },
+	"disk_sets": {
+		"basic": 1
+	},
     "armor": "ice",
 	"quickbuilds": 1200,
 	"announce_text": "A garbled, unintelligible communications message was broadcasted over a general frequency, and picked up by our comms relay. The message appears to have come from a mining outpost, located on an ice cold planet. The ship is moving into the sector with thrusters at max throttle. TGMC, get briefed and then move out!",

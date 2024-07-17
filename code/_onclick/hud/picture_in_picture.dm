@@ -15,7 +15,7 @@
 	var/const/max_dimensions = 10
 
 
-/atom/movable/screen/movable/pic_in_pic/Initialize(mapload)
+/atom/movable/screen/movable/pic_in_pic/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
 	make_backgrounds()
 
@@ -60,7 +60,7 @@
 	add_overlay(move_tab)
 
 	if(!button_x)
-		button_x = new /atom/movable/screen/component_button(null, src)
+		button_x = new /atom/movable/screen/component_button(null, null, src)
 		var/mutable_appearance/MA = new /mutable_appearance()
 		MA.name = "close"
 		MA.icon = 'icons/misc/pic_in_pic.dmi'
@@ -73,7 +73,7 @@
 	vis_contents += button_x
 
 	if(!button_expand)
-		button_expand = new /atom/movable/screen/component_button(null, src)
+		button_expand = new /atom/movable/screen/component_button(null, null, src)
 		var/mutable_appearance/MA = new /mutable_appearance()
 		MA.name = "expand"
 		MA.icon = 'icons/misc/pic_in_pic.dmi'
@@ -86,7 +86,7 @@
 	vis_contents += button_expand
 
 	if(!button_shrink)
-		button_shrink = new /atom/movable/screen/component_button(null, src)
+		button_shrink = new /atom/movable/screen/component_button(null, null, src)
 		var/mutable_appearance/MA = new /mutable_appearance()
 		MA.name = "shrink"
 		MA.icon = 'icons/misc/pic_in_pic.dmi'

@@ -1,0 +1,58 @@
+{
+	"hyperscale_marine_jumpsuit":[
+		{
+			"type": "hyperscale",
+			"icon_state": "hyperscale_marine_jumpsuit"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"hyperscale_marine_jumpsuit_no_color",
+			"blend_mode":"overlay"
+		}
+	],
+	"hyperscale_marine_jumpsuit_d":[
+		{
+			"type": "hyperscale",
+			"icon_state": "hyperscale_marine_jumpsuit_d"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hyperscale_marine_jumpsuit_d_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"hyperscale_marine_jumpsuit_h":[
+		{
+			"type": "hyperscale",
+			"icon_state": "hyperscale_marine_jumpsuit_h"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hyperscale_marine_jumpsuit_h_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"hyperscale_marine_jumpsuit_r":[
+		{
+			"type": "hyperscale",
+			"icon_state": "hyperscale_marine_jumpsuit_r"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "hyperscale_marine_jumpsuit_r_no_color",
+			"blend_mode": "overlay"
+		}
+	],
+	"hyperscale_glove_mob":[
+		{
+			"type": "hyperscale",
+			"icon_state": "hyperscale_glove_mob"
+		}
+    ],
+	"hyperscale_glove_inhand":[
+		{
+			"type":"hyperscale",
+			"icon_state": "hyperscale_glove_inhand"
+		}
+    ]
+}

@@ -25,8 +25,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "nexus_blast";
-	name = "\improper Nexus Blast Door";
-	
+	name = "\improper Nexus Blast Door"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
@@ -155,8 +154,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "nexus_blast";
-	name = "\improper Nexus Blast Door";
-	
+	name = "\improper Nexus Blast Door"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/tile/white,
@@ -189,8 +187,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "nexus_blast";
-	name = "\improper Nexus Blast Door";
-	
+	name = "\improper Nexus Blast Door"
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/main_hall)
@@ -265,8 +262,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "nexus_blast";
-	name = "\improper Nexus Blast Door";
-	
+	name = "\improper Nexus Blast Door"
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
@@ -274,8 +270,7 @@
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
 	id = "nexus_blast";
-	name = "\improper Nexus Blast Door";
-	
+	name = "\improper Nexus Blast Door"
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)

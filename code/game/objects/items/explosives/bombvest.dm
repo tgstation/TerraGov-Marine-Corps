@@ -4,8 +4,8 @@
 	icon_state = "boom_vest"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0
-	flags_item_map_variant = NONE
-	flags_armor_features = NONE
+	item_map_variant_flags = NONE
+	armor_features_flags = NONE
 	///Warcry to yell upon detonation
 	var/bomb_message
 	///List of warcries that are not allowed.
@@ -46,7 +46,7 @@
 		return
 	if(bomb_message)
 		activator.say("[bomb_message]!!")
-	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+	if(!do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
 		return FALSE
 	var/turf/target = get_turf(loc)
 	if(bomb_message) //Checks for a non null bomb message.
@@ -55,6 +55,8 @@
 	else
 		message_admins("[activator] has detonated an explosive vest with no warcry at [ADMIN_VERBOSEJMP(target)]")
 		log_game("[activator] has detonated an explosive vest with no warcry at [AREACOORD(target)]")
+
+	activator.record_tactical_unalive()
 
 	for(var/datum/limb/appendage AS in activator.limbs) //Oops we blew all our limbs off
 		if(istype(appendage, /datum/limb/chest) || istype(appendage, /datum/limb/groin) || istype(appendage, /datum/limb/head))
@@ -97,7 +99,7 @@
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		return
-	if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
+	if(!do_after(user, 1 SECONDS, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
 		return FALSE
 	var/turf/target = get_turf(loc)
 	activator.say("I'M FIRING IT AS AN OB!!")

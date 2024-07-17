@@ -265,7 +265,7 @@
       if you got yourself stuck aswell as the "toggle resting" ability and Hivemind''s
       change form & Wraith''s phase-shift / resync. tweak: Resin doors start open
       if built on your own tile.'
-  - bugfix: Added XACT_DO_AFTER_ATTACK to bitfields.dm as it was missing (aka it gets
+  - bugfix: Added ABILITY_DO_AFTER_ATTACK to bitfields.dm as it was missing (aka it gets
       "translated" into readable language during varediting of that var)
   Lumipharon:
   - balance: teleporters are no longer invulnerable to xenos

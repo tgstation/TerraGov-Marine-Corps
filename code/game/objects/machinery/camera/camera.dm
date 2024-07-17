@@ -8,7 +8,9 @@
 	active_power_usage = 10
 	layer = WALL_OBJ_LAYER
 	anchored = TRUE
+	light_power = 0
 
+	var/datum/cameranet/parent_cameranet
 	var/list/network = list("marinemainship")
 	var/c_tag = null
 	var/status = TRUE
@@ -42,8 +44,15 @@
 		network -= i
 		network += lowertext(i)
 
-	GLOB.cameranet.cameras += src
-	GLOB.cameranet.addCamera(src)
+
+	if(SOM_CAMERA_NETWORK in network)
+		parent_cameranet = GLOB.som_cameranet
+	else
+		parent_cameranet = GLOB.cameranet
+
+
+	parent_cameranet.cameras += src
+	parent_cameranet.addCamera(src)
 
 	myarea = get_area(src)
 	if(myarea)
@@ -56,7 +65,7 @@
 	if(can_use())
 		toggle_cam(null, 0) //kick anyone viewing out and remove from the camera chunks
 
-	GLOB.cameranet.cameras -= src
+	parent_cameranet.cameras -= src
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
 
@@ -78,11 +87,14 @@
 
 /obj/machinery/camera/proc/setViewRange(num = 7)
 	view_range = num
-	GLOB.cameranet.updateVisibility(src, 0)
+
+	parent_cameranet.updateVisibility(src, 0)
 
 
 /obj/machinery/camera/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/paper) && isliving(user))
 		var/mob/living/U = user
@@ -121,8 +133,8 @@
 /obj/machinery/camera/wirecutter_act(mob/living/user, obj/item/I)
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		return FALSE
+	repair_damage(max_integrity, user)
 	toggle_cam(user, TRUE)
-	repair_damage(max_integrity)
 	I.play_tool_sound(src)
 	update_icon()
 	return TRUE
@@ -154,18 +166,18 @@
 	return TRUE
 
 
-/obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/machinery/camera/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
 	if(obj_integrity <= 0)
-		to_chat(X, span_warning("The camera is already disabled."))
+		to_chat(xeno_attacker, span_warning("The camera is already disabled."))
 		return
 
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message(span_danger("[X] slashes \the [src]!"), \
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] slashes \the [src]!"), \
 	span_danger("We slash \the [src]!"))
-	playsound(loc, "alien_claw_metal", 25, 1)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
 
 	if(!CHECK_BITFIELD(machine_stat, PANEL_OPEN))
 		ENABLE_BITFIELD(machine_stat, PANEL_OPEN)
@@ -186,10 +198,10 @@
 	status = FALSE
 	obj_integrity = 0
 	set_light(0)
-	GLOB.cameranet.removeCamera(src)
+	parent_cameranet.removeCamera(src)
 	if(isarea(myarea))
 		LAZYREMOVE(myarea.cameras, src)
-	GLOB.cameranet.updateChunk(x, y, z)
+	parent_cameranet.updateChunk(x, y, z)
 	update_icon()
 
 	for(var/i in GLOB.player_list)
@@ -205,31 +217,31 @@
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		if(!AI.client)
 			continue
-		to_chat(AI, span_notice("[src] has been desactived at [myarea]"))
+		to_chat(AI, span_notice("[src] has been deactivated at [myarea]"))
 
-
-/obj/machinery/camera/update_icon()
+/obj/machinery/camera/update_icon_state()
+	. = ..()
 	if(obj_integrity <= 0)
 		icon_state = "camera_assembly"
 	else
 		icon_state = "camera"
 
-
 /obj/machinery/camera/proc/toggle_cam(mob/user, displaymessage = TRUE)
 	status = !status
 	if(can_use())
-		GLOB.cameranet.addCamera(src)
+		parent_cameranet.addCamera(src)
 		if(isturf(loc))
 			myarea = get_area(src)
 			LAZYADD(myarea.cameras, src)
+			set_light(initial(light_range), initial(light_power))
 		else
 			myarea = null
 	else
-		set_light(0)
-		GLOB.cameranet.removeCamera(src)
+		parent_cameranet.removeCamera(src)
 		if(isarea(myarea))
 			LAZYREMOVE(myarea.cameras, src)
-	GLOB.cameranet.updateChunk(x, y, z)
+		deactivate()
+	parent_cameranet.updateChunk(x, y, z)
 
 	var/change_msg = "deactivates"
 	if(status)
@@ -287,7 +299,7 @@
 	if(on)
 		set_light(AI_CAMERA_LUMINOSITY, AI_CAMERA_LUMINOSITY)
 	else
-		set_light(0)
+		set_light(initial(light_range), initial(light_power))
 
 
 /obj/machinery/camera/get_remote_view_fullscreens(mob/user)
@@ -301,10 +313,16 @@
 	user.see_in_dark = 2
 	return TRUE
 
-
 /obj/machinery/camera/autoname
+	light_range = 1
+	light_power = 0.2
 	var/number = 0 //camera number in area
 
+/obj/machinery/camera/autoname/update_overlays()
+	. = ..()
+	if(obj_integrity <= 0)
+		return
+	. += emissive_appearance(icon, "[icon_state]_emissive")
 
 //This camera type automatically sets it's name to whatever the area that it's in is called.
 /obj/machinery/camera/autoname/Initialize(mapload)
@@ -316,6 +334,9 @@
 /obj/machinery/camera/autoname/mainship
 	name = "military-grade camera"
 	network = list("marinemainship")
+
+/obj/machinery/camera/autoname/mainship/somship
+	network = list(SOM_CAMERA_NETWORK)
 
 //cameras installed inside the dropships, accessible via both cockpit monitor and ship camera computers
 /obj/machinery/camera/autoname/mainship/dropship_one
@@ -330,6 +351,8 @@
 	network = list("marine")
 	resistance_flags = RESIST_ALL //If the containing headset is not destroyed, neither should this be.
 
+/obj/machinery/camera/headset/som
+	network = list(SOM_CAMERA_NETWORK)
 
 //used by the laser camera dropship equipment
 /obj/machinery/camera/laser_cam
@@ -382,10 +405,6 @@
 /obj/machinery/camera/autoname/lz_camera/ex_act()
 	return
 
-
-/obj/machinery/camera/autoname/lz_camera/update_icon()
-	return
-
 //Thunderdome cameras
 /obj/machinery/camera/autoname/thunderdome
 	name = "thunderdome camera"
@@ -395,5 +414,6 @@
 //Special invisible cameras, to get even better angles without looking ugly
 /obj/machinery/camera/autoname/thunderdome/hidden
 
-/obj/machinery/camera/autoname/thunderdome/hidden/update_icon()
+/obj/machinery/camera/autoname/thunderdome/hidden/update_icon_state()
+	. = ..()
 	icon_state = "nothing"

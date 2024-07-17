@@ -19,7 +19,7 @@
 		return
 
 	var/datum/reagents/splash_holder = new /datum/reagents(total_reagents * threatscale)
-	splash_holder.my_atom = epicenter // For some reason this is setting my_atom to null, and causing runtime errors.
+	splash_holder.my_atom = WEAKREF(epicenter) // For some reason this is setting my_atom to null, and causing runtime errors.
 	var/total_temp = 0
 
 	for(var/datum/reagents/R in reactants)

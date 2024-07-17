@@ -21,10 +21,10 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 
 	while(length(gene_tags))
 		var/gene_tag = pick(gene_tags)
-		var/gene_mask = "[num2hex(rand(0,255))]"
+		var/gene_mask = "[num2hex(rand(0,255), 2)]"
 
 		while(gene_mask in used_masks)
-			gene_mask = "[num2hex(rand(0,255))]"
+			gene_mask = "[num2hex(rand(0,255), 2)]"
 
 		used_masks += gene_mask
 		gene_tags -= gene_tag
@@ -1218,7 +1218,7 @@ GLOBAL_LIST_EMPTY(gene_tag_masks)   // Gene obfuscation for delicious trial and 
 	products = list(/obj/item/reagent_containers/food/snacks/grown/banana)
 	plant_icon = "banana"
 	harvest_repeat = 1
-	chems = list(/datum/reagent/consumable/drink/banana = list(1,10))
+	chems = list(/datum/reagent/consumable/banana = list(1,10))
 
 	lifespan = 50
 	maturation = 6

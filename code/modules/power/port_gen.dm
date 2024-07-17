@@ -23,6 +23,20 @@
 	QDEL_NULL(soundloop)
 	return ..()
 
+/obj/machinery/power/port_gen/attacked_by(obj/item/I, mob/living/user, def_zone)
+	. = ..()
+	if(!.)
+		return FALSE
+	record_generator_sabotages(user)
+	return TRUE
+
+/obj/machinery/power/port_gen/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	. = ..()
+	if(!.)
+		return FALSE
+	record_generator_sabotages(xeno_attacker)
+	return TRUE
+
 /obj/machinery/power/port_gen/should_have_node()
 	return anchored
 
@@ -56,6 +70,7 @@
 		soundloop.start()
 
 /obj/machinery/power/port_gen/update_icon_state()
+	. = ..()
 	icon_state = "[base_icon]"
 
 /obj/machinery/power/port_gen/process()

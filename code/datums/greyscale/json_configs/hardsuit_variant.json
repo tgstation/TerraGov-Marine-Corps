@@ -1,0 +1,98 @@
+{
+	"chest":[
+		{
+			"type": "hyperscale",
+			"icon_state": "chest"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"chest_no_color",
+			"blend_mode":"overlay"
+		}
+	],
+	"chest_normal":[
+		{
+			"type": "hyperscale",
+			"icon_state": "chest"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"chest_no_color",
+			"blend_mode":"overlay"
+		}
+	],
+	"helmet":[
+		{
+			"type": "hyperscale",
+			"icon_state": "helm"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"helm_no_color",
+			"blend_mode":"overlay"
+		}
+	],
+	"arm":[
+		{
+			"type": "hyperscale",
+			"icon_state": "arm"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"arm_no_color",
+			"blend_mode":"overlay"
+		}
+	],
+	"leg":[
+		{
+			"type": "hyperscale",
+			"icon_state": "leg"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"leg_no_color",
+			"blend_mode":"overlay"
+		}
+	],
+	"chest_webbing":[
+		{
+			"type": "hyperscale",
+			"icon_state": "chest"
+		},
+		{
+			"type": "icon_state",
+			"icon_state": "chest_webbing",
+			"blend_mode": "overlay"
+		}
+	],
+	"leg_secondary_color": [
+		{
+			"type": "hyperscale",
+			"icon_state": "leg_secondary_color"
+		}
+	],
+	"chest_secondary_color": [
+		{
+			"type": "hyperscale",
+			"icon_state": "chest_secondary_color"
+		}
+	],
+	"chest_secondary_color_normal": [
+		{
+			"type": "hyperscale",
+			"icon_state": "chest_secondary_color"
+		}
+	],
+	"chest_secondary_color_webbing": [
+		{
+			"type": "hyperscale",
+			"icon_state": "chest_webbing_secondary_color"
+		}
+	],
+	"helm_secondary_color": [
+		{
+			"type": "hyperscale",
+			"icon_state": "helm_secondary_color"
+		}
+	]
+}

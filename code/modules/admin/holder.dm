@@ -22,7 +22,8 @@
 	var/ghost_interact = FALSE
 	///Whether this admin is invisiminning
 	var/invisimined = FALSE
-
+	/// A lazylist of tagged datums, for quick reference with the View Tags verb
+	var/list/tagged_datums
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
 	if(IsAdminAdvancedProcCall())
@@ -288,19 +289,26 @@ GLOBAL_PROTECT(admin_verbs_default)
 	/datum/admins/proc/jump_key,
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/remove_from_tank,
+	/datum/admins/proc/delete_squad,
 	/datum/admins/proc/game_panel,
 	/datum/admins/proc/mode_panel,
 	/datum/admins/proc/job_slots,
 	/datum/admins/proc/toggle_adminhelp_sound,
 	/datum/admins/proc/toggle_prayers,
 	/datum/admins/proc/check_fingerprints,
+	/datum/admins/proc/display_tags,
+	/client/proc/mark_datum_mapview,
+	/client/proc/tag_datum_mapview,
+	/client/proc/cmd_admin_check_contents, /*displays the contents of an instance*/
 	/client/proc/smite,
 	/client/proc/show_traitor_panel,
+	/client/proc/cmd_select_equipment,
 	/client/proc/validate_objectives,
 	/client/proc/private_message_panel,
 	/client/proc/private_message_context,
 	/client/proc/msay,
-	/client/proc/dsay
+	/client/proc/dsay,
+	/client/proc/object_say,
 	)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 GLOBAL_PROTECT(admin_verbs_admin)
@@ -345,14 +353,15 @@ GLOBAL_PROTECT(admin_verbs_asay)
 
 /world/proc/AVdebug()
 	return list(
-	/datum/admins/proc/proccall_advanced,
-	/datum/admins/proc/proccall_atom,
+	/client/proc/callproc,
+	/client/proc/callproc_datum,
 	/datum/admins/proc/delete_all,
 	/datum/admins/proc/generate_powernets,
 	/datum/admins/proc/debug_mob_lists,
 	/client/proc/debugstatpanel,
 	/datum/admins/proc/delete_atom,
 	/datum/admins/proc/restart_controller,
+	/client/proc/debug_controller,
 	/datum/admins/proc/check_contents,
 	/datum/admins/proc/reestablish_db_connection,
 	/client/proc/reestablish_tts_connection,
@@ -455,7 +464,6 @@ GLOBAL_PROTECT(admin_verbs_server)
 /world/proc/AVpermissions()
 	return list(
 	/client/proc/edit_admin_permissions,
-	/client/proc/poll_panel,
 	)
 GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
 GLOBAL_PROTECT(admin_verbs_permissions)
@@ -493,10 +501,17 @@ GLOBAL_PROTECT(admin_verbs_spawn)
 	/datum/admins/proc/logs_server,
 	/datum/admins/proc/logs_current,
 	/datum/admins/proc/logs_folder,
-	/datum/admins/proc/log_panel,
+	/client/proc/log_viewer_new
 	)
 GLOBAL_LIST_INIT(admin_verbs_log, world.AVlog())
 GLOBAL_PROTECT(admin_verbs_log)
+
+/world/proc/AVpolls()
+	return list(
+	/client/proc/poll_panel,
+	)
+GLOBAL_LIST_INIT(admin_verbs_polls, world.AVpolls())
+GLOBAL_PROTECT(admin_verbs_polls)
 
 /client/proc/add_admin_verbs()
 	if(holder)
@@ -532,6 +547,8 @@ GLOBAL_PROTECT(admin_verbs_log)
 			add_verb(src, GLOB.admin_verbs_spawn)
 		if(rights & R_LOG)
 			add_verb(src, GLOB.admin_verbs_log)
+		if(rights & R_POLLS)
+			add_verb(src, GLOB.admin_verbs_polls)
 
 
 /client/proc/remove_admin_verbs()
@@ -613,55 +630,6 @@ GLOBAL_PROTECT(admin_verbs_log)
 				num++
 				i = 0
 	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
-
-
-/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
-	if(target && procname == "Del")
-		to_chat(usr, "Calling Del() is not allowed")
-		return
-
-	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
-		to_chat(usr, "Proccall on [target.type]/proc/[procname] is disallowed!")
-		return
-
-	var/current_caller = GLOB.AdminProcCaller
-	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
-	if(!ckey)
-		CRASH("WrapAdminProcCall with no ckey: [target] [procname] [english_list(arguments)]")
-
-	if(current_caller && current_caller != ckey)
-		if(!GLOB.AdminProcCallSpamPrevention[ckey])
-			to_chat(usr, span_adminnotice("Another set of admin called procs are still running, your proc will be run after theirs finish."))
-			GLOB.AdminProcCallSpamPrevention[ckey] = TRUE
-			UNTIL(!GLOB.AdminProcCaller)
-			to_chat(usr, span_adminnotice("Running your proc"))
-			GLOB.AdminProcCallSpamPrevention -= ckey
-		else
-			UNTIL(!GLOB.AdminProcCaller)
-
-	GLOB.LastAdminCalledProc = procname
-	if(target != GLOBAL_PROC)
-		GLOB.LastAdminCalledTargetRef = "[REF(target)]"
-
-	GLOB.AdminProcCaller = ckey	//if this runtimes, too bad for you
-	++GLOB.AdminProcCallCount
-	. = world.WrapAdminProcCall(target, procname, arguments)
-	if(--GLOB.AdminProcCallCount == 0)
-		GLOB.AdminProcCaller = null
-
-
-/world/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
-	if(target == GLOBAL_PROC)
-		return call(procname)(arglist(arguments))
-	else if(target != world)
-		return call(target, procname)(arglist(arguments))
-	else
-		log_admin_private("[key_name(usr)] attempted to call world/proc/[procname] with arguments: [english_list(arguments)]")
-
-
-/proc/IsAdminAdvancedProcCall()
-	return usr && usr.client && GLOB.AdminProcCaller == usr.client.ckey
-
 
 /proc/GenTgsStealthKey()
 	var/num = (rand(0,1000))

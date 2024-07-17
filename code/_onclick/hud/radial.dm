@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	if(length(elements) < max_elements)
 		var/elements_to_add = max_elements - length(elements)
 		for(var/i in 1 to elements_to_add) //Create all elements
-			var/atom/movable/screen/radial/slice/new_element = new /atom/movable/screen/radial/slice
+			var/atom/movable/screen/radial/slice/new_element = new /atom/movable/screen/radial/slice()
 			new_element.tooltips = use_tooltips
 			new_element.parent = src
 			elements += new_element
@@ -281,7 +281,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 /datum/radial_menu/Destroy()
 	Reset()
 	hide()
-	QDEL_NULL(custom_check_callback)
+	custom_check_callback = null
 	current_user = null
 	QDEL_LIST(elements)
 	QDEL_NULL(close_button)
@@ -292,7 +292,7 @@ GLOBAL_LIST_EMPTY(radial_menus)
 	Choices should be a list where list keys are movables or text used for element names and return value
 	and list values are movables/icons/images used for element icons
 */
-/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE)
+/proc/show_radial_menu(mob/user, atom/anchor, list/choices, uniqueid, radius, datum/callback/custom_check, require_near = FALSE, tooltips = FALSE, angle_override)
 	if(!user || !anchor || !length(choices))
 		return
 	if(!uniqueid)
@@ -302,6 +302,8 @@ GLOBAL_LIST_EMPTY(radial_menus)
 		return
 
 	var/datum/radial_menu/menu = new
+	if(angle_override)
+		menu.min_angle = angle_override
 	GLOB.radial_menus[uniqueid] = menu
 	if(radius)
 		menu.radius = radius

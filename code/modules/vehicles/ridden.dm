@@ -8,12 +8,11 @@
 
 /obj/vehicle/ridden/examine(mob/user)
 	. = ..()
-	if(!key_type)
-		return
-	if(!inserted_key)
-		. += span_notice("Put a key inside it by clicking it with the key.")
-	else
-		. += span_notice("Alt-click [src] to remove the key.")
+	if(key_type)
+		if(!inserted_key)
+			. += span_notice("Put a key inside it by clicking it with the key.")
+		else
+			. += span_notice("Alt-click [src] to remove the key.")
 
 /obj/vehicle/ridden/generate_action_type(actiontype)
 	var/datum/action/vehicle/ridden/A = ..()

@@ -3,6 +3,8 @@
 	name = "CLF Cell"
 	base_probability = 20
 	alignement_factor = 0
+	///number of available special weapon dudes
+	var/max_specialists = 1
 
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/H)
@@ -33,12 +35,17 @@
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, span_notice("You are a leader of the local resistance group, the Colonial Liberation Front."))
 		return
-
 	if(medics < max_medics)
 		var/datum/job/J = SSjob.GetJobType(/datum/job/clf/medic)
 		H.apply_assigned_role_to_spawn(J)
 		to_chat(H, span_notice("You are a medic of the local resistance group, the Colonial Liberation Front."))
 		medics++
+		return
+	if(max_specialists > 0)
+		var/datum/job/J = SSjob.GetJobType(/datum/job/clf/specialist)
+		H.apply_assigned_role_to_spawn(J)
+		to_chat(H, span_notice("You are a specialist of the local resistance group, the Colonial Liberation Front. Use your special weaponry to lead your group to victory!"))
+		max_specialists --
 		return
 
 	var/datum/job/J = SSjob.GetJobType(/datum/job/clf/standard)

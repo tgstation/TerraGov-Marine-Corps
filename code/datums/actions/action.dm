@@ -61,8 +61,10 @@ KEYBINDINGS
 	target = null
 	return ..()
 
+/// Cleans up the action if the owner is deleted
 /datum/action/proc/clean_action()
 	SIGNAL_HANDLER
+	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
 
 /datum/action/proc/should_show()
@@ -71,21 +73,19 @@ KEYBINDINGS
 ///Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
 /datum/action/proc/set_toggle(value)
 	if(value == toggled)
-		return
-	if(value)
-		switch(action_type)
-			if(ACTION_SELECT)
-				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
-			if(ACTION_TOGGLE)
-				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
-		toggled = TRUE
-		return
-	switch(action_type)
-		if(ACTION_SELECT)
-			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
-		if(ACTION_TOGGLE)
-			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
-	toggled = FALSE
+		return FALSE
+	toggled = value
+	update_button_icon()
+	return TRUE
+
+///Setting this action as the active action
+/datum/action/proc/select()
+	set_toggle(TRUE)
+
+///Deselecting this action for use
+/datum/action/proc/deselect()
+	SIGNAL_HANDLER
+	set_toggle(FALSE)
 
 ///A handler used to update the maptext and show the change immediately.
 /datum/action/proc/update_map_text(key_string, key_signal)
@@ -120,6 +120,17 @@ KEYBINDINGS
 			button.add_overlay(action_appearence)
 	if(background_icon_state != button.icon_state)
 		button.icon_state = background_icon_state
+	switch(action_type)
+		if(ACTION_SELECT)
+			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+		if(ACTION_TOGGLE)
+			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
+	if(toggled)
+		switch(action_type)
+			if(ACTION_SELECT)
+				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+			if(ACTION_TOGGLE)
+				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
 	handle_button_status_visuals()
 	return TRUE
 

@@ -6,7 +6,7 @@
 	coverage = 10
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	resistance_flags = RESIST_ALL
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
@@ -75,26 +75,57 @@
 		new_overlay.pixel_x = -32
 		. += new_overlay
 
+/obj/structure/platform/nondense
+	density = FALSE
+	climbable = FALSE
+	coverage = 0
+
 /obj/structure/platform/rockcliff
 	icon_state = "rockcliff"
 	name = "rock cliff"
 	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
 
+/obj/structure/platform/rockcliff/orange
+	icon_state = "rockcliff_orange"
+
+/obj/structure/platform/rockcliff/red
+	icon_state = "rockcliff_red"
+
 /obj/structure/platform/rockcliff/icycliff
 	icon_state = "icerock"
+
+/obj/structure/platform/rockcliff/icycliff/nondense
+	density = FALSE
+	climbable = FALSE
+	coverage = 0
 
 /obj/structure/platform/metalplatform
 	icon_state = "metalplatform"
 
+/obj/structure/platform/metalplatform/nondense
+	density = FALSE
+	climbable = FALSE
+	coverage = 0
+	
 /obj/structure/platform/trench
 	icon_state = "platformtrench"
 	name = "trench wall"
 	desc = "A group of roughly cut planks forming the side of a dug in trench."
 
+/obj/structure/platform/trench/nondense
+	density = FALSE
+	climbable = FALSE
+	coverage = 0
+
 /obj/structure/platform/adobe
 	name = "brick wall"
 	desc = "A low adobe brick wall."
 	icon_state = "adobe"
+
+/obj/structure/platform/adobe/nondense
+	density = FALSE
+	climbable = FALSE
+	coverage = 0
 
 //decorative corner platform bits
 /obj/structure/platform_decoration
@@ -102,7 +133,7 @@
 	desc = "A square metal surface resting on four legs."
 	icon = 'icons/obj/structures/platforms.dmi'
 	icon_state = "platform_deco"
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
@@ -122,6 +153,12 @@
 	icon_state = "rockcliff_deco"
 	name = "rock cliff"
 	desc = "A collection of stones and rocks that form a steep cliff, it looks climbable."
+
+/obj/structure/platform_decoration/rockcliff_deco/orange
+	icon_state = "rockcliff_orange_deco"
+
+/obj/structure/platform_decoration/rockcliff_deco/red
+	icon_state = "rockcliff_red_deco"
 
 /obj/structure/platform_decoration/rockcliff_deco/icycliff_deco
 	icon_state = "icerock_deco"

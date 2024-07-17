@@ -8,11 +8,15 @@
 /datum/hud
 	var/mob/mymob
 
-	var/hud_version = HUD_STYLE_STANDARD	//the hud version used (standard, reduced, none)
-	var/hud_shown = TRUE			//Used for the HUD toggle (F12)
-	var/inventory_shown = TRUE		//the inventory
+	///the hud version used (standard, reduced, none)
+	var/hud_version = HUD_STYLE_STANDARD
+	///Used for the HUD toggle (F12)
+	var/hud_shown = TRUE
+	///the inventory
+	var/inventory_shown = TRUE
 	var/show_intent_icons = 0
-	var/hotkey_ui_hidden = 0	//This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
+	///This is to hide the buttons that can be used via hotkeys. (hotkeybuttons list of buttons)
+	var/hotkey_ui_hidden = FALSE
 
 	var/atom/movable/screen/r_hand_hud_object
 	var/atom/movable/screen/l_hand_hud_object
@@ -32,7 +36,7 @@
 	var/atom/movable/screen/toggle_firemode
 	var/atom/movable/screen/unique_action
 
-	var/atom/movable/screen/zone_sel
+	var/atom/movable/screen/zone_sel/zone_sel
 	var/atom/movable/screen/pull_icon
 	var/atom/movable/screen/throw_icon
 	var/atom/movable/screen/rest_icon
@@ -59,8 +63,16 @@
 	var/atom/movable/screen/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = 0
 
-	var/list/atom/movable/screen/plane_master/plane_masters = list() // see "appearance_flags" in the ref, assoc list of "[plane]" = object
+	/// Assoc list of key => "plane master groups"
+	/// This is normally just the main window, but it'll occasionally contain things like spyglasses windows
+	var/list/datum/plane_master_group/master_groups = list()
+	/// see "appearance_flags" in the ref, assoc list of "[plane]" = object
+	var/list/atom/movable/screen/plane_master/plane_masters = list()
 
+	// List of weakrefs to objects that we add to our screen that we don't expect to DO anything
+	// They typically use * in their render target. They exist solely so we can reuse them,
+	// and avoid needing to make changes to all idk 300 consumers if we want to change the appearance
+	var/list/asset_refs_for_reuse = list()
 
 /datum/hud/New(mob/owner)
 	mymob = owner
@@ -70,6 +82,15 @@
 		var/atom/movable/screen/plane_master/instance = new mytype()
 		plane_masters["[instance.plane]"] = instance
 		instance.backdrop(mymob)
+
+	var/datum/plane_master_group/main/main_group = new(PLANE_GROUP_MAIN)
+	main_group.attach_to(src)
+
+/datum/hud/proc/should_use_scale()
+	return should_sight_scale(mymob.sight)
+
+/datum/hud/proc/should_sight_scale(sight_flags)
+	return (sight_flags & (SEE_TURFS | SEE_OBJS)) != SEE_TURFS
 
 /datum/hud/Destroy()
 	if(mymob.hud_used == src)
@@ -135,6 +156,24 @@
 
 	return ..()
 
+/// Creates the required plane masters to fill out new z layers (because each "level" of multiz gets its own plane master set)
+/datum/hud/proc/build_plane_groups(starting_offset, ending_offset)
+	for(var/group_key in master_groups)
+		var/datum/plane_master_group/group = master_groups[group_key]
+		group.build_plane_masters(starting_offset, ending_offset)
+
+/// Returns the plane master that matches the input plane from the passed in group
+/datum/hud/proc/get_plane_master(plane, group_key = PLANE_GROUP_MAIN)
+	var/plane_key = "[plane]"
+	var/datum/plane_master_group/group = master_groups[group_key]
+	return group.plane_masters[plane_key]
+
+/// Returns a list of all plane masters that match the input true plane, drawn from the passed in group (ignores z layer offsets)
+/datum/hud/proc/get_true_plane_masters(true_plane, group_key = PLANE_GROUP_MAIN)
+	var/list/atom/movable/screen/plane_master/masters = list()
+	for(var/plane in TRUE_PLANE_TO_OFFSETS(true_plane))
+		masters += get_plane_master(plane, group_key)
+	return masters
 
 /mob/proc/create_mob_hud()
 	if(!client || hud_used)
@@ -146,13 +185,11 @@
 	update_sight()
 	SEND_SIGNAL(src, COMSIG_MOB_HUD_CREATED)
 
-
-/datum/hud/proc/plane_masters_update()
-	// Plane masters are always shown to OUR mob, never to observers
-	for(var/thing in plane_masters)
-		var/atom/movable/screen/plane_master/PM = plane_masters[thing]
-		PM.backdrop(mymob)
-		mymob.client.screen += PM
+/mob/living/carbon/xenomorph/create_mob_hud()
+	. = ..()
+	//Some parts require hud_used to already be set
+	med_hud_set_health()
+	hud_set_plasma()
 
 //Version denotes which style should be displayed. blank or 0 means "next version"
 /datum/hud/proc/show_hud(version = 0, mob/viewmob)
@@ -221,6 +258,7 @@
 	persistent_inventory_update(screenmob)
 	mymob.update_action_buttons(TRUE)
 	reorganize_alerts(screenmob)
+	update_interactive_emotes()
 	mymob.reload_fullscreens()
 	update_parallax_pref(screenmob)
 
@@ -234,6 +272,12 @@
 
 	return TRUE
 
+/datum/hud/proc/plane_masters_update()
+	// Plane masters are always shown to OUR mob, never to observers
+	for(var/thing in plane_masters)
+		var/atom/movable/screen/plane_master/PM = plane_masters[thing]
+		PM.backdrop(mymob)
+		mymob.client.screen += PM
 
 /datum/hud/human/show_hud(version = 0, mob/viewmob)
 	. = ..()
@@ -293,6 +337,21 @@
 		return
 	closeToolTip(usr)
 
+/datum/hud/proc/register_reuse(atom/movable/screen/reuse)
+	asset_refs_for_reuse += WEAKREF(reuse)
+	mymob?.client?.screen += reuse
+
+/datum/hud/proc/unregister_reuse(atom/movable/screen/reuse)
+	asset_refs_for_reuse -= WEAKREF(reuse)
+	mymob?.client?.screen -= reuse
+
+/datum/hud/proc/update_reuse(mob/show_to)
+	for(var/datum/weakref/screen_ref as anything in asset_refs_for_reuse)
+		var/atom/movable/screen/reuse = screen_ref.resolve()
+		if(isnull(reuse))
+			asset_refs_for_reuse -= screen_ref
+			continue
+		show_to.client?.screen += reuse
 
 //Triggered when F12 is pressed (Unless someone changed something in the DMF)
 /mob/verb/button_pressed_F12()

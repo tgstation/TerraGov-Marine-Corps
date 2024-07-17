@@ -388,9 +388,6 @@
 /turf/open/floor/tile/bar,
 /area/deathmatch)
 "bN" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 8
-	},
 /obj/structure/dropship_piece/one/wing/left/bottom,
 /obj/structure/dropship_piece/one/wing/left/bottom,
 /turf/open/ground/coast{
@@ -506,18 +503,12 @@
 	},
 /area/deathmatch)
 "ck" = (
-/obj/effect/attach_point/electronics/dropship1{
-	dir = 1
-	},
 /obj/structure/dropship_piece/one/weapon/rightleft,
 /turf/open/floor/plating/ground/dirtgrassborder/corner{
 	dir = 4
 	},
 /area/deathmatch)
 "cl" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 1
-	},
 /obj/structure/dropship_piece/one/weapon/rightright,
 /turf/open/ground/grass,
 /area/deathmatch)
@@ -621,9 +612,6 @@
 /turf/closed/shuttle/dropship1/finright,
 /area/deathmatch)
 "cJ" = (
-/obj/effect/attach_point/weapon/dropship1{
-	dir = 4
-	},
 /obj/structure/dropship_piece/one/wing/right/bottom,
 /turf/open/ground/grass,
 /area/deathmatch)
@@ -752,7 +740,7 @@
 /area/deathmatch)
 "dI" = (
 /obj/structure/window_frame/wood,
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "dJ" = (
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
@@ -814,7 +802,7 @@
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	name = "\improper Civilian Housing"
 	},
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "ed" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1082,7 +1070,7 @@
 	},
 /area/deathmatch)
 "oS" = (
-/turf/open/floor/wood/variable/damaged/standard,
+/turf/open/floor/wood/broken,
 /area/deathmatch)
 "pj" = (
 /obj/effect/ai_node,

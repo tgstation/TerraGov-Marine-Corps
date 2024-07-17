@@ -26,12 +26,6 @@
 
 	// *** Evolution *** //
 	evolution_threshold = 50
-	evolves_to = list(
-		/mob/living/carbon/xenomorph/drone,
-		/mob/living/carbon/xenomorph/runner,
-		/mob/living/carbon/xenomorph/sentinel,
-		/mob/living/carbon/xenomorph/defender,
-	)
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_INNATE_HEALING
@@ -46,9 +40,9 @@
 
 	// *** Abilities *** //
 	actions = list(
-		/datum/action/xeno_action/xeno_resting,
-		/datum/action/xeno_action/watch_xeno,
-		/datum/action/xeno_action/xenohide,
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/xeno_action/xenohide,
 	)
 
 	// *** Vent Crawl Parameters *** //

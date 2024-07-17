@@ -4,7 +4,7 @@
 	var/w_uniform = null
 	var/wear_suit = null
 	var/toggle_helmet = TRUE
-	var/back = null
+	var/back = null // Set to FALSE if your outfit needs nothing in back slot at all
 	var/belt = null
 	var/gloves = null
 	var/shoes = null
@@ -45,32 +45,32 @@
 
 	//Start with uniform,suit,backpack for additional slots
 	if(w_uniform)
-		H.equip_to_slot_or_del(new w_uniform(H),SLOT_W_UNIFORM, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new w_uniform(H), SLOT_W_UNIFORM, override_nodrop = TRUE)
 	if(wear_suit)
-		H.equip_to_slot_or_del(new wear_suit(H),SLOT_WEAR_SUIT, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new wear_suit(H), SLOT_WEAR_SUIT, override_nodrop = TRUE)
 	if(back)
-		H.equip_to_slot_or_del(new back(H),SLOT_BACK, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new back(H), SLOT_BACK, override_nodrop = TRUE)
 	if(belt)
-		H.equip_to_slot_or_del(new belt(H),SLOT_BELT, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new belt(H), SLOT_BELT, override_nodrop = TRUE)
 	if(gloves)
-		H.equip_to_slot_or_del(new gloves(H),SLOT_GLOVES, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new gloves(H), SLOT_GLOVES, override_nodrop = TRUE)
 	if(shoes)
-		H.equip_to_slot_or_del(new shoes(H),SLOT_SHOES, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new shoes(H), SLOT_SHOES, override_nodrop = TRUE)
 	if(head)
-		H.equip_to_slot_or_del(new head(H),SLOT_HEAD, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new head(H), SLOT_HEAD, override_nodrop = TRUE)
 	if(mask)
-		H.equip_to_slot_or_del(new mask(H),SLOT_WEAR_MASK, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new mask(H), SLOT_WEAR_MASK, override_nodrop = TRUE)
 	if(ears)
 		if(visualsOnly)
-			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS, override_nodrop = TRUE) //We don't want marine cameras. For now they have the same item_state as the rest.
+			H.equip_to_slot_or_del(new /obj/item/radio/headset(H), SLOT_EARS, override_nodrop = TRUE) //We don't want marine cameras. For now they have the same worn_icon_state as the rest.
 		else
 			H.equip_to_slot_or_del(new ears(H), SLOT_EARS, override_nodrop = TRUE)
 	if(glasses)
-		H.equip_to_slot_or_del(new glasses(H),SLOT_GLASSES, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new glasses(H), SLOT_GLASSES, override_nodrop = TRUE)
 	if(id)
-		H.equip_to_slot_or_del(new id(H),SLOT_WEAR_ID, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new id(H), SLOT_WEAR_ID, override_nodrop = TRUE)
 	if(suit_store)
-		H.equip_to_slot_or_del(new suit_store(H),SLOT_S_STORE, override_nodrop = TRUE)
+		H.equip_to_slot_or_del(new suit_store(H), SLOT_S_STORE, override_nodrop = TRUE)
 	if(l_hand)
 		H.put_in_l_hand(new l_hand(H))
 	if(r_hand)
@@ -78,9 +78,9 @@
 
 	if(!visualsOnly) // Items in pockets or backpack don't show up on mob's icon.
 		if(l_store)
-			H.equip_to_slot_or_del(new l_store(H),SLOT_L_STORE, override_nodrop = TRUE)
+			H.equip_to_slot_or_del(new l_store(H), SLOT_L_STORE, override_nodrop = TRUE)
 		if(r_store)
-			H.equip_to_slot_or_del(new r_store(H),SLOT_R_STORE, override_nodrop = TRUE)
+			H.equip_to_slot_or_del(new r_store(H), SLOT_R_STORE, override_nodrop = TRUE)
 
 		if(box)
 			if(!backpack_contents)
@@ -94,7 +94,7 @@
 				if(!isnum(number))//Default to 1
 					number = 1
 				for(var/i in 1 to number)
-					H.equip_to_slot_or_del(new path(H),SLOT_IN_BACKPACK, override_nodrop = TRUE)
+					H.equip_to_slot_or_del(new path(H), SLOT_IN_BACKPACK, override_nodrop = TRUE)
 
 	post_equip(H, visualsOnly)
 
@@ -125,7 +125,6 @@
 	.["shoes"] = shoes
 	.["head"] = head
 	.["mask"] = mask
-	.["neck"] = neck
 	.["ears"] = ears
 	.["glasses"] = glasses
 	.["id"] = id
@@ -140,6 +139,32 @@
 	.["implants"] = implants
 	.["accessory"] = accessory
 
+/// Copy most vars from another outfit to this one
+/datum/outfit/proc/copy_from(datum/outfit/target)
+	name = target.name
+	w_uniform = target.w_uniform
+	wear_suit = target.wear_suit
+	toggle_helmet = target.toggle_helmet
+	back = target.back
+	belt = target.belt
+	gloves = target.gloves
+	shoes = target.shoes
+	head = target.head
+	mask = target.mask
+	ears = target.ears
+	glasses = target.glasses
+	id = target.id
+	l_store = target.l_store
+	r_store = target.r_store
+	suit_store = target.suit_store
+	r_hand = target.r_hand
+	l_hand = target.l_hand
+	internals_slot = target.internals_slot
+	backpack_contents = target.backpack_contents
+	box = target.box
+	implants = target.implants
+	accessory = target.accessory
+	return TRUE
 
 /datum/outfit/proc/save_to_file()
 	var/stored_data = get_json_data()
@@ -216,3 +241,19 @@
 	id = human_mob.wear_id?.type
 	l_store = human_mob.l_store?.type
 	r_store = human_mob.r_store?.type
+
+/datum/outfit/vv_get_dropdown()
+	. = ..()
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_TO_OUTFIT_EDITOR, "Outfit Editor")
+
+/datum/outfit/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_TO_OUTFIT_EDITOR])
+		if(!check_rights(NONE))
+			return
+		usr.client.open_outfit_editor(src)

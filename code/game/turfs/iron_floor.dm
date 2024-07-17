@@ -233,8 +233,12 @@
 /turf/open/floor/glass
 	name = "glass floor"
 	desc = "Don't jump on it, or do, I'm not your mom."
-	icon = 'icons/turf/floors.dmi'
+	icon = 'icons/turf/floors/glass.dmi'
 	icon_state = "glass-0"
+	base_icon_state = "glass"
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
+	canSmoothWith = list(SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
 
 /turf/open/floor/glass/reinforced
 	name = "reinforced glass floor"
@@ -242,7 +246,17 @@
 	icon = 'icons/turf/floors/reinf_glass.dmi'
 	icon_state = "reinf_glass-0"
 	base_icon_state = "reinf_glass"
-	smoothing_flags = SMOOTH_BITMASK
-	smoothing_groups = list(SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
-	canSmoothWith = list(SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
 
+/turf/open/floor/glass/plasma
+	name = "plasma glass floor"
+	desc = "Studies by the Nanotrasen Materials Safety Division have not yet determined if this is safe to jump on, do so at your own risk."
+	icon = 'icons/turf/floors/plasma_glass.dmi'
+	icon_state = "plasma_glass-0"
+	base_icon_state = "plasma_glass"
+
+/turf/open/floor/glass/reinforced/plasma
+	name = "reinforced plasma glass floor"
+	desc = "Do jump on it, jump on it while in a mecha, it can take it."
+	icon = 'icons/turf/floors/reinf_plasma_glass.dmi'
+	icon_state = "reinf_plasma_glass-0"
+	base_icon_state = "reinf_plasma_glass"

@@ -32,7 +32,7 @@
 	throwforce = 8
 	throw_speed = 3
 	throw_range = 6
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	turf_type = /turf/open/floor
 
 ///Creates plating, used for space turfs only
@@ -87,6 +87,8 @@
 
 /obj/item/stack/tile/light/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/crowbar))
 		new /obj/item/stack/sheet/metal(user.loc)

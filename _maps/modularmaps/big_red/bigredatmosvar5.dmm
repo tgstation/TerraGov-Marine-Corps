@@ -266,6 +266,9 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "rJ" = (
@@ -763,7 +766,7 @@
 "OG" = (
 /obj/structure/cryofeed,
 /turf/open/floor/bcircuit/anim,
-/area/bigredv2/outside/filtration_plant)
+/area/space)
 "Qe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
@@ -895,7 +898,7 @@
 	name = "\improper coolant feed"
 	},
 /turf/open/floor/bcircuit/anim,
-/area/bigredv2/outside/filtration_plant)
+/area/space)
 "WO" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,
@@ -974,8 +977,10 @@
 /area/bigredv2/outside/se)
 "ZL" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "ZP" = (

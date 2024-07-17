@@ -25,7 +25,7 @@
 
 /obj/item/cell/update_overlays()
 	. = ..()
-	if(charge < 0.01)
+	if(charge < 0.01 || !charge_overlay)
 		return
 	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	. += "[charge_overlay]_[remaining]"
@@ -54,14 +54,9 @@
 		explode()
 		return 0
 
-	if(maxcharge < amount)	return 0
+	if(maxcharge < amount)
+		return 0
 	var/amount_used = min(maxcharge-charge,amount)
-	if(crit_fail)	return 0
-	if(!prob(reliability))
-		minor_fault++
-		if(prob(minor_fault))
-			crit_fail = 1
-			return 0
 	charge += amount_used
 	return amount_used
 
@@ -72,8 +67,6 @@
 		. += "The manufacturer's label states this cell has a power rating of [maxcharge], and that you should not swallow it.\nThe charge meter reads [round(src.percent() )]%."
 	else
 		. += "This power cell has an exciting chrome finish, as it is an uber-capacity cell type! It has a power rating of [maxcharge]!\nThe charge meter reads [round(src.percent() )]%."
-	if(crit_fail)
-		. += span_warning("This power cell seems to be faulty.")
 	if(rigged)
 		if(get_dist(user,src) < 3) //Have to be close to make out the *DANGEROUS* details
 			. += span_danger("This power cell looks jury rigged to explode!")
@@ -84,8 +77,7 @@
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, span_warning("Your programming restricts using rigged power cells."))
 			return
-		log_explosion("[key_name(user)] primed a rigged [src] at [AREACOORD(user.loc)].")
-		log_combat(user, src, "primed a rigged")
+		log_bomber(user, "primed a rigged", src)
 		user.visible_message(span_danger("[user] destabilizes [src]; it will detonate shortly!"),
 		span_danger("You destabilize [src]; it will detonate shortly!"))
 		var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
@@ -105,6 +97,8 @@
 
 /obj/item/cell/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/reagent_containers/syringe))
 		var/obj/item/reagent_containers/syringe/S = I
@@ -134,12 +128,12 @@
 			if(skill < SKILL_ENGINEER_ENGI) //Field engi skill or better or ya fumble.
 				user.visible_message(span_notice("[user] fumbles around figuring out how to manipulate [src]."),
 				span_notice("You fumble around, trying to figure out how to rig [src] to explode."))
-				if(!do_after(user, delay, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, delay, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 
 			user.visible_message(span_notice("[user] begins manipulating [src] with [I]."),
 			span_notice("You begin rigging [src] to detonate with [I]."))
-			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, delay, NONE, src, BUSY_ICON_BUILD))
 				return
 			rigged = TRUE
 			overlays += spark_overlay
@@ -150,7 +144,7 @@
 				user.visible_message(span_notice("[user] fumbles around figuring out how to manipulate [src]."),
 				span_notice("You fumble around, trying to figure out how to stabilize [src]."))
 				var/fumbling_time = SKILL_TASK_EASY
-				if(!do_after(user, fumbling_time, TRUE, src, BUSY_ICON_UNSKILLED))
+				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 				if(prob((SKILL_ENGINEER_PLASTEEL - skill) * 20))
 					to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
@@ -160,7 +154,7 @@
 			span_notice("You begin stabilizing [src] with [I] so it won't detonate on use."))
 			if(skill > SKILL_ENGINEER_ENGI)
 				delay = max(delay - 10, 0)
-			if(!do_after(user, delay, TRUE, src, BUSY_ICON_BUILD))
+			if(!do_after(user, delay, NONE, src, BUSY_ICON_BUILD))
 				return
 			rigged = FALSE
 			overlays -= spark_overlay
@@ -192,12 +186,8 @@
 		rigged = 1 //broken batterys are dangerous
 
 /obj/item/cell/emp_act(severity)
-	charge -= 1000 / severity
-	if (charge < 0)
-		charge = 0
-	if(reliability != 100 && prob(50/severity))
-		reliability -= 10 / severity
-	..()
+	. = ..()
+	charge = max(charge - ((maxcharge * 0.5) / severity), 0)
 
 /obj/item/cell/ex_act(severity)
 

@@ -92,6 +92,7 @@
 		updateStamina(feedback)
 
 /mob/living/proc/updateStamina(feedback = TRUE)
+	hud_used?.staminas?.update_icon()
 	if(staminaloss < max(health * 1.5,0) || !(COOLDOWN_CHECK(src, last_stamina_exhaustion))) //If we're on cooldown for stamina exhaustion, don't bother
 		return
 
@@ -103,25 +104,12 @@
 	adjust_stagger(STAMINA_EXHAUSTION_STAGGER_DURATION)
 	add_slowdown(STAMINA_EXHAUSTION_DEBUFF_STACKS)
 	adjust_blurriness(STAMINA_EXHAUSTION_DEBUFF_STACKS)
-	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN) //set the cooldown.
-
-
-/mob/living/carbon/human/updateStamina(feedback = TRUE)
-	. = ..()
-	if(!hud_used?.staminas)
-		return
-	if(stat == DEAD)
-		hud_used.staminas.icon_state = "stamloss200"
-		return
-	var/relative_stamloss = getStaminaLoss()
-	if(relative_stamloss < 0 && max_stamina)
-		relative_stamloss = round(((relative_stamloss * 14) / max_stamina), 1)
-	else
-		relative_stamloss = round(((relative_stamloss * 7) / (maxHealth * 2)), 1)
-	hud_used.staminas.icon_state = "stamloss[relative_stamloss]"
+	COOLDOWN_START(src, last_stamina_exhaustion, LIVING_STAMINA_EXHAUSTION_COOLDOWN - (skills.getRating(SKILL_STAMINA) * STAMINA_SKILL_COOLDOWN_MOD)) //set the cooldown.
 
 /// Adds an entry to our stamina_regen_modifiers and updates stamina_regen_multiplier
 /mob/living/proc/add_stamina_regen_modifier(mod_name, mod_value)
+	if(stamina_regen_modifiers[mod_name] == mod_value)
+		return
 	stamina_regen_modifiers[mod_name] = mod_value
 	recalc_stamina_regen_multiplier()
 
@@ -138,6 +126,11 @@
 	for(var/mod_name in stamina_regen_modifiers)
 		stamina_regen_multiplier += stamina_regen_modifiers[mod_name]
 	stamina_regen_multiplier = max(stamina_regen_multiplier, 0)
+
+///Updates the mob's stamina modifiers if their stam skill changes
+/mob/living/proc/update_stam_skill_mod(datum/source)
+	SIGNAL_HANDLER
+	add_stamina_regen_modifier(SKILL_STAMINA, skills.getRating(SKILL_STAMINA) * STAMINA_SKILL_REGEN_MOD)
 
 /mob/living/proc/getCloneLoss()
 	return cloneloss
@@ -198,6 +191,20 @@
 		return
 	remove_movespeed_modifier(MOVESPEED_ID_DROWSINESS)
 
+///Adjusts the blood volume, with respect to the minimum and maximum values
+/mob/living/proc/adjust_blood_volume(amount)
+	if(!amount)
+		return
+
+	blood_volume = clamp(blood_volume + amount, 0, BLOOD_VOLUME_MAXIMUM)
+
+///Sets the blood volume, with respect to the minimum and maximum values
+/mob/living/proc/set_blood_volume(amount)
+	if(!amount)
+		return
+
+	blood_volume = clamp(amount, 0, BLOOD_VOLUME_MAXIMUM)
+
 
 // heal ONE limb, organ gets randomly selected from damaged ones.
 /mob/living/proc/heal_limb_damage(brute, burn, robo_repair = FALSE, updating_health = FALSE)
@@ -234,7 +241,7 @@
 
 ///Heal limbs until the total mob health went up by health_to_heal
 /mob/living/carbon/human/proc/heal_limbs(health_to_heal)
-	var/proportion_to_heal = (health_to_heal < (species.total_health - health)) ? (health_to_heal / (species.total_health - health)) : 1
+	var/proportion_to_heal = (health_to_heal < (maxHealth - health)) ? (health_to_heal / (maxHealth - health)) : 1
 	for(var/datum/limb/limb AS in limbs)
 		limb.heal_limb_damage(limb.brute_dam * proportion_to_heal, limb.burn_dam * proportion_to_heal, robo_repair = TRUE)
 	updatehealth()
@@ -247,7 +254,6 @@
 
 /mob/living/carbon/human/on_revive()
 	. = ..()
-	revive_grace_time = initial(revive_grace_time)
 	GLOB.alive_human_list += src
 	LAZYADD(GLOB.alive_human_list_faction[faction], src)
 	GLOB.dead_human_list -= src
@@ -263,8 +269,9 @@
 	GLOB.dead_xeno_list -= src
 
 /mob/living/proc/revive(admin_revive = FALSE)
-	for(var/i in embedded_objects)
-		var/obj/item/embedded = i
+	for(var/obj/item/embedded AS in embedded_objects)
+		if(embedded.is_beneficial_implant())
+			continue
 		embedded.unembed_ourself()
 
 	// shut down various types of badness
@@ -360,14 +367,14 @@
 	REMOVE_TRAIT(src, TRAIT_UNDEFIBBABLE, TRAIT_UNDEFIBBABLE)
 	REMOVE_TRAIT(src, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	dead_ticks = 0
-	chestburst = 0
+	chestburst = CARBON_NO_CHEST_BURST
 	update_body()
 	update_hair()
 	return ..()
 
 
 /mob/living/carbon/xenomorph/revive(admin_revive = FALSE)
-	plasma_stored = xeno_caste.plasma_max
+	set_plasma(xeno_caste.plasma_max)
 	sunder = 0
 	if(stat == DEAD)
 		hive?.on_xeno_revive(src)
@@ -390,7 +397,8 @@
 	ADD_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	if(should_zombify && (istype(wear_ear, /obj/item/radio/headset/mainship)))
 		var/obj/item/radio/headset/mainship/radio = wear_ear
-		radio.safety_protocol(src)
+		if(istype(radio))
+			radio.safety_protocol(src)
 	addtimer(CALLBACK(src, PROC_REF(finish_revive_to_crit), should_offer_to_ghost, should_zombify), 10 SECONDS)
 
 ///Check if we have a mind, and finish the revive if we do
@@ -420,3 +428,4 @@
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 	REMOVE_TRAIT(src, TRAIT_IS_RESURRECTING, REVIVE_TO_CRIT_TRAIT)
 	SSmobs.start_processing(src)
+

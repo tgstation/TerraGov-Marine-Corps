@@ -4,8 +4,8 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "handcuff"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
@@ -42,7 +42,7 @@
 	log_combat(user, H, "handcuffed", src, addition="(attempt)")
 
 	user.visible_message(span_notice("[user] tries to put [src] on [H]."))
-	if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), H)) && !H.handcuffed)
+	if(do_after(user, cuff_delay, NONE, H, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), H)) && !H.handcuffed)
 		if(H.has_limb_for_slot(SLOT_HANDCUFFED))
 			user.dropItemToGround(src)
 			H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
@@ -63,7 +63,7 @@
 	. = ..()
 	if(!.)
 		return
-	flags_item |= DELONDROP
+	item_flags |= DELONDROP
 
 
 
@@ -100,6 +100,8 @@
 
 /obj/item/restraints/handcuffs/cable/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I
@@ -110,7 +112,7 @@
 		user.put_in_hands(W)
 		to_chat(user, span_notice("You wrap the cable restraint around the top of the rod."))
 		qdel(src)
-		update_icon(user)
+		update_icon()
 
 
 /obj/item/restraints/handcuffs/cyborg

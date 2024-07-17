@@ -19,6 +19,7 @@
 	use_power = IDLE_POWER_USE
 	idle_power_usage = 2
 	active_power_usage = 4
+	layer = ABOVE_OBJ_LAYER
 
 /obj/machinery/door_control/unmeltable
 	resistance_flags = RESIST_ALL
@@ -128,6 +129,7 @@
 	update_icon()
 
 /obj/machinery/door_control/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "doorctrl-p"
 	else if(pressed)
@@ -141,6 +143,8 @@
 
 /obj/machinery/driver_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/detective_scanner))
 		return
@@ -237,9 +241,14 @@
 	id = "hangar_lockdown"
 
 /obj/machinery/door_control/mainship/mech
-	name = "Mech Shutter"
+	name = "\improper Mech Shutters"
 	id = "mech_shutters"
 	req_one_access = list(ACCESS_MARINE_MECH)
+
+/obj/machinery/door_control/mainship/vehicle
+	name = "\improper Vehicle Bay Shutters"
+	id = "vehicle_shutters"
+	req_one_access = list(ACCESS_MARINE_ARMORED, ACCESS_MARINE_MECH)
 
 /obj/machinery/door_control/mainship/tcomms
 	name = "Telecommunications Entrance"
@@ -256,6 +265,11 @@
 	name = "Privacy Shutters"
 	id = "cl_shutters"
 	req_access = list(ACCESS_NT_CORPORATE)
+
+/obj/machinery/door_control/mainship/fc_shutters
+	name = "Privacy Shutters"
+	id = "fc_shutters"
+	req_access = list(ACCESS_MARINE_BRIDGE)
 
 /obj/machinery/door_control/mainship/req
 	name = "RO Line Shutters"
@@ -281,6 +295,7 @@
 	directional = FALSE
 
 /obj/machinery/door_control/old/update_icon_state()
+	. = ..()
 	if(machine_stat & NOPOWER)
 		icon_state = "olddoorctrl-p"
 	else if(pressed)

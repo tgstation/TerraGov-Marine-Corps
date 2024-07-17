@@ -1,36 +1,36 @@
-/obj/vehicle/sealed/mecha/mob_try_enter(mob/M)
-	if(!ishuman(M)) // no silicons or drones in mechas.
+/obj/vehicle/sealed/mecha/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
+	if(!ishuman(entering_mob)) // no silicons or drones in mechas.
 		return
-	log_message("[M] tried to move into [src].", LOG_MECHA)
+	log_message("[entering_mob] tried to move into [src].", LOG_MECHA)
 	if(dna_lock)
-		var/mob/living/carbon/entering_carbon = M
+		var/mob/living/carbon/entering_carbon = entering_mob
 		if(md5(REF(entering_carbon)) != dna_lock)
-			to_chat(M, span_warning("Access denied. [name] is secured with a DNA lock."))
+			to_chat(entering_mob, span_warning("Access denied. [name] is secured with a DNA lock."))
 			log_message("Permission denied (DNA LOCK).", LOG_MECHA)
 			return
-	if(!operation_allowed(M))
-		to_chat(M, span_warning("Access denied. Insufficient operation keycodes."))
+	if(!operation_allowed(entering_mob))
+		to_chat(entering_mob, span_warning("Access denied. Insufficient operation keycodes."))
 		log_message("Permission denied (No keycode).", LOG_MECHA)
 		return
 	. = ..()
 	if(.)
-		moved_inside(M)
+		moved_inside(entering_mob)
 
-/obj/vehicle/sealed/mecha/enter_checks(mob/M)
+/obj/vehicle/sealed/mecha/enter_checks(mob/entering_mob, loc_override = FALSE)
 	if(obj_integrity <= 0)
-		to_chat(M, span_warning("You cannot get in the [src], it has been destroyed!"))
+		to_chat(entering_mob, span_warning("You cannot get in the [src], it has been destroyed!"))
 		return FALSE
-	if(M.buckled)
-		to_chat(M, span_warning("You can't enter the exosuit while buckled."))
+	if(entering_mob.buckled)
+		to_chat(entering_mob, span_warning("You can't enter the exosuit while buckled."))
 		log_message("Permission denied (Buckled).", LOG_MECHA)
 		return FALSE
-	if(LAZYLEN(M.buckled_mobs))
-		to_chat(M, span_warning("You can't enter the exosuit with other creatures attached to you!"))
+	if(LAZYLEN(entering_mob.buckled_mobs))
+		to_chat(entering_mob, span_warning("You can't enter the exosuit with other creatures attached to you!"))
 		log_message("Permission denied (Attached mobs).", LOG_MECHA)
 		return FALSE
-	var/obj/item/I = M.get_item_by_slot(SLOT_BACK)
+	var/obj/item/I = entering_mob.get_item_by_slot(SLOT_BACK)
 	if(I && istype(I, /obj/item/jetpack_marine))
-		to_chat(M, span_warning("Something on your back prevents you from entering the mech!"))
+		to_chat(entering_mob, span_warning("Something on your back prevents you from entering the mech!"))
 		return FALSE
 	return ..()
 
@@ -42,13 +42,22 @@
 		return FALSE
 	newoccupant.drop_all_held_items()
 	add_occupant(newoccupant)
-	newoccupant.forceMove(src)
+	if(newoccupant.loc != src)
+		newoccupant.forceMove(src)
 	newoccupant.update_mouse_pointer()
 	add_fingerprint(newoccupant, "moved in as pilot")
 	log_message("[newoccupant] moved in as pilot.", LOG_MECHA)
 	setDir(dir_in)
 	playsound(src, 'sound/machines/windowdoor.ogg', 50, TRUE)
 	set_mouse_pointer()
+	for(var/faction in GLOB.faction_to_data_hud)
+		var/datum/atom_hud/squad/hud_type = GLOB.huds[GLOB.faction_to_data_hud[faction]]
+		if(faction == newoccupant.faction)
+			hud_type.add_to_hud(src)
+		else
+			hud_type.remove_from_hud(src)
+	faction = newoccupant.faction //we do not unset when exiting, last occupant is the owner
+
 	if(!internal_damage)
 		SEND_SOUND(newoccupant, sound('sound/mecha/nominal.ogg',volume=50))
 	return TRUE
@@ -85,8 +94,8 @@
 
 /obj/vehicle/sealed/mecha/remove_occupant(mob/M)
 	//tgmc addition start
-	M.hud_used.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
-	M.hud_used.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
+	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
+	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
 	//tgmc addition end
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
 	UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
@@ -104,7 +113,7 @@
 /obj/vehicle/sealed/mecha/resisted_against(mob/living/user)
 	to_chat(user, span_notice("You begin the ejection procedure. Equipment is disabled during this process. Hold still to finish ejecting."))
 	is_currently_ejecting = TRUE
-	if(do_after(user, exit_delay, target = src))
+	if(do_after(user, exit_delay, NONE, src))
 		to_chat(user, span_notice("You exit the mech."))
 		mob_exit(user, TRUE)
 	else

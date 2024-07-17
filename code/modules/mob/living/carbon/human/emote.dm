@@ -31,7 +31,7 @@
 	key_third_person = "bows"
 	message = "bows."
 	message_param = "bows to %t."
-	flags_emote = EMOTE_RESTRAINT_CHECK
+	emote_flags = EMOTE_RESTRAINT_CHECK
 
 
 /datum/emote/living/carbon/human/chuckle
@@ -45,14 +45,14 @@
 	key = "cross"
 	key_third_person = "crosses"
 	message = "crosses their arms."
-	flags_emote = EMOTE_RESTRAINT_CHECK
+	emote_flags = EMOTE_RESTRAINT_CHECK
 
 
 /datum/emote/living/carbon/human/clap
 	key = "clap"
 	key_third_person = "claps"
 	message = "claps."
-	flags_emote = EMOTE_RESTRAINT_CHECK|EMOTE_VARY|EMOTE_MUZZLE_IGNORE
+	emote_flags = EMOTE_RESTRAINT_CHECK|EMOTE_VARY|EMOTE_MUZZLE_IGNORE
 	emote_type = EMOTE_AUDIBLE
 	sound = 'sound/misc/clap.ogg'
 
@@ -312,14 +312,6 @@
 	key_third_person = "grimaces"
 	message = "grimaces."
 
-
-/datum/emote/living/carbon/human/jump
-	key = "jump"
-	key_third_person = "jumps"
-	message = "jumps!"
-	flags_emote = EMOTE_RESTRAINT_CHECK
-
-
 /datum/emote/living/carbon/human/grumble
 	key = "grumble"
 	key_third_person = "grumbles"
@@ -338,7 +330,7 @@
 	key = "signal"
 	key_third_person = "signals"
 	message_param = "raises %t fingers."
-	flags_emote = EMOTE_RESTRAINT_CHECK
+	emote_flags = EMOTE_RESTRAINT_CHECK
 
 
 /datum/emote/living/carbon/human/signal/select_param(mob/user, params)
@@ -403,7 +395,7 @@
 	key_third_person = "snaps"
 	message = "snaps their fingers"
 	emote_type = EMOTE_AUDIBLE
-	flags_emote = EMOTE_RESTRAINT_CHECK|EMOTE_MUZZLE_IGNORE|EMOTE_ARMS_CHECK
+	emote_flags = EMOTE_RESTRAINT_CHECK|EMOTE_MUZZLE_IGNORE|EMOTE_ARMS_CHECK
 	sound = 'sound/misc/fingersnap.ogg'
 
 /datum/emote/living/carbon/human/hug
@@ -411,7 +403,7 @@
 	key_third_person = "hugs"
 	message = "hugs themself"
 	message_param = "hugs %t."
-	flags_emote = EMOTE_RESTRAINT_CHECK
+	emote_flags = EMOTE_RESTRAINT_CHECK
 	emote_type = EMOTE_AUDIBLE
 
 
@@ -426,7 +418,7 @@
 	key = "handshake"
 	message = "shakes their own hands."
 	message_param = "shakes hands with %t."
-	flags_emote = EMOTE_RESTRAINT_CHECK
+	emote_flags = EMOTE_RESTRAINT_CHECK
 	emote_type = EMOTE_AUDIBLE
 
 
@@ -435,7 +427,7 @@
 	key_third_person = "salutes"
 	message = "salutes."
 	message_param = "salutes to %t."
-	flags_emote = EMOTE_RESTRAINT_CHECK
+	emote_flags = EMOTE_RESTRAINT_CHECK
 	sound = 'sound/misc/salute.ogg'
 
 
@@ -443,7 +435,7 @@
 	key = "golfclap"
 	key_third_person = "golfclaps"
 	message = "claps, clearly unimpressed."
-	flags_emote = EMOTE_RESTRAINT_CHECK
+	emote_flags = EMOTE_RESTRAINT_CHECK
 	sound = 'sound/misc/golfclap.ogg'
 
 
@@ -529,7 +521,7 @@
 	key = "gored"
 	message = "gags out in pain!"
 	emote_type = EMOTE_AUDIBLE
-	flags_emote = EMOTE_FORCED_AUDIO
+	emote_flags = EMOTE_FORCED_AUDIO
 
 
 /datum/emote/living/carbon/human/gored/get_sound(mob/living/carbon/human/user)
@@ -553,7 +545,7 @@
 	key = "burstscream"
 	message = "screams in agony!"
 	emote_type = EMOTE_AUDIBLE
-	flags_emote = EMOTE_FORCED_AUDIO
+	emote_flags = EMOTE_FORCED_AUDIO
 	stat_allowed = UNCONSCIOUS
 
 

@@ -1,10 +1,10 @@
 /obj/item/hud_tablet
 	name = "hud tablet"
 	desc = "A tablet with a live feed to a number of headset cameras"
-	icon = 'icons/obj/items/req_tablet.dmi'
+	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "req_tablet_off"
 	req_access = list(ACCESS_NT_CORPORATE)
-	flags_equip_slot = ITEM_SLOT_POCKET
+	equip_slot_flags = ITEM_SLOT_POCKET
 	w_class = WEIGHT_CLASS_SMALL
 
 	interaction_flags = INTERACT_MACHINE_TGUI
@@ -50,6 +50,11 @@
 							dat += " delta"
 							network = list("delta")
 							req_access = list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DELTA)
+						else
+							var/lowername = lowertext(squad.name)
+							dat = dat + " " + lowername
+							network = list(lowername)
+							req_access = list(ACCESS_MARINE_LEADER)
 				dat += " squad leader's"
 			if(/datum/job/terragov/command/captain)
 				dat += " captain's"
@@ -61,8 +66,12 @@
 				req_access = list(ACCESS_MARINE_BRIDGE, ACCESS_MARINE_LEADER)
 			if(/datum/job/terragov/command/pilot)
 				dat += " pilot's"
-				network = list("dropship1", "dropship2")
+				network = list("dropship1")
 				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
+			if(/datum/job/terragov/command/transportofficer)
+				dat += " transport officer's"
+				network = list("dropship2")
+				req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
 		name = dat + " hud tablet"
 	// Convert networks to lowercase
 	for(var/i in network)
@@ -177,7 +186,7 @@
 		var/list/cameras = get_available_cameras()
 		var/obj/machinery/camera/selected_camera = cameras[c_tag]
 		active_camera = selected_camera
-		playsound(src, get_sfx("terminal_type"), 25, FALSE)
+		playsound(src, SFX_TERMINAL_TYPE, 25, FALSE)
 
 		if(!selected_camera)
 			return TRUE
@@ -252,10 +261,15 @@
 
 /obj/item/hud_tablet/pilot
 	name = "pilot officers's hud tablet"
-	network = list("dropship1", "dropship2")
+	network = list("dropship1")
 	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_DROPSHIP)
 	max_view_dist = WORLD_VIEW_NUM
 
+/obj/item/hud_tablet/transportofficer
+	name = "transport officer's hud tablet"
+	network = list("dropship2")
+	req_access = list(ACCESS_MARINE_PILOT, ACCESS_MARINE_TADPOLE)
+	max_view_dist = WORLD_VIEW_NUM
 
 /obj/item/hud_tablet/artillery
 	name = "artillery impact hud tablet"

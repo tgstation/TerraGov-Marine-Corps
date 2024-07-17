@@ -227,7 +227,7 @@
 	},
 /area/bigredv2/outside/medical)
 "gr" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue,
 /area/bigredv2/outside/medical)
 "gA" = (
@@ -644,7 +644,7 @@
 	},
 /area/bigredv2/outside/medical)
 "rO" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 5
 	},
@@ -787,7 +787,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "uZ" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 6
 	},
@@ -919,7 +919,7 @@
 	},
 /area/bigredv2/outside/medical)
 "yM" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 6
 	},
@@ -989,7 +989,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/c)
 "AU" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -1715,7 +1715,7 @@
 	},
 /area/bigredv2/outside/medical)
 "Tf" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "Th" = (
@@ -1891,7 +1891,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ZE" = (
-/obj/machinery/sleep_console,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -1902,7 +1902,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "ZG" = (
-/obj/machinery/body_scanconsole,
+/obj/machinery/computer/body_scanconsole,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/green/whitegreen,
 /area/bigredv2/outside/medical)

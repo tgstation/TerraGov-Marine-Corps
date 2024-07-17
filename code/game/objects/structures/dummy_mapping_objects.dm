@@ -33,7 +33,7 @@
 	desc = "A clamshell portable computer.  It is closed."
 	icon = 'icons/obj/machines/computer3.dmi'
 	icon_state =  "laptop-closed"
-	item_state =  "laptop-inhand"
+	worn_icon_state =  "laptop-inhand"
 	pixel_x = 2
 	pixel_y = -3
 	w_class = WEIGHT_CLASS_NORMAL
@@ -56,8 +56,8 @@
 
 /obj/machinery/computer/atmoscontrol
 	name = "\improper Central Atmospherics Computer"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "computer_generic"
+	icon_state = "computer"
+	screen_overlay = "computer_generic"
 	density = TRUE
 	anchored = TRUE
 

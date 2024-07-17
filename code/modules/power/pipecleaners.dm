@@ -107,7 +107,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	return ..()									// then go ahead and delete the pipe_cleaner
 
 /obj/structure/pipe_cleaner/deconstruct(disassembled = TRUE)
-	if(!(flags_atom & NODECONSTRUCT))
+	if(!(atom_flags & NODECONSTRUCT))
 		var/turf/T = get_turf(loc)
 		if(T)
 			stored.forceMove(T)
@@ -120,10 +120,14 @@ By design, d1 is the smallest direction and d2 is the highest
 // General procedures
 ///////////////////////////////////
 
-/obj/structure/pipe_cleaner/update_icon()
+/obj/structure/pipe_cleaner/update_icon_state()
+	. = ..()
 	icon_state = "[d1]-[d2]"
+
+/obj/structure/pipe_cleaner/update_icon()
 	color = null
 	add_atom_colour(pipe_cleaner_color, FIXED_COLOUR_PRIORITY)
+	return ..()
 
 // Items usable on a pipe_cleaner :
 //   - Wirecutters : cut it duh !
@@ -175,7 +179,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	gender = NEUTER //That's a pipe_cleaner coil sounds better than that's some pipe_cleaner coils
 	icon = 'icons/obj/power.dmi'
 	icon_state = "pipecleaner"
-	item_state = "coil"
+	worn_icon_state = "coil"
 	max_amount = MAXCOIL
 	amount = MAXCOIL
 	merge_type = /obj/item/stack/pipe_cleaner_coil // This is here to let its children merge between themselves
@@ -183,8 +187,8 @@ By design, d1 is the smallest direction and d2 is the highest
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 5
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	singular_name = "pipe cleaner piece"
 	usesound = 'sound/items/deconstruct.ogg'
@@ -206,11 +210,18 @@ By design, d1 is the smallest direction and d2 is the highest
 ///////////////////////////////////
 
 
-/obj/item/stack/pipe_cleaner_coil/update_icon()
-	icon_state = "[initial(item_state)][amount < 3 ? amount : ""]"
+/obj/item/stack/pipe_cleaner_coil/update_icon_state()
+	. = ..()
+	icon_state = "[initial(worn_icon_state)][amount < 3 ? amount : ""]"
+
+/obj/item/stack/pipe_cleaner_coil/update_name(updates)
+	. = ..()
 	name = "pipe cleaner [amount < 3 ? "piece" : "coil"]"
+
+/obj/item/stack/pipe_cleaner_coil/update_icon()
 	color = null
 	add_atom_colour(pipe_cleaner_color, FIXED_COLOUR_PRIORITY)
+	return ..()
 
 /obj/item/stack/pipe_cleaner_coil/attack_hand(mob/user)
 	. = ..()
@@ -317,7 +328,7 @@ By design, d1 is the smallest direction and d2 is the highest
 			// pipe_cleaner is pointing at us, we're standing on an open tile
 			// so create a stub pointing at the clicked pipe_cleaner on our tile
 
-			var/fdirn = turn(dirn, 180)		// the opposite direction
+			var/fdirn = REVERSE_DIR(dirn)		// the opposite direction
 
 			for(var/obj/structure/pipe_cleaner/LC in U)		// check to make sure there's not a pipe_cleaner there already
 				if(LC.d1 == fdirn || LC.d2 == fdirn)

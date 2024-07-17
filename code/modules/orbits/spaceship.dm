@@ -16,6 +16,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 /obj/machinery/computer/navigation
 	name = "\improper Helms computer"
 	icon_state = "shuttlecomputer"
+	screen_overlay = "shuttlecomputer_screen"
 	density = TRUE
 	anchored = TRUE
 	idle_power_usage = 10
@@ -88,14 +89,14 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	var/dat
 
 	if(authenticated)
-		dat += "<BR>\[ <A HREF='?src=\ref[src];logout=1'>LOG OUT</A>]"
+		dat += "<BR>\[ <A HREF='?src=[text_ref(src)];logout=1'>LOG OUT</A>]"
 		dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
 		dat += "<br><center><h3>[GLOB.current_orbit]</h3></center>" //display the current orbit level
 		dat += "<br><center>Power Level: [get_power_amount()]|Engines prepared: [can_change_orbit(silent = TRUE) ? "Ready" : "Recalculating"]</center>" //display ship nav stats, power level, cooldown.
 
 		if(get_power_amount() >= REQUIRED_POWER_AMOUNT)
-			dat += "<center><b><a href='byond://?src=\ref[src];UP=1'>Increase orbital level</a>|" //move farther away, current_orbit++
+			dat += "<center><b><a href='byond://?src=[text_ref(src)];UP=1'>Increase orbital level</a>|" //move farther away, current_orbit++
 			dat += "<a href='byond://?src=[REF(src)];DOWN=1'>Decrease orbital level</a>|" //move closer in, current_orbit--
 		else
 			dat += "<center><h4>Insufficient Power Reserves to change orbit"
@@ -104,7 +105,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		dat += "</b></center>"
 
 	else
-		dat += "<BR>\[ <A HREF='?src=\ref[src];login=1'>LOG IN</A> \]"
+		dat += "<BR>\[ <A HREF='?src=[text_ref(src)];login=1'>LOG IN</A> \]"
 
 	var/datum/browser/popup = new(user, "Navigation", "<div align='center'>Navigation</div>")
 	popup.set_content(dat)
@@ -159,8 +160,9 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		return
 
 	message_admins("[ADMIN_TPMONTY(usr)] Has sent the ship [direction == "UP" ? "UPWARD" : "DOWNWARD"] in orbit")
-	var/message = "Prepare for orbital change in 10 seconds.\nMoving [direction] the gravity well.\nSecure all belongings and prepare for engine ignition."
-	priority_announce(message, title = "Orbit Change")
+
+	var/message = "[usr.real_name] has queued orbital change.\nMoving [direction] the gravity well.\nBuckle immediately and prepare for engine ignition in 10 seconds."
+	minor_announce(message, title = "Orbit Change")
 	addtimer(CALLBACK(src, PROC_REF(do_change_orbit), current_orbit, direction), 10 SECONDS)
 
 /obj/machinery/computer/navigation/proc/can_change_orbit(current_orbit, direction, silent = FALSE)
@@ -193,8 +195,8 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	changing_orbit = TRUE
 	engine_shudder()
 
-	var/message = "Arriving at new orbital level. Prepare for engine ignition and stabilization."
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(priority_announce), message, "Orbit Change"), 290 SECONDS)
+	var/message = "Arriving at new orbital level. Buckle immediately and prepare for engine ignition and stabilization."
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), message, "Orbit Change"), 290 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(orbit_gets_changed), current_orbit, direction), 3 MINUTES)
 
 /obj/machinery/computer/navigation/proc/orbit_gets_changed(current_orbit, direction)

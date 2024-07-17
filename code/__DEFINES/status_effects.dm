@@ -39,6 +39,9 @@
 
 #define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
 
+#define STATUS_EFFECT_MINDMEND /datum/status_effect/mindmeld
+
+#define STATUS_EFFECT_REKNIT_FORM /datum/status_effect/reknit_form
 /////////////
 // DEBUFFS //
 /////////////
@@ -74,6 +77,7 @@
 #define STATUS_EFFECT_REPAIR_MODE /datum/status_effect/incapacitating/repair_mode //affected is blinded and stunned, but heals over time
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting
+#define STATUS_EFFECT_MELTING_FIRE /datum/status_effect/stacking/melting_fire
 ///damage over time
 #define STATUS_EFFECT_MICROWAVE /datum/status_effect/stacking/microwave
 ///armor reduction

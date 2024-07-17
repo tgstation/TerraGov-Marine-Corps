@@ -1,11 +1,26 @@
-import { useBackend, useLocalState } from '../../backend';
-import { Box, Stack, Button, Section, LabeledList, Tabs, Flex } from '../../components';
-import { Window } from '../../layouts';
-import { LoadoutListData, LoadoutTabData, LoadoutManagerData, LoadoutItemData } from './Types';
-import { NameInputModal } from './NameInputModal';
+import { useState } from 'react';
 
-const LoadoutItem = (props: LoadoutItemData, context) => {
-  const { act } = useBackend(context);
+import { useBackend } from '../../backend';
+import {
+  Box,
+  Button,
+  Flex,
+  LabeledList,
+  Section,
+  Stack,
+  Tabs,
+} from '../../components';
+import { Window } from '../../layouts';
+import { NameInputModal } from './NameInputModal';
+import {
+  LoadoutItemData,
+  LoadoutListData,
+  LoadoutManagerData,
+  LoadoutTabData,
+} from './Types';
+
+const LoadoutItem = (props: LoadoutItemData) => {
+  const { act } = useBackend();
   const { loadout } = props;
 
   return (
@@ -40,7 +55,8 @@ const LoadoutItem = (props: LoadoutItemData, context) => {
                   loadout_name: loadout.name,
                   loadout_job: loadout.job,
                 });
-              }}>
+              }}
+            >
               Select Loadout
             </Button>
           </>
@@ -83,27 +99,32 @@ const JobTabs = (props: LoadoutTabData) => {
           <Tabs>
             <Tabs.Tab
               selected={job === 'Squad Marine'}
-              onClick={() => setJob('Squad Marine')}>
+              onClick={() => setJob('Squad Marine')}
+            >
               Squad Marine
             </Tabs.Tab>
             <Tabs.Tab
               selected={job === 'Squad Engineer'}
-              onClick={() => setJob('Squad Engineer')}>
+              onClick={() => setJob('Squad Engineer')}
+            >
               Squad Engineer
             </Tabs.Tab>
             <Tabs.Tab
               selected={job === 'Squad Corpsman'}
-              onClick={() => setJob('Squad Corpsman')}>
+              onClick={() => setJob('Squad Corpsman')}
+            >
               Squad Corpsman
             </Tabs.Tab>
             <Tabs.Tab
               selected={job === 'Squad Smartgunner'}
-              onClick={() => setJob('Squad Smartgunner')}>
+              onClick={() => setJob('Squad Smartgunner')}
+            >
               Squad Smartgunner
             </Tabs.Tab>
             <Tabs.Tab
               selected={job === 'Squad Leader'}
-              onClick={() => setJob('Squad Leader')}>
+              onClick={() => setJob('Squad Leader')}
+            >
               Squad Leader
             </Tabs.Tab>
           </Tabs>
@@ -116,21 +137,13 @@ const JobTabs = (props: LoadoutTabData) => {
   );
 };
 
-export const LoadoutManager = (props, context) => {
-  const { act, data } = useBackend<LoadoutManagerData>(context);
+export const LoadoutManager = (props) => {
+  const { act, data } = useBackend<LoadoutManagerData>();
   const { loadout_list } = data;
 
-  const [job, setJob] = useLocalState(context, 'job', 'Squad Marine');
-  const [saveNewLoadout, setSaveNewLoadout] = useLocalState(
-    context,
-    'saveLoadout',
-    false
-  );
-  const [importNewLoadout, setImportNewLoadout] = useLocalState(
-    context,
-    'importLoadout',
-    false
-  );
+  const [job, setJob] = useState('Squad Marine');
+  const [saveNewLoadout, setSaveNewLoadout] = useState(false);
+  const [importNewLoadout, setImportNewLoadout] = useState(false);
 
   return (
     <Window title="Loadout Manager" width={700} height={400}>

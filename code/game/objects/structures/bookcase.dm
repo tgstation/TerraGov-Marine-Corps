@@ -18,6 +18,8 @@
 
 /obj/structure/bookcase/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/book))
 		user.drop_held_item()
@@ -67,7 +69,8 @@
 				qdel(src)
 
 
-/obj/structure/bookcase/update_icon()
+/obj/structure/bookcase/update_icon_state()
+	. = ..()
 	if(length(contents) < 5)
 		icon_state = "book-[length(contents)]"
 	else

@@ -41,7 +41,7 @@
 	update_icon()
 	sleep(20 SECONDS)
 	for(var/atom/A in contents)
-		A.clean_blood()
+		A.wash()
 
 	//Tanning!
 	for(var/obj/item/stack/sheet/hairlesshide/HH in contents)
@@ -67,12 +67,15 @@
 		usr.loc = src.loc
 
 
-/obj/machinery/washing_machine/update_icon()
+/obj/machinery/washing_machine/update_icon_state()
+	. = ..()
 	icon_state = "wm_[state][panel]"
 
 
 /obj/machinery/washing_machine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/toy/crayon) || istype(I, /obj/item/tool/stamp))
 		if(!(state in list(1, 3, 6)))

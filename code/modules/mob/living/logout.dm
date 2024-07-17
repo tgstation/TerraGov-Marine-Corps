@@ -12,4 +12,4 @@
 	else if(!isclientedaghost(src))
 		set_afk_status(MOB_RECENTLY_DISCONNECTED, AFK_TIMER)
 	if(!QDELETED(src) && stat != DEAD)
-		LAZYDISTINCTADD(GLOB.ssd_living_mobs, src)
+		LAZYOR(GLOB.ssd_living_mobs, src)

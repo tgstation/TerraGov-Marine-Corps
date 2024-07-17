@@ -10,18 +10,19 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 	"1408" = "bug preventing client display overrides from working leads to clients being able to see things/mobs they shouldn't be able to see",
 	))
 // This is a mapping from JS keys to Byond - ref: https://keycode.info/
+// TODO: tgui has keyCodeToByond already
 GLOBAL_LIST_INIT(_kbMap, list(
-	"UP" = "North",
-	"RIGHT" = "East",
-	"DOWN" = "South",
-	"LEFT" = "West",
+	"ARROWUP" = "North",
+	"ARROWRIGHT" = "East",
+	"ARROWDOWN" = "South",
+	"ARROWLEFT" = "West",
 	"INSERT" = "Insert",
 	"HOME" = "Northwest",
 	"PAGEUP" = "Northeast",
-	"DEL" = "Delete",
+	"DELETE" = "Delete",
 	"END" = "Southwest",
 	"PAGEDOWN" = "Southeast",
-	"SPACEBAR" = "Space",
+	" " = "Space",
 	"ALT" = "Alt",
 	"SHIFT" = "Shift",
 	"CONTROL" = "Ctrl"

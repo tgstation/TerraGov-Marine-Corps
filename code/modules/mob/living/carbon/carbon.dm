@@ -16,19 +16,10 @@
 		to_chat(src,"<b>[span_deadsay("<p style='font-size:1.5em'>[species.special_death_message]</p>")]</b>")
 	return ..()
 
-/mob/living/carbon/Moved(oldLoc, dir)
+/mob/living/carbon/Moved(atom/old_loc, movement_dir, forced = FALSE, list/old_locs)
 	. = ..()
 	if(nutrition && stat != DEAD)
 		adjust_nutrition(-HUNGER_FACTOR * 0.1 * ((m_intent == MOVE_INTENT_RUN) ? 2 : 1))
-
-
-/mob/living/carbon/relaymove(mob/user, direction)
-	if(user.incapacitated(TRUE))
-		return
-	if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
-		var/mob/living/carbon/xenomorph/larva/L = user
-		L.initiate_burst(src)
-
 
 /mob/living/carbon/electrocute_act(shock_damage, obj/source, siemens_coeff = 1.0, def_zone = null)
 	if(status_flags & GODMODE)
@@ -39,7 +30,7 @@
 
 	apply_damage(shock_damage, BURN, def_zone, updating_health = TRUE)
 
-	playsound(loc, "sparks", 25, TRUE)
+	playsound(loc, SFX_SPARKS, 25, TRUE)
 	if (shock_damage > 10)
 		src.visible_message(
 			span_warning(" [src] was shocked by the [source]!"), \
@@ -157,16 +148,16 @@
 	. = ..()
 	throw_mode_off()
 	if(is_ventcrawling) //NOPE
-		return
+		return FALSE
 	if(stat || !target)
-		return
+		return FALSE
 	if(target.type == /atom/movable/screen)
-		return
+		return FALSE
 
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_held_item()
 
-	if(!I || (I.flags_item & NODROP))
+	if(!I || HAS_TRAIT(I, TRAIT_NODROP))
 		return
 
 	var/spin_throw = TRUE
@@ -198,14 +189,16 @@
 
 	thrown_thing.throw_at(target, thrown_thing.throw_range + throw_modifiers["range_modifier"], max(1, thrown_thing.throw_speed + throw_modifiers["speed_modifier"]), src, spin_throw, !throw_modifiers["targetted_throw"], throw_modifiers["targetted_throw"])
 
+	return TRUE
+
 ///Called by the carbon throw_item() proc. Returns null if the item negates the throw, or a reference to the thing to suffer the throw else.
 /obj/item/proc/on_thrown(mob/living/carbon/user, atom/target)
-	if((flags_item & ITEM_ABSTRACT) || (flags_item & NODROP))
+	if((item_flags & ITEM_ABSTRACT) || HAS_TRAIT(src, TRAIT_NODROP))
 		return
 	user.dropItemToGround(src, TRUE)
 	return src
 
-/mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
+/mob/living/carbon/fire_act(burn_level)
 	. = ..()
 	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
@@ -266,12 +259,33 @@
 			if(!lying_angle)
 				break
 
-
 /mob/living/carbon/vv_get_dropdown()
 	. = ..()
-	. += "---"
-	. -= "Update Icon"
-	.["Regenerate Icons"] = "?_src_=vars;[HrefToken()];regenerateicons=[REF(src)]"
+	VV_DROPDOWN_OPTION("", "---------")
+	VV_DROPDOWN_OPTION(VV_HK_REGENERATE_ICON, "Regenerate Icons")
+
+/mob/living/carbon/vv_do_topic(list/href_list)
+	. = ..()
+
+	if(!.)
+		return
+
+	if(href_list[VV_HK_REGENERATE_ICON])
+		if(!check_rights(NONE))
+			return
+		regenerate_icons()
+
+/mob/living/carbon/vv_edit_var(var_name, var_value)
+	switch(var_name)
+		if(NAMEOF(src, nutrition))
+			set_nutrition(var_value)
+			. = TRUE
+
+	if(!isnull(.))
+		datum_flags |= DF_VAR_EDITED
+		return
+
+	return ..()
 
 /mob/living/carbon/update_tracking(mob/living/carbon/C)
 	var/atom/movable/screen/LL_dir = hud_used.SL_locator
@@ -317,14 +331,14 @@
 
 	sight = initial(sight)
 	lighting_alpha = initial(lighting_alpha)
-	see_in_dark = species.darksight
+	see_in_dark = initial(see_in_dark)
 	see_invisible = initial(see_invisible)
 
 	if(species)
 		if(species.lighting_alpha)
-			lighting_alpha = initial(species.lighting_alpha)
+			lighting_alpha = species.lighting_alpha
 		if(species.see_in_dark)
-			see_in_dark = initial(species.see_in_dark)
+			see_in_dark = species.see_in_dark
 
 	if(client.eye != src)
 		var/atom/A = client.eye
@@ -342,6 +356,14 @@
 				see_invisible = min(G.invis_view, see_invisible)
 			if(!isnull(G.lighting_alpha))
 				lighting_alpha = min(lighting_alpha, G.lighting_alpha)
+			if(G.tint && !fullscreens["glasses"])
+				var/atom/movable/screen/fullscreen/screen = overlay_fullscreen("glasses", /atom/movable/screen/fullscreen/flash)
+				screen.color = G.tint
+				screen.alpha = 50
+		else
+			clear_fullscreen("glasses")
+	else
+		clear_fullscreen("glasses")
 
 	if(see_override)
 		see_invisible = see_override

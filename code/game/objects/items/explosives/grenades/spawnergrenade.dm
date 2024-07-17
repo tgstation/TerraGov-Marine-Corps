@@ -2,7 +2,7 @@
 	desc = "It is set to detonate in 5 seconds. It will unleash unleash an unspecified anomaly into the vicinity."
 	name = "delivery grenade"
 	icon_state = "delivery"
-	item_state = "flashbang"
+	worn_icon_state = "flashbang"
 	var/banglet = 0
 	var/spawner_type = null // must be an object path
 	var/deliveryamt = 1 // amount of type to deliver

@@ -5,8 +5,6 @@
 	layer = ABOVE_HUD_LAYER
 
 /atom/movable/screen/human/equip/Click()
-	if(istype(usr.loc, /obj/vehicle/multitile/root/cm_armored)) // stops inventory actions in a mech
-		return TRUE
 	SEND_SIGNAL(usr, COMSIG_CLICK_QUICKEQUIP)
 
 
@@ -30,7 +28,7 @@
 	var/has_hidden_gear
 	for(var/gear_slot in hud_data.gear)
 
-		inv_box = new /atom/movable/screen/inventory()
+		inv_box = new /atom/movable/screen/inventory(null, src)
 		inv_box.icon = ui_style
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
@@ -48,7 +46,7 @@
 			static_inventory += inv_box
 
 	if(has_hidden_gear)
-		using = new /atom/movable/screen/toggle_inv()
+		using = new /atom/movable/screen/toggle_inv(null, src)
 		using.icon = ui_style
 		using.color = ui_color
 		using.alpha = ui_alpha
@@ -57,7 +55,7 @@
 	// Draw the attack intent dialogue.
 	if(hud_data.has_a_intent)
 
-		using = new /atom/movable/screen/act_intent/corner()
+		using = new /atom/movable/screen/act_intent/corner(null, src)
 		using.icon_state = owner.a_intent
 		using.alpha = ui_alpha
 		static_inventory += using
@@ -66,7 +64,7 @@
 
 
 	if(hud_data.has_m_intent)
-		using = new /atom/movable/screen/mov_intent()
+		using = new /atom/movable/screen/mov_intent(null, src)
 		using.icon = ui_style
 		using.icon_state = (owner.m_intent == MOVE_INTENT_RUN ? "running" : "walking")
 		using.color = ui_color
@@ -75,7 +73,7 @@
 		move_intent = using
 
 	if(hud_data.has_drop)
-		using = new /atom/movable/screen/drop()
+		using = new /atom/movable/screen/drop(null, src)
 		using.icon = ui_style
 		using.color = ui_color
 		using.alpha = ui_alpha
@@ -83,119 +81,108 @@
 
 	if(hud_data.has_hands)
 
-		using = new /atom/movable/screen/human/equip
+		using = new /atom/movable/screen/human/equip(null, src)
 		using.icon = ui_style
 		using.plane = ABOVE_HUD_PLANE
 		using.color = ui_color
 		using.alpha = ui_alpha
 		static_inventory += using
 
-		inv_box = new /atom/movable/screen/inventory/hand/right()
+		inv_box = new /atom/movable/screen/inventory/hand/right(null, src)
 		inv_box.icon = ui_style
-		if(owner && !owner.hand)	//This being 0 or null means the right hand is in use
-			inv_box.add_overlay("hand_active")
 		inv_box.slot_id = SLOT_R_HAND
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
+		inv_box.update_icon()
 		r_hand_hud_object = inv_box
 		static_inventory += inv_box
 
-		inv_box = new /atom/movable/screen/inventory/hand()
+		inv_box = new /atom/movable/screen/inventory/hand/left(null, src)
 		inv_box.setDir(EAST)
 		inv_box.icon = ui_style
-		if(owner?.hand)	//This being 1 means the left hand is in use
-			inv_box.add_overlay("hand_active")
 		inv_box.slot_id = SLOT_L_HAND
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
+		inv_box.update_icon()
 		l_hand_hud_object = inv_box
 		static_inventory += inv_box
 
-		using = new /atom/movable/screen/swap_hand/human()
+		using = new /atom/movable/screen/swap_hand/human(null, src)
 		using.icon = ui_style
 		using.color = ui_color
 		using.alpha = ui_alpha
 		static_inventory += using
 
-		using = new /atom/movable/screen/swap_hand/right()
+		using = new /atom/movable/screen/swap_hand/right(null, src)
 		using.icon = ui_style
 		using.color = ui_color
 		using.alpha = ui_alpha
 		static_inventory += using
 
 	if(hud_data.has_resist)
-		using = new /atom/movable/screen/resist()
+		using = new /atom/movable/screen/resist(null, src)
 		using.icon = ui_style
 		using.color = ui_color
 		using.alpha = ui_alpha
 		hotkeybuttons += using
 
 	if(hud_data.has_throw)
-		throw_icon = new /atom/movable/screen/throw_catch()
+		throw_icon = new /atom/movable/screen/throw_catch(null, src)
 		throw_icon.icon = ui_style
 		throw_icon.color = ui_color
 		throw_icon.alpha = ui_alpha
 		hotkeybuttons += throw_icon
 
-		pull_icon = new /atom/movable/screen/pull()
+		pull_icon = new /atom/movable/screen/pull(null, src)
 		pull_icon.icon = ui_style
-		pull_icon.update_icon(owner)
+		pull_icon.update_icon()
 		hotkeybuttons += pull_icon
 
 	if(hud_data.has_warnings)
-		oxygen_icon = new /atom/movable/screen/oxygen()
+		oxygen_icon = new /atom/movable/screen/oxygen(null, src)
 		infodisplay += oxygen_icon
 
-		toxin_icon = new /atom/movable/screen()
-		toxin_icon.icon_state = "tox0"
-		toxin_icon.name = "toxin"
-		toxin_icon.screen_loc = ui_toxin
+		toxin_icon = new /atom/movable/screen/toxin(null, src)
 		infodisplay += toxin_icon
 
-		fire_icon = new /atom/movable/screen/fire()
+		fire_icon = new /atom/movable/screen/fire(null, src)
 		infodisplay += fire_icon
 
-		healths = new /atom/movable/screen/healths()
+		healths = new /atom/movable/screen/healths(null, src)
 		infodisplay += healths
 
-		staminas = new
+		staminas = new /atom/movable/screen/stamina_hud(null, src)
 		infodisplay += staminas
 
 	if(hud_data.has_pressure)
-		pressure_icon = new /atom/movable/screen()
-		pressure_icon.icon_state = "pressure0"
-		pressure_icon.name = "pressure"
-		pressure_icon.screen_loc = ui_pressure
+		pressure_icon = new /atom/movable/screen/pressure(null, src)
 		infodisplay += pressure_icon
 
 	if(hud_data.has_bodytemp)
-		bodytemp_icon = new /atom/movable/screen/bodytemp()
+		bodytemp_icon = new /atom/movable/screen/bodytemp(null, src)
 		infodisplay += bodytemp_icon
 
 
 	if(hud_data.has_nutrition)
-		nutrition_icon = new /atom/movable/screen()
-		nutrition_icon.icon_state = "nutrition0"
-		nutrition_icon.name = "nutrition"
-		nutrition_icon.screen_loc = ui_nutrition
+		nutrition_icon = new /atom/movable/screen/nutrition(null, src)
 		infodisplay += nutrition_icon
 
-	rest_icon = new /atom/movable/screen/rest()
+	rest_icon = new /atom/movable/screen/rest(null, src)
 	rest_icon.icon = ui_style
 	rest_icon.color = ui_color
 	rest_icon.alpha = ui_alpha
-	rest_icon.update_icon(owner)
+	rest_icon.update_icon()
 	static_inventory += rest_icon
 
 	//squad leader locator
-	SL_locator = new /atom/movable/screen/SL_locator
+	SL_locator = new /atom/movable/screen/SL_locator(null, src)
 	infodisplay += SL_locator
 
-	zone_sel = new /atom/movable/screen/zone_sel()
+	zone_sel = new /atom/movable/screen/zone_sel(null, src)
 	zone_sel.icon = ui_style
 	zone_sel.color = ui_color
 	zone_sel.alpha = ui_alpha
-	zone_sel.update_icon(owner)
+	zone_sel.set_selected_zone(BODY_ZONE_CHEST, owner)
 	static_inventory += zone_sel
 
 

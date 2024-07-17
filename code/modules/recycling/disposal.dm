@@ -67,6 +67,8 @@
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(machine_stat & BROKEN)
 		return
@@ -100,7 +102,7 @@
 
 			playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 			to_chat(user, span_notice("You start slicing the floorweld off the disposal unit."))
-			if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+			if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 				return
 
 			to_chat(user, span_notice("You sliced the floorweld off the disposal unit."))
@@ -115,7 +117,7 @@
 		var/obj/item/storage/bag/trash/T = I
 		to_chat(user, span_notice("You empty the bag into [src]."))
 		for(var/obj/item/O in T.contents)
-			T.remove_from_storage(O, src, user)
+			T.storage_datum.remove_from_storage(O, src, user)
 		T.update_icon()
 		update()
 
@@ -128,7 +130,7 @@
 		user.visible_message(span_warning("[user] starts putting [GM] into [src]."),
 		span_warning("You start putting [GM] into [src]."))
 
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_HOSTILE) || G.grabbed_thing != GM)
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_HOSTILE) || G.grabbed_thing != GM)
 			return
 
 		GM.forceMove(src)
@@ -161,7 +163,7 @@
 	else
 		visible_message("<span class ='warning'>[user] starts stuffing [target] into the disposal.</span>")
 
-	if(!do_after(user, 4 SECONDS, FALSE, target, BUSY_ICON_HOSTILE))
+	if(!do_after(user, 4 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_HOSTILE))
 		return
 
 	if(target == user)
@@ -223,11 +225,11 @@
 
 	if(!isAI(user))  //AI can't pull flush handle
 		if(flush)
-			dat += "Disposal handle: <A href='?src=\ref[src];handle=0'>Disengage</A> <B>Engaged</B>"
+			dat += "Disposal handle: <A href='?src=[text_ref(src)];handle=0'>Disengage</A> <B>Engaged</B>"
 		else
-			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=\ref[src];handle=1'>Engage</A>"
+			dat += "Disposal handle: <B>Disengaged</B> <A href='?src=[text_ref(src)];handle=1'>Engage</A>"
 
-		dat += "<BR><HR><A href='?src=\ref[src];eject=1'>Eject contents</A><HR>"
+		dat += "<BR><HR><A href='?src=[text_ref(src)];eject=1'>Eject contents</A><HR>"
 
 	if(mode <= 0)
 		dat += "Pump: <B>Off</B> On</A><BR>"
@@ -511,7 +513,7 @@
 	if(!T)
 		return null
 
-	var/fdir = turn(dir, 180) //Flip the movement direction
+	var/fdir = REVERSE_DIR(dir) //Flip the movement direction
 	for(var/obj/structure/disposalpipe/P in T)
 		if(fdir & P.dpdir) //Find pipe direction mask that matches flipped dir
 			return P
@@ -607,7 +609,7 @@
 
 //Returns the direction of the next pipe object, given the entrance dir by default, returns the bitmask of remaining directions
 /obj/structure/disposalpipe/proc/nextdir(fromdir)
-	return dpdir & (~turn(fromdir, 180))
+	return dpdir & (~REVERSE_DIR(fromdir))
 
 //Transfer the holder through this pipe segment, overriden for special behaviour
 /obj/structure/disposalpipe/proc/transfer(obj/structure/disposalholder/H)
@@ -702,6 +704,8 @@
 //Attack by item. Weldingtool: unfasten and convert to obj/disposalconstruct
 /obj/structure/disposalpipe/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	var/turf/T = loc
 	if(T.intact_tile)
@@ -773,7 +777,7 @@
 	. = ..()
 
 	if(icon_state == "pipe-s")
-		dpdir = dir|turn(dir, 180)
+		dpdir = dir|REVERSE_DIR(dir)
 	else
 		dpdir = dir|turn(dir, -90)
 	update()
@@ -945,9 +949,9 @@
 /obj/structure/disposalpipe/junction/Initialize(mapload)
 	. = ..()
 	if(icon_state == "pipe-j1")
-		dpdir = dir|turn(dir, -90)|turn(dir, 180)
+		dpdir = dir|turn(dir, -90)|REVERSE_DIR(dir)
 	else if(icon_state == "pipe-j2")
-		dpdir = dir|turn(dir, 90)|turn(dir, 180)
+		dpdir = dir|turn(dir, 90)|REVERSE_DIR(dir)
 	else //Pipe-y
 		dpdir = dir|turn(dir,90)|turn(dir, -90)
 	update()
@@ -960,7 +964,7 @@
 
 //Next direction to move, if coming in from secondary dirs, then next is primary dir, if coming in from primary dir, then next is equal chance of other dirs
 /obj/structure/disposalpipe/junction/nextdir(fromdir)
-	var/flipdir = turn(fromdir, 180)
+	var/flipdir = REVERSE_DIR(fromdir)
 	if(flipdir != dir)	//Came from secondary dir
 		return dir		//So exit through primary
 	else				//Came from primary
@@ -991,7 +995,7 @@
 
 /obj/structure/disposalpipe/tagger/Initialize(mapload)
 	. = ..()
-	dpdir = dir|turn(dir, 180)
+	dpdir = dir|REVERSE_DIR(dir)
 	if(sort_tag)
 		GLOB.tagger_locations |= sort_tag
 	updatename()
@@ -1011,6 +1015,8 @@
 
 /obj/structure/disposalpipe/tagger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -1071,7 +1077,7 @@
 
 /obj/structure/disposalpipe/sortjunction/proc/updatedir()
 	posdir = dir
-	negdir = turn(posdir, 180)
+	negdir = REVERSE_DIR(posdir)
 
 	if(icon_state == "pipe-j1s")
 		sortdir = turn(posdir, -90)
@@ -1082,6 +1088,8 @@
 
 /obj/structure/disposalpipe/sortjunction/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/destTagger))
 		var/obj/item/destTagger/O = I
@@ -1304,6 +1312,8 @@
 
 /obj/structure/disposaloutlet/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		mode = !mode
@@ -1323,7 +1333,7 @@
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 		to_chat(user, span_notice("You start slicing the floorweld off the disposal outlet."))
 
-		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, /obj/item/tool/weldingtool/proc/isOn)))
+		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(W, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 			return
 
 		to_chat(user, span_notice("You sliced the floorweld off the disposal outlet."))

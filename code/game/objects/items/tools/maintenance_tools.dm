@@ -1,10 +1,9 @@
 /obj/item/tool/wrench
 	name = "wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "wrench"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
@@ -16,10 +15,9 @@
 /obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
-	icon = 'icons/obj/items/screwdriver.dmi'
 	icon_state = "screwdriver_map"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 5
 	w_class = WEIGHT_CLASS_TINY
 	throwforce = 5
@@ -51,11 +49,11 @@
 		set_greyscale_config(/datum/greyscale_config/screwdriver)
 		var/our_color = pick(screwdriver_colors)
 		set_greyscale_colors(list(screwdriver_colors[our_color]))
-		item_icons = list(
+		worn_icon_list = list(
 			slot_l_hand_str = SSgreyscale.GetColoredIconByType(/datum/greyscale_config/screwdriver_inhand_left, greyscale_colors),
 			slot_r_hand_str = SSgreyscale.GetColoredIconByType(/datum/greyscale_config/screwdriver_inhand_right, greyscale_colors),
 		)
-		item_state_slots = list(
+		worn_item_state_slots = list(
 			slot_l_hand_str = null,
 			slot_r_hand_str = null,
 		)
@@ -66,10 +64,9 @@
 /obj/item/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "cutters"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 6
 	throw_speed = 2
 	throw_range = 9
@@ -84,7 +81,7 @@
 	. = ..()
 	if(prob(50))
 		icon_state = "cutters-y"
-		item_state = "cutters_yellow"
+		worn_icon_state = "cutters_yellow"
 
 
 /obj/item/tool/wirecutters/attack(mob/living/carbon/C, mob/user)
@@ -100,11 +97,10 @@
 
 /obj/item/tool/weldingtool
 	name = "blowtorch"
-	icon = 'icons/obj/items/items.dmi'
 	desc = "Used for welding and repairing various things."
 	icon_state = "welder"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 	//Amount of OUCH when it's thrown
 	force = 3
@@ -183,6 +179,8 @@
 
 /obj/item/tool/weldingtool/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/screwdriver))
 		flamethrower_screwdriver(src, user)
@@ -332,13 +330,12 @@
 /obj/item/tool/crowbar
 	name = "crowbar"
 	desc = "Used to remove floors and to pry open doors."
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "crowbar"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 7
-	item_state = "crowbar"
+	worn_icon_state = "crowbar"
 	w_class = WEIGHT_CLASS_SMALL
 	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
 	pry_capable = IS_PRY_CAPABLE_CROWBAR
@@ -347,17 +344,16 @@
 
 
 /obj/item/tool/crowbar/red
-	icon = 'icons/obj/items/items.dmi'
 	icon_state = "red_crowbar"
-	item_state = "crowbar_red"
+	worn_icon_state = "crowbar_red"
 
 
 
 /obj/item/tool/weldpack
 	name = "Welding kit"
 	desc = "A heavy-duty, portable fuel carrier. Welder and flamer compatible."
-	flags_equip_slot = ITEM_SLOT_BACK
-	icon = 'icons/obj/items/items.dmi'
+	equip_slot_flags = ITEM_SLOT_BACK
+	icon = 'icons/obj/items/tank.dmi'
 	icon_state = "welderpack"
 	w_class = WEIGHT_CLASS_BULKY
 	var/max_fuel = 500 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
@@ -366,11 +362,13 @@
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
 	reagents = R
-	R.my_atom = src
+	R.my_atom = WEAKREF(src)
 	R.add_reagent(/datum/reagent/fuel, max_fuel)
 
 /obj/item/tool/weldpack/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(reagents.total_volume == 0)
 		balloon_alert(user, "Out of fuel")
 		return
@@ -379,7 +377,7 @@
 		var/obj/item/tool/weldingtool/T = I
 		if(T.welding)
 			balloon_alert(user, "That was stupid")
-			log_explosion("[key_name(user)] triggered a weldpack explosion at [AREACOORD(user.loc)].")
+			log_bomber(user, "triggered a weldpack explosion", src)
 			explosion(src, light_impact_range = 3)
 			qdel(src)
 		if(T.get_fuel() == T.max_fuel || !reagents.total_volume)
@@ -405,6 +403,17 @@
 		FT.caliber = CALIBER_FUEL
 		balloon_alert(user, "Refills with [lowertext(FT.caliber)]")
 		FT.update_icon()
+
+	else if(istype(I, /obj/item/storage/holster/backholster/flamer))
+		var/obj/item/storage/holster/backholster/flamer/flamer_bag = I
+		var/obj/item/ammo_magazine/flamer_tank/internal/internal_tank = flamer_bag.tank
+		if(internal_tank.current_rounds == internal_tank.max_rounds)
+			return ..()
+		var/fuel_to_transfer = min(reagents.total_volume, (internal_tank.max_rounds - internal_tank.current_rounds))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_to_transfer)
+		internal_tank.current_rounds += fuel_to_transfer
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		balloon_alert(user, "Refills")
 
 	else if(istype(I, /obj/item/weapon/twohanded/rocketsledge))
 		var/obj/item/weapon/twohanded/rocketsledge/RS = I
@@ -441,7 +450,7 @@
 /obj/item/tool/weldpack/marinestandard
 	name = "M-22 welding kit"
 	desc = "A heavy-duty, portable fuel carrier. Mainly used in flamethrowers. Welder and flamer compatible."
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	icon_state = "marine_flamerpack"
 	w_class = WEIGHT_CLASS_BULKY
 	max_fuel = 500 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
@@ -449,15 +458,15 @@
 /obj/item/tool/handheld_charger
 	name = "handheld charger"
 	desc = "A hand-held, lightweight cell charger. It isn't going to give you tons of power, but it can help in a pinch."
-	icon = 'icons/obj/items/items.dmi'
-	icon_state = "handheldcharger_black_empty"
-	item_state = "handheldcharger_black_empty"
+	icon = 'icons/obj/items/tools.dmi'
+	icon_state = "handheldcharger_black"
+	worn_icon_state = "handheldcharger_black_empty"
 	w_class = WEIGHT_CLASS_SMALL
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	force = 6
 	throw_speed = 2
 	throw_range = 9
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	/// This is the cell we ar charging
 	var/obj/item/cell/cell
 	///Are we currently recharging something.
@@ -465,7 +474,14 @@
 
 /obj/item/tool/handheld_charger/Initialize(mapload)
 	. = ..()
-	cell = null
+	update_icon()
+
+/obj/item/tool/handheld_charger/update_icon_state()
+	. = ..()
+	if(cell)
+		icon_state = initial(icon_state)
+	else
+		icon_state = initial(icon_state) + "_empty"
 
 /obj/item/tool/handheld_charger/attack_self(mob/user)
 	if(!cell)
@@ -480,7 +496,7 @@
 		balloon_alert(user, "Too busy")
 		return
 
-	while(do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
+	while(do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
 		cell.charge = min(cell.charge + 200, cell.maxcharge)
 		balloon_alert(user, "Charges the cell")
 		playsound(user, 'sound/weapons/guns/interact/rifle_reload.ogg', 15, 1, 5)
@@ -493,6 +509,8 @@
 
 /obj/item/tool/handheld_charger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/cell))
 		return
@@ -522,7 +540,7 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	balloon_alert(user, "Removes the cell")
-	icon_state = "handheldcharger_black_empty"
+	update_appearance()
 
 /obj/item/tool/handheld_charger/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src)
@@ -534,8 +552,12 @@
 	cell = null
 	playsound(user, 'sound/machines/click.ogg', 20, 1, 5)
 	balloon_alert(user, "Removes the cell")
-	icon_state = "handheldcharger_black_empty"
+	update_appearance()
 
 /obj/item/tool/handheld_charger/Destroy()
 	QDEL_NULL(cell)
+	return ..()
+
+/obj/item/tool/handheld_charger/hicapcell/Initialize(mapload)
+	cell = new /obj/item/cell/high(src)
 	return ..()

@@ -5,6 +5,7 @@
 #define CHUNK_SIZE 16 // Only chunk sizes that are to the power of 2. E.g: 2, 4, 8, 16, etc..
 
 GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
+GLOBAL_DATUM_INIT(som_cameranet, /datum/cameranet, new)
 
 /datum/cameranet
 	var/name = "Camera Net" // Name to show for VV and stat()
@@ -44,7 +45,7 @@ GLOBAL_DATUM_INIT(cameranet, /datum/cameranet, new)
 	var/key = "[x],[y],[z]"
 	. = chunks[key]
 	if(!.)
-		chunks[key] = . = new /datum/camerachunk(x, y, z)
+		chunks[key] = . = new /datum/camerachunk(x, y, z, src)
 
 /// Updates what the aiEye can see. It is recommended you use this when the aiEye moves or it's location is set.
 /datum/cameranet/proc/visibility(list/moved_eyes, client/C, list/other_eyes, use_static = TRUE)

@@ -45,6 +45,8 @@
 
 /obj/item/book/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/tool/pen))
 		if(unique)
@@ -98,7 +100,7 @@
 
 		to_chat(user, span_notice("You begin to carve out [title]."))
 
-		if(!do_after(user, 30, TRUE, src))
+		if(!do_after(user, 30, NONE, src))
 			return
 
 		to_chat(user, span_notice("You carve out the pages from [title]! You didn't want to read it anyway."))

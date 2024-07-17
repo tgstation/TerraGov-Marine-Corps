@@ -420,14 +420,14 @@
 			return
 		qdel(query_change_rank_flags)
 		var/log_message = "Permissions of [rank_name] changed from[rights2text(old_flags," ")][rights2text(old_exclude_flags," ", "-")][rights2text(old_can_edit_flags," ", "*")] to[rights2text(new_flags," ")][rights2text(new_exclude_flags," ", "-")][rights2text(new_can_edit_flags," ", "*")]"
-		var/datum/db_query/query_change_rank_flags_log = SSdbcore.NewQuery({"
+		var/datum/db_query/query_change_rank_log_flags = SSdbcore.NewQuery({"
 			INSERT INTO [format_table_name("admin_log")] (datetime, round_id, adminckey, adminip, operation, target, log)
 			VALUES (:time, :round_id, :adminckey, INET_ATON(:adminip), 'change rank flags', :rank_name, :log)
 		"}, list("time" = SQLtime(), "round_id" = "[GLOB.round_id]", "adminckey" = usr.ckey, "adminip" = usr.client.address, "rank_name" = rank_name, "log" = log_message))
-		if(!query_change_rank_flags_log.warn_execute())
-			qdel(query_change_rank_flags_log)
+		if(!query_change_rank_log_flags.warn_execute())
+			qdel(query_change_rank_log_flags)
 			return
-		qdel(query_change_rank_flags_log)
+		qdel(query_change_rank_log_flags)
 		for(var/datum/admin_rank/R in GLOB.admin_ranks)
 			if(R.name != D.rank.name)
 				continue

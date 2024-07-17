@@ -33,18 +33,18 @@
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/drone/elder/Alpha(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/drone/Alpha(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
 	if(prob(35))
-		. = new /mob/living/carbon/xenomorph/spitter/mature/Alpha(spawn_loc, TRUE)
+		. = new /mob/living/carbon/xenomorph/spitter/Alpha(spawn_loc, TRUE)
 		M.transfer_to(., TRUE)
 		print_backstory(.)
 		return
 
-	. = new /mob/living/carbon/xenomorph/hunter/mature/Alpha(spawn_loc, TRUE)
+	. = new /mob/living/carbon/xenomorph/hunter/Alpha(spawn_loc, TRUE)
 	M.transfer_to(., TRUE)
 	print_backstory(.)
 
