@@ -46,6 +46,9 @@
 /obj/hitbox/Destroy(force)
 	if(!force) // only when the parent is deleted
 		return QDEL_HINT_LETMELIVE
+	for(var/mob/living/desant AS in tank_desants) // Lets clean up our riders before deleting.
+		if(HAS_TRAIT(desant, TRAIT_TANK_DESANT))
+			desant.remove_traits(list(TRAIT_TANK_DESANT, TRAIT_NOSUBMERGE), VEHICLE_TRAIT)
 	root?.hitbox = null
 	root = null
 	return ..()
