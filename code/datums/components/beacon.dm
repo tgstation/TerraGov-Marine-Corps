@@ -83,22 +83,14 @@
 ///Activates the beacon
 /datum/component/beacon/proc/activate(atom/movable/source, mob/user)
 	var/turf/location = get_turf(source)
-	var/area/A = get_area(location)
-	if(A && istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
-		to_chat(user, span_warning("This won't work if you're standing deep underground."))
+	var/area/Area = get_area(location)
+	if(check_for_blacklist(source))
 		active = FALSE
 		return FALSE
-
-	if(istype(A, /area/shuttle/dropship))
-		to_chat(user, span_warning("You have to be outside the dropship to use this or it won't transmit."))
-		active = FALSE
-		return FALSE
-
 	if(length(user.do_actions))
 		user.balloon_alert(user, "Busy!")
 		active = FALSE
 		return
-
 	if(anchor && anchor_time)
 		var/delay = max(1.5 SECONDS, anchor_time - 2 SECONDS * user.skills.getRating(SKILL_LEADERSHIP))
 		user.visible_message(span_notice("[user] starts setting up [source] on the ground."),
@@ -107,7 +99,6 @@
 			user.balloon_alert(user, "Keep still!")
 			active = FALSE
 			return
-
 	activator = user
 
 	if(anchor) //Only anchored beacons have cameras and lights
@@ -126,7 +117,7 @@
 	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)
 	user.visible_message("[user] activates [source]'s signal.")
 	user.show_message(span_notice("The [source] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(source)]\""), EMOTE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
-	beacon_datum = new /datum/supply_beacon("[user.name] + [A]", get_turf(source), user.faction)
+	beacon_datum = new /datum/supply_beacon("[user.name] + [Area]", get_turf(source), user.faction)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
 	if(ismob(source.loc))
@@ -174,19 +165,25 @@
 /datum/component/beacon/proc/updatepos(atom/movable/source)
 	SIGNAL_HANDLER
 	var/turf/location = get_turf(parent)
-	var/area/A = get_area(location)
-	if(istype(A) && A.ceiling >= CEILING_DEEP_UNDERGROUND)
-		source.balloon_alert_to_viewers("This won't work if you're standing deep underground.")
-		INVOKE_ASYNC(src, PROC_REF(deactivate), parent)
-		return
-	if(istype(A, /area/shuttle/dropship))
-		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or it won't transmit.")
-		INVOKE_ASYNC(src, PROC_REF(deactivate), parent)
+	var/area/Area = get_area(location)
+	if(check_for_blacklist(source))
+		deactivate(source)
 		return
 	beacon_datum.drop_location = location
-	beacon_datum.name = "[src.activator.name] + [A]"
-	var/atom/movable/p = parent
-	p.update_appearance()
+	beacon_datum.name = "[src.activator.name] + [Area]"
+	var/atom/movable/movableparent = parent
+	movableparent.update_appearance()
+
+///Checks if the area is deep underground or is a dropship. Returns TRUE if there shouldn't be a beacon there
+/datum/component/beacon/proc/check_for_blacklist(atom/movable/source)
+	var/turf/location = get_turf(parent)
+	var/area/Area = get_area(location)
+	if(istype(Area) && Area.ceiling >= CEILING_DEEP_UNDERGROUND)
+		source.balloon_alert_to_viewers("This won't work if you're standing deep underground.")
+		return TRUE
+	if(istype(Area, /area/shuttle/dropship))
+		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or it won't transmit.")
+		return TRUE
 
 ///Called on picking up or otherwise equipping the beacon
 /datum/component/beacon/proc/equip(obj/item/source)
