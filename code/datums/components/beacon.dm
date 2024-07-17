@@ -129,7 +129,7 @@
 	beacon_datum = new /datum/supply_beacon("[user.name] + [A]", get_turf(source), user.faction)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
-	if( istype(source.loc, /mob))
+	if(ismob(source.loc))
 		RegisterSignal(source.loc, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
 	RegisterSignal(source, COMSIG_ITEM_EQUIPPED, PROC_REF(equip))
 	RegisterSignal(source, COMSIG_ITEM_DROPPED, PROC_REF(dropped))
