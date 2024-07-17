@@ -74,59 +74,17 @@
 	user.forceMove(linked_point.loc)
 
 /obj/structure/patrol_point/tgmc_11
-	id = "TGMC_11"
-
-/obj/structure/patrol_point/tgmc_12
-	id = "TGMC_12"
-
-/obj/structure/patrol_point/tgmc_13
-	id = "TGMC_13"
-
-/obj/structure/patrol_point/tgmc_14
-	id = "TGMC_14"
+	id = "TGMC_1"
 
 /obj/structure/patrol_point/tgmc_21
-	id = "TGMC_21"
-	icon_state = "patrol_point_2"
-
-/obj/structure/patrol_point/tgmc_22
-	id = "TGMC_22"
-	icon_state = "patrol_point_2"
-
-/obj/structure/patrol_point/tgmc_23
-	id = "TGMC_23"
-	icon_state = "patrol_point_2"
-
-/obj/structure/patrol_point/tgmc_24
-	id = "TGMC_24"
+	id = "TGMC_2"
 	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/som_11
-	id = "SOM_11"
-
-/obj/structure/patrol_point/som_12
-	id = "SOM_12"
-
-/obj/structure/patrol_point/som_13
-	id = "SOM_13"
-
-/obj/structure/patrol_point/som_14
-	id = "SOM_14"
+	id = "SOM_1"
 
 /obj/structure/patrol_point/som_21
-	id = "SOM_21"
-	icon_state = "patrol_point_2"
-
-/obj/structure/patrol_point/som_22
-	id = "SOM_22"
-	icon_state = "patrol_point_2"
-
-/obj/structure/patrol_point/som_23
-	id = "SOM_23"
-	icon_state = "patrol_point_2"
-
-/obj/structure/patrol_point/som_24
-	id = "SOM_24"
+	id = "SOM_2"
 	icon_state = "patrol_point_2"
 
 /obj/structure/patrol_point/tank
@@ -149,16 +107,16 @@
 
 /obj/structure/patrol_point/tank/tgmc_one
 	icon_state = "vehicle_point_1"
-	id = "TGMC_11"
+	id = "TGMC_1"
 
 /obj/structure/patrol_point/tank/tgmc_two
 	icon_state = "vehicle_point_2"
-	id = "TGMC_21"
+	id = "TGMC_2"
 
 /obj/structure/patrol_point/tank/som_one
 	icon_state = "vehicle_point_1"
-	id = "SOM_11"
+	id = "SOM_1"
 
 /obj/structure/patrol_point/tank/som_two
 	icon_state = "vehicle_point_2"
-	id = "SOM_21"
+	id = "SOM_2"

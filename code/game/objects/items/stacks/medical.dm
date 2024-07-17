@@ -87,6 +87,7 @@
 			patient.balloon_alert(user, "Stopped tending")
 			return
 		var/affected = heal_limb(affecting, unskilled_penalty)
+		record_healing(user,M)
 		generate_treatment_messages(user, patient, affecting, affected)
 		use(1)
 		affecting = null

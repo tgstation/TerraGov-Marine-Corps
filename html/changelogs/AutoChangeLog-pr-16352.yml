@@ -1,0 +1,4 @@
+author: "jonash07"
+delete-after: True
+changes:
+  - bugfix: "fixed LR-73 ammo box overlay sprite"
