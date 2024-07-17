@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - rscadd: "Adds Retrograde Sentinel Strain, which has the Sentinels old neurospit, acid spit and neurotox sting. Primo is replaced with a neurogas grenade (which is transparent)"
