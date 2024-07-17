@@ -23,6 +23,7 @@
 	var/list/obj/item/cell/stored_cells
 	///Like the contents list but stored in this manner so it doesn't have to be rebuilt unless an item is added/removed
 	var/list/stored_item_references
+	///Nearest available APC to draw power from; null if there isn't one
 	var/obj/machinery/power/apc/registered_apc
 
 /obj/machinery/power/field_charger/Initialize(mapload)
