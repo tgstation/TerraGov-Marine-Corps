@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Campaign: Increased purchase cost of plasma weapons by 50 credits"
+  - balance: "Campaign: Decreased unlock cost of plasma weaponry by 100 credits"
+  - balance: "Campaign: Increased the cost of Advanced SMG training by 100 credits"
