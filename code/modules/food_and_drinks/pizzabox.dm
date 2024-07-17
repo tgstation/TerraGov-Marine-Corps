@@ -2,7 +2,7 @@
 	name = "pizza bomb"
 	desc = "Special delivery!"
 	icon_state = "pizzabomb_inactive"
-	inhand_icon_state = "eshield"
+	worn_icon_state = "eshield"
 	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
 
@@ -12,7 +12,7 @@
 	icon = 'icons/obj/food/containers.dmi'
 	icon_state = "pizzabox"
 	base_icon_state = "pizzabox"
-	inhand_icon_state = "pizzabox"
+	worn_icon_state = "pizzabox"
 	lefthand_file = 'icons/mob/inhands/items/food_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/food_righthand.dmi'
 	custom_materials = list(/datum/material/cardboard =SHEET_MATERIAL_AMOUNT)
@@ -126,7 +126,7 @@
 		return
 
 	for(var/V in boxes) //add EXTRA BOX per box
-		var/mutable_appearance/M = mutable_appearance(icon_file, inhand_icon_state)
+		var/mutable_appearance/M = mutable_appearance(icon_file, worn_icon_state)
 		M.pixel_y = current_offset
 		current_offset += 2
 		. += M

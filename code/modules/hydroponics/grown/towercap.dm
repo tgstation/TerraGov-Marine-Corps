@@ -40,7 +40,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 2
 	throw_range = 3
-	attack_verb_continuous = list("bashes", "batters", "bludgeons", "whacks")
+	attack_verb = list("bashes", "batters", "bludgeons", "whacks")
 	attack_verb_simple = list("bash", "batter", "bludgeon", "whack")
 	var/plank_type = /obj/item/stack/sheet/mineral/wood
 	var/plank_name = "wooden planks"

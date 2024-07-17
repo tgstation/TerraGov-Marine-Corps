@@ -51,7 +51,7 @@
 	desc = "A sack neatly crafted out of paper."
 	icon = 'icons/obj/storage/paperbag.dmi'
 	icon_state = "paperbag_None"
-	inhand_icon_state = null
+	worn_icon_state = null
 	illustration = null
 	resistance_flags = FLAMMABLE
 	foldable_result = null
@@ -160,7 +160,7 @@
 	if(theme_name)
 		name = "[name] ([theme_name])"
 		desc = "A box containing supplementary ingredients for the aspiring chef. The box's theme is '[theme_name]'."
-		inhand_icon_state = "syringe_kit"
+		worn_icon_state = "syringe_kit"
 
 /obj/item/storage/box/ingredients/wildcard
 	theme_name = "wildcard"

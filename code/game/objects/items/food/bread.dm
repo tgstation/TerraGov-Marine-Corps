@@ -334,7 +334,7 @@
 	desc = "Bon appetit!"
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "baguette"
-	inhand_icon_state = null
+	worn_icon_state = null
 	worn_icon_state = "baguette"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 8,
@@ -343,7 +343,7 @@
 	bite_consumption = 3
 	w_class = WEIGHT_CLASS_NORMAL
 	slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	attack_verb_continuous = list("touche's")
+	attack_verb = list("touche's")
 	attack_verb_simple = list("touche")
 	tastes = list("bread" = 1)
 	foodtypes = GRAIN
@@ -382,7 +382,7 @@
 		span_notice("You begin wielding [src] like a sword, with a firm grip on the bottom as an imaginary handle.")
 	)
 	ADD_TRAIT(src, TRAIT_CUSTOM_TAP_SOUND, SWORDPLAY_TRAIT)
-	attack_verb_continuous = list("slashes", "cuts")
+	attack_verb = list("slashes", "cuts")
 	attack_verb_simple = list("slash", "cut")
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	fake_swordplay = TRUE
@@ -394,7 +394,7 @@
 	UnregisterSignal(src, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED))
 
 	REMOVE_TRAIT(src, TRAIT_CUSTOM_TAP_SOUND, SWORDPLAY_TRAIT)
-	attack_verb_continuous = initial(attack_verb_continuous)
+	attack_verb = initial(attack_verb)
 	attack_verb_simple = initial(attack_verb_simple)
 	hitsound = initial(hitsound)
 	fake_swordplay = FALSE
@@ -440,7 +440,7 @@
 	desc = "Alas, it is limited."
 	icon = 'icons/obj/food/burgerbread.dmi'
 	icon_state = "garlicbread"
-	inhand_icon_state = null
+	worn_icon_state = null
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10,
 		/datum/reagent/consumable/nutriment/vitamin = 6,

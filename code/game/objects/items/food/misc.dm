@@ -229,7 +229,7 @@
 	name = "Powercrepe"
 	desc = "With great power, comes great crepes.  It looks like a pancake filled with jelly but packs quite a punch."
 	icon_state = "powercrepe"
-	inhand_icon_state = "powercrepe"
+	worn_icon_state = "powercrepe"
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 10,
 		/datum/reagent/consumable/nutriment/vitamin = 5,
@@ -241,7 +241,7 @@
 	armour_penetration = 80
 	block_sound = 'sound/weapons/parry.ogg'
 	wound_bonus = -50
-	attack_verb_continuous = list("slaps", "slathers")
+	attack_verb = list("slaps", "slathers")
 	attack_verb_simple = list("slap", "slather")
 	w_class = WEIGHT_CLASS_BULKY
 	tastes = list("cherry" = 1, "crepe" = 1)

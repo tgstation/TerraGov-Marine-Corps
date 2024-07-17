@@ -35,7 +35,7 @@
 	icon_state = "pill9"
 	lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items_righthand.dmi'
-	inhand_icon_state = "pen"
+	worn_icon_state = "pen"
 	food_reagents = list(/datum/reagent/drug/kronkaine = 2) //The kronkaine is the thing that makes this a great bait.
 	tastes = list("hypocrisy" = 1)
 

@@ -31,7 +31,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
 	throw_range = 3
-	attack_verb_continuous = list("pompfs")
+	attack_verb = list("pompfs")
 	attack_verb_simple = list("pompf")
 	greyscale_colors = COLOR_BLACK //only here for unit testing. overriden in initialize()
 	greyscale_config = /datum/greyscale_config/flower_simple

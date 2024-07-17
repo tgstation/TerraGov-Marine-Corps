@@ -196,7 +196,7 @@
 	name = "bubblegum"
 	desc = "A rubbery strip of gum. Not exactly filling, but it keeps you busy."
 	icon_state = "bubblegum"
-	inhand_icon_state = null
+	worn_icon_state = null
 	color = "#E48AB5" // craftable custom gums someday?
 	food_reagents = list(/datum/reagent/consumable/sugar = 5)
 	tastes = list("candy" = 1)
@@ -275,7 +275,7 @@
 	desc = "A delicious lollipop. Makes for a great Valentine's present."
 	icon = 'icons/obj/food/lollipop.dmi'
 	icon_state = "lollipop_stick"
-	inhand_icon_state = null
+	worn_icon_state = null
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment = 1,
 		/datum/reagent/consumable/nutriment/vitamin = 1,
@@ -344,7 +344,7 @@
 	desc = "A massive rainbow swirlled lollipop. Said to contain extra sugar."
 	icon_state = "swirl_lollipop"
 	worn_icon_state = "lollipop_stick"
-	inhand_icon_state = "swirl_lollipop"
+	worn_icon_state = "swirl_lollipop"
 	food_reagents = list(
 		/datum/reagent/consumable/sugar = 30,
 		/datum/reagent/drug/happiness = 5, //swirl lollipops make everyone happy!
