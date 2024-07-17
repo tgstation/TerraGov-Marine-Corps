@@ -823,24 +823,23 @@
 	else
 		return ..()
 
-/obj/machinery/hydroponics/attackby_secondary(obj/item/weapon, mob/user, params)
+/obj/machinery/hydroponics/attackby_alternate(obj/item/attacking_item, mob/user, params)
 	. = ..()
-	if (istype(weapon, /obj/item/reagent_containers/syringe))
+	if (istype(attacking_item, /obj/item/reagent_containers/syringe))
 		to_chat(user, span_warning("You can't get any extract out of this plant."))
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	return SECONDARY_ATTACK_CALL_NORMAL
-
-/obj/machinery/hydroponics/can_be_unfasten_wrench(mob/user, silent)
-	if (!unwrenchable)  // case also covered by NODECONSTRUCT checks in default_unfasten_wrench
-		return CANT_UNFASTEN
-
-	return ..()
+		return
+	if(!anchored)
+		return
+	var/warning = tgui_alert(user, "Are you sure you wish to empty the tray's nutrient beaker?","Empty Tray Nutrients?", list("Yes", "No"))
+	if(warning == "Yes")
+		reagents.clear_reagents()
+		to_chat(user, span_warning("You empty [src]'s nutrient tank."))
+	update_appearance()
+	return
 
 /obj/machinery/hydroponics/attack_hand(mob/user, list/modifiers)
 	. = ..()
 	if(.)
-		return
-	if(HAS_SILICON_ACCESS(user)) //How does AI know what plant is?
 		return
 	if(plant_status == HYDROTRAY_PLANT_HARVESTABLE)
 		return myseed.harvest(user)
@@ -852,7 +851,7 @@
 		if(user)
 			user.examinate(src)
 
-/obj/machinery/hydroponics/click_ctrl(mob/user)
+/obj/machinery/hydroponics/CtrlClick(mob/user)
 	if(!anchored)
 		return NONE
 	if(!powered())
@@ -862,19 +861,6 @@
 	set_self_sustaining(!self_sustaining)
 	to_chat(user, span_notice("You [self_sustaining ? "activate" : "deactivated"] [src]'s autogrow function[self_sustaining ? ", maintaining the tray's health while using high amounts of power" : ""]."))
 	return CLICK_ACTION_SUCCESS
-
-/obj/machinery/hydroponics/attack_hand_secondary(mob/user, list/modifiers)
-	. = ..()
-	if(. == SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN)
-		return
-	if(!anchored)
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-	var/warning = tgui_alert(user, "Are you sure you wish to empty the tray's nutrient beaker?","Empty Tray Nutrients?", list("Yes", "No"))
-	if(warning == "Yes" && user.can_perform_action(src, FORBID_TELEKINESIS_REACH))
-		reagents.clear_reagents()
-		to_chat(user, span_warning("You empty [src]'s nutrient tank."))
-	update_appearance()
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
 
 /**
  * Update Tray Proc
@@ -899,16 +885,6 @@
 		set_plant_status(HYDROTRAY_PLANT_GROWING)
 	update_appearance()
 	SEND_SIGNAL(src, COMSIG_HYDROTRAY_ON_HARVEST, user, product_count)
-
-/**
- * Spawn Plant.
- * Upon using strange reagent on a tray, it will spawn a killer tomato or killer tree at random.
- */
-/obj/machinery/hydroponics/proc/spawnplant() // why would you put strange reagent in a hydro tray you monster I bet you also feed them blood
-	var/list/livingplants = list(/mob/living/basic/tree, /mob/living/basic/killer_tomato)
-	var/chosen = pick(livingplants)
-	var/mob/living/C = new chosen(get_turf(src))
-	C.faction = list(FACTION_PLANTS)
 
 ///////////////////////////////////////////////////////////////////////////////
 /obj/machinery/hydroponics/soil //Not actually hydroponics at all! Honk!
@@ -938,154 +914,17 @@
 /obj/machinery/hydroponics/soil/update_status_light_overlays()
 	return // Has no lights
 
-/obj/machinery/hydroponics/soil/attackby_secondary(obj/item/weapon, mob/user, params)
+/obj/machinery/hydroponics/soil/attackby_alternate(obj/item/weapon, mob/user, params)
 	if(weapon.tool_behaviour != TOOL_SHOVEL) //Spades can still uproot plants on left click
-		return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+		return
 	balloon_alert(user, "clearing up soil...")
 	if(weapon.use_tool(src, user, 1 SECONDS, volume=50))
 		balloon_alert(user, "cleared")
 		deconstruct(disassembled = TRUE)
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
+	return
 
-/obj/machinery/hydroponics/soil/click_ctrl(mob/user)
+/obj/machinery/hydroponics/soil/CtrlClick(mob/user)
 	return CLICK_ACTION_BLOCKING //Soil has no electricity.
 
 /obj/machinery/hydroponics/soil/on_deconstruction(disassembled)
-	new /obj/item/stack/ore/glass(drop_location(), 3)
-
-///The usb port circuit
-
-/obj/item/circuit_component/hydroponics
-	display_name = "Hydropnics Tray"
-	desc = "Automate the means of botanical production. Trigger to toggle auto-grow."
-	circuit_flags = CIRCUIT_FLAG_INPUT_SIGNAL
-
-	var/obj/machinery/hydroponics/attached_tray
-	///If self-sustaining (also called auto-grow) should be turned on or off when the trigger is triggered.
-	var/datum/port/input/selfsustaining_setting
-	///Whether the plant in the tray is harvestable, alive, missing or dead.
-	var/datum/port/output/plant_status
-	///Whether the self sustaining mode is on
-	var/datum/port/output/is_self_sustaining
-	///Triggered when the plant is harvested
-	var/datum/port/output/plant_harvested
-	///The product amount of the last harvest
-	var/datum/port/output/last_harvest
-	///Triggered when the plant dies
-	var/datum/port/output/plant_died
-	///Triggered when a seed is either planted by someone or takes over the tray.
-	var/datum/port/output/seeds_planted
-	///The amount of water in the tray.
-	var/datum/port/output/water_level
-	///The amount of toxins in the tray.
-	var/datum/port/output/toxic_level
-	///The amount of pests in the tray.
-	var/datum/port/output/pests_level
-	///The amount of weeds in the tray.
-	var/datum/port/output/weeds_level
-	///The health of the plant in the tray.
-	var/datum/port/output/plant_health
-	///The amount of reagents in the tray
-	var/datum/port/output/reagents_level
-
-/obj/item/circuit_component/hydroponics/populate_ports()
-	selfsustaining_setting = add_input_port("Auto-Grow Setting", PORT_TYPE_NUMBER)
-
-	plant_status = add_output_port("Plant Status", PORT_TYPE_NUMBER)
-	is_self_sustaining = add_output_port("Auto-Grow Status", PORT_TYPE_NUMBER)
-	plant_harvested = add_output_port("Plant Harvested", PORT_TYPE_SIGNAL)
-	last_harvest = add_output_port("Last Harvest Amount", PORT_TYPE_NUMBER)
-	plant_died = add_output_port("Plant Died", PORT_TYPE_SIGNAL)
-	seeds_planted = add_output_port("Seeds Planted", PORT_TYPE_SIGNAL)
-	water_level = add_output_port("Water Level", PORT_TYPE_NUMBER)
-	toxic_level = add_output_port("Toxins Level", PORT_TYPE_NUMBER)
-	pests_level = add_output_port("Pests Level", PORT_TYPE_NUMBER)
-	weeds_level = add_output_port("Weeds Level", PORT_TYPE_NUMBER)
-	plant_health = add_output_port("Plant Health", PORT_TYPE_NUMBER)
-	reagents_level = add_output_port("Reagents Level", PORT_TYPE_NUMBER)
-
-/obj/item/circuit_component/hydroponics/register_usb_parent(atom/movable/parent)
-	. = ..()
-	if(istype(parent, /obj/machinery/hydroponics))
-		attached_tray = parent
-		RegisterSignal(attached_tray, COMSIG_HYDROTRAY_SET_SEED, PROC_REF(on_set_seed))
-		RegisterSignal(attached_tray, COMSIG_HYDROTRAY_SET_SELFSUSTAINING, PROC_REF(on_set_selfsustaining))
-		RegisterSignal(attached_tray, COMSIG_HYDROTRAY_SET_WEEDLEVEL, PROC_REF(on_set_weedlevel))
-		RegisterSignal(attached_tray, COMSIG_HYDROTRAY_SET_PESTLEVEL, PROC_REF(on_set_pestlevel))
-		RegisterSignal(attached_tray, COMSIG_HYDROTRAY_SET_WATERLEVEL, PROC_REF(on_set_waterlevel))
-		RegisterSignal(attached_tray, COMSIG_HYDROTRAY_SET_PLANT_HEALTH, PROC_REF(on_set_plant_health))
-		RegisterSignal(attached_tray, COMSIG_HYDROTRAY_SET_TOXIC, PROC_REF(on_set_toxic_level))
-		RegisterSignal(attached_tray, COMSIG_HYDROTRAY_SET_PLANT_STATUS, PROC_REF(on_set_plant_status))
-		RegisterSignal(attached_tray, COMSIG_HYDROTRAY_ON_HARVEST, PROC_REF(on_harvest))
-		RegisterSignal(attached_tray, COMSIG_HYDROTRAY_PLANT_DEATH, PROC_REF(on_plant_death))
-		var/list/reagents_holder_signals = list(
-			COMSIG_REAGENTS_ADD_REAGENT,
-			COMSIG_REAGENTS_REM_REAGENT,
-			COMSIG_REAGENTS_NEW_REAGENT,
-			COMSIG_REAGENTS_DEL_REAGENT,
-		)
-		RegisterSignal(attached_tray, reagents_holder_signals, PROC_REF(update_reagents_level))
-
-/obj/item/circuit_component/hydroponics/unregister_usb_parent(atom/movable/parent)
-	attached_tray = null
-	UnregisterSignal(parent, list(COMSIG_HYDROTRAY_SET_SEED, COMSIG_HYDROTRAY_SET_SELFSUSTAINING,
-		COMSIG_HYDROTRAY_SET_WEEDLEVEL, COMSIG_HYDROTRAY_SET_PESTLEVEL, COMSIG_HYDROTRAY_SET_WATERLEVEL,
-		COMSIG_HYDROTRAY_SET_PLANT_HEALTH, COMSIG_HYDROTRAY_SET_TOXIC, COMSIG_HYDROTRAY_SET_PLANT_STATUS,
-		COMSIG_HYDROTRAY_ON_HARVEST, COMSIG_HYDROTRAY_PLANT_DEATH))
-	if(parent.reagents)
-		UnregisterSignal(parent.reagents, list(COMSIG_REAGENTS_ADD_REAGENT, COMSIG_REAGENTS_REM_REAGENT,
-			COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_DEL_REAGENT))
-	return ..()
-
-/obj/item/circuit_component/hydroponics/get_ui_notices()
-	. = ..()
-	. += create_ui_notice("Plant Status Index: \"[HYDROTRAY_NO_PLANT]\", \"[HYDROTRAY_PLANT_GROWING]\", \"[HYDROTRAY_PLANT_DEAD]\", \"[HYDROTRAY_PLANT_HARVESTABLE]\"", "orange", "info")
-
-/obj/item/circuit_component/hydroponics/proc/on_set_seed(datum/source, obj/item/seeds/new_seed)
-	SIGNAL_HANDLER
-	seeds_planted.set_output(COMPONENT_SIGNAL)
-
-/obj/item/circuit_component/hydroponics/proc/on_set_selfsustaining(datum/source, new_value)
-	SIGNAL_HANDLER
-	is_self_sustaining.set_output(new_value)
-
-/obj/item/circuit_component/hydroponics/proc/on_set_weedlevel(datum/source, new_value)
-	SIGNAL_HANDLER
-	weeds_level.set_output(new_value)
-
-/obj/item/circuit_component/hydroponics/proc/on_set_pestlevel(datum/source, new_value)
-	SIGNAL_HANDLER
-	pests_level.set_output(new_value)
-
-/obj/item/circuit_component/hydroponics/proc/on_set_waterlevel(datum/source, new_value)
-	SIGNAL_HANDLER
-	water_level.set_output(new_value)
-
-/obj/item/circuit_component/hydroponics/proc/on_set_plant_health(datum/source, new_value)
-	SIGNAL_HANDLER
-	plant_health.set_output(new_value)
-
-/obj/item/circuit_component/hydroponics/proc/on_set_toxic_level(datum/source, new_value)
-	SIGNAL_HANDLER
-	toxic_level.set_output(new_value)
-
-/obj/item/circuit_component/hydroponics/proc/on_set_plant_status(datum/source, new_value)
-	SIGNAL_HANDLER
-	plant_status.set_output(new_value)
-
-/obj/item/circuit_component/hydroponics/proc/on_harvest(datum/source, product_amount)
-	SIGNAL_HANDLER
-	last_harvest.set_output(product_amount)
-	plant_harvested.set_output(COMPONENT_SIGNAL)
-
-/obj/item/circuit_component/hydroponics/proc/on_plant_death(datum/source)
-	SIGNAL_HANDLER
-	plant_died.set_output(COMPONENT_SIGNAL)
-
-/obj/item/circuit_component/hydroponics/proc/update_reagents_level(datum/source)
-	SIGNAL_HANDLER
-	reagents_level.set_output(attached_tray.reagents.total_volume)
-
-/obj/item/circuit_component/hydroponics/input_received(datum/port/input/port)
-	if(attached_tray.anchored && attached_tray.powered())
-		attached_tray.set_self_sustaining(!!selfsustaining_setting.value)
+	new /obj/item/ore/glass(drop_location(), 3)
