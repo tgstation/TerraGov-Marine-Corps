@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - qol: "The SMG-45 has been recalibered into .41 AE, and it's corresponding packets have been added to the marine vendor."
