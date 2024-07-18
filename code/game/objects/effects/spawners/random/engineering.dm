@@ -129,6 +129,28 @@
 		/obj/effect/spawner/random/engineering/tool = 5,
 	)
 
+/obj/effect/spawner/random/engineering/structure/inflatable
+	name = "inflatable spawner"
+	icon_state = "random_inflatable"
+	spawn_loot_chance = 95
+	loot = list(
+		/obj/structure/inflatable/wall,
+		/obj/structure/inflatable/popped,
+	)
+
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted
+	loot = list(
+		/obj/structure/inflatable/wall = 45,
+		/obj/structure/inflatable/popped = 1,
+	)
+
+/obj/effect/spawner/random/engineering/structure/inflatable/poppedweighted
+	icon_state = "random_inflatable_popped"
+	loot = list(
+		/obj/structure/inflatable/popped = 35,
+		/obj/structure/inflatable/wall = 1,
+	)
+
 /obj/effect/spawner/random/engineering/structure/gascan
 	name = "gascan spawner"
 	icon_state = "random_gascan"

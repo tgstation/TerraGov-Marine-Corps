@@ -34,7 +34,7 @@
 	},
 /area/fiorina/station/medbay)
 "bs" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /obj/effect/turf_decal/medical_decals/triage,
 /turf/open/floor/prison/sterilewhite{
 	dir = 10
@@ -94,7 +94,7 @@
 	},
 /area/fiorina/station/medbay)
 "eF" = (
-/obj/structure/inflatable/popped,
+/obj/effect/spawner/random/engineering/structure/inflatable/poppedweighted,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -104,7 +104,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/fiorina/station/medbay)
 "fn" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/whitegreen,
 /area/fiorina/station/medbay)
 "fo" = (
@@ -174,9 +174,18 @@
 /area/fiorina/station/medbay)
 "kG" = (
 /obj/structure/inflatable,
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
+	},
+/area/fiorina/station/medbay)
+"kH" = (
+/obj/structure/largecrate/supply/medicine/iv,
+/obj/machinery/vending/nanomed{
+	dir = 1
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
 	},
 /area/fiorina/station/medbay)
 "kK" = (
@@ -189,7 +198,7 @@
 /turf/open/floor/prison/whitegreen,
 /area/fiorina/station/central_ring)
 "kY" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/whitegreen/corner,
 /area/fiorina/station/medbay)
 "mB" = (
@@ -197,6 +206,17 @@
 	dir = 10
 	},
 /area/fiorina/station/central_ring)
+"mY" = (
+/obj/structure/bed/roller,
+/obj/machinery/iv_drip{
+	pixel_y = 19
+	},
+/obj/item/bedsheet/medical,
+/obj/machinery/vending/nanomed,
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
+/area/fiorina/station/medbay)
 "nj" = (
 /obj/structure/bed/chair/janicart,
 /turf/open/floor/prison,
@@ -217,8 +237,8 @@
 	},
 /area/fiorina/station/medbay)
 "nB" = (
-/obj/structure/inflatable/popped,
 /obj/effect/turf_decal/medical_decals/triage/bottom,
+/obj/effect/spawner/random/engineering/structure/inflatable/poppedweighted,
 /turf/open/floor/prison/sterilewhite{
 	dir = 10
 	},
@@ -276,7 +296,7 @@
 	},
 /area/fiorina/station/medbay)
 "qe" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -412,7 +432,7 @@
 /turf/closed/wall/prison,
 /area/fiorina/station/medbay)
 "DB" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /obj/effect/turf_decal/medical_decals/triage/bottom,
 /turf/open/floor/prison/sterilewhite{
 	dir = 10
@@ -433,7 +453,7 @@
 	},
 /area/fiorina/station/medbay)
 "ES" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /obj/effect/turf_decal/medical_decals/triage/edge{
 	dir = 4
 	},
@@ -463,7 +483,7 @@
 /area/fiorina/station/medbay)
 "GI" = (
 /obj/structure/stairs/seamless,
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/medbay)
@@ -477,7 +497,7 @@
 /area/fiorina/station/medbay)
 "Hq" = (
 /obj/effect/turf_decal/medical_decals,
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/whitegreen{
 	dir = 9
 	},
@@ -493,7 +513,7 @@
 	},
 /area/fiorina/station/medbay)
 "HS" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -539,12 +559,12 @@
 /obj/structure/platform_decoration{
 	dir = 1
 	},
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/whitegreen,
 /area/fiorina/station/medbay)
 "JW" = (
-/obj/structure/inflatable/popped,
 /obj/effect/turf_decal/medical_decals/triage/bottom,
+/obj/effect/spawner/random/engineering/structure/inflatable/poppedweighted,
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -571,13 +591,13 @@
 /turf/open/floor/prison/whitegreen/corner,
 /area/fiorina/station/medbay)
 "KJ" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 4
 	},
 /area/fiorina/station/medbay)
 "KX" = (
-/obj/structure/inflatable/popped,
+/obj/effect/spawner/random/engineering/structure/inflatable/poppedweighted,
 /turf/open/floor/prison/sterilewhite{
 	dir = 10
 	},
@@ -646,7 +666,7 @@
 	},
 /area/fiorina/station/central_ring)
 "Pt" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/whitegreen/full{
 	dir = 10
 	},
@@ -658,7 +678,7 @@
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/medbay)
 "PV" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},
@@ -682,7 +702,7 @@
 	},
 /area/fiorina/station/medbay)
 "Se" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -714,7 +734,7 @@
 /obj/structure/platform_decoration{
 	dir = 4
 	},
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /obj/effect/turf_decal/medical_decals/triage,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
@@ -761,14 +781,14 @@
 	},
 /area/fiorina/station/medbay)
 "WY" = (
-/obj/structure/inflatable/wall,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
 /turf/open/floor/prison/sterilewhite{
 	dir = 10
 	},
 /area/fiorina/station/medbay)
 "Xl" = (
-/obj/structure/inflatable/popped,
 /obj/effect/turf_decal/medical_decals/triage,
+/obj/effect/spawner/random/engineering/structure/inflatable/poppedweighted,
 /turf/open/floor/prison/sterilewhite{
 	dir = 10
 	},
@@ -784,8 +804,14 @@
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/station/research_cells)
 "Zg" = (
-/obj/machinery/vending/nanomed,
-/turf/closed/wall/prison,
+/obj/effect/spawner/random/engineering/structure/inflatable/wallweighted,
+/obj/effect/turf_decal/medical_decals/triage,
+/obj/machinery/vending/nanomed{
+	dir = 1
+	},
+/turf/open/floor/prison/sterilewhite{
+	dir = 10
+	},
 /area/fiorina/station/medbay)
 "Zp" = (
 /obj/effect/decal/cleanable/blood/drip,
@@ -923,10 +949,10 @@ TF
 Xl
 bm
 bs
-bs
 Zg
-Zg
-aZ
+kE
+kE
+mY
 TV
 aZ
 TV
@@ -963,10 +989,10 @@ QG
 TV
 kK
 TV
-RG
-Zg
-Zg
-aZ
+kH
+kE
+kE
+mY
 TV
 nX
 TV
