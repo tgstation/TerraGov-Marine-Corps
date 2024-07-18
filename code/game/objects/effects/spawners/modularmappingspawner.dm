@@ -313,3 +313,8 @@
 	mapid = "firesearch"
 	spawner_width = 25
 	spawner_height = 18
+
+/obj/effect/spawner/modularmap/fiorina/corering
+	mapid = "ficore"
+	spawner_width = 25
+	spawner_height = 25
