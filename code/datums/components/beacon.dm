@@ -83,7 +83,7 @@
 ///Activates the beacon
 /datum/component/beacon/proc/activate(atom/movable/source, mob/user)
 	var/turf/location = get_turf(source)
-	var/area/Area = get_area(location)
+	var/area/curr_area = get_area(location)
 	if(check_for_blacklist(source))
 		active = FALSE
 		return FALSE
@@ -117,7 +117,7 @@
 	playsound(source, 'sound/machines/twobeep.ogg', 15, 1)
 	user.visible_message("[user] activates [source]'s signal.")
 	user.show_message(span_notice("The [source] beeps and states, \"Your current coordinates were registered by the supply console. LONGITUDE [location.x]. LATITUDE [location.y]. Area ID: [get_area(source)]\""), EMOTE_AUDIBLE, span_notice("The [source] vibrates but you can not hear it!"))
-	beacon_datum = new /datum/supply_beacon("[user.name] + [Area]", get_turf(source), user.faction)
+	beacon_datum = new /datum/supply_beacon("[user.name] + [curr_area]", get_turf(source), user.faction)
 	RegisterSignal(beacon_datum, COMSIG_QDELETING, PROC_REF(clean_beacon_datum))
 	RegisterSignal(source, COMSIG_MOVABLE_MOVED, PROC_REF(updatepos))
 	if(ismob(source.loc))
@@ -129,11 +129,10 @@
 
 ///Deactivates the beacon
 /datum/component/beacon/proc/deactivate(atom/movable/source, mob/user)
-	if(user)
-		if(length(user.do_actions))
-			user.balloon_alert(user, "Busy!")
-			active = TRUE
-			return
+	if(length(user?.do_actions))
+		user.balloon_alert(user, "Busy!")
+		active = TRUE
+		return
 	if(source.anchored)
 		if(user)
 			var/delay = max(1 SECONDS, anchor_time * 0.5 - 2 SECONDS * user.skills.getRating(SKILL_LEADERSHIP)) //Half as long as setting it up.
@@ -165,23 +164,23 @@
 /datum/component/beacon/proc/updatepos(atom/movable/source)
 	SIGNAL_HANDLER
 	var/turf/location = get_turf(parent)
-	var/area/Area = get_area(location)
+	var/area/curr_area = get_area(location)
 	if(check_for_blacklist(source))
 		INVOKE_ASYNC(src, PROC_REF(deactivate), source)
 		return
 	beacon_datum.drop_location = location
-	beacon_datum.name = "[src.activator.name] + [Area]"
+	beacon_datum.name = "[src.activator.name] + [curr_area]"
 	var/atom/movable/movableparent = parent
 	movableparent.update_appearance()
 
 ///Checks if the area is deep underground or is a dropship. Returns TRUE if there shouldn't be a beacon there
 /datum/component/beacon/proc/check_for_blacklist(atom/movable/source)
 	var/turf/location = get_turf(parent)
-	var/area/Area = get_area(location)
-	if(istype(Area) && Area.ceiling >= CEILING_DEEP_UNDERGROUND)
+	var/area/curr_area = get_area(location)
+	if(istype(curr_area) && curr_area.ceiling >= CEILING_DEEP_UNDERGROUND)
 		source.balloon_alert_to_viewers("This won't work if you're standing deep underground.")
 		return TRUE
-	if(istype(Area, /area/shuttle/dropship))
+	if(istype(curr_area, /area/shuttle/dropship))
 		source.balloon_alert_to_viewers("You have to be outside the dropship to use this or it won't transmit.")
 		return TRUE
 
