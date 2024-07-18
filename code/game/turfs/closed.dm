@@ -178,11 +178,15 @@
 
 //resin bone wall
 /turf/closed/mineral/smooth/resin_hard
+	name = "hardened resin wall"
+	desc = "This resin has solidified into a solid immovable mass, you can see the faint traces of what look like a dense xenomorph skeleton underneath the surface."
 	icon = 'icons/turf/walls/resin_bone_wall.dmi'
 	icon_state = "resin_bone_wall-0"
 	base_icon_state = "resin_bone_wall"
 
 /turf/closed/mineral/smooth/resin_hard/indestructible
+	name = "ultra-hardened resin wall"
+	desc = "This resin has been soaked in some sort of acidic curing substance and solidified so much you doubt anything can remove it."
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 

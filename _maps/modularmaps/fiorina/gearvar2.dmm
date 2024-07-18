@@ -1,0 +1,356 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"b" = (
+/obj/item/clothing/under/color/orange,
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"d" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/item/storage/box/pillbottles,
+/obj/item/clothing/under/marine,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"e" = (
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/station/security)
+"f" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/item/storage/pill_bottle/kelotane,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"g" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/item/reagent_containers/glass/bottle/dylovene,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"h" = (
+/obj/item/storage/belt/marine,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"i" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/security)
+"k" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/item/clothing/under/marine,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"l" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/item/storage/belt/shotgun,
+/obj/item/clothing/under/marine,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"m" = (
+/obj/structure/closet/secure_closet/security_empty,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/item/storage/box/flashbangs,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"n" = (
+/obj/structure/inflatable/wall,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/security)
+"o" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"p" = (
+/obj/item/clothing/under/color/orange,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/security)
+"q" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/kutjevo,
+/area/fiorina/station/security)
+"r" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"t" = (
+/obj/structure/window/reinforced,
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"u" = (
+/obj/structure/closet/secure_closet/security_empty,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"v" = (
+/obj/item/clothing/under/color/orange,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"w" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/security)
+"y" = (
+/obj/item/clothing/under/marine,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"A" = (
+/obj/effect/landmark/corpsespawner/marine,
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"B" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/security)
+"C" = (
+/obj/machinery/light/blue{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"D" = (
+/obj/item/clothing/under/color/orange,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"E" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/effect/ai_node,
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"H" = (
+/obj/item/clothing/under/marine,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/security)
+"I" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/item/clothing/under/marine,
+/obj/item/storage/pill_bottle/alkysine,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"J" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"K" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/security)
+"L" = (
+/obj/structure/window/framed/prison/reinforced,
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"M" = (
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/prison/plate,
+/area/fiorina/station/security)
+"N" = (
+/obj/item/frame/rack,
+/obj/item/clothing/under/marine,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"O" = (
+/obj/item/frame/rack,
+/obj/item/clothing/suit/storage/marine/som,
+/obj/item/clothing/suit/storage/marine/som,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"P" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/item/clothing/under/marine,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"Q" = (
+/obj/effect/landmark/corpsespawner/marine,
+/turf/open/floor/prison/plate,
+/area/fiorina/station/security)
+"R" = (
+/obj/structure/extinguisher_cabinet,
+/turf/closed/wall/r_wall/prison,
+/area/fiorina/station/security)
+"S" = (
+/obj/structure/table/reinforced/prison,
+/obj/structure/flora/pottedplant{
+	pixel_y = 9
+	},
+/obj/machinery/light/blue,
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"T" = (
+/obj/effect/spawner/random/weaponry/ammo/rifle,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+"U" = (
+/turf/open/floor/prison/plate,
+/area/fiorina/station/security)
+"V" = (
+/turf/closed/wall/prison,
+/area/fiorina/station/security)
+"W" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/item/storage/belt/marine,
+/obj/item/clothing/under/marine,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"X" = (
+/obj/item/frame/rack,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"Y" = (
+/obj/structure/closet/secure_closet/guncabinet,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/item/storage/belt/marine,
+/obj/item/clothing/under/marine,
+/turf/open/floor/prison/red/full,
+/area/fiorina/station/security)
+"Z" = (
+/turf/open/floor/prison,
+/area/fiorina/station/security)
+
+(1,1,1) = {"
+Z
+S
+e
+e
+R
+e
+e
+C
+"}
+(2,1,1) = {"
+e
+e
+e
+f
+k
+k
+e
+e
+"}
+(3,1,1) = {"
+n
+K
+p
+B
+M
+H
+X
+e
+"}
+(4,1,1) = {"
+D
+Z
+I
+d
+r
+h
+O
+e
+"}
+(5,1,1) = {"
+A
+b
+J
+E
+g
+T
+N
+e
+"}
+(6,1,1) = {"
+L
+L
+e
+t
+l
+y
+e
+e
+"}
+(7,1,1) = {"
+w
+Q
+i
+v
+Z
+o
+q
+K
+"}
+(8,1,1) = {"
+U
+U
+e
+P
+W
+Y
+e
+u
+"}
+(9,1,1) = {"
+V
+V
+e
+e
+e
+e
+e
+m
+"}

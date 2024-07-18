@@ -38,6 +38,21 @@
 		/obj/item/cell/hyper = 1,
 	)
 
+/obj/effect/spawner/random/engineering/powercell/empty
+	loot = list(
+		/obj/item/cell/empty = 40,
+		/obj/item/cell/high/empty = 40,
+		/obj/item/cell/crap/empty = 10,
+		/obj/item/cell/super/empty = 9,
+		/obj/item/cell/hyper/empty = 1,
+	)
+
+/obj/effect/spawner/random/engineering/powercell/empty_or_full
+	loot = list(
+		/obj/effect/spawner/random/engineering/powercell,
+		/obj/effect/spawner/random/engineering/powercell/empty,
+	)
+
 /obj/effect/spawner/random/engineering/pickaxe
 	name = "Random pickaxe spawner"
 	icon_state = "random_pickaxe"
@@ -74,6 +89,28 @@
 		/obj/item/storage/toolbox/electrical = 3,
 		/obj/item/storage/toolbox/emergency = 2,
 	)
+
+/obj/effect/spawner/random/engineering/toolbox/mechanicalweighted
+	loot = list(
+		/obj/item/storage/toolbox/mechanical = 10,
+		/obj/item/storage/toolbox/electrical = 1,
+		/obj/item/storage/toolbox/emergency = 1,
+	)
+
+/obj/effect/spawner/random/engineering/toolbox/electricalweighted
+	loot = list(
+		/obj/item/storage/toolbox/electrical = 10,
+		/obj/item/storage/toolbox/mechanical = 1,
+		/obj/item/storage/toolbox/emergency = 1,
+	)
+
+/obj/effect/spawner/random/engineering/toolbox/emergencyweighted
+	loot = list(
+		/obj/item/storage/toolbox/emergency = 10,
+		/obj/item/storage/toolbox/electrical = 1,
+		/obj/item/storage/toolbox/mechanical = 1,
+	)
+
 
 /obj/effect/spawner/random/engineering/tech_supply
 	name = "Random Tech Supply"

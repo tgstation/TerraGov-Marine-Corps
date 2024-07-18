@@ -139,6 +139,33 @@
 		/obj/item/storage/firstaid/adv = 5,
 	)
 
+/obj/effect/spawner/random/medical/firstaid/fireweighted
+	loot = list(
+		/obj/item/storage/firstaid/fire = 30,
+		/obj/item/storage/firstaid/regular = 15,
+		/obj/item/storage/firstaid/o2 = 10,
+		/obj/item/storage/firstaid/toxin = 10,
+		/obj/item/storage/firstaid/adv = 5,
+	)
+
+/obj/effect/spawner/random/medical/firstaid/oxygenweighted
+	loot = list(
+		/obj/item/storage/firstaid/o2 = 30,
+		/obj/item/storage/firstaid/regular = 15,
+		/obj/item/storage/firstaid/fire = 10,
+		/obj/item/storage/firstaid/toxin = 10,
+		/obj/item/storage/firstaid/adv = 5,
+	)
+
+/obj/effect/spawner/random/medical/firstaid/toxinweighted
+	loot = list(
+		/obj/item/storage/firstaid/toxin = 30,
+		/obj/item/storage/firstaid/regular = 15,
+		/obj/item/storage/firstaid/fire = 10,
+		/obj/item/storage/firstaid/o2 = 10,
+		/obj/item/storage/firstaid/adv = 5,
+	)
+
 /obj/effect/spawner/random/medical/firstaid/alwaysspawns
 	spawn_loot_chance = 100
 
