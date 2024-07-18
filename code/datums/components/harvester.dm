@@ -30,7 +30,6 @@
 	var/datum/action/harvester/reagent_select/reagent_select_action
 	///The maximum amount that one chemical can be loaded
 	var/max_loadable_reagent_amount = 30
-	var/loadup_on_attack = TRUE
 
 /datum/component/harvester/Initialize(max_reagent_amount)
 	if(!isitem(parent))
@@ -243,8 +242,7 @@
 	user.update_inv_r_hand()
 	user.update_inv_l_hand()
 
-	if(loadup_on_attack)
-		INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
+	INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
 
 ///Handles behavior when attacking a mob with bicaridine
 /datum/component/harvester/proc/attack_bicaridine(datum/source, mob/living/target, mob/living/user, obj/item/weapon)
