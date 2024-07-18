@@ -83,12 +83,10 @@
 				message = text,
 				color_override = override_color
 			))
-		TIMER_COOLDOWN_START(human_owner, COOLDOWN_HUD_ORDER, 35 SECONDS)
 		return
 	for(var/mob/faction_receiver in alert_receivers)
 		S = sound('sound/misc/notice2.ogg')
 		S.channel = CHANNEL_ANNOUNCEMENTS
-		TIMER_COOLDOWN_START(human_owner, COOLDOWN_HUD_ORDER, 35 SECONDS)
 		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
 			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[uppertext(human_owner.job.title)]'S ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 			to_chat(faction_receiver, assemble_alert(
