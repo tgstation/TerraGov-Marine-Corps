@@ -40,8 +40,6 @@
 
 	if(max_reagent_amount)
 		max_loadable_reagent_amount = max_reagent_amount
-	if(loadup_on_attack)
-		src.loadup_on_attack = loadup_on_attack
 
 	reagent_select_action = new
 	LAZYADD(item_parent.actions, reagent_select_action)
