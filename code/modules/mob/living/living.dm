@@ -1024,3 +1024,7 @@ below 100 is not dizzy
 ///Callback proc to tone down spam from multiple sizzling frying oil dipping.
 /mob/living/proc/unfry_mob()
 	REMOVE_TRAIT(src, TRAIT_OIL_FRIED, "cooking_oil_react")
+
+///Used for extra objects ect. in butchering
+/mob/living/proc/harvest(mob/living/user)
+	return

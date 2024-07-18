@@ -185,29 +185,71 @@
 /datum/reagent/toxin/plantbgone
 	name = "Plant-B-Gone"
 	description = "A harmful toxic mixture to kill plantlife. Do not ingest!"
-	color = COLOR_TOXIN_PLANTBGONE
+	color = "#49002E" // rgb: 73, 0, 46
 	toxpwr = 1
-	taste_multi = 1
+	taste_mult = 1
 
-/datum/reagent/toxin/plantbgone/reaction_obj(obj/O, volume)
-	if(istype(O,/obj/alien/weeds))
-		var/obj/alien/A = O
-		A.take_damage(min(0.5 * volume))
-	else if(istype(O,/obj/structure/glowshroom)) //even a small amount is enough to kill it
-		qdel(O)
-	else if(istype(O,/obj/effect/plantsegment))
-		if(prob(50)) qdel(O) //Kills kudzu too.
-	else if(istype(O,/obj/machinery/hydroponics))
-		var/obj/machinery/hydroponics/tray = O
+// Plant-B-Gone is just as bad
+/datum/reagent/toxin/plantbgone/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
+	mytray.adjust_plant_health(-round(volume * 10))
+	mytray.adjust_toxic(round(volume * 6))
+	mytray.adjust_weedlevel(-rand(4,8))
 
-		if(tray.myseed)
-			tray.adjust_plant_health(-rand(30,50))
-			if(tray.pestlevel > 0)
-				tray.pestlevel -= 2
-			if(tray.weedlevel > 0)
-				tray.weedlevel -= 3
-			tray.toxic += 4
-			tray.update_icon()
+/datum/reagent/toxin/plantbgone/expose_obj(obj/exposed_obj, reac_volume)
+	. = ..()
+	if(istype(exposed_obj, /obj/structure/alien/weeds))
+		var/obj/structure/alien/weeds/alien_weeds = exposed_obj
+		alien_weeds.take_damage(rand(15, 35), BRUTE, 0) // Kills alien weeds pretty fast
+	else if(istype(exposed_obj, /obj/structure/glowshroom)) //even a small amount is enough to kill it
+		qdel(exposed_obj)
+
+/datum/reagent/toxin/plantbgone/expose_mob(mob/living/exposed_mob, methods = TOUCH, reac_volume)
+	. = ..()
+	var/damage = min(round(0.4 * reac_volume, 0.1), 10)
+
+	if(!(methods & VAPOR) || !iscarbon(exposed_mob))
+		return
+
+	var/mob/living/carbon/exposed_carbon = exposed_mob
+	if(!exposed_carbon.wear_mask)
+		exposed_carbon.adjustToxLoss(damage)
+
+/datum/reagent/toxin/plantbgone/weedkiller
+	name = "Weed Killer"
+	description = "A harmful toxic mixture to kill weeds. Do not ingest!"
+	color = "#4B004B" // rgb: 75, 0, 75
+
+//Weed Spray
+/datum/reagent/toxin/plantbgone/weedkiller/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
+	mytray.adjust_toxic(round(volume * 0.5))
+	mytray.adjust_weedlevel(-rand(1,2))
+
+/datum/reagent/toxin/pestkiller
+	name = "Pest Killer"
+	description = "A harmful toxic mixture to kill pests. Do not ingest!"
+	color = "#4B004B" // rgb: 75, 0, 75
+	toxpwr = 1
+
+/datum/reagent/toxin/pestkiller/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	. = ..()
+	if(affected_mob.adjustToxLoss(2 * toxpwr * REM * seconds_per_tick))
+		return UPDATE_MOB_HEALTH
+
+//Pest Spray
+/datum/reagent/toxin/pestkiller/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
+	mytray.adjust_toxic(round(volume))
+	mytray.adjust_pestlevel(-rand(1,2))
+
+/datum/reagent/toxin/pestkiller/organic
+	name = "Natural Pest Killer"
+	description = "An organic mixture used to kill pests, with less of the side effects. Do not ingest!"
+	color = "#4b2400" // rgb: 75, 0, 75
+	toxpwr = 1
+
+//Pest Spray
+/datum/reagent/toxin/pestkiller/organic/on_hydroponics_apply(obj/machinery/hydroponics/mytray, mob/user)
+	mytray.adjust_toxic(round(volume * 0.1))
+	mytray.adjust_pestlevel(-rand(1,2))
 
 /datum/reagent/toxin/sleeptoxin
 	name = "Soporific"

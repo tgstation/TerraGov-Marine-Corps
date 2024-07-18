@@ -441,6 +441,7 @@
 #include "code\datums\components\beacon.dm"
 #include "code\datums\components\blur_protection.dm"
 #include "code\datums\components\bump_attack.dm"
+#include "code\datums\components\butchering.dm"
 #include "code\datums\components\chem_booster.dm"
 #include "code\datums\components\clothing_tint.dm"
 #include "code\datums\components\companion.dm"

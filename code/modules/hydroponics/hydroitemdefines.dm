@@ -6,62 +6,26 @@
 	icon_state = "hydro"
 	worn_icon_state = "analyzer"
 	worn_icon_state = "plantanalyzer"
-	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_righthand.dmi',
+	)
 	w_class = WEIGHT_CLASS_TINY
-	slot_flags = ITEM_SLOT_BELT
-	custom_materials = list(/datum/material/iron = SMALL_MATERIAL_AMOUNT*0.3, /datum/material/glass =SMALL_MATERIAL_AMOUNT*0.2)
-
-/obj/item/plant_analyzer/Initialize(mapload)
-	. = ..()
-	register_item_context()
+	equip_slot_flags = ITEM_SLOT_BELT
 
 /obj/item/plant_analyzer/examine()
 	. = ..()
 	. += span_notice("Left click a plant to scan its growth stats, and right click to scan its chemical reagent stats.")
 
-/obj/item/plant_analyzer/add_item_context(
-	obj/item/source,
-	list/context,
-	atom/target,
-)
-
-	if(isliving(target))
-		// It's a health analyzer, but for podpeople.
-		var/mob/living/living_target = target
-		if(!(living_target.mob_biotypes & MOB_PLANT))
-			return NONE
-
-		context[SCREENTIP_CONTEXT_LMB] = "Scan health"
-		context[SCREENTIP_CONTEXT_RMB] = "Scan chemicals"
-		return CONTEXTUAL_SCREENTIP_SET
-
-	if(isitem(target))
-		// Easier to handle this here, as grown items are split across two type-paths
-		var/obj/item/item_target = target
-		if(!item_target.get_plant_seed())
-			return NONE
-
-		context[SCREENTIP_CONTEXT_LMB] = "Scan plant stats"
-		context[SCREENTIP_CONTEXT_RMB] = "Scan plant chemicals"
-		return CONTEXTUAL_SCREENTIP_SET
-
-	return NONE
-
 /// When we attack something, first - try to scan something we hit with left click. Left-clicking uses scans for stats
 /obj/item/plant_analyzer/pre_attack(atom/target, mob/living/user)
 	. = ..()
-	if(user.combat_mode || !user.can_read(src))
+	if(user.a_intent != INTENT_HELP)
 		return
+	do_plant_stats_scan(target, user)
+	do_plant_chem_scan(target, user)
+	return
 
-	return do_plant_stats_scan(target, user)
-
-/// Same as above, but with right click. Right-clicking scans for chemicals.
-/obj/item/plant_analyzer/pre_attack_secondary(atom/target, mob/living/user)
-	if(user.combat_mode || !user.can_read(src))
-		return SECONDARY_ATTACK_CONTINUE_CHAIN
-
-	return do_plant_chem_scan(target, user) ? SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN : SECONDARY_ATTACK_CONTINUE_CHAIN
 
 /*
  * Scan the target on plant scan mode. This prints traits and stats to the user.
@@ -76,10 +40,6 @@
 	if(istype(scan_target, /obj/machinery/hydroponics))
 		to_chat(user, examine_block(scan_tray_stats(scan_target)))
 		return TRUE
-	if(istype(scan_target, /obj/structure/glowshroom))
-		var/obj/structure/glowshroom/shroom_plant = scan_target
-		to_chat(user, examine_block(scan_plant_stats(shroom_plant.myseed)))
-		return TRUE
 	if(istype(scan_target, /obj/item/graft))
 		to_chat(user, examine_block(get_graft_text(scan_target)))
 		return TRUE
@@ -87,11 +47,6 @@
 		var/obj/item/scanned_object = scan_target
 		if(scanned_object.get_plant_seed() || istype(scanned_object, /obj/item/seeds))
 			to_chat(user, examine_block(scan_plant_stats(scanned_object)))
-			return TRUE
-	if(isliving(scan_target))
-		var/mob/living/L = scan_target
-		if(L.mob_biotypes & MOB_PLANT)
-			plant_biotype_health_scan(scan_target, user)
 			return TRUE
 
 	return FALSE
@@ -108,10 +63,6 @@
 /obj/item/plant_analyzer/proc/do_plant_chem_scan(atom/scan_target, mob/user)
 	if(istype(scan_target, /obj/machinery/hydroponics))
 		to_chat(user, examine_block(scan_tray_chems(scan_target)))
-		return TRUE
-	if(istype(scan_target, /obj/structure/glowshroom))
-		var/obj/structure/glowshroom/shroom_plant = scan_target
-		to_chat(user, examine_block(scan_plant_chems(shroom_plant.myseed)))
 		return TRUE
 	if(istype(scan_target, /obj/item/graft))
 		to_chat(user, examine_block(get_graft_text(scan_target)))
@@ -352,9 +303,10 @@
 	name = "weed spray"
 	icon_state = "weedspray"
 	worn_icon_state = "spraycan"
-	worn_icon_state = "spraycan"
-	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi',
+	)
 	volume = 100
 	list_reagents = list(/datum/reagent/toxin/plantbgone/weedkiller = 100)
 
@@ -369,8 +321,10 @@
 	icon_state = "pestspray"
 	worn_icon_state = "plantbgone"
 	worn_icon_state = "spraycan"
-	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi',
+	)
 	volume = 100
 	list_reagents = list(/datum/reagent/toxin/pestkiller = 100)
 
@@ -399,11 +353,7 @@
 	icon_state = "rake"
 	w_class = WEIGHT_CLASS_NORMAL
 	attack_verb = list("slashes", "slices", "bashes", "claws")
-	attack_verb_simple = list("slash", "slice", "bash", "claw")
 	hitsound = null
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 1.5)
-	resistance_flags = FLAMMABLE
-	flags_1 = NONE
 
 /obj/item/cultivator/rake/Initialize(mapload)
 	. = ..()
@@ -417,8 +367,7 @@
 	if(!ishuman(AM))
 		return
 	var/mob/living/carbon/human/H = AM
-	if(has_gravity(loc) && HAS_TRAIT(H, TRAIT_CLUMSY) && !H.resting)
-		H.set_confusion_if_lower(10 SECONDS)
+	if(!H.resting)
 		H.Stun(20)
 		playsound(src, 'sound/weapons/punch4.ogg', 50, TRUE)
 		H.visible_message(span_warning("[H] steps on [src] causing the handle to hit [H.p_them()] right in the face!"), \
@@ -430,25 +379,19 @@
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "hatchet"
 	worn_icon_state = "hatchet"
-	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
-	obj_flags = CONDUCTS_ELECTRICITY
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi',
+	)
 	force = 12
 	w_class = WEIGHT_CLASS_SMALL
 	throwforce = 15
 	throw_speed = 4
 	throw_range = 7
-	embed_type = /datum/embed_data/hatchet
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*7.5)
+	embedding = list("embedded_flags" = EMBEDDED_DEL_ON_HOLDER_DEL, "embed_chance" = 35, "embedded_fall_chance" = 10)
 	attack_verb = list("chops", "tears", "lacerates", "cuts")
-	attack_verb_simple = list("chop", "tear", "lacerate", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
-
-/datum/embed_data/hatchet
-	pain_mult = 4
-	embed_chance = 35
-	fall_chance = 10
 
 /obj/item/hatchet/Initialize(mapload)
 	. = ..()
@@ -457,128 +400,42 @@
 	effectiveness = 100, \
 	)
 
-/obj/item/hatchet/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is chopping at [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	playsound(src, 'sound/weapons/bladeslice.ogg', 50, TRUE, -1)
-	return BRUTELOSS
-
 /obj/item/hatchet/wooden
 	desc = "A crude axe blade upon a short wooden handle."
 	icon_state = "woodhatchet"
-	custom_materials = list(/datum/material/wood = SHEET_MATERIAL_AMOUNT * 1)
-	resistance_flags = FLAMMABLE
-	flags_1 = NONE
-
-/obj/item/scythe
-	name = "scythe"
-	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
-	icon = 'icons/obj/service/hydroponics/equipment.dmi'
-	icon_state = "scythe0"
-	worn_icon_state = "scythe0"
-	lefthand_file = 'icons/mob/inhands/weapons/polearms_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/polearms_righthand.dmi'
-	force = 15
-	throwforce = 5
-	throw_speed = 2
-	throw_range = 3
-	w_class = WEIGHT_CLASS_BULKY
-	obj_flags = CONDUCTS_ELECTRICITY
-	armour_penetration = 20
-	wound_bonus = 10
-	slot_flags = ITEM_SLOT_BACK
-	attack_verb = list("chops", "slices", "cuts", "reaps")
-	attack_verb_simple = list("chop", "slice", "cut", "reap")
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	sharpness = SHARP_EDGED
-	item_flags = CRUEL_IMPLEMENT //maybe they want to use it in surgery
-	var/swiping = FALSE
-
-/obj/item/scythe/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/butchering, \
-	speed = 9 SECONDS, \
-	effectiveness = 105, \
-	)
-	AddElement(/datum/element/bane, mob_biotypes = MOB_PLANT, damage_multiplier = 0.5, requires_combat_mode = FALSE)
-
-/obj/item/scythe/suicide_act(mob/living/user)
-	user.visible_message(span_suicide("[user] is beheading [user.p_them()]self with [src]! It looks like [user.p_theyre()] trying to commit suicide!"))
-	if(iscarbon(user))
-		var/mob/living/carbon/C = user
-		var/obj/item/bodypart/BP = C.get_bodypart(BODY_ZONE_HEAD)
-		if(BP)
-			BP.drop_limb()
-			playsound(src, SFX_DESECRATION ,50, TRUE, -1)
-	return BRUTELOSS
-
-/obj/item/scythe/pre_attack(atom/target, mob/living/user, params)
-	if(!istype(target, /obj/structure/alien/resin/flower_bud) && !istype(target, /obj/structure/spacevine))
-		return ..()
-	if(swiping || get_turf(target) == get_turf(user))
-		return ..()
-	var/turf/user_turf = get_turf(user)
-	var/dir_to_target = get_dir(user_turf, get_turf(target))
-	swiping = TRUE
-	var/static/list/scythe_slash_angles = list(0, 45, 90, -45, -90)
-	for(var/i in scythe_slash_angles)
-		var/turf/adjacent_turf = get_step(user_turf, turn(dir_to_target, i))
-		for(var/obj/structure/spacevine/vine in adjacent_turf)
-			if(user.Adjacent(vine))
-				melee_attack_chain(user, vine)
-		for(var/obj/structure/alien/resin/flower_bud/flower in adjacent_turf)
-			if(user.Adjacent(flower))
-				melee_attack_chain(user, flower)
-	swiping = FALSE
-	return TRUE
 
 /obj/item/secateurs
 	name = "secateurs"
 	desc = "It's a tool for cutting grafts off plants or changing podperson looks."
-	desc_controls = "Right-click to stylize podperson hair or other plant features!"
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "secateurs"
-	worn_icon_state = null
 	worn_icon_state = "cutters"
-	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
-	obj_flags = CONDUCTS_ELECTRICITY
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi',
+	)
 	force = 5
 	throwforce = 6
 	w_class = WEIGHT_CLASS_SMALL
-	slot_flags = ITEM_SLOT_BELT
-	custom_materials = list(/datum/material/iron= SHEET_MATERIAL_AMOUNT*2)
+	equip_slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("slashes", "slices", "cuts", "claws")
-	attack_verb_simple = list("slash", "slice", "cut", "claw")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-
-///Catch right clicks so we can stylize!
-/obj/item/secateurs/pre_attack_secondary(atom/target, mob/living/user, params)
-	if(user.combat_mode)
-		return ..()
-	restyle(target, user)
-	return SECONDARY_ATTACK_CANCEL_ATTACK_CHAIN
-
-///Send a signal to whatever we clicked and ask them if they wanna be PLANT RESTYLED YEAAAAAAAH
-/obj/item/secateurs/proc/restyle(atom/target, mob/living/user)
-	SEND_SIGNAL(target, COMSIG_ATOM_RESTYLE, user, target, user.zone_selected, EXTERNAL_RESTYLE_PLANT, 6 SECONDS)
 
 /obj/item/geneshears
 	name = "Botanogenetic Plant Shears"
 	desc = "A high tech, high fidelity pair of plant shears, capable of cutting genetic traits out of a plant."
 	icon = 'icons/obj/service/hydroponics/equipment.dmi'
 	icon_state = "genesheers"
-	worn_icon_state = null
 	worn_icon_state = "cutters"
-	lefthand_file = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi'
-	obj_flags = CONDUCTS_ELECTRICITY
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/hydroponics_lefthand.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/hydroponics_righthand.dmi',
+	)
 	force = 10
 	throwforce = 8
 	w_class = WEIGHT_CLASS_SMALL
-	slot_flags = ITEM_SLOT_BELT
-	custom_materials = list(/datum/material/iron = SHEET_MATERIAL_AMOUNT*2, /datum/material/uranium=HALF_SHEET_MATERIAL_AMOUNT * 1.5, /datum/material/gold=SMALL_MATERIAL_AMOUNT*5)
+	equip_slot_flags = ITEM_SLOT_BELT
 	attack_verb = list("slashes", "slices", "cuts")
-	attack_verb_simple = list("slash", "slice", "cut")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 // *************************************
@@ -591,11 +448,6 @@
 	volume = 50
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(1,2,5,10,15,25,50)
-
-/obj/item/reagent_containers/cup/bottle/nutrient/Initialize(mapload)
-	. = ..()
-	pixel_x = base_pixel_x + rand(-5, 5)
-	pixel_y = base_pixel_y + rand(-5, 5)
 
 
 /obj/item/reagent_containers/cup/bottle/nutrient/ez

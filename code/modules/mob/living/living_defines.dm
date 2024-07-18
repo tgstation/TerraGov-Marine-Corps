@@ -153,3 +153,10 @@
 	var/time_entered_stasis = 0
 	///The world.time of when this mob entered a cryo tube
 	var/time_entered_cryo = 0
+
+	///these will be yielded from butchering with a probability chance equal to the butcher item's effectiveness
+	var/list/butcher_results = null
+	///these will always be yielded from butchering
+	var/list/guaranteed_butcher_results = null
+	///effectiveness prob. is modified negatively by this amount; positive numbers make it more difficult, negative ones make it easier
+	var/butcher_difficulty = 0
