@@ -268,3 +268,15 @@
 	name = "Captain's Office"
 	icon_state = "captain"
 	minimap_color = MINIMAP_AREA_COMMAND
+
+/area/bluesummers/inside/observation_deck
+	name = "Observation Deck"
+	icon_state = "tcomsatcham"
+
+/area/bluesummers/inside/food_processing_wing
+	name = "Western Food Processing Wing"
+	icon_state = "kitchen"
+	minimap_color = MINIMAP_AREA_LIVING
+
+/area/bluesummers/inside/food_processing_wing/east
+	name = "Eastern Food Processing Wing"
