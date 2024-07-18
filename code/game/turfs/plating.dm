@@ -120,7 +120,8 @@
 /turf/open/floor/plating/plating_catwalk/prison
 	icon = 'icons/turf/prison.dmi'
 
-
+/turf/open/floor/plating/plating_catwalk/prison/alt
+	icon_state = "plating_catwalk_alt"
 
 /turf/open/floor/plating/ironsand/New()
 	. = ..()

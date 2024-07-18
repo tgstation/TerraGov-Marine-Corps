@@ -445,7 +445,7 @@
 /obj/machinery/shower{
 	pixel_y = 13
 	},
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/station/medbay)
 "Gl" = (
 /obj/structure/table/reinforced/prison,
@@ -474,10 +474,6 @@
 /turf/open/floor/prison/whitegreen/full{
 	dir = 10
 	},
-/area/fiorina/station/medbay)
-"GT" = (
-/obj/machinery/atmospherics/components/unary/cryo_cell,
-/turf/open/floor/plating/plating_catwalk/prison,
 /area/fiorina/station/medbay)
 "Hq" = (
 /obj/effect/turf_decal/medical_decals,
@@ -961,7 +957,7 @@ Hu
 (9,1,1) = {"
 Es
 kE
-GT
+EZ
 Be
 QG
 TV
@@ -981,7 +977,7 @@ zm
 (10,1,1) = {"
 kE
 kE
-GT
+EZ
 Be
 BS
 OH

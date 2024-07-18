@@ -19,7 +19,7 @@
 "d" = (
 /obj/item/flashlight/lamp/menorah,
 /obj/effect/turf_decal/symbol/large_rune,
-/turf/open/floor/carpet,
+/turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
 "e" = (
 /obj/structure/table/wood/fancy,
@@ -28,7 +28,7 @@
 /area/fiorina/station/security/wardens)
 "j" = (
 /obj/item/clothing/mask/facehugger/dead,
-/turf/open/floor/carpet,
+/turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
 "o" = (
 /obj/machinery/door/airlock/mainship/command{
@@ -55,7 +55,7 @@
 /obj/effect/decal/cleanable/blood,
 /obj/item/flashlight/lamp/menorah,
 /obj/structure/cable,
-/turf/open/floor/carpet,
+/turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
 "x" = (
 /obj/structure/window/framed/prison/reinforced/hull,
@@ -63,11 +63,11 @@
 /area/fiorina/station/security/wardens)
 "y" = (
 /obj/structure/cable,
-/turf/open/floor/carpet,
+/turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
 "A" = (
 /obj/effect/decal/cleanable/blood,
-/turf/open/floor/carpet,
+/turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
 "E" = (
 /turf/open/floor/wood,
@@ -83,11 +83,11 @@
 /turf/open/space,
 /area/fiorina/oob)
 "N" = (
-/turf/open/floor/carpet,
+/turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
 "O" = (
 /obj/structure/prop/urban/xenobiology/small/cracked1,
-/turf/open/floor/carpet,
+/turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
 "R" = (
 /obj/structure/table/wood/fancy,
@@ -96,7 +96,7 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
-/turf/open/floor/carpet,
+/turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
 "S" = (
 /obj/machinery/power/apc,
@@ -110,7 +110,7 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/corpsespawner/commander/regular,
-/turf/open/floor/plating,
+/turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
 "U" = (
 /obj/structure/table/wood/fancy,
@@ -127,7 +127,7 @@
 /area/fiorina/station/security/wardens)
 "Z" = (
 /obj/item/flashlight/lamp/menorah,
-/turf/open/floor/carpet,
+/turf/open/floor/carpet/red,
 /area/fiorina/station/security/wardens)
 
 (1,1,1) = {"

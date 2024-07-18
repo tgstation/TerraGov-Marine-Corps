@@ -531,7 +531,7 @@
 /obj/machinery/shower{
 	pixel_y = 13
 	},
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/station/medbay)
 "Hg" = (
 /obj/structure/cable,
