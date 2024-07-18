@@ -1340,14 +1340,14 @@
 	mappath = "_maps/modularmaps/fiorina/medicalvar1.dmm"
 	modular_id = "fimedbay"
 	template_width = 14
-	template_height = 21
+	template_height = 18
 
 /datum/map_template/modular/fiorina/medbaytwo
 	name = "Medbay"
 	mappath = "_maps/modularmaps/fiorina/medicalvar2.dmm"
 	modular_id = "fimedbay"
 	template_width = 14
-	template_height = 21
+	template_height = 18
 
 /datum/map_template/modular/fiorina/wardenone
 	name = "Warden"
@@ -1382,25 +1382,25 @@
 	mappath = "_maps/modularmaps/fiorina/gearvar1.dmm"
 	modular_id = "figear"
 	template_width = 9
-	template_height = 10
+	template_height = 8
 
 /datum/map_template/modular/fiorina/geartwo
 	name = "Gear"
 	mappath = "_maps/modularmaps/fiorina/gearvar2.dmm"
 	modular_id = "figear"
 	template_width = 9
-	template_height = 10
+	template_height = 8
 
 /datum/map_template/modular/fiorina/panelone
 	name = "Panels"
-	mappath = "_maps/modularmaps/fiorina/panelsvar1.dmm"
+	mappath = "_maps/modularmaps/fiorina/panelsvarone.dmm"
 	modular_id = "fipanel"
 	template_width = 13
 	template_height = 9
 
 /datum/map_template/modular/fiorina/paneltwo
 	name = "Panels"
-	mappath = "_maps/modularmaps/fiorina/panelsvar2.dmm"
+	mappath = "_maps/modularmaps/fiorina/panelsvartwo.dmm"
 	modular_id = "fipanel"
 	template_width = 13
 	template_height = 9
@@ -1409,26 +1409,26 @@
 	name = "Meeting Room"
 	mappath = "_maps/modularmaps/fiorina/meetingroomsvar1.dmm"
 	modular_id = "fimeetingroom"
-	template_width = 13
-	template_height = 9
+	template_width = 12
+	template_height = 13
 
 /datum/map_template/modular/fiorina/meetingroomtwo
 	name = "Meeting Room"
 	mappath = "_maps/modularmaps/fiorina/meetingroomsvar2.dmm"
 	modular_id = "fimeetingroom"
-	template_width = 13
-	template_height = 9
+	template_width = 12
+	template_height = 13
 
 /datum/map_template/modular/fiorina/engiofficeone
 	name = "Engi Office"
-	mappath = "_maps/modularmaps/fiorina/engiofficesvar1.dmm"
+	mappath = "_maps/modularmaps/fiorina/engiofficevar1.dmm"
 	modular_id = "fiengioffice"
 	template_width = 9
 	template_height = 7
 
 /datum/map_template/modular/fiorina/engiofficetwo
 	name = "Engi Office"
-	mappath = "_maps/modularmaps/fiorina/engiofficesvar2.dmm"
+	mappath = "_maps/modularmaps/fiorina/engiofficevar2.dmm"
 	modular_id = "fiengioffice"
 	template_width = 9
 	template_height = 7

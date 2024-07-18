@@ -162,23 +162,10 @@
 	pixel_y = 6
 	},
 /obj/item/clothing/head/helmet/marine/veteran/mercenary{
-	armor_bio = 25;
-	armor_bomb = 10;
-	armor_bullet = 20;
-	armor_energy = 0;
-	armor_internaldamage = 20;
-	armor_melee = 20;
-	armor_rad = 10;
 	desc = "A sturdy helmet worn by an unknown mercenary group. Features a toggleable welding screen for eye protection. This one has seen better days, don't count on the protection you've heard from the rumors!";
 	pixel_y = 8
 	},
 /obj/item/clothing/suit/storage/marine/veteran/mercenary{
-	armor_bio = 25;
-	armor_bullet = 20;
-	armor_energy = 0;
-	armor_internaldamage = 25;
-	armor_melee = 25;
-	armor_rad = 15;
 	desc = "A set of blue armor with yellow highlights built for protection while building or carrying out medical treatment in highly dangerous environments. It is a specialized uniform of an unknown mercenary group working in the sector. This one has seen better days, don't count on the protection you've heard from the rumors!";
 	pixel_y = -4
 	},

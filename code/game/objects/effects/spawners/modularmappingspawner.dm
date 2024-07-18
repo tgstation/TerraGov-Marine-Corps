@@ -267,6 +267,8 @@
 	spawner_width = 21
 	spawner_height = 21
 
+/**********Fiorina*******/
+
 /obj/effect/spawner/modularmap/fiorina/scavengership
 	mapid = "scavship"
 	spawner_width = 14
@@ -293,7 +295,7 @@
 	spawner_height = 8
 
 /obj/effect/spawner/modularmap/fiorina/panels
-	mapid = "fipanels"
+	mapid = "fipanel"
 	spawner_width = 13
 	spawner_height = 9
 

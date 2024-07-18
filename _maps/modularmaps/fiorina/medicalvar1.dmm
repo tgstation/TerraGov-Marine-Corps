@@ -17,7 +17,7 @@
 	},
 /area/fiorina/station/medbay)
 "bl" = (
-/obj/machinery/light{
+/obj/machinery/light/blue{
 	dir = 4;
 	pixel_x = 10;
 	pixel_y = 13
@@ -269,7 +269,7 @@
 /area/fiorina/station/medbay)
 "of" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/light{
+/obj/machinery/light/blue{
 	dir = 4;
 	layer = 3.1;
 	pixel_x = 10;
@@ -321,7 +321,7 @@
 /area/fiorina/station/medbay)
 "tE" = (
 /obj/machinery/vending/medical,
-/obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/prison/sterilewhite{
 	dir = 10
 	},
@@ -603,7 +603,7 @@
 	},
 /area/fiorina/station/medbay)
 "Mi" = (
-/obj/machinery/light{
+/obj/machinery/light/blue{
 	dir = 8;
 	pixel_x = -10;
 	pixel_y = 13
@@ -614,7 +614,7 @@
 	},
 /area/fiorina/station/medbay)
 "NV" = (
-/obj/machinery/light{
+/obj/machinery/light/blue{
 	dir = 4;
 	pixel_x = 10;
 	pixel_y = -3
@@ -766,7 +766,7 @@
 	},
 /area/fiorina/station/medbay)
 "VD" = (
-/obj/machinery/light,
+/obj/machinery/light/blue,
 /turf/open/floor/prison/whitegreen,
 /area/fiorina/station/medbay)
 "WP" = (

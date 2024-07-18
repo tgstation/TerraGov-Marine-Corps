@@ -660,11 +660,11 @@
 		CRASH("### MAP WARNING, [src] failed to find a plasteel barricade at [AREACOORD(src)]")
 	if(foundvent && foundvent.welded)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to weld [foundvent] but it's already welded!")
-	else if(prob(weld_chance))
+	else if(foundvent && prob(weld_chance))
 		foundvent.welded = TRUE
 	if(foundscrubber && foundscrubber.welded)
 		stack_trace("### MAP WARNING, [src] at [AREACOORD(src)] tried to weld [foundscrubber] but it's already welded!")
-	else if(prob(weld_chance))
+	else if(foundscrubber && prob(weld_chance))
 		foundscrubber.welded = TRUE
 
 /obj/effect/mapping_helpers/weld_vents/fiftyfifty

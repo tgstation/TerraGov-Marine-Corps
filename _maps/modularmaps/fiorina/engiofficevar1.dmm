@@ -42,7 +42,6 @@
 /turf/open/floor/prison/plate,
 /area/fiorina/tumor/civres)
 "n" = (
-/obj/machinery/power/apc,
 /obj/machinery/power/apc/drained{
 	dir = 1
 	},
@@ -76,7 +75,6 @@
 	layer = 2.8;
 	pixel_y = -7
 	},
-/obj/structure/table/reinforced/prison,
 /obj/effect/spawner/random/engineering/powercell,
 /obj/effect/spawner/random/engineering/powercell{
 	pixel_y = 12
@@ -176,7 +174,6 @@
 /obj/item/weapon/butterfly{
 	pixel_x = 17
 	},
-/obj/structure/table/reinforced/prison,
 /obj/effect/spawner/random/weaponry/melee,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green/full{
@@ -193,7 +190,6 @@
 /obj/machinery/microwave{
 	pixel_y = 6
 	},
-/obj/structure/table/reinforced/prison,
 /obj/machinery/microwave{
 	pixel_y = 6
 	},
@@ -281,7 +277,6 @@
 /obj/item/book/manual/engineering_guide{
 	pixel_x = -4
 	},
-/obj/structure/table/reinforced/prison,
 /obj/item/clothing/head/beret/eng{
 	pixel_x = 5;
 	pixel_y = 3

@@ -40,7 +40,6 @@
 
 /obj/effect/spawner/random/engineering/powercell/empty
 	loot = list(
-		/obj/item/cell/empty = 40,
 		/obj/item/cell/high/empty = 40,
 		/obj/item/cell/crap/empty = 10,
 		/obj/item/cell/super/empty = 9,
@@ -140,14 +139,14 @@
 
 /obj/effect/spawner/random/engineering/structure/inflatable/wallweighted
 	loot = list(
-		/obj/structure/inflatable/wall = 45,
+		/obj/structure/inflatable/wall = 15,
 		/obj/structure/inflatable/popped = 1,
 	)
 
 /obj/effect/spawner/random/engineering/structure/inflatable/poppedweighted
 	icon_state = "random_inflatable_popped"
 	loot = list(
-		/obj/structure/inflatable/popped = 35,
+		/obj/structure/inflatable/popped = 25,
 		/obj/structure/inflatable/wall = 1,
 	)
 
