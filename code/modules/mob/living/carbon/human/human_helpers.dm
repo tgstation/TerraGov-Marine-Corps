@@ -367,11 +367,12 @@
 
 	return mob_height
 
-///Gets organ slot by name
-/mob/living/carbon/human/proc/get_organ_slot(var/string)
+///Gets organ by name
+/mob/living/carbon/human/proc/get_organ_slot(string)
 	return internal_organs_by_name[string]
-///Removes organ slot by name
-/mob/living/carbon/human/proc/remove_organ_slot(var/string)
+
+///Removes organ by name
+/mob/living/carbon/human/proc/remove_organ_slot(string)
 	var/datum/internal_organ/organ = get_organ_slot(string)
 	internal_organs_by_name -= string
 	internal_organs -= organ

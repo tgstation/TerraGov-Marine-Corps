@@ -408,7 +408,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		return
 	log_combat(user, src, "ripped [src]'s heart", I)
 	visible_message(span_notice("[user] ripped off [src]'s heart!"), span_notice("You ripped off [src]'s heart!"))
-	internal_organs_by_name -= ORGAN_SLOT_HEART
+	remove_organ_slot(ORGAN_SLOT_HEART)
 	var/obj/item/organ/heart/heart = new
 	heart.die()
 	user.put_in_hands(heart)
