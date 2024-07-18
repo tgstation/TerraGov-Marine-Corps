@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - admin: "Campaign panel autobalance button prompts if you want to force it or not"
