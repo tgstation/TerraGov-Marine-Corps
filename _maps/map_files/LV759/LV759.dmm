@@ -86846,7 +86846,7 @@
 	},
 /area/lv759/outdoors/landing_zone_1)
 "oUc" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible{
+/obj/structure/prop/vehicle/crane/cranecargo{
 	dir = 8;
 	pixel_y = 7
 	},
@@ -135983,7 +135983,7 @@
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/central_streets)
 "xej" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible{
+/obj/structure/prop/vehicle/crane/cranecargo{
 	dir = 8;
 	pixel_y = 7
 	},

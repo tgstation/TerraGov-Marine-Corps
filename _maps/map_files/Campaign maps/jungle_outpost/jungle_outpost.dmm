@@ -1580,7 +1580,7 @@
 	},
 /area/campaign/jungle_outpost/outpost/command)
 "hS" = (
-/obj/structure/prop/vehicle/crane/destructible,
+/obj/structure/prop/vehicle/crane,
 /turf/open/floor/iron/smooth,
 /area/campaign/jungle_outpost/ground/river/west)
 "hT" = (
@@ -9840,7 +9840,7 @@
 /turf/open/floor,
 /area/campaign/jungle_outpost/outpost/command)
 "Xx" = (
-/obj/structure/prop/vehicle/van/destructible{
+/obj/structure/prop/vehicle/van{
 	dir = 1
 	},
 /turf/open/floor/iron/smooth,

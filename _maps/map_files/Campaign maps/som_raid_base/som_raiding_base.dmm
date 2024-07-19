@@ -443,7 +443,7 @@
 /area/campaign/som_raiding/outpost/security/cargo_post)
 "cA" = (
 /obj/structure/cable,
-/obj/structure/prop/vehicle/crane/destructible{
+/obj/structure/prop/vehicle/crane{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -1544,7 +1544,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/campaign/som_raiding/cave/tunnel_west)
 "iy" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -3679,7 +3679,7 @@
 /turf/open/ground/grass/beach,
 /area/campaign/som_raiding/ground/jungle/west)
 "tT" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -6441,7 +6441,7 @@
 	},
 /area/campaign/som_raiding/outpost/central_corridor)
 "Jr" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -6993,7 +6993,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/campaign/som_raiding/outpost/medbay)
 "Mx" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /obj/effect/turf_decal/box,
