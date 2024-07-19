@@ -105,6 +105,8 @@
 ///signal handler when something thrown lands on us
 /obj/hitbox/proc/on_stop_throw(datum/source, atom/movable/thrown_movable)
 	SIGNAL_HANDLER
+	if(!isliving(thrown_movable)) //TODO: Make desants properly work for all AM's instead of mobs
+		return
 	add_desant(thrown_movable)
 
 ///signal handler when we leave a turf under the hitbox
