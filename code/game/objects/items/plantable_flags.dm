@@ -33,9 +33,12 @@
 	///Aura emitter
 	var/datum/aura_bearer/current_aura
 
+	var/turf/origin_point
+
 /obj/item/plantable_flag/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(mission_end))
+	origin_point = get_turf(src)
 	if(isturf(loc))
 		item_flags |= DEPLOY_ON_INITIALIZE
 	AddComponent(/datum/component/deployable_item, /obj/structure/plantable_flag, 1 SECONDS, 3 SECONDS)
@@ -47,14 +50,18 @@
 	. = ..()
 	update_aura()
 
+/obj/item/plantable_flag/Destroy()
+	origin_point = null
+	return ..()
+
 /obj/item/plantable_flag/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	SSaura.add_emitter(get_turf(src), AURA_HUMAN_FLAG, INFINITY, LOST_FLAG_AURA_STRENGTH, 900, faction)
 
 	if(istype(blame_mob) && blame_mob.ckey)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
 		if(faction == blame_mob.faction) //prepare for court martial
-			personal_statistics.flags_destroyed ++
-			personal_statistics.mission_flags_destroyed ++
+			personal_statistics.flags_destroyed --
+			personal_statistics.mission_flags_destroyed --
 		else
 			personal_statistics.flags_destroyed ++
 			personal_statistics.mission_flags_destroyed ++
@@ -126,12 +133,15 @@
 /obj/item/plantable_flag/proc/mission_end(datum/source, datum/campaign_mission/completed_mission, winning_faction)
 	SIGNAL_HANDLER
 	if(!isliving(loc))
+		forceMove(origin_point)
 		return
 	var/mob/living/controlling_mob = loc
 	if(!controlling_mob.ckey)
+		forceMove(origin_point)
 		return
 	if(faction == controlling_mob.faction)
-		return //will this change?
+		forceMove(origin_point)
+		return
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[controlling_mob.ckey]
 	personal_statistics.flags_captured ++
 	personal_statistics.mission_flags_captured ++
