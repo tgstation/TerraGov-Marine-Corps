@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Campaign: NT base rescue telegib area is deactivated after both signals are sent"

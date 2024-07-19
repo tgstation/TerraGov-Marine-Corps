@@ -238,3 +238,27 @@
       the SOM
   Xander3359:
   - balance: You can now open worn duffelbags with a 2 second channel
+2024-07-18:
+  Cheese:
+  - rscadd: ':clueless: emoji, to OOC and Dchat. Do they know?'
+  Ldip999:
+  - bugfix: Loadout vendor now applies the GHMME flag
+  - code_imp: Implemented SPT_PROB and SPT_PROB_RATE
+  Lumipharon:
+  - bugfix: 'Campaign: NT base rescue objective no longer layers over c4 attached
+      to it'
+  - bugfix: 'Campaign: NT base rescue telegib area is deactivated after both signals
+      are sent'
+  - admin: Campaign panel autobalance button prompts if you want to force it or not
+  Notamaniac:
+  - rscadd: Adds Retrograde Sentinel Strain, which has the Sentinels old neurospit,
+      acid spit and neurotox sting. Primo is replaced with a neurogas grenade (which
+      is transparent)
+  - qol: The SMG-45 has been recalibered into .41 AE, and it's corresponding packets
+      have been added to the marine vendor.
+  Wisemonster:
+  - rscadd: Added the TGMC campaign tank to Valhalla
+  jonash07:
+  - bugfix: powerloader can now be repaired
+  - bugfix: fixed LR-73 ammo box overlay sprite
+  - bugfix: fixed sunglasses duplicating in the clothes vendor
