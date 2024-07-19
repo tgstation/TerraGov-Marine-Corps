@@ -262,3 +262,9 @@
   - bugfix: powerloader can now be repaired
   - bugfix: fixed LR-73 ammo box overlay sprite
   - bugfix: fixed sunglasses duplicating in the clothes vendor
+2024-07-19:
+  Barnet2:
+  - qol: You can either select acid shroud or just use it on a button press.
+  - bugfix: Acid Shroud can no longer be used infinitely.
+  ivanmixo:
+  - bugfix: Clone vat progress gets reset if it loses power

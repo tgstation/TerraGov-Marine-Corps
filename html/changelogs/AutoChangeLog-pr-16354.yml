@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - qol: "You can either select acid shroud or just use it on a button press."
-  - bugfix: "Acid Shroud can no longer be used infinitely."
