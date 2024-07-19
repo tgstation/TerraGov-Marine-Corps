@@ -205,28 +205,35 @@
 	var/banned = FALSE
 	if(ismob(speaker))
 		var/mob/potential_user = speaker
-		if(is_banned_from(potential_user.ckey, "TTS"))
+		if(is_banned_from(potential_user.ckey, "TTS") || potential_user.client?.prefs.muted & MUTE_TTS)
 			banned = TRUE
 
 	//If they aren't, handle radio TTS
 	if(speaker && speaker.voice && !banned)
-		var/headset_target = HEADSET_TTS_ALL
-		if((FREQ_ALPHA < frequency && frequency < FREQ_CUSTOM_SQUAD_MAX) || (FREQ_ZULU < frequency && frequency < MAX_ERT_FREQ))
-			headset_target = HEADSET_TTS_SQUAD
-			if(ishuman(speaker))
-				var/mob/living/carbon/human/human_speaker = speaker
-				if(human_speaker && human_speaker.assigned_squad.squad_leader == speaker)
-					headset_target = HEADSET_TTS_SL_ONLY //Lower the bar if the speaker is the active aSL
+		var/is_speaker_squad_lead = FALSE
+		if(ishuman(speaker))
+			var/mob/living/carbon/human/human_speaker = speaker
+			if(human_speaker.assigned_squad?.squad_leader == speaker)
+				is_speaker_squad_lead = TRUE
 
 		if(speaker in receive)
 			receive -= speaker //This list isn't used again, so we can just cut out the original speaker from it so TTS doesn't play twice
 
 		for(var/mob/living/carbon/human/potential_hearer in receive)
-			if(potential_hearer.stat >= UNCONSCIOUS || potential_hearer.client?.prefs.muted & MUTE_TTS)
+			if(potential_hearer.stat >= UNCONSCIOUS || potential_hearer.disabilities & DEAF || !(potential_hearer.client?.prefs.sound_tts != TTS_SOUND_OFF))
 				continue
-			if(istype(potential_hearer.wear_ear, /obj/item/radio/headset))
-				var/obj/item/radio/headset/radio = potential_hearer.wear_ear
-				if(radio.squad_tts_mode < headset_target)
+
+			var/obj/item/radio/headset/radio = potential_hearer.wear_ear
+			switch(radio.squad_tts_mode)
+				if(HEADSET_TTS_ALL)
+					break
+				if(HEADSET_TTS_SQUAD)
+					if(potential_hearer.assigned_squad?.radio_freq != frequency)
+						continue
+				if(HEADSET_TTS_SL_ONLY)
+					if(potential_hearer.assigned_squad?.radio_freq != frequency || !is_speaker_squad_lead)
+						continue
+				else
 					continue
 
 			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), potential_hearer, html_decode(message), language, speaker.voice, potential_hearer.voice_filter, local = TRUE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO)
