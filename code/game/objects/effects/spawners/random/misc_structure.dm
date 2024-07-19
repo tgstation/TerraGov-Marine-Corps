@@ -344,6 +344,15 @@
 		/obj/structure/window/framed/colony = 1,
 	)
 
+/obj/effect/spawner/random/misc/structure/broken_prison_window
+	name = "broken prison window spawner"
+	icon_state = "random_prison_window"
+	spawn_loot_chance = 100
+	loot = list(
+		/obj/structure/window/framed/prison = 80,
+		/obj/structure/window_frame/prison = 1,
+	)
+
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn //used on regular maps, low chance to spawn broken and will always appear
 	spawn_loot_chance = 100
 	loot = list(
