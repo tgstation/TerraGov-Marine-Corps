@@ -59,7 +59,7 @@
 	RegisterSignal(carbon_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 
 	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
-	playsound(owner, "sound/effects/alien_tail_swipe2.ogg", 50, 0, 4)
+	playsound(owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 0, 4)
 	carbon_owner.throw_at(A, 2, 1, carbon_owner)
 	succeed_activate()
 	add_cooldown()
@@ -86,8 +86,7 @@
 	if(!ishuman(target))
 		var/obj/obj_victim = target
 		obj_victim.take_damage(damage, BRUTE, MELEE, TRUE, TRUE, get_dir(obj_victim, carbon_owner), penetration, carbon_owner)
-		if(!obj_victim.anchored && obj_victim.move_resist < MOVE_FORCE_VERY_STRONG)
-			obj_victim.knockback(carbon_owner, 1, 2)
+		obj_victim.knockback(carbon_owner, 1, 2, knockback_force = MOVE_FORCE_VERY_STRONG)
 	else
 		var/mob/living/carbon/human/human_victim = target
 		human_victim.apply_damage(damage, BRUTE, BODY_ZONE_CHEST, MELEE, TRUE, TRUE, TRUE, penetration)

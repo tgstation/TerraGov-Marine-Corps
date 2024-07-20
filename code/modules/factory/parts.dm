@@ -340,6 +340,15 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	. = ..()
 	recipe = GLOB.IFF_ammo
 
+/obj/item/factory_part/smartgunner_targetrifle_ammobin
+	name = "\improper IFF bins box"
+	desc = "A box with unfinished smart-rounds inside and empty boxes inside."
+	result = /obj/item/ammo_magazine/packet/smart_targetrifle
+
+/obj/item/factory_part/smartgunner_targetrifle_ammobin/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
 /obj/item/factory_part/auto_sniper_magazine
 	name = "\improper IFF high caliber bullet box"
 	desc = "A box with unfinished high caliber smart-rounds inside."
@@ -912,3 +921,12 @@ GLOBAL_LIST_INIT(ac_recipe, list(
 /obj/item/factory_part/ac_flak/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.ac_recipe
+
+/obj/item/factory_part/cigarette
+	name = "\improper Cigarette pack"
+	desc = "An incomplete pack of cigarettes."
+	result = /obj/item/clothing/mask/cigarette
+
+/obj/item/factory_part/cigarette/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.equipment_recipe

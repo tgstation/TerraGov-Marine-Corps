@@ -25,7 +25,6 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/datum/orbit_menu/orbit_menu
 	var/mob/observetarget = null	//The target mob that the ghost is observing. Used as a reference in logout()
 
-
 	//We store copies of the ghost display preferences locally so they can be referred to even if no client is connected.
 	//If there's a bug with changing your ghost settings, it's probably related to this.
 	var/ghost_others = GHOST_OTHERS_DEFAULT_OPTION
@@ -201,7 +200,9 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
-				SSticker.mode.attempt_to_join_as_larva(ghost.client)
+				var/mob/living/carbon/human/original_corpse = ghost.can_reenter_corpse.resolve()
+				if(SSticker.mode.attempt_to_join_as_larva(ghost.client))
+					original_corpse?.set_undefibbable()
 		return
 
 	else if(href_list["preference"])
@@ -850,9 +851,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
 		if(istype(human_current))
 			human_current.set_undefibbable(TRUE)
-
 		can_reenter_corpse = null
-		to_chat(usr, span_notice("You can no longer be revived."))
+		to_chat(usr, span_boldwarning("You can no longer be revived."))
 		return
 
 	to_chat(usr, span_warning("You already can't be revived."))
@@ -886,10 +886,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(usr, span_boldnotice("You must be dead to use this!"))
 		return
 
-	var/choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. Xenomorph or Marine?", "Join Valhalla", list("Xenomorph", "Marine"))
+	var/choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. This will make you unrevivable. Xenomorph or Marine?", "Join Valhalla", list("Xenomorph", "Marine"))
 
 	if(!choice)
 		return
+
+	var/mob/living/carbon/human/original_corpse = can_reenter_corpse?.resolve()
+	original_corpse?.set_undefibbable(TRUE)
 
 	if(choice == "Xenomorph")
 		var/mob/living/carbon/xenomorph/xeno_choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What xenomorph would you like to have?", "Join Valhalla", GLOB.all_xeno_types)

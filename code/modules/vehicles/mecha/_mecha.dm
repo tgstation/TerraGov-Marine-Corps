@@ -24,7 +24,8 @@
 	move_force = MOVE_FORCE_VERY_STRONG
 	move_resist = MOVE_FORCE_EXCEPTIONALLY_STRONG
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE|PORTAL_IMMUNE|PLASMACUTTER_IMMUNE
-	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION
+	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
 	max_integrity = 300
 	soft_armor = list(MELEE = 20, BULLET = 10, LASER = 0, ENERGY = 0, BOMB = 10, BIO = 0, FIRE = 100, ACID = 100)
 	force = 5
@@ -36,6 +37,7 @@
 	generic_canpass = FALSE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD, ORDER_HUD)
 	mouse_pointer = 'icons/mecha/mecha_mouse.dmi'
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 	///What direction will the mech face when entered/powered on? Defaults to South.
 	var/dir_in = SOUTH
 	///How much energy the mech will consume each time it moves. This variable is a backup for when leg actuators affect the energy drain.
@@ -46,8 +48,6 @@
 	var/melee_energy_drain = 15
 	///The minimum amount of energy charge consumed by leg overload
 	var/overload_step_energy_drain_min = 50
-	///Modifiers for directional damage reduction
-	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 0.5, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_ARMOUR = 1.5)
 	///if we cant use our equipment(such as due to EMP)
 	var/equipment_disabled = FALSE
 	/// Keeps track of the mech's cell
@@ -190,8 +190,6 @@
 	var/ui_y = 600
 	/// ref to screen object that displays in the middle of the UI
 	var/atom/movable/screen/mech_view/ui_view
-	///Current owning faction
-	var/faction
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE

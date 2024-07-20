@@ -33,6 +33,13 @@
 	unlock_cost = 200
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
+/datum/loadout_item/back/som_engineer_pack
+	name = "Welding bag"
+	desc = "A technician backpack with integrated welder tank. Has satchel storage."
+	jobs_supported = list(SOM_SQUAD_ENGINEER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	item_typepath = /obj/item/storage/backpack/marine/engineerpack/som
+
 /datum/loadout_item/back/blinkdrive
 	name = "Blink drive"
 	desc = "A portable Bluespace Displacement Drive, otherwise known as a blink drive. \

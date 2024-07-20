@@ -245,22 +245,30 @@
 
 	hud_list[XENO_DEBUFF_HUD] = xeno_debuff
 
+	status_hud.overlays.Cut()
 	if(species.species_flags & IS_SYNTHETIC)
 		simple_status_hud.icon_state = ""
 		if(stat != DEAD)
 			status_hud.icon_state = "synth"
+			switch(round(health * 100 / maxHealth)) // special health HUD icons for damaged synthetics
+				if(-29 to 4) // close to overheating: should appear when health is less than 5
+					status_hud.icon_state = "synthsoftcrit"
+				if(-INFINITY to -30) // dying
+					status_hud.icon_state = "synthhardcrit"
 		else if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
 			status_hud.icon_state = "synthdnr"
 			return TRUE
 		else
 			if(!mind)
-				var/mob/dead/observer/G = get_ghost(TRUE)
-				if(!G)
+				var/mob/dead/observer/ghost = get_ghost(TRUE)
+				if(!ghost)
 					status_hud.icon_state = "synthdnr"
-				else
-					status_hud.icon_state = "synthdead"
-			else
-				status_hud.icon_state = "synthdead"
+					return TRUE
+				if(!ghost.client) // DC'd ghost detected
+					status_hud.overlays += "dead_noclient"
+			if(!client && !get_ghost(TRUE)) // Nobody home, no ghost, must have disconnected while in their body
+				status_hud.overlays += "dead_noclient"
+			status_hud.icon_state = "synthdead"
 			return TRUE
 		infection_hud.icon_state = "synth" //Xenos can feel synths are not human.
 		return TRUE
@@ -302,9 +310,13 @@
 				return TRUE
 			if(!mind)
 				var/mob/dead/observer/ghost = get_ghost(TRUE)
-				if(!ghost?.can_reenter_corpse)
-					status_hud.icon_state = "dead"
+				if(!ghost) // No ghost detected. DNR player or NPC
+					status_hud.icon_state = "dead_dnr"
 					return TRUE
+				if(!ghost.client) // DC'd ghost detected
+					status_hud.overlays += "dead_noclient"
+			if(!client && !get_ghost(TRUE)) // Nobody home, no ghost, must have disconnected while in their body
+				status_hud.overlays += "dead_noclient"
 			var/stage
 			switch(dead_ticks)
 				if(0 to 0.4 * TIME_BEFORE_DNR)
@@ -532,7 +544,7 @@
 /mob/living/carbon/xenomorph/proc/hud_update_rank()
 	var/image/holder = hud_list[XENO_RANK_HUD]
 	holder.icon_state = ""
-	if(stat != DEAD && playtime_as_number() > 0)
+	if(stat != DEAD && playtime_as_number() > 0 && client.prefs.show_xeno_rank)
 		holder.icon = 'icons/mob/hud/xeno.dmi'
 		holder.icon_state = "upgrade_[playtime_as_number()]"
 

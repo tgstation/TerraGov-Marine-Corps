@@ -535,6 +535,18 @@
 	worn_icon_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
 
+/obj/item/toy/plush/witch
+	name = "witch plushie"
+	desc = "A plushie depicting an adorable witch. It likes to steal books."
+	icon_state = "marisa"
+	worn_icon_state = "marisa"
+
+/obj/item/toy/plush/fairy
+	name = "fairy plushie"
+	desc = "A plushie depicting an adorable fairy. It's cold to the touch."
+	icon_state = "cirno"
+	worn_icon_state = "cirno"
+
 #define HIGH_GNOME_MOVE_RANGE 40
 #define STANDARD_GNOME_PIPE_CHANCE 50
 #define GNOME_EXCLUSION_RANGE 21 //20 is the max view of a ghost
@@ -676,13 +688,13 @@
 		if(1)
 			pick(playsound(src, 'sound/items/gnome.ogg', 35, TRUE),
 			playsound(src, 'sound/misc/robotic scream.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/pred_laugh1.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/pred_laugh2.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/pred_laugh3.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/predator/laugh1.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/predator/laugh2.ogg', 35, TRUE),
+			playsound(src, 'sound/voice/predator/laugh3.ogg', 35, TRUE),
 			playsound(src, 'sound/voice/gnomelaugh.ogg', 35, TRUE),
 			playsound(src, 'sound/weapons/guns/fire/tank_cannon1.ogg', 35, TRUE),
 			playsound(src, 'sound/weapons/guns/fire/tank_cannon2.ogg', 35, TRUE),
-			playsound(src, 'sound/voice/pred_helpme.ogg', 35, TRUE))
+			playsound(src, 'sound/voice/predator/helpme.ogg', 35, TRUE))
 		if(2)
 			for(var/atom/movable/object AS in targetturf.contents)
 				if(isfood(object))

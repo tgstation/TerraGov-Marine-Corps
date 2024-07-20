@@ -7,6 +7,7 @@
 #define MAP_ICE_COLONY "Ice Colony"
 #define MAP_ICY_CAVES "Icy Caves"
 #define MAP_LV_624 "LV624"
+#define MAP_LV_759 "LV759"
 #define MAP_PRISON_STATION "Prison Station"
 #define MAP_RESEARCH_OUTPOST "Research Outpost"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
@@ -17,6 +18,7 @@
 #define MAP_DESPARITY "Desparity"
 #define MAP_LAWANKA_OUTPOST "Lawanka Outpost"
 #define MAP_DAEDALUS_PRISON "Daedalus Prison"
+#define MAP_KUTJEVO_REFINERY "Kutjevo Refinery"
 
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"

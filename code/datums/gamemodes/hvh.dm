@@ -30,7 +30,7 @@
 
 /datum/game_mode/hvh/post_setup()
 	. = ..()
-	for(var/z_num in SSmapping.areas_in_z)
+	for(var/z_num in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
 		set_z_lighting(z_num)
 
 //sets TGMC and SOM squads
@@ -170,9 +170,12 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
-		to_chat(M, "<span class='announce_header'>Detailed Information</span>")
-		to_chat(M, {"<span class='announce_body'>[num_som] SOM alive.
-[num_tgmc] Marine\s alive."})
+		to_chat(M, assemble_alert(
+			title = "Detailed Bioscan",
+			message = {"[num_som] SOM alive.
+[num_tgmc] Marine\s alive."},
+			color_override = "orange"
+		))
 
 	message_admins("Bioscan - Marines: [num_tgmc] active TGMC personnel[tgmc_location ? " .Location:[tgmc_location]":""]")
 	message_admins("Bioscan - SOM: [num_som] active SOM personnel[som_location ? " .Location:[som_location]":""]")

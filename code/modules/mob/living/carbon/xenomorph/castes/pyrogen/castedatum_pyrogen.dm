@@ -10,18 +10,18 @@
 	evolution_threshold = 225
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 22
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -0.8
+	speed = -0.9
 
 	// *** Plasma *** //
 	plasma_max = 325
-	plasma_gain = 15
+	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 400
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_TWO_THRESHOLD
@@ -30,7 +30,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_FIRE_IMMUNE
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_BE_LEADER
 	caste_traits = null
 
 	// *** Defense *** //

@@ -542,8 +542,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	desc = "For the quenching of unfortunate mistakes."
 	icon_state = "hydrocannon_pepper"
 
-
-
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	name = "mini pepperball gun"
 	desc = "An attachable version of the PB-12 pepperball gun. It has a smaller magazine size and has a slower rate of fire."
@@ -1022,7 +1020,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
-	max_shells = 3 //codex
+	max_shells = 1 //codex
 	caliber = CALIBER_RAILGUN
 	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/railgun.ogg'
@@ -1046,7 +1044,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
-	fire_delay = 3 SECONDS
+	fire_delay = 2 SECONDS
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 3

@@ -775,7 +775,7 @@
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg/juggernaut
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
 
-/datum/outfit/job/vsd/leader/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/vsd/leader/upp_three/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)

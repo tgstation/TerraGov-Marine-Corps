@@ -8,6 +8,8 @@
 	desc = "Yell at the admin that spawned this in please."
 	icon = 'icons/obj/armored/hardpoint_modules.dmi'
 	icon_state = "ltb_cannon"
+	///Special behavior flags
+	var/tank_mod_flags = NONE
 	///reference to current overlay added to owner
 	var/image/overlay
 	///vehicle this overlay is attached to
@@ -126,6 +128,15 @@
 	is_driver_module = FALSE
 	flag_controller = VEHICLE_CONTROL_EQUIPMENT
 	ability_to_grant = /datum/action/vehicle/sealed/armored/zoom
+
+/obj/item/tank_module/ability/smoke_launcher
+	name = "smoke launcher module"
+	desc = "Allows the driver to launch a smokescreen in front of the tank."
+	icon_state = "smoke_launcher"
+	tank_mod_flags = TANK_MOD_NOT_FABRICABLE
+	is_driver_module = TRUE
+	flag_controller = VEHICLE_CONTROL_DRIVE
+	ability_to_grant = /datum/action/vehicle/sealed/armored/smoke_screen
 
 /obj/item/tank_module/interior
 	name = "generic interior module"

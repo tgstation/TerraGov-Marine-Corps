@@ -19,6 +19,26 @@
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P01' IF SEEN IN ROUND WITH LOCATION"
 	coverage = 15
 
+/obj/machinery/prop/structurelattice
+	name = "structural lattice"
+	desc = "Like rebar, but in space."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "structure_lattice"
+	coverage = 50
+	max_integrity = 750
+	resistance_flags = XENO_DAMAGEABLE
+
+
+/obj/machinery/prop/fuel_enhancer
+	name = "fuel enhancer"
+	desc = "A fuel enhancement system for dropships. It improves the thrust produced by the fuel combustion for faster travels. Fits inside the engine attach points. You need a powerloader to lift it."
+	icon = 'icons/obj/structures/prop/mainship.dmi'
+	icon_state = "fuel_enhancer"
+	coverage = 25
+	max_integrity = 350
+	resistance_flags = XENO_DAMAGEABLE
+
+
 /obj/machinery/prop/mainship/hangar/dropship_part_fabricator
 
 /obj/machinery/prop/computer
@@ -266,17 +286,35 @@
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "mps"
 
+/obj/structure/prop/mainship/mission_planning_system/white
+	icon_state = "mps_w"
+
+/obj/structure/prop/mainship/mission_planning_system/black
+	icon_state = "blackmps_b"
+
 /obj/structure/prop/mainship/mapping_computer
 	name = "\improper CMPS II computer"
 	desc = "The Common Mapping Production System version II allows for sensory imput from satellites and ship systems to derive planetary maps in a standardized fashion for all TGMC pilots."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "mapping_comp"
 
+/obj/structure/prop/mainship/mapping_computer/white
+	icon_state = "mapping_comp_w"
+
+/obj/structure/prop/mainship/mapping_computer/black
+	icon_state = "blackmapping_b_comp"
+
 /obj/structure/prop/mainship/sensor_computer1
 	name = "sensor computer"
 	desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "sensor_comp1"
+
+/obj/structure/prop/mainship/sensor_computer1/white
+	icon_state = "sensor_comp_w"
+
+/obj/structure/prop/mainship/sensor_computer1/black
+	icon_state = "blacksensor_comp_b1"
 
 /obj/structure/prop/mainship/sensor_computer1/sd
 	name = "self destruct status computer"
@@ -287,6 +325,12 @@
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "sensor_comp2"
 
+/obj/structure/prop/mainship/sensor_computer2/white
+	icon_state = "sensor_comp_w2"
+
+/obj/structure/prop/mainship/sensor_computer2/black
+	icon_state = "blacksensor_comp_b2"
+
 /obj/structure/prop/mainship/sensor_computer2/sd
 	name = "self destruct regulator"
 
@@ -295,6 +339,12 @@
 	desc = "The IBM series 10 computer retrofitted to work as a sensor computer for the ship. While somewhat dated it still serves its purpose."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "sensor_comp3"
+
+/obj/structure/prop/mainship/sensor_computer3/white
+	icon_state = "sensor_comp_w3"
+
+/obj/structure/prop/mainship/sensor_computer3/black
+	icon_state = "blacksensor_comp_b3"
 
 /obj/structure/prop/mainship/sensor_computer3/sd
 	name = "tempature regulator"
@@ -1035,6 +1085,36 @@
 	. = ..()
 	name = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 
+/obj/item/prop/paint
+	name = "paint bucket"
+	desc = "It's a paint bucket."
+	icon_state = "paint_empty"
+	icon = 'icons/obj/items/items.dmi'
+
+/obj/item/prop/paint/red
+	icon_state = "paint_red"
+
+/obj/item/prop/paint/green
+	icon_state = "paint_green"
+
+/obj/item/prop/paint/neutral
+	icon_state = "paint_neutral"
+
+/obj/item/prop/paint/yellow
+	icon_state = "paint_yellow"
+
+/obj/item/prop/paint/black
+	icon_state = "paint_black"
+
+/obj/item/prop/paint/white
+	icon_state = "paint_white"
+
+/obj/item/prop/paint/blue
+	icon_state = "paint_blue"
+
+/obj/item/prop/paint/violet
+	icon_state = "paint_violet"
+
 ///BROKEN MARINE VENDOR PROPS
 
 /obj/structure/prop/brokenvendor
@@ -1128,6 +1208,21 @@
 	bound_height = 32
 	bound_width = 64
 	resistance_flags = RESIST_ALL
+
+/obj/structure/prop/vehicle/truck/Initialize(mapload)
+	. = ..()
+	setDir(dir)
+
+/obj/structure/prop/vehicle/truck/setDir(newdir)
+	. = ..()
+	if(dir & (WEST|EAST))
+		bound_height = 32
+		bound_width = 64
+		pixel_x = 0
+	else
+		bound_height = 64
+		bound_width = 32
+		pixel_x = -16
 
 /obj/structure/prop/vehicle/truck/destructible
 	max_integrity = 150
@@ -1683,7 +1778,7 @@
 /obj/structure/prop/vehicle/apc/decoration/emptyfuelcell
 	icon_state = "emptyfuelcell"
 
-/obj/structure/prop/mainship/gelida/propplaceholder
+/obj/structure/prop/propplaceholder
 	name = "prop placeholder"
 	desc = "Somebody fucked up, ping the map creator on Discord with the location of this object."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
@@ -1709,6 +1804,7 @@
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "planter_box_empty"
 	layer = BELOW_OBJ_LAYER
+	density = FALSE
 
 /obj/structure/prop/mainship/gelida/planterboxsoil
 	name = "plant box"
@@ -1723,6 +1819,8 @@
 	desc = "A floor you can walk on. This one comes with gaps to see the space underneath."
 
 /obj/structure/prop/mainship/gelida/planterboxsoilgrid
+	name = "plant box"
+	desc = "A metallic box used for holding growing plants, this one is empty."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "soil_grid"
 	layer = BELOW_OBJ_LAYER
@@ -1749,6 +1847,8 @@
 	desc = "A deployable barrier used by security forces to cordone off an area."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "barrier0"
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 100
 
 /obj/structure/prop/mainship/gelida/heavycablenode
 	name = "heavy cable node"
@@ -2127,6 +2227,12 @@
 /obj/structure/prop/computer
 	icon = 'icons/obj/machines/computer.dmi'
 
+/obj/structure/prop/computer/cryopod
+	name = "hypersleep bay console"
+	desc = "A large console controlling the ship's hypersleep bay. Mainly used for recovery of items from long-term hypersleeping crew."
+	icon_state = "cellconsole"
+	resistance_flags = RESIST_ALL
+
 /obj/structure/prop/computer/broken
 	name = "broken computer"
 	desc = "A busted PC, the internals look fried, there's no fixing this one."
@@ -2203,6 +2309,40 @@
 	screen_overlay = "solar"
 	broken_icon = "computer_blue_broken"
 
+/obj/machinery/filtration_pipes
+	name = "Disinfection Filter"
+	desc = "A water filter specifically designed to separate micro-organisms, such as viruses and bacteria, from water."
+	icon = 'icons/obj/structures/pipe_multiple.dmi'
+	icon_state = "solo_tank_water"
+	density = TRUE
+
+/obj/machinery/filtration_pipes/water/update_overlays()
+	. = ..()
+	. += image(icon, src, "tank_water_top", layer = ABOVE_ALL_MOB_LAYER, pixel_y = 31)
+
+/obj/machinery/filtration_pipes/empty
+	icon_state = "solo_tank_empty"
+
+/obj/machinery/filtration_pipes/empty/update_overlays()
+	. = ..()
+	. += image(icon, src, "tank_water_empty", layer = ABOVE_ALL_MOB_LAYER, pixel_y = 31)
+
+/obj/machinery/filtration_pipes/waste
+	icon_state = "solo_tank_waste"
+
+/obj/machinery/filtration_pipes/waste/update_overlays()
+	. = ..()
+	. += image(icon, src, "tank_waste_top", layer = ABOVE_ALL_MOB_LAYER, pixel_y = 31)
+
+/obj/machinery/filtration_pipes/multiple
+	icon_state = "disinfection"
+	bound_width = 96
+	bound_height = 64
+
+/obj/machinery/filtration_pipes/multiple/update_overlays()
+	. = ..()
+	. += image(icon, src, "disinfectiontop", layer = ABOVE_ALL_MOB_LAYER, pixel_y = 63)
+
 /obj/structure/prop/mainship/errorprop
 	name = "ERROR"
 	desc = "If you see this object in game you should ahelp, something has broken."
@@ -2265,6 +2405,29 @@
 		Mariner Aerospace M350 SSTO family, the most widely used civilian SSTO family in SOM space. The latest generation hybrid engines, air-breathing hypersonic turbines into a radiation free NTR in a vacuum. 800 carrying capacity with flexible cargo capacity. M350 the technical benchmark in its field.;\
 		Orbital ring construction on Catakan continues smoothly with no major incidents, Phobos Manufacturing plays the biggest part of construction with its massive mobile construction platform able to produce any parts needed locally and housing a good amount of the construction workers, the orbital ring is expected to be finished in 3 years with 9 space elevators and 12 stations connecting to it along with dome gardens and cities along the skyhooks.;\
 		Shipyard work more attractive to young adults than office work? More and more young adults are flocking to shipyard and space related work as they want an escape from the monotony and rat race of the office world, here we are at New Malay Shipyards with Austin Li a 20 year old who gave up his managerial position for shipyard work 'I wanted to just escape from the boredom, feel challenged and accomplished from the work i do and i found that in shipyard work, it's a tough job and the pay is not as good but nothing beats the view from up here and the feeling of freedom from zero g, atleast thats my perspective. Sorry i gotta get to my EVA mech now, work calls."
+
+/obj/structure/prop/coagulation_arm
+	name = "coagulation arm"
+	desc = "An axel with four sides, made to spin to help filter the water."
+	icon = 'icons/obj/structures/coagulation_arm.dmi'
+	icon_state = "arm"
+	anchored = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	bound_height = 96
+	bound_width = 96
+	max_integrity = 1000
+
+/obj/structure/prop/filtration_exit
+	name = "Waste Exit Pipe"
+	desc = "This machine separates the leftover waste from the purification processes to be discarded into space, recycled for supplies, or used for research."
+	icon = 'icons/obj/structures/waste_pipe.dmi'
+	icon_state = "pipe"
+	anchored = TRUE
+	bound_height = 96
+	bound_width = 96
+	density = TRUE
+	resistance_flags = RESIST_ALL
+
 
 #undef VENDOR_BROKEN
 #undef VENDOR_BLANK

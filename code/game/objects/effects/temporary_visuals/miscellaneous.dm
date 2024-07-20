@@ -114,7 +114,8 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	anchored = FALSE
 	animate_movement = SLIDE_STEPS
 	randomdir = FALSE
-	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE | VIS_INHERIT_ID
+	vis_flags = VIS_INHERIT_LAYER | VIS_INHERIT_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/temp_visual/after_image/Initialize(mapload, atom/owner, _duration = 0.5 SECONDS)
 	. = ..()
@@ -124,6 +125,8 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	after_image.density = initial(density)
 	after_image.alpha = initial(alpha)
 	after_image.appearance_flags = RESET_COLOR|RESET_ALPHA|PASS_MOUSE
+	after_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	after_image.layer = BELOW_MOB_LAYER
 	after_image.setDir(owner.dir)
 	after_image.pixel_x = owner.pixel_x
 	after_image.pixel_y = owner.pixel_y
@@ -159,7 +162,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	flick("heavyimpact", src)
 
 /obj/effect/temp_visual/order
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/effects/orders.dmi'
 	var/icon_state_on
 	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM)
 	duration = ORDER_DURATION
@@ -203,7 +206,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	var/image/holder = hud_list[hud_type]
 	if(!holder)
 		return
-	holder.icon = 'icons/Marine/marine-items.dmi'
+	holder.icon = 'icons/effects/orders.dmi'
 	holder.icon_state = icon_state_on
 	hud_list[hud_type] = holder
 

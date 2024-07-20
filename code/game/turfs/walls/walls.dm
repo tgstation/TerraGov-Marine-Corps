@@ -224,6 +224,7 @@
 	if(user?.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.integrity_repaired += repair_amount
+		personal_statistics.mission_integrity_repaired += repair_amount
 		personal_statistics.times_repaired++
 	wall_integrity += repair_amount
 	update_icon()
@@ -500,7 +501,7 @@
 
 	var/mob/living/grabbed_mob = grab.grabbed_thing
 	step_towards(grabbed_mob, src)
-	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/damage = (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
 	var/state = user.grab_state
 	switch(state)
 		if(GRAB_PASSIVE)
