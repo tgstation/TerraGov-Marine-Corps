@@ -282,7 +282,7 @@
 ///Part 2 of retract_rope(), moves the rope back into the system after the rope animation has completed. Unbuckles any mobs which were attached to it.
 /obj/structure/dropship_equipment/shuttle/rappel_system/proc/reel_in()
 	rope.forceMove(src)
-	SSMinimaps.remove_marker(rope)
+	SSminimaps.remove_marker(rope)
 
 //When tad leaves, disable active rappels
 /obj/structure/dropship_equipment/shuttle/rappel_system/on_launch()
