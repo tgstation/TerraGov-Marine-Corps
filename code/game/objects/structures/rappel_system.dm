@@ -147,11 +147,11 @@
 
 	var/passed_skillcheck = TRUE
 	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
-		user.balloon_alert("You fumble around figuring out how to use the rappel system...")
-		if(!do_after(user, 3 SECONDS, NONE, target_turf, BUSY_ICON_UNSKILLED) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
+		rope.balloon_alert(user, "You fumble around figuring out how to use the rappel system...")
+		if(!do_after(user, 3 SECONDS, NONE, rope, BUSY_ICON_UNSKILLED) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
 			passed_skillcheck = FALSE
 
-	if(passed_skillcheck && do_after(user, 2 SECONDS, NONE, target_turf, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
+	if(passed_skillcheck && do_after(user, 2 SECONDS, NONE, rope, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
 		playsound(target_turf, 'sound/effects/rappel.ogg', 50, TRUE)
 		playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
 		user.forceMove(target_turf)
@@ -310,7 +310,7 @@
 	balloon_alert_to_viewers("The system starts visibly buckling...")
 	playsound(rope, 'sound/effects/grillehit.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/grillehit.ogg', 50, TRUE)
-	if(!do_after(attacker, 5 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(attacker, 5 SECONDS, NONE, rope, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		rappel_condition = RAPPEL_CONDITION_GOOD
 		rappel_state = RAPPEL_STATE_USABLE
 		update_icon_state()
@@ -390,12 +390,11 @@
 		return
 
 	if(!step(user, get_dir(user, src)))
-		user.balloon_alert("Something is blocking you from reaching the rappel rope!")
+		user.balloon_alert(user, "Something is blocking you from reaching the rappel rope!")
 		return
-	user.balloon_alert_to_viewers(user, "begins clipping to the rappel...")
+	user.balloon_alert_to_viewers("[user] begins clipping to the rappel...", "You begin clipping to the rappel...")
 
 	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
-		user.balloon_alert("You fumble around figuring out how to use the rappel system...")
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_UNSKILLED) || user.lying_angle || user.anchored)
 			return
 
