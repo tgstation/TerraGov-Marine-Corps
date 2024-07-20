@@ -54,8 +54,12 @@
 	if(subspecies)
 		set_species(subspecies)
 	if(client)
-		name = client.prefs.real_name
-		real_name = client.prefs.real_name
+		if(issynth(src))
+			name = client.prefs.synthetic_name
+			real_name = client.prefs.synthetic_name
+		else
+			name = client.prefs.real_name
+			real_name = client.prefs.real_name
 		gender = client.prefs.gender
 		h_style = client.prefs.h_style
 		f_style = client.prefs.f_style
@@ -75,6 +79,8 @@
 		age = client.prefs.age
 		ethnicity = client.prefs.ethnicity
 		flavor_text = client.prefs.flavor_text
+		voice = client.prefs.tts_voice
+		pitch = client.prefs.tts_pitch
 		update_body()
 		update_hair()
 		regenerate_icons()

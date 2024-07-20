@@ -232,6 +232,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM,
 	)
+	use_state_flags = ABILITY_USE_LYING
 
 
 /datum/action/ability/xeno_action/toggle_queen_zoom/action_activate()

@@ -277,7 +277,7 @@
 	setDir(angle)
 	user.set_interaction(src)
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	operator.visible_message("[operator] rotates the [src].","You rotate the [src].")
+	operator.visible_message("[operator] rotates the [src].","You rotate [src].")
 	update_pixels(user, TRUE)
 
 	if(current_scope?.deployed_scope_rezoom)
