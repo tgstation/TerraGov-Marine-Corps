@@ -38,6 +38,7 @@
 	STOP_PROCESSING(SSmachines, src)
 	if(istype(circuit)) //There are some uninitialized legacy path circuits.
 		QDEL_NULL(circuit)
+	operator?.unset_interaction()
 	operator = null
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)

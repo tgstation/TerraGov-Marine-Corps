@@ -425,7 +425,8 @@
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
 	#define COMPONENT_CLOTHING_BLUR_PROTECTION (1<<1)
 
-#define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
+#define COMSIG_ITEM_DEPLOY "item_deploy" //From /obj/proc/do_deploy
+#define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from /obj/proc/disassemble
 
 ///from base of obj/item/quick_equip(): (mob/user)
 #define COMSIG_ITEM_QUICK_EQUIP "item_quick_equip"

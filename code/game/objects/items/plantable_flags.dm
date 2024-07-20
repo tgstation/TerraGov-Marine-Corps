@@ -213,16 +213,6 @@
 /obj/structure/plantable_flag/fire_act(burn_level)
 	take_damage(burn_level, BURN, FIRE)
 
-///Dissassembles the device
-/obj/structure/plantable_flag/proc/disassemble(mob/user)
-	var/obj/item/current_internal_item = get_internal_item()
-	if(!current_internal_item)
-		return
-	if(current_internal_item.item_flags & DEPLOYED_NO_PICKUP)
-		balloon_alert(user, "Cannot disassemble")
-		return
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
-
 /obj/structure/plantable_flag/MouseDrop(over_object, src_location, over_location)
 	if(!ishuman(usr))
 		return
