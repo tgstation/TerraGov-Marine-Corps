@@ -38,7 +38,7 @@
 		origin.pre_retract()
 		return
 
-	if(!do_after(C, 5 SECONDS, NONE, remote_eye, BUSY_ICON_BAR))
+	if(!do_after(C, 5 SECONDS, NONE, remote_eye, BUSY_ICON_BAR) || origin.rappel_condition < RAPPEL_CONDITION_GOOD || origin.rappel_state > RAPPEL_STATE_LOCKED || target_turf.density)
 		return
 
 	origin.deploy_rope(target_turf)
@@ -306,7 +306,7 @@
 		previously_retracting = TRUE
 	update_icon_state()
 	attacker.balloon_alert_to_viewers("[attacker] tears at the rappel!","You start tearing up [src] to disable the host's sky-rope system!")
-	step(attacker, get_dir(attacker, src))
+	step(attacker, get_dir(attacker, rope))
 	balloon_alert_to_viewers("The system starts visibly buckling...")
 	playsound(rope, 'sound/effects/grillehit.ogg', 50, TRUE)
 	playsound(src, 'sound/effects/grillehit.ogg', 50, TRUE)
