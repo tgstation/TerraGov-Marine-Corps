@@ -146,7 +146,7 @@
 	user.client.eye = target_turf
 
 	var/passed_skillcheck = TRUE
-	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
+	if(user.skills.getRating(SKILL_COMBAT) < SKILL_COMBAT_DEFAULT)
 		rope.balloon_alert(user, "You fumble around figuring out how to use the rappel system...")
 		if(!do_after(user, 3 SECONDS, NONE, rope, BUSY_ICON_UNSKILLED) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
 			passed_skillcheck = FALSE
@@ -394,7 +394,7 @@
 		return
 	user.balloon_alert_to_viewers("[user] begins clipping to the rappel...", "You begin clipping to the rappel...")
 
-	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
+	if(user.skills.getRating(SKILL_COMBAT) < SKILL_COMBAT_DEFAULT)
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_UNSKILLED) || user.lying_angle || user.anchored)
 			return
 

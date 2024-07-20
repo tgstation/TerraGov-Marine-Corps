@@ -422,7 +422,7 @@
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
 	if(!target)
 		return
-	if(gun_user?.skills.getRating(SKILL_FIREARMS) < 0)
+	if(gun_user?.skills.getRating(SKILL_COMBAT) < 0)
 		switch(windup_checked)
 			if(WEAPON_WINDUP_NOT_CHECKED)
 				INVOKE_ASYNC(src, PROC_REF(do_windup))
