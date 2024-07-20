@@ -229,6 +229,7 @@
 	update_icon_state()
 	rope.update_icon_state()
 	flick("rope_deploy", rope)
+	SSminimaps.add_marker(rope, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "rappel"))
 
 	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
 	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE)
@@ -278,6 +279,7 @@
 ///Part 2 of retract_rope(), moves the rope back into the system after the rope animation has completed. Unbuckles any mobs which were attached to it.
 /obj/structure/dropship_equipment/shuttle/rappel_system/proc/reel_in()
 	rope.forceMove(src)
+	SSMinimaps.remove_marker(rope)
 
 //When tad leaves, disable active rappels
 /obj/structure/dropship_equipment/shuttle/rappel_system/on_launch()
