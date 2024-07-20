@@ -1309,6 +1309,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/command)
+"sE" = (
+/obj/effect/landmark/campaign/vehicle_spawner/tank/ltaap_chaingun,
+/turf/open/floor/plating,
+/area/mainship/patrol_base)
 "sF" = (
 /turf/open/floor/mainship/blue{
 	dir = 4
@@ -31502,7 +31506,7 @@ bE
 hs
 CX
 VS
-Wj
+sE
 mR
 bu
 ef

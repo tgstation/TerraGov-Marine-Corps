@@ -229,7 +229,7 @@
 
 /obj/machinery/atmospherics/on_construction(obj_color, set_layer)
 	if(can_unwrench)
-		add_atom_colour(obj_color, FIXED_COLOUR_PRIORITY)
+		add_atom_colour(obj_color, FIXED_COLOR_PRIORITY)
 		pipe_color = obj_color
 	setPipingLayer(set_layer)
 	var/turf/T = get_turf(src)

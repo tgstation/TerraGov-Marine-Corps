@@ -40,11 +40,11 @@
 
 /datum/loadout_item/suit_store/main_gun/som_medic/mpi
 	name = "MPi-KM"
-	desc = "Equipped with a mag harness and laser sight. The MPi-KM is a modern reproduction based off several variants of kalashnikov type rifles used during the original Martian rebellion. \
+	desc = "Equipped with a red dot sight and underslung grenade launcher. The MPi-KM is a modern reproduction based off several variants of kalashnikov type rifles used during the original Martian rebellion. \
 	These weapons were already ancient at that time, and their continued use by the SOM speaks more to their cultural legacy than any tactical benefits. \
 	Despite having relatively poor mobility and handling, it never the less has fearsome firepower and good capacity, ensuring it stays a relevant weapon choice for the SOM. Uses 7.62x39mm ammunition."
 	ui_icon = "ak47"
-	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/black/magharness
+	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/black/grenadier
 
 /datum/loadout_item/suit_store/main_gun/som_medic/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()

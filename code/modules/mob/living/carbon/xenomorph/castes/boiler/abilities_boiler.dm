@@ -33,8 +33,9 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LONG_RANGE_SIGHT,
 	)
+	use_state_flags = ABILITY_USE_LYING
 	/// The offset in a direction for zoom_in
-	var/tile_offset = 5
+	var/tile_offset = 7
 	/// The size of the zoom for zoom_in
 	var/view_size = 4
 
@@ -345,3 +346,37 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 // ***************************************
 /datum/action/ability/activable/xeno/spray_acid/line/boiler
 	cooldown_duration = 9 SECONDS
+
+/datum/action/ability/activable/xeno/acid_shroud
+	name = "Acid Shroud"
+	action_icon_state = "acid_shroud"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
+	desc = "Creates a smokescreen below yourself, at the cost of a longer cooldown for firing your Bombard."
+	ability_cost = 200
+	cooldown_duration = 30 SECONDS
+	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACID_SHROUD_SELECT,
+	)
+
+/datum/action/ability/activable/xeno/acid_shroud/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
+	var/datum/effect_system/smoke_spread/emitted_gas //The gas that will emit when the ability activates, can be either acid or neuro.
+
+	if(istype(boiler_owner.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
+		emitted_gas = new /datum/effect_system/smoke_spread/xeno/acid/opaque(boiler_owner)
+	else
+		emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro(boiler_owner)
+
+	emitted_gas.set_up(2, get_turf(boiler_owner))
+	emitted_gas.start()
+	succeed_activate()
+	add_cooldown()
+	var/datum/action/ability/activable/xeno/bombard/bombard_action = boiler_owner.actions_by_path[/datum/action/ability/activable/xeno/bombard]
+	if(bombard_action?.cooldown_timer) //You need to clear a cooldown to add another, so that is done here.
+		deltimer(bombard_action.cooldown_timer)
+		bombard_action.cooldown_timer = null
+		bombard_action.countdown.stop()
+	bombard_action?.add_cooldown(boiler_owner.xeno_caste.bomb_delay + 8.5 SECONDS - ((boiler_owner.neuro_ammo + boiler_owner.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS))) //The cooldown of Bombard that is added when this ability is used. It is the calculation of Bombard cooldown + 10 seconds.
