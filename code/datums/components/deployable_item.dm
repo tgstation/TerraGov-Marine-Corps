@@ -137,6 +137,14 @@
 
 	item_to_deploy.toggle_deployment_flag(TRUE)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, PROC_REF(undeploy))
+	RegisterSignal(item_to_deploy, COMSIG_MOVABLE_MOVED, PROC_REF(on_item_move))
+
+///Qdels the deployed object if the internal item is somehow removed
+/datum/component/deployable_item/proc/on_item_move(obj/item/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	if(source.loc == old_loc)
+		return
+	qdel(old_loc)
 
 ///Wrapper for proc/finish_undeploy
 /datum/component/deployable_item/proc/undeploy(datum/source, mob/user)
@@ -168,6 +176,7 @@
 
 	user.unset_interaction()
 
+	UnregisterSignal(undeployed_item, COMSIG_MOVABLE_MOVED)
 	if((get_dist(deployed_machine, user) > 1) || deployed_machine.z != user.z)
 		undeployed_item.forceMove(get_turf(deployed_machine))
 	else
