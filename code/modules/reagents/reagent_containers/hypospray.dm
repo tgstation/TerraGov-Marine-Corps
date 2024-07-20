@@ -490,12 +490,31 @@
 	)
 	description_overlay = "Pe+"
 
+/obj/item/reagent_containers/hypospray/advanced/peridaxonplus_medkit
+	name = "Peridaxon+ hypospray"
+	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 3
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon_plus = 6,
+		/datum/reagent/medicine/hyronalin = 12,
+	)
+	description_overlay = "Pe+"
+
 /obj/item/reagent_containers/hypospray/advanced/quickclotplus
 	name = "Quickclot+ hypospray"
 	desc = "A hypospray loaded with quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
 	amount_per_transfer_from_this = 5
 	list_reagents = list(
 		/datum/reagent/medicine/quickclotplus = 60,
+	)
+	description_overlay = "Qk+"
+
+/obj/item/reagent_containers/hypospray/advanced/quickclotplus_medkit
+	name = "Quickclot+ hypospray"
+	desc = "A hypospray loaded with quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/medicine/quickclotplus = 30,
 	)
 	description_overlay = "Qk+"
 

@@ -154,6 +154,11 @@
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.85
 
+/datum/ammo/bullet/apfsds/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	if(ishitbox(target_obj) || ismecha(target_obj) || isarmoredvehicle(target_obj))
+		proj.damage *= 1.5
+		proj.proj_max_range = 0
+
 /datum/ammo/bullet/coilgun // ICC coilgun
 	name = "high-velocity tungsten slug"
 	hud_state = "railgun_ap"

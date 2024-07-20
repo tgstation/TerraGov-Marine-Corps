@@ -57,7 +57,7 @@
 	if(COOLDOWN_CHECK(src, savage_cooldown))
 		button.cut_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
 		owner.balloon_alert(owner, "Savage ready")
-		owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+		owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 		STOP_PROCESSING(SSprocessing, src)
 		return
 	button.cut_overlay(visual_references[VREF_MUTABLE_SAVAGE_COOLDOWN])
@@ -99,7 +99,7 @@
 /datum/action/ability/xeno_action/evasion/on_cooldown_finish()
 	. = ..()
 	owner.balloon_alert(owner, "Evasion ready")
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
 /datum/action/ability/xeno_action/evasion/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -264,7 +264,7 @@
 		if(auto_evasion && xeno_owner.plasma_stored >= ability_cost)
 			action_activate()
 	var/turf/current_turf = get_turf(xeno_owner) //location of after image SFX
-	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien_tail_swipe1.ogg', 'sound/effects/alien_tail_swipe2.ogg'), 25, 1) //sound effects
+	playsound(current_turf, pick('sound/effects/throw.ogg','sound/effects/alien/tail_swipe1.ogg', 'sound/effects/alien/tail_swipe2.ogg'), 25, 1) //sound effects
 	var/obj/effect/temp_visual/after_image/after_image
 	for(var/i=0 to 2) //number of after images
 		after_image = new /obj/effect/temp_visual/after_image(current_turf, owner) //Create the after image.
@@ -349,6 +349,11 @@
 	owner_turned(null, null, owner.dir)
 	succeed_activate()
 	add_cooldown()
+	GLOB.round_statistics.runner_items_stolen++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "runner_items_stolen")
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.items_snatched++
 
 ///Signal handler to update the item overlay when the owner is changing dir
 /datum/action/ability/activable/xeno/snatch/proc/owner_turned(datum/source, old_dir, new_dir)

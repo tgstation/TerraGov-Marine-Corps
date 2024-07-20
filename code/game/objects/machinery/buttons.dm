@@ -283,8 +283,6 @@
 
 /obj/machinery/button/valhalla/marine_spawner
 	name = "Marine spawner"
-	///The list of outfits we can equip on the humans we're spawning
-	var/outfit_list = list()
 
 /// Generates a list of jobs datums to spawn on a mob
 /obj/machinery/button/valhalla/marine_spawner/proc/spawn_humans(mob/living/user)
@@ -332,7 +330,9 @@
 /obj/machinery/button/valhalla/vehicle_button/proc/spawn_vehicles(mob/living/user)
 	var/list/spawnable_vehicles = list(
 		/obj/vehicle/sealed/armored/multitile,
-		/obj/vehicle/sealed/armored/multitile/apc
+		/obj/vehicle/sealed/armored/multitile/apc,
+		/obj/vehicle/sealed/armored/multitile/som_tank,
+		/obj/vehicle/sealed/armored/multitile/campaign,
 	)
 
 	var/selected_vehicle = tgui_input_list(user, "Which vehicle do you want to spawn?", "Vehicle spawn", spawnable_vehicles)

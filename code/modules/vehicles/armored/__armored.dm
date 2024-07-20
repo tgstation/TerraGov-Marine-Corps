@@ -154,11 +154,20 @@
 	if(Adjacent(entering_thing, src))
 		return list(get_turf(entering_thing))
 
-/obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE) //destroy sound is normally very quiet
 	new /obj/effect/temp_visual/explosion(get_turf(src), 7, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	for(var/mob/living/nearby_mob AS in occupants + cheap_get_living_near(src, 7))
 		shake_camera(nearby_mob, 4, 2)
+	if(istype(blame_mob) && blame_mob.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
+		if(faction == blame_mob.faction)
+			personal_statistics.tanks_destroyed --
+			personal_statistics.mission_tanks_destroyed --
+		else
+			personal_statistics.tanks_destroyed ++
+			personal_statistics.mission_tanks_destroyed ++
+
 	return ..()
 
 /obj/vehicle/sealed/armored/update_icon_state()
@@ -245,7 +254,7 @@
 	var/list/drivers = return_drivers()
 	if(length(drivers))
 		pilot = drivers[1]
-	A.vehicle_collision(src, get_dir(src, A), get_turf(loc), get_turf(loc), pilot)
+	A.vehicle_collision(src, get_dir(src, A), pilot)
 
 /obj/vehicle/sealed/armored/auto_assign_occupant_flags(mob/new_occupant)
 	if(interior) //handled by interior seats
@@ -461,14 +470,14 @@
 	else
 		try_easy_load(I, user)
 		return
-	if(length(primary_weapon.ammo_magazine) >= primary_weapon.maximum_magazines)
+	if((length(weapon_to_load.ammo_magazine) >= weapon_to_load.maximum_magazines) && weapon_to_load.ammo)
 		balloon_alert(user, "magazine already full")
 		return
 	user.temporarilyRemoveItemFromInventory(I)
 	I.forceMove(weapon_to_load)
 	if(!weapon_to_load.ammo)
 		weapon_to_load.ammo = I
-		balloon_alert(user, "primary gun loaded")
+		balloon_alert(user, "weapon loaded")
 		for(var/mob/occupant AS in occupants)
 			occupant?.hud_used?.update_ammo_hud(weapon_to_load, list(weapon_to_load.ammo.default_ammo.hud_state, weapon_to_load.ammo.default_ammo.hud_state_empty), weapon_to_load.ammo.current_rounds)
 	else
@@ -514,29 +523,6 @@
 		gunner_utility_module.on_unequip(user)
 		balloon_alert(user, "detached")
 		return
-	if(interior?.secondary_breech) // if interior handle by gun breech
-		return
-	if(istype(I, /obj/item/ammo_magazine))
-		if(!secondary_weapon)
-			balloon_alert(user, "no primary weapon")
-			return
-		if(!(I.type in secondary_weapon.accepted_ammo))
-			balloon_alert(user, "not accepted ammo")
-			return
-		if(length(secondary_weapon.ammo_magazine) >= secondary_weapon.maximum_magazines)
-			balloon_alert(user, "magazine already full")
-			return
-		user.temporarilyRemoveItemFromInventory(I)
-		I.forceMove(secondary_weapon)
-		if(!secondary_weapon.ammo)
-			secondary_weapon.ammo = I
-			balloon_alert(user, "secondary gun loaded")
-			for(var/mob/occupant AS in occupants)
-				occupant?.hud_used?.update_ammo_hud(secondary_weapon, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
-		else
-			secondary_weapon.ammo_magazine += I
-			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")
-
 
 /obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)

@@ -32,7 +32,7 @@
 	X.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
 	X.spin(4, 1)
 	X.enable_throw_parry(0.6 SECONDS)
-	playsound(X,pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
+	playsound(X,pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range, X)		// Not actually the fruit
@@ -66,7 +66,7 @@
 /datum/action/ability/xeno_action/tail_sweep/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_notice("We gather enough strength to tail sweep again."))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/ability/xeno_action/tail_sweep/ai_should_start_consider()
@@ -331,7 +331,7 @@
 	action_icon_state = "regenerate_skin"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Regenerate your hard exoskeleton skin, restoring some health and removing all sunder."
-	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED|ABILITY_TARGET_SELF|ABILITY_IGNORE_SELECTED_ABILITY|ABILITY_KEYBIND_USE_ABILITY
+	use_state_flags = ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED|ABILITY_TARGET_SELF|ABILITY_IGNORE_SELECTED_ABILITY|ABILITY_KEYBIND_USE_ABILITY|ABILITY_USE_LYING
 	ability_cost = 160
 	cooldown_duration = 1 MINUTES
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -416,7 +416,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	X.spin(4, 1)
 	X.enable_throw_parry(0.6 SECONDS)
-	playsound(X, pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg'), 25, 1) //Sound effects
+	playsound(X, pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
 
 	for(var/mob/living/carbon/human/slapped in orange(1, X))
 		if(slapped.stat == DEAD)
