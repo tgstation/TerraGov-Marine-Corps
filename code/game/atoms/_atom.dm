@@ -533,7 +533,7 @@ directive is properly returned.
 /atom/proc/add_atom_colour(coloration, colour_priority)
 	if(!atom_colours || !length(atom_colours))
 		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+		atom_colours.len = COLOR_PRIORITY_AMOUNT //four priority levels currently.
 	if(!coloration)
 		return
 	if(colour_priority > length(atom_colours))
@@ -548,7 +548,7 @@ directive is properly returned.
 /atom/proc/remove_atom_colour(colour_priority, coloration)
 	if(!atom_colours)
 		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+		atom_colours.len = COLOR_PRIORITY_AMOUNT //four priority levels currently.
 	if(colour_priority > length(atom_colours))
 		return
 	if(coloration && atom_colours[colour_priority] != coloration)
@@ -564,7 +564,7 @@ directive is properly returned.
 /atom/proc/update_atom_colour()
 	if(!atom_colours)
 		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+		atom_colours.len = COLOR_PRIORITY_AMOUNT //four priority levels currently.
 	color = null
 	for(var/C in atom_colours)
 		if(islist(C))
@@ -668,8 +668,8 @@ directive is properly returned.
 		return TRUE
 
 	// Basically "if has washable coloration"
-	if(length(atom_colours) >= WASHABLE_COLOUR_PRIORITY && atom_colours[WASHABLE_COLOUR_PRIORITY])
-		remove_atom_colour(WASHABLE_COLOUR_PRIORITY)
+	if(length(atom_colours) >= WASHABLE_COLOR_PRIORITY && atom_colours[WASHABLE_COLOR_PRIORITY])
+		remove_atom_colour(WASHABLE_COLOR_PRIORITY)
 		return TRUE
 	if(clean_blood())
 		return TRUE
