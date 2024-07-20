@@ -145,12 +145,13 @@
 	user.client.perspective = EYE_PERSPECTIVE
 	user.client.eye = target_turf
 
+	var/passed_skillcheck = TRUE
 	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
 		user.balloon_alert("You fumble around figuring out how to use the rappel system...")
 		if(!do_after(user, 3 SECONDS, NONE, target_turf, BUSY_ICON_UNSKILLED) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
-			return
+			passed_skillcheck = FALSE
 
-	if(do_after(user, 2 SECONDS, NONE, target_turf, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
+	if(passed_skillcheck && do_after(user, 2 SECONDS, NONE, target_turf, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
 		playsound(target_turf, 'sound/effects/rappel.ogg', 50, TRUE)
 		playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
 		user.forceMove(target_turf)
@@ -389,7 +390,7 @@
 		return
 
 	if(!step(user, get_dir(user, src)))
-		user.balloon_alert("Something is blocking you from reaching the rappel system!")
+		user.balloon_alert("Something is blocking you from reaching the rappel rope!")
 		return
 	user.balloon_alert_to_viewers(user, "begins clipping to the rappel...")
 
