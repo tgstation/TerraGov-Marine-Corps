@@ -533,21 +533,27 @@
 
 /turf/closed/shuttle/ert/engines/left
 	icon_state = "leftengine_1"
+	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/ert/engines/left/two
 	icon_state = "leftengine_2"
+	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/ert/engines/left/three
 	icon_state = "leftengine_3"
+	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/ert/engines/right
 	icon_state = "rightengine_1"
+	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/ert/engines/right/two
 	icon_state = "rightengine_2"
+	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/ert/engines/right/three
 	icon_state = "rightengine_3"
+	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/dropship1
 	name = "\improper Alamo"
