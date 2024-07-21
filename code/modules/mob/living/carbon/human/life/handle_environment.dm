@@ -13,6 +13,7 @@
 
 		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 			clear_alert(ALERT_PRESSURE)
+			clear_alert(ALERT_TEMPERATURE)
 			return //Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
 		//Body temperature adjusts depending on surrounding atmosphere based on your thermal protection
@@ -71,8 +72,6 @@
 				take_overall_damage(COLD_DAMAGE_LEVEL_2, BURN)
 			else if(bodytemperature < species.cold_level_1)
 				take_overall_damage(COLD_DAMAGE_LEVEL_1, BURN)
-	else
-		clear_alert(ALERT_TEMPERATURE)
 
 	//Account for massive pressure differences.  Done by Polymorph
 	//Made it possible to actually have something that can protect against high pressure... Done by Errorage. Polymorph now has an axe sticking from his head for his previous hardcoded nonsense!
