@@ -13,7 +13,7 @@
 	///Current loaded magazines: top one empties into ammo
 	var/list/obj/item/ammo_magazine/ammo_magazine = list()
 	///maximum magazines ammo_magazine can hold
-	var/maximum_magazines = 5
+	var/maximum_magazines = 0
 	///ammo types we'll be able to accept
 	var/list/accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/ltb_cannon,
@@ -320,7 +320,6 @@
 	projectile_delay = 2
 	variance = 5
 	rearm_time = 1 SECONDS
-	maximum_magazines = 5
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/ltaap
@@ -336,7 +335,6 @@
 	variance = 5
 	projectile_delay = 0.1 SECONDS
 	rearm_time = 3 SECONDS
-	maximum_magazines = 5
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/apc_cannon
@@ -362,7 +360,6 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 5
 	rearm_time = 1 SECONDS
-	maximum_magazines = 5
 	accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/secondary_flamer_tank,
 	)

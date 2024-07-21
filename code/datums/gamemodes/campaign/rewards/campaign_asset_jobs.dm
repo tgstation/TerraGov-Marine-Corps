@@ -136,7 +136,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 /datum/outfit/job/som/militia/standard/fanatic
 	head = /obj/item/clothing/head/headband/rambo
-	wear_suit = /obj/item/clothing/suit/storage/marine/boomvest
+	wear_suit = /obj/item/clothing/suit/storage/marine/boomvest/fast
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 

@@ -127,14 +127,14 @@ GLOBAL_LIST_INIT(faction_to_portrait, list(
 ))
 
 GLOBAL_LIST_INIT(faction_to_mech_spawner, list(
-	FACTION_NTC = list(
-		"heavy" = /obj/effect/landmark/campaign/mech_spawner/heavy,
-		"medium" = /obj/effect/landmark/campaign/mech_spawner,
-		"light" = /obj/effect/landmark/campaign/mech_spawner/light,
+	FACTION_NTC= list(
+		"heavy" = /obj/effect/landmark/campaign/vehicle_spawner/mech/heavy,
+		"medium" = /obj/effect/landmark/campaign/vehicle_spawner/mech,
+		"light" = /obj/effect/landmark/campaign/vehicle_spawner/mech/light,
 	),
 	FACTION_SOM = list(
-		"heavy" = /obj/effect/landmark/campaign/mech_spawner/som/heavy,
-		"medium" = /obj/effect/landmark/campaign/mech_spawner/som,
-		"light" = /obj/effect/landmark/campaign/mech_spawner/som/light,
+		"heavy" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som/heavy,
+		"medium" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som,
+		"light" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som/light,
 	),
 ))
