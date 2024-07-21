@@ -1870,7 +1870,7 @@
 /datum/action/ability/activable/xeno/tail_stab/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/xeno = owner
 	to_chat(xeno, span_xenodanger("We feel ready to stab again."))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/ability/activable/xeno/tail_stab/can_use_ability(atom/A, silent = FALSE, override_flags)

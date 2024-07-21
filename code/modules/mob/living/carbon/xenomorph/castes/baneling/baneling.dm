@@ -99,5 +99,5 @@
 	REMOVE_TRAIT(xeno_ref, TRAIT_STASIS, BANELING_STASIS_TRAIT)
 	xeno_ref.forceMove(get_turf(loc))
 	xeno_ref.revive(FALSE)
-	SEND_SOUND(xeno_ref, sound('sound/effects/xeno_evolveready.ogg'))
+	SEND_SOUND(xeno_ref, sound('sound/effects/alien/evolve_ready.ogg'))
 	INVOKE_ASYNC(xeno_ref, TYPE_PROC_REF(/atom, do_jitter_animation), 1000)
