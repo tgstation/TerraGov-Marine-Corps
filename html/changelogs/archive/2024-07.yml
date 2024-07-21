@@ -268,3 +268,11 @@
   - bugfix: Acid Shroud can no longer be used infinitely.
   ivanmixo:
   - bugfix: Clone vat progress gets reset if it loses power
+2024-07-21:
+  Xander3359:
+  - bugfix: Xenos can no longer instaevo when the shuttle is crashed on crash gamemode
+  yyzsong:
+  - spellcheck: collor > color
+  - code_imp: adds defines for squad colours
+  - code_imp: changes the names of colour defines that use "colour" instead of "color"
+      to be in line with the rest of the defines

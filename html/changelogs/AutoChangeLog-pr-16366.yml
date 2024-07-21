@@ -1,4 +1,0 @@
-author: "Xander3359"
-delete-after: True
-changes:
-  - bugfix: "Xenos can no longer instaevo when the shuttle is crashed on crash gamemode"
