@@ -137,34 +137,32 @@
 	///How much faster or slower acid melts specific objects/turfs.
 	var/acid_melt_multiplier
 
-/obj/effect/xenomorph/acid/weak
-	name = "weak acid"
-	acid_strength = WEAK_ACID_STRENGTH
-	acid_damage = 75
-	icon_state = "acid_weak"
-
-/obj/effect/xenomorph/acid/strong
-	name = "strong acid"
-	acid_strength = STRONG_ACID_STRENGTH
-	acid_damage = 175
-	icon_state = "acid_strong"
-
-/obj/effect/xenomorph/acid/Initialize(mapload, target, melting_rate, existing_ticks)
+/obj/effect/xenomorph/acid/Initialize(mapload, atom/target, melting_rate)
+	if(!istype(target))
+		return INITIALIZE_HINT_QDEL
 	. = ..()
+
+	var/obj/effect/xenomorph/acid/current_acid = target.get_self_acid()
+	if(current_acid)
+		ticks += current_acid.ticks
+		qdel(current_acid)
+
 	acid_melt_multiplier = melting_rate
 	acid_t = target
-	ticks += existing_ticks
-	if(!acid_t)
-		return INITIALIZE_HINT_QDEL
+	RegisterSignal(acid_t, COMSIG_ATOM_GET_SELF_ACID, PROC_REF(return_self_acid))
 	layer = acid_t.layer
-	if(iswallturf(acid_t))
-		icon_state = icon_state += "_wall"
+	update_appearance(UPDATE_ICON_STATE)
 	START_PROCESSING(SSslowprocess, src)
 
 /obj/effect/xenomorph/acid/Destroy()
 	STOP_PROCESSING(SSslowprocess, src)
 	acid_t = null
 	return ..()
+
+/obj/effect/xenomorph/acid/update_icon_state()
+	icon_state = initial(icon_state)
+	if(iswallturf(acid_t))
+		icon_state += "_wall"
 
 /obj/effect/xenomorph/acid/process(delta_time)
 	if(!acid_t || !acid_t.loc)
@@ -210,6 +208,23 @@
 			visible_message(span_xenowarning("\The [acid_t]\s structure is being melted by the acid!"))
 		if(6)
 			visible_message(span_xenowarning("\The [acid_t] is barely holding up against the acid!"))
+
+///Sig handler to show this acid is attached to something
+/obj/effect/xenomorph/acid/proc/return_self_acid(atom/source, list/acid_List)
+	SIGNAL_HANDLER
+	acid_List += src
+
+/obj/effect/xenomorph/acid/weak
+	name = "weak acid"
+	acid_strength = WEAK_ACID_STRENGTH
+	acid_damage = 75
+	icon_state = "acid_weak"
+
+/obj/effect/xenomorph/acid/strong
+	name = "strong acid"
+	acid_strength = STRONG_ACID_STRENGTH
+	acid_damage = 175
+	icon_state = "acid_strong"
 
 /obj/effect/xenomorph/warp_shadow
 	name = "warp shadow"

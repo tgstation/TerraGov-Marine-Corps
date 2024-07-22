@@ -295,7 +295,8 @@
 #define COMSIG_ATOM_SET_LIGHT_ON "atom_set_light_on"
 ///Called right before the atom changes the value of light_flags to a different one, from base atom/set_light_flags(): (new_value)
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
-
+///From base of atom/get_self_acid
+#define COMSIG_ATOM_GET_SELF_ACID "atom_get_self_acid"
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"				//from base of atom/movable/Move(): (/atom, new_loc, direction)

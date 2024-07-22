@@ -78,7 +78,6 @@
 /obj/Destroy()
 	hard_armor = null
 	soft_armor = null
-	QDEL_NULL(current_acid)
 	return ..()
 
 
