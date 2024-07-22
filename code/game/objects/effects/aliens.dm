@@ -150,6 +150,7 @@
 	acid_melt_multiplier = melting_rate
 	acid_t = target
 	RegisterSignal(acid_t, COMSIG_ATOM_GET_SELF_ACID, PROC_REF(return_self_acid))
+	RegisterSignal(acid_t, COMSIG_ITEM_ATTEMPT_PICK_UP, PROC_REF(on_attempt_pickup))
 	layer = acid_t.layer
 	update_appearance(UPDATE_ICON_STATE)
 	START_PROCESSING(SSslowprocess, src)
@@ -175,7 +176,7 @@
 		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
 		playsound(src, SFX_ACID_HIT, 25)
 
-		if(istype(acid_t, /turf))
+		if(istype(acid_t, /turf)) //todo:make atom proc
 			if(iswallturf(acid_t))
 				var/turf/closed/wall/W = acid_t
 				new /obj/effect/acid_hole (W)
@@ -213,6 +214,33 @@
 /obj/effect/xenomorph/acid/proc/return_self_acid(atom/source, list/acid_List)
 	SIGNAL_HANDLER
 	acid_List += src
+
+///Sig handler to show this acid is attached to something
+/obj/effect/xenomorph/acid/proc/on_attempt_pickup(obj/item/source, mob/user)
+	SIGNAL_HANDLER
+	if(!ishuman(user))
+		qdel(src)
+		return
+	INVOKE_ASYNC(src, PROC_REF(on_pickup), source, user)
+
+///Sig handler to show this acid is attached to something
+/obj/effect/xenomorph/acid/proc/on_pickup(obj/item/item, mob/living/carbon/human/human_user)
+	user.visible_message(span_danger("Corrosive substances seethe all over [human_user] as it retrieves the acid-soaked [item]!"),
+	span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [item]!"))
+	playsound(human_user, SFX_ACID_HIT, 25)
+	human_user.emote("pain")
+	var/list/affected_limbs = list("l_hand", "r_hand", "l_arm", "r_arm")
+	var/limb_count = null
+	for(var/datum/limb/limb in human_user.limbs)
+		if(limb_count > 4)
+			break
+		if(!affected_limbs.Find(limb.name))
+			continue
+		limb.take_damage_limb(0, human_user.modify_by_armor(acid_damage * 0.25 * randfloat(0.75, 1.25), ACID, def_zone = limb.name))
+		limb_count++
+	human_user.UpdateDamageIcon()
+	UPDATEHEALTH(human_user)
+	qdel(src)
 
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"

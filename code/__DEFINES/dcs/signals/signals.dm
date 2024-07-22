@@ -428,6 +428,9 @@
 
 #define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
 
+///From /obj/item/proc/pickup(): (/obj/item/picked_up_item)
+#define COMSIG_ITEM_ATTEMPT_PICK_UP "item_attempt_pick_up"
+
 ///from base of obj/item/quick_equip(): (mob/user)
 #define COMSIG_ITEM_QUICK_EQUIP "item_quick_equip"
 // Return signals for /datum/storage/proc/on_quick_equip_request
