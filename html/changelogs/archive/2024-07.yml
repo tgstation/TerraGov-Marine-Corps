@@ -276,3 +276,6 @@
   - code_imp: adds defines for squad colours
   - code_imp: changes the names of colour defines that use "colour" instead of "color"
       to be in line with the rest of the defines
+2024-07-22:
+  Lumipharon:
+  - qol: Normal prop vehicles are now all destructable
