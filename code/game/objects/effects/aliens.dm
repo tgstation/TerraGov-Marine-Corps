@@ -151,6 +151,8 @@
 	acid_t = target
 	RegisterSignal(acid_t, COMSIG_ATOM_GET_SELF_ACID, PROC_REF(return_self_acid))
 	RegisterSignal(acid_t, COMSIG_ITEM_ATTEMPT_PICK_UP, PROC_REF(on_attempt_pickup))
+	RegisterSignal(acid_t, COMSIG_QDELETING, PROC_REF(on_target_del))
+	RegisterSignal(acid_t, COMSIG_MOVABLE_MOVED, PROC_REF(on_target_move))
 	layer = acid_t.layer
 	update_appearance(UPDATE_ICON_STATE)
 	START_PROCESSING(SSslowprocess, src)
@@ -169,37 +171,10 @@
 	if(!acid_t || !acid_t.loc)
 		qdel(src)
 		return
-	if(loc != acid_t.loc && !isturf(acid_t))
-		loc = acid_t.loc
 	ticks += delta_time * (acid_strength * acid_melt_multiplier)
 	if(ticks >= strength_t)
-		visible_message(span_xenodanger("[acid_t] collapses under its own weight into a puddle of goop and undigested debris!"))
-		playsound(src, SFX_ACID_HIT, 25)
-
-		if(istype(acid_t, /turf)) //todo:make atom proc
-			if(iswallturf(acid_t))
-				var/turf/closed/wall/W = acid_t
-				new /obj/effect/acid_hole (W)
-			else
-				var/turf/T = acid_t
-				T.ChangeTurf(/turf/open/floor/plating)
-		else if (istype(acid_t, /obj/structure/girder))
-			var/obj/structure/girder/G = acid_t
-			G.deconstruct(FALSE)
-		else if(istype(acid_t, /obj/structure/window/framed))
-			var/obj/structure/window/framed/WF = acid_t
-			WF.deconstruct(FALSE)
-
-		else
-			if(length(acid_t.contents)) //Hopefully won't auto-delete mobs inside melted stuff..
-				for(var/mob/M in acid_t.contents)
-					if(acid_t.loc)
-						M.forceMove(get_turf(acid_t))
-			QDEL_NULL(acid_t)
-
-		qdel(src)
+		acid_t.do_acid_melt()
 		return
-
 	switch(strength_t - ticks)
 		if(0 to 1)
 			visible_message(span_xenowarning("\The [acid_t] begins to crumble under the acid!"))
@@ -209,6 +184,16 @@
 			visible_message(span_xenowarning("\The [acid_t]\s structure is being melted by the acid!"))
 		if(6)
 			visible_message(span_xenowarning("\The [acid_t] is barely holding up against the acid!"))
+
+///cleans up if the target is destroyed
+/obj/effect/xenomorph/acid/proc/on_target_del(atom/source)
+	SIGNAL_HANDLER
+	qdel(src)
+
+///Moves with the target
+/obj/effect/xenomorph/acid/proc/on_target_move(atom/source)
+	SIGNAL_HANDLER
+	loc = source.loc
 
 ///Sig handler to show this acid is attached to something
 /obj/effect/xenomorph/acid/proc/return_self_acid(atom/source, list/acid_List)
@@ -225,7 +210,7 @@
 
 ///Sig handler to show this acid is attached to something
 /obj/effect/xenomorph/acid/proc/on_pickup(obj/item/item, mob/living/carbon/human/human_user)
-	user.visible_message(span_danger("Corrosive substances seethe all over [human_user] as it retrieves the acid-soaked [item]!"),
+	human_user.visible_message(span_danger("Corrosive substances seethe all over [human_user] as it retrieves the acid-soaked [item]!"),
 	span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [item]!"))
 	playsound(human_user, SFX_ACID_HIT, 25)
 	human_user.emote("pain")

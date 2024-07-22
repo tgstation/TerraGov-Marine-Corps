@@ -1096,3 +1096,8 @@ directive is properly returned.
 ///Interaction for using a grab on an atom
 /atom/proc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return
+
+///What happens when with atom is melted by acid
+/atom/proc/do_acid_melt()
+	visible_message(span_xenodanger("[src] collapses under its own weight into a puddle of goop and undigested debris!"))
+	playsound(src, SFX_ACID_HIT, 25)

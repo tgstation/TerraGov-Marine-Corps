@@ -97,6 +97,12 @@
 		return 4 SECONDS
 	return ..()
 
+/obj/do_acid_melt()
+	. = ..()
+	for(var/mob/mob in contents)
+		mob.forceMove(get_turf(src))
+	deconstruct(FALSE)
+
 /obj/get_soft_armor(armor_type, proj_def_zone)
 	return soft_armor.getRating(armor_type)
 
