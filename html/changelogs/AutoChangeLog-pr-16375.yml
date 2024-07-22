@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Deconstructing reinforced table parts correctly give two metal instead of one."
