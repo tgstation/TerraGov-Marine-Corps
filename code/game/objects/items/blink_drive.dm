@@ -77,7 +77,7 @@
 	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
 	charges = 0
 	deltimer(charge_timer)
-	charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), BLINK_DRIVE_CHARGE_TIME * (4 - severity), TIMER_STOPPABLE)
+	charge_timer = addtimer(CALLBACK(src, PROC_REF(recharge)), BLINK_DRIVE_CHARGE_TIME * (6 - severity), TIMER_STOPPABLE)
 	update_appearance(UPDATE_ICON)
 
 ///Handles the actual teleportation
