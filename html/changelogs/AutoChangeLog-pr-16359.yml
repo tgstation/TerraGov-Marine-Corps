@@ -1,0 +1,4 @@
+author: "Ldip999"
+delete-after: True
+changes:
+  - code_imp: "Organ defines, get_organ_slot, remove_organ_slot"
