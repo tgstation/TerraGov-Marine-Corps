@@ -10,7 +10,7 @@
   $primary: #e8aa24,
   $label: #e8aa24,
   $good: #e8aa24,
-  $average: #e8aa24,
+  $average: #e8aa24
 );
 @use '../base.scss' with (
   $color-bg: #1b1812,
@@ -86,7 +86,7 @@
     color: white;
     font: 1.3rem Inconsolata;
   }
-  .Section{
+  .Section {
     border-radius: 0.16em;
   }
   .Section__titleText {
