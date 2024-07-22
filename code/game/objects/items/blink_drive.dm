@@ -31,7 +31,7 @@
 	. = ..()
 	blink_action = new(src)
 
-/obj/item/blink_drive/update_appearance(UPDATE_ICON)
+/obj/item/blink_drive/update_icon(updates=ALL)
 	. = ..()
 	equipped_user?.update_inv_back()
 	if(charges)
