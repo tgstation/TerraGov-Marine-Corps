@@ -52,8 +52,6 @@
 
 /obj/machinery/door/window/emp_act(severity)
 	. = ..()
-	if(prob(75 / severity))
-		set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME)
 	if(prob(30 / severity))
 		open()
 
