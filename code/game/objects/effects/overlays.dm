@@ -411,6 +411,6 @@
 	if(!new_hud_list)
 		return
 
-	new_hud_list.icon = '/icons/effects/lases.dmi'
+	new_hud_list.icon = 'icons/effects/lases.dmi'
 	new_hud_list.icon_state = icon_state_on
 	hud_list[SQUAD_HUD_TERRAGOV] = new_hud_list
