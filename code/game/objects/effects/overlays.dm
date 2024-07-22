@@ -398,4 +398,19 @@
 	/// When detected to be unused it gets set to world.time, after a while it gets removed
 	var/unused = 0
 	/// Overlays which go unused for 2 minutes get cleaned up
-	var/cache_expiration = 2 MINUTES 
+	var/cache_expiration = 2 MINUTES
+
+//Drop pod
+/obj/effect/overlay/blinking_laser/marine/pod_warning
+	name = "pod warning"
+	icon = 'icons/effects/lases.dmi'
+	icon_state_on = "pod_laser"
+
+/obj/effect/overlay/blinking_laser/marine/pod_warning/set_visuals()
+	var/image/new_hud_list = hud_list[SQUAD_HUD_TERRAGOV]
+	if(!new_hud_list)
+		return
+
+	new_hud_list.icon = '/icons/effects/lases.dmi'
+	new_hud_list.icon_state = icon_state_on
+	hud_list[SQUAD_HUD_TERRAGOV] = new_hud_list
