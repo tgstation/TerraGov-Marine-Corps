@@ -231,7 +231,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	if(apcs_repaired)
 		support_stats += "Repaired [apcs_repaired] APC\s."
 	if(items_snatched)
-		support_stats += "Snatched [items_snatched] items\s."
+		support_stats += "Snatched [items_snatched] item\s."
 
 	if(generator_sabotages_performed)
 		support_stats += "Sabotaged [generator_sabotages_performed] generator\s."
