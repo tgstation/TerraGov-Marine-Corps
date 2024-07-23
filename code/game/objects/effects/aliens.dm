@@ -140,7 +140,7 @@
 /obj/effect/xenomorph/acid/Initialize(mapload, atom/target, melting_rate)
 	if(!istype(target))
 		return INITIALIZE_HINT_QDEL
-	return ..()
+	. = ..()
 
 	var/obj/effect/xenomorph/acid/current_acid = target.get_self_acid()
 	if(current_acid)
