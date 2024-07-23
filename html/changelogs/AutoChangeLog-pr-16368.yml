@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Mobs that land on tanks via any kind of throw now are correctly added to desants"
