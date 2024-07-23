@@ -279,3 +279,16 @@
 2024-07-22:
   Lumipharon:
   - qol: Normal prop vehicles are now all destructable
+2024-07-23:
+  Apple-107:
+  - bugfix: fixed missing sprite for open panel on Req Operations Vendor
+  Ldip999:
+  - code_imp: Organ defines, get_organ_slot, remove_organ_slot
+  Runian:
+  - bugfix: Deconstructing reinforced table parts correctly give two metal instead
+      of one.
+  ivanmixo:
+  - qol: The percentage of armor left is no longer labeled as sunder in the xeno stat
+      panel
+  jonash07:
+  - imageadd: added 2 more icon overlays to tactical binoculars
