@@ -30,7 +30,7 @@
 
 /datum/game_mode/hvh/post_setup()
 	. = ..()
-	for(var/z_num in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+	for(var/z_num in SSmapping.levels_by_any_trait(list(ZTRAIT_MARINE_MAIN_SHIP, ZTRAIT_GROUND)))
 		set_z_lighting(z_num)
 
 //sets TGMC and SOM squads
