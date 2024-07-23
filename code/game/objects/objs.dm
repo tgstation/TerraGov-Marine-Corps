@@ -314,7 +314,7 @@
 		return FALSE
 
 	if(get_self_acid())
-		balloon_alert(user, "it's melting!")
+		balloon_alert(user, "It's melting!")
 		return TRUE
 
 	if(obj_integrity <= max_integrity * repair_threshold)

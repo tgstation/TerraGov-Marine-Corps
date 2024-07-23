@@ -1034,7 +1034,7 @@
 			return
 
 		if(get_self_acid())
-			balloon_alert(user, "it's melting!")
+			balloon_alert(user, "It's melting!")
 			return
 
 		if(!D.use(1))

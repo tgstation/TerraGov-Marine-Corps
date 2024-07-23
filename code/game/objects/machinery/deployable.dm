@@ -52,7 +52,7 @@
 ///Dissassembles the device
 /obj/machinery/deployable/proc/disassemble(mob/user)
 	if(get_self_acid())
-		balloon_alert(user, "it's melting!")
+		balloon_alert(user, "It's melting!")
 		return
 	var/obj/item/item = get_internal_item()
 	if(!item)
