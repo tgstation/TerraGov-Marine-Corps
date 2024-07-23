@@ -313,10 +313,9 @@
 	if(!welder.tool_use_check(user, fuel_req))
 		return FALSE
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "It's melting")
-			return TRUE
+	if(get_self_acid())
+		balloon_alert(user, "it's melting!")
+		return TRUE
 
 	if(obj_integrity <= max_integrity * repair_threshold)
 		return BELOW_INTEGRITY_THRESHOLD

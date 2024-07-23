@@ -249,8 +249,7 @@
 	if(dropship_equipment_flags & IS_NOT_REMOVABLE)
 		to_chat(user, span_notice("You cannot remove [src]!"))
 		return
-	var/obj/effect/xenomorph/acid/current_acid = get_self_acid()
-	if(current_acid)
+	if(get_self_acid())
 		to_chat(user, span_notice("You cannot touch [src] with the [attached_clamp] due to the acid on [src]."))
 	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 	var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
