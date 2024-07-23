@@ -1,0 +1,4 @@
+author: "Apple-107"
+delete-after: True
+changes:
+  - bugfix: "Tadpole/Shuttle engines are now built from copium and are thus unable to be melted or crushed."
