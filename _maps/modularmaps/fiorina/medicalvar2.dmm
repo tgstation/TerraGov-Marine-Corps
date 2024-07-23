@@ -501,7 +501,7 @@
 "Gl" = (
 /obj/structure/table/reinforced/prison,
 /obj/machinery/computer/security{
-	dir = 8
+	dir = 4
 	},
 /obj/structure/window/reinforced{
 	dir = 4

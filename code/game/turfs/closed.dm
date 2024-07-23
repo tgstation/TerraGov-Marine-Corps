@@ -132,6 +132,17 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+/turf/closed/mineral/smooth/strata_wall
+	icon = 'icons/turf/walls/strata_ice_wall.dmi'
+	icon_state = "ice_wall-0"
+	walltype = "darkfrostwall"
+	base_icon_state = "ice_wall"
+
+/turf/closed/mineral/smooth/strata_wall/indestructible
+	name = "tough rock"
+	resistance_flags = RESIST_ALL
+	icon_state = "wall-invincible"
+
 /turf/closed/mineral/smooth/bigred
 	icon = 'icons/turf/walls/redwall.dmi'
 	icon_state = "red_wall-0"

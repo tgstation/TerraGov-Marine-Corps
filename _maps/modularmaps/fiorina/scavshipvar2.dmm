@@ -94,7 +94,7 @@
 /turf/open/floor/mainship/plate,
 /area/fiorina/tumor/ship)
 "iU" = (
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/tumor/ship)
 "jZ" = (
 /obj/effect/step_trigger/teleporter/random{
@@ -425,7 +425,7 @@
 "JA" = (
 /obj/effect/spawner/random/engineering/metal,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/tumor/ship)
 "JE" = (
 /obj/structure/flora/ausbushes{
@@ -629,12 +629,12 @@
 /area/fiorina/tumor/ship)
 "Wt" = (
 /obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/tumor/ship)
 "WN" = (
 /obj/structure/cable,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/tumor/ship)
 "WQ" = (
 /obj/structure/dropship_piece/one/corner/rearleft,

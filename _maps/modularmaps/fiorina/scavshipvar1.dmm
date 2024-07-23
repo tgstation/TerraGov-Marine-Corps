@@ -109,7 +109,7 @@
 /turf/open/floor/mainship/plate,
 /area/fiorina/tumor/ship)
 "iU" = (
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/tumor/ship)
 "jZ" = (
 /obj/structure/dropship_piece/one/cockpit/right,
@@ -179,10 +179,10 @@
 	},
 /area/fiorina/tumor/fiberbush)
 "nV" = (
-/obj/machinery/power/apc{
+/obj/structure/cable,
+/obj/machinery/power/apc/drained{
 	dir = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship,
 /area/fiorina/tumor/ship)
 "od" = (
@@ -385,10 +385,6 @@
 "Bd" = (
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/tumor/fiberbush)
-"BC" = (
-/obj/structure/dropship_piece/one/corner/rearright,
-/turf/closed/shuttle/ert,
-/area/fiorina/tumor/ship)
 "Cc" = (
 /obj/structure/rack,
 /obj/item/ammo_magazine/sentry{
@@ -486,7 +482,7 @@
 "JA" = (
 /obj/effect/spawner/random/engineering/metal,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/tumor/ship)
 "JE" = (
 /obj/structure/flora/ausbushes{
@@ -627,7 +623,7 @@
 /area/fiorina/tumor/ship)
 "UQ" = (
 /obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/tumor/ship)
 "Vg" = (
 /obj/structure/barricade/metal{
@@ -678,7 +674,7 @@
 "Wt" = (
 /obj/structure/cable,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/plating/plating_catwalk/prison/alt,
 /area/fiorina/tumor/ship)
 "WN" = (
 /obj/structure/cable,
@@ -972,7 +968,7 @@ NV
 NV
 wO
 od
-BC
+uH
 hP
 iU
 Lz

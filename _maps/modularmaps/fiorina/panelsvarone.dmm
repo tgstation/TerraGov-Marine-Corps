@@ -13,7 +13,7 @@
 /obj/structure/reagent_dispensers/fueltank,
 /obj/effect/forcefield,
 /turf/open/space,
-/area/space)
+/area/fiorina/oob)
 "d" = (
 /obj/item/stack/sandbags_empty/half,
 /turf/open/floor/prison/darkyellow{
@@ -59,7 +59,7 @@
 /obj/item/clothing/head/cardborg,
 /obj/effect/forcefield,
 /turf/open/space,
-/area/space)
+/area/fiorina/oob)
 "l" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/plating/kutjevo,
@@ -103,7 +103,7 @@
 	},
 /obj/effect/forcefield,
 /turf/open/space,
-/area/space)
+/area/fiorina/oob)
 "s" = (
 /obj/structure/platform{
 	dir = 8;
@@ -124,7 +124,7 @@
 /obj/effect/spawner/random/engineering/metal,
 /obj/effect/forcefield,
 /turf/open/space,
-/area/space)
+/area/fiorina/oob)
 "v" = (
 /obj/structure/platform{
 	dir = 4
@@ -158,10 +158,6 @@
 /obj/effect/forcefield,
 /turf/open/floor/mainship_hull,
 /area/fiorina/oob)
-"z" = (
-/obj/effect/forcefield,
-/turf/open/space,
-/area/space)
 "A" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 8
@@ -179,7 +175,7 @@
 /obj/item/circuitboard/solar_tracker,
 /obj/effect/forcefield,
 /turf/open/space,
-/area/space)
+/area/fiorina/oob)
 "E" = (
 /obj/effect/spawner/random/misc/trash{
 	desc = "Wow, instant sand. They really have everything in space.";
@@ -190,7 +186,7 @@
 "F" = (
 /obj/effect/forcefield,
 /turf/open/space/basic,
-/area/space)
+/area/fiorina/oob)
 "G" = (
 /obj/effect/forcefield,
 /turf/open/space,
@@ -199,14 +195,14 @@
 /obj/structure/platform_decoration/metalplatform_deco,
 /obj/effect/forcefield,
 /turf/open/space/basic,
-/area/space)
+/area/fiorina/oob)
 "I" = (
 /obj/structure/platform_decoration/metalplatform_deco{
 	dir = 4
 	},
 /obj/effect/forcefield,
 /turf/open/space,
-/area/space)
+/area/fiorina/oob)
 "J" = (
 /obj/structure/platform,
 /obj/effect/forcefield,
@@ -252,7 +248,7 @@
 	},
 /obj/effect/forcefield,
 /turf/open/space/basic,
-/area/space)
+/area/fiorina/oob)
 "R" = (
 /obj/item/clothing/head/helmet/space{
 	pixel_x = -7;
@@ -260,7 +256,7 @@
 	},
 /obj/effect/forcefield,
 /turf/open/space/basic,
-/area/space)
+/area/fiorina/oob)
 "S" = (
 /turf/open/floor/plating/kutjevo,
 /area/fiorina/lz/near_lzI)
@@ -282,7 +278,7 @@
 	},
 /obj/effect/forcefield,
 /turf/open/space,
-/area/space)
+/area/fiorina/oob)
 "W" = (
 /obj/effect/spawner/random/engineering/tool{
 	pixel_x = -8;
@@ -293,7 +289,7 @@
 	},
 /obj/effect/forcefield,
 /turf/open/space,
-/area/space)
+/area/fiorina/oob)
 "X" = (
 /obj/structure/platform,
 /obj/structure/platform{
@@ -310,7 +306,7 @@
 /obj/item/book/manual/engineering_construction,
 /obj/effect/forcefield,
 /turf/open/space/basic,
-/area/space)
+/area/fiorina/oob)
 
 (1,1,1) = {"
 Y
@@ -327,10 +323,10 @@ a
 l
 F
 c
-z
+G
 t
-z
-z
+G
+G
 Y
 l
 "}
@@ -338,10 +334,10 @@ l
 l
 H
 W
-z
+G
 v
 u
-z
+G
 r
 l
 "}
@@ -353,7 +349,7 @@ B
 x
 s
 X
-z
+G
 l
 "}
 (5,1,1) = {"
@@ -364,7 +360,7 @@ o
 f
 o
 J
-z
+G
 l
 "}
 (6,1,1) = {"
@@ -375,16 +371,16 @@ L
 x
 L
 K
-z
+G
 l
 "}
 (7,1,1) = {"
 l
 Q
 D
-z
+G
 y
-z
+G
 u
 I
 Y
@@ -392,11 +388,11 @@ Y
 (8,1,1) = {"
 l
 R
-z
+G
 u
 U
 k
-z
+G
 V
 Y
 "}
@@ -429,8 +425,8 @@ S
 h
 h
 l
-z
-z
+G
+G
 l
 "}
 (12,1,1) = {"
@@ -441,7 +437,7 @@ S
 e
 l
 u
-z
+G
 l
 "}
 (13,1,1) = {"

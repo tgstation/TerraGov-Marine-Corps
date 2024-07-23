@@ -337,9 +337,6 @@
 	dir = 10
 	},
 /area/fiorina/station/central_ring)
-"wg" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/fiorina/station/central_ring)
 "xC" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/storage/surgical_tray,
@@ -469,10 +466,10 @@
 /area/fiorina/station/medbay)
 "Gl" = (
 /obj/structure/table/reinforced/prison,
-/obj/machinery/computer/security{
-	dir = 8
-	},
 /obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/machinery/computer/security{
 	dir = 4
 	},
 /obj/item/phone{
@@ -608,7 +605,7 @@
 	pixel_x = -10;
 	pixel_y = 13
 	},
-/obj/structure/largecrate/supply/supplies/flares,
+/obj/effect/spawner/random/misc/structure/supplycrate/secure_supplies,
 /turf/open/floor/prison/whitegreen{
 	dir = 10
 	},
@@ -619,7 +616,7 @@
 	pixel_x = 10;
 	pixel_y = -3
 	},
-/obj/structure/largecrate/supply/medicine/blood,
+/obj/effect/spawner/random/misc/structure/supplycrate/secure_supplies,
 /turf/open/floor/prison/whitegreen{
 	dir = 4
 	},
@@ -654,7 +651,7 @@
 	},
 /area/fiorina/station/medbay)
 "Pa" = (
-/obj/structure/largecrate/supply/weapons/pistols,
+/obj/effect/spawner/random/misc/structure/supplycrate/secure_supplies,
 /turf/open/floor/prison/whitegreen/full{
 	dir = 10
 	},
@@ -938,7 +935,7 @@ EB
 TV
 JL
 xC
-wg
+fv
 "}
 (7,1,1) = {"
 iK
