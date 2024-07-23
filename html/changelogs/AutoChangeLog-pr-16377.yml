@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed being unable to join valhalla or the larva queue if you ghosted as a xeno"
