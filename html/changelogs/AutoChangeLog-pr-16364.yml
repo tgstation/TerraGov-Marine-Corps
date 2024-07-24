@@ -1,5 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - balance: "CIC messages and comms console announcements use the same cooldown as HUD orders from Send Orders/AI alerts."
-  - balance: "CIC messages have a maximum length of 100."

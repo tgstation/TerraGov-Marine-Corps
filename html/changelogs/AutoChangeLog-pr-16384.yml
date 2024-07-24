@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Added EMP effects against tanks, blink drives and eshield modules. AT mines are now EMP immune"
