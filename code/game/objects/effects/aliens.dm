@@ -124,6 +124,7 @@
 	density = FALSE
 	opacity = FALSE
 	anchored = TRUE
+	base_icon_state = null
 	///the target atom for being melted
 	var/atom/acid_t
 	///the current tick on destruction stage, currently used to determine what messages to output
@@ -140,13 +141,18 @@
 /obj/effect/xenomorph/acid/Initialize(mapload, atom/target, melting_rate)
 	if(!istype(target))
 		return INITIALIZE_HINT_QDEL
-	. = ..()
 
 	var/obj/effect/xenomorph/acid/current_acid = target.get_self_acid()
 	if(current_acid)
-		ticks += current_acid.ticks
-		qdel(current_acid)
+		current_acid.acid_strength = acid_strength
+		current_acid.acid_damage = acid_damage
+		current_acid.strength_t = strength_t
+		current_acid.acid_melt_multiplier = melting_rate
+		current_acid.base_icon_state = icon_state
+		current_acid.update_appearance(UPDATE_ICON_STATE)
+		return INITIALIZE_HINT_QDEL
 
+	. = ..()
 	acid_melt_multiplier = melting_rate
 	acid_t = target
 	RegisterSignal(acid_t, COMSIG_ATOM_GET_SELF_ACID, PROC_REF(return_self_acid))
@@ -154,6 +160,7 @@
 	RegisterSignal(acid_t, COMSIG_QDELETING, PROC_REF(on_target_del))
 	RegisterSignal(acid_t, COMSIG_MOVABLE_MOVED, PROC_REF(on_target_move))
 	layer = acid_t.layer
+	base_icon_state = icon_state
 	update_appearance(UPDATE_ICON_STATE)
 	START_PROCESSING(SSslowprocess, src)
 
@@ -163,7 +170,7 @@
 	return ..()
 
 /obj/effect/xenomorph/acid/update_icon_state()
-	icon_state = initial(icon_state)
+	icon_state = base_icon_state
 	if(iswallturf(acid_t))
 		icon_state += "_wall"
 
@@ -210,13 +217,13 @@
 
 ///Sig handler to show this acid is attached to something
 /obj/effect/xenomorph/acid/proc/on_pickup(obj/item/item, mob/living/carbon/human/human_user)
-	human_user.visible_message(span_danger("Corrosive substances seethe all over [human_user] as it retrieves the acid-soaked [item]!"),
+	human_user.visible_message(span_danger("Corrosive substances seethe all over [human_user] as [human_user.p_they()] retrieves the acid-soaked [item]!"),
 	span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [item]!"))
 	playsound(human_user, SFX_ACID_HIT, 25)
 	human_user.emote("pain")
 	var/list/affected_limbs = list("l_hand", "r_hand", "l_arm", "r_arm")
 	var/limb_count = null
-	for(var/datum/limb/limb in human_user.limbs)
+	for(var/datum/limb/limb AS in human_user.limbs)
 		if(limb_count > 4)
 			break
 		if(!affected_limbs.Find(limb.name))
