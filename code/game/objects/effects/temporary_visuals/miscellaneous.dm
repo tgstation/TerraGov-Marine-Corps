@@ -125,6 +125,8 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	after_image.density = initial(density)
 	after_image.alpha = initial(alpha)
 	after_image.appearance_flags = RESET_COLOR|RESET_ALPHA|PASS_MOUSE
+	after_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	after_image.layer = BELOW_MOB_LAYER
 	after_image.setDir(owner.dir)
 	after_image.pixel_x = owner.pixel_x
 	after_image.pixel_y = owner.pixel_y

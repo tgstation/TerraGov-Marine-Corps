@@ -71,7 +71,7 @@
 /mob/living/simple_animal/corgi/exoticcorgi/Initialize(mapload)
 	. = ..()
 	var/newcolor = rgb(rand(0, 255), rand(0, 255), rand(0, 255))
-	add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
+	add_atom_colour(newcolor, FIXED_COLOR_PRIORITY)
 
 
 /mob/living/simple_animal/corgi/ian

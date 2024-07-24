@@ -136,7 +136,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 
 /datum/outfit/job/clf/standard/fanatic
 	head = /obj/item/clothing/head/headband/rambo
-	wear_suit = /obj/item/clothing/suit/storage/marine/boomvest
+	wear_suit = /obj/item/clothing/suit/storage/marine/boomvest/fast
 	belt = /obj/item/weapon/gun/shotgun/double/sawn
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
 

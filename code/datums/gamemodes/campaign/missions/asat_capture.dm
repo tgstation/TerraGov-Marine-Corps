@@ -64,11 +64,36 @@
 
 /datum/campaign_mission/capture_mission/asat/load_pre_mission_bonuses()
 	. = ..()
-	spawn_mech(hostile_faction, 0, 0, 5)
-	spawn_mech(starting_faction, 0, 1, 1)
-
 	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
 	attacking_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas/instant)
+
+	var/tanks_to_spawn = 0
+	var/mechs_to_spawn = 0
+	var/current_pop = length(GLOB.clients)
+	switch(current_pop)
+		if(0 to 59)
+			tanks_to_spawn = 0
+		if(60 to 75)
+			tanks_to_spawn = 1
+		if(76 to 90)
+			tanks_to_spawn = 2
+		else
+			tanks_to_spawn = 3
+
+	switch(current_pop)
+		if(0 to 39)
+			mechs_to_spawn = 0
+		if(40 to 49)
+			mechs_to_spawn = 2
+		if(50 to 79)
+			mechs_to_spawn = 3
+		else
+			mechs_to_spawn = 4
+
+	spawn_tank(starting_faction, tanks_to_spawn)
+	spawn_tank(hostile_faction, tanks_to_spawn)
+	spawn_mech(hostile_faction, 0, 0, mechs_to_spawn)
+	spawn_mech(starting_faction, 0, 0, max(0, mechs_to_spawn - 1))
 
 /datum/campaign_mission/capture_mission/asat/load_objective_description()
 	starting_faction_objective_description = "Major Victory:Capture all [objectives_total] ASAT systems.[min_capture_amount ? " Minor Victory: Capture at least [min_capture_amount] ASAT systems." : ""]"

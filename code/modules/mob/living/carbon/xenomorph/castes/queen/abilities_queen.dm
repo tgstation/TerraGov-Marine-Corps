@@ -383,6 +383,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM,
 	)
+	use_state_flags = ABILITY_USE_LYING
 
 
 /datum/action/ability/xeno_action/toggle_queen_zoom/action_activate()
@@ -505,6 +506,8 @@
 	)
 	heal_range = HIVELORD_HEAL_RANGE
 	target_flags = ABILITY_XENO_TARGET|ABILITY_HUMAN_TARGET
+	/// Should this ability be usable on moving targets and use an alternative flavortext?
+	var/hivemind_heal = FALSE
 
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/use_ability(mob/living/target)
 	if(!ismob(target))
@@ -514,6 +517,16 @@
 	if(!do_mob(owner, target, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
 	target.visible_message(span_xenowarning("\the [owner] vomits healing resin over [target], mending their wounds!"))
+	if(!can_use_ability(target, TRUE))
+		return FALSE
+
+	if(!hivemind_heal)
+		target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
+	else
+		owner.visible_message(span_xenowarning("A faint psychic aura is suddenly emitted from \the [owner]!"), \
+		span_xenowarning("We cure [target] with the power of our mind!"))
+		target.visible_message(span_xenowarning("[target] lightly shimmers in a chill light."), \
+		span_xenowarning("We feel a soothing chill."))
 	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
