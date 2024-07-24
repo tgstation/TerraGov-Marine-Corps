@@ -63,6 +63,8 @@
 	var/proximity_time = 0.75 SECONDS
 	///Used for tracking the timer ID for facehugger impregnation
 	var/timerid = null
+	///Used to make sure you can only reset the facehugger removal process once.
+	var/timerreset = FALSE
 
 
 /obj/item/clothing/mask/facehugger/Initialize(mapload, input_hivenumber, input_source)
@@ -456,7 +458,7 @@
 			return FALSE
 
 	if(on_fire)
-		if(fire_stacks >= 6)
+		if(fire_stacks >= FLARE_FIRE_STACKS)
 			return FALSE
 
 	if(check_mask)
@@ -576,11 +578,13 @@
 	timerid = addtimer(CALLBACK(src, PROC_REF(Impregnate), user), IMPREGNATION_TIME, TIMER_STOPPABLE)
 	RegisterSignal(src, COMSIG_TRY_STRIP, PROC_REF(on_strip))
 
+// This is used to reset the impregnation timer on the facehugger once if someone tries to strip it and the facehugger doesn't have enough time to finish
 /obj/item/clothing/mask/facehugger/proc/on_strip(I, M)
 	SIGNAL_HANDLER
-	if(timeleft(timerid) <= HUMAN_STRIP_DELAY)
+	if(timeleft(timerid) <= HUMAN_STRIP_DELAY && !timerreset)
 		deltimer(timerid)
 		timerid = addtimer(CALLBACK(src, PROC_REF(Impregnate), M), HUMAN_STRIP_DELAY + 1, TIMER_STOPPABLE)
+		timerreset = TRUE
 
 /obj/item/clothing/mask/facehugger/proc/unreg_timer()
 	UnregisterSignal(src, COMSIG_TRY_STRIP)
