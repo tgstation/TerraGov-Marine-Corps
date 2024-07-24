@@ -7,10 +7,10 @@
 @use 'sass:meta';
 
 @use '../colors.scss' with (
-  $primary: #24dbe8,
+  $primary: #1a949c,
   $label: #24dbe8,
-  $good: #24dbe8,
-  $average: #24dbe8
+  $good: #1fb7c2,
+  $average: #c08d1e
 );
 @use '../base.scss' with (
   $color-bg: #121b1b,
@@ -59,13 +59,12 @@
 
   .Layout__content {
     background-image: repeating-linear-gradient(
-        0deg,
-        rgba(black, 0.15),
-        rgba(black, 0.15) 1px,
-        transparent 2.5px,
-        transparent 5px
-      ),
-      radial-gradient(rgba(0, 90, 97, 0.75), black 120%);
+      0deg,
+      rgba(black, 0.15),
+      rgba(black, 0.15) 1px,
+      transparent 2.5px,
+      transparent 5px
+    );
     background-size: 100%, 100%;
     background-position: center, center;
   }
