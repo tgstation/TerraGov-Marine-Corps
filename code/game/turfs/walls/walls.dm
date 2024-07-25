@@ -192,6 +192,9 @@
 
 /turf/closed/wall/do_acid_melt()
 	. = ..()
+	if(acided_hole)
+		ScrapeAway()
+		return
 	new /obj/effect/acid_hole(src)
 
 ///Applies damage to the wall
