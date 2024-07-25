@@ -1000,7 +1000,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return TRUE
 	var/safety = user.get_eye_protection()
 	var/mob/living/carbon/human/H = user
-	var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+	var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 	switch(safety)
 		if(1)
 			E.take_damage(rand(1, 2), TRUE)

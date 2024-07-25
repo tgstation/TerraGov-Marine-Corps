@@ -13,6 +13,7 @@
 #define CALIBER_50AE ".50 AE"
 #define CALIBER_41RIM ".41 Rimfire" //Derringer
 #define CALIBER_70MANKEY ".70 Mankey" //Don't ask
+#define CALIBER_41AE ".41 AE"
 
 // Revolvers
 #define CALIBER_44 ".44 Magnum"

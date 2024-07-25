@@ -94,6 +94,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/recycle_points_denied = 0
 	var/huggers_created = 0
 	var/impregnations = 0
+	var/items_snatched = 0
 
 	//Close air support
 	var/cas_cannon_shots = 0
@@ -229,6 +230,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Performed [miner_repairs_performed] miner repair\s."
 	if(apcs_repaired)
 		support_stats += "Repaired [apcs_repaired] APC\s."
+	if(items_snatched)
+		support_stats += "Snatched [items_snatched] item\s."
 
 	if(generator_sabotages_performed)
 		support_stats += "Sabotaged [generator_sabotages_performed] generator\s."
