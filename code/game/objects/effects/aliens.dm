@@ -181,6 +181,7 @@
 	ticks += delta_time * (acid_strength * acid_melt_multiplier)
 	if(ticks >= strength_t)
 		acid_t.do_acid_melt()
+		qdel(src)
 		return
 	switch(strength_t - ticks)
 		if(0 to 1)
