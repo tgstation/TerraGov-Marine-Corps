@@ -242,7 +242,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_EXPERT
 	powerloader = SKILL_POWERLOADER_MASTER
 	police = SKILL_POLICE_FLASH
-	smgs = SKILL_RIFLES_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
 	melee_weapons = SKILL_MELEE_TRAINED
 	stamina = SKILL_STAMINA_TRAINED
 
