@@ -234,14 +234,17 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_NOVICE
 
 /datum/skills/civilian/survivor/master
-	name = "Survivor"
-	firearms = SKILL_FIREARMS_DEFAULT
+	name = "Overpowered Survivor"
+	firearms = SKILL_FIREARMS_TRAINED
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
 	construction = SKILL_CONSTRUCTION_EXPERT
 	engineer = SKILL_ENGINEER_EXPERT
 	powerloader = SKILL_POWERLOADER_MASTER
 	police = SKILL_POLICE_FLASH
+	smgs = SKILL_RIFLES_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/civilian/survivor/doctor
 	name = "Survivor Doctor"
@@ -263,6 +266,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/civilian/survivor/miner
 	name = "Survivor Miner"
 	powerloader = SKILL_POWERLOADER_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
 
 /datum/skills/civilian/survivor/atmos
 	name = "Survivor Atmos Tech"
