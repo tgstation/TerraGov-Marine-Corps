@@ -145,6 +145,17 @@
 /particles/tank_wreck_smoke/apc
 	position = list(87, 60, 0)
 
+/obj/structure/campaign_objective/destruction_objective/mlrs/new_tank
+	name = "\improper M34A2 Longstreet Light Tank"
+	desc = "A giant piece of armor with a big gun, good for blowing stuff up."
+	icon = 'icons/obj/structures/campaign/campaign_bigger.dmi'
+	icon_state = "tank"
+	pixel_y = -5
+	smoke_type = /particles/tank_wreck_smoke/new_tank
+
+/particles/tank_wreck_smoke/new_tank
+	position = list(48, 62, 0)
+
 //Supply depot objectives
 /obj/structure/campaign_objective/destruction_objective/supply_objective
 	name = "SUPPLY_OBJECTIVE"
