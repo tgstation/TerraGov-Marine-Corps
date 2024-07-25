@@ -317,3 +317,7 @@
       as a xeno
   jonash07:
   - bugfix: fixed jaeger mk1 helmet duplicating in the armor vendor
+2024-07-25:
+  Lumipharon:
+  - bugfix: Fixed deploy points and lighting not working correctly in Combat Patrol
+      and Sensor Capture
