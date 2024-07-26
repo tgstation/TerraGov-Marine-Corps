@@ -23,6 +23,8 @@
 	var/list/obj/item/cell/stored_cells
 	///Like the contents list but stored in this manner so it doesn't have to be rebuilt unless an item is added/removed
 	var/list/stored_item_references
+	///How many cells or devices can be stored in this charger; exists to prevent having like 1000 items and causing performance issues
+	var/storage_capacity = 10
 	///Nearest available APC to draw power from; null if there isn't one
 	var/obj/machinery/power/apc/registered_apc
 
@@ -34,7 +36,7 @@
 	. = ..()
 	. += "Charge: [span_bold("[PERCENT(machine_current_charge/machine_max_charge)]%")]"
 	. += "Integrity: [span_bold("[PERCENT(obj_integrity/max_integrity)]%")]"
-	. += "Has [span_bold("[LAZYLEN(stored_cells)]")] objects stored."
+	. += "Storage Rack: [span_bold("[LAZYLEN(stored_cells)]")]/[span_bold(num2text(storage_capacity))]"
 
 /obj/machinery/power/field_charger/update_icon_state()
 	icon_state = initial(icon_state)
@@ -125,6 +127,10 @@
 		return
 
 	if(iscell(I))
+		if(LAZYLEN(stored_cells) >= storage_capacity)
+			balloon_alert(user, "Storage full")
+			return
+
 		if(istype(I, /obj/item/cell/night_vision_battery))
 			balloon_alert(user, "Not rechargeable")
 			return
@@ -133,9 +139,14 @@
 			return
 
 		add_cell_to_storage(I)
+		RegisterSignal(I, COMSIG_QDELETING, PROC_REF(on_stored_item_deletion))
 		return TRUE
 
 	if(isgun(I))
+		if(LAZYLEN(stored_cells) >= storage_capacity)
+			balloon_alert(user, "Storage full")
+			return
+
 		var/obj/item/weapon/gun/gun = I
 		if(!length(gun.chamber_items))
 			balloon_alert(user, "No power cell inside")
@@ -151,6 +162,7 @@
 			return
 
 		add_cell_to_storage(magazine)
+		RegisterSignal(gun, COMSIG_QDELETING, PROC_REF(on_stored_item_deletion))
 		return TRUE
 
 ///Use whenever adding a cell to the charger to ensure things are properly updated
@@ -158,6 +170,11 @@
 	LAZYADD(stored_cells, cell)
 	build_ui_list()
 	start_processing()
+
+///Called when a stored item is deleted to prevent runtimes and hard deletions
+/obj/machinery/power/field_charger/proc/on_stored_item_deletion(obj/item/deleted_item)
+	SIGNAL_HANDLER
+	on_stored_item_removal(deleted_item)
 
 /obj/machinery/power/field_charger/wrench_act(mob/living/user, obj/item/I)
 	setAnchored(!anchored)
@@ -222,34 +239,34 @@
 		eject_item(params["eject"], usr)
 		. = TRUE
 
-///Handles dispensing items from the charger; reference_to_item MUST be a reference, user is optional
+///Handles dispensing items from the charger; reference_to_item MUST be a reference string, user is optional
 /obj/machinery/power/field_charger/proc/eject_item(reference_to_item, mob/user)
-	//Look for the item in the stored references list; only way to convert from a reference back to an item
-	var/atom/movable/item
-	for(var/list/list AS in stored_item_references)
-		var/atom/item_entry = list["ref"]
-		if(!item_entry)	//Maybe the item got deleted? If so, dispose of that entry
-			LAZYREMOVE(stored_item_references, list)
-			continue
-
-		if(item_entry == reference_to_item)
-			item = locate(item_entry) in contents
-
+	//Only way to convert from a reference back to an item; locate() takes a ref string and searches for it globally
+	var/atom/movable/item = locate(reference_to_item)
 	if(!item)	//If perhaps the item was deleted or something
 		if(user)
 			to_chat(user, span_warning("ERROR: Vended item not found!"))
 		return
 
-	var/cell = iscell(item) ? item : locate(/obj/item/cell) in item.contents
-	if(cell)	//If this item managed to have it's cell disappear while inside... /shrug, just eject it anyways
-		LAZYREMOVE(stored_cells, cell)
-
+	//Note: Exited() handles removing the cell from the stored_cells list
 	if(user)
 		user.put_in_hands(item)
 	else
 		item.forceMove(get_turf(src))
 
-///Rebuilds the list of references to items inside this charger
+/**
+ * Rebuilds the list of references to items inside this charger
+ *
+ * Example of how the list is structured (it is a normal list composed of associative lists):
+ * - 1
+ * - - name = "cell"
+ * - - charge = 100
+ * - - ref = "random_ref_string"
+ * - 2
+ * - - name = "laser gun"
+ * - - charge = 50
+ * - - ref = "another_random_ref_string"
+ */
 /obj/machinery/power/field_charger/proc/build_ui_list()
 	LAZYNULL(stored_item_references)
 	//Not using AS in because only items should be added to this list, not effects or other things
@@ -257,12 +274,28 @@
 		//To make a list in a list, need to do master_list += list(list(value1, value2)) instead of master_list += list(value1, value2)
 		LAZYADD(stored_item_references, list(list("name" = item.name, "charge" = iscell(item) ? item : locate(/obj/item/cell) in item.contents, "ref" = REF(item))))
 
-//Rebuild the UI list and stop processing if there are no items in the charger every time an item is removed from this machine
-/obj/machinery/power/field_charger/Exited(atom/movable/gone, direction)
-	. = ..()
-	build_ui_list()
+///Handle clearing lists and stopping processing when a cell or device is removed from the charger
+/obj/machinery/power/field_charger/proc/on_stored_item_removal(obj/item/removed_item)
+	UnregisterSignal(removed_item, COMSIG_QDELETING)
+	//Check if the item was a cell or a device that contains a cell to remove it from the stored_cells list
+	var/cell = iscell(removed_item) ? removed_item : locate(/obj/item/cell) in removed_item.contents
+	if(cell)
+		LAZYREMOVE(stored_cells, cell)
+
 	if(!LAZYLEN(stored_cells))
 		stop_processing()
+		//No need to rebuild the list if there are no cells left, just clear it and return
+		LAZYNULL(stored_item_references)
+		return
+
+	build_ui_list()
+
+/obj/machinery/power/field_charger/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(!isitem(gone))
+		return
+
+	on_stored_item_removal(gone)
 
 /obj/machinery/power/field_charger/process()
 	if(!is_operational())
