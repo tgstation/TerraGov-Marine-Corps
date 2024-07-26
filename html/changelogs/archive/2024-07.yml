@@ -321,3 +321,7 @@
   Lumipharon:
   - bugfix: Fixed deploy points and lighting not working correctly in Combat Patrol
       and Sensor Capture
+2024-07-26:
+  Lumipharon:
+  - balance: 'Campaign: TGMC Raiding base no longer allows the beacon to be planted
+      in the captain''s office'
