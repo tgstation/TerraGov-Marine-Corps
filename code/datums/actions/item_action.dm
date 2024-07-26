@@ -66,6 +66,14 @@
 		return
 	set_toggle(!toggled)
 
+/datum/action/item_action/toggle/give_action(mob/M)
+	. = ..()
+	update_button_icon()
+
+/datum/action/item_action/toggle/remove_action(mob/M)
+	deselect()
+	return ..()
+
 /datum/action/item_action/toggle/suit_toggle
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_KB_SUITLIGHT)
 
