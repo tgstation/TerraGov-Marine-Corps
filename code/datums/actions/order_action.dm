@@ -116,6 +116,9 @@
 	)
 
 /datum/action/innate/order/attack_order/personal/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/order/attack_order/personal/action_activate()
@@ -137,6 +140,9 @@
 	)
 
 /datum/action/innate/order/defend_order/personal/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/order/defend_order/personal/action_activate()
@@ -157,6 +163,9 @@
 	)
 
 /datum/action/innate/order/retreat_order/personal/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/order/retreat_order/personal/action_activate()
@@ -178,6 +187,9 @@
 	)
 
 /datum/action/innate/order/rally_order/personal/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/order/rally_order/personal/action_activate()

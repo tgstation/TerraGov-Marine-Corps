@@ -26,6 +26,8 @@ KEYBINDINGS
 	var/action_type = ACTION_CLICK
 	///Used for keeping track of the addition of the selected/active frames
 	var/toggled = FALSE
+	///Is this action explicitly hidden from the owner
+	var/hidden = FALSE
 
 /datum/action/New(Target)
 	target = Target
@@ -68,7 +70,7 @@ KEYBINDINGS
 	qdel(src)
 
 /datum/action/proc/should_show()
-	return TRUE
+	return hidden ? FALSE : TRUE
 
 ///Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
 /datum/action/proc/set_toggle(value)

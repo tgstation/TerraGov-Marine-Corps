@@ -1092,16 +1092,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(orders_visible)
 		orders_visible = FALSE
 		action_icon_state = "show_order"
-		for(var/datum/action/skill/path in owner.actions)
-			if(istype(path, /datum/action/skill/issue_order))
-				path.remove_action(H)
+		for(var/datum/action/skill/issue_order/action in owner.actions)
+			action.hidden = TRUE
 	else
 		orders_visible = TRUE
 		action_icon_state = "hide_order"
-		var/list/subtypeactions = subtypesof(/datum/action/skill/issue_order)
-		for(var/path in subtypeactions)
-			var/datum/action/skill/issue_order/A = new path()
-			A.give_action(H)
+		for(var/datum/action/skill/issue_order/action in owner.actions)
+			action.hidden = FALSE
+	owner.update_action_buttons()
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_by_id(id)

@@ -644,12 +644,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_RECOVERY,
 	)
+	hidden = TRUE
 
 /datum/action/ability/xeno_action/pheromones/emit_recovery/action_activate()
 	apply_pheros(AURA_XENO_RECOVERY)
-
-/datum/action/ability/xeno_action/pheromones/emit_recovery/should_show()
-	return FALSE
 
 /datum/action/ability/xeno_action/pheromones/emit_warding
 	name = "Toggle Warding Pheromones"
@@ -657,12 +655,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_WARDING,
 	)
+	hidden = TRUE
 
 /datum/action/ability/xeno_action/pheromones/emit_warding/action_activate()
 	apply_pheros(AURA_XENO_WARDING)
-
-/datum/action/ability/xeno_action/pheromones/emit_warding/should_show()
-	return FALSE
 
 /datum/action/ability/xeno_action/pheromones/emit_frenzy
 	name = "Toggle Frenzy Pheromones"
@@ -670,13 +666,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_FRENZY,
 	)
+	hidden = TRUE
 
 /datum/action/ability/xeno_action/pheromones/emit_frenzy/action_activate()
 	apply_pheros(AURA_XENO_FRENZY)
-
-/datum/action/ability/xeno_action/pheromones/emit_frenzy/should_show()
-	return FALSE
-
 
 /datum/action/ability/activable/xeno/transfer_plasma
 	name = "Transfer Plasma"
@@ -1508,9 +1501,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU,
 	)
 	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED
-
-/datum/action/ability/xeno_action/blessing_menu/should_show()
-	return FALSE // Blessings meni now done through hive status UI!
+	hidden = TRUE
 
 /datum/action/ability/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner

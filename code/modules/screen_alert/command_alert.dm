@@ -28,6 +28,9 @@
 	var/skill_min = SKILL_LEAD_TRAINED
 
 /datum/action/innate/message_squad/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/message_squad/can_use_action()
