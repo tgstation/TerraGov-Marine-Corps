@@ -741,6 +741,7 @@
 /area/ice_colony/surface/engineering)
 "agH" = (
 /obj/structure/table,
+/obj/item/storage/firstaid/fire,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "agI" = (
@@ -1923,12 +1924,6 @@
 /area/ice_colony/surface/dorms)
 "aoi" = (
 /obj/structure/closet/crate,
-/obj/item/ammo_magazine/pistol/holdout,
-/obj/item/ammo_magazine/pistol/holdout,
-/obj/item/ammo_magazine/pistol/holdout,
-/obj/item/ammo_magazine/pistol/holdout,
-/obj/item/ammo_magazine/pistol/holdout,
-/obj/item/ammo_magazine/pistol/holdout,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -1973,6 +1968,7 @@
 /turf/closed/wall,
 /area/ice_colony/surface/clinic/treatment)
 "aox" = (
+/obj/item/clothing/suit/armor/bulletproof,
 /turf/open/floor/tile/dark/blue2{
 	dir = 1
 	},
@@ -2184,6 +2180,11 @@
 /area/ice_colony/surface/mining)
 "apG" = (
 /obj/structure/rack,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
+/obj/item/ammo_magazine/rifle/mpi_km,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -5829,7 +5830,8 @@
 /area/ice_colony/surface/hangar/checkpoint)
 "aKb" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/revolver/cmb,
+/obj/item/clothing/head/securitycap,
+/obj/item/clothing/head/securitycap,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -6591,7 +6593,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/ammo_magazine/revolver/cmb,
+/obj/item/storage/firstaid,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -7812,6 +7814,7 @@
 "aWl" = (
 /obj/effect/spawner/random/misc/structure/cabinet,
 /obj/item/clothing/under/color/black,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "aWo" = (
@@ -11017,6 +11020,7 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
+/obj/item/stack/medical/heal_pack/gauze,
 /turf/open/floor/tile/dark/purple2{
 	dir = 8
 	},
@@ -11513,6 +11517,11 @@
 /area/ice_colony/exterior/surface/valley/southwest)
 "bve" = (
 /obj/structure/closet/secure_closet/security,
+/obj/item/weapon/gun/rifle/m412,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
 /turf/open/floor/tile/dark/red2{
 	dir = 10
 	},
@@ -13208,6 +13217,11 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/closet/secure_closet/security,
 /obj/structure/cable,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/weapon/gun/rifle/m412,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -15357,11 +15371,8 @@
 /area/ice_colony/underground/security/armory)
 "bOd" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/incendiary,
-/obj/item/explosive/grenade/incendiary{
-	pixel_x = -4;
-	pixel_y = -2
-	},
+/obj/item/armor_module/storage/uniform/webbing,
+/obj/item/armor_module/storage/uniform/webbing,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/security/armory)
 "bOe" = (
@@ -15476,11 +15487,9 @@
 /area/ice_colony/underground/responsehangar)
 "bOC" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/pistol/holdout,
-/obj/item/weapon/gun/pistol/holdout{
-	pixel_x = 6;
-	pixel_y = -4
-	},
+/obj/effect/spawner/random/weaponry/attachments,
+/obj/effect/spawner/random/weaponry/attachments,
+/obj/effect/spawner/random/weaponry/attachments,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -15683,24 +15692,22 @@
 /area/ice_colony/underground/crew/leisure)
 "bPq" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/pistol/holdout,
-/obj/item/ammo_magazine/pistol/holdout{
-	pixel_x = 6;
-	pixel_y = -4
-	},
-/obj/item/ammo_magazine/pistol/holdout,
-/obj/item/ammo_magazine/pistol/holdout,
+/obj/item/weapon/gun/rifle/m16,
+/obj/item/weapon/gun/rifle/m16,
 /turf/open/floor/tile/dark/red2,
 /area/ice_colony/underground/security/armory)
 "bPr" = (
 /obj/structure/rack,
-/obj/item/ammo_magazine/pistol/holdout,
-/obj/item/ammo_magazine/pistol/holdout,
-/obj/item/ammo_magazine/pistol/holdout{
-	pixel_x = 6;
-	pixel_y = -4
-	},
-/obj/item/ammo_magazine/pistol/holdout,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/tile/dark/red2{
 	dir = 6
 	},
@@ -17469,11 +17476,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/gun/pistol/holdout,
-/obj/item/weapon/gun/pistol/holdout{
-	pixel_x = 6;
-	pixel_y = -4
-	},
+/obj/item/belt_harness,
+/obj/item/belt_harness,
+/obj/item/belt_harness,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -17670,6 +17675,10 @@
 	dir = 10
 	},
 /area/ice_colony/underground/medical/lobby/garbledradio)
+"chq" = (
+/obj/item/clothing/suit/armor/bulletproof,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
 "chG" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark2,
@@ -18928,22 +18937,7 @@
 /area/ice_colony/underground/hallway/south_east)
 "dVN" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/pistol/holdout{
-	pixel_x = 2;
-	pixel_y = 8
-	},
-/obj/effect/spawner/random/weaponry/gun/sidearms{
-	pixel_x = 7;
-	pixel_y = 9
-	},
-/obj/effect/spawner/random_set/sidearms{
-	pixel_x = 6;
-	pixel_y = 3
-	},
-/obj/effect/spawner/random/weaponry/gun/sidearms{
-	pixel_x = 6;
-	pixel_y = -2
-	},
+/obj/item/weapon/gun/rifle/mpi_km/black,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
 	},
@@ -19069,12 +19063,9 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/maintenance/east)
 "eig" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/weaponry/gun/shotgun,
-/turf/open/floor/tile/dark,
-/area/ice_colony/surface/hangar/checkpoint)
+/obj/item/storage/belt/marine/som,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/dorms)
 "eiD" = (
 /obj/structure/disposalpipe/segment/corner{
 	dir = 1
@@ -20529,6 +20520,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/ice_colony/surface/command)
+"gtr" = (
+/obj/item/stack/medical/heal_pack/gauze,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/south/excavation)
 "guK" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark2,
@@ -23087,7 +23082,6 @@
 "kdn" = (
 /obj/structure/table/wood,
 /obj/item/weapon/gun/revolver/cmb,
-/obj/item/ammo_magazine/revolver/cmb,
 /turf/open/floor/wood,
 /area/ice_colony/underground/security/marshal)
 "kea" = (
@@ -23663,7 +23657,8 @@
 /area/ice_colony/surface/garage/three)
 "kPv" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/item/weapon/gun/smg/skorpion,
+/obj/item/weapon/gun/smg/skorpion,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "kPw" = (
@@ -24539,6 +24534,11 @@
 /area/ice_colony/underground/command/checkpoint)
 "lWb" = (
 /obj/structure/closet/secure_closet/security,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/weapon/gun/rifle/m412,
 /turf/open/floor/tile/dark/red2{
 	dir = 4
 	},
@@ -25149,6 +25149,13 @@
 	dir = 8
 	},
 /area/ice_colony/underground/medical/treatment/garbledradio)
+"mNZ" = (
+/obj/structure/rack,
+/obj/item/weapon/twohanded/sledgehammer,
+/turf/open/floor/tile/dark/blue2{
+	dir = 8
+	},
+/area/ice_colony/underground/hallway/south_east/garbledradio)
 "mOg" = (
 /obj/effect/spawner/random/engineering/shovel,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -25334,6 +25341,13 @@
 	dir = 5
 	},
 /area/ice_colony/surface/command)
+"nbj" = (
+/obj/structure/rack,
+/obj/item/storage/holster/belt/pistol/m4a3/full,
+/turf/open/floor/tile/vault{
+	dir = 8
+	},
+/area/ice_colony/surface/hangar/checkpoint)
 "nbp" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -26275,6 +26289,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/ice_colony/underground/engineering/substation)
+"okb" = (
+/obj/item/explosive/plastique,
+/turf/open/floor/tile/dark2,
+/area/ice_colony/surface/research/tech_storage)
 "oku" = (
 /obj/effect/spawner/random/misc/structure/closet/tool,
 /turf/open/floor/plating/icefloor,
@@ -27094,7 +27112,14 @@
 "prF" = (
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/item/ammo_magazine/smg/skorpion,
+/obj/item/ammo_magazine/smg/skorpion,
+/obj/item/ammo_magazine/smg/skorpion,
+/obj/item/ammo_magazine/smg/skorpion,
+/obj/item/ammo_magazine/smg/skorpion,
+/obj/item/ammo_magazine/smg/skorpion,
+/obj/item/ammo_magazine/smg/skorpion,
+/obj/item/ammo_magazine/smg/skorpion,
 /turf/open/floor/tile/dark,
 /area/ice_colony/surface/hangar/checkpoint)
 "psJ" = (
@@ -29286,6 +29311,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/clearing/north)
+"sgj" = (
+/obj/structure/closet/secure_closet/guncabinet/m41aMK1,
+/turf/open/floor/tile/dark/blue2{
+	dir = 1
+	},
+/area/ice_colony/surface/command)
 "sgF" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
@@ -29895,7 +29926,8 @@
 /area/ice_colony/exterior/surface/clearing/north)
 "sVp" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/suit/armor/patrol,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},
@@ -31081,7 +31113,6 @@
 /area/ice_colony/underground/hallway/south_east)
 "uwf" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
 /obj/item/armor_module/storage/uniform/black_vest,
@@ -32989,6 +33020,12 @@
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/dorms)
+"wUf" = (
+/obj/effect/spawner/random/misc/structure/cabinet,
+/obj/item/clothing/under/colonist,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/turf/open/floor/wood,
+/area/ice_colony/surface/dorms)
 "wVV" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/misc/handcuffs,
@@ -33360,6 +33397,10 @@
 	dir = 10
 	},
 /area/ice_colony/underground/hangar)
+"xtF" = (
+/obj/item/weapon/twohanded/sledgehammer,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/ice_colony/exterior/surface/valley/south/excavation)
 "xtH" = (
 /obj/effect/spawner/random/misc/structure/closet/tool,
 /turf/open/floor/tile/dark/yellow2{
@@ -44933,7 +44974,7 @@ uFO
 aUW
 rss
 rXF
-aVP
+okb
 aYR
 aUZ
 ovB
@@ -52288,7 +52329,7 @@ arN
 arF
 arQ
 fox
-evo
+wUf
 arE
 evo
 fox
@@ -53239,7 +53280,7 @@ olG
 wul
 wul
 wRL
-ltO
+mNZ
 ltO
 hwP
 alx
@@ -53571,7 +53612,7 @@ xCS
 arF
 arQ
 arQ
-evo
+wUf
 axl
 ayD
 azf
@@ -54183,7 +54224,7 @@ wkf
 iyB
 wkf
 arD
-apZ
+eig
 apZ
 npZ
 qIB
@@ -54396,7 +54437,7 @@ wkf
 jRj
 arD
 apZ
-apZ
+chq
 qgu
 apZ
 apZ
@@ -56327,7 +56368,7 @@ aqS
 arF
 arQ
 fox
-evo
+wUf
 axQ
 ayR
 mAj
@@ -59167,7 +59208,7 @@ bSv
 bSv
 brz
 ctm
-ctm
+gtr
 ctm
 njX
 uEq
@@ -59803,7 +59844,7 @@ bEQ
 bSv
 ctm
 ctm
-ctm
+xtF
 ctm
 njX
 uEq
@@ -65262,7 +65303,7 @@ qFy
 aKh
 sVp
 fEn
-eig
+prF
 sbk
 bQZ
 sbk
@@ -65420,7 +65461,7 @@ xCs
 amO
 nsF
 atV
-aoB
+sgj
 apo
 dvh
 aId
@@ -65684,7 +65725,7 @@ oNA
 uSg
 qFy
 aKh
-sVp
+nbj
 wXf
 pjq
 bUZ

@@ -401,6 +401,12 @@
 	dir = 8
 	},
 /area/outpost/yard/south)
+"ci" = (
+/obj/item/deployable_floodlight,
+/turf/open/floor/tile/dark/brown2{
+	dir = 10
+	},
+/area/outpost/cargo)
 "ck" = (
 /obj/structure/bed,
 /turf/open/floor/tile/dark/red2{
@@ -1739,7 +1745,8 @@
 /area/outpost/hallway/south_east)
 "iz" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/revolver/cmb,
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/suit/armor/patrol,
 /turf/open/floor/tile/dark/red2{
 	dir = 1
 	},
@@ -3260,6 +3267,11 @@
 	dir = 4
 	},
 /area/outpost/science/xenobiology)
+"pr" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/metal/medium_stack,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo/engineering)
 "ps" = (
 /obj/machinery/light{
 	dir = 8
@@ -4847,6 +4859,12 @@
 	dir = 4
 	},
 /area/outpost/hallway/northern)
+"wI" = (
+/obj/item/stack/sheet/metal/medium_stack,
+/turf/open/floor/tile/dark/brown2{
+	dir = 10
+	},
+/area/outpost/cargo)
 "wJ" = (
 /obj/structure/closet/toolcloset,
 /obj/effect/decal/cleanable/dirt,
@@ -4911,8 +4929,8 @@
 /area/outpost/arrivals)
 "wW" = (
 /obj/structure/rack,
-/obj/item/clothing/suit/armor/riot,
-/obj/item/clothing/suit/armor/riot,
+/obj/item/clothing/head/helmet/riot,
+/obj/item/clothing/head/helmet/riot,
 /turf/open/floor/tile/dark/red2{
 	dir = 8
 	},
@@ -5386,6 +5404,11 @@
 	dir = 4
 	},
 /area/outpost/medbay/chemistry)
+"zf" = (
+/obj/structure/rack,
+/obj/item/deployable_floodlight,
+/turf/open/floor/tile/dark2,
+/area/outpost/cargo/engineering)
 "zg" = (
 /obj/structure/table,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
@@ -5595,7 +5618,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/item/ammo_magazine/revolver/cmb,
+/obj/effect/spawner/random/weaponry/attachments,
+/obj/effect/spawner/random/weaponry/attachments,
+/obj/effect/spawner/random/weaponry/attachments,
 /turf/open/floor/tile/dark/red2{
 	dir = 5
 	},
@@ -9131,6 +9156,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/central)
+"Rj" = (
+/obj/item/stack/sheet/metal/small_stack,
+/turf/open/floor/tile/dark/brown2{
+	dir = 5
+	},
+/area/outpost/cargo)
 "Rk" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -18405,7 +18436,7 @@ pw
 Jc
 CF
 vB
-tY
+wI
 Jc
 Oo
 em
@@ -19200,7 +19231,7 @@ vB
 tY
 Jc
 jY
-tY
+ci
 Jc
 Xd
 rK
@@ -19331,7 +19362,7 @@ pf
 Qj
 AK
 Jc
-Tw
+Rj
 OL
 Jc
 zC
@@ -26859,7 +26890,7 @@ nV
 Zm
 Bw
 Zm
-Mk
+pr
 ys
 ys
 ZQ
@@ -27255,7 +27286,7 @@ PA
 Cf
 Lz
 OE
-Mk
+zf
 ys
 Ya
 nA

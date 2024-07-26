@@ -1403,15 +1403,12 @@
 /area/magmoor/hydroponics/south)
 "aYh" = (
 /obj/structure/rack,
-/obj/item/weapon/gun/revolver/cmb,
-/obj/item/weapon/gun/revolver/cmb{
-	pixel_x = 6;
-	pixel_y = -4
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/cobweb,
+/obj/item/weapon/gun/smg/uzi,
+/obj/item/weapon/gun/smg/uzi,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},
@@ -4613,6 +4610,8 @@
 "dhS" = (
 /obj/structure/table/wood,
 /obj/item/ammo_casing/bullet,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/carpet,
 /area/magmoor/command/conference)
 "dhY" = (
@@ -5125,14 +5124,11 @@
 /area/magmoor/compound/southwest)
 "dyH" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
-/obj/item/explosive/grenade/smokebomb,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/item/belt_harness,
+/obj/item/belt_harness,
 /turf/open/floor/mainship/red,
 /area/magmoor/security/storage)
 "dyP" = (
@@ -7122,6 +7118,10 @@
 	},
 /turf/open/floor/plating,
 /area/magmoor/research/containment)
+"eNx" = (
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/turf/open/floor/mainship/mono,
+/area/magmoor/engi/storage)
 "eNz" = (
 /obj/structure/window/reinforced,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -9604,19 +9604,17 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/ammo_magazine/revolver/cmb,
-/obj/item/ammo_magazine/revolver/cmb{
-	pixel_x = 6;
-	pixel_y = -4
-	},
-/obj/item/ammo_magazine/revolver/cmb,
-/obj/item/ammo_magazine/revolver/cmb{
-	pixel_x = 6;
-	pixel_y = -4
-	},
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
+/obj/item/ammo_magazine/smg/uzi/extended,
+/obj/item/ammo_magazine/smg/uzi/extended,
+/obj/item/ammo_magazine/smg/uzi/extended,
+/obj/item/ammo_magazine/smg/uzi/extended,
+/obj/item/ammo_magazine/smg/uzi/extended,
+/obj/item/ammo_magazine/smg/uzi/extended,
+/obj/item/ammo_magazine/smg/uzi/extended,
+/obj/item/ammo_magazine/smg/uzi/extended,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -12335,6 +12333,11 @@
 /area/magmoor/medical/cmo)
 "iFF" = (
 /obj/structure/closet/secure_closet/security,
+/obj/item/weapon/gun/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -14934,6 +14937,12 @@
 	},
 /turf/open/floor/mainship,
 /area/magmoor/landing/two)
+"kuG" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/magmoor/compound/south)
 "kvj" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -18114,6 +18123,7 @@
 "mLf" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/blood/splatter,
+/obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/carpet,
 /area/magmoor/command/conference)
 "mLy" = (
@@ -21063,6 +21073,11 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/cult,
 /area/magmoor/cave/north)
+"oRn" = (
+/obj/structure/table/mainship,
+/obj/item/storage/belt/marine/som,
+/turf/open/floor/mainship/red,
+/area/magmoor/security/arrivals/south)
 "oRs" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 4
@@ -22216,6 +22231,10 @@
 	},
 /turf/open/floor/wood,
 /area/magmoor/civilian/basket)
+"pGq" = (
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/turf/open/floor/mainship/mono,
+/area/magmoor/mining)
 "pGS" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -25848,6 +25867,11 @@
 /area/magmoor/command/office)
 "sno" = (
 /obj/structure/closet/secure_closet/security,
+/obj/item/weapon/gun/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/mainship/red,
 /area/magmoor/security/arrivals/east)
 "snF" = (
@@ -28589,6 +28613,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/structure/cable,
+/obj/effect/spawner/random/weaponry/gun/rifles,
 /turf/open/floor/mainship/floor,
 /area/magmoor/research)
 "ujc" = (
@@ -30611,6 +30636,11 @@
 /obj/structure/coatrack,
 /turf/open/floor/wood,
 /area/magmoor/command/office)
+"vIZ" = (
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
+/obj/effect/spawner/random/weaponry/gun/rifles,
+/turf/open/floor/mainship/sterile/dark,
+/area/magmoor/medical/chemistry)
 "vJc" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/red/full,
@@ -30704,6 +30734,10 @@
 	dir = 10
 	},
 /area/magmoor/compound)
+"vMo" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/southwest)
 "vMp" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -31114,6 +31148,10 @@
 "vYm" = (
 /turf/open/liquid/lava/autosmoothing/catwalk,
 /area/magmoor/compound/east)
+"vYJ" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/magmoor/compound/west)
 "vYP" = (
 /obj/effect/turf_decal/siding{
 	dir = 6
@@ -33310,7 +33348,6 @@
 	dir = 4
 	},
 /obj/item/ammo_magazine/shotgun/beanbag,
-/obj/item/ammo_magazine/shotgun/beanbag,
 /turf/open/floor/mainship/red{
 	dir = 8
 	},
@@ -33388,6 +33425,11 @@
 /area/magmoor/command/lobby)
 "xxD" = (
 /obj/structure/closet/secure_closet/security,
+/obj/item/weapon/gun/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -33647,6 +33689,11 @@
 /area/magmoor/cargo/processing/south)
 "xFo" = (
 /obj/structure/closet/secure_closet/security,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/weapon/gun/rifle/m16,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -34445,6 +34492,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
 	},
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/mainship,
 /area/magmoor/engi/thermal)
 "yhx" = (
@@ -39409,7 +39457,7 @@ ybU
 bGe
 ibO
 dze
-dze
+vYJ
 dze
 yge
 xMO
@@ -46804,7 +46852,7 @@ aUQ
 dhb
 tpi
 cMy
-tqa
+elJ
 eBR
 xLM
 cuN
@@ -46996,7 +47044,7 @@ ubN
 pao
 mKh
 iQx
-kaV
+pGq
 bFq
 slf
 slf
@@ -47038,7 +47086,7 @@ fMt
 tpi
 jLI
 dhS
-tqa
+elJ
 tNY
 xtU
 fMt
@@ -47503,7 +47551,7 @@ aUQ
 yla
 lpm
 uXf
-tqa
+elJ
 tqa
 uXf
 caD
@@ -48278,7 +48326,7 @@ rgm
 rgm
 rgm
 rgm
-rgm
+vMo
 rgm
 kVV
 mQq
@@ -52241,7 +52289,7 @@ vyi
 nHH
 pYk
 rNx
-num
+oRn
 fhx
 ugT
 qne
@@ -59233,7 +59281,7 @@ aXw
 aDB
 eTo
 ngM
-tvj
+kuG
 dum
 dum
 aKa
@@ -61230,7 +61278,7 @@ ikG
 bDm
 sqo
 dla
-dla
+eNx
 dla
 dyP
 sSj
@@ -65209,7 +65257,7 @@ rKG
 lmZ
 bbG
 sNM
-bbG
+vIZ
 sDu
 aab
 lUh

@@ -267,3 +267,18 @@
 	loot = list(
 		/obj/structure/prop/mainship/weapon_recharger,
 	)
+
+/obj/effect/spawner/random/weaponry/attachments
+
+	name = "random attachment spawner"
+	icon_state = "random_sidearm"
+	spawn_loot_count = 2
+	loot = list(
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/bayonetknife
+	)

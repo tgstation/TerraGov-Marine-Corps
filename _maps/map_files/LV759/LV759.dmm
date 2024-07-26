@@ -8134,6 +8134,12 @@
 	dir = 5
 	},
 /area/lv759/indoors/meridian/meridian_factory)
+"bvz" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/multi_tiles{
+	dir = 6
+	},
+/area/lv759/indoors/spaceport/docking_bay_1)
 "bvE" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/cable,
@@ -12186,6 +12192,10 @@
 	dir = 4
 	},
 /area/lv759/indoors/mining_outpost/northeast)
+"ceJ" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/urban/tile/tilebeige,
+/area/lv759/indoors/colonial_marshals/hallway_central)
 "ceN" = (
 /obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard4{
 	dir = 8;
@@ -17068,15 +17078,13 @@
 /area/lv759/indoors/hospital/cmo_office)
 "cWH" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/weaponry/gun/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
 	pixel_x = 20;
 	pixel_y = 28
 	},
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
+/obj/item/ammo_magazine/shotgun/buckshot,
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/armory)
 "cWK" = (
@@ -19290,6 +19298,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/lv759/outdoors/north_west_caves_outdoors)
+"dpw" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/urban/street/sidewalk{
+	dir = 9
+	},
+/area/lv759/outdoors/colony_streets/central_streets)
 "dpx" = (
 /turf/open/floor/mainship{
 	allow_construction = 0
@@ -22264,9 +22278,8 @@
 /area/lv759/indoors/recycling_plant_waste_disposal_incinerator)
 "dRL" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/item/weapon/gun/pistol/m1911,
+/obj/item/weapon/gun/pistol/m1911,
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/armory)
 "dRM" = (
@@ -23603,6 +23616,12 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/NTmart/maintenance)
+"edX" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/urban/street/sidewalk{
+	dir = 8
+	},
+/area/lv759/outdoors/colony_streets/central_streets)
 "eec" = (
 /obj/vehicle/ridden/powerloader{
 	dir = 8;
@@ -23859,6 +23878,7 @@
 /obj/item/reagent_containers/food/drinks/cans/beer{
 	pixel_x = 8
 	},
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/grimy,
 /area/lv759/indoors/bar/entertainment)
 "efW" = (
@@ -39204,6 +39224,14 @@
 	},
 /turf/open/floor/kutjevo/colors/orange,
 /area/lv759/indoors/spaceport/docking_bay_1)
+"gKR" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	color = "#a6aeab"
+	},
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/prison/ramptop,
+/area/lv759/indoors/meridian/meridian_factory)
 "gKT" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/urbanshale/layer1,
@@ -46718,6 +46746,12 @@
 /obj/effect/urban/decal/road/lines2,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/east_central_street)
+"hYG" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/urban/street/sidewalk{
+	dir = 4
+	},
+/area/lv759/outdoors/colony_streets/central_streets)
 "hYL" = (
 /obj/effect/urban/decal/dirt,
 /obj/item/assembly/mousetrap/armed,
@@ -47208,6 +47242,12 @@
 	dir = 1
 	},
 /area/lv759/indoors/hospital/central_hallway)
+"idm" = (
+/obj/effect/urban/decal/road/road_edge/three,
+/obj/effect/urban/decal/road/lines3,
+/obj/effect/landmark/start/job/survivor,
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/colony_streets/south_east_street)
 "ids" = (
 /obj/effect/ai_node,
 /turf/open/floor/urban_wood,
@@ -48539,12 +48579,12 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "ipM" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/weaponry/gun/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/structure/prop/urban/misc/buildinggreebliessmall3{
 	pixel_y = 28
 	},
+/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun,
+/obj/item/ammo_magazine/shotgun,
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/armory)
 "ipV" = (
@@ -48562,6 +48602,10 @@
 	dir = 1
 	},
 /area/lv759/indoors/nt_research_complex/securitycommand)
+"iqd" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/urban/street/sidewalk,
+/area/lv759/outdoors/colony_streets/east_central_street)
 "iql" = (
 /obj/effect/urban/decal/dirt_2,
 /obj/machinery/light,
@@ -55446,6 +55490,10 @@
 	dir = 1
 	},
 /area/lv759/indoors/nt_security/checkpoint_northwest)
+"jxS" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/colony_streets/central_streets)
 "jxU" = (
 /obj/effect/urban/decal/dirt,
 /obj/structure/barricade/handrail/strata{
@@ -63748,6 +63796,7 @@
 /obj/structure/closet/bodybag{
 	pixel_y = 7
 	},
+/obj/effect/landmark/start/job/survivor,
 /turf/open/urban/street/asphalt,
 /area/lv759/outdoors/colony_streets/south_west_street)
 "kWV" = (
@@ -77782,6 +77831,7 @@
 	},
 /obj/item/trash/cuppa_joes/lid,
 /obj/effect/ai_node,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/urban/metal/metalwhitefull,
 /area/lv759/indoors/spaceport/cuppajoes)
 "nor" = (
@@ -82413,6 +82463,7 @@
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_south)
 "oeb" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/plating/plating_catwalk{
 	color = "#dfcfc0"
 	},
@@ -87161,6 +87212,10 @@
 	dir = 1
 	},
 /area/lv759/outdoors/colony_streets/south_east_street)
+"oXF" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/prison/cellstripe,
+/area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "oXR" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/ground/sandrock,
@@ -89761,7 +89816,6 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/clothing/suit/storage/marine/veteran,
 /obj/item/ammo_magazine/shotgun/beanbag,
 /obj/item/ammo_magazine/shotgun/beanbag,
 /obj/item/storage/pouch/shotgun,
@@ -93274,11 +93328,9 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "pXv" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/weaponry/gun/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/item/weapon/gun/shotgun/pump/cmb,
+/obj/item/weapon/gun/shotgun/pump/cmb,
 /turf/open/floor/prison/red{
 	dir = 1
 	},
@@ -97649,6 +97701,14 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_maintenance_north)
+"qMe" = (
+/obj/effect/urban/decal/road/roadmiddle{
+	dir = 1;
+	pixel_y = 14
+	},
+/obj/effect/landmark/start/job/survivor,
+/turf/open/urban/street/asphalt,
+/area/lv759/outdoors/colony_streets/south_east_street)
 "qMg" = (
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/grimy,
@@ -115493,9 +115553,18 @@
 /area/lv759/indoors/spaceport/starglider)
 "tNu" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/ammo/shotgun,
-/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
+/obj/item/ammo_magazine/pistol/m1911,
 /turf/open/floor/prison/red{
 	dir = 6
 	},
@@ -119640,6 +119709,7 @@
 	pixel_y = 14
 	},
 /obj/structure/cable,
+/obj/effect/landmark/start/job/survivor,
 /turf/open/urban/street/asphalt,
 /area/lv759/indoors/nt_security/checkpoint_northwest)
 "uuU" = (
@@ -122710,6 +122780,10 @@
 	},
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/mining_outpost/east_deploymentbay)
+"uVC" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/urban/metal/metalwhitefull,
+/area/lv759/indoors/spaceport/cuppajoes)
 "uVD" = (
 /obj/structure/bed/chair{
 	dir = 4;
@@ -131472,6 +131546,12 @@
 	dir = 8
 	},
 /area/lv759/indoors/hospital/central_hallway)
+"wrH" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/urban/street/sidewalk{
+	dir = 6
+	},
+/area/lv759/outdoors/colony_streets/east_central_street)
 "wrK" = (
 /obj/item/paper/crumpled,
 /turf/open/floor/prison/yellow{
@@ -135779,6 +135859,13 @@
 	},
 /turf/closed/wall/urban/colony/engineering,
 /area/lv759/indoors/meridian/meridian_factory)
+"xdi" = (
+/obj/effect/urban/decal/dirt,
+/obj/effect/landmark/start/job/survivor,
+/turf/open/urban/street/sidewalk{
+	dir = 4
+	},
+/area/lv759/outdoors/colony_streets/north_street)
 "xdk" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/item/clothing/head/warning_cone{
@@ -141069,12 +141156,14 @@
 /area/lv759/indoors/NTmart/backrooms)
 "xXZ" = (
 /obj/structure/rack,
-/obj/item/clothing/under/marine/black_vest,
-/obj/item/clothing/under/marine/black_vest,
-/obj/item/clothing/under/marine/black_vest,
-/obj/item/clothing/under/marine/black_vest,
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/head/helmet,
+/obj/item/clothing/head/helmet,
+/obj/item/clothing/head/helmet,
 /turf/open/floor/prison/red,
 /area/lv759/indoors/colonial_marshals/armory)
 "xYe" = (
@@ -145460,7 +145549,7 @@ hfE
 ftP
 ftP
 pWG
-uBf
+bvz
 nrU
 sqa
 sqa
@@ -151376,7 +151465,7 @@ kGk
 vgL
 cOG
 lEF
-ssF
+uVC
 qMk
 fGX
 dGe
@@ -155042,7 +155131,7 @@ qiM
 tRW
 hhx
 cLw
-bXE
+edX
 cLw
 bXE
 kxr
@@ -155274,7 +155363,7 @@ dvu
 gFB
 sDu
 vCE
-cmc
+jxS
 fQK
 qfI
 jzo
@@ -161341,7 +161430,7 @@ kHb
 tyo
 tyo
 tyo
-tyo
+hYG
 pBy
 qzR
 ltR
@@ -166587,7 +166676,7 @@ mCV
 wbU
 bfO
 mCV
-mCV
+xdi
 wbU
 sOL
 amT
@@ -167020,7 +167109,7 @@ mHv
 sjz
 sjz
 mHv
-lxa
+dpw
 bXE
 oAw
 oAw
@@ -167268,7 +167357,7 @@ lHm
 rSi
 lHm
 lHm
-lHm
+gKR
 cQr
 ycc
 lzq
@@ -173375,7 +173464,7 @@ vFs
 oWb
 lkG
 nCE
-bQB
+ceJ
 lZW
 voA
 nlD
@@ -174607,7 +174696,7 @@ vIJ
 riw
 dAM
 vSB
-uwh
+qMe
 raC
 trO
 mzQ
@@ -175541,7 +175630,7 @@ apo
 acf
 hfZ
 rvq
-mJW
+iqd
 rXV
 uhL
 tng
@@ -177862,7 +177951,7 @@ gcL
 nxS
 jlw
 vSB
-fbo
+idm
 qYx
 srv
 lEN
@@ -179625,7 +179714,7 @@ wuf
 sOP
 sOP
 sOP
-piK
+wrH
 tXT
 bXQ
 hmH
@@ -184729,7 +184818,7 @@ wzZ
 eof
 vCG
 fVz
-ttY
+oXF
 vRZ
 lfc
 vRZ
