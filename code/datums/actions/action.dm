@@ -69,6 +69,7 @@ KEYBINDINGS
 	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
 
+///Whether the owner can see this action
 /datum/action/proc/should_show()
 	return hidden ? FALSE : TRUE
 
