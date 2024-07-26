@@ -793,7 +793,11 @@
 
 //Signals for CIC orders
 #define COMSIG_ORDER_SELECTED "order_selected"
-#define COMSIG_ORDER_SENT "order_updated"
+#define COMSIG_CIC_ORDER_SENT "order_updated"
+#define COMSIG_CIC_ORDER_OFF_CD "order_off_cd"
+
+#define COMSIG_SKILL_ORDER_SENT "skill_order_updated"
+#define COMSIG_SKILL_ORDER_OFF_CD "skill_order_off_cd"
 
 //Signals for automatic fire at component
 #define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"

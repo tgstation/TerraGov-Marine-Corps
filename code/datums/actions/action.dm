@@ -187,7 +187,6 @@ KEYBINDINGS
 	owner.actions += src
 	if(owner.client)
 		owner.client.screen += button
-	owner.update_action_buttons()
 	owner.actions_by_path[type] = src
 	for(var/type in keybinding_signals)
 		var/signal = keybinding_signals[type]
@@ -198,6 +197,7 @@ KEYBINDINGS
 				update_map_text(our_kb.get_keys_formatted(M.client), signal)
 
 	SEND_SIGNAL(M, ACTION_GIVEN)
+	owner.update_action_buttons()
 
 /datum/action/proc/remove_action(mob/M)
 	for(var/type in keybinding_signals)
@@ -208,9 +208,9 @@ KEYBINDINGS
 		M.client.screen -= button
 	M.actions_by_path[type] = null
 	M.actions -= src
-	M.update_action_buttons()
 	owner = null
 	SEND_SIGNAL(M, ACTION_REMOVED)
+	M.update_action_buttons()
 
 ///Should a AI element occasionally see if this ability should be used?
 /datum/action/proc/ai_should_start_consider()

@@ -66,10 +66,6 @@
 		return
 	set_toggle(!toggled)
 
-/datum/action/item_action/toggle/give_action(mob/M)
-	. = ..()
-	update_button_icon()
-
 /datum/action/item_action/toggle/remove_action(mob/M)
 	deselect()
 	return ..()
@@ -90,7 +86,6 @@
 /datum/action/item_action/firemode/New()
 	. = ..()
 	holder_gun = holder_item
-	update_button_icon()
 
 /datum/action/item_action/firemode/action_activate()
 	. = ..()

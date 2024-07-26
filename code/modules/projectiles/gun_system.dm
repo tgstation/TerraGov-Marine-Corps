@@ -534,16 +534,8 @@
 	SIGNAL_HANDLER
 	set_gun_user(null)
 
-/obj/item/weapon/gun/update_icon()
+/obj/item/weapon/gun/update_icon(updates=ALL)
 	. = ..()
-
-	for(var/datum/action/action AS in actions)
-		action.update_button_icon()
-
-	if(master_gun)
-		for(var/datum/action/action AS in master_gun.actions)
-			action.update_button_icon()
-
 	update_item_state()
 
 /obj/item/weapon/gun/update_icon_state()
