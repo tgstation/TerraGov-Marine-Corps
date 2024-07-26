@@ -271,6 +271,7 @@
 	corpseback = /obj/item/storage/backpack/corpsman
 	corpsepocket1 = /obj/item/flashlight/pen
 	corpseshoes = /obj/item/clothing/shoes/black
+	corpsepocket2 = /obj/item/reagent_containers/hypospray/autoinjector/combat
 	corpseid = 1
 	corpseidjob = "Medical Doctor"
 //	corpseidaccess = "Medical Doctor"
@@ -289,6 +290,7 @@
 	corpsebelt = /obj/item/storage/belt/utility/full
 	corpsegloves = /obj/item/clothing/gloves/insulated
 	corpsehelmet = /obj/item/clothing/head/hardhat
+	corpseglasses = /obj/item/clothing/glasses/welding
 	corpseid = 1
 	corpseidjob = "Station Engineer"
 //	corpseidaccess = "Station Engineer"
@@ -355,7 +357,11 @@
 /obj/effect/landmark/corpsespawner/security
 	corpseuniform = /obj/item/clothing/under/rank/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
-	corpsesuit = /obj/item/clothing/suit/armor/vest/security
+	corpsesuit = /obj/item/clothing/suit/armor/patrol
+	corpsehelmet = /obj/item/clothing/head/securitycap
+	corpsebelt = /obj/item/weapon/gun/pistol/g22
+	corpsepocket1 = /obj/item/ammo_magazine/pistol/g22
+	corpsepocket2 = /obj/item/ammo_magazine/pistol/g22
 
 /obj/effect/landmark/corpsespawner/security/burst
 	death_type = CHESTBURST_DEATH
@@ -363,13 +369,28 @@
 /obj/effect/landmark/corpsespawner/security/regular
 	death_type = REGULAR_DEATH
 
+/obj/effect/landmark/corpsespawner/security/shotgun
+	corpseback = /obj/item/weapon/gun/shotgun/pump/cmb
+	corpsebelt = /obj/item/ammo_magazine/shotgun/buckshot
+	corpsepocket1 = /obj/item/flashlight/combat
+	corpsepocket2 = /obj/item/reagent_containers/hypospray/autoinjector/combat
+
+/obj/effect/landmark/corpsespawner/security/shotgun/burst
+
+	death_type = CHESTBURST_DEATH
+
+/obj/effect/landmark/corpsespawner/security/shotgun/regular
+
+	death_type = REGULAR_DEATH
+
 /obj/effect/landmark/corpsespawner/prison_security
 	name = "Prison Guard"
 	corpseuniform = /obj/item/clothing/under/rank/security
 	corpseshoes = /obj/item/clothing/shoes/jackboots
 	corpsegloves = /obj/item/clothing/gloves/black
-	corpsesuit = /obj/item/clothing/suit/armor/vest/security
-	corpsehelmet = /obj/item/clothing/head/helmet
+	corpsesuit = /obj/item/clothing/suit/armor/patrol
+	corpsehelmet = /obj/item/clothing/head/securitycap
+	corpsebelt = /obj/item/weapon/telebaton
 	corpseid = 1
 	corpseidjob = "Prison Guard"
 
@@ -396,6 +417,20 @@
 	death_type = CHESTBURST_DEATH
 
 /obj/effect/landmark/corpsespawner/pmc/regular
+	death_type = REGULAR_DEATH
+
+/obj/effect/landmark/corpsespawner/pmc/smg
+
+	corpsebelt = /obj/item/storage/holster/m25/full
+	corpsepocket1 = /obj/item/ammo_magazine/smg/m25
+	corpsepocket2 = /obj/item/ammo_magazine/smg/m25
+
+/obj/effect/landmark/corpsespawner/pmc/smg/burst
+
+	death_type = CHESTBURST_DEATH
+
+/obj/effect/landmark/corpsespawner/pmc/smg/regular
+
 	death_type = REGULAR_DEATH
 
 /obj/effect/landmark/corpsespawner/colonist
@@ -514,7 +549,7 @@
 	corpsegloves = /obj/item/clothing/gloves/latex
 	corpseshoes = /obj/item/clothing/shoes/marine
 	corpsepocket1 = /obj/item/tweezers
-	corpsepocket2 = /obj/item/clothing/glasses/meson
+	corpsepocket2 = /obj/item/reagent_containers/hypospray/autoinjector/combat
 
 /obj/effect/landmark/corpsespawner/marine/corpsman/burst
 	death_type = CHESTBURST_DEATH
@@ -548,6 +583,7 @@
 	corpsegloves = /obj/item/clothing/gloves/marine/som
 	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
 	corpsepocket1 = /obj/item/tool/lighter/zippo
+	corpsepocket2 = /obj/item/explosive/grenade/som
 
 /obj/effect/landmark/corpsespawner/som_officer
 	name = "SOM staff officer"

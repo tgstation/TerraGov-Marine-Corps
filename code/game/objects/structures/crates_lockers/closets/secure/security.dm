@@ -177,7 +177,7 @@
 		new /obj/item/storage/backpack/security(src)
 	else
 		new /obj/item/storage/backpack/satchel/sec(src)
-	new /obj/item/clothing/suit/armor/vest/security(src)
+	new /obj/item/clothing/suit/armor/patrol(src)
 	new /obj/item/clothing/head/helmet(src)
 	new /obj/item/storage/belt/security(src)
 	new /obj/item/flash(src)
@@ -188,7 +188,7 @@
 	new /obj/item/tool/taperoll/police(src)
 	new /obj/item/hailer(src)
 	new /obj/item/armor_module/storage/uniform/black_vest(src)
-	new /obj/item/clothing/head/soft/sec/corp(src)
+	new /obj/item/clothing/head/securitycap(src)
 	new /obj/item/clothing/under/rank/security/corp(src)
 
 

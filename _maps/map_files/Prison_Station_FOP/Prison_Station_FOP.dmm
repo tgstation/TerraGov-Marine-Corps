@@ -46593,6 +46593,12 @@
 	dir = 1
 	},
 /area/prison/cellblock/highsec/south/north)
+"sYR" = (
+/obj/structure/rack,
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/suit/armor/patrol,
+/turf/open/floor/prison,
+/area/prison/security/armory/riot)
 "sZH" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
@@ -46602,6 +46608,12 @@
 /obj/machinery/miner/damaged,
 /turf/open/floor/prison/bright_clean,
 /area/prison/canteen)
+"taz" = (
+/obj/structure/rack,
+/obj/item/clothing/head/helmet,
+/obj/item/clothing/head/helmet,
+/turf/open/floor/prison,
+/area/prison/security/armory/riot)
 "taR" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison,
@@ -48255,6 +48267,12 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/central)
+"xsM" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/attachments,
+/obj/effect/spawner/random/weaponry/attachments,
+/turf/open/floor/prison,
+/area/prison/security/armory/lethal)
 "xtg" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -104560,8 +104578,8 @@ oRr
 bQp
 cgT
 vHN
-cji
-ckb
+sYR
+taz
 chD
 cji
 cji
@@ -106616,7 +106634,7 @@ cdq
 cfK
 cgY
 fHL
-cjn
+xsM
 swv
 cim
 clX
@@ -107136,7 +107154,7 @@ cjn
 cjo
 cjn
 clb
-cjn
+com
 coY
 aab
 aab

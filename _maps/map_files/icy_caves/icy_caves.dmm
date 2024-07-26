@@ -268,7 +268,7 @@
 /area/icy_caves/caves/crashed_ship)
 "bi" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/landmark/corpsespawner/pmc,
+/obj/effect/landmark/corpsespawner/pmc/smg,
 /turf/open/floor/plating/mainship,
 /area/icy_caves/caves/crashed_ship)
 "bj" = (
@@ -1018,7 +1018,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/landmark/corpsespawner/pmc,
+/obj/effect/landmark/corpsespawner/pmc/smg,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/west)
 "eV" = (
@@ -1492,6 +1492,7 @@
 /area/icy_caves/caves/south)
 "il" = (
 /obj/structure/table/reinforced/prison,
+/obj/effect/spawner/random/weaponry/attachments,
 /turf/open/floor/prison,
 /area/icy_caves/caves/cavesbrig)
 "im" = (
@@ -3718,6 +3719,8 @@
 /area/icy_caves/outpost/LZ2)
 "sV" = (
 /obj/structure/rack,
+/obj/effect/spawner/random/weaponry/attachments,
+/obj/effect/spawner/random/weaponry/attachments,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
 "sW" = (
@@ -7100,6 +7103,10 @@
 "IU" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/breakroom)
+"IV" = (
+/obj/effect/landmark/corpsespawner/pmc/smg,
+/turf/open/floor/plating/mainship,
+/area/icy_caves/caves/crashed_ship)
 "IX" = (
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark,
@@ -7693,6 +7700,12 @@
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/garage)
+"LP" = (
+/obj/effect/landmark/corpsespawner/security/shotgun,
+/turf/open/floor/tile/dark/red2{
+	dir = 1
+	},
+/area/icy_caves/outpost/security)
 "LQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -24195,7 +24208,7 @@ HA
 my
 li
 VM
-UQ
+LP
 YX
 SO
 YX
@@ -27510,7 +27523,7 @@ ZP
 ZP
 ZP
 aO
-aJ
+IV
 sH
 aO
 cM

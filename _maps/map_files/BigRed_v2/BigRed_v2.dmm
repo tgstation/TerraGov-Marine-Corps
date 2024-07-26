@@ -175,6 +175,10 @@
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "acB" = (
 /obj/structure/table,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
+/obj/item/ammo_magazine/rifle/type71,
 /turf/open/floor,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "acS" = (
@@ -5441,6 +5445,13 @@
 /area/bigredv2/caves/lambda_lab)
 "bgr" = (
 /obj/structure/closet/secure_closet/security,
+/obj/item/weapon/gun/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "bgx" = (
@@ -6933,6 +6944,13 @@
 	dir = 8
 	},
 /obj/structure/closet/secure_closet/security,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/weapon/gun/rifle/m16,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAA" = (
@@ -6982,6 +7000,13 @@
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAQ" = (
 /obj/structure/closet/secure_closet/security/science,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/ammo_magazine/rifle/m16,
+/obj/item/weapon/gun/rifle/m16,
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/nanotrasen_lab/inside/garbledradio)
 "bAR" = (
@@ -13842,6 +13867,12 @@
 /area/bigredv2/outside/marshal_office)
 "pXI" = (
 /obj/structure/rack,
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/head/securitycap,
+/obj/item/clothing/head/securitycap,
+/obj/item/clothing/head/securitycap,
 /turf/open/floor/tile/vault{
 	dir = 8
 	},

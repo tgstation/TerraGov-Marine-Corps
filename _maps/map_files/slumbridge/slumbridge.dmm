@@ -708,6 +708,13 @@
 "aFF" = (
 /turf/closed/wall/r_wall,
 /area/slumbridge/inside/engi/engine)
+"aFU" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/plating_catwalk,
+/area/slumbridge/inside/sombase/west)
 "aFZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -2497,6 +2504,7 @@
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
+/obj/item/ammo_magazine/rifle/mpi_km/black,
 /turf/open/floor/plating/plating_catwalk,
 /area/slumbridge/caves/mining/dropship)
 "bOT" = (
@@ -2904,6 +2912,13 @@
 /obj/effect/spawner/random/misc/structure/barrel,
 /turf/open/floor/plating,
 /area/slumbridge/landingzonetwo)
+"cgX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/gun/pistol/som,
+/turf/open/floor/mainship/red{
+	dir = 8
+	},
+/area/slumbridge/inside/sombase/west)
 "chf" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4945,6 +4960,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/secure/weapon,
 /obj/effect/spawner/random/weaponry/gun,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/inside/pmcdome/weaponvault)
 "dJb" = (
@@ -5767,6 +5783,8 @@
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_magazine/pistol/som,
+/obj/item/ammo_magazine/pistol/som/incendiary,
 /turf/open/floor/mainship/floor,
 /area/slumbridge/inside/sombase/west)
 "esH" = (
@@ -6420,6 +6438,17 @@
 /obj/effect/landmark/corpsespawner/prisoner/regular,
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/innerring)
+"eVF" = (
+/obj/structure/closet/cabinet,
+/obj/effect/spawner/random/clothing/general,
+/obj/effect/spawner/random/clothing/general,
+/obj/effect/spawner/random/clothing/coloredgloves,
+/obj/effect/spawner/random/clothing/hats,
+/obj/item/weapon/gun/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/turf/open/floor/wood,
+/area/slumbridge/inside/colony/dorms)
 "eVK" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/plating,
@@ -6895,12 +6924,17 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/caves/northwestcaves)
+"fpv" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/ground/dirt,
+/area/slumbridge/outside/southeast)
 "fpy" = (
 /obj/structure/rack{
 	color = "#50617d"
 	},
 /obj/effect/spawner/random/weaponry/gun,
 /obj/machinery/light,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/inside/pmcdome/weaponvault)
 "fpA" = (
@@ -7008,6 +7042,12 @@
 "fth" = (
 /turf/closed/wall,
 /area/slumbridge/outside/southeast)
+"fti" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/ammo_magazine/rifle/mpi_km/carbine,
+/obj/item/ammo_magazine/rifle/mpi_km/carbine,
+/turf/open/floor/tile/dark,
+/area/slumbridge/caves/mining)
 "fto" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -7265,6 +7305,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/landmark/corpsespawner/pmc/smg/regular,
 /turf/open/floor/tile/white,
 /area/slumbridge/inside/pmcdome)
 "fEd" = (
@@ -7309,6 +7350,7 @@
 "fFz" = (
 /obj/structure/closet/crate/secure/gear,
 /obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/inside/pmcdome/weaponvault)
 "fFW" = (
@@ -7721,6 +7763,13 @@
 	},
 /turf/open/floor,
 /area/slumbridge/inside/engi/engineroom)
+"fUF" = (
+/obj/structure/prop/mainship/gelida/planterboxsoil/nondense,
+/obj/structure/prop/mainship/gelida/planterboxsoilgrid/nondense,
+/obj/item/ammo_magazine/rifle/mpi_km/black,
+/obj/item/ammo_magazine/rifle/mpi_km/black,
+/turf/open/floor/plating/fake_space,
+/area/slumbridge/caves/mining/dropship)
 "fUH" = (
 /turf/open/floor/tile/dark/red2/corner,
 /area/slumbridge/landingzonetwo)
@@ -8918,6 +8967,10 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/slumbridge/landingzonetwo)
+"gOF" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/slumbridge/outside/northwest)
 "gON" = (
 /obj/structure/safe,
 /turf/open/floor/prison/blackfloor,
@@ -9694,6 +9747,7 @@
 "hrX" = (
 /obj/structure/closet/crate/secure/weapon,
 /obj/effect/spawner/random/weaponry/gun,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/inside/pmcdome/weaponvault)
 "hss" = (
@@ -11149,6 +11203,7 @@
 /area/slumbridge/inside/engi/engineroom)
 "ipe" = (
 /obj/structure/table,
+/obj/item/weapon/gun/pistol/g22,
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/colony/dorms)
 "iph" = (
@@ -11236,6 +11291,7 @@
 /turf/open/floor/tile/whiteyellow,
 /area/slumbridge/inside/pmcdome)
 "iry" = (
+/obj/item/weapon/gun/rifle/som_carbine,
 /turf/open/floor/plating/dmg1,
 /area/slumbridge/caves/mining)
 "irD" = (
@@ -11450,6 +11506,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tracks/claw2/bloody,
+/obj/item/ammo_magazine/rifle/mpi_km/black,
 /turf/open/floor/mainship/mono,
 /area/slumbridge/caves/mining/dropship)
 "izv" = (
@@ -12371,6 +12428,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/slumbridge/outside/southeast)
+"jmb" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/ground/snow/layer2{
+	dir = 5
+	},
+/area/slumbridge/outside/southwest)
 "jmg" = (
 /obj/structure/table/wood/fancy,
 /obj/machinery/reagentgrinder,
@@ -12703,6 +12766,13 @@
 	},
 /turf/open/floor/tile/bar,
 /area/slumbridge/inside/medical/foyer)
+"jwB" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/medical/firstaid/alwaysspawns,
+/turf/open/floor/tile/whiteyellow/corner{
+	dir = 4
+	},
+/area/slumbridge/inside/pmcdome)
 "jwR" = (
 /obj/machinery/vending/cola,
 /obj/effect/decal/cleanable/dirt,
@@ -17365,6 +17435,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/weapon/gun/shotgun/pump/lever/mbx900,
+/obj/item/ammo_magazine/shotgun/mbx900,
+/obj/item/ammo_magazine/shotgun/mbx900/buckshot,
 /turf/open/floor/mainship/red{
 	dir = 10
 	},
@@ -17639,6 +17712,14 @@
 /area/slumbridge/caves/mining)
 "nes" = (
 /obj/structure/rack,
+/obj/item/ammo_magazine/rifle/som,
+/obj/item/ammo_magazine/rifle/som,
+/obj/item/ammo_magazine/rifle/som,
+/obj/item/ammo_magazine/rifle/som,
+/obj/item/ammo_magazine/rifle/som,
+/obj/item/ammo_magazine/rifle/som,
+/obj/item/ammo_magazine/handful/micro_grenade,
+/obj/item/ammo_magazine/handful/micro_grenade,
 /turf/open/floor/vault,
 /area/slumbridge/inside/sombase/east)
 "nez" = (
@@ -18258,6 +18339,7 @@
 	color = "#50617d"
 	},
 /obj/effect/spawner/random/weaponry/gun,
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/inside/pmcdome/weaponvault)
 "nyn" = (
@@ -18453,6 +18535,11 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark/green2/corner,
 /area/slumbridge/inside/colony/hydro)
+"nDV" = (
+/obj/item/ammo_magazine/rifle/mpi_km/carbine/black,
+/obj/item/ammo_magazine/rifle/mpi_km/carbine/black,
+/turf/open/floor/plating,
+/area/slumbridge/outside/northeast/bridges)
 "nEi" = (
 /obj/structure/bed,
 /obj/effect/spawner/random/misc/trash,
@@ -19143,6 +19230,7 @@
 /area/slumbridge/inside/colony/northerndome)
 "odI" = (
 /obj/item/stack/rods,
+/obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/plating/dmg3,
 /area/slumbridge/caves/mining/dropship)
 "odL" = (
@@ -19504,6 +19592,8 @@
 	color = "#50617d"
 	},
 /obj/effect/spawner/random/weaponry/gun/machineguns,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
+/obj/effect/spawner/random/weaponry/ammo/machinegun,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/inside/pmcdome/weaponvault)
 "orN" = (
@@ -20280,6 +20370,16 @@
 "oXX" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/shuttle/drop2/lz2)
+"oYf" = (
+/obj/structure/table,
+/obj/effect/spawner/random/food_or_drink/drink_cans,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/turf/open/floor/tile/dark,
+/area/slumbridge/inside/colony/dorms)
 "oYm" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 6
@@ -20530,6 +20630,9 @@
 /obj/item/weapon/gun/rifle/m412,
 /obj/item/ammo_magazine/rifle,
 /obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
+/obj/item/ammo_magazine/rifle,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/inside/pmcdome/weaponvault)
 "phX" = (
@@ -20687,6 +20790,12 @@
 	dir = 5
 	},
 /area/slumbridge/outside/southwest)
+"ppv" = (
+/obj/structure/prop/mainship/gelida/planterboxsoil/nondense,
+/obj/structure/prop/mainship/gelida/planterboxsoilgrid/nondense,
+/obj/item/ammo_magazine/rifle/mpi_km/black,
+/turf/open/floor/plating/fake_space,
+/area/slumbridge/caves/mining/dropship)
 "ppB" = (
 /obj/item/ore/slag{
 	pixel_x = -1
@@ -21119,6 +21228,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/slumbridge/inside/colony/southerndome)
+"pDC" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/turf/open/floor/mainship/floor,
+/area/slumbridge/inside/sombase/east)
 "pDT" = (
 /obj/structure/prop/mainship/research/tdoppler,
 /turf/open/floor/tile/yellow/full,
@@ -21655,6 +21769,7 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/cmo)
 "pYS" = (
+/obj/effect/spawner/random/medical/organ,
 /turf/open/floor/tile/whiteyellow{
 	dir = 8
 	},
@@ -21963,6 +22078,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/slumbridge/inside/zeta/south)
+"qiL" = (
+/obj/item/weapon/gun/rifle/som_carbine/black,
+/turf/open/floor/plating,
+/area/slumbridge/outside/northeast/bridges)
 "qiV" = (
 /obj/structure/closet/cabinet,
 /obj/effect/decal/cleanable/dirt,
@@ -22059,6 +22178,8 @@
 /obj/effect/turf_decal/tracks/claw2/bloody{
 	dir = 8
 	},
+/obj/item/ammo_magazine/rifle/mpi_km/black,
+/obj/item/ammo_magazine/rifle/mpi_km/black,
 /turf/open/floor/mainship/mono,
 /area/slumbridge/caves/mining/dropship)
 "qlX" = (
@@ -22119,6 +22240,7 @@
 /obj/item/clothing/suit/modular/som/light,
 /obj/structure/rack,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/weapon/gun/rifle/som/mag_harness,
 /turf/open/floor/vault,
 /area/slumbridge/inside/sombase/east)
 "qoE" = (
@@ -23664,6 +23786,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/slumbridge/outside/northwest)
+"rrJ" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/ground/grass/weedable/patch,
+/area/slumbridge/outside/northeast)
 "rrK" = (
 /turf/closed/wall/r_wall,
 /area/slumbridge/inside/zeta/south)
@@ -23879,6 +24005,7 @@
 	dir = 8
 	},
 /obj/effect/spawner/gibspawner/human,
+/obj/item/ammo_magazine/rifle/mpi_km/black,
 /turf/open/floor/plating/plating_catwalk,
 /area/slumbridge/caves/mining/dropship)
 "rAy" = (
@@ -23962,6 +24089,10 @@
 	},
 /turf/open/floor/plating,
 /area/slumbridge/inside/engi/west)
+"rCM" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/asteroidplating,
+/area/slumbridge/outside/northeast/bridges)
 "rCP" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/caves/northwestcaves)
@@ -24075,6 +24206,10 @@
 	dir = 4
 	},
 /area/slumbridge/inside/engi/west)
+"rHn" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/slumbridge/outside/northwest/nearlz)
 "rHx" = (
 /obj/structure/stairs{
 	dir = 8
@@ -25424,6 +25559,8 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate/secure/weapon,
 /obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/inside/pmcdome/weaponvault)
 "sGj" = (
@@ -25433,6 +25570,7 @@
 "sGm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
+/obj/item/ammo_magazine/rifle/mpi_km/carbine/black,
 /turf/open/floor/grayscale,
 /area/slumbridge/outside/northeast/bridges)
 "sGF" = (
@@ -26048,6 +26186,7 @@
 "teU" = (
 /obj/item/ammo_casing,
 /obj/item/stack/rods,
+/obj/item/weapon/gun/rifle/mpi_km,
 /turf/open/floor/plating,
 /area/slumbridge/caves/mining/dropship)
 "tfn" = (
@@ -26366,6 +26505,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor/mainship/floor,
 /area/slumbridge/inside/sombase/east)
 "trR" = (
@@ -27674,6 +27815,7 @@
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
+/obj/item/ammo_magazine/rifle/mpi_km/black,
 /turf/open/floor/plating/dmg3,
 /area/slumbridge/caves/mining/dropship)
 "uqO" = (
@@ -27971,6 +28113,10 @@
 /obj/structure/window/framed/colony,
 /turf/open/liquid/water/river,
 /area/slumbridge/inside/engi/west)
+"uEL" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/prison/yellow,
+/area/slumbridge/inside/prison/innerring)
 "uFm" = (
 /obj/machinery/door/window/right{
 	dir = 1
@@ -28295,6 +28441,14 @@
 	dir = 6
 	},
 /area/slumbridge/inside/zeta/south)
+"uQV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/asteroidfloor,
+/area/slumbridge/outside/northwest)
 "uRv" = (
 /turf/open/floor/tile/cmo,
 /area/slumbridge/inside/medical/cmo)
@@ -28352,6 +28506,10 @@
 "uSH" = (
 /turf/open/floor/plating/platebot,
 /area/slumbridge/landingzonetwo)
+"uTa" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/ground/grass/weedable,
+/area/slumbridge/outside/southeast)
 "uTe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -28807,6 +28965,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/slumbridge/inside/sombase/west)
+"vkE" = (
+/obj/structure/prop/mainship/gelida/planterboxsoil/nondense,
+/obj/structure/prop/mainship/gelida/planterboxsoilgrid/nondense,
+/obj/item/weapon/gun/rifle/mpi_km/black,
+/turf/open/floor/plating/fake_space,
+/area/slumbridge/caves/mining/dropship)
 "vkH" = (
 /obj/effect/spawner/random/misc/trash,
 /obj/effect/decal/cleanable/dirt,
@@ -29801,6 +29965,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/spawner/random/weaponry/ammo/rifle,
 /turf/open/shuttle/blackfloor,
 /area/slumbridge/inside/pmcdome/weaponvault)
 "vSG" = (
@@ -31028,6 +31193,8 @@
 /obj/item/shard/shrapnel,
 /obj/item/stack/rods,
 /obj/effect/decal/cleanable/blood,
+/obj/item/ammo_magazine/rifle/mpi_km/black,
+/obj/item/ammo_magazine/rifle/mpi_km/black,
 /turf/open/floor/plating/dmg1,
 /area/slumbridge/caves/mining/dropship)
 "wIH" = (
@@ -31038,6 +31205,7 @@
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 9
 	},
+/obj/effect/landmark/corpsespawner/pmc/smg/regular,
 /turf/open/floor/tile/whiteyellow/corner,
 /area/slumbridge/inside/pmcdome)
 "wJk" = (
@@ -35445,7 +35613,7 @@ wCc
 tst
 tst
 wCc
-wCc
+rHn
 ebA
 lJL
 lJL
@@ -43251,7 +43419,7 @@ qKo
 qKo
 jxT
 tMk
-aeY
+uEL
 psZ
 bie
 qKo
@@ -43766,7 +43934,7 @@ mkf
 mkf
 mkf
 mkf
-mkf
+gOF
 mkf
 oPm
 cHd
@@ -45830,7 +45998,7 @@ mUy
 tti
 tDh
 paO
-mNY
+eVF
 tti
 nmr
 iDq
@@ -46216,7 +46384,7 @@ bIq
 rfs
 uvc
 rfs
-bIq
+jmb
 bIq
 bIq
 bIq
@@ -47453,7 +47621,7 @@ tti
 tti
 hqD
 rmU
-fZs
+oYf
 mTO
 liu
 tti
@@ -47751,7 +47919,7 @@ rih
 mkf
 mkf
 oPm
-cHd
+uQV
 kHD
 ycB
 nGK
@@ -52250,7 +52418,7 @@ gbr
 auy
 kEQ
 uWW
-gbr
+cgX
 kEQ
 kEQ
 coZ
@@ -52427,7 +52595,7 @@ liM
 rWF
 pbQ
 hLa
-hLa
+aFU
 lBw
 hLa
 wXl
@@ -54617,7 +54785,7 @@ nAE
 fjN
 lrN
 nEV
-bcU
+rrJ
 bcU
 uFN
 bcU
@@ -57265,7 +57433,7 @@ oTq
 oTq
 pby
 pbC
-pby
+fpv
 lsi
 hJk
 oTq
@@ -57872,7 +58040,7 @@ szJ
 yim
 oQJ
 oQJ
-nBp
+pDC
 rmZ
 xvQ
 hHf
@@ -59413,7 +59581,7 @@ pEK
 bRA
 pEK
 pEK
-pEK
+uTa
 bRA
 pEK
 hJk
@@ -62793,9 +62961,9 @@ gWV
 ios
 koR
 cJo
-oOB
-oOB
-gWV
+nDV
+qiL
+rCM
 gWV
 vUr
 ios
@@ -62861,7 +63029,7 @@ jZz
 pCn
 mxI
 ygG
-fUZ
+jwB
 klE
 suy
 jep
@@ -63156,9 +63324,9 @@ uSb
 uSb
 uSb
 rCz
+ppv
 uhy
-uhy
-uhy
+vkE
 rCz
 uSb
 uSb
@@ -63339,7 +63507,7 @@ uSb
 rCz
 hUB
 uhy
-uhy
+fUF
 rCz
 uSb
 uSb
@@ -63869,7 +64037,7 @@ jFD
 rRV
 kDN
 enx
-rRV
+fti
 jpQ
 fnD
 wjC

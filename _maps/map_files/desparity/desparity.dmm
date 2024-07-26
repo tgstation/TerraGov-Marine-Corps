@@ -665,6 +665,14 @@
 	},
 /turf/open/floor/plating/dmg3,
 /area/lv624/lazarus/crashed_ship/desparity)
+"dU" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 8
+	},
+/obj/effect/landmark/corpsespawner/security/shotgun,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/east1)
 "dW" = (
 /obj/machinery/floodlight/landing,
 /obj/effect/turf_decal/warning_stripes,
@@ -1315,6 +1323,7 @@
 /obj/item/shard/shrapnel{
 	name = "metal fragments"
 	},
+/obj/item/reagent_containers/hypospray/autoinjector/combat,
 /turf/open/floor/podhatch{
 	dir = 10
 	},
@@ -1533,8 +1542,9 @@
 /area/lv624/lazarus/sleep_male)
 "if" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/weaponry/gun,
 /obj/effect/decal/cleanable/dirt,
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/head/securitycap,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research/caves)
 "ig" = (
@@ -1723,6 +1733,7 @@
 	},
 /area/lv624/lazarus/sleep_male)
 "jg" = (
+/obj/item/toy/plush/rouny,
 /obj/item/toy/plush/rouny,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/rock)
@@ -2007,6 +2018,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/corpsespawner/security/shotgun/burst,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/research/caves)
 "kL" = (
@@ -2312,6 +2324,7 @@
 /turf/open/floor/plating/mainship,
 /area/lv624/lazarus/crashed_ship/desparity)
 "mo" = (
+/obj/effect/landmark/corpsespawner/pmc/smg,
 /turf/open/floor/podhatch{
 	dir = 9
 	},
@@ -3891,6 +3904,10 @@
 "uw" = (
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/spaceport2)
+"uy" = (
+/obj/item/reagent_containers/hypospray/autoinjector/combat,
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/jungle9)
 "uz" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -4161,6 +4178,7 @@
 "vL" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/tool,
+/obj/item/stack/sheet/plasteel/small_stack,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "vM" = (
@@ -4395,7 +4413,10 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle10)
 "xe" = (
-/obj/effect/landmark/corpsespawner/security/regular,
+/obj/structure/table,
+/obj/item/belt_harness,
+/obj/item/belt_harness,
+/obj/item/belt_harness,
 /turf/open/floor/tile/red/redtaupe,
 /area/lv624/lazarus/security)
 "xf" = (
@@ -4452,6 +4473,7 @@
 /obj/item/storage/box/masks,
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/healthanalyzer,
+/obj/item/storage/firstaid/adv,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/research/caves)
 "xD" = (
@@ -5068,11 +5090,9 @@
 /area/lv624/lazarus/captain)
 "Al" = (
 /obj/structure/rack,
-/obj/item/explosive/grenade/impact{
-	pixel_x = 4;
-	pixel_y = 3
-	},
-/obj/item/explosive/grenade/impact,
+/obj/effect/spawner/random/weaponry/attachments,
+/obj/effect/spawner/random/weaponry/attachments,
+/obj/effect/spawner/random/weaponry/attachments,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 5
 	},
@@ -5355,7 +5375,6 @@
 "BL" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/landmark/start/job/survivor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/bar)
 "BM" = (
@@ -5629,7 +5648,10 @@
 /area/lv624/ground/jungle9)
 "Dn" = (
 /obj/structure/rack,
-/obj/effect/spawner/random/weaponry/gun,
+/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
+/obj/item/cell/lasgun/lasrifle,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research/caves)
 "Do" = (
@@ -5652,6 +5674,7 @@
 /obj/item/frame/rack,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/weapon/baton,
+/obj/effect/spawner/random/weaponry/attachments,
 /turf/open/floor/tile/dark/red2/corner,
 /area/lv624/lazarus/research/caves)
 "Du" = (
@@ -5940,14 +5963,8 @@
 "Fe" = (
 /obj/structure/table,
 /obj/item/trash/barcaridine,
-/obj/item/clothing/suit/armor/vest/security{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/clothing/suit/armor/vest/security{
-	pixel_x = -4;
-	pixel_y = -1
-	},
+/obj/item/clothing/suit/armor/patrol,
+/obj/item/clothing/suit/armor/patrol,
 /turf/open/floor,
 /area/lv624/lazarus/security)
 "Ff" = (
@@ -6345,6 +6362,10 @@
 	dir = 1;
 	on = 1
 	},
+/obj/structure/table,
+/obj/item/storage/belt/marine/som,
+/obj/item/storage/belt/marine/som,
+/obj/item/storage/belt/marine/som,
 /turf/open/floor/tile/red/redtaupe{
 	dir = 10
 	},
@@ -6663,6 +6684,10 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle7)
+"II" = (
+/obj/structure/largecrate/guns/merc,
+/turf/open/floor/marking/bot,
+/area/lv624/lazarus/quartstorage/outdoors)
 "IJ" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 8
@@ -15631,7 +15656,7 @@ Cq
 iQ
 RL
 Kt
-ft
+uy
 Om
 Om
 Om
@@ -18529,7 +18554,7 @@ CS
 Fh
 jm
 RB
-hX
+dU
 Uq
 Uq
 FC
@@ -20422,7 +20447,7 @@ LR
 LR
 la
 NK
-LR
+II
 RN
 pF
 ni
