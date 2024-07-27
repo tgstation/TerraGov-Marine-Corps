@@ -1075,7 +1075,7 @@
 	///Whether this item can be deployed or undeployed
 	var/item_flags = IS_DEPLOYABLE
 	///What it deploys into. typecast version of internal_item
-	var/obj/item/weapon/shield/riot/marine/deployable/internal_shield
+	var/obj/item/weapon/shield/marine/deployable/internal_shield
 
 /obj/structure/barricade/metal/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()

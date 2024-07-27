@@ -61,7 +61,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/stack/sheet/metal/small_stack = list(CAT_ENGSUP, "Metal x10", METAL_PRICE_IN_GEAR_VENDOR, "engi-construction"),
 		/obj/item/stack/sheet/plasteel/small_stack = list(CAT_ENGSUP, "Plasteel x10", PLASTEEL_PRICE_IN_GEAR_VENDOR, "engi-construction"),
 		/obj/item/stack/sandbags_empty/half = list(CAT_ENGSUP, "Sandbags x25", SANDBAG_PRICE_IN_GEAR_VENDOR, "engi-construction"),
-		/obj/item/weapon/shield/riot/marine/deployable = list(CAT_ENGSUP, "TL-182 deployable shield", 3, "engi-construction"),
+		/obj/item/weapon/shield/marine/deployable = list(CAT_ENGSUP, "TL-182 deployable shield", 3, "engi-construction"),
 		/obj/item/deployable_floodlight = list(CAT_ENGSUP, "Deployable floodlight", 2, "engi-construction"),
 		/obj/item/storage/pouch/explosive/razorburn = list(CAT_ENGSUP, "Pack of Razorburn grenades", 11, "engi-construction"),
 		/obj/item/explosive/grenade/chem_grenade/razorburn_large = list(CAT_ENGSUP, "Razorburn canister", 7, "engi-construction"),

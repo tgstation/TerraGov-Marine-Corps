@@ -86,7 +86,7 @@
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
-			/obj/item/weapon/shield/riot/marine/deployable = 6,
+			/obj/item/weapon/shield/marine/deployable = 6,
 			/obj/item/weapon/combat_knife/harvester = 12,
 		),
 		"Sidearm" = list(
@@ -308,7 +308,7 @@
 			/obj/item/weapon/twohanded/spear/tactical/harvester = -1,
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
-			/obj/item/weapon/shield/riot/marine/deployable = 6,
+			/obj/item/weapon/shield/marine/deployable = 6,
 			/obj/item/weapon/combat_knife/harvester = 12,
 		),
 		"Sidearm" = list(
@@ -513,7 +513,7 @@
 			/obj/item/weapon/twohanded/glaive/harvester = -1,
 			/obj/item/weapon/powerfist = -1,
 			/obj/item/weapon/shield/riot/marine = -1,
-			/obj/item/weapon/shield/riot/marine/deployable = -1,
+			/obj/item/weapon/shield/marine/deployable = -1,
 			/obj/item/weapon/combat_knife/harvester = -1,
 		),
 		"Sidearm" = list(

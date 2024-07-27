@@ -133,9 +133,9 @@
 	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 30, BIO = 50, FIRE = 0, ACID = 15)
 
 //A shield that can be deployed as a barricade
-/obj/item/weapon/shield/riot/marine/deployable
+/obj/item/weapon/shield/marine/deployable
 	name = "\improper TL-182 deployable shield"
-	desc = "A compact shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade. Alt click to tighten the strap."
+	desc = "A compact shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade."
 	icon_state = "folding_shield"
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_NORMAL
@@ -153,11 +153,11 @@
 	///Whether it is wired
 	var/is_wired = FALSE
 
-/obj/item/weapon/shield/riot/marine/deployable/Initialize(mapload)
+/obj/item/weapon/shield/marine/deployable/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time, null, TRUE)
 
-/obj/item/weapon/shield/riot/marine/deployable/set_shield()
+/obj/item/weapon/shield/marine/deployable/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 40, BIO = 15, FIRE = 30, ACID = 35))
 
 /obj/item/weapon/shield/energy
