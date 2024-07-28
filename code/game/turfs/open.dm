@@ -47,6 +47,10 @@
 	. = ..()
 	. += ceiling_desc()
 
+/turf/open/do_acid_melt()
+	. = ..()
+	ScrapeAway()
+
 ///Checks if anything should override the turf's normal footstep sounds
 /turf/open/proc/get_footstep_override(footstep_type)
 	var/list/footstep_overrides = list()
