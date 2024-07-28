@@ -145,17 +145,6 @@
 /particles/tank_wreck_smoke/apc
 	position = list(87, 60, 0)
 
-/obj/structure/campaign_objective/destruction_objective/mlrs/new_tank
-	name = "\improper M34A2 Longstreet Light Tank"
-	desc = "A giant piece of armor with a big gun, good for blowing stuff up."
-	icon = 'icons/obj/structures/campaign/campaign_bigger.dmi'
-	icon_state = "tank"
-	pixel_y = -5
-	smoke_type = /particles/tank_wreck_smoke/new_tank
-
-/particles/tank_wreck_smoke/new_tank
-	position = list(48, 62, 0)
-
 //Supply depot objectives
 /obj/structure/campaign_objective/destruction_objective/supply_objective
 	name = "SUPPLY_OBJECTIVE"
@@ -372,3 +361,112 @@
 	bound_width = 3
 	bound_x = -32
 	layer = ABOVE_MOB_LAYER
+
+
+
+//
+/obj/structure/prop/vehicle_wreck
+	name = "\improper M34A2 Longstreet Light Tank"
+	desc = "A giant piece of armor with a big gun, good for blowing stuff up."
+	icon = 'icons/obj/armored/3x3/tank_wreck.dmi'
+	icon_state = "tank"
+	pixel_x = -24
+	pixel_y = -16
+	bound_height = 96
+	bound_width = 96
+	coverage = 85
+	max_integrity = 1000
+	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
+	hard_armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 35, BIO = 100, FIRE = 0, ACID = 0)
+	layer = ABOVE_MOB_LAYER
+	density = TRUE
+
+	allow_pass_flags = PASS_TANK|PASS_WALKOVER|PASS_THROW|PASS_PROJECTILE|PASS_AIR
+	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
+
+	///Cool and good turret overlay that allows independently swiveling guns
+	var/atom/movable/vis_obj/wrecked_turret_overlay/turret_overlay
+
+/obj/structure/prop/vehicle_wreck/Initialize(mapload, obj/vehicle/sealed/armored/source_vehicle, main_dir, turret_dir)
+	. = ..()
+	setDir(main_dir)
+
+	turret_overlay = new()
+	turret_overlay.layer = layer+0.002 //probs kill
+	turret_overlay.setDir(turret_dir)
+	vis_contents += turret_overlay
+
+
+/obj/structure/prop/vehicle_wreck/Destroy()
+	if(turret_overlay)
+		QDEL_NULL(turret_overlay)
+
+	return ..()
+
+/*
+/obj/structure/prop/vehicle_wreck/setDir(newdir)
+	. = ..()
+
+/obj/structure/prop/vehicle_wreck/update_icon_state()
+	. = ..()
+
+/obj/structure/prop/vehicle_wreck/update_overlays()
+	. = ..()
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
+	. += new_overlay
+
+/obj/structure/prop/vehicle_wreck/plastique_act(mob/living/plastique_user)
+	return ..()
+**/
+
+
+/particles/tank_wreck_smoke/new_tank
+	position = list(48, 62, 0)
+
+
+///turret
+/atom/movable/vis_obj/wrecked_turret_overlay
+	name = "Tank gun turret"
+	desc = "The shooty bit on a tank."
+	icon = 'icons/obj/armored/3x3/tank_wreck.dmi'
+	icon_state = "turret"
+	layer = ABOVE_ALL_MOB_LAYER
+	vis_flags = VIS_INHERIT_ID
+	var/obj/effect/abstract/particle_holder/smoke_holder
+	var/smoke_type = /particles/tank_wreck_smoke/new_tank
+	///overlay obj for for the attached gun
+	//var/atom/movable/vis_obj/tank_gun/primary_overlay
+	///icon state for the secondary
+	//var/image/secondary_overlay
+
+/atom/movable/vis_obj/wrecked_turret_overlay/Initialize(mapload, ...)
+	. = ..()
+	smoke_holder = new(src, smoke_type)
+
+/atom/movable/vis_obj/wrecked_turret_overlay/Destroy()
+	//if(primary_overlay)
+	//	QDEL_NULL(primary_overlay)
+	return ..()
+
+/atom/movable/vis_obj/wrecked_turret_overlay/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(SOUTH)
+			pixel_x = 0
+			pixel_y = 0
+			smoke_holder.particles.position = list(54, 85, 0)
+		if(NORTH)
+			pixel_x = 0
+			pixel_y = 3
+			smoke_holder.particles.position = list(54, 75, 0)
+		if(EAST)
+			pixel_x = 14
+			pixel_y = 0
+			smoke_holder.particles.position = list(38, 85, 0)
+		if(WEST)
+			pixel_x = -15
+			pixel_y = 0
+			smoke_holder.particles.position = list(72, 85, 0)
+
+
+

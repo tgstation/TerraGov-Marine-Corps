@@ -91,3 +91,8 @@
 	. = ..()
 	var/obj/item/tank_module/module = new /obj/item/tank_module/ability/smoke_launcher()
 	module.on_equip(src)
+
+/obj/vehicle/sealed/armored/multitile/campaign/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	new /obj/structure/prop/vehicle_wreck(get_step(src, SOUTHWEST), src, dir, turret_overlay.dir)
+	return ..()
+
