@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Plasma SMG scatter increased slightly"
+  - balance: "Plasma SMG bouncy mode damage decreases slightly for each bounce"
