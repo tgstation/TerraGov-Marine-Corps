@@ -784,14 +784,15 @@
 		if(!silent)
 			owner.balloon_alert(owner, "We can't melt [A]")
 		return FALSE
-	if(A.resistance_flags & UNACIDABLE || !A.dissolvability(initial(current_acid_type.acid_strength)))
-		if(!silent)
-			owner.balloon_alert(owner, "We cannot dissolve [A]")
-		return FALSE
-	if(!A.should_apply_acid(initial(acid_type.acid_strength)) || initial(current_acid_type.acid_strength) <= A.current_acid?.acid_strength)
-		if(!silent)
-			owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
-		return FALSE
+	switch(A.should_apply_acid(current_acid_type::acid_strength))
+		if(ATOM_CANNOT_ACID)
+			if(!silent)
+				owner.balloon_alert(owner, "We cannot dissolve [A]")
+			return FALSE
+		if(ATOM_STRONGER_ACID)
+			if(!silent)
+				owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
+			return FALSE
 
 /datum/action/ability/activable/xeno/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -803,7 +804,7 @@
 		var/obj/effect/xenomorph/acid/existing_acid = A
 		A = existing_acid.acid_t // Swap the target to the target of the acid
 
-	if(!A.dissolvability(initial(current_acid_type.acid_strength)))
+	if(!A.dissolvability(current_acid_type::acid_strength))
 		return fail_activate()
 
 	X.face_atom(A)
@@ -815,10 +816,7 @@
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
-	var/old_acid_ticks = A.current_acid?.ticks
-	QDEL_NULL(A.current_acid)
-	A.current_acid = new current_acid_type(get_turf(A), A, A.dissolvability(initial(current_acid_type.acid_strength)), old_acid_ticks)
-
+	new current_acid_type(get_turf(A), A, A.dissolvability(current_acid_type::acid_strength))
 	succeed_activate()
 
 	if(!isturf(A))
