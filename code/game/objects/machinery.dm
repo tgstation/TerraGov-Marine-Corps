@@ -65,7 +65,7 @@
 	to_chat(user, span_notice("You rotate [src]."))
 	return TRUE
 
-/obj/machinery/deconstruct(disassembled = TRUE)
+/obj/machinery/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		on_deconstruction()
 		if(length(component_parts))

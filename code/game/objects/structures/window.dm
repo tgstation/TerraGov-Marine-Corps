@@ -191,7 +191,7 @@
 		to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
 
 
-/obj/structure/window/deconstruct(disassembled = TRUE)
+/obj/structure/window/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
 		if(reinf)
 			new /obj/item/stack/sheet/glass/reinforced(loc, 2)

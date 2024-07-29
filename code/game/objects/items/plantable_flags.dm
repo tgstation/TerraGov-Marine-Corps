@@ -54,7 +54,7 @@
 	origin_point = null
 	return ..()
 
-/obj/item/plantable_flag/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+/obj/item/plantable_flag/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	on_destroy(blame_mob)
 	return ..()
 

@@ -100,7 +100,7 @@
 	GLOB.marine_turrets -= src
 	return ..()
 
-/obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE)
+/obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!disassembled)
 		explosion(loc, light_impact_range = 3)
 	return ..()
