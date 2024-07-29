@@ -552,6 +552,7 @@
 	desc = "A plushie depicting a royal xenomorph queen. Smells faintly of stardust and baguettes, with a tag that has Wee! written on it."
 	icon_state = "queenplushie"
 	worn_icon_state = "queenplushie"
+	attack_verb = list("nuzzles", "bops", "pats")
 
 /obj/item/toy/plush/royalqueen/Initialize(mapload)
 	. = ..()
