@@ -556,7 +556,7 @@
 
 /obj/item/toy/plush/royalqueen/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/squeak, 'sound/items/wee.ogg')
+	AddComponent(/datum/component/squeak, 'sound/items/wee.ogg', 20)
 
 #define HIGH_GNOME_MOVE_RANGE 40
 #define STANDARD_GNOME_PIPE_CHANCE 50
