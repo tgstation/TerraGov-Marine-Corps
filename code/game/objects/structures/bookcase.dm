@@ -3,6 +3,7 @@
 	name = "bookcase"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "book-0"
+	max_integrity = 200
 	resistance_flags = XENO_DAMAGEABLE
 	anchored = TRUE
 	density = TRUE

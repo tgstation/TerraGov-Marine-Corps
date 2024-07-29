@@ -16,17 +16,14 @@
 	bonus_projectiles_scatter = 12
 	///How many bonus projectiles to generate. New var so it doesn't trigger on firing
 	var/bonus_projectile_quantity = 5
-	///Max range for the bonus projectiles
-	var/bonus_projectile_range = 7
-	///projectile speed for the bonus projectiles
-	var/bonus_projectile_speed = 3
 
-/datum/ammo/bullet/micro_rail/do_at_max_range(turf/T, obj/projectile/proj)
-	playsound(proj, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+/datum/ammo/bullet/micro_rail/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new
-	smoke.set_up(0, get_turf(proj), 1)
+	smoke.set_up(0, det_turf, 1)
 	smoke.start()
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, get_turf(proj)) )
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
 //piercing scatter shot
 /datum/ammo/bullet/micro_rail/airburst
@@ -41,7 +38,6 @@
 	handful_icon_state = "micro_grenade_incendiary"
 	hud_state = "grenade_fire"
 	bonus_projectiles_type = /datum/ammo/bullet/micro_rail_spread/incendiary
-	bonus_projectile_range = 6
 
 //cluster grenade. Bomblets explode in a rough cone pattern
 /datum/ammo/bullet/micro_rail/cluster
@@ -50,8 +46,6 @@
 	hud_state = "grenade_he"
 	bonus_projectiles_type = /datum/ammo/micro_rail_cluster
 	bonus_projectile_quantity = 7
-	bonus_projectile_range = 6
-	bonus_projectile_speed = 2
 
 //creates a literal smokescreen
 /datum/ammo/bullet/micro_rail/smoke_burst
@@ -60,8 +54,18 @@
 	hud_state = "grenade_smoke"
 	bonus_projectiles_type = /datum/ammo/smoke_burst
 	bonus_projectiles_scatter = 20
-	bonus_projectile_range = 6
-	bonus_projectile_speed = 2
+
+/datum/ammo/bullet/micro_rail/smoke_burst/tank
+	max_range = 3
+	bonus_projectiles_type = /datum/ammo/smoke_burst/tank
+	bonus_projectile_quantity = 5
+	bonus_projectiles_scatter = 30
+
+/datum/ammo/bullet/micro_rail/smoke_burst/tank
+	max_range = 3
+	bonus_projectiles_type = /datum/ammo/smoke_burst/tank
+	bonus_projectile_quantity = 5
+	bonus_projectiles_scatter = 30
 
 //submunitions for micro grenades
 /datum/ammo/bullet/micro_rail_spread
@@ -75,9 +79,11 @@
 	penetration = 20
 	sundering = 3
 	damage_falloff = 1
+	max_range = 7
+	shell_speed = 3
 
-/datum/ammo/bullet/micro_rail_spread/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, stagger = 1 SECONDS, slowdown = 0.5)
+/datum/ammo/bullet/micro_rail_spread/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, stagger = 1 SECONDS, slowdown = 0.5)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary
 	name = "incendiary flechette"
@@ -87,17 +93,17 @@
 	sundering = 1.5
 	max_range = 6
 
-/datum/ammo/bullet/micro_rail_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, stagger = 0.4 SECONDS, slowdown = 0.2)
+/datum/ammo/bullet/micro_rail_spread/incendiary/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, stagger = 0.4 SECONDS, slowdown = 0.2)
 
 /datum/ammo/bullet/micro_rail_spread/incendiary/drop_flame(turf/T)
 	if(!istype(T))
 		return
 	T.ignite(5, 10)
 
-/datum/ammo/bullet/micro_rail_spread/incendiary/on_leave_turf(turf/T, obj/projectile/proj)
+/datum/ammo/bullet/micro_rail_spread/incendiary/on_leave_turf(turf/target_turf, obj/projectile/proj)
 	if(prob(40))
-		drop_flame(T)
+		drop_flame(target_turf)
 
 /datum/ammo/micro_rail_cluster
 	name = "bomblet"
@@ -144,23 +150,23 @@
 				var/obj/obj_victim = target
 				obj_victim.take_damage(explosion_damage, BRUTE, BOMB)
 
-/datum/ammo/micro_rail_cluster/on_leave_turf(turf/T, obj/projectile/proj)
+/datum/ammo/micro_rail_cluster/on_leave_turf(turf/target_turf, obj/projectile/proj)
 	///chance to detonate early, scales with distance and capped, to avoid lots of immediate detonations, and nothing reach max range respectively.
 	var/detonate_probability = min(proj.distance_travelled * 4, 16)
 	if(prob(detonate_probability))
 		proj.proj_max_range = proj.distance_travelled
 
-/datum/ammo/micro_rail_cluster/on_hit_mob(mob/M, obj/projectile/P)
-	detonate(get_turf(P), P)
+/datum/ammo/micro_rail_cluster/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	detonate(get_turf(target_mob), proj)
 
-/datum/ammo/micro_rail_cluster/on_hit_obj(obj/O, obj/projectile/P)
-	detonate(get_turf(P), P)
+/datum/ammo/micro_rail_cluster/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	detonate(get_turf(target_obj), proj)
 
-/datum/ammo/micro_rail_cluster/on_hit_turf(turf/T, obj/projectile/P)
-	detonate(T.density ? P.loc : T, P)
+/datum/ammo/micro_rail_cluster/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	detonate(target_turf.density ? proj.loc : target_turf, proj)
 
-/datum/ammo/micro_rail_cluster/do_at_max_range(turf/T, obj/projectile/P)
-	detonate(T.density ? P.loc : T, P)
+/datum/ammo/micro_rail_cluster/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	detonate(target_turf.density ? proj.loc : target_turf, proj)
 
 /datum/ammo/smoke_burst
 	name = "micro smoke canister"
@@ -186,14 +192,18 @@
 	smoke.set_up(smokeradius, T, rand(5,9))
 	smoke.start()
 
-/datum/ammo/smoke_burst/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(P))
+/datum/ammo/smoke_burst/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	drop_nade(get_turf(target_mob))
 
-/datum/ammo/smoke_burst/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(P))
+/datum/ammo/smoke_burst/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_nade(target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : get_turf(target_obj))
 
-/datum/ammo/smoke_burst/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/smoke_burst/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/smoke_burst/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/smoke_burst/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+
+/datum/ammo/smoke_burst/tank
+	max_range = 7
+	smokeradius = 2

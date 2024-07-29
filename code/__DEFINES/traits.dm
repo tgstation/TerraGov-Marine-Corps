@@ -120,6 +120,10 @@
 #define HUGGER_TRAIT "hugger"
 #define PISTOL_LACE_TRAIT "pistol_lace"
 #define NIGHT_VISION_GOGGLES_TRAIT "night_vision_goggles"
+#define SUBMERGED_TRAIT "submerged_trait"
+#define TRAIT_DWARF "dwarf"
+/// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
+#define TRAIT_TOO_TALL "too_tall"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
@@ -131,6 +135,11 @@
 #define REAGENT_TRAIT(reagent) reagent.name
 /// inherited from riding vehicles
 #define VEHICLE_TRAIT "vehicle"
+
+///AM is currently submerged
+#define TRAIT_SUBMERGED "trait_submerged"
+///AM will not be submerged. Trait must ALWAYS be added via the add_nosubmerge_trait proc for correct behavior
+#define TRAIT_NOSUBMERGE "trait_nosubmerge"
 
 
 

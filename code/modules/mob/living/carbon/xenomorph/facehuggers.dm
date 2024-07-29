@@ -390,13 +390,17 @@
 		if(!Attach(carbon_victim))
 			go_idle()
 	else
-		step(src, REVERSE_DIR(dir))
 		if(!issamexenohive(carbon_victim))
 			carbon_victim.adjust_stagger(3 SECONDS)
 			carbon_victim.add_slowdown(3)
 		pre_leap(activate_time)
 
 	leaping = FALSE
+
+/obj/item/clothing/mask/facehugger/throw_bounce(atom/hit_atom, turf/old_throw_source)
+	if(ismob(hit_atom))
+		return
+	return ..()
 
 /obj/item/clothing/mask/facehugger/stop_throw(flying, original_layer)
 	. = ..()
@@ -581,7 +585,7 @@
 		kill_hugger()
 	else
 		reset_attach_status(as_planned)
-		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
+		playsound(loc, 'sound/voice/alien/facehugger_dies.ogg', 25, 1)
 		activetimer = addtimer(CALLBACK(src, PROC_REF(go_active)), activate_time, TIMER_STOPPABLE|TIMER_UNIQUE)
 		update_icon()
 
@@ -606,7 +610,7 @@
 	remove_danger_overlay() //Remove the danger overlay
 
 	update_icon()
-	playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
+	playsound(loc, 'sound/voice/alien/facehugger_dies.ogg', 25, 1)
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 

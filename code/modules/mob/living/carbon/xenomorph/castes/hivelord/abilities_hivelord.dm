@@ -9,6 +9,7 @@
 /datum/action/ability/activable/xeno/recycle
 	name = "Recycle"
 	action_icon_state = "recycle"
+	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "We deconstruct the body of a fellow fallen xenomorph to avoid marines from harvesting our sisters in arms."
 	use_state_flags = ABILITY_USE_STAGGERED //can't use while staggered, defender fortified or crest down
 	keybinding_signals = list(
@@ -53,7 +54,7 @@
 
 	recycled_xeno.gib()
 
-	playsound(hivelord, 'sound/effects/alien_recycler.ogg', 40)
+	playsound(hivelord, 'sound/effects/alien/recycler.ogg', 40)
 	hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off its claws."), \
 	span_danger("We brush xenomorphs' bits off of our claws."), null, 20)
 	return succeed_activate() //dew it
@@ -66,7 +67,7 @@
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/alien/resin/sticky,
-		/obj/structure/mineral_door/resin/thick,
+		/obj/structure/door/resin/thick,
 	)
 
 // ***************************************
@@ -75,6 +76,7 @@
 /datum/action/ability/xeno_action/toggle_speed
 	name = "Resin Walker"
 	action_icon_state = "toggle_speed"
+	action_icon = 'icons/Xeno/actions/hivelord.dmi'
 	desc = "Move faster on resin."
 	ability_cost = 50
 	keybinding_signals = list(
@@ -151,6 +153,7 @@
 /datum/action/ability/xeno_action/build_tunnel
 	name = "Dig Tunnel"
 	action_icon_state = "build_tunnel"
+	action_icon = 'icons/Xeno/actions/hivelord.dmi'
 	desc = "Create a tunnel entrance. Use again to create the tunnel exit."
 	ability_cost = 200
 	cooldown_duration = 120 SECONDS
@@ -239,6 +242,7 @@
 /datum/action/ability/xeno_action/place_jelly_pod
 	name = "Place Resin Jelly pod"
 	action_icon_state = "resin_jelly_pod"
+	action_icon = 'icons/Xeno/actions/construction.dmi'
 	desc = "Place down a dispenser that allows xenos to retrieve fireproof jelly."
 	ability_cost = 500
 	cooldown_duration = 1 MINUTES
@@ -280,6 +284,7 @@
 /datum/action/ability/xeno_action/create_jelly
 	name = "Create Resin Jelly"
 	action_icon_state = "resin_jelly"
+	action_icon = 'icons/Xeno/actions/construction.dmi'
 	desc = "Create a fireproof jelly."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
@@ -310,6 +315,7 @@
 /datum/action/ability/activable/xeno/healing_infusion
 	name = "Healing Infusion"
 	action_icon_state = "healing_infusion"
+	action_icon = 'icons/Xeno/actions/hivelord.dmi'
 	desc = "Psychically infuses a friendly xeno with regenerative energies, greatly improving its natural healing. Doesn't work if the target can't naturally heal."
 	cooldown_duration = 12.5 SECONDS
 	ability_cost = 200
@@ -394,6 +400,7 @@
 /datum/action/ability/xeno_action/sow
 	name = "Sow"
 	action_icon_state = "place_trap"
+	action_icon = 'icons/Xeno/actions/construction.dmi'
 	desc = "Sow the seeds of an alien plant."
 	ability_cost = 200
 	cooldown_duration = 45 SECONDS
@@ -428,7 +435,7 @@
 /datum/action/ability/xeno_action/sow/update_button_icon()
 	var/mob/living/carbon/xenomorph/X = owner
 	button.overlays.Cut()
-	button.overlays += image('icons/Xeno/actions.dmi', button, initial(X.selected_plant.name))
+	button.overlays += image('icons/Xeno/actions/construction.dmi', button, initial(X.selected_plant.name))
 	return ..()
 
 ///Shows a radial menu to pick the plant they wish to put down when they use the ability

@@ -84,7 +84,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "aT" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor,
 /area/oscar_outpost)
 "bb" = (
@@ -573,10 +573,6 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"eH" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "eI" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
@@ -771,7 +767,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "gL" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -8;
 	pixel_y = 15
@@ -888,10 +884,6 @@
 "hP" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/east)
-"hQ" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "hV" = (
 /obj/structure/fence,
 /obj/effect/ai_node,
@@ -1068,12 +1060,8 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
-"jZ" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "kk" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -1284,7 +1272,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost)
 "nv" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 18
@@ -1527,7 +1515,7 @@
 	},
 /area/oscar_outpost)
 "pk" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
@@ -1553,7 +1541,7 @@
 /turf/closed/wall/mainship/research,
 /area/oscar_outpost)
 "pz" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/storage/box/condimentbottles{
 	pixel_x = -5;
 	pixel_y = 12
@@ -1581,7 +1569,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "pE" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -8;
 	pixel_y = 15
@@ -1758,7 +1746,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1857,7 +1845,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "rG" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket/janibucket,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -1896,10 +1884,6 @@
 "sk" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
-"sr" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "st" = (
 /obj/machinery/optable,
 /obj/machinery/camera/autoname/mainship{
@@ -2047,7 +2031,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/west)
 "tJ" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -8;
 	pixel_y = 15
@@ -2291,10 +2275,6 @@
 	pixel_y = 6
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
-"vX" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "wf" = (
 /obj/item/weapon/gun/hsg_102/hsg_nest{
@@ -2942,7 +2922,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/east)
 "Dj" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
@@ -3546,7 +3526,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor,
 /area/oscar_outpost)
 "Iz" = (
@@ -3743,7 +3723,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "KD" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
@@ -3800,7 +3780,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -3930,10 +3910,6 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"Nf" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "Nh" = (
 /obj/structure/table/reinforced,
 /obj/structure/barricade/metal,
@@ -4135,7 +4111,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northwest)
 "OO" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
@@ -4207,7 +4183,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "OY" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
@@ -4592,7 +4568,7 @@
 	},
 /area/oscar_outpost/outside/northeast)
 "Rj" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -8;
 	pixel_y = 15
@@ -5327,7 +5303,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "Ye" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 18
@@ -8676,7 +8652,7 @@ ZE
 ZE
 ZE
 ZE
-eH
+ZE
 ZE
 ZE
 ZE
@@ -8987,7 +8963,7 @@ ZE
 ZE
 ZE
 ZE
-Nf
+ZE
 ZE
 ZE
 ZE
@@ -9140,7 +9116,7 @@ ZE
 ZE
 ZE
 ZE
-vX
+ZE
 ZE
 ZE
 ZE
@@ -11772,9 +11748,9 @@ ZE
 sV
 ZE
 ZE
-jZ
 ZE
-sr
+ZE
+ZE
 ZE
 ZE
 ZE
@@ -12080,7 +12056,7 @@ ZE
 ZE
 HC
 ZE
-hQ
+ZE
 ZE
 ZE
 ZE
@@ -18904,7 +18880,7 @@ ZE
 ZE
 ZE
 ZE
-Nf
+ZE
 ZE
 ZE
 ZE
@@ -19212,7 +19188,7 @@ YC
 Up
 ZE
 ZE
-sr
+ZE
 ZE
 ZE
 QW
@@ -19370,7 +19346,7 @@ ZE
 ZE
 ZE
 ZE
-jZ
+ZE
 ZE
 ZE
 ZE

@@ -309,7 +309,7 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "bq" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/toy/dice,
 /obj/item/toy/dice/d20,
 /obj/item/toy/deck,
@@ -319,7 +319,7 @@
 /turf/open/floor/prison/plate,
 /area/whiskey_outpost)
 "br" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/sword/captain,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
@@ -556,7 +556,7 @@
 /area/whiskey_outpost)
 "cG" = (
 /obj/item/clothing/suit/storage/marine/smartgunner,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/whiskey_outpost)
 "cH" = (
@@ -750,7 +750,7 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "dw" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/effect/spawner/random/misc/paperbin,
 /obj/item/tool/pen,
 /obj/item/flashlight/lamp{
@@ -1007,6 +1007,11 @@
 	},
 /turf/open/floor/prison,
 /area/whiskey_outpost)
+"eW" = (
+/obj/effect/turf_decal/grassdecal/corner,
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "eY" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/whiskey_outpost/outside/north)
@@ -3111,7 +3116,7 @@
 /turf/open/floor/prison,
 /area/whiskey_outpost)
 "px" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/reagent_containers/pill/cyanide{
 	pixel_x = -3;
 	pixel_y = -4
@@ -3250,7 +3255,7 @@
 /area/whiskey_outpost/outside/north)
 "qc" = (
 /obj/item/storage/pill_bottle/happy,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/xenos_claw,
 /turf/open/floor/wood,
 /area/whiskey_outpost/outside/north)
@@ -7032,6 +7037,10 @@
 	dir = 8
 	},
 /area/whiskey_outpost)
+"QQ" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/liquid/water/river,
+/area/whiskey_outpost/outside/north)
 "QS" = (
 /obj/structure/barricade/metal,
 /obj/item/weapon/gun/sentry/premade,
@@ -7703,6 +7712,13 @@
 	dir = 5
 	},
 /area/whiskey_outpost)
+"WK" = (
+/obj/effect/turf_decal/grassdecal/corner2{
+	dir = 4
+	},
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/dirt,
+/area/whiskey_outpost/outside/south)
 "WL" = (
 /turf/open/ground/grass,
 /area/whiskey_outpost/outside/east)
@@ -7920,6 +7936,10 @@
 "YJ" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/whiskey_outpost/outside/east)
+"YK" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating,
+/area/whiskey_outpost)
 "YL" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/closed/mineral/smooth,
@@ -11657,7 +11677,7 @@ gF
 gF
 gF
 gF
-gF
+YK
 gF
 gF
 gF
@@ -12726,7 +12746,7 @@ Sz
 aF
 Hq
 vi
-fn
+WK
 CV
 NW
 NW
@@ -20803,7 +20823,7 @@ Sz
 Sz
 iu
 sh
-rN
+eW
 pY
 Hq
 NW
@@ -21951,7 +21971,7 @@ cx
 cx
 nJ
 Eb
-cx
+QQ
 cx
 nJ
 cx

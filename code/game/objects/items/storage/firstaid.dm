@@ -153,6 +153,7 @@
 	name = "syringe case"
 	desc = "It's a medical case for storing syringes and bottles."
 	icon_state = "syringe_case"
+	icon = 'icons/obj/items/storage/firstaid.dmi'
 	throw_speed = 2
 	throw_range = 8
 	w_class = WEIGHT_CLASS_SMALL
@@ -511,14 +512,11 @@
 	. = ..()
 	storage_datum.max_storage_space = 7
 
-/obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-	if(!istype(I, /obj/item/facepaint) || isnull(greyscale_config))
-		return
+/obj/item/storage/pill_bottle/attackby(obj/item/attacking_item, mob/user, params)
+	if(!istype(attacking_item, /obj/item/facepaint) || isnull(greyscale_config))
+		return ..()
 
-	var/obj/item/facepaint/paint = I
+	var/obj/item/facepaint/paint = attacking_item
 	if(paint.uses < 1)
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return

@@ -1,8 +1,7 @@
 /obj/item/ammo_magazine
 	name = "generic ammo"
 	desc = "A box of ammo."
-	icon = 'icons/obj/items/ammo.dmi'
-	icon_state = null
+	icon = 'icons/obj/items/ammo/handful.dmi'
 	worn_icon_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
@@ -14,7 +13,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 2
 	throw_range = 6
-	///Icon state in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
+	///Icon state to an overlay to add to the gun, for extended mags, box mags, and so on
 	var/bonus_overlay = null
 	///This is a typepath for the type of bullet the magazine holds, it is cast so that it can draw the variable handful_amount from default_ammo in create_handful()
 	var/datum/ammo/bullet/default_ammo = /datum/ammo/bullet
@@ -36,7 +35,6 @@
 	var/magazine_flags = MAGAZINE_REFILLABLE
 	///the default mag icon state.
 	var/base_mag_icon
-
 	//Stats to modify on the gun, just like the attachments do, only has used ones add more as you need.
 	var/scatter_mod = 0
 	///Increases or decreases scatter chance but for onehanded firing.
@@ -65,7 +63,6 @@
 /obj/item/ammo_magazine/examine(mob/user)
 	. = ..()
 	. += "[src] has <b>[current_rounds]</b> rounds out of <b>[max_rounds]</b>."
-
 
 /obj/item/ammo_magazine/attack_hand(mob/living/user)
 	if(user.get_inactive_held_item() != src || !CHECK_BITFIELD(magazine_flags, MAGAZINE_REFILLABLE))
@@ -103,7 +100,6 @@
 	var/amount_to_transfer = mag.current_rounds
 	transfer_ammo(mag, user, amount_to_transfer)
 
-
 /obj/item/ammo_magazine/attackby_alternate(obj/item/I, mob/user, params)
 	. = ..()
 	if(!isgun(I))
@@ -118,7 +114,6 @@
 	master_gun.scatter_unwielded			+= scatter_unwielded_mod
 	master_gun.aim_slowdown					+= aim_speed_mod
 	master_gun.wield_delay					+= wield_delay_mod
-
 
 /obj/item/ammo_magazine/proc/on_removed(obj/item/weapon/gun/master_gun)
 	master_gun.scatter						-= scatter_mod
@@ -189,7 +184,7 @@
 	var/ammo_name = ammo.name
 
 	///sets greyscale for the handful if it has been specified by the ammo datum
-	if (ammo.handful_greyscale_config && ammo.handful_greyscale_colors)
+	if(ammo.handful_greyscale_config && ammo.handful_greyscale_colors)
 		set_greyscale_config(ammo.handful_greyscale_config)
 		set_greyscale_colors(ammo.handful_greyscale_colors)
 
@@ -204,7 +199,6 @@
 		max_rounds = ammo.handful_amount
 	current_rounds = new_rounds
 	update_icon()
-
 
 //our magazine inherits ammo info from a source magazine
 /obj/item/ammo_magazine/proc/match_ammo(obj/item/ammo_magazine/source)
@@ -243,31 +237,38 @@
 
 /obj/item/ammo_magazine/handful/slug
 	name = "handful of shotgun slug (12 gauge)"
-	icon_state = "shotgun slug"
+	icon_state = "shotgun_slug"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = CALIBER_12G
 
 /obj/item/ammo_magazine/handful/buckshot
 	name = "handful of shotgun buckshot shells (12g)"
-	icon_state = "shotgun buckshot shell"
+	icon_state = "shotgun_buckshot"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/buckshot
 	caliber = CALIBER_12G
 
 /obj/item/ammo_magazine/handful/flechette
 	name = "handful of shotgun flechette shells (12g)"
-	icon_state = "shotgun flechette shell"
+	icon_state = "shotgun_flechette"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/flechette
 	caliber = CALIBER_12G
 
 /obj/item/ammo_magazine/handful/incendiary
 	name = "handful of shotgun incendiary shells (12g)"
-	icon_state = "incendiary slug"
+	icon_state = "incendiary_slug"
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/incendiary
 	caliber = CALIBER_12G
+
+/obj/item/ammo_magazine/handful/martini
+	name = "The handful of crude heavy sniper bullet (.557/440)"
+	icon_state = "crude_heavy_sniper"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/sniper/martini
+	caliber = CALIBER_557
 
 /obj/item/ammo_magazine/handful/micro_grenade
 	name = "handful of airburst micro grenades (10g)"
@@ -379,20 +380,17 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	initial_icon_state = "shell_"
 	icon_state = "shell"
 
-
-
-
 //Big ammo boxes
 
 /obj/item/big_ammo_box
 	name = "big ammo box (10x24mm)"
 	desc = "A large ammo box. It comes with a leather strap."
 	w_class = WEIGHT_CLASS_HUGE
-	icon = 'icons/obj/items/ammo.dmi'
-	icon_state = "big_ammo_box"
+	icon = 'icons/obj/items/ammo/box.dmi'
+	icon_state = "big"
 	worn_icon_state = "big_ammo_box"
 	equip_slot_flags = ITEM_SLOT_BACK
-	base_icon_state = "big_ammo_box"
+	base_icon_state = "big"
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 2400
 	var/max_bullet_amount = 2400
@@ -474,10 +472,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/shotgunbox
 	name = "Slug Ammo Box"
 	desc = "A large, deployable ammo box."
-	icon = 'icons/obj/items/ammo.dmi'
-	icon_state = "ammoboxslug"
+	icon = 'icons/obj/items/ammo/box.dmi'
+	icon_state = "slug"
 	worn_icon_state = "ammoboxslug"
-	base_icon_state = "ammoboxslug"
+	base_icon_state = "slug"
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
 	///Current stored rounds
@@ -491,7 +489,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	///Caliber of the rounds stored.
 	var/caliber = CALIBER_12G
 
-
 /obj/item/shotgunbox/update_icon_state()
 	. = ..()
 	if(!deployed)
@@ -501,12 +498,10 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	else
 		icon_state = "[initial(icon_state)]_empty"
 
-
 /obj/item/shotgunbox/attack_self(mob/user)
 	deployed = TRUE
 	update_icon()
 	user.dropItemToGround(src)
-
 
 /obj/item/shotgunbox/MouseDrop(atom/over_object)
 	if(!deployed)
@@ -520,11 +515,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		deployed = FALSE
 		update_icon()
 
-
 /obj/item/shotgunbox/examine(mob/user)
 	. = ..()
 	. += "It contains [current_rounds] out of [max_rounds] shotgun shells."
-
 
 /obj/item/shotgunbox/attack_hand(mob/living/user)
 	if(loc == user)
@@ -535,7 +528,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		return
 
 	if(current_rounds < 1)
-		to_chat(user, "<span class='warning'>The [src] is empty.")
+		to_chat(user, span_warning("The [src] is empty."))
 		return
 
 	var/obj/item/ammo_magazine/handful/H = new
@@ -547,7 +540,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	user.put_in_hands(H)
 	to_chat(user, span_notice("You grab <b>[rounds]</b> round\s from [src]."))
 	update_icon()
-
 
 /obj/item/shotgunbox/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -568,18 +560,17 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		return
 
 	if(current_rounds == max_rounds)
-		to_chat(user, "<span class='warning'>The [src] is already full.")
+		to_chat(user, span_warning("The [src] is already full."))
 		return
 
 	current_rounds = min(current_rounds + H.current_rounds, max_rounds)
 	qdel(H)
 	update_icon()
 
-
 /obj/item/big_ammo_box/ap
 	name = "big ammo box (10x24mm AP)"
-	icon_state = "big_ammo_box_ap"
-	base_icon_state = "big_ammo_box_ap"
+	icon_state = "big_ap"
+	base_icon_state = "big_ap"
 	default_ammo = /datum/ammo/bullet/rifle/ap
 	bullet_amount = 400 //AP is OP
 	max_bullet_amount = 400
@@ -587,8 +578,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/big_ammo_box/smg
 	name = "big ammo box (10x20mm)"
 	caliber = CALIBER_10X20
-	icon_state = "big_ammo_box_m25"
-	base_icon_state = "big_ammo_box_m25"
+	icon_state = "big_m25"
+	base_icon_state = "big_m25"
 	default_ammo = /datum/ammo/bullet/smg
 	bullet_amount = 4500
 	max_bullet_amount = 4500
@@ -596,38 +587,38 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/shotgunbox/buckshot
 	name = "Buckshot Ammo Box"
-	icon_state = "ammoboxbuckshot"
+	icon_state = "buckshot"
 	worn_icon_state = "ammoboxbuckshot"
-	base_icon_state = "ammoboxbuckshot"
+	base_icon_state = "buckshot"
 	ammo_type = /datum/ammo/bullet/shotgun/buckshot
 
 /obj/item/shotgunbox/flechette
 	name = "Flechette Ammo Box"
-	icon_state = "ammoboxflechette"
+	icon_state = "flechette"
 	worn_icon_state = "ammoboxflechette"
-	base_icon_state = "ammoboxflechette"
+	base_icon_state = "flechette"
 	ammo_type = /datum/ammo/bullet/shotgun/flechette
 
 /obj/item/shotgunbox/clf_heavyrifle
 	name = "big ammo box (14.5mm API)"
 	caliber = CALIBER_14X5
-	icon_state = "ammobox_145"
+	icon_state = "145"
 	worn_icon_state = "ammobox_145"
-	base_icon_state = "ammobox_145"
+	base_icon_state = "145"
 	ammo_type = /datum/ammo/bullet/sniper/clf_heavyrifle
 
 /obj/item/shotgunbox/tracker
 	name = "Tracking Ammo Box"
-	icon_state = "ammoboxtracking"
+	icon_state = "tracking"
 	worn_icon_state = "ammoboxtracking"
-	base_icon_state = "ammoboxtracking"
+	base_icon_state = "tracking"
 	ammo_type = /datum/ammo/bullet/shotgun/tracker
 
 /obj/item/shotgunbox/blank
 	name = "blank ammo box"
-	icon_state = "ammoboxblank"
+	icon_state = "blank"
 	worn_icon_state = "ammoboxblank"
-	base_icon_state = "ammoboxblank"
+	base_icon_state = "blank"
 	ammo_type = /datum/ammo/bullet/shotgun/blank
 
 /obj/item/big_ammo_box/mg
