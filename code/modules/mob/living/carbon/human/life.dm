@@ -33,12 +33,8 @@
 
 		else //Dead
 			dead_ticks ++
-			var/mob/dead/observer/related_ghost = get_ghost(TRUE)
-			var/datum/limb/headcheck = get_limb("head")
-			// boolean, determines if the body's ghost can reenter the body
-			var/ghost_left = !mind && (!(!headcheck || (headcheck.limb_status & LIMB_DESTROYED)) || (!(species.species_flags & DETACHABLE_HEAD))) && !related_ghost?.can_reenter_corpse
-			if(dead_ticks > TIME_BEFORE_DNR || ghost_left)
-				set_undefibbable(ghost_left)
+			if(dead_ticks > TIME_BEFORE_DNR)
+				set_undefibbable()
 			else
 				med_hud_set_status()
 
@@ -59,12 +55,6 @@
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
 	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	SSmobs.stop_processing(src) //Last round of processing.
-
-	if(CHECK_BITFIELD(status_flags, XENO_HOST))
-		var/obj/item/alien_embryo/parasite = locate(/obj/item/alien_embryo) in src
-		if(parasite) //The larva cannot survive without a host.
-			qdel(parasite)
-		DISABLE_BITFIELD(status_flags, XENO_HOST)
 
 	if((SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS) && job?.job_cost)
 		job.free_job_positions(1)

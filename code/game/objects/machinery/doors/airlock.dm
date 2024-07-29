@@ -86,6 +86,13 @@
 		if(24 to 30)
 			machine_stat ^= PANEL_OPEN
 
+/obj/machinery/door/airlock/emp_act(severity)
+	. = ..()
+	if(prob(75 / severity))
+		set_electrified(MACHINE_DEFAULT_ELECTRIFY_TIME)
+	if(prob(30 / severity))
+		open()
+
 ///connect potential airlocks to each other for cycling
 /obj/machinery/door/airlock/proc/cyclelinkairlock()
 	if (cycle_linked_airlock)

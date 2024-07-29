@@ -64,13 +64,39 @@
 	items += "Beacons remaining: [beacons_remaining]"
 
 /datum/campaign_mission/raiding_base/load_pre_mission_bonuses()
-	spawn_mech(starting_faction, 0, 0, 3)
-	spawn_mech(hostile_faction, 0, 2)
 	new /obj/item/storage/box/crate/loot/materials_pack(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 	for(var/i = 1 to beacons_remaining)
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 		new /obj/item/explosive/plastique(get_turf(pick(GLOB.campaign_reward_spawners[hostile_faction])))
 		new beacon_type(get_turf(pick(GLOB.campaign_reward_spawners[starting_faction])))
+
+	var/tanks_to_spawn = 0
+	var/mechs_to_spawn = 0
+	var/current_pop = length(GLOB.clients)
+	switch(current_pop)
+		if(0 to 59)
+			tanks_to_spawn = 0
+		if(60 to 75)
+			tanks_to_spawn = 1
+		if(76 to 90)
+			tanks_to_spawn = 2
+		else
+			tanks_to_spawn = 3
+
+	switch(current_pop)
+		if(0 to 39)
+			mechs_to_spawn = 1
+		if(40 to 49)
+			mechs_to_spawn = 2
+		if(50 to 79)
+			mechs_to_spawn = 3
+		else
+			mechs_to_spawn = 4
+
+	spawn_tank(starting_faction, tanks_to_spawn)
+	spawn_tank(hostile_faction, tanks_to_spawn)
+	spawn_mech(hostile_faction, 0, 0, mechs_to_spawn)
+	spawn_mech(starting_faction, 0, 0, max(0, mechs_to_spawn - 1))
 
 /datum/campaign_mission/raiding_base/start_mission()
 	. = ..()
@@ -234,7 +260,6 @@
 	return list(
 		/area/campaign/tgmc_raiding/underground/command,
 		/area/campaign/tgmc_raiding/underground/command/east,
-		/area/campaign/tgmc_raiding/underground/command/captain,
 		/area/campaign/tgmc_raiding/underground/medbay,
 		/area/campaign/tgmc_raiding/underground/security/central_outpost,
 		/area/campaign/tgmc_raiding/underground/general/hallway,

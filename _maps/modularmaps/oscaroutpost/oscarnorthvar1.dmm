@@ -82,7 +82,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/west)
 "aT" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/machinery/light,
 /obj/item/ammo_magazine/hsg_102/hsg_nest,
 /obj/item/ammo_magazine/hsg_102/hsg_nest,
@@ -114,21 +114,6 @@
 /obj/item/ammo_magazine/hsg_102/hsg_nest,
 /obj/item/ammo_magazine/hsg_102/hsg_nest,
 /obj/item/ammo_magazine/hsg_102/hsg_nest,
-/turf/open/floor,
-/area/oscar_outpost)
-"aU" = (
-/obj/structure/closet,
-/obj/item/clothing/gloves/green{
-	desc = "Always good to keep a green thumb";
-	name = "gardener gloves"
-	},
-/obj/structure/prop/mainship/gelida/propplaceholder,
-/obj/item/clothing/mask/cigarette/pipe,
-/obj/item/clothing/shoes/leather,
-/obj/item/clothing/under/color/green,
-/obj/item/tool/minihoe,
-/obj/item/tool/shovel,
-/obj/item/tool/plantspray/weeds,
 /turf/open/floor,
 /area/oscar_outpost)
 "aX" = (
@@ -358,14 +343,6 @@
 	dir = 1
 	},
 /area/oscar_outpost/outside/north)
-"da" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
-"dd" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "dg" = (
 /obj/item/storage/belt/lifesaver/full,
 /obj/structure/table/reinforced/prison,
@@ -455,12 +432,8 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/road)
-"el" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "er" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
@@ -546,7 +519,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -594,10 +567,6 @@
 	},
 /turf/open/floor,
 /area/oscar_outpost)
-"fe" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "fj" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -609,10 +578,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/road)
-"fm" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "fz" = (
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirtgrassborder{
@@ -663,10 +628,6 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost)
-"fL" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "fQ" = (
 /obj/structure/flora/ausbushes/grassybush{
 	name = "shrivelled barley bush"
@@ -744,7 +705,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "gL" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = -8;
 	pixel_y = 15
@@ -982,7 +943,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "kk" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -1425,7 +1386,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "pk" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
 /obj/item/reagent_containers/glass/bucket,
@@ -1445,7 +1406,7 @@
 /turf/closed/wall/mainship/research,
 /area/oscar_outpost)
 "pz" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/storage/box/condimentbottles{
 	pixel_x = -5;
 	pixel_y = 12
@@ -1487,7 +1448,7 @@
 /turf/open/ground/grass,
 /area/oscar_outpost)
 "pE" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = -8;
 	pixel_y = 15
@@ -1685,7 +1646,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor,
 /area/oscar_outpost)
 "rs" = (
@@ -1715,7 +1676,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/northeast)
 "rG" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket/janibucket,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -2339,7 +2300,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2516,7 +2477,7 @@
 /turf/open/floor,
 /area/oscar_outpost)
 "Dj" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
@@ -3094,7 +3055,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "Jn" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = -8;
 	pixel_y = 15
@@ -3281,7 +3242,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
 "KD" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
 /obj/item/reagent_containers/food/snacks/grown/grapes,
@@ -3344,7 +3305,7 @@
 	name = "barley";
 	plantname = "barley"
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/kitchen,
 /turf/open/floor,
 /area/oscar_outpost)
@@ -4301,7 +4262,7 @@
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
 "Ye" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -8;
 	pixel_y = 18
@@ -4422,7 +4383,6 @@
 	desc = "Always good to keep a green thumb";
 	name = "gardener gloves"
 	},
-/obj/structure/prop/mainship/gelida/propplaceholder,
 /obj/item/clothing/mask/cigarette/pipe,
 /obj/item/clothing/shoes/leather,
 /obj/item/clothing/under/color/green,
@@ -6589,7 +6549,7 @@ ZE
 ZE
 ZE
 ZE
-fL
+ZE
 ZE
 ZE
 ZE
@@ -6900,7 +6860,7 @@ ZE
 ZE
 ZE
 ZE
-fe
+ZE
 ZE
 ZE
 ZE
@@ -7053,7 +7013,7 @@ ZE
 ZE
 ZE
 ZE
-fm
+ZE
 ZE
 ZE
 ZE
@@ -10615,9 +10575,9 @@ ZE
 ZE
 ZE
 ZE
-dd
 ZE
-el
+ZE
+ZE
 ZE
 ZE
 ZE
@@ -10923,7 +10883,7 @@ ZE
 ZE
 ZE
 ZE
-da
+ZE
 ZE
 ZE
 ZE
@@ -17747,7 +17707,7 @@ ZE
 ZE
 ZE
 ZE
-fe
+ZE
 ZE
 ZE
 ZE
@@ -18055,7 +18015,7 @@ LR
 Up
 ZE
 ZE
-el
+ZE
 ZE
 ZE
 cy
@@ -18213,7 +18173,7 @@ ZE
 ZE
 ZE
 ZE
-dd
+ZE
 ZE
 ZE
 ZE
@@ -20326,7 +20286,7 @@ Ws
 YV
 dD
 Ws
-aU
+VS
 ce
 NL
 JY

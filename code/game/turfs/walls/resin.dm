@@ -152,7 +152,7 @@
 			T = get_step(src, i)
 			if(!istype(T))
 				continue
-			for(var/obj/structure/mineral_door/resin/R in T)
+			for(var/obj/structure/door/resin/R in T)
 				R.check_resin_support()
 
 /**
@@ -219,7 +219,7 @@
 	name = "bulletproof resin wall"
 	desc = "Weird slime solidified into a wall. Looks shiny."
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) //You aren't damaging this with bullets without alot of AP.
-	color = COLLOR_WALL_BULLETPROOF
+	color = COLOR_WALL_BULLETPROOF
 
 /turf/closed/wall/resin/regenerating/special/fireproof
 	name = "fireproof resin wall"

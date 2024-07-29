@@ -395,12 +395,12 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "cT" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/structure/prop/mainship/gelida/register,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "cV" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/clothing/head/soft/red,
 /obj/item/clothing/head/soft/red,
 /obj/item/clothing/head/soft/red,
@@ -416,7 +416,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "cY" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor,
 /area/oscar_outpost/village)
 "da" = (
@@ -470,10 +470,6 @@
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
-"do" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "dq" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
@@ -513,7 +509,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "dK" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/toy/deck/kotahi,
 /obj/item/toy/deck/kotahi,
 /obj/item/toy/deck/kotahi,
@@ -562,7 +558,7 @@
 	},
 /area/oscar_outpost/outside/west)
 "el" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/structure/prop/mainship/gelida/register,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
@@ -676,11 +672,11 @@
 /area/oscar_outpost/village/east)
 "eT" = (
 /obj/item/clothing/suit/storage/marine/smartgunner,
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
 "eW" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "fd" = (
@@ -809,7 +805,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "fT" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor,
 /area/oscar_outpost/village)
@@ -823,7 +819,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/central)
 "gb" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
@@ -995,7 +991,7 @@
 /turf/open/floor/plating,
 /area/oscar_outpost/outside/underground)
 "gE" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/machinery/light,
@@ -1021,6 +1017,10 @@
 /obj/item/attachable/extended_barrel,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
+"gT" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/shuttle/drop1/lz1)
 "gU" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
@@ -1074,7 +1074,7 @@
 	pixel_x = 9;
 	pixel_y = 7
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "ht" = (
@@ -1254,7 +1254,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "iE" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/structure/prop/mainship/gelida/register,
 /turf/open/floor,
 /area/oscar_outpost/village)
@@ -1410,7 +1410,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "jE" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/ammo_magazine/rocket,
 /obj/item/explosive/mine{
 	pixel_y = 18
@@ -1516,7 +1516,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "kx" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "kB" = (
@@ -1751,12 +1751,12 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "mv" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
 "mx" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/condiment/sugar,
 /obj/item/reagent_containers/food/condiment/sugar,
 /obj/item/reagent_containers/food/condiment/sugar,
@@ -1797,7 +1797,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "mQ" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/structure/prop/mainship/gelida/register,
 /obj/structure/cable,
 /turf/open/floor,
@@ -2116,7 +2116,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
 "oX" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
 /obj/effect/spawner/random/weaponry/ammo/shotgun,
@@ -2524,7 +2524,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "rt" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/weaponry/explosive/grenade{
 	pixel_x = 7
 	},
@@ -2738,7 +2738,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "sK" = (
-/obj/structure/table/woodentable,
+/obj/structure/table/wood,
 /obj/item/weapon/sword/captain,
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
@@ -2823,7 +2823,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/central)
 "tv" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/drinks/tea{
 	pixel_x = -12
 	},
@@ -3124,7 +3124,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "vu" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
 /obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
 /obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
@@ -3142,7 +3142,7 @@
 /turf/open/liquid/lava,
 /area/oscar_outpost)
 "vw" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/explosive/grenade/incendiary/molotov,
 /obj/item/explosive/grenade/phosphorus/upp{
 	pixel_x = -9;
@@ -3415,10 +3415,6 @@
 	dir = 1
 	},
 /area/oscar_outpost)
-"xj" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "xk" = (
 /obj/structure/closet/crate,
 /obj/item/clothing/under/brown,
@@ -4354,7 +4350,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "BS" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -4437,7 +4433,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village)
 "Cn" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/ashtray/bronze{
 	pixel_x = 5;
 	pixel_y = -4
@@ -4484,7 +4480,7 @@
 /turf/open/floor/carpet,
 /area/oscar_outpost/village)
 "CC" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/flashlight/lamp/green{
 	pixel_x = -9;
 	pixel_y = 13
@@ -4513,10 +4509,6 @@
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
-"CF" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "CH" = (
 /obj/machinery/space_heater,
 /turf/open/floor/wood,
@@ -5381,7 +5373,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/south)
 "GC" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/paper{
 	pixel_y = 6
 	},
@@ -5564,7 +5556,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "Hj" = (
-/obj/structure/table/gamblingtable{
+/obj/structure/table/wood/gambling{
 	layer = 3.1
 	},
 /obj/item/spacecash/c100{
@@ -5697,7 +5689,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "HP" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "HQ" = (
@@ -5862,7 +5854,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Iu" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
 	pixel_y = 15
@@ -5956,10 +5948,6 @@
 /obj/item/tool/weldingtool,
 /turf/open/floor,
 /area/oscar_outpost/village)
-"IH" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "II" = (
 /obj/structure/closet/crate,
 /obj/item/tool/wrench,
@@ -6220,7 +6208,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "JG" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/flashlight/lamp{
 	pixel_x = 8;
 	pixel_y = 16
@@ -6491,7 +6479,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/central)
 "KY" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/south)
@@ -6582,7 +6570,7 @@
 /turf/closed/wall/mainship/outer,
 /area/oscar_outpost/base)
 "LC" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/weapon/gun/pistol/vp78,
 /obj/item/ammo_magazine/pistol/vp78,
 /obj/item/ammo_magazine/pistol/vp78,
@@ -6673,7 +6661,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "LN" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/tool/weldpack,
 /obj/item/tool/weldpack,
 /obj/item/tool/weldpack,
@@ -6950,12 +6938,12 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/central)
 "MM" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/phone,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village)
 "MO" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/weapon/gun/smg/uzi,
 /obj/item/weapon/gun/smg/uzi,
 /obj/effect/ai_node,
@@ -7109,7 +7097,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "NR" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/clothing/head/fez,
 /obj/item/clothing/head/fez,
 /obj/item/clothing/head/fez,
@@ -7134,7 +7122,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
 "NX" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/weapon/gun/pistol/heavy,
 /obj/item/ammo_magazine/pistol/heavy,
 /obj/item/ammo_magazine/pistol/heavy,
@@ -7147,7 +7135,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village)
 "Oa" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/structure/prop/mainship/gelida/register,
 /turf/open/floor,
 /area/oscar_outpost/village/central)
@@ -7295,7 +7283,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "OK" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/engineering/extinguisher/regularweighted,
 /obj/machinery/light{
 	dir = 4
@@ -7360,7 +7348,7 @@
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/base)
 "OV" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/hypospray/autoinjector,
 /obj/item/reagent_containers/hypospray/autoinjector,
 /obj/item/reagent_containers/hypospray/autoinjector,
@@ -7392,7 +7380,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/central)
 "Pd" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/structure/prop/mainship/gelida/register,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village)
@@ -7401,7 +7389,7 @@
 /turf/closed/mineral/smooth,
 /area/oscar_outpost/outside/rock)
 "Pg" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/weaponry/gun/shotgun,
 /obj/effect/spawner/random/weaponry/gun/shotgun,
 /turf/open/floor,
@@ -7691,10 +7679,6 @@
 /obj/item/weapon/gun/smg/m25,
 /turf/open/floor,
 /area/oscar_outpost/village)
-"Qk" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "Ql" = (
 /obj/effect/spawner/random/food_or_drink/beer/oscaroutpost{
 	pixel_x = -5;
@@ -7847,7 +7831,7 @@
 /area/oscar_outpost/base)
 "QP" = (
 /obj/machinery/microwave,
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "QQ" = (
@@ -7947,7 +7931,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "Rm" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/oscar_outpost/base)
@@ -7956,7 +7940,7 @@
 /turf/open/floor/asteroidfloor,
 /area/storage/testroom)
 "Rr" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/tool/wrench{
 	pixel_y = 13
 	},
@@ -8001,7 +7985,7 @@
 /turf/open/floor/prison,
 /area/oscar_outpost/base)
 "RE" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/weaponry/ammo/rifle{
 	pixel_x = 2;
 	pixel_y = 12
@@ -8103,6 +8087,32 @@
 /obj/effect/spawner/random/engineering/fuelcell/fullweighted,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost)
+"Sc" = (
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 12;
+	pixel_y = 26
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 25;
+	pixel_y = 26
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 16;
+	pixel_y = 21
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 39;
+	pixel_y = 26
+	},
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/obj/structure/reagent_dispensers/beerkeg{
+	pixel_x = 29;
+	pixel_y = 21
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/oscar_outpost/village/fairgrounds)
 "Se" = (
 /obj/structure/barricade/sandbags{
 	dir = 1;
@@ -8332,41 +8342,17 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
-"SN" = (
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 12;
-	pixel_y = 26
-	},
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 25;
-	pixel_y = 26
-	},
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 16;
-	pixel_y = 21
-	},
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 39;
-	pixel_y = 26
-	},
-/obj/structure/prop/vehicle/truck,
-/obj/structure/reagent_dispensers/beerkeg{
-	pixel_x = 29;
-	pixel_y = 21
-	},
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "SP" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/structure/prop/mainship/gelida/register,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "SR" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "SS" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "SV" = (
@@ -8402,7 +8388,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "Td" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = -6;
 	pixel_y = 18
@@ -8442,7 +8428,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "Tg" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/outdoors_snacks{
 	pixel_y = 14
 	},
@@ -8519,7 +8505,7 @@
 /turf/closed/wall/mainship/outer,
 /area/oscar_outpost/base)
 "Tz" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/central)
@@ -8554,7 +8540,7 @@
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "TF" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/snacks/sliceable/cheesewheel{
 	pixel_y = 14
 	},
@@ -8570,7 +8556,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/fairgrounds)
 "TJ" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/food/snacks/sliceable/cheesewheel{
 	pixel_y = 13
 	},
@@ -8597,7 +8583,7 @@
 /turf/open/liquid/lava,
 /area/oscar_outpost)
 "TU" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/phone,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
@@ -8805,7 +8791,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "Vc" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -8822,10 +8808,6 @@
 	dir = 4
 	},
 /area/oscar_outpost/outside/west)
-"Vl" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor,
-/area/oscar_outpost/village/south)
 "Vm" = (
 /obj/effect/landmark/start/job/squadcorpsman,
 /obj/machinery/landinglight/lz1{
@@ -8865,7 +8847,7 @@
 /turf/open/floor/plating,
 /area/oscar_outpost)
 "Vv" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/clothing/head/beret,
 /obj/item/clothing/head/beret,
 /obj/item/clothing/head/beret,
@@ -8927,7 +8909,7 @@
 	},
 /area/oscar_outpost)
 "VI" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/beer/oscaroutpost,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
@@ -8947,12 +8929,12 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "VQ" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/cheesewedge,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "VT" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/computer/emails{
 	dir = 8
 	},
@@ -9189,7 +9171,7 @@
 /turf/closed/mineral/smooth,
 /area/oscar_outpost/outside/rock)
 "Xa" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/structure/reagent_dispensers/beerkeg{
 	pixel_y = 5
 	},
@@ -9235,7 +9217,7 @@
 /turf/closed/wall/mainship,
 /area/oscar_outpost/base)
 "Xf" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/wine{
 	pixel_x = 1;
 	pixel_y = 7
@@ -9269,7 +9251,7 @@
 	pixel_x = 9;
 	pixel_y = 7
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "Xj" = (
@@ -9342,17 +9324,17 @@
 	pixel_x = -9;
 	pixel_y = 7
 	},
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "Xx" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/clothing/glasses/regular/hipster,
 /obj/structure/sign/poster,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/east)
 "Xy" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/reagent_containers/food/drinks/coffee{
 	pixel_y = 11
 	},
@@ -9443,7 +9425,7 @@
 /turf/open/floor/wood,
 /area/oscar_outpost/village/south)
 "XR" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/effect/spawner/random/food_or_drink/outdoors_snacks,
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
@@ -9516,7 +9498,7 @@
 /turf/open/floor,
 /area/oscar_outpost/village/south)
 "Yh" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /obj/item/paper{
 	desc = "wait a minute, isn't project Berserker classified? and who made this?";
 	name = "Project Berserker Wargame";
@@ -9582,10 +9564,6 @@
 /obj/machinery/computer/crew,
 /turf/open/floor/mainship/sterile,
 /area/oscar_outpost/village/central)
-"Yw" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/village/fairgrounds)
 "Yx" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -10004,7 +9982,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/village/fairgrounds)
 "ZQ" = (
-/obj/structure/table/rusticwoodentable,
+/obj/structure/table/wood/rustic,
 /turf/open/floor/tile/dark,
 /area/oscar_outpost/base)
 "ZR" = (
@@ -16854,7 +16832,7 @@ ZC
 IV
 IV
 IV
-IV
+gT
 IV
 IV
 IV
@@ -30929,7 +30907,7 @@ DU
 GY
 zI
 DP
-IH
+DP
 DP
 sV
 VM
@@ -31432,9 +31410,9 @@ DU
 DU
 GY
 nU
-CF
 DP
-do
+DP
+DP
 sV
 sV
 sV
@@ -31936,7 +31914,7 @@ DU
 DU
 GY
 zI
-Vl
+DP
 el
 DP
 nU
@@ -39223,7 +39201,7 @@ DX
 kQ
 px
 hV
-SN
+Sc
 Ta
 Ta
 Ta
@@ -40491,7 +40469,7 @@ VN
 VN
 Ta
 Ta
-Qk
+Ta
 Ta
 Ta
 Ta
@@ -40739,10 +40717,10 @@ Ta
 Ta
 Ta
 Ta
-Ta
-Ta
-Ta
 Bl
+Ta
+Ta
+Ta
 Ta
 Ta
 oj
@@ -40992,7 +40970,7 @@ Ta
 PE
 Ta
 Ta
-Yw
+Ta
 Ta
 lg
 Ta
@@ -41498,7 +41476,7 @@ VI
 VQ
 VI
 ZP
-xj
+Ta
 lO
 id
 lI

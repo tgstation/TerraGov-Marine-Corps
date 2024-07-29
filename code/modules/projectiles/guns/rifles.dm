@@ -2111,10 +2111,11 @@
 
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.55
-	scatter = 1
+	scatter = -2
 	scatter_unwielded = 15
 
 	burst_amount = 3
+	burst_scatter_mult = 4
 	burst_delay = 0.1 SECONDS
 	extra_delay = 0.1 SECONDS
 
@@ -2694,6 +2695,10 @@
 	icon_state = "l26"
 	worn_icon_state = "l26"
 	fire_animation = "l26_fire"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
+	)
 	caliber = CALIBER_556X45 //codex
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	max_shells = 200  //codex

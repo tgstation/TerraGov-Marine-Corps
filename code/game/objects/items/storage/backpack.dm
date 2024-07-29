@@ -6,6 +6,7 @@
 	name = "backpack"
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
+	icon = 'icons/obj/items/storage/backpack.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
@@ -306,6 +307,7 @@
 			if(charge_difference) //If the defib has less than max charge, recharge it.
 				use_charge(user, charge_difference) //consume an appropriate amount of charge
 				defib.dcell.charge += min(charge_difference, cell.charge) //Recharge the defibrillator battery with the lower of the difference between its present and max cap, or the remaining charge
+				defib.update_icon()
 			else
 				to_chat(user, span_warning("This defibrillator is already at maximum charge!"))
 		else
@@ -364,6 +366,76 @@
 	desc = "A specially designed smock with pockets for all your sniper needs."
 	icon_state = "smock"
 	storage_type = /datum/storage/backpack/no_delay
+
+/obj/item/storage/backpack/marine/duffelbag
+	name = "\improper TGMC Duffelbag"
+	desc = "A hard to reach backpack with no draw delay but is hard to access. \
+	Any squadmates can easily access the storage with right-click."
+	icon = 'icons/obj/items/storage/duffelbag.dmi'
+	icon_state = "duffel"
+	worn_icon_state = "duffel"
+	storage_type = /datum/storage/backpack/duffelbag
+
+/obj/item/storage/backpack/marine/duffelbag/equipped(mob/equipper, slot)
+	. = ..()
+	if(slot == SLOT_BACK)
+		RegisterSignal(equipper, COMSIG_CLICK_RIGHT, PROC_REF(on_rclick_duffel_wearer))
+		RegisterSignal(equipper, COMSIG_MOVABLE_MOVED, PROC_REF(on_wearer_move))
+		for(var/mob/M AS in storage_datum.content_watchers)
+			storage_datum.close(M)
+
+/obj/item/storage/backpack/marine/duffelbag/unequipped(mob/unequipper, slot)
+	. = ..()
+	UnregisterSignal(unequipper, list(COMSIG_CLICK_RIGHT, COMSIG_MOVABLE_MOVED))
+
+/obj/item/storage/backpack/marine/duffelbag/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
+	if(item_flags & IN_INVENTORY && loc.Adjacent(neighbor)) //Special check to ensure that worn duffels are adjacent
+		return TRUE
+	return ..()
+
+///Allows non-wearers to access this inventory
+/obj/item/storage/backpack/marine/duffelbag/proc/on_rclick_duffel_wearer(datum/source, mob/clicker)
+	SIGNAL_HANDLER
+	if(clicker == loc || !source.Adjacent(clicker)) //Wearer can't use this to bypass restrictions
+		return
+	storage_datum.open(clicker)
+
+///Closes the duffelbag when our wearer moves if it's worn on user's back
+/obj/item/storage/backpack/marine/duffelbag/proc/on_wearer_move(datum/source)
+	SIGNAL_HANDLER
+	if(!iscarbon(source))
+		return
+	var/mob/living/carbon/carbon_user = source
+	if(carbon_user.back == src && carbon_user.s_active == storage_datum)
+		storage_datum.close(carbon_user)
+
+/datum/storage/backpack/duffelbag
+	access_delay = 0
+
+/datum/storage/backpack/duffelbag/put_storage_in_hand(datum/source, obj/over_object, mob/living/carbon/human/user)
+	//Taking off the duffelbag has a channel
+	if(user.back != parent || !do_after(user, 3 SECONDS))
+		return
+
+	switch(over_object.name)
+		if("r_hand")
+			INVOKE_ASYNC(src, PROC_REF(put_item_in_r_hand), source, user)
+		if("l_hand")
+			INVOKE_ASYNC(src, PROC_REF(put_item_in_l_hand), source, user)
+
+/datum/storage/backpack/duffelbag/open(mob/user)
+	if(!iscarbon(user))
+		return TRUE
+	var/mob/living/carbon/carbon_user = user
+	if(carbon_user.back == parent && !do_after(carbon_user, 2 SECONDS))
+		return TRUE
+	return ..()
+
+/datum/storage/backpack/duffelbag/attempt_draw_object(mob/living/carbon/user, start_from_left)
+	if(user.back == parent && user.s_active != src)
+		to_chat(user, span_notice("You can't grab anything out of [parent] while it's on your back."))
+		return
+	return ..()
 
 //CLOAKS
 
@@ -740,6 +812,12 @@
 	. = ..()
 	. += "[reagents.total_volume] units of fuel left!"
 
+/obj/item/storage/backpack/marine/engineerpack/som
+	name = "\improper SOM technician welderpack"
+	desc = "A specialized backpack worn by SOM technicians. It carries a fueltank for quick welder refueling."
+	icon_state = "som_engineer_pack"
+	worn_icon_state = "som_engineer_pack"
+	storage_type = /datum/storage/backpack/satchel
 
 /obj/item/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"

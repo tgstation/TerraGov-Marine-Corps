@@ -36,7 +36,7 @@
 /datum/squad/alpha
 	name = "Alpha"
 	id = ALPHA_SQUAD
-	color = "#e61919" // rgb(230,25,25)
+	color = COLOR_SQUAD_ALPHA
 	access = list(ACCESS_MARINE_ALPHA)
 	radio_freq = FREQ_ALPHA
 
@@ -44,7 +44,7 @@
 /datum/squad/bravo
 	name = "Bravo"
 	id = BRAVO_SQUAD
-	color = "#ffc32d" // rgb(255,195,45)
+	color = COLOR_SQUAD_BRAVO
 	access = list(ACCESS_MARINE_BRAVO)
 	radio_freq = FREQ_BRAVO
 
@@ -52,14 +52,14 @@
 /datum/squad/charlie
 	name = "Charlie"
 	id = CHARLIE_SQUAD
-	color = "#c864c8" // rgb(200,100,200)
+	color = COLOR_SQUAD_CHARLIE
 	access = list(ACCESS_MARINE_CHARLIE)
 	radio_freq = FREQ_CHARLIE
 
 /datum/squad/delta
 	name = "Delta"
 	id = DELTA_SQUAD
-	color = "#4148c8" // rgb(65,72,200)
+	color = COLOR_SQUAD_DELTA
 	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_DELTA
 
@@ -67,7 +67,7 @@
 /datum/squad/zulu
 	name = "Zulu"
 	id = ZULU_SQUAD
-	color = "#FF6A00"
+	color = COLOR_SQUAD_ZULU
 	access = list(ACCESS_MARINE_ALPHA) //No unique SOM access yet
 	radio_freq = FREQ_ZULU
 	faction = FACTION_SOM
@@ -86,7 +86,7 @@
 /datum/squad/yankee
 	name = "Yankee"
 	id = YANKEE_SQUAD
-	color = "#009999"
+	color = COLOR_SQUAD_YANKEE
 	access = list(ACCESS_MARINE_BRAVO)
 	radio_freq = FREQ_YANKEE
 	faction = FACTION_SOM
@@ -105,7 +105,7 @@
 /datum/squad/xray
 	name = "Xray"
 	id = XRAY_SQUAD
-	color = "#008000"
+	color = COLOR_SQUAD_XRAY
 	access = list(ACCESS_MARINE_CHARLIE)
 	radio_freq = FREQ_XRAY
 	faction = FACTION_SOM
@@ -124,7 +124,7 @@
 /datum/squad/whiskey
 	name = "Whiskey"
 	id = WHISKEY_SQUAD
-	color = "#CC00CC"
+	color = COLOR_SQUAD_WHISKEY
 	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_WHISKEY
 	faction = FACTION_SOM
@@ -417,6 +417,7 @@
 GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 ///initializes a new custom squad. all args mandatory
 /proc/create_squad(squad_name, squad_color, mob/living/carbon/human/creator)
+	var/list/radio_blacklist = list(MODE_KEY_BINARY, MODE_KEY_R_HAND, MODE_KEY_L_HAND, MODE_KEY_INTERCOM, MODE_KEY_DEPARTMENT)
 	//Create the squad
 	if(!squad_name)
 		return
@@ -443,17 +444,18 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	LAZYADDASSOCSIMPLE(GLOB.reverseradiochannels, "[freq]", radio_channel_name)
 	new_squad.faction = squad_faction
 	var/key_prefix = lowertext_name[1]
-	if(GLOB.department_radio_keys[key_prefix])
+	if(GLOB.department_radio_keys[key_prefix] || (key_prefix in radio_blacklist))
 		for(var/letter in splittext(lowertext_name, ""))
-			if(!GLOB.department_radio_keys[letter])
+			if(!(GLOB.department_radio_keys[letter] && !(letter in radio_blacklist)))
 				key_prefix = letter
 				break
+	if(GLOB.department_radio_keys[key_prefix] || (key_prefix in radio_blacklist))
 		//okay... mustve been a very short name, randomly pick things from the alphabet now
 		for(var/letter in shuffle(GLOB.alphabet))
-			if(!GLOB.department_radio_keys[letter])
+			if(!(GLOB.department_radio_keys[letter] && !(letter in radio_blacklist)))
 				key_prefix = letter
 				break
-		key_prefix = "ERROR"
+
 	GLOB.department_radio_keys[key_prefix] = radio_channel_name
 	GLOB.channel_tokens[radio_channel_name] = ":[key_prefix]"
 

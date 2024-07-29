@@ -310,6 +310,7 @@
 		/obj/item/detpack,
 		/obj/item/circuitboard,
 		/obj/item/lightreplacer,
+		/obj/item/minerupgrade,
 	))
 
 /datum/storage/internal/medical
