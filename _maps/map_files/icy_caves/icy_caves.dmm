@@ -516,10 +516,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/r_wall,
 /area/icy_caves/caves/northwestmonorail)
-"cw" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail/breakroom)
 "cx" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -580,10 +576,6 @@
 /obj/item/storage/toolbox/electrical,
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail)
-"cJ" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/r_wall,
-/area/icy_caves/caves/northwestmonorail/breakroom)
 "cK" = (
 /turf/closed/mineral/smooth/darkfrostwall/indestructible,
 /area/icy_caves/caves/northwestmonorail)
@@ -1192,11 +1184,6 @@
 	},
 /turf/open/floor/cult,
 /area/icy_caves/caves/chapel)
-"gr" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
 "gx" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/ice,
@@ -1298,6 +1285,11 @@
 /obj/structure/janitorialcart,
 /turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail)
+"hg" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/smooth/bluefrostwall,
+/area/icy_caves/caves/rock)
 "hh" = (
 /obj/structure/cable,
 /obj/effect/landmark/excavation_site_spawner,
@@ -1510,7 +1502,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "iq" = (
@@ -1843,14 +1834,6 @@
 /obj/machinery/door/airlock/multi_tile/mainship/research,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
-"kd" = (
-/obj/machinery/atmospherics/components/unary/vent_pump{
-	dir = 4;
-	on = 1
-	},
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
 "kf" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor/tile/purple/whitepurplefull,
@@ -1882,11 +1865,6 @@
 	dir = 4
 	},
 /turf/open/shuttle/dropship/seven,
-/area/icy_caves/caves/northwestmonorail)
-"kp" = (
-/obj/structure/cable,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/plating_catwalk,
 /area/icy_caves/caves/northwestmonorail)
 "kr" = (
 /obj/effect/landmark/excavation_site_spawner,
@@ -1946,11 +1924,6 @@
 	dir = 8
 	},
 /area/icy_caves/outpost/LZ2)
-"kE" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
 "kF" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -2204,6 +2177,11 @@
 	dir = 6
 	},
 /area/icy_caves/caves/northwestmonorail)
+"mc" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/icy_caves/outpost/outside)
 "md" = (
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/tile/dark,
@@ -3338,11 +3316,6 @@
 	dir = 9
 	},
 /area/icy_caves/outpost/medbay)
-"ry" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark,
-/area/icy_caves/caves/northwestmonorail)
 "rz" = (
 /obj/structure/table,
 /obj/effect/spawner/random/medical/beaker/largeweighted,
@@ -4333,10 +4306,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
-"vJ" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/caves)
 "vL" = (
 /obj/effect/decal/cleanable/blood/gibs/robot,
 /turf/open/floor/tile/dark/brown2/corner,
@@ -5587,10 +5556,6 @@
 /obj/structure/prop/mainship/hangar_stencil/two,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/LZ2)
-"BM" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/mineral/smooth/bluefrostwall,
-/area/icy_caves/caves/northern)
 "BO" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 2
@@ -6792,7 +6757,6 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "Hx" = (
@@ -7823,7 +7787,6 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
 "Mh" = (
@@ -9137,6 +9100,10 @@
 "SI" = (
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside)
+"SL" = (
+/obj/effect/landmark/xeno_silo_spawn,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/caves)
 "SM" = (
 /obj/structure/closet/crate/internals,
 /turf/open/floor/plating,
@@ -14612,20 +14579,20 @@ ZP
 XV
 aY
 hd
-cv
-cz
-cz
-gr
-cz
-cz
-kd
-cz
-cz
-cz
-cz
-cz
-cz
-cz
+XV
+qI
+qI
+dL
+qI
+qI
+yS
+qI
+qI
+qI
+qI
+qI
+qI
+qI
 AT
 qI
 qI
@@ -14768,7 +14735,7 @@ ZP
 XV
 cs
 aY
-cv
+XV
 qI
 qI
 qI
@@ -14781,7 +14748,7 @@ qI
 qI
 dL
 qI
-ry
+DA
 qI
 qI
 qI
@@ -14924,7 +14891,7 @@ ZP
 XV
 cH
 in
-cv
+XV
 qI
 DA
 cO
@@ -14937,7 +14904,7 @@ cO
 cO
 cO
 cO
-kp
+cO
 HK
 xp
 cO
@@ -15080,7 +15047,7 @@ ZP
 XV
 df
 jA
-cv
+XV
 vY
 qI
 cO
@@ -15392,7 +15359,7 @@ ZP
 XV
 XV
 XV
-cv
+XV
 XV
 XV
 qI
@@ -15405,7 +15372,7 @@ XV
 xW
 qI
 DA
-cz
+qI
 yA
 Ia
 DA
@@ -15548,7 +15515,7 @@ ZP
 ZP
 ZP
 ZP
-Mr
+ZP
 ZP
 XV
 qI
@@ -15561,7 +15528,7 @@ XV
 hB
 qI
 qI
-cz
+qI
 qI
 qI
 qI
@@ -15704,7 +15671,7 @@ ZP
 ZP
 ZP
 ZP
-Mr
+ZP
 ZP
 XV
 qI
@@ -15717,7 +15684,7 @@ XV
 UR
 dL
 qI
-cz
+qI
 qI
 qI
 qI
@@ -15860,7 +15827,7 @@ ZP
 ZP
 ZP
 ZP
-Mr
+ZP
 ZP
 XV
 qI
@@ -15873,7 +15840,7 @@ XV
 XV
 DA
 XV
-cv
+XV
 qI
 qI
 zc
@@ -16016,7 +15983,7 @@ ZP
 ZP
 ZP
 ZP
-cJ
+sP
 sP
 sP
 jq
@@ -16029,7 +15996,7 @@ cK
 XV
 qI
 XV
-cv
+XV
 qI
 qI
 qI
@@ -16172,7 +16139,7 @@ ZP
 ZP
 ZP
 ZP
-cJ
+sP
 IU
 it
 IU
@@ -16185,7 +16152,7 @@ sP
 XV
 vY
 qI
-cz
+qI
 qI
 qI
 DA
@@ -16328,7 +16295,7 @@ ZP
 ZP
 ZP
 ZP
-cJ
+sP
 IU
 sW
 IU
@@ -16341,7 +16308,7 @@ sP
 qI
 fr
 Px
-kE
+Px
 Px
 Px
 Px
@@ -16484,12 +16451,12 @@ ZP
 ZP
 ZP
 ZP
-cJ
+sP
 Xh
 Xh
 IU
 IU
-cw
+IU
 HQ
 Xh
 IU
@@ -16497,7 +16464,7 @@ jq
 qI
 qI
 qI
-cz
+qI
 qI
 qI
 qI
@@ -16640,7 +16607,7 @@ ZP
 ZP
 ZP
 ZP
-cJ
+sP
 MT
 eD
 IU
@@ -16653,7 +16620,7 @@ eC
 qI
 nB
 qI
-cz
+qI
 qI
 qI
 Qr
@@ -16796,7 +16763,7 @@ ZP
 ZP
 ZP
 ZP
-cJ
+sP
 cp
 oM
 PZ
@@ -16809,7 +16776,7 @@ PZ
 cO
 cO
 cO
-kp
+cO
 cO
 cO
 cO
@@ -16952,7 +16919,7 @@ ZP
 ZP
 ZP
 ZP
-cJ
+sP
 BW
 BW
 sW
@@ -16965,7 +16932,7 @@ jq
 qI
 oL
 qI
-cz
+qI
 qI
 qI
 DA
@@ -17108,7 +17075,7 @@ ZP
 ZP
 ZP
 ZP
-cJ
+sP
 Un
 IU
 Fj
@@ -17121,7 +17088,7 @@ sP
 XV
 XV
 XV
-cv
+XV
 qI
 qI
 qI
@@ -17264,7 +17231,7 @@ ZP
 ZP
 ZP
 ZP
-cJ
+sP
 IU
 IU
 WB
@@ -17277,7 +17244,7 @@ sP
 ZP
 ZP
 ZP
-cv
+XV
 vY
 qI
 qI
@@ -17420,7 +17387,7 @@ ZP
 ZP
 ZP
 ZP
-cJ
+sP
 sP
 sP
 sP
@@ -17433,7 +17400,7 @@ sP
 ZP
 ZP
 ZP
-cv
+XV
 yS
 qI
 qI
@@ -17576,19 +17543,19 @@ ZP
 ZP
 ZP
 ZP
+ZP
 Mr
 Mr
 Mr
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
+Mr
 cv
 NU
 Px
@@ -25195,10 +25162,10 @@ ow
 ZP
 ZP
 ZI
-Sb
-wD
-wD
-wD
+ZI
+Yl
+Yl
+Yl
 ZI
 ZP
 ZP
@@ -25351,10 +25318,10 @@ ZP
 ZP
 ZI
 ZI
-Sb
+ZI
 Yl
 SC
-wD
+Yl
 ZI
 ZP
 ZP
@@ -25496,21 +25463,21 @@ DD
 DD
 DD
 DD
-wD
-Mr
-Mr
-Mr
-Mr
-Mr
-Mr
-Mr
-Sb
-Sb
-Sb
-Sb
+Yl
+hi
+hi
+hi
+hi
+hi
+ZP
+ZP
+ZI
+ZI
+ZI
+ZI
 Yl
 Yl
-Sb
+ZI
 ZI
 ZP
 ZP
@@ -25652,12 +25619,12 @@ IE
 DD
 DD
 IE
-wD
+Yl
 Yl
 Yl
 SC
-ZP
-ZP
+hi
+hi
 ZP
 ZI
 ZI
@@ -25666,7 +25633,7 @@ ZI
 Yl
 Yl
 Yl
-Sb
+ZI
 ZI
 ZP
 ZP
@@ -25808,7 +25775,7 @@ DD
 DD
 ow
 ZP
-Mr
+ZP
 SC
 Yl
 Yl
@@ -25822,7 +25789,7 @@ Yl
 SC
 SC
 Yl
-Sb
+ZI
 ZI
 ZP
 ZP
@@ -25964,7 +25931,7 @@ tH
 ZP
 ZP
 ZP
-Mr
+ZP
 Yl
 Yl
 Yl
@@ -25978,7 +25945,7 @@ Yl
 Yl
 Yl
 ZI
-Sb
+ZI
 ZP
 ZP
 ZP
@@ -26120,7 +26087,7 @@ tH
 ZP
 ZP
 ZP
-Mr
+ZP
 ZP
 ZP
 ZI
@@ -26134,7 +26101,7 @@ SC
 Yl
 Yl
 ZI
-Mr
+ZP
 ZP
 ZP
 ZP
@@ -26276,7 +26243,7 @@ tH
 ZP
 ZP
 ZP
-Mr
+ZP
 ZP
 ZI
 ZI
@@ -26290,7 +26257,7 @@ Yl
 Yl
 Yl
 ZI
-Sb
+ZI
 ZP
 ZP
 ZP
@@ -26432,7 +26399,7 @@ tH
 ZP
 ZP
 ZP
-Mr
+ZP
 ZP
 ZP
 ZP
@@ -26446,7 +26413,7 @@ SC
 Yl
 Yl
 ZI
-Sb
+ZI
 ZP
 ZP
 ZP
@@ -26588,7 +26555,7 @@ tH
 ZP
 ZP
 ZP
-Mr
+ZP
 ZI
 ZI
 ZI
@@ -26596,13 +26563,13 @@ ZP
 Yl
 Yl
 Yl
-vJ
+Yl
 Yl
 Yl
 Yl
 ZI
 ZI
-Sb
+ZI
 ZP
 ZP
 ZP
@@ -26741,23 +26708,23 @@ uC
 Nv
 zx
 tH
-ZI
-ZI
-ZI
+hg
+Sb
+Sb
 Mr
-ZP
-ZI
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-Yl
-ZI
-ZI
+Mr
+Sb
+wD
+wD
+wD
+wD
+wD
+wD
+wD
+wD
+wD
+Sb
+Sb
 Mr
 ZP
 ZP
@@ -26897,10 +26864,10 @@ qm
 qJ
 xf
 tH
-ZI
-ZI
-ZI
 Sb
+ZI
+ZI
+ZI
 ZI
 Yl
 Yl
@@ -27053,10 +27020,10 @@ re
 qm
 Ee
 tH
-pR
-pR
-pR
 SU
+pR
+pR
+pR
 Yl
 Yl
 Yl
@@ -27209,10 +27176,10 @@ hh
 vM
 fu
 tH
-pR
+SU
 pR
 Za
-SU
+pR
 Yl
 Yl
 Yl
@@ -27365,10 +27332,10 @@ UH
 po
 rn
 tH
-pR
+SU
 Za
 Es
-Hx
+XO
 QP
 Yl
 Yl
@@ -27521,10 +27488,10 @@ rh
 Mh
 tH
 tH
-pR
+SU
 pR
 XO
-Ii
+Za
 Za
 Yl
 Yl
@@ -27677,12 +27644,12 @@ SI
 XO
 XO
 XO
-pR
+SU
 pR
 XO
-Ii
 Za
-QP
+Za
+SL
 Yl
 Yl
 Yl
@@ -27833,10 +27800,10 @@ Ln
 Es
 Za
 Za
+Hx
 XO
 XO
-XO
-Ii
+Za
 Es
 QP
 Yl
@@ -27989,10 +27956,10 @@ XO
 XO
 XO
 Za
-XO
+Hx
 XO
 Za
-Ii
+Za
 Za
 Yl
 Yl
@@ -28145,10 +28112,10 @@ XO
 XO
 ZI
 XO
-Es
+mc
 XO
 pR
-SU
+pR
 ZI
 ZI
 ZI
@@ -28300,11 +28267,11 @@ iK
 XO
 pR
 Lv
-XO
 Za
+Ii
 XO
 XO
-Sb
+ZI
 ZI
 ZI
 ZI
@@ -28457,7 +28424,7 @@ OW
 XO
 Lv
 XO
-XO
+Hx
 XO
 ZI
 Sb
@@ -28613,10 +28580,10 @@ Za
 XO
 XO
 XO
-Za
-XO
-pR
-ZI
+Ii
+Hx
+SU
+Sb
 ZI
 ZP
 ZP
@@ -28677,13 +28644,13 @@ bl
 ZP
 ZI
 ZI
-Sb
-Sb
-yh
-jo
-yh
-yh
-Sb
+ZI
+ZI
+SR
+bl
+SR
+SR
+ZI
 ZI
 ZI
 ZI
@@ -28833,13 +28800,13 @@ SR
 ji
 SR
 ZI
-Sb
+ZI
 ZI
 ZI
 SR
 ji
 SR
-yh
+SR
 ZP
 ZP
 ZP
@@ -28989,13 +28956,13 @@ SR
 SR
 bl
 Zb
-yh
+SR
 ZI
 ZI
 ZI
 PI
 PI
-Mr
+ZP
 ZP
 ZP
 ZP
@@ -29145,13 +29112,13 @@ ZP
 SR
 SR
 bl
-yh
+SR
 SR
 im
 SR
 SR
 SR
-yh
+SR
 ZP
 ZP
 ZP
@@ -29301,17 +29268,17 @@ ZP
 ZP
 SR
 ZP
-jo
+bl
 SR
 SR
 we
 bl
 SR
-dM
-cb
-BM
-BM
-BM
+im
+im
+ne
+ne
+ne
 ZI
 ZI
 ZI
@@ -29457,7 +29424,7 @@ ZP
 ZP
 ZP
 ZP
-Sb
+ZI
 ZI
 SR
 ZI
@@ -29467,7 +29434,7 @@ SR
 SR
 SR
 bl
-BM
+ne
 ZI
 ZI
 ZI
@@ -29613,7 +29580,7 @@ ZP
 ZP
 ZP
 ZP
-Sb
+ZI
 ZI
 ZI
 ZI
@@ -29623,7 +29590,7 @@ SR
 im
 SR
 SR
-yh
+SR
 ZI
 ZI
 ZI
@@ -29769,7 +29736,7 @@ ZP
 ZP
 ZP
 ZP
-Mr
+ZP
 ZI
 ZI
 ZI
@@ -29777,9 +29744,9 @@ ZI
 ZI
 ZI
 SR
-bC
 SR
-yh
+SR
+SR
 SR
 ZI
 SR
@@ -29925,7 +29892,7 @@ ZP
 ZP
 ZP
 ZP
-Mr
+ZP
 ZP
 ZP
 ZI
@@ -29935,7 +29902,7 @@ SR
 SR
 SR
 bl
-cb
+im
 SR
 im
 SR
@@ -30081,17 +30048,17 @@ ZP
 ZP
 ZP
 ZP
-Mr
-Mr
-Mr
-Mr
-Mr
-Mr
-Mr
-yh
-Mr
-Mr
-yh
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+ZP
+SR
+ZP
+ZP
+SR
 SR
 SR
 SR

@@ -4399,10 +4399,6 @@
 	dir = 1
 	},
 /area/outpost/caves/north_west)
-"ux" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south_west)
 "uB" = (
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
@@ -4760,10 +4756,6 @@
 	dir = 1
 	},
 /area/outpost/yard/south)
-"wk" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north)
 "wl" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -4857,10 +4849,6 @@
 	dir = 5
 	},
 /area/outpost/medbay/security)
-"wE" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south_west)
 "wG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -5701,10 +5689,6 @@
 	dir = 10
 	},
 /area/outpost/lz1)
-"Az" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/outpost/caves/north)
 "AD" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker/large,
@@ -6811,11 +6795,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/lz1)
-"FQ" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north)
 "FR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/purple2{
@@ -8267,12 +8246,6 @@
 	dir = 8
 	},
 /area/outpost/science/research)
-"MT" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/mars/cavetodirt{
-	dir = 8
-	},
-/area/outpost/caves/north)
 "MU" = (
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/plating,
@@ -9107,10 +9080,6 @@
 	dir = 6
 	},
 /area/outpost/arrivals)
-"QP" = (
-/obj/effect/landmark/xeno_silo_spawn,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/north)
 "QW" = (
 /obj/machinery/landinglight/lz2{
 	dir = 4
@@ -15565,13 +15534,13 @@ RN
 Hc
 yW
 vp
-ja
-ja
-ja
-wE
-wE
-wE
-ja
+yW
+yW
+yW
+ho
+ho
+ho
+yW
 yW
 gw
 gw
@@ -15697,13 +15666,13 @@ RN
 Hc
 VS
 AW
-wE
 ho
 ho
 ho
 ho
 ho
-ja
+ho
+yW
 yW
 gw
 gw
@@ -15829,13 +15798,13 @@ RN
 Hc
 VS
 AW
-wE
 ho
 ho
 ho
 ho
 ho
-ja
+ho
+yW
 yW
 gw
 gw
@@ -15961,13 +15930,13 @@ Yp
 Hc
 VS
 AW
-wE
+ho
 ho
 ho
 Uu
 cz
 ho
-ja
+yW
 yW
 gw
 gw
@@ -16093,13 +16062,13 @@ RN
 Hc
 VS
 AW
-wE
+ho
 ho
 Uu
 ho
-ux
 ho
-ja
+ho
+yW
 yW
 gw
 gw
@@ -16225,13 +16194,13 @@ RN
 Hc
 yW
 vp
-ja
+yW
 FU
 ho
 ho
 Uu
 ho
-ja
+yW
 yW
 gw
 gw
@@ -16357,13 +16326,13 @@ RN
 Hc
 yW
 vp
-ja
+yW
 yW
 ho
 ho
 ho
 ho
-ja
+yW
 yW
 gw
 gw
@@ -16489,13 +16458,13 @@ RN
 Hc
 yW
 vp
-ja
-ja
-ja
-wE
-wE
-wE
-ja
+yW
+yW
+yW
+ho
+ho
+ho
+yW
 yW
 gw
 gw
@@ -19309,13 +19278,13 @@ yW
 yW
 yW
 yW
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+yW
+yW
+yW
+yW
+yW
+yW
+yW
 OR
 PK
 uU
@@ -19441,13 +19410,13 @@ yW
 yW
 yW
 yW
-ja
 yW
 yW
 yW
 yW
 yW
-Az
+yW
+OR
 iH
 uU
 Su
@@ -19573,13 +19542,13 @@ yW
 yW
 yW
 yW
-ja
+yW
 yW
 yW
 yW
 yW
 uU
-MT
+XD
 uU
 uU
 uU
@@ -19705,13 +19674,13 @@ yW
 yW
 yW
 yW
-ja
+yW
 yW
 yW
 yW
 Iq
 uU
-wk
+uU
 Su
 uU
 fV
@@ -19837,13 +19806,13 @@ yW
 yW
 yW
 yW
-ja
+yW
 yW
 yW
 yW
 uU
 uU
-wk
+uU
 yW
 uU
 uU
@@ -19969,13 +19938,13 @@ yW
 yW
 yW
 yW
-ja
 yW
 yW
+yW
 uU
 uU
 uU
-ja
+yW
 yW
 yW
 uU
@@ -20101,13 +20070,13 @@ yW
 yW
 yW
 yW
-ja
+yW
 yW
 uU
 pZ
 Su
 yW
-ja
+yW
 yW
 yW
 uU
@@ -20233,13 +20202,13 @@ yW
 yW
 yW
 yW
-ja
+yW
 yW
 uU
-QP
+uU
 fV
 yW
-ja
+yW
 yW
 yW
 uU
@@ -20365,13 +20334,13 @@ yW
 yW
 yW
 yW
-ja
+yW
 yW
 uU
 uU
 uU
 yW
-ja
+yW
 yW
 yW
 fV
@@ -20497,13 +20466,13 @@ yW
 yW
 yW
 yW
-ja
+yW
 yW
 uU
 uU
 Su
 uU
-ja
+yW
 yW
 yW
 uU
@@ -20629,13 +20598,13 @@ yW
 yW
 yW
 yW
-ja
 yW
 yW
+yW
 uU
 uU
 uU
-wk
+uU
 yW
 uU
 Su
@@ -20761,13 +20730,13 @@ yW
 yW
 yW
 yW
-ja
+yW
 yW
 yW
 yW
 fV
 uU
-FQ
+Su
 uU
 uU
 fV
@@ -20893,13 +20862,13 @@ yW
 yW
 yW
 yW
-ja
+yW
 yW
 yW
 yW
 yW
 uU
-wk
+uU
 uU
 uU
 uU
@@ -21025,13 +20994,13 @@ yW
 yW
 yW
 yW
-ja
-ja
-ja
-ja
-ja
-ja
-ja
+yW
+yW
+yW
+yW
+yW
+yW
+yW
 uU
 uU
 uU

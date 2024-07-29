@@ -350,21 +350,8 @@
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "br" = (
-/obj/structure/table/mainship,
-/obj/effect/spawner/random/engineering/extinguisher/miniweighted,
-/obj/effect/spawner/random/engineering/extinguisher/regularweighted,
-/obj/item/t_scanner,
-/obj/item/storage/backpack/marine/engineerpack,
-/obj/item/storage/belt/utility/full,
-/obj/item/flashlight,
-/obj/item/clothing/suit/storage/hazardvest,
-/obj/item/clothing/suit/storage/hazardvest,
-/obj/item/facepaint/black,
-/obj/item/stack/sheet/glass/glass{
-	amount = 50;
-	pixel_x = 3;
-	pixel_y = 3
-	},
+/obj/vehicle/ridden/powerloader,
+/obj/machinery/mech_bay_recharge_port,
 /turf/open/floor/mainship/orange/full,
 /area/shuttle/canterbury)
 "bs" = (
@@ -562,12 +549,23 @@
 "cR" = (
 /turf/open/floor/mainship/floor,
 /area/shuttle/canterbury)
+"di" = (
+/obj/machinery/door_control{
+	dir = 8;
+	id = "aft_engine_podlock"
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "fL" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /obj/item/reagent_containers/glass/beaker/bluespace,
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
+"gf" = (
+/obj/structure/window/framed/mainship/hull/canterbury,
+/turf/open/floor/mainship/mono,
+/area/shuttle/canterbury)
 "gv" = (
 /obj/structure/barricade/plasteel,
 /turf/open/floor/mainship/stripesquare,
@@ -634,6 +632,10 @@
 /area/shuttle/canterbury)
 "mM" = (
 /turf/open/floor/mainship/orange/full,
+/area/shuttle/canterbury)
+"mN" = (
+/obj/structure/dropship_equipment/shuttle/weapon_holder/machinegun,
+/turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "mQ" = (
 /obj/structure/bed/chair/dropship/passenger{
@@ -741,6 +743,11 @@
 /obj/effect/landmark/start/job/crash/squadmarine,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
+"sx" = (
+/obj/structure/cable,
+/obj/effect/attach_point,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/canterbury)
 "sR" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/mainship/cargo,
@@ -832,6 +839,7 @@
 	name = "Emergency door-control";
 	pixel_y = 32
 	},
+/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "yp" = (
@@ -1118,20 +1126,6 @@
 /obj/effect/turf_decal/warning_stripes,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"Xb" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "aft_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/obj/machinery/door_control{
-	dir = 8;
-	id = "aft_engine_podlock"
-	},
-/turf/open/floor/plating,
-/area/shuttle/canterbury)
 "Xf" = (
 /obj/machinery/iv_drip,
 /obj/machinery/shower{
@@ -1175,8 +1169,8 @@ Uo
 Uo
 Uo
 ab
-ab
-ab
+gf
+gf
 ab
 Uo
 Uo
@@ -1211,10 +1205,10 @@ al
 Mj
 rb
 ab
+ab
 bU
 bU
-bU
-bU
+ab
 ab
 aS
 bj
@@ -1278,7 +1272,7 @@ UE
 ac
 ab
 CA
-an
+as
 ac
 su
 ab
@@ -1311,7 +1305,7 @@ Rd
 jq
 ab
 iy
-an
+as
 ac
 tP
 ab
@@ -1344,7 +1338,7 @@ AS
 ac
 ab
 YN
-an
+as
 ac
 su
 ab
@@ -1377,7 +1371,7 @@ FZ
 ac
 ab
 uZ
-an
+as
 ac
 uT
 sR
@@ -1410,7 +1404,7 @@ qh
 ac
 ab
 Wk
-an
+as
 ac
 ac
 ac
@@ -1427,8 +1421,8 @@ Yn
 qE
 XO
 ac
-ar
-bW
+ac
+ab
 Uo
 "}
 (9,1,1) = {"
@@ -1439,11 +1433,11 @@ af
 bK
 Ul
 ad
-ac
+mN
 ac
 ki
 ac
-an
+as
 ac
 ac
 ac
@@ -1477,7 +1471,7 @@ as
 nM
 as
 as
-as
+sx
 as
 as
 aa
@@ -1487,12 +1481,12 @@ as
 as
 as
 as
-an
-an
-an
-an
-an
-an
+as
+as
+as
+as
+as
+as
 gv
 bW
 Uo
@@ -1509,7 +1503,7 @@ ac
 ac
 zy
 ac
-an
+as
 ac
 ac
 ac
@@ -1559,8 +1553,8 @@ ac
 SA
 RT
 ac
-ar
-Xb
+di
+ab
 Uo
 "}
 (13,1,1) = {"
@@ -1575,7 +1569,7 @@ JX
 ac
 ab
 ms
-an
+as
 ac
 su
 ab
@@ -1608,7 +1602,7 @@ BZ
 bh
 ab
 uZ
-an
+as
 ac
 ww
 ab
@@ -1641,7 +1635,7 @@ aF
 jq
 ab
 qM
-an
+as
 ac
 OL
 ab
@@ -1674,7 +1668,7 @@ UP
 ac
 ab
 CA
-an
+as
 ac
 su
 ab
@@ -1739,10 +1733,10 @@ al
 te
 te
 ab
+ab
 bV
 bV
-bV
-bV
+ab
 ab
 JM
 bz
@@ -1769,8 +1763,8 @@ Uo
 Uo
 Uo
 ab
-ab
-ab
+gf
+gf
 ab
 Uo
 Uo
