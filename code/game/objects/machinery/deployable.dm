@@ -50,10 +50,13 @@
 	return welder_repair_act(user, I, 120, 5 SECONDS)
 
 /obj/machinery/deployable/disassemble(mob/user)
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return
+	return ..()
+
+/obj/machinery/deployable/Destroy()
+	operator?.unset_interaction()
 	return ..()
 
 /obj/machinery/deployable/MouseDrop(over_object, src_location, over_location)
