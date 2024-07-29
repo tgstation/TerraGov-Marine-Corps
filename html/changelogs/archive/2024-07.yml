@@ -328,3 +328,10 @@
 2024-07-27:
   PibeCantina:
   - qol: Neuraline shows up on scanner now
+2024-07-29:
+  Lauwma:
+  - balance: Harvester weapons now apply 5 stacks of fire when loaded with kelotane
+  Lumipharon:
+  - code_imp: Cleaned up some acid code
+  - balance: Plasma SMG scatter increased slightly
+  - balance: Plasma SMG bouncy mode damage decreases slightly for each bounce
