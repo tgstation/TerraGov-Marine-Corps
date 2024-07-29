@@ -60,7 +60,7 @@
 	supervisors = "Queen mother"
 	selection_color = "#8972AA"
 	display_order = JOB_DISPLAY_ORDER_XENO_QUEEN
-	exp_requirements = XP_REQ_EXPERIENCED
+	exp_requirements = XP_REQ_EXPERT
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_HIDE_CURRENT_POSITIONS|JOB_FLAG_LOUDER_TTS
 	jobworth = list(/datum/job/survivor/rambo = SURVIVOR_POINTS_REGULAR)
 	html_description = {"
