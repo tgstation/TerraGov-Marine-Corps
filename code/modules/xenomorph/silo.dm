@@ -29,7 +29,7 @@
 			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(resin_silo_proxy_alert))
 
 	if(SSticker.mode?.round_type_flags & MODE_SILOS_SPAWN_MINIONS)
-		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
+		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, CALLBACK(src, PROC_REF(spawner_post_spawn)))
 		SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 		SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
 	update_minimap_icon()
@@ -153,3 +153,7 @@
 /obj/structure/xeno/silo/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]", HIGH_FLOAT_LAYER))
+
+/obj/structure/xeno/silo/proc/spawner_post_spawn(list/newly_spawned_mobs)
+	for(var/mob/living/carbon/xenomorph/minion in newly_spawned_mobs)
+		minion.transfer_to_hive(hivenumber)
