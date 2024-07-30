@@ -232,6 +232,7 @@
 /datum/ammo/rocket/recoilless/heat/mech //for anti mech use in HvH
 	name = "HEAM shell"
 	accuracy = -10 //Not designed for anti human use
+	scatter = 16
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_UNWIELDY
 
 /datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/target_obj, obj/projectile/proj)
@@ -360,6 +361,7 @@
 	penetration = 100
 	sundering = 0
 	accuracy = -10 //Not designed for anti human use
+	scatter = 7
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_UNWIELDY
 
 /datum/ammo/rocket/som/heat/on_hit_obj(obj/target_obj, obj/projectile/proj)

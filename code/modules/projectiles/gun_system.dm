@@ -921,7 +921,7 @@
 	apply_gun_modifiers(projectile_to_fire, target, firer)
 
 	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult)))
-	var/proj_scatter = 0
+	var/proj_scatter = projectile_to_fire.ammo.scatter
 
 	if((item_flags & FULLY_WIELDED) || CHECK_BITFIELD(item_flags, IS_DEPLOYED) || (master_gun && (master_gun.item_flags & FULLY_WIELDED)))
 		scatter = clamp((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), min_scatter, max_scatter)
