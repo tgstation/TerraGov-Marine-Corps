@@ -1,6 +1,6 @@
-#define FUSION_ENGINE_MAX_POWER_GEN 80000 //Full capacity
+#define FUSION_ENGINE_MAX_POWER_GEN 120000 //Full capacity
 #define FUSION_ENGINE_FAIL_CHECK_TICKS 1000 //Check for failure every this many ticks
-#define FUSION_ENGINE_FULL_STRENGTH_FULL_RATE 0.1
+#define FUSION_ENGINE_FULL_STRENGTH_FULL_RATE 0.01
 #define FUSION_ENGINE_NO_DAMAGE 0
 #define FUSION_ENGINE_LIGHT_DAMAGE 1
 #define FUSION_ENGINE_MEDIUM_DAMAGE 2
@@ -82,13 +82,13 @@
 		switch(power_gen_percent) //Flavor text!
 			if(10)
 				balloon_alert_to_viewers("begins to whirr as it powers up")
-				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.1
+				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.01
 			if(50)
 				balloon_alert_to_viewers("hums as it reaches half capacity")
-				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.5
+				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.05
 			if(100)
 				balloon_alert_to_viewers("rumbles as it reaches full strength")
-				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE
+				fuel_rate = FUSION_ENGINE_FULL_STRENGTH_FULL_RATE * 0.05
 
 
 	add_avail(FUSION_ENGINE_MAX_POWER_GEN * (power_gen_percent / 100) ) //Nope, all good, just add the power

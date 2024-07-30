@@ -32,3 +32,8 @@
 	. = ..()
 	if(m_intent == MOVE_INTENT_RUN)
 		return "wounded_running_[severity]"
+
+/mob/living/carbon/xenomorph/baneling/on_death()
+	///We QDEL them as cleanup and preventing them from being sold
+	QDEL_IN(src, TIME_TO_DISSOLVE)
+	return ..()

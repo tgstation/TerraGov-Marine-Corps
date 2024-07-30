@@ -7,7 +7,7 @@ GLOBAL_VAR_INIT(valhalla_allowed, TRUE)
 GLOBAL_VAR_INIT(ssd_posses_allowed, TRUE)
 GLOBAL_VAR_INIT(xeno_enter_allowed, TRUE)
 
-GLOBAL_VAR_INIT(respawntime, 30 MINUTES)
+GLOBAL_VAR_INIT(respawntime, 5 MINUTES)
 GLOBAL_VAR_INIT(fileaccess_timer, 0)
 
 GLOBAL_VAR_INIT(custom_info, "")

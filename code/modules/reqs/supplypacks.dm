@@ -281,12 +281,12 @@ WEAPONS
 	name = "AGLS-37 AGL Flare Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/flare)
 	cost = 30
-
+/*
 /datum/supply_packs/weapons/ags_cloak
 	name = "AGLS-37 AGL Cloak Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/cloak)
 	cost = 30
-
+*/
 /datum/supply_packs/weapons/ags_tanglefoot
 	name = "AGLS-37 AGL Tanglefoot Grenades"
 	contains = list(/obj/item/ammo_magazine/standard_agls/tanglefoot)
@@ -1120,7 +1120,7 @@ ARMOR
 		/obj/item/clothing/head/helmet/marine/grenadier,
 	)
 	cost = B17_PRICE
-
+/*
 /datum/supply_packs/armor/scout_cloak
 	name = "Scout Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak)
@@ -1130,7 +1130,7 @@ ARMOR
 	name = "Sniper Cloak"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak/sniper)
 	cost = 500
-
+*/
 /datum/supply_packs/armor/grenade_belt
 	name = "High Capacity Grenade Belt"
 	contains = list(/obj/item/storage/belt/grenade/b17)
@@ -2260,7 +2260,7 @@ FACTORY
 /datum/supply_packs/factory/pizzarefill
 	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
 	contains = list(/obj/item/factory_refill/pizza_refill)
-	cost = 290 //allows a one point profit if all pizzas are processed and sold back to ASRS
+	cost = 250 //allows a one point profit if all pizzas are processed and sold back to ASRS
 
 /datum/supply_packs/factory/smartgun_minigun_box_refill
 	name = "SG-85 ammo bin parts refill"

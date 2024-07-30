@@ -11,7 +11,7 @@
 	atom_flags = BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
 	allow_pass_flags = PASS_TANK|PASS_AIR|PASS_WALKOVER|PASS_THROW
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
-
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	move_delay = 0.7 SECONDS
 	max_integrity = 600
 	light_range = 10
@@ -23,7 +23,6 @@
 	var/engine_sound_length = 2 SECONDS
 	/// How long it takes to rev (vrrm vrrm!) TODO: merge this up to /vehicle here and on tg because of cars
 	COOLDOWN_DECLARE(enginesound_cooldown)
-
 	///Cool and good turret overlay that allows independently swiveling guns
 	var/atom/movable/vis_obj/turret_overlay/turret_overlay
 	///Icon for the rotating turret icon. also should hold the icons for the weapon icons

@@ -44,7 +44,7 @@
 	var/list/surgery_todo_list = list() //a list of surgeries to do.
 //	var/surgery_t = 0 //Surgery timer in seconds.
 	var/surgery = FALSE
-	var/surgery_mod = 1 //What multiple to increase the surgery timer? This is used for any non-WO maps or events that are done.
+	var/surgery_mod = 0.01 //What multiple to increase the surgery timer? This is used for any non-WO maps or events that are done.
 	var/filtering = 0
 	var/blood_transfer = 0
 	var/heal_brute = 0
@@ -59,7 +59,7 @@
 	//It uses power
 	use_power = ACTIVE_POWER_USE
 	idle_power_usage = 15
-	active_power_usage = 120000 // It rebuilds you from nothing...
+	active_power_usage = 1200 // It rebuilds you from nothing...
 
 	var/stored_metal = 1000 // starts with 500 metal loaded
 	var/stored_metal_max = 2000
@@ -355,7 +355,7 @@
 		sleep(-1)
 		var/datum/autodoc_surgery/S = surgery_todo_list[currentsurgery]
 		if(automaticmode)
-			surgery_mod = 1.5 // automatic mode takes longer
+			surgery_mod = 0.1 // automatic mode takes longer
 		else
 			surgery_mod = 1 // might need tweaking
 

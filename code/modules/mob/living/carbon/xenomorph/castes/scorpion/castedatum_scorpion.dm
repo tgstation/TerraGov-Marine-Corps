@@ -11,7 +11,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 
 	// *** Melee Attacks *** //
-	melee_damage = 12
+	melee_damage = 6
 
 	// *** Speed *** //
 	speed = -0.5
@@ -32,7 +32,7 @@
 	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 15, FIRE = 15, ACID = 15)
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.8 SECONDS
+	spit_delay = 2.5 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/passthrough)
 
 	minimap_icon = "xenominion"

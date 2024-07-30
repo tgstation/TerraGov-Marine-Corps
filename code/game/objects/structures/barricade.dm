@@ -396,7 +396,7 @@
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon = 'icons/obj/structures/barricades/metal.dmi'
 	icon_state = "metal_0"
-	max_integrity = 200
+	max_integrity = 400
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/metal
@@ -717,7 +717,7 @@
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon = 'icons/obj/structures/barricades/plasteel.dmi'
 	icon_state = "plasteel_closed_0"
-	max_integrity = 500
+	max_integrity = 600
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/plasteel
