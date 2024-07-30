@@ -107,7 +107,8 @@
 		owner.interior.mob_leave(dropping)
 		return
 	if(is_type_in_typecache(dropping.type, owner.easy_load_list))
-		user.temporarilyRemoveItemFromInventory(dropping)
+		if(isitem(dropping))
+			user.temporarilyRemoveItemFromInventory(dropping)
 		dropping.forceMove(owner.exit_location(dropping))
 		user.balloon_alert(user, "item thrown outside")
 		return
@@ -119,7 +120,8 @@
 		owner.interior.mob_leave(grabbed_thing)
 		return
 	if(is_type_in_typecache(grabbed_thing.type, owner.easy_load_list))
-		user.temporarilyRemoveItemFromInventory(grabbed_thing)
+		if(isitem(grabbed_thing.type))
+			user.temporarilyRemoveItemFromInventory(grabbed_thing)
 		grabbed_thing.forceMove(owner.exit_location(grabbed_thing))
 		user.balloon_alert(user, "item thrown outside")
 		return
