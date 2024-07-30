@@ -4528,9 +4528,6 @@
 	},
 /obj/effect/turf_decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced/windowstake{
-	dir = 4
-	},
 /obj/item/clothing/glasses/hud/xenohud,
 /obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/mainship/stripesquare,
@@ -4548,9 +4545,6 @@
 	},
 /obj/effect/turf_decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced/windowstake{
-	dir = 4
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla)
 "ghB" = (
@@ -4565,9 +4559,6 @@
 	},
 /obj/effect/turf_decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced/windowstake{
-	dir = 4
-	},
 /obj/item/clothing/glasses/hud/xenohud,
 /obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/mainship/stripesquare,
@@ -8895,17 +8886,6 @@
 	dir = 5
 	},
 /area/centcom/valhalla)
-"mGD" = (
-/obj/effect/turf_decal/tile/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/black,
-/obj/structure/table/mainship,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/floor/mainship/stripesquare,
-/area/centcom/valhalla)
 "mGE" = (
 /obj/effect/turf_decal/tile/black{
 	dir = 8
@@ -11200,9 +11180,6 @@
 	},
 /obj/effect/turf_decal/tile/black,
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /turf/open/floor/mainship/stripesquare,
 /area/centcom/valhalla)
 "qhV" = (
@@ -15334,9 +15311,6 @@
 /area/centcom/valhalla)
 "wfL" = (
 /obj/structure/table/mainship,
-/obj/structure/window/reinforced/windowstake{
-	dir = 4
-	},
 /obj/item/clothing/glasses/hud/xenohud,
 /obj/item/clothing/glasses/hud/xenohud,
 /turf/open/floor/mainship/stripesquare,
@@ -25185,7 +25159,7 @@ sHO
 dhA
 boq
 boq
-mGD
+ghq
 hdk
 jcx
 ivs
@@ -25442,7 +25416,7 @@ gAO
 boq
 dAJ
 boq
-mGD
+ghq
 kcV
 jcx
 kqf
