@@ -355,22 +355,22 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	ability_cost = 200
 	cooldown_duration = 30 SECONDS
 	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_ACID_SHROUD_SELECT,
 	)
 
-/datum/action/ability/activable/xeno/acid_shroud/action_activate(datum/effect_system/smoke_spread/emitted_gas)
+/datum/action/ability/activable/xeno/acid_shroud/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/boiler/boiler_owner = owner
-	var/turf/T = get_turf(boiler_owner) //Where the boiler is.
-	var/smoke_range = 2 //How far the smoke sets.
-	var/added_bombard_delay = boiler_owner.xeno_caste.bomb_delay + 8.5 SECONDS - ((boiler_owner.neuro_ammo + boiler_owner.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS)) //The cooldown of Bombard that is added when this ability is used. It is the calculation of Bombard cooldown + 10 seconds.
+	var/datum/effect_system/smoke_spread/emitted_gas //The gas that will emit when the ability activates, can be either acid or neuro.
 
 	if(istype(boiler_owner.ammo, /datum/ammo/xeno/boiler_gas/corrosive))
 		emitted_gas = new /datum/effect_system/smoke_spread/xeno/acid/opaque(boiler_owner)
 	else
 		emitted_gas = new /datum/effect_system/smoke_spread/xeno/neuro(boiler_owner)
 
-	emitted_gas.set_up(smoke_range, T)
+	emitted_gas.set_up(2, get_turf(boiler_owner))
 	emitted_gas.start()
 	succeed_activate()
 	add_cooldown()
@@ -379,4 +379,4 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		deltimer(bombard_action.cooldown_timer)
 		bombard_action.cooldown_timer = null
 		bombard_action.countdown.stop()
-	bombard_action?.add_cooldown(added_bombard_delay)
+	bombard_action?.add_cooldown(boiler_owner.xeno_caste.bomb_delay + 8.5 SECONDS - ((boiler_owner.neuro_ammo + boiler_owner.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS))) //The cooldown of Bombard that is added when this ability is used. It is the calculation of Bombard cooldown + 10 seconds.

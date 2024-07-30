@@ -530,6 +530,7 @@
 	icon = 'icons/turf/ert_shuttle.dmi'
 	icon_state = "stan4"
 	plane = GAME_PLANE
+	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/ert/engines/left
 	icon_state = "leftengine_1"
