@@ -582,3 +582,29 @@
 		M.apply_effects(stun,weaken)
 
 	return ..()
+
+/obj/item/weapon/twohanded/sledgehammer
+	name = "sledge hammer"
+	desc = "A heavy hammer that's good at smashing rocks, but would probably make a good weapon considering the circumstances."
+	icon_state = "sledgehammer"
+	worn_icon_state = "sledgehammer"
+	force = 20
+	equip_slot_flags = ITEM_SLOT_BACK
+	atom_flags = CONDUCT
+	item_flags = TWOHANDED
+	force_wielded = 85
+	penetration = 10
+	attack_speed = 20
+	attack_verb = list("attacked", "walloped", "smashed", "shattered", "bashed")
+
+/obj/item/weapon/twohanded/sledgehammer/wield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	toggle_item_bump_attack(user, TRUE)
+
+/obj/item/weapon/twohanded/sledgehammer/unwield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	toggle_item_bump_attack(user, FALSE)

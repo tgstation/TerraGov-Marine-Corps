@@ -93,7 +93,7 @@
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
 	worn_icon_state = "swat"
-	armor_protection_flags = CHEST|GROIN|LEGS|ARMS
+	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 1.2
 	soft_armor = list(MELEE = 65, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 10, ACID = 10)
 	inventory_flags = BLOCKSHARPOBJ
@@ -156,6 +156,20 @@
 	soft_armor = list(MELEE = 50, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 50, BIO = 40, FIRE = 50, ACID = 50)
 	siemens_coefficient = 0.7
 
+/obj/item/clothing/suit/armor/patrol
+	name = "Security Patrol Armor"
+	desc = "A lightweight suit of armor used by security officers on patrol. While it is more advanced than kevlar, it is heavier and will slightly slow the wearer down."
+	icon_state = "security_patrol"
+	worn_icon_state = "security_patrol"
+	blood_overlay_type = "coat"
+	armor_protection_flags = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	item_flags = SYNTH_RESTRICTED
+	slowdown = 0.2
+	soft_armor = list(MELEE = 20, BULLET = 40, LASER = 30, ENERGY = 30, BOMB = 30, BIO = 15, FIRE = 25, ACID = 15)
+	siemens_coefficient = 0.9
+	permeability_coefficient = 0.7
+	equip_delay_self = 20
+	unequip_delay_self = 20
 
 /obj/item/clothing/suit/armor/sectoid
 	name = "psionic field"
