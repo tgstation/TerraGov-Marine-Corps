@@ -102,13 +102,13 @@
 	. = ..()
 	owner.interior.mob_leave(user)
 
-/turf/closed/interior/tank/door/MouseDrop_T(atom/movable/dropping, mob/M)
+/turf/closed/interior/tank/door/MouseDrop_T(atom/movable/dropping, mob/user)
 	if(ismob(dropping))
 		owner.interior.mob_leave(dropping)
 		return
 	if(is_type_in_typecache(dropping.type, owner.easy_load_list))
-		user.temporarilyRemoveItemFromInventory(grabbed_thing)
-		grabbed_thing.forceMove(owner.exit_location(grabbed_thing))
+		user.temporarilyRemoveItemFromInventory(dropping)
+		dropping.forceMove(owner.exit_location(dropping))
 		user.balloon_alert(user, "item thrown outside")
 		return
 	return ..()
