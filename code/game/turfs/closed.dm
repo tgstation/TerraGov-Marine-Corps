@@ -21,6 +21,11 @@
 	AM.turf_collision(src, speed)
 	return TRUE
 
+/turf/closed/plastique_act(mob/living/plastique_user)
+	if(resistance_flags & INDESTRUCTIBLE)
+		return
+	ScrapeAway()
+
 /turf/closed/mineral
 	name = "rock"
 	icon = 'icons/turf/walls.dmi'
