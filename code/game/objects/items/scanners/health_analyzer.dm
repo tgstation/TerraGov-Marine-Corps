@@ -16,10 +16,6 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 5
 	throw_range = 10
-	///This var governs whether we tell tgui to use the custom blue/orange themes,
-	///or the default theme. Basically so people who don't want to see those themes
-	///for any reason can switch back.
-	var/accessible_theme = FALSE
 	///Skill required to bypass the fumble time.
 	var/skill_threshold = SKILL_MEDICAL_NOVICE
 	///Skill required to have the scanner auto refresh
@@ -33,13 +29,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 /obj/item/healthanalyzer/examine(mob/user)
 	. = ..()
-	. += span_notice("[accessible_theme ? "It's currently using a more accessible theme." : "It's currently using the default theme."]")
-	. += span_notice("Use it in hand to change the theme.")
-
-/obj/item/healthanalyzer/attack_self(mob/user)
-	. = ..()
-	accessible_theme = !accessible_theme
-	to_chat(user, span_notice("You set the theme on \the [src] to [accessible_theme ? "classic" : "default"]."))
+	. += span_notice("You can set \the [src] to use a more accessible theme in your game preferences.")
 
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
 	. = ..()
@@ -122,7 +112,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 		"hugged" = !!(patient.status_flags & XENO_HOST),
 
-		"accessible_theme" = accessible_theme
+		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes
 	)
 	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
