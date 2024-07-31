@@ -1,4 +1,0 @@
-author: "Notamaniac"
-delete-after: True
-changes:
-  - bugfix: "Vindicator Minigun Powerpacks won't show up as an error on snow maps anymore"
