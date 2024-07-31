@@ -260,7 +260,6 @@
 	return list(
 		/area/campaign/tgmc_raiding/underground/command,
 		/area/campaign/tgmc_raiding/underground/command/east,
-		/area/campaign/tgmc_raiding/underground/command/captain,
 		/area/campaign/tgmc_raiding/underground/medbay,
 		/area/campaign/tgmc_raiding/underground/security/central_outpost,
 		/area/campaign/tgmc_raiding/underground/general/hallway,

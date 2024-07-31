@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Vehicle interior door is on-par with its exterior door as it now allows you to take out non-mobs (like crates)."

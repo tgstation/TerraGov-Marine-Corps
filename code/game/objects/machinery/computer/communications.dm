@@ -98,11 +98,14 @@
 
 		if("announce")
 			if(authenticated == 2)
+				if(TIMER_COOLDOWN_CHECK(usr, COOLDOWN_HUD_ORDER))
+					to_chat(usr, span_warning("You've sent an announcement or message too recently!"))
+					return
 				if(world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					to_chat(usr, span_warning("Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] second\s to pass between announcements."))
 					return FALSE
 
-				var/input = tgui_input_text(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "",multiline = TRUE, encode = FALSE)
+				var/input = tgui_input_text(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "",multiline = TRUE, encode = FALSE, max_length = 100)
 				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					return FALSE
 
@@ -122,6 +125,7 @@
 				priority_announce(input, subtitle = "Sent by [sender.get_paygrade(0) ? sender.get_paygrade(0) : sender.job.title] [sender.real_name]", type = ANNOUNCEMENT_COMMAND)
 				message_admins("[ADMIN_TPMONTY(usr)] has just sent a command announcement")
 				log_game("[key_name(usr)] has just sent a command announcement.")
+				TIMER_COOLDOWN_START(usr, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
 				cooldown_message = world.time
 
 		if("award")

@@ -204,7 +204,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod
 	var/unarmed
 	var/melee_weapons
-	var/firearms
+	var/combat
 	var/pistols
 	var/shotguns
 	var/rifles
@@ -226,11 +226,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	. = ..()
 
 /datum/perk/skill_mod/apply_perk(mob/living/carbon/owner)
-	owner.set_skills(owner.skills.modifyRating(unarmed, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
+	owner.set_skills(owner.skills.modifyRating(unarmed, melee_weapons, combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
 	engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina))
 
 /datum/perk/skill_mod/remove_perk(mob/living/carbon/owner)
-	owner.set_skills(owner.skills.modifyRating(-unarmed, -melee_weapons, -firearms, -pistols, -shotguns, -rifles, -smgs, -heavy_weapons, -smartgun, \
+	owner.set_skills(owner.skills.modifyRating(-unarmed, -melee_weapons, -combat, -pistols, -shotguns, -rifles, -smgs, -heavy_weapons, -smartgun, \
 	-engineer, -construction, -leadership, -medical, -surgery, -pilot, -police, -powerloader, -large_vehicle, -stamina))
 
 /datum/perk/skill_mod/unarmed
@@ -265,32 +265,32 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/skill_mod/melee)
 	unlock_cost = 400
 
-/datum/perk/skill_mod/firearms
-	name = "Advanced firearm training"
+/datum/perk/skill_mod/combat
+	name = "Advanced combat training"
 	desc = "Improved handling for all firearms. A prerequisite for all gun skills perks, and increases the speed of tactical reloads."
 	ui_icon = "firearms"
-	firearms = 1
+	combat = 1
 	all_jobs = TRUE
 	unlock_cost = 400
 
 /datum/perk/skill_mod/pistols
 	name = "Advanced pistol training"
 	desc = "Improved damage, accuracy and scatter with pistol type firearms."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "pistols"
 	pistols = 1
 	all_jobs = TRUE
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 400
 
 /datum/perk/skill_mod/shotguns
 	name = "Advanced shotgun training"
 	desc = "Improved damage, accuracy and scatter with shotgun type firearms. Unlocks access to a shotgun secondary weapon in the backslot for some roles."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "shotguns"
 	shotguns = 1
 	all_jobs = TRUE
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 600
 
 /datum/perk/skill_mod/shotguns/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
@@ -302,11 +302,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/rifles
 	name = "Advanced rifle training"
 	desc = "Improved damage, accuracy and scatter with rifle type firearms. Unlocks new weapons and ammo types for some roles."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "rifles"
 	rifles = 1
 	all_jobs = TRUE
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 1000
 
 /datum/perk/skill_mod/rifles/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
@@ -345,12 +345,12 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"
 	desc = "Improved damage, accuracy and scatter with SMG type firearms. Unlocks new weapons and ammo types for some roles."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "smgs"
 	smgs = 1
 	all_jobs = TRUE
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
-	unlock_cost = 600
+	prereq_perks = list(/datum/perk/skill_mod/combat)
+	unlock_cost = 500
 
 /datum/perk/skill_mod/smgs/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
@@ -376,11 +376,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"
 	desc = "Improved damage, accuracy and scatter with heavy weapon type firearms. Unlocks new weapons and ammo types for some roles."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "heavy"
 	heavy_weapons = 1
 	all_jobs = TRUE
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 800
 
 /datum/perk/skill_mod/heavy_weapons/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
@@ -395,11 +395,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/smartgun
 	name = "Advanced smartgun training"
 	desc = "Improved damage, accuracy and scatter with smartguns type firearms."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "smartguns"
 	smartgun = 1
 	jobs_supported = list(SQUAD_SMARTGUNNER, CAPTAIN)
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 800
 
 /datum/perk/skill_mod/construction

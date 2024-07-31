@@ -41,7 +41,7 @@
 			C.drunkenness = max((C.drunkenness + (sqrt(volume) * boozepwr * ALCOHOL_RATE)), 0) //Volume, power, and server alcohol rate effect how quickly one gets drunk.
 		if(ishuman(C))
 			var/mob/living/carbon/human/H = C
-			var/datum/internal_organ/liver/O = H.internal_organs_by_name["liver"]
+			var/datum/internal_organ/liver/O = H.get_organ_slot(ORGAN_SLOT_LIVER)
 			if (istype(O))
 				O.take_damage(((max(sqrt(volume) * (boozepwr ** ALCOHOL_EXPONENT) * O.alcohol_tolerance, 0)) * 0.002), TRUE)
 
@@ -322,7 +322,7 @@
 			if(prob(5))
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
-					var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+					var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 					if(istype(E))
 						E.take_damage(2)
 		if(200 to INFINITY)
@@ -334,7 +334,7 @@
 			L.druggy = max(L.druggy, 60)
 			if(ishuman(L) && prob(10))
 				var/mob/living/carbon/human/H = L
-				var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+				var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 				if(istype(E))
 					if(H.species.species_flags ~! NO_PAIN)
 						to_chat(H, span_danger("You clutch for a moment as you feel a scorching pain covering your abdomen!"))
