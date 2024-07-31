@@ -11,8 +11,6 @@
 	///What minimum level in that skill is needed to have that action
 	var/skill_min = SKILL_LEAD_TRAINED
 
-	var/cooldown_timer
-
 /datum/action/innate/order/give_action(mob/M)
 	. = ..()
 	RegisterSignals(M, list(COMSIG_CIC_ORDER_SENT, COMSIG_CIC_ORDER_OFF_CD), PROC_REF(update_button_icon))

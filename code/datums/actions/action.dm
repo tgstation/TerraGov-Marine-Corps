@@ -71,7 +71,7 @@ KEYBINDINGS
 
 ///Whether the owner can see this action
 /datum/action/proc/should_show()
-	return hidden ? FALSE : TRUE
+	return !hidden
 
 ///Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
 /datum/action/proc/set_toggle(value)
