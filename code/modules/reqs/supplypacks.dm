@@ -166,6 +166,11 @@ OPERATIONS
 	contains = list(/obj/item/circuitboard/tadpole)
 	cost = 750
 
+/datum/supply_packs/operations/rappel_rope
+	name = "Spare Tadpole rappel system cord"
+	contains = list(/obj/item/spare_cord)
+	cost = 300
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
