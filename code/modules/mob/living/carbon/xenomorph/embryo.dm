@@ -77,6 +77,12 @@
 
 	process_growth()
 
+	/*
+///Kills larva when host goes DNR
+/obj/item/alien_embryo/proc/on_host_dnr(datum/source)
+	SIGNAL_HANDLER
+	qdel(src)
+	*/
 
 /obj/item/alien_embryo/proc/process_growth()
 	if(affected_mob.stat == DEAD) //No more corpsefucking for infinite larva, thanks

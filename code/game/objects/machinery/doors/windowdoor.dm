@@ -50,6 +50,10 @@
 		return
 	icon_state = density ? base_state : "[base_state]open"
 
+/obj/machinery/door/window/emp_act(severity)
+	. = ..()
+	if(prob(30 / severity))
+		open()
 
 /obj/machinery/door/window/proc/open_and_close()
 	open()
