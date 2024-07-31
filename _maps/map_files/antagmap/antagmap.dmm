@@ -502,11 +502,6 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
-"dv" = (
-/turf/closed/shuttle/dropship_regular/engine_corner{
-	dir = 1
-	},
-/area/shuttle/transport)
 "dz" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -514,10 +509,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "dB" = (
-/turf/closed/shuttle/dropship_regular/backhatch{
-	dir = 4
-	},
-/area/shuttle/transport)
+/obj/structure/cable,
+/obj/item/storage/box/crate/loot/materials_pack,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "dE" = (
 /obj/structure/table/mainship,
 /obj/item/storage/backpack/lightpack/icc,
@@ -906,9 +901,7 @@
 	name = "SOM Bridge"
 	})
 "fY" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/iron/white/textured,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "fZ" = (
@@ -1259,7 +1252,6 @@
 	})
 "id" = (
 /obj/structure/table/black,
-/obj/effect/teleporter_linker,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicateport)
 "ig" = (
@@ -1458,8 +1450,31 @@
 	name = "SOM Medbay"
 	})
 "jb" = (
-/obj/structure/patrol_point/som_24,
-/turf/open/floor/mainship/sterile/plain,
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "jd" = (
 /obj/structure/cable,
@@ -1640,10 +1655,31 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/groundhq/ntf/patrol_base/hangar)
 "jY" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/ntf/patrol_base/hangar)
 "jZ" = (
 /obj/structure/cable,
@@ -1688,7 +1724,10 @@
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatestarboard)
 "kj" = (
-/turf/closed/shuttle/dropship_regular/engine_corner,
+/obj/machinery/door/airlock/mainship/generic/glass{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
 "kl" = (
 /obj/effect/turf_decal/siding/wideplating_new/light,
@@ -1842,9 +1881,6 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
-"kY" = (
-/turf/closed/shuttle/dropship_dark/cockpit_window,
-/area/shuttle/transport)
 "kZ" = (
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
@@ -1883,8 +1919,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "lh" = (
-/obj/structure/prop/rappel_bay,
-/obj/structure/patrol_point/tgmc_14,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/door/airlock/mainship/generic/glass{
+	dir = 1
+	},
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
 "lk" = (
@@ -2063,12 +2103,6 @@
 /obj/item/storage/box/visual/grenade,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicategen)
-"lX" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/ntf/patrol_base/hangar)
 "lY" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/black/full,
@@ -2228,12 +2262,31 @@
 	},
 /area/shuttle/transport)
 "mL" = (
-/obj/effect/ai_node,
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/obj/structure/patrol_point/som_24,
-/turf/open/floor/mainship/mono,
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "mM" = (
 /obj/structure/table/reinforced/prison,
@@ -2590,14 +2643,35 @@
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
 "ou" = (
-/obj/structure/bed/chair/dropship/passenger{
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/light/mainship{
-	dir = 8
-	},
-/turf/open/floor/prison/blackfloor,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/plating/ground/dirt,
+/area/shuttle/transport)
 "ov" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/grayscale/round/black,
@@ -3721,11 +3795,6 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
-"uO" = (
-/turf/closed/shuttle/dropship_regular/interior_corner{
-	dir = 1
-	},
-/area/shuttle/transport)
 "uP" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -3864,9 +3933,6 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
-"vx" = (
-/turf/closed/shuttle/dropship_regular/backhatch,
-/area/shuttle/transport)
 "vy" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/command{
@@ -4225,7 +4291,6 @@
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
 	},
-/obj/structure/patrol_point/som_24,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/patrol_base/hangar)
 "xu" = (
@@ -4277,7 +4342,6 @@
 	name = "CLF Armory"
 	})
 "xC" = (
-/obj/structure/patrol_point/tgmc_14,
 /obj/structure/prop/rappel_bay,
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
@@ -4590,9 +4654,7 @@
 	name = "SOM Bridge"
 	})
 "zA" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
+/obj/machinery/door/airlock/mainship/generic,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
@@ -5118,10 +5180,11 @@
 	name = "SOM Field Commander's Office"
 	})
 "Cy" = (
-/obj/structure/cable,
-/obj/structure/prop/mainship/prop_iccinf,
+/obj/structure/table/reinforced,
+/obj/item/storage/box/crate/loot/materials_pack,
+/obj/effect/teleporter_linker,
 /turf/open/floor/plating/ground/concrete,
-/area/oscar_outpost/outside/road)
+/area/mainship/groundhq/ntf/patrol_base/hangar)
 "CA" = (
 /obj/effect/teleporter_linker,
 /turf/open/floor/plating/plating_catwalk,
@@ -5763,7 +5826,6 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/obj/structure/patrol_point/som_12,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
@@ -5996,10 +6058,31 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/clf/hallways/bathroom)
 "HB" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/turf/open/floor/prison/blackfloor,
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/turf/open/floor/plating/ground/dirt,
 /area/riptide/inside/syndicateport)
 "HD" = (
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -6019,9 +6102,6 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
-"HH" = (
-/turf/closed/shuttle/dropship_regular/interior_wall,
-/area/shuttle/transport)
 "HI" = (
 /obj/machinery/vending/weapon/vsd,
 /turf/open/floor/grayscale/round/black,
@@ -6277,7 +6357,6 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/structure/patrol_point/som_24,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "IV" = (
@@ -6511,11 +6590,6 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
-"Kh" = (
-/obj/structure/patrol_point/tgmc_13,
-/obj/structure/prop/rappel_bay,
-/turf/open/shuttle/dropship/three,
-/area/shuttle/transport)
 "Ki" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -6526,9 +6600,6 @@
 	name = "SOM South Maintenance";
 	outside = 0
 	})
-"Kk" = (
-/turf/closed/shuttle/dropship_dark/backwall,
-/area/shuttle/transport)
 "Kn" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
@@ -6581,11 +6652,14 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/medical/lounge)
 "KL" = (
-/obj/structure/patrol_point/som_24,
-/turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/obj/structure/rack,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/tool/multitool,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/floor,
+/area/shuttle/transport)
 "KM" = (
 /obj/machinery/shower{
 	pixel_y = 16
@@ -6761,7 +6835,12 @@
 /turf/open/floor/grayscale/round/black,
 /area/space)
 "LK" = (
-/turf/closed/shuttle/dropship_regular/interior_corner,
+/obj/structure/rack,
+/obj/item/storage/firstaid/adv,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
 "LL" = (
 /obj/structure/platform{
@@ -6778,10 +6857,6 @@
 /area/mainship/groundhq/clf/hallways/stern_hallway{
 	name = "CLF Armory"
 	})
-"LO" = (
-/obj/structure/patrol_point/som_24,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/ntf/patrol_base/hangar)
 "LP" = (
 /obj/machinery/power/apc/mainship,
 /obj/machinery/power/terminal{
@@ -7243,7 +7318,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/patrol_point/som_12,
 /turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
@@ -7290,9 +7364,7 @@
 	name = "SOM Bridge"
 	})
 "Ol" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Om" = (
@@ -7352,9 +7424,31 @@
 	name = "SOM Bridge"
 	})
 "OK" = (
-/turf/closed/shuttle/dropship_regular/top_corner{
-	dir = 1
-	},
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/turf/open/floor/plating/ground/dirt,
 /area/shuttle/transport)
 "OO" = (
 /obj/machinery/computer/autodoc_console,
@@ -7757,6 +7851,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/effect/teleporter_linker,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicateport)
 "QS" = (
@@ -7803,7 +7898,6 @@
 /area/riptide/inside/syndicatestarboard)
 "Rd" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
-/obj/structure/patrol_point/som_11,
 /turf/open/floor/prison/blackfloor,
 /area/riptide/inside/syndicateport)
 "Re" = (
@@ -7977,7 +8071,6 @@
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
-/obj/structure/patrol_point/som_11,
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
@@ -8129,7 +8222,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/patrol_point/som_11,
 /turf/open/floor/plating/plating_catwalk,
 /area/canora_desert/surface/building/som_floortwomain{
 	name = "SOM Hangar Bay";
@@ -8178,8 +8270,10 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/patrol_base/prep)
 "SN" = (
-/turf/closed/shuttle/dropship_regular/top_corner,
-/area/shuttle/transport)
+/obj/structure/cable,
+/obj/effect/teleporter_linker,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/groundhq/ntf/hallways/aft_hallway)
 "SO" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -8431,9 +8525,7 @@
 	},
 /area/oscar_outpost/outside/road)
 "Ub" = (
-/obj/machinery/door/airlock/mainship/generic{
-	dir = 1
-	},
+/obj/machinery/door/airlock/mainship/generic,
 /turf/open/floor/wood/fancy,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "Uc" = (
@@ -8627,9 +8719,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "Vc" = (
-/obj/structure/prop/mainship/juggernaut_two{
-	icon_state = "vsd_juggernaut_two"
-	},
+/obj/structure/prop/mainship/juggernaut_two,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicatehead)
 "Vd" = (
@@ -8870,9 +8960,34 @@
 	outside = 0
 	})
 "Wj" = (
-/turf/closed/shuttle/dropship_regular/interior_wall{
-	dir = 1
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/machinery/light{
+	dir = 8
 	},
+/turf/open/floor/plating/ground/dirt,
 /area/shuttle/transport)
 "Wm" = (
 /obj/structure/table/mainship,
@@ -9434,7 +9549,9 @@
 	outside = 0
 	})
 "Zp" = (
-/obj/structure/prop/mainship/invincibleshutter,
+/obj/structure/prop/mainship/invincibleshutter{
+	dir = 4
+	},
 /turf/open/floor/mainship/black/full,
 /area/space)
 "Zq" = (
@@ -14716,9 +14833,9 @@ OW
 IJ
 de
 gb
-nc
-EX
 jb
+dB
+nc
 ih
 og
 ih
@@ -14811,9 +14928,9 @@ de
 eL
 de
 gb
-nc
-EX
 jb
+SN
+nc
 ih
 og
 ih
@@ -16890,7 +17007,7 @@ CN
 pp
 HB
 HB
-ou
+HB
 Rd
 YZ
 xn
@@ -18084,7 +18201,7 @@ aF
 tT
 ny
 ny
-KL
+ny
 Go
 "}
 (91,1,1) = {"
@@ -18856,7 +18973,7 @@ io
 rZ
 GU
 xt
-LO
+ra
 jY
 jW
 ff
@@ -18950,9 +19067,9 @@ CN
 io
 rZ
 ix
-LO
-LO
-lX
+ra
+ra
+jY
 jW
 ff
 Jq
@@ -19237,7 +19354,7 @@ ff
 cP
 Jd
 ff
-oF
+Cy
 es
 IF
 Jq
@@ -19328,14 +19445,14 @@ CN
 CN
 CN
 Up
+ff
+kn
+kn
+ff
 kn
 kn
 kn
-kn
-kn
-kn
-kn
-Cy
+Jq
 TZ
 xM
 xM
@@ -19674,15 +19791,15 @@ CN
 CN
 VK
 It
-fE
-HH
+LQ
+Hr
 QY
-HH
-HH
-HH
+Hr
+Hr
+Hr
 QY
-HH
-kj
+Hr
+EJ
 BO
 LY
 qz
@@ -19711,7 +19828,7 @@ io
 rZ
 GU
 xt
-LO
+ra
 jY
 jW
 ff
@@ -19777,14 +19894,14 @@ xX
 xX
 zL
 GL
-SN
-HH
-HH
-vx
-VK
-VK
-Kk
-pS
+aM
+Hr
+Hr
+Hr
+Hr
+Hr
+Nl
+KL
 zL
 XE
 XE
@@ -19805,9 +19922,9 @@ CN
 io
 rZ
 ix
-LO
-LO
-lX
+ra
+ra
+jY
 jW
 ff
 lr
@@ -19864,7 +19981,7 @@ CN
 CN
 VK
 fE
-LK
+Nl
 Sr
 bm
 bm
@@ -19875,11 +19992,11 @@ uB
 fy
 Mx
 fy
-Mi
-VK
-LQ
-Nl
-Sr
+nM
+Wj
+OK
+nM
+bm
 bm
 bm
 bm
@@ -19967,13 +20084,13 @@ gq
 gq
 gq
 se
-lh
+xC
+bm
+xC
+kj
+bm
 bm
 lh
-nM
-VK
-kY
-LT
 se
 vJ
 vJ
@@ -19983,7 +20100,7 @@ vJ
 se
 xC
 bm
-Kh
+xC
 FN
 VK
 "}
@@ -20054,7 +20171,7 @@ CN
 CN
 VK
 xT
-uO
+IT
 Di
 bm
 bm
@@ -20065,11 +20182,11 @@ VS
 fy
 PX
 fy
-Mi
-VK
-GV
-IT
-Di
+nM
+ou
+OK
+nM
+bm
 bm
 bm
 bm
@@ -20157,14 +20274,14 @@ II
 II
 zL
 GL
-OK
-Wj
-Wj
-dB
-VK
-It
-Kk
-je
+nB
+Gk
+Gk
+Gk
+Gk
+Gk
+IT
+LK
 zL
 sI
 sI
@@ -20244,15 +20361,15 @@ CN
 CN
 VK
 VK
-xT
-Wj
+GV
+Gk
 QY
-Wj
-Wj
-Wj
+Gk
+Gk
+Gk
 ME
-Wj
-dv
+Gk
+Uq
 Xr
 Su
 XH
