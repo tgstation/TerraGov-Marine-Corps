@@ -155,5 +155,5 @@
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]", HIGH_FLOAT_LAYER))
 
 /obj/structure/xeno/silo/proc/spawner_post_spawn(list/newly_spawned_mobs)
-	for(var/mob/living/carbon/xenomorph/minion in newly_spawned_mobs)
+	for(var/mob/living/carbon/xenomorph/minion AS in newly_spawned_mobs)
 		minion.transfer_to_hive(hivenumber)
