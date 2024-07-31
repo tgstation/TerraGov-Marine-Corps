@@ -2559,6 +2559,12 @@
 	name = "SOM Hangar Bay";
 	outside = 0
 	})
+"nT" = (
+/obj/structure/prop/mainship/invincibleshutter{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/space)
 "nW" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
@@ -8907,6 +8913,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
+"VQ" = (
+/obj/structure/prop/mainship/invincibleshutter{
+	dir = 4
+	},
+/turf/open/space/basic,
+/area/space)
 "VS" = (
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/transport)
@@ -18787,12 +18799,12 @@ zb
 zb
 zb
 zb
-io
-io
-io
-io
-io
-io
+nT
+nT
+nT
+nT
+nT
+nT
 zb
 zb
 zb
@@ -22683,10 +22695,10 @@ zb
 zb
 zb
 zb
-io
-io
-io
-io
+VQ
+nT
+nT
+nT
 zb
 zb
 zb
