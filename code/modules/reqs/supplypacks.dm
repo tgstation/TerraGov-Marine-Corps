@@ -1620,6 +1620,11 @@ SUPPLIES
 	contains = list(/obj/item/toy/plush/rouny)
 	cost = 10
 
+/datum/supply_packs/supplies/queenplushie
+	name = "Royal Queen Plushie"
+	contains = list(/obj/item/toy/plush/royalqueen)
+	cost = 10
+
 /datum/supply_packs/supplies/games
 	name = "Games crate"
 	contains = list(
