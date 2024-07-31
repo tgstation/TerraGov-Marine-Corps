@@ -61,8 +61,8 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	alerts[category] = thealert
 	if(client && hud_used)
 		hud_used.reorganize_alerts()
-	thealert.transform = matrix(32, 6, MATRIX_TRANSLATE)
-	animate(thealert, transform = matrix(), time = 2.5, easing = CUBIC_EASING)
+	thealert.transform = matrix(32, 0, MATRIX_TRANSLATE)
+	animate(thealert, transform = matrix(), time = 1 SECONDS, easing = ELASTIC_EASING)
 
 	if(thealert.timeout)
 		addtimer(CALLBACK(src, PROC_REF(alert_timeout), thealert, category), thealert.timeout)
@@ -207,7 +207,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		return
 	var/paramslist = params2list(params)
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		to_chat(usr, examine_block("<big><b>[name]</b></big>[EXAMINE_SECTION_BREAK][desc]"))
+		to_chat(usr, examine_block("<big>[span_boldnotice(name)]</big>\n[span_info(desc)]"))
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)
@@ -216,7 +216,6 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	master = null
 	owner = null
 	return ..()
-
 
 //MECHS
 /atom/movable/screen/alert/nocell
@@ -259,7 +258,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 
 /atom/movable/screen/alert/hot
 	name = "Too Hot"
-	desc = "You're flaming hot! Try to extinguish yourself and then take Kelotane to cool you down!"
+	desc = "You're flaming hot! Try to extinguish yourself, and then take Kelotane to cool you down!"
 	icon_state = "hot"
 
 /atom/movable/screen/alert/cold
@@ -279,15 +278,15 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 
 /atom/movable/screen/alert/hungry
 	name = "Hungry"
-	desc = "Could do with a bite to eat. Movement speed reduced."
+	desc = "You could use a bite to eat. Movement speed reduced."
 	icon_state = "hungry"
 
 /atom/movable/screen/alert/starving
 	name = "Starving"
-	desc = "Could eat a horse right now. Movement speed significantly reduced."
+	desc = "You could eat a horse right now. Movement speed significantly reduced."
 	icon_state = "starving"
 
 /atom/movable/screen/alert/stuffed
 	name = "Stuffed"
-	desc = "Ate a bit too much. Movement speed reduced."
+	desc = "You had a bit too much to eat. Work out to lose the extra nutrition. Movement speed reduced."
 	icon_state = "stuffed"

@@ -20,9 +20,9 @@ Notes:
 /datum/tooltip
 	var/client/owner
 	var/control = "mainwindow.tooltip"
-	var/showing = 0
-	var/queueHide = 0
-	var/init = 0
+	var/showing = FALSE
+	var/queueHide = FALSE
+	var/init = FALSE
 	var/atom/last_target
 
 
@@ -49,10 +49,10 @@ Notes:
 
 	if (!init)
 		//Initialize some vars
-		init = 1
+		init = TRUE
 		owner << output(list2params(list(world.icon_size, control)), "[control]:tooltip.init")
 
-	showing = 1
+	showing = TRUE
 
 	if (title && content)
 		title = "<h1>[title]</h1>"
@@ -74,7 +74,7 @@ Notes:
 	owner << output(list2params(list(params, view_size[1] , view_size[2], "[title][content]", theme, special)), "[control]:tooltip.update")
 
 	//If a hide() was hit while we were showing, run hide() again to avoid stuck tooltips
-	showing = 0
+	showing = FALSE
 	if (queueHide)
 		hide()
 
