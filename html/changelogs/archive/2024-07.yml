@@ -335,3 +335,11 @@
   - code_imp: Cleaned up some acid code
   - balance: Plasma SMG scatter increased slightly
   - balance: Plasma SMG bouncy mode damage decreases slightly for each bounce
+2024-07-31:
+  Lumipharon:
+  - balance: 'Campaign: Heat rockets have slightly more scatter'
+  - balance: Recoilless rifle has -10 scatter instead of -100
+  Notamaniac:
+  - bugfix: Vindicator Minigun Powerpacks won't show up as an error on snow maps anymore
+  Wisemonster:
+  - rscdel: Removed most of the glass panes by the fire range tables in Valhalla
