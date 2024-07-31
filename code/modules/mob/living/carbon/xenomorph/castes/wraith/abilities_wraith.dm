@@ -686,7 +686,21 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/target_initial_on_fire = FALSE
 	/// How far can you rewind someone
 	var/range = 5
+	///Holder for the rewind timer
+	var/rewind_timer
 
+/datum/action/ability/activable/xeno/rewind/Destroy()
+	last_target_locs_list = null
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
+	if(rewind_timer)
+		deltimer(rewind_timer)
+	if(!QDELETED(targeted))
+		targeted.remove_filter("prerewind_blur")
+		targeted.remove_filter("rewind_blur")
+		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
+		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
+		targeted = null
+	return ..()
 
 /datum/action/ability/activable/xeno/rewind/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -720,7 +734,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(isxeno(A))
 		var/mob/living/carbon/xenomorph/xeno_target = targeted
 		target_initial_sunder = xeno_target.sunder
-	addtimer(CALLBACK(src, PROC_REF(start_rewinding)), start_rewinding)
+	rewind_timer = addtimer(CALLBACK(src, PROC_REF(start_rewinding)), start_rewinding, TIMER_STOPPABLE)
 	RegisterSignal(targeted, COMSIG_MOVABLE_MOVED, PROC_REF(save_move))
 	targeted.add_filter("prerewind_blur", 1, radial_blur_filter(0.04))
 	targeted.balloon_alert(targeted, "You feel anchored to the past!")
@@ -770,6 +784,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		targeted.remove_filter("rewind_blur")
 		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
 		targeted = null
+		rewind_timer = null
 		return
 
 	targeted.Move(loc_b, get_dir(loc_b, loc_a))
