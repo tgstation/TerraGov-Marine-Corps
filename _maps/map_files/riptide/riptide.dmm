@@ -1173,7 +1173,7 @@
 /turf/open/floor/grimy,
 /area/riptide/caves/central/garbledradio)
 "aRw" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible{
+/obj/structure/prop/vehicle/crane/cranecargo{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -1908,7 +1908,7 @@
 /turf/open/floor/tile/darkish,
 /area/riptide/inside/engineering)
 "bui" = (
-/obj/structure/prop/vehicle/van/destructible{
+/obj/structure/prop/vehicle/van{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -6475,7 +6475,7 @@
 	},
 /area/riptide/outside/northislands)
 "eyY" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -9854,7 +9854,7 @@
 /area/riptide/caves/tram)
 "gTn" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -16011,7 +16011,7 @@
 /area/riptide/outside/eastbeach)
 "llw" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/prop/vehicle/van/destructible{
+/obj/structure/prop/vehicle/van{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -20488,7 +20488,7 @@
 /area/riptide/outside/volcano)
 "otL" = (
 /obj/effect/turf_decal/warning_stripes/thin,
-/obj/structure/prop/vehicle/crawler/destructible,
+/obj/structure/prop/vehicle/crawler,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/riptide/inside/landingzoneone)
 "otN" = (
@@ -29865,7 +29865,7 @@
 /turf/open/floor/prison/kitchen,
 /area/riptide/inside/beachsushi)
 "uxg" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -30260,7 +30260,7 @@
 /turf/open/floor/iron/dark,
 /area/riptide/caves/pmc/lobby)
 "uLT" = (
-/obj/structure/prop/vehicle/van/destructible{
+/obj/structure/prop/vehicle/van{
 	dir = 1
 	},
 /obj/machinery/light{

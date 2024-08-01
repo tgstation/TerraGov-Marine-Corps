@@ -9192,7 +9192,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/lawankaoutpost/colony/operations_administration)
 "hJw" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible,
+/obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
 "hJN" = (
@@ -20806,7 +20806,7 @@
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/bar)
 "rek" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -29311,7 +29311,7 @@
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
 "xTI" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 4
 	},
 /obj/structure/cable,

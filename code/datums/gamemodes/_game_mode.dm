@@ -481,6 +481,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
+	if(GLOB.round_statistics.points_from_xenos)
+		parts += "[GLOB.round_statistics.points_from_xenos] requisitions points gained from xenomorph sales."
 	if(GLOB.round_statistics.runner_items_stolen)
 		parts += "[GLOB.round_statistics.runner_items_stolen] items stolen by runners."
 

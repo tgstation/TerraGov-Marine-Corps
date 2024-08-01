@@ -37,7 +37,7 @@
 
 /mob/living/carbon/xenomorph/queen/handle_special_state()
 	if(is_charging >= CHARGE_ON)
-		icon_state = "Queen Charging"
+		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
 
