@@ -6060,6 +6060,7 @@
 /obj/machinery/power/apc,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
+/obj/item/plantable_flag,
 /turf/open/floor/mainship/blue{
 	dir = 5
 	},
