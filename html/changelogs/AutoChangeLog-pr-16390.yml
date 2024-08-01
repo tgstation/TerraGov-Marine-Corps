@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - balance: "Drop pods now warns nearby marines of where it'll land with an overlay."
-  - imageadd: "Droppod warning overlay."
