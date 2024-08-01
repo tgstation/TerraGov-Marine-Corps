@@ -57,3 +57,8 @@
 			hugger_overlays_icon.overlays +=mutable_appearance(icon, "clinger_[i]")
 
 	overlays += hugger_overlays_icon
+
+/mob/living/carbon/xenomorph/carrier/on_death()
+	///We QDEL them as cleanup and preventing them from being sold
+	QDEL_IN(src, TIME_TO_DISSOLVE)
+	return ..()

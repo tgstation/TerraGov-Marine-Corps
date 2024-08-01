@@ -4,8 +4,8 @@
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	icon = 'icons/obj/items/surgery_tools.dmi'
 	icon_state = "tube"
-	amount = 10
-	max_amount = 10
+	amount = 20
+	max_amount = 20
 	w_class = WEIGHT_CLASS_SMALL
 
 

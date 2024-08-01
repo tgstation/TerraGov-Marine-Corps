@@ -572,7 +572,7 @@
 /datum/reagent/medicine/russian_red/on_mob_life(mob/living/L, metabolism)
 	L.heal_overall_damage(7*effect_str, 7*effect_str)
 	L.adjustToxLoss(-2.5*effect_str)
-	L.adjustCloneLoss(0.7*effect_str)
+//	L.adjustCloneLoss(0.7*effect_str)
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		C.setShock_Stage(min(C.shock_stage - 5*effect_str, 150)) //removes a target from deep paincrit instantly

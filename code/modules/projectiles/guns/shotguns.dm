@@ -18,7 +18,7 @@
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_HANDFULS
 	type_of_casings = "shell"
-	allowed_ammo_types = list()
+	allowed_ammo_types = list(/obj/item/ammo_magazine/shotgun, /obj/item/ammo_magazine/shotgun/buckshot, /obj/item/ammo_magazine/shotgun/flechette)
 	aim_slowdown = 0.35
 	wield_delay = 0.8 SECONDS //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = SKILL_SHOTGUNS
@@ -787,7 +787,7 @@
 	attachable_offset = list("muzzle_x" = 40, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 29, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 
 	fire_delay = 1.75 SECONDS
-	damage_mult = 0.9
+	damage_mult = 1.3
 	wield_delay = 0.95 SECONDS
 	burst_amount = 2
 	burst_delay = 0.01 SECONDS //basically instantaneous two shots

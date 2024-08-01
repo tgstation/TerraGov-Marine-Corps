@@ -5,10 +5,13 @@
 	turret_icon = 'icons/obj/armored/2x2/medium_vehicles.dmi'
 	turret_icon_state = "apc_turret"
 	damage_icon_path = null
-	interior = null
+//	interior = /datum/interior/armored/transport
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	minimap_icon_state = null
-	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY
+	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_TRANSPORT|ARMORED_HAS_UNDERLAY
+	permitted_weapons = list(/obj/item/armored_weapon/secondary_weapon)
+	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom/*, /obj/item/tank_module/interior/medical, /obj/item/tank_module/interior/clone_bay*/)
 	icon_state = "apc"
-	move_delay = 0.25 SECONDS
-	max_occupants = 5
+	minimap_icon_state = "apc"
+	move_delay = 0.6 SECONDS
+	max_occupants = 8

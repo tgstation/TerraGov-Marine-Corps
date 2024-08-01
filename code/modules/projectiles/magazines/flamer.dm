@@ -7,8 +7,9 @@
 	desc = "A fuel tank of usually ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-240 incinerator unit. Handle with care."
 	icon_state = "flametank"
 	icon = 'icons/obj/items/ammo/flamer.dmi'
-	max_rounds = 50 //Per turf.
-	current_rounds = 50
+	max_rounds = 200 //Per turf.
+	current_rounds = 200
+
 	reload_delay = 2 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL //making sure you can't sneak this onto your belt.
 	caliber = CALIBER_FUEL_THICK //Ultra Thick Napthal Fuel, from the lore book.
@@ -25,8 +26,8 @@
 	icon_state = "flametank_mini"
 	reload_delay = 0 SECONDS
 	w_class = WEIGHT_CLASS_SMALL
-	current_rounds = 25
-	max_rounds = 25
+	current_rounds = 70
+	max_rounds = 70
 	icon_state_mini = "tank_orange_mini"
 
 /obj/item/ammo_magazine/flamer_tank/afterattack(obj/target, mob/user , flag) //refuel at fueltanks when we run out of ammo.
@@ -59,8 +60,8 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the FL-84 flamethrower."
 	icon_state = "flametank_large"
-	max_rounds = 75
-	current_rounds = 75
+	max_rounds = 175
+	current_rounds = 175
 	reload_delay = 3 SECONDS
 	icon_state_mini = "tank_orange"
 
@@ -68,8 +69,8 @@
 	name = "large flamerthrower tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, for use in the V-62 flamethrower."
 	icon_state = "flametank_som"
-	max_rounds = 75
-	current_rounds = 75
+	max_rounds = 175
+	current_rounds = 175
 	reload_delay = 3 SECONDS
 	icon_state_mini = "tank_red"
 
@@ -88,8 +89,8 @@
 /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad
 	name = "Gargantuan flamethrower X-tank"
 	desc = "Using Bluespace technology, Nanotrasen has managed to fit in way more x-fuel than you would ever hope to need in a single lifetime into this specialized tank."
-	max_rounds = 225
-	current_rounds = 225
+	max_rounds = 325
+	current_rounds = 325
 	reload_delay = 2 SECONDS
 
 /obj/item/ammo_magazine/flamer_tank/backtank
@@ -98,8 +99,8 @@
 	icon_state = "flamethrower_tank"
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	max_rounds = 500
-	current_rounds = 500
+	max_rounds = 1500
+	current_rounds = 1500
 	reload_delay = 1 SECONDS
 	caliber = CALIBER_FUEL_THICK
 	magazine_flags = MAGAZINE_WORN
@@ -118,8 +119,8 @@
 	name = "pressurized water tank"
 	desc = "A cannister of water for use with the FL-84's underslung extinguisher. Can be refilled by hand."
 	icon_state = "watertank"
-	max_rounds = 200
-	current_rounds = 200
+	max_rounds = 400
+	current_rounds = 400
 	reload_delay = 0 SECONDS
 	w_class = WEIGHT_CLASS_NORMAL
 	caliber = CALIBER_WATER //Deep lore
@@ -134,7 +135,7 @@
 	name = "internal fuel tank"
 	desc = "A large fuel tank of ultra thick napthal, a sticky combustable liquid chemical, you shouldn't see this though."
 	icon_state = ""
-	max_rounds = 280
-	current_rounds = 280
+	max_rounds = 480
+	current_rounds = 480
 	reload_delay = 0 SECONDS
 
