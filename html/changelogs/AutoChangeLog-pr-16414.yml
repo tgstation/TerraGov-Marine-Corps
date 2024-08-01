@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "The amount of req points gained from xenomorph sales are recorded and displayed in round-end screen."

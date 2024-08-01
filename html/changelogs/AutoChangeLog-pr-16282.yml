@@ -1,6 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - rscadd: "Adds rappel system, turning POs into glorified elevators once more."
-  - rscadd: "Adds the spare rappel cord box. Required to repair the rappel system."
-  - imageadd: "rappel system sprite, rappel cord box"

@@ -1,4 +1,0 @@
-author: "fleewave"
-delete-after: True
-changes:
-  - qol: "All harvester weapons now autoload chems after attacking."
