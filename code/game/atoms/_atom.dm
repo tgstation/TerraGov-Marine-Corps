@@ -111,9 +111,6 @@
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
 
-	///The acid currently on this atom
-	var/obj/effect/xenomorph/acid/current_acid = null
-
 	///Cooldown for telling someone they're buckled
 	COOLDOWN_DECLARE(buckle_message_cooldown)
 
@@ -123,7 +120,6 @@
 	var/list/alternate_appearances
 	///var containing our storage, see atom/proc/create_storage()
 	var/datum/storage/storage_datum
-
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -181,20 +177,6 @@ directive is properly returned.
 /atom/proc/return_gas()
 	if(loc)
 		return loc.return_gas()
-
-///returns if we can melt an object, but also the speed at which it happens. 1 just means we melt it. 0,5 means we need a higher strength acid. higher than 1 just makes it melt faster
-/atom/proc/dissolvability(acid_strength)
-	return 1
-
-//returns how long it takes to apply acid on this atom
-/atom/proc/get_acid_delay()
-	return 1 SECONDS
-
-///returns if we are able to apply acid to the atom, also checks if there is already a stronger acid on this atom
-/atom/proc/should_apply_acid(acid_strength)
-	if(!current_acid)
-		return TRUE
-	return acid_strength >= current_acid.acid_strength
 
 /atom/proc/on_reagent_change()
 	return
@@ -1089,3 +1071,33 @@ directive is properly returned.
 ///Interaction for using a grab on an atom
 /atom/proc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return
+
+///Checks if there is acid melting this atom
+/atom/proc/get_self_acid()
+	var/list/acid_list = list()
+	SEND_SIGNAL(src, COMSIG_ATOM_GET_SELF_ACID, acid_list)
+	if(!length(acid_list))
+		return
+	return acid_list[1]
+
+///returns if we can melt an object, but also the speed at which it happens. 1 just means we melt it. 0,5 means we need a higher strength acid. higher than 1 just makes it melt faster
+/atom/proc/dissolvability(acid_strength)
+	return 1
+
+//returns how long it takes to apply acid on this atom
+/atom/proc/get_acid_delay()
+	return 1 SECONDS
+
+///returns if we are able to apply acid to the atom, also checks if there is already a stronger acid on this atom
+/atom/proc/should_apply_acid(acid_strength)
+	if(resistance_flags & UNACIDABLE || !dissolvability(acid_strength))
+		return ATOM_CANNOT_ACID
+	var/obj/effect/xenomorph/acid/current_acid = get_self_acid()
+	if(acid_strength <= current_acid?.acid_strength)
+		return ATOM_STRONGER_ACID
+	return ATOM_CAN_ACID
+
+///What happens when with atom is melted by acid
+/atom/proc/do_acid_melt()
+	visible_message(span_xenodanger("[src] collapses under its own weight into a puddle of goop and undigested debris!"))
+	playsound(src, SFX_ACID_HIT, 25)

@@ -51,10 +51,9 @@
 
 ///Dissassembles the device
 /obj/machinery/deployable/proc/disassemble(mob/user)
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return
 	var/obj/item/item = get_internal_item()
 	if(!item)
 		return
