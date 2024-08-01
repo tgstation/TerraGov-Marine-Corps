@@ -225,16 +225,14 @@
 
 			var/obj/item/radio/headset/radio = potential_hearer.wear_ear
 			switch(radio.squad_tts_mode)
-				if(HEADSET_TTS_ALL)
-					break
+				if(HEADSET_TTS_NONE)
+					continue
 				if(HEADSET_TTS_SQUAD)
 					if(potential_hearer.assigned_squad?.radio_freq != frequency)
 						continue
 				if(HEADSET_TTS_SL_ONLY)
 					if(potential_hearer.assigned_squad?.radio_freq != frequency || !is_speaker_squad_lead)
 						continue
-				else
-					continue
 
 			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), potential_hearer, html_decode(message), language, speaker.voice, potential_hearer.voice_filter, local = TRUE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO)
 
