@@ -20,13 +20,13 @@
 	screen.removal_timer = null
 	screen.alpha = initial(screen.alpha)
 	if((!severity || severity == screen.severity) && (!client || screen.screen_loc != "CENTER-7,CENTER-7" || screen.fs_view == client.view))
-		// doesn't need to be updated
-	else
-		screen.icon_state = "[initial(screen.icon_state)][severity]"
-		screen.severity = severity
-		if(client && SHOULD_SHOW_TO(src, screen))
-			screen.update_for_view(client.view)
-			client.screen += screen
+		return screen
+
+	screen.icon_state = "[initial(screen.icon_state)][severity]"
+	screen.severity = severity
+	if(client && SHOULD_SHOW_TO(src, screen))
+		screen.update_for_view(client.view)
+		client.screen += screen
 	return screen
 
 ///Removes a fullscreen overlay
