@@ -18,12 +18,12 @@
 /obj/effect/landmark/patrol_point/Initialize(mapload)
 	. = ..()
 	GLOB.patrol_point_list += src
-	RegisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, PROC_REF(finish_setup))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_GAMEMODE_LOADED, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED), PROC_REF(finish_setup))
 
 ///Finishes setup after we know what gamemode it is
 /obj/effect/landmark/patrol_point/proc/finish_setup(datum/source, mode_override = FALSE)
 	SIGNAL_HANDLER
-	UnregisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED)
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_GAMEMODE_LOADED, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED))
 	if(!(SSticker?.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS) && !mode_override)
 		return
 	SSminimaps.add_marker(src, GLOB.faction_to_minimap_flag[faction], image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon))

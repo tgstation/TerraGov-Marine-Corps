@@ -1,0 +1,26 @@
+2024-08-01:
+  2whatever2:
+  - balance: The FK-88 now has a fullscope instead of the old HSG sight it had.
+  Cheese, Cre, Stardust:
+  - rscadd: Praetorian Rouny Sprites
+  Cheese, Stardust, & Cre:
+  - rscadd: Rounified version of queen sprites
+  - rscadd: Royal Xeno queen plushie; Get one now from the arcade consoles, or from
+      Req.
+  Lumipharon:
+  - bugfix: fixed patrol points in Campaign
+  - bugfix: fixed timeshift not ended if the wraith died early
+  Runian:
+  - rscadd: The amount of req points gained from xenomorph sales are recorded and
+      displayed in round-end screen.
+  - rscadd: Vehicle interior door is on-par with its exterior door as it now allows
+      you to take out non-mobs (like crates).
+  - spellcheck: Removes unnecessary space from shock's "is having trouble standing".
+  - balance: Drop pods now warns nearby marines of where it'll land with an overlay.
+  - imageadd: Droppod warning overlay.
+  breadhunt:
+  - rscadd: Adds rappel system, turning POs into glorified elevators once more.
+  - rscadd: Adds the spare rappel cord box. Required to repair the rappel system.
+  - imageadd: rappel system sprite, rappel cord box
+  fleewave:
+  - qol: All harvester weapons now autoload chems after attacking.

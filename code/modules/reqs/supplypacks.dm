@@ -166,6 +166,11 @@ OPERATIONS
 	contains = list(/obj/item/circuitboard/tadpole)
 	cost = 750
 
+/datum/supply_packs/operations/rappel_rope
+	name = "Spare Tadpole rappel system cord"
+	contains = list(/obj/item/spare_cord)
+	cost = 300
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -1613,6 +1618,11 @@ SUPPLIES
 /datum/supply_packs/supplies/rounyplush
 	name = "Rouny Plushie"
 	contains = list(/obj/item/toy/plush/rouny)
+	cost = 10
+
+/datum/supply_packs/supplies/queenplushie
+	name = "Royal Queen Plushie"
+	contains = list(/obj/item/toy/plush/royalqueen)
 	cost = 10
 
 /datum/supply_packs/supplies/games
