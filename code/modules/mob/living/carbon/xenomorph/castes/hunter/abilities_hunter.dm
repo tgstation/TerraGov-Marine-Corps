@@ -235,9 +235,6 @@
 	if(!mark.marked_target)
 		to_chat(owner, span_warning("We have no target to disguise into!"))
 		return
-	if(ishuman(mark.marked_target))
-		to_chat(owner, "You cannot turn into a human!")
-		return
 	var/image/disguised_icon = image(icon = mark.marked_target.icon, icon_state = mark.marked_target.icon_state, loc = owner)
 	disguised_icon.override = TRUE
 	xenoowner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "hunter_disguise", disguised_icon)
@@ -411,11 +408,6 @@
 	if(A == X)
 		if(!silent)
 			to_chat(X, span_xenowarning("Why would we target ourselves?"))
-		return FALSE
-
-	if(!line_of_sight(X, A)) //Need line of sight.
-		if(!silent)
-			to_chat(X, span_xenowarning("We require line of sight to mark them!"))
 		return FALSE
 
 	return TRUE
