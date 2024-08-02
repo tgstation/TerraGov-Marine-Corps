@@ -1,7 +1,7 @@
 #define WARHEAD_FLY_TIME 1 SECONDS
 #define RG_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
-#define WARHEAD_FUEL_REQUIREMENT 6
+#define WARHEAD_FUEL_REQUIREMENT 5
 
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
