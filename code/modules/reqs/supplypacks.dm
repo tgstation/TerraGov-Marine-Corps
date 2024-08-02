@@ -583,7 +583,7 @@ WEAPONS
 /datum/supply_packs/weapons/zx76
 	name = "ZX-76 Twin-Barrled Burst Shotgun"
 	contains = list(/obj/item/weapon/gun/shotgun/zx76)
-	cost = 1000
+	cost = ZX_PRICE
 
 /datum/supply_packs/weapons/shotguntracker
 	name = "12 Gauge Tracker Shells"
@@ -618,7 +618,7 @@ WEAPONS
 /datum/supply_packs/weapons/antimaterial
 	name = "SR-26 Antimaterial rifle (AMR) kit"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/antimaterial)
-	cost = 775
+	cost = AMR_PRICE
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/weapons/antimaterial_ammo
