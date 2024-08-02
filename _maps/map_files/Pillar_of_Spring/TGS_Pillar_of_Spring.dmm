@@ -5157,7 +5157,6 @@
 	dir = 4
 	},
 /obj/machinery/firealarm,
-/obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/hexagon,
 /area/mainship/engineering/engine_core)
@@ -6158,7 +6157,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
 	},
@@ -8298,7 +8296,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/hexagon,
 /area/mainship/engineering/lower_engineering)
 "kCk" = (
@@ -13345,7 +13342,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/hexagon,
 /area/mainship/engineering/engine_core)
 "qtz" = (
