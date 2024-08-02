@@ -62,7 +62,7 @@
 
 /area/bluesummers/caves/cloning
 	name = "Restricted Cloning Wing"
-	icon_state = "research"
+	icon_state = "cloning"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
 	always_unpowered = FALSE
@@ -273,10 +273,10 @@
 	name = "Observation Deck"
 	icon_state = "tcomsatcham"
 
-/area/bluesummers/inside/food_processing_wing
+/area/bluesummers/inside/food_processing
 	name = "Western Food Processing Wing"
 	icon_state = "kitchen"
 	minimap_color = MINIMAP_AREA_LIVING
 
-/area/bluesummers/inside/food_processing_wing/east
+/area/bluesummers/inside/food_processing/east
 	name = "Eastern Food Processing Wing"
