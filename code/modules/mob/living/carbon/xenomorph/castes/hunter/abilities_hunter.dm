@@ -225,6 +225,7 @@
 	var/old_appearance
 	var/old_caste_desc
 	var/old_name
+	var/old_desc
 
 /datum/action/ability/xeno_action/stealth/disguise/action_activate()
 	if(stealth)
