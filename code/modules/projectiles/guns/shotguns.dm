@@ -796,8 +796,24 @@
 	burst_scatter_mult = 2 // 2x4=8
 	accuracy_mult = 1
 
+	item_flags = TWOHANDED|AUTOBALANCE_CHECK
+
+/obj/item/weapon/gun/shotgun/zx76/Initialize(mapload, spawn_empty)
+	. = ..()
+	if(item_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.zx_in_use += src
+
+/obj/item/weapon/gun/shotgun/zx76/Destroy()
+	if(item_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.zx_in_use -= src
+	return ..()
+
 /obj/item/weapon/gun/shotgun/zx76/standard
 	starting_attachment_types = list(/obj/item/attachable/bayonet, /obj/item/attachable/magnetic_harness, /obj/item/attachable/verticalgrip)
+
+/obj/item/weapon/gun/shotgun/zx76/valhalla
+	item_flags = TWOHANDED
+
 
 //-------------------------------------------------------
 //V-51 SOM shotgun
