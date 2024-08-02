@@ -237,7 +237,7 @@
 		return
 	var/image/disguised_icon = image(icon = mark.marked_target.icon, icon_state = mark.marked_target.icon_state, loc = owner,)
 	disguised_icon.override = TRUE
-	xenoowner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "hunter_disguise", disguised_icon, AA_TARGET_SEE_APPEARANCE | AA_MATCH_TARGET_OVERLAYS)
+	xenoowner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "hunter_disguise", disguised_icon, AA_TARGET_SEE_APPEARANCE | AA_MATCH_TARGET_OVERLAYS))
 	ADD_TRAIT(xenoowner, TRAIT_XENOMORPH_INVISIBLE_BLOOD, STEALTH_TRAIT)
 	xenoowner.update_wounds()
 	return ..()
@@ -424,10 +424,6 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	X.face_atom(A) //Face towards the target so we don't look silly
-
-	if(!line_of_sight(X, A)) //Need line of sight.
-		to_chat(X, span_xenowarning("We lost line of sight to the target!"))
-		return fail_activate()
 
 	if(marked_target)
 		UnregisterSignal(marked_target, COMSIG_QDELETING)
