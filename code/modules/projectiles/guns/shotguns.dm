@@ -814,7 +814,6 @@
 /obj/item/weapon/gun/shotgun/zx76/valhalla
 	item_flags = TWOHANDED
 
-
 //-------------------------------------------------------
 //V-51 SOM shotgun
 
