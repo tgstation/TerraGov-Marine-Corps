@@ -1492,7 +1492,7 @@
 			/obj/item/ammo_magazine/rifle/tx8/incendiary = -1,
 			/obj/item/weapon/gun/rifle/standard_autosniper = -1,
 			/obj/item/ammo_magazine/rifle/autosniper = -1,
-			/obj/item/weapon/gun/rifle/sniper/antimaterial = -1,
+			/obj/item/weapon/gun/rifle/sniper/antimaterial/valhalla = -1,
 			/obj/item/ammo_magazine/sniper = -1,
 			/obj/item/ammo_magazine/sniper/incendiary = -1,
 			/obj/item/ammo_magazine/sniper/flak = -1,

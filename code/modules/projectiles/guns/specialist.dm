@@ -72,11 +72,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	placed_overlay_iconstate = "antimat"
 
+	item_flags = TWOHANDED|AUTOBALANCE_CHECK
 
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Initialize(mapload)
 	. = ..()
 	integrated_laze = new(src)
+	if(item_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.amr_in_use += src
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/do_fire(obj/object_to_fire)
 	if(targetmarker_primed)
@@ -140,6 +143,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/sniper/antimaterial/Destroy()
 	laser_off()
 	QDEL_NULL(integrated_laze)
+	if(item_flags & AUTOBALANCE_CHECK)
+		SSmonitor.stats.amr_in_use -= src
 	return ..()
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/dropped()
@@ -212,6 +217,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 	return TRUE
 
+/obj/item/weapon/gun/rifle/sniper/antimaterial/valhalla
+	item_flags = TWOHANDED
 
 /obj/item/weapon/gun/rifle/sniper/elite
 	name = "\improper SR-42 anti-tank sniper rifle"
