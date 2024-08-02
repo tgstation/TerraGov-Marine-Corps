@@ -222,12 +222,14 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,
 	)
+	var/old_appearance
 
 /datum/action/ability/xeno_action/stealth/disguise/action_activate()
 	if(stealth)
 		cancel_stealth()
 		return TRUE
 	var/mob/living/carbon/xenomorph/xenoowner = owner
+	old_appearance = xenoowner.appearance
 	var/datum/action/ability/activable/xeno/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
 	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
 		owner.balloon_alert(owner, "already in a form of stealth!")
@@ -235,9 +237,8 @@
 	if(!mark.marked_target)
 		to_chat(owner, span_warning("We have no target to disguise into!"))
 		return
-	var/image/disguised_icon = image(icon = mark.marked_target.icon, icon_state = mark.marked_target.icon_state, loc = owner)
-	disguised_icon.override = TRUE
-	xenoowner.add_alt_appearance(/datum/atom_hud/alternate_appearance/basic/everyone, "hunter_disguise", disguised_icon, AA_TARGET_SEE_APPEARANCE | AA_MATCH_TARGET_OVERLAYS)
+	xenoowner.appearance = mark.marked_target.appearance
+	xenoowner.underlays.Cut()
 	ADD_TRAIT(xenoowner, TRAIT_XENOMORPH_INVISIBLE_BLOOD, STEALTH_TRAIT)
 	xenoowner.update_wounds()
 	return ..()
@@ -245,8 +246,8 @@
 /datum/action/ability/xeno_action/stealth/disguise/cancel_stealth()
 	. = ..()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
+	owner.appearance = old_appearance
 	REMOVE_TRAIT(xenoowner, TRAIT_XENOMORPH_INVISIBLE_BLOOD, STEALTH_TRAIT)
-	xenoowner.remove_alt_appearance("hunter_disguise")
 	xenoowner.update_wounds()
 
 /datum/action/ability/xeno_action/stealth/disguise/handle_stealth()
