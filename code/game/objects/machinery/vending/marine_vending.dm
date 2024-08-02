@@ -1747,8 +1747,8 @@
 		)
 	)
 
-/obj/machinery/vending/valhalla_factorio
-	name = "\improper TerraGovTech factorio vendor"
+/obj/machinery/vending/valhalla_reqtorio
+	name = "\improper TerraGovTech reqtorio vendor"
 	desc = "An automated rack hooked up to a colossal storage of items."
 	icon_state = "requisitionop"
 	resistance_flags = INDESTRUCTIBLE

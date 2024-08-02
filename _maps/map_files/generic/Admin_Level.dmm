@@ -8984,7 +8984,7 @@
 /turf/open/floor/engine,
 /area/centcom/valhalla)
 "mNo" = (
-/obj/machinery/vending/valhalla_factorio,
+/obj/machinery/vending/valhalla_reqtorio,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
 "mOd" = (
