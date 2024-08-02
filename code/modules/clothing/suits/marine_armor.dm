@@ -166,6 +166,7 @@
 	AddElement(/datum/element/limb_support, supporting_limbs)
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use += src
+		RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(demonitor_on_hijack))
 
 /obj/item/clothing/suit/storage/marine/specialist/Destroy()
 	if(item_flags & AUTOBALANCE_CHECK)
@@ -174,6 +175,20 @@
 
 /obj/item/clothing/suit/storage/marine/specialist/valhalla
 	item_flags = NONE
+
+/// On hijack, removes this item from their monitored list if it is not shipside.
+/obj/item/clothing/suit/storage/marine/specialist/proc/demonitor_on_hijack()
+	if(z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (src in SSmonitor.stats.b18_in_use))
+		SSmonitor.stats.b18_in_use -= src
+
+/// Adds (if not already) this item to the monitored list if it arrives shipside. Does not account for deployment/leaving shipside.
+/obj/item/clothing/suit/storage/marine/specialist/onTransitZ(old_z, new_z)
+	if(src in SSmonitor.stats.b18_in_use)
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (new_z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)))
+		SSmonitor.stats.b18_in_use += src
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -188,6 +203,7 @@
 	. = ..()
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b17_in_use += src
+		RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(demonitor_on_hijack))
 
 /obj/item/clothing/suit/storage/marine/B17/Destroy()
 	if(item_flags & AUTOBALANCE_CHECK)
@@ -196,6 +212,20 @@
 
 /obj/item/clothing/suit/storage/marine/B17/valhalla
 	item_flags = NONE
+
+/// On hijack, removes this item from their monitored list if it is not shipside.
+/obj/item/clothing/suit/storage/marine/B17/proc/demonitor_on_hijack()
+	if(z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (src in SSmonitor.stats.b17_in_use))
+		SSmonitor.stats.b17_in_use -= src
+
+/// Adds (if not already) this item to the monitored list if it arrives shipside. Does not account for deployment/leaving shipside.
+/obj/item/clothing/suit/storage/marine/B17/onTransitZ(old_z, new_z)
+	if(src in SSmonitor.stats.b17_in_use)
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (new_z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)))
+		SSmonitor.stats.b17_in_use += src
 
 ////////////////////////////////
 

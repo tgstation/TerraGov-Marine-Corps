@@ -802,6 +802,7 @@
 	. = ..()
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.zx_in_use += src
+		RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(demonitor_on_hijack))
 
 /obj/item/weapon/gun/shotgun/zx76/Destroy()
 	if(item_flags & AUTOBALANCE_CHECK)
@@ -813,6 +814,21 @@
 
 /obj/item/weapon/gun/shotgun/zx76/valhalla
 	item_flags = TWOHANDED
+
+/// On hijack, removes this item from their monitored list if it is not shipside.
+/obj/item/weapon/gun/shotgun/zx76/proc/demonitor_on_hijack()
+	if(z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (src in SSmonitor.stats.zx_in_use))
+		SSmonitor.stats.zx_in_use -= src
+
+/// Adds (if not already) this item to the monitored list if it arrives shipside. Does not account for deployment/leaving shipside.
+/obj/item/weapon/gun/shotgun/zx76/onTransitZ(old_z, new_z)
+	if(src in SSmonitor.stats.zx_in_use)
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (new_z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)))
+		SSmonitor.stats.zx_in_use += src
+
 
 //-------------------------------------------------------
 //V-51 SOM shotgun

@@ -80,6 +80,21 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	integrated_laze = new(src)
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.amr_in_use += src
+		RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(demonitor_on_hijack))
+
+/// On hijack, removes this item from their monitored list if it is not shipside.
+/obj/item/weapon/gun/rifle/sniper/antimaterial/proc/demonitor_on_hijack()
+	if(z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (src in SSmonitor.stats.amr_in_use))
+		SSmonitor.stats.amr_in_use -= src
+
+/// Adds (if not already) this item to the monitored list if it arrives shipside. Does not account for deployment/leaving shipside.
+/obj/item/weapon/gun/rifle/sniper/antimaterial/onTransitZ(old_z, new_z)
+	if(src in SSmonitor.stats.amr_in_use)
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (new_z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)))
+		SSmonitor.stats.amr_in_use += src
 
 /obj/item/weapon/gun/rifle/sniper/antimaterial/do_fire(obj/object_to_fire)
 	if(targetmarker_primed)
@@ -430,11 +445,26 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	. = ..()
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.miniguns_in_use += src
+		RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(demonitor_on_hijack))
 
 /obj/item/weapon/gun/minigun/Destroy()
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.miniguns_in_use -= src
 	return ..()
+
+/// On hijack, removes this item from their monitored list if it is not shipside.
+/obj/item/weapon/gun/minigun/proc/demonitor_on_hijack()
+	if(z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (src in SSmonitor.stats.miniguns_in_use))
+		SSmonitor.stats.miniguns_in_use -= src
+
+/// Adds (if not already) this item to the monitored list if it arrives shipside. Does not account for deployment/leaving shipside.
+/obj/item/weapon/gun/minigun/onTransitZ(old_z, new_z)
+	if(src in SSmonitor.stats.miniguns_in_use)
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (new_z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)))
+		SSmonitor.stats.miniguns_in_use += src
 
 /obj/item/weapon/gun/minigun/magharness
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -715,11 +745,26 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	. = ..()
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.sadar_in_use += src
+		RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(demonitor_on_hijack))
 
 /obj/item/weapon/gun/launcher/rocket/sadar/Destroy()
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.sadar_in_use -= src
 	return ..()
+
+/// On hijack, removes this item from their monitored list if it is not shipside.
+/obj/item/weapon/gun/launcher/rocket/sadar/proc/demonitor_on_hijack()
+	if(z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP))
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (src in SSmonitor.stats.sadar_in_use))
+		SSmonitor.stats.sadar_in_use -= src
+
+/// Adds (if not already) this item to the monitored list if it arrives shipside. Does not account for deployment/leaving shipside.
+/obj/item/weapon/gun/launcher/rocket/sadar/onTransitZ(old_z, new_z)
+	if(src in SSmonitor.stats.sadar_in_use)
+		return
+	if(item_flags & AUTOBALANCE_CHECK && (new_z in SSmapping.levels_by_trait(ZTRAIT_MARINE_MAIN_SHIP)))
+		SSmonitor.stats.sadar_in_use += src
 
 /obj/item/weapon/gun/launcher/rocket/sadar/do_fire(obj/object_to_fire)
 	. = ..()
