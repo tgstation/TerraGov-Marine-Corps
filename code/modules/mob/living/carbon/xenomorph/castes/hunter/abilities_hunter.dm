@@ -223,6 +223,8 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_DISGUISE,
 	)
 	var/old_appearance
+	var/old_caste_desc
+	var/old_name
 
 /datum/action/ability/xeno_action/stealth/disguise/action_activate()
 	if(stealth)
@@ -230,6 +232,9 @@
 		return TRUE
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	old_appearance = xenoowner.appearance
+	old_caste_desc = xenoowner.xeno_caste.caste_desc
+	old_name = xenoowner.name
+	old_desc = owner.desc
 	var/datum/action/ability/activable/xeno/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
 	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
 		owner.balloon_alert(owner, "already in a form of stealth!")
@@ -238,6 +243,9 @@
 		to_chat(owner, span_warning("We have no target to disguise into!"))
 		return
 	xenoowner.appearance = mark.marked_target.appearance
+	xenoowner.name = mark.marked_target.name
+	xenoowner.xeno_caste.caste_desc = null
+	owner.desc = null
 	xenoowner.underlays.Cut()
 	ADD_TRAIT(xenoowner, TRAIT_XENOMORPH_INVISIBLE_BLOOD, STEALTH_TRAIT)
 	xenoowner.update_wounds()
@@ -246,7 +254,10 @@
 /datum/action/ability/xeno_action/stealth/disguise/cancel_stealth()
 	. = ..()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	owner.appearance = old_appearance
+	xenoowner.appearance = old_appearance
+	xenowner.name = old_name
+	xenoowner.xeno_caste.caste_desc = old_caste_desc
+	owner.desc = old_desc
 	REMOVE_TRAIT(xenoowner, TRAIT_XENOMORPH_INVISIBLE_BLOOD, STEALTH_TRAIT)
 	xenoowner.update_wounds()
 
