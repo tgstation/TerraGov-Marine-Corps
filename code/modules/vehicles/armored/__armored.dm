@@ -271,6 +271,14 @@
 /obj/vehicle/sealed/armored/exit_location(mob/M)
 	return get_step(src, REVERSE_DIR(dir))
 
+/obj/vehicle/sealed/armored/emp_act(severity)
+	. = ..()
+	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	take_damage(400 / severity, BURN, ENERGY)
+	for(var/mob/living/living_occupant AS in occupants)
+		living_occupant.Stagger((6 - severity) SECONDS)
+
+///Plays the engine sound for this vehicle if its not on cooldown
 /obj/vehicle/sealed/armored/proc/play_engine_sound(freq_vary = TRUE, sound_freq)
 	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
 		return
@@ -304,7 +312,8 @@
 	if(isliving(thing_to_load))
 		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))
 		return mob_try_enter(thing_to_load, user, TRUE)
-	user.temporarilyRemoveItemFromInventory(thing_to_load)
+	if(isitem(thing_to_load))
+		user.temporarilyRemoveItemFromInventory(thing_to_load)
 	thing_to_load.forceMove(interior.door.get_enter_location())
 	user.balloon_alert(user, "item thrown inside")
 	return TRUE

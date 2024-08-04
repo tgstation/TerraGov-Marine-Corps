@@ -339,6 +339,21 @@
 	UnregisterSignal(parent, list(COMSIG_ITEM_UNEQUIPPED, COMSIG_ITEM_EQUIPPED, COMSIG_ATOM_EXAMINE))
 	return ..()
 
+/obj/item/armor_module/module/eshield/emp_act(severity)
+	. = ..()
+	if(!isliving(parent.loc))
+		return
+	var/mob/living/affected = parent.loc
+	affected.remove_filter("eshield")
+
+	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	spark_system.start()
+	shield_health = 0
+
+	STOP_PROCESSING(SSobj, src)
+	deltimer(recharge_timer)
+	recharge_timer = addtimer(CALLBACK(src, PROC_REF(begin_recharge)), damaged_shield_cooldown * 3 / severity, TIMER_STOPPABLE)
+
 ///Called to give extra info on parent examine.
 /obj/item/armor_module/module/eshield/proc/parent_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
