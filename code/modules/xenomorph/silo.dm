@@ -156,8 +156,5 @@
 
 /// Transfers the spawned minion to the silo's hivenumber.
 /obj/structure/xeno/silo/proc/on_spawn(list/newly_spawned_things)
-	for(var/spawned_thing AS in newly_spawned_things)
-		if(!isxeno(spawned_thing))
-			CRASH("Xeno silo somehow tried to spawn a non xeno (tried to spawn [spawned_thing])")
-		var/mob/living/carbon/xenomorph/spawned_minion = spawned_thing
+	for(var/mob/living/carbon/xenomorph/spawned_minion AS in newly_spawned_things)
 		spawned_minion.transfer_to_hive(hivenumber)

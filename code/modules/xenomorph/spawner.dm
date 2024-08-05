@@ -98,10 +98,7 @@
 
 /// Transfers the spawned minion to the silo's hivenumber.
 /obj/structure/xeno/spawner/proc/on_spawn(list/newly_spawned_things)
-	for(var/spawned_thing AS in newly_spawned_things) // While we can expect it to be an xenomorph, it could be any typepath.
-		if(!isxeno(spawned_thing))
-			CRASH("Xeno spawner somehow tried to spawn a non xeno (tried to spawn [spawned_thing])")
-		var/mob/living/carbon/xenomorph/spawned_minion = spawned_thing
+	for(var/mob/living/carbon/xenomorph/spawned_minion AS in newly_spawned_things)
 		spawned_minion.transfer_to_hive(hivenumber)
 		linked_minions += spawned_minion
 		if(hivenumber == XENO_HIVE_FALLEN) //snowflake so valhalla isnt filled with minions after you're done
