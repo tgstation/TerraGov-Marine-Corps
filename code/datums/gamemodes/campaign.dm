@@ -258,7 +258,7 @@
 	var/autobal_num = ROUND_UP((length(GLOB.alive_human_list_faction[autobalance_faction_list[1]]) - length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])) * 0.2)
 	current_mission.spawn_mech(autobalance_faction_list[2], 0, 0, autobal_num, "[autobal_num] additional mechs granted for autobalance")
 
-///Shuffles the teams
+///Shuffles the teams forcefully
 /datum/game_mode/hvh/campaign/proc/shuffle_teams()
 	var/list/player_list = GLOB.player_list.Copy()
 	player_list = shuffle(player_list)
@@ -269,7 +269,7 @@
 		if(player.faction == new_faction)
 			continue
 		if(ishuman(player))
-			swap_player_team(player, TRUE, FALSE)
+			swap_player_team(player, new_faction, TRUE, FALSE)
 		else
 			player.faction = new_faction
 

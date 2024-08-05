@@ -170,6 +170,20 @@ export const CampaignAdminPanel = (props) => {
               <Stack.Item mt={2}>
                 <Button
                   tooltip={multiline`
+                    Forcefully shuffles the teams.
+                    Shuffles all living and dead players to the available factions.
+                  `}
+                  mt={1}
+                  onClick={() => {
+                    act('shuffle_teams');
+                  }}
+                >
+                  Shuffle teams
+                </Button>
+              </Stack.Item>
+              <Stack.Item mt={2}>
+                <Button
+                  tooltip={multiline`
                     This pauses or resumes the PRE-GAME mission start timer.
                     Time can be edited when resuming.
                   `}
