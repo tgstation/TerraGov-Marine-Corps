@@ -116,7 +116,7 @@
 ///Waves the flag around heroically
 /obj/item/plantable_flag/proc/lift_flag(mob/user)
 	if(TIMER_COOLDOWN_CHECK(user, COOLDOWN_WHISTLE_WARCRY))
-		to_chat(user, span_notice("You have to wait a while to rally your troops..."))
+		user.balloon_alert(user, "On cooldown")
 		return
 
 	TIMER_COOLDOWN_START(user, COOLDOWN_WHISTLE_WARCRY, 1 MINUTES)
