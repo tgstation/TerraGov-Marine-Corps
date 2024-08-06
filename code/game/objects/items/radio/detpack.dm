@@ -86,7 +86,7 @@
 		var/obj/item/assembly/signaler/signaler = I
 		code = signaler.code
 		set_frequency(signaler.frequency)
-		to_chat(user, "You transfer the frequency and code of \the [signaler.name] to \the [name].")
+		to_chat(user, "You transfer the frequency and code of [signaler] to [src].")
 
 /obj/item/detpack/attack_hand(mob/living/user)
 	if(armed)
@@ -254,7 +254,7 @@
 		var/obj/item/assembly/signaler/signaler = target
 		code = signaler.code
 		set_frequency(signaler.frequency)
-		to_chat(user, "You transfer the frequency and code of \the [signaler.name] to \the [name].")
+		to_chat(user, "You transfer the frequency and code of [signaler] to [src].")
 		return
 	if(istype(target, /obj/item) || istype(target, /mob))
 		return FALSE
