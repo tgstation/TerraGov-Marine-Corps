@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Projectile hit messages for objects and turfs now only show up if the damage if high enough, reducing lag from chat spam"

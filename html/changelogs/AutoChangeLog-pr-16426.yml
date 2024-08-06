@@ -1,4 +1,0 @@
-author: "YehnBeep"
-delete-after: True
-changes:
-  - bugfix: "Fixed looping power issue with the SMES units on the Pillar of Spring."

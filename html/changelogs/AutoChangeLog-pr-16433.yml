@@ -1,4 +1,0 @@
-author: "RipGrayson"
-delete-after: True
-changes:
-  - bugfix: "Fixed a window frame going invisible."

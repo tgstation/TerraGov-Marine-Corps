@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - code_imp: "Cleaned up some fullscreen overlay code. In particular this should improve projectile impact screen overlays"

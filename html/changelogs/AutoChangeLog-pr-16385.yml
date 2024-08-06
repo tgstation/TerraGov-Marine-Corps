@@ -1,7 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - rscadd: "Health analyzers have new themes for humans and robots."
-  - rscadd: "You can now use health analyzers in hand to change the theme back to the original before this PR."
-  - spellcheck: "Fixed the treatment advice for using trauma kits."
-  - bugfix: "Various fixes to health analyzer tooltips."
