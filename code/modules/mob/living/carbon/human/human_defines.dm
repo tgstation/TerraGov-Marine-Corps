@@ -126,9 +126,6 @@
 
 	///Auras we can create, used for the order choice UI.
 	var/static/list/command_aura_allowed = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)
-	///Whether we can use another command order yet. Either null or a timer ID.
-	var/command_aura_cooldown
-
 	///Strength of the move order aura affecting us
 	var/mobility_aura = 0
 	///Strength of the hold order aura affecting us
