@@ -32,7 +32,7 @@
 	var/faction = FACTION_TERRAGOV
 	///Aura emitter
 	var/datum/aura_bearer/current_aura
-
+	///Start point for it to return to when called
 	var/turf/origin_point
 
 /obj/item/plantable_flag/Initialize(mapload)
@@ -173,7 +173,7 @@
 
 	internal_item = WEAKREF(_internal_item)
 
-	var/obj/item/plantable_flag/new_internal_item = internal_item.resolve()
+	var/obj/item/plantable_flag/new_internal_item = get_internal_item()
 
 	name = new_internal_item.name
 	desc = new_internal_item.desc
@@ -184,6 +184,15 @@
 	if(deployer)
 		new_internal_item.lift_flag(deployer)
 
+/obj/structure/plantable_flag/Destroy()
+	clear_internal_item()
+	return ..()
+
+/obj/structure/plantable_flag/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	var/obj/item/plantable_flag/internal_flag = get_internal_item()
+	internal_flag?.deconstruct(FALSE)
+	return ..()
+
 /obj/structure/plantable_flag/get_internal_item()
 	return internal_item?.resolve()
 
@@ -191,7 +200,7 @@
 	internal_item = null
 
 /obj/structure/plantable_flag/update_icon_state()
-	var/obj/item/current_internal_item = internal_item.resolve()
+	var/obj/item/current_internal_item = get_internal_item()
 	icon_state = "[current_internal_item.icon_state]_planted"
 
 /obj/structure/plantable_flag/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
