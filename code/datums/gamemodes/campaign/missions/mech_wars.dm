@@ -2,9 +2,9 @@
 /datum/campaign_mission/tdm/mech_wars
 	name = "Combined Arms"
 	mission_icon = "mech_war"
-	map_name = "Patrick's Rest"
-	map_file = '_maps/map_files/Campaign maps/patricks_rest/patricks_rest.dmm'
-	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
+	map_name = "Hybrisa Prospera"
+	map_file = '_maps/map_files/LV759/LV759.dmm'
+	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_traits = list(ZTRAIT_AWAY = TRUE)
 	map_light_levels = list(225, 150, 100, 75)
 	map_armor_color = MAP_ARMOR_STYLE_JUNGLE

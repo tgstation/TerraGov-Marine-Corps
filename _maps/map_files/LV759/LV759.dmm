@@ -26921,6 +26921,10 @@
 /obj/effect/mapping_helpers/airlock/free_access,
 /turf/open/floor/officetiles,
 /area/lv759/indoors/power_plant/gas_generators)
+"eGV" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/lv759/indoors/nt_research_complex/hangarbay)
 "eGW" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/structure/cable,
@@ -95226,14 +95230,6 @@
 "qnD" = (
 /turf/open/floor/urban_plating,
 /area/lv759/indoors/caves/north_west_caves)
-"qnH" = (
-/obj/item/ammo_casing/bullet,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	color = "#a6aeab"
-	},
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/prison,
-/area/lv759/indoors/nt_research_complex_entrance)
 "qnJ" = (
 /obj/effect/urban/decal/road/lines1,
 /obj/effect/urban/decal/road/lines2,
@@ -147650,7 +147646,7 @@ aHU
 psw
 mQw
 pYL
-nyc
+eGV
 nyc
 nyc
 wpX
@@ -147991,7 +147987,7 @@ dlL
 nsF
 sRS
 pPs
-qnH
+tzk
 uAr
 tzk
 caY
