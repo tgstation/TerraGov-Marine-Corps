@@ -1,7 +1,7 @@
 ///Range of the aura
-#define FLAG_AURA_RANGE 10
+#define FLAG_AURA_RANGE 9
 ///Range of the aura when deployed
-#define FLAG_AURA_DEPLOYED_RANGE 14
+#define FLAG_AURA_DEPLOYED_RANGE 12
 ///The range in tiles which the flag makes people warcry
 #define FLAG_WARCRY_RANGE 5
 ///Strength of the aura
