@@ -426,7 +426,8 @@
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
 	#define COMPONENT_CLOTHING_BLUR_PROTECTION (1<<1)
 
-#define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
+#define COMSIG_ITEM_DEPLOY "item_deploy" //From /obj/proc/do_deploy
+#define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from /obj/proc/disassemble
 
 ///From /obj/item/proc/pickup(): (/obj/item/picked_up_item)
 #define COMSIG_ITEM_ATTEMPT_PICK_UP "item_attempt_pick_up"

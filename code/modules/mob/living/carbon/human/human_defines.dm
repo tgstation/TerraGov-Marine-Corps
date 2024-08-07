@@ -132,6 +132,8 @@
 	var/protection_aura = 0
 	///Strength of the focus order aura affecting us
 	var/marksman_aura = 0
+	///Strength of the flag aura affecting us
+	var/flag_aura = 0
 
 	///The squad this human is assigned to
 	var/datum/squad/assigned_squad

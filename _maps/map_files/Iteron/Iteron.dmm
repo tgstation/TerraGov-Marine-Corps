@@ -2811,6 +2811,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/patrol_base/command)
+"Mq" = (
+/obj/item/plantable_flag,
+/turf/open/floor/mainship/mono,
+/area/mainship/patrol_base/command)
 "Mt" = (
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
@@ -21328,7 +21332,7 @@ ef
 ef
 aT
 eA
-gC
+Mq
 km
 pH
 sK
