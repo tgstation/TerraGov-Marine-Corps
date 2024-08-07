@@ -295,7 +295,7 @@
 
 	if(ET.folded)
 		return
-	deconstruct(!!get_self_acid())
+	deconstruct(!get_self_acid())
 
 /*----------------------*/
 // GUARD RAIL
@@ -648,7 +648,7 @@
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			deconstruct(!!get_self_acid())
+			deconstruct(!get_self_acid())
 			return TRUE
 		if(BARRICADE_METAL_FIRM)
 
@@ -837,7 +837,7 @@
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			deconstruct(!!get_self_acid())
+			deconstruct(!get_self_acid())
 
 /obj/structure/barricade/plasteel/wrench_act(mob/living/user, obj/item/I)
 	if(!iswrench(I))
@@ -1014,7 +1014,7 @@
 			return TRUE
 		user.visible_message(span_notice("[user] disassembles [src]."),
 		span_notice("You disassemble [src]."))
-		deconstruct(!!get_self_acid())
+		deconstruct(!get_self_acid())
 		return TRUE
 
 	if(istype(I, /obj/item/stack/sandbags))
