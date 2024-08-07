@@ -558,6 +558,9 @@
 	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 
+/obj/effect/landmark/corpsespawner/som/burst
+	death_type = CHESTBURST_DEATH
+
 /obj/effect/landmark/corpsespawner/som_officer
 	name = "SOM staff officer"
 	corpseuniform = /obj/item/clothing/under/som/officer

@@ -47,18 +47,29 @@
 	name = "Cryogenics Storage Wing"
 	icon_state = "research"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
-	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+	minimap_color = MINIMAP_AREA_MEDBAY_CAVE
 	always_unpowered = FALSE
 
 /area/bluesummers/caves/cryostorage/north
 	name = "Cryogenics Storage Wing North"
+	icon_state = "anospectro"
 
-/area/bluesummers/caves/cryostorage/garbledradio
+/area/bluesummers/caves/cryostorage/south
 	name = "Cryogenics Storage Wing South"
+	icon_state = "anolab"
 	ceiling = CEILING_UNDERGROUND_METAL
+
+/area/bluesummers/caves/cryostorage/bridge
+	name = "HMS Bluesummers Bridge"
+	icon_state = "bridge"
 
 /area/bluesummers/caves/cryostorage/gravity
 	name = "Gravity Generator Room"
+	icon_state = "anomaly"
+
+/area/bluesummers/caves/cryostorage/tcomms
+	name = "Telecommunications Control Room"
+	icon_state = "tcomsatcomp"
 
 /area/bluesummers/caves/cloning
 	name = "Restricted Cloning Wing"
