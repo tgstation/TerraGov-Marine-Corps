@@ -164,7 +164,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(destroy_sound)
 		playsound(loc, destroy_sound, 35, 1)
-	deconstruct(FALSE)
+	deconstruct(FALSE, blame_mob)
 
 
 ///changes max_integrity while retaining current health percentage, returns TRUE if the obj got broken.

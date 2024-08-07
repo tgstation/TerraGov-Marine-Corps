@@ -55,7 +55,16 @@
 	return ..()
 
 /obj/item/plantable_flag/deconstruct(disassembled = TRUE, mob/living/blame_mob)
-	on_destroy(blame_mob)
+	SSaura.add_emitter(get_turf(src), AURA_HUMAN_FLAG, INFINITY, LOST_FLAG_AURA_STRENGTH, -1, faction)
+
+	if(istype(blame_mob) && blame_mob.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
+		if(faction == blame_mob.faction) //prepare for court martial
+			personal_statistics.flags_destroyed --
+			personal_statistics.mission_flags_destroyed --
+		else
+			personal_statistics.flags_destroyed ++
+			personal_statistics.mission_flags_destroyed ++
 	return ..()
 
 /obj/item/plantable_flag/toggle_deployment_flag(deployed)
@@ -99,19 +108,6 @@
 		current_aura.strength = FLAG_AURA_STRENGTH
 	else
 		current_aura.strength = LOST_FLAG_AURA_STRENGTH //this explicitly lets enemies deploy it for the extended debuff range
-
-///Sets debuff and assigns blame if the flag is destroyed
-/obj/item/plantable_flag/proc/on_destroy(mob/living/blame_mob)
-	SSaura.add_emitter(get_turf(src), AURA_HUMAN_FLAG, INFINITY, LOST_FLAG_AURA_STRENGTH, 900, faction)
-
-	if(istype(blame_mob) && blame_mob.ckey)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
-		if(faction == blame_mob.faction) //prepare for court martial
-			personal_statistics.flags_destroyed --
-			personal_statistics.mission_flags_destroyed --
-		else
-			personal_statistics.flags_destroyed ++
-			personal_statistics.mission_flags_destroyed ++
 
 ///Waves the flag around heroically
 /obj/item/plantable_flag/proc/lift_flag(mob/user)
@@ -190,7 +186,7 @@
 
 /obj/structure/plantable_flag/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	var/obj/item/plantable_flag/internal_flag = get_internal_item()
-	internal_flag?.deconstruct(FALSE)
+	internal_flag?.deconstruct(FALSE, blame_mob)
 	return ..()
 
 /obj/structure/plantable_flag/get_internal_item()
@@ -202,11 +198,6 @@
 /obj/structure/plantable_flag/update_icon_state()
 	var/obj/item/current_internal_item = get_internal_item()
 	icon_state = "[current_internal_item.icon_state]_planted"
-
-/obj/structure/plantable_flag/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	var/obj/item/plantable_flag/internal_flag = get_internal_item()
-	internal_flag?.on_destroy(blame_mob)
-	return ..()
 
 /obj/structure/plantable_flag/ex_act(severity)
 	switch(severity)
