@@ -13,14 +13,13 @@
 		// needs to be recreated
 		clear_fullscreen(category, 0)
 		fullscreens[category] = screen = new type()
-		return screen
-
-	animate(screen)
-	deltimer(screen.removal_timer)
-	screen.removal_timer = null
-	screen.alpha = initial(screen.alpha)
-	if((!severity || severity == screen.severity) && (!client || screen.screen_loc != "CENTER-7,CENTER-7" || screen.fs_view == client.view))
-		return screen
+	else
+		animate(screen)
+		deltimer(screen.removal_timer)
+		screen.removal_timer = null
+		screen.alpha = initial(screen.alpha)
+		if((!severity || severity == screen.severity) && (!client || screen.screen_loc != "CENTER-7,CENTER-7" || screen.fs_view == client.view))
+			return screen
 
 	screen.icon_state = "[initial(screen.icon_state)][severity]"
 	screen.severity = severity
