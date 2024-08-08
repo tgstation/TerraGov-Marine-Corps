@@ -583,6 +583,13 @@
 	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/displacement
+	name = "displacement"
+	full_name = "Hunter: Displacement"
+	description = "Change form to/from incorporeal."
+	keybind_signal = COMSIG_XENOMORPH_HUNTER_DISPLACEMENT
+	hotkey_keys = list("F")
+
 /datum/keybinding/xeno/teleport_minimap
 	name = "teleport_minimap"
 	full_name = "Hivemind: Open teleportation minimap"
@@ -597,11 +604,25 @@
 	keybind_signal = COMSIG_XENOABILITY_HUNTER_POUNCE
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/hunter_lunge
+	name = "hunter_lunge"
+	full_name = "Hunter: Lunge"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_HUNTER_LUNGE
+	hotkey_keys = list("E")
+
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
 	full_name = "Hunter: Toggle Stealth"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
+	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/toggle_phaseout
+	name = "toggle_phaseout"
+	full_name = "Phase Out"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_PHASEOUT
 	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/toggle_disguise

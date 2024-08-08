@@ -233,6 +233,10 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_TWO_THRESHOLD
 
+/mob/living/carbon/xenomorph/hunter/assassin/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_TWO_THRESHOLD
+
 //----HUNTER END----//
 //================//
 //HUNTER ERT START
