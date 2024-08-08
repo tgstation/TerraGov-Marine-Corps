@@ -25,7 +25,7 @@
 /obj/machinery/computer/shuttle_picker/Initialize(mapload)
 	. = ..()
 	if(dock_id)
-		name = "\improper[dock_id] Shuttle Class Digital Catalog"
+		name = "\improper[dock_id] shuttle selection terminal"
 
 /obj/machinery/computer/shuttle_picker/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
