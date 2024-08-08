@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Resin silos now grant their spawned minions the correct hive number."

@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Added deployable flags. Defend the colours!"
-  - code_imp: "Cleaned up some deployable component code"

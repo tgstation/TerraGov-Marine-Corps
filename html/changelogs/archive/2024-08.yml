@@ -47,3 +47,12 @@
   - bugfix: Fixed looping power issue with the SMES units on the Pillar of Spring.
   yyzsong:
   - spellcheck: the meatball emoji is now named meatball
+2024-08-08:
+  Lumipharon:
+  - admin: 'Campaign: Added a team shuffle button to the campaign panel'
+  - rscadd: Added deployable flags. Defend the colours!
+  - code_imp: Cleaned up some deployable component code
+  - bugfix: fixed some fullscreen overlays not working
+  - bugfix: fixed barricade decon dropping incorrect quantities of mats
+  Runian:
+  - bugfix: Resin silos now grant their spawned minions the correct hive number.
