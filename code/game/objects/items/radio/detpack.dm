@@ -114,7 +114,7 @@
 			return
 
 		if(prob((SKILL_ENGINEER_METAL - user.skills.getRating(SKILL_ENGINEER)) * 20))
-			to_chat(user, "<font color='danger'>After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this.</font>")
+			to_chat(user, span_highdanger("After several seconds of your clumsy meddling the [src] buzzes angrily as if offended. You have a <b>very</b> bad feeling about this."))
 			timer = 0 //Oops. Now you fucked up. Immediate detonation.
 
 	user.visible_message(span_notice("[user] begins disarming [src] with [I]."),
@@ -123,8 +123,7 @@
 	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
 		return
 
-	user.visible_message(span_notice("[user] disarms [src]."),
-	span_notice("You disarm [src]."))
+	balloon_alert_to_viewers("Disarmed")
 	disarm()
 
 /obj/item/detpack/proc/nullvars()
