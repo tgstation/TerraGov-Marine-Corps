@@ -67,6 +67,8 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth))
 	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, PROC_REF(sneak_attack_pounce))
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	if(pounce_hit_break_stealth)
+		RegisterSignal(owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(sneak_attack_slash))
 	RegisterSignal(owner, COMSIG_XENOMORPH_DISARM_HUMAN, PROC_REF(sneak_attack_slash))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ZONE_SELECT, PROC_REF(sneak_attack_zone))
@@ -109,6 +111,7 @@
 		COMSIG_XENO_LIVING_THROW_HIT,
 		COMSIG_XENOMORPH_ATTACK_LIVING,
 		COMSIG_XENOMORPH_DISARM_HUMAN,
+		COMSIG_XENOMORPH_LEAP_BUMP,
 		COMSIG_XENOMORPH_ATTACK_OBJ,
 		COMSIG_LIVING_IGNITED,
 		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
@@ -264,7 +267,7 @@
 		cancel_stealth()
 		return TRUE
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	var/datum/action/ability/activable/xeno/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
+	var/datum/action/ability/activable/xeno/hunter_mark/mark = locate() in xenoowner.actions
 	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
 		owner.balloon_alert(owner, "already in a form of stealth!")
 		return
@@ -807,7 +810,7 @@
 // ***************************************
 /datum/action/ability/activable/xeno/hunter_mark/assassin
 	name = "Death Mark"
-	action_icon_state = "hunter_mark"
+	action_icon_state = "death_mark"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Psionically disturb a creature for 15 seconds, allowing you to deal double sneak attack damage, and triple the stun duration from it. They will know you are coming for them."
 	ability_cost = 50
