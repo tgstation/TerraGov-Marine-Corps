@@ -223,7 +223,7 @@
 		damage *= 2
 	target.adjust_stagger(staggerslow_stacks SECONDS)
 	target.add_slowdown(staggerslow_stacks)
-	target.ParalyzeNoChain(paralyzesecs)
+	target.ParalyzeNoChain(paralyzesecs SECONDS)
 
 	if(disable_on_mob_slash)
 		cancel_stealth()
