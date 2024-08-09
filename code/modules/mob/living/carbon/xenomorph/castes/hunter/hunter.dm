@@ -42,7 +42,6 @@
 	wound_overlay.icon_state = "none"
 	if(do_after(src, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BAR, NONE, PROGRESS_GENERIC)) //dont move
 		do_change_form()
-	else
 
 ///Finish the form changing of the hunter and give the needed stats
 /mob/living/carbon/xenomorph/hunter/assassin/proc/do_change_form()
