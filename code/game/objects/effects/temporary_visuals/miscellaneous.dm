@@ -164,8 +164,8 @@ GLOBAL_LIST_EMPTY(blood_particles)
 /obj/effect/temp_visual/order
 	icon = 'icons/effects/orders.dmi'
 	var/icon_state_on
-	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM)
-	duration = CIC_ORDER_DURATION
+	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM, SQUAD_HUD_CLF)
+	duration = ORDER_DURATION
 	layer = TURF_LAYER
 
 /obj/effect/temp_visual/order/Initialize(mapload, faction)

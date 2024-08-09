@@ -52,13 +52,13 @@
 	accurate_range = 15
 	damage_type = STAMINA
 	armor_type = BIO
-	damage = 70
+	damage = 60
 	penetration = 0
 	shrapnel_chance = 0
 	///percentage of xenos total plasma to drain when hit by a pepperball
 	var/drain_multiplier = 0.05
 	///Flat plasma to drain, unaffected by caste plasma amount.
-	var/plasma_drain = 25
+	var/plasma_drain = 20
 
 /datum/ammo/bullet/pepperball/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(isxeno(target_mob))

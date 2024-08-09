@@ -52,7 +52,7 @@
 
 /obj/item/storage/pouch/general/medium/Initialize(mapload, ...)
 	. = ..()
-	storage_datum.storage_slots = 2
+	storage_datum.storage_slots = 4
 	storage_datum.sprite_slots = 2
 	storage_datum.draw_mode = FALSE
 
@@ -63,7 +63,7 @@
 /obj/item/storage/pouch/general/large/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.storage_slots = null
-	storage_datum.max_storage_space = 6
+	storage_datum.max_storage_space = 8
 	storage_datum.sprite_slots = 3
 	storage_datum.draw_mode = FALSE
 
@@ -968,7 +968,7 @@
 
 
 			to_chat(user, span_notice("You start refilling [src] with [M]."))
-			if(!do_after(user, 1.5 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1.5 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
 			for(var/x in 1 to (storage_datum.storage_slots - length(contents)))

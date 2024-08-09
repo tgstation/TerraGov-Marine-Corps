@@ -61,5 +61,5 @@ example:
 	lore_text = "They say the first barsign ever invented was actually a severed head. Which is why the Kingshead is such a popular pub name."
 		- This is what you include if you want to give some fun in character lore. Real world lore is also acceptable.
 	antag_text = "I don't see how this could be used for antagonistic purposes."
-		- This is for antagonists eyes only. Currently TGMC does not have any of those. As such you can ignore what is here.
+		- This is for antagonists eyes only. Currently NTC does not have any of those. As such you can ignore what is here.
 */

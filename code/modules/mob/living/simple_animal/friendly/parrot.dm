@@ -588,6 +588,8 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 				parrot_source.available_channels.Add(RADIO_TOKEN_COMMAND)
 			if(RADIO_CHANNEL_CAS)
 				parrot_source.available_channels.Add(RADIO_TOKEN_CAS)
+			if(RADIO_CHANNEL_SEC)
+				parrot_source.available_channels.Add(RADIO_TOKEN_SEC)
 			if(RADIO_CHANNEL_MEDICAL)
 				parrot_source.available_channels.Add(RADIO_TOKEN_MEDICAL)
 			if(RADIO_CHANNEL_REQUISITIONS)

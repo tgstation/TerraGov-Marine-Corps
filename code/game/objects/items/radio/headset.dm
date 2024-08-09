@@ -5,6 +5,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_MEDICAL = RADIO_TOKEN_MEDICAL,
 	RADIO_CHANNEL_ENGINEERING = RADIO_TOKEN_ENGINEERING,
 	RADIO_CHANNEL_CAS = RADIO_TOKEN_CAS,
+	RADIO_CHANNEL_SEC = RADIO_TOKEN_SEC,
 	RADIO_CHANNEL_ALPHA = RADIO_TOKEN_ALPHA,
 	RADIO_CHANNEL_BRAVO = RADIO_TOKEN_BRAVO,
 	RADIO_CHANNEL_CHARLIE = RADIO_TOKEN_CHARLIE,
@@ -135,7 +136,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	if(keyslot?.custom_squad_factions || keyslot2?.custom_squad_factions)
 		for(var/key in GLOB.custom_squad_radio_freqs)
 			var/datum/squad/custom_squad = GLOB.custom_squad_radio_freqs[key]
-			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && custom_squad.faction == FACTION_TERRAGOV)
+			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_TERRAGOV) && custom_squad.faction == FACTION_NTC)
 				continue
 			if(!(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_SOM) && !(keyslot.custom_squad_factions & ENCRYPT_CUSTOM_SOM) && custom_squad.faction == FACTION_SOM)
 				continue
@@ -180,7 +181,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
 	///The faction this headset belongs to. Used for hudtype, minimap and safety protocol
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
 
@@ -545,7 +546,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine charlie engineer radio headset"
 	keyslot2 = /obj/item/encryptionkey/engi
 
-
 /obj/item/radio/headset/mainship/marine/charlie/med
 	name = "marine charlie corpsman radio headset"
 	keyslot2 = /obj/item/encryptionkey/med
@@ -589,6 +589,22 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "sec_headset"
 	keyslot2 = /obj/item/encryptionkey/cas
 
+/obj/item/radio/headset/mainship/marine/generic/sec
+	name = "marine security headset"
+	icon_state = "sec_headset"
+	keyslot2 = /obj/item/encryptionkey/sec
+
+/obj/item/radio/headset/mainship/marine/pmc
+	name = "marine generic radio headset"
+	icon_state = "headset_marine_generic"
+	keyslot = /obj/item/encryptionkey/general
+
+/obj/item/radio/headset/mainship/marine/icc
+	name = "shiphands headset"
+	icon_state = "headset_marine_generic"
+	keyslot = /obj/item/encryptionkey/icc
+	frequency = FREQ_ICC
+
 //Distress headsets.
 /obj/item/radio/headset/distress
 	name = "operative headset"
@@ -600,7 +616,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "colonist headset"
 	keyslot = /obj/item/encryptionkey/dutch
 	frequency = FREQ_COLONIST
-
 
 /obj/item/radio/headset/distress/pmc
 	name = "contractor headset"

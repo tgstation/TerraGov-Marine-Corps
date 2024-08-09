@@ -138,7 +138,7 @@
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/swat
 	corpseback = /obj/item/storage/backpack
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
 
@@ -159,7 +159,7 @@
 	corpsehelmet = /obj/item/clothing/head/helmet/space/rig/syndi
 	corpseback = /obj/item/tank/jetpack/oxygen
 	corpsepocket1 = /obj/item/tank/emergency_oxygen
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
 /obj/effect/landmark/corpsespawner/syndicatecommando/burst
@@ -238,7 +238,7 @@
 	name = "Prisoner"
 	corpseuniform = /obj/item/clothing/under/rank/prisoner
 	corpseshoes = /obj/item/clothing/shoes/orange
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Prisoner"
 
 /obj/effect/landmark/corpsespawner/prisoner/burst
@@ -254,7 +254,7 @@
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpsehelmet = /obj/item/clothing/head/chefhat
 	corpseback = /obj/item/storage/backpack
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Chef"
 //	corpseidaccess = "Syndicate"
 
@@ -271,7 +271,7 @@
 	corpseback = /obj/item/storage/backpack/corpsman
 	corpsepocket1 = /obj/item/flashlight/pen
 	corpseshoes = /obj/item/clothing/shoes/black
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Medical Doctor"
 //	corpseidaccess = "Medical Doctor"
 
@@ -289,7 +289,7 @@
 	corpsebelt = /obj/item/storage/belt/utility/full
 	corpsegloves = /obj/item/clothing/gloves/insulated
 	corpsehelmet = /obj/item/clothing/head/hardhat
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Station Engineer"
 //	corpseidaccess = "Station Engineer"
 
@@ -316,7 +316,7 @@
 	corpsesuit = /obj/item/clothing/suit/storage/labcoat
 	corpseback = /obj/item/storage/backpack
 	corpseshoes = /obj/item/clothing/shoes/white
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Scientist"
 //	corpseidaccess = "Scientist"
 
@@ -331,7 +331,7 @@
 	corpsegloves = /obj/item/clothing/gloves/black
 	corpseback = /obj/item/storage/backpack/industrial
 	corpseshoes = /obj/item/clothing/shoes/black
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Shaft Miner"
 //	corpseidaccess = "Shaft Miner"
 
@@ -370,7 +370,7 @@
 	corpsegloves = /obj/item/clothing/gloves/black
 	corpsesuit = /obj/item/clothing/suit/armor/vest/security
 	corpsehelmet = /obj/item/clothing/head/helmet
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Prison Guard"
 
 /obj/effect/landmark/corpsespawner/prison_security/burst
@@ -417,7 +417,7 @@
 	corpsesuit = /obj/item/clothing/suit/armor/bulletproof
 	corpseshoes = /obj/item/clothing/shoes/black
 	corpseglasses = /obj/item/clothing/glasses/sunglasses
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Staff Officer"
 	corpseidaccess = CAPTAIN
 
@@ -437,7 +437,7 @@
 	corpsegloves = /obj/item/clothing/gloves/swat
 	corpseshoes = /obj/item/clothing/shoes/swat
 	corpsepocket1 = /obj/item/tool/lighter/zippo
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Commander"
 	corpseidaccess = CAPTAIN
 
@@ -457,7 +457,7 @@
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	corpseshoes = /obj/item/clothing/shoes/veteran/pmc
 	corpsepocket1 = /obj/item/tool/lighter/zippo
-	corpseid = 1
+	corpseid = 0
 	corpseidjob = "Private Security Officer"
 	corpseidaccess = "101"
 

@@ -49,6 +49,12 @@
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 36
 
+/obj/item/ammo_magazine/rifle/standard_carbine/rubber
+	name = "\improper AR-18 rubber magazine (10x24mm)"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
+	icon_state = "t18_r"
+	default_ammo = /datum/ammo/bullet/rifle/rubber
+
 /obj/item/ammo_magazine/rifle/standard_carbine/ap
 	name = "\improper AR-18 AP magazine (10x24mm)"
 	desc = "A 10mm assault carbine magazine, loaded with light armor piercing rounds."
@@ -68,6 +74,12 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle
 	max_rounds = 50
+
+/obj/item/ammo_magazine/rifle/standard_assaultrifle/rubber
+	name = "\improper AR-12 rubber magazine (10x24mm)"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
+	icon_state = "t12_r"
+	default_ammo = /datum/ammo/bullet/rifle/rubber
 
 /obj/item/ammo_magazine/rifle/standard_assaultrifle/ap
 	name = "\improper AR-12 AP magazine (10x24mm)"
@@ -130,12 +142,14 @@
 	wield_delay_mod = 0.1 SECONDS
 
 /obj/item/ammo_magazine/rifle/mpi_km/plum
+	name = "\improper plum MPi-KM magazine (7.62x39mm)"
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an old plum finish."
 	icon_state = "ak_40_plum"
 	icon_state_mini = "mag_rifle_darkpurple"
 	bonus_overlay = "ak_40_plum"
 
 /obj/item/ammo_magazine/rifle/mpi_km/black
+	name = "\improper black MPi-KM magazine (7.62x39mm)"
 	desc = "A 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an modern black polymer finish."
 	icon_state = "ak_40_black"
 	icon_state_mini = "mag_rifle"
@@ -159,6 +173,7 @@
 	bonus_overlay = "ak_30_plum"
 
 /obj/item/ammo_magazine/rifle/mpi_km/carbine/black
+	name = "\improper black V-34 magazine (7.62x39mm)"
 	desc = "A 30 round 7.62x39mm magazine for the Kalashnikov series of firearms. This one had an modern black polymer finish."
 	icon_state = "ak_30_black"
 	icon_state_mini = "mag_rifle"
@@ -434,6 +449,11 @@
 	default_ammo = /datum/ammo/bullet/rifle/hv
 	max_rounds = 70
 
+/obj/item/ammo_magazine/rifle/tx11/rubber
+	name = "\improper AR-11 combat rifle rubber magazine"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
+	icon_state = "tx11_r"
+	default_ammo = /datum/ammo/bullet/rifle/hv/rubber
 //-------------------------------------------------------
 //AR-21
 /obj/item/ammo_magazine/rifle/standard_skirmishrifle
@@ -444,6 +464,12 @@
 	icon_state_mini = "mag_rifle"
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	max_rounds = 40
+
+/obj/item/ammo_magazine/rifle/standard_skirmishrifle/rubber
+	name = "\improper AR-21 skirmish rifle rubber magazine"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
+	icon_state = "t21_r"
+	default_ammo = /datum/ammo/bullet/rifle/heavy/rubber
 
 //ALF-51B
 

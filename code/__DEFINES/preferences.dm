@@ -112,9 +112,10 @@
 #define DRAW_ORDER 7
 
 #define CITIZENSHIP_CHOICES list(\
-	"Earth Born",\
-	"Sol Born",\
-	"Colony Born"\
+	"Phantom City (Earth)",\
+	"Nomad (Earth)",\
+	"Local (Colony born)",\
+	"Foreign (Another Planet Somehow)"\
 	)
 
 

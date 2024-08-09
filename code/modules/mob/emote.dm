@@ -1,5 +1,5 @@
 //The code execution of the emote datum is located at code/datums/emotes.dm
-/mob/proc/emote(act, m_type, message, intentional = FALSE)
+/mob/proc/emote(act, m_type, message, intentional = FALSE, range, ghost_visible)
 	act = lowertext(act)
 	var/param = message
 	var/custom_param = findtext(act, " ")
@@ -15,7 +15,7 @@
 	if(!E.check_cooldown(src, intentional))
 		to_chat(src, span_notice("You used that emote too recently."))
 		return
-	E.run_emote(src, param, m_type, intentional)
+	E.run_emote(src, param, m_type, intentional, , range, ghost_visible)
 
 
 /datum/emote/help

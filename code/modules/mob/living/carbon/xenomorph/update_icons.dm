@@ -23,19 +23,19 @@
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_UPDATE_ICONS, state_change)
 	if(state_change)
 		if(stat == DEAD)
-			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Dead"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
 		else if(HAS_TRAIT(src, TRAIT_BURROWED))
-			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Burrowed"
+			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
 		else if(lying_angle)
 			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Sleeping"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
 			else
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
 		else if(!handle_special_state())
 			if(m_intent == MOVE_INTENT_RUN)
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
 			else
-				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Walking"
+				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 

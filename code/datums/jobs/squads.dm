@@ -8,14 +8,17 @@
 	var/list/access = list() //Which special access do we grant them
 
 	var/current_positions = list(
+		SQUAD_SLUT = 0,
 		SQUAD_MARINE = 0,
 		SQUAD_ENGINEER = 0,
 		SQUAD_CORPSMAN = 0,
 		SQUAD_SMARTGUNNER = 0,
+		SQUAD_SPECIALIST = 0,
 		SQUAD_LEADER = 0,
 		SQUAD_ROBOT = 0, //for campaign
 	)
 	var/max_positions = list(
+		SQUAD_SLUT = -1,
 		SQUAD_MARINE = -1,
 		SQUAD_LEADER = 1)
 
@@ -30,7 +33,7 @@
 
 	var/list/squad_laser_targets = list()
 	///Faction of that squad
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 
 /datum/squad/alpha
@@ -72,6 +75,7 @@
 	radio_freq = FREQ_ZULU
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -79,6 +83,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -91,6 +96,7 @@
 	radio_freq = FREQ_YANKEE
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -98,6 +104,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -110,6 +117,7 @@
 	radio_freq = FREQ_XRAY
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -117,6 +125,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -129,6 +138,7 @@
 	radio_freq = FREQ_WHISKEY
 	faction = FACTION_SOM
 	current_positions = list(
+		SOM_SQUAD_SLUT = 0,
 		SOM_SQUAD_MARINE = 0,
 		SOM_SQUAD_VETERAN = 0,
 		SOM_SQUAD_CORPSMAN = 0,
@@ -136,6 +146,7 @@
 		SOM_SQUAD_LEADER = 0,
 )
 	max_positions = list(
+		SOM_SQUAD_SLUT = -1,
 		SOM_SQUAD_MARINE = -1,
 		SOM_SQUAD_LEADER = 1,
 )
@@ -388,7 +399,7 @@
 
 
 ///A generic proc for handling the initial squad role assignment in SSjob
-/proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE, faction = FACTION_TERRAGOV)
+/proc/handle_initial_squad(mob/new_player/player, datum/job/job, latejoin = FALSE, faction = FACTION_NTC)
 	var/strict = player.client.prefs.be_special && (player.client.prefs.be_special & BE_SQUAD_STRICT)
 	//List of all the faction accessible squads
 	var/list/available_squads = SSjob.active_squads[faction]
@@ -396,7 +407,7 @@
 	if(faction == FACTION_SOM)
 		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad_som)
 	else
-		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad) //TGMC and rebels use the same squads
+		preferred_squad = LAZYACCESSASSOC(SSjob.squads_by_name, faction, player.client.prefs.preferred_squad) //NTC and rebels use the same squads
 	if(available_squads.Find(preferred_squad) && preferred_squad?.assign_initial(player, job, latejoin))
 		return TRUE
 	if(strict)
@@ -455,7 +466,7 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	GLOB.department_radio_keys[key_prefix] = radio_channel_name
 	GLOB.channel_tokens[radio_channel_name] = ":[key_prefix]"
 
-	if(new_squad.faction == FACTION_TERRAGOV)
+	if(new_squad.faction == FACTION_NTC)
 		var/list/terragov_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/alpha]
 		var/list/terragov_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three]
 		var/list/terragov_receiver_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/receiver/preset_left]

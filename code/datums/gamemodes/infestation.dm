@@ -59,7 +59,7 @@
 			return
 		bioscanning_ai.last_ai_bioscan = world.time
 		to_chat(bioscanning_ai, span_warning("Scanning for hostile lifeforms..."))
-		if(!do_after(usr, AI_SCAN_DELAY, NONE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
+		if(!do_after(usr, AI_SCAN_DELAY, TRUE, usr, BUSY_ICON_GENERIC)) //initial windup time until firing begins
 			bioscanning_ai.last_ai_bioscan = 0
 			return
 
@@ -71,28 +71,28 @@
 	var/list/list/area/locations = list()
 
 	for(var/trait in GLOB.bioscan_locations)
-		counts[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
-		locations[trait] = list(FACTION_TERRAGOV = 0, FACTION_XENO = 0)
+		counts[trait] = list(FACTION_NTC = 0, FACTION_XENO = 0)
+		locations[trait] = list(FACTION_NTC = 0, FACTION_XENO = 0)
 		for(var/i in SSmapping.levels_by_trait(trait))
 			var/list/parsed_xenos = GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]?.Copy()
 			for(var/mob/living/carbon/xenomorph/xeno in parsed_xenos)
 				if(xeno.xeno_caste.caste_flags & CASTE_NOT_IN_BIOSCAN)
 					parsed_xenos -= xeno
 			counts[trait][FACTION_XENO] += length(parsed_xenos)
-			counts[trait][FACTION_TERRAGOV] += length(GLOB.humans_by_zlevel["[i]"])
+			counts[trait][FACTION_NTC] += length(GLOB.humans_by_zlevel["[i]"])
 			if(length(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
 				locations[trait][FACTION_XENO] = get_area(pick(GLOB.hive_datums[XENO_HIVE_NORMAL].xenos_by_zlevel["[i]"]))
 			if(length(GLOB.humans_by_zlevel["[i]"]))
-				locations[trait][FACTION_TERRAGOV] = get_area(pick(GLOB.humans_by_zlevel["[i]"]))
+				locations[trait][FACTION_NTC] = get_area(pick(GLOB.humans_by_zlevel["[i]"]))
 
-	var/numHostsPlanet = counts[ZTRAIT_GROUND][FACTION_TERRAGOV]
-	var/numHostsShip = counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
-	var/numHostsTransit = counts[ZTRAIT_RESERVED][FACTION_TERRAGOV]
+	var/numHostsPlanet = counts[ZTRAIT_GROUND][FACTION_NTC]
+	var/numHostsShip = counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_NTC]
+	var/numHostsTransit = counts[ZTRAIT_RESERVED][FACTION_NTC]
 	var/numXenosPlanet = counts[ZTRAIT_GROUND][FACTION_XENO]
 	var/numXenosShip = counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
 	var/numXenosTransit = counts[ZTRAIT_RESERVED][FACTION_XENO]
-	var/hostLocationP = locations[ZTRAIT_GROUND][FACTION_TERRAGOV]
-	var/hostLocationS = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/hostLocationP = locations[ZTRAIT_GROUND][FACTION_NTC]
+	var/hostLocationS = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_NTC]
 	var/xenoLocationP = locations[ZTRAIT_GROUND][FACTION_XENO]
 	var/xenoLocationS = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
 
@@ -292,8 +292,8 @@
 				xeno_candidate = TRUE
 				break
 	if(!xeno_candidate && !bypass_checks)
-		to_chat(world, "<b>Unable to start [name].</b> No xeno candidate found.")
-		return FALSE
+		to_chat(world, "WARNING: No xeno candidate found.")
+		return TRUE
 
 /datum/game_mode/infestation/pre_setup()
 	. = ..()
@@ -306,8 +306,8 @@
 
 	priority_announce(
 		title = "High Command Update",
-		subtitle = "Good morning, marines.",
-		message = "Cryosleep disengaged by TGMC High Command.<br><br>ATTN: [SSmapping.configs[SHIP_MAP].map_name].<br>[SSmapping.configs[GROUND_MAP].announce_text]",
+		subtitle = "Good morning, operatives.",
+		message = "Cryosleep disengaged by NTF High Command.<br><br>ATTN: [SSmapping.configs[SHIP_MAP].map_name].<br>[SSmapping.configs[GROUND_MAP].announce_text]",
 		sound = 'sound/AI/ares_online.ogg',
 		color_override = "red"
 	)

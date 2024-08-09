@@ -198,8 +198,11 @@
 /obj/structure/door/resin/force_door_open(mob/user, bumped, leg_flags)
 	if(isxeno(user))
 		return TRUE
-
-	return ..()
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(!. && H.faction == FACTION_CLF)
+			if(!CHECK_BITFIELD(door_flags, DOOR_OPEN))
+				return TRUE
 
 /obj/structure/door/resin/open(instant, slammed, silent)
 	. = ..()
@@ -316,7 +319,7 @@
 		return
 	current_user = user
 	user.balloon_alert(user, "Applying...")
-	if(!do_after(user, RESIN_SELF_TIME, NONE, user, BUSY_ICON_MEDICAL))
+	if(!do_after(user, RESIN_SELF_TIME, TRUE, user, BUSY_ICON_MEDICAL))
 		current_user = null
 		return
 	activate_jelly(user)
@@ -335,7 +338,7 @@
 	M.balloon_alert(user, "Applying...")
 	if(M != user)
 		user.balloon_alert(M, "Applying jelly...") //Notify recipient to not move.
-	if(!do_after(user, (M == user ? RESIN_SELF_TIME : RESIN_OTHER_TIME), NONE, M, BUSY_ICON_MEDICAL))
+	if(!do_after(user, (M == user ? RESIN_SELF_TIME : RESIN_OTHER_TIME), TRUE, M, BUSY_ICON_MEDICAL))
 		current_user = null
 		return FALSE
 	activate_jelly(M)

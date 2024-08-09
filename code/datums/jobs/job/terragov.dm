@@ -1,5 +1,5 @@
 /datum/job/terragov
-	faction = FACTION_TERRAGOV
+	faction = FACTION_NTC
 
 /datum/job/terragov/radio_help_message(mob/M)
 	. = ..()
@@ -30,6 +30,9 @@
 						return /mob/living/carbon/human/species/robot/bravada
 			to_chat(prefs.parent, span_danger("Robot species joins are currently disabled, your species has been defaulted to Human"))
 			return /mob/living/carbon/human
+		if("Mothellian")
+			if(!(SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY))
+				return /mob/living/carbon/human/species/moth
 		if("Vatborn")
 			return /mob/living/carbon/human/species/vatborn
 		else

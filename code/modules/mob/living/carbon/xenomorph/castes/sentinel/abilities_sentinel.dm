@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/xeno_spit/toxic_spit
 	name = "Toxic Spit"
 	desc = "Spit a toxin at your target up to 7 tiles away, inflicting the Intoxicated debuff and dealing damage over time."
+
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_SPIT,
 	)
@@ -39,6 +40,7 @@
 	action_icon_state = "neuroclaws_off"
 	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Imbue your claws with acid for a short duration, inflicting lasting effects on your victims."
+
 	cooldown_duration = 10 SECONDS
 	ability_cost = 100
 	//use_state_flags = ABILITY_USE_BUCKLED
@@ -130,6 +132,7 @@
 	action_icon_state = "neuro_sting"
 	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Sting your victim, draining them and gaining benefits if they are Intoxicated."
+
 	cooldown_duration = 25 SECONDS
 	ability_cost = 75
 	target_flags = ABILITY_MOB_TARGET

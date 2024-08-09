@@ -350,7 +350,7 @@
 	var/obj/item/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
 	///Which faction this computer belongs to
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/machinery/computer/squad_changer/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -443,7 +443,7 @@
 						to_chat(usr, "Old squad access removed.")
 
 				if(selected) //Now we have a proper squad. Change their ID to it.
-					modify.assignment = "[selected.name] [modify.rank]" //Change the assignment - "Alpha Squad Marine"
+					modify.assignment = "[selected.name] [modify.rank]" //Change the assignment - "Alpha Squad Operative"
 					modify.access += selected.access //Add their new squad access (if anything) to their ID.
 					to_chat(usr, "[selected.name] Squad added to card.")
 				else

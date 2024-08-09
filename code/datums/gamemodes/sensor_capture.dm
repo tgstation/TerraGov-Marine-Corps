@@ -45,7 +45,7 @@
 
 /datum/game_mode/hvh/combat_patrol/sensor_capture/get_deploy_point_message(mob/living/user)
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			. = "Reactivate all sensor towers, good luck marines."
 		if(FACTION_SOM)
 			. = "Prevent reactivation of the sensor towers, glory to Mars!"

@@ -244,8 +244,7 @@ a.popt {
 /* ADD HERE FOR ITALIC */
 
 .italic,
-.italics,
-.emote {
+.italics {
   font-style: italic;
 }
 
@@ -393,13 +392,11 @@ em {
 }
 
 .say,
+.emote,
 .infoplain {
 }
 .yell {
   font-weight: bold;
-}
-.emote {
-  font-style: italic;
 }
 .singing {
   font-family: 'Trebuchet MS', cursive, sans-serif;

@@ -32,15 +32,20 @@ OPERATIONS
 	containertype = /obj/structure/closet/crate
 
 /datum/supply_packs/imports/loot_pack
-	name = "TGMC Loot Pack"
+	name = "NTC Loot Pack"
 	notes = "Contains a random, but curated set of items, these packs are valued around 150 to 200 points. Some items can only be acquired from these. Spend responsibly."
 	contains = list(/obj/item/loot_box/tgmclootbox)
-	cost = 1000
+	cost = 800 //discounted by 200
 
 /datum/supply_packs/operations/beacons_supply
 	name = "Supply beacon"
 	contains = list(/obj/item/supply_beacon)
 	cost = 100
+
+/datum/supply_packs/operations/monkeyboxes
+	name = "Monkey Cube"
+	contains = list(/obj/item/storage/box/monkeycubes)
+	cost = 300
 
 /datum/supply_packs/operations/fulton_extraction_pack
 	name = "Fulton extraction pack"
@@ -79,10 +84,14 @@ OPERATIONS
 
 /datum/supply_packs/operations/xeno_iff_tag
 	name = "Xenomorph IFF tag crate" //Intended for corrupted or friendly rounies as rounds sometimes turn out. Avoid abuse or I'll have to admin-only it, which is no fun!
-	notes = "Contains an IFF tag used to mark a xenomorph as friendly to IFF systems. Warning: Nanotrasen is not responsible for incidents related to attaching this to hostile entities."
-	contains = list(/obj/item/xeno_iff_tag)
+	notes = "Contains an IFF tag used to mark a xenomorph as friendly to IFF systems. Warning: Ninetails is not responsible for incidents related to attaching this to hostile entities."
+	contains = list(
+		/obj/item/xeno_iff_tag,
+		/obj/item/xeno_iff_tag,
+		/obj/item/xeno_iff_tag,
+	)
 	access = ACCESS_MARINE_BRIDGE //Better be safe.
-	cost = 130
+	cost = 50
 
 /datum/supply_packs/operations/deployable_camera
 	name = "3 Deployable Cameras"
@@ -881,6 +890,12 @@ EXPLOSIVES
 	group = "Explosives"
 
 /datum/supply_packs/explosives/explosives_mines
+	name = "EMP Grenades"
+	notes = "Contains 5 EMPs"
+	contains = list(/obj/item/storage/box/emps)
+	cost = 150
+
+/datum/supply_packs/explosives/explosives_mines
 	name = "claymore mines"
 	notes = "Contains 5 mines"
 	contains = list(/obj/item/storage/box/explosive_mines)
@@ -1011,6 +1026,18 @@ EXPLOSIVES
 	contains = list(/obj/item/mortal_shell/smoke, /obj/item/mortal_shell/smoke)
 	cost = 5
 
+
+/datum/supply_packs/explosives/mortar_ammo_satrepine
+	name = "T-50S mortar satrepine smoke shell (x2)"
+	contains = list(/obj/item/mortal_shell/smoke/satrapine, /obj/item/mortal_shell/smoke/satrapine)
+	cost = 10
+
+
+/datum/supply_packs/explosives/mortar_ammo_sleep
+	name = "T-50S mortar sleep smoke shell (x2)"
+	contains = list(/obj/item/mortal_shell/smoke/sleep, /obj/item/mortal_shell/smoke/sleep)
+	cost = 10
+
 /datum/supply_packs/explosives/mortar_ammo_plasmaloss
 	name = "T-50S mortar tanglefoot shell"
 	contains = list(/obj/item/mortal_shell/plasmaloss)
@@ -1095,14 +1122,19 @@ ARMOR
 	contains = list(/obj/item/clothing/mask/gas/swat)
 	cost = 50
 
-/datum/supply_packs/armor/riot
-	name = "Heavy Riot Armor Set"
-	contains = list(
-		/obj/item/clothing/suit/storage/marine/riot,
-		/obj/item/clothing/head/helmet/marine/riot,
-	)
-	cost = 120
-	available_against_xeno_only = TRUE
+///datum/supply_packs/armor/riot
+//	name = "Heavy Riot Armor Set"
+//	contains = list(
+//		/obj/item/clothing/suit/storage/marine/riot,
+//		/obj/item/clothing/head/helmet/marine/riot,
+//	)
+//	cost = 120
+//	available_against_xeno_only = TRUE
+
+/datum/supply_packs/armor/marine_shield
+	name = "TL-172 Defensive Shield"
+	contains = list(/obj/item/weapon/shield/riot/marine)
+	cost = 100
 
 /datum/supply_packs/armor/marine_shield/deployable
 	name = "TL-182 Deployable Shield"
@@ -1127,7 +1159,7 @@ ARMOR
 	cost = B17_PRICE
 
 /datum/supply_packs/armor/scout_cloak
-	name = "Scout Cloak"
+	name = "NT-Cyberghost"
 	contains = list(/obj/item/storage/backpack/marine/satchel/scout_cloak)
 	cost = 500
 
@@ -2220,72 +2252,72 @@ FACTORY
 /datum/supply_packs/factory/sadar_refill_he
 	name = "SADAR HE missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_he_refill)
-	cost = 500
+	cost = 480
 
 /datum/supply_packs/factory/sadar_refill_he_unguided
 	name = "SADAR HE unguided missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_he_unguided_refill)
-	cost = 500
+	cost = 480
 
 /datum/supply_packs/factory/sadar_refill_ap
 	name = "SADAR AP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_ap_refill)
-	cost = 600
+	cost = 580
 
 /datum/supply_packs/factory/sadar_refill_wp
 	name = "SADAR WP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_wp_refill)
-	cost = 400
+	cost = 380
 
 /datum/supply_packs/factory/standard_recoilless_refill
 	name = "Recoilless standard missile assembly refill"
 	contains = list(/obj/item/factory_refill/normal_rr_missile_refill)
-	cost = 300
+	cost = 280
 
 /datum/supply_packs/factory/light_recoilless_refill
 	name = "Recoilless light missile assembly refill"
 	contains = list(/obj/item/factory_refill/light_rr_missile_refill)
-	cost = 300
+	cost = 280
 
 /datum/supply_packs/factory/heat_recoilless_refill
 	name = "Recoilless heat missile assembly refill"
 	contains = list(/obj/item/factory_refill/heat_rr_missile_refill)
-	cost = 300
+	cost = 280
 
 /datum/supply_packs/factory/smoke_recoilless_refill
 	name = "Recoilless smoke missile assembly refill"
 	contains = list(/obj/item/factory_refill/smoke_rr_missile_refill)
-	cost = 300
+	cost = 280
 
 /datum/supply_packs/factory/cloak_recoilless_refill
 	name = "Recoilless cloak missile assembly refill"
 	contains = list(/obj/item/factory_refill/cloak_rr_missile_refill)
-	cost = 300
+	cost = 280
 
 /datum/supply_packs/factory/tfoot_recoilless_refill
 	name = "Recoilless tfoot missile assembly refill"
 	contains = list(/obj/item/factory_refill/tfoot_rr_missile_refill)
-	cost = 300
+	cost = 280
 
 /datum/supply_packs/factory/pizzarefill
-	name = "Nanotrasen \"Eat healthy!\" margerita pizza kit refill"
+	name = "Ninetails \"Eat healthy!\" margerita pizza kit refill"
 	contains = list(/obj/item/factory_refill/pizza_refill)
-	cost = 290 //allows a one point profit if all pizzas are processed and sold back to ASRS
+	cost = 250 //allows a one point profit if all pizzas are processed and sold back to ASRS
 
 /datum/supply_packs/factory/smartgun_minigun_box_refill
 	name = "SG-85 ammo bin parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_minigun_box_refill)
-	cost = 250
+	cost = 230
 
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "SG-29 ammo drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
-	cost = 250
+	cost = 230
 
 /datum/supply_packs/factory/smartgun_targetrifle_refill
 	name = "SG-62 ammo magazine parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_magazine_refill)
-	cost = 250
+	cost = 230
 
 /datum/supply_packs/factory/smartgun_targetrifle_ammobin_refill
 	name = "SG-62 ammo bin parts refill"
@@ -2295,12 +2327,12 @@ FACTORY
 /datum/supply_packs/factory/autosniper_magazine_refill
 	name = "SR-81 IFF Auto Sniper magazine assembly refill"
 	contains = list(/obj/item/factory_refill/auto_sniper_magazine_refill)
-	cost = 400
+	cost = 380
 
 /datum/supply_packs/factory/scout_rifle_magazine_refill
 	name = "BR-8 scout rifle magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 200
+	cost = 180
 
 /datum/supply_packs/factory/scout_rifle_incen_magazine_refill
 	name = "BR-8 scout rifle incendiary magazine assembly refill"
@@ -2314,17 +2346,17 @@ FACTORY
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore_refill)
-	cost = 300
+	cost = 280
 
 /datum/supply_packs/factory/mateba_speedloader_refill
 	name = "Mateba autorevolver speedloader assembly refill"
 	contains = list(/obj/item/factory_refill/mateba_speedloader_refill)
-	cost = 300
+	cost = 280
 
 /datum/supply_packs/factory/railgun_magazine_refill
 	name = "Railgun magazine assembly refill"
 	contains = list(/obj/item/factory_refill/railgun_magazine_refill)
-	cost = 200
+	cost = 180
 
 /datum/supply_packs/factory/railgun_hvap_magazine_refill
 	name = "Railgun HVAP magazine assembly refill"
@@ -2339,7 +2371,7 @@ FACTORY
 /datum/supply_packs/factory/minigun_powerpack_refill
 	name = "Minigun powerpack assembly refill"
 	contains = list(/obj/item/factory_refill/minigun_powerpack_refill)
-	cost = 250
+	cost = 230
 
 /datum/supply_packs/factory/flak_sniper_refill
 	name = "SR-127 flak magazine assembly refill"
@@ -2349,67 +2381,67 @@ FACTORY
 /datum/supply_packs/factory/amr_magazine_refill
 	name = "T-26 AMR standard magazine assembly refill"
 	contains = list(/obj/item/factory_refill/amr_magazine_refill)
-	cost = 400
+	cost = 380
 
 /datum/supply_packs/factory/amr_magazine_incend_refill
 	name = "T-26 AMR incendiary magazine assembly refill"
 	contains = list(/obj/item/factory_refill/amr_magazine_incend_refill)
-	cost = 400
+	cost = 380
 
 /datum/supply_packs/factory/amr_magazine_flak_refill
 	name = "T-26 AMR flak magazine assembly refill"
 	contains = list(/obj/item/factory_refill/amr_magazine_flak_refill)
-	cost = 400
+	cost = 380
 
 /datum/supply_packs/factory/howitzer_shell_he_refill
 	name = "Howitzer HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_he_refill)
-	cost = 800
+	cost = 780
 
 /datum/supply_packs/factory/howitzer_shell_incen_refill
 	name = "Howitzer Incendiary shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_incen_refill)
-	cost = 800
+	cost = 780
 
 /datum/supply_packs/factory/howitzer_shell_wp_refill
 	name = "Howitzer WP shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_wp_refill)
-	cost = 1000
+	cost = 980
 
 /datum/supply_packs/factory/howitzer_shell_tfoot_refill
 	name = "Howitzer Tanglefoot shell assembly refill"
 	contains = list(/obj/item/factory_refill/howitzer_shell_tfoot_refill)
-	cost = 1000
+	cost = 980
 
 /datum/supply_packs/factory/swat_mask_refill
 	name = "SWAT mask assembly refill"
 	contains = list(/obj/item/factory_refill/swat_mask_refill)
-	cost = 500
+	cost = 480
 
 /datum/supply_packs/factory/module_valk_refill
 	name = "Valkyrie Automedical Armor System assembly refill"
 	contains = list(/obj/item/factory_refill/module_valk_refill)
-	cost = 600
+	cost = 580
 
 /datum/supply_packs/factory/module_mimir2_refill
 	name = "Mark 2 Mimir Environmental Resistance System assembly refill"
 	contains = list(/obj/item/factory_refill/module_mimir2_refill)
-	cost = 600
+	cost = 580
 
 /datum/supply_packs/factory/module_tyr2_refill
 	name = "Mark 2 Tyr Armor Reinforcement assembly refill"
 	contains = list(/obj/item/factory_refill/module_tyr2_refill)
-	cost = 600
+	cost = 580
 
 /datum/supply_packs/factory/module_hlin_refill
 	name = "Hlin Explosive Compensation Module assembly refill"
 	contains = list(/obj/item/factory_refill/module_hlin_refill)
-	cost = 600
+	cost = 580
 
 /datum/supply_packs/factory/module_surt_refill
 	name = "Surt Pyrotechnical Insulation System assembly refill"
 	contains = list(/obj/item/factory_refill/module_surt_refill)
-	cost = 600
+	cost = 580
 
 /datum/supply_packs/factory/plastique_refill
 	name = "C4 assembly refill"
@@ -2429,32 +2461,32 @@ FACTORY
 /datum/supply_packs/factory/mortar_shell_he_refill
 	name = "Mortar High Explosive shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_he_refill)
-	cost = 120
+	cost = 100
 
 /datum/supply_packs/factory/mortar_shell_incen_refill
 	name = "Mortar Incendiary shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_incen_refill)
-	cost = 120
+	cost = 100
 
 /datum/supply_packs/factory/mortar_shell_tfoot_refill
 	name = "Mortar Tanglefoot Gas shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_tfoot_refill)
-	cost = 200
+	cost = 180
 
 /datum/supply_packs/factory/mortar_shell_flare_refill
 	name = "Mortar Flare shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_flare_refill)
-	cost = 50
+	cost = 80
 
 /datum/supply_packs/factory/mortar_shell_smoke_refill
 	name = "Mortar Smoke shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_smoke_refill)
-	cost = 50
+	cost = 80
 
 /datum/supply_packs/factory/mlrs_rocket_refill
 	name = "MLRS High Explosive rocket assembly refill"
 	contains = list(/obj/item/factory_refill/mlrs_rocket_refill)
-	cost = 240
+	cost = 220
 
 /datum/supply_packs/factory/mlrs_rocket_refill_cloak
 	name = "MLRS 'S-2' Cloak rocket assembly refill"
@@ -2549,12 +2581,31 @@ FACTORY
 /datum/supply_packs/factory/thermobaric_wp_refill
 	name = "RL-57 Thermobaric WP rocket array assembly refill"
 	contains = list(/obj/item/factory_refill/thermobaric_wp_refill)
-	cost = 500
+	cost = 480
 
 /datum/supply_packs/factory/drop_pod_refill
 	name = "Zeus orbital drop pod assembly refill"
 	contains = list(/obj/item/factory_refill/drop_pod_refill)
+	cost = 230
+
+/// TO-DO-LATER
+/datum/supply_packs/factory/ar12
+	name = "AR12 assembly refill"
+	notes = "Contains enough for three weapons"
+	contains = list(/obj/item/factory_refill/basic_assaultrifle)
+	cost = 180
+
+/datum/supply_packs/factory/sr127
+	name = "SR127 assembly refill"
+	notes = "Contains enough for two weapons"
+	contains = list(/obj/item/factory_refill/basic_sniperrifle)
 	cost = 250
+
+/datum/supply_packs/factory/st480
+	name = "ST480 assembly refill"
+	notes = "Contains enough for two automated guns"
+	contains = list(/obj/item/factory_refill/light_sentry)
+	cost = 600
 
 /datum/supply_packs/factory/deployable_floodlight_refill
 	name = "Deployable floodlight assembly refill"

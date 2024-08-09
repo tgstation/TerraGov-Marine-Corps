@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/spray_acid/line
 	name = "Spray Acid"
 	desc = "Spray a line of dangerous acid at your target."
+
 	ability_cost = 250
 	cooldown_duration = 30 SECONDS
 
@@ -16,7 +17,7 @@
 
 	X.face_atom(target) //Face target so we don't look stupid
 
-	if(X.do_actions || !do_after(X, 5, NONE, target, BUSY_ICON_DANGER))
+	if(X.do_actions || !do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return
 
 	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
@@ -104,6 +105,7 @@
 	action_icon_state = "scatter_spit"
 	action_icon = 'icons/Xeno/actions/spitter.dmi'
 	desc = "Spits a spread of acid projectiles that splatter on the ground."
+
 	ability_cost = 280
 	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
@@ -113,7 +115,7 @@
 /datum/action/ability/activable/xeno/scatter_spit/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/X = owner
 
-	if(!do_after(X, 0.5 SECONDS, NONE, target, BUSY_ICON_DANGER))
+	if(!do_after(X, 0.5 SECONDS, TRUE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	//Shoot at the thing

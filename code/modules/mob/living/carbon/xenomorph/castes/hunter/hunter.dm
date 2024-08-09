@@ -8,6 +8,7 @@
 	health = 150
 	maxHealth = 150
 	plasma_stored = 50
+	pass_flags = PASS_LOW_STRUCTURE
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_NORMAL
 	inherent_verbs = list(
@@ -29,4 +30,3 @@
 /mob/living/carbon/xenomorph/hunter/weapon_x/proc/terminate_specimen()
 	SIGNAL_HANDLER
 	qdel(src)
-

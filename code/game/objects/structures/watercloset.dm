@@ -129,7 +129,7 @@
 
 /obj/machinery/shower
 	name = "shower"
-	desc = "The HS-451. Installed in the 2050s by the Nanotrasen Hygiene Division."
+	desc = "The HS-451. Installed in the 2050s by the Ninetails Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE
@@ -233,6 +233,8 @@
 	. = ..()
 	if(on)
 		. += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
+	else
+		. -= image('icons/obj/watercloset.dmi', src, "water")
 
 /obj/machinery/shower/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER

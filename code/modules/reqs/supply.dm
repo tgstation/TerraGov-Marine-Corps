@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/authorised_by
 	var/list/datum/supply_packs/pack
 	///What faction ordered this
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/item/paper/manifest
 	name = "Supply Manifest"
@@ -26,6 +26,30 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	dwidth = 2
 	dheight = 2
 	height = 5
+
+/obj/docking_port/stationary/supplyhq
+	id = "supply_hq"
+	roundstart_template = /datum/map_template/shuttle/supplyhq
+	width = 5
+	dwidth = 2
+	dheight = 2
+	height = 5
+
+/obj/docking_port/stationary/supplysom
+	id = "supply_som"
+	roundstart_template = /datum/map_template/shuttle/supplysom
+	width = 3
+	dwidth = 1
+	dheight = 0
+	height = 1
+
+/obj/docking_port/stationary/supplyclf
+	id = "supply_clf"
+	roundstart_template = /datum/map_template/shuttle/supplyclf
+	width = 3
+	dwidth = 1
+	dheight = 0
+	height = 1
 
 /obj/docking_port/mobile/supply
 	name = "supply shuttle"
@@ -43,7 +67,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	var/list/gears = list()
 	var/list/obj/machinery/door/poddoor/railing/railings = list()
 	///The faction of this docking port (aka, on which ship it is located)
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	///prefix for railings and gear todo should probbaly be defines instead?
@@ -221,7 +245,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	/// Faction of the tablet
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/item/supplytablet/interact(mob/user)
 	. = ..()
@@ -250,7 +274,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	/// Id of the home docking port
 	var/home_id = "supply_home"
 	/// Faction of the computer
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/machinery/computer/supplycomp/interact(mob/user)
 	. = ..()
@@ -274,7 +298,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	///Reference to the supply shuttle
 	var/obj/docking_port/mobile/supply/supply_shuttle
 	///Faction of the supply console linked
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 	///Id of the home port
 	var/home_id = ""
 
@@ -423,21 +447,21 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		.["shopping_list"][SP.type] = list("count" = SSpoints.shopping_cart[SP.type])
 	if(supply_shuttle)
 		if(supply_shuttle?.mode == SHUTTLE_CALL)
-			if(is_mainship_level(supply_shuttle.destination.z))
+			if(is_mainship_level(supply_shuttle.destination.z) || is_antagmainship_level(supply_shuttle.destination.z))
 				.["elevator"] = "Raising"
 				.["elevator_dir"] = "up"
 			else
 				.["elevator"] = "Lowering"
 				.["elevator_dir"] = "down"
 		else if(supply_shuttle?.mode == SHUTTLE_IDLE)
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				.["elevator"] = "Raised"
 				.["elevator_dir"] = "down"
 			else
 				.["elevator"] = "Lowered"
 				.["elevator_dir"] = "up"
 		else
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				.["elevator"] = "Lowering"
 				.["elevator_dir"] = "down"
 			else
@@ -488,7 +512,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		if("send")
 			if(supply_shuttle.mode != SHUTTLE_IDLE)
 				return
-			if(is_mainship_level(supply_shuttle.z))
+			if(is_mainship_level(supply_shuttle.z) || is_antagmainship_level(supply_shuttle.z))
 				if (!supply_shuttle.check_blacklist())
 					to_chat(usr, "For safety reasons, the Automated Storage and Retrieval System cannot store live, friendlies, classified nuclear weaponry or homing beacons.")
 					playsound(supply_shuttle.return_center_turf(), 'sound/machines/buzz-two.ogg', 50, 0)
@@ -635,7 +659,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	return SU.interact(user)
 
 /obj/item/storage/backpack/marine/radiopack
-	name = "\improper TGMC radio operator backpack"
+	name = "\improper NTC radio operator backpack"
 	desc = "A backpack that resembles the ones old-age radio operator marines would use. It has a supply ordering console installed on it, and a retractable antenna to receive supply drops."
 	icon_state = "radiopack"
 	worn_icon_state = "radiopack"
@@ -656,6 +680,40 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!supply_interface)
 		supply_interface = new(src)
 	return supply_interface.interact(user)
+
+/obj/machinery/computer/supplycomp/som
+	shuttle_id = "supplysom"
+	faction = FACTION_SOM
+	home_id = "supply_som"
+	req_access = list(213)
+
+/obj/machinery/computer/supplycomp/clf
+	shuttle_id = "supplyclf"
+	faction = FACTION_CLF
+	home_id = "supply_clf"
+	req_access = null
+
+/obj/docking_port/mobile/supply/som
+	dir = 1
+	height = 1
+	home_id = "supply_som"
+	id = "supplysom"
+	name = "som supply shuttle"
+	dheight = 0
+	dwidth = 0
+	width = 3
+	faction = FACTION_SOM
+
+/obj/docking_port/mobile/supply/clf
+	dir = 1
+	height = 1
+	home_id = "supply_clf"
+	id = "supplyclf"
+	name = "clf supply shuttle"
+	dheight = 0
+	dwidth = 0
+	width = 3
+	faction = FACTION_CLF
 
 /obj/docking_port/mobile/supply/vehicle
 	railing_gear_name = "vehicle"

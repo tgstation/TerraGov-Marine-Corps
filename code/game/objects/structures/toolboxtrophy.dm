@@ -1,7 +1,7 @@
 /*
-XS300: At November 17 - 18 (on GMT+8), team "we may be stupid" of the TGMC community fought
+XS300: At November 17 - 18 (on GMT+8), team "we may be stupid" of the NTC community fought
 in the Toolboxing For A Cause 2020 tournament and lost against "smegg" of the TG Bagil community.
-TGMC got third place, and so it is my task to add this for the sake of the three people who
+NTC got third place, and so it is my task to add this for the sake of the three people who
 made it this far. Toolbox platform sprite by AIIA (and other members of the tg community who made the toolbox).
 
 We salute you.

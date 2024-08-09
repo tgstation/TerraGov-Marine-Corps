@@ -99,7 +99,7 @@
 
 /datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
-	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
+	mine.deploy_mine(null, NTC_LOYALIST_IFF)
 
 /datum/ammo/mortar/rocket/smoke
 	///the smoke effect at the point of detonation
@@ -136,3 +136,11 @@
 
 /datum/ammo/mortar/rocket/smoke/mlrs/cloak
 	smoketype = /datum/effect_system/smoke_spread/tactical
+
+/datum/ammo/mortar/smoke/satrapine
+	smoketype = /datum/effect_system/smoke_spread/satrapine
+
+/datum/ammo/mortar/smoke/sleep
+	smoketype = /datum/effect_system/smoke_spread/sleepy
+/datum/ammo/mortar/smoke/plasmaloss
+	smoketype = /datum/effect_system/smoke_spread/plasmaloss

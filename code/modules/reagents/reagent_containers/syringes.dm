@@ -155,7 +155,7 @@
 					else
 						user.visible_message(span_danger("[user] begins hunting for an injection port on [target]'s suit!"))
 
-					if(!do_after(user, injection_time, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 						return
 
 					user.visible_message(span_warning("[user] injects [target] with the syringe!"))
@@ -313,7 +313,7 @@
 
 			if(ismob(target) && target != user)
 				user.visible_message(span_danger("[user] is trying to inject [target] with a giant syringe!"))
-				if(!do_after(user, 30 SECONDS, NONE, target, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+				if(!do_mob(user, target, 30 SECONDS, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
 					return
 				user.visible_message(span_warning("[user] injects [target] with a giant syringe!"))
 			spawn(5)

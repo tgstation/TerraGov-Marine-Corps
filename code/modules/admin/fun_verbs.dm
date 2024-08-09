@@ -82,7 +82,7 @@
 	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
 		if(!isliving(xenotorouny))
 			return
-		xenotorouny.xeno_flags ^= XENO_ROUNY
+		xenotorouny.is_a_rouny = !xenotorouny.is_a_rouny
 
 
 /datum/admins/proc/hive_status()
@@ -139,7 +139,7 @@
 		return
 
 
-	var/customname = tgui_input_text(usr, "Pick a title for the report.", "Title", "TGMC Update", encode = FALSE)
+	var/customname = tgui_input_text(usr, "Pick a title for the report.", "Title", "NTC Update", encode = FALSE)
 	var/customsubtitle = tgui_input_text(usr, "Pick a subtitle for the report.", "Subtitle", "", encode = FALSE)
 	var/input = tgui_input_text(usr, "Please enter anything you want. Anything. Serious.", "What?", "", multiline = TRUE, encode = FALSE)
 	var/override = tgui_input_list(usr, "Pick a color for the report.", "Color", faction_alert_colors - "default", default = "blue")

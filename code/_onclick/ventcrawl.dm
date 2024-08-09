@@ -57,8 +57,9 @@ GLOBAL_LIST_INIT(ventcrawl_machinery, typecacheof(list(
 			if(iscarbon(src))//It must have atleast been 1 to get this far
 				var/failed = FALSE
 				var/list/items_list = get_equipped_items() //include_pockets = TRUE)
-				if(length(items_list))
-					failed = TRUE
+				if(!ishuman(src))
+					if(length(items_list))
+						failed = TRUE
 				if(failed)
 					to_chat(src, span_warning("You can't crawl around in the ventilation ducts with items!"))
 					return

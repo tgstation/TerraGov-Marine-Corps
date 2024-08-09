@@ -1,11 +1,11 @@
 //When various rewards are spawned, they are sent to an available spawn location
 /obj/effect/landmark/reward_spawn_location
-	name = "TGMC Reward spawn location"
+	name = "NTC Reward spawn location"
 	desc = "THIS SHOULDN'T BE VISIBLE"
 	icon = 'icons/obj/structures/campaign_structures.dmi'
 	icon_state = "tgmc_reward_spawn"
 	///Faction associated with this location
-	var/faction = FACTION_TERRAGOV
+	var/faction = FACTION_NTC
 
 /obj/effect/landmark/reward_spawn_location/Initialize(mapload)
 	. = ..()

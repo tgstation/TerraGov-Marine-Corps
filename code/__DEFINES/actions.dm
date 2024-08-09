@@ -17,9 +17,10 @@
 
 #define ABILITY_TURF_TARGET (1 << 0) // ability targets turfs
 #define ABILITY_MOB_TARGET (1 << 1) // ability targets mobs
+#define ABILITY_XENO_TARGET (1 << 2) // ability targets Xenos
+#define ABILITY_HUMAN_TARGET (1 << 3) // ability targets Humans
 
 #define ABILITY_KEYBIND_USE_ABILITY (1 << 0) // immediately activate even if selectable
-
 
 #define ABILITY_CRASH (1<<0)
 #define ABILITY_NUCLEARWAR (1<<1)

@@ -233,7 +233,7 @@
 /mob/living/silicon/ai/proc/toggle_camera_light()
 	if(camera_light_on)
 		for(var/obj/machinery/camera/C in lit_cameras)
-			C.set_light(initial(C.light_range), initial(C.light_power))
+			C.set_light(0)
 			lit_cameras = list()
 		to_chat(src, span_notice("Camera lights deactivated."))
 	else
@@ -370,7 +370,7 @@
 	else
 		. += "Orbital bombardment warhead: [GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected"
 
-	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
+	. += "Current supply points: [round(SSpoints.supply_points[FACTION_NTC])]"
 
 	. += "Current dropship points: [round(SSpoints.dropship_points)]"
 

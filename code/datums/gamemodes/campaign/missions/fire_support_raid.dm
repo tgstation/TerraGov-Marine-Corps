@@ -64,7 +64,7 @@
 		new /obj/item/storage/box/explosive_mines(get_turf(pick(GLOB.campaign_reward_spawners[defending_faction])))
 
 	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
-	if(starting_faction == FACTION_TERRAGOV)
+	if(starting_faction == FACTION_NTC)
 		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
 	else if(starting_faction == FACTION_SOM)
 		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas/instant)
@@ -81,7 +81,7 @@
 	if(message)
 		return ..()
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "Hustle marines, take out their howitzer positions before the SOM have time to react. Move out!"
 		if(FACTION_SOM)
 			message = "The Terrans are trying to destroy our howitzers. Hold them off at all costs, glory to Mars!"
@@ -90,7 +90,7 @@
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
-	if(hostile_faction == FACTION_TERRAGOV)
+	if(hostile_faction == FACTION_NTC)
 		hostile_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_mortar/long)
 	else if(hostile_faction == FACTION_SOM)
 		hostile_team.add_asset(/datum/campaign_asset/asset_disabler/som_mortar/long)
@@ -98,7 +98,7 @@
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_victory()
 	winning_faction = starting_faction
 	var/datum/faction_stats/hostile_team = mode.stat_list[hostile_faction]
-	if(hostile_faction == FACTION_TERRAGOV)
+	if(hostile_faction == FACTION_NTC)
 		hostile_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_mortar)
 	else if(hostile_faction == FACTION_SOM)
 		hostile_team.add_asset(/datum/campaign_asset/asset_disabler/som_mortar)
@@ -106,7 +106,7 @@
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_minor_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	if(hostile_faction == FACTION_TERRAGOV)
+	if(hostile_faction == FACTION_NTC)
 		winning_team.add_asset(/datum/campaign_asset/bonus_job/combat_robots)
 		winning_team.add_asset(/datum/campaign_asset/fire_support/mortar)
 	else if(hostile_faction == FACTION_SOM)
@@ -116,7 +116,7 @@
 /datum/campaign_mission/destroy_mission/fire_support_raid/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	if(hostile_faction == FACTION_TERRAGOV)
+	if(hostile_faction == FACTION_NTC)
 		winning_team.add_asset(/datum/campaign_asset/bonus_job/combat_robots)
 		winning_team.add_asset(/datum/campaign_asset/fire_support/mortar)
 	else if(hostile_faction == FACTION_SOM)
@@ -138,7 +138,7 @@
 
 /datum/campaign_mission/destroy_mission/fire_support_raid/som/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
 	switch(user.faction)
-		if(FACTION_TERRAGOV)
+		if(FACTION_NTC)
 			message = "SOM forces are closing in on our MLRS positions. Hold them back at all costs marines, do not let them take out our fire support!"
 		if(FACTION_SOM)
 			message = "MLRS positions identified. Break through their defenses and take them out. For Mars!"

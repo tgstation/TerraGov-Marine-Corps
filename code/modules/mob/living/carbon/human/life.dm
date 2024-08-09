@@ -43,14 +43,9 @@
 	//Handle temperature/pressure differences between body and environment
 	handle_environment() //Optimized a good bit.
 
-/**
- * Marks the mob as unrevivable
- * Arguments:
- * * affects_synth - If synths should be affected
- */
 
-/mob/living/carbon/human/proc/set_undefibbable(affects_synth = FALSE)
-	if(issynth(src) && !affects_synth) //synths do not dnr (unless they want to, todo: dnr'd synths should probably be put into ssd mob list or something).
+/mob/living/carbon/human/proc/set_undefibbable()
+	if(issynth(src)) //synths do not dnr.
 		return
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
 	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)

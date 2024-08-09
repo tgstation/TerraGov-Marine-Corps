@@ -73,8 +73,8 @@
 	icon_state = "bulletproof"
 	worn_icon_state = "bulletproof"
 	blood_overlay_type = "armor"
-	armor_protection_flags = CHEST
-	soft_armor = list(MELEE = 30, BULLET = 75, LASER = 15, ENERGY = 15, BOMB = 30, BIO = 0, FIRE = 0, ACID = 15)
+	armor_protection_flags = CHEST|GROIN
+	soft_armor = list(MELEE = 30, BULLET = 55, LASER = 0, ENERGY = 0, BOMB = 30, BIO = 0, FIRE = 0, ACID = 15)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 5)
 	siemens_coefficient = 0.7
 	permeability_coefficient = 0.9
@@ -235,7 +235,7 @@
 	worn_icon_state = "hos"
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS
 	item_flags = SYNTH_RESTRICTED
-	soft_armor = list(MELEE = 65, BULLET = 30, LASER = 50, ENERGY = 10, BOMB = 25, BIO = 0, FIRE = 10, ACID = 10)
+	soft_armor = list(MELEE = 65, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 55, BIO = 30, FIRE = 30, ACID = 30)
 	inventory_flags = NONE
 	inv_hide_flags = HIDEJUMPSUIT
 	siemens_coefficient = 0.6
@@ -248,4 +248,3 @@
 	inv_hide_flags = NONE
 	siemens_coefficient = 0.6
 	armor_protection_flags = CHEST|ARMS
-

@@ -55,6 +55,7 @@
 			data["synthetic_name"] = synthetic_name
 			data["synthetic_type"] = synthetic_type
 			data["robot_type"] = robot_type
+			data["moth_wings"] = moth_wings
 			data["random_name"] = random_name
 			data["ai_name"] = ai_name
 			data["age"] = age
@@ -72,6 +73,9 @@
 		if(BACKGROUND_INFORMATION)
 			data["slot"] = default_slot
 			data["flavor_text"] = flavor_text
+			data["xeno_desc"] = xeno_desc
+			data["profile_pic"] = profile_pic
+			data["xenoprofile_pic"] = xenoprofile_pic
 			data["med_record"] = med_record
 			data["gen_record"] = gen_record
 			data["sec_record"] = sec_record
@@ -289,6 +293,12 @@
 				return
 			robot_type = choice
 			update_preview_icon()
+
+		if("moth_wings")
+			var/choice = tgui_input_list(ui.user, "What kind of moth wings do you want to play with? Only useable as a moth.", "Moth with type choice", GLOB.moth_wings_list)
+			if(!choice)
+				return
+			moth_wings = choice
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -612,6 +622,24 @@
 			if(!new_record)
 				return
 			flavor_text = new_record
+
+		if("xeno_desc")
+			var/new_record = trim(html_encode(params["xenoDesc"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xeno_desc = new_record
+
+		if("profile_pic")
+			var/new_record = trim(html_encode(params["profilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			profile_pic = new_record
+
+		if("xenoprofile_pic")
+			var/new_record = trim(html_encode(params["xenoprofilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xenoprofile_pic = new_record
 
 		if("windowflashing")
 			windowflashing = !windowflashing
