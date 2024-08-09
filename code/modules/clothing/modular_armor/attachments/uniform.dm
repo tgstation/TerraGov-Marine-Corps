@@ -14,6 +14,9 @@
 	icon_state = "webbing"
 	storage_type = /datum/storage/internal/webbing
 
+/obj/item/armor_module/storage/uniform/webbing/erp
+	storage_type = /datum/storage/internal/vest
+
 /obj/item/armor_module/storage/uniform/black_vest
 	name = "black webbing vest"
 	desc = "Robust black synthcotton vest with lots of pockets to hold whatever you need, but cannot hold in hands."

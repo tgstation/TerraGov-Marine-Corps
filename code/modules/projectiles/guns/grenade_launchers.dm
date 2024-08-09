@@ -36,6 +36,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/upp,
 		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/sectoid,
+		/obj/item/explosive/grenade/creampie,
 		/obj/item/explosive/grenade/incendiary,
 		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
