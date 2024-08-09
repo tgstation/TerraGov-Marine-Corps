@@ -180,13 +180,11 @@
 		if(env_temperature > (T0C + 66))
 			apply_damage(((env_temperature - (T0C + 66) ) * 0.2), BURN, blocked = FIRE)
 			updatehealth() //unused while atmos is off
-			if(hud_used?.fire_icon)
-				hud_used.fire_icon.icon_state = "fire2"
+			throw_alert(ALERT_FIRE, /atom/movable/screen/alert/fire)
 			if(prob(20))
 				to_chat(src, span_warning("We feel a searing heat!"))
 		else
-			if(hud_used?.fire_icon)
-				hud_used.fire_icon.icon_state = "fire0"
+			clear_alert(ALERT_FIRE)
 
 /mob/living/carbon/xenomorph/updatehealth()
 	if(status_flags & GODMODE)

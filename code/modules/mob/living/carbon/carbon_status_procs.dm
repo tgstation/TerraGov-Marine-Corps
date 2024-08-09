@@ -19,14 +19,24 @@
 
 /mob/living/carbon/proc/adjust_nutrition_speed(old_nutrition)
 	switch(nutrition)
-		if(0 to NUTRITION_HUNGRY) //Level where a yellow food pip shows up, aka hunger level 3 at 250 nutrition and under
+		if(0 to NUTRITION_HUNGRY)
 			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, round(1.5 - (nutrition / 250), 0.1)) //From 0.5 to 1.5
+			if(nutrition < NUTRITION_HUNGRY && nutrition > NUTRITION_STARVING)
+				throw_alert(ALERT_NUTRITION, /atom/movable/screen/alert/hungry)
+			else if(nutrition < NUTRITION_STARVING)
+				throw_alert(ALERT_NUTRITION, /atom/movable/screen/alert/starving)
 		if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
-			switch(old_nutrition)
-				if(NUTRITION_HUNGRY to NUTRITION_OVERFED)
-					return
+			clear_alert(ALERT_NUTRITION)
 			remove_movespeed_modifier(MOVESPEED_ID_HUNGRY)
 		if(NUTRITION_OVERFED to INFINITY) //Overeating
 			if(old_nutrition > NUTRITION_OVERFED)
 				return
 			add_movespeed_modifier(MOVESPEED_ID_HUNGRY, TRUE, 0, NONE, TRUE, 0.5)
+			throw_alert(ALERT_NUTRITION, /atom/movable/screen/alert/stuffed)
+
+/mob/living/carbon/handle_fire()
+	. = ..()
+	if(.)
+		clear_alert(ALERT_FIRE)
+		return
+	throw_alert(ALERT_FIRE, /atom/movable/screen/alert/fire)
