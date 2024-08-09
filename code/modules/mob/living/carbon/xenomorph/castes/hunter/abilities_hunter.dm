@@ -218,8 +218,8 @@
 	var/datum/action/ability/activable/xeno/hunter_mark/assassin/mark = owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark/assassin]
 	if(mark.marked_target == target)
 		to_chat(owner, span_xenodanger("We strike our death mark with a [flavour], calculated strike."))
-		staggerslow_stacks *= 3
-		paralyzesecs *= 3
+		staggerslow_stacks *= 2
+		paralyzesecs *= 2
 		damage *= 2
 	target.adjust_stagger(staggerslow_stacks SECONDS)
 	target.add_slowdown(staggerslow_stacks)
@@ -812,7 +812,7 @@
 	name = "Death Mark"
 	action_icon_state = "death_mark"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
-	desc = "Psionically disturb a creature for 15 seconds, allowing you to deal double sneak attack damage, and triple the stun duration from it. They will know you are coming for them."
+	desc = "Psionically disturb a creature for 15 seconds, allowing you to deal double sneak attack damage and stun from it. They will know you are coming for them."
 	ability_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_MARK,
