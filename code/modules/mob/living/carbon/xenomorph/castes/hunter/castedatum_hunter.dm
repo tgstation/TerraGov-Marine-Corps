@@ -69,6 +69,9 @@
 /datum/xeno_caste/hunter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
+/datum/xeno_caste/hunter/assassin/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
 /datum/xeno_caste/hunter/primordial
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_PRIMO
@@ -137,4 +140,56 @@
 		/datum/action/ability/activable/xeno/hunter_mark,
 		/datum/action/ability/xeno_action/psychic_trace,
 		/datum/action/ability/xeno_action/mirage,
+	)
+
+// Assassin strain
+/datum/xeno_caste/hunter/assassin
+	caste_type_path = /mob/living/carbon/xenomorph/hunter/assassin
+	display_name = "Hunter"
+	caste_name = "Assassin Hunter"
+	upgrade_name = ""
+	gib_anim = "Assassin Hunter Gibs"
+	gib_flick = "Assassin Hunter Gibbed"
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_desc = "A fast, creeping death, light faintly shimmers on it's strange, light-bending carapace."
+
+	// *** Speed *** //
+	speed = -1.6
+
+	// *** Plasma *** //
+	plasma_max = 250
+	plasma_gain = 23
+
+	// *** Health *** //
+	max_health = 200
+
+	stealth_break_threshold = 25
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/pounce/lunge,
+		/datum/action/ability/xeno_action/stealth/phaseout,
+		/datum/action/ability/activable/xeno/hunter_mark/assassin,
+		/datum/action/ability/xeno_action/mirage,
+		/datum/action/ability/xeno_action/displacement,
+	)
+
+/datum/xeno_caste/hunter/assassin/primordial
+	upgrade_name = "Primordial"
+	upgrade = XENO_UPGRADE_PRIMO
+	caste_desc = "A fast, creeping death, light faintly shimmers on it's strange, light-bending carapace. Shadows around seem to distort and cling to it."
+	primordial_message = "They won't see us coming until it's too late. Let the slaughter begin."
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/pounce/lunge,
+		/datum/action/ability/xeno_action/stealth/phaseout,
+		/datum/action/ability/xeno_action/stealth/disguise,
+		/datum/action/ability/activable/xeno/hunter_mark/assassin,
+		/datum/action/ability/xeno_action/mirage,
+		/datum/action/ability/xeno_action/displacement,
 	)

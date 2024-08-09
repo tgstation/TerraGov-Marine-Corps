@@ -15,6 +15,20 @@
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
 	var/stealth_alpha_multiplier = 1
+	var/stealth_duration = -1
+	var/stealth_timer
+	var/disable_on_signals = list(
+		COMSIG_XENOMORPH_GRAB,
+		COMSIG_XENOMORPH_THROW_HIT,
+		COMSIG_LIVING_IGNITED,
+		COMSIG_LIVING_ADD_VENTCRAWL,
+		COMSIG_XENOABILITY_MIRAGE_SWAP
+	)
+	var/disable_on_obj_slash = TRUE
+	var/disable_on_mob_slash = TRUE
+	var/sneak_attack_armor_pen = HUNTER_SNEAK_SLASH_ARMOR_PEN
+	var/pounce_break_stealth = TRUE
+	var/pounce_hit_break_stealth = TRUE
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -26,6 +40,8 @@
 	if(!.)
 		return FALSE
 	var/mob/living/carbon/xenomorph/stealthy_beno = owner
+	if(stealthy_beno.status_flags & INCORPOREAL)
+		return FALSE
 	if(stealthy_beno.on_fire)
 		to_chat(stealthy_beno, "<span class='warning'>We're too busy being on fire to enter Stealth!</span>")
 		return FALSE
@@ -51,20 +67,17 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth))
 	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, PROC_REF(sneak_attack_pounce))
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
+	if(pounce_hit_break_stealth)
+		RegisterSignal(owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(sneak_attack_slash))
 	RegisterSignal(owner, COMSIG_XENOMORPH_DISARM_HUMAN, PROC_REF(sneak_attack_slash))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ZONE_SELECT, PROC_REF(sneak_attack_zone))
 	RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(plasma_regen))
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
-	RegisterSignals(owner, list(
-		COMSIG_XENOMORPH_GRAB,
-		COMSIG_XENOMORPH_THROW_HIT,
-		COMSIG_LIVING_IGNITED,
-		COMSIG_LIVING_ADD_VENTCRAWL,
-		COMSIG_XENOABILITY_MIRAGE_SWAP), PROC_REF(cancel_stealth))
-
-	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
+	RegisterSignals(owner, disable_on_signals, PROC_REF(cancel_stealth))
+	if(disable_on_obj_slash)
+		RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
 
 	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), PROC_REF(cancel_stealth))
 
@@ -73,7 +86,9 @@
 	ADD_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
 
 	handle_stealth()
-	addtimer(CALLBACK(src, PROC_REF(sneak_attack_cooldown)), HUNTER_POUNCE_SNEAKATTACK_DELAY) //Short delay before we can sneak attack.
+	addtimer(CALLBACK(src, PROC_REF(sneak_attack_cooldown)), HUNTER_POUNCE_SNEAKATTACK_DELAY)
+	if(stealth_duration != -1)
+		stealth_timer = addtimer(CALLBACK(src, PROC_REF(cancel_stealth)), stealth_duration, TIMER_STOPPABLE)
 	START_PROCESSING(SSprocessing, src)
 
 /datum/action/ability/xeno_action/stealth/process()
@@ -85,6 +100,9 @@
 /datum/action/ability/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
 	add_cooldown()
+	if(timeleft(stealth_timer))
+		deltimer(stealth_timer)
+	stealth_timer = null
 	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
 
 	UnregisterSignal(owner, list(
@@ -93,18 +111,17 @@
 		COMSIG_XENO_LIVING_THROW_HIT,
 		COMSIG_XENOMORPH_ATTACK_LIVING,
 		COMSIG_XENOMORPH_DISARM_HUMAN,
-		COMSIG_XENOMORPH_GRAB,
+		COMSIG_XENOMORPH_LEAP_BUMP,
 		COMSIG_XENOMORPH_ATTACK_OBJ,
-		COMSIG_XENOMORPH_THROW_HIT,
 		COMSIG_LIVING_IGNITED,
-		COMSIG_LIVING_ADD_VENTCRAWL,
-		COMSIG_XENOABILITY_MIRAGE_SWAP,
 		SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT),
 		SIGNAL_ADDTRAIT(TRAIT_FLOORED),
 		COMSIG_XENOMORPH_ZONE_SELECT,
 		COMSIG_XENOMORPH_PLASMA_REGEN,
-		COMSIG_XENOMORPH_TAKING_DAMAGE,))
+		COMSIG_XENOMORPH_TAKING_DAMAGE
+	))
 
+	UnregisterSignal(owner, disable_on_signals)
 	stealth = FALSE
 	can_sneak_attack = FALSE
 	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
@@ -157,7 +174,8 @@
 			owner.hud_used.move_intent.icon_state = "running"
 		owner.update_icons()
 
-	cancel_stealth()
+	if(pounce_break_stealth)
+		cancel_stealth()
 
 /// Callback for when a mob gets hit as part of a pounce
 /datum/action/ability/xeno_action/stealth/proc/mob_hit(datum/source, mob/living/M)
@@ -165,9 +183,20 @@
 	if(M.stat || isxeno(M))
 		return
 	if(can_sneak_attack)
-		M.adjust_stagger(3 SECONDS)
-		M.add_slowdown(1)
+		var/datum/action/ability/activable/xeno/hunter_mark/assassin/mark = owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark/assassin]
+		if(mark.marked_target == M)
+			to_chat(owner, span_xenodanger("We strike our death mark with a calculated pounce."))
+			M.adjust_stagger(6 SECONDS)
+			M.add_slowdown(2)
+		else
+			M.adjust_stagger(3 SECONDS)
+			M.add_slowdown(1)
 		to_chat(owner, span_xenodanger("Pouncing from the shadows, we stagger our victim."))
+	if(pounce_hit_break_stealth)
+		cancel_stealth()
+	else
+		can_sneak_attack = FALSE
+		addtimer(CALLBACK(src, PROC_REF(sneak_attack_cooldown)), HUNTER_POUNCE_SNEAKATTACK_DELAY)
 
 ///Special sneak attack when stealthed
 /datum/action/ability/xeno_action/stealth/proc/sneak_attack_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
@@ -176,21 +205,30 @@
 		return
 
 	var/staggerslow_stacks = 2
+	var/paralyzesecs = 1
 	var/flavour
 	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 		flavour = "vicious"
 	else
-		armor_mod += HUNTER_SNEAK_SLASH_ARMOR_PEN
-		staggerslow_stacks *= 2
+		armor_mod += sneak_attack_armor_pen
 		flavour = "deadly"
 
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
+	var/datum/action/ability/activable/xeno/hunter_mark/assassin/mark = owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark/assassin]
+	if(mark.marked_target == target)
+		to_chat(owner, span_xenodanger("We strike our death mark with a [flavour], calculated strike."))
+		staggerslow_stacks *= 2
+		paralyzesecs *= 2
 	target.adjust_stagger(staggerslow_stacks SECONDS)
 	target.add_slowdown(staggerslow_stacks)
-	target.ParalyzeNoChain(1 SECONDS)
+	target.ParalyzeNoChain(paralyzesecs SECONDS)
 
-	cancel_stealth()
+	if(disable_on_mob_slash)
+		cancel_stealth()
+	else
+		can_sneak_attack = FALSE
+		addtimer(CALLBACK(src, PROC_REF(sneak_attack_cooldown)), HUNTER_POUNCE_SNEAKATTACK_DELAY)
 
 ///Breaks stealth if sufficient damage taken
 /datum/action/ability/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
@@ -228,7 +266,7 @@
 		cancel_stealth()
 		return TRUE
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	var/datum/action/ability/activable/xeno/hunter_mark/mark = xenoowner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark]
+	var/datum/action/ability/activable/xeno/hunter_mark/mark = locate() in xenoowner.actions
 	if(HAS_TRAIT_FROM(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))   // stops stealth and disguise from stacking
 		owner.balloon_alert(owner, "already in a form of stealth!")
 		return
@@ -285,13 +323,15 @@
 	var/pounce_range = HUNTER_POUNCE_RANGE
 
 /datum/action/ability/activable/xeno/pounce/on_cooldown_finish()
-	owner.balloon_alert(owner, "Pounce ready")
-	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
+	owner.balloon_alert(owner, "[src] ready")
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, TRUE)
 	return ..()
 
 /datum/action/ability/activable/xeno/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
+		return FALSE
+	if(owner.status_flags & INCORPOREAL)
 		return FALSE
 	if(!A || A.layer >= FLY_LAYER)
 		return FALSE
@@ -390,6 +430,10 @@
 	cooldown_duration = 60 SECONDS
 	///the target marked
 	var/atom/movable/marked_target
+	var/require_los = TRUE
+	var/timeout = -1
+	var/warntarget = FALSE
+	var/chargeup = -1
 
 /datum/action/ability/activable/xeno/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -413,16 +457,17 @@
 			to_chat(X, span_xenowarning("Why would we target ourselves?"))
 		return FALSE
 
-	if(!line_of_sight(X, A)) //Need line of sight.
-		if(!silent)
-			to_chat(X, span_xenowarning("We require line of sight to mark them!"))
-		return FALSE
+	if(require_los)
+		if(!line_of_sight(X, A)) //Need line of sight.
+			if(!silent)
+				to_chat(X, span_xenowarning("We require line of sight to mark them!"))
+			return FALSE
 
 	return TRUE
 
 
 /datum/action/ability/activable/xeno/hunter_mark/on_cooldown_finish()
-	to_chat(owner, span_xenowarning("<b>We are able to impose our psychic mark again.</b>"))
+	to_chat(owner, span_xenowarning("<b>We are able to impose [src] again.</b>"))
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
@@ -433,9 +478,14 @@
 
 	X.face_atom(A) //Face towards the target so we don't look silly
 
-	if(!line_of_sight(X, A)) //Need line of sight.
-		to_chat(X, span_xenowarning("We lost line of sight to the target!"))
-		return fail_activate()
+	if(chargeup != -1)
+		if(!do_after(X, chargeup, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC))
+			return
+
+	if(require_los)
+		if(!line_of_sight(X, A)) //Need line of sight.
+			to_chat(X, span_xenowarning("We lost line of sight to the target!"))
+			return fail_activate()
 
 	if(marked_target)
 		UnregisterSignal(marked_target, COMSIG_QDELETING)
@@ -443,6 +493,14 @@
 	marked_target = A
 
 	RegisterSignal(marked_target, COMSIG_QDELETING, PROC_REF(unset_target)) //For var clean up
+
+	if(timeout != -1) //sets a timer to unmark the target
+		to_chat(X, span_xenodanger("We will be able to maintain the mark for [timeout / 10] seconds."))
+		addtimer(CALLBACK(src, PROC_REF(unset_target)), timeout)
+
+	if(warntarget)
+		playsound(marked_target, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
+		to_chat(marked_target, span_userdanger("You feel uneasy."))
 
 	to_chat(X, span_xenodanger("We psychically mark [A] as our quarry."))
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
@@ -456,6 +514,7 @@
 ///Nulls the target of our hunter's mark
 /datum/action/ability/activable/xeno/hunter_mark/proc/unset_target()
 	SIGNAL_HANDLER
+	to_chat(owner, span_xenodanger("We cannot maintain our focus on [marked_target] any longer."))
 	UnregisterSignal(marked_target, COMSIG_QDELETING)
 	marked_target = null //Nullify hunter's mark target and clear the var
 
@@ -557,6 +616,8 @@
 
 /datum/action/ability/xeno_action/mirage/can_use_action(silent = FALSE, override_flags)
 	. = ..()
+	if(owner.status_flags & INCORPOREAL)
+		return FALSE
 	if(swap_used)
 		if(!silent)
 			to_chat(owner, span_xenowarning("We already swapped with an illusion!"))
@@ -620,6 +681,9 @@
 	. = ..()
 	if(!.)
 		return
+
+	if(owner.status_flags & INCORPOREAL)
+		return FALSE
 
 	var/mob/living/carbon/xenomorph/impairer = owner //Type cast this for on_fire
 
@@ -685,3 +749,98 @@
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	cooldown_duration = initial(cooldown_duration) //Reset the cooldown timer to its initial state in the event of a whiffed Silence.
 	return ..()
+
+//assassin things
+
+// ***************************************
+// *********** Lunge
+// ***************************************
+
+/datum/action/ability/activable/xeno/pounce/lunge
+	name = "Lunge"
+	action_icon = 'icons/Xeno/actions/hunter.dmi'
+	action_icon_state = "assassin_lunge"
+	desc = "Swiftly lunge at your destination, if on a target, attack and stun them briefly."
+	ability_cost = 10
+	cooldown_duration = 6 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_LUNGE,
+	)
+	use_state_flags = ABILITY_USE_BUCKLED
+
+//Triggers the effect of a successful pounce on the target.
+/datum/action/ability/activable/xeno/pounce/lunge/trigger_pounce_effect(mob/living/living_target)
+	playsound(get_turf(living_target), 'sound/voice/alien/roar4.ogg', 25, TRUE)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.UnarmedAttack(living_target)
+	step_away(living_target, xeno_owner, 1, 3)
+	xeno_owner.face_atom(living_target)
+	living_target.Stun(XENO_POUNCE_STUN_DURATION) // no disarm but standing stun to make it feel like you got bodyslammed by a xeno
+
+// ***************************************
+// *********** Phase Out
+// ***************************************
+
+/datum/action/ability/xeno_action/stealth/phaseout
+	name = "Phase Out"
+	action_icon_state = "hunter_invisibility"
+	action_icon = 'icons/Xeno/actions/hunter.dmi'
+	desc = "Become fully invisible for 10 seconds, or until damaged enough. Attacking does not break invisibility."
+	ability_cost = 10
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_PHASEOUT,
+	)
+	cooldown_duration = 10 SECONDS
+	stealth_alpha_multiplier = 1
+	stealth_duration = 10 SECONDS
+	disable_on_signals = list(
+		COMSIG_LIVING_IGNITED,
+		COMSIG_LIVING_ADD_VENTCRAWL,
+	)
+	disable_on_obj_slash = FALSE
+	disable_on_mob_slash = FALSE
+	sneak_attack_armor_pen = 30
+	pounce_break_stealth = FALSE
+	pounce_hit_break_stealth = TRUE
+
+// i just realized, we need to disable processing, this will inherently just amke handle_stealth not do anything
+///Updates or cancels stealth
+/datum/action/ability/xeno_action/stealth/phaseout/handle_stealth()
+	var/mob/living/carbon/xenomorph/xenoowner = owner
+	xenoowner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier // instant full stealth regardless of movement.
+
+// ***************************************
+// *********** Death Mark
+// ***************************************
+/datum/action/ability/activable/xeno/hunter_mark/assassin
+	name = "Death Mark"
+	action_icon_state = "death_mark"
+	action_icon = 'icons/Xeno/actions/hunter.dmi'
+	desc = "Psionically disturb a creature for 15 seconds, allowing you to deal double sneak attack damage and stun from it. They will know you are coming for them."
+	ability_cost = 50
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_MARK,
+	)
+	cooldown_duration = 30 SECONDS
+	require_los = FALSE
+	timeout = 15 SECONDS
+	warntarget = TRUE
+	chargeup = 2 SECONDS
+
+// ***************************************
+// *********** Displacement
+// ***************************************
+
+/datum/action/ability/xeno_action/displacement
+	name = "Displacement"
+	action_icon_state = "hunter_invisibility"
+	action_icon = 'icons/Xeno/actions/hunter.dmi'
+	desc = "Physically disappear, become incorporeal until you decide to reappear somewhere else, reappearing on lighted areas will disorient you and flicker the lights."
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HUNTER_DISPLACEMENT,
+	)
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
+
+/datum/action/ability/xeno_action/displacement/action_activate()
+	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
+	xenomorph_owner.change_form()
