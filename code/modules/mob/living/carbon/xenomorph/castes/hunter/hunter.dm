@@ -37,7 +37,7 @@
 
 /mob/living/carbon/xenomorph/hunter/assassin/change_form()
 	if(!loc_weeds_type)
-		to_chat(src, span_xenowarning("we need to be on weeds for us to shift again."))
+		to_chat(src, span_xenowarning("We need to be on weeds for us to shift again."))
 		return
 	if(TIMER_COOLDOWN_CHECK(src, "cooldown_hunter_manifestation"))
 		return

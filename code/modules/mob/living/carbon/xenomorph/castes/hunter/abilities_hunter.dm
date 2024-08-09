@@ -817,7 +817,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_MARK,
 	)
-	cooldown_duration = 40 SECONDS
+	cooldown_duration = 30 SECONDS
 	require_los = FALSE
 	timeout = 15 SECONDS
 	warntarget = TRUE
