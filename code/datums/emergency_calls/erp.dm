@@ -17,7 +17,7 @@
 	var/mob/living/carbon/human/H = .
 
 	M.transfer_to(H, TRUE)
-	H.fully_replace_character_name(M.name, H.pick("Bologna", "Giggles", "Bozo", "Gooby", "Smokey", "Gorgo", "Willy", "Bouba", "Kiki", "Goode", "Badde", "Ugglee"))
+	H.fully_replace_character_name(M.name, pick("Bologna", "Giggles", "Bozo", "Gooby", "Smokey", "Gorgo", "Willy", "Bouba", "Kiki", "Goode", "Badde", "Ugglee",))
 
 	if(original)
 		qdel(original)
@@ -43,6 +43,6 @@
 		to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are an ERP Boo-boo Kisser sent to entertain & prank at the TGMC distress signal location sent nearby. Use your anti-boo-boo equipment to keep your fellow pranksters alive & FUN!")]</p>")
 		return
 
-	var/datum/job/J = SSjob.GetJobType(/datum/job/erp/prankster)
+	var/datum/job/J = SSjob.GetJobType(/datum/job/erp)
 	H.apply_assigned_role_to_spawn(J)
 	to_chat(H, "<p style='font-size:1.5em'>[span_notice("You are an ERP Prankster sent to entertain & prank at the TGMC distress signal location sent nearby. Entertain your friends & prank sources of anti-fun!")]</p>")

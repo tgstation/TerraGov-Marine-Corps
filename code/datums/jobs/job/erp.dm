@@ -13,7 +13,7 @@
 	jobtype = /datum/job/erp
 
 	id = /obj/item/card/id/captains_spare
-	ear = /obj/item/radio/headset/distress/erp
+	ears = /obj/item/radio/headset/distress/erp
 	mask = /obj/item/clothing/mask/gas/clown_hat
 	gloves = /obj/item/clothing/gloves/marine/black
 	back = /obj/item/storage/backpack/clown
@@ -34,8 +34,8 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
 
-	H.equip_to_slot_or_del(new pick(/obj/item/reagent_containers/food/snacks/mre_pack/xmas1, /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, /obj/item/reagent_containers/food/snacks/mre_pack/xmas3, SLOT_IN_BACKPACK))
-	H.equip_to_slot_or_del(new pick(/obj/item/reagent_containers/food/snacks/mre_pack/xmas1, /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, /obj/item/reagent_containers/food/snacks/mre_pack/xmas3, SLOT_IN_BACKPACK))
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/mre_pack/xmas1, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BACKPACK)
@@ -71,8 +71,8 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/plasma, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/plasma, SLOT_IN_BELT)
 
-	H.equip_to_slot_or_del(new pick(/obj/item/reagent_containers/food/snacks/mre_pack/xmas1, /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, /obj/item/reagent_containers/food/snacks/mre_pack/xmas3, SLOT_IN_BACKPACK))
-	H.equip_to_slot_or_del(new pick(/obj/item/reagent_containers/food/snacks/mre_pack/xmas1, /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, /obj/item/reagent_containers/food/snacks/mre_pack/xmas3, SLOT_IN_BACKPACK))
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/mre_pack/xmas1, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BACKPACK)
@@ -102,8 +102,8 @@
 	belt = /obj/item/storage/belt/lifesaver/full
 
 /datum/outfit/job/erp/boobookisser/post_equip(mob/living/carbon/human/H, visualsOnly)
-	H.equip_to_slot_or_del(new pick(/obj/item/reagent_containers/food/snacks/mre_pack/xmas1, /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, /obj/item/reagent_containers/food/snacks/mre_pack/xmas3, SLOT_IN_BACKPACK))
-	H.equip_to_slot_or_del(new pick(/obj/item/reagent_containers/food/snacks/mre_pack/xmas1, /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, /obj/item/reagent_containers/food/snacks/mre_pack/xmas3, SLOT_IN_BACKPACK))
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/mre_pack/xmas1, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine/ap, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine/ap, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine/ap, SLOT_IN_BACKPACK)
@@ -141,8 +141,8 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BELT)
 
-	H.equip_to_slot_or_del(new pick(/obj/item/reagent_containers/food/snacks/mre_pack/xmas1, /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, /obj/item/reagent_containers/food/snacks/mre_pack/xmas3, SLOT_IN_BACKPACK))
-	H.equip_to_slot_or_del(new pick(/obj/item/reagent_containers/food/snacks/mre_pack/xmas1, /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, /obj/item/reagent_containers/food/snacks/mre_pack/xmas3, SLOT_IN_BACKPACK))
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/mre_pack/xmas1, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/mre_pack/xmas2, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BELT)
