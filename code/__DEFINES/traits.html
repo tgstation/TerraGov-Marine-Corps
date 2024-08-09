@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;traits.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/traits.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/traits.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_TOO_TALL">TRAIT_TOO_TALL</a></th><td>Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/STATUS_EFFECT_TRAIT">STATUS_EFFECT_TRAIT</a></th><td>A trait given by any status effect</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_STATUS_EFFECT">TRAIT_STATUS_EFFECT</a></th><td>A trait given by a specific status effect (not sure why we need both but whatever!)</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/REAGENT_TRAIT">REAGENT_TRAIT</a></th><td>Trait from a reagent of the given name</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/VEHICLE_TRAIT">VEHICLE_TRAIT</a></th><td>inherited from riding vehicles</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_SUBMERGED">TRAIT_SUBMERGED</a></th><td>AM is currently submerged</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_NOSUBMERGE">TRAIT_NOSUBMERGE</a></th><td>AM will not be submerged. Trait must ALWAYS be added via the add_nosubmerge_trait proc for correct behavior</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_WAS_RENAMED">TRAIT_WAS_RENAMED</a></th><td>Trait that tracks if something has been renamed. Typically holds a REF() to the object itself (AKA src) for wide addition/removal.</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_SILENT_FOOTSTEPS">TRAIT_SILENT_FOOTSTEPS</a></th><td>Makes no footsteps at all</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_LIGHT_STEP">TRAIT_LIGHT_STEP</a></th><td>quieter footsteps</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_HEAVY_STEP">TRAIT_HEAVY_STEP</a></th><td>noisier footsteps</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_MAPSPAWNED">TRAIT_MAPSPAWNED</a></th><td>indicates this mob was spawned by a corpse spawner</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_MINDMELDED">TRAIT_MINDMELDED</a></th><td>Mindmelded with another mob</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_AXE_EXPERT">TRAIT_AXE_EXPERT</a></th><td>You swing axe good</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_SWORD_EXPERT">TRAIT_SWORD_EXPERT</a></th><td>You swing sword good</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_LIGHT_PAIN_RESIST">TRAIT_LIGHT_PAIN_RESIST</a></th><td>Pain reduction light</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_MEDIUM_PAIN_RESIST">TRAIT_MEDIUM_PAIN_RESIST</a></th><td>Pain reduction medium</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_TANK_DESANT">TRAIT_TANK_DESANT</a></th><td>is currently riding an armored vehicle</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_HANDS_BLOCKED">TRAIT_HANDS_BLOCKED</a></th><td>Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_XENOMORPH_INVISIBLE_BLOOD">TRAIT_XENOMORPH_INVISIBLE_BLOOD</a></th><td>The target xenomorph's wound overlays won't be visible</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_NON_FLAMMABLE">TRAIT_NON_FLAMMABLE</a></th><td>Prevent mob from being ignited due to IgniteMob()</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_CANT_RIDE">TRAIT_CANT_RIDE</a></th><td>Prevents mob from riding mobs when buckled onto something</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_IGNORE_SUFFOCATION">TRAIT_IGNORE_SUFFOCATION</a></th><td>Prevents humans from gaining oxyloss in their handle_breath()</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_UI_BLOCKED">TRAIT_UI_BLOCKED</a></th><td>Inability to access UI hud elements.</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_PRESERVE_UI_WITHOUT_CLIENT">TRAIT_PRESERVE_UI_WITHOUT_CLIENT</a></th><td>This mob should never close UI even if it doesn't have a client</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/TRAIT_STOPS_TANK_COLLISION">TRAIT_STOPS_TANK_COLLISION</a></th><td>stops tanks from being able to ram this mob</td></tr>
+        <tr><th><a href="code/__DEFINES/traits.html#define/CAMPAIGN_MISSION_TIMER_PAUSED">CAMPAIGN_MISSION_TIMER_PAUSED</a></th><td>Pauses campaign mission timer</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/CAMPAIGN_MISSION_TIMER_PAUSED"><aside class="declaration">#define </aside>CAMPAIGN_MISSION_TIMER_PAUSED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L279">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 279"/></a>
+    </h3>
+    <p>Pauses campaign mission timer</p><h3 id="define/REAGENT_TRAIT"><aside class="declaration">#define </aside>REAGENT_TRAIT
+            <aside>(reagent)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L135">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 135"/></a>
+    </h3>
+    <p>Trait from a reagent of the given name</p><h3 id="define/STATUS_EFFECT_TRAIT"><aside class="declaration">#define </aside>STATUS_EFFECT_TRAIT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L130">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 130"/></a>
+    </h3>
+    <p>A trait given by any status effect</p><h3 id="define/TRAIT_AXE_EXPERT"><aside class="declaration">#define </aside>TRAIT_AXE_EXPERT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L179">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 179"/></a>
+    </h3>
+    <p>You swing axe good</p><h3 id="define/TRAIT_CANT_RIDE"><aside class="declaration">#define </aside>TRAIT_CANT_RIDE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L232">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 232"/></a>
+    </h3>
+    <p>Prevents mob from riding mobs when buckled onto something</p><h3 id="define/TRAIT_HANDS_BLOCKED"><aside class="declaration">#define </aside>TRAIT_HANDS_BLOCKED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 191"/></a>
+    </h3>
+    <p>Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).</p><h3 id="define/TRAIT_HEAVY_STEP"><aside class="declaration">#define </aside>TRAIT_HEAVY_STEP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L173">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 173"/></a>
+    </h3>
+    <p>noisier footsteps</p><h3 id="define/TRAIT_IGNORE_SUFFOCATION"><aside class="declaration">#define </aside>TRAIT_IGNORE_SUFFOCATION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L234">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 234"/></a>
+    </h3>
+    <p>Prevents humans from gaining oxyloss in their handle_breath()</p><h3 id="define/TRAIT_LIGHT_PAIN_RESIST"><aside class="declaration">#define </aside>TRAIT_LIGHT_PAIN_RESIST
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L183">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 183"/></a>
+    </h3>
+    <p>Pain reduction light</p><h3 id="define/TRAIT_LIGHT_STEP"><aside class="declaration">#define </aside>TRAIT_LIGHT_STEP
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 171"/></a>
+    </h3>
+    <p>quieter footsteps</p><h3 id="define/TRAIT_MAPSPAWNED"><aside class="declaration">#define </aside>TRAIT_MAPSPAWNED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L175">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 175"/></a>
+    </h3>
+    <p>indicates this mob was spawned by a corpse spawner</p><h3 id="define/TRAIT_MEDIUM_PAIN_RESIST"><aside class="declaration">#define </aside>TRAIT_MEDIUM_PAIN_RESIST
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L185">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 185"/></a>
+    </h3>
+    <p>Pain reduction medium</p><h3 id="define/TRAIT_MINDMELDED"><aside class="declaration">#define </aside>TRAIT_MINDMELDED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L177">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 177"/></a>
+    </h3>
+    <p>Mindmelded with another mob</p><h3 id="define/TRAIT_NON_FLAMMABLE"><aside class="declaration">#define </aside>TRAIT_NON_FLAMMABLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L230">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 230"/></a>
+    </h3>
+    <p>Prevent mob from being ignited due to IgniteMob()</p><h3 id="define/TRAIT_NOSUBMERGE"><aside class="declaration">#define </aside>TRAIT_NOSUBMERGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L142">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 142"/></a>
+    </h3>
+    <p>AM will not be submerged. Trait must ALWAYS be added via the add_nosubmerge_trait proc for correct behavior</p><h3 id="define/TRAIT_PRESERVE_UI_WITHOUT_CLIENT"><aside class="declaration">#define </aside>TRAIT_PRESERVE_UI_WITHOUT_CLIENT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L259">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 259"/></a>
+    </h3>
+    <p>This mob should never close UI even if it doesn't have a client</p><h3 id="define/TRAIT_SILENT_FOOTSTEPS"><aside class="declaration">#define </aside>TRAIT_SILENT_FOOTSTEPS
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L169">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 169"/></a>
+    </h3>
+    <p>Makes no footsteps at all</p><h3 id="define/TRAIT_STATUS_EFFECT"><aside class="declaration">#define </aside>TRAIT_STATUS_EFFECT
+            <aside>(effect_id)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L132">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 132"/></a>
+    </h3>
+    <p>A trait given by a specific status effect (not sure why we need both but whatever!)</p><h3 id="define/TRAIT_STOPS_TANK_COLLISION"><aside class="declaration">#define </aside>TRAIT_STOPS_TANK_COLLISION
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L264">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 264"/></a>
+    </h3>
+    <p>stops tanks from being able to ram this mob</p><h3 id="define/TRAIT_SUBMERGED"><aside class="declaration">#define </aside>TRAIT_SUBMERGED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L140">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 140"/></a>
+    </h3>
+    <p>AM is currently submerged</p><h3 id="define/TRAIT_SWORD_EXPERT"><aside class="declaration">#define </aside>TRAIT_SWORD_EXPERT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L181">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 181"/></a>
+    </h3>
+    <p>You swing sword good</p><h3 id="define/TRAIT_TANK_DESANT"><aside class="declaration">#define </aside>TRAIT_TANK_DESANT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L187">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 187"/></a>
+    </h3>
+    <p>is currently riding an armored vehicle</p><h3 id="define/TRAIT_TOO_TALL"><aside class="declaration">#define </aside>TRAIT_TOO_TALL
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L126">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 126"/></a>
+    </h3>
+    <p>Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.</p><h3 id="define/TRAIT_UI_BLOCKED"><aside class="declaration">#define </aside>TRAIT_UI_BLOCKED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L257">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 257"/></a>
+    </h3>
+    <p>Inability to access UI hud elements.</p><h3 id="define/TRAIT_WAS_RENAMED"><aside class="declaration">#define </aside>TRAIT_WAS_RENAMED
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L151">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 151"/></a>
+    </h3>
+    <p>Trait that tracks if something has been renamed. Typically holds a REF() to the object itself (AKA src) for wide addition/removal.</p><h3 id="define/TRAIT_XENOMORPH_INVISIBLE_BLOOD"><aside class="declaration">#define </aside>TRAIT_XENOMORPH_INVISIBLE_BLOOD
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L213">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 213"/></a>
+    </h3>
+    <p>The target xenomorph's wound overlays won't be visible</p><h3 id="define/VEHICLE_TRAIT"><aside class="declaration">#define </aside>VEHICLE_TRAIT
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/1fef59bb27f4427d3446ceba3df016a33eab9f15/code/__DEFINES/traits.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;traits.dm 137"/></a>
+    </h3>
+    <p>inherited from riding vehicles</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/1fef59bb27f4427d3446ceba3df016a33eab9f15">1fef59b</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
