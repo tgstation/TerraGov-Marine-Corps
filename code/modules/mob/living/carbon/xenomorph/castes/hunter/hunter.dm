@@ -39,14 +39,10 @@
 	if(!loc_weeds_type)
 		to_chat(src, span_xenowarning("We need to be on weeds for us to shift again."))
 		return
-	if(TIMER_COOLDOWN_CHECK(src, "cooldown_hunter_manifestation"))
-		return
 	wound_overlay.icon_state = "none"
-	TIMER_COOLDOWN_START(src, "cooldown_hunter_manifestation", 3 SECONDS)
 	if(do_after(src, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BAR, NONE, PROGRESS_GENERIC)) //dont move
 		do_change_form()
 	else
-		TIMER_COOLDOWN_START(src, "cooldown_hunter_manifestation", 3 SECONDS)
 
 ///Finish the form changing of the hunter and give the needed stats
 /mob/living/carbon/xenomorph/hunter/assassin/proc/do_change_form()
