@@ -303,7 +303,9 @@
 	H.hud_set_job(faction)
 	H.update_inv_head()
 	H.update_inv_wear_suit()
-
+	if(istype(H.wear_ear, /obj/item/radio/headset/mainship/))
+		var/obj/item/radio/headset/mainship/radio = H.wear_ear
+		radio.update_minimap_icon()
 
 /datum/squad/proc/promote_leader(mob/living/carbon/human/H)
 	if(squad_leader)
@@ -330,6 +332,9 @@
 	squad_leader.hud_set_job(faction)
 	squad_leader.update_inv_head()
 	squad_leader.update_inv_wear_suit()
+	if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/))
+		var/obj/item/radio/headset/mainship/radio = squad_leader.wear_ear
+		radio.update_minimap_icon()
 	to_chat(squad_leader, "<font size='3' color='blue'>You're now the Squad Leader for [src]!</font>")
 
 

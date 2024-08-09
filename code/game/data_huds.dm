@@ -606,6 +606,8 @@
 			IMG.color = squad_color
 			holder.overlays += IMG
 			holder.overlays += image('icons/mob/hud/job.dmi', src, "[rank]")
+			if(assigned_squad.squad_leader == src)
+				holder.overlays += image('icons/mob/hud/job.dmi', src, "leader_trim")
 		var/fireteam = wear_id?.assigned_fireteam
 		if(fireteam)
 			var/image/IMG2 = image('icons/mob/hud/job.dmi', src, "fireteam_[fireteam]")

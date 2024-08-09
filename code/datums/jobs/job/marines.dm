@@ -376,11 +376,8 @@ You are also in charge of communicating with command and letting them know about
 		return
 	if(!new_human.assigned_squad)
 		return
-	if(new_human.assigned_squad.squad_leader != new_human)
-		if(new_human.assigned_squad.squad_leader)
-			new_human.assigned_squad.demote_leader()
+	if(!new_human.assigned_squad.squad_leader)
 		new_human.assigned_squad.promote_leader(new_human)
-
 
 /datum/job/terragov/squad/vatgrown
 	title = SQUAD_MARINE
