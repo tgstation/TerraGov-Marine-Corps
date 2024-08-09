@@ -55,7 +55,7 @@
 	has_sensor = 2
 	siemens_coefficient = 0.9
 	attachments_allowed = list(/obj/item/armor_module/storage/uniform/webbing/erp)
-	starting_attachments = /obj/item/armor_module/storage/uniform/webbing/erp
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/webbing/erp)
 
 /obj/item/clothing/under/rank/head_of_personnel
 	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."

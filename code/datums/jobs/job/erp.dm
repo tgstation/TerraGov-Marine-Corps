@@ -45,11 +45,11 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine/ap, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine/ap, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/plush/gnome, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/plush/rouny, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/bikehorn, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/plush/gnome, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/plush/rouny, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/bikehorn, SLOT_IN_ACCESSORY)
 
 /datum/job/erp/masterprankster
 	title = "ERP Master Prankster"
@@ -82,11 +82,11 @@
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/plasma, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/plasma, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/plush/gnome, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/plush/rouny, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/bikehorn, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/plush/gnome, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/plush/rouny, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/bikehorn, SLOT_IN_ACCESSORY)
 
 /datum/job/erp/boobookisser
 	title = "ERP Boo-boo Kisser"
@@ -111,11 +111,11 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine/ap, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine/ap, SLOT_IN_BACKPACK)
 
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/plush/gnome, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/plush/rouny, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/bikehorn, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/plush/gnome, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/plush/rouny, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/bikehorn, SLOT_IN_ACCESSORY)
 
 /datum/job/erp/piethrower
 	title = "ERP Pie thrower"
@@ -161,8 +161,8 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_R_POUCH)
 
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/plush/gnome, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/plush/rouny, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/toy/bikehorn, SLOT_IN_SUIT)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/plush/gnome, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/plush/rouny, SLOT_IN_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/toy/bikehorn, SLOT_IN_ACCESSORY)
