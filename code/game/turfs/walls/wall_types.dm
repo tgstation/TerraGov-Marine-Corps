@@ -273,11 +273,24 @@
 //	icon_state = "title_holiday"
 	layer = FLY_LAYER
 	pixel_x = -64
+	var/total_titles = 35 //<--- just change this if adding images etc
+	var/title_num = 0 //do not change this
 
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
-	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,35)]"
+	//random title as starting point so it isnt choking every time you see it.
+	icon_state = "title_painting[rand(0,total_titles)]"
+	addtimer(CALLBACK(src, PROC_REF(randomtitle)), 1 MINUTES)
+
+/turf/closed/wall/indestructible/splashscreen/proc/randomtitle()
+	icon_state = "title_painting[title_num]" //sets the title to the title_num here
+	//preps the next title below.
+	if(icon_state == "title_painting[total_titles]")
+		title_num == 0 //put to 0 if we saw the last image instead of going to the shadow realm.
+	else
+		title_num += 1 //sets the number for the next image cycle to have
+	update_icon()
+	addtimer(CALLBACK(src, PROC_REF(randomtitle)), 1 MINUTES)
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
