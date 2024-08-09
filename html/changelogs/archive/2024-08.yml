@@ -56,3 +56,8 @@
   - bugfix: fixed barricade decon dropping incorrect quantities of mats
   Runian:
   - bugfix: Resin silos now grant their spawned minions the correct hive number.
+2024-08-09:
+  Lumipharon:
+  - bugfix: fixed AI mobs getting stuck in place for no reason
+  - bugfix: fixed AI mobs not attacking their target or doing anything at all, if
+      on the same tile as their target
