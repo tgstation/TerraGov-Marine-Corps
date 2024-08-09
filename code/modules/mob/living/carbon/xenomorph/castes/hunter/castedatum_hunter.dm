@@ -151,7 +151,7 @@
 	gib_anim = "Assassin Hunter Gibs"
 	gib_flick = "Assassin Hunter Gibbed"
 	upgrade = XENO_UPGRADE_BASETYPE
-	caste_desc = "A fast, powerful front line combatant, it's claws are stained with blood."
+	caste_desc = "A fast, creeping death, light faintly shimmers on it's strange, light-bending carapace."
 
 	// *** Speed *** //
 	speed = -1.6
@@ -179,8 +179,8 @@
 /datum/xeno_caste/hunter/assassin/primordial
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_PRIMO
-	caste_desc = "A fast, powerful front line combatant, it's claws are stained with blood. The shadows seem to cling to it."
-	primordial_message = "A claw in your back, a knife in your throat, that's all it takes to end a life, and they will never see it coming."
+	caste_desc = "A fast, creeping death, light faintly shimmers on it's strange, light-bending carapace. Shadows around seem to distort and cling to it."
+	primordial_message = "They won't see us coming until it's too late. Let the slaughter begin."
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
