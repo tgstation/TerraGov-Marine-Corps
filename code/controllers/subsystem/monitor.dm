@@ -38,6 +38,8 @@ SUBSYSTEM_DEF(monitor)
 	var/normal_T2 = 0
 	var/list/miniguns_in_use = list()
 	var/list/sadar_in_use = list()
+	var/list/zx_in_use = list()
+	var/list/amr_in_use = list()
 	var/list/b18_in_use = list()
 	var/list/b17_in_use = list()
 
@@ -98,6 +100,8 @@ SUBSYSTEM_DEF(monitor)
 			. += (xeno_job.total_positions - xeno_job.current_positions) * BURROWED_LARVA_WEIGHT
 			. += length(stats.miniguns_in_use) * MINIGUN_PRICE * REQ_POINTS_WEIGHT
 			. += length(stats.sadar_in_use) * SADAR_PRICE * REQ_POINTS_WEIGHT
+			. += length(stats.zx_in_use) * ZX_PRICE * REQ_POINTS_WEIGHT
+			. += length(stats.amr_in_use) * AMR_PRICE * REQ_POINTS_WEIGHT
 			. += length(stats.b17_in_use) * B17_PRICE * REQ_POINTS_WEIGHT
 			. += length(stats.b18_in_use) * B18_PRICE * REQ_POINTS_WEIGHT
 			. += length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]) * SPAWNING_POOL_WEIGHT
