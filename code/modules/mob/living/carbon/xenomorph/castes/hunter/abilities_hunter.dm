@@ -795,7 +795,7 @@
 	)
 	disable_on_obj_slash = FALSE
 	disable_on_mob_slash = FALSE
-	sneak_attack_armor_pen = 20
+	sneak_attack_armor_pen = 30
 	pounce_break_stealth = FALSE
 	pounce_hit_break_stealth = TRUE
 
