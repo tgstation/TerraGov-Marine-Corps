@@ -8983,6 +8983,10 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/valhalla)
+"mNo" = (
+/obj/machinery/vending/valhalla_reqtorio,
+/turf/open/floor/plating,
+/area/centcom/valhalla)
 "mOd" = (
 /obj/structure/sign/nosmoking_1,
 /obj/machinery/newscaster{
@@ -20540,7 +20544,7 @@ wlz
 gFO
 xOn
 boq
-boq
+mNo
 boq
 nUd
 aMq
