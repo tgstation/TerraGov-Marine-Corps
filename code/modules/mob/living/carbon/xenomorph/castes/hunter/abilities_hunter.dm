@@ -220,7 +220,6 @@
 		to_chat(owner, span_xenodanger("We strike our death mark with a [flavour], calculated strike."))
 		staggerslow_stacks *= 2
 		paralyzesecs *= 2
-		damage *= 2
 	target.adjust_stagger(staggerslow_stacks SECONDS)
 	target.add_slowdown(staggerslow_stacks)
 	target.ParalyzeNoChain(paralyzesecs SECONDS)
@@ -434,6 +433,7 @@
 	var/require_los = TRUE
 	var/timeout = -1
 	var/warntarget = FALSE
+	var/chargeup = -1
 
 /datum/action/ability/activable/xeno/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -477,6 +477,10 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	X.face_atom(A) //Face towards the target so we don't look silly
+
+	if(chargeup != -1)
+		if(!do_after(X, chargeup, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC))
+			return
 
 	if(require_los)
 		if(!line_of_sight(X, A)) //Need line of sight.
@@ -821,6 +825,7 @@
 	require_los = FALSE
 	timeout = 15 SECONDS
 	warntarget = TRUE
+	chargeup = 2 SECONDS
 
 // ***************************************
 // *********** Displacement

@@ -163,7 +163,7 @@
 	// *** Health *** //
 	max_health = 200
 
-	stealth_break_threshold = 30
+	stealth_break_threshold = 25
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
