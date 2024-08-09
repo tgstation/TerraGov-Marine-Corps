@@ -361,6 +361,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
 			else if(ISDIAGONALDIR(step_dir))
 				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown //Not perfect but good enough
+				mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))
 			return
 		if(prob(sidestep_prob))
 			step_dir = pick(LeftAndRightOfDir(get_dir(mob_parent, atom_to_walk_to)))
@@ -369,6 +370,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
 			else if(ISDIAGONALDIR(step_dir))
 				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
+				mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))
 		return
 	if(get_dist(mob_parent, atom_to_walk_to) < distance_to_maintain) //We're too close, back it up
 		step_dir = get_dir(atom_to_walk_to, mob_parent)
@@ -384,3 +386,4 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 			mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
 	else if(ISDIAGONALDIR(step_dir))
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
+	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))
