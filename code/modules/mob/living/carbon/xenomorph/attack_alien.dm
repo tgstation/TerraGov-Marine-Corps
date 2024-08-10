@@ -196,8 +196,6 @@
 	if (xeno_attacker.fortify || xeno_attacker.behemoth_charging)
 		return FALSE
 
-	SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage_amount, xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier)
-
 	switch(xeno_attacker.a_intent)
 		if(INTENT_HELP)
 			if(on_fire)
