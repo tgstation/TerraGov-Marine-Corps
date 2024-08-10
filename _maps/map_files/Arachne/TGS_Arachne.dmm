@@ -28408,6 +28408,7 @@
 	dir = 8
 	},
 /obj/effect/ai_node,
+/obj/item/plantable_flag,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/numbertwobunks)
 "xAU" = (

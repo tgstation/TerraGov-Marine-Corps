@@ -106,7 +106,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		QDEL_NULL(stored)
 	return ..()									// then go ahead and delete the pipe_cleaner
 
-/obj/structure/pipe_cleaner/deconstruct(disassembled = TRUE)
+/obj/structure/pipe_cleaner/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		var/turf/T = get_turf(loc)
 		if(T)

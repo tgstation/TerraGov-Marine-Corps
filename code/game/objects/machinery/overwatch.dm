@@ -395,7 +395,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					return
 				var/input = tgui_input_text(operator, "Please write a message to announce to the squad leader:", "SL Message", max_length = MAX_COMMAND_MESSAGE_LENGTH)
 				if(input)
-					TIMER_COOLDOWN_START(operator, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+					TIMER_COOLDOWN_START(operator, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
 					message_member(current_squad.squad_leader, input, operator)
 					if(issilicon(operator))
 						to_chat(operator, span_boldnotice("Message sent to Squad Leader [current_squad.squad_leader] of squad '[current_squad]'."))
@@ -828,7 +828,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				return
 			var/input = tgui_input_text(source, "Please write a message to announce to this marine:", "CIC Message", max_length = MAX_COMMAND_MESSAGE_LENGTH)
 			message_member(human_target, input, source)
-			TIMER_COOLDOWN_START(operator, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+			TIMER_COOLDOWN_START(operator, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
 		if(ASL)
 			if(human_target == human_target.assigned_squad.squad_leader)
 				human_target.assigned_squad.demote_leader()
@@ -860,7 +860,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					continue
 				message_member(target, input, source)
 			message_member(source, input, source)
-			TIMER_COOLDOWN_START(operator, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+			TIMER_COOLDOWN_START(operator, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
 		if(SQUAD_ACTIONS)
 			choice = show_radial_menu(source, turf_target, squad_radial_options, null, 48, null, FALSE, TRUE)
 			var/datum/squad/chosen_squad = squad_select(source, turf_target)
@@ -872,7 +872,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					var/input = tgui_input_text(source, "Please write a message to announce to the squad:", "Squad Message", max_length = MAX_COMMAND_MESSAGE_LENGTH)
 					if(input)
 						chosen_squad.message_squad(input, source)
-						TIMER_COOLDOWN_START(operator, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+						TIMER_COOLDOWN_START(operator, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
 				if(SWITCH_SQUAD_NEAR)
 					for(var/mob/living/carbon/human/target in GLOB.human_mob_list)
 						if(!target.faction == faction || get_dist(target, turf_target) > 9)
@@ -960,7 +960,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(src, span_warning("You cannot give an order while muted."))
 		return
 
-	if(command_aura_cooldown)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_SKILL_ORDERS))
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 
@@ -972,7 +972,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if(!command_aura)
 			return
 
-	if(command_aura_cooldown)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_SKILL_ORDERS))
 		to_chat(src, span_warning("You have recently given an order. Calm down."))
 		return
 
@@ -980,7 +980,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 	var/aura_strength = skills.getRating(SKILL_LEADERSHIP) - 1
 	var/aura_target = pick_order_target()
-	SSaura.add_emitter(aura_target, command_aura, aura_strength + 4, aura_strength, 30 SECONDS, faction)
+	SSaura.add_emitter(aura_target, command_aura, aura_strength + 4, aura_strength, SKILL_ORDER_DURATION, faction)
 
 	var/message = ""
 	switch(command_aura)
@@ -1000,20 +1000,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			say(message)
 			add_emote_overlay(focus)
 
-	command_aura_cooldown = addtimer(CALLBACK(src, PROC_REF(end_command_aura_cooldown)), 45 SECONDS)
-
-	update_action_buttons()
-
 ///Choose what we're sending a buff order through
 /mob/living/carbon/human/proc/pick_order_target()
 	//If we're in overwatch, use the camera eye
 	if(istype(remote_control, /mob/camera/aiEye/remote/hud/overwatch))
 		return remote_control
 	return src
-
-/mob/living/carbon/human/proc/end_command_aura_cooldown()
-	command_aura_cooldown = null
-	update_action_buttons()
 
 /datum/action/skill/issue_order
 	name = "Issue Order"
@@ -1022,10 +1014,28 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	skill_min = SKILL_LEAD_TRAINED
 	var/order_type = null
 
+/datum/action/skill/issue_order/give_action(mob/M)
+	. = ..()
+	RegisterSignals(M, list(COMSIG_SKILL_ORDER_SENT, COMSIG_SKILL_ORDER_OFF_CD), PROC_REF(update_button_icon))
+
+/datum/action/skill/issue_order/remove_action(mob/M)
+	. = ..()
+	UnregisterSignal(M, list(COMSIG_CIC_ORDER_SENT, COMSIG_CIC_ORDER_OFF_CD))
+
+/datum/action/skill/issue_order/can_use_action()
+	. = ..()
+	if(!.)
+		return
+	if(owner.stat || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_SKILL_ORDERS))
+		return FALSE
+
 /datum/action/skill/issue_order/action_activate()
 	var/mob/living/carbon/human/human = owner
 	if(istype(human))
 		human.issue_order(order_type)
+	TIMER_COOLDOWN_START(owner, COOLDOWN_SKILL_ORDERS, SKILL_ORDER_COOLDOWN)
+	addtimer(CALLBACK(src, PROC_REF(on_cooldown_finish)), SKILL_ORDER_COOLDOWN + 1)
+	SEND_SIGNAL(owner, COMSIG_SKILL_ORDER_SENT)
 
 /datum/action/skill/issue_order/update_button_icon()
 	var/mob/living/carbon/human/human = owner
@@ -1038,10 +1048,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/mob/living/carbon/human/human = owner
 	if(!istype(human))
 		return
-	if(human.command_aura_cooldown)
+	if(TIMER_COOLDOWN_CHECK(human, COOLDOWN_SKILL_ORDERS))
 		button.color = rgb(255,0,0,255)
 	else
 		button.color = rgb(255,255,255,255)
+
+///Lets any other orders know when we're off CD
+/datum/action/skill/issue_order/proc/on_cooldown_finish()
+	SEND_SIGNAL(owner, COMSIG_SKILL_ORDER_OFF_CD, src)
 
 /datum/action/skill/issue_order/move
 	name = "Issue Move Order"
@@ -1078,16 +1092,14 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(orders_visible)
 		orders_visible = FALSE
 		action_icon_state = "show_order"
-		for(var/datum/action/skill/path in owner.actions)
-			if(istype(path, /datum/action/skill/issue_order))
-				path.remove_action(H)
+		for(var/datum/action/skill/issue_order/action in owner.actions)
+			action.hidden = TRUE
 	else
 		orders_visible = TRUE
 		action_icon_state = "hide_order"
-		var/list/subtypeactions = subtypesof(/datum/action/skill/issue_order)
-		for(var/path in subtypeactions)
-			var/datum/action/skill/issue_order/A = new path()
-			A.give_action(H)
+		for(var/datum/action/skill/issue_order/action in owner.actions)
+			action.hidden = FALSE
+	owner.update_action_buttons()
 
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_by_id(id)

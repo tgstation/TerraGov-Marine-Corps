@@ -893,17 +893,17 @@
 /atom/movable/screen/arrow/attack_order_arrow
 	name = "attack order arrow"
 	icon_state = "Attack_arrow"
-	duration = ORDER_DURATION
+	duration = CIC_ORDER_DURATION
 
 /atom/movable/screen/arrow/rally_order_arrow
 	name = "Rally order arrow"
 	icon_state = "Rally_arrow"
-	duration = RALLY_ORDER_DURATION
+	duration = CIC_ORDER_DURATION
 
 /atom/movable/screen/arrow/defend_order_arrow
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
-	duration = ORDER_DURATION
+	duration = CIC_ORDER_DURATION
 
 /atom/movable/screen/arrow/hunter_mark_arrow
 	name = "hunter mark arrow"
