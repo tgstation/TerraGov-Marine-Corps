@@ -9,11 +9,11 @@
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
 	if(X == src || anchored || buckled || X.buckled)
 		return FALSE
-
 	if(!Adjacent(X))
 		return FALSE
-
-	X.start_pulling(src)
+	if(!X.start_pulling(src))
+		return FALSE
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
