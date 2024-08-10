@@ -127,7 +127,7 @@
 	jobtype = /datum/job/erp/piethrower
 
 	belt = /obj/item/storage/belt/grenade
-	suit_store = /obj/item/weapon/gun/grenade_launcher/multinade_launcher/beginner
+	suit_store = /obj/item/weapon/gun/grenade_launcher/multinade_launcher/erp
 	r_store = /obj/item/storage/pouch/grenade
 
 /datum/outfit/job/erp/piethrower/post_equip(mob/living/carbon/human/H, visualsOnly)
