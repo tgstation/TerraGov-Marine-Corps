@@ -1715,7 +1715,7 @@ Imports
 /datum/supply_packs/imports/m412l1
 	name = "PR-412L1 Heavy Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
-	cost = 150
+	cost = 300
 
 /datum/supply_packs/imports/m412l1/ammo
 	name = "PR-412L1 Heavy Pulse Rifle Ammo"
@@ -1819,7 +1819,7 @@ Imports
 /datum/supply_packs/imports/dragunov
 	name = "SVD Dragunov Sniper"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/svd)
-	cost = 150
+	cost = 300
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/dragunov/ammo
