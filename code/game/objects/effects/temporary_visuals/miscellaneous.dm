@@ -196,7 +196,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 /obj/effect/temp_visual/order/rally_order
 	name = "rally order"
 	icon_state_on = "rally"
-	duration = RALLY_ORDER_DURATION
+	duration = CIC_ORDER_DURATION
 
 ///Set visuals for the hud
 /obj/effect/temp_visual/order/proc/set_visuals(faction)

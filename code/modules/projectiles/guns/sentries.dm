@@ -158,6 +158,9 @@
 	icon_state = initial(icon_state) + "_active"
 	active = TRUE
 	playsound(loc, arm_sound, 25, 1, 6)
+	var/obj/item/card/id/user_id = user?.get_idcard(TRUE)
+	if(user_id)
+		sentry_iff_signal = user_id?.iff_signal
 	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
 
 ///Reverts the gun back to it's unarmed state, allowing it to be activated again
@@ -167,23 +170,10 @@
 
 ///Deploys the weapon into a sentry after activation
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/prime()
-	if(!istype(loc, /turf)) //no deploying out of bags or in hand
+	if(!isturf(loc)) //no deploying out of bags or in hand
 		reset()
 		return
-
-	var/obj/deployed_machine
-
-	deployed_machine = new deployable_item(loc, src, usr)//Creates new structure or machine at 'deploy' location and passes on 'item_to_deploy'
-	deployed_machine.setDir(SOUTH)
-
-	deployed_machine.max_integrity = max_integrity //Syncs new machine or structure integrity with that of the item.
-	deployed_machine.obj_integrity = obj_integrity
-
-	deployed_machine.update_appearance()
-
-	forceMove(deployed_machine) //Moves the Item into the machine or structure
-
-	ENABLE_BITFIELD(item_flags, IS_DEPLOYED)
+	do_deploy()
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP

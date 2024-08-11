@@ -576,7 +576,7 @@
 		visible_message(span_danger("[O] plows straight through [src]!"))
 		deconstruct(FALSE)
 
-/obj/structure/rack/deconstruct(disassembled = TRUE)
+/obj/structure/rack/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled && parts && dropmetal)
 		new parts(loc)
 	else if(dropmetal)

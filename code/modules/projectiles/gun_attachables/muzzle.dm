@@ -255,9 +255,5 @@
 
 	lace_deployed = !lace_deployed
 
-	for(var/i in master_gun.actions)
-		var/datum/action/action_to_update = i
-		action_to_update.update_button_icon()
-
 	update_icon()
 	return TRUE

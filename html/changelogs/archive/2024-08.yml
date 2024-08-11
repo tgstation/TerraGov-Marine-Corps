@@ -24,3 +24,35 @@
   - imageadd: rappel system sprite, rappel cord box
   fleewave:
   - qol: All harvester weapons now autoload chems after attacking.
+2024-08-06:
+  Cheese:
+  - balance: Xenos are now able to place acid instantly during prep phase
+  Lumipharon:
+  - bugfix: fixed an issue with airburst projectiles
+  - imageadd: V-31 AP mag has an extra stripe for visual clarity
+  - code_imp: Cleaned up some fullscreen overlay code. In particular this should improve
+      projectile impact screen overlays
+  - bugfix: fixed a few visual issues with action buttons
+  - qol: Projectile hit messages for objects and turfs now only show up if the damage
+      if high enough, reducing lag from chat spam
+  Neocloudy:
+  - rscadd: Health analyzers have new themes for humans and robots.
+  - rscadd: You can now use health analyzers in hand to change the theme back to the
+      original before this PR.
+  - spellcheck: Fixed the treatment advice for using trauma kits.
+  - bugfix: Various fixes to health analyzer tooltips.
+  RipGrayson:
+  - bugfix: Fixed a window frame going invisible.
+  YehnBeep:
+  - bugfix: Fixed looping power issue with the SMES units on the Pillar of Spring.
+  yyzsong:
+  - spellcheck: the meatball emoji is now named meatball
+2024-08-08:
+  Lumipharon:
+  - admin: 'Campaign: Added a team shuffle button to the campaign panel'
+  - rscadd: Added deployable flags. Defend the colours!
+  - code_imp: Cleaned up some deployable component code
+  - bugfix: fixed some fullscreen overlays not working
+  - bugfix: fixed barricade decon dropping incorrect quantities of mats
+  Runian:
+  - bugfix: Resin silos now grant their spawned minions the correct hive number.

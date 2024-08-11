@@ -219,9 +219,9 @@
 
 /obj/structure/window_frame/junk_frame
 	icon = 'icons/obj/smooth_objects/junk_window_frame.dmi'
-	icon_state = "chigusa_wall-0"
-	base_icon_state = "chigusa_wall"
-	basestate = "chigusa_wall"
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+	basestate = "col_window_frame"
 
 /obj/structure/window_frame/urban
 	icon = 'icons/obj/smooth_objects/urban_window_frame.dmi'
