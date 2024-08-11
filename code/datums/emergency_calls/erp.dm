@@ -1,7 +1,6 @@
 /datum/emergency_call/erp
 	name = "Emergency Response Pranksters"
-	base_probability = 15
-	alignement_factor = -1
+	base_probability = 0
 
 /datum/emergency_call/erp/print_backstory(mob/living/carbon/human/H)
 	to_chat(H, "<B>You are a prankster, of the Emergency Response Pranksters, a dedicated responder to whatever situation needs entertainment</b>")
