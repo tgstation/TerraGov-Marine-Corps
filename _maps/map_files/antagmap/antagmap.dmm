@@ -8757,7 +8757,30 @@
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicateport)
 "Vk" = (
-/obj/structure/patrol_point/tgmc_13,
+/obj/structure/drop_pod_launcher,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
+/obj/structure/droppod,
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
@@ -9294,12 +9317,6 @@
 /obj/item/clothing/head/collectable/welding,
 /turf/open/floor/grayscale/round/black,
 /area/riptide/inside/syndicategen)
-"XT" = (
-/obj/structure/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
 "XW" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -18023,7 +18040,7 @@ tY
 tT
 fh
 PE
-Vk
+ny
 Go
 "}
 (89,1,1) = {"
@@ -18118,7 +18135,7 @@ tY
 tT
 qB
 ny
-XT
+ny
 Go
 "}
 (90,1,1) = {"
@@ -18213,7 +18230,7 @@ aF
 tT
 ny
 ny
-ny
+Vk
 Go
 "}
 (91,1,1) = {"
