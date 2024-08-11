@@ -200,7 +200,7 @@
 			qdel(src)
 			return
 	else if(isobj(target) && !istype(target, /obj/effect/xenomorph/firenado))
-		if(!istype(target, /obj/structure/door/resin) && !istype(target, /obj/structure/xeno))
+		if(!istype(target, /obj/structure/mineral_door/resin) && !istype(target, /obj/structure/xeno))
 			var/obj/object = target
 			object.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
 			qdel(src)

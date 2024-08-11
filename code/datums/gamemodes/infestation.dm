@@ -25,7 +25,7 @@
 	for(var/turf/T AS in GLOB.xeno_resin_wall_turfs)
 		T.ChangeTurf(/turf/closed/wall/resin/regenerating, T.type)
 	for(var/i in GLOB.xeno_resin_door_turfs)
-		new /obj/structure/door/resin(i)
+		new /obj/structure/mineral_door/resin(i)
 	for(var/i in GLOB.xeno_tunnel_spawn_turfs)
 		var/obj/structure/xeno/tunnel/new_tunnel = new /obj/structure/xeno/tunnel(i, XENO_HIVE_NORMAL)
 		new_tunnel.name = "[get_area_name(new_tunnel)] tunnel"
