@@ -225,7 +225,7 @@
 	registered_name = CAPTAIN
 	assignment = CAPTAIN
 	access = ALL_MARINE_ACCESS
-	iff_signal = NTC_LOYALIST_IFF
+	iff_signal = TGMC_LOYALIST_IFF
 
 
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)
@@ -248,7 +248,7 @@
 	desc = "A marine dog tag."
 	icon_state = "dogtag"
 	worn_icon_state = "dogtag"
-	iff_signal = NTC_LOYALIST_IFF
+	iff_signal = TGMC_LOYALIST_IFF
 	var/dogtag_taken = FALSE
 
 /obj/item/card/id/dogtag/update_icon_state()

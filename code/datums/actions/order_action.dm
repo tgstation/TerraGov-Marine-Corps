@@ -45,7 +45,7 @@
 		return FALSE
 
 ///Print order visual to all marines squad hud and give them an arrow to follow the waypoint
-/datum/action/innate/order/proc/send_order(atom/target, datum/squad/squad, faction = FACTION_NTC)
+/datum/action/innate/order/proc/send_order(atom/target, datum/squad/squad, faction = FACTION_TERRAGOV)
 	if(!can_use_action())
 		return
 	to_chat(owner ,span_ordercic("You ordered marines to [verb_name] [get_area(target.loc)]!"))
@@ -86,7 +86,7 @@
 		return
 	var/hud_type
 	switch(faction)
-		if(FACTION_NTC)
+		if(FACTION_TERRAGOV)
 			hud_type = DATA_HUD_SQUAD_TERRAGOV
 		if(FACTION_SOM)
 			hud_type = DATA_HUD_SQUAD_SOM

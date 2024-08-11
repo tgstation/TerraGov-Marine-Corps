@@ -4,7 +4,7 @@
 	round_type_flags = MODE_LATE_OPENING_SHUTTER_TIMER|MODE_TWO_HUMAN_FACTIONS|MODE_HUMAN_ONLY
 	shutters_drop_time = 3 MINUTES
 	xeno_abilities_flags = ABILITY_CRASH
-	factions = list(FACTION_NTC, FACTION_SOM)
+	factions = list(FACTION_TERRAGOV, FACTION_SOM)
 	valid_job_types = list(
 		/datum/job/terragov/squad/engineer = 8,
 		/datum/job/terragov/squad/corpsman = 8,
@@ -35,21 +35,21 @@
 
 //sets NTC and SOM squads
 /datum/game_mode/hvh/set_valid_squads()
-	SSjob.active_squads[FACTION_NTC] = list()
+	SSjob.active_squads[FACTION_TERRAGOV] = list()
 	SSjob.active_squads[FACTION_SOM] = list()
 	for(var/key in SSjob.squads)
 		var/datum/squad/squad = SSjob.squads[key]
-		if(squad.faction == FACTION_NTC || squad.faction == FACTION_SOM) //We only want Marine and SOM squads, future proofs if more faction squads are added
+		if(squad.faction == FACTION_TERRAGOV || squad.faction == FACTION_SOM) //We only want Marine and SOM squads, future proofs if more faction squads are added
 			SSjob.active_squads[squad.faction] += squad
 	return TRUE
 
 /datum/game_mode/hvh/get_joinable_factions(should_look_balance)
 	if(should_look_balance)
-		if(length(GLOB.alive_human_list_faction[FACTION_NTC]) > length(GLOB.alive_human_list_faction[FACTION_SOM]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+		if(length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) > length(GLOB.alive_human_list_faction[FACTION_SOM]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
 			return list(FACTION_SOM)
-		if(length(GLOB.alive_human_list_faction[FACTION_SOM]) > length(GLOB.alive_human_list_faction[FACTION_NTC]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
-			return list(FACTION_NTC)
-	return list(FACTION_NTC, FACTION_SOM)
+		if(length(GLOB.alive_human_list_faction[FACTION_SOM]) > length(GLOB.alive_human_list_faction[FACTION_TERRAGOV]) * MAX_UNBALANCED_RATIO_TWO_HUMAN_FACTIONS)
+			return list(FACTION_TERRAGOV)
+	return list(FACTION_TERRAGOV, FACTION_SOM)
 
 /datum/game_mode/hvh/announce_round_stats()
 	//sets up some stats which are added if applicable
@@ -58,26 +58,26 @@
 	var/tgmc_accuracy_stat
 	var/som_accuracy_stat
 
-	if(GLOB.round_statistics.total_human_deaths[FACTION_NTC])
-		if(GLOB.round_statistics.total_human_revives[FACTION_NTC])
-			tgmc_survival_stat = "[GLOB.round_statistics.total_human_revives[FACTION_NTC]] were revived, for a [(GLOB.round_statistics.total_human_revives[FACTION_NTC] / max(GLOB.round_statistics.total_human_deaths[FACTION_NTC], 1)) * 100]% revival rate and a [((GLOB.round_statistics.total_humans_created[FACTION_NTC] + GLOB.round_statistics.total_human_revives[FACTION_NTC] - GLOB.round_statistics.total_human_deaths[FACTION_NTC]) / GLOB.round_statistics.total_humans_created[FACTION_NTC]) * 100]% survival rate."
+	if(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV])
+		if(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV])
+			tgmc_survival_stat = "[GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV]] were revived, for a [(GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] / max(GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV], 1)) * 100]% revival rate and a [((GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV] + GLOB.round_statistics.total_human_revives[FACTION_TERRAGOV] - GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]) / GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]) * 100]% survival rate."
 		else
-			tgmc_survival_stat = "None were revived, for a [((GLOB.round_statistics.total_humans_created[FACTION_NTC] - GLOB.round_statistics.total_human_deaths[FACTION_NTC]) / GLOB.round_statistics.total_humans_created[FACTION_NTC]) * 100]% survival rate."
+			tgmc_survival_stat = "None were revived, for a [((GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV] - GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV]) / GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]) * 100]% survival rate."
 	if(GLOB.round_statistics.total_human_deaths[FACTION_SOM])
 		if(GLOB.round_statistics.total_human_revives[FACTION_SOM])
 			som_survival_stat = "[GLOB.round_statistics.total_human_revives[FACTION_SOM]] were revived, for a [(GLOB.round_statistics.total_human_revives[FACTION_SOM] / max(GLOB.round_statistics.total_human_deaths[FACTION_SOM], 1)) * 100]% revival rate and a [((GLOB.round_statistics.total_humans_created[FACTION_SOM] + GLOB.round_statistics.total_human_revives[FACTION_SOM] - GLOB.round_statistics.total_human_deaths[FACTION_SOM]) / GLOB.round_statistics.total_humans_created[FACTION_SOM]) * 100]% survival rate."
 		else
 			som_survival_stat = "None were revived, for a [((GLOB.round_statistics.total_humans_created[FACTION_SOM] - GLOB.round_statistics.total_human_deaths[FACTION_SOM]) / GLOB.round_statistics.total_humans_created[FACTION_SOM]) * 100]% survival rate."
-	if(GLOB.round_statistics.total_projectile_hits[FACTION_SOM] && GLOB.round_statistics.total_projectiles_fired[FACTION_NTC])
-		tgmc_accuracy_stat = ", for an accuracy of [(GLOB.round_statistics.total_projectile_hits[FACTION_SOM] / GLOB.round_statistics.total_projectiles_fired[FACTION_NTC]) * 100]%!."
-	if(GLOB.round_statistics.total_projectile_hits[FACTION_NTC] && GLOB.round_statistics.total_projectiles_fired[FACTION_SOM])
-		som_accuracy_stat = ", for an accuracy of [(GLOB.round_statistics.total_projectile_hits[FACTION_NTC] / GLOB.round_statistics.total_projectiles_fired[FACTION_SOM]) * 100]%!."
+	if(GLOB.round_statistics.total_projectile_hits[FACTION_SOM] && GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV])
+		tgmc_accuracy_stat = ", for an accuracy of [(GLOB.round_statistics.total_projectile_hits[FACTION_SOM] / GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV]) * 100]%!."
+	if(GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] && GLOB.round_statistics.total_projectiles_fired[FACTION_SOM])
+		som_accuracy_stat = ", for an accuracy of [(GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] / GLOB.round_statistics.total_projectiles_fired[FACTION_SOM]) * 100]%!."
 
 	var/list/dat = list({"[span_round_body("The end of round statistics are:")]<br>
-		<br>[GLOB.round_statistics.total_humans_created[FACTION_NTC]] NTC personel deployed for the patrol, and [GLOB.round_statistics.total_human_deaths[FACTION_NTC] ? GLOB.round_statistics.total_human_deaths[FACTION_NTC] : "no"] NTC personel were killed. [tgmc_survival_stat ? tgmc_survival_stat : ""]
+		<br>[GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]] NTC personel deployed for the patrol, and [GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] ? GLOB.round_statistics.total_human_deaths[FACTION_TERRAGOV] : "no"] NTC personel were killed. [tgmc_survival_stat ? tgmc_survival_stat : ""]
 		<br>[GLOB.round_statistics.total_humans_created[FACTION_SOM]] SOM personel deployed for the patrol, and [GLOB.round_statistics.total_human_deaths[FACTION_SOM] ? GLOB.round_statistics.total_human_deaths[FACTION_SOM] : "no"] SOM personel were killed. [som_survival_stat ? som_survival_stat : ""]
-		<br>The NTC fired [GLOB.round_statistics.total_projectiles_fired[FACTION_NTC] ? GLOB.round_statistics.total_projectiles_fired[FACTION_NTC] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_SOM] ? GLOB.round_statistics.total_projectile_hits[FACTION_SOM] : "No"] projectiles managed to hit members of the SOM[tgmc_accuracy_stat ? tgmc_accuracy_stat : "."]
-		<br>The SOM fired [GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] ? GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_NTC] ? GLOB.round_statistics.total_projectile_hits[FACTION_NTC] : "No"] projectiles managed to hit members of the NTC[som_accuracy_stat ? som_accuracy_stat : "."]
+		<br>The NTC fired [GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectiles_fired[FACTION_TERRAGOV] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_SOM] ? GLOB.round_statistics.total_projectile_hits[FACTION_SOM] : "No"] projectiles managed to hit members of the SOM[tgmc_accuracy_stat ? tgmc_accuracy_stat : "."]
+		<br>The SOM fired [GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] ? GLOB.round_statistics.total_projectiles_fired[FACTION_SOM] : "no"] projectiles. [GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] ? GLOB.round_statistics.total_projectile_hits[FACTION_TERRAGOV] : "No"] projectiles managed to hit members of the NTC[som_accuracy_stat ? som_accuracy_stat : "."]
 		"})
 	if(GLOB.round_statistics.grenades_thrown)
 		dat += "[GLOB.round_statistics.grenades_thrown] grenades were detonated."
@@ -110,7 +110,7 @@
 				continue
 			if(H.faction == FACTION_SOM)
 				som_alive += H
-			else if(H.faction == FACTION_NTC)
+			else if(H.faction == FACTION_TERRAGOV)
 				tgmc_alive += H
 	//counts the dead marines and SOM
 	for(var/i in GLOB.dead_human_list)
@@ -119,7 +119,7 @@
 			continue
 		if(H.faction == FACTION_SOM)
 			som_dead += H
-		else if(H.faction == FACTION_NTC)
+		else if(H.faction == FACTION_TERRAGOV)
 			tgmc_dead += H
 
 	return list(som_alive, tgmc_alive, som_dead, tgmc_dead)
@@ -192,7 +192,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 ///Returns a message to play to a mob when they deploy into the AO
 /datum/game_mode/hvh/proc/get_deploy_point_message(mob/living/user)
 	switch(user.faction)
-		if(FACTION_NTC)
+		if(FACTION_TERRAGOV)
 			. = "Stick together and achieve those objectives marines. Good luck."
 		if(FACTION_SOM)
 			. = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"

@@ -79,7 +79,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	unlock_cost = 800
 
 /datum/perk/shield_overclock/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
-	if(owner_stats.faction == FACTION_NTC)
+	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/light_shield/overclocked, /datum/loadout_item/suit_slot/light_shield, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/medium_shield/overclocked, /datum/loadout_item/suit_slot/medium_shield, jobs_supported)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/heavy_shield/overclocked, /datum/loadout_item/suit_slot/heavy_shield, jobs_supported)
@@ -130,7 +130,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	owner.maxHealth -= health_mod
 
 /datum/perk/trait/hp_boost/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
-	if(owner_stats.faction == FACTION_NTC)
+	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/heavy_tyr/universal, /datum/loadout_item/suit_slot/heavy_tyr, SQUAD_MARINE)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/universal, list(SQUAD_LEADER, FIELD_COMMANDER), owner)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/universal, list(SQUAD_LEADER, FIELD_COMMANDER), owner)
@@ -312,7 +312,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/rifles/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	if(owner_stats.faction == FACTION_NTC)
+	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_rifle/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_rifle, SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_carbine, SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/scout_carbine/enhanced, /datum/loadout_item/suit_store/main_gun/marine/scout_carbine, SQUAD_MARINE)
@@ -355,7 +355,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/smgs/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	if(owner_stats.faction == FACTION_NTC)
+	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/marine/standard_smg, SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/marine/smg_and_shield/enhanced, /datum/loadout_item/suit_store/main_gun/marine/smg_and_shield, SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/corpsman/standard_smg/enhanced, /datum/loadout_item/suit_store/main_gun/corpsman/standard_smg, SQUAD_CORPSMAN)
@@ -386,7 +386,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/heavy_weapons/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	if(owner_stats.faction == FACTION_NTC)
+	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/back/tgmc_heam_rocket_bag, SQUAD_MARINE, owner, 0)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_cannon, SQUAD_MARINE, owner, 0)
 	else if(owner_stats.faction == FACTION_SOM)
@@ -429,7 +429,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/medical/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
-	if(owner_stats.faction == FACTION_NTC)
+	if(owner_stats.faction == FACTION_TERRAGOV)
 		for(var/job_type in owner_stats.loadouts)
 			owner_stats.replace_loadout_option(/datum/loadout_item/r_pocket/standard_first_aid/standard_improved, /datum/loadout_item/r_pocket/standard_first_aid, job_type)
 			owner_stats.replace_loadout_option(/datum/loadout_item/l_pocket/standard_first_aid/standard_improved, /datum/loadout_item/l_pocket/standard_first_aid, job_type)

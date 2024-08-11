@@ -75,7 +75,7 @@
 	desc = "An ominous red beacon, used to provide precision guidance to powerful orbital weapon systems."
 	icon = 'icons/obj/items/beacon.dmi'
 	icon_state = "motion_1"
-	faction = FACTION_NTC
+	faction = FACTION_TERRAGOV
 	density = FALSE
 	///How long the beacon takes to trigger its effect
 	var/beacon_duration = 3 MINUTES

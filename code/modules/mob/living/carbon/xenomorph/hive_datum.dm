@@ -1220,7 +1220,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/corrupted/post_add(mob/living/carbon/xenomorph/X)
 	. = ..()
 	X.grant_language(/datum/language/common)
-	X.AddComponent(/datum/component/xeno_iff, NTC_LOYALIST_IFF)
+	X.AddComponent(/datum/component/xeno_iff, TGMC_LOYALIST_IFF)
 
 /datum/hive_status/corrupted/post_removal(mob/living/carbon/xenomorph/X)
 	. = ..()

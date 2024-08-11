@@ -591,13 +591,13 @@
 /datum/atom_hud/squad_clf
 	hud_icons = list(SQUAD_HUD_CLF, MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 
-/mob/proc/hud_set_job(faction = FACTION_NTC)
+/mob/proc/hud_set_job(faction = FACTION_TERRAGOV)
 	return
 
-/mob/living/carbon/human/hud_set_job(faction = FACTION_NTC)
+/mob/living/carbon/human/hud_set_job(faction = FACTION_TERRAGOV)
 	var/hud_type
 	switch(faction)
-		if(FACTION_NTC)
+		if(FACTION_TERRAGOV)
 			hud_type = SQUAD_HUD_TERRAGOV
 		if(FACTION_SOM)
 			hud_type = SQUAD_HUD_SOM

@@ -28,7 +28,7 @@ GLOBAL_DATUM_INIT(balance, /datum/balance, new())
 	switch(living.faction)
 		if(FACTION_XENO)
 			balance_values["xeno"]++
-		if (FACTION_NTC)
+		if (FACTION_TERRAGOV)
 			balance_values["marine"]++
 		else
 			balance_values["other"]++
@@ -45,7 +45,7 @@ GLOBAL_DATUM_INIT(balance, /datum/balance, new())
 	switch(living.faction)
 		if(FACTION_XENO)
 			balance_values["xeno"]--
-		if (FACTION_NTC)
+		if (FACTION_TERRAGOV)
 			balance_values["marine"]--
 		else
 			balance_values["other"]--

@@ -350,7 +350,7 @@
 	var/obj/item/card/id/modify = null
 	var/screen = 0 //0: main, 1: squad menu
 	///Which faction this computer belongs to
-	var/faction = FACTION_NTC
+	var/faction = FACTION_TERRAGOV
 
 /obj/machinery/computer/squad_changer/attackby(obj/item/I, mob/user, params)
 	. = ..()

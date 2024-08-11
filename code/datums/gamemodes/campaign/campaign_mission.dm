@@ -164,14 +164,14 @@
 
 ///Sets up the loot tables for this mission, if required
 /datum/campaign_mission/proc/set_loot_tables()
-	if(starting_faction == FACTION_NTC)
+	if(starting_faction == FACTION_TERRAGOV)
 		major_victory_reward_table = GLOB.campaign_tgmc_major_loot
 		minor_victory_reward_table = GLOB.campaign_tgmc_minor_loot
 	else if(starting_faction == FACTION_SOM)
 		major_victory_reward_table = GLOB.campaign_som_major_loot
 		minor_victory_reward_table = GLOB.campaign_som_minor_loot
 
-	if(hostile_faction == FACTION_NTC)
+	if(hostile_faction == FACTION_TERRAGOV)
 		minor_loss_reward_table = GLOB.campaign_tgmc_minor_loot
 		major_loss_reward_table = GLOB.campaign_tgmc_major_loot
 	else if(hostile_faction == FACTION_SOM)
@@ -206,7 +206,7 @@
 /datum/campaign_mission/proc/get_mission_deploy_message(mob/living/user, text_source = "Overwatch", portrait_to_use = GLOB.faction_to_portrait[user.faction], message)
 	if(!message) //overridden by specific missions
 		switch(user.faction)
-			if(FACTION_NTC)
+			if(FACTION_TERRAGOV)
 				message = "Stick together and achieve those objectives marines. Good luck."
 			if(FACTION_SOM)
 				message = "Remember your training marines, show those Terrans the strength of the SOM, glory to Mars!"

@@ -99,7 +99,7 @@
 
 /datum/ammo/mortar/rocket/minelayer/drop_nade(turf/T)
 	var/obj/item/explosive/mine/mine = new /obj/item/explosive/mine(T)
-	mine.deploy_mine(null, NTC_LOYALIST_IFF)
+	mine.deploy_mine(null, TGMC_LOYALIST_IFF)
 
 /datum/ammo/mortar/rocket/smoke
 	///the smoke effect at the point of detonation

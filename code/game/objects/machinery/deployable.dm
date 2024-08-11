@@ -31,7 +31,7 @@
 	prepare_huds()
 	if(istype(deployer))
 		switch (deployer.faction)
-			if(FACTION_NTC)
+			if(FACTION_TERRAGOV)
 				ownerflag = MINIMAP_FLAG_MARINE
 			if(FACTION_SOM)
 				ownerflag = MINIMAP_FLAG_MARINE_SOM
