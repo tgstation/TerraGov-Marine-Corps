@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed kits being consumed on undamaged bodyparts"
-  - bugfix: "fixed an exploit to kit an entire body with one kit"
