@@ -1,0 +1,5 @@
+author: "Koenigsegg"
+delete-after: True
+changes:
+  - rscadd: "Added a valhalla reqtorio vendor"
+  - rscadd: "Added the reqtorio valhalla vendor to the vehicle pit in valhalla"
