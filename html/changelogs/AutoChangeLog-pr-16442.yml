@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - qol: "Xeno fire and wound overlays no longer appear in the right click menu"
