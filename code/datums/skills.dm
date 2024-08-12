@@ -234,20 +234,12 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	medical = SKILL_MEDICAL_NOVICE
 
 /datum/skills/civilian/survivor/master
-<<<<<<< HEAD
-	name = "Overpowered Survivor"
-	firearms = SKILL_FIREARMS_TRAINED
-	medical = SKILL_MEDICAL_TRAINED
-	construction = SKILL_CONSTRUCTION_TRAINED
-	engineer = SKILL_ENGINEER_TRAINED
-=======
 	name = "Survivor"
 	combat = SKILL_COMBAT_DEFAULT
 	medical = SKILL_MEDICAL_EXPERT
 	surgery = SKILL_SURGERY_EXPERT
 	construction = SKILL_CONSTRUCTION_EXPERT
 	engineer = SKILL_ENGINEER_EXPERT
->>>>>>> bd87505cfe879dd82ca4425c26d4174c51690820
 	powerloader = SKILL_POWERLOADER_MASTER
 	police = SKILL_POLICE_FLASH
 	rifles = SKILL_RIFLES_TRAINED
