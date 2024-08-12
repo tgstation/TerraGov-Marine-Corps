@@ -12,7 +12,7 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 8
-	accuracy_malus = 65
+	accuracy_malus = 45
 
 	// *** Speed *** //
 	speed = -0.6
