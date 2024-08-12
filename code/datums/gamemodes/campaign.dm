@@ -228,7 +228,7 @@
 		return list(factions[2], factions[1])
 
 ///Actually swaps the player to the other team, unless balance has been restored
-/datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction, forced = FALSE)
+/datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction, forced = FALSE, fund_bonus = TRUE)
 	if(!user.client)
 		return
 	if(forced)
@@ -245,7 +245,8 @@
 	user.job.add_job_positions(1)
 	qdel(user)
 	var/datum/individual_stats/new_stats = stat_list[new_faction].get_player_stats(ghost)
-	new_stats.give_funds(max(stat_list[new_faction].accumulated_mission_reward * 0.5, 200)) //Added credits for swapping team
+	if(fund_bonus)
+		new_stats.give_funds(max(stat_list[new_faction].accumulated_mission_reward * 0.5, 200)) //Added credits for swapping team
 	player_respawn(ghost) //auto open the respawn screen
 
 ///buffs the weaker team if players don't voluntarily switch
@@ -256,6 +257,21 @@
 
 	var/autobal_num = ROUND_UP((length(GLOB.alive_human_list_faction[autobalance_faction_list[1]]) - length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])) * 0.2)
 	current_mission.spawn_mech(autobalance_faction_list[2], 0, 0, autobal_num, "[autobal_num] additional mechs granted for autobalance")
+
+///Shuffles the teams forcefully
+/datum/game_mode/hvh/campaign/proc/shuffle_teams()
+	var/list/player_list = GLOB.player_list.Copy()
+	player_list = shuffle(player_list)
+	for(var/i = 1 to length(player_list))
+		var/mob/player = player_list[i]
+		var/new_faction_index = (i % 2) + 1
+		var/new_faction = factions[new_faction_index]
+		if(player.faction == new_faction)
+			continue
+		if(ishuman(player))
+			swap_player_team(player, new_faction, TRUE, FALSE)
+		else
+			player.faction = new_faction
 
 //respawn stuff
 

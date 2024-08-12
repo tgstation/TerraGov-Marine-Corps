@@ -57,12 +57,11 @@
 		return
 	disassemble(user)
 
-///Dissassembles the device
-/obj/vehicle/unmanned/deployable/proc/disassemble(mob/user)
-	if(CHECK_BITFIELD(internal_item.item_flags, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "Cannot disassemble")
+/obj/vehicle/unmanned/deployable/disassemble(mob/user)
+	var/obj/item/deployable_vehicle/current_internal_item = get_internal_item()
+	. = ..()
+	if(!.)
 		return
 	if(turret_path)
-		internal_item.stored_turret_type = turret_path
-		internal_item.stored_ammo = current_rounds
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+		current_internal_item?.stored_turret_type = turret_path
+		current_internal_item?.stored_ammo = current_rounds

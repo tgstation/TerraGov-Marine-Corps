@@ -1292,6 +1292,10 @@
 	dir = 4
 	},
 /area/mainship/living/starboard_emb)
+"ajg" = (
+/obj/machinery/loadout_vendor,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "ajD" = (
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
@@ -1347,6 +1351,10 @@
 "ann" = (
 /obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/mainship/cargo,
+/area/mainship/hallways/hangar)
+"anT" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "aop" = (
 /obj/structure/sink{
@@ -2290,6 +2298,13 @@
 "aWH" = (
 /turf/closed/wall/mainship,
 /area/mainship/squads/alpha)
+"aWI" = (
+/obj/machinery/atmospherics/components/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "aWN" = (
 /obj/machinery/marine_selector/clothes/medic,
 /obj/structure/sign/poster{
@@ -11410,6 +11425,10 @@
 	dir = 1
 	},
 /area/mainship/engineering/lower_engineering)
+"iUK" = (
+/obj/machinery/vending/armor_supply,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "iUW" = (
 /turf/open/floor/mainship/floor,
 /area/mainship/living/bridgebunks)
@@ -14744,6 +14763,10 @@
 	dir = 1
 	},
 /area/mainship/command/cic)
+"ofI" = (
+/obj/structure/dropship_equipment/shuttle/rappel_system,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "ofQ" = (
 /obj/docking_port/stationary/supply/vehicle,
 /turf/open/floor/mainship/empty,
@@ -15959,6 +15982,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
+/obj/item/plantable_flag,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "qhN" = (
@@ -18032,6 +18056,11 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/wood,
 /area/mainship/squads/req)
+"txa" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/spare_cord,
+/turf/open/floor/plating,
+/area/mainship/hallways/hangar)
 "txr" = (
 /obj/structure/bed/chair/nometal{
 	dir = 1
@@ -19509,6 +19538,11 @@
 "vSj" = (
 /turf/open/floor/mainship/ai,
 /area/mainship/command/airoom)
+"vSJ" = (
+/obj/machinery/light/mainship,
+/obj/machinery/vending/weapon,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "vSO" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
@@ -20627,6 +20661,10 @@
 /obj/machinery/door/firedoor/mainship,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/bow_hallway)
+"xXY" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "xZq" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -43139,7 +43177,7 @@ blA
 hHM
 sim
 lOP
-uJT
+vSJ
 abR
 abR
 uym
@@ -43396,7 +43434,7 @@ blA
 hHM
 vDT
 lOP
-lvI
+ajg
 abR
 hHj
 ybO
@@ -43653,7 +43691,7 @@ xUV
 ppE
 vDT
 lOP
-lvI
+iUK
 abR
 yes
 gGw
@@ -43903,14 +43941,14 @@ xUV
 ppE
 dbC
 blA
-blA
-blA
+txa
+ofI
 blA
 blA
 blA
 vDT
 qij
-lvI
+anT
 abR
 hnY
 yjZ
@@ -44167,7 +44205,7 @@ blA
 blA
 vDT
 lOP
-lvI
+xXY
 lzj
 lzj
 lzj
@@ -44424,7 +44462,7 @@ tzZ
 tzZ
 eaL
 bPG
-bbo
+aWI
 lzj
 ugw
 srL

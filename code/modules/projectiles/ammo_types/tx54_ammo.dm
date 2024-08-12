@@ -41,7 +41,7 @@
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
 
 /datum/ammo/tx54/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
+	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj.loc
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
 

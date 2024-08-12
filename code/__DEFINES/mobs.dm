@@ -953,6 +953,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"
 #define AURA_HUMAN_FOCUS "focus"
+#define AURA_HUMAN_FLAG "flag"
 
 #define AURA_XENO_BLESSWARDING "Blessing Of Warding"
 #define AURA_XENO_BLESSFRENZY "Blessing Of Frenzy"

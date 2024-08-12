@@ -9669,6 +9669,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
 /area/sulaco/cargo/office)
+"bLY" = (
+/obj/machinery/telecomms/server/presets/delta,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "bMV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
@@ -10188,6 +10192,13 @@
 	},
 /turf/open/floor/plating,
 /area/mainship/command/self_destruct)
+"czf" = (
+/obj/machinery/light/mainship{
+	dir = 8
+	},
+/obj/machinery/vending/MarineMed,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "cAt" = (
 /obj/machinery/atmospherics/pipe/manifold/yellow/hidden{
 	dir = 8
@@ -10455,6 +10466,10 @@
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /turf/open/floor/plating/platebotc,
 /area/sulaco/hydro)
+"cOi" = (
+/obj/machinery/telecomms/server/presets/bravo,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "cOs" = (
 /obj/structure/closet/basketball,
 /turf/open/floor/tile/darkgreen/darkgreen2,
@@ -10593,6 +10608,18 @@
 	dir = 8
 	},
 /area/sulaco/briefing)
+"cWf" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/tadpole{
+	dir = 1;
+	pixel_y = -4
+	},
+/obj/item/spare_cord,
+/obj/structure/table/mainship/nometal,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "cWj" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating,
@@ -11284,10 +11311,6 @@
 /obj/machinery/disposal,
 /turf/open/floor/wood,
 /area/sulaco/cap_office)
-"dRE" = (
-/obj/machinery/telecomms/server/presets/bravo,
-/turf/open/floor/mainship/tcomms,
-/area/sulaco/telecomms)
 "dRH" = (
 /obj/machinery/air_alarm,
 /obj/machinery/light/mainship{
@@ -13285,10 +13308,6 @@
 	dir = 1
 	},
 /area/sulaco/medbay)
-"gtC" = (
-/obj/machinery/telecomms/server/presets/delta,
-/turf/open/floor/mainship/tcomms,
-/area/sulaco/telecomms)
 "guu" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1{
@@ -13791,6 +13810,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/cult,
 /area/sulaco/morgue)
+"hck" = (
+/obj/machinery/vending/marineFood,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "hcB" = (
 /obj/effect/turf_decal/siding{
 	dir = 9
@@ -14121,6 +14144,7 @@
 /area/sulaco/cargo/prep)
 "hwM" = (
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
+/obj/item/plantable_flag,
 /turf/open/floor/wood,
 /area/sulaco/bridge/office)
 "hxe" = (
@@ -15004,6 +15028,10 @@
 /obj/machinery/light/mainship/small,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/lower_maint)
+"ixB" = (
+/obj/machinery/telecomms/server/presets/charlie,
+/turf/open/floor/mainship/tcomms,
+/area/sulaco/telecomms)
 "ixK" = (
 /obj/effect/decal/cleanable/blood/gibs/robot,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -15386,10 +15414,6 @@
 /obj/machinery/suit_storage_unit/standard_unit,
 /turf/open/floor/plating,
 /area/sulaco/maintenance/upperdeck_AIcore_maint)
-"iSE" = (
-/obj/machinery/telecomms/server/presets/charlie,
-/turf/open/floor/mainship/tcomms,
-/area/sulaco/telecomms)
 "iSO" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -22594,12 +22618,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria)
-"rXl" = (
-/obj/machinery/camera/autoname{
-	dir = 4
-	},
-/turf/open/floor/prison/bright_clean,
-/area/sulaco/hangar)
 "rXx" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -22920,6 +22938,17 @@
 	},
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/sulaco/hallway/central_hall3)
+"skn" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/landinglight/tadpole{
+	dir = 1;
+	pixel_y = -4
+	},
+/obj/structure/dropship_equipment/shuttle/rappel_system,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "skx" = (
 /obj/machinery/atmospherics/pipe/simple/cyan/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/yellow/hidden,
@@ -26241,6 +26270,13 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"wqL" = (
+/obj/machinery/camera/autoname{
+	dir = 4
+	},
+/obj/machinery/vending/weapon,
+/turf/open/floor/prison/bright_clean,
+/area/sulaco/hangar)
 "wrd" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -65887,12 +65923,12 @@ aPF
 aPF
 aPF
 aPF
-aPF
-aPF
-aQr
-rXl
-aPF
-aPF
+nav
+hQp
+czf
+wqL
+kgo
+hck
 aPF
 aPF
 aPF
@@ -67951,7 +67987,7 @@ aPZ
 aPZ
 aPZ
 rhc
-qqt
+skn
 aPF
 aPF
 aPF
@@ -68208,7 +68244,7 @@ sMl
 sMl
 sMl
 lMr
-qqt
+cWf
 aPF
 aPF
 aPF
@@ -68873,7 +68909,7 @@ aYM
 bdx
 baz
 qoU
-dRE
+cOi
 bbs
 baz
 aZH
@@ -69130,7 +69166,7 @@ aYM
 jFN
 baz
 bcF
-iSE
+ixB
 bbt
 ulO
 aZI
@@ -69386,7 +69422,7 @@ atn
 aYM
 baz
 baz
-gtC
+bLY
 baz
 baz
 vVS

@@ -321,3 +321,25 @@
   Lumipharon:
   - bugfix: Fixed deploy points and lighting not working correctly in Combat Patrol
       and Sensor Capture
+2024-07-26:
+  Lumipharon:
+  - balance: 'Campaign: TGMC Raiding base no longer allows the beacon to be planted
+      in the captain''s office'
+2024-07-27:
+  PibeCantina:
+  - qol: Neuraline shows up on scanner now
+2024-07-29:
+  Lauwma:
+  - balance: Harvester weapons now apply 5 stacks of fire when loaded with kelotane
+  Lumipharon:
+  - code_imp: Cleaned up some acid code
+  - balance: Plasma SMG scatter increased slightly
+  - balance: Plasma SMG bouncy mode damage decreases slightly for each bounce
+2024-07-31:
+  Lumipharon:
+  - balance: 'Campaign: Heat rockets have slightly more scatter'
+  - balance: Recoilless rifle has -10 scatter instead of -100
+  Notamaniac:
+  - bugfix: Vindicator Minigun Powerpacks won't show up as an error on snow maps anymore
+  Wisemonster:
+  - rscdel: Removed most of the glass panes by the fire range tables in Valhalla

@@ -27,6 +27,10 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	///Distance the current_user can be away from the patient and still get health data.
 	var/track_distance = 3
 
+/obj/item/healthanalyzer/examine(mob/user)
+	. = ..()
+	. += span_notice("You can set \the [src] to use a more accessible theme in your game preferences.")
+
 /obj/item/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
 	. = ..()
 	analyze_vitals(M, user)
@@ -106,7 +110,9 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		"blood_type" = patient.blood_type,
 		"blood_amount" = patient.blood_volume,
 
-		"hugged" = !!(patient.status_flags & XENO_HOST)
+		"hugged" = !!(patient.status_flags & XENO_HOST),
+
+		"accessible_theme" = user.client?.prefs?.accessible_tgui_themes
 	)
 	data["has_unknown_chemicals"] = FALSE
 	var/list/chemicals_lists = list()
@@ -238,7 +244,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		data["revivable_string"] = "Not ready to [organic_patient ? "defibrillate" : "reboot"] - repair damage above [patient.get_death_threshold() / patient.maxHealth * 100 - (organic_patient ? (DEFIBRILLATOR_HEALING_TIMES_SKILL(user.skills.getRating(SKILL_MEDICAL), DEFIBRILLATOR_BASE_HEALING_VALUE)) : 0)]%"
 		data["revivable_boolean"] = FALSE
 
-	// ADVICE
+	// Advice: long list of if() checks incoming, there's really no better way to handle this
 	var/list/advice = list()
 	var/list/temp_advice = list()
 	if(!HAS_TRAIT(patient, TRAIT_UNDEFIBBABLE)) // only show advice at all if the patient is coming back
@@ -256,32 +262,32 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 				"advice" = "Synthetic: Patient does not heal on defibrillation.",
 				"tooltip" = "Synthetics do not heal when being shocked with a defibrillator, meaning they are only revivable over [patient.get_death_threshold() / patient.maxHealth * 100]% health.",
 				"icon" = "robot",
-				"color" = "lime"
+				"color" = "label"
 			))
 			advice += list(list(
 				"advice" = "Synthetic: Patient overheats while lower than [SYNTHETIC_CRIT_THRESHOLD / patient.maxHealth * 100]% health.",
 				"tooltip" = "Synthetics overheat rapidly while their health is lower than [SYNTHETIC_CRIT_THRESHOLD / patient.maxHealth * 100]%. When defibrillating, the patient should be repaired above this threshold to avoid unnecessary burning.",
 				"icon" = "robot",
-				"color" = "lime"
+				"color" = "label"
 			))
 			advice += list(list(
 				"advice" = "Synthetic: Patient does not suffer from brain-death.",
 				"tooltip" = "Synthetics don't expire after 5 minutes of death.",
 				"icon" = "robot",
-				"color" = "lime"
+				"color" = "label"
 			))
 		else if(isrobot(patient))
 			advice += list(list(
 				"advice" = "Combat Robot: Patient can be immediately defibrillated.",
 				"tooltip" = "Combat Robots can be defibrillated regardless of health. It is highly advised to defibrillate them the moment their armor is removed instead of attempting repair.",
 				"icon" = "robot",
-				"color" = "lime"
+				"color" = "label"
 			))
 			advice += list(list(
 				"advice" = "Combat Robot: Patient does not enter critical condition.",
 				"tooltip" = "Combat Robots do not enter critical condition. They will continue operating until death at [patient.get_death_threshold() / patient.maxHealth * 100]% health.",
 				"icon" = "robot",
-				"color" = "lime"
+				"color" = "label"
 			))
 		if(patient.stat == DEAD) // death advice
 			var/dead_color
@@ -316,7 +322,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 		if(patient.getBruteLoss() > 5)
 			if(organic_patient)
 				advice += list(list(
-					"advice" = "Use trauma kits kits or sutures to repair the burned areas.",
+					"advice" = "Use trauma kits or sutures to repair the bruised areas.",
 					"tooltip" = "Advanced trauma kits will heal brute damage, scaling with how proficient you are in the Medical field. Treated wounds slowly heal on their own.",
 					"icon" = "band-aid",
 					"color" = "green"

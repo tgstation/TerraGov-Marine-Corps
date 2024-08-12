@@ -139,6 +139,7 @@
 	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	ability_cost = 0
 	use_state_flags = ABILITY_USE_LYING
+	hidden = TRUE
 	var/overwatch_active = FALSE
 
 /datum/action/ability/xeno_action/watch_xeno/give_action(mob/living/L)
@@ -151,9 +152,6 @@
 		stop_overwatch()
 	UnregisterSignal(L, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_WATCHXENO))
 	return ..()
-
-/datum/action/ability/xeno_action/watch_xeno/should_show()
-	return FALSE // Overwatching now done through hive status UI!
 
 /datum/action/ability/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
 	if(!can_use_action()) // Check for action now done here as action_activate pipeline has been bypassed with signal activation.
@@ -279,9 +277,7 @@
 	desc = "Make a target Xenomorph a leader."
 	ability_cost = 200
 	use_state_flags = ABILITY_USE_LYING
-
-/datum/action/ability/xeno_action/set_xeno_lead/should_show()
-	return FALSE // Leadership now set through hive status UI!
+	hidden = TRUE
 
 /datum/action/ability/xeno_action/set_xeno_lead/give_action(mob/living/L)
 	. = ..()
