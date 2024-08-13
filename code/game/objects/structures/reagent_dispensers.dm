@@ -169,11 +169,11 @@
 	add_overlay(overlay)
 
 
-/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/Proj)
+/obj/structure/reagent_dispensers/fueltank/bullet_act(obj/projectile/proj)
 	if(exploding)
 		return FALSE
-	if(Proj.damage > 10 && prob(60) && (Proj.ammo.damage_type in list(BRUTE, BURN)))
-		log_attack("[key_name(Proj.firer)] detonated a fuel tank with a projectile at [AREACOORD(src)].")
+	if(proj.damage > 10 && prob(60) && (proj.ammo.damage_type in list(BRUTE, BURN)))
+		log_attack("[key_name(proj.firer)] detonated a fuel tank with a projectile at [AREACOORD(src)].")
 		explode()
 	return ..()
 
