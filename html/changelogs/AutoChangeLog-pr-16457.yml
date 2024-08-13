@@ -1,4 +1,0 @@
-author: "Vondiech/Citruses"
-delete-after: True
-changes:
-  - bugfix: "GOATS no longer get an EVIL-looking GLEAM in their EYE when getting HIT while UNCONSCIOUS/DEAD."
