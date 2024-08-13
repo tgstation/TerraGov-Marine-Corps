@@ -1765,6 +1765,7 @@
 			/obj/machinery/factory/galvanizer = -1,
 			/obj/machinery/factory/heater = -1,
 			/obj/machinery/factory/reconstructor = -1,
+			/obj/machinery/unboxer = -1,
 			/obj/item/paper/factoryhowto = -1,
 		),
 		"Ammunition" = list(
