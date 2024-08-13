@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		overlay.color = wearer.assigned_squad.color
 		underlay.overlays += overlay
 
-		if(wearer.assigned_squad.squad_leader == wearer)
+		if(wearer.assigned_squad?.squad_leader == wearer)
 			var/image/leader_trim = image('icons/UI_icons/map_blips.dmi', null, "leader_trim")
 			underlay.overlays += leader_trim
 
