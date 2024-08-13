@@ -165,7 +165,7 @@
 	slam_sound = SFX_ALIEN_RESIN_BREAK
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	destroy_sound = SFX_ALIEN_RESIN_MOVE
-	door_flags = NONE
+	door_flags = DOOR_RESIN
 	opening_time = 0
 	material_type = null
 	material_amount = 0

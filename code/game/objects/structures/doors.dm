@@ -8,6 +8,8 @@
 #define DOOR_OPENING 1<<3
 ///Is currently closing
 #define DOOR_CLOSING 1<<4
+///Resin door has special properties such as ignoring intent and not being slammed shut
+#define DOOR_RESIN 1<<5
 
 ///Set of flags your average door will most likely have
 #define STANDARD_DOOR_FLAGS DOOR_LOCKABLE|DOOR_FORCEABLE
@@ -655,7 +657,7 @@
  */
 /obj/structure/door/proc/attempt_to_close(mob/user, instant, slammed, forced)
 	//To allow slamming a door on someone
-	var/slam_the_door = user?.a_intent == INTENT_HARM
+	var/slam_the_door = user?.a_intent == INTENT_HARM && !CHECK_BITFIELD(door_flags, DOOR_RESIN)
 
 	//In addition to making sure we're not closing an already closing door
 	//Check to see if a living mob is in the way of the door closing; if there is one, don't close the door (unless it's being forcibly closed)
@@ -716,7 +718,10 @@
 ///Handles automatically closing a door
 /obj/structure/door/proc/auto_close(mob/door_closer)
 	//Don't close the door if the person passing through isn't being very polite; prevent auto closing locked doors for players' sanity
-	if(!ismob(door_closer) || !CHECK_BITFIELD(door_flags, DOOR_OPEN) || CHECK_BITFIELD(door_flags, DOOR_CLOSING) || door_closer.throwing || door_closer.a_intent != INTENT_HELP || lock?.locked)
+	if(!ismob(door_closer) || !CHECK_BITFIELD(door_flags, DOOR_OPEN) || CHECK_BITFIELD(door_flags, DOOR_CLOSING) || door_closer.throwing || lock?.locked)
+		return
+
+	if(!CHECK_BITFIELD(door_flags, DOOR_RESIN) && door_closer.a_intent != INTENT_HELP)
 		return
 
 	//Check if a non-mob type is near the door so the door doesn't close itself in someone's face
