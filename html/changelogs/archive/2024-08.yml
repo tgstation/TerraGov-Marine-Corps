@@ -61,7 +61,3 @@
   - bugfix: fixed AI mobs getting stuck in place for no reason
   - bugfix: fixed AI mobs not attacking their target or doing anything at all, if
       on the same tile as their target
-2024-08-13:
-  Lumipharon:
-  - bugfix: fixed kits being consumed on undamaged bodyparts
-  - bugfix: fixed an exploit to kit an entire body with one kit
