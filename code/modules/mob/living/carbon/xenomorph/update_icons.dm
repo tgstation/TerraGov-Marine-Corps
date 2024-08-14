@@ -38,6 +38,7 @@
 				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
+	update_backpack()
 
 	hud_set_sunder()
 	hud_set_firestacks()
@@ -138,11 +139,23 @@
 
 	wound_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
 
+/mob/living/carbon/xenomorph/proc/update_backpack()
+	if(!backpack_overlay)
+		return
+
 /mob/living/carbon/xenomorph/update_transform()
 	..()
 	return update_icons()
 
 ///Used to display the xeno wounds without rapidly switching overlays
+
+/atom/movable/vis_obj/xeno_wounds/backpack_overlay
+  vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_ID
+  layer = ABOVE_MOB_LAYER
+  ///The xeno this overlay belongs to
+  var/mob/living/carbon/xenomorph/owner
+
+
 /atom/movable/vis_obj/xeno_wounds
 	vis_flags = VIS_INHERIT_DIR
 

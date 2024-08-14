@@ -48,6 +48,9 @@
 	fire_overlay = new(src, src)
 	vis_contents += fire_overlay
 
+	backpack_overlay = new(null, src)
+	vis_contents += backpack_overlay
+
 	generate_nicknumber()
 
 	generate_name()
