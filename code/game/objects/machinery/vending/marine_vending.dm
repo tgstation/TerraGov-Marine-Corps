@@ -1747,6 +1747,120 @@
 		)
 	)
 
+/obj/machinery/vending/valhalla_reqtorio
+	name = "\improper TerraGovTech reqtorio vendor"
+	desc = "An automated rack hooked up to a colossal storage of items."
+	icon_state = "requisitionop"
+	resistance_flags = INDESTRUCTIBLE
+	use_power = NO_POWER_USE
+	products = list(
+		"Machinery" = list(
+			/obj/item/conveyor_switch_construct = -1,
+			/obj/item/stack/conveyor/thirty = -1,
+			/obj/machinery/factory/compressor = -1,
+			/obj/machinery/factory/cutter = -1,
+			/obj/machinery/factory/driller = -1,
+			/obj/machinery/factory/flatter = -1,
+			/obj/machinery/factory/former = -1,
+			/obj/machinery/factory/galvanizer = -1,
+			/obj/machinery/factory/heater = -1,
+			/obj/machinery/factory/reconstructor = -1,
+			/obj/item/paper/factoryhowto = -1,
+		),
+		"Ammunition" = list(
+			/obj/item/factory_refill/amr_magazine_flak_refill = -1,
+			/obj/item/factory_refill/amr_magazine_incend_refill = -1,
+			/obj/item/factory_refill/amr_magazine_refill = -1,
+			/obj/item/factory_refill/auto_sniper_magazine_refill = -1,
+			/obj/item/factory_refill/mateba_speedloader_refill = -1,
+			/obj/item/factory_refill/minigun_powerpack_refill = -1,
+			/obj/item/factory_refill/railgun_hvap_magazine_refill = -1,
+			/obj/item/factory_refill/railgun_magazine_refill = -1,
+			/obj/item/factory_refill/railgun_smart_magazine_refill = -1,
+			/obj/item/factory_refill/scout_rifle_impact_magazine_refill = -1,
+			/obj/item/factory_refill/scout_rifle_incen_magazine_refill = -1,
+			/obj/item/factory_refill/scout_rifle_magazine_refill = -1,
+			/obj/item/factory_refill/smartgunner_machinegun_magazine_refill = -1,
+			/obj/item/factory_refill/smartgunner_minigun_box_refill = -1,
+			/obj/item/factory_refill/smartgunner_targetrifle_ammobin_refill = -1,
+			/obj/item/factory_refill/smartgunner_targetrifle_magazine_refill = -1,
+			/obj/item/factory_refill/sniper_flak_magazine_refill = -1,
+		),
+		"Ordnance" = list(
+			/obj/item/factory_refill/ac_flak_refill = -1,
+			/obj/item/factory_refill/ac_hv_refill = -1,
+			/obj/item/factory_refill/agls_cloak_refill = -1,
+			/obj/item/factory_refill/agls_frag_refill = -1,
+			/obj/item/factory_refill/agls_he_refill = -1,
+			/obj/item/factory_refill/agls_incendiary_refill = -1,
+			/obj/item/factory_refill/agls_tanglefoot_refill = -1,
+			/obj/item/factory_refill/atgun_apcr_refill = -1,
+			/obj/item/factory_refill/atgun_aphe_refill = -1,
+			/obj/item/factory_refill/atgun_beehive_refill = -1,
+			/obj/item/factory_refill/atgun_he_refill = -1,
+			/obj/item/factory_refill/atgun_incend_refill = -1,
+			/obj/item/factory_refill/mlrs_rocket_refill = -1,
+			/obj/item/factory_refill/mlrs_rocket_refill_cloak = -1,
+			/obj/item/factory_refill/mlrs_rocket_refill_gas = -1,
+			/obj/item/factory_refill/mlrs_rocket_refill_incendiary = -1,
+			/obj/item/factory_refill/agls_flare_refill = -1,
+			/obj/item/factory_refill/heavy_isg_he_refill = -1,
+			/obj/item/factory_refill/heavy_isg_sabot_refill = -1,
+			/obj/item/factory_refill/howitzer_shell_he_refill = -1,
+			/obj/item/factory_refill/howitzer_shell_incen_refill = -1,
+			/obj/item/factory_refill/howitzer_shell_tfoot_refill = -1,
+			/obj/item/factory_refill/howitzer_shell_wp_refill = -1,
+			/obj/item/factory_refill/mortar_shell_flare_refill = -1,
+			/obj/item/factory_refill/mortar_shell_he_refill = -1,
+			/obj/item/factory_refill/mortar_shell_incen_refill = -1,
+			/obj/item/factory_refill/mortar_shell_smoke_refill = -1,
+			/obj/item/factory_refill/mortar_shell_tfoot_refill = -1,
+		),
+		"Grenade/Explosive" = list(
+			/obj/item/factory_refill/antigas_refill = -1,
+			/obj/item/factory_refill/cloaknade_refill = -1,
+			/obj/item/factory_refill/hefanade_refill = -1,
+			/obj/item/factory_refill/incennade_refill = -1,
+			/obj/item/factory_refill/lasenade_refill = -1,
+			/obj/item/factory_refill/phosnade_refill = -1,
+			/obj/item/factory_refill/razornade_refill = -1,
+			/obj/item/factory_refill/stickynade_refill = -1,
+			/obj/item/factory_refill/tfootnade_refill = -1,
+			/obj/item/factory_refill/trailblazer_refill = -1,
+			/obj/item/factory_refill/sadar_ap_refill = -1,
+			/obj/item/factory_refill/sadar_he_refill = -1,
+			/obj/item/factory_refill/sadar_he_unguided_refill = -1,
+			/obj/item/factory_refill/sadar_wp_refill = -1,
+			/obj/item/factory_refill/detpack_refill = -1,
+			/obj/item/factory_refill/plastique_incendiary_refill = -1,
+			/obj/item/factory_refill/plastique_refill = -1,
+			/obj/item/factory_refill/claymore_refill = -1,
+			/obj/item/factory_refill/cloak_rr_missile_refill = -1,
+			/obj/item/factory_refill/heat_rr_missile_refill = -1,
+			/obj/item/factory_refill/light_rr_missile_refill = -1,
+			/obj/item/factory_refill/normal_rr_missile_refill = -1,
+			/obj/item/factory_refill/smoke_rr_missile_refill = -1,
+			/obj/item/factory_refill/tfoot_rr_missile_refill = -1,
+			/obj/item/factory_refill/thermobaric_wp_refill = -1,
+		),
+		"Utility" = list(
+			/obj/item/factory_refill/deployable_camera_refill = -1,
+			/obj/item/factory_refill/deployable_floodlight_refill = -1,
+			/obj/item/factory_refill/swat_mask_refill = -1,
+		),
+		"Modules" = list(
+			/obj/item/factory_refill/module_hlin_refill = -1,
+			/obj/item/factory_refill/module_mimir2_refill = -1,
+			/obj/item/factory_refill/module_surt_refill = -1,
+			/obj/item/factory_refill/module_tyr2_refill = -1,
+			/obj/item/factory_refill/module_valk_refill = -1,
+		),
+		"Misc" = list(
+			/obj/item/factory_refill/cigarette_refill = -1,
+			/obj/item/factory_refill/pizza_refill = -1,
+		)
+	)
+
 /obj/machinery/vending/tool
 	name = "YouTool"
 	desc = "Tools for tools."
