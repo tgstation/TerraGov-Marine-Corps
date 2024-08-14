@@ -147,7 +147,7 @@
 	..()
 	return update_icons()
 
-///Used to display the xeno wounds without rapidly switching overlays
+///Used to display xeno wounds & equipment without rapidly switching overlays
 
 /atom/movable/vis_obj/xeno_wounds/backpack_overlay
   vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_ID
