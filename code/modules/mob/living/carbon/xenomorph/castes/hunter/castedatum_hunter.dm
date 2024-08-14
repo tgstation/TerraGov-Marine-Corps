@@ -161,7 +161,7 @@
 	plasma_gain = 23
 
 	// *** Health *** //
-	max_health = 200
+	max_health = 300
 
 	stealth_break_threshold = 25
 
