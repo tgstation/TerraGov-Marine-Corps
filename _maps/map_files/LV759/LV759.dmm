@@ -20175,6 +20175,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "dxx" = (
@@ -21059,7 +21060,8 @@
 	capacity = 1e+006;
 	dir = 1
 	},
-/turf/open/floor/urban_plating,
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/lv759/indoors/power_plant/power_storage)
 "dGA" = (
 /obj/effect/urban/decal/dirt,
@@ -23176,6 +23178,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "dZN" = (
@@ -23757,6 +23760,7 @@
 /obj/machinery/light,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "efq" = (
@@ -48029,6 +48033,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
+/obj/structure/cable,
 /turf/open/floor/marked,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "ikV" = (
@@ -54449,6 +54454,7 @@
 /area/lv759/indoors/nt_research_complex/xenobiology)
 "joT" = (
 /obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/cable,
 /turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "jpa" = (
@@ -69843,6 +69849,11 @@
 /obj/structure/largecrate/random/barrel/black,
 /turf/open/floor/mainship,
 /area/lv759/indoors/nt_research_complex/hangarbayshuttle)
+"lYC" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/cable,
+/turf/open/floor/mainship/black/full,
+/area/lv759/indoors/power_plant/geothermal_generators)
 "lYE" = (
 /obj/machinery/light{
 	dir = 4
@@ -76047,6 +76058,7 @@
 	color = "#a6aeab"
 	},
 /obj/effect/turf_decal/warning_stripes/thin,
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "naC" = (
@@ -78588,6 +78600,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
+/obj/structure/cable,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "nvq" = (
@@ -81164,6 +81177,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	color = "#a6aeab"
 	},
+/obj/structure/cable,
 /turf/open/floor/floorthree,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "nSr" = (
@@ -103196,6 +103210,12 @@
 	allow_construction = 0
 	},
 /area/lv759/indoors/landing_zone_2/kmcc_hub_lounge_north)
+"rKj" = (
+/obj/effect/turf_decal/warning_stripes/thin,
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/mainship/black/full,
+/area/lv759/indoors/power_plant/geothermal_generators)
 "rKo" = (
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalk,
@@ -106315,6 +106335,7 @@
 /turf/open/floor/urban/tile/cementflat,
 /area/lv759/indoors/landing_zone_2/kmcc_hub_cargo)
 "slY" = (
+/obj/structure/cable,
 /turf/open/floor/marked,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "sme" = (
@@ -128684,7 +128705,8 @@
 /area/lv759/indoors/recycling_plant/synthetic_storage)
 "vUc" = (
 /obj/machinery/power/geothermal,
-/turf/open/floor/urban_plating,
+/obj/structure/cable,
+/turf/open/floor/plating,
 /area/lv759/indoors/power_plant/geothermal_generators)
 "vUd" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -170292,7 +170314,7 @@ vUc
 vUc
 vUc
 xiQ
-lLt
+lYC
 pZu
 lDX
 uNl
@@ -170901,7 +170923,7 @@ vUc
 vUc
 vUc
 xiQ
-lLt
+lYC
 pZu
 lDX
 qgi
@@ -171307,7 +171329,7 @@ vUc
 vUc
 vUc
 xiQ
-wfh
+rKj
 pZu
 lFP
 aQQ
@@ -171916,7 +171938,7 @@ vUc
 vUc
 vUc
 xiQ
-lLt
+lYC
 pZu
 nNz
 lFP

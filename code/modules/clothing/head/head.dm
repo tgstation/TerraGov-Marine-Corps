@@ -67,6 +67,15 @@
 	icon_state = "beretred2"
 	item_map_variant_flags = NONE
 
+/obj/item/clothing/head/tgmcberet/red2/erp
+	name = "\improper ERP Red Beret"
+	desc = "An ERP-approved improved design of the red beret, how this small piece of cloth has such good padding is a closely guarded ERP-secret."
+	soft_armor = MARINE_ARMOR_MEDIUM
+
+/obj/item/clothing/head/tgmcberet/red2/erp/masterprankster
+	desc = "An ERP-approved improved design of the red beret, how this small piece of cloth has such good padding is a closely guarded ERP-secret. This one is held by Master Pranksters only!"
+	icon_state = "beretred"
+
 /obj/item/clothing/head/tgmcberet/bloodred
 	name = "\improper Blood red beret"
 	icon_state = "bloodred_beret"

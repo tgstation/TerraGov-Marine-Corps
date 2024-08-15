@@ -65,3 +65,24 @@
   Lumipharon:
   - bugfix: fixed kits being consumed on undamaged bodyparts
   - bugfix: fixed an exploit to kit an entire body with one kit
+2024-08-13:
+  Koenigsegg:
+  - rscadd: Added a valhalla reqtorio vendor
+  - rscadd: Added the reqtorio valhalla vendor to the vehicle pit in valhalla
+  Lumipharon:
+  - qol: Xeno fire and wound overlays no longer appear in the right click menu
+  - bugfix: fixed all xeno abilities that use damage or ap mods on attack
+  - bugfix: fixed AI mobs having cursed glide size in many cases
+  Vondiech/Citruses:
+  - rscadd: Adds ERP, Emergency Response Pranksters, a new possible distress beacon
+      spawn of clowns! Aligned with TGMC
+  - bugfix: GOATS no longer get an EVIL-looking GLEAM in their EYE when getting HIT
+      while UNCONSCIOUS/DEAD.
+2024-08-15:
+  Vondiech/Citruses:
+  - bugfix: Geotherm gens/SMES on LV-759 now are properly wired to power grid making
+      them actually able to power the map.
+  - bugfix: Fixes the consoles of a body scanner & sleeper on the Arachne shipmap.
+  yyzsong:
+  - balance: removes podlocks from the outer windows of the "Outrider" and "Umbilical"
+      tadpole variants
