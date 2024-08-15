@@ -1,4 +1,0 @@
-author: "Vondiech/Citruses"
-delete-after: True
-changes:
-  - bugfix: "Geotherm gens/SMES on LV-759 now are properly wired to power grid making them actually able to power the map."

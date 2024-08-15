@@ -1,4 +1,0 @@
-author: "Vondiech/Citruses"
-delete-after: True
-changes:
-  - bugfix: "Fixes the consoles of a body scanner & sleeper on the Arachne shipmap."
