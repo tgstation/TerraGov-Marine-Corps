@@ -78,3 +78,11 @@
       spawn of clowns! Aligned with TGMC
   - bugfix: GOATS no longer get an EVIL-looking GLEAM in their EYE when getting HIT
       while UNCONSCIOUS/DEAD.
+2024-08-15:
+  Vondiech/Citruses:
+  - bugfix: Geotherm gens/SMES on LV-759 now are properly wired to power grid making
+      them actually able to power the map.
+  - bugfix: Fixes the consoles of a body scanner & sleeper on the Arachne shipmap.
+  yyzsong:
+  - balance: removes podlocks from the outer windows of the "Outrider" and "Umbilical"
+      tadpole variants

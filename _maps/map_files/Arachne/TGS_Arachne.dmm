@@ -10614,9 +10614,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "iQJ" = (
-/obj/machinery/computer/sleep_console{
-	dir = 1
-	},
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -29158,9 +29156,7 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "ygb" = (
-/obj/machinery/computer/body_scanconsole{
-	dir = 2
-	},
+/obj/machinery/computer/body_scanconsole,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
