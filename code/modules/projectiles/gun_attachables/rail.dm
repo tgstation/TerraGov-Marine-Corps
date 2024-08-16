@@ -62,10 +62,6 @@
 	else
 		return
 
-	for(var/X in master_gun.actions)
-		var/datum/action/A = X
-		A.update_button_icon()
-
 	update_icon()
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)

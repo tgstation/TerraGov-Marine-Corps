@@ -2952,6 +2952,10 @@
 /obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"tFT" = (
+/obj/item/plantable_flag,
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "tQD" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -3899,7 +3903,7 @@ vHf
 vHf
 azU
 azU
-azU
+tFT
 azU
 afe
 azU

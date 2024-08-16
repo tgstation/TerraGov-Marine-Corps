@@ -640,13 +640,13 @@
 		return
 	kill_hugger()
 
-/obj/item/clothing/mask/facehugger/bullet_act(obj/projectile/P)
+/obj/item/clothing/mask/facehugger/bullet_act(obj/projectile/proj)
 	..()
-	if(P.ammo.ammo_behavior_flags & AMMO_XENO)
+	if(proj.ammo.ammo_behavior_flags & AMMO_XENO)
 		return FALSE //Xeno spits ignore huggers.
-	if(P.damage && !(P.ammo.damage_type in list(OXY, STAMINA)))
+	if(proj.damage && !(proj.ammo.damage_type in list(OXY, STAMINA)))
 		kill_hugger()
-	P.ammo.on_hit_obj(src,P)
+	proj.ammo.on_hit_obj(src, proj)
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/fire_act(burn_level)

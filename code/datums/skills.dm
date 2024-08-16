@@ -866,3 +866,31 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "SOM Medic"
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
+
+//ERP Pranksters
+/datum/skills/prankster
+	name = "ERP Prankster"
+	unarmed = SKILL_UNARMED_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	combat = SKILL_COMBAT_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_DEFAULT
+	smartgun = SKILL_SMART_DEFAULT
+
+/datum/skills/prankster/boobookisser
+	name = "ERP Boo-boo Kisser"
+	medical = SKILL_MEDICAL_PRACTICED
+	surgery = SKILL_SURGERY_TRAINED
+
+/datum/skills/prankster/piethrower
+	name = "ERP Pie thrower"
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+
+/datum/skills/prankster/masterprankster
+	name = "ERP Master Prankster"
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_PLASTEEL
+	leadership = SKILL_LEAD_EXPERT
