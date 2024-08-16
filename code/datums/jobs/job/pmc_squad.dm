@@ -2,7 +2,7 @@
 	job_category =  JOB_CAT_PMC
 	supervisors = "NTC command"
 	selection_color = "#ffeeee"
-	faction = FACTION_NTC
+	faction = FACTION_TERRAGOV
 
 /datum/job/vsd_squad/radio_help_message(mob/M)
 	. = ..()

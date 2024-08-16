@@ -370,7 +370,7 @@
 	else
 		. += "Orbital bombardment warhead: [GLOB.marine_main_ship.orbital_cannon.tray.warhead.name] Detected"
 
-	. += "Current supply points: [round(SSpoints.supply_points[FACTION_NTC])]"
+	. += "Current supply points: [round(SSpoints.supply_points[FACTION_TERRAGOV])]"
 
 	. += "Current dropship points: [round(SSpoints.dropship_points)]"
 

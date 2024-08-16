@@ -1,5 +1,5 @@
 /datum/job/terragov
-	faction = FACTION_NTC
+	faction = FACTION_TERRAGOV
 
 /datum/job/terragov/radio_help_message(mob/M)
 	. = ..()

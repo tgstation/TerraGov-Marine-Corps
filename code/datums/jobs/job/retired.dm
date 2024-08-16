@@ -5,7 +5,7 @@
 	access = ALL_ANTAGONIST_ACCESS
 	minimal_access = ALL_ANTAGONIST_ACCESS
 	skills_type = /datum/skills/veteran //they're old, they know their stuff
-	faction = FACTION_NTC
+	faction = FACTION_TERRAGOV
 	outfit = /datum/outfit/job/retired
 
 /datum/outfit/job/retired

@@ -105,14 +105,14 @@
 			switch(faction)
 				if(FACTION_SOM)
 					round_finished = MODE_COMBAT_PATROL_SOM_MINOR
-				if(FACTION_NTC)
+				if(FACTION_TERRAGOV)
 					round_finished = MODE_COMBAT_PATROL_MARINE_MINOR
 			message_admins("Round finished: [round_finished]")
 			return TRUE
 
 /datum/game_mode/hvh/campaign/declare_completion()
 	. = ..()
-	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_NTC]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
+	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal TGMC spawned: [GLOB.round_statistics.total_humans_created[FACTION_TERRAGOV]]\nTotal SOM spawned: [GLOB.round_statistics.total_humans_created[FACTION_SOM]]")
 
 /datum/game_mode/hvh/campaign/end_round_fluff()
 	var/announcement_body = ""
@@ -165,7 +165,7 @@
 		switch(mob.faction)
 			if(FACTION_SOM)
 				SEND_SOUND(mob, som_track)
-			if(FACTION_NTC)
+			if(FACTION_TERRAGOV)
 				SEND_SOUND(mob, tgmc_track)
 			else
 				SEND_SOUND(mob, ghost_track)

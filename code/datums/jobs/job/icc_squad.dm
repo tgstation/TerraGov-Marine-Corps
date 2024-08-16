@@ -2,7 +2,7 @@
 	job_category =  JOB_CAT_UNASSIGNED
 	supervisors = "ICC high command and NTC authorities"
 	selection_color = "#ffeeee"
-	faction = FACTION_NTC
+	faction = FACTION_TERRAGOV
 	minimap_icon = "icc"
 
 /datum/job/icc_squad/radio_help_message(mob/M)

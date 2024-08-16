@@ -65,7 +65,7 @@
 	if(message)
 		return ..()
 	switch(user.faction)
-		if(FACTION_NTC)
+		if(FACTION_TERRAGOV)
 			message = "This base is a key logistic hub for the SOM. Tear it apart and they're crippled in this region. Hustle marines!"
 		if(FACTION_SOM)
 			message = "This is a key logistics hub for us. Hold the line marines, throw back those Terran dogs and show them Martian resolve!"
@@ -75,7 +75,7 @@
 	. = ..()
 	spawn_mech(defending_faction, 0, 1)
 	var/datum/faction_stats/attacking_team = mode.stat_list[starting_faction]
-	if(starting_faction == FACTION_NTC)
+	if(starting_faction == FACTION_TERRAGOV)
 		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
 	else if(starting_faction == FACTION_SOM)
 		attacking_team.add_asset(/datum/campaign_asset/asset_disabler/som_cas/instant)
@@ -93,7 +93,7 @@
 /datum/campaign_mission/destroy_mission/supply_raid/apply_minor_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	if(hostile_faction == FACTION_NTC)
+	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
 		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
@@ -102,7 +102,7 @@
 /datum/campaign_mission/destroy_mission/supply_raid/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	if(hostile_faction == FACTION_NTC)
+	if(hostile_faction == FACTION_TERRAGOV)
 		winning_team.add_asset(/datum/campaign_asset/equipment/power_armor)
 	else if(hostile_faction == FACTION_SOM)
 		winning_team.add_asset(/datum/campaign_asset/mech/light/som)
@@ -124,7 +124,7 @@
 	if(message)
 		return ..()
 	switch(user.faction)
-		if(FACTION_NTC)
+		if(FACTION_TERRAGOV)
 			message = "This base is a key logistic hub for us. Repel the SOM marauders, protect our assets at all costs!"
 		if(FACTION_SOM)
 			message = "This is a key logistics hub for the TGMC. Smash through their defences and destroy the marked targets. Glory to Mars!"
