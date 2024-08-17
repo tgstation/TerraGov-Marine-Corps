@@ -265,8 +265,6 @@
 		return
 	update_button_icon()
 
-//
-
 /datum/action/item_action/coilgun_power/update_button_icon()
 	action_icon_state = "coilgun_[holder_gun.power_level]"
 	switch(holder_gun.power_level)
