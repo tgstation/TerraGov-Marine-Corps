@@ -1,5 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - qol: "The \"acting SL\" of a squad will now get a golden trim around their squad icon/minimap icon"
-  - rscadd: "Latejoining SLs will no longer \"take over\" the acting SL status of any existing squad leaders/aSLs in the squad"
