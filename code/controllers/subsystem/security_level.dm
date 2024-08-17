@@ -6,7 +6,7 @@
  *
  * See `/datum/security_level` for additional usage.
  *
- * This replaces "ethereal" security levels with a new system that makes new security levels extremely
+ * This replaces hardcoded security levels with a new system that makes new security levels extremely
  * easy to implement, and existing ones extremely easy to modify.
  */
 SUBSYSTEM_DEF(security_level)
@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(security_level)
 	init_order = INIT_ORDER_SECURITY_LEVEL
 	/// Currently set security level
 	var/datum/security_level/current_security_level
-	/// The most recent security level. Relevant if you want to avoid repeat actions
+	/// The most recent security level number. Relevant if you want to avoid repeat actions
 	/// in situations like going from Green to Blue and vice versa (see: mainship lights)
 	var/most_recent_level = SEC_LEVEL_GREEN
 	/// A list of initialised security level datums.
@@ -53,7 +53,7 @@ SUBSYSTEM_DEF(security_level)
 	SSsecurity_level.most_recent_level = current_security_level.number_level
 
 	SSsecurity_level.current_security_level = selected_level
-	SEND_SIGNAL(src, COMSIG_SECURITY_LEVEL_CHANGED, selected_level.number_level)
+	SEND_SIGNAL(src, COMSIG_SECURITY_LEVEL_CHANGED, selected_level.number_level, SSsecurity_level.most_recent_level)
 	SSblackbox.record_feedback(FEEDBACK_TALLY, "security_level_changes", 1, selected_level.name)
 
 /**

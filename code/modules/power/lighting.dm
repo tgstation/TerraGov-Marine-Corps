@@ -433,20 +433,15 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
-/// A wrapper for `alert_act`, with a random timer from 0.4 seconds to 5 seconds before changing the light's appearance
-/obj/machinery/light/mainship/proc/on_alert_change()
-	SIGNAL_HANDLER
-	addtimer(CALLBACK(src, PROC_REF(alert_act), SSsecurity_level.get_current_level_as_number()), rand(0.4 SECONDS, 5 SECONDS))
-
-/// Called after the timer on `on_alert_change`. Changes the light's appearance based on alert level.
-/obj/machinery/light/mainship/proc/alert_act(current_level)
+/// Changes the light's appearance based on the security level
+/obj/machinery/light/mainship/proc/on_alert_change(new_level, most_recent_level)
 	SIGNAL_HANDLER
 	var/bulb_type = "tube" // the base light sprite
 	if(istype(src, /obj/machinery/light/mainship/small))
 		bulb_type = "bulb"
-	switch(current_level)
+	switch(new_level)
 		if(SEC_LEVEL_GREEN, SEC_LEVEL_BLUE)
-			if(SSsecurity_level.most_recent_level < SEC_LEVEL_RED)
+			if(most_recent_level < SEC_LEVEL_RED)
 				return
 			var/area/active_area = get_area(src)
 			if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
@@ -456,11 +451,8 @@
 			light_range = brightness
 			update_light()
 			update_appearance(UPDATE_ICON)
-			playsound(src, 'sound/effects/light_on.ogg', 33, TRUE)
-			balloon_alert_to_viewers("flickers")
-			do_sparks(4, TRUE, src)
 		if(SEC_LEVEL_RED, SEC_LEVEL_DELTA)
-			if(SSsecurity_level.most_recent_level > SEC_LEVEL_BLUE)
+			if(most_recent_level > SEC_LEVEL_BLUE)
 				return
 			var/area/active_area = get_area(src)
 			if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
@@ -475,9 +467,6 @@
 				light_range = rangelevel
 			update_light()
 			update_appearance(UPDATE_ICON)
-			playsound(src, 'sound/effects/light_on.ogg', 33, TRUE)
-			balloon_alert_to_viewers("flickers")
-			do_sparks(4, TRUE, src)
 
 /obj/machinery/light/red
 	base_icon_state = "tube_red"

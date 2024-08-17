@@ -839,5 +839,5 @@
 ///Campaign asset disabler activated
 #define COMSIG_CAMPAIGN_DISABLER_ACTIVATION "campaign_disabler_activation"
 
-///from SSsecurity_level when the security level changes : (new_level)
+///from SSsecurity_level when the security level changes : (new_level, most_recent_level)
 #define COMSIG_SECURITY_LEVEL_CHANGED "security_level_changed"
