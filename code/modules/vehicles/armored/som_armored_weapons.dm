@@ -247,7 +247,7 @@
 
 /datum/action/item_action/coilgun_power
 	keybinding_signals = list(
-		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
+		KEYBINDING_NORMAL = COMSIG_KB_FIREMODE,
 	)
 	use_obj_appeareance = FALSE
 	///The coilgun associated with this action
@@ -264,6 +264,8 @@
 	if(!.)
 		return
 	update_button_icon()
+
+//
 
 /datum/action/item_action/coilgun_power/update_button_icon()
 	action_icon_state = "coilgun_[holder_gun.power_level]"
