@@ -100,7 +100,7 @@
 	GLOB.marine_turrets -= src
 	return ..()
 
-/obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE)
+/obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!disassembled)
 		explosion(loc, light_impact_range = 3)
 	return ..()
@@ -515,13 +515,14 @@
 	if(!match_iff(user)) //You can't steal other faction's turrets
 		to_chat(user, span_notice("Access denied."))
 		return
+	var/obj/item/weapon/gun/internal_gun = get_internal_item()
 	. = ..()
-	var/obj/item/weapon/gun/gun = get_internal_item()
-	if(!gun)
+	if(!.)
 		return
-	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
-		gun.accuracy_mult += 0.15
-		gun.scatter -= 10
+	if(internal_gun?.turret_flags & TURRET_INACCURATE)
+		internal_gun.accuracy_mult += 0.15
+		internal_gun.scatter -= 10
+
 
 ///Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.
 /obj/machinery/deployable/mounted/sentry/proc/match_iff(mob/user)
@@ -559,39 +560,9 @@
 	internal_gun?.update_ammo_count() //checks if the battery has recharged enough to fire
 	return ..()
 
-///Dissassembles the device
 /obj/machinery/deployable/mounted/sentry/cope/disassemble(mob/user)
-	var/obj/item/item = get_internal_item()
-	if(!item)
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/internal_gun = get_internal_item()
+	. = ..()
+	if(!.)
 		return
-	if(CHECK_BITFIELD(item.item_flags, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "Cannot disassemble")
-		return
-	if(!match_iff(user)) //You can't steal other faction's turrets
-		to_chat(user, span_notice("Access denied."))
-		return
-	operator?.unset_interaction()
-
-	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item = get_internal_item() //Item the machine is undeploying
-
-	if(!ishuman(user))
-		return
-	set_on(FALSE)
-	user.balloon_alert(user, "You start disassembling [attached_item]")
-	if(!do_after(user, attached_item.undeploy_time, NONE, src, BUSY_ICON_BUILD))
-		set_on(TRUE)
-		return
-
-	DISABLE_BITFIELD(attached_item.item_flags, IS_DEPLOYED)
-
-	attached_item.reset()
-	user.unset_interaction()
-	user.put_in_hands(attached_item)
-
-	attached_item.max_integrity = max_integrity
-	attached_item.obj_integrity = obj_integrity
-
-	internal_item = null
-
-	QDEL_NULL(src)
-	attached_item.update_appearance()
+	internal_gun?.reset()

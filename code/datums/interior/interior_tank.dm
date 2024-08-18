@@ -102,15 +102,31 @@
 	. = ..()
 	owner.interior.mob_leave(user)
 
-/turf/closed/interior/tank/door/MouseDrop_T(atom/movable/dropping, mob/M)
-	if(!ismob(dropping))
-		return ..()
-	owner.interior.mob_leave(dropping)
+/turf/closed/interior/tank/door/MouseDrop_T(atom/movable/dropping, mob/user)
+	if(ismob(dropping))
+		owner.interior.mob_leave(dropping)
+		return
+	if(is_type_in_typecache(dropping.type, owner.easy_load_list))
+		if(isitem(dropping))
+			user.temporarilyRemoveItemFromInventory(dropping)
+		dropping.forceMove(owner.exit_location(dropping))
+		user.balloon_alert(user, "item thrown outside")
+		return
+	return ..()
 
 /turf/closed/interior/tank/door/grab_interact(obj/item/grab/grab, mob/user, base_damage, is_sharp)
-	if(!ismob(grab.grabbed_thing))
-		return ..()
-	owner.interior.mob_leave(grab.grabbed_thing)
+	var/atom/movable/grabbed_thing = grab.grabbed_thing
+	if(ismob(grabbed_thing))
+		owner.interior.mob_leave(grabbed_thing)
+		return
+	if(is_type_in_typecache(grabbed_thing.type, owner.easy_load_list))
+		if(isitem(grabbed_thing.type))
+			user.temporarilyRemoveItemFromInventory(grabbed_thing)
+		grabbed_thing.forceMove(owner.exit_location(grabbed_thing))
+		user.balloon_alert(user, "item thrown outside")
+		return
+	return ..()
+
 
 ///returns where we want to spit out new enterers
 /turf/closed/interior/tank/door/proc/get_enter_location()

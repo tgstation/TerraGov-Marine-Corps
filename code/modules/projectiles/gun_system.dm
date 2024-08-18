@@ -211,9 +211,9 @@
 	var/max_scatter = 360
 	///Maximum scatter when wielded
 	var/max_scatter_unwielded = 360
-	///How much scatter decays every X seconds
+	///How much scatter decays every decisecond
 	var/scatter_decay = 0
-	///How much scatter decays every X seconds when wielded
+	///How much scatter decays every decisecond
 	var/scatter_decay_unwielded = 0
 	///How much scatter increases per shot
 	var/scatter_increase = 0
@@ -404,7 +404,7 @@
 	AddComponent(/datum/component/automatedfire/autofire, fire_delay, autoburst_delay, burst_delay, burst_amount, gun_firemode, CALLBACK(src, PROC_REF(set_bursting)), CALLBACK(src, PROC_REF(reset_fire)), CALLBACK(src, PROC_REF(Fire))) //This should go after handle_starting_attachment() and setup_firemodes() to get the proper values set.
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachable_allowed, attachable_offset, starting_attachment_types, null, CALLBACK(src, PROC_REF(on_attachment_attach)), CALLBACK(src, PROC_REF(on_attachment_detach)), attachment_overlays)
 	if(CHECK_BITFIELD(gun_features_flags, GUN_IS_ATTACHMENT))
-		AddElement(/datum/element/attachment, slot, icon, PROC_REF(on_attach), PROC_REF(on_detach), PROC_REF(activate), PROC_REF(can_attach), pixel_shift_x, pixel_shift_y, attach_features_flags, attach_delay, detach_delay, SKILL_FIREARMS, SKILL_FIREARMS_DEFAULT, 'sound/machines/click.ogg')
+		AddElement(/datum/element/attachment, slot, icon, PROC_REF(on_attach), PROC_REF(on_detach), PROC_REF(activate), PROC_REF(can_attach), pixel_shift_x, pixel_shift_y, attach_features_flags, attach_delay, detach_delay, SKILL_COMBAT, SKILL_COMBAT_DEFAULT, 'sound/machines/click.ogg')
 
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
@@ -534,16 +534,8 @@
 	SIGNAL_HANDLER
 	set_gun_user(null)
 
-/obj/item/weapon/gun/update_icon()
+/obj/item/weapon/gun/update_icon(updates=ALL)
 	. = ..()
-
-	for(var/datum/action/action AS in actions)
-		action.update_button_icon()
-
-	if(master_gun)
-		for(var/datum/action/action AS in master_gun.actions)
-			action.update_button_icon()
-
 	update_item_state()
 
 /obj/item/weapon/gun/update_icon_state()
@@ -670,7 +662,7 @@
 
 	var/wdelay = wield_delay
 	//slower or faster wield delay depending on skill.
-	if(user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT)
+	if(user.skills.getRating(SKILL_COMBAT) < SKILL_COMBAT_DEFAULT)
 		wdelay += wield_penalty
 	else
 		var/skill_value = user.skills.getRating(gun_skill_category)
@@ -921,7 +913,7 @@
 	apply_gun_modifiers(projectile_to_fire, target, firer)
 
 	projectile_to_fire.accuracy = round((projectile_to_fire.accuracy * max( 0.1, gun_accuracy_mult)))
-	var/proj_scatter = 0
+	var/proj_scatter = projectile_to_fire.ammo.scatter
 
 	if((item_flags & FULLY_WIELDED) || CHECK_BITFIELD(item_flags, IS_DEPLOYED) || (master_gun && (master_gun.item_flags & FULLY_WIELDED)))
 		scatter = clamp((scatter + scatter_increase) - ((world.time - last_fired - 1) * scatter_decay), min_scatter, max_scatter)
@@ -934,10 +926,10 @@
 		projectile_to_fire.firer = gun_user
 		projectile_to_fire.def_zone = gun_user.zone_selected
 
-		if(gun_user.skills.getRating(SKILL_FIREARMS) >= SKILL_FIREARMS_DEFAULT)
+		if(gun_user.skills.getRating(SKILL_COMBAT) >= SKILL_COMBAT_DEFAULT)
 			var/skill_level = gun_user.skills.getRating(gun_skill_category)
 			if(skill_level > 0)
-				projectile_to_fire.damage *= 1 + skill_level * FIREARM_SKILL_DAM_MOD
+				projectile_to_fire.damage *= 1 + skill_level * COMBAT_SKILL_DAM_MOD
 
 		if((world.time - gun_user.last_move_time) < 5) //if you moved during the last half second, you have some penalties to accuracy and scatter
 			if(item_flags & FULLY_WIELDED)
@@ -1838,8 +1830,8 @@
 		gun_scatter += akimbo_scatter_mod
 
 	if(gun_user)
-		//firearm skills modifiers
-		if(gun_user.skills.getRating(SKILL_FIREARMS) < SKILL_FIREARMS_DEFAULT) //lack of general firearms skill
+		//combat skills modifiers
+		if(gun_user.skills.getRating(SKILL_COMBAT) < SKILL_COMBAT_DEFAULT) //lack of general combat skill
 			gun_accuracy_mult += -0.15
 			gun_scatter += 10
 		else
@@ -1869,7 +1861,7 @@
 		total_recoil += recoil_unwielded
 		if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))
 			total_recoil += 1
-	if(gun_user.skills.getRating(SKILL_FIREARMS) <= SKILL_FIREARMS_UNTRAINED) //no training in any firearms
+	if(gun_user.skills.getRating(SKILL_COMBAT) <= SKILL_COMBAT_UNTRAINED) //no training in combat/firearms
 		total_recoil += 2
 	else
 		var/recoil_tweak = gun_user.skills.getRating(gun_skill_category)

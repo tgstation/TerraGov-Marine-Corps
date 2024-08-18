@@ -3407,7 +3407,7 @@
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
 "sb" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -6370,7 +6370,7 @@
 /turf/closed/shuttle/dropship_regular/interior_corner,
 /area/lv624/ground/jungle9)
 "Hj" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,

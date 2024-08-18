@@ -80,7 +80,7 @@
 		H.heal_limbs(heal_rate)
 
 	for(var/organ_slot in has_organ)
-		var/datum/internal_organ/internal_organ = H.internal_organs_by_name[organ_slot]
+		var/datum/internal_organ/internal_organ = H.get_organ_slot(organ_slot)
 		internal_organ?.heal_organ_damage(1)
 	H.updatehealth()
 

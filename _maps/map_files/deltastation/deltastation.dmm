@@ -54093,7 +54093,7 @@
 /turf/open/floor/iron,
 /area/deltastation/engineering/atmos/project)
 "laU" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 8
 	},
 /turf/open/floor/asteroidfloor,

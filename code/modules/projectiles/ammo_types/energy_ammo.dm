@@ -661,24 +661,29 @@
 
 /datum/ammo/energy/plasma/smg_standard
 	icon_state = "plasma_ball_small"
-	damage = 22
+	damage = 14
 	penetration = 10
 	sundering = 0.5
-
-/datum/ammo/energy/plasma/smg_standard/one
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard
-
-/datum/ammo/energy/plasma/smg_standard/two
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/one
-
-/datum/ammo/energy/plasma/smg_standard/three
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/two
-
-/datum/ammo/energy/plasma/smg_standard/four
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/three
+	damage_falloff = 1.5
 
 /datum/ammo/energy/plasma/smg_standard/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	reflect(target_turf, proj, 5)
+
+/datum/ammo/energy/plasma/smg_standard/one
+	damage = 16
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard
+
+/datum/ammo/energy/plasma/smg_standard/two
+	damage = 18
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/one
+
+/datum/ammo/energy/plasma/smg_standard/three
+	damage = 20
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/two
+
+/datum/ammo/energy/plasma/smg_standard/four
+	damage = 22
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/three
 
 // Plasma //
 /datum/ammo/energy/sectoid_plasma

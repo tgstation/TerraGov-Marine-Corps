@@ -69,9 +69,6 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "q" = (
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock"
-	},
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /obj/structure/dropship_piece/tadpole/engine{
 	dir = 1;
@@ -80,9 +77,6 @@
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "r" = (
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock"
-	},
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
@@ -122,10 +116,6 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "z" = (
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock";
-	dir = 2
-	},
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /obj/structure/dropship_piece/tadpole/tadpole_nose{
 	dir = 1;

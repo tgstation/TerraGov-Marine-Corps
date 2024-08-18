@@ -106,6 +106,7 @@
 			data["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			data["sound_tts"] = sound_tts
 			data["volume_tts"] = volume_tts
+			data["accessible_tgui_themes"] = accessible_tgui_themes
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
 			data["tgui_input"] = tgui_input
@@ -635,6 +636,9 @@
 				return
 			new_vol = round(new_vol)
 			volume_tts = clamp(new_vol, 0, 100)
+
+		if("accessible_tgui_themes")
+			accessible_tgui_themes = !accessible_tgui_themes
 
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy

@@ -99,6 +99,15 @@
 		land_action.give_action(user)
 		actions += land_action
 
+	if(istype(shuttle_port, /obj/docking_port/mobile/marine_dropship))
+		var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
+		for(var/obj/structure/dropship_equipment/shuttle/rappel_system/system in shuttle.equipments)
+			var/datum/action/innate/rappel_designate/rappel_action = new
+			rappel_action.origin = system
+			rappel_action.target = user
+			rappel_action.give_action(user)
+			actions += rappel_action
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/shuttle_arrived()
 	if(fly_state == next_fly_state)
 		return
