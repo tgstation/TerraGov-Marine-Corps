@@ -133,14 +133,10 @@
 	if(!.)
 		return
 	update_fire()
-	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
-	var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
-	if(istype(F))
-		F.kill_hugger()
-		dropItemToGround(F)
-	if(istype(G))
-		G.kill_hugger()
-		dropItemToGround(G)
+
+	for(var/obj/item/clothing/mask/facehugger/hugger in get_held_items())
+		hugger.kill_hugger()
+		dropItemToGround(hugger)
 
 ///Puts out any fire on the mob
 /mob/living/proc/ExtinguishMob()

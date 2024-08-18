@@ -81,15 +81,9 @@
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	//screech is so powerful it kills huggers in our hands
-	if(istype(xeno_owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = xeno_owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(xeno_owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = xeno_owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
+	for(var/obj/item/clothing/mask/facehugger/hugger in xeno_owner.get_held_items())
+		hugger.kill_hugger()
+		xeno_owner.dropItemToGround(hugger)
 
 	succeed_activate()
 	add_cooldown()
