@@ -86,3 +86,9 @@
   yyzsong:
   - balance: removes podlocks from the outer windows of the "Outrider" and "Umbilical"
       tadpole variants
+2024-08-17:
+  breadhunt:
+  - qol: The "acting SL" of a squad will now get a golden trim around their squad
+      icon/minimap icon
+  - rscadd: Latejoining SLs will no longer "take over" the acting SL status of any
+      existing squad leaders/aSLs in the squad
