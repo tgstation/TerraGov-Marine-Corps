@@ -437,6 +437,8 @@
 		return
 	return ..()
 
+/datum/storage/backpack/duffelbag/saddle
+	max_storage_space = 18
 //CLOAKS
 
 /obj/item/storage/backpack/marine/satchel/officer_cloak

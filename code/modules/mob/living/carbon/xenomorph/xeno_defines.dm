@@ -211,7 +211,7 @@
 
 	///How quickly the caste enters vents
 	var/vent_enter_speed = XENO_DEFAULT_VENT_ENTER_TIME
-	///How quickly the caste enters vents
+	///How quickly the caste exits vents
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
@@ -313,7 +313,7 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
-	var/atom/movable/vis_obj/xeno_wounds/backpack_overlay // easier to just hook into xeno_wounds
+	var/atom/movable/vis_obj/xeno_wounds/backpack_overlay/backpack_overlay
 	var/datum/xeno_caste/xeno_caste
 	/// /datum/xeno_caste that we will be on init
 	var/caste_base_type

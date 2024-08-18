@@ -349,3 +349,57 @@
 	if(widow.stat == UNCONSCIOUS)
 		dir = SOUTH
 	return ..()
+
+// ***************************************
+// *********** Saddled Rouny
+// ***************************************
+
+/datum/component/riding/creature/runner
+	can_be_driven = FALSE
+
+/datum/component/riding/creature/runner/handle_specials()
+	. = ..()
+	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(5, 10), TEXT_WEST = list(-5, 10)))
+	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
+
+/datum/component/riding/creature/runner/Initialize(mob/living/riding_mob, force = FALSE, check_loc, lying_buckle, hands_needed, target_hands_needed, silent)
+	. = ..()
+	riding_mob.density = FALSE
+
+/datum/component/riding/creature/runner/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(check_carrier_fall_over))
+
+/datum/component/riding/creature/runner/log_riding(mob/living/living_parent, mob/living/rider)
+	if(!istype(living_parent) || !istype(rider))
+		return
+
+	living_parent.log_message("started carrying [rider] on their back", LOG_ATTACK, color="pink")
+	rider.log_message("started being carried on [living_parent]'s back", LOG_ATTACK, color="pink")
+
+/datum/component/riding/creature/runner/vehicle_mob_unbuckle(datum/source, mob/living/former_rider, force = FALSE)
+	unequip_buckle_inhands(parent)
+	former_rider.density = TRUE
+	return ..()
+
+/// If the rouny gets knocked over, toss the riding human off aswell
+/datum/component/riding/creature/runner/proc/check_carrier_fall_over(mob/living/carbon/xenomorph/runner/carrying_runner)
+	SIGNAL_HANDLER
+
+	for(var/mob/living/rider AS in carrying_runner.buckled_mobs)
+		carrying_runner.unbuckle_mob(rider)
+		rider.Knockdown(1 SECONDS)
+		carrying_runner.visible_message("<span class='danger'>[rider] topples off of [carrying_runner] as they both fall to the ground!</span>", \
+					"<span class='warning'>You fall to the ground, bringing [rider] with you!</span>", "<span class='hear'>You hear two consecutive thuds.</span>")
+		to_chat(rider, "<span class='danger'>[carrying_runner] falls to the ground, bringing you with [carrying_runner.p_them()]!</span>")
+
+//Override this to set your vehicle's various pixel offsets
+/datum/component/riding/creature/runner/get_offsets(pass_index, mob_type) // list(dir = x, y, layer)
+	. = list(TEXT_NORTH = list(0, 0), TEXT_SOUTH = list(0, 0), TEXT_EAST = list(0, 0), TEXT_WEST = list(0, 0))
+	if (riding_offsets["[mob_type]"])
+		. = riding_offsets["[mob_type]"]
+	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
+		. = riding_offsets["[RIDING_OFFSET_ALL]"]

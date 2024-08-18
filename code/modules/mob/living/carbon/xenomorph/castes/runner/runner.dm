@@ -52,3 +52,47 @@
 	holder.pixel_x = 24
 	holder.pixel_y = 24
 	hud_list[XENO_EVASION_HUD] = holder
+
+/mob/living/carbon/xenomorph/runner/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
+	. = ..()
+	if(!ishuman(over))
+		return
+	if(!src.back)
+		balloon_alert(over,"This runner isn't wearing a saddle!")
+		return
+	if(!do_after(over, 3 SECONDS, NONE, src))
+		return
+	var/obj/item/storage/backpack/marine/duffelbag/xenosaddle/saddle = src.back
+	src.dropItemToGround(saddle,TRUE)
+
+/mob/living/carbon/xenomorph/runner/grabbed_self_attack()
+	if(!ishuman(pulling))
+		return NONE
+	var/mob/living/carbon/human = pulling
+	if(human.stat != DEAD)
+		//so aslong as the human isnt dead, put them on our back
+		INVOKE_ASYNC(src, PROC_REF(carry_human), human)
+		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	return NONE
+
+/mob/living/carbon/xenomorph/runner/proc/carry_human(mob/living/carbon/target, forced = FALSE)
+	if(!back)//cant ride without a saddle
+		return
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		if(forced)
+			to_chat(target, span_xenowarning("You cannot mount [src]"))
+			return
+		to_chat(src, span_xenowarning("[target] cannot mount you!"))
+		return
+	visible_message(span_notice("[forced ? "[target] starts to mount on [src]" : "[src] starts hoisting [target] onto [p_their()] saddle..."]"),
+	span_notice("[forced ? "[target] starts to mount on your back" : "You start to lift [target] onto your saddle..."]"))
+	if(!do_after(forced ? target : src, 5 SECONDS, NONE, forced ? src : target, target_display = BUSY_ICON_HOSTILE))
+		visible_message(span_warning("[forced ? "[target] fails to mount on [src]" : "[src] fails to carry [target]!"]"))
+		return
+	//Second check to make sure they're still valid to be carried
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		return
+	buckle_mob(target, TRUE, TRUE, 90, 1, 0)
+
+/mob/living/carbon/xenomorph/runner/resisted_against(datum/source)
+	user_unbuckle_mob(source, source)

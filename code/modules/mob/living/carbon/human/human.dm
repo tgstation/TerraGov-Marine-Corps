@@ -78,6 +78,7 @@
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, PROC_REF(do_unique_action))
 	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(fireman_carry_grabbed)) // Fireman carry
 	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(grabbed_self_attack),TRUE) // mounting saddled rounies
 
 /mob/living/carbon/human/Destroy()
 	assigned_squad?.remove_from_squad(src)
@@ -1119,3 +1120,12 @@
 	if(!do_after(src, 2 SECONDS, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
 		return
 	return ..()
+
+/mob/living/carbon/human/proc/grabbed_self_attack()
+	SIGNAL_HANDLER
+	if(isxenorunner(pulling))
+		var/mob/living/carbon/xenomorph/grabbed = pulling
+		if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
+			INVOKE_ASYNC(grabbed, TYPE_PROC_REF(/mob/living/carbon/xenomorph/runner, carry_human), src, TRUE)
+			return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	return NONE

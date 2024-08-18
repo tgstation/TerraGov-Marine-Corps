@@ -1282,6 +1282,11 @@ CLOTHING
 	contains = list(/obj/item/cell/night_vision_battery, /obj/item/cell/night_vision_battery)
 	cost = 100
 
+/datum/supply_packs/clothing/saddle
+	name = "Runner Saddle"
+	contains = list(/obj/item/storage/backpack/marine/duffelbag/xenosaddle/)
+	cost = 120
+
 /*******************************************************************************
 MEDICAL
 *******************************************************************************/
