@@ -349,7 +349,7 @@
 		go_idle()
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
-	if(stat == CONSCIOUS)
+	if(isliving(finder) && stat == CONSCIOUS)
 		finder.visible_message(span_danger("\A [src] leaps out of \the [loc]!") )
 		forceMove(get_turf(src))
 		reset_life_timer()
