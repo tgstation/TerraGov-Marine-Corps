@@ -372,8 +372,6 @@
 	var/undeploy_time = 0
 	///If the gun is deployed, change the scatter amount by this number. Negative reduces scatter, positive adds.
 	var/deployed_scatter_change = 0
-	///List of turf/objects/structures that will be ignored in the sentries targeting.
-	var/list/ignored_terrains
 	///Flags that the deployed sentry uses upon deployment.
 	var/turret_flags = NONE
 	///Damage threshold for whether a turret will be knocked down.
