@@ -9,11 +9,9 @@
 	var/analgesic = 0
 	///Whether or not the mob is handcuffed
 	var/obj/item/restraints/handcuffs/handcuffed
-	///Tracks whether we can breath right now. Used for a hud icon and for message generation.
-	var/oxygen_alert = FALSE
-	var/phoron_alert = FALSE
-	var/fire_alert = FALSE
-	var/pressure_alert = FALSE
+
+	///Tracks whether our most recent breath has failed, for messages and HUD feedback.
+	var/breath_failing = FALSE
 
 	var/list/internal_organs = list()
 	///Overall drunkenness - check handle_status_effects() in life.dm for effects
