@@ -599,13 +599,13 @@
 	if(assigned_squad)
 		var/squad_color = assigned_squad.color
 		var/rank = job.comm_title
-		if(assigned_squad.squad_leader == src)
-			rank = JOB_COMM_TITLE_SQUAD_LEADER
 		if(job.job_flags & JOB_FLAG_PROVIDES_SQUAD_HUD)
 			var/image/IMG = image('icons/mob/hud/job.dmi', src, "")
 			IMG.color = squad_color
 			holder.overlays += IMG
 			holder.overlays += image('icons/mob/hud/job.dmi', src, "[rank]")
+			if(assigned_squad?.squad_leader == src)
+				holder.overlays += image('icons/mob/hud/job.dmi', src, "leader_trim")
 		var/fireteam = wear_id?.assigned_fireteam
 		if(fireteam)
 			var/image/IMG2 = image('icons/mob/hud/job.dmi', src, "fireteam_[fireteam]")
