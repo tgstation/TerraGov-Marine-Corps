@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Putting a sentry back up will no longer make it dense if it wasn't orignally so"

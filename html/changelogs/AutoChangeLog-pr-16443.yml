@@ -1,6 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - refactor: "Screen warnings for fire, nutrition, temperature, pressure, suffocation, etc now use thrown alerts."
-  - refactor: "Updated HTML tooltip code to TG standards."
-  - bugfix: "Tooltips aren't offset to halfway down your screen anymore."

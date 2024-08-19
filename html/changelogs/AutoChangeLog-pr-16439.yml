@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "You can update detpack freq and code by hitting it with a signaler, or hitting the signaler with the detpack"

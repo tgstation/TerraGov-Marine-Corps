@@ -1,4 +1,0 @@
-author: "ICE-IS-NICE"
-delete-after: True
-changes:
-  - bugfix: "\"Launch evacuation pod\" button is now fixed and usable."

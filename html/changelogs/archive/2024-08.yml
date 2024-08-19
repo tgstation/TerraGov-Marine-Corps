@@ -92,3 +92,30 @@
       icon/minimap icon
   - rscadd: Latejoining SLs will no longer "take over" the acting SL status of any
       existing squad leaders/aSLs in the squad
+2024-08-19:
+  ICE-IS-NICE:
+  - bugfix: '"Launch evacuation pod" button is now fixed and usable.'
+  Lumipharon:
+  - qol: You can update detpack freq and code by hitting it with a signaler, or hitting
+      the signaler with the detpack
+  - balance: 'Campaign: Smartgunners have access to the SH-34 as a belt option, and
+      SH-35 as a perk unlockable backslot option'
+  - bugfix: Fixed the hovertank coilgun hotkey
+  - bugfix: fixed sentry targetting being blocked by tanks
+  - bugfix: Airlocks will no longer shock mech pilots
+  - bugfix: Putting a sentry back up will no longer make it dense if it wasn't orignally
+      so
+  - balance: 'Campaign: Buffed Hovertank coilgun low and medium power modes slightly'
+  - bugfix: fixed campaign autobalance sometimes triggering far later than intended
+  Neocloudy:
+  - refactor: Screen warnings for fire, nutrition, temperature, pressure, suffocation,
+      etc now use thrown alerts.
+  - refactor: Updated HTML tooltip code to TG standards.
+  - bugfix: Tooltips aren't offset to halfway down your screen anymore.
+  Pariah919:
+  - balance: SVD and HPR now cost 300 points to buy in Requisitions instead of 150
+      to reflect their status.
+  jonash07:
+  - bugfix: fixed retractable railings smoothing with walls for some reason
+  yyzsong:
+  - bugfix: Valhalla reqtorio vendor may now vend unboxers.
