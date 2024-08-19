@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed ghosts being able to make huggers jump out of bags"
