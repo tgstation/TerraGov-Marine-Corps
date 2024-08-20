@@ -35,5 +35,3 @@ config: changed some config setting
 admin: messed with admin stuff
 server: something server ops should know
 /:cl:
-
-
