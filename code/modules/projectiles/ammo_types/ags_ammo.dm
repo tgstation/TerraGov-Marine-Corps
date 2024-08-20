@@ -19,7 +19,9 @@
 	shell_speed = 2
 	accurate_range = 12
 	max_range = 21
-	damage = 15
+	damage = 90
+	penetration = 5
+	sundering = 15
 	shrapnel_chance = 0
 	bonus_projectiles_type = /datum/ammo/bullet/ags_spread
 	bonus_projectiles_scatter = 20
@@ -27,7 +29,7 @@
 
 
 /datum/ammo/ags_shrapnel/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	var/turf/det_turf = get_turf(target_mob)
+	var/turf/det_turf = get_step_towards(target_mob, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
 
