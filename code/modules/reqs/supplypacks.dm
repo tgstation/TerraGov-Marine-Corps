@@ -2275,12 +2275,12 @@ FACTORY
 /datum/supply_packs/factory/smartgun_minigun_box_refill
 	name = "SG-85 ammo bin parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_minigun_box_refill)
-	cost = 400
+	cost = 350
 
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "SG-29 ammo drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
-	cost = 400
+	cost = 350
 
 /datum/supply_packs/factory/smartgun_targetrifle_refill
 	name = "SG-62 ammo magazine parts refill"
