@@ -119,3 +119,11 @@
   - bugfix: fixed retractable railings smoothing with walls for some reason
   yyzsong:
   - bugfix: Valhalla reqtorio vendor may now vend unboxers.
+2024-08-20:
+  Lumipharon:
+  - balance: Crest defence makes the user immune to light explosion tosses
+  XElectricX:
+  - bugfix: Xenos cannot damage resin doors again.
+  ivanmixo:
+  - bugfix: Fixed ghosts being able to make huggers jump out of bags
+  - code_imp: Hugger code is a little bit better
