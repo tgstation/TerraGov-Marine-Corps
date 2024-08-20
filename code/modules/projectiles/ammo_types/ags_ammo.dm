@@ -19,7 +19,7 @@
 	shell_speed = 2
 	accurate_range = 12
 	max_range = 21
-	damage = 90
+	damage = 75
 	penetration = 5
 	sundering = 15
 	shrapnel_chance = 0
