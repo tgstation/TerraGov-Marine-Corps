@@ -355,7 +355,7 @@
 			set_light_color(ammo.bullet_color)
 			set_light_on(TRUE)
 	else
-		alpha = 32
+		alpha = 64
 
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 
