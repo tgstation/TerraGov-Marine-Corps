@@ -282,7 +282,7 @@
 	icon_state = "pick(icon_states(icon)"
 	addtimer(CALLBACK(src, PROC_REF(random_title)), 1 MINUTES)
 
-/turf/closed/wall/indestructible/splashscreen/proc/randomtitle()
+/turf/closed/wall/indestructible/splashscreen/proc/random_title()
 	title_num += 1
 	if(title_num > icon_states(icon))
 		title_num = 0
