@@ -860,12 +860,15 @@
 
 /mob/living/carbon/xenomorph/hunter/assassin/change_form()
 	if(!loc_weeds_type)
-		to_chat(src, span_xenowarning("We need to be on weeds for us to shift again."))
+		balloon_alert(src, "We need to be on weeds.")
 		return
 	wound_overlay.icon_state = "none"
-	var/turf/whereweat = get_turf(src)
-	if(whereweat.get_lumcount() > 0.2) //is it a lit turf
-		balloon_alert(src, "We will be disoriented in this light.")
+	if(status_flags & INCORPOREAL) //will alert if the xeno will get disoriented due lit turf, if phasing in.
+		var/turf/whereweat = get_turf(src)
+		if(whereweat.get_lumcount() > 0.2) //is it a lit turf
+			balloon_alert(src, "We will be disoriented and sensed in this light.") //so its more visible to xeno.
+			 //Marines can sense the manifestation if it's in lit-enough turf nearby.
+			visible_message(span_highdanger("Something begins to manifest nearby!"), span_xenohighdanger("We begin to manifest in the light... talls sense us!"))
 	if(do_after(src, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BAR, NONE, PROGRESS_GENERIC)) //dont move
 		do_change_form()
 
