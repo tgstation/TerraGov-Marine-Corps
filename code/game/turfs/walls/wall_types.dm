@@ -279,8 +279,8 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	//random title as starting point so it isnt choking every time you see it.
-	icon_state = "title_painting[rand(0,total_titles)]"
-	addtimer(CALLBACK(src, PROC_REF(randomtitle)), 1 MINUTES)
+	icon_state = "pick(icon_states(icon)"
+	addtimer(CALLBACK(src, PROC_REF(random_title)), 1 MINUTES)
 
 /turf/closed/wall/indestructible/splashscreen/proc/randomtitle()
 	icon_state = "title_painting[title_num]" //sets the title to the title_num here
