@@ -283,14 +283,11 @@
 	addtimer(CALLBACK(src, PROC_REF(random_title)), 1 MINUTES)
 
 /turf/closed/wall/indestructible/splashscreen/proc/randomtitle()
+	title_num += 1
+	if(title_num > icon_states(icon))
+		title_num = 0
 	icon_state = "title_painting[title_num]" //sets the title to the title_num here
-	//preps the next title below.
-	if(icon_state == "title_painting[total_titles]")
-		title_num == 0 //put to 0 if we saw the last image instead of going to the shadow realm.
-	else
-		title_num += 1 //sets the number for the next image cycle to have
-	update_icon()
-	addtimer(CALLBACK(src, PROC_REF(randomtitle)), 1 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(random_title)), 1 MINUTES)
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
