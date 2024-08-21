@@ -867,7 +867,7 @@
 		var/turf/whereweat = get_turf(src)
 		if(whereweat.get_lumcount() > 0.2) //is it a lit turf
 			balloon_alert(src, "We will be disoriented and sensed in this light.") //so its more visible to xeno.
-			 //Marines can sense the manifestation if it's in lit-enough turf nearby.
+			//Marines can sense the manifestation if it's in lit-enough turf nearby.
 			visible_message(span_highdanger("Something begins to manifest nearby!"), span_xenohighdanger("We begin to manifest in the light... talls sense us!"))
 	if(do_after(src, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BAR, NONE, PROGRESS_GENERIC)) //dont move
 		do_change_form()
