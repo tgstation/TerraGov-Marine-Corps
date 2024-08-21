@@ -273,21 +273,23 @@
 //	icon_state = "title_holiday"
 	layer = FLY_LAYER
 	pixel_x = -64
-	var/total_titles = 35 //<--- just change this if adding images etc
-	var/title_num = 0 //do not change this
+	//random title as starting point so it isnt choking every time you see it.
+	var/list/total_titles
+	///Gets the current title number. It sets itself with the proc below, no need to touch.
+	var/icon/current_title
+	///The delay between title changes.
+	var/switchtime = 1 MINUTES
 
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
-	//random title as starting point so it isnt choking every time you see it.
-	icon_state = "pick(icon_states(icon)"
-	addtimer(CALLBACK(src, PROC_REF(random_title)), 1 MINUTES)
+	total_titles = icon_states(icon)
+	icon_state = pick(icon_states(icon)) //randomly picks a starting screen.
+	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), switchtime)
 
-/turf/closed/wall/indestructible/splashscreen/proc/random_title()
-	title_num += 1
-	if(title_num > icon_states(icon))
-		title_num = 0
-	icon_state = "title_painting[title_num]" //sets the title to the title_num here
-	addtimer(CALLBACK(src, PROC_REF(random_title)), 1 MINUTES)
+/turf/closed/wall/indestructible/splashscreen/proc/next_splashscreen()
+	current_title = next_in_list(current_title, total_titles)
+	icon_state = current_title //sets the title to the current_title here
+	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), switchtime)
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
