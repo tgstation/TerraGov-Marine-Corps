@@ -75,7 +75,6 @@
 	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED))
 		damage_mod += dam_bonus
 
-	//looks like sneak attack never worked beyond stunning till now. -- vide noir
 	var/armor_pen = X.xeno_caste.melee_ap
 	if(HAS_TRAIT(X, STEALTH_TRAIT)) //sneeky attack
 		var/datum/action/ability/xeno_action/stealth/can_sneak_attack = locate() in X.actions

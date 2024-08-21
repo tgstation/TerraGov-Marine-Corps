@@ -340,12 +340,17 @@
 	var/area/A = get_area(src)
 	return A.lightswitch && A.power_light
 
+///Flickers the lights for a set amount of time and flicker delays.
 /obj/machinery/light/proc/set_flicker(amount, flicker_time_lower, flicker_time_upper)
+	if(status == LIGHT_BROKEN)
+		return
+	///Timer id for flickering.
 	var/theflicker
-	if(flickering)
+	if(flickering) //is it flickering when set_flicker-ed
+		//get rid of the stuff to start over so we dont mess stuff up.
 		deltimer(theflicker)
 		resetflickers()
-	if(!flickering)
+	if(!flickering) //if it is not flickering already, do as usual.
 		random_flicker = TRUE
 		flicker(TRUE)
 		if(flicker_time_lower)
@@ -354,12 +359,12 @@
 			flicker_time_upper_max = flicker_time_upper
 		theflicker = addtimer(CALLBACK(src, PROC_REF(resetflickers), amount))
 
+///sets values as they were for the light, before set_flicker.
 /obj/machinery/light/proc/resetflickers()
 	flicker(FALSE)
 	flickering = initial(flickering)
 	flicker_time_lower_min = initial(flicker_time_lower_min)
 	flicker_time_upper_max = initial(flicker_time_upper_max)
-	status = initial(status)
 
 ///flicker lights on and off
 /obj/machinery/light/proc/flicker(toggle_flicker = FALSE)
