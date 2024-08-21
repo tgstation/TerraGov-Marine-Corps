@@ -283,7 +283,8 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	total_titles = icon_states(icon)
-	icon_state = pick(icon_states(icon)) //randomly picks a starting screen.
+	current_title = pick(icon_states(icon)) //randomly picks a starting screen.
+	icon_state = current_title
 	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), switchtime)
 
 /turf/closed/wall/indestructible/splashscreen/proc/next_splashscreen()
