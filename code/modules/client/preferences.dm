@@ -147,6 +147,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Volume to use for tts
 	var/volume_tts = 100
 
+	/// Preference for letting people make TGUI windows use more accessible (basically, default) themes, where needed/possible.
+	/// Example application: health analyzers using this to choose between default themes or the NtOS themes.
+	var/accessible_tgui_themes = FALSE
 
 	/// Chat on map
 	var/chat_on_map = TRUE

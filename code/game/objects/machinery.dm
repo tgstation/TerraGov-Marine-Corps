@@ -38,6 +38,7 @@
 	STOP_PROCESSING(SSmachines, src)
 	if(istype(circuit)) //There are some uninitialized legacy path circuits.
 		QDEL_NULL(circuit)
+	operator?.unset_interaction()
 	operator = null
 	var/turf/current_turf = get_turf(src)
 	if(anchored && current_turf && density)
@@ -64,7 +65,7 @@
 	to_chat(user, span_notice("You rotate [src]."))
 	return TRUE
 
-/obj/machinery/deconstruct(disassembled = TRUE)
+/obj/machinery/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		on_deconstruction()
 		if(length(component_parts))

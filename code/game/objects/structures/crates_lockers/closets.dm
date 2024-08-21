@@ -77,7 +77,7 @@
 
 	take_contents()
 
-/obj/structure/closet/deconstruct(disassembled = TRUE)
+/obj/structure/closet/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	dump_contents()
 	return ..()
 

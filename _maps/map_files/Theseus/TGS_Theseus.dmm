@@ -15982,6 +15982,7 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
+/obj/item/plantable_flag,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "qhN" = (
