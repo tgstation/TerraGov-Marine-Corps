@@ -880,7 +880,7 @@
 		if(whereweat.get_lumcount() > 0.2) //is it a lit turf
 			balloon_alert(src, "Light disorients us!")
 			adjust_stagger(2 SECONDS)
-			adjust_slowdown(2)
+			add_slowdown(2)
 		for(var/obj/machinery/light/lightie in range(rand(5,7), whereweat))
 			lightie.set_flicker(rand(3 SECONDS, 5 SECONDS), 3, 6)
 		status_flags = initial(status_flags)
