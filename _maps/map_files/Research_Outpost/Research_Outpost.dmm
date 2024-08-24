@@ -2184,8 +2184,8 @@
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo/office)
 "kx" = (
-/turf/closed/mineral/smooth/bigred,
-/area/outpost/cargo)
+/turf/closed/wall/r_wall,
+/area/outpost/caves/south_west)
 "ky" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -2199,7 +2199,7 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/turf/open/floor/plating/ground/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/lz1)
 "kE" = (
 /obj/machinery/light/small{
@@ -3476,11 +3476,6 @@
 	dir = 8
 	},
 /area/outpost/hallway/central)
-"qp" = (
-/obj/structure/table/reinforced,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/lz1)
 "qr" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	dir = 1
@@ -4016,9 +4011,11 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/yard/south_east)
 "sH" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth/bigred,
-/area/outpost/caves/west)
+/obj/structure/cable,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table/reinforced,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/lz1)
 "sJ" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/tile/dark/brown2{
@@ -4535,8 +4532,8 @@
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
 	},
-/turf/closed/mineral/smooth/bigred,
-/area/outpost/caves/south_west)
+/turf/open/space/basic,
+/area/bigredv2/caves/rock)
 "vq" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -6484,7 +6481,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/yard/west)
+/area/outpost/lz1)
 "EA" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/yard/central)
@@ -6777,7 +6774,7 @@
 /area/outpost/yard/west)
 "FM" = (
 /obj/structure/cable,
-/turf/open/floor/plating/ground/mars/random/sand,
+/turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/lz1)
 "FQ" = (
 /obj/effect/landmark/weed_node,
@@ -6998,10 +6995,6 @@
 	dir = 8
 	},
 /area/outpost/yard/east)
-"Ha" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth/bigred,
-/area/outpost/caves/south_west)
 "Hc" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/lz1)
@@ -7158,10 +7151,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/northern)
-"HN" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth/bigred,
-/area/outpost/lz1)
 "HP" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/yard/south_east)
@@ -9221,12 +9210,6 @@
 	dir = 1
 	},
 /area/outpost/cargo/security)
-"Ry" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/closed/mineral/smooth/bigred,
-/area/outpost/caves/west)
 "RA" = (
 /obj/machinery/light{
 	dir = 1
@@ -10138,9 +10121,6 @@
 "VR" = (
 /turf/closed/wall/r_wall,
 /area/outpost/cargo/office)
-"VS" = (
-/turf/closed/wall/r_wall,
-/area/outpost/lz1)
 "VT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2/corner,
@@ -10432,12 +10412,6 @@
 	dir = 1
 	},
 /area/outpost/yard/central)
-"Xm" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/caves/west)
 "Xp" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -14207,8 +14181,8 @@ yW
 yW
 yW
 yW
-gw
-gw
+yW
+yW
 gw
 gw
 gw
@@ -14296,41 +14270,43 @@ yW
 yW
 yW
 yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
-yW
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+tU
+Cc
+Cc
+Cc
 yW
 ho
 ho
@@ -14339,8 +14315,6 @@ ho
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -14428,40 +14402,42 @@ yW
 yW
 yW
 yW
-sH
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
-HN
+Cc
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+sV
+sV
+sV
+sV
+sV
+sV
+sV
+sV
+sV
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
+yW
 vp
 yW
 ho
@@ -14471,8 +14447,6 @@ ho
 ho
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -14560,17 +14534,17 @@ yW
 yW
 yW
 yW
-Ry
+Cc
 yW
 yW
 yW
 yW
 yW
 yW
-yW
-yW
-yW
-yW
+Pz
+sV
+sV
+sV
 sV
 sV
 sV
@@ -14587,14 +14561,16 @@ sV
 sV
 sV
 sV
+sV
+sV
+sV
+sV
+sV
 yW
 yW
 yW
 yW
-yW
-yW
-yW
-vp
+Cc
 yW
 ho
 ho
@@ -14603,8 +14579,6 @@ ho
 ho
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -14692,17 +14666,17 @@ yW
 yW
 yW
 yW
-Ry
+Cc
 yW
 yW
 yW
 yW
-yW
-Hc
 Hc
 Hc
 Hc
 Pz
+dF
+dF
 dF
 dF
 dF
@@ -14724,9 +14698,11 @@ dF
 dF
 dF
 dF
+dF
+dF
 yW
 yW
-vp
+Cc
 yW
 yW
 ho
@@ -14735,8 +14711,6 @@ cz
 ho
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -14824,7 +14798,7 @@ yW
 yW
 yW
 yW
-Ry
+Cc
 yW
 yW
 yW
@@ -14857,8 +14831,10 @@ Hc
 Hc
 Hc
 Hc
+Hc
 yW
-vp
+yW
+Cc
 yW
 yW
 ho
@@ -14867,8 +14843,6 @@ ho
 ho
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -14956,7 +14930,7 @@ yW
 yW
 yW
 yW
-Ry
+Cc
 yW
 yW
 yW
@@ -14989,8 +14963,10 @@ Vu
 Vu
 Jw
 Hc
+Hc
 yW
-vp
+yW
+Cc
 yW
 yW
 ho
@@ -14999,8 +14975,6 @@ ho
 ho
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -15088,7 +15062,7 @@ yW
 yW
 yW
 yW
-Ry
+Cc
 yW
 yW
 yW
@@ -15121,8 +15095,10 @@ hR
 wn
 RN
 Hc
+Hc
 yW
-vp
+yW
+Cc
 yW
 yW
 ho
@@ -15131,8 +15107,6 @@ ho
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -15220,7 +15194,7 @@ yW
 yW
 yW
 yW
-Ry
+Cc
 yW
 yW
 sV
@@ -15253,8 +15227,10 @@ Ql
 up
 RN
 Hc
+Hc
 yW
-vp
+yW
+Cc
 yW
 yW
 yW
@@ -15263,8 +15239,6 @@ ho
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -15352,7 +15326,7 @@ zh
 yW
 yW
 yW
-Ry
+Cc
 yW
 yW
 sV
@@ -15385,8 +15359,10 @@ Ql
 up
 RN
 Hc
+Hc
+Hc
 yW
-vp
+Cc
 yW
 yW
 yW
@@ -15395,8 +15371,6 @@ ho
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -15484,7 +15458,7 @@ Rr
 yW
 yW
 yW
-Ry
+Cc
 yW
 yW
 yW
@@ -15517,8 +15491,10 @@ Ql
 up
 RN
 Hc
+Hc
+Hc
 yW
-vp
+Cc
 ja
 ja
 ja
@@ -15527,8 +15503,6 @@ wE
 wE
 ja
 yW
-gw
-gw
 gw
 gw
 gw
@@ -15616,7 +15590,7 @@ EB
 EB
 EB
 yW
-Ry
+Cc
 yW
 Hc
 Hc
@@ -15649,7 +15623,9 @@ Ql
 up
 RN
 Hc
-VS
+Hc
+Hc
+kx
 AW
 wE
 ho
@@ -15659,8 +15635,6 @@ ho
 ho
 ja
 yW
-gw
-gw
 gw
 gw
 gw
@@ -15748,7 +15722,7 @@ EB
 EB
 EB
 EB
-Xm
+Ez
 Hc
 JP
 Hc
@@ -15781,7 +15755,9 @@ Ql
 up
 RN
 Hc
-VS
+Hc
+Hc
+kx
 AW
 wE
 ho
@@ -15791,8 +15767,6 @@ ho
 ho
 ja
 yW
-gw
-gw
 gw
 gw
 gw
@@ -15913,7 +15887,9 @@ Ql
 up
 Yp
 Hc
-VS
+Hc
+Hc
+kx
 AW
 wE
 ho
@@ -15923,8 +15899,6 @@ cz
 ho
 ja
 yW
-gw
-gw
 gw
 gw
 gw
@@ -16045,7 +16019,9 @@ Ql
 up
 RN
 Hc
-VS
+Hc
+Hc
+kx
 AW
 wE
 ho
@@ -16055,8 +16031,6 @@ ux
 ho
 ja
 yW
-gw
-gw
 gw
 gw
 gw
@@ -16177,8 +16151,10 @@ Ql
 up
 RN
 Hc
+Hc
+Hc
 yW
-vp
+Cc
 ja
 ho
 ho
@@ -16187,8 +16163,6 @@ Uu
 ho
 ja
 yW
-gw
-gw
 gw
 gw
 gw
@@ -16309,8 +16283,10 @@ Ql
 up
 RN
 Hc
+Hc
+Hc
 yW
-vp
+Cc
 ja
 yW
 ho
@@ -16319,8 +16295,6 @@ ho
 ho
 ja
 yW
-gw
-gw
 gw
 gw
 gw
@@ -16441,8 +16415,10 @@ Ql
 up
 RN
 Hc
+Hc
 yW
-vp
+yW
+Cc
 ja
 ja
 ja
@@ -16451,8 +16427,6 @@ wE
 wE
 ja
 yW
-gw
-gw
 gw
 gw
 gw
@@ -16573,8 +16547,10 @@ Ql
 up
 RN
 Hc
+Hc
 yW
-vp
+yW
+Cc
 yW
 yW
 yW
@@ -16583,8 +16559,6 @@ ho
 ho
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -16705,8 +16679,10 @@ JT
 wn
 RN
 Hc
+Hc
 yW
-vp
+yW
+Cc
 yW
 yW
 ho
@@ -16715,8 +16691,6 @@ ho
 ho
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -16837,8 +16811,10 @@ sQ
 sQ
 Ai
 Hc
+Hc
 yW
-vp
+yW
+Cc
 yW
 yW
 ho
@@ -16847,8 +16823,6 @@ ho
 ho
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -16969,8 +16943,10 @@ Hc
 Hc
 Hc
 Hc
+Hc
 yW
-vp
+yW
+Cc
 yW
 yW
 ho
@@ -16979,8 +16955,6 @@ ho
 ho
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -17083,11 +17057,11 @@ Vj
 Vj
 Vj
 RN
-Hc
-qp
-Hc
-Hc
-Hc
+Oi
+Oi
+Oi
+Oi
+Oi
 yc
 Vj
 RN
@@ -17099,10 +17073,12 @@ Oi
 iZ
 Hc
 Hc
+Hc
+Hc
+Hc
 yW
 yW
-yW
-vp
+Cc
 yW
 yW
 ho
@@ -17111,8 +17087,6 @@ ho
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -17216,7 +17190,7 @@ Vj
 xs
 tR
 FM
-FM
+sH
 FM
 FM
 FM
@@ -17228,13 +17202,15 @@ sV
 sV
 sV
 sV
+sv
+Hc
+Hc
+Hc
 yW
 yW
 yW
 yW
-yW
-yW
-vp
+Cc
 yW
 cz
 ho
@@ -17243,8 +17219,6 @@ cz
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -17351,7 +17325,7 @@ yW
 yW
 yW
 kz
-Hc
+sV
 yW
 yW
 yW
@@ -17366,7 +17340,9 @@ yW
 yW
 yW
 yW
-vp
+yW
+yW
+Cc
 ho
 ho
 ho
@@ -17375,8 +17351,6 @@ ho
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -17498,7 +17472,9 @@ yW
 yW
 yW
 yW
-vp
+yW
+yW
+Cc
 ho
 ho
 ho
@@ -17507,8 +17483,6 @@ ho
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -17630,7 +17604,9 @@ yW
 yW
 yW
 yW
-vp
+yW
+yW
+Cc
 ho
 ho
 ho
@@ -17639,8 +17615,6 @@ yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -17762,7 +17736,9 @@ yW
 yW
 yW
 yW
-vp
+yW
+yW
+Cc
 ho
 cz
 ho
@@ -17771,8 +17747,6 @@ yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -17866,8 +17840,8 @@ tU
 tU
 tU
 tU
-aT
-aT
+tU
+tU
 aT
 rq
 ur
@@ -17877,24 +17851,26 @@ ZO
 zp
 rq
 aT
-aT
-aT
-aT
-aT
-aT
-rq
-rq
-rq
-rq
-rq
-rq
-aT
-aT
 tU
 tU
 tU
 tU
-Ha
+tU
+rq
+rq
+rq
+rq
+rq
+rq
+tU
+tU
+tU
+tU
+tU
+tU
+Cc
+Cc
+tU
 ho
 ho
 ho
@@ -17903,8 +17879,6 @@ yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -17998,8 +17972,8 @@ yW
 yW
 yW
 yW
-kx
-kx
+yW
+yW
 LC
 LC
 gW
@@ -18009,19 +17983,21 @@ yJ
 tl
 LC
 LC
-kx
-kx
-kx
-kx
-kx
+yW
+yW
+yW
+yW
+yW
 LC
 LC
 LC
 LC
 LC
 LC
-kx
-kx
+yW
+yW
+yW
+yW
 yW
 yW
 yW
@@ -18035,8 +18011,6 @@ yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -18159,6 +18133,8 @@ yW
 yW
 yW
 yW
+yW
+yW
 ho
 ho
 ho
@@ -18167,8 +18143,6 @@ yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -18291,6 +18265,8 @@ yW
 yW
 yW
 yW
+yW
+yW
 ho
 ho
 ho
@@ -18299,8 +18275,6 @@ yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -18423,6 +18397,8 @@ yW
 yW
 yW
 yW
+yW
+ho
 ho
 ho
 ho
@@ -18431,8 +18407,6 @@ yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -18559,12 +18533,12 @@ ho
 ho
 ho
 ho
+ho
+ho
 yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -18691,12 +18665,12 @@ ho
 ho
 ho
 ho
+ho
+ho
 yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -18823,12 +18797,12 @@ ho
 ho
 ho
 ho
+ho
+ho
 yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
@@ -18955,12 +18929,12 @@ ho
 ho
 ho
 ho
+ho
+ho
 yW
 yW
 yW
 yW
-gw
-gw
 gw
 gw
 gw
