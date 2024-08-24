@@ -367,8 +367,6 @@
 
 /// If the rouny gets knocked over, toss the riding human off aswell
 /datum/component/riding/creature/crusher/runner/check_carrier_fall_over(mob/living/carbon/xenomorph/runner/carrying_runner)
-	SIGNAL_HANDLER
-
 	for(var/mob/living/rider AS in carrying_runner.buckled_mobs)
 		carrying_runner.unbuckle_mob(rider)
 		rider.Knockdown(1 SECONDS)
