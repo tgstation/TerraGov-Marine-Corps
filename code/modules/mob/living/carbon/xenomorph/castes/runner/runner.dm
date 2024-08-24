@@ -57,13 +57,13 @@
 	. = ..()
 	if(!ishuman(over))
 		return
-	if(!src.back)
+	if(!back)
 		balloon_alert(over,"This runner isn't wearing a saddle!")
 		return
 	if(!do_after(over, 3 SECONDS, NONE, src))
 		return
-	var/obj/item/storage/backpack/marine/duffelbag/xenosaddle/saddle = src.back
-	src.dropItemToGround(saddle,TRUE)
+	var/obj/item/storage/backpack/marine/duffelbag/xenosaddle/saddle = back
+	dropItemToGround(saddle,TRUE)
 
 /mob/living/carbon/xenomorph/runner/grabbed_self_attack()
 	if(!ishuman(pulling))

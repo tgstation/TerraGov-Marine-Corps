@@ -36,9 +36,9 @@
 				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
 			else
 				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Walking"
-	update_fire() //all 3 overlays depends on the xeno's stance, so we must update it.
+	update_fire() //all 3 overlays depends on the xeno's stance, so we update them.
 	update_wounds()
-	update_backpack()
+	update_snowflake_overlays()
 
 	hud_set_sunder()
 	hud_set_firestacks()
@@ -139,7 +139,7 @@
 
 	wound_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
 
-/mob/living/carbon/xenomorph/proc/update_backpack()
+/mob/living/carbon/xenomorph/proc/update_snowflake_overlays()
 	if(!backpack_overlay)
 		return
 	if(!back)
