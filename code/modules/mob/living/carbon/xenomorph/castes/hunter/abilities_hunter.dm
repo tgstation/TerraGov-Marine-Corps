@@ -16,10 +16,10 @@
 	///if stealthed.
 	var/stealth = FALSE
 	///If it can sneak attack with stealth.
-	var/can_sneak_attack = FALSE
+	var/can_sneak_attack = TRUE
 	///Stealth alpha mult value
 	var/stealth_alpha_multiplier = 1
-	///Stealth duration, if it is -1 it is based on plasma.
+	///Stealth duration, if it is -1 it is not based on a timer.
 	var/stealth_duration = -1
 	///Stealth timer ID
 	var/stealth_timer
@@ -228,7 +228,7 @@
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
 	var/datum/action/ability/activable/xeno/hunter_mark/assassin/mark = owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark/assassin]
-	if(mark.marked_target == target)
+	if(mark?.marked_target == target)
 		to_chat(owner, span_xenodanger("We strike our death mark with a [flavour], calculated strike."))
 		staggerslow_stacks *= 2
 		paralyzesecs *= 2
@@ -876,7 +876,6 @@
 /mob/living/carbon/xenomorph/hunter/assassin/proc/do_change_form()
 	playsound(get_turf(src), 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	if(status_flags & INCORPOREAL)
-		xeno_caste.speed *= initial(xeno_caste.speed)
 		var/turf/whereweat = get_turf(src)
 		if(whereweat.get_lumcount() > 0.2) //is it a lit turf
 			balloon_alert(src, "Light disorients us!")
@@ -902,7 +901,6 @@
 	status_flags = INCORPOREAL
 	alpha = 15 //like a shadow
 	color = COLOR_PURPLE
-	xeno_caste.speed *= 0.5
 	resistance_flags = BANISH_IMMUNE
 	pass_flags = PASS_MOB|PASS_XENO
 	density = FALSE

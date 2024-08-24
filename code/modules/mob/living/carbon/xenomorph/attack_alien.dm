@@ -77,9 +77,9 @@
 
 	var/armor_pen = X.xeno_caste.melee_ap
 	if(HAS_TRAIT(X, STEALTH_TRAIT)) //sneeky attack
-		var/datum/action/ability/xeno_action/stealth/can_sneak_attack = locate() in X.actions
+		var/datum/action/ability/xeno_action/stealth/can_sneak_attack = X.actions_by_path[/datum/action/ability/xeno_action/stealth]
 		if(can_sneak_attack)
-			var/datum/action/ability/xeno_action/stealth/sneak_attack_armor_pen = locate() in X.actions
+			var/datum/action/ability/xeno_action/stealth/sneak_attack_armor_pen = X.actions_by_path[/datum/action/ability/xeno_action/stealth]
 			armor_pen = sneak_attack_armor_pen
 			var/datum/action/ability/activable/xeno/hunter_mark/assassin/mark = X.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark/assassin]
 			if(mark.marked_target == src) //assassin death mark
