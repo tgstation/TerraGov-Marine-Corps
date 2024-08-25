@@ -2183,9 +2183,6 @@
 /obj/structure/window/framed/colony/reinforced,
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo/office)
-"kx" = (
-/turf/closed/wall/r_wall,
-/area/outpost/caves/south_west)
 "ky" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -4010,12 +4007,6 @@
 /obj/effect/landmark/corpsespawner/chef,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/outpost/yard/south_east)
-"sH" = (
-/obj/structure/cable,
-/obj/machinery/computer/shuttle/shuttle_control/dropship,
-/obj/structure/table/reinforced,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/outpost/lz1)
 "sJ" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/tile/dark/brown2{
@@ -4529,11 +4520,9 @@
 /turf/open/floor/plating,
 /area/outpost/lz2)
 "vp" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/space/basic,
-/area/bigredv2/caves/rock)
+/obj/effect/ai_node,
+/turf/open/floor/plating/asteroidfloor,
+/area/outpost/lz1)
 "vq" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -6995,6 +6984,12 @@
 	dir = 8
 	},
 /area/outpost/yard/east)
+"Ha" = (
+/obj/structure/cable,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/obj/structure/table/reinforced,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/lz1)
 "Hc" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/outpost/lz1)
@@ -10121,6 +10116,9 @@
 "VR" = (
 /turf/closed/wall/r_wall,
 /area/outpost/cargo/office)
+"VS" = (
+/turf/closed/wall/r_wall,
+/area/outpost/caves/south_west)
 "VT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2/corner,
@@ -14438,7 +14436,7 @@ yW
 yW
 yW
 yW
-vp
+Cc
 yW
 ho
 ho
@@ -15625,7 +15623,7 @@ RN
 Hc
 Hc
 Hc
-kx
+VS
 AW
 wE
 ho
@@ -15757,7 +15755,7 @@ RN
 Hc
 Hc
 Hc
-kx
+VS
 AW
 wE
 ho
@@ -15889,7 +15887,7 @@ Yp
 Hc
 Hc
 Hc
-kx
+VS
 AW
 wE
 ho
@@ -16021,7 +16019,7 @@ RN
 Hc
 Hc
 Hc
-kx
+VS
 AW
 wE
 ho
@@ -16791,7 +16789,7 @@ sQ
 Vj
 Vj
 Vj
-Vj
+vp
 Vj
 sQ
 sQ
@@ -16802,7 +16800,7 @@ sQ
 sQ
 sQ
 sQ
-sQ
+DF
 sQ
 sQ
 sQ
@@ -17190,7 +17188,7 @@ Vj
 xs
 tR
 FM
-sH
+Ha
 FM
 FM
 FM
