@@ -163,7 +163,7 @@
 	// *** Health *** //
 	max_health = 300
 
-	stealth_break_threshold = 25
+	stealth_break_threshold = 18
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 40, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)

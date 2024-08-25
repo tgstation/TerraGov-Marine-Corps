@@ -511,8 +511,8 @@
 		addtimer(CALLBACK(src, PROC_REF(unset_target)), timeout)
 
 	if(warntarget)
-		playsound(marked_target, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
-		to_chat(marked_target, span_userdanger("You feel uneasy."))
+		playsound(marked_target, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
+		to_chat(marked_target, span_highdanger("You feel uneasy."))
 
 	to_chat(X, span_xenodanger("We psychically mark [A] as our quarry."))
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
@@ -798,7 +798,7 @@
 	name = "Phase Out"
 	action_icon_state = "hunter_invisibility"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
-	desc = "Become fully invisible for 10 seconds, or until damaged enough. Attacking does not break invisibility."
+	desc = "Become fully invisible for 10 seconds, or until damaged. Attacking does not break invisibility."
 	ability_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_PHASEOUT,
