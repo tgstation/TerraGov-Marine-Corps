@@ -127,3 +127,13 @@
   ivanmixo:
   - bugfix: Fixed ghosts being able to make huggers jump out of bags
   - code_imp: Hugger code is a little bit better
+2024-08-25:
+  ICE-IS-NICE:
+  - rscadd: Suppressor makes bullets less visible.
+  Lumipharon:
+  - bugfix: fixed AGLS frag rounds detonating under mobs
+  yyzsong:
+  - balance: SG-29 reqtorio drum refill 250 -> 350 points
+  - balance: SG-85 reqtorio bin refill 250 -> 350 points
+  - balance: SG-62 reqtorio magazine refill 250 -> 400 points
+  - balance: SG-62 reqtorio ammo bin refill 250 -> 400 points

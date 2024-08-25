@@ -1,7 +1,0 @@
-author: "yyzsong"
-delete-after: True
-changes:
-  - balance: "SG-29 reqtorio drum refill 250 -> 350 points"
-  - balance: "SG-85 reqtorio bin refill 250 -> 350 points"
-  - balance: "SG-62 reqtorio magazine refill 250 -> 400 points"
-  - balance: "SG-62 reqtorio ammo bin refill 250 -> 400 points"
