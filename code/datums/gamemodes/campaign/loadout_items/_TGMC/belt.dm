@@ -116,6 +116,13 @@
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
+/datum/loadout_item/belt/db_shotgun
+	name = "SH-34 shotgun"
+	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC, loaded with buckshot. Uncommonly seen as a powerful secondary weapon when serious stopping power is required."
+	ui_icon = "tx34"
+	item_typepath = /obj/item/storage/holster/belt/ts34/full
+	jobs_supported = list(SQUAD_SMARTGUNNER)
+
 //medic
 /datum/loadout_item/belt/lifesaver
 	name = "Lifesaver bag"

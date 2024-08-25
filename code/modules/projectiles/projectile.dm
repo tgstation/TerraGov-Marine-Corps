@@ -350,9 +350,12 @@
 	if(QDELETED(src))
 		return
 
-	if(!suppress_light && ammo.bullet_color)
-		set_light_color(ammo.bullet_color)
-		set_light_on(TRUE)
+	if(!suppress_light)
+		if(ammo.bullet_color)
+			set_light_color(ammo.bullet_color)
+			set_light_on(TRUE)
+	else
+		alpha = 64
 
 	START_PROCESSING(SSprojectiles, src) //If no hits on the first moves, enter the processing queue for next.
 

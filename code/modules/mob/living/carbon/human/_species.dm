@@ -436,12 +436,6 @@
 	var/has_m_intent = TRUE
 	///Set to draw environment warnings
 	var/has_warnings = TRUE
-	///Draw the pressure indicator
-	var/has_pressure = TRUE
-	///Draw the nutrition indicator
-	var/has_nutrition = TRUE
-	///Draw the bodytemp indicator
-	var/has_bodytemp = TRUE
 	///Set to draw shand
 	var/has_hands = TRUE
 	///Set to draw drop button
@@ -503,9 +497,6 @@
 		equip_slots |= SLOT_IN_R_POUCH
 		equip_slots |= SLOT_ACCESSORY
 		equip_slots |= SLOT_IN_ACCESSORY
-
-/datum/hud_data/robotic
-	has_nutrition = FALSE
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)
