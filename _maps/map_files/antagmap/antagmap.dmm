@@ -371,6 +371,13 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"cu" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0;
+	dir = 1
+	},
+/area/vsd/ship/inside)
 "cw" = (
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/plating/plating_catwalk,
@@ -640,11 +647,11 @@
 	})
 "eo" = (
 /obj/machinery/door/airlock/mainship/generic{
-	name = "\improper VSD Port Airlock"
+	name = "\improper VSD Armory Airlock"
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
-/area/vsd/ship/inside/port)
+/area/vsd/ship/inside/armory)
 "ep" = (
 /obj/effect/landmark/start/job/vsd_medic,
 /turf/open/floor/iron/dark/textured,
@@ -918,13 +925,6 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
-"fW" = (
-/obj/machinery/door/airlock/mainship/generic{
-	name = "\improper VSD Armory Airlock"
-	},
-/obj/structure/cable,
-/turf/open/floor/grayscale/round/black,
-/area/vsd/ship/inside/armory)
 "fX" = (
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier{
@@ -1100,6 +1100,10 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"gR" = (
+/obj/effect/landmark/start/job/vsd_spec,
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/port)
 "gU" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -2383,12 +2387,6 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/groundhq/ntf/patrol_base/command)
-"mR" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_2";
-	opacity = 0
-	},
-/area/vsd/ship/inside)
 "mS" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -2710,10 +2708,6 @@
 /obj/structure/flora/pottedplant,
 /turf/open/floor/prison/blackfloor,
 /area/vsd/ship/inside/hall)
-"oq" = (
-/obj/structure/cable,
-/turf/open/floor/prison/blackfloor,
-/area/vsd/ship/inside/bridge)
 "or" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2;
@@ -3007,6 +3001,9 @@
 /area/mainship/groundhq/som/squads/req{
 	name = "SOM Requisitions"
 	})
+"pJ" = (
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
 "pK" = (
 /obj/structure/cable,
 /turf/open/floor/iron/dark,
@@ -3119,7 +3116,7 @@
 "qi" = (
 /obj/effect/landmark/start/job/vsd_spec,
 /turf/open/floor/iron/dark,
-/area/vsd/ship/inside/port)
+/area/vsd/ship/inside/armory)
 "qo" = (
 /turf/closed/wall,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
@@ -3214,6 +3211,12 @@
 "qM" = (
 /turf/closed/shuttle/dropship_regular/backwall,
 /area/shuttle/transport)
+"qO" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
+	},
+/area/vsd/ship/inside)
 "qU" = (
 /obj/item/storage/box/visual/grenade,
 /turf/open/floor/prison/plate,
@@ -3895,6 +3898,9 @@
 "uB" = (
 /turf/open/shuttle/dropship/four,
 /area/shuttle/transport)
+"uD" = (
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/port)
 "uE" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -3947,10 +3953,6 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
-"uT" = (
-/obj/structure/cable,
-/turf/open/floor/prison/redfloor,
-/area/vsd/ship/inside/bridge)
 "uU" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/structure/cable,
@@ -3969,7 +3971,7 @@
 	})
 "uY" = (
 /turf/open/floor/prison/blackfloor,
-/area/vsd/ship/inside/hall)
+/area/vsd/ship/inside/bridge)
 "uZ" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/food_or_drink/beer,
@@ -4052,6 +4054,12 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"vt" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
 "vu" = (
 /obj/structure/sign/prop2,
 /obj/machinery/light/mainship{
@@ -4710,12 +4718,6 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
-"yW" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_2";
-	opacity = 0
-	},
-/area/vsd/ship/inside)
 "yY" = (
 /turf/open/floor/plating,
 /area/mainship/groundhq/clf/squads/req)
@@ -4999,6 +5001,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/oscar_outpost/outside/road)
+"AS" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_2";
+	opacity = 0
+	},
+/area/vsd/ship/inside)
 "AV" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -5037,6 +5045,13 @@
 "Bf" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/iron/dark/herringbone,
+/area/vsd/ship/inside/port)
+"Bg" = (
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper VSD Port Airlock"
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
 /area/vsd/ship/inside/port)
 "Bi" = (
 /obj/structure/morgue{
@@ -5486,6 +5501,13 @@
 	outside = 0;
 	name = "SOM Restrooms"
 	})
+"Dh" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0;
+	dir = 1
+	},
+/area/vsd/ship/inside)
 "Di" = (
 /obj/machinery/light{
 	dir = 1
@@ -5701,9 +5723,6 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
-"Ey" = (
-/turf/open/floor/iron/dark,
-/area/vsd/ship/inside/port)
 "Ez" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -6610,6 +6629,10 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"IZ" = (
+/obj/structure/cable,
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "Ja" = (
 /obj/structure/table/black,
 /turf/open/floor/iron/dark/smooth_edge,
@@ -7085,6 +7108,9 @@
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/grayscale/round/black,
 /area/vsd/ship/inside)
+"LI" = (
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/armory)
 "LK" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/adv,
@@ -7183,12 +7209,6 @@
 /obj/structure/prop/mainship/doorblocker/patrol_base/som,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
-"Mj" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 8
-	},
-/turf/open/floor/prison/blackfloor,
-/area/vsd/ship/inside/hall)
 "Mk" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -7285,12 +7305,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/patrol_base/prep)
-"MN" = (
-/obj/structure/bed/chair/dropship/passenger{
-	dir = 4
-	},
-/turf/open/floor/prison/blackfloor,
-/area/vsd/ship/inside/hall)
 "MO" = (
 /obj/structure/closet/crate,
 /turf/open/floor/mainship/black/full,
@@ -7696,9 +7710,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/oscar_outpost/outside/road)
-"OC" = (
-/turf/open/floor/iron/dark,
-/area/vsd/ship/inside/armory)
 "OG" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/office,
@@ -7823,6 +7834,7 @@
 /obj/item/clothing/glasses/welding/superior,
 /obj/item/clothing/glasses/welding/superior,
 /obj/item/tool/weldingtool,
+/obj/item/clothing/gloves/insulated,
 /turf/open/floor/prison/darkbrown{
 	dir = 1
 	},
@@ -7918,9 +7930,6 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
-"PJ" = (
-/turf/open/floor/prison/blackfloor,
-/area/vsd/ship/inside/bridge)
 "PL" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
@@ -9611,6 +9620,10 @@
 	dir = 1
 	},
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"Xz" = (
+/obj/structure/cable,
+/turf/open/floor/prison/redfloor,
+/area/vsd/ship/inside/bridge)
 "XB" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoinsom,
@@ -9780,13 +9793,6 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/squads/req)
-"Yv" = (
-/turf/closed/shuttle/ert{
-	icon_state = "rightengine_1";
-	opacity = 0;
-	dir = 1
-	},
-/area/vsd/ship/inside)
 "Yx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet{
@@ -9853,10 +9859,6 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
-"YL" = (
-/obj/effect/landmark/start/job/vsd_spec,
-/turf/open/floor/iron/dark,
-/area/vsd/ship/inside/armory)
 "YM" = (
 /obj/structure/cable,
 /obj/structure/bed/chair/comfy{
@@ -9875,13 +9877,6 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
-"YO" = (
-/turf/closed/shuttle/ert{
-	icon_state = "leftengine_1";
-	opacity = 0;
-	dir = 1
-	},
-/area/vsd/ship/inside)
 "YR" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /obj/structure/cable,
@@ -9934,6 +9929,12 @@
 /area/mainship/groundhq/clf/hallways/aft_hallway{
 	requires_power = 0
 	})
+"Zf" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
 "Zk" = (
 /obj/item/storage/toolbox/electrical,
 /obj/structure/cable,
@@ -17329,7 +17330,7 @@ OY
 Gj
 Ux
 pp
-yW
+AS
 pp
 pp
 CN
@@ -17424,9 +17425,9 @@ yj
 Ux
 Ux
 pp
-mR
-yW
-YO
+qO
+AS
+cu
 CN
 CN
 CN
@@ -17519,9 +17520,9 @@ pk
 Ux
 ll
 pp
-mR
-mR
-Yv
+qO
+qO
+Dh
 CN
 CN
 CN
@@ -17598,11 +17599,11 @@ CN
 CN
 pp
 QR
-Ey
-Ey
-Ey
-Ey
-Ey
+uD
+uD
+uD
+uD
+uD
 ET
 pp
 BA
@@ -17693,11 +17694,11 @@ pp
 pp
 pp
 id
-qi
-qi
-qi
-Ey
-Ey
+gR
+gR
+gR
+uD
+uD
 lq
 pp
 Ap
@@ -17784,7 +17785,7 @@ Fc
 xj
 mh
 hl
-PJ
+uY
 pp
 pp
 dX
@@ -17876,10 +17877,10 @@ CN
 CN
 LH
 eR
-PJ
+uY
 On
 FG
-PJ
+uY
 TK
 pp
 pp
@@ -17888,7 +17889,7 @@ pp
 pp
 pp
 Sx
-eo
+Bg
 pp
 pp
 pp
@@ -17971,7 +17972,7 @@ CN
 CN
 LH
 hZ
-PJ
+uY
 FG
 FG
 FG
@@ -17988,14 +17989,14 @@ nF
 Iv
 UZ
 uP
-MN
+Zf
 jL
 hB
 on
 UQ
-yW
+AS
 pp
-YO
+cu
 CN
 CN
 CN
@@ -18067,10 +18068,10 @@ jz
 LH
 xe
 wb
-uT
-uT
-uT
-oq
+Xz
+Xz
+Xz
+IZ
 xA
 SU
 SU
@@ -18085,12 +18086,12 @@ Sq
 as
 jL
 jL
-uY
-uY
+pJ
+pJ
 UQ
-yW
-yW
-YO
+AS
+AS
+cu
 CN
 CN
 CN
@@ -18161,8 +18162,8 @@ CN
 CN
 LH
 qW
-PJ
-uT
+uY
+Xz
 FG
 FG
 Vc
@@ -18178,14 +18179,14 @@ qs
 NW
 Do
 lv
-Mj
+vt
 jL
 VA
 on
 UQ
-mR
+qO
 pp
-YO
+cu
 CN
 CN
 CN
@@ -18256,10 +18257,10 @@ CN
 CN
 LH
 Ui
-PJ
+uY
 ug
 FG
-PJ
+uY
 TK
 pp
 pp
@@ -18268,7 +18269,7 @@ pp
 pp
 pp
 Sx
-fW
+eo
 pp
 pp
 pp
@@ -18354,7 +18355,7 @@ XG
 tS
 pX
 mS
-PJ
+uY
 pp
 pp
 da
@@ -18454,10 +18455,10 @@ pp
 pp
 GQ
 QT
-OC
-OC
+LI
+LI
 AO
-OC
+LI
 eA
 pp
 FS
@@ -18548,11 +18549,11 @@ CN
 CN
 pp
 Cw
-OC
-OC
-YL
-OC
-OC
+LI
+LI
+qi
+LI
+LI
 Ly
 pp
 GK
@@ -18645,9 +18646,9 @@ pp
 Ro
 AO
 QT
-OC
-OC
-YL
+LI
+LI
+qi
 eA
 pp
 qy
@@ -18659,9 +18660,9 @@ IL
 TW
 az
 pp
-yW
-yW
-YO
+AS
+AS
+cu
 CN
 CN
 CN
@@ -18754,9 +18755,9 @@ TW
 TW
 ur
 pp
-yW
-mR
-YO
+AS
+qO
+cu
 CN
 CN
 CN
@@ -18849,7 +18850,7 @@ xr
 df
 tk
 pp
-mR
+qO
 pp
 pp
 CN
