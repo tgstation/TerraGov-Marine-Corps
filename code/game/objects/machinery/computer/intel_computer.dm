@@ -16,12 +16,12 @@
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
 	///How much supply points you get for completing the terminal
-	var/supply_reward = 600
+	var/supply_reward = 1000
 	///How much dropship points you get for completing the terminal
-	var/dropship_reward = 60
+	var/dropship_reward = 100
 
 	///How much progress we get every tick, up to 100
-	var/progress_interval = 1
+	var/progress_interval = 0.75
 	///Tracks how much of the terminal is completed
 	var/progress = 0
 	///have we logged into the terminal yet?
