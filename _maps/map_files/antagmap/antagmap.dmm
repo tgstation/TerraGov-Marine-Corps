@@ -19,8 +19,9 @@
 	outside = 0
 	})
 "af" = (
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/riptide/inside/syndicatestarboard)
+/obj/effect/urban/decal/warning/redandwhite_S,
+/turf/open/floor/grayscale/darkblue,
+/area/vsd/ship/inside/med)
 "ai" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -43,7 +44,7 @@
 "as" = (
 /obj/structure/cable,
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "at" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/oscar_outpost/outside/road)
@@ -56,8 +57,8 @@
 /area/mainship/groundhq/som/command/telecomms)
 "az" = (
 /obj/machinery/iv_drip,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/smooth_edge,
+/area/vsd/ship/inside/med)
 "aD" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/plating/plating_catwalk,
@@ -182,6 +183,14 @@
 "bm" = (
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
+"bn" = (
+/obj/machinery/sleeper{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/med)
 "bo" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -453,8 +462,8 @@
 /area/mainship/groundhq/ntf/patrol_base/hangar)
 "da" = (
 /obj/structure/largecrate/supply/explosives/disposable,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/corner,
+/area/vsd/ship/inside/armory)
 "db" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4
@@ -481,8 +490,10 @@
 /area/mainship/groundhq/ntf/patrol_base/barracks)
 "df" = (
 /obj/machinery/bioprinter/stocked,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/med)
 "dk" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/machinery/light/small,
@@ -580,8 +591,10 @@
 "dX" = (
 /obj/structure/table/black,
 /obj/item/storage/box/crate/loot/materials_pack,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 8
+	},
+/area/vsd/ship/inside/port)
 "dY" = (
 /turf/closed/shuttle/ert/engines/left/two{
 	dir = 1
@@ -626,15 +639,16 @@
 	name = "SOM Requisitions"
 	})
 "eo" = (
-/obj/machinery/door/airlock/mainship/generic,
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper VSD Port Airlock"
+	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/port)
 "ep" = (
-/obj/structure/cable,
 /obj/effect/landmark/start/job/vsd_medic,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/textured,
+/area/vsd/ship/inside/med)
 "er" = (
 /obj/structure/door/mineral_door/wood,
 /turf/open/floor/plating/ground/dirt,
@@ -654,8 +668,10 @@
 "ex" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/usl_leader,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/riptide/inside/syndicatefoyer)
+/turf/open/floor/iron/dark/textured_half{
+	dir = 8
+	},
+/area/vsd/ship/inside/hall)
 "ey" = (
 /obj/machinery/smartfridge/chemistry,
 /turf/closed/wall/mainship/gray,
@@ -677,8 +693,10 @@
 	name = "SOM Torture Chamber"
 	})
 "eA" = (
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/vsd/ship/inside/armory)
 "eB" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
@@ -750,8 +768,8 @@
 "eR" = (
 /obj/structure/table/black,
 /obj/machinery/computer/security/marinemainship,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "eT" = (
 /obj/item/lightstick/red/anchored,
 /obj/machinery/robotic_cradle,
@@ -773,6 +791,15 @@
 	outside = 0;
 	name = "SOM Prisoner Contaiment"
 	})
+"fa" = (
+/obj/machinery/light/mainship{
+	dir = 4
+	},
+/obj/machinery/unboxer/syndicate,
+/turf/open/floor/prison/darkbrown{
+	dir = 1
+	},
+/area/vsd/ship/inside/engi)
 "fb" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 4
@@ -781,9 +808,10 @@
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "fc" = (
 /obj/machinery/power/geothermal/reinforced,
+/obj/structure/prop/mainship/gelida/powerconnector,
 /obj/structure/cable,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/turf/open/floor/plating/heatinggrate,
+/area/vsd/ship/inside/engi)
 "fe" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/recharge_station,
@@ -890,6 +918,13 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"fW" = (
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper VSD Armory Airlock"
+	},
+/obj/structure/cable,
+/turf/open/floor/grayscale/round/black,
+/area/vsd/ship/inside/armory)
 "fX" = (
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier{
@@ -910,9 +945,10 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
 "ga" = (
-/obj/machinery/sleeper,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/riptide/inside/syndicatestarboard)
+/obj/effect/urban/decal/warning/redandwhite_S,
+/obj/machinery/cryopod,
+/turf/open/floor/grayscale/darkblue,
+/area/vsd/ship/inside/med)
 "gb" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/sterile/plain,
@@ -947,10 +983,11 @@
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "gp" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/engineering/ore_box,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/riptide/inside/syndicategen)
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/vsd/ship/inside/engi)
 "gq" = (
 /obj/structure/bed/chair/dropship/passenger,
 /turf/open/shuttle/dropship/floor,
@@ -961,9 +998,12 @@
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
 "gt" = (
-/obj/effect/landmark/start/job/vsd_engineer,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/structure/prop/mainship/gelida/powercconnectorthreeside{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "gy" = (
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/plating/ground/concrete,
@@ -1110,10 +1150,10 @@
 	name = "SOM Bridge"
 	})
 "hb" = (
-/obj/machinery/power/smes,
-/obj/structure/cable,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/structure/closet/crate/freezer,
+/obj/item/storage/box/ids,
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "hd" = (
 /obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/plating/plating_catwalk,
@@ -1150,8 +1190,8 @@
 	},
 /obj/structure/table/black,
 /obj/item/paper/xenoresearch1,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "hs" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/sterilewhite,
@@ -1161,11 +1201,10 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/power/terminal{
-	dir = 8
+/turf/open/floor/iron/dark/side{
+	dir = 4
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/area/vsd/ship/inside/armory)
 "hw" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint{
@@ -1191,8 +1230,11 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/obj/structure/sign/engie{
+	dir = 8
+	},
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
 "hH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -1241,8 +1283,8 @@
 "hZ" = (
 /obj/structure/table/black,
 /obj/machinery/computer/security/som_mainship,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "ia" = (
 /obj/structure/mirror,
 /turf/closed/wall/mainship/gray,
@@ -1252,8 +1294,10 @@
 	})
 "id" = (
 /obj/structure/table/black,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 1
+	},
+/area/vsd/ship/inside/port)
 "ig" = (
 /obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating/ground/dirt,
@@ -1282,8 +1326,12 @@
 	})
 "in" = (
 /obj/effect/landmark/start/job/vsd_medic,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/obj/machinery/computer/sleep_console{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/med)
 "io" = (
 /obj/structure/prop/mainship/invincibleshutter,
 /turf/open/floor/plating/ground/concrete,
@@ -1365,6 +1413,16 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"iF" = (
+/obj/structure/cable,
+/obj/machinery/power/smes{
+	capacity = 1000000
+	},
+/obj/structure/prop/mainship/gelida/powerconnector{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "iG" = (
 /obj/structure/cable,
 /obj/structure/door/mineral_door/wood,
@@ -1388,9 +1446,10 @@
 	})
 "iN" = (
 /obj/structure/cable,
-/obj/machinery/power/terminal,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 1
+	},
+/area/vsd/ship/inside/port)
 "iO" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/camera/autoname/mainship/somship{
@@ -1615,14 +1674,16 @@
 	})
 "jL" = (
 /obj/structure/cable,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
 "jM" = (
 /obj/structure/table/black,
 /obj/item/clothing/head/helmet/space/syndicate/black,
 /obj/item/clothing/suit/space/syndicate/black,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/port)
 "jO" = (
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/groundhq/ntf/medical/lounge)
@@ -1721,8 +1782,8 @@
 /area/mainship/groundhq/som/command/telecomms)
 "ki" = (
 /obj/machinery/computer/autodoc_console,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/small,
+/area/vsd/ship/inside/med)
 "kj" = (
 /obj/machinery/door/airlock/mainship/generic/glass{
 	dir = 1
@@ -1844,9 +1905,12 @@
 	name = "SOM Requisitions"
 	})
 "kN" = (
-/obj/machinery/door/airlock/external,
-/turf/open/space/basic,
-/area/space)
+/obj/machinery/door/airlock/external{
+	locked = 1
+	},
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/port)
 "kP" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 4
@@ -1935,13 +1999,12 @@
 /turf/open/floor/bcircuit/anim,
 /area/mainship/groundhq/som/command/telecomms)
 "ll" = (
-/obj/machinery/power/smes,
-/obj/structure/cable,
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/effect/spawner/random/engineering/ore_box,
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "lm" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1958,9 +2021,8 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/patrol_base/prep)
 "lq" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/space/basic,
-/area/riptide/inside/syndicatefoyer)
+/turf/open/floor/iron/dark/smooth_edge,
+/area/vsd/ship/inside/port)
 "lr" = (
 /turf/open/floor/plating/ground/concrete,
 /area/oscar_outpost/outside/road)
@@ -1983,8 +2045,11 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "lz" = (
 /obj/machinery/door/airlock/mainship/maint{
 	req_one_access = list(208);
@@ -2035,9 +2100,13 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/groundhq/ntf/patrol_base/barracks)
 "lM" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/prop/mainship/gelida/powercconnectortwoside,
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "lN" = (
 /obj/structure/rack,
 /obj/item/clothing/head/helmet/gimmick,
@@ -2100,9 +2169,8 @@
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "lT" = (
-/obj/item/storage/box/visual/grenade,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/turf/open/floor/prison,
+/area/vsd/ship/inside/engi)
 "lY" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/black/full,
@@ -2135,8 +2203,8 @@
 /obj/structure/table/black,
 /obj/item/clipboard,
 /obj/item/tool/pen,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "mi" = (
 /obj/machinery/cryopod/right,
 /obj/machinery/camera/autoname/mainship/somship{
@@ -2315,14 +2383,20 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/groundhq/ntf/patrol_base/command)
+"mR" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_2";
+	opacity = 0
+	},
+/area/vsd/ship/inside)
 "mS" = (
 /obj/machinery/light/mainship{
 	dir = 4
 	},
 /obj/structure/table/black,
 /obj/item/disk/nuclear/green,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "mT" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 4
@@ -2511,8 +2585,11 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "nG" = (
 /obj/structure/cable,
 /obj/item/storage/box/monkeycubes,
@@ -2618,15 +2695,25 @@
 "og" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/space)
+"oi" = (
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/med)
 "om" = (
-/obj/machinery/power/terminal,
-/obj/structure/cable,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/structure/closet/crate/freezer,
+/obj/item/storage/box/rxglasses/spyglasskit,
+/obj/item/storage/box/handcuffs,
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "on" = (
 /obj/structure/flora/pottedplant,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
+"oq" = (
+/obj/structure/cable,
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "or" = (
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2;
@@ -2679,9 +2766,20 @@
 /turf/open/floor/plating/ground/dirt,
 /area/shuttle/transport)
 "ov" = (
-/obj/machinery/vending/engivend,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/machinery/power/geothermal/reinforced,
+/obj/structure/prop/mainship/gelida/powerconnector{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/heatinggrate,
+/area/vsd/ship/inside/engi)
+"ow" = (
+/obj/structure/prop/mainship/gelida/powerccable{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "oy" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/fire{
@@ -2696,8 +2794,8 @@
 	})
 "oD" = (
 /obj/structure/prop/mainship/juggernaut,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "oE" = (
 /obj/machinery/vending/tool,
 /turf/open/floor/plating/plating_catwalk,
@@ -2723,9 +2821,11 @@
 	name = "SOM Requisitions"
 	})
 "oP" = (
-/obj/structure/cable,
-/turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatehead)
+/obj/structure/table/black,
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 4
+	},
+/area/vsd/ship/inside/med)
 "oX" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
@@ -2779,9 +2879,12 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "pk" = (
-/obj/item/storage/box/visual/grenade/cloak,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/structure/table/black,
+/obj/machinery/cell_charger,
+/turf/open/floor/prison/darkbrown{
+	dir = 1
+	},
+/area/vsd/ship/inside/engi)
 "pm" = (
 /obj/machinery/power/smes,
 /obj/structure/cable,
@@ -2809,7 +2912,7 @@
 /area/mainship/groundhq/ntf/patrol_base/command)
 "pp" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
-/area/space)
+/area/vsd/ship/inside)
 "pq" = (
 /obj/structure/bed/alien,
 /obj/effect/landmark/start/job/clf/breeder,
@@ -2906,8 +3009,8 @@
 	})
 "pK" = (
 /obj/structure/cable,
-/turf/open/floor/grayscale/edge/black,
-/area/riptide/inside/syndicatefoyer)
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/med)
 "pL" = (
 /obj/machinery/light/red{
 	dir = 1
@@ -2967,8 +3070,8 @@
 /obj/structure/table/black,
 /obj/item/disk/nuclear/blue,
 /obj/item/disk/nuclear,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "qa" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -3015,8 +3118,8 @@
 	})
 "qi" = (
 /obj/effect/landmark/start/job/vsd_spec,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/port)
 "qo" = (
 /turf/closed/wall,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
@@ -3031,8 +3134,11 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "qu" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -3049,11 +3155,12 @@
 	name = "SOM Bridge"
 	})
 "qy" = (
-/obj/machinery/sleeper{
+/obj/effect/urban/decal/warning/redandwhite_W,
+/obj/machinery/cryopod{
 	dir = 8
 	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/grayscale/darkblue,
+/area/vsd/ship/inside/med)
 "qz" = (
 /turf/closed/shuttle/ert/engines/left{
 	dir = 1
@@ -3071,8 +3178,8 @@
 "qC" = (
 /obj/effect/landmark/start/job/vsd_leader,
 /obj/structure/flora/pottedplant,
-/turf/open/floor/grayscale/edge/black,
-/area/riptide/inside/syndicatefoyer)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
 "qF" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -3083,8 +3190,10 @@
 /area/oscar_outpost/outside/road)
 "qG" = (
 /obj/structure/cable,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/vsd/ship/inside/armory)
 "qI" = (
 /obj/structure/urinal{
 	dir = 8
@@ -3106,21 +3215,21 @@
 /turf/closed/shuttle/dropship_regular/backwall,
 /area/shuttle/transport)
 "qU" = (
-/obj/machinery/unboxer/syndicate,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/item/storage/box/visual/grenade,
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "qV" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
 	},
 /obj/structure/cable,
 /turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "qW" = (
 /obj/structure/table/black,
 /obj/machinery/computer/emails,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "qX" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship/somship{
@@ -3316,8 +3425,10 @@
 	},
 /obj/item/clothing/head/helmet/space/syndicate/black/red,
 /obj/item/clothing/suit/space/syndicate/black/red,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/port)
 "rY" = (
 /obj/machinery/power/apc/mainship{
 	dir = 8
@@ -3392,8 +3503,10 @@
 	})
 "sn" = (
 /obj/structure/cable,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/med)
 "sp" = (
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/bcircuit/anim,
@@ -3508,8 +3621,10 @@
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "tf" = (
 /obj/structure/largecrate/supply/ammo/m41a,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/corner{
+	dir = 1
+	},
+/area/vsd/ship/inside/armory)
 "tg" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -3540,8 +3655,10 @@
 	pixel_x = 12;
 	pixel_y = 2
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 1
+	},
+/area/vsd/ship/inside/med)
 "tn" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/sterile/plain,
@@ -3563,8 +3680,13 @@
 	name = "SOM Preparation"
 	})
 "tu" = (
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/textured_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/hall)
 "tD" = (
 /obj/effect/turf_decal/trimline/dark_blue/line{
 	dir = 8
@@ -3597,7 +3719,7 @@
 /obj/effect/turf_decal/syndicateemblem/middle/middle,
 /obj/structure/cable,
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "tN" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -3637,8 +3759,8 @@
 "tS" = (
 /obj/structure/table/black,
 /obj/item/disk/nuclear/red,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "tT" = (
 /turf/closed/mineral/smooth/indestructible,
 /area/lv624/ground/caves/rock)
@@ -3687,7 +3809,7 @@
 	dir = 4
 	},
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatehead)
+/area/vsd/ship/inside/bridge)
 "uh" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/structure/window/framed/mainship/gray/toughened/hull,
@@ -3703,6 +3825,12 @@
 	outside = 0;
 	ceiling = 6
 	})
+"uk" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/vsd/ship/inside/engi)
 "um" = (
 /obj/structure/table/reinforced/flipped{
 	dir = 8
@@ -3735,9 +3863,8 @@
 "ur" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
-/obj/item/clothing/mask/breath/medical,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/smooth_edge,
+/area/vsd/ship/inside/med)
 "us" = (
 /obj/machinery/marine_selector/gear/smartgun/pmc,
 /turf/open/floor/mainship/black/full,
@@ -3805,8 +3932,11 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "uR" = (
 /obj/effect/ai_node,
 /turf/open/floor/bcircuit/off,
@@ -3817,6 +3947,10 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"uT" = (
+/obj/structure/cable,
+/turf/open/floor/prison/redfloor,
+/area/vsd/ship/inside/bridge)
 "uU" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/structure/cable,
@@ -3834,8 +3968,8 @@
 	outside = 0
 	})
 "uY" = (
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/riptide/inside/syndicatefoyer)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
 "uZ" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/food_or_drink/beer,
@@ -4046,8 +4180,8 @@
 /obj/structure/prop/mainship/prop_so/vsd{
 	dir = 1
 	},
-/turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "wd" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -4115,8 +4249,8 @@
 /area/mainship/groundhq/som/medical/morgue)
 "wt" = (
 /obj/structure/table/black,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/small,
+/area/vsd/ship/inside/med)
 "wv" = (
 /turf/open/floor/mainship/mono,
 /area/canora_desert/surface/building/som_prison{
@@ -4258,8 +4392,8 @@
 /area/mainship/groundhq/ntf/patrol_base/prep)
 "xe" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "xi" = (
 /obj/structure/bed/chair/sofa,
 /turf/open/floor/plating/ground/dirt,
@@ -4267,8 +4401,8 @@
 "xj" = (
 /obj/structure/table/black,
 /obj/item/paper/arachneresearch1,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "xm" = (
 /obj/structure/stairs/seamless,
 /obj/structure/cable,
@@ -4276,14 +4410,17 @@
 /area/mainship/groundhq/ntf/patrol_base/command)
 "xn" = (
 /obj/machinery/vending/uniform_supply/vsd,
-/turf/open/floor/prison/blackfloor,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark/herringbone,
+/area/vsd/ship/inside/port)
 "xq" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/obj/structure/cable,
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/port)
 "xr" = (
 /obj/structure/table/black,
 /obj/machinery/light/mainship{
@@ -4291,8 +4428,10 @@
 	},
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/tool/soap/syndie,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/med)
 "xt" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -4325,10 +4464,16 @@
 	outside = 0
 	})
 "xA" = (
-/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
 /obj/structure/cable,
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
+	dir = 1
+	},
+/obj/machinery/door/airlock/hatch{
+	dir = 2;
+	name = "\improper VSD Bridge Hatch"
+	},
 /turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/bridge)
 "xB" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/large_stack,
@@ -4421,11 +4566,11 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
 "xV" = (
-/obj/machinery/bodyscanner{
-	dir = 8
+/obj/machinery/bodyscanner,
+/turf/open/floor/iron/dark/textured_corner{
+	dir = 1
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/area/vsd/ship/inside/med)
 "xW" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/plating/ground/concrete,
@@ -4483,10 +4628,10 @@
 	},
 /area/mainship/groundhq/ntf/patrol_base/hangar)
 "yj" = (
-/obj/structure/cable,
-/obj/structure/mecha_wreckage/mauler,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/riptide/inside/syndicategen)
+/turf/open/floor/prison/darkbrown{
+	dir = 1
+	},
+/area/vsd/ship/inside/engi)
 "yu" = (
 /obj/effect/turf_decal/trimline/dark_blue/line{
 	dir = 8
@@ -4565,15 +4710,19 @@
 	dir = 1
 	},
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"yW" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_2";
+	opacity = 0
+	},
+/area/vsd/ship/inside)
 "yY" = (
 /turf/open/floor/plating,
 /area/mainship/groundhq/clf/squads/req)
 "yZ" = (
-/obj/structure/table/black,
-/obj/item/tool/weldingtool/experimental,
-/obj/machinery/cell_charger,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/machinery/vending/engivend,
+/turf/open/floor/prison,
+/area/vsd/ship/inside/engi)
 "zb" = (
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/space)
@@ -4676,14 +4825,12 @@
 /turf/open/floor/plating,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "zI" = (
-/obj/machinery/door/airlock/mainship/medical/glass{
-	dir = 2;
-	req_one_access = null
-	},
 /obj/structure/cable,
-/obj/structure/sign/greencross,
+/obj/machinery/door/airlock/mainship/medical/glass{
+	name = "\improper VSD Medbay Airlock"
+	},
 /turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/med)
 "zJ" = (
 /obj/machinery/recharger,
 /turf/open/floor/plating/asteroidfloor,
@@ -4720,10 +4867,11 @@
 	})
 "zX" = (
 /obj/structure/cable,
-/obj/machinery/door/airlock/mainship/generic,
-/obj/structure/sign/engie,
+/obj/machinery/door/airlock/mainship/generic{
+	name = "\improper VSD Technical Storage Airlock"
+	},
 /turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/engi)
 "Aa" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
@@ -4754,6 +4902,10 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"Ap" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk/prison,
+/area/vsd/ship/inside/engi)
 "Aq" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -4840,10 +4992,9 @@
 	name = "CLF Armory"
 	})
 "AO" = (
-/obj/structure/cable,
 /obj/effect/landmark/start/job/usl_spec,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/armory)
 "AP" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -4885,8 +5036,8 @@
 	})
 "Bf" = (
 /obj/machinery/vending/marineFood,
-/turf/open/floor/prison/blackfloor,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark/herringbone,
+/area/vsd/ship/inside/port)
 "Bi" = (
 /obj/structure/morgue{
 	dir = 1
@@ -4969,16 +5120,18 @@
 	name = "SOM Mech Bay"
 	})
 "BA" = (
-/obj/machinery/power/apc/mainship,
-/obj/structure/cable,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/machinery/power/terminal{
-	dir = 1
+/obj/structure/cable,
+/obj/machinery/power/smes{
+	capacity = 1000000
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/structure/prop/mainship/gelida/powerconnector{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "BB" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/command/CPToffice{
@@ -5062,8 +5215,10 @@
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/syndicate/black,
 /obj/item/clothing/head/helmet/space/syndicate/black,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/vsd/ship/inside/armory)
 "Cc" = (
 /obj/structure/benchpress,
 /obj/effect/spawner/random/decal/blood,
@@ -5112,8 +5267,10 @@
 /obj/structure/sink{
 	dir = 4
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/med)
 "Cp" = (
 /obj/structure/cable,
 /obj/structure/prop/mainship/prop_iccinf/armed,
@@ -5172,8 +5329,8 @@
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/side,
+/area/vsd/ship/inside/armory)
 "Cx" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	name = "Privacy shutters";
@@ -5230,8 +5387,12 @@
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "CL" = (
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/structure/prop/mainship/gelida/powercconnectorthreeside{
+	dir = 4
+	},
+/obj/structure/cable,
+/turf/open/floor/plating/heatinggrate,
+/area/vsd/ship/inside/engi)
 "CN" = (
 /turf/open/space/basic,
 /area/space)
@@ -5354,12 +5515,17 @@
 /area/mainship/groundhq/som/command/telecomms)
 "Dn" = (
 /obj/effect/landmark/start/job/usl,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark/smooth_corner{
+	dir = 4
+	},
+/area/vsd/ship/inside/port)
 "Do" = (
 /obj/effect/turf_decal/syndicateemblem/bottom/right,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "Dp" = (
 /turf/closed/wall/mainship/outer/reinforced,
 /area/space)
@@ -5386,6 +5552,14 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"Du" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/port)
 "Dy" = (
 /obj/structure/bed/bunkbed,
 /obj/machinery/light{
@@ -5397,8 +5571,13 @@
 	})
 "DA" = (
 /obj/effect/landmark/start/job/usl,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/textured_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/hall)
 "DC" = (
 /obj/machinery/cryopod/right{
 	dir = 1
@@ -5427,9 +5606,15 @@
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
 "DR" = (
-/obj/structure/closet/crate/internals,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/prop/mainship/gelida/powercconnectortwoside{
+	dir = 1
+	},
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "DW" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -5444,7 +5629,7 @@
 /obj/effect/turf_decal/syndicateemblem/top/middle,
 /obj/structure/cable,
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "Eb" = (
 /obj/machinery/vending/armor_supply/pmc,
 /obj/machinery/light/mainship{
@@ -5516,6 +5701,9 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"Ey" = (
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/port)
 "Ez" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -5578,8 +5766,12 @@
 	outside = 0
 	})
 "EI" = (
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/vsd/ship/inside/engi)
 "EJ" = (
 /turf/closed/shuttle/dropship_dark/engine_corner,
 /area/shuttle/transport)
@@ -5626,8 +5818,8 @@
 	light_color = "#da2f1b"
 	},
 /obj/effect/landmark/start/job/usl,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark/smooth_edge,
+/area/vsd/ship/inside/port)
 "EW" = (
 /obj/structure/sign/prop3,
 /obj/structure/cable,
@@ -5642,19 +5834,20 @@
 	dir = 8
 	},
 /obj/structure/table/black,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "Fd" = (
-/obj/effect/landmark/start/job/vsd_spec,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/textured_edge,
+/area/vsd/ship/inside/med)
 "Fg" = (
 /obj/machinery/vending/medical{
 	name = "Stolen Medicament Vendor";
 	req_access = list(206)
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/med)
 "Fh" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/plating_catwalk,
@@ -5669,8 +5862,11 @@
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/syndicate/black/red,
 /obj/item/clothing/head/helmet/space/syndicate/black/red,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/obj/structure/cable,
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/vsd/ship/inside/armory)
 "Fj" = (
 /turf/open/floor/wood/alt_three,
 /area/canora_desert/surface/building/som_torturechamber{
@@ -5678,10 +5874,11 @@
 	name = "SOM Torture Chamber"
 	})
 "Fm" = (
-/obj/item/storage/box/ids,
-/obj/structure/closet/crate/freezer,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/structure/cable,
+/turf/open/floor/iron/dark/corner{
+	dir = 4
+	},
+/area/vsd/ship/inside/armory)
 "Fn" = (
 /obj/structure/prop/vehicle/apc{
 	dir = 8
@@ -5758,7 +5955,7 @@
 	})
 "FG" = (
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatehead)
+/area/vsd/ship/inside/bridge)
 "FH" = (
 /obj/alien/egg/hugger,
 /turf/open/floor/plating/ground/dirt,
@@ -5805,17 +6002,14 @@
 	},
 /area/shuttle/transport)
 "FS" = (
-/obj/machinery/power/apc/mainship,
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/obj/machinery/power/terminal{
+/obj/structure/table/black,
+/turf/open/floor/iron/dark/textured_edge{
 	dir = 1
 	},
-/obj/structure/cable,
-/obj/structure/table/black,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/area/vsd/ship/inside/med)
 "FT" = (
 /obj/item/tool/pen/blue,
 /obj/structure/table/wood/fancy,
@@ -5848,8 +6042,9 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/oscar_outpost/outside/road)
 "Gj" = (
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/riptide/inside/syndicatehead)
+/obj/structure/mecha_wreckage/mauler,
+/turf/open/floor/plating/platebot,
+/area/vsd/ship/inside/engi)
 "Gk" = (
 /turf/closed/shuttle/dropship_dark/interior_wall{
 	dir = 1
@@ -5937,10 +6132,12 @@
 	name = "SOM Field Commander's Office"
 	})
 "GK" = (
-/obj/structure/cable,
-/obj/effect/landmark/start/job/vsd_spec,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/obj/structure/table/black,
+/obj/item/storage/box/beakers,
+/turf/open/floor/iron/dark/textured_corner{
+	dir = 8
+	},
+/area/vsd/ship/inside/med)
 "GL" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/regular,
@@ -5963,8 +6160,8 @@
 /obj/item/explosive/grenade/phosphorus/upp,
 /obj/item/explosive/grenade/phosphorus/upp,
 /obj/item/explosive/grenade/phosphorus/upp,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/side,
+/area/vsd/ship/inside/armory)
 "GR" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -5979,8 +6176,10 @@
 /obj/structure/table/black,
 /obj/item/clothing/head/helmet/space/syndicate,
 /obj/item/clothing/suit/space/syndicate,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/port)
 "GU" = (
 /obj/machinery/computer,
 /turf/open/floor/plating/plating_catwalk,
@@ -5990,8 +6189,10 @@
 /area/shuttle/transport)
 "GW" = (
 /obj/machinery/vending/armor_supply/vsd,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/side{
+	dir = 8
+	},
+/area/vsd/ship/inside/armory)
 "GX" = (
 /obj/structure/rack,
 /obj/item/clothing/under/marine/veteran/pmc,
@@ -6029,8 +6230,8 @@
 	})
 "Hn" = (
 /obj/machinery/autodoc,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/small,
+/area/vsd/ship/inside/med)
 "Hr" = (
 /turf/closed/shuttle/dropship_dark/logo_wall,
 /area/shuttle/transport)
@@ -6088,8 +6289,8 @@
 /obj/structure/droppod,
 /obj/structure/droppod,
 /obj/structure/droppod,
-/turf/open/floor/plating/ground/dirt,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/port)
 "HD" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	name = "Privacy shutters";
@@ -6110,8 +6311,10 @@
 	})
 "HI" = (
 /obj/machinery/vending/weapon/vsd,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/side{
+	dir = 8
+	},
+/area/vsd/ship/inside/armory)
 "HJ" = (
 /obj/structure/inflatable/popped,
 /turf/open/floor/plating/ground/dirt,
@@ -6193,6 +6396,15 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
+"If" = (
+/obj/effect/landmark/start/job/usl,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/textured_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/hall)
 "Il" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6224,8 +6436,10 @@
 	dir = 8
 	},
 /obj/machinery/chem_master,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/textured_corner{
+	dir = 4
+	},
+/area/vsd/ship/inside/med)
 "Ir" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/pmc_gunner,
@@ -6256,8 +6470,15 @@
 /area/space)
 "Iv" = (
 /obj/effect/turf_decal/syndicateemblem/middle/left,
+/obj/machinery/power/apc/mainship{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "Iw" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/hydroponics,
@@ -6271,8 +6492,10 @@
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/med)
 "IC" = (
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
@@ -6313,6 +6536,9 @@
 /obj/machinery/marine_selector/gear/medic/pmc,
 /turf/open/floor/mainship/black/full,
 /area/mainship/groundhq/ntf/patrol_base/barracks)
+"IL" = (
+/turf/open/floor/iron/dark/small,
+/area/vsd/ship/inside/med)
 "IN" = (
 /obj/structure/closet/crate/mortar_ammo/mortar_kit,
 /turf/open/floor/plating/asteroidfloor,
@@ -6384,6 +6610,10 @@
 	name = "SOM Admiral Quarters";
 	outside = 0
 	})
+"Ja" = (
+/obj/structure/table/black,
+/turf/open/floor/iron/dark/smooth_edge,
+/area/vsd/ship/inside/med)
 "Jb" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -6462,10 +6692,9 @@
 	name = "SOM Prisoner Contaiment"
 	})
 "Jn" = (
-/obj/item/storage/box/rxglasses/spyglasskit,
-/obj/structure/closet/crate/freezer,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/effect/landmark/start/job/vsd_engineer,
+/turf/open/floor/prison,
+/area/vsd/ship/inside/engi)
 "Jp" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/canora_desert/surface/building/som_smaint{
@@ -6553,8 +6782,13 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/groundhq/ntf/patrol_base/barracks)
 "JT" = (
-/turf/open/floor/grayscale/edge/black,
-/area/riptide/inside/syndicatefoyer)
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/textured_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/hall)
 "JV" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/canora_desert/surface/building/som_admiral{
@@ -6613,6 +6847,15 @@
 "Kr" = (
 /turf/closed/mineral/smooth,
 /area/mainship/groundhq/clf/living/grunt_rnr)
+"Ks" = (
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/med)
 "Kt" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -6810,8 +7053,10 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/side{
+	dir = 1
+	},
+/area/vsd/ship/inside/armory)
 "LA" = (
 /obj/machinery/cic_maptable/som_maptable,
 /turf/open/floor/plating/plating_catwalk,
@@ -6839,7 +7084,7 @@
 "LH" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/grayscale/round/black,
-/area/space)
+/area/vsd/ship/inside)
 "LK" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/adv,
@@ -6922,8 +7167,8 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/grayscale/darkblue,
+/area/vsd/ship/inside/med)
 "Mh" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 1
@@ -6938,6 +7183,12 @@
 /obj/structure/prop/mainship/doorblocker/patrol_base/som,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
+"Mj" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
 "Mk" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -7034,6 +7285,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/patrol_base/prep)
+"MN" = (
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
 "MO" = (
 /obj/structure/closet/crate,
 /turf/open/floor/mainship/black/full,
@@ -7162,8 +7419,11 @@
 	ceiling = 6
 	})
 "Nt" = (
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/obj/structure/cable,
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/port)
 "Nv" = (
 /obj/effect/landmark/start/latejoinclf,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -7257,8 +7517,10 @@
 /area/mainship/groundhq/som/command/telecomms)
 "NP" = (
 /obj/machinery/vending/uniform_supply/vsd,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/side{
+	dir = 8
+	},
+/area/vsd/ship/inside/armory)
 "NQ" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 8
@@ -7275,6 +7537,15 @@
 /area/mainship/groundhq/som/medical/lounge{
 	name = "SOM Medbay"
 	})
+"NU" = (
+/obj/effect/landmark/start/job/vsd,
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/port)
 "NV" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 8
@@ -7285,8 +7556,11 @@
 	})
 "NW" = (
 /obj/effect/turf_decal/syndicateemblem/middle/right,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "NX" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
@@ -7383,7 +7657,7 @@
 "On" = (
 /obj/structure/bed/chair/office/dark/west,
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatehead)
+/area/vsd/ship/inside/bridge)
 "Or" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/dirt,
@@ -7422,6 +7696,9 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/oscar_outpost/outside/road)
+"OC" = (
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/armory)
 "OG" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/office,
@@ -7504,9 +7781,13 @@
 /turf/open/floor/mainship/black/full,
 /area/mainship/groundhq/ntf/patrol_base/barracks)
 "OY" = (
-/obj/item/storage/toolbox/syndicate,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/machinery/mech_bay_recharge_port{
+	dir = 2
+	},
+/turf/open/floor/prison/darkbrown{
+	dir = 1
+	},
+/area/vsd/ship/inside/engi)
 "Pa" = (
 /obj/structure/cable,
 /turf/open/floor/wood/fancy,
@@ -7537,9 +7818,15 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/groundhq/ntf/medical/lounge)
 "Pi" = (
-/obj/structure/closet/crate/freezer,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/structure/table/black,
+/obj/item/storage/toolbox/syndicate,
+/obj/item/clothing/glasses/welding/superior,
+/obj/item/clothing/glasses/welding/superior,
+/obj/item/tool/weldingtool,
+/turf/open/floor/prison/darkbrown{
+	dir = 1
+	},
+/area/vsd/ship/inside/engi)
 "Pj" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable,
@@ -7631,6 +7918,9 @@
 	outside = 0;
 	name = "SOM Mech Bay"
 	})
+"PJ" = (
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "PL" = (
 /turf/closed/wall/brick,
 /area/mainship/groundhq/clf/hallways/aft_hallway)
@@ -7701,6 +7991,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
+"Qf" = (
+/obj/machinery/cryopod,
+/turf/open/floor/grayscale/darkblue,
+/area/vsd/ship/inside/med)
 "Qg" = (
 /obj/structure/table/reinforced/prison,
 /obj/structure/table/reinforced/prison,
@@ -7749,8 +8043,9 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/structure/cable,
+/turf/open/floor/prison,
+/area/vsd/ship/inside/engi)
 "Qr" = (
 /obj/structure/table/mainship,
 /obj/machinery/light/mainship{
@@ -7858,8 +8153,10 @@
 	dir = 1
 	},
 /obj/effect/teleporter_linker,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 1
+	},
+/area/vsd/ship/inside/port)
 "QS" = (
 /obj/machinery/door/airlock/mainship/security/free_access{
 	dir = 2;
@@ -7871,8 +8168,8 @@
 	})
 "QT" = (
 /obj/effect/landmark/start/job/vsd,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/armory)
 "QU" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -7900,12 +8197,12 @@
 	})
 "Rb" = (
 /obj/machinery/computer/body_scanconsole,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/med)
 "Rd" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/prison/blackfloor,
-/area/riptide/inside/syndicateport)
+/area/vsd/ship/inside/port)
 "Re" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
@@ -7940,8 +8237,8 @@
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/rig/syndi,
 /obj/item/clothing/head/helmet/space/rig/syndi,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/side,
+/area/vsd/ship/inside/armory)
 "Rq" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -8183,7 +8480,7 @@
 /obj/effect/turf_decal/syndicateemblem/bottom/middle,
 /obj/structure/cable,
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "Sr" = (
 /obj/machinery/light{
 	dir = 1
@@ -8208,8 +8505,8 @@
 	})
 "Sx" = (
 /obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/turf/open/floor/grayscale/black,
+/area/vsd/ship/inside)
 "Sy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/warning_stripes,
@@ -8244,8 +8541,13 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/usl_spec,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/textured_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/hall)
 "SD" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -8256,6 +8558,14 @@
 	outside = 0;
 	name = "SOM Torture Chamber"
 	})
+"SE" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/port)
 "SG" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -8267,6 +8577,12 @@
 	outside = 0;
 	ceiling = 6
 	})
+"SH" = (
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 9
+	},
+/turf/open/floor/prison,
+/area/vsd/ship/inside/engi)
 "SJ" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/mineral/smooth/indestructible,
@@ -8285,8 +8601,13 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/usl_spec,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
+/turf/open/floor/iron/dark/textured_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/hall)
 "SP" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -8298,12 +8619,17 @@
 	})
 "ST" = (
 /obj/machinery/chem_dispenser,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/obj/item/reagent_containers/glass/beaker/bluespace,
+/turf/open/floor/iron/dark/textured_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/med)
 "SU" = (
 /obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk/prison,
-/area/riptide/inside/syndicatefoyer)
+/turf/open/floor/iron/dark/textured_half{
+	dir = 8
+	},
+/area/vsd/ship/inside/hall)
 "SY" = (
 /obj/structure/bedsheetbin,
 /obj/effect/turf_decal/siding/wideplating_new/light{
@@ -8331,8 +8657,8 @@
 /area/mainship/groundhq/clf/medical/lounge)
 "Th" = (
 /obj/machinery/vending/MarineMed/Blood,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/smooth_edge,
+/area/vsd/ship/inside/med)
 "Ti" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -8471,8 +8797,8 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "TL" = (
 /obj/machinery/marine_selector/clothes/synth{
 	vendor_role = /datum/job/clf/silicon/synthetic/clf
@@ -8495,9 +8821,8 @@
 	name = "SOM Requisitions"
 	})
 "TW" = (
-/obj/structure/cable,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/med)
 "TX" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
@@ -8540,8 +8865,11 @@
 	name = "SOM Medbay"
 	})
 "Ud" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/riptide/inside/syndicatefoyer)
+/obj/effect/landmark/start/job/usl,
+/turf/open/floor/iron/dark/smooth_edge{
+	dir = 8
+	},
+/area/vsd/ship/inside/port)
 "Ue" = (
 /obj/machinery/light{
 	dir = 8
@@ -8555,13 +8883,16 @@
 	outside = 0
 	})
 "Uf" = (
-/turf/closed/wall/r_wall/prison_unmeltable,
-/area/riptide/inside/syndicatestarboard)
+/obj/structure/largecrate/supply/explosives/disposable,
+/turf/open/floor/iron/dark/corner{
+	dir = 8
+	},
+/area/vsd/ship/inside/armory)
 "Ui" = (
 /obj/structure/table/black,
 /obj/machinery/computer/med_data/laptop,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "Uk" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
@@ -8621,10 +8952,8 @@
 /turf/open/floor/plating/ground/dirt,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "Ux" = (
-/obj/structure/cable,
-/obj/item/storage/box/handcuffs,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/turf/open/floor/prison/plate,
+/area/vsd/ship/inside/engi)
 "UD" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
@@ -8677,15 +9006,15 @@
 "UQ" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/mainship/black/full,
-/area/space)
+/area/vsd/ship/inside)
 "UR" = (
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/clf/engineering/engineering_workshop)
 "US" = (
-/obj/effect/landmark/start/job/usl_spec,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/obj/structure/table/black,
+/turf/open/floor/iron/dark/textured_corner,
+/area/vsd/ship/inside/med)
 "UT" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner{
 	dir = 1
@@ -8709,8 +9038,11 @@
 "UZ" = (
 /obj/effect/turf_decal/syndicateemblem/bottom/left,
 /obj/effect/landmark/start/job/usl_leader,
+/obj/structure/bed/chair/dropship/passenger{
+	dir = 4
+	},
 /turf/open/floor/prison/redfloor,
-/area/riptide/inside/syndicatefoyer)
+/area/vsd/ship/inside/hall)
 "Va" = (
 /obj/structure/bed/chair/sofa/left,
 /obj/effect/decal/cleanable/blood/splatter/cum,
@@ -8726,8 +9058,8 @@
 /area/mainship/groundhq/clf/living/grunt_rnr)
 "Vc" = (
 /obj/structure/prop/mainship/juggernaut_two,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "Vd" = (
 /obj/structure/cable,
 /obj/machinery/power/smes/preset,
@@ -8754,8 +9086,11 @@
 	})
 "Vj" = (
 /obj/effect/landmark/start/job/vsd,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicateport)
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/smooth_corner,
+/area/vsd/ship/inside/port)
 "Vk" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -8861,8 +9196,11 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatefoyer)
+/obj/structure/sign/greencross{
+	dir = 4
+	},
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/hall)
 "VB" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoinsom,
@@ -8929,8 +9267,10 @@
 	})
 "VN" = (
 /obj/structure/closet/secure_closet/chemical,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/textured_edge{
+	dir = 4
+	},
+/area/vsd/ship/inside/med)
 "VO" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -8984,6 +9324,14 @@
 	},
 /turf/open/floor/mainship/sterile/plain,
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
+"Wg" = (
+/obj/effect/urban/decal/warning/redandwhite_W,
+/obj/effect/urban/decal/warning/redandwhite_S,
+/obj/machinery/cryopod{
+	dir = 8
+	},
+/turf/open/floor/grayscale/darkblue,
+/area/vsd/ship/inside/med)
 "Wh" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -9055,8 +9403,10 @@
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/syndicate,
 /obj/item/clothing/head/helmet/space/syndicate,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatestarboard)
+/turf/open/floor/iron/dark/side{
+	dir = 4
+	},
+/area/vsd/ship/inside/armory)
 "Wy" = (
 /obj/structure/cable,
 /obj/structure/sign/safety/storage,
@@ -9117,8 +9467,8 @@
 /area/mainship/groundhq/ntf/hallways/aft_hallway)
 "WQ" = (
 /obj/structure/cable,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/turf/open/floor/prison,
+/area/vsd/ship/inside/engi)
 "WX" = (
 /obj/structure/largecrate/supply/ammo,
 /turf/open/floor/mainship/black/full,
@@ -9288,8 +9638,8 @@
 	dir = 4
 	},
 /obj/structure/table/black,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicatehead)
+/turf/open/floor/prison/blackfloor,
+/area/vsd/ship/inside/bridge)
 "XH" = (
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
@@ -9310,13 +9660,15 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/groundhq/ntf/medical/lounge)
 "XQ" = (
-/obj/structure/table/black,
 /obj/machinery/light/mainship{
 	dir = 8
 	},
-/obj/item/clothing/head/collectable/welding,
-/turf/open/floor/grayscale/round/black,
-/area/riptide/inside/syndicategen)
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/obj/machinery/vending/tool,
+/turf/open/floor/prison,
+/area/vsd/ship/inside/engi)
 "XW" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -9428,6 +9780,13 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/mainship/groundhq/clf/squads/req)
+"Yv" = (
+/turf/closed/shuttle/ert{
+	icon_state = "rightengine_1";
+	opacity = 0;
+	dir = 1
+	},
+/area/vsd/ship/inside)
 "Yx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet{
@@ -9494,6 +9853,10 @@
 	outside = 0;
 	name = "SOM Bridge"
 	})
+"YL" = (
+/obj/effect/landmark/start/job/vsd_spec,
+/turf/open/floor/iron/dark,
+/area/vsd/ship/inside/armory)
 "YM" = (
 /obj/structure/cable,
 /obj/structure/bed/chair/comfy{
@@ -9512,6 +9875,13 @@
 	dir = 4
 	},
 /area/mainship/groundhq/clf/living/grunt_rnr/two)
+"YO" = (
+/turf/closed/shuttle/ert{
+	icon_state = "leftengine_1";
+	opacity = 0;
+	dir = 1
+	},
+/area/vsd/ship/inside)
 "YR" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /obj/structure/cable,
@@ -9548,8 +9918,11 @@
 	dir = 8
 	},
 /obj/machinery/vending/armor_supply/vsd,
-/turf/open/floor/prison/blackfloor,
-/area/riptide/inside/syndicateport)
+/obj/effect/turf_decal/warning_stripes/thin{
+	dir = 1
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/vsd/ship/inside/port)
 "Za" = (
 /obj/structure/prop/mainship/invincibleshutter,
 /obj/structure/cable,
@@ -16653,15 +17026,15 @@ CN
 CN
 CN
 CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
-CN
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
+VK
 CN
 CN
 CN
@@ -16748,6 +17121,7 @@ CN
 CN
 CN
 CN
+VK
 CN
 CN
 CN
@@ -16755,8 +17129,7 @@ CN
 CN
 CN
 CN
-CN
-CN
+VK
 CN
 CN
 CN
@@ -16843,7 +17216,7 @@ CN
 CN
 CN
 CN
-CN
+VK
 CN
 CN
 CN
@@ -16953,10 +17326,10 @@ ov
 XQ
 yZ
 OY
-om
-hb
+Gj
+Ux
 pp
-QE
+yW
 pp
 pp
 CN
@@ -17042,18 +17415,18 @@ YZ
 xn
 Bf
 pp
-fc
-WQ
+Ux
+ow
 Ux
 gp
-gp
+lT
 yj
-iN
-hb
+Ux
+Ux
 pp
-eH
-QE
-kR
+mR
+yW
+YO
 CN
 CN
 CN
@@ -17130,25 +17503,25 @@ CN
 Xg
 pp
 Vj
-Vj
-Vj
-Nt
-Nt
-Dn
+NU
+NU
+Du
+SE
+Ud
 Dn
 pp
 lM
 gt
 DR
-qU
-lT
+gp
+Jn
 pk
-om
+Ux
 ll
 pp
-eH
-eH
-oa
+mR
+mR
+Yv
 CN
 CN
 CN
@@ -17225,21 +17598,21 @@ CN
 CN
 pp
 QR
-Nt
-Nt
-Nt
-Nt
-Nt
+Ey
+Ey
+Ey
+Ey
+Ey
 ET
 pp
 BA
-CL
-CL
-Fm
+Ux
+iF
+gp
 Jn
 Pi
-om
-hb
+Ux
+qU
 pp
 pp
 pp
@@ -17322,19 +17695,19 @@ pp
 id
 qi
 qi
-GK
-TW
-TW
-TW
+qi
+Ey
+Ey
+lq
 pp
-fc
-WQ
-WQ
-gp
+Ap
+uk
+Ap
+SH
+lT
 yj
-yj
-iN
-hb
+Ux
+Ux
 pp
 CN
 CN
@@ -17411,7 +17784,7 @@ Fc
 xj
 mh
 hl
-EI
+PJ
 pp
 pp
 dX
@@ -17420,14 +17793,14 @@ jM
 rX
 xq
 Nt
-TW
+iN
 pp
-fc
-CL
-Qq
-CL
 WQ
+EI
 Qq
+WQ
+WQ
+fa
 om
 hb
 pp
@@ -17503,10 +17876,10 @@ CN
 CN
 LH
 eR
-Gj
+PJ
 On
 FG
-EI
+PJ
 TK
 pp
 pp
@@ -17514,16 +17887,16 @@ pp
 pp
 pp
 pp
-lq
+Sx
 eo
-Ud
-Ud
-Ud
-Ud
-lq
+pp
+pp
+pp
+pp
+Sx
 zX
-Ud
-Ud
+pp
+pp
 pp
 pp
 pp
@@ -17598,13 +17971,13 @@ CN
 CN
 LH
 hZ
-Gj
+PJ
 FG
 FG
 FG
 oD
-Sx
-DA
+LH
+If
 SO
 tu
 tu
@@ -17615,14 +17988,14 @@ nF
 Iv
 UZ
 uP
-JT
-qG
+MN
+jL
 hB
 on
 UQ
-QE
+yW
 pp
-kR
+YO
 CN
 CN
 CN
@@ -17694,30 +18067,30 @@ jz
 LH
 xe
 wb
-oP
-oP
-oP
-jL
+uT
+uT
+uT
+oq
 xA
-qG
+SU
 SU
 ex
-qG
+SU
 qV
-pK
+jL
 as
 Ea
 tI
 Sq
 as
-pK
-SU
+jL
+jL
 uY
 uY
 UQ
-QE
-QE
-kR
+yW
+yW
+YO
 CN
 CN
 CN
@@ -17788,16 +18161,16 @@ CN
 CN
 LH
 qW
-Gj
-oP
+PJ
+uT
 FG
 FG
 Vc
-Sx
+LH
 DA
 SC
-tu
-tu
+JT
+JT
 Sx
 qC
 as
@@ -17805,14 +18178,14 @@ qs
 NW
 Do
 lv
-JT
-qG
+Mj
+jL
 VA
 on
 UQ
-eH
+mR
 pp
-kR
+YO
 CN
 CN
 CN
@@ -17883,10 +18256,10 @@ CN
 CN
 LH
 Ui
-Gj
+PJ
 ug
 FG
-EI
+PJ
 TK
 pp
 pp
@@ -17894,16 +18267,16 @@ pp
 pp
 pp
 pp
-lq
-eo
-Ud
-Ud
-Ud
-Ud
-lq
+Sx
+fW
+pp
+pp
+pp
+pp
+Sx
 zI
-Ud
-Ud
+pp
+pp
 pp
 pp
 pp
@@ -17981,7 +18354,7 @@ XG
 tS
 pX
 mS
-EI
+PJ
 pp
 pp
 da
@@ -17989,17 +18362,17 @@ Wx
 BX
 ht
 Fi
-eA
-sn
-Uf
-wt
+qG
+Fm
+pp
+US
 ST
 Ip
-eA
+oi
 sn
 Iz
 Fg
-wt
+oP
 pp
 CN
 CN
@@ -18081,20 +18454,20 @@ pp
 pp
 GQ
 QT
-eA
-sn
+OC
+OC
 AO
-sn
-sn
-Uf
+OC
+eA
+pp
 FS
 ep
-sn
-sn
-sn
-eA
-eA
-wt
+Fd
+pK
+pK
+TW
+TW
+Ja
 pp
 CN
 CN
@@ -18175,20 +18548,20 @@ CN
 CN
 pp
 Cw
-eA
-eA
-Fd
-eA
-eA
+OC
+OC
+YL
+OC
+OC
 Ly
-Uf
-wt
+pp
+GK
 VN
 xV
-eA
+pK
 Hn
 wt
-eA
+TW
 Th
 pp
 pp
@@ -18270,25 +18643,25 @@ CN
 Xg
 pp
 Ro
-US
+AO
 QT
+OC
+OC
+YL
 eA
-eA
-Fd
-eA
-Uf
+pp
 qy
-qy
+Wg
 Rb
-eA
+pK
 ki
-eA
-eA
+IL
+TW
 az
 pp
-QE
-QE
-kR
+yW
+yW
+YO
 CN
 CN
 CN
@@ -18364,26 +18737,26 @@ CN
 CN
 CN
 pp
-da
+Uf
 HI
 HI
 HI
 NP
 GW
 tf
-Uf
+pp
 Mf
 af
-eA
+pK
 in
-eA
-eA
-eA
+TW
+TW
+TW
 ur
 pp
-QE
-eH
-kR
+yW
+mR
+YO
 CN
 CN
 CN
@@ -18467,16 +18840,16 @@ pp
 pp
 pp
 pp
+Qf
 ga
-ga
-eA
-eA
+Ks
+bn
 Co
 xr
 df
 tk
 pp
-eH
+mR
 pp
 pp
 CN
