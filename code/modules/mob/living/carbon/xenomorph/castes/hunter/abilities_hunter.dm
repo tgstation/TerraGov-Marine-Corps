@@ -235,7 +235,7 @@
 		to_chat(owner, span_xenodanger("We strike our death mark with a [flavour], calculated strike."))
 		staggerslow_stacks *= 2
 		paralyzesecs *= 2
-		armor_mod *= 2
+		armor_mod += sneak_attack_armor_pen //should double it.
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
 	target.ParalyzeNoChain(paralyzesecs SECONDS)
