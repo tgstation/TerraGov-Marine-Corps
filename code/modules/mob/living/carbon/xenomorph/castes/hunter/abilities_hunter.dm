@@ -41,6 +41,8 @@
 	var/pounce_break_stealth = TRUE
 	///If pouncing on a target break stealth.
 	var/pounce_hit_break_stealth = TRUE
+	///If movement affects sneak attack armor penetration.
+	var/movement_affects_sneakattack = TRUE
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -216,10 +218,15 @@
 	if(!can_sneak_attack)
 		return
 
-	var/flavour = pick("vicious","deadly","brutal")
-
 	var/staggerslow_stacks = 2
 	var/paralyzesecs = 1
+	var/flavour
+
+	if(movement_affects_sneakattack && owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
+		flavour = "vicious"
+	else
+		armor_mod += sneak_attack_armor_pen
+		flavour = "deadly"
 
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
@@ -228,6 +235,7 @@
 		to_chat(owner, span_xenodanger("We strike our death mark with a [flavour], calculated strike."))
 		staggerslow_stacks *= 2
 		paralyzesecs *= 2
+		armor_mod *= 2
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
 	target.ParalyzeNoChain(paralyzesecs SECONDS)
@@ -810,9 +818,10 @@
 	)
 	disable_on_obj_slash = FALSE
 	disable_on_mob_slash = FALSE
-	sneak_attack_armor_pen = 50
+	sneak_attack_armor_pen = 30
 	pounce_break_stealth = FALSE
 	pounce_hit_break_stealth = TRUE
+	movement_affects_sneakattack = FALSE
 
 // i just realized, we need to disable processing, this will inherently just amke handle_stealth not do anything
 ///Updates or cancels stealth
@@ -827,7 +836,7 @@
 	name = "Death Mark"
 	action_icon_state = "death_mark"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
-	desc = "Psionically disturb a creature for 15 seconds, allowing you to deal double sneak attack damage and stun from it. They will know you are coming for them."
+	desc = "Psionically disturb a creature for 15 seconds, allowing you to deal a stronger sneak attack. They will know you are coming for them."
 	ability_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HUNTER_MARK,

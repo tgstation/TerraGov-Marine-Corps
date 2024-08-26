@@ -78,9 +78,9 @@
 	var/armor_pen = X.xeno_caste.melee_ap
 
 	if(HAS_TRAIT(X, TRAIT_TURRET_HIDDEN)) //sneeky attack
+		//locate() subtypes aswell, whichever the mob has.
 		var/datum/action/ability/xeno_action/stealth/stealth_skill = locate() in X.actions
 		if(stealth_skill.can_sneak_attack)
-			armor_pen = stealth_skill.sneak_attack_armor_pen
 			var/datum/action/ability/activable/xeno/hunter_mark/assassin/mark = X.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark/assassin]
 			if(mark?.marked_target == src) //assassin death mark
 				damage *= 2
