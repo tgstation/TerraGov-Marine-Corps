@@ -55,6 +55,11 @@
 		SSpoints.dropship_points += dropship_reward
 		minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
 		SSminimaps.remove_marker(src)
+		return
+	if (machine_stat & NOPOWER) /// checks for lack of power and shuts down
+		printing = FALSE
+		progress = 0
+		visible_message("<b>[src]</b> shuts down as it loses power. Any data is lost.")
 
 /obj/machinery/computer/intel_computer/Destroy()
 	GLOB.intel_computers -= src
@@ -93,6 +98,7 @@
 		if("first_load")
 			first_login = FALSE
 			. = TRUE
+			xeno_message("A hostile is attempting to activate the threat at [get_area(src)] we must stop them!")
 		if("start_progressing")
 			printing = TRUE
 			var/mob/living/ui_user = ui.user
