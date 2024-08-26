@@ -400,7 +400,6 @@ Good luck, but do not expect to survive."})
 	wear_suit = /obj/item/clothing/suit/storage/lawyer/purpjacket
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel
-	belt = /obj/item/storage/bag/cash
 	mask = /obj/item/clothing/mask/cigarette/pipe/bonepipe
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	ears = /obj/item/radio/survivor
@@ -413,57 +412,6 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/holdout, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/lighter/zippo, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/spacecash/c500, SLOT_IN_BELT)
 
 
 //Colonial Marshal
@@ -497,7 +445,7 @@ Good luck, but do not expect to survive."})
 
 // Rambo Survivor - pretty overpowered, pls spawn with caution
 /datum/job/survivor/rambo
-	title = "Overpowered Survivor"
+	title = "Rambo Survivor"
 	skills_type = /datum/skills/civilian/survivor/master
 	outfit = /datum/outfit/job/survivor/rambo
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN
