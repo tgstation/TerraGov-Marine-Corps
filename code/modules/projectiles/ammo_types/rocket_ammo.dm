@@ -576,13 +576,13 @@
 	accurate_range = 20
 	max_range = 40
 	damage = 300
-	penetration = 40
+	penetration = 50
 	sundering = 10
 	bullet_color = LIGHT_COLOR_TUNGSTEN
 	barricade_clear_distance = 4
 
 /datum/ammo/rocket/coilgun/drop_nade(turf/T)
-	explosion(T, 0, 3, 5)
+	explosion(T, 0, 3, 5, 0, 2)
 
 /datum/ammo/rocket/coilgun/holder //only used for tankside effect checks
 	ammo_behavior_flags = AMMO_ENERGY
@@ -590,7 +590,7 @@
 /datum/ammo/rocket/coilgun/low
 	shell_speed = 2
 	damage = 150
-	penetration = 25
+	penetration = 40
 	sundering = 5
 
 /datum/ammo/rocket/coilgun/low/drop_nade(turf/T)

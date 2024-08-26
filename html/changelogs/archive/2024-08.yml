@@ -56,3 +56,87 @@
   - bugfix: fixed barricade decon dropping incorrect quantities of mats
   Runian:
   - bugfix: Resin silos now grant their spawned minions the correct hive number.
+2024-08-09:
+  Lumipharon:
+  - bugfix: fixed AI mobs getting stuck in place for no reason
+  - bugfix: fixed AI mobs not attacking their target or doing anything at all, if
+      on the same tile as their target
+2024-08-11:
+  Lumipharon:
+  - bugfix: fixed kits being consumed on undamaged bodyparts
+  - bugfix: fixed an exploit to kit an entire body with one kit
+2024-08-13:
+  Koenigsegg:
+  - rscadd: Added a valhalla reqtorio vendor
+  - rscadd: Added the reqtorio valhalla vendor to the vehicle pit in valhalla
+  Lumipharon:
+  - qol: Xeno fire and wound overlays no longer appear in the right click menu
+  - bugfix: fixed all xeno abilities that use damage or ap mods on attack
+  - bugfix: fixed AI mobs having cursed glide size in many cases
+  Vondiech/Citruses:
+  - rscadd: Adds ERP, Emergency Response Pranksters, a new possible distress beacon
+      spawn of clowns! Aligned with TGMC
+  - bugfix: GOATS no longer get an EVIL-looking GLEAM in their EYE when getting HIT
+      while UNCONSCIOUS/DEAD.
+2024-08-15:
+  Vondiech/Citruses:
+  - bugfix: Geotherm gens/SMES on LV-759 now are properly wired to power grid making
+      them actually able to power the map.
+  - bugfix: Fixes the consoles of a body scanner & sleeper on the Arachne shipmap.
+  yyzsong:
+  - balance: removes podlocks from the outer windows of the "Outrider" and "Umbilical"
+      tadpole variants
+2024-08-17:
+  breadhunt:
+  - qol: The "acting SL" of a squad will now get a golden trim around their squad
+      icon/minimap icon
+  - rscadd: Latejoining SLs will no longer "take over" the acting SL status of any
+      existing squad leaders/aSLs in the squad
+2024-08-19:
+  ICE-IS-NICE:
+  - bugfix: '"Launch evacuation pod" button is now fixed and usable.'
+  Lumipharon:
+  - qol: You can update detpack freq and code by hitting it with a signaler, or hitting
+      the signaler with the detpack
+  - balance: 'Campaign: Smartgunners have access to the SH-34 as a belt option, and
+      SH-35 as a perk unlockable backslot option'
+  - bugfix: Fixed the hovertank coilgun hotkey
+  - bugfix: fixed sentry targetting being blocked by tanks
+  - bugfix: Airlocks will no longer shock mech pilots
+  - bugfix: Putting a sentry back up will no longer make it dense if it wasn't orignally
+      so
+  - balance: 'Campaign: Buffed Hovertank coilgun low and medium power modes slightly'
+  - bugfix: fixed campaign autobalance sometimes triggering far later than intended
+  Neocloudy:
+  - refactor: Screen warnings for fire, nutrition, temperature, pressure, suffocation,
+      etc now use thrown alerts.
+  - refactor: Updated HTML tooltip code to TG standards.
+  - bugfix: Tooltips aren't offset to halfway down your screen anymore.
+  Pariah919:
+  - balance: SVD and HPR now cost 300 points to buy in Requisitions instead of 150
+      to reflect their status.
+  jonash07:
+  - bugfix: fixed retractable railings smoothing with walls for some reason
+  yyzsong:
+  - bugfix: Valhalla reqtorio vendor may now vend unboxers.
+2024-08-20:
+  Lumipharon:
+  - balance: Crest defence makes the user immune to light explosion tosses
+  XElectricX:
+  - bugfix: Xenos cannot damage resin doors again.
+  ivanmixo:
+  - bugfix: Fixed ghosts being able to make huggers jump out of bags
+  - code_imp: Hugger code is a little bit better
+2024-08-25:
+  ICE-IS-NICE:
+  - rscadd: Suppressor makes bullets less visible.
+  Lumipharon:
+  - bugfix: fixed AGLS frag rounds detonating under mobs
+  yyzsong:
+  - balance: SG-29 reqtorio drum refill 250 -> 350 points
+  - balance: SG-85 reqtorio bin refill 250 -> 350 points
+  - balance: SG-62 reqtorio magazine refill 250 -> 400 points
+  - balance: SG-62 reqtorio ammo bin refill 250 -> 400 points
+2024-08-26:
+  Isy232:
+  - qol: Research Outpost LZ 1 Minor Expansion for Vehicles

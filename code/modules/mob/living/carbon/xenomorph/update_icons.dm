@@ -144,7 +144,7 @@
 
 ///Used to display the xeno wounds without rapidly switching overlays
 /atom/movable/vis_obj/xeno_wounds
-	vis_flags = VIS_INHERIT_DIR
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_ID
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	light_system = MOVABLE_LIGHT

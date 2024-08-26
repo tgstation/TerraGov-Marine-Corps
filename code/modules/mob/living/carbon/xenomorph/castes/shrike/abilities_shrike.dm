@@ -106,16 +106,10 @@
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
-		//Held facehuggers get killed for balance reasons
-	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
+	//Held facehuggers get killed for balance reasons
+	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
+		hugger.kill_hugger()
+		owner.dropItemToGround(hugger)
 
 	succeed_activate()
 	add_cooldown()
@@ -210,16 +204,10 @@
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, SFX_ALIEN_ROAR, 50)
 
-			//Held facehuggers get killed for balance reasons
-	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
+	//Held facehuggers get killed for balance reasons
+	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
+		hugger.kill_hugger()
+		owner.dropItemToGround(hugger)
 
 
 // ***************************************

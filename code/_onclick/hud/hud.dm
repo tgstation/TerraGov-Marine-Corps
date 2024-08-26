@@ -40,13 +40,8 @@
 	var/atom/movable/screen/pull_icon
 	var/atom/movable/screen/throw_icon
 	var/atom/movable/screen/rest_icon
-	var/atom/movable/screen/oxygen_icon
-	var/atom/movable/screen/pressure_icon
-	var/atom/movable/screen/toxin_icon
 	var/atom/movable/screen/healths
 	var/atom/movable/screen/stamina_hud/staminas
-	var/atom/movable/screen/fire_icon
-	var/atom/movable/screen/bodytemp_icon
 
 	var/atom/movable/screen/gun_setting_icon
 	var/atom/movable/screen/gun_item_use_icon
@@ -135,13 +130,8 @@
 	zone_sel = null
 	pull_icon = null
 	throw_icon = null
-	oxygen_icon = null
-	pressure_icon = null
-	toxin_icon = null
 	healths = null
 	staminas = null
-	fire_icon = null
-	bodytemp_icon = null
 
 	gun_setting_icon = null
 	gun_item_use_icon = null

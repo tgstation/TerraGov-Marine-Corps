@@ -61,8 +61,8 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	alerts[category] = thealert
 	if(client && hud_used)
 		hud_used.reorganize_alerts()
-	thealert.transform = matrix(32, 6, MATRIX_TRANSLATE)
-	animate(thealert, transform = matrix(), time = 2.5, easing = CUBIC_EASING)
+	thealert.transform = matrix(32, 0, MATRIX_TRANSLATE)
+	animate(thealert, transform = matrix(), time = 1 SECONDS, easing = ELASTIC_EASING)
 
 	if(thealert.timeout)
 		addtimer(CALLBACK(src, PROC_REF(alert_timeout), thealert, category), thealert.timeout)
@@ -87,6 +87,13 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		client.screen -= alert
 	qdel(alert)
 
+/atom/movable/screen/alert/MouseEntered(location,control,params)
+	if(!QDELETED(src))
+		openToolTip(usr, src, params, title = name, content = desc)
+
+/atom/movable/screen/alert/MouseExited()
+	closeToolTip(usr)
+
 /atom/movable/screen/alert
 	icon = 'icons/mob/screen_alert.dmi'
 	icon_state = "default"
@@ -98,18 +105,6 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	var/alerttooltipstyle = ""
 	var/override_alerts = FALSE //If it is overriding other alerts of the same type
 	var/mob/owner //Alert owner
-
-
-/atom/movable/screen/alert/fire
-	name = "On Fire"
-	desc = "You're on fire. Stop, drop and roll to put the fire out or move to a vacuum area."
-	icon_state = "fire"
-
-/atom/movable/screen/alert/fire/Click()
-	var/mob/living/L = usr
-	if(!istype(L) || usr != owner)
-		return
-	L.resist()
 
 //GHOSTS
 //TODO: expand this system to replace the pollCandidates/CheckAntagonist/"choose quickly"/etc Yes/No messages
@@ -212,7 +207,7 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 		return
 	var/paramslist = params2list(params)
 	if(paramslist["shift"]) // screen objects don't do the normal Click() stuff so we'll cheat
-		to_chat(usr, span_boldnotice("[name]</span> - <span class='info'>[desc]"))
+		to_chat(usr, examine_block("<big>[span_boldnotice(name)]</big>\n[span_info(desc)]"))
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)
@@ -221,7 +216,6 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	master = null
 	owner = null
 	return ..()
-
 
 //MECHS
 /atom/movable/screen/alert/nocell
@@ -243,3 +237,56 @@ Override makes it so the alert is not replaced until cleared by a clear_alert wi
 	name = "Mech Damaged"
 	desc = "Mech integrity is low."
 	icon_state = "low_mech_integrity"
+
+// HUMAN WARNINGS
+/atom/movable/screen/alert/fire
+	name = "On Fire"
+	desc = "You're on fire. Stop, drop and roll to put the fire out, or use a fire extinguisher."
+	icon_state = "fire"
+
+/atom/movable/screen/alert/fire/Click()
+	. = ..()
+	var/mob/living/L = usr
+	if(!istype(L) || usr != owner)
+		return
+	L.resist()
+
+/atom/movable/screen/alert/not_enough_oxy
+	name = "Choking"
+	desc = "You're not getting enough O2. This can be from internal damage or critical condition. Find a solution before you pass out or even die!"
+	icon_state = ALERT_NOT_ENOUGH_OXYGEN
+
+/atom/movable/screen/alert/hot
+	name = "Too Hot"
+	desc = "You're flaming hot! Try to extinguish yourself, and then take Kelotane to cool you down!"
+	icon_state = "hot"
+
+/atom/movable/screen/alert/cold
+	name = "Too Cold"
+	desc = "You're freezing cold! Get somewhere warmer, and layer up next time you go somewhere cold!"
+	icon_state = "cold"
+
+/atom/movable/screen/alert/lowpressure
+	name = "Low Pressure"
+	desc = "The air around you is hazardously thin! Get inside as soon as possible!"
+	icon_state = "lowpressure"
+
+/atom/movable/screen/alert/highpressure
+	name = "High Pressure"
+	desc = "The air around you is hazardously thick."
+	icon_state = "highpressure"
+
+/atom/movable/screen/alert/hungry
+	name = "Hungry"
+	desc = "You could use a bite to eat. Movement speed reduced."
+	icon_state = "hungry"
+
+/atom/movable/screen/alert/starving
+	name = "Starving"
+	desc = "You could eat a horse right now. Movement speed significantly reduced."
+	icon_state = "starving"
+
+/atom/movable/screen/alert/stuffed
+	name = "Stuffed"
+	desc = "You had a bit too much to eat. Work out to lose the extra nutrition. Movement speed reduced."
+	icon_state = "stuffed"
