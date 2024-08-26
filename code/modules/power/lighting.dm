@@ -341,33 +341,40 @@
 	return A.lightswitch && A.power_light
 
 ///Flickers the lights for a set amount of time and flicker delays.
-/obj/machinery/light/proc/set_flicker(amount, flicker_time_lower, flicker_time_upper)
-	if(status == LIGHT_BROKEN)
+/obj/machinery/light/proc/set_flicker(amount, flicker_time_lower = 1, flicker_time_upper = 2, flicker_delay = 0.3 SECONDS, ignore_flickering = TRUE)
+	if(status != LIGHT_OK)
+		return
+	if(!has_power())
 		return
 	///Timer id for flickering.
 	var/theflicker
-	if(flickering) //is it flickering when set_flicker-ed
+	if(!ignore_flickering && flickering) //is it flickering when set_flicker-ed
 		//get rid of the stuff to start over so we dont mess stuff up.
 		deltimer(theflicker)
 		resetflickers()
-	if(!flickering) //if it is not flickering already, do as usual.
-		random_flicker = TRUE
-		flicker(TRUE)
-		if(flicker_time_lower)
-			flicker_time_lower_min = flicker_time_lower
-		if(flicker_time_upper)
-			flicker_time_upper_max = flicker_time_upper
-		theflicker = addtimer(CALLBACK(src, PROC_REF(resetflickers), amount))
+	random_flicker = TRUE
+	flickering = TRUE
+	if(flicker_time_lower)
+		flicker_time_lower_min = flicker_time_lower
+	if(flicker_time_upper)
+		flicker_time_upper_max = flicker_time_upper
+	flicker(FALSE, FALSE, flicker_delay)
+	theflicker = addtimer(CALLBACK(src, PROC_REF(resetflickers), amount))
 
 ///sets values as they were for the light, before set_flicker.
 /obj/machinery/light/proc/resetflickers()
-	flicker(FALSE)
-	flickering = initial(flickering)
 	flicker_time_lower_min = initial(flicker_time_lower_min)
 	flicker_time_upper_max = initial(flicker_time_upper_max)
+	random_flicker = initial(random_flicker)
+	flickering = FALSE
+	if(!has_power())
+		lightambient.stop(src)
+		return
+	if(status == LIGHT_OK)
+		lightambient.start(src)
 
 ///flicker lights on and off
-/obj/machinery/light/proc/flicker(toggle_flicker = FALSE)
+/obj/machinery/light/proc/flicker(toggle_flicker = FALSE, long_off = TRUE, flicker_delay = 0.3 SECONDS)
 	if(!has_power())
 		lightambient.stop(src)
 		return
@@ -391,11 +398,12 @@
 	if(!light_flicker_state)
 		flick("[base_icon_state]_flick_off", src)
 		//delay the power change long enough to get the flick() animation off
-		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), 0.3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), flicker_delay)
 	else
 		flick("[base_icon_state]_flick_on", src)
-		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), 0.3 SECONDS)
-		flicker_time = flicker_time * 2 //for effect it's best if the amount of time we spend off is more than the time we spend on
+		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), flicker_delay)
+		if(long_off)
+			flicker_time = flicker_time * 2 //for effect it's best if the amount of time we spend off is more than the time we spend on
 	if(!flickering)
 		return
 	addtimer(CALLBACK(src, PROC_REF(flicker)), flicker_time)

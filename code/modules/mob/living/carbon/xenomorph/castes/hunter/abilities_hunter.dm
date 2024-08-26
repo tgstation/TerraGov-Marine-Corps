@@ -15,8 +15,8 @@
 	var/last_stealth = null
 	///if stealthed.
 	var/stealth = FALSE
-	///If it can sneak attack with stealth.
-	var/can_sneak_attack = TRUE
+	///If can sneak attack currently.
+	var/can_sneak_attack = FALSE
 	///Stealth alpha mult value
 	var/stealth_alpha_multiplier = 1
 	///Stealth duration, if it is -1 it is not based on a timer.
@@ -216,14 +216,10 @@
 	if(!can_sneak_attack)
 		return
 
-	var/staggerslow_stacks = 2 SECONDS
-	var/paralyzesecs = 1 SECONDS
-	var/flavour
-	if(owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
-		flavour = "vicious"
-	else
-		armor_mod += sneak_attack_armor_pen
-		flavour = "deadly"
+	var/flavour = pick("vicious","deadly","brutal")
+
+	var/staggerslow_stacks = 2
+	var/paralyzesecs = 1
 
 	owner.visible_message(span_danger("\The [owner] strikes [target] with [flavour] precision!"), \
 	span_danger("We strike [target] with [flavour] precision!"))
@@ -234,7 +230,7 @@
 		paralyzesecs *= 2
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
-	target.ParalyzeNoChain(paralyzesecs)
+	target.ParalyzeNoChain(paralyzesecs SECONDS)
 
 	if(disable_on_mob_slash)
 		cancel_stealth()
@@ -442,9 +438,13 @@
 	cooldown_duration = 60 SECONDS
 	///the target marked
 	var/atom/movable/marked_target
+	///If marking require line of sight of the target.
 	var/require_los = TRUE
+	///Custom duration for the mark, -1 to disable.
 	var/timeout = -1
+	///If the mark warns the target.
 	var/warntarget = FALSE
+	///Charge-up duration of the mark where you need to stay still for it to apply, -1 to disable.
 	var/chargeup = -1
 
 /datum/action/ability/activable/xeno/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -773,7 +773,7 @@
 	name = "Lunge"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	action_icon_state = "assassin_lunge"
-	desc = "Swiftly lunge at your destination, if on a target, attack and stun them briefly."
+	desc = "Swiftly lunge at your destination, if on a target, attack them."
 	ability_cost = 10
 	cooldown_duration = 6 SECONDS
 	keybinding_signals = list(
@@ -788,7 +788,6 @@
 	xeno_owner.UnarmedAttack(living_target)
 	step_away(living_target, xeno_owner, 1, 3)
 	xeno_owner.face_atom(living_target)
-	living_target.Stun(XENO_POUNCE_STUN_DURATION) // no disarm but standing stun to make it feel like you got bodyslammed by a xeno
 
 // ***************************************
 // *********** Phase Out
@@ -798,21 +797,20 @@
 	name = "Phase Out"
 	action_icon_state = "hunter_invisibility"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
-	desc = "Become fully invisible for 10 seconds, or until damaged. Attacking does not break invisibility."
+	desc = "Become fully invisible for 6 seconds, or until damaged. Attacking does not break invisibility."
 	ability_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_PHASEOUT,
 	)
-	cooldown_duration = 10 SECONDS
-	stealth_alpha_multiplier = 1
-	stealth_duration = 10 SECONDS
+	cooldown_duration = 6 SECONDS
+	stealth_duration = 6 SECONDS
 	disable_on_signals = list(
 		COMSIG_LIVING_IGNITED,
 		COMSIG_LIVING_ADD_VENTCRAWL,
 	)
 	disable_on_obj_slash = FALSE
 	disable_on_mob_slash = FALSE
-	sneak_attack_armor_pen = 30
+	sneak_attack_armor_pen = 50
 	pounce_break_stealth = FALSE
 	pounce_hit_break_stealth = TRUE
 
@@ -863,12 +861,16 @@
 		balloon_alert(src, "We need to be on weeds.")
 		return
 	wound_overlay.icon_state = "none"
+	var/turf/whereweat = get_turf(src)
 	if(status_flags & INCORPOREAL) //will alert if the xeno will get disoriented due lit turf, if phasing in.
-		var/turf/whereweat = get_turf(src)
-		if(whereweat.get_lumcount() > 0.2) //is it a lit turf
+		if(whereweat.get_lumcount() > 0.3) //is it a lit turf
 			balloon_alert(src, "We will be disoriented and sensed in this light.") //so its more visible to xeno.
 			//Marines can sense the manifestation if it's in lit-enough turf nearby.
 			visible_message(span_highdanger("Something begins to manifest nearby!"), span_xenohighdanger("We begin to manifest in the light... talls sense us!"))
+	else
+		if(whereweat.get_lumcount() > 0.4) //cant shift out a lit turf.
+			balloon_alert(src, "We need a darker spot.") //so its more visible to xeno.
+			return
 	if(do_after(src, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BAR, NONE, PROGRESS_GENERIC)) //dont move
 		do_change_form()
 
@@ -877,30 +879,28 @@
 	playsound(get_turf(src), 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	if(status_flags & INCORPOREAL)
 		var/turf/whereweat = get_turf(src)
-		if(whereweat.get_lumcount() > 0.2) //is it a lit turf
+		if(whereweat.get_lumcount() > 0.3) //is it a lit turf
 			balloon_alert(src, "Light disorients us!")
-			adjust_stagger(2 SECONDS)
-			add_slowdown(2)
-		for(var/obj/machinery/light/lightie in range(rand(5,7), whereweat))
-			lightie.set_flicker(rand(3 SECONDS, 5 SECONDS), 3, 6)
+			adjust_stagger(6 SECONDS)
+			add_slowdown(4)
+		for(var/obj/machinery/light/lightie in range(rand(7,10), whereweat))
+			lightie.set_flicker(2 SECONDS, 1.5, 2.5, rand(1,2))
 		status_flags = initial(status_flags)
 		resistance_flags = initial(resistance_flags)
 		pass_flags = initial(pass_flags)
 		density = TRUE
 		REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
 		alpha = 255
-		color = initial(color)
 		update_wounds()
 		update_icon()
 		update_action_buttons()
 		return
 	var/turf/whereweat = get_turf(src)
-	for(var/obj/machinery/light/lightie in range(rand(5,7), whereweat))
-		lightie.set_flicker(rand(3 SECONDS, 5 SECONDS), 3, 6)
+	for(var/obj/machinery/light/lightie in range(rand(7,10), whereweat))
+		lightie.set_flicker(2 SECONDS, 1, 2, rand(1,2))
 	ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
 	status_flags = INCORPOREAL
-	alpha = 15 //like a shadow
-	color = COLOR_PURPLE
+	alpha = 0
 	resistance_flags = BANISH_IMMUNE
 	pass_flags = PASS_MOB|PASS_XENO
 	density = FALSE
