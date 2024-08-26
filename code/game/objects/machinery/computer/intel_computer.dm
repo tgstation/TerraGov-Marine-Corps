@@ -51,6 +51,7 @@
 		STOP_PROCESSING(SSmachines, src)
 		printing = FALSE
 		printing_complete = TRUE
+		update_minimap_icon()
 		SSpoints.supply_points[faction] += supply_reward
 		SSpoints.dropship_points += dropship_reward
 		minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
@@ -58,6 +59,7 @@
 		return
 	if (machine_stat & NOPOWER) /// checks for lack of power and shuts down
 		printing = FALSE
+		update_minimap_icon()
 		progress = 0
 		visible_message("<b>[src]</b> shuts down as it loses power. Any data is lost.")
 
@@ -76,6 +78,11 @@
 	if(!ui)
 		ui = new(user, src, "IntelComputer", "IntelComputer")
 		ui.open()
+
+///Change minimap icon if its on or off
+/obj/machinery/computer/intel_computer/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel[printing ? "_on" : "_off"]", ABOVE_FLOAT_LAYER))
 
 /obj/machinery/computer/intel_computer/ui_data(mob/user)
 	var/list/data = list()
@@ -98,9 +105,10 @@
 		if("first_load")
 			first_login = FALSE
 			. = TRUE
-			xeno_message("A hostile is attempting to activate the threat at [get_area(src)] we must stop them!")
 		if("start_progressing")
 			printing = TRUE
+			update_minimap_icon()
+			xeno_message("A hostile is attempting to activate the threat at [get_area(src)] we must stop them!")
 			var/mob/living/ui_user = ui.user
 			faction = ui_user.faction
 			START_PROCESSING(SSmachines, src)
