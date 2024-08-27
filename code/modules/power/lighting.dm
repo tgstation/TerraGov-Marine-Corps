@@ -439,6 +439,10 @@
 	bulb_power = 0.5
 	bulb_colour = LIGHT_COLOR_FLARE
 
+/obj/machinery/light/bluegreen
+	light_color = LIGHT_COLOR_BLUEGREEN
+	bulb_colour = LIGHT_COLOR_BLUEGREEN
+
 // the smaller bulb light fixture
 
 /obj/machinery/light/small
