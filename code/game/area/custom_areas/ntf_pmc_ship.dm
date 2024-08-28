@@ -1,6 +1,5 @@
 /area/antag_ship/pmc_ntf
 	name = "NTF PMC Ship"
-	icon_state = "yellow"
 	requires_power = TRUE
 
 
