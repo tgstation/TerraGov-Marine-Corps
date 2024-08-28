@@ -1225,7 +1225,6 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/corrupted/post_removal(mob/living/carbon/xenomorph/X)
 	. = ..()
 	X.remove_language(/datum/language/common)
-	X.AddComponent(/datum/component/xeno_iff, CLF_IFF)
 
 /datum/hive_status/corrupted/can_xeno_message()
 	return TRUE // can always talk in hivemind
