@@ -1291,7 +1291,7 @@
 /area/antag_ship/vsd/bridge)
 "hm" = (
 /obj/structure/cable,
-/obj/structure/rack,
+/obj/machinery/power/monitor,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
 "hs" = (
@@ -3912,6 +3912,9 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
+"tz" = (
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/medical_room)
 "tB" = (
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 4
@@ -5520,6 +5523,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
+/obj/machinery/power/monitor/core,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
 "BF" = (
@@ -5794,9 +5798,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/heatinggrate,
 /area/antag_ship/vsd/engi)
-"CM" = (
-/turf/open/floor/plating/ground/concrete,
-/area/antag_ship/icc/medical_room)
 "CN" = (
 /turf/open/space/basic,
 /area/space)
@@ -6522,6 +6523,9 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/machinery/power/apc/mainship{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/medical_room)
 "Gv" = (
@@ -20420,8 +20424,8 @@ vH
 EX
 qc
 ln
-CM
-CM
+tz
+tz
 rc
 la
 la
@@ -20516,7 +20520,7 @@ EX
 cC
 mj
 Im
-CM
+tz
 kQ
 la
 la
@@ -20705,7 +20709,7 @@ aO
 Oo
 Vi
 ln
-CM
+tz
 Cz
 Gu
 la
