@@ -2994,6 +2994,7 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
+/obj/machinery/vending/tool,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
 "oL" = (
@@ -3673,9 +3674,8 @@
 	outside = 0
 	})
 "sg" = (
-/obj/machinery/vending/tool,
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/icc/warehouse)
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/medical_room)
 "sh" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/structure/bed/roller,
@@ -3912,9 +3912,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
-"tz" = (
-/turf/open/floor/plating/ground/concrete,
-/area/antag_ship/icc/medical_room)
 "tB" = (
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 4
@@ -6366,6 +6363,10 @@
 /area/mainship/squads/general/som{
 	name = "SOM Preparation"
 	})
+"Fy" = (
+/obj/effect/spawner/random/misc/structure/closet/tool,
+/turf/open/floor/plating/ground/concrete,
+/area/antag_ship/icc/warehouse)
 "Fz" = (
 /obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/mainship/office,
@@ -20424,8 +20425,8 @@ vH
 EX
 qc
 ln
-tz
-tz
+sg
+sg
 rc
 la
 la
@@ -20520,7 +20521,7 @@ EX
 cC
 mj
 Im
-tz
+sg
 kQ
 la
 la
@@ -20709,7 +20710,7 @@ aO
 Oo
 Vi
 ln
-tz
+sg
 Cz
 Gu
 la
@@ -20896,7 +20897,7 @@ Jq
 rh
 ik
 hR
-sg
+Oo
 oK
 la
 la
@@ -20992,7 +20993,7 @@ LO
 rs
 LO
 Oo
-LO
+Fy
 la
 la
 la
