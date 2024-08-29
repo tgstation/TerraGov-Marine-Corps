@@ -332,6 +332,9 @@
 /obj/effect/landmark/corpsespawner/scientist/burst
 	death_type = CHESTBURST_DEATH
 
+/obj/effect/landmark/corpsespawner/scientist/regular
+	death_type = REGULAR_DEATH
+
 /obj/effect/landmark/corpsespawner/engineer/rig/regular
 	death_type = REGULAR_DEATH
 

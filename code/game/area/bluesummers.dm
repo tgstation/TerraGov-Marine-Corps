@@ -21,6 +21,16 @@
 /area/bluesummers/caves/northwest/garbledradio
 	ceiling = CEILING_UNDERGROUND
 
+/area/bluesummers/caves/northwest/garbledradio/indoor
+	name = "Lower Northwest Caves Wreckage"
+	always_unpowered = FALSE
+	ceiling = CEILING_UNDERGROUND_METAL
+
+/area/bluesummers/caves/northwest/indoor
+	name = "Northwest Caves Wreckage"
+	always_unpowered = FALSE
+	ceiling = CEILING_UNDERGROUND_METAL
+
 /area/bluesummers/caves/north
 	name = "Northern Caves"
 	icon_state = "north2"
