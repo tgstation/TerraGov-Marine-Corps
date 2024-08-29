@@ -276,22 +276,20 @@
 	//random title as starting point so it isnt choking every time you see it.
 	var/list/total_titles
 	///Gets the current title number. It sets itself with the proc below, no need to touch.
-	var/icon/current_title
-	///The delay between title changes.
-	var/switch_time = 1 MINUTES
+	var/current_title
 
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	total_titles = icon_states(icon)
 	current_title = pick(icon_states(icon)) //randomly picks a starting screen.
 	icon_state = current_title
-	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), switch_time)
+	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), 1 MINUTES)
 
 //timer above triggers this to change the image.
 /turf/closed/wall/indestructible/splashscreen/proc/next_splashscreen()
 	current_title = next_in_list(current_title, total_titles)
 	icon_state = current_title //sets the title to the current_title here
-	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), switch_time)
+	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), 1 MINUTES)
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
