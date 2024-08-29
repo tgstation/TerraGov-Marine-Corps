@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(aura)
 	///Aura is only applied to mobs in this faction
 	var/faction = FACTION_NEUTRAL
 	///List of aura defines that mean we care about humans
-	var/static/list/human_auras = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)
+	var/static/list/human_auras = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS, AURA_HUMAN_FLAG)
 	///Whether we care about humans - at least one relevant aura is enough if we have multiple.
 	var/affects_humans = FALSE
 	///List of aura defines that mean we care about xenos

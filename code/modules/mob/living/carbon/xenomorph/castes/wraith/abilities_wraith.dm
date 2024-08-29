@@ -9,6 +9,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno/blink
 	name = "Blink"
 	action_icon_state = "blink"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "We teleport ourselves a short distance to a location within line of sight."
 	use_state_flags = ABILITY_TURF_TARGET
 	ability_cost = 30
@@ -146,7 +147,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/ability/activable/xeno/blink/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to blink again."))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
 // ***************************************
@@ -155,6 +156,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno/banish
 	name = "Banish"
 	action_icon_state = "Banish"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "We banish a target object or creature within line of sight to nullspace for a short duration. Can target onself and allies. Non-friendlies are banished for half as long."
 	use_state_flags = ABILITY_TARGET_SELF
 	ability_cost = 50
@@ -324,7 +326,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	teleport_debuff_aoe(banishment_target)
 	banishment_target.add_filter("wraith_banishment_filter", 3, list("type" = "blur", 5))
-	addtimer(CALLBACK(banishment_target, TYPE_PROC_REF(/atom, remove_filter), "wraith_banishment_filter"), 1 SECONDS)
+	addtimer(CALLBACK(banishment_target, TYPE_PROC_REF(/datum, remove_filter), "wraith_banishment_filter"), 1 SECONDS)
 
 	if(isliving(banishment_target))
 		var/mob/living/living_target = banishment_target
@@ -347,7 +349,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/ability/activable/xeno/banish/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to banish again."))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
 // ***************************************
@@ -356,6 +358,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/xeno_action/recall
 	name = "Recall"
 	action_icon_state = "Recall"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "We recall a target we've banished back from the depths of nullspace."
 	use_state_flags = ABILITY_USE_NOTTURF|ABILITY_USE_SOLIDOBJECT|ABILITY_USE_STAGGERED|ABILITY_USE_INCAP|ABILITY_USE_LYING //So we can recall ourselves from nether Brazil
 	cooldown_duration = 1 SECONDS //Token for anti-spam
@@ -416,6 +419,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/xeno_action/timestop
 	name = "Time stop"
 	action_icon_state = "time_stop"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "Freezes bullets in their course, and they will start to move again only after a certain time"
 	ability_cost = 100
 	cooldown_duration = 1 MINUTES
@@ -458,6 +462,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/xeno_action/portal
 	name = "Portal"
 	action_icon_state = "portal"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "Place a portal on your location. You can travel from portal to portal. Left click to create portal one, right click to create portal two"
 	ability_cost = 50
 	cooldown_duration = 5 SECONDS
@@ -655,6 +660,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno/rewind
 	name = "Time Shift"
 	action_icon_state = "rewind"
+	action_icon = 'icons/Xeno/actions/wraith.dmi'
 	desc = "Save the location and status of the target. When the time is up, the target location and status are restored, unless the target is dead or unconscious."
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS
@@ -680,7 +686,21 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/target_initial_on_fire = FALSE
 	/// How far can you rewind someone
 	var/range = 5
+	///Holder for the rewind timer
+	var/rewind_timer
 
+/datum/action/ability/activable/xeno/rewind/Destroy()
+	last_target_locs_list = null
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
+	if(rewind_timer)
+		deltimer(rewind_timer)
+	if(!QDELETED(targeted))
+		targeted.remove_filter("prerewind_blur")
+		targeted.remove_filter("rewind_blur")
+		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
+		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
+		targeted = null
+	return ..()
 
 /datum/action/ability/activable/xeno/rewind/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -714,7 +734,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(isxeno(A))
 		var/mob/living/carbon/xenomorph/xeno_target = targeted
 		target_initial_sunder = xeno_target.sunder
-	addtimer(CALLBACK(src, PROC_REF(start_rewinding)), start_rewinding)
+	rewind_timer = addtimer(CALLBACK(src, PROC_REF(start_rewinding)), start_rewinding, TIMER_STOPPABLE)
 	RegisterSignal(targeted, COMSIG_MOVABLE_MOVED, PROC_REF(save_move))
 	targeted.add_filter("prerewind_blur", 1, radial_blur_filter(0.04))
 	targeted.balloon_alert(targeted, "You feel anchored to the past!")
@@ -764,6 +784,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		targeted.remove_filter("rewind_blur")
 		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
 		targeted = null
+		rewind_timer = null
 		return
 
 	targeted.Move(loc_b, get_dir(loc_b, loc_a))

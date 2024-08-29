@@ -24,7 +24,7 @@
 //Howitzer
 /obj/effect/landmark/campaign_structure/howitzer_objective
 	name = "howitzer objective"
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/howitzer
@@ -32,7 +32,7 @@
 /obj/structure/campaign_objective/destruction_objective/howitzer
 	name = "\improper TA-100Y howitzer"
 	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes."
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 	pixel_x = -16
 	faction = FACTION_SOM
@@ -148,7 +148,7 @@
 //Supply depot objectives
 /obj/structure/campaign_objective/destruction_objective/supply_objective
 	name = "SUPPLY_OBJECTIVE"
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer_deployed"
 
 //Train
@@ -215,20 +215,30 @@
 //NT base
 /obj/effect/landmark/campaign_structure/nt_pod
 	name = "Mysterious pod"
-	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
-	icon_state = "nt_pod"
+	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
+	icon_state = "alien_pod_mapper"
 	mission_types = list(/datum/campaign_mission/destroy_mission/base_rescue)
 	spawn_object = /obj/structure/campaign_objective/destruction_objective/nt_pod
 
 /obj/structure/campaign_objective/destruction_objective/nt_pod
 	name = "Mysterious pod"
-	desc = "A large sealed pod, completely lacking any identifying markings. Who knows what's in it?."
-	icon = 'icons/obj/structures/campaign/tall_structures.dmi'
-	icon_state = "nt_pod"
-	layer = ABOVE_MOB_LAYER
+	desc = "A large sealed pod, containing something huge and monstrous in its murky center."
+	icon = 'icons/obj/structures/campaign/campaign_big.dmi'
+	icon_state = "alien_pod"
+	bound_height = 64
+	bound_width = 64
+	pixel_y = 10
+
+/obj/structure/campaign_objective/destruction_objective/nt_pod/Initialize(mapload)
+	. = ..()
+	update_appearance(UPDATE_OVERLAYS)
+
+/obj/structure/campaign_objective/destruction_objective/nt_pod/update_overlays()
+	. = ..()
+	. += image(icon, icon_state = "alien_pod_overlay", layer = ABOVE_MOB_LAYER)
 
 /obj/structure/campaign_objective/destruction_objective/nt_pod/Destroy()
-	playsound(loc, 'sound/voice/predalien_death.ogg', 75, 0)
+	playsound(loc, 'sound/voice/predalien/death.ogg', 75, 0)
 	return ..()
 
 //teleporter core

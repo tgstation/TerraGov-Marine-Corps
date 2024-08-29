@@ -65,7 +65,7 @@
 	START_PROCESSING(SSobj, src)
 
 
-/obj/structure/flora/tree/deconstruct(disassembled = TRUE)
+/obj/structure/flora/tree/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	density = FALSE
 	var/obj/structure/flora/stump/S = new(loc)
 	S.name = "[name] stump"
@@ -220,6 +220,17 @@
 	layer = TALL_GRASS_LAYER
 	opacity = TRUE
 	color = "#7a8c54"
+
+/obj/structure/flora/grass/tallgrass/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	AddComponent(/datum/component/submerge_modifier, 10)
+
+/obj/structure/flora/grass/tallgrass/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_GRASS] = layer
 
 /obj/structure/flora/grass/tallgrass/tallgrasscorner
 	name = "tall grass"

@@ -28,6 +28,9 @@
 	var/skill_min = SKILL_LEAD_TRAINED
 
 /datum/action/innate/message_squad/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/message_squad/can_use_action()
@@ -58,7 +61,9 @@
 	if(!can_use_action())
 		return
 	var/sound/S //Unique sound for squad leaders/non-squad leaders set further down
-	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
+	addtimer(CALLBACK(src, PROC_REF(update_button_icon)), CIC_ORDER_COOLDOWN + 1)
+	update_button_icon()
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
 	var/override_color // for squad colors
 	var/list/alert_receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list) // for full faction alerts, do this so that faction's AI and ghosts can hear aswell
@@ -67,11 +72,13 @@
 			if(ALPHA_SQUAD)
 				override_color = "red"
 			if(BRAVO_SQUAD)
-				override_color = "orange"
+				override_color = "yellow"
 			if(CHARLIE_SQUAD)
 				override_color = "purple"
 			if(DELTA_SQUAD)
 				override_color = "blue"
+			else
+				override_color = "grey"
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list | GLOB.observer_list)
 			marine.playsound_local(marine, 'sound/effects/sos-morse-code.ogg', 35)
 			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>Squad [human_owner.assigned_squad.name] Announcement:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order, "[human_owner.assigned_squad.color]")
@@ -79,8 +86,7 @@
 				title = "Squad [human_owner.assigned_squad.name] Announcement",
 				subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",
 				message = text,
-				color_override = override_color,
-				minor = TRUE
+				color_override = override_color
 			))
 		return
 	for(var/mob/faction_receiver in alert_receivers)

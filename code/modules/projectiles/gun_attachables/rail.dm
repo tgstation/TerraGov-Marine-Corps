@@ -2,6 +2,7 @@
 	name = "red-dot sight"
 	desc = "A red-dot sight for short to medium range. Does not have a zoom feature, but does increase weapon accuracy and fire rate while aiming by a good amount. \nNo drawbacks."
 	icon_state = "reddot"
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.15
 	accuracy_unwielded_mod = 0.1
@@ -11,7 +12,8 @@
 /obj/item/attachable/m16sight
 	name = "M16 iron sights"
 	desc = "The iconic carry-handle iron sights for the m16. Usually removed once the user finds something worthwhile to attach to the rail."
-	icon_state = "m16sight"
+	icon_state = "m16sight" // missing icon?
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	slot = ATTACHMENT_SLOT_RAIL
 	accuracy_mod = 0.1
 	accuracy_unwielded_mod = 0.05
@@ -21,6 +23,7 @@
 	name = "rail flashlight"
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
 	icon_state = "flashlight"
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	light_mod = 6
 	light_system = MOVABLE_LIGHT
 	slot = ATTACHMENT_SLOT_RAIL
@@ -59,10 +62,6 @@
 	else
 		return
 
-	for(var/X in master_gun.actions)
-		var/datum/action/A = X
-		A.update_button_icon()
-
 	update_icon()
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
@@ -82,6 +81,7 @@
 	name = "underbarreled flashlight"
 	desc = "A simple flashlight used for mounting on a firearm. \nHas no drawbacks, but isn't particuraly useful outside of providing a light source."
 	icon_state = "uflashlight"
+	icon = 'icons/obj/items/guns/attachments/underbarrel.dmi'
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
@@ -90,6 +90,7 @@
 	desc = "An enhanced and upgraded autoloading mechanism to fire rounds more quickly. \nHowever, it also reduces accuracy and the number of bullets fired on burst."
 	slot = ATTACHMENT_SLOT_RAIL
 	icon_state = "autoloader"
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	accuracy_mod = -0.10
 	delay_mod = -0.125 SECONDS
 	burst_mod = -1
@@ -99,6 +100,7 @@
 	name = "magnetic harness"
 	desc = "A magnetically attached harness kit that attaches to the rail mount of a weapon. When dropped, the weapon will sling to a TGMC armor."
 	icon_state = "magnetic"
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
 	///Handles the harness functionality, created when attached to a gun and removed on detach
@@ -118,7 +120,7 @@
 
 /obj/item/attachable/buildasentry
 	name = "\improper Build-A-Sentry Attachment System"
-	icon = 'icons/Marine/sentry.dmi'
+	icon = 'icons/obj/machines/deployable/sentry/build_a_sentry.dmi'
 	icon_state = "build_a_sentry_attachment"
 	desc = "The Build-A-Sentry is the latest design in cheap, automated, defense. Simple attach it to the rail of a gun and deploy. Its that easy!"
 	slot = ATTACHMENT_SLOT_RAIL
@@ -143,20 +145,6 @@
 	. = ..()
 	ENABLE_BITFIELD(master_gun.item_flags, IS_DEPLOYABLE)
 	master_gun.deployable_item = /obj/machinery/deployable/mounted/sentry/buildasentry
-	master_gun.ignored_terrains = list(
-		/obj/machinery/deployable/mounted,
-		/obj/machinery/miner,
-	)
-	if(master_gun.ammo_datum_type && CHECK_BITFIELD(initial(master_gun.ammo_datum_type.ammo_behavior_flags), AMMO_ENERGY) || istype(master_gun, /obj/item/weapon/gun/energy)) //If the guns ammo is energy, the sentry will shoot at things past windows.
-		master_gun.ignored_terrains += list(
-			/obj/structure/window,
-			/obj/structure/window/reinforced,
-			/obj/machinery/door/window,
-			/obj/structure/window/framed,
-			/obj/structure/window/framed/colony,
-			/obj/structure/window/framed/mainship,
-			/obj/structure/window/framed/prison,
-		)
 	master_gun.turret_flags |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	master_gun.AddComponent(/datum/component/deployable_item, master_gun.deployable_item, deploy_time, undeploy_time)
 	update_icon()
@@ -166,6 +154,5 @@
 	var/obj/item/weapon/gun/detaching_gun = detaching_item
 	DISABLE_BITFIELD(detaching_gun.item_flags, IS_DEPLOYABLE)
 	qdel(detaching_gun.GetComponent(/datum/component/deployable_item))
-	detaching_gun.ignored_terrains = null
 	detaching_gun.deployable_item = null
 	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)

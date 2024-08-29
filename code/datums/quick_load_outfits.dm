@@ -5,6 +5,8 @@
 	var/quantity = -1
 	///What job this loadout is associated with. Used for tabs and access.
 	var/jobtype = "Squad Marine"
+	///Restricts loadouts to a specific job. Set to false to allow any job to take the loadout.
+	var/require_job = TRUE
 
 
 /datum/outfit/quick/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -83,7 +85,6 @@
 	if(!visualsOnly)
 		if(internals_slot)
 			H.internal = H.get_item_by_slot(internals_slot)
-			H.update_action_buttons()
 
 	H.update_body()
 	return TRUE

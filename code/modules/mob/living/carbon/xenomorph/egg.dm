@@ -105,10 +105,10 @@
 		return
 	if(via_damage)
 		hugger_type = null
-		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
+		playsound(loc, 'sound/effects/alien/egg_burst.ogg', 30)
 		flick("egg exploding", src)
 		return
-	playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
+	playsound(src.loc, 'sound/effects/alien/egg_move.ogg', 25)
 	flick("egg opening", src)
 	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(src), hivenumber)
 	hugger_type = null
@@ -189,11 +189,11 @@
 		return
 	var/spread = EGG_GAS_DEFAULT_SPREAD
 	if(via_damage) // More violent destruction, more gas.
-		playsound(loc, "sound/effects/alien_egg_burst.ogg", 30)
+		playsound(loc, 'sound/effects/alien/egg_burst.ogg', 30)
 		flick("egg exploding", src)
 		spread = EGG_GAS_KILL_SPREAD
 	else
-		playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
+		playsound(src.loc, 'sound/effects/alien/egg_move.ogg', 25)
 		flick("egg opening", src)
 	spread += gas_size_bonus
 

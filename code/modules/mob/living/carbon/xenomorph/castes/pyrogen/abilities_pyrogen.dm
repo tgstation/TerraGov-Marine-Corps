@@ -4,7 +4,8 @@
 /datum/action/ability/activable/xeno/charge/fire_charge
 	name = "Fire Charge"
 	action_icon_state = "fireslash"
-	desc = "Charge up to 3 tiles, inflicting a stack of melting flame and slashing them with a fiery claw. "
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
+	desc = "Charge up to 3 tiles, attacking any organic you come across. Extinguishes the target if they were set on fire, but deals extra damage depending on how many fire stacks they have."
 	cooldown_duration = 4 SECONDS
 	ability_cost = 30
 	keybinding_signals = list(
@@ -62,7 +63,7 @@
 		var/datum/status_effect/stacking/melting_fire/debuff = living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 		fire_damage += debuff.stacks * PYROGEN_FIRECHARGE_DAMAGE_PER_STACK
 		living_target.remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
-	living_target.take_overall_damage(fire_damage, BURN, ACID, max_limbs = 2)
+	living_target.take_overall_damage(fire_damage, BURN, FIRE, max_limbs = 2)
 	living_target.hitby(owner)
 
 
@@ -78,6 +79,7 @@
 /datum/action/ability/activable/xeno/fireball
 	name = "Fireball"
 	action_icon_state = "fireball"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Release a fireball that explodes on contact."
 	ability_cost = 50
 	cooldown_duration = 15 SECONDS
@@ -88,13 +90,13 @@
 /datum/action/ability/activable/xeno/fireball/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/pyrogen/xeno = owner
 	playsound(get_turf(xeno), 'sound/effects/wind.ogg', 50)
-	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno, 0.6 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
-	playsound(get_turf(xeno), 'sound/effects/fireball.ogg', 50)
+	playsound(get_turf(xeno), 'sound/effects/alien/fireball.ogg', 50)
 
 	var/obj/projectile/magic_bullshit = new(get_turf(src))
 	magic_bullshit.generate_bullet(/datum/ammo/xeno/fireball)
@@ -134,6 +136,7 @@
 /datum/action/ability/activable/xeno/firestorm
 	name = "Fire Storm"
 	action_icon_state = "whirlwind"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Unleash 3 fiery tornados. They will try to close on your target tile"
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 50
@@ -179,7 +182,7 @@
 		debuff.add_stacks(PYROGEN_TORNADO_MELTING_FIRE_STACKS)
 	else
 		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_TORNADO_MELTING_FIRE_STACKS)
-	target.take_overall_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN, ACID, max_limbs = 2)
+	target.take_overall_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN, FIRE, max_limbs = 2)
 
 ///Effects applied to a mob that crosses a burning turf
 /obj/effect/xenomorph/firenado/proc/on_cross(datum/source, mob/living/carbon/human/target, oldloc, oldlocs)
@@ -197,7 +200,7 @@
 			qdel(src)
 			return
 	else if(isobj(target) && !istype(target, /obj/effect/xenomorph/firenado))
-		if(!istype(target, /obj/structure/mineral_door/resin) && !istype(target, /obj/structure/xeno))
+		if(!istype(target, /obj/structure/door/resin) && !istype(target, /obj/structure/xeno))
 			var/obj/object = target
 			object.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
 			qdel(src)
@@ -241,13 +244,13 @@
 /datum/action/ability/activable/xeno/firestorm/use_ability(atom/target)
 	var/mob/living/carbon/xenomorph/pyrogen/xeno = owner
 
-	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno, 0.6 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
-	playsound(get_turf(xeno), 'sound/effects/prepare.ogg', 50)
+	playsound(get_turf(xeno), 'sound/effects/alien/prepare.ogg', 50)
 
 	var/list/pickable_turfs = RANGE_TURFS(1, xeno)
 	for(var/amount in 1 to PYROGEN_FIRESTORM_TORNADE_COUNT)
@@ -278,6 +281,7 @@
 /datum/action/ability/xeno_action/heatray
 	name = "Heat Ray"
 	action_icon_state = "heatray"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Microwave any target infront of you in a range of 7 tiles"
 	target_flags = ABILITY_TURF_TARGET
 	ability_cost = 150
@@ -328,7 +332,7 @@
 		return
 
 	beam = owner.loc.beam(targets[length(targets)], "heatray", beam_type = /obj/effect/ebeam)
-	playsound(owner, 'sound/effects/firebeam.ogg', 80)
+	playsound(owner, 'sound/effects/alien/firebeam.ogg', 80)
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, HEATRAY_BEAM_ABILITY_TRAIT)
 	RegisterSignals(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
 	started_firing = world.time
@@ -351,13 +355,16 @@
 				if(debuff)
 					damage += debuff.stacks * PYROGEN_HEATRAY_BONUS_DAMAGE_PER_MELTING_STACK
 
-				human_victim.take_overall_damage(damage, BURN, ACID, updating_health = TRUE, max_limbs = 2)
+				human_victim.take_overall_damage(damage, BURN, FIRE, updating_health = TRUE, max_limbs = 2)
 
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(isvehicle(victim))
-				var/obj/vehicle/veh_victim = victim
-				veh_victim.take_damage(PYROGEN_HEATRAY_HIT_DAMAGE, BURN, ACID)
+			else if(isvehicle(victim) || ishitbox(victim))
+				var/obj/obj_victim = victim
+				var/damage_add = 0
+				if(ismecha(obj_victim))
+					damage_add = 20
+				obj_victim.take_damage((PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE + damage_add), BURN, FIRE)
 	if(world.time - started_firing > PYROGEN_HEATRAY_MAXDURATION)
 		stop_beaming()
 		return

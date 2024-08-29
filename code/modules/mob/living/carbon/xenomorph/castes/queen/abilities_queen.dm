@@ -4,6 +4,7 @@
 /datum/action/ability/xeno_action/hive_message
 	name = "Hive Message" // Also known as Word of Queen.
 	action_icon_state = "queen_order"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	desc = "Announces a message to the hive."
 	ability_cost = 50
 	cooldown_duration = 10 SECONDS
@@ -37,7 +38,7 @@
 	var/queens_word = "<span class='maptext' style=font-size:18pt;text-align:center valign='top'><u>HIVE MESSAGE:</u><br></span>" + input
 
 	var/sound/queen_sound = sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS)
-	var/sound/king_sound = sound('sound/voice/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
+	var/sound/king_sound = sound('sound/voice/alien/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
 	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
 		to_chat(X, assemble_alert(
 			title = "Hive Announcement",
@@ -63,6 +64,7 @@
 /datum/action/ability/activable/xeno/screech
 	name = "Screech"
 	action_icon_state = "screech"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "A large area knockdown that causes pain and screen-shake."
 	ability_cost = 250
 	cooldown_duration = 100 SECONDS
@@ -79,20 +81,14 @@
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	//screech is so powerful it kills huggers in our hands
-	if(istype(xeno_owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = xeno_owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(xeno_owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = xeno_owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
+	for(var/obj/item/clothing/mask/facehugger/hugger in xeno_owner.get_held_items())
+		hugger.kill_hugger()
+		xeno_owner.dropItemToGround(hugger)
 
 	succeed_activate()
 	add_cooldown()
 
-	playsound(xeno_owner.loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
+	playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, 0)
 	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 	GLOB.round_statistics.queen_screech++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
@@ -133,9 +129,11 @@
 /datum/action/ability/xeno_action/watch_xeno
 	name = "Watch Xenomorph"
 	action_icon_state = "watch_xeno"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "See from the target Xenomorphs vision. Click again the ability to stop observing"
 	ability_cost = 0
 	use_state_flags = ABILITY_USE_LYING
+	hidden = TRUE
 	var/overwatch_active = FALSE
 
 /datum/action/ability/xeno_action/watch_xeno/give_action(mob/living/L)
@@ -148,9 +146,6 @@
 		stop_overwatch()
 	UnregisterSignal(L, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_WATCHXENO))
 	return ..()
-
-/datum/action/ability/xeno_action/watch_xeno/should_show()
-	return FALSE // Overwatching now done through hive status UI!
 
 /datum/action/ability/xeno_action/watch_xeno/proc/start_overwatch(mob/living/carbon/xenomorph/target)
 	if(!can_use_action()) // Check for action now done here as action_activate pipeline has been bypassed with signal activation.
@@ -223,11 +218,13 @@
 /datum/action/ability/xeno_action/toggle_queen_zoom
 	name = "Toggle Queen Zoom"
 	action_icon_state = "toggle_queen_zoom"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Zoom out for a larger view around wherever you are looking."
 	ability_cost = 0
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM,
 	)
+	use_state_flags = ABILITY_USE_LYING
 
 
 /datum/action/ability/xeno_action/toggle_queen_zoom/action_activate()
@@ -270,12 +267,11 @@
 /datum/action/ability/xeno_action/set_xeno_lead
 	name = "Choose/Follow Xenomorph Leaders"
 	action_icon_state = "xeno_lead"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Make a target Xenomorph a leader."
 	ability_cost = 200
 	use_state_flags = ABILITY_USE_LYING
-
-/datum/action/ability/xeno_action/set_xeno_lead/should_show()
-	return FALSE // Leadership now set through hive status UI!
+	hidden = TRUE
 
 /datum/action/ability/xeno_action/set_xeno_lead/give_action(mob/living/L)
 	. = ..()
@@ -340,6 +336,7 @@
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal
 	name = "Heal"
 	action_icon_state = "heal_xeno"
+	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "Apply a minor heal to the target."
 	cooldown_duration = 5 SECONDS
 	ability_cost = 150
@@ -348,13 +345,25 @@
 	)
 	heal_range = HIVELORD_HEAL_RANGE
 	target_flags = ABILITY_MOB_TARGET
+	/// Should this ability be usable on moving targets and use an alternative flavortext?
+	var/hivemind_heal = FALSE
 
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
-	if(!do_after(owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(owner, 1 SECONDS, hivemind_heal ? IGNORE_TARGET_LOC_CHANGE : NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 		return FALSE
-	target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
+	if(!can_use_ability(target, TRUE))
+		return FALSE
+
+	if(!hivemind_heal)
+		target.visible_message(span_xenowarning("\the [owner] vomits acid over [target], mending their wounds!"))
+	else
+		owner.visible_message(span_xenowarning("A faint psychic aura is suddenly emitted from \the [owner]!"), \
+		span_xenowarning("We cure [target] with the power of our mind!"))
+		target.visible_message(span_xenowarning("[target] lightly shimmers in a chill light."), \
+		span_xenowarning("We feel a soothing chill."))
+
 	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
@@ -382,6 +391,7 @@
 /datum/action/ability/activable/xeno/queen_give_plasma
 	name = "Give Plasma"
 	action_icon_state = "queen_give_plasma"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Give plasma to a target Xenomorph (you must be overwatching them.)"
 	ability_cost = 150
 	cooldown_duration = 8 SECONDS
@@ -450,6 +460,7 @@
 /datum/action/ability/xeno_action/bulwark
 	name = "Royal Bulwark"
 	action_icon_state = "bulwark"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Creates a field of defensive energy, filling gaps in the armor of nearby sisters, making them more resilient."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS

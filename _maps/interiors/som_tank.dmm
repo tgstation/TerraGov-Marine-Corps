@@ -1,0 +1,122 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/interior/tank/som/thirteen,
+/area/interior/tank/som)
+"b" = (
+/obj/structure/bed/chair/vehicle_crew/gunner/som,
+/turf/open/interior/tank/som/three,
+/area/interior/tank/som)
+"d" = (
+/obj/structure/prop/som_tank/computer/front_center,
+/turf/closed/interior/tank/som/fourteen,
+/area/interior/tank/som)
+"e" = (
+/obj/structure/gun_breech/som,
+/turf/open/interior/tank/som/five,
+/area/interior/tank/som)
+"f" = (
+/turf/closed/interior/tank/som/eighteen,
+/area/interior/tank/som)
+"h" = (
+/obj/structure/prop/som_tank/computer/front_left,
+/turf/open/interior/tank/som/ten,
+/area/interior/tank/som)
+"i" = (
+/turf/open/interior/tank/som/seven,
+/area/interior/tank/som)
+"m" = (
+/turf/closed/interior/tank/som/fifteen,
+/area/interior/tank/som)
+"n" = (
+/obj/structure/prop/som_tank/computer/front_right,
+/turf/open/interior/tank/som/twelve,
+/area/interior/tank/som)
+"o" = (
+/obj/structure/periscope/som,
+/turf/open/interior/tank/som/four,
+/area/interior/tank/som)
+"q" = (
+/obj/structure/prop/som_tank/computer/floating,
+/obj/structure/prop/som_tank/computer/floating/alt,
+/obj/structure/prop/som_tank/computer/gunner_console,
+/turf/open/interior/tank/som/six,
+/area/interior/tank/som)
+"r" = (
+/obj/structure/ammo_rack/primary/som,
+/turf/closed/interior/tank/door/som,
+/area/interior/tank/som)
+"v" = (
+/obj/structure/bed/chair/vehicle_crew/driver/som,
+/turf/open/interior/tank/som/eleven,
+/area/interior/tank/som)
+"x" = (
+/turf/open/interior/tank/som/two,
+/area/interior/tank/som)
+"B" = (
+/turf/open/interior/tank/som/nine,
+/area/interior/tank/som)
+"D" = (
+/turf/closed/interior/tank/som/seventeen{
+	dir = 1
+	},
+/area/interior/tank/som)
+"N" = (
+/turf/closed/interior/tank/som/eighteen{
+	dir = 1
+	},
+/area/interior/tank/som)
+"U" = (
+/turf/open/interior/tank/som/eight,
+/area/interior/tank/som)
+"V" = (
+/obj/structure/ammo_rack/secondary/som,
+/obj/structure/bed/chair/loader_seat/som,
+/turf/open/interior/tank/som/one,
+/area/interior/tank/som)
+"X" = (
+/turf/closed/interior/tank/som/nineteen,
+/area/interior/tank/som)
+"Z" = (
+/turf/closed/interior/tank/som/seventeen,
+/area/interior/tank/som)
+
+(1,1,1) = {"
+f
+D
+D
+D
+D
+D
+"}
+(2,1,1) = {"
+a
+h
+i
+o
+V
+X
+"}
+(3,1,1) = {"
+d
+v
+U
+e
+x
+r
+"}
+(4,1,1) = {"
+m
+n
+B
+q
+b
+X
+"}
+(5,1,1) = {"
+N
+Z
+Z
+Z
+Z
+Z
+"}

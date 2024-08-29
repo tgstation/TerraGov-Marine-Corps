@@ -310,7 +310,7 @@
 	if(HAS_TRAIT(user, TRAIT_IS_FIRING_RAILGUN))
 		to_chat(user, span_warning("The rail guns are already targeting a location, wait for them to finish."))
 		return
-	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A)) //can't fire the railgun off the ground level, or at the DS
+	if(!is_ground_level(user.eyeobj.z) || isdropshiparea(A) || A.area_flags & MARINE_BASE) //can't fire the railgun off the ground level, at the DS, or in FOB
 		to_chat(user, span_warning("Incompatible target location."))
 		return
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)

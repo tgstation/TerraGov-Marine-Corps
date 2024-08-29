@@ -78,7 +78,6 @@
 /obj/Destroy()
 	hard_armor = null
 	soft_armor = null
-	QDEL_NULL(current_acid)
 	return ..()
 
 
@@ -97,6 +96,12 @@
 	if(density)
 		return 4 SECONDS
 	return ..()
+
+/obj/do_acid_melt()
+	. = ..()
+	for(var/mob/mob in contents)
+		mob.forceMove(get_turf(src))
+	deconstruct(FALSE)
 
 /obj/get_soft_armor(armor_type, proj_def_zone)
 	return soft_armor.getRating(armor_type)
@@ -308,10 +313,9 @@
 	if(!welder.tool_use_check(user, fuel_req))
 		return FALSE
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "It's melting")
-			return TRUE
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	if(obj_integrity <= max_integrity * repair_threshold)
 		return BELOW_INTEGRITY_THRESHOLD
@@ -379,4 +383,24 @@
 	span_danger("You slam [grabbed_mob]'s face against [src]!"))
 	log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
 	take_damage(damage, BRUTE, MELEE)
+	return TRUE
+
+/obj/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_PLATING] = layer
+
+/obj/proc/do_deploy(mob/user, turf/location)
+	if(!istype(location))
+		location = get_turf(src)
+	SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, user, location)
+
+///Dissassembles the device
+/obj/proc/disassemble(mob/user)
+	var/obj/item/internal_item = get_internal_item()
+	if(!internal_item)
+		return FALSE
+	if(internal_item.item_flags & DEPLOYED_NO_PICKUP)
+		if(user)
+			balloon_alert(user, "Cannot disassemble")
+		return FALSE
+	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 	return TRUE

@@ -42,6 +42,8 @@ GLOBAL_LIST_EMPTY(nuke_disk_generators)
 GLOBAL_LIST_EMPTY(nuke_list)
 GLOBAL_LIST_EMPTY(active_nuke_list)
 GLOBAL_LIST_EMPTY(nuke_spawn_locs)
+/// List of area names where /obj/machinery/nuclearbomb cannot be activated
+GLOBAL_LIST_EMPTY(nuke_ineligible_site)
 ///list of spawn locations for nuke disk consoles
 GLOBAL_LIST_EMPTY(nuke_disk_spawn_locs)
 //list of all /obj/item/disk/nuclear
@@ -56,6 +58,8 @@ GLOBAL_LIST_EMPTY(campaign_objectives)
 GLOBAL_LIST_EMPTY(campaign_structures)
 ///List of all mech spawners in campaign mode
 GLOBAL_LIST_EMPTY(campaign_mech_spawners)
+///List of all tank spawners in campaign mode
+GLOBAL_LIST_EMPTY(campaign_tank_spawners)
 ///Locations for rewards to spawn by faction
 GLOBAL_LIST_EMPTY(campaign_reward_spawners)
 ///List of all teleporter arrays

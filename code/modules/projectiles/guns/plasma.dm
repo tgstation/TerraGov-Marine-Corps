@@ -209,14 +209,14 @@
 
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.7
-	scatter = 6
-	scatter_unwielded = 12
+	scatter = 9
+	scatter_unwielded = 15
 
 	damage_falloff_mult = 0.75
 
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.15 SECONDS
-	heat_per_fire = 3
+	heat_per_fire = 3.3
 	rounds_per_shot = 12
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_smg/smg_standard,
@@ -257,7 +257,7 @@
 	icon_state = "plasma_smg"
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.15 SECONDS
-	heat_per_fire = 3
+	heat_per_fire = 3.3
 	rounds_per_shot = 12
 	radial_icon_state = "plasma_bouncy"
 	message_to_user = "You set the guns's firemode to standard fire."
