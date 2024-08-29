@@ -287,6 +287,7 @@
 	icon_state = current_title
 	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), switch_time)
 
+//timer above triggers this to change the image.
 /turf/closed/wall/indestructible/splashscreen/proc/next_splashscreen()
 	current_title = next_in_list(current_title, total_titles)
 	icon_state = current_title //sets the title to the current_title here
