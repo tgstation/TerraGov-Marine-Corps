@@ -1,9 +1,4 @@
 // Defines for TTS modes.
-#define HEADSET_TTS_NONE 0
-#define HEADSET_TTS_SL_ONLY 1
-#define HEADSET_TTS_SQUAD 2
-#define HEADSET_TTS_ALL 3
-
 // Used for translating channels to tokens on examination
 GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_REQUISITIONS = RADIO_TOKEN_REQUISITIONS,
@@ -32,8 +27,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	equip_slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null
-	/// Current squad TTS mode the headset is switched to; defaults to no radio TTS
-	var/squad_tts_mode = HEADSET_TTS_SQUAD
 
 /obj/item/radio/headset/Initialize(mapload)
 	if(keyslot)
@@ -162,23 +155,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		return
 	channels[RADIO_CHANNEL_REQUISITIONS] = !channels[RADIO_CHANNEL_REQUISITIONS]
 	balloon_alert(user, "toggles supply comms [channels[RADIO_CHANNEL_REQUISITIONS] ? "on" : "off"].")
-
-//Toggles TTS mode. If TTS is enabled, we will play TTS for any radio messages passed through the headset.
-/obj/item/radio/headset/RightClick(mob/user)
-	. = ..()
-	switch(squad_tts_mode)
-		if(HEADSET_TTS_NONE)
-			user.balloon_alert(user, "You switch the TTS mode to \"SL Only\"")
-			squad_tts_mode = HEADSET_TTS_SL_ONLY
-		if(HEADSET_TTS_SL_ONLY)
-			user.balloon_alert(user, "You switch the TTS mode to \"Squad\"")
-			squad_tts_mode = HEADSET_TTS_SQUAD
-		if(HEADSET_TTS_SQUAD)
-			user.balloon_alert(user, "You switch the TTS mode to \"All\"")
-			squad_tts_mode = HEADSET_TTS_ALL
-		if(HEADSET_TTS_ALL)
-			user.balloon_alert(user, "You switch the TTS mode to \"None\"")
-			squad_tts_mode = HEADSET_TTS_NONE
 
 /obj/item/radio/headset/vendor_equip(mob/user)
 	..()

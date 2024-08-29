@@ -144,6 +144,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/tts_pitch = 0
 	///Volume to use for tts
 	var/volume_tts = 100
+	///Which types of comms the user wants to hear TTS from
+	var/radio_tts_flags = RADIO_TTS_SL | RADIO_TTS_SQUAD
 
 
 	/// Chat on map

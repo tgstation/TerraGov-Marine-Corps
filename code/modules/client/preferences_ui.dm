@@ -106,6 +106,7 @@
 			data["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			data["sound_tts"] = sound_tts
 			data["volume_tts"] = volume_tts
+			data["radio_tts_flags"] = radio_tts_flags
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
 			data["tgui_input"] = tgui_input
@@ -627,6 +628,26 @@
 				return
 			new_vol = round(new_vol)
 			volume_tts = clamp(new_vol, 0, 100)
+
+		if("toggle_radio_tts_setting")
+			var/flag_to_change
+			switch(params["newsetting"])
+				if("sl")
+					flag_to_change = RADIO_TTS_SL
+				if("squad")
+					ENABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL) //Enable SL TTS if not already enabled
+					flag_to_change = RADIO_TTS_SQUAD
+				if("command")
+					flag_to_change = RADIO_TTS_COMMAND
+				if("all")
+					flag_to_change = RADIO_TTS_ALL
+				else
+					return
+
+			if(CHECK_BITFIELD(radio_tts_flags, flag_to_change))
+				DISABLE_BITFIELD(radio_tts_flags, flag_to_change)
+			else
+				ENABLE_BITFIELD(radio_tts_flags, flag_to_change)
 
 		if("tgui_fancy")
 			tgui_fancy = !tgui_fancy
