@@ -141,12 +141,6 @@
 	icon_state = "red_2"
 	burn_ticks = 12
 
-///Effects applied to a mob that crosses a burning turf
-/obj/fire/flamer/on_cross(datum/source, atom/movable/crosser, oldloc, oldlocs)
-	if(!isliving(crosser) || isobj(crosser))
-		return
-	crosser.fire_act(burn_level)
-
 /obj/fire/flamer/affect_atom(atom/affected)
 	affected.fire_act(burn_level)
 
