@@ -181,7 +181,7 @@
 	if(human_affected.pass_flags & PASS_FIRE)
 		return FALSE
 	if(human_affected.hard_armor.getRating(FIRE) >= 100)
-		to_chat(src, span_warning("You are untouched by the flames."))
+		to_chat(human_affected, span_warning("You are untouched by the flames."))
 		return FALSE
 	var/datum/status_effect/stacking/melting_fire/debuff = human_affected.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)
