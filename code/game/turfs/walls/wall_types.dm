@@ -270,14 +270,18 @@
 	name = "Space Station 13"
 	icon = 'icons/misc/title.dmi'
 	icon_state = "title_painting1"
-//	icon_state = "title_holiday"
 	layer = FLY_LAYER
 	pixel_x = -64
 
-/turf/closed/wall/indestructible/splashscreen/New()
-	..()
-	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(0,35)]"
+/turf/closed/wall/indestructible/splashscreen/Initialize(mapload, ...)
+	. = ..()
+	random_splashscreen(TRUE)
+
+/// Changes the icon_state to a random splash screen
+/turf/closed/wall/indestructible/splashscreen/proc/random_splashscreen(initial_run = FALSE)
+	var/list/possible_icon_states = initial_run ? icon_states(icon) : icon_states(icon) - icon_state
+	icon_state = "[pick(possible_icon_states)]"
+	addtimer(CALLBACK(src, PROC_REF(random_splashscreen)), 1 MINUTES)
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
