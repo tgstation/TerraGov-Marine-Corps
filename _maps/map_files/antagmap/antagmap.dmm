@@ -3770,6 +3770,7 @@
 /area/antag_ship/icc/hangar/east)
 "sQ" = (
 /obj/structure/prop/mainship/invincibleshutter,
+/obj/structure/prop/mainship/doorblocker/command,
 /turf/open/floor/mainship/office,
 /area/antag_ship/pmc_ntf/fore/bridge)
 "sR" = (
@@ -4774,10 +4775,7 @@
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing{
 	dir = 1
 	},
-/obj/machinery/door/airlock/hatch{
-	dir = 2;
-	name = "\improper VSD Bridge Hatch"
-	},
+/obj/structure/prop/mainship/doorblocker/command,
 /turf/open/floor/grayscale/round/black,
 /area/antag_ship/vsd/bridge)
 "xB" = (
@@ -5588,6 +5586,11 @@
 	},
 /turf/open/floor/grayscale/edge,
 /area/mainship/groundhq/clf/hallways/bathroom)
+"BW" = (
+/obj/item/storage/toolbox/syndicate,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/sterile/plain,
+/area/antag_ship/pmc_ntf/aft/spaceport)
 "BX" = (
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/syndicate/black,
@@ -8405,6 +8408,7 @@
 /obj/item/clothing/glasses/welding/superior,
 /obj/item/tool/weldingtool,
 /obj/item/clothing/gloves/insulated,
+/obj/item/storage/toolbox/syndicate,
 /turf/open/floor/prison/darkbrown{
 	dir = 1
 	},
@@ -10112,6 +10116,7 @@
 "WB" = (
 /obj/structure/prop/mainship/invincibleshutter,
 /obj/structure/cable,
+/obj/structure/prop/mainship/doorblocker/command,
 /turf/open/floor/mainship/office,
 /area/antag_ship/pmc_ntf/fore/bridge)
 "WC" = (
@@ -11967,7 +11972,7 @@ GX
 GX
 GX
 kr
-nK
+BW
 Rv
 JP
 Cc
