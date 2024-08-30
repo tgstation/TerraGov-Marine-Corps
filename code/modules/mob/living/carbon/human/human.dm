@@ -76,9 +76,8 @@
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acid_spray_entered))
 	RegisterSignal(src, COMSIG_KB_QUICKEQUIP, PROC_REF(async_do_quick_equip))
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, PROC_REF(do_unique_action))
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(fireman_carry_grabbed)) // Fireman carry
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(grabbed_self_attack)) // Fireman carry & mounting saddled xenos
 	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(grabbed_self_attack),TRUE) // mounting saddled rounies
 
 /mob/living/carbon/human/Destroy()
 	assigned_squad?.remove_from_squad(src)
@@ -625,7 +624,7 @@
 	return ..()
 
 
-/mob/living/carbon/human/proc/fireman_carry_grabbed()
+/mob/living/carbon/human/proc/grabbed_self_attack()
 	SIGNAL_HANDLER
 	var/mob/living/grabbed = pulling
 	if(!istype(grabbed))
@@ -634,6 +633,10 @@
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
 		INVOKE_ASYNC(src, PROC_REF(fireman_carry), grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+	if(isxenorunner(pulling))
+		if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
+			INVOKE_ASYNC(grabbed, TYPE_PROC_REF(/mob/living/carbon/xenomorph/runner, carry_human), src, TRUE)
+			return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 
 //src is the user that will be carrying, target is the mob to be carried
@@ -1120,12 +1123,3 @@
 	if(!do_after(src, 2 SECONDS, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
 		return
 	return ..()
-
-/mob/living/carbon/human/proc/grabbed_self_attack()
-	SIGNAL_HANDLER
-	if(isxenorunner(pulling))
-		var/mob/living/carbon/xenomorph/grabbed = pulling
-		if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
-			INVOKE_ASYNC(grabbed, TYPE_PROC_REF(/mob/living/carbon/xenomorph/runner, carry_human), src, TRUE)
-			return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
-	return NONE
