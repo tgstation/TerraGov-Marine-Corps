@@ -1,6 +1,7 @@
 /area/antag_ship/pmc_ntf
 	name = "NTF PMC Ship"
 	requires_power = TRUE
+	always_unpowered = FALSE
 
 
 //	NORTH

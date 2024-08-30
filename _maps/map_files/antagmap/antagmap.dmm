@@ -21,12 +21,12 @@
 "ai" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "aj" = (
 /obj/effect/turf_decal/stripes/asteroid/box,
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "ak" = (
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile,
@@ -36,7 +36,7 @@
 "am" = (
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "as" = (
 /obj/structure/cable,
 /turf/open/floor/prison/redfloor,
@@ -79,11 +79,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "aL" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
@@ -116,14 +112,10 @@
 /area/antag_ship/icc/hangar/center)
 "aU" = (
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "aV" = (
-/turf/closed/mineral/smooth,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/turf/open/floor/plating/ground/dirt,
+/area/antag_ship/clf_base/reedroom)
 "aY" = (
 /obj/machinery/computer/camera_advanced/overwatch/som/whiskey{
 	req_access = list(204)
@@ -137,7 +129,7 @@
 "aZ" = (
 /obj/structure/benchpress,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "bb" = (
 /turf/closed/wall/mainship/gray,
 /area/antag_ship)
@@ -170,7 +162,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "bj" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -185,7 +177,7 @@
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "bm" = (
 /turf/open/shuttle/dropship/three,
 /area/shuttle/transport)
@@ -260,7 +252,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 6
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "bG" = (
 /obj/machinery/vending/robotics,
 /turf/open/floor/grayscale/edge/black{
@@ -294,11 +286,7 @@
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/hallways/inside)
 "bZ" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
@@ -316,13 +304,13 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "cf" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "ci" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -359,9 +347,7 @@
 "co" = (
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "cp" = (
 /obj/machinery/cic_maptable/droppod_maptable,
 /turf/open/floor/plating/plating_catwalk,
@@ -406,7 +392,7 @@
 /obj/structure/cable,
 /obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "cC" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
 /obj/effect/turf_decal/trimline/yellow/mid_joiner,
@@ -428,7 +414,7 @@
 "cG" = (
 /obj/alien/weeds/node/resting,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "cH" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/structure/curtain/black,
@@ -486,7 +472,7 @@
 /obj/structure/largecrate/supply/medicine/blood,
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "cY" = (
 /obj/structure/cable,
 /turf/open/floor/prison/sterilewhite,
@@ -510,8 +496,11 @@
 	name = "SOM Torture Chamber"
 	})
 "dc" = (
-/turf/closed/mineral/smooth,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/obj/structure/cable,
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 1
+	},
+/area/antag_ship/clf_base/hallways/inside)
 "dd" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark/end,
 /turf/open/floor/carpet/edge2{
@@ -534,7 +523,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 6
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "do" = (
 /turf/open/floor/mainship/empty,
 /area/mainship/groundhq/som/squads/req{
@@ -553,7 +542,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "dz" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/food_or_drink/burger,
@@ -592,7 +581,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "dM" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
@@ -612,7 +601,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/inside)
 "dP" = (
 /turf/open/floor/iron/dark,
 /area/antag_ship/vsd/med)
@@ -670,7 +659,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "ek" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/decal/cleanable/dirt,
@@ -703,9 +692,10 @@
 /turf/open/floor/iron/dark/textured,
 /area/antag_ship/vsd/med)
 "er" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/obj/machinery/power/apc,
+/obj/structure/cable,
+/turf/open/floor/grayscale/edge,
+/area/antag_ship/clf_base/bathroom)
 "es" = (
 /obj/structure/prop/vehicle/crawler,
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
@@ -758,12 +748,12 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/inside)
 "eC" = (
 /obj/structure/table/reinforced/flipped,
 /obj/machinery/microwave,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/kitchen)
 "eD" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/mainship{
@@ -779,7 +769,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "eH" = (
 /obj/effect/landmark/start/job/vsd_spec,
 /turf/open/floor/iron/dark,
@@ -787,9 +777,7 @@
 "eI" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/area/antag_ship/clf_base/hallways/outside)
 "eK" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
 /turf/open/floor/mainship/black/full,
@@ -828,9 +816,7 @@
 /obj/item/ammo_magazine/rifle/type71,
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "eR" = (
 /obj/structure/table/black,
 /obj/machinery/computer/security/marinemainship,
@@ -839,10 +825,10 @@
 "eT" = (
 /obj/item/lightstick/red/anchored,
 /obj/machinery/robotic_cradle,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 5
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "eU" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -877,7 +863,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "fc" = (
 /obj/machinery/power/geothermal/reinforced,
 /obj/structure/prop/mainship/gelida/powerconnector,
@@ -902,15 +888,12 @@
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/area/antag_ship/clf_base/hallways/outside)
 "fn" = (
 /obj/structure/bed/chair/sofa/corner,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "fp" = (
-/obj/structure/cable,
 /obj/machinery/door/poddoor/shutters{
 	dir = 2;
 	name = "Armoury";
@@ -919,11 +902,7 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/armory)
 "fr" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/antag_ship/icc/hangar/east)
@@ -957,7 +936,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "fC" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -995,14 +974,14 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/inside)
 "fT" = (
 /obj/structure/cable,
 /obj/machinery/power/geothermal/reinforced,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "fX" = (
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier{
@@ -1023,7 +1002,7 @@
 /obj/structure/largecrate/random/barrel/yellow,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "ga" = (
 /obj/effect/urban/decal/warning/redandwhite_S,
 /obj/machinery/cryopod,
@@ -1049,18 +1028,18 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "gk" = (
 /obj/machinery/computer,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "gn" = (
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/item/storage/firstaid,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "gp" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -1102,18 +1081,18 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "gA" = (
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "gD" = (
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "gE" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -1124,11 +1103,7 @@
 	})
 "gI" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "gJ" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/light{
@@ -1146,11 +1121,7 @@
 /obj/structure/rack,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "gL" = (
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
@@ -1170,7 +1141,7 @@
 /obj/structure/rack,
 /turf/open/shuttle/dropship/three,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "gN" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
@@ -1202,9 +1173,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "gV" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -1213,7 +1182,7 @@
 /area/antag_ship/pmc_ntf/port/spaceport)
 "gW" = (
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "gX" = (
 /obj/structure/closet/secure_closet/engineering_personal{
 	pixel_y = 6;
@@ -1222,7 +1191,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "ha" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/coffee{
@@ -1261,7 +1230,7 @@
 "he" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "hf" = (
 /obj/structure/drop_pod_launcher,
 /obj/machinery/light{
@@ -1365,7 +1334,7 @@
 "hP" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "hR" = (
 /obj/structure/table/mainship,
 /obj/item/storage/pouch/tools/icc/full,
@@ -1377,7 +1346,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "hZ" = (
 /obj/structure/table/black,
 /obj/machinery/computer/security/som_mainship,
@@ -1399,9 +1368,7 @@
 "ig" = (
 /obj/effect/spawner/random/engineering/structure/powergenerator,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/area/antag_ship/clf_base/hallways/outside)
 "ih" = (
 /obj/effect/landmark/start/job/pmc,
 /obj/structure/cable,
@@ -1457,19 +1424,18 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced/flipped,
-/obj/structure/table/reinforced/flipped,
 /obj/structure/closet/crate/freezer/rations{
 	pixel_y = 7
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/kitchen)
 "iv" = (
 /obj/vehicle/ridden/motorbike{
 	dir = 4
 	},
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/cargo,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "ix" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/mainship/sterile/plain,
@@ -1481,7 +1447,7 @@
 "iA" = (
 /obj/effect/landmark/resin_jelly_pod,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "iB" = (
 /obj/machinery/light{
 	dir = 8
@@ -1534,7 +1500,7 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "iJ" = (
 /obj/structure/table/mainship,
 /obj/item/storage/belt/shotgun/icc/mixed,
@@ -1690,7 +1656,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/hallways/inside)
 "jo" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -1699,11 +1665,7 @@
 /obj/effect/ai_node,
 /obj/machinery/light/small,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/hallways/inside)
 "jv" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -1752,7 +1714,7 @@
 "jC" = (
 /obj/structure/table,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "jE" = (
 /obj/structure/cable,
 /obj/machinery/light,
@@ -1764,18 +1726,14 @@
 "jF" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "jG" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "jH" = (
 /turf/open/floor/mainship/orange/full,
 /area/canora_desert/surface/building/command{
@@ -1815,7 +1773,7 @@
 "jS" = (
 /obj/machinery/processor,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/kitchen)
 "jT" = (
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/mono,
@@ -1858,7 +1816,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "kc" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/spray/cleaner,
@@ -1876,7 +1834,7 @@
 /obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "kg" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -1898,7 +1856,7 @@
 /obj/effect/turf_decal/siding/wideplating_new/light,
 /obj/machinery/washing_machine,
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "km" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/mainship/sterile,
@@ -1912,7 +1870,7 @@
 /area/space)
 "ko" = (
 /turf/closed/mineral/smooth,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "kp" = (
 /obj/structure/cable,
 /obj/item/stack/conveyor/thirty,
@@ -1954,7 +1912,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "kz" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 1;
@@ -1985,7 +1943,7 @@
 "kE" = (
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "kG" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -2009,8 +1967,8 @@
 "kJ" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/trimline/dark_blue,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/turf/open/floor/plating/asteroidwarning,
+/area/antag_ship/clf_base/sleeproom)
 "kL" = (
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/mono,
@@ -2052,6 +2010,11 @@
 /area/mainship/groundhq/som/living/numbertwobunks{
 	name = "SOM Field Commander's Office"
 	})
+"kU" = (
+/obj/item/storage/toolbox/syndicate,
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/sterile/plain,
+/area/antag_ship/pmc_ntf/aft/spaceport)
 "kX" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -2065,9 +2028,6 @@
 /area/canora_desert/surface/building/som_engineering{
 	outside = 0
 	})
-"kZ" = (
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "la" = (
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/antag_ship)
@@ -2079,7 +2039,7 @@
 	},
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "le" = (
 /obj/structure/cable,
 /obj/structure/window/framed/mainship/gray/toughened,
@@ -2126,7 +2086,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "ln" = (
 /obj/structure/curtain/medical,
 /obj/effect/turf_decal/tile/full/black,
@@ -2153,10 +2113,10 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "lu" = (
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "lv" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -2193,28 +2153,26 @@
 "lE" = (
 /obj/effect/landmark/start/job/clf/standard,
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "lF" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /obj/item/reagent_containers/hypospray/advanced/peridaxonplus,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "lG" = (
 /obj/structure/cable,
 /obj/machinery/power/apc,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /obj/structure/rack,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "lH" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "lL" = (
 /obj/structure/sign/prop3,
 /obj/machinery/light/mainship{
@@ -2251,9 +2209,7 @@
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "lO" = (
 /obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 8
@@ -2290,7 +2246,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 9
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "lT" = (
 /turf/open/floor/prison,
 /area/antag_ship/vsd/engi)
@@ -2321,7 +2277,7 @@
 	})
 "ma" = (
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "mf" = (
 /obj/structure/table/reinforced,
 /obj/item/newspaper,
@@ -2364,7 +2320,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 5
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "mm" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
@@ -2387,8 +2343,9 @@
 "mp" = (
 /obj/alien/egg/hugger,
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "mr" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner{
 	dir = 4
@@ -2397,7 +2354,7 @@
 	dir = 1
 	},
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "mv" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -2424,7 +2381,7 @@
 "mz" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "mB" = (
 /obj/item/storage/box/crate/loot/materials_pack,
 /obj/structure/cable,
@@ -2438,10 +2395,10 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 9
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "mE" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_engineering{
@@ -2498,7 +2455,7 @@
 /obj/structure/droppod,
 /obj/structure/droppod,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "mM" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/turf_decal/trimline/dark_blue/line,
@@ -2511,7 +2468,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "mO" = (
 /obj/machinery/door/airlock/external{
 	locked = 1
@@ -2572,7 +2529,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "mY" = (
 /obj/structure/table/reinforced,
 /obj/item/newspaper,
@@ -2594,7 +2551,7 @@
 /obj/item/flashlight,
 /obj/item/lightreplacer,
 /turf/open/floor/mainship/cargo,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "nc" = (
 /obj/structure/prop/vehicle/big_truck{
 	dir = 4
@@ -2704,11 +2661,11 @@
 "nu" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "nw" = (
 /obj/machinery/cic_maptable,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "nx" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
@@ -2733,10 +2690,9 @@
 	name = "SOM Requisitions"
 	})
 "ny" = (
+/obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/area/antag_ship/clf_base/hallways/inside)
 "nB" = (
 /turf/closed/shuttle/dropship_dark/top_corner{
 	dir = 1
@@ -2747,7 +2703,7 @@
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /obj/item/explosive/grenade/smokebomb/aphrotoxin,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "nD" = (
 /obj/machinery/vending/weapon/pmc,
 /obj/machinery/light/mainship{
@@ -2776,7 +2732,7 @@
 /obj/item/storage/box/monkeycubes,
 /obj/item/storage/box/monkeycubes,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "nH" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -2827,7 +2783,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "nY" = (
 /obj/structure/table/reinforced,
 /obj/item/circuitboard/apc,
@@ -2859,7 +2815,7 @@
 	dir = 1
 	},
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "oe" = (
 /obj/machinery/power/terminal,
 /obj/structure/cable,
@@ -2903,7 +2859,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "ot" = (
 /obj/machinery/telecomms/processor/preset_two/som,
 /turf/open/floor/bcircuit/anim,
@@ -3029,7 +2985,7 @@
 /turf/closed/shuttle/ert/engines/left{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "pb" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/antag_ship)
@@ -3062,7 +3018,7 @@
 /obj/item/stool,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "ph" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass{
@@ -3077,8 +3033,9 @@
 /area/antag_ship/icc/warehouse)
 "pj" = (
 /obj/machinery/griddle,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/kitchen)
 "pk" = (
 /obj/structure/table/black,
 /obj/machinery/cell_charger,
@@ -3116,7 +3073,7 @@
 /obj/structure/bed/alien,
 /obj/effect/landmark/start/job/clf/breeder,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "pt" = (
 /obj/structure/bookcase/manuals/medical,
 /obj/machinery/light{
@@ -3167,14 +3124,14 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "pA" = (
 /obj/structure/prop/mainship/railing{
 	dir = 4
 	},
 /obj/machinery/computer/supplycomp/clf,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "pD" = (
 /obj/machinery/vending/weapon/icc,
 /turf/open/floor/plating/ground/concrete,
@@ -3192,7 +3149,7 @@
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "pF" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -3217,7 +3174,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 5
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "pM" = (
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 4
@@ -3233,11 +3190,11 @@
 	dir = 5
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "pR" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/inside)
 "pS" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
@@ -3308,9 +3265,7 @@
 /obj/item/armor_module/storage/uniform/white_vest,
 /obj/item/armor_module/storage/uniform/white_vest,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "qh" = (
 /obj/structure/table/reinforced,
 /obj/item/newspaper,
@@ -3333,7 +3288,7 @@
 /area/antag_ship/vsd/port)
 "qo" = (
 /turf/closed/wall,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "qr" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/black/full,
@@ -3384,9 +3339,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/area/antag_ship/clf_base/hallways/outside)
 "qC" = (
 /obj/effect/landmark/start/job/vsd_leader,
 /obj/structure/flora/pottedplant,
@@ -3494,8 +3447,9 @@
 	},
 /obj/effect/turf_decal/tile/transparent/dark_green,
 /obj/structure/cable,
+/obj/machinery/power/apc,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "rh" = (
 /obj/structure/table/mainship,
 /obj/item/storage/toolbox/electrical,
@@ -3503,11 +3457,10 @@
 /area/antag_ship/icc/warehouse)
 "rl" = (
 /obj/structure/table/reinforced/prison,
-/obj/structure/table/reinforced/prison,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "rm" = (
 /turf/open/floor/plating/icefloor/warnplate,
 /area/mainship/groundhq/som/squads/req{
@@ -3565,7 +3518,7 @@
 	},
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "rG" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -3583,8 +3536,8 @@
 "rL" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet/blue,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/turf/open/floor/plating/asteroidwarning,
+/area/antag_ship/clf_base/sleeproom)
 "rQ" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 8
@@ -3683,7 +3636,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "si" = (
 /obj/effect/landmark/start/job/som/icc_guard,
 /turf/open/floor/plating/plating_catwalk,
@@ -3734,27 +3687,23 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "sx" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "sF" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 6
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "sH" = (
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "sI" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -3799,16 +3748,14 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "sT" = (
 /obj/structure/largecrate/supply/explosives/mortar_he,
 /obj/machinery/light/small{
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "sV" = (
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/carpet/side{
@@ -3853,7 +3800,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "tj" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -3926,7 +3873,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "tE" = (
 /obj/item/storage/box/handcuffs,
 /obj/item/storage/box/handcuffs,
@@ -3937,9 +3884,7 @@
 /obj/item/clothing/mask/muzzle,
 /obj/structure/rack,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "tG" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/office,
@@ -3999,13 +3944,11 @@
 "tV" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "tY" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "ua" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoinsom,
@@ -4059,12 +4002,9 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/aft/engiroom/starboard)
 "uj" = (
-/turf/closed/wall/brick,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt,
+/area/antag_ship/clf_base/hallways/inside)
 "uk" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -4080,7 +4020,7 @@
 	pixel_x = 2
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/kitchen)
 "uo" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/canora_desert/surface/building/som_armory{
@@ -4128,7 +4068,7 @@
 /obj/effect/turf_decal/trimline,
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "uA" = (
 /obj/machinery/computer/camera_advanced/overwatch/som/xray{
 	req_access = list(204)
@@ -4208,7 +4148,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "uV" = (
 /turf/open/floor/prison/whitegreen,
 /area/antag_ship/pmc_ntf/starboard/medbay)
@@ -4241,7 +4181,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "vf" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/mainship/mech{
@@ -4255,7 +4195,7 @@
 "vh" = (
 /obj/effect/landmark/start/job/clf/standard,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/kitchen)
 "vi" = (
 /obj/machinery/door/airlock/mainship/maint{
 	req_one_access = list(208);
@@ -4388,17 +4328,13 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "vT" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "vU" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
@@ -4406,7 +4342,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "vV" = (
 /obj/structure/table/reinforced,
 /obj/structure/paper_bin{
@@ -4468,7 +4404,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "wg" = (
 /obj/structure/prop/mainship/railing{
 	dir = 4
@@ -4503,7 +4439,7 @@
 /obj/effect/landmark/start/latejoinclf,
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "wn" = (
 /obj/structure/platform,
 /turf/open/floor/mainship/red/full,
@@ -4578,7 +4514,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "wG" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating,
@@ -4600,7 +4536,7 @@
 /obj/alien/egg/hugger,
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "wO" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
@@ -4612,11 +4548,11 @@
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "wR" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/kitchen)
 "wS" = (
 /turf/closed/shuttle/ert{
 	icon_state = "rightengine_1";
@@ -4656,7 +4592,7 @@
 /obj/effect/landmark/start/latejoinclf,
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "wZ" = (
 /obj/effect/landmark/start/job/som/icc,
 /obj/structure/cable,
@@ -4669,7 +4605,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "xc" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/box/crate/loot/materials_pack,
@@ -4683,7 +4619,7 @@
 "xi" = (
 /obj/structure/bed/chair/sofa,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "xj" = (
 /obj/structure/table/black,
 /obj/item/paper/arachneresearch1,
@@ -4750,11 +4686,7 @@
 /obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "xx" = (
 /obj/structure/bed/bunkbed,
 /obj/machinery/light{
@@ -4793,9 +4725,7 @@
 /obj/item/storage/box/crate/minisentry,
 /obj/item/storage/box/crate/minisentry,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "xC" = (
 /obj/structure/prop/rappel_bay,
 /turf/open/shuttle/dropship/three,
@@ -4850,22 +4780,22 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
 "xO" = (
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 6
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "xP" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 8
 	},
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "xR" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside/regular{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "xT" = (
 /turf/closed/shuttle/dropship_regular/top_corner/alt,
 /area/shuttle/transport)
@@ -4972,7 +4902,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "yv" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/mainship/sterile/plain,
@@ -5037,7 +4967,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "yW" = (
 /obj/structure/prop/mainship/prop_sec{
 	dir = 4
@@ -5046,7 +4976,7 @@
 /area/antag_ship/pmc_ntf/fore/bridge)
 "yY" = (
 /turf/open/floor/plating,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "yZ" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/prison,
@@ -5072,7 +5002,7 @@
 /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites,
 /obj/item/reagent_containers/hypospray/autoinjector/combat,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "zf" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -5157,7 +5087,7 @@
 "zG" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "zI" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass{
@@ -5168,7 +5098,7 @@
 "zJ" = (
 /obj/machinery/recharger,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "zL" = (
 /obj/item/fulton_extraction_pack,
 /obj/item/fulton_extraction_pack,
@@ -5184,7 +5114,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "zQ" = (
 /obj/machinery/computer/sleep_console{
 	dir = 8
@@ -5209,7 +5139,7 @@
 "Aa" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/hallways/inside)
 "Ab" = (
 /obj/effect/landmark/start/job/pmc,
 /obj/machinery/light/mainship{
@@ -5220,7 +5150,7 @@
 "Ad" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "Ae" = (
 /obj/structure/prop/mainship/sensor_computer1,
 /obj/structure/cable,
@@ -5256,7 +5186,7 @@
 "Aq" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "Ar" = (
 /turf/closed/shuttle/dropship_dark/interior_wall,
 /area/shuttle/transport)
@@ -5279,22 +5209,16 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "Ax" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "AF" = (
 /obj/machinery/light/small,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/hallways/inside)
 "AJ" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/structure/table/reinforced,
@@ -5333,9 +5257,7 @@
 	})
 "AN" = (
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "AO" = (
 /obj/effect/landmark/start/job/usl_spec,
 /turf/open/floor/iron/dark,
@@ -5360,7 +5282,7 @@
 "AY" = (
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "Bc" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5427,7 +5349,7 @@
 /area/antag_ship/pmc_ntf/port/quarters)
 "Br" = (
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "Bs" = (
 /obj/structure/prop/vehicle/tank/east,
 /obj/structure/prop/vehicle/tank/east/decoration/armor,
@@ -5463,13 +5385,13 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "By" = (
 /obj/effect/turf_decal/siding/wideplating_new/light{
 	dir = 4
 	},
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "Bz" = (
 /obj/structure/cable,
 /turf/open/floor/grayscale/edge/black{
@@ -5512,7 +5434,7 @@
 /obj/machinery/computer/autodoc_console,
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "BE" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -5526,7 +5448,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "BI" = (
 /obj/structure/table/wood/fancy,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
@@ -5547,7 +5469,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "BO" = (
 /turf/closed/shuttle/ert/engines/left/three{
 	dir = 1
@@ -5585,12 +5507,7 @@
 	dir = 9
 	},
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
-"BW" = (
-/obj/item/storage/toolbox/syndicate,
-/obj/structure/table/mainship,
-/turf/open/floor/mainship/sterile/plain,
-/area/antag_ship/pmc_ntf/aft/spaceport)
+/area/antag_ship/clf_base/bathroom)
 "BX" = (
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/syndicate/black,
@@ -5606,7 +5523,7 @@
 /obj/structure/punching_bag,
 /obj/effect/turf_decal/box/white,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "Ce" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/mainship/office,
@@ -5657,7 +5574,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "Co" = (
 /obj/structure/sink{
 	dir = 4
@@ -5771,8 +5688,8 @@
 /obj/effect/turf_decal/trimline/dark_blue,
 /obj/structure/sign/safety/medical,
 /obj/structure/cable,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/turf/open/floor/plating/asteroidwarning,
+/area/antag_ship/clf_base/sleeproom)
 "CE" = (
 /obj/machinery/power/smes,
 /obj/structure/cable,
@@ -5784,13 +5701,12 @@
 /area/antag_ship/icc/generator_room)
 "CG" = (
 /obj/structure/table/reinforced/flipped,
-/obj/structure/table/reinforced/flipped,
 /obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich,
 /obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich,
 /obj/item/reagent_containers/food/snacks/sausage,
 /obj/item/reagent_containers/food/snacks/sausage,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/kitchen)
 "CL" = (
 /obj/structure/prop/mainship/gelida/powercconnectorthreeside{
 	dir = 4
@@ -5830,7 +5746,7 @@
 	dir = 8
 	},
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "CT" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_admiral{
@@ -5839,10 +5755,10 @@
 	})
 "CU" = (
 /obj/structure/bed/chair/sofa/corsat/left,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "CV" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -5863,8 +5779,8 @@
 /obj/effect/turf_decal/trimline/dark_blue,
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/turf/open/floor/plating/asteroidwarning,
+/area/antag_ship/clf_base/sleeproom)
 "CZ" = (
 /obj/structure/dropship_piece/two/weapon/rightright{
 	dir = 1;
@@ -5906,7 +5822,7 @@
 "Dj" = (
 /obj/alien/egg/hugger,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "Dk" = (
 /turf/closed/wall/mainship/gray/outer,
 /area/canora_desert/surface/building/som_floortwomain{
@@ -6022,7 +5938,7 @@
 "DP" = (
 /obj/structure/curtain/shower,
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "DR" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -6038,11 +5954,7 @@
 /obj/structure/cable,
 /obj/machinery/light/small,
 /turf/open/floor/plating/ground/dirt,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/hallways/inside)
 "Ea" = (
 /obj/effect/turf_decal/syndicateemblem/top/middle,
 /obj/structure/cable,
@@ -6061,7 +5973,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "Ef" = (
 /obj/machinery/vending/marineFood/som,
 /obj/machinery/camera/autoname/mainship/somship{
@@ -6236,7 +6148,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "ES" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating/ground/concrete,
@@ -6409,7 +6321,7 @@
 "FH" = (
 /obj/alien/egg/hugger,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "FJ" = (
 /obj/machinery/light{
 	dir = 1
@@ -6429,7 +6341,7 @@
 	},
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "FL" = (
 /obj/docking_port/stationary/crashmode{
 	name = "SOM Crashland point";
@@ -6488,9 +6400,7 @@
 "Ga" = (
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "Gf" = (
 /obj/machinery/power/terminal{
 	dir = 8
@@ -6543,21 +6453,22 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
 "Gw" = (
-/obj/structure/curtain/shower,
 /obj/structure/cable,
-/obj/machinery/power/apc,
-/turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/obj/machinery/power/apc{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
+/area/antag_ship/clf_base/lounge)
 "Gy" = (
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "Gz" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 4
 	},
 /obj/structure/closet/secure_closet/chemical/colony,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "GD" = (
 /obj/machinery/telecomms/bus/preset_one/som,
 /turf/open/floor/bcircuit/anim,
@@ -6587,11 +6498,7 @@
 	},
 /obj/effect/landmark/start/latejoinclf,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "GJ" = (
 /obj/structure/cable,
 /obj/structure/table/wood/fancy,
@@ -6614,8 +6521,8 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
 "GN" = (
-/turf/closed/mineral/smooth,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/turf/open/floor/plating/ground/dirt,
+/area/antag_ship/clf_base/hallways/inside)
 "GP" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -6676,7 +6583,7 @@
 /obj/effect/turf_decal/stripes/asteroid/box,
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "He" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -6690,11 +6597,6 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
-"Hi" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "Hk" = (
 /obj/effect/landmark/start/latejoinsom,
 /obj/machinery/camera/autoname/mainship/somship,
@@ -6725,11 +6627,7 @@
 "Hv" = (
 /obj/structure/closet/wardrobe,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "Hx" = (
 /obj/machinery/shower{
 	pixel_y = 16
@@ -6738,7 +6636,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "HB" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -6793,7 +6691,7 @@
 "HJ" = (
 /obj/structure/inflatable/popped,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "HK" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower{
@@ -6819,7 +6717,7 @@
 "HO" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "HS" = (
 /obj/structure/prop/mainship/suit_storage_prop,
 /obj/effect/turf_decal/warning_stripes/stripedsquare,
@@ -6828,7 +6726,7 @@
 "HW" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "Ia" = (
 /obj/effect/turf_decal/siding/wideplating_new/light{
 	dir = 9
@@ -6841,7 +6739,7 @@
 	pixel_y = 7
 	},
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "Ib" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -6851,11 +6749,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/hallways/inside)
 "Ic" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -6866,9 +6760,8 @@
 	name = "SOM Medbay"
 	})
 "Id" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
+/turf/closed/wall/brick,
+/area/antag_ship/clf_base/kitchen)
 "If" = (
 /obj/effect/landmark/start/job/usl,
 /obj/structure/bed/chair/dropship/passenger{
@@ -6971,8 +6864,12 @@
 	},
 /area/antag_ship/vsd/med)
 "IC" = (
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 4
+	},
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "ID" = (
 /obj/effect/landmark/start/job/som,
 /obj/effect/landmark/start/latejoinsom,
@@ -7023,9 +6920,7 @@
 "IN" = (
 /obj/structure/closet/crate/mortar_ammo/mortar_kit,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "IO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -7051,7 +6946,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "IS" = (
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 10
@@ -7071,13 +6966,13 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "IV" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "IX" = (
 /obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/cigar,
@@ -7118,7 +7013,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "Jd" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/tool,
@@ -7137,7 +7032,7 @@
 	})
 "Jf" = (
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "Jg" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/effect/turf_decal/woodsiding{
@@ -7163,7 +7058,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "Jl" = (
 /obj/machinery/vending/hydronutrients,
 /obj/effect/turf_decal/siding/wood{
@@ -7228,7 +7123,7 @@
 /turf/closed/wall/mainship/research/containment/wall/connect_s1{
 	name = "white wall"
 	},
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "JE" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/stack/sheet/wood/large_stack,
@@ -7272,7 +7167,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "JP" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -7302,7 +7197,7 @@
 "JW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "JY" = (
 /obj/machinery/shower{
 	pixel_y = 16
@@ -7312,7 +7207,7 @@
 	},
 /obj/effect/landmark/start/job/synthetic/clf,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "JZ" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -7329,7 +7224,7 @@
 "Kc" = (
 /obj/effect/forcefield/fog,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "Kf" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning,
 /obj/machinery/light,
@@ -7359,9 +7254,6 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
 /area/mainship/groundhq/som/command/telecomms)
-"Kr" = (
-/turf/closed/mineral/smooth,
-/area/mainship/groundhq/clf/living/grunt_rnr)
 "Ks" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -7416,18 +7308,14 @@
 /turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/armory)
 "KH" = (
 /obj/structure/bed{
 	dir = 8
 	},
 /obj/item/bedsheet/medical,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "KL" = (
 /obj/structure/rack,
 /obj/item/storage/toolbox/mechanical,
@@ -7448,7 +7336,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "KN" = (
 /obj/structure/morgue{
 	dir = 1
@@ -7505,10 +7393,10 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "Lh" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -7608,10 +7496,10 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/dark_blue,
 /obj/machinery/power/apc,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "LD" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_torturechamber{
@@ -7619,8 +7507,12 @@
 	name = "SOM Torture Chamber"
 	})
 "LF" = (
-/turf/closed/wall/brick,
-/area/mainship/groundhq/clf/medical/lounge)
+/obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt,
+/area/antag_ship/clf_base/hallways/inside)
 "LH" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/grayscale/round/black,
@@ -7648,9 +7540,7 @@
 "LM" = (
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "LO" = (
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
@@ -7684,7 +7574,7 @@
 	dir = 2
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "LW" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/turf_decal/trimline/dark_blue/line,
@@ -7695,7 +7585,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "LY" = (
 /turf/closed/shuttle/ert/engines/left/two{
 	dir = 1
@@ -7736,7 +7626,7 @@
 /area/antag_ship/pmc_ntf/aft/spaceport)
 "Ml" = (
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "Mm" = (
 /obj/structure/closet/crate/ammo,
 /obj/effect/turf_decal/trimline/brown/filled/warning{
@@ -7783,7 +7673,7 @@
 /area/shuttle/transport)
 "MB" = (
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/kitchen)
 "ME" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som{
 	dir = 4
@@ -7859,8 +7749,8 @@
 "MZ" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
-/turf/open/floor/plating/asteroidwarning/down,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/turf/open/floor/plating/asteroidwarning,
+/area/antag_ship/clf_base/sleeproom)
 "Nb" = (
 /obj/machinery/door/airlock/mainship/command/FCDRoffice{
 	dir = 2;
@@ -7894,11 +7784,11 @@
 	})
 "Nj" = (
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "Nk" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "Nl" = (
 /turf/closed/shuttle/dropship_dark/interior_corner,
 /area/shuttle/transport)
@@ -7961,11 +7851,7 @@
 "Ns" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "Nt" = (
 /obj/structure/cable,
 /turf/open/floor/iron/dark/smooth_edge{
@@ -7975,11 +7861,7 @@
 "Nv" = (
 /obj/effect/landmark/start/latejoinclf,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "Nw" = (
 /obj/structure/bed/fancy{
 	pixel_y = 12
@@ -8076,7 +7958,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "NR" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8;
@@ -8192,7 +8074,7 @@
 /obj/item/tweezers,
 /obj/item/tweezers,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "Oi" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 1
@@ -8208,12 +8090,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/east)
 "Om" = (
-/obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/turf/closed/wall/brick,
+/area/antag_ship/clf_base/techroom)
 "On" = (
 /obj/structure/bed/chair/office/dark/west,
 /turf/open/floor/prison/redfloor,
@@ -8224,7 +8103,7 @@
 "Or" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/inside)
 "Ot" = (
 /turf/closed/shuttle/dropship_dark/backhatch,
 /area/shuttle/transport)
@@ -8244,7 +8123,7 @@
 "Ow" = (
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "Ox" = (
 /obj/machinery/light,
 /obj/machinery/telecomms/receiver/preset_right/som,
@@ -8311,9 +8190,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "OR" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner{
 	dir = 1
@@ -8322,7 +8199,7 @@
 	dir = 4
 	},
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "OT" = (
 /obj/structure/barricade/plasteel{
 	dir = 4
@@ -8393,10 +8270,10 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "Ph" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/plating/plating_catwalk,
@@ -8468,7 +8345,7 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/asteroid/box,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "Py" = (
 /turf/closed/wall/mainship/outer/canterbury,
 /area/antag_ship)
@@ -8504,9 +8381,7 @@
 "PE" = (
 /obj/item/stack/sheet/cloth,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/area/antag_ship/clf_base/hallways/outside)
 "PI" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 5
@@ -8518,7 +8393,7 @@
 	})
 "PL" = (
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/medbay)
 "PM" = (
 /obj/effect/landmark/start/job/pmc_medic,
 /turf/open/floor/mainship/black/full,
@@ -8541,9 +8416,7 @@
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "PQ" = (
 /obj/machinery/mech_bay_recharge_port{
 	pixel_x = 13
@@ -8563,7 +8436,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "PT" = (
 /obj/structure/cable,
 /obj/structure/rack,
@@ -8576,8 +8449,8 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
 "PV" = (
-/turf/open/floor/plating/asteroidwarning/down,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/turf/open/floor/plating/asteroidwarning,
+/area/antag_ship/clf_base/sleeproom)
 "PW" = (
 /obj/structure/cable,
 /turf/open/floor/prison/blackfloor,
@@ -8598,13 +8471,12 @@
 /obj/machinery/power/geothermal/reinforced,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "Qf" = (
 /obj/machinery/cryopod,
 /turf/open/floor/grayscale/darkblue,
 /area/antag_ship/vsd/med)
 "Qg" = (
-/obj/structure/table/reinforced/prison,
 /obj/structure/table/reinforced/prison,
 /obj/machinery/light/small,
 /obj/effect/turf_decal/trimline/dark_blue/line,
@@ -8617,7 +8489,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "Qh" = (
 /obj/machinery/door/airlock/external{
 	locked = 1
@@ -8682,7 +8554,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
 	dir = 10
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "Qu" = (
 /obj/structure/table/reinforced,
 /obj/machinery/cell_charger,
@@ -8817,9 +8689,7 @@
 "Ra" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "Rb" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/iron/dark,
@@ -8849,7 +8719,7 @@
 	id = "clfcrashland"
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "Rl" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/pod/old/syndicate,
@@ -8896,7 +8766,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "RB" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -8913,7 +8783,7 @@
 /obj/effect/landmark/start/job/clf/breeder,
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "RD" = (
 /obj/machinery/door/airlock/mainship/maint{
 	req_one_access = list(208);
@@ -8953,7 +8823,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/cargo,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "RH" = (
 /obj/structure/barricade/plasteel,
 /obj/machinery/door/poddoor/mainship/open{
@@ -9035,7 +8905,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "RZ" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/mainship{
@@ -9084,9 +8954,7 @@
 	})
 "Sk" = (
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "Sl" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -9166,7 +9034,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "SC" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -9203,11 +9071,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "SH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -9244,9 +9108,8 @@
 	},
 /area/antag_ship/vsd/hall)
 "SP" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
+/turf/closed/wall/brick,
+/area/antag_ship/clf_base/hallways/inside)
 "SQ" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/general/som{
@@ -9276,7 +9139,7 @@
 	},
 /obj/machinery/light/small,
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "SZ" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -9302,7 +9165,7 @@
 /obj/effect/turf_decal/trimline,
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "Th" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/iron/dark/smooth_edge,
@@ -9385,7 +9248,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "Tr" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -9411,7 +9274,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 8
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "Tx" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -9424,13 +9287,13 @@
 	})
 "TB" = (
 /obj/structure/bed/chair/sofa/corsat/right,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "TE" = (
 /turf/open/floor/mainship/empty,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "TF" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -9463,7 +9326,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "TN" = (
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/storage/backpack/marine/engineerpack,
@@ -9548,9 +9411,7 @@
 "Uk" = (
 /obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/area/antag_ship/clf_base/hallways/outside)
 "Um" = (
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
 /obj/effect/spawner/random/decal/blood,
@@ -9560,15 +9421,15 @@
 /obj/structure/bed/alien,
 /obj/item/bedsheet/blue,
 /obj/effect/landmark/start/job/clf/standard,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 10
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "Uo" = (
 /turf/closed/shuttle/ert/engines/right{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "Up" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/stripedsquare/tile,
@@ -9582,7 +9443,7 @@
 /area/shuttle/transport)
 "Ur" = (
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "Us" = (
 /obj/structure/table/mainship/nometal,
 /obj/machinery/recharger,
@@ -9613,7 +9474,7 @@
 "Uw" = (
 /obj/effect/teleporter_linker,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/hallways/inside)
 "Ux" = (
 /turf/open/floor/prison/plate,
 /area/antag_ship/vsd/engi)
@@ -9643,10 +9504,10 @@
 /obj/effect/turf_decal/trimline/dark_blue,
 /obj/structure/mirror,
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "UH" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/gun/rifle/icc_sharpshooter,
@@ -9660,7 +9521,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "UM" = (
 /obj/machinery/vending/medical/shipside,
 /turf/open/floor/prison/whitegreen{
@@ -9674,7 +9535,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted,
 /obj/structure/closet/secure_closet/medical3/colony,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "UQ" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/mainship/black/full,
@@ -9682,7 +9543,7 @@
 "UR" = (
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "US" = (
 /obj/structure/table/black,
 /obj/machinery/reagentgrinder,
@@ -9693,13 +9554,13 @@
 	dir = 1
 	},
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "UX" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/fourcorners,
 /obj/structure/cable,
 /obj/structure/sign/safety/medical,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "UY" = (
 /obj/effect/landmark/start/job/clf/specialist,
 /obj/effect/turf_decal/trimline/dark_blue/filled/shrink_cw{
@@ -9707,7 +9568,7 @@
 	},
 /obj/effect/turf_decal/trimline/dark_blue/filled/shrink_ccw,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "UZ" = (
 /obj/effect/turf_decal/syndicateemblem/bottom/left,
 /obj/effect/landmark/start/job/usl_leader,
@@ -9720,7 +9581,7 @@
 /obj/structure/bed/chair/sofa/left,
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/reedroom)
 "Vb" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/structure/table/reinforced/prison,
@@ -9728,7 +9589,7 @@
 /obj/item/reagent_containers/food/snacks/sliceable/pastries/plaincake,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "Vc" = (
 /obj/structure/prop/mainship/juggernaut_two,
 /turf/open/floor/prison/blackfloor,
@@ -9796,9 +9657,7 @@
 /obj/structure/droppod,
 /obj/structure/droppod,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/area/antag_ship/clf_base/hallways/outside)
 "Vl" = (
 /obj/structure/prop/mainship/invincibleshutter{
 	dir = 4
@@ -9838,8 +9697,11 @@
 /area/antag_ship/icc/hangar/east)
 "Vu" = (
 /obj/structure/cable,
-/turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/antag_ship/clf_base/kitchen)
 "Vw" = (
 /obj/effect/turf_decal/siding/wideplating_new/light{
 	dir = 10
@@ -9852,15 +9714,15 @@
 	dir = 4
 	},
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "Vx" = (
 /obj/structure/bed/alien,
 /obj/item/bedsheet/blue,
 /obj/structure/cable,
-/turf/open/floor/marking/asteroidwarning{
+/turf/open/floor/plating/asteroidwarning{
 	dir = 1
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "Vy" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/mainship/sterile/plain,
@@ -9898,7 +9760,7 @@
 /obj/machinery/light/small,
 /obj/effect/turf_decal/siding/wideplating_new/light,
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "VF" = (
 /obj/effect/ai_node,
 /turf/open/floor/carpet/side,
@@ -9917,7 +9779,7 @@
 	pixel_x = 10
 	},
 /turf/open/floor/grayscale/edge,
-/area/mainship/groundhq/clf/hallways/bathroom)
+/area/antag_ship/clf_base/bathroom)
 "VI" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -9971,7 +9833,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway)
+/area/antag_ship/clf_base/hallways/outside)
 "VQ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 4
@@ -9992,7 +9854,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "Wa" = (
 /turf/open/floor/plating,
 /area/mainship/groundhq/som/squads/req{
@@ -10105,7 +9967,7 @@
 /obj/structure/cable,
 /obj/structure/sign/safety/storage,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "Wz" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -10135,7 +9997,7 @@
 "WG" = (
 /obj/docking_port/stationary/supplyclf,
 /turf/open/floor/mainship/empty,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "WH" = (
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 6
@@ -10147,7 +10009,7 @@
 	})
 "WJ" = (
 /turf/open/floor/plating/asteroidwarning/down,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "WK" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
@@ -10198,11 +10060,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/deltastation/hallway/primary/tram{
-	name = "CLF primary hallway";
-	outside = 0;
-	ceiling = 6
-	})
+/area/antag_ship/clf_base/techroom)
 "Xd" = (
 /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/donkpocket/raw,
 /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/donkpocket/raw,
@@ -10218,7 +10076,7 @@
 /obj/item/reagent_containers/food/snacks/meat/monkey,
 /obj/structure/closet/secure_closet/freezer,
 /turf/open/floor/plating/ground/desertdam/asphalt,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/kitchen)
 "Xe" = (
 /turf/closed/wall/mainship/gray,
 /area/mainship/groundhq/som/medical/morgue)
@@ -10292,9 +10150,7 @@
 "Xs" = (
 /obj/structure/largecrate/supply/explosives/mines,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "Xt" = (
 /obj/structure/barricade/plasteel{
 	dir = 8
@@ -10371,9 +10227,7 @@
 /obj/effect/landmark/start/latejoinsurvivor,
 /obj/item/clothing/under/lewd/panties,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/area/antag_ship/clf_base/hallways/outside)
 "XP" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating/ground/concrete,
@@ -10393,7 +10247,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 10
 	},
-/area/mainship/groundhq/clf/engineering/engineering_workshop)
+/area/antag_ship/clf_base/techroom)
 "XX" = (
 /turf/closed/wall/mainship/gray,
 /area/canora_desert/surface/building/som_prison{
@@ -10441,14 +10295,17 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/mainship/cargo,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "Yh" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
+/obj/machinery/power/apc{
+	dir = 8
+	},
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/hallways/inside)
 "Yi" = (
 /turf/open/floor/mainship/black/corner{
 	dir = 8
@@ -10479,9 +10336,8 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted{
 	dir = 1
 	},
-/obj/machinery/power/apc,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "Yn" = (
 /obj/machinery/telecomms/receiver/preset_left/som,
 /turf/open/floor/bcircuit/anim,
@@ -10507,7 +10363,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "Yx" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet{
@@ -10526,9 +10382,7 @@
 /obj/item/clothing/under/colonist/webbing,
 /obj/item/clothing/under/colonist/webbing,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/hallways/stern_hallway{
-	name = "CLF Armory"
-	})
+/area/antag_ship/clf_base/armory)
 "Yz" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wood{
@@ -10598,7 +10452,7 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 4
 	},
-/area/mainship/groundhq/clf/living/grunt_rnr/two)
+/area/antag_ship/clf_base/lounge)
 "YP" = (
 /obj/structure/cable,
 /obj/machinery/power/apc,
@@ -10656,9 +10510,7 @@
 "Zb" = (
 /obj/item/stack/sheet/plasteel/medium_stack,
 /turf/open/floor/plating/ground/dirt,
-/area/mainship/groundhq/clf/hallways/aft_hallway{
-	requires_power = 0
-	})
+/area/antag_ship/clf_base/hallways/outside)
 "Zf" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -10734,7 +10586,7 @@
 "ZC" = (
 /obj/structure/cable,
 /turf/closed/wall/brick,
-/area/mainship/groundhq/clf/living/grunt_rnr)
+/area/antag_ship/clf_base/sleeproom)
 "ZI" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -10778,7 +10630,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/squads/req)
+/area/antag_ship/clf_base/requisition)
 "ZV" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -10800,7 +10652,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
-/area/mainship/groundhq/clf/medical/lounge)
+/area/antag_ship/clf_base/medbay)
 "ZY" = (
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 4
@@ -11972,7 +11824,7 @@ GX
 GX
 GX
 kr
-BW
+kU
 Rv
 JP
 Cc
@@ -16768,7 +16620,7 @@ tT
 JC
 JC
 JC
-Gw
+DP
 DP
 JC
 RG
@@ -16863,8 +16715,8 @@ tT
 JC
 JC
 JC
+er
 lu
-Vu
 JC
 aU
 Wy
@@ -16965,7 +16817,7 @@ Ym
 ZX
 Og
 sh
-LF
+PL
 aF
 aF
 aF
@@ -17055,12 +16907,12 @@ Ur
 UF
 FK
 CY
-Kr
+aF
 BC
 Jf
 Jf
 uv
-LF
+PL
 tT
 tT
 tT
@@ -17150,12 +17002,12 @@ Ur
 Vx
 xa
 rL
-Kr
+aF
 Aw
 gA
 zJ
 Tf
-LF
+PL
 tT
 tT
 aF
@@ -17245,17 +17097,17 @@ Ur
 gz
 rF
 kJ
-Kr
+aF
 vU
 KH
 gh
 cX
-LF
+PL
 aF
-GN
-GN
-GN
-GN
+aF
+aF
+aF
+aF
 gW
 gW
 gW
@@ -17344,10 +17196,10 @@ Ur
 rf
 Gz
 UP
-LF
+PL
 PL
 eB
-gW
+GN
 eB
 eB
 gW
@@ -17437,8 +17289,8 @@ Tp
 CD
 Ur
 UX
-LF
-LF
+PL
+PL
 PL
 fR
 Ib
@@ -17534,12 +17386,12 @@ cf
 Tw
 eE
 dO
-pR
+LF
 DW
-aV
-aV
+aF
+aF
 xw
-aV
+aF
 aF
 aF
 tY
@@ -17630,16 +17482,16 @@ uU
 bF
 eB
 eB
-gW
-aV
-uj
+GN
+aF
+Nj
 Ns
 Hv
-uj
-kZ
-SP
-kZ
-kZ
+Nj
+gW
+ai
+gW
+gW
 gW
 gW
 gW
@@ -17722,19 +17574,19 @@ UY
 PV
 PR
 pg
-Ur
+SP
 aF
-gW
+GN
 eB
-aV
-uj
+aF
+Nj
 jG
 Hv
-uj
-kZ
-kZ
-kZ
-kZ
+Nj
+gW
+gW
+gW
+gW
 ai
 gW
 gW
@@ -17817,19 +17669,19 @@ Lg
 xO
 PR
 Vb
-Ur
+SP
 aF
-ai
-gW
-aV
 uj
+GN
+aF
+Nj
 Ns
 SG
-uj
-Hi
-kZ
-kZ
-kZ
+Nj
+VO
+gW
+gW
+gW
 gW
 JW
 gW
@@ -17906,25 +17758,25 @@ CN
 CN
 tT
 aF
-Ur
-Ur
-Kr
-Ur
+Id
+Id
+aF
+Id
 RA
 pg
-Ur
-tY
-gW
-gW
-aV
-uj
+SP
+Aa
+GN
+GN
+aF
+Nj
 vR
 Hv
 AN
 AN
 AN
-kZ
-kZ
+gW
+gW
 gW
 gW
 gW
@@ -18001,25 +17853,25 @@ CN
 CN
 tT
 aF
-Ur
+Id
 jS
 MB
 vh
 PR
 wP
-Kr
-tY
-gW
-ai
-aV
+aF
+Aa
+GN
 uj
+aF
+Nj
 Ns
 Hv
 AN
 sT
 AN
 AN
-SP
+ai
 ai
 gW
 gW
@@ -18096,25 +17948,25 @@ CN
 CN
 tT
 aF
-Ur
+Id
 eC
 MB
 wR
 PR
 pg
-Kr
-tY
-gW
+aF
+Aa
+GN
 AF
-aV
-uj
+aF
+Nj
 Xc
 gI
 fp
 Sk
 Ga
 AN
-kZ
+gW
 gW
 gW
 gW
@@ -18191,25 +18043,25 @@ CN
 CN
 tT
 aF
-Ur
+Id
 iu
 MB
 Xd
 vd
 ka
-Ur
-gW
-gW
-gW
-aV
-uj
+SP
+GN
+GN
+GN
+aF
+Nj
 vR
 Ns
 KG
 Ax
 Xs
 AN
-kZ
+gW
 gW
 gW
 gW
@@ -18286,25 +18138,25 @@ CN
 CN
 tT
 aF
-Ur
+Id
 CG
 MB
 MB
 PR
 pg
-Ur
-gW
-gW
-gW
-aV
-uj
+SP
+GN
+GN
+GN
+aF
+Nj
 Nv
 aK
 AN
 gU
 IN
 AN
-Id
+tY
 gW
 VO
 gW
@@ -18381,18 +18233,18 @@ CN
 CN
 tT
 aF
-Ur
+Id
 um
-MB
+Vu
 pj
-PR
+dc
 wP
-Kr
 aF
-gW
-gW
-aV
-uj
+aF
+GN
+GN
+aF
+Nj
 Nv
 gK
 AN
@@ -18476,18 +18328,18 @@ CN
 CN
 tT
 aF
-Ur
-Ur
-Ur
-Ur
+Id
+Id
+Id
+Id
 pL
 dk
-Ur
+SP
 aF
 aF
 bU
-aV
-uj
+aF
+Nj
 GG
 aK
 AN
@@ -18571,18 +18423,18 @@ CN
 CN
 tT
 aF
-Ur
+SP
 lS
 tD
 tD
 yu
 Jc
-Ur
-ai
-gW
-gW
-aV
+SP
 uj
+GN
+GN
+aF
+Nj
 Nv
 aK
 AN
@@ -18666,18 +18518,18 @@ CN
 CN
 tT
 aF
-Kr
+aF
 hS
 pz
 fA
 os
 LW
-Ur
-gW
-gW
-gW
-aV
-uj
+SP
+GN
+GN
+GN
+aF
+Nj
 Nv
 aK
 AN
@@ -18761,18 +18613,18 @@ CN
 CN
 tT
 aF
-Ur
+SP
 BL
 rl
 PR
 JM
 Qg
-Kr
 aF
-gW
+aF
+GN
 AF
-aV
-uj
+aF
+Nj
 sw
 Ns
 AN
@@ -18855,19 +18707,19 @@ CN
 CN
 CN
 tT
-dc
-Kr
+aF
+aF
 UL
 sF
 Yh
 ER
 mM
-Kr
 aF
-gW
-gW
-aV
-uj
+aF
+GN
+GN
+aF
+Nj
 gI
 Ns
 AN
@@ -18950,21 +18802,21 @@ CN
 CN
 CN
 tT
-dc
+aF
 Ml
 Ml
 IV
 Ml
 Ml
 Ml
+aF
+Aa
 GN
-tY
-gW
-ai
-aV
+uj
+aF
 Nj
+Ns
 ke
-Om
 AN
 AN
 AN
@@ -19045,18 +18897,18 @@ CN
 CN
 CN
 tT
-dc
+aF
 Hc
 fZ
 YN
 mz
 Px
-dc
-tY
-tY
-gW
-gW
-aV
+aF
+Aa
+Aa
+GN
+GN
+aF
 Nj
 wE
 jF
@@ -19140,18 +18992,18 @@ CN
 CN
 CN
 tT
-dc
+aF
 lH
 lH
 mz
 lH
 aj
 Ml
-tY
-gW
-ai
-gW
-aV
+Aa
+GN
+uj
+GN
+aF
 Nj
 zM
 Nk
@@ -19166,7 +19018,7 @@ tY
 tT
 fh
 PE
-ny
+gW
 Go
 "}
 (89,1,1) = {"
@@ -19235,18 +19087,18 @@ CN
 CN
 CN
 tT
-dc
+aF
 aZ
 lH
 mz
 Cd
 Ml
 Ml
-tY
-gW
-gW
-gW
-aV
+Aa
+GN
+GN
+GN
+aF
 Nj
 cb
 Bx
@@ -19260,8 +19112,8 @@ tY
 tY
 tT
 qB
-ny
-ny
+gW
+gW
 Go
 "}
 (90,1,1) = {"
@@ -19330,18 +19182,18 @@ CN
 CN
 CN
 tT
-dc
+aF
 lH
 Aq
 mz
 Dj
 Ml
-tY
-tY
-gW
-gW
+Aa
+Aa
+GN
+GN
 jp
-aV
+aF
 Nj
 mk
 XW
@@ -19354,8 +19206,8 @@ ai
 tY
 aF
 tT
-ny
-ny
+gW
+gW
 Vk
 Go
 "}
@@ -19425,18 +19277,18 @@ CN
 CN
 CN
 tT
-dc
+aF
 lH
 lH
 mz
 Cd
-dc
-tY
-gW
-gW
-ai
-gW
-tY
+aF
+Aa
+GN
+GN
+uj
+GN
+Aa
 Nj
 sS
 bg
@@ -19520,18 +19372,18 @@ CN
 CN
 CN
 tT
-dc
+aF
 aZ
 lH
-mz
+Gw
 Ml
 Ml
-tY
-gW
-gW
-gW
-gW
-tY
+Aa
+GN
+GN
+GN
+GN
+Aa
 Nj
 tg
 BF
@@ -19615,18 +19467,18 @@ CN
 CN
 CN
 tT
-dc
+aF
 lH
 lH
 nG
 Ml
-tY
-tY
-gW
-gW
-gW
-gW
-tY
+Aa
+Aa
+GN
+GN
+GN
+GN
+Aa
 Nj
 yU
 mW
@@ -19710,17 +19562,17 @@ CN
 CN
 CN
 tT
-dc
+aF
 lH
 lH
 mz
 Ml
-tY
-ai
-gW
-JW
-ai
-gW
+Aa
+uj
+GN
+ny
+uj
+GN
 Aa
 Nj
 gX
@@ -19805,17 +19657,17 @@ CN
 CN
 CN
 tT
-dc
+aF
 aZ
 lH
 cy
 Ml
-tY
-gW
-gW
-gW
-gW
-gW
+Aa
+GN
+GN
+GN
+GN
+GN
 jl
 Nj
 VY
@@ -19900,17 +19752,17 @@ CN
 CN
 CN
 tT
-dc
+aF
 lH
 mz
 ky
 Ml
-tY
-gW
-gW
-gW
-gW
-gW
+Aa
+GN
+GN
+GN
+GN
+GN
 Aa
 Nj
 fT
@@ -19995,21 +19847,21 @@ CN
 CN
 CN
 tT
-dc
+aF
 Ml
 iG
 Ml
 Ml
 Or
-gW
-gW
-ai
-gW
-IC
-IC
+GN
+GN
+uj
+GN
+GN
+GN
 Nj
 Nj
-er
+xw
 Nj
 Nj
 gW
@@ -20091,24 +19943,24 @@ CN
 CN
 tT
 aF
-ko
-IC
-IC
-IC
-IC
-IC
-IC
-IC
-IC
-ko
-IC
-ko
-ko
+aF
+GN
+GN
+GN
+GN
+GN
+GN
+GN
+GN
+aF
+GN
+Om
+Om
 mp
 wM
-ko
-ko
-IC
+aF
+aF
+gW
 gW
 gW
 aF
@@ -20186,23 +20038,23 @@ CN
 CN
 tT
 aF
-ko
-IC
+aF
+GN
 Uo
 ma
 LU
 pa
-IC
-IC
-IC
-ko
-IC
+GN
+GN
+GN
+aF
+GN
 IC
 sH
 kE
 cG
 gD
-IC
+aV
 sx
 aF
 ai
@@ -20281,17 +20133,17 @@ CN
 CN
 tT
 aF
-ko
-sx
+aF
+ny
 qo
 IU
 IU
 qo
-IC
-IC
-IC
-ko
-ko
+GN
+GN
+GN
+aF
+aF
 NQ
 AY
 RC
@@ -20376,24 +20228,24 @@ CN
 CN
 tT
 aF
-ko
-ko
+aF
+aF
 HW
 mL
 bl
 HO
-IC
-sx
-ko
-ko
-ko
+GN
+ny
+aF
+aF
+aF
 xi
 pE
 pq
 nC
 RC
 cG
-IC
+aV
 aF
 gW
 gW
@@ -20471,17 +20323,17 @@ CN
 CN
 tT
 aF
-ko
-ko
+aF
+aF
 qo
 fb
 UR
 ma
 Uw
-IC
-ko
-ko
-ko
+GN
+aF
+aF
+aF
 Va
 ze
 pq
@@ -20566,22 +20418,22 @@ CN
 CN
 tT
 aF
-ko
-ko
+aF
+aF
 zG
 gk
 nw
 zG
-ko
-ko
-ko
-ko
-ko
+aF
+aF
+aF
+aF
+aF
 NQ
 lF
 kE
 cG
-IC
+aV
 AY
 FH
 aF
@@ -20661,17 +20513,17 @@ CN
 CN
 tT
 aF
-ko
-ko
+aF
+aF
 qo
 HW
 HW
 qo
-ko
-ko
-ko
-ko
-ko
+aF
+aF
+aF
+aF
+aF
 fn
 RY
 gn
@@ -22416,7 +22268,7 @@ CN
 CN
 CN
 CN
-Cy
+CN
 CN
 CN
 CN
