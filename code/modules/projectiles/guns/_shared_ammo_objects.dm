@@ -159,20 +159,15 @@
 /obj/fire/flamer/on_cross(datum/source, atom/movable/crosser, oldloc, oldlocs)
 	if(!isliving(crosser) || isobj(crosser))
 		return
-	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
-		return
 	crosser.fire_act(burn_level)
 
 /obj/fire/flamer/affect_mob(mob/living/carbon/affected)
-	. = ..()
 	affected.fire_act(burn_level)
 
 /obj/fire/flamer/affect_obj(obj/affected)
-	. = ..()
 	affected.fire_act(burn_level)
 
 /obj/fire/flamer/affect_turf(turf/affected)
-	. = ..()
 	affected.fire_act(burn_level)
 
 /obj/fire/flamer/process()
