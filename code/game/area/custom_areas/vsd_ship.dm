@@ -2,6 +2,7 @@
 	name = "VSD Ship"
 	icon_state = "syndie-ship"
 	requires_power = TRUE
+	always_unpowered = FALSE
 
 /area/antag_ship/vsd/hall
 	name = "VSD Ship Hall"

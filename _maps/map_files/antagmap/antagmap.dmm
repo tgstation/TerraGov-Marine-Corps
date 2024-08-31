@@ -1445,6 +1445,10 @@
 	},
 /turf/open/floor/mainship/sterile,
 /area/antag_ship/som/medbay)
+"ja" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/black,
+/area/antag_ship/vsd/med)
 "jb" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -1739,14 +1743,9 @@
 /turf/open/floor/mainship/sterile/white,
 /area/antag_ship/som/medbay)
 "ky" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/stripes/asteroid/box,
-/obj/machinery/floodlight/landing,
-/obj/machinery/power/apc{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
-/area/antag_ship/clf_base/lounge)
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/round/black,
+/area/antag_ship/vsd/bridge)
 "kz" = (
 /obj/machinery/door/airlock/mainship/command{
 	dir = 1;
@@ -2384,7 +2383,7 @@
 "nl" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/maintenance/north)
+/area/antag_ship/som/maintenance/south)
 "nm" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -2500,11 +2499,6 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/bridge)
-"nI" = (
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/maintenance/north)
 "nJ" = (
 /obj/effect/landmark/start/job/pmc_gunner,
 /turf/open/floor/mainship/black/full,
@@ -2724,6 +2718,11 @@
 	dir = 4
 	},
 /area/antag_ship/vsd/med)
+"oQ" = (
+/obj/structure/cable,
+/obj/machinery/power/apc,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/maintenance/north)
 "oX" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
@@ -2824,6 +2823,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/bridge)
+"pv" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/black,
+/area/antag_ship/vsd/armory)
 "pw" = (
 /obj/item/storage/belt/security,
 /obj/structure/table/reinforced,
@@ -2860,6 +2863,10 @@
 /obj/machinery/computer/supplycomp/clf,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/requisition)
+"pC" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/black,
+/area/antag_ship/vsd/port)
 "pD" = (
 /obj/machinery/vending/weapon/icc,
 /turf/open/floor/plating/ground/concrete,
@@ -3087,10 +3094,6 @@
 	},
 /turf/closed/wall/mainship/gray,
 /area/antag_ship)
-"qJ" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/grayscale/black,
-/area/antag_ship/vsd/port)
 "qK" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
 /obj/effect/turf_decal/trimline/yellow/mid_joiner,
@@ -4042,7 +4045,7 @@
 "wk" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/antag_ship/som/maintenance/south)
+/area/antag_ship/som/maintenance/north)
 "wl" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -4112,10 +4115,6 @@
 	},
 /turf/open/floor/mainship,
 /area/antag_ship/som/hangar)
-"wC" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/grayscale/black,
-/area/antag_ship/vsd/med)
 "wE" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
@@ -4792,10 +4791,6 @@
 	dir = 4
 	},
 /area/antag_ship/som/mech_bay)
-"AL" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/grayscale/black,
-/area/antag_ship/vsd/armory)
 "AM" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -5478,6 +5473,10 @@
 	},
 /turf/open/floor/plating/heatinggrate,
 /area/antag_ship/icc/generator_room)
+"Ej" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/black,
+/area/antag_ship/vsd/engi)
 "El" = (
 /obj/machinery/door/airlock/mainship/secure/tcomms{
 	dir = 2;
@@ -6188,10 +6187,6 @@
 	dir = 4
 	},
 /area/antag_ship/vsd/hall)
-"Ig" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/grayscale/round/black,
-/area/antag_ship/vsd/bridge)
 "Il" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6622,10 +6617,6 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
 /area/antag_ship/som/telecomms)
-"Kr" = (
-/obj/structure/window/framed/prison/reinforced/hull,
-/turf/open/floor/grayscale/black,
-/area/antag_ship/vsd/hall)
 "Ks" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -7899,6 +7890,11 @@
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/mainship/sterile,
 /area/antag_ship/som/medbay)
+"QV" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/maintenance/north)
 "QY" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som{
 	dir = 4
@@ -8187,7 +8183,7 @@
 "Sx" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/grayscale/black,
-/area/antag_ship/vsd/engi)
+/area/antag_ship/vsd/hall)
 "Sy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/warning_stripes,
@@ -12609,9 +12605,9 @@ CN
 VK
 CN
 Dk
-nl
-nl
-nl
+wk
+wk
+wk
 jj
 qu
 wc
@@ -12630,7 +12626,7 @@ qu
 qu
 vX
 BR
-wk
+nl
 BR
 Dk
 CN
@@ -12704,7 +12700,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 bb
 bb
 bb
@@ -12726,7 +12722,7 @@ bb
 bb
 bb
 bb
-wk
+nl
 Dk
 CN
 VK
@@ -12799,7 +12795,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 bb
 EC
 Qp
@@ -12894,7 +12890,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 bb
 bG
 vc
@@ -13011,7 +13007,7 @@ nL
 QU
 CP
 bb
-wk
+nl
 Dk
 CN
 VK
@@ -13084,7 +13080,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 RD
 ni
 zs
@@ -13179,7 +13175,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 bb
 GF
 ni
@@ -13201,7 +13197,7 @@ ey
 PY
 iB
 bb
-wk
+nl
 Dk
 CN
 VK
@@ -13274,7 +13270,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 bb
 fe
 ni
@@ -13369,7 +13365,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 bb
 fe
 vc
@@ -13391,7 +13387,7 @@ nL
 NR
 Pk
 bb
-wk
+nl
 Dk
 CN
 VK
@@ -13486,7 +13482,7 @@ bb
 bb
 bb
 bb
-wk
+nl
 Dk
 CN
 VK
@@ -13559,7 +13555,7 @@ CN
 VK
 CN
 Dk
-nI
+QV
 bb
 ZY
 Tl
@@ -13654,7 +13650,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 bb
 cn
 HM
@@ -13696,13 +13692,13 @@ mg
 mg
 mg
 mg
-qJ
+pC
 Bg
 mg
 mg
 mg
 mg
-Sx
+Ej
 zX
 mg
 mg
@@ -13749,7 +13745,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 bb
 ws
 HM
@@ -13785,12 +13781,12 @@ FG
 FG
 FG
 oD
-Ig
+ky
 If
 SO
 tu
 tu
-Kr
+Sx
 qC
 Kv
 nF
@@ -13844,7 +13840,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 bb
 cr
 AV
@@ -13866,7 +13862,7 @@ Pz
 yC
 Iw
 bb
-wk
+nl
 Dk
 CN
 VK
@@ -13939,7 +13935,7 @@ CN
 VK
 CN
 Dk
-nl
+oQ
 bb
 bb
 YV
@@ -13961,7 +13957,7 @@ gP
 He
 Vz
 bb
-wk
+nl
 Dk
 CN
 VK
@@ -13975,12 +13971,12 @@ as
 FG
 FG
 Vc
-Ig
+ky
 DA
 SC
 JT
 JT
-Kr
+Sx
 qC
 Kv
 qs
@@ -14034,11 +14030,11 @@ CN
 VK
 CN
 Dk
-nl
-nl
+wk
+wk
 bz
-nl
-nl
+wk
+wk
 lz
 mV
 Qx
@@ -14056,7 +14052,7 @@ Jl
 wd
 Bn
 bb
-wk
+nl
 Dk
 CN
 VK
@@ -14076,13 +14072,13 @@ mg
 mg
 mg
 mg
-AL
+pv
 eo
 mg
 mg
 mg
 mg
-wC
+ja
 zI
 mg
 mg
@@ -14224,7 +14220,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 bb
 jT
 jT
@@ -14246,7 +14242,7 @@ TI
 Md
 Tj
 bb
-wk
+nl
 Dk
 CN
 VK
@@ -14319,7 +14315,7 @@ CN
 VK
 CN
 Dk
-nl
+wk
 vi
 XB
 VB
@@ -18785,7 +18781,7 @@ tT
 aF
 lH
 mz
-ky
+Hc
 Ml
 Aa
 GN

@@ -1,7 +1,7 @@
 /area/antag_ship/icc
 	name = "ICC Base"
 	requires_power = TRUE
-	always_unpowered = TRUE
+	always_unpowered = FALSE
 
 /area/antag_ship/icc/hangar
 
