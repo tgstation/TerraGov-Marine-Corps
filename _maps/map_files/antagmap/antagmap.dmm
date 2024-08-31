@@ -7,13 +7,10 @@
 "ac" = (
 /obj/machinery/telecomms/server/presets/command/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "ad" = (
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "af" = (
 /obj/effect/urban/decal/warning/redandwhite_S,
 /turf/open/floor/grayscale/darkblue,
@@ -30,9 +27,7 @@
 "ak" = (
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "am" = (
 /obj/item/clothing/head/warning_cone,
 /turf/open/floor/plating/ground/dirt,
@@ -48,31 +43,34 @@
 /obj/structure/largecrate/supply/supplies/plasteel,
 /turf/open/floor/mainship/black/full,
 /area/antag_ship/pmc_ntf/center/armory)
-"aw" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/mainship/groundhq/som/command/telecomms)
 "az" = (
 /obj/machinery/iv_drip,
 /turf/open/floor/iron/dark/smooth_edge,
 /area/antag_ship/vsd/med)
+"aA" = (
+/obj/effect/landmark/start/job/som,
+/obj/effect/landmark/start/latejoinsom,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/preparation)
+"aC" = (
+/obj/structure/cable,
+/obj/effect/landmark/start/latejoinsom,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/barracs)
 "aD" = (
 /turf/open/floor/prison/sterilewhite,
 /area/antag_ship/pmc_ntf/starboard/medbay)
-"aE" = (
-/turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
 "aF" = (
 /turf/closed/mineral/smooth,
 /area/lv624/ground/caves/rock)
 "aI" = (
 /obj/structure/cable,
 /obj/structure/closet/firecloset,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "aK" = (
 /obj/structure/cable,
 /obj/effect/landmark/weapon_spawn/tier1_weapon_spawn,
@@ -122,10 +120,7 @@
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "aZ" = (
 /obj/structure/benchpress,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -137,10 +132,7 @@
 /turf/closed/shuttle/ert/engines/right/two{
 	dir = 1
 	},
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "be" = (
 /obj/machinery/power/apc{
 	dir = 4
@@ -153,9 +145,7 @@
 	req_access = list(209)
 	},
 /turf/open/floor/wood/alt_three,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "bg" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -169,10 +159,7 @@
 	},
 /obj/machinery/vending/marineFood/som,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "bl" = (
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /obj/item/storage/box/crate/loot/materials_pack,
@@ -199,24 +186,16 @@
 "bv" = (
 /obj/machinery/vending/boozeomat,
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "bw" = (
 /obj/machinery/camera/autoname/mainship/somship,
 /obj/machinery/vending/marineFood/som,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "bx" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "bz" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -224,9 +203,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_nmaint{
-	name = "SOM North Maintenance"
-	})
+/area/antag_ship/som/maintenance/north)
 "bA" = (
 /obj/structure/prop/mainship/prop_so/icc_three{
 	dir = 4
@@ -236,15 +213,11 @@
 /area/antag_ship/icc/commcenter)
 "bD" = (
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "bE" = (
 /obj/machinery/quick_vendor/som,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "bF" = (
 /obj/item/lightstick/red,
 /obj/item/lightstick/red,
@@ -258,10 +231,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "bK" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -273,15 +243,11 @@
 	dir = 10
 	},
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "bS" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "bU" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -290,10 +256,7 @@
 "bZ" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "cb" = (
 /obj/structure/table,
 /obj/item/armor_module/storage/uniform/webbing,
@@ -314,21 +277,14 @@
 "ci" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "cj" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /obj/effect/landmark/start/job/som/commander,
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1,
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "cm" = (
 /obj/structure/largecrate/random,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -343,7 +299,7 @@
 /obj/item/autopsy_scanner,
 /obj/structure/sink,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/medical/morgue)
+/area/antag_ship/som/medbay/morgue)
 "co" = (
 /obj/structure/largecrate/supply/medicine/medkits,
 /turf/open/floor/plating/asteroidfloor,
@@ -372,16 +328,14 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/medical/morgue)
+/area/antag_ship/som/medbay/morgue)
 "ct" = (
 /obj/machinery/light/mainship,
 /obj/structure/table/wood/fancy,
 /obj/item/whistle,
 /obj/item/megaphone,
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "cw" = (
 /obj/structure/barricade/plasteel{
 	dir = 4
@@ -408,9 +362,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 10
 	},
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "cG" = (
 /obj/alien/weeds/node/resting,
 /turf/open/floor/plating/ground/dirt,
@@ -419,9 +371,7 @@
 /obj/structure/window/framed/mainship/gray/toughened,
 /obj/structure/curtain/black,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "cI" = (
 /obj/structure/largecrate/supply/ammo/standard_hmg,
 /turf/open/floor/plating/ground/concrete,
@@ -439,10 +389,11 @@
 "cN" = (
 /obj/structure/cable,
 /obj/machinery/camera/autoname/mainship/somship,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "cP" = (
 /obj/effect/landmark/start/job/pmc_medic,
 /obj/structure/cable,
@@ -453,14 +404,11 @@
 "cR" = (
 /obj/machinery/telecomms/processor/preset_four/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "cS" = (
 /obj/effect/decal/cleanable/blood/gibs/robot,
 /turf/open/floor/plating/scorched,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "cU" = (
 /turf/closed/shuttle/ert{
 	icon_state = "leftengine_1";
@@ -491,10 +439,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "dc" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -506,10 +451,7 @@
 /turf/open/floor/carpet/edge2{
 	icon_state = "carpet-1"
 	},
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "df" = (
 /obj/machinery/bioprinter/stocked,
 /turf/open/floor/iron/dark/smooth_edge{
@@ -526,9 +468,7 @@
 /area/antag_ship/clf_base/hallways/inside)
 "do" = (
 /turf/open/floor/mainship/empty,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "dq" = (
 /obj/structure/sink/bathroom{
 	dir = 4
@@ -567,10 +507,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "dH" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/antag_ship)
@@ -591,10 +528,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "dO" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -613,10 +547,7 @@
 /area/antag_ship/pmc_ntf/port/quarters)
 "dT" = (
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "dU" = (
 /obj/structure/bed/chair/comfy{
 	dir = 8
@@ -640,10 +571,14 @@
 /turf/closed/shuttle/ert/engines/left/two{
 	dir = 1
 	},
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
+"eb" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/engi)
 "ef" = (
 /turf/open/floor/mainship/black{
 	dir = 5
@@ -667,19 +602,14 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "el" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
 "en" = (
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "eo" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper VSD Armory Airlock"
@@ -722,9 +652,7 @@
 "ey" = (
 /obj/machinery/smartfridge/chemistry,
 /turf/closed/wall/mainship/gray,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "ez" = (
 /obj/machinery/door/airlock/hatch/engineering{
 	name = "Torture Chamber";
@@ -735,10 +663,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "eA" = (
 /turf/open/floor/iron/dark/side{
 	dir = 1
@@ -797,10 +722,12 @@
 	dir = 10
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
+"eO" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/requisition)
 "eQ" = (
 /obj/item/weapon/butterfly/switchblade,
 /obj/item/weapon/butterfly/switchblade,
@@ -845,10 +772,7 @@
 	},
 /obj/machinery/cryopod/right,
 /turf/open/floor/prison/darkyellow/full,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "fa" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -876,10 +800,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "ff" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/concrete,
@@ -925,10 +846,7 @@
 	},
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "fy" = (
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/transport)
@@ -957,10 +875,7 @@
 	id = "minidropship_podlocksom"
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "fI" = (
 /obj/structure/cable,
 /turf/open/floor/wood/darker,
@@ -988,10 +903,7 @@
 	pixel_y = 5
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "fY" = (
 /obj/machinery/vending/MarineMed,
 /turf/open/floor/prison/whitegreen{
@@ -1011,9 +923,7 @@
 "gf" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "gg" = (
 /obj/structure/largecrate/supply/ammo,
 /obj/effect/turf_decal/trimline/brown/filled/warning{
@@ -1054,7 +964,7 @@
 /obj/machinery/power/apc/mainship,
 /obj/structure/cable,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "gt" = (
 /obj/structure/prop/mainship/gelida/powercconnectorthreeside{
 	dir = 8
@@ -1097,10 +1007,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "gI" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/antag_ship/clf_base/techroom)
@@ -1110,10 +1017,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "gK" = (
 /obj/structure/sign/safety/storage,
 /obj/structure/cable,
@@ -1125,9 +1029,7 @@
 "gL" = (
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "gM" = (
 /obj/structure/prop/mainship/railing{
 	dir = 8
@@ -1163,10 +1065,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "gU" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -1211,10 +1110,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "hb" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/storage/box/ids,
@@ -1223,10 +1119,7 @@
 "hd" = (
 /obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "he" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/wall/brick,
@@ -1238,10 +1131,7 @@
 	},
 /obj/structure/droppod,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "hg" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -1286,19 +1176,13 @@
 	req_access = list(211)
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_smaint{
-	name = "SOM South Maintenance";
-	outside = 0
-	})
+/area/antag_ship/som/security)
 "hz" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 5
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "hB" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -1318,10 +1202,7 @@
 /obj/item/reagent_containers/jerrycan,
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/cargo,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "hM" = (
 /turf/open/floor/mainship/black{
 	dir = 9
@@ -1355,10 +1236,7 @@
 "ia" = (
 /obj/structure/mirror,
 /turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "id" = (
 /obj/structure/table/black,
 /turf/open/floor/iron/dark/smooth_edge{
@@ -1389,10 +1267,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "in" = (
 /obj/effect/landmark/start/job/vsd_medic,
 /obj/machinery/computer/sleep_console{
@@ -1411,9 +1286,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "iq" = (
 /obj/effect/landmark/start/job/pmc_sniper,
 /obj/structure/cable,
@@ -1436,6 +1309,16 @@
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/cargo,
 /area/antag_ship/clf_base/requisition)
+"iw" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/stairs/seamless{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/preparation)
 "ix" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/mainship/sterile/plain,
@@ -1454,9 +1337,7 @@
 	},
 /obj/structure/closet/secure_closet/chemical,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "iC" = (
 /obj/structure/prop/mainship/mapping_computer,
 /obj/machinery/light/mainship{
@@ -1481,14 +1362,9 @@
 	dir = 8
 	},
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "iF" = (
 /obj/structure/cable,
-/obj/machinery/power/smes{
-	capacity = 1000000
-	},
 /obj/structure/prop/mainship/gelida/powerconnector{
 	dir = 8
 	},
@@ -1514,10 +1390,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "iN" = (
 /obj/structure/cable,
 /turf/open/floor/iron/dark/smooth_corner{
@@ -1530,10 +1403,7 @@
 	dir = 10
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "iQ" = (
 /obj/machinery/iv_drip,
 /obj/machinery/light/mainship{
@@ -1550,10 +1420,9 @@
 "iU" = (
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "iX" = (
 /obj/machinery/vending/uniform_supply/pmc,
 /turf/open/floor/mainship/sterile/plain,
@@ -1568,19 +1437,14 @@
 	},
 /obj/effect/landmark/start/job/prisonersom,
 /turf/open/floor/prison/darkyellow/full,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "iZ" = (
 /obj/machinery/vending/medical{
 	name = "Stolen Medicament Vendor";
 	req_access = list(206)
 	},
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "jb" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -1614,10 +1478,7 @@
 	req_access = list(204)
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "je" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/adv,
@@ -1625,10 +1486,7 @@
 /area/shuttle/transport)
 "jf" = (
 /turf/open/shuttle/plating,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "jg" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/prison/whitegreen/corner{
@@ -1637,10 +1495,7 @@
 /area/antag_ship/pmc_ntf/starboard/medbay)
 "ji" = (
 /turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/requisition)
 "jj" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -1649,9 +1504,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_nmaint{
-	name = "SOM North Maintenance"
-	})
+/area/antag_ship/som/maintenance/north)
 "jl" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
@@ -1666,6 +1519,10 @@
 /obj/machinery/light/small,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/inside)
+"jq" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/preparation)
 "jv" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -1707,10 +1564,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "jC" = (
 /obj/structure/table,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
@@ -1718,11 +1572,11 @@
 "jE" = (
 /obj/structure/cable,
 /obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "jF" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside,
@@ -1736,17 +1590,12 @@
 /area/antag_ship/clf_base/techroom)
 "jH" = (
 /turf/open/floor/mainship/orange/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "jI" = (
 /obj/effect/landmark/start/latejoinsom,
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "jM" = (
 /obj/structure/table/black,
 /obj/item/clothing/head/helmet/space/syndicate/black,
@@ -1766,10 +1615,7 @@
 "jP" = (
 /obj/machinery/cic_maptable/drawable/big/som,
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "jS" = (
 /obj/machinery/processor,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -1777,9 +1623,7 @@
 "jT" = (
 /obj/structure/bed/bunkbed,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "jW" = (
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/concrete/lines{
@@ -1803,10 +1647,11 @@
 "jZ" = (
 /obj/structure/cable,
 /obj/machinery/light,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "ka" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/structure/table/reinforced/prison,
@@ -1825,11 +1670,6 @@
 	dir = 9
 	},
 /area/antag_ship/pmc_ntf/starboard/medbay)
-"kd" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
 "ke" = (
 /obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
@@ -1839,9 +1679,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/commcenter)
-"kh" = (
-/turf/closed/wall/mainship/gray,
-/area/mainship/groundhq/som/command/telecomms)
 "ki" = (
 /obj/machinery/computer/autodoc_console,
 /turf/open/floor/iron/dark/small,
@@ -1860,9 +1697,7 @@
 "km" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "kn" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
@@ -1875,19 +1710,17 @@
 /obj/structure/cable,
 /obj/item/stack/conveyor/thirty,
 /obj/item/conveyor_switch_construct,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "kq" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 6
 	},
 /turf/open/floor/plating/scorched,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "kr" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/sterile/plain,
@@ -1900,10 +1733,11 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
 /turf/open/floor/mainship/sterile/white,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "ky" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/asteroid/box,
@@ -1919,10 +1753,7 @@
 	req_access = list(204)
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "kA" = (
 /obj/structure/sign/prop3,
 /obj/effect/turf_decal/stripes/asteroid/corner{
@@ -1951,9 +1782,7 @@
 "kH" = (
 /obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "kI" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -1972,9 +1801,7 @@
 "kL" = (
 /obj/structure/closet/crate/weapon,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "kN" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -2007,9 +1834,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "kU" = (
 /obj/item/storage/toolbox/syndicate,
 /obj/structure/table/mainship,
@@ -2025,9 +1850,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/area/antag_ship/som/engi)
 "la" = (
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/antag_ship)
@@ -2044,9 +1867,7 @@
 /obj/structure/cable,
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/security)
 "lf" = (
 /turf/open/floor/wood/darker,
 /area/antag_ship/pmc_ntf/port/quarters)
@@ -2070,7 +1891,7 @@
 	},
 /obj/machinery/telecomms/broadcaster/preset_left/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "ll" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -2104,9 +1925,7 @@
 /area/antag_ship/icc/hangar/center)
 "ls" = (
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "lt" = (
 /obj/machinery/power/apc{
 	dir = 8
@@ -2137,19 +1956,14 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/area/antag_ship/som/engi)
 "lC" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "lE" = (
 /obj/effect/landmark/start/job/clf/standard,
 /obj/structure/cable,
@@ -2221,10 +2035,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "lR" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 4
@@ -2233,10 +2044,7 @@
 	dir = 10
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "lS" = (
 /obj/item/tool/mop,
 /obj/item/reagent_containers/glass/bucket,
@@ -2271,10 +2079,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "ma" = (
 /turf/open/floor/mainship/mono,
 /area/antag_ship/clf_base/techroom)
@@ -2287,10 +2092,7 @@
 /obj/item/clipboard,
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "mg" = (
 /turf/closed/wall/r_wall/prison_unmeltable,
 /area/antag_ship)
@@ -2306,9 +2108,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "mj" = (
 /obj/structure/curtain/open/medical,
 /turf/open/floor/plating/plating_catwalk,
@@ -2331,15 +2131,10 @@
 /turf/open/floor/carpet/edge2{
 	icon_state = "carpet-2"
 	},
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "mo" = (
 /turf/open/floor/carpet/side,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "mp" = (
 /obj/alien/egg/hugger,
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
@@ -2362,9 +2157,7 @@
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/landmark/start/job/som/fieldcommander,
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "mw" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2374,10 +2167,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "mz" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -2400,10 +2190,11 @@
 	},
 /area/antag_ship/clf_base/sleeproom)
 "mE" = (
-/turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/antag_ship/som/medbay)
 "mF" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
@@ -2415,10 +2206,7 @@
 /turf/open/floor/carpet/edge2{
 	icon_state = "carpet-3"
 	},
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "mG" = (
 /turf/open/floor/prison/whitegreen{
 	dir = 1
@@ -2505,10 +2293,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "mU" = (
 /obj/structure/cargo_container{
 	dir = 1
@@ -2518,9 +2303,7 @@
 "mV" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/area/antag_ship/som/engi)
 "mW" = (
 /obj/structure/cable,
 /obj/machinery/power/terminal{
@@ -2537,10 +2320,7 @@
 	pixel_y = 10
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "nb" = (
 /obj/item/reagent_containers/spray/cleaner,
 /obj/item/reagent_containers/spray/cleaner,
@@ -2573,10 +2353,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "nh" = (
 /obj/machinery/power/terminal{
 	dir = 4
@@ -2589,18 +2366,16 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "nj" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/cargo/arrow{
 	dir = 1
 	},
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "nk" = (
 /obj/machinery/power/geothermal/reinforced,
 /obj/structure/cable,
@@ -2609,20 +2384,14 @@
 "nl" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_smaint{
-	name = "SOM South Maintenance";
-	outside = 0
-	})
+/area/antag_ship/som/maintenance/north)
 "nm" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "np" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -2631,9 +2400,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "nq" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -2654,10 +2421,7 @@
 /obj/structure/bed/chair/comfy/brown,
 /obj/effect/ai_node,
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "nu" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/dirt,
@@ -2686,9 +2450,7 @@
 /obj/item/xeno_iff_tag/som,
 /obj/item/xeno_iff_tag/som,
 /turf/open/floor/mainship/cargo,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "ny" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -2716,7 +2478,7 @@
 "nE" = (
 /obj/machinery/telecomms/server/presets/medical/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "nF" = (
 /obj/effect/turf_decal/syndicateemblem/top/left,
 /obj/machinery/light/mainship{
@@ -2737,10 +2499,12 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
+"nI" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/maintenance/north)
 "nJ" = (
 /obj/effect/landmark/start/job/pmc_gunner,
 /turf/open/floor/mainship/black/full,
@@ -2750,9 +2514,7 @@
 /area/antag_ship/pmc_ntf/aft/spaceport)
 "nL" = (
 /turf/closed/wall/mainship/gray,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "nM" = (
 /turf/closed/shuttle/dropship_regular/backhatch{
 	dir = 1
@@ -2763,11 +2525,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "nT" = (
 /obj/structure/prop/mainship/invincibleshutter{
 	dir = 4
@@ -2790,10 +2550,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "oa" = (
 /obj/effect/turf_decal/trimline/brown/warning,
 /turf/open/floor/plating/ground/concrete,
@@ -2848,10 +2605,9 @@
 	dir = 2;
 	req_one_access = null
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "os" = (
 /obj/structure/bed/chair/east{
 	dir = 2
@@ -2863,7 +2619,7 @@
 "ot" = (
 /obj/machinery/telecomms/processor/preset_two/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "ou" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -2918,9 +2674,7 @@
 /obj/item/storage/firstaid/regular,
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/mainship/cargo,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "oA" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/antag_ship/icc/hangar/center)
@@ -2958,16 +2712,12 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "oN" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
 	},
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "oP" = (
 /obj/structure/table/black,
 /turf/open/floor/iron/dark/smooth_corner{
@@ -2978,9 +2728,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 5
 	},
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "pa" = (
 /turf/closed/shuttle/ert/engines/left{
 	dir = 4
@@ -2996,17 +2744,11 @@
 	},
 /obj/structure/droppod,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "pe" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "pf" = (
 /obj/effect/turf_decal/trimline/brown/filled/warning{
 	dir = 8
@@ -3057,10 +2799,7 @@
 /obj/item/tool/pen/blue,
 /obj/item/clipboard,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "po" = (
 /obj/structure/toilet,
 /turf/open/floor/iron/white/small,
@@ -3080,17 +2819,11 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "pu" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "pw" = (
 /obj/item/storage/belt/security,
 /obj/structure/table/reinforced,
@@ -3108,16 +2841,11 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_armory{
-	outside = 0;
-	name = "SOM Security"
-	})
+/area/antag_ship/som/security)
 "py" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "pz" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/reagent_containers/food/snacks/sliceable/sandwiches/tofubread,
@@ -3156,10 +2884,9 @@
 	dir = 4
 	},
 /obj/structure/closet/emcloset,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "pJ" = (
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
@@ -3212,10 +2939,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "pW" = (
 /obj/structure/bed/chair/sofa/right,
 /turf/open/floor/plating/ground/concrete,
@@ -3266,6 +2990,10 @@
 /obj/item/armor_module/storage/uniform/white_vest,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
+"qg" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/sterile/white,
+/area/antag_ship/som/medbay)
 "qh" = (
 /obj/structure/table/reinforced,
 /obj/item/newspaper,
@@ -3278,10 +3006,7 @@
 /obj/item/tool/pen/blue,
 /obj/item/clipboard,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "qi" = (
 /obj/effect/landmark/start/job/vsd_spec,
 /turf/open/floor/iron/dark,
@@ -3306,18 +3031,13 @@
 "qu" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "qx" = (
 /obj/structure/platform{
 	dir = 1
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "qy" = (
 /obj/effect/urban/decal/warning/redandwhite_W,
 /obj/machinery/cryopod{
@@ -3366,10 +3086,11 @@
 	dir = 8
 	},
 /turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship)
+"qJ" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/black,
+/area/antag_ship/vsd/port)
 "qK" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning,
 /obj/effect/turf_decal/trimline/yellow/mid_joiner,
@@ -3409,10 +3130,9 @@
 	dir = 8
 	},
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "qY" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
@@ -3423,10 +3143,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/shuttle/plating,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "ra" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light/mainship{
@@ -3463,18 +3180,16 @@
 /area/antag_ship/clf_base/hallways/inside)
 "rm" = (
 /turf/open/floor/plating/icefloor/warnplate,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "rn" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "rs" = (
 /obj/effect/urban/decal/trash,
 /turf/open/floor/plating/ground/concrete,
@@ -3484,28 +3199,20 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "rB" = (
 /obj/effect/landmark/start/job/som,
 /obj/effect/landmark/start/latejoinsom,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "rD" = (
 /obj/machinery/door/poddoor/mainship/mech{
 	id = "mech_shutterssom"
 	},
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "rE" = (
 /obj/effect/landmark/start/job/pmc_sniper,
 /turf/open/floor/mainship/black/full,
@@ -3557,17 +3264,14 @@
 /obj/effect/spawner/random/engineering/powercell,
 /obj/effect/spawner/random/engineering/powercell,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "rS" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "rT" = (
 /obj/machinery/cic_maptable/drawable/big,
 /obj/structure/cable,
@@ -3584,10 +3288,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "rX" = (
 /obj/structure/table/black,
 /obj/structure/cable,
@@ -3614,7 +3315,7 @@
 "sd" = (
 /obj/structure/cable,
 /turf/open/floor/bcircuit/off,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "se" = (
 /turf/open/shuttle/dropship/five,
 /area/shuttle/transport)
@@ -3622,10 +3323,7 @@
 /obj/structure/bed/chair/dropship/passenger,
 /obj/machinery/vending/nanomed/tadpolemed,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "sg" = (
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/medical_room)
@@ -3659,10 +3357,7 @@
 	dir = 8
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "sn" = (
 /obj/structure/cable,
 /turf/open/floor/iron/dark/smooth_edge{
@@ -3672,7 +3367,7 @@
 "sp" = (
 /obj/machinery/telecomms/processor/preset_one/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "sr" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 4
@@ -3733,9 +3428,7 @@
 	id = "SOMFC2"
 	},
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "sS" = (
 /obj/structure/cable,
 /obj/structure/table,
@@ -3761,9 +3454,7 @@
 /turf/open/floor/carpet/side{
 	dir = 6
 	},
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "sW" = (
 /obj/structure/cable,
 /obj/structure/prop/mainship/doorblocker/patrol_base{
@@ -3808,9 +3499,7 @@
 	},
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "tk" = (
 /obj/structure/table/black,
 /obj/item/storage/surgical_tray,
@@ -3837,15 +3526,11 @@
 	req_access = list(207)
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "tt" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "tu" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -3909,17 +3594,15 @@
 /area/antag_ship/pmc_ntf/center/armory)
 "tO" = (
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "tP" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/synthetic/som,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "tR" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
@@ -3929,10 +3612,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "tS" = (
 /obj/structure/table/black,
 /obj/item/disk/nuclear/red,
@@ -3952,19 +3632,16 @@
 "ua" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoinsom,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "ub" = (
 /obj/machinery/cryopod/right,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "ud" = (
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/aft/engiroom/starboard)
@@ -3976,10 +3653,7 @@
 	},
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "ug" = (
 /obj/structure/cable,
 /obj/structure/bed/chair/office/dark/east,
@@ -3992,10 +3666,7 @@
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "ui" = (
 /obj/machinery/power/geothermal/reinforced,
 /obj/structure/cable,
@@ -4021,12 +3692,6 @@
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/antag_ship/clf_base/kitchen)
-"uo" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/canora_desert/surface/building/som_armory{
-	outside = 0;
-	name = "SOM Security"
-	})
 "uq" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 8
@@ -4036,10 +3701,7 @@
 	req_access = list(204)
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "ur" = (
 /obj/machinery/optable,
 /obj/item/tank/anesthetic,
@@ -4059,10 +3721,7 @@
 "uu" = (
 /obj/machinery/vending/security,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_armory{
-	outside = 0;
-	name = "SOM Security"
-	})
+/area/antag_ship/som/security)
 "uv" = (
 /obj/machinery/iv_drip,
 /obj/effect/turf_decal/trimline,
@@ -4075,10 +3734,7 @@
 	},
 /obj/structure/table/reinforced,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "uB" = (
 /turf/open/shuttle/dropship/four,
 /area/shuttle/transport)
@@ -4096,18 +3752,13 @@
 "uH" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "uJ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "uM" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/icc/hangar/east)
@@ -4121,10 +3772,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "uP" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -4137,13 +3785,12 @@
 "uR" = (
 /obj/effect/ai_node,
 /turf/open/floor/bcircuit/off,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "uS" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "uU" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/structure/cable,
@@ -4156,10 +3803,14 @@
 /turf/closed/shuttle/ert/engines/right{
 	dir = 1
 	},
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
+"uY" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/requisition)
 "uZ" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -4172,10 +3823,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "vd" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
@@ -4188,10 +3836,7 @@
 	id = "mech_shutterssom"
 	},
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "vh" = (
 /obj/effect/landmark/start/job/clf/standard,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -4203,19 +3848,14 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_nmaint{
-	name = "SOM North Maintenance"
-	})
+/area/antag_ship/som/barracs)
 "vk" = (
 /obj/machinery/computer/mech_bay_power_console,
 /obj/structure/cable,
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "vl" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wood{
@@ -4225,26 +3865,18 @@
 /obj/structure/table/wood/fancy,
 /obj/machinery/power/apc/mainship,
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "vo" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/table/holotable,
 /obj/item/weapon/gun/energy/taser,
 /obj/item/tweezers_advanced,
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "vq" = (
 /obj/structure/toilet,
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "vt" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -4266,22 +3898,13 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "vx" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
-"vy" = (
-/turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
 "vB" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -4302,10 +3925,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "vG" = (
 /obj/structure/largecrate/random,
 /obj/effect/turf_decal/trimline/brown/warning,
@@ -4350,10 +3970,7 @@
 	},
 /obj/item/tool/pen/blue,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "vW" = (
 /turf/open/floor/mainship/black{
 	dir = 6
@@ -4366,17 +3983,11 @@
 	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_smaint{
-	name = "SOM South Maintenance";
-	outside = 0
-	})
+/area/antag_ship/som/maintenance/south)
 "wa" = (
 /obj/structure/platform_decoration,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "wb" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -4386,15 +3997,22 @@
 	},
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/bridge)
+"wc" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/requisition)
 "wd" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "wf" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner{
 	dir = 8
@@ -4411,9 +4029,7 @@
 	},
 /obj/machinery/computer/supplycomp/som,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "wi" = (
 /obj/structure/prop/mainship/invincibleshutter{
 	dir = 4
@@ -4423,6 +4039,10 @@
 	},
 /turf/open/floor/mainship/black/full,
 /area/antag_ship)
+"wk" = (
+/obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/maintenance/south)
 "wl" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -4431,10 +4051,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "wm" = (
 /obj/effect/landmark/start/latejoinclf,
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
@@ -4443,10 +4060,7 @@
 "wn" = (
 /obj/structure/platform,
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "wr" = (
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 10
@@ -4459,25 +4073,19 @@
 	},
 /obj/machinery/optable,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/medical/morgue)
+/area/antag_ship/som/medbay/morgue)
 "wt" = (
 /obj/structure/table/black,
 /turf/open/floor/iron/dark/small,
 /area/antag_ship/vsd/med)
 "wv" = (
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "ww" = (
 /obj/structure/table/reinforced,
 /obj/machinery/faxmachine/som,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "wx" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/camera_advanced/overwatch/main/som{
@@ -4487,16 +4095,13 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "wz" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_armory{
-	outside = 0;
-	name = "SOM Security"
-	})
+/area/antag_ship/som/security)
 "wB" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -4506,10 +4111,11 @@
 	dir = 4
 	},
 /turf/open/floor/mainship,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
+"wC" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/black,
+/area/antag_ship/vsd/med)
 "wE" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
 	dir = 1
@@ -4518,20 +4124,14 @@
 "wG" = (
 /obj/structure/window/framed/mainship/gray/toughened,
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "wI" = (
 /obj/item/storage/box/visual/magazine/compact/pepperball/full,
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_armory{
-	outside = 0;
-	name = "SOM Security"
-	})
+/area/antag_ship/som/security)
 "wM" = (
 /obj/alien/egg/hugger,
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
@@ -4541,9 +4141,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 6
 	},
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "wP" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/structure/cable,
@@ -4568,20 +4166,16 @@
 	id = "SOMFC1"
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/office/commander/field)
 "wU" = (
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/machinery/vending/snack,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "wV" = (
 /obj/structure/curtain/open/medical,
 /obj/structure/cable,
@@ -4678,10 +4272,11 @@
 "xu" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "xw" = (
 /obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
@@ -4693,9 +4288,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "xz" = (
 /obj/machinery/door/airlock/external{
 	locked = 1
@@ -4733,10 +4326,7 @@
 "xD" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "xE" = (
 /obj/effect/spawner/random/engineering/cable,
 /obj/effect/turf_decal/trimline/brown/warning{
@@ -4757,12 +4347,9 @@
 /area/antag_ship/icc/generator_room)
 "xJ" = (
 /obj/effect/ai_node,
-/obj/structure/cable,
 /obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/area/antag_ship/som/engi)
 "xL" = (
 /obj/machinery/bodyscanner,
 /turf/open/floor/prison/whitegreen/full,
@@ -4848,10 +4435,7 @@
 	},
 /obj/item/tool/pen/blue,
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "yd" = (
 /obj/structure/table/wood/fancy,
 /obj/machinery/computer/camera_advanced/overwatch/som,
@@ -4859,15 +4443,10 @@
 	dir = 1
 	},
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "ye" = (
 /turf/closed/wall/mainship/gray,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "yf" = (
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 4
@@ -4911,10 +4490,7 @@
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "yy" = (
 /obj/machinery/vending/engivend,
 /obj/machinery/light/mainship{
@@ -4925,29 +4501,27 @@
 "yA" = (
 /obj/machinery/telecomms/bus/preset_three/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "yB" = (
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/aft/engiroom/port)
+"yC" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/security/cell)
 "yF" = (
 /obj/structure/filingcabinet,
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "yH" = (
 /obj/machinery/telecomms/server/presets/engineering/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "yI" = (
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/antag_ship/icc/generator_room)
-"yK" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
 "yO" = (
 /obj/machinery/vending/boozeomat,
 /obj/machinery/light{
@@ -4956,9 +4530,7 @@
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "yP" = (
 /turf/open/floor/plating/ground/concrete/lines,
 /area/antag_ship/icc/hangar/east)
@@ -5005,26 +4577,23 @@
 /area/antag_ship/clf_base/reedroom)
 "zf" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_nmaint{
-	name = "SOM North Maintenance"
-	})
+/area/antag_ship/som/preparation)
 "zh" = (
 /turf/open/floor/mech_bay_recharge_floor,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "zn" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/maint{
 	req_one_access = list(208);
 	dir = 2
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/area/antag_ship/som/engi)
 "zq" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/whitegreen{
@@ -5046,10 +4615,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "zt" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -5062,10 +4628,7 @@
 	},
 /obj/structure/window/reinforced,
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "zz" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -5080,10 +4643,9 @@
 "zE" = (
 /obj/structure/cable,
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "zG" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/plating,
@@ -5115,20 +4677,20 @@
 	dir = 1
 	},
 /area/antag_ship/clf_base/techroom)
+"zP" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/hangar)
 "zQ" = (
 /obj/machinery/computer/sleep_console{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "zU" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "zX" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/generic{
@@ -5175,10 +4737,9 @@
 	dir = 2;
 	req_one_access = list(206)
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/white,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "Ap" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk/prison,
@@ -5197,9 +4758,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 9
 	},
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "Aw" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -5232,10 +4791,11 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
+"AL" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/black,
+/area/antag_ship/vsd/armory)
 "AM" = (
 /obj/structure/bed/chair/dropship/pilot{
 	dir = 1
@@ -5251,10 +4811,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "AN" = (
 /turf/closed/wall/brick,
 /area/antag_ship/clf_base/armory)
@@ -5270,38 +4827,32 @@
 "AV" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/medical/morgue)
+/area/antag_ship/som/medbay/morgue)
 "AX" = (
 /obj/structure/cable,
-/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold4w/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_smaint{
-	name = "SOM South Maintenance";
-	outside = 0
-	})
+/area/antag_ship/som/preparation)
 "AY" = (
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/reedroom)
 "Bc" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/structure/table/wood/fancy,
 /obj/machinery/door_control/old{
 	name = "Privacy shutters";
 	id = "SOMFC1"
 	},
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "Bd" = (
 /obj/effect/landmark/start/latejoinsom,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "Bf" = (
 /obj/machinery/vending/marineFood,
 /turf/open/floor/iron/dark/herringbone,
@@ -5319,24 +4870,18 @@
 	},
 /obj/machinery/light/small,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/medical/morgue)
+/area/antag_ship/som/medbay/morgue)
 "Bk" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_armory{
-	outside = 0;
-	name = "SOM Security"
-	})
+/area/antag_ship/som/security)
 "Bn" = (
 /obj/machinery/hydroponics,
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
 /turf/open/floor/grass,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "Bo" = (
 /turf/open/floor/plating/ground/concrete/edge,
 /area/antag_ship/icc/hangar/west)
@@ -5361,25 +4906,22 @@
 	pixel_x = -10
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Bv" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/bcircuit/off,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "Bw" = (
 /obj/structure/cable,
-/obj/machinery/power/smes/preset,
 /obj/machinery/light/small{
 	dir = 1
 	},
-/turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/obj/machinery/power/smes{
+	output_level = 150000
+	},
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/engi)
 "Bx" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
@@ -5397,18 +4939,12 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "BA" = (
 /obj/machinery/light/mainship{
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/power/smes{
-	capacity = 1000000
-	},
 /obj/structure/prop/mainship/gelida/powerconnector{
 	dir = 8
 	},
@@ -5423,10 +4959,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "BC" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 1
@@ -5435,6 +4968,12 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
+"BD" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/antag_ship/som/medbay)
 "BE" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -5456,10 +4995,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "BL" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/book/manual/engineering_construction,
@@ -5486,9 +5022,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_nmaint{
-	name = "SOM North Maintenance"
-	})
+/area/antag_ship/som/maintenance/south)
 "BS" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /obj/machinery/door/poddoor/shutters/mainship{
@@ -5497,10 +5031,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "BT" = (
 /obj/effect/turf_decal/siding/wideplating_new/dark/corner,
 /obj/effect/turf_decal/siding/wideplating_new/light{
@@ -5527,25 +5058,17 @@
 "Ce" = (
 /obj/machinery/vending/sovietsoda,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Cg" = (
 /obj/structure/table/wood/fancy,
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "Ch" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 9
 	},
 /turf/open/shuttle/plating,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "Cj" = (
 /obj/machinery/vending/armor_supply/pmc,
 /obj/machinery/light/mainship{
@@ -5566,9 +5089,7 @@
 "Cl" = (
 /obj/machinery/autodoc,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "Cm" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge/regular{
@@ -5591,7 +5112,7 @@
 "Cq" = (
 /obj/machinery/telecomms/bus/preset_four/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "Cr" = (
 /obj/structure/table/wood/fancy,
 /obj/structure/paper_bin,
@@ -5603,19 +5124,15 @@
 	dir = 4
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "Ct" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/generic/glass{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "Cw" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -5651,9 +5168,7 @@
 	},
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "Cy" = (
 /turf/open/floor/plating/ground/concrete,
 /area/space)
@@ -5665,10 +5180,7 @@
 "CA" = (
 /obj/effect/teleporter_linker,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "CB" = (
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/starboard/spaceport)
@@ -5680,10 +5192,7 @@
 	id = "SOMAdmiral1"
 	},
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "CD" = (
 /obj/effect/turf_decal/trimline/dark_blue,
 /obj/structure/sign/safety/medical,
@@ -5727,9 +5236,7 @@
 /obj/item/clothing/mask/breath/medical,
 /obj/machinery/iv_drip,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "CQ" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -5738,21 +5245,13 @@
 	},
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "CR" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted{
 	dir = 8
 	},
 /turf/closed/wall/brick,
 /area/antag_ship/clf_base/requisition)
-"CT" = (
-/turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
 "CU" = (
 /obj/structure/bed/chair/sofa/corsat/left,
 /turf/open/floor/plating/asteroidwarning{
@@ -5771,9 +5270,7 @@
 /obj/machinery/vending/som/lasgun,
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "CY" = (
 /obj/machinery/light/small,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -5790,10 +5287,7 @@
 	equipment_offset_y = 25
 	},
 /turf/closed/wall/mainship/outer/canterbury,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Df" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -5809,10 +5303,7 @@
 	pixel_y = 15
 	},
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "Di" = (
 /obj/machinery/light{
 	dir = 1
@@ -5825,21 +5316,15 @@
 /area/antag_ship/clf_base/lounge)
 "Dk" = (
 /turf/closed/wall/mainship/gray/outer,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship)
 "Dl" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Dm" = (
 /obj/machinery/light,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "Dn" = (
 /obj/effect/landmark/start/job/usl,
 /turf/open/floor/iron/dark/smooth_corner{
@@ -5858,7 +5343,7 @@
 /area/antag_ship/icc/hangar/east)
 "Dq" = (
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "Dr" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 9
@@ -5875,10 +5360,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Du" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -5893,9 +5375,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "DA" = (
 /obj/effect/landmark/start/job/usl,
 /obj/structure/bed/chair/dropship/passenger{
@@ -5910,15 +5390,10 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "DI" = (
 /turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "DM" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -5930,11 +5405,11 @@
 /obj/structure/cable,
 /obj/machinery/power/apc,
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "DP" = (
 /obj/structure/curtain/shower,
 /turf/open/floor/grayscale/edge,
@@ -5980,20 +5455,21 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
+"Eg" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/security)
 "Eh" = (
 /obj/machinery/vending/snack,
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Ei" = (
 /obj/machinery/power/geothermal/reinforced,
 /obj/structure/cable,
@@ -6009,14 +5485,12 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "Et" = (
 /obj/structure/cable,
 /obj/machinery/light/small,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_nmaint{
-	name = "SOM North Maintenance"
-	})
+/area/antag_ship/som/maintenance/north)
 "Ex" = (
 /obj/effect/turf_decal/siding/thinplating_new/dark{
 	dir = 5
@@ -6025,27 +5499,21 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Ez" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_armory{
-	outside = 0;
-	name = "SOM Security"
-	})
+/area/antag_ship/som/security)
 "EA" = (
-/obj/structure/cable,
 /obj/machinery/marine_selector/clothes/synth{
 	vendor_role = /datum/job/som/silicon/synthetic/som
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/area/antag_ship/som/engi)
 "EB" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -6059,44 +5527,32 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "ED" = (
 /obj/machinery/atmospherics/components/unary/tank/oxygen,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "EF" = (
 /turf/closed/wall/mainship/outer/canterbury,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "EG" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/medical/glass{
 	dir = 2;
 	req_one_access = null
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "EH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/vehicle/ridden/powerloader,
 /turf/open/floor/mainship/cargo,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "EI" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -6110,9 +5566,7 @@
 "EL" = (
 /obj/structure/cable,
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "EM" = (
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine_expired,
 /obj/effect/landmark/start/job/som/icc_leader,
@@ -6127,9 +5581,7 @@
 	},
 /obj/item/storage/box/ids,
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "EQ" = (
 /obj/machinery/vending/uniform_supply/pmc,
 /obj/machinery/light/mainship{
@@ -6200,10 +5652,7 @@
 "Fh" = (
 /obj/item/storage/toolbox/mechanical,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Fi" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -6218,10 +5667,7 @@
 /area/antag_ship/vsd/armory)
 "Fj" = (
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "Fm" = (
 /obj/structure/cable,
 /turf/open/floor/iron/dark/corner{
@@ -6256,18 +5702,13 @@
 /obj/structure/closet/secure_closet/engineering_chief,
 /obj/item/storage/backpack/marine/engineerpack,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "Fu" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 1
 	},
 /turf/open/shuttle/plating,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "Fw" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -6275,9 +5716,7 @@
 "Fx" = (
 /obj/machinery/vending/som/uniform_supply,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "Fy" = (
 /obj/effect/spawner/random/misc/structure/closet/tool,
 /turf/open/floor/plating/ground/concrete,
@@ -6285,10 +5724,7 @@
 "Fz" = (
 /obj/structure/stairs/seamless/platform_vert,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "FA" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/plating/ground/concrete,
@@ -6304,17 +5740,13 @@
 /obj/structure/table/wood/fancy,
 /obj/machinery/computer,
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "FE" = (
 /obj/structure/cable,
 /obj/machinery/vending/cola,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "FG" = (
 /turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/bridge)
@@ -6330,10 +5762,7 @@
 	req_access = list(204)
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "FK" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/shrink_cw,
 /obj/effect/turf_decal/trimline/dark_blue/filled/shrink_ccw{
@@ -6349,9 +5778,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "FM" = (
 /obj/effect/turf_decal/warning_stripes/box/small{
 	dir = 4
@@ -6381,9 +5808,7 @@
 /obj/structure/table/wood/fancy,
 /obj/effect/ai_node,
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "FU" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/mainship/sterile/plain,
@@ -6393,10 +5818,7 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Ga" = (
 /obj/structure/largecrate/guns/russian,
 /turf/open/floor/plating/asteroidfloor,
@@ -6469,10 +5891,17 @@
 /obj/structure/closet/secure_closet/chemical/colony,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
+"GC" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/preparation)
 "GD" = (
 /obj/machinery/telecomms/bus/preset_one/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "GE" = (
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 5
@@ -6488,10 +5917,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "GG" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -6504,9 +5930,7 @@
 /obj/structure/table/wood/fancy,
 /obj/machinery/computer/communications/antag,
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "GK" = (
 /obj/structure/table/black,
 /obj/item/storage/box/beakers,
@@ -6545,10 +5969,7 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "GS" = (
 /obj/structure/table/black,
 /obj/item/clothing/head/helmet/space/syndicate,
@@ -6586,11 +6007,19 @@
 /area/antag_ship/clf_base/lounge)
 "He" = (
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
+"Hf" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/preparation)
 "Hh" = (
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 8
@@ -6602,9 +6031,7 @@
 /obj/machinery/camera/autoname/mainship/somship,
 /obj/item/trash/burger,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "Hn" = (
 /obj/machinery/autodoc,
 /turf/open/floor/iron/dark/small,
@@ -6612,18 +6039,11 @@
 "Hr" = (
 /turf/closed/shuttle/dropship_dark/logo_wall,
 /area/shuttle/transport)
-"Hs" = (
-/turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_nmaint{
-	name = "SOM North Maintenance"
-	})
 "Hu" = (
 /obj/effect/landmark/start/latejoinsom,
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "Hv" = (
 /obj/structure/closet/wardrobe,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -6671,17 +6091,13 @@
 	},
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "HE" = (
 /obj/effect/landmark/start/job/fieldcommander,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "HI" = (
 /obj/machinery/vending/weapon/vsd,
 /turf/open/floor/iron/dark/side{
@@ -6698,22 +6114,16 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "HL" = (
 /obj/machinery/door/airlock/mainship/generic/bathroom/toilet{
 	dir = 2
 	},
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "HM" = (
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/medical/morgue)
+/area/antag_ship/som/medbay/morgue)
 "HO" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric/glass,
 /turf/open/floor/mainship/mono,
@@ -6751,17 +6161,24 @@
 	},
 /area/antag_ship/clf_base/hallways/inside)
 "Ic" = (
-/obj/structure/cable,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 9
+	},
 /turf/open/floor/mainship/sterile/white,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "Id" = (
 /turf/closed/wall/brick,
 /area/antag_ship/clf_base/kitchen)
+"Ie" = (
+/obj/effect/landmark/start/latejoinsom,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 10
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/preparation)
 "If" = (
 /obj/effect/landmark/start/job/usl,
 /obj/structure/bed/chair/dropship/passenger{
@@ -6771,6 +6188,10 @@
 	dir = 4
 	},
 /area/antag_ship/vsd/hall)
+"Ig" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/round/black,
+/area/antag_ship/vsd/bridge)
 "Il" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6780,20 +6201,14 @@
 	dir = 4
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "Im" = (
 /obj/effect/landmark/start/job/som/icc_medic,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/medical_room)
 "In" = (
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "Ip" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -6821,10 +6236,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/orange/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "It" = (
 /obj/effect/step_trigger/teleporter/random,
 /obj/effect/step_trigger/teleporter/random,
@@ -6850,10 +6262,7 @@
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/hydroponics,
 /turf/open/floor/grass,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "Iz" = (
 /obj/machinery/vending/MarineMed,
 /obj/machinery/light/mainship{
@@ -6875,9 +6284,7 @@
 /obj/effect/landmark/start/latejoinsom,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "IE" = (
 /obj/machinery/power/apc{
 	dir = 8
@@ -6888,10 +6295,7 @@
 	},
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "IF" = (
 /obj/machinery/vending/weapon/pmc,
 /turf/open/floor/mainship/sterile/plain,
@@ -6926,20 +6330,14 @@
 	dir = 6
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "IP" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "IQ" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
@@ -6951,11 +6349,8 @@
 /obj/machinery/camera/autoname/mainship/somship{
 	dir = 10
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/area/antag_ship/som/engi)
 "IT" = (
 /turf/closed/shuttle/dropship_dark/interior_corner{
 	dir = 1
@@ -6977,15 +6372,12 @@
 /obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/cigar,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "IZ" = (
 /obj/structure/cable,
 /turf/open/floor/prison/blackfloor,
@@ -6999,10 +6391,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "Jc" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/effect/turf_decal/trimline/dark_blue/line{
@@ -7027,9 +6416,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "Jf" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
@@ -7065,10 +6452,7 @@
 	dir = 5
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "Jn" = (
 /obj/effect/landmark/start/job/vsd_engineer,
 /turf/open/floor/prison,
@@ -7077,12 +6461,6 @@
 /obj/structure/rack,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
-"Jp" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/canora_desert/surface/building/som_smaint{
-	name = "SOM South Maintenance";
-	outside = 0
-	})
 "Jq" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/plating/ground/concrete,
@@ -7090,10 +6468,7 @@
 "Jr" = (
 /obj/structure/table/mainship,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Jt" = (
 /obj/structure/table/mainship,
 /obj/machinery/light/mainship{
@@ -7112,10 +6487,7 @@
 "JA" = (
 /obj/machinery/holopad,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "JB" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/icc/hangar/west)
@@ -7124,6 +6496,13 @@
 	name = "white wall"
 	},
 /area/antag_ship/clf_base/bathroom)
+"JD" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/engi)
 "JE" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/stack/sheet/wood/large_stack,
@@ -7136,9 +6515,7 @@
 /obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/cargo,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "JF" = (
 /obj/structure/prop/mainship/prop_iccinf/guard/armed{
 	icon_state = "ICC_guard_specialist_armed"
@@ -7154,10 +6531,7 @@
 	},
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "JL" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete/lines,
@@ -7188,12 +6562,6 @@
 	dir = 8
 	},
 /area/antag_ship/vsd/hall)
-"JV" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
 "JW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/dirt,
@@ -7225,14 +6593,17 @@
 /obj/effect/forcefield/fog,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)
+"Ke" = (
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/security/cell)
 "Kf" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning,
 /obj/machinery/light,
 /turf/open/shuttle/plating,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "Kh" = (
 /obj/machinery/power/apc{
 	dir = 8
@@ -7246,14 +6617,15 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_smaint{
-	name = "SOM South Maintenance";
-	outside = 0
-	})
+/area/antag_ship/som/maintenance/south)
 "Kn" = (
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
+"Kr" = (
+/obj/structure/window/framed/prison/reinforced/hull,
+/turf/open/floor/grayscale/black,
+/area/antag_ship/vsd/hall)
 "Ks" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
@@ -7293,10 +6665,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/dark_red/filled/warning,
 /turf/open/floor/plating/scorched,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "KG" = (
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters{
@@ -7342,16 +6711,13 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/medical/morgue)
+/area/antag_ship/som/medbay/morgue)
 "KS" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 1
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "KT" = (
 /obj/effect/landmark/corpsespawner/syndicatecommando/regular,
 /obj/effect/step_trigger/teleporter/random,
@@ -7368,16 +6734,11 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "KW" = (
 /obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "KY" = (
 /obj/structure/cable,
 /obj/machinery/light/mainship{
@@ -7409,23 +6770,15 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "Lk" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/white,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "Lm" = (
 /obj/structure/platform,
 /turf/open/floor/mainship/orange/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Ln" = (
 /obj/machinery/power/apc{
 	dir = 8
@@ -7441,12 +6794,8 @@
 	dir = 8;
 	on = 1
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "Ls" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/technology_scanner,
@@ -7466,17 +6815,19 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
+"Lw" = (
+/obj/effect/landmark/start/latejoinsom,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/preparation)
 "Lx" = (
 /obj/machinery/vending/som/lasgun,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_armory{
-	outside = 0;
-	name = "SOM Security"
-	})
+/area/antag_ship/som/security)
 "Ly" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -7488,10 +6839,7 @@
 "LA" = (
 /obj/machinery/cic_maptable/som_maptable,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "LC" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/trimline/dark_blue,
@@ -7500,12 +6848,6 @@
 	dir = 1
 	},
 /area/antag_ship/clf_base/sleeproom)
-"LD" = (
-/turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
 "LF" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
@@ -7533,10 +6875,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "LM" = (
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
@@ -7561,10 +6900,7 @@
 	dir = 4
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "LT" = (
 /obj/machinery/computer,
 /turf/open/shuttle/dropship/floor,
@@ -7594,6 +6930,12 @@
 "Mb" = (
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/west)
+"Md" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/security)
 "Mf" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -7606,10 +6948,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/ironsand,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "Mi" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som,
 /turf/open/shuttle/dropship/floor,
@@ -7637,15 +6976,7 @@
 "Mq" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
-"Mr" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/preparation)
 "Mu" = (
 /obj/structure/table/wood/fancy,
 /obj/item/xeno_iff_tag/som,
@@ -7655,11 +6986,12 @@
 	dir = 6
 	},
 /obj/item/tool/lighter/zippo,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 8;
+	on = 1
+	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "Mw" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
@@ -7683,18 +7015,13 @@
 "MI" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "MJ" = (
 /obj/structure/closet/cabinet,
 /turf/open/floor/carpet/side{
 	dir = 1
 	},
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "MK" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/table/holotable,
@@ -7707,10 +7034,7 @@
 	id = "SOMAdmiral2"
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "MM" = (
 /obj/structure/closet/crate,
 /turf/open/floor/mainship/sterile/plain,
@@ -7726,10 +7050,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "MU" = (
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 9
@@ -7743,9 +7064,7 @@
 "MX" = (
 /obj/machinery/vending/som/armor_supply,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "MZ" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -7758,10 +7077,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/office/commander/field)
 "Nc" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/office,
@@ -7771,17 +7087,13 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Ni" = (
 /obj/structure/cable,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "Nj" = (
 /turf/closed/wall/brick,
 /area/antag_ship/clf_base/techroom)
@@ -7795,10 +7107,7 @@
 "Nm" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Nn" = (
 /obj/structure/bed/fancy{
 	pixel_y = 12
@@ -7825,10 +7134,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "No" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -7845,9 +7151,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/area/antag_ship/som/engi)
 "Ns" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -7885,9 +7189,7 @@
 	name = "Privacy"
 	},
 /turf/open/floor/wood/alt_three,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "Nx" = (
 /obj/structure/bed/chair/east,
 /obj/effect/landmark/start/job/pmc_sniper,
@@ -7910,43 +7212,33 @@
 /obj/effect/turf_decal/bot,
 /obj/machinery/vending/marineFood/som,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "NG" = (
 /obj/machinery/vending/cigarette,
 /obj/machinery/light{
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "NJ" = (
 /obj/effect/ai_node,
 /obj/machinery/computer/camera_advanced/overwatch/som/xray{
 	req_access = list(204)
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "NM" = (
 /obj/machinery/sleeper{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "NN" = (
 /obj/machinery/telecomms/hub/preset/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "NP" = (
 /obj/machinery/vending/uniform_supply/vsd,
 /turf/open/floor/iron/dark/side{
@@ -7966,9 +7258,7 @@
 	},
 /obj/machinery/chem_dispenser,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "NS" = (
 /turf/open/floor/plating/ground/concrete/edge{
 	dir = 8
@@ -7992,9 +7282,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "NW" = (
 /obj/effect/turf_decal/syndicateemblem/middle/right,
 /obj/structure/bed/chair/dropship/passenger{
@@ -8006,19 +7294,13 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "NY" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/cable,
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "NZ" = (
 /obj/structure/dropship_piece/two/weapon/leftleft{
 	dir = 1;
@@ -8028,10 +7310,7 @@
 	equipment_offset_y = 25
 	},
 /turf/closed/wall/mainship/outer/canterbury,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Oa" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -8040,26 +7319,19 @@
 	dir = 4
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Oe" = (
 /obj/structure/rack,
 /obj/item/storage/belt/utility/full,
 /obj/item/storage/belt/utility/full,
 /obj/item/tool/weldpack,
 /turf/open/floor/mainship/cargo,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "Of" = (
 /obj/effect/landmark/start/latejoinsom,
 /obj/effect/decal/cleanable/blood/splatter/girlcum,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "Og" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 8
@@ -8080,10 +7352,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Ol" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/random/engineering/extinguisher,
@@ -8110,16 +7379,11 @@
 "Ou" = (
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Ov" = (
 /obj/effect/landmark/start/latejoinsom,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "Ow" = (
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
@@ -8128,7 +7392,7 @@
 /obj/machinery/light,
 /obj/machinery/telecomms/receiver/preset_right/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "OA" = (
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
@@ -8143,10 +7407,7 @@
 "OG" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "OK" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -8208,10 +7469,7 @@
 	id = "minidropship_podlocksom"
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "OU" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -8300,9 +7558,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "Pm" = (
 /obj/machinery/vending/mech_vendor{
 	req_access = list(207)
@@ -8311,19 +7567,14 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "Pn" = (
 /obj/structure/prop/mainship/railing{
 	dir = 8
 	},
 /obj/machinery/vending/cargo_supply/som,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "Po" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/effect/turf_decal/warning_stripes/box,
@@ -8356,10 +7607,7 @@
 /obj/machinery/reagentgrinder,
 /obj/structure/table/reinforced/flipped,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "PB" = (
 /obj/structure/barricade/plasteel{
 	dir = 8
@@ -8374,10 +7622,11 @@
 /obj/effect/landmark/start/job/som,
 /obj/effect/landmark/start/latejoinsom,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 5
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "PE" = (
 /obj/item/stack/sheet/cloth,
 /turf/open/floor/plating/ground/dirt,
@@ -8387,10 +7636,7 @@
 	dir = 5
 	},
 /turf/open/floor/plating/ironsand,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "PL" = (
 /turf/closed/wall/brick,
 /area/antag_ship/clf_base/medbay)
@@ -8428,10 +7674,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "PR" = (
 /turf/open/floor/plating/ground/desertdam/asphalt/edge{
 	dir = 1
@@ -8464,9 +7707,7 @@
 "PY" = (
 /obj/machinery/chem_master,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "Qe" = (
 /obj/machinery/power/geothermal/reinforced,
 /obj/structure/cable,
@@ -8502,9 +7743,13 @@
 "Qi" = (
 /obj/machinery/vending/marineFood/som,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
+"Qj" = (
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
+/turf/open/floor/mainship/sterile/white,
+/area/antag_ship/som/medbay)
 "Qn" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -8529,10 +7774,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "Qq" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -8561,17 +7803,12 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "Qx" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/area/antag_ship/som/engi)
 "QC" = (
 /obj/effect/landmark/start/job/pmc_gunner,
 /obj/structure/cable,
@@ -8598,10 +7835,7 @@
 /turf/open/floor/grayscale/edge/black{
 	dir = 4
 	},
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "QJ" = (
 /obj/structure/bed/chair/east,
 /obj/effect/landmark/start/job/pmc_medic,
@@ -8611,10 +7845,7 @@
 /turf/closed/shuttle/ert/engines/left{
 	dir = 1
 	},
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "QN" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	dir = 2;
@@ -8623,28 +7854,20 @@
 	},
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "QO" = (
 /obj/structure/closet/secure_closet/req_officer{
 	req_access = list(213)
 	},
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "QP" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/item/stool,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "QR" = (
 /obj/machinery/light/mainship{
 	dir = 1
@@ -8659,10 +7882,9 @@
 	dir = 2;
 	req_access = list(211)
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/security)
 "QT" = (
 /obj/effect/landmark/start/job/vsd,
 /turf/open/floor/iron/dark,
@@ -8676,9 +7898,7 @@
 /obj/item/storage/surgical_tray,
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "QY" = (
 /obj/structure/prop/mainship/doorblocker/patrol_base/som{
 	dir = 4
@@ -8702,9 +7922,7 @@
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/area/antag_ship/som/engi)
 "Ri" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/concrete,
@@ -8724,10 +7942,17 @@
 /obj/structure/table/reinforced,
 /obj/machinery/computer/pod/old/syndicate,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
+"Rm" = (
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/command/cic{
+	req_access = list(204)
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/bridge)
 "Ro" = (
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/rig/syndi,
@@ -8754,11 +7979,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/pmc_ntf/aft/spaceport)
-"Rz" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
 "RA" = (
 /obj/machinery/light/red{
 	dir = 1
@@ -8774,10 +7994,7 @@
 /obj/structure/bed/chair/comfy/black,
 /obj/structure/cable,
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "RC" = (
 /obj/structure/bed/alien,
 /obj/effect/landmark/start/job/clf/breeder,
@@ -8790,10 +8007,7 @@
 	dir = 2
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "RE" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1
@@ -8831,46 +8045,33 @@
 	id = "minidropship_podlocksom"
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "RJ" = (
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/sterile/white,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "RK" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "RN" = (
 /obj/effect/turf_decal/trimline/dark_red/filled/warning{
 	dir = 10
 	},
 /turf/open/floor/plating/ironsand,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "RO" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "RP" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
@@ -8880,10 +8081,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "RQ" = (
 /obj/effect/turf_decal/trimline/brown/warning{
 	dir = 9
@@ -8896,10 +8094,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "RY" = (
 /obj/structure/bed/chair/sofa/left{
 	dir = 8
@@ -8918,9 +8113,7 @@
 "Sa" = (
 /obj/docking_port/stationary/supplysom,
 /turf/open/floor/mainship/empty,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "Sc" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/wood{
@@ -8929,29 +8122,23 @@
 /obj/structure/table/wood/fancy,
 /obj/machinery/power/apc,
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "Se" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
 	},
 /obj/effect/landmark/start/job/som/staff_officer,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Sj" = (
 /obj/machinery/door/airlock/mainship/security/glass{
 	req_access = list(211)
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 8
+	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "Sk" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
@@ -8972,10 +8159,7 @@
 	dir = 8
 	},
 /turf/open/floor/prison/darkyellow/full,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "Sq" = (
 /obj/effect/turf_decal/syndicateemblem/bottom/middle,
 /obj/structure/cable,
@@ -8999,13 +8183,11 @@
 "Sw" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "Sx" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/grayscale/black,
-/area/antag_ship)
+/area/antag_ship/vsd/engi)
 "Sy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/warning_stripes,
@@ -9013,10 +8195,7 @@
 	req_access = list(207)
 	},
 /turf/open/floor/grayscale/edge/black,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/mech_bay)
 "Sz" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -9025,10 +8204,7 @@
 	dir = 8
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "SB" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside/regular{
@@ -9053,10 +8229,7 @@
 	},
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "SE" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 9
@@ -9111,10 +8284,9 @@
 /turf/closed/wall/brick,
 /area/antag_ship/clf_base/hallways/inside)
 "SQ" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "ST" = (
 /obj/machinery/chem_dispenser,
 /obj/item/reagent_containers/glass/beaker/bluespace,
@@ -9172,13 +8344,8 @@
 /area/antag_ship/vsd/med)
 "Ti" = (
 /obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 4
-	},
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "Tj" = (
 /obj/structure/closet/secure_closet/military_police{
 	locked = 0;
@@ -9197,10 +8364,7 @@
 /obj/item/flash,
 /obj/item/clothing/glasses/sunglasses/sechud,
 /turf/open/floor/mainship/cargo,
-/area/canora_desert/surface/building/som_armory{
-	outside = 0;
-	name = "SOM Security"
-	})
+/area/antag_ship/som/security)
 "Tk" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -9214,33 +8378,26 @@
 	req_access = list(206)
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/medical/morgue)
+/area/antag_ship/som/medbay/morgue)
 "Tm" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "Tn" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "To" = (
 /obj/structure/closet/secure_closet/staff_officer{
 	req_access = list(204)
 	},
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Tp" = (
 /obj/effect/turf_decal/trimline/dark_blue/filled/shrink_ccw,
 /obj/effect/turf_decal/trimline/dark_blue/filled/shrink_cw{
@@ -9258,15 +8415,13 @@
 "Ts" = (
 /obj/machinery/telecomms/processor/preset_three/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "Tt" = (
 /obj/machinery/vending/coffee,
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Tw" = (
 /obj/effect/turf_decal/trimline/dark_blue/line,
 /obj/effect/ai_node,
@@ -9281,10 +8436,7 @@
 	dir = 9
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "TB" = (
 /obj/structure/bed/chair/sofa/corsat/right,
 /turf/open/floor/plating/asteroidwarning{
@@ -9301,18 +8453,19 @@
 /obj/machinery/microwave,
 /obj/structure/table/reinforced/flipped,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "TI" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
+"TJ" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/antag_ship/som/requisition)
 "TK" = (
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
@@ -9331,15 +8484,11 @@
 /obj/structure/closet/secure_closet/engineering_personal,
 /obj/item/storage/backpack/marine/engineerpack,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "TQ" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "TX" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/firstaid/adv,
@@ -9356,17 +8505,15 @@
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "TY" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "TZ" = (
 /obj/effect/spawner/random/engineering/assemblies,
 /turf/open/floor/plating/ground/concrete,
@@ -9376,9 +8523,7 @@
 /area/antag_ship/pmc_ntf/port/spaceport)
 "Uc" = (
 /turf/open/floor/mainship/sterile/white,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "Ud" = (
 /obj/effect/landmark/start/job/usl,
 /turf/open/floor/iron/dark/smooth_edge{
@@ -9393,10 +8538,7 @@
 	dir = 9
 	},
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "Uf" = (
 /obj/structure/largecrate/supply/explosives/disposable,
 /turf/open/floor/iron/dark/corner{
@@ -9455,9 +8597,7 @@
 /obj/item/defibrillator,
 /obj/item/defibrillator,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "Ut" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -9468,9 +8608,7 @@
 "Uv" = (
 /obj/machinery/vending/weapon/som,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "Uw" = (
 /obj/effect/teleporter_linker,
 /turf/open/floor/plating/ground/dirt,
@@ -9539,7 +8677,7 @@
 "UQ" = (
 /obj/structure/window/framed/prison/reinforced/hull,
 /turf/open/floor/mainship/black/full,
-/area/antag_ship)
+/area/antag_ship/vsd/hall)
 "UR" = (
 /obj/effect/decal/cleanable/blood/splatter/xenocum,
 /turf/open/floor/mainship/mono,
@@ -9596,11 +8734,11 @@
 /area/antag_ship/vsd/bridge)
 "Vd" = (
 /obj/structure/cable,
-/obj/machinery/power/smes/preset,
-/turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_engineering{
-	outside = 0
-	})
+/obj/machinery/power/smes{
+	output_level = 150000
+	},
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/engi)
 "Ve" = (
 /obj/machinery/door/airlock/external{
 	dir = 1;
@@ -9613,9 +8751,7 @@
 /turf/open/floor/carpet/side{
 	dir = 9
 	},
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "Vi" = (
 /obj/machinery/computer/body_scanconsole{
 	dir = 8
@@ -9667,17 +8803,10 @@
 	},
 /turf/open/floor/mainship/black/full,
 /area/antag_ship)
-"Vm" = (
-/turf/closed/wall/mainship/gray,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
 "Vn" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "Vo" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/surgical_tray,
@@ -9732,10 +8861,7 @@
 /obj/effect/turf_decal/siding/wood,
 /obj/item/tool/minihoe,
 /turf/open/floor/grass,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "VA" = (
 /obj/machinery/light/mainship{
 	dir = 4
@@ -9750,9 +8876,7 @@
 /obj/effect/landmark/start/latejoinsom,
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "VC" = (
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship)
@@ -9764,9 +8888,7 @@
 "VF" = (
 /obj/effect/ai_node,
 /turf/open/floor/carpet/side,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "VG" = (
 /obj/effect/turf_decal/siding/wideplating_new/light{
 	dir = 5
@@ -9818,11 +8940,6 @@
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /turf/open/space/basic,
 /area/antag_ship)
-"VM" = (
-/turf/closed/wall/mainship/gray/outer,
-/area/canora_desert/surface/building/som_nmaint{
-	name = "SOM North Maintenance"
-	})
 "VN" = (
 /obj/structure/closet/secure_closet/chemical,
 /turf/open/floor/iron/dark/textured_edge{
@@ -9857,9 +8974,7 @@
 /area/antag_ship/clf_base/techroom)
 "Wa" = (
 /turf/open/floor/plating,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "Wc" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -9868,16 +8983,12 @@
 	dir = 1
 	},
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "We" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "Wf" = (
 /obj/structure/barricade/handrail/urban/road/metal,
 /obj/effect/turf_decal/warning_stripes/thin,
@@ -9897,10 +9008,7 @@
 	},
 /obj/structure/filingcabinet,
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "Wj" = (
 /obj/structure/drop_pod_launcher,
 /obj/structure/droppod,
@@ -9937,24 +9045,19 @@
 "Wn" = (
 /obj/machinery/computer,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Ws" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security/som_mainship,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Wt" = (
 /obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "Wx" = (
 /obj/structure/table/black,
 /obj/item/clothing/suit/space/syndicate,
@@ -10004,9 +9107,7 @@
 	},
 /obj/machinery/atmospherics/components/unary/cryo_cell,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "WJ" = (
 /turf/open/floor/plating/asteroidwarning/down,
 /area/antag_ship/clf_base/requisition)
@@ -10020,9 +9121,7 @@
 /obj/item/flashlight,
 /obj/item/lightreplacer,
 /turf/open/floor/mainship/cargo,
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "WM" = (
 /obj/structure/largecrate/supply/ammo/m41a,
 /obj/effect/turf_decal/trimline/brown/filled/warning{
@@ -10077,17 +9176,11 @@
 /obj/structure/closet/secure_closet/freezer,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/antag_ship/clf_base/kitchen)
-"Xe" = (
-/turf/closed/wall/mainship/gray,
-/area/mainship/groundhq/som/medical/morgue)
 "Xf" = (
 /obj/structure/table/reinforced,
 /obj/item/detective_scanner,
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Xg" = (
 /obj/structure/sign/prop2,
 /turf/open/space/basic,
@@ -10095,9 +9188,7 @@
 "Xh" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/wood,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "Xi" = (
 /obj/structure/barricade/plasteel{
 	dir = 4
@@ -10111,9 +9202,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 1
 	},
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "Xn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/forensic_scanning{
@@ -10123,10 +9212,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/office,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Xo" = (
 /obj/machinery/power/smes,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -10138,10 +9224,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "Xr" = (
 /turf/closed/shuttle/ert/engines/right/three{
 	dir = 1
@@ -10159,20 +9242,14 @@
 	id = "minidropship_podlocksom"
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Xu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
 	},
 /obj/machinery/robotic_cradle,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "Xv" = (
 /obj/machinery/vending/weapon/pmc,
 /obj/machinery/light/mainship{
@@ -10191,16 +9268,11 @@
 /obj/effect/landmark/start/latejoinsom,
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "XD" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/iron/grimy,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "XE" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 4
@@ -10250,14 +9322,11 @@
 /area/antag_ship/clf_base/techroom)
 "XX" = (
 /turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_prison{
-	outside = 0;
-	name = "SOM Prisoner Contaiment"
-	})
+/area/antag_ship/som/security/cell)
 "XZ" = (
 /obj/machinery/telecomms/server/presets/common/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "Yc" = (
 /turf/closed/wall/mainship/outer/reinforced,
 /area/antag_ship)
@@ -10282,10 +9351,7 @@
 	},
 /obj/structure/window/framed/mainship/gray/toughened/hull,
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/som_torturechamber{
-	outside = 0;
-	name = "SOM Torture Chamber"
-	})
+/area/antag_ship/som/office/torture_chamber)
 "Yg" = (
 /obj/structure/rack,
 /obj/item/storage/firstaid/fire{
@@ -10324,10 +9390,11 @@
 /obj/structure/stairs/seamless/edge{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "Ym" = (
 /obj/structure/cable,
 /obj/machinery/autodoc{
@@ -10341,23 +9408,21 @@
 "Yn" = (
 /obj/machinery/telecomms/receiver/preset_left/som,
 /turf/open/floor/bcircuit/anim,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "Yo" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/latejoinsom,
 /obj/effect/decal/cleanable/blood/splatter/cum,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_barracks{
-	outside = 0
-	})
+/area/antag_ship/som/barracs)
 "Yr" = (
 /obj/structure/cable,
 /obj/machinery/power/apc,
 /turf/open/floor/plating/plating_catwalk,
-/area/canora_desert/surface/building/som_smaint{
-	name = "SOM South Maintenance";
-	outside = 0
-	})
+/area/antag_ship/som/maintenance/south)
 "Yu" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -10371,10 +9436,7 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/white,
-/area/canora_desert/surface/building/som_restrooms{
-	outside = 0;
-	name = "SOM Restrooms"
-	})
+/area/antag_ship/som/bathroom)
 "Yy" = (
 /obj/structure/rack,
 /obj/item/clothing/under/colonist/webbing,
@@ -10401,10 +9463,7 @@
 	id = "SOMAdmiral1"
 	},
 /turf/open/floor/wood/alt_three,
-/area/canora_desert/surface/building/som_admiral{
-	name = "SOM Admiral Quarters";
-	outside = 0
-	})
+/area/antag_ship/som/office/commander)
 "YA" = (
 /obj/machinery/vending/tool,
 /obj/machinery/light/mainship{
@@ -10414,27 +9473,18 @@
 /area/antag_ship/icc/warehouse)
 "YD" = (
 /turf/open/floor/plating,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "YG" = (
-/obj/structure/cable,
 /obj/machinery/vending/SyndiMed,
 /turf/open/floor/mainship/sterile,
-/area/mainship/groundhq/som/medical/lounge{
-	name = "SOM Medbay"
-	})
+/area/antag_ship/som/medbay)
 "YI" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/platform_decoration{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
+/area/antag_ship/som/bridge)
 "YM" = (
 /obj/structure/cable,
 /obj/structure/bed/chair/comfy{
@@ -10444,9 +9494,7 @@
 	dir = 5
 	},
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "YN" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
@@ -10480,7 +9528,7 @@
 	req_one_access = null
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/som/medical/morgue)
+/area/antag_ship/som/medbay/morgue)
 "YX" = (
 /obj/structure/prop/mainship/sensor_computer2,
 /turf/open/floor/plating/ground/concrete,
@@ -10533,11 +9581,11 @@
 /turf/open/floor/prison/whitegreen/full,
 /area/antag_ship/pmc_ntf/starboard/medbay)
 "Zo" = (
-/turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_smaint{
-	name = "SOM South Maintenance";
-	outside = 0
-	})
+/obj/structure/stairs/seamless/edge{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/antag_ship/som/preparation)
 "Zp" = (
 /obj/machinery/vending/MarineMed/Blood,
 /obj/machinery/light/mainship{
@@ -10551,16 +9599,7 @@
 	dir = 4
 	},
 /turf/open/floor/mainship/red/full,
-/area/canora_desert/surface/building/command{
-	outside = 0;
-	name = "SOM Bridge"
-	})
-"Zr" = (
-/turf/closed/wall/mainship/gray,
-/area/canora_desert/surface/building/som_mechbay{
-	outside = 0;
-	name = "SOM Mech Bay"
-	})
+/area/antag_ship/som/bridge)
 "Zs" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 4
@@ -10571,9 +9610,7 @@
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 8
 	},
-/area/mainship/groundhq/som/squads/req{
-	name = "SOM Requisitions"
-	})
+/area/antag_ship/som/requisition)
 "Zz" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -10582,7 +9619,7 @@
 /area/antag_ship/pmc_ntf/fore/restroom)
 "ZB" = (
 /turf/open/floor/bcircuit/off,
-/area/mainship/groundhq/som/command/telecomms)
+/area/antag_ship/som/telecomms)
 "ZC" = (
 /obj/structure/cable,
 /turf/closed/wall/brick,
@@ -10592,10 +9629,7 @@
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
-/area/canora_desert/surface/building/som_floortwomain{
-	name = "SOM Hangar Bay";
-	outside = 0
-	})
+/area/antag_ship/som/hangar)
 "ZJ" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -10622,9 +9656,7 @@
 /area/antag_ship/icc/hangar/west)
 "ZQ" = (
 /turf/open/floor/mainship/cargo,
-/area/mainship/squads/general/som{
-	name = "SOM Preparation"
-	})
+/area/antag_ship/som/preparation)
 "ZU" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -10643,9 +9675,7 @@
 	dir = 1
 	},
 /turf/open/floor/iron/grimy,
-/area/mainship/groundhq/som/living/numbertwobunks{
-	name = "SOM Field Commander's Office"
-	})
+/area/antag_ship/som/office/commander/field)
 "ZX" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 8
@@ -10659,7 +9689,7 @@
 	},
 /obj/structure/morgue/crematorium,
 /turf/open/floor/mainship/mono,
-/area/mainship/groundhq/som/medical/morgue)
+/area/antag_ship/som/medbay/morgue)
 
 (1,1,1) = {"
 VK
@@ -10829,19 +9859,19 @@ CN
 CN
 CN
 CN
-yK
+Dk
 xD
 xD
 xD
-yK
+Dk
 xD
 xD
 xD
-yK
+Dk
 xD
 uh
 xD
-yK
+Dk
 CN
 CN
 CN
@@ -10919,12 +9949,12 @@ CN
 VK
 CN
 CN
-Mr
-Mr
+Dk
+Dk
 fx
 fx
-Mr
-yK
+Dk
+Dk
 FJ
 pe
 aY
@@ -10936,12 +9966,12 @@ uN
 uA
 fX
 To
-yK
-kd
+Dk
+Dk
 HD
 HD
-kd
-kd
+Dk
+Dk
 CN
 CN
 VK
@@ -11014,12 +10044,12 @@ CN
 VK
 CN
 CN
-Mr
+Dk
 gJ
 wl
 LR
 lR
-vy
+bb
 tO
 Ws
 Se
@@ -11031,12 +10061,12 @@ vV
 Se
 mY
 tO
-vy
+bb
 Vf
 HE
 ls
 KV
-kd
+Dk
 CN
 CN
 VK
@@ -11114,7 +10144,7 @@ bv
 iL
 ns
 vo
-vy
+bb
 dT
 dT
 dT
@@ -11126,7 +10156,7 @@ Nf
 dT
 dT
 dT
-vy
+bb
 yO
 mo
 ls
@@ -11209,7 +10239,7 @@ Fj
 iL
 db
 MK
-vy
+bb
 ww
 NJ
 dT
@@ -11221,7 +10251,7 @@ mT
 dT
 uA
 pe
-vy
+bb
 MJ
 VF
 ls
@@ -11299,12 +10329,12 @@ CN
 VK
 CN
 CN
-Mr
+Dk
 Nn
 IE
 Il
 SD
-vy
+bb
 qh
 il
 dT
@@ -11316,12 +10346,12 @@ Rl
 dT
 RP
 qh
-vy
+bb
 Nw
 sV
 ls
 sR
-kd
+Dk
 CN
 CN
 VK
@@ -11394,13 +10424,13 @@ CN
 VK
 CN
 CN
-Mr
-LD
-LD
+Dk
+bb
+bb
 ez
-LD
-vy
-vy
+bb
+bb
+bb
 Xn
 dT
 pn
@@ -11410,13 +10440,13 @@ rv
 vV
 dT
 mw
-vy
-vy
+bb
+bb
 ye
 ye
 bf
 ye
-kd
+Dk
 CN
 CN
 VK
@@ -11489,7 +10519,7 @@ CN
 VK
 CN
 CN
-JV
+Dk
 Wh
 Ue
 sl
@@ -11511,7 +10541,7 @@ iE
 Je
 bO
 Ti
-kd
+Dk
 CN
 CN
 VK
@@ -11781,7 +10811,7 @@ BI
 IO
 IP
 CC
-ci
+GR
 Ce
 Ex
 ha
@@ -11869,29 +10899,29 @@ CN
 VK
 CN
 CN
-JV
+Dk
 Yz
 ng
 Mu
-CT
-CT
-CT
-jd
-vy
-vy
-vy
+bb
+bb
+bb
+Rm
+bb
+bb
+bb
 wG
-vy
-vy
-vy
+bb
+bb
+bb
 jd
-vy
-ye
-ye
+bb
+bb
+bb
 vl
 uJ
 yF
-kd
+Dk
 CN
 CN
 VK
@@ -11965,28 +10995,28 @@ VK
 CN
 CN
 Dk
-ji
-ji
-ji
-ji
+bb
+bb
+bb
+bb
 DN
-rS
+zP
 TY
-rS
+zP
 ED
 ED
 NG
 Eh
 Tt
-rS
-rS
+zP
+zP
 nP
 rn
-kh
-kh
-kh
-kh
-aw
+bb
+bb
+bb
+bb
+Dk
 CN
 CN
 VK
@@ -12077,11 +11107,11 @@ RK
 nm
 hz
 rS
-kh
+bb
 Cq
 yA
 cR
-aw
+Dk
 CN
 CN
 VK
@@ -12172,7 +11202,7 @@ dY
 QK
 ZI
 rS
-kh
+bb
 gs
 sd
 nE
@@ -12267,7 +11297,7 @@ EF
 EF
 ZI
 rS
-kh
+bb
 GD
 Bv
 Dq
@@ -12362,11 +11392,11 @@ Sz
 fG
 ZI
 jE
-kh
+bb
 ot
 sd
 Ox
-aw
+Dk
 CN
 CN
 VK
@@ -12552,7 +11582,7 @@ Oa
 fG
 ZI
 rS
-kh
+bb
 sp
 ZB
 Yn
@@ -12647,11 +11677,11 @@ EF
 EF
 ZI
 rS
-kh
+bb
 Ts
 uR
 Dm
-aw
+Dk
 CN
 CN
 VK
@@ -12742,7 +11772,7 @@ bd
 uW
 ZI
 rS
-kh
+bb
 Dq
 ZB
 yH
@@ -12837,7 +11867,7 @@ EH
 hH
 lC
 rS
-kh
+bb
 NN
 ac
 XZ
@@ -12932,11 +11962,11 @@ en
 kL
 en
 jZ
-kh
-aw
-aw
-aw
-aw
+bb
+Dk
+Dk
+Dk
+Dk
 CN
 CN
 VK
@@ -13012,9 +12042,9 @@ CN
 CN
 CN
 CN
-Rz
+Dk
 JE
-qu
+TJ
 en
 Av
 Zt
@@ -13026,9 +12056,9 @@ Zt
 Zt
 cE
 en
-qu
+TJ
 wg
-Rz
+Dk
 CN
 CN
 CN
@@ -13109,7 +12139,7 @@ CN
 CN
 py
 Oe
-qu
+TJ
 en
 Xj
 Wa
@@ -13299,7 +12329,7 @@ CN
 CN
 py
 WK
-qu
+TJ
 en
 Xj
 Wa
@@ -13392,9 +12422,9 @@ CN
 CN
 CN
 CN
-Rz
+Dk
 nx
-qu
+TJ
 en
 oX
 oN
@@ -13408,7 +12438,7 @@ wO
 en
 kp
 Pn
-Rz
+Dk
 CN
 CN
 CN
@@ -13483,13 +12513,13 @@ CN
 CN
 VK
 CN
-VM
-VM
-VM
-VM
-VM
+Dk
+Dk
+Dk
+Dk
+Dk
 tq
-qu
+TJ
 TQ
 en
 en
@@ -13503,11 +12533,11 @@ en
 TQ
 Wt
 QO
-Jp
-Jp
-Jp
-Jp
-Jp
+Dk
+Dk
+Dk
+Dk
+Dk
 CN
 VK
 "}
@@ -13578,31 +12608,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-zf
-zf
+Dk
+nl
+nl
+nl
 jj
 qu
-qu
+wc
 Ni
 pF
 aI
 zE
-qu
-qu
-qu
+eO
+uY
+eO
 qX
 wU
 FE
-qu
+eO
 qu
 qu
 vX
-AX
-nl
-AX
-Jp
+BR
+wk
+BR
+Dk
 CN
 VK
 "}
@@ -13673,31 +12703,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-Zr
-Zr
-Zr
+Dk
+nl
+bb
+bb
+bb
 rD
 rD
 vf
-Zr
-Zr
+bb
+bb
 gf
-oL
-Yl
+Zo
+iw
 oL
 gf
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nl
-Jp
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+wk
+Dk
 CN
 VK
 "}
@@ -13768,31 +12798,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-Zr
+Dk
+nl
+bb
 EC
 Qp
 vc
 ni
 ek
 Qu
-Zr
+bb
 Qi
 bD
-Tm
-bD
-bD
+GC
+jq
+jq
 or
-Uc
+qg
 kv
 iZ
 nL
 ak
 TX
-nL
+bb
 Ki
-Jp
+Dk
 CN
 VK
 "}
@@ -13863,31 +12893,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-Zr
+Dk
+nl
+bb
 bG
 vc
 vc
 ni
 Bz
 AJ
-Zr
+bb
 Fx
 ZQ
-Tm
+zf
 ZQ
 Fx
-nL
+bb
 zQ
-Uc
-Uc
+Qj
+qg
 An
+BD
 Uc
-Uc
-nL
+bb
 Ki
-Jp
+Dk
 CN
 VK
 "}
@@ -13958,31 +12988,31 @@ CN
 CN
 VK
 CN
-VM
+Dk
 Et
-Zr
+bb
 nY
 Li
 Ch
 qZ
 RN
 Pm
-Zr
+bb
 Uv
 ZQ
-Tm
+zf
 ZQ
 Uv
-nL
+bb
 NM
-Uc
+mE
 Us
 nL
 QU
 CP
-nL
-nl
-Jp
+bb
+wk
+Dk
 CN
 VK
 "}
@@ -14053,8 +13083,8 @@ CN
 CN
 VK
 CN
-VM
-zf
+Dk
+nl
 RD
 ni
 zs
@@ -14062,22 +13092,22 @@ Mh
 cS
 Kf
 vk
-Zr
+bb
 bE
 ZQ
 xu
 ZQ
 CX
-nL
+bb
 WH
-Uc
+mE
 Cl
 nL
 nL
 nL
-nL
-AX
-Jp
+bb
+BR
+Dk
 CN
 VK
 "}
@@ -14148,31 +13178,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-Zr
+Dk
+nl
+bb
 GF
 ni
 Fu
 Sy
 KB
 PQ
-Zr
+bb
 Uv
 ZQ
-Tm
+zf
 ZQ
 Uv
-nL
+bb
 km
-Uc
+mE
 gL
 ey
 PY
 iB
-nL
-nl
-Jp
+bb
+wk
+Dk
 CN
 VK
 "}
@@ -14243,31 +13273,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-Zr
+Dk
+nl
+bb
 fe
 ni
 PI
 jf
 kq
 zh
-Zr
+bb
 MX
 ZQ
-Tm
+zf
 ZQ
 MX
-nL
+bb
 kH
-Uc
-Uc
+Qj
+qg
 An
-Uc
+BD
 Lk
-nL
+bb
 Ki
-Jp
+Dk
 CN
 VK
 "}
@@ -14338,19 +13368,19 @@ CN
 CN
 VK
 CN
-VM
-zf
-Zr
+Dk
+nl
+bb
 fe
 vc
 vc
 QF
 QF
 QF
-Zr
+bb
 bw
 bD
-Tm
+GC
 uS
 uS
 EG
@@ -14360,9 +13390,9 @@ YG
 nL
 NR
 Pk
-nL
-nl
-Jp
+bb
+wk
+Dk
 CN
 VK
 "}
@@ -14433,31 +13463,31 @@ CN
 CN
 VK
 CN
-VM
+Dk
 Et
-Zr
-Zr
-Zr
-Zr
-mE
-mE
-mE
-mE
-mE
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+bb
 oL
 Yl
 oL
-DI
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nL
-nl
-Jp
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+wk
+Dk
 CN
 VK
 "}
@@ -14528,31 +13558,31 @@ CN
 CN
 VK
 CN
-VM
-BR
-Xe
+Dk
+nI
+bb
 ZY
 Tl
 KN
-mE
+bb
 Vd
 kX
 Re
-mE
+bb
 bD
-Tm
+zf
 bS
-DI
+bb
 bx
 HK
 HK
-DI
+bb
 eY
 So
 iY
-Zo
-AX
-Jp
+bb
+BR
+Dk
 CN
 VK
 "}
@@ -14623,31 +13653,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-Xe
+Dk
+nl
+bb
 cn
 HM
 KN
-mE
+bb
 Bw
 Nq
-mV
+JD
 zn
 Tm
-Tm
+AX
 Tm
 Yx
 NX
 NX
 rW
-DI
+bb
 bj
 wv
 iO
-Zo
+bb
 Yr
-Jp
+Dk
 CN
 VK
 "}
@@ -14666,7 +13696,7 @@ mg
 mg
 mg
 mg
-Sx
+qJ
 Bg
 mg
 mg
@@ -14718,31 +13748,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-Xe
+Dk
+nl
+bb
 ws
 HM
 Bi
-mE
+bb
 Vd
 Nq
-mV
-mE
+eb
+bb
 Sw
-Tm
+zf
 bD
-DI
+bb
 DI
 DI
 vv
-DI
+bb
 TF
-wv
+Ke
 Iw
-Zo
+bb
 Ki
-Jp
+Dk
 CN
 VK
 "}
@@ -14755,12 +13785,12 @@ FG
 FG
 FG
 oD
-LH
+Ig
 If
 SO
 tu
 tu
-Sx
+Kr
 qC
 Kv
 nF
@@ -14813,31 +13843,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-Xe
+Dk
+nl
+bb
 cr
 AV
 KN
-mE
+bb
 Bw
 Nq
 IS
-mE
+bb
 Mq
-Tm
+zf
 bD
-DI
+bb
 vq
 HL
 Lr
-DI
+bb
 Pz
-wv
+yC
 Iw
-Zo
-nl
-Jp
+bb
+wk
+Dk
 CN
 VK
 "}
@@ -14908,31 +13938,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-Xe
-Xe
+Dk
+nl
+bb
+bb
 YV
-Xe
-mE
+bb
+bb
 Vd
 Nq
 xJ
-mE
+bb
 TN
 xu
 bD
-DI
+bb
 DI
 ia
 Dg
-DI
+bb
 gP
 He
 Vz
-Zo
-nl
-Jp
+bb
+wk
+Dk
 CN
 VK
 "}
@@ -14945,12 +13975,12 @@ as
 FG
 FG
 Vc
-LH
+Ig
 DA
 SC
 JT
 JT
-Sx
+Kr
 qC
 Kv
 qs
@@ -15003,31 +14033,31 @@ CN
 CN
 VK
 CN
-VM
-zf
-zf
+Dk
+nl
+nl
 bz
-zf
-zf
+nl
+nl
 lz
 mV
 Qx
 EA
-mE
+bb
 Ft
-Tm
+zf
 bS
-DI
+bb
 vq
 HL
 In
-DI
+bb
 Jl
 wd
 Bn
-Zo
-nl
-Jp
+bb
+wk
+Dk
 CN
 VK
 "}
@@ -15046,13 +14076,13 @@ mg
 mg
 mg
 mg
-Sx
+AL
 eo
 mg
 mg
 mg
 mg
-Sx
+wC
 zI
 mg
 mg
@@ -15098,31 +14128,31 @@ CN
 CN
 VK
 CN
-VM
+Dk
 Et
-Hs
-Hs
-Hs
-Hs
-mE
-mE
-mE
-mE
-mE
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+bb
+bb
 bD
-Tm
+zf
 bD
-DI
-DI
-DI
+bb
+bb
+bb
 qI
-DI
+bb
 XX
 Sj
 XX
-Zo
+bb
 Ki
-Jp
+Dk
 CN
 VK
 "}
@@ -15193,9 +14223,9 @@ CN
 CN
 VK
 CN
-VM
-zf
-Hs
+Dk
+nl
+bb
 jT
 jT
 xx
@@ -15203,21 +14233,21 @@ xx
 jT
 jT
 tj
-aE
+bb
 We
-Tm
+zf
 bD
 tt
 ub
 mi
 tt
-Vm
+bb
 TI
-wz
+Md
 Tj
-Zo
-nl
-Jp
+bb
+wk
+Dk
 CN
 VK
 "}
@@ -15288,21 +14318,21 @@ CN
 CN
 VK
 CN
-VM
-zf
+Dk
+nl
 vi
 XB
 VB
-ua
+aC
 Yo
 ua
 ua
 iU
 Ct
 SQ
-xu
+Hf
 Tm
-ID
+aA
 PD
 rB
 ID
@@ -15311,8 +14341,8 @@ Bk
 Ez
 Bk
 hw
-AX
-Jp
+BR
+Dk
 CN
 VK
 "}
@@ -15383,9 +14413,9 @@ CN
 CN
 VK
 CN
-VM
-VM
-VM
+Dk
+Dk
+Dk
 Hk
 Of
 jI
@@ -15398,16 +14428,16 @@ bD
 bD
 bD
 Ov
-Ov
-Ov
-Ov
+Ie
+Lw
+Lw
 QS
-Bk
+Eg
 wz
 Lx
-Jp
-Jp
-Jp
+Dk
+Dk
+Dk
 CN
 VK
 "}
@@ -15480,7 +14510,7 @@ VK
 CN
 CN
 CN
-VM
+Dk
 jT
 jT
 Dy
@@ -15488,7 +14518,7 @@ Dy
 jT
 jT
 jT
-aE
+bb
 Qi
 Qi
 Ef
@@ -15496,11 +14526,11 @@ DC
 DC
 DC
 DC
-Vm
+bb
 pw
 wI
 uu
-uo
+Dk
 CN
 CN
 CN
@@ -15575,27 +14605,27 @@ VK
 CN
 CN
 CN
-VM
-VM
-VM
-VM
-VM
-VM
-VM
-VM
-VM
-VM
-VM
-VM
-VM
-Jp
-Jp
-Jp
-Jp
-uo
-uo
-uo
-uo
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
+Dk
 CN
 CN
 CN
@@ -15671,25 +14701,25 @@ CN
 CN
 CN
 CN
-VM
-VM
-VM
+Dk
+Dk
+Dk
 CN
-VM
-VM
-VM
+Dk
+Dk
+Dk
 CN
-VM
-VM
-VM
+Dk
+Dk
+Dk
 CN
-Jp
-Jp
-Jp
+Dk
+Dk
+Dk
 CN
-Jp
-Jp
-Jp
+Dk
+Dk
+Dk
 CN
 CN
 CN
@@ -15766,25 +14796,25 @@ CN
 CN
 CN
 CN
-VM
-VM
-VM
+Dk
+Dk
+Dk
 CN
-VM
-VM
-VM
+Dk
+Dk
+Dk
 CN
-VM
-VM
-VM
+Dk
+Dk
+Dk
 CN
-Jp
-Jp
-Jp
+Dk
+Dk
+Dk
 CN
-Jp
-Jp
-Jp
+Dk
+Dk
+Dk
 CN
 CN
 CN
