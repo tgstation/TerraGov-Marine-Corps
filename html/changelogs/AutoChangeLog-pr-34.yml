@@ -1,0 +1,7 @@
+author: "Rocky0558"
+delete-after: True
+changes:
+  - bugfix: "fixed VSD medic spawn."
+  - bugfix: "fixed/changed VSD shuttle."
+  - bugfix: "fixed/changed NTF PMC shuttle."
+  - bugfix: "fixed/changed ICC shuttle."
