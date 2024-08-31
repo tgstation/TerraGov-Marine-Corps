@@ -587,6 +587,12 @@
 /obj/structure/rack/nometal
 	dropmetal = FALSE
 
+/obj/structure/rack/lectern
+	icon = 'icons/obj/metnal_objects.dmi'
+	icon_state = "lectern"
+	dropmetal = FALSE
+	hit_sound = 'sound/effects/woodhit.ogg'
+
 /obj/structure/rack/wood
 	color = "#8B7B5B"
 	dropmetal = FALSE

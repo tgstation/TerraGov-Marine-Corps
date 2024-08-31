@@ -643,6 +643,14 @@
 	basestate = "prison_rwindow"
 	window_frame = /obj/structure/window_frame/prison/reinforced
 
+/obj/structure/window/framed/prison/colony
+	name = "window"
+	icon = 'icons/obj/smooth_objects/prison_rwindow.dmi'
+	icon_state = "window-reinforced"
+	base_icon_state = "prison_rwindow"
+	basestate = "prison_rwindow"
+	window_frame = /obj/structure/window_frame/prison/colony
+
 /obj/structure/window/framed/prison/reinforced/hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one has an automatic shutter system to prevent any atmospheric breach."

@@ -93,3 +93,7 @@ endmap
 map lv759
 	minplayers 65
 endmap
+
+map metnal
+	minplayers 40
+endmap

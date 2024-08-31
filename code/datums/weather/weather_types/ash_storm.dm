@@ -5,22 +5,22 @@
 
 	telegraph_message = span_highdanger("An eerie moan rises on the wind. Sheets of burning ash blacken the horizon. Seek shelter.")
 	telegraph_duration = 300
-	telegraph_overlay = "light_ash"
+	telegraph_overlay = "ash_low"
 
 	weather_message = span_highdanger("<i>Smoldering clouds of scorching ash billow down around you! Get inside!</i>")
 	weather_duration_lower = 600
 	weather_duration_upper = 1200
-	weather_overlay = "ash_storm"
+	weather_overlay = "ash_high"
 
 	end_message = span_danger("The shrieking wind whips away the last of the ash and falls to its usual murmur. It should be safe to go outside now.")
 	end_duration = 300
-	end_overlay = "light_ash"
+	end_overlay = "ash_low"
 
 	area_type = /area
 	protect_indoors = TRUE
 	target_trait = ZTRAIT_ASHSTORM
 
-	probability = 40
+	probability = 20
 
 	barometer_predictable = TRUE
 
@@ -85,11 +85,11 @@
 	telegraph_message = span_danger("An eerie moan rises on the wind. Sheets of burning ash blacken the horizon.")
 
 	weather_message = span_notice("Gentle embers waft down around you like grotesque snow. The storm seems to have passed you by...")
-	weather_overlay = "light_ash"
+	weather_overlay = "ash_low"
 
 	end_message = span_notice("The emberfall slows, stops. Another layer of hardened soot to the basalt beneath your feet.")
 	end_sound = null
 
 	aesthetic = TRUE
 
-	probability = 60
+	probability = 80
