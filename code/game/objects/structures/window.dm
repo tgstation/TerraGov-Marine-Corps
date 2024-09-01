@@ -649,7 +649,6 @@
 	icon_state = "window-reinforced"
 	base_icon_state = "prison_rwindow"
 	basestate = "prison_rwindow"
-	window_frame = /obj/structure/window_frame/prison/colony
 
 /obj/structure/window/framed/prison/reinforced/hull
 	name = "hull window"
