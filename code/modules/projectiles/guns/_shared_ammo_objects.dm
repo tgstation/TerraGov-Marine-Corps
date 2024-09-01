@@ -27,7 +27,7 @@
 	/// How many burn ticks we lose per process
 	var/burn_decay = 1
 
-/obj/fire/Initialize(mapload, burn_ticks, burn_level, f_color, fire_stacks = 0, fire_damage = 0)
+/obj/fire/Initialize(mapload, new_burn_ticks = burn_ticks, new_burn_level = burn_level, f_color, fire_stacks = 0, fire_damage = 0)
 	. = ..()
 	START_PROCESSING(SSobj, src)
 
@@ -36,7 +36,7 @@
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/submerge_modifier, 10)
-	set_fire(burn_ticks, burn_level, f_color, fire_stacks, fire_damage)
+	set_fire(new_burn_ticks, new_burn_level, f_color, fire_stacks, fire_damage)
 
 /obj/fire/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -71,19 +71,34 @@
 		if(25 to INFINITY)
 			icon_state = "[flame_color]_3"
 
+/obj/fire/process()
+	if(!isturf(loc))
+		qdel(src)
+		return PROCESS_KILL
+
+	burn_ticks -= burn_decay
+	if(burn_ticks <= 0)
+		qdel(src)
+		return PROCESS_KILL
+
+	affect_atom(loc)
+	for(var/thing in loc)
+		affect_atom(thing)
+
+	update_appearance(UPDATE_ICON)
 
 ///Sets the fire_base object to the correct colour and fire_base values, and applies the initial effects to anything on the turf
-/obj/fire/proc/set_fire(burn_ticks, burn_level, f_color, fire_stacks = 0, fire_damage = 0)
-	if(burn_ticks <= 0)
+/obj/fire/proc/set_fire(new_burn_ticks, new_burn_level, new_flame_color, fire_stacks = 0, fire_damage = 0)
+	if(new_burn_ticks <= 0)
 		qdel(src)
 		return
 
-	if(f_color)
-		flame_color = f_color
-	if(burn_ticks)
-		src.burn_ticks = burn_ticks
-	if(burn_level)
-		src.burn_level = burn_level
+	if(new_flame_color)
+		flame_color = new_flame_color
+	if(new_burn_ticks)
+		burn_ticks = new_burn_ticks
+	if(new_burn_level)
+		burn_level = new_burn_level
 	if(!GLOB.flamer_particles[flame_color])
 		GLOB.flamer_particles[flame_color] = new /particles/flamer_fire(flame_color)
 
@@ -115,22 +130,6 @@
 ///Applies effects to an atom
 /obj/fire/proc/affect_atom(atom/affected)
 	return
-
-/obj/fire/process()
-	if(!isturf(loc))
-		qdel(src)
-		return
-
-	burn_ticks -= burn_decay
-	if(burn_ticks <= 0)
-		qdel(src)
-		return PROCESS_KILL
-
-	affect_atom(loc)
-	for(var/thing in loc)
-		affect_atom(thing)
-
-	update_appearance(UPDATE_ICON)
 
 /////////////////////////////
 //      FLAMER FIRE        //
