@@ -195,7 +195,11 @@
 	icon_state = "storage"
 	minimap_color = MINIMAP_AREA_REQ
 
-
+/area/metnal/inside/mineralextraction
+name = "Mineral Extraction Zone"
+icon_state = "mining"
+ceiling = CEILING_UNDERGROUND
+minimap_color = MINIMAP_AREA_REQ_CAVE
 // cafeteria areas
 /area/metnal/inside/bar
 	name = "Maars Bar"
