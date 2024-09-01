@@ -2729,6 +2729,10 @@
 /obj/item/toy/dice,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mining)
+"cmj" = (
+/obj/structure/cable,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/south)
 "cmk" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/vending/cigarette/colony,
@@ -3398,9 +3402,10 @@
 /turf/open/floor/freezer,
 /area/metnal/inside/security)
 "cMA" = (
-/obj/structure/rock/medium,
-/turf/open/liquid/lava/autosmoothing,
-/area/metnal/outside/east)
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/emergencystorage)
 "cMI" = (
 /obj/item/clothing/under/darkblue,
 /obj/item/clothing/under/lightblue,
@@ -5067,7 +5072,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/plate,
-/area/metnal/outside/south)
+/area/metnal/inside/emergencystorage)
 "dXN" = (
 /obj/effect/spawner/random/machinery/disposal,
 /turf/open/floor/prison/yellow{
@@ -6046,7 +6051,7 @@
 	},
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/plate,
-/area/metnal/outside/south)
+/area/metnal/inside/emergencystorage)
 "eKc" = (
 /obj/structure/bed/chair,
 /obj/effect/turf_decal/siding/thinplating_new/light{
@@ -6985,9 +6990,9 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "fuV" = (
-/obj/item/weapon/gun/shotgun/pump/cmb/mag_harness,
-/turf/open/liquid/lava/autosmoothing,
-/area/metnal/outside/central)
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/mineralextraction)
 "fuW" = (
 /obj/machinery/door/airlock/mainship/research/glass/free_access{
 	dir = 2
@@ -7342,9 +7347,8 @@
 /turf/open/floor/tile/white,
 /area/metnal/inside/chapel)
 "fIO" = (
-/obj/structure/rock/small,
-/turf/open/liquid/lava/autosmoothing,
-/area/metnal/outside/east)
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/emergencystorage)
 "fJb" = (
 /obj/structure/flora/ausbushes/grassybush,
 /obj/effect/turf_decal/sandedge/corner2,
@@ -10809,9 +10813,10 @@
 /turf/open/floor/wood/fancy,
 /area/metnal/inside/medical)
 "ivE" = (
-/obj/effect/landmark/weed_node,
-/turf/open/liquid/lava/autosmoothing,
-/area/metnal/outside/east)
+/obj/structure/cable,
+/obj/structure/cable,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/south)
 "ivL" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -11491,6 +11496,10 @@
 	dir = 8
 	},
 /area/metnal/inside/landingzoneone)
+"iZX" = (
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/emergencystorage)
 "jac" = (
 /obj/effect/decal/cleanable/pie_smudge,
 /obj/effect/turf_decal/tile/brown{
@@ -11684,6 +11693,10 @@
 /obj/structure/cable,
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/cafeteria)
+"jix" = (
+/obj/effect/ai_node,
+/turf/open/liquid/lava/single,
+/area/metnal/outside/central)
 "jjg" = (
 /obj/structure/largecrate/supply/ammo/shotgun,
 /turf/open/floor/prison/plate,
@@ -16681,7 +16694,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/plate,
-/area/metnal/outside/south)
+/area/metnal/inside/emergencystorage)
 "nbL" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/mainship/mono,
@@ -18411,7 +18424,7 @@
 "ovp" = (
 /obj/effect/landmark/weed_node,
 /turf/closed/wall/r_wall/prison,
-/area/metnal/outside/south)
+/area/metnal/inside/emergencystorage)
 "ovr" = (
 /obj/effect/turf_decal/woodsiding{
 	dir = 1
@@ -21871,7 +21884,7 @@
 	name = "Tunnel A1"
 	},
 /turf/open/floor/prison/plate,
-/area/metnal/outside/south)
+/area/metnal/inside/emergencystorage)
 "qWk" = (
 /obj/effect/turf_decal/tile/full/brown,
 /obj/structure/flora/pottedplant/one,
@@ -21911,7 +21924,7 @@
 "qXZ" = (
 /obj/item/trash/eat,
 /turf/closed/wall/r_wall/prison,
-/area/metnal/outside/south)
+/area/metnal/inside/emergencystorage)
 "qYd" = (
 /obj/structure/platform{
 	dir = 8
@@ -22561,9 +22574,11 @@
 /turf/open/ground/grass/weedable/patch,
 /area/metnal/inside/garden)
 "rvk" = (
-/obj/effect/ai_node,
-/turf/open/liquid/lava/autosmoothing,
-/area/metnal/outside/central)
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/emergencystorage)
 "rvD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24154,6 +24169,11 @@
 /obj/item/trash/plate,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"sAw" = (
+/obj/effect/mapping_helpers/broken_apc/lowchance,
+/obj/structure/cable,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/mineralextraction)
 "sAR" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 1
@@ -24506,7 +24526,7 @@
 "sLM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/closed/wall/r_wall/prison,
-/area/metnal/outside/south)
+/area/metnal/inside/emergencystorage)
 "sLS" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 1
@@ -25971,8 +25991,9 @@
 /area/metnal/outside/east)
 "tXf" = (
 /obj/effect/ai_node,
+/obj/structure/cable,
 /turf/open/floor/prison/plate,
-/area/metnal/outside/south)
+/area/metnal/inside/emergencystorage)
 "tXw" = (
 /obj/structure/closet/fireaxecabinet,
 /obj/structure/rack,
@@ -26555,7 +26576,7 @@
 /area/metnal/inside/recreation)
 "urq" = (
 /turf/open/floor/prison/plate,
-/area/metnal/outside/south)
+/area/metnal/inside/emergencystorage)
 "urs" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron/dark/textured_edge{
@@ -27325,9 +27346,9 @@
 /turf/open/ground/grass/weedable/patch,
 /area/metnal/inside/garden)
 "uSR" = (
-/obj/effect/ai_node,
-/turf/open/liquid/lava/autosmoothing,
-/area/metnal/outside/east)
+/obj/structure/cable,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/mineralextraction)
 "uSX" = (
 /obj/structure/plasticflaps,
 /obj/effect/turf_decal/loading_area{
@@ -29273,7 +29294,7 @@
 "wra" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/plate,
-/area/metnal/outside/south)
+/area/metnal/inside/emergencystorage)
 "wrd" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
@@ -50225,7 +50246,7 @@ xif
 hAx
 omV
 kXX
-qvM
+sAw
 rDp
 lpf
 jcS
@@ -50427,7 +50448,7 @@ xif
 xif
 qeW
 kXX
-qvM
+fuV
 rDp
 hzl
 ktw
@@ -50629,7 +50650,7 @@ xif
 xif
 omV
 kXX
-qvM
+fuV
 rDp
 sTX
 mJo
@@ -50831,7 +50852,7 @@ xif
 xif
 omV
 kXX
-qvM
+fuV
 rDp
 vRr
 jsi
@@ -51033,7 +51054,7 @@ xif
 xif
 omV
 kXX
-qvM
+fuV
 rDp
 qvM
 qvM
@@ -51235,7 +51256,7 @@ xif
 xif
 omV
 kXX
-qvM
+fuV
 rDp
 rrr
 qvM
@@ -51437,7 +51458,7 @@ oRN
 xif
 xaM
 kXX
-qvM
+fuV
 rDp
 jcF
 qvM
@@ -51639,7 +51660,7 @@ oRN
 xif
 omV
 kXX
-qvM
+fuV
 hdo
 vaJ
 mbi
@@ -51841,7 +51862,7 @@ oRN
 xif
 omV
 kXX
-qvM
+fuV
 qvM
 hzl
 qvM
@@ -52043,7 +52064,7 @@ oRN
 xif
 omV
 kXX
-qvM
+fuV
 qvM
 qvM
 qvM
@@ -52245,7 +52266,7 @@ oRN
 xif
 omV
 kXX
-kXX
+uSR
 uhe
 kXX
 kXX
@@ -52447,7 +52468,7 @@ oRN
 xif
 uuw
 lJb
-xif
+cmj
 xif
 xif
 xif
@@ -52599,7 +52620,7 @@ moo
 kez
 kez
 kez
-kez
+moo
 kez
 kez
 kez
@@ -53051,7 +53072,7 @@ oRN
 oRN
 kez
 xif
-awd
+naF
 hNm
 xif
 xif
@@ -53659,9 +53680,9 @@ xif
 xif
 awd
 hNm
-xif
-xif
-xif
+cmj
+cmj
+ivE
 xif
 xif
 xif
@@ -53861,12 +53882,12 @@ xif
 xif
 awd
 eII
-qXJ
-qXJ
-urq
+fIO
+fIO
+iZX
 qWe
-qXJ
-qXJ
+fIO
+fIO
 xif
 qly
 lqd
@@ -54068,7 +54089,7 @@ wra
 tXf
 urq
 wra
-qXJ
+fIO
 gvC
 qly
 qly
@@ -54263,14 +54284,14 @@ oRN
 oRN
 xif
 xif
-awd
+naF
 hNm
-qXJ
+fIO
 nbs
-urq
+iZX
 urq
 nbs
-qXJ
+fIO
 mxG
 qly
 lqd
@@ -54467,12 +54488,12 @@ xif
 xif
 awd
 eII
-qXJ
-wra
+fIO
+rvk
+cMA
 urq
-urq
 wra
-qXJ
+fIO
 xif
 qly
 lqd
@@ -54871,12 +54892,12 @@ xif
 xif
 awd
 eII
-qXJ
-qXJ
-qXJ
-qXJ
-qXJ
-qXJ
+fIO
+fIO
+fIO
+fIO
+fIO
+fIO
 xif
 qly
 ptC
@@ -55273,7 +55294,7 @@ oRN
 oRN
 aRD
 xif
-awd
+naF
 nTM
 mPu
 gBc
@@ -56268,20 +56289,20 @@ rfv
 aPJ
 qMd
 kez
+moo
 kez
 kez
 kez
-kez
-ezj
+jix
 uPH
 kog
 kog
-kog
+nYA
 iPg
 iPg
 iPg
 iPg
-kog
+nYA
 kog
 kog
 shT
@@ -56874,26 +56895,26 @@ fJS
 fJS
 oYE
 kez
+moo
 kez
 kez
 kez
-kez
-kez
+moo
 dHk
 kog
 kog
-kog
+nYA
 iPg
 iPg
 iPg
 iPg
-kog
+nYA
 kog
 kog
 qKH
 cEf
 xif
-awd
+naF
 eII
 xif
 xif
@@ -59069,21 +59090,21 @@ kez
 kez
 kez
 kez
+moo
+kez
+moo
+kez
+moo
+kez
+moo
 kez
 kez
 kez
-kez
-kez
-kez
-kez
-kez
-kez
-kez
-kez
+moo
 dxJ
 kez
 kez
-kez
+moo
 kez
 kez
 kez
@@ -59091,7 +59112,7 @@ kez
 moo
 kez
 kez
-kez
+moo
 kez
 kez
 kez
@@ -59473,26 +59494,26 @@ kez
 dxJ
 kez
 kez
+moo
 kez
+moo
 kez
-kez
-kez
-kez
+moo
 dxJ
+moo
 kez
 kez
-kez
-oRN
-rvk
-oRN
-fuV
-oRN
-dxZ
 oRN
 oRN
-dxZ
 oRN
-rvk
+oRN
+oRN
+oRN
+oRN
+oRN
+oRN
+oRN
+oRN
 kez
 dxJ
 moo
@@ -59685,7 +59706,6 @@ oRN
 oRN
 oRN
 oRN
-dxZ
 oRN
 oRN
 oRN
@@ -59693,7 +59713,8 @@ oRN
 oRN
 oRN
 oRN
-cjh
+oRN
+oRN
 oRN
 oRN
 oRN
@@ -59884,10 +59905,10 @@ oRN
 oRN
 oRN
 oRN
-ooo
-cjh
 oRN
-ooo
+oRN
+oRN
+oRN
 oRN
 oRN
 oRN
@@ -60691,17 +60712,17 @@ oRN
 oRN
 oRN
 cbB
-ivE
 cbB
 cbB
 cbB
-ivE
-cbB
-cMA
 cbB
 cbB
 cbB
-fIO
+cbB
+cbB
+cbB
+cbB
+cbB
 cbB
 cbB
 oRN
@@ -60895,10 +60916,10 @@ oRN
 cbB
 cbB
 cbB
-ivE
 cbB
 cbB
-ivE
+cbB
+cbB
 cbB
 aqt
 joS
@@ -61095,8 +61116,8 @@ oRN
 oRN
 cbB
 cbB
-uSR
-ivE
+cbB
+cbB
 cbB
 joS
 joS
@@ -61295,9 +61316,9 @@ oRN
 oRN
 oRN
 cbB
-ivE
+cbB
 joS
-joS
+xsO
 joS
 hwp
 eNG
