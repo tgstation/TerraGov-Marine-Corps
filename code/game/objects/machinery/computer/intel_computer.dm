@@ -46,6 +46,15 @@
 	if(!printing)
 		STOP_PROCESSING(SSmachines, src)
 		return
+	if (machine_stat & NOPOWER) /// checks for lack of power and shuts down
+		printing = FALSE
+		update_minimap_icon()
+		visible_message("<b>[src]</b> shuts down as it loses power. The current program loses its data.")
+		if(progress >= 50)
+			progress = 50
+		else
+			progress = 0
+		return
 	progress += progress_interval
 	if(progress >= 100)
 		STOP_PROCESSING(SSmachines, src)
@@ -56,16 +65,6 @@
 		SSpoints.dropship_points += dropship_reward
 		minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
 		SSminimaps.remove_marker(src)
-		return
-	if (machine_stat & NOPOWER) /// checks for lack of power and shuts down
-		printing = FALSE
-		update_minimap_icon()
-		visible_message("<b>[src]</b> shuts down as it loses power. The current program loses its data.")
-		if(progress >= 50)
-			progress = 50
-			return
-		progress = 0
-
 
 /obj/machinery/computer/intel_computer/Destroy()
 	GLOB.intel_computers -= src
