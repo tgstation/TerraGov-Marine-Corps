@@ -4065,6 +4065,11 @@
 	dir = 8
 	},
 /area/metnal/outside/northeast)
+"ddE" = (
+/turf/open/lavaland/basalt/cave{
+	dir = 6
+	},
+/area/metnal/caves/rock)
 "ddF" = (
 /obj/structure/bed/chair/office/light/north,
 /obj/effect/turf_decal/siding/red/corner{
@@ -8393,6 +8398,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"gxC" = (
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt/cave/corner{
+	dir = 4
+	},
+/area/metnal/caves/south)
 "gxQ" = (
 /obj/effect/turf_decal/siding/green{
 	dir = 8
@@ -10258,6 +10269,9 @@
 	dir = 8
 	},
 /area/metnal/caves/northeast)
+"hUo" = (
+/turf/open/lavaland/basalt/cave,
+/area/metnal/caves/rock)
 "hVf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
@@ -10609,6 +10623,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"ifX" = (
+/turf/open/lavaland/basalt/cave/corner{
+	dir = 8
+	},
+/area/metnal/caves/south/garbledradio)
 "ige" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/ground/grass/weedable/patch,
@@ -13621,6 +13640,11 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/caves/southeast/garbledradio)
+"kxD" = (
+/turf/open/lavaland/basalt/cave{
+	dir = 4
+	},
+/area/metnal/caves/south)
 "kyw" = (
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 8
@@ -16681,6 +16705,11 @@
 	dir = 4
 	},
 /area/metnal/inside/substation)
+"mQC" = (
+/turf/open/lavaland/basalt/cave/corner{
+	dir = 8
+	},
+/area/metnal/caves/west)
 "mQH" = (
 /obj/machinery/grill,
 /obj/effect/turf_decal/tile/brown{
@@ -16808,6 +16837,11 @@
 	dir = 4
 	},
 /area/metnal/inside/research)
+"mWp" = (
+/turf/open/lavaland/basalt/cave/corner{
+	dir = 1
+	},
+/area/metnal/caves/rock)
 "mWA" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 6
@@ -19212,6 +19246,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northwest)
+"oLs" = (
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt/cave/corner{
+	dir = 8
+	},
+/area/metnal/caves/south/garbledradio)
 "oLS" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/heatinggrate,
@@ -20304,6 +20344,9 @@
 /obj/structure/flora/pottedplant/four,
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/garden)
+"pEV" = (
+/turf/open/lavaland/basalt/cave/corner,
+/area/metnal/caves/south/garbledradio)
 "pFc" = (
 /obj/machinery/vending/hydronutrients,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22998,6 +23041,9 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/emergencystorage)
+"rvw" = (
+/turf/open/lavaland/basalt/cave/corner,
+/area/metnal/caves/west)
 "rvD" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -35547,7 +35593,7 @@ edg
 edg
 edg
 jBS
-jBS
+mQC
 qew
 xAg
 xAg
@@ -35750,7 +35796,7 @@ edg
 jBS
 jBS
 icL
-jBS
+mQC
 ock
 edg
 edg
@@ -36958,7 +37004,7 @@ edg
 edg
 jBS
 jBS
-jBS
+rvw
 gRO
 edg
 edg
@@ -41602,7 +41648,7 @@ iFg
 tRM
 iFg
 uMk
-bLe
+aEG
 dBj
 bLe
 gIb
@@ -41825,8 +41871,8 @@ edg
 edg
 edg
 edg
-edg
-edg
+wzp
+wzp
 edg
 edg
 jVs
@@ -42024,11 +42070,11 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
+wzp
+wzp
+wzp
+wzp
+wzp
 edg
 edg
 jVs
@@ -42226,11 +42272,11 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
+wzp
+wzp
+wzp
+wzp
+wzp
 edg
 edg
 jVs
@@ -42410,7 +42456,7 @@ iFg
 tRM
 iFg
 oBQ
-bLe
+kve
 dBj
 bLe
 bLe
@@ -42428,10 +42474,10 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
+wzp
+wzp
+wzp
+wzp
 edg
 edg
 edg
@@ -42630,10 +42676,10 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
+wzp
+wzp
+wzp
+wzp
 edg
 jVs
 jVs
@@ -42831,11 +42877,11 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
+wzp
+wzp
+wzp
+wzp
+tyB
 jVs
 jVs
 ovI
@@ -43033,11 +43079,11 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
+wzp
+wzp
+wzp
+wzp
+tyB
 jVs
 bYE
 ovI
@@ -43235,11 +43281,11 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
+tyB
+tyB
+tyB
+tyB
+tyB
 jVs
 ovI
 bgL
@@ -43437,12 +43483,12 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-jVs
+tyB
+tyB
+tyB
+tyB
+tyB
+ddE
 kEc
 bgL
 bgL
@@ -43639,12 +43685,12 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-jVs
+tyB
+tyB
+tyB
+tyB
+tyB
+hUo
 kEc
 kEc
 kEc
@@ -43839,14 +43885,14 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-jVs
+tyB
+tyB
+tyB
+tyB
+tyB
+ufd
+kxD
+mWp
 ovI
 bYE
 bgL
@@ -44040,14 +44086,14 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+tyB
+tyB
+tyB
+tyB
+tyB
+ufd
+hEI
+gJM
 jVs
 bgL
 ovI
@@ -44242,14 +44288,14 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+kxD
+kxD
+kxD
+kxD
+kxD
+hEI
+gJM
+gJM
 jVs
 jVs
 ovI
@@ -44442,17 +44488,17 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+gJM
+gJM
+gJM
+gJM
+gJM
+gJM
+gJM
+gJM
+gJM
+gJM
+gJM
 jVs
 jVs
 bgL
@@ -44643,19 +44689,19 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+gJM
+gJM
+gJM
+gJM
+gJM
+gJM
+gJM
+jVs
+jVs
+gJM
+gJM
+jVs
+jVs
 jVs
 jVs
 jVs
@@ -44845,26 +44891,26 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+gJM
+gJM
+gJM
+gJM
+gJM
+gJM
+jVs
+jVs
+jVs
+gJM
+gJM
+jVs
+jVs
 edg
 edg
 edg
 jVs
 jVs
 ovI
-kEc
+ewG
 kEc
 ovI
 jVs
@@ -45046,20 +45092,20 @@ edg
 edg
 edg
 edg
+gJM
+gJM
+gJM
+gJM
+gJM
+gJM
+jVs
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+gJM
+gJM
+jVs
+jVs
 edg
 edg
 edg
@@ -45248,20 +45294,20 @@ edg
 edg
 edg
 edg
+gJM
+gJM
+gJM
+gJM
+gJM
+jVs
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+gJM
+gJM
+jVs
+jVs
 edg
 edg
 edg
@@ -45449,21 +45495,21 @@ jVs
 jVs
 jVs
 jVs
+gJM
+gJM
+gJM
+gJM
+gJM
+jVs
 edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+gJM
+gJM
+jVs
+jVs
 edg
 edg
 edg
@@ -45650,22 +45696,22 @@ wpl
 ewG
 jVs
 jVs
+gJM
+gJM
+gJM
+gJM
+jVs
 jVs
 edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+jVs
+gJM
+gJM
+jVs
+jVs
 edg
 edg
 edg
@@ -45852,22 +45898,22 @@ ewG
 ewG
 wIw
 jVs
+gJM
+gJM
+gJM
+jVs
 jVs
 edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+jVs
+jVs
+gJM
+gJM
+jVs
+jVs
 edg
 edg
 edg
@@ -46055,21 +46101,21 @@ wpl
 ewG
 ewG
 ewG
+gJM
+jVs
+jVs
 jVs
 edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+jVs
+gJM
+gJM
+gJM
+jVs
+jVs
 edg
 edg
 jVs
@@ -46265,13 +46311,13 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+gJM
+gJM
+gJM
+gJM
+gJM
+jVs
 edg
 edg
 jVs
@@ -46467,13 +46513,13 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+gJM
+gJM
+gJM
+gJM
+gJM
+jVs
 edg
 edg
 jVs
@@ -46669,13 +46715,13 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+gJM
+gJM
+gJM
+gJM
+gJM
+jVs
 jVs
 jVs
 gJM
@@ -46871,13 +46917,13 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+jVs
+gJM
+gJM
+gJM
+gJM
+jVs
 jVs
 jVs
 gJM
@@ -47073,12 +47119,12 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+jVs
+gJM
+gJM
+gJM
+gJM
 jVs
 jVs
 boa
@@ -47277,10 +47323,10 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
+jVs
+gJM
+gJM
+gJM
 jVs
 jVs
 xkR
@@ -47479,10 +47525,10 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
+jVs
+gJM
+gJM
+gJM
 jVs
 xkR
 xkR
@@ -47681,10 +47727,10 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
 jVs
+jVs
+gJM
+gJM
 jVs
 lDm
 boa
@@ -47883,10 +47929,10 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
 jVs
+jVs
+gJM
+gJM
 gJM
 gJM
 gJM
@@ -48087,9 +48133,9 @@ edg
 edg
 edg
 jVs
-jVs
-jVs
-xkR
+gJM
+gJM
+gJM
 gJM
 gJM
 xkR
@@ -48290,7 +48336,7 @@ edg
 edg
 jVs
 jVs
-xkR
+gJM
 rFo
 gJM
 gJM
@@ -52326,7 +52372,7 @@ edg
 jVs
 uMY
 htT
-boa
+gxC
 gJM
 jVs
 edg
@@ -52731,7 +52777,7 @@ wzp
 wzp
 tyB
 jGf
-gJM
+fZT
 gJM
 xkR
 jVs
@@ -53136,7 +53182,7 @@ wzp
 bBU
 tyB
 jGf
-gJM
+fZT
 gJM
 rFo
 jVs
@@ -53327,7 +53373,7 @@ jVs
 jVs
 ewG
 ewG
-ewG
+pEV
 fFh
 jVs
 edg
@@ -53339,7 +53385,7 @@ tyB
 tyB
 tyB
 jGf
-gJM
+fZT
 boa
 rFo
 gJM
@@ -53542,7 +53588,7 @@ tyB
 tyB
 bBU
 jGf
-gJM
+fZT
 gJM
 gJM
 gJM
@@ -55145,7 +55191,7 @@ edg
 edg
 edg
 jVs
-wHx
+oLs
 kRa
 qly
 hVf
@@ -56358,7 +56404,7 @@ jVs
 wpl
 wpl
 wpl
-ewG
+ifX
 neF
 neF
 jVs
