@@ -87,6 +87,16 @@
 
 	update_appearance(UPDATE_ICON)
 
+/obj/fire/effect_smoke(obj/effect/particle_effect/smoke/affecting_smoke)
+	if(!CHECK_BITFIELD(affecting_smoke.smoke_traits, SMOKE_EXTINGUISH))
+		return
+	burn_ticks -= EXTINGUISH_AMOUNT
+	if(burn_ticks <= 0)
+		playsound(affecting_smoke, 'sound/effects/smoke_extinguish.ogg', 20)
+		qdel(src)
+		return
+	update_appearance(UPDATE_ICON)
+
 ///Sets the fire_base object to the correct colour and fire_base values, and applies the initial effects to anything on the turf
 /obj/fire/proc/set_fire(new_burn_ticks, new_burn_level, new_flame_color, fire_stacks = 0, fire_damage = 0)
 	if(new_burn_ticks <= 0)
@@ -115,17 +125,6 @@
 /obj/fire/proc/on_cross(datum/source, atom/movable/crosser, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	affect_atom(crosser)
-
-/// Effects applied from smokes
-/obj/fire/effect_smoke(obj/effect/particle_effect/smoke/affecting_smoke)
-	if(!CHECK_BITFIELD(affecting_smoke.smoke_traits, SMOKE_EXTINGUISH))
-		return
-	burn_ticks -= 20 //Water level extinguish
-	if(burn_ticks <= 0)
-		playsound(affecting_smoke, 'sound/effects/smoke_extinguish.ogg', 20)
-		qdel(src)
-		return
-	update_appearance(UPDATE_ICON)
 
 ///Applies effects to an atom
 /obj/fire/proc/affect_atom(atom/affected)
