@@ -26,6 +26,8 @@
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)
+	///pass_flags given to desants, in addition to the vehicle's pass_flags
+	var/desant_pass_flags = PASS_FIRE|PASS_LOW_STRUCTURE
 
 /obj/vehicle/sealed/armored/multitile/enter_locations(atom/movable/entering_thing)
 	return list(get_step_away(get_step(src, REVERSE_DIR(dir)), src, 2))
@@ -40,10 +42,10 @@
 	return (loc_override || (entering_mob.loc in enter_locations(entering_mob)))
 
 /obj/vehicle/sealed/armored/multitile/add_desant(mob/living/new_desant)
-	new_desant.pass_flags |= pass_flags
+	new_desant.pass_flags |= (desant_pass_flags|pass_flags)
 
 /obj/vehicle/sealed/armored/multitile/remove_desant(mob/living/old_desant)
-	old_desant.pass_flags &= ~pass_flags
+	old_desant.pass_flags &= ~(desant_pass_flags|pass_flags)
 
 /obj/vehicle/sealed/armored/multitile/ex_act(severity)
 	if(QDELETED(src))

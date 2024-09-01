@@ -149,7 +149,10 @@
 	var/new_z = (z != oldloc.z)
 	for(var/mob/living/tank_desant AS in tank_desants)
 		tank_desant.set_glide_size(root.glide_size)
-		tank_desant.forceMove(new_z ? loc : get_step(tank_desant, direction)) //For simplicity we just move desants to the middle of the tank on z change to avoid various issues
+		if(new_z)
+			tank_desant.abstract_move(loc) //todo: have some better code to actually preserve their location
+		else
+			tank_desant.forceMove(get_step(tank_desant, direction))
 		if(isxeno(tank_desant))
 			continue
 		if(move_dist > 1)
