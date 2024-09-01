@@ -1284,7 +1284,7 @@ CLOTHING
 
 /datum/supply_packs/clothing/saddle
 	name = "Runner Saddle"
-	contains = list(/obj/item/storage/backpack/marine/duffelbag/xenosaddle/)
+	contains = list(/obj/item/storage/backpack/marine/duffelbag/xenosaddle)
 	cost = 120
 
 /*******************************************************************************

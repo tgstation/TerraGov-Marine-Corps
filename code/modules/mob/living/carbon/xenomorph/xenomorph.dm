@@ -347,7 +347,7 @@
 	if(!ishuman(puller))
 		return TRUE
 	var/mob/living/carbon/human/H = puller
-	if(src.hivenumber == XENO_HIVE_CORRUPTED) // we can grab friendly benos
+	if(hivenumber == XENO_HIVE_CORRUPTED) // we can grab friendly benos
 		return TRUE
 	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
 	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)

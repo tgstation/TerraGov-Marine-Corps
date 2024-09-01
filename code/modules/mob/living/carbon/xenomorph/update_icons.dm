@@ -179,7 +179,7 @@
 	owner = new_owner
 	if(!owner)
 		return INITIALIZE_HINT_QDEL
-	. = ..()
+	return ..()
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	light_system = MOVABLE_LIGHT
