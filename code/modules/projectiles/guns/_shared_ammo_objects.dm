@@ -12,8 +12,7 @@
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "red_2"
-	plane = FLOOR_PLANE
-	layer = MOB_LAYER
+	layer = BELOW_OBJ_LAYER
 	light_system = MOVABLE_LIGHT
 	light_mask_type = /atom/movable/lighting_mask/flicker
 	light_on = TRUE
