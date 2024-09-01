@@ -76,7 +76,7 @@
 				object.smooth_self()
 
 // Not proud of this.
-/obj/structure/door/resin/handle_icon_junction(junction)
+/obj/structure/mineral_door/resin/handle_icon_junction(junction)
 	if(junction & (SOUTH|NORTH))
 		dir = WEST
 	else if(junction & (EAST|WEST))

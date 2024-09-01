@@ -224,7 +224,7 @@
 			if(turf.density && istype(turf, /turf/closed/wall/resin))
 				walls_penetrated_wide -= 1
 			//Checks if there is a resin door on the turf
-			var/obj/structure/door/resin/door_to_check = locate() in turf
+			var/obj/structure/mineral_door/resin/door_to_check = locate() in turf
 			if(!isnull(door_to_check))
 				walls_penetrated_wide -= 1
 			//Check to ensure that we dont burn more walls than specified
