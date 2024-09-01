@@ -1,0 +1,5 @@
+2024-09-01:
+  Lumipharon:
+  - bugfix: Fixed some fire bugs, notably fire will now correctly not effect people
+      on tanks
+  - code_imp: Cleaned up some fire code
