@@ -811,7 +811,7 @@
 /area/metnal/inside/research)
 "aIJ" = (
 /obj/structure/window/framed/prison/reinforced,
-/turf/open/floor/plating,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
 "aJD" = (
 /obj/structure/rack,
@@ -1786,7 +1786,7 @@
 "bwk" = (
 /obj/structure/window/framed/prison/reinforced,
 /obj/structure/window/framed/prison/reinforced,
-/turf/open/liquid/lava/autosmoothing,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/central)
 "bwm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3677,6 +3677,9 @@
 /area/metnal/inside/security)
 "cVr" = (
 /obj/structure/mecha_wreckage/ripley,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/prison/darkred{
 	dir = 9
 	},
@@ -6538,6 +6541,12 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
+"fcA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/inside/mineralextraction)
 "fcN" = (
 /obj/item/defibrillator,
 /obj/structure/table/reinforced/prison,
@@ -7256,7 +7265,7 @@
 /area/metnal/inside/colonydorms)
 "fGi" = (
 /obj/structure/window/framed/prison/reinforced,
-/turf/open/liquid/lava/autosmoothing,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/central)
 "fGN" = (
 /obj/machinery/conveyor{
@@ -7630,6 +7639,12 @@
 	},
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
+"fZa" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/inside/mineralextraction)
 "fZe" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9241,6 +9256,19 @@
 /obj/structure/prop/computer/broken/three,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"hpD" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/central)
+"hpJ" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south/garbledradio)
 "hpK" = (
 /turf/open/floor/wood/alt_two,
 /area/metnal/inside/research)
@@ -9254,6 +9282,9 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
 "hqB" = (
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/prison/darkred{
 	dir = 5
 	},
@@ -9510,6 +9541,12 @@
 	dir = 8
 	},
 /area/metnal/inside/chapel)
+"hAN" = (
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/inside/mineralextraction)
 "hAT" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
@@ -16347,8 +16384,11 @@
 /area/metnal/inside/recreation)
 "mPl" = (
 /obj/effect/landmark/weed_node,
-/turf/open/lavaland/basalt/glowing,
-/area/metnal/outside/southeast)
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south/garbledradio)
 "mPu" = (
 /obj/structure/cable,
 /obj/structure/prop/mainship/gelida/powerccable{
@@ -19527,6 +19567,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
+"pkz" = (
+/obj/structure/cable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/inside/mineralextraction)
 "pkF" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
@@ -21035,8 +21082,10 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "quR" = (
-/turf/open/liquid/lava/single,
-/area/metnal/outside/southeast)
+/obj/structure/stairs/seamless,
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/south)
 "qve" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
@@ -27151,6 +27200,12 @@
 	dir = 8
 	},
 /area/metnal/inside/medical)
+"uNw" = (
+/obj/machinery/light{
+	light_color = "#da2f1b"
+	},
+/turf/open/floor/prison/arrow,
+/area/metnal/inside/mineralextraction)
 "uNK" = (
 /obj/structure/table/black,
 /obj/item/reagent_containers/food/drinks/cans/sodawater,
@@ -30837,6 +30892,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"xAx" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/inside/mineralextraction)
 "xAG" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -30953,6 +31014,10 @@
 "xGJ" = (
 /turf/open/liquid/lava/autosmoothing,
 /area/metnal/outside/northwest)
+"xHh" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/mainship,
+/area/metnal/outside/central)
 "xHs" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /obj/effect/landmark/weed_node,
@@ -48429,10 +48494,10 @@ xif
 xif
 nZu
 qvM
+fZa
 qvM
 qvM
-qvM
-qvM
+fZa
 qvM
 qvM
 kXX
@@ -49034,13 +49099,13 @@ cEf
 xif
 omV
 kXX
-qvM
+xAx
 qvM
 peu
 mNK
 qvM
 ogJ
-qvM
+hAN
 kXX
 kXX
 kXX
@@ -49450,7 +49515,7 @@ hqw
 nqq
 qvM
 kXX
-ewG
+hpJ
 ewG
 ewG
 jVs
@@ -49646,7 +49711,7 @@ dIE
 jcS
 qvM
 vlm
-qvM
+hAN
 kXX
 cVr
 kqM
@@ -49848,7 +49913,7 @@ eqj
 jcS
 qvM
 omb
-sOc
+uNw
 jXK
 qvM
 qvM
@@ -50252,7 +50317,7 @@ lpf
 jcS
 qvM
 pak
-qvM
+hAN
 kXX
 hqB
 aXB
@@ -50448,7 +50513,7 @@ xif
 xif
 qeW
 kXX
-fuV
+pkz
 rDp
 hzl
 ktw
@@ -50460,7 +50525,7 @@ qvM
 qvM
 qvM
 kXX
-wHx
+mPl
 ewG
 ewG
 ewG
@@ -51458,13 +51523,13 @@ oRN
 xif
 xaM
 kXX
-fuV
+pkz
 rDp
 jcF
 qvM
 qvM
 flf
-qvM
+hAN
 kXX
 xif
 xif
@@ -52068,7 +52133,7 @@ fuV
 qvM
 qvM
 qvM
-qvM
+fcA
 qvM
 qvM
 kXX
@@ -54476,7 +54541,7 @@ kez
 kez
 kez
 kez
-ezj
+kez
 kez
 oRN
 oRN
@@ -56496,18 +56561,18 @@ kez
 dxJ
 kez
 kez
-wEB
+hpD
 tqk
 kog
+xHh
 tqk
 tqk
 tqk
 tqk
-tqk
-tqk
+xHh
 kog
 tqk
-pFj
+quR
 xif
 cEf
 awd
@@ -58916,7 +58981,7 @@ dxJ
 kez
 kez
 kez
-ezj
+kez
 kFW
 oRN
 oRN
@@ -60747,7 +60812,7 @@ oRN
 oRN
 esM
 esM
-quR
+esM
 siw
 esM
 ebw
@@ -61752,7 +61817,7 @@ oRN
 oRN
 esM
 esM
-quR
+esM
 esM
 esM
 esM
@@ -61937,7 +62002,7 @@ aqt
 joS
 joS
 joS
-rZq
+joS
 joS
 joS
 oRN
@@ -63163,7 +63228,7 @@ cbB
 cbB
 cbB
 cbB
-quR
+esM
 esM
 esM
 esM
@@ -63367,7 +63432,7 @@ cbB
 cbB
 cbB
 cbB
-mPl
+vBk
 uui
 esM
 esM
@@ -63569,7 +63634,7 @@ cbB
 cbB
 cbB
 cbB
-esM
+vBk
 esM
 esM
 esM
@@ -63773,7 +63838,7 @@ cbB
 cbB
 cbB
 cbB
-esM
+vBk
 esM
 esM
 gog
@@ -63977,7 +64042,7 @@ cbB
 cbB
 cbB
 cbB
-esM
+vBk
 gog
 gog
 eyh
@@ -65399,7 +65464,7 @@ iCS
 iCS
 uIK
 gog
-vBk
+gog
 vBk
 vBk
 vBk
