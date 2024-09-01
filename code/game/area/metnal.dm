@@ -157,8 +157,14 @@
 /area/metnal/inside/research
 	name = "Research Labs"
 	icon_state = "research"
-	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+	minimap_color = MINIMAP_AREA_RESEARCH
 	ceiling = CEILING_UNDERGROUND_METAL
+
+/area/metnal/inside/experimentation
+	name = "Experimentation Area"
+	icon_state = "research"
+	minimap_color = MINIMAP_AREA_RESEARCH_CAVE
+	ceiling = CEILING_DEEP_UNDERGROUND
 
 // engineering areas
 /area/metnal/inside/engineering
