@@ -112,7 +112,6 @@
 		if("start_progressing")
 			printing = TRUE
 			update_minimap_icon()
-			xeno_message("A hostile is attempting to activate the threat at [get_area(src)] we must stop them!", 'sound/voice/alien/talk2.ogg')
 			var/mob/living/ui_user = ui.user
 			faction = ui_user.faction
 			START_PROCESSING(SSmachines, src)
