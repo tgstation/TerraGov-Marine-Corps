@@ -61,12 +61,12 @@
 
 /// Remove the filter effect added when it was hit
 /mob/illusion/proc/remove_hit_filter()
-	remove_filter("illusion_hit")
+	remove_filter(ILLUSION_HIT_FILTER)
 
 /mob/illusion/projectile_hit()
-	remove_filter("illusion_hit")
+	remove_filter(ILLUSION_HIT_FILTER)
 	deltimer(timer_effect)
-	add_filter("illusion_hit", 2, ripple_filter(10, 5))
+	add_filter(ILLUSION_HIT_FILTER, 2, ripple_filter(10, 5))
 	timer_effect = addtimer(CALLBACK(src, PROC_REF(remove_hit_filter)), 0.5 SECONDS, TIMER_STOPPABLE)
 	return FALSE
 
