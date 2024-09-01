@@ -196,12 +196,16 @@
 	minimap_color = MINIMAP_AREA_REQ
 
 /area/metnal/inside/mineralextraction
-name = "Mineral Extraction Zone"
-icon_state = "mining"
-ceiling = CEILING_UNDERGROUND
-minimap_color = MINIMAP_AREA_REQ_CAVE
+	name = "Mineral Extraction Zone"
+	icon_state = "mining"
+	ceiling = CEILING_UNDERGROUND
+	minimap_color = MINIMAP_AREA_REQ_CAVE
 
-/area/metnal
+/area/metnal/inside/emergencystorage
+	name = "Secondary Emergency Storage"
+	icon_state = "storage"
+	ceiling = CEILING_OBSTRUCTED
+	minimap_color = MINIMAP_AREA_REQ
 
 // cafeteria areas
 /area/metnal/inside/bar
