@@ -1,0 +1,4 @@
+author: "Helg2"
+delete-after: True
+changes:
+  - bugfix: "fixed stuff like capes and kamas applying it's overlays while inhands."
