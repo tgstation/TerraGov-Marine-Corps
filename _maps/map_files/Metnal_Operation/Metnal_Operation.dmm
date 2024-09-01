@@ -13652,6 +13652,11 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southeast)
+"kxy" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/lavaland/basalt/glowing,
+/area/metnal/caves/southeast/garbledradio)
 "kyw" = (
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 8
@@ -19554,11 +19559,6 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/inside/garden)
-"oUW" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/lavaland/basalt/glowing,
-/area/metnal/caves/southeast/garbledradio)
 "oVb" = (
 /obj/structure/mine_structure/wooden/support_wall/t_bar/above,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -65719,7 +65719,7 @@ vfz
 hce
 gnO
 vfz
-jVs
+vfz
 vfz
 vfz
 vfz
@@ -65920,7 +65920,7 @@ qve
 hce
 xuL
 vfz
-jVs
+vfz
 jVs
 vfz
 vfz
@@ -66121,7 +66121,7 @@ vfz
 hce
 aMl
 vfz
-jVs
+vfz
 jVs
 jVs
 vfz
@@ -66322,7 +66322,7 @@ vfz
 hce
 xuL
 vfz
-jVs
+vfz
 jVs
 edg
 jVs
@@ -67146,7 +67146,7 @@ edg
 edg
 edg
 edg
-oUW
+kxy
 bNU
 vfz
 kbL
