@@ -18,6 +18,7 @@
 		activate(I)
 		break
 
+///sets the icon on the map. Toggles it between active and inactive, notifies xenos and marines of the existence of the computer.
 /datum/round_event/intel_computer/proc/activate(obj/machinery/computer/intel_computer/I)
 	I.active = TRUE
 
