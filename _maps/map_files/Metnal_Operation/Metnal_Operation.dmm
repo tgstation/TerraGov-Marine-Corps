@@ -2383,7 +2383,6 @@
 /area/metnal/inside/bar)
 "bSR" = (
 /obj/machinery/power/apc/drained,
-/obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
@@ -18236,7 +18235,7 @@
 /area/metnal/inside/cargo)
 "nZu" = (
 /obj/structure/window_frame/prison/reinforced,
-/obj/item/shard/phoron,
+/obj/item/shard,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
 "nZH" = (
@@ -19790,7 +19789,6 @@
 	},
 /area/metnal/inside/northmeetingroom)
 "phh" = (
-/obj/machinery/power/apc/drained,
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
