@@ -3223,7 +3223,9 @@
 	},
 /area/metnal/inside/recreation)
 "cDO" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set2")
+	},
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -13652,11 +13654,6 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southeast)
-"kxy" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_tunnel_spawn,
-/turf/open/lavaland/basalt/glowing,
-/area/metnal/caves/southeast/garbledradio)
 "kyw" = (
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 8
@@ -21433,11 +21430,10 @@
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
 "qtL" = (
-/obj/effect/ai_node,
-/turf/open/lavaland/basalt/cave{
-	dir = 10
-	},
-/area/metnal/caves/west)
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/lavaland/basalt/glowing,
+/area/metnal/caves/southeast/garbledradio)
 "qtN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/warning_stripes/thick/corner{
@@ -37430,7 +37426,7 @@ jVs
 jVs
 jBS
 xQY
-qtL
+qwq
 jVs
 jVs
 edg
@@ -37632,7 +37628,7 @@ jVs
 jVs
 jBS
 icL
-jVs
+ial
 jVs
 edg
 edg
@@ -37834,7 +37830,7 @@ jBS
 jBS
 jBS
 jBS
-jVs
+ial
 jVs
 edg
 edg
@@ -38036,7 +38032,7 @@ jBS
 jBS
 icL
 xQY
-jVs
+ial
 jVs
 edg
 edg
@@ -38227,9 +38223,9 @@ bLe
 bLe
 bLe
 bLe
-jVs
-jVs
-jVs
+jBS
+jBS
+jBS
 jBS
 jBS
 ebS
@@ -67146,7 +67142,7 @@ edg
 edg
 edg
 edg
-kxy
+qtL
 bNU
 vfz
 kbL
