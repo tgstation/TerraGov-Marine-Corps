@@ -49,7 +49,7 @@
 	if (machine_stat & NOPOWER) /// checks for lack of power and shuts down
 		printing = FALSE
 		update_minimap_icon()
-		visible_message("<b>[src]</b> shuts down as it loses power. The current program loses its data.")
+		visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit.")
 		if(progress >= 50)
 			progress = 50
 		else
