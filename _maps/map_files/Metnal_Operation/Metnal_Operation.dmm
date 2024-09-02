@@ -6977,7 +6977,6 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
@@ -10658,7 +10657,6 @@
 /area/metnal/caves/southwest/garbledradio)
 "ihg" = (
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
@@ -13050,7 +13048,6 @@
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
 "keo" = (
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/machinery/power/apc/drained,
@@ -14203,7 +14200,6 @@
 	dir = 4;
 	name = "Dormitory APC"
 	},
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
@@ -15887,7 +15883,6 @@
 	},
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/metnal/inside/bathhouse)
 "mjs" = (
@@ -16894,7 +16889,6 @@
 /area/metnal/inside/bar)
 "mZi" = (
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /obj/structure/cable,
 /turf/open/floor/tile/white,
 /area/metnal/inside/chapel)
@@ -20323,7 +20317,6 @@
 	dir = 1
 	},
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /obj/structure/cable,
 /obj/structure/flora/pottedplant/four,
 /turf/open/floor/wood/alt_seven,
@@ -21054,7 +21047,6 @@
 /area/metnal/inside/cargo)
 "qgp" = (
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -22997,7 +22989,6 @@
 /turf/open/ground/grass/weedable/patch,
 /area/metnal/inside/garden)
 "rvk" = (
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /obj/machinery/light{
@@ -24616,7 +24607,6 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "sAw" = (
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
 /turf/open/floor/prison/plate,
@@ -30359,7 +30349,6 @@
 	dir = 1
 	},
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /obj/structure/cable,
 /turf/open/floor/tile/green/whitegreen,
 /area/metnal/inside/research)
@@ -31387,7 +31376,6 @@
 	dir = 4
 	},
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
