@@ -1876,10 +1876,10 @@
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
 "byz" = (
+/obj/structure/cable,
 /obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
 	dir = 2
 	},
-/obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
 "byQ" = (
@@ -2542,7 +2542,7 @@
 /area/metnal/outside/east)
 "cbI" = (
 /obj/machinery/smartfridge,
-/turf/closed/wall/prison,
+/turf/open/floor/prison/plate,
 /area/metnal/inside/medical)
 "cbU" = (
 /obj/structure/table/black,
@@ -2937,13 +2937,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical/chemistry)
 "csE" = (
-/obj/structure/cable,
-/obj/structure/prop/mainship/gelida/powercconnectortwoside{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/south)
+/obj/effect/ai_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south/garbledradio)
 "csF" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 1
@@ -3473,11 +3470,6 @@
 	},
 /turf/open/floor/freezer,
 /area/metnal/inside/security)
-"cMA" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/prison/plate,
-/area/metnal/inside/emergencystorage)
 "cMI" = (
 /obj/item/clothing/under/darkblue,
 /obj/item/clothing/under/lightblue,
@@ -4363,7 +4355,6 @@
 "dnQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
@@ -7258,7 +7249,6 @@
 	dir = 2;
 	icon_state = "door_open"
 	},
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
 "fAb" = (
@@ -7509,6 +7499,7 @@
 /obj/machinery/light{
 	light_color = "#da2f1b"
 	},
+/obj/effect/ai_node,
 /turf/open/floor/prison/arrow,
 /area/metnal/inside/mineralextraction)
 "fJo" = (
@@ -7589,7 +7580,6 @@
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
 "fLk" = (
-/obj/structure/cable,
 /obj/structure/prop/mainship/gelida/powerccable{
 	dir = 4
 	},
@@ -11037,11 +11027,6 @@
 /obj/effect/spawner/random/clothing/coloredgloves/latex,
 /turf/open/floor/wood/fancy,
 /area/metnal/inside/medical)
-"ivE" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/south)
 "ivL" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -11183,13 +11168,6 @@
 	},
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/medical)
-"iAP" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/prison/whitepurple{
-	dir = 8
-	},
-/area/metnal/inside/experimentation)
 "iBe" = (
 /obj/structure/window/framed/prison/colony,
 /turf/open/floor/prison/plate,
@@ -14469,6 +14447,7 @@
 /area/metnal/inside/security)
 "lcm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/prison/darkbrown,
 /area/metnal/inside/mineralextraction)
 "lcW" = (
@@ -15199,13 +15178,9 @@
 /turf/open/floor/prison,
 /area/metnal/inside/research)
 "lGz" = (
-/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
-	dir = 8;
-	icon_state = "door_open"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "lGA" = (
@@ -15300,7 +15275,6 @@
 /obj/structure/prop/mainship/gelida/powercconnectortwoside{
 	dir = 1
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/south)
@@ -17077,7 +17051,6 @@
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -21457,11 +21430,7 @@
 	},
 /area/metnal/outside/north)
 "quy" = (
-/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
-	dir = 8;
-	icon_state = "door_open"
-	},
-/obj/effect/mapping_helpers/airlock/locked,
+/obj/machinery/door/airlock/multi_tile/mainship/maint/free_access,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "quP" = (
@@ -21488,12 +21457,10 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
 "qvO" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/machinery/light,
-/turf/open/floor/iron/dark/herringbone,
-/area/metnal/inside/landingzoneone)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/mineralextraction)
 "qwq" = (
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt/cave{
@@ -21540,9 +21507,8 @@
 	},
 /area/metnal/inside/substation)
 "qyr" = (
-/obj/effect/ai_node,
 /obj/structure/window/framed/prison/reinforced,
-/turf/closed/wall/r_wall/prison,
+/turf/open/space/basic,
 /area/metnal/inside/mineralextraction)
 "qyx" = (
 /turf/closed/wall/prison,
@@ -23551,12 +23517,6 @@
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/cafeteria)
-"rRW" = (
-/obj/effect/turf_decal/warning_stripes/thick,
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/iron/dark/herringbone,
-/area/metnal/inside/landingzoneone)
 "rRY" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
@@ -26389,13 +26349,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
-"tQx" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/cable,
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison/sterilewhite,
-/area/metnal/inside/experimentation)
 "tQA" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -26861,7 +26814,7 @@
 	dir = 1;
 	name = "Tunnel A1"
 	},
-/turf/closed/wall/r_wall/prison,
+/turf/open/space/basic,
 /area/metnal/inside/mineralextraction)
 "uhA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -27198,7 +27151,6 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/gelida/powercconnectortwosidealt,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/south)
@@ -27916,7 +27868,7 @@
 /area/metnal/inside/garden)
 "uSR" = (
 /obj/structure/cable,
-/turf/closed/wall/r_wall/prison,
+/turf/open/space/basic,
 /area/metnal/inside/mineralextraction)
 "uSX" = (
 /obj/structure/plasticflaps,
@@ -34009,7 +33961,7 @@ nSb
 kqb
 fFT
 aYH
-iAP
+cru
 cru
 cru
 cru
@@ -35217,7 +35169,7 @@ xAg
 fuu
 pxN
 rFF
-tQx
+ueU
 mze
 lwa
 lwa
@@ -49317,7 +49269,7 @@ eny
 mPu
 mPu
 kHm
-csE
+lJb
 qyr
 qvM
 qvM
@@ -50124,16 +50076,16 @@ xif
 xif
 xif
 xif
-xif
+ilG
 cgZ
 vtW
 hqw
 tGW
-hqw
+qvO
 tYC
 hqw
 lcm
-hqw
+qvO
 vsD
 hqw
 nqq
@@ -50543,7 +50495,7 @@ qvM
 qvM
 ocd
 qvM
-ewG
+csE
 ewG
 ewG
 ewG
@@ -54371,7 +54323,7 @@ awd
 hNm
 cmj
 cmj
-ivE
+cmj
 xif
 xif
 xif
@@ -55179,7 +55131,7 @@ awd
 eII
 fIO
 rvk
-cMA
+iZX
 urq
 hdS
 fIO
@@ -67012,7 +66964,7 @@ gGG
 gGG
 gGG
 eZx
-qvO
+hpb
 lnl
 orz
 edg
@@ -67214,7 +67166,7 @@ uaA
 gGG
 gGG
 eZx
-rRW
+hTT
 lnl
 orz
 edg
@@ -68628,7 +68580,7 @@ nGt
 nGt
 nGt
 nGt
-arN
+nGt
 lnl
 cCJ
 edg
