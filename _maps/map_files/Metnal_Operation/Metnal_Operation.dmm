@@ -10081,6 +10081,7 @@
 /obj/structure/table/black,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "hNB" = (
@@ -21049,6 +21050,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
+/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mining)
 "qgr" = (
@@ -30346,6 +30348,7 @@
 	},
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/tile/green/whitegreen,
 /area/metnal/inside/research)
 "wLz" = (
