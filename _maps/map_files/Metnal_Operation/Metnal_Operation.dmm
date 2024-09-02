@@ -26258,6 +26258,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/broken_apc,
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/laundromat)
 "tOf" = (
