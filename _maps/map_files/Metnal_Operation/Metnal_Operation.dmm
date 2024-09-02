@@ -388,11 +388,6 @@
 	},
 /turf/closed/mineral/smooth/indestructible,
 /area/metnal/outside/northeast)
-"arN" = (
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/iron/dark/textured,
-/area/metnal/inside/landingzoneone)
 "ase" = (
 /obj/machinery/door/airlock/mainship/security/free_access,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2937,10 +2932,12 @@
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical/chemistry)
 "csE" = (
-/obj/effect/ai_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/metnal/caves/south/garbledradio)
+/obj/structure/prop/mainship/gelida/powercconnectortwoside{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/south)
 "csF" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 1
@@ -3470,6 +3467,11 @@
 	},
 /turf/open/floor/freezer,
 /area/metnal/inside/security)
+"cMA" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/mineralextraction)
 "cMI" = (
 /obj/item/clothing/under/darkblue,
 /obj/item/clothing/under/lightblue,
@@ -7246,8 +7248,7 @@
 /area/metnal/outside/north)
 "fzZ" = (
 /obj/machinery/door/airlock/multi_tile/mainship/maint/free_access{
-	dir = 2;
-	icon_state = "door_open"
+	dir = 2
 	},
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
@@ -15272,12 +15273,10 @@
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northeast)
 "lJb" = (
-/obj/structure/prop/mainship/gelida/powercconnectortwoside{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/south)
+/obj/effect/ai_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south/garbledradio)
 "lJj" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/wood,
@@ -21454,11 +21453,6 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
 "qvM" = (
-/turf/open/floor/prison/plate,
-/area/metnal/inside/mineralextraction)
-"qvO" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
 "qwq" = (
@@ -49269,7 +49263,7 @@ eny
 mPu
 mPu
 kHm
-lJb
+csE
 qyr
 qvM
 qvM
@@ -50081,11 +50075,11 @@ cgZ
 vtW
 hqw
 tGW
-qvO
+cMA
 tYC
 hqw
 lcm
-qvO
+cMA
 vsD
 hqw
 nqq
@@ -50495,7 +50489,7 @@ qvM
 qvM
 ocd
 qvM
-csE
+lJb
 ewG
 ewG
 ewG
@@ -53108,7 +53102,7 @@ oRN
 oRN
 xif
 uuw
-lJb
+csE
 cmj
 xif
 xif
@@ -69376,7 +69370,7 @@ lnl
 qxq
 nGt
 nGt
-arN
+nGt
 lfa
 iVu
 kby
