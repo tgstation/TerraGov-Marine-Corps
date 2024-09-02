@@ -24022,7 +24022,6 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "skC" = (
-/obj/effect/mapping_helpers/broken_apc/highchance,
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /obj/machinery/light/mainship/small{
