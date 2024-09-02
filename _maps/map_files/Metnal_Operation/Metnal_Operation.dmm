@@ -16646,7 +16646,6 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -26608,7 +26607,6 @@
 "ubC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/structure/cable,
 /turf/open/floor/carpet/side{
 	dir = 6
 	},
@@ -31867,7 +31865,6 @@
 /area/metnal/inside/medical)
 "xUT" = (
 /obj/structure/flora/pottedplant/nine,
-/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/tile/arrival{
 	dir = 1
