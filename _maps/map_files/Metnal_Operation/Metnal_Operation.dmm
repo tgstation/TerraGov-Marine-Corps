@@ -2961,9 +2961,6 @@
 	dir = 1
 	},
 /obj/structure/bed/stool,
-/obj/structure/cable,
-/obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
 "ctW" = (
@@ -5102,6 +5099,7 @@
 /area/metnal/inside/medical)
 "dVl" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
@@ -6975,6 +6973,11 @@
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
 "fnP" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
@@ -15882,6 +15885,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/metnal/inside/recreation)
 "mjs" = (
@@ -16639,6 +16645,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
+/obj/structure/cable,
 /obj/structure/cable,
 /turf/open/floor/carpet/side{
 	dir = 4
@@ -21507,6 +21514,7 @@
 /area/metnal/inside/mining)
 "qyA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -24995,7 +25003,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
 "sML" = (
@@ -25810,11 +25817,10 @@
 /turf/open/floor/tile/dark/brown2,
 /area/metnal/inside/experimentation)
 "twc" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
 /obj/structure/cable,
-/turf/open/floor/tile/darkish,
+/turf/open/floor/tile/arrival{
+	dir = 1
+	},
 /area/metnal/inside/recreation)
 "twf" = (
 /obj/structure/sign/safety/computer{
@@ -26601,6 +26607,8 @@
 /area/metnal/inside/engineering)
 "ubC" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/structure/cable,
 /turf/open/floor/carpet/side{
 	dir = 6
 	},
@@ -31856,9 +31864,8 @@
 /area/metnal/inside/medical)
 "xUT" = (
 /obj/structure/flora/pottedplant/nine,
-/obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
+/obj/structure/cable,
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
@@ -55684,7 +55691,7 @@ kez
 kez
 njt
 mjr
-emX
+twc
 aeY
 uGX
 uxB
@@ -63852,7 +63859,7 @@ vfz
 vfz
 njt
 shR
-twc
+rSN
 kGb
 fgn
 gNE
