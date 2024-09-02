@@ -29,7 +29,7 @@
 /area/bluesummers/caves/northwest/indoor
 	name = "Northwest Caves Wreckage"
 	always_unpowered = FALSE
-	ceiling = CEILING_UNDERGROUND_METAL
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 /area/bluesummers/caves/north
 	name = "Northern Caves"
@@ -106,8 +106,18 @@
 	name = "Northeastern Caves"
 	icon_state = "northeast2"
 
+/area/bluesummers/caves/northeast/indoor
+	name = "Northeast Caves Wreckage"
+	always_unpowered = FALSE
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+
 /area/bluesummers/caves/northeast/garbledradio
 	ceiling = CEILING_UNDERGROUND
+
+/area/bluesummers/caves/northeast/garbledradio/indoor
+	name = "Lower Northeast Caves Wreckage"
+	always_unpowered = FALSE
+	ceiling = CEILING_UNDERGROUND_METAL
 
 /area/bluesummers/caves/southwest
 	name = "Southwestern Caves"
@@ -301,3 +311,18 @@
 
 /area/bluesummers/inside/food_processing/east
 	name = "Eastern Food Processing Wing"
+
+/area/bluesummers/inside/eva
+	name = "EVA Operations Wing"
+	icon_state = "eva"
+	minimap_color = MINIMAP_AREA_PREP
+
+/area/bluesummers/inside/holodeck
+	name = "Holodeck Entertainment Wing"
+	icon_state = "Holodeck"
+	minimap_color = MINIMAP_AREA_PREP
+
+/area/bluesummers/inside/luxury
+	name = "Luxury Cabin Wing"
+	icon_state = "Theatre"
+	minimap_color = MINIMAP_AREA_LIVING
