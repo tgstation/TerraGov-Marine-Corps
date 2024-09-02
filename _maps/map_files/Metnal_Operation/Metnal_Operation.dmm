@@ -78,7 +78,7 @@
 /obj/effect/turf_decal/siding/wideplating/light,
 /obj/effect/turf_decal/siding/dark_blue,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "afg" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -465,7 +465,7 @@
 /turf/open/floor/plating/heatinggrate{
 	dir = 4
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "awd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -767,7 +767,7 @@
 /obj/effect/turf_decal/siding/dark_blue,
 /obj/structure/prop/mainship/pipeprop,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "aHk" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 4
@@ -1093,7 +1093,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_edge,
 /obj/effect/ai_node,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "aSW" = (
 /obj/structure/reagent_dispensers/fueltank/barrel,
 /turf/open/lavaland/basalt,
@@ -1468,7 +1468,7 @@
 /obj/effect/turf_decal/siding/dark_blue,
 /obj/item/toy/bikehorn/rubberducky,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "bjn" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/blue/plate,
@@ -3209,7 +3209,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "cDO" = (
 /obj/structure/nuke_disk_candidate{
 	set_associations = list("set2")
@@ -3370,7 +3370,7 @@
 /obj/item/clothing/under/swimsuit/black,
 /obj/item/clothing/under/swimsuit/purple,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "cJK" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -4102,7 +4102,7 @@
 /obj/structure/bed/chair/sofa/corsat/left,
 /obj/item/bedsheet/ce,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "deh" = (
 /obj/effect/turf_decal/siding/dark_green,
 /obj/item/trash/pillpacket,
@@ -4399,7 +4399,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "dqN" = (
 /turf/open/lavaland/basalt/cave/autosmooth,
 /area/metnal/caves/southeast)
@@ -4929,7 +4929,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "dPa" = (
 /obj/effect/acid_hole,
 /turf/closed/wall/prison,
@@ -4954,7 +4954,7 @@
 /obj/structure/bed/chair/sofa/corsat,
 /obj/item/bedsheet/ce,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "dPn" = (
 /obj/structure/sink/bathroom{
 	pixel_y = 12
@@ -5103,7 +5103,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "dVC" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
@@ -5151,7 +5151,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_edge,
 /obj/item/toy/gun,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "dXE" = (
 /obj/effect/spawner/random/misc/structure/stool,
 /obj/structure/cable,
@@ -5346,7 +5346,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_edge,
 /obj/machinery/light,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "efC" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitegreen,
@@ -5521,7 +5521,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "ent" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -6642,7 +6642,7 @@
 "fcp" = (
 /obj/structure/cable,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "fcy" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -6671,7 +6671,7 @@
 /obj/structure/bed/chair/sofa/corsat/left,
 /obj/effect/spawner/random/misc/bedsheet,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "fdl" = (
 /obj/structure/cable,
 /obj/structure/prop/mainship/gelida/powerccable{
@@ -7688,7 +7688,7 @@
 "fTd" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "fTw" = (
 /obj/effect/landmark/xeno_resin_wall,
 /obj/effect/landmark/weed_node,
@@ -8024,7 +8024,7 @@
 /obj/structure/table/mainship,
 /obj/item/storage/firstaid/adv,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "ghe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt/cave{
@@ -8273,7 +8273,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "grE" = (
 /obj/effect/turf_decal/sandedge/corner2{
 	dir = 8
@@ -8638,7 +8638,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/arrow_ccw,
 /obj/effect/turf_decal/trimline/dark_blue/arrow_ccw,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "gHz" = (
 /obj/effect/landmark/xeno_resin_wall,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -9204,7 +9204,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "hhO" = (
 /obj/structure/stairs/seamless/platform,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -9513,7 +9513,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/arrow_ccw,
 /obj/item/toy/gun,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "htL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/barber,
@@ -9746,7 +9746,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "hCO" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -9880,7 +9880,7 @@
 	dir = 1
 	},
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "hHJ" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
@@ -10050,7 +10050,7 @@
 /obj/structure/bed/chair/sofa/corsat/right,
 /obj/item/bedsheet/ce,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "hNf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
@@ -10129,7 +10129,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_edge,
 /obj/structure/stairs/seamless/platform_vert/water,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "hOr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10714,7 +10714,7 @@
 "ijQ" = (
 /obj/structure/bed/chair/sofa/corsat,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "ijY" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred{
@@ -10847,7 +10847,7 @@
 	dir = 4
 	},
 /turf/open/floor/tile/bar,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "ioi" = (
 /obj/effect/decal/cleanable/blood/humanimprint/four,
 /obj/effect/ai_node,
@@ -10944,7 +10944,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "isb" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -11341,7 +11341,7 @@
 	dir = 2
 	},
 /turf/open/floor/tile/bar,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "iKi" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 5
@@ -11428,7 +11428,7 @@
 /obj/structure/bed/chair/sofa/corsat,
 /obj/item/toy/plush/slime,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "iOz" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/prison/plate,
@@ -11663,7 +11663,7 @@
 /obj/effect/turf_decal/siding/dark_blue,
 /obj/item/toy/balloon,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "iXN" = (
 /obj/structure/stairs/seamless/platform{
 	dir = 4
@@ -13459,7 +13459,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "krX" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/garden{
 	dir = 2
@@ -13661,7 +13661,7 @@
 /obj/structure/flora/pottedplant/nine,
 /obj/machinery/light,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "kzV" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic/canteen{
 	dir = 1;
@@ -13714,7 +13714,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "kCT" = (
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/metnal/outside/southeast)
@@ -14069,7 +14069,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "kNK" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/carpet,
@@ -14848,7 +14848,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 8
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "lrk" = (
 /obj/structure/fence,
 /obj/effect/turf_decal/siding/blue{
@@ -15889,7 +15889,7 @@
 /obj/structure/cable,
 /obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "mjs" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 8
@@ -16249,7 +16249,7 @@
 /turf/open/floor/plating/heatinggrate{
 	dir = 4
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "mza" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/effect/ai_node,
@@ -16289,7 +16289,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/arrow_ccw,
 /obj/item/toy/plush/carp,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "mzM" = (
 /obj/effect/turf_decal/siding/wideplating/terracotta/corner{
 	dir = 4
@@ -16633,7 +16633,7 @@
 "mOK" = (
 /obj/structure/bed/chair/sofa/corsat/right,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "mOP" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access{
 	dir = 2;
@@ -17587,7 +17587,7 @@
 /obj/machinery/atmospherics/components/unary/thermomachine/freezer/on,
 /obj/structure/closet/secure_closet/walllocker/medical/full,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "nzT" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/spawner/random/misc/seeds,
@@ -17690,7 +17690,7 @@
 "nDB" = (
 /obj/item/toy/gun_ammo,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "nDJ" = (
 /obj/structure/bed/chair/pew,
 /obj/item/storage/bible,
@@ -17750,7 +17750,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "nFR" = (
 /obj/structure/table/wood/fancy,
 /obj/item/clothing/mask/cigarette/bica,
@@ -17762,7 +17762,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_edge,
 /obj/item/toy/waterflower,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "nFV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -18620,7 +18620,7 @@
 	dir = 1
 	},
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "onP" = (
 /obj/structure/bed/stool,
 /obj/item/paper/prison_station/inmate_handbook,
@@ -18915,7 +18915,7 @@
 	on = 1
 	},
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "ozM" = (
 /obj/structure/table/black,
 /obj/structure/window/reinforced/tinted{
@@ -18940,7 +18940,7 @@
 	dir = 8
 	},
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "oAL" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 8
@@ -19100,7 +19100,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_edge,
 /obj/item/toy/bikehorn/rubberducky,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "oFF" = (
 /obj/effect/turf_decal/woodsiding{
 	dir = 8
@@ -19576,7 +19576,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/arrow_ccw,
 /obj/item/toy/beach_ball,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "oVI" = (
 /obj/effect/turf_decal/sandedge{
 	dir = 8
@@ -19644,7 +19644,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "oYZ" = (
 /turf/open/liquid/lava/autosmoothing/catwalk,
 /area/metnal/outside/northeast)
@@ -20125,7 +20125,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 8
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "ptC" = (
 /turf/open/liquid/lava/autosmoothing,
 /area/metnal/caves/south/garbledradio)
@@ -20757,7 +20757,7 @@
 	dir = 1
 	},
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "pVr" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/carpet/side{
@@ -20804,7 +20804,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "pXl" = (
 /obj/effect/decal/cleanable/flour,
 /obj/effect/turf_decal/tile/brown{
@@ -22105,7 +22105,7 @@
 "qOU" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "qPF" = (
 /obj/structure/bed/chair/office/dark/east,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -23196,7 +23196,7 @@
 "rEE" = (
 /obj/machinery/light,
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "rEI" = (
 /obj/structure/cable,
 /obj/structure/prop/mainship/gelida/powercconnectortwoside{
@@ -23246,7 +23246,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "rGj" = (
 /turf/open/floor/prison/greenblue,
 /area/metnal/inside/meddesk)
@@ -23618,7 +23618,7 @@
 /obj/structure/closet/secure_closet/walllocker/medical/full,
 /obj/structure/closet/swimsuit,
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "rWa" = (
 /obj/structure/bed/chair/sofa/right,
 /obj/item/toy/plush/therapy_yellow,
@@ -23679,7 +23679,7 @@
 /obj/effect/turf_decal/trimline/dark_blue/arrow_ccw,
 /obj/item/clothing/shoes/swimmingfins,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "rYt" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -25821,7 +25821,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "twf" = (
 /obj/structure/sign/safety/computer{
 	dir = 4
@@ -27222,7 +27222,7 @@
 "uxB" = (
 /obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_edge,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "uxC" = (
 /obj/structure/bed,
 /obj/item/bedsheet/medical,
@@ -27496,7 +27496,7 @@
 /obj/effect/turf_decal/tile/transparent/dark_blue/diagonal_edge,
 /obj/effect/turf_decal/trimline/dark_blue/arrow_ccw,
 /turf/open/liquid/water,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "uHj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite,
@@ -27739,7 +27739,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 8
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "uPU" = (
 /obj/machinery/mineral/unloading_machine/corner/alt,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -29061,7 +29061,7 @@
 "vJs" = (
 /obj/structure/window/framed/prison/colony,
 /turf/open/floor/tile/bar,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "vJW" = (
 /obj/structure/bookcase,
 /turf/open/floor/tile/red/whitered/full,
@@ -29264,6 +29264,9 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/metnal/inside/research)
+"vRa" = (
+/turf/closed/wall/prison,
+/area/metnal/inside/bathhouse)
 "vRe" = (
 /turf/open/floor/tile/green/whitegreenfull,
 /area/metnal/inside/research)
@@ -29309,7 +29312,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "vRY" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/cans/aspen,
@@ -31066,7 +31069,7 @@
 	dir = 1
 	},
 /turf/open/floor/tile/blue/whitebluefull,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "xlA" = (
 /obj/effect/turf_decal/sandedge/corner{
 	dir = 4
@@ -31082,7 +31085,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 4
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "xmi" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 1
@@ -31286,7 +31289,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "xvI" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
@@ -31773,7 +31776,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 8
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "xQx" = (
 /obj/structure/rock/basalt/pile/alt3,
 /turf/open/floor/mainship_hull/gray,
@@ -31869,7 +31872,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 1
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "xUV" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
@@ -31915,7 +31918,7 @@
 /area/metnal/inside/substation)
 "xWB" = (
 /turf/open/floor/tile/arrival,
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "xWJ" = (
 /turf/open/floor/prison/darkbrown,
 /area/metnal/inside/mineralextraction)
@@ -32128,7 +32131,7 @@
 /turf/open/floor/tile/arrival{
 	dir = 8
 	},
-/area/metnal/inside/recreation)
+/area/metnal/inside/bathhouse)
 "ydC" = (
 /obj/vehicle/train/cargo/trolley,
 /obj/structure/cable,
@@ -55084,16 +55087,16 @@ kez
 kez
 kez
 kez
-njt
+vRa
 vJs
 vJs
-njt
+vRa
 inu
 iIs
-njt
+vRa
 vJs
 vJs
-njt
+vRa
 kez
 hIE
 sos
@@ -55285,8 +55288,8 @@ oRN
 kez
 bHC
 kez
-njt
-njt
+vRa
+vRa
 xUT
 fcp
 xQm
@@ -55295,7 +55298,7 @@ lrb
 psL
 emX
 kzs
-njt
+vRa
 kez
 kez
 moo
@@ -55487,7 +55490,7 @@ oRN
 kez
 kez
 dxJ
-njt
+vRa
 ozA
 dVl
 krD
@@ -55689,7 +55692,7 @@ oRN
 oRN
 kez
 kez
-njt
+vRa
 mjr
 twc
 aeY
@@ -56899,9 +56902,9 @@ oRN
 oRN
 oRN
 oRN
-njt
+vRa
 vJs
-njt
+vRa
 rVT
 emX
 aeY
@@ -57101,9 +57104,9 @@ oRN
 oRN
 oRN
 oRN
-njt
+vRa
 myW
-njt
+vRa
 dqp
 xvE
 aeY
@@ -57113,7 +57116,7 @@ uGX
 hOn
 vRS
 xWB
-njt
+vRa
 kez
 dxJ
 moo
@@ -57303,7 +57306,7 @@ oRN
 oRN
 oRN
 oRN
-njt
+vRa
 myW
 avZ
 cJJ
@@ -57315,7 +57318,7 @@ uGX
 pUQ
 vRS
 rEE
-njt
+vRa
 kez
 kez
 kez
@@ -57505,9 +57508,9 @@ oRN
 oRN
 oRN
 oRN
-njt
+vRa
 myW
-njt
+vRa
 xlv
 emX
 aeY
@@ -57517,7 +57520,7 @@ uGX
 uxB
 hCM
 xWB
-njt
+vRa
 kez
 dxJ
 kez
@@ -57707,9 +57710,9 @@ oRN
 oRN
 oRN
 oRN
-njt
+vRa
 vJs
-njt
+vRa
 nzp
 dOQ
 aHe
@@ -57719,7 +57722,7 @@ uGX
 uxB
 vRS
 xWB
-njt
+vRa
 kez
 kez
 kez
@@ -58921,7 +58924,7 @@ oRN
 kez
 kez
 kez
-njt
+vRa
 ggY
 irE
 aeY
@@ -59123,7 +59126,7 @@ oRN
 kez
 kez
 kez
-njt
+vRa
 hgt
 emX
 oAi
@@ -59325,8 +59328,8 @@ oRN
 vPN
 kez
 kez
-njt
-njt
+vRa
+vRa
 nFL
 fTd
 gru
@@ -59335,7 +59338,7 @@ gru
 gru
 emX
 kzs
-njt
+vRa
 kez
 kez
 kez
@@ -59528,7 +59531,7 @@ vPN
 kez
 dxJ
 kez
-njt
+vRa
 vJs
 vJs
 vJs
@@ -59537,7 +59540,7 @@ vJs
 vJs
 vJs
 vJs
-njt
+vRa
 dxJ
 kez
 kez
