@@ -1585,7 +1585,7 @@
 /area/metnal/caves/south)
 "boy" = (
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/highchance,
+/obj/effect/mapping_helpers/broken_apc,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/metnal/caves/nukestorage)
 "boY" = (
@@ -24032,7 +24032,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/broken_apc/highchance,
+/obj/effect/mapping_helpers/broken_apc,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
@@ -26258,7 +26258,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/broken_apc,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/laundromat)
 "tOf" = (
