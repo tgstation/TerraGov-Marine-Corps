@@ -3,3 +3,9 @@
   - bugfix: Fixed some fire bugs, notably fire will now correctly not effect people
       on tanks
   - code_imp: Cleaned up some fire code
+2024-09-02:
+  Helg2:
+  - bugfix: fixed stuff like capes and kamas applying it's overlays while inhands.
+  Lumipharon:
+  - imageadd: Improved human gib animations slightly
+  - balance: Energy cell explosions have lower flash range
