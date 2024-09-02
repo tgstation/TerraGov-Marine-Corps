@@ -26138,11 +26138,6 @@
 	dir = 4
 	},
 /area/metnal/inside/mining)
-"tJh" = (
-/obj/structure/window/framed/prison/reinforced,
-/obj/structure/window_frame/prison/reinforced,
-/turf/open/floor/prison/sterilewhite,
-/area/metnal/inside/research)
 "tJB" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/ground/grass/weedable/patch,
@@ -59782,9 +59777,9 @@ uCR
 oep
 agr
 iNn
-iNn
-iNn
-tJh
+agr
+agr
+agr
 iNn
 agr
 wzd
@@ -63417,19 +63412,19 @@ esM
 ifo
 esM
 agr
-iNn
-iNn
-iNn
-iNn
-iNn
+agr
+agr
+agr
+agr
+agr
 agr
 cjR
 rCQ
 agr
-iNn
-iNn
-iNn
-iNn
+agr
+agr
+agr
+agr
 agr
 agr
 edg
