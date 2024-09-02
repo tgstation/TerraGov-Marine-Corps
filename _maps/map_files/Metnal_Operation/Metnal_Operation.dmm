@@ -2392,6 +2392,7 @@
 "bSR" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
 "bTb" = (
@@ -10659,6 +10660,7 @@
 "ihg" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/broken_apc/highchance,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
 "ihj" = (
@@ -25233,6 +25235,7 @@
 	},
 /obj/item/roller,
 /obj/item/storage/box/gloves,
+/obj/effect/mapping_helpers/broken_apc/highchance,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
 "sZo" = (
