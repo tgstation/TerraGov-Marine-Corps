@@ -14205,6 +14205,7 @@
 	},
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
 "kUO" = (
@@ -15885,6 +15886,7 @@
 	},
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
+/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/metnal/inside/bathhouse)
 "mjs" = (
@@ -20320,6 +20322,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /obj/structure/flora/pottedplant/four,
+/obj/effect/mapping_helpers/broken_apc/highchance,
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/garden)
 "pFc" = (
@@ -24611,6 +24614,7 @@
 "sAw" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/drained,
+/obj/effect/mapping_helpers/broken_apc/highchance,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
 "sAR" = (
