@@ -1585,6 +1585,7 @@
 /area/metnal/caves/south)
 "boy" = (
 /obj/machinery/power/apc/drained,
+/obj/effect/mapping_helpers/broken_apc/highchance,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/metnal/caves/nukestorage)
 "boY" = (
@@ -6976,6 +6977,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/broken_apc/highchance,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
@@ -24023,6 +24025,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/broken_apc/highchance,
 /turf/open/floor/tile/dark/brown2{
 	dir = 1
 	},
