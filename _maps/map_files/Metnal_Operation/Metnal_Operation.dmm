@@ -1585,7 +1585,6 @@
 /area/metnal/caves/south)
 "boy" = (
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/metnal/caves/nukestorage)
 "boY" = (
@@ -10077,7 +10076,6 @@
 /obj/machinery/power/apc/drained{
 	dir = 4
 	},
-/obj/effect/mapping_helpers/broken_apc,
 /obj/structure/table/black,
 /obj/structure/paper_bin,
 /obj/item/tool/pen,
@@ -15615,7 +15613,6 @@
 "lXL" = (
 /obj/vehicle/ridden/wheelchair,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/broken_apc,
 /obj/machinery/power/apc/drained,
 /obj/structure/bed,
 /turf/open/floor/prison/sterilewhite,
@@ -19187,7 +19184,6 @@
 "oJG" = (
 /obj/effect/spawner/random/misc/plant,
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc,
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
@@ -24651,7 +24647,6 @@
 "sCO" = (
 /obj/structure/bed/chair/alt,
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -25233,7 +25228,6 @@
 	},
 /obj/item/roller,
 /obj/item/storage/box/gloves,
-/obj/effect/mapping_helpers/broken_apc,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
 "sZo" = (
