@@ -2243,11 +2243,10 @@
 	},
 /area/metnal/inside/mining)
 "bNP" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
+/turf/open/lavaland/basalt/cave{
+	dir = 1
 	},
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/metnal/inside/landingzoneone)
+/area/metnal/caves/southwest/garbledradio)
 "bNU" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt,
@@ -8555,6 +8554,12 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"gDH" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt/cave{
+	dir = 8
+	},
+/area/metnal/caves/southwest/garbledradio)
 "gDI" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/east,
 /turf/open/floor/prison/darkred{
@@ -10915,6 +10920,11 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/inside/garden)
+"ipZ" = (
+/turf/open/lavaland/basalt/cave{
+	dir = 10
+	},
+/area/metnal/caves/southwest/garbledradio)
 "iqU" = (
 /obj/effect/acid_hole,
 /turf/closed/wall/prison,
@@ -17700,7 +17710,7 @@
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt/cave{
-	dir = 5
+	dir = 4
 	},
 /area/metnal/caves/southwest/garbledradio)
 "nDU" = (
@@ -21502,9 +21512,10 @@
 	},
 /area/metnal/inside/substation)
 "qyr" = (
-/obj/structure/window/framed/prison/reinforced,
-/turf/open/space/basic,
-/area/metnal/inside/mineralextraction)
+/turf/open/lavaland/basalt/cave{
+	dir = 4
+	},
+/area/metnal/caves/southwest/garbledradio)
 "qyx" = (
 /turf/closed/wall/prison,
 /area/metnal/inside/mining)
@@ -24907,8 +24918,8 @@
 "sJM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/metnal/caves/west/garbledradio)
+/turf/closed/mineral/smooth/outdoor,
+/area/metnal/caves/rock)
 "sKD" = (
 /obj/effect/decal/cleanable/blood/writing,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -26799,12 +26810,9 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "uhe" = (
-/obj/machinery/door/airlock/multi_tile/secure{
-	dir = 1;
-	name = "Tunnel A1"
-	},
-/turf/open/space/basic,
-/area/metnal/inside/mineralextraction)
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt/cave/corner,
+/area/metnal/caves/southwest/garbledradio)
 "uhA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -27856,9 +27864,9 @@
 /turf/open/ground/grass/weedable/patch,
 /area/metnal/inside/garden)
 "uSR" = (
-/obj/structure/cable,
-/turf/open/space/basic,
-/area/metnal/inside/mineralextraction)
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt/cave/corner,
+/area/metnal/caves/southwest/garbledradio)
 "uSX" = (
 /obj/structure/plasticflaps,
 /obj/effect/turf_decal/loading_area{
@@ -29824,6 +29832,11 @@
 /obj/item/trash/cigbutt,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northwest)
+"woh" = (
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/smooth/outdoor,
+/area/metnal/caves/rock)
 "wou" = (
 /obj/machinery/light{
 	dir = 8
@@ -33478,12 +33491,12 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-fDu
+jVs
+jVs
+jVs
+jVs
+jVs
+woh
 hmY
 hmY
 hmY
@@ -33681,11 +33694,11 @@ edg
 edg
 hmY
 hmY
-hmY
-hmY
-hmY
-hmY
-hmY
+bGq
+bGq
+bGq
+bGq
+bGq
 bLe
 gIb
 gIb
@@ -33693,7 +33706,7 @@ fel
 gIb
 gIb
 gIb
-hmY
+xbJ
 hmY
 hmY
 rmd
@@ -34289,12 +34302,12 @@ mLo
 der
 der
 der
-hmY
-hmY
-hmY
-hmY
-hmY
-hmY
+bGq
+bGq
+bGq
+bGq
+bGq
+xbJ
 hmY
 hmY
 hmY
@@ -34489,15 +34502,15 @@ der
 der
 teB
 teB
+bGq
 hmY
 hmY
-hmY
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+jVs
+jVs
+jVs
+jVs
+jVs
 edg
 edg
 hmY
@@ -34689,10 +34702,10 @@ der
 der
 tqs
 bGq
+bGq
 hmY
 hmY
-hmY
-edg
+jVs
 edg
 edg
 edg
@@ -37545,11 +37558,11 @@ edg
 edg
 edg
 edg
-edg
-edg
 jVs
-hmY
-hmY
+jVs
+jVs
+xbJ
+xbJ
 xbJ
 iyR
 xbJ
@@ -37744,15 +37757,15 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-edg
-edg
 jVs
 jVs
 jVs
+bLe
+bLe
+bLe
+bLe
+bLe
+bLe
 dBj
 bLe
 bLe
@@ -37947,15 +37960,15 @@ jVs
 jVs
 jVs
 jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
+bLe
+bLe
+bLe
+bLe
+bLe
+bLe
+bLe
+bLe
+bLe
 bLe
 bLe
 bLe
@@ -38549,9 +38562,9 @@ jVs
 iVZ
 bLe
 bLe
-lkt
-dBj
-bLe
+uhe
+gDH
+ipZ
 jVs
 jVs
 jVs
@@ -38750,8 +38763,8 @@ jVs
 mLh
 aEG
 bLe
-bLe
-bLe
+uTI
+ipZ
 jVs
 jVs
 jVs
@@ -38951,8 +38964,8 @@ ujt
 mLh
 aEG
 lkt
-bLe
-bLe
+uTI
+ipZ
 jVs
 jVs
 edg
@@ -39152,8 +39165,8 @@ ujt
 pMr
 tPf
 bLe
-dBj
-bLe
+uSR
+ipZ
 jVs
 jVs
 edg
@@ -39354,7 +39367,7 @@ ujt
 qkt
 tPf
 bLe
-bLe
+bNP
 jVs
 jVs
 edg
@@ -39556,7 +39569,7 @@ ujt
 pMr
 tPf
 bLe
-uTI
+bNP
 jVs
 jVs
 jVs
@@ -39963,11 +39976,11 @@ kve
 lkt
 ryh
 nDP
-bLe
-bLe
-bLe
-bLe
-bLe
+qyr
+qyr
+qyr
+qyr
+qyr
 bLe
 bLe
 bLe
@@ -40164,7 +40177,7 @@ ujt
 tPf
 bLe
 bLe
-ryh
+bLe
 bLe
 bLe
 bLe
@@ -49261,7 +49274,7 @@ mPu
 mPu
 kHm
 lJb
-qyr
+hcY
 qvM
 qvM
 hzl
@@ -52898,8 +52911,8 @@ oRN
 xif
 omV
 kXX
-uSR
-uhe
+fuV
+soP
 kXX
 kXX
 kXX
@@ -69556,7 +69569,7 @@ lRJ
 gpK
 gpK
 naX
-bNP
+orz
 bSB
 bSB
 bSB
