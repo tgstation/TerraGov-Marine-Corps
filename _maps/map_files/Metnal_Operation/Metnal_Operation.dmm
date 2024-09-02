@@ -15485,7 +15485,9 @@
 /area/metnal/inside/landingzoneone)
 "lSI" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/metal/medium_stack,
+/obj/item/stack/sheet/metal/medium_stack{
+	amount = 10
+	},
 /obj/item/explosive/plastique,
 /obj/structure/cable,
 /obj/item/tool/weldpack,
@@ -27914,7 +27916,9 @@
 /area/metnal/inside/meddesk)
 "uVU" = (
 /obj/structure/rack,
-/obj/item/stack/sheet/metal/medium_stack,
+/obj/item/stack/sheet/metal/medium_stack{
+	amount = 10
+	},
 /obj/item/explosive/plastique,
 /obj/item/explosive/plastique,
 /obj/item/circuitboard/mecha,
