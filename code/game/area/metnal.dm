@@ -238,6 +238,12 @@
 	minimap_color = MINIMAP_AREA_LIVING
 	ceiling = CEILING_DEEP_UNDERGROUND
 
+/area/metnal/inside/bathhouse
+	name = "The Bathhouse"
+	icon_state = "bathhouse"
+	minimap_color = MINIMAP_AREA_LIVING
+	ceiling = CEILING_METAL
+	
 // command areas
 /area/metnal/inside/northmeetingroom
 	name = "War Room"
