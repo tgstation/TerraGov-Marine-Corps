@@ -2932,12 +2932,10 @@
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical/chemistry)
 "csE" = (
-/obj/structure/prop/mainship/gelida/powercconnectortwoside{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/south)
+/obj/effect/ai_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south/garbledradio)
 "csF" = (
 /obj/structure/stairs/seamless/platform_vert{
 	dir = 1
@@ -15273,10 +15271,12 @@
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northeast)
 "lJb" = (
-/obj/effect/ai_node,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/metnal/caves/south/garbledradio)
+/obj/structure/prop/mainship/gelida/powercconnectortwoside{
+	dir = 1
+	},
+/obj/structure/cable,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/south)
 "lJj" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/wood,
@@ -49263,7 +49263,7 @@ eny
 mPu
 mPu
 kHm
-csE
+lJb
 qyr
 qvM
 qvM
@@ -50489,7 +50489,7 @@ qvM
 qvM
 ocd
 qvM
-lJb
+csE
 ewG
 ewG
 ewG
@@ -53102,7 +53102,7 @@ oRN
 oRN
 xif
 uuw
-csE
+lJb
 cmj
 xif
 xif
