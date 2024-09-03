@@ -46,7 +46,7 @@
 	if(!printing)
 		STOP_PROCESSING(SSmachines, src)
 		return
-	if (machine_stat & NOPOWER) /// checks for lack of power and shuts down
+	if (machine_stat & NOPOWER)
 		printing = FALSE
 		update_minimap_icon()
 		visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit.")
@@ -54,8 +54,8 @@
 			progress = 50
 		else
 			progress = 0
-		return
-	progress += progress_interval
+	else
+		progress += progress_interval
 	if(progress >= 100)
 		STOP_PROCESSING(SSmachines, src)
 		printing = FALSE
