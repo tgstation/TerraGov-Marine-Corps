@@ -261,7 +261,7 @@
 
 /obj/effect/landmark/start/job/vsd_medic
 	icon_state = "MP"
-	job = /datum/job/vsd/medic
+	job = /datum/job/vsd_squad/medic
 
 /obj/effect/landmark/start/job/vsd_engineer
 	icon_state = "MP"
