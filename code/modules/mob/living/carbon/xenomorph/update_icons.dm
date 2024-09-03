@@ -149,13 +149,14 @@
 	var/obj/item/storage/backpack/marine/duffelbag/xenosaddle/saddle = back
 	if(stat == DEAD)
 		backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Dead"
-	else if(lying_angle)
+		return
+	if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
 			backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Sleeping"
-		else
-			backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
-	else
-		backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""]"
+			return
+		backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
+		return
+	backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""]"
 
 /mob/living/carbon/xenomorph/update_transform()
 	..()
@@ -176,7 +177,7 @@
 	owner = new_owner
 	if(!owner)
 		return INITIALIZE_HINT_QDEL
-	. = ..()
+	return ..()
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	light_system = MOVABLE_LIGHT

@@ -23,20 +23,19 @@
 
 /obj/item/storage/backpack/marine/duffelbag/xenosaddle/examine(mob/user)
 	. = ..()
-	. += span_notice("Its current style is set to [style_list_inverted[style]]")
+	. += span_notice("Its current style is set to [style_list_inverted[style]].")
 
 /obj/item/storage/backpack/marine/duffelbag/xenosaddle/AltClick(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/living_user = user
-	if(!living_user.Adjacent(src) || (living_user.get_active_held_item() != src && living_user.get_inactive_held_item() != src))
+	if(!living_user.Adjacent(src) || (!src in living_user.get_held_items()))
 		return
 	var/new_style = tgui_input_list(living_user, "Pick a style", "Pick style", style_list)
 	if(!new_style)
 		return
-	else
-		style = style_list[new_style]
-		icon_state = style
+	style = style_list[new_style]
+	icon_state = style
 
 /obj/item/storage/backpack/marine/duffelbag/xenosaddle/mob_can_equip(mob/user, slot, warning, override_nodrop, bitslot)
 	if(!slot || !user)
