@@ -54,17 +54,18 @@
 			progress = 50
 		else
 			progress = 0
-	else
-		progress += progress_interval
-	if(progress >= 100)
-		STOP_PROCESSING(SSmachines, src)
-		printing = FALSE
-		printing_complete = TRUE
-		update_minimap_icon()
-		SSpoints.supply_points[faction] += supply_reward
-		SSpoints.dropship_points += dropship_reward
-		minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
-		SSminimaps.remove_marker(src)
+		return
+	progress += progress_interval
+	if(progress <= 100)
+		return
+	STOP_PROCESSING(SSmachines, src)
+	printing = FALSE
+	printing_complete = TRUE
+	update_minimap_icon()
+	SSpoints.supply_points[faction] += supply_reward
+	SSpoints.dropship_points += dropship_reward
+	minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
+	SSminimaps.remove_marker(src)
 
 /obj/machinery/computer/intel_computer/Destroy()
 	GLOB.intel_computers -= src
