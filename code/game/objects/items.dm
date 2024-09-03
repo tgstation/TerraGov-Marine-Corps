@@ -1095,7 +1095,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 					W.reagents.reaction(atm)
 					if(isfire(atm))
 						var/obj/fire/FF = atm
-						FF.set_fire(FF.burn_ticks - 20)
+						FF.set_fire(FF.burn_ticks - EXTINGUISH_AMOUNT)
 						continue
 					if(isliving(atm)) //For extinguishing mobs on fire
 						var/mob/living/M = atm
