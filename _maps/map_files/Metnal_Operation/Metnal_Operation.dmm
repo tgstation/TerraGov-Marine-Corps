@@ -30700,6 +30700,10 @@
 /obj/item/toy/prize/gygax,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
+"wXn" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/mineralextraction)
 "wXp" = (
 /obj/structure/rack,
 /obj/item/storage/box/bodybags{
@@ -50094,7 +50098,7 @@ vsD
 hqw
 nqq
 qvM
-kXX
+wXn
 ewG
 ewG
 ewG
