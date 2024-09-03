@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Mirage nade illusions no longer block bullets"
+  - bugfix: "Hunter illusions now correctly have the parent hunters wound/fire overlays"
+  - code_imp: "Cleaned up an consolidated illusion code for mirage nades and hunter mirage"
