@@ -370,6 +370,6 @@
 	for(var/mob/living/rider AS in carrying_runner.buckled_mobs)
 		carrying_runner.unbuckle_mob(rider)
 		rider.Knockdown(1 SECONDS)
-		carrying_runner.visible_message("<span class='danger'>[rider] topples off of [carrying_runner] as they both fall to the ground!</span>", \
-					"<span class='warning'>You fall to the ground, bringing [rider] with you!</span>", "<span class='hear'>You hear two consecutive thuds.</span>")
-		to_chat(rider, "<span class='danger'>[carrying_runner] falls to the ground, bringing you with [carrying_runner.p_them()]!</span>")
+		carrying_runner.visible_message(span_danger("[rider] topples off of [carrying_runner] as they both fall to the ground!</span>"), \
+					span_danger("You fall to the ground, bringing [rider] with you!</span>", "<span class='hear'>You hear two consecutive thuds.</span>"))
+		to_chat(rider, span_danger("[carrying_runner] falls to the ground, bringing you with [carrying_runner.p_them()]!"))

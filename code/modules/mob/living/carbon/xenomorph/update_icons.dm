@@ -139,11 +139,9 @@
 
 	wound_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
 
+///Updates the niche overlays of a xenomorph, like the backpack overlay
 /mob/living/carbon/xenomorph/proc/update_snowflake_overlays()
 	if(!backpack_overlay)
-		return
-	if(!back)
-		backpack_overlay.icon_state = ""
 		return
 	if(!istype(back,/obj/item/storage/backpack/marine/duffelbag/xenosaddle))
 		backpack_overlay.icon_state = ""
@@ -167,9 +165,9 @@
 
 /atom/movable/vis_obj/xeno_wounds/backpack_overlay
 	layer = ABOVE_MOB_LAYER
+	icon = 'icons/Xeno/saddles/runnersaddle.dmi' //this should probally be something more generic if saddles r ever added to anything other than rounies
 	///The xeno this overlay belongs to
 	var/mob/living/carbon/xenomorph/owner
-	icon = 'icons/Xeno/saddles/runnersaddle.dmi' //this should probally be something more generic if saddles r ever added to anything other than rounies
 
 /atom/movable/vis_obj/xeno_wounds
 	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_ID

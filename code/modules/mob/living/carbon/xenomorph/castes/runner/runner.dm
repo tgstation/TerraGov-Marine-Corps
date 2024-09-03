@@ -74,9 +74,9 @@
 		INVOKE_ASYNC(src, PROC_REF(carry_human), human)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
-
+/// Takes a human and puts them on the saddle of the runner, handling all the buckling & checks.
 /mob/living/carbon/xenomorph/runner/proc/carry_human(mob/living/carbon/target, forced = FALSE)
-	if(!back)//cant ride without a saddle
+	if(istype(back,/obj/item/storage/backpack/marine/duffelbag/xenosaddle))//cant ride without a saddle
 		return
 	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
 		if(forced)

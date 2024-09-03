@@ -81,8 +81,7 @@
 	if(!isxeno(equipper))
 		return
 	var/mob/living/carbon/xenomorph/rouny = equipper
-	var/atom/movable/vis_obj/xeno_wounds/backpack_overlay/backpack_overlay = rouny.backpack_overlay
-	backpack_overlay.icon_state = src.style
+	rouny.backpack_overlay.icon_state = src.style
 	ENABLE_BITFIELD(rouny.buckle_flags, CAN_BUCKLE)
 	rouny.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher/runner)
 	rouny.RegisterSignal(rouny, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
@@ -92,8 +91,7 @@
 	if(!isxeno(unequipper))
 		return
 	var/mob/living/carbon/xenomorph/rouny = unequipper
-	var/atom/movable/vis_obj/xeno_wounds/backpack_overlay/backpack_overlay = rouny.backpack_overlay
-	backpack_overlay.icon_state = ""
+	rouny.backpack_overlay.icon_state = ""
 	DISABLE_BITFIELD(rouny.buckle_flags, CAN_BUCKLE)
 	rouny.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/crusher/runner)
 	rouny.UnregisterSignal(rouny, COMSIG_GRAB_SELF_ATTACK)

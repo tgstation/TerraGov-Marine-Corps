@@ -623,7 +623,7 @@
 
 	return ..()
 
-
+/// Handles when the player clicks on themself with the grab item
 /mob/living/carbon/human/proc/grabbed_self_attack()
 	SIGNAL_HANDLER
 	var/mob/living/grabbed = pulling
