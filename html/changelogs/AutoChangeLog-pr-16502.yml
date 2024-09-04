@@ -1,0 +1,5 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "AI eye hearing now respects instrument preferences"
+  - code_imp: "Improved the way AI eye hears"
