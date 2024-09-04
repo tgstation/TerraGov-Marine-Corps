@@ -1,6 +1,0 @@
-author: "Apple-107"
-delete-after: True
-changes:
-  - rscadd: "Intelligence Computers now have an active Minimap icon"
-  - balance: "Intelligence Computers award 1000 REQ points and 100 DS points for completion, they take longer."
-  - bugfix: "Intelligence Computers now deactivate when they lose power, and can lose progress."
