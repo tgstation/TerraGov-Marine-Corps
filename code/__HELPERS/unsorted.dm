@@ -212,7 +212,7 @@
 			continue
 		if((object.allow_pass_flags & PASS_PROJECTILE) && projectile)
 			continue
-		if((istype(object, /obj/structure/door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
+		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
 		if((object.allow_pass_flags & PASS_GLASS) && bypass_window)
 			continue

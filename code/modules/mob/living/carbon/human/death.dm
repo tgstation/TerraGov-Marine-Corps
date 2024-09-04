@@ -11,7 +11,8 @@
 	return ..()
 
 /mob/living/carbon/human/gib_animation()
-	new /obj/effect/overlay/temp/gib_animation(loc, 0, src, species ? species.gibbed_anim : "gibbed-h")
+	var/datum/ethnicity/ethnic_datum = GLOB.ethnicities_list[ethnicity]
+	new /obj/effect/overlay/temp/gib_animation/human(loc, 0, src, species?.gibbed_anim ? species.gibbed_anim : ethnic_datum ? ethnic_datum.icon_name : "default")
 
 /mob/living/carbon/human/spawn_gibs()
 	if(species)

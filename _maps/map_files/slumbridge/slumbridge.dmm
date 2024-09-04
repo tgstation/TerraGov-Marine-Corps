@@ -23449,7 +23449,7 @@
 /turf/open/floor/plating/platebot,
 /area/slumbridge/inside/houses/car)
 "rkT" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/variable/mosaic,
 /area/slumbridge/caves/southeastcaves/garbledradio)
 "rkU" = (
@@ -25520,7 +25520,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/caves/minedrock)
 "sJw" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/variable/wide/damaged,
 /area/slumbridge/caves/southeastcaves/garbledradio)
 "sJH" = (

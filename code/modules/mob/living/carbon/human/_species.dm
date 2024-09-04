@@ -74,7 +74,7 @@
 
 	//----Related to dying in some way
 	///species-specific gibbing animation
-	var/gibbed_anim = "gibbed-h"
+	var/gibbed_anim
 	///species-specific dusting animation
 	var/dusted_anim = "dust-h"
 	///used to determine what item is left behind in /spawn_dust_remains()
