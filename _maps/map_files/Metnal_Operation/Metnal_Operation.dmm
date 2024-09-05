@@ -3891,6 +3891,11 @@
 /obj/item/weapon/gun/shotgun/pump/standard,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"cYG" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/southeast)
 "cYM" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -10593,11 +10598,6 @@
 	dir = 8
 	},
 /area/metnal/inside/northmeetingroom)
-"icG" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/metnal/caves/south/garbledradio)
 "icJ" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 1
@@ -11437,6 +11437,11 @@
 	},
 /turf/open/floor/tile/bar,
 /area/metnal/inside/bathhouse)
+"iJL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/southeast)
 "iKi" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 5
@@ -12028,6 +12033,11 @@
 	dir = 1
 	},
 /area/metnal/inside/research)
+"jjE" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south/garbledradio)
 "jjG" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
@@ -15569,11 +15579,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/northeast)
-"lRZ" = (
-/obj/effect/landmark/xeno_resin_wall,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/metnal/caves/south/garbledradio)
 "lSx" = (
 /obj/structure/sign/safety/hazard{
 	dir = 8
@@ -18468,6 +18473,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
+"oev" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/caves/southeast/garbledradio)
 "ofh" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/blue/plate,
@@ -23699,6 +23709,11 @@
 	dir = 10
 	},
 /area/metnal/inside/northmeetingroom)
+"rTC" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south/garbledradio)
 "rTT" = (
 /obj/structure/cable,
 /obj/machinery/light{
@@ -25943,6 +25958,11 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"tuR" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/caves/southeast/garbledradio)
 "tvj" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 4;
@@ -28431,6 +28451,10 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"vjD" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/southeast)
 "vjE" = (
 /obj/machinery/light{
 	light_color = "#da2f1b"
@@ -55165,7 +55189,7 @@ rts
 qly
 lqd
 qly
-qly
+hVf
 qly
 qly
 wzp
@@ -56965,7 +56989,7 @@ jVs
 jVs
 ewG
 ewG
-icG
+rTC
 wpl
 wIw
 ewG
@@ -57167,7 +57191,7 @@ wIw
 ewG
 wIw
 wpl
-lRZ
+jjE
 wpl
 wIw
 ewG
@@ -57787,7 +57811,7 @@ rLX
 ewG
 ewG
 ewG
-wpl
+ewG
 ewG
 ewG
 ewG
@@ -58193,7 +58217,7 @@ ewG
 ewG
 wpl
 uSl
-wpl
+ewG
 wIw
 wHx
 gJM
@@ -58394,8 +58418,8 @@ ewG
 wpl
 ewG
 ewG
-wpl
-wpl
+ewG
+ewG
 jVs
 jVs
 jVs
@@ -66463,9 +66487,9 @@ siw
 edg
 edg
 edg
-edg
-jVs
-jVs
+vfz
+vfz
+vfz
 vfz
 hce
 xuL
@@ -66664,8 +66688,8 @@ esM
 esM
 jVs
 jVs
-jVs
-jVs
+vfz
+vfz
 jVs
 gyO
 hce
@@ -67461,9 +67485,9 @@ hab
 kLV
 hab
 hab
-hab
-hab
-hab
+iJL
+iJL
+iJL
 hab
 hab
 eos
@@ -67663,9 +67687,9 @@ esM
 esM
 siw
 esM
-esM
-esM
-esM
+vjD
+vjD
+vjD
 esM
 esM
 esM
@@ -67673,10 +67697,10 @@ esM
 esM
 jVs
 jVs
+vfz
+vfz
 jVs
-jVs
-jVs
-jVs
+vfz
 jVs
 jVs
 edg
@@ -67865,9 +67889,9 @@ esM
 esM
 esM
 esM
-esM
-esM
-siw
+vjD
+vjD
+cYG
 esM
 esM
 esM
@@ -67875,10 +67899,10 @@ esM
 esM
 jVs
 edg
-edg
-edg
-edg
-edg
+jVs
+jVs
+jVs
+jVs
 edg
 edg
 edg
@@ -69085,10 +69109,10 @@ jVs
 jVs
 jVs
 edg
-edg
-edg
-edg
-edg
+jVs
+jVs
+jVs
+jVs
 edg
 edg
 edg
@@ -69285,13 +69309,13 @@ esM
 esM
 jVs
 jVs
-edg
-edg
-edg
-edg
-edg
-edg
-edg
+jVs
+jVs
+jVs
+jVs
+jVs
+jVs
+jVs
 jVs
 jVs
 jVs
@@ -69487,19 +69511,19 @@ esM
 jVs
 jVs
 jVs
-edg
-edg
 jVs
 jVs
 jVs
-jVs
-jVs
-jVs
+vfz
+vfz
+vfz
+vfz
+vfz
 vfz
 vfz
 qve
-vfz
-vfz
+bNU
+bNU
 qve
 vfz
 vfz
@@ -69695,12 +69719,12 @@ vfz
 vfz
 vfz
 qve
+bNU
+bNU
 vfz
 vfz
 vfz
-vfz
-vfz
-vfz
+bNU
 vfz
 vfz
 vfz
@@ -69890,15 +69914,15 @@ esM
 qve
 vfz
 vfz
+tuR
+bNU
+vfz
+vfz
+vfz
 gyO
 vfz
-vfz
-vfz
-vfz
-gyO
-vfz
-vfz
-qve
+bNU
+oev
 vfz
 vfz
 gyO
@@ -70092,7 +70116,7 @@ vfz
 vfz
 vfz
 vfz
-vfz
+bNU
 qve
 vfz
 vfz
