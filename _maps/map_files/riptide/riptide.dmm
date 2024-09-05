@@ -918,7 +918,7 @@
 /turf/open/floor/plating/ground/dirt_alt,
 /area/riptide/outside/northjungle)
 "aJo" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1111,7 +1111,7 @@
 /turf/open/floor,
 /area/riptide/caves/pmc/lobby)
 "aQh" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -6832,7 +6832,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/syndicatefoyer)
 "eMu" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -7689,7 +7689,7 @@
 /turf/open/floor/prison/plate,
 /area/riptide/inside/syndicatestarboard)
 "fqB" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/plating,
 /area/riptide/outside/beachlzone)
 "fqJ" = (
@@ -8223,7 +8223,7 @@
 /area/riptide/outside/westbeach)
 "fJc" = (
 /obj/structure/curtain/open/temple,
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood/thatch,
@@ -10714,7 +10714,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northislands)
 "hAq" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -12377,7 +12377,7 @@
 	},
 /area/riptide/caves/sea)
 "iPE" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/luxurybaroverlook)
@@ -13512,7 +13512,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/central/garbledradio)
 "jHJ" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/riptide/inside/recroom)
@@ -13552,7 +13552,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southjungle)
 "jHZ" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
@@ -14617,7 +14617,7 @@
 	},
 /area/riptide/caves/central)
 "krl" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
@@ -16976,7 +16976,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/northjungle)
 "lTg" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/alt_one,
 /area/riptide/outside/northbeach)
 "lTr" = (
@@ -17649,7 +17649,7 @@
 /turf/open/floor/rustyplating,
 /area/riptide/caves/pmc/warehouse)
 "mtY" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/northislands)
 "mut" = (
@@ -18321,7 +18321,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/syndicatefoyer)
 "mQh" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/broken,
 /area/riptide/outside/beachlzone)
 "mQo" = (
@@ -22857,7 +22857,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/riptide/inside/warehouse)
 "pTt" = (
-/obj/structure/door/mineral_door/sandstone,
+/obj/structure/mineral_door/sandstone,
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/riptide/caves/rock)
@@ -23062,7 +23062,7 @@
 /turf/closed/wall/r_wall,
 /area/riptide/caves/pmc/rnd)
 "pZY" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -26020,7 +26020,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/eastbeach)
 "rSC" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -26317,7 +26317,7 @@
 /turf/open/floor/plating,
 /area/riptide/caves/central/garbledradio)
 "sbD" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/plating,
 /area/riptide/inside/guardcheck)
 "sbT" = (
@@ -29190,7 +29190,7 @@
 /turf/open/floor/tile/caution,
 /area/riptide/inside/engineering)
 "tWm" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating,
@@ -31508,7 +31508,7 @@
 /turf/open/floor,
 /area/riptide/caves/pmc/lobby)
 "vDm" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/riptide/outside/beachlzone)
 "vDA" = (
@@ -32211,11 +32211,11 @@
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/beachlzone)
 "wgE" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/alt_nine,
 /area/riptide/outside/beachlzone)
 "wgS" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -32253,7 +32253,7 @@
 /turf/open/floor/dark2,
 /area/riptide/inside/warehouse)
 "wjm" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -32862,7 +32862,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southjungle)
 "wEf" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/broken,
 /area/riptide/outside/northbeach)
 "wEi" = (
@@ -33818,7 +33818,7 @@
 /turf/open/floor/wood,
 /area/riptide/outside/southislands)
 "xnN" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},

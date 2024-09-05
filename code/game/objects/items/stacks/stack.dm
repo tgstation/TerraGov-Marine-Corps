@@ -229,8 +229,6 @@
 		if(!isturf(T))
 			return
 		T.PlaceOnTop(R.result_type)
-	else if(ispath(R.result_type, /obj/structure/door))
-		O = new R.result_type(get_turf(user), TRUE)
 	else
 		O = new R.result_type(get_turf(user))
 	if(O)
