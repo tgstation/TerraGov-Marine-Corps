@@ -10593,6 +10593,11 @@
 	dir = 8
 	},
 /area/metnal/inside/northmeetingroom)
+"icG" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south/garbledradio)
 "icJ" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 1
@@ -15564,6 +15569,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/northeast)
+"lRZ" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south/garbledradio)
 "lSx" = (
 /obj/structure/sign/safety/hazard{
 	dir = 8
@@ -56752,10 +56762,10 @@ jVs
 jVs
 jVs
 jVs
-jVs
-jVs
-jVs
-edg
+wIw
+ewG
+ewG
+wIw
 jVs
 jVs
 edg
@@ -56953,13 +56963,13 @@ jVs
 jVs
 jVs
 jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
+ewG
+ewG
+icG
+wpl
+wIw
+ewG
+wIw
 edg
 edg
 edg
@@ -57152,16 +57162,16 @@ edg
 edg
 jVs
 jVs
+wIw
+wIw
+ewG
+wIw
+wpl
+lRZ
+wpl
+wIw
 ewG
 ewG
-ewG
-jVs
-jVs
-jVs
-ewG
-ewG
-ewG
-jVs
 jVs
 jVs
 jVs
@@ -57358,9 +57368,9 @@ ewG
 ewG
 ewG
 ewG
-ewG
-ewG
-ewG
+wpl
+wpl
+wpl
 ewG
 wHx
 ewG
@@ -57556,16 +57566,16 @@ edg
 edg
 jVs
 ewG
-wHx
+mfr
+wIw
 ewG
+wIw
 ewG
-jVs
-jVs
-wHx
+mfr
 ewG
+wIw
 ewG
-ewG
-ewG
+wIw
 ewG
 ewG
 mfr
@@ -57960,7 +57970,7 @@ edg
 edg
 jVs
 jVs
-rqS
+ewG
 jVs
 jVs
 edg
@@ -58162,14 +58172,14 @@ jVs
 edg
 jVs
 jVs
-rqS
+wIw
 jVs
 edg
 edg
 edg
 edg
 jVs
-ewG
+wIw
 ewG
 ewG
 wHx
