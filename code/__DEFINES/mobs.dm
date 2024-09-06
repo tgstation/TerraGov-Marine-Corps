@@ -994,3 +994,6 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 ///Pixel_y offset when lying down
 #define CARBON_LYING_Y_OFFSET -6
+
+///Filter name for illusion impacts
+#define ILLUSION_HIT_FILTER "illusion_hit_filter"
