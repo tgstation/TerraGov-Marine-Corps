@@ -14,7 +14,7 @@
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "m25"
-	max_rounds = 60
+	max_rounds = 120
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/smg/m25/ap
@@ -27,7 +27,7 @@
 /obj/item/ammo_magazine/smg/m25/extended
 	name = "\improper SMG-25 extended magazine (10x20mm)"
 	icon_state = "m25_ext"
-	max_rounds = 90
+	max_rounds = 160
 	icon_state_mini = "mag_smg_yellow"
 	bonus_overlay = "m25_ex"
 
@@ -40,7 +40,7 @@
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t19"
 	icon_state_mini = "mag_smg"
-	max_rounds = 30
+	max_rounds = 60
 	w_class = WEIGHT_CLASS_SMALL
 
 //-------------------------------------------------------
@@ -51,7 +51,7 @@
 	desc = "A 10x20mm caseless submachine gun magazine."
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "t90"
-	max_rounds = 50
+	max_rounds = 100
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_t90"
 
@@ -64,7 +64,7 @@
 	default_ammo = /datum/ammo/bullet/smg/heavy
 	caliber = CALIBER_41AE
 	icon_state = "t45"
-	max_rounds = 40
+	max_rounds = 80
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_heavy_smg"
 	bonus_overlay = "t45_mag"
@@ -86,7 +86,7 @@
 	caliber = CALIBER_46X30
 	icon_state = "mp7"
 	icon_state_mini = "mag_smg"
-	max_rounds = 30
+	max_rounds = 60
 
 
 //-------------------------------------------------------
@@ -98,7 +98,7 @@
 	caliber = CALIBER_32ACP
 	icon_state = "skorpion"
 	icon_state_mini = "mag_rifle"
-	max_rounds = 20 //Can also be 10.
+	max_rounds = 40 //Can also be 10.
 
 
 //-------------------------------------------------------
@@ -112,7 +112,7 @@
 	caliber = CALIBER_762X25
 	icon_state = "ppsh"
 	icon_state_mini = "mag_smg"
-	max_rounds = 42
+	max_rounds = 82
 	bonus_overlay = "ppsh_standard"
 
 
@@ -121,7 +121,7 @@
 	icon_state = "ppsh_ext"
 	icon_state_mini = "mag_drum_yellow"
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 78
+	max_rounds = 152
 	bonus_overlay = "ppsh_ex"
 	aim_speed_mod = 0.2
 
@@ -134,12 +134,12 @@
 	caliber = CALIBER_9X21
 	icon_state = "uzi"
 	icon_state_mini = "mag_smg_dark"
-	max_rounds = 32
+	max_rounds = 64
 
 /obj/item/ammo_magazine/smg/uzi/extended
 	name = "\improper GAL9 extended magazine (9mm)"
 	icon_state = "uzi_ext"
-	max_rounds = 50
+	max_rounds = 100
 	bonus_overlay = "uzi_ex"
 	icon_state_mini = "mag_smg_dark"
 
@@ -152,7 +152,7 @@
 	caliber = CALIBER_10X20_CASELESS
 	icon_state = "v21"
 	icon_state_mini = "mag_smg"
-	max_rounds = 50
+	max_rounds = 100
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/smg/som/ap
@@ -173,7 +173,7 @@
 	name = "\improper V-21 extended submachinegun magazine (10x20mm)"
 	desc = "An extended 10x20mm caseless submachinegun magazine."
 	icon_state = "v21_extended"
-	max_rounds = 75
+	max_rounds = 150
 	icon_state_mini = "mag_smg_yellow"
 	w_class = WEIGHT_CLASS_NORMAL
 	aim_speed_mod = 0.1
@@ -195,7 +195,7 @@
 	icon_state = "pl38"
 	icon_state_mini = "mag_smg_dark"
 	default_ammo = /datum/ammo/bullet/smg/ap
-	max_rounds = 32
+	max_rounds = 64
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/ammo_magazine/smg/icc_machinepistol/hp
@@ -205,7 +205,7 @@
 	icon_state = "pl38_hp"
 	icon_state_mini = "mag_smg_dark_blue"
 	default_ammo = /datum/ammo/bullet/smg/hollow
-	max_rounds = 32
+	max_rounds = 64
 	w_class = WEIGHT_CLASS_SMALL
 
 //-------------------------------------------------------
@@ -218,7 +218,7 @@
 	icon_state = "l40"
 	icon_state_mini = "mag_smg_dark"
 	default_ammo = /datum/ammo/bullet/smg/ap/hv
-	max_rounds = 45
+	max_rounds = 90
 	w_class = WEIGHT_CLASS_SMALL
 
 //------------------------------------------------------
@@ -230,6 +230,6 @@
 	default_ammo = /datum/ammo/bullet/smg/ap/hv
 	caliber = CALIBER_45ACP
 	icon_state = "ppsh_ext"
-	max_rounds = 55
+	max_rounds = 110
 	w_class = WEIGHT_CLASS_SMALL
 	icon_state_mini = "mag_heavy_smg"

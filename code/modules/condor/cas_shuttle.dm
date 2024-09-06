@@ -29,7 +29,7 @@
 	///Number for how much fuel we have left, this x15 seconds is how much time we have while flying
 	var/fuel_left = 40
 	///How much fuel we can hold maximum
-	var/fuel_max = 40
+	var/fuel_max = 180
 	///Our currently selected weapon we will fire
 	var/obj/structure/dropship_equipment/cas/weapon/active_weapon
 	///Minimap for the pilot to know where the marines have ran off to
@@ -149,7 +149,7 @@
 	SSmonitor.process_human_positions()
 
 	#ifndef TESTING
-	if(SSmonitor.human_on_ground <= 5)
+	if(SSmonitor.human_on_ground <= 1)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	#endif
@@ -187,7 +187,7 @@
 
 	SSmonitor.process_human_positions()
 	#ifndef TESTING
-	if(SSmonitor.human_on_ground <= 5)
+	if(SSmonitor.human_on_ground <= 1)
 		to_chat(user, span_warning("The signal from the area of operations is too weak, you cannot route towards the battlefield."))
 		return
 	#endif

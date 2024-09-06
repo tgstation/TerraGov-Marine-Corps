@@ -243,6 +243,7 @@
 	projectile_delay = 0.2 SECONDS
 	variance = 40
 	rearm_time = 5 SECONDS
+	maximum_magazines = 2
 	hud_state_empty = "rocket_empty"
 
 /datum/action/item_action/coilgun_power

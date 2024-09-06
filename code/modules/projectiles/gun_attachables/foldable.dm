@@ -79,9 +79,9 @@
 	size_mod = 2
 	wield_delay_mod = 0.1 SECONDS
 	accuracy_mod = 0.25
-	recoil_mod = -2
-	scatter_mod = -6
-	scatter_unwielded_mod = 4
+	recoil_mod = -4
+	scatter_mod = -12
+	scatter_unwielded_mod = -4
 	accuracy_unwielded_mod = -0.1
 
 /obj/item/attachable/foldable/t19stock
@@ -89,26 +89,26 @@
 	desc = "A submachinegun stock distributed in small numbers to TGMC forces. Compatible with the MP-19, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	attach_features_flags = ATTACH_ACTIVATION
 	wield_delay_mod = 0.1 SECONDS
-	melee_mod = 5
+	melee_mod = 10
 	size_mod = 1
 	icon_state = "t19"
-	accuracy_mod = 0.3
-	recoil_mod = -2
+	accuracy_mod = 3
+	recoil_mod = -4
 	scatter_mod = -8
 	accuracy_unwielded_mod = -0.1
-	scatter_unwielded_mod = 4
+	scatter_unwielded_mod = -4
 
 /obj/item/attachable/foldable/som_carbine
 	name = "\improper V-34 carbine stock"
 	desc = "A side folding stock built into the V-34 carbine. The gun is designed to be fired with the stock deployed, but can be done without, with some difficulty."
 	attach_features_flags = ATTACH_ACTIVATION
 	wield_delay_mod = 0.1 SECONDS
-	melee_mod = 5
+	melee_mod = 15
 	size_mod = 1
 	icon_state = "v34"
-	accuracy_mod = 0.2
-	recoil_mod = -2
-	scatter_mod = -8
+	accuracy_mod = 2
+	recoil_mod = -4
+	scatter_mod = -12
 	aim_speed_mod = 0.05
 
 /obj/item/attachable/foldable/icc_machinepistol
@@ -116,7 +116,7 @@
 	desc = "A submachinegun stock found on ICC subguns, this stock reduces recoil and improves accuracy, but at a reduction to handling and agility. Seemingly a bit more effective in a brawl."
 	attach_features_flags = ATTACH_ACTIVATION
 	wield_delay_mod = 0.1 SECONDS
-	melee_mod = 5
+	melee_mod = 10
 	size_mod = 1
 	icon_state = "pl38"
 	icon = 'icons/obj/items/guns/attachments/stock_64.dmi'
@@ -124,7 +124,7 @@
 	recoil_mod = -2
 	scatter_mod = -8
 	accuracy_unwielded_mod = -0.1
-	scatter_unwielded_mod = 4
+	scatter_unwielded_mod = -4
 
 /obj/item/attachable/foldable/t35stock
 	name = "\improper SH-35 stock"
@@ -133,9 +133,9 @@
 	icon_state = "t35"
 	attach_features_flags = ATTACH_ACTIVATION
 	wield_delay_mod = 0.2 SECONDS
-	accuracy_mod = 0.15
-	recoil_mod = -3
-	scatter_mod = -2
+	accuracy_mod = 1
+	recoil_mod = -6
+	scatter_mod = -4
 
 /obj/item/attachable/foldable/bipod
 	name = "bipod"
@@ -145,10 +145,10 @@
 	slot = ATTACHMENT_SLOT_UNDER
 	size_mod = 2
 	deploy_time = 1 SECONDS
-	accuracy_mod = 0.3
-	recoil_mod = -2
-	scatter_mod = -10
-	burst_scatter_mod = -3
+	accuracy_mod = 2
+	recoil_mod = -4
+	scatter_mod = -18
+	burst_scatter_mod = -10
 	aim_mode_delay_mod = -0.5
 
 /obj/item/attachable/foldable/bipod/activate(mob/living/user, turn_off)

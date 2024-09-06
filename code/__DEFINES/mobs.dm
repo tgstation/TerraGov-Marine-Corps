@@ -363,7 +363,7 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define LIMB_MATTER_AMOUNT 100
 
 //How long it takes for a human to become undefibbable
-#define TIME_BEFORE_DNR 150 //In life ticks, multiply by 2 to have seconds
+#define TIME_BEFORE_DNR 7200 //In life ticks, multiply by 2 to have seconds
 
 ///Default living `maxHealth`
 #define LIVING_DEFAULT_MAX_HEALTH 100
@@ -794,7 +794,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define DRONE_ESSENCE_LINK_SHARED_HEAL 0.1 // The effectiveness of heals when applied to the other linked xeno, as a percentage
 
 //Defender defines
-#define DEFENDER_CHARGE_RANGE 4
+#define DEFENDER_CHARGE_RANGE 3
 
 //Baneling defines
 /// Not specified in seconds because it causes smoke to last almost four times as long if done so

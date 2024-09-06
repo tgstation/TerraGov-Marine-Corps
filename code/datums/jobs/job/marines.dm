@@ -34,6 +34,7 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 	comm_title = "Mar"
 	access = list(ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DROPSHIP)
+	skills_type = /datum/skills/crafty
 	display_order = JOB_DISPLAY_ORDER_SQUAD_MARINE
 	outfit = /datum/outfit/job/marine/standard
 	total_positions = -1
