@@ -642,6 +642,8 @@
 			var/flag_to_change
 			switch(params["newsetting"])
 				if("sl")
+					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD))
+						return
 					flag_to_change = RADIO_TTS_SL
 				if("squad")
 					ENABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL) //Enable SL TTS if not already enabled
@@ -657,6 +659,9 @@
 				DISABLE_BITFIELD(radio_tts_flags, flag_to_change)
 			else
 				ENABLE_BITFIELD(radio_tts_flags, flag_to_change)
+
+			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND))
+				DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
 
 		if("accessible_tgui_themes")
 			accessible_tgui_themes = !accessible_tgui_themes
