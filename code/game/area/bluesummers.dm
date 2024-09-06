@@ -307,7 +307,7 @@
 /area/bluesummers/inside/food_processing
 	name = "Western Food Processing Wing"
 	icon_state = "kitchen"
-	minimap_color = MINIMAP_AREA_LIVING
+	minimap_color = MINIMAP_AREA_PREP
 
 /area/bluesummers/inside/food_processing/east
 	name = "Eastern Food Processing Wing"
@@ -315,14 +315,16 @@
 /area/bluesummers/inside/eva
 	name = "EVA Operations Wing"
 	icon_state = "eva"
-	minimap_color = MINIMAP_AREA_PREP
 
 /area/bluesummers/inside/holodeck
 	name = "Holodeck Entertainment Wing"
 	icon_state = "Holodeck"
-	minimap_color = MINIMAP_AREA_PREP
 
 /area/bluesummers/inside/luxury
 	name = "Luxury Cabin Wing"
 	icon_state = "Theatre"
 	minimap_color = MINIMAP_AREA_LIVING
+
+/area/bluesummers/inside/data_processing
+	name = "Data Processing Wing"
+	icon_state = "HH_MOFFICE"
