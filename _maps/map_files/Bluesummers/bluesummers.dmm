@@ -8476,10 +8476,6 @@
 	dir = 8
 	},
 /area/bluesummers/inside/industrial)
-"hDU" = (
-/obj/structure/lattice,
-/turf/closed/wall/mainship,
-/area/bluesummers/inside/industrial)
 "hDZ" = (
 /obj/structure/closet/radiation,
 /obj/machinery/light{
@@ -13470,10 +13466,6 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/northeast/indoor)
-"lBb" = (
-/obj/structure/lattice,
-/turf/closed/mineral/smooth/desertdamrockwall,
-/area/bluesummers/caves/rock)
 "lBm" = (
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/outside/southwest/roofed)
@@ -19093,10 +19085,6 @@
 /obj/effect/spawner/random/medical/medhud,
 /turf/open/floor/tile/dark,
 /area/bluesummers/inside/industrial)
-"pZU" = (
-/obj/structure/lattice,
-/turf/closed/wall/mainship,
-/area/bluesummers/inside/recreation)
 "pZY" = (
 /obj/machinery/vending/coffee,
 /obj/machinery/light{
@@ -23627,13 +23615,6 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/northwest/indoor)
-"tQH" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/obj/structure/lattice,
-/turf/closed/mineral/smooth/desertdamrockwall,
-/area/bluesummers/caves/rock)
 "tQU" = (
 /obj/machinery/power/apc/drained{
 	dir = 4
@@ -38732,7 +38713,7 @@ ouL
 xjH
 lJS
 iRY
-hDU
+iRY
 iRY
 tkO
 whR
@@ -45484,7 +45465,7 @@ tmP
 tmP
 tmP
 tmP
-tQH
+wrs
 rOc
 rOc
 xcm
@@ -48013,7 +47994,7 @@ aqJ
 eij
 gbM
 sip
-pZU
+sip
 tmP
 tmP
 tmP
@@ -50387,7 +50368,7 @@ gis
 tmP
 tmP
 tmP
-mwd
+eKn
 tIO
 rCx
 ycP
@@ -54927,7 +54908,7 @@ rOc
 rOc
 rOc
 rOc
-lBb
+rOc
 rOc
 rOc
 iVe
