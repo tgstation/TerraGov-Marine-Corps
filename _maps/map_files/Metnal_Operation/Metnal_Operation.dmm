@@ -2593,6 +2593,7 @@
 /mob/living/simple_animal/cow{
 	name = "I HOPE THIS SHIT LOADS"
 	},
+/obj/effect/landmark/dropship_start_location,
 /turf/open/liquid/water,
 /area/metnal/inside/garden)
 "cdT" = (
@@ -12010,10 +12011,6 @@
 /obj/structure/cable,
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/cafeteria)
-"jio" = (
-/obj/effect/landmark/dropship_start_location,
-/turf/closed/mineral/smooth/indestructible,
-/area/metnal/caves/rock)
 "jix" = (
 /obj/effect/ai_node,
 /turf/open/liquid/lava/single,
@@ -71606,7 +71603,7 @@ edg
 edg
 edg
 edg
-jio
+edg
 edg
 edg
 edg
