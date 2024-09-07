@@ -67,6 +67,15 @@
 	icon_state = "beretred2"
 	item_map_variant_flags = NONE
 
+/obj/item/clothing/head/tgmcberet/red2/erp
+	name = "\improper ERP Red Beret"
+	desc = "An ERP-approved improved design of the red beret, how this small piece of cloth has such good padding is a closely guarded ERP-secret."
+	soft_armor = MARINE_ARMOR_MEDIUM
+
+/obj/item/clothing/head/tgmcberet/red2/erp/masterprankster
+	desc = "An ERP-approved improved design of the red beret, how this small piece of cloth has such good padding is a closely guarded ERP-secret. This one is held by Master Pranksters only!"
+	icon_state = "beretred"
+
 /obj/item/clothing/head/tgmcberet/bloodred
 	name = "\improper Blood red beret"
 	icon_state = "bloodred_beret"
@@ -232,6 +241,12 @@
 	desc = "A somewhat fancy hat, typically worn by those who wish to command medical respect."
 	icon_state = "cmohat"
 
+/obj/item/clothing/head/securitycap
+	name = "Security Cap"
+	desc = "A hat often worn by security officers, it is comfortable and lightly armored."
+	icon_state = "security_cap"
+	icon = 'icons/obj/clothing/hats.dmi'
+	soft_armor = list(MELEE = 15, BULLET = 25, LASER = 20, ENERGY = 20, BOMB = 5, BIO = 5, FIRE = 15, ACID = 5)
 
 /*============================BERETS=================================*/
 //Berets have armor, so they have their own category. PMC caps are helmets, so they're in helmets.dm.

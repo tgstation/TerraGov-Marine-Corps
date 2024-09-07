@@ -1,5 +1,0 @@
-author: "Ldip999"
-delete-after: True
-changes:
-  - imageadd: "Sprite for active radiopack"
-  - code_imp: "Modified radiopack code to initialize beacon with aditional parameters"

@@ -126,6 +126,8 @@
 	windup_sound = 'sound/vehicles/weapons/coil_charge.ogg'
 	windup_delay = 0.6 SECONDS
 	projectile_delay = 3 SECONDS
+	maximum_magazines = 3
+	rearm_time = 0.5 SECONDS
 	///Power setting of the weapon. Effect the projectile fired
 	var/power_level = COILGUN_MED_POWER
 	///Current ammo override to use based on power level
@@ -241,12 +243,11 @@
 	projectile_delay = 0.2 SECONDS
 	variance = 40
 	rearm_time = 5 SECONDS
-	maximum_magazines = 0
 	hud_state_empty = "rocket_empty"
 
 /datum/action/item_action/coilgun_power
 	keybinding_signals = list(
-		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
+		KEYBINDING_NORMAL = COMSIG_KB_FIREMODE,
 	)
 	use_obj_appeareance = FALSE
 	///The coilgun associated with this action

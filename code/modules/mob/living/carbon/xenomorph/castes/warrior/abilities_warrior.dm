@@ -17,9 +17,7 @@
 		/datum/action/ability/activable/xeno/warrior/punch,
 		/datum/action/ability/activable/xeno/warrior/punch/flurry,
 	)
-
-/datum/action/ability/xeno_action/empower/should_show()
-	return FALSE
+	hidden = TRUE
 
 /// Checks if Empower is capped and gives bonuses if so, otherwise increases combo count.
 /datum/action/ability/xeno_action/empower/proc/check_empower(atom/target)

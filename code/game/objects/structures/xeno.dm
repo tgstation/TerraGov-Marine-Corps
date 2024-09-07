@@ -146,12 +146,14 @@
 	refundable = FALSE
 
 //Resin Doors
-/obj/structure/door/resin
+/obj/structure/mineral_door/resin
 	name = RESIN_DOOR
 	icon = 'icons/obj/smooth_objects/resin-door.dmi'
 	icon_state = "resin-door-1"
 	base_icon_state = "resin-door"
+	resistance_flags = NONE
 	layer = RESIN_STRUCTURE_LAYER
+	max_integrity = 100
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_XENO_STRUCTURES)
 	canSmoothWith = list(
@@ -160,88 +162,62 @@
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
 	soft_armor = list(MELEE = 33, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 15, BIO = 0, FIRE = 0, ACID = 0)
-	open_sound = SFX_ALIEN_RESIN_MOVE
-	close_sound = SFX_ALIEN_RESIN_MOVE
-	slam_sound = SFX_ALIEN_RESIN_BREAK
+	trigger_sound = SFX_ALIEN_RESIN_MOVE
 	hit_sound = SFX_ALIEN_RESIN_MOVE
 	destroy_sound = SFX_ALIEN_RESIN_MOVE
-	door_flags = NONE
-	opening_time = 0
-	material_type = null
-	material_amount = 0
 
-/obj/structure/door/resin/smooth_icon()
+	///The delay before the door closes automatically after being open
+	var/close_delay = 10 SECONDS
+	///The timer that tracks the delay above
+	var/closetimer
+
+/obj/structure/mineral_door/resin/smooth_icon()
 	. = ..()
 	update_icon()
 
-/obj/structure/door/resin/Initialize(mapload)
+/obj/structure/mineral_door/resin/Initialize(mapload)
 	. = ..()
 	if(!locate(/obj/alien/weeds) in loc)
 		new /obj/alien/weeds(loc)
 
-//I am not renaming all those sprite states
-/obj/structure/door/resin/update_icon_state()
+
+/obj/structure/mineral_door/resin/Cross(atom/movable/mover, turf/target)
 	. = ..()
-	if(CHECK_BITFIELD(door_flags, DOOR_OPEN))
-		icon_state = "[base_icon_state]-[smoothing_junction]-open"
-	else
-		icon_state = "[base_icon_state]-[smoothing_junction]"
-
-/obj/structure/door/resin/attempt_to_open(mob/user, instant, slammed, forced, direction_from_opener, bumped, damage = 10)
-	if(!isxeno(user))	//Door's racist
-		if(user)
-			playsound(src, knocking_sound, 50, FALSE, 5, 1)
-		return
-
-	return ..()
-
-/obj/structure/door/resin/force_door_open(mob/user, bumped, leg_flags)
-	if(isxeno(user))
+	if(!. && isxeno(mover) && !open)
+		toggle_state()
 		return TRUE
 
-	return ..()
 
-/obj/structure/door/resin/open(instant, slammed, silent)
-	. = ..()
-	flick("[base_icon_state]-[smoothing_junction]-opening", src)
-
-/obj/structure/door/resin/close(instant, slammed, silent)
-	. = ..()
-	flick("[base_icon_state]-[smoothing_junction]-closing", src)
-
-//This is almost the exact code as the parent but with a different multiplier and +1 bonus damage; why? No idea, just moving it here
-/obj/structure/door/door/resin/get_burn_damage_multiplier(obj/item/attacking_item, mob/living/user, bonus_damage = 1)
-	if(!isplasmacutter(attacking_item))
-		return bonus_damage
-
-	var/obj/item/tool/pickaxe/plasmacutter/attacking_pc = attacking_item
-	if(attacking_pc.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, no_string = TRUE))
-		bonus_damage += PLASMACUTTER_RESIN_MULTIPLIER
-		attacking_pc.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
-
-	return bonus_damage
+/obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
+	var/turf/cur_loc = M.loc
+	if(!istype(cur_loc))
+		return FALSE
+	try_toggle_state(M)
+	return TRUE
 
 //clicking on resin doors attacks them, or opens them without harm intent
-/obj/structure/door/resin/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(xeno_attacker.a_intent == INTENT_HARM)
-		if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
-			qdel(src)
-			return
+/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	var/turf/cur_loc = xeno_attacker.loc
+	if(!istype(cur_loc))
+		return FALSE //Some basic logic here
+	if(xeno_attacker.a_intent != INTENT_HARM)
+		try_toggle_state(xeno_attacker)
+		return TRUE
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
+		qdel(src)
+		return TRUE
 
-		balloon_alert(xeno_attacker, "Destroying...")
-		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
-		if(do_after(xeno_attacker, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
-			balloon_alert(xeno_attacker, "Destroyed")
-			qdel(src)
-		return
+	src.balloon_alert(xeno_attacker, "Destroying...")
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	if(do_after(xeno_attacker, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
+		src.balloon_alert(xeno_attacker, "Destroyed")
+		qdel(src)
 
-	return ..()
-
-/obj/structure/door/resin/fire_act(burn_level)
+/obj/structure/mineral_door/resin/fire_act(burn_level)
 	take_damage(burn_level * 2, BURN, FIRE)
 
-/obj/structure/door/resin/ex_act(severity)
+/obj/structure/mineral_door/resin/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			qdel()
@@ -252,35 +228,55 @@
 		if(EXPLODE_WEAK)
 			take_damage(30, BRUTE, BOMB)
 
-/obj/structure/door/resin/Destroy()
+/obj/structure/mineral_door/resin/try_toggle_state(atom/user)
+	if(isxeno(user))
+		return ..()
+
+/obj/structure/mineral_door/resin/toggle_state()
+	. = ..()
+	if(open)
+		closetimer = addtimer(CALLBACK(src, PROC_REF(do_close)), close_delay, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+	else
+		deltimer(closetimer)
+		closetimer = null
+
+/// Toggle(close) the door. Used for the timer's callback.
+/obj/structure/mineral_door/resin/proc/do_close()
+	if(locate(/mob/living) in loc) //there is a mob in the door, abort and reschedule the close
+		closetimer = addtimer(CALLBACK(src, PROC_REF(do_close)), close_delay, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+		return
+	if(!open) //we got closed in the meantime
+		return
+	flick("[icon_state]-closing", src)
+	toggle_state()
+
+/obj/structure/mineral_door/resin/Destroy()
 	var/turf/T
 	for(var/i in GLOB.cardinals)
 		T = get_step(loc, i)
 		if(!istype(T))
 			continue
-		for(var/obj/structure/door/resin/R in T)
+		for(var/obj/structure/mineral_door/resin/R in T)
 			INVOKE_NEXT_TICK(R, PROC_REF(check_resin_support))
 	return ..()
 
-/obj/structure/door/resin/door_combat()
-	return 0
 
 //do we still have something next to us to support us?
-/obj/structure/door/resin/proc/check_resin_support()
+/obj/structure/mineral_door/resin/proc/check_resin_support()
 	var/turf/T
 	for(var/i in GLOB.cardinals)
 		T = get_step(src, i)
 		if(T.density)
 			. = TRUE
 			break
-		if(locate(/obj/structure/door/resin) in T)
+		if(locate(/obj/structure/mineral_door/resin) in T)
 			. = TRUE
 			break
 	if(!.)
 		src.balloon_alert_to_viewers("Collapsed")
 		qdel(src)
 
-/obj/structure/door/resin/thick
+/obj/structure/mineral_door/resin/thick
 	max_integrity = 160
 
 /obj/item/resin_jelly

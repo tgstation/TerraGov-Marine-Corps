@@ -193,7 +193,7 @@
 	var/list/buildable_structures = list(
 		/turf/closed/wall/resin/regenerating,
 		/obj/alien/resin/sticky,
-		/obj/structure/door/resin,
+		/obj/structure/mineral_door/resin,
 		)
 	/// Used for the dragging functionality of pre-shuttter building
 	var/dragging = FALSE
@@ -324,7 +324,7 @@
 		return
 
 	var/mob/living/carbon/xenomorph/X = owner
-	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/door/resin, X.selected_resin))
+	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin))
 		if(ERROR_CANT_WEED)
 			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
 			return
@@ -367,7 +367,7 @@
 
 /datum/action/ability/activable/xeno/secrete_resin/proc/build_resin(turf/T)
 	var/mob/living/carbon/xenomorph/X = owner
-	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/door/resin, X.selected_resin))
+	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin))
 		if(ERROR_CANT_WEED)
 			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
 			return
@@ -396,7 +396,7 @@
 		return fail_activate()
 	if(!do_after(X, get_wait(), NONE, T, BUSY_ICON_BUILD))
 		return fail_activate()
-	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/door/resin, X.selected_resin))
+	switch(is_valid_for_resin_structure(T, X.selected_resin == /obj/structure/mineral_door/resin, X.selected_resin))
 		if(ERROR_CANT_WEED)
 			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
 			return
@@ -532,7 +532,7 @@
 	if(GLOB.hive_datums[owner.get_xeno_hivenumber()].special_build_points <= 0)
 		owner.balloon_alert(owner, span_notice("There is not enough special build points to build this structure!"))
 		return
-	switch(is_valid_for_resin_structure(T, X.selected_special_resin == /obj/structure/door/resin, X.selected_special_resin))
+	switch(is_valid_for_resin_structure(T, X.selected_special_resin == /obj/structure/mineral_door/resin, X.selected_special_resin))
 		if(ERROR_CANT_WEED)
 			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
 			return
@@ -563,7 +563,7 @@
 	if(GLOB.hive_datums[owner.get_xeno_hivenumber()].special_build_points <= 0)
 		owner.balloon_alert(owner, span_notice("There is not enough special build points to build this structure!"))
 		return
-	switch(is_valid_for_resin_structure(T, X.selected_special_resin == /obj/structure/door/resin, X.selected_special_resin))
+	switch(is_valid_for_resin_structure(T, X.selected_special_resin == /obj/structure/mineral_door/resin, X.selected_special_resin))
 		if(ERROR_CANT_WEED)
 			owner.balloon_alert(owner, span_notice("This spot cannot support a garden!"))
 			return
@@ -644,12 +644,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_RECOVERY,
 	)
+	hidden = TRUE
 
 /datum/action/ability/xeno_action/pheromones/emit_recovery/action_activate()
 	apply_pheros(AURA_XENO_RECOVERY)
-
-/datum/action/ability/xeno_action/pheromones/emit_recovery/should_show()
-	return FALSE
 
 /datum/action/ability/xeno_action/pheromones/emit_warding
 	name = "Toggle Warding Pheromones"
@@ -657,12 +655,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_WARDING,
 	)
+	hidden = TRUE
 
 /datum/action/ability/xeno_action/pheromones/emit_warding/action_activate()
 	apply_pheros(AURA_XENO_WARDING)
-
-/datum/action/ability/xeno_action/pheromones/emit_warding/should_show()
-	return FALSE
 
 /datum/action/ability/xeno_action/pheromones/emit_frenzy
 	name = "Toggle Frenzy Pheromones"
@@ -670,13 +666,10 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_EMIT_FRENZY,
 	)
+	hidden = TRUE
 
 /datum/action/ability/xeno_action/pheromones/emit_frenzy/action_activate()
 	apply_pheros(AURA_XENO_FRENZY)
-
-/datum/action/ability/xeno_action/pheromones/emit_frenzy/should_show()
-	return FALSE
-
 
 /datum/action/ability/activable/xeno/transfer_plasma
 	name = "Transfer Plasma"
@@ -734,7 +727,7 @@
 
 	target.beam(X,"drain_life", time = 1 SECONDS, maxdistance = 10) //visual SFX
 	target.add_filter("transfer_plasma_outline", 3, outline_filter(1, COLOR_STRONG_MAGENTA))
-	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, remove_filter), "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/datum, remove_filter), "transfer_plasma_outline"), 1 SECONDS) //Failsafe blur removal
 
 	var/amount = plasma_transfer_amount
 	if(X.plasma_stored < plasma_transfer_amount)
@@ -784,41 +777,43 @@
 		if(!silent)
 			owner.balloon_alert(owner, "We can't melt [A]")
 		return FALSE
-	if(A.resistance_flags & UNACIDABLE || !A.dissolvability(initial(current_acid_type.acid_strength)))
-		if(!silent)
-			owner.balloon_alert(owner, "We cannot dissolve [A]")
-		return FALSE
-	if(!A.should_apply_acid(initial(acid_type.acid_strength)) || initial(current_acid_type.acid_strength) <= A.current_acid?.acid_strength)
-		if(!silent)
-			owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
-		return FALSE
+	switch(A.should_apply_acid(current_acid_type::acid_strength))
+		if(ATOM_CANNOT_ACID)
+			if(!silent)
+				owner.balloon_alert(owner, "We cannot dissolve [A]")
+			return FALSE
+		if(ATOM_STRONGER_ACID)
+			if(!silent)
+				owner.balloon_alert(owner, "[A] is already subject to a more or equally powerful acid")
+			return FALSE
 
 /datum/action/ability/activable/xeno/corrosive_acid/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
 	var/obj/effect/xenomorph/acid/current_acid_type = acid_type
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
-		current_acid_type = /obj/effect/xenomorph/acid/strong //if it is before shutters open, everyone gets strong acid
 	// Check if it's an acid object we're upgrading
 	if(istype(A, /obj/effect/xenomorph/acid))
 		var/obj/effect/xenomorph/acid/existing_acid = A
 		A = existing_acid.acid_t // Swap the target to the target of the acid
 
-	if(!A.dissolvability(initial(current_acid_type.acid_strength)))
+
+	var/aciddelay = A.get_acid_delay()
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		current_acid_type = /obj/effect/xenomorph/acid/strong //if it is before shutters open, everyone gets strong acid
+		aciddelay = 0
+
+	if(!A.dissolvability(current_acid_type::acid_strength))
 		return fail_activate()
 
 	X.face_atom(A)
 	to_chat(X, span_xenowarning("We begin generating enough acid to melt through the [A]"))
 
-	if(!do_after(X, A.get_acid_delay(), NONE, A, BUSY_ICON_HOSTILE))
+	if(!do_after(X, aciddelay, NONE, A, BUSY_ICON_HOSTILE))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE))
 		return fail_activate()
 
-	var/old_acid_ticks = A.current_acid?.ticks
-	QDEL_NULL(A.current_acid)
-	A.current_acid = new current_acid_type(get_turf(A), A, A.dissolvability(initial(current_acid_type.acid_strength)), old_acid_ticks)
-
+	new current_acid_type(get_turf(A), A, A.dissolvability(current_acid_type::acid_strength))
 	succeed_activate()
 
 	if(!isturf(A))
@@ -1508,9 +1503,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BLESSINGSMENU,
 	)
 	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_CRESTED
-
-/datum/action/ability/xeno_action/blessing_menu/should_show()
-	return FALSE // Blessings meni now done through hive status UI!
+	hidden = TRUE
 
 /datum/action/ability/xeno_action/blessing_menu/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner

@@ -106,16 +106,10 @@
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
-		//Held facehuggers get killed for balance reasons
-	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
+	//Held facehuggers get killed for balance reasons
+	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
+		hugger.kill_hugger()
+		owner.dropItemToGround(hugger)
 
 	succeed_activate()
 	add_cooldown()
@@ -210,16 +204,10 @@
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, SFX_ALIEN_ROAR, 50)
 
-			//Held facehuggers get killed for balance reasons
-	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
+	//Held facehuggers get killed for balance reasons
+	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
+		hugger.kill_hugger()
+		owner.dropItemToGround(hugger)
 
 
 // ***************************************
@@ -264,10 +252,12 @@
 /datum/action/ability/activable/xeno/psychic_cure/proc/check_distance(atom/target, silent)
 	var/dist = get_dist(owner, target)
 	if(dist > heal_range)
-		to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
+		if(!silent)
+			to_chat(owner, span_warning("Too far for our reach... We need to be [dist - heal_range] steps closer!"))
 		return FALSE
 	else if(!line_of_sight(owner, target))
-		to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
+		if(!silent)
+			to_chat(owner, span_warning("We can't focus properly without a clear line of sight!"))
 		return FALSE
 	return TRUE
 
@@ -275,8 +265,9 @@
 /datum/action/ability/activable/xeno/psychic_cure/use_ability(atom/target)
 	if(owner.do_actions)
 		return FALSE
-
-	if(!do_after(owner, 1 SECONDS, NONE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+	if(!can_use_ability(target, TRUE))
 		return FALSE
 
 	if(owner.client)

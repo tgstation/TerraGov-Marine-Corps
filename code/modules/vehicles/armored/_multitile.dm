@@ -26,6 +26,8 @@
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)
+	///pass_flags given to desants, in addition to the vehicle's pass_flags
+	var/desant_pass_flags = PASS_FIRE|PASS_LOW_STRUCTURE
 
 /obj/vehicle/sealed/armored/multitile/enter_locations(atom/movable/entering_thing)
 	return list(get_step_away(get_step(src, REVERSE_DIR(dir)), src, 2))
@@ -40,10 +42,10 @@
 	return (loc_override || (entering_mob.loc in enter_locations(entering_mob)))
 
 /obj/vehicle/sealed/armored/multitile/add_desant(mob/living/new_desant)
-	new_desant.pass_flags |= pass_flags
+	new_desant.pass_flags |= (desant_pass_flags|pass_flags)
 
 /obj/vehicle/sealed/armored/multitile/remove_desant(mob/living/old_desant)
-	old_desant.pass_flags &= ~pass_flags
+	old_desant.pass_flags &= ~(desant_pass_flags|pass_flags)
 
 /obj/vehicle/sealed/armored/multitile/ex_act(severity)
 	if(QDELETED(src))
@@ -74,6 +76,7 @@
 
 //THe HvX tank is not balanced at all for HvH
 /obj/vehicle/sealed/armored/multitile/campaign
+	desc = "A gigantic wall of metal designed for maximum SOM destruction. Drag yourself onto it at an entrance to get inside."
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	max_integrity = 1400
 	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
@@ -83,6 +86,7 @@
 	move_delay = 0.6 SECONDS
 	glide_size = 2.5
 	vis_range_mod = 4
+	faction = FACTION_TERRAGOV
 	ram_damage = 130
 
 /obj/vehicle/sealed/armored/multitile/campaign/Initialize(mapload)

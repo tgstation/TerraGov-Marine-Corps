@@ -1341,7 +1341,7 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 	var/height_to_use = (64 - AM_icon.Height()) * 0.5 //gives us the right height based on AM's icon height relative to the 64 high alpha mask
 
 	if(!new_height && !new_depth)
-		GLOB.submerge_filter_timer_list[ref(src)] = addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, remove_filter), AM_SUBMERGE_MASK), duration, TIMER_STOPPABLE)
+		GLOB.submerge_filter_timer_list[ref(src)] = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum, remove_filter), AM_SUBMERGE_MASK), duration, TIMER_STOPPABLE)
 		REMOVE_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
 	else if(!HAS_TRAIT(src, TRAIT_SUBMERGED)) //we use a trait to avoid some edge cases if things are moving fast or unusually
 		if(GLOB.submerge_filter_timer_list[ref(src)])
@@ -1350,7 +1350,7 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 		add_filter(AM_SUBMERGE_MASK, 1, alpha_mask_filter(0, height_to_use - AM_SUBMERGE_MASK_HEIGHT, icon(submerge_icon, submerge_icon_state), null, MASK_INVERSE))
 		ADD_TRAIT(src, TRAIT_SUBMERGED, SUBMERGED_TRAIT)
 
-	transition_filter(AM_SUBMERGE_MASK, duration, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)))
+	transition_filter(AM_SUBMERGE_MASK, list(y = height_to_use - (AM_SUBMERGE_MASK_HEIGHT - new_height)), duration)
 	animate(src, pixel_y = depth_diff, time = duration, flags = ANIMATION_PARALLEL|ANIMATION_RELATIVE)
 
 ///overrides the turf's normal footstep sound

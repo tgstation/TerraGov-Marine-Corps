@@ -8,6 +8,7 @@
 	opacity = FALSE
 	open_layer = CATWALK_LAYER
 	closed_layer = WINDOW_LAYER
+	smoothing_groups = null
 
 	resistance_flags = RESIST_ALL
 

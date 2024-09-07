@@ -166,6 +166,11 @@ OPERATIONS
 	contains = list(/obj/item/circuitboard/tadpole)
 	cost = 750
 
+/datum/supply_packs/operations/rappel_rope
+	name = "Spare Tadpole rappel system cord"
+	contains = list(/obj/item/spare_cord)
+	cost = 300
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -759,7 +764,7 @@ WEAPONS
 	cost = 200
 
 /datum/supply_packs/weapons/back_fuel_tank_x
-	name = "Type X back fuel tank"
+	name = "X-fuel backpack"
 	contains = list(/obj/item/ammo_magazine/flamer_tank/backtank/X)
 	cost = 600
 
@@ -1067,6 +1072,15 @@ EXPLOSIVES
 	name = "AI artillery targeting module"
 	contains = list(/obj/item/ai_target_beacon)
 	cost = 100
+	available_against_xeno_only = TRUE
+
+/datum/supply_packs/explosives/tactical_binos
+	name = "Rangefinding Binoculars"
+	contains = list(
+		/obj/item/binoculars/tactical/range,
+		/obj/item/encryptionkey/cas,
+	)
+	cost = 200
 	available_against_xeno_only = TRUE
 
 /*******************************************************************************
@@ -1606,6 +1620,11 @@ SUPPLIES
 	contains = list(/obj/item/toy/plush/rouny)
 	cost = 10
 
+/datum/supply_packs/supplies/queenplushie
+	name = "Royal Queen Plushie"
+	contains = list(/obj/item/toy/plush/royalqueen)
+	cost = 10
+
 /datum/supply_packs/supplies/games
 	name = "Games crate"
 	contains = list(
@@ -1696,7 +1715,7 @@ Imports
 /datum/supply_packs/imports/m412l1
 	name = "PR-412L1 Heavy Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
-	cost = 150
+	cost = 300
 
 /datum/supply_packs/imports/m412l1/ammo
 	name = "PR-412L1 Heavy Pulse Rifle Ammo"
@@ -1800,7 +1819,7 @@ Imports
 /datum/supply_packs/imports/dragunov
 	name = "SVD Dragunov Sniper"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/svd)
-	cost = 150
+	cost = 300
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/dragunov/ammo
@@ -2256,17 +2275,22 @@ FACTORY
 /datum/supply_packs/factory/smartgun_minigun_box_refill
 	name = "SG-85 ammo bin parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_minigun_box_refill)
-	cost = 250
+	cost = 350
 
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "SG-29 ammo drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
-	cost = 250
+	cost = 350
 
 /datum/supply_packs/factory/smartgun_targetrifle_refill
 	name = "SG-62 ammo magazine parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_magazine_refill)
-	cost = 250
+	cost = 400
+
+/datum/supply_packs/factory/smartgun_targetrifle_ammobin_refill
+	name = "SG-62 ammo bin parts refill"
+	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_ammobin_refill)
+	cost = 400
 
 /datum/supply_packs/factory/autosniper_magazine_refill
 	name = "SR-81 IFF Auto Sniper magazine assembly refill"
@@ -2420,12 +2444,12 @@ FACTORY
 /datum/supply_packs/factory/mortar_shell_flare_refill
 	name = "Mortar Flare shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_flare_refill)
-	cost = 100
+	cost = 50
 
 /datum/supply_packs/factory/mortar_shell_smoke_refill
 	name = "Mortar Smoke shell assembly refill"
 	contains = list(/obj/item/factory_refill/mortar_shell_smoke_refill)
-	cost = 100
+	cost = 50
 
 /datum/supply_packs/factory/mlrs_rocket_refill
 	name = "MLRS High Explosive rocket assembly refill"
@@ -2505,12 +2529,12 @@ FACTORY
 /datum/supply_packs/factory/heavy_isg_he_refill
 	name = "FK-88 Flak HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_he_refill)
-	cost = 300
+	cost = 200
 
 /datum/supply_packs/factory/heavy_isg_sabot_refill
 	name = "FK-88 Flak APFDS shell assembly refill"
 	contains = list(/obj/item/factory_refill/heavy_isg_sabot_refill)
-	cost = 400
+	cost = 225
 
 /datum/supply_packs/factory/ac_hv_refill
 	name = "ATR-22 High Velocity magazine assembly refill"

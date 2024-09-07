@@ -156,15 +156,29 @@ export const CampaignAdminPanel = (props) => {
               <Stack.Item mt={2}>
                 <Button
                   tooltip={multiline`
-                    Forces autobalance to run.
-                    Players on the high pop team will be FORCED to swap.
+                    Triggers autobalance to run.
+                    This can be forced, to not give players a choice.
                   `}
                   mt={1}
                   onClick={() => {
-                    act('force_autobalance');
+                    act('autobalance');
                   }}
                 >
-                  Force Autobalance
+                  Trigger Autobalance
+                </Button>
+              </Stack.Item>
+              <Stack.Item mt={2}>
+                <Button
+                  tooltip={multiline`
+                    Forcefully shuffles the teams.
+                    Shuffles all living and dead players to the available factions.
+                  `}
+                  mt={1}
+                  onClick={() => {
+                    act('shuffle_teams');
+                  }}
+                >
+                  Shuffle teams
                 </Button>
               </Stack.Item>
               <Stack.Item mt={2}>

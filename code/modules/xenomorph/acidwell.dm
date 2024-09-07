@@ -62,7 +62,7 @@
 		return
 	. += span_xenonotice("An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.")
 
-/obj/structure/xeno/acidwell/deconstruct(disassembled = TRUE)
+/obj/structure/xeno/acidwell/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	visible_message(span_danger("[src] suddenly collapses!") )
 	return ..()
 

@@ -10,7 +10,7 @@
 	var/occupied = FALSE
 
 
-/obj/structure/lamarr/deconstruct(disassembled = TRUE)
+/obj/structure/lamarr/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	new /obj/item/shard(loc)
 	if(occupied)
 		new /obj/item/clothing/mask/facehugger/lamarr(loc)

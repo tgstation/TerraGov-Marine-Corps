@@ -28,7 +28,7 @@
 	if(nodes[1])
 		icon_state = "he1"
 		var/obj/machinery/atmospherics/node = nodes[1]
-		add_atom_colour(node.color, FIXED_COLOUR_PRIORITY)
+		add_atom_colour(node.color, FIXED_COLOR_PRIORITY)
 	else
 		icon_state = "he0"
 	PIPING_LAYER_SHIFT(src, piping_layer)

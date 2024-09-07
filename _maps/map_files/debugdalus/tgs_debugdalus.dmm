@@ -450,7 +450,9 @@
 /turf/open/floor/mainship,
 /area/mainship/hallways/exoarmor)
 "abV" = (
-/obj/structure/dropship_equipment/shuttle/sentry_holder,
+/obj/structure/dropship_equipment/shuttle/sentry_holder{
+	pixel_y = 0
+	},
 /obj/machinery/camera/autoname/mainship{
 	dir = 4
 	},
@@ -2464,6 +2466,10 @@
 /obj/vehicle/unmanned/droid/ripley,
 /turf/open/floor/mech_bay_recharge_floor,
 /area/mainship/hallways/hangar)
+"hcW" = (
+/obj/machinery/vending/weapon,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "hni" = (
 /obj/structure/cable,
 /turf/open/floor/mainship,
@@ -2480,6 +2486,14 @@
 /obj/machinery/landinglight/cas{
 	dir = 8
 	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"hEt" = (
+/obj/machinery/vending/uniform_supply,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"hEy" = (
+/obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "hSf" = (
@@ -2671,6 +2685,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
+"lUR" = (
+/obj/machinery/vending/marineFood,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "mfs" = (
 /obj/machinery/door/poddoor/railing{
 	dir = 1;
@@ -2684,6 +2705,11 @@
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/medical/lower_medical)
+"mRA" = (
+/obj/structure/table/mainship/nometal,
+/obj/item/spare_cord,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "mXV" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/shuttle/shuttle_control/dropship/two,
@@ -2727,6 +2753,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"puo" = (
+/obj/machinery/loadout_vendor,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "qko" = (
@@ -2922,6 +2952,10 @@
 /obj/structure/dropship_equipment/cas/weapon/bomblet_pod,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"tFT" = (
+/obj/item/plantable_flag,
+/turf/open/floor/mainship,
+/area/mainship/command/cic)
 "tQD" = (
 /obj/machinery/light,
 /turf/open/floor/mainship,
@@ -2971,6 +3005,10 @@
 	},
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
+"vjm" = (
+/obj/structure/dropship_equipment/shuttle/rappel_system,
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
 "vsI" = (
 /obj/structure/table/mainship,
 /obj/item/storage/donut_box,
@@ -2994,6 +3032,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/turf/open/floor/mainship,
+/area/mainship/hallways/hangar)
+"vVh" = (
+/obj/machinery/vending/MarineMed,
 /turf/open/floor/mainship,
 /area/mainship/hallways/hangar)
 "way" = (
@@ -3861,7 +3903,7 @@ vHf
 vHf
 azU
 azU
-azU
+tFT
 azU
 afe
 azU
@@ -4089,8 +4131,8 @@ aaZ
 ada
 dwY
 dwY
-dwY
-dwY
+vjm
+mRA
 acs
 dwY
 ljx
@@ -4436,12 +4478,12 @@ dwY
 dwY
 vSw
 dwY
-dwY
-dwY
-dwY
-dwY
-vSw
-dwY
+hEy
+hEt
+hcW
+puo
+lUR
+vVh
 dwY
 dwY
 bhC
