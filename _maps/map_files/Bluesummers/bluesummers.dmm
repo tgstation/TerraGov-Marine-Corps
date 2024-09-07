@@ -14697,10 +14697,6 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/bluesummers/inside/food_processing/east)
-"mwd" = (
-/obj/structure/lattice,
-/turf/closed/wall/mainship,
-/area/bluesummers/outside/south/roofed)
 "mwl" = (
 /obj/effect/spawner/random/engineering/tool,
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -50550,7 +50546,7 @@ tmP
 tmP
 tmP
 atq
-mwd
+eKn
 eKn
 ydQ
 icb
