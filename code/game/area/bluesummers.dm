@@ -244,10 +244,6 @@
 	icon_state = "garden"
 	minimap_color = MINIMAP_AREA_LIVING
 
-/area/bluesummers/inside/biodome/holes
-	ceiling = NONE
-	outside = TRUE
-
 /area/bluesummers/inside/engineering
 	name = "Engineering Wing"
 	icon_state = "engine_storage"
@@ -285,10 +281,6 @@
 	name = "Industrial Wing"
 	icon_state = "construction"
 	minimap_color = MINIMAP_AREA_REQ
-
-/area/bluesummers/inside/industrial/holes
-	ceiling = NONE
-	outside = TRUE
 
 /area/bluesummers/inside/robotics
 	name = "Robotics Wing"
