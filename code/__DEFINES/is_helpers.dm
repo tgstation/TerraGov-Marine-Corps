@@ -131,6 +131,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
+#define isAIeye(A) (istype(A, /mob/camera/aiEye))
+
 //Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
 
