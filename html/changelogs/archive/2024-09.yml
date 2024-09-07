@@ -22,3 +22,7 @@
   - code_imp: Cleaned up an consolidated illusion code for mirage nades and hunter
       mirage
   - bugfix: fixed some fire bugs
+2024-09-05:
+  ivanmixo:
+  - bugfix: AI eye hearing now respects instrument preferences
+  - code_imp: Improved the way AI eye hears
