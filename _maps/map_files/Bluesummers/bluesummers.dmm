@@ -1019,6 +1019,12 @@
 /obj/structure/table/wood/fancy,
 /turf/open/floor/wood,
 /area/bluesummers/inside/luxury)
+"aPB" = (
+/obj/structure/prop/vehicle/truck/damaged{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/bluesummers/inside/garage)
 "aPY" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -3013,6 +3019,13 @@
 /obj/structure/cable,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bluesummers/caves/dorms)
+"cQj" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship,
+/area/bluesummers/inside/garage)
 "cQm" = (
 /obj/effect/urban/decal/trash/seventeen,
 /obj/structure/cable,
@@ -4480,6 +4493,7 @@
 "eeu" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast)
 "eeI" = (
@@ -6249,12 +6263,6 @@
 "fFt" = (
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/caves/cryostorage/south)
-"fFx" = (
-/obj/structure/prop/vehicle/crane/destructible/damaged{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/bluesummers/inside/garage)
 "fFU" = (
 /obj/structure/lattice,
 /obj/effect/landmark/start/job/xenomorph,
@@ -7291,9 +7299,6 @@
 /turf/open/floor/plating/mainship,
 /area/bluesummers/caves/mining/drill)
 "gFF" = (
-/obj/structure/prop/vehicle/crawler/crawler_fuel/destructible{
-	dir = 4
-	},
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/bluesummers/inside/garage)
@@ -8741,6 +8746,11 @@
 /obj/effect/spawner/random/engineering/structure/canister,
 /turf/open/floor/plating,
 /area/bluesummers/caves/southwest)
+"hSK" = (
+/obj/effect/turf_decal/sandytile/sandyplating,
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/plating,
+/area/bluesummers/outside/northwest)
 "hTo" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/ground/grass/weedable/patch/grassyellow,
@@ -9432,6 +9442,12 @@
 	dir = 4
 	},
 /turf/open/floor/plating/dmg3,
+/area/bluesummers/inside/garage)
+"ivK" = (
+/obj/structure/prop/vehicle/truck/damaged{
+	dir = 4
+	},
+/turf/open/floor/plating/mainship,
 /area/bluesummers/inside/garage)
 "ivW" = (
 /obj/structure/table/wood,
@@ -10801,6 +10817,7 @@
 "jAF" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/ai_node,
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northwest)
 "jAG" = (
@@ -11738,6 +11755,7 @@
 "khW" = (
 /obj/structure/lattice,
 /obj/effect/landmark/excavation_site_spawner,
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/southeast)
 "kin" = (
@@ -16242,10 +16260,6 @@
 /obj/item/stack/medical/heal_pack/ointment,
 /turf/open/floor/tile/white,
 /area/bluesummers/inside/luxury)
-"nIt" = (
-/obj/structure/prop/vehicle/truck/destructible/damaged,
-/turf/open/floor/plating,
-/area/bluesummers/inside/garage)
 "nIB" = (
 /obj/effect/turf_decal/warning_stripes/box,
 /obj/structure/powerloader_wreckage,
@@ -19883,6 +19897,10 @@
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/tile/dark,
 /area/bluesummers/inside/chapel)
+"qEH" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/plating/plating_catwalk,
+/area/bluesummers/caves/cryostorage)
 "qFl" = (
 /obj/structure/showcase,
 /obj/structure/window/reinforced{
@@ -20181,10 +20199,10 @@
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/north)
 "qRJ" = (
-/obj/structure/prop/vehicle/crawler/destructible{
-	dir = 1
-	},
 /obj/effect/turf_decal/warning_stripes/box,
+/obj/structure/prop/vehicle/crawler/crawler_blue{
+	dir = 4
+	},
 /turf/open/floor/plating/mainship,
 /area/bluesummers/inside/garage)
 "qRW" = (
@@ -20380,6 +20398,7 @@
 /obj/item/stack/sheet/metal,
 /obj/structure/cable,
 /obj/effect/ai_node,
+/obj/effect/landmark/sensor_tower,
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/inside/hydroponics/south)
 "raW" = (
@@ -21912,6 +21931,10 @@
 	dir = 1
 	},
 /area/bluesummers/inside/food_processing)
+"srv" = (
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/caves/southwest)
 "srA" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
@@ -23069,10 +23092,6 @@
 	dir = 5
 	},
 /area/bluesummers/inside/recreation)
-"tsS" = (
-/obj/structure/prop/urban/vehicles/truck/mining,
-/turf/open/floor/tile/dark,
-/area/bluesummers/caves/mining/south)
 "ttj" = (
 /obj/machinery/photocopier,
 /turf/open/floor/tile/dark/brown2/corner{
@@ -23447,6 +23466,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bluesummers/caves/northwest/garbledradio/indoor)
+"tKH" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/wood,
+/area/bluesummers/inside/recreation)
 "tKM" = (
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/silver/full,
@@ -23645,7 +23668,9 @@
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/office)
 "tRB" = (
-/obj/structure/prop/vehicle/truck/destructible,
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 1
+	},
 /turf/open/floor/plating/mainship,
 /area/bluesummers/inside/industrial)
 "tSc" = (
@@ -26103,12 +26128,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/captains_office)
-"vXa" = (
-/obj/structure/prop/vehicle/van/destructible/wreck{
-	dir = 8
-	},
-/turf/open/floor/plating/dmg1,
-/area/bluesummers/inside/garage)
 "vXm" = (
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast/garbledradio)
@@ -27018,8 +27037,8 @@
 	},
 /area/bluesummers/inside/food_processing)
 "wRb" = (
-/obj/structure/prop/vehicle/crawler/crawler_cargo/destructible,
 /obj/effect/turf_decal/warning_stripes/box,
+/obj/structure/prop/vehicle/crawler/crawler_cargo,
 /turf/open/floor/plating/mainship,
 /area/bluesummers/inside/garage)
 "wRe" = (
@@ -27474,6 +27493,13 @@
 	dir = 4
 	},
 /area/bluesummers/caves/mining)
+"xrg" = (
+/obj/structure/lattice,
+/obj/structure/prop/vehicle/crane/damaged{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/inside/garage)
 "xrO" = (
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/plating/mainship,
@@ -28066,10 +28092,6 @@
 "xYb" = (
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/caves/cryostorage/bridge)
-"xYp" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
-/turf/open/floor/plating/mainship,
-/area/bluesummers/inside/industrial)
 "xYJ" = (
 /obj/effect/decal/cleanable/blood/oil,
 /obj/effect/landmark/weed_node,
@@ -30387,7 +30409,7 @@ onn
 efz
 onn
 xTB
-onn
+srv
 trc
 eQu
 nOS
@@ -34342,7 +34364,7 @@ jvF
 oTf
 iIW
 qnF
-xYp
+tRB
 iRY
 hmr
 uOb
@@ -37958,7 +37980,7 @@ lSo
 iwj
 lSo
 gXL
-pfl
+hSK
 rIV
 lSo
 lSo
@@ -46455,7 +46477,7 @@ tWx
 rOW
 rOW
 slK
-rPy
+qEH
 nCo
 vXB
 mqy
@@ -48708,7 +48730,7 @@ tOg
 uJg
 jnK
 tOg
-tOg
+tKH
 slB
 tOg
 tOg
@@ -56401,8 +56423,8 @@ dnt
 mzA
 pvx
 vXJ
-jWF
-nIt
+ivK
+hbE
 xok
 gFF
 mzA
@@ -56586,7 +56608,7 @@ hbE
 vdM
 jWF
 amj
-vjZ
+cQj
 mzA
 mzA
 mYl
@@ -57851,15 +57873,15 @@ ogg
 mbp
 vXJ
 vXJ
-vXa
-hbE
+amj
+aPB
 hbE
 eGx
 amj
 hbE
 hbE
-fFx
-vXJ
+hbE
+xrg
 vdM
 hbE
 tMG
@@ -60474,7 +60496,7 @@ wDz
 lTj
 tXo
 bWX
-tsS
+xyr
 xyr
 fSz
 vNb
