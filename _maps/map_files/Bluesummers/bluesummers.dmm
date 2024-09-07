@@ -13114,11 +13114,11 @@
 	},
 /area/bluesummers/inside/chapel)
 "lnA" = (
-/obj/effect/spawner/random/misc/structure/supplycrate,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/light/broken,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/darkbrown/full,
 /area/bluesummers/outside/southwest/roofed)
 "lnU" = (
@@ -20869,11 +20869,11 @@
 /turf/open/floor/plating,
 /area/bluesummers/caves/cryostorage/bridge)
 "rwn" = (
-/obj/machinery/computer/cloning_console/vats,
 /obj/machinery/light{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/light/broken,
+/obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/emerald{
 	dir = 4
 	},
