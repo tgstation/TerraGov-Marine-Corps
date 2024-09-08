@@ -29,7 +29,7 @@
 	if(!ishuman(user))
 		return
 	var/mob/living/living_user = user
-	if(!living_user.Adjacent(src) || (!src in living_user.get_held_items()))
+	if(!living_user.Adjacent(src) || !(src in living_user.get_held_items()))
 		return
 	var/new_style = tgui_input_list(living_user, "Pick a style", "Pick style", style_list)
 	if(!new_style)
