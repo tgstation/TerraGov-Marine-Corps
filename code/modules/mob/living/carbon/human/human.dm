@@ -623,9 +623,8 @@
 
 	return ..()
 
-/// Handles when the player clicks on themself with the grab item
-/mob/living/carbon/human/proc/grabbed_self_attack()
-	SIGNAL_HANDLER
+/mob/living/carbon/human/grabbed_self_attack()
+	. = ..()
 	var/mob/living/grabbed = pulling
 	if(!istype(grabbed))
 		return NONE
@@ -633,10 +632,6 @@
 		//If you dragged them to you and you're aggressively grabbing try to fireman carry them
 		INVOKE_ASYNC(src, PROC_REF(fireman_carry), grabbed)
 		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
-	if(isxenorunner(pulling))
-		if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
-			INVOKE_ASYNC(grabbed, TYPE_PROC_REF(/mob/living/carbon/xenomorph/runner, carry_human), src, TRUE)
-			return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
 	return NONE
 
 //src is the user that will be carrying, target is the mob to be carried

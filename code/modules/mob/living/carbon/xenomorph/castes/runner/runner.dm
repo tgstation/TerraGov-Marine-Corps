@@ -65,34 +65,18 @@
 	var/obj/item/storage/backpack/marine/duffelbag/xenosaddle/saddle = back
 	dropItemToGround(saddle,TRUE)
 
-/mob/living/carbon/xenomorph/runner/grabbed_self_attack()
-	if(!ishuman(pulling))
-		return NONE
-	var/mob/living/carbon/human = pulling
-	if(human.stat != DEAD)
-		//so aslong as the human isnt dead, put them on our back
-		INVOKE_ASYNC(src, PROC_REF(carry_human), human)
-		return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
-	return NONE
-/// Takes a human and puts them on the saddle of the runner, handling all the buckling & checks.
-/mob/living/carbon/xenomorph/runner/proc/carry_human(mob/living/carbon/target, forced = FALSE)
-	if(istype(back,/obj/item/storage/backpack/marine/duffelbag/xenosaddle))//cant ride without a saddle
-		return
-	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
-		if(forced)
-			to_chat(target, span_xenowarning("You cannot mount [src]"))
-			return
-		to_chat(src, span_xenowarning("[target] cannot mount you!"))
-		return
-	visible_message(span_notice("[forced ? "[target] starts to mount on [src]" : "[src] starts hoisting [target] onto [p_their()] saddle..."]"),
-	span_notice("[forced ? "[target] starts to mount on your back" : "You start to lift [target] onto your saddle..."]"))
-	if(!do_after(forced ? target : src, 5 SECONDS, NONE, forced ? src : target, target_display = BUSY_ICON_HOSTILE))
-		visible_message(span_warning("[forced ? "[target] fails to mount on [src]" : "[src] fails to carry [target]!"]"))
-		return
-	//Second check to make sure they're still valid to be carried
-	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
-		return
-	buckle_mob(target, TRUE, TRUE, 90, 1, 1)
+/mob/living/carbon/xenomorph/runner/can_mount(mob/living/user, target_mounting = FALSE)
+	. = ..()
+	if(!target_mounting)
+		user = pulling
+	if(!ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/human_pulled = user
+	if(human_pulled.stat == DEAD)
+		return FALSE
+	if(!istype(back, /obj/item/storage/backpack/marine/duffelbag/xenosaddle)) //cant ride without a saddle
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/xenomorph/runner/resisted_against(datum/source)
 	user_unbuckle_mob(source, source)

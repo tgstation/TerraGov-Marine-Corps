@@ -242,17 +242,6 @@
 		CRASH("Unemployment has reached to a xeno, who has failed to become a [xeno_caste.job_type]")
 	apply_assigned_role_to_spawn(xeno_job)
 
-/mob/living/carbon/xenomorph/proc/grabbed_self_attack()
-	SIGNAL_HANDLER
-	if(!(xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER))
-		return NONE
-	if(isxenocrusher(pulling) || isxenobehemoth(pulling))
-		var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
-		if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
-			INVOKE_ASYNC(grabbed, TYPE_PROC_REF(/mob/living/carbon/xenomorph/crusher, carry_xeno), src, TRUE)
-			return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
-	return NONE
-
 ///Initiate of form changing on the xeno
 /mob/living/carbon/xenomorph/proc/change_form()
 	return
@@ -569,3 +558,54 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 			wear_mask = item_to_equip
 			item_to_equip.equipped(src, slot)
 			wear_mask_update(item_to_equip, TRUE)
+
+/mob/living/carbon/xenomorph/grabbed_self_attack(mob/living/user)
+	. = ..()
+	if(!can_mount(user))
+		return NONE
+	INVOKE_ASYNC(src, PROC_REF(carry_target), pulling, FALSE)
+	return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+
+/**
+ * Checks if user can mount src
+ *
+ * Arguments:
+ * * user - The mob trying to mount
+ * * target_mounting - Is the target initiating the mounting process?
+ */
+/mob/living/carbon/xenomorph/proc/can_mount(mob/living/user, target_mounting = FALSE)
+	return FALSE
+
+/**
+ * Handles the target trying to ride src
+ *
+ * Arguments:
+ * * target - The mob being put on the back
+ * * target_mounting - Is the target initiating the mounting process?
+ */
+/mob/living/carbon/xenomorph/proc/carry_target(mob/living/carbon/target, target_mounting = FALSE)
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		if(target_mounting)
+			to_chat(target, span_xenowarning("You cannot mount [src]!"))
+			return
+		to_chat(src, span_xenowarning("[target] cannot mount you!"))
+		return
+	visible_message(span_notice("[target_mounting ? "[target] starts to mount on [src]" : "[src] starts hoisting [target] onto [p_their()] back..."]"),
+	span_notice("[target_mounting ? "[target] starts to mount on your back" : "You start to lift [target] onto your back..."]"))
+	if(!do_after(target_mounting ? target : src, 5 SECONDS, NONE, target_mounting ? src : target, target_display = BUSY_ICON_HOSTILE))
+		visible_message(span_warning("[target_mounting ? "[target] fails to mount on [src]" : "[src] fails to carry [target]!"]"))
+		return
+	//Second check to make sure they're still valid to be carried
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		return
+	buckle_mob(target, TRUE, TRUE, 90, 1, 1)
+
+/mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, mob/user)
+	. = ..()
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		if(!(xeno_user.xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER))
+			return
+	if(!can_mount(user, TRUE))
+		return
+	INVOKE_ASYNC(src, PROC_REF(carry_target), user, TRUE)
