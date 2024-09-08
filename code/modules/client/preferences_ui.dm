@@ -639,26 +639,25 @@
 			volume_tts = clamp(new_vol, 0, 100)
 
 		if("toggle_radio_tts_setting")
-			var/flag_to_change
 			switch(params["newsetting"])
 				if("sl")
-					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD))
-						return
-					flag_to_change = RADIO_TTS_SL
-				if("squad")
-					ENABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL) //Enable SL TTS if not already enabled
-					flag_to_change = RADIO_TTS_SQUAD
-				if("command")
-					flag_to_change = RADIO_TTS_COMMAND
-				if("all")
-					flag_to_change = RADIO_TTS_ALL
-				else
-					return
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL)
+					if(!CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_SL)) //When SL radio is being disabled, disable squad radio too
+						DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD)
 
-			if(CHECK_BITFIELD(radio_tts_flags, flag_to_change))
-				DISABLE_BITFIELD(radio_tts_flags, flag_to_change)
-			else
-				ENABLE_BITFIELD(radio_tts_flags, flag_to_change)
+				if("squad")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD)
+					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD))
+						ENABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL) //Enable SL TTS if not already enabled
+
+				if("command")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_COMMAND)
+
+				if("all")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
+					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)) //Enable all other channels when 'ALL' is enabled
+						for(var/flag in GLOB.all_radio_tts_options)
+							ENABLE_BITFIELD(radio_tts_flags, flag)
 
 			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND))
 				DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)

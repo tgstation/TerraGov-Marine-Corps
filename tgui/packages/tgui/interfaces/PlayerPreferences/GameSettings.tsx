@@ -55,7 +55,7 @@ export const GameSettings = (props) => {
     sl: 'Squad Leader',
     squad: 'Squad',
     command: 'Command',
-    all: 'All (except Squad/Command)',
+    all: 'All Channels',
   };
 
   return (
