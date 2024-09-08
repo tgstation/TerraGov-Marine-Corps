@@ -331,7 +331,6 @@
 
 
 //gib animation
-
 /obj/effect/overlay/temp/gib_animation
 	icon = 'icons/mob/mob.dmi'
 	effect_duration = 14
@@ -339,28 +338,28 @@
 /obj/effect/overlay/temp/gib_animation/Initialize(mapload, effect_duration, mob/source_mob, gib_icon)
 	. = ..()
 	if(source_mob)
-		pixel_x = source_mob.pixel_x
-		pixel_y = source_mob.pixel_y
-	icon_state = gib_icon
+		pixel_x += source_mob.pixel_x
+	flick(gib_icon, src)
 
 /obj/effect/overlay/temp/gib_animation/ex_act(severity)
 	return
 
+/obj/effect/overlay/temp/gib_animation/human
+	icon = 'icons/mob/human_gib.dmi'
+	pixel_x = -16
+	pixel_y = -16
 
 /obj/effect/overlay/temp/gib_animation/animal
 	icon = 'icons/mob/animal.dmi'
 	effect_duration = 12
-
 
 /obj/effect/overlay/temp/gib_animation/xeno
 	icon = 'icons/Xeno/64x64_Xeno_overlays.dmi'
 	effect_duration = 10
 
 /obj/effect/overlay/temp/gib_animation/xeno/Initialize(mapload, effect_duration, mob/source_mob, gib_icon, new_icon)
-	. = ..()
 	icon = new_icon
-
-
+	return ..()
 
 //dust animation
 
