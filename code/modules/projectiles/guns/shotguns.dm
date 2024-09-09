@@ -384,6 +384,51 @@
 	)
 
 //------------------------------------------------------
+// ML-101 Heavy Shotgun
+
+/obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun
+	name = "\improper ML-101 heavy pump shotgun"
+	desc = "Curiously using a rifled barrel in a shotgun. The ML-101 shotgun is used by ICC personnel forces to devastate targets at close range. Uses 6 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
+	equip_slot_flags = ITEM_SLOT_BACK
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	icon_state = "ks23"
+	worn_icon_state = "ks23"
+	caliber = CALIBER_6G //codex
+	default_ammo_type = /datum/ammo/bullet/shotgun/heavy_buckshot
+	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh35.ogg'
+	max_chamber_items = 5
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/foldable/t35stock,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/buildasentry,
+	)
+
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
+	item_map_variant_flags = NONE
+
+	fire_delay = 2.75 SECONDS
+	scatter_unwielded = 10
+	recoil = 0 // It has a stock. It's on the sprite.
+	recoil_unwielded = 0
+	aim_slowdown = 0.65
+	wield_delay = 0.95 SECONDS
+	cock_delay = 1.4 SECONDS
+	damage_falloff_mult = 0.5 // Rifled barrel, also has more slug variety
+
+//------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 
 /obj/item/weapon/gun/shotgun/pump/bolt
