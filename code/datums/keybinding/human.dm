@@ -47,6 +47,11 @@
 	full_name = "Activate Rail attachment"
 	keybind_signal = COMSIG_KB_RAILATTACHMENT
 
+/datum/keybinding/human/barrel_attachment
+	name = "barrel_attachment"
+	full_name = "Activate Barrel attachment"
+	keybind_signal = COMSIG_KB_BARRELATTACHMENT
+
 /datum/keybinding/human/underrail_attachment
 	name = "underrail_attachment"
 	full_name = "Activate Underrail attachment"
