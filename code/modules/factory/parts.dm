@@ -769,7 +769,7 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	desc = "An incomplete AGLS HE magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls
 
-/obj/item/factory_part/obj/item/factory_part/agls_he/Initialize(mapload)
+/obj/item/factory_part/agls_he/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.agls_recipe
 
