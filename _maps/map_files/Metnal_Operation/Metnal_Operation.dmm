@@ -25244,6 +25244,9 @@
 	},
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
+"sQs" = (
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/landingzoneone)
 "sQy" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt/cave{
@@ -62721,21 +62724,21 @@ edg
 edg
 edg
 orz
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
 rzS
 rzS
 rzS
@@ -62923,7 +62926,7 @@ edg
 edg
 edg
 orz
-lnl
+sQs
 bhV
 iVu
 gZA
@@ -63125,7 +63128,7 @@ edg
 edg
 orz
 orz
-lnl
+sQs
 wVr
 iVu
 iVu
@@ -63326,8 +63329,8 @@ edg
 edg
 edg
 orz
-lnl
-lnl
+sQs
+sQs
 bhV
 iVu
 iVu
@@ -63528,7 +63531,7 @@ edg
 edg
 edg
 orz
-lnl
+sQs
 iVu
 iVu
 jmS
@@ -63730,7 +63733,7 @@ edg
 edg
 edg
 orz
-lnl
+sQs
 iVu
 kby
 slU
@@ -63932,7 +63935,7 @@ edg
 edg
 edg
 orz
-lnl
+sQs
 iVu
 kby
 eto
@@ -64134,7 +64137,7 @@ edg
 edg
 edg
 orz
-lnl
+sQs
 dGP
 kby
 pVJ
@@ -64336,7 +64339,7 @@ nDo
 edg
 edg
 orz
-lnl
+sQs
 iVu
 iVu
 hOg
@@ -64362,7 +64365,7 @@ hOg
 hOg
 iVu
 slt
-lnl
+sQs
 dAc
 siO
 siO
@@ -64538,7 +64541,7 @@ gpK
 edg
 edg
 orz
-lnl
+sQs
 iVu
 iVu
 iVu
@@ -64564,7 +64567,7 @@ iVu
 iVu
 iVu
 nGt
-lnl
+sQs
 oKs
 xXc
 siO
@@ -64740,7 +64743,7 @@ uSa
 edg
 edg
 orz
-lnl
+sQs
 iVu
 mNI
 iVu
@@ -64766,7 +64769,7 @@ iVu
 iVu
 mNI
 nGt
-lnl
+sQs
 oKs
 siO
 siO
@@ -64942,7 +64945,7 @@ gpK
 edg
 edg
 orz
-lnl
+sQs
 jmS
 jmS
 jmS
@@ -64968,7 +64971,7 @@ jmS
 jmS
 jmS
 hJs
-lnl
+sQs
 oKs
 siO
 siO
@@ -65144,7 +65147,7 @@ gpK
 edg
 edg
 orz
-lnl
+sQs
 tAw
 slU
 nvL
@@ -65170,7 +65173,7 @@ nvL
 nvL
 wSA
 hbi
-lnl
+sQs
 oKs
 siO
 siO
@@ -65346,7 +65349,7 @@ gpK
 edg
 edg
 orz
-lnl
+sQs
 kep
 ubZ
 fkF
@@ -65372,7 +65375,7 @@ fkF
 fkF
 iaw
 iYM
-lnl
+sQs
 oKs
 siO
 siO
@@ -65548,7 +65551,7 @@ gpK
 edg
 edg
 orz
-lnl
+sQs
 eto
 dur
 gGG
@@ -65574,7 +65577,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+sQs
 orz
 jVs
 siO
@@ -65750,7 +65753,7 @@ gpK
 gpK
 edg
 orz
-lnl
+sQs
 eto
 dur
 gGG
@@ -65776,7 +65779,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+sQs
 orz
 jVs
 siO
@@ -65952,7 +65955,7 @@ nDo
 lRJ
 edg
 orz
-lnl
+sQs
 fZZ
 dur
 gGG
@@ -65978,7 +65981,7 @@ gGG
 gGG
 eZx
 hpb
-lnl
+sQs
 orz
 edg
 jVs
@@ -66154,7 +66157,7 @@ gpK
 gpK
 edg
 orz
-lnl
+sQs
 eto
 dur
 gGG
@@ -66180,7 +66183,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+sQs
 orz
 edg
 edg
@@ -66356,7 +66359,7 @@ gpK
 gpK
 edg
 orz
-lnl
+sQs
 eto
 dur
 gGG
@@ -66382,7 +66385,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+sQs
 orz
 edg
 edg
@@ -66558,7 +66561,7 @@ gpK
 gpK
 edg
 orz
-lnl
+sQs
 eto
 dur
 gGG
@@ -66584,7 +66587,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+sQs
 orz
 edg
 edg
@@ -66760,7 +66763,7 @@ gpK
 gpK
 edg
 orz
-lnl
+sQs
 eto
 dur
 gGG
@@ -66786,7 +66789,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+sQs
 orz
 edg
 edg
@@ -66962,7 +66965,7 @@ nDo
 gpK
 edg
 orz
-lnl
+sQs
 eto
 dur
 gGG
@@ -66988,7 +66991,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+sQs
 orz
 edg
 edg
@@ -67164,7 +67167,7 @@ lRJ
 gpK
 naX
 orz
-lnl
+sQs
 fZZ
 dur
 gGG
@@ -67190,7 +67193,7 @@ gGG
 gGG
 eZx
 hpb
-lnl
+sQs
 orz
 edg
 edg
@@ -67366,7 +67369,7 @@ gpK
 gpK
 naX
 orz
-lnl
+sQs
 eto
 dur
 gGG
@@ -67392,7 +67395,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+sQs
 orz
 edg
 edg
@@ -67568,7 +67571,7 @@ gpK
 gpK
 naX
 orz
-lnl
+sQs
 eto
 dur
 gGG
@@ -67594,7 +67597,7 @@ gGG
 gGG
 eZx
 hTT
-lnl
+sQs
 orz
 edg
 edg
@@ -67770,7 +67773,7 @@ lRJ
 gpK
 naX
 orz
-lnl
+sQs
 kLs
 cZj
 awh
@@ -67796,7 +67799,7 @@ awh
 awh
 bkj
 tnM
-lnl
+sQs
 orz
 edg
 edg
@@ -67972,7 +67975,7 @@ nDo
 gpK
 naX
 orz
-lnl
+sQs
 eee
 pVJ
 iHB
@@ -67998,7 +68001,7 @@ iHB
 iHB
 hid
 qFR
-lnl
+sQs
 orz
 edg
 edg
@@ -68174,7 +68177,7 @@ gpK
 gpK
 naX
 orz
-lnl
+sQs
 hOg
 hOg
 hOg
@@ -68200,7 +68203,7 @@ hOg
 rOe
 hOg
 iwL
-lnl
+sQs
 orz
 edg
 edg
@@ -68376,7 +68379,7 @@ gpK
 gpK
 naX
 orz
-lnl
+sQs
 iVu
 mNI
 iVu
@@ -68402,7 +68405,7 @@ iVu
 lfa
 mNI
 nGt
-lnl
+sQs
 aqP
 edg
 edg
@@ -68578,7 +68581,7 @@ lRJ
 gpK
 naX
 orz
-lnl
+sQs
 eKX
 iVu
 iVu
@@ -68604,7 +68607,7 @@ cEN
 iVu
 iVu
 nGt
-lnl
+sQs
 vAj
 edg
 edg
@@ -68780,7 +68783,7 @@ gpK
 gpK
 naX
 orz
-lnl
+sQs
 iVu
 iVu
 iVu
@@ -68806,7 +68809,7 @@ nGt
 nGt
 nGt
 nGt
-lnl
+sQs
 cCJ
 edg
 edg
@@ -68982,8 +68985,8 @@ gpK
 gpK
 naX
 orz
-lnl
-lnl
+sQs
+sQs
 iVu
 iVu
 iVu
@@ -69007,8 +69010,8 @@ gcG
 iVu
 iVu
 cEN
-lnl
-lnl
+sQs
+sQs
 wJA
 edg
 edg
@@ -69185,7 +69188,7 @@ lRJ
 naX
 orz
 orz
-lnl
+sQs
 dGP
 iVu
 iVu
@@ -69209,7 +69212,7 @@ cEN
 iVu
 iVu
 qAJ
-lnl
+sQs
 orz
 orz
 edg
@@ -69387,7 +69390,7 @@ gpK
 naX
 naX
 orz
-lnl
+sQs
 iVu
 iVu
 sCL
@@ -69411,7 +69414,7 @@ lgL
 iVu
 udw
 iVu
-lnl
+sQs
 orz
 edg
 edg
@@ -69589,15 +69592,15 @@ gpK
 nDo
 naX
 orz
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
 qxq
 nGt
 nGt
@@ -69605,15 +69608,15 @@ nGt
 lfa
 iVu
 kby
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
 orz
 edg
 edg
@@ -69799,7 +69802,7 @@ bSB
 bSB
 bSB
 bSB
-lnl
+sQs
 oPx
 foL
 cbU
@@ -69807,7 +69810,7 @@ xxJ
 xzm
 foL
 kby
-lnl
+sQs
 bSB
 xcM
 xcM
@@ -70001,7 +70004,7 @@ edg
 edg
 edg
 orz
-lnl
+sQs
 rfq
 foL
 cbU
@@ -70009,7 +70012,7 @@ wWt
 iLh
 iVu
 kby
-lnl
+sQs
 orz
 pux
 pux
@@ -70203,7 +70206,7 @@ edg
 edg
 edg
 orz
-lnl
+sQs
 rfq
 iVu
 iVu
@@ -70211,7 +70214,7 @@ iVu
 iVu
 iVu
 kby
-lnl
+sQs
 orz
 edg
 gpK
@@ -70405,7 +70408,7 @@ edg
 edg
 edg
 orz
-lnl
+sQs
 iZP
 lUU
 sak
@@ -70413,7 +70416,7 @@ sak
 xLZ
 gia
 frp
-lnl
+sQs
 orz
 edg
 edg
@@ -70607,15 +70610,15 @@ edg
 edg
 edg
 orz
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
-lnl
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
+sQs
 orz
 edg
 edg
