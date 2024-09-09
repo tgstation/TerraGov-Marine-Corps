@@ -1,6 +1,19 @@
 // ***************************************
 // *********** Stealth
 // ***************************************
+
+//stealth flag defines
+//If hitting an object break stealth.
+#define DIS_OBJ_SLASH (1<<0)
+//If hitting a mob break stealth.
+#define DIS_MOB_SLASH (2<<0)
+//If pouncing at all break stealth.
+#define DIS_POUNCE (3<<0)
+//If pouncing on a target break stealth.
+#define DIS_POUNCE_SLASH (3<<0)
+//If AP is only applied when walking.
+#define WALK_ONLY_AP (4<<0)
+
 /datum/action/ability/xeno_action/stealth
 	name = "Toggle Stealth"
 	action_icon_state = "hunter_invisibility"
@@ -31,18 +44,10 @@
 		COMSIG_LIVING_ADD_VENTCRAWL,
 		COMSIG_XENOABILITY_MIRAGE_SWAP
 	)
-	///If hitting an object break stealth.
-	var/disable_on_obj_slash = TRUE
-	///If stealth break when slashing a mob.
-	var/disable_on_mob_slash = TRUE
+	///Flag for stealth behaviors
+	var/stealth_flags = DIS_OBJ_SLASH|DIS_MOB_SLASH|DIS_POUNCE|DIS_POUNCE_SLASH|WALK_ONLY_AP
 	///Sneak attack armor penetration value
 	var/sneak_attack_armor_pen = HUNTER_SNEAK_SLASH_ARMOR_PEN
-	///If pouncing at all break stealth.
-	var/pounce_break_stealth = TRUE
-	///If pouncing on a target break stealth.
-	var/pounce_hit_break_stealth = TRUE
-	///If movement affects sneak attack armor penetration.
-	var/movement_affects_sneakattack = TRUE
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -81,8 +86,6 @@
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth))
 	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, PROC_REF(sneak_attack_pounce))
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
-	if(pounce_hit_break_stealth)
-		RegisterSignal(owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(sneak_attack_slash))
 	RegisterSignal(owner, COMSIG_XENOMORPH_DISARM_HUMAN, PROC_REF(sneak_attack_slash))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ZONE_SELECT, PROC_REF(sneak_attack_zone))
@@ -90,7 +93,7 @@
 
 	// TODO: attack_alien() overrides are a mess and need a lot of work to make them require parentcalling
 	RegisterSignals(owner, disable_on_signals, PROC_REF(cancel_stealth))
-	if(disable_on_obj_slash)
+	if(stealth_flags & DIS_OBJ_SLASH)
 		RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
 
 	RegisterSignals(owner, list(SIGNAL_ADDTRAIT(TRAIT_KNOCKEDOUT), SIGNAL_ADDTRAIT(TRAIT_FLOORED)), PROC_REF(cancel_stealth))
@@ -187,7 +190,7 @@
 			owner.hud_used.move_intent.icon_state = "running"
 		owner.update_icons()
 
-	if(pounce_break_stealth)
+	if(stealth_flags & DIS_POUNCE)
 		cancel_stealth()
 
 /// Callback for when a mob gets hit as part of a pounce
@@ -205,7 +208,7 @@
 			M.adjust_stagger(3 SECONDS)
 			M.add_slowdown(1)
 		to_chat(owner, span_xenodanger("Pouncing from the shadows, we stagger our victim."))
-	if(pounce_hit_break_stealth)
+	if(stealth_flags & DIS_POUNCE_SLASH)
 		cancel_stealth()
 	else
 		can_sneak_attack = FALSE
@@ -221,7 +224,7 @@
 	var/paralyzesecs = 1 SECONDS
 	var/flavour
 
-	if(movement_affects_sneakattack && owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
+	if(stealth_flags & WALK_ONLY_AP && owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
 		flavour = "vicious"
 	else
 		armor_mod += sneak_attack_armor_pen
@@ -239,7 +242,7 @@
 	target.add_slowdown(staggerslow_stacks)
 	target.ParalyzeNoChain(paralyzesecs)
 
-	if(disable_on_mob_slash)
+	if(stealth_flags & DIS_MOB_SLASH)
 		cancel_stealth()
 	else
 		can_sneak_attack = FALSE
@@ -447,12 +450,6 @@
 	var/atom/movable/marked_target
 	///If marking require line of sight of the target.
 	var/require_los = TRUE
-	///Custom duration for the mark, -1 to disable.
-	var/timeout = null
-	///If the mark warns the target.
-	var/warntarget = FALSE
-	///Charge-up duration of the mark where you need to stay still for it to apply, -1 to disable.
-	var/chargeup = null
 
 /datum/action/ability/activable/xeno/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -796,11 +793,8 @@
 		COMSIG_LIVING_IGNITED,
 		COMSIG_LIVING_ADD_VENTCRAWL,
 	)
-	disable_on_obj_slash = FALSE
-	disable_on_mob_slash = FALSE
+	stealth_flags = DIS_POUNCE_SLASH
 	sneak_attack_armor_pen = 30
-	pounce_break_stealth = FALSE
-	movement_affects_sneakattack = FALSE
 
 // i just realized, we need to disable processing, this will inherently just amke handle_stealth not do anything
 ///Updates or cancels stealth
@@ -822,9 +816,12 @@
 	)
 	cooldown_duration = 30 SECONDS
 	require_los = FALSE
-	timeout = 15 SECONDS
-	warntarget = TRUE
-	chargeup = 2 SECONDS
+
+	///Duration for the mark.
+	var/timeout = 15 SECONDS
+	///Charge-up duration of the mark where you need to stay still for it to apply.
+	var/chargeup = 2 SECONDS
+
 
 /datum/action/ability/activable/xeno/hunter_mark/assassin/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -837,17 +834,14 @@
 
 /datum/action/ability/activable/xeno/hunter_mark/assassin/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/X = owner
-	if(chargeup != null)
-		if(!do_after(X, chargeup, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC))
-			return
+	if(!do_after(X, chargeup, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC))
+		return
 
-	if(timeout != null) //sets a timer to unmark the target
-		to_chat(X, span_xenodanger("We will be able to maintain the mark for [timeout / 10] seconds."))
-		addtimer(CALLBACK(src, PROC_REF(unset_target)), timeout)
+	to_chat(X, span_xenodanger("We will be able to maintain the mark for [timeout / 10] seconds."))
+	addtimer(CALLBACK(src, PROC_REF(unset_target)), timeout)
 
-	if(warntarget)
-		playsound(marked_target, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
-		to_chat(marked_target, span_highdanger("You feel uneasy."))
+	playsound(marked_target, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
+	to_chat(marked_target, span_highdanger("You feel uneasy."))
 	. = ..()
 
 // ***************************************
