@@ -288,9 +288,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
-"anc" = (
-/turf/open/liquid/lava/single,
-/area/metnal/outside/southwest)
 "anq" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
@@ -5917,9 +5914,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
-"ezj" = (
-/turf/open/liquid/lava/single,
-/area/metnal/outside/central)
 "ezn" = (
 /obj/structure/rack,
 /obj/item/clothing/ears/earmuffs/green,
@@ -12013,7 +12007,7 @@
 /area/metnal/inside/cafeteria)
 "jix" = (
 /obj/effect/ai_node,
-/turf/open/liquid/lava/single,
+/turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/central)
 "jjg" = (
 /obj/structure/largecrate/supply/ammo/shotgun,
@@ -20890,9 +20884,6 @@
 /obj/item/trash/cigbutt,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/experimentation)
-"pUu" = (
-/turf/open/liquid/lava/single,
-/area/metnal/outside/west)
 "pUP" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
@@ -23890,9 +23881,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
-"rZq" = (
-/turf/open/liquid/lava/single,
-/area/metnal/outside/east)
 "rZz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -42193,7 +42181,7 @@ tOB
 pbi
 xdB
 xdB
-pUu
+xdB
 xdB
 wmD
 wmD
@@ -47258,7 +47246,7 @@ oRN
 oRN
 oRN
 oRN
-anc
+thc
 ujt
 qkt
 ujt
@@ -47452,7 +47440,7 @@ dxJ
 mtn
 kez
 kez
-ezj
+kFW
 oRN
 oRN
 oRN
@@ -48463,7 +48451,7 @@ hDi
 lHO
 ims
 brk
-ezj
+kFW
 kez
 oRN
 oRN
@@ -49883,7 +49871,7 @@ kez
 kez
 kez
 kez
-ezj
+kFW
 kez
 kez
 oRN
@@ -51858,7 +51846,7 @@ vPN
 kez
 kez
 xcK
-ezj
+kez
 kez
 kez
 jOH
@@ -53278,7 +53266,7 @@ oRN
 oRN
 oRN
 kez
-ezj
+kFW
 kez
 kez
 kez
@@ -63209,7 +63197,7 @@ joS
 aqt
 joS
 joS
-lUA
+joS
 joS
 cbB
 joS
@@ -63411,7 +63399,7 @@ joS
 joS
 joS
 joS
-cbB
+joS
 joS
 cbB
 lUA
@@ -63613,7 +63601,7 @@ xsO
 joS
 joS
 joS
-cbB
+joS
 joS
 cbB
 cbB
@@ -63814,7 +63802,7 @@ joS
 joS
 joS
 bcF
-rZq
+lUA
 aqt
 joS
 cbB
@@ -64430,7 +64418,7 @@ cbB
 joS
 lUA
 joS
-rZq
+lUA
 joS
 cbB
 cbB
