@@ -288,6 +288,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
+"anc" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
+/turf/open/floor/iron/dark/textured,
+/area/metnal/inside/landingzoneone)
 "anq" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
@@ -7956,10 +7961,6 @@
 /obj/effect/turf_decal/tracks/human2/bloody,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/south)
-"gcG" = (
-/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
-/turf/open/floor/iron/dark/textured,
-/area/metnal/inside/landingzoneone)
 "gcT" = (
 /obj/machinery/conveyor{
 	dir = 8;
@@ -20884,6 +20885,14 @@
 /obj/item/trash/cigbutt,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/experimentation)
+"pUu" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/turf/open/floor/iron/dark/textured,
+/area/metnal/inside/landingzoneone)
 "pUP" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
@@ -21801,7 +21810,6 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "qAJ" = (
-/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
 /obj/machinery/light,
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
@@ -23881,6 +23889,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
+"rZq" = (
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
+/turf/open/floor/iron/dark/textured_edge{
+	dir = 8
+	},
+/area/metnal/inside/landingzoneone)
 "rZz" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
@@ -25863,12 +25877,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean/two,
 /area/metnal/inside/medical)
-"tqH" = (
-/obj/structure/rack/nometal,
-/obj/effect/spawner/random/weaponry/melee,
-/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
-/turf/open/floor/iron/dark/textured,
-/area/metnal/inside/landingzoneone)
 "trc" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/item/ammo_casing/cartridge,
@@ -32458,7 +32466,8 @@
 /area/metnal/inside/cargo)
 "yhl" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
 "yhr" = (
@@ -68181,12 +68190,12 @@ hOg
 hOg
 hOg
 hOg
+rOe
 hOg
 hOg
+rOe
 hOg
-hOg
-hOg
-hOg
+rZq
 hOg
 rOe
 hOg
@@ -68392,7 +68401,7 @@ iVu
 iVu
 lfa
 mNI
-nGt
+anc
 sQs
 aqP
 edg
@@ -68594,7 +68603,7 @@ iVu
 cEN
 iVu
 iVu
-nGt
+anc
 sQs
 vAj
 edg
@@ -68989,15 +68998,15 @@ mRJ
 mFn
 qqu
 iVu
-iVu
-sCL
-iVu
-iVu
-iVu
-gcG
+yhl
+pUu
 iVu
 iVu
-cEN
+iVu
+iVu
+iVu
+iVu
+iVu
 sQs
 sQs
 wJA
@@ -69193,10 +69202,10 @@ lnl
 lnl
 lnl
 lnl
-yhl
 iVu
 iVu
-cEN
+iVu
+iVu
 iVu
 iVu
 qAJ
@@ -69395,7 +69404,7 @@ hOg
 kvu
 kmS
 lnl
-tqH
+iVu
 udw
 iVu
 lgL
