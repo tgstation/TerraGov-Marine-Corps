@@ -9145,8 +9145,8 @@
 /turf/open/lavaland/basalt/cave,
 /area/metnal/caves/south)
 "haq" = (
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/research)
+/turf/closed/mineral/smooth/indestructible,
+/area/metnal/caves/southeast/garbledradio)
 "haG" = (
 /obj/structure/cable,
 /obj/structure/morgue/crematorium{
@@ -10937,8 +10937,12 @@
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
 "ioE" = (
-/turf/closed/mineral/smooth/indestructible,
-/area/metnal/caves/southeast/garbledradio)
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/obj/structure/cable,
+/turf/open/lavaland/basalt,
+/area/metnal/inside/landingzoneone)
 "ipj" = (
 /obj/structure/table/black,
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda,
@@ -28154,12 +28158,8 @@
 	},
 /area/metnal/caves/southeast/garbledradio)
 "uZD" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/metnal/inside/landingzoneone)
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/research)
 "uZN" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/decal/cleanable/tomato_smudge,
@@ -58351,19 +58351,19 @@ bQM
 jVs
 jVs
 jVs
-haq
+uZD
 sLK
-haq
-haq
-haq
-haq
-haq
-haq
-haq
-haq
-haq
-haq
-haq
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
 wHx
 ewG
 wpl
@@ -58553,7 +58553,7 @@ jVs
 jVs
 jVs
 jVs
-haq
+uZD
 cNZ
 hyb
 agr
@@ -58565,7 +58565,7 @@ sEP
 oVy
 wJg
 lEX
-haq
+uZD
 jVs
 jVs
 jVs
@@ -58755,7 +58755,7 @@ jVs
 jVs
 jVs
 jVs
-haq
+uZD
 nCD
 gMj
 wEy
@@ -58767,7 +58767,7 @@ nat
 qLe
 yax
 iTr
-haq
+uZD
 edg
 edg
 jVs
@@ -58957,7 +58957,7 @@ jVs
 jVs
 jVs
 jVs
-haq
+uZD
 yjc
 gbP
 agr
@@ -58969,7 +58969,7 @@ akr
 gsH
 iOQ
 gJw
-haq
+uZD
 edg
 edg
 edg
@@ -59155,11 +59155,11 @@ esM
 esM
 esM
 siw
-haq
-haq
-haq
-haq
-haq
+uZD
+uZD
+uZD
+uZD
+uZD
 nVp
 hPo
 agr
@@ -59171,7 +59171,7 @@ hpK
 rgC
 saA
 aQk
-haq
+uZD
 edg
 edg
 edg
@@ -59357,7 +59357,7 @@ tJF
 esM
 esM
 esM
-haq
+uZD
 bCy
 daQ
 rPV
@@ -59373,7 +59373,7 @@ hAv
 lAo
 evY
 lyo
-haq
+uZD
 edg
 edg
 edg
@@ -59575,11 +59575,11 @@ agr
 cjR
 rCQ
 agr
-haq
-haq
-haq
-haq
-haq
+uZD
+uZD
+uZD
+uZD
+uZD
 edg
 edg
 edg
@@ -59761,7 +59761,7 @@ esM
 esM
 esM
 esM
-haq
+uZD
 bTb
 pXL
 agr
@@ -59781,7 +59781,7 @@ xLh
 lLf
 uLf
 rjM
-haq
+uZD
 edg
 edg
 jVs
@@ -59957,13 +59957,13 @@ siw
 esM
 uCR
 oep
-haq
+uZD
 iNn
-haq
-haq
-haq
+uZD
+uZD
+uZD
 iNn
-haq
+uZD
 wzd
 pXL
 agr
@@ -59983,7 +59983,7 @@ yjF
 hco
 afZ
 uLE
-haq
+uZD
 edg
 jVs
 jVs
@@ -60159,7 +60159,7 @@ esM
 esM
 uCR
 hTF
-haq
+uZD
 cto
 kyw
 jTi
@@ -60185,7 +60185,7 @@ mjV
 goo
 hld
 uQQ
-haq
+uZD
 jVs
 jVs
 wLD
@@ -60387,7 +60387,7 @@ eZP
 svC
 vCM
 qru
-haq
+uZD
 jVs
 wLD
 wLD
@@ -60589,7 +60589,7 @@ lhe
 afZ
 lRE
 esK
-haq
+uZD
 wLD
 wLD
 edg
@@ -60993,7 +60993,7 @@ xdC
 ssc
 diH
 rrX
-haq
+uZD
 edg
 edg
 cXP
@@ -61169,7 +61169,7 @@ tMO
 esM
 jCu
 uyJ
-haq
+uZD
 wLh
 aCk
 aCk
@@ -61195,7 +61195,7 @@ auL
 ifj
 tYi
 thn
-haq
+uZD
 edg
 edg
 wzp
@@ -61393,11 +61393,11 @@ dWN
 dWN
 sLm
 agr
-haq
+uZD
 spG
-haq
-haq
-haq
+uZD
+uZD
+uZD
 edg
 edg
 wzp
@@ -61595,7 +61595,7 @@ nED
 gwi
 wNV
 sHC
-haq
+uZD
 vDK
 edg
 edg
@@ -61775,7 +61775,7 @@ ebw
 tMO
 jCu
 anq
-haq
+uZD
 tul
 hzV
 rKL
@@ -61797,7 +61797,7 @@ mmG
 fMD
 dtE
 ayU
-haq
+uZD
 vDK
 edg
 edg
@@ -61999,7 +61999,7 @@ msL
 nuo
 wUF
 dTh
-haq
+uZD
 vDK
 edg
 edg
@@ -62179,7 +62179,7 @@ tMO
 siw
 uCR
 anq
-haq
+uZD
 iNn
 iNn
 cjR
@@ -62194,14 +62194,14 @@ fMD
 fMD
 yed
 aIf
-haq
-haq
-haq
-haq
-haq
-haq
-haq
-haq
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
 vDK
 edg
 edg
@@ -62396,7 +62396,7 @@ fMD
 fMD
 mzf
 bFt
-haq
+uZD
 edg
 edg
 edg
@@ -62583,7 +62583,7 @@ ebw
 tMO
 ecR
 esM
-haq
+uZD
 tGv
 fMD
 mzf
@@ -62598,7 +62598,7 @@ slL
 aPf
 yed
 rKZ
-haq
+uZD
 edg
 edg
 edg
@@ -62800,7 +62800,7 @@ vQS
 fMD
 iGv
 hVs
-haq
+uZD
 edg
 edg
 edg
@@ -63002,7 +63002,7 @@ bDR
 tay
 yed
 hVs
-haq
+uZD
 edg
 edg
 edg
@@ -63189,7 +63189,7 @@ esM
 tMO
 uCR
 tMO
-haq
+uZD
 vyH
 fMD
 ivg
@@ -63204,7 +63204,7 @@ lDw
 sgI
 mzf
 qWQ
-haq
+uZD
 edg
 edg
 edg
@@ -63391,7 +63391,7 @@ ebw
 esM
 uCR
 esM
-haq
+uZD
 gSM
 fMD
 oQe
@@ -63406,7 +63406,7 @@ dcP
 ivg
 yhE
 uOw
-haq
+uZD
 edg
 edg
 edg
@@ -63593,22 +63593,22 @@ ebw
 esM
 ifo
 esM
-haq
-haq
-haq
-haq
-haq
-haq
-haq
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
 cjR
 rCQ
-haq
-haq
-haq
-haq
-haq
-haq
-haq
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
+uZD
 edg
 edg
 wzp
@@ -63913,7 +63913,7 @@ osz
 nGt
 pUu
 wkV
-uZD
+ioE
 nQM
 siO
 siO
@@ -67675,7 +67675,7 @@ edg
 edg
 edg
 edg
-ioE
+haq
 edg
 ndK
 ndK
