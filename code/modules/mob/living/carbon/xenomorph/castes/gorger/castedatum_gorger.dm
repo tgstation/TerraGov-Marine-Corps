@@ -24,7 +24,7 @@
 	plasma_icon_state = "fury"
 
 	// *** Health *** //
-	max_health = 700
+	max_health = 650
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -38,6 +38,9 @@
 
 	// *** Defense *** //
 	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 10, BIO = 20, FIRE = 20, ACID = 20)
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.85
 
 	// *** Minimap Icon *** //
 	minimap_icon = "gorger"

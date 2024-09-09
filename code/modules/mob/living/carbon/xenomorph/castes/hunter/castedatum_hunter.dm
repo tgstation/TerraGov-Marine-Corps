@@ -13,12 +13,12 @@
 	gib_flick = "Hunter Gibbed"
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 24
 	melee_ap = 5
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -1.4
+	speed = -1.5
 	weeds_speed_mod = -0.1
 
 	// *** Plasma *** //
@@ -26,7 +26,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 360
+	max_health = 290
 
 	// *** Evolution *** //
 	evolution_threshold = 225

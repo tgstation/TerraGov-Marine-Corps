@@ -10,7 +10,7 @@
 	wound_type = "widow"
 
 	// *** Melee Attacks *** //
-	melee_damage = 20
+	melee_damage = 18
 
 	// *** Speed *** //
 	speed = -0.5

@@ -11,10 +11,10 @@
 	wound_type = "defender" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 22
+	melee_damage = 21
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.8
 
 	// *** Plasma *** //
 	plasma_max = 200
@@ -33,15 +33,18 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 45, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 30, BIO = 30, FIRE = 40, ACID = 30)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 20, BIO = 30, FIRE = 40, ACID = 30)
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.85
 
 	// *** Minimap Icon *** //
 	minimap_icon = "defender"
 
 	// *** Defender Abilities *** //
 	crest_defense_armor = 30
-	crest_defense_slowdown = 0.8
-	fortify_armor = 50
+	crest_defense_slowdown = 1
+	fortify_armor = 55
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,

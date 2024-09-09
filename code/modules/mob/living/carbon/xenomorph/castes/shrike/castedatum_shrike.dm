@@ -11,17 +11,20 @@
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 25
+	melee_damage = 23
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 925
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 400
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.8
 
 	// *** Evolution *** //
 	// The only evolution path does not require threshold

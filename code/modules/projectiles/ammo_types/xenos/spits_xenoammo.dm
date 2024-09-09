@@ -226,7 +226,7 @@
 	spit_cost = 50
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF
 	armor_type = ACID
-	damage = 22
+	damage = 18
 	max_range = 8
 	bullet_color = COLOR_PALE_GREEN_GRAY
 	///Duration of the acid puddles
@@ -244,14 +244,14 @@
 
 /datum/ammo/xeno/acid/medium
 	name = "acid spatter"
-	damage = 35
+	damage = 30
 	ammo_behavior_flags = AMMO_XENO
 
 /datum/ammo/xeno/acid/auto
 	name = "light acid spatter"
 	damage = 12
-	damage_falloff = 0.2
-	spit_cost = 20
+	damage_falloff = 0.3
+	spit_cost = 25
 	added_spit_delay = 0
 
 /datum/ammo/xeno/acid/auto/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -275,7 +275,7 @@
 	name = "acid splash"
 	added_spit_delay = 2
 	spit_cost = 70
-	damage = 40
+	damage = 30
 
 /datum/ammo/xeno/acid/heavy/turret
 	damage = 20

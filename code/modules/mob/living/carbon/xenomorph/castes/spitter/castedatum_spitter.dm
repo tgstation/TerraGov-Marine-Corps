@@ -19,7 +19,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 360
+	max_health = 310
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -43,7 +43,7 @@
 	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
 	acid_spray_duration = 10 SECONDS
-	acid_spray_damage_on_hit = 45
+	acid_spray_damage_on_hit = 35
 	acid_spray_damage = 20
 	acid_spray_structure_damage = 45
 
