@@ -289,8 +289,9 @@
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
 "anc" = (
-/obj/structure/cable,
-/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
+/obj/effect/spawner/random/weaponry/melee,
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
 "anq" = (
@@ -1881,9 +1882,10 @@
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
 "byQ" = (
+/obj/effect/landmark/weed_node,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
-/area/metnal/inside/landingzoneone)
+/area/metnal/outside/northeast)
 "byY" = (
 /obj/item/trash/cigbutt/cigarbutt,
 /turf/open/lavaland/basalt,
@@ -3999,12 +4001,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/auxstorage)
-"dbS" = (
-/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
-/turf/open/floor/iron/dark/textured_edge{
-	dir = 8
-	},
-/area/metnal/inside/landingzoneone)
 "dcd" = (
 /turf/open/floor/prison/darkred{
 	dir = 1
@@ -5903,14 +5899,6 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
-"ezj" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/rack/nometal,
-/obj/effect/spawner/random/weaponry/gun/sidearms,
-/turf/open/floor/iron/dark/textured,
-/area/metnal/inside/landingzoneone)
 "ezn" = (
 /obj/structure/rack,
 /obj/item/clothing/ears/earmuffs/green,
@@ -7954,10 +7942,12 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/south)
 "gcG" = (
-/obj/machinery/door/airlock/multi_tile/mainship/generic{
-	dir = 8
+/obj/machinery/light{
+	dir = 4
 	},
-/turf/open/lavaland/basalt,
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
 "gcT" = (
 /obj/machinery/conveyor{
@@ -9186,12 +9176,6 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
-"hbi" = (
-/obj/structure/rack/nometal,
-/obj/effect/spawner/random/weaponry/explosive/plastiqueexplosive,
-/obj/effect/spawner/random/weaponry/melee,
-/turf/open/floor/iron/dark/textured,
-/area/metnal/inside/landingzoneone)
 "hbJ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -11993,11 +11977,10 @@
 /turf/open/floor/wood/alt_eight,
 /area/metnal/inside/colonydorms)
 "jhm" = (
-/obj/effect/landmark/weed_node,
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
+/turf/open/floor/iron/dark/textured_edge{
+	dir = 8
 	},
-/turf/open/lavaland/basalt,
 /area/metnal/inside/landingzoneone)
 "jhZ" = (
 /obj/structure/cable,
@@ -12892,6 +12875,11 @@
 "jTo" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/northwest/garbledradio)
+"jTX" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
+/turf/open/floor/iron/dark/textured,
+/area/metnal/inside/landingzoneone)
 "jUl" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -20877,6 +20865,11 @@
 /obj/item/trash/cigbutt,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/experimentation)
+"pUu" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/warning_stripes/thick,
+/turf/open/floor/iron/dark/herringbone,
+/area/metnal/inside/landingzoneone)
 "pUP" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
@@ -21927,11 +21920,6 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
-"qFR" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/northeast)
 "qGf" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 1
@@ -23313,6 +23301,12 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
+"rDJ" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic{
+	dir = 8
+	},
+/turf/open/floor/iron/dark/herringbone,
+/area/metnal/inside/landingzoneone)
 "rDT" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor/mainship/mono,
@@ -25841,15 +25835,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/bright_clean/two,
 /area/metnal/inside/medical)
-"tqH" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/open/lavaland/basalt,
-/area/metnal/inside/landingzoneone)
 "trc" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/item/ammo_casing/cartridge,
@@ -26059,7 +26044,12 @@
 /turf/open/floor/carpet,
 /area/metnal/inside/cafeteria)
 "tAw" = (
-/obj/structure/window/framed/prison/reinforced,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
 /turf/open/lavaland/basalt,
 /area/metnal/inside/landingzoneone)
 "tAA" = (
@@ -28921,6 +28911,13 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
+"vAj" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/open/lavaland/basalt,
+/area/metnal/inside/landingzoneone)
 "vAn" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred/corners{
@@ -32425,11 +32422,6 @@
 /obj/machinery/light,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
-"yhl" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thick,
-/turf/open/floor/iron/dark/herringbone,
-/area/metnal/inside/landingzoneone)
 "yhr" = (
 /obj/effect/turf_decal/siding/wideplating/terracotta,
 /turf/open/floor/prison/plate,
@@ -62507,7 +62499,7 @@ xDW
 dAc
 dAc
 dAc
-qFR
+byQ
 siO
 siO
 siO
@@ -63515,7 +63507,7 @@ jmS
 iVu
 iVu
 iVu
-tAw
+rzS
 dAc
 nQM
 siO
@@ -63717,7 +63709,7 @@ aXl
 vGu
 iVu
 mNE
-gcG
+rDJ
 dAc
 nQM
 siO
@@ -63918,8 +63910,8 @@ weZ
 mNE
 osz
 nGt
-yhl
-byQ
+pUu
+wkV
 dAc
 nQM
 siO
@@ -64121,7 +64113,7 @@ oDy
 osz
 nGt
 iVu
-tAw
+rzS
 dAc
 siO
 siO
@@ -64526,7 +64518,7 @@ iVu
 nGt
 iVu
 sQs
-jhm
+vAj
 siO
 siO
 siO
@@ -65334,7 +65326,7 @@ iaw
 iYM
 iVu
 sQs
-tqH
+tAw
 siO
 siO
 siO
@@ -68155,7 +68147,7 @@ hOg
 hOg
 rOe
 hOg
-dbS
+jhm
 hOg
 rOe
 hOg
@@ -68361,7 +68353,7 @@ iVu
 iVu
 lfa
 mNI
-anc
+jTX
 iVu
 sQs
 orz
@@ -68563,7 +68555,7 @@ iVu
 cEN
 iVu
 iVu
-anc
+jTX
 iVu
 sQs
 orz
@@ -68958,8 +68950,8 @@ mRJ
 mFn
 qqu
 iVu
-hbi
-ezj
+anc
+gcG
 iVu
 iVu
 iVu
