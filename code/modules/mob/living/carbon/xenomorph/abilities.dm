@@ -1322,10 +1322,10 @@
 		return
 	if(!iscarbon(A))
 		return FALSE
+	if(owner.status_flags & INCORPOREAL)
+		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/victim = A //target of ability
-	if(X.status_flags & INCORPOREAL)
-		return FALSE
 	if(X.do_actions) //can't use if busy
 		return FALSE
 	if(!X.Adjacent(victim)) //checks if owner next to target

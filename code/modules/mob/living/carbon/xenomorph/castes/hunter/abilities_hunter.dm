@@ -20,7 +20,7 @@
 	///Stealth alpha mult value
 	var/stealth_alpha_multiplier = 1
 	///Stealth duration, if it is -1 it is not based on a timer.
-	var/stealth_duration = -1
+	var/stealth_duration = null
 	///Stealth timer ID
 	var/stealth_timer
 	///Stealth disabler signals
@@ -53,9 +53,9 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/xenomorph/stealthy_beno = owner
-	if(stealthy_beno.status_flags & INCORPOREAL)
+	if(owner.status_flags & INCORPOREAL)
 		return FALSE
+	var/mob/living/carbon/xenomorph/stealthy_beno = owner
 	if(stealthy_beno.on_fire)
 		to_chat(stealthy_beno, "<span class='warning'>We're too busy being on fire to enter Stealth!</span>")
 		return FALSE
@@ -101,7 +101,7 @@
 
 	handle_stealth()
 	addtimer(CALLBACK(src, PROC_REF(sneak_attack_cooldown)), HUNTER_POUNCE_SNEAKATTACK_DELAY)
-	if(stealth_duration != -1)
+	if(stealth_duration != null)
 		stealth_timer = addtimer(CALLBACK(src, PROC_REF(cancel_stealth)), stealth_duration, TIMER_STOPPABLE)
 	START_PROCESSING(SSprocessing, src)
 
@@ -114,8 +114,7 @@
 /datum/action/ability/xeno_action/stealth/proc/cancel_stealth() //This happens if we take damage, attack, pounce, toggle stealth off, and do other such exciting stealth breaking activities.
 	SIGNAL_HANDLER
 	add_cooldown()
-	if(timeleft(stealth_timer))
-		deltimer(stealth_timer)
+	deltimer(stealth_timer)
 	stealth_timer = null
 	to_chat(owner, "<span class='xenodanger'>We emerge from the shadows.</span>")
 
@@ -198,7 +197,7 @@
 		return
 	if(can_sneak_attack)
 		var/datum/action/ability/activable/xeno/hunter_mark/assassin/mark = owner.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark/assassin]
-		if(mark.marked_target == M)
+		if(mark?.marked_target == M)
 			to_chat(owner, span_xenodanger("We strike our death mark with a calculated pounce."))
 			M.adjust_stagger(6 SECONDS)
 			M.add_slowdown(2)
@@ -219,7 +218,7 @@
 		return
 
 	var/staggerslow_stacks = 2
-	var/paralyzesecs = 1
+	var/paralyzesecs = 1 SECONDS
 	var/flavour
 
 	if(movement_affects_sneakattack && owner.m_intent == MOVE_INTENT_RUN && ( owner.last_move_intent > (world.time - HUNTER_SNEAK_ATTACK_RUN_DELAY) ) ) //Allows us to slash while running... but only if we've been stationary for awhile
@@ -238,7 +237,7 @@
 		armor_mod += sneak_attack_armor_pen //should double it.
 	target.adjust_stagger(staggerslow_stacks)
 	target.add_slowdown(staggerslow_stacks)
-	target.ParalyzeNoChain(paralyzesecs SECONDS)
+	target.ParalyzeNoChain(paralyzesecs)
 
 	if(disable_on_mob_slash)
 		cancel_stealth()
@@ -449,11 +448,11 @@
 	///If marking require line of sight of the target.
 	var/require_los = TRUE
 	///Custom duration for the mark, -1 to disable.
-	var/timeout = -1
+	var/timeout = null
 	///If the mark warns the target.
 	var/warntarget = FALSE
 	///Charge-up duration of the mark where you need to stay still for it to apply, -1 to disable.
-	var/chargeup = -1
+	var/chargeup = null
 
 /datum/action/ability/activable/xeno/hunter_mark/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -477,14 +476,7 @@
 			to_chat(X, span_xenowarning("Why would we target ourselves?"))
 		return FALSE
 
-	if(require_los)
-		if(!line_of_sight(X, A)) //Need line of sight.
-			if(!silent)
-				to_chat(X, span_xenowarning("We require line of sight to mark them!"))
-			return FALSE
-
 	return TRUE
-
 
 /datum/action/ability/activable/xeno/hunter_mark/on_cooldown_finish()
 	to_chat(owner, span_xenowarning("<b>We are able to impose [src] again.</b>"))
@@ -498,10 +490,6 @@
 
 	X.face_atom(A) //Face towards the target so we don't look silly
 
-	if(chargeup != -1)
-		if(!do_after(X, chargeup, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC))
-			return
-
 	if(require_los)
 		if(!line_of_sight(X, A)) //Need line of sight.
 			to_chat(X, span_xenowarning("We lost line of sight to the target!"))
@@ -513,14 +501,6 @@
 	marked_target = A
 
 	RegisterSignal(marked_target, COMSIG_QDELETING, PROC_REF(unset_target)) //For var clean up
-
-	if(timeout != -1) //sets a timer to unmark the target
-		to_chat(X, span_xenodanger("We will be able to maintain the mark for [timeout / 10] seconds."))
-		addtimer(CALLBACK(src, PROC_REF(unset_target)), timeout)
-
-	if(warntarget)
-		playsound(marked_target, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
-		to_chat(marked_target, span_highdanger("You feel uneasy."))
 
 	to_chat(X, span_xenodanger("We psychically mark [A] as our quarry."))
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
@@ -820,7 +800,6 @@
 	disable_on_mob_slash = FALSE
 	sneak_attack_armor_pen = 30
 	pounce_break_stealth = FALSE
-	pounce_hit_break_stealth = TRUE
 	movement_affects_sneakattack = FALSE
 
 // i just realized, we need to disable processing, this will inherently just amke handle_stealth not do anything
@@ -846,6 +825,30 @@
 	timeout = 15 SECONDS
 	warntarget = TRUE
 	chargeup = 2 SECONDS
+
+/datum/action/ability/activable/xeno/hunter_mark/assassin/can_use_ability(atom/A, silent = FALSE, override_flags)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(require_los)
+		if(!line_of_sight(X, A)) //Need line of sight.
+			if(!silent)
+				to_chat(X, span_xenowarning("We require line of sight to mark them!"))
+			return FALSE
+	. = ..()
+
+/datum/action/ability/activable/xeno/hunter_mark/assassin/use_ability(atom/A)
+	var/mob/living/carbon/xenomorph/X = owner
+	if(chargeup != null)
+		if(!do_after(X, chargeup, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC))
+			return
+
+	if(timeout != null) //sets a timer to unmark the target
+		to_chat(X, span_xenodanger("We will be able to maintain the mark for [timeout / 10] seconds."))
+		addtimer(CALLBACK(src, PROC_REF(unset_target)), timeout)
+
+	if(warntarget)
+		playsound(marked_target, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
+		to_chat(marked_target, span_highdanger("You feel uneasy."))
+	. = ..()
 
 // ***************************************
 // *********** Displacement
