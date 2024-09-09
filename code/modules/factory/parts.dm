@@ -783,8 +783,8 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	recipe = GLOB.agls_recipe
 
 /obj/item/factory_part/agls_incendiary
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
+	name = "\improper AGLS Inc. magazine assembly"
+	desc = "An incomplete AGLS Inc. magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls/incendiary
 
 /obj/item/factory_part/agls_incendiary/Initialize(mapload)
@@ -792,8 +792,8 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	recipe = GLOB.agls_recipe
 
 /obj/item/factory_part/agls_flare
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
+	name = "\improper AGLS Flare magazine assembly"
+	desc = "An incomplete AGLS Flare magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls/flare
 
 /obj/item/factory_part/agls_flare/Initialize(mapload)
@@ -801,8 +801,8 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	recipe = GLOB.agls_recipe
 
 /obj/item/factory_part/agls_cloak
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
+	name = "\improper AGLS Cloak magazine assembly"
+	desc = "An incomplete AGLS Cloak magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls/cloak
 
 /obj/item/factory_part/agls_cloak/Initialize(mapload)
@@ -810,8 +810,8 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	recipe = GLOB.agls_recipe
 
 /obj/item/factory_part/agls_tanglefoot
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
+	name = "\improper AGLS Tanglefoot magazine assembly"
+	desc = "An incomplete AGLS Tanglefoot magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls/tanglefoot
 
 /obj/item/factory_part/agls_tanglefoot/Initialize(mapload)
