@@ -9144,12 +9144,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt/cave,
 /area/metnal/caves/south)
-"haq" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/plating/mainship/striped{
-	dir = 1
-	},
-/area/metnal/outside/central)
 "haG" = (
 /obj/structure/cable,
 /obj/structure/morgue/crematorium{
@@ -9509,7 +9503,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/lavaland/basalt,
+/turf/open/floor/plating/mainship/striped{
+	dir = 1
+	},
 /area/metnal/outside/central)
 "hrK" = (
 /obj/effect/turf_decal/siding/wood{
@@ -10937,12 +10933,6 @@
 "ioB" = (
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
-"ioE" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/mainship/striped{
-	dir = 1
-	},
-/area/metnal/outside/central)
 "ipj" = (
 /obj/structure/table/black,
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda,
@@ -13445,9 +13435,6 @@
 	dir = 10
 	},
 /area/metnal/inside/garden)
-"kog" = (
-/turf/open/liquid/lava/autosmoothing/catwalk,
-/area/metnal/outside/central)
 "kop" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -18313,7 +18300,9 @@
 /area/metnal/outside/southwest)
 "nYA" = (
 /obj/effect/ai_node,
-/turf/open/liquid/lava/autosmoothing/catwalk,
+/turf/open/floor/plating/heatinggrate{
+	dir = 4
+	},
 /area/metnal/outside/central)
 "nYB" = (
 /obj/structure/cable,
@@ -26862,9 +26851,6 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/metnal/outside/northwest)
-"ufb" = (
-/turf/open/liquid/lava/autosmoothing/catwalk,
-/area/metnal/outside/southeast)
 "ufd" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 6
@@ -28154,11 +28140,13 @@
 	},
 /area/metnal/caves/southeast/garbledradio)
 "uZD" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
+/obj/structure/stairs/seamless{
+	dir = 1
 	},
-/turf/open/liquid/lava/autosmoothing/catwalk,
-/area/metnal/outside/southeast)
+/turf/open/floor/plating/mainship/striped{
+	dir = 1
+	},
+/area/metnal/outside/central)
 "uZN" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/decal/cleanable/tomato_smudge,
@@ -48777,7 +48765,7 @@ cZJ
 gIH
 tSt
 gIH
-kog
+iPg
 oLS
 gIH
 gIH
@@ -48976,7 +48964,7 @@ wrP
 xnj
 hjS
 oFy
-haq
+bao
 hrG
 exE
 bao
@@ -49178,8 +49166,8 @@ cZJ
 cDk
 xNw
 elx
-ioE
-wEB
+pND
+uZD
 tqk
 tqk
 tqk
@@ -49383,11 +49371,11 @@ nSh
 gIH
 csF
 gIH
-kog
+iPg
 gIH
 gIH
 gIH
-kog
+iPg
 gIH
 jng
 gIH
@@ -50168,10 +50156,10 @@ vPN
 vPN
 vPN
 vXI
-iVv
+gMi
 kEJ
 gpD
-iVv
+gMi
 vXI
 vPN
 vPN
@@ -51784,10 +51772,10 @@ vPN
 vPN
 vPN
 vXI
-iVv
+gMi
 kEJ
 pfy
-iVv
+gMi
 vXI
 vPN
 vPN
@@ -57113,16 +57101,16 @@ kez
 kez
 jix
 uPH
-kog
-kog
-nYA
-iPg
-iPg
 iPg
 iPg
 nYA
-kog
-kog
+iPg
+iPg
+iPg
+iPg
+nYA
+iPg
+iPg
 shT
 xif
 xif
@@ -57316,14 +57304,14 @@ kez
 kez
 fkW
 tqk
-kog
+iPg
 pND
 tqk
 tqk
 tqk
 tqk
 pND
-kog
+iPg
 tqk
 sRa
 xif
@@ -57518,14 +57506,14 @@ kez
 kez
 wEB
 tqk
-kog
+iPg
 tqk
 tqk
 tqk
 tqk
 tqk
 tqk
-kog
+iPg
 tqk
 pFj
 xif
@@ -57719,16 +57707,16 @@ kez
 kez
 moo
 dHk
-kog
-kog
-nYA
-iPg
-iPg
 iPg
 iPg
 nYA
-kog
-kog
+iPg
+iPg
+iPg
+iPg
+nYA
+iPg
+iPg
 qKH
 cEf
 xif
@@ -65000,10 +64988,10 @@ cbB
 cbB
 cbB
 aIJ
-ufb
+eyh
 vSW
 iCS
-uZD
+uIK
 aIJ
 vBk
 vBk
@@ -66010,10 +65998,10 @@ cbB
 cbB
 cbB
 aIJ
-ufb
+eyh
 vSW
 fnh
-uZD
+uIK
 aIJ
 vBk
 vBk
