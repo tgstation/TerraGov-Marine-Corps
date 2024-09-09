@@ -75,7 +75,7 @@
 	accurate_range = 15
 	max_range = 40
 	penetration = 50
-	damage = 125
+	damage = 100
 	hud_state = "bigshell_he"
 	sundering = 20
 	barricade_clear_distance = 4
