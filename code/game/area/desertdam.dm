@@ -38,6 +38,7 @@
 /area/desert_dam/interior/lab_northeast/east_lab_maintenence
 	name = "East Lab Maintenence"
 	icon_state = "maintcentral"
+	requires_power = FALSE
 /area/desert_dam/interior/lab_northeast/east_lab_containment
 	name = "East Lab Containment"
 	icon_state = "purple"
@@ -193,10 +194,12 @@
 	name = "Eastern Caves"
 	icon_state = "red"
 	minimap_color = MINIMAP_AREA_CAVES
+	requires_power = FALSE
 
 /area/desert_dam/interior/caves/central_caves
 	name = "Central Caves"
 	icon_state = "yellow"
+	requires_power = FALSE
 /area/desert_dam/interior/caves/central_caves/entrances/east_tunnel_entrance
 	name = "Eastern Central Tunnel Entrance"
 	icon_state = "red"
@@ -210,6 +213,7 @@
 /area/desert_dam/interior/caves/temple
 	name = "Sand Temple"
 	icon_state = "green"
+	requires_power = FALSE
 
 //BUILDING
 //areas not under rock
@@ -425,6 +429,8 @@
 /area/desert_dam/building/water_treatment_one
 	name = "Water Treatment One"
 	icon_state = "yellow"
+	requires_power = FALSE
+
 //Water Treatment Plant 1
 /area/desert_dam/building/water_treatment_one/lobby
 	name = "Water Treatment One Lobby"
@@ -680,6 +686,7 @@
 	name = "Airstrip Landing Pad"
 	icon_state = "landing_pad"
 	minimap_color = MINIMAP_AREA_LZ
+	requires_power = FALSE
 /area/desert_dam/exterior/landing/landing_pad_one_external
 	name = "Airstrip Landing Valley"
 	icon_state = "landing_pad_ext"
@@ -691,6 +698,7 @@
 	name = "Eastern Aerodrome Landing Pad"
 	icon_state = "landing_pad"
 	minimap_color = MINIMAP_AREA_LZ
+	requires_power = FALSE
 /area/desert_dam/exterior/landing/landing_pad_two_external
 	name = "Eastern Landing Valley"
 	icon_state = "landing_pad_ext"
@@ -720,9 +728,11 @@
 /area/desert_dam/exterior/valley/valley_cargo
 	name = "Shipping Valley"
 	icon_state = "valley_south_west"
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_telecoms
 	name = "Telecomms Valley"
 	icon_state = "valley_west"
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/tradeship
 	name = "NTT Jerry-Cabot"
 	icon_state = "dark160"
@@ -736,15 +746,20 @@
 /area/desert_dam/exterior/valley/valley_mining
 	name = "Mining Valley"
 	icon_state = "valley_east"
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_civilian
 	name = "Civilian Valley"
 	icon_state = "valley_south_excv"
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_medical
 	name = "Medical Valley"
 	icon_state = "valley"
+	requires_power = FALSE
+
 /area/desert_dam/exterior/valley/valley_medical_south
 	name = "Southern Medical Valley"
 	icon_state = "valley"
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_hydro
 	name = "Hydro Valley"
 	icon_state = "valley"
@@ -752,9 +767,11 @@
 	name = "Crash Site Valley"
 	icon_state = "yellow"
 	minimap_color = MINIMAP_AREA_CAVES
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/north_valley_dam
 	name = "North Dam Valley"
 	icon_state = "valley"
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/south_valley_dam
 	name = "South Dam Valley"
 	icon_state = "valley"
@@ -764,7 +781,7 @@
 /area/desert_dam/exterior/valley/valley_wilderness
 	name = "Wilderness Valley"
 	icon_state = "central"
-
+	requires_power = FALSE
 
 //End of the river areas, no Next
 /area/desert_dam/exterior/river/riverside_northwest

@@ -3484,6 +3484,10 @@
 /area/corsat/gamma/airlock/control)
 "NV" = (
 /obj/structure/flora/pottedplant,
+/obj/machinery/power/apc/drained{
+	dir = 8;
+	start_charge = 0
+	},
 /turf/open/floor/grayscale/round/lightgray,
 /area/corsat/gamma/biodome/virology)
 "Od" = (
@@ -7466,7 +7470,7 @@ ZG
 ZG
 ZG
 Op
-Op
+Su
 "}
 (35,1,1) = {"
 Op

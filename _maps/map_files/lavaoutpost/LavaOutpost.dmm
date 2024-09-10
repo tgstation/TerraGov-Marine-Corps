@@ -3610,18 +3610,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
-"MS" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	density = 0;
-	dir = 2;
-	icon_state = "shutter0";
-	id = "OR2";
-	name = "\improper Shutters";
-	opacity = 0
-	},
-/obj/structure/window/framed/colony,
-/turf/open/floor/plating,
-/area/lavaland/medical)
 "MT" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof,
@@ -49195,9 +49183,9 @@ jR
 Uw
 Zk
 SB
-MS
+Xo
 OW
-MS
+Xo
 SB
 EF
 wj

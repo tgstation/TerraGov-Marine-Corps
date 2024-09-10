@@ -5,6 +5,7 @@
 /area/lavaland
 	name = "\improper Lava"
 	icon_state = "lava"
+	always_unpowered = TRUE
 
 //Caves
 /area/lavaland/cave //Parent
@@ -12,6 +13,7 @@
 	icon_state ="lava"
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_CAVES
+	always_unpowered = TRUE
 
 /area/lavaland/cave/central
 	name = "\improper Central Caves"

@@ -7,6 +7,7 @@
 /area/corsat/landing/console
 	name = "\improper LZ1 'Gamma'"
 	icon_state = "corsat_telecomms"
+	requires_power = FALSE
 
 /area/corsat/landing/console2
 	name = "\improper LZ2 'Sigma'"
@@ -16,7 +17,7 @@
 	name = "\improper Unknown Area"
 	icon_state = "corsat_hull"
 	ceiling = CEILING_METAL
-
+	requires_power = FALSE
 
 //SIGMA SECTOR
 
@@ -44,6 +45,7 @@
 	name = "\improper CORSAT Monorail"
 	icon_state = "railcart"
 	ceiling = CEILING_METAL
+	requires_power = FALSE
 
 /area/corsat/sigma/hangar/monorail/railcart_transit
 	name = "\improper CORSAT Monorail transit"
@@ -158,6 +160,7 @@
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "shuttle"
 	ceiling = CEILING_METAL
+	requires_power = FALSE
 
 /area/corsat/sigma/south/robotics
 	name = "\improper Sigma Robotics Laboratory"
@@ -187,14 +190,17 @@
 /area/corsat/sigma/biodome/testgrounds
 	name = "\improper Sigma Biodome Testing Grounds"
 	icon_state = "sigma_testgrounds"
+	requires_power = FALSE
 
 /area/corsat/sigma/biodome/gunrange
 	name = "\improper Sigma Biodome Firing Range"
 	icon_state = "sigma_gunrange"
+	requires_power = FALSE
 
 /area/corsat/sigma/biodome/scrapyard
 	name = "\improper Sigma Biodome Scrapyard"
 	icon_state = "sigma_scrapyard"
+	requires_power = FALSE
 
 //GAMMA SECTOR
 
@@ -218,6 +224,7 @@
 	name = "\improper CORSAT Railcart"
 	icon_state = "railcart"
 	ceiling = CEILING_METAL
+	requires_power = FALSE
 
 /area/corsat/gamma/hangar/cargo
 	name = "\improper Gamma Hangar Cargo Checkpoint"
@@ -424,21 +431,25 @@
 	icon_state = "gamma_biodome"
 	temperature = ICE_COLONY_TEMPERATURE
 	ceiling = CEILING_UNDERGROUND_METAL
+	requires_power = FALSE
 
 /area/corsat/gamma/biodome/complex
 	name = "\improper Gamma Research Complex"
 	icon_state = "gamma_complex"
 	temperature = T20C
+	requires_power = TRUE
 
 /area/corsat/gamma/biodome/virology
 	name = "\improper Gamma Virology Wing"
 	icon_state = "gamma_virology"
 	temperature = T20C
+	requires_power = TRUE
 
 /area/corsat/gamma/biodome/toxins
 	name = "\improper Gamma Toxins Wing"
 	icon_state = "gamma_toxin"
 	temperature = T20C
+	requires_power = TRUE
 
 //THETA SECTOR
 
@@ -451,18 +462,22 @@
 	name = "\improper Biodome Theta"
 	icon_state = "theta_biodome"
 	ceiling = CEILING_UNDERGROUND_METAL
+	requires_power = FALSE
 
 /area/corsat/theta/biodome/complex
 	name = "\improper Theta Research Complex"
 	icon_state = "theta_complex"
+	requires_power = TRUE
 
 /area/corsat/theta/biodome/hydroeast
 	name = "\improper Theta East Hydroponics Wing"
 	icon_state = "theta_hydro_east"
+	requires_power = TRUE
 
 /area/corsat/theta/biodome/hydrowest
 	name = "\improper Theta West Hydroponics Wing"
 	icon_state = "theta_hydro_west"
+	requires_power = TRUE
 
 /area/corsat/theta/airlock/west
 	name = "\improper Theta Dome West Airlock"
@@ -575,10 +590,12 @@
 /area/corsat/hangar_storage/research/ship
 	name = "\improper Corporate Ship"
 	icon_state = "railcart"
+	requires_power = FALSE
 
 /area/corsat/dropzone/landingzoneone
 	name = "\improper Hangar Storage"
 	icon_state = "flight_center"
+	requires_power = FALSE
 
 /area/corsat/dropzone/landingzonetwo
 	name = "\improper Hangar Storage"
@@ -594,3 +611,4 @@
 	name = "\improper Unknown Location"
 	icon_state = "corsat_hull"
 	ceiling = CEILING_METAL
+	requires_power = FALSE
