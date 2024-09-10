@@ -243,12 +243,17 @@
 	icon_state = "bathhouse"
 	minimap_color = MINIMAP_AREA_LIVING
 	ceiling = CEILING_METAL
-	
+
 // command areas
 /area/metnal/inside/northmeetingroom
 	name = "War Room"
 	icon_state = "conference"
 	minimap_color = MINIMAP_AREA_ESCAPE
+
+/area/metnal/inside/administration
+	name = "Administration"
+	icon_state = "admin"
+	minimap_color = MINIMAP_AREA_COMMAND
 
 // security areas
 /area/metnal/inside/security

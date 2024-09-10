@@ -681,6 +681,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "aDJ" = (
@@ -3405,7 +3406,7 @@
 /area/metnal/outside/southwest)
 "cKM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/wall/prison,
+/turf/closed/wall/r_wall/prison,
 /area/metnal/inside/substation)
 "cKN" = (
 /obj/structure/table/black,
@@ -3732,6 +3733,7 @@
 /area/metnal/inside/substation)
 "cVk" = (
 /obj/item/trash/snack_bowl,
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "cVr" = (
@@ -3896,6 +3898,7 @@
 /obj/machinery/light/mainship/small{
 	dir = 1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
 "cZb" = (
@@ -4896,6 +4899,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -7340,7 +7344,7 @@
 /area/metnal/caves/rock)
 "fDv" = (
 /obj/effect/acid_hole,
-/turf/closed/wall/prison,
+/turf/closed/wall/r_wall/prison,
 /area/metnal/inside/engineering)
 "fDw" = (
 /obj/structure/cable,
@@ -9145,8 +9149,10 @@
 /turf/open/lavaland/basalt/cave,
 /area/metnal/caves/south)
 "haq" = (
-/turf/closed/mineral/smooth/indestructible,
-/area/metnal/caves/southeast/garbledradio)
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/security)
 "haG" = (
 /obj/structure/cable,
 /obj/structure/morgue/crematorium{
@@ -9485,6 +9491,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/darkred{
 	dir = 5
 	},
@@ -9981,6 +9988,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/red/corner{
 	dir = 8
 	},
@@ -10700,6 +10708,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"igd" = (
+/turf/closed/mineral/smooth/indestructible,
+/area/metnal/caves/southeast/garbledradio)
 "ige" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/ground/grass/weedable/patch,
@@ -10937,12 +10948,8 @@
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
 "ioE" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/obj/structure/cable,
-/turf/open/lavaland/basalt,
-/area/metnal/inside/landingzoneone)
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/engineering)
 "ipj" = (
 /obj/structure/table/black,
 /obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda,
@@ -12744,7 +12751,7 @@
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/southeast)
 "jMx" = (
-/turf/closed/wall/prison,
+/turf/closed/wall/r_wall/prison,
 /area/metnal/inside/substation)
 "jMH" = (
 /obj/effect/turf_decal/siding/wood{
@@ -13446,13 +13453,8 @@
 	},
 /area/metnal/inside/garden)
 "kog" = (
-/obj/structure/stairs/seamless{
-	dir = 1
-	},
-/turf/open/floor/plating/mainship/striped{
-	dir = 1
-	},
-/area/metnal/outside/central)
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/research)
 "kop" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -20741,7 +20743,7 @@
 /area/metnal/outside/north)
 "pPL" = (
 /obj/structure/closet/fireaxecabinet,
-/turf/closed/wall/prison,
+/turf/closed/wall/r_wall/prison,
 /area/metnal/inside/substation)
 "pQv" = (
 /obj/structure/barricade/wooden,
@@ -20767,6 +20769,7 @@
 /area/metnal/inside/mining)
 "pRD" = (
 /obj/machinery/light/mainship/small,
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
 "pSi" = (
@@ -21421,7 +21424,7 @@
 "qpH" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/acid_hole,
-/turf/closed/wall/prison,
+/turf/closed/wall/r_wall/prison,
 /area/metnal/inside/substation)
 "qpM" = (
 /obj/effect/decal/cleanable/dirt,
@@ -22283,6 +22286,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
 "qRi" = (
@@ -23136,6 +23140,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/emergencystorage)
 "rvD" = (
@@ -26869,6 +26874,14 @@
 	},
 /turf/open/floor/prison/darkred/full,
 /area/metnal/outside/northwest)
+"ufb" = (
+/obj/structure/stairs/seamless{
+	dir = 1
+	},
+/turf/open/floor/plating/mainship/striped{
+	dir = 1
+	},
+/area/metnal/outside/central)
 "ufd" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 6
@@ -28158,8 +28171,12 @@
 	},
 /area/metnal/caves/southeast/garbledradio)
 "uZD" = (
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/research)
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/obj/structure/cable,
+/turf/open/lavaland/basalt,
+/area/metnal/inside/landingzoneone)
 "uZN" = (
 /obj/structure/table/reinforced/prison,
 /obj/effect/decal/cleanable/tomato_smudge,
@@ -28223,7 +28240,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/closed/wall/prison,
+/turf/closed/wall/r_wall/prison,
 /area/metnal/inside/substation)
 "vdQ" = (
 /obj/effect/turf_decal/siding/wood{
@@ -30241,6 +30258,7 @@
 /area/metnal/inside/cargo)
 "wzd" = (
 /obj/structure/closet/secure_closet/walllocker/medical/full,
+/obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/whitegreen{
 	dir = 1
 	},
@@ -38524,8 +38542,8 @@ gZM
 iTG
 eUT
 xNb
-cqV
-cqV
+ioE
+ioE
 edg
 edg
 edg
@@ -38727,7 +38745,7 @@ fxO
 vTy
 iuj
 nzX
-cqV
+ioE
 edg
 edg
 edg
@@ -39124,14 +39142,14 @@ uzk
 xzK
 iWO
 eNo
-cqV
-cqV
-cqV
-cqV
-cqV
+ioE
+ioE
+ioE
+ioE
+ioE
 oOt
-cqV
-cqV
+ioE
+ioE
 ujt
 ujt
 ujt
@@ -39333,7 +39351,7 @@ wDQ
 wva
 ire
 rxt
-cqV
+ioE
 qkt
 ujt
 pMr
@@ -39528,7 +39546,7 @@ hxL
 sML
 xWr
 xWr
-cqV
+ioE
 lqj
 iOC
 gMO
@@ -40134,7 +40152,7 @@ qqA
 qqA
 rIM
 qqA
-cqV
+ioE
 gNS
 vPn
 lHJ
@@ -40336,7 +40354,7 @@ tHQ
 qYg
 oMI
 ezt
-cqV
+ioE
 qxM
 vPn
 ffY
@@ -40538,7 +40556,7 @@ jMx
 jMx
 jMx
 jMx
-cqV
+ioE
 dtt
 waJ
 qXP
@@ -40736,12 +40754,12 @@ nbi
 xdB
 nbi
 xdB
-cqV
+ioE
 jaG
 nSf
-cqV
-cqV
-cqV
+ioE
+ioE
+ioE
 vPn
 aAP
 cqV
@@ -40938,7 +40956,7 @@ xdB
 xdB
 sGy
 xdB
-cqV
+ioE
 bSR
 pGD
 xkl
@@ -41746,7 +41764,7 @@ xdB
 dYU
 xdB
 pbi
-cqV
+ioE
 wfG
 dEz
 mvt
@@ -41948,10 +41966,10 @@ wmD
 wmD
 xdB
 xdB
-cqV
+ioE
 iOC
 kqU
-cqV
+ioE
 iOC
 uMX
 ogE
@@ -42153,7 +42171,7 @@ xdB
 xdB
 bPT
 brD
-cqV
+ioE
 klL
 jWq
 ogE
@@ -42355,14 +42373,14 @@ xdB
 xdB
 pbi
 brD
-cqV
+ioE
 lao
 iOC
 nDg
 qXP
 bqG
 oJu
-cqV
+ioE
 ujt
 qkt
 qkt
@@ -42557,14 +42575,14 @@ xdB
 xdB
 xdB
 brD
-cqV
+ioE
 nuU
-cqV
+ioE
 ogE
 vLE
-cqV
+ioE
 xcZ
-cqV
+ioE
 ujt
 ujt
 ujt
@@ -49180,7 +49198,7 @@ cDk
 xNw
 elx
 pND
-kog
+ufb
 tqk
 tqk
 tqk
@@ -56122,8 +56140,8 @@ rEI
 xif
 xif
 ilG
-qly
-lqd
+xif
+jVs
 ptC
 jVs
 edg
@@ -56325,7 +56343,7 @@ xif
 xif
 xif
 gvC
-wEa
+jVs
 jVs
 edg
 edg
@@ -56347,8 +56365,8 @@ edg
 edg
 edg
 jVs
-wpl
-wpl
+ewG
+ewG
 ewG
 uoL
 qly
@@ -56527,7 +56545,7 @@ xif
 xif
 xif
 gvC
-wEa
+jVs
 edg
 edg
 edg
@@ -56549,7 +56567,7 @@ edg
 edg
 edg
 jVs
-wpl
+ewG
 wpl
 wpl
 yiv
@@ -56729,7 +56747,7 @@ xif
 xif
 xif
 tDZ
-wEa
+jVs
 edg
 edg
 edg
@@ -56931,7 +56949,7 @@ xif
 xif
 xif
 cEf
-wEa
+jVs
 jVs
 edg
 edg
@@ -58351,19 +58369,19 @@ bQM
 jVs
 jVs
 jVs
-uZD
+kog
 sLK
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
+kog
+kog
+kog
+kog
+kog
+kog
+kog
+kog
+kog
+kog
+kog
 wHx
 ewG
 wpl
@@ -58553,7 +58571,7 @@ jVs
 jVs
 jVs
 jVs
-uZD
+kog
 cNZ
 hyb
 agr
@@ -58565,7 +58583,7 @@ sEP
 oVy
 wJg
 lEX
-uZD
+kog
 jVs
 jVs
 jVs
@@ -58755,7 +58773,7 @@ jVs
 jVs
 jVs
 jVs
-uZD
+kog
 nCD
 gMj
 wEy
@@ -58767,7 +58785,7 @@ nat
 qLe
 yax
 iTr
-uZD
+kog
 edg
 edg
 jVs
@@ -58942,12 +58960,12 @@ oRN
 oRN
 oRN
 esM
+esM
+esM
 siw
-esM
-esM
-ifo
+uCR
 hTF
-esM
+siw
 esM
 ahf
 esM
@@ -58957,7 +58975,7 @@ jVs
 jVs
 jVs
 jVs
-uZD
+kog
 yjc
 gbP
 agr
@@ -58969,7 +58987,7 @@ akr
 gsH
 iOQ
 gJw
-uZD
+kog
 edg
 edg
 edg
@@ -59155,11 +59173,11 @@ esM
 esM
 esM
 siw
-uZD
-uZD
-uZD
-uZD
-uZD
+kog
+kog
+kog
+kog
+kog
 nVp
 hPo
 agr
@@ -59171,7 +59189,7 @@ hpK
 rgC
 saA
 aQk
-uZD
+kog
 edg
 edg
 edg
@@ -59357,7 +59375,7 @@ tJF
 esM
 esM
 esM
-uZD
+kog
 bCy
 daQ
 rPV
@@ -59373,7 +59391,7 @@ hAv
 lAo
 evY
 lyo
-uZD
+kog
 edg
 edg
 edg
@@ -59548,7 +59566,7 @@ oRN
 esM
 esM
 jKm
-siw
+esM
 esM
 esM
 uCR
@@ -59575,11 +59593,11 @@ agr
 cjR
 rCQ
 agr
-uZD
-uZD
-uZD
-uZD
-uZD
+kog
+kog
+kog
+kog
+kog
 edg
 edg
 edg
@@ -59761,7 +59779,7 @@ esM
 esM
 esM
 esM
-uZD
+kog
 bTb
 pXL
 agr
@@ -59781,7 +59799,7 @@ xLh
 lLf
 uLf
 rjM
-uZD
+kog
 edg
 edg
 jVs
@@ -59957,13 +59975,13 @@ siw
 esM
 uCR
 oep
-uZD
+kog
 iNn
-uZD
-uZD
-uZD
+kog
+kog
+kog
 iNn
-uZD
+kog
 wzd
 pXL
 agr
@@ -59983,7 +60001,7 @@ yjF
 hco
 afZ
 uLE
-uZD
+kog
 edg
 jVs
 jVs
@@ -60159,7 +60177,7 @@ esM
 esM
 uCR
 hTF
-uZD
+kog
 cto
 kyw
 jTi
@@ -60185,7 +60203,7 @@ mjV
 goo
 hld
 uQQ
-uZD
+kog
 jVs
 jVs
 wLD
@@ -60387,7 +60405,7 @@ eZP
 svC
 vCM
 qru
-uZD
+kog
 jVs
 wLD
 wLD
@@ -60589,7 +60607,7 @@ lhe
 afZ
 lRE
 esK
-uZD
+kog
 wLD
 wLD
 edg
@@ -60993,7 +61011,7 @@ xdC
 ssc
 diH
 rrX
-uZD
+kog
 edg
 edg
 cXP
@@ -61169,7 +61187,7 @@ tMO
 esM
 jCu
 uyJ
-uZD
+kog
 wLh
 aCk
 aCk
@@ -61195,7 +61213,7 @@ auL
 ifj
 tYi
 thn
-uZD
+kog
 edg
 edg
 wzp
@@ -61393,11 +61411,11 @@ dWN
 dWN
 sLm
 agr
-uZD
+kog
 spG
-uZD
-uZD
-uZD
+kog
+kog
+kog
 edg
 edg
 wzp
@@ -61595,7 +61613,7 @@ nED
 gwi
 wNV
 sHC
-uZD
+kog
 vDK
 edg
 edg
@@ -61775,7 +61793,7 @@ ebw
 tMO
 jCu
 anq
-uZD
+kog
 tul
 hzV
 rKL
@@ -61797,7 +61815,7 @@ mmG
 fMD
 dtE
 ayU
-uZD
+kog
 vDK
 edg
 edg
@@ -61999,7 +62017,7 @@ msL
 nuo
 wUF
 dTh
-uZD
+kog
 vDK
 edg
 edg
@@ -62179,7 +62197,7 @@ tMO
 siw
 uCR
 anq
-uZD
+kog
 iNn
 iNn
 cjR
@@ -62194,14 +62212,14 @@ fMD
 fMD
 yed
 aIf
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
+kog
+kog
+kog
+kog
+kog
+kog
+kog
+kog
 vDK
 edg
 edg
@@ -62396,7 +62414,7 @@ fMD
 fMD
 mzf
 bFt
-uZD
+kog
 edg
 edg
 edg
@@ -62572,7 +62590,7 @@ esM
 esM
 esM
 esM
-esM
+siw
 esM
 esM
 esM
@@ -62583,7 +62601,7 @@ ebw
 tMO
 ecR
 esM
-uZD
+kog
 tGv
 fMD
 mzf
@@ -62598,7 +62616,7 @@ slL
 aPf
 yed
 rKZ
-uZD
+kog
 edg
 edg
 edg
@@ -62800,7 +62818,7 @@ vQS
 fMD
 iGv
 hVs
-uZD
+kog
 edg
 edg
 edg
@@ -63002,7 +63020,7 @@ bDR
 tay
 yed
 hVs
-uZD
+kog
 edg
 edg
 edg
@@ -63174,9 +63192,9 @@ oRN
 oRN
 esM
 esM
+esM
+esM
 siw
-esM
-esM
 esM
 wPo
 kCT
@@ -63189,7 +63207,7 @@ esM
 tMO
 uCR
 tMO
-uZD
+kog
 vyH
 fMD
 ivg
@@ -63204,7 +63222,7 @@ lDw
 sgI
 mzf
 qWQ
-uZD
+kog
 edg
 edg
 edg
@@ -63391,7 +63409,7 @@ ebw
 esM
 uCR
 esM
-uZD
+kog
 gSM
 fMD
 oQe
@@ -63406,7 +63424,7 @@ dcP
 ivg
 yhE
 uOw
-uZD
+kog
 edg
 edg
 edg
@@ -63577,7 +63595,7 @@ oRN
 oRN
 oRN
 esM
-siw
+esM
 esM
 ahf
 esM
@@ -63593,22 +63611,22 @@ ebw
 esM
 ifo
 esM
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
+kog
+kog
+kog
+kog
+kog
+kog
+kog
 cjR
 rCQ
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
-uZD
+kog
+kog
+kog
+kog
+kog
+kog
+kog
 edg
 edg
 wzp
@@ -63913,7 +63931,7 @@ osz
 nGt
 pUu
 wkV
-ioE
+uZD
 nQM
 siO
 siO
@@ -64813,7 +64831,7 @@ esM
 esM
 esM
 esM
-esM
+vBk
 vBk
 vBk
 vBk
@@ -65014,7 +65032,7 @@ esM
 esM
 esM
 esM
-esM
+vBk
 vBk
 vBk
 vBk
@@ -65625,8 +65643,8 @@ vBk
 vBk
 vBk
 vBk
-vBk
-vBk
+esM
+esM
 esM
 esM
 esM
@@ -65753,9 +65771,9 @@ siO
 siO
 qyx
 qyx
-iBe
-iBe
-iBe
+qyx
+qyx
+qyx
 qyx
 nCO
 qyx
@@ -65823,9 +65841,9 @@ vBk
 vBk
 vBk
 vBk
-vBk
-vBk
-vBk
+esM
+esM
+esM
 esM
 esM
 esM
@@ -66022,10 +66040,10 @@ vBk
 vBk
 vBk
 vBk
-vBk
-vBk
-vBk
-vBk
+esM
+esM
+esM
+esM
 esM
 esM
 esM
@@ -66171,7 +66189,7 @@ rNA
 aVb
 chR
 pLv
-iBe
+qyx
 joS
 joS
 aqt
@@ -66221,11 +66239,11 @@ gog
 gog
 vBk
 vBk
-vBk
-vBk
-vBk
-vBk
-vBk
+esM
+esM
+esM
+esM
+esM
 esM
 esM
 esM
@@ -66373,7 +66391,7 @@ rNA
 dYH
 kpS
 pLv
-iBe
+qyx
 joS
 joS
 joS
@@ -66424,9 +66442,9 @@ gog
 esM
 esM
 esM
-vBk
-vBk
-vBk
+esM
+esM
+esM
 esM
 esM
 esM
@@ -66761,7 +66779,7 @@ siO
 dLE
 qfn
 wDt
-iBe
+qyx
 vKa
 njE
 sEW
@@ -66963,7 +66981,7 @@ lZG
 dLE
 haY
 nca
-iBe
+qyx
 dXN
 ajL
 sEW
@@ -67165,7 +67183,7 @@ siO
 svX
 cAt
 nca
-iBe
+qyx
 dXN
 mZW
 sow
@@ -67367,7 +67385,7 @@ siO
 uyw
 qfn
 eRb
-iBe
+qyx
 oNR
 njE
 sEW
@@ -67383,7 +67401,7 @@ rNA
 rNA
 rNA
 tgw
-iBe
+qyx
 xsO
 joS
 joS
@@ -67585,7 +67603,7 @@ apI
 uoi
 yeU
 tZB
-iBe
+qyx
 qAl
 joS
 joS
@@ -67675,7 +67693,7 @@ edg
 edg
 edg
 edg
-haq
+igd
 edg
 ndK
 ndK
@@ -68379,8 +68397,8 @@ siO
 siO
 qyx
 qyx
-iBe
-iBe
+qyx
+qyx
 qyx
 qyx
 oCS
@@ -68787,8 +68805,8 @@ joS
 dMl
 bQa
 qyx
-iBe
-iBe
+qyx
+qyx
 qyx
 lFN
 gTr
@@ -69223,7 +69241,7 @@ iBo
 miE
 kTH
 gxu
-gxu
+haq
 gxu
 hxC
 xxm
@@ -71382,7 +71400,7 @@ lRJ
 gpK
 gpK
 gpK
-gpK
+lRJ
 gpK
 gpK
 gpK
