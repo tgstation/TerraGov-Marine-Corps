@@ -32856,17 +32856,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
-"xnM" = (
-/obj/machinery/door/airlock/maintenance{
-	dir = 1
-	},
-/obj/machinery/door/airlock/glass_command{
-	dir = 1
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/tile/dark2,
-/area/metnal/inside/administration)
 "xnR" = (
 /obj/machinery/chem_dispenser,
 /obj/effect/turf_decal/siding/dark_green{
@@ -62819,7 +62808,7 @@ fiq
 tuC
 dJQ
 axG
-xnM
+giV
 nKA
 nKA
 vJu
