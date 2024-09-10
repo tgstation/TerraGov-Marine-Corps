@@ -202,7 +202,10 @@
 	span_xenowarning("We send out a huge blast of psychic energy!"))
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
-	playsound(owner, SFX_ALIEN_ROAR, 50)
+	if(prob(0.8)) // really, really low chance for the roar to be a familiar coder screaming - iykyk
+		playsound(owner, 'sound/voice/alien/roar_rare.ogg', 50)
+	else
+		playsound(owner, SFX_ALIEN_ROAR, 50)
 
 	//Held facehuggers get killed for balance reasons
 	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
