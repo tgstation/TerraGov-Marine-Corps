@@ -515,32 +515,7 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = 0, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
 
 /mob/living/carbon/xenomorph/equip_to_slot(obj/item/item_to_equip, slot, bitslot)
-	if(!slot)
-		return
-	if(!istype(item_to_equip))
-		return
-	if(bitslot)
-		var/oldslot = slot
-		slot = slotbit2slotdefine(oldslot)
-
-	if(item_to_equip == l_hand)
-		l_hand = null
-		item_to_equip.unequipped(src, SLOT_L_HAND)
-		update_inv_l_hand()
-
-	else if(item_to_equip == r_hand)
-		r_hand = null
-		item_to_equip.unequipped(src, SLOT_R_HAND)
-		update_inv_r_hand()
-
-	for(var/datum/action/A AS in item_to_equip.actions)
-		A.remove_action(src)
-
-	item_to_equip.screen_loc = null
-	item_to_equip.loc = src
-	item_to_equip.layer = ABOVE_HUD_LAYER
-	item_to_equip.plane = ABOVE_HUD_PLANE
-	item_to_equip.forceMove(src)
+	. = ..()
 	switch(slot)
 		if(SLOT_BACK)
 			back = item_to_equip

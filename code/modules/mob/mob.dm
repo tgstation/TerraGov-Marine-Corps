@@ -249,8 +249,33 @@
 *This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 *In most cases you will want to use equip_to_slot_if_possible()
 */
-/mob/proc/equip_to_slot(obj/item/W as obj, slot, bitslot = FALSE)
-	return
+/mob/proc/equip_to_slot(obj/item/item_to_equip, slot, bitslot = FALSE)
+	if(!slot)
+		return
+	if(!istype(item_to_equip))
+		return
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
+
+	if(item_to_equip == l_hand)
+		l_hand = null
+		item_to_equip.unequipped(src, SLOT_L_HAND)
+		update_inv_l_hand()
+
+	else if(item_to_equip == r_hand)
+		r_hand = null
+		item_to_equip.unequipped(src, SLOT_R_HAND)
+		update_inv_r_hand()
+
+	for(var/datum/action/A AS in item_to_equip.actions)
+		A.remove_action(src)
+
+	item_to_equip.screen_loc = null
+	item_to_equip.loc = src
+	item_to_equip.layer = ABOVE_HUD_LAYER
+	item_to_equip.plane = ABOVE_HUD_PLANE
+	item_to_equip.forceMove(src)
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, override_nodrop = FALSE)

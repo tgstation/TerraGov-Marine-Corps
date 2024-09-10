@@ -63,16 +63,7 @@
 		return
 	if(!do_after(user, 3 SECONDS, NONE, target))
 		return
-	///Need to remove the now equipped saddle from the saddlers hand; Equip_to_slot would normally handle this but it doesn't account for it not being a selfequip
-	if(src == user.l_hand)
-		user.l_hand = null
-		src.unequipped(src, SLOT_L_HAND)
-		user.update_inv_l_hand()
-
-	else if(src == user.r_hand)
-		user.r_hand = null
-		src.unequipped(src, SLOT_R_HAND)
-		user.update_inv_l_hand()
+	user.temporarilyRemoveItemFromInventory(src)
 	rouny.equip_to_slot_if_possible(src,SLOT_BACK,TRUE)
 
 /obj/item/storage/backpack/marine/duffelbag/xenosaddle/equipped(mob/equipper, slot)
