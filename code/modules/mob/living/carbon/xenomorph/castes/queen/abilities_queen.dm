@@ -88,6 +88,16 @@
 	succeed_activate()
 	add_cooldown()
 
+	var/datum/action/ability/activable/xeno/support_screech/heal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/heal]
+	if(heal_screech)
+		heal_screech.add_cooldown(5 SECONDS)
+	var/datum/action/ability/activable/xeno/support_screech/plasma_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/plasma]
+	if(plasma_screech)
+		plasma_screech.add_cooldown(5 SECONDS)
+	var/datum/action/ability/activable/xeno/support_screech/frenzy_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/frenzy]
+	if(frenzy_screech)
+		frenzy_screech.add_cooldown(5 SECONDS)
+
 	playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, 0)
 	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 	GLOB.round_statistics.queen_screech++
@@ -126,38 +136,41 @@
 /datum/action/ability/activable/xeno/
 
 // ***************************************
-// *********** Screech: Supporting
+// *********** Support Screeches
 // ***************************************
-/datum/action/ability/activable/xeno/screech
+/datum/action/ability/activable/xeno/support_screech
 	cooldown_timer = 30 SECONDS
-	plasma_cost = 250
+	ability_cost = 250
 	var/screech_range = 5
 
-/datum/action/ability/activable/xeno/screech/use_ability(atom/A)
+/datum/action/ability/activable/xeno/support_screech/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
-	var/datum/action/ability/activable/xeno/heal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/screech/healing]
+	var/datum/action/ability/activable/xeno/normal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/screech]
+	if(normal_screech)
+		normal_screech.add_cooldown(5 SECONDS)
+	var/datum/action/ability/activable/xeno/support_screech/heal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/heal]
 	if(heal_screech)
 		heal_screech.add_cooldown(5 SECONDS)
-	var/datum/action/ability/activable/xeno/plasma_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/screech/plasma]
+	var/datum/action/ability/activable/xeno/support_screech/plasma_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/plasma]
 	if(plasma_screech)
 		plasma_screech.add_cooldown(5 SECONDS)
-	var/datum/action/ability/activable/xeno/frenzy_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/screech/frenzy]
+	var/datum/action/ability/activable/xeno/support_screech/frenzy_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/frenzy]
 	if(frenzy_screech)
 		frenzy_screech.add_cooldown(5 SECONDS)
 
-/datum/action/ability/activable/xeno/screech/healing
+/datum/action/ability/activable/xeno/support_screech/heal
 	name = "Heal Screech"
 	action_icon_state = "heal_screech"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Screech that heals nearby xenos."
-	ability_name = "heal_screech"
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEAL_SCREECH,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEAL_SCREECH
 	)
 
-/datum/action/ability/activable/xeno/screech/healing/use_ability(atom/A)
+/datum/action/ability/activable/xeno/support_screech/heal/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, screech_range))
@@ -168,13 +181,22 @@
 
 	succeed_activate()
 	add_cooldown()
-	..()
 
-/datum/action/ability/activable/xeno/screech/plasma
+	var/datum/action/ability/activable/xeno/normal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/screech]
+	if(normal_screech)
+		normal_screech.add_cooldown(5 SECONDS)
+	var/datum/action/ability/activable/xeno/support_screech/plasma_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/plasma]
+	if(plasma_screech)
+		plasma_screech.add_cooldown(5 SECONDS)
+	var/datum/action/ability/activable/xeno/support_screech/frenzy_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/frenzy]
+	if(frenzy_screech)
+		frenzy_screech.add_cooldown(5 SECONDS)
+
+/datum/action/ability/activable/xeno/support_screech/plasma
 	name = "Plasma Screech"
 	action_icon_state = "plasma_screech"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Screech that increases plasma regeneration for nearby xenos."
-	ability_name = "plasma_screech"
 	var/bonus_regen = 0.5
 	var/duration = 20 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -182,7 +204,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLASMA_SCREECH,
 	)
 
-/datum/action/ability/activable/xeno/screech/plasma/use_ability(atom/A)
+/datum/action/ability/activable/xeno/support_screech/plasma/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, screech_range))
@@ -195,13 +217,22 @@
 
 	succeed_activate()
 	add_cooldown()
-	..()
 
-/datum/action/ability/activable/xeno/screech/frenzy
+	var/datum/action/ability/activable/xeno/normal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/screech]
+	if(normal_screech)
+		normal_screech.add_cooldown(5 SECONDS)
+	var/datum/action/ability/activable/xeno/support_screech/heal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/heal]
+	if(heal_screech)
+		heal_screech.add_cooldown(5 SECONDS)
+	var/datum/action/ability/activable/xeno/support_screech/frenzy_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/frenzy]
+	if(frenzy_screech)
+		frenzy_screech.add_cooldown(5 SECONDS)
+
+/datum/action/ability/activable/xeno/support_screech/frenzy
 	name = "Frenzy Screech"
 	action_icon_state = "frenzy_screech"
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Screech that increases damage for nearby xenos."
-	ability_name = "frenzy_screech"
 	var/buff_duration = 10 SECONDS
 	var/buff_damage_modifier = 0.1
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -209,7 +240,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FRENZY_SCREECH,
 	)
 
-/datum/action/ability/activable/xeno/screech/frenzy/use_ability(atom/A)
+/datum/action/ability/activable/xeno/support_screech/frenzy/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, screech_range))
@@ -220,7 +251,16 @@
 
 	succeed_activate()
 	add_cooldown()
-	..()
+
+	var/datum/action/ability/activable/xeno/normal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/screech]
+	if(normal_screech)
+		normal_screech.add_cooldown(5 SECONDS)
+	var/datum/action/ability/activable/xeno/support_screech/heal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/heal]
+	if(heal_screech)
+		heal_screech.add_cooldown(5 SECONDS)
+	var/datum/action/ability/activable/xeno/support_screech/plasma_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/plasma]
+	if(plasma_screech)
+		plasma_screech.add_cooldown(5 SECONDS)
 
 // ***************************************
 // *********** Overwatch
