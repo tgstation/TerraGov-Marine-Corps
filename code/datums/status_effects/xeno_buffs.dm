@@ -847,6 +847,7 @@
 /datum/status_effect/frenzy_screech
 	id = "frenzy_screech"
 	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
 	var/mob/living/carbon/xenomorph/buff_owner
 	var/modifier
 
