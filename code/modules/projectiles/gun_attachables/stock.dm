@@ -109,6 +109,14 @@
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
+/obj/item/attachable/stock/icc_heavyshotgun
+	name = "\improper ML-101 stock"
+	desc = "A irremovable ML-101 stock."
+	icon = 'icons/obj/items/guns/attachments/stock_64.dmi'
+	icon_state = "ml101"
+	pixel_shift_x = 32
+	pixel_shift_y = 13
+
 /obj/item/attachable/stock/icc_pdw
 	name = "\improper L-40 stock"
 	desc = "A irremovable L-40 stock."

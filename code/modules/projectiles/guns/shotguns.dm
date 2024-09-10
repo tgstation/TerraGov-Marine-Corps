@@ -411,13 +411,17 @@
 		/obj/item/attachable/heavy_barrel,
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/magnetic_harness,
-		/obj/item/attachable/foldable/t35stock,
+		/obj/item/attachable/stock/icc_heavyshotgun,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
 	item_map_variant_flags = NONE
+
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/icc_heavyshotgun,
+	)
 
 	fire_delay = 2.75 SECONDS
 	scatter_unwielded = 10

@@ -172,8 +172,8 @@
 	name = "additional buckshot"
 
 /datum/ammo/bullet/shotgun/heavy_buckshot
-	name = "shotgun heavy buckshot shell"
-	handful_icon_state = "shotgun_buckshot"
+	name = "heavy buckshot shell"
+	handful_icon_state = "heavy_shotgun_buckshot"
 	icon_state = "buckshot"
 	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/heavy_spread
