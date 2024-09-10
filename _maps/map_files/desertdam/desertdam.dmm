@@ -23464,6 +23464,7 @@
 	},
 /area/desert_dam/exterior/valley/valley_cargo)
 "cPB" = (
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
@@ -26493,7 +26494,6 @@
 /area/desert_dam/building/administration/office)
 "duo" = (
 /obj/structure/cable,
-/obj/structure/nuke_disk_candidate,
 /turf/open/floor/carpet/side{
 	dir = 4
 	},
@@ -47323,6 +47323,12 @@
 	dir = 8
 	},
 /area/desert_dam/building/warehouse/loading)
+"pzL" = (
+/obj/machinery/chem_dispenser/soda{
+	pixel_y = 32
+	},
+/turf/open/floor/grimy,
+/area/desert_dam/building/bar/bar)
 "pzM" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/ai_node,
@@ -81690,7 +81696,7 @@ acw
 rCV
 rCV
 adw
-ahW
+pzL
 bum
 kLT
 qgn

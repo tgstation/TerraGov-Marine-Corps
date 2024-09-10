@@ -95,13 +95,13 @@ map lv759
 endmap
 
 map lavaoutpost
-	minplayers 30
+	minplayers 20
 endmap
 
 map desertdam
-	minplayers 30
+	minplayers 60
 endmap
 
 map corsat
-	minplayers 30
+	minplayers 75
 endmap

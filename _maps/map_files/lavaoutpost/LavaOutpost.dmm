@@ -8,10 +8,10 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
 "ah" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/north)
 "al" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/north)
 "as" = (
 /obj/effect/ai_node,
@@ -56,6 +56,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/lavaland/civilian)
+"aR" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/lavaland/civilian/cargo)
 "aV" = (
 /obj/item/lightstick/red/anchored,
 /turf/open/lavaland/basalt,
@@ -108,7 +113,7 @@
 /area/lavaland/cave/northwest)
 "bs" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/northwest)
 "bu" = (
 /obj/structure/table,
@@ -180,7 +185,7 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
 "bX" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/engie/engine)
 "cb" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
@@ -391,7 +396,7 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
 "fe" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/shuttle/drop2/lz2)
 "fh" = (
 /obj/structure/fence,
@@ -428,7 +433,7 @@
 /area/lavaland/engie/engine)
 "fH" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/north)
 "fQ" = (
 /obj/machinery/door/airlock/mainship/security{
@@ -460,6 +465,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/white,
 /area/lavaland/security)
+"fW" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/white,
+/area/lavaland/medical)
 "gf" = (
 /obj/machinery/light,
 /turf/open/floor/plating/asteroidfloor,
@@ -926,9 +935,6 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
 "km" = (
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/lavaland/civilian/cargo)
@@ -1168,7 +1174,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
 "mG" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/northwest)
 "mI" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1218,6 +1224,10 @@
 /obj/item/explosive/plastique,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"nf" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/tile/dark2,
+/area/lavaland/civilian)
 "ng" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1556,6 +1566,7 @@
 /obj/item/storage/box/m94,
 /obj/item/storage/box/visual/grenade/teargas,
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
 "rj" = (
@@ -1622,7 +1633,7 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian)
 "rK" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/northwest)
 "rL" = (
 /obj/structure/closet/crate/construction,
@@ -1684,7 +1695,7 @@
 /turf/open/floor/tile/bar,
 /area/lavaland/civilian/botany)
 "sa" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/northeast)
 "sf" = (
 /obj/structure/window/reinforced,
@@ -1764,6 +1775,10 @@
 	},
 /turf/open/floor/tile/dark2,
 /area/lavaland/civilian/cargo)
+"tq" = (
+/obj/effect/landmark/patrol_point/som/som_21,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southeast)
 "tr" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -1813,7 +1828,7 @@
 /area/lavaland/civilian/cargo)
 "tW" = (
 /obj/docking_port/stationary/crashmode,
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/southeast)
 "ua" = (
 /obj/effect/decal/cleanable/blood,
@@ -2284,6 +2299,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/lavaland/civilian)
+"yN" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/lavaland/civilian/cargo)
 "yS" = (
 /obj/machinery/door/airlock/mainship/generic{
 	dir = 1;
@@ -2340,6 +2359,11 @@
 "zy" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/cave/north)
+"zC" = (
+/obj/machinery/power/apc/drained,
+/obj/structure/cable,
+/turf/open/floor/tile/dark2,
+/area/lavaland/civilian/cargo)
 "zD" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -2443,7 +2467,7 @@
 /area/lavaland/cave/southeast)
 "AH" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/southwest)
 "AK" = (
 /turf/closed/wall/r_wall,
@@ -2747,6 +2771,12 @@
 	},
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
+"DC" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 1
+	},
+/turf/closed/mineral/smooth/basalt,
+/area/lavaland/cave/northeast)
 "DF" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -2836,7 +2866,7 @@
 /turf/open/floor/plating,
 /area/lavaland/engie/three)
 "EB" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/east)
 "EC" = (
 /turf/open/floor/tile/dark,
@@ -3088,7 +3118,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "GS" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/southeast)
 "GW" = (
 /obj/structure/rack,
@@ -3146,7 +3176,7 @@
 /turf/open/floor/plating,
 /area/lavaland/cave/central)
 "HB" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/northeast)
 "HG" = (
 /obj/machinery/conveyor{
@@ -3159,7 +3189,7 @@
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/refine)
 "HQ" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/southwest)
 "HR" = (
 /turf/open/floor/plating,
@@ -3420,7 +3450,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
 "KP" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/southwest)
 "KT" = (
 /obj/structure/cable,
@@ -3577,6 +3607,10 @@
 "Mi" = (
 /turf/closed/wall,
 /area/lavaland/cave/east)
+"Mm" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/southwest)
 "Mn" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1
@@ -3642,6 +3676,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
+"Ny" = (
+/obj/effect/landmark/start/job/xenomorph,
+/obj/effect/landmark/patrol_point/som/som_11,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/northwest)
 "NA" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -3732,7 +3771,7 @@
 /area/lavaland/security/storage)
 "Oz" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/southeast)
 "OA" = (
 /obj/structure/cable,
@@ -3883,7 +3922,7 @@
 /turf/open/floor/plating,
 /area/lavaland/cave/central)
 "QA" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/south)
 "QC" = (
 /turf/open/lavaland/basalt/glowing,
@@ -4184,6 +4223,10 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/northeast)
+"Tl" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/northeast)
 "Tn" = (
 /turf/closed/wall/r_wall,
 /area/lavaland/cave/northeast)
@@ -4273,6 +4316,10 @@
 	},
 /turf/open/floor/tile/dark,
 /area/lavaland/security/nuke)
+"TV" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/lavaland/basalt,
+/area/lavaland/cave/south)
 "TW" = (
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/cave/northeast)
@@ -4308,7 +4355,7 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
 "Uv" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/east)
 "Uw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4602,7 +4649,7 @@
 	},
 /area/lavaland/medical)
 "XF" = (
-/turf/closed/wall/indestructible/mineral,
+/turf/closed/mineral/smooth/indestructible,
 /area/lavaland/cave/west)
 "XI" = (
 /obj/effect/landmark/weed_node,
@@ -4699,7 +4746,7 @@
 	},
 /area/lavaland/medical)
 "YL" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/central)
 "YM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4708,6 +4755,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/white,
 /area/lavaland/security/infocenter)
+"YR" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/marking,
+/area/lavaland/cave/central)
 "YV" = (
 /obj/item/reagent_containers/spray/surgery,
 /obj/structure/table,
@@ -4780,7 +4831,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/medical)
 "ZK" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/south)
 "ZN" = (
 /turf/open/lavaland/basalt,
@@ -4792,7 +4843,7 @@
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "ZS" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/southeast)
 "ZU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -4803,7 +4854,7 @@
 /turf/open/lavaland/basalt/glowing,
 /area/lavaland/cave/southwest)
 "ZW" = (
-/turf/closed/brock,
+/turf/closed/mineral/smooth/basalt,
 /area/lavaland/cave/west)
 "ZX" = (
 /obj/structure/cable,
@@ -10535,7 +10586,7 @@ QR
 cv
 cv
 cv
-cv
+Ny
 cv
 QR
 QR
@@ -11969,7 +12020,7 @@ Vz
 Vz
 Vz
 Vz
-Vz
+Mm
 Vz
 Vz
 Vz
@@ -29846,7 +29897,7 @@ aZ
 jN
 le
 le
-le
+nf
 le
 rp
 sp
@@ -30723,7 +30774,7 @@ Dt
 Dt
 Dt
 Yy
-Yy
+TV
 Yy
 Dt
 Dt
@@ -31959,7 +32010,7 @@ qo
 qo
 qo
 qo
-qo
+YR
 qo
 qo
 qo
@@ -32929,10 +32980,10 @@ al
 al
 al
 lf
-qQ
-Ho
+zC
+aR
 rb
-qQ
+yN
 tA
 Ho
 DL
@@ -46166,7 +46217,7 @@ NV
 ES
 wj
 wj
-wj
+tq
 ES
 wj
 wj
@@ -48667,7 +48718,7 @@ VW
 Sc
 ZX
 Uw
-Zk
+fW
 Zk
 tv
 Nv
@@ -52962,8 +53013,8 @@ sa
 sa
 sa
 sa
-sa
-AK
+DC
+EU
 Vv
 Vv
 Vv
@@ -53219,7 +53270,7 @@ sa
 sa
 sa
 sa
-sa
+DC
 AK
 AQ
 Zy
@@ -53476,8 +53527,8 @@ sa
 sa
 sa
 sa
-sa
-Ap
+DC
+AK
 Pg
 FO
 FO
@@ -53733,8 +53784,8 @@ sa
 sa
 sa
 sa
-sa
-Ap
+DC
+AK
 xG
 FO
 FO
@@ -58870,7 +58921,7 @@ sa
 OD
 OD
 me
-OD
+Tl
 OD
 OD
 OD
