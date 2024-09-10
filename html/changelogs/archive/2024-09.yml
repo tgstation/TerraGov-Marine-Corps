@@ -1,0 +1,33 @@
+2024-09-01:
+  Lumipharon:
+  - bugfix: Fixed some fire bugs, notably fire will now correctly not effect people
+      on tanks
+  - code_imp: Cleaned up some fire code
+2024-09-02:
+  Helg2:
+  - bugfix: fixed stuff like capes and kamas applying it's overlays while inhands.
+  Lumipharon:
+  - imageadd: Improved human gib animations slightly
+  - balance: Energy cell explosions have lower flash range
+2024-09-04:
+  Apple-107:
+  - rscadd: Intelligence Computers now have an active Minimap icon
+  - balance: Intelligence Computers award 1000 REQ points and 100 DS points for completion,
+      they take longer.
+  - bugfix: Intelligence Computers now deactivate when they lose power, and can lose
+      progress.
+  Lumipharon:
+  - bugfix: Mirage nade illusions no longer block bullets
+  - bugfix: Hunter illusions now correctly have the parent hunters wound/fire overlays
+  - code_imp: Cleaned up an consolidated illusion code for mirage nades and hunter
+      mirage
+  - bugfix: fixed some fire bugs
+2024-09-05:
+  ivanmixo:
+  - bugfix: AI eye hearing now respects instrument preferences
+  - code_imp: Improved the way AI eye hears
+2024-09-10:
+  Lumipharon:
+  - bugfix: fixed scout cloak not properly deactivating on energy loss
+  ivanmixo:
+  - rscadd: Added the <:rainbow:> emoji

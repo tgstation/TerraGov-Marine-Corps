@@ -67,7 +67,7 @@
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
 		/obj/alien/resin/sticky,
-		/obj/structure/door/resin/thick,
+		/obj/structure/mineral_door/resin/thick,
 	)
 
 // ***************************************

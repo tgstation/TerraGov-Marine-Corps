@@ -16,14 +16,6 @@
 	scatter_unwielded = 0
 	burst_scatter_mult = 0
 	burst_amount = 4
-
-	ignored_terrains = list(
-		/obj/machinery/deployable/mounted,
-		/obj/machinery/miner,
-		/obj/hitbox,
-		/obj/vehicle/sealed/armored/multitile,
-	)
-
 	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -107,13 +99,6 @@
 	sentry_iff_signal = SOM_IFF
 
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 80, ACID = 50)
-
-	ignored_terrains = list(
-		/obj/machinery/deployable/mounted,
-		/obj/machinery/miner,
-		/obj/hitbox,
-		/obj/vehicle/sealed/armored/multitile,
-	)
 
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY|GUN_SMOKE_PARTICLES
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE //doesn't autoeject its recharging battery

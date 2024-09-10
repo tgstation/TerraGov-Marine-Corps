@@ -1,3 +1,14 @@
+GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
+
+///Creates the list of atoms that will be ignored by sentry target pathing
+/proc/set_sentry_ignore_List()
+	. = list(
+		/obj/machinery/deployable/mounted,
+		/obj/machinery/miner,
+	)
+	. += typesof(/obj/hitbox)
+	. += typesof(/obj/vehicle/sealed/armored/multitile)
+
 /obj/machinery/deployable/mounted/sentry
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	use_power = 0
@@ -22,8 +33,6 @@
 	var/obj/item/radio/radio
 	///Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer
 	var/iff_signal = NONE
-	///List of terrains/structures/machines that the sentry ignores for targetting. (If a window is inside the list, the sentry will shot at targets even if the window breaks los) For accuracy, this is on a specific typepath base and not istype().
-	var/list/ignored_terrains
 	///For minimap icon change if sentry is firing
 	var/firing
 
@@ -42,7 +51,6 @@
 
 	knockdown_threshold = gun?.knockdown_threshold ? gun.knockdown_threshold : initial(gun.knockdown_threshold)
 	range = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
-	ignored_terrains = gun?.ignored_terrains ? gun.ignored_terrains : initial(gun.ignored_terrains)
 
 	radio = new(src)
 
@@ -142,7 +150,7 @@
 		span_notice("You set [src] upright."))
 
 	DISABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
-	density = TRUE
+	density = initial(density)
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
@@ -478,7 +486,7 @@
 		if(smoke?.opacity)
 			return FALSE
 
-		if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE) && !(T.type in ignored_terrains))
+		if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE) && !(T.type in GLOB.sentry_ignore_List))
 			return FALSE
 
 		for(var/atom/movable/AM AS in T)
@@ -490,7 +498,7 @@
 				continue
 			if(ismob(AM))
 				continue
-			if(AM.type in ignored_terrains) //todo:accurately populate ignored_terrains
+			if(AM.type in GLOB.sentry_ignore_List) //todo:accurately populate GLOB.sentry_ignore_List
 				continue
 			if(AM.allow_pass_flags & (gun.ammo_datum_type::ammo_behavior_flags & AMMO_ENERGY ? (PASS_GLASS|PASS_PROJECTILE) : PASS_PROJECTILE))
 				continue

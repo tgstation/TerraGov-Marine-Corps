@@ -1,8 +1,6 @@
 /mob/living/carbon/human/Life()
 	. = ..()
 
-	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
-
 
 	//update the current life tick, can be used to e.g. only do something every 4 ticks
 	life_tick++
@@ -77,11 +75,13 @@
 		if(HAS_TRAIT(src, TRAIT_IGNORE_SUFFOCATION)) //Prevent losing health from asphyxiation, but natural recovery can still happen.
 			return
 		adjustOxyLoss(CARBON_CRIT_MAX_OXYLOSS, TRUE)
-		if(!oxygen_alert)
+		if(!breath_failing)
 			emote("gasp")
-			oxygen_alert = TRUE
+			throw_alert(ALERT_NOT_ENOUGH_OXYGEN, /atom/movable/screen/alert/not_enough_oxy)
+			breath_failing = TRUE
 	else
 		adjustOxyLoss(CARBON_RECOVERY_OXYLOSS, TRUE)
-		if(oxygen_alert)
+		if(breath_failing)
 			to_chat(src, span_notice("Fresh air fills your lungs; you can breath again!"))
-			oxygen_alert = FALSE
+			clear_alert(ALERT_NOT_ENOUGH_OXYGEN)
+			breath_failing = FALSE
