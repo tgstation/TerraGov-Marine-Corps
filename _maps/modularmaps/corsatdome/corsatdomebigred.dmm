@@ -1,0 +1,9395 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/effect/landmark/excavation_site_spawner,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"ag" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"ax" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"aD" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 4;
+	id = "SigmaGrounds";
+	name = "Testing Grounds"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 4
+	},
+/area/corsat/sigma/biodome/testgrounds)
+"aT" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"aV" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"bf" = (
+/obj/item/binoculars,
+/obj/structure/table/mainship,
+/obj/machinery/door_control{
+	id = "SigmaControl";
+	name = "Observation Shutters";
+	pixel_y = 5;
+	use_power = 0
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"bn" = (
+/obj/structure/mecha_wreckage/ripley/firefighter,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"bo" = (
+/obj/machinery/meter,
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"bq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/corsat/sigma/biodome)
+"bu" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"bv" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"bC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/nuke_spawn,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"bE" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"bG" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"bL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"bW" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"bX" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"bY" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"cf" = (
+/obj/structure/sign/safety/airlock{
+	pixel_x = 32
+	},
+/turf/open/floor/plating/asteroidwarning/down,
+/area/corsat/sigma/biodome)
+"cF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"cG" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"cM" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"cS" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	dir = 1;
+	name = "ID Checkpoint"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"cV" = (
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"dj" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"dl" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/asteroidwarning/down,
+/area/corsat/sigma/biodome)
+"ds" = (
+/turf/open/floor/plating,
+/area/corsat/sigma/biodome/testgrounds)
+"du" = (
+/turf/open/floor/plating/asteroidwarning/down{
+	dir = 4
+	},
+/area/corsat/sigma/biodome/scrapyard)
+"dC" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"dE" = (
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"dK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"dV" = (
+/turf/open/floor/plating/dmg3,
+/area/corsat/sigma/biodome/testgrounds)
+"dW" = (
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/dark2,
+/area/corsat/sigma/airlock/control)
+"ea" = (
+/obj/structure/fence,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"en" = (
+/obj/structure/rack,
+/obj/machinery/door/window{
+	name = "Weapon Rack"
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/effect/spawner/random/weaponry/gun/egun,
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"es" = (
+/obj/machinery/computer3,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"ez" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/window,
+/obj/machinery/door/window,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"eE" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"eK" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	dir = 1;
+	name = "Sigma Dome Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"eP" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"eQ" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"eS" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector,
+/turf/open/floor/dark2,
+/area/corsat/sigma/airlock/control)
+"eX" = (
+/obj/machinery/door_control{
+	id = "SigmaBioAtmos";
+	name = "Access Shutters"
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"eZ" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"fb" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"fd" = (
+/obj/structure/table/reinforced,
+/obj/structure/paper_bin,
+/obj/item/tool/pen/red,
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"fo" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"fp" = (
+/obj/machinery/floodlight{
+	name = "Floodlight"
+	},
+/turf/open/floor/plating,
+/area/corsat/sigma/biodome/testgrounds)
+"fu" = (
+/obj/machinery/door/airlock/mainship/maint{
+	name = "Maintainence"
+	},
+/obj/machinery/door/poddoor/shutters/mainship{
+	dir = 4;
+	id = "SigmaBioAtmos";
+	name = "Access Shutter"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"fC" = (
+/obj/effect/landmark/corpsespawner/engineer,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"fD" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"fJ" = (
+/obj/machinery/floodlight{
+	name = "Floodlight"
+	},
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"fM" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"fS" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	name = "CO2 Control"
+	},
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"fZ" = (
+/turf/open/floor/dark2,
+/area/corsat/sigma/airlock/control)
+"gh" = (
+/obj/structure/bed/chair/office/light,
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"gl" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"gr" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"gu" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"gw" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"gT" = (
+/obj/effect/turf_decal/tile/corsatcorner/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"gY" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/corsat/sigma/airlock/control)
+"hb" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/obj/machinery/door/airlock/multi_tile/mainship/comdoor{
+	dir = 2;
+	name = "Sigma Dome Control"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"hd" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"he" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_resin_door,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"hh" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"hi" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"ho" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"hs" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"hI" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/cavetodirt,
+/area/corsat/sigma/biodome)
+"iv" = (
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"ix" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/corsat/sigma/biodome)
+"iB" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"iG" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/corsat/sigma/biodome/gunrange)
+"iK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"ji" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"jn" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"jz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"jG" = (
+/obj/structure/bed/nest,
+/obj/effect/landmark/corpsespawner/PMC,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"kd" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"kk" = (
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"kw" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"kE" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"kG" = (
+/obj/item/cell/crap,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"kL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"kU" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"lb" = (
+/obj/structure/sign/safety/airlock,
+/turf/closed/wall/r_wall,
+/area/corsat/sigma/biodome)
+"ls" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/asteroidwarning/down{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"lu" = (
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"lz" = (
+/obj/structure/cargo_container/red{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"lB" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"lL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"lR" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"lV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"lW" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"lX" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/firecloset,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"mb" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"md" = (
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"mg" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"mo" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"mr" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/asteroidwarning/down,
+/area/corsat/sigma/biodome)
+"mw" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/corsat/sigma/biodome)
+"my" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"mA" = (
+/obj/effect/ai_node,
+/turf/open/floor/dark2,
+/area/corsat/sigma/biodome)
+"mI" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"mL" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"mR" = (
+/turf/closed/wall/r_wall,
+/area/corsat/sigma/biodome/gunrange)
+"mZ" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"nd" = (
+/obj/machinery/door/airlock/mainship/security/glass{
+	dir = 1;
+	name = "ID Checkpoint"
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"ne" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/gunrange)
+"nf" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/corsat/sigma/biodome)
+"ng" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"nj" = (
+/obj/machinery/constructable_frame,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"no" = (
+/obj/machinery/photocopier,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"ns" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"nw" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"nJ" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/dark2,
+/area/corsat/sigma/biodome)
+"nL" = (
+/turf/closed/wall/r_wall,
+/area/corsat/sigma/biodome)
+"nM" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"nS" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"nW" = (
+/obj/structure/table/mainship,
+/obj/machinery/door_control{
+	id = "SigmaWestD";
+	name = "Entrance Airlock Control";
+	pixel_x = -5;
+	use_power = 0
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"oe" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/corsat/sigma/biodome)
+"op" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"ot" = (
+/obj/machinery/power/apc/drained{
+	dir = 4
+	},
+/obj/structure/closet/wardrobe/atmospherics_yellow,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"oy" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/corsat/sigma/biodome)
+"oU" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 1
+	},
+/area/corsat/sigma/biodome)
+"pg" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"pi" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"pk" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/mainship,
+/obj/item/storage/donut_box,
+/obj/item/tool/lighter/random,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"pn" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"ps" = (
+/obj/machinery/light,
+/obj/structure/closet/firecloset,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"pt" = (
+/obj/structure/powerloader_wreckage,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"pu" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"pC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"pE" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/dmg3,
+/area/corsat/sigma/biodome/testgrounds)
+"qd" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	dir = 1;
+	name = "Sigma Dome Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"ql" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 9
+	},
+/area/corsat/sigma/biodome)
+"qp" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"qw" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"qF" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"qG" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/corsat/sigma/airlock/control)
+"qO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 6
+	},
+/area/corsat/sigma/biodome)
+"qP" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	locked = 1;
+	name = "Maintainance"
+	},
+/turf/open/floor/dark2,
+/area/corsat/sigma/biodome)
+"qT" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"qZ" = (
+/obj/machinery/door_control{
+	id = "SigmaGrounds";
+	name = "Testing Grounds"
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"rf" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"rm" = (
+/obj/structure/closet/emcloset,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"rn" = (
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/corsat/sigma/biodome)
+"rr" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/nitrogen,
+/turf/open/floor/dark2,
+/area/corsat/sigma/airlock/control)
+"rt" = (
+/obj/machinery/door/airlock/mainship/maint{
+	dir = 2;
+	name = "Maintainance"
+	},
+/obj/machinery/door/poddoor/shutters/mainship{
+	id = "SigmaBioAtmos";
+	name = "Access Shutter"
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"ry" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"rA" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 6
+	},
+/area/corsat/sigma/biodome)
+"rD" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"rG" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/corsat/sigma/biodome)
+"rH" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"rI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"rM" = (
+/turf/closed/wall/r_wall,
+/area/corsat/sigma/biodome/testgrounds)
+"rT" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"rX" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"rZ" = (
+/obj/structure/closet/secure_closet/security,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"sm" = (
+/obj/structure/sign/safety/airlock{
+	pixel_y = -32
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"sB" = (
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"sJ" = (
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"sN" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"sT" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 5
+	},
+/area/corsat/sigma/biodome)
+"sW" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"to" = (
+/turf/template_noop,
+/area/template_noop)
+"tp" = (
+/obj/structure/closet/emcloset,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"tw" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"tG" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"tK" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"tQ" = (
+/obj/item/target/syndicate,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/gunrange)
+"tR" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"tY" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 4;
+	id = "SigmaGrounds";
+	name = "Testing Grounds"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 8
+	},
+/area/corsat/sigma/biodome/testgrounds)
+"um" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"uC" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"uE" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	name = "Waste Tank Control"
+	},
+/obj/effect/turf_decal/tile/corsatsemi/yellow,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"uJ" = (
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 5
+	},
+/area/corsat/sigma/biodome)
+"uR" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/cavetodirt,
+/area/corsat/sigma/biodome)
+"vi" = (
+/turf/open/floor/plating/asteroidwarning/down{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"vw" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"vz" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 1
+	},
+/area/corsat/sigma/biodome)
+"vA" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 4;
+	id = "SigmaControl";
+	name = "Observation Shutters";
+	use_power = 0
+	},
+/turf/open/floor/plating,
+/area/corsat/sigma/airlock/control)
+"vD" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/corsat/sigma/biodome)
+"vI" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"vJ" = (
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/dark2,
+/area/corsat/sigma/biodome)
+"vL" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"vU" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"wf" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"wq" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"wy" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 1;
+	id = "SigmaGrounds";
+	name = "Testing Grounds"
+	},
+/turf/open/floor/plating/icefloor/warnplate,
+/area/corsat/sigma/biodome/testgrounds)
+"wG" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"wI" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"wS" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"wV" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"xb" = (
+/obj/machinery/miner/damaged,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"xp" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"xs" = (
+/obj/structure/table/mainship,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"xH" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"xI" = (
+/obj/structure/rack,
+/obj/item/ammo_magazine/smg/m25,
+/obj/item/ammo_magazine/smg/m25,
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"xV" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/corsat/sigma/biodome)
+"yb" = (
+/obj/structure/bed/nest,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"ye" = (
+/turf/open/floor/plating/asteroidwarning/down{
+	dir = 8
+	},
+/area/corsat/sigma/biodome/scrapyard)
+"yg" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"yh" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	on = 1
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"yj" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"yx" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"yD" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatcorner/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"yV" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/atmos_alert,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"zd" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/corsat/sigma/biodome)
+"zr" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/asteroidwarning/down,
+/area/corsat/sigma/biodome)
+"zw" = (
+/obj/structure/closet/secure_closet/guncabinet{
+	name = "explosives cabinet"
+	},
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"zy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"zF" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"zG" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"zQ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 9
+	},
+/area/corsat/sigma/biodome)
+"zS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"Aa" = (
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/obj/structure/xeno/tunnel,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Ab" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"Af" = (
+/obj/structure/sign/safety/airlock{
+	pixel_y = -32
+	},
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/sigma,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Ag" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"Aj" = (
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Al" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/asteroidwarning/down{
+	dir = 1
+	},
+/area/corsat/sigma/biodome)
+"Ap" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/corsat/sigma/biodome/gunrange)
+"As" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"Av" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"Aw" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"Ax" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/mainship/open{
+	id = "SigmaControl";
+	name = "Observation Shutters";
+	use_power = 0
+	},
+/turf/open/floor/plating,
+/area/corsat/sigma/airlock/control)
+"AA" = (
+/turf/open/floor/plating/asteroidwarning/down,
+/area/corsat/sigma/biodome)
+"AC" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/atmos_alert,
+/obj/effect/turf_decal/tile/corsatsemi/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"AJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"AK" = (
+/obj/structure/table/mainship,
+/obj/structure/paper_bin,
+/obj/item/tool/pen/red,
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"AN" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"AS" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Bj" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 1
+	},
+/area/corsat/sigma/biodome)
+"Bl" = (
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/obj/item/target,
+/obj/structure/closet/crate{
+	desc = "A rectangular steel crate containing firing targets.";
+	name = "target crate"
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"Bp" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"Bq" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/corsat/sigma/biodome)
+"BF" = (
+/obj/effect/turf_decal/tile/corsatcorner/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"BL" = (
+/obj/item/folder/black_random,
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"BT" = (
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/scrapyard)
+"Cb" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Cf" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/corsat/sigma/biodome)
+"Ci" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	name = "Weapon Rack"
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"Cl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Cp" = (
+/obj/machinery/portable_atmospherics/canister,
+/turf/open/floor/dark2,
+/area/corsat/sigma/airlock/control)
+"Ct" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	on = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"CD" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"CF" = (
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"CI" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"CN" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"CP" = (
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating,
+/area/corsat/sigma/airlock/control)
+"De" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"Di" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"Dn" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"DI" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/corsat/sigma/biodome)
+"DK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"DQ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/corsat/sigma/biodome)
+"Ea" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"Ec" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"Ef" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/security{
+	dir = 1;
+	network = list("sigma")
+	},
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Ej" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/turf_decal/symbol/corsat/symbol/sigma,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Em" = (
+/turf/open/floor/dark2,
+/area/corsat/sigma/biodome)
+"En" = (
+/obj/structure/rack,
+/obj/item/tank/air,
+/obj/item/tank/air,
+/obj/item/clothing/mask/breath,
+/obj/item/clothing/mask/breath,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Eo" = (
+/obj/item/target,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/gunrange)
+"Eq" = (
+/obj/structure/bed/nest,
+/obj/effect/landmark/corpsespawner/engineer,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"Et" = (
+/obj/item/cell/super/empty,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"Eu" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"Ex" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"EB" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"EH" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"EQ" = (
+/obj/effect/spawner/random/machinery/machine_frame,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"EU" = (
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Fg" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/corsat/sigma/biodome)
+"Fi" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/spawner/random/engineering/metal,
+/turf/open/floor/dark2,
+/area/corsat/sigma/biodome)
+"Fu" = (
+/obj/machinery/constructable_frame,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"Fy" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"FH" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"FR" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"FT" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/scrapyard)
+"FW" = (
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"Gi" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/corsat/sigma/biodome)
+"Gm" = (
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Gw" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/technology_scanner,
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Gx" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"Gy" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"GH" = (
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 10
+	},
+/area/corsat/sigma/biodome)
+"GT" = (
+/obj/effect/landmark/start/job/survivor,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"Hg" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Hl" = (
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/structure/closet/secure_closet/guncabinet{
+	name = "explosives cabinet"
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"Hm" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"Hw" = (
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 6
+	},
+/area/corsat/sigma/biodome)
+"Hy" = (
+/obj/structure/xeno/tunnel,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"HE" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/station_alert,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"HG" = (
+/obj/effect/turf_decal/tile/full/black,
+/turf/closed/wall/r_wall/unmeltable,
+/area/corsat/sigma/biodome)
+"HK" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/station_alert,
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"HN" = (
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"HS" = (
+/obj/structure/closet/wardrobe/atmospherics_yellow,
+/obj/effect/turf_decal/tile/corsatsemi/yellow,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"HV" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/corsat/sigma/biodome)
+"Ii" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "Firing Range";
+	use_power = 0
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"Ij" = (
+/obj/structure/cargo_container/red{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"Ik" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"Ip" = (
+/obj/effect/landmark/sensor_tower,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"Is" = (
+/obj/machinery/computer/general_air_control/large_tank_control{
+	name = "Mixed Air Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"IB" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"IC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 10
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"IE" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"II" = (
+/obj/structure/cargo_container/hd_blue{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"IK" = (
+/obj/machinery/door/window{
+	name = "Firing Lane"
+	},
+/obj/structure/table/mainship,
+/turf/open/floor/plating/asteroidwarning,
+/area/corsat/sigma/biodome/gunrange)
+"IM" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Jg" = (
+/obj/structure/cargo_container/green{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"Jq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"Jw" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"Jy" = (
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/gunrange)
+"JW" = (
+/obj/machinery/atmospherics/components/unary/outlet_injector{
+	dir = 8
+	},
+/turf/open/floor/dark2,
+/area/corsat/sigma/airlock/control)
+"Ka" = (
+/obj/structure/rack,
+/obj/machinery/door/window{
+	name = "Weapon Rack"
+	},
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/effect/spawner/random/weaponry/gun/shotgun,
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"Kc" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Ks" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/dmg3,
+/area/corsat/sigma/biodome/testgrounds)
+"Ku" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"Kv" = (
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"Kz" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"KC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/corsat/sigma/biodome)
+"KK" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	dir = 1;
+	name = "Sigma Dome Control"
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"KW" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"KZ" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"Lb" = (
+/obj/machinery/door/airlock/mainship/maint{
+	name = "Maintainence"
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Ld" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"Lf" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"Lh" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 5
+	},
+/area/corsat/sigma/biodome/gunrange)
+"Lm" = (
+/obj/structure/fence,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"Lp" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Ls" = (
+/turf/open/floor/plating/asteroidwarning/down{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"LD" = (
+/turf/closed/wall,
+/area/corsat/sigma/biodome/gunrange)
+"LF" = (
+/obj/structure/closet/bombcloset,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"LO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidwarning/down{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"LP" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight,
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"LW" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 9
+	},
+/area/corsat/sigma/biodome)
+"LY" = (
+/obj/structure/foamedmetal,
+/turf/open/floor/plating,
+/area/corsat/sigma/biodome/testgrounds)
+"Ma" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"Mb" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/dark2,
+/area/corsat/sigma/airlock/control)
+"Md" = (
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Mq" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"Mr" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/corsat/sigma/biodome)
+"Ms" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/dark2,
+/area/corsat/sigma/biodome)
+"Mv" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"Mw" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/security{
+	dir = 4;
+	network = list("sigma")
+	},
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Mx" = (
+/obj/structure/table/mainship,
+/obj/item/camera,
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"MB" = (
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"MD" = (
+/obj/structure/table/mainship,
+/obj/machinery/computer/emails{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"ML" = (
+/obj/structure/closet/secure_closet/guncabinet{
+	name = "explosives cabinet"
+	},
+/obj/item/explosive/grenade/mirage,
+/obj/item/explosive/grenade/mirage,
+/obj/item/explosive/grenade/mirage,
+/obj/item/explosive/grenade/mirage,
+/obj/item/explosive/grenade/mirage,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"MM" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"MU" = (
+/obj/structure/fence,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/gunrange)
+"Nc" = (
+/obj/structure/table/mainship,
+/obj/item/folder/black_random,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Nz" = (
+/obj/effect/ai_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"NC" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/cavetodirt,
+/area/corsat/sigma/biodome)
+"NF" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"NL" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/spawner/random/engineering/toolbox,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"NQ" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"NV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"Og" = (
+/obj/structure/bed/chair/office/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/full/black,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Oj" = (
+/obj/structure/cargo_container/green{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"Om" = (
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"Op" = (
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"Oz" = (
+/obj/structure/bed/nest,
+/obj/effect/landmark/corpsespawner/scientist,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"OB" = (
+/turf/closed/wall/r_wall,
+/area/corsat/sigma/airlock/control)
+"OF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"OI" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/gunrange)
+"OM" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"OU" = (
+/obj/structure/table/mainship,
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"OZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"Pa" = (
+/obj/machinery/meter,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Pb" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/corsat/sigma/biodome)
+"Pc" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/secure_data{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Pf" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Pg" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"Pt" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"Pz" = (
+/turf/closed/mineral/smooth/bigred,
+/area/corsat/sigma/biodome)
+"PX" = (
+/obj/machinery/door_control{
+	id = "SigmaWestW";
+	name = "Airlock Control";
+	pixel_x = -5;
+	use_power = 0
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/door_control{
+	id = "SigmaWestE";
+	name = "Airlock Control";
+	pixel_x = 5;
+	use_power = 0
+	},
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Qb" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/open/floor/dark2,
+/area/corsat/sigma/airlock/control)
+"Qc" = (
+/turf/closed/wall,
+/area/corsat/sigma/biodome/scrapyard)
+"Qf" = (
+/obj/effect/turf_decal/tile/corsatcorner/red{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Qm" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/corsat/sigma/biodome)
+"Qp" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"QF" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"QH" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/biodome)
+"QN" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"QO" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	name = "Weapon Rack"
+	},
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"QT" = (
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"QV" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"QX" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/cavetodirt{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"QZ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 9
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"Ra" = (
+/turf/open/floor/grayscale/round,
+/area/corsat/sigma/biodome)
+"Rb" = (
+/obj/effect/landmark/corpsespawner/PMC,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"Ri" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 9
+	},
+/area/corsat/sigma/biodome/gunrange)
+"Rj" = (
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Rp" = (
+/obj/structure/rack,
+/obj/structure/window/reinforced/toughened{
+	dir = 1
+	},
+/obj/machinery/door/window{
+	name = "Weapon Rack"
+	},
+/obj/effect/spawner/random/weaponry/gun/machineguns,
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"RE" = (
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/corsat/sigma/biodome/gunrange)
+"RK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"RV" = (
+/obj/structure/flora/pottedplant,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"RY" = (
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/dark2,
+/area/corsat/sigma/biodome)
+"RZ" = (
+/obj/effect/turf_decal/tile/corsatcorner/yellow{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Sg" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"Sl" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"So" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"Su" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 6
+	},
+/area/corsat/sigma/biodome)
+"Sx" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"SF" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 1;
+	id = "SigmaGrounds";
+	name = "Testing Grounds"
+	},
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/corsat/sigma/biodome/testgrounds)
+"SK" = (
+/obj/effect/turf_decal/tile/corsatcorner/blue{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"SQ" = (
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"SU" = (
+/obj/machinery/door/airlock/mainship/generic{
+	name = "Testing Grounds";
+	use_power = 0
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/testgrounds)
+"SY" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"SZ" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"Tf" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "Firing Range";
+	use_power = 0
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"Th" = (
+/obj/structure/cargo_container/green,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"Tj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"Tn" = (
+/obj/effect/turf_decal/tile/corsatsemi/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Tr" = (
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	dir = 8
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"Tz" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"TC" = (
+/obj/effect/turf_decal/tile/corsatsemi/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"TF" = (
+/obj/machinery/meter,
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"TP" = (
+/obj/machinery/miner/damaged,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"TV" = (
+/turf/closed/wall/r_wall/unmeltable,
+/area/corsat/sigma/biodome)
+"TW" = (
+/obj/item/stack/sheet/metal,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"TX" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/lamp,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"TY" = (
+/obj/structure/table/mainship,
+/obj/item/clipboard,
+/obj/item/paper,
+/obj/item/tool/pen/red,
+/obj/effect/turf_decal/tile/corsatstraight/blue{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Ud" = (
+/obj/structure/bed/chair/office/light,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Ut" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 5
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 5
+	},
+/area/corsat/sigma/biodome)
+"UG" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"US" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidwarning{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"UT" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"Vc" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 4
+	},
+/area/corsat/sigma/biodome)
+"Vg" = (
+/obj/machinery/photocopier,
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Vi" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 8
+	},
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"Vl" = (
+/obj/structure/table/mainship,
+/obj/item/flashlight/lamp,
+/obj/effect/turf_decal/tile/corsatsemi/blue{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Vo" = (
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"Vy" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tool,
+/obj/effect/spawner/random/engineering/tech_supply,
+/turf/open/floor/dark2,
+/area/corsat/sigma/biodome)
+"VI" = (
+/obj/machinery/light,
+/obj/structure/table/mainship,
+/obj/machinery/computer/secure_data{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/corsatstraight/red{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"VL" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"VM" = (
+/obj/structure/window/framed/colony/reinforced,
+/turf/open/floor/plating,
+/area/corsat/sigma/airlock/control)
+"VV" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"VY" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/weaponry/ammo/shotgun,
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"VZ" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Wa" = (
+/obj/item/target/syndicate,
+/obj/item/target/syndicate,
+/obj/item/target/syndicate,
+/obj/item/target/syndicate,
+/obj/item/target/syndicate,
+/obj/structure/closet/crate{
+	desc = "A rectangular steel crate containing firing targets.";
+	name = "target crate"
+	},
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"Wd" = (
+/obj/machinery/atmospherics/pipe/manifold/green{
+	dir = 4
+	},
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"Wi" = (
+/obj/structure/table/mainship,
+/obj/machinery/door/window{
+	name = "Firing Lane"
+	},
+/turf/open/floor/plating/asteroidwarning,
+/area/corsat/sigma/biodome/gunrange)
+"Wk" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/corsat/sigma/biodome)
+"WF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"WQ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome)
+"Xd" = (
+/obj/machinery/door/poddoor/mainship/open{
+	dir = 1;
+	id = "SigmaGrounds";
+	name = "Testing Grounds"
+	},
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/icefloor/warnplate{
+	dir = 1
+	},
+/area/corsat/sigma/biodome/testgrounds)
+"Xe" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/dark2,
+/area/corsat/sigma/biodome)
+"Xi" = (
+/obj/machinery/door/airlock/mainship/engineering{
+	dir = 1;
+	name = "Sigma Dome Control"
+	},
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/turf_decal/tile/corsatstraight/yellow{
+	dir = 8
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Xo" = (
+/obj/structure/cargo_container/red{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/corsat/sigma/biodome/scrapyard)
+"XB" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/corsat/sigma/biodome)
+"XJ" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars,
+/area/corsat/sigma/biodome)
+"Yf" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/dmg3,
+/area/corsat/sigma/biodome/testgrounds)
+"Yk" = (
+/obj/structure/table/mainship,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/obj/effect/spawner/random/weaponry/explosive/grenade,
+/turf/open/floor/plating/asteroidplating,
+/area/corsat/sigma/biodome/gunrange)
+"Yn" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
+/obj/effect/landmark/dropship_start_location,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome)
+"YE" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/asteroidfloor,
+/area/corsat/sigma/biodome/gunrange)
+"YJ" = (
+/obj/machinery/atmospherics/pipe/manifold/green,
+/turf/open/floor/plating/ground/mars/dirttosand,
+/area/corsat/sigma/biodome)
+"Zi" = (
+/turf/open/floor/plating/ground/mars/cavetodirt,
+/area/corsat/sigma/biodome)
+"Zl" = (
+/obj/effect/turf_decal/tile/full/black,
+/obj/machinery/atmospherics/components/unary/vent_pump{
+	on = 1
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"Zn" = (
+/obj/structure/filingcabinet/filingcabinet,
+/obj/effect/turf_decal/tile/corsatstraight/blue,
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"ZD" = (
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 8
+	},
+/area/corsat/sigma/biodome)
+"ZE" = (
+/turf/open/floor/plating/asteroidwarning/down{
+	dir = 1
+	},
+/area/corsat/sigma/biodome)
+"ZK" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 6
+	},
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/corsat/sigma/biodome)
+"ZN" = (
+/obj/effect/turf_decal/tile/corsatstraight/yellow,
+/obj/machinery/atmospherics/pipe/layer_manifold{
+	dir = 4
+	},
+/turf/open/floor/grayscale/black,
+/area/corsat/sigma/airlock/control)
+"ZP" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/dirttosand{
+	dir = 10
+	},
+/area/corsat/sigma/biodome)
+
+(1,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+qG
+qG
+qG
+qG
+qG
+qG
+qG
+qG
+dj
+dj
+mg
+dj
+qG
+qG
+qG
+qG
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+RY
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(2,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+qG
+qG
+qG
+qG
+qG
+OB
+OB
+OB
+OB
+HS
+ot
+MM
+QF
+Md
+OF
+BF
+lX
+rm
+TC
+qG
+qG
+qG
+qG
+qG
+qG
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+nJ
+Em
+nJ
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(3,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+qG
+OB
+OB
+OB
+uE
+yV
+HE
+Gw
+OB
+OM
+kU
+kU
+Ej
+Sx
+vw
+Ej
+kU
+kU
+BF
+OB
+rZ
+rZ
+Mw
+pk
+qG
+qG
+qG
+qG
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+Ms
+Em
+Fi
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(4,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+nL
+OB
+fZ
+eS
+CP
+bo
+Md
+Md
+IM
+KK
+QF
+Md
+Md
+Md
+hi
+IE
+qp
+qp
+qp
+qp
+cS
+qp
+qp
+NF
+Qf
+HN
+FR
+AK
+qG
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+nJ
+Em
+Em
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(5,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+TV
+nL
+nL
+Pz
+OB
+rr
+fZ
+OB
+xH
+Md
+yh
+fo
+Xi
+RZ
+qp
+qp
+qp
+mL
+Md
+Md
+Md
+Md
+Md
+nd
+Md
+qT
+Md
+Aj
+Md
+Ud
+VI
+OB
+Pz
+TV
+TV
+TV
+to
+to
+to
+to
+to
+to
+TV
+Vy
+mA
+nJ
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(6,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+nL
+nL
+Pz
+Pz
+Pz
+OB
+Cp
+fZ
+VM
+EU
+FH
+Md
+En
+OB
+OM
+eP
+MD
+TX
+OF
+Md
+TX
+MD
+Nc
+gT
+OB
+lu
+BL
+no
+Gm
+Aa
+lu
+LP
+OB
+Pz
+Pz
+Pz
+TV
+TV
+TV
+to
+to
+to
+to
+TV
+Xe
+Em
+nJ
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(7,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+bu
+nL
+nL
+nL
+Pz
+bu
+bu
+OB
+OB
+OB
+OB
+fu
+OB
+eX
+NL
+OB
+Tn
+Pf
+yg
+Nc
+VL
+yj
+nW
+yD
+lu
+CF
+OB
+mZ
+Pc
+OB
+OB
+vA
+vA
+OB
+OB
+Pz
+Pz
+Pz
+Pz
+Pz
+TV
+TV
+TV
+to
+to
+TV
+Em
+Em
+Ms
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(8,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+OZ
+OB
+Lb
+OB
+OB
+OB
+OB
+Sl
+xs
+Cb
+Md
+bY
+kw
+OB
+OB
+OB
+ez
+VM
+OB
+FW
+jn
+jn
+jn
+jn
+FW
+pu
+Pz
+Pz
+Pz
+Pz
+Pz
+TV
+TV
+to
+TV
+Ms
+vJ
+Em
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(9,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+TV
+bu
+bu
+bW
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+OZ
+OB
+Md
+eE
+Is
+fS
+OB
+OM
+Ej
+OF
+Md
+Ej
+BF
+HN
+HN
+HN
+HN
+HN
+OB
+rn
+kk
+kk
+kk
+kk
+Pb
+jn
+jn
+Vc
+FW
+Pz
+Pz
+Pz
+TV
+TV
+TV
+nJ
+Em
+nJ
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(10,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+Em
+bu
+bu
+bu
+Pz
+Pz
+Pz
+bu
+NV
+lL
+ax
+ax
+WQ
+lL
+ax
+Jw
+rt
+Ex
+Lp
+qT
+IM
+eK
+QF
+Md
+OF
+nS
+AS
+Md
+nw
+Md
+Aj
+Md
+tp
+OB
+rn
+ag
+kk
+ag
+kk
+fJ
+kk
+kk
+kk
+Pb
+FW
+FW
+Pz
+Pz
+Pz
+TV
+TV
+Em
+Fi
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(11,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+OZ
+bu
+bu
+bW
+bu
+bu
+bu
+Pz
+OB
+cG
+zF
+aV
+aV
+qd
+RZ
+qp
+rD
+rX
+qp
+qp
+qp
+qp
+Ex
+Md
+ps
+OB
+rn
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+Pb
+jn
+jn
+jn
+jn
+FW
+TV
+RY
+HG
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(12,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+Em
+TV
+bu
+bu
+bW
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+OZ
+bu
+bu
+bu
+bu
+bu
+Pz
+Pz
+OB
+ZN
+Qp
+OB
+OB
+OB
+Tn
+MB
+SK
+EB
+MB
+MB
+Kc
+Ej
+OF
+qT
+Af
+OB
+rn
+kk
+kk
+kk
+kk
+kk
+kk
+dC
+ag
+ag
+kk
+kk
+kk
+kk
+kk
+Pb
+jn
+jn
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(13,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+Em
+TV
+bu
+mb
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+bu
+OZ
+bW
+bu
+bu
+bu
+Pz
+Pz
+Pz
+OB
+TF
+Pa
+VM
+dW
+OB
+OB
+OB
+gr
+hb
+OB
+OB
+OB
+dj
+mg
+dj
+dj
+OB
+rn
+Tj
+lV
+lV
+lV
+zS
+lV
+Sg
+XJ
+lV
+lV
+lV
+lV
+lV
+lV
+lV
+zS
+Lf
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(14,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+xp
+TV
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+bu
+OZ
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+OB
+SQ
+md
+VM
+fZ
+OB
+AC
+hs
+pn
+Hg
+hs
+Ef
+OB
+Ej
+OF
+Md
+Ej
+OB
+rn
+Ec
+LW
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+XB
+Ec
+kk
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(15,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+bu
+bu
+mb
+NV
+ax
+dK
+mb
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+OB
+gY
+gY
+OB
+OB
+OB
+HK
+Og
+Md
+OF
+gh
+PX
+VM
+Zl
+vw
+Md
+kU
+OB
+rn
+Ec
+vz
+Qc
+Qc
+lW
+lW
+lW
+lW
+Qc
+lW
+lW
+lW
+lW
+Qc
+Qc
+rn
+Ec
+kk
+kk
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(16,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+bu
+bu
+mb
+bu
+bu
+Pz
+Pz
+Pz
+bu
+bu
+zG
+mI
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+OB
+Mb
+JW
+fZ
+fZ
+OB
+fd
+kU
+Md
+OF
+kU
+AN
+VM
+kU
+qT
+Sx
+ji
+OB
+rn
+Ec
+vz
+Qc
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+Qc
+rn
+Ec
+ag
+kk
+vz
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(17,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+bu
+bu
+bW
+bW
+bW
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+OZ
+bW
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+OB
+fZ
+Qb
+Qb
+fZ
+OB
+Zn
+kU
+Ct
+QV
+kU
+es
+OB
+Ej
+Md
+OF
+Ej
+OB
+rn
+Ec
+vz
+lW
+CI
+TW
+CI
+CI
+CI
+TW
+CI
+CI
+tG
+pt
+CI
+lW
+rn
+Ec
+ag
+kk
+vz
+FW
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(18,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+bu
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+aa
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+OB
+OB
+OB
+OB
+OB
+OB
+Vg
+SK
+qT
+Md
+vU
+cV
+OB
+dj
+dj
+VZ
+dj
+OB
+rn
+Ec
+vz
+lW
+CI
+CI
+CI
+CI
+CI
+IB
+Fu
+CI
+CI
+CI
+CI
+lW
+rn
+Ec
+kk
+kk
+vz
+FW
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+"}
+(19,1,1) = {"
+to
+to
+to
+to
+to
+to
+TV
+TV
+bu
+bu
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+bu
+OZ
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+bu
+bu
+sJ
+sJ
+sJ
+bu
+OB
+OB
+Cl
+Md
+Md
+wq
+OB
+OB
+Op
+Op
+Jq
+Op
+lb
+rn
+Ec
+vz
+lW
+CI
+CI
+pt
+CI
+Gx
+CI
+CI
+CI
+Fu
+CI
+CI
+lW
+rn
+AJ
+lV
+ql
+WF
+WF
+fb
+TV
+TV
+to
+to
+to
+to
+to
+to
+"}
+(20,1,1) = {"
+TV
+TV
+TV
+TV
+TV
+TV
+TV
+bu
+bu
+wI
+bu
+bu
+bu
+bu
+bu
+Pz
+Pz
+bu
+bu
+bu
+bu
+OZ
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+bu
+bu
+Hw
+pu
+FW
+FW
+uJ
+bu
+Ax
+Rj
+Md
+Md
+RV
+Ax
+ry
+Op
+Op
+Jq
+Op
+AA
+rn
+Ec
+vz
+Qc
+CI
+CI
+CI
+tG
+kG
+CI
+Th
+CI
+CI
+CI
+CI
+Qc
+rn
+kk
+kk
+Pz
+FW
+FW
+Ld
+FW
+TV
+to
+to
+to
+to
+to
+to
+"}
+(21,1,1) = {"
+Em
+Em
+Em
+Em
+Em
+TV
+TV
+bu
+bu
+OZ
+bu
+bu
+bu
+bu
+bu
+bW
+bu
+bu
+bu
+bu
+bu
+OZ
+bu
+bu
+Pz
+Pz
+bu
+bu
+bW
+bu
+Hw
+FW
+jn
+jn
+jn
+FW
+uJ
+Ax
+OU
+sN
+tR
+TY
+Ax
+Op
+Op
+Kv
+kE
+QN
+zr
+Gi
+QZ
+vz
+lW
+CI
+CI
+nM
+CI
+CI
+CI
+Jg
+CI
+CI
+CI
+CI
+lW
+rn
+kk
+Pz
+Pz
+Pz
+FW
+rI
+FW
+TV
+TV
+to
+to
+to
+to
+to
+"}
+(22,1,1) = {"
+Em
+Em
+Em
+Em
+Em
+qP
+bu
+bu
+mb
+cF
+ax
+ax
+lL
+ax
+ax
+Vi
+ax
+ax
+ax
+ax
+lL
+Jw
+ax
+ax
+lL
+vI
+ax
+ax
+ax
+uR
+WF
+Gi
+lV
+XJ
+lV
+Ut
+FW
+Ax
+Vl
+fD
+bf
+Mx
+Ax
+Op
+Op
+Dn
+Jq
+Op
+AA
+rn
+kk
+vz
+lW
+CI
+CI
+CI
+CI
+CI
+CI
+Jg
+gu
+CI
+kG
+CI
+lW
+rn
+kk
+Pz
+Pz
+Pz
+QT
+Pg
+fb
+Pz
+TV
+to
+to
+to
+to
+to
+"}
+(23,1,1) = {"
+Em
+TV
+TV
+TV
+TV
+TV
+bu
+bu
+bW
+bu
+bu
+bu
+bu
+Pz
+bu
+OZ
+bu
+bu
+Pz
+Pz
+bu
+bu
+bW
+bu
+lR
+OZ
+bu
+bu
+Pz
+Zi
+FW
+rn
+kk
+ag
+kk
+Ec
+vz
+vA
+vA
+vA
+vA
+vA
+vA
+Op
+Op
+Op
+Jq
+Op
+AA
+xV
+kk
+vz
+lW
+CI
+CI
+CI
+EQ
+CI
+CI
+Oj
+Ag
+CI
+TW
+CI
+lW
+rn
+kk
+kk
+Pz
+Pz
+Pz
+FW
+Ld
+FW
+TV
+TV
+to
+to
+to
+to
+"}
+(24,1,1) = {"
+TV
+TV
+to
+to
+TV
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+Pz
+Pz
+dE
+he
+dE
+Ku
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+bu
+OZ
+bu
+Pz
+Pz
+bu
+GH
+FW
+Mr
+ns
+kk
+Ec
+Pb
+jn
+jn
+jn
+jn
+jn
+FW
+ZE
+Op
+Op
+Jq
+Dn
+dl
+FW
+ZD
+FW
+Qc
+CI
+CI
+CI
+CI
+TW
+CI
+CI
+II
+pt
+CI
+CI
+Qc
+rn
+kk
+kk
+Pz
+Pz
+Pz
+FW
+Ld
+FW
+Pz
+TV
+to
+to
+to
+to
+"}
+(25,1,1) = {"
+to
+to
+to
+TV
+TV
+bu
+bu
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+bu
+OZ
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+bW
+OZ
+Pz
+Pz
+Pz
+Pz
+bu
+GH
+FW
+XB
+kk
+Ec
+kk
+kk
+kk
+kk
+kk
+kk
+vz
+ZE
+Op
+Op
+Jq
+Op
+Op
+Ls
+Ls
+Ls
+ye
+CI
+CI
+CI
+CI
+IB
+bn
+CI
+GT
+CI
+tG
+CI
+lW
+rn
+ns
+kk
+vz
+Pz
+Pz
+Pz
+Ld
+FW
+FW
+TV
+to
+to
+to
+to
+"}
+(26,1,1) = {"
+to
+to
+to
+TV
+bu
+mb
+bu
+bW
+mb
+bu
+Pz
+Pz
+Pz
+bu
+bu
+OZ
+bW
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+OZ
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+Om
+GH
+XB
+tw
+lV
+lV
+lV
+lV
+As
+lV
+oU
+Al
+iB
+QN
+Tz
+Op
+Op
+Op
+Op
+Op
+BT
+CI
+CI
+CI
+tG
+uC
+CI
+CI
+CI
+CI
+EQ
+CI
+lW
+rn
+kk
+ag
+Bj
+FW
+FW
+Pz
+Ld
+FW
+FW
+TV
+TV
+to
+to
+to
+"}
+(27,1,1) = {"
+to
+to
+TV
+TV
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bW
+OZ
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+OZ
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+mb
+GH
+ZD
+XB
+KW
+kk
+ag
+Ec
+kk
+vz
+ZE
+Op
+Kv
+kE
+QN
+wf
+QN
+pC
+QN
+FT
+bL
+Gy
+bX
+bL
+bG
+op
+CI
+pt
+CI
+CI
+CI
+lW
+rn
+KW
+kk
+Pb
+FW
+FW
+pu
+Ld
+FW
+Pz
+Pz
+TV
+TV
+to
+to
+"}
+(28,1,1) = {"
+to
+to
+TV
+bu
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+OZ
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+OZ
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+Om
+GH
+XB
+kk
+kk
+Ec
+kk
+vz
+ZE
+Op
+Op
+Jq
+Op
+Op
+vi
+vi
+vi
+du
+tG
+bE
+CI
+CI
+CI
+CI
+tG
+CI
+CI
+CI
+CI
+lW
+rn
+kk
+kk
+kk
+Pz
+FW
+eQ
+Ld
+Pz
+Pz
+Pz
+Pz
+TV
+to
+to
+"}
+(29,1,1) = {"
+to
+to
+TV
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+yb
+Ku
+bu
+bu
+OZ
+bu
+bu
+Ku
+jG
+Pz
+Pz
+Pz
+Pz
+bu
+OZ
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+GH
+XB
+kk
+Ec
+kk
+vz
+ZE
+Op
+Op
+RK
+Op
+AA
+FW
+jn
+FW
+Qc
+CI
+CI
+CI
+pt
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+Qc
+rn
+kk
+kk
+Pz
+Pz
+FW
+FW
+Ld
+Pz
+Pz
+Pz
+Pz
+TV
+to
+to
+"}
+(30,1,1) = {"
+to
+TV
+TV
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+yb
+dE
+bu
+Hy
+OZ
+bu
+bW
+dE
+yb
+Pz
+Pz
+Pz
+Pz
+bu
+OZ
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Zi
+rn
+Av
+aT
+kk
+vz
+ZE
+Op
+Op
+Jq
+Dn
+AA
+rn
+kk
+vz
+lW
+CI
+CI
+CI
+Xo
+CI
+Et
+CI
+TW
+nj
+IB
+CI
+lW
+rn
+kk
+kk
+Pz
+Pz
+FW
+FW
+Ld
+FW
+FW
+Pz
+Pz
+TV
+TV
+to
+"}
+(31,1,1) = {"
+to
+TV
+bu
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Eq
+Ku
+bu
+bW
+DK
+bu
+bu
+Ku
+Oz
+Pz
+Pz
+Pz
+Pz
+bu
+OZ
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+Hw
+Su
+kk
+Ec
+kk
+vz
+ZE
+Op
+Op
+Jq
+Op
+AA
+rn
+kk
+vz
+lW
+EQ
+CI
+CI
+Ij
+CI
+CI
+CI
+Fu
+CI
+CI
+CI
+lW
+rn
+kk
+kk
+Pz
+Pz
+Pz
+FW
+rI
+FW
+FW
+Su
+Pz
+Pz
+TV
+to
+"}
+(32,1,1) = {"
+to
+TV
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+yb
+Ku
+Ku
+bu
+bu
+OZ
+bu
+bu
+Ku
+Ku
+Pz
+Pz
+Pz
+Pz
+hh
+OZ
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+Hw
+Su
+kk
+kk
+Ec
+kk
+vz
+ZE
+Op
+Op
+Jq
+Op
+AA
+rn
+kk
+Bj
+lW
+CI
+TW
+CI
+lz
+Gx
+CI
+CI
+CI
+CI
+CI
+Gx
+lW
+rn
+kk
+kk
+Pz
+Pz
+Pz
+FW
+Ld
+jn
+Su
+kk
+kk
+Pz
+TV
+to
+"}
+(33,1,1) = {"
+to
+TV
+mb
+bu
+bW
+mb
+Pz
+Pz
+Pz
+Oz
+dE
+Ku
+bu
+bu
+bu
+UT
+gw
+bu
+Ku
+yb
+Pz
+Pz
+Pz
+Pz
+bu
+cM
+bu
+sJ
+sJ
+bu
+Pz
+Pz
+bu
+bu
+sJ
+Hw
+Su
+kk
+kk
+kk
+Ec
+kk
+vz
+ZE
+Op
+Dn
+Jq
+Op
+AA
+rn
+kk
+vz
+Qc
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+CI
+Qc
+rn
+kk
+kk
+kk
+Pz
+Pz
+Pz
+Cf
+kk
+kk
+kk
+kk
+kk
+TV
+to
+"}
+(34,1,1) = {"
+to
+TV
+bu
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Ku
+bW
+NV
+ax
+ax
+ax
+dK
+bu
+bu
+dE
+Eq
+Pz
+Pz
+Pz
+bu
+bu
+rf
+Hw
+jn
+Vc
+uJ
+bu
+bu
+bu
+Hw
+FW
+Su
+kk
+kk
+kk
+UG
+Ec
+kk
+vz
+ZE
+Op
+pi
+Jq
+Op
+AA
+rn
+kk
+vz
+Qc
+Qc
+lW
+lW
+lW
+lW
+Qc
+lW
+lW
+lW
+lW
+Qc
+Qc
+rn
+kk
+kk
+kk
+kk
+Pz
+Pz
+Ec
+kk
+kk
+kk
+kk
+kk
+TV
+to
+"}
+(35,1,1) = {"
+TV
+TV
+bu
+bu
+bu
+bu
+Pz
+Pz
+yb
+Ku
+bu
+OZ
+bu
+bW
+bu
+bu
+bu
+bW
+Ku
+yb
+Pz
+Pz
+Pz
+bu
+hI
+ng
+DI
+lV
+zS
+Qm
+sT
+QX
+qO
+zy
+DI
+lV
+lV
+lV
+lV
+lV
+rT
+lV
+oU
+Al
+QN
+pC
+Tz
+Op
+AA
+rn
+kk
+Pb
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+Vc
+Eu
+jn
+jn
+Su
+kk
+kk
+kk
+kk
+kk
+Pz
+Ec
+kk
+ag
+kk
+kk
+kk
+TV
+TV
+"}
+(36,1,1) = {"
+TV
+bu
+bu
+bu
+bu
+bu
+Pz
+Pz
+yb
+dE
+mb
+OZ
+bu
+bu
+bu
+mb
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Zi
+Fg
+kk
+kk
+kk
+kk
+Pb
+jn
+Su
+kk
+ns
+kk
+kk
+kk
+kk
+kk
+kk
+ag
+vz
+ZE
+Op
+Op
+Jq
+Op
+AA
+rn
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+ag
+kk
+kk
+kk
+Ec
+kk
+kk
+kk
+kk
+kk
+kk
+TV
+"}
+(37,1,1) = {"
+TV
+bu
+bu
+bu
+bu
+bu
+bW
+Pz
+Oz
+Ku
+bu
+OZ
+bu
+bu
+Pz
+Ku
+dE
+Ku
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Zi
+Fg
+LW
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+pu
+ZE
+Op
+Op
+Jq
+Op
+AA
+FW
+ZD
+ZD
+sW
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+kL
+sW
+ZD
+ZD
+ZD
+ZD
+ZD
+TV
+"}
+(38,1,1) = {"
+TV
+bu
+bu
+bu
+bu
+bu
+bu
+Pz
+Ku
+Ku
+dE
+he
+dE
+Pz
+Pz
+Pz
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+Zi
+Fg
+vz
+mR
+mR
+MU
+MU
+mR
+mR
+MU
+MU
+mR
+mR
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Op
+Op
+Op
+Jq
+Op
+Op
+Pt
+KZ
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Pt
+Ik
+Pt
+Pt
+Pt
+Pt
+Pt
+sm
+TV
+"}
+(39,1,1) = {"
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+bu
+OZ
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+Hw
+Cf
+vz
+mR
+Ri
+Ap
+Ap
+Ap
+Ap
+Ap
+Ap
+Ap
+mR
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Jq
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Dn
+Op
+Op
+Op
+Op
+Op
+Kv
+Op
+Kv
+Op
+Dn
+Op
+Op
+Op
+Jq
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+"}
+(40,1,1) = {"
+bu
+bu
+mb
+bu
+bu
+bu
+bu
+mb
+bu
+bu
+bu
+OZ
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+Hw
+Bq
+Ec
+vz
+MU
+iG
+Vo
+iK
+um
+um
+mo
+um
+um
+Tf
+QN
+QN
+NQ
+Yn
+iB
+QN
+bC
+QN
+qw
+tK
+QN
+iB
+QN
+QN
+pC
+QN
+QN
+QN
+QN
+Di
+QN
+QN
+QN
+QN
+QN
+QN
+qw
+QN
+QN
+QN
+QN
+QN
+QN
+QN
+QN
+ho
+QN
+NQ
+QN
+QN
+iB
+pC
+QN
+"}
+(41,1,1) = {"
+bu
+bu
+bu
+bu
+bu
+Pz
+bu
+bu
+bu
+bu
+bu
+OZ
+bu
+Pz
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+bu
+Hw
+Su
+Av
+aT
+vz
+MU
+iG
+Vo
+jz
+Vo
+Vo
+Tr
+Vo
+Vo
+mR
+Op
+Op
+Jq
+Op
+Op
+Op
+Ip
+Op
+Jq
+Op
+Op
+Op
+Op
+Op
+Op
+Kv
+pi
+pi
+pi
+pi
+Op
+Op
+Op
+Op
+Op
+Op
+RK
+Op
+Op
+pi
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Jq
+Op
+Op
+Op
+Op
+Op
+"}
+(42,1,1) = {"
+bu
+bu
+mb
+Pz
+Pz
+Pz
+Pz
+mb
+bu
+mb
+bu
+OZ
+bu
+bu
+bu
+sJ
+sJ
+Pz
+Pz
+sJ
+sJ
+Hw
+Su
+kk
+kk
+Ec
+vz
+MU
+iG
+Fy
+jz
+Ea
+Fy
+Vo
+Vo
+Vo
+Ii
+pi
+Op
+Jq
+Op
+Op
+Op
+Op
+Op
+Jq
+Op
+Op
+Op
+Op
+Op
+Op
+fC
+pi
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Op
+Jq
+Op
+Op
+Op
+Dn
+Op
+Op
+Op
+Op
+Dn
+Op
+Jq
+Op
+Op
+Op
+Op
+Op
+"}
+(43,1,1) = {"
+bu
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+bu
+bu
+NV
+lL
+Aw
+ax
+Vi
+qO
+Ma
+zy
+zy
+zy
+zy
+zy
+DI
+lV
+lV
+XJ
+rH
+vz
+MU
+iG
+Vo
+qF
+Vo
+Vo
+Vo
+Vo
+Vo
+mR
+Op
+pi
+Jq
+Op
+Op
+Op
+vi
+vi
+LO
+ls
+vi
+vi
+vi
+vi
+vi
+pi
+Op
+Op
+Op
+Dn
+eZ
+eZ
+eZ
+eZ
+eZ
+eZ
+US
+eZ
+eZ
+eZ
+eZ
+eZ
+eZ
+eZ
+eZ
+CN
+eZ
+US
+eZ
+eZ
+eZ
+eZ
+TV
+"}
+(44,1,1) = {"
+TV
+bu
+bu
+bu
+Pz
+Pz
+bu
+bu
+bu
+OZ
+bu
+Pz
+bu
+rA
+Su
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+ag
+kk
+kk
+kk
+vz
+mR
+Vo
+Vo
+jz
+LD
+LD
+LD
+LD
+LD
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+FW
+jn
+gl
+jn
+jn
+jn
+jn
+jn
+FW
+ZE
+Op
+Op
+Op
+AA
+FW
+jn
+jn
+jn
+jn
+jn
+gl
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+gl
+jn
+jn
+jn
+jn
+TV
+"}
+(45,1,1) = {"
+TV
+bu
+bu
+bu
+Pz
+bu
+bu
+bu
+bu
+OZ
+Pz
+Pz
+Pz
+Cf
+LW
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+FW
+mR
+Vo
+Vo
+Mq
+sB
+sB
+sB
+sB
+sB
+mR
+Op
+Op
+RK
+Op
+Op
+AA
+rn
+kk
+wS
+kk
+kk
+kk
+kk
+kk
+vz
+ZE
+Op
+Op
+Op
+AA
+rn
+kk
+kk
+kk
+kk
+kk
+wS
+kk
+UG
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+Ec
+kk
+kk
+kk
+kk
+TV
+"}
+(46,1,1) = {"
+TV
+TV
+bu
+bu
+bu
+NV
+ax
+ax
+ax
+dK
+Pz
+Pz
+Pz
+Ec
+vz
+mR
+MU
+MU
+mR
+MU
+MU
+mR
+MU
+MU
+mR
+MU
+MU
+mR
+Vo
+Ea
+jz
+sB
+sB
+sB
+sB
+sB
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+rn
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+vz
+ZE
+Op
+Op
+Op
+AA
+rn
+kk
+kk
+xb
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+kk
+ag
+kk
+kk
+kk
+Ec
+kk
+kk
+kk
+nL
+TV
+"}
+(47,1,1) = {"
+to
+TV
+bu
+bu
+bu
+OZ
+bu
+bu
+bu
+Pz
+Pz
+Pz
+kk
+Ec
+vz
+MU
+Jy
+Jy
+tQ
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Wi
+Vo
+Ea
+jz
+sB
+sB
+VY
+xI
+VY
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+FW
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+FW
+ZE
+Op
+Op
+Op
+AA
+FW
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+ZD
+XB
+KW
+kk
+kk
+kk
+LW
+ZD
+zd
+kk
+Ec
+kk
+kk
+kk
+nL
+TV
+"}
+(48,1,1) = {"
+to
+TV
+mb
+bu
+bu
+TP
+bu
+mb
+Pz
+Pz
+Pz
+kk
+kk
+Ec
+vz
+MU
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+tQ
+Jy
+Wi
+Vo
+Rb
+jz
+wV
+sB
+LD
+LD
+LD
+mR
+Op
+Op
+Jq
+Kv
+Op
+AA
+FW
+rM
+rM
+rM
+ea
+ea
+ea
+rM
+rM
+SU
+SU
+rM
+SU
+SU
+rM
+rM
+ea
+ea
+ea
+rM
+rM
+rM
+rn
+kk
+kk
+kk
+LW
+FW
+Pz
+FW
+SZ
+ZP
+KW
+kk
+kk
+TV
+TV
+"}
+(49,1,1) = {"
+to
+TV
+bu
+mb
+bu
+OZ
+bu
+bu
+Pz
+Pz
+Pz
+kk
+kk
+Ec
+vz
+MU
+Jy
+Jy
+Jy
+Jy
+tQ
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Wi
+Vo
+Fy
+jz
+sB
+sB
+sB
+Yk
+Yk
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+FW
+rM
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+rM
+rn
+kk
+LW
+Pz
+Pz
+Pz
+Pz
+Pz
+FW
+Ld
+XB
+kk
+kk
+TV
+to
+"}
+(50,1,1) = {"
+to
+TV
+bu
+bu
+zG
+De
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+kk
+Ec
+vz
+MU
+Jy
+Jy
+Jy
+Jy
+Jy
+ne
+Jy
+Jy
+Jy
+Jy
+Jy
+mR
+Vo
+Vo
+jz
+sB
+sB
+sB
+sB
+sB
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+FW
+rM
+iv
+Nz
+iv
+iv
+iv
+iv
+iv
+Nz
+iv
+iv
+iv
+Nz
+iv
+iv
+iv
+iv
+iv
+Nz
+iv
+rM
+rn
+LW
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Ld
+FW
+XB
+kk
+TV
+to
+"}
+(51,1,1) = {"
+to
+TV
+TV
+bu
+bu
+OZ
+bu
+Pz
+Pz
+Pz
+Pz
+Zi
+XB
+Ec
+vz
+MU
+ne
+Jy
+Jy
+OI
+Jy
+Jy
+tQ
+Jy
+Jy
+Jy
+Jy
+Wi
+Vo
+Vo
+jz
+sB
+sB
+sB
+Yk
+So
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+FW
+ea
+iv
+iv
+rM
+rM
+rM
+rM
+rM
+qZ
+Nz
+fM
+iv
+iv
+rM
+rM
+rM
+rM
+rM
+iv
+iv
+ea
+rn
+vz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Ld
+FW
+FW
+TV
+TV
+to
+"}
+(52,1,1) = {"
+to
+to
+TV
+bu
+bu
+OZ
+bu
+Pz
+Pz
+Pz
+Pz
+Zi
+pu
+ZP
+vz
+MU
+tQ
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Wi
+Vo
+Vo
+Mq
+sB
+sB
+LD
+LD
+LD
+mR
+Op
+Op
+Jq
+Dn
+Op
+AA
+FW
+ea
+iv
+iv
+rM
+LY
+LY
+LY
+rM
+rM
+tY
+tY
+tY
+rM
+rM
+LY
+LY
+LY
+rM
+iv
+iv
+ea
+rn
+vz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+FW
+Ld
+FW
+FW
+TV
+to
+to
+"}
+(53,1,1) = {"
+to
+to
+TV
+mb
+bu
+OZ
+mb
+Pz
+Pz
+Pz
+bu
+bu
+GH
+Fg
+vz
+MU
+Jy
+Jy
+Jy
+Jy
+tQ
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Wi
+Vo
+Vo
+jz
+sB
+sB
+Ka
+Ci
+QO
+mR
+Op
+Op
+Jq
+Op
+Op
+dl
+FW
+ea
+iv
+iv
+rM
+LY
+rM
+rM
+rM
+ds
+ds
+ds
+ds
+ds
+rM
+rM
+rM
+LY
+rM
+iv
+iv
+ea
+rn
+Pb
+jn
+Pz
+Pz
+Pz
+FW
+Pz
+FW
+gl
+jn
+FW
+TV
+to
+to
+"}
+(54,1,1) = {"
+to
+to
+TV
+TV
+bu
+OZ
+bu
+bu
+Pz
+bu
+bu
+bu
+Zi
+KC
+vz
+mR
+MU
+MU
+mR
+MU
+MU
+mR
+MU
+MU
+mR
+MU
+MU
+mR
+Vo
+lB
+YE
+wV
+sB
+sB
+sB
+sB
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+FW
+ea
+iv
+iv
+rM
+LY
+rM
+fp
+ds
+ds
+ds
+ds
+ds
+ds
+ds
+fp
+rM
+LY
+rM
+iv
+iv
+ea
+rn
+kk
+kk
+vz
+Pz
+Pz
+FW
+jn
+Bq
+Ec
+kk
+TV
+TV
+to
+to
+"}
+(55,1,1) = {"
+to
+to
+to
+TV
+bu
+IC
+ax
+ax
+ax
+ax
+ax
+ax
+NC
+YJ
+vz
+MU
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Eo
+Jy
+Jy
+Wi
+Vo
+Vo
+jz
+sB
+sB
+en
+Rp
+Rp
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+FW
+rM
+iv
+iv
+rM
+rM
+rM
+ds
+ds
+dV
+dV
+ds
+ds
+ds
+ds
+ds
+rM
+rM
+rM
+iv
+iv
+rM
+FW
+XB
+kk
+Pb
+Pz
+FW
+HV
+kk
+dC
+Ec
+KW
+TV
+to
+to
+to
+"}
+(56,1,1) = {"
+to
+to
+to
+TV
+TV
+bu
+mb
+bu
+my
+bu
+bu
+mb
+Pz
+bq
+vz
+MU
+Jy
+Jy
+Jy
+Jy
+Eo
+Jy
+ne
+Jy
+Jy
+Jy
+Jy
+IK
+Vo
+Vo
+jz
+yx
+sB
+LD
+LD
+LD
+mR
+Op
+Op
+Jq
+Kv
+kd
+AA
+rM
+rM
+iv
+iv
+iv
+rM
+ds
+ds
+ds
+dV
+dV
+dV
+dV
+Ks
+pE
+ds
+ds
+rM
+iv
+iv
+iv
+rM
+rM
+nf
+bv
+lV
+Qm
+vD
+lV
+zS
+Sg
+rH
+TV
+TV
+to
+to
+to
+"}
+(57,1,1) = {"
+to
+to
+to
+to
+TV
+bu
+bu
+mb
+bu
+bu
+Pz
+Pz
+Pz
+Fg
+vz
+MU
+Jy
+Eo
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Wi
+Vo
+Fy
+jz
+sB
+sB
+sB
+Yk
+Yk
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+rM
+LF
+iv
+iv
+iv
+SF
+ds
+ds
+dV
+dV
+dV
+dV
+dV
+dV
+dV
+ds
+ds
+wy
+iv
+iv
+iv
+LF
+rM
+rn
+Ec
+kk
+LW
+Pz
+ZD
+XB
+kk
+kk
+TV
+to
+to
+to
+to
+"}
+(58,1,1) = {"
+to
+to
+to
+to
+TV
+TV
+bu
+bu
+Pz
+Pz
+Pz
+Pz
+Pz
+Fg
+vz
+MU
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+mR
+Vo
+Vo
+jz
+sB
+sB
+sB
+sB
+sB
+mR
+Op
+Op
+Jq
+Op
+Op
+dl
+rM
+LF
+iv
+Nz
+iv
+SF
+ds
+ds
+ds
+dV
+Yf
+dV
+dV
+dV
+dV
+ds
+ds
+wy
+iv
+Nz
+iv
+LF
+rM
+rn
+Ec
+LW
+Pz
+Pz
+Pz
+FW
+XB
+TV
+TV
+to
+to
+to
+to
+"}
+(59,1,1) = {"
+to
+to
+to
+to
+to
+TV
+TV
+bu
+bu
+Pz
+Pz
+Pz
+Zi
+Fg
+vz
+MU
+Jy
+Jy
+Jy
+ne
+Jy
+Jy
+Eo
+Jy
+Jy
+Jy
+ne
+Wi
+Vo
+Vo
+jz
+sB
+sB
+sB
+Yk
+Yk
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+rM
+LF
+fM
+iv
+iv
+Xd
+ds
+ds
+dV
+dV
+pE
+Yf
+dV
+dV
+dV
+ds
+ds
+wy
+iv
+fM
+iv
+LF
+rM
+rn
+Ec
+Pb
+Pz
+Pz
+FW
+FW
+FW
+TV
+to
+to
+to
+to
+to
+"}
+(60,1,1) = {"
+to
+to
+to
+to
+to
+to
+TV
+bu
+bu
+Pz
+Pz
+bu
+Zi
+Fg
+vz
+MU
+Eo
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Wi
+Vo
+Vo
+jz
+sB
+wV
+LD
+LD
+LD
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+rM
+rM
+iv
+iv
+iv
+rM
+ds
+ds
+dV
+dV
+dV
+dV
+dV
+dV
+ds
+ds
+ds
+rM
+iv
+iv
+iv
+rM
+rM
+rn
+Ec
+kk
+Pb
+Pz
+FW
+FW
+TV
+TV
+to
+to
+to
+to
+to
+"}
+(61,1,1) = {"
+to
+to
+to
+to
+to
+to
+TV
+mb
+bu
+bu
+Pz
+Zi
+FW
+Fg
+vz
+MU
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Jy
+Eo
+Jy
+Wi
+Vo
+Vo
+Hm
+sB
+sB
+sB
+Wa
+Bl
+mR
+Op
+Op
+Jq
+Kv
+Op
+AA
+FW
+rM
+iv
+iv
+rM
+rM
+rM
+ds
+ds
+ds
+dV
+dV
+ds
+dV
+ds
+ds
+rM
+rM
+rM
+iv
+iv
+rM
+FW
+Su
+Ec
+kk
+kk
+Pb
+FW
+FW
+TV
+to
+to
+to
+to
+to
+to
+"}
+(62,1,1) = {"
+to
+to
+to
+to
+to
+to
+TV
+TV
+mb
+bu
+bW
+Zi
+FW
+rG
+vz
+mR
+MU
+MU
+mR
+MU
+MU
+mR
+MU
+MU
+mR
+MU
+MU
+mR
+Vo
+Vo
+jz
+sB
+sB
+sB
+sB
+sB
+mR
+Op
+Dn
+Jq
+Op
+Op
+AA
+FW
+ea
+iv
+iv
+rM
+LY
+rM
+fp
+ds
+ds
+ds
+ds
+ds
+ds
+ds
+fp
+rM
+LY
+rM
+iv
+iv
+ea
+rn
+ag
+Ab
+kk
+kk
+ag
+Pb
+TV
+TV
+to
+to
+to
+to
+to
+to
+"}
+(63,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+bu
+bu
+Hw
+Su
+Ec
+oy
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+FW
+mR
+Vo
+Vo
+jz
+sB
+sB
+sB
+Wa
+Bl
+mR
+Op
+Op
+Jq
+Op
+Dn
+AA
+FW
+ea
+iv
+iv
+rM
+LY
+rM
+rM
+rM
+ds
+ds
+ds
+ds
+ds
+rM
+rM
+rM
+LY
+rM
+iv
+iv
+ea
+rn
+kk
+Ec
+kk
+kk
+kk
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+"}
+(64,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+bu
+Hw
+rn
+kk
+VV
+lV
+XJ
+lV
+lV
+lV
+lV
+lV
+lV
+lV
+lV
+lV
+Lf
+vz
+mR
+Vo
+Vo
+jz
+LD
+LD
+LD
+LD
+LD
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+FW
+ea
+iv
+iv
+rM
+LY
+LY
+LY
+rM
+rM
+aD
+aD
+aD
+rM
+rM
+LY
+LY
+LY
+rM
+iv
+iv
+ea
+rn
+kk
+Ec
+kk
+kk
+kk
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(65,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+FW
+Su
+kk
+wS
+kk
+kk
+kk
+LW
+ZD
+ZD
+XB
+kk
+kk
+kk
+ag
+Ec
+vz
+MU
+iG
+Vo
+jz
+Vo
+Vo
+Vo
+Vo
+Vo
+mR
+Op
+Op
+wG
+Op
+Op
+AA
+FW
+Lm
+iv
+iv
+rM
+rM
+rM
+rM
+rM
+iv
+iv
+iv
+iv
+iv
+rM
+rM
+rM
+rM
+rM
+iv
+iv
+ea
+rn
+KW
+Ec
+kk
+kk
+nL
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(66,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+kk
+kk
+kk
+ag
+LW
+ZD
+FW
+Pz
+Pz
+FW
+ZD
+XB
+kk
+kk
+Ec
+vz
+MU
+iG
+Vo
+jz
+Vo
+Vo
+Vo
+Vo
+Vo
+Ii
+Dn
+Op
+Jq
+Op
+Op
+AA
+FW
+rM
+iv
+Nz
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+Nz
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+Nz
+iv
+rM
+DQ
+lV
+rH
+kk
+nL
+nL
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(67,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+kk
+kk
+kk
+vz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+FW
+ZD
+XB
+Ec
+vz
+MU
+iG
+Vo
+jz
+Fy
+Vo
+Mv
+Vo
+Vo
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+FW
+rM
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+fM
+iv
+iv
+iv
+iv
+iv
+iv
+iv
+rM
+Fg
+kk
+kk
+nL
+nL
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(68,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+KW
+LW
+FW
+CD
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+rn
+Ec
+vz
+MU
+iG
+Vo
+vL
+um
+um
+Wd
+um
+um
+Tf
+QN
+QN
+Tz
+Kv
+Op
+AA
+FW
+rM
+rM
+rM
+ea
+ea
+ea
+ea
+rM
+rM
+zw
+ML
+Hl
+rM
+rM
+ea
+ea
+ea
+ea
+rM
+rM
+rM
+Fg
+kk
+nL
+nL
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(69,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+FW
+FW
+pu
+FW
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+rn
+Ec
+vz
+mR
+Lh
+RE
+RE
+RE
+RE
+RE
+RE
+RE
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+FW
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+FW
+rM
+rM
+rM
+rM
+rM
+ZK
+hd
+zy
+zy
+WF
+Ma
+WF
+WF
+Kz
+TV
+TV
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(70,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+FW
+FW
+FW
+FW
+Pz
+Pz
+Pz
+Pz
+FW
+Su
+Ec
+vz
+mR
+mR
+MU
+MU
+mR
+mR
+MU
+MU
+mR
+mR
+Op
+Op
+Jq
+Op
+Op
+AA
+rn
+kk
+kk
+kk
+kk
+kk
+ag
+kk
+Pb
+jn
+jn
+jn
+jn
+jn
+Cf
+kk
+kk
+kk
+vz
+FW
+FW
+FW
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(71,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+CD
+FW
+FW
+FW
+CD
+Pz
+FW
+Su
+ag
+Ec
+Pb
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+jn
+FW
+ix
+Op
+kE
+QN
+EH
+mr
+Gi
+lV
+lV
+ql
+pg
+pg
+Bp
+Wk
+lV
+lV
+As
+lV
+lV
+lV
+rH
+LW
+ZD
+ZD
+Pz
+FW
+FW
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(72,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+FW
+FW
+FW
+jn
+Su
+kk
+kk
+VV
+lV
+lV
+lV
+lV
+zQ
+Wk
+lV
+lV
+lV
+lV
+oU
+oe
+QN
+Tz
+Kv
+Op
+AA
+rn
+kk
+LW
+Pz
+FW
+Pz
+Pz
+CD
+XB
+kk
+Ec
+KW
+kk
+LW
+ZD
+CD
+Pz
+Pz
+Pz
+CD
+FW
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(73,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+nL
+FW
+HV
+kk
+kk
+kk
+kk
+SY
+kk
+kk
+LW
+ZD
+Pz
+FW
+XB
+kk
+ag
+kk
+vz
+mw
+Op
+Jq
+Op
+Op
+AA
+rn
+LW
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+FW
+XB
+wS
+kk
+kk
+vz
+Pz
+Pz
+Pz
+Pz
+TV
+QH
+QH
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(74,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+kk
+kk
+kk
+ag
+kk
+kk
+LW
+Pz
+Pz
+Pz
+Pz
+FW
+XB
+kk
+kk
+vz
+ix
+Op
+Jq
+Op
+Op
+AA
+rn
+Pb
+FW
+Pz
+Pz
+Pz
+Pz
+Pz
+Pz
+FW
+XB
+ag
+LW
+Pz
+Pz
+Pz
+TV
+TV
+TV
+Ra
+Ra
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(75,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+kk
+kk
+kk
+kk
+vz
+FW
+Pz
+Pz
+Pz
+Pz
+rn
+kk
+kk
+Bj
+ix
+Op
+Jq
+Op
+Op
+AA
+rn
+kk
+Pb
+FW
+Pz
+Pz
+Pz
+Pz
+FW
+FW
+rn
+kk
+vz
+Pz
+TV
+TV
+TV
+to
+TV
+Ra
+Ra
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(76,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+KW
+LW
+FW
+FW
+FW
+CD
+Pz
+FW
+Su
+kk
+kk
+vz
+ix
+Op
+Jq
+Op
+Op
+AA
+rn
+ag
+kk
+vz
+FW
+FW
+Pz
+CD
+FW
+FW
+FW
+zd
+TV
+TV
+TV
+to
+to
+to
+TV
+Ra
+Ra
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(77,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+FW
+FW
+FW
+FW
+CD
+Su
+kk
+kk
+kk
+vz
+ix
+Op
+Jq
+Kv
+Op
+AA
+rn
+kk
+kk
+Pb
+FW
+FW
+CD
+FW
+FW
+FW
+TV
+TV
+TV
+to
+to
+to
+to
+to
+TV
+Ra
+Ra
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(78,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+TV
+FW
+Su
+kk
+kk
+kk
+kk
+vz
+ix
+Op
+Jq
+Op
+Op
+AA
+rn
+kk
+kk
+kk
+Pb
+FW
+FW
+TV
+TV
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+TV
+Ra
+Ra
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(79,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+TV
+TV
+TV
+kk
+vz
+ix
+Op
+Jq
+Kv
+Op
+cf
+rn
+kk
+TV
+TV
+TV
+TV
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+Ra
+Ra
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}
+(80,1,1) = {"
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+TV
+TV
+TV
+TV
+TV
+Op
+Jq
+Op
+Op
+TV
+TV
+TV
+TV
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+to
+"}

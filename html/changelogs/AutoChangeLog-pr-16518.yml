@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - bugfix: "Tanks can now leave the alamo on LV624."
