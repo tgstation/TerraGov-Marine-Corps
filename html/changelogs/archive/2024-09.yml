@@ -26,3 +26,8 @@
   ivanmixo:
   - bugfix: AI eye hearing now respects instrument preferences
   - code_imp: Improved the way AI eye hears
+2024-09-10:
+  Lumipharon:
+  - bugfix: fixed scout cloak not properly deactivating on energy loss
+  ivanmixo:
+  - rscadd: Added the <:rainbow:> emoji
