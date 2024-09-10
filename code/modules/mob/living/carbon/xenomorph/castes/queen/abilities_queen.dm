@@ -147,7 +147,7 @@
 	if(frenzy_screech)
 		frenzy_screech.add_cooldown(5 SECONDS)
 
-/datum/action/ability/activable/xeno/heal_screech
+/datum/action/ability/activable/xeno/screech/healing
 	name = "Heal Screech"
 	action_icon_state = "heal_screech"
 	desc = "Screech that heals nearby xenos."
@@ -170,7 +170,7 @@
 	add_cooldown()
 	..()
 
-/datum/action/ability/activable/xeno/plasma_screech
+/datum/action/ability/activable/xeno/screech/plasma
 	name = "Plasma Screech"
 	action_icon_state = "plasma_screech"
 	desc = "Screech that increases plasma regeneration for nearby xenos."
@@ -182,7 +182,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLASMA_SCREECH,
 	)
 
-/datum/action/ability/activable/xeno/plasma_screech/use_ability(atom/A)
+/datum/action/ability/activable/xeno/screech/plasma/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, screech_range))
@@ -197,7 +197,7 @@
 	add_cooldown()
 	..()
 
-/datum/action/ability/activable/xeno/frenzy_screech
+/datum/action/ability/activable/xeno/screech/frenzy
 	name = "Frenzy Screech"
 	action_icon_state = "frenzy_screech"
 	desc = "Screech that increases damage for nearby xenos."
@@ -209,7 +209,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FRENZY_SCREECH,
 	)
 
-/datum/action/ability/activable/xeno/frenzy_screech/use_ability(atom/A)
+/datum/action/ability/activable/xeno/screech/frenzy/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, screech_range))
