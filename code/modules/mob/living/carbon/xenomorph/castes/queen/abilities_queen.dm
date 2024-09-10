@@ -133,8 +133,6 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/activable/xeno/
-
 // ***************************************
 // *********** Support Screeches
 // ***************************************
