@@ -435,38 +435,49 @@
 /area/desert_dam/building/water_treatment_one/lobby
 	name = "Water Treatment One Lobby"
 	icon_state = "red"
+	requires_power = TRUE
 /area/desert_dam/building/water_treatment_one/breakroom
 	name = "Water Treatment One Breakroom"
 	icon_state = "green"
+	requires_power = TRUE
 /area/desert_dam/building/water_treatment_one/garage
 	name = "Water Treatment One Garage"
 	icon_state = "garage"
+	requires_power = TRUE
 /area/desert_dam/building/water_treatment_one/sedimentation
 	name = "Water Treatment One Sedimentation"
 	icon_state = "blue"
+	requires_power = TRUE
 /area/desert_dam/building/water_treatment_one/equipment
 	name = "Water Treatment One Equipment Room"
 	icon_state = "red"
+	requires_power = TRUE
 /area/desert_dam/building/water_treatment_one/hallway
 	name = "Water Treatment One Hallway"
 	icon_state = "purple"
+	requires_power = TRUE
 /area/desert_dam/building/water_treatment_one/control_room
 	name = "Water Treatment One Control Room"
 	icon_state = "yellow"
+	requires_power = TRUE
 /area/desert_dam/building/water_treatment_one/purification
 	name = "Water Treatment One Purification"
 	icon_state = "green"
+	requires_power = TRUE
 /area/desert_dam/building/water_treatment_one/floodgate_control
 	name = "Water Treatment One Floodgate Control"
 	icon_state = "green"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/floodgate_control/central
 	name = "Central Floodgate Control"
 	icon_state = "green"
+	requires_power = TRUE
 
 /area/desert_dam/building/water_treatment_one/floodgate_control/central2
 	name = "Central Floodgate Control Storage"
 	icon_state = "green"
+	requires_power = TRUE
 
 //Water Treatment Plant 2
 /area/desert_dam/building/water_treatment_two
@@ -709,6 +720,7 @@
 	name = "Aerodrome Landing Pad"
 	icon_state = "landing_pad"
 	minimap_color = MINIMAP_AREA_LZ
+	requires_power = FALSE
 /area/desert_dam/exterior/landing/landing_pad_three_external
 	name = "Aerodrome Landing Valley"
 	icon_state = "landing_pad_ext"
@@ -743,6 +755,7 @@
 /area/desert_dam/exterior/valley/valley_labs
 	name = "Lab Valley"
 	icon_state = "valley_north"
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_mining
 	name = "Mining Valley"
 	icon_state = "valley_east"
@@ -778,6 +791,7 @@
 /area/desert_dam/exterior/valley/bar_valley_dam
 	name = "Bar Valley"
 	icon_state = "yellow"
+	requires_power = FALSE
 /area/desert_dam/exterior/valley/valley_wilderness
 	name = "Wilderness Valley"
 	icon_state = "central"

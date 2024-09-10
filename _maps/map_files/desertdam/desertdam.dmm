@@ -46046,16 +46046,6 @@
 	dir = 9
 	},
 /area/desert_dam/exterior/valley/valley_northwest)
-"oOU" = (
-/obj/structure/desertdam/decals/road{
-	dir = 4
-	},
-/obj/structure/cable,
-/obj/machinery/power/apc/drained{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/desert_dam/exterior/landing/landing_pad_three_external)
 "oOW" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/desertdam/decals/road{
@@ -69613,7 +69603,7 @@ qqk
 qqk
 qqk
 qqk
-oOU
+qqk
 fGg
 tmE
 dvR

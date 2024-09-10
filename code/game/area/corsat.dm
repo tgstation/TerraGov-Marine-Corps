@@ -403,6 +403,7 @@
 	icon = 'icons/turf/areas.dmi'
 	icon_state = "shuttle"
 	ceiling = CEILING_METAL
+	requires_power = FALSE
 
 /area/corsat/gamma/airlock/north
 	name = "\improper Gamma Dome North Airlock"

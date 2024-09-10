@@ -16,7 +16,7 @@
 "as" = (
 /obj/effect/ai_node,
 /turf/open/liquid/lava/autosmoothing,
-/area/lavaland)
+/area/lavaland/lava)
 "at" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -1475,7 +1475,7 @@
 /area/lavaland/civilian)
 "qc" = (
 /turf/open/liquid/lava/autosmoothing/catwalk,
-/area/lavaland)
+/area/lavaland/lava)
 "qd" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -2735,7 +2735,7 @@
 /area/lavaland/security/infocenter)
 "Dt" = (
 /turf/open/liquid/lava/autosmoothing,
-/area/lavaland)
+/area/lavaland/lava)
 "Dw" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -3863,7 +3863,7 @@
 "Qi" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/liquid/lava/autosmoothing,
-/area/lavaland)
+/area/lavaland/lava)
 "Qm" = (
 /obj/machinery/power/geothermal,
 /obj/structure/cable,
@@ -4616,7 +4616,7 @@
 "XP" = (
 /obj/effect/ai_node,
 /turf/open/liquid/lava/autosmoothing/catwalk,
-/area/lavaland)
+/area/lavaland/lava)
 "XV" = (
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 5

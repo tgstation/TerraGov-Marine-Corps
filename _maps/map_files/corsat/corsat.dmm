@@ -8204,7 +8204,6 @@
 	},
 /obj/effect/ai_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/structure/cable,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/sigmaremote)
 "dGg" = (
@@ -26111,14 +26110,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/residential)
-"lEU" = (
-/obj/effect/turf_decal/tile/full/brown,
-/obj/structure/cable,
-/obj/machinery/power/apc/hyper{
-	dir = 1
-	},
-/turf/open/floor/tile/blue/whitebluefull,
-/area/corsat/gamma/sigmaremote)
 "lFc" = (
 /obj/machinery/door/poddoor/mainship/open{
 	dir = 2;
@@ -37015,8 +37006,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/mapping_helpers/light/flickering/enable_random_flickering,
-/obj/effect/mapping_helpers/light/flickering/flicker_random_settings/highset,
 /turf/open/floor/grayscale/round/darkgray,
 /area/corsat/dropzone/landingzonethree)
 "qnH" = (
@@ -40581,11 +40570,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/round/black,
 /area/corsat/hangar_storage/research)
-"rQn" = (
-/obj/effect/turf_decal/tile/full/brown,
-/obj/structure/cable,
-/turf/open/floor/tile/blue/whitebluefull,
-/area/corsat/gamma/sigmaremote)
 "rQA" = (
 /obj/effect/turf_decal/tile/corsatstraight/yellow{
 	dir = 8
@@ -40805,9 +40789,6 @@
 /turf/open/floor/grayscale/black,
 /area/corsat/gamma/engineering)
 "rVD" = (
-/obj/machinery/power/apc/drained{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/corsatsemi/yellow,
 /obj/structure/cable,
 /turf/open/floor/grayscale/black,
@@ -68894,7 +68875,7 @@ kLg
 dZj
 kLg
 auT
-rQn
+nmB
 dGc
 nNq
 ecP
@@ -69151,7 +69132,7 @@ kLg
 kLg
 kLg
 sxS
-lEU
+nmB
 byz
 dOu
 ecX

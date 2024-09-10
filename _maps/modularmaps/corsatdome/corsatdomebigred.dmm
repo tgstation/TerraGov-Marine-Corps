@@ -1194,13 +1194,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/dirttosand,
 /area/corsat/sigma/biodome)
-"xX" = (
-/obj/machinery/power/apc/drained{
-	dir = 8;
-	start_charge = 0
-	},
-/turf/open/floor/asteroidfloor,
-/area/corsat/sigma/biodome)
 "yb" = (
 /obj/structure/bed/nest,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -6667,7 +6660,7 @@ ZD
 FW
 ZE
 Op
-xX
+Op
 Op
 AA
 FW

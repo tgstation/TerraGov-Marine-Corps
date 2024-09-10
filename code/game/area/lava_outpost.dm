@@ -5,6 +5,10 @@
 /area/lavaland
 	name = "\improper Lava"
 	icon_state = "lava"
+
+/area/lavaland/lava
+	name = "\improper Lava"
+	icon_state = "lava"
 	always_unpowered = TRUE
 
 //Caves
