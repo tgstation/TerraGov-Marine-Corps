@@ -163,7 +163,7 @@
 	for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, screech_range))
 		affected_xeno.apply_status_effect(/datum/status_effect/healing_infusion, HIVELORD_HEALING_INFUSION_DURATION / 3, HIVELORD_HEALING_INFUSION_TICKS / 2)
 
-	playsound(xeno_owner.loc, 'modular_RUtgmc/sound/voice/alien_heal_screech.ogg', 75, 0)
+	playsound(xeno_owner.loc, 'sound/voice/alien/queen_heal_screech.ogg', 75, 0)
 	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 
 	succeed_activate()
@@ -190,7 +190,7 @@
 			continue
 		affected_xeno.apply_status_effect(/datum/status_effect/plasma_surge, affected_xeno.xeno_caste.plasma_max / 2, bonus_regen, duration)
 
-	playsound(xeno_owner.loc, 'modular_RUtgmc/sound/voice/alien_plasma_screech.ogg', 75, 0)
+	playsound(xeno_owner.loc, 'sound/voice/alien/queen_plasma_screech.ogg', 75, 0)
 	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 
 	succeed_activate()
