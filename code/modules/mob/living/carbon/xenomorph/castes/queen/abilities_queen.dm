@@ -139,7 +139,7 @@
 // *********** Support Screeches
 // ***************************************
 /datum/action/ability/activable/xeno/support_screech
-	cooldown_timer = 30 SECONDS
+	cooldown_duration = 30 SECONDS
 	ability_cost = 250
 	var/screech_range = 5
 
