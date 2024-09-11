@@ -15,6 +15,10 @@
 	maptext_x = 24
 	maptext_y = 9
 
+///Set the HUD in New, as lobby screens are made before Atoms are Initialized.
+/atom/movable/screen/lobby/New(loc, datum/hud/our_hud, ...)
+	set_new_hud(our_hud)
+	return ..()
 
 ///This proc updates the maptext of the buttons.
 /atom/movable/screen/text/lobby/proc/update_text()
