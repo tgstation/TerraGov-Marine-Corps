@@ -13057,6 +13057,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/broken_apc,
 /turf/open/floor/prison/darkbrown/full,
 /area/metnal/inside/emergencyequip)
 "jxL" = (
@@ -28029,7 +28030,6 @@
 /obj/structure/rack/nometal,
 /obj/machinery/light,
 /obj/item/clothing/mask/gas,
-/obj/effect/mapping_helpers/broken_apc,
 /turf/open/floor/prison/darkbrown/full,
 /area/metnal/inside/emergencyequip)
 "tUq" = (
