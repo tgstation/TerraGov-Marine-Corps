@@ -8,7 +8,3 @@
 		screen.update_text()
 		static_inventory += screen
 		screen.set_position(2, ycoord--)
-
-/datum/hud/new_player/Destroy()
-	QDEL_LIST(button_list)
-	return ..()
