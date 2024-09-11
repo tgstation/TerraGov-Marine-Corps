@@ -213,6 +213,12 @@
 	ceiling = CEILING_OBSTRUCTED
 	minimap_color = MINIMAP_AREA_REQ
 
+/area/metnal/inside/emergencyequip
+	name = "Emergency Equipement Storage"
+	icon_state = "storage"
+	ceiling = CEILING_OBSTRUCTED
+	minimap_color = MINIMAP_AREA_REQ
+
 // cafeteria areas
 /area/metnal/inside/bar
 	name = "Maars Bar"

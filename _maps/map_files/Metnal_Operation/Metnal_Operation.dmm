@@ -2181,6 +2181,15 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest)
+"bFa" = (
+/obj/structure/closet/firecloset/full,
+/obj/structure/cable,
+/obj/effect/mapping_helpers/broken_apc,
+/obj/machinery/power/apc/drained{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/outside/central)
 "bFt" = (
 /obj/structure/sink{
 	dir = 1
@@ -5036,6 +5045,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
+"dFD" = (
+/obj/structure/closet/toolcloset,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/central)
 "dFJ" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -6371,6 +6384,12 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/red/whitered/full,
 /area/metnal/inside/chapel)
+"eBB" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/central)
 "eBM" = (
 /obj/structure/rock/large,
 /turf/open/lavaland/basalt,
@@ -13015,6 +13034,10 @@
 	},
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical/chemistry)
+"jxu" = (
+/obj/effect/landmark/weed_node,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/outside/central)
 "jxL" = (
 /obj/machinery/door/airlock/glass_command{
 	dir = 1
@@ -14451,6 +14474,12 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southeast)
+"kyq" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/extinguisher,
+/obj/effect/spawner/random/engineering/engibelt,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/central)
 "kyw" = (
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 8
@@ -16701,6 +16730,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/whitegreen/full,
 /area/metnal/inside/medical)
+"mgJ" = (
+/obj/machinery/door/airlock/multi_tile/secure,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/central)
 "mhb" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -18300,6 +18333,12 @@
 /obj/effect/acid_hole,
 /turf/closed/wall/prison,
 /area/metnal/inside/laundromat)
+"nmu" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/cable,
+/obj/effect/spawner/random/engineering/cable,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/central)
 "nmJ" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt/cave{
@@ -20221,6 +20260,11 @@
 	dir = 4
 	},
 /area/metnal/outside/north)
+"oFe" = (
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/toolbox,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/central)
 "oFj" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
@@ -22742,6 +22786,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
 /area/metnal/inside/chapel)
+"qxL" = (
+/obj/effect/turf_decal/sandytile/sandyplating,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/outside/central)
 "qxM" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor/tile/dark,
@@ -26286,6 +26334,10 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"sJI" = (
+/obj/effect/spawner/random/engineering/structure/tank,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/central)
 "sJM" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/ai_node,
@@ -29873,6 +29925,10 @@
 	dir = 1
 	},
 /area/metnal/outside/north)
+"vkO" = (
+/obj/effect/spawner/random/engineering/structure/powergenerator,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/central)
 "vlm" = (
 /obj/structure/cargo_container/red,
 /turf/open/floor/prison/darkbrown,
@@ -31442,6 +31498,10 @@
 	dir = 1
 	},
 /area/metnal/inside/research)
+"wlY" = (
+/obj/structure/closet/firecloset/full,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/central)
 "wmc" = (
 /obj/effect/landmark/xeno_resin_wall,
 /obj/effect/landmark/weed_node,
@@ -46006,11 +46066,11 @@ mtn
 dxJ
 ddR
 vUt
-kez
-kez
-kez
-dxJ
-kez
+xXa
+eQn
+eQn
+eQn
+ior
 tOB
 tOB
 tOB
@@ -46208,11 +46268,11 @@ uCC
 lHE
 lwX
 kez
-kez
-kez
-kez
-kez
-kez
+lUm
+oqe
+tAX
+cUI
+hsJ
 oRN
 oRN
 tOB
@@ -46410,11 +46470,11 @@ tNN
 kez
 ddR
 kez
-kez
-dxJ
-kez
-kez
-kez
+lUm
+tAX
+qbe
+tAX
+hsJ
 kez
 oRN
 tOB
@@ -46612,11 +46672,11 @@ mtn
 pzj
 dmv
 kez
-kez
-kez
-kez
-kez
-kez
+lUm
+azF
+tAX
+bcd
+hsJ
 kez
 kez
 tOB
@@ -46814,11 +46874,11 @@ mtn
 kez
 lwX
 kez
-xXa
-eQn
-eQn
-eQn
-ior
+qno
+gQx
+gQx
+gQx
+aFQ
 kez
 kez
 oRN
@@ -47015,14 +47075,14 @@ kez
 mtn
 quP
 ddR
-kez
-lUm
-oqe
-tAX
-cUI
-hsJ
-kez
-kez
+kJn
+kJn
+kJn
+kJn
+kJn
+kJn
+kJn
+kJn
 kez
 tOB
 tOB
@@ -47217,14 +47277,14 @@ kez
 uCC
 tAX
 ddR
-lHE
-lUm
-tAX
-qbe
-tAX
-hsJ
-kez
-kez
+qxL
+kyq
+nmu
+sJI
+sJI
+wlY
+wlY
+kJn
 kez
 oRN
 tOB
@@ -47419,14 +47479,14 @@ kez
 uCC
 lHE
 ddR
+mgJ
 tAX
-lUm
-azF
 tAX
-bcd
-hsJ
-kez
-kez
+tAX
+naQ
+tAX
+vkO
+kJn
 kez
 kez
 oRN
@@ -47621,14 +47681,14 @@ kez
 mtn
 tAX
 sLx
-kez
-qno
-gQx
-gQx
-gQx
-aFQ
-dxJ
-kez
+dmv
+dmv
+dmv
+dmv
+dmv
+dmv
+vkO
+kJn
 kez
 kez
 oRN
@@ -47823,14 +47883,14 @@ dxJ
 tNN
 kez
 dmv
-kez
-kez
-dxJ
-kez
-kez
-kez
-kez
-kez
+kJn
+kyq
+eBB
+oFe
+dFD
+bFa
+wlY
+kJn
 kez
 kez
 dxJ
@@ -48025,14 +48085,14 @@ kez
 mtn
 lHE
 ddR
-kez
-kez
-kez
-kez
-dxJ
-kez
-kez
-kez
+kJn
+kJn
+kJn
+kJn
+jxu
+kJn
+kJn
+kJn
 kez
 kez
 kez
@@ -49641,7 +49701,7 @@ qmV
 rlA
 reH
 rlA
-czU
+rar
 wMr
 cQT
 uDk
@@ -49843,14 +49903,14 @@ qmV
 rlA
 qmV
 rlA
-czU
+rar
 vdQ
 xAG
 bPw
 hvw
 rar
 rar
-aAS
+rar
 rar
 kez
 mtn
@@ -50256,8 +50316,8 @@ rar
 sWl
 rFw
 rar
-aAS
-aAS
+rar
+rar
 rar
 kez
 vEk
@@ -50460,7 +50520,7 @@ xdI
 qVw
 eMH
 wtw
-aAS
+rar
 kez
 mtn
 kez
@@ -50853,7 +50913,7 @@ aEz
 qJl
 duq
 qRy
-czU
+rar
 sdg
 gAx
 osv
@@ -51056,8 +51116,8 @@ gct
 udi
 qyI
 rar
-czU
-czU
+rar
+rar
 rar
 rar
 rar
@@ -51260,7 +51320,7 @@ beS
 beS
 gxQ
 cnN
-czU
+rar
 rtV
 dZG
 dyO
@@ -51462,7 +51522,7 @@ gYt
 gYt
 lxf
 cuR
-czU
+rar
 eXU
 jFV
 vOw
@@ -51470,7 +51530,7 @@ pLo
 gJH
 hmN
 xbL
-aAS
+rar
 sLx
 mtn
 kez
@@ -51664,7 +51724,7 @@ gYt
 gYt
 gYt
 pmb
-czU
+rar
 duv
 apd
 nhR
@@ -51672,7 +51732,7 @@ iaX
 wHX
 wyg
 erq
-aAS
+rar
 ddR
 mtn
 fiP
@@ -51867,7 +51927,7 @@ cdJ
 gYt
 pmb
 rar
-aAS
+rar
 rar
 dZG
 rVC
@@ -52076,7 +52136,7 @@ gcs
 fPF
 rlA
 qIA
-czU
+rar
 ddR
 mtn
 dxJ
@@ -52278,7 +52338,7 @@ jte
 rlA
 rlA
 mfU
-czU
+rar
 ddR
 mtn
 tAX
@@ -52480,7 +52540,7 @@ ayr
 rlA
 rlA
 rlA
-czU
+rar
 sLx
 mtn
 kez
@@ -53490,7 +53550,7 @@ fXm
 jsW
 rlA
 rZV
-czU
+rar
 ddR
 mtn
 lHE
@@ -53690,8 +53750,8 @@ rlA
 rlA
 rlA
 rar
-czU
-czU
+rar
+rar
 rar
 ddR
 uCC
@@ -53891,7 +53951,7 @@ npL
 nLT
 eyA
 eyA
-czU
+rar
 dxJ
 kez
 kez
@@ -54091,8 +54151,8 @@ wif
 rlA
 rlA
 rar
-czU
-czU
+rar
+rar
 rar
 kez
 kez
