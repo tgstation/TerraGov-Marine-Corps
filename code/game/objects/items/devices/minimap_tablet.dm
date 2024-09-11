@@ -28,7 +28,7 @@ GLOBAL_PROTECT(roles_allowed_minimap_draw)
 	. = ..()
 	var/list/atom/movable/screen/actions = list()
 	for(var/path in drawing_tools)
-		actions += new path(null, editing_z, minimap_flag)
+		actions += new path(null, null, editing_z, minimap_flag)
 	drawing_tools = actions
 
 /obj/item/minimap_tablet/Destroy()
