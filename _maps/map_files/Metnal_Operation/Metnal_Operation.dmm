@@ -345,6 +345,11 @@
 	dir = 4
 	},
 /area/metnal/inside/research)
+"aoC" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/turf/open/floor/officesquares,
+/area/metnal/inside/administration)
 "apd" = (
 /obj/item/tool/wet_sign,
 /obj/machinery/light{
@@ -2247,6 +2252,9 @@
 "bHb" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/insulatedgloves,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
 "bHd" = (
@@ -2719,6 +2727,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest)
+"bYR" = (
+/obj/structure/cable,
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/turf/open/floor/officesquares,
+/area/metnal/inside/administration)
 "bZj" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -11599,8 +11613,8 @@
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
 "ioE" = (
-/obj/structure/rock/large,
-/turf/closed/wall/r_wall/prison,
+/obj/effect/spawner/random/misc/structure/supplycrate/secureweighted,
+/turf/open/floor/officesquares,
 /area/metnal/inside/administration)
 "ipj" = (
 /obj/structure/table/black,
@@ -13113,6 +13127,9 @@
 	},
 /obj/structure/cable,
 /obj/effect/mapping_helpers/broken_apc,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/prison/darkbrown/full,
 /area/metnal/inside/emergencyequip)
 "jxL" = (
@@ -17700,6 +17717,14 @@
 /obj/machinery/light,
 /turf/open/floor/prison/whitegreen,
 /area/metnal/inside/research)
+"mLt" = (
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/metnal/inside/centralminingequip)
 "mLz" = (
 /obj/structure/flora/drought/grass,
 /obj/effect/turf_decal/siding/wood{
@@ -18487,6 +18512,10 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/liquid/water,
 /area/metnal/inside/garden)
+"nnM" = (
+/obj/structure/window_frame/prison,
+/turf/open/floor/plating/ground/concrete,
+/area/metnal/inside/garage)
 "nnO" = (
 /obj/structure/sink{
 	dir = 4
@@ -19430,6 +19459,9 @@
 /obj/structure/rack/nometal,
 /obj/item/stack/sheet/metal/medium_stack,
 /obj/effect/spawner/random/engineering/extinguisher,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/prison,
 /area/metnal/inside/centralminingequip)
 "nVk" = (
@@ -24090,10 +24122,10 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "rcM" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
 "rdi" = (
@@ -26709,6 +26741,9 @@
 "sMw" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/extinguisher,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/open/floor/prison/darkbrown/full,
 /area/metnal/inside/emergencyequip)
 "sML" = (
@@ -33118,10 +33153,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest/garbledradio)
-"xjQ" = (
-/obj/structure/window_frame/prison,
-/turf/open/floor/plating/ground/concrete,
-/area/metnal/inside/garage)
 "xkf" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
@@ -47052,7 +47083,7 @@ tUt
 tUt
 tUt
 dTp
-xjQ
+nnM
 dTp
 dTp
 tUt
@@ -57556,7 +57587,7 @@ kez
 dxJ
 cyH
 aGn
-jLh
+mLt
 kew
 cyH
 kCT
@@ -66239,9 +66270,9 @@ xhj
 ltN
 wqQ
 wqQ
-wqQ
-wqQ
-ptV
+bYR
+aoC
+ioE
 ltN
 vce
 epP
@@ -67047,7 +67078,7 @@ aak
 eSU
 eSU
 eSU
-ioE
+eSU
 eSU
 eSU
 eSU
