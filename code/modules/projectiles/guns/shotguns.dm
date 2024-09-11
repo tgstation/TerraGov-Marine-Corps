@@ -395,7 +395,9 @@
 	worn_icon_state = "ks23"
 	caliber = CALIBER_6G //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/heavy_buckshot
-	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh35.ogg'
+	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ks23_insert.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ks23_pump.ogg'
 	max_chamber_items = 5
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -413,10 +415,9 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/stock/icc_heavyshotgun,
 		/obj/item/attachable/motiondetector,
-		/obj/item/attachable/buildasentry,
 	)
 
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = 0, "stock_y" = 12)
 	item_map_variant_flags = NONE
 
 	starting_attachment_types = list(
@@ -431,6 +432,13 @@
 	wield_delay = 0.95 SECONDS
 	cock_delay = 1.4 SECONDS
 	damage_falloff_mult = 0.5 // Rifled barrel, also has more slug variety
+
+/obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun/icc_leader
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/icc_heavyshotgun,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/compensator,
+	)
 
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.

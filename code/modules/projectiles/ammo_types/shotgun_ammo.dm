@@ -189,6 +189,20 @@
 /datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
+/datum/ammo/bullet/shotgun/barrikada_slug
+	name = "heavy metal slug"
+	handful_icon_state = "heavy_shotgun_barrikada"
+	hud_state = "shotgun_slug"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	shell_speed = 4
+	max_range = 15
+	damage = 125
+	penetration = 50
+	sundering = 15
+
+/datum/ammo/bullet/shotgun/barrikada/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
+
 /datum/ammo/bullet/shotgun/heavy_spread
 	name = "additional buckshot"
 	icon_state = "buckshot"

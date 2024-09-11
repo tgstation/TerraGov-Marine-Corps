@@ -112,7 +112,6 @@
 /obj/item/attachable/stock/icc_heavyshotgun
 	name = "\improper ML-101 stock"
 	desc = "A irremovable ML-101 stock."
-	icon = 'icons/obj/items/guns/attachments/stock_64.dmi'
 	icon_state = "ml101"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
