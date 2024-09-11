@@ -23300,10 +23300,10 @@
 /area/metnal/inside/auxstorage)
 "qFx" = (
 /obj/structure/cable,
-/obj/effect/mapping_helpers/broken_apc,
 /obj/machinery/power/apc/drained{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/broken_apc,
 /turf/open/floor/prison,
 /area/metnal/inside/centralminingequip)
 "qFD" = (
@@ -33118,6 +33118,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southwest/garbledradio)
+"xjQ" = (
+/obj/structure/window_frame/prison,
+/turf/open/floor/plating/ground/concrete,
+/area/metnal/inside/garage)
 "xkf" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
@@ -47048,7 +47052,7 @@ tUt
 tUt
 tUt
 dTp
-dsx
+xjQ
 dTp
 dTp
 tUt
@@ -49860,7 +49864,7 @@ mtn
 kez
 kez
 kFW
-oRN
+kez
 oRN
 oRN
 oRN
@@ -50062,8 +50066,8 @@ mtn
 kez
 kez
 kez
-oRN
-oRN
+kez
+kez
 oRN
 oRN
 oRN
@@ -50265,7 +50269,7 @@ dxJ
 kez
 kFW
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -50468,7 +50472,7 @@ ims
 brk
 kFW
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -51889,7 +51893,7 @@ mcd
 mcd
 kez
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -52092,7 +52096,7 @@ moo
 jMW
 kez
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -52295,7 +52299,7 @@ kez
 kez
 kez
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -52498,7 +52502,7 @@ dxJ
 kez
 kez
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -52701,7 +52705,7 @@ kez
 kez
 kez
 oUk
-oRN
+kez
 oRN
 oRN
 oRN
