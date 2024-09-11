@@ -819,7 +819,7 @@
 "aGn" = (
 /obj/effect/spawner/random/engineering/ore_box,
 /turf/open/floor/prison,
-/area/metnal/outside/central)
+/area/metnal/inside/centralminingequip)
 "aGD" = (
 /obj/structure/bed/chair/comfy{
 	dir = 4
@@ -3353,6 +3353,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/cafeteria)
+"cyH" = (
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/centralminingequip)
 "cyT" = (
 /obj/item/tool/analyzer/plant_analyzer,
 /obj/structure/flora/drought/barrel_cactus,
@@ -5681,7 +5684,7 @@
 /area/metnal/outside/northeast)
 "ecA" = (
 /turf/open/floor/prison,
-/area/metnal/outside/central)
+/area/metnal/inside/centralminingequip)
 "ecD" = (
 /obj/structure/closet/crate/science,
 /turf/open/floor/prison/whitepurple{
@@ -5972,6 +5975,9 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"eob" = (
+/turf/open/lavaland/basalt,
+/area/metnal/inside/centralminingequip)
 "eos" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -12097,7 +12103,7 @@
 "iIL" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison,
-/area/metnal/outside/central)
+/area/metnal/inside/centralminingequip)
 "iJL" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/xeno_resin_wall,
@@ -13507,7 +13513,7 @@
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/prison,
-/area/metnal/outside/central)
+/area/metnal/inside/centralminingequip)
 "jLp" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/blood/oil,
@@ -13969,7 +13975,7 @@
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/shovel,
 /turf/open/floor/prison,
-/area/metnal/outside/central)
+/area/metnal/inside/centralminingequip)
 "kez" = (
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
@@ -17888,7 +17894,7 @@
 "mRZ" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/metnal/outside/central)
+/area/metnal/inside/centralminingequip)
 "mSm" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -19425,7 +19431,7 @@
 /obj/item/stack/sheet/metal/medium_stack,
 /obj/effect/spawner/random/engineering/extinguisher,
 /turf/open/floor/prison,
-/area/metnal/outside/central)
+/area/metnal/inside/centralminingequip)
 "nVk" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -23299,7 +23305,7 @@
 	dir = 8
 	},
 /turf/open/floor/prison,
-/area/metnal/outside/central)
+/area/metnal/inside/centralminingequip)
 "qFD" = (
 /obj/structure/cable,
 /obj/structure/prop/mainship/gelida/powerccable{
@@ -24544,7 +24550,7 @@
 /obj/machinery/door/airlock/multi_tile/secure,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
-/area/metnal/outside/central)
+/area/metnal/inside/centralminingequip)
 "rrX" = (
 /obj/structure/table/black,
 /obj/item/clock,
@@ -57342,11 +57348,11 @@ kez
 kez
 kez
 kez
-kJn
-kJn
-kJn
-kJn
-kJn
+cyH
+cyH
+cyH
+cyH
+cyH
 kCT
 oRN
 oRN
@@ -57544,11 +57550,11 @@ kez
 kez
 kez
 dxJ
-kJn
+cyH
 aGn
 jLh
 kew
-kJn
+cyH
 kCT
 oRN
 oRN
@@ -57750,7 +57756,7 @@ rrR
 mRZ
 ecA
 iIL
-kJn
+cyH
 kCT
 oRN
 oRN
@@ -57948,11 +57954,11 @@ kez
 kez
 kez
 kez
-kez
+eob
 mRZ
 ecA
 ecA
-kJn
+cyH
 kCT
 oRN
 oRN
@@ -58150,11 +58156,11 @@ kez
 kez
 dxJ
 kez
-kJn
+cyH
 qFx
 nVi
 jLh
-kJn
+cyH
 kCT
 oRN
 oRN
@@ -58352,11 +58358,11 @@ kez
 kez
 kez
 kez
-kJn
-kJn
-kJn
-kJn
-kJn
+cyH
+cyH
+cyH
+cyH
+cyH
 kCT
 oRN
 oRN
