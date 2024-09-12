@@ -197,3 +197,51 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	new /obj/effect/xenomorph/spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
 	for(var/obj/O in get_turf(xeno_owner))
 		O.acid_spray_act(xeno_owner)
+
+// ***************************************
+// *********** Dancer Abilities
+// ***************************************
+
+/* to add:
+	the passive somehow: on attack human = marked human
+	impale: point and click damage (1 range). if marked, double damage. make cool emotes and effects like cm :)
+	tail swipe: point and click stagger/slow/disarm (2 range). if marked, more stagger, more slow, and a stun.
+*/
+
+
+/datum/action/ability/activable/xeno/dodge
+	name = "Dodge"
+	action_icon_state = "dodge"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Gain a speed boost upon activation and the ability to pass through mobs."
+	ability_cost = 100
+	cooldown_duration = 20 SECONDS
+	use_state_flags = ABILITY_USE_BUSY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DODGE,
+	)
+	var/speed_buff = -0.5
+	var/duration = 6 SECONDS
+
+/datum/action/ability/activable/xeno/dodge/use_ability(atom/A)
+	. = ..()
+
+	to_chat(owner, span_highdanger("We can now dodge through mobs!"))
+
+	// Note: No bumping = no bump attacks!
+	owner.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED, TRUE, 0, NONE, TRUE, speed_buff)
+	owner.allow_pass_flags |= (PASS_MOB|PASS_XENO)
+	owner.pass_flags |= (PASS_MOB|PASS_XENO)
+
+	addtimer(CALLBACK(src, PROC_REF(remove_effects)), duration)
+
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/dodge/proc/remove_effects()
+	to_chat(owner, span_highdanger("We can no longer dodge through mobs!"))
+
+	owner.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED)
+	owner.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
+	owner.pass_flags &= ~(PASS_MOB|PASS_XENO)
