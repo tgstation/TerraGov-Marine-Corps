@@ -143,7 +143,7 @@
 #define COMSIG_XENOABILITY_ACID_DASH "xenoability_acid_dash"
 #define COMSIG_XENOABILITY_DODGE "xenoability_dodge"
 #define COMSIG_XENOABILITY_IMPALE "xenoability_impale"
-#define COMSIG_XENOABILITY_TAIL_SWIPE "xenoability_tail_swipe"
+#define COMSIG_XENOABILITY_TAIL_TRIP "xenoability_tail_trip"
 #define COMSIG_XENOABILITY_XENO_SPIT "xenoability_xeno_spit"
 #define COMSIG_XENOABILITY_HIDE "xenoability_hide"
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"

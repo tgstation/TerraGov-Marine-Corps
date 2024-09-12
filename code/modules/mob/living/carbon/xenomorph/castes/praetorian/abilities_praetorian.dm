@@ -288,11 +288,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	add_cooldown()
 
 // ***************************************
-// *********** Tail Swipe
+// *********** Tail Trip
 // ***************************************
-/datum/action/ability/activable/xeno/tail_swipe
-	name = "Tail Swipe"
-	action_icon_state = "tail_swipe"
+/datum/action/ability/activable/xeno/tail_trip
+	name = "Tail Trip"
+	action_icon_state = "tail_trip"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Target a marine within two tiles of you to trip, stagger, and slow them."
 	ability_cost = 50
@@ -305,13 +305,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/stagger_length = 4 SECONDS
 	var/slowdown_power = 1.5
 
-/datum/action/ability/activable/xeno/tail_swipe/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/tail_trip/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(!istype(A, /mob/living/carbon))
 		if(!silent)
-			A.balloon_alert(owner, "cannot tail swipe")
+			A.balloon_alert(owner, "cannot tail trip")
 		return FALSE
 	var/mob/living/carbon/carbon_target = A
 	if(!line_of_sight(owner, carbon_target, 2))
@@ -322,7 +322,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		carbon_target.balloon_alert(owner, "already dead")
 		return FALSE
 
-/datum/action/ability/activable/xeno/tail_swipe/use_ability(atom/target_atom)
+/datum/action/ability/activable/xeno/tail_trip/use_ability(atom/target_atom)
 	. = ..()
 
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
