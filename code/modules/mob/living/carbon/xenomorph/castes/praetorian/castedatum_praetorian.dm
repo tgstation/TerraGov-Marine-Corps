@@ -140,7 +140,3 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
-
-/* to add:
-	the passive somehow: on attack human = marked human
-*/
