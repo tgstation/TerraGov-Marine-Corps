@@ -209,7 +209,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DODGE,
 	)
