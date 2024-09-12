@@ -90,7 +90,7 @@
 
 
 /datum/xeno_caste/praetorian/dancer
-	caste_type_path = /mob/living/carbon/xenomorph/primordial/dancer
+	caste_type_path = /mob/living/carbon/xenomorph/praetorian/dancer
 	upgrade_name = ""
 	caste_name = "Dancer Praetorian"
 	display_name = "Praetorian"
