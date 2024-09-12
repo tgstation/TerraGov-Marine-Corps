@@ -925,7 +925,6 @@
 	tick_interval = 2 SECONDS
 	stacks = 1
 	max_stacks = 2
-	consumed_on_threshold = FALSE
 
 /datum/status_effect/stacking/dancer_tagged/can_gain_stacks()
 	if(owner.stat == DEAD)
