@@ -279,7 +279,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		span_danger("We slice [living_target] with our tail!"))
 	xeno_owner.face_atom(living_target)
 	xeno_owner.do_attack_animation(living_target, ATTACK_EFFECT_CLAW)
-	xeno_owner.spin(1, 1)
+	xeno_owner.spin(4, 4)
 	playsound(living_target, get_sfx(SFX_ALIEN_TAIL_ATTACK), 30, TRUE)
 
 	living_target.apply_damage(damage, BRUTE, blocked = MELEE)
@@ -329,7 +329,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/mob/living/carbon/living_target = target_atom
 
 	xeno_owner.face_atom(living_target)
-	xeno_owner.spin(1, 1)
+	xeno_owner.spin(4, 4)
 
 	living_target.Stun(trip_length)
 	living_target.Paralyze(trip_length)
