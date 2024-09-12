@@ -331,7 +331,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
 	)
-	var/trip_length = 0.5 SECONDS
+	var/trip_length = 0.1 SECONDS
 	var/stagger_length = 4 SECONDS
 	var/slowdown_power = 1.2
 
@@ -355,6 +355,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(carbon_target.stat == DEAD)
 		owner.balloon_alert(owner, "already dead")
 		return FALSE
+	if(carbon_target.stat == UNCONSCIOUS)
+		owner.balloon_alert(owner, "not standing")
+		return FALSE
 
 /datum/action/ability/activable/xeno/tail_trip/use_ability(atom/target_atom)
 	. = ..()
@@ -362,17 +365,19 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/living_target = target_atom
 	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
+	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_MARK)
 
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps [living_target]'s legs with its tail!"), \
 		span_danger("We trip [living_target] with our tail!"))
 	shake_camera(living_target, 2, 1)
 	xeno_owner.face_atom(living_target)
 	xeno_owner.spin(4, 1)
+	xeno_owner.emote("tail")
 	playsound(living_target,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
-	living_target.Paralyze(trip_length)
-	living_target.adjust_stagger(stagger_length)
-	living_target.adjust_slowdown(slowdown_power)
+	living_target.Paralyze(buffed ? 1 SECONDS : 0.1 SECONDS)
+	living_target.adjust_stagger(buffed ? 5 SECONDS : 4 SECONDS)
+	living_target.adjust_slowdown(buffed ? 1.2 : 0.9)
 	living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
 
 	succeed_activate()
