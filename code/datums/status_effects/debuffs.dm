@@ -922,12 +922,10 @@
 // ***************************************
 /datum/status_effect/stacking/dancer_tagged
 	id = "dancer_tagged"
-	tick_interval = 5 SECONDS
+	tick_interval = 2 SECONDS
 	stacks = 1
 	max_stacks = 2
 	consumed_on_threshold = FALSE
-	/// Owner of the debuff is limited to carbons.
-	var/mob/living/carbon/debuff_owner
 
 /datum/status_effect/stacking/dancer_tagged/can_gain_stacks()
 	if(owner.stat == DEAD)
@@ -939,8 +937,3 @@
 		qdel(src)
 		return
 	. = ..()
-	debuff_owner = new_owner
-
-/datum/status_effect/stacking/dancer_tagged/on_remove()
-	debuff_owner = null
-	return ..()
