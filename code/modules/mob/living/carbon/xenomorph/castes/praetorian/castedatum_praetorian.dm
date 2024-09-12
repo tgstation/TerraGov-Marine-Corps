@@ -67,9 +67,6 @@
 /datum/xeno_caste/praetorian/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/praetorian/dancer/normal
-	upgrade = XENO_UPGRADE_NORMAL
-
 /datum/xeno_caste/praetorian/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "An aberrant creature extremely proficient with acid, keep your distance if you don't wish to be burned."
@@ -90,6 +87,32 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
+
+
+/datum/xeno_caste/praetorian/dancer
+	caste_type_path = /mob/living/carbon/xenomorph/primordial/dancer
+	upgrade_name = ""
+	caste_name = "Dancer Praetorian"
+	display_name = "Praetorian"
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_desc = "TBD"
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/activable/xeno/spray_acid/cone,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
+
+/datum/xeno_caste/praetorian/dancer/normal
+	upgrade = XENO_UPGRADE_NORMAL
 
 /datum/xeno_caste/praetorian/dancer/primordial
 	upgrade_name = "Primordial"
