@@ -294,7 +294,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Tail Trip"
 	action_icon_state = "tail_trip"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Target a marine within two tiles of you to trip, stagger, and slow them."
+	desc = "Target a marine within two tiles of you to disorient and slow them."
 	ability_cost = 50
 	cooldown_duration = 13 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -327,14 +327,19 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/living_target = target_atom
+	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
 
 	xeno_owner.face_atom(living_target)
 	xeno_owner.spin(4, 4)
 
-	living_target.Stun(trip_length)
 	living_target.Paralyze(trip_length)
 	living_target.adjust_stagger(stagger_length)
 	living_target.adjust_slowdown(slowdown_power)
+	living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
+
+	shake_camera(H, 2, 1)
+	to_chat(living_target, span_xenowarning("We were tripped by \the [xeno_owner]'s tail!"))
+	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 	succeed_activate()
 	add_cooldown()
