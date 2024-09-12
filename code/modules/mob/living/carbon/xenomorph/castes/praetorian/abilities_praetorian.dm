@@ -205,7 +205,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Dodge"
 	action_icon_state = "dodge"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Gain a speed boost upon activation and the ability to pass through mobs. Marked enemies automatically receive bump attacks."
+	desc = "Gain a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
 	ability_cost = 100
 	cooldown_duration = 10 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
