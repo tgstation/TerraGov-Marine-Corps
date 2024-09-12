@@ -303,7 +303,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	)
 	var/trip_length = 0.5 SECONDS
 	var/stagger_length = 4 SECONDS
-	var/slowdown_power = 1.5
+	var/slowdown_power = 1.2
 
 /datum/action/ability/activable/xeno/tail_trip/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
