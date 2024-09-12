@@ -238,9 +238,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	owner.pass_flags &= ~(PASS_MOB|PASS_XENO)
 
 // ***************************************
-// *********** Dancer Abilities
+// *********** Impale
 // ***************************************
-
 /datum/action/ability/activable/xeno/impale
 	name = "Impale"
 	action_icon_state = "impale"
@@ -287,6 +286,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	succeed_activate()
 	add_cooldown()
+
+// ***************************************
+// *********** Dancer Abilities
+// ***************************************
 
 /* to add:
 	the passive somehow: on attack human = marked human
