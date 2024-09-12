@@ -13,3 +13,6 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
+
+/mob/living/carbon/xenomorph/praetorian/dancer
+	caste_base_type = /datum/xeno_caste/praetorian/dancer
