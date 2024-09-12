@@ -296,7 +296,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/living_target = target_atom
-	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_MARK)
+	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] violently slices [living_target] with its tail [buffed ? "twice" : ""]"), \
 		span_danger("We slice [living_target] with our tail [buffed ? "twice" : ""]!"))
 
@@ -365,7 +365,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/living_target = target_atom
 	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
-	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_MARK)
+	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps [living_target]'s legs with its tail!"), \
 		span_danger("We trip [living_target] with our tail!"))
