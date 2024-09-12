@@ -917,4 +917,30 @@
 	desc = "Space is very very cold, who would've thought?"
 	icon_state = "cold3"
 
+// ***************************************
+// *********** Dancing Mark
+// ***************************************
+/datum/status_effect/stacking/dancer_mark
+	id = "dancer_mark"
+	tick_interval = 5 SECONDS
+	stacks = 1
+	max_stacks = 2
+	consumed_on_threshold = FALSE
+	/// Owner of the debuff is limited to carbons.
+	var/mob/living/carbon/debuff_owner
 
+/datum/status_effect/stacking/dancer_mark/can_gain_stacks()
+	if(owner.stat == DEAD)
+		return FALSE
+	return ..()
+
+/datum/status_effect/stacking/dancer_mark/on_creation(mob/living/new_owner, stacks_to_apply)
+	if(new_owner.stat == DEAD)
+		qdel(src)
+		return
+	. = ..()
+	debuff_owner = new_owner
+
+/datum/status_effect/stacking/dancer_mark/on_remove()
+	debuff_owner = null
+	return ..()
