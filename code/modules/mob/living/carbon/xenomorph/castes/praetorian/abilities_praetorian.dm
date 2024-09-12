@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	cooldown_duration = 13 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPALE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPALE
 	)
 
 /datum/action/ability/activable/xeno/impale/can_use_ability(atom/A, silent = FALSE, override_flags)
