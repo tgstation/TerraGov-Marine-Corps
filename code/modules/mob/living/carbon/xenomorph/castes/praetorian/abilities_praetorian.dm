@@ -199,16 +199,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		O.acid_spray_act(xeno_owner)
 
 // ***************************************
-// *********** Dancer Abilities
+// *********** Dodge
 // ***************************************
-
-/* to add:
-	the passive somehow: on attack human = marked human
-	impale: point and click damage (1 range). if marked, double damage. make cool emotes and effects like cm :)
-	tail swipe: point and click stagger/slow/disarm (2 range). if marked, more stagger, more slow, and a stun.
-*/
-
-
 /datum/action/ability/activable/xeno/dodge
 	name = "Dodge"
 	action_icon_state = "dodge"
@@ -239,9 +231,20 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 	add_cooldown()
 
+/// Removes the movespeed modifier and various pass_flags that was given by the dodge ability.
 /datum/action/ability/activable/xeno/dodge/proc/remove_effects()
 	to_chat(owner, span_highdanger("We can no longer dodge through mobs!"))
 
 	owner.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED)
 	owner.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
 	owner.pass_flags &= ~(PASS_MOB|PASS_XENO)
+
+// ***************************************
+// *********** Dancer Abilities
+// ***************************************
+
+/* to add:
+	the passive somehow: on attack human = marked human
+	impale: point and click damage (1 range). if marked, double damage. make cool emotes and effects like cm :)
+	tail swipe: point and click stagger/slow/disarm (2 range). if marked, more stagger, more slow, and a stun.
+*/
