@@ -97,14 +97,17 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "TBD"
 
+	// Loses some common armor (-5) for more speed (-0.3).
+	speed = -0.8
+	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 10, BIO = 40, FIRE = 45, ACID = 40)
+
+	// Loses ranged spit abilities for close combat combo abilities.
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/xeno_spit,
-		/datum/action/ability/activable/xeno/spray_acid/cone,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
