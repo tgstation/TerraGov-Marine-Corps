@@ -689,7 +689,7 @@
 
 /datum/keybinding/xeno/dodge
 	name = "Dodge"
-	full_name = "Praetorian: Heatray"
+	full_name = "Praetorian: Dodge"
 	description = "Gain a speed boost upon activation and the ability to pass through mobs."
 	keybind_signal = COMSIG_XENOABILITY_DODGE
 
