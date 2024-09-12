@@ -311,15 +311,19 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return FALSE
 	if(!istype(A, /mob/living/carbon))
 		if(!silent)
-			A.balloon_alert(owner, "cannot tail trip")
+			carbon_target.balloon_alert(owner, "cannot tail trip")
 		return FALSE
 	var/mob/living/carbon/carbon_target = A
+	if(get_dist(owner, carbon_target) > 2)
+		if(!silent)
+			carbon_target.balloon_alert(owner, "too far")
+		return FALSE
 	if(!line_of_sight(owner, carbon_target, 2))
 		if(!silent)
 			carbon_target.balloon_alert(owner, "need line of sight")
 		return FALSE
 	if(carbon_target.stat == DEAD)
-		carbon_target.balloon_alert(owner, "already dead")
+		owner.balloon_alert(owner, "already dead")
 		return FALSE
 
 /datum/action/ability/activable/xeno/tail_trip/use_ability(atom/target_atom)
@@ -328,7 +332,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/living_target = target_atom
 	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
-
 
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps [living_target]'s legs with its tail!"), \
 		span_danger("We trip [living_target] with our tail!"))
@@ -341,8 +344,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	living_target.adjust_stagger(stagger_length)
 	living_target.adjust_slowdown(slowdown_power)
 	living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
-
-
 
 	succeed_activate()
 	add_cooldown()
