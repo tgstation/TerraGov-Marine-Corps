@@ -110,6 +110,7 @@
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/xeno_action/dodge,
 		/datum/action/ability/activable/xeno/impale,
+		/datum/action/ability/activable/xeno/tail_swipe,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
@@ -133,8 +134,13 @@
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/xeno_action/dodge,
 		/datum/action/ability/activable/xeno/impale,
+		/datum/action/ability/activable/xeno/tail_swipe,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
+
+/* to add:
+	the passive somehow: on attack human = marked human
+*/

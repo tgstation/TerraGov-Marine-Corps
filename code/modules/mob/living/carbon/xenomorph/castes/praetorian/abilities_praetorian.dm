@@ -288,10 +288,53 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	add_cooldown()
 
 // ***************************************
-// *********** Dancer Abilities
+// *********** Tail Swipe
 // ***************************************
+/datum/action/ability/activable/xeno/tail_swipe
+	name = "Tail Swipe"
+	action_icon_state = "tail_swipe"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Target a marine within two tiles of you to trip, stagger, and slow them."
+	ability_cost = 50
+	cooldown_duration = 13 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWIPE,
+	)
+	var/trip_length = 0.5 SECONDS
+	var/stagger_length = 4 SECONDS
+	var/slowdown_power = 1.5
 
-/* to add:
-	the passive somehow: on attack human = marked human
-	tail swipe: point and click stagger/slow/disarm (2 range). if marked, more stagger, more slow, and a stun.
-*/
+/datum/action/ability/activable/xeno/tail_swipe/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!istype(A, /mob/living/carbon))
+		if(!silent)
+			A.balloon_alert(owner, "cannot tail swipe")
+		return FALSE
+	var/mob/living/carbon/carbon_target = A
+	if(!line_of_sight(owner, carbon_target, 2))
+		if(!silent)
+			carbon_target.balloon_alert(owner, "need line of sight")
+		return FALSE
+	if(carbon_target.stat == DEAD)
+		carbon_target.balloon_alert(owner, "already dead")
+		return FALSE
+
+/datum/action/ability/activable/xeno/tail_swipe/use_ability(atom/target_atom)
+	. = ..()
+
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/mob/living/carbon/living_target = target_atom
+
+	xeno_owner.face_atom(living_target)
+	xeno_owner.spin(1, 1)
+
+	living_target.Stun(trip_length)
+	living_target.Paralyze(trip_length)
+	living_target.adjust_stagger(stagger_length)
+	living_target.adjust_slowdown(slowdown_power)
+
+	succeed_activate()
+	add_cooldown()
