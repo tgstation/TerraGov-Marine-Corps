@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	cooldown_duration = 13 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP
 	)
 	var/trip_length = 0.5 SECONDS
 	var/stagger_length = 4 SECONDS
