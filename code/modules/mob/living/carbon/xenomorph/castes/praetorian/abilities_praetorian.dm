@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Gain a speed boost upon activation and the ability to pass through mobs."
 	ability_cost = 100
-	cooldown_duration = 20 SECONDS
+	cooldown_duration = 10 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
@@ -270,7 +270,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Impale a marine next to you with your tail for moderate damage."
 	ability_cost = 100
-	cooldown_duration = 13 SECONDS
+	cooldown_duration = 8 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPALE,
 	)
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Target a marine within two tiles of you to disorient and slow them."
 	ability_cost = 50
-	cooldown_duration = 13 SECONDS
+	cooldown_duration = 8 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
 	)
