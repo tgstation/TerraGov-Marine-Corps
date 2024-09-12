@@ -223,11 +223,34 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	owner.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED, TRUE, 0, NONE, TRUE, speed_buff)
 	owner.allow_pass_flags |= (PASS_MOB|PASS_XENO)
 	owner.pass_flags |= (PASS_MOB|PASS_XENO)
-
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 	addtimer(CALLBACK(src, PROC_REF(remove_effects)), duration)
 
 	succeed_activate()
 	add_cooldown()
+
+/// Automatically bumps living non-xenos if bump attacks are on.
+/datum/action/ability/xeno_action/dodge/proc/on_move(datum/source)
+	if(!isxeno(owner))
+		return FALSE
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(xeno_owner.stat == DEAD)
+		return FALSE
+	var/datum/action/bump_attack_toggle/bump_attack_action = xeno_owner.actions_by_path[/datum/action/bump_attack_toggle]
+	if(bump_attack_action?.attacking) // Bump attacks are off if attacking is true, apparently.
+		return FALSE
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
+		return FALSE
+
+	for(var/mob/living/living_mob in range(0))
+		if(living_mob.stat == DEAD)
+			continue
+		if(isxeno(living_mob))
+			var/mob/living/carbon/xenomorph/xenomorph_mob = living_mob
+			if(owner.issamexenohive(xenomorph_mob))
+				continue
+		xeno_owner.Bump(living_mob)
+		return
 
 /// Removes the movespeed modifier and various pass_flags that was given by the dodge ability.
 /datum/action/ability/xeno_action/dodge/proc/remove_effects()
@@ -236,6 +259,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	owner.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED)
 	owner.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
 	owner.pass_flags &= ~(PASS_MOB|PASS_XENO)
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 
 // ***************************************
 // *********** Impale
