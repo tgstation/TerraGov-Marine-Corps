@@ -241,8 +241,54 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // *********** Dancer Abilities
 // ***************************************
 
+/datum/action/ability/activable/xeno/impale
+	name = "Impale"
+	action_icon_state = "impale"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Impale a marine next to you with your tail for moderate damage."
+	ability_cost = 100
+	cooldown_duration = 13 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPALE,
+	)
+
+/datum/action/ability/activable/xeno/impale/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!istype(A, /mob/living/carbon))
+		if(!silent)
+			A.balloon_alert(owner, "cannot impale")
+		return FALSE
+	var/mob/living/carbon/carbon_target = A
+	if(!owner.Adjacent(carbon_target))
+		carbon_target.balloon_alert(owner, "too far")
+		return FALSE
+	if(carbon_target.stat == DEAD)
+		carbon_target.balloon_alert(owner, "already dead")
+		return FALSE
+
+/datum/action/ability/activable/xeno/impale/use_ability(atom/target_atom)
+	. = ..()
+
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/mob/living/carbon/living_target = target_atom
+	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
+
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] violently slices [living_target] with its tail!"), \
+		span_danger("We slice [living_target] with our tail!"))
+	xeno_owner.face_atom(living_target)
+	xeno_owner.do_attack_animation(living_target, ATTACK_EFFECT_CLAW)
+	xeno_owner.spin(1, 1)
+	playsound(living_target, get_sfx(SFX_ALIEN_TAIL_ATTACK), 30, TRUE)
+
+	living_target.apply_damage(damage, BRUTE, blocked = MELEE)
+
+	succeed_activate()
+	add_cooldown()
+
 /* to add:
 	the passive somehow: on attack human = marked human
-	impale: point and click damage (1 range). if marked, double damage. make cool emotes and effects like cm :)
 	tail swipe: point and click stagger/slow/disarm (2 range). if marked, more stagger, more slow, and a stun.
 */
