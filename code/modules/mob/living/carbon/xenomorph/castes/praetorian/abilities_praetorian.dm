@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	use_state_flags = ABILITY_USE_BUSY
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DODGE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DODGE
 	)
 	var/speed_buff = -0.5
 	var/duration = 6 SECONDS
