@@ -311,7 +311,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return FALSE
 	if(!istype(A, /mob/living/carbon))
 		if(!silent)
-			carbon_target.balloon_alert(owner, "cannot tail trip")
+			A.balloon_alert(owner, "cannot tail trip")
 		return FALSE
 	var/mob/living/carbon/carbon_target = A
 	if(get_dist(owner, carbon_target) > 2)
