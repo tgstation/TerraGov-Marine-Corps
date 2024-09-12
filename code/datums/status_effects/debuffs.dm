@@ -918,7 +918,7 @@
 	icon_state = "cold3"
 
 // ***************************************
-// *********** Dancing Mark
+// *********** Dancing Tagged
 // ***************************************
 /datum/status_effect/stacking/dancer_tagged
 	id = "dancer_tagged"
