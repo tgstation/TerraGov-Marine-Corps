@@ -68,8 +68,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		ejectee.forceMove(loc)
 	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
-	if(drop_state == DROPPOD_READY)
-		GLOB.droppod_list -= src
+	GLOB.droppod_list -= src
 	return ..()
 
 
@@ -420,7 +419,8 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 ///Handles removing the stored object from the pod
 /obj/structure/droppod/nonmob/proc/unload_package()
 	SIGNAL_HANDLER
-	if(!stored_object)
+	if(QDELETED(stored_object))
+		stored_object = null
 		return
 	UnregisterSignal(stored_object, COMSIG_MOVABLE_MOVED)
 	if(stored_object.loc == src)
@@ -634,3 +634,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/drop_pod_launcher/sentry
 	pod_type = /obj/structure/droppod/nonmob/turret_pod
+
+#undef DROPPOD_TRANSIT_TIME
+#undef LEADER_POD_DISPERSION
+#undef DROPPOD_BASE_DISPERSION
