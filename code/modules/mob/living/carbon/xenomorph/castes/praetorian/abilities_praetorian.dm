@@ -205,7 +205,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Dodge"
 	action_icon_state = "dodge"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Gain a speed boost upon activation and the ability to pass through mobs."
+	desc = "Gain a speed boost upon activation and the ability to pass through mobs. Marked enemies automatically receive bump attacks."
 	ability_cost = 100
 	cooldown_duration = 10 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
@@ -213,13 +213,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DODGE,
 	)
+	/// The increase of speed when ability is active.
 	var/speed_buff = -0.5
+	/// How long the ability will last?
 	var/duration = 6 SECONDS
 
 /datum/action/ability/xeno_action/dodge/action_activate(atom/A)
 	to_chat(owner, span_highdanger("We can now dodge through mobs!"))
 
-	// Note: No bumping = no bump attacks!
 	owner.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED, TRUE, 0, NONE, TRUE, speed_buff)
 	owner.allow_pass_flags |= (PASS_MOB|PASS_XENO)
 	owner.pass_flags |= (PASS_MOB|PASS_XENO)
@@ -268,7 +269,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Impale"
 	action_icon_state = "impale"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Impale a marine next to you with your tail for moderate damage."
+	desc = "Impale a marine next to you with your tail for moderate damage. Marked enemies are impaled twice."
 	ability_cost = 100
 	cooldown_duration = 8 SECONDS
 	keybinding_signals = list(
@@ -325,15 +326,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Tail Trip"
 	action_icon_state = "tail_trip"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Target a marine within two tiles of you to disorient and slow them."
+	desc = "Target a marine within two tiles of you to disorient and slow them. Marked enemies receive stronger debuffs and are stunned for a second."
 	ability_cost = 50
 	cooldown_duration = 8 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
 	)
-	var/trip_length = 0.1 SECONDS
-	var/stagger_length = 4 SECONDS
-	var/slowdown_power = 1.2
 
 /datum/action/ability/activable/xeno/tail_trip/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
