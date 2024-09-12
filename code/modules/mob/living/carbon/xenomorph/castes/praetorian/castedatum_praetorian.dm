@@ -95,7 +95,7 @@
 	caste_name = "Dancer Praetorian"
 	display_name = "Praetorian"
 	upgrade = XENO_UPGRADE_BASETYPE
-	caste_desc = "TBD"
+	caste_desc = "A giant melee monster. It looks pretty strong."
 
 	// Loses some common armor (-5) for more speed (-0.3).
 	speed = -0.8
@@ -122,9 +122,9 @@
 
 /datum/xeno_caste/praetorian/dancer/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "TBD"
+	caste_desc = "An aberrant creature extremely proficient with its body and tail. Keep your distance if you don't wish to be finessed."
 	upgrade = XENO_UPGRADE_PRIMO
-	primordial_message = "TBD"
+	primordial_message = "With a flick of our tail, we dance through the shadows, striking with lethal precision."
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
