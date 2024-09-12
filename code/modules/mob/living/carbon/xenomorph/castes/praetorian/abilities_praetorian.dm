@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	cooldown_duration = 13 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_SWIPE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
 	)
 	var/trip_length = 0.5 SECONDS
 	var/stagger_length = 4 SECONDS
@@ -329,17 +329,20 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/mob/living/carbon/living_target = target_atom
 	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
 
+
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps [living_target]'s legs with its tail!"), \
+		span_danger("We trip [living_target] with our tail!"))
+	living_target.shake_camera(H, 2, 1)
 	xeno_owner.face_atom(living_target)
 	xeno_owner.spin(4, 4)
+	playsound(living_target,'sound/weapons/alien_claw_block.ogg', 50, 1)
 
 	living_target.Paralyze(trip_length)
 	living_target.adjust_stagger(stagger_length)
 	living_target.adjust_slowdown(slowdown_power)
 	living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
 
-	shake_camera(H, 2, 1)
-	to_chat(living_target, span_xenowarning("We were tripped by \the [xeno_owner]'s tail!"))
-	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
+
 
 	succeed_activate()
 	add_cooldown()
