@@ -303,7 +303,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	try_impale(living_target)
 	if(buffed)
 		xeno_owner.emote("roar")
-		addtimer(CALLBACK(src, PROC_REF(try_impale), living_target), 0.1 SECONDS) // A short delay for animation coolness.
+		addtimer(CALLBACK(src, PROC_REF(try_impale), living_target), 0.1 SECONDS) // A short delay for animation coolness (and also if they're dead).
 
 	succeed_activate()
 	add_cooldown()
