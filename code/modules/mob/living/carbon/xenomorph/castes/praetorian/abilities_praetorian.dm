@@ -272,19 +272,27 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/living_target = target_atom
-	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
+	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_MARK)
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] violently slices [living_target] with its tail [buffed ? "twice" : ""]"), \
+		span_danger("We slice [living_target] with our tail [buffed ? "twice" : ""]!"))
 
-	xeno_owner.visible_message(span_danger("\The [xeno_owner] violently slices [living_target] with its tail!"), \
-		span_danger("We slice [living_target] with our tail!"))
+	try_impale(living_target)
+	if(buffed)
+		xeno_owner.emote("roar")
+		addtimer(CALLBACK(src, PROC_REF(try_impale), living_target), 0.1 SECONDS) // A short delay for animation coolness.
+
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/impale/proc/try_impale(mob/living/carbon/living_target)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
 	xeno_owner.face_atom(living_target)
 	xeno_owner.do_attack_animation(living_target, ATTACK_EFFECT_REDSLASH)
 	xeno_owner.spin(4, 1)
 	playsound(living_target, get_sfx(SFX_ALIEN_TAIL_ATTACK), 30, TRUE)
-
-	living_target.apply_damage(damage, BRUTE, blocked = MELEE)
-
-	succeed_activate()
-	add_cooldown()
+	if(living_target.stat != DEAD) // If they drop dead from the first impale, keep the effects but do no damage.
+		living_target.apply_damage(damage, BRUTE, blocked = MELEE)
 
 // ***************************************
 // *********** Tail Trip
