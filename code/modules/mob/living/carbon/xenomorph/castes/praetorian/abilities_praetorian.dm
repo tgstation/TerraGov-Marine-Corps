@@ -247,7 +247,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Impale a marine next to you with your tail for moderate damage."
 	ability_cost = 100
 	cooldown_duration = 13 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPALE,
 	)
@@ -297,7 +296,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Target a marine within two tiles of you to disorient and slow them."
 	ability_cost = 50
 	cooldown_duration = 13 SECONDS
-	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
 	)
