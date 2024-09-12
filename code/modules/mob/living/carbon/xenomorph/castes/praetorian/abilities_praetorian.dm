@@ -332,7 +332,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps [living_target]'s legs with its tail!"), \
 		span_danger("We trip [living_target] with our tail!"))
-	living_target.shake_camera(H, 2, 1)
+	shake_camera(living_target, 2, 1)
 	xeno_owner.face_atom(living_target)
 	xeno_owner.spin(4, 4)
 	playsound(living_target,'sound/weapons/alien_claw_block.ogg', 50, 1)
