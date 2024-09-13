@@ -17324,7 +17324,7 @@
 /area/metnal/inside/administration)
 "muk" = (
 /obj/structure/window/framed/prison/colony,
-/turf/closed/wall/prison,
+/turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/cafeteria)
 "mun" = (
 /obj/structure/bed/chair/office/dark{
