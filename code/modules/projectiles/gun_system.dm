@@ -472,7 +472,6 @@
 		COMSIG_KB_RAILATTACHMENT,
 		COMSIG_KB_UNDERRAILATTACHMENT,
 		COMSIG_KB_UNLOADGUN,
-		COMSIG_KB_FIREMODE,
 		COMSIG_KB_GUN_SAFETY,
 		COMSIG_KB_UNIQUEACTION,
 		COMSIG_KB_AUTOEJECT,
@@ -522,7 +521,6 @@
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, PROC_REF(activate_rail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, PROC_REF(activate_underrail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, PROC_REF(unload_gun))
-	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, PROC_REF(do_toggle_firemode))
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, PROC_REF(toggle_gun_safety_keybind))
 	RegisterSignal(gun_user, COMSIG_KB_AUTOEJECT, PROC_REF(toggle_auto_eject_keybind))
 
