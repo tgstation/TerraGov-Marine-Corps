@@ -1731,6 +1731,11 @@
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/cafeteria)
+"bnj" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/machinery/miner/damaged,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/southeast)
 "bnu" = (
 /obj/structure/closet/firecloset/full,
 /obj/effect/landmark/weed_node,
@@ -4251,9 +4256,8 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "cYG" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/lavaland/basalt,
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
 "cYH" = (
 /obj/effect/landmark/weed_node,
@@ -7077,6 +7081,13 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/iron/dark/herringbone,
 /area/metnal/inside/garden)
+"eXX" = (
+/obj/effect/turf_decal/siding/dark{
+	dir = 1
+	},
+/obj/effect/turf_decal/sandytile/sandyplating,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/southeast)
 "eYg" = (
 /turf/open/floor/carpet/side{
 	dir = 4
@@ -8130,6 +8141,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "fJQ" = (
@@ -10387,6 +10399,11 @@
 	dir = 8
 	},
 /area/metnal/inside/colonydorms)
+"hyZ" = (
+/obj/item/trash/cigbutt/cigarbutt,
+/obj/effect/turf_decal/sandytile/sandyplating,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/southeast)
 "hzl" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
@@ -12213,9 +12230,9 @@
 /turf/open/floor/prison,
 /area/metnal/inside/centralminingequip)
 "iJL" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/lavaland/basalt,
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/effect/turf_decal/sandytile/sandyplating,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
 "iKi" = (
 /turf/open/lavaland/basalt/cave{
@@ -12641,6 +12658,12 @@
 /obj/structure/prop/mainship/sensor_computer1,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/metnal/caves/nukestorage)
+"jbV" = (
+/obj/structure/cargo_container/gorg{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/outside/southeast)
 "jcs" = (
 /obj/structure/sink{
 	dir = 8;
@@ -16532,6 +16555,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"lLI" = (
+/obj/effect/spawner/random/misc/structure/crate,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/southeast)
 "lLK" = (
 /turf/open/floor/plating/heatinggrate{
 	dir = 4
@@ -19428,6 +19455,10 @@
 /obj/structure/cable,
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
+"nQY" = (
+/obj/effect/landmark/weed_node,
+/turf/closed/wall/prison,
+/area/metnal/outside/southeast)
 "nRf" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/tool,
@@ -27199,6 +27230,10 @@
 	},
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
+"tam" = (
+/obj/structure/closet/crate/construction,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/southeast)
 "taq" = (
 /obj/structure/table/reinforced/fabric,
 /obj/item/reagent_containers/food/drinks/bottle/holywater,
@@ -27993,6 +28028,12 @@
 	dir = 9
 	},
 /area/metnal/caves/south)
+"tFh" = (
+/obj/structure/cargo_container/gorg{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/outside/southeast)
 "tFs" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -30169,7 +30210,7 @@
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
 "vaf" = (
-/obj/structure/largecrate/supply,
+/obj/structure/prop/vehicle/truck/damaged,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "vaC" = (
@@ -30430,8 +30471,8 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "vjD" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/lavaland/basalt,
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
 "vjE" = (
 /obj/machinery/light{
@@ -33523,9 +33564,8 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "xqi" = (
-/obj/structure/barricade/wooden{
-	dir = 4
-	},
+/obj/effect/spawner/random/misc/structure/barrel,
+/obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "xqt" = (
@@ -33761,8 +33801,9 @@
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
 "xxU" = (
-/obj/machinery/miner/damaged,
-/turf/open/lavaland/basalt,
+/obj/effect/landmark/weed_node,
+/obj/structure/closet/crate/construction,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
 "xxX" = (
 /obj/item/clothing/head/warning_cone,
@@ -68741,14 +68782,14 @@ esM
 esM
 esM
 esM
+tMO
 esM
 esM
+ebw
+tMO
 esM
 esM
-esM
-esM
-esM
-esM
+tMO
 esM
 esM
 siw
@@ -68941,18 +68982,18 @@ esM
 esM
 esM
 esM
+bPD
 esM
+ebw
+ebw
+sJI
 esM
-esM
-esM
-esM
-esM
-esM
+ebw
 esM
 esM
 siw
 esM
-esM
+tMO
 esM
 jVs
 jVs
@@ -69144,16 +69185,16 @@ esM
 esM
 esM
 esM
+tMO
+ebw
 esM
 esM
 esM
-esM
-esM
-mCb
-esM
-esM
-esM
-esM
+ebw
+ebw
+ebw
+sJI
+ebw
 esM
 esM
 vfz
@@ -69340,22 +69381,22 @@ ebw
 ebw
 siw
 esM
-uCR
-siw
+ecR
+ihV
 esM
+tMO
 esM
+ebw
+ebw
 esM
+vaf
 esM
+sJI
 esM
-esM
-esM
-esM
-esM
-esM
-siw
+mNi
 esM
 tJF
-siw
+ihV
 npU
 esM
 vfz
@@ -69541,11 +69582,11 @@ esM
 tMO
 esM
 tMO
-esM
+bPD
 uCR
 esM
-esM
-esM
+ebw
+ebw
 siw
 esM
 esM
@@ -69553,8 +69594,8 @@ esM
 esM
 esM
 esM
-esM
-esM
+ebw
+ebw
 jKm
 jKm
 esM
@@ -69747,15 +69788,15 @@ esM
 fxG
 hab
 hab
+bnj
+vRr
+vRr
+htd
 hab
 hab
 hab
 hab
 hab
-hab
-iJL
-iJL
-iJL
 hab
 hab
 eos
@@ -69946,23 +69987,23 @@ tJF
 esM
 siw
 tJF
+tMO
 esM
 esM
 esM
 esM
+ebw
 esM
-esM
-esM
-siw
-esM
-vjD
-vjD
-vjD
-esM
-esM
-esM
-esM
-esM
+nQY
+bQM
+bQM
+bQM
+ebw
+bQM
+sJI
+ebw
+ebw
+bQM
 jVs
 jVs
 vfz
@@ -70153,18 +70194,18 @@ rgU
 rgU
 svm
 esM
-esM
-esM
-esM
-esM
-vjD
-vjD
+ebw
+tMO
+bQM
 cYG
-esM
-esM
-esM
-esM
-esM
+vjD
+ebw
+ihV
+ebw
+ebw
+vjD
+bQM
+bQM
 jVs
 edg
 jVs
@@ -70353,19 +70394,19 @@ hEX
 rWU
 ebw
 eNN
-ewB
-esM
+eXX
+tMO
 siw
-esM
-esM
-esM
-esM
-esM
-uMM
-esM
-esM
-siw
-esM
+tMO
+ebw
+ebw
+ebw
+sJI
+hyZ
+cYG
+ebw
+ihV
+bQM
 jVs
 edg
 edg
@@ -70556,18 +70597,18 @@ ebw
 jFg
 ebw
 ewB
+xqi
 esM
-esM
-esM
-bPD
-siw
-esM
-esM
-esM
-esM
-esM
-esM
-esM
+ebw
+sJI
+ihV
+vjD
+tFh
+ebw
+ebw
+ebw
+bQM
+bQM
 jVs
 edg
 edg
@@ -70759,16 +70800,16 @@ ebw
 xPM
 ewB
 esM
-esM
-esM
-esM
-esM
 vaf
 esM
-esM
-siw
-esM
-esM
+bQM
+ebw
+ebw
+jbV
+ebw
+ihV
+lLI
+bQM
 jVs
 jVs
 edg
@@ -70962,15 +71003,15 @@ xVQ
 ufr
 esM
 esM
-xxU
 esM
-esM
-esM
-esM
-esM
-esM
-esM
-siw
+bQM
+tam
+ebw
+ebw
+sJI
+ebw
+bQM
+bQM
 jVs
 edg
 edg
@@ -71165,13 +71206,13 @@ esM
 esM
 esM
 esM
-esM
-siw
-bPD
-esM
-esM
-esM
-esM
+bQM
+xxU
+ebw
+ebw
+ebw
+bQM
+bQM
 jVs
 jVs
 edg
@@ -71363,16 +71404,16 @@ eic
 esM
 siw
 esM
+vaf
 esM
 esM
 esM
-esM
-esM
-esM
-esM
-esM
-esM
-siw
+bQM
+tam
+sJI
+iJL
+ebw
+bQM
 jVs
 jVs
 jVs
@@ -71568,13 +71609,13 @@ esM
 esM
 esM
 esM
-xqi
-xqi
-xqi
-siw
 esM
-esM
-esM
+bQM
+ebw
+ihV
+ebw
+bQM
+bQM
 jVs
 jVs
 jVs
@@ -71771,11 +71812,11 @@ esM
 esM
 esM
 esM
-esM
-esM
-esM
-esM
-esM
+bQM
+bQM
+sJI
+ebw
+bQM
 jVs
 jVs
 jVs
@@ -72176,7 +72217,7 @@ tJF
 siw
 esM
 esM
-esM
+tMO
 tJF
 esM
 qve
