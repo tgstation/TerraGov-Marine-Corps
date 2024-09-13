@@ -1026,8 +1026,8 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "aMX" = (
-/obj/structure/rock/medium,
-/turf/open/lavaland/basalt/glowing,
+/obj/structure/stairs/seamless/platform,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/north)
 "aNb" = (
 /obj/machinery/door/airlock/multi_tile/mainship/blackgeneric,
@@ -2603,6 +2603,12 @@
 /obj/structure/cocoon/opened_cocoon,
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/bar)
+"bSI" = (
+/obj/structure/stairs/seamless/platform{
+	dir = 1
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/outside/north)
 "bSR" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
@@ -3377,6 +3383,17 @@
 "cyH" = (
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/centralminingequip)
+"cyL" = (
+/obj/effect/turf_decal/sandytile/sandyplating,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/stairs/seamless{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/outside/north)
 "cyT" = (
 /obj/item/tool/analyzer/plant_analyzer,
 /obj/structure/flora/drought/barrel_cactus,
@@ -6186,8 +6203,10 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "evP" = (
-/obj/structure/rock/medium,
-/turf/open/lavaland/basalt,
+/obj/structure/stairs/seamless/platform{
+	dir = 4
+	},
+/turf/open/floor/prison/plate,
 /area/metnal/outside/north)
 "evS" = (
 /obj/structure/window/framed/prison/colony,
@@ -6568,11 +6587,11 @@
 	},
 /area/metnal/inside/security)
 "eIi" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 1
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt/cave{
+	dir = 8
 	},
-/turf/open/lavaland/basalt,
-/area/metnal/outside/north)
+/area/metnal/caves/rock)
 "eIn" = (
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt/cave/corner{
@@ -7663,8 +7682,10 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/metnal/inside/security)
 "fui" = (
-/obj/structure/stairs/seamless/platform,
-/turf/open/lavaland/basalt,
+/obj/structure/stairs/seamless{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
 /area/metnal/outside/north)
 "fuu" = (
 /turf/closed/wall/r_wall/prison,
@@ -8422,6 +8443,11 @@
 /obj/item/bedsheet/yellow,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"gau" = (
+/turf/open/lavaland/basalt/cave/corner{
+	dir = 8
+	},
+/area/metnal/caves/rock)
 "gaM" = (
 /obj/machinery/autodoc,
 /turf/open/floor/prison/whitegreen{
@@ -8725,11 +8751,10 @@
 	},
 /area/metnal/inside/cargo)
 "gkV" = (
-/obj/structure/stairs/seamless{
-	dir = 8
+/turf/open/lavaland/basalt/cave{
+	dir = 10
 	},
-/turf/open/lavaland/basalt,
-/area/metnal/outside/north)
+/area/metnal/caves/rock)
 "glr" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/high_volume,
 /turf/open/lavaland/basalt,
@@ -8831,6 +8856,12 @@
 "gpK" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/northeast)
+"gpR" = (
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt/cave{
+	dir = 5
+	},
+/area/metnal/caves/rock)
 "gpS" = (
 /obj/structure/prop/mainship/gelida/powerccable{
 	dir = 4
@@ -9009,6 +9040,11 @@
 	},
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
+"gwS" = (
+/turf/open/lavaland/basalt/cave{
+	dir = 5
+	},
+/area/metnal/caves/rock)
 "gwY" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -13690,7 +13726,7 @@
 /obj/structure/stairs/seamless/platform{
 	dir = 8
 	},
-/turf/open/lavaland/basalt,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/north)
 "jSF" = (
 /obj/structure/platform{
@@ -18273,7 +18309,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/lavaland/basalt,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/north)
 "ndo" = (
 /obj/effect/decal/cleanable/blood/writing,
@@ -19829,6 +19865,11 @@
 	},
 /turf/open/floor/prison/darkbrown,
 /area/metnal/inside/mineralextraction)
+"ogR" = (
+/turf/open/lavaland/basalt/cave{
+	dir = 1
+	},
+/area/metnal/caves/rock)
 "ohd" = (
 /obj/effect/turf_decal/siding/dark/corner{
 	dir = 1
@@ -22796,12 +22837,21 @@
 "qjW" = (
 /turf/open/liquid/lava/autosmoothing,
 /area/metnal/caves/southwest)
+"qka" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/rock)
 "qkc" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/cafeteria)
+"qkn" = (
+/turf/open/lavaland/basalt/cave{
+	dir = 4
+	},
+/area/metnal/caves/rock)
 "qkt" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
@@ -26131,11 +26181,10 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "stk" = (
-/obj/structure/stairs/seamless/platform{
-	dir = 4
-	},
-/turf/open/lavaland/basalt/glowing,
-/area/metnal/outside/north)
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/rock)
 "stx" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 10
@@ -29155,6 +29204,10 @@
 	dir = 4
 	},
 /area/metnal/caves/south)
+"uwo" = (
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt/glowing,
+/area/metnal/outside/north)
 "uwv" = (
 /obj/machinery/door/airlock/mainship/generic{
 	name = "\improper Dormitory Unit"
@@ -29364,15 +29417,9 @@
 	},
 /area/metnal/inside/cargo)
 "uDe" = (
-/obj/structure/stairs/seamless{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/lavaland/basalt,
-/area/metnal/outside/north)
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/rock)
 "uDk" = (
 /turf/open/floor/carpet/side{
 	dir = 6
@@ -31619,7 +31666,7 @@
 /area/metnal/inside/garden)
 "vXI" = (
 /obj/structure/window/framed/prison/reinforced,
-/turf/open/lavaland/basalt,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/north)
 "vYg" = (
 /obj/effect/spawner/random/decal/blood,
@@ -31644,6 +31691,11 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
+"vZG" = (
+/obj/structure/rock/large,
+/obj/effect/ai_node,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/north)
 "vZT" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
@@ -32168,7 +32220,7 @@
 /obj/structure/stairs/seamless{
 	dir = 4
 	},
-/turf/open/lavaland/basalt,
+/turf/open/floor/prison/plate,
 /area/metnal/outside/north)
 "wvM" = (
 /obj/effect/turf_decal/siding/green{
@@ -49904,8 +49956,8 @@ edg
 edg
 edg
 edg
-edg
-edg
+qkn
+gpR
 xVR
 xVR
 hAT
@@ -50104,11 +50156,11 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-edg
-xVR
+qka
+rqS
+rqS
+gkV
+sco
 xVR
 xVR
 xVR
@@ -50306,9 +50358,9 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
+rqS
+rqS
+rqS
 edg
 xVR
 xVR
@@ -50507,9 +50559,9 @@ edg
 (79,1,1) = {"
 edg
 edg
-edg
-edg
-edg
+rqS
+uDe
+rqS
 edg
 xVR
 sco
@@ -50709,8 +50761,8 @@ edg
 (80,1,1) = {"
 edg
 edg
-edg
-edg
+rqS
+rqS
 edg
 edg
 xVR
@@ -50910,9 +50962,9 @@ edg
 "}
 (81,1,1) = {"
 edg
-edg
-edg
-edg
+uDe
+rqS
+rqS
 edg
 edg
 xVR
@@ -50937,7 +50989,7 @@ xVR
 xVR
 lkS
 sco
-xVR
+sco
 uJl
 nXs
 saf
@@ -51112,9 +51164,9 @@ edg
 "}
 (82,1,1) = {"
 edg
-edg
-edg
-edg
+qka
+rqS
+stk
 edg
 edg
 xVR
@@ -51127,8 +51179,8 @@ hAT
 xVR
 xVR
 xVR
+sco
 xVR
-evP
 xVR
 xVR
 xVR
@@ -51314,18 +51366,15 @@ edg
 "}
 (83,1,1) = {"
 edg
+rqS
+rqS
 edg
 edg
 edg
-edg
-edg
-xVR
-nKS
 xVR
 xVR
 sco
 xVR
-aMX
 xVR
 vPN
 vPN
@@ -51333,11 +51382,14 @@ vPN
 vPN
 vPN
 vPN
+vPN
+vPN
+vPN
+vPN
+vPN
+sco
 xVR
-xVR
-xVR
-xVR
-eBM
+vZG
 xVR
 xVR
 xVR
@@ -51516,12 +51568,11 @@ edg
 "}
 (84,1,1) = {"
 edg
+rqS
+rqS
 edg
 edg
 edg
-edg
-edg
-xVR
 xVR
 xVR
 vPN
@@ -51540,11 +51591,12 @@ vPN
 vPN
 vPN
 xVR
-evP
 xVR
-hAT
 xVR
-hAT
+xVR
+xVR
+xVR
+lkS
 mnK
 uoI
 hAT
@@ -51718,11 +51770,11 @@ edg
 "}
 (85,1,1) = {"
 edg
+uDe
+rqS
 edg
 edg
 edg
-edg
-edg
 xVR
 vPN
 vPN
@@ -51741,17 +51793,17 @@ vPN
 vPN
 vPN
 vPN
-vPN
-vPN
-xVR
-xVR
-xVR
-lkS
-wZP
-xVR
-fHs
-xVR
-hAT
+sco
+gqZ
+gqZ
+aMX
+fui
+fui
+cyL
+fui
+evP
+gqZ
+gqZ
 eBM
 lkS
 hAT
@@ -51920,8 +51972,8 @@ edg
 "}
 (86,1,1) = {"
 edg
-edg
-edg
+rqS
+rqS
 edg
 edg
 edg
@@ -51944,14 +51996,14 @@ vPN
 vPN
 vPN
 vPN
-vPN
-vPN
 gqZ
 gqZ
-fui
-uDe
-gkV
-stk
+gMi
+pfy
+pfy
+kEJ
+pfy
+gMi
 gqZ
 gqZ
 xVR
@@ -52122,10 +52174,10 @@ edg
 "}
 (87,1,1) = {"
 edg
+rqS
+rqS
 edg
 edg
-edg
-edg
 vPN
 vPN
 vPN
@@ -52147,15 +52199,15 @@ vPN
 vPN
 vPN
 vPN
-vPN
-gqZ
-gqZ
+vXI
 gMi
-rfA
+gpD
 pfy
+rfA
+gpD
 gMi
-gqZ
-gqZ
+vXI
+vPN
 hAT
 xVR
 vPN
@@ -52324,12 +52376,10 @@ edg
 "}
 (88,1,1) = {"
 edg
+qka
+rqS
+stk
 edg
-edg
-edg
-edg
-vPN
-vPN
 vPN
 vPN
 vPN
@@ -52353,8 +52403,10 @@ vPN
 vPN
 vXI
 gMi
+pfy
+pfy
 kEJ
-gpD
+pfy
 gMi
 vXI
 vPN
@@ -52526,12 +52578,10 @@ edg
 "}
 (89,1,1) = {"
 edg
+rqS
+rqS
+rqS
 edg
-edg
-edg
-edg
-vPN
-vPN
 vPN
 vPN
 vPN
@@ -52555,8 +52605,10 @@ vPN
 vPN
 vXI
 gMi
-kEJ
+ejU
 pfy
+kEJ
+ejU
 gMi
 vXI
 vPN
@@ -52728,10 +52780,10 @@ edg
 "}
 (90,1,1) = {"
 edg
+rqS
+rqS
 edg
 edg
-edg
-edg
 vPN
 vPN
 vPN
@@ -52753,14 +52805,14 @@ vPN
 vPN
 vPN
 vPN
-vPN
-vPN
-vXI
+gqZ
 gMi
+pfy
+pfy
 kEJ
-ejU
+pfy
 gMi
-vXI
+gqZ
 vPN
 vPN
 vPN
@@ -52930,12 +52982,10 @@ edg
 "}
 (91,1,1) = {"
 edg
+rqS
+uDe
 edg
 edg
-edg
-edg
-vPN
-vPN
 vPN
 vPN
 vPN
@@ -52959,6 +53009,8 @@ vPN
 vPN
 gqZ
 gMi
+pfy
+pfy
 kEJ
 pfy
 gMi
@@ -53132,12 +53184,10 @@ edg
 "}
 (92,1,1) = {"
 edg
+rqS
+rqS
 edg
 edg
-edg
-edg
-vPN
-vPN
 vPN
 vPN
 vPN
@@ -53161,6 +53211,8 @@ vPN
 vPN
 gqZ
 gMi
+pfy
+pfy
 kEJ
 pfy
 gMi
@@ -53334,12 +53386,10 @@ edg
 "}
 (93,1,1) = {"
 edg
+rqS
+rqS
 edg
 edg
-edg
-edg
-vPN
-vPN
 vPN
 vPN
 vPN
@@ -53363,6 +53413,8 @@ vPN
 vPN
 gqZ
 gMi
+pfy
+pfy
 kEJ
 pfy
 gMi
@@ -53536,12 +53588,10 @@ edg
 "}
 (94,1,1) = {"
 edg
+uDe
+rqS
 edg
 edg
-edg
-edg
-vPN
-vPN
 vPN
 vPN
 vPN
@@ -53565,6 +53615,8 @@ vPN
 vPN
 vXI
 gMi
+cTS
+pfy
 kEJ
 cTS
 gMi
@@ -53738,8 +53790,8 @@ edg
 "}
 (95,1,1) = {"
 edg
-edg
-edg
+rqS
+rqS
 edg
 edg
 xVR
@@ -53763,10 +53815,10 @@ vPN
 vPN
 vPN
 vPN
-vPN
-vPN
 vXI
 gMi
+pfy
+pfy
 kEJ
 pfy
 gMi
@@ -53940,14 +53992,12 @@ edg
 "}
 (96,1,1) = {"
 edg
-edg
-edg
+rqS
+rqS
 edg
 edg
 xVR
 xVR
-xVR
-sco
 vPN
 vPN
 vPN
@@ -53969,6 +54019,8 @@ vPN
 vPN
 vXI
 gMi
+pfy
+pfy
 kEJ
 pfy
 gMi
@@ -54142,14 +54194,13 @@ edg
 "}
 (97,1,1) = {"
 edg
-edg
-edg
-edg
+rqS
+rqS
+uDe
 edg
 xVR
 hAT
 xVR
-xVR
 vPN
 vPN
 vPN
@@ -54167,10 +54218,11 @@ vPN
 vPN
 vPN
 vPN
-xVR
 gqZ
 gqZ
 gMi
+pfy
+pfy
 kEJ
 pfy
 gMi
@@ -54344,17 +54396,14 @@ edg
 "}
 (98,1,1) = {"
 edg
+rqS
+rqS
+rqS
 edg
-edg
-edg
-edg
 xVR
 xVR
 xVR
-xVR
-xVR
-xVR
-xVR
+sco
 vPN
 vPN
 vPN
@@ -54367,12 +54416,15 @@ vPN
 vPN
 vPN
 vPN
-xVR
-lkS
-lkS
+vPN
+vPN
+vPN
+sco
 gqZ
 gqZ
-eIi
+bSI
+wvG
+wvG
 ncy
 wvG
 jSg
@@ -54546,9 +54598,9 @@ edg
 "}
 (99,1,1) = {"
 edg
-edg
-edg
-edg
+stk
+rqS
+qka
 edg
 xVR
 xVR
@@ -54556,18 +54608,18 @@ xVR
 xVR
 hAT
 xVR
-xVR
+sco
 xVR
 vPN
 vPN
 vPN
 vPN
 vPN
-xVR
-xVR
-xVR
-xVR
-xVR
+vPN
+vPN
+vPN
+vPN
+vPN
 xVR
 xVR
 hAT
@@ -54749,27 +54801,27 @@ edg
 (100,1,1) = {"
 edg
 edg
+rqS
+rqS
+ogR
 edg
-edg
-edg
-edg
+xVR
+xVR
+xVR
+xVR
+sco
 xVR
 xVR
 xVR
 xVR
 xVR
-xVR
-xVR
-xVR
-xVR
-xVR
-lkS
+uwo
 lkS
 lkS
 xVR
 paN
 lkS
-lkS
+uwo
 lkS
 xVR
 xVR
@@ -54951,10 +55003,10 @@ edg
 (101,1,1) = {"
 edg
 edg
-edg
-edg
-edg
-edg
+rqS
+rqS
+gau
+gwS
 xVR
 xVR
 xVR
@@ -55154,9 +55206,9 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
+stk
+qka
+ogR
 hAT
 xVR
 sco
@@ -55173,13 +55225,13 @@ ddn
 qYd
 jIT
 wUh
-wUh
+xWk
+xWk
 xWk
 wUh
 wUh
 wUh
-wUh
-wUh
+xWk
 tON
 lYR
 vUK
@@ -55357,11 +55409,11 @@ edg
 edg
 edg
 edg
-edg
-edg
+eIi
+gkV
 xVR
 xVR
-hAT
+nKS
 xVR
 xVR
 xVR
@@ -58643,7 +58695,7 @@ dxJ
 dxJ
 kez
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -58845,7 +58897,7 @@ kez
 kez
 kez
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -59047,7 +59099,7 @@ kez
 kez
 kFW
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -59249,7 +59301,7 @@ kez
 dxJ
 kFW
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -59451,8 +59503,8 @@ kez
 kez
 uow
 kez
-oRN
-oRN
+kez
+kez
 oRN
 oRN
 oRN
@@ -59653,8 +59705,8 @@ kez
 dxJ
 oUk
 kez
-oRN
-oRN
+kez
+kez
 oRN
 oRN
 oRN
@@ -59855,8 +59907,8 @@ kez
 eQs
 kez
 kez
-oRN
-oRN
+kez
+kez
 oRN
 oRN
 oRN
@@ -60057,8 +60109,8 @@ kez
 kez
 kez
 kez
-oRN
-oRN
+kez
+kez
 oRN
 oRN
 oRN
@@ -60260,8 +60312,8 @@ kez
 kez
 kez
 kez
-oRN
-oRN
+kez
+kez
 oRN
 oRN
 oRN
@@ -60462,8 +60514,8 @@ kez
 kez
 kez
 kez
-oRN
-oRN
+kez
+kez
 oRN
 oRN
 oRN
@@ -60665,7 +60717,7 @@ kez
 kez
 kez
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -60867,7 +60919,7 @@ kez
 kez
 kez
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -61070,7 +61122,7 @@ kez
 kez
 kez
 kez
-oRN
+kez
 oRN
 oRN
 oRN
@@ -61272,7 +61324,7 @@ kez
 kez
 kez
 kez
-oRN
+kez
 oRN
 oRN
 oRN
