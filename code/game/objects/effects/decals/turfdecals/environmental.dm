@@ -70,6 +70,7 @@
 /obj/effect/turf_decal/sandytile/sandyplating
 	icon_state = "sandyplating"
 	minimap_color = MINIMAP_BLACK
+
 /obj/effect/turf_decal/riverdecal
 	name = "river"
 	layer = XENO_WEEDS_LAYER
