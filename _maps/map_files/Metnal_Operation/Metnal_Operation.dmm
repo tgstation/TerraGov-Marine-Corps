@@ -323,9 +323,7 @@
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
 "anq" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
@@ -398,9 +396,7 @@
 /area/metnal/inside/security)
 "aqh" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
@@ -1156,9 +1152,7 @@
 /turf/open/floor/mainship/mono,
 /area/metnal/outside/southwest)
 "aQC" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
@@ -1242,9 +1236,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northwest)
 "aTy" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -1357,9 +1349,7 @@
 	},
 /area/metnal/inside/mineralextraction)
 "aXG" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
@@ -1499,9 +1489,7 @@
 /turf/open/floor/wood,
 /area/metnal/inside/northmeetingroom)
 "bcF" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
 "bdc" = (
@@ -1965,9 +1953,7 @@
 /area/metnal/inside/research)
 "bte" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
@@ -2010,9 +1996,7 @@
 /area/metnal/inside/colonydorms)
 "bvN" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
@@ -2107,9 +2091,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 8
 	},
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "byQ" = (
@@ -2339,9 +2321,7 @@
 /area/metnal/inside/substation)
 "bIA" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
 "bIG" = (
@@ -3037,9 +3017,7 @@
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
 "cjn" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/north)
@@ -3235,9 +3213,7 @@
 /area/metnal/outside/central)
 "cqV" = (
 /obj/effect/ai_node,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "crb" = (
@@ -3468,9 +3444,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/centralminingequip)
 "cyL" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -3717,9 +3691,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "cIM" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
@@ -3822,9 +3794,7 @@
 	},
 /area/metnal/inside/northmeetingroom)
 "cKR" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /obj/effect/turf_decal/siding/red{
 	dir = 8
@@ -3988,9 +3958,7 @@
 	},
 /area/metnal/inside/garden)
 "cRb" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/central)
 "cRk" = (
@@ -4615,9 +4583,7 @@
 /turf/open/floor/wood,
 /area/metnal/inside/northmeetingroom)
 "deX" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -5101,9 +5067,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/research)
 "dzM" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
@@ -5571,9 +5535,7 @@
 /turf/open/floor/wood/alt_eight,
 /area/metnal/inside/colonydorms)
 "dSF" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -5776,9 +5738,7 @@
 	},
 /area/metnal/inside/cafeteria)
 "dYU" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/west)
 "dZr" = (
@@ -6079,9 +6039,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/mining)
 "elx" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/northwest)
 "elH" = (
@@ -7192,9 +7150,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
 	},
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "eYg" = (
@@ -7801,9 +7757,7 @@
 	},
 /area/metnal/inside/meddesk)
 "frS" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
@@ -8068,9 +8022,7 @@
 	},
 /area/metnal/inside/research)
 "fEN" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/spawner/random/decal/blood,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
@@ -8151,9 +8103,7 @@
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/caves/south)
 "fHs" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
@@ -8260,9 +8210,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "fJQ" = (
@@ -8408,9 +8356,7 @@
 /turf/open/floor/prison/marked,
 /area/metnal/inside/mining)
 "fRB" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -8887,9 +8833,7 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "gjW" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
@@ -9177,9 +9121,7 @@
 /turf/open/floor/mainship/silver,
 /area/metnal/inside/cargo)
 "gvB" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
@@ -9886,9 +9828,7 @@
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
 "gXU" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/northwest)
@@ -9908,9 +9848,7 @@
 /turf/open/liquid/water,
 /area/metnal/inside/garden)
 "gYI" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -10065,9 +10003,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
 "hgt" = (
@@ -10148,9 +10084,7 @@
 /area/metnal/inside/recreation)
 "hjS" = (
 /obj/effect/landmark/excavation_site_spawner,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
@@ -10266,9 +10200,7 @@
 /area/metnal/inside/northmeetingroom)
 "hog" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
@@ -10390,9 +10322,7 @@
 /area/metnal/outside/north)
 "htd" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "htw" = (
@@ -10544,9 +10474,7 @@
 /area/metnal/inside/colonydorms)
 "hyZ" = (
 /obj/item/trash/cigbutt/cigarbutt,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
 "hzl" = (
@@ -10866,9 +10794,7 @@
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
 "hIX" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -12054,9 +11980,7 @@
 	},
 /area/metnal/inside/research)
 "ivY" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -12222,9 +12146,7 @@
 /turf/open/floor/plating/mainship,
 /area/metnal/outside/southeast)
 "iCU" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -12392,9 +12314,7 @@
 /area/metnal/inside/centralminingequip)
 "iJL" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
@@ -12546,9 +12466,7 @@
 /area/metnal/inside/colonydorms)
 "iQX" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "iRf" = (
@@ -12609,9 +12527,7 @@
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/recreation)
 "iTn" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "iTr" = (
@@ -12628,9 +12544,7 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
 "iTV" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
@@ -12761,9 +12675,7 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/metnal/inside/landingzoneone)
 "iYN" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/plate,
@@ -12912,9 +12824,7 @@
 /turf/open/floor/wood/alt_eight,
 /area/metnal/inside/colonydorms)
 "jdU" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
@@ -13134,9 +13044,7 @@
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
 "jnF" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/central)
@@ -13624,9 +13532,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "jCu" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -13844,9 +13750,7 @@
 /area/metnal/outside/northwest)
 "jKf" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "jKm" = (
@@ -14634,9 +14538,7 @@
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/research)
 "kop" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
@@ -14726,9 +14628,7 @@
 /obj/effect/turf_decal/siding/dark{
 	dir = 4
 	},
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "krD" = (
@@ -14904,9 +14804,7 @@
 /turf/open/floor/tile/darkish,
 /area/metnal/inside/recreation)
 "kwY" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
@@ -15599,9 +15497,7 @@
 	},
 /area/metnal/inside/colonydorms)
 "kWQ" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -15781,9 +15677,7 @@
 /turf/open/floor/prison/darkbrown,
 /area/metnal/inside/mineralextraction)
 "lcD" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/north)
 "lcW" = (
@@ -16276,9 +16170,7 @@
 /area/metnal/caves/southwest)
 "ltr" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "ltu" = (
@@ -16343,9 +16235,7 @@
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
 "lwX" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
@@ -16637,9 +16527,7 @@
 	},
 /area/metnal/inside/substation)
 "lHE" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "lHI" = (
@@ -17040,9 +16928,7 @@
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical)
 "lXM" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
@@ -17080,9 +16966,7 @@
 /area/metnal/inside/substation)
 "lYR" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
@@ -17490,12 +17374,8 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "mor" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northeast)
 "moG" = (
@@ -17505,9 +17385,7 @@
 /turf/open/lavaland/basalt,
 /area/metnal/caves/south)
 "moO" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
@@ -18141,9 +18019,7 @@
 /area/metnal/inside/substation)
 "mNi" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "mNE" = (
@@ -18419,9 +18295,7 @@
 	},
 /area/metnal/inside/meddesk)
 "mXJ" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northwest)
@@ -18430,9 +18304,7 @@
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
 "mYe" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -18599,9 +18471,7 @@
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
 "nbT" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -18942,9 +18812,7 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "npE" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/lavaland/basalt,
@@ -19037,18 +18905,14 @@
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/experimentation)
 "nsZ" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/stairs/seamless{
 	dir = 1
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "ntq" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
@@ -19879,9 +19743,7 @@
 /area/metnal/inside/security)
 "nUA" = (
 /obj/effect/ai_node,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "nUL" = (
@@ -19925,16 +19787,12 @@
 	},
 /area/metnal/inside/research)
 "nVr" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "nVx" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
@@ -19956,9 +19814,7 @@
 	},
 /area/metnal/inside/colonydorms)
 "nXs" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
@@ -20120,9 +19976,7 @@
 /turf/open/ground/grass/weedable/patch,
 /area/metnal/outside/northwest)
 "odE" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -20852,9 +20706,7 @@
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/bar)
 "oCG" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/spawner/random/decal/blood,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/lavaland/basalt,
@@ -20877,9 +20729,7 @@
 /area/metnal/inside/substation)
 "oDo" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "oDw" = (
@@ -21015,9 +20865,7 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southwest)
 "oHI" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northwest)
 "oHV" = (
@@ -21165,9 +21013,7 @@
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southeast)
 "oMA" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
@@ -21274,9 +21120,7 @@
 	},
 /area/metnal/inside/landingzoneone)
 "oPZ" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/spawner/random/decal/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -21442,9 +21286,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/southeast)
 "oVk" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/window/framed/prison/colony,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/garden)
@@ -21486,9 +21328,7 @@
 /area/metnal/outside/southwest)
 "oVW" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "oWk" = (
@@ -21654,9 +21494,7 @@
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
 "pdc" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
@@ -21855,9 +21693,7 @@
 /area/metnal/inside/security)
 "pkQ" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
@@ -22183,9 +22019,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "pzj" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
@@ -22336,9 +22170,7 @@
 /turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/central)
 "pFL" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
@@ -22826,9 +22658,7 @@
 /area/metnal/inside/bathhouse)
 "pXa" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
 "pXl" = (
@@ -23476,9 +23306,7 @@
 /turf/open/floor/iron/dark/textured_corner,
 /area/metnal/inside/landingzoneone)
 "qtt" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
@@ -23523,9 +23351,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "quP" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
@@ -24331,9 +24157,7 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "qSh" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
@@ -24348,9 +24172,7 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
 "qSW" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
@@ -24402,9 +24224,7 @@
 /turf/open/lavaland/basalt/cave,
 /area/metnal/outside/south)
 "qVc" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
@@ -24684,9 +24504,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "rei" = (
@@ -25959,9 +25777,7 @@
 /area/metnal/outside/northeast)
 "rYZ" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "rZe" = (
@@ -26259,9 +26075,7 @@
 /area/metnal/outside/northeast)
 "siW" = (
 /mob/living/simple_animal/chicken,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -26709,9 +26523,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "suX" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
@@ -27194,9 +27006,7 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "sJI" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/southeast)
 "sJM" = (
@@ -27532,9 +27342,7 @@
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
 "sWY" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
@@ -27743,9 +27551,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "tgb" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
@@ -28547,9 +28353,7 @@
 /turf/open/floor/industrial,
 /area/metnal/outside/central)
 "tJT" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
@@ -28634,9 +28438,7 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "tMO" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "tNi" = (
@@ -29109,9 +28911,7 @@
 /area/metnal/inside/landingzoneone)
 "udz" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -29484,9 +29284,7 @@
 /area/metnal/inside/mining)
 "uoq" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "uow" = (
@@ -29498,9 +29296,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/outside/southwest)
 "uoI" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "uoL" = (
@@ -29873,9 +29669,7 @@
 /area/metnal/inside/administration)
 "uCv" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northwest)
 "uCw" = (
@@ -29887,9 +29681,7 @@
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
 "uCC" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -30096,9 +29888,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/laundromat)
 "uJl" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
@@ -30639,9 +30429,7 @@
 /area/metnal/inside/chapel)
 "vbo" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
@@ -30936,9 +30724,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "vmj" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
@@ -31021,9 +30807,7 @@
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/laundromat)
 "vpz" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
@@ -31421,9 +31205,7 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
 "vAa" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
@@ -31739,9 +31521,7 @@
 /turf/open/floor/tile/bar,
 /area/metnal/inside/bathhouse)
 "vJu" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -32064,9 +31844,7 @@
 	},
 /area/metnal/inside/cargo)
 "vTt" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
@@ -32554,9 +32332,7 @@
 /turf/open/floor/wood/alt_eight,
 /area/metnal/inside/colonydorms)
 "wmD" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
 "wmQ" = (
@@ -32681,9 +32457,7 @@
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
 "wrP" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
@@ -32697,9 +32471,7 @@
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
 "wsg" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northeast)
 "wsp" = (
@@ -32873,9 +32645,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "wBc" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
@@ -33202,9 +32972,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northeast)
 "wNV" = (
@@ -33258,9 +33026,7 @@
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
 "wQL" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33545,16 +33311,12 @@
 	},
 /area/metnal/outside/southwest)
 "wZK" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "wZP" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -34047,9 +33809,7 @@
 /turf/open/floor/prison/darkbrown,
 /area/metnal/inside/mineralextraction)
 "xsi" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/turf_decal/tracks/human2/bloody,
 /obj/structure/cable,
 /turf/open/lavaland/basalt,
@@ -34146,9 +33906,7 @@
 	},
 /area/metnal/inside/bathhouse)
 "xvI" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
@@ -34621,9 +34379,7 @@
 /turf/open/floor/tile/barber,
 /area/metnal/inside/mining)
 "xNw" = (
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "xNM" = (
@@ -34902,9 +34658,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "xXO" = (
@@ -35215,9 +34969,7 @@
 /area/metnal/outside/northeast)
 "yhD" = (
 /obj/item/trash/cigbutt/cigarbutt,
-/obj/effect/turf_decal/sandytile/sandyplating{
-	minimap_color = "#111111d0"
-	},
+/obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
 "yhE" = (
