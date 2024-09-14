@@ -398,7 +398,7 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/ai_node,
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "aqt" = (
 /obj/effect/landmark/weed_node,
@@ -7761,7 +7761,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
 	},
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "frT" = (
 /obj/structure/bed/chair,
@@ -10202,7 +10202,7 @@
 /obj/structure/cable,
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "hov" = (
 /obj/effect/turf_decal/siding/wood{
@@ -11341,7 +11341,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "iaX" = (
 /obj/effect/decal/cleanable/dirt,
@@ -11777,11 +11777,6 @@
 	},
 /turf/open/floor/tile/bar,
 /area/metnal/inside/bathhouse)
-"ioc" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating,
-/turf/open/floor/prison/plate,
-/area/metnal/outside/northeast)
 "ioi" = (
 /obj/effect/decal/cleanable/blood/humanimprint/four,
 /obj/effect/ai_node,
@@ -12155,7 +12150,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "iCX" = (
 /obj/structure/table/black,
@@ -16976,7 +16971,7 @@
 	dir = 4
 	},
 /obj/effect/ai_node,
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "lZG" = (
 /obj/effect/ai_node,
@@ -18802,11 +18797,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/mining)
-"noe" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison/plate,
-/area/metnal/outside/north)
 "nou" = (
 /obj/effect/turf_decal/arrows{
 	dir = 4
@@ -20740,7 +20730,7 @@
 "oDo" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/sandytile/sandyplating,
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "oDw" = (
 /obj/structure/closet/wardrobe/pjs,
@@ -21225,9 +21215,11 @@
 /area/metnal/inside/colonydorms)
 "oTc" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/prison/plate,
-/area/metnal/outside/northeast)
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/lavaland/basalt,
+/area/metnal/outside/north)
 "oTh" = (
 /obj/effect/ai_node,
 /obj/effect/landmark/xeno_resin_wall,
@@ -27764,7 +27756,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "tmy" = (
 /obj/machinery/conveyor{
@@ -28381,11 +28373,6 @@
 "tKm" = (
 /turf/open/lavaland/basalt,
 /area/metnal/caves/northeast)
-"tKp" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/obj/effect/ai_node,
-/turf/open/floor/prison/plate,
-/area/metnal/outside/northeast)
 "tKx" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -28536,7 +28523,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "tOO" = (
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -28928,7 +28915,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/north)
 "ueb" = (
 /obj/structure/closet/radiation,
@@ -29857,7 +29844,7 @@
 "uHS" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "uId" = (
 /obj/structure/cable,
@@ -30445,7 +30432,7 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
-/turf/open/floor/prison/plate,
+/turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
 "vce" = (
 /obj/structure/toilet,
@@ -33726,13 +33713,6 @@
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/iron/dark/textured_edge,
 /area/metnal/inside/substation)
-"xnA" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/prison/plate,
-/area/metnal/outside/northeast)
 "xnJ" = (
 /obj/structure/safe,
 /obj/item/toy/plush/moth,
@@ -34483,11 +34463,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
-"xRp" = (
-/obj/structure/cable,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison/plate,
-/area/metnal/outside/northeast)
 "xRB" = (
 /obj/structure/sink{
 	dir = 4;
@@ -35121,11 +35096,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/central)
-"ylH" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/prison/plate,
-/area/metnal/outside/northeast)
 "ymc" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
@@ -54963,11 +54933,11 @@ xVR
 xVR
 hAT
 xVR
-mlM
-mlM
-noe
-mnK
-mlM
+xVR
+xVR
+fHs
+oTc
+xVR
 uoI
 xVR
 xVR
@@ -55165,11 +55135,11 @@ lkS
 xVR
 xVR
 eBM
+xVR
+xVR
 mlM
-mlM
-mlM
-mnK
-lcD
+oTc
+uoI
 xVR
 xVR
 hAT
@@ -55367,11 +55337,11 @@ xVR
 xVR
 xVR
 xVR
-frO
-mlM
+hAT
+xVR
 mlM
 udz
-lcD
+uoI
 xVR
 hAT
 xVR
@@ -55569,8 +55539,8 @@ xWk
 xWk
 wUh
 wUh
-pvZ
-vUK
+wUh
+xWk
 tON
 lYR
 vUK
@@ -55771,11 +55741,11 @@ hAT
 xVR
 xVR
 xVR
-frO
-mlM
-jxM
+hAT
+xVR
+tqu
 jrv
-lcD
+uoI
 xVR
 xVR
 xVR
@@ -55973,11 +55943,11 @@ uiY
 kgg
 kgg
 uiY
-mlM
-lcD
+xVR
+uoI
 jxM
-jrv
-mlM
+cZT
+xVR
 kVU
 kVU
 eOi
@@ -56176,7 +56146,7 @@ fin
 uNl
 uiY
 xVR
-mlM
+xVR
 iCU
 oDo
 uoI
@@ -56378,7 +56348,7 @@ ogb
 oGF
 uiY
 xVR
-frO
+hAT
 jxM
 jrv
 fHs
@@ -56580,7 +56550,7 @@ pjg
 pSE
 uiY
 xVR
-mlM
+xVR
 iCU
 iaV
 kVU
@@ -56782,9 +56752,9 @@ vRh
 iCw
 uiY
 hAT
-lcD
+uoI
 jxM
-jrv
+cZT
 kVU
 nTX
 vvH
@@ -56984,7 +56954,7 @@ jIs
 uiY
 uiY
 xVR
-mlM
+xVR
 iCU
 oDo
 kVU
@@ -57186,7 +57156,7 @@ rhV
 uiY
 xVR
 xVR
-mlM
+xVR
 iCU
 jrv
 kVU
@@ -57389,8 +57359,8 @@ kbm
 hAT
 sco
 mlM
-jxM
-jrv
+tqu
+cZT
 kVU
 osY
 hdg
@@ -57590,7 +57560,7 @@ spi
 rgl
 nQM
 nQM
-ioc
+ltr
 tmw
 vbo
 hLN
@@ -57792,9 +57762,9 @@ sqW
 uiY
 siO
 siO
-wsg
-xnA
-lIS
+iTn
+gYI
+nQM
 bSz
 wbo
 wAn
@@ -57995,7 +57965,7 @@ uiY
 siO
 siO
 uja
-xnA
+gYI
 hog
 kVU
 wpB
@@ -58196,7 +58166,7 @@ uiY
 xXc
 siO
 xXc
-wsg
+iTn
 dtz
 lIS
 kVU
@@ -58398,8 +58368,8 @@ uiY
 siO
 siO
 siO
-gce
-xnA
+xXc
+gYI
 uHS
 kVU
 jCB
@@ -58600,9 +58570,9 @@ siO
 siO
 siO
 siO
-wsg
-dtz
-xRp
+iTn
+kso
+dsr
 eOi
 fHL
 dAU
@@ -58802,9 +58772,9 @@ xXc
 siO
 siO
 siO
-uja
+siO
 dtz
-ioc
+ltr
 kVU
 mIB
 jqG
@@ -59004,8 +58974,8 @@ siO
 siO
 siO
 siO
-wsg
-xnA
+iTn
+gYI
 lIS
 kVU
 kVU
@@ -59206,8 +59176,8 @@ siO
 xXc
 siO
 uec
-uja
-xnA
+siO
+gYI
 lIS
 kVU
 seM
@@ -59409,8 +59379,8 @@ siO
 siO
 siO
 qFp
-dtz
-xRp
+kso
+dsr
 kVU
 dPn
 tSl
@@ -59610,9 +59580,9 @@ siO
 siO
 siO
 siO
-uja
-xnA
-lIS
+siO
+gYI
+nQM
 kVU
 kFA
 djS
@@ -59812,9 +59782,9 @@ siO
 siO
 siO
 siO
-gce
+xXc
 dtz
-lIS
+nQM
 kVU
 kVU
 kVU
@@ -60014,7 +59984,7 @@ siO
 siO
 iTn
 siO
-wsg
+iTn
 dtz
 aqh
 kVU
@@ -60216,8 +60186,8 @@ xXc
 siO
 xXc
 lZG
-uja
-xnA
+siO
+gYI
 lIS
 kVU
 tOm
@@ -60420,7 +60390,7 @@ siO
 uja
 uja
 dtz
-xRp
+dsr
 kVU
 cRR
 mBI
@@ -60620,9 +60590,9 @@ siO
 siO
 siO
 siO
-uja
-xnA
-lIS
+siO
+gYI
+nQM
 eOi
 gkP
 tCQ
@@ -60822,9 +60792,9 @@ xXc
 siO
 siO
 siO
-ylH
-dtz
-lIS
+wZK
+kso
+nQM
 eOi
 iUi
 xzH
@@ -61024,9 +60994,9 @@ siO
 lZG
 siO
 lZG
-uja
-xnA
-lIS
+siO
+gYI
+nQM
 kVU
 bDs
 gvv
@@ -61226,9 +61196,9 @@ siO
 siO
 siO
 iTn
-uja
+siO
 dtz
-lIS
+nQM
 kVU
 eOi
 eOi
@@ -61429,7 +61399,7 @@ xXc
 xXc
 siO
 uja
-xnA
+gYI
 vrC
 siO
 siO
@@ -61630,9 +61600,9 @@ siO
 siO
 siO
 siO
-wsg
+iTn
 dtz
-ioc
+ltr
 siO
 siO
 xXc
@@ -61832,8 +61802,8 @@ siO
 siO
 siO
 siO
-wsg
-dtz
+iTn
+kso
 uHS
 siO
 siO
@@ -62034,9 +62004,9 @@ siO
 siO
 siO
 lZG
-uja
+siO
 frS
-oTc
+cGb
 bhO
 eSF
 eSF
@@ -62236,9 +62206,9 @@ iTn
 siO
 iTn
 siO
-wsg
+iTn
 uja
-ioc
+ltr
 siO
 siO
 iTn
@@ -62439,8 +62409,8 @@ siO
 xXc
 siO
 uja
-wsg
-lIS
+iTn
+nQM
 siO
 siO
 siO
@@ -62640,9 +62610,9 @@ siO
 siO
 siO
 siO
+siO
 uja
-uja
-xRp
+dsr
 siO
 siO
 siO
@@ -62842,7 +62812,7 @@ siO
 lZG
 siO
 siO
-tKp
+tJT
 gce
 lIS
 siO
@@ -63044,9 +63014,9 @@ siO
 siO
 siO
 uja
-uja
-wsg
-ioc
+siO
+iTn
+ltr
 siO
 iTn
 siO
@@ -63246,9 +63216,9 @@ siO
 siO
 siO
 siO
-wsg
-uja
-lIS
+iTn
+siO
+nQM
 ufS
 iTn
 siO
@@ -63448,9 +63418,9 @@ siO
 siO
 xXc
 siO
-uja
-wsg
-ioc
+siO
+iTn
+ltr
 wZK
 siO
 siO
@@ -63651,8 +63621,8 @@ siO
 siO
 siO
 uja
-wsg
-lIS
+iTn
+nQM
 iTn
 siO
 siO
@@ -63852,9 +63822,9 @@ siO
 siO
 siO
 siO
-wsg
-uja
-lIS
+iTn
+siO
+nQM
 siO
 siO
 xXc
@@ -64055,8 +64025,8 @@ siO
 siO
 gce
 uja
-wsg
-ioc
+iTn
+ltr
 siO
 siO
 siO
@@ -64256,9 +64226,9 @@ siO
 siO
 siO
 iTn
-wsg
-uja
-lIS
+iTn
+siO
+nQM
 siO
 siO
 siO
@@ -64458,9 +64428,9 @@ lAv
 siO
 siO
 siO
-wsg
+iTn
 uja
-ioc
+ltr
 siO
 xXc
 siO
@@ -64660,9 +64630,9 @@ lZG
 uec
 siO
 uja
-ufS
+lZG
 uja
-lIS
+nQM
 ufS
 siO
 siO
@@ -64862,9 +64832,9 @@ siO
 siO
 iTn
 siO
-wsg
+iTn
 uja
-ioc
+ltr
 nQM
 nQM
 dsr
