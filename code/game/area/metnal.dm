@@ -79,7 +79,7 @@
 	icon_state = "cliff_blocked"
 	ceiling = CEILING_NONE
 	outside = TRUE
-	minimap_color = MINIMAP_AREA_COLONY
+	minimap_color = MINIMAP_AREA_CELL_MAX
 	always_unpowered = TRUE
 	temperature = T22C
 
@@ -121,7 +121,6 @@
 /area/metnal/outside/northeast
 	name = "Northeastern Grounds"
 	icon_state = "northeast"
-	minimap_color = MINIMAP_AREA_CELL_MAX
 
 /area/metnal/outside/north
 	name = "Northern Grounds"
