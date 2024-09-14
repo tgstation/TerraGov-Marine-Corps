@@ -121,7 +121,7 @@
 /area/metnal/outside/northeast
 	name = "Northeastern Grounds"
 	icon_state = "northeast"
-	minimap_color = MINIMAP_AREA_ENGI
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/metnal/outside/north
 	name = "Northern Grounds"
