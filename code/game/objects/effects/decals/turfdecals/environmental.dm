@@ -66,10 +66,10 @@
 	name = "sand"
 	icon = 'icons/turf/ground_map.dmi'
 	icon_state = "sandyfloor"
+	minimap_color = MINIMAP_AREA_COLONY
 
 /obj/effect/turf_decal/sandytile/sandyplating
 	icon_state = "sandyplating"
-	minimap_color = MINIMAP_AREA_COLONY
 
 /obj/effect/turf_decal/riverdecal
 	name = "river"
