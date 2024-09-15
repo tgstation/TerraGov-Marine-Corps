@@ -551,39 +551,48 @@
 	name = "Water Treatment One"
 	icon_state = "yellow"
 	minimap_color = MINIMAP_AREA_ENGI
+    requires_power = FALSE
 
 /area/desert_dam/building/water_treatment_one/lobby
 	name = "Water Treatment One Lobby"
 	icon_state = "red"
 	requires_power = TRUE
+
 /area/desert_dam/building/water_treatment_one/breakroom
 	name = "Water Treatment One Breakroom"
 	icon_state = "green"
 	requires_power = TRUE
+
 /area/desert_dam/building/water_treatment_one/garage
 	name = "Water Treatment One Garage"
 	icon_state = "garage"
 	requires_power = TRUE
+
 /area/desert_dam/building/water_treatment_one/sedimentation
 	name = "Water Treatment One Sedimentation"
 	icon_state = "blue"
 	requires_power = TRUE
+
 /area/desert_dam/building/water_treatment_one/equipment
 	name = "Water Treatment One Equipment Room"
 	icon_state = "red"
 	requires_power = TRUE
+
 /area/desert_dam/building/water_treatment_one/hallway
 	name = "Water Treatment One Hallway"
 	icon_state = "purple"
 	requires_power = TRUE
+
 /area/desert_dam/building/water_treatment_one/control_room
 	name = "Water Treatment One Control Room"
 	icon_state = "yellow"
 	requires_power = TRUE
+
 /area/desert_dam/building/water_treatment_one/purification
 	name = "Water Treatment One Purification"
 	icon_state = "green"
 	requires_power = TRUE
+
 /area/desert_dam/building/water_treatment_one/floodgate_control
 	name = "Water Treatment One Floodgate Control"
 	icon_state = "green"
