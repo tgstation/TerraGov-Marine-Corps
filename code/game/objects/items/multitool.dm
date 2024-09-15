@@ -53,6 +53,7 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_LOCATE_APC, 1.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(remove_apc_highlight), user.client, final_image), 1.4 SECONDS)
 
+/// Removes the highlight from the APC.
 /obj/item/tool/multitool/proc/remove_apc_highlight(client/user_client, image/highlight_image)
 	if(!user_client)
 		return
