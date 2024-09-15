@@ -1,4 +1,4 @@
-import { round } from 'common/math';
+import { round } from '../../common/math';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
@@ -95,7 +95,7 @@ type DeathTimer = {
   end_time: number;
 };
 
-export const HiveStatus = (_props) => {
+export const HiveStatus = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const {
     hive_name,
@@ -186,7 +186,7 @@ const CachedCollapsible = (props: {
   );
 };
 
-const BlessingsButton = (_props) => {
+const BlessingsButton = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const { user_purchase_perms, user_ref } = data;
 
@@ -206,7 +206,7 @@ const BlessingsButton = (_props) => {
   );
 };
 
-const GeneralInfo = (_props) => {
+const GeneralInfo = (_props: any) => {
   const { data } = useBackend<InputPack>();
   const {
     hive_larva_burrowed,
@@ -331,7 +331,7 @@ const XenoCountdownBar = (props: {
   );
 };
 
-const LarvaBar = (_props) => {
+const LarvaBar = (_props: any) => {
   const { data } = useBackend<InputPack>();
   const { hive_larva_current, hive_larva_threshold, hive_larva_rate } = data;
 
@@ -355,7 +355,7 @@ const LarvaBar = (_props) => {
   );
 };
 
-const MaturityBar = (_props) => {
+const MaturityBar = (_props: any) => {
   const { data } = useBackend<InputPack>();
   const { user_xeno, user_maturity, user_next_mat_level } = data;
 
@@ -385,7 +385,7 @@ const MaturityBar = (_props) => {
   );
 };
 
-const EvolutionBar = (_props) => {
+const EvolutionBar = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const { static_info, user_ref, user_xeno, user_index, user_evolution } = data;
 
@@ -427,7 +427,7 @@ type PyramidCalc = {
   total: number; // Total xeno count for this tier.
 };
 
-const PopulationPyramid = (_props) => {
+const PopulationPyramid = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const {
     hive_max_tier_two,
@@ -479,7 +479,7 @@ const PopulationPyramid = (_props) => {
     hive_total++;
   });
 
-  const ShowButtons = (_props) => {
+  const ShowButtons = (_props: any) => {
     if (!user_xeno) {
       // Observers will not be able to cache empty toggle.
       return (
@@ -541,20 +541,18 @@ const PopulationPyramid = (_props) => {
               : 0 + tier === 3
                 ? hive_max_tier_three
                 : 0;
-          const TierSlots = (_props) => {
+          const TierSlots = (_props: any) => {
             return (
               <Box
                 as="span"
                 textColor={tier_info.total === max_slots ? 'bad' : 'good'}
               >
-                ({tier_info.total}/{max_slots})
+                ({tier_info.total}/{max_slots || 0})
               </Box>
             );
           };
           const slot_text =
             tier === 2 || tier === 3 ? <TierSlots /> : tier_info.total;
-          // Praetorian name way too long. Clips into Rav.
-          const row_width = tier === 3 ? 8 : 7;
           const primordial = primos[tier] ? (
             <Box as="span" textColor="good">
               [Primordial]
@@ -616,7 +614,7 @@ const PopulationPyramid = (_props) => {
                   return (
                     <Flex.Item
                       width="100%"
-                      minWidth={row_width}
+                      minWidth={8}
                       bold
                       key={static_entry.name}
                     >
@@ -641,7 +639,7 @@ const PopulationPyramid = (_props) => {
                   return (
                     <Flex.Item
                       width="100%"
-                      minWidth={row_width}
+                      minWidth={8}
                       key={static_entry.name}
                       fontSize={static_entry.is_unique ? 1 : 1.25}
                     >
@@ -680,7 +678,7 @@ const default_sort: sort_by = {
   down: true,
 };
 
-const XenoList = (_props) => {
+const XenoList = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const {
     xeno_info,
@@ -1018,7 +1016,7 @@ const ActionButtons = (props: ActionButtonProps) => {
   );
 };
 
-const StructureList = (_props) => {
+const StructureList = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
 
   const { user_ref, hive_structures, user_tracked } = data;
