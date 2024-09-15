@@ -78,7 +78,13 @@
 		span_notice("You fumble around figuring out how to use the [src]."))
 		if(!do_after(user, SKILL_TASK_EASY, NONE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
 			return
-
+	if(ismob(A))
+		var/mob/M = A
+		if(M.faction != user.faction)
+			user.visible_message(span_notice("[user] attempts to inject [M] with [src]."),
+			span_notice("You attempt to inject [M] with [src]."))
+			if(!do_after(user, SKILL_TASK_VERY_EASY, NONE, A, BUSY_ICON_HOSTILE) || (!in_range(A, user) || !user.Adjacent(A)))
+				return
 	if(ismob(A))
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
