@@ -1,0 +1,5 @@
+author: "RipGrayson"
+delete-after: True
+changes:
+  - bugfix: "Fixed improper rotation of Chigusa platforms"
+  - bugfix: "Fixed improper area colors for Chigusa"
