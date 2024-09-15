@@ -277,6 +277,7 @@
 /area/metnal/inside/meddesk
 	name = "Medbay Clerk's Desk"
 	ceiling = CEILING_OBSTRUCTED
+	minimap_color = MINIMAP_AREA_MEDBAY
 
 /area/metnal/inside/medical
 	name = "Infirmary"
