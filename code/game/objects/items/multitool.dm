@@ -20,7 +20,7 @@
 	var/obj/machinery/telecomms/buffer // simple machine buffer for device linkage
 
 /obj/item/tool/multitool/attack_self(mob/user)
-	..()
+	. = ..()
 
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_LOCATE_APC) || !ishuman(user) || user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL || !user.client)
 		return
