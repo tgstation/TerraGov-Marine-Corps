@@ -1,0 +1,5 @@
+author: "xSlumLord"
+delete-after: True
+changes:
+  - rscadd: "Keybind for barrel attachments."
+  - balance: "Removed pistol lace activation wind-up."
