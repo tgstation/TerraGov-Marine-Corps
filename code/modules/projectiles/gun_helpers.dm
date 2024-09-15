@@ -709,6 +709,14 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	activate_attachment(ATTACHMENT_SLOT_RAIL, gun_user)
 	return COMSIG_KB_ACTIVATED
 
+/// Signal handler to activate the muzzle attachement of that gun if it's in our active hand
+/obj/item/weapon/gun/proc/activate_muzzle_attachment()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src && !(item_flags & IS_DEPLOYED))
+		return
+	activate_attachment(ATTACHMENT_SLOT_MUZZLE, gun_user)
+	return COMSIG_KB_ACTIVATED
+
 /// Signal handler to activate the underrail attachement of that gun if it's in our active hand
 /obj/item/weapon/gun/proc/activate_underrail_attachment()
 	SIGNAL_HANDLER
