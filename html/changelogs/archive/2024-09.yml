@@ -38,3 +38,13 @@
   blackdav123:
   - bugfix: Tanks can now leave the alamo on LV624.
   - balance: Increased quickbuild on LV624 to 2000 from 1400.
+2024-09-14:
+  Lewdcifer:
+  - rscadd: Xeno minions can now ride crushers.
+  Lumipharon:
+  - bugfix: fixed a misc runtime
+  - bugfix: fixed a couple drop pod hard dels
+2024-09-15:
+  Isy232:
+  - qol: Various improvements to LV 759 particularly aimed at the caves and roadway
+      clutter.
