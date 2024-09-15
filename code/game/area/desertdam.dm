@@ -551,7 +551,7 @@
 	name = "Water Treatment One"
 	icon_state = "yellow"
 	minimap_color = MINIMAP_AREA_ENGI
-    requires_power = FALSE
+	requires_power = FALSE
 
 /area/desert_dam/building/water_treatment_one/lobby
 	name = "Water Treatment One Lobby"
