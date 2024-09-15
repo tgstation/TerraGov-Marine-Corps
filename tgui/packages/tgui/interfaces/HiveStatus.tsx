@@ -1,4 +1,4 @@
-import { round } from '../../common/math';
+import { round } from 'common/math';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
