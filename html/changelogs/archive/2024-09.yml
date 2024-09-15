@@ -44,3 +44,7 @@
   Lumipharon:
   - bugfix: fixed a misc runtime
   - bugfix: fixed a couple drop pod hard dels
+2024-09-15:
+  Isy232:
+  - qol: Various improvements to LV 759 particularly aimed at the caves and roadway
+      clutter.
