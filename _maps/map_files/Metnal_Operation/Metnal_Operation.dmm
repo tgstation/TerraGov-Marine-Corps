@@ -523,6 +523,11 @@
 	},
 /turf/open/floor/tile/white,
 /area/metnal/inside/chapel)
+"axy" = (
+/obj/structure/cable,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "axG" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -1622,6 +1627,10 @@
 /obj/effect/turf_decal/siding/blue,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/outside/central)
+"bid" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "biz" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
@@ -5600,6 +5609,10 @@
 /obj/structure/window/framed/prison/colony,
 /turf/open/floor/plating/ground/concrete,
 /area/metnal/inside/garage)
+"dTQ" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "dTV" = (
 /obj/machinery/air_alarm,
 /obj/structure/bed,
@@ -6352,6 +6365,10 @@
 "ewp" = (
 /turf/open/lavaland/basalt/cave,
 /area/metnal/outside/southwest)
+"eww" = (
+/obj/effect/turf_decal/sandytile/sandyplating,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/north)
 "ewB" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -10293,13 +10310,6 @@
 	dir = 8
 	},
 /area/metnal/inside/research)
-"hqp" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/turf/open/floor/plating/ground/dirt_alt,
-/area/metnal/outside/northeast)
 "hqw" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/plate,
@@ -11406,7 +11416,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
-/turf/open/lavaland/basalt,
+/turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/north)
 "iaX" = (
 /obj/effect/decal/cleanable/dirt,
@@ -13207,6 +13217,9 @@
 	},
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
+"jqn" = (
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/north)
 "jqt" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/plate,
@@ -13329,6 +13342,11 @@
 	dir = 1
 	},
 /area/metnal/inside/cafeteria)
+"jtl" = (
+/obj/effect/turf_decal/sandytile/sandyplating,
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "jtx" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -13443,7 +13461,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/floor/prison/plate,
+/turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/north)
 "jxY" = (
 /obj/effect/spawner/random/decal/blood,
@@ -15559,6 +15577,12 @@
 /obj/item/ammo_magazine/smg/uzi/extended,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"kVA" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "kVU" = (
 /turf/closed/wall/prison,
 /area/metnal/inside/cargo)
@@ -16702,6 +16726,9 @@
 /obj/item/alien_embryo,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/medical/chemistry)
+"lKo" = (
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "lKu" = (
 /obj/effect/turf_decal/tile/transparent/blue/opposingcorners,
 /obj/structure/table/reinforced/prison,
@@ -17408,6 +17435,10 @@
 /obj/item/tool/kitchen/rollingpin,
 /turf/open/floor/grayscale/darkred,
 /area/metnal/inside/cafeteria)
+"mmb" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "mmr" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
@@ -17819,11 +17850,6 @@
 	},
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/southeast)
-"mDa" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/sandytile/sandyplating,
-/turf/open/floor/plating/ground/dirt_alt,
-/area/metnal/outside/northeast)
 "mDU" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -19901,11 +19927,6 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/outdoor,
 /area/metnal/caves/southwest)
-"nVK" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/dirt_alt,
-/area/metnal/outside/northeast)
 "nWA" = (
 /obj/machinery/light{
 	dir = 4
@@ -21082,6 +21103,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
 /area/metnal/outside/northwest)
+"oLz" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/sandytile/sandyplating,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "oLS" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/heatinggrate,
@@ -21324,7 +21350,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/turf/open/lavaland/basalt,
+/turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/north)
 "oTh" = (
 /obj/effect/ai_node,
@@ -21844,10 +21870,6 @@
 	dir = 1
 	},
 /area/metnal/inside/research)
-"pmj" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/turf/open/floor/plating/ground/dirt_alt,
-/area/metnal/outside/northeast)
 "pml" = (
 /obj/structure/table/black,
 /obj/effect/spawner/random/machinery/random_broken_computer/small/security,
@@ -23728,11 +23750,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
-"qBc" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/dirt_alt,
-/area/metnal/outside/north)
 "qBe" = (
 /obj/machinery/vending/hydroseeds,
 /obj/machinery/light{
@@ -23810,7 +23827,7 @@
 /area/metnal/inside/garage)
 "qFp" = (
 /obj/docking_port/stationary/crashmode,
-/turf/open/floor/prison/plate,
+/turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/northeast)
 "qFr" = (
 /obj/structure/largecrate/guns,
@@ -24686,6 +24703,10 @@
 	dir = 1
 	},
 /area/metnal/inside/landingzoneone)
+"rfu" = (
+/obj/structure/cable,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/north)
 "rfv" = (
 /turf/open/floor/tile/red/whitered{
 	dir = 1
@@ -25138,6 +25159,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"ruS" = (
+/obj/effect/turf_decal/sandytile/sandyplating,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/north)
 "ruX" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison/sterilewhite,
@@ -25725,6 +25751,13 @@
 /obj/item/phone,
 /turf/open/floor/wood/variable/mosaic,
 /area/metnal/inside/northmeetingroom)
+"rSy" = (
+/obj/effect/turf_decal/sandytile/sandyplating,
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "rSN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -26447,6 +26480,11 @@
 	dir = 9
 	},
 /area/metnal/inside/chapel)
+"sqt" = (
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "sqy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -27118,10 +27156,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
-"sIQ" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/turf/open/floor/plating/ground/dirt_alt,
-/area/metnal/outside/north)
 "sIT" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/effect/ai_node,
@@ -27902,7 +27936,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
 	},
-/turf/open/lavaland/basalt,
+/turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/northeast)
 "tmy" = (
 /obj/machinery/conveyor{
@@ -28685,7 +28719,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 8
 	},
-/turf/open/lavaland/basalt,
+/turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/north)
 "tOO" = (
 /obj/structure/flora/ausbushes/lavendergrass,
@@ -30007,7 +30041,7 @@
 "uHS" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/lavaland/basalt,
+/turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/northeast)
 "uId" = (
 /obj/structure/cable,
@@ -30974,6 +31008,10 @@
 	},
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/laundromat)
+"voS" = (
+/obj/effect/turf_decal/sandytile/sandyplating,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/northeast)
 "vpz" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
@@ -31014,7 +31052,7 @@
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
-/turf/open/floor/prison/plate,
+/turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/northeast)
 "vrH" = (
 /obj/effect/turf_decal/woodsiding{
@@ -31057,6 +31095,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
+"vsV" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/dirt_alt,
+/area/metnal/outside/north)
 "vti" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -32059,7 +32101,7 @@
 "vUK" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
-/turf/open/floor/prison/plate,
+/turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/north)
 "vUR" = (
 /obj/effect/ai_node,
@@ -55127,10 +55169,10 @@ hAT
 xVR
 xVR
 xVR
-qBc
+ruS
 oTc
+jqn
 xVR
-sIQ
 xVR
 xVR
 xVR
@@ -55329,9 +55371,9 @@ xVR
 eBM
 xVR
 xVR
-mlM
+jqn
 oTc
-sIQ
+eww
 xVR
 xVR
 hAT
@@ -55531,9 +55573,9 @@ xVR
 xVR
 hAT
 xVR
-mlM
+jqn
 udz
-sIQ
+eww
 xVR
 hAT
 xVR
@@ -55935,9 +55977,9 @@ xVR
 xVR
 hAT
 xVR
-tqu
-jrv
-sIQ
+jxM
+rfu
+eww
 xVR
 xVR
 xVR
@@ -56136,10 +56178,10 @@ kgg
 kgg
 uiY
 xVR
-sIQ
+eww
 jxM
-cZT
-xVR
+rfu
+jqn
 kVU
 kVU
 eOi
@@ -56338,10 +56380,10 @@ fin
 uNl
 uiY
 xVR
-xVR
+jqn
 iCU
 oDo
-sIQ
+eww
 kVU
 rgO
 tUA
@@ -56540,10 +56582,10 @@ ogb
 oGF
 uiY
 xVR
-hAT
+vsV
 jxM
-jrv
-qBc
+rfu
+ruS
 kVU
 iyY
 hYx
@@ -56742,7 +56784,7 @@ pjg
 pSE
 uiY
 xVR
-xVR
+jqn
 iCU
 iaV
 kVU
@@ -56944,9 +56986,9 @@ vRh
 iCw
 uiY
 hAT
-sIQ
+eww
 jxM
-cZT
+rfu
 kVU
 nTX
 vvH
@@ -57146,7 +57188,7 @@ jIs
 uiY
 uiY
 xVR
-xVR
+jqn
 iCU
 oDo
 kVU
@@ -57348,9 +57390,9 @@ rhV
 uiY
 xVR
 xVR
-xVR
+jqn
 iCU
-jrv
+rfu
 kVU
 ruq
 hdg
@@ -57550,9 +57592,9 @@ isK
 kbm
 hAT
 sco
-mlM
-tqu
-cZT
+jqn
+jxM
+rfu
 kVU
 osY
 hdg
@@ -57752,7 +57794,7 @@ spi
 rgl
 nQM
 nQM
-mDa
+oLz
 tmw
 vbo
 hLN
@@ -57954,9 +57996,9 @@ sqW
 uiY
 siO
 siO
-pmj
-hqp
-nQM
+voS
+rSy
+dTQ
 bSz
 wbo
 wAn
@@ -58156,8 +58198,8 @@ uiY
 uiY
 siO
 siO
-uja
-hqp
+lKo
+rSy
 hog
 kVU
 wpB
@@ -58358,9 +58400,9 @@ uiY
 xXc
 siO
 xXc
-pmj
-dtz
-lIS
+voS
+kVA
+dTQ
 kVU
 kVU
 bSz
@@ -58560,8 +58602,8 @@ uiY
 siO
 siO
 siO
-xXc
-hqp
+bid
+rSy
 uHS
 kVU
 jCB
@@ -58762,9 +58804,9 @@ siO
 siO
 siO
 siO
-pmj
-kso
-dsr
+voS
+kVA
+axy
 eOi
 fHL
 dAU
@@ -58964,9 +59006,9 @@ xXc
 siO
 siO
 siO
-siO
-dtz
-mDa
+lKo
+kVA
+oLz
 kVU
 mIB
 jqG
@@ -59166,9 +59208,9 @@ siO
 siO
 siO
 siO
-pmj
-hqp
-lIS
+voS
+rSy
+dTQ
 kVU
 kVU
 kVU
@@ -59368,9 +59410,9 @@ siO
 xXc
 siO
 uec
-siO
-hqp
-lIS
+lKo
+rSy
+dTQ
 kVU
 seM
 dki
@@ -59571,8 +59613,8 @@ siO
 siO
 siO
 qFp
-kso
-dsr
+kVA
+axy
 kVU
 dPn
 tSl
@@ -59772,9 +59814,9 @@ siO
 siO
 siO
 siO
-siO
-hqp
-nQM
+lKo
+rSy
+dTQ
 kVU
 kFA
 djS
@@ -59974,9 +60016,9 @@ siO
 siO
 siO
 siO
-xXc
-dtz
-nQM
+bid
+kVA
+dTQ
 kVU
 kVU
 kVU
@@ -60174,10 +60216,10 @@ uiY
 siO
 siO
 siO
-pmj
+voS
 siO
-pmj
-dtz
+voS
+kVA
 aqh
 kVU
 nyw
@@ -60378,9 +60420,9 @@ xXc
 siO
 xXc
 lZG
-siO
-hqp
-lIS
+lKo
+rSy
+dTQ
 kVU
 tOm
 dAU
@@ -60580,9 +60622,9 @@ siO
 siO
 siO
 uja
-uja
-dtz
-dsr
+lKo
+kVA
+axy
 kVU
 cRR
 mBI
@@ -60782,9 +60824,9 @@ siO
 siO
 siO
 siO
-siO
-hqp
-nQM
+lKo
+rSy
+dTQ
 eOi
 gkP
 tCQ
@@ -60985,8 +61027,8 @@ siO
 siO
 siO
 wZK
-kso
-nQM
+kVA
+dTQ
 eOi
 iUi
 xzH
@@ -61186,9 +61228,9 @@ siO
 lZG
 siO
 lZG
-siO
-hqp
-nQM
+lKo
+rSy
+dTQ
 kVU
 bDs
 gvv
@@ -61387,10 +61429,10 @@ siO
 siO
 siO
 siO
-pmj
-siO
-dtz
-nQM
+voS
+lKo
+kVA
+dTQ
 kVU
 eOi
 eOi
@@ -61590,8 +61632,8 @@ siO
 xXc
 xXc
 siO
-uja
-hqp
+lKo
+rSy
 vrC
 siO
 siO
@@ -61792,9 +61834,9 @@ siO
 siO
 siO
 siO
-pmj
-dtz
-mDa
+voS
+kVA
+oLz
 siO
 siO
 xXc
@@ -61994,8 +62036,8 @@ siO
 siO
 siO
 siO
-pmj
-kso
+voS
+kVA
 uHS
 siO
 siO
@@ -62196,9 +62238,9 @@ siO
 siO
 siO
 lZG
-siO
+lKo
 frS
-cGb
+sqt
 bhO
 eSF
 eSF
@@ -62398,9 +62440,9 @@ iTn
 siO
 iTn
 siO
-pmj
-uja
-mDa
+voS
+lKo
+oLz
 siO
 siO
 iTn
@@ -62600,9 +62642,9 @@ siO
 siO
 xXc
 siO
-uja
-pmj
-nQM
+lKo
+voS
+dTQ
 siO
 siO
 siO
@@ -62802,9 +62844,9 @@ siO
 siO
 siO
 siO
-siO
-uja
-dsr
+lKo
+lKo
+axy
 siO
 siO
 siO
@@ -63004,11 +63046,11 @@ siO
 lZG
 siO
 siO
-nVK
-gce
-lIS
+jtl
+bid
+dTQ
 siO
-pmj
+voS
 siO
 xXc
 siO
@@ -63206,11 +63248,11 @@ siO
 siO
 siO
 uja
+lKo
+voS
+oLz
 siO
-pmj
-mDa
-siO
-pmj
+voS
 siO
 siO
 siO
@@ -63408,11 +63450,11 @@ siO
 siO
 siO
 siO
-pmj
-siO
-nQM
+voS
+lKo
+dTQ
 ufS
-pmj
+voS
 siO
 iTn
 siO
@@ -63610,9 +63652,9 @@ siO
 siO
 xXc
 siO
-siO
-pmj
-mDa
+lKo
+voS
+oLz
 wZK
 siO
 siO
@@ -63812,10 +63854,10 @@ siO
 siO
 siO
 siO
-uja
-pmj
-nQM
-pmj
+lKo
+voS
+dTQ
+voS
 siO
 siO
 siO
@@ -64014,9 +64056,9 @@ siO
 siO
 siO
 siO
-pmj
-siO
-nQM
+voS
+lKo
+dTQ
 siO
 siO
 xXc
@@ -64216,9 +64258,9 @@ siO
 siO
 siO
 gce
-uja
-pmj
-mDa
+lKo
+voS
+oLz
 siO
 siO
 siO
@@ -64417,10 +64459,10 @@ siO
 siO
 siO
 siO
-pmj
-pmj
-siO
-nQM
+voS
+voS
+lKo
+dTQ
 siO
 siO
 siO
@@ -64620,9 +64662,9 @@ lAv
 siO
 siO
 siO
-pmj
-uja
-mDa
+voS
+lKo
+oLz
 siO
 xXc
 siO
@@ -64822,9 +64864,9 @@ lZG
 uec
 siO
 uja
-lZG
-uja
-nQM
+mmb
+lKo
+dTQ
 ufS
 siO
 siO
@@ -65022,11 +65064,11 @@ edg
 siO
 siO
 siO
-pmj
+voS
 siO
-pmj
-uja
-mDa
+voS
+lKo
+oLz
 nQM
 nQM
 dsr
