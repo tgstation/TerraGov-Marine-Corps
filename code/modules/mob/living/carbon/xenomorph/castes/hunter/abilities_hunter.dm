@@ -32,8 +32,6 @@
 	var/can_sneak_attack = FALSE
 	///Stealth alpha mult value
 	var/stealth_alpha_multiplier = 1
-	///Stealth duration, if it is -1 it is not based on a timer.
-	var/stealth_duration = null
 	///Stealth timer ID
 	var/stealth_timer
 	///Stealth disabler signals
@@ -55,10 +53,10 @@
 	return ..()
 
 /datum/action/ability/xeno_action/stealth/can_use_action(silent = FALSE, override_flags)
+	if(owner.status_flags & INCORPOREAL)
+		return FALSE
 	. = ..()
 	if(!.)
-		return FALSE
-	if(owner.status_flags & INCORPOREAL)
 		return FALSE
 	var/mob/living/carbon/xenomorph/stealthy_beno = owner
 	if(stealthy_beno.on_fire)
@@ -104,8 +102,7 @@
 
 	handle_stealth()
 	addtimer(CALLBACK(src, PROC_REF(sneak_attack_cooldown)), HUNTER_POUNCE_SNEAKATTACK_DELAY)
-	if(stealth_duration != null)
-		stealth_timer = addtimer(CALLBACK(src, PROC_REF(cancel_stealth)), stealth_duration, TIMER_STOPPABLE)
+
 	START_PROCESSING(SSprocessing, src)
 
 /datum/action/ability/xeno_action/stealth/process()
@@ -487,17 +484,13 @@
 
 	X.face_atom(A) //Face towards the target so we don't look silly
 
-	if(require_los)
-		if(!line_of_sight(X, A)) //Need line of sight.
-			to_chat(X, span_xenowarning("We lost line of sight to the target!"))
-			return fail_activate()
-
 	if(marked_target)
 		UnregisterSignal(marked_target, COMSIG_QDELETING)
+	if(require_los && !line_of_sight(X, A)) //Need line of sight.
+		to_chat(X, span_xenowarning("We lost line of sight to the target!"))
+		return fail_activate()
 
 	marked_target = A
-
-	RegisterSignal(marked_target, COMSIG_QDELETING, PROC_REF(unset_target)) //For var clean up
 
 	to_chat(X, span_xenodanger("We psychically mark [A] as our quarry."))
 	X.playsound_local(X, 'sound/effects/ghost.ogg', 25, 0, 1)
@@ -507,14 +500,6 @@
 	GLOB.round_statistics.hunter_marks++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "hunter_marks")
 	add_cooldown()
-
-///Nulls the target of our hunter's mark
-/datum/action/ability/activable/xeno/hunter_mark/proc/unset_target()
-	SIGNAL_HANDLER
-	to_chat(owner, span_xenodanger("We cannot maintain our focus on [marked_target] any longer."))
-	owner.balloon_alert(owner, "Death mark expired!")
-	UnregisterSignal(marked_target, COMSIG_QDELETING)
-	marked_target = null //Nullify hunter's mark target and clear the var
 
 // ***************************************
 // *********** Psychic Trace
@@ -774,6 +759,8 @@
 	step_away(living_target, xeno_owner, 1, 3)
 	xeno_owner.face_atom(living_target)
 
+#define ASSASSIN_SNEAK_SLASH_ARMOR_PEN 30
+
 // ***************************************
 // *********** Phase Out
 // ***************************************
@@ -788,19 +775,22 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_PHASEOUT,
 	)
 	cooldown_duration = 6 SECONDS
-	stealth_duration = 6 SECONDS
+	var/stealth_duration = 6 SECONDS
 	disable_on_signals = list(
 		COMSIG_LIVING_IGNITED,
 		COMSIG_LIVING_ADD_VENTCRAWL,
 	)
 	stealth_flags = DIS_POUNCE_SLASH
-	sneak_attack_armor_pen = 30
+	sneak_attack_armor_pen = ASSASSIN_SNEAK_SLASH_ARMOR_PEN
 
-// i just realized, we need to disable processing, this will inherently just amke handle_stealth not do anything
 ///Updates or cancels stealth
 /datum/action/ability/xeno_action/stealth/phaseout/handle_stealth()
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	xenoowner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier // instant full stealth regardless of movement.
+/datum/action/ability/xeno_action/stealth/phaseout/action_activate()
+	. = ..()
+	if(stealth_duration != -1)
+		stealth_timer = addtimer(CALLBACK(src, PROC_REF(cancel_stealth)), stealth_duration, TIMER_STOPPABLE)
 
 // ***************************************
 // *********** Death Mark
@@ -830,19 +820,30 @@
 			if(!silent)
 				to_chat(X, span_xenowarning("We require line of sight to mark them!"))
 			return FALSE
-	. = ..()
+	return ..()
+
 
 /datum/action/ability/activable/xeno/hunter_mark/assassin/use_ability(atom/A)
+	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(!do_after(X, chargeup, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC))
 		return
+
+	RegisterSignal(marked_target, COMSIG_QDELETING, PROC_REF(unset_target)) //For var clean up
 
 	to_chat(X, span_xenodanger("We will be able to maintain the mark for [timeout / 10] seconds."))
 	addtimer(CALLBACK(src, PROC_REF(unset_target)), timeout)
 
 	playsound(marked_target, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	to_chat(marked_target, span_highdanger("You feel uneasy."))
-	. = ..()
+
+///Nulls the target of our hunter's mark
+/datum/action/ability/activable/xeno/hunter_mark/assassin/proc/unset_target()
+	SIGNAL_HANDLER
+	to_chat(owner, span_xenodanger("We cannot maintain our focus on [marked_target] any longer."))
+	owner.balloon_alert(owner, "Death mark expired!")
+	UnregisterSignal(marked_target, COMSIG_QDELETING)
+	marked_target = null //Nullify hunter's mark target and clear the var
 
 // ***************************************
 // *********** Displacement
@@ -860,56 +861,56 @@
 
 /datum/action/ability/xeno_action/displacement/action_activate()
 	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
-	xenomorph_owner.change_form()
+	change_form(xenomorph_owner)
 
-/mob/living/carbon/xenomorph/hunter/assassin/change_form()
-	if(!loc_weeds_type)
-		balloon_alert(src, "We need to be on weeds.")
+/datum/action/ability/xeno_action/displacement/proc/change_form(mob/living/carbon/xenomorph/X)
+	if(!X.loc_weeds_type)
+		X.balloon_alert(X, "We need to be on weeds.")
 		return
-	wound_overlay.icon_state = "none"
-	var/turf/whereweat = get_turf(src)
-	if(status_flags & INCORPOREAL) //will alert if the xeno will get disoriented due lit turf, if phasing in.
+	X.wound_overlay.icon_state = "none"
+	var/turf/whereweat = get_turf(X)
+	if(X.status_flags & INCORPOREAL) //will alert if the xeno will get disoriented due lit turf, if phasing in.
 		if(whereweat.get_lumcount() > 0.3) //is it a lit turf
-			balloon_alert(src, "We will be disoriented and sensed in this light.") //so its more visible to xeno.
+			X.balloon_alert(X, "We will be disoriented and sensed in this light.") //so its more visible to xeno.
 			//Marines can sense the manifestation if it's in lit-enough turf nearby.
-			visible_message(span_highdanger("Something begins to manifest nearby!"), span_xenohighdanger("We begin to manifest in the light... talls sense us!"))
+			X.visible_message(span_highdanger("Something begins to manifest nearby!"), span_xenohighdanger("We begin to manifest in the light... talls sense us!"))
 	else
 		if(whereweat.get_lumcount() > 0.4) //cant shift out a lit turf.
-			balloon_alert(src, "We need a darker spot.") //so its more visible to xeno.
+			X.balloon_alert(X, "We need a darker spot.") //so its more visible to xeno.
 			return
-	if(do_after(src, 3 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_BAR, NONE, PROGRESS_GENERIC)) //dont move
-		do_change_form()
+	if(do_after(X, 3 SECONDS, IGNORE_HELD_ITEM, X, BUSY_ICON_BAR, NONE, PROGRESS_GENERIC)) //dont move
+		do_change_form(X)
 
 ///Finish the form changing of the hunter and give the needed stats
-/mob/living/carbon/xenomorph/hunter/assassin/proc/do_change_form()
-	playsound(get_turf(src), 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
-	if(status_flags & INCORPOREAL)
-		var/turf/whereweat = get_turf(src)
+/datum/action/ability/xeno_action/displacement/proc/do_change_form(mob/living/carbon/xenomorph/X)
+	playsound(get_turf(X), 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
+	if(X.status_flags & INCORPOREAL)
+		var/turf/whereweat = get_turf(X)
 		if(whereweat.get_lumcount() > 0.3) //is it a lit turf
-			balloon_alert(src, "Light disorients us!")
-			adjust_stagger(6 SECONDS)
-			add_slowdown(4)
+			X.balloon_alert(X, "Light disorients us!")
+			X.adjust_stagger(6 SECONDS)
+			X.add_slowdown(4)
 		for(var/obj/machinery/light/lightie in range(rand(7,10), whereweat))
 			lightie.set_flicker(2 SECONDS, 1.5, 2.5, rand(1,2))
-		status_flags = initial(status_flags)
-		resistance_flags = initial(resistance_flags)
-		pass_flags = initial(pass_flags)
-		density = TRUE
-		REMOVE_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
-		alpha = 255
-		update_wounds()
-		update_icon()
-		update_action_buttons()
+		X.status_flags = initial(X.status_flags)
+		X.resistance_flags = initial(X.resistance_flags)
+		X.pass_flags = initial(X.pass_flags)
+		X.density = TRUE
+		REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, X)
+		X.alpha = 255
+		X.update_wounds()
+		X.update_icon()
+		X.update_action_buttons()
 		return
-	var/turf/whereweat = get_turf(src)
+	var/turf/whereweat = get_turf(X)
 	for(var/obj/machinery/light/lightie in range(rand(7,10), whereweat))
 		lightie.set_flicker(2 SECONDS, 1, 2, rand(1,2))
-	ADD_TRAIT(src, TRAIT_HANDS_BLOCKED, src)
-	status_flags = INCORPOREAL
-	alpha = 0
-	resistance_flags = BANISH_IMMUNE
-	pass_flags = PASS_MOB|PASS_XENO
-	density = FALSE
-	update_wounds()
-	update_icon()
-	update_action_buttons()
+	ADD_TRAIT(X, TRAIT_HANDS_BLOCKED, X)
+	X.status_flags = INCORPOREAL
+	X.alpha = 0
+	X.resistance_flags = BANISH_IMMUNE
+	X.pass_flags = PASS_MOB|PASS_XENO
+	X.density = FALSE
+	X.update_wounds()
+	X.update_icon()
+	X.update_action_buttons()

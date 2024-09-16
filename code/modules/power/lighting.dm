@@ -373,8 +373,8 @@
 	if(status == LIGHT_OK)
 		lightambient.start(src)
 
-///flicker lights on and off
-/obj/machinery/light/proc/flicker(toggle_flicker = FALSE, long_off = TRUE, flicker_delay = 0.3 SECONDS)
+///flicker lights on and off. longer_off_time var makes the lights be off more than they are on, the default behavior for this proc.
+/obj/machinery/light/proc/flicker(toggle_flicker = FALSE, longer_off_time = TRUE, flicker_delay = 0.3 SECONDS)
 	if(!has_power())
 		lightambient.stop(src)
 		return
@@ -402,7 +402,7 @@
 	else
 		flick("[base_icon_state]_flick_on", src)
 		addtimer(CALLBACK(src, PROC_REF(flicker_power_state)), flicker_delay)
-		if(long_off)
+		if(longer_off_time)
 			flicker_time = flicker_time * 2 //for effect it's best if the amount of time we spend off is more than the time we spend on
 	if(!flickering)
 		return
