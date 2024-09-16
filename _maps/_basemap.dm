@@ -27,6 +27,9 @@
 		#include "map_files\slumbridge\slumbridge.dmm"
 		#include "map_files\DaedalusPrison\DaedalusPrison.dmm"
 		#include "map_files\riptide\riptide.dmm"
+		#include "map_files\lavaoutpost\LavaOutpost.dmm"
+		#include "map_files\desertdam\desertdam.dmm"
+		#include "map_files\corsat\corsat.dmm"
 		#include "map_files\Bluesummers\bluesummers.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
