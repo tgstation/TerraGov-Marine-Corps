@@ -3,7 +3,6 @@
 	name = "snack"
 	desc = "yummy"
 	icon = 'icons/obj/items/food/food.dmi'
-	icon_state = null
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash = null
@@ -71,15 +70,15 @@
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
-			if (fullness <= 50)
+			if(fullness <= 50)
 				balloon_alert(user, "hungrily chews [src]")
-			if (fullness > 50 && fullness <= 150)
+			if(fullness > 50 && fullness <= 150)
 				balloon_alert(user, "hungrily eats [src]")
-			if (fullness > 150 && fullness <= 350)
+			if(fullness > 150 && fullness <= 350)
 				balloon_alert(user, "takes bite of [src]")
-			if (fullness > 350 && fullness <= 550)
+			if(fullness > 350 && fullness <= 550)
 				balloon_alert(user, "unwillingly chews [src]")
-			if (fullness > 550)
+			if(fullness > 550)
 				balloon_alert(user, "cannot eat more of [src]")
 				return FALSE
 		else
@@ -87,7 +86,7 @@
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
-			if (fullness <= 550)
+			if(fullness <= 550)
 				balloon_alert_to_viewers("tries to feed [M]")
 			else
 				balloon_alert_to_viewers("tries to feed [M] but can't")
@@ -131,13 +130,13 @@
 
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
-	if (!(user in range(0)) && user != loc)
+	if(!(user in range(0)) && user != loc)
 		return
-	if (bitecount==0)
+	if(bitecount==0)
 		return
-	else if (bitecount==1)
+	else if(bitecount==1)
 		. += span_notice("\The [src] was bitten by someone!")
-	else if (bitecount<=3)
+	else if(bitecount<=3)
 		. += span_notice("\The [src] was bitten [bitecount] times!")
 	else
 		. += span_notice("\The [src] was bitten multiple times!")
@@ -891,7 +890,7 @@
 	E.fracture()
 	for (var/datum/internal_organ/I in E.internal_organs)
 		I.take_damage(rand(I.min_bruised_damage, I.min_broken_damage+1))
-	if (!E.hidden && prob(60)) //set it snuggly
+	if(!E.hidden && prob(60)) //set it snuggly
 		E.hidden = surprise
 		E.cavity = 0
 	else 		//someone is having a bad day
@@ -1383,7 +1382,7 @@
 	tastes = list("dough" = 1, "chicken" = 1)
 
 /obj/item/reagent_containers/food/snacks/packaged_hdogs/attack_self(mob/user as mob)
-	if (package)
+	if(package)
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 		balloon_alert(user, "unwraps hotdog")
 		package = FALSE
@@ -1414,7 +1413,7 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/upp/attack_self(mob/user as mob)
-	if (package)
+	if(package)
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 		balloon_alert(user, "pops the packaged seal")
 		package = FALSE
@@ -1465,7 +1464,7 @@
 	var/obj/item/trash/wrapper = null //Why this and not trash? Because it pulls the wrapper off when you unwrap it as a trash item.
 
 /obj/item/reagent_containers/food/snacks/wrapped/attack_self(mob/user as mob)
-	if (package)
+	if(package)
 		balloon_alert(user, "opens the package")
 		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
 
@@ -1544,7 +1543,7 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/packaged_meal/attack_self(mob/user as mob)
-	if (package)
+	if(package)
 		balloon_alert(user, "opens package")
 		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
 		name = "\improper" + flavor
