@@ -441,8 +441,6 @@ const PopulationPyramid = (_props: any) => {
     user_show_empty,
     user_show_compact,
   } = data;
-  const [showEmpty, toggleEmpty] = useState(true);
-  const [showCompact, toggleCompact] = useState(false);
 
   const primos: boolean[] = []; // Index is tier.
   const pyramid_data: PyramidCalc[] = [];
@@ -480,27 +478,6 @@ const PopulationPyramid = (_props: any) => {
   });
 
   const ShowButtons = (_props: any) => {
-    if (!user_xeno) {
-      // Observers will not be able to cache empty toggle.
-      return (
-        <div>
-          <Button.Checkbox
-            checked={showCompact}
-            onClick={() => toggleCompact(!showCompact)}
-          >
-            Compact Mode
-          </Button.Checkbox>
-          <Button.Checkbox
-            checked={showEmpty}
-            tooltip="Display all castes"
-            onClick={() => toggleEmpty(!showEmpty)}
-          >
-            Show Empty
-          </Button.Checkbox>
-        </div>
-      );
-    }
-
     return (
       <div>
         <Button.Checkbox
@@ -520,18 +497,15 @@ const PopulationPyramid = (_props: any) => {
     );
   };
 
-  const compact_display = user_xeno ? user_show_compact : showCompact;
-  const empty_display = user_xeno ? user_show_empty : showEmpty;
-
   return (
     <Section
       title={`Total Living Sisters: ${hive_total}`}
-      align={compact_display ? 'left' : 'center'}
+      align={user_show_compact ? 'left' : 'center'}
       buttons={<ShowButtons />}
     >
       <Flex
         direction="column-reverse"
-        align={compact_display ? 'left' : 'center'}
+        align={user_show_compact ? 'left' : 'center'}
       >
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
@@ -560,7 +534,7 @@ const PopulationPyramid = (_props: any) => {
           ) : (
             ''
           );
-          if (compact_display) {
+          if (user_show_compact) {
             // Display less busy compact mode
             if (tier === 0) {
               return (
@@ -581,11 +555,11 @@ const PopulationPyramid = (_props: any) => {
                 {tier === 2 || tier === 3
                   ? ` (${tier_info.total}/${max_slots || 0}) `
                   : ` ${tier_info.total} `}
-                Sisters {!empty_display && tier_info.total === 0 ? '' : '| '}
+                Sisters {!user_show_empty && tier_info.total === 0 ? '' : '| '}
                 {tier_info.index
                   .map((value, idx) => {
                     const count = tier_info.caste[idx];
-                    if (!empty_display && count === 0) {
+                    if (!user_show_empty && count === 0) {
                       return null;
                     }
                     const static_entry = static_info[value];
@@ -607,7 +581,7 @@ const PopulationPyramid = (_props: any) => {
               <Flex className="Section__content">
                 {tier_info.index.map((value, idx) => {
                   const count = tier_info.caste[idx];
-                  if (!empty_display && count === 0) {
+                  if (!user_show_empty && count === 0) {
                     return <Box key={tier} />;
                   }
                   const static_entry = static_info[value];
@@ -632,7 +606,7 @@ const PopulationPyramid = (_props: any) => {
               </Flex>
               <Flex>
                 {tier_info.caste.map((count, idx) => {
-                  if (!empty_display && count === 0) {
+                  if (!user_show_empty && count === 0) {
                     return <Box key={tier} />;
                   }
                   const static_entry = static_info[tier_info.index[idx]];
