@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "AGLS Flare magazine assemblies now create AGLS Flare magazines instead of HE magazines."
-  - bugfix: "AGLS HE magazine assemblies now follows its factory recipe instead of immediately finishing on unboxing."
