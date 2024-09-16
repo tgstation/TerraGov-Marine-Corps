@@ -668,7 +668,6 @@
 		/obj/item/ammo_magazine/standard_agls/incendiary,
 		/obj/item/ammo_magazine/standard_agls/flare,
 		/obj/item/ammo_magazine/standard_agls/cloak,
-		/obj/item/ammo_magazine/standard_agls/tanglefoot,
 	)
 
 	deploy_time = 6 SECONDS

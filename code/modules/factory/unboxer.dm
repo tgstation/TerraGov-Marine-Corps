@@ -504,12 +504,6 @@
 	refill_type = /obj/item/factory_part/agls_cloak
 	refill_amount = 10
 
-/obj/item/factory_refill/agls_tanglefoot_refill
-	name = "box of rounded metal plates (AGLS Tanglefoot)"
-	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become AGLS Tanglefoot magazines for an AGL, once finished."
-	refill_type = /obj/item/factory_part/agls_tanglefoot
-	refill_amount = 10
-
 /obj/item/factory_refill/atgun_aphe_refill
 	name = "box of rounded metal plates (AT APHE)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become AT-36 APHE shells, once finished."
