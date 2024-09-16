@@ -44,7 +44,7 @@
 // make sure you don't turn 0 into a false positive
 #define BIOSCAN_DELTA(count, delta) count ? max(0, count + rand(-delta, delta)) : 0
 
-#define BIOSCAN_LOCATION(show_locations, location) (show_locations && location ? ", including one in [hostLocationP]":"")
+#define BIOSCAN_LOCATION(show_locations, location) ((show_locations && location) ? ", including one in [location]" : "")
 
 #define AI_SCAN_DELAY 15 SECONDS
 
@@ -91,16 +91,16 @@
 	var/numXenosPlanet = counts[ZTRAIT_GROUND][FACTION_XENO]
 	var/numXenosShip = counts[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
 	var/numXenosTransit = counts[ZTRAIT_RESERVED][FACTION_XENO]
-	var/hostLocationP = locations[ZTRAIT_GROUND][FACTION_TERRAGOV]
-	var/hostLocationS = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
-	var/xenoLocationP = locations[ZTRAIT_GROUND][FACTION_XENO]
-	var/xenoLocationS = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
+	var/host_location_planetside = locations[ZTRAIT_GROUND][FACTION_TERRAGOV]
+	var/host_location_shipside = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_TERRAGOV]
+	var/xeno_location_planetside = locations[ZTRAIT_GROUND][FACTION_XENO]
+	var/xeno_location_shipside = locations[ZTRAIT_MARINE_MAIN_SHIP][FACTION_XENO]
 
 	//Adjust the randomness there so everyone gets the same thing
-	var/numHostsShipr = BIOSCAN_DELTA(numHostsShip, delta)
-	var/numXenosPlanetr = BIOSCAN_DELTA(numXenosPlanet, delta)
-	var/numHostsTransitr = BIOSCAN_DELTA(numHostsTransit, delta)
-	var/numXenosTransitr = BIOSCAN_DELTA(numXenosTransit, delta)
+	var/hosts_shipside = BIOSCAN_DELTA(numHostsShip, delta)
+	var/xenos_planetside = BIOSCAN_DELTA(numXenosPlanet, delta)
+	var/hosts_transit = BIOSCAN_DELTA(numHostsTransit, delta)
+	var/xenos_transit = BIOSCAN_DELTA(numXenosTransit, delta)
 
 	var/sound/S = sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
 	if(announce_xenos)
@@ -110,17 +110,31 @@
 			to_chat(M, assemble_alert(
 				title = "Queen Mother Report",
 				subtitle = "The Queen Mother reaches into your mind...",
-				message = "To my children and their Queen,<br>I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[BIOSCAN_LOCATION(show_locations, hostLocationS)], [numHostsPlanet || "none"] scattered elsewhere[BIOSCAN_LOCATION(show_locations, hostLocationP)] and [numHostsTransitr ? "approximately [numHostsTransitr]":"no"] host[numHostsTransitr > 1 ? "s":""] on the metal bird in transit.",
+
+				message = "To my children and their Queen,<br>I sense [hosts_shipside ? "approximately [hosts_shipside]":"no"] \
+				host[hosts_shipside > 1 ? "s":""] in the metal hive[BIOSCAN_LOCATION(show_locations, host_location_shipside)], \
+				[numHostsPlanet || "none"] scattered elsewhere[BIOSCAN_LOCATION(show_locations, host_location_planetside)] and \
+				[hosts_transit ? "approximately [hosts_transit]":"no"] host[hosts_transit > 1 ? "s":""] on the metal bird in transit.",
+
 				color_override = "purple"
 			))
 
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
-	var/input = {"Bioscan complete. Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[BIOSCAN_LOCATION(show_locations, xenoLocationS)], [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[BIOSCAN_LOCATION(show_locations, xenoLocationP)] and [numXenosTransit || "no"] unknown lifeform signature[numXenosTransit > 1 ? "s":""] in transit."}
+
+	var/input = {"Bioscan complete. Sensors indicate [numXenosShip || "no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] \
+	present on the ship[BIOSCAN_LOCATION(show_locations, xeno_location_shipside)], [xenos_planetside ? "approximately [xenos_planetside]":"no"] \
+	signature[xenos_planetside > 1 ? "s":""] located elsewhere[BIOSCAN_LOCATION(show_locations, xeno_location_planetside)] and [numXenosTransit || "no"] \
+	unknown lifeform signature[numXenosTransit > 1 ? "s":""] in transit."}
+
 	var/ai_name = "[usr] Bioscan Status"
 
 	if(ai_operator)
 		priority_announce(input, ai_name, sound = 'sound/AI/bioscan.ogg', color_override = "grey", receivers = (GLOB.alive_human_list + GLOB.ai_list))
-		log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""] and [numXenosTransit] in transit.")
+		log_game("Bioscan. Humans: [numHostsPlanet] on the planet\
+		[host_location_planetside ? " Location:[host_location_planetside]":""] and [numHostsShip] on the ship.\
+		[host_location_shipside ? " Location: [host_location_shipside].":""] \
+		Xenos: [xenos_planetside] on the planet and [numXenosShip] on the ship\
+		[xeno_location_planetside ? " Location:[xeno_location_planetside]":""] and [numXenosTransit] in transit.")
 
 		switch(GLOB.current_orbit)
 			if(1)
@@ -140,7 +154,7 @@
 		var/fax_message = generate_templated_fax("Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", "", input, "", MAIN_AI_SYSTEM)
 		send_fax(null, null, "Combat Information Center", "[MAIN_AI_SYSTEM] Bioscan Status", fax_message, FALSE)
 
-	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""] and [numXenosTransit] in transit.")
+	log_game("Bioscan. Humans: [numHostsPlanet] on the planet[host_location_planetside ? " Location:[host_location_planetside]":""] and [numHostsShip] on the ship.[host_location_shipside ? " Location: [host_location_shipside].":""] Xenos: [xenos_planetside] on the planet and [numXenosShip] on the ship[xeno_location_planetside ? " Location:[xeno_location_planetside]":""] and [numXenosTransit] in transit.")
 
 	for(var/i in GLOB.observer_list)
 		var/mob/M = i
@@ -156,8 +170,8 @@
 			color_override = "purple"
 		))
 
-	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]. [numHostsTransitr] in transit.")
-	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""] [numXenosTransitr] in transit.")
+	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[host_location_planetside ? ". Location:[host_location_planetside]":""]. [hosts_shipside] on the ship.[host_location_shipside ? " Location: [host_location_shipside].":""]. [hosts_transit] in transit.")
+	message_admins("Bioscan - Xenos: [xenos_planetside] on the planet[xenos_planetside > 0 && xeno_location_planetside ? ". Location:[xeno_location_planetside]":""]. [numXenosShip] on the ship.[xeno_location_shipside ? " Location: [xeno_location_shipside].":""] [xenos_transit] in transit.")
 
 #undef BIOSCAN_DELTA
 #undef BIOSCAN_LOCATION
