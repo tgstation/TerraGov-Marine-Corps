@@ -792,6 +792,11 @@
 	if(stealth_duration != -1)
 		stealth_timer = addtimer(CALLBACK(src, PROC_REF(cancel_stealth)), stealth_duration, TIMER_STOPPABLE)
 
+///Duration for the mark.
+#define DEATH_MARK_TIMEOUT 15 SECONDS
+///Charge-up duration of the mark where you need to stay still for it to apply.
+#define DEATH_MARK_CHARGEUP 2 SECONDS
+
 // ***************************************
 // *********** Death Mark
 // ***************************************
@@ -807,12 +812,6 @@
 	cooldown_duration = 30 SECONDS
 	require_los = FALSE
 
-	///Duration for the mark.
-	var/timeout = 15 SECONDS
-	///Charge-up duration of the mark where you need to stay still for it to apply.
-	var/chargeup = 2 SECONDS
-
-
 /datum/action/ability/activable/xeno/hunter_mark/assassin/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(require_los)
@@ -826,13 +825,13 @@
 /datum/action/ability/activable/xeno/hunter_mark/assassin/use_ability(atom/A)
 	. = ..()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(X, chargeup, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC))
+	if(!do_after(X, DEATH_MARK_CHARGEUP, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_HOSTILE, NONE, PROGRESS_GENERIC))
 		return
 
 	RegisterSignal(marked_target, COMSIG_QDELETING, PROC_REF(unset_target)) //For var clean up
 
-	to_chat(X, span_xenodanger("We will be able to maintain the mark for [timeout / 10] seconds."))
-	addtimer(CALLBACK(src, PROC_REF(unset_target)), timeout)
+	to_chat(X, span_xenodanger("We will be able to maintain the mark for [DEATH_MARK_TIMEOUT / 10] seconds."))
+	addtimer(CALLBACK(src, PROC_REF(unset_target)), DEATH_MARK_TIMEOUT)
 
 	playsound(marked_target, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	to_chat(marked_target, span_highdanger("You feel uneasy."))
