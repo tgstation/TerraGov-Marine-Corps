@@ -29,14 +29,24 @@
 	atom_flags = CONDUCT
 	attack_verb = list("attacked", "stabbed", "poked")
 	sharp = 0
-	/// Descriptive string for currently loaded food object.
-	var/loaded = ""
+	/// Is there something on this utensil?
+	var/image/loaded
 
 /obj/item/tool/kitchen/utensil/Initialize(mapload)
 	. = ..()
 	pixel_y = rand(0, 4)
 
 	create_reagents(5)
+
+/obj/item/tool/kitchen/utensil/Destroy()
+	qdel(loaded)
+	return ..()
+
+/obj/item/tool/kitchen/utensil/update_overlays()
+	. = ..()
+	if(!loaded)
+		return
+	. += loaded
 
 /obj/item/tool/kitchen/utensil/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M))
@@ -136,7 +146,7 @@
 	user.visible_message(pick(span_danger("[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
 							span_danger("[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide."), \
 							span_danger("[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.")))
-	return (BRUTELOSS)
+	return BRUTELOSS
 
 /obj/item/tool/kitchen/knife/ritual
 	name = "ritual knife"
@@ -160,10 +170,7 @@
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
-
-/obj/item/tool/kitchen/knife/butcher/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
-	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
-	return ..()
+	hitsound = 'sound/weapons/bladeslice.ogg'
 
 /*
 * Rolling Pins
