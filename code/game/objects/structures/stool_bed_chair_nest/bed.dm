@@ -224,6 +224,10 @@
 	name = "fancy bed"
 	desc = "For prime comfort."
 
+/obj/structure/bed/psych
+	name = "Psychiatric bed"
+	desc = "For the insane."
+	icon_state = "psychbed"
 
 /*
 * Roller beds
