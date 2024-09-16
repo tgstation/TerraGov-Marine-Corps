@@ -1,5 +1,6 @@
 /obj/item/storage/kitchen_tray
 	name = "tray"
+	desc = "Use in hand to place items from tray to in front of yourself."
 	icon = 'icons/obj/items/kitchen_tools.dmi'
 	icon_state = "tray"
 	worn_icon_list = list(
@@ -47,7 +48,7 @@
 		dropped_item.throw_at(get_step(user, pick(CARDINAL_ALL_DIRS)), 1, spin = TRUE)
 	hitsound = pick('sound/items/trayhit1.ogg', 'sound/items/trayhit2.ogg')
 
-	update_overlays()
+	update_appearance(UPDATE_OVERLAYS)
 	if(!ishuman(attacked))
 		return
 
@@ -98,3 +99,8 @@
 		user.visible_message(span_warning("[user] bashes [src] with [I]!"))
 		playsound(user.loc, 'sound/effects/shieldbash.ogg', 25, 1)
 		cooldown = world.time
+
+/obj/item/storage/kitchen_tray/attack_self(mob/user)
+	. = ..()
+	for(var/obj/item/dropped_item in src)
+		storage_datum.remove_from_storage(dropped_item, get_step(user, user.dir))

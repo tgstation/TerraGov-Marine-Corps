@@ -39,7 +39,7 @@
 	create_reagents(5)
 
 /obj/item/tool/kitchen/utensil/Destroy()
-	qdel(loaded)
+	QDEL_NULL(loaded)
 	return ..()
 
 /obj/item/tool/kitchen/utensil/update_overlays()
@@ -65,7 +65,8 @@
 			visible_message(span_notice("[user] feeds [M] some [loaded] from \the [src]"))
 			M.reagents.add_reagent(/datum/reagent/consumable/nutriment, 1)
 		playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
-		overlays.Cut()
+		QDEL_NULL(loaded)
+		update_appearance(UPDATE_OVERLAYS)
 		return
 	return ..()
 

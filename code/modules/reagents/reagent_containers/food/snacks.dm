@@ -157,16 +157,17 @@
 		span_notice("You scoop up some [src] with \the [attacking_utensil]!"))
 
 	bitecount++
-	var/image/food_image = new(attacking_utensil.icon, "loadedfood")
+	var/image/food_image = image("icon" = icon, "icon_state" = icon_state, "layer" = attacking_utensil.layer+0.01)
 	food_image.color = filling_color
+	food_image.pixel_y = 5
 	attacking_utensil.loaded = food_image
+	attacking_utensil.update_appearance(UPDATE_OVERLAYS)
 
 	reagents.trans_to(attacking_utensil, min(reagents.total_volume, 5))
 
 	if(reagents.total_volume <= 0)
 		qdel(src)
 
-	attacking_utensil.update_overlays()
 
 /obj/item/reagent_containers/food/snacks/sliceable/attackby(obj/item/I, mob/user, params)
 	. = ..()
