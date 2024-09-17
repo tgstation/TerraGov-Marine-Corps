@@ -263,6 +263,21 @@
 	default_ammo = /datum/ammo/bullet/shotgun/incendiary
 	caliber = CALIBER_12G
 
+/obj/item/ammo_magazine/handful/heavy_buckshot
+	name = "handful of shotgun buckshot shells (6g)"
+	icon_state = "heavy_shotgun_buckshot"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/heavy_buckshot
+	caliber = CALIBER_6G
+
+/obj/item/ammo_magazine/handful/barrikada
+	name = "handful of shotgun 'Barrikada' shells (6g)"
+	icon_state = "heavy_shotgun_barrikada"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/barrikada_slug
+	caliber = CALIBER_6G
+
+
 /obj/item/ammo_magazine/handful/martini
 	name = "The handful of crude heavy sniper bullet (.557/440)"
 	icon_state = "crude_heavy_sniper"

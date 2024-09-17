@@ -205,7 +205,7 @@
 		return
 
 	message_admins("Campaign autobalance run: [autobalance_faction_list ? "[autobalance_faction_list[1]] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[1]])] players, \
-	autobalance_faction_list[2] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])] players." : "teams balanced."] \
+	[autobalance_faction_list[2]] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])] players." : "teams balanced."] \
 	Forced autobalance is [forced ? "ON." : "OFF."]")
 
 	for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[autobalance_faction_list[1]])

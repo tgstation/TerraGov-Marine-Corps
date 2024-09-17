@@ -593,7 +593,7 @@
 /obj/item/reagent_containers/food/condiment/peppermill{
 	pixel_x = 9
 	},
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 3
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -1925,8 +1925,8 @@
 /area/gelida/indoors/c_block/cargo)
 "buY" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray{
 	pixel_y = 6
 	},
 /obj/item/trash/plate{
@@ -2912,7 +2912,7 @@
 /area/gelida/indoors/b_block/bridge)
 "cii" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_x = 3;
 	pixel_y = 7
 	},
@@ -4790,7 +4790,7 @@
 	pixel_x = -7;
 	pixel_y = 13
 	},
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 5
 	},
 /turf/open/floor/carpet,
@@ -10042,7 +10042,7 @@
 	dir = 1
 	},
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker,
@@ -12587,7 +12587,7 @@
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = 3
 	},
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 3
 	},
 /turf/open/floor/prison/whitepurple/full{
@@ -13397,7 +13397,7 @@
 /area/gelida/indoors/b_block/bridge)
 "jTA" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_x = 12;
 	pixel_y = -6
 	},
@@ -13858,10 +13858,10 @@
 /area/gelida/indoors/a_block/bridges)
 "knX" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 5
 	},
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_x = 1;
 	pixel_y = 9
 	},
@@ -15785,7 +15785,7 @@
 	pixel_x = 9
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/food/snacks/sandwiches/tofubreadslice{
@@ -22348,10 +22348,10 @@
 /area/gelida/outdoors/colony_streets/north_east_street)
 "qpW" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 9
 	},
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 12
 	},
 /turf/open/floor/prison/plate,
@@ -28439,7 +28439,7 @@
 /area/gelida/indoors/a_block/medical)
 "uNc" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 3
 	},
 /obj/item/reagent_containers/food/snacks/sliceable/pizzapasta/margherita{

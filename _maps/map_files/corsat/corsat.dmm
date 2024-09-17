@@ -31688,7 +31688,7 @@
 /area/corsat/omega/control)
 "nXW" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/tool/kitchen/knife,
 /obj/effect/turf_decal/tile/full/white,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
