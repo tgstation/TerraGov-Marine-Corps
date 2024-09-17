@@ -390,6 +390,16 @@
 	for(var/mob/living/carbon/human/crew AS in occupants)
 		if(crew.wear_id?.iff_signal & proj.iff_signal)
 			return FALSE
+	if(src == proj.shot_from)
+		return FALSE
+	if(src == proj.original_target)
+		return TRUE
+	if(!hitbox)
+		return ..()
+	if(proj.firer in hitbox.tank_desants)
+		return FALSE
+	if(proj.original_target in hitbox.tank_desants)
+		return FALSE
 	return ..()
 
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)

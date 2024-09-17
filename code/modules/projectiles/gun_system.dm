@@ -470,6 +470,7 @@
 		COMSIG_ITEM_UNZOOM,
 		COMSIG_MOB_MOUSEDRAG,
 		COMSIG_KB_RAILATTACHMENT,
+		COMSIG_KB_MUZZLEATTACHMENT,
 		COMSIG_KB_UNDERRAILATTACHMENT,
 		COMSIG_KB_UNLOADGUN,
 		COMSIG_KB_GUN_SAFETY,
@@ -519,6 +520,7 @@
 	RegisterSignals(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM), PROC_REF(stop_fire))
 	RegisterSignal(gun_user, COMSIG_ITEM_UNZOOM, PROC_REF(on_unzoom))
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, PROC_REF(activate_rail_attachment))
+	RegisterSignal(gun_user, COMSIG_KB_MUZZLEATTACHMENT, PROC_REF(activate_muzzle_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, PROC_REF(activate_underrail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, PROC_REF(unload_gun))
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, PROC_REF(toggle_gun_safety_keybind))

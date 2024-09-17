@@ -26,3 +26,53 @@
   ivanmixo:
   - bugfix: AI eye hearing now respects instrument preferences
   - code_imp: Improved the way AI eye hears
+2024-09-10:
+  Lumipharon:
+  - bugfix: fixed scout cloak not properly deactivating on energy loss
+  ivanmixo:
+  - rscadd: Added the <:rainbow:> emoji
+2024-09-11:
+  Barnet2:
+  - rscadd: CORSAT, Lava Outpost V1 and Chigusa are in the game files again! Can be
+      used for events, but not in rotation.
+  blackdav123:
+  - bugfix: Tanks can now leave the alamo on LV624.
+  - balance: Increased quickbuild on LV624 to 2000 from 1400.
+2024-09-14:
+  Lewdcifer:
+  - rscadd: Xeno minions can now ride crushers.
+  Lumipharon:
+  - bugfix: fixed a misc runtime
+  - bugfix: fixed a couple drop pod hard dels
+2024-09-15:
+  Isy232:
+  - qol: Various improvements to LV 759 particularly aimed at the caves and roadway
+      clutter.
+2024-09-16:
+  FunkyMonke47:
+  - balance: slightly reduced defilers health
+  - balance: slightly lowers Praetorian's health
+  - balance: slightly lowered crushers health
+  - balance: gave behemoth a sunder multiplier
+  - balance: lowers warriors health
+  - balance: slight queen nerf
+  Lumipharon:
+  - admin: Fixed minimap drawing logging
+  - balance: Tank riders can shoot, and be shot, freely without projectiles hitting
+      the tank
+  Pariah919:
+  - rscadd: Added new ICC heavy shotgun for ICC Leader, replacing the Trench Gun in
+      the ICC Leader loadouts.
+  RipGrayson:
+  - bugfix: Fixed improper rotation of Chigusa platforms
+  - bugfix: Fixed improper area colors for Chigusa
+  Runian:
+  - bugfix: AGLS Flare magazine assemblies now create AGLS Flare magazines instead
+      of HE magazines.
+  - bugfix: AGLS HE magazine assemblies now follows its factory recipe instead of
+      immediately finishing on unboxing.
+  xSlumLord:
+  - rscadd: Keybind for barrel attachments.
+  - balance: Removed pistol lace activation wind-up.
+  yyzsong:
+  - qol: Warlock blast now shakes your sprite if the AOE hits you.
