@@ -5402,7 +5402,7 @@
 /area/daedalusprison/inside/cargo)
 "evD" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/kitchen,
@@ -17332,7 +17332,7 @@
 /area/daedalusprison/inside/security/medsec)
 "olj" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/kitchen)
 "oly" = (
@@ -28560,7 +28560,7 @@
 /area/daedalusprison/inside/janitorial)
 "xdB" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/kitchen)

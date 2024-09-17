@@ -3999,7 +3999,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/reagent_containers/dropper,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/xenoarcheology)
@@ -6443,7 +6443,7 @@
 /area/lv759/indoors/apartment/westentertainment)
 "bhU" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 14;
 	pixel_y = 9
@@ -21306,7 +21306,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/xenos_claw,
 /obj/structure/window/reinforced{
 	dir = 8
@@ -31074,7 +31074,7 @@
 /area/lv759/indoors/hospital/virology)
 "fAv" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 9
 	},
 /obj/item/reagent_containers/cup/glass/drinkingglass{
@@ -33334,7 +33334,7 @@
 	dir = 1;
 	layer = 2
 	},
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 9
 	},
 /obj/effect/urban/decal/dirt,
@@ -49047,7 +49047,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/weed_extract,
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -65589,7 +65589,7 @@
 	color = "#6b675e"
 	},
 /obj/structure/window/reinforced,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/reagent_containers/glass/beaker/vial,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/xenoarcheology)
@@ -70197,7 +70197,7 @@
 /area/lv759/outdoors/colony_streets/north_west_street)
 "mrY" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/tool/surgery/retractor,
 /turf/open/floor/mainship/black/full,
 /area/lv759/indoors/nt_research_complex/xenobiology)
@@ -84966,7 +84966,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/structure/window/reinforced,
 /obj/item/stack/sheet/xenochitin,
 /turf/open/floor/mainship/black/full,
@@ -90333,7 +90333,7 @@
 /area/lv759/outdoors/colony_streets/north_street)
 "pSY" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 9
 	},
 /obj/item/tool/surgery/cautery,
@@ -95094,7 +95094,7 @@
 	dir = 4;
 	layer = 2
 	},
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	layer = 3;
 	pixel_y = 8
 	},
@@ -96296,7 +96296,7 @@
 /area/lv759/indoors/nt_research_complex/janitor)
 "qXS" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/alien_embryo,
 /obj/machinery/light,
 /turf/open/floor/mainship/black/full,
@@ -109693,7 +109693,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/mainship/black/full,
@@ -110968,7 +110968,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 9
 	},
 /turf/open/floor/mainship/black/full,
@@ -117695,7 +117695,7 @@
 /area/lv759/outdoors/landing_zone_2)
 "uGc" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	pixel_y = 9
 	},
 /turf/open/floor/officetiles,
@@ -125548,7 +125548,7 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/shard/shrapnel,
 /obj/item/reagent_containers/glass/beaker/vial,
 /obj/structure/platform/metalplatform{
@@ -136206,7 +136206,7 @@
 /area/lv759/indoors/nt_research_complex/hallwaysouthwest)
 "xMs" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/tool/kitchen/knife/butcher,
 /obj/item/tool/kitchen/knife,
 /turf/open/floor/urban/tile/supermartfloor1,
