@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - balance: "It now costs a single metal to create a barbed wire."
