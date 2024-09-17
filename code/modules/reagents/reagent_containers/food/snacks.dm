@@ -3,7 +3,6 @@
 	name = "snack"
 	desc = "yummy"
 	icon = 'icons/obj/items/food/food.dmi'
-	icon_state = null
 	var/bitesize = 1
 	var/bitecount = 0
 	var/trash = null
@@ -14,6 +13,7 @@
 	var/list/tastes // for example list("crisps" = 2, "salt" = 1)
 
 /obj/item/reagent_containers/food/snacks/create_reagents(max_vol, new_flags, list/init_reagents, data)
+	. = ..()
 	if(!length(tastes) || !length(init_reagents))
 		return ..()
 	if(reagents)
@@ -34,7 +34,7 @@
 	if(reagents.total_volume)
 		return
 
-	balloon_alert_to_viewers("eats \the [src]")
+	balloon_alert_to_viewers("Eats \the [src]")
 
 	usr.dropItemToGround(src)	//so icons update :[
 
@@ -71,15 +71,15 @@
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
-			if (fullness <= 50)
+			if(fullness <= 50)
 				balloon_alert(user, "hungrily chews [src]")
-			if (fullness > 50 && fullness <= 150)
+			if(fullness > 50 && fullness <= 150)
 				balloon_alert(user, "hungrily eats [src]")
-			if (fullness > 150 && fullness <= 350)
+			if(fullness > 150 && fullness <= 350)
 				balloon_alert(user, "takes bite of [src]")
-			if (fullness > 350 && fullness <= 550)
+			if(fullness > 350 && fullness <= 550)
 				balloon_alert(user, "unwillingly chews [src]")
-			if (fullness > 550)
+			if(fullness > 550)
 				balloon_alert(user, "cannot eat more of [src]")
 				return FALSE
 		else
@@ -87,7 +87,7 @@
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
-			if (fullness <= 550)
+			if(fullness <= 550)
 				balloon_alert_to_viewers("tries to feed [M]")
 			else
 				balloon_alert_to_viewers("tries to feed [M] but can't")
@@ -126,51 +126,47 @@
 
 	return FALSE
 
-/obj/item/reagent_containers/food/snacks/afterattack(obj/target, mob/user, proximity)
-	return ..()
-
 /obj/item/reagent_containers/food/snacks/examine(mob/user)
 	. = ..()
-	if (!(user in range(0)) && user != loc)
+	if(!(user in range(0)) && user != loc)
 		return
-	if (bitecount==0)
+	if(bitecount == 0)
 		return
-	else if (bitecount==1)
+	if(bitecount == 1)
 		. += span_notice("\The [src] was bitten by someone!")
-	else if (bitecount<=3)
+		return
+	if(bitecount<=3)
 		. += span_notice("\The [src] was bitten [bitecount] times!")
-	else
-		. += span_notice("\The [src] was bitten multiple times!")
+		return
+	. += span_notice("\The [src] was bitten multiple times!")
 
 /obj/item/reagent_containers/food/snacks/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
 
-	if(istype(I, /obj/item/tool/kitchen/utensil)) //todo early return
-		var/obj/item/tool/kitchen/utensil/U = I
+	if(!istype(I, /obj/item/tool/kitchen/utensil))
+		return
+	var/obj/item/tool/kitchen/utensil/attacking_utensil = I
 
-		if(!U.reagents)
-			U.create_reagents(5)
+	if(attacking_utensil.reagents.total_volume > 0)
+		balloon_alert(user, "Something is already on [attacking_utensil]!")
+		return
 
-		if(U.reagents.total_volume > 0)
-			balloon_alert(user, "already something on [U]")
-			return
+	user.visible_message("[user] scoops up some [src] with \the [attacking_utensil]!", \
+		span_notice("You scoop up some [src] with \the [attacking_utensil]!"))
 
-		user.visible_message("[user] scoops up some [src] with \the [U]!", \
-			span_notice("You scoop up some [src] with \the [U]!"))
+	bitecount++
+	var/image/food_image = image("icon" = icon, "icon_state" = icon_state, "layer" = attacking_utensil.layer+0.01)
+	food_image.color = filling_color
+	food_image.pixel_y = 5
+	attacking_utensil.loaded = food_image
+	attacking_utensil.update_appearance(UPDATE_OVERLAYS)
 
-		bitecount++
-		U.overlays.Cut()
-		U.loaded = "[src]"
-		var/image/IM = new(U.icon, "loadedfood")
-		IM.color = filling_color
-		U.overlays += IM
+	reagents.trans_to(attacking_utensil, min(reagents.total_volume, 5))
 
-		reagents.trans_to(U, min(reagents.total_volume, 5))
-
-		if(reagents.total_volume <= 0)
-			qdel(src)
+	if(reagents.total_volume <= 0)
+		qdel(src)
 
 
 /obj/item/reagent_containers/food/snacks/sliceable/attackby(obj/item/I, mob/user, params)
@@ -184,16 +180,16 @@
 		if(!user.transferItemToLoc(I, src))
 			return
 		if(length(contents) > max_items)
-			balloon_alert(user, "already full")
+			balloon_alert(user, "Already full!")
 			return
-		balloon_alert(user, "slips [I] inside")
+		balloon_alert(user, "Slips [I] inside [src].")
 		return
 
 	if(!isturf(loc) || !(locate(/obj/structure/table) in loc))
-		balloon_alert(user, "need a table or tray to slice")
+		balloon_alert(user, "Need a table or tray to slice!")
 		return
 
-	balloon_alert_to_viewers("slices [src]")
+	balloon_alert_to_viewers("[user] slices [src].")
 
 	var/reagents_per_slice = reagents.total_volume / slices_num
 
@@ -206,46 +202,31 @@
 
 
 /obj/item/reagent_containers/food/snacks/Destroy()
-	for(var/i in contents)
-		var/atom/movable/AM = i
+	for(var/atom/movable/AM AS in contents)
 		AM.forceMove(get_turf(src))
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/attack_animal(mob/M)
-	if(isanimal(M))
-		if(iscorgi(M))
-			var/mob/living/L = M
-			if(bitecount == 0 || prob(50))
-				M.emote("nibbles away at the [src]")
-			bitecount++
-			L.taste(reagents) //why should carbons get all the fun?
-			if(bitecount >= 5)
-				var/sattisfaction_text = pick("burps from enjoyment", "yaps for more", "woofs twice", "looks at the area where the [src] was")
-				if(sattisfaction_text)
-					M.emote("[sattisfaction_text]")
-				qdel(src)
-		if(ismouse(M))
-			var/mob/living/simple_animal/mouse/N = M
-			balloon_alert(N, "nibbles")
-			N.taste(reagents) // ratatouilles
-			if(prob(50))
-				balloon_alert_to_viewers("nibbles")
-			//N.emote("nibbles away at the [src]")
-			N.health = min(N.health + 1, N.maxHealth)
+	if(!isanimal(M))
+		return
 
-////////////////////////////////////////////////////////////////////////////////
-/// FOOD END
-////////////////////////////////////////////////////////////////////////////////
+	if(iscorgi(M))
+		var/mob/living/simple_animal/corgi/eating_corgi = M
+		if(bitecount == 0 || prob(50))
+			eating_corgi.emote("nibbles away at the [src]")
+		bitecount++
+		eating_corgi.taste(reagents) //why should carbons get all the fun?
+		if(bitecount >= 5)
+			eating_corgi.emote(pick("burps from enjoyment!", "yaps for more!", "woofs twice!", "looks at the area where the [src] was.."))
+			qdel(src)
+		return
 
-
-
-
-
-
-
-
-
-
+	if(ismouse(M))
+		var/mob/living/simple_animal/mouse/monuse = M
+		monuse.taste(reagents) // ratatouilles
+		if(prob(50))
+			balloon_alert_to_viewers("nibbles")
+		monuse.health = min(monuse.health + 1, monuse.maxHealth)
 
 //////////////////////////////////////////////////
 ////////////////////////////////////////////Snacks
@@ -891,7 +872,7 @@
 	E.fracture()
 	for (var/datum/internal_organ/I in E.internal_organs)
 		I.take_damage(rand(I.min_bruised_damage, I.min_broken_damage+1))
-	if (!E.hidden && prob(60)) //set it snuggly
+	if(!E.hidden && prob(60)) //set it snuggly
 		E.hidden = surprise
 		E.cavity = 0
 	else 		//someone is having a bad day
@@ -1383,7 +1364,7 @@
 	tastes = list("dough" = 1, "chicken" = 1)
 
 /obj/item/reagent_containers/food/snacks/packaged_hdogs/attack_self(mob/user as mob)
-	if (package)
+	if(package)
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 		balloon_alert(user, "unwraps hotdog")
 		package = FALSE
@@ -1414,7 +1395,7 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/upp/attack_self(mob/user as mob)
-	if (package)
+	if(package)
 		playsound(src.loc,'sound/effects/pageturn2.ogg', 15, 1)
 		balloon_alert(user, "pops the packaged seal")
 		package = FALSE
@@ -1465,7 +1446,7 @@
 	var/obj/item/trash/wrapper = null //Why this and not trash? Because it pulls the wrapper off when you unwrap it as a trash item.
 
 /obj/item/reagent_containers/food/snacks/wrapped/attack_self(mob/user as mob)
-	if (package)
+	if(package)
 		balloon_alert(user, "opens the package")
 		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
 
@@ -1544,7 +1525,7 @@
 	return ..()
 
 /obj/item/reagent_containers/food/snacks/packaged_meal/attack_self(mob/user as mob)
-	if (package)
+	if(package)
 		balloon_alert(user, "opens package")
 		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
 		name = "\improper" + flavor

@@ -137,7 +137,7 @@
 /area/campaign/som_raiding/outpost/tunnel)
 "aW" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/burger,
 /obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/barber,
@@ -2470,7 +2470,7 @@
 /area/campaign/som_raiding/outpost/security/south_post)
 "ng" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/barber,
 /area/campaign/som_raiding/outpost/living/kitchen)
