@@ -809,15 +809,6 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	. = ..()
 	recipe = GLOB.agls_recipe
 
-/obj/item/factory_part/agls_tanglefoot
-	name = "\improper AGLS Tanglefoot magazine assembly"
-	desc = "An incomplete AGLS Tanglefoot magazine assembly."
-	result = /obj/item/ammo_magazine/standard_agls/tanglefoot
-
-/obj/item/factory_part/agls_tanglefoot/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.agls_recipe
-
 GLOBAL_LIST_INIT(atgun_recipe, list(
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_CUTTER, STEP_ICON_STATE = "uncutplate"),
 	list(STEP_NEXT_MACHINE = FACTORY_MACHINE_HEATER, STEP_ICON_STATE = "cutplate"),
