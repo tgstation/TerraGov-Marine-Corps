@@ -76,3 +76,19 @@
   - balance: Removed pistol lace activation wind-up.
   yyzsong:
   - qol: Warlock blast now shakes your sprite if the AOE hits you.
+2024-09-18:
+  Lumipharon:
+  - rscdel: Removed AGLS tanglefoot ammo
+  Runian:
+  - balance: It now costs a single metal to create a barbed wire.
+  - rscadd: If you have any engineering skills, you can use a multitool will help
+      you find the APC of the room you're in.
+  ivanmixo:
+  - bugfix: Both clicking the firemode action and using the keybind should have the
+      same behavior now
+  - rscadd: The compact mode and show empty checkboxes will now be saved as a proper
+      preference and carry over between rounds and characters
+  - bugfix: Caste names no longer overlap eachother, tier limits no longer display
+      nothing if there's no xenos
+  - bugfix: Various improvements and fixes to kitchen trays and forks
+  - admin: Admins can now announce and global narrate infinitely

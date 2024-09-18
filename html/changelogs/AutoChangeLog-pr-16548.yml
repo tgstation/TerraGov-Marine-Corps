@@ -1,5 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - rscadd: "The compact mode and show empty checkboxes will now be saved as a proper preference and carry over between rounds and characters"
-  - bugfix: "Caste names no longer overlap eachother, tier limits no longer display nothing if there's no xenos"
