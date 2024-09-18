@@ -266,3 +266,9 @@
 	mapid = "joengineering"
 	spawner_width = 21
 	spawner_height = 21
+
+/************CORSAT**********/
+/obj/effect/spawner/modularmap/corsat/dome
+	mapid = "corsatdome"
+	spawner_height = 80
+	spawner_width = 80
