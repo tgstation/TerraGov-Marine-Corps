@@ -236,6 +236,41 @@
 	icon_state = "cafeteria"
 	minimap_color = MINIMAP_AREA_ESCAPE
 
+// Headquarters areas
+/area/metnal/inside/Headquarters
+	name = "Headquarters"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND_CAVE
+
+/area/metnal/inside/quartermaster
+	name = "Quartermaster Staging Area"
+	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_REQ
+
+/area/metnal/inside/bridge
+	name = "Bridge"
+	icon_state = "bridge"
+	minimap_color = MINIMAP_AREA_COMMAND
+
+/area/metnal/inside/kitchen
+	name = "Kitchen"
+	icon_state = "kitchen"
+	minimap_color = MINIMAP_AREA_ESCAPE
+
+/area/metnal/inside/restroom
+	name = "Main Restroom"
+	icon_state = "cafeteria"
+	minimap_color = MINIMAP_AREA_JUNGLE
+
+/area/metnal/inside/executivedorms
+	name = "Command Dormitories"
+	icon_state = "Sleep"
+	minimap_color = MINIMAP_AREA_COMMAND
+
+/area/metnal/inside/primarystorage
+	name = "Primary Colony Storage"
+	icon_state = "storage"
+	minimap_color = MINIMAP_AREA_REQ_CAVE
 
 // other civilian areas
 
