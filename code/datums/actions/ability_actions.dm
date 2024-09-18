@@ -100,6 +100,8 @@
 
 	if(!(to_check_flags & ABILITY_USE_SOLIDOBJECT))
 		var/turf/current_turf = get_turf(carbon_owner)
+		if(!current_turf) //we are in nullspace when first spawning in
+			return FALSE
 		if(isclosedturf(current_turf))
 			if(!silent)
 				//Not converted to balloon alert as xeno.dm's balloon alert is simultaneously called and will overlap.
