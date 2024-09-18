@@ -487,6 +487,7 @@
 		/obj/item/attachable/scope/mosin,
 		/obj/item/attachable/stock/mosin,
 	)
+	actions_types = list(/datum/action/item_action/aim_mode)
 	force = 20
 	aim_fire_delay = 0.75 SECONDS
 	aim_speed_modifier = 0.8
