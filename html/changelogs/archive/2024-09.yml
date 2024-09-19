@@ -92,3 +92,11 @@
       nothing if there's no xenos
   - bugfix: Various improvements and fixes to kitchen trays and forks
   - admin: Admins can now announce and global narrate infinitely
+2024-09-19:
+  00ze-cyclone:
+  - rscadd: Added 2 more icons for energy weapon firemode ammo huds
+  - qol: each firemode on lasers has its own icon on the ammo counter
+  ivanmixo:
+  - bugfix: Bioscan will no longer say "including one in 0" in place of where it's
+      supposed to tell you where someone is located
+  - bugfix: Friendly xeno nibbles have the attack animation again

@@ -1,5 +1,0 @@
-author: "00ze-cyclone"
-delete-after: True
-changes:
-  - rscadd: "Added 2 more icons for energy weapon firemode ammo huds"
-  - qol: "each firemode on lasers has its own icon on the ammo counter"

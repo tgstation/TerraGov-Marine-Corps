@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Bioscan will no longer say \"including one in 0\" in place of where it's supposed to tell you where someone is located"
