@@ -31,14 +31,14 @@
 		reagents.reaction(user.loc)
 		reagents.clear_reagents()
 
-/obj/item/reagent_containers/hypospray/afterattack(atom/A, mob/living/user)
+/obj/item/reagent_containers/hypospray/afterattack(atom/target, mob/living/user)
 	if(!istype(user))
 		return FALSE
-	if(!in_range(A, user) || !user.Adjacent(A))
+	if(!in_range(target, user) || !user.Adjacent(target))
 		return FALSE
 
-	if(istype(A, /obj/item/storage/pill_bottle) && is_open_container()) //this should only run if its a pillbottle
-		var/obj/item/storage/pill_bottle/bottle = A
+	if(istype(target, /obj/item/storage/pill_bottle) && is_open_container()) //this should only run if its a pillbottle
+		var/obj/item/storage/pill_bottle/bottle = target
 		if(reagents.total_volume >= volume)
 			balloon_alert(user, "Hypospray is full.")
 			return  //early returning if its full
@@ -59,32 +59,32 @@
 
 	//For drawing reagents, will check if it's possible to draw, then draws.
 	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW)
-		can_draw_reagent(A, user, FALSE)
+		can_draw_reagent(target, user, FALSE)
 		return
 
 	if(!reagents.total_volume)
 		balloon_alert(user, "Hypospray is Empty.")
 		return
-	if(iscarbon(A))
-		var/mob/living/carbon/C = A
+	if(iscarbon(target))
+		var/mob/living/carbon/C = target
 		if((C.species.species_flags & NO_CHEM_METABOLIZATION) || (C.species.species_flags & IS_SYNTHETIC))
 			C.balloon_alert(user, "Can't inject (robot)")
 			return
-	if(!A.is_injectable() && !ismob(A))
-		A.balloon_alert(user, "Can't fill.")
+	if(!target.is_injectable() && !ismob(target))
+		target.balloon_alert(user, "Can't fill.")
 		return
 	if(skilllock && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_NOVICE)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
 		span_notice("You fumble around figuring out how to use the [src]."))
-		if(!do_after(user, SKILL_TASK_EASY, NONE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
+		if(!do_after(user, SKILL_TASK_EASY, NONE, target, BUSY_ICON_UNSKILLED) || (!in_range(target, user) || !user.Adjacent(target)))
 			return
 
-	if(ismob(A))
-		var/mob/M = A
+	if(ismob(target))
+		var/mob/M = target
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
 
-	if(ishuman(A))
+	if(ishuman(target))
 		var/user_skill = user.skills.getRating(SKILL_UNARMED)
 		var/victim_skill = M.skills.getRating(SKILL_UNARMED)
 		if(M != user && M.stat == CONSCIOUS && !M.incapacitated() &&  M.faction != user.faction && victim_skill >= user_skill) //Check if Victim is capable of fighting back, its faction, and if its unarmed skill is equal or better than user.
@@ -101,10 +101,10 @@
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
 		injected += R.name
-	log_combat(user, A, "injected", src, "Reagents: [english_list(injected)]")
+	log_combat(user, target, "injected", src, "Reagents: [english_list(injected)]")
 
-	if(ismob(A))
-		var/mob/M = A
+	if(ismob(target))
+		var/mob/M = target
 		balloon_alert(user, "Injects [M]")
 		to_chat(M, span_warning("You feel a tiny prick!")) // inject self doubleposting
 		record_reagent_consumption(min(amount_per_transfer_from_this, reagents.total_volume), injected, user, M)
@@ -115,8 +115,8 @@
 	user.changeNext_move(3) // please don't break the game
 
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
-	reagents.reaction(A, INJECT, min(amount_per_transfer_from_this, reagents.total_volume) / reagents.total_volume)
-	var/trans = reagents.trans_to(A, amount_per_transfer_from_this)
+	reagents.reaction(target, INJECT, min(amount_per_transfer_from_this, reagents.total_volume) / reagents.total_volume)
+	var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 	to_chat(user, span_notice("[trans] units injected. [reagents.total_volume] units remaining in [src]. ")) // better to not balloon
 
 	return TRUE
