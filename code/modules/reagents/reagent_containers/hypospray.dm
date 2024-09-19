@@ -83,6 +83,18 @@
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
+		var/userskill = user.skills.getRating(SKILL_UNARMED)
+		var/victimskill = M.skills.getRating(SKILL_UNARMED)
+		if(M != user && M.stat == CONSCIOUS && !M.incapacitated() &&  M.faction != user.faction && victimskill >= userskill) //Check if Victim is capable of fighting back, its faction, and if its unarmed skill is equal or better than user.
+			var/mob/living/carbon/human/victim = M
+			var/datum/limb/temp = victim.get_limb("l_hand","r_hand")
+			if(temp && temp.is_usable()) //Check if either of the victim's hand usable or not.
+				user.Paralyze(((3 + (victimskill - userskill)) SECONDS)) //Stun the user, duration scale to the skill gap.
+				log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
+				M.visible_message(span_danger("[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
+				span_warning("You knock [user] to the ground before they could inject you!"), null, 5)
+				playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
+				return FALSE
 
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
