@@ -107,5 +107,5 @@ map corsat
 endmap
 
 map bluesummers
-	minplayers 20
+	minplayers 30
 endmap
