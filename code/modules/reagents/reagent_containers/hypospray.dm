@@ -85,15 +85,15 @@
 			return
 
 	if(ishuman(target))
+		var/mob/living/carbon/human/victim = target
 		var/user_skill = user.skills.getRating(SKILL_UNARMED)
-		var/victim_skill = M.skills.getRating(SKILL_UNARMED)
-		if(M != user && M.stat == CONSCIOUS && !M.incapacitated() &&  M.faction != user.faction && victim_skill >= user_skill) //Check if Victim is capable of fighting back, its faction, and if its unarmed skill is equal or better than user.
-			var/mob/living/carbon/human/victim = M
+		var/victim_skill = victim.skills.getRating(SKILL_UNARMED)
+		if(victim != user && victim.stat == CONSCIOUS && !victim.incapacitated() &&  victim.faction != user.faction && victim_skill >= user_skill) //Check if Victim is capable of fighting back, its faction, and if its unarmed skill is equal or better than user.
 			var/datum/limb/victim_limb = victim.get_limb("l_hand","r_hand")
 			if(victim_limb && victim_limb.is_usable()) //Check if either of the victim's hand usable or not.
 				user.Paralyze(((3 + (victim_skill - user_skill)) SECONDS)) //Stun the user, duration scale to the skill gap.
-				log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
-				M.visible_message(span_danger("[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
+				log_combat(victim, user, "blocked", addition="using their cqc skill (hypospray injection)")
+				victim.visible_message(span_danger("[victim]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!"), \
 				span_warning("You knock [user] to the ground before they could inject you!"), null, 5)
 				playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				return FALSE
