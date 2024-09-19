@@ -24103,7 +24103,6 @@
 /area/bluesummers/inside/captains_office)
 "uil" = (
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc/highchance,
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bluesummers/inside/recreation)
@@ -26794,7 +26793,6 @@
 /area/bluesummers/outside/northeast/roofed)
 "wBs" = (
 /obj/machinery/power/apc/drained,
-/obj/effect/mapping_helpers/broken_apc,
 /obj/structure/cable,
 /turf/open/floor/mainship/emerald{
 	dir = 1
