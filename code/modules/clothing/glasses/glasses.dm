@@ -233,7 +233,6 @@
 	worn_icon_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
 	inventory_flags = COVEREYES
-	inv_hide_flags = HIDEEYES
 	eye_protection = 2
 	activation_sound = null
 	deactivation_sound = null
