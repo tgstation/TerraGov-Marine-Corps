@@ -58,7 +58,7 @@
 		if(lying_angle || resting || xeno_caste.caste_flags & CASTE_QUICK_HEAL_STANDING)
 			heal_wounds(XENO_RESTING_HEAL * ruler_healing_penalty * loc_weeds_type ? initial(loc_weeds_type.resting_buff) : 1, TRUE, seconds_per_tick)
 		else
-			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, seconds_per_tick, TRUE) //Major healing nerf if standing.
+			heal_wounds(XENO_STANDING_HEAL * ruler_healing_penalty, TRUE, seconds_per_tick) //Major healing nerf if standing.
 	updatehealth()
 
 ///Handles sunder modification/recovery during life.dm for xenos
@@ -67,7 +67,7 @@
 	if(!sunder || on_fire) //No sunder, no problem; or we're on fire and can't regenerate.
 		return
 
-	var/sunder_recov = xeno_caste.sunder_recover * -0.5 * seconds_per_tick //Baseline
+	var/sunder_recov = xeno_caste.sunder_recover * -0.5 * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Baseline
 
 	if(resting) //Resting doubles sunder recovery
 		sunder_recov *= 2
@@ -86,7 +86,7 @@
 	if(loc_weeds_type)
 		heal_wounds(XENO_RESTING_HEAL, seconds_per_tick)
 	else if(!endure) //If we're not Enduring we bleed out
-		adjustBruteLoss(XENO_CRIT_DAMAGE * seconds_per_tick)
+		adjustBruteLoss(XENO_CRIT_DAMAGE * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD)
 
 /mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE, seconds_per_tick)
 	var/amount = 1 + (maxHealth * 0.0375) // 1 damage + 3.75% max health, with scaling power.
@@ -96,12 +96,12 @@
 		if(recovery_aura)
 			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount*30,0,1) //Ignores the cooldown, and gives a 50% boost.
 		else if(regen_power < 0) // We're not supposed to regenerate yet. Start a countdown for regeneration.
-			regen_power += 2 SECONDS //Life ticks are 2 seconds. TODO: Check if I can use seconds_per_tick
+			regen_power += seconds_per_tick
 			return
 		else
 			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
 		amount *= regen_power
-	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff * seconds_per_tick
+	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
 
 	var/list/heal_data = list(amount)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_HEALTH_REGEN, heal_data, seconds_per_tick)
@@ -122,7 +122,7 @@
 			QDEL_NULL(current_aura)
 			src.balloon_alert(src, "Stop emitting, no plasma")
 		else
-			use_plasma(pheromone_cost * seconds_per_tick, FALSE)
+			use_plasma(pheromone_cost * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD, FALSE)
 
 	if(HAS_TRAIT(src, TRAIT_NOPLASMAREGEN) || !loc_weeds_type && !(xeno_caste.caste_flags & CASTE_INNATE_PLASMA_REGEN))
 		if(current_aura) //we only need to update if we actually used plasma from pheros
@@ -136,7 +136,7 @@
 
 	plasma_gain *= loc_weeds_type ? initial(loc_weeds_type.resting_buff) : 1
 
-	plasma_gain *= seconds_per_tick
+	plasma_gain *= seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
 
 	var/list/plasma_mod = list(plasma_gain)
 
