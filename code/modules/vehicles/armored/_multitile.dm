@@ -32,7 +32,7 @@
 
 /obj/vehicle/sealed/armored/multitile/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(wreck_type)
-		new wreck_type(loc, src, dir, turret_overlay.dir) //placeholder arg stuff
+		new wreck_type(loc, src, dir, turret_overlay.dir)
 	return ..()
 
 /obj/vehicle/sealed/armored/multitile/enter_locations(atom/movable/entering_thing)

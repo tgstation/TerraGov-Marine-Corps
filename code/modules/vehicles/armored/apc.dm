@@ -24,3 +24,4 @@
 		/obj/structure/largecrate,
 		/obj/structure/closet/crate,
 	)
+	wreck_type = null
