@@ -136,7 +136,7 @@
 	shell_speed = 3
 	damage = 20
 	penetration = 20
-	sundering = 3
+	sundering = 1.5
 	damage_falloff = 0
 
 /datum/ammo/bullet/tx54_spread/on_hit_mob(mob/target_mob, obj/projectile/proj)
