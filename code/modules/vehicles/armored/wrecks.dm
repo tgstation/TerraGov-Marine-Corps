@@ -1,6 +1,6 @@
 /obj/structure/prop/vehicle_wreck
 	name = "\improper MT - Banteng"
-	desc = "A giant piece of armor with a big gun, good for blowing stuff up, now just a smouldering ruin."
+	desc = "A giant piece of armor with a big gun, good for blowing stuff up. Now just a smouldering ruin."
 	icon = 'icons/obj/armored/3x3/tank_wreck.dmi'
 	icon_state = "tank"
 	pixel_x = -56
@@ -29,7 +29,7 @@
 		turret_overlay = new turret_overlay_type(null, source_vehicle?.primary_weapon?.icon_state, turret_dir)
 		vis_contents += turret_overlay
 	if(source_vehicle)
-		name = source_vehicle.name + "wreck"
+		name = source_vehicle.name + " wreck"
 
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
@@ -65,21 +65,21 @@
 			bound_width = 96
 			bound_x = -32
 			bound_y = -32
-			pixel_x = -55
+			pixel_x = -75
 			pixel_y = -48
 		if(SOUTH)
 			bound_height = 128
 			bound_width = 96
 			bound_x = -32
 			bound_y = -64
-			pixel_x = -55
+			pixel_x = -75
 			pixel_y = -80
 		if(WEST)
 			bound_height = 96
 			bound_width = 128
 			bound_x = -64
 			bound_y = -32
-			pixel_x = -70
+			pixel_x = -58
 			pixel_y = -56
 		if(EAST)
 			bound_height = 96
