@@ -243,7 +243,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK))
 		return FALSE
 
-	for(var/mob/living/living_mob in range(0))
+	var/turf/current_turf = get_turf(owner)
+	for(var/mob/living/living_mob in current_turf)
 		if(living_mob.stat == DEAD)
 			continue
 		if(isxeno(living_mob))
