@@ -24,10 +24,10 @@
 
 /obj/structure/prop/vehicle_wreck/Initialize(mapload, obj/vehicle/sealed/armored/source_vehicle, main_dir, turret_dir)
 	. = ..()
-	setDir(main_dir)
 	if(turret_overlay_type)
 		turret_overlay = new turret_overlay_type(null, source_vehicle?.primary_weapon?.icon_state, turret_dir)
 		vis_contents += turret_overlay
+	setDir(main_dir)
 	if(source_vehicle)
 		name = source_vehicle.name + " wreck"
 
