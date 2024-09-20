@@ -388,6 +388,10 @@
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_UNSKILLED) || user.lying_angle || user.anchored)
 			return
 
+	if(user.buckled_mobs)
+		if(!do_after(user, 8 SECONDS, NONE, src, BUSY_ICON_MEDICAL) || user.lying_angle || user.anchored)
+			return
+
 	if(!do_after(user, 8 SECONDS, NONE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		return
 	user.forceMove(get_turf(parent_system))
