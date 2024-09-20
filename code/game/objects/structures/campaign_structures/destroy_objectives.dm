@@ -387,10 +387,14 @@
 	///Cool and good turret overlay that allows independently swiveling guns
 	var/atom/movable/vis_obj/wrecked_turret_overlay/turret_overlay
 
+	var/turret_overlay_type = /atom/movable/vis_obj/wrecked_turret_overlay/tmgc_tank
+
 /obj/structure/prop/vehicle_wreck/Initialize(mapload, obj/vehicle/sealed/armored/source_vehicle, main_dir, turret_dir)
 	. = ..()
 	setDir(main_dir)
-	set_turret_overlay(source_vehicle?.primary_weapon?.icon_state, turret_dir)
+	if(turret_overlay_type)
+		turret_overlay = new turret_overlay_type(null, source_vehicle?.primary_weapon?.icon_state, turret_dir)
+		vis_contents += turret_overlay
 	//soft_armor = getArmor(arglist(source_vehicle.soft_armor))
 	//hard_armor = getArmor(arglist(source_vehicle.hard_armor))
 	soft_armor = source_vehicle.soft_armor
@@ -412,77 +416,50 @@
 /obj/structure/prop/vehicle_wreck/footstep_override(atom/movable/source, list/footstep_overrides)
 	footstep_overrides[FOOTSTEP_HULL] = 4.5
 
-/obj/structure/prop/vehicle_wreck/proc/set_turret_overlay(weapon_icon_state, turret_dir)
-	turret_overlay = new(null, weapon_icon_state, turret_dir)
-	//turret_overlay.layer = layer + 0.002 //probs kill
-	//turret_overlay.setDir(turret_dir)
-	vis_contents += turret_overlay
-
-/*
-/obj/structure/prop/vehicle_wreck/setDir(newdir)
-	. = ..()
-
-/obj/structure/prop/vehicle_wreck/update_icon_state()
-	. = ..()
-
-/obj/structure/prop/vehicle_wreck/update_overlays()
-	. = ..()
-	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
-	. += new_overlay
-
-/obj/structure/prop/vehicle_wreck/plastique_act(mob/living/plastique_user)
-	return ..()
-**/
-
 //som tank wreck
 /obj/structure/prop/vehicle_wreck/som
 	name = "\improper Malleus hover tank"
 	desc = "A terrifying behemoth of a main battle tank, now just a smouldering wreck."
 	icon = 'icons/obj/armored/3x4/som_tank_wreck.dmi'
-	pixel_x = -65
-	pixel_y = -48
-	bound_height = 128
-	bound_width = 96
-	bound_x = -32
-	bound_y = -32
+	pixel_x = -55
+	pixel_y = -80
+	turret_overlay_type = /atom/movable/vis_obj/wrecked_turret_overlay/som_tank
 
 /obj/structure/prop/vehicle_wreck/som/Initialize(mapload, obj/vehicle/sealed/armored/source_vehicle, main_dir, turret_dir)
 	. = ..()
 	add_filter("shadow", 2, drop_shadow_filter(0, -4, 1))
 
-/obj/structure/prop/vehicle_wreck/som/set_turret_overlay(obj/vehicle/sealed/armored/source_vehicle, turret_dir)
-	return
-
 /obj/structure/prop/vehicle_wreck/som/setDir(newdir)
 	. = ..()
+	turret_overlay?.setDir(dir)
 	switch(dir)
 		if(NORTH)
 			bound_height = 128
 			bound_width = 96
 			bound_x = -32
 			bound_y = -32
-			pixel_x = -65
+			pixel_x = -55
 			pixel_y = -48
 		if(SOUTH)
 			bound_height = 128
 			bound_width = 96
 			bound_x = -32
 			bound_y = -64
-			pixel_x = -65
+			pixel_x = -55
 			pixel_y = -80
 		if(WEST)
 			bound_height = 96
 			bound_width = 128
 			bound_x = -64
 			bound_y = -32
-			pixel_x = -80
+			pixel_x = -70
 			pixel_y = -56
 		if(EAST)
 			bound_height = 96
 			bound_width = 128
 			bound_x = -32
 			bound_y = -32
-			pixel_x = -48
+			pixel_x = -58
 			pixel_y = -56
 
 /particles/tank_wreck_smoke/new_tank
@@ -498,7 +475,7 @@
 	var/obj/effect/abstract/particle_holder/smoke_holder
 	var/smoke_type = /particles/tank_wreck_smoke/new_tank
 	///overlay for the attached gun
-	var/primary_weapon_icon = "ltb_cannon"
+	var/primary_weapon_icon
 
 /atom/movable/vis_obj/wrecked_turret_overlay/Initialize(mapload, weapon_icon_state, new_dir)
 	. = ..()
@@ -514,11 +491,12 @@
 
 /atom/movable/vis_obj/wrecked_turret_overlay/update_overlays()
 	. = ..()
-	if(!primary_weapon_icon)
-		return
 	. += primary_weapon_icon
 
-/atom/movable/vis_obj/wrecked_turret_overlay/setDir(newdir)
+/atom/movable/vis_obj/wrecked_turret_overlay/tmgc_tank
+	primary_weapon_icon = "ltb_cannon"
+
+/atom/movable/vis_obj/wrecked_turret_overlay/tmgc_tank/setDir(newdir)
 	. = ..()
 	switch(dir)
 		if(SOUTH)
@@ -537,3 +515,18 @@
 			pixel_x = -15
 			pixel_y = 0
 			smoke_holder.particles.position = list(72, 85, 0)
+
+/atom/movable/vis_obj/wrecked_turret_overlay/tmgc_tank
+	primary_weapon_icon = "coilgun"
+
+/atom/movable/vis_obj/wrecked_turret_overlay/som_tank/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(SOUTH)
+			smoke_holder.particles.position = list(75, 78, 0)
+		if(NORTH)
+			smoke_holder.particles.position = list(75, 98, 0)
+		if(EAST)
+			smoke_holder.particles.position = list(85, 75, 0)
+		if(WEST)
+			smoke_holder.particles.position = list(60, 75, 0)
