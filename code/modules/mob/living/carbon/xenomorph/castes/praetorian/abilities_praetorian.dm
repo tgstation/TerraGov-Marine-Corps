@@ -280,7 +280,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!istype(A, /mob/living/carbon))
+	if(!iscarbon(A))
 		if(!silent)
 			A.balloon_alert(owner, "cannot impale")
 		return FALSE
@@ -337,7 +337,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!istype(A, /mob/living/carbon))
+	if(!iscarbon(A))
 		if(!silent)
 			A.balloon_alert(owner, "cannot tail trip")
 		return FALSE
