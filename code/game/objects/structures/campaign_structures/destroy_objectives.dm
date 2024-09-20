@@ -377,10 +377,8 @@
 	bound_x = -32
 	bound_y = -32
 	coverage = 85
-	max_integrity = 1000
-	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
-	hard_armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 35, BIO = 100, FIRE = 0, ACID = 0)
-	layer = ABOVE_LYING_MOB_LAYER
+	max_integrity = 800
+	layer = BELOW_MOB_LAYER
 	density = TRUE
 
 	allow_pass_flags = PASSABLE|PASS_TANK|PASS_WALKOVER|PASS_LOW_STRUCTURE
@@ -392,7 +390,11 @@
 /obj/structure/prop/vehicle_wreck/Initialize(mapload, obj/vehicle/sealed/armored/source_vehicle, main_dir, turret_dir)
 	. = ..()
 	setDir(main_dir)
-	set_turret_overlay(source_vehicle, turret_dir)
+	set_turret_overlay(source_vehicle?.primary_weapon?.icon_state, turret_dir)
+	//soft_armor = getArmor(arglist(source_vehicle.soft_armor))
+	//hard_armor = getArmor(arglist(source_vehicle.hard_armor))
+	soft_armor = source_vehicle.soft_armor
+	hard_armor = source_vehicle.hard_armor
 
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
@@ -410,10 +412,10 @@
 /obj/structure/prop/vehicle_wreck/footstep_override(atom/movable/source, list/footstep_overrides)
 	footstep_overrides[FOOTSTEP_HULL] = 4.5
 
-/obj/structure/prop/vehicle_wreck/proc/set_turret_overlay(obj/vehicle/sealed/armored/source_vehicle, turret_dir)
-	turret_overlay = new()
-	turret_overlay.layer = layer + 0.002 //probs kill
-	turret_overlay.setDir(turret_dir)
+/obj/structure/prop/vehicle_wreck/proc/set_turret_overlay(weapon_icon_state, turret_dir)
+	turret_overlay = new(null, weapon_icon_state, turret_dir)
+	//turret_overlay.layer = layer + 0.002 //probs kill
+	//turret_overlay.setDir(turret_dir)
 	vis_contents += turret_overlay
 
 /*
@@ -431,55 +433,6 @@
 /obj/structure/prop/vehicle_wreck/plastique_act(mob/living/plastique_user)
 	return ..()
 **/
-
-
-/particles/tank_wreck_smoke/new_tank
-	position = list(48, 62, 0)
-
-
-///turret
-/atom/movable/vis_obj/wrecked_turret_overlay
-	name = "Tank gun turret"
-	desc = "The shooty bit on a tank."
-	icon = 'icons/obj/armored/3x3/tank_wreck.dmi'
-	icon_state = "turret"
-	layer = ABOVE_ALL_MOB_LAYER
-	vis_flags = VIS_INHERIT_ID
-	var/obj/effect/abstract/particle_holder/smoke_holder
-	var/smoke_type = /particles/tank_wreck_smoke/new_tank
-	///overlay obj for for the attached gun
-	//var/atom/movable/vis_obj/tank_gun/primary_overlay
-	///icon state for the secondary
-	//var/image/secondary_overlay
-
-/atom/movable/vis_obj/wrecked_turret_overlay/Initialize(mapload, ...)
-	. = ..()
-	smoke_holder = new(src, smoke_type)
-
-/atom/movable/vis_obj/wrecked_turret_overlay/Destroy()
-	//if(primary_overlay)
-	//	QDEL_NULL(primary_overlay)
-	return ..()
-
-/atom/movable/vis_obj/wrecked_turret_overlay/setDir(newdir)
-	. = ..()
-	switch(dir)
-		if(SOUTH)
-			pixel_x = 0
-			pixel_y = 0
-			smoke_holder.particles.position = list(54, 85, 0)
-		if(NORTH)
-			pixel_x = 0
-			pixel_y = 3
-			smoke_holder.particles.position = list(54, 75, 0)
-		if(EAST)
-			pixel_x = 14
-			pixel_y = 0
-			smoke_holder.particles.position = list(38, 85, 0)
-		if(WEST)
-			pixel_x = -15
-			pixel_y = 0
-			smoke_holder.particles.position = list(72, 85, 0)
 
 //som tank wreck
 /obj/structure/prop/vehicle_wreck/som
@@ -531,3 +484,56 @@
 			bound_y = -32
 			pixel_x = -48
 			pixel_y = -56
+
+/particles/tank_wreck_smoke/new_tank
+	position = list(48, 62, 0)
+
+
+///turret
+/atom/movable/vis_obj/wrecked_turret_overlay
+	name = "Tank gun turret"
+	desc = "The shooty bit on a tank."
+	icon_state = "turret"
+	vis_flags = VIS_INHERIT_ID|VIS_INHERIT_LAYER|VIS_INHERIT_ICON
+	var/obj/effect/abstract/particle_holder/smoke_holder
+	var/smoke_type = /particles/tank_wreck_smoke/new_tank
+	///overlay for the attached gun
+	var/primary_weapon_icon = "ltb_cannon"
+
+/atom/movable/vis_obj/wrecked_turret_overlay/Initialize(mapload, weapon_icon_state, new_dir)
+	. = ..()
+	smoke_holder = new(src, smoke_type)
+	if(weapon_icon_state)
+		primary_weapon_icon = weapon_icon_state
+	update_appearance(UPDATE_OVERLAYS)
+	setDir(new_dir)
+
+/atom/movable/vis_obj/wrecked_turret_overlay/Destroy()
+	QDEL_NULL(smoke_holder)
+	return ..()
+
+/atom/movable/vis_obj/wrecked_turret_overlay/update_overlays()
+	. = ..()
+	if(!primary_weapon_icon)
+		return
+	. += primary_weapon_icon
+
+/atom/movable/vis_obj/wrecked_turret_overlay/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(SOUTH)
+			pixel_x = 0
+			pixel_y = 0
+			smoke_holder.particles.position = list(54, 85, 0)
+		if(NORTH)
+			pixel_x = 0
+			pixel_y = 3
+			smoke_holder.particles.position = list(54, 75, 0)
+		if(EAST)
+			pixel_x = 14
+			pixel_y = 0
+			smoke_holder.particles.position = list(38, 85, 0)
+		if(WEST)
+			pixel_x = -15
+			pixel_y = 0
+			smoke_holder.particles.position = list(72, 85, 0)
