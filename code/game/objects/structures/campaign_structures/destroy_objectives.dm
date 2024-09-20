@@ -366,22 +366,24 @@
 
 //
 /obj/structure/prop/vehicle_wreck
-	name = "\improper M34A2 Longstreet Light Tank"
-	desc = "A giant piece of armor with a big gun, good for blowing stuff up."
+	name = "\improper MT - Banteng"
+	desc = "A giant piece of armor with a big gun, good for blowing stuff up, now just a smouldering ruin."
 	icon = 'icons/obj/armored/3x3/tank_wreck.dmi'
 	icon_state = "tank"
-	pixel_x = -24
-	pixel_y = -16
+	pixel_x = -56 //-24
+	pixel_y = -48 //-16
 	bound_height = 96
 	bound_width = 96
+	bound_x = -32
+	bound_y = -32
 	coverage = 85
 	max_integrity = 1000
 	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
 	hard_armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 35, BIO = 100, FIRE = 0, ACID = 0)
-	layer = ABOVE_MOB_LAYER
+	layer = ABOVE_LYING_MOB_LAYER
 	density = TRUE
 
-	allow_pass_flags = PASS_TANK|PASS_WALKOVER|PASS_THROW|PASS_PROJECTILE|PASS_AIR
+	allow_pass_flags = PASSABLE|PASS_TANK|PASS_WALKOVER|PASS_LOW_STRUCTURE
 	resistance_flags = XENO_DAMAGEABLE|UNACIDABLE|PLASMACUTTER_IMMUNE|PORTAL_IMMUNE
 
 	///Cool and good turret overlay that allows independently swiveling guns
@@ -390,11 +392,13 @@
 /obj/structure/prop/vehicle_wreck/Initialize(mapload, obj/vehicle/sealed/armored/source_vehicle, main_dir, turret_dir)
 	. = ..()
 	setDir(main_dir)
+	set_turret_overlay(source_vehicle, turret_dir)
 
-	turret_overlay = new()
-	turret_overlay.layer = layer+0.002 //probs kill
-	turret_overlay.setDir(turret_dir)
-	vis_contents += turret_overlay
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 
 /obj/structure/prop/vehicle_wreck/Destroy()
@@ -402,6 +406,15 @@
 		QDEL_NULL(turret_overlay)
 
 	return ..()
+
+/obj/structure/prop/vehicle_wreck/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_HULL] = 4.5
+
+/obj/structure/prop/vehicle_wreck/proc/set_turret_overlay(obj/vehicle/sealed/armored/source_vehicle, turret_dir)
+	turret_overlay = new()
+	turret_overlay.layer = layer + 0.002 //probs kill
+	turret_overlay.setDir(turret_dir)
+	vis_contents += turret_overlay
 
 /*
 /obj/structure/prop/vehicle_wreck/setDir(newdir)
@@ -468,5 +481,53 @@
 			pixel_y = 0
 			smoke_holder.particles.position = list(72, 85, 0)
 
+//som tank wreck
+/obj/structure/prop/vehicle_wreck/som
+	name = "\improper Malleus hover tank"
+	desc = "A terrifying behemoth of a main battle tank, now just a smouldering wreck."
+	icon = 'icons/obj/armored/3x4/som_tank_wreck.dmi'
+	pixel_x = -65
+	pixel_y = -48
+	bound_height = 128
+	bound_width = 96
+	bound_x = -32
+	bound_y = -32
 
+/obj/structure/prop/vehicle_wreck/som/Initialize(mapload, obj/vehicle/sealed/armored/source_vehicle, main_dir, turret_dir)
+	. = ..()
+	add_filter("shadow", 2, drop_shadow_filter(0, -4, 1))
 
+/obj/structure/prop/vehicle_wreck/som/set_turret_overlay(obj/vehicle/sealed/armored/source_vehicle, turret_dir)
+	return
+
+/obj/structure/prop/vehicle_wreck/som/setDir(newdir)
+	. = ..()
+	switch(dir)
+		if(NORTH)
+			bound_height = 128
+			bound_width = 96
+			bound_x = -32
+			bound_y = -32
+			pixel_x = -65
+			pixel_y = -48
+		if(SOUTH)
+			bound_height = 128
+			bound_width = 96
+			bound_x = -32
+			bound_y = -64
+			pixel_x = -65
+			pixel_y = -80
+		if(WEST)
+			bound_height = 96
+			bound_width = 128
+			bound_x = -64
+			bound_y = -32
+			pixel_x = -80
+			pixel_y = -56
+		if(EAST)
+			bound_height = 96
+			bound_width = 128
+			bound_x = -32
+			bound_y = -32
+			pixel_x = -48
+			pixel_y = -56

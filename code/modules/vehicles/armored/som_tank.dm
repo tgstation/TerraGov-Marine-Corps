@@ -32,6 +32,7 @@
 	engine_sound_length = 1.2 SECONDS
 	vis_range_mod = 4
 	faction = FACTION_SOM
+	wreck_type = /obj/structure/prop/vehicle_wreck/som
 
 /obj/vehicle/sealed/armored/multitile/som_tank/Initialize(mapload)
 	. = ..()

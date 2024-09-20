@@ -28,6 +28,12 @@
 	)
 	///pass_flags given to desants, in addition to the vehicle's pass_flags
 	var/desant_pass_flags = PASS_FIRE|PASS_LOW_STRUCTURE
+	var/wreck_type = /obj/structure/prop/vehicle_wreck
+
+/obj/vehicle/sealed/armored/multitile/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	if(wreck_type)
+		new wreck_type(loc, src, dir, turret_overlay.dir) //placeholder arg stuff
+	return ..()
 
 /obj/vehicle/sealed/armored/multitile/enter_locations(atom/movable/entering_thing)
 	return list(get_step_away(get_step(src, REVERSE_DIR(dir)), src, 2))
@@ -93,8 +99,3 @@
 	. = ..()
 	var/obj/item/tank_module/module = new /obj/item/tank_module/ability/smoke_launcher()
 	module.on_equip(src)
-
-/obj/vehicle/sealed/armored/multitile/campaign/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	new /obj/structure/prop/vehicle_wreck(get_step(src, SOUTHWEST), src, dir, turret_overlay.dir)
-	return ..()
-
