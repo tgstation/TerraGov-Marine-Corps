@@ -100,3 +100,12 @@
   - bugfix: Bioscan will no longer say "including one in 0" in place of where it's
       supposed to tell you where someone is located
   - bugfix: Friendly xeno nibbles have the attack animation again
+2024-09-20:
+  Lumipharon:
+  - soundadd: Bullet ping sounds changed back to not happening 100% of the time, to
+      reduce sound channel issues
+  - bugfix: The knife belt is the same weight class as other belts
+  - bugfix: 'Campaign: Autobalance will no longer take much longer to appear for players
+      than intended'
+  blackdav123:
+  - balance: GL54 and AR55 Airburst sunder reduced from 3 per pellet to 1.5.

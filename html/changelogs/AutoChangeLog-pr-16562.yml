@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - soundadd: "Bullet ping sounds changed back to not happening 100% of the time, to reduce sound channel issues"
