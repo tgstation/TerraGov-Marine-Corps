@@ -2216,6 +2216,7 @@
 #include "code\modules\vehicles\armored\som_tank.dm"
 #include "code\modules\vehicles\armored\tank_fabricator.dm"
 #include "code\modules\vehicles\armored\vehicle_collision.dm"
+#include "code\modules\vehicles\armored\wrecks.dm"
 #include "code\modules\vehicles\armored\interiors\ammo_rack.dm"
 #include "code\modules\vehicles\armored\interiors\breech.dm"
 #include "code\modules\vehicles\armored\interiors\chairs.dm"
