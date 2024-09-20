@@ -308,9 +308,6 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	///Xeno mob specific flags
 	var/xeno_flags = NONE
 
-	///State tracking of hive status toggles
-	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
-
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
 	var/datum/xeno_caste/xeno_caste

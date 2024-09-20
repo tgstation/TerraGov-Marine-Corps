@@ -650,7 +650,7 @@
 	icon_state = "carone"
 	icon = 'icons/effects/random/64x64.dmi'
 	spawn_with_original_direction = TRUE
-	spawn_loot_chance = 35
+	spawn_loot_chance = 25
 	loot = list(
 		/obj/effect/spawner/random/misc/structure/large/car/red,
 		/obj/effect/spawner/random/misc/structure/large/car/black,

@@ -2741,7 +2741,7 @@
 /obj/structure/window/reinforced,
 /obj/item/weapon/gun/flamer/hydro_cannon,
 /obj/item/tool/kitchen/rollingpin,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "qo" = (
@@ -3990,7 +3990,7 @@
 "zX" = (
 /obj/structure/window/reinforced,
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/carpet,
 /area/lv624/lazarus/canteen)
 "Al" = (

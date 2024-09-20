@@ -312,7 +312,8 @@
 	if(isliving(thing_to_load))
 		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))
 		return mob_try_enter(thing_to_load, user, TRUE)
-	user.temporarilyRemoveItemFromInventory(thing_to_load)
+	if(isitem(thing_to_load))
+		user.temporarilyRemoveItemFromInventory(thing_to_load)
 	thing_to_load.forceMove(interior.door.get_enter_location())
 	user.balloon_alert(user, "item thrown inside")
 	return TRUE
@@ -389,6 +390,16 @@
 	for(var/mob/living/carbon/human/crew AS in occupants)
 		if(crew.wear_id?.iff_signal & proj.iff_signal)
 			return FALSE
+	if(src == proj.shot_from)
+		return FALSE
+	if(src == proj.original_target)
+		return TRUE
+	if(!hitbox)
+		return ..()
+	if(proj.firer in hitbox.tank_desants)
+		return FALSE
+	if(proj.original_target in hitbox.tank_desants)
+		return FALSE
 	return ..()
 
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)

@@ -232,6 +232,7 @@
 /datum/ammo/rocket/recoilless/heat/mech //for anti mech use in HvH
 	name = "HEAM shell"
 	accuracy = -10 //Not designed for anti human use
+	scatter = 16
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_UNWIELDY
 
 /datum/ammo/rocket/recoilless/heat/mech/on_hit_obj(obj/target_obj, obj/projectile/proj)
@@ -360,6 +361,7 @@
 	penetration = 100
 	sundering = 0
 	accuracy = -10 //Not designed for anti human use
+	scatter = 7
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_UNWIELDY
 
 /datum/ammo/rocket/som/heat/on_hit_obj(obj/target_obj, obj/projectile/proj)
@@ -484,7 +486,7 @@
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
+	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj.loc
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
 
@@ -574,13 +576,13 @@
 	accurate_range = 20
 	max_range = 40
 	damage = 300
-	penetration = 40
+	penetration = 50
 	sundering = 10
 	bullet_color = LIGHT_COLOR_TUNGSTEN
 	barricade_clear_distance = 4
 
 /datum/ammo/rocket/coilgun/drop_nade(turf/T)
-	explosion(T, 0, 3, 5)
+	explosion(T, 0, 3, 5, 0, 2)
 
 /datum/ammo/rocket/coilgun/holder //only used for tankside effect checks
 	ammo_behavior_flags = AMMO_ENERGY
@@ -588,7 +590,7 @@
 /datum/ammo/rocket/coilgun/low
 	shell_speed = 2
 	damage = 150
-	penetration = 25
+	penetration = 40
 	sundering = 5
 
 /datum/ammo/rocket/coilgun/low/drop_nade(turf/T)

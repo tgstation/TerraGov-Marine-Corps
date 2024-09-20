@@ -37,7 +37,7 @@
 //-------------------------------------------
 // Vehicle procs
 //-------------------------------------------
-/obj/vehicle/train/deconstruct(disassembled = TRUE)
+/obj/vehicle/train/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(tow)
 		tow.unattach()
 	unattach()

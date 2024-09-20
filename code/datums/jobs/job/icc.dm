@@ -354,8 +354,8 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
 
-/datum/outfit/job/icc/leader/trenchgun
-	suit_store = /obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
+/datum/outfit/job/icc/leader/ml101
+	suit_store = /obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun/icc_leader
 	belt = /obj/item/storage/belt/shotgun/icc/mixed
 
 /datum/outfit/job/icc/leader/icc_confrontationrifle

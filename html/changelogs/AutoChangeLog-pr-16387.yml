@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Campaign: Fixed the Teleporter Array charges asset having twice as many uses as intended"

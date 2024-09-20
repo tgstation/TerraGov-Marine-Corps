@@ -61,7 +61,7 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	///If the gamemode has a whitelist of valid ground maps. Whitelist overrides the blacklist
 	var/list/whitelist_ground_maps
 	///If the gamemode has a blacklist of disallowed ground maps
-	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_RESEARCH_OUTPOST, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
+	var/list/blacklist_ground_maps = list(MAP_DELTA_STATION, MAP_RESEARCH_OUTPOST, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT)
 	///if fun tads are enabled by default
 	var/enable_fun_tads = FALSE
 
@@ -481,6 +481,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.points_from_mining] requisitions points gained from mining."
 	if(GLOB.round_statistics.points_from_research)
 		parts += "[GLOB.round_statistics.points_from_research] requisitions points gained from research."
+	if(GLOB.round_statistics.points_from_xenos)
+		parts += "[GLOB.round_statistics.points_from_xenos] requisitions points gained from xenomorph sales."
 	if(GLOB.round_statistics.runner_items_stolen)
 		parts += "[GLOB.round_statistics.runner_items_stolen] items stolen by runners."
 

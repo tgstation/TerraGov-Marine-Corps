@@ -483,6 +483,13 @@
 /obj/structure/bed/chair,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/barracks)
+"bV" = (
+/obj/structure/desertdam/decals/road,
+/obj/structure/prop/vehicle/big_truck/flat{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/south)
 "bW" = (
 /obj/structure/platform_decoration{
 	dir = 1
@@ -2207,6 +2214,12 @@
 	dir = 4
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"iI" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/liquid/water/river,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "iJ" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/prison,
@@ -2551,13 +2564,6 @@
 "ke" = (
 /turf/closed/mineral/smooth,
 /area/campaign/tgmc_raiding/underground/maintenance/north)
-"kf" = (
-/obj/structure/prop/vehicle/truck{
-	dir = 4
-	},
-/obj/structure/desertdam/decals/road,
-/turf/open/floor/plating/ground/desertdam/asphalt,
-/area/campaign/tgmc_raiding/colony/outdoor/south)
 "kg" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 9
@@ -3173,6 +3179,15 @@
 	},
 /turf/open/floor/prison,
 /area/campaign/tgmc_raiding/colony/indoor/dome)
+"mM" = (
+/obj/structure/desertdam/decals/road{
+	dir = 1
+	},
+/obj/structure/prop/vehicle/crawler/crawler_fuel{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "mN" = (
 /obj/structure/flora/drought/shroom,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -4079,6 +4094,12 @@
 /obj/structure/barricade/guardrail{
 	dir = 4
 	},
+/obj/structure/platform{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 8
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "qG" = (
@@ -4821,6 +4842,15 @@
 	dir = 6
 	},
 /area/campaign/tgmc_raiding/underground/security)
+"tA" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/liquid/water/river,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "tB" = (
 /obj/effect/turf_decal/riverdecal,
 /obj/structure/stairs/railstairs,
@@ -6366,6 +6396,15 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/colony/indoor/southwest_shed)
+"zG" = (
+/obj/structure/desertdam/decals/road{
+	dir = 1
+	},
+/obj/structure/prop/vehicle/big_truck{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/east)
 "zH" = (
 /obj/machinery/light,
 /obj/structure/stairs/railstairs{
@@ -6827,9 +6866,6 @@
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/security)
 "BC" = (
-/obj/structure/prop/vehicle/truck{
-	dir = 8
-	},
 /obj/structure/desertdam/decals/road/edge/long,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/south)
@@ -8751,6 +8787,12 @@
 	dir = 5
 	},
 /area/campaign/tgmc_raiding/underground/command/east)
+"Jt" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/liquid/water/river,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "Ju" = (
 /obj/structure/ship_ammo/cas/rocket/banshee,
 /turf/open/floor/mainship/cargo,
@@ -8853,6 +8895,10 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
+/obj/structure/platform,
+/obj/structure/platform{
+	dir = 1
+	},
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "JP" = (
@@ -8869,6 +8915,21 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/black,
 /area/campaign/tgmc_raiding/underground/general/hallway)
+"JT" = (
+/obj/structure/barricade/guardrail{
+	dir = 8
+	},
+/obj/structure/barricade/guardrail{
+	dir = 4
+	},
+/obj/structure/platform{
+	dir = 8
+	},
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/campaign/tgmc_raiding/underground/maintenance/sewer)
 "JU" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/maintenance/sewer)
@@ -9446,6 +9507,12 @@
 /obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/campaign/tgmc_raiding/colony/outdoor/southeast)
+"LY" = (
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/liquid/water/river,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "LZ" = (
 /obj/structure/barricade/guardrail{
 	dir = 8
@@ -9890,6 +9957,10 @@
 /obj/structure/barricade/guardrail{
 	dir = 1
 	},
+/obj/structure/platform{
+	dir = 1
+	},
+/obj/structure/platform,
 /turf/open/floor/plating/plating_catwalk,
 /area/campaign/tgmc_raiding/underground/engineering/filtration)
 "NL" = (
@@ -11390,6 +11461,12 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/campaign/tgmc_raiding/underground/general/firing_range)
+"TW" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/liquid/water/river,
+/area/campaign/tgmc_raiding/underground/engineering/filtration)
 "TX" = (
 /obj/structure/prop/vehicle/van{
 	dir = 8
@@ -12410,6 +12487,15 @@
 /obj/structure/flora/desert/bush,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/southeast)
+"Yg" = (
+/obj/structure/desertdam/decals/road{
+	dir = 8
+	},
+/obj/structure/prop/vehicle/big_truck/enclosed{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/campaign/tgmc_raiding/colony/outdoor/south)
 "Yh" = (
 /turf/open/floor/plating,
 /area/campaign/tgmc_raiding/colony/indoor/southwest_shed)
@@ -20715,7 +20801,7 @@ YE
 YE
 og
 JU
-qF
+JT
 JU
 Oq
 KX
@@ -22382,8 +22468,8 @@ nI
 nI
 nI
 nI
-nI
-nI
+Pe
+Pe
 nI
 nI
 lP
@@ -22659,18 +22745,18 @@ Az
 GN
 zh
 Nx
+Jt
 XQ
 XQ
-XQ
-XQ
+iI
 Pf
+Jt
 XQ
-XQ
-XQ
+iI
 Pf
+Jt
 XQ
-XQ
-XQ
+iI
 VE
 nN
 MU
@@ -23115,7 +23201,7 @@ jo
 Ke
 nN
 Nx
-XQ
+LY
 XQ
 yu
 XQ
@@ -23736,7 +23822,7 @@ XQ
 yu
 XQ
 NK
-XQ
+tA
 Ot
 Ot
 Ot
@@ -24331,7 +24417,7 @@ QU
 fX
 nN
 Nx
-XQ
+Jt
 XQ
 yu
 XQ
@@ -24787,18 +24873,18 @@ uS
 GN
 zh
 Nx
+LY
 XQ
 XQ
-XQ
-XQ
+TW
 Pf
+LY
 XQ
-XQ
-XQ
+TW
 Pf
+LY
 XQ
-XQ
-XQ
+TW
 VE
 nN
 MU
@@ -25754,7 +25840,7 @@ TJ
 qo
 Gl
 BC
-Ak
+Yg
 Ak
 Ak
 Pm
@@ -26822,7 +26908,7 @@ HB
 HB
 HB
 HB
-oH
+bV
 Gl
 nw
 HB
@@ -26974,7 +27060,7 @@ IT
 HB
 HB
 HB
-kf
+oH
 Gl
 nw
 HB
@@ -31032,7 +31118,7 @@ EA
 uH
 jz
 Bs
-re
+zG
 AM
 Tw
 Bs
@@ -31184,7 +31270,7 @@ EA
 uH
 jz
 Bs
-oD
+re
 AM
 Tw
 Lo
@@ -33008,7 +33094,7 @@ EA
 uH
 jz
 Bs
-Vw
+mM
 AM
 Tw
 Bs

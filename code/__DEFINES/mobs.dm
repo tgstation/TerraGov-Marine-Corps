@@ -605,14 +605,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<6) //Can corrupt a generator
 #define CASTE_CAN_RIDE_CRUSHER (1<<7) //Can ride a crusher
 
-#define HIVE_STATUS_SHOW_EMPTY (1<<0)
-#define HIVE_STATUS_COMPACT_MODE (1<<1)
-#define HIVE_STATUS_SHOW_GENERAL (1<<2)
-#define HIVE_STATUS_SHOW_POPULATION (1<<3)
-#define HIVE_STATUS_SHOW_XENO_LIST (1<<4)
-#define HIVE_STATUS_SHOW_STRUCTURES (1<<5)
-#define HIVE_STATUS_DEFAULTS (HIVE_STATUS_SHOW_EMPTY | HIVE_STATUS_SHOW_GENERAL | HIVE_STATUS_SHOW_POPULATION | HIVE_STATUS_SHOW_XENO_LIST | HIVE_STATUS_SHOW_STRUCTURES)
-
 //Charge-Crush
 #define CHARGE_OFF 0
 #define CHARGE_BUILDINGUP 1
@@ -953,6 +945,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"
 #define AURA_HUMAN_FOCUS "focus"
+#define AURA_HUMAN_FLAG "flag"
 
 #define AURA_XENO_BLESSWARDING "Blessing Of Warding"
 #define AURA_XENO_BLESSFRENZY "Blessing Of Frenzy"
@@ -993,3 +986,6 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 ///Pixel_y offset when lying down
 #define CARBON_LYING_Y_OFFSET -6
+
+///Filter name for illusion impacts
+#define ILLUSION_HIT_FILTER "illusion_hit_filter"

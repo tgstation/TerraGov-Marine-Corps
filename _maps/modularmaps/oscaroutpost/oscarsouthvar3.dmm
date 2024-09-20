@@ -2293,7 +2293,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Dt" = (
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	layer = 2.9
 	},
 /obj/item/reagent_containers/food/snacks/carpmeat{
