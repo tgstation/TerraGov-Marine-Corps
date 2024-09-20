@@ -134,6 +134,7 @@
 		/datum/action/ability/xeno_action/dodge,
 		/datum/action/ability/activable/xeno/impale,
 		/datum/action/ability/activable/xeno/tail_trip,
+		/datum/action/ability/activable/xeno/charge/acid_dash, // No unique primordial ability at the moment. Replace eventually with something cooler!
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
