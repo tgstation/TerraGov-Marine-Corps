@@ -2654,7 +2654,7 @@
 /obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/food_or_drink/burger/normal,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "cgI" = (
 /obj/structure/closet/secure_closet/walllocker/medical/full,
 /obj/effect/landmark/weed_node,
@@ -2916,7 +2916,7 @@
 "cri" = (
 /obj/structure/flora/pottedplant/seventeen,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "cru" = (
 /obj/structure/cable,
 /turf/open/floor/prison/whitepurple{
@@ -3550,7 +3550,7 @@
 /obj/effect/spawner/random/misc/trash,
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "cOT" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/mainship,
@@ -3691,7 +3691,7 @@
 	dir = 1
 	},
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "cTl" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -5306,7 +5306,7 @@
 "dYn" = (
 /obj/structure/bed/chair/comfy,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "dYv" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/ground/grass/weedable,
@@ -6938,7 +6938,7 @@
 /area/metnal/inside/cafeteria)
 "fhN" = (
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "fhV" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -8453,7 +8453,7 @@
 "gsw" = (
 /obj/machinery/door/airlock/multi_tile/urban/generic,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "gsA" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -12380,7 +12380,7 @@
 /obj/structure/flora/pottedplant/twenty,
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "jsW" = (
 /obj/structure/table/mainship,
 /turf/open/floor/prison/kitchen,
@@ -12532,7 +12532,7 @@
 /area/metnal/inside/security)
 "jyp" = (
 /turf/open/floor/prison/kitchen,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "jyt" = (
 /obj/machinery/door/airlock/medical{
 	dir = 2
@@ -15351,7 +15351,7 @@
 /obj/structure/table/mainship,
 /obj/structure/cable,
 /turf/open/floor/prison/kitchen,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "lDZ" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 10
@@ -16102,7 +16102,7 @@
 /obj/structure/bed/chair/comfy,
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "miE" = (
 /obj/structure/table/black,
 /obj/item/toy/deck/kotahi,
@@ -19667,7 +19667,7 @@
 	dir = 1
 	},
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "oMp" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -22749,7 +22749,7 @@
 "qWX" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "qXf" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -24581,7 +24581,7 @@
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "sqW" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -26395,7 +26395,7 @@
 "tFZ" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "tGo" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -26897,7 +26897,7 @@
 /obj/machinery/computer/arcade,
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "tXO" = (
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/cafeteria)
@@ -26948,7 +26948,7 @@
 "tZj" = (
 /obj/structure/table/mainship,
 /turf/open/floor/prison/kitchen,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "tZB" = (
 /obj/machinery/vending/cigarette,
 /turf/open/floor/prison/yellow{
@@ -27227,7 +27227,7 @@
 	dir = 2
 	},
 /turf/open/floor/prison/kitchen,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "uiy" = (
 /obj/structure/closet/wardrobe/pink,
 /turf/open/floor/prison/sterilewhite/full,
@@ -28056,7 +28056,7 @@
 "uMq" = (
 /obj/structure/cable,
 /turf/open/floor/prison/kitchen,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "uMw" = (
 /obj/structure/flora/drought/grass,
 /turf/open/lavaland/basalt,
@@ -28912,7 +28912,7 @@
 /obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "vti" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 1
@@ -29823,7 +29823,7 @@
 "vWd" = (
 /obj/structure/table/wood/fancy,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "vWe" = (
 /obj/effect/ai_node,
 /turf/open/floor/carpet/side{
@@ -30078,7 +30078,7 @@
 /area/metnal/inside/bar)
 "whr" = (
 /turf/closed/wall/r_wall/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "wht" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/prison/yellow{
@@ -30859,7 +30859,7 @@
 "wPp" = (
 /obj/structure/cable,
 /turf/open/floor/prison,
-/area/metnal/inside/cafeteria)
+/area/metnal/inside/restroom)
 "wPq" = (
 /obj/effect/turf_decal/siding/dark/corner,
 /obj/effect/landmark/weed_node,
