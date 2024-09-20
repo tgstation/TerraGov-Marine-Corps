@@ -935,4 +935,4 @@
 	if(new_owner.stat == DEAD)
 		qdel(src)
 		return
-	. = ..()
+	return ..()
