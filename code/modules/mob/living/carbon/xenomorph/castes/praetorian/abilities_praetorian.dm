@@ -219,7 +219,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/duration = 6 SECONDS
 
 /datum/action/ability/xeno_action/dodge/action_activate(atom/A)
-	to_chat(owner, span_highdanger("We can now dodge through mobs!"))
+	owner.balloon_alert(owner, "Dodge ready!")
 
 	owner.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED, TRUE, 0, NONE, TRUE, speed_buff)
 	owner.allow_pass_flags |= (PASS_MOB|PASS_XENO)
@@ -256,7 +256,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /// Removes the movespeed modifier and various pass_flags that was given by the dodge ability.
 /datum/action/ability/xeno_action/dodge/proc/remove_effects()
-	to_chat(owner, span_highdanger("We can no longer dodge through mobs!"))
+	owner.balloon_alert(owner, "Dodge inactive!")
 
 	owner.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED)
 	owner.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
