@@ -10807,7 +10807,7 @@
 /area/metnal/outside/northwest)
 "hLc" = (
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set2")
+	set_associations = list("set2","set3")
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
@@ -17616,15 +17616,6 @@
 "mAY" = (
 /turf/open/floor/prison/blackfloor,
 /area/metnal/inside/experimentation)
-"mBp" = (
-/obj/structure/nuke_disk_candidate{
-	set_associations = list("set1","set3")
-	},
-/obj/effect/turf_decal/trimline/yellow/filled/warning{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/metnal/inside/garage)
 "mBI" = (
 /obj/structure/table/mainship,
 /obj/effect/spawner/random/food_or_drink/beer,
@@ -20423,7 +20414,9 @@
 /turf/open/floor/wood/alt_seven,
 /area/metnal/inside/bar)
 "ouX" = (
-/obj/structure/nuke_disk_candidate,
+/obj/structure/nuke_disk_candidate{
+	set_associations = list("set3")
+	},
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
 "ovg" = (
@@ -21788,7 +21781,7 @@
 	dir = 1
 	},
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set2", "set4")
+	set_associations = list("set3")
 	},
 /turf/open/floor/tile/dark,
 /area/metnal/inside/recreation)
@@ -46553,7 +46546,7 @@ xdB
 rIQ
 xdB
 dTp
-mBp
+bGe
 eVB
 kMa
 gIu
