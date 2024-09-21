@@ -18306,7 +18306,7 @@
 	dir = 9
 	},
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set1","set3","set4")
+	set_associations = list("set1")
 	},
 /turf/open/floor/wood/fancy,
 /area/metnal/inside/medical)
