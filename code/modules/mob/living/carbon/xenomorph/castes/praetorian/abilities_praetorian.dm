@@ -310,6 +310,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 	add_cooldown()
 
+/// Performs the main effect of impale ability like animating and attacking.
 /datum/action/ability/activable/xeno/impale/proc/try_impale(mob/living/carbon/living_target)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
