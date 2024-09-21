@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Fixed welding goggles hiding themselves in the strip menu"

@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Deployable shields no longer have a strap"
