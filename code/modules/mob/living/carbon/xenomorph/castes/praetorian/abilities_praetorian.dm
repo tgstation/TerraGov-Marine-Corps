@@ -365,9 +365,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	var/mob/living/carbon/living_target = target_atom
 	if(!iscarbon(target_atom))
 		return
+
+	var/mob/living/carbon/living_target = target_atom
 
 	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
 	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
