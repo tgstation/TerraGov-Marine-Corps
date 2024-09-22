@@ -8,6 +8,7 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_SNOWSTORM = TRUE)
 	map_light_colours = list(COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE, COLOR_MISSION_BLUE)
 	map_light_levels = list(225, 150, 100, 75)
+	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 	objectives_total = 6
 	min_destruction_amount = 4
 	victory_point_rewards = list(
@@ -26,8 +27,6 @@
 	)
 	starting_faction_additional_rewards = "Disrupt enemy air support for a moderate period of time."
 	hostile_faction_additional_rewards = "Ensure continued access to close air support. Recon mech and gorgon armor available if you successfully protect this depot."
-	///The mech spawner type to create a mech for the defending team
-	var/mech_type = /obj/effect/landmark/campaign/mech_spawner/som
 
 /datum/campaign_mission/destroy_mission/airbase/play_start_intro()
 	intro_message = list(
@@ -62,13 +61,13 @@
 /datum/campaign_mission/destroy_mission/airbase/apply_minor_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_asset(/obj/effect/landmark/campaign/mech_spawner/som/light)
+	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 	winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/airbase/apply_major_loss()
 	winning_faction = hostile_faction
 	var/datum/faction_stats/winning_team = mode.stat_list[hostile_faction]
-	winning_team.add_asset(/obj/effect/landmark/campaign/mech_spawner/som/light)
+	winning_team.add_asset(/datum/campaign_asset/mech/light/som)
 	winning_team.add_asset(/datum/campaign_asset/equipment/gorgon_armor)
 
 /datum/campaign_mission/destroy_mission/airbase/som
@@ -78,7 +77,7 @@
 	map_light_colours = list(COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED, COLOR_MISSION_RED)
 	map_traits = list(ZTRAIT_AWAY = TRUE)
 	map_light_levels = list(225, 150, 100, 75)
+	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 	objectives_total = 8
 	min_destruction_amount = 5
-	mech_type = /obj/effect/landmark/campaign/mech_spawner
 	hostile_faction_additional_rewards = "Ensure continued access to close air support. B18 power armour available if you successfully protect this depot."

@@ -1,15 +1,22 @@
 /obj/structure/sign
-	icon = 'icons/obj/decals_arrow.dmi'
+	icon = 'icons/obj/decals_arrow.dmi' // a copy of icons/obj/decals.dmi with directional arrows on the sprites, so a mapper knows which way a sign is facing
 	anchored = TRUE
 	opacity = FALSE
 	density = FALSE
 	layer = WALL_OBJ_LAYER
 	var/directional = TRUE //if true init to a given x/y offset on a wall, if not leave floating in space. used for multiple signs on a wall to prevent them all from moving to the same offset and overlapping/becoming unreadable
+	/// The clean version of the sprite, which we replace in initialize when the sign loads in game
+	var/base_icon = 'icons/obj/decals.dmi'
+	///if true try to automatically find the nearest wall and put ourselves on it
+	var/autoplace = TRUE
 
 /obj/structure/sign/Initialize(mapload)
 	. = ..()
-	icon = 'icons/obj/decals.dmi'
 	if(!directional) //if not directional do not initialize to a x or y offset
+		return
+	icon = base_icon
+	if(autoplace)
+		place_poster()
 		return
 	switch(dir)
 		if(NORTH)
@@ -21,6 +28,48 @@
 		if(WEST)
 			pixel_x = -30
 
+//automatically adjust place and offset to make sure sign isn't floating in the middle of nowhere
+/obj/structure/sign/proc/place_poster()
+	if(isclosedturf(get_step(loc, dir)))
+		switch(dir)
+			if(NORTH)
+				pixel_y = 32
+			if(SOUTH)
+				pixel_y = -32
+			if(EAST)
+				pixel_x = 30
+			if(WEST)
+				pixel_x = -30
+		return
+	if(isclosedturf(get_turf(loc)))
+		return
+	for(var/i in CARDINAL_ALL_DIRS)
+		if(!isclosedturf(get_step(loc, i)))
+			continue
+		else
+			switch(i)
+				if(NORTH)
+					pixel_y = 32
+				if(NORTHEAST)
+					pixel_y = 32
+					pixel_x = 30
+				if(NORTHWEST)
+					pixel_y = 32
+					pixel_x = -30
+				if(SOUTH)
+					pixel_y = -32
+				if(SOUTHWEST)
+					pixel_y = -32
+					pixel_x = -30
+				if(SOUTHEAST)
+					pixel_y = -32
+					pixel_x = 30
+				if(EAST)
+					pixel_x = 30
+				if(WEST)
+					pixel_x = -30
+			return
+
 /obj/structure/sign/ex_act(severity)
 	if(severity == EXPLODE_WEAK)
 		return
@@ -28,6 +77,8 @@
 
 /obj/structure/sign/attackby(obj/item/I, mob/user, params)	//deconstruction
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I) && !istype(src, /obj/structure/sign/double))
 		to_chat(user, "You unfasten the sign with your [I].")
@@ -47,6 +98,8 @@
 
 /obj/item/sign/attackby(obj/item/I, mob/user, params)	//construction
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I) && isturf(user.loc))
 		var/direction = tgui_input_list(user, "In which direction?", "Select direction.", list("North", "East", "South", "West"))

@@ -82,11 +82,12 @@
 /// Ends the ability if the Enhancement buff is removed.
 /datum/action/ability/activable/sectoid/mindmeld/proc/end_ability()
 	SIGNAL_HANDLER
+	UnregisterSignal(owner, COMSIG_MOB_DEATH)
 	var/mob/living/carbon/carbon_owner = owner
-	add_cooldown()
 	carbon_owner.remove_status_effect(STATUS_EFFECT_MINDMEND)
 	if(!melded_mob)
 		return
+	UnregisterSignal(melded_mob, COMSIG_MOB_DEATH)
 	melded_mob.remove_status_effect(STATUS_EFFECT_MINDMEND)
 	melded_mob = null
 
@@ -208,7 +209,7 @@
 	carbon_target.status_flags |= GODMODE
 	ADD_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
 	carbon_target.move_resist = MOVE_FORCE_OVERPOWERING
-	carbon_target.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
+	carbon_target.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOR_PRIORITY)
 	carbon_target.log_message("has been petrified by [owner] for [stasis_duration] ticks", LOG_ATTACK, color="pink")
 
 	var/image/stone_overlay = image('icons/effects/64x64.dmi', null, "stasis_overlay", pixel_y = -4)
@@ -234,7 +235,7 @@
 	carbon_target.status_flags &= ~GODMODE
 	REMOVE_TRAIT(carbon_target, TRAIT_HANDS_BLOCKED, REF(src))
 	carbon_target.move_resist = initial(carbon_target.move_resist)
-	carbon_target.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
+	carbon_target.remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_GRAY)
 	carbon_target.overlays -= stone_overlay
 
 // ***************************************

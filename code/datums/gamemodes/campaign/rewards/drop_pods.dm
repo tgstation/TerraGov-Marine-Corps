@@ -2,6 +2,7 @@
 	name = "Enable drop pods"
 	desc = "Enables the use of drop pods for the current or next mission"
 	detailed_desc = "Repositions the ship to allow for orbital drop pod insertion during the current or next mission."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/pod_officer
 	ui_icon = "droppod_active"
 	uses = 3
 	cost = 9
@@ -28,6 +29,7 @@
 	name = "Rearm drop pod bays"
 	desc = "replace all used drop pods"
 	detailed_desc = "Replace all drop pods that have been previously deployed with refurbished units or ones from fleet storage, ready for immediate use."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/pod_officer
 	ui_icon = "droppod_refresh"
 	uses = 1
 	cost = 10
@@ -51,6 +53,7 @@
 	name = "Disable drop pods"
 	desc = "Prevents the enemy from using drop pods in the current or next mission"
 	detailed_desc = "Ground to Space weapon systems are activated to prevent TGMC close orbit support ships from positioning themselves for drop pod orbital assaults during the current or next mission."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/pod_officer
 	ui_icon = "droppod_broken"
 	uses = 2
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY

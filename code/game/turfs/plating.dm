@@ -17,7 +17,7 @@
 /turf/open/floor/plating/make_plating()
 	return //we don't dig past plating
 
-/turf/open/floor/plating/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/plating/fire_act(burn_level)
 	if(hull_floor)
 		return
 	if(!burnt && prob(5))
@@ -100,6 +100,8 @@
 
 /turf/open/floor/plating/plating_catwalk/attackby(obj/item/I, mob/user)
 	. = ..()
+	if(.)
+		return
 	if(iscrowbar(I))
 		if(covered)
 			var/obj/item/stack/catwalk/R = new(user.loc)
@@ -114,8 +116,6 @@
 			covered = TRUE
 			update_turf_overlay()
 			return
-	return ..()
-
 
 /turf/open/floor/plating/plating_catwalk/prison
 	icon = 'icons/turf/prison.dmi'

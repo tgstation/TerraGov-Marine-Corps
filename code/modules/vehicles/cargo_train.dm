@@ -43,7 +43,7 @@
 	overlays += I
 	turn_off()	//so engine verbs are correctly set
 
-/obj/vehicle/train/cargo/engine/Move()
+/obj/vehicle/train/cargo/engine/Move(atom/newloc, direction, glide_size_override)
 	if(on && cell.charge < charge_use)
 		turn_off()
 
@@ -55,6 +55,8 @@
 
 /obj/vehicle/train/cargo/engine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/key/cargo_train))
 		if(key)

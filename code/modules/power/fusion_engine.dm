@@ -8,7 +8,7 @@
 
 /obj/machinery/power/fusion_engine
 	name = "\improper S-52 fusion reactor"
-	icon = 'icons/Marine/fusion_eng.dmi'
+	icon = 'icons/obj/machines/fusion_engine.dmi'
 	icon_state = "off"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat."
 	resistance_flags = UNACIDABLE
@@ -178,12 +178,12 @@
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 		balloon_alert_to_viewers("Fumbles with [src]'s internals")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
-		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 			return FALSE
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 	balloon_alert_to_viewers("Starts welding some damage")
 	add_overlay(GLOB.welding_sparks)
-	if(!do_after(user, 20 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS) , NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, /obj/item/tool/weldingtool/proc/isOn)))
+	if(!do_after(user, 20 SECONDS - (user.skills.getRating(SKILL_ENGINEER) * 3 SECONDS) , NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 		return FALSE
 	if(buildstate != FUSION_ENGINE_HEAVY_DAMAGE || is_on)
 		cut_overlay(GLOB.welding_sparks)
@@ -301,7 +301,7 @@
 		. += span_info("The power gauge reads: [power_gen_percent]%")
 	if(fusion_cell)
 		. += span_info("You can see a fuel cell in the receptacle.")
-		if(user.skills.getRating(SKILL_ENGINEER) >= SKILL_ENGINEER_MASTER)
+		if(user.skills.getRating(SKILL_ENGINEER) >= SKILL_ENGINEER_EXPERT)
 			switch(fusion_cell.fuel_amount)
 				if(0 to 10)
 					. += span_danger("The fuel cell is critically low.")
@@ -355,7 +355,7 @@
 //FUEL CELL
 /obj/item/fuel_cell
 	name = "\improper WL-6 universal fuel cell"
-	icon = 'icons/Marine/shuttle-parts.dmi'
+	icon = 'icons/obj/items/fuel_cell.dmi'
 	icon_state = "cell-empty"
 	desc = "A rechargable fuel cell designed to work as a power source for the Cheyenne-Class transport or for Westingland S-52 Reactors."
 	/// The amount of fuel currently in the cell

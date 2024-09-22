@@ -1,7 +1,7 @@
 
 /mob/living/carbon/xenomorph/proc/upgrade_xeno(newlevel, silent = FALSE)
 	if(!(newlevel in (GLOB.xenoupgradetiers - XENO_UPGRADE_INVALID)))
-		return
+		return FALSE
 	hive.upgrade_xeno(src, upgrade, newlevel)
 	upgrade = newlevel
 	if(!silent)
@@ -25,7 +25,7 @@
 		if(found)
 			continue
 		var/datum/action/ability/xeno_action/action = new allowed_action_path()
-		if(!SSticker.mode || (SSticker.mode.flags_xeno_abilities & action.gamemode_flags))
+		if(!SSticker.mode || (SSticker.mode.xeno_abilities_flags & action.gamemode_flags))
 			action.give_action(src)
 
 	for(var/datum/action/ability/xeno_action/action_already_added AS in actions_already_added)
@@ -39,7 +39,7 @@
 			activable_ability.select()
 			break
 
-	if(queen_chosen_lead)
+	if(xeno_flags & XENO_LEADER)
 		give_rally_abilities() //Give them back their rally hive ability
 
 	if(current_aura) //Updates pheromone strength
@@ -74,6 +74,7 @@
 	hud_set_queen_overwatch() //update the upgrade level insignia on our xeno hud.
 
 	update_spits() //Update spits to new/better ones
+	return TRUE
 
 //Tiered spawns.
 
@@ -187,6 +188,10 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/sentinel/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_ONE_THRESHOLD
+
+/mob/living/carbon/xenomorph/sentinel/retrograde/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
@@ -376,15 +381,6 @@
 	upgrade = XENO_UPGRADE_PRIMO
 
 //----WARLOCK END----//
-//============//
-//----BANELING START----//
-/mob/living/carbon/xenomorph/baneling
-	upgrade = XENO_UPGRADE_NORMAL
-
-/mob/living/carbon/xenomorph/baneling/primordial
-	upgrade = XENO_UPGRADE_PRIMO
-
-//----BANELING END----//
 //============//
 //----PUPPETEER START----//
 /mob/living/carbon/xenomorph/puppeteer

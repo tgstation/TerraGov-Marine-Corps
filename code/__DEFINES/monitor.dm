@@ -52,7 +52,7 @@
 GLOBAL_VAR_INIT(xeno_stat_multiplicator_buff, 1)
 
 ///50% is the maximum buff that xeno can receive
-#define  MAXIMUM_XENO_BUFF_POSSIBLE 1.5
+#define MAXIMUM_XENO_BUFF_POSSIBLE 1.5
 
 #define MAX_SPAWNABLE_MOB_PER_PLAYER 0.15 //So for 50 players, each spawner can generate 7 mobs
-#define SPAWN_RATE_PER_PLAYER 36 //For each player, the time between two consecutive spawns is reduced by 36 ticks. So for 35 players, it's one mob every minute
+#define SPAWN_RATE_PER_PLAYER 72 //For each player, the time between two consecutive spawns is reduced by 72ticks. So for 35 players, it's one mob every 30 seconds

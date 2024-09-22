@@ -124,6 +124,9 @@
 		if("manifest")
 			view_manifest()
 
+		if("xenomanifest")
+			view_xeno_manifest()
+
 		if("lore")
 			view_lore()
 
@@ -164,7 +167,7 @@
 			DIRECT_OUTPUT(usr, browse(null, "window=xenosunbalanced"))
 
 	if(href_list["showpoll"])
-		handle_playeR_DBRANKSing()
+		handle_playeR_POLLSing()
 		return
 
 	if(href_list["viewpoll"])
@@ -186,7 +189,7 @@
 	if(!GLOB.enter_allowed)
 		dat += "<div class='notice red'>You may no longer join the round.</div><br>"
 	var/forced_faction
-	if(SSticker.mode.flags_round_type & MODE_TWO_HUMAN_FACTIONS)
+	if(SSticker.mode.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
 		if(faction in SSticker.mode.get_joinable_factions(FALSE))
 			forced_faction = faction
 		else
@@ -233,6 +236,14 @@
 	popup.set_content(dat)
 	popup.open(FALSE)
 
+/// Proc for lobby button "View Hive Leaders" to see current leader/queen status.
+/mob/new_player/proc/view_xeno_manifest()
+	var/dat = GLOB.datacore.get_xeno_manifest()
+
+	var/datum/browser/popup = new(src, "xenomanifest", "<div align='center'>Xeno Manifest</div>", 400, 420)
+	popup.set_content(dat)
+	popup.open(FALSE)
+
 /mob/new_player/proc/view_lore()
 	var/output = "<div align='center'>"
 	output += "<a href='byond://?src=[REF(src)];lobby_choice=marines'>TerraGov Marine Corps</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=aliens'>Xenomorph Hive</A><br><br><a href='byond://?src=[REF(src)];lobby_choice=som'>Sons of Mars</A>"
@@ -276,7 +287,7 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
-/mob/new_player/Move()
+/mob/new_player/Move(atom/newloc, direction, glide_size_override)
 	return FALSE
 
 
@@ -434,7 +445,7 @@
 		to_chat(src, span_warning("The round is either not ready, or has already finished."))
 		return
 
-	if(SSticker.mode.flags_round_type & MODE_NO_LATEJOIN)
+	if(SSticker.mode.round_type_flags & MODE_NO_LATEJOIN)
 		to_chat(src, span_warning("Sorry, you cannot late join during [SSticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible."))
 		return
 

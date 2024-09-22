@@ -43,9 +43,16 @@
 /datum/keybinding/xeno/secrete_resin
 	name = "secrete_resin"
 	full_name = "Secrete Resin"
-	description = "Builds whatever you’ve selected with (choose resin structure) on your tile."
+	description = "Builds whatever you've selected with (choose resin structure) on your tile."
 	keybind_signal = COMSIG_XENOABILITY_SECRETE_RESIN
 	hotkey_keys = list("R")
+
+/datum/keybinding/xeno/secrete_special_resin
+	name = "secrete_special_resin"
+	full_name = "Secrete Special Resin"
+	description = "Builds whatever special resin you have selected."
+	keybind_signal = COMSIG_XENOABILITY_SECRETE_SPECIAL_RESIN
+	hotkey_keys = list("ShiftR")
 
 /datum/keybinding/xeno/recycle
 	name = "Recycle"
@@ -102,6 +109,13 @@
 	description = "Spit neurotoxin or acid at your target up to 7 tiles away."
 	keybind_signal = COMSIG_XENOABILITY_XENO_SPIT
 	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/long_range_sight
+	name = "long_range_sight"
+	full_name = "Long Range Sight"
+	description = "Toggles the zoom in."
+	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/xenohide
 	name = "xenohide"
@@ -197,21 +211,6 @@
 //
 // Single caste, alphabetical order
 //
-
-/datum/keybinding/xeno/dash_explosion
-	name = "Dash Explosion"
-	full_name = "Baneling: Dash Explode"
-	description = "Aim in a direction, charge up and dash, knocking down any humans hit and detonate yourself. "
-	keybind_signal = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION
-	hotkey_keys = list("Q")
-
-/datum/keybinding/xeno/spawn_pod
-	name = "Spawn Pod"
-	full_name = "Baneling: Spawn Pod"
-	description = "Spawn a pod on your current position, when you die from any source you will respawn on this pod. Activate again to change its location. "
-	keybind_signal = COMSIG_XENOABILITY_BANELING_SPAWN_POD
-	hotkey_keys = list("F")
-
 /datum/keybinding/xeno/baneling_explode
 	name = "Explode"
 	full_name = "Baneling: Explode"
@@ -225,13 +224,6 @@
 	description = "Choose a reagent that will be spread upon death. Costs plasma to change."
 	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
 	hotkey_keys = list("C")
-
-/datum/keybinding/xeno/long_range_sight
-	name = "long_range_sight"
-	full_name = "Boiler: Long Range Sight"
-	description = "Toggles the zoom in."
-	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
-	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"
@@ -253,19 +245,25 @@
 	keybind_signal = COMSIG_XENOABILITY_CREATE_BOMB
 	hotkey_keys = list("F")
 
-/datum/keybinding/xeno/root
-	name = "root"
-	full_name = "Boiler: Root in place"
-	description = "Begin rooting in place."
-	keybind_signal = COMSIG_XENOABILITY_ROOT
-	hotkey_keys = list("C")
-
 /datum/keybinding/xeno/bombard
 	name = "bombard"
 	full_name = "Boiler: Bombard"
 	description = "Fire globules."
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 	hotkey_keys = list("R")
+
+/datum/keybinding/xeno/acid_shroud
+	name = "acid_shroud"
+	full_name = "Boiler: Acid Shroud"
+	description = "Create a smokescreen for a getaway."
+	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD
+	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/acid_shroud_select
+	name = "select_acid_shroud"
+	full_name = "Boiler: Select Acid Shroud"
+	description = "Create a smokescreen for a getaway."
+	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD_SELECT
 
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
@@ -279,7 +277,7 @@
 	full_name = "Bull: Headbutt Charge"
 	description = "A charge that tosses the victim forward or backwards, depending on intent."
 	keybind_signal = COMSIG_XENOABILITY_BULLHEADBUTT
-	hotkey_keys = list("E")
+	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/gore_charge
 	name = "gore_charge"
@@ -1100,11 +1098,17 @@
 	description = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
 	keybind_signal = COMSIG_XENOABILITY_TENDRILS
 
-/datum/keybinding/xeno/send_orders_puppet
-	name = "Give Orders to Puppets"
-	full_name = "Puppeteer: Give Orders to Puppets"
-	description = "Give orders to your puppets, altering their behaviour."
-	keybind_signal = COMSIG_XENOABILITY_SENDORDERS
+/datum/keybinding/xeno/unleash_puppet
+	name = "Unleash puppets"
+	full_name = "Puppeteer: Unleash puppets"
+	description = "Unleash puppets to attack nearby humans."
+	keybind_signal = COMSIG_XENOABILITY_UNLEASHPUPPETS
+
+/datum/keybinding/xeno/recall_puppet
+	name = "Recall puppets"
+	full_name = "Puppeteer: Recall puppets"
+	description = "Recalls your puppets, making them follow you once more"
+	keybind_signal = COMSIG_XENOABILITY_RECALLPUPPETS
 
 /datum/keybinding/xeno/bestow_blessing
 	name = "Bestow Blessings"
@@ -1123,6 +1127,12 @@
 	full_name = "Behemoth: Landslide"
 	description = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	keybind_signal = COMSIG_XENOABILITY_LANDSLIDE
+
+/datum/keybinding/xeno/cancel_landslide
+	name = "Cancel Landslide"
+	full_name = "Behemoth: Cancel Landslide"
+	description = "Cancels landslide without having to select the ability"
+	keybind_signal = COMSIG_XENOABILITY_CANCEL_LANDSLIDE
 
 /datum/keybinding/xeno/earth_riser
 	name = "Earth Riser"
@@ -1147,3 +1157,27 @@
 	full_name = "Behemoth: Primal Wrath"
 	description = "Unleash your wrath. Enhances your abilities, changing their functionality and allowing them to apply a damage over time debuff."
 	keybind_signal = COMSIG_XENOABILITY_PRIMAL_WRATH
+
+/datum/keybinding/xeno/firecharge
+	name = "Fire Charge"
+	full_name = "Pyrogen: Fire Charge"
+	description = "Charge forward and attack a marine, extinguishing them if they're on fire, but dealing extra burn damage depending on how many firestacks they have."
+	keybind_signal = COMSIG_XENOABILITY_FIRECHARGE
+
+/datum/keybinding/xeno/firenado
+	name = "Fire Storm"
+	full_name = "Pyrogen: Fire Storm"
+	description = "Unleash 3 firenados that will slowly move towards your targeted turf."
+	keybind_signal = COMSIG_XENOABILITY_FIRENADO
+
+/datum/keybinding/xeno/fireball
+	name = "Fireball"
+	full_name = "Pyrogen: Fireball"
+	description = "Unleash a fireball after a small windup."
+	keybind_signal = COMSIG_XENOABILITY_FIREBALL
+
+/datum/keybinding/xeno/heatray
+	name = "Heatray"
+	full_name = "Pyrogen: Heatray"
+	description = "After a windup, unleash a heat ray that will cook any marine it comes across."
+	keybind_signal = COMSIG_XENOABILITY_HEATRAY

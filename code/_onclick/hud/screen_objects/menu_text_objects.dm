@@ -33,7 +33,7 @@
 
 /atom/movable/screen/text/lobby/clickable/MouseEntered(location, control, params)
 	. = ..()
-	if(!(flags_atom & INITIALIZED)) //yes this can happen, fuck me
+	if(!(atom_flags & INITIALIZED)) //yes this can happen, fuck me
 		return
 	color = COLOR_ORANGE
 	var/mob/new_player/player = usr
@@ -44,7 +44,7 @@
 	color = initial(color)
 
 /atom/movable/screen/text/lobby/clickable/Click()
-	if(!(flags_atom & INITIALIZED)) //yes this can happen, fuck me
+	if(!(atom_flags & INITIALIZED)) //yes this can happen, fuck me
 		to_chat(usr, span_warning("The game is still setting up, please try again later."))
 		return
 	var/mob/new_player/player = usr
@@ -112,6 +112,15 @@
 	var/mob/new_player/player = hud.mymob
 	player.view_manifest()
 
+/atom/movable/screen/text/lobby/clickable/xenomanifest
+	maptext = "<span class='maptext' style=font-size:8px>VIEW HIVE LEADERS</span>"
+	icon_state = "manifest"
+
+/atom/movable/screen/text/lobby/clickable/xenomanifest/Click()
+	. = ..()
+	var/mob/new_player/player = hud.mymob
+	player.view_xeno_manifest()
+
 /atom/movable/screen/text/lobby/clickable/background
 	maptext = "<span class='maptext' style=font-size:8px>BACKGROUND</span>"
 	icon_state = "background"
@@ -138,7 +147,7 @@
 /atom/movable/screen/text/lobby/clickable/polls/update_text()
 	INVOKE_ASYNC(src, PROC_REF(fetch_polls)) //this sleeps and it shouldn't because update_text uses a signal sometimes
 
-///Proc that fetches the polls, exists so we can async it in update_text 
+///Proc that fetches the polls, exists so we can async it in update_text
 /atom/movable/screen/text/lobby/clickable/polls/proc/fetch_polls()
 	var/mob/new_player/player = hud.mymob
 	var/hasnewpolls = player.check_playerpolls()
@@ -150,6 +159,6 @@
 /atom/movable/screen/text/lobby/clickable/polls/Click()
 	. = ..()
 	var/mob/new_player/player = hud.mymob
-	player.handle_playeR_DBRANKSing()
+	player.handle_playeR_POLLSing()
 	fetch_polls()
 

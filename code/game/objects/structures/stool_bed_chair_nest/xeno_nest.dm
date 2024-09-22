@@ -7,7 +7,7 @@
 	desc = "It's a gruesome pile of thick, sticky resin shaped like a nest."
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "nest"
-	hit_sound = "alien_resin_break"
+	hit_sound = SFX_ALIEN_RESIN_BREAK
 	buckling_y = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
@@ -15,21 +15,17 @@
 	var/resisting_time = 0
 	layer = RESIN_STRUCTURE_LAYER
 
-/obj/structure/bed/nest/attackby(obj/item/I, mob/user, params)
-	. = ..()
+/obj/structure/bed/nest/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!ismob(grab.grabbed_thing))
+		return
+	var/mob/grabbed_mob = grab.grabbed_thing
+	to_chat(user, span_notice("You place [grabbed_mob] on [src]."))
+	grabbed_mob.forceMove(loc)
+	return TRUE
 
-	if(istype(I, /obj/item/grab))
-		var/obj/item/grab/G = I
-		if(!ismob(G.grabbed_thing))
-			return
-		var/mob/M = G.grabbed_thing
-		to_chat(user, span_notice("You place [M] on [src]."))
-		M.forceMove(loc)
-
-
-/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(X.a_intent != INTENT_HARM)
-		return attack_hand(X)
+/obj/structure/bed/nest/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.a_intent != INTENT_HARM)
+		return attack_hand(xeno_attacker)
 	return ..()
 
 
@@ -68,7 +64,7 @@
 	buckling_mob.visible_message(span_xenonotice("[user] secretes a thick, vile resin, securing [buckling_mob] into [src]!"),
 		span_xenonotice("[user] drenches you in a foul-smelling resin, trapping you in [src]!"),
 		span_notice("You hear squelching."))
-	playsound(loc, "alien_resin_move", 50)
+	playsound(loc, SFX_ALIEN_RESIN_MOVE, 50)
 
 	silent = TRUE
 	return ..()
@@ -81,7 +77,7 @@
 		buckled_mob.visible_message(span_notice("\The [user] pulls \the [buckled_mob] free from \the [src]!"),
 			span_notice("\The [user] pulls you free from \the [src]."),
 			span_notice("You hear squelching."))
-		playsound(loc, "alien_resin_move", 50)
+		playsound(loc, SFX_ALIEN_RESIN_MOVE, 50)
 		TIMER_COOLDOWN_START(user, COOLDOWN_NEST, NEST_UNBUCKLED_COOLDOWN)
 		silent = TRUE
 		return ..()
@@ -132,12 +128,8 @@
 	if(LAZYLEN(buckled_mobs))
 		. += image("icon_state" = "nest_overlay", "layer" = LYING_MOB_LAYER + 0.1)
 
-
-/obj/structure/bed/nest/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 2, BURN, FIRE)
-
-/obj/structure/bed/nest/fire_act()
-	take_damage(50, BURN, FIRE)
+/obj/structure/bed/nest/fire_act(burn_level)
+	take_damage(burn_level * 2, BURN, FIRE)
 
 #undef NEST_RESIST_TIME
 #undef NEST_UNBUCKLED_COOLDOWN

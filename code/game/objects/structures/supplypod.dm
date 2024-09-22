@@ -28,7 +28,7 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	closet_flags = CLOSET_ALLOW_OBJS|CLOSET_ALLOW_DENSE_OBJ
 	soft_armor = list(MELEE = 30, BULLET = 50, LASER = 50, ENERGY = 100, BOMB = 100, BIO = 0, FIRE = 100, ACID = 80)
 	anchored = TRUE
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	var/adminNamed = FALSE
 	var/bluespace = FALSE
 	var/landingDelay = 30
@@ -75,6 +75,9 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 	. = ..()
 	setStyle(style, TRUE)
 
+/obj/structure/closet/supplypod/update_icon_state()
+	. = ..()
+	icon_state = GLOB.pod_styles[style][POD_ICON_STATE]
 
 /obj/structure/closet/supplypod/update_overlays()
 	. = ..()
@@ -93,7 +96,6 @@ GLOBAL_LIST_INIT(pod_styles, list(\
 		setStyle(STYLE_CENTCOM)
 		return
 	style = chosenStyle
-	icon_state = GLOB.pod_styles[chosenStyle][POD_ICON_STATE]
 	if(!adminNamed)
 		name = GLOB.pod_styles[chosenStyle][POD_NAME]
 		desc = GLOB.pod_styles[chosenStyle][POD_DESC]

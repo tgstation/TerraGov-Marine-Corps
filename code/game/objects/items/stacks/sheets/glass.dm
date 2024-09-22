@@ -9,24 +9,28 @@
 /*
 * Glass sheets
 */
+GLOBAL_LIST_INIT(glass_recipes, list ( \
+	new/datum/stack_recipe("directional window", /obj/structure/window, 1, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	new/datum/stack_recipe("fulltile window", /obj/structure/window/full, 4, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), \
+	new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL) \
+))
+
 /obj/item/stack/sheet/glass
 	name = "glass"
 	desc = "Glass is a non-crystalline solid, made out of silicate, the primary constituent of sand. It is valued for its transparency, albeit it is not too resistant to damage."
 	singular_name = "glass sheet"
 	icon_state = "sheet-glass"
-	item_state = "sheet-glass"
+	worn_icon_state = "sheet-glass"
 	var/created_window = /obj/structure/window
 	var/reinforced_type = /obj/item/stack/sheet/glass/reinforced
 	var/is_reinforced = FALSE
 
-/obj/item/stack/sheet/glass/Initialize(mapload, new_amount)
+/obj/item/stack/sheet/glass/get_main_recipes()
 	. = ..()
-	recipes = list(new/datum/stack_recipe("directional window", created_window, 1, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL),\
-				new/datum/stack_recipe("fulltile window", text2path("[created_window]/full"), 4, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL),\
-				new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL))
+	. += GLOB.glass_recipes
 
 GLOBAL_LIST_INIT(glass_radial_images, list(
-	"recipes" = image('icons/Marine/barricades.dmi', icon_state = "plus"),
+	"recipes" = image('icons/obj/structures/barricades/misc.dmi', icon_state = "plus"),
 	"directional window" = image('icons/obj/structures/windows.dmi', "window"),
 	"fulltile window" = image('icons/obj/structures/windows.dmi', "window0"),
 	"windoor" = image('icons/obj/doors/windoor.dmi', icon_state = "left")
@@ -46,17 +50,19 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 		if("recipes")
 			return TRUE
 		if("directional window")
-			create_object(user, new/datum/stack_recipe("directional window", created_window, 1, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, new/datum/stack_recipe("directional window", created_window, 1, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 		if("fulltile window")
-			create_object(user, new/datum/stack_recipe("fulltile window", text2path("[created_window]/full"), 4, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, new/datum/stack_recipe("fulltile window", text2path("[created_window]/full"), 4, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 		if("windoor")
-			create_object(user, new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, max_per_turf = STACK_RECIPE_ONE_DIRECTIONAL_PER_TILE, on_floor = TRUE, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
+			create_object(user, new/datum/stack_recipe("windoor", /obj/structure/windoor_assembly, 5, time = 4 SECONDS, crafting_flags = CRAFT_CHECK_DENSITY | CRAFT_CHECK_DIRECTION | CRAFT_ON_SOLID_GROUND, skill_req = SKILL_CONSTRUCTION_PLASTEEL), 1)
 
 	return FALSE
 
 
 /obj/item/stack/sheet/glass/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(is_reinforced)
 		return
@@ -87,7 +93,7 @@ GLOBAL_LIST_INIT(glass_radial_images, list(
 	desc = "Reinforced glass is made out of squares of regular silicate glass layered on a metallic rod matrice. This glass is more resistant to direct impacts, even if it may crack."
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
-	item_state = "sheet-rglass"
+	worn_icon_state = "sheet-rglass"
 	merge_type = /obj/item/stack/sheet/glass/reinforced
 
 	created_window = /obj/structure/window/reinforced

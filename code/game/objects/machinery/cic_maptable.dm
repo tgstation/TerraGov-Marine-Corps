@@ -145,16 +145,15 @@
 	. = ..()
 	if(.)
 		return
-	if(user.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_EXPERT)
-		user.balloon_alert(user, "Can't use that!")
-		return TRUE
-	if(is_banned_from(user.client.ckey, GLOB.roles_allowed_minimap_draw))
-		to_chat(user, span_boldwarning("You have been banned from a command role. You may not use [src] until the ban has been lifted."))
-		return TRUE
 
 /obj/machinery/cic_maptable/drawable/interact(mob/user)
 	. = ..()
 	if(.)
+		return
+	if(user.skills.getRating(SKILL_LEADERSHIP) < SKILL_LEAD_EXPERT)
+		return
+	if(is_banned_from(user.client.ckey, GLOB.roles_allowed_minimap_draw))
+		to_chat(user, span_boldwarning("You have been banned from a command role. You may not use access draw functions until the ban has been lifted."))
 		return
 	user.client.screen += drawing_tools
 
@@ -174,12 +173,20 @@
 		tool.set_zlevel(new_z, tool.minimap_flag)
 
 /obj/machinery/cic_maptable/drawable/big
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	layer = ABOVE_OBJ_LAYER
 	pixel_x = -16
 	pixel_y = -14
 	coverage = 75
-	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE
+	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
+	bound_width = 64
+
+/obj/machinery/cic_maptable/drawable/big/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+	)
+	AddElement(/datum/element/connect_loc, connections)
 
 /obj/machinery/cic_maptable/drawable/big/som
 	minimap_flag = MINIMAP_FLAG_MARINE_SOM

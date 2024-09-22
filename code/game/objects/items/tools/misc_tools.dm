@@ -3,7 +3,7 @@
 	desc = "A hand labeler used to label objects"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "labeler0"
-	item_state = "flight"
+	worn_icon_state = "flight"
 	w_class = WEIGHT_CLASS_SMALL
 
 	var/label = null
@@ -46,6 +46,8 @@
 		var/str = reject_bad_text(stripped_input(user, "Label text?", "Set label","", MAX_NAME_LEN))
 		if(!str)
 			to_chat(user, span_notice("Invalid label."))
+			on = !on
+			icon_state = "labeler[on]"
 			return
 		label = str
 		to_chat(user, span_notice("You set the label text to '[str]'."))
@@ -55,6 +57,8 @@
 
 /obj/item/tool/hand_labeler/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/paper))
 		to_chat(user, span_notice("You insert [I] into [src]."))
 		qdel(I)
@@ -75,12 +79,12 @@
 	name = "pen"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "pen"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
-	item_state = "pen"
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_EARS
+	worn_icon_state = "pen"
+	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_EARS
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
@@ -117,7 +121,7 @@
 */
 /obj/item/tool/pen/sleepypen
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 
 /obj/item/tool/pen/sleepypen/Initialize(mapload)
@@ -139,7 +143,7 @@
 * Parapens
 */
 /obj/item/tool/pen/paralysis
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 
 /obj/item/tool/pen/paralysis/attack(mob/living/M as mob, mob/user as mob)
@@ -165,11 +169,11 @@
 	desc = "A rubber stamp for stamping important documents."
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "stamp-qm"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
-	item_state = "stamp"
+	worn_icon_state = "stamp"
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15

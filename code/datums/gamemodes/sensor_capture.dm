@@ -5,7 +5,7 @@
 	config_tag = "Sensor Capture"
 	wave_timer_length = 2 MINUTES
 	max_game_time = 10 MINUTES
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_CORSAT)
 	game_timer_delay = 0
 	///The amount of activated sensor towers in sensor capture
 	var/sensors_activated = 0
@@ -42,3 +42,10 @@
 /datum/game_mode/hvh/combat_patrol/sensor_capture/get_status_tab_items(datum/dcs, mob/source, list/items)
 	. = ..()
 	items += "Activated Sensor Towers: [sensors_activated]"
+
+/datum/game_mode/hvh/combat_patrol/sensor_capture/get_deploy_point_message(mob/living/user)
+	switch(user.faction)
+		if(FACTION_TERRAGOV)
+			. = "Reactivate all sensor towers, good luck marines."
+		if(FACTION_SOM)
+			. = "Prevent reactivation of the sensor towers, glory to Mars!"

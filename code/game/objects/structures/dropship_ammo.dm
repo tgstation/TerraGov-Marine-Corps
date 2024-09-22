@@ -5,7 +5,7 @@
 //////////////////////////////////// dropship weapon ammunition ////////////////////////////
 
 /obj/structure/ship_ammo
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	density = TRUE
 	anchored = TRUE
 	climbable = TRUE
@@ -284,7 +284,7 @@
 	name = "Railgun Ammo"
 	desc = "This is not meant to exist. Moving this will require some sort of lifter."
 	icon_state = "30mm_crate_hv"
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/minirocket_pod
 	ammo_count = 400
 	max_ammo_count = 400
@@ -379,7 +379,7 @@
 /obj/structure/ship_ammo/cas/rocket
 	name = "abstract rocket"
 	icon_state = "single"
-	icon = 'icons/Marine/mainship_props64.dmi'
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/rocket_pod
 	ammo_count = 1
 	max_ammo_count = 1
@@ -441,7 +441,7 @@
 /obj/structure/ship_ammo/cas/rocket/napalm/detonate_on(turf/impact, attackdir = NORTH)
 	impact.ceiling_debris_check(3)
 	explosion(impact, devastating_explosion_range, heavy_explosion_range, light_explosion_range)
-	flame_radius(fire_range, impact, 60, 30) //cooking for a long time
+	flame_radius(fire_range, impact, 30, 60) //cooking for a long time
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(fire_range + 1, impact, 7)
 	warcrime.start()
@@ -539,7 +539,7 @@
 	name = "mini rocket stack"
 	desc = "A pack of explosive laser guided mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket"
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/minirocket_pod
 	ammo_count = 6
 	max_ammo_count = 6
@@ -646,7 +646,7 @@
 	name = "\improper AOE-200lb 'Tiny' stack"
 	desc = "A decent-sized payload of explosive bombs, will only fit in a full-sized bomb pod. Moving this will require some sort of lifter."
 	icon_state = "bomb_200"
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/bomb_pod
 	ammo_count = 8
 	max_ammo_count = 8
@@ -702,7 +702,7 @@
 	name = "\improper AOE-50lb 'Dandelions' stack"
 	desc = "A large litter of explosive bomblets, will only fit in a bomblet pod. Moving this will require some sort of lifter."
 	icon_state = "bomb_50"
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/bomblet_pod
 	ammo_count = 40
 	max_ammo_count = 40

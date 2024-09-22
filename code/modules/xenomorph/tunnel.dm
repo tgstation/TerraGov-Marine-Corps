@@ -29,8 +29,10 @@ TUNNEL
 	prepare_huds()
 	for(var/datum/atom_hud/xeno_tactical/xeno_tac_hud in GLOB.huds) //Add to the xeno tachud
 		xeno_tac_hud.add_to_hud(src)
-	hud_set_xeno_tunnel()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xenotunnel", VERY_HIGH_FLOAT_LAYER))
+	var/area/tunnel_area = get_area(src)
+	if(tunnel_area.area_flavor == AREA_FLAVOR_URBAN && !SSticker.HasRoundStarted())
+		icon_state = "manhole_open[rand(1,3)]"
 
 /obj/structure/xeno/tunnel/Destroy()
 	var/turf/drop_loc = get_turf(src)
@@ -65,7 +67,7 @@ TUNNEL
 	if(tunnel_desc)
 		. += span_info("The Hivelord scent reads: \'[tunnel_desc]\'")
 
-/obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE)
+/obj/structure/xeno/tunnel/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	visible_message(span_danger("[src] suddenly collapses!") )
 	return ..()
 
@@ -74,25 +76,25 @@ TUNNEL
 		return ..()
 	attack_alien(user)
 
-/obj/structure/xeno/tunnel/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
-	if(!istype(X) || X.stat || X.lying_angle || X.status_flags & INCORPOREAL)
+/obj/structure/xeno/tunnel/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(!istype(xeno_attacker) || xeno_attacker.stat || xeno_attacker.lying_angle || xeno_attacker.status_flags & INCORPOREAL)
 		return
 
-	if(X.a_intent == INTENT_HARM && X == creator)
-		balloon_alert(X, "Filling in tunnel...")
-		if(do_after(X, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
+	if(xeno_attacker.a_intent == INTENT_HARM && xeno_attacker == creator)
+		balloon_alert(xeno_attacker, "Filling in tunnel...")
+		if(do_after(xeno_attacker, HIVELORD_TUNNEL_DISMANTLE_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
 			deconstruct(FALSE)
 		return
 
-	if(X.anchored)
-		balloon_alert(X, "Cannot enter while immobile")
+	if(xeno_attacker.anchored)
+		balloon_alert(xeno_attacker, "Cannot enter while immobile")
 		return FALSE
 
 	if(length(GLOB.xeno_tunnels_by_hive[hivenumber]) < 2)
-		balloon_alert(X, "No exit tunnel")
+		balloon_alert(xeno_attacker, "No exit tunnel")
 		return FALSE
 
-	pick_a_tunnel(X)
+	pick_a_tunnel(xeno_attacker)
 
 /obj/structure/xeno/tunnel/attack_larva(mob/living/carbon/xenomorph/larva/L) //So larvas can actually use tunnels
 	attack_alien(L)
@@ -131,7 +133,9 @@ TUNNEL
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(z, MINIMAP_FLAG_XENO)
 	M.client.screen += map
 	var/list/polled_coords = map.get_coords_from_click(M)
-	M.client.screen -= map
+	M?.client?.screen -= map
+	if(!polled_coords)
+		return
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
 
 	///We find the tunnel, looking within 10 tiles of where the user clicked, excluding src
@@ -185,12 +189,3 @@ TUNNEL
 	M.forceMove(targettunnel.loc)
 	M.visible_message(span_xenonotice("\The [M] pops out of \the [src].") , \
 	span_xenonotice("We pop out through the other side!") )
-
-///Makes sure the tunnel is visible to other xenos even through obscuration.
-/obj/structure/xeno/tunnel/proc/hud_set_xeno_tunnel()
-	var/image/holder = hud_list[XENO_TACTICAL_HUD]
-	if(!holder)
-		return
-	holder.icon = 'icons/mob/hud.dmi'
-	holder.icon_state = "hudtraitor"
-	hud_list[XENO_TACTICAL_HUD] = holder

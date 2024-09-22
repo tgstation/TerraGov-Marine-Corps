@@ -28,7 +28,7 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "target_stake"
 	density = TRUE
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	max_integrity = 15000 //important that what the marines are shooting at doesn't break, we don't make it invulnerable because we still need to plasma cutter it sometimes
 	soft_armor = list(MELEE = 80, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 120, BIO = 100, FIRE = 100, ACID = 0)
 	///ungas need to actually hit this
@@ -36,6 +36,8 @@
 
 /obj/structure/target_stake/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(!istype(I, /obj/item/target))
 		return
 	var/obj/item/target/targetcushion = I

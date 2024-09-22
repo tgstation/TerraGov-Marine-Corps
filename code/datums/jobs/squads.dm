@@ -36,7 +36,7 @@
 /datum/squad/alpha
 	name = "Alpha"
 	id = ALPHA_SQUAD
-	color = "#e61919" // rgb(230,25,25)
+	color = COLOR_SQUAD_ALPHA
 	access = list(ACCESS_MARINE_ALPHA)
 	radio_freq = FREQ_ALPHA
 
@@ -44,7 +44,7 @@
 /datum/squad/bravo
 	name = "Bravo"
 	id = BRAVO_SQUAD
-	color = "#ffc32d" // rgb(255,195,45)
+	color = COLOR_SQUAD_BRAVO
 	access = list(ACCESS_MARINE_BRAVO)
 	radio_freq = FREQ_BRAVO
 
@@ -52,14 +52,14 @@
 /datum/squad/charlie
 	name = "Charlie"
 	id = CHARLIE_SQUAD
-	color = "#c864c8" // rgb(200,100,200)
+	color = COLOR_SQUAD_CHARLIE
 	access = list(ACCESS_MARINE_CHARLIE)
 	radio_freq = FREQ_CHARLIE
 
 /datum/squad/delta
 	name = "Delta"
 	id = DELTA_SQUAD
-	color = "#4148c8" // rgb(65,72,200)
+	color = COLOR_SQUAD_DELTA
 	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_DELTA
 
@@ -67,7 +67,7 @@
 /datum/squad/zulu
 	name = "Zulu"
 	id = ZULU_SQUAD
-	color = "#FF6A00"
+	color = COLOR_SQUAD_ZULU
 	access = list(ACCESS_MARINE_ALPHA) //No unique SOM access yet
 	radio_freq = FREQ_ZULU
 	faction = FACTION_SOM
@@ -86,7 +86,7 @@
 /datum/squad/yankee
 	name = "Yankee"
 	id = YANKEE_SQUAD
-	color = "#009999"
+	color = COLOR_SQUAD_YANKEE
 	access = list(ACCESS_MARINE_BRAVO)
 	radio_freq = FREQ_YANKEE
 	faction = FACTION_SOM
@@ -105,7 +105,7 @@
 /datum/squad/xray
 	name = "Xray"
 	id = XRAY_SQUAD
-	color = "#008000"
+	color = COLOR_SQUAD_XRAY
 	access = list(ACCESS_MARINE_CHARLIE)
 	radio_freq = FREQ_XRAY
 	faction = FACTION_SOM
@@ -124,7 +124,7 @@
 /datum/squad/whiskey
 	name = "Whiskey"
 	id = WHISKEY_SQUAD
-	color = "#CC00CC"
+	color = COLOR_SQUAD_WHISKEY
 	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_WHISKEY
 	faction = FACTION_SOM
@@ -188,7 +188,7 @@
 		CRASH("attempted to insert marine [new_squaddie] into squad while already having one")
 
 	if(!(new_squaddie.job.title in current_positions))
-		CRASH("Attempted to insert [new_squaddie.job.title] into squad [name]")
+		return FALSE
 
 	current_positions[new_squaddie.job.title]++
 
@@ -224,7 +224,6 @@
 	marines_list += new_squaddie
 	new_squaddie.assigned_squad = src
 	new_squaddie.hud_set_job(faction)
-	new_squaddie.update_action_buttons()
 	new_squaddie.update_inv_head()
 	new_squaddie.update_inv_wear_suit()
 	return TRUE
@@ -272,7 +271,6 @@
 
 	leaving_squaddie.assigned_squad = null
 	leaving_squaddie.hud_set_job(faction)
-	leaving_squaddie.update_action_buttons()
 	leaving_squaddie.update_inv_head()
 	leaving_squaddie.update_inv_wear_suit()
 	return TRUE
@@ -283,8 +281,7 @@
 		CRASH("attempted to remove squad leader from squad [name] while not having one set")
 
 	SSdirection.clear_leader(tracking_id)
-	SSdirection.stop_tracking(TRACKING_ID_MARINE_COMMANDER, squad_leader)
-	SSdirection.stop_tracking(TRACKING_ID_SOM_COMMANDER, squad_leader)
+	SSdirection.stop_tracking(faction == FACTION_SOM ? TRACKING_ID_SOM_COMMANDER : TRACKING_ID_MARINE_COMMANDER, squad_leader)
 
 	//Handle aSL skill level and radio
 	if(!ismarineleaderjob(squad_leader.job) && !issommarineleaderjob(squad_leader.job))
@@ -298,16 +295,17 @@
 			R.use_command = FALSE
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
-			ID.access -= list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+			ID.access -= list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
 
 	to_chat(squad_leader, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
 	var/mob/living/carbon/human/H = squad_leader
 	squad_leader = null
-	H.update_action_buttons()
 	H.hud_set_job(faction)
 	H.update_inv_head()
 	H.update_inv_wear_suit()
-
+	if(istype(H.wear_ear, /obj/item/radio/headset/mainship/))
+		var/obj/item/radio/headset/mainship/radio = H.wear_ear
+		radio.update_minimap_icon()
 
 /datum/squad/proc/promote_leader(mob/living/carbon/human/H)
 	if(squad_leader)
@@ -323,7 +321,7 @@
 		squad_leader.comm_title = "aSL"
 		var/obj/item/card/id/ID = squad_leader.get_idcard()
 		if(istype(ID))
-			ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+			ID.access += list(ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
 
 	if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/marine))
 		var/obj/item/radio/headset/mainship/marine/R = squad_leader.wear_ear
@@ -332,9 +330,11 @@
 		R.use_command = TRUE
 
 	squad_leader.hud_set_job(faction)
-	squad_leader.update_action_buttons()
 	squad_leader.update_inv_head()
 	squad_leader.update_inv_wear_suit()
+	if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/))
+		var/obj/item/radio/headset/mainship/radio = squad_leader.wear_ear
+		radio.update_minimap_icon()
 	to_chat(squad_leader, "<font size='3' color='blue'>You're now the Squad Leader for [src]!</font>")
 
 
@@ -354,11 +354,18 @@
 		return
 
 	var/header = "AUTOMATED CIC NOTICE:"
+	var/sound = "sound/misc/notice3.ogg"
+	var/message_color = "#a9a9a9"
+	var/message_type = /atom/movable/screen/text/screen_text/command_order/automated
 	if(sender)
 		header = "CIC SQUAD MESSAGE FROM [sender.real_name]:"
+		sound = "sound/machinery/dotprinter.ogg"
+		message_color = color
+		message_type = /atom/movable/screen/text/screen_text/command_order
 
 	for(var/mob/living/marine AS in marines_list)
-		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
+		marine.playsound_local(marine, sound, 35)
+		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, message_type, message_color)
 
 /datum/squad/proc/check_entry(datum/job/job)
 	if(!(job.title in current_positions))
@@ -411,6 +418,7 @@
 GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 ///initializes a new custom squad. all args mandatory
 /proc/create_squad(squad_name, squad_color, mob/living/carbon/human/creator)
+	var/list/radio_blacklist = list(MODE_KEY_BINARY, MODE_KEY_R_HAND, MODE_KEY_L_HAND, MODE_KEY_INTERCOM, MODE_KEY_DEPARTMENT)
 	//Create the squad
 	if(!squad_name)
 		return
@@ -421,8 +429,8 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	var/freq = FREQ_CUSTOM_SQUAD_MIN + 2 * length(GLOB.custom_squad_radio_freqs)
 	if(freq > FREQ_CUSTOM_SQUAD_MAX)
 		return
-
-	var/new_id = lowertext(squad_name) + "_squad"
+	var/lowertext_name = lowertext(squad_name)
+	var/new_id = lowertext_name + "_squad"
 	if(SSjob.squads[new_id])
 		return
 
@@ -436,6 +444,22 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	LAZYADDASSOCSIMPLE(GLOB.radiochannels, "[radio_channel_name]", freq)
 	LAZYADDASSOCSIMPLE(GLOB.reverseradiochannels, "[freq]", radio_channel_name)
 	new_squad.faction = squad_faction
+	var/key_prefix = lowertext_name[1]
+	if(GLOB.department_radio_keys[key_prefix] || (key_prefix in radio_blacklist))
+		for(var/letter in splittext(lowertext_name, ""))
+			if(!(GLOB.department_radio_keys[letter] && !(letter in radio_blacklist)))
+				key_prefix = letter
+				break
+	if(GLOB.department_radio_keys[key_prefix] || (key_prefix in radio_blacklist))
+		//okay... mustve been a very short name, randomly pick things from the alphabet now
+		for(var/letter in shuffle(GLOB.alphabet))
+			if(!(GLOB.department_radio_keys[letter] && !(letter in radio_blacklist)))
+				key_prefix = letter
+				break
+
+	GLOB.department_radio_keys[key_prefix] = radio_channel_name
+	GLOB.channel_tokens[radio_channel_name] = ":[key_prefix]"
+
 	if(new_squad.faction == FACTION_TERRAGOV)
 		var/list/terragov_server_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/server/presets/alpha]
 		var/list/terragov_bus_freqs = GLOB.telecomms_freq_listening_list[/obj/machinery/telecomms/bus/preset_three]

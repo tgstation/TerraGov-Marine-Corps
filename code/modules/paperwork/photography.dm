@@ -80,7 +80,7 @@
 	icon = 'icons/obj/device.dmi'
 	desc = "A camera film cartridge. Insert it into a camera to reload it."
 	icon_state = "film"
-	item_state = "electropack"
+	worn_icon_state = "electropack"
 	w_class = WEIGHT_CLASS_TINY
 
 
@@ -88,11 +88,11 @@
 	name = "photo"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "photo"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
-	item_state = "paper"
+	worn_icon_state = "paper"
 	w_class = WEIGHT_CLASS_TINY
 	var/datum/picture/picture
 	var/scribble		//Scribble on the back.
@@ -168,11 +168,11 @@
 	icon = 'icons/obj/device.dmi'
 	desc = "A polaroid camera."
 	icon_state = "camera"
-	item_state = "camera"
+	worn_icon_state = "camera"
 	light_color = COLOR_WHITE
 	light_power = FLASH_LIGHT_POWER
 	w_class = WEIGHT_CLASS_SMALL
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 	interaction_flags = INTERACT_REQUIRES_DEXTERITY
 	var/flash_enabled = TRUE
 	var/state_on = "camera"
@@ -214,6 +214,8 @@
 
 /obj/item/camera/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/camera_film))
 		if(pictures_left)

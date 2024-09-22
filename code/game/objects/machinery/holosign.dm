@@ -52,6 +52,8 @@
 
 /obj/machinery/holosign_switch/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/detective_scanner))
 		return

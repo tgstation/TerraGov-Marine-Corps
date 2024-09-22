@@ -72,7 +72,7 @@
 		parent_limb.createwound(CUT, 0.1)
 
 	if(!quickclot) //Quickclot stops bleeding, magic!
-		parent_limb.owner.blood_volume = max(0, parent_limb.owner.blood_volume - damage/30)
+		parent_limb.owner.set_blood_volume(parent_limb.owner.blood_volume - damage/30)
 		if(prob(1))
 			parent_limb.owner.custom_pain("You feel a stabbing pain in your [parent_limb.display_name]!", 1)
 

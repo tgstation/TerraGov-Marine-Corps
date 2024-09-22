@@ -14,7 +14,7 @@
 	weather_duration_upper = 1500
 
 	end_duration = 100
-	end_message = span_boldannounce("The downpour gradually slows to a light shower. It should be safe outside now.")
+	end_message = span_danger("The downpour gradually slows to a light shower. It should be safe outside now.")
 	end_overlay = "rain_low"
 
 	area_type = /area
@@ -31,7 +31,7 @@
 /datum/weather/acid_rain/telegraph()
 	. = ..()
 	for(var/mob/impacted_mob AS in GLOB.player_list)
-		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+		if(!(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER))
 			continue
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)
 		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
@@ -52,29 +52,31 @@
 		return
 	if(prob(L.modify_by_armor(100, ACID)))
 		L.adjustFireLoss(7)
-		to_chat(L, span_boldannounce("You feel the acid rain melting you away!"))
-	L.clean_mob()
+		to_chat(L, span_danger("You feel the acid rain melting you away!"))
+	L.wash()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
 /datum/weather/acid_rain/harmless
 	target_trait = ZTRAIT_RAIN
 
-	telegraph_message = span_boldannounce("Thunder rumbles far above. You hear droplets drumming against the canopy.")
+	telegraph_message = span_danger("Thunder rumbles far above. You hear droplets drumming against the canopy.")
 	telegraph_overlay = "rain_med"
 	telegraph_sound = null
 
-	weather_message = span_boldannounce("<i>Rain pours down around you!</i>")
+	weather_message = span_danger("<i>Rain pours down around you!</i>")
 	weather_overlay = "rain_high"
 
-	end_message = span_boldannounce("The downpour gradually slows to a light shower.")
+	end_message = span_danger("The downpour gradually slows to a light shower.")
 	end_overlay = "rain_low"
 
 	probability = 60
 	repeatable = TRUE
+	weather_duration_lower = 2000
+	weather_duration_upper = 2500
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
-	L.clean_mob()
+	L.wash()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 		if(prob(20))

@@ -77,12 +77,12 @@
 
 	take_contents()
 
-/obj/structure/closet/deconstruct(disassembled = TRUE)
+/obj/structure/closet/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	dump_contents()
 	return ..()
 
 
-//USE THIS TO FILL IT, NOT INITIALIZE OR NEW
+///USE THIS TO FILL IT, NOT INITIALIZE OR NEW
 /obj/structure/closet/proc/PopulateContents()
 	return
 
@@ -214,17 +214,17 @@
 		dump_contents()
 		qdel(src)
 
-/obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = 0, isrightclick = FALSE)
+/obj/structure/closet/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(!.)
 		return
-	if(X.a_intent == INTENT_HARM && !opened && prob(70))
+	if(xeno_attacker.a_intent == INTENT_HARM && !opened && prob(70))
 		break_open()
 
 /obj/structure/closet/attackby(obj/item/I, mob/user, params)
 	if(user in src)
 		return FALSE
-	if(I.flags_item & ITEM_ABSTRACT)
+	if(I.item_flags & ITEM_ABSTRACT)
 		return FALSE
 	. = ..()
 	if(opened)
@@ -413,6 +413,7 @@
 
 
 /obj/structure/closet/contents_explosion(severity)
+	. = ..()
 	for(var/i in contents)
 		var/atom/movable/closet_contents = i
 		closet_contents.ex_act(severity)
@@ -453,13 +454,15 @@
 		return FALSE
 	return TRUE
 
+/obj/structure/closet_insertion_allowed(obj/structure/closet/destination)
+	return FALSE
 
 /obj/item/closet_insertion_allowed(obj/structure/closet/destination)
 	if(anchored)
 		return FALSE
 	if(!CHECK_BITFIELD(destination.closet_flags, CLOSET_ALLOW_DENSE_OBJ) && density)
 		return FALSE
-	if(CHECK_BITFIELD(flags_item, DELONDROP))
+	if(CHECK_BITFIELD(item_flags, DELONDROP))
 		return FALSE
 	var/item_size = CEILING(w_class * 0.5, 1)
 	if(item_size + destination.item_size_counter > destination.storage_capacity)
@@ -467,16 +470,9 @@
 	destination.item_size_counter += item_size
 	return TRUE
 
-/obj/structure/bed/closet_insertion_allowed(obj/structure/closet/destination)
-	if(length(buckled_mobs))
-		return FALSE
-
-/obj/structure/closet/closet_insertion_allowed(obj/structure/closet/destination)
-	return FALSE
-
-
+///Action delay when going out of a closet
 /mob/living/proc/on_closet_dump(obj/structure/closet/origin)
-	SetStun(origin.closet_stun_delay)//Action delay when going out of a closet
+	SetStun(origin.closet_stun_delay)
 	if(!lying_angle && IsStun())
 		balloon_alert_to_viewers("Gets out of [origin]", ignored_mobs = src)
 		balloon_alert(src, "You struggle to get your bearings")

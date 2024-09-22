@@ -76,7 +76,7 @@
 			var/mob/living/carbon/human/H = L
 			if(H.get_eye_protection() > 0)
 				continue
-			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+			var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 			if(E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
 				H.flash_act()
 				E.take_damage(rand(1, 5))
@@ -88,12 +88,11 @@
 
 
 /obj/machinery/flasher/emp_act(severity)
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
 		return
 	if(prob(75/severity))
 		flash()
-	..(severity)
 
 /obj/machinery/flasher/portable/HasProximity(atom/movable/AM as mob|obj)
 	if ((disable) || (last_flash && world.time < last_flash + 150))
@@ -106,6 +105,8 @@
 
 /obj/machinery/flasher/portable/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(iswrench(I))
 		anchored = !anchored
 
@@ -121,6 +122,8 @@
 
 /obj/machinery/flasher_button/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	return attack_hand(user)
 
 /obj/machinery/flasher_button/attack_hand(mob/living/user)

@@ -188,6 +188,8 @@
 
 /obj/machinery/power/smes/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(isscrewdriver(I))
 		TOGGLE_BITFIELD(machine_stat, PANEL_OPEN)
@@ -391,12 +393,12 @@
 			smoke.start()
 
 /obj/machinery/power/smes/emp_act(severity)
+	. = ..()
 	outputting = FALSE
 	inputting = FALSE
 	output_level = 0
 	charge = max(charge - 1e6/severity, 0)
 	addtimer(CALLBACK(src, PROC_REF(reset_power_level)), 10 SECONDS)
-	..()
 
 /obj/machinery/power/smes/proc/reset_power_level()
 	output_level = initial(output_level)

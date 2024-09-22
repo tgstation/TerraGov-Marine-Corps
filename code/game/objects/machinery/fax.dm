@@ -29,7 +29,7 @@
 	return ..()
 
 
-/obj/machinery/faxmachine/deconstruct(disassembled = TRUE)
+/obj/machinery/faxmachine/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(idscan)
 		idscan.forceMove(get_turf(src))
 		idscan = null
@@ -144,6 +144,8 @@
 
 /obj/machinery/faxmachine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/paper))
 		if(!message)
 			user.transferItemToLoc(I, src)

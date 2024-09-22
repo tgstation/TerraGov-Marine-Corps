@@ -101,7 +101,7 @@
 		if(mode.stat_list[attacking_faction].active_attrition_points)
 			return FALSE //attacking team still has more bodies to throw into the fight
 		var/list/player_list = count_humans(count_flags = COUNT_IGNORE_ALIVE_SSD)
-		if(length(player_list[attacking_faction == starting_faction ? 1 : 3]))
+		if(length(player_list[attacking_faction == starting_faction ? 1 : 2]))
 			return FALSE //attacking team still has living guys
 
 	if(min_destruction_amount && objectives_destroyed >= min_destruction_amount) //Destroyed at least the minimum required

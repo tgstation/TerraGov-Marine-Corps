@@ -218,7 +218,7 @@
 			continue
 		if((object.allow_pass_flags & PASS_AIR) && air_pass)
 			continue
-		if(object.flags_atom & ON_BORDER && object.dir != direction)
+		if(object.atom_flags & ON_BORDER && object.dir != direction)
 			continue
 		return TRUE
 	return FALSE
@@ -605,9 +605,7 @@
 
 
 /proc/get_cardinal_dir(atom/A, atom/B)
-	var/dx = abs(B.x - A.x)
-	var/dy = abs(B.y - A.y)
-	return get_dir(A, B) & (rand() * (dx+dy) < dy ? 3 : 12)
+	return angle_to_cardinal_dir(Get_Angle(get_turf(A), get_turf(B)))
 
 /// If given a diagonal dir, return a corresponding cardinal dir. East/west preferred
 /proc/closest_cardinal_dir(dir)
@@ -1027,9 +1025,9 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 
 /mob/dview/Initialize(mapload) //Properly prevents this mob from gaining huds or joining any global lists
 	SHOULD_CALL_PARENT(FALSE)
-	if(flags_atom & INITIALIZED)
+	if(atom_flags & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	flags_atom |= INITIALIZED
+	atom_flags |= INITIALIZED
 	return INITIALIZE_HINT_NORMAL
 
 /mob/dview/Destroy(force = FALSE)

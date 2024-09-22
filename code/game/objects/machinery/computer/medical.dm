@@ -35,6 +35,8 @@
 
 /obj/machinery/computer/med_data/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/card/id) && !scan)
 		if(!user.drop_held_item())
@@ -114,8 +116,6 @@
 						dat += "<br><center>None detected</center>"
 					else
 						dat += "<br>[bdat]"
-
-				else
 		else
 			dat += "<A href='?src=[text_ref(src)];login=1'>{Log In}</A>"
 
@@ -362,8 +362,6 @@
 			for(var/datum/data/record/E in GLOB.datacore.medical)
 				if ((E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 					M = E
-				else
-					//Foreach continue //goto(2540)
 			src.active1 = R
 			src.active2 = M
 			src.screen = 4
@@ -415,16 +413,12 @@
 			for(var/datum/data/record/R in GLOB.datacore.medical)
 				if ((lowertext(R.fields["name"]) == t1 || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"])))
 					src.active2 = R
-				else
-					//Foreach continue //goto(3229)
 			if (!( src.active2 ))
 				src.temp = "Could not locate record [t1]."
 			else
 				for(var/datum/data/record/E in GLOB.datacore.general)
 					if ((E.fields["name"] == src.active2.fields["name"] || E.fields["id"] == src.active2.fields["id"]))
 						src.active1 = E
-					else
-						//Foreach continue //goto(3334)
 				src.screen = 4
 
 		if (href_list["print_p"])
@@ -460,8 +454,7 @@
 
 /obj/machinery/computer/med_data/emp_act(severity)
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
-		return
+		return ..()
 
 	for(var/datum/data/record/R in GLOB.datacore.medical)
 		if(prob(10/severity))
@@ -485,7 +478,7 @@
 			qdel(R)
 			continue
 
-	..(severity)
+	return ..()
 
 
 /obj/machinery/computer/med_data/laptop

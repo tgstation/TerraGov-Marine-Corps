@@ -1,0 +1,519 @@
+2024-03-01:
+  Lumipharon:
+  - code_imp: Tiny tweak to directional attack code
+  - balance: Blowing up a wraith portal kills both ends of the portal now
+  - bugfix: fixed a runtime with adjacency checks
+  tyeagg:
+  - bugfix: rust-g not compiled with pathfinder feature
+2024-03-02:
+  2whatever2:
+  - rscadd: Gargoyles are now act the same as other structures, and can be tracked
+      with Structure pinpointers and hive tracker.
+  - balance: 2x damage on Genghis charge flames, 0.5x on it's timer. (17, 31) -->
+      (9, 62) (Time rounded up.)
+  AzonStarfall:
+  - rscdel: Removed references to high-tier xenomorph research samples.
+  - bugfix: Simplified the name of spawnable xenomorph research samples.
+  Barnet2:
+  - spellcheck: Changed "View Hive" lobby button to "View Hive Leaders"
+  Kapu1178:
+  - bugfix: Primordial crusher doesn't crash the server anymore.
+  Lumipharon:
+  - qol: Mecha controls can now be correctly hotkeyed
+  - bugfix: fixed various bugs with xeno charge abilities
+  - refactor: Refactored xeno charge abilities
+  Naaanii:
+  - rscadd: Adds Incendiary, Sticky, Cloak, Tfoot, Trailblazer, Lasernade, HEFA and
+      Antigas grenades to reqtorio.
+  - balance: Adjusted the price and yield of M15, WP and razor nades in reqtorio.
+  - rscadd: Added Hefa nades to Valhalla vendors.
+  - rscdel: Removed tfoot nades from Valhalla weapon vendors.
+  - rscadd: Added tfoot nades to Valhalla req vendors.
+  Xander3359:
+  - balance: Some lemolocked chems have a bit more generous reactions.
+  Yttriums:
+  - balance: Squad Engineers can now purchase supply beacons in their roundstart vendor
+  - balance: Mortar kit now includes a bag.
+  blackdav123:
+  - balance: Increases crusher sunder multiplier
+  ivanmixo:
+  - bugfix: The server should no longer die if you try to directional attack diagonally
+      thru a wall
+2024-03-03:
+  Barnet2:
+  - balance: Antigas nades are now in the crash weapons vendor
+  Lumipharon:
+  - bugfix: fixed a gunfire runtime when firing the last bullet of some guns
+  TiviPlus:
+  - bugfix: tanks and mechs have correct bullet movement speed now
+  ivanmixo:
+  - bugfix: Retired ERT leader doesn't have legs anymore as was intended
+  - qol: Disabled directional attacks for mobs of the same faction as you
+2024-03-04:
+  Dikozda:
+  - spellcheck: Blessing menu no long has two strategic point values
+  Lumipharon:
+  - bugfix: fixes a crash with rapid advance
+  - rscadd: You can now slam grabbed mobs into most objects, walls and mobs for varying
+      results
+  - refactor: Refactored grab interactions with objects
+  TiviPlus:
+  - rscadd: Tank periscope has night vision and zoom
+  - balance: buffed tank
+  - bugfix: Fixes tank reload not updating UI
+  Wisemonster:
+  - qol: Fire-safety cabinets now layer above objects
+  - qol: Moved the fire cabinet on the standard tad model to the other side of the
+      pilot computer.
+  blackdav123:
+  - bugfix: Moved a silo on orion out of marines reach.
+2024-03-05:
+  Neocloudy:
+  - rscadd: new plain chat style
+  - balance: late synths have a 20% burn reduction instead of 30%
+  - balance: synths/early synths will no longer be unconscious at -50 health
+  - balance: synths/early synths take rapid burn damage at -30 health
+  TiviPlus:
+  - rscadd: Added Assault Crewman and Transport Crewman roles
+2024-03-06:
+  Lumipharon:
+  - code_imp: Repathed defib gloves to actually be gloves
+  - imageadd: added new and improved portrait sprites for campaign
+  - bugfix: fixed a minor bug with the overclock shield perk for some SOM roles
+  - bugfix: fixed admin pods
+  - bugfix: fixed some ability runtimes
+  - code_imp: Cleaned up some xeno code
+  - balance: 'Campaign: Some loadout additions and tweaks'
+  - bugfix: fixed gorgon armour being unable to equip overclocked shield modules
+  - bugfix: fixed the squad management pop up opening for SL's on non nukewar modes
+  Pariah919:
+  - balance: RWalls have 3000 hp again rather than 5000, slightly higher armor.
+  - balance: Focus order no longer gives a firerate increase while aiming.
+  - rscadd: Added new Sniper and Shotgun sentry to the marine arsenal, as well as
+      new sentry sprites.
+  - balance: rds now gives bonus speed while aiming instead of increased firerate.
+  XElectricX:
+  - rscadd: Night vision goggles and night vision helmet module.
+  - balance: Night vision headsets can be purchased via requisitions.
+  - refactor: Glasses activation code optimized.
+  - imageadd: Night vision item sprites created by an artist commissioned by Bonkai
+  Xander3359:
+  - bugfix: Xenos can no longer corrupt the alamo controls mid-transit
+  - bugfix: Xenos can no longer capture the alamo mid-transit
+  - qol: All xenos can look at the alamo console while in hijack transit
+  - bugfix: Tad can no longer land on itself
+  - bugfix: Tad can no longer perform instant transmission
+  blackdav123:
+  - bugfix: Mag harness now functions properly for belt guns.
+  coldironwarrior:
+  - bugfix: new category for other trinkets available in "gear preferences" under
+      the "preferences" window
+  - spellcheck: fixed AGLS description
+2024-03-07:
+  Barnet2:
+  - rscdel: Removed Baneling
+  - balance: Warrior slash increase from 20 to 22
+  Lumipharon:
+  - code_imp: Cleaned up akimbo scatter mod code
+  Xander3359:
+  - bugfix: Trying to un-deploy some things no longer gives a misleading message
+  ivanmixo:
+  - code_imp: Cleaned up code related to humans
+2024-03-08:
+  2whatever2:
+  - balance: 'You now have to resist 1 more time for each time grabs are upgraded
+      on you. (Old values: Agrab 1, neckgrab 2, strangle 3.) (New: Agrab 2, neckgrab
+      4(WARRIOR GRAB UNAFFECTED.) strangle 6.'
+  - balance: 'Punch stun and Shove stun no longer get lowered by more armor, and increased
+      with less armor, and will now always stun for 4 seconds. (Old values: 6 second
+      stun base, lowered by armor rating.)'
+  Lumipharon:
+  - bugfix: Fixed hold orders rounding certain incoming damage down to 0, such as
+      weather
+  - code_imp: Cleaned up some scout cloak related code
+  MLGTASTICa:
+  - bugfix: Fixed xenormophs being unable to choose any other special resin wall other
+      than the bulletproof one.
+  TiviPlus:
+  - bugfix: fixed tank sound for ghosts, and may have fixed it being offset
+  - bugfix: Fixes tank turret (literally) rotating randomly, as well as a series of
+      other things that use cardinal directions
+  - bugfix: you can no longer load the tank external magazines
+  blackdav123:
+  - balance: Lowers warlock HP from 375 to 325.
+  coldironwarrior:
+  - bugfix: fix scout droids not having nightvision
+  - bugfix: fixes AIs getting permanent nightvision after deploying to their scout
+      droid
+  - balance: researchers spawn with isotonic pill bottles instead of dexalin bottles
+      in their belts
+  ivanmixo:
+  - spellcheck: Fixed a typo in bulwark description
+2024-03-09:
+  Lumipharon:
+  - bugfix: Fixed some issues with mech armour facings against melee attacks
+  - bugfix: Fixed xeno melee attacks ignoring all armour on objects
+  - rscdel: Removed a nonexistant item
+  - bugfix: AMR lase mode will no longer completely ignore solid objects
+  - code_imp: Cleaned up a bunch of projectile code
+  Naaanii:
+  - rscadd: Adds AMR incen and flak ammo to valhalla.
+  - rscadd: Adds TL Flak rounds to valhalla.
+  - rscadd: Adds cleaner nades to valhalla.
+  TiviPlus:
+  - qol: Tank gunner can now rotate turret using movement keys
+  - code_imp: kotahi uses proper shuffling in backend
+  - bugfix: Fix kotahi always spitting out 4 +4s in a row
+  - rscadd: Minimaps now work in the tank
+  - rscadd: restricted things like removing tank gun to tank crew only
+  - rscadd: Added tank LTA-AP minigun
+  ivanmixo:
+  - rscdel: Resting is no longer a verb in the IC tab
+2024-03-10:
+  Lumipharon:
+  - bugfix: fixed scout cloaks
+  - qol: Xeno side UI plasma/health icons now also update instantly on change
+2024-03-11:
+  74delta:
+  - balance: Changes light armor slowdown from .3 to .2 and vlarmor from .2 to .15
+  Barnet2:
+  - balance: Cluster OB now has 1 more tile of devastation per hit
+  Lumipharon:
+  - bugfix: Projectiles more accurately have a firing mob (such as vehicles) so mob
+      modifiers now apply correctly
+  - bugfix: fixed HEFA nades not hitting their own turf
+  - code_imp: More projectile code improvements and minor fixes
+  - bugfix: fixed bemo rock throwing
+  - balance: Explosions stagger the occupants of mechs, applying stagger damage penalties
+      to their weapons
+  - balance: Explosion throws are now tied to severity
+  - balance: Large xenos will not be thrown by light or weak explosions
+  - balance: Mechs will only be thrown by devastating explosions
+  - balance: Weak explosions will now only throw loose items
+2024-03-12:
+  00ze-cyclone:
+  - balance: laspistol and serpenta are now full auto
+  Barnet2:
+  - balance: Explosives using flame_radius (phos nades, incen nades) no longer have
+      damage RNG, and less duration RNG
+  - balance: Incendiary OB now has the same burn level as xfuel
+  Lumipharon:
+  - qol: 'Campaign: Added some extra crates to the home bases and other minor adjustments'
+  blackdav123:
+  - balance: Preweeded Magmoor
+  coldironwarrior:
+  - bugfix: POS, Arachne, and Theseus have one set of sandbags for synths; Theseus
+      and Sulaco now have a few guaranteed pairs of insuls in engineering
+  - bugfix: adds two more 30mm GAU ammo crates to Sulaco CAS bay to keep it in parity
+      with other ships' CAS bays
+  - balance: all shipmaps now start with two combat droids
+  - bugfix: reorganizes CAS weapons bay on Pillar of Spring so POs can now get at
+      their weapons easier
+  - bugfix: 'PoS minor changes: removes a duplicate rack; fixes decaling by the alamo;
+      moves a vent that was covered by a photocopier in engineering'
+2024-03-13:
+  Barnet2:
+  - balance: Restores pre-root boiler dig mechanic, have to sit still and wait 3 seconds
+      before firing a glob (you can still move, but cancels the channel)
+  lbnesquik:
+  - bugfix: The AI can interact with the nuke again
+2024-03-14:
+  Barnet2:
+  - balance: Boiler gas is now translucent, AP on direct hit for all glob types increased
+      by 10
+  - balance: Normal boiler gas (non-lance) has 1 more tile of radius
+  ClosetedSkeletonGH:
+  - rscadd: Alamo has been revamped to be more RP friendly and efficient
+  - bugfix: fixes soder machines costing money
+  - bugfix: fixes not being able to see out of the front of the almamo
+  Dikozda:
+  - rscadd: Drones can now place acid wells.
+  Naaanii:
+  - rscdel: Removes shoulder mount from research gacha.
+  Neocloudy:
+  - balance: The overheating damage for Normal Synthetics is now 5-16
+  - balance: The overheating damage for Early Synthetics is now 7-19
+  - rscadd: Synthetics may spark when overheating from severe damage. They will also
+      stammer when overheating.
+  coldironwarrior:
+  - balance: antigas grenade sets in FC and SL vendors; 24 points for a set of four
+      grenades
+  - bugfix: beginner tutorial sheets updated
+  lbnesquik:
+  - imageadd: added pump animation for trench gun
+  - imageadd: added firing animation for M412LI, and Minimi
+  - bugfix: fixed ICC mg mags not having the right name
+  - bugfix: fixed ICC mg mags not having the right caliber
+  - bugfix: water is now scannable by medical scanners
+2024-03-15:
+  Lumipharon:
+  - code_imp: Cleaned up some object and flare code
+  - qol: Certain minimap blips such as important structures or defibbable marines
+      layer over other blips
+  - bugfix: Queen screech will no longer go through z-levels
+  - balance: 'Campaign: SOM medics now always have 2 RR injectors in their helmets'
+  - bugfix: 'Campaign: Fixed a few mismatched portraits when calling in firesupport'
+  - qol: 'Campaign: Loadout screen automatically opens on spawn where required'
+  - qol: 'Campaign: Respawn window automatically opens when your respawn timer is
+      up, or when the rapid reserve asset is used'
+  Notamaniac:
+  - rscadd: Adds say tech hints
+  coldironwarrior:
+  - qol: re-organizes theseus hangar and staff officer quarters
+  - qol: style hats now mask hairs behind them so they look like they're layered on
+      your head properly
+  - imageadd: resprites mimir module worn sprite
+2024-03-16:
+  Barnet2:
+  - bugfix: Campaign mortar acid smoke is opaque
+  DeltaFire15:
+  - bugfix: Certain xenomorphs can no longer regenerate past their plasma cap under
+      specific circumstances.
+  - bugfix: Railgun factory parts now give you their respective ammunition types instead
+      of only standard canisters.
+  - spellcheck: AMR factory parts now can be differentiated by name as opposed to
+      by feeling.
+  Kapu1178:
+  - bugfix: Facehuggers will now prioritize the nearest marine, preferring cardinal
+      directions.
+  Lumipharon:
+  - balance: 'Campaign: reduced mission time for ASAT and both fire support missions'
+  - balance: 'Campaign: Increased number of objectives required for minor victory
+      for fire support missions'
+  - balance: 'Campaign: Killing mechs in mech war awards a small number of capture
+      points'
+  - balance: 'Campaign: Fire support binos require line of sight, but can now target
+      any atom'
+  - bugfix: fixed flak guns being vended incorrectly
+  - qol: Antigas smoke is more visible
+  blackdav123:
+  - balance: GL-81 can now fit magnetic harness and rail flashlight.
+  lbnesquik:
+  - qol: Added a little description to the medivac bed in the corpsman vendor.
+  - spellcheck: Corrected a typo of patiant to patient
+  - code_imp: Removed a now useless verb
+2024-03-17:
+  AzonStarfall:
+  - rscadd: Expanded the Arachne vehicle bay.
+  - rscdel: Removed the Arachne flight control station, to make room for the vehicle
+      bay.
+2024-03-18:
+  Lumipharon:
+  - bugfix: fixed an issue with airburst type projectiles
+  - bugfix: Fix hefa nades
+  - bugfix: Fix piercing ammo not piercing if your main target is adjacent to you
+  - bugfix: Fix tank blowing itself up with the main cannon
+2024-03-19:
+  Lumipharon:
+  - balance: 'Campaign: Reduced game and pregame delays on most missions'
+  - balance: 'Campaign: NT Base Rescue no longer allows firesupport for TGMC'
+  - balance: 'Campaign: NT Base Rescue provides SOM with automatic militia support'
+  - balance: 'Campaign: NT Base Rescue reduced SOM mech count to 4'
+  - balance: 'Campaign: SOM have to destroy 6 objectives to win on Supply Raid'
+2024-03-20:
+  Kapu1178:
+  - bugfix: Huggers *actually* prioritize orthogonal marines over diagonal marines.
+  Notamaniac:
+  - bugfix: Iguana ammo boxes now properly delete themselves when they perform a reload
+      that uses up all their ammo
+  lbnesquik:
+  - code_imp: Nukes all references to the M56D
+  - qol: Add the evac timer to the AI status tab
+  - qol: Added the word flak to fk-88 in req
+2024-03-21:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed some loot tables being wrong from SOM initiated combat
+      patrol/mech war missions'
+  Notamaniac:
+  - bugfix: Spamming the Iguana remote will no longer cause massive chat spam when
+      people speak to the Iguana
+2024-03-22:
+  Lumipharon:
+  - balance: Increased volkite charger deflag chance slightly
+  - balance: 'Campaign: Reduced the loadout cost of some volkite weapons'
+  - balance: 'Campaign: Melee special attacks use less stamina, and can be used at
+      0 stamina loss'
+  - balance: 'Campaign: Axe sweep steps towards you target before sweeping'
+  - bugfix: Fixed a few minor bugs with melee special attacks
+  - balance: Mech explosive armour modules increased bomb armour by 25 instead of
+      50
+  - qol: 'Campaign: fixed the timing of the autobalance prompt'
+  - balance: Very slight increase in time for ASAT and firesupport missions
+  Xander3359:
+  - code_imp: cleans species.dm
+  - qol: Roomba tries to restock elligible items
+2024-03-23:
+  AusarAtkin:
+  - spellcheck: fixed BR-8 mag typos and clarify some bullet with same caliber.
+  - spellcheck: fixed typo on Shield module in SL loadout.
+  Barnet2:
+  - code_imp: Jungle walls spawn weedable grass when hit with a devastating explosion
+  - balance: Tank's LTB cannon no longer has devastation.
+  - balance: Tank's integrity reduced from 1250 to 900 due to armor working again
+  - rscdel: Removed duplicate intel computers on Gelida IV
+  Lumipharon:
+  - bugfix: fixed mech UI size
+  - qol: Gun codex entries now state what weapon skill applies to them
+  - balance: 'Campaign: Updated a few job slot limits for consistancy'
+  - bugfix: fixed job slots not being closed correctly in some cases
+  - balance: Lava will actually melt objects now
+  - qol: Mech actuator overload has a hotkey
+  - qol: Added a mech reload hotkey
+  - bugfix: 'Campaign: Fixed an issue with towers on Orion Outpost and Patrick''s
+      Rest'
+  - bugfix: 'Campaign: Fixed the sword lunge ability not properly doing damage'
+  - bugfix: fixed sentries being unable to shoot targets on their own turf
+  - bugfix: Fixed energy sentries not shooting through glass
+  Notamaniac:
+  - bugfix: Fixes view getting bugged if you regress/caste swap while zoomed in
+  XElectricX:
+  - bugfix: Welding goggles and HUD glasses work again. Night vision module req order
+      spawns the actual module.
+  Xander3359:
+  - bugfix: Plasma cutter is no longer spammed by unreadable balloon alerts
+  - code_imp: adds isplasmacutter(I)
+  coldironwarrior:
+  - balance: gave more jackets storage slots
+  lbnesquik:
+  - qol: Add a button for the AI to open the req console directly
+  - rscadd: Added FC vendor to valhalla
+  - qol: Added the ASRS supply tablet to req
+  - qol: added categories to the hypersleep bay console
+2024-03-24:
+  Lumipharon:
+  - balance: 'Campaign: Gun perks now unlock certain weapon and ammo options in addition
+      to their existing effects'
+  - bugfix: 'Campaign: Fixed a missing overclocked option for heavy shielded armour
+      for SOM standards'
+  - rscadd: Reworked plasma weapons in addition to a new plasma SMG
+  - balance: 'Campaign: Plasma weapons are available via unlock or perk'
+  blackdav123:
+  - rscadd: Added modulars to Jungle Outpost
+  coldironwarrior:
+  - rscadd: sulaco vehicle bay, next to the TAD and mech workshop
+2024-03-25:
+  XElectricX:
+  - bugfix: Welding goggles no longer work in reverse.
+  coldironwarrior:
+  - imagedel: deletes unused sprites from the "obj" folder
+  - imagedel: deleted the "unused" folder of dmis
+2024-03-26:
+  Lumipharon:
+  - bugfix: fixed lava trying to burn indestructable things forever
+  blackdav123:
+  - balance: Removed outdoor plat miner from Icy Caves
+2024-03-27:
+  DeltaFire15:
+  - qol: Pheromone strength in the statpanel now shows the actual value next to the
+      approximate category.
+  - spellcheck: Corrected a code comment about phero brackets which was quite outdated.
+  Lumipharon:
+  - bugfix: fixed IFF shrap on airburst weapons
+  - bugfix: AMR/fire support bino lase no longer layers under clothing and such
+  - balance: M40 HSDP smoke grenade smoke radius reduced to 6 from 7
+  - bugfix: fixed a few instances where object damage was incorrectly applying armour
+      multipliers when it shouldn't
+  - bugfix: Mechs and tanks properly respect target def zone
+  blackdav123:
+  - balance: Adds disk sets to Gelida IV
+  lbnesquik:
+  - bugfix: fix the hypersleep dispense all not working
+  - bugfix: fix the drug category not displaying
+  - rscadd: Added the cradle to valhala and debugabus
+  - qol: Changed the cradle sprites
+  - qol: helmets, armor and suits show their equipped modules on examine
+2024-03-28:
+  Xander3359:
+  - code_imp: flags now all follow the formatting of flagname_flags
+2024-03-29:
+  Barnet2:
+  - qol: The toxin reagent from QC+, Peri+ and Nanoblood now shows on medical scanners.
+  Lumipharon:
+  - code_imp: Some performance improvements to campaign loadout UI
+  Pariah919:
+  - rscadd: Added new Sniper and Shotgun sentry to the marine arsenal, as well as
+      new sentry sprites.
+  blackdav123:
+  - bugfix: Fills in space tile on Theseus
+2024-03-30:
+  Aporhtonoma:
+  - rscadd: Puppets have now the ability to rest and unrest when puppeter does
+  - rscadd: puppets have now the ability to sleep and resist when puppeter does
+  - rscadd: Puppets have now the ability to jump when puppeter does
+  Barnet2:
+  - rscdel: Removes the ability to vote for the current map during groundmap vote
+  - admin: R_POLLS rank used for Server Poll Management
+  Lumipharon:
+  - qol: 'Campaign: Improved loadout UI and new icons'
+  Xander3359:
+  - bugfix: fix the HSG_102 that spawn on maps having the wrong item path
+  blackdav123:
+  - bugfix: Fixed a few misplaced area tiles on Gelida caves
+  lbnesquik:
+  - code_imp: Removes some redundant code
+  - rscdel: Removed factory medpacks
+2024-03-31:
+  Barnet2:
+  - balance: Boiler glob CD increased by 5
+  - balance: Boiler lance has a range of 25, the same distance as it's horizontal
+      zoom range.
+  - rscadd: Whistle makes every human in range do the *warcry emote
+  - balance: Bull now has Boiler's zoom ability
+  - balance: Bull is now has a mob size of big
+  - qol: Sulaco generators and SMES are now preset
+  - balance: Warlock psy blast AOE no longer damages barricades and their subtypes
+  - balance: Warlock psy blast no longer has knockback
+  - balance: Warlock psy blast now has IFF, going through teammates
+  Lumipharon:
+  - balance: Made SMG and rifle more expensive
+  - bugfix: Fixed plasma cannon starting with an incorrect ammo type set
+  - bugfix: 'Campaign: Fixed a missing whitelist requirement for Surt'
+  Naaanii:
+  - rscdel: Removed RR launcher, AT gun and it's ammo from regular Valhalla vendors.
+  - rscadd: Added the RR launcher, AT gun and it's ammo to the Valhalla req vendors.
+  - rscadd: Added the small HMG magazines to the regular Valhalla vendors.
+  Notamaniac:
+  - refactor: Robotic Cradle was refactored
+  - qol: You can now eject people just by clicking
+  - balance: There are no more skill requirements to putting yourself or someone into
+      the cradle
+  - bugfix: Synths can now place themselves into the cradle
+  - bugfix: Moths can no longer use the cradle by getting grabbed and put in (or other
+      creatures like sectoids)
+  - bugfix: Robot and synth medical records don't get updated anymore when using the
+      cradle.
+  - bugfix: You can no longer start a repair, get ejected, then hop back in and get
+      repaired from the earlier unfinished operation.
+  PestoVerde322:
+  - qol: The TE powerpack is now available in the default, Crash and Valhalla Automated
+      weapon rack
+  RipGrayson:
+  - bugfix: Fixed a few incorrect icons in our walls.
+  - bugfix: You can no longer perma trap people inside hull walls on some BR modulars
+      as wraith.
+  - bugfix: Corrected an incorrect icon for mounted lasers on Oscar Outpost.
+  - bugfix: Removed an incorrect merge conflict marker on Jungle Outpost.
+  - bugfix: Fixed the tank being unable to leave the dropship on Delta.
+  - bugfix: Fixed a situation on Sulaco where transport officers could be stuck in
+      mech crew headquarters.
+  - bugfix: Adjusted some IDs on the tank vehicle bay so that they were no longer
+      bugged.
+  - imageadd: Ported some carpets from TG for mapper use.
+  - imageadd: Ported some glass floors from TG for mapper use.
+  - imageadd: Ported the chasm sprites from TG.
+  - imageadd: Created a new set of walls for basalt terrain.
+  - imageadd: Created two new autosmoothing variations for asphalt.
+  - imageadd: Added error signs to many icon files, for easier debugging.
+  - imagedel: Deleted some unused carpet icons that have been obsolete since the new
+      smoothing system.
+  Xander3359:
+  - bugfix: Touching the alamo console as a xeno stops takeoff
+  lbnesquik:
+  - rscadd: Add OB shots to round end statistics
+  novaepee:
+  - rscadd: Pillar of Spring's Vehicle Bay
+  - rscadd: Change POS's TO and PO's bunk
+  - rscadd: expand PoS' req
+  - rscadd: Move PoS' OB to be closer to CIC. Also add brig.
+  - rscadd: move PoS' droppod to where mech is and vice versa
+  - rscadd: move PoS' tadpole to where briefing is and vice versa

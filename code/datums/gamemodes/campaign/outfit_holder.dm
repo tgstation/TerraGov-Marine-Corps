@@ -25,7 +25,7 @@
 			if(loadout_item.item_slot != slot)
 				continue
 			if(loadout_item.loadout_item_flags & LOADOUT_ITEM_DEFAULT_CHOICE)
-				equipped_things["[slot]"] = loadout_item
+				equip_loadout_item(loadout_item)
 			if(loadout_item.loadout_item_flags & LOADOUT_ITEM_ROUNDSTART_OPTION)
 				available_list["[loadout_item.item_slot]"] += loadout_item
 				continue
@@ -52,19 +52,29 @@
 
 ///Adds a new loadout_item to the available list
 /datum/outfit_holder/proc/unlock_new_option(datum/loadout_item/new_item)
-	if(new_item in available_list["[new_item.item_slot]"])
-		return FALSE
-	available_list["[new_item.item_slot]"] += new_item
+	available_list["[new_item.item_slot]"] |= new_item
 	purchasable_list["[new_item.item_slot]"] -= new_item
-	return TRUE
 
 ///Adds a new loadout_item to the purchasable list
 /datum/outfit_holder/proc/allow_new_option(datum/loadout_item/new_item)
+	if(!istype(new_item))
+		return
 	if(new_item in purchasable_list["[new_item.item_slot]"])
 		return
 	if(new_item in available_list["[new_item.item_slot]"])
 		return
 	purchasable_list["[new_item.item_slot]"] += new_item
+
+///Removes loadout_item entirely from being equipped
+/datum/outfit_holder/proc/remove_option(datum/loadout_item/removed_item)
+	if(!istype(removed_item))
+		return
+	var/removed_item_slot = "[removed_item.item_slot]"
+	available_list[removed_item_slot] -= removed_item
+	purchasable_list[removed_item_slot] -= removed_item
+	if(equipped_things[removed_item_slot] == removed_item)
+		equip_loadout_item(available_list[removed_item_slot][1])
+		return TRUE
 
 ///Tries to add a datum if valid
 /datum/outfit_holder/proc/attempt_equip_loadout_item(datum/loadout_item/new_item)
@@ -76,39 +86,39 @@
 ///Actually adds an item to a loadout
 /datum/outfit_holder/proc/equip_loadout_item(datum/loadout_item/new_item)
 	var/slot_bit = "[new_item.item_slot]"
-	loadout_cost -= equipped_things[slot_bit].purchase_cost
+	loadout_cost -= equipped_things[slot_bit]?.purchase_cost
 	equipped_things[slot_bit] = new_item //adds the datum
-	loadout_cost += equipped_things[slot_bit].purchase_cost
+	loadout_cost += equipped_things[slot_bit]?.purchase_cost
 
 	switch(new_item.item_slot) //adds it to the loadout itself
 		if(ITEM_SLOT_OCLOTHING)
-			loadout.wear_suit = new_item.item_typepath
+			loadout.wear_suit = new_item?.item_typepath
 		if(ITEM_SLOT_ICLOTHING)
-			loadout.w_uniform = new_item.item_typepath
+			loadout.w_uniform = new_item?.item_typepath
 		if(ITEM_SLOT_GLOVES)
-			loadout.gloves = new_item.item_typepath
+			loadout.gloves = new_item?.item_typepath
 		if(ITEM_SLOT_EYES)
-			loadout.glasses = new_item.item_typepath
+			loadout.glasses = new_item?.item_typepath
 		if(ITEM_SLOT_EARS)
-			loadout.ears = new_item.item_typepath
+			loadout.ears = new_item?.item_typepath
 		if(ITEM_SLOT_MASK)
-			loadout.mask = new_item.item_typepath
+			loadout.mask = new_item?.item_typepath
 		if(ITEM_SLOT_HEAD)
-			loadout.head = new_item.item_typepath
+			loadout.head = new_item?.item_typepath
 		if(ITEM_SLOT_FEET)
-			loadout.shoes = new_item.item_typepath
+			loadout.shoes = new_item?.item_typepath
 		if(ITEM_SLOT_ID)
-			loadout.id = new_item.item_typepath
+			loadout.id = new_item?.item_typepath
 		if(ITEM_SLOT_BELT)
-			loadout.belt = new_item.item_typepath
+			loadout.belt = new_item?.item_typepath
 		if(ITEM_SLOT_BACK)
-			loadout.back = new_item.item_typepath
+			loadout.back = new_item?.item_typepath
 		if(ITEM_SLOT_R_POCKET)
-			loadout.r_store = new_item.item_typepath
+			loadout.r_store = new_item?.item_typepath
 		if(ITEM_SLOT_L_POCKET)
-			loadout.l_store = new_item.item_typepath
+			loadout.l_store = new_item?.item_typepath
 		if(ITEM_SLOT_SUITSTORE)
-			loadout.suit_store = new_item.item_typepath
+			loadout.suit_store = new_item?.item_typepath
 		else
 			CRASH("Invalid item slot specified [slot_bit]")
 	return TRUE

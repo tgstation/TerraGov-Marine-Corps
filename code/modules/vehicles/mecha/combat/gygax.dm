@@ -27,6 +27,9 @@
 /datum/action/vehicle/sealed/mecha/mech_overload_mode
 	name = "Toggle leg actuators overload"
 	action_icon_state = "mech_overload_off"
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_MECHABILITY_TOGGLE_ACTUATORS,
+	)
 
 /datum/action/vehicle/sealed/mecha/mech_overload_mode/action_activate(trigger_flags, forced_state = null)
 	if(!owner || !chassis || !(owner in chassis.occupants))

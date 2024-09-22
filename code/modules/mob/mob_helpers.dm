@@ -102,8 +102,12 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	// you can only miss if your target is standing and not restrained
 	if(!target.buckled && !target.lying_angle)
 		var/miss_chance = 10
-		if (zone in GLOB.base_miss_chance)
+		if(zone in GLOB.base_miss_chance)
 			miss_chance = GLOB.base_miss_chance[zone]
+		var/list/mod_list = list()
+		SEND_SIGNAL(target, MOB_GET_MISS_CHANCE_MOD, mod_list)
+		for(var/num in mod_list)
+			miss_chance += num
 		miss_chance = max(miss_chance + miss_chance_mod, 0)
 		if(prob(miss_chance))
 			if(prob(70))
@@ -252,10 +256,10 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 
 
 /mob/proc/abiotic(full_body)
-	if(full_body && ((l_hand && !( l_hand.flags_item & ITEM_ABSTRACT )) || (r_hand && !( r_hand.flags_item & ITEM_ABSTRACT ))))
+	if(full_body && ((l_hand && !( l_hand.item_flags & ITEM_ABSTRACT )) || (r_hand && !( r_hand.item_flags & ITEM_ABSTRACT ))))
 		return TRUE
 
-	if((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )))
+	if((src.l_hand && !( src.l_hand.item_flags & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.item_flags & ITEM_ABSTRACT )))
 		return TRUE
 
 	return FALSE
@@ -345,30 +349,32 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	return BODYTEMP_NORMAL
 
 
-/proc/notify_ghost(mob/dead/observer/O, message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of a single ghosts.
+/proc/notify_ghost(mob/dead/observer/ghost, message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of a single ghosts.
+	if(!ghost)
+		return
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
 		return
-	if(!O.client)
+	if(!ghost.client)
 		return
 	var/track_link
 	if (source && action == NOTIFY_ORBIT)
-		track_link = " <a href='byond://?src=[REF(O)];track=[REF(source)]'>(Follow)</a>"
+		track_link = " <a href='byond://?src=[REF(ghost)];track=[REF(source)]'>(Follow)</a>"
 	if (source && action == NOTIFY_JUMP)
 		var/turf/T = get_turf(source)
-		track_link = " <a href='byond://?src=[REF(O)];jump=1;x=[T.x];y=[T.y];z=[T.z]'>(Jump)</a>"
+		track_link = " <a href='byond://?src=[REF(ghost)];jump=1;x=[T.x];y=[T.y];z=[T.z]'>(Jump)</a>"
 	var/full_enter_link
 	if (enter_link)
-		full_enter_link = "<a href='byond://?src=[REF(O)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
-	to_chat(O, "[(extra_large) ? "<br><hr>" : ""][span_deadsay("[message][(enter_link) ? " [full_enter_link]" : ""][track_link]")][(extra_large) ? "<hr><br>" : ""]")
+		full_enter_link = "<a href='byond://?src=[REF(ghost)];[enter_link]'>[(enter_text) ? "[enter_text]" : "(Claim)"]</a>"
+	to_chat(ghost, "[(extra_large) ? "<br><hr>" : ""][span_deadsay("[message][(enter_link) ? " [full_enter_link]" : ""][track_link]")][(extra_large) ? "<hr><br>" : ""]")
 	if(ghost_sound)
-		SEND_SOUND(O, sound(ghost_sound, volume = notify_volume, channel = CHANNEL_NOTIFY))
+		SEND_SOUND(ghost, sound(ghost_sound, volume = notify_volume, channel = CHANNEL_NOTIFY))
 	if(flashwindow)
-		window_flash(O.client)
+		window_flash(ghost.client)
 
 	if(!source)
 		return
 
-	var/atom/movable/screen/alert/notify_action/A = O.throw_alert("[REF(source)]_notify_action", /atom/movable/screen/alert/notify_action)
+	var/atom/movable/screen/alert/notify_action/A = ghost.throw_alert("[REF(source)]_notify_action", /atom/movable/screen/alert/notify_action)
 	if(!A)
 		return
 	if (header)
@@ -400,10 +406,10 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
 		return
 	for(var/i in GLOB.observer_list)
-		var/mob/dead/observer/O = i
-		if(!O.client)
+		var/mob/dead/observer/ghost = i
+		if(!ghost.client)
 			continue
-		notify_ghost(O, message, ghost_sound, enter_link, enter_text, source, alert_overlay, action, flashwindow, ignore_mapload, ignore_key, header, notify_volume, extra_large)
+		notify_ghost(ghost, message, ghost_sound, enter_link, enter_text, source, alert_overlay, action, flashwindow, ignore_mapload, ignore_key, header, notify_volume, extra_large)
 
 /**
  * Get the list of keywords for policy config

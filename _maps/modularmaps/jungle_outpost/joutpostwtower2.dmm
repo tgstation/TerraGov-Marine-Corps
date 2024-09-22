@@ -1,0 +1,523 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aB" = (
+/obj/structure/bed/stool,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/grimy,
+/area/campaign/jungle_outpost/outpost/bar)
+"cS" = (
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/closed/wall/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"di" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"dz" = (
+/obj/structure/stairs/seamless/edge_vert{
+	dir = 1
+	},
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"eU" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"fj" = (
+/obj/structure/platform,
+/turf/closed/wall/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"fT" = (
+/turf/open/floor/cult,
+/area/campaign/jungle_outpost/outpost/bar)
+"go" = (
+/obj/structure/platform{
+	dir = 9
+	},
+/turf/closed/wall/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"ji" = (
+/obj/structure/table/reinforced,
+/obj/machinery/chem_dispenser/soda{
+	pixel_y = 32
+	},
+/turf/open/floor/grimy,
+/area/campaign/jungle_outpost/outpost/bar)
+"jA" = (
+/obj/structure/cable,
+/obj/machinery/power/apc/drained,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"mp" = (
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"mP" = (
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"mY" = (
+/obj/structure/platform{
+	dir = 6
+	},
+/turf/closed/wall/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"na" = (
+/obj/structure/window/framed/wood,
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"qT" = (
+/obj/machinery/door/window,
+/turf/open/floor/grimy,
+/area/campaign/jungle_outpost/outpost/bar)
+"rp" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/cult/clock,
+/area/campaign/jungle_outpost/outpost/bar)
+"tG" = (
+/obj/structure/platform_decoration{
+	dir = 9
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"tS" = (
+/obj/structure/stairs/seamless/edge_vert,
+/turf/open/floor/plating/ground/dirtgrassborder2{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"uS" = (
+/obj/structure/table/wood/gambling,
+/obj/item/toy/dice/d20,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"ve" = (
+/obj/machinery/vending/boozeomat,
+/turf/open/floor/grimy,
+/area/campaign/jungle_outpost/outpost/bar)
+"wB" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 4
+	},
+/turf/open/floor/cult/clock,
+/area/campaign/jungle_outpost/outpost/bar)
+"xf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"zb" = (
+/turf/open/floor/grimy,
+/area/campaign/jungle_outpost/outpost/bar)
+"zi" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 4
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Ax" = (
+/obj/structure/platform_decoration{
+	dir = 6
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"AH" = (
+/obj/structure/bed/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"AT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Bu" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"BH" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Ed" = (
+/obj/structure/platform{
+	dir = 1
+	},
+/turf/closed/wall/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Ez" = (
+/obj/structure/device/piano/full,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"ET" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"FU" = (
+/turf/closed/wall/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Ge" = (
+/obj/structure/stairs/edge,
+/turf/open/floor/plating/ground/dirtgrassborder2,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Gj" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 1
+	},
+/turf/open/floor/cult/clock,
+/area/campaign/jungle_outpost/outpost/bar)
+"GX" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_y = 4
+	},
+/obj/effect/spawner/random/misc/cigar,
+/turf/open/floor/grimy,
+/area/campaign/jungle_outpost/outpost/bar)
+"Hm" = (
+/obj/machinery/door/airlock/colony/medical/hydroponics{
+	dir = 1
+	},
+/obj/structure/platform,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"HO" = (
+/obj/structure/platform_decoration{
+	dir = 10
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"HS" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/shaker,
+/turf/open/floor/grimy,
+/area/campaign/jungle_outpost/outpost/bar)
+"Jp" = (
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Jv" = (
+/obj/structure/bed/chair/wood/normal,
+/turf/open/floor/cult/clock,
+/area/campaign/jungle_outpost/outpost/bar)
+"KV" = (
+/obj/structure/cable,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Nx" = (
+/obj/structure/bed/chair/wood/normal{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Oe" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
+/turf/open/floor/cult/clock,
+/area/campaign/jungle_outpost/outpost/bar)
+"Og" = (
+/obj/structure/flora/jungle/bush,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Oi" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"Ok" = (
+/obj/structure/platform{
+	dir = 5
+	},
+/turf/closed/wall/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"OY" = (
+/obj/structure/bed/chair/wood/normal,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Pv" = (
+/obj/structure/window/framed/wood,
+/obj/structure/platform{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"QQ" = (
+/obj/structure/platform{
+	dir = 8
+	},
+/turf/closed/wall/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"QX" = (
+/obj/structure/flora/jungle/grass/thin,
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 8
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"RP" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/cup/glass/drinkingglass{
+	pixel_y = 4
+	},
+/turf/open/floor/grimy,
+/area/campaign/jungle_outpost/outpost/bar)
+"So" = (
+/obj/machinery/door/airlock/multi_tile/mainship/generic,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"SG" = (
+/obj/effect/landmark/campaign_structure/phoron_crate,
+/turf/open/floor/cult,
+/area/campaign/jungle_outpost/outpost/bar)
+"SH" = (
+/obj/structure/bed/chair/wood/normal,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Tn" = (
+/obj/structure/bed/stool,
+/turf/open/floor/grimy,
+/area/campaign/jungle_outpost/outpost/bar)
+"TB" = (
+/obj/structure/platform{
+	dir = 10
+	},
+/turf/closed/wall/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Ve" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/misc/cigarettes,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+"Wr" = (
+/obj/structure/table/wood,
+/turf/open/floor/cult/clock,
+/area/campaign/jungle_outpost/outpost/bar)
+"Xm" = (
+/turf/open/floor/plating/ground/dirtgrassborder2/corner{
+	dir = 1
+	},
+/area/campaign/jungle_outpost/ground/jungle/west)
+"XS" = (
+/obj/structure/platform_decoration{
+	dir = 5
+	},
+/turf/open/ground/grass/weedable,
+/area/campaign/jungle_outpost/ground/jungle/west)
+"YX" = (
+/obj/structure/table/wood,
+/obj/effect/spawner/random/food_or_drink/drink_cans,
+/turf/open/floor/wood,
+/area/campaign/jungle_outpost/outpost/bar)
+
+(1,1,1) = {"
+mp
+Ax
+go
+QQ
+QQ
+QQ
+na
+na
+QQ
+QQ
+QQ
+TB
+tG
+Oi
+"}
+(2,1,1) = {"
+mp
+go
+FU
+zb
+RP
+aB
+Jp
+Jp
+AT
+Jp
+Jp
+FU
+TB
+mp
+"}
+(3,1,1) = {"
+mp
+Ed
+ve
+zb
+RP
+Tn
+Jp
+fT
+wB
+fT
+Jp
+Jp
+fj
+eU
+"}
+(4,1,1) = {"
+QX
+Ed
+ji
+zb
+GX
+Tn
+Jp
+Jv
+Oe
+Gj
+Jp
+Jp
+Hm
+Ge
+"}
+(5,1,1) = {"
+mP
+Ed
+HS
+qT
+RP
+Tn
+Jp
+fT
+rp
+fT
+Jp
+BH
+fj
+Xm
+"}
+(6,1,1) = {"
+mP
+Ed
+xf
+Jp
+Jp
+Jp
+Jp
+Jp
+Jp
+Jp
+SH
+uS
+fj
+Oi
+"}
+(7,1,1) = {"
+mP
+Ed
+jA
+fT
+wB
+SG
+Jp
+fT
+wB
+fT
+Jp
+ET
+fj
+Og
+"}
+(8,1,1) = {"
+tS
+So
+KV
+Jv
+Oe
+Gj
+Jp
+Jv
+Wr
+Gj
+Jp
+di
+fj
+mp
+"}
+(9,1,1) = {"
+dz
+KV
+KV
+fT
+rp
+fT
+Jp
+fT
+rp
+fT
+Jp
+Ez
+fj
+mp
+"}
+(10,1,1) = {"
+zi
+Ed
+Jp
+Jp
+Jp
+Jp
+Jp
+Jp
+Jp
+Jp
+Jp
+AH
+fj
+mp
+"}
+(11,1,1) = {"
+mp
+Ok
+FU
+SH
+Ve
+Nx
+Jp
+Jp
+OY
+YX
+Bu
+FU
+mY
+mp
+"}
+(12,1,1) = {"
+mp
+HO
+Ok
+cS
+cS
+cS
+Pv
+Pv
+cS
+cS
+cS
+mY
+XS
+Oi
+"}

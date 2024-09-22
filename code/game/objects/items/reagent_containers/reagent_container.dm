@@ -12,12 +12,17 @@
 	throw_speed = 1
 	throw_range = 5
 	var/init_reagent_flags
-	var/amount_per_transfer_from_this = 5
 	///Used to adjust how many units are transfered/injected in a single click
+	var/amount_per_transfer_from_this = 5
+	///Used to declare what we can change `amount_per_transfer_from_this` to be
 	var/possible_transfer_amounts = list(5,10,15,25,30)
+	///How much chemicals our container can hold
 	var/volume = 30
-	var/liquifier = FALSE //Can liquify/grind pills without needing fluid to dissolve.
+	///Can liquify/grind pills without needing fluid to dissolve.
+	var/liquifier = FALSE
 	var/list/list_reagents
+	///Whether we can restock this in a vendor without it having its starting reagents
+	var/free_refills = TRUE
 
 /obj/item/reagent_containers/Initialize(mapload)
 	. = ..()

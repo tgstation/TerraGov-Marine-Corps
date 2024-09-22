@@ -1,11 +1,11 @@
 /obj/item/paper/carbon
 	name = "paper"
 	icon_state = "paper_stack"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
-	item_state = "paper"
+	worn_icon_state = "paper"
 	var/copied = 0
 	var/iscopy = 0
 

@@ -112,7 +112,7 @@
 	loot = list(
 		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 26,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 26,
-		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 26,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 26,
 		/obj/item/reagent_containers/food/snacks/wrapped/proteinbar = 12,
 		/obj/item/reagent_containers/food/snacks/candy = 5,
 		/obj/item/reagent_containers/food/snacks/enrg_bar = 5,
@@ -126,7 +126,7 @@
 		/obj/item/reagent_containers/food/snacks/wrapped/proteinbar = 10,
 		/obj/item/reagent_containers/food/snacks/wrapped/booniebars = 5,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 5,
-		/obj/item/reagent_containers/food/snacks/wrapped/barcardine = 5,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 5,
 	)
 
 /obj/effect/spawner/random/food_or_drink/cheesewedge
@@ -166,7 +166,7 @@
 		/obj/item/tool/kitchen/utensil/knife = 20,
 		/obj/item/tool/kitchen/utensil/pknife = 20,
 		/obj/item/tool/kitchen/rollingpin = 10,
-		/obj/item/tool/kitchen/tray = 5,
+		/obj/item/storage/kitchen_tray = 5,
 	)
 
 /obj/effect/spawner/random/food_or_drink/drink_cans
@@ -257,7 +257,7 @@
 		/obj/item/reagent_containers/food/snacks/sosjerky,
 		/obj/item/reagent_containers/food/snacks/donkpocket,
 		/obj/item/reagent_containers/food/snacks/wrapped/booniebars,
-		/obj/item/reagent_containers/food/snacks/wrapped/barcardine,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine,
 		/obj/item/reagent_containers/food/snacks/wrapped/chunk,
 		/obj/item/reagent_containers/food/snacks/lollipop,
 		/obj/item/reagent_containers/food/snacks/pastries/appletart,
@@ -315,7 +315,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/sodawater,
 		/obj/item/reagent_containers/food/drinks/flask/barflask,
 		/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
-		/obj/item/reagent_containers/food/drinks/drinkingglass,
+		/obj/item/reagent_containers/cup/glass/drinkingglass,
 		/obj/item/reagent_containers/food/drinks/ice,
 		/obj/item/reagent_containers/food/drinks/bottle/melonliquor,
 		/obj/item/reagent_containers/food/drinks/bottle/bluecuracao,

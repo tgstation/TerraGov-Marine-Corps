@@ -62,8 +62,8 @@
 /datum/job/fallen/marine/leader
 	title = ROLE_FALLEN(SQUAD_LEADER)
 	skills_type = /datum/skills/sl
-	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
-	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP)
+	access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
+	minimal_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LEADER, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_TADPOLE)
 	outfit = /datum/outfit/job/marine/leader
 
 /datum/job/fallen/marine/mechpilot
@@ -71,7 +71,7 @@
 	skills_type = /datum/skills/mech_pilot
 	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC)
 	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_MECH, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	outfit = /datum/outfit/job/command/mech_pilot
+	outfit = /datum/outfit/job/command/mech_pilot/fallen
 
 /datum/job/fallen/marine/fieldcommander
 	title = ROLE_FALLEN(FIELD_COMMANDER)
@@ -107,3 +107,4 @@
 
 /datum/job/fallen/xenomorph
 	title = ROLE_FALLEN(ROLE_XENOMORPH)
+	faction = FACTION_XENO

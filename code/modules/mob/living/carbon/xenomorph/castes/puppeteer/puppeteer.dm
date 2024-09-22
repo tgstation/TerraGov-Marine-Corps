@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/puppeteer
-	caste_base_type = /mob/living/carbon/xenomorph/puppeteer
+	caste_base_type = /datum/xeno_caste/puppeteer
 	name = "Puppeteer"
 	desc = "A xenomorph of terrifying display, it has a tail adorned with needles that drips a strange chemical and elongated claws."
 	icon = 'icons/Xeno/castes/puppeteer.dmi'
@@ -8,7 +8,6 @@
 	maxHealth = 250
 	plasma_stored = 350
 	pixel_x = -16
-	old_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_NORMAL
 	drag_delay = 5 //pulling a big dead xeno is hard
@@ -23,5 +22,5 @@
 	SIGNAL_HANDLER
 	if(target.stat == DEAD)
 		return
-	plasma_stored = min(plasma_stored + round(damage / 0.8), xeno_caste.plasma_max)
+	gain_plasma(floor(damage / 0.8))
 	SEND_SIGNAL(src, COMSIG_PUPPET_CHANGE_ALL_ORDER, PUPPET_ATTACK, target) //we are on harm intent so it probably means we want to kill the target

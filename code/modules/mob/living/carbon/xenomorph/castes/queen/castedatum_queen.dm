@@ -11,17 +11,20 @@
 	wound_type = "queen" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 28
 
 	// *** Speed *** //
 	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 1200
-	plasma_gain = 70
+	plasma_gain = 90
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 600
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.8
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -56,6 +59,7 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/xeno_action/lay_egg,
@@ -95,6 +99,7 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/xeno_action/lay_egg,

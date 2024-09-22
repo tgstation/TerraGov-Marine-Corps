@@ -278,36 +278,50 @@
 
 /obj/machinery/sleeper/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.
 		var/obj/item/healthanalyzer/J = I
 		J.attack(occupant, user)
 		return
 
+/obj/machinery/sleeper/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	. = ..()
+	if(.)
+		return
 	if(isxeno(user))
 		return
-
+	if(machine_stat & (NOPOWER|BROKEN))
+		to_chat(user, span_notice("\ [src] is non-functional!"))
+		return
 	if(occupant)
-		to_chat(user, span_notice("The sleeper is already occupied!"))
+		to_chat(user, span_notice("\ [src] is already occupied!"))
 		return
 
+	var/mob/grabbed_mob
 
-	if(!istype(I, /obj/item/grab))
+	if(ismob(grab.grabbed_thing))
+		grabbed_mob = grab.grabbed_thing
+	else if(istype(grab.grabbed_thing,/obj/structure/closet/bodybag/cryobag))
+		var/obj/structure/closet/bodybag/cryobag/cryobag = grab.grabbed_thing
+		if(!cryobag.bodybag_occupant)
+			to_chat(user, span_warning("The stasis bag is empty!"))
+			return
+		grabbed_mob = cryobag.bodybag_occupant
+		cryobag.open()
+		user.start_pulling(grabbed_mob)
+	if(!grabbed_mob)
 		return
 
-	var/obj/item/grab/G = I
-	if(!ismob(G.grabbed_thing))
+	if(!grabbed_mob.forceMove(src))
 		return
-
-	var/mob/M = G.grabbed_thing
-	if(!M.forceMove(src))
-		return
-
-	visible_message("[user] puts [M] into the sleeper.", 3)
-	occupant = M
+	visible_message("[user] puts [grabbed_mob] into the sleeper.", 3)
+	occupant = grabbed_mob
 	start_processing()
 	connected.start_processing()
 	update_icon()
+	return TRUE
 
 /obj/machinery/sleeper/ex_act(severity)
 	if(filtering)
@@ -324,16 +338,15 @@
 
 
 /obj/machinery/sleeper/emp_act(severity)
+	. = ..()
 	if(filtering)
 		toggle_filter()
 	if(stasis)
 		toggle_stasis()
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
 		return
 	if(occupant)
 		go_out()
-	..()
 
 /obj/machinery/sleeper/proc/toggle_filter()
 	if(!occupant)
@@ -394,7 +407,6 @@
 				t1 = "Unconscious"
 			if(2)
 				t1 = "*dead*"
-			else
 		var/health_ratio = occupant.health * 100 / occupant.maxHealth
 		to_chat(user, "[health_ratio > 50 ? "<font color='#487553'> " : "<font color='#b54646'> "]\t Health %: [health_ratio] ([t1])</font>")
 		to_chat(user, "[occupant.bodytemperature > 50 ? "<font color='#487553'>" : "<font color='#b54646'>"]\t -Core Temperature: [occupant.bodytemperature-T0C]&deg;C ([occupant.bodytemperature*1.8-459.67]&deg;F)</FONT><BR>")
@@ -407,15 +419,15 @@
 	else
 		to_chat(user, span_notice("There is no one inside!"))
 
-/obj/machinery/sleeper/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/machinery/sleeper/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
-		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(X.status_flags & INCORPOREAL || X.do_actions)
+	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(!do_after(X, 2 SECONDS))
+	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	go_out()

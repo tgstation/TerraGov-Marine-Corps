@@ -70,6 +70,7 @@
 #define SMOOTH_GROUP_BASALT S_TURF(38)
 #define SMOOTH_GROUP_RIVER S_TURF(39)
 #define SMOOTH_GROUP_ICE_WALL S_TURF(40)
+#define SMOOTH_GROUP_SAND S_TURF(41)
 
 #define MAX_S_TURF SMOOTH_GROUP_ICE_WALL //Always match this value with the one above it.
 
@@ -105,6 +106,7 @@
 #define SMOOTH_GROUP_LATTICE  S_OBJ(30)
 #define SMOOTH_GROUP_FENCE  S_OBJ(31)
 #define SMOOTH_GROUP_GIRDER  S_OBJ(32)
+#define SMOOTH_GROUP_LATTICE_ABOVE  S_OBJ(33)
 
 #define SMOOTH_GROUP_AIRLOCK  S_OBJ(40)							///obj/structure/lattice
 #define SMOOTH_GROUP_GRILLE  S_OBJ(41)

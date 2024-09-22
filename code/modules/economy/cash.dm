@@ -18,6 +18,8 @@
 
 /obj/item/spacecash/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/spacecash) && !istype(I, /obj/item/spacecash/ewallet))
 		var/obj/item/spacecash/bundle/bundle
@@ -152,6 +154,7 @@
 
 /obj/item/spacecash/ewallet
 	name = "\improper Nanotrasen cash card"
+	icon = 'icons/obj/items/items.dmi'
 	icon_state = "efundcard"
 	desc = "A Nanotrasen backed cash card that holds an amount of money."
 	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.

@@ -25,6 +25,8 @@
 
 /obj/machinery/keycard_auth/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(machine_stat & (NOPOWER|BROKEN))
 		to_chat(user, "This device is not powered.")
@@ -167,6 +169,6 @@
 			GLOB.marine_main_ship.revoke_maint_all_access()
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && (ACCESS_MARINE_ENGINEERING in req_access+req_one_access))
+	if(is_mainship_level(z) && GLOB.marine_main_ship.maint_all_access && (ACCESS_MARINE_ENGINEERING in (req_access+req_one_access)))
 		return TRUE
 	return ..(M)

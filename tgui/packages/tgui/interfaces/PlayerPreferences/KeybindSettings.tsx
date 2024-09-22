@@ -147,6 +147,18 @@ export const KeybindSettings = (props) => {
             {all_keybindings['ITEM']
               ?.filter(filterSearch)
               .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
+            <LabeledList.Item>
+              <h3>Mecha</h3>
+            </LabeledList.Item>
+            {all_keybindings['MECHA']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
+            <LabeledList.Item>
+              <h3>Cyberware</h3>
+            </LabeledList.Item>
+            {all_keybindings['CYBERWARE']
+              ?.filter(filterSearch)
+              .map((kb) => <KeybindingPreference key={kb.name} keybind={kb} />)}
           </Section>
         </Stack.Item>
       </Stack>

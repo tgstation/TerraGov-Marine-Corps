@@ -12,28 +12,22 @@
 	gib_flick = "gibbed-a-runner"
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 23
 	attack_delay = 6
 
 	// *** Speed *** //
-	speed = -1.5
+	speed = -1.4
 
 	// *** Plasma *** //
 	plasma_max = 200
 	plasma_gain = 11
 
 	// *** Health *** //
-	max_health = 240
+	max_health = 300
 
 	// *** Evolution *** //
 	evolution_threshold = 100
 	upgrade_threshold = TIER_ONE_THRESHOLD
-
-	evolves_to = list(
-		/mob/living/carbon/xenomorph/hunter,
-		/mob/living/carbon/xenomorph/bull,
-		/mob/living/carbon/xenomorph/wraith,
-	)
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED
@@ -41,7 +35,7 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 5, FIRE = 19, ACID = 5)
+	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 5, FIRE = 20, ACID = 5)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "runner"

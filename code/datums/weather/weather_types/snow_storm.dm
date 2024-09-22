@@ -13,7 +13,7 @@
 	weather_duration_upper = 1500
 
 	end_duration = 100
-	end_message = span_boldannounce("The snowfall begins to slow.")
+	end_message = span_danger("The snowfall begins to slow.")
 
 	area_type = /area
 	protect_indoors = TRUE

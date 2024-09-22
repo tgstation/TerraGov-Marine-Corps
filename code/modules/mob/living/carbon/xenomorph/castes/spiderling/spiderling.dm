@@ -5,7 +5,7 @@
 #define SPIDERLING_NORMAL "spiderling_normal"
 
 /mob/living/carbon/xenomorph/spiderling
-	caste_base_type = /mob/living/carbon/xenomorph/spiderling
+	caste_base_type = /datum/xeno_caste/spiderling
 	name = "Spiderling"
 	desc = "A widow spawn, it chitters angrily without any sense of self-preservation, only to obey the widow's will."
 	icon = 'icons/Xeno/Effects.dmi'
@@ -13,8 +13,6 @@
 	health = 250
 	maxHealth = 250
 	plasma_stored = 200
-	pixel_x = 0
-	old_x = 0
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -2
@@ -49,9 +47,9 @@
 	return ..()
 
 ///If we're covering our widow, any clicks should be transferred to them
-/mob/living/carbon/xenomorph/spiderling/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/mob/living/carbon/xenomorph/spiderling/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!get_dist(src, spidermother) && isxeno(x))
-		spidermother.attack_alien(X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+		spidermother.attack_alien(xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
 		return
 	return ..()
 
@@ -69,7 +67,7 @@
 /datum/ai_behavior/spiderling/New(loc, parent_to_assign, escorted_atom, can_heal = FALSE)
 	. = ..()
 	default_escorted_atom = WEAKREF(escorted_atom)
-	RegisterSignals(escorted_atom, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH), PROC_REF(go_to_target))
+	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(go_to_target))
 	RegisterSignal(escorted_atom, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(go_to_obj_target))
 	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_GUARD, PROC_REF(attempt_guard))
 	RegisterSignal(escorted_atom, COMSIG_SPIDERLING_UNGUARD, PROC_REF(attempt_unguard))
@@ -119,8 +117,6 @@
 	SIGNAL_HANDLER
 	if(!isliving(target))
 		return
-	if(target.stat != CONSCIOUS)
-		return
 	if(mob_parent?.get_xeno_hivenumber() == target.get_xeno_hivenumber())
 		return
 	atom_to_walk_to = target
@@ -133,11 +129,6 @@
 		return
 	if(Adjacent(atom_to_walk_to))
 		return
-	if(isliving(atom_to_walk_to))
-		var/mob/living/victim = atom_to_walk_to
-		if(victim.stat != CONSCIOUS)
-			change_action(ESCORTING_ATOM, escorted_atom)
-			return
 	mob_parent.face_atom(atom_to_walk_to)
 	mob_parent.UnarmedAttack(atom_to_walk_to, mob_parent)
 

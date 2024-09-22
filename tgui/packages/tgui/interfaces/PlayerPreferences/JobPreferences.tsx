@@ -31,8 +31,10 @@ export const JobPreferences = (props) => {
     'Field Commander',
     'Staff Officer',
     'Pilot Officer',
+    'Transport Officer',
     'Synthetic',
     'AI',
+    'Mech Pilot',
   ];
   const supportRoles = [
     'Chief Ship Engineer',
@@ -41,6 +43,8 @@ export const JobPreferences = (props) => {
     'Chief Medical Officer',
     'Medical Doctor',
     'Medical Researcher',
+    'Assault Crewman',
+    'Transport Crewman',
   ];
   const marineJobs = [
     'Squad Marine',
@@ -48,7 +52,6 @@ export const JobPreferences = (props) => {
     'Squad Corpsman',
     'Squad Smartgunner',
     'Squad Leader',
-    'Mech Pilot', // not really a marine job but creating empty space in the support section is lame
   ];
   const somJobs = [
     'SOM Squad Standard',

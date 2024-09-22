@@ -2,14 +2,14 @@
 	icon = 'icons/obj/items/radio.dmi'
 	name = "station bounced radio"
 	icon_state = "walkietalkie"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
 	)
-	item_state = "radio"
+	worn_icon_state = "radio"
 
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL
@@ -293,7 +293,7 @@
 
 	var/area/A = get_area(src)
 	var/radio_disruption = CAVE_NO_INTERFERENCE
-	if(!isnull(A) && (A.ceiling >= CEILING_UNDERGROUND) && !(A.flags_area & ALWAYS_RADIO))
+	if(!isnull(A) && (A.ceiling >= CEILING_UNDERGROUND) && !(A.area_flags & ALWAYS_RADIO))
 		radio_disruption = CAVE_MINOR_INTERFERENCE
 		if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
 			radio_disruption = CAVE_FULL_INTERFERENCE
@@ -358,7 +358,7 @@
 			return FALSE
 		var/radio_disruption = CAVE_NO_INTERFERENCE
 		var/area/A = get_area(src)
-		if(A?.ceiling >= CEILING_UNDERGROUND && !(A.flags_area & ALWAYS_RADIO))
+		if(A?.ceiling >= CEILING_UNDERGROUND && !(A.area_flags & ALWAYS_RADIO))
 			radio_disruption = CAVE_MINOR_INTERFERENCE //Unused for this case but may aswell create parity on what the value of the var is.
 			if(A.ceiling >= CEILING_DEEP_UNDERGROUND)
 				radio_disruption = CAVE_FULL_INTERFERENCE
@@ -398,6 +398,8 @@
 
 /obj/item/radio/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(isscrewdriver(I) && !subspace_transmission)
 		unscrewed = !unscrewed
 		if(unscrewed)

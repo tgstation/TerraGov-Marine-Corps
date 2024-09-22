@@ -123,7 +123,7 @@
 		bound_height = width * world.icon_size
 	update_state()
 
-/obj/structure/door_assembly/multi_tile/Move()
+/obj/structure/door_assembly/multi_tile/Move(atom/newloc, direction, glide_size_override)
 	. = ..()
 	if(dir in list(EAST, WEST))
 		bound_width = width * world.icon_size
@@ -136,7 +136,8 @@
 
 /obj/structure/door_assembly/attackby(obj/item/I, mob/user, params)
 	. = ..()
-
+	if(.)
+		return
 	if(istype(I, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "Enter the name for the door.", name, created_name), 1, MAX_NAME_LEN)
 		if(!t)

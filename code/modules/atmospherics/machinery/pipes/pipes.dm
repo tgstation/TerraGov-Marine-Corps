@@ -3,14 +3,14 @@
 	plane = FLOOR_PLANE
 	use_power = NO_POWER_USE
 	can_unwrench = FALSE
-	flags_atom = SHUTTLE_IMMUNE
+	atom_flags = SHUTTLE_IMMUNE
 	var/datum/pipeline/parent = null
 
 	buckle_lying = -1
 
 /obj/machinery/atmospherics/pipe/New()
 	. = ..()
-	add_atom_colour(pipe_color, FIXED_COLOUR_PRIORITY)
+	add_atom_colour(pipe_color, FIXED_COLOR_PRIORITY)
 
 /obj/machinery/atmospherics/pipe/Initialize(mapload)
 	. = ..()
@@ -42,6 +42,8 @@
 
 /obj/machinery/atmospherics/pipe/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(istype(I, /obj/item/pipe_meter))
 		var/obj/item/pipe_meter/meter = I
 		user.dropItemToGround(meter)
@@ -81,7 +83,7 @@
 
 
 /obj/machinery/atmospherics/pipe/proc/paint(paint_color)
-	add_atom_colour(paint_color, FIXED_COLOUR_PRIORITY)
+	add_atom_colour(paint_color, FIXED_COLOR_PRIORITY)
 	pipe_color = paint_color
 	update_node_icon()
 	return TRUE

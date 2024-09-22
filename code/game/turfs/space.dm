@@ -6,6 +6,7 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	light_power = 0.25
+	allow_construction = FALSE
 	///What type of debuff do we apply when someone walks through this tile?
 	var/debuff_type = /datum/status_effect/spacefreeze
 
@@ -33,9 +34,9 @@
  */
 /turf/open/space/Initialize(mapload, ...)
 	SHOULD_CALL_PARENT(FALSE) //prevent laggies
-	if(flags_atom & INITIALIZED)
+	if(atom_flags & INITIALIZED)
 		stack_trace("Warning: [src]([type]) initialized multiple times!")
-	ENABLE_BITFIELD(flags_atom, INITIALIZED)
+	ENABLE_BITFIELD(atom_flags, INITIALIZED)
 	icon_state = SPACE_ICON_STATE(x, y, z)
 
 	return INITIALIZE_HINT_NORMAL
@@ -55,6 +56,8 @@
 
 /turf/open/space/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/structure/lattice/L = locate(/obj/structure/lattice) in src

@@ -2,17 +2,17 @@
 	name = "clipboard"
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "clipboard"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
-	item_state = "clipboard"
+	worn_icon_state = "clipboard"
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 3
 	throw_range = 10
 	var/obj/item/tool/pen/haspen		//The stored pen.
 	var/obj/item/toppaper	//The topmost piece of paper.
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 
 /obj/item/clipboard/Initialize(mapload)
 	. = ..()
@@ -48,6 +48,8 @@
 
 /obj/item/clipboard/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/paper) || istype(I, /obj/item/photo))
 		user.drop_held_item()

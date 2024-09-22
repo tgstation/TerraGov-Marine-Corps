@@ -32,14 +32,12 @@ export type IndividualData = {
   ui_theme: string;
   perks_data: PerkData[];
   currency: number;
+  current_job?: string;
   faction: string;
   jobs: string[];
   perk_icons?: string[];
-  mission_icons?: string[];
   equipped_loadouts_data: EquippedItemData[];
   available_loadouts_data: LoadoutItemData[];
-  purchasable_loadouts_data: LoadoutItemData[];
-  outfit_slots: string[];
   outfit_cost_data: OutfitCostData[];
 };
 
@@ -77,7 +75,7 @@ export const IndividualStats = (props) => {
   );
   const [selectedJob, setSelectedJob] = useLocalState(
     'selectedJob',
-    data.jobs[0],
+    data.current_job ? data.current_job : data.jobs[0],
   );
 
   const [unlockedPerk, setPurchasedPerk] = useLocalState<PerkData | null>(
@@ -97,8 +95,8 @@ export const IndividualStats = (props) => {
     <Window
       theme={data.ui_theme}
       title={'Prep screen'}
-      width={850}
-      height={750}
+      width={980}
+      height={775}
     >
       <Window.Content>
         {unlockedPerk ? (
@@ -170,7 +168,13 @@ export const IndividualStats = (props) => {
           <Modal width="500px">
             <Section
               textAlign="center"
-              title={'Unlock ' + unlockPotentialItem.name + '?'}
+              title={
+                'Unlock ' +
+                unlockPotentialItem.name +
+                ' for ' +
+                unlockPotentialItem.unlock_cost +
+                ' credits?'
+              }
             >
               <Stack justify="space-around">
                 <Stack.Item>
@@ -210,7 +214,12 @@ export const IndividualStats = (props) => {
                 selected={jobname === selectedJob}
                 fontSize="130%"
                 textAlign="center"
-                onClick={() => setSelectedJob(jobname)}
+                onClick={() => {
+                  act('set_selected_job', {
+                    new_selected_job: jobname,
+                  });
+                  setSelectedJob(jobname);
+                }}
               >
                 {jobname}
               </Tabs.Tab>
@@ -232,7 +241,12 @@ export const IndividualStats = (props) => {
                 selected={tabname === selectedTab}
                 fontSize="130%"
                 textAlign="center"
-                onClick={() => setSelectedTab(tabname)}
+                onClick={() => {
+                  act('set_selected_tab', {
+                    new_selected_tab: tabname,
+                  });
+                  setSelectedTab(tabname);
+                }}
               >
                 {tabname}
               </Tabs.Tab>

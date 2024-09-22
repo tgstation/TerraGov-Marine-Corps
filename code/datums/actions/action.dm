@@ -26,6 +26,8 @@ KEYBINDINGS
 	var/action_type = ACTION_CLICK
 	///Used for keeping track of the addition of the selected/active frames
 	var/toggled = FALSE
+	///Is this action explicitly hidden from the owner
+	var/hidden = FALSE
 
 /datum/action/New(Target)
 	target = Target
@@ -61,36 +63,23 @@ KEYBINDINGS
 	target = null
 	return ..()
 
+/// Cleans up the action if the owner is deleted
 /datum/action/proc/clean_action()
 	SIGNAL_HANDLER
+	SHOULD_CALL_PARENT(TRUE)
 	qdel(src)
 
+///Whether the owner can see this action
 /datum/action/proc/should_show()
-	return TRUE
+	return !hidden
 
 ///Depending on the action type , toggles the selected/active frame to show without allowing stacking multiple overlays
 /datum/action/proc/set_toggle(value)
 	if(value == toggled)
-		return
-	if(value)
-		if(owner)
-			SEND_SIGNAL(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, owner)
-		RegisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE, PROC_REF(deselect))
-		switch(action_type)
-			if(ACTION_SELECT)
-				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
-			if(ACTION_TOGGLE)
-				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
-		toggled = TRUE
-		return
-	if(owner)
-		UnregisterSignal(owner, COMSIG_ACTION_EXCLUSIVE_TOGGLE)
-	switch(action_type)
-		if(ACTION_SELECT)
-			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
-		if(ACTION_TOGGLE)
-			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
-	toggled = FALSE
+		return FALSE
+	toggled = value
+	update_button_icon()
+	return TRUE
 
 ///Setting this action as the active action
 /datum/action/proc/select()
@@ -134,6 +123,17 @@ KEYBINDINGS
 			button.add_overlay(action_appearence)
 	if(background_icon_state != button.icon_state)
 		button.icon_state = background_icon_state
+	switch(action_type)
+		if(ACTION_SELECT)
+			button.cut_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+		if(ACTION_TOGGLE)
+			button.cut_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
+	if(toggled)
+		switch(action_type)
+			if(ACTION_SELECT)
+				button.add_overlay(visual_references[VREF_MUTABLE_SELECTED_FRAME])
+			if(ACTION_TOGGLE)
+				button.add_overlay(visual_references[VREF_MUTABLE_ACTIVE_FRAME])
 	handle_button_status_visuals()
 	return TRUE
 
@@ -190,7 +190,6 @@ KEYBINDINGS
 	owner.actions += src
 	if(owner.client)
 		owner.client.screen += button
-	owner.update_action_buttons()
 	owner.actions_by_path[type] = src
 	for(var/type in keybinding_signals)
 		var/signal = keybinding_signals[type]
@@ -201,6 +200,7 @@ KEYBINDINGS
 				update_map_text(our_kb.get_keys_formatted(M.client), signal)
 
 	SEND_SIGNAL(M, ACTION_GIVEN)
+	owner.update_action_buttons()
 
 /datum/action/proc/remove_action(mob/M)
 	for(var/type in keybinding_signals)
@@ -211,9 +211,9 @@ KEYBINDINGS
 		M.client.screen -= button
 	M.actions_by_path[type] = null
 	M.actions -= src
-	M.update_action_buttons()
 	owner = null
 	SEND_SIGNAL(M, ACTION_REMOVED)
+	M.update_action_buttons()
 
 ///Should a AI element occasionally see if this ability should be used?
 /datum/action/proc/ai_should_start_consider()

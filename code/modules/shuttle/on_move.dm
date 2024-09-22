@@ -38,7 +38,7 @@ All ShuttleMove procs go here
 			continue
 		if(ismovable(thing))
 			var/atom/movable/movable_thing = thing
-			if(movable_thing.flags_atom & SHUTTLE_IMMUNE)
+			if(movable_thing.atom_flags & SHUTTLE_IMMUNE)
 				var/old_dir = movable_thing.dir
 				movable_thing.abstract_move(src)
 				movable_thing.setDir(old_dir)
@@ -98,7 +98,7 @@ All ShuttleMove procs go here
 	if(loc != oldT) // This is for multi tile objects
 		return
 
-	if(flags_atom & SHUTTLE_IMMUNE)
+	if(atom_flags & SHUTTLE_IMMUNE)
 		return
 
 	abstract_move(newT)

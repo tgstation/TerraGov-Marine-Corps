@@ -20,39 +20,41 @@
 
 	var/list/slots = list()
 	for(var/name in GLOB.string_equip_flags)
-		if(flags_equip_slot & GLOB.string_equip_flags[name])
+		if(equip_slot_flags & GLOB.string_equip_flags[name])
 			slots += name
 
 	if(length(slots))
 		storage_strings += "It can be worn on your [english_list(slots)]."
 
-	if(use_to_pickup)
+	if(storage_datum.use_to_pickup)
 		storage_strings += "It can be used to pickup objects."
 
-	if(storage_slots)
-		storage_strings += "It has [storage_slots] spaces for inventory."
+	if(storage_datum.storage_slots)
+		storage_strings += "It has [storage_datum.storage_slots] spaces for inventory."
 
-	if(max_storage_space)
-		storage_strings += "It can carry [max_storage_space] weight of stuff."
+	if(storage_datum.max_storage_space)
+		storage_strings += "It can carry [storage_datum.max_storage_space] weight of stuff."
 
-	if(max_w_class && !length(can_hold))
-		storage_strings += "It can carry weight [max_w_class] things or lighter."
+	if(storage_datum.max_w_class && !length(storage_datum.can_hold))
+		storage_strings += "It can carry weight [storage_datum.max_w_class] things or lighter."
 
-	if(length(can_hold))
+	if(length(storage_datum.can_hold))
 		storage_strings += "<br><U>You can only carry the following in this</U>:"
-		for(var/X in can_hold)
+		for(var/X in storage_datum.can_hold)
 			var/obj/item/A = X
-			storage_strings += "[initial(A.name)]"
-
-	if(length(bypass_w_limit))
+			//check if the weight classes of the items are smaller or equal to the maximum weight class.
+			if(A.w_class <= src.storage_datum.max_w_class)
+				storage_strings += "[initial(A.name)]"
+				
+	if(length(storage_datum.storage_type_limits))
 		storage_strings += "<br><U>You can also carry the following special items in this</U>:"
-		for(var/X in bypass_w_limit)
+		for(var/X in storage_datum.storage_type_limits)
 			var/obj/item/A = X
 			storage_strings += "[initial(A.name)]"
 
-	if(length(cant_hold))
+	if(length(storage_datum.cant_hold))
 		storage_strings += "<br><U>You can specifically not carry these things in this</U>:"
-		for(var/X in cant_hold)
+		for(var/X in storage_datum.cant_hold)
 			var/obj/item/A = X
 			storage_strings += "[initial(A.name)]"
 

@@ -86,7 +86,7 @@
 /obj/effect/countdown/campaign_objective/get_value()
 	if(QDELETED(attached_to))
 		return
-	var/obj/structure/campaign_objective/capture_objective/objective = attached_to
+	var/obj/structure/campaign_objective/objective = attached_to
 	return objective.get_time_left()
 
 /obj/effect/countdown/action_cooldown

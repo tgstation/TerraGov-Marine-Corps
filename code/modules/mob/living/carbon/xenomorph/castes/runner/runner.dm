@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/runner
-	caste_base_type = /mob/living/carbon/xenomorph/runner
+	caste_base_type = /datum/xeno_caste/runner
 	name = "Runner"
 	desc = "A small red alien that looks like it could run fairly quickly..."
 	icon = 'icons/Xeno/castes/runner.dmi' //They are now like, 2x1 or something
@@ -12,7 +12,6 @@
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16  //Needed for 2x2
-	old_x = -16
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
@@ -45,9 +44,10 @@
 	if(!holder)
 		return
 	holder.overlays.Cut()
-	holder.icon_state = "hudblank"
+	holder.icon_state = ""
 	if(stat == DEAD || !duration)
 		return
+	holder.icon = 'icons/mob/hud/xeno.dmi'
 	holder.icon_state = "evasion_duration[duration]"
 	holder.pixel_x = 24
 	holder.pixel_y = 24

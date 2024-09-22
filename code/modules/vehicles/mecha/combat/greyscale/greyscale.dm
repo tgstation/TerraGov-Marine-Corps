@@ -65,9 +65,9 @@
 	return ..()
 
 
-/obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/M)
-	if((mecha_flags & MECHA_SKILL_LOCKED) && M.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_TRAINED)
-		balloon_alert(M, "You don't know how to pilot this")
+/obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
+	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+		balloon_alert(entering_mob, "You don't know how to pilot this")
 		return FALSE
 	return ..()
 
@@ -119,12 +119,16 @@
 		if(key == MECHA_R_ARM)
 			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
 			if(right_gun)
-				. += image('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", pixel_x=-32)
+				var/mutable_appearance/r_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", appearance_flags = KEEP_APART)
+				r_gun.pixel_x = -32
+				. += r_gun
 			continue
 		if(key == MECHA_L_ARM)
 			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
 			if(left_gun)
-				. += image('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", pixel_x=-32)
+				var/mutable_appearance/l_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", appearance_flags = KEEP_APART)
+				l_gun.pixel_x = -32
+				. += l_gun
 			continue
 
 		if(!istype(limbs[key], /datum/mech_limb))

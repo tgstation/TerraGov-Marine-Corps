@@ -132,6 +132,8 @@
 //almost never called, overwritten by all power machines but terminal and generator
 /obj/machinery/power/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(iscablecoil(I))
 		var/obj/item/stack/cable_coil/coil = I
@@ -201,13 +203,17 @@
 
 	return net1
 
-//Determines how strong could be shock, deals damage to mob, uses power.
-//M is a mob who touched wire/whatever
-//power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
-//source is an object caused electrocuting (airlock, grille, etc)
-//siemens_coeff - layman's terms, conductivity
-//dist_check - set to only shock mobs within 1 of source (vendors, airlocks, etc.)
-//No animations will be performed by this proc.
+/**
+ * Determines how strong could be shock, deals damage to mob, uses power.
+ *
+ * Arguments:
+ * * M is a mob who touched wire/whatever
+ * * power_source is a source of electricity, can be powercell, area, apc, cable, powernet or null
+ * * source is an object caused electrocuting (airlock, grille, etc)
+ * * siemens_coeff - layman's terms, conductivity
+ * * dist_check - set to only shock mobs within 1 of source (vendors, airlocks, etc.)
+ * * No animations will be performed by this proc.
+*/
 /proc/electrocute_mob(mob/living/carbon/M, power_source, obj/source, siemens_coeff = 1, dist_check = FALSE)
 	if(!M)
 		return 0	//feckin mechs are dumb
@@ -308,7 +314,7 @@
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
 		var/area/current_area = get_area(S)
-		if(current_area.type in skipped_areas || !is_mainship_level(S.z)) // Ship only
+		if((current_area.type in skipped_areas) || !is_mainship_level(S.z)) // Ship only
 			continue
 		S.charge = 0
 		S.output_level = 0
@@ -332,7 +338,7 @@
 
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
 		var/area/current_area = get_area(S)
-		if(current_area.type in skipped_areas || !is_mainship_level(S.z))
+		if((current_area.type in skipped_areas) || !is_mainship_level(S.z))
 			continue
 		S.charge = S.capacity
 		S.output_level = S.output_level_max

@@ -30,6 +30,8 @@
 	var/detailed_desc = "This is a placeholder asset. You shouldn't see this, it does nothing at all."
 	///The faction associated with these stats
 	var/datum/faction_stats/faction
+	///Specific portrait used when activating this asset. Defaults to faction default if not specified
+	var/asset_portrait = null
 	///asset related flags
 	var/asset_flags = ASSET_ACTIVATED_EFFECT
 	///Number of times this can be used
@@ -45,9 +47,12 @@
 	///Feedback message if this asset is unusable during this mission
 	var/blacklist_message = "Unavailable during this mission."
 
-/datum/campaign_asset/New(datum/faction_stats/winning_faction)
+/datum/campaign_asset/New(datum/faction_stats/new_faction)
 	. = ..()
-	faction = winning_faction
+	if(!istype(new_faction))
+		return qdel(src)
+	SEND_SIGNAL(new_faction, COMSIG_CAMPAIGN_NEW_ASSET, src)
+	faction = new_faction
 	if(asset_flags & ASSET_IMMEDIATE_EFFECT)
 		immediate_effect()
 	if(asset_flags & ASSET_PASSIVE_EFFECT)
@@ -65,8 +70,8 @@
 		immediate_effect()
 
 ///Handles the activated asset process
-/datum/campaign_asset/proc/attempt_activatation(mob/user)
-	if(activation_checks(user))
+/datum/campaign_asset/proc/attempt_activatation(mob/user, check_override = FALSE)
+	if(!check_override && activation_checks(user))
 		return FALSE
 
 	activated_effect()

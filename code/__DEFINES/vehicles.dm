@@ -16,6 +16,10 @@
 ///ez define for giving a single pilot mech all the flags it needs.
 #define FULL_MECHA_CONTROL ALL
 
+#define VEHICLE_FRONT_ARMOUR "vehicle_front"
+#define VEHICLE_SIDE_ARMOUR "vehicle_side"
+#define VEHICLE_BACK_ARMOUR "vehicle_back"
+
 //car_traits flags
 ///Will this car kidnap people by ramming into them?
 #define CAN_KIDNAP (1<<0)
@@ -45,3 +49,23 @@
 // For fireman carries, the carrying human needs an arm
 #define CARRIER_NEEDS_ARM (1<<4)
 
+
+//Armored vehicle defines
+#define ARMORED_HAS_UNDERLAY (1<<0)
+#define ARMORED_HAS_MAP_VARIANTS (1<<2)
+#define ARMORED_HAS_PRIMARY_WEAPON (1<<3)
+#define ARMORED_HAS_SECONDARY_WEAPON (1<<4)
+#define ARMORED_LIGHTS_ON (1<<5)
+#define ARMORED_HAS_HEADLIGHTS (1<<6)
+#define ARMORED_PURCHASABLE_ASSAULT (1<<7)
+#define ARMORED_PURCHASABLE_TRANSPORT (1<<8)
+
+#define MODULE_PRIMARY (1<<0)
+#define MODULE_SECONDARY (1<<1)
+///Can only shoot in the direction of the turret
+#define MODULE_FIXED_FIRE_ARC (1<<2)
+///Not available in the tank fab
+#define MODULE_NOT_FABRICABLE (1<<3)
+
+///Not available in the tank fab
+#define TANK_MOD_NOT_FABRICABLE (1<<0)

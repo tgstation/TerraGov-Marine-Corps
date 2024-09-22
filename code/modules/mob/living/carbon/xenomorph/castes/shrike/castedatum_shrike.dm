@@ -11,17 +11,17 @@
 	wound_type = "shrike" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 25
 
 	// *** Speed *** //
-	speed = -0.6
+	speed = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 925
-	plasma_gain = 45
+	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 500
 
 	// *** Evolution *** //
 	// The only evolution path does not require threshold
@@ -29,8 +29,7 @@
 	maximum_active_caste = 1
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/queen)
-	deevolves_to = /mob/living/carbon/xenomorph/drone
+	deevolves_to = /datum/xeno_caste/drone
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_STRONG|CASTE_IS_BUILDER|CASTE_INSTANT_EVOLUTION|CASTE_EVOLUTION_ALLOWED|CASTE_LEADER_TYPE
@@ -58,6 +57,7 @@
 		/datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/psychic_cure,
@@ -94,6 +94,7 @@
 		/datum/action/ability/activable/xeno/neurotox_sting/ozelomelyn,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/secrete_resin,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/psychic_cure,

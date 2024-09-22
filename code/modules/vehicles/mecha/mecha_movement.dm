@@ -22,12 +22,12 @@
 	. = TRUE
 	if(!canmove || !(user in return_drivers()))
 		return
-	vehicle_move(direction)
+	vehicle_move(user, direction)
 
-/obj/vehicle/sealed/mecha/vehicle_move(direction, forcerotate = FALSE)
-	if(!COOLDOWN_CHECK(src, cooldown_vehicle_move))
-		return FALSE
-	COOLDOWN_START(src, cooldown_vehicle_move, move_delay)
+/obj/vehicle/sealed/mecha/vehicle_move(mob/living/user, direction, forcerotate = FALSE)
+	. = ..()
+	if(!.)
+		return
 	if(completely_disabled)
 		return FALSE
 	if(!direction)
@@ -114,3 +114,6 @@
 			COOLDOWN_START(src, mecha_bump_smash, smashcooldown)
 			if(!obstacle || obstacle.CanPass(src, get_dir(obstacle, src) || dir)) // The else is in case the obstacle is in the same turf.
 				step(src, dir)
+
+/obj/vehicle/sealed/mecha/set_submerge_level(turf/new_loc, turf/old_loc, submerge_icon = 'icons/turf/alpha_128.dmi', submerge_icon_state = "liquid_alpha", duration = move_delay)
+	return ..()

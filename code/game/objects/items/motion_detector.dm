@@ -3,7 +3,7 @@
 	return
 
 /obj/effect/blip/edge_blip
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/effects/blips.dmi'
 	plane = ABOVE_HUD_PLANE
 	/// A friendly/hostile identifier
 	var/identifier = MOTION_DETECTOR_HOSTILE
@@ -18,9 +18,9 @@
 	setDir(direction)
 	update_icon()
 
-/// Remove the blip from the operator screen
+///Remove the blip from the operator screen
 /obj/effect/blip/edge_blip/remove_blip(mob/operator)
-	operator.client.screen -= src
+	operator?.client?.screen -= src
 	qdel(src)
 
 /obj/effect/blip/edge_blip/update_icon_state()
@@ -35,13 +35,13 @@
 	. = ..()
 	if(!operator?.client)
 		return INITIALIZE_HINT_QDEL
-	blip_image = image('icons/Marine/marine-items.dmi', src, "close_blip_[identifier]")
+	blip_image = image('icons/effects/blips.dmi', src, "close_blip_[identifier]")
 	blip_image.layer = BELOW_FULLSCREEN_LAYER
 	operator.client.images += blip_image
 
 /// Remove the blip from the operator images
 /obj/effect/blip/close_blip/remove_blip(mob/operator)
-	operator.client?.images -= blip_image
+	operator?.client?.images -= blip_image
 	qdel(src)
 
 /obj/effect/blip/close_blip/Destroy()
@@ -52,8 +52,9 @@
 	name = "tactical sensor"
 	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
 	icon_state = "minidetector"
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	slot = ATTACHMENT_SLOT_RAIL
-	attachment_action_type = /datum/action/item_action/toggle/motion_detector
+	attachment_action_type = /datum/action/item_action/toggle
 	/// Who's using this item
 	var/mob/living/carbon/human/operator
 	///If a hostile was detected
@@ -66,19 +67,20 @@
 	var/list/obj/effect/blip/blips_list = list()
 
 /obj/item/attachable/motiondetector/Destroy()
-	clean_operator()
+	clean_operator(forced = TRUE)
 	return ..()
 
 /obj/item/attachable/motiondetector/activate(mob/user, turn_off)
 	if(operator)
-		clean_operator()
-		return
+		clean_operator(forced = TRUE)
+		return TRUE
 	operator = user
 	RegisterSignals(operator, list(COMSIG_QDELETING, COMSIG_GUN_USER_UNSET), PROC_REF(clean_operator))
 	RegisterSignals(src, list(COMSIG_ITEM_EQUIPPED_TO_SLOT, COMSIG_ITEM_REMOVED_INVENTORY), PROC_REF(clean_operator))
 	UnregisterSignal(operator, COMSIG_GUN_USER_SET)
 	START_PROCESSING(SSobj, src)
 	update_icon()
+	return TRUE
 
 ///Activate the attachement when your are putting the gun out of your suit slot
 /obj/item/attachable/motiondetector/proc/start_processing_again(datum/source, obj/item/weapon/gun/equipping)
@@ -94,11 +96,6 @@
 /obj/item/attachable/motiondetector/attack_self(mob/user)
 	activate(user)
 
-/obj/item/attachable/motiondetector/update_icon()
-	. = ..()
-	for(var/datum/action/action AS in master_gun?.actions)
-		action.update_button_icon()
-
 /obj/item/attachable/motiondetector/update_icon_state()
 	. = ..()
 	icon_state = initial(icon_state) + (isnull(operator) ? "" : "_on")
@@ -110,12 +107,12 @@
 
 /obj/item/attachable/motiondetector/removed_from_inventory(mob/user)
 	. = ..()
-	clean_operator()
+	clean_operator(forced = TRUE) //Exploit prevention. If you are putting the tac sensor into a storage in your hand (Like holding a satchel), hand == loc will return
 
 /// Signal handler to clean out user vars
-/obj/item/attachable/motiondetector/proc/clean_operator()
+/obj/item/attachable/motiondetector/proc/clean_operator(datum/source, obj/item/weapon/gun/gun, forced = FALSE)
 	SIGNAL_HANDLER
-	if(operator && (operator.l_hand == src || operator.r_hand == src || operator.l_hand == loc || operator.r_hand == loc))
+	if(!forced && operator && (operator.l_hand == src || operator.r_hand == src || operator.l_hand == loc || operator.r_hand == loc))
 		return
 	STOP_PROCESSING(SSobj, src)
 	clean_blips()

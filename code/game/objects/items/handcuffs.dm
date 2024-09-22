@@ -4,8 +4,8 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "handcuff"
-	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	atom_flags = CONDUCT
+	equip_slot_flags = ITEM_SLOT_BELT
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 2
@@ -63,7 +63,7 @@
 	. = ..()
 	if(!.)
 		return
-	flags_item |= DELONDROP
+	item_flags |= DELONDROP
 
 
 
@@ -100,6 +100,8 @@
 
 /obj/item/restraints/handcuffs/cable/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = I

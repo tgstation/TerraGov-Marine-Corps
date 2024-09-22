@@ -6,7 +6,7 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "ai_node" //Pure white 'X' with word "AI" beneath
 	anchored = TRUE //No pulling those nodes yo
-	flags_atom = SHUTTLE_IMMUNE
+	atom_flags = SHUTTLE_IMMUNE
 	#ifdef TESTING
 	invisibility = 0
 	#else
@@ -58,7 +58,7 @@
 
 /obj/effect/ai_node/Destroy()
 	GLOB.all_nodes[unique_id + 1] = null
-	rustg_remove_node_astart("[unique_id]")
+	rustg_remove_node_astar("[unique_id]")
 	//Remove our reference to self from nearby adjacent node's adjacent nodes
 	for(var/direction AS in adjacent_nodes)
 		var/obj/effect/ai_node/node = adjacent_nodes[direction]

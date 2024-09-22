@@ -188,7 +188,7 @@
 	if(CONFIG_GET(flag/log_access))
 		for(var/I in GLOB.clients)
 			if(!I)
-				stack_trace("null in GLOB.clients during client/New()")
+				listclearnulls(GLOB.clients)
 				continue
 			if(I == src)
 				continue
@@ -269,10 +269,7 @@
 		return
 
 	if(GLOB.custom_info)
-		to_chat(src, "<h1 class='alert'>Custom Information</h1>")
-		to_chat(src, "<h2 class='alert'>The following custom information has been set for this round:</h2>")
-		to_chat(src, span_alert("[GLOB.custom_info]"))
-		to_chat(src, "<br>")
+		custom_info()
 
 	connection_time = world.time
 	connection_realtime = world.realtime
@@ -300,7 +297,6 @@
 
 	send_resources()
 
-	generate_clickcatcher()
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
@@ -361,6 +357,7 @@
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
 	Master.UpdateTickRate()
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLIENT_CONNECT, src)
 
 
 
@@ -900,15 +897,11 @@
 	winset(src, "mainwindow", "is-maximized=true")
 
 
-/client/proc/generate_clickcatcher()
-	if(void)
-		return
-	void = new()
-	screen += void
-
-
+///Creates and applies a clickcatcher
 /client/proc/apply_clickcatcher()
-	generate_clickcatcher()
+	if(!void)
+		void = new()
+	screen |= void
 	var/list/actualview = getviewsize(view)
 	void.UpdateGreed(actualview[1], actualview[2])
 

@@ -168,6 +168,8 @@
 
 /obj/item/mecha_parts/mecha_equipment/generator/attackby(weapon, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	load_fuel(weapon, user)
 
 /obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(obj/item/stack/sheet/P, mob/user)

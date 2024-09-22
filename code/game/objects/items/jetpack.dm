@@ -7,12 +7,12 @@
 	desc = "A high powered jetpack with enough fuel to send a person flying for a short while. It allows for fast and agile movement on the battlefield. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped.</b>"
 	icon = 'icons/obj/items/jetpack.dmi'
 	icon_state = "jetpack_marine"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
 	)
 	w_class = WEIGHT_CLASS_BULKY
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	obj_flags = CAN_BE_HIT
 	///Time between uses
 	var/cooldown_time = 10 SECONDS
@@ -53,7 +53,7 @@
 	toggle_action.remove_action(user)
 
 /obj/item/jetpack_marine/ui_action_click(mob/user, datum/action/item_action/action, target)
-	use_jetpack(target, user)
+	return use_jetpack(target, user)
 
 ///remove the flame overlay
 /obj/item/jetpack_marine/proc/reset_flame(mob/living/carbon/human/human_user)
@@ -150,6 +150,8 @@
 
 /obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
 		return
 	var/obj/item/ammo_magazine/flamer_tank/FT = I
@@ -170,7 +172,7 @@
 	name = "Use jetpack"
 	action_icon_state = "axe_sweep"
 	desc = "Briefly fly using your jetpack."
-	keybind_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
+	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_BUSY
 	keybinding_signals = list(KEYBINDING_NORMAL = COMSIG_ITEM_TOGGLE_JETPACK)
 
 /datum/action/ability/activable/item_toggle/jetpack/New(Target, obj/item/holder)
@@ -233,7 +235,7 @@
 		if(!human_target.check_shields(COMBAT_TOUCH_ATTACK, 30, MELEE))
 			human_user.Knockdown(0.5 SECONDS)
 			human_user.set_throwing(FALSE)
-			INVOKE_NEXT_TICK(human_user, TYPE_PROC_REF(/atom/movable, knockback), human_target, 1, 5)
+			INVOKE_NEXT_TICK(human_user, TYPE_PROC_REF(/atom/movable, knockback), human_target, 1, 5, null, MOVE_FORCE_VERY_STRONG)
 			human_user.visible_message(span_danger("[human_user] crashes into [hit_mob]!"))
 			return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
@@ -242,7 +244,7 @@
 	if(SEND_SIGNAL(hit_mob, COMSIG_LIVING_JETPACK_STUN, stunlist, MELEE))
 		hit_mob.adjust_stagger(stunlist[3])
 		hit_mob.add_slowdown(stunlist[4])
-		hit_mob.knockback(human_user, 1, 5) //if we don't stun, we knockback
+		hit_mob.knockback(human_user, 1, 5, knockback_force = MOVE_FORCE_VERY_STRONG) //if we don't stun, we knockback
 	else
 		hit_mob.Knockdown(knockdown_duration)
 		human_user.forceMove(get_turf(hit_mob))

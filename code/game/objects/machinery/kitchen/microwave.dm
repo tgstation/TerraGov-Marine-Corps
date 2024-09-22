@@ -48,6 +48,8 @@
 
 /obj/machinery/microwave/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(broken == 2 && isscrewdriver(I))
 		balloon_alert_to_viewers("starts to fix the microwave")
@@ -120,13 +122,47 @@
 
 		return FALSE
 
-	else if(istype(I, /obj/item/grab))
-		return TRUE
-
 	else
 		balloon_alert(user, "Can't cook anything with this")
 
 	return TRUE
+
+/obj/machinery/microwave/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
+	if(!is_operational())
+		return ..()
+	if(isxeno(user))
+		return
+	if(user.do_actions)
+		return
+	if(!isliving(grab.grabbed_thing))
+		return
+	if(user.a_intent != INTENT_HARM)
+		return
+	if(user.grab_state <= GRAB_AGGRESSIVE)
+		to_chat(user, span_warning("You need a better grip to do that!"))
+		return
+	var/mob/living/grabbed_mob = grab.grabbed_thing
+	if(grabbed_mob.mob_size > MOB_SIZE_HUMAN)
+		to_chat(user, span_warning("They're too big to fit!"))
+		return
+	user.visible_message(span_danger("[user] starts to force [grabbed_mob] into [src]!"), span_notice("You start to force [grabbed_mob] into [src]!"))
+	if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, PROC_REF(microwave_victim), grabbed_mob)))
+		playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
+		return
+
+	user.visible_message(span_danger("[user] microwaves [grabbed_mob]!"), span_notice("You microwave [grabbed_mob]!"), "You hear sizzling.")
+	log_combat(user, grabbed_mob, "microwaved")
+	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
+	return TRUE
+
+/obj/machinery/microwave/proc/microwave_victim(mob/living/victim)
+	victim.apply_damage(3, BURN, "head", ENERGY, updating_health = TRUE, penetration = 20)
+	victim.jitter(5)
+	if(prob(10))
+		victim.emote("scream")
+		victim.adjustBrainLoss(5)
+	if(victim.stat != DEAD)
+		return TRUE
 
 /obj/machinery/microwave/nopower
 	use_power = NO_POWER_USE

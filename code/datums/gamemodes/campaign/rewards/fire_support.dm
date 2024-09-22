@@ -37,6 +37,7 @@
 	name = "Mortar support"
 	desc = "Mortar teams are activated to provide firesupport for this mission"
 	detailed_desc = "Activatable by squad leaders. A limited number of mortar strikes are available via tactical binoculars for this mission. Excellent for disrupting dug in enemy positions."
+	asset_portrait = /atom/movable/screen/text/screen_text/picture/potrait/tgmc_mortar
 	ui_icon = "mortar"
 	asset_flags = ASSET_ACTIVATED_EFFECT|ASSET_ACTIVE_MISSION_ONLY|ASSET_DISABLE_ON_MISSION_END|ASSET_SL_AVAILABLE
 	cost = 6

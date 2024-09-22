@@ -12,6 +12,7 @@
 
 	// *** Melee Attacks *** //
 	melee_damage = 20
+	melee_ap = 5
 
 	// *** Speed *** //
 	speed = -0.6
@@ -25,7 +26,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_IS_A_MINION
-	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA|CASTE_CAN_RIDE_CRUSHER
 	caste_traits = null
 
 	// *** Defense *** //

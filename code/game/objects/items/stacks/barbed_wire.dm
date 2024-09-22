@@ -2,9 +2,8 @@
 /obj/item/stack/barbed_wire
 	name = "barbed wire"
 	desc = "A spiky length of wire."
-	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "barbed_wire"
-	flags_item = NOBLUDGEON
+	item_flags = NOBLUDGEON
 	singular_name = "length"
 	w_class = WEIGHT_CLASS_SMALL
 	force = 0
@@ -29,6 +28,8 @@
 
 /obj/item/stack/barbed_wire/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(!istype(I, /obj/item/stack/rods))
 		return
@@ -50,7 +51,7 @@
 /obj/item/stack/razorwire
 	name = "razor wire assembly"
 	desc = "A bundle of barbed wire supported by metal rods. Used to deny access to areas under pain of entanglement and injury. A classic fortification since the 1900s."
-	icon = 'icons/obj/structures/barbedwire.dmi'
+	icon = 'icons/obj/structures/barricades/barbedwire.dmi'
 	icon_state = "barbedwire_assembly"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15
@@ -89,7 +90,8 @@
 		to_chat(user, span_warning("There is insufficient room to deploy [src]!"))
 		return
 
-	if(!target.allow_construction) //We shouldn't be building here.
+	var/area/area = get_area(mystery_turf)
+	if(!target.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be building here.
 		to_chat(user, span_warning("We can't build here!"))
 		return
 

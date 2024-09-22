@@ -9,24 +9,26 @@
 	wound_type = "warrior" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 25
 
 	// *** Speed *** //
-	speed = -0.5
+	speed = -0.4
 
 	// *** Plasma *** //
-	plasma_max = 120
-	plasma_gain = 12
+	plasma_max = 150
+	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 400
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.9
 
 	// *** Evolution *** //
 	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	evolves_to = list(/mob/living/carbon/xenomorph/crusher, /mob/living/carbon/xenomorph/behemoth, /mob/living/carbon/xenomorph/gorger, /mob/living/carbon/xenomorph/warlock)
-	deevolves_to = /mob/living/carbon/xenomorph/defender
+	deevolves_to = /datum/xeno_caste/defender
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_STRONG
@@ -34,24 +36,20 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 55, LASER = 55, ENERGY = 40, BOMB = 20, BIO = 50, FIRE = 55, ACID = 50)
+	soft_armor = list(MELEE = 60, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 30, BIO = 50, FIRE = 55, ACID = 50)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "warrior"
-
-	// *** Warrior Abilities *** //
-	agility_speed_increase = -0.6
-	agility_speed_armor = -30
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/toggle_agility,
-		/datum/action/ability/activable/xeno/lunge,
-		/datum/action/ability/activable/xeno/fling,
-		/datum/action/ability/activable/xeno/toss,
-		/datum/action/ability/activable/xeno/punch,
+		/datum/action/ability/activable/xeno/warrior/lunge,
+		/datum/action/ability/activable/xeno/warrior/fling,
+		/datum/action/ability/activable/xeno/warrior/grapple_toss,
+		/datum/action/ability/activable/xeno/warrior/punch,
 	)
 
 /datum/xeno_caste/warrior/normal
@@ -67,10 +65,11 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/empower,
 		/datum/action/ability/xeno_action/toggle_agility,
-		/datum/action/ability/activable/xeno/lunge,
-		/datum/action/ability/activable/xeno/fling,
-		/datum/action/ability/activable/xeno/toss,
-		/datum/action/ability/activable/xeno/punch,
-		/datum/action/ability/activable/xeno/punch/jab,
+		/datum/action/ability/activable/xeno/warrior/lunge,
+		/datum/action/ability/activable/xeno/warrior/fling,
+		/datum/action/ability/activable/xeno/warrior/grapple_toss,
+		/datum/action/ability/activable/xeno/warrior/punch,
+		/datum/action/ability/activable/xeno/warrior/punch/flurry,
 	)

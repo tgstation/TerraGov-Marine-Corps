@@ -1,0 +1,157 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/space/basic,
+/area/interior/tank)
+"b" = (
+/turf/closed/interior/tank/door,
+/area/interior/tank)
+"d" = (
+/obj/structure/bed/chair/vehicle_crew/driver{
+	pixel_x = 11;
+	pixel_y = -6
+	},
+/turf/open/interior/tank/twentytwo,
+/area/interior/tank)
+"f" = (
+/obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
+/turf/closed/interior/tank/twentyone,
+/area/interior/tank)
+"h" = (
+/turf/closed/interior/tank/five,
+/area/interior/tank)
+"j" = (
+/turf/closed/interior/tank/one,
+/area/interior/tank)
+"k" = (
+/turf/closed/interior/tank/twenty,
+/area/interior/tank)
+"l" = (
+/turf/open/interior/tank/nine,
+/area/interior/tank)
+"n" = (
+/turf/closed/interior/tank/eighteen,
+/area/interior/tank)
+"r" = (
+/turf/closed/interior/tank/twentythree,
+/area/interior/tank)
+"s" = (
+/turf/open/interior/tank/sixteen,
+/area/interior/tank)
+"t" = (
+/turf/closed/interior/tank/twentyfour,
+/area/interior/tank)
+"u" = (
+/obj/structure/gun_breech{
+	pixel_x = -13;
+	pixel_y = -4
+	},
+/turf/closed/interior/tank/seventeen,
+/area/interior/tank)
+"v" = (
+/obj/structure/bed/chair/loader_seat{
+	pixel_y = -5
+	},
+/obj/structure/periscope,
+/turf/open/interior/tank/fifteen,
+/area/interior/tank)
+"w" = (
+/turf/closed/interior/tank/twentyseven,
+/area/interior/tank)
+"x" = (
+/turf/open/interior/tank/eight,
+/area/interior/tank)
+"z" = (
+/turf/closed/interior/tank/nineteen,
+/area/interior/tank)
+"A" = (
+/obj/structure/ammo_rack/primary{
+	pixel_x = 1;
+	pixel_y = -10
+	},
+/turf/closed/interior/tank/four,
+/area/interior/tank)
+"D" = (
+/turf/closed/interior/tank/twentyeight,
+/area/interior/tank)
+"E" = (
+/turf/closed/interior/tank/twelve,
+/area/interior/tank)
+"H" = (
+/turf/closed/interior/tank/twentyfive,
+/area/interior/tank)
+"I" = (
+/turf/closed/interior/tank/thirteen,
+/area/interior/tank)
+"M" = (
+/turf/closed/interior/tank/twentysix,
+/area/interior/tank)
+"N" = (
+/turf/open/interior/tank/ten,
+/area/interior/tank)
+"S" = (
+/obj/structure/bed/chair/vehicle_crew/gunner{
+	pixel_x = -3;
+	pixel_y = -5
+	},
+/turf/open/interior/tank/eleven,
+/area/interior/tank)
+"V" = (
+/obj/structure/ammo_rack/secondary{
+	pixel_x = 11;
+	pixel_y = -18
+	},
+/turf/closed/interior/tank/two,
+/area/interior/tank)
+"X" = (
+/turf/closed/interior/tank/six,
+/area/interior/tank)
+"Y" = (
+/obj/structure/gun_breech/secondary,
+/turf/open/interior/tank/fourteen,
+/area/interior/tank)
+"Z" = (
+/turf/closed/interior/tank/three,
+/area/interior/tank)
+
+(1,1,1) = {"
+j
+b
+I
+z
+a
+"}
+(2,1,1) = {"
+V
+x
+Y
+k
+a
+"}
+(3,1,1) = {"
+Z
+l
+v
+f
+H
+"}
+(4,1,1) = {"
+A
+N
+s
+d
+M
+"}
+(5,1,1) = {"
+h
+S
+u
+r
+w
+"}
+(6,1,1) = {"
+X
+E
+n
+t
+D
+"}

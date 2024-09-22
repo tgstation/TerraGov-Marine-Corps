@@ -530,13 +530,11 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/shuttle/canterbury/medical)
 "cc" = (
-/obj/machinery/door/window/right{
+/obj/effect/landmark/start/job/crash/squadsmartgunner,
+/obj/structure/window/reinforced/toughened{
 	dir = 1
 	},
-/obj/structure/window/reinforced/toughened{
-	dir = 4
-	},
-/obj/effect/landmark/start/job/crash/squadsmartgunner,
+/obj/machinery/door/window/right,
 /turf/open/floor/mainship/red,
 /area/shuttle/canterbury)
 "cd" = (

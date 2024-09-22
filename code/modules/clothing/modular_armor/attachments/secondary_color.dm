@@ -1,9 +1,9 @@
 //A module you can use to add yet another color layer to your modular armor sets. icon name format is [prefix]_[bodypart]_secondary_color_[variant] , exclude _variant if you do not use it
 
 /obj/item/armor_module/armor/secondary_color
-	flags_attach_features = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_BYPASS_ALLOWED_LIST|ATTACH_GREYSCALE_PARENT_COPY
+	attach_features_flags = ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_BYPASS_ALLOWED_LIST|ATTACH_GREYSCALE_PARENT_COPY
 	secondary_color = TRUE
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/armor_module/armor/secondary_color/update_greyscale()
 	if(!parent)

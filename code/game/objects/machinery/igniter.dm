@@ -62,6 +62,8 @@
 
 /obj/machinery/sparker/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/detective_scanner))
 		return
@@ -96,11 +98,10 @@
 	return 1
 
 /obj/machinery/sparker/emp_act(severity)
+	. = ..()
 	if(machine_stat & (BROKEN|NOPOWER))
-		..(severity)
 		return
 	ignite()
-	..(severity)
 
 /obj/machinery/ignition_switch/attack_ai(mob/user)
 	return attack_hand(user)
@@ -108,6 +109,8 @@
 
 /obj/machinery/ignition_switch/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 	return attack_hand(user)
 
 /obj/machinery/ignition_switch/attack_hand(mob/living/user)

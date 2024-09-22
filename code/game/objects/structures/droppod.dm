@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	soft_armor = list(MELEE = 25, BULLET = 80, LASER = 80, ENERGY = 90, BOMB = 70, BIO = 100, FIRE = 0, ACID = 0)
 	max_integrity = 75
-	flags_atom = PREVENT_CONTENTS_EXPLOSION
+	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	coverage = 75
 	buckle_flags = CAN_BUCKLE|BUCKLE_PREVENTS_PULL
 	light_range = 1
@@ -68,8 +68,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 		ejectee.forceMove(loc)
 	QDEL_NULL(reserved_area)
 	QDEL_LIST(interaction_actions)
-	if(drop_state == DROPPOD_READY)
-		GLOB.droppod_list -= src
+	GLOB.droppod_list -= src
 	return ..()
 
 
@@ -170,7 +169,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 			balloon_alert(user, "Hazardous zone")
 		return FALSE
 	var/area/targetarea = get_area(target)
-	if(targetarea.flags_area & NO_DROPPOD) // Thou shall not pass!
+	if(targetarea.area_flags & NO_DROPPOD) // Thou shall not pass!
 		if(user)
 			balloon_alert(user, "Invalid area")
 		return FALSE
@@ -271,6 +270,11 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	addtimer(CALLBACK(src, PROC_REF(finish_drop), user), ROUND_UP(DROPPOD_TRANSIT_TIME * ((GLOB.current_orbit + 3) / 6)))
 	forceMove(pick(reserved_area.reserved_turfs))
 	new /area/arrival(loc)	//adds a safezone so we dont suffocate on the way down, cleaned up with reserved turfs
+
+	var/turf/target = locate(target_x, target_y, 2)
+	var/obj/effect/overlay/blinking_laser/marine/pod_warning/laserpod = new /obj/effect/overlay/blinking_laser/marine/pod_warning(target)
+	laserpod.dir = target
+	QDEL_IN(laserpod, DROPPOD_TRANSIT_TIME + 1)
 
 /// Moves the droppod into its target turf, which it updates if needed
 /obj/structure/droppod/proc/finish_drop(mob/user)
@@ -410,6 +414,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	stored_object = package
 	package.forceMove(src)
 	RegisterSignal(package, COMSIG_MOVABLE_MOVED, PROC_REF(unload_package))
+	RegisterSignal(package, COMSIG_QDELETING, PROC_REF(on_package_del))
 	update_icon()
 
 ///Handles removing the stored object from the pod
@@ -420,6 +425,12 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	UnregisterSignal(stored_object, COMSIG_MOVABLE_MOVED)
 	if(stored_object.loc == src)
 		stored_object.forceMove(loc)
+	stored_object = null
+	update_icon()
+
+///Handles if the package is deleted inside the pod
+/obj/structure/droppod/nonmob/proc/on_package_del()
+	SIGNAL_HANDLER
 	stored_object = null
 	update_icon()
 
@@ -480,7 +491,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/droppod/nonmob/mech_pod
 	name = "\improper TGMC Zeus mech drop pod"
-	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This is a larger model designed specifically to carry mechs."
+	desc = "A menacing metal hunk of steel that is used by the TGMC for quick tactical redeployment. This is a larger model designed specifically to carry mechs. Shift click to enter when inside a mech."
 	icon = 'icons/obj/structures/big_droppod.dmi'
 	icon_state = "mechpod"
 	light_range = 2
@@ -507,9 +518,9 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 /obj/structure/droppod/nonmob/mech_pod/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			take_damage(100, BRUTE, BOMB, 0)
+			take_damage(100, BRUTE, BOMB)
 		if(EXPLODE_HEAVY)
-			take_damage(50, BRUTE, BOMB, 0)
+			take_damage(50, BRUTE, BOMB)
 
 /obj/structure/droppod/nonmob/mech_pod/mech_shift_click(obj/vehicle/sealed/mecha/mecha_clicker, mob/living/user)
 	if(mecha_clicker == stored_object)
@@ -565,19 +576,17 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 	owner.client.screen += map
 	choosing = TRUE
 	var/list/polled_coords = map.get_coords_from_click(owner)
-	if(!polled_coords)
-		owner.client?.screen -= map
-		choosing = FALSE
-		return
-	owner.client?.screen -= map
+	owner?.client?.screen -= map
 	choosing = FALSE
+	if(!polled_coords)
+		return
 	pod.set_target(polled_coords[1], polled_coords[2])
 
 /datum/action/innate/set_drop_target/remove_action(mob/M)
 	if(choosing)
 		var/obj/structure/droppod/pod = target
 		var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(pod.target_z, MINIMAP_FLAG_MARINE)
-		owner.client?.screen -= map
+		owner?.client?.screen -= map
 		map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
 		choosing = FALSE
 	return ..()
@@ -631,3 +640,7 @@ GLOBAL_LIST_INIT(blocked_droppod_tiles, typecacheof(list(/turf/open/space/transi
 
 /obj/structure/drop_pod_launcher/sentry
 	pod_type = /obj/structure/droppod/nonmob/turret_pod
+
+#undef DROPPOD_TRANSIT_TIME
+#undef LEADER_POD_DISPERSION
+#undef DROPPOD_BASE_DISPERSION

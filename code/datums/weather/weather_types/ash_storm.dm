@@ -12,7 +12,7 @@
 	weather_duration_upper = 1200
 	weather_overlay = "ash_storm"
 
-	end_message = span_boldannounce("The shrieking wind whips away the last of the ash and falls to its usual murmur. It should be safe to go outside now.")
+	end_message = span_danger("The shrieking wind whips away the last of the ash and falls to its usual murmur. It should be safe to go outside now.")
 	end_duration = 300
 	end_overlay = "light_ash"
 
@@ -31,7 +31,7 @@
 	. = ..()
 	var/list/impacted_mobs = list()
 	for(var/mob/impacted_mob AS in GLOB.player_list)
-		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+		if(!(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER))
 			continue
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)
 		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
@@ -82,7 +82,7 @@
 	name = "emberfall"
 	desc = "A passing ash storm blankets the area in harmless embers."
 
-	telegraph_message = span_boldannounce("An eerie moan rises on the wind. Sheets of burning ash blacken the horizon.")
+	telegraph_message = span_danger("An eerie moan rises on the wind. Sheets of burning ash blacken the horizon.")
 
 	weather_message = span_notice("Gentle embers waft down around you like grotesque snow. The storm seems to have passed you by...")
 	weather_overlay = "light_ash"

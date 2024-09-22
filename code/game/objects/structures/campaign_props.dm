@@ -1,7 +1,7 @@
 /obj/structure/prop/som_fighter
 	name = "\improper Harbinger"
 	desc = "A state of the art Harbinger class fighter. The premier fighter for SOM forces in space and atmosphere, bristling with high tech systems and weapons."
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	icon_state = "SOM_fighter"
 	pixel_x = -33
 	pixel_y = -10
@@ -20,6 +20,15 @@
 	density = TRUE
 	allow_pass_flags = PASS_AIR
 	bound_width = 128
+
+/obj/structure/prop/train/Initialize(mapload)
+	. = ..()
+	update_icon()
+
+/obj/structure/prop/train/update_overlays()
+	. = ..()
+	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", ABOVE_ALL_MOB_LAYER, dir)
+	. += new_overlay
 
 /obj/structure/prop/train/carriage
 	name = "rail carriage"

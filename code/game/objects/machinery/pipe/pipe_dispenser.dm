@@ -64,6 +64,8 @@
 
 /obj/machinery/pipedispenser/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/pipe) || istype(I, /obj/item/pipe_meter))
 		to_chat(usr, span_notice("You put [I] back into [src]."))

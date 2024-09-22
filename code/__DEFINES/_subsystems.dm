@@ -1,7 +1,7 @@
 //Update this whenever the db schema changes
 //make sure you add an update to the schema_version stable in the db changelog
 #define DB_MAJOR_VERSION 2
-#define DB_MINOR_VERSION 1
+#define DB_MINOR_VERSION 2
 
 //Timing subsystem
 //Don't run if there is an identical unique timer active
@@ -47,7 +47,7 @@
 //type and all subtypes should always call Initialize in New()
 #define INITIALIZE_IMMEDIATE(X) ##X/New(loc, ...){\
 	..();\
-	if(!(flags_atom & INITIALIZED)) {\
+	if(!(atom_flags & INITIALIZED)) {\
 		args[1] = TRUE;\
 		SSatoms.InitAtom(src, FALSE, args);\
 	}\

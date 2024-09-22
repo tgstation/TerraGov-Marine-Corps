@@ -13,6 +13,7 @@
 	name = "Ice Colony"
 	icon_state = "ice_colony"
 	icon_state = "cliff_blocked"
+	ambience = list('sound/ambience/ambi_snow.ogg')
 
 /*
 *  ----------------
@@ -28,7 +29,7 @@
 	power_light = FALSE
 	power_equip = FALSE
 	power_environ = FALSE
-	ambience = list('sound/ambience/ambispace.ogg')
+	ambience = list('sound/ambience/ambi_snow.ogg' = 1, 'sound/effects/wind/wind_2_1.ogg' = 1, 'sound/effects/wind/wind_2_2.ogg' = 1, 'sound/effects/wind/wind_3_1.ogg' = 1, 'sound/effects/wind/wind_4_1.ogg' = 1, 'sound/effects/wind/wind_4_2.ogg' = 1, 'sound/effects/wind/wind_5_1.ogg' = 1)
 	temperature = ICE_COLONY_TEMPERATURE
 	minimap_color = MINIMAP_AREA_COLONY
 
@@ -81,7 +82,6 @@
 /area/ice_colony/exterior/surface/taxiway
 	name = "Aerodrome Taxiway"
 	icon_state = "landing_pad_taxiway"
-
 //
 // Valleys
 // This is for all the areas mostly surrounded by mountains
@@ -198,6 +198,7 @@
 /area/ice_colony/exterior/underground/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /*
 *  ---------------------
@@ -370,6 +371,9 @@
 /area/ice_colony/surface/garage/two
 	name = "Garage Eastern Unit"
 	icon_state = "garage_two"
+
+/area/ice_colony/surface/garage/three
+	name = "Southwest Colony Garage"
 
 /area/ice_colony/surface/garage/repair
 	name = "Garage Repair Station"

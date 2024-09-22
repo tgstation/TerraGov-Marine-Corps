@@ -20,28 +20,25 @@
 	update_icons()
 
 /mob/living/carbon/xenomorph/update_icons(state_change = TRUE)
-	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
-		return
+	SEND_SIGNAL(src, COMSIG_XENOMORPH_UPDATE_ICONS, state_change)
 	if(state_change)
 		if(stat == DEAD)
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Dead"
+			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Dead"
 		else if(HAS_TRAIT(src, TRAIT_BURROWED))
-			icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Burrowed"
+			icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Burrowed"
 		else if(lying_angle)
 			if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Sleeping"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Sleeping"
 			else
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Knocked Down"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
 		else if(!handle_special_state())
 			if(m_intent == MOVE_INTENT_RUN)
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Running"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
 			else
-				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
+				icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
 
-	hud_set_plasma()
-	med_hud_set_health()
 	hud_set_sunder()
 	hud_set_firestacks()
 
@@ -52,67 +49,58 @@
 	update_inv_l_hand()
 	update_icons()
 
-
-/mob/living/carbon/xenomorph/update_inv_pockets()
-	if(l_store)
-		if(client && hud_used && hud_used.hud_shown)
-			l_store.screen_loc = ui_storage1
-			client.screen += l_store
-	if(r_store)
-		if(client && hud_used && hud_used.hud_shown)
-			r_store.screen_loc = ui_storage2
-			client.screen += r_store
-
 /mob/living/carbon/xenomorph/update_inv_r_hand()
-	remove_overlay(X_R_HAND_LAYER)
+	remove_overlay(R_HAND_LAYER)
 	if(r_hand)
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			r_hand.screen_loc = ui_rhand
 			client.screen += r_hand
 
-		overlays_standing[X_R_HAND_LAYER] = r_hand.make_worn_icon(inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/items_righthand_1.dmi', default_layer = X_R_HAND_LAYER)
-		apply_overlay(X_R_HAND_LAYER)
+		overlays_standing[R_HAND_LAYER] = r_hand.make_worn_icon(inhands = TRUE, slot_name = slot_r_hand_str, default_icon = 'icons/mob/inhands/items/items_right.dmi', default_layer = R_HAND_LAYER)
+		apply_overlay(R_HAND_LAYER)
 
 /mob/living/carbon/xenomorph/update_inv_l_hand()
-	remove_overlay(X_L_HAND_LAYER)
+	remove_overlay(L_HAND_LAYER)
 	if(l_hand)
 		if(client && hud_used && hud_used.hud_version != HUD_STYLE_NOHUD)
 			l_hand.screen_loc = ui_lhand
 			client.screen += l_hand
 
-		overlays_standing[X_L_HAND_LAYER] = l_hand.make_worn_icon(inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/items_lefthand_1.dmi', default_layer = X_L_HAND_LAYER)
-		apply_overlay(X_L_HAND_LAYER)
+		overlays_standing[L_HAND_LAYER] = l_hand.make_worn_icon(inhands = TRUE, slot_name = slot_l_hand_str, default_icon = 'icons/mob/inhands/items/items_left.dmi', default_layer = L_HAND_LAYER)
+		apply_overlay(L_HAND_LAYER)
 
 /mob/living/carbon/xenomorph/proc/create_shriekwave()
-	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/64x64_Xeno_overlays.dmi', "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
-	apply_temp_overlay(X_SUIT_LAYER, 3 SECONDS)
+	overlays_standing[SUIT_LAYER] = image("icon"='icons/Xeno/64x64_Xeno_overlays.dmi', "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
+	apply_temp_overlay(SUIT_LAYER, 3 SECONDS)
 
 /mob/living/carbon/xenomorph/proc/create_stomp()
-	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/64x64_Xeno_overlays.dmi', "icon_state" = "stomp") //Ehh, suit layer's not being used.
-	apply_temp_overlay(X_SUIT_LAYER, 1.2 SECONDS)
+	overlays_standing[SUIT_LAYER] = image("icon"='icons/Xeno/64x64_Xeno_overlays.dmi', "icon_state" = "stomp") //Ehh, suit layer's not being used.
+	apply_temp_overlay(SUIT_LAYER, 1.2 SECONDS)
 
 /mob/living/carbon/xenomorph/update_fire()
 	if(!fire_overlay)
 		return
 	var/fire_light = min(fire_stacks * 0.2 , 3)
+	if(!on_fire)
+		fire_light = 0
 	if(fire_light == fire_luminosity)
 		return
 	fire_luminosity = fire_light
-	fire_overlay.update_icon()
+	fire_overlay.update_appearance(UPDATE_ICON)
 
 ///Updates the wound overlays on the xeno
 /mob/living/carbon/xenomorph/proc/update_wounds()
 	if(QDELETED(src))
 		return
 
-	remove_overlay(X_WOUND_LAYER)
+	remove_overlay(WOUND_LAYER)
 	remove_filter("wounded_filter")
 
 	var/health_thresholds
 	wound_overlay.layer = layer + 0.3
 	wound_overlay.icon = src.icon
 	wound_overlay.vis_flags |= VIS_HIDE
-	if(HAS_TRAIT(src, TRAIT_MOB_ICON_UPDATE_BLOCKED))
+	if(HAS_TRAIT(src, TRAIT_XENOMORPH_INVISIBLE_BLOOD))
 		wound_overlay.icon_state = "none"
 		return
 	if(health > health_threshold_crit)
@@ -144,8 +132,8 @@
 	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK)
 		var/image/wounded_mask = image(icon, null, "alpha_[overlay_to_show]")
 		wounded_mask.render_target = "*[REF(src)]"
-		overlays_standing[X_WOUND_LAYER] = wounded_mask
-		apply_overlay(X_WOUND_LAYER)
+		overlays_standing[WOUND_LAYER] = wounded_mask
+		apply_overlay(WOUND_LAYER)
 		add_filter("wounded_filter", 1, alpha_mask_filter(0, 0, null, "*[REF(src)]", MASK_INVERSE))
 
 	wound_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
@@ -156,10 +144,11 @@
 
 ///Used to display the xeno wounds without rapidly switching overlays
 /atom/movable/vis_obj/xeno_wounds
-	vis_flags = VIS_INHERIT_DIR
+	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_ID
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay
 	light_system = MOVABLE_LIGHT
+	layer = ABOVE_MOB_LAYER
 	///The xeno this belongs to
 	var/mob/living/carbon/xenomorph/owner
 
@@ -171,7 +160,7 @@
 	light_pixel_x = owner.light_pixel_x
 	light_pixel_y = owner.light_pixel_y
 	. = ..()
-	update_icon()
+	update_appearance(UPDATE_ICON)
 
 /atom/movable/vis_obj/xeno_wounds/fire_overlay/Destroy()
 	owner = null
@@ -192,7 +181,6 @@
 	if(HAS_TRAIT(owner, TRAIT_BURROWED))
 		icon_state = ""
 		return
-	layer = layer + 0.4
 	if((!owner.lying_angle && !owner.resting && !owner.IsSleeping()))
 		icon_state = "alien_fire"
 	else

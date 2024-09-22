@@ -48,6 +48,8 @@
 
 /obj/structure/paper_bin/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(istype(I, /obj/item/paper))
 		if(!user.transferItemToLoc(I, src))

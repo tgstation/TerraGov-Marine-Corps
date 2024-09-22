@@ -89,6 +89,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	screen_overlay = "mech_computer"
 	dir = EAST // determines where the mech will pop out, NOT where the computer faces
 	interaction_flags = INTERACT_OBJ_UI
+	req_access = list(ACCESS_MARINE_MECH)
 
 	///current selected name for the mech
 	var/selected_name = "TGMC Combat Mech"
@@ -175,7 +176,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	. = ..()
 	if(!.)
 		return
-	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_TRAINED)
+	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
 		return FALSE
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)

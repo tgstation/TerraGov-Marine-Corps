@@ -51,6 +51,7 @@
 /datum/action/ability/activable/xeno/psychic_shield
 	name = "Psychic Shield"
 	action_icon_state = "psy_shield"
+	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Channel a psychic shield at your current location that can reflect most projectiles. Activate again while the shield is active to detonate the shield forcibly, producing knockback. Must remain static to use."
 	cooldown_duration = 10 SECONDS
 	ability_cost = 200
@@ -172,7 +173,7 @@
 			affected.throw_at(throwlocation, 4, 1, owner, TRUE)
 
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
-	playsound(owner, 'sound/voice/alien_roar_warlock.ogg', 25)
+	playsound(owner, 'sound/voice/alien/roar_warlock.ogg', 25)
 
 	GLOB.round_statistics.psy_shield_blasts++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shield_blasts")
@@ -182,7 +183,7 @@
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
 	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
-	max_integrity = 350
+	max_integrity = 650
 	layer = ABOVE_MOB_LAYER
 	///Who created the shield
 	var/mob/living/carbon/xenomorph/owner
@@ -195,8 +196,6 @@
 		return INITIALIZE_HINT_QDEL
 	owner = creator
 	dir = owner.dir
-	max_integrity = owner.xeno_caste.shield_strength
-	obj_integrity = max_integrity
 	if(dir & (EAST|WEST))
 		bound_height = 96
 		bound_y = -32
@@ -212,7 +211,7 @@
 	return !uncrossing
 
 /obj/effect/xeno/shield/do_projectile_hit(obj/projectile/proj)
-	proj.flags_projectile_behavior |= PROJECTILE_FROZEN
+	proj.projectile_behavior_flags |= PROJECTILE_FROZEN
 	proj.iff_signal = null
 	frozen_projectiles += proj
 	take_damage(proj.damage, proj.ammo.damage_type, proj.ammo.armor_type, 0, REVERSE_DIR(proj.dir), proj.ammo.penetration)
@@ -221,7 +220,7 @@
 		release_projectiles()
 		owner.apply_effect(1 SECONDS, WEAKEN)
 
-/obj/effect/xeno/shield/obj_destruction()
+/obj/effect/xeno/shield/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	release_projectiles()
 	owner.apply_effect(1 SECONDS, WEAKEN)
 	return ..()
@@ -229,7 +228,7 @@
 ///Unfeezes the projectiles on their original path
 /obj/effect/xeno/shield/proc/release_projectiles()
 	for(var/obj/projectile/proj AS in frozen_projectiles)
-		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
+		proj.projectile_behavior_flags &= ~PROJECTILE_FROZEN
 		proj.resume_move()
 	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles))
 
@@ -238,15 +237,14 @@
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
 	for(var/obj/projectile/proj AS in frozen_projectiles)
-		proj.flags_projectile_behavior &= ~PROJECTILE_FROZEN
+		proj.projectile_behavior_flags &= ~PROJECTILE_FROZEN
 		proj.distance_travelled = 0 //we're effectively firing it fresh
 		var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
 		if(new_angle < 0)
 			new_angle += 360
 		else if(new_angle > 360)
 			new_angle -= 360
-		proj.firer = src
-		proj.fire_at(shooter = src, source = src, angle = new_angle, recursivity = TRUE)
+		proj.fire_at(source = src, angle = new_angle, recursivity = TRUE)
 
 		//Record those sick rocket shots
 		//Is not part of record_projectiles_frozen() because it is probably bad to be running that for every bullet!
@@ -261,9 +259,12 @@
 // ***************************************
 // *********** psychic crush
 // ***************************************
+
+#define PSY_CRUSH_DAMAGE 50
 /datum/action/ability/activable/xeno/psy_crush
 	name = "Psychic Crush"
 	action_icon_state = "psy_crush"
+	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Channel an expanding AOE crush effect, activating it again pre-maturely crushes enemies over an area. The longer it is channeled, the larger area it will affect, but will consume more plasma."
 	ability_cost = 40
 	cooldown_duration = 12 SECONDS
@@ -400,13 +401,16 @@
 				var/mob/living/carbon/carbon_victim = victim
 				if(isxeno(carbon_victim) || carbon_victim.stat == DEAD)
 					continue
-				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength, BRUTE, blocked = BOMB)
-				carbon_victim.apply_damage(xeno_owner.xeno_caste.crush_strength * 1.5, STAMINA, blocked = BOMB)
+				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE, BRUTE, blocked = BOMB)
+				carbon_victim.apply_damage(PSY_CRUSH_DAMAGE * 1.5, STAMINA, blocked = BOMB)
 				carbon_victim.adjust_stagger(5 SECONDS)
 				carbon_victim.add_slowdown(6)
-			else if(ismecha(victim))
-				var/obj/vehicle/sealed/mecha/mecha_victim = victim
-				mecha_victim.take_damage(xeno_owner.xeno_caste.crush_strength * 5, BRUTE, BOMB)
+			else if(isvehicle(victim) || ishitbox(victim))
+				var/obj/obj_victim = victim
+				var/dam_mult = 0.5
+				if(ismecha(obj_victim))
+					dam_mult = 5
+				obj_victim.take_damage(PSY_CRUSH_DAMAGE * dam_mult, BRUTE, BOMB)
 	stop_crush()
 
 /// stops channeling and unregisters all listeners, resetting the ability
@@ -487,12 +491,15 @@
 	. = ..()
 	flick("orb_charge", src)
 
+#undef PSY_CRUSH_DAMAGE
+
 // ***************************************
 // *********** Psyblast
 // ***************************************
 /datum/action/ability/activable/xeno/psy_blast
 	name = "Psychic Blast"
 	action_icon_state = "psy_blast"
+	action_icon = 'icons/Xeno/actions/warlock.dmi'
 	desc = "Launch a blast of psychic energy that deals light damage and knocks back enemies in its AOE. Must remain stationary for a few seconds to use."
 	cooldown_duration = 6 SECONDS
 	ability_cost = 230
@@ -560,7 +567,7 @@
 	var/obj/projectile/hitscan/projectile = new /obj/projectile/hitscan(xeno_owner.loc)
 	projectile.effect_icon = initial(ammo_type.hitscan_effect_icon)
 	projectile.generate_bullet(ammo_type)
-	projectile.fire_at(A, xeno_owner, null, projectile.ammo.max_range, projectile.ammo.shell_speed)
+	projectile.fire_at(A, xeno_owner, xeno_owner, projectile.ammo.max_range, projectile.ammo.shell_speed)
 	playsound(xeno_owner, 'sound/weapons/guns/fire/volkite_4.ogg', 40)
 
 	if(istype(xeno_owner.ammo, /datum/ammo/energy/xeno/psy_blast))

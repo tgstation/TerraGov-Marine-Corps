@@ -12,6 +12,8 @@
 
 /obj/machinery/recharger/attackby(obj/item/I, mob/user, params)
 	. = ..()
+	if(.)
+		return
 
 	if(issilicon(user))
 		return
@@ -94,7 +96,7 @@
 		if(istype(charging, /obj/item/weapon/baton))
 			var/obj/item/weapon/baton/B = charging
 			if(B.bcell)
-				if(!B.bcell.fully_charged())
+				if(!B.bcell.is_fully_charged())
 					B.bcell.give(active_power_usage*GLOB.CELLRATE)
 					percent_charge_complete = B.bcell.percent()
 					update_icon()
@@ -108,7 +110,7 @@
 
 		if(istype(charging, /obj/item/defibrillator))
 			var/obj/item/defibrillator/D = charging
-			if(!D.dcell.fully_charged())
+			if(!D.dcell.is_fully_charged())
 				D.dcell.give(active_power_usage*GLOB.CELLRATE)
 				percent_charge_complete = D.dcell.percent()
 				update_icon()
@@ -119,7 +121,7 @@
 
 		if(istype(charging, /obj/item/cell))
 			var/obj/item/cell/C = charging
-			if(!C.fully_charged())
+			if(!C.is_fully_charged())
 				C.give(active_power_usage*GLOB.CELLRATE)
 				percent_charge_complete = C.percent()
 				update_icon()
@@ -131,14 +133,13 @@
 
 /obj/machinery/recharger/emp_act(severity)
 	if(machine_stat & (NOPOWER|BROKEN) || !anchored)
-		..(severity)
-		return
+		return ..()
 
 	if(istype(charging, /obj/item/weapon/baton))
 		var/obj/item/weapon/baton/B = charging
 		if(B.bcell)
 			B.bcell.charge = 0
-	..(severity)
+	return ..()
 
 /obj/machinery/recharger/update_overlays()
 	. = ..()

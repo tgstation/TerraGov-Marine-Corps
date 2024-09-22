@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/larva
-	caste_base_type = /mob/living/carbon/xenomorph/larva
+	caste_base_type = /datum/xeno_caste/larva
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
 	bubble_icon = "alien"

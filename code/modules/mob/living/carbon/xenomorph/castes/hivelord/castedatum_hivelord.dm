@@ -16,21 +16,19 @@
 
 	// *** Plasma *** //
 	plasma_max = 2400
-	plasma_gain = 65
+	plasma_gain = 80
 	plasma_regen_limit = 0.5
 	plasma_icon_state = "hivelord_plasma"
 
 	// *** Health *** //
-	max_health = 350
+	max_health = 410
 
 
 	// *** Evolution *** //
 	evolution_threshold = 225
 	upgrade_threshold = TIER_TWO_THRESHOLD
 
-	deevolves_to = /mob/living/carbon/xenomorph/drone
-
-	evolves_to = list(/mob/living/carbon/xenomorph/defiler, /mob/living/carbon/xenomorph/gorger)
+	deevolves_to = /datum/xeno_caste/drone
 
 	// *** Flags *** //
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_IS_BUILDER
@@ -39,7 +37,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
+	soft_armor = list(MELEE = 35, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.3 SECONDS
@@ -64,6 +62,7 @@
 		/datum/action/ability/activable/xeno/healing_infusion,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/secrete_resin/hivelord,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/transfer_plasma/improved,
 		/datum/action/ability/activable/xeno/corrosive_acid,
@@ -99,6 +98,7 @@
 		/datum/action/ability/activable/xeno/healing_infusion,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/secrete_resin/hivelord,
+		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
 		/datum/action/ability/activable/xeno/transfer_plasma/improved,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,

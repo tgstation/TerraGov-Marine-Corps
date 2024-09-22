@@ -218,7 +218,7 @@
 "dG" = (
 /obj/structure/closet,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/clothing/under/marine/veteran,
 /obj/machinery/light/small{
 	dir = 1
@@ -1464,7 +1464,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "rL" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/faxmachine,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)
@@ -1841,7 +1841,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "wt" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/item/trash/cigbutt/cigarbutt{
 	pixel_y = 14
 	},
@@ -1861,7 +1861,7 @@
 /turf/open/floor/plating/icefloor/warnplate,
 /area/oscar_outpost/village/abandonedbase/tadlandingzone)
 "wI" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/machinery/random_broken_computer/small/pc,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)
@@ -2339,7 +2339,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Dt" = (
-/obj/item/tool/kitchen/tray{
+/obj/item/storage/kitchen_tray{
 	layer = 2.9
 	},
 /obj/item/reagent_containers/food/snacks/carpmeat{
@@ -2392,7 +2392,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Ej" = (
-/obj/structure/table/fancywoodentable{
+/obj/structure/table/wood/fancy{
 	pixel_y = 5
 	},
 /obj/item/tool/pen,
@@ -2836,7 +2836,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost/village/abandonedbase)
 "KL" = (
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/machinery/random_broken_computer/small/pc{
 	dir = 4
 	},
@@ -3258,7 +3258,7 @@
 /turf/open/floor/grayscale/black,
 /area/oscar_outpost/village/abandonedbase)
 "Rn" = (
-/obj/structure/table/fancywoodentable{
+/obj/structure/table/wood/fancy{
 	pixel_y = 5
 	},
 /obj/item/tool/pen,
@@ -3686,21 +3686,21 @@
 "XI" = (
 /obj/structure/closet,
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/item/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/cup/glass/drinkingglass,
 /obj/item/clothing/under/marine/veteran,
 /obj/machinery/light/small,
 /obj/effect/ai_node,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "XP" = (
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = 9
 	},
-/obj/item/reagent_containers/food/drinks/drinkingglass{
+/obj/item/reagent_containers/cup/glass/drinkingglass{
 	pixel_x = -8
 	},
 /obj/item/reagent_containers/food/drinks/bottle/vodka,
-/obj/structure/table/fancywoodentable,
+/obj/structure/table/wood/fancy,
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/oscar_outpost/village/abandonedbase)

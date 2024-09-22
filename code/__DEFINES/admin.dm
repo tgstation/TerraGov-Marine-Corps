@@ -43,8 +43,9 @@
 #define R_DBRANKS (1<<13)
 #define R_RUNTIME (1<<14)
 #define R_LOG (1<<15)
+#define R_POLLS (1<<16)
 
-#define R_EVERYTHING (1<<16)-1 //the sum of all other rank permissions, used for +EVERYTHING
+#define R_EVERYTHING (ALL) //the sum of all other rank permissions, used for +EVERYTHING
 
 #define ADMIN_QUE(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(user)]'>?</a>)"
 #define ADMIN_FLW(user) "(<a href='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(user)]'>FLW</a>)"

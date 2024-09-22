@@ -23,7 +23,7 @@
 	for(var/obj/vehicle/train/T in orange(1, src))
 		latch(T,silent=TRUE)
 
-/obj/vehicle/train/Move()
+/obj/vehicle/train/Move(atom/newloc, direction, glide_size_override)
 	var/old_loc = get_turf(src)
 	if(..())
 		if(tow)
@@ -37,7 +37,7 @@
 //-------------------------------------------
 // Vehicle procs
 //-------------------------------------------
-/obj/vehicle/train/deconstruct(disassembled = TRUE)
+/obj/vehicle/train/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(tow)
 		tow.unattach()
 	unattach()
