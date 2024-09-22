@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/mob/living/carbon/living_target = target_atom
 	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] violently slices [living_target] with its tail [buffed ? "twice" : ""]!"), \
-		span_danger("We slice [living_target] with our tail [buffed ? "twice" : ""]!"))
+		span_danger("We slice [living_target] with our tail[buffed ? " twice" : ""]!"))
 
 	try_impale(living_target)
 	if(buffed)
