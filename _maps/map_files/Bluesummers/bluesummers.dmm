@@ -9258,6 +9258,11 @@
 	},
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/inside/engineering/plant)
+"inw" = (
+/obj/effect/turf_decal/sandytile/sandyplating,
+/obj/docking_port/stationary/marine_dropship/lz1,
+/turf/open/floor/plating,
+/area/bluesummers/inside/space_port)
 "inB" = (
 /obj/effect/urban/decal/trash/six,
 /turf/open/floor/tile/dark2,
@@ -46607,7 +46612,7 @@ vlf
 vlf
 vlf
 vlf
-vlf
+inw
 vlf
 vlf
 vlf
