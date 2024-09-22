@@ -285,6 +285,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(owner, "cannot impale")
 		return FALSE
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/xenomorph_target = A
+		if(owner.issamexenohive(xenomorph_target))
+			A.balloon_alert(owner, "cannot impale ally")
+
 	var/mob/living/carbon/carbon_target = A
 	if(!owner.Adjacent(carbon_target))
 		carbon_target.balloon_alert(owner, "too far")
@@ -345,6 +350,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(owner, "cannot tail trip")
 		return FALSE
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/xenomorph_target = A
+		if(owner.issamexenohive(xenomorph_target))
+			A.balloon_alert(owner, "cannot tail trip ally")
+
 	var/mob/living/carbon/carbon_target = A
 	if(get_dist(owner, carbon_target) > 2)
 		if(!silent)
