@@ -12083,6 +12083,11 @@
 /obj/effect/spawner/random/misc/shard,
 /turf/open/floor/plating,
 /area/bluesummers/inside/holodeck)
+"kuD" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
+/turf/open/floor/plating/mainship,
+/area/bluesummers/inside/garage)
 "kvz" = (
 /obj/structure/window_frame/mainship,
 /obj/effect/spawner/random/misc/shard,
@@ -58232,7 +58237,7 @@ poP
 mYl
 mzA
 kRu
-lwI
+kuD
 eGx
 tYR
 sdv
@@ -58414,7 +58419,7 @@ mYl
 mYl
 mzA
 mzA
-erQ
+mzA
 jWF
 vXJ
 shM
@@ -58595,9 +58600,9 @@ mYl
 mYl
 mYl
 mYl
+mYl
 mzA
 mzA
-jWF
 tYR
 shM
 cbd
@@ -58778,7 +58783,7 @@ mYl
 mYl
 mYl
 uAN
-mzA
+mYl
 mzA
 kuu
 nyK
