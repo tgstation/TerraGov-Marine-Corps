@@ -11458,7 +11458,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "iWK" = (
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/clothing/suit/storage/chef/classic,
 /obj/item/clothing/head/chefhat,
 /obj/structure/table/reinforced,
@@ -16381,8 +16381,8 @@
 /area/mainship/engineering/lower_engineering)
 "qGo" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/tool/kitchen/tray,
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
+/obj/item/storage/kitchen_tray,
 /obj/item/storage/box/tgmc_mre,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/mono,
