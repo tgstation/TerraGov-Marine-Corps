@@ -273,7 +273,7 @@
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	storage_type = /datum/storage/pill_bottle
 	///What kind of pill we are filling our pill bottle with
-	var/pill_type_to_fill
+	var/obj/item/pill_type_to_fill
 	///Short description in overlay
 	var/description_overlay = ""
 
@@ -331,14 +331,14 @@
 	. = ..()
 	if(!.)
 		return
-	var/available_space = max_storage_space
+	var/available_space = storage_datum.max_storage_space
 	for(var/obj/item/stored_item in contents)
 		available_space -= stored_item.w_class
 	if(!available_space)
 		return
 	var/pills_to_add = round(available_space/initial(pill_type_to_fill.w_class))
-	if(storage_slots)
-		pills_to_add = min(pills_to_add, storage_slots, storage_slots - length(contents))
+	if(storage_datum.storage_slots)
+		pills_to_add = min(pills_to_add, storage_datum.storage_slots, storage_datum.storage_slots - length(contents))
 	for(var/i in 1 to pills_to_add)
 		new pill_type_to_fill(src)
 	update_icon()

@@ -409,7 +409,7 @@
 		display_message_and_visuals(user, TRUE, "[item_to_refill] can't be refilled here!", VENDING_RESTOCK_DENY)
 		return FALSE
 
-	if(!(record.amount <= -1) && !(item_to_refill.flags_item & CAN_REFILL))
+	if(!(record.amount <= -1) && !(item_to_refill.item_flags & CAN_REFILL))
 		user.balloon_alert(user, "Can't refill this")
 		return FALSE
 
@@ -762,7 +762,7 @@
 
 		if(isreagentcontainer(item_to_stock))
 			var/obj/item/reagent_containers/reagent_container = item_to_stock
-			if(!(reagent_container.flags_item & CAN_REFILL) && !reagent_container.has_initial_reagents())
+			if(!(reagent_container.item_flags & CAN_REFILL) && !reagent_container.has_initial_reagents())
 				user?.balloon_alert(user, "\The [reagent_container] is missing some of its reagents!")
 				return FALSE
 
