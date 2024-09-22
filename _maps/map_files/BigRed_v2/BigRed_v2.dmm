@@ -8541,7 +8541,7 @@
 /area/bigredv2/outside/bar)
 "eed" = (
 /obj/structure/mirror/broken{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/spawner/random/misc/soap/deluxeweighted,
 /obj/effect/landmark/weed_node,
