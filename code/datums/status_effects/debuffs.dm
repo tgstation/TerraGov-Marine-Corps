@@ -918,21 +918,7 @@
 	icon_state = "cold3"
 
 // ***************************************
-// *********** Dancing Tagged
+// *********** Dancer Tagged
 // ***************************************
-/datum/status_effect/stacking/dancer_tagged
+/datum/status_effect/incapacitating/dancer_tagged
 	id = "dancer_tagged"
-	tick_interval = 2 SECONDS
-	stacks = 1
-	max_stacks = 2
-
-/datum/status_effect/stacking/dancer_tagged/can_gain_stacks()
-	if(owner.stat == DEAD)
-		return FALSE
-	return ..()
-
-/datum/status_effect/stacking/dancer_tagged/on_creation(mob/living/new_owner, stacks_to_apply)
-	if(new_owner.stat == DEAD)
-		qdel(src)
-		return
-	return ..()
