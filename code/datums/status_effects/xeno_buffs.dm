@@ -33,7 +33,7 @@
 	return ..()
 
 /datum/status_effect/resin_jelly_coating/tick(delta_time)
-	owner.heal_limb_damage(0, 5 * delta_time)
+	owner.heal_limb_damage(0, 5)
 	return ..()
 
 // ***************************************
@@ -113,8 +113,8 @@
 	var/remaining_health = link_target.maxHealth - (link_target.getBruteLoss() + link_target.getFireLoss())
 	if(stacks < 1 || !was_within_range || remaining_health >= link_target.maxHealth)
 		return
-	var/heal_amount = link_target.maxHealth * (DRONE_ESSENCE_LINK_REGEN * stacks) * delta_time
-	var/ability_cost = heal_amount * 2 * delta_time
+	var/heal_amount = link_target.maxHealth * (DRONE_ESSENCE_LINK_REGEN * stacks)
+	var/ability_cost = heal_amount * 2
 	if(link_owner.plasma_stored < ability_cost)
 		if(!COOLDOWN_CHECK(src, plasma_warning))
 			return
@@ -225,10 +225,10 @@
 
 /datum/status_effect/salve_regen/tick(delta_time)
 	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
-	var/heal_amount = buff_owner.maxHealth * 0.01 * delta_time
+	var/heal_amount = buff_owner.maxHealth * 0.01
 	buff_owner.adjustFireLoss(-max(0, heal_amount - buff_owner.getBruteLoss()), passive = TRUE)
 	buff_owner.adjustBruteLoss(-heal_amount, passive = TRUE)
-	buff_owner.adjust_sunder(-1 * delta_time)
+	buff_owner.adjust_sunder(-1)
 	return ..()
 
 // ***************************************
@@ -302,7 +302,7 @@
 	if(buffing_xeno.plasma_stored < ability_cost)
 		enhancement_action.end_ability()
 		return
-	buffing_xeno.use_plasma(ability_cost * delta_time)
+	buffing_xeno.use_plasma(ability_cost)
 
 /// Toggles the buff on or off.
 /datum/status_effect/drone_enhancement/proc/toggle_buff(toggle)
@@ -558,14 +558,14 @@
 
 /datum/status_effect/xeno_feast/tick(delta_time)
 	var/mob/living/carbon/xenomorph/X = owner
-	if(X.plasma_stored < plasma_drain * delta_time)
+	if(X.plasma_stored < plasma_drain)
 		to_chat(X, span_notice("Our feast has come to an end..."))
 		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
-	var/heal_amount = X.maxHealth * 0.08 * delta_time
+	var/heal_amount = X.maxHealth * 0.08
 	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
 	adjustOverheal(X, heal_amount / 2)
-	X.use_plasma(plasma_drain * delta_time)
+	X.use_plasma(plasma_drain)
 
 // ***************************************
 // *********** Plasma Fruit buff
