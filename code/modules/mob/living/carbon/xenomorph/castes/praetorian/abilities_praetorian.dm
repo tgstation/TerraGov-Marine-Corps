@@ -365,10 +365,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			carbon_target.balloon_alert(owner, "need line of sight")
 		return FALSE
 	if(carbon_target.stat == DEAD)
-		owner.balloon_alert(owner, "already dead")
+		carbon_target.balloon_alert(owner, "already dead")
 		return FALSE
 	if(carbon_target.stat == UNCONSCIOUS)
-		owner.balloon_alert(owner, "not standing")
+		carbon_target.balloon_alert(owner, "not standing")
 		return FALSE
 
 /datum/action/ability/activable/xeno/tail_trip/use_ability(atom/target_atom)
