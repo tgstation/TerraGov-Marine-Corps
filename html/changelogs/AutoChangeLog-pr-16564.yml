@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - bugfix: "Removed restriction to evolving to something besides drone when there is no ruler"

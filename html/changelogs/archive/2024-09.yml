@@ -109,3 +109,14 @@
       than intended'
   blackdav123:
   - balance: GL54 and AR55 Airburst sunder reduced from 3 per pellet to 1.5.
+2024-09-22:
+  ivanmixo:
+  - bugfix: Fixed welding goggles hiding themselves in the strip menu
+  - balance: Deployable shields no longer have a strap
+  - bugfix: Removed restriction to evolving to something besides drone when there
+      is no ruler
+  - bugfix: Fixed a runtime when first spawning in as a xeno with pheros
+  - bugfix: Fix a supply beacon console runtime
+2024-09-23:
+  Xander3359:
+  - qol: You can right click a vendor to refill something that is vendable by it
