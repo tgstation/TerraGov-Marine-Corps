@@ -96,6 +96,9 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A giant melee monster. It looks pretty strong."
 
+	// +2 melee damage
+	melee_damage = 25
+
 	// Loses some common armor (-5) for more speed (-0.3).
 	speed = -0.8
 	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 10, BIO = 40, FIRE = 45, ACID = 40)
