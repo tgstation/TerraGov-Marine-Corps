@@ -634,7 +634,7 @@
 
 /obj/item/weapon/gun/standard_agls
 	name = "\improper AGLS-37 Kauser automatic grenade launcher"
-	desc = "The AGLS-37 automatic grenade launching IFF capable system, it's too heavy to be wielded or operated without the tripod. On the back, it reads: \"The Explosions and Fragmentation from this weapon ARE NOT friendly fire capable. Kauser is not obligated to buy you new body parts for you or your friends if you lose them.\"\nCan be deployed with Crtl-Click. Can be repaired with a blowtorch once deployed."
+	desc = "The AGLS-37 automatic grenade launching system. It's too heavy to be wielded or operated without the tripod. On the back, it reads: \"Kauser is not obligated to buy you new body parts for you or your friends if you lose them.\"\nCan be deployed with Crtl-Click. Can be repaired with a blowtorch once deployed."
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
 	caliber = CALIBER_40MM
@@ -646,7 +646,7 @@
 	scatter = 0
 	fire_delay = 1.1 SECONDS
 	burst_amount = 0
-	accuracy_mult = 1.2 //it's got a bipod
+	accuracy_mult = 1.2
 	item_flags = IS_DEPLOYABLE|TWOHANDED
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
