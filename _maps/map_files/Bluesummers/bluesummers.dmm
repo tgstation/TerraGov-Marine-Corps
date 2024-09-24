@@ -836,9 +836,6 @@
 /turf/open/floor/tile/dark,
 /area/bluesummers/inside/industrial)
 "aHI" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
 /obj/effect/decal/cleanable/blood/oil,
 /turf/open/floor/mainship/green{
 	dir = 5
@@ -1760,6 +1757,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/west)
+"bAP" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating,
+/area/bluesummers/inside/food_processing)
 "bBl" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/tile/darkgreen/darkgreen2{
@@ -2615,14 +2616,6 @@
 	},
 /turf/open/floor/tile/white,
 /area/bluesummers/inside/luxury)
-"cuY" = (
-/obj/machinery/door_control{
-	id = "Biodome";
-	name = "Biodome Shutters";
-	dir = 1
-	},
-/turf/open/ground/grass/weedable/patch/grassyellow,
-/area/bluesummers/inside/biodome)
 "cvD" = (
 /obj/effect/urban/decal/trash,
 /turf/open/floor/plating/dmg1,
@@ -2812,6 +2805,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/bluesummers/inside/engineering/office)
+"cIu" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark/green2/corner,
+/area/bluesummers/inside/robotics)
 "cIA" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/green2{
@@ -2979,7 +2976,7 @@
 /area/bluesummers/outside/southwest/roofed)
 "cPp" = (
 /obj/structure/cryofeed/right,
-/turf/open/shuttle/escapepod/five,
+/turf/open/shuttle/escapepod/five/buildable,
 /area/bluesummers/caves/cryostorage)
 "cPz" = (
 /obj/structure/rack,
@@ -3316,6 +3313,10 @@
 /obj/structure/tankholder/emergencyoxygen,
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/caves/cryostorage/gravity)
+"ddG" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/outside/northeast)
 "ddY" = (
 /obj/effect/spawner/random/misc/shard,
 /obj/effect/spawner/random/misc/shard,
@@ -4508,12 +4509,6 @@
 	dir = 1
 	},
 /area/bluesummers/caves/dorms)
-"eeU" = (
-/obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin,
-/obj/effect/ai_node,
-/turf/open/floor/mainship/green,
-/area/bluesummers/inside/biodome)
 "eeY" = (
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship/floor,
@@ -4643,6 +4638,10 @@
 	dir = 8
 	},
 /obj/item/clothing/head/hardhat,
+/obj/machinery/door_control{
+	id = "Terraforming Wing";
+	name = "Terraforming Wing Shutters"
+	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 1
 	},
@@ -5581,12 +5580,6 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/luxury)
-"eZW" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/bluesummers/inside/biodome)
 "fac" = (
 /obj/structure/lattice,
 /obj/machinery/light/bluegreen{
@@ -5723,6 +5716,10 @@
 	dir = 2
 	},
 /area/bluesummers/inside/engineering/office)
+"feS" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/outside/northwest)
 "feT" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/floor,
@@ -5755,7 +5752,6 @@
 /area/bluesummers/inside/engineering)
 "fgv" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/green{
 	dir = 6
 	},
@@ -5874,7 +5870,7 @@
 /area/bluesummers/inside/food_processing)
 "fnH" = (
 /obj/structure/cryofeed,
-/turf/open/shuttle/escapepod/plain,
+/turf/open/shuttle/escapepod/plain/buildable,
 /area/bluesummers/caves/cryostorage)
 "fnI" = (
 /obj/effect/spawner/random/misc/plant,
@@ -6024,6 +6020,10 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/engineering/office)
+"fvg" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating,
+/area/bluesummers/outside/northeast/roofed)
 "fvr" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/drought/cave,
@@ -6310,16 +6310,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/caves/cryostorage/tcomms)
-"fIr" = (
-/obj/machinery/door_control{
-	id = "Biodome";
-	name = "Biodome Shutters";
-	dir = 8
-	},
-/turf/open/floor/mainship/green{
-	dir = 4
-	},
-/area/bluesummers/inside/biodome)
 "fJa" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor/mainship/tcomms,
@@ -6509,7 +6499,7 @@
 	pixel_y = 3;
 	pixel_x = 2
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/green/full,
 /area/bluesummers/inside/biodome)
 "fQB" = (
 /turf/open/floor/plating/ground/drought,
@@ -8342,7 +8332,7 @@
 "hyn" = (
 /obj/machinery/light,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/green/full,
 /area/bluesummers/inside/biodome)
 "hyV" = (
 /obj/machinery/power/apc/drained,
@@ -9085,7 +9075,6 @@
 /area/bluesummers/inside/observation_deck)
 "ihF" = (
 /obj/structure/cable,
-/obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/green{
 	dir = 10
 	},
@@ -11403,13 +11392,6 @@
 "jVK" = (
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/hydroponics)
-"jWx" = (
-/obj/machinery/door_control{
-	id = "Biodome";
-	name = "Biodome Shutters"
-	},
-/turf/open/floor/plating,
-/area/bluesummers/inside/biodome)
 "jWC" = (
 /obj/machinery/light,
 /turf/open/floor/mainship/green{
@@ -13192,11 +13174,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/caves/cryostorage/tcomms)
-"lqi" = (
-/obj/effect/landmark/weed_node,
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/bluesummers/inside/biodome)
 "lrh" = (
 /obj/item/clothing/head/hardhat{
 	pixel_x = 10;
@@ -13434,6 +13411,10 @@
 	dir = 1
 	},
 /area/bluesummers/inside/engineering/office)
+"lyS" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/inside/engineering)
 "lzp" = (
 /obj/effect/spawner/gibspawner/human,
 /obj/item/limb/head{
@@ -15097,14 +15078,6 @@
 	dir = 1
 	},
 /area/bluesummers/inside/recreation)
-"mOF" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/green{
-	dir = 1
-	},
-/area/bluesummers/inside/biodome)
 "mOK" = (
 /obj/effect/landmark/corpsespawner/colonist/regular,
 /obj/effect/decal/cleanable/blood,
@@ -16204,6 +16177,11 @@
 /obj/structure/closet/crate/explosives,
 /turf/open/floor/tile/dark,
 /area/bluesummers/inside/industrial)
+"nGO" = (
+/obj/structure/lattice,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/outside/southeast)
 "nGX" = (
 /obj/structure/closet/crate/supply,
 /obj/item/tool/pickaxe/drill{
@@ -17857,7 +17835,7 @@
 	},
 /area/bluesummers/caves/mining)
 "paJ" = (
-/obj/machinery/door_control{
+/obj/machinery/door_control/unmeltable{
 	id = "Exercise Wing";
 	name = "Exercise Wing Shutters"
 	},
@@ -18194,6 +18172,13 @@
 /obj/effect/spawner/random/engineering/cable,
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/inside/eva)
+"pql" = (
+/obj/machinery/door_control{
+	id = "Terraforming Wing";
+	name = "Terraforming Wing Shutters"
+	},
+/turf/open/floor/plating,
+/area/bluesummers/caves/mining/south)
 "pqC" = (
 /obj/effect/landmark/start/job/xenomorph,
 /obj/effect/landmark/excavation_site_spawner,
@@ -19355,6 +19340,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/wall/mainship,
 /area/bluesummers/caves/northwest)
+"qlu" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/ground/grass/weedable,
+/area/bluesummers/inside/food_processing/east)
 "qlE" = (
 /turf/closed/wall/mainship,
 /area/bluesummers/caves/northeast)
@@ -19431,6 +19420,10 @@
 "qnF" = (
 /turf/open/floor/plating/mainship,
 /area/bluesummers/inside/industrial)
+"qnQ" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/outside/southwest)
 "qos" = (
 /obj/structure/cryofeed/right,
 /turf/open/liquid/water,
@@ -21046,6 +21039,11 @@
 /obj/effect/spawner/random/misc/shard,
 /turf/open/floor/tile/dark2,
 /area/bluesummers/inside/food_processing)
+"rFB" = (
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/mainship/floor,
+/area/bluesummers/inside/engineering)
 "rFC" = (
 /obj/structure/table/mainship,
 /obj/item/tank/emergency_oxygen/double{
@@ -21053,6 +21051,11 @@
 	pixel_y = 3
 	},
 /obj/item/clothing/mask/rebreather,
+/obj/machinery/door_control{
+	id = "Terraforming Wing";
+	name = "Terraforming Wing Shutters";
+	dir = 1
+	},
 /turf/open/floor/tile/dark/yellow2,
 /area/bluesummers/caves/mining/south)
 "rFN" = (
@@ -21968,7 +21971,7 @@
 	pixel_y = 4
 	},
 /obj/item/tool/weedkiller,
-/turf/open/floor/plating,
+/turf/open/floor/mainship/green/full,
 /area/bluesummers/inside/biodome)
 "ssG" = (
 /obj/structure/table/mainship,
@@ -22111,6 +22114,14 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/data_processing)
+"szm" = (
+/obj/machinery/door_control{
+	id = "Terraforming Wing";
+	name = "Terraforming Wing Shutters";
+	dir = 1
+	},
+/turf/open/floor/tile/dark/yellow2,
+/area/bluesummers/caves/mining/south)
 "szr" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
@@ -23431,6 +23442,11 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/eva)
+"tIq" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating,
+/area/bluesummers/inside/recreation)
 "tIL" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/caves/cryostorage/north)
@@ -23849,12 +23865,9 @@
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/cryostorage/north)
 "tZF" = (
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Biodome";
-	name = "\improper Biodome Shutters";
-	dir = 2
-	},
-/turf/open/floor/mainship/stripesquare,
+/obj/structure/window_frame/mainship,
+/obj/effect/spawner/random/misc/shard,
+/turf/open/floor/plating,
 /area/bluesummers/inside/biodome)
 "tZH" = (
 /obj/structure/lattice,
@@ -24003,14 +24016,6 @@
 	},
 /turf/open/floor/mainship/stripesquare,
 /area/bluesummers/inside/industrial)
-"ugM" = (
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/mainship/green{
-	dir = 9
-	},
-/area/bluesummers/inside/biodome)
 "ugV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/mainship/black/corner{
@@ -24661,6 +24666,17 @@
 	},
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/bluesummers/outside/south/roofed)
+"uGh" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "foodwing"
+	},
+/obj/effect/turf_decal/tracks/wheels/bloody{
+	dir = 4
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/freezer,
+/area/bluesummers/inside/food_processing/east)
 "uGK" = (
 /obj/effect/landmark/corpsespawner/miner/regular,
 /obj/effect/decal/cleanable/blood,
@@ -24764,6 +24780,7 @@
 /area/bluesummers/caves/northeast/indoor)
 "uMT" = (
 /obj/structure/bed/chair/sofa/corsat/verticaltop,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/inside/observation_deck)
 "uNc" = (
@@ -25416,6 +25433,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/outside/southeast/roofed)
+"vso" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/caves/east)
 "vsp" = (
 /obj/machinery/door/airlock/mainship/maint/free_access,
 /turf/open/floor/mainship/floor,
@@ -27056,6 +27077,10 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/recreation)
+"wRI" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating,
+/area/bluesummers/inside/captains_office)
 "wRQ" = (
 /obj/item/tool/pickaxe,
 /turf/open/floor/plating/dmg1,
@@ -27110,6 +27135,12 @@
 /obj/structure/prop/urban/misc/machinery/screens/telescreenbroke,
 /turf/closed/wall/mainship,
 /area/bluesummers/inside/food_processing/east)
+"wVa" = (
+/obj/machinery/door/airlock/mainship/generic/glass{
+	dir = 2
+	},
+/turf/open/floor/plating,
+/area/bluesummers/inside/biodome)
 "wVi" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/yellow2{
@@ -27144,6 +27175,11 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast/indoor)
+"wXr" = (
+/obj/structure/lattice,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/inside/engineering/office)
 "wXv" = (
 /obj/machinery/vending/hydronutrients,
 /turf/open/floor/mainship/green{
@@ -27204,6 +27240,10 @@
 	dir = 5
 	},
 /area/bluesummers/caves/mining)
+"xaX" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/drought,
+/area/bluesummers/outside/north)
 "xby" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -27562,13 +27602,8 @@
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/northeast/indoor)
 "xuW" = (
-/obj/structure/cable,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Biodome";
-	name = "\improper Biodome Shutters";
-	dir = 2
-	},
-/turf/open/floor/mainship/stripesquare,
+/obj/structure/window/framed/mainship,
+/turf/open/floor/plating,
 /area/bluesummers/inside/biodome)
 "xvn" = (
 /obj/structure/bed/chair/east,
@@ -32769,7 +32804,7 @@ fLw
 fLw
 jnc
 hPc
-fLw
+qnQ
 fLw
 qpr
 fLw
@@ -33424,7 +33459,7 @@ oXd
 ijt
 ijt
 bzE
-rjV
+uRL
 dql
 oRE
 ijt
@@ -33614,7 +33649,7 @@ qAZ
 frl
 sNG
 sNG
-qAZ
+bAP
 fnw
 sNG
 trE
@@ -34054,7 +34089,7 @@ fLw
 fLw
 fLw
 fLw
-fLw
+qnQ
 meE
 fLw
 fLw
@@ -36163,7 +36198,7 @@ soH
 prY
 dfd
 rTu
-oBm
+uGh
 stZ
 oLK
 dfd
@@ -37244,7 +37279,7 @@ vcx
 vcx
 dfd
 vcx
-vcx
+qlu
 vcx
 dfd
 hEq
@@ -39063,7 +39098,7 @@ gpO
 lSo
 lSo
 smv
-lSo
+feS
 lSo
 lSo
 rOc
@@ -44708,7 +44743,7 @@ anD
 dXe
 qRk
 qRk
-qRk
+xaX
 vMQ
 kTs
 uJM
@@ -47981,7 +48016,7 @@ gLa
 jwf
 iUS
 aEB
-hsf
+lyS
 dsz
 aEB
 hLP
@@ -48533,7 +48568,7 @@ fBf
 rCi
 oNO
 xmn
-iSW
+wXr
 iSW
 uRv
 feT
@@ -50895,7 +50930,7 @@ xKS
 aEB
 aEB
 qHG
-fBf
+rFB
 aEB
 hVZ
 jwf
@@ -51109,7 +51144,7 @@ pvZ
 inB
 dCY
 uGV
-qOJ
+tIq
 sip
 mOE
 aBL
@@ -52208,7 +52243,7 @@ vmQ
 cfK
 bZk
 uSO
-gbV
+cIu
 oFs
 iJc
 xVu
@@ -52924,7 +52959,7 @@ eUo
 qdY
 cOv
 xxx
-jmE
+wRI
 jmE
 bZY
 nsm
@@ -58002,13 +58037,13 @@ vPT
 cES
 jiI
 oRt
-cuY
+oRt
 kpx
 fQj
 ssD
 hyn
 kpx
-jWx
+nYH
 vmQ
 vmQ
 ydz
@@ -58185,8 +58220,8 @@ uJk
 cES
 cES
 oRt
-tZF
-ugM
+xuW
+aVp
 whW
 ihF
 tZF
@@ -58367,12 +58402,12 @@ uJk
 ldm
 oRt
 oRt
-tZF
-mOF
+wVa
+eqh
 xul
-eeU
+jdW
 xuW
-lqi
+iqf
 nWl
 vmQ
 vmQ
@@ -58551,9 +58586,9 @@ hTo
 oRt
 tZF
 aHI
-fIr
+dVo
 fgv
-tZF
+xuW
 kub
 vmQ
 vmQ
@@ -58736,7 +58771,7 @@ kpx
 kpx
 amQ
 kpx
-eZW
+nYH
 vmQ
 vmQ
 vmQ
@@ -58871,7 +58906,7 @@ lgw
 wbl
 rFC
 jZv
-lTj
+pql
 rdE
 tXo
 lTj
@@ -59967,7 +60002,7 @@ jZv
 jZv
 wze
 kSC
-qFA
+szm
 jZv
 elc
 xyr
@@ -60379,7 +60414,7 @@ ydz
 pQe
 iuC
 vQT
-shg
+fvg
 hfn
 ggv
 ese
@@ -61101,7 +61136,7 @@ kpx
 rBq
 kpx
 kpx
-jWx
+nYH
 aZH
 vmQ
 vmQ
@@ -62052,7 +62087,7 @@ iqh
 uIC
 mYl
 wiK
-sGf
+nGO
 mNq
 mYl
 kIN
@@ -62374,7 +62409,7 @@ rOc
 rOc
 vmQ
 vmQ
-vmQ
+ddG
 vmQ
 pQe
 vmQ
@@ -63866,7 +63901,7 @@ jvq
 jvq
 jvq
 jvq
-jvq
+vso
 jvq
 jvq
 jth
