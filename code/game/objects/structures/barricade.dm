@@ -507,7 +507,7 @@
 		if(CADE_TYPE_BOMB)
 			soft_armor = soft_armor.modifyRating(bomb = 80)
 		if(CADE_TYPE_MELEE)
-			soft_armor = soft_armor.modifyRating(melee = 40, bullet = 40, laser = 30, energy = 30)
+			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 50, laser = 50, energy = 50)
 		if(CADE_TYPE_ACID)
 			soft_armor = soft_armor.modifyRating(acid = 40)
 			resistance_flags |= UNACIDABLE
