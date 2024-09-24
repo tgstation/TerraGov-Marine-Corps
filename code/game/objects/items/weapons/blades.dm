@@ -361,6 +361,7 @@
 
 /obj/item/weapon/chainsword/civilian/attack_obj(obj/O, mob/living/user)
 	. = ..()
+	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && on == TRUE)
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
