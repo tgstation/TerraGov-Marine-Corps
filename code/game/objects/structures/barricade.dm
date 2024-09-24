@@ -329,7 +329,7 @@
 	desc = "A wall made out of wooden planks nailed together. Not very sturdy, but can provide some concealment."
 	icon = 'icons/obj/structures/barricades/misc.dmi'
 	icon_state = "wooden"
-	max_integrity = 150
+	max_integrity = 100
 	layer = OBJ_LAYER
 	stack_type = /obj/item/stack/sheet/wood
 	stack_amount = 5
