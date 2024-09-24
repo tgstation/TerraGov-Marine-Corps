@@ -291,7 +291,10 @@
 		icon_state = icon_state_on
 		worn_icon_state = worn_icon_state_on
 		force += additional_damage
+		to_chat(user, span_warning("\The [src] whirr to lifel!"))
 		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+		user.update_inv_l_hand()
+		user.update_inv_r_hand()
 		update_icon()
 	else
 		on = !on
@@ -318,7 +321,7 @@
 
 /obj/item/weapon/chainsword/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
-	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
+	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && on == TRUE)
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
 		icon_state = initial(icon_state)
@@ -326,6 +329,8 @@
 		force = initial(force)
 		on = FALSE
 		update_icon()
+		return ..()
+	if(on == FALSE)
 		return ..()
 	playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
 	return ..()
