@@ -262,6 +262,25 @@
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 	AddElement(/datum/element/strappable)
 
+//proc to turn the chainsaw on or off
+/obj/item/weapon/chainsword/proc/toggle_motor(mob/user)
+	if(on == TRUE)
+		icon_state = icon_state_on
+		worn_icon_state = worn_icon_state_on
+		force += additional_damage
+		to_chat(user, span_warning("\The [src]'s motor whirr to lifel!"))
+		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+		hitsound = 'sound/weapons/chainsawhit.ogg'
+		user.update_inv_l_hand()
+		user.update_inv_r_hand()
+	else
+		icon_state = initial(icon_state)
+		worn_icon_state = initial(worn_icon_state)
+		force = initial(force)
+		hitsound = initial(hitsound)
+		user.update_inv_l_hand()
+		user.update_inv_r_hand()
+
 /obj/item/weapon/chainsword/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
@@ -270,10 +289,8 @@
 /obj/item/weapon/chainsword/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
-	icon_state = initial(icon_state)
-	worn_icon_state = initial(worn_icon_state)
-	force = initial(force)
 	on = FALSE
+	toggle_motor(user)
 	update_icon()
 
 /obj/item/weapon/chainsword/examine(mob/user)
@@ -288,19 +305,11 @@
 			to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
 			return
 		on = !on
-		icon_state = icon_state_on
-		worn_icon_state = worn_icon_state_on
-		force += additional_damage
-		to_chat(user, span_warning("\The [src] whirr to lifel!"))
-		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
-		user.update_inv_l_hand()
-		user.update_inv_r_hand()
+		toggle_motor(user)
 		update_icon()
 	else
 		on = !on
-		icon_state = initial(icon_state)
-		worn_icon_state = initial(worn_icon_state)
-		force = initial(force)
+		toggle_motor(user)
 		update_icon()
 
 /obj/item/weapon/chainsword/afterattack(obj/target, mob/user, flag)
@@ -324,10 +333,8 @@
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && on == TRUE)
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
-		icon_state = initial(icon_state)
-		worn_icon_state = initial(worn_icon_state)
-		force = initial(force)
 		on = FALSE
+		toggle_motor(user)
 		update_icon()
 		return ..()
 	if(on == FALSE)
@@ -346,7 +353,22 @@
 	icon_state_on = "chainsaw_on"
 	worn_icon_state = "chainsaw"
 	worn_icon_state_on = "chainsaw_on"
+	max_fuel = 100
 	attack_speed = 25
 	atom_flags = TWOHANDED
 	force = 30
 	additional_damage = 45
+
+/obj/item/weapon/chainsword/civilian/attack_obj(obj/O, mob/living/user)
+	. = ..()
+	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && on == TRUE)
+		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
+		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
+		on = FALSE
+		toggle_motor(user)
+		update_icon()
+		return ..()
+	if(on == FALSE)
+		return ..()
+	playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+	return ..()
