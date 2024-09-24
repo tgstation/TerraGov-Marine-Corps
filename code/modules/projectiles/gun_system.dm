@@ -1900,6 +1900,12 @@
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(xeno_attacker, span_warning("We disable the metal thing's lights.") )
 
+/obj/item/weapon/gun/special_stripped_behavior(mob/stripper, mob/owner)
+	var/obj/item/attachable/magnetic_harness/magharn = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
+	if(!istype(magharn))
+		return
+	magharn.reequip_component.active = FALSE
+	addtimer(VARSET_CALLBACK(magharn.reequip_component, active, TRUE), 2 SECONDS)
 
 /particles/overheat_smoke
 	icon = 'icons/effects/particles/smoke.dmi'
