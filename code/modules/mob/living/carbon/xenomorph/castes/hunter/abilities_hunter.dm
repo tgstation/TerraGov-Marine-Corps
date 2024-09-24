@@ -343,10 +343,10 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
+	if(owner.status_flags & INCORPOREAL)
+		return FALSE
 	. = ..()
 	if(!.)
-		return FALSE
-	if(owner.status_flags & INCORPOREAL)
 		return FALSE
 	if(!A || A.layer >= FLY_LAYER)
 		return FALSE
@@ -598,9 +598,9 @@
 	return ..()
 
 /datum/action/ability/xeno_action/mirage/can_use_action(silent = FALSE, override_flags)
-	. = ..()
 	if(owner.status_flags & INCORPOREAL)
 		return FALSE
+	. = ..()
 	if(swap_used)
 		if(!silent)
 			to_chat(owner, span_xenowarning("We already swapped with an illusion!"))
@@ -661,12 +661,11 @@
 	cooldown_duration = HUNTER_SILENCE_COOLDOWN
 
 /datum/action/ability/activable/xeno/silence/can_use_ability(atom/A, silent = FALSE, override_flags)
+	if(owner.status_flags & INCORPOREAL)
+		return FALSE
 	. = ..()
 	if(!.)
 		return
-
-	if(owner.status_flags & INCORPOREAL)
-		return FALSE
 
 	var/mob/living/carbon/xenomorph/impairer = owner //Type cast this for on_fire
 
@@ -814,11 +813,10 @@
 
 /datum/action/ability/activable/xeno/hunter_mark/assassin/can_use_ability(atom/A, silent = FALSE, override_flags)
 	var/mob/living/carbon/xenomorph/X = owner
-	if(require_los)
-		if(!line_of_sight(X, A)) //Need line of sight.
-			if(!silent)
-				to_chat(X, span_xenowarning("We require line of sight to mark them!"))
-			return FALSE
+	if(require_los && !line_of_sight(X, A)) //Need line of sight.
+		if(!silent)
+			to_chat(X, span_xenowarning("We require line of sight to mark them!"))
+		return FALSE
 	return ..()
 
 
