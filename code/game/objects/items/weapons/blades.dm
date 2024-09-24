@@ -242,26 +242,91 @@
 	name = "chainsword"
 	desc = "chainsword thing"
 	icon_state = "chainsword_off"
+	worn_icon_state = "chainsword"
 	attack_verb = list("gored", "slashed", "cut")
-	force = 10
-	throwforce = 5
+	force = 60
+	throwforce = 30
 	var/on = FALSE
 	var/icon_state_on = "chainsword_on"
+	var/worn_icon_state_on = "chainsword_on"
+	///amount of fuel stored inside
+	var/max_fuel = 50
+	///amount of fuel used per hit
+	var/fuel_used = 5
+	///additional damage when weapon is active
+	var/additional_damage = 40
 
-/obj/item/weapon/chainsword/attack_self(mob/user)
+
+/obj/item/weapon/chainsword/Initialize(mapload)
 	. = ..()
+	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
+	AddElement(/datum/element/strappable)
+
+/obj/item/weapon/chainsword/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+	update_icon()
+
+/obj/item/weapon/chainsword/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+	icon_state = initial(icon_state)
+	worn_icon_state = initial(worn_icon_state)
+	force = initial(force)
+	on = FALSE
+	update_icon()
+
+/obj/item/weapon/chainsword/examine(mob/user)
+	. = ..()
+	. += "It contains [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units of fuel!"
+
+/obj/item/weapon/chainsword/unique_action(mob/user)
+	. = ..()
+	playsound(loc, 'sound/machines/switch.ogg', 25)
 	if(!on)
+		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
+			to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
+			return
 		on = !on
 		icon_state = icon_state_on
-		force = 80
-		throwforce = 30
+		worn_icon_state = worn_icon_state_on
+		force += additional_damage
+		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+		update_icon()
 	else
 		on = !on
 		icon_state = initial(icon_state)
+		worn_icon_state = initial(worn_icon_state)
 		force = initial(force)
-		throwforce = initial(icon_state)
+		update_icon()
+
+/obj/item/weapon/chainsword/afterattack(obj/target, mob/user, flag)
+	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
+		var/obj/structure/reagent_dispensers/fueltank/rs = target
+		if(rs.reagents.total_volume == 0)
+			to_chat(user, span_warning("Out of fuel!"))
+			return ..()
+
+		var/fuel_transfer_amount = min(rs.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
+		rs.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [src] with fuel."))
+		update_icon()
+
+	return ..()
 
 /obj/item/weapon/chainsword/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
+	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
+		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
+		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
+		icon_state = initial(icon_state)
+		worn_icon_state = initial(worn_icon_state)
+		force = initial(force)
+		on = FALSE
+		update_icon()
+		return ..()
 	playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
 	return ..()
 
@@ -274,3 +339,9 @@
 	desc = "A chainsaw. Good for turning big things into little things."
 	icon_state = "chainsaw_off"
 	icon_state_on = "chainsaw_on"
+	worn_icon_state = "chainsaw"
+	worn_icon_state_on = "chainsaw_on"
+	attack_speed = 25
+	atom_flags = TWOHANDED
+	force = 30
+	additional_damage = 45
