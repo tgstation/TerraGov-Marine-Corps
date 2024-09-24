@@ -167,6 +167,7 @@
 	damage = 5
 	penetration = 0
 	sundering = 0
+	shrapnel_chance = 0
 	///The smoke type loaded in this ammo
 	var/datum/effect_system/smoke_spread/trail_spread_system = /datum/effect_system/smoke_spread/tactical
 
