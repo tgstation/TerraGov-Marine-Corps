@@ -40,3 +40,17 @@
 	. = ..()
 	if(xeno_caste.wrath_max > 0)
 		. += "Wrath: [wrath_stored] / [xeno_caste.wrath_max]"
+
+/mob/living/carbon/xenomorph/behemoth/can_mount(mob/living/user, target_mounting = FALSE)
+	. = ..()
+	if(!target_mounting)
+		user = pulling
+	if(!isxeno(user))
+		return FALSE
+	var/mob/living/carbon/xenomorph/grabbed = user
+	if(grabbed.incapacitated() || !(grabbed.xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER))
+		return FALSE
+	return TRUE
+
+/mob/living/carbon/xenomorph/crusher/resisted_against(datum/source)
+	user_unbuckle_mob(source, source)
