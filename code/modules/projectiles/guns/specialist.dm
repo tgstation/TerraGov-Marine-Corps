@@ -351,6 +351,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/angledgrip,
 		/obj/item/weapon/gun/pistol/plasma_pistol,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/pocket_beam,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 	)

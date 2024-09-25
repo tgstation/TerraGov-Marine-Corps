@@ -827,7 +827,7 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "tes"
 	radial_icon_state = "laser_charge"
-	description = "Fires a devestating laser pulse that significantly degrades the victims armor, at the cost of lower direct damage."
+	description = "Fires a devastating laser pulse that significantly degrades the victims armor, at the cost of lower direct damage."
 
 /datum/lasrifle/energy_sniper_mode/ricochet
 	rounds_per_shot = 45
@@ -1015,6 +1015,78 @@
 	message_to_user = "You set the xray rifle's charge mode to piercing mode."
 	radial_icon_state = "laser"
 	description = "Fires a powerful xray laser pulse. Completely penetrates a victims armour, as well as any solid substance in the way."
+
+//TE Pocket Beam
+
+/obj/item/weapon/gun/energy/lasgun/lasrifle/pocket_beam
+	name = "\improper pocket beam"
+	desc = "A Terra Experimental underbarrel laser system. Has multiple firemodes for tactical flexibility. Uses standard Terra Experimental (abbreviated as TE) power cells."
+	reload_sound = 'sound/weapons/guns/interact/standard_laser_rifle_reload.ogg'
+	fire_sound = 'sound/weapons/guns/fire/Laser Rifle Standard.ogg'
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
+	icon_state = "p_beam"
+	max_shots = 6
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/charge/pocket
+	rounds_per_shot = 100
+	gun_firemode = GUN_FIREMODE_SEMIAUTO
+	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
+	attach_delay = 1 SECONDS
+	detach_delay = 1 SECONDS
+	ammo_level_icon = "te"
+	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 16,"rail_x" = 25, "rail_y" = 25, "under_x" = 18, "under_y" = 12, "stock_x" = 0, "stock_y" = 13)
+	attachable_allowed = list(
+		/obj/item/attachable/lasersight
+	)
+	slot = ATTACHMENT_SLOT_UNDER
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_ATTACHMENT_FIRE_ONLY|GUN_IS_ATTACHMENT|GUN_ENERGY|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
+	wield_delay = 0.5 SECONDS
+	scatter = 0
+	fire_delay = 2 SECONDS
+	aim_slowdown = 0
+	accuracy_mult_unwielded = 0.55
+	damage_falloff_mult = 0.2
+	mode_list = list(
+		"Piercing" = /datum/lasrifle/energy_underbarrel/piercing,
+		"Ricochet" = /datum/lasrifle/energy_underbarrel/ricochet,
+		"Shatter" = /datum/lasrifle/energy_underbarrel/shatter,
+	)
+	wield_delay_mod = 0.2 SECONDS
+
+	pixel_shift_x = 14
+	pixel_shift_y = 18
+
+/datum/lasrifle/energy_underbarrel/piercing
+	rounds_per_shot = 100
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/autolaser/charge/pocket
+	fire_delay = 2 SECONDS
+	fire_sound = 'sound/weapons/guns/fire/Laser overcharge standard.ogg'
+	message_to_user = "You set the pocket beam's charge mode to piercing."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "p_beam"
+	radial_icon_state = "laser_overcharge"
+	description = "Fires a powerful piercing laser pulse that goes through mobs."
+
+/datum/lasrifle/energy_underbarrel/ricochet
+	rounds_per_shot = 100
+	fire_delay = 2 SECONDS
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/ricochet/four
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the pocket beam's charge mode to ricochet."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "p_beam"
+	radial_icon_state = "laser_ricochet"
+	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
+
+/datum/lasrifle/energy_underbarrel/shatter
+	rounds_per_shot = 100
+	fire_delay = 2 SECONDS
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/shatter/pocket
+	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
+	message_to_user = "You set the pocket beam's charge mode to shatter."
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	icon_state = "p_beam"
+	radial_icon_state = "laser_charge"
+	description = "Fires a devastating laser pulse that significantly degrades the victims armor, at the cost of lower direct damage."
 
 //Martian death rays
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite

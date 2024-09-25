@@ -320,6 +320,11 @@
 	hitscan_effect_icon = "beam_heavy"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB
 
+/datum/ammo/energy/lasgun/marine/autolaser/charge/pocket
+	name = "pocket piercing laser bolt"
+	hud_state = "laser_sniper"
+	sundering = 1
+
 /datum/ammo/energy/lasgun/marine/autolaser/charge/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	if(istype(target_turf, /turf/closed/wall))
 		var/turf/closed/wall/wall_victim = target_turf
@@ -393,11 +398,20 @@
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 /datum/ammo/energy/lasgun/marine/shatter/heavy_laser
+	name = "burst shattering bolt"
 	sundering = 1
 	accurate_range_min = 0
 
+/datum/ammo/energy/lasgun/marine/shatter/pocket
+
+	name = "pocket shattering bolt"
+	damage = 20
+	sundering = 0
+	accurate_range_min = 0
+	shatter_duration = 3 SECONDS
+
 /datum/ammo/energy/lasgun/marine/ricochet
-	name = "sniper laser bolt"
+	name = "ricochet laser bolt"
 	icon_state = "microwavelaser"
 	hud_state = "laser_disabler"
 	damage = 100

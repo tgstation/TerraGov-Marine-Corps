@@ -100,6 +100,7 @@
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/scope/marine,
 		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/pocket_beam,
 	)
 
 	muzzleflash_iconstate = "muzzle_flash_laser"
