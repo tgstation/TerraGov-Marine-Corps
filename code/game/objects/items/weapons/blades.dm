@@ -361,11 +361,6 @@
 
 /obj/item/weapon/chainsword/civilian/attack_obj(obj/object, mob/living/user)
 	. = ..()
-	if(user.do_actions)
-		object.balloon_alert(user, "already busy")
-		return
-
-	while(get_dist(user,object) <= 1)
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
 		user.changeNext_move(attack_speed)
 		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && on == TRUE)
@@ -378,8 +373,4 @@
 		if(on == FALSE)
 			return ..()
 		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
-		if(!do_after(user, SKILL_TASK_VERY_EASY, NONE, object, BUSY_ICON_DANGER, null,PROGRESS_BRASS))
-			return ..()
-		user.do_attack_animation(object, used_item = src)
-		object.attacked_by(src, user)
-		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+		return ..()
