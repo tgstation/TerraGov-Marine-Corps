@@ -354,22 +354,32 @@
 	worn_icon_state = "chainsaw"
 	worn_icon_state_on = "chainsaw_on"
 	max_fuel = 100
-	attack_speed = 25
+	attack_speed = 30
 	atom_flags = TWOHANDED
 	force = 30
 	additional_damage = 45
 
-/obj/item/weapon/chainsword/civilian/attack_obj(obj/O, mob/living/user)
+/obj/item/weapon/chainsword/civilian/attack_obj(obj/object, mob/living/user)
 	. = ..()
-	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
-	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && on == TRUE)
-		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
-		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
-		on = FALSE
-		toggle_motor(user)
-		update_icon()
-		return ..()
-	if(on == FALSE)
-		return ..()
-	playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
-	return ..()
+	if(user.do_actions)
+		object.balloon_alert(user, "already busy")
+		return
+
+	while(get_dist(user,object) <= 1)
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
+		user.changeNext_move(attack_speed)
+		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && on == TRUE)
+			playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
+			to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
+			on = FALSE
+			toggle_motor(user)
+			update_icon()
+			return ..()
+		if(on == FALSE)
+			return ..()
+		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+		if(!do_after(user, SKILL_TASK_VERY_EASY, NONE, object, BUSY_ICON_DANGER, null,PROGRESS_BRASS))
+			return ..()
+		user.do_attack_animation(object, used_item = src)
+		object.attacked_by(src, user)
+		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
