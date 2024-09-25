@@ -359,11 +359,17 @@
 	force = 30
 	additional_damage = 45
 
+// handle chainsaw attack on object
 /obj/item/weapon/chainsword/civilian/attack_obj(obj/object, mob/living/user)
 	. = ..()
+	if(user.do_actions)
+		object.balloon_alert(user, "already busy")
+		return
+
+	while(get_dist(user,object) <= 1) // loop while attacking an object adjacent to user
 		reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
 		user.changeNext_move(attack_speed)
-		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && on == TRUE)
+		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && on == TRUE) //turn off the chainsaw after one last attack when fuel ran out
 			playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 			to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
 			on = FALSE
@@ -373,4 +379,14 @@
 		if(on == FALSE)
 			return ..()
 		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
-		return ..()
+		if(!do_after(user, SKILL_TASK_VERY_EASY, NONE, object, BUSY_ICON_DANGER, null,PROGRESS_BRASS) && !user.incapacitated()) //attack channel to loop
+			return
+		user.do_attack_animation(object, used_item = src)
+		object.attacked_by(src, user)
+		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+
+//handle chainsaw to attack turf
+/obj/item/weapon/chainsword/civilian/attack_turf(turf/turfget, mob/living/user)
+	. = ..()
+	if(get_dist(user,turfget) <= 1)
+		return
