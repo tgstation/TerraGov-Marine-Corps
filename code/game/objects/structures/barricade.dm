@@ -509,7 +509,7 @@
 		if(CADE_TYPE_MELEE)
 			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 50, laser = 50, energy = 50)
 		if(CADE_TYPE_ACID)
-			soft_armor = soft_armor.modifyRating(acid = 40)
+			soft_armor = soft_armor.modifyRating(acid = 35)
 			resistance_flags |= UNACIDABLE
 
 	barricade_upgrade_type = choice
