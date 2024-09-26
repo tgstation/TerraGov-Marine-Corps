@@ -287,6 +287,16 @@
 	var/knockback_dist = round(LERP(3, 1, proj.distance_travelled / 6), 1)
 	staggerstun(target_mob, proj, max_range = 6, knockback = knockback_dist)
 
+/datum/ammo/energy/lasgun/marine/impact/pocket
+	damage = 0
+	penetration = 0
+	bonus_projectiles_type = /datum/ammo/energy/lasgun/marine/impact/pocket/spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 15
+
+/datum/ammo/energy/lasgun/marine/impact/pocket/spread
+	name = "additional impact laser blast"
+
 /datum/ammo/energy/lasgun/marine/cripple
 	name = "impact laser blast"
 	icon_state = "overchargedlaser"
@@ -401,14 +411,6 @@
 	name = "burst shattering bolt"
 	sundering = 1
 	accurate_range_min = 0
-
-/datum/ammo/energy/lasgun/marine/shatter/pocket
-
-	name = "pocket shattering bolt"
-	damage = 20
-	sundering = 0
-	accurate_range_min = 0
-	shatter_duration = 3 SECONDS
 
 /datum/ammo/energy/lasgun/marine/ricochet
 	name = "ricochet laser bolt"

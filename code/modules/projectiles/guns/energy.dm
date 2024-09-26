@@ -1048,7 +1048,7 @@
 	mode_list = list(
 		"Piercing" = /datum/lasrifle/energy_underbarrel/piercing,
 		"Ricochet" = /datum/lasrifle/energy_underbarrel/ricochet,
-		"Shatter" = /datum/lasrifle/energy_underbarrel/shatter,
+		"Shatter" = /datum/lasrifle/energy_underbarrel/impact,
 	)
 	wield_delay_mod = 0.2 SECONDS
 
@@ -1077,16 +1077,16 @@
 	radial_icon_state = "laser_ricochet"
 	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
 
-/datum/lasrifle/energy_underbarrel/shatter
+/datum/lasrifle/energy_underbarrel/impact
 	rounds_per_shot = 100
 	fire_delay = 2 SECONDS
-	ammo_datum_type = /datum/ammo/energy/lasgun/marine/shatter/pocket
-	fire_sound = 'sound/weapons/guns/fire/laser_rifle_2.ogg'
-	message_to_user = "You set the pocket beam's charge mode to shatter."
+	ammo_datum_type = /datum/ammo/energy/lasgun/marine/impact/pocket
+	fire_sound = 'sound/weapons/guns/fire/laser3.ogg'
+	message_to_user = "You set the pocket beam's charge mode to impact."
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	icon_state = "p_beam"
-	radial_icon_state = "laser_charge"
-	description = "Fires a devastating laser pulse that significantly degrades the victims armor, at the cost of lower direct damage."
+	radial_icon_state = "laser_spread"
+	description = "Fires three experimental laser pulses designed to apply significant kinetic force on a target, applying strong knockback, deal no direct damage."
 
 //Martian death rays
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite
