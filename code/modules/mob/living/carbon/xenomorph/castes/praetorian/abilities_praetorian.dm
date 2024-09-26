@@ -276,6 +276,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPALE,
 	)
+	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/impale/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
@@ -341,6 +342,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
 	)
+	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/tail_trip/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
