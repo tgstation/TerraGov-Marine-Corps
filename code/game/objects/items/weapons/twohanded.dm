@@ -644,10 +644,7 @@
 
 //proc to turn the chainsaw on or off
 /obj/item/weapon/twohanded/chainsaw/proc/toggle_motor(mob/user)
-	if(active)
-		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used) //check if theres enough fuel to activate
-			to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
-			return
+	if(active && reagents.get_reagent_amount(/datum/reagent/fuel) >= fuel_used) //check if theres enough fuel to activate)
 		icon_state = icon_state_on
 		worn_icon_state = worn_icon_state_on
 		force += additional_damage
@@ -663,6 +660,9 @@
 		hitsound = initial(hitsound)
 		user.update_inv_l_hand()
 		user.update_inv_r_hand()
+		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
+			to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
+			return
 		to_chat(user, span_warning("\The [src]'s motor died down!"))
 
 // proc for the fuel cost and check and chainsaw noises
@@ -746,12 +746,14 @@
 		object.balloon_alert(user, "already busy")
 		return TRUE
 
-	if(user.incapacitated() || get_dist(user,object) > 1 || user.resting)  // loop attacking an object while user is not incapacitated nor resting
+	if(user.incapacitated() || get_dist(user,object) > 1 || user.resting)  // loop attacking an adjacent object while user is not incapacitated nor resting
 		return TRUE
 
 	rip_apart(user)
-	if(!do_after(user, SKILL_TASK_VERY_EASY, NONE, object, BUSY_ICON_DANGER, null,PROGRESS_BRASS)) //attack channel to loop
+
+	if(!do_after(user, src.attack_speed, NONE, object, BUSY_ICON_DANGER, null,PROGRESS_BRASS) || !active) //attack channel to loop attack, and second active check in case fuel ran out.
 		return
+
 	attack_obj(object, user)
 
 /obj/item/weapon/twohanded/chainsaw/suicide_act(mob/user)
