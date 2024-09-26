@@ -609,7 +609,7 @@
 		return
 	toggle_item_bump_attack(user, FALSE)
 
-// Chainsword & Chainsaw
+/// Chainsword & Chainsaw
 /obj/item/weapon/twohanded/chainsaw
 	name = "chainsaw"
 	desc = "A chainsaw. Good for turning big things into little things."
@@ -621,10 +621,11 @@
 	icon_state = "chainsaw_off"
 	worn_icon_state = "chainsaw"
 	atom_flags = TWOHANDED
-	attack_verb = list("gored", "slashed", "cut")
+	attack_verb = list("gored", "torn", "ripped", "shred", "slashed", "cut")
 	force = 20
-	force_wielded = 40
+	force_wielded = 60
 	throwforce = 30
+	attack_speed = 20
 	///icon when on
 	var/icon_state_on = "chainsaw_on"
 	///sprite on the mob when on
@@ -634,7 +635,7 @@
 	///amount of fuel used per hit
 	var/fuel_used = 5
 	///additional damage when weapon is active
-	var/additional_damage = 35
+	var/additional_damage = 65
 
 
 /obj/item/weapon/twohanded/chainsaw/Initialize(mapload)
@@ -642,7 +643,7 @@
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 	AddElement(/datum/element/strappable)
 
-//proc to turn the chainsaw on or off
+///proc to turn the chainsaw on or off
 /obj/item/weapon/twohanded/chainsaw/proc/toggle_motor(mob/user)
 	if(active && reagents.get_reagent_amount(/datum/reagent/fuel) >= fuel_used) //check if theres enough fuel to activate)
 		icon_state = icon_state_on
@@ -665,12 +666,12 @@
 			return
 		to_chat(user, span_warning("\The [src]'s motor died down!"))
 
-// proc for the fuel cost and check and chainsaw noises
+///proc for the fuel cost and check and chainsaw noises
 /obj/item/weapon/twohanded/chainsaw/proc/rip_apart(mob/user)
 	if(!active)
 		return
 	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
-	user.changeNext_move(attack_speed)
+	user.changeNext_move(attack_speed) //this is here because attacking object for some reason dont respect weapon attack speed
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && active) //turn off the chainsaw after one last attack when fuel ran out
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
@@ -734,15 +735,27 @@
 
 /obj/item/weapon/twohanded/chainsaw/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	rip_apart(user)
+	if(!active)
+		return ..()
+
+	if(isxeno(M))
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 10 SECONDS, 2 SECONDS, /obj/effect/decal/cleanable/blood/xeno)//leave pool of blood
+		return ..()
+
+	if(ishuman(M))
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 10 SECONDS, 2 SECONDS, /obj/effect/decal/cleanable/blood)//leave pool of blood
+		M.drip(18) // target lose an iso pill worth of blood
+		return ..()
+
 	return ..()
 
 // handle chainsaw attack loop on object
 /obj/item/weapon/twohanded/chainsaw/attack_obj(obj/object, mob/living/user)
 	. = ..()
-	if(!active)
+	if(!active) // attack only loop if chainsaw is on
 		return
 
-	if(user.do_actions)
+	if(user.do_actions) //check if user is busy doing something else, or in the middle of attack loop already
 		object.balloon_alert(user, "already busy")
 		return TRUE
 
@@ -767,11 +780,13 @@
 	icon_state_on = "chainsword_on"
 	worn_icon_state = "chainsword"
 	worn_icon_state_on = "chainsword_W"
-	max_fuel = 100
-	force = 30
-	force_wielded = 60
-	additional_damage = 50
+	attack_speed = 12
+	max_fuel = 150
+	force = 60
+	force_wielded = 90
+	additional_damage = 60
 
+/// Allow the chainsword variant to be activated without being wielded
 /obj/item/weapon/twohanded/chainsaw/sword/unique_action(mob/user)
 	. = ..()
 	if(!CHECK_BITFIELD(item_flags, WIELDED))

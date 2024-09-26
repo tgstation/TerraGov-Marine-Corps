@@ -43,7 +43,7 @@
 		return
 	if(!(drip_counter % drip_ratio))
 		return
-	new /obj/effect/decal/cleanable/blood/drip/tracking_fluid(dripper.loc)
+	new dripped_type(dripper.loc)
 	if(++drip_counter > drip_limit)
 		qdel(src)
 
@@ -58,6 +58,6 @@
 	drip_counter += drip_ratio
 	if(!isturf(dripper.loc))
 		return
-	new /obj/effect/decal/cleanable/blood/drip/tracking_fluid(dripper.loc)
+	new dripped_type(dripper.loc)
 	if(world.time + drip_ratio > drip_limit)
 		qdel(src)
