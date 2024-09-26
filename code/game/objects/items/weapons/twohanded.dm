@@ -628,8 +628,10 @@
 	attack_speed = 20
 	///icon when on
 	var/icon_state_on = "chainsaw_on"
+	///sprite on the mob when off but wielded
+	var/worn_icon_state_w = "chainsaw_w"
 	///sprite on the mob when on
-	var/worn_icon_state_on = "chainsaw_W"
+	var/worn_icon_state_on = "chainsaw_on"
 	///amount of fuel stored inside
 	var/max_fuel = 50
 	///amount of fuel used per hit
@@ -643,75 +645,94 @@
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 	AddElement(/datum/element/strappable)
 
+///handle icon change
+/obj/item/weapon/twohanded/chainsaw/update_icon_state()
+	. = ..()
+	if(active) //weapon is active
+		icon_state = icon_state_on
+		return
+	else
+		icon_state = initial(icon_state)
+
+///handle worn_icon change
+/obj/item/weapon/twohanded/chainsaw/update_item_state(mob/user)
+	. = ..()
+	if(active) //weapon is active
+		worn_icon_state = worn_icon_state_on
+		return
+	if(CHECK_BITFIELD(item_flags, WIELDED)) // weapon is wielded but off
+		worn_icon_state = worn_icon_state_w
+		return
+	else
+		worn_icon_state = initial(worn_icon_state)
+
 ///proc to turn the chainsaw on or off
 /obj/item/weapon/twohanded/chainsaw/proc/toggle_motor(mob/user)
 	if(active && reagents.get_reagent_amount(/datum/reagent/fuel) >= fuel_used) //check if theres enough fuel to activate)
-		icon_state = icon_state_on
-		worn_icon_state = worn_icon_state_on
 		force += additional_damage
 		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
 		hitsound = 'sound/weapons/chainsawhit.ogg'
-		user.update_inv_l_hand()
-		user.update_inv_r_hand()
 		to_chat(user, span_warning("\The [src]'s motor whirr to lifel!"))
+		update_icon()
+		update_item_state()
 	else
-		icon_state = initial(icon_state)
-		worn_icon_state = initial(worn_icon_state)
 		force = initial(force)
 		hitsound = initial(hitsound)
-		user.update_inv_l_hand()
-		user.update_inv_r_hand()
 		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
 			to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
 			return
 		to_chat(user, span_warning("\The [src]'s motor died down!"))
+		update_icon()
+		update_item_state()
 
 ///proc for the fuel cost and check and chainsaw noises
 /obj/item/weapon/twohanded/chainsaw/proc/rip_apart(mob/user)
 	if(!active)
 		return
-	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
+	reagents.remove_reagent(/datum/reagent/fuel, fuel_used) //remove fuel by fuel_used amount
 	user.changeNext_move(attack_speed) //this is here because attacking object for some reason dont respect weapon attack speed
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && active) //turn off the chainsaw after one last attack when fuel ran out
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
 		active = FALSE
 		toggle_motor(user)
-		update_icon()
 		return
 	if(prob(1)) // small chance for an easter egg of simpson chainsaw noises
 		playsound(loc, 'sound/weapons/chainsaw_simpson.ogg', 100)
 	else
 		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
 
+///Chainsaw give bump attack when picked up
 /obj/item/weapon/twohanded/chainsaw/equipped(mob/user, slot)
 	. = ..()
 	toggle_item_bump_attack(user, TRUE)
-	update_icon()
 
+///Chainsaw turned off when dropped, and also lose bump attack
 /obj/item/weapon/twohanded/chainsaw/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
 	if(active)
 		active = FALSE
 		toggle_motor(user)
-		update_icon()
 
+///Chainsaw turn on when wielded
 /obj/item/weapon/twohanded/chainsaw/wield(mob/user)
 	. = ..()
 	if(!.)
 		return
+	playsound(loc, 'sound/weapons/chainsawstart.ogg', 100, 1)
+	toggle_active(FALSE)
+	if(!do_after(user, SKILL_TASK_TRIVIAL, NONE, src, BUSY_ICON_DANGER, null,PROGRESS_BRASS))
+		return
 	toggle_active(TRUE)
 	toggle_motor(user)
-	update_icon()
 
+///Chainsaw turn off when unwielded
 /obj/item/weapon/twohanded/chainsaw/unwield(mob/user)
 	. = ..()
 	if(!.)
 		return
-	toggle_active(FALSE)
 	toggle_motor(user)
-	update_icon()
 
 /obj/item/weapon/twohanded/chainsaw/examine(mob/user)
 	. = ..()
@@ -739,11 +760,11 @@
 		return ..()
 
 	if(isxeno(M))
-		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 10 SECONDS, 2 SECONDS, /obj/effect/decal/cleanable/blood/xeno)//leave pool of blood
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 4 SECONDS, 2 SECONDS, /obj/effect/decal/cleanable/blood/xeno)//leave pool of blood
 		return ..()
 
 	if(ishuman(M))
-		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 10 SECONDS, 2 SECONDS, /obj/effect/decal/cleanable/blood)//leave pool of blood
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 4 SECONDS, 2 SECONDS, /obj/effect/decal/cleanable/blood)//leave pool of blood
 		M.drip(18) // target lose an iso pill worth of blood
 		return ..()
 
@@ -779,7 +800,8 @@
 	icon_state = "chainsword_off"
 	icon_state_on = "chainsword_on"
 	worn_icon_state = "chainsword"
-	worn_icon_state_on = "chainsword_W"
+	worn_icon_state_w = "chainsword_w"
+	worn_icon_state_on = "chainsword_w"
 	attack_speed = 12
 	max_fuel = 150
 	force = 60
