@@ -109,3 +109,28 @@
       than intended'
   blackdav123:
   - balance: GL54 and AR55 Airburst sunder reduced from 3 per pellet to 1.5.
+2024-09-22:
+  ivanmixo:
+  - bugfix: Fixed welding goggles hiding themselves in the strip menu
+  - balance: Deployable shields no longer have a strap
+  - bugfix: Removed restriction to evolving to something besides drone when there
+      is no ruler
+  - bugfix: Fixed a runtime when first spawning in as a xeno with pheros
+  - bugfix: Fix a supply beacon console runtime
+2024-09-23:
+  Xander3359:
+  - qol: You can right click a vendor to refill something that is vendable by it
+2024-09-24:
+  Cheese, Stardust, Cre, with thanks to various helpful people in the discord:
+  - rscadd: Runner saddles. Buy one at req for 120 points, and saddle a runner today!
+  - rscadd: Saddled runners can be ridden by click dragging yourself to them. For
+      the runner to force you on, they have to grab you then click themselves
+  - rscadd: Crusher riding is now the same, click drag to mount, pull click self to
+      force onto self
+  - rscadd: A saddled rouny works as a duffelbag, and can be opened by rclicking the
+      rouny.
+  - rscadd: Marines can now pull friendly xenos
+  - imageadd: Sprites for runner saddles, and for them being worn on the mob; Includes
+      rouny variants
+  - code_imp: This modifies a lot to work, so there's bound to be bugs. scream @Mantlecrawler
+      in the discord, or report them to github.
