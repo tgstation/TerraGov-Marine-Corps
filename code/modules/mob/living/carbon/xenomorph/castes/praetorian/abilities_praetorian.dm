@@ -207,14 +207,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Gain a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
 	ability_cost = 100
-	cooldown_duration = 10 SECONDS
+	cooldown_duration = 12 SECONDS
 	use_state_flags = ABILITY_USE_BUSY
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DODGE,
 	)
 	/// The increase of speed when ability is active.
-	var/speed_buff = -0.5
+	var/speed_buff = -0.4
 	/// How long the ability will last?
 	var/duration = 6 SECONDS
 
