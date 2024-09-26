@@ -333,6 +333,7 @@
 /datum/ammo/energy/lasgun/marine/autolaser/charge/pocket
 	name = "pocket piercing laser bolt"
 	hud_state = "laser_sniper"
+	penetration = 10
 	sundering = 1
 
 /datum/ammo/energy/lasgun/marine/autolaser/charge/on_hit_turf(turf/target_turf, obj/projectile/proj)
