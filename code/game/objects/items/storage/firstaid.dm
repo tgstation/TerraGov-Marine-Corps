@@ -349,6 +349,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 	greyscale_colors = "#CC9900#FFFFFF"
 	description_overlay = "Ke"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/kelotane/Initialize(mapload, ...)
 	. = ..()
@@ -368,6 +369,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	greyscale_colors = "#669900#ffffff"
 	description_overlay = "Dy"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/dylovene/Initialize(mapload, ...)
 	. = ..()
@@ -379,6 +381,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
 	greyscale_colors = "#5c0e0e#ffffff"
 	description_overlay = "Is"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/isotonic/Initialize(mapload, ...)
 	. = ..()
@@ -398,6 +401,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
 	greyscale_colors = "#8a8686#ffffff"
 	description_overlay = "Ta"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/tramadol/Initialize(mapload, ...)
 	. = ..()
@@ -411,6 +415,7 @@
 	greyscale_config = /datum/greyscale_config/pillbottlebox
 	greyscale_colors = "#f8f4f8#ffffff"
 	description_overlay = "Pa"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/paracetamol/Initialize(mapload, ...)
 	. = ..()
@@ -430,6 +435,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 	greyscale_colors = "#DA0000#ffffff"
 	description_overlay = "Bi"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/bicaridine/Initialize(mapload, ...)
 	. = ..()
@@ -502,6 +508,7 @@
 	greyscale_colors = "#f8f8f8#ffffff"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	description_overlay = "Ti"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/tricordrazine/Initialize(mapload, ...)
 	. = ..()
