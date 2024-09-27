@@ -150,3 +150,40 @@
 	icon_state = "sflamer"
 	max_rounds = 150
 	default_ammo = /datum/ammo/flamethrower/armored_spray
+
+// ICC Recon Tank
+/obj/item/ammo_magazine/tank/sarden_clip
+	name = "EM-2600 'SARDEN' APDS Clip (30mm)"
+	desc = "A 7 round clip for a EM-2600 Autocannon. Loaded with Armor Piercing rounds."
+	caliber = CALIBER_30X17MM
+	icon_state = "sarden_clip_apds"
+	max_rounds = 7
+	default_ammo = /datum/ammo/bullet/sarden
+
+/obj/item/ammo_magazine/tank/sarden_clip/high_explosive
+	name = "EM-2600 'SARDEN' High Explosive Clip (30mm)"
+	desc = "A 7 round clip for a EM-2600 Autocannon. Loaded with High Explosive rounds."
+	caliber = CALIBER_30X17MM
+	icon_state = "sarden_clip_apds"
+	max_rounds = 7
+	default_ammo = /datum/ammo/bullet/sarden/high_explosive
+
+/obj/item/ammo_magazine/tank/icc_lowvel_cannon
+	name = "EM-2500 HEAT shell (76mm)"
+	desc = "A 76mm HEAT shell filled for targeting hard targets."
+	caliber = CALIBER_76MM
+	icon_state = "icc_lvrt_cannon_heat"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/rocket/icc_lowvel_heat
+	max_rounds = 1
+	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+
+/obj/item/ammo_magazine/tank/icc_lowvel_cannon/high_explosive
+	name = "EM-2500 HE shell (76mm)"
+	desc = "A 76mm HE shell filled for targeting large groups of soft targets."
+	caliber = CALIBER_76MM
+	icon_state = "icc_lvrt_cannon_heat"
+	default_ammo = /datum/ammo/rocket/icc_lowvel_high_explosive
+	max_rounds = 1
+	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+

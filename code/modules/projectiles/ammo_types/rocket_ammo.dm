@@ -613,3 +613,27 @@
 		proj.proj_max_range -= 5
 		return
 	proj.proj_max_range = 0
+
+/datum/ammo/rocket/icc_lowvel_heat
+	name = "Low Velocity HEAT shell"
+	icon_state = "recoilless_rifle_heat"
+	hud_state = "shell_heat"
+	ammo_behavior_flags = AMMO_SNIPER
+	shell_speed = 1
+	damage = 180
+	penetration = 100
+	sundering = 0
+
+/datum/ammo/rocket/icc_lowvel_heat/drop_nade(turf/T)
+	explosion(T, flash_range = 1)
+
+/datum/ammo/rocket/icc_lowvel_high_explosive
+	name = "Low Velocity HE shell"
+	damage = 50
+	penetration = 100
+	sundering = 10
+	ammo_behavior_flags = AMMO_SNIPER // We want this to specifically go over onscreen range.
+	shell_speed = 1
+
+/datum/ammo/rocket/icc_lowvel_high_explosive/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 0, 2)
