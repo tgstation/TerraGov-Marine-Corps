@@ -7,9 +7,7 @@
 /area/interior/tank)
 "f" = (
 /obj/structure/bed/chair/vehicle_crew/gunner,
-/turf/open/interior/apc/twentynine{
-	name = "\improper Fallow interior"
-	},
+/turf/open/interior/apc/twentynine,
 /area/interior/tank)
 "h" = (
 /turf/closed/interior/apc/five,
@@ -22,9 +20,7 @@
 	pixel_y = -5
 	},
 /obj/structure/periscope,
-/turf/open/interior/apc/nine{
-	name = "\improper Fallow tank interior"
-	},
+/turf/open/interior/apc/nine,
 /area/interior/tank)
 "r" = (
 /turf/closed/interior/tank/twentythree,
@@ -44,17 +40,13 @@
 /turf/closed/interior/tank/seventeen,
 /area/interior/tank)
 "v" = (
-/turf/open/interior/apc/twentynine{
-	name = "\improper Fallow interior"
-	},
+/turf/open/interior/apc/twentynine,
 /area/interior/tank)
 "w" = (
 /turf/closed/interior/apc/twenty,
 /area/interior/tank)
 "x" = (
-/turf/open/interior/apc/nine{
-	name = "\improper Fallow tank interior"
-	},
+/turf/open/interior/apc/nine,
 /area/interior/tank)
 "z" = (
 /turf/closed/interior/apc/thirteen,
@@ -87,9 +79,7 @@
 	pixel_y = -6;
 	pixel_w = 11
 	},
-/turf/open/interior/apc/eleven{
-	name = "\improper Fallow tank interior"
-	},
+/turf/open/interior/apc/eleven,
 /area/interior/tank)
 "V" = (
 /turf/closed/interior/apc/twentythree,
