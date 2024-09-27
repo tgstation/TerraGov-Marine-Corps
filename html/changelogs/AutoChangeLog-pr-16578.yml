@@ -1,0 +1,4 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - bugfix: "Due to budget cuts, ICC ERT Leaders didn't get their loadout upon spawning. This has been rectified. And they should once again have loadouts."
