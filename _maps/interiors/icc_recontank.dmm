@@ -76,8 +76,7 @@
 /area/interior/tank)
 "S" = (
 /obj/structure/bed/chair/vehicle_crew/driver{
-	pixel_y = -6;
-	pixel_w = 11
+	pixel_y = -6
 	},
 /turf/open/interior/apc/eleven,
 /area/interior/tank)
