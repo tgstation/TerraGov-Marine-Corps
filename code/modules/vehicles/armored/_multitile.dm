@@ -30,10 +30,24 @@
 	var/desant_pass_flags = PASS_FIRE|PASS_LOW_STRUCTURE
 	///particle holder for smoke effects
 	var/obj/effect/abstract/particle_holder/smoke_holder
+	///Holder smoke del timer
+	var/smoke_timer
 
 /obj/vehicle/sealed/armored/multitile/Destroy()
 	QDEL_NULL(smoke_holder)
 	return ..()
+
+/obj/vehicle/sealed/armored/multitile/update_name(updates)
+	. = ..()
+	name = initial(name)
+	if(armored_flags & ARMORED_IS_WRECK)
+		name = "wrecked " + name
+
+/obj/vehicle/sealed/armored/multitile/update_desc(updates)
+	. = ..()
+	desc = initial(desc)
+	if(armored_flags & ARMORED_IS_WRECK)
+		desc += " Now just a smouldering ruin."
 
 /obj/vehicle/sealed/armored/multitile/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(armored_flags & ARMORED_WRECKABLE))
@@ -50,14 +64,14 @@
 		icon_state = initial(icon_state)
 
 /obj/vehicle/sealed/armored/multitile/enter_locations(atom/movable/entering_thing)
-	if(armored_flags & ARMORED_IS_WRECK)
-		return
 	return list(get_step_away(get_step(src, REVERSE_DIR(dir)), src, 2))
 
 /obj/vehicle/sealed/armored/multitile/exit_location(mob/M)
 	return pick(enter_locations(M))
 
 /obj/vehicle/sealed/armored/multitile/enter_checks(mob/entering_mob, loc_override = FALSE)
+	if(armored_flags & ARMORED_IS_WRECK)
+		return
 	. = ..()
 	if(!.)
 		return
@@ -104,8 +118,9 @@
 		mob_exit(occupant, FALSE, TRUE)
 	armored_flags ^= ARMORED_IS_WRECK
 	obj_integrity = max_integrity
-	update_appearance(UPDATE_ICON_STATE)
+	update_appearance(UPDATE_ICON_STATE|UPDATE_DESC|UPDATE_NAME)
 	smoke_holder = new(src, /particles/tank_wreck_smoke)
+	smoke_timer = addtimer(CALLBACK(src, PROC_REF(del_smoke)), 1 MINUTES, TIMER_STOPPABLE)
 	if(turret_overlay)
 		RegisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_smoke_dir))
 		update_smoke_dir(newdir = turret_overlay.dir)
@@ -118,8 +133,10 @@
 		return
 	armored_flags ^= ARMORED_IS_WRECK
 	obj_integrity = restore ? max_integrity : 50
-	update_appearance(UPDATE_ICON_STATE)
+	update_appearance(UPDATE_ICON_STATE|UPDATE_DESC|UPDATE_NAME)
 	QDEL_NULL(smoke_holder)
+	deltimer(smoke_timer)
+	smoke_timer = null
 	if(turret_overlay)
 		UnregisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE)
 		turret_overlay.icon_state = turret_overlay.base_icon_state
@@ -137,6 +154,10 @@
 			smoke_holder.particles.position = list(54, 85, 0)
 		if(WEST)
 			smoke_holder.particles.position = list(60, 85, 0)
+
+/obj/vehicle/sealed/armored/multitile/proc/del_smoke()
+	QDEL_NULL(smoke_holder)
+	UnregisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE)
 
 //THe HvX tank is not balanced at all for HvH
 /obj/vehicle/sealed/armored/multitile/campaign
