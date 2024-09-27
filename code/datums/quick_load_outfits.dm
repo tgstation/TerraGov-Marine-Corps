@@ -59,18 +59,12 @@
 		H.put_in_r_hand(new r_hand(H))
 
 	if(!visualsOnly) // Items in pockets or backpack don't show up on mob's icon.
-		if(l_store)
-			qdel(H.l_store)
-			H.equip_to_slot_or_del(new l_store(H),SLOT_L_STORE, override_nodrop = TRUE)
-		if(r_store)
-			qdel(H.r_store)
-			H.equip_to_slot_or_del(new r_store(H),SLOT_R_STORE, override_nodrop = TRUE)
-
-		if(box)
-			if(!backpack_contents)
-				backpack_contents = list()
-			backpack_contents.Insert(1, box)
-			backpack_contents[box] = 1
+		if(l_pocket)
+			qdel(H.l_pocket)
+			H.equip_to_slot_or_del(new l_pocket(H),SLOT_L_STORE, override_nodrop = TRUE)
+		if(r_pocket)
+			qdel(H.r_pocket)
+			H.equip_to_slot_or_del(new r_pocket(H),SLOT_R_STORE, override_nodrop = TRUE)
 
 		if(backpack_contents)
 			for(var/path in backpack_contents)
@@ -81,10 +75,6 @@
 					H.equip_to_slot_or_del(new path(H),SLOT_IN_BACKPACK, override_nodrop = TRUE)
 
 	post_equip(H, visualsOnly)
-
-	if(!visualsOnly)
-		if(internals_slot)
-			H.internal = H.get_item_by_slot(internals_slot)
 
 	H.update_body()
 	return TRUE
@@ -108,8 +98,8 @@
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x
-	r_store = /obj/item/storage/pouch/firstaid/combat_patrol
-	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/combat_patrol
+	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/quick/tgmc/marine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -285,7 +275,7 @@
 
 	belt = /obj/item/storage/belt/sparepouch
 	suit_store = /obj/item/weapon/gun/rifle/standard_gpmg/machinegunner
-	l_store = /obj/item/storage/pouch/construction
+	l_pocket = /obj/item/storage/pouch/construction
 
 /datum/outfit/quick/tgmc/marine/standard_machinegunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -318,7 +308,7 @@
 	belt = /obj/item/storage/holster/m25
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/shield
 	suit_store = /obj/item/weapon/gun/standard_mmg/machinegunner
-	l_store = /obj/item/storage/pouch/construction
+	l_pocket = /obj/item/storage/pouch/construction
 	glasses = /obj/item/clothing/glasses/mgoggles
 
 /datum/outfit/quick/tgmc/marine/medium_machinegunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -540,8 +530,8 @@
 	gloves = /obj/item/clothing/gloves/marine/insulated
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x/welding
-	r_store = /obj/item/storage/pouch/firstaid/combat_patrol
-	l_store = /obj/item/storage/pouch/tools/full
+	r_pocket = /obj/item/storage/pouch/firstaid/combat_patrol
+	l_pocket = /obj/item/storage/pouch/tools/full
 	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/outfit/quick/tgmc/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -639,8 +629,8 @@
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x/mimir
-	r_store = /obj/item/storage/pouch/magazine/large
-	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	r_pocket = /obj/item/storage/pouch/magazine/large
+	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/marine/corpsman
 
 /datum/outfit/quick/tgmc/corpsman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -823,8 +813,8 @@
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas/tactical
 	head = /obj/item/clothing/head/modular/m10x/tyr
-	r_store = /obj/item/storage/pouch/firstaid/combat_patrol
-	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/combat_patrol
+	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/marine/satchel
 
 /datum/outfit/quick/tgmc/smartgunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -917,8 +907,8 @@
 	gloves = /obj/item/clothing/gloves/marine
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x/leader
-	r_store = /obj/item/storage/pouch/firstaid/combat_patrol_leader
-	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/combat_patrol_leader
+	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/quick/tgmc/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1144,8 +1134,8 @@
 	gloves = /obj/item/clothing/gloves/marine/som
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som
-	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol
-	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol
+	l_pocket = /obj/item/storage/pouch/grenade/som/combat_patrol
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/quick/som/marine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1370,7 +1360,7 @@
 
 	suit_store = /obj/item/weapon/gun/rifle/som_mg/standard
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/som
-	l_store = /obj/item/storage/pouch/construction/som
+	l_pocket = /obj/item/storage/pouch/construction/som
 
 /datum/outfit/quick/som/marine/machine_gunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -1435,8 +1425,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/engineer
 	glasses = /obj/item/clothing/glasses/meson
-	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol
-	l_store = /obj/item/storage/pouch/tools/som/full
+	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol
+	l_pocket = /obj/item/storage/pouch/tools/som/full
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/quick/som/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1615,8 +1605,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/magazine/large/som
-	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
+	r_pocket = /obj/item/storage/pouch/magazine/large/som
+	l_pocket = /obj/item/storage/pouch/grenade/som/combat_patrol
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/quick/som/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1746,7 +1736,7 @@
 	name = "V-51 Medic"
 	desc = "Keeping your buddies alive and in the fight. Equipped with a V-51 semi-automatic shotgun, medium armor and a good selection of grenades. Packs a large amount of medical supplies, the squad medic is vital to maintaining combat viability."
 
-	r_store = /obj/item/storage/pouch/shotgun/som
+	r_pocket = /obj/item/storage/pouch/shotgun/som
 	suit_store = /obj/item/weapon/gun/shotgun/som/support
 
 /datum/outfit/quick/som/medic/standard_shotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1785,8 +1775,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/veteran
 	glasses = /obj/item/clothing/glasses/meson
-	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol
-	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol
+	l_pocket = /obj/item/storage/pouch/grenade/som/combat_patrol
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/quick/som/veteran/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -1928,7 +1918,7 @@
 
 	belt = /obj/item/storage/belt/grenade/som
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
-	l_store = /obj/item/storage/pouch/pistol/som
+	l_pocket = /obj/item/storage/pouch/pistol/som
 	back = /obj/item/cell/lasgun/volkite/powerpack
 
 /datum/outfit/quick/som/veteran/caliver_pack/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -2024,7 +2014,7 @@
 	suit_store = /obj/item/weapon/gun/smg/som/support
 	belt = /obj/item/storage/belt/marine/som
 	back = /obj/item/storage/holster/backholster/rpg/som/war_crimes
-	l_store = /obj/item/storage/pouch/grenade/som
+	l_pocket = /obj/item/storage/pouch/grenade/som
 
 /datum/outfit/quick/som/veteran/rocket_man/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -2089,8 +2079,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/leader
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
-	l_store = /obj/item/storage/pouch/grenade/som/combat_patrol
+	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
+	l_pocket = /obj/item/storage/pouch/grenade/som/combat_patrol
 	back = /obj/item/storage/backpack/satchel/som
 
 /datum/outfit/quick/som/squad_leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

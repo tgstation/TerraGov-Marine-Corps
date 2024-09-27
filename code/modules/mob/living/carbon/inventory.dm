@@ -17,6 +17,38 @@
 		update_handcuffed(null)
 		. = ITEM_UNEQUIP_UNEQUIPPED
 
+/mob/living/carbon/equip_to_slot(obj/item/item_to_equip, slot, bitslot = FALSE)
+	. = ..()
+
+	if(!slot)
+		return
+
+	if(!istype(item_to_equip))
+		return
+
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
+
+	if(item_to_equip == l_hand)
+		l_hand = null
+		item_to_equip.unequipped(src, SLOT_L_HAND)
+		update_inv_l_hand()
+
+	else if(item_to_equip == r_hand)
+		r_hand = null
+		item_to_equip.unequipped(src, SLOT_R_HAND)
+		update_inv_r_hand()
+
+	for(var/datum/action/A AS in item_to_equip.actions)
+		A.remove_action(src)
+
+	item_to_equip.screen_loc = null
+	item_to_equip.loc = src
+	item_to_equip.layer = ABOVE_HUD_LAYER
+	item_to_equip.plane = ABOVE_HUD_PLANE
+	item_to_equip.forceMove(src)
+
 /mob/living/carbon/get_equipped_slot(obj/equipped_item)
 	if(..())
 		return

@@ -248,8 +248,8 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	gloves = /obj/item/clothing/gloves/insulated
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/hud_tablet/pilot
+	r_pocket = /obj/item/storage/pouch/general/large
+	l_pocket = /obj/item/hud_tablet/pilot
 
 //Mech pilot
 /datum/job/som/command/mech_pilot
@@ -386,7 +386,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/beret/marine/techofficer
-	r_store = /obj/item/storage/pouch/construction
+	r_pocket = /obj/item/storage/pouch/construction
 	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/outfit/job/som/engineering/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -457,7 +457,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	gloves = /obj/item/clothing/gloves/insulated
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
-	r_store = /obj/item/storage/pouch/general/medium
+	r_pocket = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/job/som/requisitions
@@ -532,7 +532,7 @@ A happy base is a well-functioning base."})
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/tgmccap/req
-	r_store = /obj/item/storage/pouch/general/large
+	r_pocket = /obj/item/storage/pouch/general/large
 
 /datum/job/som/medical
 	job_category = JOB_CAT_MEDICAL
@@ -599,8 +599,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the SOM h
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
-	r_store = /obj/item/storage/pouch/medkit/doctor
-	l_store = /obj/item/storage/pouch/surgery
+	r_pocket = /obj/item/storage/pouch/medkit/doctor
+	l_pocket = /obj/item/storage/pouch/surgery
 
 /datum/outfit/job/som/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

@@ -29,8 +29,8 @@
 	head = /obj/item/clothing/head/helmet/UPP
 	mask = /obj/item/clothing/mask/gas/pmc/leader
 	suit_store = /obj/item/weapon/gun/rifle/type71
-	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/magazine/pistol/large
+	r_pocket = /obj/item/storage/pouch/pistol
+	l_pocket = /obj/item/storage/pouch/magazine/pistol/large
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/upp/standard/hvh
@@ -95,8 +95,8 @@
 	head = /obj/item/clothing/head/uppcap
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/skorpion
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pouch/general/large
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pouch/general/large
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/upp/medic/hvh
@@ -157,8 +157,8 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/UPP/heavy
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer
-	r_store = /obj/item/storage/pouch/explosive
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/explosive
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/upp/heavy/hvh
@@ -216,8 +216,8 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/uppcap/beret
 	suit_store = /obj/item/weapon/gun/rifle/type71
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/general/large
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/upp/leader/hvh

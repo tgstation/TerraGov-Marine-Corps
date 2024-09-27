@@ -15,8 +15,8 @@
 	gloves = /obj/item/clothing/gloves/marine/black
 	mask = /obj/item/clothing/mask/bandanna
 	head = /obj/item/clothing/head/modular/m10x
-	r_store = /obj/item/storage/pouch/medkit/firstaid
-	l_store = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/pouch/medkit/firstaid
+	l_pocket = /obj/item/storage/holster/flarepouch/full
 	back = /obj/item/storage/backpack/marine/satchel
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
@@ -114,8 +114,8 @@
 	head = /obj/item/clothing/head/modular/style/boonie
 	w_uniform = /obj/item/clothing/under/marine/holster
 	belt = /obj/item/belt_harness/marine
-	l_store = /obj/item/storage/pouch/magazine/large
-	r_store = /obj/item/storage/pouch/magazine/large
+	l_pocket = /obj/item/storage/pouch/magazine/large
+	r_pocket = /obj/item/storage/pouch/magazine/large
 	suit_store = /obj/item/weapon/gun/rifle/standard_dmr/beginner
 	mask = /obj/item/clothing/mask/breath
 	l_hand = /obj/item/paper/tutorial/beginner_marksman
@@ -205,7 +205,7 @@
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/lightgeneral
 	head = /obj/item/clothing/head/modular/style/cap
 	mask = /obj/item/clothing/mask/gas/modular/skimask
-	r_store = /obj/item/cell/lasgun/volkite/powerpack/marine
+	r_pocket = /obj/item/cell/lasgun/volkite/powerpack/marine
 	w_uniform = /obj/item/clothing/under/marine/corpman_vest
 	shoes = /obj/item/clothing/shoes/marine
 	l_hand = /obj/item/paper/tutorial/beginner_shocktrooper
@@ -319,8 +319,8 @@
 
 	wear_suit = /obj/item/clothing/suit/modular/xenonauten/heavy/grenadier
 	suit_store = /obj/item/weapon/gun/grenade_launcher/multinade_launcher/beginner
-	l_store = /obj/item/storage/pouch/grenade
-	r_store = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/pouch/grenade
+	r_pocket = /obj/item/storage/pouch/grenade
 	belt = /obj/item/storage/belt/grenade
 	mask = /obj/item/clothing/mask/gas
 	w_uniform = /obj/item/clothing/under/marine/corpman_vest
@@ -384,7 +384,7 @@
 	w_uniform = /obj/item/clothing/under/marine/brown_vest
 	shoes = /obj/item/clothing/shoes/marine
 	gloves = /obj/item/clothing/gloves/marine/insulated
-	l_store = /obj/item/storage/pouch/tools
+	l_pocket = /obj/item/storage/pouch/tools
 
 /datum/outfit/quick/beginner/engineer/post_equip(mob/living/carbon/human/human, visualsOnly)
 	. = ..()
@@ -518,8 +518,8 @@
 	gloves = /obj/item/clothing/gloves/defibrillator
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/m10x/mimir
-	r_store = /obj/item/storage/pouch/medkit/medic
-	l_store = /obj/item/storage/pouch/shotgun
+	r_pocket = /obj/item/storage/pouch/medkit/medic
+	l_pocket = /obj/item/storage/pouch/shotgun
 	back = /obj/item/storage/backpack/marine/corpsman
 	belt = /obj/item/storage/belt/lifesaver/beginner
 	l_hand = /obj/item/paper/tutorial/lifesaver
@@ -572,8 +572,8 @@
 	gloves = /obj/item/healthanalyzer/gloves
 	mask = /obj/item/clothing/mask/gas/modular/coofmask
 	head = /obj/item/clothing/head/modular/m10x/antenna
-	r_store = /obj/item/storage/pouch/medkit/medic
-	l_store = /obj/item/storage/pouch/shotgun
+	r_pocket = /obj/item/storage/pouch/medkit/medic
+	l_pocket = /obj/item/storage/pouch/shotgun
 	back = /obj/item/storage/backpack/marine/corpsman
 	belt = /obj/item/storage/belt/hypospraybelt/beginner
 	l_hand = /obj/item/paper/tutorial/hypobelt

@@ -28,8 +28,8 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	mask = /obj/item/clothing/mask/gas/pmc/leader
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/pmc
-	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/satchel
 
 
@@ -92,8 +92,8 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
-	r_store = /obj/item/storage/pouch/explosive
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/explosive
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -151,8 +151,8 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	suit_store = /obj/item/weapon/gun/rifle/sniper/elite
-	r_store = /obj/item/storage/pouch/magazine/large/pmc_sniper
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/magazine/large/pmc_sniper
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/satchel
 
 
@@ -202,8 +202,8 @@
 	mask = /obj/item/clothing/mask/gas/pmc/leader
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	suit_store = /obj/item/weapon/gun/rifle/m412/elite
-	r_store = /obj/item/storage/pouch/grenade
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/satchel
 
 

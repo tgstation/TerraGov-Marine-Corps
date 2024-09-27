@@ -611,7 +611,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				return FALSE
 			equip_to_slot = TRUE
 		if(SLOT_L_STORE)
-			if(H.l_store)
+			if(H.l_pocket)
 				return FALSE
 			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
 				if(warning)
@@ -621,7 +621,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				return TRUE
 			equip_to_slot = TRUE
 		if(SLOT_R_STORE)
-			if(H.r_store)
+			if(H.r_pocket)
 				return FALSE
 			if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
 				if(warning)
@@ -649,9 +649,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(SLOT_IN_BELT)
 			selected_slot = H.belt
 		if(SLOT_IN_L_POUCH)
-			selected_slot = H.l_store
+			selected_slot = H.l_pocket
 		if(SLOT_IN_R_POUCH)
-			selected_slot = H.r_store
+			selected_slot = H.r_pocket
 		if(SLOT_IN_SUIT)
 			selected_slot = H.wear_suit
 		if(SLOT_IN_HEAD)

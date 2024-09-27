@@ -19,8 +19,8 @@
 	shoes = /obj/item/clothing/shoes/sectoid
 	wear_suit = /obj/item/clothing/suit/armor/sectoid
 	gloves = /obj/item/clothing/gloves/sectoid
-	r_store = /obj/item/stack/medical/heal_pack/gauze/sectoid
-	l_store = /obj/item/explosive/grenade/sectoid
+	r_pocket = /obj/item/stack/medical/heal_pack/gauze/sectoid
+	l_pocket = /obj/item/explosive/grenade/sectoid
 	back = /obj/item/weapon/gun/rifle/sectoid_rifle
 
 	var/list/abilities = list(

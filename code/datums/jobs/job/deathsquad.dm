@@ -25,8 +25,8 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	suit_store = /obj/item/weapon/gun/flamer/big_flamer/marinestandard/deathsquad
-	r_store = /obj/item/storage/pouch/medkit
-	l_store = /obj/item/storage/pouch/grenade
+	r_pocket = /obj/item/storage/pouch/medkit
+	l_pocket = /obj/item/storage/pouch/grenade
 	back = /obj/item/storage/backpack/commando
 	implants = list(/obj/item/implant/suicide_dust)
 
@@ -98,8 +98,8 @@
 	mask = /obj/item/clothing/mask/gas/pmc
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	suit_store = /obj/item/weapon/gun/launcher/rocket/m57a4/deathsquad
-	r_store = /obj/item/storage/pouch/medkit
-	l_store = /obj/item/storage/pouch/explosive
+	r_pocket = /obj/item/storage/pouch/medkit
+	l_pocket = /obj/item/storage/pouch/explosive
 	back = /obj/item/storage/backpack/commando
 	implants = list(/obj/item/implant/suicide_dust)
 
@@ -169,8 +169,8 @@
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/commando
 	glasses = /obj/item/clothing/glasses/night/m42_night_goggles
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/deathsquad
-	r_store = /obj/item/storage/pouch/medkit
-	l_store = /obj/item/storage/pouch/magazine/drum
+	r_pocket = /obj/item/storage/pouch/medkit
+	l_pocket = /obj/item/storage/pouch/magazine/drum
 	back = /obj/item/storage/backpack/commando
 	implants = list(/obj/item/implant/suicide_dust)
 

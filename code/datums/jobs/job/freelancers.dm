@@ -22,7 +22,7 @@
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/frelancer
 	back = /obj/item/storage/backpack/lightpack
-	l_store = /obj/item/storage/pouch/medkit/firstaid
+	l_pocket = /obj/item/storage/pouch/medkit/firstaid
 
 /datum/outfit/job/freelancer/post_equip(mob/living/carbon/human/H, visualsOnly)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/m15, SLOT_IN_SUIT)
@@ -61,7 +61,7 @@
 
 /datum/outfit/job/freelancer/standard/one
 	suit_store = /obj/item/weapon/gun/rifle/m16/freelancer
-	r_store = /obj/item/storage/pouch/shotgun
+	r_pocket = /obj/item/storage/pouch/shotgun
 
 /datum/outfit/job/freelancer/standard/one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -86,7 +86,7 @@
 ///m16 ugl
 /datum/outfit/job/freelancer/standard/two
 	suit_store = /obj/item/weapon/gun/rifle/m16/ugl
-	r_store = /obj/item/storage/pouch/grenade
+	r_pocket = /obj/item/storage/pouch/grenade
 
 /datum/outfit/job/freelancer/standard/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -113,7 +113,7 @@
 ///tx11
 /datum/outfit/job/freelancer/standard/three
 	suit_store = /obj/item/weapon/gun/rifle/tx11/freelancerone
-	r_store = /obj/item/storage/pouch/grenade
+	r_pocket = /obj/item/storage/pouch/grenade
 
 /datum/outfit/job/freelancer/standard/three/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -152,8 +152,8 @@
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/medic
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/rifle/famas/freelancermedic
-	r_store = /obj/item/storage/pouch/medical_injectors/medic
-	l_store = /obj/item/storage/pouch/magazine/large
+	r_pocket = /obj/item/storage/pouch/medical_injectors/medic
+	l_pocket = /obj/item/storage/pouch/magazine/large
 
 /datum/outfit/job/freelancer/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -188,7 +188,7 @@
 /datum/outfit/job/freelancer/grenadier/one
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer/veteran
 	suit_store = /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
-	r_store = /obj/item/storage/pouch/grenade
+	r_pocket = /obj/item/storage/pouch/grenade
 
 /datum/outfit/job/freelancer/grenadier/one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -245,7 +245,7 @@
 ///actual grenadier
 /datum/outfit/job/freelancer/grenadier/three
 	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer
-	r_store = /obj/item/storage/pouch/magazine/large
+	r_pocket = /obj/item/storage/pouch/magazine/large
 
 /datum/outfit/job/freelancer/grenadier/three/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -298,7 +298,7 @@
 	belt = /obj/item/storage/belt/grenade/b17
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader
 	suit_store = /obj/item/weapon/gun/rifle/m16/freelancer
-	r_store = /obj/item/storage/pouch/shotgun
+	r_pocket = /obj/item/storage/pouch/shotgun
 
 /datum/outfit/job/freelancer/leader/one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -318,7 +318,7 @@
 	belt = /obj/item/belt_harness/marine
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader/two
 	suit_store = /obj/item/weapon/gun/rifle/tx11/freelancertwo
-	r_store = /obj/item/storage/pouch/grenade
+	r_pocket = /obj/item/storage/pouch/grenade
 
 /datum/outfit/job/freelancer/leader/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -339,7 +339,7 @@
 /datum/outfit/job/freelancer/leader/three
 	wear_suit = /obj/item/clothing/suit/storage/faction/freelancer/leader/three
 	suit_store = /obj/item/weapon/gun/rifle/tx55/freelancer
-	r_store = /obj/item/storage/pouch/magazine/large
+	r_pocket = /obj/item/storage/pouch/magazine/large
 
 /datum/outfit/job/freelancer/leader/three/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

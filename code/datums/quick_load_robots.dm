@@ -27,8 +27,8 @@
 	glasses = null
 	head = /obj/item/clothing/head/modular/robot
 
-	l_store = null
-	r_store = null
+	l_pocket = null
+	r_pocket = null
 
 	back = /obj/item/storage/backpack/marine
 	belt = null
@@ -48,8 +48,8 @@
 	wear_suit = /obj/item/clothing/suit/modular/robot/hodgrenades
 	head = /obj/item/clothing/head/modular/robot/hod
 
-	l_store = /obj/item/storage/holster/flarepouch/full
-	r_store = /obj/item/storage/pouch/magazine/large
+	l_pocket = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/pouch/magazine/large
 
 	back = /obj/item/storage/backpack/marine
 	belt = /obj/item/storage/belt/marine
@@ -86,8 +86,8 @@
 	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/tyr_onegeneral
 	head = /obj/item/clothing/head/modular/robot/heavy/tyr
 
-	l_store = /obj/item/storage/holster/flarepouch/full
-	r_store = /obj/item/storage/pouch/tools
+	l_pocket = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/pouch/tools
 
 	back = /obj/item/storage/backpack/marine
 	belt = /obj/item/storage/belt/sparepouch
@@ -122,8 +122,8 @@
 	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
 	head = /obj/item/clothing/head/modular/robot
 
-	l_store = /obj/item/storage/holster/flarepouch/full
-	r_store = /obj/item/storage/pouch/magazine/large
+	l_pocket = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/pouch/magazine/large
 
 	back = /obj/item/storage/backpack/marine
 	belt = /obj/item/belt_harness/marine
@@ -158,8 +158,8 @@
 	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
 	head = /obj/item/clothing/head/modular/robot
 
-	l_store = /obj/item/storage/holster/flarepouch/full
-	r_store = /obj/item/storage/pouch/shotgun
+	l_pocket = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/pouch/shotgun
 
 	back = /obj/item/storage/backpack/marine
 	belt = /obj/item/storage/belt/shotgun
@@ -196,8 +196,8 @@
 	wear_suit = /obj/item/clothing/suit/modular/robot/lightgeneral
 	head = /obj/item/clothing/head/modular/robot
 
-	l_store = /obj/item/storage/holster/flarepouch/full
-	r_store = /obj/item/cell/lasgun/volkite/powerpack/marine
+	l_pocket = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/cell/lasgun/volkite/powerpack/marine
 
 	back = /obj/item/storage/backpack/marine
 	belt = /obj/item/storage/belt/marine
@@ -234,8 +234,8 @@
 	glasses = /obj/item/clothing/glasses/meson
 	head = /obj/item/clothing/head/modular/robot/heavy
 
-	l_store = /obj/item/storage/pouch/tools
-	r_store = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/pouch/tools
+	r_pocket = /obj/item/storage/pouch/grenade
 
 	back = /obj/item/storage/backpack/marine/radiopack
 	belt = /obj/item/belt_harness/marine
@@ -286,8 +286,8 @@
 	glasses = /obj/item/clothing/glasses/meson
 	head = /obj/item/clothing/head/modular/robot
 
-	l_store = /obj/item/storage/pouch/tools
-	r_store = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/pouch/tools
+	r_pocket = /obj/item/storage/pouch/grenade
 
 	back = /obj/item/storage/holster/backholster/flamer
 	belt = /obj/item/storage/belt/marine
@@ -337,8 +337,8 @@
 	glasses = /obj/item/clothing/glasses/meson
 	head = /obj/item/clothing/head/modular/robot
 
-	l_store = /obj/item/storage/pouch/tools
-	r_store = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/pouch/tools
+	r_pocket = /obj/item/storage/pouch/grenade
 
 	back = /obj/item/storage/backpack/marine/satchel
 	belt = /obj/item/belt_harness/marine
@@ -387,8 +387,8 @@
 	glasses = /obj/item/clothing/glasses/hud/health
 	head = /obj/item/clothing/head/modular/robot
 
-	l_store = /obj/item/storage/pouch/shotgun
-	r_store = /obj/item/storage/pouch/medkit/medic
+	l_pocket = /obj/item/storage/pouch/shotgun
+	r_pocket = /obj/item/storage/pouch/medkit/medic
 
 	back = /obj/item/storage/backpack/marine/corpsman
 	belt = /obj/item/storage/belt/lifesaver/beginner
@@ -441,8 +441,8 @@
 	glasses = /obj/item/clothing/glasses/hud/health
 	head = /obj/item/clothing/head/modular/robot/light
 
-	l_store = /obj/item/storage/pouch/shotgun
-	r_store = /obj/item/storage/pouch/medkit/medic
+	l_pocket = /obj/item/storage/pouch/shotgun
+	r_pocket = /obj/item/storage/pouch/medkit/medic
 
 	back = /obj/item/storage/backpack/marine/corpsman
 	belt = /obj/item/storage/belt/hypospraybelt/beginner
@@ -492,8 +492,8 @@
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	head = /obj/item/clothing/head/modular/robot/antenna
 
-	l_store = /obj/item/storage/holster/flarepouch/full
-	r_store = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/pouch/grenade
 
 	back = /obj/item/storage/backpack/marine/satchel
 	belt = /obj/item/belt_harness/marine
@@ -531,8 +531,8 @@
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 	head = /obj/item/clothing/head/modular/robot/antenna
 
-	l_store = /obj/item/storage/holster/flarepouch/full
-	r_store = /obj/item/storage/pouch/grenade
+	l_pocket = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/pouch/grenade
 
 	back = /obj/item/ammo_magazine/minigun_powerpack/smartgun
 	belt = /obj/item/belt_harness/marine

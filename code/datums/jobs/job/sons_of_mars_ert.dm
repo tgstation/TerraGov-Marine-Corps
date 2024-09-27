@@ -32,8 +32,8 @@
 	gloves = /obj/item/clothing/gloves/marine/som
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som
-	r_store = /obj/item/storage/pouch/firstaid/som/full
-	l_store = /obj/item/storage/pouch/grenade/som/ert
+	r_pocket = /obj/item/storage/pouch/firstaid/som/full
+	l_pocket = /obj/item/storage/pouch/grenade/som/ert
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/job/som/ert/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -180,8 +180,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/magazine/large/som
-	l_store = /obj/item/storage/pouch/grenade/som/ert
+	r_pocket = /obj/item/storage/pouch/magazine/large/som
+	l_pocket = /obj/item/storage/pouch/grenade/som/ert
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/job/som/ert/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -243,7 +243,7 @@
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som, SLOT_IN_R_POUCH)
 
 /datum/outfit/job/som/ert/medic/standard_shotgun
-	r_store = /obj/item/storage/pouch/shotgun/som
+	r_pocket = /obj/item/storage/pouch/shotgun/som
 	suit_store = /obj/item/weapon/gun/shotgun/som/support
 
 /datum/outfit/job/som/ert/medic/standard_shotgun/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -297,8 +297,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/veteran
 	glasses = /obj/item/clothing/glasses/meson
-	r_store = /obj/item/storage/pouch/firstaid/som/full
-	l_store = /obj/item/storage/pouch/grenade/som/ert
+	r_pocket = /obj/item/storage/pouch/firstaid/som/full
+	l_pocket = /obj/item/storage/pouch/grenade/som/ert
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/job/som/ert/veteran/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -387,7 +387,7 @@
 /datum/outfit/job/som/ert/veteran/caliver_pack
 	belt = /obj/item/storage/belt/grenade/som
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/somvet
-	l_store = /obj/item/storage/pouch/pistol/som
+	l_pocket = /obj/item/storage/pouch/pistol/som
 	back = /obj/item/cell/lasgun/volkite/powerpack
 
 /datum/outfit/job/som/ert/veteran/caliver_pack/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -431,7 +431,7 @@
 	suit_store = /obj/item/weapon/gun/smg/som/support
 	belt = /obj/item/storage/belt/marine/som
 	back = /obj/item/storage/holster/backholster/rpg/som/ert
-	l_store = /obj/item/storage/pouch/grenade/som
+	l_pocket = /obj/item/storage/pouch/grenade/som
 
 /datum/outfit/job/som/ert/veteran/rpg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -548,8 +548,8 @@
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som/leader
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
-	l_store = /obj/item/storage/pouch/grenade/som/ert
+	r_pocket = /obj/item/storage/pouch/firstaid/som/combat_patrol_leader
+	l_pocket = /obj/item/storage/pouch/grenade/som/ert
 	back = /obj/item/storage/backpack/lightpack/som
 
 /datum/outfit/job/som/ert/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -716,7 +716,7 @@
 	suit_store = /obj/item/weapon/twohanded/fireaxe/som
 	belt = /obj/item/storage/belt/grenade/som
 	back = /obj/item/storage/holster/backholster/rpg/som/ert
-	l_store = /obj/item/storage/pouch/explosive/som
+	l_pocket = /obj/item/storage/pouch/explosive/som
 
 /datum/outfit/job/som/ert/veteran/breacher_rpg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

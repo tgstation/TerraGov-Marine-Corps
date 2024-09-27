@@ -347,7 +347,7 @@
 /mob/living/carbon/human/get_equipped_items(include_pockets = FALSE)
 	var/list/items = ..()
 	if(!include_pockets)
-		items -= list(l_store, r_store)
+		items -= list(l_pocket, r_pocket)
 	return items
 
 ///Find the slot an item is equipped to and returns its slot define

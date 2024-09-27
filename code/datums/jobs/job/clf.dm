@@ -33,8 +33,8 @@
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/strawhat
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pill_bottle/zoom
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pill_bottle/zoom
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -207,7 +207,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/skorpion
-	l_store = /obj/item/storage/pouch/medical_injectors/medic
+	l_pocket = /obj/item/storage/pouch/medical_injectors/medic
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -226,7 +226,7 @@
 
 /datum/outfit/job/clf/medic/uzi
 	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
-	r_store = /obj/item/storage/holster/flarepouch
+	r_pocket = /obj/item/storage/holster/flarepouch
 
 /datum/outfit/job/clf/medic/uzi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -248,7 +248,7 @@
 
 /datum/outfit/job/clf/medic/skorpion
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
-	r_store = /obj/item/storage/holster/flarepouch
+	r_pocket = /obj/item/storage/holster/flarepouch
 
 /datum/outfit/job/clf/medic/skorpion/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -270,7 +270,7 @@
 
 /datum/outfit/job/clf/medic/paladin
 	suit_store = /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
-	r_store = /obj/item/storage/pouch/shotgun
+	r_pocket = /obj/item/storage/pouch/shotgun
 
 /datum/outfit/job/clf/medic/paladin/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -309,8 +309,8 @@
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/helmet/marine
-	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/pistol
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 
 
 /datum/outfit/job/clf/specialist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -413,8 +413,8 @@
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/militia
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/pistol
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 

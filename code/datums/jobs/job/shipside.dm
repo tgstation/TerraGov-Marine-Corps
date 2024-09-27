@@ -87,8 +87,8 @@ Godspeed, captain! And remember, you are not above the law."})
 	shoes = /obj/item/clothing/shoes/marinechief/captain
 	gloves = /obj/item/clothing/gloves/marine/techofficer/captain
 	head = /obj/item/clothing/head/beret/marine/captain
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/leadership
+	r_pocket = /obj/item/storage/pouch/general/large/command
+	l_pocket = /obj/item/hud_tablet/leadership
 	back = /obj/item/storage/backpack/marine/satchel/captain_cloak
 
 /datum/outfit/job/command/captain/robot
@@ -98,8 +98,8 @@ Godspeed, captain! And remember, you are not above the law."})
 	shoes = null
 	gloves = null
 	head = /obj/item/clothing/head/modular/robot
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/leadership
+	r_pocket = /obj/item/storage/pouch/general/large/command
+	l_pocket = /obj/item/hud_tablet/leadership
 
 /datum/outfit/job/command/captain_campaign
 	name = CAPTAIN
@@ -183,8 +183,8 @@ Make the TGMC proud!"})
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/officer
 	head = /obj/item/clothing/head/tgmcberet/fc
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/fieldcommand
+	r_pocket = /obj/item/storage/pouch/general/large/command
+	l_pocket = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
 /datum/outfit/job/command/fieldcommander/robot
@@ -195,8 +195,8 @@ Make the TGMC proud!"})
 	shoes = null
 	gloves = null
 	head = /obj/item/clothing/head/modular/robot
-	r_store = /obj/item/storage/pouch/general/large/command
-	l_store = /obj/item/hud_tablet/fieldcommand
+	r_pocket = /obj/item/storage/pouch/general/large/command
+	l_pocket = /obj/item/hud_tablet/fieldcommand
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 
 //Campaign version with specific loadout
@@ -284,8 +284,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	w_uniform = /obj/item/clothing/under/marine/officer/bridge
 	shoes = /obj/item/clothing/shoes/marine/full
 	head = /obj/item/clothing/head/tgmccap/ro
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/binoculars/tactical
+	r_pocket = /obj/item/storage/pouch/general/large
+	l_pocket = /obj/item/binoculars/tactical
 
 
 /datum/outfit/job/command/staffofficer/robot
@@ -295,8 +295,8 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	shoes = null
 	gloves = null
 	head = /obj/item/clothing/head/modular/robot
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/binoculars/tactical
+	r_pocket = /obj/item/storage/pouch/general/large
+	l_pocket = /obj/item/binoculars/tactical
 
 /datum/outfit/job/command/staffofficer_campaign
 	name = STAFF_OFFICER
@@ -370,8 +370,8 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 	gloves = /obj/item/clothing/gloves/marine/insulated
 	glasses = /obj/item/clothing/glasses/welding/superior
 	head = /obj/item/clothing/head/helmet/marine/pilot
-	r_store = /obj/item/storage/pouch/construction
-	l_store = /obj/item/hud_tablet/transportofficer
+	r_pocket = /obj/item/storage/pouch/construction
+	l_pocket = /obj/item/hud_tablet/transportofficer
 	back = /obj/item/storage/backpack/marine/engineerpack
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 
@@ -452,8 +452,8 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	gloves = /obj/item/clothing/gloves/marine/insulated
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
-	r_store = /obj/item/storage/pouch/general/large
-	l_store = /obj/item/hud_tablet/pilot
+	r_pocket = /obj/item/storage/pouch/general/large
+	l_pocket = /obj/item/hud_tablet/pilot
 
 //Mech pilot
 /datum/job/terragov/command/mech_pilot
@@ -600,7 +600,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	head = /obj/item/clothing/head/helmet/marine/assault_crewman
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine
-	l_store = /obj/item/pamphlet/tank_loader
+	l_pocket = /obj/item/pamphlet/tank_loader
 
 //apc/jeep driver
 /datum/job/terragov/command/transport_crewman
@@ -745,7 +745,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 	glasses = /obj/item/clothing/glasses/welding/superior
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/beret/marine/techofficer
-	r_store = /obj/item/storage/pouch/construction
+	r_pocket = /obj/item/storage/pouch/construction
 	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/outfit/job/engineering/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -822,7 +822,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	gloves = /obj/item/clothing/gloves/insulated
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	head = /obj/item/clothing/head/tgmccap/req
-	r_store = /obj/item/storage/pouch/general/medium
+	r_pocket = /obj/item/storage/pouch/general/medium
 	back = /obj/item/storage/backpack/marine/engineerpack
 
 /datum/job/terragov/requisitions
@@ -904,7 +904,7 @@ A happy ship is a well-functioning ship."})
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/tgmccap/req
-	r_store = /obj/item/storage/pouch/general/large
+	r_pocket = /obj/item/storage/pouch/general/large
 
 /datum/outfit/job/requisitions/officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -993,8 +993,8 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
-	r_store = /obj/item/storage/pouch/surgery
-	l_store = /obj/item/storage/pouch/medkit/doctor
+	r_pocket = /obj/item/storage/pouch/surgery
+	l_pocket = /obj/item/storage/pouch/medkit/doctor
 
 
 /datum/outfit/job/medical/professor/robot
@@ -1083,8 +1083,8 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
-	r_store = /obj/item/storage/pouch/surgery
-	l_store = /obj/item/storage/pouch/medkit/doctor
+	r_pocket = /obj/item/storage/pouch/surgery
+	l_pocket = /obj/item/storage/pouch/medkit/doctor
 
 
 /datum/outfit/job/medical/medicalofficer/robot
@@ -1177,8 +1177,8 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
-	r_store = /obj/item/storage/pouch/surgery
-	l_store = /obj/item/storage/pouch/medkit/doctor
+	r_pocket = /obj/item/storage/pouch/surgery
+	l_pocket = /obj/item/storage/pouch/medkit/doctor
 
 
 /datum/outfit/job/medical/researcher/robot
@@ -1349,8 +1349,8 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	w_uniform = /obj/item/clothing/under/rank/synthetic
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/insulated
-	r_store = /obj/item/storage/pouch/general/medium
-	l_store = /obj/item/storage/pouch/general/medium
+	r_pocket = /obj/item/storage/pouch/general/medium
+	l_pocket = /obj/item/storage/pouch/general/medium
 
 
 /datum/job/terragov/silicon/ai

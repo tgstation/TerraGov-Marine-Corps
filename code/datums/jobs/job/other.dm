@@ -12,8 +12,8 @@
 	id = /obj/item/card/id
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine
-	l_store = /obj/item/storage/pouch/survival/full
-	r_store = /obj/item/radio
+	l_pocket = /obj/item/storage/pouch/survival/full
+	r_pocket = /obj/item/radio
 
 
 //Passenger
@@ -40,8 +40,8 @@
 	shoes = /obj/item/clothing/shoes/red
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/soft/red
-	r_store = /obj/item/radio
-	l_store = /obj/item/reagent_containers/food/drinks/cans/dr_gibb
+	r_pocket = /obj/item/radio
+	l_pocket = /obj/item/reagent_containers/food/drinks/cans/dr_gibb
 	back = /obj/item/storage/backpack/satchel
 	r_hand = /obj/item/pizzabox/random
 

@@ -21,8 +21,8 @@
 	back = /obj/item/storage/backpack/satchel
 	belt = /obj/item/storage/belt/marine
 	gloves = /obj/item/clothing/gloves/marine/black
-	l_store = /obj/item/storage/pouch/medkit/firstaid
-	r_store = /obj/item/storage/holster/flarepouch/full
+	l_pocket = /obj/item/storage/pouch/medkit/firstaid
+	r_pocket = /obj/item/storage/holster/flarepouch/full
 	suit_store = /obj/item/weapon/gun/rifle/m41a/magharness
 	ears = /obj/item/radio/headset/distress/retired
 	shoes = /obj/item/clothing/shoes/marine/brown/full

@@ -22,8 +22,8 @@
 	//mask =
 	//glasses =
 	//suit_store =
-	//r_store =
-	//l_store =
+	//r_pocket =
+	//l_pocket =
 	//back =
 
 /datum/outfit/job/imperial/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -44,8 +44,8 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle
 	head = /obj/item/clothing/head/helmet/marine/imperial
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/holster/flarepouch/full
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/imperial/guardsman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -73,8 +73,8 @@
 
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/sergeant
 	head = /obj/item/clothing/head/helmet/marine/imperial/sergeant
-	r_store = /obj/item/storage/pouch/explosive/upp
-	l_store = /obj/item/storage/pouch/field_pouch/full
+	r_pocket = /obj/item/storage/pouch/explosive/upp
+	l_pocket = /obj/item/storage/pouch/field_pouch/full
 
 /datum/job/imperial/guardsman/medicae
 	title = "Guardsman Medicae"
@@ -90,8 +90,8 @@
 	belt = /obj/item/storage/belt/lifesaver/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/imperial/medicae
 	glasses = /obj/item/clothing/glasses/hud/health
-	l_store = /obj/item/storage/pouch/medkit/medic
-	r_store = /obj/item/storage/pouch/medical_injectors/medic
+	l_pocket = /obj/item/storage/pouch/medkit/medic
+	r_pocket = /obj/item/storage/pouch/medical_injectors/medic
 
 /datum/outfit/job/imperial/guardsman/medicae/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -121,8 +121,8 @@
 	suit_store = /obj/item/weapon/sword/commissar_sword
 	gloves = /obj/item/clothing/gloves/marine/commissar
 	head = /obj/item/clothing/head/commissar
-	l_store = /obj/item/storage/pouch/medkit/firstaid
-	r_store = /obj/item/storage/pouch/magazine/pistol/large/mateba
+	l_pocket = /obj/item/storage/pouch/medkit/firstaid
+	r_pocket = /obj/item/storage/pouch/magazine/pistol/large/mateba
 	back = /obj/item/storage/backpack/lightpack
 
 /datum/outfit/job/imperial/commissar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

@@ -1,31 +1,47 @@
 /datum/outfit
+	/// The name of this outfit that will show in select outfit
 	var/name = ""
+	/// The worn uniform of this outfit
+	var/w_uniform
+	/// The worn suit of this outfit
+	var/wear_suit
+	/// The item in the slot of this outfit, set to FALSE if you want to have nothing (defaults to player pref if null)
+	var/back
+	/// The item in the belt slot
+	var/belt
+	/// The item in the glove slot
+	var/gloves
+	/// The item in the shoe slot
+	var/shoes
+	/// The item in the head slot
+	var/head
+	/// The item in the mask slot
+	var/mask
+	/// The item in the ear slot
+	var/ears
+	/// The item in the glasses/eye slot
+	var/glasses
+	/// The item in the ID slot
+	var/id
+	/// The item in the left pocket
+	var/l_pocket
+	/// The item in the right pocket
+	var/r_pocket
+	/// The item in the suit storage slot
+	var/suit_store
+	/// The item in the right hand
+	var/r_hand
+	/// The item in the left_hand
+	var/l_hand
+	/**
+	  * List of items that should go in the backpack of the user
+	  *
+	  * Format of this list should be: list(path=count,otherpath=count)
+	  */
+	var/list/backpack_contents
+	/// The implants this outfit comes with
+	var/list/implants
 
-	var/w_uniform = null
-	var/wear_suit = null
-	var/toggle_helmet = TRUE
-	var/back = null // Set to FALSE if your outfit needs nothing in back slot at all
-	var/belt = null
-	var/gloves = null
-	var/shoes = null
-	var/head = null
-	var/mask = null
-	var/neck = null
-	var/ears = null
-	var/glasses = null
-	var/id = null
-	var/l_store = null
-	var/r_store = null
-	var/suit_store = null
-	var/r_hand = null
-	var/l_hand = null
-	var/internals_slot = null //ID of slot containing a gas tank
-	var/list/backpack_contents = null // In the list(path=count,otherpath=count) format
-	var/box // Internals box. Will be inserted at the start of backpack_contents
-	var/list/implants = null
-	var/accessory = null
-
-	var/can_be_admin_equipped = TRUE // Set to FALSE if your outfit requires runtime parameters
 	///the species this outfit is designed for
 	var/species = SPECIES_HUMAN
 
@@ -77,16 +93,10 @@
 		H.put_in_r_hand(new r_hand(H))
 
 	if(!visualsOnly) // Items in pockets or backpack don't show up on mob's icon.
-		if(l_store)
-			H.equip_to_slot_or_del(new l_store(H), SLOT_L_STORE, override_nodrop = TRUE)
-		if(r_store)
-			H.equip_to_slot_or_del(new r_store(H), SLOT_R_STORE, override_nodrop = TRUE)
-
-		if(box)
-			if(!backpack_contents)
-				backpack_contents = list()
-			backpack_contents.Insert(1, box)
-			backpack_contents[box] = 1
+		if(l_pocket)
+			H.equip_to_slot_or_del(new l_pocket(H), SLOT_L_STORE, override_nodrop = TRUE)
+		if(r_pocket)
+			H.equip_to_slot_or_del(new r_pocket(H), SLOT_R_STORE, override_nodrop = TRUE)
 
 		if(backpack_contents)
 			for(var/path in backpack_contents)
@@ -97,10 +107,6 @@
 					H.equip_to_slot_or_del(new path(H), SLOT_IN_BACKPACK, override_nodrop = TRUE)
 
 	post_equip(H, visualsOnly)
-
-	if(!visualsOnly)
-		if(internals_slot)
-			H.internal = H.get_item_by_slot(internals_slot)
 
 	if(implants && implants.len)
 		for(var/implant_type in implants)
@@ -117,7 +123,6 @@
 	.["name"] = name
 	.["uniform"] = w_uniform
 	.["suit"] = wear_suit
-	.["toggle_helmet"] = toggle_helmet
 	.["back"] = back
 	.["belt"] = belt
 	.["gloves"] = gloves
@@ -127,23 +132,19 @@
 	.["ears"] = ears
 	.["glasses"] = glasses
 	.["id"] = id
-	.["l_store"] = l_store
-	.["r_store"] = r_store
+	.["l_pocket"] = l_pocket
+	.["r_pocket"] = r_pocket
 	.["suit_store"] = suit_store
 	.["r_hand"] = r_hand
 	.["l_hand"] = l_hand
-	.["internals_slot"] = internals_slot
 	.["backpack_contents"] = backpack_contents
-	.["box"] = box
 	.["implants"] = implants
-	.["accessory"] = accessory
 
 /// Copy most vars from another outfit to this one
 /datum/outfit/proc/copy_from(datum/outfit/target)
 	name = target.name
 	w_uniform = target.w_uniform
 	wear_suit = target.wear_suit
-	toggle_helmet = target.toggle_helmet
 	back = target.back
 	belt = target.belt
 	gloves = target.gloves
@@ -153,16 +154,13 @@
 	ears = target.ears
 	glasses = target.glasses
 	id = target.id
-	l_store = target.l_store
-	r_store = target.r_store
+	l_pocket = target.l_pocket
+	r_pocket = target.r_pocket
 	suit_store = target.suit_store
 	r_hand = target.r_hand
 	l_hand = target.l_hand
-	internals_slot = target.internals_slot
 	backpack_contents = target.backpack_contents
-	box = target.box
 	implants = target.implants
-	accessory = target.accessory
 	return TRUE
 
 /datum/outfit/proc/save_to_file()
@@ -179,7 +177,6 @@
 	name = outfit_data["name"]
 	w_uniform = text2path(outfit_data["w_uniform"])
 	wear_suit = text2path(outfit_data["wear_suit"])
-	toggle_helmet = outfit_data["toggle_helmet"]
 	back = text2path(outfit_data["back"])
 	belt = text2path(outfit_data["belt"])
 	gloves = text2path(outfit_data["gloves"])
@@ -189,26 +186,23 @@
 	ears = text2path(outfit_data["ears"])
 	glasses = text2path(outfit_data["glasses"])
 	id = text2path(outfit_data["id"])
-	l_store = text2path(outfit_data["l_store"])
-	r_store = text2path(outfit_data["r_store"])
+	l_pocket = text2path(outfit_data["l_pocket"])
+	r_pocket = text2path(outfit_data["r_pocket"])
 	suit_store = text2path(outfit_data["suit_store"])
 	r_hand = text2path(outfit_data["r_hand"])
 	l_hand = text2path(outfit_data["l_hand"])
-	internals_slot = outfit_data["internals_slot"]
 	var/list/backpack = outfit_data["backpack_contents"]
 	backpack_contents = list()
 	for(var/item in backpack)
 		var/itype = text2path(item)
 		if(itype)
 			backpack_contents[itype] = backpack[item]
-	box = text2path(outfit_data["box"])
 	var/list/impl = outfit_data["implants"]
 	implants = list()
 	for(var/I in impl)
 		var/imptype = text2path(I)
 		if(imptype)
 			implants += imptype
-	accessory = text2path(outfit_data["accessory"])
 	return TRUE
 
 /datum/outfit/proc/from_mob(mob/living/base)
@@ -238,8 +232,8 @@
 	ears = human_mob.wear_ear?.type
 	glasses = human_mob.glasses?.type
 	id = human_mob.wear_id?.type
-	l_store = human_mob.l_store?.type
-	r_store = human_mob.r_store?.type
+	l_pocket = human_mob.l_pocket?.type
+	r_pocket = human_mob.r_pocket?.type
 
 /datum/outfit/vv_get_dropdown()
 	. = ..()

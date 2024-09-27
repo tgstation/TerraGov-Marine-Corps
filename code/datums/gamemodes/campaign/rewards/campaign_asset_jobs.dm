@@ -42,8 +42,8 @@ What you lack in equipment and military training you make up in bravery and conv
 	wear_suit = /obj/item/clothing/suit/storage/faction/militia
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/strawhat
-	r_store = /obj/item/storage/pouch/medical_injectors/firstaid
-	l_store = /obj/item/storage/pill_bottle/zoom
+	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	l_pocket = /obj/item/storage/pill_bottle/zoom
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -211,7 +211,7 @@ What you lack in equipment and military training you make up in bravery and conv
 	gloves = /obj/item/clothing/gloves/black
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/skorpion
-	l_store = /obj/item/storage/pouch/medical_injectors/medic
+	l_pocket = /obj/item/storage/pouch/medical_injectors/medic
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -230,7 +230,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 /datum/outfit/job/som/militia/medic/uzi
 	suit_store = /obj/item/weapon/gun/smg/uzi/mag_harness
-	r_store = /obj/item/storage/holster/flarepouch
+	r_pocket = /obj/item/storage/holster/flarepouch
 
 /datum/outfit/job/som/militia/medic/uzi/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -252,7 +252,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 /datum/outfit/job/som/militia/medic/skorpion
 	suit_store = /obj/item/weapon/gun/smg/skorpion/mag_harness
-	r_store = /obj/item/storage/holster/flarepouch
+	r_pocket = /obj/item/storage/holster/flarepouch
 
 /datum/outfit/job/som/militia/medic/skorpion/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -274,7 +274,7 @@ What you lack in equipment and military training you make up in bravery and conv
 
 /datum/outfit/job/som/militia/medic/paladin
 	suit_store = /obj/item/weapon/gun/shotgun/pump/cmb/mag_harness
-	r_store = /obj/item/storage/pouch/shotgun
+	r_pocket = /obj/item/storage/pouch/shotgun
 
 /datum/outfit/job/som/militia/medic/paladin/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -314,8 +314,8 @@ What you lack in equipment and military training you make up in bravery and conv
 	gloves = /obj/item/clothing/gloves/black
 	head = /obj/item/clothing/head/militia
 	glasses = /obj/item/clothing/glasses/hud/health
-	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/medical_injectors/firstaid
+	r_pocket = /obj/item/storage/pouch/pistol
+	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack
 
 
@@ -629,8 +629,8 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 	w_uniform = /obj/item/clothing/under/marine/robotic/black_vest
 	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/tyr
 	head = /obj/item/clothing/head/modular/robot/heavy/tyr
-	r_store = /obj/item/storage/pouch/pistol
-	l_store = /obj/item/storage/pouch/grenade/combat_patrol
+	r_pocket = /obj/item/storage/pouch/pistol
+	l_pocket = /obj/item/storage/pouch/grenade/combat_patrol
 	back = /obj/item/storage/backpack/marine/satchel
 
 	belt = /obj/item/storage/belt/marine/te_cells
@@ -699,7 +699,7 @@ Fight for TGMC, and attempt to achieve all objectives given to you."})
 
 /datum/outfit/job/tgmc/campaign_robot/jetpack
 	wear_suit = /obj/item/clothing/suit/modular/robot/heavy/shield
-	r_store = /obj/item/storage/pouch/magazine/large
+	r_pocket = /obj/item/storage/pouch/magazine/large
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/mag_harness
 	back = /obj/item/jetpack_marine/heavy
 

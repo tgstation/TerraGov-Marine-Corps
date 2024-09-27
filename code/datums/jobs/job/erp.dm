@@ -21,8 +21,8 @@
 	w_uniform = /obj/item/clothing/under/rank/clown/erp
 	wear_suit = /obj/item/clothing/suit/modular/rownin/erp
 	head = /obj/item/clothing/head/tgmcberet/red2/erp
-	l_store = /obj/item/storage/pouch/medkit/firstaid
-	r_store = /obj/item/storage/holster/flarepouch/full
+	l_pocket = /obj/item/storage/pouch/medkit/firstaid
+	r_pocket = /obj/item/storage/holster/flarepouch/full
 	belt = /obj/item/storage/belt/marine
 	suit_store = /obj/item/weapon/gun/rifle/standard_carbine/beginner
 
@@ -97,8 +97,8 @@
 	name = "ERP Boo-boo kisser"
 	jobtype = /datum/job/erp/boobookisser
 
-	l_store = /obj/item/storage/pouch/medkit/medic
-	r_store = /obj/item/storage/pouch/medical_injectors/medic
+	l_pocket = /obj/item/storage/pouch/medkit/medic
+	r_pocket = /obj/item/storage/pouch/medical_injectors/medic
 	belt = /obj/item/storage/belt/lifesaver/full
 
 /datum/outfit/job/erp/boobookisser/post_equip(mob/living/carbon/human/H, visualsOnly)
@@ -128,7 +128,7 @@
 
 	belt = /obj/item/storage/belt/grenade
 	suit_store = /obj/item/weapon/gun/grenade_launcher/multinade_launcher/erp
-	r_store = /obj/item/storage/pouch/grenade
+	r_pocket = /obj/item/storage/pouch/grenade
 
 /datum/outfit/job/erp/piethrower/post_equip(mob/living/carbon/human/H, visualsOnly)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/creampie, SLOT_IN_BELT)

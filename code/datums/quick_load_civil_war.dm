@@ -13,8 +13,8 @@
 	head = /obj/item/clothing/head/redcoat
 	belt = /obj/item/storage/belt/shotgun/martini/full
 	back = /obj/item/weapon/gun/shotgun/double/martini
-	r_store = /obj/item/storage/pouch/firstaid
-	l_store = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/pouch/firstaid
+	l_pocket = /obj/item/storage/holster/flarepouch/full
 
 /datum/outfit/quick/civil_war/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()

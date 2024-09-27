@@ -270,12 +270,12 @@
 			if(H.back)
 				H.back.screen_loc = ui_back
 				screenmob.client.screen += H.back
-			if(H.l_store)
-				H.l_store.screen_loc = ui_storage1
-				screenmob.client.screen += H.l_store
-			if(H.r_store)
-				H.r_store.screen_loc = ui_storage2
-				screenmob.client.screen += H.r_store
+			if(H.l_pocket)
+				H.l_pocket.screen_loc = ui_storage1
+				screenmob.client.screen += H.l_pocket
+			if(H.r_pocket)
+				H.r_pocket.screen_loc = ui_storage2
+				screenmob.client.screen += H.r_pocket
 		else
 			if(H.s_store)
 				screenmob.client.screen -= H.s_store
@@ -285,10 +285,10 @@
 				screenmob.client.screen -= H.belt
 			if(H.back)
 				screenmob.client.screen -= H.back
-			if(H.l_store)
-				screenmob.client.screen -= H.l_store
-			if(H.r_store)
-				screenmob.client.screen -= H.r_store
+			if(H.l_pocket)
+				screenmob.client.screen -= H.l_pocket
+			if(H.r_pocket)
+				screenmob.client.screen -= H.r_pocket
 
 	if(hud_version != HUD_STYLE_NOHUD)
 		if(H.r_hand)

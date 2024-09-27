@@ -87,9 +87,9 @@
 	///The ID being worn.
 	var/obj/item/card/id/wear_id
 	///The item currently in the right pocket
-	var/obj/item/r_store
+	var/obj/item/r_pocket
 	///The item currently in the left pocket
-	var/obj/item/l_store
+	var/obj/item/l_pocket
 
 	///The current standing icon
 	var/icon/stand_icon

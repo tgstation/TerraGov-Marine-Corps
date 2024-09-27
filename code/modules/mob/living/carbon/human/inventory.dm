@@ -151,10 +151,10 @@
 		update_inv_wear_suit()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == w_uniform)
-		if(r_store)
-			dropItemToGround(r_store)
-		if(l_store)
-			dropItemToGround(l_store)
+		if(r_pocket)
+			dropItemToGround(r_pocket)
+		if(l_pocket)
+			dropItemToGround(l_pocket)
 		if(belt)
 			dropItemToGround(belt)
 		if(wear_suit && istype(wear_suit, /obj/item/clothing/suit))
@@ -217,13 +217,13 @@
 		update_inv_wear_id()
 		name = get_visible_name()
 		. = ITEM_UNEQUIP_UNEQUIPPED
-	else if (I == r_store)
-		r_store = null
+	else if (I == r_pocket)
+		r_pocket = null
 		I.unequipped(src, SLOT_R_STORE)
 		update_inv_pockets()
 		. = ITEM_UNEQUIP_UNEQUIPPED
-	else if (I == l_store)
-		l_store = null
+	else if (I == l_pocket)
+		l_pocket = null
 		I.unequipped(src, SLOT_L_STORE)
 		update_inv_pockets()
 		. = ITEM_UNEQUIP_UNEQUIPPED
@@ -330,11 +330,11 @@
 			item_to_equip.equipped(src, slot)
 			update_inv_w_uniform()
 		if(SLOT_L_STORE)
-			l_store = item_to_equip
+			l_pocket = item_to_equip
 			item_to_equip.equipped(src, slot)
 			update_inv_pockets()
 		if(SLOT_R_STORE)
-			r_store = item_to_equip
+			r_pocket = item_to_equip
 			item_to_equip.equipped(src, slot)
 			update_inv_pockets()
 		if(SLOT_S_STORE)
@@ -360,9 +360,9 @@
 		if(SLOT_IN_STORAGE)
 			selected_slot = s_active
 		if(SLOT_IN_L_POUCH)
-			selected_slot = l_store
+			selected_slot = l_pocket
 		if(SLOT_IN_R_POUCH)
-			selected_slot = r_store
+			selected_slot = r_pocket
 		if(SLOT_IN_ACCESSORY)
 			selected_slot = w_uniform
 		else
@@ -419,9 +419,9 @@
 		if(SLOT_W_UNIFORM)
 			return w_uniform
 		if(SLOT_L_STORE)
-			return l_store
+			return l_pocket
 		if(SLOT_R_STORE)
-			return r_store
+			return r_pocket
 		if(SLOT_S_STORE)
 			return s_store
 		if(SLOT_HANDCUFFED)
@@ -441,9 +441,9 @@
 		if(SLOT_IN_ACCESSORY)
 			return w_uniform
 		if(SLOT_IN_L_POUCH)
-			return l_store
+			return l_pocket
 		if(SLOT_IN_R_POUCH)
-			return r_store
+			return r_pocket
 		if(SLOT_IN_HEAD)
 			return head
 
@@ -472,9 +472,9 @@
 		if(ITEM_SLOT_BACK)
 			return back
 		if(ITEM_SLOT_R_POCKET)
-			return r_store
+			return r_pocket
 		if(ITEM_SLOT_L_POCKET)
-			return l_store
+			return l_pocket
 		if(ITEM_SLOT_SUITSTORE)
 			return s_store
 		if(ITEM_SLOT_HANDCUFF)
@@ -506,9 +506,9 @@
 		. = SLOT_EARS
 	else if(equipped_item == wear_id)
 		. = SLOT_WEAR_ID
-	else if(equipped_item == r_store)
+	else if(equipped_item == r_pocket)
 		. = SLOT_R_STORE
-	else if(equipped_item == l_store)
+	else if(equipped_item == l_pocket)
 		. = SLOT_L_STORE
 	else if(equipped_item == s_store)
 		. = SLOT_S_STORE

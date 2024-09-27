@@ -37,9 +37,9 @@
 		if(SLOT_S_STORE)
 			suit_store = item_path
 		if(SLOT_L_STORE)
-			l_store = item_path
+			l_pocket = item_path
 		if(SLOT_R_STORE)
-			r_store = item_path
+			r_pocket = item_path
 
 
 /proc/collect_vv(obj/item/I)

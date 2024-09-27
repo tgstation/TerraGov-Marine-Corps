@@ -80,13 +80,13 @@
 /datum/loadout_item/belt/smg_holster/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m25/holstered(wearer), SLOT_IN_HOLSTER)
 	var/ammo_type = /obj/item/ammo_magazine/smg/m25
-	if(istype(wearer.r_store, /obj/item/storage/pouch/magazine))
+	if(istype(wearer.r_pocket, /obj/item/storage/pouch/magazine))
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
 	if(wearer.skills.getRating(SKILL_SMGS) >= SKILL_SMGS_TRAINED)
 		ammo_type = /obj/item/ammo_magazine/smg/m25/ap
-	if(istype(wearer.l_store, /obj/item/storage/pouch/magazine))
+	if(istype(wearer.l_pocket, /obj/item/storage/pouch/magazine))
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)

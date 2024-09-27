@@ -227,6 +227,7 @@
 #define ITEM_SLOT_L_HAND (1<<15) //left hand
 #define ITEM_SLOT_R_HAND (1<<16) //right hand
 
+
 ///Inventory slot bits to plain english strings
 GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 	"[ITEM_SLOT_OCLOTHING]" = "Suit",
@@ -265,23 +266,23 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 #define SLOT_BACK 11
 #define SLOT_L_STORE 12
 #define SLOT_R_STORE 13
-#define SLOT_ACCESSORY 14
+#define SLOT_ACCESSORY 14//!!! this is webbing
 #define SLOT_S_STORE 15
 #define SLOT_L_HAND 16
 #define SLOT_R_HAND 17
 #define SLOT_HANDCUFFED 18
-#define SLOT_IN_BOOT 19
-#define SLOT_IN_BACKPACK 20
-#define SLOT_IN_SUIT 21
-#define SLOT_IN_ACCESSORY 23
-#define SLOT_IN_HOLSTER 24
-#define SLOT_IN_B_HOLSTER 25
-#define SLOT_IN_S_HOLSTER 26
-#define SLOT_IN_STORAGE 27
-#define SLOT_IN_L_POUCH 28
-#define SLOT_IN_R_POUCH 29
-#define SLOT_IN_HEAD 30
-#define SLOT_IN_BELT 31
+#define SLOT_IN_BOOT 19//!!
+#define SLOT_IN_BACKPACK 20//!!
+#define SLOT_IN_SUIT 21//!!
+#define SLOT_IN_ACCESSORY 23//!!
+#define SLOT_IN_HOLSTER 24// !!
+#define SLOT_IN_B_HOLSTER 25// !!
+#define SLOT_IN_S_HOLSTER 26// !!
+#define SLOT_IN_STORAGE 27// !!
+#define SLOT_IN_L_POUCH 28// !!
+#define SLOT_IN_R_POUCH 29// !!
+#define SLOT_IN_HEAD 30// !!
+#define SLOT_IN_BELT 31// !!
 //=================================================
 
 
