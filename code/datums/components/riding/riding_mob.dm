@@ -349,3 +349,27 @@
 	if(widow.stat == UNCONSCIOUS)
 		dir = SOUTH
 	return ..()
+
+// ***************************************
+// *********** Saddled Rouny
+// ***************************************
+
+/datum/component/riding/creature/crusher/runner
+	can_be_driven = FALSE
+
+/datum/component/riding/creature/crusher/runner/handle_specials()
+	. = ..()
+	set_riding_offsets(RIDING_OFFSET_ALL, list(TEXT_NORTH = list(0, 8), TEXT_SOUTH = list(0, 6), TEXT_EAST = list(5, 8), TEXT_WEST = list(-5, 8)))
+	set_vehicle_dir_layer(SOUTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(NORTH, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(EAST, ABOVE_MOB_LAYER)
+	set_vehicle_dir_layer(WEST, ABOVE_MOB_LAYER)
+
+/// If the rouny gets knocked over, toss the riding human off aswell
+/datum/component/riding/creature/crusher/runner/check_carrier_fall_over(mob/living/carbon/xenomorph/runner/carrying_runner)
+	for(var/mob/living/rider AS in carrying_runner.buckled_mobs)
+		carrying_runner.unbuckle_mob(rider)
+		rider.Knockdown(1 SECONDS)
+		carrying_runner.visible_message(span_danger("[rider] topples off of [carrying_runner] as they both fall to the ground!"), \
+					span_danger("You fall to the ground, bringing [rider] with you!"), span_hear("You hear two consecutive thuds."))
+		to_chat(rider, span_danger("[carrying_runner] falls to the ground, bringing you with [carrying_runner.p_them()]!"))
