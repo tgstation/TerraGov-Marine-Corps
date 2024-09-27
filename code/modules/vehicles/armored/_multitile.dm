@@ -120,7 +120,7 @@
 	obj_integrity = max_integrity
 	update_appearance(UPDATE_ICON_STATE|UPDATE_DESC|UPDATE_NAME)
 	smoke_holder = new(src, /particles/tank_wreck_smoke)
-	smoke_del_timer = addtimer(CALLBACK(src, PROC_REF(del_smoke)), 1 MINUTES, TIMER_STOPPABLE)
+	smoke_del_timer = addtimer(CALLBACK(src, PROC_REF(del_smoke)), 10 MINUTES, TIMER_STOPPABLE)
 	if(turret_overlay)
 		RegisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_smoke_dir))
 		update_smoke_dir(newdir = turret_overlay.dir)
