@@ -698,7 +698,7 @@
 		toggle_motor(user)
 		return
 	if(prob(1)) // small chance for an easter egg of simpson chainsaw noises
-		playsound(loc, 'sound/weapons/chainsaw_simpson.ogg', 100)
+		playsound(loc, 'sound/weapons/chainsaw_simpson.ogg', 60)
 	else
 		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
 
@@ -760,11 +760,11 @@
 		return ..()
 
 	if(isxeno(M))
-		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 4 SECONDS, 2 SECONDS, /obj/effect/decal/cleanable/blood/xeno)//leave pool of blood
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 1 SECONDS, 1 SECONDS, /obj/effect/decal/cleanable/blood/xeno)//leave pool of blood
 		return ..()
 
 	if(ishuman(M))
-		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 4 SECONDS, 2 SECONDS, /obj/effect/decal/cleanable/blood)//leave pool of blood
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 1 SECONDS, 1 SECONDS, /obj/effect/decal/cleanable/blood)//leave pool of blood
 		M.drip(18) // target lose an iso pill worth of blood
 		return ..()
 
