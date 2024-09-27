@@ -80,15 +80,13 @@
 			return
 	if(ismob(A))
 		var/mob/M = A
-		if(M.faction != user.faction)
+		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
+			return
+		if(M.faction != user.faction && !M.incapacitated())
 			user.visible_message(span_notice("[user] attempts to inject [M] with [src]."),
 			span_notice("You attempt to inject [M] with [src]."))
 			if(!do_after(user, SKILL_TASK_VERY_EASY, NONE, A, BUSY_ICON_HOSTILE) || (!in_range(A, user) || !user.Adjacent(A)))
 				return
-	if(ismob(A))
-		var/mob/M = A
-		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
-			return
 
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
