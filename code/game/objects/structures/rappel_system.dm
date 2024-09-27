@@ -382,17 +382,22 @@
 
 	if(parent_system.rappel_condition < RAPPEL_CONDITION_GOOD)
 		return
+
+	var/turf/target_turf = get_turf(src)
+	for(var/mob/living/carbon/xenomorph/blocker in target_turf)
+		if(blocker.stat == CONSCIOUS)
+			user.balloon_alert(user, "There is a xenomorph blocking you from reaching the rappel rope!")
+			return
+	if(target_turf.density)
+		user.balloon_alert(user, "Something is blocking you from reaching the rappel rope!")
+		return
 	user.balloon_alert_to_viewers("[user] begins clipping to the rappel...", "You begin clipping to the rappel...")
 
 	if(user.skills.getRating(SKILL_COMBAT) < SKILL_COMBAT_DEFAULT)
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_UNSKILLED) || user.lying_angle || user.anchored)
 			return
 
-	if(user.buckled_mobs)
-		if(!do_after(user, 8 SECONDS, NONE, src, BUSY_ICON_MEDICAL) || user.lying_angle || user.anchored)
-			return
-
-	if(!do_after(user, 8 SECONDS, NONE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
+	if(!do_after(user, 8 SECONDS * (1 + length(user.buckled_mobs)), NONE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		return
 	user.forceMove(get_turf(parent_system))
 
