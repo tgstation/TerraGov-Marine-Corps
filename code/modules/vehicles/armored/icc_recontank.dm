@@ -3,8 +3,9 @@
 	desc = "The Light Vehicle, Recce, Tracked 'Fallow' is an ICC reconnaissance vehicle built to go fast in order to scout out and poke at enemy positions. Accepts either a low velocity tank cannon or a SARDEN as armament."
 	icon = 'icons/obj/armored/2x2/icc_lvrt.dmi'
 	icon_state = "icc_lvrt"
-	turret_icon = 'icons/obj/armored/3x3/tank_gun.dmi'
+	turret_icon = 'icons/obj/armored/2x2/icc_lvrt_gun.dmi'
 	turret_icon_state = "icc_lvrt_turret"
+	damage_icon_path = 'icons/obj/armored/2x2/icc_lvrt_damage.dmi'
 	interior = /datum/interior/armored/icc_lvrt
 	hitbox = /obj/hitbox/medium
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_HAS_UNDERLAY

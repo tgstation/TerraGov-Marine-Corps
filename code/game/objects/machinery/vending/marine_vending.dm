@@ -1579,6 +1579,15 @@
 			/obj/item/ammo_magazine/tank/coilgun = -1,
 			/obj/item/ammo_magazine/tank/secondary_mlrs = -1,
 		),
+		"ICC Assault Vehicle" = list(
+			/obj/item/armored_weapon/icc_lvrt_sarden = -1,
+			/obj/item/armored_weapon/icc_lvrt_cannon = -1,
+			/obj/item/armored_weapon/icc_coaxial = -1,
+			/obj/item/ammo_magazine/tank/sarden_clip/high_explosive = -1,
+			/obj/item/ammo_magazine/tank/sarden_clip = -1,
+			/obj/item/ammo_magazine/tank/icc_lowvel_cannon = -1,
+			/obj/item/ammo_magazine/tank/icc_lowvel_cannon/high_explosive = -1,
+		),
 	)
 
 /obj/machinery/vending/valhalla_seasonal_req
