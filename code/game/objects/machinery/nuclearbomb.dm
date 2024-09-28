@@ -65,12 +65,18 @@
 	update_minimap_icon()
 	// The timer is needed for when the signal is sent
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
+	log_game("[user] has enabled the nuke at [AREACOORD(src)]")
+
 
 ///Disables nuke timer
 /obj/machinery/nuclearbomb/proc/disable()
+	var/area/area = get_area(src)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
 	GLOB.active_nuke_list -= src
+	if(timer_enabled)
+		log_game("[user] has disabled the nuke at [AREACOORD(src)]")
+		message_admins("[user] has disabled the nuke at [ADMIN_VERBOSEJMP(src)]") //Incase disputes show up about marines griefing and the like.
 	timer_enabled = FALSE
 	if(timer)
 		deltimer(timer)
@@ -300,10 +306,13 @@
 	if(anchored)
 		balloon_alert(user, "anchored")
 		visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
+		log_game("[user] has anchored the nuke at [AREACOORD(src)]")
+
 	else
 		balloon_alert(user, "unanchored")
 		visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
 		disable()
+		log_game("[user] has unanchored the nuke at [AREACOORD(src)]")
 
 ///Handles disk insertion and removal
 /obj/machinery/nuclearbomb/proc/toggle_disk(mob/user, disk_colour)
