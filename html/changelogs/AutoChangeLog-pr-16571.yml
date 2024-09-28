@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - qol: "Stripping magharn'd weapons now disables the magharn for a couple seconds"
