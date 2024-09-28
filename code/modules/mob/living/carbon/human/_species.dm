@@ -69,7 +69,7 @@
 	var/knock_out_reduction = 1
 	///How much slowdown is innate to our species
 	var/slowdown = 0
-	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example
+	///Inventory slots the race can't equip stuff to. Robots cannot wear shoes, for example.
 	var/list/no_equip = list()
 
 	//----Related to dying in some way

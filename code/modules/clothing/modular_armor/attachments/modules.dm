@@ -784,7 +784,7 @@
 		to_chat(wearer, span_warning("Could not deploy night vision system due to [wearer.head]!"))
 		return
 
-	INVOKE_ASYNC(wearer, TYPE_PROC_REF(/mob/living/carbon/human, equip_to_slot), attached_goggles, SLOT_GLASSES)
+	INVOKE_ASYNC(wearer, TYPE_PROC_REF(/mob/living/carbon/human, equip_to_slot), attached_goggles, ITEM_SLOT_EYES)
 
 ///Called when the parent is unequipped; undeploys the goggles
 /obj/item/armor_module/module/night_vision/proc/undeploy(datum/source, mob/user, slot)

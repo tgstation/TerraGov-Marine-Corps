@@ -17,7 +17,7 @@
 		update_handcuffed(null)
 		. = ITEM_UNEQUIP_UNEQUIPPED
 
-/mob/living/carbon/equip_to_slot(obj/item/item_to_equip, slot, bitslot = FALSE)
+/mob/living/carbon/equip_to_slot(obj/item/item_to_equip, slot, into_storage)
 	. = ..()
 
 	if(!slot)
@@ -26,18 +26,14 @@
 	if(!istype(item_to_equip))
 		return
 
-	if(bitslot)
-		var/oldslot = slot
-		slot = slotbit2slotdefine(oldslot)
-
 	if(item_to_equip == l_hand)
 		l_hand = null
-		item_to_equip.unequipped(src, SLOT_L_HAND)
+		item_to_equip.unequipped(src, ITEM_SLOT_L_HAND)
 		update_inv_l_hand()
 
 	else if(item_to_equip == r_hand)
 		r_hand = null
-		item_to_equip.unequipped(src, SLOT_R_HAND)
+		item_to_equip.unequipped(src, ITEM_SLOT_R_HAND)
 		update_inv_r_hand()
 
 	for(var/datum/action/A AS in item_to_equip.actions)
@@ -54,9 +50,9 @@
 		return
 
 	if(equipped_item == handcuffed)
-		. = SLOT_HANDCUFFED
+		. = ITEM_SLOT_HANDCUFF
 	else if(equipped_item == back)
-		. = SLOT_BACK
+		. = ITEM_SLOT_BACK
 
 ///called when we get cuffed/uncuffed
 /mob/living/carbon/proc/update_handcuffed(obj/item/restraints/handcuffs/restraints)

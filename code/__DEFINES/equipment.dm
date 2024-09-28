@@ -226,7 +226,7 @@
 #define ITEM_SLOT_HANDCUFF (1<<14) //the slot for handcuffs
 #define ITEM_SLOT_L_HAND (1<<15) //left hand
 #define ITEM_SLOT_R_HAND (1<<16) //right hand
-
+#define ITEM_SLOT_ACTIVE_STORAGE (1<<17) // the currently open/active storage container 
 
 ///Inventory slot bits to plain english strings
 GLOBAL_LIST_INIT(inventory_slots_to_string, list(
@@ -253,6 +253,7 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 
 //Inventory slots - These are mostly used to get items from certain slots
 //Text strings so that the slots can be associated when doing inventory lists.
+/*
 #define SLOT_WEAR_ID 1
 #define SLOT_EARS 2
 #define SLOT_W_UNIFORM 3
@@ -271,18 +272,20 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 #define SLOT_L_HAND 16
 #define SLOT_R_HAND 17
 #define SLOT_HANDCUFFED 18
+
 #define SLOT_IN_BOOT 19//!!
 #define SLOT_IN_BACKPACK 20//!!
 #define SLOT_IN_SUIT 21//!!
 #define SLOT_IN_ACCESSORY 23//!!
-#define SLOT_IN_HOLSTER 24// !!
-#define SLOT_IN_B_HOLSTER 25// !!
-#define SLOT_IN_S_HOLSTER 26// !!
-#define SLOT_IN_STORAGE 27// !!
+#define SLOT_IN_HOLSTER 24// !! belt holster
+#define SLOT_IN_B_HOLSTER 25// !! back holster
+#define SLOT_IN_S_HOLSTER 26// !! suit storage holster
+#define SLOT_IN_STORAGE 27// !! currently open storage
 #define SLOT_IN_L_POUCH 28// !!
 #define SLOT_IN_R_POUCH 29// !!
 #define SLOT_IN_HEAD 30// !!
 #define SLOT_IN_BELT 31// !!
+*/
 //=================================================
 
 

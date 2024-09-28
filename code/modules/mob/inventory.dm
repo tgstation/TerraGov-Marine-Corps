@@ -353,11 +353,11 @@
 ///Find the slot an item is equipped to and returns its slot define
 /mob/proc/get_equipped_slot(obj/equipped_item)
 	if(equipped_item == l_hand)
-		. = SLOT_L_HAND
+		. = ITEM_SLOT_L_HAND
 	else if(equipped_item == r_hand)
-		. = SLOT_R_HAND
+		. = ITEM_SLOT_R_HAND
 	else if(equipped_item == wear_mask)
-		. = SLOT_WEAR_MASK
+		. = ITEM_SLOT_MASK
 
 /mob/living/proc/unequip_everything()
 	var/list/items = list()
@@ -430,10 +430,6 @@
 
 /// Returns the item in a given slot
 /mob/proc/get_item_by_slot(slot_id)
-	return
-
-/// Returns the item in a given bit slot
-/mob/proc/get_item_by_slot_bit(slot_bit)
 	return
 
 //placeholder until tg inventory system

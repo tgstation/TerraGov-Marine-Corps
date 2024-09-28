@@ -206,23 +206,31 @@
 		equip_to_slot_if_possible(W, slot, FALSE) // equiphere
 
 
-///Attempts to put an item in either hand
-/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, warning = FALSE, redraw_mob = TRUE)
-	if(equip_to_slot_if_possible(W, SLOT_L_HAND, TRUE, del_on_fail, warning, redraw_mob))
+/**
+ * Attempts to put an item in either hand
+ * 
+ * Arguments:
+ * * W - item trying to be put into either hand
+ * * del_on_fail - do we delete the item if we fail to put it into either hand?
+ * * warning - do we warn the user about the failure?
+ */
+/mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, warning = FALSE)
+	if(equip_to_slot_if_possible(W, ITEM_SLOT_R_HAND, TRUE, del_on_fail, warning, FALSE, FALSE))
 		return TRUE
-	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, TRUE, del_on_fail, warning, redraw_mob))
+	if(equip_to_slot_if_possible(W, ITEM_SLOT_L_HAND, TRUE, del_on_fail, warning, FALSE, FALSE))
 		return TRUE
 	return FALSE
 
 /**
  * This is a SAFE proc. Use this instead of equip_to_slot()!
  * set del_on_fail to have it delete item_to_equip if it fails to equip
- * unset redraw_mob to prevent the mob from being redrawn at the end.
  */
-/mob/proc/equip_to_slot_if_possible(obj/item/item_to_equip, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, redraw_mob = TRUE, override_nodrop = FALSE)
+/mob/proc/equip_to_slot_if_possible(obj/item/item_to_equip, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, override_nodrop = FALSE, into_storage)
 	if(!istype(item_to_equip) || QDELETED(item_to_equip)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
 		return FALSE
-	if(!item_to_equip.mob_can_equip(src, slot, warning, override_nodrop))
+	if(isnull(into_storage) && !!get_item_by_slot(slot)) //if a specific into_storage value isn't provided we try to look for storage in the slot
+		into_storage = TRUE
+	if(!item_to_equip.mob_can_equip(src, slot, warning, override_nodrop, into_storage))
 		if(del_on_fail)
 			qdel(item_to_equip)
 			return FALSE
@@ -233,13 +241,13 @@
 		if(!do_after(src, item_to_equip.equip_delay_self, NONE, item_to_equip, BUSY_ICON_FRIENDLY))
 			to_chat(src, "You stop putting on \the [item_to_equip]")
 			return FALSE
-		equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
+		equip_to_slot(item_to_equip, slot, into_storage) //This proc should not ever fail.
 		//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
 			item_to_equip.unwield(src)
 		return TRUE
 	else
-		equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
+		equip_to_slot(item_to_equip, slot, into_storage) //This proc should not ever fail.
 		//This will unwield items -without- triggering lights.
 		if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
 			item_to_equip.unwield(src)
@@ -249,12 +257,13 @@
 *This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 *In most cases you will want to use equip_to_slot_if_possible()
 */
-/mob/proc/equip_to_slot(obj/item/item_to_equip, slot, bitslot = FALSE)
+/mob/proc/equip_to_slot(obj/item/item_to_equip, slot, into_storage)
+	SHOULD_CALL_PARENT(TRUE)
 	return
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
-/mob/proc/equip_to_slot_or_del(obj/item/W, slot, override_nodrop = FALSE)
-	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, override_nodrop)
+/mob/proc/equip_to_slot_or_del(obj/item/W, slot, override_nodrop = FALSE, into_storage)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, override_nodrop, into_storage)
 
 /// Tries to equip an item to the slot provided, otherwise tries to put it in hands, if hands are full the item is deleted
 /mob/proc/equip_to_slot_or_hand(obj/item/W, slot, override_nodrop = FALSE)
@@ -281,7 +290,7 @@
 
 	if(!I)
 		return FALSE
-
+/*
 	//This is quite horrible, there's probably a better way to do it.
 	//Each actual inventory slot has more than one slot define associated with it.
 	//The defines below are for specific items in specific slots, which allows for a much more specific draw order, i.e. drawing a weapon from a slot which would otherwise be lower in the order
@@ -297,7 +306,7 @@
 		return FALSE
 	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
 		return FALSE
-
+*/
 	//Sends quick equip signal, if our signal is not handled/blocked we continue to the normal behaviour
 	var/return_value = SEND_SIGNAL(I, COMSIG_ITEM_QUICK_EQUIP, src)
 	switch(return_value)
