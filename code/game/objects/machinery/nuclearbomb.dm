@@ -67,7 +67,6 @@
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
 	log_game("[usr] has enabled the nuke at [AREACOORD(src)]")
 
-
 ///Disables nuke timer
 /obj/machinery/nuclearbomb/proc/disable()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
@@ -306,7 +305,6 @@
 		balloon_alert(user, "anchored")
 		visible_message(span_warning("With a steely snap, bolts slide out of [src] and anchor it to the flooring."))
 		log_game("[user] has anchored the nuke at [AREACOORD(src)]")
-
 	else
 		balloon_alert(user, "unanchored")
 		visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
