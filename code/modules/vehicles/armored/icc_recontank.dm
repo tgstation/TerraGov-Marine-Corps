@@ -29,3 +29,8 @@
 
 /obj/vehicle/sealed/armored/multitile/icc_lvrt/enter_locations(atom/movable/entering_thing)
 	return list(get_step(src, REVERSE_DIR(dir)))
+
+/obj/vehicle/sealed/armored/multitile/icc_lvrt/Initialize(mapload)
+	. = ..()
+	var/obj/item/armored_weapon/gun = new /obj/item/armored_weapon/icc_coaxial()
+	gun.attach(src)
