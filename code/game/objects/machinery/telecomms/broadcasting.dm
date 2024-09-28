@@ -228,7 +228,7 @@
 			if(potential_hearer.stat >= UNCONSCIOUS || potential_hearer.disabilities & DEAF || !(potential_hearer.client?.prefs.sound_tts != TTS_SOUND_OFF))
 				continue
 
-			var/radio_flags = potential_hearer.client.prefs.radio_tts_flags
+			var/radio_flags = potential_hearer?.client?.prefs?.radio_tts_flags
 			if(CHECK_BITFIELD(radio_flags, RADIO_TTS_ALL))
 				list_of_listeners += potential_hearer
 				continue
