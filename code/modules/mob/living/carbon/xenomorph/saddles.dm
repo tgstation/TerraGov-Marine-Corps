@@ -85,6 +85,7 @@
 	DISABLE_BITFIELD(rouny.buckle_flags, CAN_BUCKLE)
 	rouny.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/crusher/runner)
 	rouny.UnregisterSignal(rouny, COMSIG_GRAB_SELF_ATTACK)
+	rouny.unbuckle_all_mobs(TRUE)
 
 /mob/living/carbon/xenomorph/runner/mouse_buckle_handling(atom/movable/dropping, mob/living/user)
 	return
