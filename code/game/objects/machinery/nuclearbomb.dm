@@ -65,18 +65,17 @@
 	update_minimap_icon()
 	// The timer is needed for when the signal is sent
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
-	log_game("[user] has enabled the nuke at [AREACOORD(src)]")
+	log_game("[usr] has enabled the nuke at [AREACOORD(src)]")
 
 
 ///Disables nuke timer
 /obj/machinery/nuclearbomb/proc/disable()
-	var/area/area = get_area(src)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
 	GLOB.active_nuke_list -= src
 	if(timer_enabled)
-		log_game("[user] has disabled the nuke at [AREACOORD(src)]")
-		message_admins("[user] has disabled the nuke at [ADMIN_VERBOSEJMP(src)]") //Incase disputes show up about marines griefing and the like.
+		log_game("[usr] has disabled the nuke at [AREACOORD(src)]")
+		message_admins("[usr] has disabled the nuke at [ADMIN_VERBOSEJMP(src)]") //Incase disputes show up about marines griefing and the like.
 	timer_enabled = FALSE
 	if(timer)
 		deltimer(timer)
