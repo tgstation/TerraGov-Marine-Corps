@@ -1,0 +1,5 @@
+author: "00ze-cyclone"
+delete-after: True
+changes:
+  - bugfix: "fixed TE mag box storage"
+  - bugfix: "SSMG45 mag box now has markings indicating it hold SMG45 mags"
