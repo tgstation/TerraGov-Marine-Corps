@@ -1,4 +1,4 @@
-/mob/living/proc/Life()
+/mob/living/proc/Life(seconds_per_tick, times_fired)
 	if(stat == DEAD || notransform || HAS_TRAIT(src, TRAIT_STASIS)) //If we're dead or notransform don't bother processing life
 		return
 

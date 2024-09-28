@@ -104,32 +104,47 @@ SUBSYSTEM_DEF(tts)
 		return SS_INIT_FAILURE
 	return SS_INIT_SUCCESS
 
-/datum/controller/subsystem/tts/proc/play_tts(target, list/listeners, sound/audio, sound/audio_blips, datum/language/language, range = 7, volume_offset = 0, pitch = 0, silicon = "")
+/datum/controller/subsystem/tts/proc/play_tts(target, list/listeners, sound/audio, sound/audio_blips, datum/language/language, range = 7, volume_offset = 0, pitch = 0, silicon = "", directionality = TRUE)
 	var/turf/turf_source = get_turf(target)
 	if(!turf_source)
 		return
 
 	var/channel = SSsounds.random_available_channel()
-	for(var/mob/listening_mob in listeners | SSmobs.dead_players_by_zlevel[turf_source.z])//observers always hear through walls
+	if(directionality)
+		for(var/mob/listening_mob in listeners | SSmobs.dead_players_by_zlevel[turf_source.z])//observers always hear through walls
+			var/volume_to_play_at = listening_mob.client?.prefs.volume_tts
+			var/tts_pref = listening_mob.client?.prefs.sound_tts
+			if(volume_to_play_at == 0 || tts_pref == TTS_SOUND_OFF)
+				continue
+
+			var/sound_volume = ((listening_mob == target)? 60 : 85) + volume_offset
+			sound_volume = sound_volume * (volume_to_play_at / 100)
+			var/datum/language_holder/holder = listening_mob.get_language_holder()
+			var/audio_to_use = (tts_pref == TTS_SOUND_BLIPS) ? audio_blips : audio
+			if(!holder.has_language(language))
+				continue
+			if(get_dist(listening_mob, turf_source) <= range)
+				listening_mob.playsound_local(
+					turf_source,
+					soundin = audio_to_use,
+					vol = sound_volume,
+					channel = channel,
+					distance_multiplier = 1,
+				)
+		return
+
+	//If the TTS is not directional, we don't have to worry about falloff
+	for(var/mob/listening_mob in listeners)
 		var/volume_to_play_at = listening_mob.client?.prefs.volume_tts
 		var/tts_pref = listening_mob.client?.prefs.sound_tts
 		if(volume_to_play_at == 0 || tts_pref == TTS_SOUND_OFF)
 			continue
 
-		var/sound_volume = ((listening_mob == target)? 60 : 85) + volume_offset
-		sound_volume = sound_volume * (volume_to_play_at / 100)
 		var/datum/language_holder/holder = listening_mob.get_language_holder()
 		var/audio_to_use = (tts_pref == TTS_SOUND_BLIPS) ? audio_blips : audio
 		if(!holder.has_language(language))
 			continue
-		if(get_dist(listening_mob, turf_source) <= range)
-			listening_mob.playsound_local(
-				turf_source,
-				soundin = audio_to_use,
-				vol = sound_volume,
-				channel = channel,
-				distance_multiplier = 1,
-			)
+		listening_mob.playsound_local(get_turf(listening_mob), soundin = audio_to_use, vol = volume_to_play_at, channel = channel)
 
 // Need to wait for all HTTP requests to complete here because of a rustg crash bug that causes crashes when dd restarts whilst HTTP requests are ongoing.
 /datum/controller/subsystem/tts/Shutdown()
@@ -241,7 +256,7 @@ SUBSYSTEM_DEF(tts)
 			else if(current_target.when_to_play < world.time)
 				audio_file = new(current_target.audio_file)
 				audio_file_blips = new(current_target.audio_file_blips)
-				play_tts(tts_target, current_target.listeners, audio_file, audio_file_blips, current_target.language, current_target.message_range, current_target.volume_offset)
+				play_tts(tts_target, current_target.listeners, audio_file, audio_file_blips, current_target.language, current_target.message_range, current_target.volume_offset, current_target.directionality)
 				if(length(data) != 1)
 					var/datum/tts_request/next_target = data[2]
 					next_target.when_to_play = world.time + current_target.audio_length
@@ -257,7 +272,7 @@ SUBSYSTEM_DEF(tts)
 
 #undef TTS_ARBRITRARY_DELAY
 
-/datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "")
+/datum/controller/subsystem/tts/proc/queue_tts_message(datum/target, message, datum/language/language, speaker, filter, list/listeners, local = FALSE, message_range = 7, volume_offset = 0, pitch = 0, special_filters = "", directionality = TRUE)
 	if(!tts_enabled)
 		return
 
@@ -286,7 +301,7 @@ SUBSYSTEM_DEF(tts)
 	var/file_name_blips = "tmp/tts/[identifier]_blips.ogg"
 	request.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts?voice=[speaker]&identifier=[identifier]&filter=[url_encode(filter)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name)
 	request_blips.prepare(RUSTG_HTTP_METHOD_GET, "[CONFIG_GET(string/tts_http_url)]/tts-blips?voice=[speaker]&identifier=[identifier]&filter=[url_encode(filter)]&pitch=[pitch]&special_filters=[url_encode(special_filters)]", json_encode(list("text" = shell_scrubbed_input)), headers, file_name_blips)
-	var/datum/tts_request/current_request = new /datum/tts_request(identifier, request, request_blips, shell_scrubbed_input, target, local, language, message_range, volume_offset, listeners, pitch)
+	var/datum/tts_request/current_request = new /datum/tts_request(identifier, request, request_blips, shell_scrubbed_input, target, local, language, message_range, volume_offset, listeners, pitch, directionality)
 	var/list/player_queued_tts_messages = queued_tts_messages[target]
 	if(!player_queued_tts_messages)
 		player_queued_tts_messages = list()
@@ -338,6 +353,8 @@ SUBSYSTEM_DEF(tts)
 	var/use_blips = FALSE
 	/// What's the pitch adjustment?
 	var/pitch = 0
+	/// If false, play at full volume to each listener, regardless of distance
+	var/directionality = TRUE
 
 /datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch)
 	. = ..()
@@ -352,6 +369,7 @@ SUBSYSTEM_DEF(tts)
 	src.volume_offset = volume_offset
 	src.listeners = listeners
 	src.pitch = pitch
+	src.directionality = directionality
 	start_time = world.time
 
 /datum/tts_request/proc/start_requests()

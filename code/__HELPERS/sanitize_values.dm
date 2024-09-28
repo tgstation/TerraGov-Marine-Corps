@@ -57,6 +57,14 @@
 	if(length(L))
 		return L[1]
 
+/proc/sanitize_bitfield(value, list/L, default)
+	for(var/flag in bitfield2list(value))
+		if(flag in L)
+			continue
+		if(default)
+			return default
+	return value
+
 ///a wrapper with snowflake handling for tts
 /proc/sanitize_inlist_tts(value, gender)
 	var/list/to_check

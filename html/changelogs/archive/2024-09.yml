@@ -134,3 +134,9 @@
       rouny variants
   - code_imp: This modifies a lot to work, so there's bound to be bugs. scream @Mantlecrawler
       in the discord, or report them to github.
+2024-09-28:
+  Pariah919:
+  - bugfix: Due to budget cuts, ICC ERT Leaders didn't get their loadout upon spawning.
+      This has been rectified. And they should once again have loadouts.
+  Xander3359:
+  - qol: MarineMed pill bottles are refillable via right click on the vendor
