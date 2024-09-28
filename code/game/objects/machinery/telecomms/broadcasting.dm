@@ -223,7 +223,7 @@
 		if(speaker in receive)
 			receive -= speaker //This list isn't used again, so we can just cut out the original speaker from it so TTS doesn't play twice
 
-		var/list/list_of_listeners
+		var/list/list_of_listeners = list()
 		for(var/mob/living/carbon/human/potential_hearer in receive)
 			if(potential_hearer.stat >= UNCONSCIOUS || potential_hearer.disabilities & DEAF || !(potential_hearer.client?.prefs.sound_tts != TTS_SOUND_OFF))
 				continue
