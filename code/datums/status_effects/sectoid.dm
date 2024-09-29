@@ -58,7 +58,7 @@
 	check_range()
 	return ..()
 
-/datum/status_effect/mindmeld/tick(delta_time)
+/datum/status_effect/mindmeld/tick()
 	check_range()
 
 ///Checks if mob is in buff range and toggles as required
@@ -114,7 +114,7 @@
 	. = ..()
 	owner.remove_filter("[id]")
 
-/datum/status_effect/reknit_form/tick(delta_time)
+/datum/status_effect/reknit_form/tick()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/human_owner = owner
 		human_owner.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY //oof ow ouch

@@ -89,7 +89,7 @@
 	maxHealth = 200
 
 
-/mob/living/simple_animal/cat/Life(seconds_per_tick, times_fired)
+/mob/living/simple_animal/cat/Life()
 	if(!stat && !buckled && !client)
 		if(prob(1))
 			emote("me", 1, pick("stretches out for a belly rub.", "wags its tail.", "lies down."))
