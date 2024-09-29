@@ -1,4 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - rscadd: "Added a \"TTS mode\" for headsets which reads out any messages sent in your squad channel (if you have one). Can be set as \"SL\", \"SQUAD\", \"COMMAND\" and \"ALL (except Squad and Command)\" in prefs."

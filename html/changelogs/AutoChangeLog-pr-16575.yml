@@ -1,4 +1,0 @@
-author: "Arturlang"
-delete-after: True
-changes:
-  - rscadd: "Xenomorph life will now adjust the amount of healing/sunder/plasma/evo/maturity based on any extra time that Life has not run for."

@@ -1,5 +1,0 @@
-author: "00ze-cyclone"
-delete-after: True
-changes:
-  - rscadd: "Added SoM pistol and burst shotgun, plasma SMG and heavy laser to valhalla"
-  - rscdel: "Removed SG29 from the seasonal vendor of valhalla alongside the export version of L88"

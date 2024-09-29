@@ -140,3 +140,33 @@
       This has been rectified. And they should once again have loadouts.
   Xander3359:
   - qol: MarineMed pill bottles are refillable via right click on the vendor
+2024-09-29:
+  00ze-cyclone:
+  - bugfix: fixed TE mag box storage
+  - bugfix: SSMG45 mag box now has markings indicating it hold SMG45 mags
+  - bugfix: fixed the heavy laser ammo counter
+  - rscadd: Added a second flare box in the shocktrooper loadout to replace the TE
+      pouch that can't spawn there anymore
+  - rscadd: Added SoM pistol and burst shotgun, plasma SMG and heavy laser to valhalla
+  - rscdel: Removed SG29 from the seasonal vendor of valhalla alongside the export
+      version of L88
+  Arturlang:
+  - rscadd: Xenomorph life will now adjust the amount of healing/sunder/plasma/evo/maturity
+      based on any extra time that Life has not run for.
+  Lumipharon:
+  - bugfix: fixed some bookshelves on Big Red being nondense
+  - bugfix: fixed a couple density issues on some rocks
+  Mantlecrawler:
+  - bugfix: Runner saddles now correctly unbuckle the mob riding if they are removed
+  blackdav123:
+  - bugfix: Wraiths can no longer cheese into the hull area of Big Red atmos.
+  - bugfix: Barsigns now go on walls again.
+  - bugfix: Fixed a floating mirror on Big Red.
+  breadhunt:
+  - rscadd: Added a "TTS mode" for headsets which reads out any messages sent in your
+      squad channel (if you have one). Can be set as "SL", "SQUAD", "COMMAND" and
+      "ALL (except Squad and Command)" in prefs.
+  ivanmixo:
+  - qol: Stripping magharn'd weapons now disables the magharn for a couple seconds
+  jonash07:
+  - bugfix: fixed the queen overwatch icon
