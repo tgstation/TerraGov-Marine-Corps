@@ -1932,7 +1932,6 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/standard_carbine)
 	attachable_allowed = list(
 		/obj/item/attachable/scope/optical,
-		/obj/item/weapon/gun/rifle/tx54/mini,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/verticalgrip,
 		/obj/item/attachable/lasersight,
