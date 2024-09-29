@@ -56,7 +56,7 @@
 	return ..()
 
 ///Enables nuke timer
-/obj/machinery/nuclearbomb/proc/enable(mob/living/user)
+/obj/machinery/nuclearbomb/proc/enable(user)
 	GLOB.active_nuke_list += src
 	countdown.start()
 	notify_ghosts("[user] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
@@ -68,11 +68,11 @@
 	log_game("[user] has enabled the nuke at [AREACOORD(src)]")
 
 ///Disables nuke timer
-/obj/machinery/nuclearbomb/proc/disable(mob/living/user)
+/obj/machinery/nuclearbomb/proc/disable(user)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
 	GLOB.active_nuke_list -= src
-	if(timer_enabled )
+	if(timer_enabled)
 		log_game("[user] has disabled the nuke at [AREACOORD(src)]")
 		message_admins("[user] has disabled the nuke at [ADMIN_VERBOSEJMP(src)]") //Incase disputes show up about marines griefing and the like.
 	timer_enabled = FALSE
