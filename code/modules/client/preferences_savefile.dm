@@ -169,6 +169,7 @@
 	READ_FILE(S["tooltips"], tooltips)
 	READ_FILE(S["sound_tts"], sound_tts)
 	READ_FILE(S["volume_tts"], volume_tts)
+	READ_FILE(S["radio_tts_flags"], radio_tts_flags)
 	READ_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	READ_FILE(S["split_admin_tabs"], split_admin_tabs)
 
@@ -229,6 +230,7 @@
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 	sound_tts = sanitize_inlist(sound_tts, GLOB.all_tts_options, initial(sound_tts))
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
+	radio_tts_flags = sanitize_bitfield(radio_tts_flags, GLOB.all_radio_tts_options, (RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND))
 
 	key_bindings = sanitize_islist(key_bindings, list())
 	if (!length(key_bindings))
@@ -306,6 +308,7 @@
 	tooltips = sanitize_integer(tooltips, FALSE, TRUE, initial(tooltips))
 	sound_tts = sanitize_inlist(sound_tts, GLOB.all_tts_options, initial(sound_tts))
 	volume_tts = sanitize_integer(volume_tts, 1, 100, initial(volume_tts))
+	radio_tts_flags = sanitize_bitfield(radio_tts_flags, GLOB.all_radio_tts_options, (RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND))
 
 	mute_self_combat_messages = sanitize_integer(mute_self_combat_messages, FALSE, TRUE, initial(mute_self_combat_messages))
 	mute_others_combat_messages = sanitize_integer(mute_others_combat_messages, FALSE, TRUE, initial(mute_others_combat_messages))
@@ -360,6 +363,7 @@
 	WRITE_FILE(S["tooltips"], tooltips)
 	WRITE_FILE(S["sound_tts"], sound_tts)
 	WRITE_FILE(S["volume_tts"], volume_tts)
+	WRITE_FILE(S["radio_tts_flags"], radio_tts_flags)
 	WRITE_FILE(S["slot_draw_order"], slot_draw_order_pref)
 	WRITE_FILE(S["status_toggle_flags"], status_toggle_flags)
 

@@ -261,7 +261,7 @@
 	name = "low velocity chemical shell"
 	icon_state = "recoilless_rifle_smoke"
 	hud_state = "shell_le"
-	ammo_behavior_flags = AMMO_SNIPER|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
+	ammo_behavior_flags = AMMO_SNIPER
 	accurate_range = 21
 	max_range = 21
 	damage = 10

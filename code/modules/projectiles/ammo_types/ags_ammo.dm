@@ -13,7 +13,7 @@
 	handful_amount = 1
 	ping = null //no bounce off.
 	sound_bounce = SFX_ROCKET_BOUNCE
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_IFF
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
 	armor_type = BOMB
 	damage_falloff = 0.5
 	shell_speed = 2
