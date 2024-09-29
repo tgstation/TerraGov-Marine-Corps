@@ -432,6 +432,7 @@
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon. This one is ancient and has suffered serious acid damage, making it near-useless."
 	force = 18
 	force_wielded = 28
+
 /obj/item/weapon/twohanded/rocketsledge
 	name = "rocket sledge"
 	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick to tighten your grip. Press Spacebar to change modes."
@@ -738,6 +739,7 @@
 	. = ..()
 	. += "It contains [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units of fuel!"
 
+///Refueling with fueltank
 /obj/item/weapon/twohanded/chainsaw/afterattack(obj/target, mob/user, flag)
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
 		var/obj/structure/reagent_dispensers/fueltank/rs = target
