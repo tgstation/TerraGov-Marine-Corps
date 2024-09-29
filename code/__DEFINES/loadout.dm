@@ -145,10 +145,6 @@ GLOBAL_LIST_INIT(leader_gear_listed_products, list(
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_LEDSUP, "Flamethrower tank", 4, "black"),
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_LEDSUP, "Radio Pack", 15, "black"),
 		/obj/item/weapon/gun/revolver/standard_magnum = list(CAT_LEDSUP, "R-76 Magnum", 12, "black"),
-		/obj/item/weapon/gun/rifle/tx55 = list(CAT_LEDSUP, "AR-55 OICW Rifle", 25, "black"),
-		/obj/item/ammo_magazine/rifle/tx54 = list(CAT_LEDSUP, "GL-54 Flak Magazine for AR-55/GL-54", 5, "black"),
-		/obj/item/ammo_magazine/rifle/tx54/smoke = list(CAT_LEDSUP, "GL-54 tactical smoke Magazine for AR-55/GL-54", 3, "black"),
-		/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = list(CAT_LEDSUP, "GL-54 Tanglefoot Magazine for AR-55/GL-54", 12, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_LEDSUP, "Injector (Synaptizine)", 10, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_LEDSUP, "Injector (Advanced)", 15, "orange"),
 	))
@@ -173,10 +169,6 @@ GLOBAL_LIST_INIT(commander_gear_listed_products, list(
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_FCSUP, "Flamethrower tank", 4, "black"),
 		/obj/item/storage/backpack/marine/radiopack = list(CAT_FCSUP, "Radio Pack", 15, "black"),
 		/obj/item/weapon/gun/revolver/standard_magnum = list(CAT_FCSUP, "R-76 Magnum", 12, "black"),
-		/obj/item/weapon/gun/rifle/tx55 = list(CAT_FCSUP, "AR-55 OICW Rifle", 25, "black"),
-		/obj/item/ammo_magazine/rifle/tx54 = list(CAT_FCSUP, "GL-54 Flak Magazine for AR-55/GL-54", 5, "black"),
-		/obj/item/ammo_magazine/rifle/tx54/smoke = list(CAT_FCSUP, "GL-54 tactical smoke Magazine for AR-55/GL-54", 3, "black"),
-		/obj/item/ammo_magazine/rifle/tx54/smoke/tangle = list(CAT_FCSUP, "GL-54 Tanglefoot Magazine for AR-55/GL-54", 12, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_FCSUP, "Injector (Synaptizine)", 10, "black"),
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = list(CAT_FCSUP, "Injector (Advanced)", 15, "orange"),
 	))
