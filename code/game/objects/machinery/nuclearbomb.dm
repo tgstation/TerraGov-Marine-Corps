@@ -56,25 +56,25 @@
 	return ..()
 
 ///Enables nuke timer
-/obj/machinery/nuclearbomb/proc/enable(user)
+/obj/machinery/nuclearbomb/proc/enable(reason)
 	GLOB.active_nuke_list += src
 	countdown.start()
-	notify_ghosts("[user] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
+	notify_ghosts("[reason] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 	timer_enabled = TRUE
 	timer = addtimer(CALLBACK(src, PROC_REF(explode)), time, TIMER_STOPPABLE)
 	update_minimap_icon()
 	// The timer is needed for when the signal is sent
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_START, src)
-	log_game("[user] has enabled the nuke at [AREACOORD(src)]")
+	log_game("[reason] has enabled the nuke at [AREACOORD(src)]")
 
 ///Disables nuke timer
-/obj/machinery/nuclearbomb/proc/disable(user)
+/obj/machinery/nuclearbomb/proc/disable(reason)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_STOP, src)
 	countdown.stop()
 	GLOB.active_nuke_list -= src
 	if(timer_enabled)
-		log_game("[user] has disabled the nuke at [AREACOORD(src)]")
-		message_admins("[user] has disabled the nuke at [ADMIN_VERBOSEJMP(src)]") //Incase disputes show up about marines griefing and the like.
+		log_game("[reason] has disabled the nuke at [AREACOORD(src)]")
+		message_admins("[reason] has disabled the nuke at [ADMIN_VERBOSEJMP(src)]") //Incase disputes show up about marines griefing and the like.
 	timer_enabled = FALSE
 	if(timer)
 		deltimer(timer)
@@ -140,7 +140,7 @@
 	xeno_attacker.visible_message("[xeno_attacker] disabled the nuke",
 	"You disabled the nuke.")
 
-	disable(xeno_attacker)
+	disable(key_name(xeno_attacker))
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_NUKE_DIFFUSED, src, xeno_attacker)
 
 /obj/machinery/nuclearbomb/can_interact(mob/user)
@@ -267,10 +267,10 @@
 		balloon_alert(user, "ineligible detonation site")
 		return
 	if(!timer_enabled)
-		enable(user)
+		enable(key_name(user))
 		balloon_alert(user, "timer started")
 	else
-		disable(user)
+		disable(key_name(user))
 		balloon_alert(user, "timer stopped")
 
 	if(!lighthack)
@@ -286,7 +286,7 @@
 	safety = !safety
 	if(safety)
 		balloon_alert(user, "safety enabled")
-		disable(user)
+		disable(key_name(user))
 	else
 		balloon_alert(user, "safety disabled")
 
@@ -308,7 +308,7 @@
 	else
 		balloon_alert(user, "unanchored")
 		visible_message(span_warning("The anchoring bolts slide back into the depths of [src]."))
-		disable(user)
+		disable(key_name(user))
 		log_game("[user] has unanchored the nuke at [AREACOORD(src)]")
 
 ///Handles disk insertion and removal
