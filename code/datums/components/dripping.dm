@@ -44,7 +44,7 @@
 	if(!(drip_counter % drip_ratio))
 		return
 	new dripped_type(dripper.loc)
-	if(++drip_counter > drip_limit)
+	if(++drip_counter + 1 > drip_limit)
 		qdel(src)
 
 

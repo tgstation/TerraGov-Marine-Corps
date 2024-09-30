@@ -624,7 +624,7 @@
 	atom_flags = TWOHANDED
 	attack_verb = list("gored", "torn", "ripped", "shred", "slashed", "cut")
 	force = 20
-	force_wielded = 60
+	force_wielded = 75
 	throwforce = 30
 	attack_speed = 20
 	///icon when on
@@ -638,13 +638,12 @@
 	///amount of fuel used per hit
 	var/fuel_used = 5
 	///additional damage when weapon is active
-	var/additional_damage = 65
-
+	var/additional_damage = 75
 
 /obj/item/weapon/twohanded/chainsaw/Initialize(mapload)
 	. = ..()
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
-	AddElement(/datum/element/strappable)
+	AddElement(/datum/element/strappable) //Chainsaw can be strapped on hand
 
 ///handle icon change
 /obj/item/weapon/twohanded/chainsaw/update_icon_state()
@@ -742,13 +741,13 @@
 ///Refueling with fueltank
 /obj/item/weapon/twohanded/chainsaw/afterattack(obj/target, mob/user, flag)
 	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
-		var/obj/structure/reagent_dispensers/fueltank/rs = target
-		if(rs.reagents.total_volume == 0)
+		var/obj/structure/reagent_dispensers/fueltank/saw = target
+		if(saw.reagents.total_volume == 0)
 			to_chat(user, span_warning("Out of fuel!"))
 			return ..()
 
-		var/fuel_transfer_amount = min(rs.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
-		rs.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		var/fuel_transfer_amount = min(saw.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
+		saw.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		to_chat(user, span_notice("You refill [src] with fuel."))
@@ -756,33 +755,34 @@
 
 	return ..()
 
+///extra effect when attacking mob, such as xeno and human
 /obj/item/weapon/twohanded/chainsaw/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	rip_apart(user)
-	if(!active)
+	if(!active) //no extra effect when weapon is off
 		return ..()
 
 	if(isxeno(M))
-		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 1 SECONDS, 1 SECONDS, /obj/effect/decal/cleanable/blood/xeno)//leave pool of blood
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood/xeno) //leave pool of blood
 		return ..()
 
 	if(ishuman(M))
-		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 1 SECONDS, 1 SECONDS, /obj/effect/decal/cleanable/blood)//leave pool of blood
-		M.drip(18) // target lose an iso pill worth of blood
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood) //leave pool of blood
+		M.drip(18) //target lose an iso pill worth of blood
 		return ..()
 
 	return ..()
 
-// handle chainsaw attack loop on object
+///handle chainsaw attack loop on object
 /obj/item/weapon/twohanded/chainsaw/attack_obj(obj/object, mob/living/user)
 	. = ..()
-	if(!active) // attack only loop if chainsaw is on
+	if(!active) //attack only loop if chainsaw is on
 		return
 
 	if(user.do_actions) //check if user is busy doing something else, or in the middle of attack loop already
 		object.balloon_alert(user, "already busy")
 		return TRUE
 
-	if(user.incapacitated() || get_dist(user,object) > 1 || user.resting)  // loop attacking an adjacent object while user is not incapacitated nor resting
+	if(user.incapacitated() || get_dist(user,object) > 1 || user.resting)  // loop attacking an adjacent object while user is not incapacitated nor resting, mostly here for the one handed chainsword
 		return TRUE
 
 	rip_apart(user)
