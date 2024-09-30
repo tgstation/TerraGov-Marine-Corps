@@ -240,6 +240,11 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes,
+/obj/machinery/door_control{
+	id = "Interior_Emergency_umbilical";
+	name = "Emergency door-control";
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "bc" = (
@@ -281,8 +286,7 @@
 "bi" = (
 /obj/machinery/door_control{
 	id = "port_umbilical_outer";
-	name = "outer door-control";
-	pixel_y = 32
+	name = "outer door-control"
 	},
 /obj/structure/barricade/plasteel{
 	dir = 8
@@ -415,8 +419,7 @@
 "bC" = (
 /obj/machinery/door_control{
 	id = "starboard_umbilical_outer";
-	name = "outer door-control";
-	pixel_y = 32
+	name = "outer door-control"
 	},
 /obj/structure/barricade/plasteel{
 	dir = 4;
@@ -704,8 +707,7 @@
 /obj/item/stack/barbed_wire/full,
 /obj/machinery/door_control{
 	id = "Interior_Emergency_umbilical";
-	name = "Emergency door-control";
-	pixel_y = 32
+	name = "Emergency door-control"
 	},
 /obj/item/storage/box/crate/sentry,
 /obj/item/storage/box/crate/sentry,
@@ -825,14 +827,6 @@
 "wz" = (
 /obj/effect/landmark/start/latejoin/crash,
 /turf/open/floor/mainship,
-/area/shuttle/canterbury)
-"wB" = (
-/obj/machinery/door_control{
-	id = "Interior_Emergency_umbilical";
-	name = "Emergency door-control";
-	pixel_y = 32
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/canterbury)
 "yp" = (
 /obj/machinery/light{
@@ -1116,6 +1110,10 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/warning_stripes,
+/obj/machinery/door_control{
+	id = "Interior_Emergency_umbilical";
+	name = "Emergency door-control"
+	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Xb" = (
@@ -1157,14 +1155,6 @@
 /obj/structure/bed/chair/dropship/passenger,
 /obj/effect/landmark/start/job/crash/squadcorpsman,
 /turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
-"Zn" = (
-/obj/machinery/door_control{
-	id = "Interior_Emergency_umbilical";
-	name = "Emergency door-control";
-	pixel_y = 32
-	},
-/turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/canterbury)
 
 (1,1,1) = {"
@@ -1540,9 +1530,9 @@ bQ
 al
 ac
 ba
-Zn
+ab
 Wl
-wB
+an
 ac
 FQ
 Fl
