@@ -1,0 +1,4 @@
+author: "jonash07"
+delete-after: True
+changes:
+  - balance: "ion storm (communication blackout) has been removed as a random event"
