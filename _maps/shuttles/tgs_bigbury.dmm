@@ -601,17 +601,6 @@
 /obj/machinery/light,
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
-"ki" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/mainship{
-	dir = 2;
-	id = "Interior_Emergency_umbilical";
-	name = "\improper Umbillical Airlock"
-	},
-/turf/open/floor/mainship/mono,
-/area/shuttle/canterbury)
 "lu" = (
 /obj/machinery/vending/medical,
 /turf/open/floor/mainship/sterile/dark,
@@ -1431,7 +1420,7 @@ Ul
 ad
 ac
 ac
-ki
+zy
 ac
 an
 ac
