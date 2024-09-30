@@ -412,7 +412,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/construction/apply_perk(mob/living/carbon/owner)
 	. = ..()
-	if(owner.skills.getRating(construction)) < SKILL_CONSTRUCTION_MASTER
+	if((owner.skills.getRating(SKILL_CONSTRUCTION)) < SKILL_CONSTRUCTION_MASTER)
 		return
 	ADD_TRAIT(owner, TRAIT_SUPERIOR_BUILDER, type)
 
