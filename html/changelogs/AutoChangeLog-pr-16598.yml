@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed some minor visual issues with jumping in some situations"
+  - bugfix: "Fixed some drag pixel offset issues"
