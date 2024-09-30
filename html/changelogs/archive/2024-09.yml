@@ -170,3 +170,11 @@
   - qol: Stripping magharn'd weapons now disables the magharn for a couple seconds
   jonash07:
   - bugfix: fixed the queen overwatch icon
+2024-09-30:
+  Lumipharon:
+  - balance: Aim mode removed from most guns
+  - balance: Added shoulder firing - ALL guns can now shoot past ADJACENT team mates
+      without penalty
+  - rscadd: Tanks leave behind wrecks when destroyed
+  blackdav123:
+  - balance: AR55 is no longer in FC and SL vendors.
