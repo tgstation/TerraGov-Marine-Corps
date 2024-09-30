@@ -64,8 +64,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		frequency = GET_RANDOM_FREQ
 	var/sound/S = sound(get_sfx(soundin))
 
-	var/list/listeners = SSmobs.clients_by_zlevel[turf_source.z].Copy()
-	for(var/mob/player AS in GLOB.player_list) //placeholder until client_by_z is made functional
+	var/list/listeners = list() //TODO: Make SSmobs.clients_by_zlevel actually functional so we can use that instead of this for loop
+	for(var/mob/player AS in GLOB.player_list)
 		if(!player.client)
 			continue
 		var/turf/player_turf = get_turf(player)
@@ -85,20 +85,22 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			continue
 		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
 
+
+	//We do tanks separately, since they are not actually on the source z, and we need some other stuff to get accurate directional sound
 	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
 		if(!armor.interior || armor.z != turf_source.z || get_dist(armor.loc, turf_source) > sound_range)
 			continue
 		if(!length(armor.interior.occupants))
 			continue
 		var/turf/middle_turf = armor.interior.loaded_turfs[floor(length(armor.interior.loaded_turfs) * 0.5)]
-		var/turf/origin_point = locate(clamp(middle_turf.x - armor.x + turf_source.x, 1, world.maxx), clamp(middle_turf.y - armor.y + turf_source.y, 1, world.maxy), middle_turf.z) //gives us a relative position for occupants
+		var/turf/origin_point = locate(clamp(middle_turf.x - armor.x + turf_source.x, 1, world.maxx), clamp(middle_turf.y - armor.y + turf_source.y, 1, world.maxy), middle_turf.z)
+		//origin point is regardless of vehicle orientation for player QOL and simple sanity
 
 		for(var/mob/crew AS in armor.interior.occupants)
 			if(!crew.client)
 				continue
 			if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
 				continue
-			//origin point is regardless of vehicle orientation for simple sanity
 			crew.playsound_local(origin_point, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
 
 /**
