@@ -3156,10 +3156,6 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/generator/ground_rod,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "aIR" = (
@@ -15008,10 +15004,6 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/generator/tesla_coil,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "dgL" = (
@@ -15032,10 +15024,6 @@
 	dir = 4
 	},
 /obj/structure/prop/mainship/generator/ground_rod,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "dgT" = (
@@ -30683,10 +30671,6 @@
 /turf/open/floor/plating,
 /area/deltastation/maintenance/department/chapel)
 "ghi" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
 	dir = 5
 	},
@@ -34690,13 +34674,6 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/iron,
 /area/deltastation/commons/storage/primary)
-"gWn" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/closed/wall/r_wall/unmeltable,
-/area/deltastation/engineering/supermatter)
 "gWp" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/machinery/flasher{
@@ -38377,6 +38354,10 @@
 /area/deltastation/engineering/storage/tech)
 "hLY" = (
 /obj/machinery/light/small,
+/obj/machinery/air_alarm{
+	dir = 1;
+	pixel_y = 23
+	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "hMa" = (
@@ -50254,17 +50235,6 @@
 	},
 /turf/open/floor/iron/white,
 /area/deltastation/science/research)
-"klJ" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 1;
-	on = 1
-	},
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/engine,
-/area/deltastation/engineering/supermatter)
 "klM" = (
 /obj/effect/turf_decal/tile/transparent/neutral/fourcorners,
 /obj/effect/turf_decal/warning_stripes/box/empty,
@@ -52964,10 +52934,6 @@
 /turf/open/floor/iron/cafeteria,
 /area/deltastation/security/prison/mess)
 "kNX" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /obj/machinery/atmospherics/pipe/manifold/green/visible/layer3,
 /obj/machinery/atmospherics/pipe/manifold/cyan/visible/layer1{
 	dir = 1
@@ -59165,10 +59131,6 @@
 /turf/open/floor/iron,
 /area/deltastation/security/prison)
 "mbE" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 1;
 	on = 1
@@ -72287,10 +72249,6 @@
 	dir = 1
 	},
 /obj/structure/prop/mainship/generator/tesla_coil,
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "oMX" = (
@@ -74203,28 +74161,6 @@
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window,
 /turf/open/floor/plating,
 /area/deltastation/engineering/transit_tube)
-"pir" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/structure/prop/mainship/doorblocker/engi{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/cyan/visible/layer1{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/green/visible/layer3{
-	dir = 8
-	},
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
-/turf/open/floor/engine,
-/area/deltastation/engineering/supermatter)
 "piu" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -93614,10 +93550,6 @@
 /turf/open/floor/carpet,
 /area/deltastation/command/meeting_room/council)
 "tbJ" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /obj/structure/window/framed/colony/reinforced/hull,
 /turf/open/floor/plating,
 /area/deltastation/engineering/supermatter)
@@ -101330,10 +101262,6 @@
 /turf/open/floor/iron/grimy,
 /area/deltastation/ai_monitored/turret_protected/aisat_interior)
 "uCs" = (
-/obj/effect/forcefield{
-	desc = "You can't get in. Heh.";
-	name = "Blocker"
-	},
 /obj/machinery/atmospherics/components/unary/vent_scrubber,
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
@@ -109274,10 +109202,6 @@
 /turf/open/floor/iron/dark,
 /area/deltastation/command/heads_quarters/ce)
 "wgc" = (
-/obj/machinery/air_alarm{
-	dir = 1;
-	pixel_y = 23
-	},
 /turf/open/floor/engine,
 /area/deltastation/engineering/supermatter)
 "wgd" = (
@@ -141273,7 +141197,7 @@ mwr
 wyI
 jHw
 jdQ
-gWn
+qem
 uCs
 ghi
 mbE
@@ -141533,7 +141457,7 @@ seK
 tbJ
 uCs
 ehW
-klJ
+mbE
 aIN
 vRs
 mEc
@@ -141787,7 +141711,7 @@ nUi
 qxm
 kTe
 lvk
-gWn
+qem
 uCs
 kNX
 mbE
@@ -142045,9 +141969,9 @@ leA
 sAq
 tiG
 qem
-gWn
-pir
-gWn
+qem
+hpF
+qem
 qem
 qem
 xQz
