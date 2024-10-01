@@ -58,8 +58,8 @@
 	parent.AddElement(/datum/element/limb_support, supported_limbs)
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_detach(obj/item/detaching_from, mob/user)
-	qdel(parent.GetComponent(/datum/component/suit_autodoc))
-	parent.RemoveElement(/datum/element/limb_support, supported_limbs)
+	detaching_from.remove_component(/datum/component/suit_autodoc)
+	detaching_from.RemoveElement(/datum/element/limb_support, supported_limbs)
 	return ..()
 
 /obj/item/armor_module/module/valkyrie_autodoc/som
@@ -537,9 +537,7 @@
 	parent.AddComponent(/datum/component/clothing_tint, TINT_5, active)
 
 /obj/item/armor_module/module/welding/on_detach(obj/item/detaching_from, mob/user)
-	parent.GetComponent(/datum/component/clothing_tint)
-	var/datum/component/clothing_tint/tints = parent?.GetComponent(/datum/component/clothing_tint)
-	tints.RemoveComponent()
+	detaching_from.remove_component(/datum/component/clothing_tint)
 	return ..()
 
 /obj/item/armor_module/module/welding/activate(mob/living/user)
