@@ -126,6 +126,14 @@
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_armor_xn")
 
+/obj/item/armor_module/module/tyr_extra_armor/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	attaching_to.AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+
+/obj/item/armor_module/module/tyr_extra_armor/on_detach(obj/item/detaching_from, mob/user)
+	detaching_from.remove_component(/datum/component/stun_mitigation)
+	return ..()
+
 /obj/item/armor_module/module/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
 	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
