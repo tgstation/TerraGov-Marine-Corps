@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - spellcheck: "Runner evasion ability text updated to clarify that you can't slash while evading, and that point blank shots still hit you."
