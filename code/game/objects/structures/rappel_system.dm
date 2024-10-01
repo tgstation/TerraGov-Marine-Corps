@@ -383,7 +383,7 @@
 	if(parent_system.rappel_condition < RAPPEL_CONDITION_GOOD)
 		return
 
-	if(LinkBlocked(usr, src, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE))
+	if(LinkBlocked(usr, src))
 		user.balloon_alert(user, "Something is blocking you from reaching the rappel rope!")
 		return
 	user.balloon_alert_to_viewers("[user] begins clipping to the rappel...", "You begin clipping to the rappel...")
