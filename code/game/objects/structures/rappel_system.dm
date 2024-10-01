@@ -383,12 +383,7 @@
 	if(parent_system.rappel_condition < RAPPEL_CONDITION_GOOD)
 		return
 
-	var/turf/target_turf = get_turf(src)
-	for(var/mob/living/carbon/xenomorph/blocker in target_turf)
-		if(blocker.stat == CONSCIOUS)
-			user.balloon_alert(user, "There is a xenomorph blocking you from reaching the rappel rope!")
-			return
-	if(target_turf.density)
+	if(LinkBlocked(usr, src, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE))
 		user.balloon_alert(user, "Something is blocking you from reaching the rappel rope!")
 		return
 	user.balloon_alert_to_viewers("[user] begins clipping to the rappel...", "You begin clipping to the rappel...")
