@@ -1,0 +1,11 @@
+2024-10-01:
+  Lumipharon:
+  - bugfix: fixed some minor visual issues with jumping in some situations
+  - bugfix: Fixed some drag pixel offset issues
+  blackdav123:
+  - bugfix: Bigbury buttons are now on the walls properly.
+  - bugfix: AFK alert now shows the correct amount of minutes afk.
+  - balance: Mortar smokes no longer flash teammates.
+  - balance: GL54 smoke ammos no longer shrapnel teammates.
+  jonash07:
+  - balance: ion storm (communication blackout) has been removed as a random event
