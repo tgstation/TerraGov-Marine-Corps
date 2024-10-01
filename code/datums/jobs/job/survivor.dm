@@ -374,7 +374,7 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/tool/lighter, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/bible, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/cup/glass/bottle/holywater , SLOT_IN_BACKPACK)
 
 
 //Miner
