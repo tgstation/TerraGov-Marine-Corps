@@ -4,9 +4,9 @@
 
 	id = /obj/item/card/id/gold
 
-/datum/outfit/job/som/command/commander/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/binoculars/fire_support/campaign/som = 1,
+	)
 
 /datum/outfit/job/som/command/fieldcommander
 	name = SOM_FIELD_COMMANDER
@@ -66,12 +66,12 @@
 	r_pocket = /obj/item/storage/pouch/construction
 	back = /obj/item/storage/backpack/marine/engineerpack
 
-/datum/outfit/job/som/engineering/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/stack/sheet/metal/large_stack = 1,
+		/obj/item/stack/sheet/plasteel/large_stack = 1,
+		/obj/item/stack/sandbags/large_stack = 1,
+		/obj/item/stack/barbed_wire/full = 1,
+	)
 
 /datum/outfit/job/som/engineering/tech
 	name = SOM_TECH
@@ -121,10 +121,11 @@
 	r_pocket = /obj/item/storage/pouch/medkit/doctor
 	l_pocket = /obj/item/storage/pouch/surgery
 
-/datum/outfit/job/som/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers_advanced, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/tweezers_advanced = 1,
+		/obj/item/reagent_containers/glass/bottle/lemoline/doctor = 1,
+	)
+
 
 /datum/outfit/job/som/medical/medicalofficer
 	name = SOM_MEDICAL_DOCTOR
@@ -141,10 +142,10 @@
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
 
-/datum/outfit/job/som/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers_advanced, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/tweezers_advanced = 1,
+		/obj/item/reagent_containers/glass/bottle/lemoline/doctor = 1,
+	)
 
 /datum/outfit/job/som/civilian/chef
 	name = SOM_CHEF
@@ -161,7 +162,7 @@
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
 
-/datum/outfit/job/som/civilian/chef/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tweezers_advanced, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/tweezers_advanced = 1,
+		/obj/item/reagent_containers/glass/bottle/lemoline/doctor = 1,
+	)

@@ -111,12 +111,13 @@
 	back = /obj/item/storage/backpack/marine/engineerpack
 	suit_store = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 
-/datum/outfit/job/command/transportofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_hand(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_hand(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_hand(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_hand(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/stack/sheet/metal/large_stack = 1,
+		/obj/item/stack/sheet/plasteel/large_stack = 1,
+		/obj/item/stack/sandbags/large_stack = 1,
+		/obj/item/stack/barbed_wire/full = 1,
+	)
+
 
 /datum/outfit/job/command/pilot
 	name = PILOT_OFFICER
@@ -196,12 +197,13 @@
 	r_pocket = /obj/item/storage/pouch/construction
 	back = /obj/item/storage/backpack/marine/engineerpack
 
-/datum/outfit/job/engineering/chief/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_hand(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_hand(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_hand(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_hand(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/stack/sheet/metal/large_stack = 1,
+		/obj/item/stack/sheet/plasteel/large_stack = 1,
+		/obj/item/stack/sandbags/large_stack = 1,
+		/obj/item/stack/barbed_wire/full = 1,
+	)
+
 
 /datum/outfit/job/engineering/tech
 	name = SHIP_TECH
@@ -234,9 +236,9 @@
 	head = /obj/item/clothing/head/tgmccap/req
 	r_pocket = /obj/item/storage/pouch/general/large
 
-/datum/outfit/job/requisitions/officer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_hand(new /obj/item/supplytablet, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/supplytablet = 1,
+	)
 
 /datum/outfit/job/medical/professor
 	name = CHIEF_MEDICAL_OFFICER
@@ -254,6 +256,8 @@
 	head = /obj/item/clothing/head/cmo
 	r_pocket = /obj/item/storage/pouch/surgery
 	l_pocket = /obj/item/storage/pouch/medkit/doctor
+	r_hand = /obj/item/tweezers
+	l_hand = /obj/item/reagent_containers/glass/bottle/lemoline/doctor
 
 
 /datum/outfit/job/medical/professor/robot
@@ -263,10 +267,6 @@
 	shoes = null
 	gloves = null
 
-/datum/outfit/job/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_hand(new /obj/item/tweezers, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_hand(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 /datum/outfit/job/medical/medicalofficer
 	name = MEDICAL_DOCTOR
@@ -284,6 +284,8 @@
 	head = /obj/item/clothing/head/surgery/purple
 	r_pocket = /obj/item/storage/pouch/surgery
 	l_pocket = /obj/item/storage/pouch/medkit/doctor
+	r_hand = /obj/item/tweezers
+	l_hand = /obj/item/reagent_containers/glass/bottle/lemoline/doctor
 
 
 /datum/outfit/job/medical/medicalofficer/robot
@@ -293,11 +295,6 @@
 	w_uniform = /obj/item/clothing/under/marine/robotic
 	shoes = null
 	gloves = null
-
-/datum/outfit/job/medical/medicalofficer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_hand(new /obj/item/tweezers, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_hand(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 /datum/outfit/job/medical/researcher
 	name = MEDICAL_RESEARCHER
@@ -314,6 +311,8 @@
 	mask = /obj/item/clothing/mask/surgical
 	r_pocket = /obj/item/storage/pouch/surgery
 	l_pocket = /obj/item/storage/pouch/medkit/doctor
+	r_hand = /obj/item/tweezers
+	l_hand = /obj/item/reagent_containers/glass/bottle/lemoline/doctor
 
 
 /datum/outfit/job/medical/researcher/robot
@@ -323,10 +322,6 @@
 	shoes = null
 	gloves = null
 
-/datum/outfit/job/medical/researcher/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_hand(new /obj/item/tweezers, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_hand(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_S_STORE)
 
 /datum/outfit/job/civilian/liaison
 	name = CORPORATE_LIAISON

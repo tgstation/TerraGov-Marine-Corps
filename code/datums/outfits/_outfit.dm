@@ -85,7 +85,19 @@
 	var/list/implants
 	///the species this outfit is designed for
 	var/species = SPECIES_HUMAN
+	/// A list of all the container contents lists, used to save on copypasta, populated in New()
+	var/list/container_list = list()
 
+/datum/outfit/New()
+	. = ..()
+	container_list += backpack_contents
+	container_list += belt_contents
+	container_list += shoe_contents
+	container_list += suit_contents
+	container_list += webbing_contents
+	container_list += head_contents
+	container_list += r_pocket_contents
+	container_list += l_pocket_contents
 
 /// This gets ran before we equip any items from the variables
 /datum/outfit/proc/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -102,32 +114,32 @@
 
 	//Start with uniform,suit,backpack for additional slots
 	if(w_uniform)
-		equipping_human.equip_to_slot_or_del(new w_uniform(equipping_human), SLOT_W_UNIFORM, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new w_uniform(equipping_human), ITEM_SLOT_ICLOTHING, override_nodrop = TRUE)
 	if(wear_suit)
-		equipping_human.equip_to_slot_or_del(new wear_suit(equipping_human), SLOT_WEAR_SUIT, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new wear_suit(equipping_human), ITEM_SLOT_OCLOTHING, override_nodrop = TRUE)
 	if(back)
-		equipping_human.equip_to_slot_or_del(new back(equipping_human), SLOT_BACK, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new back(equipping_human), ITEM_SLOT_BACK, override_nodrop = TRUE)
 	if(belt)
-		equipping_human.equip_to_slot_or_del(new belt(equipping_human), SLOT_BELT, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new belt(equipping_human), ITEM_SLOT_BELT, override_nodrop = TRUE)
 	if(gloves)
-		equipping_human.equip_to_slot_or_del(new gloves(equipping_human), SLOT_GLOVES, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new gloves(equipping_human), ITEM_SLOT_GLOVES, override_nodrop = TRUE)
 	if(shoes)
-		equipping_human.equip_to_slot_or_del(new shoes(equipping_human), SLOT_SHOES, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new shoes(equipping_human), ITEM_SLOT_FEET, override_nodrop = TRUE)
 	if(head)
-		equipping_human.equip_to_slot_or_del(new head(equipping_human), SLOT_HEAD, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new head(equipping_human), ITEM_SLOT_HEAD, override_nodrop = TRUE)
 	if(mask)
-		equipping_human.equip_to_slot_or_del(new mask(equipping_human), SLOT_WEAR_MASK, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new mask(equipping_human), ITEM_SLOT_MASK, override_nodrop = TRUE)
 	if(ears)
 		if(visualsOnly)
-			equipping_human.equip_to_slot_or_del(new /obj/item/radio/headset(equipping_human), SLOT_EARS, override_nodrop = TRUE) //We don't want marine cameras. For now they have the same worn_icon_state as the rest.
+			equipping_human.equip_to_slot_or_del(new /obj/item/radio/headset(equipping_human), ITEM_SLOT_EARS, override_nodrop = TRUE) //We don't want marine cameras. For now they have the same worn_icon_state as the rest.
 		else
-			equipping_human.equip_to_slot_or_del(new ears(equipping_human), SLOT_EARS, override_nodrop = TRUE)
+			equipping_human.equip_to_slot_or_del(new ears(equipping_human), ITEM_SLOT_EARS, override_nodrop = TRUE)
 	if(glasses)
-		equipping_human.equip_to_slot_or_del(new glasses(equipping_human), SLOT_GLASSES, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new glasses(equipping_human), ITEM_SLOT_EYES, override_nodrop = TRUE)
 	if(id)
-		equipping_human.equip_to_slot_or_del(new id(equipping_human), SLOT_WEAR_ID, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new id(equipping_human), ITEM_SLOT_ID, override_nodrop = TRUE)
 	if(suit_store)
-		equipping_human.equip_to_slot_or_del(new suit_store(equipping_human), SLOT_S_STORE, override_nodrop = TRUE)
+		equipping_human.equip_to_slot_or_del(new suit_store(equipping_human), ITEM_SLOT_SUITSTORE, override_nodrop = TRUE)
 	if(l_hand)
 		equipping_human.put_in_l_hand(new l_hand(equipping_human))
 	if(r_hand)
@@ -135,89 +147,26 @@
 
 	if(!visualsOnly) // Items in pockets or backpack don't show up on mob's icon.
 		if(l_pocket)
-			equipping_human.equip_to_slot_or_del(new l_pocket(equipping_human), SLOT_L_STORE, override_nodrop = TRUE)
+			equipping_human.equip_to_slot_or_del(new l_pocket(equipping_human), ITEM_SLOT_L_POCKET, override_nodrop = TRUE)
 		if(r_pocket)
-			equipping_human.equip_to_slot_or_del(new r_pocket(equipping_human), SLOT_R_STORE, override_nodrop = TRUE)
-		// Big todo for the below lists, there should be a unit test that checks if we ever go over capacity of the container
-		if(backpack_contents)
-			if(!equipping_human.back)
-				CRASH("backpack_contents list without a backpack specified in outfit of type [type]!")
-			for(var/path in backpack_contents)
-				var/number = backpack_contents[path]
+			equipping_human.equip_to_slot_or_del(new r_pocket(equipping_human), ITEM_SLOT_R_POCKET, override_nodrop = TRUE)
+
+		for(var/list/content_list in container_list) // ivan todo make sure to test this
+			if(!length(content_list))
+				continue
+			for(var/path in content_list)
+				var/number = content_list[path]
 				if(!isnum(number))//Default to 1
 					number = 1
 				for(var/i in 1 to number)
-					equipping_human.equip_to_slot_or_del(new path(equipping_human), ITEM_SLOT_BACK, TRUE, TRUE)
-		if(belt_contents)
-			if(!equipping_human.belt)
-				CRASH("belt_contents list without a belt specified in outfit of type [type]!")
-			for(var/path in belt_contents)
-				var/number = belt_contents[path]
-				if(!isnum(number))//Default to 1
-					number = 1
-				for(var/i in 1 to number)
-					equipping_human.equip_to_slot_or_del(new path(equipping_human), ITEM_SLOT_BELT, TRUE, TRUE)
-		if(shoe_contents)
-			if(!equipping_human.shoes)
-				CRASH("shoe_contents list without shoes specified in outfit of type [type]!")
-			for(var/path in shoe_contents)
-				var/number = shoe_contents[path]
-				if(!isnum(number))//Default to 1
-					number = 1
-				for(var/i in 1 to number)
-					equipping_human.equip_to_slot_or_del(new path(equipping_human), ITEM_SLOT_FEET, TRUE, TRUE)
-		if(suit_contents)
-			if(!equipping_human.wear_suit)
-				CRASH("suit_contents list without a suit specified in outfit of type [type]!")
-			for(var/path in suit_contents)
-				var/number = suit_contents[path]
-				if(!isnum(number))//Default to 1
-					number = 1
-				for(var/i in 1 to number)
-					equipping_human.equip_to_slot_or_del(new path(equipping_human), ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-		if(webbing_contents)
-			if(!equipping_human.w_uniform)
-				CRASH("webbing_contents list without a uniform specified in outfit of type [type]!")
-			for(var/path in webbing_contents)
-				var/number = webbing_contents[path]
-				if(!isnum(number))//Default to 1
-					number = 1
-				for(var/i in 1 to number)
-					equipping_human.equip_to_slot_or_del(new path(equipping_human), ITEM_SLOT_ICLOTHING, TRUE, TRUE)
-		if(head_contents)
-			if(!equipping_human.head)
-				CRASH("head_contents list without headwear specified in outfit of type [type]!")
-			for(var/path in head_contents)
-				var/number = head_contents[path]
-				if(!isnum(number))//Default to 1
-					number = 1
-				for(var/i in 1 to number)
-					equipping_human.equip_to_slot_or_del(new path(equipping_human), ITEM_SLOT_HEAD, TRUE, TRUE)
-		if(r_pocket_contents)
-			if(!equipping_human.r_pocket)
-				CRASH("r_pocket_contents list without right pocket container specified in outfit of type [type]!")
-			for(var/path in r_pocket_contents)
-				var/number = r_pocket_contents[path]
-				if(!isnum(number))//Default to 1
-					number = 1
-				for(var/i in 1 to number)
-					equipping_human.equip_to_slot_or_del(new path(equipping_human), ITEM_SLOT_R_POCKET, TRUE, TRUE)
-		if(l_pocket_contents)
-			if(!equipping_human.l_pocket)
-				CRASH("l_pocket_contents list without left pocket container specified in outfit of type [type]!")
-			for(var/path in l_pocket_contents)
-				var/number = l_pocket_contents[path]
-				if(!isnum(number))//Default to 1
-					number = 1
-				for(var/i in 1 to number)
-					equipping_human.equip_to_slot_or_del(new path(equipping_human), ITEM_SLOT_L_POCKET, TRUE, TRUE)
+					if(!equipping_human.equip_to_slot_or_del(new path(equipping_human), ITEM_SLOT_BACK, TRUE, TRUE))
+						stack_trace("Failed to place item of type [path] from list [vars["[content_list]"]] in outfit of type [type]!")
 
 	post_equip(equipping_human, visualsOnly)
 
-	if(length(implants))
-		for(var/implant_type in implants)
-			var/obj/item/implant/implanter = new implant_type(equipping_human)
-			implanter.implant(equipping_human)
+	for(var/implant_type in implants)
+		var/obj/item/implant/implanter = new implant_type(equipping_human)
+		implanter.implant(equipping_human)
 
 	equipping_human.update_body()
 	return TRUE
@@ -243,7 +192,14 @@
 	.["suit_store"] = suit_store
 	.["r_hand"] = r_hand
 	.["l_hand"] = l_hand
-	.["backpack_contents"] = backpack_contents // ivan todo implement the other contents lists
+	.["backpack_contents"] = backpack_contents
+	.["belt_contents"] = belt_contents
+	.["shoe_contents"] = shoe_contents
+	.["suit_contents"] = suit_contents
+	.["webbing_contents"] = webbing_contents
+	.["head_contents"] = head_contents
+	.["r_pocket_contents"] = r_pocket_contents
+	.["l_pocket_contents"] = l_pocket_contents
 	.["implants"] = implants
 
 /// Copy most vars from another outfit to this one
@@ -266,6 +222,13 @@
 	r_hand = target.r_hand
 	l_hand = target.l_hand
 	backpack_contents = target.backpack_contents
+	belt_contents = target.belt_contents
+	shoe_contents = target.shoe_contents
+	suit_contents = target.suit_contents
+	webbing_contents = target.webbing_contents
+	head_contents = target.head_contents
+	r_pocket_contents = target.r_pocket_contents
+	l_pocket_contents = target.l_pocket_contents
 	implants = target.implants
 	return TRUE
 

@@ -24,17 +24,20 @@
 	l_pocket = /obj/item/storage/holster/flarepouch/full
 	back = /obj/item/storage/backpack/lightpack
 
-/datum/outfit/job/imperial/guardsman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/reagent_containers/food/snacks/enrg_bar = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/explosive/grenade = 1,
+		/obj/item/explosive/grenade/incendiary = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
 
 /datum/outfit/job/imperial/guardsman/sergeant
 	name = "Guardsman Sergeant"
@@ -55,16 +58,11 @@
 	l_pocket = /obj/item/storage/pouch/medkit/medic
 	r_pocket = /obj/item/storage/pouch/medical_injectors/medic
 
-/datum/outfit/job/imperial/guardsman/medicae/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/zoom, SLOT_IN_BACKPACK) // closest thing to combat performance drugs
+	backpack_contents = list(
+		/obj/item/cell/lasgun/lasrifle = 5,
+		/obj/item/defibrillator = 1,
+		/obj/item/storage/pill_bottle/zoom = 1,
+	)
 
 /datum/outfit/job/imperial/commissar
 	name = "Imperial Commissar"
@@ -79,12 +77,12 @@
 	l_pocket = /obj/item/storage/pouch/medkit/firstaid
 	r_pocket = /obj/item/storage/pouch/magazine/pistol/large/mateba
 	back = /obj/item/storage/backpack/lightpack
+	
+	backpack_contents = list(
+		/obj/item/reagent_containers/food/snacks/enrg_bar = 2,
+	)
 
-/datum/outfit/job/imperial/commissar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/enrg_bar, SLOT_IN_BACKPACK)
+	suit_contents = list(
+		/obj/item/explosive/grenade = 1,
+		/obj/item/explosive/grenade/incendiary = 1,
+	)

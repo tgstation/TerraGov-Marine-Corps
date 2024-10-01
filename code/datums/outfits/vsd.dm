@@ -17,35 +17,33 @@
 	back = /obj/item/storage/backpack/lightpack/vsd
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
 
-/datum/outfit/job/vsd/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = 4,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/explosive/grenade/vsd = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_ACCESSORY)
+	belt_contents = list(
+		/obj/item/ammo_magazine/pistol/vsd_pistol = 6,
+		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BELT)
+	webbing_contents = list(
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/explosive/plastique = 1,
+		/obj/item/explosive/grenade/vsd = 2,
+	)
 
 /datum/outfit/job/vsd/standard/grunt_one
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/desert
@@ -53,18 +51,17 @@
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	mask = /obj/item/clothing/mask/gas/vsd
 
-/datum/outfit/job/vsd/standard/grunt_one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 4,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
+	suit_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_SUIT)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+	)
 
 /datum/outfit/job/vsd/standard/ksg
 	w_uniform = /obj/item/clothing/under/vsd/shirt/webbing
@@ -72,52 +69,41 @@
 	suit_store = /obj/item/weapon/gun/shotgun/pump/ksg/standard
 	l_pocket = /obj/item/storage/pouch/shotgun
 
-/datum/outfit/job/vsd/standard/ksg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/ammo_magazine/handful/buckshot = 4,
+		/obj/item/explosive/grenade/vsd = 3,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
+	suit_contents = list(
+		/obj/item/explosive/grenade/vsd = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/handful/buckshot = 4,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
 
 /datum/outfit/job/vsd/standard/grunt_second
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	head = /obj/item/clothing/head/vsd
 
-/datum/outfit/job/vsd/standard/grunt_second/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 4,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+	)
 
 /datum/outfit/job/vsd/standard/grunt_third
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
+	backpack_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 4,
+	)
 
-/datum/outfit/job/vsd/standard/grunt_third/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+	)
 
 
 //outfits
@@ -138,62 +124,63 @@
 	back = /obj/item/storage/backpack/lightpack/vsd
 	belt = /obj/item/storage/belt/utility/full
 
-/datum/outfit/job/vsd/engineer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/storage/box/MRE = 2,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
+		/obj/item/stack/sheet/metal/large_stack = 2,
+		/obj/item/explosive/plastique = 4,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/explosive/grenade/vsd = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_ACCESSORY)
+	webbing_contents = list(
+		/obj/item/explosive/plastique = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/explosive/grenade/vsd = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
 
 /datum/outfit/job/vsd/engineer/l26
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg/engineer
 
-/datum/outfit/job/vsd/engineer/l26/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_mg = 2,
+		/obj/item/attachable/buildasentry = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/attachable/buildasentry, SLOT_IN_BACKPACK)
+	webbing_contents = list(
+		/obj/item/stack/sheet/metal/large_stack = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_ACCESSORY)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_mg = 2,
+	)
 
 /datum/outfit/job/vsd/engineer/vsd_rifle
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor
 	head = /obj/item/clothing/head/vsd
 
-/datum/outfit/job/vsd/engineer/vsd_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
+	webbing_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_ACCESSORY)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+	)
 
 
 //outfits
@@ -214,87 +201,81 @@
 	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 
-/datum/outfit/job/vsd/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/defibrillator = 1,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/oxycodone, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
+	webbing_contents = list(
+		/obj/item/roller = 1,
+		/obj/item/tweezers_advanced = 1,
+		/obj/item/storage/pill_bottle/spaceacillin = 1,
+		/obj/item/reagent_containers/hypospray/advanced/nanoblood = 1,
+		/obj/item/bodybag/cryobag = 1,
+		/obj/item/reagent_containers/hypospray/advanced/combat_advanced = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/tweezers_advanced, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/spaceacillin, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, SLOT_IN_ACCESSORY)
 
 /datum/outfit/job/vsd/medic/ksg
 	suit_store = /obj/item/weapon/gun/shotgun/pump/ksg/support
 	l_pocket = /obj/item/storage/pouch/shotgun
 
-/datum/outfit/job/vsd/medic/ksg/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/ammo_magazine/pistol/vsd_pistol = 3,
+		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
+		/obj/item/ammo_magazine/handful/buckshot = 3,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_BACKPACK)
+	suit_contents = list(
+		/obj/item/ammo_magazine/handful/buckshot = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_SUIT)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/handful/buckshot = 4,
+	)
 
 
 /datum/outfit/job/vsd/medic/vsd_rifle
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle
 
-/datum/outfit/job/vsd/medic/vsd_rifle/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/ammo_magazine/pistol/vsd_pistol = 3,
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BACKPACK)
+	suit_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_SUIT)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+	)
 
 /datum/outfit/job/vsd/medic/vsd_pdw
 	suit_store = /obj/item/weapon/gun/smg/vsd_pdw/medic
 
-/datum/outfit/job/vsd/medic/vsd_pdw/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/ammo_magazine/pistol/vsd_pistol = 3,
+		/obj/item/ammo_magazine/smg/vsd_pdw = 2,
+		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/vsd_pdw, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/vsd_pdw, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BACKPACK)
+	suit_contents = list(
+		/obj/item/ammo_magazine/smg/vsd_pdw = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/vsd_pdw, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/vsd_pdw, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/vsd_pdw, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/vsd_pdw, SLOT_IN_SUIT)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/smg/vsd_pdw = 2,
+	)
 
 
 //outfits
@@ -312,19 +293,19 @@
 	back = /obj/item/storage/backpack/lightpack/vsd
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
 
-/datum/outfit/job/vsd/spec/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	suit_contents = list(
+		/obj/item/explosive/grenade/vsd = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
-
+	webbing_contents = list(
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/explosive/plastique = 1,
+	)
 
 /datum/outfit/job/vsd/spec/flamer
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor
@@ -335,21 +316,18 @@
 	w_uniform = /obj/item/clothing/under/vsd/shirt/webbing
 	l_pocket = /obj/item/storage/pouch/grenade
 
-/datum/outfit/job/vsd/spec/flamer/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	suit_contents = list(
+		/obj/item/ammo_magazine/flamer_tank/large = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
+	webbing_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
+		/obj/item/tool/extinguisher/mini = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large, SLOT_IN_SUIT)
+	l_pocket_contents = list(
+		/obj/item/explosive/grenade/phosphorus/upp = 6,
+	)
 
 /datum/outfit/job/vsd/spec/demolitionist
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
@@ -359,29 +337,21 @@
 	suit_store = /obj/item/weapon/gun/launcher/rocket/vsd
 	l_pocket = /obj/item/storage/pouch/explosive
 
-/datum/outfit/job/vsd/spec/demolitionist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/explosive/plastique = 4,
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/ammo_magazine/rocket/vsd/he = 4,
+		/obj/item/explosive/grenade/vsd = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
+	webbing_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rocket/vsd/he = 4,
+	)
 
 /datum/outfit/job/vsd/spec/gunslinger
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
@@ -389,34 +359,23 @@
 	belt = /obj/item/storage/holster/belt/korovin
 	w_uniform = /obj/item/clothing/under/vsd/shirt/webbing
 
-/datum/outfit/job/vsd/spec/gunslinger/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = 4,
+		/obj/item/ammo_magazine/pistol/xmdivider = 4,
+		/obj/item/explosive/grenade/vsd = 3,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
+	belt_contents = list(
+		/obj/item/ammo_magazine/pistol/xmdivider = 6,
+		/obj/item/weapon/gun/pistol/xmdivider/gunslinger = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/xmdivider/gunslinger(H), SLOT_IN_BELT)
+	webbing_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
+	)
 
 /datum/outfit/job/vsd/spec/uslspec_one
 	w_uniform = /obj/item/clothing/under/vsd/upp
@@ -426,36 +385,30 @@
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer
 	l_pocket = /obj/item/storage/pouch/magazine
 
-/datum/outfit/job/vsd/spec/uslspec_one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
+		/obj/item/ammo_magazine/rifle/type71 = 4,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/explosive/grenade/vsd = 1,
+		/obj/item/explosive/plastique = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
+	belt_contents = list(
+		/obj/item/ammo_magazine/pistol/vsd_pistol = 6,
+		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	webbing_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BELT)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/flamer_tank/mini = 2,
+	)
 
 /datum/outfit/job/vsd/spec/uslspec_two
 	w_uniform = /obj/item/clothing/under/vsd/upp
@@ -467,26 +420,20 @@
 	back = /obj/item/shotgunbox/clf_heavyrifle
 	l_pocket = /obj/item/storage/pouch/grenade
 
-/datum/outfit/job/vsd/spec/uslspec_two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	belt_contents = list(
+		/obj/item/ammo_magazine/pistol/vsd_pistol = 6,
+		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
+	webbing_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/upp, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/upp, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/upp, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BELT)
+	l_pocket_contents = list(
+		/obj/item/explosive/grenade/vsd = 3,
+		/obj/item/explosive/grenade/upp = 3,
+	)
 
 
 //juggernaut outfits
@@ -508,35 +455,32 @@
 	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 
-/datum/outfit/job/vsd/juggernaut/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
+		/obj/item/ammo_magazine/rifle/vsd_mg = 5,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/explosive/grenade/vsd = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/explosive/plastique = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_mg = 2,
+	)
 
 /datum/outfit/job/vsd/eod
 	name = "VSD Juggernaut"
@@ -557,37 +501,33 @@
 	l_pocket = /obj/item/storage/pouch/explosive
 	back = /obj/item/storage/backpack/lightpack/vsd
 
-/datum/outfit/job/vsd/eod/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/explosive/grenade/vsd = 4,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
+		/obj/item/ammo_magazine/rocket/vsd/he = 2,
+		/obj/item/ammo_magazine/rocket/vsd/incendiary = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/ammo_magazine/rocket/vsd/chemical = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/incendiary, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/incendiary, SLOT_IN_BACKPACK)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/he, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/incendiary, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/incendiary, SLOT_IN_L_POUCH)
+	webbing_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/explosive/plastique = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/chemical, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/vsd/chemical, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rocket/vsd/he = 2,
+		/obj/item/ammo_magazine/rocket/vsd/incendiary = 2,
+	)
 
 
 //SL outfits
@@ -604,27 +544,28 @@
 	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
 
-/datum/outfit/job/vsd/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
+		/obj/item/explosive/plastique = 2,
+		/obj/item/tool/extinguisher/mini = 1,
+		/obj/item/storage/box/MRE = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/explosive/grenade/vsd = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/vsd, SLOT_IN_SUIT)
-
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_ACCESSORY)
-
+	webbing_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 2,
+		/obj/item/explosive/plastique = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+	)
 
 /datum/outfit/job/vsd/leader/one
 	head = /obj/item/clothing/head/vsd/beret
@@ -634,26 +575,19 @@
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
 
-/datum/outfit/job/vsd/leader/one/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 4,
+		/obj/item/ammo_magazine/pistol/vsd_pistol = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
+	belt_contents = list(
+		/obj/item/ammo_magazine/pistol/vsd_pistol = 6,
+		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BELT)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_rifle, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
+	)
 
 /datum/outfit/job/vsd/leader/two
 	head = /obj/item/clothing/head/helmet/marine/vsd
@@ -663,27 +597,19 @@
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg/juggernaut
 	belt = /obj/item/storage/holster/belt/korovin
 
-/datum/outfit/job/vsd/leader/two/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_mg = 3,
+		/obj/item/ammo_magazine/pistol/xmdivider = 4,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BACKPACK)
+	belt_contents = list(
+		/obj/item/ammo_magazine/pistol/xmdivider = 6,
+		/obj/item/weapon/gun/pistol/xmdivider/gunslinger = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/xmdivider, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/xmdivider/gunslinger(H), SLOT_IN_BELT)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_mg = 2,
+	)
 
 /datum/outfit/job/vsd/leader/upp_three
 	head = /obj/item/clothing/head/uppcap/beret
@@ -693,23 +619,16 @@
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg/juggernaut
 	belt = /obj/item/storage/holster/belt/pistol/standard_pistol
 
-/datum/outfit/job/vsd/leader/upp_three/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
+	backpack_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_mg = 3,
+		/obj/item/ammo_magazine/pistol/vsd_pistol = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_BACKPACK)
+	belt_contents = list(
+		/obj/item/ammo_magazine/pistol/vsd_pistol = 6,
+		/obj/item/weapon/gun/pistol/vsd_pistol/standard = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BACKPACK)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vsd_pistol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vsd_pistol/standard(H), SLOT_IN_BELT)
-
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/vsd_mg, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/vsd_mg = 2,
+	)

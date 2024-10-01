@@ -55,27 +55,32 @@
 	belt = /obj/item/storage/belt/marine
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
 
-/datum/outfit/quick/beginner_robot/marine/rifleman/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/stack/cable_coil = 6,
+		/obj/item/tool/weldingtool = 6,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/explosive/grenade = 6,
+	)
 
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	for(var/amount_to_fill in 1 to 3)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_R_POUCH)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/beginner(robot_user), SLOT_IN_ACCESSORY)
+	belt_contents = list(
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 6,
+	)
 
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/ammo_magazine/pistol/standard_heavypistol = 3,
+		/obj/item/weapon/gun/pistol/standard_heavypistol/beginner = 1,
+	)
+
+	r_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 3,
+	)
+
 
 /datum/outfit/quick/beginner_robot/marine/machinegunner
 	name = "Machinegunner"
@@ -93,25 +98,30 @@
 	belt = /obj/item/storage/belt/sparepouch
 	suit_store = /obj/item/weapon/gun/rifle/standard_gpmg/beginner
 
-/datum/outfit/quick/beginner_robot/marine/machinegunner/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	for(var/amount_to_fill in 1 to 8)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg , SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/ammo_magazine/standard_gpmg  = 8,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/ammo_magazine/standard_gpmg  = 2,
+	)
 
-	for(var/amount_to_fill in 1 to 5)
-		robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	for(var/amount_to_fill in 1 to 3)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg , SLOT_IN_BELT)
-	for(var/amount_to_fill in 1 to 2)
-		robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_R_POUCH)
-	for(var/amount_to_fill in 1 to 3)
-		robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_R_POUCH)
+	belt_contents = list(
+		/obj/item/ammo_magazine/standard_gpmg  = 3,
+	)
 
-	for(var/amount_to_fill in 1 to 2)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg , SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/storage/box/m94 = 5,
+	)
+
+	r_pocket_contents = list(
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/tool/weldingtool = 3,
+	)
 
 /datum/outfit/quick/beginner_robot/marine/marksman
 	name = "Marksman"
@@ -129,25 +139,28 @@
 	belt = /obj/item/belt_harness/marine
 	suit_store = /obj/item/weapon/gun/rifle/standard_dmr/beginner
 
-/datum/outfit/quick/beginner_robot/marine/marksman/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/stack/cable_coil = 6,
+		/obj/item/tool/weldingtool = 6,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/ammo_magazine/rifle/standard_dmr = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/beginner(robot_user), SLOT_IN_ACCESSORY)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	for(var/amount_to_fill in 1 to 3)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_R_POUCH)
+	webbing_contents = list(
+		/obj/item/ammo_magazine/pistol/vp70 = 3,
+		/obj/item/weapon/gun/pistol/vp70/beginner = 1,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_SUIT)
+	r_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/standard_dmr = 3,
+	)
+
 
 /datum/outfit/quick/beginner_robot/marine/shotgunner
 	name = "Shotgunner"
@@ -165,27 +178,32 @@
 	belt = /obj/item/storage/belt/shotgun
 	suit_store = /obj/item/weapon/gun/shotgun/combat/standardmarine/beginner
 
-/datum/outfit/quick/beginner_robot/marine/shotgunner/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/stack/cable_coil = 6,
+		/obj/item/tool/weldingtool = 6,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/storage/box/m94 = 2,
+	)
 
-	for(var/amount_to_fill in 1 to 14)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	for(var/amount_to_fill in 1 to 4)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_R_POUCH)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/plasma_pistol/beginner(robot_user), SLOT_IN_ACCESSORY)
+	belt_contents = list(
+		/obj/item/ammo_magazine/handful/slug = 14,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/ammo_magazine/pistol/plasma_pistol = 3,
+		/obj/item/weapon/gun/pistol/plasma_pistol/beginner = 1,
+	)
+
+	r_pocket_contents = list(
+		/obj/item/ammo_magazine/handful/slug = 4,
+	)
+
 
 /datum/outfit/quick/beginner_robot/marine/shocktrooper
 	name = "Shocktrooper"
@@ -203,23 +221,27 @@
 	belt = /obj/item/storage/belt/marine
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/medic
 
-/datum/outfit/quick/beginner_robot/marine/shocktrooper/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/stack/cable_coil = 6,
+		/obj/item/tool/weldingtool = 6,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/storage/box/m94 = 2,
+	)
 
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	for(var/amount_to_fill in 1 to 5)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_ACCESSORY)
+	belt_contents = list(
+		/obj/item/cell/lasgun/lasrifle = 6,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/ammo_magazine/flamer_tank/mini = 5,
+	)
+
 
 //---- Squad Engineer loadouts
 /datum/outfit/quick/beginner_robot/engineer
@@ -241,41 +263,43 @@
 	belt = /obj/item/belt_harness/marine
 	suit_store = /obj/item/weapon/gun/rifle/standard_lmg/beginner
 
-/datum/outfit/quick/beginner_robot/engineer/builder/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/full, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/stack/sheet/metal/small_stack = 1,
+		/obj/item/stack/sandbags_empty/full = 1,
+		/obj/item/tool/shovel/etool = 1,
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/ammo_magazine/standard_lmg = 5,
+		/obj/item/explosive/plastique = 1,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/stack/sheet/metal/large_stack = 4,
+		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_small, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/handheld_charger/hicapcell, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small = 1,
+		/obj/item/circuitboard/apc = 1,
+		/obj/item/tool/handheld_charger/hicapcell = 1,
+		/obj/item/stack/cable_coil = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/screwdriver, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/wirecutters, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/wrench, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool/hugetank, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/tool/screwdriver = 1,
+		/obj/item/tool/wirecutters = 1,
+		/obj/item/tool/wrench = 1,
+		/obj/item/tool/crowbar = 1,
+		/obj/item/tool/weldingtool/hugetank = 1,
+	)
 
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/explosive/grenade = 6,
+	)
+
 
 /datum/outfit/quick/beginner_robot/engineer/burnitall
 	name = "Flamethrower"
@@ -293,40 +317,49 @@
 	belt = /obj/item/storage/belt/marine
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/beginner
 
-/datum/outfit/quick/beginner_robot/engineer/burnitall/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	robot_user.equip_to_slot_or_del(new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/beginner(robot_user), SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/beginner = 1,
+		/obj/item/storage/box/explosive_mines/large = 1,
+		/obj/item/tool/extinguisher = 1,
+		/obj/item/explosive/plastique = 2,
+		/obj/item/tool/shovel/etool = 1,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/circuitboard/apc = 1,
+		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+		/obj/item/stack/sheet/metal/large_stack = 1,
+		/obj/item/stack/sheet/metal/medium_stack = 1,
+		/obj/item/tool/multitool = 1,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_small, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/handheld_charger/hicapcell, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/multitool, SLOT_IN_SUIT)
+	belt_contents = list(
+		/obj/item/cell/lasgun/lasrifle = 6,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/screwdriver, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/wirecutters, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/wrench, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool/hugetank, SLOT_IN_L_POUCH)
+	webbing_contents = list(
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small = 1,
+		/obj/item/circuitboard/apc = 1,
+		/obj/item/tool/handheld_charger/hicapcell = 1,
+		/obj/item/stack/cable_coil = 2,
+	)
 
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	l_pocket_contents = list(
+		/obj/item/tool/screwdriver = 1,
+		/obj/item/tool/wirecutters = 1,
+		/obj/item/tool/wrench = 1,
+		/obj/item/tool/crowbar = 1,
+		/obj/item/tool/weldingtool/hugetank = 1,
+	)
 
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/explosive/grenade = 6,
+	)
+
 
 /datum/outfit/quick/beginner_robot/engineer/pcenjoyer
 	name = "Plasma Cutter"
@@ -344,34 +377,40 @@
 	belt = /obj/item/belt_harness/marine
 	suit_store = /obj/item/tool/pickaxe/plasmacutter
 
-/datum/outfit/quick/beginner_robot/engineer/pcenjoyer/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	robot_user.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/standard_machinepistol/compact(robot_user), SLOT_IN_BACKPACK)
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/weapon/gun/smg/standard_machinepistol/compact = 1,
+		/obj/item/ammo_magazine/smg/standard_machinepistol = 6,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+		/obj/item/stack/sheet/metal/large_stack = 3,
+		/obj/item/stack/sheet/metal/small_stack = 1,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_small, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/handheld_charger/hicapcell, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small = 1,
+		/obj/item/circuitboard/apc = 1,
+		/obj/item/tool/handheld_charger/hicapcell = 1,
+		/obj/item/stack/cable_coil = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/screwdriver, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/wirecutters, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/wrench, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_L_POUCH)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool/hugetank, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/tool/screwdriver = 1,
+		/obj/item/tool/wirecutters = 1,
+		/obj/item/tool/wrench = 1,
+		/obj/item/tool/crowbar = 1,
+		/obj/item/tool/weldingtool/hugetank = 1,
+	)
 
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/explosive/grenade = 6,
+	)
+
 
 //---- Squad Corpsman loadouts
 /datum/outfit/quick/beginner_robot/corpsman
@@ -394,42 +433,38 @@
 	belt = /obj/item/storage/belt/lifesaver/beginner
 	suit_store = /obj/item/weapon/gun/shotgun/pump/lever/repeater/beginner
 
-/datum/outfit/quick/beginner_robot/corpsman/lifesaver/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/storage/box/m94 = 2,
+		/obj/item/ammo_magazine/packet/p4570 = 4,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/tool/weldingtool = 2,
+		/obj/item/defibrillator = 1,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 3,
+		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 3,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 3,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/roller/medevac, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_ACCESSORY)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/roller = 1,
+		/obj/item/bodybag/cryobag = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/reagent_containers/hypospray/advanced/nanoblood = 1,
+		/obj/item/roller/medevac = 1,
+		/obj/item/tweezers = 1,
+	)
 
-	for(var/amount_to_fill in 1 to 4)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/repeater, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/handful/repeater = 4,
+	)
+
 
 /datum/outfit/quick/beginner_robot/corpsman/hypobelt
 	name = "Hypobelt"
@@ -448,34 +483,34 @@
 	belt = /obj/item/storage/belt/hypospraybelt/beginner
 	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/beginner
 
-/datum/outfit/quick/beginner_robot/corpsman/hypobelt/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/protein_pack, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/defibrillator = 1,
+		/obj/item/reagent_containers/food/snacks/protein_pack = 1,
+		/obj/item/ammo_magazine/handful/slug = 5,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/tool/weldingtool = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/roller = 1,
+		/obj/item/bodybag/cryobag = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/roller/medevac = 1,
+		/obj/item/tweezers = 1,
+	)
 
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_ACCESSORY)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/roller/medevac, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/stack/medical/splint = 6,
+	)
 
-	for(var/amount_to_fill in 1 to 4)
-		robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/handful/slug = 4,
+	)
 
 //---- Squad Smartgunner loadouts
 /datum/outfit/quick/beginner_robot/smartgunner
@@ -499,27 +534,30 @@
 	belt = /obj/item/belt_harness/marine
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
 
-/datum/outfit/quick/beginner_robot/smartgunner/sg29/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/smart_pistol, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol, SLOT_IN_BACKPACK)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/ammo_magazine/standard_smartmachinegun = 2,
+		/obj/item/weapon/gun/pistol/smart_pistol = 1,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/ammo_magazine/standard_smartmachinegun = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_SUIT)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_ACCESSORY)
+	webbing_contents = list(
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/tool/weldingtool = 2,
+	)
 
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/explosive/grenade = 6,
+	)
+
 
 /datum/outfit/quick/beginner_robot/smartgunner/sg85
 	name = "Standard Smartminigun"
@@ -538,18 +576,20 @@
 	belt = /obj/item/belt_harness/marine
 	suit_store = /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
 
-/datum/outfit/quick/beginner_robot/smartgunner/sg85/post_equip(mob/living/carbon/human/robot_user, visualsOnly)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
-	robot_user.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/ammo_magazine/packet/smart_minigun = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/smart_minigun, SLOT_IN_SUIT)
-	robot_user.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/smart_minigun, SLOT_IN_SUIT)
+	head_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 2,
+	)
 
-	robot_user.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_ACCESSORY)
-	robot_user.equip_to_slot_or_del(new /obj/item/tool/weldingtool, SLOT_IN_ACCESSORY)
+	webbing_contents = list(
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/stack/cable_coil = 2,
+		/obj/item/tool/weldingtool = 2,
+	)
 
-	for(var/amount_to_fill in 1 to 6)
-		robot_user.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/explosive/grenade = 6,
+	)

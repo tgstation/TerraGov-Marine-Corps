@@ -19,30 +19,31 @@
 	back = /obj/item/storage/backpack/lightpack
 	implants = list(/obj/item/implant/suicide_dust)
 
+	backpack_contents = list(
+		/obj/item/stack/sheet/metal/medium_stack = 1,
+		/obj/item/reagent_containers/food/snacks/upp = 2,
+		/obj/item/radio = 1,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/explosive/grenade/smokebomb/cloak = 2,
+		/obj/item/chameleon = 1,
+		/obj/item/explosive/plastique = 2,
+		/obj/item/binoculars = 1,
+		/obj/item/restraints/handcuffs = 1,
+	)
 
-/datum/outfit/job/upp/commando/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/upp, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/upp, SLOT_IN_SUIT)
+	suit_contents = list(
+		/obj/item/explosive/grenade/upp = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/chameleon, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/restraints/handcuffs, SLOT_IN_BACKPACK)
+	shoe_contents = list(
+		/obj/item/weapon/combat_knife/upp = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/chloralhydrate, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/sleeptoxin, SLOT_IN_R_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
+	r_pocket_contents = list(
+		/obj/item/reagent_containers/hypospray/advanced = 1,
+		/obj/item/reagent_containers/glass/bottle/chloralhydrate = 1,
+		/obj/item/reagent_containers/glass/bottle/sleeptoxin = 1,
+	)
 
 
 /datum/outfit/job/upp/commando/medic
@@ -65,34 +66,36 @@
 	back = /obj/item/storage/backpack/lightpack
 	implants = list(/obj/item/implant/suicide_dust)
 
+	backpack_contents = list(
+		/obj/item/defibrillator = 1,
+		/obj/item/healthanalyzer = 1,
+		/obj/item/binoculars = 1,
+		/obj/item/radio = 1,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/chameleon = 1,
+		/obj/item/clothing/glasses/hud/health = 1,
+		/obj/item/ammo_magazine/smg/skorpion = 5,
+		/obj/item/attachable/suppressor = 1,
+		/obj/item/attachable/reddot = 1,
+	)
 
-/datum/outfit/job/upp/commando/medic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/upp, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/upp, SLOT_IN_SUIT)
+	suit_contents = list(
+		/obj/item/explosive/grenade/upp = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/healthanalyzer, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/chameleon, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/skorpion, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/attachable/suppressor, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/attachable/reddot, SLOT_IN_BACKPACK)
+	shoe_contents = list(
+		/obj/item/weapon/combat_knife/upp = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv, SLOT_IN_R_POUCH)
+	l_pocket_contents = list(
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 1,
+		/obj/item/reagent_containers/glass/bottle/tricordrazine = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/tricordrazine, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/tricordrazine, SLOT_IN_L_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
+	r_pocket_contents = list(
+		/obj/item/storage/firstaid/adv = 1,
+	)
 
 
 /datum/outfit/job/upp/commando/leader
@@ -115,26 +118,27 @@
 	back = /obj/item/storage/backpack/lightpack
 	implants = list(/obj/item/implant/suicide_dust)
 
+	backpack_contents = list(
+		/obj/item/reagent_containers/food/snacks/upp = 1,
+		/obj/item/radio = 1,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/explosive/grenade/phosphorus/upp = 2,
+		/obj/item/stack/sheet/metal/medium_stack = 1,
+		/obj/item/stack/sheet/plasteel/small_stack = 1,
+		/obj/item/chameleon = 1,
+		/obj/item/ammo_magazine/rifle/type71 = 3,
+	)
 
-/datum/outfit/job/upp/commando/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/upp, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/upp, SLOT_IN_SUIT)
+	suit_contents = list(
+		/obj/item/explosive/grenade/upp = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/radio, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus/upp, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/small_stack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/chameleon, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/type71, SLOT_IN_BACKPACK)
+	shoe_contents = list(
+		/obj/item/weapon/combat_knife/upp = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_R_POUCH)
-
-	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BOOT)
+	r_pocket_contents = list(
+		/obj/item/binoculars = 1,
+		/obj/item/assembly/signaler = 1,
+		/obj/item/detpack = 1,
+	)

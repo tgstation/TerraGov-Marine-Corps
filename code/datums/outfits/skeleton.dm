@@ -19,10 +19,7 @@
 	ears = /obj/item/radio/headset/survivor
 	r_pocket = /obj/item/flashlight
 	l_pocket = /obj/item/tool/crowbar/red
-
-/datum/outfit/job/skeleton/basic/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/milk, SLOT_L_HAND)
+	l_hand = /obj/item/reagent_containers/food/drinks/milk
 
 /datum/outfit/job/skeleton/leader
 	name = "Skeleton Commander"
@@ -37,7 +34,4 @@
 	ears = /obj/item/radio/headset/survivor
 	r_pocket = /obj/item/flashlight
 	l_pocket = /obj/item/reagent_containers/food/drinks/milk
-
-/datum/outfit/job/skeleton/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/milk, SLOT_L_HAND)
+	l_hand = /obj/item/reagent_containers/food/drinks/milk

@@ -21,10 +21,10 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/mainship/marine
 
-/datum/outfit/quick/beginner/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/protein_pack, SLOT_IN_HEAD)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/protein_pack, SLOT_IN_HEAD)
+	head_contents = list(
+		/obj/item/reagent_containers/food/snacks/protein_pack = 2,
+	)
+
 
 /datum/outfit/quick/beginner/marine/rifleman
 	name = "Rifleman"
@@ -38,33 +38,25 @@
 	suit_store = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
 	l_hand = /obj/item/paper/tutorial/beginner_rifleman
 
-/datum/outfit/quick/beginner/marine/rifleman/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 3,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_assaultrifle, SLOT_IN_BELT)
+	suit_contents = list(
+		/obj/item/explosive/grenade = 6,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/standard_heavypistol, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/standard_heavypistol/beginner(human), SLOT_IN_ACCESSORY)
+	belt_contents = list(
+		/obj/item/ammo_magazine/rifle/standard_assaultrifle = 6,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/ammo_magazine/pistol/standard_heavypistol = 3,
+		/obj/item/weapon/gun/pistol/standard_heavypistol/beginner = 1,
+	)
 
 /datum/outfit/quick/beginner/marine/machinegunner
 	name = "Machinegunner"
@@ -80,29 +72,24 @@
 	mask = /obj/item/clothing/mask/rebreather
 	l_hand = /obj/item/paper/tutorial/beginner_machinegunner
 
-/datum/outfit/quick/beginner/marine/machinegunner/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/ammo_magazine/standard_gpmg = 8,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_gpmg, SLOT_IN_BELT)
+	suit_contents = list(
+		/obj/item/weapon/gun/pistol/plasma_pistol = 2,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	belt_contents = list(
+		/obj/item/ammo_magazine/standard_gpmg = 3,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/plasma_pistol, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/plasma_pistol, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/storage/box/m94 = 2,
+	)
 
 
 /datum/outfit/quick/beginner/marine/marksman
@@ -120,32 +107,34 @@
 	mask = /obj/item/clothing/mask/breath
 	l_hand = /obj/item/paper/tutorial/beginner_marksman
 
-/datum/outfit/quick/beginner/marine/marksman/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/ammo_magazine/rifle/standard_dmr = 3,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_R_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_R_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_dmr, SLOT_IN_R_POUCH)
+	suit_contents = list(
+		/obj/item/storage/pill_bottle/bicaridine = 1,
+		/obj/item/storage/pill_bottle/kelotane = 1,
+		/obj/item/storage/pill_bottle/tricordrazine = 1,
+		/obj/item/storage/pill_bottle/tramadol = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70/beginner(human), SLOT_IN_ACCESSORY)
+	webbing_contents = list(
+		/obj/item/ammo_magazine/pistol/vp70 = 3,
+		/obj/item/weapon/gun/pistol/vp70/beginner = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tricordrazine, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_SUIT)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/standard_dmr = 3,
+	)
+
+	r_pocket_contents = list(
+		/obj/item/ammo_magazine/rifle/standard_dmr = 3,
+	)
+
 
 /datum/outfit/quick/beginner/marine/shotgunner
 	name = "Shotgunner"
@@ -161,39 +150,26 @@
 	mask = /obj/item/clothing/mask/gas/tactical/coif
 	l_hand = /obj/item/paper/tutorial/beginner_shotgunner
 
-/datum/outfit/quick/beginner/marine/shotgunner/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/ammo_magazine/handful/slug = 4,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BELT)
+	suit_contents = list(
+		/obj/item/storage/box/m94 = 2,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/plasma_pistol, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/plasma_pistol/beginner(human), SLOT_IN_ACCESSORY)
+	belt_contents = list(
+		/obj/item/ammo_magazine/handful/slug = 14,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/ammo_magazine/pistol/plasma_pistol = 3,
+		/obj/item/weapon/gun/pistol/plasma_pistol/beginner = 1,
+	)
 
 /datum/outfit/quick/beginner/marine/shocktrooper
 	name = "Shocktrooper"
@@ -210,35 +186,34 @@
 	shoes = /obj/item/clothing/shoes/marine
 	l_hand = /obj/item/paper/tutorial/beginner_shocktrooper
 
-/datum/outfit/quick/beginner/marine/shocktrooper/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	backpack_contents = list(
+		/obj/item/storage/pill_bottle/dylovene = 1,
+		/obj/item/ammo_magazine/flamer_tank/mini = 6,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BOOT)
+	suit_contents = list(
+		/obj/item/cell/lasgun/volkite/powerpack/marine = 1,
+		/obj/item/storage/box/m94 = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/dylovene, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_BACKPACK)
+	belt_contents = list(
+		/obj/item/cell/lasgun/lasrifle = 6,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/powerpack/marine, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/storage/pill_bottle/bicaridine = 1,
+		/obj/item/storage/pill_bottle/kelotane = 1,
+		/obj/item/storage/pill_bottle/tricordrazine = 1,
+		/obj/item/storage/pill_bottle/tramadol = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tricordrazine, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
+	shoe_contents = list(
+		/obj/item/storage/box/MRE = 1,
+	)
+
 
 /datum/outfit/quick/beginner/marine/hazmat
 	name = "Hazmat"
@@ -255,25 +230,21 @@
 	belt = /obj/item/belt_harness/marine
 	l_hand = /obj/item/paper/tutorial/beginner_hazmat
 
-/datum/outfit/quick/beginner/marine/hazmat/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_BACKPACK)
+	backpack_contents = list(
+		/obj/item/ammo_magazine/rifle/tx11 = 8,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	suit_contents = list(
+		/obj/item/ammo_magazine/rifle/tx11 = 2,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/tx11, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/storage/box/m94 = 2,
+	)
+
 
 /datum/outfit/quick/beginner/marine/cqc
 	name = "CQC"
@@ -287,29 +258,25 @@
 	glasses = /obj/item/clothing/glasses/mgoggles
 	l_hand = /obj/item/paper/tutorial/beginner_cqc
 
-/datum/outfit/quick/beginner/marine/cqc/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BELT)
+	backpack_contents = list(
+		/obj/item/ammo_magazine/rifle/standard_carbine = 5,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_BACKPACK)
+	suit_contents = list(
+		/obj/item/ammo_magazine/rifle/standard_carbine = 2,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_carbine, SLOT_IN_SUIT)
+	belt_contents = list(
+		/obj/item/ammo_magazine/rifle/standard_carbine = 6,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
+	webbing_contents = list(
+		/obj/item/storage/box/MRE = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/storage/box/m94 = 2,
+	)
+
 
 /datum/outfit/quick/beginner/marine/chad //Ya gotta be if you pick this loadout
 	name = "Grenadier"
@@ -328,55 +295,40 @@
 	shoes = /obj/item/clothing/shoes/marine
 	l_hand = /obj/item/paper/tutorial/beginner_chad
 
-/datum/outfit/quick/beginner/marine/chad/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BELT)
+	backpack_contents = list(
+		/obj/item/explosive/grenade = 7,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_R_POUCH)
+	suit_contents = list(
+		/obj/item/explosive/grenade = 6,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	belt_contents = list(
+		/obj/item/explosive/grenade = 9,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_SUIT)
+	webbing_contents = list(
+		/obj/item/storage/pill_bottle/bicaridine = 1,
+		/obj/item/storage/pill_bottle/kelotane = 1,
+		/obj/item/storage/pill_bottle/tricordrazine = 1,
+		/obj/item/storage/pill_bottle/tramadol = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/kelotane, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tricordrazine, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
+	shoe_contents = list(
+		/obj/item/weapon/gun/shotgun/double/derringer = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/derringer, SLOT_IN_BOOT) //So you can kill yourself when you run out of grenades
+	l_pocket_contents = list(
+		/obj/item/explosive/grenade = 6,
+	)
+
+	r_pocket_contents = list(
+		/obj/item/explosive/grenade = 6,
+	)
+
 
 /datum/outfit/quick/beginner/engineer
 	jobtype = "Squad Engineer"
@@ -386,24 +338,31 @@
 	gloves = /obj/item/clothing/gloves/marine/insulated
 	l_pocket = /obj/item/storage/pouch/tools
 
-/datum/outfit/quick/beginner/engineer/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BOOT)
+	suit_contents = list(
+		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+		/obj/item/stack/sheet/metal/large_stack = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/tool/screwdriver, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/tool/wirecutters, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/tool/wrench, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/tool/weldingtool/hugetank, SLOT_IN_L_POUCH)
+	webbing_contents = list(
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small = 1,
+		/obj/item/circuitboard/apc = 1,
+		/obj/item/tool/handheld_charger/hicapcell = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_small, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/tool/handheld_charger/hicapcell, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
+	shoe_contents = list(
+		/obj/item/storage/box/MRE = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	l_pocket_contents = list(
+		/obj/item/tool/screwdriver = 1,
+		/obj/item/tool/wirecutters = 1,
+		/obj/item/tool/wrench = 1,
+		/obj/item/tool/crowbar = 1,
+		/obj/item/tool/weldingtool/hugetank = 1,
+	)
+
 
 /datum/outfit/quick/beginner/engineer/builder
 	name = "Engineer Standard"
@@ -418,22 +377,19 @@
 	glasses = /obj/item/clothing/glasses/welding/superior
 	l_hand = /obj/item/paper/tutorial/builder
 
-/datum/outfit/quick/beginner/engineer/builder/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	backpack_contents = list(
+		/obj/item/stack/sheet/metal/small_stack = 1,
+		/obj/item/stack/sandbags_empty/full = 1,
+		/obj/item/tool/shovel/etool = 1,
+		/obj/item/storage/box/m94 = 1,
+		/obj/item/ammo_magazine/standard_lmg = 5,
+		/obj/item/explosive/plastique = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/full, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_lmg, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	suit_contents = list(
+		/obj/item/stack/sheet/metal/large_stack = 3,
+	)
+
 
 /datum/outfit/quick/beginner/engineer/burnitall
 	name = "Flamethrower"
@@ -447,25 +403,24 @@
 	glasses = /obj/item/clothing/glasses/meson
 	l_hand = /obj/item/paper/tutorial/flamer
 
-/datum/outfit/quick/beginner/engineer/burnitall/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/tool/multitool, SLOT_IN_SUIT)
+	backpack_contents = list(
+		/obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/beginner = 1,
+		/obj/item/storage/box/explosive_mines/large = 1,
+		/obj/item/tool/extinguisher = 1,
+		/obj/item/explosive/plastique = 2,
+		/obj/item/tool/shovel/etool = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/lasrifle, SLOT_IN_BELT)
+	suit_contents = list(
+		/obj/item/stack/sheet/metal/medium_stack = 1,
+		/obj/item/circuitboard/apc = 1,
+		/obj/item/tool/multitool = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/weapon/gun/flamer/big_flamer/marinestandard/engineer/beginner(human), SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_BACKPACK)
+	belt_contents = list(
+		/obj/item/cell/lasgun/lasrifle = 6,
+	)
+
 
 /datum/outfit/quick/beginner/engineer/pcenjoyer
 	name = "Plasma Cutter"
@@ -480,21 +435,20 @@
 	glasses = /obj/item/clothing/glasses/meson
 	l_hand = /obj/item/paper/tutorial/plasmacutter
 
-/datum/outfit/quick/beginner/engineer/pcenjoyer/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+	backpack_contents = list(
+		/obj/item/weapon/gun/smg/standard_machinepistol/compact = 1,
+		/obj/item/ammo_magazine/smg/standard_machinepistol = 6,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/small_stack, SLOT_IN_SUIT)
+	suit_contents = list(
+		/obj/item/stack/sheet/metal/large_stack = 2,
+		/obj/item/stack/sheet/metal/small_stack = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/standard_machinepistol/compact(human), SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/standard_machinepistol, SLOT_IN_BACKPACK)
+	head_contents = list(
+		/obj/item/explosive/plastique = 1,
+	)
+
 
 /datum/outfit/quick/beginner/corpsman
 	jobtype = "Squad Corpsman"
@@ -504,9 +458,10 @@
 	glasses = /obj/item/clothing/glasses/hud/health
 	r_hand = /obj/item/medevac_beacon
 
-/datum/outfit/quick/beginner/corpsman/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BOOT)
+	shoe_contents = list(
+		/obj/item/storage/box/MRE = 1,
+	)
+
 
 /datum/outfit/quick/beginner/corpsman/lifesaver
 	name = "Standard Lifesaver"
@@ -524,43 +479,31 @@
 	belt = /obj/item/storage/belt/lifesaver/beginner
 	l_hand = /obj/item/paper/tutorial/lifesaver
 
-/datum/outfit/quick/beginner/corpsman/lifesaver/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/roller/medevac, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_ACCESSORY)
+	backpack_contents = list(
+		/obj/item/storage/box/m94 = 3,
+		/obj/item/ammo_magazine/packet/p4570 = 7,
+		/obj/item/tool/extinguisher/mini = 2,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_SUIT)
+	suit_contents = list(
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 3,
+		/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclotplus = 3,
+		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = 3,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p4570, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	webbing_contents = list(
+		/obj/item/roller = 1,
+		/obj/item/bodybag/cryobag = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/reagent_containers/hypospray/advanced/nanoblood = 1,
+		/obj/item/roller/medevac = 1,
+		/obj/item/tweezers = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/repeater, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/repeater, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/repeater, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/repeater, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/handful/repeater = 4,
+	)
 
 /datum/outfit/quick/beginner/corpsman/hypobelt
 	name = "Standard Hypobelt"
@@ -578,38 +521,30 @@
 	belt = /obj/item/storage/belt/hypospraybelt/beginner
 	l_hand = /obj/item/paper/tutorial/hypobelt
 
-/datum/outfit/quick/beginner/corpsman/hypobelt/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_ACCESSORY)
+	backpack_contents = list(
+		/obj/item/ammo_magazine/handful/slug = 6,
+		/obj/item/storage/box/m94 = 3,
+		/obj/item/tool/extinguisher/mini = 1,
+		/obj/item/defibrillator = 1,
+		/obj/item/reagent_containers/food/snacks/protein_pack = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/roller, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/roller/medevac, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_SUIT)
+	suit_contents = list(
+		/obj/item/roller = 1,
+		/obj/item/bodybag/cryobag = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/roller/medevac = 1,
+		/obj/item/tweezers = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_L_POUCH)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_L_POUCH)
+	webbing_contents = list(
+		/obj/item/stack/medical/splint = 6,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/protein_pack, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/slug, SLOT_IN_BACKPACK)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/handful/slug = 4,
+	)
+
 
 /datum/outfit/quick/beginner/smartgunner
 	jobtype = "Squad Smartgunner"
@@ -622,9 +557,10 @@
 	belt = /obj/item/belt_harness/marine
 	glasses = /obj/item/clothing/glasses/night/m56_goggles
 
-/datum/outfit/quick/beginner/smartgunner/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_BOOT)
+	shoe_contents = list(
+		/obj/item/storage/box/MRE = 1,
+	)
+
 
 /datum/outfit/quick/beginner/smartgunner/sg29
 	name = "Standard Smartmachinegun"
@@ -635,23 +571,24 @@
 	suit_store = /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
 	l_hand = /obj/item/paper/tutorial/smartmachinegunner
 
-/datum/outfit/quick/beginner/smartgunner/sg29/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_SUIT)
+	backpack_contents = list(
+		/obj/item/ammo_magazine/standard_smartmachinegun = 3,
+		/obj/item/weapon/gun/pistol/plasma_pistol = 1,
+		/obj/item/explosive/grenade/smokebomb/cloak = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
+	suit_contents = list(
+		/obj/item/tool/extinguisher = 1,
+		/obj/item/ammo_magazine/standard_smartmachinegun = 1,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/plasma_pistol, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+	webbing_contents = list(
+		/obj/item/storage/box/m94 = 3,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+	)
+
 
 /datum/outfit/quick/beginner/smartgunner/sg85
 	name = "Standard Smartminigun"
@@ -662,14 +599,12 @@
 	back = /obj/item/ammo_magazine/minigun_powerpack/smartgun
 	l_hand = /obj/item/paper/tutorial/smartminigunner
 
-/datum/outfit/quick/beginner/smartgunner/sg85/post_equip(mob/living/carbon/human/human, visualsOnly)
-	. = ..()
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/smart_minigun, SLOT_IN_SUIT)
-	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/smart_minigun, SLOT_IN_SUIT)
+	suit_contents = list(
+		/obj/item/ammo_magazine/packet/smart_minigun = 2,
+	)
 
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_ACCESSORY)
-	human.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_ACCESSORY)
-
+	webbing_contents = list(
+		/obj/item/storage/box/m94 = 3,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+	)

@@ -17,52 +17,41 @@
 	back = /obj/item/storage/backpack/commando
 	implants = list(/obj/item/implant/suicide_dust)
 
-/datum/outfit/job/deathsquad/standard/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/acid, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/neuro, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/drain, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_SUIT)
+	backpack_contents = list(
+		/obj/item/explosive/plastique = 6,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/binoculars = 1,
+		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 1,
+		/obj/item/weapon/energy/sword/deathsquad = 1,
+		/obj/item/weapon/shield/energy = 1,
+		/obj/item/cell/lasgun/pulse = 1,
+		/obj/item/ammo_magazine/flamer_tank/large/X/deathsquad = 7,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/cigar/cohiba, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/explosive/grenade/pmc = 2,
+		/obj/item/explosive/grenade/smokebomb/acid = 1,
+		/obj/item/explosive/grenade/smokebomb/neuro = 1,
+		/obj/item/explosive/grenade/smokebomb/drain = 1,
+		/obj/item/explosive/grenade/smokebomb/cloak = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/hypervene, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/ryetalyn, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
+	head_contents = list(
+		/obj/item/explosive/plastique = 1,
+		/obj/item/clothing/mask/cigarette/cigar/cohiba = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/explosive/grenade/pmc = 4,
+		/obj/item/explosive/grenade/phosphorus = 2,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/chunk, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/energy/sword/deathsquad, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/shield/energy, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/pulse, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/large/X/deathsquad, SLOT_IN_BACKPACK)
+	r_pocket_contents = list(
+		/obj/item/storage/pill_bottle/hypervene = 1,
+		/obj/item/storage/pill_bottle/packet/ryetalyn = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/elite = 4,
+	)
 
 /datum/outfit/job/deathsquad/leader
 	name = "Deathsquad Leader"
@@ -83,50 +72,42 @@
 	back = /obj/item/storage/backpack/commando
 	implants = list(/obj/item/implant/suicide_dust)
 
-/datum/outfit/job/deathsquad/leader/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/acid, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/neuro, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/drain, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_SUIT)
+	backpack_contents = list(
+		/obj/item/explosive/grenade/pmc = 4,
+		/obj/item/ammo_magazine/rocket/m57a4/ds = 5,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/binoculars = 1,
+		/obj/item/explosive/plastique = 4,
+		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 1,
+		/obj/item/weapon/energy/sword/deathsquad = 1,
+		/obj/item/weapon/shield/energy = 1,
+		/obj/item/cell/lasgun/pulse = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/cigar/cohiba, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/pinpointer, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/explosive/grenade/pmc = 2,
+		/obj/item/explosive/grenade/smokebomb/acid = 1,
+		/obj/item/explosive/grenade/smokebomb/neuro = 1,
+		/obj/item/explosive/grenade/smokebomb/drain = 1,
+		/obj/item/explosive/grenade/smokebomb/cloak = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/hypervene, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/ryetalyn, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
+	head_contents = list(
+		/obj/item/clothing/mask/cigarette/cigar/cohiba = 1,
+		/obj/item/pinpointer = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/rocket/m57a4/ds = 4,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/chunk, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/energy/sword/deathsquad, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/shield/energy, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/pulse, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/m57a4/ds, SLOT_IN_BACKPACK)
+	r_pocket_contents = list(
+		/obj/item/storage/pill_bottle/hypervene = 1,
+		/obj/item/storage/pill_bottle/packet/ryetalyn = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/elite = 4,
+	)
+
 
 /datum/outfit/job/deathsquad/gunner
 	name = "Deathsquad Gunner"
@@ -147,46 +128,40 @@
 	back = /obj/item/storage/backpack/commando
 	implants = list(/obj/item/implant/suicide_dust)
 
-/datum/outfit/job/deathsquad/gunner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/acid, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/neuro, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/drain, SLOT_IN_SUIT)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_SUIT)
+	backpack_contents = list(
+		/obj/item/explosive/grenade/phosphorus = 1,
+		/obj/item/explosive/plastique = 4,
+		/obj/item/ammo_magazine/standard_smartmachinegun = 7,
+		/obj/item/tool/crowbar/red = 1,
+		/obj/item/binoculars = 1,
+		/obj/item/reagent_containers/food/snacks/wrapped/chunk = 1,
+		/obj/item/weapon/energy/sword/deathsquad = 1,
+		/obj/item/weapon/shield/energy = 1,
+		/obj/item/cell/lasgun/pulse = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/mask/cigarette/cigar/cohiba, SLOT_IN_HEAD)
+	suit_contents = list(
+		/obj/item/explosive/grenade/pmc = 1,
+		/obj/item/explosive/grenade/phosphorus = 1,
+		/obj/item/explosive/grenade/smokebomb/acid = 1,
+		/obj/item/explosive/grenade/smokebomb/neuro = 1,
+		/obj/item/explosive/grenade/smokebomb/drain = 1,
+		/obj/item/explosive/grenade/smokebomb/cloak = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/hypervene, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/packet/ryetalyn, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/oxycodone, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/elite, SLOT_IN_R_POUCH)
+	head_contents = list(
+		/obj/item/explosive/plastique = 1,
+		/obj/item/clothing/mask/cigarette/cigar/cohiba = 1,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_L_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_L_POUCH)
+	l_pocket_contents = list(
+		/obj/item/ammo_magazine/standard_smartmachinegun = 4,
+	)
 
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/phosphorus, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/wrapped/chunk, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/energy/sword/deathsquad, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/weapon/shield/energy, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/cell/lasgun/pulse, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/standard_smartmachinegun, SLOT_IN_BACKPACK)
+	r_pocket_contents = list(
+		/obj/item/storage/pill_bottle/hypervene = 1,
+		/obj/item/storage/pill_bottle/packet/ryetalyn = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/elite = 4,
+	)
+

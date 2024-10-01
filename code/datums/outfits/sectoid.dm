@@ -20,6 +20,11 @@
 		/datum/action/ability/activable/sectoid/mindfray,
 	)
 
+	belt_contents = list(
+		/obj/item/ammo_magazine/rifle/sectoid_rifle = 5,
+		/obj/item/tool/crowbar/red = 1,
+	)
+
 /datum/outfit/job/sectoid/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.set_species("Sectoid")
@@ -29,15 +34,6 @@
 
 	for(var/ability in abilities)
 		H.add_ability(ability)
-
-/datum/outfit/job/sectoid/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/sectoid_rifle, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BELT)
 
 /datum/outfit/job/sectoid/psionic
 	abilities = list(
