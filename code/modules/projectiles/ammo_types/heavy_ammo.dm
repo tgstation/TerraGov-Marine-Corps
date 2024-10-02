@@ -108,7 +108,7 @@
 	max_range = 14
 	damage = 150
 	penetration = 100
-	sundering = 20
+	sundering = 10
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.75
 
@@ -125,7 +125,7 @@
 	max_range = 21
 	damage = 100
 	penetration = 30
-	sundering = 50
+	sundering = 25
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 2 SECONDS, knockback = 3)
@@ -136,7 +136,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
 	damage = 100
 	penetration = 20
-	sundering = 20
+	sundering = 10
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 3 SECONDS, slowdown = 3)
