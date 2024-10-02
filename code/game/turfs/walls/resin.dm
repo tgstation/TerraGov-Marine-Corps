@@ -234,5 +234,5 @@
 	desc = "Weird slime soldified into a wall. Looks very strong."
 	max_upgradable_health = 550
 	max_upgrade_per_tick = 12 //Upgrades faster, but if damaged at all it will be put on cooldown still to help against walling in combat.
-	soft_armor = list(MELEE = 100, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, FIRE = 0, ACID = 0)//better bust out the flamer
+	soft_armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, FIRE = 0, ACID = 0)//better bust out the flamer
 	color = COLOR_WALL_HARDY
