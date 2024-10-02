@@ -5,7 +5,7 @@
 	return COMSIG_KB_ACTIVATED //The return value must be a flag compatible with the signals triggering this.
 
 /// runs equip, quick_equip_used is the # in INVOKE_ASYNC
-/mob/living/carbon/human/proc/do_quick_equip(quick_equip_slot = 0)
+/mob/living/carbon/human/proc/do_quick_equip(quick_equip_slot = NONE)
 	if(incapacitated() || lying_angle)
 		return
 

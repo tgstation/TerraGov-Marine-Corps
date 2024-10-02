@@ -250,45 +250,6 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 	"[ITEM_SLOT_R_HAND]" = "Right hand",
 ))
 
-//=================================================
-
-//Inventory slots - These are mostly used to get items from certain slots
-//Text strings so that the slots can be associated when doing inventory lists.
-/*
-#define SLOT_WEAR_ID 1
-#define SLOT_EARS 2
-#define SLOT_W_UNIFORM 3
-#define SLOT_SHOES 4
-#define SLOT_GLOVES 5
-#define SLOT_BELT 6
-#define SLOT_WEAR_SUIT 7
-#define SLOT_GLASSES 8
-#define SLOT_WEAR_MASK 9
-#define SLOT_HEAD 10
-#define SLOT_BACK 11
-#define SLOT_L_STORE 12
-#define SLOT_R_STORE 13
-#define SLOT_ACCESSORY 14//!!! this is webbing
-#define SLOT_S_STORE 15
-#define SLOT_L_HAND 16
-#define SLOT_R_HAND 17
-#define SLOT_HANDCUFFED 18
-
-#define SLOT_IN_BOOT 19//!!
-#define SLOT_IN_BACKPACK 20//!!
-#define SLOT_IN_SUIT 21//!!
-#define SLOT_IN_ACCESSORY 23//!!
-#define SLOT_IN_HOLSTER 24// !! belt holster
-#define SLOT_IN_B_HOLSTER 25// !! back holster
-#define SLOT_IN_S_HOLSTER 26// !! suit storage holster
-#define SLOT_IN_STORAGE 27// !! currently open storage
-#define SLOT_IN_L_POUCH 28// !!
-#define SLOT_IN_R_POUCH 29// !!
-#define SLOT_IN_HEAD 30// !!
-#define SLOT_IN_BELT 31// !!
-*/
-//=================================================
-
 
 //Inventory slot strings. These are used for icons. (and checking if an item can be equipped in loadouts for some reason??)
 #define slot_back_str "slot_back"
@@ -420,12 +381,14 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 ///Each slot you can draw from, used and messed with in your preferences.
 #define SLOT_DRAW_ORDER list(\
 	ITEM_SLOT_SUITSTORE,\
-	ITEM_SLOT_BELT,\
 	ITEM_SLOT_OCLOTHING,\
-	ITEM_SLOT_ACTIVE_STORAGE,\
+	ITEM_SLOT_ICLOTHING,\
+	ITEM_SLOT_BELT,\
+	ITEM_SLOT_BACK,\
 	ITEM_SLOT_L_POCKET,\
 	ITEM_SLOT_R_POCKET,\
-	ITEM_SLOT_BACK,\
+	ITEM_SLOT_FEET,\
+	ITEM_SLOT_ACTIVE_STORAGE,\
 )
 
 #define SLOT_ALL list(\
@@ -458,111 +421,65 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	ITEM_SLOT_L_POCKET,\
 	ITEM_SLOT_R_POCKET,\
 	ITEM_SLOT_FEET,\
+	ITEM_SLOT_ACTIVE_STORAGE,\
 )
 
 #define SLOT_FLUFF_DRAW list(\
+	"Uniform",\
+	"Suit",\
 	"Suit Storage",\
-	"Suit Inside",\
-	"Belt",\
-	"Back",\
+	"Head",\
 	"Boot",\
-	"Helmet",\
-	"Left Pocket",\
+	"Back",\
+	"Belt",\
 	"Right Pocket",\
-	"Webbing",\
-	"Belt Inside",\
-	"Belt Holster",\
-	"Suit Storage Holster",\
-	"Back Holster",\
+	"Left Pocket",\
+	"Active storage",\
 )
 
 /proc/slot_fluff_to_flag(slot)
 	switch(slot)
+		if("Uniform")
+			return ITEM_SLOT_ICLOTHING
+		if("Suit")
+			return ITEM_SLOT_OCLOTHING
 		if("Suit Storage")
 			return ITEM_SLOT_SUITSTORE
-		if("Suit Inside")
-			return ITEM_SLOT_OCLOTHING
-		if("Belt")
-			return ITEM_SLOT_BELT
-		if("Back")
-			return ITEM_SLOT_BACK
+		if("Head")
+			return ITEM_SLOT_HEAD
 		if("Boot")
 			return ITEM_SLOT_FEET
-		/*
-		if("Backpack")
-			return SLOT_IN_BACKPACK
-		if("Helmet")
-			return SLOT_IN_HEAD
-		*/
-		if("Left Pocket")
-			return ITEM_SLOT_L_POCKET
-		/* // ivan todo
-		if("Left Pocket Inside")
-			return SLOT_IN_L_POUCH
-		*/
+		if("Back")
+			return ITEM_SLOT_BACK
+		if("Belt")
+			return ITEM_SLOT_BELT
 		if("Right Pocket")
 			return ITEM_SLOT_R_POCKET
-		/*
-		if("Right Pocket Inside")
-			return SLOT_IN_R_POUCH
-		if("Webbing")
-			return SLOT_IN_ACCESSORY
-		if("Belt Inside")
-			return SLOT_IN_BELT
-		if("Belt Holster")
-			return SLOT_IN_HOLSTER
-		if("Suit Storage Holster")
-			return SLOT_IN_S_HOLSTER
-		if("Back Holster")
-			return SLOT_IN_B_HOLSTER
-		*/
+		if("Left Pocket")
+			return ITEM_SLOT_L_POCKET
 		if("Active Storage")
 			return ITEM_SLOT_ACTIVE_STORAGE
 
 /proc/slot_flag_to_fluff(slot)
 	switch(slot)
+		if(ITEM_SLOT_ICLOTHING)
+			return "Uniform"
+		if(ITEM_SLOT_OCLOTHING)
+			return "Suit"
 		if(ITEM_SLOT_SUITSTORE)
 			return "Suit Storage"
-		/*
-		if(SLOT_WEAR_SUIT)
-			return "Suit Inside"
-		*/
-		if(ITEM_SLOT_BELT)
-			return "Belt"
-		/*
-		if(SLOT_IN_BELT)
-			return "Belt Inside"
-		*/
-		if(ITEM_SLOT_BACK)
-			return "Back"
+		if(ITEM_SLOT_HEAD)
+			return "Head"
 		if(ITEM_SLOT_FEET)
 			return "Boot"
-		/*
-		if(SLOT_IN_BACKPACK)
-			return "Backpack"
-		if(SLOT_IN_HEAD)
-			return "Helmet"
-		*/
+		if(ITEM_SLOT_BACK)
+			return "Back"
+		if(ITEM_SLOT_BELT)
+			return "Belt"
+		if(ITEM_SLOT_R_POCKET)
+			return "Right Pocket"
 		if(ITEM_SLOT_L_POCKET)
 			return "Left Pocket"
-		/*
-		if(SLOT_IN_L_POUCH)
-			return "Left Pocket Inside"
-		*/
-		if(ITEM_SLOT_POCKET)
-			return "Right Pocket"
-		/*
-		if(SLOT_IN_R_POUCH)
-			return "Right Pocket Inside"
-		if(SLOT_IN_ACCESSORY)
-			return "Webbing"
-		if(SLOT_IN_HOLSTER)
-			return "Belt Holster"
-		if(SLOT_IN_S_HOLSTER)
-			return "Suit Storage Holster"
-		if(SLOT_IN_B_HOLSTER)
-			return "Back Holster"
-		if(SLOT_IN_STORAGE)
+		if(ITEM_SLOT_ACTIVE_STORAGE)
 			return "Active Storage"
-		*/
 

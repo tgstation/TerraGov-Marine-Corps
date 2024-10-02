@@ -292,23 +292,7 @@
 
 	if(!I)
 		return FALSE
-/*
-	//This is quite horrible, there's probably a better way to do it.
-	//Each actual inventory slot has more than one slot define associated with it.
-	//The defines below are for specific items in specific slots, which allows for a much more specific draw order, i.e. drawing a weapon from a slot which would otherwise be lower in the order
-	if(slot == SLOT_IN_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon))))
-		return FALSE
-	if(slot == SLOT_IN_S_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/belt/knifepouch))))
-		return FALSE
-	if(slot == SLOT_IN_B_HOLSTER && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon))))
-		return FALSE
-	if(slot == SLOT_IN_ACCESSORY && (!istype(I, /obj/item/clothing/under)))
-		return FALSE
-	if(slot == SLOT_IN_L_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
-		return FALSE
-	if(slot == SLOT_IN_R_POUCH && (!(istype(I, /obj/item/storage/holster) || istype(I, /obj/item/weapon) || istype(I, /obj/item/storage/pouch/pistol))))
-		return FALSE
-*/
+
 	//Sends quick equip signal, if our signal is not handled/blocked we continue to the normal behaviour
 	var/return_value = SEND_SIGNAL(I, COMSIG_ITEM_QUICK_EQUIP, src)
 	switch(return_value)
