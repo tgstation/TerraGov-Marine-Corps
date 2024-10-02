@@ -819,6 +819,7 @@
 /obj/item/storage/box/visual/magazine/compact/standard_heavysmg
 	name = "SMG-45 magazine box"
 	desc = "A box specifically designed to hold a large amount of SMG-45 magazines."
+	closed_overlay = "mag_box_small_overlay_smg45"
 
 /obj/item/storage/box/visual/magazine/compact/standard_heavysmg/Initialize(mapload, ...)
 	. = ..()
