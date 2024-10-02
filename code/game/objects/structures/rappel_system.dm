@@ -380,13 +380,10 @@
 /obj/effect/rappel_rope/tadpole/attack_hand(mob/living/user)
 	. = ..()
 
-	var/turf/user_turf = get_turf(usr)
-	var/turf/rope_turf = get_turf(src)
-
 	if(parent_system.rappel_condition < RAPPEL_CONDITION_GOOD)
 		return
 
-	if(LinkBlocked(user_turf, rope_turf))
+	if(LinkBlocked(get_turf(user), get_turf(src)))
 		user.balloon_alert(user, "Something is blocking you from reaching the rappel rope!")
 		return
 	user.balloon_alert_to_viewers("[user] begins clipping to the rappel...", "You begin clipping to the rappel...")
