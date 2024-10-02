@@ -1,4 +1,0 @@
-author: "Vondiech/Citruses"
-delete-after: True
-changes:
-  - balance: "Hyposprays and Autoinjectors now have a 2 second delay on trying to inject someone in a different faction than yours."

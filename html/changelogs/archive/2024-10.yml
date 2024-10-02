@@ -9,3 +9,19 @@
   - balance: GL54 smoke ammos no longer shrapnel teammates.
   jonash07:
   - balance: ion storm (communication blackout) has been removed as a random event
+2024-10-02:
+  Isy232:
+  - balance: Explosive Vests no longer in marine vendors.
+  Joe13413:
+  - balance: Devastation does 100 more damage to xenomorphs
+  Notamaniac:
+  - spellcheck: Runner evasion ability text updated to clarify that you can't slash
+      while evading, and that point blank shots still hit you.
+  Vondiech/Citruses:
+  - balance: Hyposprays and Autoinjectors now have a 2 second delay on trying to inject
+      someone in a different faction than yours.
+  ivanmixo:
+  - balance: The chemistry machines are no longer offlimits to marines (fumble still
+      applies)
+  - balance: The chemistry door is no longer access locked
+  - balance: You can no longer refill partially used up oxycodone injectors

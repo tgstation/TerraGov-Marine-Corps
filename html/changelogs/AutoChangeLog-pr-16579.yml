@@ -1,6 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - balance: "The chemistry machines are no longer offlimits to marines (fumble still applies)"
-  - balance: "The chemistry door is no longer access locked"
-  - balance: "You can no longer refill partially used up oxycodone injectors"
