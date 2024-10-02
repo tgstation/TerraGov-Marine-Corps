@@ -4,12 +4,12 @@
 		return
 	if(I == back)
 		back = null
-		I.unequipped(src, SLOT_BACK)
+		I.unequipped(src, ITEM_SLOT_BACK)
 		update_inv_back()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_mask)
 		wear_mask = null
-		I.unequipped(src, SLOT_WEAR_MASK)
+		I.unequipped(src, ITEM_SLOT_MASK)
 		wear_mask_update(I)
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == handcuffed)
@@ -60,11 +60,11 @@
 		drop_all_held_items()
 		stop_pulling()
 		handcuffed = restraints
-		restraints.equipped(src, SLOT_HANDCUFFED)
+		restraints.equipped(src, ITEM_SLOT_HANDCUFF)
 		handcuffed.RegisterSignal(src, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against))
 	else if(handcuffed)
 		handcuffed.UnregisterSignal(src, COMSIG_LIVING_DO_RESIST)
-		handcuffed.unequipped(src, SLOT_HANDCUFFED)
+		handcuffed.unequipped(src, ITEM_SLOT_HANDCUFF)
 	update_inv_handcuffed()
 
 ///Updates the mask slot icon

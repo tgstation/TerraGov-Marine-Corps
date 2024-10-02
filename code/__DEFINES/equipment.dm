@@ -226,6 +226,7 @@
 #define ITEM_SLOT_HANDCUFF (1<<14) //the slot for handcuffs
 #define ITEM_SLOT_L_HAND (1<<15) //left hand
 #define ITEM_SLOT_R_HAND (1<<16) //right hand
+	#define ITEM_SLOT_HANDS (ITEM_SLOT_L_HAND|ITEM_SLOT_R_HAND) //a combo of the above
 #define ITEM_SLOT_ACTIVE_STORAGE (1<<17) // the currently open/active storage container 
 
 ///Inventory slot bits to plain english strings
@@ -307,100 +308,28 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 #define slot_s_store_str "slot_s_store"
 #define slot_l_store_str "slot_l_store"
 #define slot_r_store_str "slot_r_store"
-#define slot_tie_str "slot_tie"
 
 ///Correspondance between slot strings and slot numbers
+//ivan todo make sure webbings work with loadouts
 GLOBAL_LIST_INIT(slot_str_to_slot, list(
-	"slot_back" = SLOT_BACK,
-	"slot_l_hand" = SLOT_L_HAND,
-	"slot_r_hand" = SLOT_R_HAND,
-	"slot_w_uniform" = SLOT_W_UNIFORM,
-	"slot_head" = SLOT_HEAD,
-	"slot_suit" = SLOT_WEAR_SUIT,
-	"slot_ear" = SLOT_EARS,
-	"slot_belt" = SLOT_BELT,
-	"slot_shoes" = SLOT_SHOES,
-	"slot_wear_mask" = SLOT_WEAR_MASK,
-	"slot_handcuffed" = SLOT_HANDCUFFED,
-	"slot_wear_id" = SLOT_WEAR_ID,
-	"slot_gloves" = SLOT_GLOVES,
-	"slot_glasses" = SLOT_GLASSES,
-	"slot_s_store" = SLOT_S_STORE,
-	"slot_l_store" = SLOT_L_STORE,
-	"slot_r_store" = SLOT_R_STORE,
-	"slot_tie" = SLOT_ACCESSORY,
+	"slot_back" = ITEM_SLOT_BACK,
+	"slot_l_hand" = ITEM_SLOT_L_HAND,
+	"slot_r_hand" = ITEM_SLOT_R_HAND,
+	"slot_w_uniform" = ITEM_SLOT_ICLOTHING,
+	"slot_head" = ITEM_SLOT_HEAD,
+	"slot_suit" = ITEM_SLOT_OCLOTHING,
+	"slot_ear" = ITEM_SLOT_EARS,
+	"slot_belt" = ITEM_SLOT_BELT,
+	"slot_shoes" = ITEM_SLOT_FEET,
+	"slot_wear_mask" = ITEM_SLOT_MASK,
+	"slot_handcuffed" = ITEM_SLOT_HANDCUFF,
+	"slot_wear_id" = ITEM_SLOT_ID,
+	"slot_gloves" = ITEM_SLOT_GLOVES,
+	"slot_glasses" = ITEM_SLOT_EYES,
+	"slot_s_store" = ITEM_SLOT_SUITSTORE,
+	"slot_l_store" = ITEM_SLOT_L_POCKET,
+	"slot_r_store" = ITEM_SLOT_R_POCKET,
 ))
-
-//I hate that this has to exist
-/proc/slotdefine2slotbit(slotdefine) //Keep this up to date with the value of SLOT BITMASKS and SLOTS (the two define sections above)
-	. = 0
-	switch(slotdefine)
-		if(SLOT_BACK)
-			. = ITEM_SLOT_BACK
-		if(SLOT_WEAR_MASK)
-			. = ITEM_SLOT_MASK
-		if(SLOT_BELT)
-			. = ITEM_SLOT_BELT
-		if(SLOT_WEAR_ID)
-			. = ITEM_SLOT_ID
-		if(SLOT_EARS)
-			. = ITEM_SLOT_EARS
-		if(SLOT_GLASSES)
-			. = ITEM_SLOT_EYES
-		if(SLOT_GLOVES)
-			. = ITEM_SLOT_GLOVES
-		if(SLOT_HEAD)
-			. = ITEM_SLOT_HEAD
-		if(SLOT_SHOES)
-			. = ITEM_SLOT_FEET
-		if(SLOT_WEAR_SUIT)
-			. = ITEM_SLOT_OCLOTHING
-		if(SLOT_S_STORE)
-			. = ITEM_SLOT_SUITSTORE
-		if(SLOT_W_UNIFORM)
-			. = ITEM_SLOT_ICLOTHING
-		if(SLOT_R_STORE)
-			. = ITEM_SLOT_R_POCKET
-		if(SLOT_L_STORE)
-			. = ITEM_SLOT_L_POCKET
-
-/proc/slotbit2slotdefine(slotbit)
-	. = 0
-	switch(slotbit)
-		if(ITEM_SLOT_OCLOTHING)
-			. = SLOT_WEAR_SUIT
-		if(ITEM_SLOT_ICLOTHING)
-			. = SLOT_W_UNIFORM
-		if(ITEM_SLOT_GLOVES)
-			. = SLOT_GLOVES
-		if(ITEM_SLOT_EYES)
-			. = SLOT_GLASSES
-		if(ITEM_SLOT_EARS)
-			. = SLOT_EARS
-		if(ITEM_SLOT_MASK)
-			. = SLOT_WEAR_MASK
-		if(ITEM_SLOT_HEAD)
-			. = SLOT_HEAD
-		if(ITEM_SLOT_FEET)
-			. = SLOT_SHOES
-		if(ITEM_SLOT_ID)
-			. = SLOT_WEAR_ID
-		if(ITEM_SLOT_BELT)
-			. = SLOT_BELT
-		if(ITEM_SLOT_BACK)
-			. = SLOT_BACK
-		if(ITEM_SLOT_R_POCKET)
-			. = SLOT_R_STORE
-		if(ITEM_SLOT_L_POCKET)
-			. = SLOT_L_STORE
-		if(ITEM_SLOT_SUITSTORE)
-			. = SLOT_S_STORE
-		if(ITEM_SLOT_HANDCUFF)
-			. = SLOT_HANDCUFFED
-		if(ITEM_SLOT_L_HAND)
-			. = SLOT_L_HAND
-		if(ITEM_SLOT_R_HAND)
-			. = SLOT_R_HAND
 
 //=================================================
 // bitflags for clothing parts
@@ -470,112 +399,66 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 #define WEIGHT_CLASS_BULKY 4 //Items that can be weilded or equipped but not stored in an inventory, ex: Defibrillator, Backpack, Space Suits
 #define WEIGHT_CLASS_HUGE 5 //Usually represents objects that require two hands to operate, ex: Shotgun, Two Handed Melee Weapons
 #define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
-
+// ivan todo uhh look at the blame
 #define SLOT_EQUIP_ORDER list(\
-	SLOT_WEAR_ID,\
-	SLOT_GLASSES,\
-	SLOT_W_UNIFORM,\
-	SLOT_ACCESSORY,\
-	SLOT_WEAR_SUIT,\
-	SLOT_WEAR_MASK,\
-	SLOT_HEAD,\
-	SLOT_SHOES,\
-	SLOT_GLOVES,\
-	SLOT_EARS,\
-	SLOT_BELT,\
-	SLOT_IN_BOOT,\
-	SLOT_IN_L_POUCH,\
-	SLOT_IN_R_POUCH,\
-	SLOT_IN_HEAD,\
-	SLOT_IN_ACCESSORY,\
-	SLOT_IN_HOLSTER,\
-	SLOT_IN_S_HOLSTER,\
-	SLOT_IN_B_HOLSTER,\
-	SLOT_BACK,\
-	SLOT_S_STORE,\
-	SLOT_L_STORE,\
-	SLOT_R_STORE,\
-	SLOT_IN_STORAGE,\
-	SLOT_IN_SUIT,\
-	SLOT_IN_BELT,\
-	SLOT_IN_BACKPACK\
+	ITEM_SLOT_ID,\
+	ITEM_SLOT_EYES,\
+	ITEM_SLOT_ICLOTHING,\
+	ITEM_SLOT_OCLOTHING,\
+	ITEM_SLOT_MASK,\
+	ITEM_SLOT_HEAD,\
+	ITEM_SLOT_FEET,\
+	ITEM_SLOT_GLOVES,\
+	ITEM_SLOT_EARS,\
+	ITEM_SLOT_BELT,\
+	ITEM_SLOT_BACK,\
+	ITEM_SLOT_SUITSTORE,\
+	ITEM_SLOT_L_POCKET,\
+	ITEM_SLOT_R_POCKET,\
 	)
 
 ///Each slot you can draw from, used and messed with in your preferences.
 #define SLOT_DRAW_ORDER list(\
-	SLOT_IN_HOLSTER,\
-	SLOT_IN_S_HOLSTER,\
-	SLOT_IN_B_HOLSTER,\
-	SLOT_IN_BACKPACK, \
-	SLOT_IN_ACCESSORY,\
-	SLOT_S_STORE,\
-	SLOT_IN_L_POUCH,\
-	SLOT_IN_R_POUCH,\
-	SLOT_BELT,\
-	SLOT_IN_BELT,\
-	SLOT_WEAR_SUIT,\
-	SLOT_IN_STORAGE,\
-	SLOT_L_STORE,\
-	SLOT_R_STORE,\
-	SLOT_BACK,\
-	SLOT_IN_BOOT,\
-	SLOT_IN_HEAD\
+	ITEM_SLOT_SUITSTORE,\
+	ITEM_SLOT_BELT,\
+	ITEM_SLOT_OCLOTHING,\
+	ITEM_SLOT_ACTIVE_STORAGE,\
+	ITEM_SLOT_L_POCKET,\
+	ITEM_SLOT_R_POCKET,\
+	ITEM_SLOT_BACK,\
 )
 
 #define SLOT_ALL list(\
-	SLOT_WEAR_ID,\
-	SLOT_EARS,\
-	SLOT_W_UNIFORM,\
-	SLOT_SHOES,\
-	SLOT_GLOVES,\
-	SLOT_BELT,\
-	SLOT_WEAR_SUIT,\
-	SLOT_GLASSES,\
-	SLOT_WEAR_MASK,\
-	SLOT_HEAD,\
-	SLOT_BACK,\
-	SLOT_L_STORE,\
-	SLOT_R_STORE,\
-	SLOT_ACCESSORY,\
-	SLOT_S_STORE,\
-	SLOT_L_HAND,\
-	SLOT_R_HAND,\
-	SLOT_HANDCUFFED,\
-	SLOT_IN_BOOT,\
-	SLOT_IN_BACKPACK,\
-	SLOT_IN_SUIT,\
-	SLOT_IN_ACCESSORY,\
-	SLOT_IN_HOLSTER,\
-	SLOT_IN_B_HOLSTER,\
-	SLOT_IN_S_HOLSTER,\
-	SLOT_IN_STORAGE,\
-	SLOT_IN_L_POUCH,\
-	SLOT_IN_R_POUCH,\
-	SLOT_IN_HEAD,\
-	SLOT_IN_BELT,\
+	ITEM_SLOT_ID,\
+	ITEM_SLOT_EARS,\
+	ITEM_SLOT_ICLOTHING,\
+	ITEM_SLOT_FEET,\
+	ITEM_SLOT_GLOVES,\
+	ITEM_SLOT_BELT,\
+	ITEM_SLOT_OCLOTHING,\
+	ITEM_SLOT_EYES,\
+	ITEM_SLOT_MASK,\
+	ITEM_SLOT_HEAD,\
+	ITEM_SLOT_BACK,\
+	ITEM_SLOT_L_POCKET,\
+	ITEM_SLOT_R_POCKET,\
+	ITEM_SLOT_SUITSTORE,\
+	ITEM_SLOT_L_HAND,\
+	ITEM_SLOT_R_HAND,\
+	ITEM_SLOT_HANDCUFF,\
 )
 
 /// A list of equip slots that are valid for quick equip preferences
 #define VALID_EQUIP_SLOTS list(\
-	SLOT_S_STORE,\
-	SLOT_WEAR_SUIT,\
-	SLOT_BELT,\
-	SLOT_BACK,\
-	SLOT_IN_BACKPACK,\
-	SLOT_IN_BOOT,\
-	SLOT_IN_HEAD,\
-	SLOT_L_STORE,\
-	SLOT_R_STORE,\
-	SLOT_IN_ACCESSORY,\
-	SLOT_IN_BELT,\
-	SLOT_IN_HOLSTER,\
-	SLOT_IN_S_HOLSTER,\
-	SLOT_IN_B_HOLSTER,\
+	ITEM_SLOT_SUITSTORE,\
+	ITEM_SLOT_OCLOTHING,\
+	ITEM_SLOT_ICLOTHING,\
+	ITEM_SLOT_BELT,\
+	ITEM_SLOT_BACK,\
+	ITEM_SLOT_L_POCKET,\
+	ITEM_SLOT_R_POCKET,\
+	ITEM_SLOT_FEET,\
 )
-
-#define ITEM_NOT_EQUIPPED 0
-#define ITEM_EQUIPPED_CARRIED 1 //To hands, a storage or the likes.
-#define ITEM_EQUIPPED_WORN 2 //Actually worn on the body.
 
 #define SLOT_FLUFF_DRAW list(\
 	"Suit Storage",\
@@ -596,25 +479,30 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 /proc/slot_fluff_to_flag(slot)
 	switch(slot)
 		if("Suit Storage")
-			return SLOT_S_STORE
+			return ITEM_SLOT_SUITSTORE
 		if("Suit Inside")
-			return SLOT_WEAR_SUIT
+			return ITEM_SLOT_OCLOTHING
 		if("Belt")
-			return SLOT_BELT
+			return ITEM_SLOT_BELT
 		if("Back")
-			return SLOT_BACK
+			return ITEM_SLOT_BACK
 		if("Boot")
-			return SLOT_IN_BOOT
+			return ITEM_SLOT_FEET
+		/*
 		if("Backpack")
 			return SLOT_IN_BACKPACK
 		if("Helmet")
 			return SLOT_IN_HEAD
+		*/
 		if("Left Pocket")
-			return SLOT_L_STORE
+			return ITEM_SLOT_L_POCKET
+		/* // ivan todo
 		if("Left Pocket Inside")
 			return SLOT_IN_L_POUCH
+		*/
 		if("Right Pocket")
-			return SLOT_R_STORE
+			return ITEM_SLOT_R_POCKET
+		/*
 		if("Right Pocket Inside")
 			return SLOT_IN_R_POUCH
 		if("Webbing")
@@ -627,33 +515,43 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return SLOT_IN_S_HOLSTER
 		if("Back Holster")
 			return SLOT_IN_B_HOLSTER
+		*/
 		if("Active Storage")
-			return SLOT_IN_STORAGE
+			return ITEM_SLOT_ACTIVE_STORAGE
 
 /proc/slot_flag_to_fluff(slot)
 	switch(slot)
-		if(SLOT_S_STORE)
+		if(ITEM_SLOT_SUITSTORE)
 			return "Suit Storage"
+		/*
 		if(SLOT_WEAR_SUIT)
 			return "Suit Inside"
-		if(SLOT_BELT)
+		*/
+		if(ITEM_SLOT_BELT)
 			return "Belt"
+		/*
 		if(SLOT_IN_BELT)
 			return "Belt Inside"
-		if(SLOT_BACK)
+		*/
+		if(ITEM_SLOT_BACK)
 			return "Back"
-		if(SLOT_IN_BOOT)
+		if(ITEM_SLOT_FEET)
 			return "Boot"
+		/*
 		if(SLOT_IN_BACKPACK)
 			return "Backpack"
 		if(SLOT_IN_HEAD)
 			return "Helmet"
-		if(SLOT_L_STORE)
+		*/
+		if(ITEM_SLOT_L_POCKET)
 			return "Left Pocket"
+		/*
 		if(SLOT_IN_L_POUCH)
 			return "Left Pocket Inside"
-		if(SLOT_R_STORE)
+		*/
+		if(ITEM_SLOT_POCKET)
 			return "Right Pocket"
+		/*
 		if(SLOT_IN_R_POUCH)
 			return "Right Pocket Inside"
 		if(SLOT_IN_ACCESSORY)
@@ -666,4 +564,5 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 			return "Back Holster"
 		if(SLOT_IN_STORAGE)
 			return "Active Storage"
+		*/
 

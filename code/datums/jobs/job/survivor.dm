@@ -7,30 +7,30 @@
 	skills_type = /datum/skills/civilian/survivor
 	faction = FACTION_TERRAGOV
 
-/datum/job/survivor/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+/datum/job/survivor/after_spawn(mob/living/carbon/spawned_carbon, mob/M, latejoin = FALSE)
 	. = ..()
-
+	//todo this should be handled better
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-		C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(C), SLOT_HEAD)
-		C.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(C), SLOT_WEAR_SUIT)
-		C.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(C), SLOT_WEAR_MASK)
-		C.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(C), SLOT_SHOES)
-		C.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(C), SLOT_GLOVES)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(spawned_carbon), ITEM_SLOT_HEAD)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(spawned_carbon), ITEM_SLOT_OCLOTHING)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(spawned_carbon), ITEM_SLOT_MASK)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(spawned_carbon), ITEM_SLOT_FEET)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(spawned_carbon), ITEM_SLOT_GLOVES)
 
 	var/weapons = pick(SURVIVOR_WEAPONS)
-	var/obj/item/weapon/W = weapons[1]
-	var/obj/item/ammo_magazine/A = weapons[2]
-	C.equip_to_slot_or_del(new /obj/item/belt_harness(C), SLOT_BELT)
-	C.put_in_hands(new W(C))
-	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
-	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
-	C.equip_to_slot_or_del(new A(C), SLOT_IN_BACKPACK)
+	var/obj/item/weapon/picked_weapon = weapons[1]
+	var/obj/item/ammo_magazine/picked_ammo = weapons[2]
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/belt_harness(spawned_carbon), ITEM_SLOT_BELT)
+	spawned_carbon.put_in_hands(new picked_weapon(spawned_carbon))
+	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), ITEM_SLOT_BACK, FALSE, TRUE)
+	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), ITEM_SLOT_BACK, FALSE, TRUE)
+	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), ITEM_SLOT_BACK, FALSE, TRUE)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(spawned_carbon), ITEM_SLOT_BACK, FALSE, TRUE)
 
-	C.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(C), SLOT_GLASSES)
-	C.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(C), SLOT_R_STORE)
-	C.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(C), SLOT_L_STORE)
-	C.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(C), SLOT_IN_BACKPACK)
-	C.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/rugged(C), SLOT_HEAD)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(spawned_carbon), ITEM_SLOT_EYES)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(spawned_carbon), ITEM_SLOT_R_POCKET)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(spawned_carbon), ITEM_SLOT_L_POCKET)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/rugged(spawned_carbon), ITEM_SLOT_HEAD)
 
 	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_PRISON_STATION)

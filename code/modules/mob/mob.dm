@@ -228,8 +228,10 @@
 /mob/proc/equip_to_slot_if_possible(obj/item/item_to_equip, slot, ignore_delay = TRUE, del_on_fail = FALSE, warning = TRUE, override_nodrop = FALSE, into_storage)
 	if(!istype(item_to_equip) || QDELETED(item_to_equip)) //This qdeleted is to prevent stupid behavior with things that qdel during init, like say stacks
 		return FALSE
-	if(isnull(into_storage) && !!get_item_by_slot(slot)) //if a specific into_storage value isn't provided we try to look for storage in the slot
-		into_storage = TRUE
+	if(isnull(into_storage)) //if a specific into_storage value isn't provided we try to look for storage in the slot
+		into_storage = FALSE
+		if(!!get_item_by_slot(slot))
+			into_storage = TRUE
 	if(!item_to_equip.mob_can_equip(src, slot, warning, override_nodrop, into_storage))
 		if(del_on_fail)
 			qdel(item_to_equip)
@@ -246,12 +248,12 @@
 		if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
 			item_to_equip.unwield(src)
 		return TRUE
-	else
-		equip_to_slot(item_to_equip, slot, into_storage) //This proc should not ever fail.
-		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
-			item_to_equip.unwield(src)
-		return TRUE
+
+	equip_to_slot(item_to_equip, slot, into_storage) //This proc should not ever fail.
+	//This will unwield items -without- triggering lights.
+	if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
+		item_to_equip.unwield(src)
+	return TRUE
 
 /**
 *This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
@@ -263,7 +265,7 @@
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, override_nodrop = FALSE, into_storage)
-	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, FALSE, override_nodrop, into_storage)
+	return equip_to_slot_if_possible(W, slot, TRUE, TRUE, FALSE, override_nodrop, into_storage)
 
 /// Tries to equip an item to the slot provided, otherwise tries to put it in hands, if hands are full the item is deleted
 /mob/proc/equip_to_slot_or_hand(obj/item/W, slot, override_nodrop = FALSE)

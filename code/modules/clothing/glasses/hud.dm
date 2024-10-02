@@ -17,7 +17,7 @@
 /obj/item/clothing/glasses/hud/equipped(mob/user, slot)
 	if(!ishuman(user))
 		return ..()
-	if(slot == SLOT_GLASSES)
+	if(slot & ITEM_SLOT_EYES)
 		if(active)
 			activate_hud(user)
 	else if(affected_user)

@@ -317,7 +317,7 @@
 		if(!G || !gear.Find(i))
 			continue
 		if(!equip_to_slot_or_del(new G.path, G.slot)) //try to put in the slot it says its supposed to go, if you can't: put it in a bag
-			equip_to_slot_or_del(new G.path, SLOT_IN_BACKPACK)
+			equip_to_slot_or_del(new G.path, ITEM_SLOT_BACK, FALSE, TRUE)
 
 /mob/living/carbon/human/update_sight()
 	if(!client)

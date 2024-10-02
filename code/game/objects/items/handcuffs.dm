@@ -127,7 +127,7 @@
 
 		if (ishuman(C))
 			var/mob/living/carbon/human/H = C
-			if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
+			if (!H.has_limb_for_slot(ITEM_SLOT_HANDCUFF))
 				to_chat(user, span_warning("\The [H] needs at least two wrists before you can cuff them together!"))
 				return
 

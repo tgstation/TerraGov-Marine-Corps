@@ -25,7 +25,7 @@
 		for(var/vname in edits)
 			I.vv_edit_var(vname,edits[vname])
 	//Apply access
-	var/obj/item/id_slot = H.get_item_by_slot(SLOT_WEAR_ID)
+	var/obj/item/id_slot = H.get_item_by_slot(ITEM_SLOT_ID)
 	if(id_slot)
 		var/obj/item/card/id/card = id_slot
 		var/datum/job/J = H.job

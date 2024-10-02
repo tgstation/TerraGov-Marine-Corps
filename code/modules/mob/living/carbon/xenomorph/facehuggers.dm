@@ -554,7 +554,7 @@
 
 /obj/item/clothing/mask/facehugger/equipped(mob/living/user, slot)
 	. = ..()
-	if(slot != SLOT_WEAR_MASK || stat == DEAD)
+	if(!(slot & ITEM_SLOT_MASK) || stat == DEAD)
 		reset_attach_status(FALSE)
 		return
 	if(ishuman(user))

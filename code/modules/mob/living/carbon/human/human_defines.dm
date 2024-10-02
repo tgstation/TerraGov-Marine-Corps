@@ -67,7 +67,7 @@
 	//Equipment slots. These are all references to items.
 
 	///The item currently being worn in the suit slot (usually armor)
-	var/obj/item/wear_suit
+	var/obj/item/clothing/suit/wear_suit
 	///The item currently inside the suit storage slot (not inside the armor itself)
 	var/obj/item/s_store
 	///The jumpsuit/uniform that's currently being worn.
@@ -81,7 +81,7 @@
 	///The glasses being worn.
 	var/obj/item/clothing/glasses/glasses
 	///The item currently on the character's head.
-	var/obj/item/head
+	var/obj/item/clothing/head/head
 	///The headset/ear item being worn.
 	var/obj/item/wear_ear
 	///The ID being worn.

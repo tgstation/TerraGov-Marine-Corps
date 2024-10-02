@@ -90,14 +90,14 @@
 
 /datum/outfit/New()
 	. = ..()
-	container_list += backpack_contents
-	container_list += belt_contents
-	container_list += shoe_contents
-	container_list += suit_contents
-	container_list += webbing_contents
-	container_list += head_contents
-	container_list += r_pocket_contents
-	container_list += l_pocket_contents
+	container_list["slot_back"] = backpack_contents
+	container_list["slot_belt"] = belt_contents
+	container_list["slot_shoes"] = shoe_contents
+	container_list["slot_suit"] = suit_contents
+	container_list["slot_w_uniform"] = webbing_contents
+	container_list["slot_head"] = head_contents
+	container_list["slot_r_store"] = r_pocket_contents
+	container_list["slot_l_store"] = l_pocket_contents
 
 /// This gets ran before we equip any items from the variables
 /datum/outfit/proc/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -151,16 +151,14 @@
 		if(r_pocket)
 			equipping_human.equip_to_slot_or_del(new r_pocket(equipping_human), ITEM_SLOT_R_POCKET, override_nodrop = TRUE)
 
-		for(var/list/content_list in container_list) // ivan todo make sure to test this
-			if(!length(content_list))
-				continue
-			for(var/path in content_list)
-				var/number = content_list[path]
+		for(var/slot in container_list)
+			for(var/path in container_list[slot])
+				var/number = container_list[slot][path]
 				if(!isnum(number))//Default to 1
 					number = 1
 				for(var/i in 1 to number)
-					if(!equipping_human.equip_to_slot_or_del(new path(equipping_human), ITEM_SLOT_BACK, TRUE, TRUE))
-						stack_trace("Failed to place item of type [path] from list [vars["[content_list]"]] in outfit of type [type]!")
+					if(!equipping_human.equip_to_slot_or_del(new path(equipping_human), GLOB.slot_str_to_slot[slot], TRUE, TRUE))
+						stack_trace("Failed to place item of type [path] from list in slot [slot] in outfit of type [type]!")
 
 	post_equip(equipping_human, visualsOnly)
 

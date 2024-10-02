@@ -291,9 +291,9 @@
 	var/mutable_appearance/stolen_appearance
 	///A list of slot to check for items, in order of priority
 	var/static/list/slots_to_steal_from = list(
-		SLOT_S_STORE,
-		SLOT_BACK,
-		SLOT_SHOES,
+		ITEM_SLOT_SUITSTORE,
+		ITEM_SLOT_BACK,
+		ITEM_SLOT_FEET,
 	)
 
 /datum/action/ability/activable/xeno/snatch/action_activate()

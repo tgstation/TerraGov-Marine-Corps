@@ -363,11 +363,11 @@
 	if(!recharge_timer)
 		return
 	examine_list += span_warning("Charging is delayed! It will start recharging again in [timeleft(recharge_timer) / 10] seconds!")
-
+// ivan todo all the stuff in here needs testing
 ///Handles starting the shield when the parent is equiped to the correct slot.
 /obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
-	if(slot != SLOT_WEAR_SUIT || !isliving(equipper))
+	if(!(slot & ITEM_SLOT_OCLOTHING) || !isliving(equipper))
 		return
 	if(!recharge_timer)
 		START_PROCESSING(SSobj, src)
@@ -378,7 +378,7 @@
 ///Handles removing the shield when the parent is unequipped
 /obj/item/armor_module/module/eshield/proc/handle_unequip(datum/source, mob/unequipper, slot)
 	SIGNAL_HANDLER
-	if(slot != SLOT_WEAR_SUIT || !isliving(unequipper))
+	if(slot != ITEM_SLOT_OCLOTHING || !isliving(unequipper))
 		return
 	UnregisterSignal(unequipper, COMSIG_LIVING_SHIELDCALL)
 	STOP_PROCESSING(SSobj, src)
@@ -518,7 +518,7 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
-	prefered_slot = SLOT_HEAD
+	prefered_slot = ITEM_SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_xn")
 	///Mod for extra eye protection when activated.
@@ -571,7 +571,7 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
-	prefered_slot = SLOT_HEAD
+	prefered_slot = ITEM_SLOT_HEAD
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_superior_xn")
 
 /obj/item/armor_module/module/welding/superior/on_attach(obj/item/attaching_to, mob/user)
@@ -590,7 +590,7 @@
 	zoom_viewsize = 12
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	prefered_slot = SLOT_HEAD
+	prefered_slot = ITEM_SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
@@ -636,7 +636,7 @@
 	worn_icon_state = "artemis_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
-	prefered_slot = SLOT_HEAD
+	prefered_slot = ITEM_SLOT_HEAD
 
 /obj/item/armor_module/module/artemis/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -654,7 +654,7 @@
 	worn_icon_state = "antenna_head_a"
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	prefered_slot = SLOT_HEAD
+	prefered_slot = ITEM_SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
 	///If the comms system is configured.
 	var/comms_setup = FALSE
@@ -662,7 +662,7 @@
 	var/startup_timer_id
 
 /obj/item/armor_module/module/antenna/handle_actions(datum/source, mob/user, slot)
-	if(slot != prefered_slot)
+	if(!(slot & prefered_slot))
 		UnregisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK)
 		comms_setup = COMMS_OFF
 		if(startup_timer_id)
@@ -715,7 +715,7 @@
 	icon_state = "night_vision"
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_NO_HANDS
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	prefered_slot = SLOT_HEAD
+	prefered_slot = ITEM_SLOT_HEAD
 	slowdown = 0.1
 	///The goggles this module deploys
 	var/obj/item/clothing/glasses/night_vision/mounted/attached_goggles
@@ -775,7 +775,7 @@
 ///Called when the parent is equipped; deploys the goggles
 /obj/item/armor_module/module/night_vision/proc/deploy(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(!ishuman(user) || prefered_slot != slot)	//Must be human for the following procs to work
+	if(!ishuman(user) || !(prefered_slot & slot))	//Must be human for the following procs to work
 		return
 
 	var/mob/living/carbon/human/wearer = user

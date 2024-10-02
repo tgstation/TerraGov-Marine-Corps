@@ -426,10 +426,10 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	SHOULD_CALL_PARENT(TRUE) // no exceptions
 	SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED, user, slot)
 
-	var/equipped_to_slot = equip_slot_flags & slotdefine2slotbit(slot)
+	var/equipped_to_slot = equip_slot_flags & slot
 	if(equipped_to_slot) // equip_slot_flags is a bitfield
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user, slot)
-	else
+	else // ivan todo this looks like it wont work
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
 
 	for(var/datum/action/A AS in actions)
@@ -454,7 +454,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_UNEQUIPPED, unequipper, slot)
 
-	var/equipped_from_slot = equip_slot_flags & slotdefine2slotbit(slot)
+	var/equipped_from_slot = equip_slot_flags & slot
 
 	for(var/datum/action/A AS in actions)
 		A.remove_action(unequipper)
@@ -503,12 +503,12 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
  * * override_nodrop - do we take into consideration if the item is nodrop?
  * * into_storage - are we trying to put src into a storage item in the slot?
  */
-/obj/item/proc/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, into_storage)
+/obj/item/proc/mob_can_equip(mob/user, slot = NONE, warning = TRUE, override_nodrop = FALSE, into_storage)
 	if(!slot || !user)
 		return FALSE
 
-	if(HAS_TRAIT(src, TRAIT_NODROP) && slot != SLOT_L_HAND && slot != SLOT_R_HAND && !override_nodrop) //No drops can only be equipped to a hand slot
-		if(slot == SLOT_L_HAND || slot == SLOT_R_HAND)
+	if(HAS_TRAIT(src, TRAIT_NODROP) && !(slot & ITEM_SLOT_HANDS) && !override_nodrop) //No drops can only be equipped to a hand slot
+		if(slot & ITEM_SLOT_HANDS)
 			to_chat(user, span_notice("[src] is stuck to your hand!"))
 		return FALSE
 
@@ -518,7 +518,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/mob/living/carbon/human/human_user = user
 	if(!human_user.has_limb_for_slot(slot))
 		return
-	var/list/mob_equip = list() //todo this looks stinky
+	var/list/mob_equip = list() // ivan todo this looks stinky
 	if(human_user.species.hud?.equip_slots)
 		mob_equip = human_user.species.hud.equip_slots
 
@@ -556,6 +556,33 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 						if(attachment.storage_datum.can_be_inserted(src, human_user, FALSE))
 							return TRUE
 					return FALSE
+			if(ITEM_SLOT_OCLOTHING)
+				if(isclothing(human_user.wear_suit))
+					for(var/key AS in human_user.wear_suit.attachments_by_slot)
+						var/atom/attachment = human_user.wear_suit.attachments_by_slot[key]
+						if(!attachment?.storage_datum)
+							continue
+						if(attachment.storage_datum.can_be_inserted(src, human_user, FALSE))
+							return TRUE
+					return FALSE
+			if(ITEM_SLOT_HEAD)
+				if(isclothing(human_user.head))
+					for(var/key AS in human_user.head.attachments_by_slot)
+						var/atom/attachment = human_user.head.attachments_by_slot[key]
+						if(!attachment?.storage_datum)
+							continue
+						if(attachment.storage_datum.can_be_inserted(src, human_user, FALSE))
+							return TRUE
+					return FALSE
+			if(ITEM_SLOT_FEET)
+				if(isclothing(human_user.shoes))
+					for(var/key AS in human_user.shoes.attachments_by_slot)
+						var/atom/attachment = human_user.shoes.attachments_by_slot[key]
+						if(!attachment?.storage_datum)
+							continue
+						if(attachment.storage_datum.can_be_inserted(src, human_user, FALSE))
+							return TRUE
+					return FALSE
 			if(ITEM_SLOT_BACK)
 				if(!human_user.back?.storage_datum?.can_be_inserted(src, human_user, FALSE))
 					return FALSE
@@ -586,27 +613,27 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				return TRUE
 
 	/// The storage item in the specific slot we're trying to insert into
-	var/obj/item/selected_storage
+	//var/obj/item/selected_storage //ivan todo
 
 	switch(slot)
-		if(SLOT_L_HAND)
+		if(ITEM_SLOT_L_HAND)
 			if(human_user.l_hand)
 				return FALSE
 			return TRUE
-		if(SLOT_R_HAND)
+		if(ITEM_SLOT_R_HAND)
 			if(human_user.r_hand)
 				return FALSE
 			return TRUE
-		if(SLOT_HANDCUFFED)
+		if(ITEM_SLOT_HANDCUFF)
 			if(human_user.handcuffed)
 				return FALSE
 			if(!istype(src, /obj/item/restraints/handcuffs))
 				return FALSE
 			return TRUE
-		if(SLOT_S_STORE) //suit storage uniquely depends on the suit allowed list, so is a bit snowflake
+		if(ITEM_SLOT_SUITSTORE) //suit storage uniquely depends on the suit allowed list, so is a bit snowflake
 			if(human_user.s_store)
 				return FALSE
-			if(!human_user.wear_suit && (SLOT_WEAR_SUIT in mob_equip))
+			if(!human_user.wear_suit && (ITEM_SLOT_OCLOTHING in mob_equip))
 				if(warning)
 					to_chat(human_user, span_warning("You need a suit before you can attach this [name]."))
 				return FALSE
@@ -614,10 +641,11 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				return TRUE
 			return FALSE
 
-		// from here on we're properly equipping into the actual slots (respecting equip slot flags)
-		if(!(equip_slot_flags & slot))
-			return FALSE
-
+	// from here on we're properly equipping into the actual slots (respecting equip slot flags)
+	if(!(equip_slot_flags & slot))
+		return FALSE
+		
+	switch(slot)
 		//actual slots
 		if(ITEM_SLOT_MASK)
 			if(human_user.wear_mask)
@@ -651,21 +679,21 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(ITEM_SLOT_OCLOTHING)
 			if(human_user.wear_suit)
 				return FALSE
-			if(!human_user.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+			if(!human_user.w_uniform && (ITEM_SLOT_ICLOTHING in mob_equip))
 				if(warning)
 					to_chat(human_user, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
 		if(ITEM_SLOT_BELT)
 			if(human_user.belt)
 				return FALSE
-			if(!human_user.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+			if(!human_user.w_uniform && (ITEM_SLOT_ICLOTHING in mob_equip))
 				if(warning)
 					to_chat(human_user, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
 		if(ITEM_SLOT_L_POCKET)
 			if(human_user.l_pocket)
 				return FALSE
-			if(!human_user.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+			if(!human_user.w_uniform && (ITEM_SLOT_ICLOTHING in mob_equip))
 				if(warning)
 					to_chat(human_user, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
@@ -674,12 +702,13 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 		if(ITEM_SLOT_R_POCKET)
 			if(human_user.r_pocket)
 				return FALSE
-			if(!human_user.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+			if(!human_user.w_uniform && (ITEM_SLOT_ICLOTHING in mob_equip))
 				if(warning)
 					to_chat(human_user, span_warning("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
 			if(w_class <= 2)
 				return TRUE
+	return TRUE
 /*// ivan todo this sucks!!!!!!!
 		//holsters - need to check for specific item types
 		if(SLOT_IN_B_HOLSTER) 

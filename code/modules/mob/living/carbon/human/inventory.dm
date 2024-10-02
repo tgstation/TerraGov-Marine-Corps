@@ -116,7 +116,7 @@
 		wear_suit = null
 		if(s_store)
 			dropItemToGround(s_store)
-		I.unequipped(src, SLOT_WEAR_SUIT)
+		I.unequipped(src, ITEM_SLOT_OCLOTHING)
 		if(I.inv_hide_flags & HIDESHOES)
 			update_inv_shoes()
 		if(I.inv_hide_flags & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
@@ -135,7 +135,7 @@
 		if(wear_suit && istype(wear_suit, /obj/item/clothing/suit))
 			dropItemToGround(wear_suit)
 		w_uniform = null
-		I.unequipped(src, SLOT_W_UNIFORM)
+		I.unequipped(src, ITEM_SLOT_ICLOTHING)
 		update_suit_sensors()
 		update_inv_w_uniform()
 		. = ITEM_UNEQUIP_UNEQUIPPED
@@ -144,7 +144,7 @@
 		if(head.inv_hide_flags & HIDEFACE)
 			updatename = 1
 		head = null
-		I.unequipped(src, SLOT_HEAD)
+		I.unequipped(src, ITEM_SLOT_HEAD)
 		if(updatename)
 			name = get_visible_name()
 		if(I.inv_hide_flags & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR|HIDE_EXCESS_HAIR))
@@ -159,12 +159,12 @@
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == gloves)
 		gloves = null
-		I.unequipped(src, SLOT_GLOVES)
+		I.unequipped(src, ITEM_SLOT_GLOVES)
 		update_inv_gloves()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == glasses)
 		glasses = null
-		I.unequipped(src, SLOT_GLASSES)
+		I.unequipped(src, ITEM_SLOT_EYES)
 		var/obj/item/clothing/glasses/G = I
 		if(G.vision_flags || G.darkness_view || G.invis_override || G.invis_view || !isnull(G.lighting_alpha))
 			update_sight()
@@ -173,38 +173,38 @@
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_ear)
 		wear_ear = null
-		I.unequipped(src, SLOT_EARS)
+		I.unequipped(src, ITEM_SLOT_EARS)
 		update_inv_ears()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == shoes)
 		shoes = null
-		I.unequipped(src, SLOT_SHOES)
+		I.unequipped(src, ITEM_SLOT_FEET)
 		update_inv_shoes()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == belt)
 		belt = null
-		I.unequipped(src, SLOT_BELT)
+		I.unequipped(src, ITEM_SLOT_BELT)
 		update_inv_belt()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == wear_id)
 		wear_id = null
-		I.unequipped(src, SLOT_WEAR_ID)
+		I.unequipped(src, ITEM_SLOT_ID)
 		update_inv_wear_id()
 		name = get_visible_name()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == r_pocket)
 		r_pocket = null
-		I.unequipped(src, SLOT_R_STORE)
+		I.unequipped(src, ITEM_SLOT_R_POCKET)
 		update_inv_pockets()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == l_pocket)
 		l_pocket = null
-		I.unequipped(src, SLOT_L_STORE)
+		I.unequipped(src, ITEM_SLOT_L_POCKET)
 		update_inv_pockets()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if (I == s_store)
 		s_store = null
-		I.unequipped(src, SLOT_S_STORE)
+		I.unequipped(src, ITEM_SLOT_SUITSTORE)
 		update_inv_s_store()
 		. = ITEM_UNEQUIP_UNEQUIPPED
 
@@ -227,18 +227,12 @@
 	if(into_storage)
 		var/obj/item/selected_storage_target
 		switch(slot)
-			if(ITEM_SLOT_FEET)
-				selected_storage_target = shoes
 			if(ITEM_SLOT_BACK)
 				selected_storage_target = back
 			if(ITEM_SLOT_SUITSTORE)
 				selected_storage_target = s_store
-			if(ITEM_SLOT_OCLOTHING)
-				selected_storage_target = wear_suit
 			if(ITEM_SLOT_BELT)
 				selected_storage_target = belt
-			if(ITEM_SLOT_HEAD)
-				selected_storage_target = head
 			if(ITEM_SLOT_ACTIVE_STORAGE)
 				selected_storage_target = s_active
 			if(ITEM_SLOT_L_POCKET)
@@ -249,6 +243,30 @@
 				if(isclothing(w_uniform))
 					for(var/key AS in w_uniform.attachments_by_slot)
 						var/atom/attachment = w_uniform.attachments_by_slot[key]
+						if(!attachment?.storage_datum)
+							continue
+						selected_storage_target = attachment
+						break
+			if(ITEM_SLOT_OCLOTHING)
+				if(isclothing(wear_suit))
+					for(var/key AS in wear_suit.attachments_by_slot)
+						var/atom/attachment = wear_suit.attachments_by_slot[key]
+						if(!attachment?.storage_datum)
+							continue
+						selected_storage_target = attachment
+						break
+			if(ITEM_SLOT_HEAD)
+				if(isclothing(head))
+					for(var/key AS in head.attachments_by_slot)
+						var/atom/attachment = head.attachments_by_slot[key]
+						if(!attachment?.storage_datum)
+							continue
+						selected_storage_target = attachment
+						break
+			if(ITEM_SLOT_FEET)
+				if(isclothing(shoes))
+					for(var/key AS in shoes.attachments_by_slot)
+						var/atom/attachment = shoes.attachments_by_slot[key]
 						if(!attachment?.storage_datum)
 							continue
 						selected_storage_target = attachment
@@ -454,8 +472,8 @@
  * item_searched the item you want to check
  */
 /mob/living/carbon/human/proc/is_item_in_slots(item_searched)
-	for (var/slot in SLOT_ALL)
-		if (get_item_by_slot(slot) == item_searched)
+	for(var/slot in SLOT_ALL)
+		if(get_item_by_slot(slot) == item_searched)
 			return TRUE
 	return FALSE
 
@@ -464,8 +482,8 @@
  * type searched the type you are looking for
  */
 /mob/living/carbon/human/proc/get_type_in_slots(type_searched)
-	for (var/slot in SLOT_ALL)
-		if (istype(get_item_by_slot(slot),type_searched))
+	for(var/slot in SLOT_ALL)
+		if(istype(get_item_by_slot(slot),type_searched))
 			return get_item_by_slot(slot)
 
 
@@ -474,8 +492,8 @@
  * item_searched the item you want to check
  */
 /mob/living/carbon/human/proc/is_item_in_hands(obj/item/item_searched)
-	if (get_item_by_slot(SLOT_R_HAND) == item_searched)
+	if(get_item_by_slot(ITEM_SLOT_R_HAND) == item_searched)
 		return TRUE
-	if (get_item_by_slot(SLOT_L_HAND) == item_searched)
+	if(get_item_by_slot(ITEM_SLOT_L_HAND) == item_searched)
 		return TRUE
 	return FALSE
