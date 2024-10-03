@@ -111,9 +111,13 @@
 	sundering = 10
 	bullet_color = COLOR_PULSE_BLUE
 	on_pierce_multiplier = 0.75
+	var/shatter_duration = 3 SECONDS
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 4 SECONDS, slowdown = 2, knockback = 2)
+
+	var/mob/living/living_victim = target_mob
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 /datum/ammo/bullet/railgun/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	proj.proj_max_range -= 3
@@ -126,7 +130,7 @@
 	damage = 100
 	penetration = 30
 	sundering = 25
-	var/shatter_duration = 5 SECONDS
+	var/shatter_duration = 8 SECONDS
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 2 SECONDS, knockback = 3)
@@ -141,9 +145,13 @@
 	damage = 100
 	penetration = 20
 	sundering = 10
+	var/shatter_duration = 3 SECONDS
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 3 SECONDS, slowdown = 3)
+
+	var/mob/living/living_victim = target_mob
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 /datum/ammo/bullet/apfsds
 	name = "\improper APFSDS round"
