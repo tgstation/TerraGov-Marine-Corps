@@ -229,8 +229,7 @@
 	xenomorph.AddComponent(/datum/component/bump_attack)
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
-	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
-	bump_attack?.RemoveComponent()
+	xenomorph.remove_component(/datum/component/bump_attack)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 

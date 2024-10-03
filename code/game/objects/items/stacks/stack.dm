@@ -230,7 +230,7 @@
 			return
 		T.PlaceOnTop(R.result_type)
 	else
-		O = new R.result_type(get_turf(user))
+		O = new R.result_type(get_turf(user), user)
 	if(O)
 		O.setDir(user.dir)
 		O.color = color
