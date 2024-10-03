@@ -41715,9 +41715,9 @@
 /area/prison/hangar/main)
 "hFK" = (
 /obj/structure/table/reinforced,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/prison/kitchen,
 /area/prison/residential/north)
 "hFX" = (

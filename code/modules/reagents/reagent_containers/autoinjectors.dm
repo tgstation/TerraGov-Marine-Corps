@@ -125,6 +125,7 @@
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 20)
 	description_overlay = "Ox"
+	free_refills = FALSE
 
 /obj/item/reagent_containers/hypospray/autoinjector/kelotane
 	name = "kelotane autoinjector"

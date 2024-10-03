@@ -22,6 +22,9 @@
 	// *** Health *** //
 	max_health = 700
 
+	// *** Sunder *** //
+	sunder_multiplier = 0.8
+
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
 
@@ -72,3 +75,13 @@
 		/datum/action/ability/xeno_action/seismic_fracture,
 		/datum/action/ability/xeno_action/primal_wrath,
 	)
+
+/datum/xeno_caste/behemoth/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher) // we use the same riding element as crusher
+	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
+
+/datum/xeno_caste/behemoth/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
