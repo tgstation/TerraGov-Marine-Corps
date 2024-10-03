@@ -130,7 +130,7 @@
 	damage = 125
 	penetration = 30
 	sundering = 25
-	var/shatter_duration = 8 SECONDS
+	shatter_duration = 8 SECONDS
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 2 SECONDS, knockback = 3)
@@ -145,7 +145,7 @@
 	damage = 125
 	penetration = 20
 	sundering = 10
-	var/shatter_duration = 3 SECONDS
+	shatter_duration = 3 SECONDS
 
 /datum/ammo/bullet/railgun/smart/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 3 SECONDS, slowdown = 3)
