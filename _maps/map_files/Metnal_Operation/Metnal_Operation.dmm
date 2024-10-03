@@ -3393,6 +3393,7 @@
 /area/metnal/outside/northwest)
 "czU" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
 "cAe" = (
@@ -3986,6 +3987,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison,
 /area/metnal/inside/restroom)
 "cTl" = (
@@ -4206,6 +4208,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/plating/ground/concrete,
 /area/metnal/inside/executivedorms)
 "cXA" = (
@@ -5453,6 +5456,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
 "dRx" = (
@@ -7073,6 +7077,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/plating/ground/concrete,
 /area/metnal/inside/bridge)
 "eVo" = (
@@ -7439,6 +7444,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/kitchen,
 /area/metnal/inside/kitchen)
+"fjo" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/mapping_helpers/light/flickering/enable_random_flickering,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/Headquarters)
 "fju" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -8352,6 +8364,7 @@
 	name = "\improper Cargo Bay Quartermaster"
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/quartermaster)
 "fSB" = (
@@ -8989,6 +9002,7 @@
 "gsw" = (
 /obj/machinery/door/airlock/multi_tile/urban/generic,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison,
 /area/metnal/inside/restroom)
 "gsA" = (
@@ -9379,6 +9393,7 @@
 	dir = 2
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison/kitchen,
 /area/metnal/inside/kitchen)
 "gJk" = (
@@ -9431,6 +9446,17 @@
 /obj/item/trash/barcaridine,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
+"gMc" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/bed/chair/sofa/corsat/left,
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
+	dir = 6;
+	pixel_y = 34
+	},
+/turf/open/floor/mainship,
+/area/metnal/inside/Headquarters)
 "gMi" = (
 /turf/open/floor/plating/heatinggrate{
 	dir = 4
@@ -11171,6 +11197,10 @@
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
 	},
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_x = 7;
+	pixel_y = 10
+	},
 /turf/open/floor/mainship,
 /area/metnal/inside/Headquarters)
 "hYx" = (
@@ -11274,6 +11304,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/Headquarters)
 "ibq" = (
@@ -14083,7 +14114,6 @@
 "kaP" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/obj/effect/mapping_helpers/broken_apc/lowchance,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/chapel)
 "kaR" = (
@@ -15229,6 +15259,10 @@
 	dir = 1
 	},
 /obj/structure/bed/chair/comfy,
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
+	dir = 9;
+	pixel_y = 34
+	},
 /turf/open/floor/mainship,
 /area/metnal/inside/Headquarters)
 "kRa" = (
@@ -16102,6 +16136,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/light/flickering/enable_random_flickering,
 /turf/open/floor/plating,
 /area/metnal/inside/quartermaster)
 "ltN" = (
@@ -16501,6 +16536,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
 "lJb" = (
@@ -16630,6 +16666,10 @@
 /obj/structure/curtain/open/shower,
 /turf/open/floor/iron/textured,
 /area/metnal/inside/laundromat)
+"lMB" = (
+/obj/effect/mapping_helpers/airlock_autoname,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/quartermaster)
 "lMN" = (
 /obj/structure/bed/urban/chairs/black{
 	dir = 4
@@ -17000,6 +17040,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/light/flickering/enable_random_flickering,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
 "mca" = (
@@ -17408,6 +17449,12 @@
 /obj/item/clothing/glasses/mgoggles,
 /turf/open/floor/prison,
 /area/metnal/inside/research)
+"msP" = (
+/obj/structure/table/reinforced/prison{
+	color = "#6b675e"
+	},
+/turf/open/floor/urban/tile/tileblackcheckered,
+/area/metnal/inside/Headquarters)
 "mtn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -18889,6 +18936,7 @@
 	dir = 1;
 	name = "\improper Prison Kitchen"
 	},
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison/kitchen,
 /area/metnal/inside/kitchen)
 "nud" = (
@@ -19477,6 +19525,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
 "nPg" = (
@@ -20377,14 +20426,6 @@
 "otr" = (
 /obj/structure/table/reinforced/prison{
 	color = "#6b675e"
-	},
-/obj/item/reagent_containers/food/drinks/coffee{
-	pixel_x = 16;
-	pixel_y = 8
-	},
-/obj/item/reagent_containers/food/drinks/coffee{
-	pixel_x = 7;
-	pixel_y = 10
 	},
 /obj/item/card/id/silver,
 /turf/open/floor/mainship,
@@ -21496,6 +21537,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
+"phn" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/metnal/inside/chapel)
 "phB" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/landmark/weed_node,
@@ -22756,6 +22803,7 @@
 /area/metnal/inside/Headquarters)
 "qcN" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/quartermaster)
 "qcU" = (
@@ -23003,6 +23051,12 @@
 /obj/structure/cable,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical/chemistry)
+"qjV" = (
+/obj/structure/bed/urban/chairs/brown{
+	dir = 1
+	},
+/turf/open/floor/urban/tile/tileblackcheckered,
+/area/metnal/inside/Headquarters)
 "qjW" = (
 /turf/open/liquid/lava/autosmoothing,
 /area/metnal/caves/southwest)
@@ -27349,6 +27403,7 @@
 	name = "\improper Cargo Bay Quartermaster"
 	},
 /obj/structure/cable,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/quartermaster)
 "tfD" = (
@@ -28317,10 +28372,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/effect/ai_node,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark,
-/area/metnal/inside/chapel)
+/obj/effect/mapping_helpers/light/flickering/enable_random_flickering,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/Headquarters)
 "tNY" = (
 /obj/effect/decal/cleanable/blood/drip,
 /mob/living/simple_animal/corgi/puppy/mrwiggles,
@@ -31818,6 +31872,15 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
+"vZy" = (
+/obj/machinery/computer/navigation,
+/obj/structure/table/black,
+/obj/structure/prop/urban/billboardsandsigns/bigbillboards/billboard1{
+	dir = 10;
+	pixel_y = 34
+	},
+/turf/open/floor/urban/wood/blackwood,
+/area/metnal/inside/bridge)
 "vZG" = (
 /obj/structure/rock/large,
 /obj/effect/ai_node,
@@ -33506,6 +33569,7 @@
 /area/metnal/caves/south)
 "xlc" = (
 /obj/machinery/door/airlock/multi_tile/ice,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
 "xlj" = (
@@ -34023,6 +34087,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/prison/kitchen,
 /area/metnal/inside/kitchen)
 "xGg" = (
@@ -50367,10 +50432,10 @@ uWM
 uWM
 uWM
 uWM
+phn
 uWM
 uWM
-uWM
-uWM
+phn
 uWM
 uWM
 diM
@@ -51778,7 +51843,7 @@ wST
 etY
 diM
 kaP
-tNQ
+nAn
 uWM
 uWM
 awn
@@ -53795,7 +53860,7 @@ fqQ
 fqQ
 nzl
 nKE
-fqQ
+qjV
 whr
 tXD
 vNi
@@ -53996,8 +54061,8 @@ yjG
 fqQ
 fqQ
 maz
-nKE
-qSC
+wOd
+msP
 whr
 sqT
 vNi
@@ -54199,7 +54264,7 @@ txF
 fqQ
 maz
 nKE
-fqQ
+qjV
 whr
 gGl
 vNi
@@ -54382,7 +54447,7 @@ dxJ
 kez
 kez
 krz
-xcr
+vZy
 veL
 iVM
 tBM
@@ -54799,7 +54864,7 @@ afl
 cVa
 hEB
 krz
-bZA
+gMc
 moM
 txF
 fqQ
@@ -55224,7 +55289,7 @@ uvK
 xDw
 uvK
 uvK
-iiS
+tNQ
 uvK
 qyG
 soF
@@ -57434,7 +57499,7 @@ pPX
 hAK
 hAK
 hAK
-htn
+fjo
 ovi
 qyG
 soF
@@ -60480,7 +60545,7 @@ niI
 whI
 tOd
 tEE
-tEE
+lMB
 qPC
 dld
 sDm
