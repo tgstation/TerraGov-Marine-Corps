@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Campaign: Melee stun chance lowered by a flat 10%"
-  - balance: "Campaign: Melee stun chance scales with max hp"
-  - balance: "Campaign: Melee stuns can no longer chainstun"

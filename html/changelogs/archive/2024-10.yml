@@ -25,3 +25,17 @@
       applies)
   - balance: The chemistry door is no longer access locked
   - balance: You can no longer refill partially used up oxycodone injectors
+2024-10-03:
+  AusarAtkin:
+  - code_imp: improve nuke logging
+  Lumipharon:
+  - balance: 'Campaign: Gave Tyr for both factions 50% ranged stun mitigation like
+      B18'
+  - balance: 'Campaign: Construction perk allows Engineers to build stronger cades'
+  - balance: Reduced direct hit damage from GL-54 and other related ammo types against
+      most targets
+  - balance: 'Campaign: Melee stun chance lowered by a flat 10%'
+  - balance: 'Campaign: Melee stun chance scales with max hp'
+  - balance: 'Campaign: Melee stuns can no longer chainstun'
+  blackdav123:
+  - balance: The rappel system is now far easier to use.
