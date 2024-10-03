@@ -126,9 +126,13 @@
 	damage = 100
 	penetration = 30
 	sundering = 25
+	var/shatter_duration = 5 SECONDS
 
 /datum/ammo/bullet/railgun/hvap/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, stagger = 2 SECONDS, knockback = 3)
+
+	var/mob/living/living_victim = target_mob
+	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 /datum/ammo/bullet/railgun/smart
 	name = "smart armor piercing railgun slug"
