@@ -215,6 +215,13 @@
 /obj/item/ammo_magazine/proc/get_ammo_percent()		// return % charge of cell
 	return 100.0*current_rounds/max_rounds
 
+/obj/item/ammo_magazine/refill(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	current_rounds = initial(max_rounds)
+	update_icon()
+
 /obj/item/ammo_magazine/handful
 	name = "generic handful of bullets or shells"
 	desc = "A handful of rounds to reload on the go."

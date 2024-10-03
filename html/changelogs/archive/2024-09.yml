@@ -117,3 +117,64 @@
       is no ruler
   - bugfix: Fixed a runtime when first spawning in as a xeno with pheros
   - bugfix: Fix a supply beacon console runtime
+2024-09-23:
+  Xander3359:
+  - qol: You can right click a vendor to refill something that is vendable by it
+2024-09-24:
+  Cheese, Stardust, Cre, with thanks to various helpful people in the discord:
+  - rscadd: Runner saddles. Buy one at req for 120 points, and saddle a runner today!
+  - rscadd: Saddled runners can be ridden by click dragging yourself to them. For
+      the runner to force you on, they have to grab you then click themselves
+  - rscadd: Crusher riding is now the same, click drag to mount, pull click self to
+      force onto self
+  - rscadd: A saddled rouny works as a duffelbag, and can be opened by rclicking the
+      rouny.
+  - rscadd: Marines can now pull friendly xenos
+  - imageadd: Sprites for runner saddles, and for them being worn on the mob; Includes
+      rouny variants
+  - code_imp: This modifies a lot to work, so there's bound to be bugs. scream @Mantlecrawler
+      in the discord, or report them to github.
+2024-09-28:
+  Pariah919:
+  - bugfix: Due to budget cuts, ICC ERT Leaders didn't get their loadout upon spawning.
+      This has been rectified. And they should once again have loadouts.
+  Xander3359:
+  - qol: MarineMed pill bottles are refillable via right click on the vendor
+2024-09-29:
+  00ze-cyclone:
+  - bugfix: fixed TE mag box storage
+  - bugfix: SSMG45 mag box now has markings indicating it hold SMG45 mags
+  - bugfix: fixed the heavy laser ammo counter
+  - rscadd: Added a second flare box in the shocktrooper loadout to replace the TE
+      pouch that can't spawn there anymore
+  - rscadd: Added SoM pistol and burst shotgun, plasma SMG and heavy laser to valhalla
+  - rscdel: Removed SG29 from the seasonal vendor of valhalla alongside the export
+      version of L88
+  Arturlang:
+  - rscadd: Xenomorph life will now adjust the amount of healing/sunder/plasma/evo/maturity
+      based on any extra time that Life has not run for.
+  Lumipharon:
+  - bugfix: fixed some bookshelves on Big Red being nondense
+  - bugfix: fixed a couple density issues on some rocks
+  Mantlecrawler:
+  - bugfix: Runner saddles now correctly unbuckle the mob riding if they are removed
+  blackdav123:
+  - bugfix: Wraiths can no longer cheese into the hull area of Big Red atmos.
+  - bugfix: Barsigns now go on walls again.
+  - bugfix: Fixed a floating mirror on Big Red.
+  breadhunt:
+  - rscadd: Added a "TTS mode" for headsets which reads out any messages sent in your
+      squad channel (if you have one). Can be set as "SL", "SQUAD", "COMMAND" and
+      "ALL (except Squad and Command)" in prefs.
+  ivanmixo:
+  - qol: Stripping magharn'd weapons now disables the magharn for a couple seconds
+  jonash07:
+  - bugfix: fixed the queen overwatch icon
+2024-09-30:
+  Lumipharon:
+  - balance: Aim mode removed from most guns
+  - balance: Added shoulder firing - ALL guns can now shoot past ADJACENT team mates
+      without penalty
+  - rscadd: Tanks leave behind wrecks when destroyed
+  blackdav123:
+  - balance: AR55 is no longer in FC and SL vendors.

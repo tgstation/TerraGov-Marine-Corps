@@ -52,7 +52,7 @@
 	move_to_delay = rand(3, 7)
 
 
-/mob/living/simple_animal/hostile/carp/megacarp/Life()
+/mob/living/simple_animal/hostile/carp/megacarp/Life(seconds_per_tick, times_fired)
 	. = ..()
 	if(regen_cooldown < world.time)
 		heal_overall_damage(4)

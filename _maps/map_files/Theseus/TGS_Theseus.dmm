@@ -16381,8 +16381,8 @@
 /area/mainship/engineering/lower_engineering)
 "qGo" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
+/obj/item/storage/kitchen_tray,
 /obj/item/storage/box/tgmc_mre,
 /obj/item/book/manual/chef_recipes,
 /turf/open/floor/mainship/mono,

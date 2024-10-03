@@ -207,3 +207,6 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 
 ///Number of icon states to show health and plasma on the side UI buttons
 #define XENO_HUD_ICON_BUCKETS 16
+
+/// Life runs every 2 seconds, but we don't want to multiply all healing by 2 due to seconds_per_tick
+#define XENO_PER_SECOND_LIFE_MOD 0.5
