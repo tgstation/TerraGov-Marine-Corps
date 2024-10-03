@@ -77,8 +77,7 @@
 		/obj/item/weapon/gun/standard_mmg/machinegunner = ITEM_SLOT_SUITSTORE,
 	)
 
-/datum/loadout_item/belt/smg_holster/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m25/holstered(wearer), SLOT_IN_HOLSTER)
+/datum/loadout_item/belt/smg_holster/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	var/ammo_type = /obj/item/ammo_magazine/smg/m25
 	if(istype(wearer.r_store, /obj/item/storage/pouch/magazine))
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
@@ -108,6 +107,14 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 
+/datum/loadout_item/belt/pistol_holster
+	name = "Pistol holster"
+	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun and plenty of ammo."
+	ui_icon = "vp70"
+	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
+
+/*
 /datum/loadout_item/belt/standard_pistol
 	name = "MK88 Mod 4"
 	desc = "An uncommon automatic handgun that fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire. \
@@ -115,6 +122,7 @@
 	ui_icon = "vp70"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
+**/
 
 /datum/loadout_item/belt/db_shotgun
 	name = "SH-34 shotgun"

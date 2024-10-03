@@ -11,7 +11,7 @@
 	item_typepath = /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/suit_store/main_gun/smartgunner/smartmachinegun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/smartgunner/smartmachinegun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/vp70, SLOT_IN_ACCESSORY)
@@ -41,7 +41,7 @@
 	item_typepath = /obj/item/weapon/gun/minigun/smart_minigun/motion_detector
 	item_whitelist = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun = ITEM_SLOT_BACK)
 
-/datum/loadout_item/suit_store/main_gun/smartgunner/smart_minigun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/smartgunner/smart_minigun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(loadout.belt == /obj/item/storage/belt/sparepouch)
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/smart_minigun, SLOT_IN_BELT)
@@ -69,7 +69,7 @@
 	ui_icon = "smartgun"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_smarttargetrifle/motion
 
-/datum/loadout_item/suit_store/main_gun/smartgunner/smarttargetrifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/smartgunner/smarttargetrifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact, SLOT_IN_ACCESSORY)

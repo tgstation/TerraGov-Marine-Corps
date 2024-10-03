@@ -6,7 +6,7 @@
 #define LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE (1<<2)
 
 GLOBAL_LIST_INIT(campaign_loadout_slots, list(ITEM_SLOT_OCLOTHING, ITEM_SLOT_ICLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_EYES, ITEM_SLOT_EARS, \
-ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_ID, ITEM_SLOT_BELT, ITEM_SLOT_BACK, ITEM_SLOT_L_POCKET, ITEM_SLOT_R_POCKET, ITEM_SLOT_SUITSTORE))
+ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_ID, ITEM_SLOT_BELT, ITEM_SLOT_BACK, ITEM_SLOT_L_POCKET, ITEM_SLOT_R_POCKET, ITEM_SLOT_SUITSTORE, ITEM_SLOT_SECONDARY))
 
 //List of all loadout_item datums
 GLOBAL_LIST_INIT_TYPED(campaign_loadout_item_type_list, /datum/loadout_item, init_glob_loadout_item_list())
@@ -88,9 +88,9 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 	return TRUE
 
 ///Any post equip things related to this item
-/datum/loadout_item/proc/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	return role_post_equip(wearer, loadout)
+/datum/loadout_item/proc/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	role_post_equip(wearer, loadout, holder)
 
 ///A separate post equip proc for role specific code. Split for more flexible parent overriding
-/datum/loadout_item/proc/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/proc/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	return

@@ -9,7 +9,7 @@
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine/scout
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/suit_store/main_gun/corpsman/laser_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/laser_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return ..()
@@ -35,7 +35,7 @@
 	ui_icon = "ter"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle/medic
 
-/datum/loadout_item/suit_store/main_gun/corpsman/laser_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/laser_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return ..()
@@ -61,7 +61,7 @@
 	item_typepath = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 	secondary_ammo_type = /obj/item/ammo_magazine/rifle/tx15_flechette
 
-/datum/loadout_item/suit_store/main_gun/corpsman/auto_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/auto_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return ..()
@@ -87,7 +87,7 @@
 	ui_icon = "t21"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
 
-/datum/loadout_item/suit_store/main_gun/corpsman/skirmish_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/skirmish_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return ..()
@@ -113,7 +113,7 @@
 	ui_icon = "m25"
 	item_typepath = /obj/item/weapon/gun/smg/m25/magharness
 
-/datum/loadout_item/suit_store/main_gun/corpsman/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return ..()
@@ -147,7 +147,7 @@
 	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/standard
 
-/datum/loadout_item/suit_store/main_gun/corpsman/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return ..()
@@ -181,7 +181,7 @@
 	ui_icon = "t12"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/medic
 
-/datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/assault_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return ..()
@@ -216,7 +216,7 @@
 	ui_icon = "tx11"
 	item_typepath = /obj/item/weapon/gun/rifle/tx11/standard
 
-/datum/loadout_item/suit_store/main_gun/corpsman/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/combat_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return ..()
@@ -244,7 +244,7 @@
 	purchase_cost = 80
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
-/datum/loadout_item/suit_store/main_gun/corpsman/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/plasma_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return ..()
@@ -272,7 +272,7 @@
 	purchase_cost = 90
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
-/datum/loadout_item/suit_store/main_gun/corpsman/plasma_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/corpsman/plasma_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return ..()

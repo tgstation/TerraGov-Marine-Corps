@@ -1,7 +1,7 @@
 /datum/loadout_item/suit_store/main_gun/som_veteran
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!ammo_type)
 		return
@@ -14,7 +14,7 @@
 			wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som, SLOT_IN_BACKPACK)
 			wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/som/standard(wearer), SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
@@ -32,7 +32,7 @@
 	item_typepath = /obj/item/weapon/gun/rifle/som/veteran
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -47,7 +47,7 @@
 		wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/standard_rifle/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/standard_rifle/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, SLOT_IN_ACCESSORY)
@@ -64,7 +64,7 @@
 	ui_icon = "v21"
 	item_typepath = /obj/item/weapon/gun/smg/som/veteran
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -79,7 +79,7 @@
 		wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/smg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/smg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_ACCESSORY)
@@ -97,7 +97,7 @@
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
 	purchase_cost = 60
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/breacher/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/breacher/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/som, SLOT_L_HAND)
 	if(istype(wearer.back, /obj/item/storage))
 		return ..()
@@ -116,7 +116,7 @@
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	return ..()
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/breacher/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/breacher/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_ACCESSORY)
@@ -133,7 +133,7 @@
 	ui_icon = "vx32"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -147,7 +147,7 @@
 		wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_charger/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_charger/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_ACCESSORY)
@@ -164,7 +164,7 @@
 	ui_icon = "vx33"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/standard
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -178,7 +178,7 @@
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_ACCESSORY)
@@ -194,7 +194,7 @@
 	ui_icon = "ak47"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -217,7 +217,7 @@
 	ui_icon = "v34"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/mag_harness
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -244,7 +244,7 @@
 	purchase_cost = 50
 	item_whitelist = list(/obj/item/cell/lasgun/volkite/powerpack = ITEM_SLOT_BACK)
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver_pack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_caliver_pack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_ACCESSORY)
 	if(istype(wearer.belt, /obj/item/weapon/gun/shotgun/double/sawn))
@@ -271,7 +271,7 @@
 	purchase_cost = 100
 	item_whitelist = list(/obj/item/cell/lasgun/volkite/powerpack = ITEM_SLOT_BACK)
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_culverin/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/volkite_culverin/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, SLOT_IN_ACCESSORY)
 	if(istype(wearer.belt, /obj/item/weapon/gun/shotgun/double/sawn))
@@ -296,7 +296,7 @@
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
 	secondary_ammo_type = /obj/item/ammo_magazine/smg/som/rad
 
-/datum/loadout_item/suit_store/main_gun/som_veteran/radioactive_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_veteran/radioactive_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/packet/p10x20mm, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/som/incendiary, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_ACCESSORY)
@@ -345,7 +345,7 @@
 	item_typepath = /obj/item/weapon/energy/sword/som
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 
-/datum/loadout_item/suit_store/energy_sword/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/energy_sword/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)

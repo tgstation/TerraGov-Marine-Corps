@@ -39,7 +39,7 @@
 	purchase_cost = 80
 	quantity = 2
 
-/datum/loadout_item/belt/som_grenades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/belt/som_grenades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, SLOT_IN_BELT)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, SLOT_IN_BELT)
@@ -59,7 +59,7 @@
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN)
 
-/datum/loadout_item/belt/som_burst_pistol/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/belt/som_burst_pistol/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, SLOT_IN_HOLSTER)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, SLOT_IN_HOLSTER)

@@ -1,7 +1,7 @@
 /datum/loadout_item/suit_store/main_gun/som_squad_leader
 	jobs_supported = list(SOM_SQUAD_LEADER)
 
-/datum/loadout_item/suit_store/main_gun/som_squad_leader/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_squad_leader/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!ammo_type)
 		return
@@ -14,7 +14,7 @@
 			wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/small, SLOT_IN_BACKPACK)
 			wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta(wearer), SLOT_IN_BACKPACK)
 
-/datum/loadout_item/suit_store/main_gun/som_squad_leader/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_squad_leader/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
@@ -32,7 +32,7 @@
 	item_typepath = /obj/item/weapon/gun/rifle/som/veteran
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/suit_store/main_gun/som_squad_leader/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_squad_leader/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -56,7 +56,7 @@
 	ui_icon = "v21"
 	item_typepath = /obj/item/weapon/gun/smg/som/veteran
 
-/datum/loadout_item/suit_store/main_gun/som_squad_leader/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_squad_leader/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -81,7 +81,7 @@
 	ui_icon = "vx32"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/scout
 
-/datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -105,7 +105,7 @@
 	purchase_cost = 50
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor
 
-/datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_caliver/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_squad_leader/volkite_caliver/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -127,7 +127,7 @@
 	ui_icon = "ak47"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/grenadier
 
-/datum/loadout_item/suit_store/main_gun/som_squad_leader/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_squad_leader/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
@@ -150,7 +150,7 @@
 	ui_icon = "v34"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/mag_harness
 
-/datum/loadout_item/suit_store/main_gun/som_squad_leader/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_squad_leader/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!isstorageobj(wearer.back))
 		return
