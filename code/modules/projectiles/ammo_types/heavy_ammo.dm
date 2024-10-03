@@ -128,7 +128,7 @@
 	shell_speed = 5
 	max_range = 21
 	damage = 125
-	penetration = 30
+	penetration = 100
 	sundering = 25
 	shatter_duration = 8 SECONDS
 
@@ -143,7 +143,7 @@
 	hud_state = "railgun_smart"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
 	damage = 125
-	penetration = 20
+	penetration = 100
 	sundering = 10
 	shatter_duration = 3 SECONDS
 
