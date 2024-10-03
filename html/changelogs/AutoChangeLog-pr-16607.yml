@@ -1,0 +1,5 @@
+author: "Arturlang"
+delete-after: True
+changes:
+  - bugfix: "shrike healing and crit healing should now work"
+  - rscadd: "regen delays now properly are handled by seconds_per_tick"
