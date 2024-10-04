@@ -170,6 +170,8 @@
 	req_desc = "Requires M-11 scout armor."
 	ui_icon = "v51"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/standard
+	ammo_type = /obj/item/ammo_magazine/handful/buckshot
+	secondary_ammo_type = /obj/item/ammo_magazine/handful/buckshot
 	item_whitelist = list(
 		/obj/item/clothing/suit/modular/som/light/shield = ITEM_SLOT_OCLOTHING,
 		/obj/item/clothing/suit/modular/som/light/shield_overclocked = ITEM_SLOT_OCLOTHING,

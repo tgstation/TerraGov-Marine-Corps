@@ -52,7 +52,7 @@
 	var/gun_spawned = FALSE
 	var/ammo_spawned = FALSE
 
-	if(isholster(wearer.belt)) //curently fails with machete belts, gotta decide what to do with them
+	if(isholster(wearer.belt))
 		var/obj/item/storage/holster/holster = wearer.belt
 		wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
 		gun_spawned = TRUE
@@ -62,22 +62,21 @@
 			ammo_spawned = TRUE
 
 	if(!isstorageobj(wearer.back))
-		return //maybe pocket/other storage in the future, for now just back
+		return
 
 	if(!gun_spawned)
 		wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_BACKPACK)
 	if(ammo_spawned) //insert other shit instead of secondary ammo
-		if(isgun(wearer.s_store)) //extremely fucked, but works for now. if the outfit_holder is an arg, we can just ref the ammo directly though
-			var/obj/item/weapon/gun/main_gun = wearer.s_store
-			wearer.equip_to_slot_or_del(new main_gun.default_ammo_type, SLOT_IN_BACKPACK)
-			wearer.equip_to_slot_or_del(new main_gun.default_ammo_type, SLOT_IN_BACKPACK)
+		var/datum/loadout_item/suit_store/main_gun/primary = holder.equipped_things["[ITEM_SLOT_SUITSTORE]"]
+		if(istype(primary))
+			wearer.equip_to_slot_or_del(new primary.ammo_type, SLOT_IN_BACKPACK)
+			wearer.equip_to_slot_or_del(new primary.secondary_ammo_type, SLOT_IN_BACKPACK)
 			wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 		//else
-			//spawn other shit? This probably shouldn't happen unless the player is cracked
+			//todo: spawn other shit. Will come up for non-gun primaries like machete etc
 		return
 
-	//if we place it under primary weapons, we should be able to assume its safely later in the list, thus post equip happens after primary weapon post equip, so we can just fill space instead of using the define
-	for(var/i = 1 to 10) //placeholder number, we just want to fill basically.
+	for(var/i = 1 to 10)
 		if(!wearer.equip_to_slot_or_del(new secondary_weapon_ammo, SLOT_IN_BACKPACK))
 			break
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK) //because secondary fills last, there should only be space if secondary ammo is w_class 3, or the loadout naturally has spare space

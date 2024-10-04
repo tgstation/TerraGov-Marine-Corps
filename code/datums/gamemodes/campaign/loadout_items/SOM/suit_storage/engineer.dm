@@ -155,6 +155,8 @@
 	Uses 12 gauge shells."
 	ui_icon = "v51"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/support
+	ammo_type = /obj/item/ammo_magazine/handful/flechette
+	secondary_ammo_type = /obj/item/ammo_magazine/handful/flechette
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
