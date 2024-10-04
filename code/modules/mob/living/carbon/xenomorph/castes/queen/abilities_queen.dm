@@ -231,8 +231,8 @@
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, screech_range))
-		// 10% increase of melee damage.
-		affected_xeno.apply_status_effect(/datum/status_effect/frenzy_screech, 30 SECONDS, 0.1)
+		// 30 seconds of 10% increase of melee damage.
+		affected_xeno.apply_status_effect(/datum/status_effect/frenzy_screech)
 
 	playsound(xeno_owner.loc, 'sound/voice/alien/queen_frenzy_screech.ogg', 75, 0)
 	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))

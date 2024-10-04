@@ -849,13 +849,8 @@
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
 	var/mob/living/carbon/xenomorph/buff_owner
-	var/modifier
-
-/datum/status_effect/frenzy_screech/on_creation(mob/living/new_owner, set_duration, damage_modifier)
-	duration = set_duration
-	owner = new_owner
-	modifier = damage_modifier
-	return ..()
+	var/duration = 30 SECONDS
+	var/modifier = 0.1
 
 /datum/status_effect/frenzy_screech/on_apply()
 	if(!isxeno(owner))
