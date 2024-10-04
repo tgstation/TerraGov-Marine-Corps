@@ -848,19 +848,19 @@
 	id = "frenzy_screech"
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
-	var/mob/living/carbon/xenomorph/buff_owner
+	// How long does this effect last?
 	var/duration = 30 SECONDS
+	// How much should melee damage modifier increase by?
 	var/modifier = 0.1
 
 /datum/status_effect/frenzy_screech/on_apply()
-	if(!isxeno(owner))
-		return FALSE
-	buff_owner = owner
-	buff_owner.xeno_melee_damage_modifier += modifier
-	owner.add_filter("frenzy_screech_outline", 3, outline_filter(1, COLOR_VIVID_RED))
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.xeno_melee_damage_modifier += modifier
+	xeno_owner.add_filter("frenzy_screech_outline", 3, outline_filter(1, COLOR_VIVID_RED))
 	return TRUE
 
 /datum/status_effect/frenzy_screech/on_remove()
-	buff_owner.xeno_melee_damage_modifier -= modifier
-	owner.remove_filter("frenzy_screech_outline")
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.xeno_melee_damage_modifier -= modifier
+	xeno_owner.remove_filter("frenzy_screech_outline")
 	return ..()
