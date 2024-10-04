@@ -231,6 +231,55 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
+/datum/loadout_item/secondary/kit/throwing_knives
+	name = "Throwing knives"
+	desc = "Some knives. You throw them at people with guns and hope for the best."
+	ui_icon = "default"
+
+/datum/loadout_item/secondary/kit/throwing_knives/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/throwing_knife, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/throwing_knife, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/throwing_knife, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/throwing_knife, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/throwing_knife, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/throwing_knife, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary/kit/plastique
+	name = "C4 pack"
+	desc = "Enough C4 to blow you back in time. Or atleast destroy some objectives."
+	ui_icon = "default"
+
+/datum/loadout_item/secondary/kit/plastique/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary/kit/binoculars
+	name = "Tac binos"
+	desc = "Tactical binoculars, used for scouting positions and calling in fire support, if it's available."
+	ui_icon = "default"
+
+/datum/loadout_item/secondary/kit/binoculars/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary/kit/anti_tank
+	name = "Anti-tank"
+	desc = "A disposable AT rocket launcher, and a box of AT mines. Good if you have an armor problem."
+	ui_icon = "default"
+
+/datum/loadout_item/secondary/kit/anti_tank/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/oneuse/anti_tank, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/antitank, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
 /datum/loadout_item/secondary/kit/cameras
 	name = "Cameras"
 	desc = "Two deployable cameras and a hud tablet. Useful for watching things remotely, and your command officers might appreciate it as well."
