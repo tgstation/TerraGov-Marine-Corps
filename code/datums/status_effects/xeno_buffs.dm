@@ -848,8 +848,7 @@
 	id = "frenzy_screech"
 	status_type = STATUS_EFFECT_REFRESH
 	alert_type = null
-	// How long does this effect last?
-	var/duration = 30 SECONDS
+	duration = 30 SECONDS
 	// How much should melee damage modifier increase by?
 	var/modifier = 0.1
 
