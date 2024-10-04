@@ -363,7 +363,7 @@
 	if(!recharge_timer)
 		return
 	examine_list += span_warning("Charging is delayed! It will start recharging again in [timeleft(recharge_timer) / 10] seconds!")
-// ivan todo all the stuff in here needs testing
+
 ///Handles starting the shield when the parent is equiped to the correct slot.
 /obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER

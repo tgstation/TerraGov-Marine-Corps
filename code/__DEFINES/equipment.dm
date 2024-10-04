@@ -271,7 +271,6 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 #define slot_r_store_str "slot_r_store"
 
 ///Correspondance between slot strings and slot numbers
-//ivan todo make sure webbings work with loadouts
 GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"slot_back" = ITEM_SLOT_BACK,
 	"slot_l_hand" = ITEM_SLOT_L_HAND,
@@ -360,23 +359,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 #define WEIGHT_CLASS_BULKY 4 //Items that can be weilded or equipped but not stored in an inventory, ex: Defibrillator, Backpack, Space Suits
 #define WEIGHT_CLASS_HUGE 5 //Usually represents objects that require two hands to operate, ex: Shotgun, Two Handed Melee Weapons
 #define WEIGHT_CLASS_GIGANTIC 6 //Essentially means it cannot be picked up or placed in an inventory, ex: Mech Parts, Safe
-// ivan todo uhh look at the blame
-#define SLOT_EQUIP_ORDER list(\
-	ITEM_SLOT_ID,\
-	ITEM_SLOT_EYES,\
-	ITEM_SLOT_ICLOTHING,\
-	ITEM_SLOT_OCLOTHING,\
-	ITEM_SLOT_MASK,\
-	ITEM_SLOT_HEAD,\
-	ITEM_SLOT_FEET,\
-	ITEM_SLOT_GLOVES,\
-	ITEM_SLOT_EARS,\
-	ITEM_SLOT_BELT,\
-	ITEM_SLOT_BACK,\
-	ITEM_SLOT_SUITSTORE,\
-	ITEM_SLOT_L_POCKET,\
-	ITEM_SLOT_R_POCKET,\
-	)
 
 ///Each slot you can draw from, used and messed with in your preferences.
 #define SLOT_DRAW_ORDER list(\
@@ -389,6 +371,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	ITEM_SLOT_R_POCKET,\
 	ITEM_SLOT_FEET,\
 	ITEM_SLOT_ACTIVE_STORAGE,\
+	ITEM_SLOT_HEAD,\
 )
 
 #define SLOT_ALL list(\
@@ -422,6 +405,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	ITEM_SLOT_R_POCKET,\
 	ITEM_SLOT_FEET,\
 	ITEM_SLOT_ACTIVE_STORAGE,\
+	ITEM_SLOT_HEAD,\
 )
 
 #define SLOT_FLUFF_DRAW list(\

@@ -144,7 +144,7 @@
 	outside = FALSE
 	minimap_color = MINIMAP_AREA_REQ
 
-/area/bigredv2/outside/general_pocket
+/area/bigredv2/outside/general_store
 	name = "General Store"
 	icon_state = "blueold"
 	ceiling = CEILING_METAL

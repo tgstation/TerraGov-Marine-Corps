@@ -482,21 +482,12 @@
 		equip_slots |= ITEM_SLOT_HEAD
 	if(ITEM_SLOT_BACK in equip_slots)
 		equip_slots |= ITEM_SLOT_BACK
-		//equip_slots |= SLOT_IN_B_HOLSTER //ivan todo
 	if(ITEM_SLOT_BELT in equip_slots)
-		//equip_slots |= SLOT_IN_HOLSTER
 		equip_slots |= ITEM_SLOT_BELT
 	if(ITEM_SLOT_SUITSTORE in equip_slots)
-		//equip_slots |= SLOT_IN_S_HOLSTER
 		equip_slots |= ITEM_SLOT_SUITSTORE
 	if(ITEM_SLOT_FEET in equip_slots)
 		equip_slots |= ITEM_SLOT_FEET
-	//if(SLOT_W_UNIFORM in equip_slots)
-		//equip_slots |= SLOT_IN_STORAGE
-		//equip_slots |= SLOT_IN_L_POUCH
-		//equip_slots |= SLOT_IN_R_POUCH
-		//equip_slots |= SLOT_ACCESSORY
-		//equip_slots |= SLOT_IN_ACCESSORY
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)

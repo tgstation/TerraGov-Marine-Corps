@@ -429,7 +429,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/equipped_to_slot = equip_slot_flags & slot
 	if(equipped_to_slot) // equip_slot_flags is a bitfield
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_TO_SLOT, user, slot)
-	else // ivan todo this looks like it wont work
+	else
 		SEND_SIGNAL(src, COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, user, slot)
 
 	for(var/datum/action/A AS in actions)
@@ -709,49 +709,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 			if(w_class <= 2)
 				return TRUE
 	return TRUE
-/*// ivan todo this sucks!!!!!!!
-		//holsters - need to check for specific item types
-		if(SLOT_IN_B_HOLSTER) 
-			if(!human_user.back || !istype(human_user.back, /obj/item/storage/holster))
-				return FALSE
-			selected_storage = human_user.back
-		if(SLOT_IN_HOLSTER)
-			if(!human_user.belt || (!istype(human_user.belt, /obj/item/storage/holster)))
-				return FALSE
-			selected_storage = human_user.belt
-		if(SLOT_IN_S_HOLSTER)
-			if(!human_user.s_store || (!istype(human_user.s_store, /obj/item/storage/holster)))
-				return FALSE
-			selected_storage = human_user.s_store
 
-		else
-			return FALSE //Unsupported slot
-
-	if(!selected_storage)
-		return FALSE
-
-	var/datum/storage/current_storage_datum
-
-	if(isdatumstorage(selected_storage))
-		current_storage_datum = selected_storage
-
-	else if(selected_storage.storage_datum)
-		current_storage_datum = selected_storage.storage_datum
-
-	else if(isclothing(selected_storage))
-		var/obj/item/clothing/selected_clothing = selected_storage
-		for(var/key AS in selected_clothing.attachments_by_slot)
-			var/atom/attachment = selected_clothing.attachments_by_slot[key]
-			if(!attachment?.storage_datum)
-				continue
-			current_storage_datum = attachment.storage_datum
-			break
-
-	if(!current_storage_datum)
-		return FALSE
-
-	return current_storage_datum.can_be_inserted(src, user, warning)
-*/
 /// Checks whether the item can be unequipped from owner by stripper. Generates a message on failure and returns TRUE/FALSE
 /obj/item/proc/canStrip(mob/stripper, mob/owner)
 	if(HAS_TRAIT(src, TRAIT_NODROP))

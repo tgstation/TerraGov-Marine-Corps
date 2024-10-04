@@ -272,13 +272,13 @@
 	if(!equip_to_slot_if_possible(W, slot, TRUE, FALSE, FALSE, FALSE, override_nodrop))
 		put_in_any_hand_if_possible(W, TRUE, FALSE)
 
-///Attempts to store an item in a valid location based on SLOT_EQUIP_ORDER
-/mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE)
+///Attempts to store an item in a valid location based on SLOT_DRAW_ORDER
+/mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE, into_storage)
 	if(!istype(W))
 		return FALSE
 
-	for(var/slot in SLOT_EQUIP_ORDER)
-		if(equip_to_slot_if_possible(W, slot, ignore_delay, FALSE, FALSE, FALSE))
+	for(var/slot in client?.prefs?.slot_draw_order_pref || SLOT_DRAW_ORDER)
+		if(equip_to_slot_if_possible(W, slot, ignore_delay, FALSE, FALSE, FALSE, into_storage))
 			return TRUE
 
 	return FALSE

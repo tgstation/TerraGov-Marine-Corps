@@ -29,15 +29,17 @@
 
 	if(s_active?.on_attackby(s_active, I, src)) //stored in currently open storage
 		return TRUE
+	if(equip_to_appropriate_slot(I, FALSE, FALSE)) //we try to put it in an appropriate slot first
+		return
 	if(slot_requested)
-		if(equip_to_slot_if_possible(I, slot_requested, FALSE, FALSE, FALSE))
+		if(equip_to_slot_if_possible(I, slot_requested, FALSE, FALSE, FALSE)) // then we try to put it in the requested slot
 			return
-	if(!equip_to_appropriate_slot(I, FALSE))
+	if(equip_to_appropriate_slot(I, FALSE, TRUE)) // then we just go through draw_order storage
 		return
 	if(hand)
-		update_inv_l_hand(FALSE)
+		update_inv_l_hand()
 	else
-		update_inv_r_hand(FALSE)
+		update_inv_r_hand()
 
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
