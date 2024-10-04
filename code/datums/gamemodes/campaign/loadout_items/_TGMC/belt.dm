@@ -79,11 +79,12 @@
 	)
 
 /datum/loadout_item/belt/machete
-	name = "Machete"
-	desc = "A large leather scabbard carrying a M2132 machete. It can be strapped to the back, waist or armor. Extremely dangerous against human opponents - if you can get close enough."
+	name = "Scabbard"
+	desc = "A large leather scabbard for carrying a M2132 machete. Blade comes separately."
 	ui_icon = "machete"
-	item_typepath = /obj/item/storage/holster/blade/machete/full
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
+	item_typepath = /obj/item/storage/holster/blade/machete
+	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER)
+	item_whitelist = list(/obj/item/weapon/sword/machete = ITEM_SLOT_SECONDARY)
 
 /datum/loadout_item/belt/belt_harness
 	name = "Belt harness"
@@ -97,29 +98,32 @@
 
 /datum/loadout_item/belt/pistol_holster
 	name = "Pistol holster"
-	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
+	desc = "A belt holster, able to carry any pistol and a good amount of ammunition."
 	ui_icon = "vp70"
 	item_typepath = /obj/item/storage/holster/belt/pistol/standard_pistol
-	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
-	//todo: whitelist on having a pistol
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
+	item_whitelist = list(
+		/obj/item/weapon/gun/pistol/standard_pistol/standard = ITEM_SLOT_SECONDARY,
+		/obj/item/weapon/gun/pistol/standard_heavypistol/tactical = ITEM_SLOT_SECONDARY,
+		/obj/item/weapon/gun/pistol/vp70/tactical = ITEM_SLOT_SECONDARY,
+		/obj/item/weapon/gun/pistol/highpower/standard = ITEM_SLOT_SECONDARY,
+		/obj/item/weapon/gun/pistol/m1911/custom = ITEM_SLOT_SECONDARY,
+		/obj/item/weapon/gun/pistol/rt3 = ITEM_SLOT_SECONDARY,
+		/obj/item/weapon/gun/pistol/smart_pistol = ITEM_SLOT_SECONDARY,
+		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical = ITEM_SLOT_SECONDARY,
+	)
 
-/*
-/datum/loadout_item/belt/standard_pistol
-	name = "MK88 Mod 4"
-	desc = "An uncommon automatic handgun that fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire. \
-	Light and easy to use one handed, but still a sidearm. Comes in a holster that fits on your waist or armor. Uses 9mm AP ammunition."
-	ui_icon = "vp70"
-	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
-	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
-**/
+/datum/loadout_item/belt/pistol_holster/default
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(STAFF_OFFICER, CAPTAIN)
 
 /datum/loadout_item/belt/db_shotgun
-	name = "SH-34 shotgun"
-	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC, loaded with buckshot. Uncommonly seen as a powerful secondary weapon when serious stopping power is required."
+	name = "Shotgun sheath"
+	desc = "A leather sheath for a SH-34 shotgun."
 	ui_icon = "tx34"
-	item_typepath = /obj/item/storage/holster/belt/ts34/full
+	item_typepath = /obj/item/storage/holster/belt/ts34
 	jobs_supported = list(SQUAD_SMARTGUNNER)
-	//probably make secondary?
+	item_whitelist = list(/obj/item/weapon/gun/shotgun/double/marine = ITEM_SLOT_SECONDARY)
 
 //medic
 /datum/loadout_item/belt/lifesaver
@@ -132,34 +136,10 @@
 
 //FC
 /datum/loadout_item/belt/officer_sword
-	name = "Officers sword"
-	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. \
-	Well made and extremely sharp, despite its probable non-combat purpose. Comes in a leather scabbard that an attached to your waist or armor."
+	name = "Scabbard"
+	desc = "A family heirloom sheath for an officer's sabre. Looks expensive."
 	ui_icon = "machete"
-	item_typepath = /obj/item/storage/holster/blade/officer/full
+	item_typepath = /obj/item/storage/holster/blade/officer
 	jobs_supported = list(FIELD_COMMANDER)
+	item_whitelist = list(/obj/item/weapon/sword/officersword = ITEM_SLOT_SECONDARY)
 
-/datum/loadout_item/belt/fc_pistol
-	name = "P-1911A1-C pistol"
-	desc = "The P-1911A1-C is a custom modified pistol with impressive stopping power for its size. \
-	Light and easy to use one handed, it suffers from a small magazine size and no auto eject feature. Comes in a holster that fits on your waist or armor. Uses .45 ACP ammunition."
-	ui_icon = "m1911c"
-	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
-	jobs_supported = list(FIELD_COMMANDER)
-
-//staff officer
-/datum/loadout_item/belt/so_pistol
-	name = "RT-3 pistol"
-	desc = "An RT-3 target pistol, a common sight throughout the bubble and the standard sidearm for noncombat roles in the TGMC. Comes in a holster to fit on your waist. uses 9mm caseless ammunition."
-	ui_icon = "rt3"
-	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/officer
-	jobs_supported = list(STAFF_OFFICER)
-
-//captain
-/datum/loadout_item/belt/smart_pistol
-	name = "SP-13 pistol"
-	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. Has good damage, penetration and magazine capacity. \
-	Expensive to manufacture, this sophisticated pistol is only occassionally used by smartgunners, or some higher ranking officers who have the skills to use it. Uses 9x19mm Parabellum ammunition."
-	ui_icon = "sp13"
-	item_typepath = /obj/item/storage/holster/belt/pistol/smart_pistol/full
-	jobs_supported = list(CAPTAIN)

@@ -71,6 +71,9 @@
 	recoil_unwielded = -2
 	akimbo_scatter_mod = 8
 
+/obj/item/weapon/gun/pistol/standard_pistol/standard
+	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/reddot, /obj/item/attachable/lasersight)
+
 //-------------------------------------------------------
 //PP-7 Plasma Pistol
 /obj/item/weapon/gun/pistol/plasma_pistol
@@ -489,6 +492,9 @@
 	accuracy_mult_unwielded = 0.6
 	scatter = 3
 	scatter_unwielded = 7
+
+/obj/item/weapon/gun/pistol/highpower/standard
+	starting_attachment_types = list(/obj/item/attachable/lace, /obj/item/attachable/reddot, /obj/item/attachable/gyro)
 
 //-------------------------------------------------------
 //VP70

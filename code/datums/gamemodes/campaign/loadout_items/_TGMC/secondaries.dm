@@ -1,5 +1,5 @@
 /datum/loadout_item/secondary_weapon/gun/marine
-	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 	item_whitelist = list(
 		/obj/item/storage/holster/belt/pistol/standard_pistol = ITEM_SLOT_BELT,
 		/obj/item/storage/backpack/marine/satchel = ITEM_SLOT_BACK,
@@ -14,8 +14,34 @@
 	name = "P-14"
 	desc = "The P-14, produced by Terran Armories. A reliable sidearm that loads 9x19mm Parabellum Auto munitions. Has a good rate of fire and takes 21-round 9mm magazines."
 	ui_icon = "tp14"
-	item_typepath = /obj/item/weapon/gun/pistol/standard_pistol
+	item_typepath = /obj/item/weapon/gun/pistol/standard_pistol/standard
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
+/datum/loadout_item/secondary_weapon/gun/marine/fc_pistol
+	name = "P-1911A1-C pistol"
+	desc = "The P-1911A1-C is a custom modified pistol with impressive stopping power for its size. \
+	Light and easy to use one handed, it suffers from a small magazine size and no auto eject feature. Uses .45 ACP ammunition."
+	ui_icon = "m1911c"
+	item_typepath = /obj/item/weapon/gun/pistol/m1911/custom
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(FIELD_COMMANDER)
+
+/datum/loadout_item/secondary_weapon/gun/marine/so_pistol
+	name = "RT-3 pistol"
+	desc = "TAn RT-3 target pistol, a common sight throughout the bubble and the standard sidearm for noncombat roles in the TGMC. Uses 9mm caseless ammunition."
+	ui_icon = "rt3"
+	item_typepath = /obj/item/weapon/gun/pistol/rt3
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(STAFF_OFFICER)
+
+/datum/loadout_item/secondary_weapon/gun/marine/smart_pistol
+	name = "SP-13 pistol"
+	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. Has good damage, penetration and magazine capacity. \
+	Expensive to manufacture, this sophisticated pistol is only occassionally used by smartgunners, or some higher ranking officers who have the skills to use it. Uses 9x19mm Parabellum ammunition."
+	ui_icon = "sp13"
+	item_typepath = /obj/item/weapon/gun/pistol/smart_pistol
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(CAPTAIN)
 
 /datum/loadout_item/secondary_weapon/gun/marine/standard_heavypistol
 	name = "P-23"
@@ -41,7 +67,7 @@
 	name = "Highpower"
 	desc = "A powerful semi-automatic pistol chambered in the devastating .50 AE caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	ui_icon = "highpower"
-	item_typepath = /obj/item/weapon/gun/pistol/highpower
+	item_typepath = /obj/item/weapon/gun/pistol/highpower/standard
 
 /datum/loadout_item/secondary_weapon/gun/marine/laser_pistol
 	name = "TE-P"
@@ -49,7 +75,7 @@
 	Uses standard Terra Experimental (abbreviated as TE) power cells. \
 	As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	ui_icon = "default"
-	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol
+	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical
 
 /datum/loadout_item/secondary_weapon/gun/marine/standard_machinepistol
 	name = "MP-19"
@@ -75,7 +101,7 @@
 	ui_icon = "m25"
 	item_typepath = /obj/item/weapon/gun/smg/m25/holstered
 	item_whitelist = list(/obj/item/storage/holster/m25 = ITEM_SLOT_BELT)
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/secondary_weapon/gun/marine/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
@@ -93,6 +119,34 @@
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
+
+/datum/loadout_item/secondary_weapon/gun/marine/db_shotgun
+	name = "SH-34 shotgun"
+	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC, loaded with buckshot. Uncommonly seen as a powerful secondary weapon when serious stopping power is required."
+	ui_icon = "tx34"
+	item_typepath = /obj/item/weapon/gun/shotgun/double/marine
+	item_whitelist = list(/obj/item/storage/holster/belt/ts34 = ITEM_SLOT_BELT)
+	jobs_supported = list(SQUAD_SMARTGUNNER)
+
+/datum/loadout_item/secondary_weapon/gun/marine/db_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_IN_HOLSTER)
+
+//non-standard
+/datum/loadout_item/secondary_weapon/machete
+	name = "Machete"
+	desc = "Latest issue of the TGMC Machete. Great for clearing out jungle or brush on outlying colonies, or cutting open heads. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
+	ui_icon = "machete"
+	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER)
+	item_typepath = /obj/item/weapon/sword/machete
+	item_whitelist = list(/obj/item/storage/holster/blade/machete = ITEM_SLOT_BELT)
+
+/datum/loadout_item/secondary_weapon/officer_sword
+	name = "Officers sword"
+	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
+	ui_icon = "machete"
+	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER)
+	item_typepath = /obj/item/weapon/sword/officersword
+	item_whitelist = list(/obj/item/storage/holster/blade/officer = ITEM_SLOT_BELT)
 
 //kits
 /datum/loadout_item/secondary_weapon/kit
