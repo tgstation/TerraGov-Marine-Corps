@@ -193,8 +193,7 @@
 	)
 
 	suit_contents = list(
-		/obj/item/cell/lasgun/volkite/powerpack/marine = 1,
-		/obj/item/storage/box/m94 = 1,
+		/obj/item/storage/box/m94 = 2,
 	)
 
 	belt_contents = list(

@@ -106,6 +106,7 @@
 			data["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			data["sound_tts"] = sound_tts
 			data["volume_tts"] = volume_tts
+			data["radio_tts_flags"] = radio_tts_flags
 			data["accessible_tgui_themes"] = accessible_tgui_themes
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
@@ -636,6 +637,30 @@
 				return
 			new_vol = round(new_vol)
 			volume_tts = clamp(new_vol, 0, 100)
+
+		if("toggle_radio_tts_setting")
+			switch(params["newsetting"])
+				if("sl")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL)
+					if(!CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_SL)) //When SL radio is being disabled, disable squad radio too
+						DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD)
+
+				if("squad")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD)
+					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD))
+						ENABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL) //Enable SL TTS if not already enabled
+
+				if("command")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_COMMAND)
+
+				if("all")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
+					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)) //Enable all other channels when 'ALL' is enabled
+						for(var/flag in GLOB.all_radio_tts_options)
+							ENABLE_BITFIELD(radio_tts_flags, flag)
+
+			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND))
+				DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
 
 		if("accessible_tgui_themes")
 			accessible_tgui_themes = !accessible_tgui_themes

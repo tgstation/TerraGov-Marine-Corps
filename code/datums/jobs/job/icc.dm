@@ -49,10 +49,10 @@
 /datum/job/icc/leader
 	title = "ICC Leader"
 	paygrade = "ICC2"
-	outfit = /datum/outfit/job/icc/leader/trenchgun
+	outfit = /datum/outfit/job/icc/leader/icc_heavyshotgun
 	skills_type = /datum/skills/sl/icc
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/icc/leader/trenchgun,
+		/datum/outfit/job/icc/leader/icc_heavyshotgun,
 		/datum/outfit/job/icc/leader/icc_confrontationrifle,
 	)

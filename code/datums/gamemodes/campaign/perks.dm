@@ -404,11 +404,21 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/construction
 	name = "Advanced construction training"
-	desc = "Faster construction times when building. Some items may no longer have a penalty delay when constructing."
+	desc = "Faster construction times when building. Some items may no longer have a penalty delay when constructing, and engineers exclusively build tougher barricades."
 	ui_icon = "construction"
 	construction = 2
 	all_jobs = TRUE
-	unlock_cost = 300
+	unlock_cost = 350
+
+/datum/perk/skill_mod/construction/apply_perk(mob/living/carbon/owner)
+	. = ..()
+	if((owner.skills.getRating(SKILL_CONSTRUCTION)) < SKILL_CONSTRUCTION_MASTER)
+		return
+	ADD_TRAIT(owner, TRAIT_SUPERIOR_BUILDER, type)
+
+/datum/perk/skill_mod/construction/remove_perk(mob/living/carbon/owner)
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_SUPERIOR_BUILDER, type)
 
 /datum/perk/skill_mod/leadership
 	name = "Advanced leadership training"
