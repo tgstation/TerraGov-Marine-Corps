@@ -6,6 +6,8 @@
 		/obj/item/storage/backpack/marine/satchel = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/lightpack = ITEM_SLOT_BACK,
+		/obj/item/storage/backpack/marine/engineerpack = ITEM_SLOT_BACK,
+		/obj/item/storage/backpack/marine/tech = ITEM_SLOT_BACK,
 	)
 
 /datum/loadout_item/secondary_weapon/empty

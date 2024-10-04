@@ -1,10 +1,12 @@
 /datum/loadout_item/secondary_weapon/gun/marine
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 	item_whitelist = list(
 		/obj/item/storage/holster/belt/pistol/standard_pistol = ITEM_SLOT_BELT,
 		/obj/item/storage/backpack/marine/satchel = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/lightpack = ITEM_SLOT_BACK,
+		/obj/item/storage/backpack/marine/engineerpack = ITEM_SLOT_BACK,
+		/obj/item/storage/backpack/marine/tech = ITEM_SLOT_BACK,
 	)
 
 /datum/loadout_item/secondary_weapon/gun/marine/standard_pistol
@@ -72,6 +74,7 @@
 	ui_icon = "m25"
 	item_typepath = /obj/item/weapon/gun/smg/m25/holstered
 	item_whitelist = list(/obj/item/storage/holster/m25 = ITEM_SLOT_BELT)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 
 /datum/loadout_item/secondary_weapon/gun/marine/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
@@ -90,86 +93,132 @@
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 
-/////kits
-/datum/loadout_item/secondary_weapon/primary_ammo
+//kits
+/datum/loadout_item/secondary_weapon/kit
+	jobs_supported = list(
+		SQUAD_MARINE,
+		SQUAD_ENGINEER,
+		SQUAD_SMARTGUNNER,
+		SQUAD_LEADER,
+		FIELD_COMMANDER,
+		SOM_SQUAD_MARINE,
+		SOM_SQUAD_ENGINEER,
+		SOM_SQUAD_VETERAN,
+		SOM_SQUAD_LEADER,
+		SOM_FIELD_COMMANDER,
+	)
+
+/datum/loadout_item/secondary_weapon/kit/primary_ammo
 	name = "Extra ammo"
 	desc = "Additional ammo for your primary weapon."
 	ui_icon = "default"
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 
-/datum/loadout_item/secondary_weapon/primary_ammo/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+/datum/loadout_item/secondary_weapon/kit/primary_ammo/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	var/datum/loadout_item/suit_store/main_gun/primary = holder.equipped_things["[ITEM_SLOT_SUITSTORE]"]
 	wearer.equip_to_slot_or_del(new primary.secondary_ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new primary.secondary_ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/secondary_weapon/emp_nades
+/datum/loadout_item/secondary_weapon/kit/emp_nades
 	name = "EMP nades"
 	desc = "Three EMP grenades, excellent against energy weapons and mechs."
 	ui_icon = "grenade"
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 
-/datum/loadout_item/secondary_weapon/emp_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+/datum/loadout_item/secondary_weapon/kit/emp_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/emp, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/emp, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/emp, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/secondary_weapon/mirage_nades
+/datum/loadout_item/secondary_weapon/kit/mirage_nades
 	name = "Mirage nades"
 	desc = "Three mirage grenades, can provide a handy distraction against unwitting opponents."
 	ui_icon = "grenade"
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 
-/datum/loadout_item/secondary_weapon/mirage_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+/datum/loadout_item/secondary_weapon/kit/mirage_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/secondary_weapon/he_nades
+/datum/loadout_item/secondary_weapon/kit/he_nades
 	name = "HE nades"
 	desc = "Three HE grenades, for a bit more bang."
 	ui_icon = "grenade"
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER) //todo: make SOM subtype
 
-/datum/loadout_item/secondary_weapon/he_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+/datum/loadout_item/secondary_weapon/kit/he_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/secondary_weapon/stun_nades
+/datum/loadout_item/secondary_weapon/kit/stun_nades
 	name = "Stun nades"
 	desc = "Three stun grenades, able to stagger, slow, and temporarily blind victims."
 	ui_icon = "stun_nade"
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 
-/datum/loadout_item/secondary_weapon/stun_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+/datum/loadout_item/secondary_weapon/kit/stun_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/secondary_weapon/sandbags
+/datum/loadout_item/secondary_weapon/kit/sandbags
 	name = "Sandbags"
 	desc = "Bags, filled with sand. They catch bullets instead of your face."
 	ui_icon = "construction"
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 
-/datum/loadout_item/secondary_weapon/sandbags/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+/datum/loadout_item/secondary_weapon/kit/sandbags/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
-/datum/loadout_item/secondary_weapon/cameras
+/datum/loadout_item/secondary_weapon/kit/cameras
 	name = "Cameras"
 	desc = "Two deployable cameras and a hud tablet. Useful for watching things remotely, and your command officers might appreciate it as well."
 	ui_icon = "construction"
 	jobs_supported = list(SQUAD_LEADER)
 
-/datum/loadout_item/secondary_weapon/cameras/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+/datum/loadout_item/secondary_weapon/kit/cameras/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK) //todo: hook mission end signal to kill these
 	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/hud_tablet(wearer, /datum/job/terragov/squad/leader, wearer.assigned_squad), SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
+
+/datum/loadout_item/secondary_weapon/kit/tgmc_engineer
+	jobs_supported = list(SQUAD_ENGINEER)
+
+/datum/loadout_item/secondary_weapon/kit/tgmc_engineer/sentry
+	name = "Sentry gun"
+	desc = "A point defence sentry gun, with spare ammo. Because more guns are always better."
+	ui_icon = "sentry"
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
+/datum/loadout_item/secondary_weapon/kit/tgmc_engineer/sentry/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary_weapon/kit/tgmc_engineer/large_mines
+	name = "Claymores"
+	desc = "Two large boxes of claymores. Mines are extremely effective for creating deadzones or setting up traps. Great on the defence."
+	ui_icon = "claymore"
+
+/datum/loadout_item/secondary_weapon/kit/tgmc_engineer/large_mines/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary_weapon/kit/tgmc_engineer/iguana
+	name = "Iguana"
+	desc = "A deployable Iguana remote control vehicle. Armed with a IFF enabled light cannon, this speedy vehicle enables the user to harass the enemy from a safe distance, or scout out areas for their team. \
+	WARNING: comes with limited ammo and is easily destroyed. Deploy with caution."
+	ui_icon = "default"
+
+/datum/loadout_item/secondary_weapon/kit/tgmc_engineer/iguana/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/deployable_vehicle, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/uav_turret, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
