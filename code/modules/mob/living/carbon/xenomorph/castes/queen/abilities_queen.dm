@@ -89,14 +89,11 @@
 	add_cooldown()
 
 	var/datum/action/ability/activable/xeno/support_screech/heal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/heal]
-	if(heal_screech)
-		heal_screech.add_cooldown(15 SECONDS)
+	heal_screech?.add_cooldown(15 SECONDS)
 	var/datum/action/ability/activable/xeno/support_screech/plasma_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/plasma]
-	if(plasma_screech)
-		plasma_screech.add_cooldown(15 SECONDS)
+	plasma_screech?.add_cooldown(15 SECONDS)
 	var/datum/action/ability/activable/xeno/support_screech/frenzy_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/frenzy]
-	if(frenzy_screech)
-		frenzy_screech.add_cooldown(15 SECONDS)
+	frenzy_screech?.add_cooldown(15 SECONDS)
 
 	playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, 0)
 	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
@@ -181,14 +178,11 @@
 	add_cooldown()
 
 	var/datum/action/ability/activable/xeno/normal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/screech]
-	if(normal_screech)
-		normal_screech.add_cooldown(30 SECONDS)
+	normal_screech?.add_cooldown(30 SECONDS)
 	var/datum/action/ability/activable/xeno/support_screech/plasma_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/plasma]
-	if(plasma_screech)
-		plasma_screech.add_cooldown(30 SECONDS)
+	plasma_screech?.add_cooldown(30 SECONDS)
 	var/datum/action/ability/activable/xeno/support_screech/frenzy_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/frenzy]
-	if(frenzy_screech)
-		frenzy_screech.add_cooldown(30 SECONDS)
+	frenzy_screech?.add_cooldown(30 SECONDS)
 
 /datum/action/ability/activable/xeno/support_screech/plasma
 	name = "Plasma Screech"
@@ -217,14 +211,11 @@
 	add_cooldown()
 
 	var/datum/action/ability/activable/xeno/normal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/screech]
-	if(normal_screech)
-		normal_screech.add_cooldown(30 SECONDS)
+	normal_screech?.add_cooldown(30 SECONDS)
 	var/datum/action/ability/activable/xeno/support_screech/heal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/heal]
-	if(heal_screech)
-		heal_screech.add_cooldown(30 SECONDS)
+	heal_screech?.add_cooldown(30 SECONDS)
 	var/datum/action/ability/activable/xeno/support_screech/frenzy_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/frenzy]
-	if(frenzy_screech)
-		frenzy_screech.add_cooldown(30 SECONDS)
+	frenzy_screech?.add_cooldown(30 SECONDS)
 
 /datum/action/ability/activable/xeno/support_screech/frenzy
 	name = "Frenzy Screech"
@@ -251,14 +242,11 @@
 	add_cooldown()
 
 	var/datum/action/ability/activable/xeno/normal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/screech]
-	if(normal_screech)
-		normal_screech.add_cooldown(30 SECONDS)
+	normal_screech?.add_cooldown(30 SECONDS)
 	var/datum/action/ability/activable/xeno/support_screech/heal_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/heal]
-	if(heal_screech)
-		heal_screech.add_cooldown(30 SECONDS)
+	heal_screech?.add_cooldown(30 SECONDS)
 	var/datum/action/ability/activable/xeno/support_screech/plasma_screech = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/support_screech/plasma]
-	if(plasma_screech)
-		plasma_screech.add_cooldown(30 SECONDS)
+	plasma_screech?.add_cooldown(30 SECONDS)
 
 // ***************************************
 // *********** Overwatch
