@@ -1,5 +1,5 @@
 /datum/loadout_item/secondary_weapon/gun/marine
-	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 	item_whitelist = list(
 		/obj/item/storage/holster/belt/pistol/standard_pistol = ITEM_SLOT_BELT,
 		/obj/item/storage/backpack/marine/satchel = ITEM_SLOT_BACK,
@@ -7,6 +7,7 @@
 		/obj/item/storage/backpack/lightpack = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine/engineerpack = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine/tech = ITEM_SLOT_BACK,
+		/obj/item/storage/backpack/marine/corpsman = ITEM_SLOT_BACK,
 	)
 
 /datum/loadout_item/secondary_weapon/gun/marine/standard_pistol
@@ -97,11 +98,13 @@
 /datum/loadout_item/secondary_weapon/kit
 	jobs_supported = list(
 		SQUAD_MARINE,
+		SQUAD_CORPSMAN,
 		SQUAD_ENGINEER,
 		SQUAD_SMARTGUNNER,
 		SQUAD_LEADER,
 		FIELD_COMMANDER,
 		SOM_SQUAD_MARINE,
+		SOM_SQUAD_CORPSMAN,
 		SOM_SQUAD_ENGINEER,
 		SOM_SQUAD_VETERAN,
 		SOM_SQUAD_LEADER,
@@ -112,7 +115,6 @@
 	name = "Extra ammo"
 	desc = "Additional ammo for your primary weapon."
 	ui_icon = "default"
-	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 
 /datum/loadout_item/secondary_weapon/kit/primary_ammo/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	var/datum/loadout_item/suit_store/main_gun/primary = holder.equipped_things["[ITEM_SLOT_SUITSTORE]"]
@@ -146,7 +148,7 @@
 	name = "HE nades"
 	desc = "Three HE grenades, for a bit more bang."
 	ui_icon = "grenade"
-	jobs_supported = list(SQUAD_MARINE, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER) //todo: make SOM subtype
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER) //todo: make SOM subtype
 
 /datum/loadout_item/secondary_weapon/kit/he_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
@@ -222,3 +224,20 @@
 	wearer.equip_to_slot_or_del(new /obj/item/deployable_vehicle, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/uav_turret, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary_weapon/kit/tgmc_corpsman
+	jobs_supported = list(SQUAD_CORPSMAN)
+
+/datum/loadout_item/secondary_weapon/kit/tgmc_corpsman/advanced
+	name = "Advanced meds"
+	desc = "A variety of advanced medical injectors including neuraline, as well as rezadone, a powerful chemical able to treat genetic damage in humanoids."
+	ui_icon = "medkit"
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+
+/datum/loadout_item/secondary_weapon/kit/tgmc_corpsman/advanced/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/rezadone, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/synaptizine, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/antitox_mix, SLOT_IN_BACKPACK)
