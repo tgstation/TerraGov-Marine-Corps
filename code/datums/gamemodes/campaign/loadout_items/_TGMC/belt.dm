@@ -119,6 +119,7 @@
 	ui_icon = "tx34"
 	item_typepath = /obj/item/storage/holster/belt/ts34/full
 	jobs_supported = list(SQUAD_SMARTGUNNER)
+	//probably make secondary?
 
 //medic
 /datum/loadout_item/belt/lifesaver

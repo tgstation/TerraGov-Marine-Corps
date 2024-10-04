@@ -1,7 +1,7 @@
 /datum/loadout_item/secondary_weapon/gun/marine
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 	item_whitelist = list(
-		/obj/item/storage/holster/belt/pistol/m4a3 = ITEM_SLOT_BELT,
+		/obj/item/storage/holster/belt/pistol/standard_pistol = ITEM_SLOT_BELT,
 		/obj/item/storage/backpack/marine/satchel = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/lightpack = ITEM_SLOT_BACK,
@@ -160,4 +160,16 @@
 /datum/loadout_item/secondary_weapon/sandbags/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary_weapon/cameras
+	name = "Cameras"
+	desc = "Two deployable cameras and a hud tablet. Useful for watching things remotely, and your command officers might appreciate it as well."
+	ui_icon = "construction"
+	jobs_supported = list(SQUAD_LEADER)
+
+/datum/loadout_item/secondary_weapon/cameras/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK) //todo: hook mission end signal to kill these
+	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/hud_tablet(wearer, /datum/job/terragov/squad/leader, wearer.assigned_squad), SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
