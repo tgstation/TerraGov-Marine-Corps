@@ -169,6 +169,7 @@
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, screech_range))
+		// Gives the benefit of Hivelord's Healing Infusion but it is halved in power (as in lower duration and less ticks of healing).
 		affected_xeno.apply_status_effect(/datum/status_effect/healing_infusion, HIVELORD_HEALING_INFUSION_DURATION / 2, HIVELORD_HEALING_INFUSION_TICKS / 2)
 
 	playsound(xeno_owner.loc, 'sound/voice/alien/queen_heal_screech.ogg', 75, 0)
@@ -189,8 +190,6 @@
 	action_icon_state = "plasma_screech"
 	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Screech that increases plasma regeneration for nearby xenos."
-	var/bonus_regen = 0.5
-	var/duration = 30 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PLASMA_SCREECH,
@@ -202,7 +201,8 @@
 	for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, screech_range))
 		if(!(affected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
 			continue
-		affected_xeno.apply_status_effect(/datum/status_effect/plasma_surge, affected_xeno.xeno_caste.plasma_max / 2, bonus_regen, duration)
+		// Gives the benefit of eatting powerfruit, but everything is halved (less plasma immediately restored, less plasma regen given, shorter duration).
+		affected_xeno.apply_status_effect(/datum/status_effect/plasma_surge, affected_xeno.xeno_caste.plasma_max / 2, 0.5, 30 SECONDS)
 
 	playsound(xeno_owner.loc, 'sound/voice/alien/queen_plasma_screech.ogg', 75, 0)
 	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
@@ -222,8 +222,6 @@
 	action_icon_state = "frenzy_screech"
 	action_icon = 'icons/Xeno/actions/queen.dmi'
 	desc = "Screech that increases damage for nearby xenos."
-	var/buff_duration = 30 SECONDS
-	var/buff_damage_modifier = 0.1
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FRENZY_SCREECH,
@@ -233,7 +231,8 @@
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
 	for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, screech_range))
-		affected_xeno.apply_status_effect(/datum/status_effect/frenzy_screech, buff_duration, buff_damage_modifier)
+		// 10% increase of melee damage.
+		affected_xeno.apply_status_effect(/datum/status_effect/frenzy_screech, 30 SECONDS, 0.1)
 
 	playsound(xeno_owner.loc, 'sound/voice/alien/queen_frenzy_screech.ogg', 75, 0)
 	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
