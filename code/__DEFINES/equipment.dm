@@ -119,7 +119,8 @@
 #define AUTOBALANCE_CHECK (1<<20)
 ///This item is in any storage
 #define IN_STORAGE (1<<21)
-
+///If an item can be restocked/refilled in a vendor, despite not being infinite supply
+#define CAN_REFILL (1<<22)
 
 //storage_flags
 ///If a storage container can be restocked into a vendor

@@ -1,4 +1,4 @@
-/mob/living/brain/Life()
+/mob/living/brain/Life(seconds_per_tick, times_fired)
 	set invisibility = 0
 	set background = 1
 	..()

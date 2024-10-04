@@ -831,7 +831,7 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 	return ..()
 
 /mob/living/carbon/human/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
-	if(wear_id?.iff_signal & proj.iff_signal)
+	if((wear_id?.iff_signal & proj.iff_signal) || (proj?.firer?.faction == faction && proj.original_target != src && Adjacent(proj.firer)))
 		proj.damage -= proj.damage*proj.damage_marine_falloff
 		return FALSE
 	return ..()
@@ -848,10 +848,12 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 		return FALSE
 	return ..()
 
-
+///visual and audio feedback for hits
 /obj/projectile/proc/play_damage_effect(mob/M)
-	if(ammo.sound_hit) playsound(M, ammo.sound_hit, 50, 1)
-	if(M.stat != DEAD) animation_flash_color(M)
+	if(ammo.sound_hit)
+		playsound(M, ammo.sound_hit, 50, 1)
+	if(M.stat != DEAD)
+		animation_flash_color(M)
 
 //----------------------------------------------------------
 				//				    \\

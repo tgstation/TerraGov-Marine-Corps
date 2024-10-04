@@ -292,11 +292,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/standard_agls/cloak)
 	cost = 30
 
-/datum/supply_packs/weapons/ags_tanglefoot
-	name = "AGLS-37 AGL Tanglefoot Grenades"
-	contains = list(/obj/item/ammo_magazine/standard_agls/tanglefoot)
-	cost = 55
-
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)
@@ -1281,6 +1276,11 @@ CLOTHING
 	name = "Double pack of night vision batteries"
 	contains = list(/obj/item/cell/night_vision_battery, /obj/item/cell/night_vision_battery)
 	cost = 100
+
+/datum/supply_packs/clothing/saddle
+	name = "Runner Saddle"
+	contains = list(/obj/item/storage/backpack/marine/duffelbag/xenosaddle)
+	cost = 120
 
 /*******************************************************************************
 MEDICAL
@@ -2495,11 +2495,6 @@ FACTORY
 	name = "AGLS Cloak magazine assembly refill"
 	contains = list(/obj/item/factory_refill/agls_cloak_refill)
 	cost = 200
-
-/datum/supply_packs/factory/agls_tanglefoot_refill
-	name = "AGLS Tanglefoot magazine assembly refill"
-	contains = list(/obj/item/factory_refill/agls_tanglefoot_refill)
-	cost = 400
 
 /datum/supply_packs/factory/atgun_aphe_refill
 	name = "AT-36 AP-HE shell assembly refill"

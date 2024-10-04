@@ -25507,7 +25507,7 @@
 "vgK" = (
 /obj/structure/table/mainship/nometal,
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/mainship/floor,
 /area/mainship/living/grunt_rnr)
 "vgL" = (

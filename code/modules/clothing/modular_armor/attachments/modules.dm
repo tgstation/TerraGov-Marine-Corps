@@ -58,8 +58,8 @@
 	parent.AddElement(/datum/element/limb_support, supported_limbs)
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_detach(obj/item/detaching_from, mob/user)
-	qdel(parent.GetComponent(/datum/component/suit_autodoc))
-	parent.RemoveElement(/datum/element/limb_support, supported_limbs)
+	detaching_from.remove_component(/datum/component/suit_autodoc)
+	detaching_from.RemoveElement(/datum/element/limb_support, supported_limbs)
 	return ..()
 
 /obj/item/armor_module/module/valkyrie_autodoc/som
@@ -125,6 +125,14 @@
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_armor_xn")
+
+/obj/item/armor_module/module/tyr_extra_armor/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	attaching_to.AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+
+/obj/item/armor_module/module/tyr_extra_armor/on_detach(obj/item/detaching_from, mob/user)
+	detaching_from.remove_component(/datum/component/stun_mitigation)
+	return ..()
 
 /obj/item/armor_module/module/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
@@ -529,9 +537,7 @@
 	parent.AddComponent(/datum/component/clothing_tint, TINT_5, active)
 
 /obj/item/armor_module/module/welding/on_detach(obj/item/detaching_from, mob/user)
-	parent.GetComponent(/datum/component/clothing_tint)
-	var/datum/component/clothing_tint/tints = parent?.GetComponent(/datum/component/clothing_tint)
-	tints.RemoveComponent()
+	detaching_from.remove_component(/datum/component/clothing_tint)
 	return ..()
 
 /obj/item/armor_module/module/welding/activate(mob/living/user)

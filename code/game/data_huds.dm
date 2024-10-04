@@ -534,7 +534,7 @@
 	if(stat != DEAD)
 		if(hive?.living_xeno_queen)
 			if(hive.living_xeno_queen.observed_xeno == src)
-				holder.icon = 'icons/mob/hud/xeno_health.dmi'
+				holder.icon = 'icons/mob/hud/xeno.dmi'
 				holder.icon_state = "queen_overwatch"
 			if(xeno_flags & XENO_LEADER)
 				var/image/I = image('icons/mob/hud/xeno.dmi',src, "leader")
