@@ -144,7 +144,7 @@
 	name = "Officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	ui_icon = "machete"
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER)
+	jobs_supported = list(FIELD_COMMANDER)
 	item_typepath = /obj/item/weapon/sword/officersword
 	item_whitelist = list(/obj/item/storage/holster/blade/officer = ITEM_SLOT_BELT)
 
