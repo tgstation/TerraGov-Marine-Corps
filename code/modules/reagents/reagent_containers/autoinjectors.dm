@@ -210,6 +210,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/rezadone = 30,
 	)
+	description_overlay = "Rz"
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
 	name = "synaptizine autoinjector"
@@ -354,3 +355,4 @@
 		/datum/reagent/medicine/tricordrazine = 7.5,
 		/datum/reagent/medicine/arithrazine = 7.5,
 	)
+	description_overlay = "Tx4"
