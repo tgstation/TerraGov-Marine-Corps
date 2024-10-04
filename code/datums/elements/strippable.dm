@@ -237,7 +237,7 @@
 		return FALSE
 
 	var/mob/mob_source = source
-	mob_source.equip_to_slot(equipping, item_slot, TRUE)
+	mob_source.equip_to_slot(equipping, item_slot, FALSE)
 
 /datum/strippable_item/mob_item_slot/get_obscuring(atom/source)
 	if(iscarbon(source))
