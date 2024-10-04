@@ -1,6 +1,6 @@
 #define MARINE_STANDARD_SECONDARY_AMMO_SPACE 4
 
-/datum/loadout_item/secondary_weapon
+/datum/loadout_item/secondary
 	item_slot = ITEM_SLOT_SECONDARY
 	item_whitelist = list(
 		/obj/item/storage/backpack/marine/satchel = ITEM_SLOT_BACK,
@@ -11,7 +11,7 @@
 		/obj/item/storage/backpack/marine/corpsman = ITEM_SLOT_BACK,
 	)
 
-/datum/loadout_item/secondary_weapon/empty
+/datum/loadout_item/secondary/empty
 	name = "None"
 	desc = "Nothing. Nadda."
 	ui_icon = "empty"
@@ -37,18 +37,18 @@
 	)
 
 
-/datum/loadout_item/secondary_weapon/gun
+/datum/loadout_item/secondary/gun
 	///Ammo type this gun will use
 	var/obj/item/secondary_weapon_ammo
 
-/datum/loadout_item/secondary_weapon/gun/New()
+/datum/loadout_item/secondary/gun/New()
 	. = ..()
 	if(secondary_weapon_ammo)
 		return
 	var/obj/item/weapon/gun/weapon_type = item_typepath
 	secondary_weapon_ammo = weapon_type::default_ammo_type
 
-/datum/loadout_item/secondary_weapon/gun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+/datum/loadout_item/secondary/gun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	var/gun_spawned = FALSE
 	var/ammo_spawned = FALSE
 
