@@ -853,6 +853,8 @@
 	var/modifier = 0.1
 
 /datum/status_effect/frenzy_screech/on_apply()
+	if(!isxeno(owner))
+		return FALSE
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.xeno_melee_damage_modifier += modifier
 	xeno_owner.add_filter("frenzy_screech_outline", 3, outline_filter(1, COLOR_VIVID_RED))
