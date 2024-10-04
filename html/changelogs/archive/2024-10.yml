@@ -39,3 +39,7 @@
   - balance: 'Campaign: Melee stuns can no longer chainstun'
   blackdav123:
   - balance: The rappel system is now far easier to use.
+2024-10-04:
+  Arturlang:
+  - bugfix: shrike healing and crit healing should now work
+  - rscadd: regen delays now properly are handled by seconds_per_tick
