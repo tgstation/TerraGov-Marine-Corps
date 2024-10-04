@@ -239,7 +239,7 @@
 	desc = "Equipped with an unremovable miniscope and tripod. The MG-27 is large, unwieldy machinegun, with terrible mobility and effectively unmanagable handling outside of point blank range. \
 	However the MG-27 is primary used as a deployed weapon, where it offers devastatingly powerful, accurate and long range damage that far exceeds the lighter MG-60. \
 	Can quickly mow down any target caught out in the open, it is the final word in static weaponry. It uses 10x27mm caseless ammunition."
-	ui_icon = "ballistic"
+	ui_icon = "default"
 	item_typepath = /obj/item/weapon/gun/standard_mmg/machinegunner
 	item_blacklist = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = ITEM_SLOT_SECONDARY)
 

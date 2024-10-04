@@ -49,7 +49,7 @@
 	var/gun_spawned = FALSE
 	var/ammo_spawned = FALSE
 
-	if(isholster(wearer.belt))
+	if(isholster(wearer.belt)) //curently fails with machete belts, gotta decide what to do with them
 		var/obj/item/storage/holster/holster = wearer.belt
 		wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
 		gun_spawned = TRUE

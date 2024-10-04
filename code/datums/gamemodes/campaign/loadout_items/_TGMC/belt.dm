@@ -75,20 +75,8 @@
 		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/standard_mmg/machinegunner = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/smg/m25/holstered = ITEM_SLOT_SECONDARY,
 	)
-
-/datum/loadout_item/belt/smg_holster/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	var/ammo_type = /obj/item/ammo_magazine/smg/m25
-	if(istype(wearer.r_store, /obj/item/storage/pouch/magazine))
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
-	if(wearer.skills.getRating(SKILL_SMGS) >= SKILL_SMGS_TRAINED)
-		ammo_type = /obj/item/ammo_magazine/smg/m25/ap
-	if(istype(wearer.l_store, /obj/item/storage/pouch/magazine))
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
-		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/belt/machete
 	name = "Machete"
@@ -109,10 +97,11 @@
 
 /datum/loadout_item/belt/pistol_holster
 	name = "Pistol holster"
-	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun and plenty of ammo."
+	desc = "The T457 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips."
 	ui_icon = "vp70"
-	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3
+	item_typepath = /obj/item/storage/holster/belt/pistol/standard_pistol
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
+	//todo: whitelist on having a pistol
 
 /*
 /datum/loadout_item/belt/standard_pistol
