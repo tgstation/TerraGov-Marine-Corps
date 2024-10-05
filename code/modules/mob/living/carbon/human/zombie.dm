@@ -95,7 +95,7 @@
 	/// smoke type created when the grenade is primed
 	var/datum/effect_system/smoke_spread/smoketype = /datum/effect_system/smoke_spread/bad
 	///radius this smoke grenade will encompass
-	var/smokeradius = 6
+	var/smokeradius = 4
 	///The duration of the smoke in 2 second ticks
 	var/smoke_duration = 9
 
@@ -144,3 +144,11 @@
 /datum/action/ability/emit_gas/give_action(mob/living/L)
 	. = ..()
 	toggle_particles(TRUE)
+
+/datum/action/ability/emit_gas/remove_action(mob/living/L)
+	. = ..()
+	QDEL_NULL(particle_holder)
+
+/datum/action/ability/emit_gas/Destroy()
+	. = ..()
+	QDEL_NULL(particle_holder)
