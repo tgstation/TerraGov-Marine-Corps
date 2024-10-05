@@ -22,14 +22,20 @@
 
 /datum/loadout_item/secondary/kit/primary_ammo/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	var/datum/loadout_item/suit_store/main_gun/primary = holder.equipped_things["[ITEM_SLOT_SUITSTORE]"]
+	if(!istype(primary))
+		return
 	wearer.equip_to_slot_or_del(new primary.ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new primary.secondary_ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary/kit/primary_ammo/default
+	jobs_supported = list(SQUAD_CORPSMAN, SOM_SQUAD_CORPSMAN)
 
 /datum/loadout_item/secondary/kit/emp_nades
 	name = "EMP nades"
 	desc = "Three EMP grenades, excellent against energy weapons and mechs."
 	ui_icon = "grenade"
+	purchase_cost = 20
 
 /datum/loadout_item/secondary/kit/emp_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/emp, SLOT_IN_BACKPACK)
@@ -90,6 +96,7 @@
 	name = "Anti-tank"
 	desc = "A disposable AT rocket launcher, and a box of AT mines. Good if you have an armor problem."
 	ui_icon = "default"
+	purchase_cost = 30
 
 /datum/loadout_item/secondary/kit/anti_tank/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/oneuse/anti_tank, SLOT_IN_BACKPACK)

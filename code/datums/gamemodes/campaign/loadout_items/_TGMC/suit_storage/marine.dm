@@ -240,7 +240,7 @@
 	However the MG-27 is primary used as a deployed weapon, where it offers devastatingly powerful, accurate and long range damage that far exceeds the lighter MG-60. \
 	Can quickly mow down any target caught out in the open, it is the final word in static weaponry. It uses 10x27mm caseless ammunition."
 	ui_icon = "default"
-	item_typepath = /obj/item/weapon/gun/standard_mmg/machinegunner
+	item_typepath = LOADOUT_ITEM_MG27
 	item_blacklist = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = ITEM_SLOT_SECONDARY)
 
 /datum/loadout_item/suit_store/main_gun/marine/standard_mmg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
@@ -305,7 +305,7 @@
 	Uses back or gun mounted fuel tanks."
 	req_desc = "Requires a suit with a Surt module."
 	ui_icon = "m240"
-	item_typepath = /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
+	item_typepath = LOADOUT_ITEM_TGMC_FLAMER
 	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/surt = ITEM_SLOT_OCLOTHING)
 	item_blacklist = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol = ITEM_SLOT_SECONDARY)
 

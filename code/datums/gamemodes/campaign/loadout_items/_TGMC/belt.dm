@@ -71,12 +71,7 @@
 	req_desc = "Requires an SMG-25, MG-27 or FL-84."
 	item_typepath = /obj/item/storage/holster/m25
 	jobs_supported = list(SQUAD_MARINE)
-	item_whitelist = list(
-		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/standard_mmg/machinegunner = ITEM_SLOT_SUITSTORE,
-		/obj/item/weapon/gun/smg/m25/holstered = ITEM_SLOT_SECONDARY,
-	)
+	item_whitelist = list(/obj/item/weapon/gun/smg/m25/holstered = ITEM_SLOT_SECONDARY)
 
 /datum/loadout_item/belt/machete
 	name = "Scabbard"

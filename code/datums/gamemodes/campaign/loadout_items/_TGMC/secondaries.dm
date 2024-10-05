@@ -55,6 +55,8 @@
 	Light and easy to use one handed, but still a sidearm. Comes in a holster that fits on your waist or armor. Uses 9mm AP ammunition."
 	ui_icon = "vp70"
 	item_typepath = /obj/item/weapon/gun/pistol/vp70/tactical
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 
 /datum/loadout_item/secondary/gun/marine/standard_revolver
 	name = "TP-44"
@@ -62,12 +64,14 @@
 	Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	ui_icon = "tp44"
 	item_typepath = /obj/item/weapon/gun/revolver/standard_revolver
+	loadout_item_flags = NONE
 
 /datum/loadout_item/secondary/gun/marine/highpower
 	name = "Highpower"
 	desc = "A powerful semi-automatic pistol chambered in the devastating .50 AE caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
 	ui_icon = "highpower"
 	item_typepath = /obj/item/weapon/gun/pistol/highpower/standard
+	loadout_item_flags = NONE
 
 /datum/loadout_item/secondary/gun/marine/laser_pistol
 	name = "TE-P"
@@ -76,24 +80,20 @@
 	As with all TE Laser weapons, they use a lightweight alloy combined without the need for bullets any longer decreases their weight and aiming speed quite some vs their ballistic counterparts."
 	ui_icon = "default"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical
+	loadout_item_flags = NONE
 
 /datum/loadout_item/secondary/gun/marine/standard_machinepistol
 	name = "MP-19"
-	desc = "The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. \
+	desc = "Equipped with a motion sensor. The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. \
 	It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	ui_icon = "t19"
-	item_typepath = /obj/item/weapon/gun/smg/standard_machinepistol/compact
+	item_typepath = /obj/item/weapon/gun/smg/standard_machinepistol/scanner
+	purchase_cost = 15
 	item_whitelist = list(
 		/obj/item/storage/backpack/marine/satchel = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/lightpack = ITEM_SLOT_BACK,
 	)
-
-/datum/loadout_item/secondary/gun/marine/standard_machinepistol/scanner
-	name = "MP-19-m"
-	desc = "Equipped with a motion sensor. The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. \
-	It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
-	item_typepath = /obj/item/weapon/gun/smg/standard_machinepistol/scanner
 
 /datum/loadout_item/secondary/gun/marine/standard_smg
 	name = "SMG-25"
@@ -102,6 +102,13 @@
 	item_typepath = /obj/item/weapon/gun/smg/m25/holstered
 	item_whitelist = list(/obj/item/storage/holster/m25 = ITEM_SLOT_BELT)
 	jobs_supported = list(SQUAD_MARINE)
+
+/datum/loadout_item/secondary/gun/marine/standard_smg/item_checks(datum/outfit_holder/outfit_holder)
+	. = ..()
+	if(!.)
+		return
+	if((outfit_holder.equipped_things["[ITEM_SLOT_SUITSTORE]"].item_typepath != LOADOUT_ITEM_MG27) && (outfit_holder.equipped_things["[ITEM_SLOT_SUITSTORE]"].item_typepath != LOADOUT_ITEM_MG27))
+		return FALSE
 
 /datum/loadout_item/secondary/gun/marine/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
@@ -140,6 +147,10 @@
 	item_typepath = /obj/item/weapon/sword/machete
 	item_whitelist = list(/obj/item/storage/holster/blade/machete = ITEM_SLOT_BELT)
 
+/datum/loadout_item/secondary/machete/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
+	default_load(wearer, loadout, holder)
+
 /datum/loadout_item/secondary/officer_sword
 	name = "Officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
@@ -147,6 +158,10 @@
 	jobs_supported = list(FIELD_COMMANDER)
 	item_typepath = /obj/item/weapon/sword/officersword
 	item_whitelist = list(/obj/item/storage/holster/blade/officer = ITEM_SLOT_BELT)
+
+/datum/loadout_item/secondary/officer_sword/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
+	default_load(wearer, loadout, holder)
 
 /datum/loadout_item/secondary/kit/mirage_nades
 	name = "Mirage nades"
@@ -176,6 +191,7 @@
 	name = "Tac binos"
 	desc = "Tactical binoculars, used for scouting positions and calling in fire support, if it's available."
 	ui_icon = "default"
+	purchase_cost = 20
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER)
 
 /datum/loadout_item/secondary/kit/binoculars/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
@@ -187,7 +203,7 @@
 /datum/loadout_item/secondary/kit/cameras
 	name = "Cameras"
 	desc = "Two deployable cameras and a hud tablet. Useful for watching things remotely, and your command officers might appreciate it as well."
-	ui_icon = "construction"
+	ui_icon = "default"
 	jobs_supported = list(SQUAD_LEADER)
 
 /datum/loadout_item/secondary/kit/cameras/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
@@ -225,6 +241,7 @@
 	desc = "A deployable Iguana remote control vehicle. Armed with a IFF enabled light cannon, this speedy vehicle enables the user to harass the enemy from a safe distance, or scout out areas for their team. \
 	WARNING: comes with limited ammo and is easily destroyed. Deploy with caution."
 	ui_icon = "default"
+	purchase_cost = 75
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/iguana/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/deployable_vehicle, SLOT_IN_BACKPACK)
@@ -238,7 +255,7 @@
 	name = "Advanced meds"
 	desc = "A variety of advanced medical injectors including neuraline, as well as rezadone, a powerful chemical able to treat genetic damage in humanoids."
 	ui_icon = "medkit"
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	purchase_cost = 30
 
 /datum/loadout_item/secondary/kit/tgmc_corpsman/advanced/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)

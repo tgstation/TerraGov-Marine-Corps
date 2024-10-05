@@ -54,6 +54,11 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor = ITEM_SLOT_SUITSTORE,
 	)
 
+/datum/loadout_item/secondary/gun/som/sawn_off/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_BELT)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_L_HAND)
+	default_load(wearer, loadout, holder)
+
 /datum/loadout_item/secondary/esword
 	name = "Energy sword"
 	desc = "A SOM energy sword. Designed to cut through armored plate. An uncommon primary weapon, typically seen wielded by so called 'blink assault' troops. \
@@ -62,6 +67,10 @@
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	item_typepath = /obj/item/weapon/energy/sword/som
 	loadout_item_flags = NONE
+
+/datum/loadout_item/secondary/esword/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_BELT)
+	default_load(wearer, loadout, holder)
 
 //kits
 /datum/loadout_item/secondary/kit/he_nades/som
@@ -113,7 +122,7 @@
 	name = "Advanced meds"
 	desc = "A variety of advanced medical injectors including Russian Red, as well as rezadone, a powerful chemical able to treat genetic damage in humanoids."
 	ui_icon = "medkit"
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	purchase_cost = 30
 
 /datum/loadout_item/secondary/kit/som_corpsman/advanced/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
