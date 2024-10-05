@@ -86,6 +86,13 @@
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(/obj/item/clothing/suit/modular/tdf/heavy/surt = ITEM_SLOT_OCLOTHING)
 
+/datum/loadout_item/helmet/smartgunner
+	name = "SG Helmet"
+	desc = "A standard SG combat helmet. Apply to head for best results."
+	item_typepath = /obj/item/clothing/head/modular/tdf/sg
+	jobs_supported = list(SQUAD_SMARTGUNNER)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
+
 /datum/loadout_item/helmet/tyr
 	name = "H Tyr Helmet"
 	desc = "A standard combat helmet with a Tyr extra armor module."

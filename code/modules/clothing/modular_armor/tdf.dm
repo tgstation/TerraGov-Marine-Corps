@@ -337,7 +337,7 @@
 
 /obj/item/clothing/head/modular/tdf/sg
 	name = "\improper Spade Class Helmet"
-	desc = "A helmet with an attached 'Tyr' module for additional protection and loaded with sensors and targeting computers to assist the smartgun at shooting things."
+	desc = "A helmet loaded with sensors and targeting computers to assist the smartgun at shooting things."
 	icon_state = "tdf_helmet_sg"
 	worn_icon_state = "tdf_helmet_sg"
 
