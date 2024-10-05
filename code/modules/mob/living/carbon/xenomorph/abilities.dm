@@ -1512,11 +1512,13 @@
 	var/larva_point_reward = 1
 
 /datum/action/ability/activable/xeno/psydrain/can_use_ability(atom/A, silent = FALSE, override_flags)
+	if(!iscarbon(A))
+		return FALSE
+	if(owner.status_flags & INCORPOREAL)
+		return FALSE
 	. = ..() //do after checking the below stuff
 	if(!.)
 		return
-	if(!iscarbon(A))
-		return FALSE
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/carbon/victim = A //target of ability
 	if(X.do_actions) //can't use if busy

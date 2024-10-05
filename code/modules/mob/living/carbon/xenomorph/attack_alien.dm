@@ -138,6 +138,14 @@
 	// if we don't get any non-stacking bonuses dont apply dam_bonus
 	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED))
 		damage_mod += dam_bonus
+		//locate() subtypes aswell, whichever the mob has.
+		var/datum/action/ability/xeno_action/stealth/stealth_skill = locate() in X.actions
+		if(stealth_skill.can_sneak_attack)
+			var/datum/action/ability/activable/xeno/hunter_mark/assassin/mark = X.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark/assassin]
+			if(mark?.marked_target == src) //assassin death mark
+				damage *= 2
+
+	var/armor_pen = X.xeno_caste.melee_ap
 
 	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
 		armor_block = MELEE
@@ -145,7 +153,6 @@
 	for(var/i in damage_mod)
 		damage += i
 
-	var/armor_pen = X.xeno_caste.melee_ap
 	for(var/i in armor_mod)
 		armor_pen += i
 
