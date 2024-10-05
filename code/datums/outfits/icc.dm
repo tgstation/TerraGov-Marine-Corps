@@ -269,8 +269,8 @@
 	gloves = /obj/item/clothing/gloves/marine/icc/guard
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
 	back = /obj/item/storage/backpack/lightpack/icc/guard
-	l_store = /obj/item/storage/pouch/medical_injectors/icc/firstaid
-	r_store = /obj/item/storage/pouch/construction/icc/full
+	l_pocket = /obj/item/storage/pouch/medical_injectors/icc/firstaid
+	r_pocket = /obj/item/storage/pouch/construction/icc/full
 
 	suit_contents = list(
 		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 2,

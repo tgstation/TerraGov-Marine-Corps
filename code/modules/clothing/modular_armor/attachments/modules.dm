@@ -128,7 +128,7 @@
 
 /obj/item/armor_module/module/tyr_extra_armor/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	attaching_to.AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+	attaching_to.AddComponent(/datum/component/stun_mitigation, slot_override = ITEM_SLOT_OCLOTHING, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
 
 /obj/item/armor_module/module/tyr_extra_armor/on_detach(obj/item/detaching_from, mob/user)
 	detaching_from.remove_component(/datum/component/stun_mitigation)
