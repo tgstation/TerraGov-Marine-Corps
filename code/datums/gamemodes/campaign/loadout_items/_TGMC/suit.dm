@@ -37,6 +37,7 @@
 	name = "L shield armor"
 	desc = "Light armor with a Svallin shield module. Provides excellent mobility but lower protection."
 	ui_icon = "light_armour_shield"
+	req_desc = "Requires a light helmet."
 	item_typepath = /obj/item/clothing/suit/modular/tdf/light/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
@@ -69,6 +70,7 @@
 	name = "M shield armor"
 	desc = "Medium armor with a Svallin shield module. Provides balanced mobility and protection."
 	ui_icon = "medium_armour_shield"
+	req_desc = "Requires a medium helmet."
 	item_typepath = /obj/item/clothing/suit/modular/tdf/shield
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 
@@ -101,6 +103,7 @@
 	name = "H shield armor"
 	desc = "Heavy armor with a Svallin shield module. Provides excellent protection but lower mobility. The shield module has been overclocked for improved performance."
 	ui_icon = "heavy_armour_shield"
+	req_desc = "Requires a heavy helmet."
 	item_typepath = /obj/item/clothing/suit/modular/tdf/heavy/shield
 	item_whitelist = list(
 		/obj/item/clothing/head/modular/tdf/heavy = ITEM_SLOT_HEAD
@@ -117,13 +120,13 @@
 /datum/loadout_item/suit_slot/heavy_shield/leader
 	item_whitelist = list(
 	)
-	item_typepath = /obj/item/clothing/suit/modular/tdf/leader/shield
+	item_typepath = /obj/item/clothing/suit/modular/tdf/heavy/leader/shield
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/heavy_shield/overclocked/leader
 	item_whitelist = list(
 	)
-	item_typepath = /obj/item/clothing/suit/modular/tdf/leader/shield_overclocked
+	item_typepath = /obj/item/clothing/suit/modular/tdf/heavy/leader/shield_overclocked
 	jobs_supported = list(SQUAD_LEADER, FIELD_COMMANDER)
 
 /datum/loadout_item/suit_slot/heavy_surt

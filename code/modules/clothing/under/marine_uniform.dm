@@ -645,7 +645,7 @@
 //TDF
 /obj/item/clothing/under/tdf
 	name = "\improper TDF uniform"
-	desc = "The standard uniform of TDF military personnel. A very easy to recognizeable design to represent the TDF."
+	desc = "The standard uniform of TDF military personnel. A very easy to recognize design with its distinct blues to represent the TDF."
 	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
 	icon_state = "tdf_uniform"
 	worn_icon_list = list(
@@ -654,7 +654,8 @@
 		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
 	)
 	worn_icon_state = "tdf_uniform"
-	has_sensor = FALSE
+	siemens_coefficient = 0.9
+	has_sensor = 2
 
 /obj/item/clothing/under/tdf/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
@@ -667,3 +668,10 @@
 
 /obj/item/clothing/under/tdf/holster
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/tdf/medic
+	icon_state = "tdf_uniform_medic"
+	worn_icon_state = "tdf_uniform_medic"
+
+/obj/item/clothing/under/tdf/medic/corpman_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)

@@ -44,7 +44,7 @@
 /datum/loadout_item/uniform/marine_corpsman
 	name = "corpsman fatigues"
 	desc = "A standard-issue, kevlar-weaved, hazmat-tested, EMF-augmented combat corpsman fatigues. You suspect it's not as robust-proof as advertised."
-	item_typepath = /obj/item/clothing/under/tdf/corpman_vest
+	item_typepath = /obj/item/clothing/under/tdf/medic/corpman_vest
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 

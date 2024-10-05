@@ -172,6 +172,18 @@
 		SSmonitor.stats.b18_in_use -= src
 	return ..()
 
+/obj/item/clothing/suit/storage/marine/specialist/tdf
+	name = "\improper Ace class hardsuit"
+	desc = "The Ace class is what would be called a light hardsuit, good mobility and good protection compared to the standard TDF battle armor but pales in comparison to the more advanced and heavier hardsuits out there and not as fancy, it's integrated SMES only provides enough power for its powered exoskeleton and the autodoc system to run for several hours. Provides excellent protection however it does reduce mobility somewhat. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	icon = 'icons/mob/modular/tdf_armor.dmi'
+	worn_icon_list = list(
+		slot_wear_suit_str = 'icons/mob/modular/tdf_armor.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/suits_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/suits_right.dmi',
+	)
+	icon_state = "tdf_hardsuit"
+	worn_icon_state = "tdf_hardsuit"
+
 /obj/item/clothing/suit/storage/marine/specialist/valhalla
 	item_flags = NONE
 

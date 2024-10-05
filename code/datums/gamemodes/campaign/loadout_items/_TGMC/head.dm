@@ -32,30 +32,49 @@
 
 
 /datum/loadout_item/helmet/standard
-	name = "tdf helmet"
-	desc = "A standard TGMC combat helmet. Apply to head for best results."
+	name = "L Helmet"
+	desc = "A standard TDF combat helmet. Apply to head for best results."
+	req_desc = "Requires a light armor suit."
 	item_typepath = /obj/item/clothing/head/modular/tdf
 	jobs_supported = list(SQUAD_MARINE)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/tdf/light/shield = ITEM_SLOT_OCLOTHING,
+	)
+
+/datum/loadout_item/helmet/medium
+	name = "M Helmet"
+	desc = "A standard TDF combat helmet. Apply to head for best results."
+	req_desc = "Requires a medium armor suit."
+	item_typepath = /obj/item/clothing/head/modular/tdf/medium
+	jobs_supported = list(SQUAD_MARINE)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/tdf/shield = ITEM_SLOT_OCLOTHING,
+	)
 
 /datum/loadout_item/helmet/heavy
-	name = "heavy helmet"
-	desc = "A standard TGMC combat helmet. Apply to head for best results."
+	name = "H Helmet"
+	desc = "A standard TDF combat helmet. Apply to head for best results."
+	req_desc = "Requires a heavy armor suit."
 	item_typepath = /obj/item/clothing/head/modular/tdf/heavy
 	jobs_supported = list(SQUAD_MARINE)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
+	item_whitelist = list(
+		/obj/item/clothing/suit/modular/tdf/heavy/shield = ITEM_SLOT_OCLOTHING,
+	)
 
 /datum/loadout_item/helmet/leader
-	name = "M11X helmet"
+	name = "Leader Helmet"
 	desc = "An upgraded helmet for protecting upgraded brains."
 	item_typepath = /obj/item/clothing/head/modular/tdf/leader
 	jobs_supported = list(SQUAD_LEADER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/fcdr
-	name = "M11X helmet"
+	name = "FCDR Helmet"
 	desc = "An upgraded helmet for protecting upgraded brains."
-	item_typepath = /obj/item/clothing/head/modular/tdf/fcdr
+	item_typepath = /obj/item/clothing/head/modular/tdf/leader/fcdr
 	jobs_supported = list(FIELD_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -63,12 +82,12 @@
 	name = "Surt helmet"
 	desc = "A standard combat helmet with a Surt fireproof module."
 	req_desc = "Requires a suit with a Surt module."
-	item_typepath = /obj/item/clothing/head/modular/tdf/pyro/surt
+	item_typepath = /obj/item/clothing/head/modular/tdf/pyro
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(/obj/item/clothing/suit/modular/tdf/heavy/surt = ITEM_SLOT_OCLOTHING)
 
 /datum/loadout_item/helmet/tyr
-	name = "Tyr helmet"
+	name = "H Tyr Helmet"
 	desc = "A standard combat helmet with a Tyr extra armor module."
 	req_desc = "Requires a suit with a Tyr module."
 	ui_icon = "tyr"
@@ -115,7 +134,7 @@
 	name = "Mimir helmet"
 	desc = "A standard combat helmet with a Mimir environmental protection module."
 	req_desc = "Requires a suit with a Mimir module."
-	item_typepath = /obj/item/clothing/head/modular/tdf/mimir
+	item_typepath = /obj/item/clothing/head/modular/tdf/medic/mimir
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -124,9 +143,9 @@
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/engineer
-	name = "tdf-W helmet"
+	name = "Engi Helmet"
 	desc = "A standard combat helmet with a welding module."
-	item_typepath = /obj/item/clothing/head/modular/tdf/welding
+	item_typepath = /obj/item/clothing/head/modular/tdf/engi/welding
 	jobs_supported = list(SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -139,7 +158,7 @@
 	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
 	item_typepath = /obj/item/clothing/head/tgmcberet/fc
 	jobs_supported = list(FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/helmet/staff_officer_cap
 	name = "Officer cap"

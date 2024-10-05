@@ -12,16 +12,16 @@
 		new object(spawn_location)
 
 /datum/campaign_asset/equipment/power_armor
-	name = "Queen class hardsuit consignment"
-	desc = "Three sets of queen class hardsuits"
-	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of queen class hardsuit sets, available at your request. The queen class is TDF's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
+	name = "Ace class hardsuit consignment"
+	desc = "Three sets of ace class hardsuits"
+	detailed_desc = "Activatable by squad leaders. Your battalion has been assigned a number of ace class hardsuit sets, available at your request. The ace class is TDF's premier infantry armor, providing superior protection, mobility and an advanced automedical system."
 	ui_icon = "b18"
 	uses = 3
 	cost = 25
 	equipment_to_spawn = list(
-		/obj/item/clothing/head/modular/tdf/hardsuit,
-		/obj/item/clothing/gloves/marine/specialist,
-		/obj/item/clothing/suit/modular/tdf/hardsuit,
+		/obj/item/clothing/head/helmet/marine/specialist/tdf,
+		/obj/item/clothing/gloves/marine/specialist/tdf,
+		/obj/item/clothing/suit/storage/marine/specialist/tdf,
 	)
 
 /datum/campaign_asset/equipment/gorgon_armor

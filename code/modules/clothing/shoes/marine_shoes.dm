@@ -174,3 +174,9 @@
 
 /obj/item/clothing/shoes/marine/icc/guard/knife
 	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
+
+/obj/item/clothing/shoes/marine/tdf
+	icon_state = "tdf"
+
+/obj/item/clothing/shoes/marine/tdf/full
+	starting_attachments = list(/obj/item/armor_module/storage/boot/full)
