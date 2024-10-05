@@ -357,7 +357,7 @@
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	var/datum/loadout_item/secondary/gun/secondary = holder.equipped_things["[ITEM_SLOT_SECONDARY]"]
-	if(istype(secondary))
+	if(istype(secondary) && !isholster(wearer.belt))
 		wearer.equip_to_slot_or_del(new secondary.secondary_weapon_ammo, SLOT_IN_BACKPACK)
 	else
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
@@ -553,7 +553,7 @@
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	var/datum/loadout_item/secondary/gun/secondary = holder.equipped_things["[ITEM_SLOT_SECONDARY]"]
-	if(istype(secondary))
+	if(istype(secondary) && !isholster(wearer.belt))
 		wearer.equip_to_slot_or_del(new secondary.secondary_weapon_ammo, SLOT_IN_BACKPACK)
 	else
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/cloak, SLOT_IN_BACKPACK)
@@ -628,7 +628,7 @@
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
 	var/datum/loadout_item/secondary/gun/secondary = holder.equipped_things["[ITEM_SLOT_SECONDARY]"]
-	if(istype(secondary))
+	if(istype(secondary) && !isholster(wearer.belt))
 		wearer.equip_to_slot_or_del(new secondary.secondary_weapon_ammo, SLOT_IN_BACKPACK)
 	else
 		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)

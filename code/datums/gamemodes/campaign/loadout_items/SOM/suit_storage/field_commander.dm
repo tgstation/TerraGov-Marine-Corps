@@ -1,19 +1,6 @@
 /datum/loadout_item/suit_store/main_gun/som_field_commander
 	jobs_supported = list(SOM_FIELD_COMMANDER)
 
-/datum/loadout_item/suit_store/main_gun/som_field_commander/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	. = ..()
-	if(!ammo_type)
-		return
-	if(istype(wearer.back, /obj/item/storage))
-		if(istype(wearer.belt, /obj/item/storage/holster/belt/pistol/m4a3/som)) //if we have a backpack and pistol belt, we just load more ammo in the back
-			wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-			wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_BACKPACK)
-		else //else we put the sidearm in the bag
-			wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/small, SLOT_IN_BACKPACK)
-			wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/small, SLOT_IN_BACKPACK)
-			wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom(wearer), SLOT_IN_BACKPACK)
-
 /datum/loadout_item/suit_store/main_gun/som_field_commander/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_ACCESSORY)
@@ -182,16 +169,6 @@
 
 	if(!isstorageobj(wearer.back))
 		return
-	if(istype(wearer.belt, /obj/item/storage/holster/belt/pistol/m4a3/som))
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine, SLOT_IN_BACKPACK)
-	else
-		wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/small, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/small, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom(wearer), SLOT_IN_BACKPACK)
-
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
