@@ -18,12 +18,12 @@
 	attack_delay = 7
 
 	// *** Speed *** //
-	speed = -1.4
-	weeds_speed_mod = -0.1
+	speed = -1.5
+	weeds_speed_mod = -0.2
 
 	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 20
+	plasma_max = 600
+	plasma_gain = 30
 
 	// *** Health *** //
 	max_health = 360
@@ -51,10 +51,16 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/silence,
 		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/xeno_action/xenohide,
 		/datum/action/ability/xeno_action/stealth,
 		/datum/action/ability/activable/xeno/hunter_mark,
 		/datum/action/ability/xeno_action/psychic_trace,
@@ -80,10 +86,16 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/activable/xeno/silence,
 		/datum/action/ability/activable/xeno/pounce,
+		/datum/action/ability/xeno_action/xenohide,
 		/datum/action/ability/xeno_action/stealth,
 		/datum/action/ability/xeno_action/stealth/disguise,
 		/datum/action/ability/activable/xeno/hunter_mark,
@@ -131,8 +143,14 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
+		/datum/action/ability/activable/xeno/tail_stab,
+		/datum/action/ability/xeno_action/xenohide,
 		/datum/action/ability/activable/xeno/silence,
 		/datum/action/ability/activable/xeno/pounce,
 		/datum/action/ability/xeno_action/stealth,

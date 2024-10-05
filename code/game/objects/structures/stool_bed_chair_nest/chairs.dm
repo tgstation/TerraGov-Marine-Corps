@@ -87,7 +87,7 @@
 //Chair types
 /obj/structure/bed/chair/reinforced
 	name = "reinforced chair"
-	desc = "Some say that the TGMC shouldn't spent this much money on reinforced chairs, but the documents from briefing riots prove otherwise."
+	desc = "Some say that the NTC shouldn't spent this much money on reinforced chairs, but the documents from briefing riots prove otherwise."
 	buildstackamount = 2
 
 
@@ -118,7 +118,7 @@
 		span_notice("You begin welding down \the [src]."))
 		add_overlay(GLOB.welding_sparks)
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		if(!do_after(user, 5 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user, 50, TRUE, src, BUSY_ICON_FRIENDLY))
 			cut_overlay(GLOB.welding_sparks)
 			to_chat(user, span_warning("You need to stand still!"))
 			return
@@ -394,7 +394,7 @@
 				span_warning("You begin loosening the bolts on \the [src]."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
 				user.visible_message(span_warning("[user] loosens the bolts on \the [src], folding it into the decking."),
@@ -406,7 +406,7 @@
 				span_warning("You begin unfolding \the [src]."))
 				playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 
-				if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+				if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 					return
 
 				user.visible_message(span_warning("[user] unfolds \the [src] from the floor and tightens the bolts."),
@@ -426,7 +426,7 @@
 		user.visible_message(span_warning("[user] begins repairing \the [src]."),
 		span_warning("You begin repairing \the [src]."))
 		add_overlay(GLOB.welding_sparks)
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			cut_overlay(GLOB.welding_sparks)
 			return
 

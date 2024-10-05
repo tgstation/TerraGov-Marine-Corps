@@ -36,7 +36,7 @@
 			var/turf/TS = get_step(target,D)
 			if(!TS)
 				continue
-			if(TS.density || locate(/obj/structure/door/resin) in TS)
+			if(TS.density || locate(/obj/structure/mineral_door/resin) in TS)
 				return NO_ERROR
 		return ERROR_NO_SUPPORT
 	return NO_ERROR
@@ -81,10 +81,10 @@
 /proc/remove_image_from_client(image/image, client/remove_from)
 	remove_from?.images -= image
 
-/proc/remove_images_from_clients(image/I, list/show_to)
-	for(var/client/C AS in show_to)
-		C.images -= I
-
+///Removes an image from a list of client's images
+/proc/remove_images_from_clients(image/image, list/show_to)
+	for(var/client/client AS in show_to)
+		client?.images -= image
 
 /proc/flick_overlay(image/I, list/show_to, duration)
 	for(var/client/C AS in show_to)

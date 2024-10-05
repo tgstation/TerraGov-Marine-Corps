@@ -19,6 +19,9 @@
 #define MAP_LAWANKA_OUTPOST "Lawanka Outpost"
 #define MAP_DAEDALUS_PRISON "Daedalus Prison"
 #define MAP_KUTJEVO_REFINERY "Kutjevo Refinery"
+#define MAP_CHIGUSA "Chigusa"
+#define MAP_LAVA_OUTPOST "Lava Outpost V1"
+#define MAP_CORSAT "CORSAT Research Station"
 
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
@@ -92,10 +95,10 @@
 // Default preferences
 #define DEFAULT_SPECIES "Human"
 
-#define GAME_YEAR (text2num(time2text(world.realtime, "YYYY")) + 395)
+#define GAME_YEAR (text2num(time2text(world.realtime, "YYYY")) + 490)
 
 
-#define MAX_MESSAGE_LEN 1024
+#define MAX_MESSAGE_LEN 9216
 #define MAX_PAPER_MESSAGE_LEN 3072
 #define MAX_BOOK_MESSAGE_LEN 9216
 #define MAX_NAME_LEN 26

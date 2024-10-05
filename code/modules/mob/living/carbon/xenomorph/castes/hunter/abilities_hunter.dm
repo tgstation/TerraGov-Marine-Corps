@@ -19,6 +19,7 @@
 	action_icon_state = "hunter_invisibility"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Become harder to see, almost invisible if you stand still, and ready a sneak attack. Uses plasma to move."
+
 	ability_cost = 10
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOGGLE_STEALTH,
@@ -325,6 +326,7 @@
 
 /datum/action/ability/activable/xeno/pounce
 	name = "Pounce"
+
 	desc = "Leap at your target, tackling and disarming them."
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
@@ -579,6 +581,7 @@
 	action_icon_state = "mirror_image"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Create mirror images of ourselves. Reactivate to swap with an illusion."
+
 	ability_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_MIRAGE,
@@ -654,6 +657,7 @@
 	action_icon_state = "silence"
 	action_icon = 'icons/Xeno/actions/hunter.dmi'
 	desc = "Impairs the ability of hostile living creatures we can see in a 5x5 area. Targets will be unable to speak and hear for 10 seconds, or 15 seconds if they're your Hunter Mark target."
+
 	ability_cost = 50
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SILENCE,

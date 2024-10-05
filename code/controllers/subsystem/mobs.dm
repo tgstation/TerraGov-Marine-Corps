@@ -44,7 +44,6 @@ SUBSYSTEM_DEF(mobs)
 		dead_players_by_zlevel[length(dead_players_by_zlevel)] = list()
 
 /datum/controller/subsystem/mobs/fire(resumed = 0)
-	var/seconds = wait * 0.1
 	if (!resumed)
 		if(crate == 1)
 			var/most = -1
@@ -68,11 +67,12 @@ SUBSYSTEM_DEF(mobs)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 	var/times_fired = src.times_fired
+	var/seconds_per_tick = wait / (1 SECONDS) * SS_MOBS_BUCKET_DELAY
 	while(length(currentrun))
 		var/mob/living/L = currentrun[length(currentrun)]
 		currentrun.len--
 		if(L)
-			L.Life(seconds, times_fired)
+			L.Life(seconds_per_tick, times_fired)
 		else
 			processing.Remove(L)
 		if (MC_TICK_CHECK)

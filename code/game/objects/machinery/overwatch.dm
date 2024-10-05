@@ -986,17 +986,17 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	switch(command_aura)
 		if("move")
 			var/image/move = image('icons/mob/talk.dmi', src, icon_state = "order_move")
-			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!", ";ONWARDS!", ";MOVE MOVE MOVE!", ";ON YOUR FEET!", ";GET A MOVE ON!", ";ON THE DOUBLE!", ";ROLL OUT!", ";LET'S GO, LET'S GO!", ";MOVE OUT!", ";LEAD THE WAY!", ";FORWARD!", ";COME ON, MOVE!", ";HURRY, GO!")
+			message = pick("GET MOVING!", "GO, GO, GO!", "WE ARE ON THE MOVE!", "MOVE IT!", "DOUBLE TIME!", "ONWARDS!", "MOVE MOVE MOVE!", "ON YOUR FEET!", "GET A MOVE ON!", "ON THE DOUBLE!", "ROLL OUT!", "LET'S GO, LET'S GO!", "MOVE OUT!", "LEAD THE WAY!", "FORWARD!", "COME ON, MOVE!", "HURRY, GO!")
 			say(message)
 			add_emote_overlay(move)
 		if("hold")
 			var/image/hold = image('icons/mob/talk.dmi', src, icon_state = "order_hold")
-			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!", ";TAKE COVER!", ";COVER THE AREA!", ";BRACE FOR COVER!", ";BRACE!", ";INCOMING!")
+			message = pick("DUCK AND COVER!", "HOLD THE LINE!", "HOLD POSITION!", "STAND YOUR GROUND!", "STAND AND FIGHT!", "TAKE COVER!", "COVER THE AREA!", "BRACE FOR COVER!", "BRACE!", "INCOMING!")
 			say(message)
 			add_emote_overlay(hold)
 		if("focus")
 			var/image/focus = image('icons/mob/talk.dmi', src, icon_state = "order_focus")
-			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!", ";READY WEAPONS!", ";TAKE AIM!", ";LINE YOUR SIGHTS!", ";LOCK AND LOAD!", ";GET READY TO FIRE!")
+			message = pick("FOCUS FIRE!", "PICK YOUR TARGETS!", "CENTER MASS!", "CONTROLLED BURSTS!", "AIM YOUR SHOTS!", "READY WEAPONS!", "TAKE AIM!", "LINE YOUR SIGHTS!", "LOCK AND LOAD!", "GET READY TO FIRE!")
 			say(message)
 			add_emote_overlay(focus)
 
@@ -1116,6 +1116,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return dat
 	var/leader_text = ""
 	var/leader_count = 0
+	var/spec_text = ""
+	var/spec_count = 0
 	var/medic_text = ""
 	var/medic_count = 0
 	var/engi_text = ""
@@ -1200,7 +1202,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(SQUAD_SMARTGUNNER)
 				smart_text += marine_infos
 				smart_count++
-			if(SQUAD_MARINE)
+			if(SQUAD_SPECIALIST)
+				spec_text += marine_infos
+				spec_count++
+			if(SQUAD_MARINE, SQUAD_SLUT)
 				marine_text += marine_infos
 				marine_count++
 			else
@@ -1211,15 +1216,16 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
 	dat += "----------------------<br>"
 	dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><br>"
+	dat += "<b>Squad Specialists: [spec_count] Deployed</b><br>"
 	dat += "<b>Squad Smartgunners: [smart_count] Deployed</b><br>"
 	dat += "<b>Squad Corpsmen: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
-	dat += "<b>Squad Marines: [marine_count] Deployed</b><br>"
+	dat += "<b>Squad Operatives: [marine_count] Deployed</b><br>"
 	dat += "<b>Total: [current_squad.get_total_members()] Deployed</b><br>"
-	dat += "<b>Marines alive: [living_count]</b><br><br>"
+	dat += "<b>Operatives alive: [living_count]</b><br><br>"
 	dat += "<table border='1' style='width:100%' align='center'><tr>"
 	dat += "<th>Name</th><th>Role</th><th>State</th><th>Location</th><th>SL Distance</th></tr>"
 	if(!living_marines_sorting)
-		dat += leader_text + medic_text + engi_text + smart_text + marine_text + misc_text
+		dat += leader_text +spec_text + medic_text + engi_text + smart_text + marine_text + misc_text
 	else
 		dat += conscious_text + unconscious_text + dead_text + gibbed_text
 	dat += "</table>"

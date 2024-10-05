@@ -38,6 +38,7 @@
 	action_icon_state = "minion_agressive"
 	action_icon = 'icons/Xeno/actions/leader.dmi'
 	desc = "Command all minions, ordering them to converge on this location. Rightclick to change minion behaviour."
+
 	ability_cost = 100
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RALLY_MINION,

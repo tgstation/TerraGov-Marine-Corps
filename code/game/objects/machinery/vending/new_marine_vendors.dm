@@ -213,7 +213,7 @@
 	icon_state = "marineuniform"
 	icon_vend = "marineuniform-vend"
 	icon_deny = "marineuniform-deny"
-	vendor_role = /datum/job/terragov/squad/standard
+	lock_flags = null
 	use_points = TRUE
 	categories = list(
 		CAT_STD = 1,
@@ -344,6 +344,33 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/clothes/specialist
+	name = "GHMME Automated Commander Closet"
+	req_access = list(ACCESS_MARINE_SPECPREP)
+	vendor_role = /datum/job/terragov/squad/specialist
+	lock_flags = JOB_LOCK
+	gives_webbing = FALSE
+
+/obj/machinery/marine_selector/clothes/specialist/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.specialist_clothes_listed_products
+
+/obj/machinery/marine_selector/clothes/specialist/alpha
+	squad_tag = "Alpha"
+	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_ALPHA)
+
+/obj/machinery/marine_selector/clothes/specialist/bravo
+	squad_tag = "Bravo"
+	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_BRAVO)
+
+/obj/machinery/marine_selector/clothes/specialist/charlie
+	squad_tag = "Charlie"
+	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_CHARLIE)
+
+/obj/machinery/marine_selector/clothes/specialist/delta
+	squad_tag = "Delta"
+	req_access = list(ACCESS_MARINE_SMARTPREP, ACCESS_MARINE_DELTA)
+
 /obj/machinery/marine_selector/clothes/leader
 	name = "GHMME Automated Leader Closet"
 	req_access = list(ACCESS_MARINE_LEADER)
@@ -443,7 +470,7 @@
 		/obj/item/storage/pouch/pistol = list(CAT_POU, "Sidearm pouch", 0, "black"),
 		/obj/item/storage/pouch/explosive = list(CAT_POU, "Explosive pouch", 0, "black"),
 		/obj/effect/vendor_bundle/mimir = list(CAT_ARMMOD, "Mark 1 Mimir Resistance set", 0,"black"),
-		/obj/item/armor_module/module/ballistic_armor = list(CAT_ARMMOD, "Hod Accident Prevention Plating", 0,"black"),
+//		/obj/item/armor_module/module/ballistic_armor = list(CAT_ARMMOD, "Hod Accident Prevention Plating", 0,"black"),
 		/obj/effect/vendor_bundle/tyr = list(CAT_ARMMOD, "Mark 1 Tyr extra armor set", 0,"black"),
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
@@ -503,6 +530,37 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/gear/medic/pmc
+	vendor_role = /datum/job/pmc/squad/medic
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/specialist
+	name = "NEXUS Automated Specialist Equipment Rack"
+	desc = "An automated specialist equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
+	vendor_role = /datum/job/terragov/squad/specialist
+	req_access = list(ACCESS_MARINE_SPECPREP)
+
+/obj/machinery/marine_selector/gear/specialist/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.specialist_gear_listed_products
+
+/obj/machinery/marine_selector/gear/commanddoll
+	name = "NEXUS Automated Command Doll Equipment Rack"
+	desc = "An automated Command Doll equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
+	icon_vend = "squadleader-vend"
+	icon_deny = "squadleader-deny"
+	vendor_role = /datum/job/terragov/command/commanddoll
+	req_access = list(ACCESS_MARINE_DOLLPREP)
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/commanddoll/Initialize(mapload)
+	. = ..()
+	listed_products = GLOB.commanddoll_gear_listed_products
+
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
 	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
@@ -539,6 +597,10 @@
 	resistance_flags = INDESTRUCTIBLE
 	lock_flags = JOB_LOCK
 
+/obj/machinery/marine_selector/gear/smartgun/pmc
+	vendor_role = /datum/job/pmc/squad/gunner
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/gear/leader
 	name = "NEXUS Automated Squad Leader Equipment Rack"
 	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
@@ -555,6 +617,10 @@
 /obj/machinery/marine_selector/gear/leader/valhalla
 	vendor_role = /datum/job/fallen/marine/leader
 	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
+/obj/machinery/marine_selector/gear/leader/pmc
+	vendor_role = /datum/job/pmc/squad/leader
 	lock_flags = JOB_LOCK
 
 /obj/machinery/marine_selector/gear/commander
@@ -686,6 +752,22 @@
 		/obj/item/storage/box/MRE,
 	)
 
+/obj/effect/vendor_bundle/basic_specialist
+	gear_to_spawn = list(
+		/obj/item/clothing/under/marine/spec_operative,
+		/obj/item/clothing/shoes/marine/sneakingboots,
+		/obj/item/clothing/gloves/marine/hyperscale,
+		/obj/item/storage/box/MRE,
+	)
+
+/obj/effect/vendor_bundle/basic_specialist/tback
+	gear_to_spawn = list(
+		/obj/item/clothing/under/spec_operative/tback,
+		/obj/item/clothing/shoes/marine/sneakingboots,
+		/obj/item/clothing/gloves/marine/hyperscale,
+		/obj/item/storage/box/MRE,
+	)
+
 /obj/effect/vendor_bundle/basic_jaeger_commander
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/jaeger,
@@ -706,6 +788,23 @@
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/storage/firstaid/adv,
 		/obj/item/clothing/glasses/hud/health,
+	)
+
+/obj/effect/vendor_bundle/commanddoll
+	gear_to_spawn = list(
+		/obj/item/weapon/energy/sword/ntc,
+		/obj/item/bodybag/cryobag,
+		/obj/item/roller/medevac,
+		/obj/item/medevac_beacon,
+		/obj/item/tweezers_advanced,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
+		/obj/item/reagent_containers/hypospray/advanced/peridaxonplus,
+		/obj/item/reagent_containers/hypospray/advanced/quickclotplus,
+		/obj/item/reagent_containers/hypospray/advanced/big/combatmix,
+		/obj/item/storage/firstaid/adv,
+		/obj/item/clothing/suit/modular/xenonauten/light/bikini/cdoll,
+		/obj/item/clothing/head/modular/m10x/leader,
+		/obj/item/storage/pouch/medkit/medic
 	)
 
 /obj/effect/vendor_bundle/stretcher
@@ -732,6 +831,20 @@
 		/obj/item/weapon/gun/pistol/smart_pistol,
 		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
 		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
+		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol,
 	)
 
 /obj/effect/vendor_bundle/leader
@@ -744,6 +857,22 @@
 		/obj/item/binoculars/tactical,
 		/obj/item/pinpointer,
 		/obj/item/clothing/glasses/hud/health,
+	)
+
+/obj/effect/vendor_bundle/specialist
+	gear_to_spawn = list(
+		/obj/item/supply_beacon,
+		/obj/item/compass,
+		/obj/item/binoculars/tactical/scout,
+		/obj/item/explosive/plastique,
+	)
+
+/obj/effect/vendor_bundle/specialistleotard
+	gear_to_spawn = list(
+		/obj/item/supply_beacon,
+		/obj/item/compass,
+		/obj/item/binoculars/tactical/scout,
+		/obj/item/explosive/plastique,
 	)
 
 /obj/effect/vendor_bundle/commander
@@ -775,8 +904,8 @@
 	)
 
 /obj/effect/vendor_bundle/white_dress
-	name = "Full set of TGMC white dress uniform"
-	desc = "A standard-issue TerraGov Marine Corps white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
+	name = "Full set of NTC white dress uniform"
+	desc = "A standard-issue Nine Tailed Fox white dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. Doesn't seem to fit perfectly around the waist though."
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/whites,
 		/obj/item/clothing/suit/white_dress_jacket,
@@ -786,8 +915,8 @@
 	)
 
 /obj/effect/vendor_bundle/service_uniform
-	name = "Full set of TGMC service uniform"
-	desc = "A standard-issue TerraGov Marine Corps dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
+	name = "Full set of NTC service uniform"
+	desc = "A standard-issue Nine Tailed Fox dress uniform. Sometimes, you hate wearing this since you remember wearing this to Infantry School and have to wear this when meeting a commissioned officer. This is what you wear when you are not deployed and are working in an office. Doesn't seem to fit perfectly around the waist."
 	gear_to_spawn = list(
 		/obj/item/clothing/under/marine/service,
 		/obj/item/clothing/head/garrisoncap,

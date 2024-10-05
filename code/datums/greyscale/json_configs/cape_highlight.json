@@ -120,6 +120,24 @@
 			"icon_state": "cover_2"
 		}
 	],
+	"highlight_overlord":[
+		{
+			"type": "hyperscale",
+			"icon_state": "overlord"
+		}
+	],
+	"highlight_overlord (alt)":[
+		{
+			"type": "hyperscale",
+			"icon_state": "overlord_2"
+		}
+	],
+	"highlight_overlord (alt 2)":[
+		{
+			"type": "hyperscale",
+			"icon_state": "overlord_3"
+		}
+	],
 	"highlight_shoal":[
 		{
 			"type": "hyperscale",
@@ -138,6 +156,12 @@
 			"icon_state": "shoal_back"
 		}
 	],
+	"highlight_star":[
+		{
+			"type": "hyperscale",
+			"icon_state": "star"
+		}
+	],
 	"highlight_rapier left":[
 		{
 			"type": "hyperscale",
@@ -148,6 +172,12 @@
 		{
 			"type": "hyperscale",
 			"icon_state": "rapier_right"
+		}
+	],
+	"highlight_jacket":[
+		{
+			"type": "hyperscale",
+			"icon_state": "jacket"
 		}
 	]
 }

@@ -39,7 +39,7 @@
 		icon_state = "telebaton_1"
 		worn_icon_state = "telebaton_1"
 		w_class = WEIGHT_CLASS_NORMAL
-		force = 10
+		force = 20
 		attack_verb = list("smacked", "struck", "slapped")
 	else
 		user.visible_message(span_notice(" [user] collapses their telescopic baton."),\

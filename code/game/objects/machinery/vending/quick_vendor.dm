@@ -100,7 +100,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	var/faction = FACTION_NEUTRAL
 	//the different tabs in the vendor
 	var/list/categories = list(
-		"Squad Marine",
+		"Squad Operative",
 		"Squad Engineer",
 		"Squad Corpsman",
 		"Squad Smartgunner",

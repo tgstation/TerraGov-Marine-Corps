@@ -48,6 +48,9 @@
 	fire_overlay = new(src, src)
 	vis_contents += fire_overlay
 
+	backpack_overlay = new(src, src)
+	vis_contents += backpack_overlay
+
 	generate_nicknumber()
 
 	generate_name()
@@ -192,13 +195,13 @@
 	switch(playtime_mins)
 		if(0 to 600)
 			return 0
-		if(601 to 1500)
+		if(601 to 3000)
 			return 1
-		if(1501 to 4200)
+		if(3001 to 9000)
 			return 2
-		if(4201 to 10500)
+		if(9001 to 18000)
 			return 3
-		if(10501 to INFINITY)
+		if(18001 to INFINITY)
 			return 4
 		else
 			return 0
@@ -239,17 +242,6 @@
 		CRASH("Unemployment has reached to a xeno, who has failed to become a [xeno_caste.job_type]")
 	apply_assigned_role_to_spawn(xeno_job)
 
-/mob/living/carbon/xenomorph/proc/grabbed_self_attack()
-	SIGNAL_HANDLER
-	if(!(xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER))
-		return NONE
-	if(isxenocrusher(pulling) || isxenobehemoth(pulling))
-		var/mob/living/carbon/xenomorph/crusher/grabbed = pulling
-		if(grabbed.stat == CONSCIOUS && stat == CONSCIOUS)
-			INVOKE_ASYNC(grabbed, TYPE_PROC_REF(/mob/living/carbon/xenomorph/crusher, carry_xeno), src, TRUE)
-			return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
-	return NONE
-
 ///Initiate of form changing on the xeno
 /mob/living/carbon/xenomorph/proc/change_form()
 	return
@@ -258,6 +250,12 @@
 	. = ..()
 	. += xeno_caste.caste_desc
 	. += "<span class='notice'>"
+
+	if(xeno_desc)
+		. += "\n<span class='info'>[span_collapsible("Flavor Text & Notes", "[xeno_desc]")]</span>"
+
+	if(xenoprofile_pic)
+		. += "<span class='info'><img src=[xenoprofile_pic] width=250 height=250/></span>"
 
 	if(stat == DEAD)
 		. += "<span class='deadsay'>It is DEAD. Kicked the bucket. Off to that great hive in the sky.</span>"
@@ -279,10 +277,17 @@
 
 	. += "</span>"
 
+	if(has_brain() && stat != DEAD)
+		if(!key)
+			. += "[span_deadsay("They are fast asleep. It doesn't look like they are waking up anytime soon.")]\n"
+		else if(!client)
+			. += "[span_xenowarning("They don't seem responsive.")]\n"
+
 	if(hivenumber != XENO_HIVE_NORMAL)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
 		. += "It appears to belong to the [hive.prefix]hive"
 	return
+
 
 /mob/living/carbon/xenomorph/Destroy()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
@@ -300,8 +305,10 @@
 
 	vis_contents -= wound_overlay
 	vis_contents -= fire_overlay
+	vis_contents -= backpack_overlay
 	QDEL_NULL(wound_overlay)
 	QDEL_NULL(fire_overlay)
+	QDEL_NULL(backpack_overlay)
 	return ..()
 
 
@@ -317,15 +324,12 @@
 		return FALSE //Incorporeal things can't grab or be grabbed.
 	if(AM.anchored)
 		return FALSE //We cannot grab anchored items.
-	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, NONE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = src.health))))
+	if(!isliving(AM) && AM.drag_windup && !do_after(src, AM.drag_windup, TRUE, AM, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(src, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = src.health))))
 		return //If the target is not a living mob and has a drag_windup defined, calls a do_after. If all conditions are met, it returns. If the user takes damage during the windup, it breaks the channel.
 	var/mob/living/L = AM
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
 	if(ishuman(L))
-		if(L.stat == DEAD) //Can't drag dead human bodies.
-			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
-			return FALSE
 		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	do_attack_animation(L, ATTACK_EFFECT_GRAB)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
@@ -342,6 +346,8 @@
 	if(!ishuman(puller))
 		return TRUE
 	var/mob/living/carbon/human/H = puller
+	if(hivenumber == XENO_HIVE_CORRUPTED) // we can grab friendly benos
+		return TRUE
 	H.Paralyze(rand(xeno_caste.tacklemin,xeno_caste.tacklemax) * 20)
 	playsound(H.loc, 'sound/weapons/pierce.ogg', 25, 1)
 	H.visible_message(span_warning("[H] tried to pull [src] but instead gets a tail swipe to the head!"))
@@ -466,21 +472,11 @@
 		return
 	loc_weeds_type = null
 
-/**  Handles logic for the xeno moving to a new weeds tile.
-Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change */
+/// Handles logic for the xeno moving to a new weeds tile
 /mob/living/carbon/xenomorph/proc/handle_weeds_on_movement(datum/source)
 	SIGNAL_HANDLER
 	var/obj/alien/weeds/found_weed = locate(/obj/alien/weeds) in loc
-	if(loc_weeds_type == found_weed?.type)
-		return FALSE
 	loc_weeds_type = found_weed?.type
-	return TRUE
-
-/mob/living/carbon/xenomorph/hivemind/handle_weeds_on_movement(datum/source)
-	. = ..()
-	if(!.)
-		return
-	update_icon()
 
 /mob/living/carbon/xenomorph/toggle_resting()
 	var/datum/action/ability/xeno_action/xeno_resting/resting_action = actions_by_path[/datum/action/ability/xeno_action/xeno_resting]
@@ -517,3 +513,74 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		height *= gravity * 0.5
 
 	AddComponent(/datum/component/jump, _jump_duration = duration, _jump_cooldown = cooldown, _stamina_cost = 0, _jump_height = height, _jump_sound = sound, _jump_flags = flags, _jumper_allow_pass_flags = jump_pass_flags)
+
+/mob/living/carbon/xenomorph/equip_to_slot(obj/item/item_to_equip, slot, bitslot)
+	. = ..()
+	switch(slot)
+		if(SLOT_BACK)
+			back = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_back()
+		if(SLOT_L_HAND)
+			l_hand = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_l_hand()
+		if(SLOT_R_HAND)
+			r_hand = item_to_equip
+			item_to_equip.equipped(src, slot)
+			update_inv_r_hand()
+		if(SLOT_WEAR_MASK)
+			wear_mask = item_to_equip
+			item_to_equip.equipped(src, slot)
+			wear_mask_update(item_to_equip, TRUE)
+
+/mob/living/carbon/xenomorph/grabbed_self_attack(mob/living/user)
+	. = ..()
+	if(!can_mount(user))
+		return NONE
+	INVOKE_ASYNC(src, PROC_REF(carry_target), pulling, FALSE)
+	return COMSIG_GRAB_SUCCESSFUL_SELF_ATTACK
+
+/**
+ * Checks if user can mount src
+ *
+ * Arguments:
+ * * user - The mob trying to mount
+ * * target_mounting - Is the target initiating the mounting process?
+ */
+/mob/living/carbon/xenomorph/proc/can_mount(mob/living/user, target_mounting = FALSE)
+	return FALSE
+
+/**
+ * Handles the target trying to ride src
+ *
+ * Arguments:
+ * * target - The mob being put on the back
+ * * target_mounting - Is the target initiating the mounting process?
+ */
+/mob/living/carbon/xenomorph/proc/carry_target(mob/living/carbon/target, target_mounting = FALSE)
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		if(target_mounting)
+			to_chat(target, span_xenowarning("You cannot mount [src]!"))
+			return
+		to_chat(src, span_xenowarning("[target] cannot mount you!"))
+		return
+	visible_message(span_notice("[target_mounting ? "[target] starts to mount on [src]" : "[src] starts hoisting [target] onto [p_their()] back..."]"),
+	span_notice("[target_mounting ? "[target] starts to mount on your back" : "You start to lift [target] onto your back..."]"))
+	if(!do_after(target_mounting ? target : src, 5 SECONDS, NONE, target_mounting ? src : target, target_display = BUSY_ICON_HOSTILE))
+		visible_message(span_warning("[target_mounting ? "[target] fails to mount on [src]" : "[src] fails to carry [target]!"]"))
+		return
+	//Second check to make sure they're still valid to be carried
+	if(incapacitated(restrained_flags = RESTRAINED_NECKGRAB))
+		return
+	buckle_mob(target, TRUE, TRUE, 90, 1, 1)
+
+/mob/living/carbon/xenomorph/MouseDrop_T(atom/dropping, mob/user)
+	. = ..()
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/xeno_user = user
+		if(!(xeno_user.xeno_caste.can_flags & CASTE_CAN_RIDE_CRUSHER))
+			return
+	if(!can_mount(user, TRUE))
+		return
+	INVOKE_ASYNC(src, PROC_REF(carry_target), user, TRUE)

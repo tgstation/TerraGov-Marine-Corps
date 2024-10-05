@@ -176,8 +176,8 @@ Contains most of the procs that are called when a mob is attacked by something
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
-				if(prob(applied_damage - 5) && stat == CONSCIOUS)
-					apply_effect(modify_by_armor(10 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
+				if(prob(applied_damage - 15) && stat == CONSCIOUS)
+					ParalyzeNoChain(modify_by_armor(10 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked unconscious!"),
 									span_danger("You have been knocked unconscious!"), null, 5)
 					hit_report += "(KO)"
@@ -194,8 +194,8 @@ Contains most of the procs that are called when a mob is attacked by something
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
-				if(prob((applied_damage + 5)) && !incapacitated())
-					apply_effect(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone), WEAKEN)
+				if(prob((applied_damage - 5)) && stat == CONSCIOUS)
+					ParalyzeNoChain(modify_by_armor(6 SECONDS, MELEE, def_zone = target_zone) * 100 / maxHealth)
 					visible_message(span_danger("[src] has been knocked down!"),
 									span_danger("You have been knocked down!"), null, 5)
 					hit_report += "(KO)"
@@ -401,7 +401,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		to_chat(user, span_warning("You cannot resolve yourself to destroy [src]'s heart, as [p_they()] can still be saved!"))
 		return
 	to_chat(user, span_notice("You start to remove [src]'s heart, preventing [p_them()] from rising again!"))
-	if(!do_after(user, 2 SECONDS, NONE, src))
+	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return
 	if(!get_organ_slot(ORGAN_SLOT_HEART))
 		to_chat(user, span_notice("The heart is no longer here!"))
@@ -450,7 +450,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		span_notice("You start fixing some of the dents on [src == user ? "your" : "[src]'s"] [affecting.display_name]."))
 
 	add_overlay(GLOB.welding_sparks)
-	while(do_after(user, repair_time, NONE, src, BUSY_ICON_BUILD) && I.use_tool(src, user, volume = 50, amount = 2))
+	while(do_after(user, repair_time, TRUE, src, BUSY_ICON_BUILD) && I.use_tool(src, user, volume = 50, amount = 2))
 		user.visible_message(span_warning("\The [user] patches some dents on [src]'s [affecting.display_name]."), \
 			span_warning("You patch some dents on \the [src]'s [affecting.display_name]."))
 		if(affecting.heal_limb_damage(15, robo_repair = TRUE, updating_health = TRUE))

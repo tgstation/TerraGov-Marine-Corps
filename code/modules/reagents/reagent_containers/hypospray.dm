@@ -76,13 +76,17 @@
 	if(skilllock && user.skills.getRating(SKILL_MEDICAL) < SKILL_MEDICAL_NOVICE)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use the [src]."),
 		span_notice("You fumble around figuring out how to use the [src]."))
-		if(!do_after(user, SKILL_TASK_EASY, NONE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
+		if(!do_after(user, SKILL_TASK_EASY, TRUE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
 			return
-
 	if(ismob(A))
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
+		if(M.faction != user.faction && !M.incapacitated())
+			user.visible_message(span_notice("[user] attempts to inject [M] with [src]."),
+			span_notice("You attempt to inject [M] with [src]."))
+			if(!do_after(user, SKILL_TASK_VERY_EASY, NONE, A, BUSY_ICON_HOSTILE) || (!in_range(A, user) || !user.Adjacent(A)))
+				return
 
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
@@ -377,6 +381,7 @@
 		/datum/reagent/medicine/bicaridine = 60,
 	)
 	description_overlay = "Bi"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/kelotane
 	name = "kelotane hypospray"
@@ -385,6 +390,7 @@
 		/datum/reagent/medicine/kelotane = 60,
 	)
 	description_overlay = "Ke"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/tramadol
 	name = "tramadol hypospray"
@@ -393,6 +399,7 @@
 		/datum/reagent/medicine/tramadol = 60,
 	)
 	description_overlay = "Ta"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine
 	name = "tricordrazine hypospray"
@@ -401,6 +408,7 @@
 		/datum/reagent/medicine/tricordrazine = 60,
 	)
 	description_overlay = "Ti"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/dylovene
 	name = "dylovene hypospray"
@@ -409,6 +417,7 @@
 		/datum/reagent/medicine/dylovene = 60,
 	)
 	description_overlay = "Dy"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/inaprovaline
 	name = "inaprovaline hypospray"
@@ -471,6 +480,14 @@
 	)
 	description_overlay = "Hy"
 
+/obj/item/reagent_containers/hypospray/advanced/aphrotoxin
+	name = "Aphrotoxin hypospray"
+	desc = "A hypospray loaded with Aphrotoxin. produced from xenomorphs. Causes weakness on the legs and intense lust."
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/toxin/xeno_aphrotoxin = 60,
+	)
+	description_overlay = "Apr"
 /obj/item/reagent_containers/hypospray/advanced/nanoblood
 	name = "nanoblood hypospray"
 	desc = "A hypospray loaded with nanoblood. A chemical which rapidly restores blood at the cost of minor toxic damage."

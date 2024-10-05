@@ -6,7 +6,7 @@
 	screen_overlay = "arcade_screen"
 	circuit = /obj/item/circuitboard/computer/arcade
 	var/enemy_name = "Space Villain"
-	var/temp = "Sponsored by Nanotrasen and the TerraGov Marine Corps" //Temporary message, for attack messages, etc
+	var/temp = "Sponsored by Ninetails Corporation." //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
 	var/player_mp = 10
 	var/enemy_hp = 45 //Enemy health/attack points
@@ -16,7 +16,7 @@
 	var/list/prizes = list(
 		/obj/item/spacecash/c10 = 4,
 		/obj/item/tool/lighter/zippo = 2,
-		/obj/item/storage/box/tgmc_mre = 2,
+		/obj/item/storage/box/ntc_mre = 2,
 		/obj/item/camera = 2,
 		/obj/item/camera_film = 4,
 		/obj/item/toy/plush/farwa = 4,

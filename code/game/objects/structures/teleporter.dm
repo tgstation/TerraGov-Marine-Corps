@@ -7,7 +7,7 @@
 	///List of all teleportable types
 	var/static/list/teleportable_types = list(
 		/obj/structure/closet,
-		/mob/living/carbon/human,
+		/mob/living,
 		/obj/machinery,
 	)
 	///List of banned teleportable types
@@ -28,7 +28,9 @@
 
 /obj/machinery/deployable/teleporter/Initialize(mapload)
 	. = ..()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "teleporter", HIGH_FLOAT_LAYER))
+	if(!ownerflag)
+		ownerflag = MINIMAP_FLAG_MARINE
+	SSminimaps.add_marker(src, ownerflag, image('icons/UI_icons/map_blips.dmi', null, "teleporter", HIGH_FLOAT_LAYER))
 
 
 /obj/machinery/deployable/teleporter/attack_hand(mob/living/user)
@@ -56,10 +58,6 @@
 
 	var/obj/machinery/deployable/teleporter/deployed_linked_teleporter = kit.linked_teleporter.loc
 	var/obj/item/teleporter_kit/linked_kit = deployed_linked_teleporter.get_internal_item()
-
-	if(deployed_linked_teleporter.z != z)
-		to_chat(user, span_warning("[src] and [deployed_linked_teleporter] are too far apart!"))
-		return
 
 	if(!deployed_linked_teleporter.powered() && (!linked_kit?.cell || linked_kit.cell.charge < TELEPORTING_COST))
 		to_chat(user, span_warning("[deployed_linked_teleporter] is not powered!"))
@@ -109,7 +107,7 @@
 	if(!kit.cell)
 		to_chat(user, span_warning("There is no cell to remove!"))
 		return
-	if(!do_after(user, 2 SECONDS, NONE, src))
+	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	playsound(loc, 'sound/items/crowbar.ogg', 25, 1)
 	to_chat(user , span_notice("You remove [kit.cell] from \the [src]."))
@@ -118,8 +116,6 @@
 	update_icon()
 
 /obj/machinery/deployable/teleporter/attackby(obj/item/I, mob/user, params)
-	if(!ishuman(user))
-		return FALSE
 	if(!istype(I, /obj/item/cell))
 		return FALSE
 	var/obj/item/teleporter_kit/kit = get_internal_item()
@@ -128,7 +124,7 @@
 	if(kit?.cell)
 		to_chat(user , span_warning("There is already a cell inside, use a crowbar to remove it."))
 		return FALSE
-	if(!do_after(user, 2 SECONDS, NONE, src))
+	if(!do_after(user, 2 SECONDS, TRUE, src))
 		return FALSE
 	user.temporarilyRemoveItemFromInventory(I)
 	I.forceMove(kit)

@@ -2,8 +2,8 @@
 
 
 /obj/item/clothing/suit/storage/marine
-	name = "\improper M3 pattern marine armor"
-	desc = "A standard TerraGov Marine Corps M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	name = "\improper M3 pattern operative armor"
+	desc = "A standard Ninetails M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon = 'icons/obj/clothing/suits/marine_armor.dmi'
 	icon_state = ""
 	worn_icon_state = "armor"
@@ -134,7 +134,7 @@
 	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines and their guns. Slows you down a lot."
 	icon_state = "marine_riot"
 	slowdown = 1.3
-	soft_armor = list(MELEE = 65, BULLET = 110, LASER = 110, ENERGY = 10, BOMB = 60, BIO = 50, FIRE = 50, ACID = 30)
+	soft_armor = list(MELEE = 65, BULLET = 90, LASER = 110, ENERGY = 10, BOMB = 60, BIO = 50, FIRE = 50, ACID = 30)
 	allowed = list(
 		/obj/item/weapon/gun,
 		/obj/item/storage/belt/sparepouch,
@@ -234,7 +234,7 @@
 
 /obj/item/clothing/suit/storage/marine/officer/req
 	name = "\improper PAS-N2 pattern MA armor"
-	desc = "A standard TerraGov Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
+	desc = "A standard Ninetails Navy N2 Personal Armor System. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon_state = "mp"
 
 /*=============================PMCS==================================*/
@@ -294,10 +294,10 @@
 
 /*===========================Death Commando============================*/
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando
-	name = "\improper PMC commando armor"
+	name = "\improper NTC commando armor"
 	desc = "A heavily armored suit built by who-knows-what for elite operations. It is a fully self-contained system and is heavily corrosion resistant."
 	icon_state = "commando_armor"
-	soft_armor = list(MELEE = 90, BULLET = 120, LASER = 200, ENERGY = 100, BOMB = 100, BIO = 100, FIRE = 100, ACID = 100)
+	soft_armor = list(MELEE = 90, BULLET = 90, LASER = 90, ENERGY = 90, BOMB = 90, BIO = 100, FIRE = 90, ACID = 90)
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
 	attachments_allowed = list(/obj/item/armor_module/storage/grenade)
 	starting_attachments = list(/obj/item/armor_module/storage/grenade)
@@ -433,7 +433,7 @@
 
 /obj/item/clothing/suit/storage/faction/UPP
 	name = "\improper UM5 personal armor"
-	desc = "Standard body armor of the USL pirates, the UM5 (United Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the TGMC."
+	desc = "Standard body armor of the USL pirates, the UM5 (United Medium MK5) is a medium body armor, roughly on par with the venerable M3 pattern body armor in service with the NTC."
 	icon_state = "upp_armor"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -480,7 +480,7 @@
 
 /obj/item/clothing/suit/storage/faction/freelancer
 	name = "\improper freelancer cuirass"
-	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the UPP and the TGMC."
+	desc = "A armored protective chestplate scrapped together from various plates. It keeps up remarkably well, as the craftsmanship is solid, and the design mirrors such armors in the UPP and the NTC."
 	icon_state = "freelancer_armor"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS
@@ -593,7 +593,7 @@
 
 /obj/item/clothing/suit/storage/RO
 	name = "\improper RO jacket"
-	desc = "A green jacket worn by TGMC personnel. The back has the flag of the TerraGov on it."
+	desc = "A green jacket worn by NTC personnel. The back has the emblem of the Ninetails on it."
 	icon_state = "RO_jacket"
 	blood_overlay_type = "coat"
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS|FEET|HANDS

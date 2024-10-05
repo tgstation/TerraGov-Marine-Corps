@@ -116,7 +116,7 @@
   - balance: sentries no longer use power cells
   - balance: radial mode reduces the range of the sentry by 2 tiles
   novaepee:
-  - balance: change plasma_cost on King's psychic summon, meaning he can psychic summon
+  - balance: change ability_cost on King's psychic summon, meaning he can psychic summon
       at young
   - bugfix: King can use psychic summon from young and mature now
 2022-01-10:

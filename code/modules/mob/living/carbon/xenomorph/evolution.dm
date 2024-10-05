@@ -53,7 +53,7 @@
 		return xeno_caste.get_strain_options()
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		switch(tier)
-			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
+			if(XENO_TIER_ZERO)
 				return
 			if(XENO_TIER_ONE)
 				return GLOB.xeno_types_tier_one
@@ -61,19 +61,20 @@
 				return GLOB.xeno_types_tier_two
 			if(XENO_TIER_THREE)
 				return GLOB.xeno_types_tier_three
+			if(XENO_TIER_FOUR)
+				return GLOB.xeno_types_tier_four
 	if(HAS_TRAIT(src, TRAIT_REGRESSING))
 		switch(tier)
-			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
-				if(isxenoshrike(src))
-					return GLOB.xeno_types_tier_one
-				else
-					return
+			if(XENO_TIER_ZERO)
+				return
 			if(XENO_TIER_ONE)
 				return list(/datum/xeno_caste/larva)
 			if(XENO_TIER_TWO)
 				return GLOB.xeno_types_tier_one
 			if(XENO_TIER_THREE)
 				return GLOB.xeno_types_tier_two
+			if(XENO_TIER_FOUR)
+				return GLOB.xeno_types_tier_one
 	switch(tier)
 		if(XENO_TIER_ZERO)
 			if(!istype(xeno_caste, /datum/xeno_caste/hivemind))
@@ -85,8 +86,7 @@
 		if(XENO_TIER_THREE)
 			return GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_FOUR)
-			if(istype(xeno_caste, /datum/xeno_caste/shrike))
-				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king)
+			return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king, /mob/living/carbon/xenomorph/shrike)
 
 
 ///Handles the evolution or devolution of the xenomorph
@@ -123,7 +123,7 @@
 	span_xenonotice("We begin to twist and contort."))
 	do_jitter_animation(1000)
 
-	if(!regression && !do_after(src, 25, IGNORE_HELD_ITEM, null, BUSY_ICON_CLOCK))
+	if(!regression && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
 		balloon_alert(src, span_warning("We must hold still while evolving."))
 		return
 
@@ -328,14 +328,6 @@
 		if(new_caste.tier == XENO_TIER_THREE && no_room_tier_three)
 			balloon_alert(src, "The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die")
 			return FALSE
-		var/potential_queens = length(hive.xenos_by_typepath[/datum/xeno_caste/larva]) + length(hive.xenos_by_typepath[/datum/xeno_caste/drone])
-		if(SSticker.mode?.round_type_flags & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
-			if(isxenolarva(src) && new_caste_type != /datum/xeno_caste/drone)
-				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!"))
-				return FALSE
-			else if(isxenodrone(src) && new_caste_type != /datum/xeno_caste/shrike)
-				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!"))
-				return FALSE
 		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold && !SSresinshaping.active)
 			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))
 			return FALSE

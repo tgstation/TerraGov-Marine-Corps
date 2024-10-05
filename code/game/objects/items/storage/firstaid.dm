@@ -273,7 +273,7 @@
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	storage_type = /datum/storage/pill_bottle
 	///What kind of pill we are filling our pill bottle with
-	var/pill_type_to_fill
+	var/obj/item/pill_type_to_fill
 	///Short description in overlay
 	var/description_overlay = ""
 
@@ -327,12 +327,29 @@
 	. = ..()
 	update_icon()
 
+/obj/item/storage/pill_bottle/refill(mob/user)
+	. = ..()
+	if(!.)
+		return
+	var/available_space = storage_datum.max_storage_space
+	for(var/obj/item/stored_item in contents)
+		available_space -= stored_item.w_class
+	if(!available_space)
+		return
+	var/pills_to_add = round(available_space/initial(pill_type_to_fill.w_class))
+	if(storage_datum.storage_slots)
+		pills_to_add = min(pills_to_add, storage_datum.storage_slots, storage_datum.storage_slots - length(contents))
+	for(var/i in 1 to pills_to_add)
+		new pill_type_to_fill(src)
+	update_icon()
+
 /obj/item/storage/pill_bottle/kelotane
 	name = "kelotane pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 	greyscale_colors = "#CC9900#FFFFFF"
 	description_overlay = "Ke"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/kelotane/Initialize(mapload, ...)
 	. = ..()
@@ -352,6 +369,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	greyscale_colors = "#669900#ffffff"
 	description_overlay = "Dy"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/dylovene/Initialize(mapload, ...)
 	. = ..()
@@ -363,6 +381,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
 	greyscale_colors = "#5c0e0e#ffffff"
 	description_overlay = "Is"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/isotonic/Initialize(mapload, ...)
 	. = ..()
@@ -382,6 +401,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
 	greyscale_colors = "#8a8686#ffffff"
 	description_overlay = "Ta"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/tramadol/Initialize(mapload, ...)
 	. = ..()
@@ -395,6 +415,7 @@
 	greyscale_config = /datum/greyscale_config/pillbottlebox
 	greyscale_colors = "#f8f4f8#ffffff"
 	description_overlay = "Pa"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/paracetamol/Initialize(mapload, ...)
 	. = ..()
@@ -414,6 +435,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 	greyscale_colors = "#DA0000#ffffff"
 	description_overlay = "Bi"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/bicaridine/Initialize(mapload, ...)
 	. = ..()
@@ -478,6 +500,15 @@
 	greyscale_colors = "#AC6D32#ffffff"
 	description_overlay = "Hy"
 
+/obj/item/storage/pill_bottle/aphrotoxin
+	name = "Aphrotoxin pill bottle"
+	desc = "An Aphrodisiac produced from xenomorphs. Causes weakness on the legs and intense lust."
+	icon_state = "pill_canister"
+	pill_type_to_fill = /obj/item/reagent_containers/pill/aphrotoxin
+	greyscale_config = /datum/greyscale_config/pillbottlebubble
+	greyscale_colors = "#be0270#ffffff"
+	description_overlay = "Apr"
+
 /obj/item/storage/pill_bottle/tricordrazine
 	name = "tricordrazine pill bottle"
 	desc = "Contains pills capable of minorly healing all main types of damages."
@@ -486,6 +517,7 @@
 	greyscale_colors = "#f8f8f8#ffffff"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	description_overlay = "Ti"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/tricordrazine/Initialize(mapload, ...)
 	. = ..()
@@ -525,7 +557,7 @@
 	bottle_color = input(user, "Pick a color", "Pick color") as null|color
 	label_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!bottle_color || !label_color || !do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	if(!bottle_color || !label_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
 

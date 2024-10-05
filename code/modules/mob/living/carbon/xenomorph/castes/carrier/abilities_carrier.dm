@@ -4,6 +4,7 @@
 #define ACID_HUGGER "acid hugger"
 #define RESIN_HUGGER "resin hugger"
 #define OZELOMELYN_HUGGER "ozelomelyn hugger"
+#define APHROTOXIN_HUGGER "aphrotoxin hugger"
 
 //List of huggie types
 GLOBAL_LIST_INIT(hugger_type_list, list(
@@ -11,6 +12,7 @@ GLOBAL_LIST_INIT(hugger_type_list, list(
 		/obj/item/clothing/mask/facehugger/combat/slash,
 		/obj/item/clothing/mask/facehugger/combat/chem_injector/neuro,
 		/obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn,
+		/obj/item/clothing/mask/facehugger/combat/chem_injector/aphrotoxin,
 		/obj/item/clothing/mask/facehugger/combat/acid,
 		/obj/item/clothing/mask/facehugger/combat/resin,
 		))
@@ -20,6 +22,7 @@ GLOBAL_LIST_INIT(hugger_to_ammo, list(
 	/obj/item/clothing/mask/facehugger/combat/slash = /datum/ammo/xeno/hugger/slash,
 	/obj/item/clothing/mask/facehugger/combat/chem_injector/neuro = /datum/ammo/xeno/hugger/neuro,
 	/obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn = /datum/ammo/xeno/hugger/ozelomelyn,
+	/obj/item/clothing/mask/facehugger/combat/chem_injector/aphrotoxin = /datum/ammo/xeno/hugger/aphrotoxin,
 	/obj/item/clothing/mask/facehugger/combat/acid = /datum/ammo/xeno/hugger/acid,
 	/obj/item/clothing/mask/facehugger/combat/resin = /datum/ammo/xeno/hugger/resin,
 ))
@@ -30,6 +33,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	CLAWED_HUGGER = image('icons/Xeno/actions/carrier.dmi', icon_state = CLAWED_HUGGER),
 	NEURO_HUGGER = image('icons/Xeno/actions/carrier.dmi', icon_state = NEURO_HUGGER),
 	OZELOMELYN_HUGGER = image('icons/Xeno/actions/carrier.dmi', icon_state = OZELOMELYN_HUGGER),
+	APHROTOXIN_HUGGER = image('ntf_modular/icons/xeno/actions.dmi', icon_state = APHROTOXIN_HUGGER),
 	ACID_HUGGER = image('icons/Xeno/actions/carrier.dmi', icon_state = ACID_HUGGER),
 	RESIN_HUGGER = image('icons/Xeno/actions/carrier.dmi', icon_state = RESIN_HUGGER),
 ))
@@ -346,7 +350,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 			return FALSE
 
 /datum/action/ability/xeno_action/build_hugger_turret/action_activate()
-	if(!do_after(owner, 10 SECONDS, NONE, owner, BUSY_ICON_BUILD))
+	if(!do_after(owner, 10 SECONDS, TRUE, owner, BUSY_ICON_BUILD))
 		return FALSE
 
 	if(!can_use_action())
@@ -367,8 +371,9 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	action_icon_state = "call_younger"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
 	desc = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
+
 	ability_cost = 150
-	cooldown_duration = 20 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CALL_YOUNGER,
 	)
@@ -408,7 +413,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	owner.face_atom(victim)
 
-	if(!do_after(caster, 0.5 SECONDS, NONE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
+	if(!do_after(caster, 0.5 SECONDS, TRUE, caster, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
 	if(!can_use_ability(A))
 		return fail_activate()
@@ -422,7 +427,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	owner.visible_message(span_xenowarning("\the [owner] emits an unusual roar!"), \
 	span_xenowarning("We called out to the younger one inside [victim]!"))
 	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
-	span_xenowarning("You feel like something inside you is tearing out!"))
+	span_xenowarning("You feel like something inside you is growing!"))
 
 	victim.apply_effects(2 SECONDS, 1 SECONDS)
 	victim.adjust_stagger(debuff SECONDS)

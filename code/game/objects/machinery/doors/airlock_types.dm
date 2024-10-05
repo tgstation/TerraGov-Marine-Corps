@@ -470,7 +470,6 @@
 
 /obj/machinery/door/airlock/mainship/medical/glass/chemistry
 	name = "\improper Chemistry Laboratory"
-	req_access = list(ACCESS_MARINE_CHEMISTRY)
 
 /obj/machinery/door/airlock/mainship/medical/glass/research
 	req_access = list(ACCESS_MARINE_RESEARCH)
@@ -539,12 +538,12 @@
 	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
 
 /obj/machinery/door/airlock/mainship/generic/corporate
-	name = "Corporate Liaison's Office"
+	name = "Operations Officer's Office"
 	icon = 'icons/obj/doors/mainship/personaldoor.dmi'
 	req_access = list(ACCESS_NT_CORPORATE)
 
 /obj/machinery/door/airlock/mainship/generic/corporate/quarters
-	name = "Corporate Liaison's Quarters"
+	name = "Operations Officer's Quarters"
 
 /obj/machinery/door/airlock/mainship/generic/bathroom
 	name = "\improper Bathroom"

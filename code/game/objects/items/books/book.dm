@@ -100,7 +100,7 @@
 
 		to_chat(user, span_notice("You begin to carve out [title]."))
 
-		if(!do_after(user, 30, NONE, src))
+		if(!do_after(user, 30, TRUE, src))
 			return
 
 		to_chat(user, span_notice("You carve out the pages from [title]! You didn't want to read it anyway."))

@@ -1,3 +1,4 @@
+// Defines for TTS modes.
 // Used for translating channels to tokens on examination
 GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_REQUISITIONS = RADIO_TOKEN_REQUISITIONS,
@@ -5,6 +6,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_MEDICAL = RADIO_TOKEN_MEDICAL,
 	RADIO_CHANNEL_ENGINEERING = RADIO_TOKEN_ENGINEERING,
 	RADIO_CHANNEL_CAS = RADIO_TOKEN_CAS,
+	RADIO_CHANNEL_SEC = RADIO_TOKEN_SEC,
 	RADIO_CHANNEL_ALPHA = RADIO_TOKEN_ALPHA,
 	RADIO_CHANNEL_BRAVO = RADIO_TOKEN_BRAVO,
 	RADIO_CHANNEL_CHARLIE = RADIO_TOKEN_CHARLIE,
@@ -26,7 +28,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	equip_slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null
-
 
 /obj/item/radio/headset/Initialize(mapload)
 	if(keyslot)
@@ -550,7 +551,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "marine charlie engineer radio headset"
 	keyslot2 = /obj/item/encryptionkey/engi
 
-
 /obj/item/radio/headset/mainship/marine/charlie/med
 	name = "marine charlie corpsman radio headset"
 	keyslot2 = /obj/item/encryptionkey/med
@@ -594,6 +594,22 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "sec_headset"
 	keyslot2 = /obj/item/encryptionkey/cas
 
+/obj/item/radio/headset/mainship/marine/generic/sec
+	name = "marine security headset"
+	icon_state = "sec_headset"
+	keyslot2 = /obj/item/encryptionkey/sec
+
+/obj/item/radio/headset/mainship/marine/pmc
+	name = "marine generic radio headset"
+	icon_state = "headset_marine_generic"
+	keyslot = /obj/item/encryptionkey/general
+
+/obj/item/radio/headset/mainship/marine/icc
+	name = "shiphands headset"
+	icon_state = "headset_marine_generic"
+	keyslot = /obj/item/encryptionkey/icc
+	frequency = FREQ_ICC
+
 //Distress headsets.
 /obj/item/radio/headset/distress
 	name = "operative headset"
@@ -605,7 +621,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "colonist headset"
 	keyslot = /obj/item/encryptionkey/dutch
 	frequency = FREQ_COLONIST
-
 
 /obj/item/radio/headset/distress/pmc
 	name = "contractor headset"

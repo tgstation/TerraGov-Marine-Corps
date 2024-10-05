@@ -7,7 +7,7 @@ The current design section should be updated by contributors of pull requests wh
 
 The future design section should be mainly updated by maintainers as a central location for their vision for the server. This gives direction for code contributors to build their PRs on and gives players insight into what to look forward to.
 
-The main USP of TGMC is: “asymmetrical team deathmatch PvP gameplay with a high degree of QoL”.
+The main USP of NTC is: “asymmetrical team deathmatch PvP gameplay with a high degree of QoL”.
 
 # Current Design
 

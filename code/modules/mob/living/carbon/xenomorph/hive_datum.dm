@@ -79,6 +79,9 @@
 	.["hive_minion_count"] = length(xenos_by_tier[XENO_TIER_MINION])
 
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/mob/living/carbon/xenomorph/X = user
+	if(X.hivenumber == XENO_HIVE_CORRUPTED)
+		xeno_job = SSjob.GetJobType(/datum/job/xenomorph/green)
 	.["hive_larva_current"] = xeno_job.job_points
 	.["hive_larva_rate"] = SSsilo.current_larva_spawn_rate
 	.["hive_larva_burrowed"] = xeno_job.total_positions - xeno_job.current_positions
@@ -164,12 +167,12 @@
 	.["user_next_mat_level"] = isxeno(user) && xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0
 	.["user_tracked"] = isxeno(user) && !isnull(xeno_user.tracked) ? REF(xeno_user.tracked) : ""
 
-	.["user_show_empty"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_EMPTY : 0
-	.["user_show_compact"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_COMPACT_MODE : 0
-	.["user_show_general"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_GENERAL : 0
-	.["user_show_population"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_POPULATION : 0
-	.["user_show_xeno_list"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_XENO_LIST : 0
-	.["user_show_structures"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_STRUCTURES : 0
+	.["user_show_empty"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_EMPTY)
+	.["user_show_compact"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_COMPACT_MODE)
+	.["user_show_general"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_GENERAL)
+	.["user_show_population"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_POPULATION)
+	.["user_show_xeno_list"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_XENO_LIST)
+	.["user_show_structures"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_STRUCTURES)
 
 /// Returns a data entry for the "xeno structures" list based on the structure passed
 /datum/hive_status/proc/get_structure_packet(obj/structure/xeno/struct)
@@ -209,9 +212,31 @@
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
+	/// Actions that don't require you to be a xeno
+	switch(action)
+		if("ToggleGeneral")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_GENERAL
+			usr.client.prefs.save_preferences()
+		if("ToggleCompact")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_COMPACT_MODE
+			usr.client.prefs.save_preferences()
+		if("TogglePopulation")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_POPULATION
+			usr.client.prefs.save_preferences()
+		if("ToggleXenoList")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_XENO_LIST
+			usr.client.prefs.save_preferences()
+		if("ToggleStructures")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_STRUCTURES
+			usr.client.prefs.save_preferences()
+		if("ToggleEmpty")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_EMPTY
+
+	/// If the action we're sending is to observe, this will be the xeno being observed. Otherwise it's the xeno pressing the button.
 	var/mob/living/carbon/xenomorph/xeno_target = locate(params["xeno"])
 	if(QDELETED(xeno_target))
 		return
+
 	switch(action)
 		if("Evolve")
 			if(!isxeno(usr))
@@ -240,10 +265,6 @@
 			if(!isxeno(usr))
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOABILITY_BLESSINGSMENU)
-		if("ToggleEmpty")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_EMPTY)
 		if("Compass")
 			var/atom/target = locate(params["target"])
 			if(isobserver(usr))
@@ -252,26 +273,6 @@
 			if(!isxeno(usr))
 				return
 			xeno_target.set_tracked(target)
-		if("ToggleGeneral")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_GENERAL)
-		if("ToggleCompact")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_COMPACT_MODE)
-		if("TogglePopulation")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_POPULATION)
-		if("ToggleXenoList")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_XENO_LIST)
-		if("ToggleStructures")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_STRUCTURES)
 
 /// Returns the string location of the xeno
 /datum/hive_status/proc/get_xeno_location(atom/xeno)
@@ -897,6 +898,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/normal/add_xeno(mob/living/carbon/xenomorph/X)
 	. = ..()
 	orphan_hud_timer?.apply_to(X)
+	X.AddComponent(/datum/component/xeno_iff, CLF_IFF)
 
 /datum/hive_status/normal/remove_xeno(mob/living/carbon/xenomorph/X)
 	. = ..()
@@ -925,17 +927,18 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	orphan_hud_timer = new(null, null, get_all_xenos(), D.orphan_hive_timer, "Orphan Hivemind Collapse: ${timer}", 150, -80)
 
-/datum/hive_status/normal/burrow_larva(mob/living/carbon/xenomorph/larva/L)
-	if(!is_ground_level(L.z))
+/datum/hive_status/burrow_larva(mob/living/carbon/xenomorph/larva/L)
+	if(!is_ground_level(L.z) && !L.hivenumber == XENO_HIVE_CORRUPTED)
 		return
 	L.visible_message(span_xenodanger("[L] quickly burrows into the ground."))
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	if(L.hivenumber == XENO_HIVE_CORRUPTED)
+		xeno_job = SSjob.GetJobType(/datum/job/xenomorph/green)
 	xeno_job.add_job_positions(1)
 	update_tier_limits()
 	GLOB.round_statistics.total_xenos_created-- // keep stats sane
 	SSblackbox.record_feedback("tally", "round_statistics", -1, "total_xenos_created")
 	qdel(L)
-
 
 // This proc checks for available spawn points and offers a choice if there's more than one.
 /datum/hive_status/proc/attempt_to_spawn_larva(client/xeno_candidate, larva_already_reserved = FALSE)
@@ -1047,8 +1050,8 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
-	GLOB.xeno_enter_allowed = FALSE
-	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
+	//GLOB.xeno_enter_allowed = FALSE
+	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid severing!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, PROC_REF(on_hijack_depart))
 
 	for(var/obj/structure/xeno/structure AS in GLOB.xeno_structures_by_hive[XENO_HIVE_NORMAL])
@@ -1079,13 +1082,13 @@ to_chat will check for valid clients itself already so no need to double check f
 			continue
 		if(isxenohivemind(boarder))
 			continue
-		INVOKE_ASYNC(boarder, TYPE_PROC_REF(/mob/living, gib))
+		boarder.add_to_hive_by_hivenumber(XENO_HIVE_FORSAKEN)
 		if(boarder.xeno_caste.tier == XENO_TIER_MINION)
 			continue
 		left_behind++
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	if(left_behind)
-		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] perished due to being too slow to board the bird. The freeing of their psychic link allows us to call burrowed, at least.")
+		xeno_message("[left_behind > 1 ? "[left_behind] sisters" : "One sister"] severed connection due to being too slow to board the bird. The freeing of their psychic link allows us to call burrowed, at least.")
 		xeno_job.add_job_positions(left_behind)
 	if(difference < 0)
 		if(xeno_job.total_positions < (-difference + xeno_job.current_positions))
@@ -1215,6 +1218,7 @@ to_chat will check for valid clients itself already so no need to double check f
 /datum/hive_status/corrupted/post_add(mob/living/carbon/xenomorph/X)
 	. = ..()
 	X.grant_language(/datum/language/common)
+	X.AddComponent(/datum/component/xeno_iff, TGMC_LOYALIST_IFF)
 
 /datum/hive_status/corrupted/post_removal(mob/living/carbon/xenomorph/X)
 	. = ..()
@@ -1546,6 +1550,81 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/xenomorph/king/Corrupted/fallen
 	hivenumber = XENO_HIVE_FALLEN
 
+/datum/hive_status/forsaken
+	name = "Forsaken"
+	hivenumber = XENO_HIVE_FORSAKEN
+	prefix = "Forsaken "
+	color = "#5b3f5b"
+
+/mob/living/carbon/xenomorph/queen/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/boiler/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/bull/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/carrier/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/crusher/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/gorger/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/defender/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/defiler/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/drone/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/hivelord/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/hivemind/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/hunter/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/larva/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/praetorian/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/ravager/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/runner/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/sentinel/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/shrike/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/spitter/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/warrior/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/wraith/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/king/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
+/mob/living/carbon/xenomorph/behemoth/Forsaken
+	hivenumber = XENO_HIVE_FORSAKEN
+
 // ***************************************
 // *********** Xeno hive compare helpers
 // ***************************************
@@ -1590,4 +1669,10 @@ to_chat will check for valid clients itself already so no need to double check f
 /mob/living/carbon/human/get_xeno_hivenumber()
 	if(faction == FACTION_ZOMBIE)
 		return FACTION_ZOMBIE
+	if(faction == FACTION_CLF)
+		return XENO_HIVE_NORMAL
 	return FALSE
+
+/obj/machinery/deployable/mounted/sentry/get_xeno_hivenumber()
+	if(iff_signal == CLF_IFF)
+		return XENO_HIVE_NORMAL

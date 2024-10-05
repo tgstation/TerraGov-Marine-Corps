@@ -35,7 +35,7 @@
 
 	// *** Speed *** //
 	var/speed = 1
-	var/weeds_speed_mod = -0.4
+	var/weeds_speed_mod = -0.5
 
 	// *** Regeneration Delay ***//
 	///Time after you take damage before a xenomorph can regen.
@@ -100,6 +100,8 @@
 	var/spit_delay = 6 SECONDS
 	///list of datum projectile types the xeno can use.
 	var/list/spit_types
+	///list of various chemical stings xenos can use
+	var/list/sting_types
 
 	// *** Acid spray *** //
 	///Number of tiles of the acid spray cone extends outward to. Not recommended to go beyond 4.
@@ -211,7 +213,7 @@
 
 	///How quickly the caste enters vents
 	var/vent_enter_speed = XENO_DEFAULT_VENT_ENTER_TIME
-	///How quickly the caste enters vents
+	///How quickly the caste exits vents
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
@@ -222,19 +224,16 @@
 	// Accuracy malus, 0 by default. Should NOT go over 70.
 	var/accuracy_malus = 0
 
+
 ///Add needed component to the xeno
 /datum/xeno_caste/proc/on_caste_applied(mob/xenomorph)
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
-	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
+
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
-	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
-	bump_attack?.RemoveComponent()
-	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
+	xenomorph.remove_component(/datum/component/bump_attack)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
@@ -310,15 +309,22 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
-
+	///Handles displaying the various wound states of the xeno.
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
+	///Handles displaying the various fire states of the xeno
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
+	///Handles displaying any equipped backpack item, such as a saddle
+	var/atom/movable/vis_obj/xeno_wounds/backpack_overlay/backpack_overlay
 	var/datum/xeno_caste/xeno_caste
 	/// /datum/xeno_caste that we will be on init
 	var/caste_base_type
 	var/language = "Xenomorph"
 	///Plasma currently stored
 	var/plasma_stored = 0
+
+	var/xeno_desc = ""
+	///Profile picture set by player
+	var/xenoprofile_pic = ""
 
 	///A mob the xeno ate
 	var/mob/living/carbon/eaten_mob
@@ -393,6 +399,10 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/fortify = 0
 	var/crest_defense = 0
 
+	// Baneling vars
+	/// Respawn charges, each charge makes respawn take 30 seconds. Maximum of 2 charges. If there is no charge the respawn takes 120 seconds.
+	var/stored_charge = 0
+
 	// *** Ravager vars *** //
 	/// when true the rav will not go into crit or take crit damage.
 	var/endure = FALSE
@@ -417,8 +427,13 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	///The xenos/silo/nuke currently tracked by the xeno_tracker arrow
 	var/atom/tracked
 
+	///Are we the roony version of this xeno
+	var/is_a_rouny = FALSE
+
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+	var/blunt_stab = FALSE
+	var/fiery_stab = FALSE
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 

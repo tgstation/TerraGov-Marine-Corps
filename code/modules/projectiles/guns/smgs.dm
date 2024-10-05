@@ -36,7 +36,7 @@
 
 /obj/item/weapon/gun/smg/standard_machinepistol
 	name = "\improper MP-19 machinepistol"
-	desc = "The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
+	desc = "The MP-19 is the Nine Tailed Fox standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	worn_icon_state = "t19"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mp19.ogg'
@@ -99,7 +99,7 @@
 
 /obj/item/weapon/gun/smg/standard_smg
 	name = "\improper SMG-90 submachinegun"
-	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
+	desc = "The SMG-90 is the Nine Tailed Fox standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_smg90.ogg'
 	icon_state = "t90"
 	worn_icon_state = "t90"
@@ -124,12 +124,12 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 15,"rail_x" = 22, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 24, "stock_y" = 10)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
 	accuracy_mult = 1.05
@@ -194,7 +194,6 @@
 	)
 
 	attachable_offset = list("muzzle_x" = 43, "muzzle_y" = 19,"rail_x" = 22, "rail_y" = 23, "under_x" = 32, "under_y" = 14, "stock_x" = 24, "stock_y" = 16)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 
 	aim_slowdown = 0.25
@@ -296,12 +295,17 @@
 
 	item_map_variant_flags = NONE
 
-	burst_amount = 4
+	scatter = 4
+	fire_delay = 0.2 SECONDS
+	scatter_unwielded = 10
+	aim_slowdown = 0.15
+	burst_amount = 3
+	akimbo_additional_delay = 0.4
+	damage_falloff_mult = 0.9
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 1
 	damage_mult = 1.2
-	aim_slowdown = 0.2
-	scatter = 3
+	scatter = 4
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)
@@ -426,7 +430,6 @@
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 38, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 21, "under_x" = 26, "under_y" = 15, "stock_x" = 19, "stock_y" = 13)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.15 SECONDS
 	aim_speed_modifier = 2.5
 
@@ -688,7 +691,6 @@
 	starting_attachment_types = list(/obj/item/attachable/stock/icc_pdw)
 
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 20, "under_x" = 31, "under_y" = 13, "stock_x" = 9, "stock_y" = 10)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.55
 
@@ -752,7 +754,6 @@
 	)
 
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 21, "under_x" = 24, "under_y" = 15, "stock_x" = 24, "stock_y" = 16)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 
 	aim_slowdown = 0.25

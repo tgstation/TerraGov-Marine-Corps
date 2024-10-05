@@ -119,7 +119,8 @@
 #define AUTOBALANCE_CHECK (1<<20)
 ///This item is in any storage
 #define IN_STORAGE (1<<21)
-
+///If an item can be restocked/refilled in a vendor, despite not being infinite supply
+#define CAN_REFILL (1<<22)
 
 //storage_flags
 ///If a storage container can be restocked into a vendor
@@ -195,6 +196,7 @@
 #define ARMOR_IS_REINFORCED (1<<3)
 #define ARMOR_NO_DECAP (1<<4)
 #define ARMOR_FIRE_RESISTANT (1<<5)
+#define MELEE_ONLY_ARMOR (1<<6)
 //===========================================================================================
 
 //===========================================================================================

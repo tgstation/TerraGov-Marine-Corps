@@ -51,12 +51,12 @@
 		owner = null
 	return ..()
 
-/datum/status_effect/process()
+/datum/status_effect/process(delta_time)
 	if(!owner)
 		qdel(src)
 		return
 	if(tick_interval < world.time)
-		tick()
+		tick(delta_time)
 		tick_interval = world.time + initial(tick_interval)
 	if(duration != -1 && duration < world.time)
 		qdel(src)
@@ -66,7 +66,7 @@
 	return TRUE
 
 ///Called every tick
-/datum/status_effect/proc/tick()
+/datum/status_effect/proc/tick(delta_time)
 
 //Called whenever the buff expires or is removed; do note that at the point this is called, it is out of the owner's status_effects but owner is not yet null
 /datum/status_effect/proc/on_remove()
@@ -213,7 +213,7 @@
 /datum/status_effect/stacking/proc/can_gain_stacks()
 	return owner.stat != DEAD
 
-/datum/status_effect/stacking/tick()
+/datum/status_effect/stacking/tick(delta_time)
 	if(!can_have_status())
 		qdel(src)
 	else

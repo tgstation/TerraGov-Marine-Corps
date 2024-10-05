@@ -499,9 +499,7 @@
 
 	if(chestburst == CARBON_CHEST_BURSTED)
 		if(isxeno(user))
-			msg += "[span_xenowarning("A larva escaped from [t_him]!")]\n"
-		else
-			msg += "[span_boldwarning("[t_He] [t_has] a giant hole in [t_his] chest!")]\n"
+			msg += "[span_xenowarning("A larva was born from [t_him]!")]\n"
 
 	for(var/i in embedded_objects)
 		msg += EXAMINE_SECTION_BREAK
@@ -557,28 +555,54 @@
 			if(assigned_squad == H.assigned_squad) //same squad
 				msg += "<a href='?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
 
+	msg += "\n[span_collapsible("Flavor Text & Notes", "[flavor_text]")]\n"
+	if(profile_pic)
+		msg += "<span class='info'><img src=[profile_pic] width=250 height=250/></span>"
+
+// removed hollow examine from humans
 	if(HAS_TRAIT(src, TRAIT_HOLLOW))
 		if(isxeno(user))
-			msg += "<span style='font-weight: bold; color: purple;'>[t_He] [t_is] hollow. Useless.</span>\n"
-		else
-			msg += "[span_deadsay("<b>[t_He] [t_is] hollowed out!</b>")]\n"
+			msg += "<span style='font-weight: bold; color: purple;'>[t_He] [t_is] was hollowed before. Useless.</span>\n"
+//		else
+//			msg += "[span_warning("<b>[t_He] [t_is] hollowed out!</b>")]\n"
 
 	if(isxeno(user))
+		var/embryocount
+		for(var/obj/item/alien_embryo/implanted in contents)
+			embryocount ++
+			if(!implanted)
+				break
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "[span_xenowarning("You sense [t_he] [t_is] not organic.")]\n"
 		if(status_flags & XENO_HOST)
-			msg += "[t_He] [t_is] impregnated.\n"
+			msg += "[t_He] [t_is] impregnated with [embryocount] larva(s) and [t_he] [t_is][reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly) > 0 ? "" : " not"] inoculated with Larval Accelerant.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/tricordrazine)] doses of Tricordrazine [t_is] still inside the infected host, healing this one slowly.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/inaprovaline)] doses of Inaprovaline [t_is] still inside the infected host, keeping this one stabilized for now.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/dexalin))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/dexalin)] doses of Dexalin [t_is] still inside the infected host, making this one breathe easier.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/medicine/spaceacillin)] doses of Spaceacillin [t_is] still inside the infected host, curing infections on this one.\n"
+			if(reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
+				msg += "[reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly)] doses of Growth toxin [t_is] still inside the infected host, making the little one within grow faster.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/acid))
+			msg += "[reagents.get_reagent_amount(/datum/reagent/toxin/acid)] doses of acid in their bloodstream, melting this one from within.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_neurotoxin))
 			msg += "Neurotoxin: Causes increasingly intense pain and stamina damage over time, increasing in intensity at the 40 second and the minute and a half mark of metabolism.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_hemodile))
 			msg += "Hemodile: Slows down the target, doubling in power with each other xeno-based toxin present.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_transvitox))
 			msg += "Transvitox: Converts burns to toxin over time, as well as causing incoming brute damage to deal additional toxin damage. Both effects intensifying with each xeno-based toxin present. Toxin damage is capped at 180.\n"
+		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_aphrotoxin))
+			msg += "Aphrotoxin: A strong aphrodisiac and larval growth toxin, will cause legs to go weak and boost larva growth.\n"
+		if(embryocount < 1)
+			if(reagents.get_reagent_amount(/datum/reagent/consumable/larvajelly))
+				msg += "Growth toxin: Makes the little ones grow faster while affected, but the host has no little ones inside..\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_ozelomelyn))
 			msg += "Ozelomelyn: Rapidly purges all medicine in the body, causes toxin damage capped at 40. Metabolizes very quickly.\n"
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
 			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
-
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += span_highdanger("<b>This player has been slept by staff. Best to leave them be.</b>\n")
 

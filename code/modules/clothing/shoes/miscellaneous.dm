@@ -80,14 +80,13 @@
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05
 	inventory_flags = NOSLIPPING
-	slowdown = SHOES_SLOWDOWN+1
 
 /obj/item/clothing/shoes/clown_shoes
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
 	icon_state = "clown"
 	worn_icon_state = "clown"
-	slowdown = SHOES_SLOWDOWN + 1
+	slowdown = SHOES_SLOWDOWN+1
 
 
 /obj/item/clothing/shoes/clown_shoes/Initialize(mapload)
@@ -172,5 +171,3 @@
 	icon_state = "tp_boots"
 	worn_icon_state = "tp_boots"
 	inventory_flags = NOSLIPPING
-
-

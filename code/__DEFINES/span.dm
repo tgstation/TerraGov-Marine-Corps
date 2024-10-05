@@ -23,6 +23,7 @@
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
 #define span_deadsay(str) ("<span class='deadsay'>" + str + "</span>")
 #define span_disarm(str) ("<span class='disarm'>" + str + "</span>")
+#define span_emote(str) ("<span class ='emote'>" + str + "</span>")
 #define span_debuginfo(str) ("<span class='debuginfo'>" + str + "</span>")
 #define span_event_announcement(str) ("<span class='event_announcement'>" + str + "</span>")
 #define span_game(str) ("<span class='game'>" + str + "</span>")
@@ -86,4 +87,5 @@
 
 // Spans that use embedded tgui components:
 // Sorted alphabetically
+#define span_collapsible(title, main_text) ("<span data-component=\"Collapsible\" data-content=\"" + title + "\" class=\"collapsible\">"+ examine_block(main_text) + "</span>")
 #define span_tooltip(tip, main_text) ("<span data-component=\"Tooltip\" data-content=\"" + tip + "\" class=\"tooltip\">" + main_text + "</span>")

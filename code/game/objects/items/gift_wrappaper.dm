@@ -65,7 +65,7 @@
 
 /obj/item/gift/marine
 	name = "Present"
-	desc = "One, standard issue TGMC Present"
+	desc = "One, standard issue NTC Present"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "gift1"
 	worn_icon_state = "gift1"

@@ -63,7 +63,7 @@
 	targets_from = null
 	return ..()
 
-/mob/living/simple_animal/hostile/Life()
+/mob/living/simple_animal/hostile/Life(seconds_per_tick, times_fired)
 	. = ..()
 	if(!.) //dead
 		walk(src, 0) //stops walking
@@ -342,7 +342,7 @@
 	return ..()
 
 
-/mob/living/simple_animal/hostile/proc/summon_backup(distance, eABILITY_faction_match)
+/mob/living/simple_animal/hostile/proc/summon_backup(distance, exact_faction_match)
 	playsound(loc, 'sound/machines/chime.ogg', 50, 1, -1)
 	for(var/mob/living/simple_animal/hostile/M in oview(distance, targets_from))
 		if(faction == M.faction)

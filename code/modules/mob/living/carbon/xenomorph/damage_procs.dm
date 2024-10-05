@@ -33,7 +33,7 @@
 
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			ex_damage = rand(190, 210)
+			ex_damage = rand(290, 310)
 			stagger_amount = 4 * bomb_armor_ratio - 1
 			slowdown_amount = 5 * bomb_armor_ratio
 			sunder_amount = 30 * bomb_armor_ratio

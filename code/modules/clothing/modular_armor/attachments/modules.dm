@@ -30,7 +30,7 @@
 	icon_state = "mod_lamp"
 	worn_icon_state = "mod_lamp_a"
 	slowdown = 0
-	light_mod = 4 /// The boost to armor shoulder light
+	light_mod = 6 /// The boost to armor shoulder light
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_lamp_xn")
 
@@ -40,10 +40,10 @@
 /obj/item/armor_module/module/valkyrie_autodoc
 	name = "\improper Valkyrie Automedical Armor System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed for mounting on modular armor. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered. Will definitely impact mobility."
+	desc = "Designed for mounting on modular armor. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered."
 	icon_state = "mod_autodoc"
 	worn_icon_state = "mod_autodoc_a"
-	slowdown = 0.3
+	slowdown = 0
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn")
 	///The limbs this module supports
@@ -58,14 +58,14 @@
 	parent.AddElement(/datum/element/limb_support, supported_limbs)
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_detach(obj/item/detaching_from, mob/user)
-	qdel(parent.GetComponent(/datum/component/suit_autodoc))
-	parent.RemoveElement(/datum/element/limb_support, supported_limbs)
+	detaching_from.remove_component(/datum/component/suit_autodoc)
+	detaching_from.RemoveElement(/datum/element/limb_support, supported_limbs)
 	return ..()
 
 /obj/item/armor_module/module/valkyrie_autodoc/som
 	name = "\improper Apollo Automedical Armor System"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
-	desc = "Designed to be mounted on SOM combat armor, or internally inside Gorgon assault armor. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered. Will definitely impact mobility."
+	desc = "Designed to be mounted on SOM combat armor, or internally inside Gorgon assault armor. This module has advanced medical systems that inject tricordrazine and tramadol based on the user's needs, as well as automatically securing the bones and body of the wearer, effectively splinting them until professional medical attention can be admistered."
 	icon_state = "mod_autodoc_som"
 	worn_icon_state = "mod_autodoc_som_a"
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/som/heavy/leader = "")
@@ -126,6 +126,14 @@
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_armor_xn")
 
+/obj/item/armor_module/module/tyr_extra_armor/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	attaching_to.AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+
+/obj/item/armor_module/module/tyr_extra_armor/on_detach(obj/item/detaching_from, mob/user)
+	detaching_from.remove_component(/datum/component/stun_mitigation)
+	return ..()
+
 /obj/item/armor_module/module/tyr_extra_armor/mark1
 	name = "\improper Mark 1 Tyr Armor Reinforcement"
 	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
@@ -133,6 +141,18 @@
 	worn_icon_state = "mod_armor_lower_a"
 	soft_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 10, BIO = 10, FIRE = 10, ACID = 10)
 	slowdown = 0.4
+
+/obj/item/armor_module/module/tyr_extra_armor/old
+	name = "\improper Outdated Mark 1 Tyr Armor Reinforcement"
+	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
+	icon_state = "mod_tyr"
+	worn_icon_state = "mod_tyr_a"
+
+/obj/item/armor_module/module/tyr_extra_armor/old_jaeger
+	name = "\improper Outdated 'Jaeger' Mark 1 Tyr Armor Reinforcement"
+	desc = "Designed for mounting on modular armor. A substantial amount of additional armor plating designed to grant the user extra protection against threats, ranging from xeno slashes to friendly fire incidents. This older version has worse protection. Will greatly impact mobility."
+	icon_state = "mod_tyr_jaeger"
+	worn_icon_state = "mod_tyr_jaeger_a"
 
 /obj/item/armor_module/module/tyr_extra_armor/som
 	name = "\improper Lorica Armor Reinforcement"
@@ -153,26 +173,61 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "tyr_head_xn")
 
+/obj/item/armor_module/module/tyr_head/old
+	icon_state = "armor_head"
+	worn_icon_state = "armor_head_a"
+
 /obj/item/armor_module/module/hod_head
 	name = "\improper Hod Helmet System"
 	desc = "Designed for mounting on a modular helmet. When attached, this system provides substantial resistance to most gunshot wounds by providing high internal padding within the helmet's structure."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_ff_head"
 	worn_icon_state = "mod_ff_head_a"
-	soft_armor = list(MELEE = 0, BULLET = 40, LASER = 40, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
+
+
+/**
+ * Knight//Melee only, proof of concept.
+*/
+/obj/item/armor_module/module/knight
+	name = "\improper Magni Knight System"
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	desc = "Designed for mounting on modular armor. An aftermarket kit that provides substantial armor while not compromising speed, allows access to exclusive sword and axe techniques but restricts the use of guns."
+	icon_state = "mod_armor"
+	worn_icon_state = "mod_armor_a"
+	attachment_layer = COLLAR_LAYER
+	soft_armor = list(MELEE = 15, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 15, FIRE = 15, ACID = 15)
+	slowdown = 0
+	slot = ATTACHMENT_SLOT_MODULE
+
+/obj/item/armor_module/module/knight/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	parent.armor_features_flags |= MELEE_ONLY_ARMOR
+
+/obj/item/armor_module/module/knight/on_detach(obj/item/detaching_from, mob/user)
+	parent.armor_features_flags &= ~MELEE_ONLY_ARMOR
+	return ..()
+
+/obj/item/armor_module/module/knight/som
+	name = "\improper Squamala Knight System"
+	desc = "Designed for mounting on modular SoM armor. An aftermarket kit that provides substantial armor while not compromising speed, allows access to exclusive axe and sword techniques but restricts the use of guns."
+	icon_state = "lorica_armor"
+	worn_icon_state = "lorica_armor_a"
+	attachment_layer = null
+	soft_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
 
 /**
  * Environment protection module
 */
 /obj/item/armor_module/module/mimir_environment_protection
 	name = "\improper Mark 2 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on modular armor. This newer model provides great resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds. Will impact mobility."
+	desc = "Designed for mounting on modular armor. This newer model provides great resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_biohazard"
 	worn_icon_state = "mod_biohazard_a"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 40, FIRE = 0, ACID = 30)
-	slowdown = 0.2
+	slowdown = 0
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_biohazard_xn")
 	///siemens coefficient mod for gas protection.
@@ -196,16 +251,28 @@
 
 /obj/item/armor_module/module/mimir_environment_protection/mark1
 	name = "\improper Mark 1 Mimir Environmental Resistance System"
-	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds. Will impact mobility."
+	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds."
 	icon_state = "mod_biohazard"
 	worn_icon_state = "mod_biohazard_a"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
-	slowdown = 0.2
+	slowdown = 0
+
+/obj/item/armor_module/module/mimir_environment_protection/old
+	name = "\improper Outdated Mark 1 Mimir Environmental Resistance System"
+	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds."
+	icon_state = "mod_hazard"
+	worn_icon_state = "mod_hazard_a"
+
+/obj/item/armor_module/module/mimir_environment_protection/old_jaeger
+	name = "\improper Outdated Jaeger Mark 1 Mimir Environmental Resistance System"
+	desc = "Designed for mounting on modular armor. This older model provides minor resistance to acid, biological, and radiological attacks. Pairing this with a Mimir helmet module and mask will make the user impervious to xeno gas clouds."
+	icon_state = "mod_hazard_jaeger"
+	worn_icon_state = "mod_hazard_jaeger_a"
 
 //SOM version
 /obj/item/armor_module/module/mimir_environment_protection/som
 	name = "\improper Mithridatius Hostile Environment System"
-	desc = "Designed for mounting on modular SOM armor. This module appears to be designed to protect the user from the effects of radiological attacks, although also provides improved resistance against other environmental threats such as acid and gas. Pairing this with a Mithridatius helmet module and mask will make the user impervious to gas clouds. Will impact mobility."
+	desc = "Designed for mounting on modular SOM armor. This module appears to be designed to protect the user from the effects of radiological attacks, although also provides improved resistance against other environmental threats such as acid and gas. Pairing this with a Mithridatius helmet module and mask will make the user impervious to gas clouds."
 	icon_state = "mithridatius"
 	worn_icon_state = "mithridatius_a"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 25, FIRE = 0, ACID = 20)
@@ -225,10 +292,19 @@
 	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will provide the user with immunity from xenomorph cloud reagents entering bloodstream."
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
 
+/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/old //gas protection
+	name = "Outdated Mark 1 Mimir Environmental Helmet System"
+	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will provide the user with immunity from xenomorph cloud reagents entering bloodstream."
+	icon_state = "hazard_head"
+	worn_icon_state = "hazard_head_a"
+	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
+	slowdown = 0
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+
 //Explosive defense armor
 /obj/item/armor_module/module/hlin_explosive_armor
 	name = "Hlin Explosive Compensation Module"
-	desc = "Designed for mounting on modular armor. Uses a complex set of armor plating and compensation to lessen the effect of explosions. Will impact mobility"
+	desc = "Designed for mounting on modular armor. Uses a complex set of armor plating and compensation to lessen the effect of explosions."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_boomimmune"
 	worn_icon_state = "mod_boomimmune_a"
@@ -245,7 +321,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_ff"
 	worn_icon_state = "mod_ff_a"
-	soft_armor = list(MELEE = 0, BULLET = 40, LASER = 40, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0.2
 	slot = ATTACHMENT_SLOT_MODULE
 
@@ -460,7 +536,7 @@
 //original Martian design, donutsteel
 /obj/item/armor_module/module/eshield/som
 	name = "Aegis Energy Dispersion Module"
-	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Svalinn' shield system which was developed around the same time."
+	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the NTC's 'Svalinn' shield system which was developed around the same time."
 
 /obj/item/armor_module/module/eshield/som/overclocked
 	max_shield_health = 75
@@ -468,6 +544,16 @@
 	shield_color_low = COLOR_MAROON
 	shield_color_mid = LIGHT_COLOR_RED_ORANGE
 	shield_color_full = LIGHT_COLOR_ELECTRIC_CYAN
+
+/obj/item/armor_module/module/eshield/old
+	name = "Outdated Svalinn Energy Shield System"
+	icon_state = "mod_shield"
+	worn_icon_state = "mod_shield_a"
+
+/obj/item/armor_module/module/eshield/old_jaeger
+	name = "Outdated Jaeger Svalinn Energy Shield System"
+	icon_state = "mod_shield_jaeger"
+	worn_icon_state = "mod_shield_jaeger_a"
 
 /obj/item/armor_module/module/style
 	name = "\improper Armor Equalizer"
@@ -529,9 +615,7 @@
 	parent.AddComponent(/datum/component/clothing_tint, TINT_5, active)
 
 /obj/item/armor_module/module/welding/on_detach(obj/item/detaching_from, mob/user)
-	parent.GetComponent(/datum/component/clothing_tint)
-	var/datum/component/clothing_tint/tints = parent?.GetComponent(/datum/component/clothing_tint)
-	tints.RemoveComponent()
+	detaching_from.remove_component(/datum/component/clothing_tint)
 	return ..()
 
 /obj/item/armor_module/module/welding/activate(mob/living/user)
@@ -576,7 +660,7 @@
 
 /obj/item/armor_module/module/welding/superior/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	parent.AddComponent(/datum/component/clothing_tint, TINT_4, active)
+	parent.AddComponent(/datum/component/clothing_tint, TINT_2, active)
 
 /obj/item/armor_module/module/binoculars
 	name = "Binocular Helmet Module"

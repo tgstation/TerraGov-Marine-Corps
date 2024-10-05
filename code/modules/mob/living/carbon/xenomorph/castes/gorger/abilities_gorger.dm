@@ -1,89 +1,6 @@
 /datum/action/ability/activable/xeno/psydrain/free
 	ability_cost = 0
 
-/////////////////////////////////
-// Devour
-/////////////////////////////////
-/datum/action/ability/activable/xeno/devour
-	name = "Devour"
-	action_icon_state = "abduct"
-	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Devour your victim to be able to carry it faster."
-	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_FORTIFIED|ABILITY_USE_CRESTED //can't use while staggered, defender fortified or crest down
-	ability_cost = 0
-	target_flags = ABILITY_MOB_TARGET
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
-	)
-
-/datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, override_flags)
-	. = ..()
-	if(!.)
-		return
-	if(!ishuman(target) || issynth(target))
-		if(!silent)
-			to_chat(owner, span_warning("That wouldn't taste very good."))
-		return FALSE
-	var/mob/living/carbon/human/victim = target
-	if(owner.do_actions) //can't use if busy
-		return FALSE
-	if(!owner.Adjacent(victim)) //checks if owner next to target
-		return FALSE
-	if(!HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
-		if(!silent)
-			to_chat(owner, span_warning("This creature is struggling too much for us to devour it."))
-		return FALSE
-	if(victim.buckled)
-		if(!silent)
-			to_chat(owner, span_warning("[victim] is buckled to something."))
-		return FALSE
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.eaten_mob)
-		if(!silent)
-			to_chat(owner_xeno, span_warning("You have already swallowed one."))
-		return FALSE
-	if(owner_xeno.on_fire)
-		if(!silent)
-			to_chat(owner_xeno, span_warning("We're too busy being on fire to do this!"))
-		return FALSE
-	for(var/obj/effect/forcefield/fog in range(1, owner_xeno))
-		if(!silent)
-			to_chat(owner_xeno, span_warning("We are too close to the fog."))
-		return FALSE
-
-/datum/action/ability/activable/xeno/devour/action_activate()
-	. = ..()
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(!owner_xeno.eaten_mob)
-		return
-
-	var/channel = SSsounds.random_available_channel()
-	playsound(owner_xeno, 'sound/vore/escape.ogg', 40, channel = channel)
-	if(!do_after(owner_xeno, GORGER_REGURGITATE_DELAY, IGNORE_HELD_ITEM, null, BUSY_ICON_DANGER))
-		to_chat(owner, span_warning("We moved too soon!"))
-		owner_xeno.stop_sound_channel(channel)
-		return
-	owner_xeno.eject_victim()
-
-/datum/action/ability/activable/xeno/devour/use_ability(atom/target)
-	var/mob/living/carbon/human/victim = target
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.face_atom(victim)
-	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
-	var/channel = SSsounds.random_available_channel()
-	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(owner_xeno, GORGER_DEVOUR_DELAY, IGNORE_HELD_ITEM, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
-		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
-		owner_xeno.stop_sound_channel(channel)
-		return
-	owner.visible_message(span_warning("[owner_xeno] devours [victim]!"), span_warning("We devour [victim]!"), null, 5)
-	victim.forceMove(owner_xeno)
-	owner_xeno.eaten_mob = victim
-	add_cooldown()
-
-/datum/action/ability/activable/xeno/devour/ai_should_use(atom/target)
-	return FALSE
-
 // ***************************************
 // *********** Drain blood
 // ***************************************
@@ -143,7 +60,7 @@
 	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target_human.stat == DEAD)
 		var/overheal_gain = 0
-		while((owner_xeno.health < owner_xeno.maxHealth || owner_xeno.overheal < owner_xeno.xeno_caste.overheal_max) &&do_after(owner_xeno, 2 SECONDS, NONE, target_human, BUSY_ICON_HOSTILE))
+		while((owner_xeno.health < owner_xeno.maxHealth || owner_xeno.overheal < owner_xeno.xeno_caste.overheal_max) &&do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
 			overheal_gain = owner_xeno.heal_wounds(2.2)
 			adjustOverheal(owner_xeno, overheal_gain)
 			owner_xeno.adjust_sunder(-2.5)
@@ -154,7 +71,7 @@
 	ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 	for(var/i = 0; i < GORGER_DRAIN_INSTANCES; i++)
 		target_human.Immobilize(GORGER_DRAIN_DELAY)
-		if(!do_after(owner_xeno, GORGER_DRAIN_DELAY, IGNORE_HELD_ITEM, target_human))
+		if(!do_after(owner_xeno, GORGER_DRAIN_DELAY, FALSE, target_human, ignore_turf_checks = FALSE))
 			break
 		DO_DRAIN_ACTION(owner_xeno, target_human)
 
@@ -209,7 +126,7 @@
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
 	target_health = target_xeno.health
-	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target_xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
+	if(!do_mob(owner, target_xeno, 1 SECONDS, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, ignore_flags = IGNORE_TARGET_LOC_CHANGE, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
 		return FALSE
 	return TRUE
 
