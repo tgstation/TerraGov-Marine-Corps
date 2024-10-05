@@ -426,7 +426,8 @@
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
 	#define COMPONENT_CLOTHING_BLUR_PROTECTION (1<<1)
 
-#define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
+#define COMSIG_ITEM_DEPLOY "item_deploy" //From /obj/proc/do_deploy
+#define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from /obj/proc/disassemble
 
 ///From /obj/item/proc/pickup(): (/obj/item/picked_up_item)
 #define COMSIG_ITEM_ATTEMPT_PICK_UP "item_attempt_pick_up"
@@ -686,9 +687,6 @@
 ///from /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
 	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
-///from /mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-///only on INTENT_HARM, INTENT_DISARM, IF it does damaage
-#define COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH "xenomorph_attack_xenomorph"
 
 ///after attacking, accounts for armor
 #define COMSIG_XENOMORPH_POSTATTACK_LIVING "xenomorph_postattack_living"
@@ -797,7 +795,11 @@
 
 //Signals for CIC orders
 #define COMSIG_ORDER_SELECTED "order_selected"
-#define COMSIG_ORDER_SENT "order_updated"
+#define COMSIG_CIC_ORDER_SENT "order_updated"
+#define COMSIG_CIC_ORDER_OFF_CD "order_off_cd"
+
+#define COMSIG_SKILL_ORDER_SENT "skill_order_updated"
+#define COMSIG_SKILL_ORDER_OFF_CD "skill_order_off_cd"
 
 //Signals for automatic fire at component
 #define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"

@@ -139,7 +139,7 @@
 	new /obj/item/stack/barbed_wire(loc)
 
 
-/obj/structure/barricade/deconstruct(disassembled = TRUE)
+/obj/structure/barricade/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
@@ -295,7 +295,7 @@
 
 	if(ET.folded)
 		return
-	deconstruct(!!get_self_acid())
+	deconstruct(!get_self_acid())
 
 /*----------------------*/
 // GUARD RAIL
@@ -409,6 +409,12 @@
 	var/build_state = BARRICADE_METAL_FIRM
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
+
+/obj/structure/barricade/metal/Initialize(mapload, mob/user)
+	. = ..()
+	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
+		return
+	modify_max_integrity(max_integrity + 75)
 
 /obj/structure/barricade/metal/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -648,7 +654,7 @@
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			deconstruct(!!get_self_acid())
+			deconstruct(!get_self_acid())
 			return TRUE
 		if(BARRICADE_METAL_FIRM)
 
@@ -735,6 +741,12 @@
 	///ehther we react with other cades next to us ie when opening or so
 	var/linked = FALSE
 	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
+
+/obj/structure/barricade/plasteel/Initialize(mapload, mob/user)
+	. = ..()
+	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
+		return
+	modify_max_integrity(max_integrity + 100)
 
 /obj/structure/barricade/plasteel/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -837,7 +849,7 @@
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			deconstruct(!!get_self_acid())
+			deconstruct(!get_self_acid())
 
 /obj/structure/barricade/plasteel/wrench_act(mob/living/user, obj/item/I)
 	if(!iswrench(I))
@@ -1014,7 +1026,7 @@
 			return TRUE
 		user.visible_message(span_notice("[user] disassembles [src]."),
 		span_notice("You disassemble [src]."))
-		deconstruct(!!get_self_acid())
+		deconstruct(!get_self_acid())
 		return TRUE
 
 	if(istype(I, /obj/item/stack/sandbags))
@@ -1078,13 +1090,6 @@
 
 /obj/structure/barricade/metal/deployable/clear_internal_item()
 	internal_shield = null
-
-///Dissassembles the device
-/obj/structure/barricade/metal/deployable/proc/disassemble(mob/user)
-	if(CHECK_BITFIELD(internal_shield.item_flags, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "Cannot disassemble")
-		return
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 
 /obj/structure/barricade/metal/deployable/Destroy()
 	if(internal_shield)

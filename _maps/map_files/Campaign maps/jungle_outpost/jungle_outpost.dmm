@@ -1847,7 +1847,7 @@
 /area/campaign/jungle_outpost/ground/jungle/west)
 "jq" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/barber,
 /area/campaign/jungle_outpost/outpost/living/kitchen)
@@ -6810,7 +6810,7 @@
 /area/campaign/jungle_outpost/ground/river/east)
 "Iz" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/burger,
 /obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/barber,

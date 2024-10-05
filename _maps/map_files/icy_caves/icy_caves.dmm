@@ -8562,7 +8562,7 @@
 /area/lv624/lazarus/console)
 "Qc" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "Qd" = (

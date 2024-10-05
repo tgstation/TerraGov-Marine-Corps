@@ -1,6 +1,6 @@
 #define DEBUG_STAGGER_SLOWDOWN 0
 
-GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/door/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
+GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/facehugger, /obj/alien/egg, /obj/structure/mineral_door, /obj/alien/resin, /obj/structure/bed/nest))) //For sticky/acid spit
 
 /**
  * # The base ammo datum
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(target, shooter, loc_override ? loc_override : main_proj.loc, null, null, new_angle, TRUE)
+		new_proj.fire_at(target, shooter, loc_override ? loc_override : main_proj.loc, null, null, new_angle, TRUE, scan_loc = TRUE)
 
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))

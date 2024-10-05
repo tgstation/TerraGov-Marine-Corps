@@ -122,7 +122,7 @@
 
 /obj/item/clothing/suit/storage/marine/transport_crewman
 	name = "\improper PAS-74 pattern transport armor"
-	desc = "A somewhat sparsely armored but robust armored vest. Used by transport crewmen so that they can pretend that they may survice when their vehicle is overrun."
+	desc = "A somewhat sparsely armored but robust armored vest. Used by transport crewmen so that they can pretend that they may survive when their vehicle is overrun."
 	icon_state = "transport_crewman_suit"
 	worn_icon_state = "transport_crewman_suit"
 	slowdown = SLOWDOWN_ARMOR_LIGHT

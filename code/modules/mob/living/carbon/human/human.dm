@@ -76,7 +76,7 @@
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acid_spray_entered))
 	RegisterSignal(src, COMSIG_KB_QUICKEQUIP, PROC_REF(async_do_quick_equip))
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, PROC_REF(do_unique_action))
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(fireman_carry_grabbed)) // Fireman carry
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(grabbed_self_attack)) // Fireman carry & mounting saddled xenos
 	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
 
 /mob/living/carbon/human/Destroy()
@@ -623,9 +623,8 @@
 
 	return ..()
 
-
-/mob/living/carbon/human/proc/fireman_carry_grabbed()
-	SIGNAL_HANDLER
+/mob/living/carbon/human/grabbed_self_attack()
+	. = ..()
 	var/mob/living/grabbed = pulling
 	if(!istype(grabbed))
 		return NONE

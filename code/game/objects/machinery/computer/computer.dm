@@ -85,12 +85,12 @@
 				set_broken()
 
 
-/obj/machinery/computer/bullet_act(obj/projectile/Proj)
+/obj/machinery/computer/bullet_act(obj/projectile/proj)
 	if(CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
-		visible_message("[Proj] ricochets off [src]!")
+		visible_message("[proj] ricochets off [src]!")
 		return 0
 	else
-		if(prob(round(Proj.ammo.damage /2)))
+		if(prob(round(proj.ammo.damage /2)))
 			set_broken()
 		..()
 		return 1

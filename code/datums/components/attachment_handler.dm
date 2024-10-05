@@ -335,8 +335,10 @@
 		parent_obj.overlays += overlay
 
 ///Updates the mob sprite of the attachment.
-/datum/component/attachment_handler/proc/apply_custom(datum/source, mutable_appearance/standing)
+/datum/component/attachment_handler/proc/apply_custom(datum/source, mutable_appearance/standing, inhands, icon_used, state_used)
 	SIGNAL_HANDLER
+	if(inhands)
+		return
 	var/obj/parent_obj = parent
 	if(!ismob(parent_obj.loc))
 		return
