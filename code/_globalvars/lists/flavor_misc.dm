@@ -309,6 +309,7 @@ GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
 	"stun_nade",
 	"sentry",
 	"claymore",
+	"t72",
 ))
 
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())

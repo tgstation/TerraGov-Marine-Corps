@@ -95,7 +95,7 @@
 /datum/loadout_item/secondary/kit/anti_tank
 	name = "Anti-tank"
 	desc = "A disposable AT rocket launcher, and a box of AT mines. Good if you have an armor problem."
-	ui_icon = "default"
+	ui_icon = "t72"
 	purchase_cost = 30
 
 /datum/loadout_item/secondary/kit/anti_tank/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
