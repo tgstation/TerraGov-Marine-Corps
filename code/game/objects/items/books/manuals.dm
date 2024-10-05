@@ -367,7 +367,7 @@
 				<body>
 				<center>
 				<br>
-				<b style='font-size: 12px;'>Nanotrasen - Building Better Worlds</b>
+				<b style='font-size: 12px;'>Ninetails - Building Better Worlds</b>
 				<h1>Autonomous Power Loader Unit \"Ripley\"</h1>
 				</center>
 				<h2>Specifications:</h2>
@@ -401,10 +401,10 @@
 					<li>Secure the mainboard with a screwdriver.</li>
 					<li>Install the peripherals control module (Not included. Use supplied datadisk to create one).</li>
 					<li>Secure the peripherals control module with a screwdriver.</li>
-					<li>Install the internal armor plating (Not included due to NanoTrasen regulations. Can be made using 5 metal sheets).</li>
+					<li>Install the internal armor plating (Not included due to Ninetails regulations. Can be made using 5 metal sheets).</li>
 					<li>Secure the internal armor plating with a wrench.</li>
 					<li>Weld the internal armor plating to the chassis.</li>
-					<li>Install the external reinforced armor plating (Not included due to NanoTrasen regulations. Can be made using 5 reinforced metal sheets).</li>
+					<li>Install the external reinforced armor plating (Not included due to Ninetails regulations. Can be made using 5 reinforced metal sheets).</li>
 					<li>Secure the external reinforced armor plating with a wrench.</li>
 					<li>Weld the external reinforced armor plating to the chassis.</li>
 				</ol>
@@ -416,7 +416,7 @@
 					<li>Internal armor is plasteel for additional strength.</li>
 					<li>External armor must be installed in 2 parts, totalling 10 sheets.</li>
 					<li>Completed mech is more resilient against fire, and is a bit more durable overall.</li>
-					<li>NanoTrasen is determined to ensure the safety of its <s>investments</s> employees.</li>
+					<li>Ninetails is determined to ensure the safety of its <s>investments</s> employees.</li>
 				</ul>
 				</body>
 			</html>
@@ -535,7 +535,7 @@
 				This useful piece of equipment will suck power out of the power systems to charge a cyborg's power cell back up to full charge.
 
 				<h3>Robotics Control Console</h3>
-				This useful piece of equipment can be used to immobilize or destroy a cyborg. A word of warning: Cyborgs are expensive pieces of equipment, do not destroy them without good reason, or NanoTrasen may see to it that it never happens again.
+				This useful piece of equipment can be used to immobilize or destroy a cyborg. A word of warning: Cyborgs are expensive pieces of equipment, do not destroy them without good reason, or Ninetails may see to it that it never happens again.
 
 
 				<h2><a name="Modules">Cyborg Modules</h2>
@@ -682,7 +682,7 @@
 					<li>Expose the cyborg's internal wiring</li>
 					<li>Check to make sure the LawSync and AI Sync lights are lit</li>
 					<li>If they are not lit, pulse the LawSync wire using a multitool to enable the cyborg's LawSync</li>
-					<li>Proceed to a cyborg upload console. NanoTrasen usually places these in the same location as AI upload consoles.</li>
+					<li>Proceed to a cyborg upload console. Ninetails usually places these in the same location as AI upload consoles.</li>
 					<li>Use a "Reset" upload moduleto reset the cyborg's laws</li>
 					<li>Proceed to a Robotics Control console</li>
 					<li>Remove the lockdown on the cyborg</li>
@@ -690,7 +690,7 @@
 
 				<h3>As a last resort</h3>
 				If all else fails in a case of cyborg-related emergency, there may be only one option. Using a Robotics Control console, you may have to remotely detonate the cyborg.
-				<h3>WARNING:</h3> Do not detonate a borg without an explicit reason for doing so. Cyborgs are expensive pieces of NanoTrasen equipment, and you may be punished for detonating them without reason.
+				<h3>WARNING:</h3> Do not detonate a borg without an explicit reason for doing so. Cyborgs are expensive pieces of Ninetails equipment, and you may be punished for detonating them without reason.
 
 				</body>
 			</html>
@@ -699,9 +699,9 @@
 
 /obj/item/book/manual/security_space_law
 	name = "Corporate Regulations"
-	desc = "A set of NanoTrasen guidelines for keeping law and order on their space stations."
+	desc = "A set of Ninetails guidelines for keeping law and order on their space stations."
 	icon_state = "bookSpaceLaw"
-	author = "NanoTrasen"
+	author = "Ninetails"
 	title = "Corporate Regulations"
 
 	dat = {"
@@ -743,7 +743,7 @@
 	name = "NT Medical Diagnostics Manual"
 	desc = "First, do no harm. A detailed medical practitioner's guide."
 	icon_state = "bookMedical"
-	author = "Nanotrasen Medicine Department"
+	author = "Ninetails Medicine Department"
 	title = "NT Medical Diagnostics Manual"
 
 	dat = {"<html>
@@ -761,7 +761,7 @@
 				<br>
 				<h1>The Oath</h1>
 
-				<i>The Medical Oath sworn by recognised medical practitioners in the employ of Nanotrasen</i><br>
+				<i>The Medical Oath sworn by recognised medical practitioners in the employ of Ninetails</i><br>
 
 				<ol>
 					<li>Now, as a new doctor, I solemnly promise that I will, to the best of my ability, serve humanity-caring for the sick, promoting good health, and alleviating pain and suffering.</li>
@@ -921,7 +921,7 @@
 /obj/item/book/manual/detective
 	name = "The Film Noir: Proper Procedures for Investigations"
 	icon_state ="bookDetective"
-	author = "NanoTrasen"
+	author = "Ninetails"
 	title = "The Film Noir: Proper Procedures for Investigations"
 
 	dat = {"<html>
@@ -980,7 +980,7 @@
 				</head>
 				<body>
 				<h1>Nuclear Explosives 101</h1>
-				Hello and thank you for choosing the Syndicate for your nuclear information needs. Today's crash course will deal with the operation of a Fusion Class NanoTrasen made Nuclear Device.<br><br>
+				Hello and thank you for choosing the Syndicate for your nuclear information needs. Today's crash course will deal with the operation of a Fusion Class Ninetails made Nuclear Device.<br><br>
 
 				First and foremost, DO NOT TOUCH ANYTHING UNTIL THE BOMB IS IN PLACE. Pressing any button on the compacted bomb will cause it to extend and bolt itself into place. If this is done, to unbolt it, one must completely log in, which at this time may not be possible.<br>
 
@@ -1005,7 +1005,7 @@
 
 				Remember the order:<br>
 				<b>Disk, Code, Safety, Timer, Disk, RUN!</b><br><br>
-				Intelligence Analysts believe that normal NanoTrasen procedure is for the Captain to secure the nuclear authentication disk.<br><br>
+				Intelligence Analysts believe that normal Ninetails procedure is for the Captain to secure the nuclear authentication disk.<br><br>
 
 				Good luck!
 				</body>
@@ -1228,10 +1228,10 @@
 
 
 /obj/item/book/manual/orbital_cannon_manual
-	name = "TGMC Orbital Bombardment System Manual"
+	name = "NTC Orbital Bombardment System Manual"
 	icon_state = "bookEngineering"
-	author = "TGMC R&D"
-	title = "TGMC Orbital Bombardment System Manual"
+	author = "NTC R&D"
+	title = "NTC Orbital Bombardment System Manual"
 
 	dat = {"<html>
 				<head>
@@ -1246,7 +1246,7 @@
 				</head>
 				<body>
 
-				<h1>Guide to the TGMC Orbital Bombardment System</h1>
+				<h1>Guide to the NTC Orbital Bombardment System</h1>
 
 				<h2>Step by step instructions:</h2>
 				<ol>
@@ -1266,12 +1266,12 @@
 					<li>If you've loaded a tray with an incorrect payload, you can still unload the tray's payload as long as it hasn't been chambered.</li>
 					<li>If an incorrect payload is chambered, it can only be removed by firing it.</li>
 					<li>If the Orbital Cannon Console has no power, check the Weapon Control Room's APC.</li>
-					<li>If the Orbital Cannon Console is broken, contact TGMC HQ for a replacement.</li>
+					<li>If the Orbital Cannon Console is broken, contact NTC HQ for a replacement.</li>
 					<li>In case of direct damage to the Orbital Cannon itself, do not attempt to use or repair the cannon.</li>
 					<li>In case of hull breach or fire, make sure to remove the Cannon's payload and move it to a safe location.</li>
 					<li>If the Orbital Tray jams, apply lubricant to the  conveyor belt.</li>
-					<li>If a cable of the Orbital Cannon System is severed, contact TGMC HQ for a replacement.</li>
-					<li>If Cannon's cable connector breaks, turn off the Orbital Cannon Console and contact TGMC HQ for a replacement.</li>
+					<li>If a cable of the Orbital Cannon System is severed, contact NTC HQ for a replacement.</li>
+					<li>If Cannon's cable connector breaks, turn off the Orbital Cannon Console and contact NTC HQ for a replacement.</li>
 				</ul>
 
 			</body>

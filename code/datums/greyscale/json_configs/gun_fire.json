@@ -1,0 +1,35 @@
+{
+	"loaded":[
+		{
+			"type":"hyperscale",
+			"icon_state":"colored"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"loaded",
+			"blend_mode":"overlay"
+		}
+	],
+	"loaded_fire":[
+		{
+			"type":"hyperscale",
+			"icon_state":"colored"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"fire",
+			"blend_mode":"overlay"
+		}
+	],
+	"unloaded":[
+		{
+			"type":"hyperscale",
+			"icon_state":"colored"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"unloaded",
+			"blend_mode":"overlay"
+		}
+	]
+}

@@ -92,7 +92,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	to_chat(user, span_warning("[src] flashes a warning sign indicating unauthorized use!"))
 
 /obj/item/weapon/gun/proc/do_wield(mob/user, wdelay) //*shrugs*
-	if(wield_time > 0 && !do_after(user, wdelay, IGNORE_LOC_CHANGE, user, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, CALLBACK(src, PROC_REF(is_wielded))))
+	if(wield_time > 0 && !do_mob(user, user, wdelay, BUSY_ICON_HOSTILE, null, PROGRESS_CLOCK, IGNORE_LOC_CHANGE, CALLBACK(src, PROC_REF(is_wielded))))
 		return FALSE
 	item_flags |= FULLY_WIELDED
 	setup_bullet_accuracy()
@@ -131,10 +131,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	to_chat(user, span_notice("You start a tactical reload."))
 	var/tac_reload_time = max(0.25 SECONDS, 0.75 SECONDS - user.skills.getRating(SKILL_COMBAT) * 5)
 	if(length(chamber_items))
-		if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
+		if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 			return
 		unload(user)
-	if(!do_after(user, tac_reload_time, IGNORE_USER_LOC_CHANGE, new_magazine) && loc == user)
+	if(!do_after(user, tac_reload_time, TRUE, new_magazine, ignore_turf_checks = TRUE) && loc == user)
 		return
 	if(new_magazine.item_flags & IN_STORAGE)
 		var/obj/item/storage/S = new_magazine.loc
@@ -237,91 +237,17 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		if(master_gun)
 			return activate(user)
 		return ..()
-	return do_toggle_firemode()
+	return do_toggle_firemode(user)
 
-/mob/living/carbon/human/verb/toggle_autofire()
-	set category = "Weapons"
-	set name = "Toggle Auto Fire"
-	set desc = "Toggle automatic firemode, if the gun has it."
-
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G)
-		return
-	G.toggle_autofire()
-
-
-/obj/item/weapon/gun/verb/toggle_autofire()
-	set category = null
-	set name = "Toggle Auto Fire (Weapon)"
-	set desc = "Toggle automatic firemode, if the gun has it."
-
-	var/new_firemode
-	switch(gun_firemode)
-		if(GUN_FIREMODE_SEMIAUTO)
-			new_firemode = GUN_FIREMODE_AUTOMATIC
-		if(GUN_FIREMODE_BURSTFIRE)
-			new_firemode = GUN_FIREMODE_AUTOBURST
-		if(GUN_FIREMODE_AUTOMATIC)
-			new_firemode = GUN_FIREMODE_SEMIAUTO
-		if(GUN_FIREMODE_AUTOBURST)
-			new_firemode = GUN_FIREMODE_BURSTFIRE
-	if(!(new_firemode in gun_firemode_list))
-		to_chat(usr, span_warning("[src] lacks a [new_firemode]!"))
-		return
-	do_toggle_firemode(new_firemode = new_firemode)
-
-
-/mob/living/carbon/human/verb/toggle_burstfire()
-	set category = "Weapons"
-	set name = "Toggle Burst Fire"
-	set desc = "Toggle burst firemode, if the gun has it."
-
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G)
-		return
-	G.toggle_burstfire()
-
-
-/obj/item/weapon/gun/verb/toggle_burstfire()
-	set category = null
-	set name = "Toggle Burst Fire (Weapon)"
-	set desc = "Toggle burst firemode, if the gun has it."
-
-	var/new_firemode
-	switch(gun_firemode)
-		if(GUN_FIREMODE_SEMIAUTO)
-			new_firemode = GUN_FIREMODE_BURSTFIRE
-		if(GUN_FIREMODE_BURSTFIRE)
-			new_firemode = GUN_FIREMODE_SEMIAUTO
-		if(GUN_FIREMODE_AUTOMATIC)
-			new_firemode = GUN_FIREMODE_AUTOBURST
-		if(GUN_FIREMODE_AUTOBURST)
-			new_firemode = GUN_FIREMODE_AUTOMATIC
-	if(!(new_firemode in gun_firemode_list))
-		to_chat(usr, span_warning("[src] lacks a [new_firemode]!"))
-		return
-	do_toggle_firemode(new_firemode = new_firemode)
-
-
-/mob/living/carbon/human/verb/toggle_firemode()
-	set category = "Weapons"
-	set name = "Toggle Fire Mode"
-	set desc = "Toggle between fire modes, if the gun has more than has one."
-
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G)
-		return
-	G.toggle_firemode()
-
-
+/// A verb in the right click context menu of the weapon for toggling firemode
 /obj/item/weapon/gun/verb/toggle_firemode()
 	set category = null
 	set name = "Toggle Fire Mode (Weapon)"
-	set desc = "Toggle between fire modes, if the gun has more than has one."
+	set desc = "Toggle between fire modes, if the gun has more than one."
 
-	do_toggle_firemode()
+	do_toggle_firemode(usr)
 
-
+/// Actually does the toggling of the fire mode
 /obj/item/weapon/gun/proc/do_toggle_firemode(datum/source, datum/keybinding, new_firemode)
 	SIGNAL_HANDLER
 	if(HAS_TRAIT(src, TRAIT_GUN_BURST_FIRING))//can't toggle mid burst
@@ -707,6 +633,14 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(gun_user?.get_active_held_item() != src && !(item_flags & IS_DEPLOYED))
 		return
 	activate_attachment(ATTACHMENT_SLOT_RAIL, gun_user)
+	return COMSIG_KB_ACTIVATED
+
+/// Signal handler to activate the muzzle attachement of that gun if it's in our active hand
+/obj/item/weapon/gun/proc/activate_muzzle_attachment()
+	SIGNAL_HANDLER
+	if(gun_user?.get_active_held_item() != src && !(item_flags & IS_DEPLOYED))
+		return
+	activate_attachment(ATTACHMENT_SLOT_MUZZLE, gun_user)
 	return COMSIG_KB_ACTIVATED
 
 /// Signal handler to activate the underrail attachement of that gun if it's in our active hand

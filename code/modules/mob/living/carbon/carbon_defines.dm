@@ -9,11 +9,9 @@
 	var/analgesic = 0
 	///Whether or not the mob is handcuffed
 	var/obj/item/restraints/handcuffs/handcuffed
-	///Tracks whether we can breath right now. Used for a hud icon and for message generation.
-	var/oxygen_alert = FALSE
-	var/phoron_alert = FALSE
-	var/fire_alert = FALSE
-	var/pressure_alert = FALSE
+
+	///Tracks whether our most recent breath has failed, for messages and HUD feedback.
+	var/breath_failing = FALSE
 
 	var/list/internal_organs = list()
 	///Overall drunkenness - check handle_status_effects() in life.dm for effects
@@ -38,12 +36,6 @@
 	var/hal_screwyhud = SCREWYHUD_NONE
 	var/next_hallucination = 0
 
-	/// % Chance of exploding on death, incremented by total damage taken if not initially zero.
-	var/gib_chance = 0
-	///list of abilities this mob has access to
-	var/list/datum/action/ability/mob_abilities = list()
-	///Currently selected ability
-	var/datum/action/ability/activable/selected_ability
 	///carbon overlay layers
 	var/list/overlays_standing[TOTAL_LAYERS]
 

@@ -1,7 +1,5 @@
-/mob/living/carbon/human/Life()
+/mob/living/carbon/human/Life(seconds_per_tick, times_fired)
 	. = ..()
-
-	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 
 
 	//update the current life tick, can be used to e.g. only do something every 4 ticks
@@ -43,14 +41,9 @@
 	//Handle temperature/pressure differences between body and environment
 	handle_environment() //Optimized a good bit.
 
-/**
- * Marks the mob as unrevivable
- * Arguments:
- * * affects_synth - If synths should be affected
- */
 
-/mob/living/carbon/human/proc/set_undefibbable(affects_synth = FALSE)
-	if(issynth(src) && !affects_synth) //synths do not dnr (unless they want to, todo: dnr'd synths should probably be put into ssd mob list or something).
+/mob/living/carbon/human/proc/set_undefibbable()
+	if(issynth(src)) //synths do not dnr.
 		return
 	ADD_TRAIT(src, TRAIT_UNDEFIBBABLE , TRAIT_UNDEFIBBABLE)
 	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
@@ -77,11 +70,13 @@
 		if(HAS_TRAIT(src, TRAIT_IGNORE_SUFFOCATION)) //Prevent losing health from asphyxiation, but natural recovery can still happen.
 			return
 		adjustOxyLoss(CARBON_CRIT_MAX_OXYLOSS, TRUE)
-		if(!oxygen_alert)
+		if(!breath_failing)
 			emote("gasp")
-			oxygen_alert = TRUE
+			throw_alert(ALERT_NOT_ENOUGH_OXYGEN, /atom/movable/screen/alert/not_enough_oxy)
+			breath_failing = TRUE
 	else
 		adjustOxyLoss(CARBON_RECOVERY_OXYLOSS, TRUE)
-		if(oxygen_alert)
+		if(breath_failing)
 			to_chat(src, span_notice("Fresh air fills your lungs; you can breath again!"))
-			oxygen_alert = FALSE
+			clear_alert(ALERT_NOT_ENOUGH_OXYGEN)
+			breath_failing = FALSE

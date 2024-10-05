@@ -17,6 +17,7 @@
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	resistance_flags = RESIST_ALL
 	var/state = STATE_GUN
+	dir = 2
 
 /obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
@@ -449,7 +450,7 @@
 		span_notice("You start climbing into [src]."))
 
 	var/mob/initiator = helper ? helper : user
-	if(!do_after(initiator, 20, NONE, user, BUSY_ICON_GENERIC))
+	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
 
 	if(!QDELETED(occupant))
@@ -459,6 +460,8 @@
 	user.forceMove(src)
 	occupant = user
 	update_icon()
+	if(!do_after(user, 1 MINUTES, FALSE, user))
+		user.despawn()
 	return TRUE
 
 /obj/machinery/cryopod/proc/go_out()

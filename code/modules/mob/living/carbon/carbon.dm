@@ -356,14 +356,6 @@
 				see_invisible = min(G.invis_view, see_invisible)
 			if(!isnull(G.lighting_alpha))
 				lighting_alpha = min(lighting_alpha, G.lighting_alpha)
-			if(G.tint && !fullscreens["glasses"])
-				var/atom/movable/screen/fullscreen/screen = overlay_fullscreen("glasses", /atom/movable/screen/fullscreen/flash)
-				screen.color = G.tint
-				screen.alpha = 50
-		else
-			clear_fullscreen("glasses")
-	else
-		clear_fullscreen("glasses")
 
 	if(see_override)
 		see_invisible = see_override
@@ -392,3 +384,9 @@
 		return
 	if(. == UNCONSCIOUS)
 		UnregisterSignal(src, COMSIG_MOVABLE_PULL_MOVED)
+
+/// Handles when the player clicks on themself with the grab item
+/mob/living/carbon/proc/grabbed_self_attack(mob/living/user)
+	SHOULD_CALL_PARENT(TRUE)
+	SIGNAL_HANDLER
+	return NONE

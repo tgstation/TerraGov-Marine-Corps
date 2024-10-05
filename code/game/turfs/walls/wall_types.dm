@@ -267,7 +267,7 @@
 	opacity = FALSE
 
 /turf/closed/wall/indestructible/splashscreen
-	name = "Space Station 13"
+	name = "NTF vs Alien"
 	icon = 'icons/misc/title.dmi'
 	icon_state = "title_painting1"
 //	icon_state = "title_holiday"
@@ -290,6 +290,7 @@
 	current_title = next_in_list(current_title, total_titles)
 	icon_state = current_title //sets the title to the current_title here
 	addtimer(CALLBACK(src, PROC_REF(next_splashscreen)), 1 MINUTES)
+
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"

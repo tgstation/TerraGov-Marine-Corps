@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/spray_acid/cone
 	name = "Spray Acid Cone"
 	desc = "Spray a cone of dangerous acid at your target."
+
 	ability_cost = 300
 	cooldown_duration = 40 SECONDS
 
@@ -14,7 +15,7 @@
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
 
-	if(!do_after(X, 5, NONE, target, BUSY_ICON_DANGER))
+	if(!do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
@@ -131,6 +132,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Instantly dash, tackling the first marine in your path. If you manage to tackle someone, gain another weaker cast of the ability."
+
 	ability_cost = 250
 	cooldown_duration = 30 SECONDS
 	keybinding_signals = list(

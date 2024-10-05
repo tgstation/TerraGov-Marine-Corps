@@ -46,6 +46,38 @@
 	else
 		to_chat(src, "You don't have a mind datum for some reason, so you can't add a note to it.")
 
+/mob/verb/Climax()
+	set name = "Climax"
+	set category = "IC"
+	if(stat != DEAD)
+		var/channel = SSsounds.random_available_channel()
+		if(length(usr.do_actions))
+			return
+		playsound(usr, "sound/effects/squelch2.ogg", 30, channel = channel)
+		if(!do_after(usr, 10 SECONDS, TRUE, usr, BUSY_ICON_GENERIC))
+			usr?.balloon_alert(usr, "Interrupted")
+			usr.stop_sound_channel(channel)
+			return
+		if(!usr)
+			usr.stop_sound_channel(channel)
+			return
+		usr.emote("moan")
+		usr.visible_message(span_warning("[usr] cums!"), span_warning("You cum."), span_warning("You hear a splatter."), 5)
+		usr.balloon_alert(usr, "Orgasmed.")
+		if(!isrobot(usr))
+			if(usr.gender == MALE)
+				new /obj/effect/decal/cleanable/blood/splatter/cum(usr.loc)
+			else
+				new /obj/effect/decal/cleanable/blood/splatter/girlcum(usr.loc)
+		else
+			new /obj/effect/decal/cleanable/blood/splatter/robotcum(usr.loc)
+		if(isxeno(usr))
+			new /obj/effect/decal/cleanable/blood/splatter/xenocum(usr.loc)
+		playsound(usr.loc, "sound/effects/splat.ogg", 30)
+		usr.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 4) // Remove aphrotoxin cause orgasm. Less than when you resist because takes shorter.
+	else
+		to_chat(usr, span_warning("You must be living to do that."))
+		return
 
 /mob/verb/respawn()
 	set name = "Respawn"

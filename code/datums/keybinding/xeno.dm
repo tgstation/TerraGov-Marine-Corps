@@ -13,6 +13,12 @@
 	keybind_signal = COMSIG_XENOABILITY_HEADBITE
 	hotkey_keys = list("J")
 
+/datum/keybinding/xeno/larval_growth_sting
+	name = "larval_growth_sting"
+	full_name = "Larval Growth Sting"
+	description = "Inject an impregnated host with growth serum, causing the larva inside to grow quicker. Has harmful effects for non-infected hosts while stabilizing larva-infected hosts."
+	keybind_signal = COMSIG_XENOABILITY_LARVAL_GROWTH_STING
+
 /datum/keybinding/xeno/regurgitate
 	name = "regurgitate"
 	full_name = "Regurgitate / Cocoon"
@@ -26,6 +32,13 @@
 	description = "Opens the Queen Mothers Blessings menu, where hive upgrades are bought"
 	keybind_signal = COMSIG_XENOABILITY_BLESSINGSMENU
 	hotkey_keys = list("P")
+
+/datum/keybinding/xeno/tail_stab
+	name = "tail_stab"
+	full_name = "Tail Stab"
+	description = "Allows the xeno to launch a 2 range attack with some armor piercing and bonus damage on grab or to structures."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_STAB
+	hotkey_keys = list("ShiftE")
 
 /datum/keybinding/xeno/drop_weeds
 	name = "drop_weeds"
@@ -123,7 +136,12 @@
 	description = "Causes your sprite to hide behind certain objects and under tables. Not the same as stealth. Does not use plasma."
 	keybind_signal = COMSIG_XENOABILITY_HIDE
 	hotkey_keys = list("C")
-
+/datum/keybinding/xeno/tail_stab
+	name = "tail_stab"
+	full_name = "Tail Stab"
+	description = "Allows the xeno to launch a 2 range attack with some armor piercing and bonus damage on grab or to structures."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_STAB
+	hotkey_keys = list("ShiftE")
 /datum/keybinding/xeno/neurotox_sting
 	name = "neurotox_sting"
 	full_name = "Neurotoxin Sting"
@@ -177,6 +195,12 @@
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_PSYCHIC_WHISPER
 
+/datum/keybinding/xeno/impregnate
+	name = "Impregnate"
+	full_name = "Impregnate"
+	description = "Infect an adjacent host with a larva without needing a hugger. This will burn them a bit due to acidic release."
+	keybind_signal = COMSIG_XENOABILITY_IMPREGNATE
+
 /datum/keybinding/xeno/lay_egg
 	name = "lay_egg"
 	full_name = "Lay Egg"
@@ -224,6 +248,41 @@
 	description = "Choose a reagent that will be spread upon death. Costs plasma to change."
 	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
 	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/dash_explosion
+	name = "Dash Explosion"
+	full_name = "Baneling: Dash Explode"
+	description = "Aim in a direction, charge up and dash, knocking down any humans hit and detonate yourself. "
+	keybind_signal = COMSIG_XENOABILITY_BANELING_DASH_EXPLOSION
+	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/spawn_pod
+	name = "Spawn Pod"
+	full_name = "Baneling: Spawn Pod"
+	description = "Spawn a pod on your current position, when you die from any source you will respawn on this pod. Activate again to change its location. "
+	keybind_signal = COMSIG_XENOABILITY_BANELING_SPAWN_POD
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/baneling_explode
+	name = "Explode"
+	full_name = "Baneling: Explode"
+	description = "Detonate yourself, spreading your currently selected reagent. Size depends on current stored plasma, more plasma is more reagent."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_EXPLODE
+	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/select_reagent/baneling
+	name = "Select Reagent"
+	full_name = "Baneling: Select Reagent"
+	description = "Choose a reagent that will be spread upon death. Costs plasma to change."
+	keybind_signal = COMSIG_XENOABILITY_BANELING_CHOOSE_REAGENT
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/long_range_sight
+	name = "long_range_sight"
+	full_name = "Boiler: Long Range Sight"
+	description = "Toggles the zoom in."
+	keybind_signal = COMSIG_XENOABILITY_LONG_RANGE_SIGHT
+	hotkey_keys = list("E")
 
 /datum/keybinding/xeno/toggle_bomb
 	name = "toggle_bomb"
@@ -452,11 +511,11 @@
 	description = "Inject an egg with neurogas, killing the little one inside"
 	keybind_signal = COMSIG_XENOABILITY_INJECT_EGG_NEUROGAS
 
-/datum/keybinding/xeno/acidic_salve
-	name = "acidic_salve"
-	full_name = "Drone: Acidic Salve"
+/datum/keybinding/xeno/resin_salve
+	name = "resin_salve"
+	full_name = "Drone: Resin Salve"
 	description = "Heal a xenomorph with this."
-	keybind_signal = COMSIG_XENOABILITY_ACIDIC_SALVE
+	keybind_signal = COMSIG_XENOABILITY_RESIN_SALVE
 	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/essence_link
@@ -482,10 +541,10 @@
 
 /datum/keybinding/xeno/devour
 	name = "devour"
-	full_name = "Gorger: Devour"
+	full_name = "Devour"
 	description = "Devour your victim to be able to carry it faster."
 	keybind_signal = COMSIG_XENOABILITY_DEVOUR
-	hotkey_keys = list("X")
+	hotkey_keys = null
 
 /datum/keybinding/xeno/drain
 	name = "drain"
@@ -583,6 +642,13 @@
 	keybind_signal = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM
 	hotkey_keys = list("F")
 
+/datum/keybinding/xeno/displacement
+	name = "displacement"
+	full_name = "Hunter: Displacement"
+	description = "Change form to/from incorporeal."
+	keybind_signal = COMSIG_XENOMORPH_HUNTER_DISPLACEMENT
+	hotkey_keys = list("F")
+
 /datum/keybinding/xeno/teleport_minimap
 	name = "teleport_minimap"
 	full_name = "Hivemind: Open teleportation minimap"
@@ -597,11 +663,25 @@
 	keybind_signal = COMSIG_XENOABILITY_HUNTER_POUNCE
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/hunter_lunge
+	name = "hunter_lunge"
+	full_name = "Hunter: Lunge"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_HUNTER_LUNGE
+	hotkey_keys = list("E")
+
 /datum/keybinding/xeno/toggle_stealth
 	name = "toggle_stealth"
 	full_name = "Hunter: Toggle Stealth"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_TOGGLE_STEALTH
+	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/toggle_phaseout
+	name = "toggle_phaseout"
+	full_name = "Phase Out"
+	description = ""
+	keybind_signal = COMSIG_XENOABILITY_TOGGLE_PHASEOUT
 	hotkey_keys = list("Q")
 
 /datum/keybinding/xeno/toggle_disguise

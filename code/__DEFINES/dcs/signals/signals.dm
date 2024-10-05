@@ -26,7 +26,9 @@
 #define COMSIG_GLOB_DISK_GENERATED "!disk_produced"
 
 #define COMSIG_GLOB_SHIP_SELF_DESTRUCT_ACTIVATED "!ship_self_destruct_activated"
-
+/// generic topic handler (usr, href_list)
+#define COMSIG_COMBAT_LOG "combat_log"
+	#define DONT_LOG (1<<0)
 /// from /obj/machinery/setAnchored(): (machine, anchoredstate)
 #define COMSIG_GLOB_MACHINERY_ANCHORED_CHANGE "!machinery_anchored_change"
 /// called after a successful var edit somewhere in the world: (list/args)
@@ -88,7 +90,7 @@
 ///Sent when mob is deployed via a patrol point
 #define COMSIG_GLOB_HVH_DEPLOY_POINT_ACTIVATED "!hvh_deploy_point_activated"
 ///Opens the TGMC shipside shutters on campaign
-#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_TGMC "!open_campaign_shutters_tgmc"
+#define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_NTC "!open_campaign_shutters_tgmc"
 ///Opens the SOM shipside shutters on campaign
 #define COMSIG_GLOB_OPEN_CAMPAIGN_SHUTTERS_SOM "!open_campaign_shutters_som"
 ///Sent when a new campaign mission is loaded
@@ -127,11 +129,14 @@
 #define COMSIG_GLOB_TELEPORTER_ARRAY_ENABLED "!teleporter_array_enabled"
 
 //////////////////////////////////////////////////////////////////
+
+// /datum signals
+
 // /datum/component signals
 #define COMSIG_AUTOFIRE_ONMOUSEDOWN "autofire_onmousedown"
-	#define COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS (1<<0)
+#define COMPONENT_AUTOFIRE_ONMOUSEDOWN_BYPASS (1<<0)
 #define COMSIG_AUTOFIRE_SHOT "autofire_shot"
-	#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
+#define COMPONENT_AUTOFIRE_SHOT_SUCCESS (1<<0)
 #define COMSIG_ELEMENT_CLOSE_SHUTTER_LINKED "close_shutter_linked"
 ///from turf/open/get_footstep_override(), to find an override footstep sound
 #define COMSIG_FIND_FOOTSTEP_SOUND "find_footstep_sound"
@@ -687,9 +692,6 @@
 ///from /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
 	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
-///from /mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-///only on INTENT_HARM, INTENT_DISARM, IF it does damaage
-#define COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH "xenomorph_attack_xenomorph"
 
 ///after attacking, accounts for armor
 #define COMSIG_XENOMORPH_POSTATTACK_LIVING "xenomorph_postattack_living"
@@ -714,6 +716,7 @@
 
 #define COMSIG_XENOMORPH_CORE_RETURN "xenomorph_core_return"
 #define COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM "xenomorph_hivemind_change_form"
+#define COMSIG_XENOMORPH_HUNTER_DISPLACEMENT "xenomorph_hunter_displacement"
 #define COMISG_XENOMORPH_HIVEMIND_TELEPORT "xeno_hivemind_teleport"
 
 #define COMSIG_XENO_OBJ_THROW_HIT "xeno_obj_throw_hit"				///from [/mob/living/carbon/xenomorph/throw_impact]: (obj/target, speed)

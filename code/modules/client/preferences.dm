@@ -122,6 +122,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
+	var/xeno_desc = ""
+	var/profile_pic = ""
+	var/xenoprofile_pic = ""
 
 	var/list/exp = list()
 	var/list/menuoptions = list()
@@ -146,6 +149,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/tts_pitch = 0
 	///Volume to use for tts
 	var/volume_tts = 100
+	///Which types of comms the user wants to hear TTS from
+	var/radio_tts_flags = RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND
 
 	/// Preference for letting people make TGUI windows use more accessible (basically, default) themes, where needed/possible.
 	/// Example application: health analyzers using this to choose between default themes or the NtOS themes.
@@ -192,6 +197,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	///List of slot_draw_order
 	var/list/slot_draw_order_pref = list()
+
+	///State tracking of hive status toggles
+	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -269,4 +277,3 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	job_preferences[job.title] = level
 	return TRUE
-

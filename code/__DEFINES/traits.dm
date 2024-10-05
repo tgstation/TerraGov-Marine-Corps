@@ -77,6 +77,7 @@
 #define ROUNDSTART_TRAIT "roundstart" //cannot be removed without admin intervention
 #define SLEEPER_TRAIT "sleeper"
 #define STASIS_BAG_TRAIT "stasis_bag"
+#define BANELING_STASIS_TRAIT "baneling_stasis_trait"
 #define SPECIES_TRAIT "species" // /datum/species innate trait
 #define CRYOPOD_TRAIT "cryopod"
 #define XENO_TRAIT "xeno"
@@ -179,12 +180,16 @@
 #define TRAIT_AXE_EXPERT "axe_expert"
 ///You swing sword good
 #define TRAIT_SWORD_EXPERT "sword_expert"
+///Restricted to Melee Weapons
+#define TRAIT_KNIGHT "knight"
 ///Pain reduction light
 #define TRAIT_LIGHT_PAIN_RESIST "light_pain_resist"
 ///Pain reduction medium
 #define TRAIT_MEDIUM_PAIN_RESIST "medium_pain_resist"
 ///is currently riding an armored vehicle
 #define TRAIT_TANK_DESANT "tank_desant"
+///Builds things better
+#define TRAIT_SUPERIOR_BUILDER "superior_builder"
 
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).

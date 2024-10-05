@@ -181,7 +181,7 @@
 		balloon_alert(user, "Cannot, too busy")
 		return
 	user.balloon_alert_to_viewers("Begins to sharpen [src]")
-	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
 		return
 	sharp = IS_SHARP_ITEM_SIMPLE
 	name = "sharpened " + name

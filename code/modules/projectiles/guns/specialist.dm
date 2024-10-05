@@ -59,6 +59,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/attachable/scope/antimaterial,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/sniperbarrel,
+		/obj/item/attachable/scope/pmc,
+		/obj/item/attachable/shoulder_mount,
 	)
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
 	starting_attachment_types = list(/obj/item/attachable/scope/antimaterial, /obj/item/attachable/sniperbarrel)
@@ -215,7 +217,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/rifle/sniper/elite
 	name = "\improper SR-42 anti-tank sniper rifle"
-	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
+	desc = "A high end mag-rail heavy sniper rifle from Ninetails chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
 	worn_icon_state = "m42c"
 	worn_icon_list = list(
@@ -405,7 +407,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 12
 
@@ -465,7 +466,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/minigun/smart_minigun
 	name = "\improper SG-85 smart handheld gatling gun"
-	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the TGMC's IFF-capable minigun for heavy fire support duty. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
+	desc = "A true monster of providing supportive suppresing fire, the SG-85 is the NTC's IFF-capable minigun for heavy fire support duty. Boasting a higher firerate than any other handheld weapon. It is chambered in 10x26 caseless."
 	icon_state = "minigun_sg"
 	worn_icon_state = "minigun_sg"
 	fire_animation = "minigun_sg_fire"
@@ -497,32 +498,52 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/pepperball
 	name = "\improper PB-12 pepperball gun"
 	desc = "The PB-12 is ostensibly riot control device used by the TGMC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
-	icon = 'icons/obj/items/guns/special64.dmi'
+	icon = 'ntf_modular/icons/obj/items/guns/special64.dmi'
 	icon_state = "pepperball"
 	worn_icon_state = "pepperball"
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/special_right_1.dmi',
 	)
 	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
-	max_shells = 100 //codex
+	max_shells = 70 //codex
 	caliber = CALIBER_PEPPERBALL
 	fire_sound = SFX_GUN_FB12 // idk why i called it "fb-12", ah too late now
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
 	force = 30 // two shots weeds as it has no bayonet
-	wield_delay = 0.7 SECONDS // Very fast to put up.
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	wield_delay = 0.8 SECONDS // Very fast to put up.
+	attachable_offset = list("muzzle_x" = 35, "muzzle_y" = 16,"rail_x" = 12, "rail_y" = 20, "under_x" = 28, "under_y" = 12, "stock_x" = 19, "stock_y" = 14)
 	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/flashlight,
 		/obj/item/weapon/gun/flamer/hydro_cannon/pepperball,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/foldable/bipod,
 		/obj/item/attachable/magnetic_harness,
-	) // One
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/angledgrip,
+		/obj/item/weapon/gun/pistol/plasma_pistol,
+		/obj/item/weapon/gun/shotgun/combat/masterkey,
+		/obj/item/weapon/gun/flamer/mini_flamer,
+		/obj/item/weapon/gun/grenade_launcher/underslung,
+	)
 
 	starting_attachment_types = list(/obj/item/weapon/gun/flamer/hydro_cannon/pepperball)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.1
 
@@ -532,8 +553,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	burst_amount = 1
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.75
-	scatter = -1
-	scatter_unwielded = 2
+	scatter = 1
+	recoil_unwielded = 1
+	scatter_unwielded = 10
+	damage_falloff_mult = 1.2
+	movement_acc_penalty_mult = 1.5
 
 	placed_overlay_iconstate = "pepper"
 
@@ -608,6 +632,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -739,6 +765,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	aim_slowdown = 2.75
 	attachable_allowed = list(
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 	general_codex_key = "explosive weapons"
 
@@ -757,6 +784,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/deathsquad
 	attachable_allowed = list(
+		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/magnetic_harness,
 	)
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
@@ -805,6 +834,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list(
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
@@ -853,7 +883,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 // Do a short windup, swap the extension status of the rocket if successful, then swap the flags.
 /obj/item/weapon/gun/launcher/rocket/oneuse/unique_action(mob/living/user)
 	playsound(user, 'sound/weapons/guns/misc/oneuse_deploy.ogg', 25, 1)
-	if(!do_after(user, 20, NONE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, 20, TRUE, src, BUSY_ICON_DANGER))
 		return
 	extended = !extended
 	if(!extended)

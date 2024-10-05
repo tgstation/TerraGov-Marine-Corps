@@ -241,11 +241,11 @@
 //Stealth handling
 
 
-/mob/living/carbon/xenomorph/proc/update_progression()
+/mob/living/carbon/xenomorph/proc/update_progression(seconds_per_tick)
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	upgrade_stored += 1 + (stored_larva/6) + hive.get_upgrade_boost() //Do this regardless of whether we can upgrade so age accrues at primo
+	upgrade_stored += (1 + (stored_larva/6) + hive.get_upgrade_boost()) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Do this regardless of whether we can upgrade so age accrues at primo
 	if(!upgrade_possible())
 		return
 	if(upgrade_stored < xeno_caste.upgrade_threshold)
@@ -255,7 +255,7 @@
 	upgrade_xeno(upgrade_next())
 
 
-/mob/living/carbon/xenomorph/proc/update_evolving()
+/mob/living/carbon/xenomorph/proc/update_evolving(seconds_per_tick)
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return
 	if(!hive.check_ruler() && caste_base_type != /datum/xeno_caste/larva) // Larva can evolve without leaders at round start.
@@ -265,7 +265,8 @@
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
-	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
+	var/evolution_points_lag = evolution_points * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
+	evolution_stored = min(evolution_stored + evolution_points_lag, xeno_caste.evolution_threshold)
 
 	if(!client || !ckey)
 		return
@@ -472,14 +473,32 @@
 	to_chat(src, span_notice("You have [(xeno_flags & XENO_MOBHUD) ? "enabled" : "disabled"] the Xeno Status HUD."))
 
 
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, datum/reagent/toxin = /datum/reagent/toxin/xeno_neurotoxin, channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, list/toxin = list(/datum/reagent/toxin/xeno_neurotoxin), channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
-	if(!do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
+	if(!length(toxin) && islist(toxin))
+		return FALSE
+	if(!islist(toxin))
+		toxin = list(toxin)
+	var/chemical_string = ""
+	// populate the string and fill the assoc list transfer amounts
+	for(var/chem in toxin)
+		var/datum/reagent/chemical = chem
+		toxin[chemical] = transfer_amount
+		var/string_append = ", "
+		// use and if we're before the last chemical
+		var/last_chem = toxin[length(toxin)]
+		var/last_chem_index = toxin.Find(last_chem)
+		if(length(toxin) > 1 && chem == toxin[last_chem_index - 1])
+			string_append = " and "
+		else if(chem == toxin[last_chem_index])
+			string_append = ""
+		chemical_string += "[initial(chemical.name)][string_append]"
+	if(!do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 		return FALSE
 	var/i = 1
 	to_chat(C, span_danger("You feel a tiny prick."))
-	to_chat(src, span_xenowarning("Our stinger injects our victim with [initial(toxin.name)]!"))
+	to_chat(src, span_xenowarning("Our stinger injects our victim with [chemical_string]!"))
 	playsound(C, 'sound/effects/spray3.ogg', 15, TRUE)
 	playsound(C, SFX_ALIEN_DROOL, 15, TRUE)
 	do
@@ -487,8 +506,8 @@
 		if(IsStaggered())
 			return FALSE
 		do_attack_animation(C)
-		C.reagents.add_reagent(toxin, transfer_amount)
-	while(i++ < count && do_after(src, channel_time, NONE, C, BUSY_ICON_HOSTILE))
+		C.reagents.add_reagent_list(toxin, transfer_amount)
+	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
 /atom/proc/can_sting()

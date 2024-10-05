@@ -95,7 +95,7 @@
  * vision_distance (optional) define how many tiles away the message can be seen.
  * ignored_mob (optional) doesn't show any message to a given mob if TRUE.
  */
-/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob, visible_message_flags = NONE, emote_prefix)
+/atom/proc/visible_message(message, self_message, blind_message, vision_distance, ignored_mob, visible_message_flags = NONE, emote_prefix, ghost_visible = TRUE)
 	var/turf/T = get_turf(src)
 	if(!T)
 		return
@@ -113,6 +113,10 @@
 			continue
 
 		if(M == ignored_mob)
+			continue
+
+		// Make sure that if this isn't meant to be heard by ghosts it's not.
+		if(!ghost_visible && isdead(M))
 			continue
 
 		var/msg = message
@@ -163,7 +167,7 @@
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
 
-/mob/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix)
+/mob/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix, ghost_visible = TRUE)
 	var/range = 7
 	var/raw_msg = message
 	if(hearing_distance)
@@ -171,6 +175,9 @@
 	if(audible_message_flags & EMOTE_MESSAGE)
 		message = "[emote_prefix]<b>[src]</b> [message]"
 	for(var/mob/M in get_hearers_in_view(range, src))
+		// Make sure that if this isn't meant to be heard by ghosts it's not.
+		if(!ghost_visible && isdead(M))
+			continue
 		var/msg = message
 		if(self_message && M == src)
 			msg = self_message
@@ -186,7 +193,7 @@
  * deaf_message (optional) is what deaf people will see.
  * hearing_distance (optional) is the range, how many tiles away the message can be heard.
  */
-/atom/proc/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix)
+/atom/proc/audible_message(message, deaf_message, hearing_distance, self_message, audible_message_flags = NONE, emote_prefix, ghost_visible = TRUE)
 	var/range = 7
 	var/raw_msg = message
 	if(hearing_distance)
@@ -194,6 +201,9 @@
 	if(audible_message_flags & EMOTE_MESSAGE)
 		message = "[emote_prefix]<b>[src]</b> [message]"
 	for(var/mob/M in get_hearers_in_view(range, src))
+		// Make sure that if this isn't meant to be heard by ghosts it's not.
+		if(!ghost_visible && isdead(M))
+			continue
 		if(audible_message_flags & EMOTE_MESSAGE && rc_vc_msg_prefs_check(M, audible_message_flags))
 			M.create_chat_message(src, raw_message = raw_msg, runechat_flags = audible_message_flags)
 		M.show_message(message, EMOTE_AUDIBLE, deaf_message, EMOTE_VISIBLE)
@@ -215,7 +225,7 @@
 	return FALSE
 
 /**
- * This is a SAFE proc. Use this instead of equip_to_splot()!
+ * This is a SAFE proc. Use this instead of equip_to_slot()!
  * set del_on_fail to have it delete item_to_equip if it fails to equip
  * unset redraw_mob to prevent the mob from being redrawn at the end.
  */
@@ -249,8 +259,33 @@
 *This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 *In most cases you will want to use equip_to_slot_if_possible()
 */
-/mob/proc/equip_to_slot(obj/item/W as obj, slot, bitslot = FALSE)
-	return
+/mob/proc/equip_to_slot(obj/item/item_to_equip, slot, bitslot = FALSE)
+	if(!slot)
+		return
+	if(!istype(item_to_equip))
+		return
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
+
+	if(item_to_equip == l_hand)
+		l_hand = null
+		item_to_equip.unequipped(src, SLOT_L_HAND)
+		update_inv_l_hand()
+
+	else if(item_to_equip == r_hand)
+		r_hand = null
+		item_to_equip.unequipped(src, SLOT_R_HAND)
+		update_inv_r_hand()
+
+	for(var/datum/action/A AS in item_to_equip.actions)
+		A.remove_action(src)
+
+	item_to_equip.screen_loc = null
+	item_to_equip.loc = src
+	item_to_equip.layer = ABOVE_HUD_LAYER
+	item_to_equip.plane = ABOVE_HUD_PLANE
+	item_to_equip.forceMove(src)
 
 ///This is just a commonly used configuration for the equip_to_slot_if_possible() proc, used to equip people when the rounds starts and when events happen and such.
 /mob/proc/equip_to_slot_or_del(obj/item/W, slot, override_nodrop = FALSE)
@@ -589,7 +624,7 @@
 			conga_line += S.buckled
 	while(!end_of_conga)
 		var/atom/movable/A = S.pulling
-		if(A in conga_line || A.anchored) //No loops, nor moving anchored things.
+		if((A in conga_line) || A.anchored) //No loops, nor moving anchored things.
 			end_of_conga = TRUE
 			break
 		conga_line += A

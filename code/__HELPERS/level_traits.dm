@@ -9,6 +9,8 @@
 
 #define is_mainship_level(z) SSmapping.level_trait(z, ZTRAIT_MARINE_MAIN_SHIP)
 
+#define is_antagmainship_level(z) SSmapping.level_trait(z, ZTRAIT_ANTAG_MAIN_SHIP)
+
 #define is_mining_level(z) SSmapping.level_trait(z, ZTRAIT_MINING)
 
 #define is_reebe(z) SSmapping.level_trait(z, ZTRAIT_REEBE)
@@ -17,4 +19,4 @@
 
 #define is_away_level(z) SSmapping.level_trait(z, ZTRAIT_AWAY)
 
-#define is_gameplay_level(z) (SSmapping.level_trait(z, ZTRAIT_MARINE_MAIN_SHIP) || SSmapping.level_trait(z, ZTRAIT_GROUND))
+#define is_gameplay_level(z) (SSmapping.level_trait(z, ZTRAIT_MARINE_MAIN_SHIP) || SSmapping.level_trait(z, ZTRAIT_ANTAG_MAIN_SHIP) || SSmapping.level_trait(z, ZTRAIT_GROUND))

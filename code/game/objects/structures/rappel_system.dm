@@ -141,7 +141,6 @@
 	update_icon_state()
 	flick("rappel_hatch_opening", src)
 
-	step(user, get_dir(user, src))
 	user.client.perspective = EYE_PERSPECTIVE
 	user.client.eye = target_turf
 
@@ -151,7 +150,7 @@
 		if(!do_after(user, 3 SECONDS, NONE, rope, BUSY_ICON_UNSKILLED) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
 			passed_skillcheck = FALSE
 
-	if(passed_skillcheck && do_after(user, 2 SECONDS, NONE, rope, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
+	if(passed_skillcheck && do_after(user, 4 SECONDS, NONE, rope, BUSY_ICON_GENERIC) && !user.lying_angle && !user.anchored && rappel_state >= RAPPEL_STATE_USABLE && rappel_condition == RAPPEL_CONDITION_GOOD)
 		playsound(target_turf, 'sound/effects/rappel.ogg', 50, TRUE)
 		playsound(src, 'sound/effects/rappel.ogg', 50, TRUE)
 		user.forceMove(target_turf)
@@ -384,12 +383,7 @@
 	if(parent_system.rappel_condition < RAPPEL_CONDITION_GOOD)
 		return
 
-	if(user.buckled_mobs)
-		//Drop anyone we're fireman carrying
-		user.unbuckle_all_mobs(TRUE)
-		return
-
-	if(!step(user, get_dir(user, src)))
+	if(LinkBlocked(get_turf(user), get_turf(src)))
 		user.balloon_alert(user, "Something is blocking you from reaching the rappel rope!")
 		return
 	user.balloon_alert_to_viewers("[user] begins clipping to the rappel...", "You begin clipping to the rappel...")
@@ -398,13 +392,11 @@
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_UNSKILLED) || user.lying_angle || user.anchored)
 			return
 
-	if(!do_after(user, 4 SECONDS, NONE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
+	if(!do_after(user, 8 SECONDS * (1 + length(user.buckled_mobs)), NONE, src, BUSY_ICON_GENERIC) || user.lying_angle || user.anchored)
 		return
 	user.forceMove(get_turf(parent_system))
 
 	playsound(get_turf(src), 'sound/effects/rappel.ogg', 50, TRUE)
-	parent_system.rappel_state = RAPPEL_STATE_RETRACTING
-	parent_system.retract_rope()
 
 //Ghosts teleport to the rappel system when they click on the rope
 /obj/effect/rappel_rope/tadpole/attack_ghost(mob/dead/observer/user)

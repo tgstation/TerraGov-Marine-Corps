@@ -64,15 +64,15 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		frequency = GET_RANDOM_FREQ // Same frequency for everybody
 	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = sound(get_sfx(soundin))
-	for(var/mob/M AS in GLOB.player_list|GLOB.aiEyes)
-		if(!M.client && !istype(M, /mob/camera/aiEye))
+	for(var/mob/listener AS in GLOB.player_list|GLOB.aiEyes)
+		if(!listener.client && !isAIeye(listener))
 			continue
-		if(ambient_sound && !(M.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
+		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
 			continue
-		var/turf/T = get_turf(M)
-		if(!T || T.z != turf_source.z || get_dist(M, turf_source) > sound_range)
+		var/turf/T = get_turf(listener)
+		if(!T || T.z != turf_source.z || get_dist(listener, turf_source) > sound_range)
 			continue
-		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S, sound_reciever = M)
+		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
 
 	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
 		if(!armor.interior || armor.z != turf_source.z || get_dist(armor.loc, turf_source) > sound_range)
@@ -83,7 +83,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
 				continue
 			//turf source is null on purpose because it will not work properly since crew is on a different z
-			crew.playsound_local(null, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S, sound_reciever = crew)
+			crew.playsound_local(null, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
 
 /**
  * Plays a sound locally
@@ -99,12 +99,9 @@ A good representation is: 'byond applies a volume reduction to the sound every X
  * * channel - Optional: Picks a random available channel if not set
  * * sound_to_use - Optional: Will default to soundin
  * * distance_multiplier - Affects x and z hearing
- * * sound_reciever - Defaults to src, the thing that is hearing this sound
  */
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1, mob/sound_reciever)
-	if(!sound_reciever)
-		sound_reciever = src
-	if(!sound_reciever.client)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1)
+	if(!client)
 		return FALSE
 
 	if(!sound_to_use)
@@ -139,9 +136,9 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	if(!is_global)
 		sound_to_use.environment = SOUND_ENVIRONMENT_ROOM
 
-	SEND_SOUND(sound_reciever, sound_to_use)
+	SEND_SOUND(src, sound_to_use)
 
-/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1, mob/sound_reciever)
+/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1)
 	if(ear_deaf > 0)
 		return FALSE
 	return ..()

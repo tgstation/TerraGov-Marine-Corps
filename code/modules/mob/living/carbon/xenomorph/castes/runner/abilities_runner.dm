@@ -80,7 +80,7 @@
 	action_icon_state = "evasion_on"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. \
-			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early."
+			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early. You cannot evade pointblank shots or attack while evading."
 	ability_cost = 75
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
@@ -324,8 +324,9 @@
 		return FALSE
 
 /datum/action/ability/activable/xeno/snatch/use_ability(atom/A)
+	succeed_activate()
 	var/mob/living/carbon/xenomorph/X = owner
-	if(!do_after(owner, 0.5 SECONDS, IGNORE_HELD_ITEM, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	if(!do_after(owner, 0.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		return FALSE
 	var/mob/living/carbon/human/victim = A
 	stolen_item = victim.get_active_held_item()
@@ -393,4 +394,3 @@
 	owner.overlays -= stolen_appearance
 	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
-

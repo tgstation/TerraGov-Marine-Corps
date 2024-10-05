@@ -36,6 +36,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/upp,
 		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/sectoid,
+		/obj/item/explosive/grenade/creampie,
 		/obj/item/explosive/grenade/incendiary,
 		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
@@ -47,6 +48,8 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/smokebomb/neuro,
 		/obj/item/explosive/grenade/smokebomb/acid,
 		/obj/item/explosive/grenade/smokebomb/satrapine,
+		/obj/item/explosive/grenade/smokebomb/aphrotoxin,
+		/obj/item/explosive/grenade/smokebomb/sleep,
 		/obj/item/explosive/grenade/phosphorus,
 		/obj/item/explosive/grenade/phosphorus/upp,
 		/obj/item/explosive/grenade/impact,
@@ -146,6 +149,14 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded
 	default_ammo_type = null
 
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher/erp
+	name = "\improper PL-70 assault pie launcher"
+	icon_state = "t70_erp"
+	worn_icon_state = "t70_erp"
+	fire_animation = "t70_erp_fire"
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+	default_ammo_type = /obj/item/explosive/grenade/creampie
+
 /obj/item/weapon/gun/grenade_launcher/underslung
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
@@ -214,7 +225,7 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"
-	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
+	desc = "A lightweight, single-shot grenade launcher used by the Nine Tailed Fox for area denial and big explosions."
 	icon_state = "m81"
 	worn_icon_state = "m81"
 	max_shells = 1 //codex
@@ -234,7 +245,7 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/riot
 	name = "\improper GL-81 riot grenade launcher"
-	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Nanotrasen security during riots."
+	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by Ninetails security during riots."
 	default_ammo_type = null
 	allowed_ammo_types = list(/obj/item/explosive/grenade/chem_grenade)
 	req_access = list(ACCESS_MARINE_BRIG)
@@ -257,5 +268,5 @@ The Grenade Launchers
 
 /obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine
 	name = "M30E2 flare gun"
-	desc = "A very tiny flaregun that fires flares equipped with long range irons, the mass amounts of markings on the back and barrel denote it as owned by the TGMC."
+	desc = "A very tiny flaregun that fires flares equipped with long range irons, the mass amounts of markings on the back and barrel denote it as owned by the NTC."
 	icon_state = "marine_flaregun"

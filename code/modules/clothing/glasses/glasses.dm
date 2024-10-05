@@ -233,7 +233,6 @@
 	worn_icon_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
 	inventory_flags = COVEREYES
-	inv_hide_flags = HIDEEYES
 	eye_protection = 2
 	activation_sound = null
 	deactivation_sound = null
@@ -263,7 +262,6 @@
 ///Toggle the welding goggles on
 /obj/item/clothing/glasses/welding/proc/flip_up(mob/user)
 	DISABLE_BITFIELD(inventory_flags, COVEREYES)
-	DISABLE_BITFIELD(inv_hide_flags, HIDEEYES)
 	DISABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = 0
 	update_icon()
@@ -273,7 +271,6 @@
 ///Toggle the welding goggles off
 /obj/item/clothing/glasses/welding/proc/flip_down(mob/user)
 	ENABLE_BITFIELD(inventory_flags, COVEREYES)
-	ENABLE_BITFIELD(inv_hide_flags, HIDEEYES)
 	ENABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = initial(eye_protection)
 	update_icon()

@@ -405,7 +405,7 @@
 		return fail_activate()
 
 	QDEL_NULL(particle_holder)
-	playsound(owner, 'sound/effects/petrify_activate.ogg', 50)
+	playsound(owner, 'sound/effects/magic.ogg', 10)
 
 	var/list/outcome = target.psi_act(psi_strength, owner)
 	if(!outcome)

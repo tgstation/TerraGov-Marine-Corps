@@ -372,8 +372,6 @@
 	var/undeploy_time = 0
 	///If the gun is deployed, change the scatter amount by this number. Negative reduces scatter, positive adds.
 	var/deployed_scatter_change = 0
-	///List of turf/objects/structures that will be ignored in the sentries targeting.
-	var/list/ignored_terrains
 	///Flags that the deployed sentry uses upon deployment.
 	var/turret_flags = NONE
 	///Damage threshold for whether a turret will be knocked down.
@@ -472,9 +470,9 @@
 		COMSIG_ITEM_UNZOOM,
 		COMSIG_MOB_MOUSEDRAG,
 		COMSIG_KB_RAILATTACHMENT,
+		COMSIG_KB_MUZZLEATTACHMENT,
 		COMSIG_KB_UNDERRAILATTACHMENT,
 		COMSIG_KB_UNLOADGUN,
-		COMSIG_KB_FIREMODE,
 		COMSIG_KB_GUN_SAFETY,
 		COMSIG_KB_UNIQUEACTION,
 		COMSIG_KB_AUTOEJECT,
@@ -522,9 +520,9 @@
 	RegisterSignals(gun_user, list(COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM), PROC_REF(stop_fire))
 	RegisterSignal(gun_user, COMSIG_ITEM_UNZOOM, PROC_REF(on_unzoom))
 	RegisterSignal(gun_user, COMSIG_KB_RAILATTACHMENT, PROC_REF(activate_rail_attachment))
+	RegisterSignal(gun_user, COMSIG_KB_MUZZLEATTACHMENT, PROC_REF(activate_muzzle_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNDERRAILATTACHMENT, PROC_REF(activate_underrail_attachment))
 	RegisterSignal(gun_user, COMSIG_KB_UNLOADGUN, PROC_REF(unload_gun))
-	RegisterSignal(gun_user, COMSIG_KB_FIREMODE, PROC_REF(do_toggle_firemode))
 	RegisterSignal(gun_user, COMSIG_KB_GUN_SAFETY, PROC_REF(toggle_gun_safety_keybind))
 	RegisterSignal(gun_user, COMSIG_KB_AUTOEJECT, PROC_REF(toggle_auto_eject_keybind))
 
@@ -837,7 +835,7 @@
 		if(!gun_user)
 			addtimer(CALLBACK(src, PROC_REF(fire_after_autonomous_windup)), windup_delay)
 			return NONE
-		if(!do_after(gun_user, windup_delay, IGNORE_LOC_CHANGE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER))
+		if(!do_after(gun_user, windup_delay, TRUE, src, BUSY_ICON_DANGER, BUSY_ICON_DANGER, ignore_turf_checks = TRUE))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return NONE
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -1034,7 +1032,7 @@
 
 	simulate_recoil(dual_wield, firing_angle)
 
-	projectile_to_fire.fire_at(target, master_gun ? gun_user : null, src, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
+	projectile_to_fire.fire_at(target, gun_user, src, projectile_to_fire.ammo.max_range, projectile_to_fire.projectile_speed, firing_angle, suppress_light = HAS_TRAIT(src, TRAIT_GUN_SILENCED))
 	if(CHECK_BITFIELD(gun_features_flags, GUN_SMOKE_PARTICLES))
 		var/x_component = sin(firing_angle) * 40
 		var/y_component = cos(firing_angle) * 40
@@ -1096,7 +1094,7 @@
 	user.visible_message(span_warning("[user] sticks their gun in their mouth, ready to pull the trigger."))
 	log_combat(user, null, "is trying to commit suicide")
 
-	if(!do_after(user, 40, NONE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, 40, TRUE, src, BUSY_ICON_DANGER))
 		M.visible_message(span_notice("[user] decided life was worth living."))
 		ENABLE_BITFIELD(gun_features_flags, GUN_CAN_POINTBLANK)
 		return
@@ -1715,6 +1713,9 @@
 	if(!(gun_features_flags & GUN_ALLOW_SYNTHETIC) && !CONFIG_GET(flag/allow_synthetic_gun_use) && issynth(user))
 		to_chat(user, span_warning("Your program does not allow you to use this firearm."))
 		return FALSE
+	if(HAS_TRAIT(user, TRAIT_KNIGHT))
+		to_chat(user, span_warning("Your armor does not allow you to use this firearm!"))
+		return FALSE
 	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		to_chat(user, span_warning("The safety is on!"))
 		return FALSE
@@ -1891,17 +1892,26 @@
 
 //For letting xenos turn off the flashlights on any guns left lying around.
 /obj/item/weapon/gun/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))
-		return
-	for(var/attachment_slot in attachments_by_slot)
-		var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
-		if(!istype(lit_flashlight))
-			continue
-		lit_flashlight.turn_light(null, FALSE)
-	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
-	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	to_chat(xeno_attacker, span_warning("We disable the metal thing's lights.") )
+	if(xeno_attacker.a_intent == INTENT_HARM)
+		if(!HAS_TRAIT(src, TRAIT_GUN_FLASHLIGHT_ON))
+			return
+		for(var/attachment_slot in attachments_by_slot)
+			var/obj/item/attachable/flashlight/lit_flashlight = attachments_by_slot[attachment_slot]
+			if(!istype(lit_flashlight))
+				continue
+			lit_flashlight.turn_light(null, FALSE)
+		playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
+		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		to_chat(xeno_attacker, span_warning("We disable the metal thing's lights.") )
+	else
+		attack_hand(xeno_attacker)
 
+/obj/item/weapon/gun/special_stripped_behavior(mob/stripper, mob/owner)
+	var/obj/item/attachable/magnetic_harness/magharn = attachments_by_slot[ATTACHMENT_SLOT_RAIL]
+	if(!istype(magharn))
+		return
+	magharn.reequip_component.active = FALSE
+	addtimer(VARSET_CALLBACK(magharn.reequip_component, active, TRUE), 2 SECONDS)
 
 /particles/overheat_smoke
 	icon = 'icons/effects/particles/smoke.dmi'

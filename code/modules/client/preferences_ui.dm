@@ -55,6 +55,7 @@
 			data["synthetic_name"] = synthetic_name
 			data["synthetic_type"] = synthetic_type
 			data["robot_type"] = robot_type
+			data["moth_wings"] = moth_wings
 			data["random_name"] = random_name
 			data["ai_name"] = ai_name
 			data["age"] = age
@@ -72,6 +73,9 @@
 		if(BACKGROUND_INFORMATION)
 			data["slot"] = default_slot
 			data["flavor_text"] = flavor_text
+			data["xeno_desc"] = xeno_desc
+			data["profile_pic"] = profile_pic
+			data["xenoprofile_pic"] = xenoprofile_pic
 			data["med_record"] = med_record
 			data["gen_record"] = gen_record
 			data["sec_record"] = sec_record
@@ -106,6 +110,7 @@
 			data["mute_xeno_health_alert_messages"] = mute_xeno_health_alert_messages
 			data["sound_tts"] = sound_tts
 			data["volume_tts"] = volume_tts
+			data["radio_tts_flags"] = radio_tts_flags
 			data["accessible_tgui_themes"] = accessible_tgui_themes
 			data["tgui_fancy"] = tgui_fancy
 			data["tgui_lock"] = tgui_lock
@@ -289,6 +294,12 @@
 				return
 			robot_type = choice
 			update_preview_icon()
+
+		if("moth_wings")
+			var/choice = tgui_input_list(ui.user, "What kind of moth wings do you want to play with? Only useable as a moth.", "Moth with type choice", GLOB.moth_wings_list)
+			if(!choice)
+				return
+			moth_wings = choice
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -613,6 +624,24 @@
 				return
 			flavor_text = new_record
 
+		if("xeno_desc")
+			var/new_record = trim(html_encode(params["xenoDesc"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xeno_desc = new_record
+
+		if("profile_pic")
+			var/new_record = trim(html_encode(params["profilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			profile_pic = new_record
+
+		if("xenoprofile_pic")
+			var/new_record = trim(html_encode(params["xenoprofilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xenoprofile_pic = new_record
+
 		if("windowflashing")
 			windowflashing = !windowflashing
 
@@ -636,6 +665,30 @@
 				return
 			new_vol = round(new_vol)
 			volume_tts = clamp(new_vol, 0, 100)
+
+		if("toggle_radio_tts_setting")
+			switch(params["newsetting"])
+				if("sl")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL)
+					if(!CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_SL)) //When SL radio is being disabled, disable squad radio too
+						DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD)
+
+				if("squad")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD)
+					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_SQUAD))
+						ENABLE_BITFIELD(radio_tts_flags, RADIO_TTS_SL) //Enable SL TTS if not already enabled
+
+				if("command")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_COMMAND)
+
+				if("all")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
+					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)) //Enable all other channels when 'ALL' is enabled
+						for(var/flag in GLOB.all_radio_tts_options)
+							ENABLE_BITFIELD(radio_tts_flags, flag)
+
+			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND))
+				DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
 
 		if("accessible_tgui_themes")
 			accessible_tgui_themes = !accessible_tgui_themes

@@ -323,7 +323,7 @@
 
 /obj/item/toy/deck/kotahi
 	name = "KOTAHI deck"
-	desc = "A flashy deck of Nanotrasen KOTAHI playing cards. Usually sold alongside crayon packages."
+	desc = "A flashy deck of Ninetails KOTAHI playing cards. Usually sold alongside crayon packages."
 	icon = 'icons/obj/items/kotahi_cards.dmi'
 	icon_state = "deck"
 	card_type = "kotahi"

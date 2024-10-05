@@ -49,7 +49,7 @@
 /obj/item/implant/deployitem/blade/get_data()
 	return {"
 	<b>Implant Specifications:</b><BR>
-	<b>Name:</b> Nanotrasen MA-12 Mantis Implant<BR>
+	<b>Name:</b> Novamed MA-12 Mantis Implant<BR>
 	<HR>
 	<b>Implant Details:</b><BR>
 	<b>Function:</b> Upon activation, the user deploys a large blade from the their arm.<BR>"}

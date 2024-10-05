@@ -10,7 +10,7 @@
 
 /obj/item/clothing/under/rank/captain //Alright, technically not a 'civilian' but its better then giving a .dm file for a single define.
 	desc = "It's a blue jumpsuit with some gold markings denoting the rank of \"Captain\"."
-	name = "captain's jumpsuit"
+	name = "commander's jumpsuit"
 	icon_state = "captain"
 
 /obj/item/clothing/under/rank/cargo
@@ -48,6 +48,14 @@
 	desc = "<i>'HONK!'</i>"
 	icon_state = "clown"
 	adjustment_variants = list()
+
+/obj/item/clothing/under/rank/clown/erp
+	name = "reinforced clown suit"
+	desc = "<b><i>'HONK!'</i></b>"
+	has_sensor = 2
+	siemens_coefficient = 0.9
+	attachments_allowed = list(/obj/item/armor_module/storage/uniform/webbing/erp)
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/webbing/erp)
 
 /obj/item/clothing/under/rank/head_of_personnel
 	desc = "It's a jumpsuit worn by someone who works in the position of \"Head of Personnel\"."

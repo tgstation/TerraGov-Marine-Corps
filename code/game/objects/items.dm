@@ -26,39 +26,59 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/attack_speed = 11
 	///Byond tick delay between right click alternate attacks
 	var/attack_speed_alternate = 11
-	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	///Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	var/list/attack_verb
 
-	var/sharp = FALSE		// whether this item cuts
-	var/edge = FALSE		// whether this item is more likely to dismember
-	var/pry_capable = FALSE //whether this item can be used to pry things open.
-	var/heat = 0 //whether this item is a source of heat, and how hot it is (in Kelvin).
+	///whether this item cuts
+	var/sharp = FALSE
+	///whether this item is more likely to dismember
+	var/edge = FALSE
+	///whether this item can be used to pry things open.
+	var/pry_capable = FALSE
+	///whether this item is a source of heat, and how hot it is (in Kelvin).
+	var/heat = 0
 
+	///sound this item makes when you hit something with it
 	var/hitsound = null
+	///The weight class being how big, mainly used for storage purposes
 	var/w_class = WEIGHT_CLASS_NORMAL
-	var/item_flags = NONE	//flags for item stuff that isn't clothing/equipping specific.
-	var/equip_slot_flags = NONE		//This is used to determine on which slots an item can fit.
+	///flags for item stuff that isn't clothing/equipping specific.
+	var/item_flags = NONE
+	///This is used to determine on which slots an item can fit.
+	var/equip_slot_flags = NONE
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/inventory_flags = NONE //This flag is used for various clothing/equipment item stuff
-	var/inv_hide_flags = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	///This flag is used for various clothing/equipment item stuff
+	var/inventory_flags = NONE
+	///This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/inv_hide_flags = NONE
 
 	var/obj/item/master = null
 
-	var/armor_protection_flags = NONE //see setup.dm for appropriate bit flags
-	var/heat_protection_flags = NONE //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/cold_protection_flags = NONE //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	///see setup.dm for appropriate bit flags
+	var/armor_protection_flags = NONE
+	///flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/heat_protection_flags = NONE
+	///flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/cold_protection_flags = NONE
 
-	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection_flags flags
-	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection_flags flags
+	///Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection_flags flags
+	var/max_heat_protection_temperature
+	///Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection_flags flags
+	var/min_cold_protection_temperature
 
 	///list of /datum/action's that this item has.
 	var/list/actions
 	///list of paths of action datums to give to the item on Initialize().
 	var/list/actions_types
-	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
-	var/permeability_coefficient = 1 // for chemicals/diseases
-	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
-	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
+	/// for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
+	var/gas_transfer_coefficient = 1
+	/// for chemicals/diseases
+	var/permeability_coefficient = 1
+	/// for electrical admittance/conductance (electrocution checks and shit)
+	var/siemens_coefficient = 1
+	/// How much clothing is slowing you down. Negative values speeds you up
+	var/slowdown = 0
 	var/breakouttime = 0
 
 	///list() of species types, if a species cannot put items in a certain slot, but species type is in list, it will be able to wear that item
@@ -131,8 +151,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/active = FALSE
 
-
-
 	//Coloring vars
 	///Some defines to determine if the item is allowed to be recolored.
 	var/colorable_allowed = NONE
@@ -142,9 +160,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/list/icon_state_variants = list()
 	///Current variant selected.
 	var/current_variant
-
-
-
 
 /obj/item/Initialize(mapload)
 	if(species_exception)
@@ -1009,6 +1024,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
 /obj/item/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.a_intent != INTENT_HARM)
+		attack_hand(xeno_attacker)
 	return FALSE
 
 
@@ -1095,7 +1112,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 					W.reagents.reaction(atm)
 					if(isfire(atm))
 						var/obj/fire/FF = atm
-						FF.set_fire(FF.burn_ticks - 20)
+						FF.set_fire(FF.burn_ticks - EXTINGUISH_AMOUNT)
 						continue
 					if(isliving(atm)) //For extinguishing mobs on fire
 						var/mob/living/M = atm
@@ -1131,10 +1148,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		var/datum/callback/tool_check = CALLBACK(src, PROC_REF(tool_check_callback), user, amount, extra_checks)
 
 		if(ismob(target))
-			if(do_after(user, delay, NONE, target, extra_checks = tool_check))
+			if(do_mob(user, target, delay, extra_checks=tool_check))
 				return
 
-		else if(!do_after(user, delay, target = target, extra_checks = tool_check))
+		else if(!do_after(user, delay, target=target, extra_checks=tool_check))
 			return
 
 	else if(extra_checks && !extra_checks.Invoke()) // Invoke the extra checks once, just in case.
@@ -1440,7 +1457,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			if(!variant)
 				return
 
-			if(!do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+			if(!do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 				return
 
 			current_variant = variant
@@ -1464,7 +1481,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		if(COLOR_WHEEL)
 			new_color = input(user, "Pick a color", "Pick color") as null|color
 
-	if(!new_color || !do_after(user, 1 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+	if(!new_color || !do_after(user, 1 SECONDS, TRUE, src, BUSY_ICON_GENERIC))
 		return
 
 	set_greyscale_colors(new_color)
@@ -1502,3 +1519,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	alpha -= (new_alpha_mod - old_alpha_mod) * ITEM_LIQUID_TURF_ALPHA_MULT
 
 #undef ITEM_LIQUID_TURF_ALPHA_MULT
+
+///Proc that gets called by a vendor when you refill something
+///Returns FALSE if it's not elligible for refills
+/obj/item/proc/refill(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!(item_flags & CAN_REFILL))
+		user.balloon_alert(user, "Can't refill this")
+		return FALSE
+	user.balloon_alert(user, "Refilled") //If all checks passed, it's safe to throw the balloon alert
+	return TRUE
+

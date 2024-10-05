@@ -29,15 +29,15 @@
 	name = "claws"
 	hitsound = 'sound/weapons/slice.ogg'
 	icon_state = ""
-	force = 20
-	sharp = IS_SHARP_ITEM_BIG
+	force = 5
+	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = TRUE
 	attack_verb = list("clawed", "slashed", "torn", "ripped", "diced", "cut", "bit")
 	item_flags = CAN_BUMP_ATTACK|DELONDROP
 	attack_speed = 8 //Same as unarmed delay
 	pry_capable = IS_PRY_CAPABLE_FORCE
 	///How much zombium are transferred per hit. Set to zero to remove transmission
-	var/zombium_per_hit = 5
+	var/zombium_per_hit = 2
 
 /obj/item/weapon/zombie_claw/Initialize(mapload)
 	. = ..()
@@ -61,7 +61,7 @@
 		return
 
 	target.balloon_alert_to_viewers("[user] starts to open [target]", "You start to pry open [target]")
-	if(!do_after(user, 4 SECONDS, IGNORE_HELD_ITEM, target))
+	if(!do_after(user, 4 SECONDS, FALSE, target))
 		return
 	var/obj/machinery/door/airlock/door = target
 	playsound(user.loc, 'sound/effects/metal_creaking.ogg', 25, 1)

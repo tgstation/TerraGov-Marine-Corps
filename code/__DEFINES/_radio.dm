@@ -26,8 +26,12 @@
 #define RADIO_TOKEN_COMMAND ":v"
 
 #define RADIO_CHANNEL_CAS "Fire support"
-#define RADIO_KEY_CAS "s"
-#define RADIO_TOKEN_CAS ":s" //s for support
+#define RADIO_KEY_CAS "f"
+#define RADIO_TOKEN_CAS ":f" //f for fire support
+
+#define RADIO_CHANNEL_SEC "Security"
+#define RADIO_KEY_SEC "s"
+#define RADIO_TOKEN_SEC ":s" //s for security
 
 #define RADIO_CHANNEL_ALPHA "Alpha"
 #define RADIO_CHANNEL_ZULU "Zulu"
@@ -60,6 +64,7 @@
 #define RADIO_CHANNEL_ICC "ICC"
 #define RADIO_CHANNEL_ECHO "Echo"
 #define RADIO_CHANNEL_VSD "VSD"
+#define RADIO_CHANNEL_ERP "ERP"
 #define RADIO_CHANNEL_DS1 "Alamo"
 #define RADIO_CHANNEL_DS2 "Normandy"
 
@@ -89,7 +94,8 @@
 #define FREQ_SECTOID 1347
 #define FREQ_ECHO 1349
 #define FREQ_VSD 1350
-#define MAX_ERT_FREQ 1350
+#define FREQ_ERP 1351
+#define MAX_ERT_FREQ 1351
 
 #define FREQ_AI 1351
 #define FREQ_COMMAND 1353
@@ -110,6 +116,8 @@
 
 #define FREQ_COMMON 1437
 
+#define FREQ_SEC 1439
+
 #define MIN_FREQ 1441 // ------------------------------------------------------
 // Only the 1441 to 1489 range is freely available for general conversation.
 // This represents 1/8th of the available spectrum.
@@ -121,7 +129,6 @@
 #define FREQ_SIGNALER 1457  // the default for new signalers
 
 #define FREQ_CIV_GENERAL 1469
-
 
 #define MAX_FREQ 1489 // ------------------------------------------------------
 

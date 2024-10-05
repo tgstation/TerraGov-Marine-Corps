@@ -18,9 +18,6 @@
 
 /datum/action/ability/xeno_action/call_of_the_burrowed/action_activate()
 	var/mob/living/carbon/xenomorph/shrike/caller = owner
-	if(!isnormalhive(caller.hive))
-		to_chat(caller, span_warning("Burrowed larva? What a strange concept... It's not for our hive."))
-		return FALSE
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(!stored_larva)
@@ -106,16 +103,10 @@
 	playsound(owner,'sound/effects/magic.ogg', 75, 1)
 	playsound(victim,'sound/weapons/alien_claw_block.ogg', 75, 1)
 
-		//Held facehuggers get killed for balance reasons
-	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
+	//Held facehuggers get killed for balance reasons
+	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
+		hugger.kill_hugger()
+		owner.dropItemToGround(hugger)
 
 	succeed_activate()
 	add_cooldown()
@@ -163,7 +154,7 @@
 	add_cooldown()
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
 	var/mob/living/carbon/xenomorph/xeno = owner
-	owner.icon_state = "[xeno.xeno_caste.caste_name][(xeno.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Screeching"
+	owner.icon_state = "[xeno.xeno_caste.caste_name][xeno.is_a_rouny ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 
@@ -210,16 +201,10 @@
 	playsound(owner,'sound/effects/bamf.ogg', 75, TRUE)
 	playsound(owner, SFX_ALIEN_ROAR, 50)
 
-			//Held facehuggers get killed for balance reasons
-	if(istype(owner.r_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.r_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
-
-	if(istype(owner.l_hand, /obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/FH = owner.l_hand
-		if(FH.stat != DEAD)
-			FH.kill_hugger()
+	//Held facehuggers get killed for balance reasons
+	for(var/obj/item/clothing/mask/facehugger/hugger in owner.get_held_items())
+		hugger.kill_hugger()
+		owner.dropItemToGround(hugger)
 
 
 // ***************************************
@@ -236,7 +221,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_PSYCHIC_CURE,
 	)
 	var/heal_range = SHRIKE_HEAL_RANGE
-	target_flags = ABILITY_MOB_TARGET
+	target_flags = ABILITY_XENO_TARGET|ABILITY_HUMAN_TARGET
 
 
 /datum/action/ability/activable/xeno/psychic_cure/on_cooldown_finish()
@@ -248,16 +233,16 @@
 	. = ..()
 	if(!.)
 		return FALSE
+	if(!ismob(target))
+		return FALSE
 	if(QDELETED(target))
 		return FALSE
 	if(!check_distance(target, silent))
 		return FALSE
-	if(!isxeno(target))
-		return FALSE
-	var/mob/living/carbon/xenomorph/patient = target
+	var/mob/living/patient = target
 	if(!CHECK_BITFIELD(use_state_flags|override_flags, ABILITY_IGNORE_DEAD_TARGET) && patient.stat == DEAD)
 		if(!silent)
-			to_chat(owner, span_warning("It's too late. This sister won't be coming back."))
+			to_chat(owner, span_warning("It's too late. This won't be coming back."))
 		return FALSE
 
 
@@ -295,15 +280,17 @@
 	playsound(target,'sound/effects/magic.ogg', 75, 1)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/mob/living/carbon/xenomorph/patient = target
-	patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
-	patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
-	if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
-		patient.SetUnconscious(0)
-		patient.SetStun(0)
-		patient.SetParalyzed(0)
-		patient.set_stagger(0)
-		patient.set_slowdown(0)
-	patient.updatehealth()
+	if(isxeno(target))
+		patient.heal_wounds(SHRIKE_CURE_HEAL_MULTIPLIER)
+		patient.adjust_sunder(-SHRIKE_CURE_HEAL_MULTIPLIER)
+		if(patient.health > 0) //If they are not in crit after the heal, let's remove evil debuffs.
+			patient.SetUnconscious(0)
+			patient.SetStun(0)
+			patient.SetParalyzed(0)
+			patient.set_stagger(0)
+			patient.set_slowdown(0)
+	else
+		patient.psychic_cure()
 
 	owner.changeNext_move(CLICK_CD_RANGE)
 
@@ -311,6 +298,14 @@
 
 	succeed_activate()
 	add_cooldown()
+
+
+/mob/living/proc/psychic_cure()
+	var/amount = 100
+	var/remainder = max(0, amount - getBruteLoss())
+	if(ishuman(src))
+		adjustBruteLoss(-amount)
+		adjustFireLoss(-remainder, updating_health = TRUE)
 
 
 // ***************************************
@@ -372,6 +367,7 @@
 	action_icon_state = "vortex"
 	action_icon = 'icons/Xeno/actions/shrike.dmi'
 	desc = "Channel a sizable vortex of psychic energy, drawing in nearby enemies."
+
 	ability_cost = 600
 	cooldown_duration = 2 MINUTES
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -398,11 +394,11 @@
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)
-	if(do_after(owner, VORTEX_INITIAL_CHARGE, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
 		vortex_pull()
-	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
 		vortex_push()
-	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
+	if(do_after(owner, VORTEX_POST_INITIAL_CHARGE, FALSE, owner, BUSY_ICON_DANGER))
 		vortex_pull()
 	QDEL_NULL(particle_holder)
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, VORTEX_ABILITY_TRAIT)

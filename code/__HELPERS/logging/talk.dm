@@ -20,6 +20,10 @@
 /proc/log_say(text, list/data)
 	logger.Log(LOG_CATEGORY_GAME_SAY, text, data)
 
+/// Logging for general roleplay
+/proc/log_roleplay(text, list/data)
+	logger.Log(LOG_CATEGORY_GAME_ROLEPLAY, text, data)
+
 /// Logging for whispered messages
 /proc/log_whisper(text, list/data)
 	logger.Log(LOG_CATEGORY_GAME_WHISPER, text, data)

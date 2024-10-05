@@ -80,20 +80,29 @@
 	icon_state = "galoshes"
 	permeability_coefficient = 0.05
 	inventory_flags = NOSLIPPING
-	slowdown = SHOES_SLOWDOWN+1
 
 /obj/item/clothing/shoes/clown_shoes
 	desc = "The prankster's standard-issue clowning shoes. Damn they're huge!"
 	name = "clown shoes"
 	icon_state = "clown"
 	worn_icon_state = "clown"
-	slowdown = SHOES_SLOWDOWN + 1
+	slowdown = SHOES_SLOWDOWN+1
 
 
 /obj/item/clothing/shoes/clown_shoes/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/squeak, list('sound/effects/clownstep1.ogg', 'sound/effects/clownstep2.ogg'), 50)
 
+/obj/item/clothing/shoes/clown_shoes/erp
+	desc ="The prankster's military-standard-issue clowning shoes. Damn they're huge! And reinforced!"
+	name = "reinforced clown shoes"
+	armor_protection_flags = FEET
+	cold_protection_flags = FEET
+	heat_protection_flags = FEET
+	inventory_flags = NOQUICKEQUIP|NOSLIPPING
+	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
+	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.7
 
 /obj/item/clothing/shoes/jackboots
 	name = "jackboots"
@@ -162,5 +171,3 @@
 	icon_state = "tp_boots"
 	worn_icon_state = "tp_boots"
 	inventory_flags = NOSLIPPING
-
-

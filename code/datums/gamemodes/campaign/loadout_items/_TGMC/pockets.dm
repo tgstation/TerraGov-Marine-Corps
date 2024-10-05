@@ -72,7 +72,7 @@
 	desc = "A pouch specialized for holding shotgun ammo. Contains buckshot shells."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/shotgun
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
 /datum/loadout_item/r_pocket/shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
@@ -194,7 +194,7 @@
 	desc = "A pouch specialized for holding shotgun ammo. Contains Flechette shells."
 	ui_icon = "grenade"
 	item_typepath = /obj/item/storage/pouch/shotgun
-	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
 /datum/loadout_item/l_pocket/shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_L_POUCH)

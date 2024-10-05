@@ -76,7 +76,7 @@
 		span_notice("You start installing a new window on the frame."))
 		playsound(src, 'sound/items/deconstruct.ogg', 25, 1)
 
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		user.visible_message(span_notice("[user] installs a new glass window on the frame."), \

@@ -81,7 +81,7 @@
 					beacon_list -= beacon_name
 					continue
 			var/datum/supply_beacon/supply_beacon_choice = beacon_list[tgui_input_list(ui.user, "Select the beacon to send supplies", "Beacon choice", beacon_list)]
-			if(!istype(supply_beacon_choice) && is_ground_level(supply_beacon.drop_location.z))
+			if(!istype(supply_beacon_choice) && is_ground_level(supply_beacon?.drop_location?.z))
 				return
 			supply_beacon = supply_beacon_choice
 			RegisterSignal(supply_beacon, COMSIG_QDELETING, PROC_REF(clean_supply_beacon), override = TRUE)

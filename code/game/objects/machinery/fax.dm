@@ -16,7 +16,7 @@
 	var/sendcooldown = FALSE
 
 	var/department = CORPORATE_LIAISON
-	var/selected = "Nanotrasen"
+	var/selected = "Ninetails"
 
 
 /obj/machinery/faxmachine/Initialize(mapload)
@@ -63,7 +63,7 @@
 	dat += "<hr>"
 
 	if(authenticated)
-		dat += "<b>Logged in to:</b> Nanotrasen Private Corporate Network<br><br>"
+		dat += "<b>Logged in to:</b> Ninetails Private Corporate Network<br><br>"
 		if(message)
 			dat += "<a href='byond://?src=[text_ref(src)];remove=1'>Remove Paper</a><br><br>"
 			if(sendcooldown)
@@ -126,7 +126,7 @@
 		authenticated = FALSE
 
 	if(href_list["dept"])
-		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", list("Nanotrasen", "TGMC High Command", "TGMC Provost Marshall"))
+		var/choice = tgui_input_list(usr, "Who do you want to message?", "Fax", list("Ninetails Human Resources", "NTC Intel Division", "NTC Misc", "NTC Misc", "Combat Information Center", "Corpsec Commander", "Corpsec Brig", "NTC Research", "SOM", "CLF"))
 		if(!choice)
 			return
 		selected = choice
@@ -172,13 +172,19 @@
 	department = "Combat Information Center"
 
 /obj/machinery/faxmachine/cmp
-	department = "Brig"
+	department = "Corpsec Commander"
 
 /obj/machinery/faxmachine/brig
-	department = "Brig"
+	department = "Corpsec Brig"
 
 /obj/machinery/faxmachine/research
-	department = "Research"
+	department = "NTC Research"
 
 /obj/machinery/faxmachine/warden //Prison Station
 	department = "Warden"
+
+/obj/machinery/faxmachine/som
+	department = "SOM"
+
+/obj/machinery/faxmachine/clf
+	department = "CLF"
