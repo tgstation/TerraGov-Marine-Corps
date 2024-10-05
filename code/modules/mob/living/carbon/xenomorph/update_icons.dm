@@ -148,15 +148,15 @@
 		return
 	var/obj/item/storage/backpack/marine/duffelbag/xenosaddle/saddle = back
 	if(stat == DEAD)
-		backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Dead"
+		backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""] Dead"
 		return
 	if(lying_angle)
 		if((resting || IsSleeping()) && (!IsParalyzed() && !IsUnconscious() && health > 0))
-			backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Sleeping"
+			backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""] Sleeping"
 			return
-		backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Knocked Down"
+		backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""] Knocked Down"
 		return
-	backpack_overlay.icon_state = "[saddle.style][(xeno_flags & XENO_ROUNY) ? " rouny" : ""]"
+	backpack_overlay.icon_state = "[saddle.style][is_a_rouny ? " rouny" : ""]"
 
 /mob/living/carbon/xenomorph/update_transform()
 	..()

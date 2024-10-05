@@ -396,7 +396,7 @@
 	var/mob/living/victim = hit_atom
 	if(loc == victim) //Caught
 		pre_leap(impact_time)
-	else if(leaping && carbon_victim.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+	else if(leaping && victim.can_be_facehugged(src)) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
 		if(!try_attach(victim))
 			go_idle()
 	else
@@ -511,7 +511,7 @@
 		return FALSE
 
 	var/implanted_embryos = 0
-	for(var/obj/item/alien_embryo/implanted in M.contents)
+	for(var/obj/item/alien_embryo/implanted in hugged.contents)
 		implanted_embryos++
 		if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
 			return FALSE // False if we are at the max embryos.
@@ -645,9 +645,9 @@
 	addtimer(CALLBACK(src, PROC_REF(try_impregnate), user), IMPREGNATION_TIME)
 
 /// Try to put an embryo into the target mob
-/obj/item/clothing/mask/facehugger/proc/try_impregnate(mob/living/carbon/target)
+/obj/item/clothing/mask/facehugger/proc/try_impregnate(mob/living/carbon/human/target)
 	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
-	var/as_planned = target?.wear_mask == src  || target?.wear_suit == src
+	var/as_planned = target?.wear_mask == src  || target?.w_suit == src
 	if((target.can_be_facehugged(src, FALSE, FALSE) || target.faction == FACTION_CLF) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		var/obj/item/alien_embryo/embryo = new(target)
 		embryo.hivenumber = hivenumber

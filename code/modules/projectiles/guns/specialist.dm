@@ -498,12 +498,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 /obj/item/weapon/gun/rifle/pepperball
 	name = "\improper PB-12 pepperball gun"
 	desc = "The PB-12 is ostensibly riot control device used by the TGMC in spiffy colors, working through a SAN ball that sends a short acting neutralizing chemical to knock out it's target, or weaken them. Guranteed to work on just about everything. Uses SAN Ball Holders as magazines."
-	icon = 'icons/obj/items/guns/special64.dmi'
+	icon = 'ntf_modular/icons/obj/items/guns/special64.dmi'
 	icon_state = "pepperball"
 	worn_icon_state = "pepperball"
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+		slot_l_hand_str = 'ntf_modular/icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'ntf_modular/icons/mob/inhands/guns/special_right_1.dmi',
 	)
 	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	max_shells = 70 //codex

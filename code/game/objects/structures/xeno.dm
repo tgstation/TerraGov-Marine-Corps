@@ -186,10 +186,10 @@
 	if(!. && isxeno(mover) && !open)
 		toggle_state()
 		return TRUE
-	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+	if(ishuman(mover))
+		var/mob/living/carbon/human/H = mover
 		if(!. && H.faction == FACTION_CLF)
-			if(!CHECK_BITFIELD(door_flags, DOOR_OPEN))
+			if(!open)
 				return TRUE
 
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
