@@ -143,7 +143,6 @@
 
 /datum/species/zombie/smoker
 	name = "Smoker zombie"
-	var/obj/effect/abstract/particle_holder/particle_holder
 
 /particles/smoker_zombie
 	icon = 'icons/effects/particles/smoke.dmi'
@@ -167,5 +166,3 @@
 	. = ..()
 	var/datum/action/ability/emit_gas/emit_gas = new
 	emit_gas.give_action(H)
-	particle_holder = new(H, /particles/smoker_zombie)
-	particle_holder.pixel_y = 6

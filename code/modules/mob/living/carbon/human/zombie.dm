@@ -102,6 +102,7 @@
 /datum/action/ability/emit_gas/on_cooldown_finish()
 	playsound(owner.loc, 'sound/effects/alien/new_larva.ogg', 50, 0)
 	to_chat(owner, span_xenodanger("We feel our smoke filling us once more. We can emit gas again."))
+	toggle_particles(TRUE)
 	return ..()
 
 /datum/action/ability/emit_gas/action_activate()
@@ -110,6 +111,7 @@
 	playsound(T, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
 	smoke.set_up(smokeradius, T, smoke_duration)
 	smoke.start()
+	toggle_particles(FALSE)
 
 	add_cooldown()
 	succeed_activate()
@@ -130,3 +132,15 @@
 	if(!line_of_sight(owner, target))
 		return FALSE
 	return TRUE
+
+/datum/action/ability/emit_gas/proc/toggle_particles(activate)
+	if(!activate)
+		QDEL_NULL(particle_holder)
+		return
+
+	particle_holder = new(owner, /particles/smoker_zombie)
+	particle_holder.pixel_y = 6
+
+/datum/action/ability/emit_gas/give_action(mob/living/L)
+	. = ..()
+	toggle_particles(TRUE)
