@@ -1,5 +1,3 @@
-#define MARINE_STANDARD_SECONDARY_AMMO_SPACE 4
-
 /datum/loadout_item/secondary
 	item_slot = ITEM_SLOT_SECONDARY
 	item_whitelist = list(
@@ -9,6 +7,9 @@
 		/obj/item/storage/backpack/marine/engineerpack = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine/tech = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine/corpsman = ITEM_SLOT_BACK,
+		/obj/item/storage/backpack/satchel/som = ITEM_SLOT_BACK,
+		/obj/item/storage/backpack/lightpack/som = ITEM_SLOT_BACK,
+		/obj/item/storage/backpack/marine/engineerpack/som = ITEM_SLOT_BACK,
 	)
 
 /datum/loadout_item/secondary/empty
@@ -66,17 +67,31 @@
 
 	if(!gun_spawned)
 		wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_BACKPACK)
-	if(ammo_spawned) //insert other shit instead of secondary ammo
-		var/datum/loadout_item/suit_store/main_gun/primary = holder.equipped_things["[ITEM_SLOT_SUITSTORE]"]
-		if(istype(primary))
-			wearer.equip_to_slot_or_del(new primary.ammo_type, SLOT_IN_BACKPACK)
-			wearer.equip_to_slot_or_del(new primary.secondary_ammo_type, SLOT_IN_BACKPACK)
-			wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
-		//else
-			//todo: spawn other shit. Will come up for non-gun primaries like machete etc
+
+	if(!ammo_spawned)
+		for(var/i = 1 to 10)
+			if(!wearer.equip_to_slot_or_del(new secondary_weapon_ammo, SLOT_IN_BACKPACK))
+				break
+		wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK) //because secondary fills last, there should only be space if secondary ammo is w_class 3, or the loadout naturally has spare space
 		return
 
-	for(var/i = 1 to 10)
-		if(!wearer.equip_to_slot_or_del(new secondary_weapon_ammo, SLOT_IN_BACKPACK))
-			break
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK) //because secondary fills last, there should only be space if secondary ammo is w_class 3, or the loadout naturally has spare space
+	var/datum/loadout_item/suit_store/main_gun/primary = holder.equipped_things["[ITEM_SLOT_SUITSTORE]"]
+	if(istype(primary))
+		wearer.equip_to_slot_or_del(new primary.ammo_type, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new primary.secondary_ammo_type, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+		return
+
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+	switch(wearer.faction)
+		if(FACTION_SOM)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
+		else
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+

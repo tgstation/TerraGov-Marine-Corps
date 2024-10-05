@@ -198,7 +198,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		return
 	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/machete_shield, jobs_supported, owner, 0)
 	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, jobs_supported, owner, 0)
-	owner_stats.unlock_loadout_item(/datum/loadout_item/belt/energy_sword, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/esword, jobs_supported, owner, 0)
 
 //skill modifying perks
 /datum/perk/skill_mod
@@ -282,6 +282,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	all_jobs = TRUE
 	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 400
+
+/datum/perk/skill_mod/pistols/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/som/extended_pistol, jobs_supported, owner, 0)
 
 /datum/perk/skill_mod/shotguns
 	name = "Advanced shotgun training"
