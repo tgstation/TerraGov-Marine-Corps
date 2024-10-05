@@ -115,6 +115,16 @@
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
+/datum/loadout_item/secondary/kit/som_engineer/materials
+	name = "Metal/plasteel"
+	desc = "A full stack of metal and plasteel. For maximum construction."
+	ui_icon = "materials"
+
+/datum/loadout_item/secondary/kit/som_engineer/materials/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
 /datum/loadout_item/secondary/kit/som_corpsman
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
 

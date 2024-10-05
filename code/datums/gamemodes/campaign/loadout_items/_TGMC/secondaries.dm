@@ -187,6 +187,17 @@
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
+/datum/loadout_item/secondary/kit/deploy_shield
+	name = "Deployable shield"
+	desc = "Two deployable shields. Can be used as strong, portable barricades, or as a shield in a pinch."
+	ui_icon = "riot_shield"
+	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
+
+/datum/loadout_item/secondary/kit/deploy_shield/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
 /datum/loadout_item/secondary/kit/binoculars
 	name = "Tac binos"
 	desc = "Tactical binoculars, used for scouting positions and calling in fire support, if it's available."
@@ -234,6 +245,27 @@
 /datum/loadout_item/secondary/kit/tgmc_engineer/large_mines/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary/kit/tgmc_engineer/materials
+	name = "Metal/plasteel"
+	desc = "A full stack of metal and plasteel. For maximum construction."
+	ui_icon = "materials"
+
+/datum/loadout_item/secondary/kit/tgmc_engineer/materials/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
+/datum/loadout_item/secondary/kit/tgmc_engineer/razorburn
+	name = "Razorburn"
+	desc = "Three razorburn cannisters, able to make huge fields of razorwire quickly. 'Everyone laughs at razorwire, until they're trying to get through it while being shot to pieces.' Unknown"
+	ui_icon = "default"
+
+/datum/loadout_item/secondary/kit/tgmc_engineer/razorburn/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/iguana
