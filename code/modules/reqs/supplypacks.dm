@@ -301,11 +301,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/standard_agls/cloak)
 	cost = 30
 
-/datum/supply_packs/weapons/ags_tanglefoot
-	name = "AGLS-37 AGL Tanglefoot Grenades"
-	contains = list(/obj/item/ammo_magazine/standard_agls/tanglefoot)
-	cost = 55
-
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)
@@ -1314,6 +1309,11 @@ CLOTHING
 	contains = list(/obj/item/cell/night_vision_battery, /obj/item/cell/night_vision_battery)
 	cost = 100
 
+/datum/supply_packs/clothing/saddle
+	name = "Runner Saddle"
+	contains = list(/obj/item/storage/backpack/marine/duffelbag/xenosaddle)
+	cost = 120
+
 /*******************************************************************************
 MEDICAL
 *******************************************************************************/
@@ -1747,7 +1747,7 @@ Imports
 /datum/supply_packs/imports/m412l1
 	name = "PR-412L1 Heavy Pulse Rifle"
 	contains = list(/obj/item/weapon/gun/rifle/m412l1_hpr)
-	cost = 150
+	cost = 300
 
 /datum/supply_packs/imports/m412l1/ammo
 	name = "PR-412L1 Heavy Pulse Rifle Ammo"
@@ -1851,7 +1851,7 @@ Imports
 /datum/supply_packs/imports/dragunov
 	name = "SVD Dragunov Sniper"
 	contains = list(/obj/item/weapon/gun/rifle/sniper/svd)
-	cost = 150
+	cost = 300
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/imports/dragunov/ammo
@@ -2307,22 +2307,22 @@ FACTORY
 /datum/supply_packs/factory/smartgun_minigun_box_refill
 	name = "SG-85 ammo bin parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_minigun_box_refill)
-	cost = 230
+	cost = 350
 
 /datum/supply_packs/factory/smartgun_magazine_refill
 	name = "SG-29 ammo drum parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_machinegun_magazine_refill)
-	cost = 230
+	cost = 350
 
 /datum/supply_packs/factory/smartgun_targetrifle_refill
 	name = "SG-62 ammo magazine parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_magazine_refill)
-	cost = 230
+	cost = 400
 
 /datum/supply_packs/factory/smartgun_targetrifle_ammobin_refill
 	name = "SG-62 ammo bin parts refill"
 	contains = list(/obj/item/factory_refill/smartgunner_targetrifle_ammobin_refill)
-	cost = 250
+	cost = 400
 
 /datum/supply_packs/factory/autosniper_magazine_refill
 	name = "SR-81 IFF Auto Sniper magazine assembly refill"
@@ -2527,11 +2527,6 @@ FACTORY
 	name = "AGLS Cloak magazine assembly refill"
 	contains = list(/obj/item/factory_refill/agls_cloak_refill)
 	cost = 200
-
-/datum/supply_packs/factory/agls_tanglefoot_refill
-	name = "AGLS Tanglefoot magazine assembly refill"
-	contains = list(/obj/item/factory_refill/agls_tanglefoot_refill)
-	cost = 400
 
 /datum/supply_packs/factory/atgun_aphe_refill
 	name = "AT-36 AP-HE shell assembly refill"

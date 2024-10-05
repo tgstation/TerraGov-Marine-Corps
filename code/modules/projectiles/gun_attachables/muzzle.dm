@@ -245,8 +245,6 @@
 	else
 		if(user.do_actions)
 			return
-		if(!do_after(user, 0.5 SECONDS, NONE, src, BUSY_ICON_BAR))
-			return
 		to_chat(user, span_notice("You deploy the [src]."))
 		ADD_TRAIT(master_gun, TRAIT_NODROP, PISTOL_LACE_TRAIT)
 		to_chat(user, span_warning("You feel the [src] shut around your wrist!"))

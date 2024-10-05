@@ -14,14 +14,14 @@
 	melee_damage = 28
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 1200
 	plasma_gain = 90
 
 	// *** Health *** //
-	max_health = 650
+	max_health = 600
 
 	// *** Sunder *** //
 	sunder_multiplier = 0.8

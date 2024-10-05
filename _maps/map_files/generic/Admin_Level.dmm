@@ -1540,7 +1540,7 @@
 	id = "kitchencounter";
 	name = "Kitchen Counter Shutters"
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/tool/kitchen/utensil/fork,
 /turf/open/floor/plating,
 /area/centcom/valhalla)
@@ -8980,6 +8980,10 @@
 	dir = 3
 	},
 /turf/open/floor/engine,
+/area/centcom/valhalla)
+"mNo" = (
+/obj/machinery/vending/valhalla_reqtorio,
+/turf/open/floor/plating,
 /area/centcom/valhalla)
 "mOd" = (
 /obj/structure/sign/nosmoking_1,
@@ -20539,7 +20543,7 @@ wlz
 gFO
 xOn
 boq
-boq
+mNo
 boq
 nUd
 aMq

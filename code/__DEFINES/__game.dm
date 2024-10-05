@@ -19,6 +19,9 @@
 #define MAP_LAWANKA_OUTPOST "Lawanka Outpost"
 #define MAP_DAEDALUS_PRISON "Daedalus Prison"
 #define MAP_KUTJEVO_REFINERY "Kutjevo Refinery"
+#define MAP_CHIGUSA "Chigusa"
+#define MAP_LAVA_OUTPOST "Lava Outpost V1"
+#define MAP_CORSAT "CORSAT Research Station"
 
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"

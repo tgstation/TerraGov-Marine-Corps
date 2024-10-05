@@ -5,10 +5,14 @@
 		slot_l_hand_str = 'icons/mob/inhands/equipment/shields_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/shields_right.dmi',
 	)
+	/// Does this shield have a strap?
+	var/strappable = FALSE
 
 /obj/item/weapon/shield/Initialize(mapload)
 	. = ..()
 	set_shield()
+	if(strappable)
+		AddElement(/datum/element/strappable)
 
 /obj/item/weapon/shield/proc/set_shield()
 	AddComponent(/datum/component/shield, SHIELD_PARENT_INTEGRITY, list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 80, BIO = 30, FIRE = 50, ACID = 80))
@@ -99,10 +103,7 @@
 	hard_armor = list(MELEE = 0, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	force = 20
 	slowdown = 0.5
-
-/obj/item/weapon/shield/riot/marine/Initialize(mapload)
-	. = ..()
-	AddElement(/datum/element/strappable)
+	strappable = TRUE
 
 /obj/item/weapon/shield/riot/marine/update_icon_state()
 	. = ..()
@@ -135,7 +136,7 @@
 //A shield that can be deployed as a barricade
 /obj/item/weapon/shield/riot/marine/deployable
 	name = "\improper TL-182 deployable shield"
-	desc = "A compact shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade. Alt click to tighten the strap."
+	desc = "A compact shield adept at blocking blunt or sharp objects from connecting with the shield wielder. Can be deployed as a barricade."
 	icon_state = "folding_shield"
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_NORMAL
@@ -144,6 +145,7 @@
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 20, ENERGY = 40, BOMB = 25, BIO = 50, FIRE = 0, ACID = 30)
 	slowdown = 0.3
 	item_flags = IS_DEPLOYABLE
+	strappable = FALSE
 	///The item this deploys into
 	var/deployable_item = /obj/structure/barricade/metal/deployable
 	///Time to deploy

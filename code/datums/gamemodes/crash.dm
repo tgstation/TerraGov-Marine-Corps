@@ -212,4 +212,3 @@
 		if(isspaceturf(H.loc))
 			continue
 		. += H.job.jobworth[/datum/job/xenomorph]
-

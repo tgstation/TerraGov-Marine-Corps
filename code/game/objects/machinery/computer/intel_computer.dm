@@ -21,7 +21,7 @@
 	var/dropship_reward = 50
 
 	///How much progress we get every tick, up to 100
-	var/progress_interval = 1
+	var/progress_interval = 0.75
 	///Tracks how much of the terminal is completed
 	var/progress = 0
 	///have we logged into the terminal yet?
@@ -46,10 +46,18 @@
 	if(!printing)
 		STOP_PROCESSING(SSmachines, src)
 		return
-	progress += progress_interval
-	if(progress >= 100)
-		STOP_PROCESSING(SSmachines, src)
+	if (machine_stat & NOPOWER)
 		printing = FALSE
+		update_minimap_icon()
+		visible_message("<b>[src]</b> shuts down as it loses power. Any running programs will now exit.")
+		if(progress >= 50)
+			progress = 50
+		else
+			progress = 0
+		return
+	progress += progress_interval
+	if(progress <= 100)
+		return
 		printing_complete = TRUE
 		SSpoints.supply_points[faction] += supply_reward
 		SSpoints.dropship_points += dropship_reward
@@ -86,6 +94,11 @@
 		ui = new(user, src, "IntelComputer", "IntelComputer")
 		ui.open()
 
+///Change minimap icon if its on or off
+/obj/machinery/computer/intel_computer/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel[printing ? "_on" : "_off"]", ABOVE_FLOAT_LAYER))
+
 /obj/machinery/computer/intel_computer/ui_data(mob/user)
 	var/list/data = list()
 	data["logged_in"] = logged_in
@@ -109,6 +122,7 @@
 			. = TRUE
 		if("start_progressing")
 			printing = TRUE
+			update_minimap_icon()
 			var/mob/living/ui_user = ui.user
 			faction = ui_user.faction
 			START_PROCESSING(SSmachines, src)
