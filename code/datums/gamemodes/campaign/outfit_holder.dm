@@ -123,6 +123,7 @@
 			loadout.secondary_weapon = new_item?.item_typepath
 		else
 			CRASH("Invalid item slot specified [slot_bit]")
+	new_item.on_holder_equip(src)
 	return TRUE
 
 ///scans the entire loadout for validity

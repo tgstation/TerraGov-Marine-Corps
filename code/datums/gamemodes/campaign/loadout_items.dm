@@ -90,6 +90,14 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 			return FALSE
 	return TRUE
 
+///Any additional behavior when this datum is equipped to an outfit_holder
+/datum/loadout_item/proc/on_holder_equip(datum/outfit_holder)
+	//if there is a single whitelist item, this is a guaranteed mandatory prereq for src, so we autoequip for player QOL
+	if(length(item_whitelist) != 1)
+		return
+	for(var/item in item_whitelist)
+		equip_mandatory_item(outfit_holder, item, item_whitelist[item])
+
 ///Any post equip things related to this item
 /datum/loadout_item/proc/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	role_post_equip(wearer, loadout, holder)
@@ -97,3 +105,14 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 ///A separate post equip proc for role specific code. Split for more flexible parent overriding
 /datum/loadout_item/proc/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	return
+
+///Equips a mandatory item when src is equipt for player convenience
+/datum/loadout_item/proc/equip_mandatory_item(datum/outfit_holder/outfit_holder, mandatory_type, mandatory_slot)
+	if(!mandatory_slot || !mandatory_type || !outfit_holder)
+		return
+	if(outfit_holder.equipped_things["[mandatory_slot]"].item_typepath == mandatory_type)
+		return
+	for(var/datum/loadout_item/item AS in outfit_holder.available_list["[mandatory_slot]"])
+		if(item.item_typepath != mandatory_type)
+			continue
+		outfit_holder.equip_loadout_item(item)

@@ -103,7 +103,7 @@
 	ui_icon = "m25"
 	item_typepath = /obj/item/weapon/gun/smg/m25/holstered
 	item_whitelist = list(/obj/item/storage/holster/m25 = ITEM_SLOT_BELT)
-	req_desc = "Requires an SMG-25 holster."
+	req_desc = "Requires an SMG-25 holster and either a MG-27 or FL-84."
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/secondary/gun/marine/standard_smg/item_checks(datum/outfit_holder/outfit_holder)
@@ -156,7 +156,7 @@
 	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
 	default_load(wearer, loadout, holder)
 
-/datum/loadout_item/secondary/officer_sword
+/datum/loadout_item/secondary/machete/officer
 	name = "Officers sword"
 	desc = "This appears to be a rather old blade that has been well taken care of, it is probably a family heirloom. Oddly despite its probable non-combat purpose it is sharpened and not blunt."
 	ui_icon = "machete"
@@ -165,10 +165,7 @@
 	item_whitelist = list(/obj/item/storage/holster/blade/officer = ITEM_SLOT_BELT)
 	req_desc = "Requires a scabbard."
 
-/datum/loadout_item/secondary/officer_sword/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
-	default_load(wearer, loadout, holder)
-
+//kits
 /datum/loadout_item/secondary/kit/mirage_nades
 	name = "Mirage nades"
 	desc = "Three mirage grenades, can provide a handy distraction against unwitting opponents."

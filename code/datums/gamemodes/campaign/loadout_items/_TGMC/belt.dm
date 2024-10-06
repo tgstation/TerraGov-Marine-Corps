@@ -49,7 +49,7 @@
 
 /datum/loadout_item/belt/sparepouch/smartgunner
 	desc = "A general storage pouch. \
-	Contains a MP-19 sidearm, and spare ammo for the SG-85, or addition drum magazines for the SG-29." //contents handled by the SG-85
+	Contains additional ammo." //contents handled by the SG-85
 	req_desc = "Requires a SG-85."
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 	item_whitelist = list(
@@ -68,12 +68,12 @@
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. \
 	This version is designed for the SMG-25, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	ui_icon = "m25"
-	req_desc = "Requires a SMG-25, MG-27 or FL-84."
+	req_desc = "Requires a SMG-25 secondary."
 	item_typepath = /obj/item/storage/holster/m25
 	jobs_supported = list(SQUAD_MARINE)
 	item_whitelist = list(/obj/item/weapon/gun/smg/m25/holstered = ITEM_SLOT_SECONDARY)
 
-/datum/loadout_item/belt/machete
+/datum/loadout_item/belt/scabbard
 	name = "Scabbard"
 	desc = "A large leather scabbard for carrying a M2132 machete. Blade comes separately."
 	ui_icon = "machete"
@@ -81,6 +81,13 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER)
 	item_whitelist = list(/obj/item/weapon/sword/machete = ITEM_SLOT_SECONDARY)
 	req_desc = "Requires a machete secondary."
+
+/datum/loadout_item/belt/scabbard/officer
+	desc = "A family heirloom sheath for an officer's sabre. Looks expensive."
+	item_typepath = /obj/item/storage/holster/blade/officer
+	jobs_supported = list(FIELD_COMMANDER)
+	item_whitelist = list(/obj/item/weapon/sword/officersword = ITEM_SLOT_SECONDARY)
+	req_desc = "Requires an officer sword secondary."
 
 /datum/loadout_item/belt/belt_harness
 	name = "Belt harness"
@@ -123,7 +130,6 @@
 	item_whitelist = list(/obj/item/weapon/gun/shotgun/double/marine = ITEM_SLOT_SECONDARY)
 	req_desc = "Requires a SH-34 secondary."
 
-//medic
 /datum/loadout_item/belt/lifesaver
 	name = "Lifesaver bag"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. This configuration mounts a duffel bag filled with a range of injectors and light medical supplies and is common among medics."
@@ -131,14 +137,3 @@
 	item_typepath = /obj/item/storage/belt/lifesaver/quick
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
-
-//FC
-/datum/loadout_item/belt/officer_sword
-	name = "Scabbard"
-	desc = "A family heirloom sheath for an officer's sabre. Looks expensive."
-	ui_icon = "machete"
-	item_typepath = /obj/item/storage/holster/blade/officer
-	jobs_supported = list(FIELD_COMMANDER)
-	item_whitelist = list(/obj/item/weapon/sword/officersword = ITEM_SLOT_SECONDARY)
-	req_desc = "Requires an officer sword secondary."
-
