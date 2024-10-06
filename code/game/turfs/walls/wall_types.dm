@@ -269,7 +269,7 @@
 /turf/closed/wall/indestructible/splashscreen
 	name = "NTF vs Alien"
 	icon = 'icons/misc/title.dmi'
-	icon_state = "title_painting1"
+	icon_state = "title_painting0"
 //	icon_state = "title_holiday"
 	layer = FLY_LAYER
 	pixel_x = -64
