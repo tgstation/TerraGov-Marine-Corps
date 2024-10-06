@@ -32,5 +32,6 @@
 
 /obj/vehicle/sealed/armored/multitile/icc_lvrt/Initialize(mapload)
 	. = ..()
-	var/obj/item/armored_weapon/gun = new /obj/item/armored_weapon/icc_coaxial()
+	var/obj/item/armored_weapon/icc_coaxial/gun = new(src)
+	gun.attach(src)
 	gun.attach(src)
