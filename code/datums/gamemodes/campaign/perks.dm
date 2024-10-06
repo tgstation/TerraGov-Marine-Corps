@@ -275,7 +275,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/pistols
 	name = "Advanced pistol training"
-	desc = "Improved damage, accuracy and scatter with pistol type firearms."
+	desc = "Improved damage, accuracy and scatter with pistol type firearms. Unlocks additional pistols for some roles."
 	req_desc = "Requires Advanced combat training."
 	ui_icon = "pistols"
 	pistols = 1
