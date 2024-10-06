@@ -11,6 +11,7 @@
 		/obj/item/storage/backpack/lightpack/som = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine/engineerpack/som = ITEM_SLOT_BACK,
 	)
+	req_desc = "Requires some kind of back storage."
 
 //Default bag items if we don't need to spawn anything specific to the main secondary item
 /datum/loadout_item/secondary/proc/default_load(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
@@ -39,6 +40,7 @@
 	desc = "Nothing. Nadda."
 	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	req_desc = null
 	item_whitelist = null
 	jobs_supported = list(
 		SQUAD_MARINE,

@@ -9,6 +9,7 @@
 		/obj/item/storage/backpack/marine/tech = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine/corpsman = ITEM_SLOT_BACK,
 	)
+	req_desc = "Requires a pistol holster or some kind of back storage."
 
 /datum/loadout_item/secondary/gun/marine/standard_pistol
 	name = "P-14"
@@ -94,6 +95,7 @@
 		/obj/item/storage/backpack/marine = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/lightpack = ITEM_SLOT_BACK,
 	)
+	req_desc = "Requires some kind of back storage."
 
 /datum/loadout_item/secondary/gun/marine/standard_smg
 	name = "SMG-25"
@@ -101,6 +103,7 @@
 	ui_icon = "m25"
 	item_typepath = /obj/item/weapon/gun/smg/m25/holstered
 	item_whitelist = list(/obj/item/storage/holster/m25 = ITEM_SLOT_BELT)
+	req_desc = "Requires an SMG-25 holster."
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/secondary/gun/marine/standard_smg/item_checks(datum/outfit_holder/outfit_holder)
@@ -133,6 +136,7 @@
 	ui_icon = "tx34"
 	item_typepath = /obj/item/weapon/gun/shotgun/double/marine
 	item_whitelist = list(/obj/item/storage/holster/belt/ts34 = ITEM_SLOT_BELT)
+	req_desc = "Requires a shotgun holster."
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 
 /datum/loadout_item/secondary/gun/marine/db_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
@@ -146,6 +150,7 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER, SQUAD_SMARTGUNNER)
 	item_typepath = /obj/item/weapon/sword/machete
 	item_whitelist = list(/obj/item/storage/holster/blade/machete = ITEM_SLOT_BELT)
+	req_desc = "Requires a scabbard."
 
 /datum/loadout_item/secondary/machete/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
@@ -158,6 +163,7 @@
 	jobs_supported = list(FIELD_COMMANDER)
 	item_typepath = /obj/item/weapon/sword/officersword
 	item_whitelist = list(/obj/item/storage/holster/blade/officer = ITEM_SLOT_BELT)
+	req_desc = "Requires a scabbard."
 
 /datum/loadout_item/secondary/officer_sword/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
@@ -282,6 +288,7 @@
 
 /datum/loadout_item/secondary/kit/tgmc_corpsman
 	jobs_supported = list(SQUAD_CORPSMAN)
+	req_desc = "Requires a medical backpack."
 
 /datum/loadout_item/secondary/kit/tgmc_corpsman/advanced
 	name = "Advanced meds"

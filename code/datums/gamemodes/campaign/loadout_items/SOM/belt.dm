@@ -73,6 +73,7 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom = ITEM_SLOT_SECONDARY,
 		/obj/item/storage/backpack/marine/engineerpack/som = ITEM_SLOT_SECONDARY,
 	)
+	req_desc = "Requires a pistol secondary."
 
 /datum/loadout_item/belt/som/pistol_holster/default
 	jobs_supported = list(SOM_STAFF_OFFICER)

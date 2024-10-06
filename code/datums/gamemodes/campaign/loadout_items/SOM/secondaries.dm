@@ -7,6 +7,7 @@
 		/obj/item/storage/backpack/lightpack/som = ITEM_SLOT_BACK,
 		/obj/item/storage/backpack/marine/engineerpack/som = ITEM_SLOT_BACK,
 	)
+	req_desc = "Requires a pistol holster or some kind of back storage."
 
 /datum/loadout_item/secondary/gun/som/standard_pistol
 	name = "V-11"
@@ -36,7 +37,7 @@
 
 /datum/loadout_item/secondary/gun/som/serpenta_custom
 	name = "VX-12c Serpenta"
-	desc = "he 'serpenta' is a volkite energy pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
+	desc = "The 'serpenta' is a volkite energy pistol typically seen in the hands of SOM officers and some NCOs, and is quite dangerous for it's size. \
 	This particular weapon appears to be a custom model with improved performance."
 	ui_icon = "vx12"
 	item_typepath = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom
@@ -53,6 +54,7 @@
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/culverin/magharness = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/caliver/tacsensor = ITEM_SLOT_SUITSTORE,
 	)
+	req_desc = "Requires a VX-42 or VX-33P."
 
 /datum/loadout_item/secondary/gun/som/sawn_off/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_BELT)
