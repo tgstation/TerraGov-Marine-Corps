@@ -263,6 +263,20 @@
 	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
+/datum/loadout_item/secondary/kit/tgmc_engineer/detpack
+	name = "Detpacks"
+	desc = "Detpacks, for blowing things up."
+	ui_icon = "default"
+
+/datum/loadout_item/secondary/kit/tgmc_engineer/detpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	if(istype(wearer.back, /obj/item/storage/backpack/marine/tech))
+		wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	else
+		wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+
 /datum/loadout_item/secondary/kit/tgmc_engineer/razorburn
 	name = "Razorburn"
 	desc = "Three razorburn cannisters, able to make huge fields of razorwire quickly. 'Everyone laughs at razorwire, until they're trying to get through it while being shot to pieces.' Unknown"
