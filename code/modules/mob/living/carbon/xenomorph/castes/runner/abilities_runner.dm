@@ -80,7 +80,7 @@
 	action_icon_state = "evasion_on"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Take evasive action, forcing non-friendly projectiles that would hit you to miss for a short duration so long as you keep moving. \
-			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early."
+			Alternate use toggles Auto Evasion off or on. Click again while active to deactivate early. You cannot evade pointblank shots or attack while evading."
 	ability_cost = 75
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(

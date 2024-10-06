@@ -301,6 +301,7 @@ GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
 	"v51",
 	"v62",
 	"t21",
+	"tx34",
 ))
 
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())

@@ -210,7 +210,7 @@
 /datum/ammo/energy/lasgun/marine/weakening
 	name = "weakening laser bolt"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_efficiency"
 	damage = 30
 	penetration = 10
 	sundering = 0
@@ -231,7 +231,7 @@
 /datum/ammo/energy/lasgun/marine/microwave
 	name = "microwave laser bolt"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_xray"
 	damage = 20
 	penetration = 20
 	sundering = 2
@@ -276,7 +276,7 @@
 /datum/ammo/energy/lasgun/marine/impact
 	name = "impact laser blast"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_impact"
 	damage = 35
 	penetration = 10
 	sundering = 0
@@ -290,7 +290,7 @@
 /datum/ammo/energy/lasgun/marine/cripple
 	name = "impact laser blast"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_disabler"
 	damage = 20
 	penetration = 10
 	sundering = 0
@@ -313,7 +313,7 @@
 
 /datum/ammo/energy/lasgun/marine/autolaser/charge
 	name = "charged machine laser bolt"
-	hud_state = "laser_efficiency"
+	hud_state = "laser_overcharge"
 	damage = 50
 	penetration = 30
 	sundering = 3
@@ -327,7 +327,7 @@
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting
 	name = "melting machine laser bolt"
-	hud_state = "laser_efficiency"
+	hud_state = "laser_melting"
 	damage = 15
 	penetration = 20
 	sundering = 0
@@ -375,7 +375,7 @@
 /datum/ammo/energy/lasgun/marine/shatter
 	name = "sniper shattering bolt"
 	icon_state = "microwavelaser"
-	hud_state = "laser_heat"
+	hud_state = "laser_impact"
 	damage = 40
 	penetration = 30
 	accurate_range_min = 5
@@ -399,7 +399,7 @@
 /datum/ammo/energy/lasgun/marine/ricochet
 	name = "sniper laser bolt"
 	icon_state = "microwavelaser"
-	hud_state = "laser_heat"
+	hud_state = "laser_disabler"
 	damage = 100
 	penetration = 30
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_SNIPER
@@ -432,6 +432,7 @@
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
+	hud_state = "laser_efficiency"
 	damage = 20
 	penetration = 5
 	sundering = 1
@@ -465,7 +466,7 @@
 
 /datum/ammo/energy/lasgun/marine/xray
 	name = "xray heat bolt"
-	hud_state = "laser_xray"
+	hud_state = "laser_heat"
 	icon_state = "u_laser"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_HITSCAN
 	damage = 25
@@ -476,6 +477,7 @@
 
 /datum/ammo/energy/lasgun/marine/xray/piercing
 	name = "xray piercing bolt"
+	hud_state = "laser_xray"
 	icon_state = "xray"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	damage = 25

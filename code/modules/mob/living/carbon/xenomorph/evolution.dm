@@ -328,14 +328,6 @@
 		if(new_caste.tier == XENO_TIER_THREE && no_room_tier_three)
 			balloon_alert(src, "The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die")
 			return FALSE
-		var/potential_queens = length(hive.xenos_by_typepath[/datum/xeno_caste/larva]) + length(hive.xenos_by_typepath[/datum/xeno_caste/drone])
-		if(SSticker.mode?.round_type_flags & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
-			if(isxenolarva(src) && new_caste_type != /datum/xeno_caste/drone)
-				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!"))
-				return FALSE
-			else if(isxenodrone(src) && new_caste_type != /datum/xeno_caste/shrike)
-				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!"))
-				return FALSE
 		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold && !SSresinshaping.active)
 			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))
 			return FALSE

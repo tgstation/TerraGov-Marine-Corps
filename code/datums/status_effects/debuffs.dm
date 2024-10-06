@@ -109,7 +109,7 @@
 	REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/incapacitating/unconscious/tick()
+/datum/status_effect/incapacitating/unconscious/tick(delta_time)
 	if(owner.getStaminaLoss())
 		owner.adjustStaminaLoss(-0.3) //reduce stamina loss by 0.3 per tick, 6 per 2 seconds
 
@@ -143,7 +143,7 @@
 	REMOVE_TRAIT(owner, TRAIT_KNOCKEDOUT, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/incapacitating/sleeping/tick()
+/datum/status_effect/incapacitating/sleeping/tick(delta_time)
 	if(!owner.maxHealth)
 		return
 	var/health_ratio = owner.health / owner.maxHealth
@@ -194,7 +194,7 @@
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/incapacitating/repair_mode/tick()
+/datum/status_effect/incapacitating/repair_mode/tick(delta_time)
 	var/sound_to_play
 	if(owner.getBruteLoss())
 		owner.heal_limb_damage(healing_per_tick, 0, TRUE, TRUE)
@@ -348,7 +348,7 @@
 	else
 		CRASH("something applied plasmadrain on a nonxeno, dont do that")
 
-/datum/status_effect/plasmadrain/tick()
+/datum/status_effect/plasmadrain/tick(delta_time)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	if(xenoowner.plasma_stored >= 0)
 		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 10
@@ -378,7 +378,7 @@
 	REMOVE_TRAIT(owner, TRAIT_NOPLASMAREGEN, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/noplasmaregen/tick()
+/datum/status_effect/noplasmaregen/tick(delta_time)
 	to_chat(owner, span_warning("You feel too weak to summon new plasma..."))
 
 /datum/status_effect/incapacitating/harvester_slowdown
@@ -433,13 +433,13 @@
 	. = ..()
 	to_chat(new_owner, span_danger("The cold vacuum instantly freezes you, maybe this was a bad idea?"))
 
-/datum/status_effect/spacefreeze/tick()
+/datum/status_effect/spacefreeze/tick(delta_time)
 	owner.adjustFireLoss(40)
 
 /datum/status_effect/spacefreeze/light
 	id = "spacefreeze_light"
 
-/datum/status_effect/spacefreeze/light/tick()
+/datum/status_effect/spacefreeze/light/tick(delta_time)
 	owner.fire_stacks = max(owner.fire_stacks - 6, 0)
 	if(owner.stat == DEAD)
 		return
@@ -467,7 +467,7 @@
 	carbon_owner = null
 	return ..()
 
-/datum/status_effect/incapacitating/irradiated/tick()
+/datum/status_effect/incapacitating/irradiated/tick(delta_time)
 	var/mob/living/living_owner = owner
 	//Roulette of bad things
 	if(prob(15))
@@ -530,7 +530,7 @@
 	QDEL_NULL(particle_holder)
 	return ..()
 
-/datum/status_effect/stacking/intoxicated/tick()
+/datum/status_effect/stacking/intoxicated/tick(delta_time)
 	. = ..()
 	if(!debuff_owner)
 		return
@@ -608,7 +608,7 @@
 	QDEL_NULL(visual_fire)
 	return ..()
 
-/datum/status_effect/stacking/melting_fire/tick()
+/datum/status_effect/stacking/melting_fire/tick(delta_time)
 	. = ..()
 	if(!debuff_owner)
 		qdel(src)
@@ -671,7 +671,7 @@
 	duration = set_duration
 	return ..()
 
-/datum/status_effect/dread/tick()
+/datum/status_effect/dread/tick(delta_time)
 	. = ..()
 	var/mob/living/living_owner = owner
 	living_owner.do_jitter_animation(250)
@@ -729,7 +729,7 @@
 	QDEL_NULL(particle_holder)
 	return ..()
 
-/datum/status_effect/stacking/melting/tick()
+/datum/status_effect/stacking/melting/tick(delta_time)
 	. = ..()
 	if(!debuff_owner)
 		return
@@ -814,7 +814,7 @@
 	if(stacks_added > 0 && stacks >= max_stacks) //proc is run even if stacks are not actually added
 		COOLDOWN_START(src, cooldown_microwave_status, MICROWAVE_STATUS_DURATION)
 
-/datum/status_effect/stacking/microwave/tick()
+/datum/status_effect/stacking/microwave/tick(delta_time)
 	. = ..()
 	if(COOLDOWN_CHECK(src, cooldown_microwave_status))
 		return qdel(src)

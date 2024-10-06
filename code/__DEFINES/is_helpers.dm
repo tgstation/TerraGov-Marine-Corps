@@ -131,6 +131,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
+#define isAIeye(A) (istype(A, /mob/camera/aiEye))
+
 //Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
 
@@ -275,11 +277,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
 #define isimplant(A) (istype(A, /obj/item/implant))
-
-#define isdoorkey(A) istype(A, /obj/item/key/door)
-
-#define islock(A) istype(A, /obj/item/lock)
-
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

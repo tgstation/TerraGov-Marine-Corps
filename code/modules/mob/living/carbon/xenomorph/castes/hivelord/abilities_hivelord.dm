@@ -68,7 +68,7 @@
 		/turf/closed/wall/resin/regenerating/thick,
 		/turf/closed/wall/resin/membrane/thick,
 		/obj/alien/resin/sticky,
-		/obj/structure/door/resin/thick,
+		/obj/structure/mineral_door/resin/thick,
 		/obj/structure/bed/nest,
 		/obj/structure/bed/nest/wall,
 		/obj/structure/xeno/lighttower,

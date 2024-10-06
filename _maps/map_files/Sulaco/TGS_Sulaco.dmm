@@ -11578,7 +11578,7 @@
 /area/sulaco/hangar/storage)
 "ejF" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/prison/sterilewhite,
 /area/sulaco/cafeteria/kitchen)
 "eld" = (

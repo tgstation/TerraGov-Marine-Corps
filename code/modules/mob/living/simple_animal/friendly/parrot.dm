@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 		drop_held_item(0)
 
 
-/mob/living/simple_animal/parrot/Life()
+/mob/living/simple_animal/parrot/Life(seconds_per_tick, times_fired)
 	. = ..()
 
 	//Sprite update for when a parrot gets pulled
@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	return ..()
 
 
-/mob/living/simple_animal/parrot/Poly/Life()
+/mob/living/simple_animal/parrot/Poly/Life(seconds_per_tick, times_fired)
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE)
 		memory_saved = TRUE

@@ -252,12 +252,13 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/civilian/survivor/master
 	name = "Survivor"
 	combat = SKILL_COMBAT_DEFAULT
-	medical = SKILL_MEDICAL_EXPERT
-	surgery = SKILL_SURGERY_EXPERT
-	construction = SKILL_CONSTRUCTION_EXPERT
-	engineer = SKILL_ENGINEER_EXPERT
+	medical = SKILL_MEDICAL_PRACTICED
+	construction = SKILL_CONSTRUCTION_ADVANCED
+	engineer = SKILL_ENGINEER_ENGI
 	powerloader = SKILL_POWERLOADER_MASTER
-	police = SKILL_POLICE_FLASH
+	rifles = SKILL_RIFLES_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/civilian/survivor/doctor
 	name = "Survivor Doctor"
@@ -279,6 +280,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 /datum/skills/civilian/survivor/miner
 	name = "Survivor Miner"
 	powerloader = SKILL_POWERLOADER_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
 
 /datum/skills/civilian/survivor/atmos
 	name = "Survivor Atmos Tech"
@@ -920,3 +922,31 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "SOM Medic"
 	medical = SKILL_MEDICAL_PRACTICED
 	surgery = SKILL_SURGERY_TRAINED
+
+//ERP Pranksters
+/datum/skills/prankster
+	name = "ERP Prankster"
+	unarmed = SKILL_UNARMED_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
+	combat = SKILL_COMBAT_TRAINED
+	pistols = SKILL_PISTOLS_TRAINED
+	shotguns = SKILL_SHOTGUNS_TRAINED
+	rifles = SKILL_RIFLES_TRAINED
+	smgs = SKILL_SMGS_TRAINED
+	heavy_weapons = SKILL_HEAVY_WEAPONS_DEFAULT
+	smartgun = SKILL_SMART_DEFAULT
+
+/datum/skills/prankster/boobookisser
+	name = "ERP Boo-boo Kisser"
+	medical = SKILL_MEDICAL_PRACTICED
+	surgery = SKILL_SURGERY_TRAINED
+
+/datum/skills/prankster/piethrower
+	name = "ERP Pie thrower"
+	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
+
+/datum/skills/prankster/masterprankster
+	name = "ERP Master Prankster"
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	engineer = SKILL_ENGINEER_PLASTEEL
+	leadership = SKILL_LEAD_EXPERT

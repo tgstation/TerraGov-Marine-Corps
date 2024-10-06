@@ -40,14 +40,14 @@
 /obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
 	if(issilicon(user))
 		return ..(user)
-	if(iscarbon(user) && isElectrified())
+	if(iscarbon(user) && isElectrified() && isturf(user.loc))
 		if(!justzap)
 			if(shock(user, 100))
 				justzap = TRUE
 				spawn (openspeed)
 					justzap = FALSE
 				return
-		else /*if(justzap)*/
+		else
 			return
 	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
 		var/mob/living/carbon/human/H = user

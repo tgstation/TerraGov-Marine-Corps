@@ -51,8 +51,6 @@
 		return
 	if(CHECK_BITFIELD(O.pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return
-	if(HAS_TRAIT(O, TRAIT_TANK_DESANT))
-		return
 	var/mob/living/M = O
 	if(M.status_flags & INCORPOREAL)
 		return

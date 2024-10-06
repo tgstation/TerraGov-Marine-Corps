@@ -89,12 +89,6 @@
 	icon_state = "ags_cloak"
 	default_ammo = /datum/ammo/grenade_container/ags_grenade/cloak
 
-/obj/item/ammo_magazine/standard_agls/tanglefoot
-	name = "AGLS-37 Tanglefoot magazine (40mm Caseless)"
-	desc = "A box holding 30 40mm caseless Tanglefoot grenades for the AGLS-37 automatic grenade launcher."
-	icon_state = "ags_pgas"
-	default_ammo = /datum/ammo/grenade_container/ags_grenade/tanglefoot
-
 /obj/item/ammo_magazine/standard_atgun
 	name = "AT-36 AP-HE shell (37mm Shell)"
 	desc = "A 37mm shell for light anti tank guns. Will penetrate walls and fortifications, before hitting a target and exploding, has less payload and punch than usual rounds."

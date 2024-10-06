@@ -241,11 +241,11 @@
 //Stealth handling
 
 
-/mob/living/carbon/xenomorph/proc/update_progression()
+/mob/living/carbon/xenomorph/proc/update_progression(seconds_per_tick)
 	// Upgrade is increased based on marine to xeno population taking stored_larva as a modifier.
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	upgrade_stored += 1 + (stored_larva/6) + hive.get_upgrade_boost() //Do this regardless of whether we can upgrade so age accrues at primo
+	upgrade_stored += (1 + (stored_larva/6) + hive.get_upgrade_boost()) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Do this regardless of whether we can upgrade so age accrues at primo
 	if(!upgrade_possible())
 		return
 	if(upgrade_stored < xeno_caste.upgrade_threshold)
@@ -255,7 +255,7 @@
 	upgrade_xeno(upgrade_next())
 
 
-/mob/living/carbon/xenomorph/proc/update_evolving()
+/mob/living/carbon/xenomorph/proc/update_evolving(seconds_per_tick)
 	if(evolution_stored >= xeno_caste.evolution_threshold || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
 		return
 	if(!hive.check_ruler() && caste_base_type != /datum/xeno_caste/larva) // Larva can evolve without leaders at round start.
@@ -265,7 +265,8 @@
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	var/evolution_points = 1 + (FLOOR(stored_larva / 3, 1)) + hive.get_evolution_boost() + spec_evolution_boost()
-	evolution_stored = min(evolution_stored + evolution_points, xeno_caste.evolution_threshold)
+	var/evolution_points_lag = evolution_points * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
+	evolution_stored = min(evolution_stored + evolution_points_lag, xeno_caste.evolution_threshold)
 
 	if(!client || !ckey)
 		return

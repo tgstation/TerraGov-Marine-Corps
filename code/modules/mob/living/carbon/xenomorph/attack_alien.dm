@@ -9,11 +9,11 @@
 /mob/living/proc/attack_alien_grab(mob/living/carbon/xenomorph/X)
 	if(X == src || anchored || buckled || X.buckled)
 		return FALSE
-
 	if(!Adjacent(X))
 		return FALSE
-
-	X.start_pulling(src)
+	if(!X.start_pulling(src))
+		return FALSE
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 	return TRUE
 
 /mob/living/carbon/human/attack_alien_grab(mob/living/carbon/xenomorph/X)
@@ -138,6 +138,14 @@
 	// if we don't get any non-stacking bonuses dont apply dam_bonus
 	if(!(signal_return & COMSIG_XENOMORPH_BONUS_APPLIED))
 		damage_mod += dam_bonus
+		//locate() subtypes aswell, whichever the mob has.
+		var/datum/action/ability/xeno_action/stealth/stealth_skill = locate() in X.actions
+		if(stealth_skill.can_sneak_attack)
+			var/datum/action/ability/activable/xeno/hunter_mark/assassin/mark = X.actions_by_path[/datum/action/ability/activable/xeno/hunter_mark/assassin]
+			if(mark?.marked_target == src) //assassin death mark
+				damage *= 2
+
+	var/armor_pen = X.xeno_caste.melee_ap
 
 	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
 		armor_block = MELEE
@@ -145,7 +153,6 @@
 	for(var/i in damage_mod)
 		damage += i
 
-	var/armor_pen = X.xeno_caste.melee_ap
 	for(var/i in armor_mod)
 		armor_pen += i
 
@@ -221,6 +228,7 @@
 	if(issamexenohive(X))
 		X.visible_message(span_warning("\The [X] nibbles [src]."),
 		span_warning("We nibble [src]."), null, 5)
+		X.do_attack_animation(src)
 		return FALSE
 	return ..()
 
@@ -259,8 +267,6 @@
 
 	if (xeno_attacker.fortify || xeno_attacker.behemoth_charging)
 		return FALSE
-
-	SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_LIVING, src, damage_amount, xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier)
 
 	switch(xeno_attacker.a_intent)
 		if(INTENT_HELP)

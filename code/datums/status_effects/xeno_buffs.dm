@@ -32,7 +32,7 @@
 	owner.balloon_alert(owner, "We are vulnerable again")
 	return ..()
 
-/datum/status_effect/resin_jelly_coating/tick()
+/datum/status_effect/resin_jelly_coating/tick(delta_time)
 	owner.heal_limb_damage(0, 5)
 	return ..()
 
@@ -99,7 +99,7 @@
 	REMOVE_TRAIT(link_target, TRAIT_ESSENCE_LINKED, TRAIT_STATUS_EFFECT(id))
 	return ..()
 
-/datum/status_effect/stacking/essence_link/tick()
+/datum/status_effect/stacking/essence_link/tick(delta_time)
 	var/within_range = get_dist(link_owner, link_target) <= DRONE_ESSENCE_LINK_RANGE
 	if(within_range != was_within_range) // Toggles the link depending on whether the linked xenos are still in range or not.
 		was_within_range = within_range
@@ -223,7 +223,7 @@
 	buff_owner.balloon_alert(buff_owner, "Salve regeneration ended")
 	return ..()
 
-/datum/status_effect/salve_regen/tick()
+/datum/status_effect/salve_regen/tick(delta_time)
 	new /obj/effect/temp_visual/healing(get_turf(buff_owner))
 	var/heal_amount = buff_owner.maxHealth * 0.01
 	buff_owner.adjustFireLoss(-max(0, heal_amount - buff_owner.getBruteLoss()), passive = TRUE)
@@ -293,7 +293,7 @@
 	toggle_buff(FALSE)
 	return ..()
 
-/datum/status_effect/drone_enhancement/tick()
+/datum/status_effect/drone_enhancement/tick(delta_time)
 	var/within_range = get_dist(buffed_xeno, buffing_xeno) <= DRONE_ESSENCE_LINK_RANGE
 	if(within_range != was_within_range)
 		was_within_range = within_range
@@ -556,13 +556,13 @@
 	owner.clear_fullscreen("xeno_feast", 0.7 SECONDS)
 	owner.remove_filter(list("[id]1", "[id]2"))
 
-/datum/status_effect/xeno_feast/tick()
+/datum/status_effect/xeno_feast/tick(delta_time)
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.plasma_stored < plasma_drain)
 		to_chat(X, span_notice("Our feast has come to an end..."))
 		X.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
-	var/heal_amount = X.maxHealth*0.08
+	var/heal_amount = X.maxHealth * 0.08
 	HEAL_XENO_DAMAGE(X, heal_amount, FALSE)
 	adjustOverheal(X, heal_amount / 2)
 	X.use_plasma(plasma_drain)
@@ -596,13 +596,13 @@
 	else
 		RegisterSignal(owner, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(plasma_surge_regeneration))
 
-/datum/status_effect/plasma_surge/proc/plasma_surge_regeneration()
+/datum/status_effect/plasma_surge/proc/plasma_surge_regeneration(mob/living/carbon/xenomorph/xeno, plasma_mod, seconds_per_tick)
 	SIGNAL_HANDLER
 
 	var/mob/living/carbon/xenomorph/X = owner
 	if(HAS_TRAIT(X,TRAIT_NOPLASMAREGEN)) //No bonus plasma if you're on a diet
 		return
-	var/bonus_plasma = X.xeno_caste.plasma_gain * bonus_regen * (1 + X.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
+	var/bonus_plasma = X.xeno_caste.plasma_gain * bonus_regen * (1 + X.recovery_aura * 0.05) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Recovery aura multiplier; 5% bonus per full level
 	X.gain_plasma(bonus_plasma)
 
 /datum/status_effect/plasma_surge/on_remove()
@@ -661,7 +661,7 @@
 	return ..()
 
 ///Called when the target xeno regains HP via heal_wounds in life.dm
-/datum/status_effect/healing_infusion/proc/healing_infusion_regeneration(mob/living/carbon/xenomorph/patient)
+/datum/status_effect/healing_infusion/proc/healing_infusion_regeneration(mob/living/carbon/xenomorph/patient, heal_data, seconds_per_tick)
 	SIGNAL_HANDLER
 
 	if(!health_ticks_remaining)
@@ -672,7 +672,7 @@
 
 	new /obj/effect/temp_visual/healing(get_turf(patient)) //Cool SFX
 
-	var/total_heal_amount = 6 + (patient.maxHealth * 0.03) //Base amount 6 HP plus 3% of max
+	var/total_heal_amount = 6 + (patient.maxHealth * 0.03) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD //Base amount 6 HP plus 3% of max
 	if(patient.recovery_aura)
 		total_heal_amount *= (1 + patient.recovery_aura * 0.05) //Recovery aura multiplier; 5% bonus per full level
 
@@ -691,7 +691,7 @@
 
 
 ///Called when the target xeno regains Sunder via heal_wounds in life.dm
-/datum/status_effect/healing_infusion/proc/healing_infusion_sunder_regeneration(mob/living/carbon/xenomorph/patient)
+/datum/status_effect/healing_infusion/proc/healing_infusion_sunder_regeneration(mob/living/carbon/xenomorph/patient, seconds_per_tick)
 	SIGNAL_HANDLER
 
 	if(!sunder_ticks_remaining)
@@ -705,7 +705,7 @@
 
 	new /obj/effect/temp_visual/telekinesis(get_turf(patient)) //Visual confirmation
 
-	patient.adjust_sunder(-1.5 * (1 + patient.recovery_aura * 0.05)) //5% bonus per rank of our recovery aura
+	patient.adjust_sunder(-1.5 * (1 + patient.recovery_aura * 0.05) * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD) //5% bonus per rank of our recovery aura
 
 /atom/movable/screen/alert/status_effect/healing_infusion
 	name = "Healing Infusion"
@@ -780,7 +780,7 @@
 	///weakref to the puppeteer to set strength
 	var/datum/weakref/puppeteer
 
-/datum/status_effect/blessing/tick()
+/datum/status_effect/blessing/tick(delta_time)
 	var/mob/living/carbon/xenomorph/xeno = puppeteer?.resolve()
 	if(!xeno)
 		return

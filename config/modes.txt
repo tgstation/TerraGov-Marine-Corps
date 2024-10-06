@@ -16,6 +16,14 @@ mode Extended
 endmode
 
 mode Extended Plus
+	requiredplayers 15
+endmode
+
+mode Extended Mini
+	requiredplayers 0
+endmode
+
+mode Zombie Crash
 	requiredplayers 0
 endmode
 
