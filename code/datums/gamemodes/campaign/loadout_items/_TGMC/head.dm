@@ -40,6 +40,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_whitelist = list(
 		/obj/item/clothing/suit/modular/tdf/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/tdf/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
 	)
 
 /datum/loadout_item/helmet/medium
@@ -51,6 +52,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 	item_whitelist = list(
 		/obj/item/clothing/suit/modular/tdf/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/tdf/shield_overclocked = ITEM_SLOT_OCLOTHING,
 	)
 
 /datum/loadout_item/helmet/heavy
@@ -62,6 +64,7 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 	item_whitelist = list(
 		/obj/item/clothing/suit/modular/tdf/heavy/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/tdf/heavy/shield_overclocked = ITEM_SLOT_OCLOTHING,
 	)
 
 /datum/loadout_item/helmet/leader
@@ -141,7 +144,7 @@
 	name = "Mimir helmet"
 	desc = "A standard combat helmet with a Mimir environmental protection module."
 	req_desc = "Requires a suit with a Mimir module."
-	item_typepath = /obj/item/clothing/head/modular/tdf/medic/mimir
+	item_typepath = /obj/item/clothing/head/modular/tdf/medic
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
@@ -165,7 +168,6 @@
 	desc = "A beret with the field commander insignia emblazoned on it. It commands loyalty and bravery in all who gaze upon it."
 	item_typepath = /obj/item/clothing/head/tgmcberet/fc
 	jobs_supported = list(FIELD_COMMANDER)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
 
 /datum/loadout_item/helmet/staff_officer_cap
 	name = "Officer cap"

@@ -222,7 +222,7 @@
 
 /obj/item/clothing/head/helmet/marine/specialist/tdf
 	name = "\improper Ace Class Hardsuit Helmet"
-	desc = "The helmet that pairs with the Ace hardsuit, heavily armored and reeinforced."
+	desc = "The helmet that pairs with the Ace hardsuit, heavily armored and reinforced."
 	icon = 'icons/mob/modular/tdf_helmets.dmi'
 	worn_icon_list = list(
 		slot_head_str = 'icons/mob/modular/tdf_helmets.dmi',
