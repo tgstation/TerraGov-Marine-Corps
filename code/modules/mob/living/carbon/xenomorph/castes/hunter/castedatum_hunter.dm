@@ -26,7 +26,7 @@
 	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 360
+	max_health = 330
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -40,7 +40,7 @@
 	caste_traits = list(TRAIT_CAN_VENTCRAWL)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
+	soft_armor = list(MELEE = 55, BULLET = 35, LASER = 35, ENERGY = 35, BOMB = 0, BIO = 20, FIRE = 30, ACID = 20)
 
 	// *** Stealth ***
 	stealth_break_threshold = 15
