@@ -79,7 +79,7 @@
 	var/direction_to_deploy
 	var/obj/deployed_machine
 
-	if(user)
+	if(user && item_to_deploy.loc == user) //somethings can be deployed remotely
 		if(!ishuman(user) || HAS_TRAIT(item_to_deploy, TRAIT_NODROP))
 			return
 
@@ -135,7 +135,7 @@
 
 	deployed_machine.update_appearance()
 
-	if(user)
+	if(user && item_to_deploy.loc == user)
 		item_to_deploy.balloon_alert(user, "Deployed!")
 		user.transferItemToLoc(item_to_deploy, deployed_machine, TRUE)
 		if(user.client.prefs.toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
