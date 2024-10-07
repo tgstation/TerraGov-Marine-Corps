@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Hunter health reduced from 360 to 320"
+  - balance: "Hunter melee armour increased from 40 back to 55"
