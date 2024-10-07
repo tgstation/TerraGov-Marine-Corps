@@ -231,6 +231,7 @@
 	)
 	icon_state = "tdf_helmet_hardsuit"
 	worn_icon_state = "tdf_helmet_hardsuit"
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/head/helmet/marine/grenadier
 	name = "\improper B17 helmet"
