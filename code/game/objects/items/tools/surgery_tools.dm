@@ -49,7 +49,7 @@
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel"
 	atom_flags = CONDUCT
-	force = 25
+	force = 20
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 	w_class = WEIGHT_CLASS_TINY
