@@ -43,3 +43,12 @@
   Arturlang:
   - bugfix: shrike healing and crit healing should now work
   - rscadd: regen delays now properly are handled by seconds_per_tick
+2024-10-07:
+  Barnet2:
+  - balance: Removes barriers around Delta Station's supermatter
+  Lumipharon:
+  - bugfix: fixed firenado going through dense objects
+  - code_imp: Improved firenado code and pathing
+  - bugfix: fixed bed/chair pixel offsets
+  blackdav123:
+  - bugfix: Fixed a typo in ai codes.
