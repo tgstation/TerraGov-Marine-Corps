@@ -320,7 +320,6 @@
 	icon_state = "tdf_helmet_pyro"
 	worn_icon_state = "tdf_helmet_pyro"
 	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 90, ACID = 50)
-	starting_attachments = list(/obj/item/armor_module/storage/helmet)
 
 /obj/item/clothing/head/modular/tdf/leader
 	name = "\improper Queen Class Helmet"
