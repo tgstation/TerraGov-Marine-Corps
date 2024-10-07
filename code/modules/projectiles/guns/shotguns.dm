@@ -24,7 +24,7 @@
 	gun_skill_category = SKILL_SHOTGUNS
 	item_map_variant_flags = NONE
 
-	fire_delay = 6
+	fire_delay = 0.6 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.75
 	scatter = 4
@@ -62,7 +62,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible)
 
-	fire_delay = 15 //one shot every 1.5 seconds.
+	fire_delay = 1.5 SECONDS
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
 	scatter_unwielded = 10
 	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than T-32.
@@ -106,7 +106,7 @@
 	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 20, "under_x" = 23, "under_y" = 12, "stock_x" = 13, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/stock/t39stock)
 
-	fire_delay = 14 //one shot every 1.4 seconds.
+	fire_delay = 1.4 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.65
 	scatter = 3
@@ -136,7 +136,7 @@
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	damage_mult = 0.6 // 40% less damage, but MUCH higher falloff.
 	scatter = 3
-	fire_delay = 20 // Base shotgun fire delay.
+	fire_delay = 2 SECONDS
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
@@ -169,7 +169,7 @@
 	reciever_flags = AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS|AMMO_RECIEVER_HANDFULS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
-	fire_delay = 2
+	fire_delay = 0.2 SECONDS
 	burst_delay = 2
 	scatter = 4
 	scatter_unwielded = 8
@@ -185,10 +185,11 @@
 	worn_icon_state = "sshotgun"
 	equip_slot_flags = ITEM_SLOT_BELT
 	attachable_allowed = list()
-	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES|GUN_WIELDED_FIRING_ONLY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
-
-	fire_delay = 2
+	damage_mult = 1
+	damage_falloff_mult = 2
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 0.9
 	scatter = 4
 	scatter_unwielded = 10
@@ -272,7 +273,7 @@
 	cock_locked_message = "The pump is locked! Fire it first!"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
-	fire_delay = 20
+	fire_delay = 2 SECONDS
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -313,7 +314,7 @@
 		/obj/item/attachable/stock/pal12,
 	)
 
-	fire_delay = 15
+	fire_delay = 1.5 SECONDS
 	damage_mult = 0.75
 	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 1
@@ -639,7 +640,7 @@
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 
-	fire_delay = 8
+	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.7
 	scatter = 2
@@ -687,7 +688,7 @@
 	aim_fire_delay = 0.3 SECONDS
 	aim_speed_modifier = 2
 
-	fire_delay = 10
+	fire_delay = 1 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.8
 	damage_falloff_mult = 0.5
@@ -783,7 +784,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
 	item_map_variant_flags = NONE
 
-	fire_delay = 20
+	fire_delay = 2 SECONDS
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
