@@ -110,7 +110,7 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 /datum/loadout_item/proc/equip_mandatory_item(datum/outfit_holder/outfit_holder, mandatory_type, mandatory_slot)
 	if(!mandatory_slot || !mandatory_type || !outfit_holder)
 		return
-	if(outfit_holder.equipped_things["[mandatory_slot]"].item_typepath == mandatory_type)
+	if(outfit_holder.equipped_things["[mandatory_slot]"]?.item_typepath == mandatory_type)
 		return
 	for(var/datum/loadout_item/item AS in outfit_holder.available_list["[mandatory_slot]"])
 		if(item.item_typepath != mandatory_type)

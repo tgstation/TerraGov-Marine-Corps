@@ -57,11 +57,11 @@
 
 /datum/loadout_item/helmet/heavy
 	name = "H Helmet"
-	desc = "A standard TDF combat helmet. Apply to head for best results."
+	desc = "A heavy TDF combat helmet. Apply to head for best results."
 	req_desc = "Requires a heavy armor suit."
 	item_typepath = /obj/item/clothing/head/modular/tdf/heavy
 	jobs_supported = list(SQUAD_MARINE)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_whitelist = list(
 		/obj/item/clothing/suit/modular/tdf/heavy/shield = ITEM_SLOT_OCLOTHING,
 		/obj/item/clothing/suit/modular/tdf/heavy/shield_overclocked = ITEM_SLOT_OCLOTHING,
