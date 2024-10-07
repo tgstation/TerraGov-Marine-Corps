@@ -81,12 +81,13 @@
 	move_delay = 1.3
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	atom_flags = NONE
-	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 100, BOMB = 25, BIO = 100, FIRE = 25, ACID = 25)
+	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 100, FIRE = 25, ACID = 25)
 	allow_pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_WALKOVER
 	pass_flags = PASS_LOW_STRUCTURE|PASS_GRILLE|PASS_MOB
 	turret_pattern = NO_PATTERN
 	unmanned_flags = GIVE_NIGHT_VISION
 	layer = XENO_HIDING_LAYER
+	trigger_gargoyle = FALSE
 
 /obj/structure/closet/crate/uvt_crate
 	name = "\improper UV-T Skink Crate"
@@ -103,6 +104,6 @@
 /obj/vehicle/unmanned/deployable/tiny/on_remote_toggle(datum/source, is_on, mob/user)
 	. = ..()
 	if(is_on)
-		playsound(src, 'sound/machines/chime.ogg', 70)
+		playsound(src, 'sound/machines/chime.ogg', 30)
 	else
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 70)
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 30)
