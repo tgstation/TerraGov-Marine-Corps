@@ -84,22 +84,23 @@
 
 /mob/living/carbon/xenomorph/proc/handle_critical_health_updates(seconds_per_tick)
 	if(loc_weeds_type)
-		heal_wounds(XENO_RESTING_HEAL, seconds_per_tick)
+		heal_wounds(XENO_RESTING_HEAL, FALSE, seconds_per_tick) // healing in critical while on weeds ignores scaling
 	else if(!endure) //If we're not Enduring we bleed out
 		adjustBruteLoss(XENO_CRIT_DAMAGE * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD)
 
-/mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE, seconds_per_tick)
+/mob/living/carbon/xenomorph/proc/heal_wounds(multiplier = XENO_RESTING_HEAL, scaling = FALSE, seconds_per_tick = 2)
 	var/amount = 1 + (maxHealth * 0.0375) // 1 damage + 3.75% max health, with scaling power.
 	if(recovery_aura)
 		amount += recovery_aura * maxHealth * 0.01 // +1% max health per recovery level, up to +5%
 	if(scaling)
+		var/time_modifier = seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
 		if(recovery_aura)
-			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount*30,0,1) //Ignores the cooldown, and gives a 50% boost.
+			regen_power = clamp(regen_power + xeno_caste.regen_ramp_amount * time_modifier * 30, 0, 1) //Ignores the cooldown, and gives a 50% boost.
 		else if(regen_power < 0) // We're not supposed to regenerate yet. Start a countdown for regeneration.
-			regen_power += seconds_per_tick
+			regen_power += seconds_per_tick SECONDS
 			return
 		else
-			regen_power = min(regen_power + xeno_caste.regen_ramp_amount*20,1)
+			regen_power = min(regen_power + xeno_caste.regen_ramp_amount * time_modifier * 20, 1)
 		amount *= regen_power
 	amount *= multiplier * GLOB.xeno_stat_multiplicator_buff * seconds_per_tick * XENO_PER_SECOND_LIFE_MOD
 
