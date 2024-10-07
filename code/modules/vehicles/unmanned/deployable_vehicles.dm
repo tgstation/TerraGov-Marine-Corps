@@ -90,7 +90,7 @@
 
 /obj/structure/closet/crate/uvt_crate
 	name = "\improper UV-T Skink Crate"
-	desc = "A crate containing an unmanned vehicle with a controller."
+	desc = "A crate containing a scouting drone and a controller."
 	icon = 'icons/obj/structures/crates.dmi'
 	icon_state = "closed_weapons"
 	icon_opened = "open_weapons"
