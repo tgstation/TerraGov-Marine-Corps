@@ -69,16 +69,14 @@
 /obj/item/deployable_vehicle/tiny
 	name = "\improper UV-T Skink"
 	desc = "A Skink B-type drone, ready to be deployed."
-	icon = 'icons/obj/unmanned_vehicles.dmi'
-	icon_state = "light_uv_folded"
+	icon_state = "tiny_uv_folded"
 	max_integrity = 50
 	w_class = WEIGHT_CLASS_SMALL
 	deployable_item = /obj/vehicle/unmanned/deployable/tiny
 
 /obj/vehicle/unmanned/deployable/tiny
 	name = "UV-T Skink"
-	icon = 'icons/obj/unmanned_vehicles.dmi'
-	icon_state = "light_uv"
+	icon_state = "tiny_uv"
 	density = FALSE
 	move_delay = 1.3
 	hud_possible = list(MACHINE_HEALTH_HUD)
@@ -99,7 +97,7 @@
 	icon_closed = "closed_weapons"
 
 /obj/structure/closet/crate/uvt_crate/PopulateContents()
-	new /obj/vehicle/unmanned/deployable/tiny(src)
+	new /obj/item/deployable_vehicle/tiny(src)
 	new /obj/item/unmanned_vehicle_remote(src)
 
 /obj/vehicle/unmanned/deployable/tiny/on_remote_toggle(datum/source, is_on, mob/user)
