@@ -302,17 +302,17 @@
 	name = "\improper Knight Class Helmet"
 	icon_state = "tdf_helmet_medium"
 	worn_icon_state = "tdf_helmet_medium"
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 
 /obj/item/clothing/head/modular/tdf/heavy
 	name = "\improper Bishop Class Helmet"
 	desc = "A bulky helmet paired with the 'Tyr' armor module, for added on additional protection at the cost of significant weight and reduced flexibility."
 	icon_state = "tdf_helmet_heavy"
 	worn_icon_state = "tdf_helmet_heavy"
-	soft_armor = list(MELEE = 55, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 60, BIO = 55, FIRE = 55, ACID = 70)
+	soft_armor = list(MELEE = 55, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 60, BIO = 60, FIRE = 55, ACID = 70)
 
 /obj/item/clothing/head/modular/tdf/heavy/tyr
-	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 65, BIO = 55, FIRE = 60, ACID = 70)
+	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 75, BOMB = 60, BIO = 60, FIRE = 55, ACID = 75)
 
 /obj/item/clothing/head/modular/tdf/pyro
 	name = "\improper Jester Class Helmet"
@@ -340,7 +340,7 @@
 	worn_icon_state = "tdf_helmet_sg"
 
 /obj/item/clothing/head/modular/tdf/sg/tyr
-	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 80, BOMB = 65, BIO = 55, FIRE = 60, ACID = 70)
+	soft_armor = list(MELEE = 60, BULLET = 80, LASER = 80, ENERGY = 75, BOMB = 60, BIO = 60, FIRE = 55, ACID = 75)
 
 /obj/item/clothing/head/modular/tdf/medic
 	name = "\improper Heart Class Helmet"
