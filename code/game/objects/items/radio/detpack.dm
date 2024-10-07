@@ -255,7 +255,7 @@
 		set_frequency(signaler.frequency)
 		to_chat(user, "You transfer the frequency and code of [signaler] to [src].")
 		return
-	if(istype(target, /obj/item) || istype(target, /mob))
+	if(istype(target, /obj/item) || istype(target, /mob) || istype(target, /obj/vehicle/unmanned))
 		return FALSE
 	if(target.resistance_flags & INDESTRUCTIBLE)
 		return FALSE

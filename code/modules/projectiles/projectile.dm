@@ -725,6 +725,10 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 /obj/vehicle/unmanned/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(proj.shot_from == src)
 		return FALSE
+	if(src == proj.original_target)
+		return TRUE
+	if(allow_pass_flags & PASS_PROJECTILE)
+		return FALSE
 	if(iff_signal & proj.iff_signal)
 		proj.damage -= proj.damage*proj.damage_marine_falloff
 		return FALSE

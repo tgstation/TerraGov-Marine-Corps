@@ -82,6 +82,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/minelayer = list(CAT_ENGSUP, "M21 APRDS \"Minelayer\"", 5, "engi-explosive"),
 		/obj/item/storage/box/crate/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "engi-other"),
 		/obj/structure/closet/crate/uav_crate = list(CAT_ENGSUP, "Iguana Unmanned Vehicle", 50, "engi-other"),
+		/obj/structure/closet/crate/uvt_crate = list(CAT_ENGSUP, "Skink Recon Drone", 5, "engi-other"),
 		/obj/item/attachable/buildasentry = list(CAT_ENGSUP, "Build-A-Sentry Attachment", 30, "engi-other"),
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_ENGSUP, "Flamethrower tank", 4, "engi-other"),
 		/obj/item/supply_beacon = list(CAT_ENGSUP, "Supply beacon", 5, "engi-other"),
