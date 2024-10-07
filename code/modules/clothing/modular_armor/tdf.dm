@@ -253,7 +253,7 @@
 	)
 	icon_state = "tdf_helmet"
 	worn_icon_state = "tdf_helmet"
-	soft_armor = list(MELEE = 45, BULLET = 65, LASER = 60, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 55)
+	soft_armor = MARINE_ARMOR_MEDIUM
 	inv_hide_flags = HIDEEARS|HIDEALLHAIR
 	armor_protection_flags = HEAD|FACE|EYES
 	attachments_allowed = list(
@@ -302,7 +302,7 @@
 	name = "\improper Knight Class Helmet"
 	icon_state = "tdf_helmet_medium"
 	worn_icon_state = "tdf_helmet_medium"
-	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 65, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	soft_armor = MARINE_ARMOR_HEAVY
 
 /obj/item/clothing/head/modular/tdf/heavy
 	name = "\improper Bishop Class Helmet"
