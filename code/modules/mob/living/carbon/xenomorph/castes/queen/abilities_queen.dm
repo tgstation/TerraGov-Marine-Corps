@@ -156,6 +156,7 @@
 	INVOKE_ASYNC(src, PROC_REF(switch_screech))
 	return COMSIG_KB_ACTIVATED
 
+/// Shows a radical menu that lets the owner choose which type of screech they want to use.
 /datum/action/ability/activable/xeno/screech/proc/switch_screech()
 	var/screech_images_list = list(
 		"Screech" = image('icons/Xeno/actions/queen.dmi', icon_state = "screech"),
