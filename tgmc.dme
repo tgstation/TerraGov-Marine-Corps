@@ -1475,6 +1475,7 @@
 #include "code\modules\clothing\modular_armor\modular.dm"
 #include "code\modules\clothing\modular_armor\som.dm"
 #include "code\modules\clothing\modular_armor\style_line.dm"
+#include "code\modules\clothing\modular_armor\tdf.dm"
 #include "code\modules\clothing\modular_armor\xenonauten.dm"
 #include "code\modules\clothing\modular_armor\attachments\arm_plates.dm"
 #include "code\modules\clothing\modular_armor\attachments\badges.dm"
