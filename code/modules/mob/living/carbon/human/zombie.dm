@@ -107,9 +107,9 @@
 
 /datum/action/ability/emit_gas/action_activate()
 	var/datum/effect_system/smoke_spread/smoke = new smoketype()
-	var/turf/T = get_turf(owner)
-	playsound(T, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
-	smoke.set_up(smokeradius, T, smoke_duration)
+	var/turf/owner_turf = get_turf(owner)
+	playsound(owner_turf, 'sound/effects/smoke_bomb.ogg', 25, TRUE)
+	smoke.set_up(smokeradius, owner_turf, smoke_duration)
 	smoke.start()
 	toggle_particles(FALSE)
 
@@ -133,6 +133,7 @@
 		return FALSE
 	return TRUE
 
+/// Toggles particles on or off, depending on the defined var.
 /datum/action/ability/emit_gas/proc/toggle_particles(activate)
 	if(!activate)
 		QDEL_NULL(particle_holder)
