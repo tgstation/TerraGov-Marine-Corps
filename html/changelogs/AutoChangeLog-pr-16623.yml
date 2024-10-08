@@ -1,6 +1,0 @@
-author: "Mannybrado"
-delete-after: True
-changes:
-  - balance: "gives +150 max health to fireproof and bulletproof resin walls"
-  - balance: "gives +100 max health to hardy walls as well as 50 melee and 50 bomb armor"
-  - balance: "special resin walls now cost +25 psy points"
