@@ -104,7 +104,7 @@
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
-		/datum/action/ability/activable/xeno/screech,
+		/datum/action/ability/activable/xeno/screech, // Primo enables alterative action for screech.
 		/datum/action/ability/xeno_action/bulwark,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/xeno_spit,

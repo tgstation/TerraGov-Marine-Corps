@@ -840,3 +840,28 @@
 	buff_owner.soft_armor = buff_owner.soft_armor.detachArmor(armor_modifier)
 	armor_modifier = null
 	return ..()
+
+// ***************************************
+// *********** Queen Screeches
+// ***************************************
+/datum/status_effect/frenzy_screech
+	id = "frenzy_screech"
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+	duration = 30 SECONDS
+	// How much should melee damage modifier increase by?
+	var/modifier = 0.1
+
+/datum/status_effect/frenzy_screech/on_apply()
+	if(!isxeno(owner))
+		return FALSE
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.xeno_melee_damage_modifier += modifier
+	xeno_owner.add_filter("frenzy_screech_outline", 3, outline_filter(1, COLOR_VIVID_RED))
+	return TRUE
+
+/datum/status_effect/frenzy_screech/on_remove()
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	xeno_owner.xeno_melee_damage_modifier -= modifier
+	xeno_owner.remove_filter("frenzy_screech_outline")
+	return ..()
