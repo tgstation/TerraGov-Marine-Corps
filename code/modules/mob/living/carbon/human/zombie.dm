@@ -133,7 +133,7 @@
 		return FALSE
 	return TRUE
 
-/// Toggles particles on or off, depending on the defined var.
+/// Toggles particles on or off
 /datum/action/ability/emit_gas/proc/toggle_particles(activate)
 	if(!activate)
 		QDEL_NULL(particle_holder)
