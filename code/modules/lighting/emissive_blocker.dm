@@ -28,8 +28,7 @@
 /atom/movable/emissive_blocker/ex_act(severity)
 	return FALSE
 
-/atom/movable/emissive_blocker/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
-	SHOULD_CALL_PARENT(FALSE)
+/atom/movable/emissive_blocker/onTransitZ()
 	return
 
 //Prevents people from moving these after creation, because they shouldn't be.

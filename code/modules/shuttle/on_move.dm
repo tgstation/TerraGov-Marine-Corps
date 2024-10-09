@@ -110,7 +110,7 @@ All ShuttleMove procs go here
 
 	var/turf/newT = get_turf(src)
 	if (newT.z != oldT.z)
-		on_changed_z_level(oldT, newT)
+		onTransitZ(oldT.z, newT.z)
 
 	if(light)
 		update_light()
