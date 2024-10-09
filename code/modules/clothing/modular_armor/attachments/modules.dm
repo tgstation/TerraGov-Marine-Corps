@@ -46,8 +46,6 @@
 	slowdown = 0.3
 	slot = ATTACHMENT_SLOT_MODULE
 	variants_by_parent_type = list(/obj/item/clothing/suit/modular/xenonauten = "mod_autodoc_xn", /obj/item/clothing/suit/modular/tdf = "")
-	///The limbs this module supports
-	var/static/list/supported_limbs = list(CHEST, GROIN, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT)
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -55,11 +53,11 @@
 	var/list/tramadol = list(/datum/reagent/medicine/tramadol)
 	/// This will do nothing without the autodoc update
 	parent.AddComponent(/datum/component/suit_autodoc, 4 MINUTES, tricord, tricord, tricord, tricord, tramadol, 0.5)
-	parent.AddElement(/datum/element/limb_support, supported_limbs)
+	parent.AddElement(/datum/element/limb_support)
 
 /obj/item/armor_module/module/valkyrie_autodoc/on_detach(obj/item/detaching_from, mob/user)
 	detaching_from.remove_component(/datum/component/suit_autodoc)
-	detaching_from.RemoveElement(/datum/element/limb_support, supported_limbs)
+	detaching_from.RemoveElement(/datum/element/limb_support)
 	return ..()
 
 /obj/item/armor_module/module/valkyrie_autodoc/som
