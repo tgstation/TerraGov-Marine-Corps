@@ -347,7 +347,10 @@
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.Immobilize(XENO_POUNCE_STANDBY_DURATION)
 	xeno_owner.forceMove(get_turf(living_target))
-	living_target.Knockdown(XENO_POUNCE_STUN_DURATION)
+	if(!can_sneak_attack)
+		living_target.Knockdown(XENO_POUNCE_STUN_DURATION / 2)
+	else
+		living_target.Knockdown(XENO_POUNCE_STUN_DURATION)
 
 /datum/action/ability/activable/xeno/pounce/proc/pounce_complete()
 	SIGNAL_HANDLER
