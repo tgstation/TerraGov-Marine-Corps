@@ -96,9 +96,6 @@
 		/obj/item/reagent_containers/glass/bottle/tricordrazine = 1,
 	)
 
-	r_pocket_contents = list(
-		/obj/item/storage/firstaid/adv = 1,
-	)
 
 /datum/outfit/job/upp/medic/hvh
 	name = "USL Surgeon (HvH)"

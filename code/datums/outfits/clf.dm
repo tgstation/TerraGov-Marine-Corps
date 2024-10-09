@@ -212,6 +212,7 @@
 	head = /obj/item/clothing/head/helmet/marine
 	r_pocket = /obj/item/storage/pouch/pistol
 	l_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
+	back = /obj/item/storage/backpack/lightpack
 
 	backpack_contents = list(
 		/obj/item/stack/sheet/metal/medium_stack = 1,
@@ -255,11 +256,12 @@
 		/obj/item/explosive/grenade/smokebomb = 1,
 	)
 
+	backpack_contents = null
+
 
 /datum/outfit/job/clf/specialist/clf_heavymachinegun
 	suit_store = /obj/item/weapon/gun/icc_hmg
 	belt = /obj/item/storage/belt/sparepouch
-	back = /obj/item/storage/backpack/lightpack
 
 	belt_contents = list(
 		/obj/item/ammo_magazine/icc_hmg = 3,

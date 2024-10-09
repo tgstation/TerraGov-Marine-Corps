@@ -68,7 +68,7 @@
 		/obj/item/ammo_magazine/smg/m25/ap = 2,
 		/obj/item/explosive/plastique = 1,
 		/obj/item/tool/crowbar/red = 1,
-		/obj/item/explosive/grenade/smokebomb/cloak = 2,
+		/obj/item/explosive/grenade/smokebomb/cloak = 3,
 		/obj/item/reagent_containers/hypospray/autoinjector/combat = 2,
 		/obj/item/stack/medical/splint = 1,
 		/obj/item/explosive/grenade/m15 = 2,
@@ -87,9 +87,6 @@
 		/obj/item/weapon/gun/pistol/g22 = 1,
 	)
 
-	r_pocket_contents = list(
-		/obj/item/explosive/grenade/smokebomb/cloak = 1,
-	)
 
 /datum/outfit/job/special_forces/drone_operator
 	name = "Special Response Force Drone Operator"

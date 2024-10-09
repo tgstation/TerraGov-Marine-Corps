@@ -235,10 +235,8 @@
 	gloves = /obj/item/clothing/gloves/insulated
 	head = /obj/item/clothing/head/tgmccap/req
 	r_pocket = /obj/item/storage/pouch/general/large
+	l_pocket = /obj/item/supplytablet
 
-	r_pocket_contents = list(
-		/obj/item/supplytablet = 1,
-	)
 
 /datum/outfit/job/medical/professor
 	name = CHIEF_MEDICAL_OFFICER

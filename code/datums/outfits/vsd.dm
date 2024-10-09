@@ -154,9 +154,6 @@
 	backpack_contents = list(
 		/obj/item/ammo_magazine/rifle/vsd_mg = 2,
 		/obj/item/attachable/buildasentry = 1,
-	)
-
-	webbing_contents = list(
 		/obj/item/stack/sheet/metal/large_stack = 1,
 	)
 
@@ -181,6 +178,8 @@
 	l_pocket_contents = list(
 		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
 	)
+
+	head_contents = null
 
 
 //outfits
@@ -435,6 +434,7 @@
 		/obj/item/explosive/grenade/upp = 3,
 	)
 
+	head_contents = null
 
 //juggernaut outfits
 /datum/outfit/job/vsd/juggernaut
@@ -543,6 +543,8 @@
 	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_pocket = /obj/item/storage/pouch/magazine
 	back = /obj/item/storage/backpack/lightpack/vsd
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
+	head = /obj/item/clothing/head/helmet/marine/vsd
 
 	backpack_contents = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
@@ -589,6 +591,8 @@
 		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
 	)
 
+	head_contents = null
+
 /datum/outfit/job/vsd/leader/two
 	head = /obj/item/clothing/head/helmet/marine/vsd
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/harmor
@@ -632,3 +636,5 @@
 	l_pocket_contents = list(
 		/obj/item/ammo_magazine/rifle/vsd_mg = 2,
 	)
+
+	head_contents = null

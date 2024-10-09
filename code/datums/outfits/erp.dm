@@ -84,6 +84,8 @@
 		/obj/item/toy/bikehorn = 1,
 	)
 
+	belt_contents = null
+
 
 /datum/outfit/job/erp/piethrower
 	name = "ERP Pie thrower"

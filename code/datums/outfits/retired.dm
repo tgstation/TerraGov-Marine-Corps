@@ -54,9 +54,12 @@
 	shoes = null
 
 	suit_contents = list(
-		/obj/item/storage/fancy/chemrettes = 2,
+		/obj/item/storage/fancy/chemrettes = 1,
 		/obj/item/explosive/grenade/m15 = 1,
 	)
+
+	belt_contents = null
+	backpack_contents = null
 
 /datum/outfit/job/retired/leader/post_equip(mob/living/carbon/human/H, visualsOnly)
 	H.amputate_limb(BODY_ZONE_L_LEG)
