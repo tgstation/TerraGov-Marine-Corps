@@ -64,14 +64,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		frequency = GET_RANDOM_FREQ
 	var/sound/S = sound(get_sfx(soundin))
 
-	var/list/listeners = list() //TODO: Make SSmobs.clients_by_zlevel actually functional so we can use that instead of this for loop
-	for(var/mob/player AS in GLOB.player_list)
-		if(!player.client)
-			continue
-		var/turf/player_turf = get_turf(player)
-		if(!player_turf || player_turf.z != turf_source.z)
-			continue
-		listeners += player
+	var/list/listeners = SSmobs.clients_by_zlevel[turf_source.z].Copy()
 	for(var/mob/ai_eye AS in GLOB.aiEyes)
 		var/turf/eye_turf = get_turf(ai_eye)
 		if(!eye_turf || eye_turf.z != turf_source.z)

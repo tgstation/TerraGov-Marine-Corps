@@ -145,14 +145,7 @@ SUBSYSTEM_DEF(explosions)
 			explosion_sound = SFX_EXPLOSION_SMALL
 			far_explosion_sound = SFX_EXPLOSION_SMALL_DISTANT
 
-		var/list/listeners = list() //TODO: Make SSmobs.clients_by_zlevel actually functional so we can use that instead of this for loop
-		for(var/mob/player AS in GLOB.player_list)
-			if(!player.client)
-				continue
-			var/turf/player_turf = get_turf(player)
-			if(!player_turf || player_turf.z != epicenter.z)
-				continue
-			listeners += player
+		var/list/listeners = SSmobs.clients_by_zlevel[epicenter.z].Copy()
 		for(var/mob/ai_eye AS in GLOB.aiEyes)
 			var/turf/eye_turf = get_turf(ai_eye)
 			if(!eye_turf || eye_turf.z != epicenter.z)
