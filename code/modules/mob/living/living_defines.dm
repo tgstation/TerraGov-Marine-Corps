@@ -153,3 +153,5 @@
 	var/time_entered_stasis = 0
 	///The world.time of when this mob entered a cryo tube
 	var/time_entered_cryo = 0
+	///The z level this mob is currently registered in
+	var/registered_z = null
