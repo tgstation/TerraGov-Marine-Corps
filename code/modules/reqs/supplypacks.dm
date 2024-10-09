@@ -1792,12 +1792,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 	cost = 3
 
-/datum/supply_packs/imports/sawnoff
-	name = "Sawn Off Shotgun"
-	contains = list(/obj/item/weapon/gun/shotgun/double/sawn)
-	cost = 150
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/imports/leveraction
 	name = "Lever Action Rifle"
 	contains = list(/obj/item/weapon/gun/shotgun/pump/lever)

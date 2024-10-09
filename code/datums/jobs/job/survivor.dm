@@ -143,6 +143,27 @@ Good luck, but do not expect to survive."})
 	skills_type = /datum/skills/civilian/survivor/marshal
 	outfit = /datum/outfit/job/survivor/marshal
 
+//Roboticist Survivor
+/datum/job/survivor/roboticist
+	title = "Roboticist Survivor"
+	skills_type = /datum/skills/civilian/survivor/atmos
+	outfit = /datum/outfit/job/survivor/roboticist
+
+//Chemist Survivor
+/datum/job/survivor/chemist
+	title = "Pharmacy Technician Survivor"
+	skills_type = /datum/skills/civilian/survivor/scientist
+	outfit = /datum/outfit/job/survivor/chemist
+
+//Assistant
+/datum/job/survivor/assistant
+	title = "Assistant Survivor"
+	outfit = /datum/outfit/job/survivor/assistant
+
+//Bartender Survivor
+/datum/job/survivor/bartender
+	title = "Bartender Survivor"
+	outfit = /datum/outfit/job/survivor/bartender
 
 
 // Rambo Survivor - pretty overpowered, pls spawn with caution

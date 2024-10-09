@@ -27,7 +27,7 @@
 	///pixel x shift to give to the buckled mob
 	var/buckling_x = 0
 	///pixel y shift to give to the buckled mob. This stacks with the lying down pixel shift when relevant
-	var/buckling_y = 3
+	var/buckling_y = -2
 	var/obj/structure/closet/bodybag/buckled_bodybag
 	var/accepts_bodybag = FALSE //Whether you can buckle bodybags to this bed
 	var/base_bed_icon //Used by beds that change sprite when something is buckled to them
@@ -57,16 +57,16 @@
 
 /obj/structure/bed/post_buckle_mob(mob/buckling_mob)
 	. = ..()
-	buckling_mob.pixel_y += buckling_y
-	buckling_mob.pixel_x += buckling_x
+	buckling_mob.pixel_y = buckling_y
+	buckling_mob.pixel_x = buckling_x
 	if(base_bed_icon)
 		density = TRUE
 	update_icon()
 
 /obj/structure/bed/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
-	buckled_mob.pixel_y -= buckling_y
-	buckled_mob.pixel_x -= buckling_x
+	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
+	buckled_mob.pixel_x = initial(buckled_mob.pixel_x)
 	if(base_bed_icon)
 		density = FALSE
 	update_icon()
@@ -240,7 +240,7 @@
 	anchored = FALSE
 	buckle_flags = CAN_BUCKLE
 	drag_delay = 0 //Pulling something on wheels is easy
-	buckling_y = 9
+	buckling_y = 3
 	foldabletype = /obj/item/roller
 	accepts_bodybag = TRUE
 	base_bed_icon = "roller"
@@ -329,7 +329,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	desc = "A medevac stretcher with integrated beacon for rapid evacuation of an injured patient via dropship lift and an emergency bluespace teleporter for tele-evacuation to a linked beacon. Accepts patients and body bags. Right click to activate."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "stretcher_down"
-	buckling_y = 6
+	buckling_y = 0
 	buildstacktype = null
 	foldabletype = /obj/item/roller/medevac
 	base_bed_icon = "stretcher"
@@ -801,7 +801,6 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 	desc = "Perfect for those long missions, when there's nowhere else to sleep, you remembered to bring at least one thing of comfort."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "bedroll_o"
-	buckling_y = 0
 	foldabletype = /obj/item/roller/bedroll
 	accepts_bodybag = FALSE
 	buildstacktype = null

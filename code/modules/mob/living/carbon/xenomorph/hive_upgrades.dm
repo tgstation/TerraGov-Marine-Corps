@@ -380,7 +380,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/defence/special_walls
 	name = "Special Resin Walls"
 	desc = "Gives your hive 50 special resin walls to build."
-	psypoint_cost = 100
+	psypoint_cost = 125
 	icon = "specialresin"
 	gamemode_flags = ABILITY_NUCLEARWAR
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL

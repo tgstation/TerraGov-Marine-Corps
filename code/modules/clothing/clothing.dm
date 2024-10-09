@@ -144,14 +144,11 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	attachments_by_slot = list(ATTACHMENT_SLOT_BADGE)
 	attachments_allowed = list(/obj/item/armor_module/armor/badge)
-	var/supporting_limbs = NONE
-	var/blood_overlay_type = "suit"
-	var/shield_state = "shield-blue"
-
-	// Strength of the armor light used by [proc/set_light()]
 	light_power = 3
 	light_range = 4
 	light_system = MOVABLE_LIGHT
+	///Blood overlay icon_state
+	var/blood_overlay_type = "suit"
 
 /obj/item/clothing/suit/Initialize(mapload)
 	. = ..()
