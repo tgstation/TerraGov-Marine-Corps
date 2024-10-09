@@ -334,7 +334,7 @@
 #define COMSIG_MOVABLE_POST_THROW "movable_post_throw"			//called on tail of atom/movable/throw_at()
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"			//called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_HEAR "movable_hear"						//from base of atom/movable/Hear(): (message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
-#define COMSIG_MOVABLE_Z_CHANGED "movable_ztransit" 			//from base of atom/movable/onTransitZ(): (old_z, new_z)
+#define COMSIG_MOVABLE_Z_CHANGED "movable_ztransit" 			//from base of atom/movable/on_changed_z_level(): (old_z, new_z)
 #define COMSIG_MOVABLE_PREBUMP_TURF "movable_prebump_turf"
 #define COMSIG_MOVABLE_PREBUMP_MOVABLE "movable_prebump_movable"
 	#define COMPONENT_MOVABLE_PREBUMP_STOPPED (1<<0)

@@ -81,6 +81,10 @@ Good luck, but do not expect to survive."})
 	l_store = /obj/item/flashlight/combat
 	r_hand = /obj/item/weapon/combat_knife
 
+/datum/outfit/job/survivor/assistant/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
+
 
 //Scientist
 /datum/job/survivor/scientist
@@ -111,6 +115,7 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 //Doctor
 /datum/job/survivor/doctor
@@ -155,6 +160,7 @@ Good luck, but do not expect to survive."})
 
 	H.equip_to_slot_or_del(new /obj/item/flashlight, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/tweezers, SLOT_IN_R_POUCH)
 
@@ -177,6 +183,10 @@ Good luck, but do not expect to survive."})
 	l_hand = /obj/item/flashlight/combat
 	l_store = /obj/item/tool/crowbar
 
+/datum/outfit/job/survivor/liaison/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
+
 //Security Guard
 /datum/job/survivor/security
 	title = "Security Guard Survivor"
@@ -191,7 +201,7 @@ Good luck, but do not expect to survive."})
 	w_uniform = /obj/item/clothing/under/rank/security
 	wear_suit = /obj/item/clothing/suit/armor/patrol
 	head = /obj/item/clothing/head/securitycap
-	shoes = /obj/item/clothing/shoes/marine
+	shoes = /obj/item/clothing/shoes/marine/full
 	back = /obj/item/storage/backpack/security
 	belt = /obj/item/storage/belt/security
 	gloves = /obj/item/clothing/gloves/black
@@ -207,6 +217,9 @@ Good luck, but do not expect to survive."})
 
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 
 //Civilian
@@ -229,6 +242,7 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/flashlight, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife/upp, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 
 //Chef
@@ -256,13 +270,13 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/burger/crazy, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/soup/mysterysoup, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/packaged_hdogs, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/organ, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/chocolateegg, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/meat/xeno, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/pastries/xemeatpie, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/pastries/birthdaycakeslice, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/donut/meat, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 
 //Botanist
@@ -280,9 +294,9 @@ Good luck, but do not expect to survive."})
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/hydroponics
 	ears = /obj/item/radio/survivor
-	suit_store = /obj/item/weapon/combat_knife
 	l_store = /obj/item/flashlight
 	r_store = /obj/item/tool/crowbar
+	l_hand = /obj/item/tool/hatchet
 
 /datum/outfit/job/survivor/botanist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -290,6 +304,7 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/grown/ambrosiadeus, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/grown/ambrosiadeus, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 
 //Atmospherics Technician
@@ -327,6 +342,9 @@ Good luck, but do not expect to survive."})
 
 	H.equip_to_slot_or_del(new /obj/item/lightreplacer, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/deployable_floodlight, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/metalfoam, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/metalfoam, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_L_POUCH)
 	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/small_stack, SLOT_IN_L_POUCH)
@@ -347,15 +365,16 @@ Good luck, but do not expect to survive."})
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 	ears = /obj/item/radio/survivor
+	l_hand = /obj/item/weapon/gun/shotgun/double
+	r_hand = /obj/item/ammo_magazine/handful/buckshot
 
 /datum/outfit/job/survivor/chaplain/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/tool/candle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/candle, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/tool/candle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/fancy/candle_box, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/lighter, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/bible, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/cup/glass/bottle/holywater , SLOT_IN_BACKPACK)
 
 
 //Miner
@@ -384,6 +403,7 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/tool/lighter, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/bottle/whiskey, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/molotov, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 
 //Salesman
@@ -412,6 +432,7 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/holdout, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/lighter/zippo, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 
 //Colonial Marshal
@@ -442,6 +463,126 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_BELT)
 	H.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BELT)
 
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
+
+
+//Bartender Survivor
+/datum/job/survivor/bartender
+	title = "Bartender Survivor"
+	outfit = /datum/outfit/job/survivor/bartender
+
+
+/datum/outfit/job/survivor/bartender
+	name = "Bartender Survivor"
+	jobtype = /datum/job/survivor/bartender
+
+	w_uniform = /obj/item/clothing/under/rank/bartender
+	wear_suit = /obj/item/clothing/suit/armor/vest
+	back = /obj/item/storage/backpack/satchel
+	belt = /obj/item/ammo_magazine/shotgun/buckshot
+	shoes = /obj/item/clothing/shoes/laceup
+	head = /obj/item/clothing/head/collectable/tophat
+	ears = /obj/item/radio/survivor
+	glasses = /obj/item/clothing/glasses/sunglasses
+	l_store = /obj/item/flashlight
+	r_store = /obj/item/tool/crowbar
+	suit_store = /obj/item/weapon/gun/shotgun/double/sawn
+
+/datum/outfit/job/survivor/bartender/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/bottle/whiskey , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/bottle/vodka , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/beer , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/beer , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
+
+
+//Chemist Survivor
+/datum/job/survivor/chemist
+	title = "Pharmacy Technician Survivor"
+	skills_type = /datum/skills/civilian/survivor/scientist
+	outfit = /datum/outfit/job/survivor/chemist
+
+
+/datum/outfit/job/survivor/chemist
+	name = "Pharmacy Technician Survivor"
+	jobtype = /datum/job/survivor/chemist
+
+	w_uniform = /obj/item/clothing/under/rank/chemist
+	wear_suit = /obj/item/clothing/suit/storage/labcoat/chemist
+	back = /obj/item/storage/backpack/satchel/chem
+	belt = /obj/item/storage/belt/hypospraybelt
+	gloves = /obj/item/clothing/gloves/latex
+	shoes = /obj/item/clothing/shoes/white
+	ears = /obj/item/radio/survivor
+	glasses = /obj/item/clothing/glasses/science
+	l_store = /obj/item/flashlight
+	r_store = /obj/item/tool/crowbar
+	suit_store = /obj/item/healthanalyzer
+
+/datum/outfit/job/survivor/chemist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/bicaridine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/kelotane, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/tramadol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/tricordrazine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/beaker/large, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/beaker/large, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/bicaridine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/kelotane, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/tramadol, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/tricordrazine, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/dylovene, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/inaprovaline, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/hypervene, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/imialky, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/big, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/big, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/syringe_case/empty, SLOT_IN_BELT)
+	H.equip_to_slot_or_del(new /obj/item/storage/syringe_case/empty, SLOT_IN_BELT)
+
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/dropper, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health, SLOT_IN_BACKPACK)
+
+
+//Roboticist Survivor
+/datum/job/survivor/roboticist
+	title = "Roboticist Survivor"
+	skills_type = /datum/skills/civilian/survivor/atmos
+	outfit = /datum/outfit/job/survivor/roboticist
+
+
+/datum/outfit/job/survivor/roboticist
+	name = "Roboticist Survivor"
+	jobtype = /datum/job/survivor/roboticist
+
+	w_uniform = /obj/item/clothing/under/rank/roboticist
+	wear_suit = /obj/item/clothing/suit/storage/labcoat/science
+	belt = /obj/item/storage/belt/utility/full
+	shoes = /obj/item/clothing/shoes/black
+	back = /obj/item/storage/backpack/satchel/tox
+	ears = /obj/item/radio/survivor
+	glasses = /obj/item/clothing/glasses/welding/flipped
+	l_store = /obj/item/storage/pouch/electronics/full
+	r_store = /obj/item/flashlight/combat
+
+/datum/outfit/job/survivor/roboticist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/medium_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/small_stack, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/attachable/buildasentry, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
 
 // Rambo Survivor - pretty overpowered, pls spawn with caution
 /datum/job/survivor/rambo

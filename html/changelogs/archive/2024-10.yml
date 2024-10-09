@@ -52,3 +52,33 @@
   - bugfix: fixed bed/chair pixel offsets
   blackdav123:
   - bugfix: Fixed a typo in ai codes.
+2024-10-08:
+  Lumipharon:
+  - balance: Hunter health reduced from 360 to 320
+  - balance: Hunter melee armour increased from 40 back to 55
+  Mannybrado:
+  - balance: gives +150 max health to fireproof and bulletproof resin walls
+  - balance: gives +100 max health to hardy walls as well as 50 melee and 50 bomb
+      armor
+  - balance: special resin walls now cost +25 psy points
+  tyeagg:
+  - rscadd: tdf faction for campaign
+2024-10-09:
+  Lumipharon:
+  - code_imp: clients_by_z actually works now
+  Runian:
+  - rscadd: 'Primordial Queens gain an alternative action to Screech which lets them
+      select different types of screeches that can apply an effect to nearby xenomorphs
+      that either: heals over time, increases plasma regeneration, or boosts melee
+      damage.'
+  - soundadd: 'Voicelines for: Heal, Plasma, and Frenzy screech.'
+  - imageadd: 'Colored versions of Screech for: Heal, Plasma, Frenzy.'
+  blackdav123:
+  - rscadd: Added more survivor roles and more survivor equipment.
+  - balance: Water now purges zombium.
+  - balance: Alcohol now gives minor pain reduction at lower levels.
+  - balance: Hatchets, scythes, scalpels, and circular saws all have decent melee
+      stats now.
+  - balance: Armor vests now fit guns, aprons now fit hatchets and scythes.
+  - admin: Added a tab in the select equipment menu for survivors.
+  - rscadd: Added new zombie type, the Smoker.

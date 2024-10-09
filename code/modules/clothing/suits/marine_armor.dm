@@ -155,7 +155,6 @@
 	icon_state = "xarmor"
 	soft_armor = list(MELEE = 75, BULLET = 80, LASER = 80, ENERGY = 85, BOMB = 85, BIO = 70, FIRE = 85, ACID = 70)
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 	item_flags = AUTOBALANCE_CHECK
 
@@ -163,7 +162,7 @@
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
 	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
-	AddElement(/datum/element/limb_support, supporting_limbs)
+	AddElement(/datum/element/limb_support)
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use += src
 
@@ -171,6 +170,9 @@
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use -= src
 	return ..()
+
+/obj/item/clothing/suit/storage/marine/specialist/valhalla
+	item_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/specialist/tdf
 	name = "\improper Ace class hardsuit"
@@ -183,9 +185,7 @@
 	)
 	icon_state = "tdf_hardsuit"
 	worn_icon_state = "tdf_hardsuit"
-
-/obj/item/clothing/suit/storage/marine/specialist/valhalla
-	item_flags = NONE
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -313,13 +313,12 @@
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
 	attachments_allowed = list(/obj/item/armor_module/storage/grenade)
 	starting_attachments = list(/obj/item/armor_module/storage/grenade)
-	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
-	AddElement(/datum/element/limb_support, supporting_limbs)
+	AddElement(/datum/element/limb_support)
 
 /*===========================I.o.M================================*/
 

@@ -146,7 +146,7 @@
 	var/obj/item/card/id/user_id = user?.get_idcard(TRUE)
 	if(user_id)
 		sentry_iff_signal = user_id?.iff_signal
-	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
+	addtimer(CALLBACK(src, PROC_REF(prime), user), det_time)
 
 ///Reverts the gun back to it's unarmed state, allowing it to be activated again
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/reset()
@@ -154,11 +154,11 @@
 	icon_state = initial(icon_state)
 
 ///Deploys the weapon into a sentry after activation
-/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/prime()
+/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/proc/prime(mob/user)
 	if(!isturf(loc)) //no deploying out of bags or in hand
 		reset()
 		return
-	do_deploy()
+	do_deploy(user)
 
 /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/predeployed
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOY_ON_INITIALIZE|DEPLOYED_NO_PICKUP
