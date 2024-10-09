@@ -319,6 +319,7 @@
 			M.adjust_stagger(2 SECONDS)
 			M.adjust_slowdown(3)
 
+///Stops particle spawning, then gives existing particles time to fade out before deleting them.
 /datum/action/ability/activable/xeno/oppose/proc/stop_particles(obj/effect/abstract/particle_holder/aoe_particles)
 	aoe_particles.particles.spawning = 0
 	QDEL_IN(aoe_particles, 3 SECONDS)
