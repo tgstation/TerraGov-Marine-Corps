@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed deployable Iguana HP being higher than intended"
+  - rscadd: "Unmanned vehicle IFF and hud are based off the deploying mob"
+  - balance: "Unmanned vehicles no longer have 100 energy armour"
