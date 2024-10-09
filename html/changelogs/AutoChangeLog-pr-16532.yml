@@ -1,6 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - rscadd: "Primordial Queens gain an alternative action to Screech which lets them select different types of screeches that can apply an effect to nearby xenomorphs that either: heals over time, increases plasma regeneration, or boosts melee damage."
-  - soundadd: "Voicelines for: Heal, Plasma, and Frenzy screech."
-  - imageadd: "Colored versions of Screech for: Heal, Plasma, Frenzy."

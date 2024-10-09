@@ -1,9 +1,0 @@
-author: "blackdav123"
-delete-after: True
-changes:
-  - rscadd: "Added more survivor roles and more survivor equipment."
-  - balance: "Water now purges zombium."
-  - balance: "Alcohol now gives minor pain reduction at lower levels."
-  - balance: "Hatchets, scythes, scalpels, and circular saws all have decent melee stats now."
-  - balance: "Armor vests now fit guns, aprons now fit hatchets and scythes."
-  - admin: "Added a tab in the select equipment menu for survivors."
