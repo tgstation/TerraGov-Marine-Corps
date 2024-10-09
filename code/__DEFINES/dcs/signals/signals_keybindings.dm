@@ -223,6 +223,8 @@
 #define COMSIG_XENOABILITY_MIRAGE_SWAP "xenoability_mirage_swap"
 
 #define COMSIG_XENOABILITY_SCREECH "xenoability_screech"
+#define COMSIG_XENOABILITY_SCREECH_SWITCH "xenoability_screech_switch"
+
 #define COMSIG_XENOABILITY_PSYCHIC_WHISPER "xenoability_psychic_whisper"
 #define COMSIG_XENOABILITY_TOGGLE_QUEEN_ZOOM "xenoability_toggle_queen_zoom"
 #define COMSIG_XENOABILITY_XENO_LEADERS "xenoability_xeno_leaders"
