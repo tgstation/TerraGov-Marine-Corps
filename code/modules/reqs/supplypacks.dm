@@ -2030,6 +2030,11 @@ VEHICLES
 	cost = 200
 	containertype = /obj/structure/closet/crate/weapon
 
+/datum/supply_packs/vehicles/tiny_uv
+	name = "Tiny unmanned vehicle - Skink"
+	contains = list(/obj/item/deployable_vehicle/tiny)
+	cost = 50
+
 /datum/supply_packs/vehicles/light_uv
 	name = "Light unmanned vehicle - Iguana"
 	contains = list(/obj/vehicle/unmanned)
