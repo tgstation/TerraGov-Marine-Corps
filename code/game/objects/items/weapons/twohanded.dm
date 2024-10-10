@@ -432,6 +432,7 @@
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon. This one is ancient and has suffered serious acid damage, making it near-useless."
 	force = 18
 	force_wielded = 28
+
 /obj/item/weapon/twohanded/rocketsledge
 	name = "rocket sledge"
 	desc = "Fitted with a rocket booster at the head, the rocket sledge would deliver a tremendously powerful impact, easily crushing your enemies. Uses fuel to power itself. Press AltClick to tighten your grip. Press Spacebar to change modes."
@@ -608,3 +609,211 @@
 	if(!.)
 		return
 	toggle_item_bump_attack(user, FALSE)
+
+/// Chainsword & Chainsaw
+/obj/item/weapon/twohanded/chainsaw
+	name = "chainsaw"
+	desc = "A chainsaw. Good for turning big things into little things."
+	icon = 'icons/obj/items/weapons/misc.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/weapons/melee_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/weapons/melee_right.dmi',
+	)
+	icon_state = "chainsaw_off"
+	worn_icon_state = "chainsaw"
+	atom_flags = TWOHANDED
+	attack_verb = list("gored", "torn", "ripped", "shred", "slashed", "cut")
+	force = 20
+	force_wielded = 75
+	throwforce = 30
+	attack_speed = 20
+	///icon when on
+	var/icon_state_on = "chainsaw_on"
+	///sprite on the mob when off but wielded
+	var/worn_icon_state_w = "chainsaw_w"
+	///sprite on the mob when on
+	var/worn_icon_state_on = "chainsaw_on"
+	///amount of fuel stored inside
+	var/max_fuel = 50
+	///amount of fuel used per hit
+	var/fuel_used = 5
+	///additional damage when weapon is active
+	var/additional_damage = 75
+
+/obj/item/weapon/twohanded/chainsaw/Initialize(mapload)
+	. = ..()
+	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
+	AddElement(/datum/element/strappable) //Chainsaw can be strapped on hand
+
+///handle icon change
+/obj/item/weapon/twohanded/chainsaw/update_icon_state()
+	. = ..()
+	if(active) //weapon is active
+		icon_state = icon_state_on
+		return
+	else
+		icon_state = initial(icon_state)
+
+///handle worn_icon change
+/obj/item/weapon/twohanded/chainsaw/update_item_state(mob/user)
+	. = ..()
+	if(active) //weapon is active
+		worn_icon_state = worn_icon_state_on
+		return
+	if(CHECK_BITFIELD(item_flags, WIELDED)) // weapon is wielded but off
+		worn_icon_state = worn_icon_state_w
+		return
+	else
+		worn_icon_state = initial(worn_icon_state)
+
+///proc to turn the chainsaw on or off
+/obj/item/weapon/twohanded/chainsaw/proc/toggle_motor(mob/user)
+	if(active && reagents.get_reagent_amount(/datum/reagent/fuel) >= fuel_used) //check if theres enough fuel to activate)
+		force += additional_damage
+		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+		hitsound = 'sound/weapons/chainsawhit.ogg'
+		to_chat(user, span_warning("\The [src]'s motor whirr to lifel!"))
+		update_icon()
+		update_item_state()
+	else
+		force = initial(force)
+		hitsound = initial(hitsound)
+		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
+			to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
+			return
+		to_chat(user, span_warning("\The [src]'s motor died down!"))
+		update_icon()
+		update_item_state()
+
+///proc for the fuel cost and check and chainsaw noises
+/obj/item/weapon/twohanded/chainsaw/proc/rip_apart(mob/user)
+	if(!active)
+		return
+	reagents.remove_reagent(/datum/reagent/fuel, fuel_used) //remove fuel by fuel_used amount
+	user.changeNext_move(attack_speed) //this is here because attacking object for some reason dont respect weapon attack speed
+	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && active) //turn off the chainsaw after one last attack when fuel ran out
+		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
+		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
+		active = FALSE
+		toggle_motor(user)
+		return
+	if(prob(1)) // small chance for an easter egg of simpson chainsaw noises
+		playsound(loc, 'sound/weapons/chainsaw_simpson.ogg', 60)
+	else
+		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+
+///Chainsaw give bump attack when picked up
+/obj/item/weapon/twohanded/chainsaw/equipped(mob/user, slot)
+	. = ..()
+	toggle_item_bump_attack(user, TRUE)
+
+///Chainsaw turned off when dropped, and also lose bump attack
+/obj/item/weapon/twohanded/chainsaw/dropped(mob/user)
+	. = ..()
+	toggle_item_bump_attack(user, FALSE)
+	if(active)
+		active = FALSE
+		toggle_motor(user)
+
+///Chainsaw turn on when wielded
+/obj/item/weapon/twohanded/chainsaw/wield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	playsound(loc, 'sound/weapons/chainsawstart.ogg', 100, 1)
+	toggle_active(FALSE)
+	if(!do_after(user, SKILL_TASK_TRIVIAL, NONE, src, BUSY_ICON_DANGER, null,PROGRESS_BRASS))
+		return
+	toggle_active(TRUE)
+	toggle_motor(user)
+
+///Chainsaw turn off when unwielded
+/obj/item/weapon/twohanded/chainsaw/unwield(mob/user)
+	. = ..()
+	if(!.)
+		return
+	toggle_motor(user)
+
+/obj/item/weapon/twohanded/chainsaw/examine(mob/user)
+	. = ..()
+	. += "It contains [reagents.get_reagent_amount(/datum/reagent/fuel)]/[max_fuel] units of fuel!"
+
+///Refueling with fueltank
+/obj/item/weapon/twohanded/chainsaw/afterattack(obj/target, mob/user, flag)
+	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
+		var/obj/structure/reagent_dispensers/fueltank/saw = target
+		if(saw.reagents.total_volume == 0)
+			to_chat(user, span_warning("Out of fuel!"))
+			return ..()
+
+		var/fuel_transfer_amount = min(saw.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
+		saw.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [src] with fuel."))
+		update_icon()
+
+	return ..()
+
+///extra effect when attacking mob, such as xeno and human
+/obj/item/weapon/twohanded/chainsaw/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+	rip_apart(user)
+	if(!active) //no extra effect when weapon is off
+		return ..()
+
+	if(isxeno(M))
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood/xeno) //leave pool of blood
+		return ..()
+
+	if(ishuman(M))
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood) //leave pool of blood
+		M.drip(18) //target lose an iso pill worth of blood
+		return ..()
+
+	return ..()
+
+///handle chainsaw attack loop on object
+/obj/item/weapon/twohanded/chainsaw/attack_obj(obj/object, mob/living/user)
+	. = ..()
+	if(!active) //attack only loop if chainsaw is on
+		return
+
+	if(user.do_actions) //check if user is busy doing something else, or in the middle of attack loop already
+		object.balloon_alert(user, "already busy")
+		return TRUE
+
+	if(user.incapacitated() || get_dist(user,object) > 1 || user.resting)  // loop attacking an adjacent object while user is not incapacitated nor resting, mostly here for the one handed chainsword
+		return TRUE
+
+	rip_apart(user)
+
+	if(!do_after(user, src.attack_speed, NONE, object, BUSY_ICON_DANGER, null,PROGRESS_BRASS) || !active) //attack channel to loop attack, and second active check in case fuel ran out.
+		return
+
+	attack_obj(object, user)
+
+/obj/item/weapon/twohanded/chainsaw/suicide_act(mob/user)
+	user.visible_message(span_danger("[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide."))
+	return(BRUTELOSS)
+
+/obj/item/weapon/twohanded/chainsaw/sword
+	name = "chainsword"
+	desc = "Cutting heretic and xenos never been easier"
+	icon_state = "chainsword_off"
+	icon_state_on = "chainsword_on"
+	worn_icon_state = "chainsword"
+	worn_icon_state_w = "chainsword_w"
+	worn_icon_state_on = "chainsword_w"
+	attack_speed = 12
+	max_fuel = 150
+	force = 60
+	force_wielded = 90
+	additional_damage = 60
+
+/// Allow the chainsword variant to be activated without being wielded
+/obj/item/weapon/twohanded/chainsaw/sword/unique_action(mob/user)
+	. = ..()
+	if(!CHECK_BITFIELD(item_flags, WIELDED))
+		playsound(loc, 'sound/machines/switch.ogg', 25)
+		toggle_active()
+		toggle_motor(user)
