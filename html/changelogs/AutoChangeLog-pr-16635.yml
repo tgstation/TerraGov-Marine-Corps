@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Campaign: Loadouts cannot be equipt until the next mission has been selected"
