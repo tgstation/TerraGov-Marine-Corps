@@ -43,3 +43,61 @@
   Arturlang:
   - bugfix: shrike healing and crit healing should now work
   - rscadd: regen delays now properly are handled by seconds_per_tick
+2024-10-07:
+  Barnet2:
+  - balance: Removes barriers around Delta Station's supermatter
+  Lumipharon:
+  - bugfix: fixed firenado going through dense objects
+  - code_imp: Improved firenado code and pathing
+  - bugfix: fixed bed/chair pixel offsets
+  blackdav123:
+  - bugfix: Fixed a typo in ai codes.
+2024-10-08:
+  Lumipharon:
+  - balance: Hunter health reduced from 360 to 320
+  - balance: Hunter melee armour increased from 40 back to 55
+  Mannybrado:
+  - balance: gives +150 max health to fireproof and bulletproof resin walls
+  - balance: gives +100 max health to hardy walls as well as 50 melee and 50 bomb
+      armor
+  - balance: special resin walls now cost +25 psy points
+  tyeagg:
+  - rscadd: tdf faction for campaign
+2024-10-09:
+  Lumipharon:
+  - code_imp: clients_by_z actually works now
+  Runian:
+  - rscadd: 'Primordial Queens gain an alternative action to Screech which lets them
+      select different types of screeches that can apply an effect to nearby xenomorphs
+      that either: heals over time, increases plasma regeneration, or boosts melee
+      damage.'
+  - soundadd: 'Voicelines for: Heal, Plasma, and Frenzy screech.'
+  - imageadd: 'Colored versions of Screech for: Heal, Plasma, Frenzy.'
+  blackdav123:
+  - rscadd: Added more survivor roles and more survivor equipment.
+  - balance: Water now purges zombium.
+  - balance: Alcohol now gives minor pain reduction at lower levels.
+  - balance: Hatchets, scythes, scalpels, and circular saws all have decent melee
+      stats now.
+  - balance: Armor vests now fit guns, aprons now fit hatchets and scythes.
+  - admin: Added a tab in the select equipment menu for survivors.
+  - rscadd: Added new zombie type, the Smoker.
+2024-10-10:
+  Arturlang:
+  - bugfix: You no longer loose the last sandbag when emptying full sandbags
+  Lumipharon:
+  - rscdel: Sawn-off shotgun removed from req
+  - balance: Sawn-off shotgun buffed to old levels, but with double the falloff
+  - bugfix: fixed deployable Iguana HP being higher than intended
+  - rscadd: Unmanned vehicle IFF and hud are based off the deploying mob
+  - balance: Unmanned vehicles no longer have 100 energy armour
+  - bugfix: jump spins work again in low grav
+  - bugfix: fixed another fueltank runtime
+  - rscadd: 'Campaign: Loadouts cannot be equipt until the next mission has been selected'
+  - qol: Detpack and signaller code is randomised upon spawn
+  - bugfix: cope sentry hud appears correctly when deployed via throw
+  - qol: 'Campaign: Any deployed cameras are deleted on mission end'
+  - bugfix: fixed a sentry runtime
+  - rscadd: 'Campaign: Mission briefing pops up when a new mission is chosen'
+  - bugfix: fixed TDF B18 icon_states
+  - code_imp: Killed some redundant suit vars

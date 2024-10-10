@@ -336,7 +336,7 @@
 	req_desc = "Requires a suit with a Surt module."
 	ui_icon = "m240"
 	item_typepath = /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
-	item_whitelist = list(/obj/item/clothing/suit/modular/xenonauten/heavy/surt = ITEM_SLOT_OCLOTHING)
+	item_whitelist = list(/obj/item/clothing/suit/modular/tdf/heavy/surt = ITEM_SLOT_OCLOTHING)
 
 /datum/loadout_item/suit_store/main_gun/marine/flamer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
@@ -477,8 +477,8 @@
 	ui_icon = "t18"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_carbine/scout
 	item_whitelist = list(
-		/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING,
-		/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/tdf/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/tdf/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
 	)
 
 /datum/loadout_item/suit_store/main_gun/marine/scout_carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
@@ -602,8 +602,8 @@
 	ui_icon = "tx8"
 	item_typepath = /obj/item/weapon/gun/rifle/tx8/scout
 	item_whitelist = list(
-		/obj/item/clothing/suit/modular/xenonauten/light/shield = ITEM_SLOT_OCLOTHING,
-		/obj/item/clothing/suit/modular/xenonauten/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/tdf/light/shield = ITEM_SLOT_OCLOTHING,
+		/obj/item/clothing/suit/modular/tdf/light/shield_overclocked = ITEM_SLOT_OCLOTHING,
 	)
 	purchase_cost = 100
 	quantity = 2

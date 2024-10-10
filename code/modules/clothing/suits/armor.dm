@@ -38,6 +38,7 @@
 	armor_protection_flags = CHEST
 	soft_armor = list(MELEE = 20, BULLET = 30, LASER = 25, ENERGY = 10, BOMB = 15, BIO = 0, FIRE = 10, ACID = 10)
 	allowed = list (
+		/obj/item/weapon/gun,
 		/obj/item/flashlight,
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,

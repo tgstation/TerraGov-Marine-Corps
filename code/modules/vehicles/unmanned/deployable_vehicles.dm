@@ -7,6 +7,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	slowdown = 0.3
 	item_flags = IS_DEPLOYABLE
+	max_integrity = IGUANA_MAX_INTEGRITY
 	///The vehicle this deploys into
 	var/deployable_item = /obj/vehicle/unmanned/deployable
 	///The equipped turret
@@ -30,11 +31,14 @@
 	///What it deploys into. typecast version of internal_item
 	var/obj/item/deployable_vehicle/internal_item
 
-/obj/vehicle/unmanned/deployable/Initialize(mapload, _internal_item, deployer)
+/obj/vehicle/unmanned/deployable/Initialize(mapload, _internal_item, mob/deployer)
 	if(!internal_item && !_internal_item)
 		return INITIALIZE_HINT_QDEL
 	internal_item = _internal_item
 	spawn_equipped_type = internal_item.stored_turret_type
+	if(ishuman(deployer))
+		var/mob/living/carbon/human/human_deployer = deployer
+		iff_signal = human_deployer?.wear_id?.iff_signal
 	. = ..()
 	current_rounds = internal_item.stored_ammo
 
