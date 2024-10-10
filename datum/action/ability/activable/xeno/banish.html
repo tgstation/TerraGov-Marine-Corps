@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;action&#x2F;ability&#x2F;activable&#x2F;xeno&#x2F;banish - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/action/ability/activable/xeno/banish.html#var">Var Details</a> - <a href="datum/action/ability/activable/xeno/banish.html#proc">Proc Details</a></header>
+<main>
+<h1>banish <aside>/<a href="datum.html">datum</a>/<a href="datum/action.html">action</a>/<a href="datum/action/ability.html">ability</a>/<a href="datum/action/ability/activable.html">activable</a>/<a href="datum/action/ability/activable/xeno.html">xeno</a>/<a href="datum/action/ability/activable/xeno/banish.html">banish</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/fc4ca22db4077c97626eab6ad5d9c6557c491b92/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L156">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 156"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/banish.html#var/backup_coordinates">backup_coordinates</a></th><td>Backup coordinates to teleport the banished to, in case the portal gets destroyed (shuttles!!)</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/banish.html#var/banish_duration_timer_id">banish_duration_timer_id</a></th><td>The timer ID of any Banish currently active</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/banish.html#var/banishment_target">banishment_target</a></th><td>Target we've banished</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/banish.html#var/contained_living">contained_living</a></th><td>living mobs in the banished object so we can check they didnt get ejected</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/banish.html#var/portal">portal</a></th><td>SFX indicating the banished target's position</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/banish.html#var/range">range</a></th><td>How far can you banish</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/banish.html#var/reserved_area">reserved_area</a></th><td>Phantom zone reserved area</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/banish.html#proc/banish_deactivate">banish_deactivate</a></th><td>Ends the effect of the Banish ability</td></tr>
+            <tr><th><a href="datum/action/ability/activable/xeno/banish.html#proc/banish_warning">banish_warning</a></th><td>Warns the user when Banish's duration is about to lapse.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/backup_coordinates"><aside class="declaration">var </aside>backup_coordinates
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/fc4ca22db4077c97626eab6ad5d9c6557c491b92/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L172">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 172"/></a></h3>
+        <p>Backup coordinates to teleport the banished to, in case the portal gets destroyed (shuttles!!)</p><h3 id="var/banish_duration_timer_id"><aside class="declaration">var </aside>banish_duration_timer_id
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/fc4ca22db4077c97626eab6ad5d9c6557c491b92/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L176">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 176"/></a></h3>
+        <p>The timer ID of any Banish currently active</p><h3 id="var/banishment_target"><aside class="declaration">var </aside>banishment_target
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/fc4ca22db4077c97626eab6ad5d9c6557c491b92/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L168">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 168"/></a></h3>
+        <p>Target we've banished</p><h3 id="var/contained_living"><aside class="declaration">var </aside>contained_living
+            <aside>&ndash; /list/mob/living</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/fc4ca22db4077c97626eab6ad5d9c6557c491b92/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 174"/></a></h3>
+        <p>living mobs in the banished object so we can check they didnt get ejected</p><h3 id="var/portal"><aside class="declaration">var </aside>portal
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/effect/temp_visual.html">effect/temp_visual</a>/banishment_portal</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/fc4ca22db4077c97626eab6ad5d9c6557c491b92/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L170">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 170"/></a></h3>
+        <p>SFX indicating the banished target's position</p><h3 id="var/range"><aside class="declaration">var </aside>range
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/fc4ca22db4077c97626eab6ad5d9c6557c491b92/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 180"/></a></h3>
+        <p>How far can you banish</p><h3 id="var/reserved_area"><aside class="declaration">var </aside>reserved_area
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/turf_reservation.html">turf_reservation</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/fc4ca22db4077c97626eab6ad5d9c6557c491b92/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 178"/></a></h3>
+        <p>Phantom zone reserved area</p><h2 id="proc">Proc Details</h2><h3 id="proc/banish_deactivate"><aside class="declaration">proc </aside>banish_deactivate<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/fc4ca22db4077c97626eab6ad5d9c6557c491b92/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L294">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 294"/></a></aside>
+        </h3>
+        <p>Ends the effect of the Banish ability</p><h3 id="proc/banish_warning"><aside class="declaration">proc </aside>banish_warning<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/fc4ca22db4077c97626eab6ad5d9c6557c491b92/code/modules/mob/living/carbon/xenomorph/castes/wraith/abilities_wraith.dm#L285">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;mob&#x2F;living&#x2F;carbon&#x2F;xenomorph&#x2F;castes&#x2F;wraith&#x2F;abilities_wraith.dm 285"/></a></aside>
+        </h3>
+        <p>Warns the user when Banish's duration is about to lapse.</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/fc4ca22db4077c97626eab6ad5d9c6557c491b92">fc4ca22</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
