@@ -40,7 +40,7 @@
 	if(!secondary_ammo_type)
 		secondary_ammo_type = weapon_type::default_ammo_type
 
-/datum/loadout_item/suit_store/main_gun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	if(!ammo_type)
 		return

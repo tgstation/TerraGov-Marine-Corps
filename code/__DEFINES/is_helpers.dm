@@ -182,6 +182,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isstorageobj(A) (istype(A, /obj/item/storage))
 
+#define isholster(A) (istype(A, /obj/item/storage/holster))
+
 #define isitemstack(A) (istype(A, /obj/item/stack))
 
 #define isuniform(A) (istype(A, /obj/item/clothing/under))

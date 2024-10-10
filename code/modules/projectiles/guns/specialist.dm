@@ -881,6 +881,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		else if (src == human_user.r_hand)
 			human_user.update_inv_r_hand()
 
+/obj/item/weapon/gun/launcher/rocket/oneuse/anti_tank
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm AT rocket. Spacebar to shorten or extend it to make it storeable or fireable, respectively."
+	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse/anti_tank
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/oneuse/anti_tank)
+
 //SOM RPG
 /obj/item/weapon/gun/launcher/rocket/som
 	name = "\improper V-71 rocket launcher"
