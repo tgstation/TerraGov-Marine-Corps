@@ -16,7 +16,7 @@ export const DrawOrder = (props) => {
     <Section title="Draw Order">
       <Stack fill>
         <Stack.Item grow>
-          <Section title="Equip Slot Order">
+          <Section title="Draw Slot Order">
             <Section>
               <Table>
                 {draw_order.map((item) => (

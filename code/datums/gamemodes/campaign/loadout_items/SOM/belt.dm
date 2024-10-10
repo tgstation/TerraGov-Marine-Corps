@@ -41,15 +41,15 @@
 
 /datum/loadout_item/belt/som_grenades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, SLOT_IN_BELT)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, SLOT_IN_BELT)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_BELT)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, SLOT_IN_BELT)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BELT)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, SLOT_IN_BELT)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BELT)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BELT)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, SLOT_IN_BELT)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, ITEM_SLOT_BELT, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, ITEM_SLOT_BELT, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_BELT, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_BELT, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, ITEM_SLOT_BELT, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, ITEM_SLOT_BELT, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BELT, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BELT, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, ITEM_SLOT_BELT, FALSE, TRUE)
 
 /datum/loadout_item/belt/som_burst_pistol
 	name = "V-11e"
@@ -61,13 +61,13 @@
 
 /datum/loadout_item/belt/som_burst_pistol/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, SLOT_IN_HOLSTER)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, SLOT_IN_HOLSTER)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, SLOT_IN_HOLSTER)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, SLOT_IN_HOLSTER)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, SLOT_IN_HOLSTER)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, SLOT_IN_HOLSTER)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/som/burst(wearer), SLOT_IN_HOLSTER)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, ITEM_SLOT_SUITSTORE, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, ITEM_SLOT_SUITSTORE, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, ITEM_SLOT_SUITSTORE, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, ITEM_SLOT_SUITSTORE, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, ITEM_SLOT_SUITSTORE, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/som/extended, ITEM_SLOT_SUITSTORE, FALSE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/som/burst(wearer), ITEM_SLOT_SUITSTORE, FALSE, TRUE)
 
 /datum/loadout_item/belt/sawn_off
 	name = "Sawn-off shotgun"
