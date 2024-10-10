@@ -135,6 +135,9 @@
 		if(!M.can_launch)
 			to_chat(usr, span_warning("Evacuation is not enabled!"))
 			return
+		if(SSevacuation.evac_status != EVACUATION_STATUS_IN_PROGRESS)
+			to_chat(usr,span_warning("The pod is not ready to launch yet!"))
+			return
 
 		to_chat(usr, span_highdanger("You slam your fist down on the launch button!"))
 		M.launch(TRUE)
