@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscdel: "Sawn-off shotgun removed from req"
-  - balance: "Sawn-off shotgun buffed to old levels, but with double the falloff"
