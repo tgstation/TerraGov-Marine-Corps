@@ -661,7 +661,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	name = "Time Shift"
 	action_icon_state = "rewind"
 	action_icon = 'icons/Xeno/actions/wraith.dmi'
-	desc = "Save the location and status of the target. When the time is up, the target location and status are restored, unless the target is dead or unconscious."
+	desc = "Save the location and status of the target. When the time is up, the target location and status are restored, unless the target is dead, unconscious, or changed z-levels."
 	ability_cost = 100
 	cooldown_duration = 30 SECONDS
 	keybinding_signals = list(
