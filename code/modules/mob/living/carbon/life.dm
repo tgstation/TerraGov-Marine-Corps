@@ -154,9 +154,9 @@
 			adjustToxLoss(4)
 
 	switch(drunkenness) //painkilling effects
-		if(51 to 71)
+		if(6 to 41)
 			reagent_shock_modifier += PAIN_REDUCTION_LIGHT
-		if(71 to 81)
+		if(41 to 81)
 			reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 		if(81 to INFINITY)
 			reagent_shock_modifier += PAIN_REDUCTION_HEAVY

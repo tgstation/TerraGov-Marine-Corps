@@ -8,7 +8,8 @@
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
-	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
+	if(z)
+		LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 
 	for(var/action in GLOB.human_init_actions)
 		var/datum/action/human_action = new action(src)
