@@ -114,6 +114,7 @@
 		/obj/item/weapon/gun/pistol/rt3 = ITEM_SLOT_SECONDARY,
 		/obj/item/weapon/gun/pistol/smart_pistol = ITEM_SLOT_SECONDARY,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol/tactical = ITEM_SLOT_SECONDARY,
+		/obj/item/weapon/gun/revolver/standard_revolver = ITEM_SLOT_SECONDARY,
 	)
 	req_desc = "Requires a pistol secondary."
 

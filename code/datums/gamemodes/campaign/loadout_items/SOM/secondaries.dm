@@ -57,7 +57,7 @@
 	req_desc = "Requires a VX-42 or VX-33P."
 
 /datum/loadout_item/secondary/gun/som/sawn_off/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_BELT)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_BELT)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_L_HAND)
 	default_load(wearer, loadout, holder)
 
