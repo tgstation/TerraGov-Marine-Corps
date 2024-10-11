@@ -577,6 +577,11 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	user.forceMove(get_turf(linked_portal))
 
+/obj/effect/wraith_portal/onTransitZ(old_z, new_z)
+	if(linked_portal)
+		qdel(linked_portal)
+	qdel(src)
+
 /// Link two portals
 /obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)
 	linked_portal = portal_to_link
