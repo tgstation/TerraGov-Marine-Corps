@@ -45,11 +45,6 @@
 	name = "Tadpole Drop Shuttle"
 	area_flags = NO_CONSTRUCTION
 
-/area/shuttle/minidropship/Initialize(mapload, ...)
-	. = ..()
-	var/area/area = get_area(src)
-	area.area_flags |= MARINE_BASE
-
 /area/shuttle/ert
 	name = "Emergency Response Team"
 
