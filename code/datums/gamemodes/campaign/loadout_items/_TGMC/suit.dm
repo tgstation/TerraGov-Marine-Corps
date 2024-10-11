@@ -155,12 +155,14 @@
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_whitelist = null
+	req_desc = null
 
 /datum/loadout_item/suit_slot/heavy_tyr/medic
 	item_typepath = /obj/item/clothing/suit/modular/tdf/heavy/tyr_two/corpsman
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = null
 	item_whitelist = null
+	req_desc = null
 
 /datum/loadout_item/suit_slot/heavy_tyr/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
@@ -171,6 +173,7 @@
 	jobs_supported = list(SQUAD_ENGINEER)
 	loadout_item_flags = null
 	item_whitelist = null
+	req_desc = null
 
 /datum/loadout_item/suit_slot/heavy_tyr/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
@@ -183,6 +186,7 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
 	loadout_item_flags = NONE
 	item_whitelist = null
+	req_desc = null
 
 /datum/loadout_item/suit_slot/medium_valk
 	name = "M Valkyrie armor"

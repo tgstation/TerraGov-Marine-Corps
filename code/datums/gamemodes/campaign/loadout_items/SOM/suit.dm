@@ -130,6 +130,7 @@
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
 	loadout_item_flags = null
 	item_whitelist = null
+	req_desc = null
 
 /datum/loadout_item/suit_slot/som_heavy_tyr/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, SLOT_IN_SUIT)
@@ -140,6 +141,7 @@
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 	loadout_item_flags = null
 	item_whitelist = null
+	req_desc = null
 
 /datum/loadout_item/suit_slot/som_heavy_tyr/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
@@ -152,6 +154,7 @@
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
 	loadout_item_flags = null
 	item_whitelist = null
+	req_desc = null
 
 /datum/loadout_item/suit_slot/gorgon
 	name = "Gorgon armor"
