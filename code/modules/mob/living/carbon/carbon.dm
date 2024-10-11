@@ -200,6 +200,8 @@
 
 /mob/living/carbon/fire_act(burn_level)
 	. = ..()
+	if(!.)
+		return
 	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
 //generates realistic-ish pulse output based on preset levels
