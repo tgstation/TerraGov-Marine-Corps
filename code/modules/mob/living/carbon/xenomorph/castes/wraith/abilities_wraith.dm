@@ -690,16 +690,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/rewind_timer
 
 /datum/action/ability/activable/xeno/rewind/Destroy()
-	last_target_locs_list = null
-	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
-	if(rewind_timer)
-		deltimer(rewind_timer)
-	if(!QDELETED(targeted))
-		targeted.remove_filter("prerewind_blur")
-		targeted.remove_filter("rewind_blur")
-		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
-		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
-		targeted = null
+	cancel_timeshift()
 	return ..()
 
 /datum/action/ability/activable/xeno/rewind/can_use_ability(atom/A, silent, override_flags)
@@ -790,3 +781,21 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	targeted.Move(loc_b, get_dir(loc_b, loc_a))
 	new /obj/effect/temp_visual/after_image(loc_a, targeted)
 	INVOKE_NEXT_TICK(src, PROC_REF(rewind))
+
+// Removes all things associated while someone is being timeshifted, effectively stopping it from happening.
+/datum/action/ability/activable/xeno/rewind/proc/cancel_timeshift()
+	last_target_locs_list = null
+	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
+	if(rewind_timer)
+		deltimer(rewind_timer)
+	if(!QDELETED(targeted))
+		targeted.remove_filter("prerewind_blur")
+		targeted.remove_filter("rewind_blur")
+		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
+		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
+		targeted = null
+
+/// Cancels the timeshift if the target changed z-levels.
+/datum/action/ability/activable/xeno/rewind/proc/target_changed_zlevel()
+	SIGNAL_HANDLER
+	cancel_timeshift()
