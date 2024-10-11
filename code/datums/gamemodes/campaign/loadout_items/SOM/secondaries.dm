@@ -14,7 +14,7 @@
 	desc = "The standard sidearm used by the Sons of Mars. A reliable and simple weapon that is often seen on the export market on the outer colonies. \
 	Typically chambered in 9mm armor piercing rounds."
 	ui_icon = "v11"
-	item_typepath = /obj/item/weapon/gun/pistol/som
+	item_typepath = /obj/item/weapon/gun/pistol/som/standard
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
 
@@ -25,6 +25,13 @@
 	ui_icon = "v11"
 	item_typepath = /obj/item/weapon/gun/pistol/som/burst
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
+	loadout_item_flags = NONE
+
+/datum/loadout_item/secondary/gun/som/highpower
+	name = "Highpower"
+	desc = "A powerful semi-automatic pistol chambered in the devastating .50 AE caliber rounds. Used for centuries by law enforcement and criminals alike, recently recreated with this new model."
+	ui_icon = "highpower"
+	item_typepath = /obj/item/weapon/gun/pistol/highpower/standard
 	loadout_item_flags = NONE
 
 /datum/loadout_item/secondary/gun/som/serpenta

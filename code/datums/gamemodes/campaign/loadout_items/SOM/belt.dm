@@ -67,8 +67,9 @@
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	item_whitelist = list(
-		/obj/item/weapon/gun/pistol/som = ITEM_SLOT_SECONDARY,
+		/obj/item/weapon/gun/pistol/som/standard = ITEM_SLOT_SECONDARY,
 		/obj/item/weapon/gun/pistol/som/burst = ITEM_SLOT_SECONDARY,
+		/obj/item/weapon/gun/pistol/highpower/standard = ITEM_SLOT_SECONDARY,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta = ITEM_SLOT_SECONDARY,
 		/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/serpenta/custom = ITEM_SLOT_SECONDARY,
 		/obj/item/storage/backpack/marine/engineerpack/som = ITEM_SLOT_SECONDARY,

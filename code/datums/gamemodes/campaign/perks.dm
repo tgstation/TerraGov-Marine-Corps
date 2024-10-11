@@ -287,6 +287,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	if(!istype(owner_stats))
 		return
 	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/som/extended_pistol, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/som/highpower, jobs_supported, owner, 0)
 	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/marine/highpower, jobs_supported, owner, 0)
 	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/marine/laser_pistol, jobs_supported, owner, 0)
 	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/marine/standard_revolver, jobs_supported, owner, 0)
