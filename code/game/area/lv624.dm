@@ -209,6 +209,7 @@
 	name = "Enclosed Area"
 	icon_state = "transparent"
 	minimap_color = null
+	area_flags = CANNOT_NUKE
 
 /area/lv624/ground/caves/west1
 	name = "Western Caves"
@@ -477,17 +478,17 @@
 /area/lv624/lazarus/console
 	name = "\improper Shuttle Console"
 	icon_state = "tcomsatcham"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	requires_power = FALSE
 
 /area/lv624/lazarus/spaceport
 	name = "\improper Eastern Space Port"
 	icon_state = "landingzone1"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/lv624/lazarus/spaceport2
 	name = "\improper Western Space Port"
 	icon_state = "landingzone2"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	minimap_color = MINIMAP_AREA_LZ

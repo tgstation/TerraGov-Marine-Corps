@@ -5,13 +5,13 @@
 	icon_state = "left"
 	layer = ABOVE_WINDOW_LAYER
 	resistance_flags = XENO_DAMAGEABLE
-	obj_flags = CAN_BE_HIT
+	obj_flags = CAN_BE_HIT | BLOCKS_CONSTRUCTION_DIR
 	var/base_state = "left"
 	max_integrity = 50
 	soft_armor = list(MELEE = 20, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 100, FIRE = 70, ACID = 100)
 	visible = FALSE
 	use_power = FALSE
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
 	allow_pass_flags = PASS_GLASS
 	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
@@ -40,7 +40,7 @@
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
-	playsound(src, "shatter", 50, 1)
+	playsound(src, SFX_SHATTER, 50, 1)
 	return ..()
 
 
@@ -50,6 +50,10 @@
 		return
 	icon_state = density ? base_state : "[base_state]open"
 
+/obj/machinery/door/window/emp_act(severity)
+	. = ..()
+	if(prob(30 / severity))
+		open()
 
 /obj/machinery/door/window/proc/open_and_close()
 	open()

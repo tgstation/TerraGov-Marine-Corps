@@ -101,10 +101,10 @@
 
 /obj/item/riding_offhand
 	name = "offhand"
-	icon = 'icons/obj/items/weapons.dmi'
+	icon = 'icons/obj/items/weapons/misc.dmi'
 	icon_state = "offhand"
 	w_class = WEIGHT_CLASS_HUGE
-	flags_item = ITEM_ABSTRACT | DELONDROP | NOBLUDGEON
+	item_flags = ITEM_ABSTRACT | DELONDROP | NOBLUDGEON
 	resistance_flags = INDESTRUCTIBLE | UNACIDABLE | PROJECTILE_IMMUNE
 	var/mob/living/carbon/rider
 	var/mob/living/parent

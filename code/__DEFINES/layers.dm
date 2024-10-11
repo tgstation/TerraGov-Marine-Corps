@@ -28,8 +28,17 @@
 
 #define FLOOR_PLANE -5
 #define GAME_PLANE -4
+///Slightly above the game plane but does not catch mouse clicks. Useful for certain visuals that should be clicked through, like seethrough trees
+#define SEETHROUGH_PLANE -2
 
 #define BLACKNESS_PLANE 0 //To keep from conflicts with SEE_BLACKNESS internals
+
+//Float layers. These layer over normal layers, but a high float layer will layer over a lower float layer (i.e. -1 over -2)
+#define BELOW_FLOAT_LAYER -2
+#define STANDARD_FLOAT_LAYER -1
+#define ABOVE_FLOAT_LAYER -0.9
+#define HIGH_FLOAT_LAYER -0.8
+#define VERY_HIGH_FLOAT_LAYER -0.7
 
 #define SPACE_LAYER 1.8
 
@@ -236,5 +245,32 @@
 
 #define ADMIN_POPUP_LAYER 1
 
+#define TUTORIAL_INSTRUCTIONS_LAYER 5
+
 #define SPLASHSCREEN_LAYER 9999
 #define SPLASHSCREEN_PLANE 9999
+
+// Lummox I swear to god I will find you
+// NOTE! You can only ever have planes greater then -10000, if you add too many with large offsets you will brick multiz
+// Same can be said for large multiz maps. Tread carefully mappers
+#define HIGHEST_EVER_PLANE 10000
+/// The range unique planes can be in
+/// Try and keep this to a nice whole number, so it's easy to look at a plane var and know what's going on
+#define PLANE_RANGE (HIGHEST_EVER_PLANE - LOWEST_EVER_PLANE)
+
+///Plane master controller keys
+#define PLANE_MASTERS_GAME "plane_masters_game"
+#define PLANE_MASTERS_NON_MASTER "plane_masters_non_master"
+#define PLANE_MASTERS_COLORBLIND "plane_masters_colorblind"
+
+//Plane master critical flags
+//Describes how different plane masters behave when they are being culled for performance reasons
+/// This plane master will not go away if its layer is culled. useful for preserving effects
+#define PLANE_CRITICAL_DISPLAY (1<<0)
+/// This plane master will temporarially remove relays to all other planes
+/// Allows us to retain the effects of a plane while cutting off the changes it makes
+#define PLANE_CRITICAL_NO_RELAY (1<<1)
+/// We assume this plane master has a render target starting with *, it'll be removed, forcing it to render in place
+#define PLANE_CRITICAL_CUT_RENDER (1<<2)
+
+#define PLANE_CRITICAL_FUCKO_PARALLAX (PLANE_CRITICAL_DISPLAY|PLANE_CRITICAL_NO_RELAY|PLANE_CRITICAL_CUT_RENDER)

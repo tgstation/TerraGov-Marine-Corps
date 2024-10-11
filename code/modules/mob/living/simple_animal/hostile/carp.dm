@@ -25,13 +25,6 @@
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("gnashes")
 
-
-/mob/living/simple_animal/hostile/carp/holocarp
-	icon_state = "holocarp"
-	icon_living = "holocarp"
-	del_on_death = TRUE
-
-
 /mob/living/simple_animal/hostile/carp/megacarp
 	icon = 'icons/mob/broadMobs.dmi'
 	name = "Mega Space Carp"
@@ -59,7 +52,7 @@
 	move_to_delay = rand(3, 7)
 
 
-/mob/living/simple_animal/hostile/carp/megacarp/Life()
+/mob/living/simple_animal/hostile/carp/megacarp/Life(seconds_per_tick, times_fired)
 	. = ..()
 	if(regen_cooldown < world.time)
 		heal_overall_damage(4)

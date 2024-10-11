@@ -123,14 +123,6 @@
 			return TRUE
 	return FALSE
 
-
-/mob/living/silicon/decoy/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
-	for(var/turf/myloc AS in locs)
-		if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
-			return TRUE
-	return FALSE
-
-
 /obj/machinery/door/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	if(isturf(loc) && bound_width > 32 || bound_height > 32) //locs will show loc if loc is not a turf
 		for(var/turf/myloc AS in locs)
@@ -155,7 +147,7 @@
 		return TRUE
 
 	if(isitem(loc)) //Special case handling.
-		if(istype(loc, /obj/item/storage/internal)) //Special holders, could be contained really deep, like webbings, so let's go one step further.
+		if(item_flags & IN_STORAGE)
 			return loc.Adjacent(neighbor)
 		else //Backpacks and other containers.
 			if(!isturf(loc.loc)) //Item is inside an item neither held by neighbor nor in a turf. Can't access.
@@ -193,7 +185,7 @@
 		if(O == target_atom || O == mover || (O.allow_pass_flags & PASS_PROJECTILE)) //check if there's a dense object present on the turf
 			continue // PASS_THROW is used for anything you can click through (or the firedoor special case, see above)
 
-		if(O.flags_atom & ON_BORDER) // windows have PASS_PROJECTILE but are on border, check them first
+		if(O.atom_flags & ON_BORDER) // windows have PASS_PROJECTILE but are on border, check them first
 			if(O.dir & target_dir || O.dir & (O.dir-1)) // full tile windows are just diagonals mechanically
 				return FALSE
 
@@ -203,13 +195,13 @@
 
 /atom/proc/handle_barriers(mob/living/M)
 	for(var/obj/structure/S in M.loc)
-		if(S.flags_atom & ON_BORDER && S.dir & get_dir(M,src) || S.dir&(S.dir-1))
-			if(S.flags_barrier & HANDLE_BARRIER_CHANCE)
+		if(S.atom_flags & ON_BORDER && S.dir & get_dir(M,src) || S.dir&(S.dir-1))
+			if(S.barrier_flags & HANDLE_BARRIER_CHANCE)
 				if(S.handle_barrier_chance(M))
 					return S // blocked
 	for(var/obj/structure/S in loc)
-		if(S.flags_atom & ON_BORDER && S.dir & get_dir(src,M) || S.dir&(S.dir-1))
-			if(S.flags_barrier & HANDLE_BARRIER_CHANCE)
+		if(S.atom_flags & ON_BORDER && S.dir & get_dir(src,M) || S.dir&(S.dir-1))
+			if(S.barrier_flags & HANDLE_BARRIER_CHANCE)
 				if(S.handle_barrier_chance(M))
 					return S // blocked
 	return src // not blocked

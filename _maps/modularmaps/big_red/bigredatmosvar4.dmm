@@ -4,8 +4,9 @@
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/outside/s)
 "br" = (
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/outside/s)
+/area/bigredv2/caves/rock)
 "bJ" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -110,8 +111,9 @@
 /area/bigredv2/outside/s)
 "kv" = (
 /obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/plating,
-/area/bigredv2/outside/s)
+/area/bigredv2/caves/rock)
 "kX" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/outside/se)
@@ -444,9 +446,6 @@
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/outside/se)
-"Qd" = (
-/turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/outside/se)
 "Qe" = (
 /obj/effect/spawner/random/misc/structure/broken_window/colonyspawn,
 /turf/open/floor/plating,
@@ -499,11 +498,8 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/s)
-"TB" = (
-/obj/structure/window/framed/colony/reinforced/hull,
-/turf/open/floor/plating,
-/area/bigredv2/outside/se)
 "Uj" = (
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/liquid/water/river,
 /area/bigredv2/caves/rock)
 "Uu" = (
@@ -1008,12 +1004,12 @@ IP
 VI
 OJ
 no
-Qd
-TB
-TB
-TB
-TB
-Qd
+br
+kv
+kv
+kv
+kv
+br
 no
 no
 Qi

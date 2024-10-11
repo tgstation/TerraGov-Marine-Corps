@@ -17,4 +17,4 @@
 
 #define is_away_level(z) SSmapping.level_trait(z, ZTRAIT_AWAY)
 
-#define is_gameplay_level(z) SSmapping.level_trait(z, ZTRAIT_MARINE_MAIN_SHIP) || SSmapping.level_trait(z, ZTRAIT_GROUND)
+#define is_gameplay_level(z) (SSmapping.level_trait(z, ZTRAIT_MARINE_MAIN_SHIP) || SSmapping.level_trait(z, ZTRAIT_GROUND))

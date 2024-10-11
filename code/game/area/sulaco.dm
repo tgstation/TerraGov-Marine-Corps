@@ -338,7 +338,7 @@
 /area/shuttle/drop1/lz1
 	name = "Alamo Landing Zone"
 	icon_state = "away1"
-	flags_area = NONE
+	area_flags = NONE
 
 /area/shuttle/drop2/Enter(atom/movable/arrived, direction)
 	if(istype(arrived, /obj/structure/barricade))
@@ -376,7 +376,7 @@
 /area/shuttle/drop2/lz2
 	name = "Normandy Landing Zone"
 	icon_state = "away2"
-	flags_area = NONE
+	area_flags = NONE
 
 
 

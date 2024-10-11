@@ -4,12 +4,14 @@
 	icon_state = "boom_vest"
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	slowdown = 0
-	flags_item_map_variant = NONE
-	flags_armor_features = NONE
+	item_map_variant_flags = NONE
+	armor_features_flags = NONE
 	///Warcry to yell upon detonation
 	var/bomb_message
 	///List of warcries that are not allowed.
 	var/bad_warcries_regex = "allahu ackbar|allah|ackbar"
+	///Time it takes to detonate
+	var/detonate_time = 2 SECONDS
 
 /obj/item/clothing/suit/storage/marine/boomvest/equipped(mob/user, slot)
 	. = ..()
@@ -46,7 +48,7 @@
 		return
 	if(bomb_message)
 		activator.say("[bomb_message]!!")
-	if(!do_after(user, 2 SECONDS, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, detonate_time, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
 		return FALSE
 	var/turf/target = get_turf(loc)
 	if(bomb_message) //Checks for a non null bomb message.
@@ -91,6 +93,7 @@
 /obj/item/clothing/suit/storage/marine/boomvest/ob_vest
 	name = "orbital bombardment vest"
 	desc = "This is your lieutenant speaking, I know exactly what those coordinates are for."
+	detonate_time = 1 SECONDS
 
 /obj/item/clothing/suit/storage/marine/boomvest/ob_vest/attack_self(mob/user)
 	var/mob/living/carbon/human/activator = user
@@ -99,7 +102,7 @@
 		return FALSE
 	if(LAZYACCESS(user.do_actions, src))
 		return
-	if(!do_after(user, 1 SECONDS, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
+	if(!do_after(user, detonate_time, IGNORE_USER_LOC_CHANGE, src, BUSY_ICON_DANGER))
 		return FALSE
 	var/turf/target = get_turf(loc)
 	activator.say("I'M FIRING IT AS AN OB!!")
@@ -112,3 +115,6 @@
 		appendage.droplimb()
 	explosion(target, 15, 0, 0, 0, 15, 15)
 	qdel(src)
+
+/obj/item/clothing/suit/storage/marine/boomvest/fast
+	detonate_time = 0.5 SECONDS

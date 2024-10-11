@@ -3,12 +3,12 @@
 	desc = "Used for blinding and being an asshole."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "flash"
-	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
+	worn_icon_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	throwforce = 5
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 4
 	throw_range = 10
-	flags_atom = CONDUCT
+	atom_flags = CONDUCT
 
 	var/times_used = 0 //Number of times it's been used.
 	var/broken = 0     //Is the flash burnt out?
@@ -122,6 +122,7 @@
 
 
 /obj/item/flash/emp_act(severity)
+	. = ..()
 	if(broken)
 		return
 	flash_recharge()
@@ -137,7 +138,6 @@
 				if(M.flash_act())
 					M.Paralyze(20 SECONDS)
 					M.visible_message(span_disarm("[M] is blinded by the flash!"))
-	..()
 
 /obj/item/flash/synthetic
 	name = "synthetic flash"

@@ -20,6 +20,11 @@
 #define APPEARANCE_UI (RESET_COLOR|RESET_TRANSFORM|NO_CLIENT_COLOR|PIXEL_SCALE)
 #define APPEARANCE_UI_TRANSFORM (RESET_COLOR|NO_CLIENT_COLOR|RESET_ALPHA|PIXEL_SCALE)
 
+/proc/ui_hand_position(i) //values based on old hand ui positions (CENTER:-/+16,SOUTH:5)
+	var/x_off = i % 2 ? 0 : -1
+	var/y_off = round((i-1) / 2)
+	return"CENTER+[x_off]:16,SOUTH+[y_off]:5"
+
 //Lower left, persistant menu
 #define ui_inventory "WEST:6,1:5"
 
@@ -43,6 +48,7 @@
 #define ui_movi "EAST-2:26,SOUTH:5"
 #define ui_zonesel "EAST-1:28,SOUTH:5"
 #define ui_acti_alt "EAST-1:28,1:5" //alternative intent switcher for when the interface is hidden (F12)
+#define ui_crafting "EAST-4:22,SOUTH:5"
 #define ui_language_menu "EAST-4:6,SOUTH:21"
 
 //Upper-middle right (alerts)
@@ -52,15 +58,7 @@
 #define ui_alert4 "EAST-1:28,CENTER+2:21"
 #define ui_alert5 "EAST-1:28,CENTER+1:19"
 
-//Upper-middle right (damage indicators)
-#define ui_toxin "EAST-1:28,13:27"
-#define ui_fire "EAST-1:28,12:25"
-#define ui_oxygen "EAST-1:28,11:23"
-#define ui_pressure "EAST-1:28,10:21"
-
 //Middle right (status indicators)
-#define ui_nutrition "EAST-1:28,5:11"
-#define ui_temp "EAST-1:28,6:13"
 #define UI_STAMINA "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
 #define ui_ammo1 "EAST-1:28,CENTER+1:25"
@@ -97,7 +95,8 @@
 #define ui_ai_camera_light "SOUTH:6,WEST+3"
 #define ui_ai_announcement "SOUTH:6,WEST+4"
 #define ui_ai_announcement_help "SOUTH:6,WEST+5"
-#define ui_ai_bioscan "SOUTH:6,WEST+6"
+#define ui_ai_supply "SOUTH:6,WEST+6"
+#define ui_ai_bioscan "SOUTH:6,WEST+7"
 #define ui_ai_multicam "SOUTH:6,WEST+17"
 #define ui_ai_add_multicam "SOUTH:6,WEST+18"
 

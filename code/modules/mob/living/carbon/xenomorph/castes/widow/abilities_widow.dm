@@ -1,7 +1,23 @@
+// ***************************************
+// *********** Resin building
+// ***************************************
+/datum/action/ability/activable/xeno/secrete_resin/widow
+	ability_cost = 100
+	buildable_structures = list(
+		/turf/closed/wall/resin/regenerating/thick,
+		/obj/alien/resin/sticky,
+		/obj/structure/mineral_door/resin/thick,
+	)
+
+// ***************************************
+// *********** Web Spit
+// ***************************************
+
 /datum/action/ability/activable/xeno/web_spit
 	name = "Web Spit"
 	desc = "Spit a web to your target, this causes different effects depending on where you hit. Spitting the head causes the target to be temporarily blind, body and arms will cause the target to be weakened, and legs will snare the target for a brief while."
 	action_icon_state = "web_spit"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 125
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
@@ -16,7 +32,7 @@
 	newspit.generate_bullet(web_spit, web_spit.damage * SPIT_UPGRADE_BONUS(X))
 	newspit.def_zone = X.get_limbzone_target()
 
-	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+	newspit.fire_at(target, X, X, newspit.ammo.max_range)
 	succeed_activate()
 	add_cooldown()
 
@@ -28,6 +44,7 @@
 	name = "Leash Ball"
 	desc = "Spit a huge web ball that snares groups of targets for a brief while."
 	action_icon_state = "leash_ball"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 250
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -45,7 +62,7 @@
 	var/obj/projectile/newspit = new (get_turf(X))
 
 	newspit.generate_bullet(leash_ball)
-	newspit.fire_at(target, X, null, newspit.ammo.max_range)
+	newspit.fire_at(target, X, X, newspit.ammo.max_range)
 	succeed_activate()
 	add_cooldown()
 
@@ -54,7 +71,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "aoe_leash"
 	desc = "Sticky and icky. Destroy it when you are stuck!"
-	destroy_sound = "alien_resin_break"
+	destroy_sound = SFX_ALIEN_RESIN_BREAK
 	max_integrity = 75
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -107,17 +124,17 @@
 		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
 
 /// This is so that xenos can remove leash balls
-/obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/xeno/aoe_leash/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
+	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_GENERIC) || QDELETED(src))
+	if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC) || QDELETED(src))
 		return
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
 	span_xenonotice("We tear down \the [src]."))
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	take_damage(max_integrity)
 
 // ***************************************
@@ -128,6 +145,7 @@
 	name = "Birth Spiderling"
 	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 	action_icon_state = "spawn_spiderling"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 100
 	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
@@ -216,6 +234,7 @@
 	name = "Spiderling Mark"
 	desc = "Send your spawn on a valid target, they will automatically destroy themselves out of sheer fury after 15 seconds."
 	action_icon_state = "spiderling_mark"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 50
 	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
@@ -255,6 +274,7 @@
 	name = "Burrow"
 	desc = "Burrow into the ground, allowing you and your active spiderlings to hide in plain sight. You cannot use abilities, attack nor move while burrowed. Use the ability again to unburrow if you're already burrowed."
 	action_icon_state = "burrow"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 0
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -325,6 +345,7 @@
 	name = "Attach Spiderlings"
 	desc = "Attach your current spiderlings to you "
 	action_icon_state = "attach_spiderling"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 0
 	cooldown_duration = 0 SECONDS
 	keybinding_signals = list(
@@ -374,6 +395,7 @@
 	name = "Cannibalise Spiderling"
 	desc = "Consume one of your children, storing their biomass for future use. If any charges of Cannibalise are stored, alt-use of Birth Spiderling will create one spiderling in exchange for one charge of Cannibalise. Up to three charges of Cannibalise may be stored at once."
 	action_icon_state = "cannibalise_spiderling"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 150
 	cooldown_duration = 2 SECONDS
 	keybinding_signals = list(
@@ -418,6 +440,7 @@
 	name = "Web Hook"
 	desc = "Shoot out a web and pull it to traverse forward"
 	action_icon_state = "web_hook"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 200
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(

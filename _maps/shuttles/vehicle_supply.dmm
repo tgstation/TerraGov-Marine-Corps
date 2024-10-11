@@ -1,0 +1,116 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply)
+"b" = (
+/turf/open/floor/plating,
+/area/shuttle/vehicle_supply)
+"c" = (
+/obj/docking_port/mobile/supply/vehicle,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply)
+"f" = (
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply)
+"l" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply)
+"C" = (
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply)
+"E" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply)
+"I" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply)
+"K" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply)
+"M" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 8;
+	id = "vehicle_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	dir = 2;
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply)
+"Q" = (
+/obj/machinery/door/poddoor/railing{
+	dir = 1;
+	id = "vehicle_elevator_railing"
+	},
+/obj/machinery/door/poddoor/railing{
+	id = "vehicle_elevator_railing"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/vehicle_supply)
+
+(1,1,1) = {"
+I
+l
+l
+l
+M
+"}
+(2,1,1) = {"
+K
+b
+a
+b
+E
+"}
+(3,1,1) = {"
+K
+a
+c
+a
+E
+"}
+(4,1,1) = {"
+K
+b
+a
+b
+E
+"}
+(5,1,1) = {"
+Q
+C
+C
+C
+f
+"}

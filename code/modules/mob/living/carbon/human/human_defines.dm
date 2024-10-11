@@ -126,25 +126,29 @@
 
 	///Auras we can create, used for the order choice UI.
 	var/static/list/command_aura_allowed = list(AURA_HUMAN_MOVE, AURA_HUMAN_HOLD, AURA_HUMAN_FOCUS)
-	///Whether we can use another command order yet. Either null or a timer ID.
-	var/command_aura_cooldown
-
 	///Strength of the move order aura affecting us
 	var/mobility_aura = 0
 	///Strength of the hold order aura affecting us
 	var/protection_aura = 0
 	///Strength of the focus order aura affecting us
 	var/marksman_aura = 0
+	///Strength of the flag aura affecting us
+	var/flag_aura = 0
 
 	///The squad this human is assigned to
 	var/datum/squad/assigned_squad
 	///Used to help determine the severity icon state for our damage hud overlays
 	var/damageoverlaytemp = 0
+	///chestburst state
+	var/chestburst = CARBON_NO_CHEST_BURST
 	///The cooldown for being pushed by xenos on harm intent
 	COOLDOWN_DECLARE(xeno_push_delay)
 
 	/// This is the cooldown on suffering additional effects for when shock gets high
 	COOLDOWN_DECLARE(last_shock_effect)
+
+	/// Height of the mob
+	VAR_PROTECTED/mob_height = HUMAN_HEIGHT_MEDIUM
 
 ///copies over clothing preferences like underwear to another human
 /mob/living/carbon/human/proc/copy_clothing_prefs(mob/living/carbon/human/destination)

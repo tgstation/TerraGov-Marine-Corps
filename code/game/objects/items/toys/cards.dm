@@ -139,14 +139,9 @@
 		user.visible_message("\The [user] deals a card to \the [target].")
 	H.throw_at(get_step(target,target.dir),10,1,H)
 
-/obj/item/toy/deck/attack_self(mob/user as mob)
-
-	var/list/newcards = list()
-	while(length(cards))
-		var/datum/playingcard/P = pick(cards)
-		newcards += P
-		cards -= P
-	cards = newcards
+/obj/item/toy/deck/attack_self(mob/user)
+	. = ..()
+	shuffle_inplace(cards)
 	user.visible_message("\The [user] shuffles [src].")
 
 /obj/item/toy/deck/MouseDrop(atom/over)
@@ -369,6 +364,7 @@
 		P.card_icon = "Wildcard"
 		cards += P
 	for(var/k in 0 to 3)
+		P = new()
 		P.name= "Draw 4"
 		P.card_icon = "Draw 4"
 		cards += P
@@ -389,7 +385,7 @@
 	desc = "An ancient copy of an Ace of Hearts from a deck of playing cards."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "ace_of_hearts"
-	item_state = "ace_of_hearts"
+	worn_icon_state = "ace_of_hearts"
 	w_class = WEIGHT_CLASS_TINY
 
 /obj/item/toy/card/ace/spades
@@ -397,5 +393,5 @@
 	desc = "An ancient copy of an Ace of Spades from a deck of playing cards."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "ace_of_spades"
-	item_state = "ace_of_spades"
+	worn_icon_state = "ace_of_spades"
 	w_class = WEIGHT_CLASS_TINY

@@ -16,6 +16,7 @@
 		RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(gargoyle_alarm))
 	add_overlay(emissive_appearance(icon, "[icon_state]_emissive"))
 	INVOKE_ASYNC(src, PROC_REF(set_name), creator)
+	update_minimap_icon()
 
 /obj/structure/xeno/resin_gargoyle/proc/set_name(mob/living/carbon/xenomorph/creator)
 	name = initial(name) + " (" + tgui_input_text(creator, "Add a gargoyle name", "Naming") + ")"
@@ -27,12 +28,13 @@
 	if(!COOLDOWN_CHECK(src, proxy_alert_cooldown))
 		return
 
-	if(!isliving(hostile))
+	if(!iscarbon(hostile) && !isvehicle(hostile))
 		return
 
-	var/mob/living/living_triggerer = hostile
-	if(living_triggerer.stat == DEAD)
-		return
+	if(iscarbon(hostile))
+		var/mob/living/carbon/carbon_triggerer = hostile
+		if(carbon_triggerer.stat == DEAD)
+			return
 
 	if(isxeno(hostile))
 		var/mob/living/carbon/xenomorph/X = hostile
@@ -40,7 +42,7 @@
 			return
 
 	is_alerting = TRUE
-	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a hostile [hostile] at [get_area(hostile)].", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_talk2.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
+	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a hostile [hostile] at [get_area(hostile)].", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien/talk2.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, proxy_alert_cooldown, XENO_GARGOYLE_DETECTION_COOLDOWN)
 	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_GARGOYLE_DETECTION_COOLDOWN, TIMER_STOPPABLE)
 	update_minimap_icon()
@@ -59,4 +61,4 @@
 ///resets minimap icon for the gargoyle
 /obj/structure/xeno/resin_gargoyle/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[is_alerting ? "_alarm" : ""]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "gargoyle[is_alerting ? "_warn" : "_passive"]", ABOVE_FLOAT_LAYER))

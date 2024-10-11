@@ -2,9 +2,6 @@
 "a" = (
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
-/obj/machinery/door/poddoor/mainship/open{
-	id = "minidropship_podlock"
-	},
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "b" = (
@@ -56,12 +53,6 @@
 	pixel_y = 32
 	},
 /turf/closed/wall/mainship/outer/canterbury,
-/area/shuttle/minidropship)
-"l" = (
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
-/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "q" = (
 /turf/open/floor/plating/plating_catwalk,
@@ -193,9 +184,6 @@
 /obj/machinery/door/poddoor/mainship/open{
 	id = "minidropship_podlock"
 	},
-/obj/structure/barricade/plasteel{
-	dir = 8
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "V" = (
@@ -250,8 +238,8 @@ k
 X
 F
 s
-l
-l
+q
+q
 F
 F
 X

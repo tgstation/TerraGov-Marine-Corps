@@ -25,6 +25,7 @@
 
 /obj/machinery/computer/supplydrop_console/Initialize(mapload)
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_SUPPLY_BEACON_CREATED, PROC_REF(ping_beacon))
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/computer/supplydrop_console/LateInitialize()
@@ -33,6 +34,11 @@
 		if(_supply_pad.faction == faction)
 			supply_pad = _supply_pad
 			return
+
+/// Used to notify of a new beacon target
+/obj/machinery/computer/supplydrop_console/proc/ping_beacon()
+	SIGNAL_HANDLER
+	playsound(src,'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 
 /obj/machinery/computer/supplydrop_console/Destroy()
 	supply_beacon = null
@@ -75,7 +81,7 @@
 					beacon_list -= beacon_name
 					continue
 			var/datum/supply_beacon/supply_beacon_choice = beacon_list[tgui_input_list(ui.user, "Select the beacon to send supplies", "Beacon choice", beacon_list)]
-			if(!istype(supply_beacon_choice) && is_ground_level(supply_beacon.drop_location.z))
+			if(!istype(supply_beacon_choice) && is_ground_level(supply_beacon?.drop_location?.z))
 				return
 			supply_beacon = supply_beacon_choice
 			RegisterSignal(supply_beacon, COMSIG_QDELETING, PROC_REF(clean_supply_beacon), override = TRUE)
@@ -181,7 +187,7 @@
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! No deployable object detected on the drop pad.")]")
 		return
 
-	supply_beacon.drop_location.visible_message(span_boldnotice("A supply drop appears suddendly!"))
+	supply_beacon.drop_location.visible_message(span_boldnotice("A supply drop appears suddenly!"))
 	playsound(supply_beacon.drop_location,'sound/effects/phasein.ogg', 50, TRUE)
 	playsound(supply_pad.loc,'sound/effects/phasein.ogg', 50, TRUE)
 	for(var/obj/C in supplies)

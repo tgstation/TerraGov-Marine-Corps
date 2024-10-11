@@ -134,7 +134,7 @@
 	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "floodlightcombat"
 	max_integrity = 200
-	flags_item = IS_DEPLOYABLE
+	item_flags = IS_DEPLOYABLE
 	w_class = WEIGHT_CLASS_NORMAL
 	var/deployable_item = /obj/machinery/deployable/floodlight
 

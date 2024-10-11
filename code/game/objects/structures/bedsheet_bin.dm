@@ -9,11 +9,11 @@ LINEN BINS
 	desc = "A surprisingly soft linen bedsheet."
 	icon = 'icons/obj/items/bedsheets.dmi'
 	icon_state = "sheet"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/civilian_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/civilian_right.dmi',
 	)
-	item_state = "bedsheet"
+	worn_icon_state = "bedsheet"
 	layer = MOB_LAYER
 	throwforce = 1
 	throw_speed = 1

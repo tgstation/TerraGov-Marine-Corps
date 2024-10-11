@@ -2,9 +2,9 @@
 //---------------------------------------------------
 
 /obj/item/weapon/gun/revolver
-	flags_equip_slot = ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/pistols_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/pistols_right_1.dmi',
 	)
@@ -17,7 +17,7 @@
 	hand_reload_sound = 'sound/weapons/guns/interact/revolver_load.ogg'
 	type_of_casings = "bullet"
 	load_method = SINGLE_CASING|SPEEDLOADER //codex
-	flags_gun_features = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_SMOKE_PARTICLES
 	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_speed_modifier = 0.75
 	aim_fire_delay = 0.25 SECONDS
@@ -66,7 +66,7 @@
 	name = "\improper R-44 combat revolver"
 	desc = "The R-44 standard combat revolver, produced by Terran Armories. A sturdy and hard hitting firearm that loads .44 Magnum rounds. Holds 7 rounds in the cylinder. Due to an error in the cylinder rotation system the fire rate of the gun is much faster than intended, it ended up being billed as a feature of the system."
 	icon_state = "tp44"
-	item_state = "tp44"
+	worn_icon_state = "tp44"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_r44.ogg'
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 7 //codex
@@ -84,7 +84,6 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 13, "rail_y" = 23, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 19)
 	fire_delay = 0.15 SECONDS
@@ -108,7 +107,7 @@
 	name = "\improper N-Y 7.62mm revolver"
 	desc = "The Nagant-Yamasaki 7.62 is an effective killing machine designed by a consortion of shady Not-Americans. It is frequently found in the hands of criminals or mercenaries."
 	icon_state = "ny762"
-	item_state = "ny762"
+	worn_icon_state = "ny762"
 	caliber = CALIBER_762X38 //codex
 	max_chamber_items = 7 //codex
 	fire_sound = 'sound/weapons/guns/fire/ny.ogg'
@@ -136,7 +135,7 @@
 	name = "\improper FFA 'Rebota' revolver"
 	desc = "A lean .357 made by Falffearmeria. A timeless design, from antiquity to the future. This one is well known for it's strange ammo, which ricochets off walls constantly. Which went from being a defect to a feature."
 	icon_state = "rebota"
-	item_state = "sw357"
+	worn_icon_state = "sw357"
 	caliber = CALIBER_357 //codex
 	max_chamber_items = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver.ogg'
@@ -165,7 +164,7 @@
 	name = "\improper R-24 'Mateba' autorevolver"
 	desc = "The R-24 is the rather rare autorevolver used by the TGMC issued in rather small numbers to backline personnel and officers it uses recoil to spin the cylinder. Uses heavy .454 rounds."
 	icon_state = "mateba"
-	item_state = "mateba"
+	worn_icon_state = "mateba"
 	fire_animation = "mateba_fire"
 	muzzleflash_iconstate = "muzzle_flash"
 	caliber = CALIBER_454 //codex
@@ -183,7 +182,6 @@
 		/obj/item/attachable/compensator,
 		/obj/item/attachable/lace,
 		/obj/item/attachable/buildasentry,
-		/obj/item/attachable/shoulder_mount,
 	)
 
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 8, "rail_y" = 23, "under_x" = 24, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
@@ -205,7 +203,7 @@
 	name = "\improper R-24 autorevolver special"
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. This one appears to have had more love and care put into it. Uses .454 rounds."
 	icon_state = "mateba"
-	item_state = "mateba"
+	worn_icon_state = "mateba"
 
 //-------------------------------------------------------
 //MARSHALS REVOLVER
@@ -214,7 +212,7 @@
 	name = "\improper CMB autorevolver"
 	desc = "An automatic revolver chambered in .357 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies."
 	icon_state = "cmb"
-	item_state = "cmb"
+	worn_icon_state = "cmb"
 	caliber = CALIBER_357 //codex
 	max_chamber_items = 6 //codex
 	fire_sound = 'sound/weapons/guns/fire/revolver_light.ogg'
@@ -245,7 +243,7 @@
 	name = "\improper 'Judge' revolver"
 	desc = "An incredibly uncommon revolver utilizing a oversized chamber to be able to both fire 45 Long at the cost of firing speed. Normal rounds have no falloff, and next to no scatter. Due to the short barrel, buckshot out of it has high spread."
 	icon_state = "judge"
-	item_state = "m44"
+	worn_icon_state = "m44"
 	fire_animation = "judge_fire"
 	caliber = CALIBER_45L //codex
 	max_chamber_items = 5 //codex
@@ -282,7 +280,7 @@
 	desc = "The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon = 'icons/obj/items/guns/pistols64.dmi'
 	icon_state = "t76"
-	item_state = "t76"
+	worn_icon_state = "t76"
 	fire_animation = "t76_fire"
 	caliber = CALIBER_12x7 //codex
 	max_chamber_items = 5 //codex
@@ -298,7 +296,6 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/stock/t76,
 		/obj/item/attachable/scope/standard_magnum,
 	)
@@ -328,7 +325,6 @@
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/lace,
-		/obj/item/attachable/shoulder_mount,
 		/obj/item/attachable/stock/t76,
 		/obj/item/attachable/scope/standard_magnum,
 		/obj/item/attachable/compensator,
@@ -337,19 +333,19 @@
 /obj/item/weapon/gun/revolver/standard_magnum/fancy/gold
 	desc = "A gold plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon_state = "g_t76"
-	item_state = "g_t76"
+	worn_icon_state = "g_t76"
 	fire_animation = "g_t76_fire"
 
 /obj/item/weapon/gun/revolver/standard_magnum/fancy/silver
 	desc = "A silver plated R-76 magnum, to ensure it's incredibly expensive as well as incredibly impractical. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon_state = "s_t76"
-	item_state = "s_t76"
+	worn_icon_state = "s_t76"
 	fire_animation = "s_t76_fire"
 
 /obj/item/weapon/gun/revolver/standard_magnum/fancy/nickle
 	desc = "A nickle plated R-76 magnum, for a more tasteful finish. The R-76 magnum is an absolute beast of a handgun used by the TGMC, rumors say it was created as a money laundering scheme by some general due to the sheer inpracticality of this firearm. Hits hard, recommended to be used with its stock attachment. Chambered in 12.7mm."
 	icon_state = "n_t76"
-	item_state = "n_t76"
+	worn_icon_state = "n_t76"
 	fire_animation = "n_t76_fire"
 
 //Single action revolvers below
@@ -375,7 +371,7 @@
 	name = "\improper R-44 SAA revolver"
 	desc = "A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .44 Magnum rounds."
 	icon_state = "m44"
-	item_state = "m44"
+	worn_icon_state = "m44"
 	caliber = CALIBER_44 //codex
 	max_chamber_items = 6
 	default_ammo_type = /obj/item/ammo_magazine/revolver

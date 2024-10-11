@@ -58,8 +58,10 @@ GLOBAL_PROTECT(exp_specialmap)
 	var/multiple_outfits = FALSE
 	///list of outfit variants
 	var/list/datum/outfit/job/outfits = list()
-
+	///Skills for this job
 	var/skills_type = /datum/skills
+	///Any special traits that are assigned for this job
+	var/list/job_traits
 
 	var/display_order = JOB_DISPLAY_ORDER_DEFAULT
 	var/job_flags = NONE
@@ -79,6 +81,8 @@ GLOBAL_PROTECT(exp_specialmap)
 		else
 			outfit = new outfit //Can be improved to reference a singleton.
 
+///called during gamemode pre_setup, use for stuff like roundstart poplock
+/datum/job/proc/on_pre_setup()
 
 /datum/job/proc/after_spawn(mob/living/L, mob/M, latejoin = FALSE) //do actions on L but send messages to M as the key may not have been transferred_yet
 	if(isnull(L))
@@ -184,20 +188,18 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/outfit/job/proc/handle_id(mob/living/carbon/human/H)
 	var/datum/job/job = H.job ? H.job : SSjob.GetJobType(jobtype)
 	var/obj/item/card/id/id = H.wear_id
-	if(istype(id))
-		id.access = job.get_access()
-		id.iff_signal = GLOB.faction_to_iff[job.faction]
-		shuffle_inplace(id.access) // Shuffle access list to make NTNet passkeys less predictable
-		id.registered_name = H.real_name
-		id.assignment = job.title
-		id.rank = job.title
-		id.paygrade = job.paygrade
-		id.update_label()
-		if(H.mind?.initial_account) // In most cases they won't have a mind at this point.
-			id.associated_account_number = H.mind.initial_account.account_number
-
-	H.update_action_buttons()
-
+	if(!istype(id))
+		return
+	id.access = job.get_access()
+	id.iff_signal = GLOB.faction_to_iff[job.faction]
+	shuffle_inplace(id.access) // Shuffle access list to make NTNet passkeys less predictable
+	id.registered_name = H.real_name
+	id.assignment = job.title
+	id.rank = job.title
+	id.paygrade = job.paygrade
+	id.update_label()
+	if(H.mind?.initial_account) // In most cases they won't have a mind at this point.
+		id.associated_account_number = H.mind.initial_account.account_number
 
 /datum/job/proc/get_special_name(client/preference_source)
 	return
@@ -211,7 +213,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		if(!(index in SSticker.mode.valid_job_types))
 			continue
 		if(isxenosjob(scaled_job))
-			if(respawn && (SSticker.mode?.flags_round_type & MODE_SILO_RESPAWN))
+			if(respawn && (SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN))
 				continue
 			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
 		scaled_job.add_job_points(jobworth[index])
@@ -227,8 +229,9 @@ GLOBAL_PROTECT(exp_specialmap)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(scaled_job in SSjob.active_joinable_occupations))
 			continue
-		scaled_job.add_job_points(-jobworth[index])
+		scaled_job.remove_job_points(jobworth[index])
 
+///Adds to job points, adding a new slot if threshold reached
 /datum/job/proc/add_job_points(amount)
 	job_points += amount
 	if(total_positions >= max_positions)
@@ -236,6 +239,17 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(job_points >= job_points_needed )
 		job_points -= job_points_needed
 		add_job_positions(1)
+
+///Removes job points, and if needed, job positions
+/datum/job/proc/remove_job_points(amount)
+	if(job_points_needed == INFINITY || total_positions == -1)
+		return
+	if(job_points >= amount)
+		job_points -= amount
+		return
+	var/job_slots_removed = ROUND_UP((amount - job_points) / job_points_needed)
+	remove_job_positions(job_slots_removed)
+	job_points += (job_slots_removed * job_points_needed) - amount
 
 /datum/job/proc/add_job_positions(amount)
 	if(!(job_flags & (JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE)))
@@ -278,6 +292,8 @@ GLOBAL_PROTECT(exp_specialmap)
 /mob/living/proc/apply_assigned_role_to_spawn(datum/job/assigned_role, client/player, datum/squad/assigned_squad, admin_action = FALSE)
 	job = assigned_role
 	set_skills(getSkillsType(job.return_skills_type(player?.prefs)))
+	if(islist(job.job_traits))
+		add_traits(job.job_traits, INNATE_TRAIT)
 	faction = job.faction
 	job.announce(src)
 	GLOB.round_statistics.total_humans_created[faction]++

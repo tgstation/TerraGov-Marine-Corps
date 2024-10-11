@@ -27,7 +27,7 @@
 	if(istype(I, /obj/item/storage))
 		var/obj/item/storage/S = I
 		for(var/obj/item/X in S.contents)
-			S.remove_from_storage(X, loc)
+			S.storage_datum.remove_from_storage(X, loc)
 			recycle(X)
 
 	qdel(I)

@@ -185,7 +185,7 @@
 ///Change minimap icon if its on or off
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "[disk_color]_disk[current_timer ? "_on" : "_off"]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "[disk_color]_disk[current_timer ? "_on" : "_off"]", VERY_HIGH_FLOAT_LAYER))
 
 /obj/machinery/computer/nuke_disk_generator/red
 	name = "red nuke disk generator"

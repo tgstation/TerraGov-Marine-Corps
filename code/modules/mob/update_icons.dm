@@ -61,9 +61,6 @@
 /mob/proc/update_inv_ears()
 	return
 
-/mob/proc/update_targeted()
-	return
-
 /mob/proc/update_burst()
 	return
 

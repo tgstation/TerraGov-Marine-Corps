@@ -1,6 +1,7 @@
 #define WARHEAD_FLY_TIME 1 SECONDS
 #define RG_FLY_TIME 1 SECONDS
 #define WARHEAD_FALLING_SOUND_RANGE 15
+#define WARHEAD_FUEL_REQUIREMENT 6
 
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
@@ -25,14 +26,6 @@
 	if(!GLOB.marine_main_ship.orbital_cannon)
 		GLOB.marine_main_ship.orbital_cannon = src
 
-	if(!GLOB.marine_main_ship.ob_type_fuel_requirements)
-		GLOB.marine_main_ship.ob_type_fuel_requirements = list()
-		var/list/L = list(3,4,5,6)
-		var/amt
-		for(var/i in 1 to 4)
-			amt = pick_n_take(L)
-			GLOB.marine_main_ship?.ob_type_fuel_requirements += amt
-
 	var/turf/T = locate(x+1,y+1,z)
 	var/obj/structure/orbital_tray/O = new(T)
 	tray = O
@@ -42,6 +35,9 @@
 	if(tray)
 		tray.linked_ob = null
 		tray = null
+	if(GLOB.marine_main_ship.orbital_cannon == src)
+		GLOB.marine_main_ship.orbital_cannon = null
+	QDEL_NULL(tray)
 	return ..()
 
 /obj/structure/orbital_cannon/update_icon_state()
@@ -197,16 +193,7 @@
 	ob_cannon_busy = TRUE
 
 	var/inaccurate_fuel = 0
-
-	switch(tray.warhead.warhead_kind)
-		if("explosive")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[1] - tray.fuel_amt)
-		if("incendiary")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[2] - tray.fuel_amt)
-		if("cluster")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[3] - tray.fuel_amt)
-		if("plasma")
-			inaccurate_fuel = abs(GLOB.marine_main_ship?.ob_type_fuel_requirements[4] - tray.fuel_amt)
+	inaccurate_fuel = abs(WARHEAD_FUEL_REQUIREMENT - tray.fuel_amt)
 
 	// Give marines a warning if misfuelled.
 	var/fuel_warning = "Warhead fuel level: safe."
@@ -214,15 +201,19 @@
 		fuel_warning = "Warhead fuel level: incorrect.<br>Warhead may be inaccurate."
 
 	var/turf/target = locate(T.x + inaccurate_fuel * pick(-1,1),T.y + inaccurate_fuel * pick(-1,1),T.z)
-
+	GLOB.round_statistics.obs_fired++
+	SSblackbox.record_feedback("tally", "round_statistics", 1, "obs_fired")
 	priority_announce(
-		message = "Get out of danger close!<br><br>Warhead type: [tray.warhead.warhead_kind].<br>[fuel_warning]<br>Estimated location of impact: [get_area(T)].",
+		message = "Evacuate the impact zone immediately!<br><br>Warhead type: [tray.warhead.warhead_kind].<br>[fuel_warning]<br>Estimated location of impact: [get_area(T)].",
 		title = "Orbital bombardment launch command detected!",
 		type = ANNOUNCEMENT_PRIORITY,
 		sound = 'sound/effects/OB_warning_announce.ogg',
 		channel_override = SSsounds.random_available_channel(), // This way, we can't have it be cut off by other sounds.
 		color_override = "red"
 	)
+	var/list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list)
+	for(var/mob/living/screentext_receiver AS in receivers)
+		screentext_receiver.play_screen_text("<span class='maptext' style=font-size:36pt;text-align:center valign='top'><u><b>ORBITAL STRIKE IMMINENT</b></u></span><br>TYPE: [uppertext(tray.warhead.warhead_kind)]", /atom/movable/screen/text/screen_text/command_order)
 	playsound(target, 'sound/effects/OB_warning_announce_novoiceover.ogg', 125, FALSE, 30, 10) //VOX-less version for xenomorphs
 
 	var/impact_time = 10 SECONDS + (WARHEAD_FLY_TIME * (GLOB.current_orbit/3))
@@ -251,7 +242,7 @@
 /obj/structure/orbital_tray
 	name = "loading tray"
 	desc = "The orbital cannon's loading tray."
-	icon = 'icons/Marine/mainship_props64.dmi'
+	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "cannon_tray"
 	density = TRUE
 	anchored = TRUE
@@ -334,7 +325,7 @@
 	density = TRUE
 	anchored = TRUE
 	climbable = TRUE
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	resistance_flags = XENO_DAMAGEABLE
 	interaction_flags = INTERACT_OBJ_DEFAULT|INTERACT_POWERLOADER_PICKUP_ALLOWED_BYPASS_ANCHOR
 	coverage = 100
@@ -378,7 +369,7 @@
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
 	. = ..()
 	var/range_num = max(15 - inaccuracy_amt, 12)
-	flame_radius(range_num, target,	burn_intensity = 36, burn_duration = 40, colour = "blue")
+	flame_radius(range_num, target,	burn_intensity = 46, burn_duration = 40, colour = "blue")
 	var/datum/effect_system/smoke_spread/phosphorus/warcrime = new
 	warcrime.set_up(17, target, 20)
 	warcrime.start()
@@ -392,13 +383,11 @@
 	set waitfor = FALSE
 	. = ..()
 	var/range_num = max(9 - inaccuracy_amt, 6)
-	var/list/turf_list = list()
-	for(var/turf/T in range(range_num, target))
-		turf_list += T
+	var/list/turf_list = RANGE_TURFS(range_num, target)
 	var/total_amt = max(25 - inaccuracy_amt, 20)
 	for(var/i = 1 to total_amt)
 		var/turf/U = pick_n_take(turf_list)
-		explosion(U, 1, 4, 6, 0, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
+		explosion(U, 2, 4, 6, 0, 6, throw_range = 0, adminlog = FALSE) //rocket barrage
 		sleep(0.1 SECONDS)
 
 /obj/structure/ob_ammo/warhead/plasmaloss
@@ -433,7 +422,7 @@
 	icon_state = "ob_console"
 	screen_overlay = "ob_console_screen"
 	dir = WEST
-	flags_atom = ON_BORDER|CONDUCT
+	atom_flags = ON_BORDER|CONDUCT
 	var/orbital_window_page = 0
 
 /obj/machinery/computer/orbital_cannon_console/Initialize(mapload)
@@ -472,10 +461,7 @@
 	else
 		if(orbital_window_page == 1)
 			dat += "<font size=3>Warhead Fuel Requirements:</font><BR>"
-			dat += "- HE Orbital Warhead: <b>[GLOB.marine_main_ship.ob_type_fuel_requirements[1]] Solid Fuel blocks.</b><BR>"
-			dat += "- Incendiary Orbital Warhead: <b>[GLOB.marine_main_ship.ob_type_fuel_requirements[2]] Solid Fuel blocks.</b><BR>"
-			dat += "- Cluster Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[3]] Solid Fuel blocks.</b><BR>"
-			dat += "- Plasma drain Orbital Warhead: <b>[GLOB.marine_main_ship?.ob_type_fuel_requirements[4]] Solid Fuel blocks.</b><BR>"
+			dat += "All orbital warheads require <b>[WARHEAD_FUEL_REQUIREMENT] Solid Fuel blocks.</b><BR>"
 
 			dat += "<BR><BR><A href='?src=[text_ref(src)];back=1'><font size=3>Back</font></A><BR>"
 		else
@@ -551,6 +537,12 @@
 	rail_gun_ammo = new /obj/structure/ship_ammo/railgun(src)
 	rail_gun_ammo.max_ammo_count = 8000 //200 uses or 15 full minutes of firing.
 	rail_gun_ammo.ammo_count = 8000
+
+/obj/structure/ship_rail_gun/Destroy()
+	if(GLOB.marine_main_ship.rail_gun == src)
+		GLOB.marine_main_ship.rail_gun = null
+	QDEL_NULL(rail_gun_ammo)
+	return ..()
 
 /obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user, ignore_cooldown = FALSE, ai_operation = FALSE)
 	if(cannon_busy && !ignore_cooldown)

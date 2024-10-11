@@ -1,8 +1,8 @@
 /datum/game_mode/infestation/crash
 	name = "Crash"
 	config_tag = "Crash"
-	flags_round_type = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DEAD_GRAB_FORBIDDEN|MODE_DISALLOW_RAILGUN
-	flags_xeno_abilities = ABILITY_CRASH
+	round_type_flags = MODE_INFESTATION|MODE_XENO_SPAWN_PROTECT|MODE_DEAD_GRAB_FORBIDDEN|MODE_DISALLOW_RAILGUN
+	xeno_abilities_flags = ABILITY_CRASH
 	valid_job_types = list(
 		/datum/job/terragov/squad/standard = -1,
 		/datum/job/terragov/squad/engineer = 1,
@@ -21,7 +21,7 @@
 		/datum/job/xenomorph = CRASH_LARVA_POINTS_NEEDED,
 	)
 	xenorespawn_time = 3 MINUTES
-	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
+	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT)
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
@@ -99,7 +99,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_DIFFUSED, PROC_REF(on_nuclear_diffuse))
 	RegisterSignal(SSdcs, COMSIG_GLOB_NUKE_START, PROC_REF(on_nuke_started))
 
-	if(!(flags_round_type & MODE_INFESTATION))
+	if(!(round_type_flags & MODE_INFESTATION))
 		return
 
 	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])

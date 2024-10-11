@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/boiler
-	caste_base_type = /mob/living/carbon/xenomorph/boiler
+	caste_base_type = /datum/xeno_caste/boiler
 	name = "Boiler"
 	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
 	icon = 'icons/Xeno/castes/boiler.dmi'
@@ -9,7 +9,6 @@
 	maxHealth = 200
 	plasma_stored = 450
 	pixel_x = -16
-	old_x = -16
 	mob_size = MOB_SIZE_BIG
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_NORMAL
@@ -44,7 +43,7 @@
 // ***************************************
 /mob/living/carbon/xenomorph/boiler/Initialize(mapload)
 	. = ..()
-	smoke = new /datum/effect_system/smoke_spread/xeno/acid(src)
+	smoke = new /datum/effect_system/smoke_spread/xeno/acid/opaque(src)
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 	update_boiler_glow()
 	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, PROC_REF(gib_explode))

@@ -2,7 +2,7 @@
 	name = "remote signaling device"
 	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another."
 	icon_state = "signaller"
-	item_state = "signaler"
+	worn_icon_state = "signaler"
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
 	attachable = TRUE
 
@@ -15,6 +15,7 @@
 /obj/item/assembly/signaler/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
+	code = rand(1, 100)
 
 /obj/item/assembly/signaler/Destroy()
 	SSradio.remove_object(src,frequency)

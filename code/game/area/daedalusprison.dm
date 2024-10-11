@@ -13,6 +13,7 @@
 /area/daedalusprison/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /area/daedalusprison/caves/northwest
 	name = "Northwestern Caves"
@@ -103,39 +104,45 @@
 /area/daedalusprison/inside
 	name = "Inside"
 	icon_state = "red"
-	ceiling = CEILING_METAL
+	ceiling = CEILING_GLASS
 	outside = FALSE
 
 /area/daedalusprison/inside/engineering
 	name = "Engineering"
 	icon_state = "engine"
 	minimap_color = MINIMAP_AREA_ENGI
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/colonydorms
 	name = "Colony Dorms"
 	icon_state = "Sleep"
 	minimap_color = MINIMAP_AREA_LIVING
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/bar
 	name = "Colony Bar"
 	icon_state = "bar"
 	minimap_color = MINIMAP_AREA_LIVING
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/cargo
 	name = "Colony Cargo"
 	icon_state = "primarystorage"
 	minimap_color = MINIMAP_AREA_REQ
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/colonyauxstorage
 	name = "Colony Auxillary Storage"
 	icon_state = "storage"
 	always_unpowered = TRUE
 	minimap_color = MINIMAP_AREA_REQ
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/bunker
 	name = "Landing Zone Bunker"
 	icon_state = "shuttlered"
 	minimap_color = MINIMAP_AREA_SEC
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/bunker/west
 	name = "Western Bunker"
@@ -351,13 +358,13 @@
 
 /area/daedalusprison/inside/security/medsec
 	name = "Prison Medbay Security"
-	ceiling = CEILING_OBSTRUCTED
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/medical
 	name = "Prison Infirmary"
 	icon_state = "medbay"
 	minimap_color = MINIMAP_AREA_MEDBAY
-	ceiling = CEILING_OBSTRUCTED
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/medical/chemistry
 	name = "Prison Chemistry"
@@ -374,16 +381,19 @@
 	name = "Hydroponics Garden"
 	icon_state = "garden"
 	minimap_color = MINIMAP_AREA_LIVING
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/hydroponics
 	name = "Hydroponics"
 	icon_state = "hydro"
 	minimap_color = MINIMAP_AREA_LIVING
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/hydroponicstesting
 	name = "Hydroponics Testing"
 	icon_state = "hydro_north"
 	minimap_color = MINIMAP_AREA_LIVING
+	ceiling = CEILING_METAL
 
 /area/daedalusprison/inside/seccheckpoint
 	name = "Security Checkpoint"
@@ -404,11 +414,11 @@
 /area/daedalusprison/inside/landingzoneone
 	name = "Landing Zone One"
 	icon_state = "landingzone1"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/daedalusprison/inside/telecomms
 	name = "Telecomms"
 	icon_state = "tcomsatcham"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	requires_power = FALSE

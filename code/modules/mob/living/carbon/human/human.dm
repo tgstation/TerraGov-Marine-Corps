@@ -1,5 +1,4 @@
 /mob/living/carbon/human/Initialize(mapload)
-	add_verb(src, /mob/living/proc/toggle_resting)
 	blood_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 
 	if(!species)
@@ -9,7 +8,8 @@
 
 	GLOB.human_mob_list += src
 	GLOB.alive_human_list += src
-	LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
+	if(z)
+		LAZYADD(GLOB.humans_by_zlevel["[z]"], src)
 
 	for(var/action in GLOB.human_init_actions)
 		var/datum/action/human_action = new action(src)
@@ -21,6 +21,7 @@
 
 	randomize_appearance()
 
+	AddComponent(/datum/component/personal_crafting)
 	AddComponent(/datum/component/bump_attack, FALSE, FALSE)
 	AddElement(/datum/element/footstep, isrobot(src) ? FOOTSTEP_MOB_SHOE : FOOTSTEP_MOB_HUMAN, 1)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
@@ -76,7 +77,7 @@
 	RegisterSignal(src, COMSIG_ATOM_ACIDSPRAY_ACT, PROC_REF(acid_spray_entered))
 	RegisterSignal(src, COMSIG_KB_QUICKEQUIP, PROC_REF(async_do_quick_equip))
 	RegisterSignal(src, COMSIG_KB_UNIQUEACTION, PROC_REF(do_unique_action))
-	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(fireman_carry_grabbed)) // Fireman carry
+	RegisterSignal(src, COMSIG_GRAB_SELF_ATTACK, PROC_REF(grabbed_self_attack)) // Fireman carry & mounting saddled xenos
 	RegisterSignal(src, COMSIG_KB_GIVE, PROC_REF(give_signal_handler))
 
 /mob/living/carbon/human/Destroy()
@@ -221,9 +222,9 @@
 
 //repurposed proc. Now it combines get_id_name() and get_face_name() to determine a mob's name variable. Made into a seperate proc as it'll be useful elsewhere
 /mob/living/carbon/human/get_visible_name()
-	if( wear_mask && (wear_mask.flags_inv_hide & HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
+	if( wear_mask && (wear_mask.inv_hide_flags & HIDEFACE) )	//Wearing a mask which hides our face, use id-name if possible
 		return get_id_name("Unknown")
-	if( head && (head.flags_inv_hide & HIDEFACE) )
+	if( head && (head.inv_hide_flags & HIDEFACE) )
 		return get_id_name("Unknown")		//Likewise for hats
 	var/face_name = get_face_name()
 	var/id_name = get_id_name("")
@@ -596,7 +597,6 @@
 		else if(newcolor != holo_card_color)
 			holo_card_color = newcolor
 			to_chat(usr, span_notice("You add a [newcolor] holo card on [src]."))
-		update_targeted()
 
 	if(href_list["scanreport"])
 		if(!hasHUD(usr,"medical"))
@@ -624,9 +624,8 @@
 
 	return ..()
 
-
-/mob/living/carbon/human/proc/fireman_carry_grabbed()
-	SIGNAL_HANDLER
+/mob/living/carbon/human/grabbed_self_attack()
+	. = ..()
 	var/mob/living/grabbed = pulling
 	if(!istype(grabbed))
 		return NONE
@@ -668,7 +667,7 @@
 
 	if(!species.has_organ["eyes"]) return 2//No eyes, can't hurt them.
 
-	var/datum/internal_organ/eyes/I = internal_organs_by_name["eyes"]
+	var/datum/internal_organ/eyes/I = get_organ_slot(ORGAN_SLOT_EYES)
 	if(!I)
 		return 2
 	if(I.robotic == ORGAN_ROBOT)
@@ -686,10 +685,10 @@
 
 
 /mob/living/carbon/human/abiotic(full_body = 0)
-	if(full_body && ((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT)) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT)) || (src.back || src.wear_mask || src.head || src.shoes || src.w_uniform || src.wear_suit || src.glasses || src.wear_ear || src.gloves)))
+	if(full_body && ((src.l_hand && !( src.l_hand.item_flags & ITEM_ABSTRACT)) || (src.r_hand && !( src.r_hand.item_flags & ITEM_ABSTRACT)) || (src.back || src.wear_mask || src.head || src.shoes || src.w_uniform || src.wear_suit || src.glasses || src.wear_ear || src.gloves)))
 		return 1
 
-	if( (src.l_hand && !(src.l_hand.flags_item & ITEM_ABSTRACT)) || (src.r_hand && !(src.r_hand.flags_item & ITEM_ABSTRACT)) )
+	if( (src.l_hand && !(src.l_hand.item_flags & ITEM_ABSTRACT)) || (src.r_hand && !(src.r_hand.item_flags & ITEM_ABSTRACT)) )
 		return 1
 
 	return 0
@@ -709,11 +708,11 @@
 
 
 /mob/living/carbon/human/proc/is_lung_ruptured()
-	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
+	var/datum/internal_organ/lungs/L = get_organ_slot(ORGAN_SLOT_LUNGS)
 	return L?.organ_status == ORGAN_BRUISED
 
 /mob/living/carbon/human/proc/rupture_lung()
-	var/datum/internal_organ/lungs/L = internal_organs_by_name["lungs"]
+	var/datum/internal_organ/lungs/L = get_organ_slot(ORGAN_SLOT_LUNGS)
 
 	if(L?.organ_status == ORGAN_BRUISED)
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
@@ -805,7 +804,7 @@
 
 	species.create_organs(src)
 
-	dextrous = species.has_fine_manipulation
+	dextrous = TRUE
 
 	if(species.default_language_holder)
 		language_holder = new species.default_language_holder(src)
@@ -847,7 +846,7 @@
 	return species.handle_chemicals(R,src) // if it returns 0, it will run the usual on_mob_life for that reagent. otherwise, it will stop after running handle_chemicals for the species.
 
 /mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
-	if((shoes?.flags_inventory & NOSLIPPING) && !override_noslip) //If our shoes are noslip just return immediately unless we don't care about the noslip
+	if((shoes?.inventory_flags & NOSLIPPING) && !override_noslip) //If our shoes are noslip just return immediately unless we don't care about the noslip
 		return FALSE
 	return ..()
 

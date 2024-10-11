@@ -20,8 +20,17 @@
 /turf/open/floor/mainship/plate/outline
 	icon_state = "test_floor5"
 
+/turf/open/floor/mainship/hexagon
+	icon_state = "hexagon"
+
 /turf/open/floor/mainship/cargo
 	icon_state = "cargo"
+
+/turf/open/floor/mainship/yellow_cargo
+	icon_state = "yellow_cargo"
+
+/turf/open/floor/mainship/yellow_cargo/arrow
+	icon_state = "yellow_cargo_arrow"
 
 /turf/open/floor/mainship/cargo/arrow
 	icon_state = "cargo_arrow"
@@ -169,7 +178,7 @@
 /turf/open/floor/mainship/empty/is_weedable()
 	return FALSE
 
-/turf/open/floor/mainship/empty/fire_act(exposed_temperature, exposed_volume)
+/turf/open/floor/mainship/empty/fire_act(burn_level)
 	return
 
 /turf/open/floor/mainship/empty/attackby(obj/item/I, mob/user, params) //This should fix everything else. No cables, etc
@@ -288,7 +297,10 @@
 	icon_state = "asteroidfloor"
 	smoothing_groups = list(SMOOTH_GROUP_ASTEROID_WARNING)
 
-
+/turf/open/ground/sandrock
+	icon = 'icons/turf/ground_map.dmi'
+	icon_state = "varadero_0"
+	minimap_color = MINIMAP_DIRT
 
 //////////////////////////////////////////////////////////////////////
 
@@ -822,6 +834,13 @@
 /turf/open/floor/tile/dark/brown2/corner
 	icon_state = "darkbrowncorners2"
 
+/turf/open/floor/tile/dark/brown3
+	icon_state = "darkbrown3"
+
+/turf/open/floor/tile/dark/brown3/corner
+	icon_state = "darkbrowncorners3"
+
+
 /turf/open/floor/tile/dark/green2
 	icon_state = "darkgreen2"
 
@@ -867,6 +886,183 @@
 /turf/open/floor/elevatorshaft
 	icon_state = "elevatorshaft"
 
+/turf/open/floor/squares
+	icon_state = "squares"
+
+/turf/open/floor/sterileplate
+	icon_state = "sterileplate"
+
+/turf/open/floor/retrosquareslightrough
+	icon_state = "retrosquareslightrough"
+
+/turf/open/floor/retrosquareslight
+	icon_state = "retrosquareslight"
+
+/turf/open/floor/retrosquares
+	icon_state = "retrosquares"
+
+/turf/open/floor/squareswood
+	icon_state = "squareswood"
+
+/turf/open/floor/lightspiral
+	icon_state = "lightspiral"
+
+/turf/open/floor/lightplate
+	icon_state = "lightplate"
+
+/turf/open/floor/spiralwoodalt
+	icon_state = "spiralwoodalt"
+
+/turf/open/floor/box
+	icon_state = "box"
+
+/turf/open/floor/plate
+	icon_state = "plate"
+
+/turf/open/floor/threeway
+	icon_state = "threeway"
+
+/turf/open/floor/officetiles
+	icon_state = "officetiles"
+
+/turf/open/floor/officesquares
+	icon_state = "officesquares"
+
+/turf/open/floor/spiraloffice
+	icon_state = "spiraloffice"
+
+/turf/open/floor/spiralblueoffice
+	icon_state = "spiralblueoffice"
+
+/turf/open/floor/spiralplate
+	icon_state = "spiralplate"
+
+/turf/open/floor/teleporter_static
+	icon_state = "teleporter_static"
+
+/turf/open/floor/tcomms
+	icon_state = "tcomms"
+
+/turf/open/floor/marked
+	icon_state = "marked"
+
+/turf/open/floor/urban_plating
+	icon_state = "urban_plating"
+
+/turf/open/floor/tan
+	icon_state = "tan"
+
+/turf/open/floor/urban_wood
+	icon_state = "wood"
+
+/turf/open/floor/floortwo
+	icon_state = "floor2"
+
+/turf/open/floor/floorthree
+	icon_state = "floor3"
+
+/turf/open/floor/multi_tiles
+	icon_state = "multi_tiles"
+
+/turf/open/floor/orange_cover
+	icon_state = "orange_cover"
+
+/turf/open/floor/orangetile
+	icon_state = "orangetile"
+
+/turf/open/floor/orange_edge
+	icon_state = "orange_edge"
+
+/turf/open/floor/orange_icorner
+	icon_state = "orange_icorner"
+
+/turf/open/floor/blue
+	icon_state = "blue"
+
+/turf/open/floor/bluetwo
+	icon_state = "blue2"
+
+/turf/open/floor/bluethree
+	icon_state = "blue3"
+
+/turf/open/floor/bluefour
+	icon_state = "blue4"
+
+/turf/open/floor/purp
+	icon_state = "purp"
+
+/turf/open/floor/purptwo
+	icon_state = "purp2"
+
+/turf/open/floor/purpthree
+	icon_state = "purp3"
+
+/turf/open/floor/purpfour
+	icon_state = "purp4"
+
+/turf/open/floor/green
+	icon_state = "green"
+
+/turf/open/floor/greentwo
+	icon_state = "green2"
+
+/turf/open/floor/greenthree
+	icon_state = "green3"
+
+/turf/open/floor/greenfour
+	icon_state = "green4"
+
+/turf/open/floor/cyan
+	icon_state = "cyan"
+
+/turf/open/floor/cyantwo
+	icon_state = "cyan2"
+
+/turf/open/floor/cyanthree
+	icon_state = "cyan3"
+
+/turf/open/floor/cyanfour
+	icon_state = "cyan4"
+
+/turf/open/floor/yellow
+	icon_state = "yellow"
+
+/turf/open/floor/yellowtwo
+	icon_state = "yellow2"
+
+/turf/open/floor/yellowthree
+	icon_state = "yellow3"
+
+/turf/open/floor/yellowfour
+	icon_state = "yellow4"
+
+/turf/open/floor/red
+	icon_state = "red"
+
+/turf/open/floor/redone
+	icon_state = "red1"
+
+/turf/open/floor/redtwo
+	icon_state = "red2"
+
+/turf/open/floor/redthree
+	icon_state = "red3"
+
+/turf/open/floor/redfour
+	icon_state = "red4"
+
+/turf/open/floor/whitecyan
+	icon_state = "white_cyan1"
+
+/turf/open/floor/whitecyantwo
+	icon_state = "white_cyan2"
+
+/turf/open/floor/whitecyanthree
+	icon_state = "white_cyan3"
+
+/turf/open/floor/whitecyanfour
+	icon_state = "white_cyan4"
+
 /turf/open/floor/carpet
 	name = "Carpet"
 	icon = 'icons/turf/floors/carpet.dmi'
@@ -906,6 +1102,46 @@
 /turf/open/floor/carpet/side
 	icon_state = "carpetside"
 
+/turf/open/floor/carpet/blue
+	icon = 'icons/turf/floors/carpet_blue.dmi'
+	base_icon_state = "carpet_blue"
+	icon_state = "carpet_blue-0"
+
+/turf/open/floor/carpet/black
+	icon = 'icons/turf/floors/carpet_black.dmi'
+	base_icon_state = "carpet_black"
+	icon_state = "carpet_black-0"
+
+/turf/open/floor/carpet/green
+	icon = 'icons/turf/floors/carpet_green.dmi'
+	base_icon_state = "carpet_green"
+	icon_state = "carpet_green-0"
+
+/turf/open/floor/carpet/orange
+	icon = 'icons/turf/floors/carpet_orange.dmi'
+	base_icon_state = "carpet_orange"
+	icon_state = "carpet_orange-0"
+
+/turf/open/floor/carpet/purple
+	icon = 'icons/turf/floors/carpet_purple.dmi'
+	base_icon_state = "carpet_purple"
+	icon_state = "carpet_purple-0"
+
+/turf/open/floor/carpet/red
+	icon = 'icons/turf/floors/carpet_red.dmi'
+	base_icon_state = "carpet_red"
+	icon_state = "carpet_red-0"
+
+/turf/open/floor/carpet/cyan
+	icon = 'icons/turf/floors/carpet_cyan.dmi'
+	base_icon_state = "carpet_cyan"
+	icon_state = "carpet_cyan-0"
+
+/turf/open/floor/carpet/royalblack
+	icon = 'icons/turf/floors/carpet_royalblack.dmi'
+	base_icon_state = "carpet_royalblack"
+	icon_state = "carpet_royalblack-0"
+
 // Start Prison tiles
 
 /turf/open/floor/prison
@@ -933,6 +1169,12 @@
 /turf/open/floor/prison/cleanmarked
 	icon_state = "floor_marked_white"
 
+/turf/open/floor/prison/whitered
+	icon_state = "whitered"
+
+/turf/open/floor/prison/whiteredcorner
+	icon_state = "whiteredcorner"
+
 /turf/open/floor/prison/arrow
 	icon_state = "floor_arrow"
 
@@ -941,6 +1183,9 @@
 
 /turf/open/floor/prison/cellstripe
 	icon_state = "cell_stripe"
+
+/turf/open/floor/prison/ramptop
+	icon_state = "ramptop"
 
 /turf/open/floor/prison/sterilewhite
 	icon_state = "sterile_white"
@@ -1135,3 +1380,801 @@
 /turf/open/floor/industrial
 	icon = 'icons/turf/industrial.dmi'
 	icon_state = "industrial"
+
+//Kutjevo turfs
+
+/turf/open/floor/plating/kutjevo
+	icon = 'icons/turf/kutjevo_floor.dmi'
+
+/turf/open/floor/kutjevo //Instance based on icon_states
+	icon = 'icons/turf/kutjevo_floor.dmi'
+	icon_state = "floor"
+
+/turf/open/floor/kutjevo/catwalk
+	icon = 'icons/turf/kutjevo_floor.dmi'
+	icon_state = "catwalk"
+
+/turf/open/floor/kutjevo/tiles
+	icon_state = "floor2"
+
+/turf/open/floor/kutjevo/plate
+	icon_state = "floor3"
+
+/turf/open/floor/kutjevo/multi_tiles
+	icon_state = "multi_tiles"
+
+/turf/open/floor/kutjevo/fake_wood
+	icon_state = "fake_wood"
+
+//LIGHT TAN PRIMARIES
+
+/turf/open/floor/kutjevo/tan
+	icon_state = "floor_tan"
+
+/turf/open/floor/kutjevo/tan/plate
+	icon_state = "floor_tan2"
+
+/turf/open/floor/kutjevo/tan/multi_tiles
+	icon_state = "floor_tan_multi"
+
+//TAN TRANSITION PIECES
+
+/turf/open/floor/kutjevo/tan/grey_edge
+	icon_state = "floor_tan_grey3"
+
+/turf/open/floor/kutjevo/tan/grey_inner_edge
+	icon_state = "floor_tan_grey4"
+
+/turf/open/floor/kutjevo/tan/alt_edge
+	icon_state = "floor_tan_alt3"
+
+/turf/open/floor/kutjevo/tan/alt_inner_edge
+	icon_state = "floor_tan_alt4"
+
+//GREY SECONDARIES TO LIGHT TAN
+
+/turf/open/floor/kutjevo/grey
+	icon_state = "floor_grey1"
+
+/turf/open/floor/kutjevo/grey/plate
+	icon_state = "floor_grey2"
+
+//Turf sorting for object tree below!
+
+//ORANGE//
+
+/turf/open/floor/kutjevo/colors/orange
+	icon_state = "orange1"
+
+/turf/open/floor/kutjevo/colors/orange/tile
+	icon_state = "orange2"
+
+/turf/open/floor/kutjevo/colors/orange/edge
+	icon_state = "orange3"
+
+/turf/open/floor/kutjevo/colors/orange/inner_corner
+	icon_state = "orange4"
+
+//BLUE//
+
+/turf/open/floor/kutjevo/colors/blue
+	icon_state = "blue1"
+
+/turf/open/floor/kutjevo/colors/blue/tile
+	icon_state = "blue2"
+
+/turf/open/floor/kutjevo/colors/blue/edge
+	icon_state = "blue3"
+
+/turf/open/floor/kutjevo/colors/blue/inner_corner
+	icon_state = "blue4"
+
+//PURPLE//
+
+/turf/open/floor/kutjevo/colors/purple
+	icon_state = "purp1"
+
+/turf/open/floor/kutjevo/colors/purple/tile
+	icon_state = "purp2"
+
+/turf/open/floor/kutjevo/colors/purple/edge
+	icon_state = "purp3"
+
+/turf/open/floor/kutjevo/colors/purple/inner_corner
+	icon_state = "purp4"
+
+//GREEN//
+
+/turf/open/floor/kutjevo/colors/green
+	icon_state = "green1"
+
+/turf/open/floor/kutjevo/colors/green/tile
+	icon_state = "green2"
+
+/turf/open/floor/kutjevo/colors/green/edge
+	icon_state = "green3"
+
+/turf/open/floor/kutjevo/colors/green/inner_corner
+	icon_state = "green4"
+
+//CYAN//
+
+/turf/open/floor/kutjevo/colors/cyan
+	icon_state = "cyan1"
+
+/turf/open/floor/kutjevo/colors/cyan/tile
+	icon_state = "cyan2"
+
+/turf/open/floor/kutjevo/colors/cyan/edge
+	icon_state = "cyan3"
+
+/turf/open/floor/kutjevo/colors/cyan/inner_corner
+	icon_state = "cyan4"
+
+//YELLOW//
+
+/turf/open/floor/kutjevo/colors/yellow
+	icon_state = "yellow1"
+
+/turf/open/floor/kutjevo/colors/yellow/tile
+	icon_state = "yellow2"
+
+/turf/open/floor/kutjevo/colors/yellow/edge
+	icon_state = "yellow3"
+
+/turf/open/floor/kutjevo/colors/yellow/inner_corner
+	icon_state = "yellow4"
+
+//RED//
+
+/turf/open/floor/kutjevo/colors/red
+	icon_state = "red1"
+
+/turf/open/floor/kutjevo/colors/red/tile
+	icon_state = "red2"
+
+/turf/open/floor/kutjevo/colors/red/edge
+	icon_state = "red3"
+
+/turf/open/floor/kutjevo/colors/red/inner_corner
+	icon_state = "red4"
+
+//Kutjevo turfs
+
+/turf/open/floor/plating/kutjevo
+	icon = 'icons/turf/kutjevo_floor.dmi'
+
+/turf/open/floor/kutjevo //Instance based on icon_states
+	icon = 'icons/turf/kutjevo_floor.dmi'
+	icon_state = "floor"
+
+/turf/open/floor/kutjevo/catwalk
+	icon = 'icons/turf/kutjevo_floor.dmi'
+	icon_state = "catwalk"
+
+/turf/open/floor/kutjevo/tiles
+	icon_state = "floor2"
+
+/turf/open/floor/kutjevo/plate
+	icon_state = "floor3"
+
+/turf/open/floor/kutjevo/multi_tiles
+	icon_state = "multi_tiles"
+
+/turf/open/floor/kutjevo/fake_wood
+	icon_state = "fake_wood"
+
+//LIGHT TAN PRIMARIES
+
+/turf/open/floor/kutjevo/tan
+	icon_state = "floor_tan"
+
+/turf/open/floor/kutjevo/tan/plate
+	icon_state = "floor_tan2"
+
+/turf/open/floor/kutjevo/tan/multi_tiles
+	icon_state = "floor_tan_multi"
+
+//TAN TRANSITION PIECES
+
+/turf/open/floor/kutjevo/tan/grey_edge
+	icon_state = "floor_tan_grey3"
+
+/turf/open/floor/kutjevo/tan/grey_inner_edge
+	icon_state = "floor_tan_grey4"
+
+/turf/open/floor/kutjevo/tan/alt_edge
+	icon_state = "floor_tan_alt3"
+
+/turf/open/floor/kutjevo/tan/alt_inner_edge
+	icon_state = "floor_tan_alt4"
+
+//GREY SECONDARIES TO LIGHT TAN
+
+/turf/open/floor/kutjevo/grey
+	icon_state = "floor_grey1"
+
+/turf/open/floor/kutjevo/grey/plate
+	icon_state = "floor_grey2"
+
+//Turf sorting for object tree below!
+
+//ORANGE//
+
+/turf/open/floor/kutjevo/colors/orange
+	icon_state = "orange1"
+
+/turf/open/floor/kutjevo/colors/orange/tile
+	icon_state = "orange2"
+
+/turf/open/floor/kutjevo/colors/orange/edge
+	icon_state = "orange3"
+
+/turf/open/floor/kutjevo/colors/orange/inner_corner
+	icon_state = "orange4"
+
+//BLUE//
+
+/turf/open/floor/kutjevo/colors/blue
+	icon_state = "blue1"
+
+/turf/open/floor/kutjevo/colors/blue/tile
+	icon_state = "blue2"
+
+/turf/open/floor/kutjevo/colors/blue/edge
+	icon_state = "blue3"
+
+/turf/open/floor/kutjevo/colors/blue/inner_corner
+	icon_state = "blue4"
+
+//PURPLE//
+
+/turf/open/floor/kutjevo/colors/purple
+	icon_state = "purp1"
+
+/turf/open/floor/kutjevo/colors/purple/tile
+	icon_state = "purp2"
+
+/turf/open/floor/kutjevo/colors/purple/edge
+	icon_state = "purp3"
+
+/turf/open/floor/kutjevo/colors/purple/inner_corner
+	icon_state = "purp4"
+
+//GREEN//
+
+/turf/open/floor/kutjevo/colors/green
+	icon_state = "green1"
+
+/turf/open/floor/kutjevo/colors/green/tile
+	icon_state = "green2"
+
+/turf/open/floor/kutjevo/colors/green/edge
+	icon_state = "green3"
+
+/turf/open/floor/kutjevo/colors/green/inner_corner
+	icon_state = "green4"
+
+//CYAN//
+
+/turf/open/floor/kutjevo/colors/cyan
+	icon_state = "cyan1"
+
+/turf/open/floor/kutjevo/colors/cyan/tile
+	icon_state = "cyan2"
+
+/turf/open/floor/kutjevo/colors/cyan/edge
+	icon_state = "cyan3"
+
+/turf/open/floor/kutjevo/colors/cyan/inner_corner
+	icon_state = "cyan4"
+
+//YELLOW//
+
+/turf/open/floor/kutjevo/colors/yellow
+	icon_state = "yellow1"
+
+/turf/open/floor/kutjevo/colors/yellow/tile
+	icon_state = "yellow2"
+
+/turf/open/floor/kutjevo/colors/yellow/edge
+	icon_state = "yellow3"
+
+/turf/open/floor/kutjevo/colors/yellow/inner_corner
+	icon_state = "yellow4"
+
+//RED//
+
+/turf/open/floor/kutjevo/colors/red
+	icon_state = "red1"
+
+/turf/open/floor/kutjevo/colors/red/tile
+	icon_state = "red2"
+
+/turf/open/floor/kutjevo/colors/red/edge
+	icon_state = "red3"
+
+/turf/open/floor/kutjevo/colors/red/inner_corner
+	icon_state = "red4"
+
+// Hybrisa tiles
+
+
+/turf/open/hybrisa
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "hybrisa"
+
+
+/turf/open/floor/hybrisa
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "hybrisa"
+
+
+// Street
+
+
+/turf/open/urban/street
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "cement1"
+	baseturfs = /turf/open/urban/street/asphalt
+
+
+/turf/open/urban/street/cement1
+	icon_state = "cement1"
+
+/turf/open/urban/street/cement2
+	icon_state = "cement2"
+
+/turf/open/urban/street/cement3
+	icon_state = "cement3"
+
+/turf/open/urban/street/asphalt
+	icon_state = "asphalt_old"
+	minimap_color = MINIMAP_DIRT
+
+/turf/open/urban/street/sidewalk
+	icon_state = "sidewalk"
+
+/turf/open/urban/street/sidewalkfull
+	icon_state = "sidewalkfull"
+
+/turf/open/urban/street/sidewalkcorner
+	icon_state = "sidewalkcorner"
+
+/turf/open/urban/street/sidewalkcenter
+	icon_state = "sidewalkcenter"
+	minimap_color = MINIMAP_DIRT
+
+/turf/open/urban/street/roadlines
+	icon_state = "asphalt_old_roadlines"
+
+/turf/open/urban/street/roadlines2
+	icon_state = "asphalt_old_roadlines2"
+
+/turf/open/urban/street/roadlines3
+	icon_state = "asphalt_old_roadlines3"
+
+/turf/open/urban/street/roadlines4
+	icon_state = "asphalt_old_roadlines4"
+
+/turf/open/urban/street/CMB_4x4_emblem
+	icon_state = "marshallsemblem_concrete_2x2"
+
+// Unweedable
+
+/turf/open/urban/street/underground_unweedable
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "underground"
+	baseturfs = /turf/open/urban/street/asphalt
+
+/turf/open/urban/metal/underground_unweedable
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "podfloor"
+
+// Engineer Ship Hull
+/turf/open/engineership/ship_hull
+	name = "strange metal wall"
+	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
+	icon = 'icons/turf/engineership.dmi'
+	icon_state = "engineerwallfloor1"
+	baseturfs = /turf/open/urban/street/asphalt
+
+// Carpet
+
+
+/turf/open/floor/urban/carpet
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "carpetred"
+
+
+/turf/open/floor/urban/carpet/carpetfadedred
+	icon_state = "carpetfadedred"
+
+/turf/open/floor/urban/carpet/carpetgreen
+	icon_state = "carpetgreen"
+
+/turf/open/floor/urban/carpet/carpetbeige
+	icon_state = "carpetbeige"
+
+/turf/open/floor/urban/carpet/carpetblack
+	icon_state = "carpetblack"
+
+/turf/open/floor/urban/carpet/carpetred
+	icon_state = "carpetred"
+
+/turf/open/floor/urban/carpet/carpetdarkerblue
+	icon_state = "carpetdarkerblue"
+
+/turf/open/floor/urban/carpet/carpetorangered
+	icon_state = "carpetorangered"
+
+/turf/open/floor/urban/carpet/carpetblue
+	icon_state = "carpetblue"
+
+/turf/open/floor/urban/carpet/carpetpatternblue
+	icon_state = "carpetpatternblue"
+
+/turf/open/floor/urban/carpet/carpetpatternbrown
+	icon_state = "carpetpatternbrown"
+
+/turf/open/floor/urban/carpet/carpetreddeco
+	icon_state = "carpetred_deco"
+
+/turf/open/floor/urban/carpet/carpetbluedeco
+	icon_state = "carpetblue_deco"
+
+/turf/open/floor/urban/carpet/carpetblackdeco
+	icon_state = "carpetblack_deco"
+
+/turf/open/floor/urban/carpet/carpetbeigedeco
+	icon_state = "carpetbeige_deco"
+
+/turf/open/floor/urban/carpet/carpetgreendeco
+	icon_state = "carpetgreen_deco"
+
+// Tile
+
+/turf/open/floor/urban/tile
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "supermartfloor1"
+
+
+/turf/open/floor/urban/tile/supermartfloor1
+	icon_state = "supermartfloor1"
+
+/turf/open/floor/urban/tile/supermartfloor2
+	icon_state = "supermartfloor2"
+
+/turf/open/floor/urban/tile/cuppajoesfloor
+	icon_state = "cuppafloor"
+
+/turf/open/floor/urban/tile/tilered
+	icon_state = "tilered"
+
+/turf/open/floor/urban/tile/tileblue
+	icon_state = "tileblue"
+
+/turf/open/floor/urban/tile/tilegreen
+	icon_state = "tilegreen"
+
+/turf/open/floor/urban/tile/tileblackcheckered
+	icon_state = "tileblack"
+
+/turf/open/floor/urban/tile/tilewhitecheckered
+	icon_state = "tilewhitecheck"
+
+/turf/open/floor/urban/tile/tilelightbeige
+	icon_state = "tilelightbeige"
+
+/turf/open/floor/urban/tile/tilebeigecheckered
+	icon_state = "tilebeigecheck"
+
+/turf/open/floor/urban/tile/tilebeige
+	icon_state = "tilebeige"
+
+/turf/open/floor/urban/tile/tilewhite
+	icon_state = "tilewhite"
+
+/turf/open/floor/urban/tile/tilegrey
+	icon_state = "tilegrey"
+
+/turf/open/floor/urban/tile/tileblack
+	icon_state = "tileblack2"
+
+/turf/open/floor/urban/tile/beigetileshiny
+	icon_state = "beigetileshiny"
+
+/turf/open/floor/urban/tile/blacktileshiny
+	icon_state = "blacktileshiny"
+
+/turf/open/floor/urban/tile/cementflat
+	icon_state = "cementflat"
+
+/turf/open/floor/urban/tile/beige_bigtile
+	icon_state = "beige_bigtile"
+
+/turf/open/floor/urban/tile/yellow_bigtile
+	icon_state = "yellow_bigtile"
+
+/turf/open/floor/urban/tile/darkgrey_bigtile
+	icon_state = "darkgrey_bigtile"
+
+/turf/open/floor/urban/tile/darkbrown_bigtile
+	icon_state = "darkbrown_bigtile"
+
+/turf/open/floor/urban/tile/darkbrowncorner_bigtile
+	icon_state = "darkbrowncorner_bigtile"
+
+/turf/open/floor/urban/tile/asteroidfloor_bigtile
+	icon_state = "asteroidfloor_bigtile"
+
+/turf/open/floor/urban/tile/asteroidwarning_bigtile
+	icon_state = "asteroidwarning_bigtile"
+
+/turf/open/floor/urban/tile/lightbeige_bigtile
+	icon_state = "lightbeige_bigtile"
+
+/turf/open/floor/urban/tile/green_bigtile
+	icon_state = "green_bigtile"
+
+/turf/open/floor/urban/tile/greencorner_bigtile
+	icon_state = "greencorner_bigtile"
+
+/turf/open/floor/urban/tile/greenfull_bigtile
+	icon_state = "greenfull_bigtile"
+// Wood
+
+/turf/open/floor/urban/wood
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "darkerwood"
+
+/turf/open/floor/urban/wood/greywood
+	icon_state = "greywood"
+
+/turf/open/floor/urban/wood/blackwood
+	icon_state = "blackwood"
+
+/turf/open/floor/urban/wood/darkerwood
+	icon_state = "darkerwood"
+
+/turf/open/floor/urban/wood/redwood
+	icon_state = "redwood"
+
+
+// Metal
+
+
+/turf/open/floor/urban/metal
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "bluemetal1"
+
+/turf/open/floor/urban/metal/bluemetal1
+	icon_state = "bluemetal1"
+
+/turf/open/floor/urban/metal/bluemetalfull
+	icon_state = "bluemetalfull"
+
+/turf/open/floor/urban/metal/bluemetalcorner
+	icon_state = "bluemetalcorner"
+
+/turf/open/floor/urban/metal/orangelinecorner
+	icon_state = "orangelinecorner"
+
+/turf/open/floor/urban/metal/orangeline
+	icon_state = "orangeline"
+
+/turf/open/floor/urban/metal/darkblackmetal1
+	icon_state = "darkblackmetal1"
+
+/turf/open/floor/urban/metal/darkblackmetal2
+	icon_state = "darkblackmetal2"
+
+/turf/open/floor/urban/metal/darkredfull2
+	icon_state = "darkredfull2"
+
+/turf/open/floor/urban/metal/redcorner
+	icon_state = "zredcorner"
+
+/turf/open/floor/urban/metal/grated
+	icon_state = "rampsmaller"
+
+/turf/open/floor/urban/metal/stripe_red
+	icon_state = "stripe_red"
+
+/turf/open/floor/urban/metal/zbrownfloor1
+	icon_state = "zbrownfloor1"
+
+/turf/open/floor/urban/metal/zbrownfloor_corner
+	icon_state = "zbrownfloorcorner1"
+
+/turf/open/floor/urban/metal/zbrownfloor_full
+	icon_state = "zbrownfloorfull1"
+
+/turf/open/floor/urban/metal/greenmetal1
+	icon_state = "greenmetal1"
+
+/turf/open/floor/urban/metal/greenmetalfull
+	icon_state = "greenmetalfull"
+
+/turf/open/floor/urban/metal/greenmetalcorner
+	icon_state = "greenmetalcorner"
+
+/turf/open/floor/urban/metal/metalwhitefull
+	icon_state = "metalwhitefull"
+
+// Misc
+
+/turf/open/floor/urban/misc/spaceport1
+	icon_state = "spaceport1"
+
+/turf/open/floor/urban/misc/spaceport2
+	icon_state = "spaceport2"
+
+
+// Dropship
+
+
+/turf/open/urban/dropship
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "dropshipfloor1"
+
+/turf/open/urban/dropship/dropship1
+	icon_state = "dropshipfloor1"
+
+/turf/open/urban/dropship/dropship2
+	icon_state = "dropshipfloor2"
+
+/turf/open/urban/dropship/dropship3
+	icon_state = "dropshipfloor2"
+
+/turf/open/urban/dropship/dropship3
+	icon_state = "dropshipfloor3"
+
+/turf/open/urban/dropship/dropship4
+	icon_state = "dropshipfloor4"
+
+/turf/open/urban/dropship/dropshipfloorcorner1
+	icon_state = "dropshipfloorcorner1"
+
+/turf/open/urban/dropship/dropshipfloorcorner2
+	icon_state = "dropshipfloorcorner2"
+
+/turf/open/urban/dropship/dropshipfloorfull
+	icon_state = "dropshipfloorfull"
+
+// Engineer tiles
+
+/turf/open/engineership
+	name = "floor"
+	desc = "A strange metal floor, unlike any metal you've seen before."
+	icon = 'icons/turf/engineership.dmi'
+	icon_state = "hybrisa"
+	baseturfs = /turf/open/urban/street/asphalt
+
+/turf/open/engineership/engineer_floor1
+	icon_state = "engineer_metalfloor_3"
+
+/turf/open/engineership/engineer_floor2
+	icon_state = "engineer_floor_4"
+
+/turf/open/engineership/engineer_floor3
+	icon_state = "engineer_metalfloor_2"
+
+/turf/open/engineership/engineer_floor4
+	icon_state = "engineer_metalfloor_1"
+
+/turf/open/engineership/engineer_floor5
+	icon_state = "engineerlight"
+
+/turf/open/engineership/engineer_floor6
+	icon_state = "engineer_floor_2"
+
+/turf/open/engineership/engineer_floor7
+	icon_state = "engineer_floor_1"
+
+/turf/open/engineership/engineer_floor8
+	icon_state = "engineer_floor_5"
+
+/turf/open/engineership/engineer_floor9
+	icon_state = "engineer_metalfloor_4"
+
+/turf/open/engineership/engineer_floor10
+	icon_state = "engineer_floor_corner1"
+
+/turf/open/engineership/engineer_floor11
+	icon_state = "engineer_floor_corner2"
+
+/turf/open/engineership/engineer_floor12
+	icon_state = "engineerwallfloor1"
+
+/turf/open/engineership/engineer_floor13
+	icon_state = "outerhull_dir"
+
+/turf/open/engineership/engineer_floor14
+	icon_state = "engineer_floor_corner3"
+
+// Pillars
+/turf/open/engineership/pillars
+	name = "strange metal pillar"
+	desc = "A strange metal pillar, unlike any metal you've seen before."
+	icon_state = "eng_pillar1"
+
+/turf/open/engineership/pillars/north/pillar1
+	icon_state = "eng_pillar1"
+
+/turf/open/engineership/pillars/north/pillar2
+	icon_state = "eng_pillar2"
+
+/turf/open/engineership/pillars/north/pillar3
+	icon_state = "eng_pillar3"
+
+/turf/open/engineership/pillars/north/pillar4
+	icon_state = "eng_pillar4"
+
+/turf/open/engineership/pillars/south/pillarsouth1
+	icon_state = "eng_pillarsouth1"
+
+/turf/open/engineership/pillars/south/pillarsouth2
+	icon_state = "eng_pillarsouth2"
+
+/turf/open/engineership/pillars/south/pillarsouth3
+	icon_state = "eng_pillarsouth3"
+
+/turf/open/engineership/pillars/south/pillarsouth4
+	icon_state = "eng_pillarsouth4"
+
+/turf/open/engineership/pillars/west/pillarwest1
+	icon_state = "eng_pillarwest1"
+
+/turf/open/engineership/pillars/west/pillarwest2
+	icon_state = "eng_pillarwest2"
+
+/turf/open/engineership/pillars/west/pillarwest3
+	icon_state = "eng_pillarwest3"
+
+/turf/open/engineership/pillars/west/pillarwest4
+	icon_state = "eng_pillarwest4"
+
+/turf/open/engineership/pillars/east/pillareast1
+	icon_state = "eng_pillareast1"
+
+/turf/open/engineership/pillars/east/pillareast2
+	icon_state = "eng_pillareast2"
+
+/turf/open/engineership/pillars/east/pillareast3
+	icon_state = "eng_pillareast3"
+
+/turf/open/engineership/pillars/east/pillareast4
+	icon_state = "eng_pillareast4"
+
+// Hybrisa auto-turf
+
+/turf/open/urbanshale
+	name = "shale"
+	icon = 'icons/turf/auto_shaledesaturated.dmi'
+	mediumxenofootstep = FOOTSTEP_GRAVEL
+	barefootstep = FOOTSTEP_GRAVEL
+	shoefootstep = FOOTSTEP_GRAVEL
+	minimap_color = MINIMAP_SHALE
+
+/turf/open/urbanshale/layer0
+	icon_state = "shale_0"
+
+/turf/open/urbanshale/layer0_plate
+	icon_state = "shale_1_alt"
+
+/turf/open/urbanshale/layer1
+	icon_state = "shale_1"
+
+/turf/open/urbanshale/layer2
+	icon_state = "shale_2"

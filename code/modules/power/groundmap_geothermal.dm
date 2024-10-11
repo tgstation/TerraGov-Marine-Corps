@@ -32,7 +32,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	. = ..()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LAUNCHED), PROC_REF(activate_corruption))
 	update_icon()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator", ABOVE_FLOAT_LAYER))
 
 	if(is_ground_level(z))
 		GLOB.generators_on_ground += 1
@@ -166,26 +166,26 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 		return TRUE
 	return FALSE //Nope, all fine
 
-/obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(corrupted) //you have no reason to interact with it if its already corrupted
 		return
-	if(CHECK_BITFIELD(X.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
-		to_chat(X, span_notice("You start to corrupt [src]"))
-		if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
+	if(CHECK_BITFIELD(xeno_attacker.xeno_caste.can_flags, CASTE_CAN_CORRUPT_GENERATOR) && is_corruptible)
+		to_chat(xeno_attacker, span_notice("You start to corrupt [src]"))
+		if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_HOSTILE))
 			return
-		corrupt(X.hivenumber)
-		to_chat(X, span_notice("You have corrupted [src]"))
-		record_generator_sabotages(X)
+		corrupt(xeno_attacker.hivenumber)
+		to_chat(xeno_attacker, span_notice("You have corrupted [src]"))
+		record_generator_sabotages(xeno_attacker)
 		return
 	if(buildstate)
 		return
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	play_attack_sound(1)
-	X.visible_message(span_danger("\The [X] slashes at \the [src], tearing at it's components!"),
+	xeno_attacker.visible_message(span_danger("\The [xeno_attacker] slashes at \the [src], tearing at it's components!"),
 		span_danger("We start slashing at \the [src], tearing at it's components!"))
 	fail_rate += 5 // 5% fail rate every attack
-	record_generator_sabotages(X)
+	record_generator_sabotages(xeno_attacker)
 
 /obj/machinery/power/geothermal/attack_hand(mob/living/carbon/user)
 	interact_hand(user)

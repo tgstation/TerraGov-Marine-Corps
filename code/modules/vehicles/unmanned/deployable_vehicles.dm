@@ -6,7 +6,8 @@
 	icon_state = "light_uv_folded"
 	w_class = WEIGHT_CLASS_NORMAL
 	slowdown = 0.3
-	flags_item = IS_DEPLOYABLE
+	item_flags = IS_DEPLOYABLE
+	max_integrity = IGUANA_MAX_INTEGRITY
 	///The vehicle this deploys into
 	var/deployable_item = /obj/vehicle/unmanned/deployable
 	///The equipped turret
@@ -26,15 +27,18 @@
 	name = "UV-L Iguana"
 	desc = "A small remote-controllable vehicle, usually owned by the TGMC and other major armies. This one is configured to be foldable for portability."
 	///Whether this item can be deployed or undeployed
-	var/flags_item = IS_DEPLOYABLE
+	var/item_flags = IS_DEPLOYABLE
 	///What it deploys into. typecast version of internal_item
 	var/obj/item/deployable_vehicle/internal_item
 
-/obj/vehicle/unmanned/deployable/Initialize(mapload, _internal_item, deployer)
+/obj/vehicle/unmanned/deployable/Initialize(mapload, _internal_item, mob/deployer)
 	if(!internal_item && !_internal_item)
 		return INITIALIZE_HINT_QDEL
 	internal_item = _internal_item
 	spawn_equipped_type = internal_item.stored_turret_type
+	if(ishuman(deployer))
+		var/mob/living/carbon/human/human_deployer = deployer
+		iff_signal = human_deployer?.wear_id?.iff_signal
 	. = ..()
 	current_rounds = internal_item.stored_ammo
 
@@ -57,12 +61,11 @@
 		return
 	disassemble(user)
 
-///Dissassembles the device
-/obj/vehicle/unmanned/deployable/proc/disassemble(mob/user)
-	if(CHECK_BITFIELD(internal_item.flags_item, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "Cannot disassemble")
+/obj/vehicle/unmanned/deployable/disassemble(mob/user)
+	var/obj/item/deployable_vehicle/current_internal_item = get_internal_item()
+	. = ..()
+	if(!.)
 		return
 	if(turret_path)
-		internal_item.stored_turret_type = turret_path
-		internal_item.stored_ammo = current_rounds
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+		current_internal_item?.stored_turret_type = turret_path
+		current_internal_item?.stored_ammo = current_rounds

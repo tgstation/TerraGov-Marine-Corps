@@ -12,7 +12,7 @@
 	icon_state = "random_clothes"
 	loot = list(
 		/obj/item/clothing/suit/bio_suit,
-		/obj/item/clothing/suit/bomber,
+		/obj/item/clothing/suit/storage/bomber,
 		/obj/item/clothing/suit/ianshirt,
 		/obj/item/clothing/suit/radiation,
 		/obj/item/clothing/suit/space,

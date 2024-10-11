@@ -41,7 +41,7 @@
 			. += span_info("It appears in good shape, pulsating healthily.")
 
 
-/obj/structure/xeno/spawner/take_damage(damage_amount, damage_type = BRUTE, damage_flag = "", effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+/obj/structure/xeno/spawner/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	spawner_damage_alert()
 
@@ -52,7 +52,7 @@
 		return
 	warning = TRUE
 	update_minimap_icon()
-	GLOB.hive_datums[hivenumber].xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien_help1.ogg',FALSE, null, /atom/movable/screen/arrow/silo_damaged_arrow)
+	GLOB.hive_datums[hivenumber].xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien/help1.ogg',FALSE, null, /atom/movable/screen/arrow/silo_damaged_arrow)
 	COOLDOWN_START(src, spawner_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
 	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_SILO_DETECTION_COOLDOWN) //clear warning
 
@@ -78,7 +78,7 @@
 
 	warning = TRUE
 	update_minimap_icon()
-	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien_help1.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
+	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien/help1.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
 	COOLDOWN_START(src, spawner_proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN) //set the cooldown.
 	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_SILO_DETECTION_COOLDOWN) //clear warning
 
@@ -94,16 +94,15 @@
 ///Change minimap icon if spawner is under attack or not
 /obj/structure/xeno/spawner/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "spawner[warning ? "_warn" : "_passive"]"))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "spawner[warning ? "_warn" : "_passive"]", ABOVE_FLOAT_LAYER))
 
-/obj/structure/xeno/spawner/proc/on_spawn(list/squad)
-	if(!isxeno(squad[length(squad)]))
-		CRASH("Xeno spawner somehow tried to spawn a non xeno (tried to spawn [squad[length(squad)]])")
-	var/mob/living/carbon/xenomorph/X = squad[length(squad)]
-	X.transfer_to_hive(hivenumber)
-	linked_minions = squad
-	if(hivenumber == XENO_HIVE_FALLEN) //snowflake so valhalla isnt filled with minions after you're done
-		RegisterSignal(src, COMSIG_QDELETING, PROC_REF(kill_linked_minions))
+/// Transfers the spawned minion to the silo's hivenumber.
+/obj/structure/xeno/spawner/proc/on_spawn(list/newly_spawned_things)
+	for(var/mob/living/carbon/xenomorph/spawned_minion AS in newly_spawned_things)
+		spawned_minion.transfer_to_hive(hivenumber)
+		linked_minions += spawned_minion
+		if(hivenumber == XENO_HIVE_FALLEN) //snowflake so valhalla isnt filled with minions after you're done
+			RegisterSignal(src, COMSIG_QDELETING, PROC_REF(kill_linked_minions))
 
 /obj/structure/xeno/spawner/proc/kill_linked_minions()
 	for(var/mob/living/carbon/xenomorph/linked in linked_minions)

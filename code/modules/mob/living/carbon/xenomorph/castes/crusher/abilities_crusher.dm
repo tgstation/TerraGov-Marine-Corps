@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/stomp
 	name = "Stomp"
 	action_icon_state = "stomp"
+	action_icon = 'icons/Xeno/actions/crusher.dmi'
 	desc = "Knocks all adjacent targets away and down."
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
@@ -64,6 +65,7 @@
 /datum/action/ability/activable/xeno/cresttoss
 	name = "Crest Toss"
 	action_icon_state = "cresttoss"
+	action_icon = 'icons/Xeno/actions/crusher.dmi'
 	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
 	ability_cost = 75
 	cooldown_duration = 12 SECONDS
@@ -75,7 +77,7 @@
 /datum/action/ability/activable/xeno/cresttoss/on_cooldown_finish()
 	var/mob/living/carbon/xenomorph/X = owner
 	to_chat(X, span_xenowarning("<b>We can now crest toss again.</b>"))
-	playsound(X, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	playsound(X, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	return ..()
 
 /datum/action/ability/activable/xeno/cresttoss/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -105,6 +107,9 @@
 		for(var/obj/effect/forcefield/fog/fog in throw_origin)
 			A.balloon_alert(X, "Cannot, fog")
 			return fail_activate()
+	if(isarmoredvehicle(A))
+		A.balloon_alert(X, "Too heavy!")
+		return fail_activate()
 	if(isliving(A))
 		var/mob/living/L = A
 		if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
@@ -167,6 +172,7 @@
 /datum/action/ability/activable/xeno/advance
 	name = "Rapid Advance"
 	action_icon_state = "crest_defense"
+	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
 	ability_cost = 175
 	cooldown_duration = 30 SECONDS
@@ -178,7 +184,7 @@
 
 /datum/action/ability/activable/xeno/advance/on_cooldown_finish()
 	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
-	playsound(owner, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
+	playsound(owner, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	return ..()
 
 /datum/action/ability/activable/xeno/advance/can_use_ability(atom/A, silent = FALSE, override_flags)
@@ -210,8 +216,8 @@
 		charge.charge_dir = aimdir //Set dir so check_momentum() does not cuck us
 	for(var/i=0 to max(get_dist(X, A), advance_range))
 		if(i % 2)
-			playsound(X, "alien_charge", 50)
-			new /obj/effect/temp_visual/xenomorph/afterimage(get_turf(X), X)
+			playsound(X, SFX_ALIEN_CHARGE, 50)
+			new /obj/effect/temp_visual/after_image(get_turf(X), X)
 		X.Move(get_step(X, aimdir), aimdir)
 		aimdir = get_dir(X, A)
 	succeed_activate()

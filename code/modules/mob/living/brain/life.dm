@@ -1,4 +1,4 @@
-/mob/living/brain/Life()
+/mob/living/brain/Life(seconds_per_tick, times_fired)
 	set invisibility = 0
 	set background = 1
 	..()
@@ -138,17 +138,3 @@
 		interactee?.check_eye(src)
 
 	return 1
-
-
-/*/mob/living/brain/emp_act(severity)
-	if(!(container && istype(container, /obj/item/mmi)))
-		return
-	else
-		switch(severity)
-			if(1)
-				emp_damage += rand(20,30)
-			if(2)
-				emp_damage += rand(10,20)
-			if(3)
-				emp_damage += rand(0,10)
-	..()*/

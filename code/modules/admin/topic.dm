@@ -125,7 +125,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if(response.body == "[]")
 				dat += "<center><b>0 bans detected for [ckey]</b></center>"
 			else
-				bans = json_decode(response["body"])
+				bans = json_decode(response.body)
 				dat += "<center><b>[length(bans)] ban\s detected for [ckey]</b></center>"
 				for(var/list/ban in bans)
 					dat += "<b>Server: </b> [sanitize(ban["sourceName"])]<br>"
@@ -446,6 +446,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/wraith, location, null, delmob)
 			if("puppeteer")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/puppeteer, location, null, delmob)
+			if("pyrogen")
+				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/pyrogen, location,null , delmob)
 			if("behemoth")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/behemoth, location, null, delmob)
 			if("human")
@@ -1086,9 +1088,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] canceled an evacuation.")
 
 			if("toggle_evac")
-				SSevacuation.flags_scuttle ^= FLAGS_EVACUATION_DENY
-				log_admin("[key_name(src)] has [SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
-				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+				SSevacuation.scuttle_flags ^= FLAGS_EVACUATION_DENY
+				log_admin("[key_name(src)] has [SSevacuation.scuttle_flags & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.scuttle_flags & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
 
 			if("force_evac")
 				if(!SSevacuation.begin_launch())
@@ -1126,9 +1128,9 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destruct system, destroying the [SSmapping.configs[SHIP_MAP].map_name].")
 
 			if("toggle_dest")
-				SSevacuation.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
-				log_admin("[key_name(src)] has [SSevacuation.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
-				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				SSevacuation.scuttle_flags ^= FLAGS_SELF_DESTRUCT_DENY
+				log_admin("[key_name(src)] has [SSevacuation.scuttle_flags & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				message_admins("[ADMIN_TPMONTY(usr)] has [SSevacuation.scuttle_flags & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
 
 
 	else if(href_list["object_list"])
@@ -2117,7 +2119,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 
 	else if(href_list["clearpollvotes"])
 		var/datum/poll_question/poll = locate(href_list["clearpollvotes"]) in GLOB.polls
-		poll.cleaR_DBRANKS_votes()
+		poll.cleaR_POLLS_votes()
 		poll_management_panel(poll)
 
 	else if(href_list["addpolloption"])

@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(evacuation)
 	var/dest_index = 1
 	var/dest_status = NUKE_EXPLOSION_INACTIVE
 
-	var/flags_scuttle = FLAGS_SDEVAC_TIMELOCK
+	var/scuttle_flags = FLAGS_SDEVAC_TIMELOCK
 	///How many marines were on ship when the dropship crashed
 	var/initial_human_on_ship = 0
 	///How many marines escaped
@@ -80,7 +80,7 @@ SUBSYSTEM_DEF(evacuation)
 /datum/controller/subsystem/evacuation/proc/initiate_evacuation(override)
 	if(evac_status != EVACUATION_STATUS_STANDING_BY)
 		return FALSE
-	if(!override && flags_scuttle & (FLAGS_EVACUATION_DENY|FLAGS_SDEVAC_TIMELOCK))
+	if(!override && scuttle_flags & (FLAGS_EVACUATION_DENY|FLAGS_SDEVAC_TIMELOCK))
 		return FALSE
 	GLOB.enter_allowed = FALSE
 	evac_time = world.time
@@ -130,7 +130,7 @@ SUBSYSTEM_DEF(evacuation)
 /datum/controller/subsystem/evacuation/proc/enable_self_destruct(override)
 	if(dest_status != NUKE_EXPLOSION_INACTIVE)
 		return FALSE
-	if(!override && flags_scuttle & (FLAGS_SELF_DESTRUCT_DENY|FLAGS_SDEVAC_TIMELOCK))
+	if(!override && scuttle_flags & (FLAGS_SELF_DESTRUCT_DENY|FLAGS_SDEVAC_TIMELOCK))
 		return FALSE
 	dest_status = NUKE_EXPLOSION_ACTIVE
 	dest_master.toggle()

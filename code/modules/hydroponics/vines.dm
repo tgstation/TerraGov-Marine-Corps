@@ -214,7 +214,7 @@
 
 
 // Hotspots kill vines.
-/obj/effect/plantsegment/fire_act(null, temp, volume)
+/obj/effect/plantsegment/fire_act(burn_level)
 	qdel(src)
 
 /obj/effect/plantsegment/proc/die()
@@ -244,10 +244,6 @@
 	if(abs(temperature - seed.ideal_heat) > seed.heat_tolerance)
 		die()
 		return
-
-
-/obj/effect/plantsegment/flamer_fire_act(burnlevel)
-	qdel(src)
 
 /obj/effect/plant_controller
 

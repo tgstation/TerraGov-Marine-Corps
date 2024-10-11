@@ -167,7 +167,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "tA" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/lazarus/sandtemple/garbledradio)
 "tP" = (
@@ -243,7 +243,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand9)
 "HH" = (
-/obj/item/weapon/claymore/mercsword/machete,
+/obj/item/weapon/sword/machete,
 /obj/structure/flora/jungle/vines{
 	pixel_y = 1
 	},

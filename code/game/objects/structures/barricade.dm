@@ -1,18 +1,18 @@
 // Snow, wood, sandbags, metal, plasteel
 
 /obj/structure/barricade
-	icon = 'icons/Marine/barricades.dmi'
 	climbable = TRUE
 	anchored = TRUE
 	density = TRUE
 	layer = BELOW_OBJ_LAYER
-	flags_atom = ON_BORDER
+	atom_flags = ON_BORDER
+	obj_flags = CAN_BE_HIT | IGNORE_DENSITY | BLOCKS_CONSTRUCTION_DIR
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
 	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
-	flags_barrier = HANDLE_BARRIER_CHANCE
+	barrier_flags = HANDLE_BARRIER_CHANCE
 	///The type of stack the barricade dropped when disassembled if any.
 	var/stack_type
 	///The amount of stack dropped when disassembled at full health
@@ -75,13 +75,13 @@
 /obj/structure/barricade/attack_animal(mob/user)
 	return attack_alien(user)
 
-/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/barricade/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
 	if(is_wired)
-		balloon_alert(X, "Wire slices into us")
-		X.apply_damage(10, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
+		balloon_alert(xeno_attacker, "Wire slices into us")
+		xeno_attacker.apply_damage(10, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
 
 	return ..()
 
@@ -90,10 +90,9 @@
 	if(.)
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "Can't, it's melting")
-			return
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	if(!istype(I, /obj/item/stack/barbed_wire) || !can_wire)
 		return
@@ -103,6 +102,10 @@
 	balloon_alert_to_viewers("Setting up wire...")
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD) || !can_wire)
 		return
+
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
@@ -136,7 +139,7 @@
 	new /obj/item/stack/barbed_wire(loc)
 
 
-/obj/structure/barricade/deconstruct(disassembled = TRUE)
+/obj/structure/barricade/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
@@ -205,9 +208,9 @@
 	. = ..()
 	if(is_wired)
 		if(!closed)
-			. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_wire")
+			. += image(icon, icon_state = "[barricade_type]_wire")
 		else
-			. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_closed_wire")
+			. += image(icon, icon_state = "[barricade_type]_closed_wire")
 
 
 /obj/structure/barricade/effect_smoke(obj/effect/particle_effect/smoke/S)
@@ -256,6 +259,7 @@
 /obj/structure/barricade/snow
 	name = "snow barricade"
 	desc = "A mound of snow shaped into a sloped wall. Statistically better than thin air as cover."
+	icon = 'icons/obj/structures/barricades/sandbags.dmi'
 	icon_state = "snow_0"
 	barricade_type = "snow"
 	max_integrity = 75
@@ -271,11 +275,6 @@
 	. = ..()
 	if(.)
 		return
-
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "It's melting!")
-			return
 
 	//Removing the barricades
 	if(!istype(I, /obj/item/tool/shovel) || user.a_intent == INTENT_HARM)
@@ -296,13 +295,7 @@
 
 	if(ET.folded)
 		return
-	var/deconstructed = TRUE
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t != src)
-			continue
-		deconstructed = FALSE
-		break
-	deconstruct(deconstructed)
+	deconstruct(!get_self_acid())
 
 /*----------------------*/
 // GUARD RAIL
@@ -311,6 +304,7 @@
 /obj/structure/barricade/guardrail
 	name = "guard rail"
 	desc = "A short wall made of rails to prevent entry into dangerous areas."
+	icon = 'icons/obj/structures/barricades/misc.dmi'
 	icon_state = "railing_0"
 	coverage = 25
 	max_integrity = 150
@@ -333,6 +327,7 @@
 /obj/structure/barricade/wooden
 	name = "wooden barricade"
 	desc = "A wall made out of wooden planks nailed together. Not very sturdy, but can provide some concealment."
+	icon = 'icons/obj/structures/barricades/misc.dmi'
 	icon_state = "wooden"
 	max_integrity = 100
 	layer = OBJ_LAYER
@@ -352,11 +347,6 @@
 	if(.)
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "It's melting!")
-			return
-
 	if(!istype(I, /obj/item/stack/sheet/wood))
 		return
 	var/obj/item/stack/sheet/wood/D = I
@@ -374,6 +364,10 @@
 
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 		return
+
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	if(!D.use(1))
 		return
@@ -400,6 +394,7 @@
 /obj/structure/barricade/metal
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
+	icon = 'icons/obj/structures/barricades/metal.dmi'
 	icon_state = "metal_0"
 	max_integrity = 200
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
@@ -414,6 +409,12 @@
 	var/build_state = BARRICADE_METAL_FIRM
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
+
+/obj/structure/barricade/metal/Initialize(mapload, mob/user)
+	. = ..()
+	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
+		return
+	modify_max_integrity(max_integrity + 75)
 
 /obj/structure/barricade/metal/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -435,11 +436,11 @@
 			damage_state = 0
 	switch(barricade_upgrade_type)
 		if(CADE_TYPE_BOMB)
-			. += image('icons/Marine/barricades.dmi', icon_state = "+explosive_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+explosive_upgrade_[damage_state]")
 		if(CADE_TYPE_MELEE)
-			. += image('icons/Marine/barricades.dmi', icon_state = "+brute_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+brute_upgrade_[damage_state]")
 		if(CADE_TYPE_ACID)
-			. += image('icons/Marine/barricades.dmi', icon_state = "+burn_upgrade_[damage_state]")
+			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+burn_upgrade_[damage_state]")
 
 /obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -465,6 +466,10 @@
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
 		return FALSE
 
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
+
 	if(!metal_sheets.use(2))
 		return FALSE
 
@@ -485,7 +490,7 @@
 		balloon_alert(user, "You need at least [CADE_UPGRADE_REQUIRED_SHEETS] metal to upgrade")
 		return FALSE
 
-	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/Marine/barricades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/Marine/barricades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/Marine/barricades.dmi', icon_state = "burn_obj"))
+	var/static/list/cade_types = list(CADE_TYPE_BOMB = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "explosive_obj"), CADE_TYPE_MELEE = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "brute_obj"), CADE_TYPE_ACID = image(icon = 'icons/obj/structures/barricades/upgrades.dmi', icon_state = "burn_obj"))
 	var/choice = show_radial_menu(user, src, cade_types, require_near = TRUE, tooltips = TRUE)
 
 	if(!choice)
@@ -514,6 +519,7 @@
 			resistance_flags |= UNACIDABLE
 
 	barricade_upgrade_type = choice
+	stack_amount += 1
 
 	balloon_alert_to_viewers("[choice] attached")
 
@@ -602,7 +608,8 @@
 				return TRUE
 
 			var/turf/open/T = mystery_turf
-			if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
+			var/area/area = get_area(T)
+			if(!T.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 				balloon_alert(user, "can't anchor here")
 				return TRUE
 
@@ -647,13 +654,7 @@
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			var/deconstructed = TRUE
-			for(var/obj/effect/xenomorph/acid/A in loc)
-				if(A.acid_t != src)
-					continue
-				deconstructed = FALSE
-				break
-			deconstruct(deconstructed)
+			deconstruct(!get_self_acid())
 			return TRUE
 		if(BARRICADE_METAL_FIRM)
 
@@ -686,6 +687,7 @@
 
 			new /obj/item/stack/sheet/metal(loc, CADE_UPGRADE_REQUIRED_SHEETS)
 			barricade_upgrade_type = null
+			stack_amount -= 1
 			update_icon()
 			return TRUE
 
@@ -719,6 +721,7 @@
 /obj/structure/barricade/plasteel
 	name = "plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
+	icon = 'icons/obj/structures/barricades/plasteel.dmi'
 	icon_state = "plasteel_closed_0"
 	max_integrity = 500
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
@@ -738,6 +741,12 @@
 	///ehther we react with other cades next to us ie when opening or so
 	var/linked = FALSE
 	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
+
+/obj/structure/barricade/plasteel/Initialize(mapload, mob/user)
+	. = ..()
+	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
+		return
+	modify_max_integrity(max_integrity + 100)
 
 /obj/structure/barricade/plasteel/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -840,13 +849,7 @@
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			var/deconstructed = TRUE
-			for(var/obj/effect/xenomorph/acid/A in loc)
-				if(A.acid_t != src)
-					continue
-				deconstructed = FALSE
-				break
-			deconstruct(deconstructed)
+			deconstruct(!get_self_acid())
 
 /obj/structure/barricade/plasteel/wrench_act(mob/living/user, obj/item/I)
 	if(!iswrench(I))
@@ -879,7 +882,8 @@
 				return
 
 			var/turf/open/T = mystery_turf
-			if(!T.allow_construction) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
+			var/area/area = get_area(T)
+			if(!T.allow_construction || area.area_flags & NO_CONSTRUCTION) //We shouldn't be able to anchor in areas we're not supposed to build; loophole closed.
 				balloon_alert(user, "can't anchor here")
 				return
 
@@ -899,29 +903,34 @@
 	if(.)
 		return
 
-	if(istype(I, /obj/item/stack/sheet/plasteel))
-		var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
-		if(obj_integrity >= max_integrity * 0.3)
-			return
+	if(!istype(I, /obj/item/stack/sheet/plasteel))
+		return
+	var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
+	if(obj_integrity >= max_integrity * 0.3)
+		return
 
-		if(plasteel_sheets.get_amount() < 2)
-			balloon_alert(user, "You need at least 2 plasteel")
-			return
+	if(plasteel_sheets.get_amount() < 2)
+		balloon_alert(user, "You need at least 2 plasteel")
+		return
 
-		if(LAZYACCESS(user.do_actions, src))
-			return
+	if(LAZYACCESS(user.do_actions, src))
+		return
 
-		balloon_alert_to_viewers("Repairing base...")
+	balloon_alert_to_viewers("Repairing base...")
 
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
-			return
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
+		return
 
-		if(!plasteel_sheets.use(2))
-			return
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
-		repair_damage(max_integrity * 0.3, user)
-		balloon_alert_to_viewers("Base repaired")
-		update_icon()
+	if(!plasteel_sheets.use(2))
+		return
+
+	repair_damage(max_integrity * 0.3, user)
+	balloon_alert_to_viewers("Base repaired")
+	update_icon()
 
 /obj/structure/barricade/plasteel/attack_hand(mob/living/user)
 	. = ..()
@@ -957,7 +966,7 @@
 	for(var/direction in GLOB.cardinals)
 		for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
 			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked && cade.closed == closed)
-				. += image('icons/Marine/barricades.dmi', icon_state = "[barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
+				. += image(icon, icon_state = "[barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
 
 /obj/structure/barricade/plasteel/ex_act(severity)
 	switch(severity)
@@ -983,6 +992,7 @@
 /obj/structure/barricade/sandbags
 	name = "sandbag barricade"
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
+	icon = 'icons/obj/structures/barricades/sandbags.dmi'
 	icon_state = "sandbag_0"
 	max_integrity = 300
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
@@ -1007,11 +1017,6 @@
 	if(.)
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "it's melting!")
-			return
-
 	if(istype(I, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = I
 		if(ET.folded)
@@ -1021,13 +1026,7 @@
 			return TRUE
 		user.visible_message(span_notice("[user] disassembles [src]."),
 		span_notice("You disassemble [src]."))
-		var/deconstructed = TRUE
-		for(var/obj/effect/xenomorph/acid/A in loc)
-			if(A.acid_t != src)
-				continue
-			deconstructed = FALSE
-			break
-		deconstruct(deconstructed)
+		deconstruct(!get_self_acid())
 		return TRUE
 
 	if(istype(I, /obj/item/stack/sandbags))
@@ -1046,6 +1045,10 @@
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
 			return
 
+		if(get_self_acid())
+			balloon_alert(user, "It's melting!")
+			return
+
 		if(!D.use(1))
 			return
 
@@ -1054,6 +1057,7 @@
 		update_icon()
 
 /obj/structure/barricade/metal/deployable
+	icon = 'icons/obj/structures/barricades/folding.dmi'
 	icon_state = "folding_0"
 	max_integrity = 300
 	coverage = 100
@@ -1062,7 +1066,7 @@
 	is_wired = FALSE
 	soft_armor = list(MELEE = 35, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 25, BIO = 100, FIRE = 100, ACID = 30)
 	///Whether this item can be deployed or undeployed
-	var/flags_item = IS_DEPLOYABLE
+	var/item_flags = IS_DEPLOYABLE
 	///What it deploys into. typecast version of internal_item
 	var/obj/item/weapon/shield/riot/marine/deployable/internal_shield
 
@@ -1086,13 +1090,6 @@
 
 /obj/structure/barricade/metal/deployable/clear_internal_item()
 	internal_shield = null
-
-///Dissassembles the device
-/obj/structure/barricade/metal/deployable/proc/disassemble(mob/user)
-	if(CHECK_BITFIELD(internal_shield.flags_item, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "Cannot disassemble")
-		return
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 
 /obj/structure/barricade/metal/deployable/Destroy()
 	if(internal_shield)
@@ -1124,6 +1121,7 @@
 /obj/structure/barricade/concrete
 	name = "concrete barricade"
 	desc = "A short wall made of reinforced concrete. It looks like it can take a lot of punishment."
+	icon = 'icons/obj/structures/barricades/concrete.dmi'
 	icon_state = "concrete_0"
 	coverage = 100
 	max_integrity = 500

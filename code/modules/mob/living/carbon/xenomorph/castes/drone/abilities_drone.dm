@@ -14,7 +14,8 @@
 // ***************************************
 /datum/action/ability/activable/xeno/essence_link
 	name = "Essence Link"
-	action_icon_state = "healing_infusion"
+	action_icon_state = "essence_link_0"
+	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "Link to a xenomorph. This changes some of your abilities, and grants them and you both various bonuses."
 	cooldown_duration = 5 SECONDS
 	ability_cost = 0
@@ -91,6 +92,7 @@
 /datum/action/ability/activable/xeno/psychic_cure/acidic_salve
 	name = "Acidic Salve"
 	action_icon_state = "heal_xeno"
+	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "Apply a minor heal to the target. If applied to a linked sister, it will also apply a regenerative buff. Additionally, if that linked sister is near death, the heal's potency is increased"
 	cooldown_duration = 5 SECONDS
 	ability_cost = 150
@@ -125,7 +127,7 @@
 		target.apply_status_effect(STATUS_EFFECT_XENO_SALVE_REGEN)
 		if(essence_link_action.existing_link.stacks > 0 && remaining_health <= health_threshold)
 			heal_multiplier = 3
-	playsound(target, "alien_drool", 25)
+	playsound(target, SFX_ALIEN_DROOL, 25)
 	new /obj/effect/temp_visual/telekinesis(get_turf(target))
 	var/heal_amount = (DRONE_BASE_SALVE_HEAL + target.recovery_aura * target.maxHealth * 0.01) * heal_multiplier
 	target.adjustFireLoss(-max(0, heal_amount - target.getBruteLoss()), TRUE)
@@ -141,6 +143,7 @@
 /datum/action/ability/xeno_action/enhancement
 	name = "Enhancement"
 	action_icon_state = "enhancement"
+	action_icon = 'icons/Xeno/actions/drone.dmi'
 	desc = "Apply an enhancement to the linked xeno, increasing their capabilities beyond their limits."
 	cooldown_duration = 120 SECONDS
 	ability_cost = 0

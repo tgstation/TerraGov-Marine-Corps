@@ -174,8 +174,8 @@
 	return FALSE
 
 
-/obj/structure/camera_assembly/deconstruct(disassembled = TRUE)
-	if(!(flags_atom & NODECONSTRUCT))
+/obj/structure/camera_assembly/deconstruct(disassembled = TRUE, mob/living/blame_mob)
+	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/stack/sheet/metal(loc)
 	return ..()
 

@@ -18,6 +18,8 @@
 #define FACTION_HOSTILE "Hostile"
 #define FACTION_PIRATE "Pirate"
 #define FACTION_SPECFORCE "Special Forces"
+#define FACTION_VSD "Vyacheslav Security Detail"
+#define FACTION_ERP "Emergency Response Pranksters"
 
 //Alignement are currently only used by req.
 ///Mob with a neutral alignement cannot be sold by anyone
@@ -35,6 +37,7 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 	FACTION_NANOTRASEN = ALIGNEMENT_FRIENDLY,
 	FACTION_FREELANCERS = ALIGNEMENT_FRIENDLY,
 	FACTION_SPECFORCE = ALIGNEMENT_FRIENDLY,
+	FACTION_ERP = ALIGNEMENT_FRIENDLY,
 	//Hostile
 	FACTION_XENO = ALIGNEMENT_HOSTILE,
 	FACTION_CLF = ALIGNEMENT_HOSTILE,
@@ -50,6 +53,7 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 	FACTION_HIVEBOT = ALIGNEMENT_HOSTILE,
 	FACTION_HOSTILE = ALIGNEMENT_HOSTILE,
 	FACTION_PIRATE = ALIGNEMENT_HOSTILE,
+	FACTION_VSD = ALIGNEMENT_HOSTILE,
 ))
 
 ///Iff signals for factions
@@ -63,6 +67,7 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 #define SECTOIDS_IFF (1<<7)
 #define USL_IFF (1<<8)
 #define PIRATE_IFF (1<<9)
+#define VSD_IFF (1<<10)
 
 ///Iff for each faction that is able to use iff
 GLOBAL_LIST_INIT(faction_to_iff, list(
@@ -71,6 +76,7 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_SPECFORCE = TGMC_LOYALIST_IFF,
 	FACTION_NANOTRASEN = TGMC_LOYALIST_IFF,
 	FACTION_FREELANCERS = TGMC_LOYALIST_IFF,
+	FACTION_ERP = TGMC_LOYALIST_IFF,
 	FACTION_CLF = CLF_IFF,
 	FACTION_DEATHSQUAD = DEATHSQUAD_IFF,
 	FACTION_IMP = IMP_IFF,
@@ -80,6 +86,25 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_ICC = ICC_IFF,
 	FACTION_USL = USL_IFF,
 	FACTION_PIRATE = PIRATE_IFF,
+	FACTION_VSD = VSD_IFF,
+))
+
+///Acronyms for each faction, or the shortest name possible
+GLOBAL_LIST_INIT(faction_to_acronym, list(
+	FACTION_NEUTRAL = "Neutral",
+	FACTION_TERRAGOV = "TGMC",
+	FACTION_SPECFORCE = "SRF",
+	FACTION_NANOTRASEN = "PMC",
+	FACTION_FREELANCERS = "FRE",
+	FACTION_CLF = "CLF",
+	FACTION_DEATHSQUAD = "Deathsquad",
+	FACTION_IMP = "IMP",
+	FACTION_UNKN_MERCS = "Unknown",
+	FACTION_SECTOIDS = "Sectoids",
+	FACTION_SOM = "SOM",
+	FACTION_ICC = "ICC",
+	FACTION_USL = "USL",
+	FACTION_PIRATE = "Pirates",
 ))
 
 ///List of correspond factions to data hud
@@ -100,13 +125,13 @@ GLOBAL_LIST_INIT(faction_to_portrait, list(
 
 GLOBAL_LIST_INIT(faction_to_mech_spawner, list(
 	FACTION_TERRAGOV = list(
-		"heavy" = /obj/effect/landmark/campaign/mech_spawner/heavy,
-		"medium" = /obj/effect/landmark/campaign/mech_spawner,
-		"light" = /obj/effect/landmark/campaign/mech_spawner/light,
+		"heavy" = /obj/effect/landmark/campaign/vehicle_spawner/mech/heavy,
+		"medium" = /obj/effect/landmark/campaign/vehicle_spawner/mech,
+		"light" = /obj/effect/landmark/campaign/vehicle_spawner/mech/light,
 	),
 	FACTION_SOM = list(
-		"heavy" = /obj/effect/landmark/campaign/mech_spawner/som/heavy,
-		"medium" = /obj/effect/landmark/campaign/mech_spawner/som,
-		"light" = /obj/effect/landmark/campaign/mech_spawner/som/light,
+		"heavy" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som/heavy,
+		"medium" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som,
+		"light" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som/light,
 	),
 ))

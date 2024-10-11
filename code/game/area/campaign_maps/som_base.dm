@@ -2,7 +2,7 @@
 /area/rocinante_base
 	name = "rocinante Polar Base"
 	icon_state = "dark"
-	flags_area = ALWAYS_RADIO
+	area_flags = ALWAYS_RADIO
 
 /area/rocinante_base/ground
 	name = "Ground"

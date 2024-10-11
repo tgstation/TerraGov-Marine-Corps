@@ -31,7 +31,7 @@
 /datum/weather/acid_rain/telegraph()
 	. = ..()
 	for(var/mob/impacted_mob AS in GLOB.player_list)
-		if(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER)
+		if(!(impacted_mob?.client?.prefs?.toggles_sound & SOUND_WEATHER))
 			continue
 		var/turf/impacted_mob_turf = get_turf(impacted_mob)
 		if(!impacted_mob_turf || !(impacted_mob.z in impacted_z_levels))
@@ -53,7 +53,7 @@
 	if(prob(L.modify_by_armor(100, ACID)))
 		L.adjustFireLoss(7)
 		to_chat(L, span_danger("You feel the acid rain melting you away!"))
-	L.clean_mob()
+	L.wash()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 
@@ -72,9 +72,11 @@
 
 	probability = 60
 	repeatable = TRUE
+	weather_duration_lower = 2000
+	weather_duration_upper = 2500
 
 /datum/weather/acid_rain/harmless/weather_act(mob/living/L)
-	L.clean_mob()
+	L.wash()
 	if(L.fire_stacks > -20)
 		L.fire_stacks = max(-20, L.fire_stacks - 1)
 		if(prob(20))

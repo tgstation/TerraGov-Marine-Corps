@@ -45,18 +45,46 @@
 	opacity = FALSE
 	icon_state = "speaker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	var/datum/looping_sound/alarm_loop/deltalarm
+	///The sound we want to loop
+	var/datum/looping_sound/loop_sound
+	///The typepath of our looping sound datum
+	var/sound_type
+	///Do we start immediately
+	var/start_on_init = TRUE
 
 /obj/effect/soundplayer/Initialize(mapload)
 	. = ..()
-	deltalarm = new(null, FALSE)
-	GLOB.ship_alarms += src
+	if(!sound_type)
+		return INITIALIZE_HINT_QDEL
 	icon_state = ""
+	loop_sound = new sound_type(null, FALSE)
+	if(start_on_init)
+		loop_sound.start(src)
 
 /obj/effect/soundplayer/Destroy()
 	. = ..()
-	QDEL_NULL(deltalarm)
+	QDEL_NULL(loop_sound)
+
+/obj/effect/soundplayer/deltaplayer
+	sound_type = /datum/looping_sound/alarm_loop
+	start_on_init = FALSE
+
+/obj/effect/soundplayer/deltaplayer/Initialize(mapload)
+	. = ..()
+	GLOB.ship_alarms += src
+
+/obj/effect/soundplayer/deltaplayer/Destroy()
+	. = ..()
 	GLOB.ship_alarms -= src
+
+/obj/effect/soundplayer/riverplayer
+	sound_type = /datum/looping_sound/river_loop
+
+/obj/effect/soundplayer/dripplayer
+	sound_type = /datum/looping_sound/drip_loop
+
+/obj/effect/soundplayer/waterreservoirplayer
+	sound_type = /datum/looping_sound/water_res_loop
 
 /obj/effect/forcefield
 	anchored = TRUE
@@ -70,6 +98,9 @@
 	. = ..()
 	if(icon_state == "blocker")
 		icon_state = ""
+
+/obj/effect/forcefield/allow_bullet_travel
+	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE
 
 /obj/effect/forcefield/fog
 	name = "dense fog"
@@ -93,8 +124,8 @@
 	return TRUE
 
 
-/obj/effect/forcefield/fog/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	return attack_hand(X)
+/obj/effect/forcefield/fog/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	return attack_hand(xeno_attacker)
 
 
 /obj/effect/forcefield/fog/attack_animal(M)

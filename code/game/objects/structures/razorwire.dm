@@ -1,7 +1,7 @@
 /obj/structure/razorwire
 	name = "razorwire obstacle"
 	desc = "A bundle of barbed wire supported by metal rods. Used to deny access to areas under (literal) pain of entanglement and injury. A classic fortification since the 1900s."
-	icon = 'icons/obj/structures/barbedwire.dmi'
+	icon = 'icons/obj/structures/barricades/barbedwire.dmi'
 	icon_state = "barbedwire_x"
 	base_icon_state = "barbedwire_x"
 	density = TRUE
@@ -18,7 +18,7 @@
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
-/obj/structure/razorwire/deconstruct(disassembled = TRUE)
+/obj/structure/razorwire/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
 			new sheet_type(loc)
@@ -181,11 +181,11 @@
 	deconstruct(TRUE)
 	return TRUE
 
-/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/obj/structure/razorwire/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return FALSE
 
-	X.apply_damage(RAZORWIRE_BASE_DAMAGE, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
+	xeno_attacker.apply_damage(RAZORWIRE_BASE_DAMAGE, blocked = MELEE, updating_health = TRUE) //About a third as damaging as actually entering
 	update_icon()
 	return ..()
 

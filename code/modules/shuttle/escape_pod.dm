@@ -101,6 +101,7 @@
 	name = "escape pod controller"
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_control_standby"
+	screen_overlay = null
 	power_channel = ENVIRON
 	density = FALSE
 
@@ -210,5 +211,5 @@
 /obj/machinery/door/airlock/evacuation/attack_hand(mob/living/user)
 	return TRUE
 
-/obj/machinery/door/airlock/evacuation/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
+/obj/machinery/door/airlock/evacuation/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	return FALSE //Probably a better idea that these cannot be forced open.

@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/warrior
-	caste_base_type = /mob/living/carbon/xenomorph/warrior
+	caste_base_type = /datum/xeno_caste/warrior
 	name = "Warrior"
 	desc = "A beefy, alien with an armored carapace."
 	icon = 'icons/Xeno/castes/warrior.dmi'
@@ -9,7 +9,6 @@
 	maxHealth = 200
 	plasma_stored = 50
 	pixel_x = -16
-	old_x = -16
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"

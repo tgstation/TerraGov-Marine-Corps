@@ -151,7 +151,7 @@
 			var/item_category = L[1]
 			var/cost = L[3]
 
-			if(!(user_id.flags_id & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
+			if(!(user_id.id_flags & CAN_BUY_LOADOUT)) //If you use the quick-e-quip, you cannot also use the GHMMEs
 				to_chat(usr, span_warning("Access denied. You have already vended a loadout."))
 				return FALSE
 			if(use_points && (item_category in user_id.marine_points) && user_id.marine_points[item_category] < cost)
@@ -184,7 +184,7 @@
 			else
 				vended_items += new idx(loc)
 
-			playsound(src, "vending", 25, 0)
+			playsound(src, SFX_VENDING, 25, 0)
 
 			if(icon_vend)
 				flick(icon_vend, src)
@@ -205,7 +205,7 @@
 			if(use_points && (item_category in user_id.marine_points))
 				user_id.marine_points[item_category] -= cost
 			. = TRUE
-			user_id.flags_id |= USED_GHMME
+			user_id.id_flags |= USED_GHMME
 
 /obj/machinery/marine_selector/clothes
 	name = "GHMME Automated Closet"
@@ -387,6 +387,11 @@
 	lock_flags = JOB_LOCK
 	gives_webbing = FALSE
 
+/obj/machinery/marine_selector/clothes/commander/valhalla
+	vendor_role = /datum/job/fallen/marine/fieldcommander
+	resistance_flags = INDESTRUCTIBLE
+	lock_flags = JOB_LOCK
+
 /obj/machinery/marine_selector/clothes/commander/Initialize(mapload)
 	. = ..()
 	listed_products = list(
@@ -429,7 +434,7 @@
 		/obj/item/storage/pouch/general/large = list(CAT_POU, "General pouch", 0, "black"),
 		/obj/item/storage/pouch/magazine/large = list(CAT_POU, "Magazine pouch", 0, "black"),
 		/obj/item/storage/holster/flarepouch/full = list(CAT_POU, "Flare pouch", 0, "black"),
-		/obj/item/storage/pouch/medical_injectors/firstaid = list(CAT_POU, "Combat injector pouch", 0,"orange"),
+		/obj/item/storage/pouch/medical_injectors/standard = list(CAT_POU, "Combat injector pouch", 0,"orange"),
 		/obj/item/storage/pouch/medkit/firstaid = list(CAT_POU, "Firstaid pouch", 0, "orange"),
 		/obj/item/storage/pouch/tools/full = list(CAT_POU, "Tool pouch (tools included)", 0, "black"),
 		/obj/item/storage/pouch/grenade/slightlyfull = list(CAT_POU, "Grenade pouch (grenades included)", 0,"black"),
@@ -449,6 +454,8 @@
 		/obj/item/clothing/mask/rebreather/scarf = list(CAT_MAS, "Heat absorbent coif", 0, "black"),
 		/obj/item/clothing/mask/rebreather = list(CAT_MAS, "Rebreather", 0, "black"),
 	)
+
+
 
 /obj/machinery/marine_selector/clothes/synth
 	name = "M57 Synthetic Equipment Vendor"
@@ -702,6 +709,7 @@
 	)
 
 /obj/effect/vendor_bundle/stretcher
+	desc = "A standard-issue TerraGov Marine Corps corpsman medivac stretcher. Comes with an extra beacon, but multiple beds can be linked to one beacon."
 	gear_to_spawn = list(
 		/obj/item/roller/medevac,
 		/obj/item/medevac_beacon,
@@ -754,8 +762,6 @@
 		/obj/item/stack/sheet/plasteel/medium_stack,
 		/obj/item/stack/sheet/metal/large_stack,
 		/obj/item/tool/weldingtool/hugetank,
-		/obj/item/lightreplacer,
-		/obj/item/healthanalyzer,
 		/obj/item/tool/handheld_charger,
 		/obj/item/defibrillator,
 		/obj/item/medevac_beacon,
@@ -764,6 +770,8 @@
 		/obj/item/bodybag/cryobag,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
 		/obj/item/tweezers,
+		/obj/item/cell/high,
+		/obj/item/circuitboard/apc,
 	)
 
 /obj/effect/vendor_bundle/white_dress

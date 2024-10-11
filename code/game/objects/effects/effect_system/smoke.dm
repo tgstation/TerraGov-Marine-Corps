@@ -297,9 +297,9 @@
 ////////////////////////////////////
 
 /obj/effect/particle_effect/smoke/antigas
-	alpha = 25
+	alpha = 65
 	opacity = FALSE
-	color = "#030101"
+	color = "#1b1b1b"
 	smoke_traits = SMOKE_PURGER
 
 //////////////////////////////////////
@@ -320,6 +320,15 @@
 	expansion_speed = 3
 	strength = 1.5
 	smoke_traits = SMOKE_SATRAPINE|SMOKE_GASP|SMOKE_COUGH
+
+//VSD chemical
+
+/obj/effect/particle_effect/smoke/vyacheslav
+	color = "#92a94d"
+	lifetime = 6
+	expansion_speed = 3
+	strength = 2
+	smoke_traits = SMOKE_BLISTERING|SMOKE_XENO_NEURO|SMOKE_OXYLOSS|SMOKE_GASP|SMOKE_COUGH
 
 /obj/effect/particle_effect/smoke/satrapine/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()
@@ -350,29 +359,35 @@
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
 	lifetime = 6
+	alpha = 120
+	opacity = FALSE
 	color = "#86B028" //Mostly green?
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
+
+//Used for smokebomb nades.
+/obj/effect/particle_effect/smoke/xeno/burn/opaque
+	alpha = 255
+	opacity = TRUE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 //Xeno light acid smoke.for acid huggers
 /obj/effect/particle_effect/smoke/xeno/burn/light
 	lifetime = 4 //Lasts for less time
-	alpha = 60
-	opacity = FALSE
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
+	alpha = 255
+	opacity = TRUE
 	color = "#ffbf58" //Mustard orange?
-	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH|SMOKE_HUGGER_PACIFY
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
 
 ///Xeno neurotox smoke for Defilers; doesn't extinguish
 /obj/effect/particle_effect/smoke/xeno/neuro/medium
-	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 ///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
 /obj/effect/particle_effect/smoke/xeno/neuro/light
-	alpha = 60
+	alpha = 120
 	opacity = FALSE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
@@ -426,6 +441,9 @@
 /datum/effect_system/smoke_spread/satrapine
 	smoke_type = /obj/effect/particle_effect/smoke/satrapine
 
+/datum/effect_system/smoke_spread/vyacheslav
+	smoke_type = /obj/effect/particle_effect/smoke/vyacheslav
+
 /datum/effect_system/smoke_spread/antigas
 	smoke_type = /obj/effect/particle_effect/smoke/antigas
 
@@ -443,6 +461,9 @@
 
 /datum/effect_system/smoke_spread/xeno/acid
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn
+
+/datum/effect_system/smoke_spread/xeno/acid/opaque
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/opaque
 
 /datum/effect_system/smoke_spread/xeno/acid/light
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn/light

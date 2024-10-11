@@ -2,7 +2,7 @@
 	desc = "The world of janitalia wouldn't be complete without a mop."
 	name = "mop"
 	icon = 'icons/obj/janitor.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
 	)
@@ -23,7 +23,7 @@
 
 /turf/proc/clean(atom/source)
 	if(source.reagents.has_reagent(/datum/reagent/water, 1))
-		clean_blood()
+		wash()
 		for(var/obj/effect/O in src)
 			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
@@ -51,7 +51,7 @@
 	desc = "Caution! Wet Floor!"
 	icon_state = "caution"
 	icon = 'icons/obj/janitor.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/items/janitor_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/janitor_right.dmi',
 	)
@@ -67,7 +67,7 @@
 	desc = "This cone is trying to warn you of something!"
 	icon_state = "cone"
 	icon = 'icons/obj/janitor.dmi'
-	item_icons = list(slot_head_str = 'icons/mob/clothing/headwear/head_0.dmi')
+	worn_icon_list = list(slot_head_str = 'icons/mob/clothing/headwear/head_0.dmi')
 	force = 1
 	throwforce = 3
 	throw_speed = 1
@@ -102,13 +102,13 @@
 	else if(isturf(target))
 		balloon_alert(user, "Scrubs \the [target.name]")
 		var/turf/target_turf = target
-		target_turf.clean_turf()
+		target_turf.wash()
 	else if(istype(target,/obj/effect/decal/cleanable))
 		balloon_alert(user, "Scrubs \the [target.name] out")
 		qdel(target)
 	else
 		balloon_alert(user, "Cleans \the [target.name]")
-		target.clean_blood()
+		target.wash()
 
 /obj/item/tool/soap/attack(mob/target, mob/user)
 	if(target && user && ishuman(target) && ishuman(user) && !target.stat && !user.stat && user.zone_selected == "mouth" )

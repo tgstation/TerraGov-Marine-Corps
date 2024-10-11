@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/charge
 	name = "Eviscerating Charge"
 	action_icon_state = "pounce"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Charge up to 4 tiles and viciously attack your target."
 	cooldown_duration = 20 SECONDS
 	ability_cost = 500 //Can't ignore pain/Charge and ravage in the same timeframe, but you can combo one of them.
@@ -34,7 +35,7 @@
 
 /datum/action/ability/activable/xeno/charge/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("Our exoskeleton quivers as we get ready to use [name] again."))
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	playsound(owner, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	return ..()
 
 /datum/action/ability/activable/xeno/charge/ai_should_start_consider()
@@ -92,6 +93,7 @@
 /datum/action/ability/activable/xeno/ravage
 	name = "Ravage"
 	action_icon_state = "ravage"
+	action_icon = 'icons/Xeno/actions/ravager.dmi'
 	desc = "Attacks and knockbacks enemies in the direction your facing."
 	ability_cost = 200
 	cooldown_duration = 6 SECONDS
@@ -105,7 +107,7 @@
 
 /datum/action/ability/activable/xeno/ravage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
-	playsound(owner, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	playsound(owner, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	return ..()
 
 /datum/action/ability/activable/xeno/ravage/use_ability(atom/A)
@@ -122,12 +124,14 @@
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
 	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
+		if(ishitbox(ravaged) || isvehicle(ravaged))
+			ravaged.attack_alien(X, X.xeno_caste.melee_damage) //Handles APC/Tank stuff. Has to be before the !ishuman check or else ravage does work properly on vehicles.
+			continue
 		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE) || !X.Adjacent(ravaged))
 			continue
 		if(!ishuman(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
-			if(!ravaged.anchored)
-				ravaged.knockback(X, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
+			ravaged.knockback(X, RAV_RAVAGE_THROW_RANGE, RAV_CHARGESPEED)
 			continue
 		var/mob/living/carbon/human/human_victim = ravaged
 		if(human_victim.stat == DEAD)
@@ -193,6 +197,7 @@
 /datum/action/ability/xeno_action/endure
 	name = "Endure"
 	action_icon_state = "ignore_pain"
+	action_icon = 'icons/Xeno/actions/ravager.dmi'
 	desc = "For the next few moments you will not go into crit and become resistant to explosives and immune to stagger and slowdown, but you still die if you take damage exceeding your crit health."
 	ability_cost = 200
 	cooldown_duration = 60 SECONDS
@@ -209,7 +214,7 @@
 
 /datum/action/ability/xeno_action/endure/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We feel able to imbue ourselves with plasma to Endure once again!"))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/ability/xeno_action/endure/action_activate()
@@ -310,6 +315,7 @@
 /datum/action/ability/xeno_action/rage
 	name = "Rage"
 	action_icon_state = "rage"
+	action_icon = 'icons/Xeno/actions/ravager.dmi'
 	desc = "Use while at 50% health or lower to gain extra slash damage, resistances and speed in proportion to your missing hit points. This bonus is increased and you regain plasma while your HP is negative."
 	ability_cost = 0 //We're limited by cooldowns, not plasma
 	cooldown_duration = 60 SECONDS
@@ -326,7 +332,7 @@
 
 /datum/action/ability/xeno_action/rage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to enter our rage once again."))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/ability/xeno_action/rage/can_use_action(atom/A, silent = FALSE, override_flags)
@@ -358,7 +364,7 @@
 
 
 	//Roar SFX; volume scales with rage
-	playsound(X.loc, 'sound/voice/alien_roar2.ogg', clamp(100 * rage_power, 25, 80), 0)
+	playsound(X.loc, 'sound/voice/alien/roar2.ogg', clamp(100 * rage_power, 25, 80), 0)
 
 	var/bonus_duration
 	if(rage_power >= RAVAGER_RAGE_SUPER_RAGE_THRESHOLD) //If we're super pissed it's time to get crazy
@@ -379,7 +385,7 @@
 		affected_tiles.Shake(duration = 1 SECONDS) //SFX
 
 	for(var/mob/living/affected_mob in cheap_get_humans_near(X, rage_power_radius) + cheap_get_xenos_near(X, rage_power_radius)) //Roar that applies cool SFX
-		if(affected_mob.stat) //We don't care about the dead/unconsious
+		if(affected_mob.stat || affected_mob == X) //We don't care about the dead/unconsious
 			continue
 
 		shake_camera(affected_mob, 1 SECONDS, 1)
@@ -389,12 +395,12 @@
 			var/atom/movable/screen/plane_master/floor/OT = affected_mob.hud_used.plane_masters["[FLOOR_PLANE]"]
 			var/atom/movable/screen/plane_master/game_world/GW = affected_mob.hud_used.plane_masters["[GAME_PLANE]"]
 
-			addtimer(CALLBACK(OT, TYPE_PROC_REF(/atom, remove_filter), "rage_outcry"), 1 SECONDS)
+			addtimer(CALLBACK(OT, TYPE_PROC_REF(/datum, remove_filter), "rage_outcry"), 1 SECONDS)
 			GW.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
 			animate(GW.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
 			OT.add_filter("rage_outcry", 2, radial_blur_filter(0.07))
 			animate(OT.get_filter("rage_outcry"), size = 0.12, time = 5, loop = -1)
-			addtimer(CALLBACK(GW, TYPE_PROC_REF(/atom, remove_filter), "rage_outcry"), 1 SECONDS)
+			addtimer(CALLBACK(GW, TYPE_PROC_REF(/datum, remove_filter), "rage_outcry"), 1 SECONDS)
 
 	X.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
@@ -502,6 +508,7 @@
 /datum/action/ability/xeno_action/vampirism
 	name = "Toggle vampirism"
 	action_icon_state = "neuroclaws_off"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Toggle on to enable boosting on "
 	ability_cost = 0 //We're limited by nothing, rip and tear
 	cooldown_duration = 1 SECONDS
@@ -547,6 +554,7 @@
 	else
 		UnregisterSignal(xeno, COMSIG_XENOMORPH_ATTACK_LIVING)
 	to_chat(xeno, span_xenonotice("You will now[xeno.vampirism ? "" : " no longer"] heal from attacking"))
+	update_button_icon()
 
 ///Adds the slashed mob to tracked damage mobs
 /datum/action/ability/xeno_action/vampirism/proc/on_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
@@ -560,7 +568,6 @@
 	var/mob/living/carbon/xenomorph/x = owner
 	x.adjustBruteLoss(-x.bruteloss * 0.125)
 	x.adjustFireLoss(-x.fireloss * 0.125)
-	update_button_icon()
 	particle_holder = new(x, /particles/xeno_slash/vampirism)
 	particle_holder.pixel_y = 18
 	particle_holder.pixel_x = 18

@@ -1,5 +1,5 @@
 /mob/living/carbon/xenomorph/puppet
-	caste_base_type = /mob/living/carbon/xenomorph/puppet
+	caste_base_type = /datum/xeno_caste/puppet
 	name = "Puppet"
 	desc = "A reanimated body, crudely pieced together and held in place by an ominous energy tethered to some unknown force."
 	icon = 'icons/Xeno/castes/puppet.dmi'
@@ -8,7 +8,6 @@
 	maxHealth = 250
 	plasma_stored = 0
 	pixel_x = 0
-	old_x = 0
 	tier = XENO_TIER_MINION
 	upgrade = XENO_UPGRADE_BASETYPE
 	pull_speed = -1
@@ -34,7 +33,7 @@
 	if(!QDELETED(src))
 		gib()
 
-/mob/living/carbon/xenomorph/puppet/Life()
+/mob/living/carbon/xenomorph/puppet/Life(seconds_per_tick, times_fired)
 	. = ..()
 	var/atom/movable/master = weak_master?.resolve()
 	if(!master)
@@ -62,4 +61,4 @@
 		return
 	for(var/datum/status_effect/effect AS in status_effects)
 		if(istype(effect, /datum/status_effect/blessing))
-			holder.overlays += image('icons/mob/hud.dmi', icon_state = initial(effect.id))
+			holder.overlays += image('icons/mob/hud/xeno.dmi', icon_state = initial(effect.id))

@@ -1,15 +1,22 @@
 // Flags for the obj_flags var on /obj
 
 ///If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
-#define IN_USE (1<<0) 
-///an this be bludgeoned by items?
-#define CAN_BE_HIT (1<<1) 
+#define IN_USE (1<<0)
+///Can this be bludgeoned by items?
+#define CAN_BE_HIT (1<<1)
 ///If non-dense structures can still get hit by projectiles
-#define PROJ_IGNORE_DENSITY (1<<2) 
+#define PROJ_IGNORE_DENSITY (1<<2)
 ///Is sensible to nightfall ability, and its light will be turned off
-#define LIGHT_CAN_BE_SHUT (1<<3) 
+#define LIGHT_CAN_BE_SHUT (1<<3)
 ///Admin possession yes/no
-#define DANGEROUS_POSSESSION (1<<4) 
+#define DANGEROUS_POSSESSION (1<<4)
+///! Does this object prevent things from being built on it?
+#define BLOCKS_CONSTRUCTION (1<<5)
+///! Does this object prevent same-direction things from being built on it?
+#define BLOCKS_CONSTRUCTION_DIR (1<<6)
+///! Can we ignore density when building on this object? (for example, directional windows and grilles)
+#define IGNORE_DENSITY (1<<7)
+
 
 //Fire and Acid stuff, for resistance_flags
 #define INDESTRUCTIBLE (1<<0) //doesn't take damage
@@ -26,5 +33,9 @@
 #define RESIST_ALL (UNACIDABLE|INDESTRUCTIBLE|PLASMACUTTER_IMMUNE)
 
 //projectile flags
-#define PROJECTILE_FROZEN (1<<0) //indicates a projectile is no longer moving
+///Indicates a projectile is no longer moving
+#define PROJECTILE_FROZEN (1<<0)
+///Indicates we've hit something
 #define PROJECTILE_HIT (1<<1)
+///This projectile will ignore non targetted mobs
+#define PROJECTILE_PRECISE_TARGET (1<<2)

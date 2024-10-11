@@ -2,7 +2,7 @@
  * Shows a list of currently running polls a player can vote/has voted on
  *
  */
-/mob/new_player/proc/handle_playeR_DBRANKSing()
+/mob/new_player/proc/handle_playeR_POLLSing()
 	var/list/output = list("<div align='center'><B>Player polls</B><hr><table>")
 	var/rs = REF(src)
 	for(var/p in GLOB.polls)

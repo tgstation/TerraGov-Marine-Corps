@@ -38,6 +38,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
+"dL" = (
+/obj/effect/forcefield/allow_bullet_travel,
+/turf/closed/wall/r_wall/unmeltable,
+/area/bigredv2/caves/rock)
 "ex" = (
 /turf/closed/wall/r_wall,
 /area/bigredv2/outside/filtration_plant)
@@ -531,8 +535,9 @@
 /area/bigredv2/outside/filtration_plant)
 "DK" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "DT" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -663,8 +668,9 @@
 /area/bigredv2/outside/se)
 "Jm" = (
 /obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "JL" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/landmark/corpsespawner/marine,
@@ -765,8 +771,9 @@
 /area/bigredv2/outside/s)
 "OG" = (
 /obj/structure/cryofeed,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/bcircuit/anim,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "Qe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/asteroidfloor,
@@ -897,8 +904,9 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/bcircuit/anim,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "WO" = (
 /obj/effect/landmark/lv624/fog_blocker,
 /obj/effect/landmark/weed_node,
@@ -1277,10 +1285,10 @@ Yx
 Yx
 Fr
 Yx
-Au
+dL
 Jm
 Jm
-Au
+dL
 Ld
 FP
 xf
@@ -1304,10 +1312,10 @@ Yx
 Dn
 JV
 ha
-Au
+dL
 WG
 WG
-Au
+dL
 Md
 Dg
 Md
@@ -1334,7 +1342,7 @@ ha
 DK
 OG
 OG
-Au
+dL
 zH
 Oy
 zH
@@ -1358,10 +1366,10 @@ Uv
 Wj
 JV
 Np
-Au
+dL
 WG
 WG
-Au
+dL
 uL
 ba
 uL
@@ -1385,10 +1393,10 @@ Yx
 Dn
 JV
 ha
-Au
+dL
 OG
 OG
-Au
+dL
 Vf
 Ch
 Jk
@@ -1412,10 +1420,10 @@ Yx
 sr
 ov
 sr
-Au
+dL
 Jm
 Jm
-Au
+dL
 Vf
 QR
 Yt

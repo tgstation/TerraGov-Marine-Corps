@@ -11,19 +11,19 @@
 
 	//exosuits and helmets obscure our view and stuff.
 	if(wear_suit)
-		skipgloves = wear_suit.flags_inv_hide & HIDEGLOVES
-		skipsuitstorage = wear_suit.flags_inv_hide & HIDESUITSTORAGE
-		skipjumpsuit = wear_suit.flags_inv_hide & HIDEJUMPSUIT
-		skipshoes = wear_suit.flags_inv_hide & HIDESHOES
+		skipgloves = wear_suit.inv_hide_flags & HIDEGLOVES
+		skipsuitstorage = wear_suit.inv_hide_flags & HIDESUITSTORAGE
+		skipjumpsuit = wear_suit.inv_hide_flags & HIDEJUMPSUIT
+		skipshoes = wear_suit.inv_hide_flags & HIDESHOES
 
 	if(head)
-		skipmask = head.flags_inv_hide & HIDEMASK
-		skipeyes = head.flags_inv_hide & HIDEEYES
-		skipears = head.flags_inv_hide & HIDEEARS
-		skipface = head.flags_inv_hide & HIDEFACE
+		skipmask = head.inv_hide_flags & HIDEMASK
+		skipeyes = head.inv_hide_flags & HIDEEYES
+		skipears = head.inv_hide_flags & HIDEEARS
+		skipface = head.inv_hide_flags & HIDEFACE
 
 	if(wear_mask)
-		skipface |= wear_mask.flags_inv_hide & HIDEFACE
+		skipface |= wear_mask.inv_hide_flags & HIDEFACE
 
 	var/t_He = p_they(TRUE) //capitalised for use at the start of each line.
 	var/t_he = p_they()
@@ -32,12 +32,18 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 
-	var/msg = "<span class='info'>This is "
+	var/msg = "<big><span class='info'>This is "
 
 	if(icon)
 		msg += "[icon2html(icon, user)] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
 
-	msg += "<EM>[src.name]</EM>!\n"
+	msg += "<EM>[src.name]!</EM></big></span>\n"
+	if(flavor_text)
+		msg += EXAMINE_SECTION_BREAK
+		msg += "[flavor_text]\n"
+
+	msg += EXAMINE_SECTION_BREAK
+	msg += "<span class='info'>"
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)
@@ -150,7 +156,7 @@
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [t_has] [icon2html(wear_mask, user)] \a little one on [t_his] face!")]\n"
 			else
-				msg += "[span_warning("[t_He] [t_has] [icon2html(wear_mask, user)] \a [wear_mask] on [t_his] face!")]\n"
+				msg += "[span_boldwarning("[t_He] [t_has] [icon2html(wear_mask, user)] \a [wear_mask] on [t_his] face!")]\n"
 		else if(wear_mask.blood_overlay)
 			msg += "[span_alert("[t_He] [t_has] [icon2html(wear_mask, user)] [wear_mask.gender==PLURAL?"some":"a"] [(wear_mask.blood_color != "#030303") ? "blood" : "oil"]-stained [wear_mask.name] on [t_his] face!")]\n"
 		else
@@ -170,6 +176,8 @@
 	//ID
 	if(wear_id)
 		msg += "[t_He] [t_is] wearing [icon2html(wear_id, user)] \a [wear_id].\n"
+
+	msg += EXAMINE_SECTION_BREAK
 
 	//jitters
 	if(stat != DEAD)
@@ -203,7 +211,9 @@
 		if(stat == DEAD)
 			msg += "[span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life")]"
 			if(HAS_TRAIT(src, TRAIT_UNDEFIBBABLE))
-				msg += "[span_deadsay(" and [t_he] won't be coming back...")]\n"
+				msg += "[span_deadsay(" and [t_he] [t_has] degraded beyond revival...")]\n"
+			else if(!mind && !get_ghost(FALSE))
+				msg += "[span_deadsay(" and [t_his] soul has departed, [t_he] might come back later...")]\n"
 			else
 				msg += "[span_deadsay("...")]\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
@@ -223,8 +233,7 @@
 
 	if((!species.has_organ["brain"] || has_brain()) && stat != DEAD)
 		if(!key)
-			if(species.is_sentient)
-				msg += "[span_deadsay("[t_He] [t_is] fast asleep. It doesn't look like [t_he] [t_is] waking up anytime soon.")]\n"
+			msg += "[span_deadsay("[t_He] [t_is] totally catatonic. The stresses of life in deep-space must have been too much for [t_him]. Any recovery is unlikely.")]\n"
 		else if(!client)
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [p_do()]n't seem responsive.")]\n"
@@ -236,27 +245,54 @@
 	var/total_clone = getCloneLoss()
 	if(total_brute)
 		if (total_brute < 25)
-			msg += "[span_warning("[t_He] [t_has] minor bruising.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] minor denting.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] minor bruising.")]\n"
 		else if (total_brute < 50)
-			msg += "[span_warning("[t_He] [t_has] <b>moderate</b> bruising.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> denting.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> bruising.")]\n"
 		else
-			msg += "[span_warning("<B>[t_He] [t_has] severe bruising.</B>")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("<B>[t_He] [t_has] severe denting!</B>")]\n"
+			else
+				msg += "[span_warning("<B>[t_He] [t_has] severe bruising!</B>")]\n"
 
 	if(total_burn)
 		if (total_burn < 25)
-			msg += "[span_warning("[t_He] [t_has] minor burns.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] minor scorching.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] minor burns.")]\n"
 		else if (total_burn < 50)
-			msg += "[span_warning("[t_He] [t_has] <b>moderate</b> burns.")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> scorching.")]\n"
+			else
+				msg += "[span_warning("[t_He] [t_has] <b>moderate</b> burns.")]\n"
 		else
-			msg += "[span_warning("<B>[t_He] [t_has] severe burns.</B>")]\n"
+			if(species.species_flags & ROBOTIC_LIMBS)
+				msg += "[span_warning("<B>[t_He] [t_has] severe scorching!</B>")]\n"
+			else
+				msg += "[span_warning("<B>[t_He] [t_has] severe burns!</B>")]\n"
 
 	if(total_clone)
 		if(total_clone < 25)
-			msg += "<span class='tinydeadsay'><i>[t_He] [t_is] slightly disfigured, with light signs of cellular damage.</i></span>\n"
+			if(isrobot(src))
+				msg += "[span_tinydeadsay("<i>[t_He] has minor structural damage, with some solder visibly frayed...</i>")]\n"
+			else
+				msg += "<span class='tinydeadsay'><i>[t_He] [t_is] slightly disfigured, with light signs of cellular damage...</i></span>\n"
 		else if (total_clone < 50)
-			msg += "[span_deadsay("<i>[t_He] [t_is] significantly disfigured, with growing clouds of cellular damage.</i>")]\n"
+			if(isrobot(src))
+				msg += "[span_deadsay("<i>[t_He] look[p_s()] very shaky, with significant damage to [t_his] overall structure...</i>")]\n"
+			else
+				msg += "[span_deadsay("<i>[t_He] [t_is] significantly disfigured, with growing clouds of cellular damage...</i>")]\n"
 		else
-			msg += "[span_deadsay("<b><i>[t_He] [t_is] absolutely fucked up, with streaks of sickening, deformed flesh on [t_his] skin.</b></i>")]\n"
+			if(isrobot(src))
+				msg += "[span_deadsay("<b><i>[t_He] look[p_s()] barely functional, nearly collapsing with each step!</b></i>")]\n"
+			else
+				msg += "[span_deadsay("<b><i>[t_He] [t_is] absolutely fucked up, with streaks of sickening, deformed flesh on [t_his] skin!</b></i>")]\n"
 
 	if(fire_stacks > 0)
 		msg += "[t_He] [t_is] covered in something flammable.\n"
@@ -461,19 +497,21 @@
 					if (display_foot_right)
 						msg += "[span_warning("[t_He] [t_has] blood pooling around [t_his] <b>right boot!</b>")]\n"
 
-	if(chestburst == 2)
+	if(chestburst == CARBON_CHEST_BURSTED)
 		if(isxeno(user))
 			msg += "[span_xenowarning("A larva escaped from [t_him]!")]\n"
 		else
 			msg += "[span_boldwarning("[t_He] [t_has] a giant hole in [t_his] chest!")]\n"
 
 	for(var/i in embedded_objects)
+		msg += EXAMINE_SECTION_BREAK
 		var/obj/item/embedded = i
 		if(!(embedded.embedding.embedded_flags & EMBEDDED_CAN_BE_YANKED_OUT))
 			continue
 		msg += "[span_boldwarning("[t_He] [t_has] \a [embedded] sticking out of [t_his] flesh!")]\n"
 
 	if(hasHUD(user,"security"))
+		msg += EXAMINE_SECTION_BREAK
 		var/perpname = "wot"
 		var/criminal = "None"
 
@@ -494,9 +532,11 @@
 			msg += "[span_deptradio("Security records:")] <a href='?src=[text_ref(src)];secrecord=`'>\[View\]</a>  <a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>\n"
 
 	if(hasHUD(user,"medical"))
+		msg += EXAMINE_SECTION_BREAK
 		var/cardcolor = holo_card_color
-		if(!cardcolor) cardcolor = "none"
-		msg += "[span_deptradio("Triage holo card:")] <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> - "
+		if(!cardcolor)
+			cardcolor = "none"
+		msg += "[span_deptradio("Triage holo card:")] <a href='?src=[text_ref(src)];medholocard=1'>\[[cardcolor]\]</a> | "
 
 		// scan reports
 		var/datum/data/record/N = null
@@ -506,17 +546,16 @@
 				break
 		if(!isnull(N))
 			if(!(N.fields["last_scan_time"]))
-				msg += "[span_deptradio("No scan report on record")]\n"
+				msg += "[span_deptradio("No body scan report on record")]\n"
 			else
-				msg += "[span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>Scan from [N.fields["last_scan_time"]]</a>")]\n"
+				msg += "[span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>Body scan from [N.fields["last_scan_time"]]</a>")]\n"
 
 	if(hasHUD(user,"squadleader"))
+		msg += EXAMINE_SECTION_BREAK
 		var/mob/living/carbon/human/H = user
 		if(assigned_squad) //examined mob is a marine in a squad
 			if(assigned_squad == H.assigned_squad) //same squad
 				msg += "<a href='?src=[text_ref(src)];squadfireteam=1'>\[Assign to a fireteam.\]</a>\n"
-
-	msg += "[flavor_text]<br>"
 
 	if(HAS_TRAIT(src, TRAIT_HOLLOW))
 		if(isxeno(user))

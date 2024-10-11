@@ -67,7 +67,6 @@
 	SSweather.load_late_z(level.z_value)
 	SSair.setup_atmos_machinery()
 	SSair.setup_pipenets()
-	SSlighting.create_lighting_objects_for_z(level.z_value)
 	smooth_zlevel(level.z_value)
 	if(minimap)
 		SSminimaps.load_new_z(null, level)

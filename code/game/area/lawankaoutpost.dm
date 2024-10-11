@@ -12,6 +12,7 @@
 /area/lawankaoutpost/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /area/lawankaoutpost/caves/northwest
 	name = "Northwestern Caves"
@@ -210,11 +211,11 @@
 /area/lawankaoutpost/colony/landingzoneone
 	name = "Landing Zone One"
 	icon_state = "landingzone1"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	minimap_color = MINIMAP_AREA_LZ
 
 /area/lawankaoutpost/colony/landingzonetwo
 	name = "Landing Zone Two"
 	icon_state = "landingzone2"
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	minimap_color = MINIMAP_AREA_LZ

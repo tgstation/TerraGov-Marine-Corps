@@ -83,7 +83,7 @@
 
 //Converts an angle (degrees) into an ss13 direction
 /proc/angle2dir(degree)
-	degree = ((degree + 22.5) % 365)
+	degree = SIMPLIFY_DEGREES(degree + 22.5)
 	if(degree < 45)
 		return NORTH
 	if(degree < 90)
@@ -173,6 +173,8 @@
 		. += "[seperator]+RUNTIME"
 	if(rights & R_LOG)
 		. += "[seperator]+LOG"
+	if(rights & R_POLLS)
+		. += "[seperator]+POLLS"
 
 
 /proc/ui_style2icon(ui_style)

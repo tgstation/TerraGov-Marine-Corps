@@ -14,13 +14,13 @@
 	name = "welding helmet"
 	desc = "A head-mounted face cover designed to protect the wearer completely from space-arc eye."
 	icon_state = "welding"
-	item_state = "welding"
+	worn_icon_state = "welding"
 	var/up = FALSE
 	soft_armor = list(MELEE = 10, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
-	flags_atom = CONDUCT
-	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE
-	flags_armor_protection = HEAD|FACE|EYES
+	atom_flags = CONDUCT
+	inventory_flags = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEFACE
+	armor_protection_flags = HEAD|FACE|EYES
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
 	w_class = WEIGHT_CLASS_NORMAL
@@ -44,16 +44,16 @@
 		toggle_item_state(usr)
 
 /obj/item/clothing/head/welding/proc/flip_up()
-	DISABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
-	DISABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
+	DISABLE_BITFIELD(inventory_flags, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
+	DISABLE_BITFIELD(inv_hide_flags, HIDEEARS|HIDEEYES|HIDEFACE)
 	eye_protection = 0
 	hug_memory = anti_hug
 	anti_hug = 0
 	icon_state = "[initial(icon_state)]up"
 
 /obj/item/clothing/head/welding/proc/flip_down()
-	ENABLE_BITFIELD(flags_inventory, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
-	ENABLE_BITFIELD(flags_inv_hide, HIDEEARS|HIDEEYES|HIDEFACE)
+	ENABLE_BITFIELD(inventory_flags, COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
+	ENABLE_BITFIELD(inv_hide_flags, HIDEEARS|HIDEEYES|HIDEFACE)
 	eye_protection = initial(eye_protection)
 	anti_hug = hug_memory
 	icon_state = initial(icon_state)
@@ -88,11 +88,11 @@
 	name = "cake-hat"
 	desc = "It's tasty looking!"
 	icon_state = "cake0"
-	flags_inventory = COVEREYES
+	inventory_flags = COVEREYES
 	var/onfire = 0
 	var/status = 0
 	var/processing = 0 //I dont think this is used anywhere.
-	flags_armor_protection = EYES
+	armor_protection_flags = EYES
 
 /obj/item/clothing/head/cakehat/process()
 	if(!onfire)
@@ -122,10 +122,10 @@
 	name = "carved pumpkin"
 	desc = "A jack o' lantern! Believed to ward off evil spirits."
 	icon_state = "hardhat0_pumpkin"//Could stand to be renamed
-	item_state = "hardhat0_pumpkin"
-	flags_inventory = COVEREYES|COVERMOUTH
-	flags_inv_hide = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
-	flags_armor_protection = HEAD|EYES
+	worn_icon_state = "hardhat0_pumpkin"
+	inventory_flags = COVEREYES|COVERMOUTH
+	inv_hide_flags = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEALLHAIR
+	armor_protection_flags = HEAD|EYES
 	w_class = WEIGHT_CLASS_NORMAL
 	anti_hug = 1
 

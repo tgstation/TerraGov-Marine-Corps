@@ -33,7 +33,7 @@
 
 /atom/movable/screen/text/lobby/clickable/MouseEntered(location, control, params)
 	. = ..()
-	if(!(flags_atom & INITIALIZED)) //yes this can happen, fuck me
+	if(!(atom_flags & INITIALIZED)) //yes this can happen, fuck me
 		return
 	color = COLOR_ORANGE
 	var/mob/new_player/player = usr
@@ -44,7 +44,7 @@
 	color = initial(color)
 
 /atom/movable/screen/text/lobby/clickable/Click()
-	if(!(flags_atom & INITIALIZED)) //yes this can happen, fuck me
+	if(!(atom_flags & INITIALIZED)) //yes this can happen, fuck me
 		to_chat(usr, span_warning("The game is still setting up, please try again later."))
 		return
 	var/mob/new_player/player = usr
@@ -159,6 +159,6 @@
 /atom/movable/screen/text/lobby/clickable/polls/Click()
 	. = ..()
 	var/mob/new_player/player = hud.mymob
-	player.handle_playeR_DBRANKSing()
+	player.handle_playeR_POLLSing()
 	fetch_polls()
 

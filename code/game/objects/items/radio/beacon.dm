@@ -2,11 +2,11 @@
 	name = "Tracking Beacon"
 	desc = "A beacon used by a teleporter."
 	icon_state = "beacon"
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/tools_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/tools_right.dmi',
 	)
-	item_state = "signaler"
+	worn_icon_state = "signaler"
 	var/code = "electronic"
 
 

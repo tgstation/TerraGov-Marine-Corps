@@ -8,7 +8,7 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher
 	w_class = WEIGHT_CLASS_BULKY
 	gun_skill_category = SKILL_HEAVY_WEAPONS
-	flags_gun_features = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	reciever_flags = NONE
 	throw_speed = 2
 	throw_range = 10
@@ -17,7 +17,7 @@ The Grenade Launchers
 	caliber = CALIBER_40MM //codex
 	load_method = SINGLE_CASING //codex
 	icon = 'icons/obj/items/guns/special.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
@@ -36,6 +36,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/upp,
 		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/sectoid,
+		/obj/item/explosive/grenade/creampie,
 		/obj/item/explosive/grenade/incendiary,
 		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
@@ -64,6 +65,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/flashbang/stun,
 		/obj/item/explosive/grenade/bullet/laser,
 		/obj/item/explosive/grenade/bullet/hefa,
+		/obj/item/explosive/grenade/emp,
 	)
 	reciever_flags = NONE
 
@@ -95,7 +97,7 @@ The Grenade Launchers
 	grenade_to_launch.throw_at(target, max_range, 3, (gun_user ? gun_user : loc))
 	if(fire_animation)
 		flick("[fire_animation]", src)
-	if(CHECK_BITFIELD(flags_gun_features, GUN_SMOKE_PARTICLES))
+	if(CHECK_BITFIELD(gun_features_flags, GUN_SMOKE_PARTICLES))
 		var/firing_angle = Get_Angle(user_turf, target)
 		var/x_component = sin(firing_angle) * 40
 		var/y_component = cos(firing_angle) * 40
@@ -120,9 +122,9 @@ The Grenade Launchers
 	desc = "The GL-70 is the standard grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon = 'icons/obj/items/guns/special64.dmi'
 	icon_state = "t70"
-	item_state = "t70"
+	worn_icon_state = "t70"
 	fire_animation = "t70_fire"
-	flags_equip_slot = ITEM_SLOT_BACK
+	equip_slot_flags = ITEM_SLOT_BACK
 	max_shells = 6 //codex
 	wield_delay = 1 SECONDS
 	fire_sound = 'sound/weapons/guns/fire/underbarrel_grenadelauncher.ogg'
@@ -145,10 +147,18 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded
 	default_ammo_type = null
 
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher/erp
+	name = "\improper PL-70 assault pie launcher"
+	icon_state = "t70_erp"
+	worn_icon_state = "t70_erp"
+	fire_animation = "t70_erp_fire"
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+	default_ammo_type = /obj/item/explosive/grenade/creampie
+
 /obj/item/weapon/gun/grenade_launcher/underslung
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
-	icon = 'icons/Marine/marine-weapons.dmi'
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	icon_state = "grenade"
 	max_shells = 2 //codex
 	max_chamber_items = 1
@@ -161,7 +171,7 @@ The Grenade Launchers
 	slot = ATTACHMENT_SLOT_UNDER
 	attach_delay = 3 SECONDS
 	detach_delay = 3 SECONDS
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_IS_ATTACHMENT|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 	allowed_ammo_types = list(
@@ -188,40 +198,43 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
 		/obj/item/explosive/grenade/flashbang/stun,
+		/obj/item/explosive/grenade/emp,
 	)
 
 	wield_delay_mod = 0.2 SECONDS
 
 /obj/item/weapon/gun/grenade_launcher/underslung/invisible
-	flags_attach_features = NONE
+	attach_features_flags = NONE
 
 /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
 	name = "\improper BR-64 underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher designed to fit the BR-64."
-	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "t64_grenade"
 	pixel_shift_x = 21
 	pixel_shift_y = 15
 
 /obj/item/weapon/gun/grenade_launcher/underslung/mpi
 	icon_state = "grenade_mpi"
-	flags_attach_features = NONE
+	attach_features_flags = NONE
 	default_ammo_type = /obj/item/explosive/grenade/som
 
 /obj/item/weapon/gun/grenade_launcher/underslung/mpi/removeable
-	flags_attach_features = ATTACH_REMOVABLE
+	attach_features_flags = ATTACH_REMOVABLE
 
 /obj/item/weapon/gun/grenade_launcher/single_shot
 	name = "\improper GL-81 grenade launcher"
 	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m81"
-	item_state = "m81"
+	worn_icon_state = "m81"
 	max_shells = 1 //codex
-	flags_equip_slot = ITEM_SLOT_BACK|ITEM_SLOT_BELT
+	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	wield_delay = 0.2 SECONDS
 	aim_slowdown = 1
-	flags_gun_features = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
-	attachable_allowed = list()
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
+	attachable_allowed = list(
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/flashlight,
+	)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	fire_delay = 1.05 SECONDS
 	max_chamber_items = 0
@@ -239,11 +252,11 @@ The Grenade Launchers
 	name = "flare gun"
 	desc = "A gun that fires flares. Replace with flares. Simple! Equipped with long range irons."
 	icon_state = "flaregun"
-	item_state = "gun"
+	worn_icon_state = "gun"
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	fire_sound = 'sound/weapons/guns/fire/flare.ogg'
 	w_class = WEIGHT_CLASS_SMALL
-	flags_gun_features = NONE
+	gun_features_flags = NONE
 	gun_skill_category = SKILL_PISTOLS
 	fire_delay = 0.5 SECONDS
 	default_ammo_type = /obj/item/explosive/grenade/flare

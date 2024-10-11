@@ -156,8 +156,8 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	if(stat != DEAD && user.a_intent == INTENT_HELP)
 		handle_automated_speech(1) //assured speak/emote
 
-/mob/living/simple_animal/parrot/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	return attack_hand(X)
+/mob/living/simple_animal/parrot/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	return attack_hand(xeno_attacker)
 
 
 /mob/living/simple_animal/parrot/attack_animal(mob/living/simple_animal/M)
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 		icon_state = icon_living
 
 
-/mob/living/simple_animal/parrot/bullet_act(obj/projectile/Proj)
+/mob/living/simple_animal/parrot/bullet_act(obj/projectile/proj)
 	. = ..()
 	if(!stat && !client)
 		if(parrot_state == PARROT_PERCH)
@@ -188,7 +188,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 		drop_held_item(0)
 
 
-/mob/living/simple_animal/parrot/Life()
+/mob/living/simple_animal/parrot/Life(seconds_per_tick, times_fired)
 	. = ..()
 
 	//Sprite update for when a parrot gets pulled
@@ -457,7 +457,7 @@ GLOBAL_LIST_INIT(strippable_parrot_items, create_strippable_list(list(
 	return ..()
 
 
-/mob/living/simple_animal/parrot/Poly/Life()
+/mob/living/simple_animal/parrot/Poly/Life(seconds_per_tick, times_fired)
 	if(!stat && SSticker.current_state == GAME_STATE_FINISHED && !memory_saved)
 		Write_Memory(FALSE)
 		memory_saved = TRUE

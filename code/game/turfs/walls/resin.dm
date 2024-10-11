@@ -30,8 +30,8 @@
 	return INITIALIZE_HINT_LATELOAD
 
 
-/turf/closed/wall/resin/flamer_fire_act(burnlevel)
-	take_damage(burnlevel * 1.25, BURN, FIRE)
+/turf/closed/wall/resin/fire_act(burn_level)
+	take_damage(burn_level * 1.25, BURN, FIRE)
 
 
 /turf/closed/wall/resin/proc/thicken()
@@ -90,24 +90,24 @@
 			take_damage(rand(30, 50), BRUTE, BOMB)
 
 
-/turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/X, damage_amount = X.xeno_caste.melee_damage, damage_type = BRUTE, damage_flag = "", effects = TRUE, armor_penetration = X.xeno_caste.melee_ap, isrightclick = FALSE)
-	if(X.status_flags & INCORPOREAL)
+/turf/closed/wall/resin/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	if(CHECK_BITFIELD(SSticker.mode?.flags_round_type, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+	if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
 		if(is_normal_resin_wall)
-			SSresinshaping.quickbuild_points_by_hive[X.hivenumber]++
+			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
 			take_damage(max_integrity) // Ensure its destroyed
 			return
-	X.visible_message(span_xenonotice("\The [X] starts tearing down \the [src]!"), \
+	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] starts tearing down \the [src]!"), \
 	span_xenonotice("We start to tear down \the [src]."))
-	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_GENERIC))
+	if(!do_after(xeno_attacker, 1 SECONDS, NONE, xeno_attacker, BUSY_ICON_GENERIC))
 		return
 	if(!istype(src)) // Prevent jumping to other turfs if do_after completes with the wall already gone
 		return
-	X.do_attack_animation(src, ATTACK_EFFECT_CLAW)
-	X.visible_message(span_xenonotice("\The [X] tears down \the [src]!"), \
+	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
 	span_xenonotice("We tear down \the [src]."))
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	take_damage(max_integrity) // Ensure its destroyed
 
 
@@ -117,7 +117,7 @@
 
 
 /turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
-	if(I.flags_item & NOBLUDGEON || !isliving(user))
+	if(I.item_flags & NOBLUDGEON || !isliving(user))
 		return
 
 	user.changeNext_move(I.attack_speed)
@@ -130,7 +130,7 @@
 	else if(I.damtype == BRUTE)
 		multiplier += 0.75
 
-	if(istype(I, /obj/item/tool/pickaxe/plasmacutter) && !user.do_actions)
+	if(isplasmacutter(I) && !user.do_actions)
 		var/obj/item/tool/pickaxe/plasmacutter/P = I
 		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
@@ -138,7 +138,7 @@
 
 	damage *= max(0, multiplier)
 	take_damage(damage, BRUTE, MELEE)
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
 	ScrapeAway()
@@ -218,18 +218,21 @@
 /turf/closed/wall/resin/regenerating/special/bulletproof
 	name = "bulletproof resin wall"
 	desc = "Weird slime solidified into a wall. Looks shiny."
+	max_upgradable_health = 450
 	soft_armor = list(MELEE = 0, BULLET = 100, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0) //You aren't damaging this with bullets without alot of AP.
-	color = COLLOR_WALL_BULLETPROOF
+	color = COLOR_WALL_BULLETPROOF
 
 /turf/closed/wall/resin/regenerating/special/fireproof
 	name = "fireproof resin wall"
 	desc = "Weird slime solidified into a wall. Very red."
+	max_upgradable_health = 450
 	soft_armor = list(MELEE = 0, BULLET = 80, LASER = 75, ENERGY = 75, BOMB = 0, BIO = 0, FIRE = 200, ACID = 0)
 	color = COLOR_WALL_FIREPROOF
 
 /turf/closed/wall/resin/regenerating/special/hardy
 	name = "hardy resin wall"
 	desc = "Weird slime soldified into a wall. Looks very strong."
-	max_upgradable_health = 450
+	max_upgradable_health = 550
 	max_upgrade_per_tick = 12 //Upgrades faster, but if damaged at all it will be put on cooldown still to help against walling in combat.
+	soft_armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 50, BIO = 0, FIRE = 0, ACID = 0)//better bust out the flamer
 	color = COLOR_WALL_HARDY

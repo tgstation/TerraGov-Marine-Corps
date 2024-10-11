@@ -148,3 +148,27 @@
 	new /obj/item/clothing/suit/armor/riot(src)
 	new /obj/item/clothing/suit/armor/riot(src)
 	new /obj/item/storage/box/flashbangs(src)
+
+/obj/structure/closet/secure_closet/guncabinet/emergency_combat_gear
+	name = "\improper emergency combat gear"
+	desc = "Kept in cases of extreme emergency. Tends to feature surplus, second rate gear. Not for regular TGMC squad marines."
+	req_access = null
+
+/obj/structure/closet/secure_closet/guncabinet/emergency_combat_gear/PopulateContents()
+	new /obj/item/clothing/head/helmet/marine
+	new /obj/item/clothing/head/helmet/marine
+	new /obj/item/clothing/shoes/marine/brown
+	new /obj/item/clothing/shoes/marine/brown
+	new /obj/item/clothing/under/marine/camo
+	new /obj/item/clothing/under/marine/camo
+	new /obj/item/storage/backpack/marine/satchel/green
+	new /obj/item/storage/backpack/marine/satchel/green
+	new /obj/item/storage/belt/marine/standard_skirmishrifle
+	new /obj/item/storage/belt/marine/standard_skirmishrifle
+	new /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
+	new /obj/item/weapon/gun/rifle/standard_skirmishrifle/standard
+	new /obj/item/storage/box/visual/magazine/compact/standard_skirmishrifle
+	new /obj/item/clothing/suit/modular/xenonauten
+	new /obj/item/clothing/suit/modular/xenonauten
+
+

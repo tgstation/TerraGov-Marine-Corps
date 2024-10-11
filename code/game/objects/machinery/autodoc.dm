@@ -194,15 +194,15 @@
 	if(updating_health)
 		occupant.updatehealth()
 
-/obj/machinery/autodoc/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/machinery/autodoc/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(!occupant)
-		to_chat(X, span_xenowarning("There is nothing of interest in there."))
+		to_chat(xeno_attacker, span_xenowarning("There is nothing of interest in there."))
 		return
-	if(X.status_flags & INCORPOREAL || X.do_actions)
+	if(xeno_attacker.status_flags & INCORPOREAL || xeno_attacker.do_actions)
 		return
-	visible_message(span_warning("[X] begins to pry the [src]'s cover!"), 3)
+	visible_message(span_warning("[xeno_attacker] begins to pry the [src]'s cover!"), 3)
 	playsound(src,'sound/effects/metal_creaking.ogg', 25, 1)
-	if(!do_after(X, 2 SECONDS))
+	if(!do_after(xeno_attacker, 2 SECONDS))
 		return
 	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
 	go_out()
@@ -266,11 +266,12 @@
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_NECRO)
 			var/skip_embryo_check = FALSE
 			if(length(L.implants))
-				for(var/I in L.implants)
-					if(!is_type_in_list(I,GLOB.known_implants))
-						surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
-						if(L.body_part == CHEST)
-							skip_embryo_check = TRUE
+				for(var/obj/item/embedded AS in L.implants)
+					if(embedded.is_beneficial_implant())
+						continue
+					surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
+					if(L.body_part == CHEST)
+						skip_embryo_check = TRUE
 			var/obj/item/alien_embryo/A = locate() in M
 			if(A && L.body_part == CHEST && !skip_embryo_check) //If we're not already doing a shrapnel removal surgery on the chest, add an extraction surgery to remove it
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_SHRAPNEL)
@@ -278,7 +279,7 @@
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_GERMS)
 			if(L.surgery_open_stage)
 				surgery_list += create_autodoc_surgery(L,LIMB_SURGERY,ADSURGERY_OPEN)
-	var/datum/internal_organ/I = M.internal_organs_by_name["eyes"]
+	var/datum/internal_organ/I = M.get_organ_slot(ORGAN_SLOT_EYES)
 	if(I && (M.disabilities & NEARSIGHTED || M.disabilities & BLIND || I.damage > 0))
 		surgery_list += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,I)
 	if(M.getBruteLoss() > 0)
@@ -572,12 +573,13 @@
 										occupant.status_flags &= ~XENO_HOST
 									qdel(A)
 						if(length(S.limb_ref.implants))
-							for(var/obj/item/I in S.limb_ref.implants)
+							for(var/obj/item/embedded AS in S.limb_ref.implants)
 								if(!surgery)
 									break
-								if(!is_type_in_list(I, GLOB.known_implants))
-									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
-									I.unembed_ourself(TRUE)
+								if(embedded.is_beneficial_implant())
+									continue
+								sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
+								embedded.unembed_ourself(TRUE)
 						if(S.limb_ref.body_part == CHEST || S.limb_ref.body_part == HEAD)
 							close_encased(occupant, S.limb_ref)
 						if(!surgery)
@@ -1224,7 +1226,7 @@
 			N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_GERMS)
 
 		if(href_list["eyes"])
-			N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,connected.occupant.internal_organs_by_name["eyes"])
+			N.fields["autodoc_manual"] += create_autodoc_surgery(null,ORGAN_SURGERY,ADSURGERY_EYES,0,connected.occupant.get_organ_slot(ORGAN_SLOT_EYES))
 
 		if(href_list["organdamage"])
 			for(var/i in connected.occupant.limbs)
@@ -1281,8 +1283,8 @@
 				var/datum/limb/L = i
 				var/skip_embryo_check = FALSE
 				var/obj/item/alien_embryo/A = locate() in connected.occupant
-				for(var/I in L.implants)
-					if(is_type_in_list(I, GLOB.known_implants))
+				for(var/obj/item/embedded AS in L.implants)
+					if(embedded.is_beneficial_implant())
 						continue
 					N.fields["autodoc_manual"] += create_autodoc_surgery(L, LIMB_SURGERY,ADSURGERY_SHRAPNEL)
 					needed++

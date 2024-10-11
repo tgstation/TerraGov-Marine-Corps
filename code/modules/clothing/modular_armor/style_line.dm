@@ -4,10 +4,10 @@
 /obj/item/clothing/suit/modular/style
 	name = "\improper Drip"
 	desc = "They got that drip, doe."
-	flags_item_map_variant = NONE
+	item_map_variant_flags = NONE
 	allowed_uniform_type = /obj/item/clothing/under
 	icon = 'icons/obj/clothing/suits/marine_suits.dmi'
-	item_icons = list(
+	worn_icon_list = list(
 		slot_wear_suit_str = 'icons/mob/clothing/suits/marine_suits.dmi',
 		slot_l_hand_str = 'icons/mob/inhands/items/items_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/items/items_right.dmi',
@@ -55,7 +55,7 @@
 	name = "\improper leather jacket"
 	desc = "A fashionable jacket. Get them with style."
 	icon_state = "leather_jacket"
-	item_state = "leather_jacket_worn"
+	worn_icon_state = "leather_jacket_worn"
 	icon_state_variants = list(
 		"normal",
 		"webbing",
@@ -70,7 +70,7 @@
 	name = "\improper duster"
 	desc = "A light, loose-fitting colorable long coat, for those that want to have more style."
 	icon_state = "duster"
-	item_state = "duster_worn"
+	worn_icon_state = "duster_worn"
 	greyscale_colors = ARMOR_PALETTE_BLACK
 	greyscale_config = /datum/greyscale_config/duster
 	colorable_colors = ARMOR_PALETTES_LIST
@@ -81,7 +81,7 @@
 /obj/item/clothing/head/modular/style
 	name = "\improper Nice Hat"
 	desc = "Nice hat bro. How did you find this?"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	attachments_allowed = list(
 		/obj/item/armor_module/armor/badge,
 		/obj/item/armor_module/storage/helmet,
@@ -102,7 +102,7 @@
 
 	visorless_offset_y = 0
 
-	flags_inv_hide = NONE
+	inv_hide_flags = NONE
 
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 50, BIO = 50, FIRE = 50, ACID = 60)
 	starting_attachments = list(/obj/item/armor_module/storage/helmet)
@@ -114,78 +114,87 @@
 	name = "TGMC beret"
 	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Often reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts."
 	icon_state = "beret_inhand"
-	item_state = "beret"
+	worn_icon_state = "beret"
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/stylehat_badge)
+	inv_hide_flags = HIDE_EXCESS_HAIR
 
 
 /obj/item/clothing/head/modular/style/classic_beret
 	name = "TGMC beret (classic)"
 	desc = "A hat used by the TGMC, typically considered the most iconic military headgear. Often reserved for higher ranking officers, they occasionally they find their way down the ranks into the hands of squad-leaders and decorated grunts. This one is in a classic style."
 	icon_state = "classic_beret_inhand"
-	item_state = "classic_beret"
+	worn_icon_state = "classic_beret"
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/stylehat_badge/classic)
+	inv_hide_flags = HIDE_EXCESS_HAIR
 
 /obj/item/clothing/head/modular/style/boonie
 	name = "TGMC boonie"
 	desc = "A boonie hat used by the TGMC, purpose made for operations in enviroments with a lot of sun, or dense vegetation."
 	icon_state = "boonie_inhand"
-	item_state = "boonie"
+	worn_icon_state = "boonie"
+	inv_hide_flags = HIDE_EXCESS_HAIR
 
 /obj/item/clothing/head/modular/style/cap
 	name = "TGMC cap"
 	desc = "A common patrol cap used by the TGMC, stylish and comes in many colors. Mostly useful to keep the sun and officers away."
 	icon_state = "cap_inhand"
-	item_state = "cap"
+	worn_icon_state = "cap"
+	inv_hide_flags = HIDE_EXCESS_HAIR
 
 
 /obj/item/clothing/head/modular/style/slouchhat
 	name = "TGMC slouch hat"
 	desc = "A slouch hat, makes you feel down under, doesn't it? Has 'PROPERTY OF THE TGMC' markings under the hat."
 	icon_state = "slouch_inhand"
-	item_state = "slouch"
+	worn_icon_state = "slouch"
+	inv_hide_flags = HIDE_EXCESS_HAIR
 
 /obj/item/clothing/head/modular/style/ushanka
 	name = "TGMC ushanka"
 	desc = "A comfortable ushanka used by the TGMC. Will keep you warm in even the most harshest artic enviroments."
 	icon_state = "ushanka_inhand"
-	item_state = "ushanka"
+	worn_icon_state = "ushanka"
 	starting_attachments = list(/obj/item/armor_module/storage/helmet, /obj/item/armor_module/armor/stylehat_badge/ushanka)
+	inv_hide_flags = HIDE_EXCESS_HAIR
 
 
 /obj/item/clothing/head/modular/style/campaignhat
 	name = "TGMC campaign hat"
 	desc = "A campaign hat, you can feel the menacing aura that this hat erodes just by looking at it."
 	icon_state = "campaign_inhand"
-	item_state = "campaign"
+	worn_icon_state = "campaign"
+	inv_hide_flags = HIDE_EXCESS_HAIR
 
 
 /obj/item/clothing/head/modular/style/beanie
 	name = "TGMC beanie"
 	desc = "A beanie, just looking at it makes you feel like an 'Oussama', or in better terms- A modern phenomenon of people suddenly needing to bench once they put on a beanie."
 	icon_state = "beanie_inhand"
-	item_state = "beanie"
+	worn_icon_state = "beanie"
+	inv_hide_flags = HIDE_EXCESS_HAIR
 
 /obj/item/clothing/head/modular/style/headband
 	name = "TGMC headband"
 	desc = "A headband. Will keep the sweat off your eyes and also keep you looking cool."
 	icon_state = "headband_inhand"
-	item_state = "headband"
+	worn_icon_state = "headband"
 
 
 /obj/item/clothing/head/modular/style/bandana
 	name = "TGMC bandana"
 	desc = "A bandana that goes on your head. Has TGMC markings on the back tie, and it seems that the knot will never come undone somehow."
 	icon_state = "headbandana_inhand"
-	item_state = "headbandana"
+	worn_icon_state = "headbandana"
+	inv_hide_flags = HIDE_EXCESS_HAIR
 
 // style masks
 /obj/item/clothing/mask/gas/modular/skimask
 	name = "ski mask"
 	desc = "A stylish skimask, can be recolored. Makes you feel like an operator just looking at it."
 	icon_state = "ski_inhand"
-	item_state = "ski"
-	flags_inv_hide = HIDEALLHAIR|HIDEEARS
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+	worn_icon_state = "ski"
+	inv_hide_flags = HIDEALLHAIR|HIDEEARS
+	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	greyscale_config = /datum/greyscale_config/style_hat
 
 
@@ -193,6 +202,6 @@
 	name = "combat face cloth covering"
 	desc = "The CFCC is a prime and readied, yet stylish facemask ready to... cover your face."
 	icon_state = "coof_inhand"
-	item_state = "coof"
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
+	worn_icon_state = "coof"
+	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_DESERT_VARIANT
 	greyscale_config = /datum/greyscale_config/style_hat

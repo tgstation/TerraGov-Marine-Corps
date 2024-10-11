@@ -177,7 +177,7 @@
 	var/override_sound = source_loc.get_footstep_override()
 	var/footstep_type
 
-	if((source.wear_suit?.flags_armor_protection | source.w_uniform?.flags_armor_protection | source.shoes?.flags_armor_protection) & FEET) //We are not disgusting barefoot bandits
+	if((source.wear_suit?.armor_protection_flags | source.w_uniform?.armor_protection_flags | source.shoes?.armor_protection_flags) & FEET) //We are not disgusting barefoot bandits
 		var/static/list/footstep_sounds = GLOB.shoefootstep //static is faster
 		footstep_type = override_sound ? override_sound : source_loc.shoefootstep
 		playsound(

@@ -7,8 +7,10 @@
  */
 
 import fs from 'fs';
+import https from 'https';
+import { env } from 'process';
 import Juke from './juke/index.js';
-import { DreamDaemon, DreamMaker } from './lib/byond.js';
+import { DreamDaemon, DreamMaker, NamedVersionFile } from './lib/byond.js';
 import { yarn } from './lib/yarn.js';
 
 const TGS_MODE = process.env.CBT_BUILD_MODE === 'TGS';
@@ -44,11 +46,20 @@ export const PortParameter = new Juke.Parameter({
   alias: 'p',
 });
 
+export const DmVersionParameter = new Juke.Parameter({
+  type: 'string',
+});
+
 export const CiParameter = new Juke.Parameter({ type: 'boolean' });
 
 export const WarningParameter = new Juke.Parameter({
   type: 'string[]',
   alias: 'W',
+});
+
+export const NoWarningParameter = new Juke.Parameter({
+  type: 'string[]',
+  alias: 'NW',
 });
 
 export const DmMapsIncludeTarget = new Juke.Target({
@@ -68,32 +79,41 @@ export const DmMapsIncludeTarget = new Juke.Target({
 });
 
 export const DmTarget = new Juke.Target({
-  parameters: [DefineParameter, WarningParameter],
+  parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter],
   dependsOn: ({ get }) => [
     get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
   ],
   inputs: [
     '_maps/map_files/generic/**',
+    'maps/**/*.dm',
     'code/**',
     'html/**',
     'icons/**',
     'interface/**',
     `${DME_NAME}.dme`,
+    NamedVersionFile,
   ],
-  outputs: [
-    `${DME_NAME}.dmb`,
-    `${DME_NAME}.rsc`,
-  ],
+  outputs: ({ get }) => {
+    if (get(DmVersionParameter)) {
+      return []; // Always rebuild when dm version is provided
+    }
+    return [
+      `${DME_NAME}.dmb`,
+      `${DME_NAME}.rsc`,
+    ]
+  },
   executes: async ({ get }) => {
     await DreamMaker(`${DME_NAME}.dme`, {
       defines: ['CBT', ...get(DefineParameter)],
       warningsAsErrors: get(WarningParameter).includes('error'),
+      ignoreWarningCodes: get(NoWarningParameter),
+      namedDmVersion: get(DmVersionParameter),
     });
   },
 });
 
 export const DmTestTarget = new Juke.Target({
-  parameters: [DefineParameter, WarningParameter],
+  parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter],
   dependsOn: ({ get }) => [
     get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
   ],
@@ -102,10 +122,16 @@ export const DmTestTarget = new Juke.Target({
     await DreamMaker(`${DME_NAME}.test.dme`, {
       defines: ['CBT', 'CIBUILDING', ...get(DefineParameter)],
       warningsAsErrors: get(WarningParameter).includes('error'),
+      ignoreWarningCodes: get(NoWarningParameter),
+      namedDmVersion: get(DmVersionParameter),
     });
     Juke.rm('data/logs/ci', { recursive: true });
+    const options = {
+      dmbFile : `${DME_NAME}.test.dmb`,
+      namedDmVersion: get(DmVersionParameter),
+    }
     await DreamDaemon(
-      `${DME_NAME}.test.dmb`,
+      options,
       '-close', '-trusted', '-verbose',
       '-params', 'log-directory=ci'
     );
@@ -120,6 +146,43 @@ export const DmTestTarget = new Juke.Target({
     }
   },
 });
+
+export const AutowikiTarget = new Juke.Target({
+  parameters: [DefineParameter, DmVersionParameter, WarningParameter, NoWarningParameter],
+  dependsOn: ({ get }) => [
+    get(DefineParameter).includes('ALL_MAPS') && DmMapsIncludeTarget,
+  ],
+  outputs: [
+    'data/autowiki_edits.txt',
+  ],
+  executes: async ({ get }) => {
+    fs.copyFileSync(`${DME_NAME}.dme`, `${DME_NAME}.test.dme`);
+    await DreamMaker(`${DME_NAME}.test.dme`, {
+      defines: ['CBT', 'AUTOWIKI', ...get(DefineParameter)],
+      warningsAsErrors: get(WarningParameter).includes('error'),
+      ignoreWarningCodes: get(NoWarningParameter),
+      namedDmVersion: get(DmVersionParameter),
+    });
+    Juke.rm('data/autowiki_edits.txt');
+    Juke.rm('data/autowiki_files', { recursive: true });
+    Juke.rm('data/logs/ci', { recursive: true });
+
+    const options = {
+      dmbFile: `${DME_NAME}.test.dmb`,
+      namedDmVersion: get(DmVersionParameter),
+    }
+    await DreamDaemon(
+      options,
+      '-close', '-trusted', '-verbose',
+      '-params', 'log-directory=ci',
+    );
+    Juke.rm('*.test.*');
+    if (!fs.existsSync('data/autowiki_edits.txt')) {
+      Juke.logger.error('Autowiki did not generate an output, exiting');
+      throw new Juke.ExitCode(1);
+    }
+  },
+})
 
 export const YarnTarget = new Juke.Target({
   parameters: [CiParameter],
@@ -160,7 +223,7 @@ export const TguiTarget = new Juke.Target({
     'tgui/.yarn/install-target',
     'tgui/webpack.config.js',
     'tgui/**/package.json',
-    'tgui/packages/**/*.+(js|cjs|ts|tsx|scss)',
+    'tgui/packages/**/*.+(js|cjs|ts|tsx|jsx|scss)',
   ],
   outputs: [
     'tgui/public/tgui.bundle.css',
@@ -232,10 +295,15 @@ export const BuildTarget = new Juke.Target({
 });
 
 export const ServerTarget = new Juke.Target({
+  parameters: [DmVersionParameter, PortParameter],
   dependsOn: [BuildTarget],
   executes: async ({ get }) => {
     const port = get(PortParameter) || '1337';
-    await DreamDaemon(`${DME_NAME}.dmb`, port, '-trusted');
+    const options = {
+      dmbFile: `${DME_NAME}.dmb`,
+      namedDmVersion: get(DmVersionParameter),
+    }
+    await DreamDaemon(options, port, '-trusted');
   },
 });
 
@@ -261,8 +329,6 @@ export const CleanTarget = new Juke.Target({
   dependsOn: [TguiCleanTarget],
   executes: async () => {
     Juke.rm('*.{dmb,rsc}');
-    Juke.rm('*.mdme*');
-    Juke.rm('*.m.*');
     Juke.rm('_maps/templates.dm');
   },
 });
@@ -298,5 +364,6 @@ export const TgsTarget = new Juke.Target({
     prependDefines('TGS');
   },
 });
+
 
 export default TGS_MODE ? TgsTarget : BuildTarget;

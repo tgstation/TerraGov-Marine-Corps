@@ -54,6 +54,7 @@
 	name = "Enclosed Area"
 	icon_state = "transparent"
 	ceiling = CEILING_DEEP_UNDERGROUND
+	area_flags = CANNOT_NUKE
 
 /area/oscar_outpost/outside/road
 	name = "Oscar Outpost Roadway"
@@ -84,6 +85,7 @@
 	name = "Oscar Outpost Fairgrounds"
 	icon_state = "green"
 	ceiling = CEILING_NONE
+	requires_power = FALSE
 
 /area/oscar_outpost/village/abandonedbase
 	name = "Oscar Outpost Base Zeta"

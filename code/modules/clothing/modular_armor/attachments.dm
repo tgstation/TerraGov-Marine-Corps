@@ -26,7 +26,7 @@
 	///Pixel shift for the item overlay on the Y axis.
 	var/pixel_shift_y = 0
 	///Bitfield flags of various features.
-	var/flags_attach_features = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
+	var/attach_features_flags = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
 	///Time it takes to attach.
 	var/attach_delay = 1.5 SECONDS
 	///Time it takes to detach.
@@ -65,7 +65,7 @@
 
 /obj/item/armor_module/Initialize(mapload)
 	. = ..()
-	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, flags_attach_features, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
+	AddElement(/datum/element/attachment, slot, attach_icon, on_attach, on_detach, null, can_attach, pixel_shift_x, pixel_shift_y, attach_features_flags, attach_delay, detach_delay, mob_overlay_icon = mob_overlay_icon, mob_pixel_shift_x = mob_pixel_shift_x, mob_pixel_shift_y = mob_pixel_shift_y, attachment_layer = attachment_layer)
 	AddComponent(/datum/component/attachment_handler, attachments_by_slot, attachments_allowed, starting_attachments = starting_attachments)
 	update_icon()
 
@@ -81,7 +81,7 @@
 	parent.hard_armor = parent.hard_armor.attachArmor(hard_armor)
 	parent.soft_armor = parent.soft_armor.attachArmor(soft_armor)
 	parent.slowdown += slowdown
-	if(CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
+	if(CHECK_BITFIELD(attach_features_flags, ATTACH_ACTIVATION))
 		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(handle_actions))
 	base_icon = icon_state
 	if(length(variants_by_parent_type))
@@ -107,7 +107,7 @@
 ///Adds or removes actions based on whether the parent is in the correct slot.
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(prefered_slot && (slot != prefered_slot) || !CHECK_BITFIELD(flags_attach_features, ATTACH_ACTIVATION))
+	if(prefered_slot && (slot != prefered_slot) || !CHECK_BITFIELD(attach_features_flags, ATTACH_ACTIVATION))
 		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
 		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
 		old_action?.remove_action(user)
@@ -144,9 +144,9 @@
 	greyscale_config = null
 	greyscale_colors = ARMOR_PALETTE_DRAB
 
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB
 
-	flags_item_map_variant = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT
+	item_map_variant_flags = ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT
 	///If TRUE, this armor piece can be recolored when its parent is right clicked by facepaint.
 	var/secondary_color = FALSE
 
@@ -184,4 +184,3 @@
 /obj/item/armor_module/armor/proc/extra_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
 	examine_list += "Right click the [parent] with paint to color [src]"
-

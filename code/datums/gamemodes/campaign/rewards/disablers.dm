@@ -22,7 +22,8 @@
 
 /datum/campaign_asset/asset_disabler/deactivate()
 	if(!uses)
-		UnregisterSignal(SSdcs, list(COMSIG_GLOB_CAMPAIGN_MISSION_LOADED, COMSIG_CAMPAIGN_NEW_ASSET))
+		UnregisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_LOADED)
+		UnregisterSignal(faction, COMSIG_CAMPAIGN_NEW_ASSET)
 		asset_flags &= ~ASSET_DEBUFF
 	for(var/datum/campaign_asset/asset_type AS in types_currently_disabled)
 		asset_type.asset_flags &= ~ASSET_DISABLED
@@ -91,6 +92,11 @@
 
 /datum/campaign_asset/asset_disabler/tgmc_mortar/long
 	uses = 3
+
+/datum/campaign_asset/asset_disabler/tgmc_mortar/instant
+	uses = 1
+	instant_use = TRUE
+	detailed_desc = "Hostile assets in the AO are preventing the use of mortar support during this mission."
 
 /datum/campaign_asset/asset_disabler/som_mortar
 	name = "Mortar support disabled"

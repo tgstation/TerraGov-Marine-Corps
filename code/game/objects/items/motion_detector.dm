@@ -3,7 +3,7 @@
 	return
 
 /obj/effect/blip/edge_blip
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/effects/blips.dmi'
 	plane = ABOVE_HUD_PLANE
 	/// A friendly/hostile identifier
 	var/identifier = MOTION_DETECTOR_HOSTILE
@@ -18,9 +18,9 @@
 	setDir(direction)
 	update_icon()
 
-/// Remove the blip from the operator screen
+///Remove the blip from the operator screen
 /obj/effect/blip/edge_blip/remove_blip(mob/operator)
-	operator.client.screen -= src
+	operator?.client?.screen -= src
 	qdel(src)
 
 /obj/effect/blip/edge_blip/update_icon_state()
@@ -35,13 +35,13 @@
 	. = ..()
 	if(!operator?.client)
 		return INITIALIZE_HINT_QDEL
-	blip_image = image('icons/Marine/marine-items.dmi', src, "close_blip_[identifier]")
+	blip_image = image('icons/effects/blips.dmi', src, "close_blip_[identifier]")
 	blip_image.layer = BELOW_FULLSCREEN_LAYER
 	operator.client.images += blip_image
 
 /// Remove the blip from the operator images
 /obj/effect/blip/close_blip/remove_blip(mob/operator)
-	operator.client?.images -= blip_image
+	operator?.client?.images -= blip_image
 	qdel(src)
 
 /obj/effect/blip/close_blip/Destroy()
@@ -52,6 +52,7 @@
 	name = "tactical sensor"
 	desc = "A device that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
 	icon_state = "minidetector"
+	icon = 'icons/obj/items/guns/attachments/rail.dmi'
 	slot = ATTACHMENT_SLOT_RAIL
 	attachment_action_type = /datum/action/item_action/toggle
 	/// Who's using this item

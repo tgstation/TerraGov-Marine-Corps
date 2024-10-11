@@ -4,6 +4,7 @@
 /datum/loadout_item/belt/empty
 	name = "no belt"
 	desc = ""
+	ui_icon = "empty"
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	jobs_supported = list(
 		SQUAD_MARINE,
@@ -35,10 +36,13 @@
 		/obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/minigun/smart_minigun/motion_detector = ITEM_SLOT_SUITSTORE,
 		/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/standard_mmg/machinegunner = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/rifle/standard_gpmg/machinegunner = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/shotgun/pump/t35/standard = ITEM_SLOT_SUITSTORE,
 	)
 
 /datum/loadout_item/belt/sparepouch
-	name = "G8 storage pouch"
+	name = "G8 pouch"
 	desc = "A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor or your belt to provide additional storage for miscellaneous gear or box and drum magazines."
 	item_typepath = /obj/item/storage/belt/sparepouch
 	jobs_supported = list(SQUAD_MARINE)
@@ -63,12 +67,29 @@
 	name = "SMG-25 holster"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. \
 	This version is designed for the SMG-25, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
-	ui_icon = "smg"
+	ui_icon = "m25"
+	req_desc = "Requires an SMG-25, MG-27 or FL-84."
 	item_typepath = /obj/item/storage/holster/m25
 	jobs_supported = list(SQUAD_MARINE)
+	item_whitelist = list(
+		/obj/item/weapon/gun/smg/m25/magharness = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide = ITEM_SLOT_SUITSTORE,
+		/obj/item/weapon/gun/standard_mmg/machinegunner = ITEM_SLOT_SUITSTORE,
+	)
 
 /datum/loadout_item/belt/smg_holster/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m25/holstered(wearer), SLOT_IN_HOLSTER)
+	var/ammo_type = /obj/item/ammo_magazine/smg/m25
+	if(istype(wearer.r_store, /obj/item/storage/pouch/magazine))
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+	if(wearer.skills.getRating(SKILL_SMGS) >= SKILL_SMGS_TRAINED)
+		ammo_type = /obj/item/ammo_magazine/smg/m25/ap
+	if(istype(wearer.l_store, /obj/item/storage/pouch/magazine))
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/belt/machete
 	name = "Machete"
@@ -85,6 +106,21 @@
 
 /datum/loadout_item/belt/belt_harness/smart_gunner
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
+	jobs_supported = list(SQUAD_SMARTGUNNER)
+
+/datum/loadout_item/belt/standard_pistol
+	name = "MK88 Mod 4"
+	desc = "An uncommon automatic handgun that fires 9mm armor piercing rounds and is capable of 3-round burst or automatic fire. \
+	Light and easy to use one handed, but still a sidearm. Comes in a holster that fits on your waist or armor. Uses 9mm AP ammunition."
+	ui_icon = "vp70"
+	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
+	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
+
+/datum/loadout_item/belt/db_shotgun
+	name = "SH-34 shotgun"
+	desc = "A double barreled shotgun of archaic, but sturdy design used by the TGMC, loaded with buckshot. Uncommonly seen as a powerful secondary weapon when serious stopping power is required."
+	ui_icon = "tx34"
+	item_typepath = /obj/item/storage/holster/belt/ts34/full
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 
 //medic
@@ -104,22 +140,20 @@
 	ui_icon = "machete"
 	item_typepath = /obj/item/storage/holster/blade/officer/full
 	jobs_supported = list(FIELD_COMMANDER)
-	item_blacklist = list(/obj/item/storage/holster/blade/officer/full = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/belt/fc_pistol
 	name = "P-1911A1-C pistol"
 	desc = "The P-1911A1-C is a custom modified pistol with impressive stopping power for its size. \
 	Light and easy to use one handed, it suffers from a small magazine size and no auto eject feature. Comes in a holster that fits on your waist or armor. Uses .45 ACP ammunition."
-	ui_icon = "pistol"
+	ui_icon = "m1911c"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/fieldcommander
 	jobs_supported = list(FIELD_COMMANDER)
-	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/fieldcommander = ITEM_SLOT_SUITSTORE)
 
 //staff officer
 /datum/loadout_item/belt/so_pistol
 	name = "RT-3 pistol"
 	desc = "An RT-3 target pistol, a common sight throughout the bubble and the standard sidearm for noncombat roles in the TGMC. Comes in a holster to fit on your waist. uses 9mm caseless ammunition."
-	ui_icon = "pistol"
+	ui_icon = "rt3"
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/officer
 	jobs_supported = list(STAFF_OFFICER)
 
@@ -128,6 +162,6 @@
 	name = "SP-13 pistol"
 	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. Has good damage, penetration and magazine capacity. \
 	Expensive to manufacture, this sophisticated pistol is only occassionally used by smartgunners, or some higher ranking officers who have the skills to use it. Uses 9x19mm Parabellum ammunition."
-	ui_icon = "pistol"
+	ui_icon = "sp13"
 	item_typepath = /obj/item/storage/holster/belt/pistol/smart_pistol/full
 	jobs_supported = list(CAPTAIN)

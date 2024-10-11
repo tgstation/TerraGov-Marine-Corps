@@ -22,7 +22,7 @@
 /area/magmoor/volcano
 	name = "Magmoor Central Fissure"
 	ceiling = CEILING_DEEP_UNDERGROUND
-	flags_area = NO_DROPPOD
+	area_flags = NO_DROPPOD
 	always_unpowered = TRUE
 
 //Caves
@@ -76,6 +76,7 @@
 /area/magmoor/cave/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 //Compound Outside
 /area/magmoor/compound
@@ -191,6 +192,12 @@
 /area/magmoor/engi/storage
 	name = "Engineering Lobby & Storage"
 	icon_state = "lava_engi_storage"
+
+/area/magmoor/engi/garage
+	name = "Engineering Garage"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
+	icon_state = "lava_eng1"
+	minimap_color = MINIMAP_AREA_ENGI_CAVE
 
 //Security
 

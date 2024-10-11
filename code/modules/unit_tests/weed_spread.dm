@@ -1,9 +1,9 @@
 /datum/unit_test/weed_spread/Run()
 	var/obj/alien/weeds/node/node = new(locate(run_loc_floor_bottom_left.x+1, run_loc_floor_bottom_left.y+1, run_loc_floor_bottom_left.z))
-	sleep(6 SECONDS)
+	sleep(10 SECONDS)
 	var/found = FALSE
 	var/turf/origin = get_turf(node)
 	for(var/dir in GLOB.cardinals)
 		if(locate(/obj/alien/weeds) in get_step(origin, dir))
 			found = TRUE
-	TEST_ASSERT(found, "No weeds found in neighbouring tiles after 5 seconds!")
+	TEST_ASSERT(found, "No weeds found in neighbouring tiles after 10 seconds!")

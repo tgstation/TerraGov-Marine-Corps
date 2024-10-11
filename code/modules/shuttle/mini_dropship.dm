@@ -99,6 +99,15 @@
 		land_action.give_action(user)
 		actions += land_action
 
+	if(istype(shuttle_port, /obj/docking_port/mobile/marine_dropship))
+		var/obj/docking_port/mobile/marine_dropship/shuttle = shuttle_port
+		for(var/obj/structure/dropship_equipment/shuttle/rappel_system/system in shuttle.equipments)
+			var/datum/action/innate/rappel_designate/rappel_action = new
+			rappel_action.origin = system
+			rappel_action.target = user
+			rappel_action.give_action(user)
+			actions += rappel_action
+
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/shuttle_arrived()
 	if(fly_state == next_fly_state)
 		return
@@ -160,23 +169,23 @@
 		return
 	nvg_vision_mode = !nvg_vision_mode
 
-/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+/obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(machine_stat & BROKEN)
 		return
-	if(X.status_flags & INCORPOREAL)
+	if(xeno_attacker.status_flags & INCORPOREAL)
 		return
-	X.visible_message("[X] begins to slash delicately at the computer",
+	xeno_attacker.visible_message("[xeno_attacker] begins to slash delicately at the computer",
 	"We start slashing delicately at the computer. This will take a while.")
-	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The inner wiring is visible, it can be slashed!")
-	X.visible_message("[X] continue to slash at the computer",
+	xeno_attacker.visible_message("[xeno_attacker] continue to slash at the computer",
 	"We continue slashing at the computer. If we stop now we will have to start all over again.")
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	if(!do_after(X, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
+	if(!do_after(xeno_attacker, 10 SECONDS, NONE, src, BUSY_ICON_DANGER, BUSY_ICON_HOSTILE))
 		return
 	visible_message("The wiring is destroyed, nobody will be able to repair this computer!")
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MINI_DROPSHIP_DESTROYED, src)
@@ -204,6 +213,34 @@
 		to_chat(user, span_warning("The [src] blinks and lets out a crackling noise. Its broken!"))
 		return
 	return ..()
+
+/obj/machinery/computer/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(!istype(I,/obj/item/circuitboard/tadpole))
+		return
+	var/repair_time = 30 SECONDS
+	if(!(machine_stat & BROKEN))
+		to_chat(user,span_notice("The circuits don't need replacing"))
+		return
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_EXPERT)
+		user.visible_message(span_notice("[user] fumbles around figuring out how to replace the electronics."),
+		span_notice("You fumble around figuring out how to replace the electronics."))
+		repair_time += 5 SECONDS * ( SKILL_ENGINEER_EXPERT - user.skills.getRating(SKILL_ENGINEER) )
+		if(!do_after(user, repair_time, NONE, src, BUSY_ICON_UNSKILLED))
+			return
+	else
+		user.visible_message(span_notice("[user] begins replacing the electronics"),
+		span_notice("You begin replacing the electronics"))
+		if(!do_after(user,repair_time,NONE,src,BUSY_ICON_GENERIC))
+			return
+	user.visible_message(span_notice("[user] replaces the electronics."),
+	span_notice("You replace the electronics"))
+	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
+	repair()
+	qdel(I)
 
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship/ui_state(mob/user)
 	return GLOB.dropship_state

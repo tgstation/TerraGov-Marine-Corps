@@ -1,4 +1,4 @@
-#define MAX_COMMAND_MESSAGE_LEN 300
+#define MAX_COMMAND_MESSAGE_LEN 120
 
 /atom/movable/screen/text/screen_text/command_order
 	maptext_height = 64
@@ -8,9 +8,13 @@
 	screen_loc = "LEFT,TOP-3"
 
 	letters_per_update = 2
-	fade_out_delay = 5 SECONDS
-	style_open = "<span class='maptext' style=font-size:20pt;text-align:center valign='top'>"
+	fade_out_delay = 10 SECONDS
+	style_open = "<span class='maptext' style=font-size:24pt;text-align:center valign='top'>"
 	style_close = "</span>"
+
+/atom/movable/screen/text/screen_text/command_order/automated
+	fade_out_delay = 3 SECONDS
+	style_open = "<span class='maptext' style=font-size:20pt;text-align:center valign='top'>"
 
 /datum/action/innate/message_squad
 	name = "Send Order"
@@ -24,13 +28,20 @@
 	var/skill_min = SKILL_LEAD_TRAINED
 
 /datum/action/innate/message_squad/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/message_squad/can_use_action()
 	. = ..()
 	if(!.)
 		return
+	if(!should_show())
+		return FALSE
 	if(owner.stat != CONSCIOUS || TIMER_COOLDOWN_CHECK(owner, COOLDOWN_HUD_ORDER))
+		return FALSE
+	if(owner.skills.getRating(skill_name) < skill_min)
 		return FALSE
 
 /datum/action/innate/message_squad/action_activate()
@@ -49,9 +60,10 @@
 		return
 	if(!can_use_action())
 		return
-	var/sound/S = sound('sound/misc/notice2.ogg')
-	S.channel = CHANNEL_ANNOUNCEMENTS
-	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+	var/sound/S //Unique sound for squad leaders/non-squad leaders set further down
+	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
+	addtimer(CALLBACK(src, PROC_REF(update_button_icon)), CIC_ORDER_COOLDOWN + 1)
+	update_button_icon()
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
 	var/override_color // for squad colors
 	var/list/alert_receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list) // for full faction alerts, do this so that faction's AI and ghosts can hear aswell
@@ -60,27 +72,31 @@
 			if(ALPHA_SQUAD)
 				override_color = "red"
 			if(BRAVO_SQUAD)
-				override_color = "orange"
+				override_color = "yellow"
 			if(CHARLIE_SQUAD)
 				override_color = "purple"
 			if(DELTA_SQUAD)
 				override_color = "blue"
+			else
+				override_color = "grey"
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list | GLOB.observer_list)
-			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>SQUAD ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			marine.playsound_local(marine, 'sound/effects/sos-morse-code.ogg', 35)
+			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>Squad [human_owner.assigned_squad.name] Announcement:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order, "[human_owner.assigned_squad.color]")
 			to_chat(marine, assemble_alert(
 				title = "Squad [human_owner.assigned_squad.name] Announcement",
-				subtitle = "Sent by [human_owner.real_name]",
+				subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",
 				message = text,
-				color_override = override_color,
-				minor = TRUE
+				color_override = override_color
 			))
 		return
 	for(var/mob/faction_receiver in alert_receivers)
+		S = sound('sound/misc/notice2.ogg')
+		S.channel = CHANNEL_ANNOUNCEMENTS
 		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
-			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>COMMAND ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
+			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[uppertext(human_owner.job.title)]'S ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
 			to_chat(faction_receiver, assemble_alert(
-				title = "Command Announcement",
-				subtitle = "Sent by [human_owner.real_name]",
+				title = "[human_owner.job.title]'s Announcement",
+				subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",
 				message = text
 			))
 			SEND_SOUND(faction_receiver, S)

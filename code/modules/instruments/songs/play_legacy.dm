@@ -76,13 +76,15 @@
 	if(!fexists(soundfile))
 		return
 	// and play
-	var/turf/source = get_turf(parent)
 	if((world.time - MUSICIAN_HEARCHECK_MINDELAY) > last_hearcheck)
 		do_hearcheck()
 	var/sound/music_played = sound(soundfile)
-	for(var/i in hearing_mobs)
-		var/mob/M = i
-		if(M?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF)
+	for(var/mob/listener AS in hearing_mobs)
+		if(isAIeye(listener)) //isn't there someone you forgot to ask?
+			var/mob/camera/aiEye/listener_eye = listener
+			if(listener_eye.ai?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF)
+				continue
+		if(listener?.client?.prefs?.toggles_sound & SOUND_INSTRUMENTS_OFF)
 			continue
-		M.playsound_local(source, null, volume * using_instrument.volume_multiplier, S = music_played)
+		listener.playsound_local(get_turf(parent), music_played, volume * using_instrument.volume_multiplier)
 		// Could do environment and echo later but not for now
