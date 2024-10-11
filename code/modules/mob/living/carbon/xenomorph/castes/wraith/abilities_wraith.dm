@@ -558,6 +558,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	vis_contents += portal_visuals
 	add_filter("border_smoother", 1, gauss_blur_filter(1))
 
+	// The only reason that this is a signal is because: checks fail when using onTransitZ().
+	RegisterSignal(src, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(on_z_transit))
+
 /obj/effect/wraith_portal/Destroy()
 	linked_portal?.unlink()
 	linked_portal = null
@@ -577,7 +580,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	user.forceMove(get_turf(linked_portal))
 
-/obj/effect/wraith_portal/onTransitZ(old_z, new_z)
+/// Deletes the portal if it changes z-levels.
+/obj/effect/wraith_portal/proc/on_z_transit(old_z, new_z)
+	SIGNAL_HANDLER
 	qdel(src)
 
 /// Link two portals
