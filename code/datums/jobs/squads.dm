@@ -347,9 +347,6 @@
 		text = "<font size='3'><b>[text]<b></font>"
 	return "[nametext][text]"
 
-
-GLOBAL_VAR_INIT(hailer_tts_filter, @{"[0:a] asetrate=%SAMPLE_RATE%*0.7,aresample=16000,atempo=1/0.7,lowshelf=g=-20:f=500,highpass=f=500,aphaser=in_gain=1:out_gain=1:delay=3.0:decay=0.4:speed=0.5:type=t [out]; [out]atempo=1.2,volume=15dB [final]; anoisesrc=a=0.01:d=60 [noise]; [final][noise] amix=duration=shortest"})
-
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
 	if(is_ic_filtered(message) || NON_ASCII_CHECK(message))
 		to_chat(sender, span_boldnotice("Message invalid. Check your message does not contain filtered words or characters."))
@@ -368,17 +365,13 @@ GLOBAL_VAR_INIT(hailer_tts_filter, @{"[0:a] asetrate=%SAMPLE_RATE%*0.7,aresample
 		message_type = /atom/movable/screen/text/screen_text/command_order
 
 	for(var/mob/living/marine AS in marines_list)
-<<<<<<< HEAD
-		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order)
+		marine.playsound_local(marine, sound, 35)
+		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, message_type, message_color)
 	if(sender?.voice && SStts.tts_enabled)
 		var/list/extra_filters = list(TTS_FILTER_RADIO)
 		if(isrobot(sender))
 			extra_filters += TTS_FILTER_SILICON
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), sender, treated_message["tts_message"], sender.get_default_language(), sender.voice, GLOB.hailer_tts_filter, marines_list, FALSE, INFINITY, 20, sender.pitch, extra_filters.Join("|"))
-=======
-		marine.playsound_local(marine, sound, 35)
-		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, message_type, message_color)
->>>>>>> master
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), marines_list, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, local = TRUE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
 
 /datum/squad/proc/check_entry(datum/job/job)
 	if(!(job.title in current_positions))
