@@ -73,3 +73,5 @@
 
 ///Not available in the tank fab
 #define TANK_MOD_NOT_FABRICABLE (1<<0)
+
+#define IGUANA_MAX_INTEGRITY 150

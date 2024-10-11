@@ -89,7 +89,7 @@
 	var/turf/old_turf = get_turf(src)
 	var/turf/new_turf = get_turf(new_loc)
 	if(old_turf?.z != new_turf?.z)
-		onTransitZ(old_turf?.z, new_turf?.z)
+		on_changed_z_level(old_turf, new_turf)
 	return ..()
 
 

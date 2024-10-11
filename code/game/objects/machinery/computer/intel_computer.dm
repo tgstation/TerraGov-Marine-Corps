@@ -56,26 +56,19 @@
 			progress = 0
 		return
 	progress += progress_interval
-	if(progress <= 100)
+	if(progress <= 100 && !printing_complete)
 		return
+	printing = FALSE
 	printing_complete = TRUE
+	update_minimap_icon()
 	SSpoints.supply_points[faction] += supply_reward
 	SSpoints.dropship_points += dropship_reward
 	minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "NTC Intel Division")
 	SSminimaps.remove_marker(src)
-	active = FALSE
 	SStgui.close_uis(src)
-	if(!printing)
-		addtimer(CALLBACK(src, PROC_REF(resetcomputer)), 5 MINUTES)
-
-/obj/machinery/computer/intel_computer/proc/resetcomputer()
-	first_login = FALSE
-	GLOB.intel_computers += src
-	logged_in = FALSE
-	progress = 0
-	printing = FALSE
-	printing_complete = FALSE
+	active = FALSE
 	update_icon()
+	addtimer(CALLBACK(src, PROC_REF(resetcomputer)), 5 MINUTES)
 
 
 /obj/machinery/computer/intel_computer/Destroy()
@@ -138,3 +131,14 @@
 	active = FALSE
 	if(printing)
 		STOP_PROCESSING(SSmachines, src)
+
+/obj/machinery/computer/intel_computer/proc/resetcomputer()
+	START_PROCESSING(SSmachines, src)
+	first_login = FALSE
+	//GLOB.intel_computers += src
+	logged_in = FALSE
+	progress = 0
+	printing = FALSE
+	printing_complete = FALSE
+	update_icon()
+	update_minimap_icon()
