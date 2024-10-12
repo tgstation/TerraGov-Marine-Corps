@@ -109,10 +109,9 @@
 	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 60)
 
 
-
 /datum/maw_ammo/hugger
 	name = "ball of huggers"
-	radial_icon_state = "cas_laser"
+	radial_icon_state = "hugger_ball"
 	cooldown_time = 3 MINUTES
 	/// range_turfs that huggers will be dropped around the target
 	var/drop_range = 8
@@ -128,6 +127,12 @@
 	)
 	/// used to track our spawned huggers for animations and stuff
 	var/list/spawned_huggers = list()
+
+/datum/maw_ammo/hugger/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
+	. = ..()
+	var/obj/effect/temp_visual/hugger_ball_launch/anim = new(maw.loc)
+	anim.pixel_x = (maw.bound_width/2) - 16
+	animate(anim, anim.duration, easing=EASE_OUT|CUBIC_EASING, pixel_y=600)
 
 /datum/maw_ammo/hugger/impact_visuals(turf/target)
 	var/list/turf/turfs = RANGE_TURFS(drop_range, target)

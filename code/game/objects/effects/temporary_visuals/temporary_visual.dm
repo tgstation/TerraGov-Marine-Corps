@@ -133,3 +133,10 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 
 /obj/effect/temp_visual/dropship_flyby/som
 	icon_state = "harbinger_shadow"
+
+/obj/effect/temp_visual/hugger_ball_launch
+	icon = 'icons/mob/radial.dmi'
+	icon_state = "hugger_ball"
+	duration = 4 SECONDS
+	resistance_flags = RESIST_ALL
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
