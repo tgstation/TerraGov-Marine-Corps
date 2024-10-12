@@ -10,7 +10,7 @@
 	joinable_roundstart = FALSE
 	death_message = "lets out a faint chimper as it collapses and stops moving..."
 	dusted_anim = "dust-m"
-	gibbed_anim = "gibbed-m"
+	gibbed_anim = "monkey"
 
 /datum/species/monkey/handle_unique_behavior(mob/living/carbon/human/H)
 	if(!H.client && H.stat == CONSCIOUS)

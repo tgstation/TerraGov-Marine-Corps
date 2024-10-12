@@ -106,7 +106,6 @@
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/serpenta
 	jobs_supported = list(SOM_SQUAD_LEADER, SOM_STAFF_OFFICER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
-	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/som/serpenta = ITEM_SLOT_SUITSTORE)
 
 /datum/loadout_item/belt/som_officer_pistol_custom
 	name = "VX-12c Serpenta"
@@ -116,4 +115,3 @@
 	item_typepath = /obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander
 	jobs_supported = list(SOM_FIELD_COMMANDER, SOM_COMMANDER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
-	item_blacklist = list(/obj/item/storage/holster/belt/pistol/m4a3/som/fancy/fieldcommander = ITEM_SLOT_SUITSTORE)

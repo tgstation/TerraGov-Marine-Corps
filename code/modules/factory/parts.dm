@@ -340,6 +340,15 @@ GLOBAL_LIST_INIT(IFF_ammo, list(
 	. = ..()
 	recipe = GLOB.IFF_ammo
 
+/obj/item/factory_part/smartgunner_targetrifle_ammobin
+	name = "\improper IFF bins box"
+	desc = "A box with unfinished smart-rounds inside and empty boxes inside."
+	result = /obj/item/ammo_magazine/packet/smart_targetrifle
+
+/obj/item/factory_part/smartgunner_targetrifle_ammobin/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.IFF_ammo
+
 /obj/item/factory_part/auto_sniper_magazine
 	name = "\improper IFF high caliber bullet box"
 	desc = "A box with unfinished high caliber smart-rounds inside."
@@ -760,7 +769,7 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	desc = "An incomplete AGLS HE magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls
 
-/obj/item/factory_part/obj/item/factory_part/agls_he/Initialize(mapload)
+/obj/item/factory_part/agls_he/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.agls_recipe
 
@@ -774,8 +783,8 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	recipe = GLOB.agls_recipe
 
 /obj/item/factory_part/agls_incendiary
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
+	name = "\improper AGLS Inc. magazine assembly"
+	desc = "An incomplete AGLS Inc. magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls/incendiary
 
 /obj/item/factory_part/agls_incendiary/Initialize(mapload)
@@ -783,8 +792,8 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	recipe = GLOB.agls_recipe
 
 /obj/item/factory_part/agls_flare
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
+	name = "\improper AGLS Flare magazine assembly"
+	desc = "An incomplete AGLS Flare magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls/flare
 
 /obj/item/factory_part/agls_flare/Initialize(mapload)
@@ -792,20 +801,11 @@ GLOBAL_LIST_INIT(agls_recipe, list(
 	recipe = GLOB.agls_recipe
 
 /obj/item/factory_part/agls_cloak
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
+	name = "\improper AGLS Cloak magazine assembly"
+	desc = "An incomplete AGLS Cloak magazine assembly."
 	result = /obj/item/ammo_magazine/standard_agls/cloak
 
 /obj/item/factory_part/agls_cloak/Initialize(mapload)
-	. = ..()
-	recipe = GLOB.agls_recipe
-
-/obj/item/factory_part/agls_tanglefoot
-	name = "\improper AGLS HE magazine assembly"
-	desc = "An incomplete AGLS HE magazine assembly."
-	result = /obj/item/ammo_magazine/standard_agls/tanglefoot
-
-/obj/item/factory_part/agls_tanglefoot/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.agls_recipe
 
@@ -912,3 +912,12 @@ GLOBAL_LIST_INIT(ac_recipe, list(
 /obj/item/factory_part/ac_flak/Initialize(mapload)
 	. = ..()
 	recipe = GLOB.ac_recipe
+
+/obj/item/factory_part/cigarette
+	name = "\improper Cigarette pack"
+	desc = "An incomplete pack of cigarettes."
+	result = /obj/item/clothing/mask/cigarette
+
+/obj/item/factory_part/cigarette/Initialize(mapload)
+	. = ..()
+	recipe = GLOB.equipment_recipe

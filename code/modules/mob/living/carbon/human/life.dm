@@ -1,7 +1,5 @@
-/mob/living/carbon/human/Life()
+/mob/living/carbon/human/Life(seconds_per_tick, times_fired)
 	. = ..()
-
-	fire_alert = 0 //Reset this here, because both breathe() and handle_environment() have a chance to set it.
 
 
 	//update the current life tick, can be used to e.g. only do something every 4 ticks
@@ -56,12 +54,6 @@
 	SEND_SIGNAL(src, COMSIG_HUMAN_SET_UNDEFIBBABLE)
 	SSmobs.stop_processing(src) //Last round of processing.
 
-	if(CHECK_BITFIELD(status_flags, XENO_HOST))
-		var/obj/item/alien_embryo/parasite = locate(/obj/item/alien_embryo) in src
-		if(parasite) //The larva cannot survive without a host.
-			qdel(parasite)
-		DISABLE_BITFIELD(status_flags, XENO_HOST)
-
 	if((SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS) && job?.job_cost)
 		job.free_job_positions(1)
 	if(hud_list)
@@ -83,11 +75,13 @@
 		if(HAS_TRAIT(src, TRAIT_IGNORE_SUFFOCATION)) //Prevent losing health from asphyxiation, but natural recovery can still happen.
 			return
 		adjustOxyLoss(CARBON_CRIT_MAX_OXYLOSS, TRUE)
-		if(!oxygen_alert)
+		if(!breath_failing)
 			emote("gasp")
-			oxygen_alert = TRUE
+			throw_alert(ALERT_NOT_ENOUGH_OXYGEN, /atom/movable/screen/alert/not_enough_oxy)
+			breath_failing = TRUE
 	else
 		adjustOxyLoss(CARBON_RECOVERY_OXYLOSS, TRUE)
-		if(oxygen_alert)
+		if(breath_failing)
 			to_chat(src, span_notice("Fresh air fills your lungs; you can breath again!"))
-			oxygen_alert = FALSE
+			clear_alert(ALERT_NOT_ENOUGH_OXYGEN)
+			breath_failing = FALSE

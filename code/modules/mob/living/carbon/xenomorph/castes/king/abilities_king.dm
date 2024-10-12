@@ -80,7 +80,7 @@
 		human.status_flags |= GODMODE
 		ADD_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
 		human.move_resist = MOVE_FORCE_OVERPOWERING
-		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOUR_PRIORITY)
+		human.add_atom_colour(COLOR_GRAY, TEMPORARY_COLOR_PRIORITY)
 		human.log_message("has been petrified by [owner] for [PETRIFY_DURATION] ticks", LOG_ATTACK, color="pink")
 
 		var/image/stone_overlay = image('icons/effects/effects.dmi', null, "petrified_overlay")
@@ -122,7 +122,7 @@
 		human.status_flags &= ~GODMODE
 		REMOVE_TRAIT(human, TRAIT_HANDS_BLOCKED, REF(src))
 		human.move_resist = initial(human.move_resist)
-		human.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, COLOR_GRAY)
+		human.remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_GRAY)
 		human.overlays -= petrified_humans[human]
 	petrified_humans.Cut()
 
@@ -375,7 +375,7 @@
 			particles_type = /particles/zero_form
 	particles = new(owner, particles_type)
 	beam = owner.loc.beam(targets[length(targets)], "plasmabeam", beam_type = /obj/effect/ebeam/zeroform)
-	playsound(owner, 'sound/effects/king_beam_charge.ogg', 80)
+	playsound(owner, 'sound/effects/alien/king_beam_charge.ogg', 80)
 	REMOVE_TRAIT(owner, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
 	ADD_TRAIT(owner, TRAIT_IMMOBILE, ZERO_FORM_BEAM_ABILITY_TRAIT)
 

@@ -5,6 +5,8 @@
 	var/headlights_toggle = FALSE
 	///Modifiers for directional damage reduction
 	var/list/facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
+	///Current owning faction
+	var/faction
 
 /obj/vehicle/sealed/generate_actions()
 	. = ..()
@@ -51,6 +53,23 @@
 	if(!attack_dir)
 		return
 	. *= get_armour_facing(abs(dir2angle(dir) - dir2angle(attack_dir)))
+
+/obj/vehicle/sealed/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+	. = ..()
+	if(. < 50)
+		return
+	if(QDELETED(src))
+		return
+	var/shake_strength = 2
+	var/shake_duration = 0.2 SECONDS
+	if(. < 300)
+		shake_duration = 0.4 SECONDS
+	else
+		shake_strength = 4
+		shake_duration = 0.6 SECONDS
+	Shake(shake_strength, shake_strength, shake_duration, 0.04 SECONDS)
+	for(var/mob/living/living_victim AS in occupants)
+		shake_camera(living_victim, shake_duration * 0.5, shake_strength * 0.5)
 
 ///Entry checks for the mob before entering the vehicle
 /obj/vehicle/sealed/proc/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)

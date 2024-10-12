@@ -29,7 +29,7 @@
 			RegisterSignal(turfs, COMSIG_ATOM_ENTERED, PROC_REF(resin_silo_proxy_alert))
 
 	if(SSticker.mode?.round_type_flags & MODE_SILOS_SPAWN_MINIONS)
-		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, null)
+		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, CALLBACK(src, PROC_REF(on_spawn)))
 		SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
 		SSspawning.spawnerdata[src].max_allowed_mobs = max(1, MAX_SPAWNABLE_MOB_PER_PLAYER * SSmonitor.maximum_connected_players_count * 0.5)
 	update_minimap_icon()
@@ -61,7 +61,7 @@
 		UnregisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
 		GLOB.hive_datums[hivenumber].xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien/help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
-		playsound(loc,'sound/effects/alien_egg_burst.ogg', 75)
+		playsound(loc,'sound/effects/alien/egg_burst.ogg', 75)
 	return ..()
 
 /obj/structure/xeno/silo/Destroy()
@@ -153,3 +153,8 @@
 /obj/structure/xeno/silo/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "silo[warning ? "_warn" : "_passive"]", HIGH_FLOAT_LAYER))
+
+/// Transfers the spawned minion to the silo's hivenumber.
+/obj/structure/xeno/silo/proc/on_spawn(list/newly_spawned_things)
+	for(var/mob/living/carbon/xenomorph/spawned_minion AS in newly_spawned_things)
+		spawned_minion.transfer_to_hive(hivenumber)

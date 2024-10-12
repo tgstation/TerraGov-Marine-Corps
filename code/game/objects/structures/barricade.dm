@@ -90,10 +90,9 @@
 	if(.)
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "Can't, it's melting")
-			return
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	if(!istype(I, /obj/item/stack/barbed_wire) || !can_wire)
 		return
@@ -103,6 +102,10 @@
 	balloon_alert_to_viewers("Setting up wire...")
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_BUILD) || !can_wire)
 		return
+
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	playsound(loc, 'sound/effects/barbed_wire_movement.ogg', 25, 1)
 
@@ -136,7 +139,7 @@
 	new /obj/item/stack/barbed_wire(loc)
 
 
-/obj/structure/barricade/deconstruct(disassembled = TRUE)
+/obj/structure/barricade/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
@@ -273,11 +276,6 @@
 	if(.)
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "It's melting!")
-			return
-
 	//Removing the barricades
 	if(!istype(I, /obj/item/tool/shovel) || user.a_intent == INTENT_HARM)
 		return
@@ -297,13 +295,7 @@
 
 	if(ET.folded)
 		return
-	var/deconstructed = TRUE
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t != src)
-			continue
-		deconstructed = FALSE
-		break
-	deconstruct(deconstructed)
+	deconstruct(!get_self_acid())
 
 /*----------------------*/
 // GUARD RAIL
@@ -355,11 +347,6 @@
 	if(.)
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "It's melting!")
-			return
-
 	if(!istype(I, /obj/item/stack/sheet/wood))
 		return
 	var/obj/item/stack/sheet/wood/D = I
@@ -377,6 +364,10 @@
 
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity)
 		return
+
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	if(!D.use(1))
 		return
@@ -418,6 +409,12 @@
 	var/build_state = BARRICADE_METAL_FIRM
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
+
+/obj/structure/barricade/metal/Initialize(mapload, mob/user)
+	. = ..()
+	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
+		return
+	modify_max_integrity(max_integrity + 75)
 
 /obj/structure/barricade/metal/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -468,6 +465,10 @@
 
 	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
 		return FALSE
+
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	if(!metal_sheets.use(2))
 		return FALSE
@@ -653,13 +654,7 @@
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			var/deconstructed = TRUE
-			for(var/obj/effect/xenomorph/acid/A in loc)
-				if(A.acid_t != src)
-					continue
-				deconstructed = FALSE
-				break
-			deconstruct(deconstructed)
+			deconstruct(!get_self_acid())
 			return TRUE
 		if(BARRICADE_METAL_FIRM)
 
@@ -746,6 +741,12 @@
 	///ehther we react with other cades next to us ie when opening or so
 	var/linked = FALSE
 	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
+
+/obj/structure/barricade/plasteel/Initialize(mapload, mob/user)
+	. = ..()
+	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
+		return
+	modify_max_integrity(max_integrity + 100)
 
 /obj/structure/barricade/plasteel/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -848,13 +849,7 @@
 			user.visible_message(span_notice("[user] takes [src]'s panels apart."),
 			span_notice("You take [src]'s panels apart."))
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
-			var/deconstructed = TRUE
-			for(var/obj/effect/xenomorph/acid/A in loc)
-				if(A.acid_t != src)
-					continue
-				deconstructed = FALSE
-				break
-			deconstruct(deconstructed)
+			deconstruct(!get_self_acid())
 
 /obj/structure/barricade/plasteel/wrench_act(mob/living/user, obj/item/I)
 	if(!iswrench(I))
@@ -908,29 +903,34 @@
 	if(.)
 		return
 
-	if(istype(I, /obj/item/stack/sheet/plasteel))
-		var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
-		if(obj_integrity >= max_integrity * 0.3)
-			return
+	if(!istype(I, /obj/item/stack/sheet/plasteel))
+		return
+	var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
+	if(obj_integrity >= max_integrity * 0.3)
+		return
 
-		if(plasteel_sheets.get_amount() < 2)
-			balloon_alert(user, "You need at least 2 plasteel")
-			return
+	if(plasteel_sheets.get_amount() < 2)
+		balloon_alert(user, "You need at least 2 plasteel")
+		return
 
-		if(LAZYACCESS(user.do_actions, src))
-			return
+	if(LAZYACCESS(user.do_actions, src))
+		return
 
-		balloon_alert_to_viewers("Repairing base...")
+	balloon_alert_to_viewers("Repairing base...")
 
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
-			return
+	if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_FRIENDLY) || obj_integrity >= max_integrity * 0.3)
+		return
 
-		if(!plasteel_sheets.use(2))
-			return
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
-		repair_damage(max_integrity * 0.3, user)
-		balloon_alert_to_viewers("Base repaired")
-		update_icon()
+	if(!plasteel_sheets.use(2))
+		return
+
+	repair_damage(max_integrity * 0.3, user)
+	balloon_alert_to_viewers("Base repaired")
+	update_icon()
 
 /obj/structure/barricade/plasteel/attack_hand(mob/living/user)
 	. = ..()
@@ -1017,11 +1017,6 @@
 	if(.)
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "it's melting!")
-			return
-
 	if(istype(I, /obj/item/tool/shovel) && user.a_intent != INTENT_HARM)
 		var/obj/item/tool/shovel/ET = I
 		if(ET.folded)
@@ -1031,13 +1026,7 @@
 			return TRUE
 		user.visible_message(span_notice("[user] disassembles [src]."),
 		span_notice("You disassemble [src]."))
-		var/deconstructed = TRUE
-		for(var/obj/effect/xenomorph/acid/A in loc)
-			if(A.acid_t != src)
-				continue
-			deconstructed = FALSE
-			break
-		deconstruct(deconstructed)
+		deconstruct(!get_self_acid())
 		return TRUE
 
 	if(istype(I, /obj/item/stack/sandbags))
@@ -1054,6 +1043,10 @@
 			return
 
 		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD) || obj_integrity >= max_integrity)
+			return
+
+		if(get_self_acid())
+			balloon_alert(user, "It's melting!")
 			return
 
 		if(!D.use(1))
@@ -1097,13 +1090,6 @@
 
 /obj/structure/barricade/metal/deployable/clear_internal_item()
 	internal_shield = null
-
-///Dissassembles the device
-/obj/structure/barricade/metal/deployable/proc/disassemble(mob/user)
-	if(CHECK_BITFIELD(internal_shield.item_flags, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "Cannot disassemble")
-		return
-	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 
 /obj/structure/barricade/metal/deployable/Destroy()
 	if(internal_shield)

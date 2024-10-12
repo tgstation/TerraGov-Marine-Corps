@@ -578,13 +578,22 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
+/obj/item/storage/pouch/medkit/doctor/PopulateContents()
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
+
 /obj/item/storage/pouch/medkit/medic/PopulateContents()
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/reagent_containers/hypospray/advanced/quickclotplus_medkit(src)
+	new /obj/item/reagent_containers/hypospray/advanced/peridaxonplus_medkit(src)
 	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
 
 /obj/item/storage/pouch/medkit/som

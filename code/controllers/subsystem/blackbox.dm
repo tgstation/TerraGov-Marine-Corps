@@ -86,7 +86,7 @@ SUBSYSTEM_DEF(blackbox)
 	if (!length(sqlrowlist))
 		return
 
-	SSdbcore.MassInsert(format_table_name("feedback"), sqlrowlist, ignore_errors = TRUE, delayed = TRUE, special_columns = special_columns)
+	SSdbcore.MassInsert(format_table_name("feedback"), sqlrowlist, ignore_errors = TRUE, delayed = FALSE, special_columns = special_columns)
 
 
 /datum/controller/subsystem/blackbox/proc/Seal()

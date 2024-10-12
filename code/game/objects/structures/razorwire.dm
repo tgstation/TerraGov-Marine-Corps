@@ -18,7 +18,7 @@
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
-/obj/structure/razorwire/deconstruct(disassembled = TRUE)
+/obj/structure/razorwire/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
 			new sheet_type(loc)

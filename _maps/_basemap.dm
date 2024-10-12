@@ -8,6 +8,7 @@
 		#include "map_files\Debugdalus\TGS_Debugdalus.dmm"
 		#include "map_files\Ice_Colony_v2\Ice_Colony_v2.dmm"
 		#include "map_files\LV624\LV624.dmm"
+		#include "map_files\LV759\LV759.dmm"
 		#include "map_files\Prison_Station_FOP\Prison_Station_FOP.dmm"
 		#include "map_files\Theseus\TGS_Theseus.dmm"
 		#include "map_files\Vapor_Processing\Vapor_Processing.dmm"
@@ -26,6 +27,9 @@
 		#include "map_files\slumbridge\slumbridge.dmm"
 		#include "map_files\DaedalusPrison\DaedalusPrison.dmm"
 		#include "map_files\riptide\riptide.dmm"
+		#include "map_files\lavaoutpost\LavaOutpost.dmm"
+		#include "map_files\desertdam\desertdam.dmm"
+		#include "map_files\corsat\corsat.dmm"
 		#ifdef CIBUILDING
 			#include "templates.dm"
 		#endif

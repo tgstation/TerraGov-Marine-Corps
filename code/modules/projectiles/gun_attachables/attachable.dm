@@ -92,9 +92,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/attach_shell_speed_mod = 0
 	///Modifies accuracy/scatter penalty when firing onehanded while moving.
 	var/movement_acc_penalty_mod = 0
-	///How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 1.5 seconds.
+	///How long in deciseconds it takes to attach a weapon with level 1 combat training. Default is 1.5 seconds.
 	var/attach_delay = 1.5 SECONDS
-	///How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 1.5 seconds.
+	///How long in deciseconds it takes to detach a weapon with level 1 combat training. Default is 1.5 seconds.
 	var/detach_delay = 1.5 SECONDS
 	///Changes aim mode movement delay multiplicatively
 	var/aim_mode_movement_mult = 0
@@ -127,9 +127,9 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	///what gun this attachment is currently attached to, if any.
 	var/obj/item/weapon/gun/master_gun
 	///Skill used to attach src to something.
-	var/attach_skill = SKILL_FIREARMS
+	var/attach_skill = SKILL_COMBAT
 	///Skill threshold where the time to attach is halved.
-	var/attach_skill_upper_threshold = SKILL_FIREARMS_TRAINED
+	var/attach_skill_upper_threshold = SKILL_COMBAT_TRAINED
 	///Sound played on attach
 	var/attach_sound = 'sound/machines/click.ogg'
 	///Replacement for initial icon that allows for the code to work with multiple variants
@@ -318,7 +318,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	master_gun = attached_to
 	master_gun.wield_delay += wield_delay_mod
 	if(gun_user)
-		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_GUN_SAFETY, COMSIG_KB_AUTOEJECT, COMSIG_KB_UNIQUEACTION, COMSIG_QDELETING,  COMSIG_MOB_CLICK_RIGHT))
+		UnregisterSignal(gun_user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_ITEM_ZOOM, COMSIG_ITEM_UNZOOM, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_MUZZLEATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_GUN_SAFETY, COMSIG_KB_AUTOEJECT, COMSIG_KB_UNIQUEACTION, COMSIG_QDELETING,  COMSIG_MOB_CLICK_RIGHT))
 	var/datum/action/item_action/toggle/new_action = new /datum/action/item_action/toggle(src, master_gun)
 	if(!isliving(user))
 		return

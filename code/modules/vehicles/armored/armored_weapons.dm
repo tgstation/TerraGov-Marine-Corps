@@ -13,10 +13,13 @@
 	///Current loaded magazines: top one empties into ammo
 	var/list/obj/item/ammo_magazine/ammo_magazine = list()
 	///maximum magazines ammo_magazine can hold
-	var/maximum_magazines = 5
+	var/maximum_magazines = 0
 	///ammo types we'll be able to accept
 	var/list/accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/ltb_cannon,
+		/obj/item/ammo_magazine/tank/ltb_cannon/heavy,
+		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
+		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
 	)
 	///current tracked target for fire(), updated when user drags
 	var/atom/current_target
@@ -64,12 +67,11 @@
 
 ///called by the chassis: begins firing, yes this is stolen from mech but I made both so bite me
 /obj/item/armored_weapon/proc/begin_fire(mob/source, atom/target, list/modifiers)
-	if(!ammo || ammo.current_rounds < 0)
+	if(!ammo || ammo.current_rounds <= 0)
 		playsound(source, 'sound/weapons/guns/fire/empty.ogg', 15, 1)
 		return
 	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 		return
-	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), projectile_delay)
 
 	set_target(get_turf_on_clickcatcher(target, source, list2params(modifiers)))
 	if(!current_target)
@@ -79,7 +81,7 @@
 	if(windup_delay && windup_checked == WEAPON_WINDUP_NOT_CHECKED)
 		windup_checked = WEAPON_WINDUP_CHECKING
 		playsound(chassis.loc, windup_sound, 30)
-		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)))
+		if(!do_after(source, windup_delay, IGNORE_TARGET_LOC_CHANGE|IGNORE_LOC_CHANGE, chassis, BUSY_ICON_DANGER, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), current_target)) || TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_MECHA_EQUIPMENT(type)))
 			windup_checked = WEAPON_WINDUP_NOT_CHECKED
 			return
 		windup_checked = WEAPON_WINDUP_CHECKED
@@ -87,6 +89,7 @@
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	current_firer = source
+	TIMER_COOLDOWN_START(chassis, COOLDOWN_MECHA_EQUIPMENT(type), projectile_delay)
 	if(fire_mode == GUN_FIREMODE_SEMIAUTO)
 		var/fire_return // todo fix: code expecting return values from async
 		ASYNC
@@ -104,11 +107,13 @@
 		return FALSE
 	if(QDELETED(current_target))
 		return FALSE
-	if(chassis.primary_weapon == src)
-		var/dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.turret_overlay.dir))
-		if(dir_target_diff > (ARMORED_FIRE_CONE_ALLOWED / 2))
-			if(!chassis.swivel_turret(current_target))
-				return FALSE
+	if(!(armored_weapon_flags & MODULE_FIXED_FIRE_ARC))
+		return TRUE
+	var/turf/source_turf = chassis.primary_weapon == src ? chassis.hitbox.get_projectile_loc(src) : get_turf(src)
+	var/dir_target_diff = get_between_angles(Get_Angle(source_turf, target), dir2angle(chassis.turret_overlay.dir))
+	if(dir_target_diff > (ARMORED_FIRE_CONE_ALLOWED / 2))
+		if(!chassis.swivel_turret(current_target))
+			return FALSE
 		dir_target_diff = get_between_angles(Get_Angle(chassis, current_target), dir2angle(chassis.turret_overlay.dir))
 		if(dir_target_diff > (ARMORED_FIRE_CONE_ALLOWED / 2))
 			return FALSE
@@ -188,9 +193,8 @@
 			chassis.swivel_turret(current_target)
 			return AUTOFIRE_CONTINUE
 	else if(chassis.turret_overlay)
-		chassis.turret_overlay.cut_overlay(chassis.turret_overlay.secondary_overlay)
 		chassis.turret_overlay.secondary_overlay.dir = get_cardinal_dir(chassis, current_target)
-		chassis.turret_overlay.add_overlay(chassis.turret_overlay.secondary_overlay)
+		chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 	else
 		chassis.cut_overlay(chassis.secondary_weapon_overlay)
 		chassis.secondary_weapon_overlay.dir = get_cardinal_dir(chassis, current_target)
@@ -316,7 +320,6 @@
 	projectile_delay = 2
 	variance = 5
 	rearm_time = 1 SECONDS
-	maximum_magazines = 5
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/ltaap
@@ -332,7 +335,6 @@
 	variance = 5
 	projectile_delay = 0.1 SECONDS
 	rearm_time = 3 SECONDS
-	maximum_magazines = 5
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/apc_cannon
@@ -358,7 +360,6 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 5
 	rearm_time = 1 SECONDS
-	maximum_magazines = 5
 	accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/secondary_flamer_tank,
 	)

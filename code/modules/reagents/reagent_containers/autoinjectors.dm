@@ -28,6 +28,8 @@
 	else
 		. += span_notice("It is spent.")
 
+	. += span_notice("Use to inject into yourself. Unique Action to configure injection amount.")
+
 /obj/item/reagent_containers/hypospray/autoinjector/fillable
 	desc = "An autoinjector loaded with... something, consult the doctor who gave this to you."
 	amount_per_transfer_from_this = 30
@@ -123,6 +125,7 @@
 	amount_per_transfer_from_this = 10
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 20)
 	description_overlay = "Ox"
+	free_refills = FALSE
 
 /obj/item/reagent_containers/hypospray/autoinjector/kelotane
 	name = "kelotane autoinjector"
@@ -284,6 +287,7 @@
 	list_reagents = list(
 		/datum/reagent/medicine/saline_glucose = 30,
 	)
+	description_overlay = "Is"
 
 /obj/item/reagent_containers/hypospray/autoinjector/roulettium
 	name = "roulettium autoinjector"

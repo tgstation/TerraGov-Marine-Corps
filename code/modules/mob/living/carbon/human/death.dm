@@ -1,28 +1,18 @@
 /mob/living/carbon/human/gib()
-
-	var/is_a_synth = issynth(src)
 	for(var/datum/limb/E in limbs)
 		if(istype(E, /datum/limb/chest))
 			continue
-		if(istype(E, /datum/limb/groin) && is_a_synth)
+		if(istype(E, /datum/limb/groin))
 			continue
 		// Only make the limb drop if it's not too damaged
 		if(prob(100 - E.get_damage()))
 			// Override the current limb status
 			E.droplimb()
-
-
-	if(is_a_synth)
-		spawn_gibs()
-		return
-	..()
-
-
-
-
+	return ..()
 
 /mob/living/carbon/human/gib_animation()
-	new /obj/effect/overlay/temp/gib_animation(loc, 0, src, species ? species.gibbed_anim : "gibbed-h")
+	var/datum/ethnicity/ethnic_datum = GLOB.ethnicities_list[ethnicity]
+	new /obj/effect/overlay/temp/gib_animation/human(loc, 0, src, species?.gibbed_anim ? species.gibbed_anim : ethnic_datum ? ethnic_datum.icon_name : "default")
 
 /mob/living/carbon/human/spawn_gibs()
 	if(species)

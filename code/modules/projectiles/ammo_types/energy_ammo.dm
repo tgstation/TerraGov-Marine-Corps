@@ -210,7 +210,7 @@
 /datum/ammo/energy/lasgun/marine/weakening
 	name = "weakening laser bolt"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_efficiency"
 	damage = 30
 	penetration = 10
 	sundering = 0
@@ -231,7 +231,7 @@
 /datum/ammo/energy/lasgun/marine/microwave
 	name = "microwave laser bolt"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_xray"
 	damage = 20
 	penetration = 20
 	sundering = 2
@@ -276,7 +276,7 @@
 /datum/ammo/energy/lasgun/marine/impact
 	name = "impact laser blast"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_impact"
 	damage = 35
 	penetration = 10
 	sundering = 0
@@ -290,7 +290,7 @@
 /datum/ammo/energy/lasgun/marine/cripple
 	name = "impact laser blast"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_disabler"
 	damage = 20
 	penetration = 10
 	sundering = 0
@@ -313,7 +313,7 @@
 
 /datum/ammo/energy/lasgun/marine/autolaser/charge
 	name = "charged machine laser bolt"
-	hud_state = "laser_efficiency"
+	hud_state = "laser_overcharge"
 	damage = 50
 	penetration = 30
 	sundering = 3
@@ -327,7 +327,7 @@
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting
 	name = "melting machine laser bolt"
-	hud_state = "laser_efficiency"
+	hud_state = "laser_melting"
 	damage = 15
 	penetration = 20
 	sundering = 0
@@ -375,7 +375,7 @@
 /datum/ammo/energy/lasgun/marine/shatter
 	name = "sniper shattering bolt"
 	icon_state = "microwavelaser"
-	hud_state = "laser_heat"
+	hud_state = "laser_impact"
 	damage = 40
 	penetration = 30
 	accurate_range_min = 5
@@ -399,7 +399,7 @@
 /datum/ammo/energy/lasgun/marine/ricochet
 	name = "sniper laser bolt"
 	icon_state = "microwavelaser"
-	hud_state = "laser_heat"
+	hud_state = "laser_disabler"
 	damage = 100
 	penetration = 30
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_SNIPER
@@ -432,6 +432,7 @@
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
+	hud_state = "laser_efficiency"
 	damage = 20
 	penetration = 5
 	sundering = 1
@@ -465,7 +466,7 @@
 
 /datum/ammo/energy/lasgun/marine/xray
 	name = "xray heat bolt"
-	hud_state = "laser_xray"
+	hud_state = "laser_heat"
 	icon_state = "u_laser"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_HITSCAN
 	damage = 25
@@ -476,6 +477,7 @@
 
 /datum/ammo/energy/lasgun/marine/xray/piercing
 	name = "xray piercing bolt"
+	hud_state = "laser_xray"
 	icon_state = "xray"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	damage = 25
@@ -638,6 +640,9 @@
 
 /datum/ammo/energy/plasma/cannon_heavy/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	var/damage_mult = 3
+	if(ishitbox(target_obj))
+		var/obj/hitbox/target_hitbox = target_obj
+		target_obj = target_hitbox.root
 	if(isvehicle(target_obj))
 		var/obj/vehicle/vehicle_target = target_obj
 		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
@@ -658,24 +663,29 @@
 
 /datum/ammo/energy/plasma/smg_standard
 	icon_state = "plasma_ball_small"
-	damage = 22
+	damage = 14
 	penetration = 10
 	sundering = 0.5
-
-/datum/ammo/energy/plasma/smg_standard/one
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard
-
-/datum/ammo/energy/plasma/smg_standard/two
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/one
-
-/datum/ammo/energy/plasma/smg_standard/three
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/two
-
-/datum/ammo/energy/plasma/smg_standard/four
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/three
+	damage_falloff = 1.5
 
 /datum/ammo/energy/plasma/smg_standard/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	reflect(target_turf, proj, 5)
+
+/datum/ammo/energy/plasma/smg_standard/one
+	damage = 16
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard
+
+/datum/ammo/energy/plasma/smg_standard/two
+	damage = 18
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/one
+
+/datum/ammo/energy/plasma/smg_standard/three
+	damage = 20
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/two
+
+/datum/ammo/energy/plasma/smg_standard/four
+	damage = 22
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/three
 
 // Plasma //
 /datum/ammo/energy/sectoid_plasma
@@ -740,29 +750,37 @@
 	hitscan_effect_icon = "particle_lance"
 	hud_state = "plasma_blast"
 	hud_state_empty = "battery_empty_flash"
-	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOB|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_SNIPER
 	bullet_color = LIGHT_COLOR_PURPLE_PINK
 	armor_type = ENERGY
 	max_range = 40
 	accurate_range = 10
-	accuracy = 15
-	damage = 100
-	penetration = 150
+	accuracy = 25
+	damage = 850
+	penetration = 120
 	sundering = 30
+	damage_falloff = 5
+	on_pierce_multiplier = 0.95
+	barricade_clear_distance = 4
+
+/datum/ammo/energy/particle_lance/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!isliving(target_mob))
+		return
+	var/mob/living/living_victim = target_mob
+	living_victim.apply_radiation(living_victim.modify_by_armor(15, BIO, 25), 3)
+
 
 /datum/ammo/energy/particle_lance/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	var/damage_mult = 3
 	if(ishitbox(target_obj)) //yes this is annoying.
 		var/obj/hitbox/hitbox = target_obj
 		target_obj = hitbox.root
+
 	if(isvehicle(target_obj))
 		var/obj/vehicle/vehicle_target = target_obj
-		if(ismecha(vehicle_target) || isarmoredvehicle(vehicle_target))
-			damage_mult = 8
-		for(var/mob/living/living_victim AS in vehicle_target.occupants)//staggerstun will fail on tank occupants if we just use staggerstun
-			living_victim.Stagger(3 SECONDS)
+		for(var/mob/living/living_victim AS in vehicle_target.occupants)
+			living_victim.apply_radiation(living_victim.modify_by_armor(12, BIO, 25), 3)
 			living_victim.flash_pain()
-			shake_camera(living_victim, 0.3 SECONDS, 2)
-			to_chat(living_victim, "You are knocked about by the impact, staggering you!")
-	proj.damage *= damage_mult
-	target_obj.Shake(4, 4, 0.6 SECONDS, 0.04 SECONDS)
+
+	if(target_obj.obj_integrity > target_obj.modify_by_armor(proj.damage, ENERGY, proj.penetration, attack_dir = get_dir(target_obj, proj)))
+		proj.proj_max_range = 0
+

@@ -38,6 +38,7 @@
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_cross_hitbox),
 		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(on_jump_landed),
+		COMSIG_TURF_THROW_ENDED_HERE = PROC_REF(on_stop_throw),
 		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
 		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
 	)
@@ -85,17 +86,28 @@
 
 	return FALSE
 
+///Adds a new desant
+/obj/hitbox/proc/add_desant(atom/movable/new_desant)
+	if(HAS_TRAIT(new_desant, TRAIT_TANK_DESANT))
+		return
+	ADD_TRAIT(new_desant, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
+	new_desant.add_nosubmerge_trait(VEHICLE_TRAIT)
+	LAZYSET(tank_desants, new_desant, new_desant.layer)
+	RegisterSignal(new_desant, COMSIG_QDELETING, PROC_REF(on_desant_del))
+	new_desant.layer = ABOVE_MOB_PLATFORM_LAYER
+	root.add_desant(new_desant)
+
 ///signal handler when someone jumping lands on us
 /obj/hitbox/proc/on_jump_landed(datum/source, atom/movable/lander)
 	SIGNAL_HANDLER
-	if(HAS_TRAIT(lander, TRAIT_TANK_DESANT))
+	add_desant(lander)
+
+///signal handler when something thrown lands on us
+/obj/hitbox/proc/on_stop_throw(datum/source, atom/movable/thrown_movable)
+	SIGNAL_HANDLER
+	if(!isliving(thrown_movable)) //TODO: Make desants properly work for all AM's instead of mobs
 		return
-	ADD_TRAIT(lander, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
-	lander.add_nosubmerge_trait(VEHICLE_TRAIT)
-	LAZYSET(tank_desants, lander, lander.layer)
-	RegisterSignal(lander, COMSIG_QDELETING, PROC_REF(on_desant_del))
-	lander.layer = ABOVE_MOB_PLATFORM_LAYER
-	root.add_desant(lander)
+	add_desant(thrown_movable)
 
 ///signal handler when we leave a turf under the hitbox
 /obj/hitbox/proc/on_exited(atom/source, atom/movable/AM, direction)
@@ -134,21 +146,22 @@
 	direction = get_dir(oldloc, mover)
 	var/move_dist = get_dist(oldloc, mover)
 	forceMove(mover.loc)
+	var/new_z = (z != oldloc.z)
 	for(var/mob/living/tank_desant AS in tank_desants)
 		tank_desant.set_glide_size(root.glide_size)
-		tank_desant.forceMove(get_step(tank_desant, direction))
-		if(isxeno(tank_desant) || move_dist > 1)
+		if(new_z)
+			tank_desant.abstract_move(loc) //todo: have some better code to actually preserve their location
+		else
+			tank_desant.forceMove(get_step(tank_desant, direction))
+		if(isxeno(tank_desant))
 			continue
 		if(move_dist > 1)
 			continue
 		if(!tank_desant.l_hand || !tank_desant.r_hand)
 			continue
 		balloon_alert(tank_desant, "poor grip!")
-		var/away_dir = get_dir(tank_desant, root)
-		if(!away_dir)
-			away_dir = pick(GLOB.alldirs)
-		away_dir = REVERSE_DIR(away_dir)
-		var/turf/target = get_step(get_step(root, away_dir), away_dir)
+		var/away_dir = REVERSE_DIR(get_dir(tank_desant, root) || pick(GLOB.alldirs))
+		var/turf/target = get_ranged_target_turf(tank_desant, away_dir, 3)
 		tank_desant.throw_at(target, 3, 3, root)
 
 ///called when the tank is off movement cooldown and someone tries to move it
@@ -402,18 +415,3 @@
 //Some hover specific stuff for the SOM tank
 /obj/hitbox/rectangle/som_tank/get_projectile_loc(obj/item/armored_weapon/weapon)
 	return get_step(get_step(src, root.dir), root.dir)
-
-/obj/hitbox/rectangle/som_tank/on_jump_landed(datum/source, atom/lander)
-	if(HAS_TRAIT(lander, TRAIT_TANK_DESANT))
-		return
-	. = ..()
-	var/obj/vehicle/sealed/armored/multitile/som_tank/tank = root
-	tank.add_desant(lander)
-
-/obj/hitbox/rectangle/som_tank/on_exited(atom/source, atom/movable/AM, direction)
-	var/is_desant = HAS_TRAIT(AM, TRAIT_TANK_DESANT)
-	. = ..()
-	if(!is_desant || HAS_TRAIT(AM, TRAIT_TANK_DESANT))
-		return
-	var/obj/vehicle/sealed/armored/multitile/som_tank/tank = root
-	tank.remove_desant(AM)

@@ -133,7 +133,6 @@
 	DISABLE_BITFIELD(atom_flags, INITIALIZED)
 	soft_armor = null
 	hard_armor = null
-	QDEL_NULL(current_acid)
 	..()
 	return QDEL_HINT_IWILLGC
 
@@ -314,8 +313,9 @@
 	if(W.directional_opacity != old_directional_opacity)
 		W.reconsider_lights()
 
-	if(thisarea.lighting_effect)
+	if(thisarea.area_has_base_lighting)
 		W.add_overlay(thisarea.lighting_effect)
+		W.luminosity = 1
 
 	if(!W.smoothing_behavior == NO_SMOOTHING)
 		return W
@@ -648,6 +648,9 @@
 	return DIRT_TYPE_GROUND
 
 /turf/open/floor/plating/ground/get_dirt_type()
+	return DIRT_TYPE_GROUND
+
+/turf/open/urbanshale/get_dirt_type()
 	return DIRT_TYPE_GROUND
 
 /turf/open/floor/plating/ground/mars/get_dirt_type()

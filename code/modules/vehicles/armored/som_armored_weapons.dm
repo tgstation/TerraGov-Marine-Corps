@@ -1,3 +1,6 @@
+///Actual time for the visual beam effect
+#define CARRONADE_BEAM_TIME 0.6 SECONDS
+
 /obj/item/armored_weapon/volkite_carronade
 	name = "Volkite Cardanelle"
 	desc = "A massive volkite weapon seen on SOM battle tanks, the cardanelle is a devestating anti infantry weapon, able to mow down whole groups of soft targets with ease. \
@@ -14,27 +17,30 @@
 	///Range of this weapon
 	var/beam_range = 20
 	///Armor pen of this weapon
-	var/armor_pen = 30
+	var/armor_pen = 20
 
 /obj/item/armored_weapon/volkite_carronade/do_fire(turf/source_turf, ammo_override)
 	var/turf/target_turf = get_turf_in_angle(Get_Angle(source_turf, get_turf(current_target)), source_turf, beam_range)
-
 	var/list/turf/beam_turfs = get_line(source_turf, target_turf)
 	var/list/turf/impacted_turfs = list()
 	var/list/light_effects = list()
+	var/list/stop_beam_turfs
+	//If the beam is stopped early, we only process the turfs in range of the (new) final turf
+	//We do this because we can't change the list the for loop is already cycling through
 
 	for(var/turf/line_turf AS in beam_turfs)
-		target_turf = line_turf //we redefine this so we can draw the beam to where the effect actually stops, if its stopped early
-		new /obj/effect/temp_visual/shockwave(line_turf, 4)
 		if(isclosedturf(line_turf))
 			break
 		for(var/range_turf in RANGE_TURFS(1, line_turf))
 			impacted_turfs |= range_turf
 
 	for(var/turf/impacted_turf AS in impacted_turfs)
+		if(stop_beam_turfs && !(impacted_turf in stop_beam_turfs))
+			break
 		light_effects += new /atom/movable/hitscan_projectile_effect(impacted_turf, null, null, null, null, null, LIGHT_COLOR_EMISSIVE_ORANGE)
-		var/attack_dir = get_dir(source_turf, impacted_turf)
+		var/attack_dir = get_dir(impacted_turf, source_turf)
 		var/beam_turf = (impacted_turf in beam_turfs)
+		var/beam_stop = FALSE
 		for(var/target in impacted_turf)
 			if(isobj(target))
 				if(target == chassis || target == chassis.hitbox)
@@ -47,25 +53,39 @@
 					continue
 				if(obj_target.resistance_flags & INDESTRUCTIBLE)
 					continue
-				var/obj_damage = beam_turf ? 120 : 50
+				var/obj_damage = beam_turf ? 500 : 350
 				if(isarmoredvehicle(obj_target) || ishitbox(obj_target))
-					obj_damage *= 0.25 //you can hit them a bunch of times
-				if(ismecha(obj_target))
-					obj_damage *= 3
-				obj_target.take_damage(obj_damage, BURN, beam_turf ? ENERGY : FIRE, FALSE, attack_dir, armor_pen, current_firer)
-				return
+					obj_damage *= 0.75
+					beam_stop = TRUE
+				else if(ismecha(obj_target))
+					beam_stop = TRUE
+				obj_target.take_damage(obj_damage * 0.5, BURN, ENERGY, TRUE, attack_dir, armor_pen, current_firer)
+				if(!QDELETED(obj_target))
+					obj_target.take_damage(obj_damage * 0.5, BURN, FIRE, FALSE, attack_dir, armor_pen, current_firer)
+				continue
 			if(isliving(target))
 				var/mob/living/living_target = target
-				if(beam_turf)
-					living_target.apply_damage(50, BURN, blocked = ENERGY, penetration = armor_pen)
-				living_target.apply_damage(50, BURN, blocked = FIRE, penetration = armor_pen, updating_health = TRUE)
+				living_target.apply_damage(80, BURN, blocked = ENERGY, penetration = armor_pen)
+				if(!QDELETED(living_target))
+					living_target.apply_damage(80, BURN, blocked = FIRE, penetration = armor_pen, updating_health = TRUE)
+				living_target.flash_act(beam_turf ? 2 SECONDS : 1 SECONDS)
 				living_target.Stagger(beam_turf ? 3 SECONDS : 2 SECONDS)
 				living_target.adjust_slowdown(beam_turf ? 3 : 2)
 				living_target.adjust_fire_stacks(beam_turf ? 15 : 9)
 				living_target.IgniteMob()
+		if(!beam_turf)
+			continue
+		new /obj/effect/temp_visual/shockwave(impacted_turf, 4)
+		target_turf = impacted_turf //we redefine this so we can draw the beam to where the effect actually stops, if its stopped early
+		if(!beam_stop)
+			continue
+		beam_turfs.Cut(beam_turfs.Find(impacted_turf))
+		stop_beam_turfs = RANGE_TURFS(1, impacted_turf)
 
-	QDEL_IN(source_turf.beam(target_turf, "volkite", beam_type = /obj/effect/ebeam/carronade), 0.6 SECONDS)
-	QDEL_LIST_IN(light_effects, 0.6 SECONDS)
+	explosion(target_turf, 0, 2, 5, 0, 3, 4, 4)
+
+	QDEL_IN(source_turf.beam(target_turf, "volkite", beam_type = /obj/effect/ebeam/carronade), CARRONADE_BEAM_TIME)
+	QDEL_LIST_IN(light_effects, CARRONADE_BEAM_TIME)
 
 /obj/effect/ebeam/carronade/Initialize(mapload)
 	. = ..()
@@ -106,6 +126,8 @@
 	windup_sound = 'sound/vehicles/weapons/coil_charge.ogg'
 	windup_delay = 0.6 SECONDS
 	projectile_delay = 3 SECONDS
+	maximum_magazines = 3
+	rearm_time = 0.5 SECONDS
 	///Power setting of the weapon. Effect the projectile fired
 	var/power_level = COILGUN_MED_POWER
 	///Current ammo override to use based on power level
@@ -221,12 +243,11 @@
 	projectile_delay = 0.2 SECONDS
 	variance = 40
 	rearm_time = 5 SECONDS
-	maximum_magazines = 0
 	hud_state_empty = "rocket_empty"
 
 /datum/action/item_action/coilgun_power
 	keybinding_signals = list(
-		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
+		KEYBINDING_NORMAL = COMSIG_KB_FIREMODE,
 	)
 	use_obj_appeareance = FALSE
 	///The coilgun associated with this action
@@ -261,3 +282,4 @@
 #undef COILGUN_LOW_POWER
 #undef COILGUN_MED_POWER
 #undef COILGUN_HIGH_POWER
+#undef CARRONADE_BEAM_TIME

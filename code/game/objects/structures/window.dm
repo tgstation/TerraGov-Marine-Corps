@@ -191,7 +191,7 @@
 		to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
 
 
-/obj/structure/window/deconstruct(disassembled = TRUE)
+/obj/structure/window/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
 		if(reinf)
 			new /obj/item/stack/sheet/glass/reinforced(loc, 2)
@@ -417,9 +417,8 @@
 /obj/structure/window/framed/update_nearby_icons()
 	QUEUE_SMOOTH_NEIGHBORS(src)
 
-/obj/structure/window/framed/update_icon()
-	QUEUE_SMOOTH(src)
-	return ..()
+/obj/structure/window/framed/update_icon_state()
+	QUEUE_SMOOTH(src) //we update icon state through the smoothing system exclusively
 
 /obj/structure/window/framed/deconstruct(disassembled = TRUE, leave_frame = TRUE)
 	if(window_frame && leave_frame)
@@ -563,6 +562,13 @@
 	max_integrity = 100
 	reinf = 1
 	window_frame = /obj/structure/window_frame/colony/reinforced
+
+/obj/structure/window/framed/colony/cmwindow
+	name = "window"
+	icon = 'icons/obj/smooth_objects/cmwindow.dmi'
+	icon_state = "cmwindow-0"
+	base_icon_state = "cmwindow"
+	window_frame = /obj/structure/window_frame/colony
 
 /obj/structure/window/framed/colony/reinforced/tinted
 	name = "tinted reinforced window"
@@ -729,3 +735,35 @@
 	icon_state = "window-invincible"
 	base_icon_state = "chigusa_wall"
 	resistance_flags = RESIST_ALL
+
+/obj/structure/window/framed/urban
+	name = "window"
+	icon = 'icons/obj/smooth_objects/urban_window.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	max_integrity = 100 //Was 600
+	reinf = TRUE
+	dir = 5
+	window_frame = /obj/structure/window_frame/urban
+
+/obj/structure/window/framed/urban/reinforced
+
+/obj/structure/window/framed/urban/marshalls/cell
+
+/obj/structure/window/framed/urban/colony/office
+
+/obj/structure/window/framed/urban/spaceport/reinforced
+
+/obj/structure/window/framed/urban/colony/hospital
+
+/obj/structure/window/framed/urban/colony/engineering/hull
+
+/obj/structure/window/framed/urban/junk_window
+	name = "window"
+	icon = 'icons/obj/smooth_objects/junk_window.dmi'
+	icon_state = "chigusa_wall-0"
+	base_icon_state = "chigusa_wall"
+	max_integrity = 100 //Was 600
+	reinf = TRUE
+	dir = 5
+	window_frame = /obj/structure/window_frame/junk_frame

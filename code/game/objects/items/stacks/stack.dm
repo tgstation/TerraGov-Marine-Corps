@@ -97,6 +97,7 @@
 /obj/item/stack/examine(mob/user)
 	. = ..()
 	if(amount > 1)
+		. += EXAMINE_SECTION_BREAK
 		. += "There are [amount] [singular_name]\s in the [stack_name]."
 
 /obj/item/stack/equipped(mob/user, slot)
@@ -229,7 +230,7 @@
 			return
 		T.PlaceOnTop(R.result_type)
 	else
-		O = new R.result_type(get_turf(user))
+		O = new R.result_type(get_turf(user), user)
 	if(O)
 		O.setDir(user.dir)
 		O.color = color

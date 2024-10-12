@@ -188,33 +188,33 @@
 	added_spit_delay = 8 SECONDS
 	bonus_projectiles_type = /datum/ammo/xeno/sticky/mini
 	bonus_projectiles_scatter = 22
+	///number of sticky resins made
 	var/bonus_projectile_quantity = 16
-	var/bonus_projectile_range = 3
-	var/bonus_projectile_speed = 1
 
 /datum/ammo/xeno/sticky/mini
 	damage = 5
 	max_range = 3
+	shell_speed = 1
 
 /datum/ammo/xeno/sticky/globe/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	var/turf/initial_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj
-	drop_resin(initial_turf)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, initial_turf), initial_turf)
+	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj.loc
+	drop_resin(det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
 
 /datum/ammo/xeno/sticky/globe/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	var/turf/initial_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
-	drop_resin(initial_turf)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, initial_turf), target_turf)
+	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	drop_resin(det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
 /datum/ammo/xeno/sticky/globe/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	var/turf/initial_turf = get_turf(target_mob)
-	drop_resin(initial_turf)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, initial_turf), initial_turf)
+	var/turf/det_turf = get_turf(target_mob)
+	drop_resin(det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
 
 /datum/ammo/xeno/sticky/globe/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	var/turf/initial_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
-	drop_resin(initial_turf)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, bonus_projectile_range, bonus_projectile_speed, Get_Angle(proj.firer, initial_turf), initial_turf)
+	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	drop_resin(det_turf)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
 /datum/ammo/xeno/acid
 	name = "acid spit"

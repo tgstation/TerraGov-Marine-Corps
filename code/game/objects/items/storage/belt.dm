@@ -711,20 +711,20 @@
 
 /obj/item/storage/belt/shotgun/icc/mixed/Initialize(mapload, ...)
 	. = ..()
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/buckshot(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
-	new /obj/item/ammo_magazine/handful/flechette(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/heavy_buckshot(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
+	new /obj/item/ammo_magazine/handful/barrikada(src)
 
 /obj/item/storage/belt/shotgun/martini
 	name = "martini henry ammo belt"
@@ -777,12 +777,26 @@
 	existing_handful.create_handful(user, 1)
 	update_icon()
 
+/obj/item/storage/belt/shotgun/martini/full/Initialize(mapload, ...)
+	. = ..()
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+	new /obj/item/ammo_magazine/handful/martini(src)
+
 /obj/item/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"
 	desc="The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is specially designed with six holsters to store throwing knives. Not commonly issued, but kept in service."
 	icon_state="knifebelt"
 	worn_icon_state="knifebelt"
-	w_class = WEIGHT_CLASS_NORMAL
 	storage_type = /datum/storage/belt/knifepouch
 
 /obj/item/storage/belt/knifepouch/PopulateContents()

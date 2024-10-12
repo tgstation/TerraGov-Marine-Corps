@@ -91,7 +91,7 @@
 		return
 
 
-/obj/machinery/portable_atmospherics/canister/deconstruct(disassembled = TRUE)
+/obj/machinery/portable_atmospherics/canister/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		if(!(machine_stat & BROKEN))
 			disconnect()

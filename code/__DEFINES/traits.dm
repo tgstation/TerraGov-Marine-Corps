@@ -121,6 +121,9 @@
 #define PISTOL_LACE_TRAIT "pistol_lace"
 #define NIGHT_VISION_GOGGLES_TRAIT "night_vision_goggles"
 #define SUBMERGED_TRAIT "submerged_trait"
+#define TRAIT_DWARF "dwarf"
+/// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
+#define TRAIT_TOO_TALL "too_tall"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect
@@ -182,6 +185,8 @@
 #define TRAIT_MEDIUM_PAIN_RESIST "medium_pain_resist"
 ///is currently riding an armored vehicle
 #define TRAIT_TANK_DESANT "tank_desant"
+///Builds things better
+#define TRAIT_SUPERIOR_BUILDER "superior_builder"
 
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).

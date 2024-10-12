@@ -375,6 +375,18 @@
 	hit_sound = 'sound/effects/woodhit.ogg'
 	max_integrity = 20
 
+/obj/structure/table/wood/gambling/urban
+	icon = 'icons/obj/smooth_objects/urban_table_gambling.dmi'
+	icon_state = "urban_table_gambling-0"
+	base_icon_state = "urban_table_gambling"
+	parts = /obj/item/frame/table/gambling
+
+/obj/structure/table/wood/gambling/urban/black
+	icon = 'icons/obj/smooth_objects/urban_table_gambling_black.dmi'
+	icon_state = "urban_table_gambling_black-0"
+	base_icon_state = "urban_table_gambling_black"
+	parts = /obj/item/frame/table/gambling
+
 /obj/structure/table/black
 	name = "black metal table"
 	desc = "A sleek black metallic surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
@@ -382,6 +394,24 @@
 	icon_state = "black_table-0"
 	base_icon_state = "black_table"
 	table_prefix = "black"
+	parts = /obj/item/frame/table
+
+/obj/structure/table/urban/shiny_black
+	name = "shiny black metal table"
+	desc = "A shiny black metallic surface resting on four legs, looks like it belongs in a boardroom. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	icon = 'icons/obj/smooth_objects/urban_table_black.dmi'
+	icon_state = "urban_table_black-0"
+	base_icon_state = "urban_table_black"
+	table_prefix = "urban_table_black"
+	parts = /obj/item/frame/table
+
+/obj/structure/table/urban/shiny_brown
+	name = "shiny brown metal table"
+	desc = "A shiny brown metallic surface resting on four legs, looks like it belongs in a boardroom. Useful to put stuff on. Can be flipped in emergencies to act as cover."
+	icon = 'icons/obj/smooth_objects/urban_table_brown.dmi'
+	icon_state = "urban_table_brown-0"
+	base_icon_state = "urban_table_brown"
+	table_prefix = "urban_table_brown"
 	parts = /obj/item/frame/table
 
 /obj/structure/table/reinforced
@@ -546,7 +576,7 @@
 		visible_message(span_danger("[O] plows straight through [src]!"))
 		deconstruct(FALSE)
 
-/obj/structure/rack/deconstruct(disassembled = TRUE)
+/obj/structure/rack/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled && parts && dropmetal)
 		new parts(loc)
 	else if(dropmetal)
@@ -555,6 +585,10 @@
 	return ..()
 
 /obj/structure/rack/nometal
+	dropmetal = FALSE
+
+/obj/structure/rack/wood
+	color = "#8B7B5B"
 	dropmetal = FALSE
 
 #undef TABLE_STATUS_WEAKENED

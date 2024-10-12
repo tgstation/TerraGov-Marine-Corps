@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 /datum/action/ability/xeno_action/spawn_hugger/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We can now spawn another young one."))
-	owner.playsound_local(owner, 'sound/effects/xeno_newlarva.ogg', 25, 0, 1)
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
 /datum/action/ability/xeno_action/spawn_hugger/can_use_action(silent = FALSE, override_flags)
@@ -430,8 +430,8 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.apply_damage(stamina_dmg, STAMINA)
 
 	var/datum/internal_organ/O
-	for(var/i in list("heart", "lungs", "liver"))
-		O = victim.internal_organs_by_name[i]
+	for(var/i in list(ORGAN_SLOT_HEART, ORGAN_SLOT_LUNGS, ORGAN_SLOT_LIVER))
+		O = victim.get_organ_slot(i)
 		O.take_damage(debuff, TRUE)
 
 	young.adjust_boost_timer(20, 40)

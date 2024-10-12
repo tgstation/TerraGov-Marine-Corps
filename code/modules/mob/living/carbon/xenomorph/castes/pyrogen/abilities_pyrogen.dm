@@ -96,7 +96,7 @@
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
-	playsound(get_turf(xeno), 'sound/effects/fireball.ogg', 50)
+	playsound(get_turf(xeno), 'sound/effects/alien/fireball.ogg', 50)
 
 	var/obj/projectile/magic_bullshit = new(get_turf(src))
 	magic_bullshit.generate_bullet(/datum/ammo/xeno/fireball)
@@ -145,123 +145,31 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_FIRENADO,
 	)
 
-/obj/effect/xenomorph/firenado
-	name = "Plasma Whirlwind"
-	desc = "A glowing whirlwind of... cold plasma? Seems to \"burn\" "
-	icon = 'icons/effects/64x64.dmi'
-	icon_state = "whirlwind"
-	anchored = TRUE
-	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	pixel_x = -16
-	/// Target turf to bias going towards
-	var/turf/target
-	/// Tracks how many times we moved
-	var/moves = 0
-
-
-/obj/effect/xenomorph/firenado/Initialize(mapload, arg_target)
+/datum/action/ability/activable/xeno/firestorm/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
-	START_PROCESSING(SSfastprocess, src)
-	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
-	)
-	AddElement(/datum/element/connect_loc, connections)
-	target = arg_target
-	QDEL_IN(src, 2 SECONDS)
-
-/obj/effect/xenomorph/firenado/Destroy()
-	STOP_PROCESSING(SSfastprocess, src)
-	return ..()
-
-/// called when attacking a mob
-/obj/effect/xenomorph/firenado/proc/mob_act(mob/living/carbon/human/target)
-	if(target.status_flags & GODMODE || target.stat == DEAD)
+	if(!.)
 		return
-	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-	if(debuff)
-		debuff.add_stacks(PYROGEN_TORNADO_MELTING_FIRE_STACKS)
-	else
-		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_TORNADO_MELTING_FIRE_STACKS)
-	target.take_overall_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN, FIRE, max_limbs = 2)
-
-///Effects applied to a mob that crosses a burning turf
-/obj/effect/xenomorph/firenado/proc/on_cross(datum/source, mob/living/carbon/human/target, oldloc, oldlocs)
-	if(!istype(target))
+	var/turf/owner_turf = get_turf(owner)
+	if(!isopenturf(owner_turf) || isspaceturf(owner_turf))
 		return
-	mob_act(target)
-	qdel(src)
-
-/obj/effect/xenomorph/firenado/Bump(atom/target)
-	. = ..()
-	if(iswallturf(target))
-		if(!istype(target,/turf/closed/wall/resin))
-			var/turf/closed/wall/wall = target
-			wall.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
-			qdel(src)
+	for(var/atom/movable/thing AS in owner_turf)
+		if(thing.density && !(thing.allow_pass_flags & PASS_AIR))
+			if(!silent)
+				owner.balloon_alert(owner, "Obstructed by [thing]")
 			return
-	else if(isobj(target) && !istype(target, /obj/effect/xenomorph/firenado))
-		if(!istype(target, /obj/structure/mineral_door/resin) && !istype(target, /obj/structure/xeno))
-			var/obj/object = target
-			object.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
-			qdel(src)
-	else if(ismob(target))
-		mob_act(target)
-		qdel(src)
-
-/obj/effect/xenomorph/firenado/process()
-	var/turf/current_location = loc
-	if(!istype(current_location)) //Is it a valid turf?
-		qdel(src)
-		return
-	for(var/mob/living/carbon/human/humie in current_location)
-		if(humie.stat == DEAD || humie.status_flags & GODMODE)
-			continue
-		mob_act(humie)
-	/// random number so it isn't north biased by default if no target
-	var/target_dir = 666
-	if(target)
-		target_dir = get_dir(src,target)
-	var/turf/move_turf
-	if(moves%2 || !target)
-		move_turf = pickweight(
-			list(
-				get_step(src, NORTH) = target_dir == NORTH ? 3 : 1,
-				get_step(src, SOUTH) = target_dir == SOUTH ? 3 : 1,
-				get_step(src, EAST) = target_dir == EAST ? 3 : 1,
-				get_step(src, WEST) = target_dir == WEST ? 3 : 1,
-			)
-		)
-	else
-		move_turf = get_step(src, target_dir)
-
-
-	// before moving so that if we hit someone , we don't also put down a fire that they will instantly gain another stack from
-	if(!locate(/obj/fire/melting_fire) in current_location)
-		new /obj/fire/melting_fire(current_location)
-	Move(move_turf)
-	moves++
+	return TRUE
 
 /datum/action/ability/activable/xeno/firestorm/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/pyrogen/xeno = owner
-
-	if(!do_after(xeno, 0.6 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
+	if(!do_after(owner, 0.6 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
-	playsound(get_turf(xeno), 'sound/effects/prepare.ogg', 50)
-
-	var/list/pickable_turfs = RANGE_TURFS(1, xeno)
+	var/turf/owner_turf = get_turf(owner)
+	playsound(owner_turf, 'sound/effects/alien/prepare.ogg', 50)
 	for(var/amount in 1 to PYROGEN_FIRESTORM_TORNADE_COUNT)
-		var/turf/chosen = pick_n_take(pickable_turfs)
-		while(chosen.density || QDELETED(chosen))
-			if(length(pickable_turfs) == 0)
-				chosen = get_turf(src)
-				break
-			chosen = pick_n_take(pickable_turfs)
-
-		new /obj/effect/xenomorph/firenado(chosen, target)
+		new /obj/effect/xenomorph/firenado(owner_turf, get_dir(owner, target))
 
 	succeed_activate()
 	add_cooldown()
@@ -332,7 +240,7 @@
 		return
 
 	beam = owner.loc.beam(targets[length(targets)], "heatray", beam_type = /obj/effect/ebeam)
-	playsound(owner, 'sound/effects/firebeam.ogg', 80)
+	playsound(owner, 'sound/effects/alien/firebeam.ogg', 80)
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, HEATRAY_BEAM_ABILITY_TRAIT)
 	RegisterSignals(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
 	started_firing = world.time
@@ -359,9 +267,12 @@
 
 				human_victim.flash_weak_pain()
 				animation_flash_color(human_victim)
-			else if(isvehicle(victim))
-				var/obj/vehicle/veh_victim = victim
-				veh_victim.take_damage(PYROGEN_HEATRAY_HIT_DAMAGE, BURN, FIRE)
+			else if(isvehicle(victim) || ishitbox(victim))
+				var/obj/obj_victim = victim
+				var/damage_add = 0
+				if(ismecha(obj_victim))
+					damage_add = 20
+				obj_victim.take_damage((PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE + damage_add), BURN, FIRE)
 	if(world.time - started_firing > PYROGEN_HEATRAY_MAXDURATION)
 		stop_beaming()
 		return
@@ -377,3 +288,91 @@
 	targets = null
 	started_firing = 0
 	add_cooldown()
+
+
+
+//firenade
+/obj/effect/xenomorph/firenado
+	name = "Plasma Whirlwind"
+	desc = "A glowing whirlwind of... cold plasma? Seems to \"burn\" "
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "whirlwind"
+	anchored = TRUE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	pixel_x = -16
+	/// Target turf to bias going towards
+	var/target_dir
+
+/obj/effect/xenomorph/firenado/Initialize(mapload, new_target_dir)
+	. = ..()
+	START_PROCESSING(SSfastprocess, src)
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+	target_dir = new_target_dir ? new_target_dir : pick(GLOB.alldirs)
+	QDEL_IN(src, 2 SECONDS)
+	for(var/mob/living/living_victim in loc)
+		mob_act(living_victim)
+
+/obj/effect/xenomorph/firenado/Bump(atom/target)
+	. = ..()
+	if(isliving(target))
+		mob_act(target)
+		return
+	if(iswallturf(target))
+		if(istype(target,/turf/closed/wall/resin))
+			return
+		var/turf/closed/wall/wall = target
+		wall.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
+		qdel(src)
+		return
+	if(!isobj(target))
+		return
+	if(istype(target, /obj/structure/mineral_door/resin) || istype(target, /obj/structure/xeno))
+		return
+	var/obj/object = target
+	object.take_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN)
+	qdel(src)
+
+/obj/effect/xenomorph/firenado/process()
+	var/turf/current_location = loc
+	if(!istype(current_location))
+		qdel(src)
+		return
+	var/next_step_dir = target_dir
+	if(prob(50))
+		next_step_dir = angle2dir(dir2angle(next_step_dir) + pick(45, -45))
+	else if(prob(50))
+		next_step_dir = angle2dir(dir2angle(next_step_dir) + pick(90, -90))
+
+	Move(get_step(src, next_step_dir))
+
+/obj/effect/xenomorph/firenado/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	if(!isturf(loc))
+		return
+	if(locate(/obj/fire/melting_fire) in loc)
+		return
+	new /obj/fire/melting_fire(loc)
+
+/// called when attacking a mob
+/obj/effect/xenomorph/firenado/proc/mob_act(mob/living/target)
+	if(isxeno(target))
+		return
+	if(target.status_flags & GODMODE || target.stat == DEAD)
+		return
+	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+	if(debuff)
+		debuff.add_stacks(PYROGEN_TORNADO_MELTING_FIRE_STACKS)
+	else
+		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_TORNADO_MELTING_FIRE_STACKS)
+	target.take_overall_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN, FIRE, max_limbs = 2)
+	qdel(src)
+
+///Effects applied to a mob that crosses a burning turf
+/obj/effect/xenomorph/firenado/proc/on_cross(datum/source, atom/arrived, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!ishuman(arrived))
+		return
+	mob_act(arrived)

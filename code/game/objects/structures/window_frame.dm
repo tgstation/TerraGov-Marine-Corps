@@ -148,6 +148,13 @@
 /obj/structure/window_frame/colony/reinforced/weakened
 	max_integrity = 150
 
+/obj/structure/window_frame/colony/cm_frame
+	icon = 'icons/obj/smooth_objects/cmwindowframe.dmi'
+	icon_state = "cmwindowframe-0"
+	basestate = "cmwindowframe"
+	base_icon_state = "cmwindowframe"
+	max_integrity = 300
+
 /obj/structure/window_frame/chigusa
 	icon = 'icons/obj/smooth_objects/chigusa_window_frame.dmi'
 	icon_state = "chigusa_window_frame-0"
@@ -192,3 +199,33 @@
 		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
 		SMOOTH_GROUP_CANTERBURY,
 	)
+
+/obj/structure/window_frame/kutjevo
+	icon = 'icons/obj/smooth_objects/kutjevo_window_frame.dmi'
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+	basestate = "col_window_frame"
+
+/obj/structure/window_frame/hybrisa
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_WINDOW_FRAME, SMOOTH_GROUP_CANTERBURY)
+	canSmoothWith = list(
+		SMOOTH_GROUP_WINDOW_FULLTILE,
+		SMOOTH_GROUP_AIRLOCK,
+		SMOOTH_GROUP_WINDOW_FRAME,
+		SMOOTH_GROUP_SURVIVAL_TITANIUM_WALLS,
+		SMOOTH_GROUP_CANTERBURY,
+	)
+
+/obj/structure/window_frame/junk_frame
+	icon = 'icons/obj/smooth_objects/junk_window_frame.dmi'
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+	basestate = "col_window_frame"
+
+/obj/structure/window_frame/urban
+	icon = 'icons/obj/smooth_objects/urban_window_frame.dmi'
+	icon_state = "col_window_frame-0"
+	base_icon_state = "col_window_frame"
+
+/obj/structure/window_frame/urban/colony/engineering/reinforced

@@ -182,15 +182,15 @@
 
 
 /mob/living/carbon/human/has_brain()
-	if(internal_organs_by_name["brain"])
-		var/datum/internal_organ/brain = internal_organs_by_name["brain"]
+	if(get_organ_slot(ORGAN_SLOT_BRAIN))
+		var/datum/internal_organ/brain = get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(brain && istype(brain))
 			return 1
 	return 0
 
 /mob/living/carbon/human/has_eyes()
-	if(internal_organs_by_name["eyes"])
-		var/datum/internal_organ/eyes = internal_organs_by_name["eyes"]
+	if(get_organ_slot(ORGAN_SLOT_EYES))
+		var/datum/internal_organ/eyes = get_organ_slot(ORGAN_SLOT_EYES)
 		if(eyes && istype(eyes))
 			return 1
 	return 0
@@ -271,7 +271,7 @@
  * Returns true otherwise
  */
 /mob/living/carbon/human/proc/has_working_organs()
-	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
+	var/datum/internal_organ/heart/heart = get_organ_slot(ORGAN_SLOT_HEART)
 
 	if(species.species_flags & ROBOTIC_LIMBS)
 		return TRUE // combat robots and synthetics don't have any of these for some reason
@@ -323,3 +323,56 @@
 		return DEFIB_FAIL_TOO_MUCH_DAMAGE
 
 	return DEFIB_POSSIBLE
+
+/**
+ * Setter for mob height
+ *
+ * Exists so that the update is done immediately
+ *
+ * Returns TRUE if changed, FALSE otherwise
+ */
+/mob/living/carbon/human/proc/set_mob_height(new_height)
+	if(mob_height == new_height)
+		return FALSE
+	if(new_height == HUMAN_HEIGHT_DWARF || new_height == MONKEY_HEIGHT_DWARF)
+		CRASH("Don't set height to dwarf height directly, use dwarf trait instead.")
+	if(new_height == MONKEY_HEIGHT_MEDIUM)
+		CRASH("Don't set height to monkey height directly, use monkified gene/species instead.")
+
+	mob_height = new_height
+	regenerate_icons()
+	return TRUE
+
+/**
+ * Getter for mob height
+ *
+ * Mainly so that dwarfism can adjust height without needing to override existing height
+ *
+ * Returns a mob height num
+ */
+/mob/living/carbon/human/proc/get_mob_height()
+	if(HAS_TRAIT(src, TRAIT_DWARF))
+		if(ismonkey(src))
+			return MONKEY_HEIGHT_DWARF
+		else
+			return HUMAN_HEIGHT_DWARF
+	if(HAS_TRAIT(src, TRAIT_TOO_TALL))
+		if(ismonkey(src))
+			return MONKEY_HEIGHT_TALL
+		else
+			return HUMAN_HEIGHT_TALLEST
+
+	else if(ismonkey(src))
+		return MONKEY_HEIGHT_MEDIUM
+
+	return mob_height
+
+///Gets organ by name
+/mob/living/carbon/human/proc/get_organ_slot(string)
+	return internal_organs_by_name[string]
+
+///Removes organ by name
+/mob/living/carbon/human/proc/remove_organ_slot(string)
+	var/datum/internal_organ/organ = get_organ_slot(string)
+	internal_organs_by_name -= string
+	internal_organs -= organ

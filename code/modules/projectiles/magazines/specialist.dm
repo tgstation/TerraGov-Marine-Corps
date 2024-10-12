@@ -1,4 +1,3 @@
-//-------------------------------------------------------
 //SNIPER RIFLES
 //Keyword rifles. They are subtype of rifles, but still contained here as a specialist weapon.
 
@@ -7,12 +6,12 @@
 	desc = "A magazine of antimaterial rifle ammo."
 	caliber = CALIBER_10X28
 	icon_state = "t26"
+	icon = 'icons/obj/items/ammo/sniper.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	max_rounds = 15
 	default_ammo = /datum/ammo/bullet/sniper
 	reload_delay = 3
 	icon_state_mini = "mag_sniper"
-
 
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper SR-26 incendiary magazine (10x28mm)"
@@ -38,7 +37,6 @@
 	icon_state_mini = "mag_rifle_big_white"
 	max_rounds = 6
 
-
 //SVD //Based on the actual Dragunov sniper rifle.
 
 /obj/item/ammo_magazine/sniper/svd
@@ -50,14 +48,13 @@
 	max_rounds = 10
 	icon_state_mini = "mag_rifle"
 
-
-
 //tx8 magazines
 
 /obj/item/ammo_magazine/rifle/tx8
 	name = "\improper high velocity magazine (10x28mm)"
 	desc = "A magazine of overpressured high velocity rounds for use in the BR-8 battle rifle. The BR-8 battle rifle is the only gun that can chamber these rounds."
 	icon_state = "tx8"
+	icon = 'icons/obj/items/ammo/sniper.dmi'
 	caliber = CALIBER_10X28_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/tx8
 	max_rounds = 25
@@ -80,7 +77,6 @@
 	icon_state_mini = "mag_rifle_big_blue"
 	bonus_overlay = "tx8_impact"
 
-
 //-------------------------------------------------------
 //M5 RPG
 
@@ -89,6 +85,7 @@
 	desc = "A precursor to all kinds of rocket ammo unfit for normal use. How did you get this anyway?"
 	caliber = CALIBER_84MM
 	icon_state = "rocket_he"
+	icon = 'icons/obj/items/ammo/rocket.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	max_rounds = 1
@@ -223,7 +220,6 @@
 	icon_state = "shell_tanglefoot"
 	default_ammo = /datum/ammo/rocket/recoilless/chemical/plasmaloss
 
-
 //-------------------------------------------------------
 //one use rpg
 
@@ -325,7 +321,7 @@
 /obj/item/ammo_magazine/rocket/icc
 	name = "\improper 84mm high-explosive tube"
 	desc = "A high explosive warhead for MP-IRL rocket launcher. Causes a strong explosion over a respectable area."
-	icon_state = "iccrpg_he"
+	icon_state = "icc_he"
 	default_ammo = /datum/ammo/rocket/som
 	reload_delay = 2 SECONDS
 	bonus_overlay = "iccrpg_he"
@@ -333,7 +329,7 @@
 /obj/item/ammo_magazine/rocket/icc/light
 	name = "\improper 84mm light-explosive tube"
 	desc = "A light explosive warhead for the MP-IRL rocket launcher. Causes a light explosion over a large area but low impact damage."
-	icon_state = "iccrpg_le"
+	icon_state = "icc_le"
 	default_ammo = /datum/ammo/rocket/som/light
 	reload_delay = 1 SECONDS
 	bonus_overlay = "iccrpg_le"
@@ -341,14 +337,14 @@
 /obj/item/ammo_magazine/rocket/icc/heat
 	name = "\improper 84mm HEAT tube"
 	desc = "A high explosive anti armor warhead for the MP-IRL rocket launcher. Designed to punch through the toughest armor."
-	icon_state = "iccrpg_heat"
+	icon_state = "icc_heat"
 	default_ammo = /datum/ammo/rocket/som/heat
 	bonus_overlay = "iccrpg_heat"
 
 /obj/item/ammo_magazine/rocket/icc/thermobaric
 	name = "\improper 84mm thermobaric tube"
 	desc = "A thermobaric warhead for the MP-IRL rocket launcher. Causes a powerful fuel air explosion over a moderate area."
-	icon_state = "iccrpg_thermobaric"
+	icon_state = "icc_thermobaric"
 	default_ammo = /datum/ammo/rocket/som/thermobaric
 	bonus_overlay = "iccrpg_thermobaric"
 
@@ -384,6 +380,7 @@
 	caliber = CALIBER_RAILGUN
 	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
 	icon_state = "railgun"
+	icon = 'icons/obj/items/ammo/misc.dmi'
 	default_ammo = /datum/ammo/bullet/railgun
 	max_rounds = 1
 	reload_delay = 20 //Hard to reload.
@@ -411,6 +408,7 @@
 	desc = "A canister holding a projectile to be used inside a pepperball gun."
 	caliber = CALIBER_PEPPERBALL
 	icon_state = "pepperball"
+	icon = 'icons/obj/items/ammo/misc.dmi'
 	default_ammo = /datum/ammo/bullet/pepperball
 	max_rounds = 100
 	w_class = WEIGHT_CLASS_NORMAL
@@ -428,6 +426,8 @@
 	name = "\improper MG-100 Vindicator powerpack"
 	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System.\nClick the icon in the top left to reload your MG-100."
 	icon_state = "powerpack"
+	worn_icon_state = "powerpack"
+	icon = 'icons/obj/items/ammo/powerpack.dmi'
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BACK
 	magazine_flags = MAGAZINE_WORN
@@ -442,17 +442,17 @@
 	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/fancy
-	icon_state = "w_powerpack"
+	icon_state = "powerpack_fancy"
 	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/merc
-	icon_state = "p_powerpack"
+	icon_state = "powerpack_merc"
 	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/smartgun
 	name = "\improper SG-85 powerpack"
 	desc = "A reinforced backpack heavy with the IFF altered ammunition, onboard micro generator, and extensive cooling system which enables the SG-85 gatling gun to operate. \nUse the SG-85 on the backpack itself to connect them."
-	icon_state = "sg_powerpack"
+	icon_state = "powerpack_sg"
 	magazine_flags = MAGAZINE_WORN|MAGAZINE_REFILLABLE
 	default_ammo = /datum/ammo/bullet/smart_minigun
 	current_rounds = 1000
@@ -464,7 +464,7 @@
 /obj/item/ammo_magazine/minigun_wheelchair
 	name = "\improper Mounted MG-100 Vindicator ammo rack"
 	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
-	icon = 'icons/obj/items/ammo.dmi'
+	icon = 'icons/obj/items/ammo/misc.dmi'
 	icon_state = "minigun"
 	atom_flags = CONDUCT
 	magazine_flags = MAGAZINE_REFILLABLE
@@ -473,6 +473,17 @@
 	default_ammo = /datum/ammo/bullet/minigun
 	current_rounds = 1000
 	max_rounds = 1000
+	reload_delay = 0.75 SECONDS
+
+/obj/item/ammo_magazine/bike_minigun
+	name = "\improper Mounted MG-100 Vindicator ammo rack"
+	desc = "A case filled to the brim with ammunition. Appears custom made to be slotted into a feeding system."
+	icon = 'icons/obj/items/ammo/misc.dmi'
+	icon_state = "minigun"
+	w_class = WEIGHT_CLASS_HUGE
+	default_ammo = /datum/ammo/bullet/minigun_light
+	current_rounds = 750
+	max_rounds = 750
 	reload_delay = 0.75 SECONDS
 
 // ICC coilgun
@@ -486,4 +497,3 @@
 	max_rounds = 5
 	reload_delay = 10
 	icon_state_mini = "mag_dmr"
-
