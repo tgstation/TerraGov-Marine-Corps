@@ -727,6 +727,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		target_initial_sunder = xeno_target.sunder
 	rewind_timer = addtimer(CALLBACK(src, PROC_REF(start_rewinding)), start_rewinding, TIMER_STOPPABLE)
 	RegisterSignal(targeted, COMSIG_MOVABLE_MOVED, PROC_REF(save_move))
+	RegisterSignal(targeted, COMSIG_MOVABLE_Z_CHANGED, PROC_REF(target_changed_zlevel))
 	targeted.add_filter("prerewind_blur", 1, radial_blur_filter(0.04))
 	targeted.balloon_alert(targeted, "You feel anchored to the past!")
 	ADD_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
@@ -743,6 +744,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 /datum/action/ability/activable/xeno/rewind/proc/start_rewinding()
 	targeted.remove_filter("prerewind_blur")
 	UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(targeted, COMSIG_MOVABLE_Z_CHANGED)
 	if(QDELETED(targeted) || targeted.stat != CONSCIOUS)
 		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
 		targeted = null
@@ -782,7 +784,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	new /obj/effect/temp_visual/after_image(loc_a, targeted)
 	INVOKE_NEXT_TICK(src, PROC_REF(rewind))
 
-// Removes all things associated while someone is being timeshifted, effectively stopping it from happening.
+// Removes all things associated while someone is being timeshifted, effectively stopping it from happening/continuing.
 /datum/action/ability/activable/xeno/rewind/proc/cancel_timeshift()
 	last_target_locs_list = null
 	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, TIMESHIFT_TRAIT)
@@ -792,6 +794,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		targeted.remove_filter("prerewind_blur")
 		targeted.remove_filter("rewind_blur")
 		targeted.status_flags &= ~(INCORPOREAL|GODMODE)
+		UnregisterSignal(targeted, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(targeted, COMSIG_MOVABLE_Z_CHANGED)
 		REMOVE_TRAIT(targeted, TRAIT_TIME_SHIFTED, XENO_TRAIT)
 		targeted = null
 
