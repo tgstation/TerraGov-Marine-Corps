@@ -215,6 +215,7 @@
 #define TRAIT_XENOMORPH_INVISIBLE_BLOOD "invisible_blood"
 #define TRAIT_VALHALLA_XENO "valhalla_xeno"
 #define TRAIT_BULWARKED_TURF "bulwarked_turf" // turf is affected by bulwark ability
+#define TRAIT_BLOODTHIRSTER "bloodthirster" // xeno has the bloodthirster ability
 
 //important_recursive_contents traits
 /*

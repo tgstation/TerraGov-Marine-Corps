@@ -50,3 +50,6 @@
 	var/datum/action/ability/xeno_action/endure/endure_ability = actions_by_path[/datum/action/ability/xeno_action/endure]
 	return endure_ability.endure_threshold
 
+
+/mob/living/carbon/xenomorph/ravager/bloodthirster
+	caste_base_type = /datum/xeno_caste/ravager/bloodthirster
