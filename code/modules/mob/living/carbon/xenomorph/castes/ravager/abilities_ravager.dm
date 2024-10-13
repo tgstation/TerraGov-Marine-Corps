@@ -695,6 +695,7 @@
 	desc = "Mark yourself for death, filling your bloodthirst, but failing to deal enough damage to living creatures while it is active instantly kills you."
 	cooldown_duration = DEATHMARK_DURATION*3
 	COOLDOWN_DECLARE(message_cooldown)
+	//tracker for damage dealt during deathmark
 	var/damage_dealt = 0
 
 /datum/action/ability/xeno_action/deathmark/action_activate()
