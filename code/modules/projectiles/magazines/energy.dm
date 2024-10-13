@@ -207,7 +207,6 @@
 	self_recharge = FALSE
 
 /obj/item/cell/lasgun/volkite/powerpack/marine/backpack
-
 	name = "\improper TE powerbackpack"
 	desc = "A recently developed mass produced backpack which charges any TE technological achievement."
 	icon_state = "lasgun_backpack"
