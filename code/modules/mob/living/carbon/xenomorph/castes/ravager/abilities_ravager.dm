@@ -1,6 +1,6 @@
 #define STAGE_ONE_BLOODTHIRST 100
-#define STAGE_TWO_BLOODTHIRST 200
-#define STAGE_THREE_BLOODTHIRST 300
+#define STAGE_TWO_BLOODTHIRST 300
+#define STAGE_THREE_BLOODTHIRST 400
 
 // ***************************************
 // *********** Charge

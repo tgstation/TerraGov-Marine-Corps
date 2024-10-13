@@ -106,7 +106,7 @@
 	speed = -1.0
 
 	// *** Plasma *** //
-	plasma_max = 400
+	plasma_max = 500
 	plasma_gain = 0
 	plasma_regen_limit = 0.5 // tivi todo
 	plasma_icon_state = "fury"
