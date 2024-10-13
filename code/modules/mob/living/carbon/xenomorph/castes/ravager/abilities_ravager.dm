@@ -18,6 +18,9 @@
 	///charge distance
 	var/charge_range = RAV_CHARGEDISTANCE
 
+/datum/action/ability/activable/xeno/charge/nocost
+	ability_cost = 0
+
 /datum/action/ability/activable/xeno/charge/use_ability(atom/A)
 	if(!A)
 		return
@@ -122,6 +125,9 @@
 	)
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
+
+/datum/action/ability/activable/xeno/ravage/nocost
+	ability_cost = 0
 
 /datum/action/ability/activable/xeno/ravage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
@@ -242,6 +248,9 @@
 	///Timer for Endure's warning
 	var/endure_warning_duration
 
+/datum/action/ability/xeno_action/endure/nocost
+	ability_cost = 0
+
 /datum/action/ability/xeno_action/endure/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We feel able to imbue ourselves with plasma to Endure once again!"))
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
@@ -359,6 +368,9 @@
 	var/rage_sunder
 	///Determines the Plasma to remove when Rage ends
 	var/rage_plasma
+
+/datum/action/ability/xeno_action/rage/nocost
+	ability_cost = 0
 
 /datum/action/ability/xeno_action/rage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to enter our rage once again."))
@@ -618,10 +630,15 @@
 	name = "bloodthirst"
 	desc = "tivi todo"
 	hidden = TRUE
+	///tick time of last time we attacked a human
 	var/last_fight_time
+	///time when we last hit 0 bloodthirst/plasma
 	var/hit_zero_time
+	/// delay until decaying starts
 	var/decay_delay = 30 SECONDS
+	///once bloodthirst hits 0 how long
 	var/damage_delay = 30 SECONDS
+	///used to track if effects played for disintegration start
 	var/disintegrating = FALSE
 
 /datum/action/ability/xeno_action/bloodthirst/give_action(mob/living/L)
@@ -650,6 +667,8 @@
 
 /datum/action/ability/xeno_action/bloodthirst/process()
 	var/mob/living/carbon/xenomorph/xeno = owner
+	if(!last_fight_time) // you may live until first attack happens
+		return
 	if(last_fight_time + decay_delay > world.time)
 		return
 	if(xeno.use_plasma(BLOODTHIRST_DECAY_PER_TICK))
