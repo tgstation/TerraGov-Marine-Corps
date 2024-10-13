@@ -511,7 +511,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	succeed_activate()
 	add_cooldown()
 	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
-	if(portal_two && !QDELETED(portal_two))
+	if(!QDELETED(portal_two))
 		link_portals()
 
 /datum/action/ability/xeno_action/portal/alternate_action_activate()
@@ -522,7 +522,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	succeed_activate()
 	add_cooldown()
 	playsound(owner.loc, 'sound/effects/portal_opening.ogg', 20)
-	if(portal_one && !QDELETED(portal_one))
+	if(!QDELETED(portal_one))
 		link_portals()
 
 /// Link the two portals if possible
