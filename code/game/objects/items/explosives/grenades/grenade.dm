@@ -99,6 +99,9 @@
 			idiot.amputate_limb(BODY_ZONE_PRECISE_L_HAND)
 		else if(idiot.r_hand == src)
 			idiot.amputate_limb(BODY_ZONE_PRECISE_R_HAND)
+		idiot.visible_message(span_danger("[idiot]'s hand is blown into tiny pieces by the detonating [src]!"),
+		span_userdanger("You feel incredible pain and stupidity as the [src] blows your hand up."))
+		idiot.emote("scream")
 	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
 	qdel(src)
 
