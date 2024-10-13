@@ -448,7 +448,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		gun.stop_fire()
 		firing = FALSE
 		update_minimap_icon()
-	if(!gun.rounds)
+	if(gun.rounds <= 0) //fucking lasers
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
