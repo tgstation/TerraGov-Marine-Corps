@@ -144,6 +144,9 @@ SUBSYSTEM_DEF(explosions)
 		else if(light_impact_range || weak_impact_range)
 			explosion_sound = SFX_EXPLOSION_SMALL
 			far_explosion_sound = SFX_EXPLOSION_SMALL_DISTANT
+		explosion_sound = sound(get_sfx(explosion_sound))
+		far_explosion_sound = sound(get_sfx(far_explosion_sound))
+		creak_sound = sound(get_sfx(creak_sound))
 
 		var/list/listeners = SSmobs.clients_by_zlevel[epicenter.z].Copy()
 		for(var/mob/ai_eye AS in GLOB.aiEyes)
