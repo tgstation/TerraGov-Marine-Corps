@@ -66,6 +66,15 @@
 	if(user.throw_item(target))
 		user.changeNext_move(CLICK_CD_THROWING)
 
+/obj/item/explosive/grenade/update_overlays()
+	. = ..()
+	if(active && dangerous)
+		. += new /obj/effect/overlay/danger
+
+/obj/item/explosive/grenade/fire_act(burn_level)
+	activate()
+
+///Activates the grenade
 /obj/item/explosive/grenade/proc/activate(mob/user)
 	if(active)
 		return
@@ -86,11 +95,6 @@
 	addtimer(CALLBACK(src, PROC_REF(prime)), det_time)
 	return TRUE
 
-/obj/item/explosive/grenade/update_overlays()
-	. = ..()
-	if(active && dangerous)
-		. += new /obj/effect/overlay/danger
-
 ///Detonation effects
 /obj/item/explosive/grenade/proc/prime()
 	if(ishuman(loc))
@@ -105,9 +109,6 @@
 	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
 	qdel(src)
 
-/obj/item/explosive/grenade/fire_act(burn_level)
-	activate()
-
 ///Adjusts det time, used for grenade launchers
 /obj/item/explosive/grenade/proc/launched_det_time()
-	det_time = min(10, det_time)
+	det_time = min(1 SECONDS, det_time)
