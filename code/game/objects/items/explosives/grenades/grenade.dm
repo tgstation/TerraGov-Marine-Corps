@@ -91,8 +91,14 @@
 	if(active && dangerous)
 		. += new /obj/effect/overlay/danger
 
-
+///Detonation effects
 /obj/item/explosive/grenade/proc/prime()
+	if(ishuman(loc))
+		var/mob/living/carbon/human/idiot = loc
+		if(idiot.l_hand == src)
+			idiot.amputate_limb(BODY_ZONE_PRECISE_L_HAND)
+		else if(idiot.r_hand == src)
+			idiot.amputate_limb(BODY_ZONE_PRECISE_R_HAND)
 	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
 	qdel(src)
 
