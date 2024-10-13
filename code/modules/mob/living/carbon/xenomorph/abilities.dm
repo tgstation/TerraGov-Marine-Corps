@@ -43,6 +43,7 @@
 
 /datum/action/ability/activable/xeno/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
 	ability_cost = initial(ability_cost) * initial(weed_type.ability_cost_mult)
+	ability_cost = SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost
 	return ..()
 
 /datum/action/ability/activable/xeno/plant_weeds/action_activate()
@@ -84,7 +85,7 @@
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.weeds_planted++
 	add_cooldown()
-	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
+	succeed_activate()
 
 /datum/action/ability/activable/xeno/plant_weeds/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(choose_weed))
