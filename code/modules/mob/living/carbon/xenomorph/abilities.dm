@@ -60,6 +60,8 @@
  * The signal happens at the same time of gamestate changing, so that variable cannot be depended on.
  */
 /datum/action/ability/activable/xeno/plant_weeds/proc/update_ability_cost_shutters()
+	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE))
 	update_ability_cost(TRUE)
 	update_button_icon()
 
