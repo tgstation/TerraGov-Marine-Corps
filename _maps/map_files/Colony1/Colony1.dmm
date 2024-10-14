@@ -1884,8 +1884,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/cic)
 "czo" = (
-/obj/structure/largecrate/supply/floodlights,
-/turf/open/floor/plating/ground/snow/layer3,
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/turf/open/floor/plating/ground/snow/layer2,
 /area/lv624/ground/caves{
 	ceiling = 2;
 	name = "HQ Tunnels";
@@ -2985,7 +2985,6 @@
 	static_lighting = 1
 	})
 "dPH" = (
-/obj/structure/mineral_door/wood,
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory{
 	id = "brig_armory"
 	},
@@ -3724,6 +3723,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar2)
 "eNI" = (
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/mainship/cargo/arrow,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
 	name = "HQ Northeast Hallways"
@@ -3965,7 +3965,9 @@
 "fbF" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
+/area/mainship/groundhq/ntf/hallways/starboard_hallway{
+	name = "HQ Central Hallways"
+	})
 "fcQ" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -4330,6 +4332,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "fFk" = (
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
 	name = "HQ Northeast Hallways"
@@ -6261,7 +6264,6 @@
 	id = "hqlz2";
 	name = "HQ LZ2"
 	},
-/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar2)
 "ikJ" = (
@@ -6357,7 +6359,6 @@
 /obj/machinery/camera/autoname/mainship{
 	dir = 8
 	},
-/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/stern_hallway{
 	name = "HQ Western hallways"
@@ -7989,6 +7990,7 @@
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "kwM" = (
 /obj/structure/cable,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/mainship/red,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "kwU" = (
@@ -9459,7 +9461,7 @@
 /area/mainship/squads/req)
 "mFG" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
-/turf/open/floor/plating,
+/turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar2)
 "mFJ" = (
 /turf/open/floor/mainship/sterile/side,
@@ -9845,9 +9847,10 @@
 /area/mainship/ntf/fcroom)
 "ndj" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
-/obj/effect/spawner/random/misc/structure/supplycrate,
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar2)
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/hallways/aft_hallway{
+	name = "HQ Northeast Hallways"
+	})
 "neG" = (
 /obj/structure/table/mainship,
 /obj/machinery/computer/atmos_alert,
@@ -10027,9 +10030,8 @@
 	outside = 0
 	})
 "nte" = (
-/obj/structure/flora/ausbushes/ppflowers,
 /obj/effect/spawner/random/misc/structure/supplycrate,
-/turf/open/floor/plating/ground/snow/layer3,
+/turf/open/floor/plating/ground/snow/layer0,
 /area/lv624/ground/caves{
 	ceiling = 2;
 	name = "HQ Tunnels";
@@ -10376,7 +10378,6 @@
 /area/mainship/hallways/ntf/dorm1)
 "nRG" = (
 /obj/effect/ai_node,
-/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar2)
 "nRH" = (
@@ -10463,13 +10464,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/officer_study)
 "nVm" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/effect/spawner/random/misc/structure/supplycrate,
-/turf/open/floor/mainship/mono,
-/area/mainship/groundhq/ntf/hallways/stern_hallway{
-	name = "HQ Western hallways"
+/turf/open/floor/plating/ground/snow/layer1,
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
 	})
 "nVy" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
@@ -10818,13 +10818,13 @@
 /turf/open/floor/mainship/red/full,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
 "oxF" = (
-/obj/structure/flora/ausbushes/brflowers,
+/obj/machinery/light{
+	dir = 4
+	},
 /obj/effect/spawner/random/misc/structure/supplycrate,
-/turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/hallways/aft_hallway{
+	name = "HQ Northeast Hallways"
 	})
 "oxV" = (
 /obj/structure/bed/chair/sofa{
@@ -11087,7 +11087,7 @@
 	name = "Ground CEO Office"
 	})
 "oPB" = (
-/obj/machinery/vending/dress_supply,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/mainship/mono,
 /area/centcom/practice/medical{
 	outside = 0;
@@ -12269,7 +12269,6 @@
 	always_unpowered = 0
 	})
 "qkg" = (
-/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/mainship/red/full,
 /area/mainship/groundhq/ntf/command/cic)
 "qmb" = (
@@ -13351,7 +13350,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/corporateliaison)
 "rqu" = (
-/obj/structure/largecrate/supply/weapons/sentries,
+/obj/structure/flora/ausbushes/sunnybush,
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/snow/layer3,
 /area/lv624/ground/caves{
 	ceiling = 2;
@@ -15396,6 +15396,11 @@
 	name = "HQ Tunnels";
 	always_unpowered = 0
 	})
+"usy" = (
+/obj/machinery/light,
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/mainship/living/grunt_rnr)
 "usM" = (
 /obj/structure/closet/emcloset,
 /obj/item/clothing/mask/gas,
@@ -16248,6 +16253,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
 	name = "HQ Northeast Hallways"
@@ -21975,26 +21981,26 @@ hKj
 hKj
 hKj
 xTm
-vWy
+tRS
 bfA
 vWy
-tRS
-tRS
+vWy
+vWy
 lvk
 vWy
 vWy
-tRS
-nVm
-tRS
-tRS
+vWy
+lvk
+vWy
+vWy
 vWy
 wLT
 vWy
 vWy
 lvk
-tRS
-tRS
 vWy
+vWy
+tRS
 xTm
 aGL
 ajY
@@ -22199,13 +22205,13 @@ vWy
 vWy
 vWy
 vWy
-tRS
+vWy
 vWy
 vWy
 vWy
 vWy
 itm
-tRS
+vWy
 vWy
 vWy
 gbl
@@ -22619,7 +22625,7 @@ cWB
 cWB
 rCz
 iCm
-tRS
+vWy
 aRh
 kJX
 dWT
@@ -22724,9 +22730,9 @@ oXg
 xEQ
 hMm
 cWB
-tRS
+vWy
 tdu
-tRS
+vWy
 aRh
 uxa
 lEm
@@ -22831,7 +22837,7 @@ jwK
 aqc
 hcS
 cTc
-tRS
+vWy
 iCm
 vWy
 rWg
@@ -22938,7 +22944,7 @@ sQr
 aqc
 hcS
 cTc
-tRS
+vWy
 lbU
 wOn
 nzQ
@@ -23566,7 +23572,7 @@ iCa
 rXW
 qFg
 qpA
-fbF
+qFg
 jRT
 lQa
 mDb
@@ -23583,17 +23589,17 @@ cTc
 mgs
 kKK
 mgs
-pyx
-pgg
-pgg
+kSC
+mgs
 pgg
 mgs
+pgg
 rzu
 mgs
-pyx
-pgg
-pgg
 kSC
+mgs
+mgs
+pyx
 dpW
 dpW
 mgs
@@ -24014,12 +24020,12 @@ rlE
 rlE
 rlE
 rlE
-mFG
 rlE
 rlE
 rlE
 rlE
-mFG
+rlE
+rlE
 rlE
 rlE
 rlE
@@ -24114,19 +24120,19 @@ nXs
 xJS
 rlE
 rlE
-mFG
 rlE
 rlE
 rlE
 rlE
 rlE
 rlE
-mFG
-rlE
-mFG
 rlE
 rlE
-mFG
+rlE
+rlE
+rlE
+rlE
+rlE
 rlE
 rlE
 rlE
@@ -24224,25 +24230,25 @@ rlE
 rlE
 rlE
 rlE
-mFG
 rlE
 rlE
 rlE
-mFG
 rlE
-mFG
 rlE
-mFG
-ndj
 rlE
-mFG
-mFG
 rlE
-mFG
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
 rlE
 xJS
 fGf
-vUx
+eUg
 oyO
 tad
 oPB
@@ -24328,28 +24334,28 @@ nXs
 xJS
 rlE
 rlE
-mFG
 rlE
 rlE
 rlE
-ndj
-mFG
 rlE
 rlE
 rlE
-mFG
 rlE
 rlE
-mFG
 rlE
-mFG
-mFG
 rlE
-mFG
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
 rlE
 xJS
 xJS
-pgg
+mgs
 tad
 tad
 tad
@@ -24435,24 +24441,24 @@ wRh
 mgs
 rlE
 rlE
-mFG
-rlE
-rlE
-mFG
-mFG
-mFG
-rlE
-mFG
-rlE
-mFG
-mFG
-rlE
-mFG
-ndj
 rlE
 rlE
 rlE
-mFG
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
 rlE
 exR
 tLj
@@ -24542,22 +24548,22 @@ bLJ
 mgs
 rlE
 rlE
-mFG
-mFG
-mFG
+rlE
+rlE
+rlE
 rlE
 rlE
 nRG
-mFG
+rlE
 rlE
 ikj
 rlE
-mFG
-mFG
-mFG
+rlE
+rlE
+rlE
 nRG
 rlE
-mFG
+rlE
 rlE
 rlE
 rlE
@@ -24649,20 +24655,20 @@ tzc
 mgs
 rlE
 rlE
-mFG
-rlE
-mFG
-rlE
-rlE
-mFG
-rlE
-rlE
-mFG
-ndj
 rlE
 rlE
 rlE
-mFG
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
 rlE
 rlE
 rlE
@@ -24670,7 +24676,7 @@ rlE
 rlE
 exR
 fGf
-eUg
+vUx
 sDK
 tRx
 fpx
@@ -24760,24 +24766,24 @@ rlE
 rlE
 rlE
 rlE
-mFG
-mFG
 rlE
 rlE
 rlE
-mFG
 rlE
 rlE
 rlE
-mFG
 rlE
 rlE
-mFG
-mFG
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
 rlE
 xJS
 xJS
-pgg
+mgs
 suO
 lqx
 mUY
@@ -24863,28 +24869,28 @@ trW
 xJS
 rlE
 rlE
-mFG
-rlE
-rlE
-rlE
-mFG
-rlE
-rlE
-mFG
 rlE
 rlE
 rlE
 rlE
-mFG
-mFG
 rlE
 rlE
 rlE
-mFG
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
+rlE
 rlE
 xJS
-fGf
-pgg
+mFG
+mgs
 suO
 dvN
 cQB
@@ -24970,11 +24976,11 @@ bES
 xJS
 rlE
 rlE
-mFG
 rlE
 rlE
 rlE
-mFG
+rlE
+rlE
 rlE
 rlE
 rlE
@@ -24991,7 +24997,7 @@ rlE
 rlE
 xJS
 xJS
-pgg
+mgs
 suO
 lqx
 pmL
@@ -25081,7 +25087,7 @@ rlE
 rlE
 rlE
 rlE
-mFG
+rlE
 rlE
 rlE
 rlE
@@ -25626,11 +25632,11 @@ lpm
 aZZ
 aZZ
 aZZ
+xcN
 aZZ
+pWE
 aZZ
-oxF
-aZZ
-aZZ
+xcN
 rTJ
 rTJ
 rTJ
@@ -25709,8 +25715,8 @@ doP
 doP
 qrT
 fTV
-rqu
 bim
+aZZ
 ual
 ual
 aZZ
@@ -25733,9 +25739,9 @@ lpm
 aZZ
 pWE
 aZZ
-nte
+toH
 aZZ
-aZZ
+xcN
 xcC
 aZZ
 rTJ
@@ -25839,12 +25845,12 @@ ted
 lpm
 xcC
 aZZ
+aZZ
+aZZ
+aZZ
 xcN
 aZZ
 aZZ
-aZZ
-aZZ
-xcN
 rTJ
 cBe
 pWX
@@ -26035,7 +26041,7 @@ aZZ
 aZZ
 aZZ
 aZZ
-aZZ
+xcN
 aZZ
 mNo
 aZZ
@@ -26137,7 +26143,7 @@ fav
 xVs
 oyC
 fTV
-czo
+aZZ
 aZZ
 aZZ
 hYG
@@ -26366,7 +26372,7 @@ jvr
 aZZ
 toH
 aZZ
-aZZ
+xcN
 iyk
 wKy
 eKk
@@ -26451,7 +26457,7 @@ oGw
 oGw
 oGw
 aZZ
-aZZ
+xcN
 doP
 doP
 fav
@@ -26679,7 +26685,7 @@ aZZ
 aZZ
 aZZ
 aZZ
-aZZ
+xcN
 aZZ
 aZZ
 aZZ
@@ -26715,7 +26721,7 @@ pNw
 vix
 oGw
 oGw
-oGw
+nte
 doP
 doP
 oGw
@@ -26794,7 +26800,7 @@ aZZ
 aZZ
 aZZ
 aZZ
-aZZ
+xcN
 frD
 ted
 pQZ
@@ -27008,7 +27014,7 @@ aZZ
 aZZ
 aZZ
 aZZ
-axU
+czo
 frD
 hkE
 pQZ
@@ -27029,7 +27035,7 @@ rTJ
 rTJ
 rTJ
 rTJ
-aUF
+fbF
 lxp
 frD
 jfw
@@ -27311,12 +27317,12 @@ aZZ
 aZZ
 aZZ
 aZZ
-axU
+czo
 doP
 doP
 doP
 doP
-aZZ
+xcN
 aZZ
 axU
 axU
@@ -27736,7 +27742,7 @@ aZZ
 vlV
 aZZ
 aZZ
-aZZ
+xcN
 elK
 wJA
 vug
@@ -27896,7 +27902,7 @@ vvF
 oGw
 oGw
 oGw
-oGw
+nte
 oGw
 oGw
 doP
@@ -27950,7 +27956,7 @@ aZZ
 aZZ
 aZZ
 aZZ
-aZZ
+xcN
 elK
 lnV
 jPe
@@ -28001,7 +28007,7 @@ lxp
 lxp
 vvF
 oGw
-oGw
+nte
 oGw
 oGw
 oGw
@@ -28056,8 +28062,8 @@ aZZ
 aZZ
 aZZ
 aZZ
-aZZ
-aZZ
+xcN
+xcN
 elK
 uOn
 qtq
@@ -28123,7 +28129,7 @@ oGw
 oGw
 oGw
 oGw
-oGw
+nte
 hKj
 hKj
 hKj
@@ -28174,7 +28180,7 @@ doP
 doP
 oGw
 oGw
-oGw
+nte
 doP
 doP
 aZZ
@@ -28280,7 +28286,7 @@ doP
 doP
 doP
 oGw
-oGw
+nte
 doP
 doP
 doP
@@ -28496,7 +28502,7 @@ doP
 doP
 doP
 doP
-aZZ
+xcN
 aZZ
 doP
 doP
@@ -29189,7 +29195,7 @@ hKj
 hKj
 oGw
 oGw
-oGw
+nte
 oGw
 hKj
 hKj
@@ -31114,7 +31120,7 @@ pVG
 doP
 doP
 pVG
-pVG
+nVm
 doP
 pVG
 pVG
@@ -31442,7 +31448,7 @@ doP
 doP
 pVG
 pVG
-pVG
+nVm
 von
 von
 doP
@@ -31549,7 +31555,7 @@ kkr
 pVG
 pVG
 kBq
-pVG
+nVm
 doP
 doP
 doP
@@ -31651,7 +31657,7 @@ kkr
 lBG
 fgz
 sfn
-pVG
+nVm
 kkr
 kBq
 pVG
@@ -33100,7 +33106,7 @@ aZZ
 aZZ
 aZZ
 aZZ
-aZZ
+xcN
 gPM
 kXm
 hTR
@@ -33207,7 +33213,7 @@ aZZ
 vvj
 aZZ
 aZZ
-aZZ
+xcN
 gPM
 owj
 nuj
@@ -33314,7 +33320,7 @@ aZZ
 aZZ
 aZZ
 aZZ
-aZZ
+xcN
 gPM
 gPM
 gPM
@@ -33461,7 +33467,7 @@ aZZ
 aZZ
 aZZ
 aZZ
-aZZ
+xcN
 cHr
 pVG
 pVG
@@ -33508,9 +33514,9 @@ mPO
 fFk
 eNI
 fFk
-mPO
+oxF
 kUc
-kUc
+ndj
 fFk
 vDq
 fFk
@@ -34064,9 +34070,9 @@ gRZ
 lRK
 axU
 aZZ
-aZZ
-aZZ
-aZZ
+xcN
+xcN
+xcN
 aZZ
 rsI
 rsI
@@ -34171,10 +34177,10 @@ lRK
 lRK
 axU
 aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+xcN
+xcN
+xcN
+xcN
 rsI
 xJy
 rog
@@ -34210,7 +34216,7 @@ aZZ
 aZZ
 aZZ
 aZZ
-aZZ
+xcN
 cHr
 pVG
 pVG
@@ -34280,7 +34286,7 @@ axU
 aZZ
 aZZ
 aZZ
-aZZ
+xcN
 tbB
 rsI
 mUk
@@ -34598,7 +34604,7 @@ lRK
 lRK
 pVG
 axU
-xcC
+rqu
 eok
 jWo
 eXX
@@ -34705,7 +34711,7 @@ lRK
 lRK
 pVG
 axU
-aZZ
+xcN
 eok
 rqU
 eXX
@@ -34811,8 +34817,8 @@ lRK
 oAm
 lRK
 axU
-axU
-aZZ
+czo
+xcN
 eok
 jLr
 eXX
@@ -34918,8 +34924,8 @@ lRK
 lRK
 lRK
 axU
-aZZ
-cCZ
+xcN
+usy
 wta
 vqa
 eXX
@@ -35025,8 +35031,8 @@ lRK
 axU
 axU
 axU
-aZZ
-aZZ
+xcN
+xcN
 eok
 mJy
 eXX
