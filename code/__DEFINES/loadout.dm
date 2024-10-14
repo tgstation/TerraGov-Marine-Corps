@@ -719,6 +719,30 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/pinpointer = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
 		/obj/item/clothing/head/modular/m10x/leader = 1,
+	),
+	FIELD_COMMANDER = list(
+		/obj/item/explosive/plastique = 1,
+		/obj/item/supply_beacon = 1,
+		/obj/item/healthanalyzer = 1,
+		/obj/item/roller/medevac = 1,
+		/obj/item/medevac_beacon = 1,
+		/obj/item/whistle = 1,
+		/obj/item/clothing/glasses/hud/health = 1,
+	),
+	SYNTHETIC = list(
+		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+		/obj/item/stack/sheet/metal/large_stack = 1,
+		/obj/item/tool/weldingtool/hugetank = 1,
+		/obj/item/tool/handheld_charger = 1,
+		/obj/item/defibrillator = 1,
+		/obj/item/medevac_beacon = 1,
+		/obj/item/roller/medevac = 1,
+		/obj/item/roller = 1,
+		/obj/item/bodybag/cryobag = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/tweezers = 1,
+		/obj/item/cell/high = 1,
+		/obj/item/circuitboard/apc = 1,
 	)
 ))
 
