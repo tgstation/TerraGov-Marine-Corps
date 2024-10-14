@@ -40,6 +40,7 @@
 	name = "\improper ST-571 sentry gun"
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a M30 autocannon and a 500-round drum magazine."
 	icon_state = "sentry"
+	w_class = WEIGHT_CLASS_BULKY
 
 	turret_range = 8
 	deploy_time = 6 SECONDS
@@ -277,6 +278,7 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
 	icon_state = "sniper_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/sniper.dmi'
+	w_class = WEIGHT_CLASS_BULKY
 
 	turret_range = 12
 	deploy_time = 10 SECONDS
@@ -330,6 +332,7 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber SM-10 shotgun and a 100-round drum magazine."
 	icon_state = "shotgun_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/shotgun.dmi'
+	w_class = WEIGHT_CLASS_BULKY
 
 	turret_range = 8
 	deploy_time = 5 SECONDS
@@ -383,6 +386,7 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy flamethrower and a 200-round drum magazine."
 	icon_state = "flamer_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/flamer.dmi'
+	w_class = WEIGHT_CLASS_BULKY
 
 	turret_range = 8
 	deploy_time = 5 SECONDS

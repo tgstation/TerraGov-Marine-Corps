@@ -31,6 +31,9 @@
 	. = ..()
 	set_holdable(storage_type_limits_list = list(
 		/obj/item/weapon/gun/sentry/big_sentry,
+		/obj/item/weapon/gun/sentry/shotgun_sentry,
+		/obj/item/weapon/gun/sentry/flamer_sentry,
+		/obj/item/weapon/gun/sentry/sniper_sentry,
 		/obj/item/weapon/gun/sentry/mini,
 		/obj/item/weapon/gun/hsg_102,
 		/obj/item/ammo_magazine/hsg_102,
