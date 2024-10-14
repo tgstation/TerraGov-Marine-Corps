@@ -118,6 +118,15 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
 	loadout_item_flags = NONE
 
+/datum/loadout_item/back/minigun_powerpack
+	name = "MG-100 powerpack"
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System. You don't get any spare, so make it count."
+	req_desc = "Requires an MG-100."
+	item_typepath = /obj/item/ammo_magazine/minigun_powerpack
+	jobs_supported = list(SQUAD_MARINE)
+	loadout_item_flags = NONE
+	item_whitelist = list(/obj/item/weapon/gun/minigun/magharness = ITEM_SLOT_SUITSTORE)
+
 //corpsman
 /datum/loadout_item/back/corpsman_satchel
 	name = "Medical satchel"

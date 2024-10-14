@@ -398,6 +398,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/back/tgmc_heam_rocket_bag, SQUAD_MARINE, owner, 0)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_cannon, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/back/minigun_powerpack, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/minigun, SQUAD_MARINE, owner, 0)
 	else if(owner_stats.faction == FACTION_SOM)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/back/som_heat_rocket_bag, SOM_SQUAD_VETERAN, owner, 0)
 

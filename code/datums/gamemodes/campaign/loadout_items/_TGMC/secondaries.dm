@@ -103,15 +103,17 @@
 	ui_icon = "m25"
 	item_typepath = /obj/item/weapon/gun/smg/m25/holstered
 	item_whitelist = list(/obj/item/storage/holster/m25 = ITEM_SLOT_BELT)
-	req_desc = "Requires an SMG-25 holster and either a MG-27 or FL-84."
+	req_desc = "Requires an SMG-25 holster and either a MG-27, FL-84 or MG-100."
 	jobs_supported = list(SQUAD_MARINE)
 
 /datum/loadout_item/secondary/gun/marine/standard_smg/item_checks(datum/outfit_holder/outfit_holder)
 	. = ..()
 	if(!.)
 		return
-	if((outfit_holder.equipped_things["[ITEM_SLOT_SUITSTORE]"].item_typepath != LOADOUT_ITEM_MG27) && (outfit_holder.equipped_things["[ITEM_SLOT_SUITSTORE]"].item_typepath != LOADOUT_ITEM_MG27))
-		return FALSE
+	for(var/typepath in list(LOADOUT_ITEM_MG27, LOADOUT_ITEM_TGMC_FLAMER, LOADOUT_ITEM_TGMC_MINIGUN))
+		if(outfit_holder.equipped_things["[ITEM_SLOT_SUITSTORE]"].item_typepath == typepath)
+			return TRUE
+	return FALSE
 
 /datum/loadout_item/secondary/gun/marine/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
