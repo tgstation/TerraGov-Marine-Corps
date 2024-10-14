@@ -155,7 +155,7 @@ SUBSYSTEM_DEF(explosions)
 				continue
 			listeners += ai_eye
 
-		for(var/mob/listener AS in listeners)
+		for(var/mob/listener AS in listeners|SSmobs.dead_players_by_zlevel[epicenter.z])
 			var/turf/M_turf = get_turf(listener)
 			var/dist = get_dist(M_turf, epicenter)
 			if(dist > far_dist)

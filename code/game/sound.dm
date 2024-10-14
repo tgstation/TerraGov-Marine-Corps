@@ -71,7 +71,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			continue
 		listeners += ai_eye
 
-	for(var/mob/listener AS in listeners)
+	for(var/mob/listener AS in listeners|SSmobs.dead_players_by_zlevel[turf_source.z])
 		if(get_dist(listener, turf_source) > sound_range)
 			continue
 		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
