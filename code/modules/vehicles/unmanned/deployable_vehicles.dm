@@ -78,7 +78,7 @@
 	name = "UV-T Skink"
 	icon_state = "tiny_uv"
 	density = FALSE
-	move_delay = 1.3
+	move_delay = 1.5
 	hud_possible = list(MACHINE_HEALTH_HUD)
 	atom_flags = NONE
 	soft_armor = list(MELEE = 25, BULLET = 25, LASER = 25, ENERGY = 25, BOMB = 25, BIO = 100, FIRE = 25, ACID = 25)
@@ -88,6 +88,7 @@
 	unmanned_flags = GIVE_NIGHT_VISION
 	layer = XENO_HIDING_LAYER
 	trigger_gargoyle = FALSE
+	allow_detpacks = FALSE
 
 /obj/structure/closet/crate/uvt_crate
 	name = "\improper UV-T Skink Crate"
