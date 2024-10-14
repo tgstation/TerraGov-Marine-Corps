@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "All types of fire no longer damages or heats you up if you have 100% fire soft/hard armor."
