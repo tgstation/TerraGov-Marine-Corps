@@ -37,15 +37,16 @@
 /mob/living/carbon/human/attack_alien_disarm(mob/living/carbon/xenomorph/X, dam_bonus)
 	var/randn = rand(1, 100)
 	var/stamina_loss = getStaminaLoss()
-	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 3
+	var/disarmdamage = X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier * 4
 	var/damage_to_deal = clamp(disarmdamage, 0, maxHealth - stamina_loss)
 	var/sound = 'sound/weapons/alien_knockdown.ogg'
 
-	if ishuman(src)
+	if (ishuman(src))
 		if(IsParalyzed())
 			X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
-			X.visible_message(null, "<span class='info'>We could not do much to [src], they are already down.</span>", null)
-			sound = 'sound/weapons/punchmiss.ogg'
+			X.visible_message(null, "<span class='info'>We keep holding [src] down.</span>", null)
+			apply_damage(damage_to_deal, STAMINA, BODY_ZONE_CHEST, MELEE)
+			sound = 'sound/weapons/thudswoosh.ogg'
 		else
 			X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 			if(pulling)

@@ -6,6 +6,7 @@
 	display_order = JOB_DISPLAY_ORDER_SURVIVOR
 	faction = FACTION_TERRAGOV
 	total_positions = -1
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN
 	skills_type = /datum/skills/civilian/survivor
 
 /datum/job/survivor/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
@@ -310,13 +311,13 @@ Good luck, but do not expect to survive."})
 
 //Atmospherics Technician
 /datum/job/survivor/atmos
-	title = "Atmospherics Technician Survivor"
+	title = "Technician Survivor"
 	skills_type = /datum/skills/civilian/survivor/atmos
 	outfit = /datum/outfit/job/survivor/atmos
 
 
 /datum/outfit/job/survivor/atmos
-	name = "Atmospherics Technician Survivor"
+	name = "Technician Survivor"
 	jobtype = /datum/job/survivor/atmos
 
 	w_uniform = /obj/item/clothing/under/rank/atmospheric_technician

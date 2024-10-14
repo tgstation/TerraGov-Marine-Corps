@@ -23,11 +23,15 @@
 #define MAP_LAVA_OUTPOST "Lava Outpost V1"
 #define MAP_CORSAT "CORSAT Research Station"
 
+#define MAP_COLONY1 "COLONY1"
+
 #define MAP_PILLAR_OF_SPRING "Pillar of Spring"
 #define MAP_SULACO "Sulaco"
 #define MAP_THESEUS "Theseus"
 #define MAP_ARACHNE "Arachne"
 #define MAP_COMBAT_PATROL_BASE "Combat Patrol Base"
+#define MAP_NTF "NTC Nine Tailed Fox"
+#define MAP_EAGLE "Eagle"
 
 #define MAP_FORT_PHOBOS "Fort Phobos"
 #define MAP_ITERON "Iteron"
