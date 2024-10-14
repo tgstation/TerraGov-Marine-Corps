@@ -13,8 +13,8 @@
 		wear_mask_update(I)
 		. = ITEM_UNEQUIP_UNEQUIPPED
 	else if(I == handcuffed)
-		handcuffed = null
 		update_handcuffed(null)
+		handcuffed = null
 		. = ITEM_UNEQUIP_UNEQUIPPED
 
 /mob/living/carbon/get_equipped_slot(obj/equipped_item)

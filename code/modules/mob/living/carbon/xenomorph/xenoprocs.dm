@@ -311,13 +311,16 @@
 			else
 				new_lighting_alpha = LIGHTING_PLANE_ALPHA_NV_TRAIT
 
+	var/datum/game_mode/mode = SSticker.mode
 	switch(new_lighting_alpha)
 		if(LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE, LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE, LIGHTING_PLANE_ALPHA_INVISIBLE)
-			ENABLE_BITFIELD(sight, SEE_MOBS)
+			if(!(mode.round_type_flags & MODE_SURVIVAL))
+				ENABLE_BITFIELD(sight, SEE_MOBS)
 			ENABLE_BITFIELD(sight, SEE_OBJS)
 			ENABLE_BITFIELD(sight, SEE_TURFS)
 		if(LIGHTING_PLANE_ALPHA_NV_TRAIT)
-			ENABLE_BITFIELD(sight, SEE_MOBS)
+			if(!(mode.round_type_flags & MODE_SURVIVAL))
+				ENABLE_BITFIELD(sight, SEE_MOBS)
 			DISABLE_BITFIELD(sight, SEE_OBJS)
 			DISABLE_BITFIELD(sight, SEE_TURFS)
 

@@ -17,6 +17,10 @@
 	mini.give_action(src)
 	add_abilities()
 
+	var/datum/game_mode/mode = SSticker.mode
+	if(mode.round_type_flags & MODE_SURVIVAL)
+		DISABLE_BITFIELD(sight, SEE_MOBS)
+
 	create_reagents(1000)
 	gender = NEUTER
 

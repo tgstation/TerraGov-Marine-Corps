@@ -1,8 +1,9 @@
 /datum/game_mode/infestation/survival
 	name = "Survival"
 	config_tag = "Survival"
-	round_type_flags = MODE_INFESTATION|MODE_DISALLOW_RAILGUN|MODE_PSY_POINTS|MODE_XENO_SPAWN_PROTECT
+	round_type_flags = MODE_INFESTATION|MODE_DISALLOW_RAILGUN|MODE_PSY_POINTS|MODE_XENO_SPAWN_PROTECT|MODE_SURVIVAL
 	xeno_abilities_flags = ABILITY_ALL_GAMEMODE
+	factions = list(FACTION_XENO, FACTION_CLF, FACTION_TERRAGOV)
 	valid_job_types = list(
 		/datum/job/survivor/assistant = 2,
 		/datum/job/survivor/scientist = 1,
