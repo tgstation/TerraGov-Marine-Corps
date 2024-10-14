@@ -28,6 +28,7 @@
 		"Energy Weapons" = list(
 			/obj/item/cell/lasgun/lasrifle = -1,
 			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
@@ -283,6 +284,7 @@
 		"Energy Weapons" = list(
 			/obj/item/cell/lasgun/lasrifle = -1,
 			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
@@ -494,6 +496,7 @@
 		"Energy Weapons" = list(
 			/obj/item/cell/lasgun/lasrifle = -1,
 			/obj/item/cell/lasgun/volkite/powerpack/marine = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_rifle = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_sniper = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_carbine = -1,
@@ -872,7 +875,7 @@
 	machine_max_charge = 50000
 	product_slogans = "Static Shock!;Power cell running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-		/obj/item/cell/lasgun/lasrifle = 10, /obj/item/cell/lasgun/volkite/powerpack/marine = 2,
+		/obj/item/cell/lasgun/lasrifle = 10, /obj/item/cell/lasgun/volkite/powerpack/marine = 2, /obj/item/cell/lasgun/volkite/powerpack/marine/backpack = 1,
 	)
 
 	prices = list()
@@ -1389,6 +1392,7 @@
 			/obj/item/storage/holster/m37 = -1,
 			/obj/item/storage/backpack/marine/smock/lite = -1,
 			/obj/item/storage/backpack/marine/duffelbag = -1,
+			/obj/item/cell/lasgun/volkite/powerpack/marine/backpack = -1,
 		),
 		"Instruments" = list(
 			/obj/item/instrument/violin = -1,

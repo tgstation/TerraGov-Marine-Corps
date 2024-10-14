@@ -21,7 +21,7 @@
 		/datum/job/xenomorph = CRASH_LARVA_POINTS_NEEDED,
 	)
 	xenorespawn_time = 3 MINUTES
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_COLONY1)
 
 	// Round end conditions
 	var/shuttle_landed = FALSE

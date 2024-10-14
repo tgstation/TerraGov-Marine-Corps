@@ -1372,7 +1372,6 @@
 /area/antag_ship/vsd/engi)
 "iG" = (
 /obj/structure/cable,
-/obj/structure/door/mineral_door/wood,
 /turf/open/floor/plating/asteroidwarning{
 	dir = 8
 	},
@@ -1674,11 +1673,6 @@
 	dir = 9
 	},
 /area/antag_ship/pmc_ntf/starboard/medbay)
-"ke" = (
-/obj/structure/door/mineral_door/wood,
-/obj/structure/cable,
-/turf/open/floor/plating/ground/desertdam/asphalt/tile,
-/area/antag_ship/clf_base/techroom)
 "kg" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
@@ -4277,7 +4271,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/preparation)
 "xw" = (
-/obj/structure/door/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/techroom)
@@ -9292,8 +9285,8 @@
 /obj/item/bedsheet/brown,
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /obj/effect/landmark/start/job/survivor,
-/obj/effect/landmark/start/latejoinsurvivor,
 /obj/item/clothing/under/lewd/panties,
+/obj/effect/landmark/survivor_spawn_pointer,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)
 "XP" = (
@@ -17842,7 +17835,7 @@ uj
 aF
 Nj
 Ns
-ke
+Ns
 AN
 AN
 AN
@@ -18319,7 +18312,7 @@ Nj
 sS
 bg
 SB
-ke
+Ns
 JW
 gW
 gW

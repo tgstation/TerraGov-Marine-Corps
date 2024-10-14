@@ -50,6 +50,7 @@
 #define MODE_ALLOW_XENO_QUICKBUILD (1<<14)
 #define MODE_DISALLOW_RAILGUN (1<<15)
 #define MODE_FORCE_CUSTOMSQUAD_UI (1<<16)
+#define MODE_SURVIVAL (1<<17)
 
 #define MODE_INFESTATION_X_MAJOR "Xenomorph Major Victory"
 #define MODE_INFESTATION_M_MAJOR "Ninetails Major Victory"

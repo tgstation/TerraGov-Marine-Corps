@@ -108,3 +108,7 @@ endmap
 map corsat
 	minplayers 75
 endmap
+
+map colony1
+	minplayers 0
+endmap

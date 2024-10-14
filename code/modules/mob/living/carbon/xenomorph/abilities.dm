@@ -2067,9 +2067,13 @@
 			apply_damage(damage, BRUTE, selectedlimb, MELEE, IS_NOT_SHARP_ITEM, FALSE, TRUE, penetration)
 		else
 			if(xeno.fiery_stab)
-				//fire tail burns and hurts but not much penetration
+				//fire tail burns but not much penetration
 				penetration *= 0.7
-				damage *= 1.6
+				var/datum/status_effect/stacking/melting_fire/debuff = carbon_victim.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+				if(debuff)
+					debuff.add_stacks(PYROGEN_TORNADO_MELTING_FIRE_STACKS)
+				else
+					carbon_victim.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_TORNADO_MELTING_FIRE_STACKS)
 				apply_damage(damage, BURN, selectedlimb, MELEE, IS_NOT_SHARP_ITEM, TRUE, TRUE, penetration)
 			else
 				//basic bitch stab
