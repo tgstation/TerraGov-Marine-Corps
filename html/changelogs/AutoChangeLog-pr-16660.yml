@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Wraith's Timeshift cancels if the target changes z-levels."
