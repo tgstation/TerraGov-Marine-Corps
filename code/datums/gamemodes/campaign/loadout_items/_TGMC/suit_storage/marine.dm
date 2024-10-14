@@ -749,6 +749,8 @@
 	ui_icon = "minigun"
 	item_typepath = LOADOUT_ITEM_TGMC_MINIGUN
 	loadout_item_flags = NONE
+	purchase_cost = 75
+	quantity = 2
 	item_whitelist = list(/obj/item/ammo_magazine/minigun_powerpack = ITEM_SLOT_BACK)
 
 /datum/loadout_item/suit_store/main_gun/marine/minigun/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
