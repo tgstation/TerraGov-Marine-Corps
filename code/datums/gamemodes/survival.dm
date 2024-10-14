@@ -68,6 +68,8 @@
 			color_override = "purple"
 		))
 		to_chat(M, span_information("You are a xenomorph, your primary goal is to breed as many hosts as possible while keeping yourself and the larvas in the hosts alive. You must still stick to roleplay standards. There is no time limit in this mode, take your time with erp or whatever rather than spamming impregnate on people. Game ends when all Xenos or Humans die. If you allow the talls to call for help, you will have trouble."))
+		to_chat(world, span_boldwarning("Xenos can not see mobs through walls in this mode."))
+
 
 /datum/game_mode/infestation/survival/check_finished()
 
