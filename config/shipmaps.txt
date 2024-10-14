@@ -21,12 +21,12 @@ map theseus
 endmap
 
 map ntc_nine_tailed_fox
+	minplayers 0
 	default
-	voteweight 0
 endmap
 
 map eagle
-        voteweight 0
+        minplayers 0
 endmap
 
 map pillar_of_spring

@@ -1,17 +1,17 @@
 # Settings for modes. deploytimelock is in minutes
 
 mode Crash
-	requiredplayers 65
+	requiredplayers 4
 	votable 0
 endmode
 
 mode Nuclear War
-	requiredplayers 65
+	requiredplayers 10
 	votable 0
 endmode
 
 mode Extended
-	requiredplayers 65
+	requiredplayers 600
 	votable 0
 endmode
 
@@ -23,8 +23,12 @@ mode Extended Mini
 	requiredplayers 0
 endmode
 
+mode Survival
+	requiredplayers 4
+endmode
+
 mode Zombie Crash
-	requiredplayers 0
+	requiredplayers 2
 endmode
 
 mode Combat Patrol

@@ -13,7 +13,7 @@
 	. = ..()
 	SSminimaps.add_marker(C, MINIMAP_FLAG_SURVIVOR, image('icons/UI_icons/map_blips.dmi', null, "survivor"))
 	var/datum/action/minimap/survivor/mini = new
-	mini.give_action(src)
+	mini.give_action(C)
 
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(C), SLOT_HEAD)
