@@ -180,8 +180,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(recast_available)
-		addtimer(CALLBACK(src, PROC_REF(charge_complete)), 2.1 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
-		add_cooldown(cooldown_override = 0.1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(charge_complete)), 2.3 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
+		add_cooldown(cooldown_override = 0.3 SECONDS)
 		recast = TRUE
 	else
 		recast = FALSE
