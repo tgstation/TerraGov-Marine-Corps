@@ -371,7 +371,7 @@
 		var/list/extra_filters = list(TTS_FILTER_RADIO)
 		if(isrobot(sender))
 			extra_filters += TTS_FILTER_SILICON
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), marines_list, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, local = TRUE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), sender, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, marines_list, TRUE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
 
 /datum/squad/proc/check_entry(datum/job/job)
 	if(!(job.title in current_positions))
