@@ -1,0 +1,4 @@
+author: "jonash07"
+delete-after: True
+changes:
+  - bugfix: "deleted a duplicate hairstyle"
