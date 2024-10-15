@@ -58,7 +58,7 @@
 			listened += sister
 	if(SStts.tts_enabled && length(listened) && voice)
 		var/list/treated_message = treat_message(message)
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), listened, treated_message["tts_message"], get_default_language(), voice, voice_filter, local = TRUE, pitch = pitch, directionality = FALSE)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, treated_message["tts_message"], get_default_language(), voice, voice_filter, listened, TRUE, pitch = pitch, directionality = FALSE)
 
 	return TRUE
 
