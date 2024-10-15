@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - rscadd: "Campaign: Added a new 'Secondary' equipment option for sidearms and specialty equipment"
