@@ -10,7 +10,7 @@
 	icon_state = "tank"
 	hitbox = /obj/hitbox/rectangle/som_tank
 	interior = /datum/interior/armored/som
-	minimap_icon_state = "tank"
+	minimap_icon_state = "som_tank"
 	minimap_flags = MINIMAP_FLAG_MARINE_SOM
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
