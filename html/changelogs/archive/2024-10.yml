@@ -108,3 +108,7 @@
   - balance: Removes a Chigusa intel computer, Chigusa plat miner removals and movals
   Runian:
   - bugfix: Wraith's Timeshift cancels if the target changes z-levels.
+2024-10-15:
+  Runian:
+  - bugfix: All types of fire no longer damages or heats you up if you have 100% fire
+      soft/hard armor.
