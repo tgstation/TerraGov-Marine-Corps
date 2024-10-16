@@ -106,7 +106,7 @@
 
 /datum/maw_ammo/smoke/acid_big/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
 	. = ..()
-	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 60)
+	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 80)
 
 
 /datum/maw_ammo/hugger
