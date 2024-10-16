@@ -112,3 +112,14 @@
   Runian:
   - bugfix: All types of fire no longer damages or heats you up if you have 100% fire
       soft/hard armor.
+2024-10-16:
+  Arturlang:
+  - bugfix: Handcuffs won't break your resist anymore
+  Lumipharon:
+  - rscadd: 'Campaign: Added a new ''Secondary'' equipment option for sidearms and
+      specialty equipment'
+  - rscadd: Explosive grenades will blow your hand off if they detonate in-hand
+  jonash07:
+  - qol: The loadout vendor now contains two new tabs for the Field Commander and
+      the Synthetic. Loadout vendor now works with their respective essential kits.
+  - bugfix: deleted a duplicate hairstyle
