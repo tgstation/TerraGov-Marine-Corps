@@ -101,12 +101,12 @@
 	cooldown_time = 10 MINUTES
 	radial_icon_state = "acid_smoke_mortar"
 	smoke_type = /datum/effect_system/smoke_spread/xeno/acid
-	smokeradius = 10
+	smokeradius = 12
 	duration = 10
 
 /datum/maw_ammo/smoke/acid_big/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
 	. = ..()
-	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 80)
+	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
 
 
 /datum/maw_ammo/hugger
@@ -228,8 +228,8 @@
 	if(xeno_attacker.hivenumber != hivenumber)
 		balloon_alert(xeno_attacker, "wrong hive")
 		return FALSE
-	if(xeno_attacker.hive.living_xeno_ruler != xeno_attacker)
-		balloon_alert(xeno_attacker, "must be ruler")
+	if(!isxenoqueen(xeno_attacker) && !isxenoshrike(xeno_attacker) && !isxenoking(xeno_attacker) && !(xeno_attacker.xeno_flags & XENO_LEADER))
+		balloon_alert(xeno_attacker, "must be leader")
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_MAW_GLOB)) // repeat this every time after we have a sleep for quick feedback
 		var/timeleft = S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MAW_GLOB)
