@@ -17,23 +17,23 @@
 /datum/loadout_item/secondary/proc/default_load(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	var/datum/loadout_item/suit_store/main_gun/primary = holder.equipped_things["[ITEM_SLOT_SUITSTORE]"]
 	if(istype(primary))
-		wearer.equip_to_slot_or_del(new primary.ammo_type, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new primary.secondary_ammo_type, SLOT_IN_BACKPACK)
-		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new primary.ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+		wearer.equip_to_slot_or_del(new primary.secondary_ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+		wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
 		return
 
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
 	switch(wearer.faction)
 		if(FACTION_SOM)
-			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
-			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
 		else
-			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
-			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, ITEM_SLOT_BACK, TRUE, TRUE)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, ITEM_SLOT_BACK, TRUE, TRUE)
+			wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, ITEM_SLOT_BACK, TRUE, TRUE)
 
 /datum/loadout_item/secondary/empty
 	name = "None"
@@ -77,12 +77,12 @@
 	var/gun_spawned = FALSE
 	var/ammo_spawned = FALSE
 
-	if(isholster(wearer.belt))
+	if(isholster(wearer.belt)) //ivan todo
 		var/obj/item/storage/holster/holster = wearer.belt
-		wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
+		wearer.equip_to_slot_or_del(new item_typepath(wearer), ITEM_SLOT_BELT)
 		gun_spawned = TRUE
 		for(var/i = 1 to holster.storage_datum.max_storage_space)
-			if(!wearer.equip_to_slot_or_del(new secondary_weapon_ammo, SLOT_IN_HOLSTER))
+			if(!wearer.equip_to_slot_or_del(new secondary_weapon_ammo, ITEM_SLOT_BELT))
 				break
 			ammo_spawned = TRUE
 
@@ -90,11 +90,11 @@
 		return
 
 	if(!gun_spawned)
-		wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_BACKPACK)
+		wearer.equip_to_slot_or_del(new item_typepath(wearer), ITEM_SLOT_BACK, TRUE, TRUE)
 
 	if(ammo_spawned)
 		default_load(wearer, loadout, holder)
 	for(var/i = 1 to 10)
-		if(!wearer.equip_to_slot_or_del(new secondary_weapon_ammo, SLOT_IN_BACKPACK))
+		if(!wearer.equip_to_slot_or_del(new secondary_weapon_ammo, ITEM_SLOT_BACK, TRUE, TRUE))
 			break
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK) //because secondary fills last, there should only be space if secondary ammo is w_class 3, or the loadout naturally has spare space
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE) //because secondary fills last, there should only be space if secondary ammo is w_class 3, or the loadout naturally has spare space

@@ -13,17 +13,15 @@
 	head = /obj/item/clothing/head/redcoat
 	belt = /obj/item/storage/belt/shotgun/martini/full
 	back = /obj/item/weapon/gun/shotgun/double/martini
-	r_store = /obj/item/storage/pouch/firstaid
-	l_store = /obj/item/storage/holster/flarepouch/full
+	r_pocket = /obj/item/storage/pouch/firstaid
+	l_pocket = /obj/item/storage/holster/flarepouch/full
 
-/datum/outfit/quick/civil_war/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/gauze, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/ointment, SLOT_IN_R_POUCH)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_R_POUCH)
+	r_pocket_contents = list(
+		/obj/item/storage/pill_bottle/tramadol = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 2,
+		/obj/item/stack/medical/heal_pack/ointment = 2,
+		/obj/item/stack/medical/splint = 1,
+	)
 
 /datum/outfit/quick/civil_war/bluecoat
 	name = "Bluecoat"

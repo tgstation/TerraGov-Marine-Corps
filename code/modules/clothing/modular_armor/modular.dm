@@ -140,7 +140,7 @@
 	return standing
 
 /obj/item/clothing/suit/modular/mob_can_equip(mob/user, slot, warning = TRUE, override_nodrop = FALSE, bitslot = FALSE)
-	if(slot == SLOT_WEAR_SUIT && ishuman(user))
+	if(slot == ITEM_SLOT_OCLOTHING && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/obj/item/clothing/under/undersuit = H.w_uniform
 		if(!istype(undersuit, allowed_uniform_type))
@@ -168,7 +168,7 @@
 		return FALSE
 	if(!ishuman(user))
 		return FALSE
-	if(slot != SLOT_WEAR_SUIT)
+	if(slot != ITEM_SLOT_OCLOTHING)
 		return FALSE
 	return TRUE //only give action button when armor is worn.
 
