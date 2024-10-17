@@ -39,11 +39,11 @@
 	var/multiplier = 1
 	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
 		if(X.plasma_stored >= STAGE_TWO_BLOODTHIRST)
-			multiplier++
+			multiplier += 0.5
 			if(X.plasma_stored >= STAGE_THREE_BLOODTHIRST)
-				multiplier++
+				multiplier++ += 0.5
 
-	X.throw_at(A, charge_range, RAV_CHARGESPEED*multiplier, X)
+	X.throw_at(A, charge_range*multiplier, RAV_CHARGESPEED*multiplier, X)
 
 	add_cooldown()
 
@@ -655,12 +655,14 @@
 	UnregisterSignal(L, list(COMSIG_XENOMORPH_ATTACK_LIVING, COMSIG_XENOMORPH_TAKING_DAMAGE))
 	STOP_PROCESSING(SSprocessing, src)
 
+/// sig handler to track attacks for bloodthirst
 /datum/action/ability/xeno_action/bloodthirst/proc/on_attack(datum/source, mob/living/attacked, damage)
 	SIGNAL_HANDLER
 	if(!ishuman(attacked) || attacked.stat == DEAD)
 		return
 	last_fight_time = world.time
 
+///sig handler to track last attacked for bloodthirst
 /datum/action/ability/xeno_action/bloodthirst/proc/on_take_damage(datum/source, damage)
 	SIGNAL_HANDLER
 	last_fight_time = world.time
@@ -735,3 +737,4 @@
 	xeno.playsound_local(xeno, 'sound/voice/hiss5.ogg', 50)
 	to_chat(owner, span_highdanger("THE QUEEN MOTHER IS PLEASED WITH YOUR PERFORMANCE ([damage_dealt]/[DEATHMARK_DAMAGE_OR_DIE])."))
 	owner.balloon_alert(owner, "deathmark expired")
+	add_cooldown()
