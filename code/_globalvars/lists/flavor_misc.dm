@@ -301,6 +301,16 @@ GLOBAL_LIST_INIT(campaign_loadout_item_icon_types, list(
 	"v62",
 	"t21",
 	"tx34",
+	"tp44",
+	"tp14",
+	"88m4",
+	"tp23",
+	"highpower",
+	"stun_nade",
+	"sentry",
+	"claymore",
+	"t72",
+	"minigun",
 ))
 
 GLOBAL_LIST_INIT(minimap_icons, init_minimap_icons())

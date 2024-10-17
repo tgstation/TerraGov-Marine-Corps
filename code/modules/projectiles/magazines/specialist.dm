@@ -233,14 +233,8 @@
 	default_ammo = /datum/ammo/rocket/oneuse
 	reload_delay = 30
 
-/obj/item/ammo_magazine/internal/launcher/rocket/oneuse
-	name = "\improper 68mm internal tube"
-	desc = "The internal tube of a one use rpg."
-	caliber = CALIBER_68MM
-	default_ammo = /datum/ammo/rocket/recoilless
-	max_rounds = 1
-	current_rounds = 0
-	reload_delay = 30
+/obj/item/ammo_magazine/rocket/oneuse/anti_tank
+	default_ammo = /datum/ammo/rocket/recoilless/heat/mech
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN

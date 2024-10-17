@@ -101,3 +101,25 @@
   - rscadd: 'Campaign: Mission briefing pops up when a new mission is chosen'
   - bugfix: fixed TDF B18 icon_states
   - code_imp: Killed some redundant suit vars
+2024-10-14:
+  00ze-cyclone:
+  - rscadd: 'TE powerbackpack: 20 cells worth of power on your back'
+  Barnet2:
+  - balance: Removes a Chigusa intel computer, Chigusa plat miner removals and movals
+  Runian:
+  - bugfix: Wraith's Timeshift cancels if the target changes z-levels.
+2024-10-15:
+  Runian:
+  - bugfix: All types of fire no longer damages or heats you up if you have 100% fire
+      soft/hard armor.
+2024-10-16:
+  Arturlang:
+  - bugfix: Handcuffs won't break your resist anymore
+  Lumipharon:
+  - rscadd: 'Campaign: Added a new ''Secondary'' equipment option for sidearms and
+      specialty equipment'
+  - rscadd: Explosive grenades will blow your hand off if they detonate in-hand
+  jonash07:
+  - qol: The loadout vendor now contains two new tabs for the Field Commander and
+      the Synthetic. Loadout vendor now works with their respective essential kits.
+  - bugfix: deleted a duplicate hairstyle
