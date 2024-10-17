@@ -1,0 +1,4 @@
+author: "jonash07"
+delete-after: True
+changes:
+  - balance: "Synth crit now deals damage by limb instead of applying it all over the body"
