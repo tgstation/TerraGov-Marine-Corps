@@ -41,7 +41,7 @@
 		if(X.plasma_stored >= STAGE_TWO_BLOODTHIRST)
 			multiplier += 0.5
 			if(X.plasma_stored >= STAGE_THREE_BLOODTHIRST)
-				multiplier++ += 0.5
+				multiplier += 0.5
 
 	X.throw_at(A, charge_range*multiplier, RAV_CHARGESPEED*multiplier, X)
 
