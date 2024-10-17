@@ -1,12 +1,12 @@
 /datum/loadout_item/suit_store/main_gun/som_engineer
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 
-/datum/loadout_item/suit_store/main_gun/som_engineer/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
+/datum/loadout_item/suit_store/main_gun/som_engineer/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle
 	name = "V-31"
@@ -19,29 +19,20 @@
 	item_typepath = /obj/item/weapon/gun/rifle/som/standard
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-
-/datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/dragonbreath, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, ITEM_SLOT_BACK, TRUE, TRUE)
+	if(istype(wearer.back, /obj/item/storage/backpack/marine/engineerpack/som))
+		return
+	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/micro_grenade/cluster, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/standard_rifle/enhanced
 	name = "V-31+"
@@ -61,22 +52,20 @@
 	ui_icon = "ak47"
 	item_typepath = /obj/item/weapon/gun/rifle/mpi_km/black/grenadier
 
-/datum/loadout_item/suit_store/main_gun/som_engineer/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_engineer/mpi/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	if(istype(wearer.back, /obj/item/storage/backpack/marine/engineerpack/som))
+		return
+	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/carbine
 	name = "V-34"
@@ -87,22 +76,20 @@
 	ui_icon = "v34"
 	item_typepath = /obj/item/weapon/gun/rifle/som_carbine/black/standard
 
-/datum/loadout_item/suit_store/main_gun/som_engineer/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_engineer/carbine/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	if(istype(wearer.back, /obj/item/storage/backpack/marine/engineerpack/som))
+		return
+	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/smg
 	name = "V-21"
@@ -114,29 +101,22 @@
 	ui_icon = "v21"
 	item_typepath = /obj/item/weapon/gun/smg/som/support
 
-/datum/loadout_item/suit_store/main_gun/som_engineer/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_engineer/smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new secondary_ammo_type, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-
-/datum/loadout_item/suit_store/main_gun/som_engineer/smg/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	if(istype(wearer.back, /obj/item/storage/backpack/marine/engineerpack/som))
+		return
+	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/smg/enhanced
 	name = "V-21+"
@@ -155,30 +135,25 @@
 	Uses 12 gauge shells."
 	ui_icon = "v51"
 	item_typepath = /obj/item/weapon/gun/shotgun/som/support
+	ammo_type = /obj/item/ammo_magazine/handful/flechette
+	secondary_ammo_type = /obj/item/ammo_magazine/handful/flechette
 
-/datum/loadout_item/suit_store/main_gun/som_engineer/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_engineer/flechette_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-
-/datum/loadout_item/suit_store/main_gun/som_engineer/flechette_shotgun/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/som, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/flashbang/stun, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	if(istype(wearer.back, /obj/item/storage/backpack/marine/engineerpack/som))
+		return
+	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
 
 /datum/loadout_item/suit_store/main_gun/som_engineer/volkite_charger
 	name = "VX-32 charger"
@@ -192,19 +167,17 @@
 	purchase_cost = 25
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE
 
-/datum/loadout_item/suit_store/main_gun/som_engineer/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/som_engineer/volkite_charger/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE/som, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/emp, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/emp, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, FALSE, TRUE)
+	if(!isstorageobj(wearer.back))
+		return
+	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	if(istype(wearer.back, /obj/item/storage/backpack/marine/engineerpack/som))
+		return
+	wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new secondary_ammo_type, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)

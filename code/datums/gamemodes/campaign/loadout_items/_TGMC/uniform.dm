@@ -48,13 +48,13 @@
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/uniform/marine_corpsman/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/roller, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/tweezers_advanced, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/spaceacillin, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
+/datum/loadout_item/uniform/marine_corpsman/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/bodybag/cryobag, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/roller, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/tweezers_advanced, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/nanoblood, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/big/combatmix, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/combat_advanced, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
 
 //engineer
 /datum/loadout_item/uniform/marine_engineer

@@ -82,3 +82,44 @@
   - balance: Armor vests now fit guns, aprons now fit hatchets and scythes.
   - admin: Added a tab in the select equipment menu for survivors.
   - rscadd: Added new zombie type, the Smoker.
+2024-10-10:
+  Arturlang:
+  - bugfix: You no longer loose the last sandbag when emptying full sandbags
+  Lumipharon:
+  - rscdel: Sawn-off shotgun removed from req
+  - balance: Sawn-off shotgun buffed to old levels, but with double the falloff
+  - bugfix: fixed deployable Iguana HP being higher than intended
+  - rscadd: Unmanned vehicle IFF and hud are based off the deploying mob
+  - balance: Unmanned vehicles no longer have 100 energy armour
+  - bugfix: jump spins work again in low grav
+  - bugfix: fixed another fueltank runtime
+  - rscadd: 'Campaign: Loadouts cannot be equipt until the next mission has been selected'
+  - qol: Detpack and signaller code is randomised upon spawn
+  - bugfix: cope sentry hud appears correctly when deployed via throw
+  - qol: 'Campaign: Any deployed cameras are deleted on mission end'
+  - bugfix: fixed a sentry runtime
+  - rscadd: 'Campaign: Mission briefing pops up when a new mission is chosen'
+  - bugfix: fixed TDF B18 icon_states
+  - code_imp: Killed some redundant suit vars
+2024-10-14:
+  00ze-cyclone:
+  - rscadd: 'TE powerbackpack: 20 cells worth of power on your back'
+  Barnet2:
+  - balance: Removes a Chigusa intel computer, Chigusa plat miner removals and movals
+  Runian:
+  - bugfix: Wraith's Timeshift cancels if the target changes z-levels.
+2024-10-15:
+  Runian:
+  - bugfix: All types of fire no longer damages or heats you up if you have 100% fire
+      soft/hard armor.
+2024-10-16:
+  Arturlang:
+  - bugfix: Handcuffs won't break your resist anymore
+  Lumipharon:
+  - rscadd: 'Campaign: Added a new ''Secondary'' equipment option for sidearms and
+      specialty equipment'
+  - rscadd: Explosive grenades will blow your hand off if they detonate in-hand
+  jonash07:
+  - qol: The loadout vendor now contains two new tabs for the Field Commander and
+      the Synthetic. Loadout vendor now works with their respective essential kits.
+  - bugfix: deleted a duplicate hairstyle

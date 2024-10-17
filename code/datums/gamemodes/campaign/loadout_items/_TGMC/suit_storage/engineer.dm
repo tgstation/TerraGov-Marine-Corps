@@ -1,12 +1,12 @@
 /datum/loadout_item/suit_store/main_gun/engineer
 	jobs_supported = list(SQUAD_ENGINEER)
 
-/datum/loadout_item/suit_store/main_gun/engineer/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
+/datum/loadout_item/suit_store/main_gun/engineer/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
 
 /datum/loadout_item/suit_store/main_gun/engineer/carbine
 	name = "AR-18"
@@ -31,7 +31,7 @@
 	ui_icon = "t12"
 	item_typepath = /obj/item/weapon/gun/rifle/standard_assaultrifle/engineer
 
-/datum/loadout_item/suit_store/main_gun/engineer/assault_rifle/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/suit_store/main_gun/engineer/assault_rifle/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
@@ -56,12 +56,12 @@
 	item_typepath = /obj/item/weapon/gun/rifle/standard_autoshotgun/engineer
 	secondary_ammo_type = /obj/item/ammo_magazine/rifle/tx15_flechette
 
-/datum/loadout_item/suit_store/main_gun/engineer/auto_shotgun/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, ITEM_SLOT_ICLOTHING, FALSE, TRUE)
+/datum/loadout_item/suit_store/main_gun/engineer/auto_shotgun/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/MRE, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/sticky, ITEM_SLOT_ICLOTHING, TRUE, TRUE)
 
 /datum/loadout_item/suit_store/main_gun/engineer/combat_rifle
 	name = "AR-11"

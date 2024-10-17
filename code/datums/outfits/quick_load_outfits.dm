@@ -7,7 +7,8 @@
 	var/jobtype = "Squad Marine"
 	///Restricts loadouts to a specific job. Set to false to allow any job to take the loadout.
 	var/require_job = TRUE
-
+	///Secondary weapon
+	var/secondary_weapon
 
 /datum/outfit/quick/equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	//Start with uniform,suit,backpack for additional slots. Deletes any existing equipped item to avoid accidentally losing half your loadout. Not suitable for standard gamemodes!

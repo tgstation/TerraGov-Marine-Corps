@@ -47,13 +47,13 @@
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
 
-/datum/loadout_item/r_pocket/war_crime_grenades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_R_POCKET, FALSE, TRUE)
+/datum/loadout_item/r_pocket/war_crime_grenades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_R_POCKET, TRUE, TRUE)
 
 /datum/loadout_item/r_pocket/som_shotgun
 	name = "Buckshot shells"
@@ -62,11 +62,11 @@
 	item_typepath = /obj/item/storage/pouch/shotgun/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 
-/datum/loadout_item/r_pocket/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, FALSE, TRUE)
+/datum/loadout_item/r_pocket/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, TRUE, TRUE)
 
 /datum/loadout_item/r_pocket/som_construction
 	name = "Construction pouch"
@@ -75,11 +75,11 @@
 	item_typepath = /obj/item/storage/pouch/construction/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 
-/datum/loadout_item/r_pocket/som_construction/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, ITEM_SLOT_R_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, ITEM_SLOT_R_POCKET, FALSE, TRUE)
+/datum/loadout_item/r_pocket/som_construction/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, ITEM_SLOT_R_POCKET, TRUE, TRUE)
 
 /datum/loadout_item/r_pocket/som_magazine
 	name = "Mag pouch-P"
@@ -161,13 +161,13 @@
 	jobs_supported = list(SOM_SQUAD_VETERAN)
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/mithridatius = ITEM_SLOT_OCLOTHING)
 
-/datum/loadout_item/l_pocket/war_crime_grenades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_L_POCKET, FALSE, TRUE)
+/datum/loadout_item/l_pocket/war_crime_grenades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/satrapine, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/rad, ITEM_SLOT_L_POCKET, TRUE, TRUE)
 
 /datum/loadout_item/l_pocket/som_shotgun
 	name = "Flechette shells"
@@ -176,11 +176,11 @@
 	item_typepath = /obj/item/storage/pouch/shotgun/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 
-/datum/loadout_item/l_pocket/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, FALSE, TRUE)
+/datum/loadout_item/l_pocket/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, TRUE, TRUE)
 
 /datum/loadout_item/l_pocket/som_construction
 	name = "Construction pouch"
@@ -189,21 +189,21 @@
 	item_typepath = /obj/item/storage/pouch/construction/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 
-/datum/loadout_item/l_pocket/som_construction/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, ITEM_SLOT_L_POCKET, FALSE, TRUE)
+/datum/loadout_item/l_pocket/som_construction/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, ITEM_SLOT_L_POCKET, TRUE, TRUE)
 
 /datum/loadout_item/l_pocket/som_construction/engineer
 	desc = "A pouch containing additional metal, plasteel and barbed wire. Allows for the rapid establishment of fortified positions."
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 
-/datum/loadout_item/l_pocket/som_construction/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_L_POCKET, FALSE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, ITEM_SLOT_L_POCKET, FALSE, TRUE)
+/datum/loadout_item/l_pocket/som_construction/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, ITEM_SLOT_L_POCKET, TRUE, TRUE)
 
 /datum/loadout_item/l_pocket/som_magazine
 	name = "Mag pouch-S"

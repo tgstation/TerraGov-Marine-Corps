@@ -228,6 +228,7 @@
 #define ITEM_SLOT_R_HAND (1<<16) //right hand
 	#define ITEM_SLOT_HANDS (ITEM_SLOT_L_HAND|ITEM_SLOT_R_HAND) //a combo of the above
 #define ITEM_SLOT_ACTIVE_STORAGE (1<<17) // the currently open/active storage container 
+#define ITEM_SLOT_SECONDARY (1<<18) //campaign loadouts only //ivan todo i hate lumi
 
 ///Inventory slot bits to plain english strings
 GLOBAL_LIST_INIT(inventory_slots_to_string, list(
@@ -248,6 +249,7 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 	"[ITEM_SLOT_HANDCUFF]" = "Handcuffs",
 	"[ITEM_SLOT_L_HAND]" = "Left hand",
 	"[ITEM_SLOT_R_HAND]" = "Right hand",
+	"[ITEM_SLOT_SECONDARY]" = "Secondary",
 ))
 
 
