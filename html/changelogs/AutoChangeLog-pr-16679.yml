@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed sentries being able to fire out of undeployed sentry holders"
