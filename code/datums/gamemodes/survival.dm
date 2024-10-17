@@ -23,8 +23,9 @@
 		/datum/job/xenomorph = 2
 	)
 
-	deploy_time_lock = 15 SECONDS
-	xenorespawn_time = 15 SECONDS
+	shutters_drop_time = 5 SECONDS
+	deploy_time_lock = 5 SECONDS
+	xenorespawn_time = 2 MINUTES
 	whitelist_ground_maps = list(MAP_COLONY1)
 	blacklist_ground_maps = null
 	whitelist_ship_maps = list(MAP_EAGLE) //since it dont have survivor spawns, they should spawn at colony itself. And can be used to spawn marines later. Eagle is a fast dropship for emergency response.
