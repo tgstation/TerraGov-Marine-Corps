@@ -9,7 +9,7 @@
 	ears = /obj/item/radio/headset/distress/som
 	w_uniform = /obj/item/clothing/under/som/webbing
 	shoes = /obj/item/clothing/shoes/marine/som/knife
-	wear_suit = /obj/item/clothing/suit/modular/som
+	wear_suit = /obj/item/clothing/suit/modular/som/medstorage
 	gloves = /obj/item/clothing/gloves/marine/som
 	mask = /obj/item/clothing/mask/gas
 	head = /obj/item/clothing/head/modular/som
@@ -44,10 +44,6 @@
 		/obj/item/storage/box/m94 = 1,
 	)
 
-	belt_contents = list(
-		/obj/item/ammo_magazine/rifle/som = 6,
-	)
-
 	webbing_contents = list(
 		/obj/item/ammo_magazine/handful/micro_grenade = 2,
 		/obj/item/ammo_magazine/handful/micro_grenade/dragonbreath = 1,
@@ -67,10 +63,6 @@
 		/obj/item/explosive/grenade/som = 2,
 		/obj/item/ammo_magazine/smg/som = 3,
 		/obj/item/storage/box/m94 = 1,
-	)
-
-	belt_contents = list(
-		/obj/item/ammo_magazine/smg/som = 6,
 	)
 
 	webbing_contents = list(
@@ -225,14 +217,6 @@
 	l_pocket = /obj/item/storage/pouch/grenade/som/ert
 	back = /obj/item/storage/backpack/lightpack/som
 
-	suit_contents = list(
-		/obj/item/stack/medical/heal_pack/gauze = 1,
-		/obj/item/stack/medical/heal_pack/ointment = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 1,
-		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
-	)
-
 	head_contents = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/russian_red = 1,
@@ -264,6 +248,14 @@
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/lorica
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
 	l_hand = /obj/item/weapon/shield/riot/marine/som
+
+	suit_contents = list(
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
+	)
 
 	backpack_contents = list(
 		/obj/item/tool/extinguisher = 1,
@@ -346,6 +338,14 @@
 	back = /obj/item/storage/holster/backholster/rpg/som/ert
 	l_pocket = /obj/item/storage/pouch/grenade/som
 
+	suit_contents = list(
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
+	)
+
 	belt_contents = list(
 		/obj/item/ammo_magazine/smg/som = 2,
 		/obj/item/ammo_magazine/smg/som/rad = 4,
@@ -367,7 +367,7 @@
 
 /datum/outfit/job/som/ert/veteran/pyro
 	head = /obj/item/clothing/head/modular/som/hades
-	wear_suit = /obj/item/clothing/suit/modular/som/heavy/pyro
+	wear_suit = /obj/item/clothing/suit/modular/som/heavy/pyro/genstorage
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/som
 	back = /obj/item/ammo_magazine/flamer_tank/backtank
 	suit_store = /obj/item/weapon/gun/flamer/som/mag_harness
@@ -401,6 +401,14 @@
 		/obj/item/explosive/grenade/incendiary/som = 1,
 		/obj/item/tool/crowbar/red = 1,
 		/obj/item/binoculars = 1,
+	)
+
+	suit_contents = list(
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
 	)
 
 //Base SOM leader outfit
@@ -533,6 +541,14 @@
 		/obj/item/explosive/grenade/rad = 2,
 		/obj/item/explosive/grenade/incendiary/som = 1,
 	)
+	
+	suit_contents = list(
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
+	)
 
 
 /datum/outfit/job/som/ert/veteran/breacher_rpg
@@ -564,6 +580,14 @@
 		/obj/item/ammo_magazine/rocket/som/rad = 1,
 	)
 
+	suit_contents = list(
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
+	)
+
 /datum/outfit/job/som/ert/veteran/breacher_flamer
 	head = /obj/item/clothing/head/modular/som/hades
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/pyro
@@ -583,6 +607,14 @@
 		/obj/item/tool/extinguisher/mini = 1,
 	)
 
+	suit_contents = list(
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
+	)
+
 /datum/outfit/job/som/ert/veteran/breacher_culverin
 	head = /obj/item/clothing/head/modular/som/lorica
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/lorica
@@ -597,9 +629,18 @@
 		/obj/item/weapon/energy/sword/som = 1,
 	)
 
+	suit_contents = list(
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
+	)
+
 
 /datum/outfit/job/som/ert/medic/breacher
 	head = /obj/item/clothing/head/modular/som/lorica
+	w_uniform = /obj/item/clothing/under/som/medic/vest/black
 	wear_suit = /obj/item/clothing/suit/modular/som/heavy/lorica
 	suit_store = /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/charger/somvet
 	l_hand = /obj/item/weapon/shield/riot/marine/som

@@ -127,15 +127,22 @@
 		/obj/item/ammo_magazine/rifle/famas = 3,
 	)
 
+	suit_contents = null
 
 /datum/outfit/job/freelancer/grenadier
 	name = "Freelancer Veteran"
 	jobtype = /datum/job/freelancer/grenadier
+	r_pocket = /obj/item/storage/pouch/grenade
+
+	r_pocket_contents = list(
+		/obj/item/explosive/grenade = 2,
+		/obj/item/explosive/grenade/smokebomb/cloak = 2,
+		/obj/item/explosive/grenade/incendiary = 2,
+	)
 
 /datum/outfit/job/freelancer/grenadier/one
 	w_uniform = /obj/item/clothing/under/marine/veteran/freelancer/veteran
 	suit_store = /obj/item/weapon/gun/rifle/alf_machinecarbine/freelancer
-	r_pocket = /obj/item/storage/pouch/grenade
 
 	backpack_contents = list(
 		/obj/item/ammo_magazine/rifle/alf_machinecarbine = 2,
@@ -147,12 +154,6 @@
 
 	belt_contents = list(
 		/obj/item/ammo_magazine/rifle/alf_machinecarbine = 6,
-	)
-
-	r_pocket_contents = list(
-		/obj/item/explosive/grenade = 2,
-		/obj/item/explosive/grenade/smokebomb/cloak = 2,
-		/obj/item/explosive/grenade/incendiary = 2,
 	)
 
 
@@ -169,12 +170,6 @@
 
 	belt_contents = list(
 		/obj/item/ammo_magazine/m412l1_hpr = 3,
-	)
-
-	r_pocket_contents = list(
-		/obj/item/explosive/grenade = 2,
-		/obj/item/explosive/grenade/smokebomb/cloak = 2,
-		/obj/item/explosive/grenade/incendiary = 2,
 	)
 
 
@@ -213,6 +208,8 @@
 	backpack_contents = list(
 		/obj/item/stack/sheet/metal/large_stack = 1,
 	)
+
+	suit_contents = null //leaders have a snowflake storage module which populates its own contents
 
 /datum/outfit/job/freelancer/leader/one
 	belt = /obj/item/storage/belt/grenade/b17

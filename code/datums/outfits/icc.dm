@@ -31,7 +31,10 @@
 		/obj/item/tool/crowbar/red = 1,
 		/obj/item/tool/screwdriver = 1,
 		/obj/item/tool/wrench = 1,
-		/obj/item/storage/box/m94 = 1,
+	)
+
+	head_contents = list(
+		/obj/item/explosive/plastique = 2,
 	)
 
 	suit_contents = list(
@@ -39,7 +42,8 @@
 	)
 
 	webbing_contents = list(
-		/obj/item/explosive/plastique = 5,
+		/obj/item/explosive/plastique = 4,
+		/obj/item/storage/box/m94 = 1,
 	)
 
 	r_pocket_contents = list(
@@ -82,6 +86,7 @@
 	wear_suit = /obj/item/clothing/suit/storage/marine/icc/guard
 	gloves = /obj/item/clothing/gloves/marine/icc/guard
 	head = /obj/item/clothing/head/helmet/marine/icc/guard
+	back = /obj/item/storage/backpack/lightpack/icc
 
 	backpack_contents = list(
 		/obj/item/tool/crowbar/red = 1,
@@ -120,6 +125,8 @@
 		/obj/item/ammo_magazine/rocket/icc = 4,
 	)
 
+	backpack_contents = null
+
 
 /datum/outfit/job/icc/guard/icc_autoshotgun
 	suit_store = /obj/item/weapon/gun/rifle/icc_coilgun
@@ -139,6 +146,7 @@
 		/obj/item/ammo_magazine/rifle/icc_autoshotgun = 3,
 	)
 
+	backpack_contents = null
 
 /datum/outfit/job/icc/guard/icc_bagmg
 	wear_suit = /obj/item/clothing/suit/storage/marine/icc/guard/heavy
@@ -157,6 +165,8 @@
 		/obj/item/ammo_magazine/rifle/icc_coilgun = 3,
 	)
 
+	backpack_contents = null
+
 /datum/outfit/job/icc/medic
 	name = "ICC Medic"
 	jobtype = /datum/job/icc/medic
@@ -172,6 +182,7 @@
 		/obj/item/explosive/grenade/som = 6,
 		/obj/item/defibrillator = 1,
 		/obj/item/storage/box/m94 = 1,
+		/obj/item/reagent_containers/hypospray/advanced/combat_advanced = 1,
 	)
 
 	suit_contents = list(
@@ -184,7 +195,6 @@
 		/obj/item/storage/pill_bottle/spaceacillin = 1,
 		/obj/item/reagent_containers/hypospray/advanced/nanoblood = 1,
 		/obj/item/bodybag/cryobag = 1,
-		/obj/item/reagent_containers/hypospray/advanced/combat_advanced = 1,
 	)
 
 

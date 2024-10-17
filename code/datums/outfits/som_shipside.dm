@@ -4,9 +4,8 @@
 
 	id = /obj/item/card/id/gold
 
-	r_pocket_contents = list(
-		/obj/item/binoculars/fire_support/campaign/som = 1,
-	)
+	r_hand = /obj/item/binoculars/fire_support/campaign/som
+
 
 /datum/outfit/job/som/command/fieldcommander
 	name = SOM_FIELD_COMMANDER
@@ -104,27 +103,30 @@
 	head = /obj/item/clothing/head/tgmccap/req
 	r_pocket = /obj/item/storage/pouch/general/large
 
-/datum/outfit/job/som/medical/professor
-	name = SOM_CHIEF_MEDICAL_OFFICER
-	jobtype = /datum/job/som/medical/professor
-
-	id = /obj/item/card/id
+/datum/outfit/job/som/medical
 	belt = /obj/item/storage/belt/rig/medical
-	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/rank/medical/blue
-	wear_suit = /obj/item/clothing/suit/storage/labcoat/cmo
 	shoes = /obj/item/clothing/shoes/white
 	gloves = /obj/item/clothing/gloves/latex
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
-	head = /obj/item/clothing/head/cmo
-	r_pocket = /obj/item/storage/pouch/medkit/doctor
-	l_pocket = /obj/item/storage/pouch/surgery
+	back = /obj/item/storage/backpack/satchel
 
 	backpack_contents = list(
 		/obj/item/tweezers_advanced = 1,
 		/obj/item/reagent_containers/glass/bottle/lemoline/doctor = 1,
 	)
+
+/datum/outfit/job/som/medical/professor
+	name = SOM_CHIEF_MEDICAL_OFFICER
+	jobtype = /datum/job/som/medical/professor
+
+	id = /obj/item/card/id
+	ears = /obj/item/radio/headset/mainship/mcom
+	w_uniform = /obj/item/clothing/under/rank/medical/blue
+	wear_suit = /obj/item/clothing/suit/storage/labcoat/cmo
+	head = /obj/item/clothing/head/cmo
+	r_pocket = /obj/item/storage/pouch/medkit/doctor
+	l_pocket = /obj/item/storage/pouch/surgery
 
 
 /datum/outfit/job/som/medical/medicalofficer
@@ -132,20 +134,10 @@
 	jobtype = /datum/job/som/medical/medicalofficer
 
 	id = /obj/item/card/id
-	belt = /obj/item/storage/belt/rig/medical
 	ears = /obj/item/radio/headset/mainship/doc
 	w_uniform = /obj/item/clothing/under/rank/medical/purple
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
-	shoes = /obj/item/clothing/shoes/white
-	gloves = /obj/item/clothing/gloves/latex
-	glasses = /obj/item/clothing/glasses/hud/health
-	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
-
-	backpack_contents = list(
-		/obj/item/tweezers_advanced = 1,
-		/obj/item/reagent_containers/glass/bottle/lemoline/doctor = 1,
-	)
 
 /datum/outfit/job/som/civilian/chef
 	name = SOM_CHEF
@@ -161,6 +153,7 @@
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
+	back = /obj/item/storage/backpack/satchel
 
 	backpack_contents = list(
 		/obj/item/tweezers_advanced = 1,

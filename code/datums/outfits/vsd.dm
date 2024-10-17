@@ -95,6 +95,8 @@
 		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
 	)
 
+	head_contents = null
+
 /datum/outfit/job/vsd/standard/grunt_third
 	suit_store = /obj/item/weapon/gun/rifle/vsd_rifle/standard
 	backpack_contents = list(
@@ -169,10 +171,6 @@
 	backpack_contents = list(
 		/obj/item/storage/box/MRE = 1,
 		/obj/item/ammo_magazine/rifle/vsd_rifle = 2,
-	)
-
-	webbing_contents = list(
-		/obj/item/ammo_magazine/rifle/vsd_rifle = 1,
 	)
 
 	l_pocket_contents = list(
@@ -286,6 +284,8 @@
 	ears = /obj/item/radio/headset/distress/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd
 	w_uniform = /obj/item/clothing/under/vsd/webbing
+	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
+	head = /obj/item/clothing/head/helmet/marine/vsd
 	shoes = /obj/item/clothing/shoes/marine/vsd
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
@@ -377,12 +377,12 @@
 	)
 
 /datum/outfit/job/vsd/spec/uslspec_one
-	w_uniform = /obj/item/clothing/under/vsd/upp
+	w_uniform = /obj/item/clothing/under/vsd/upp/white_webbing
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor/upp
 	head = /obj/item/clothing/head/helmet/marine/vsd/upp
 	mask = /obj/item/clothing/mask/gas/vsd
 	suit_store = /obj/item/weapon/gun/rifle/type71/flamer
-	l_pocket = /obj/item/storage/pouch/magazine
+	l_pocket = /obj/item/storage/pouch/general/large
 
 	backpack_contents = list(
 		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
@@ -392,7 +392,7 @@
 		/obj/item/storage/box/m94 = 1,
 		/obj/item/tool/crowbar/red = 1,
 		/obj/item/explosive/grenade/vsd = 1,
-		/obj/item/explosive/plastique = 2,
+		/obj/item/explosive/plastique = 1,
 	)
 
 	belt_contents = list(
@@ -406,11 +406,11 @@
 	)
 
 	l_pocket_contents = list(
-		/obj/item/ammo_magazine/flamer_tank/mini = 2,
+		/obj/item/ammo_magazine/flamer_tank/mini = 3,
 	)
 
 /datum/outfit/job/vsd/spec/uslspec_two
-	w_uniform = /obj/item/clothing/under/vsd/upp
+	w_uniform = /obj/item/clothing/under/vsd/upp/white_webbing
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor/upp
 	head = /obj/item/clothing/head/uppcap/beret
 	glasses = /obj/item/clothing/glasses/sunglasses/fake

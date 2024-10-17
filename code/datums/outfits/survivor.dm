@@ -161,7 +161,6 @@
 		/obj/item/reagent_containers/food/snacks/chocolateegg = 1,
 		/obj/item/reagent_containers/food/snacks/meat/xeno = 1,
 		/obj/item/reagent_containers/food/snacks/pastries/xemeatpie = 1,
-		/obj/item/reagent_containers/food/snacks/pastries/birthdaycakeslice = 1,
 		/obj/item/reagent_containers/food/snacks/donut/meat = 1,
 		/obj/item/tool/crowbar = 1,
 		/obj/item/reagent_containers/food/drinks/cans/waterbottle = 1,
@@ -326,8 +325,8 @@
 	head = /obj/item/clothing/head/collectable/tophat
 	ears = /obj/item/radio/survivor
 	glasses = /obj/item/clothing/glasses/sunglasses
-	l_store = /obj/item/flashlight
-	r_store = /obj/item/tool/crowbar
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/tool/crowbar
 	suit_store = /obj/item/weapon/gun/shotgun/double/sawn
 
 	backpack_contents = list(
@@ -353,8 +352,8 @@
 	shoes = /obj/item/clothing/shoes/white
 	ears = /obj/item/radio/survivor
 	glasses = /obj/item/clothing/glasses/science
-	l_store = /obj/item/flashlight
-	r_store = /obj/item/tool/crowbar
+	l_pocket = /obj/item/flashlight
+	r_pocket = /obj/item/tool/crowbar
 	suit_store = /obj/item/healthanalyzer
 
 	backpack_contents = list(
@@ -399,8 +398,8 @@
 	back = /obj/item/storage/backpack/satchel/tox
 	ears = /obj/item/radio/survivor
 	glasses = /obj/item/clothing/glasses/welding/flipped
-	l_store = /obj/item/storage/pouch/electronics/full
-	r_store = /obj/item/flashlight/combat
+	l_pocket = /obj/item/storage/pouch/electronics/full
+	r_pocket = /obj/item/flashlight/combat
 
 	backpack_contents = list(
 		/obj/item/stack/sheet/metal/medium_stack = 1,

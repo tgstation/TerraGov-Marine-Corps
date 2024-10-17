@@ -525,7 +525,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(human_user.species && !(slot in mob_equip))
 		return FALSE
 
-	if(slot in human_user.species?.no_equip)
+	if((slot in human_user.species?.no_equip) && !into_storage) //the no_equip list only applies to actual slots, not storage insertion
 		if(!is_type_in_list(human_user.species, species_exception))
 			return FALSE
 
@@ -611,9 +611,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 				if(!human_user.shoes?.storage_datum?.can_be_inserted(src, human_user, FALSE))
 					return FALSE
 				return TRUE
-
-	/// The storage item in the specific slot we're trying to insert into
-	//var/obj/item/selected_storage //ivan todo
 
 	switch(slot)
 		if(ITEM_SLOT_L_HAND)
