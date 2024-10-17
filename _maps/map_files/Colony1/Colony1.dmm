@@ -565,9 +565,7 @@
 	static_lighting = 1
 	})
 "aHI" = (
-/obj/machinery/light_switch{
-	req_access = null
-	},
+/obj/machinery/light_switch,
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "aHM" = (
@@ -1629,9 +1627,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
 "ckp" = (
-/obj/machinery/light_switch{
-	req_access = null
-	},
+/obj/machinery/light_switch,
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison{
 	name = "Ground CEO Office"
@@ -1721,7 +1717,6 @@
 "cpn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
-/obj/item/defibrillator,
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular,
@@ -2535,7 +2530,9 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "doX" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed{
+	products = list("Pill Bottles" = list(/obj/item/storage/pill_bottle/bicaridine = -1, /obj/item/storage/pill_bottle/kelotane = -1, /obj/item/storage/pill_bottle/tramadol = -1, /obj/item/storage/pill_bottle/tricordrazine = -1, /obj/item/storage/pill_bottle/dylovene = -1, /obj/item/storage/pill_bottle/paracetamol = -1, /obj/item/storage/pill_bottle/isotonic = -1, /obj/item/storage/pill_bottle/aphrotoxin = 5, /obj/item/storage/pill_bottle = -1), "Auto Injector" = list(/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1, /obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1, /obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1, /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1, /obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1, /obj/item/reagent_containers/hypospray/autoinjector/combat = -1, /obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1, /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1, /obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30, /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 20, /obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20, /obj/item/reagent_containers/hypospray/autoinjector/alkysine = 20, /obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20, /obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10, /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20, /obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10, /obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin = 10), "Heal Pack" = list(/obj/item/stack/medical/heal_pack/gauze = -1, /obj/item/stack/medical/heal_pack/ointment = -1, /obj/item/stack/medical/splint = -1, /obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50, /obj/item/stack/medical/heal_pack/advanced/burn_pack = 50), "Misc" = list(/obj/item/healthanalyzer = 16, /obj/item/bodybag/cryobag = 24))
+	},
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
 "dpa" = (
@@ -5165,7 +5162,9 @@
 	name = "HQ Northeast Hallways"
 	})
 "gXF" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed{
+	products = list("Pill Bottles" = list(/obj/item/storage/pill_bottle/bicaridine = -1, /obj/item/storage/pill_bottle/kelotane = -1, /obj/item/storage/pill_bottle/tramadol = -1, /obj/item/storage/pill_bottle/tricordrazine = -1, /obj/item/storage/pill_bottle/dylovene = -1, /obj/item/storage/pill_bottle/paracetamol = -1, /obj/item/storage/pill_bottle/isotonic = -1, /obj/item/storage/pill_bottle/aphrotoxin = 5, /obj/item/storage/pill_bottle = -1), "Auto Injector" = list(/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1, /obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1, /obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1, /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1, /obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1, /obj/item/reagent_containers/hypospray/autoinjector/combat = -1, /obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1, /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1, /obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30, /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 20, /obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20, /obj/item/reagent_containers/hypospray/autoinjector/alkysine = 20, /obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20, /obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10, /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20, /obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10, /obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin = 10), "Heal Pack" = list(/obj/item/stack/medical/heal_pack/gauze = -1, /obj/item/stack/medical/heal_pack/ointment = -1, /obj/item/stack/medical/splint = -1, /obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50, /obj/item/stack/medical/heal_pack/advanced/burn_pack = 50), "Misc" = list(/obj/item/healthanalyzer = 16, /obj/item/bodybag/cryobag = 24))
+	},
 /turf/open/floor/mainship/sterile,
 /area/centcom/practice/medical{
 	outside = 0;
@@ -5184,7 +5183,6 @@
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
 /obj/machinery/door/window/secure{
-	req_access = null;
 	dir = 2
 	},
 /obj/machinery/door/window/secure{
@@ -7075,7 +7073,6 @@
 	dir = 2
 	},
 /obj/machinery/door/window/secure{
-	req_access = null;
 	dir = 1
 	},
 /obj/machinery/door/window/secure{
@@ -8992,7 +8989,9 @@
 	static_lighting = 1
 	})
 "mfk" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed{
+	products = list("Pill Bottles" = list(/obj/item/storage/pill_bottle/bicaridine = -1, /obj/item/storage/pill_bottle/kelotane = -1, /obj/item/storage/pill_bottle/tramadol = -1, /obj/item/storage/pill_bottle/tricordrazine = -1, /obj/item/storage/pill_bottle/dylovene = -1, /obj/item/storage/pill_bottle/paracetamol = -1, /obj/item/storage/pill_bottle/isotonic = -1, /obj/item/storage/pill_bottle/aphrotoxin = 5, /obj/item/storage/pill_bottle = -1), "Auto Injector" = list(/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1, /obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1, /obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1, /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1, /obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1, /obj/item/reagent_containers/hypospray/autoinjector/combat = -1, /obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1, /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1, /obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30, /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 20, /obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20, /obj/item/reagent_containers/hypospray/autoinjector/alkysine = 20, /obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20, /obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10, /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20, /obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10, /obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin = 10), "Heal Pack" = list(/obj/item/stack/medical/heal_pack/gauze = -1, /obj/item/stack/medical/heal_pack/ointment = -1, /obj/item/stack/medical/splint = -1, /obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50, /obj/item/stack/medical/heal_pack/advanced/burn_pack = 50), "Misc" = list(/obj/item/healthanalyzer = 16, /obj/item/bodybag/cryobag = 24))
+	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
 	},
@@ -9032,7 +9031,6 @@
 "mhr" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
-/obj/item/defibrillator,
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular,
@@ -13587,7 +13585,6 @@
 /area/lv624/lazarus/armory)
 "sam" = (
 /obj/machinery/door/airlock/mainship/medical{
-	req_access = null;
 	name = "\improper CMO Office"
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -15807,7 +15804,9 @@
 	always_unpowered = 0
 	})
 "vsa" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed{
+	products = list("Pill Bottles" = list(/obj/item/storage/pill_bottle/bicaridine = -1, /obj/item/storage/pill_bottle/kelotane = -1, /obj/item/storage/pill_bottle/tramadol = -1, /obj/item/storage/pill_bottle/tricordrazine = -1, /obj/item/storage/pill_bottle/dylovene = -1, /obj/item/storage/pill_bottle/paracetamol = -1, /obj/item/storage/pill_bottle/isotonic = -1, /obj/item/storage/pill_bottle/aphrotoxin = 5, /obj/item/storage/pill_bottle = -1), "Auto Injector" = list(/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1, /obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1, /obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1, /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1, /obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1, /obj/item/reagent_containers/hypospray/autoinjector/combat = -1, /obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1, /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1, /obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30, /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 20, /obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20, /obj/item/reagent_containers/hypospray/autoinjector/alkysine = 20, /obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20, /obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10, /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20, /obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10, /obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin = 10), "Heal Pack" = list(/obj/item/stack/medical/heal_pack/gauze = -1, /obj/item/stack/medical/heal_pack/ointment = -1, /obj/item/stack/medical/splint = -1, /obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50, /obj/item/stack/medical/heal_pack/advanced/burn_pack = 50), "Misc" = list(/obj/item/healthanalyzer = 16, /obj/item/bodybag/cryobag = 24))
+	},
 /turf/open/floor/mainship/sterile/corner,
 /area/centcom/practice/medical{
 	outside = 0;

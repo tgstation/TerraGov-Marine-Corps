@@ -77,9 +77,10 @@
 	if(world.time < (SSticker.round_start_time + 5 MINUTES))
 		return FALSE
 
-	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
 	var/num_humans = living_player_list[1]
-	var/num_xenos = living_player_list[2]
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/num_xenos = xeno_job.total_positions
 	if(round_finished)
 		if(num_humans > num_xenos)
 			message_admins("Round finished: NTC Minor Victory.") //there were more humans than xenos left when round ended.
