@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;vehicle&#x2F;unmanned - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/vehicle/unmanned.html#var">Var Details</a> - <a href="obj/vehicle/unmanned.html#proc">Proc Details</a></header>
+<main>
+<h1>unmanned <aside>/<a href="obj.html">obj</a>/<a href="obj/vehicle.html">vehicle</a>/<a href="obj/vehicle/unmanned.html">unmanned</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L2">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 2"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/allow_detpacks">allow_detpacks</a></th><td>If detpacks should be usable on the vehicle</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/ammo">ammo</a></th><td>Buller type we fire, declared as type but set to a reference in Initialize</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/can_interact">can_interact</a></th><td>If that vehicle can interact with cades</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/controlled">controlled</a></th><td>If something is already controlling the vehicle</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/current_rounds">current_rounds</a></th><td>Ammo remaining for the robot</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/fire_delay">fire_delay</a></th><td>Delay in byond ticks between weapon fires</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/flash">flash</a></th><td>muzzleflash stuff</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/gunnoise">gunnoise</a></th><td>Sound file or string type for playing the shooting sound</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/iff_signal">iff_signal</a></th><td>Iff flags, to prevent friendly fire from sg and aiming marines</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/in_chamber">in_chamber</a></th><td>The currently loaded and ready to fire projectile</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/max_rounds">max_rounds</a></th><td>max ammo the robot can hold</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/next_move_delay">next_move_delay</a></th><td>Needed to keep track of any slowdowns and/or diagonal movement</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/serial">serial</a></th><td>Serial number of the vehicle</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/spawn_equipped_type">spawn_equipped_type</a></th><td>If the vehicle should spawn with a weapon allready installed</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/turret_path">turret_path</a></th><td>Path of &quot;turret&quot; attached</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/turret_pattern">turret_pattern</a></th><td>Turret types we're allowed to attach</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/turret_type">turret_type</a></th><td>Type of the turret attached</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#var/unmanned_flags">unmanned_flags</a></th><td>Flags for unmanned vehicules</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#proc/delete_muzzle_flash">delete_muzzle_flash</a></th><td>Removes muzzle flash from unmanned vehicles</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#proc/equip_turret">equip_turret</a></th><td>Try to equip a turret on the vehicle</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#proc/fire_shot">fire_shot</a></th><td>Check if we have/create a new bullet and fire it at an atom target</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#proc/hud_set_uav_ammo">hud_set_uav_ammo</a></th><td>Makes unmanned vehicle ammo visible</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#proc/load_into_chamber">load_into_chamber</a></th><td>Checks if we can or already have a bullet loaded that we can shoot</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#proc/on_link">on_link</a></th><td>Called when the drone is linked from a remote control</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#proc/on_remote_toggle">on_remote_toggle</a></th><td>Called when remote control is taken</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#proc/on_unlink">on_unlink</a></th><td>Called when the drone is unlinked to a remote control</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#proc/reload_turret">reload_turret</a></th><td>Try to reload the turret of our vehicule</td></tr>
+            <tr><th><a href="obj/vehicle/unmanned.html#proc/wrench_act">wrench_act</a></th><td>Try to desequip the turret</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/allow_detpacks"><aside class="declaration">var </aside>allow_detpacks
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 51"/></a></h3>
+        <p>If detpacks should be usable on the vehicle</p><h3 id="var/ammo"><aside class="declaration">var </aside>ammo
+            <aside>&ndash; /<a href="datum.html">datum</a>/<a href="datum/ammo.html">ammo</a>/bullet</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 35"/></a></h3>
+        <p>Buller type we fire, declared as type but set to a reference in Initialize</p><h3 id="var/can_interact"><aside class="declaration">var </aside>can_interact
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L27">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 27"/></a></h3>
+        <p>If that vehicle can interact with cades</p><h3 id="var/controlled"><aside class="declaration">var </aside>controlled
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L45">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 45"/></a></h3>
+        <p>If something is already controlling the vehicle</p><h3 id="var/current_rounds"><aside class="declaration">var </aside>current_rounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L31">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 31"/></a></h3>
+        <p>Ammo remaining for the robot</p><h3 id="var/fire_delay"><aside class="declaration">var </aside>fire_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L29">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 29"/></a></h3>
+        <p>Delay in byond ticks between weapon fires</p><h3 id="var/flash"><aside class="declaration">var </aside>flash
+            <aside>&ndash; /<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/vis_obj/effect/muzzle_flash</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L53">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 53"/></a></h3>
+        <p>muzzleflash stuff</p><h3 id="var/gunnoise"><aside class="declaration">var </aside>gunnoise
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L39">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 39"/></a></h3>
+        <p>Sound file or string type for playing the shooting sound</p><h3 id="var/iff_signal"><aside class="declaration">var </aside>iff_signal
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L49">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 49"/></a></h3>
+        <p>Iff flags, to prevent friendly fire from sg and aiming marines</p><h3 id="var/in_chamber"><aside class="declaration">var </aside>in_chamber
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/projectile.html">projectile</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 37"/></a></h3>
+        <p>The currently loaded and ready to fire projectile</p><h3 id="var/max_rounds"><aside class="declaration">var </aside>max_rounds
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L33">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 33"/></a></h3>
+        <p>max ammo the robot can hold</p><h3 id="var/next_move_delay"><aside class="declaration">var </aside>next_move_delay
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 19"/></a></h3>
+        <p>Needed to keep track of any slowdowns and/or diagonal movement</p><h3 id="var/serial"><aside class="declaration">var </aside>serial
+            <aside>&ndash; /static</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L41">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 41"/></a></h3>
+        <p>Serial number of the vehicle</p><h3 id="var/spawn_equipped_type"><aside class="declaration">var </aside>spawn_equipped_type
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/uav_turret.html">uav_turret</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L43">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 43"/></a></h3>
+        <p>If the vehicle should spawn with a weapon allready installed</p><h3 id="var/turret_path"><aside class="declaration">var </aside>turret_path
+            <aside>&ndash; /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/uav_turret.html">uav_turret</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 21"/></a></h3>
+        <p>Path of &quot;turret&quot; attached</p><h3 id="var/turret_pattern"><aside class="declaration">var </aside>turret_pattern
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L25">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 25"/></a></h3>
+        <p>Turret types we're allowed to attach</p><h3 id="var/turret_type"><aside class="declaration">var </aside>turret_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 23"/></a></h3>
+        <p>Type of the turret attached</p><h3 id="var/unmanned_flags"><aside class="declaration">var </aside>unmanned_flags
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L47">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 47"/></a></h3>
+        <p>Flags for unmanned vehicules</p><h2 id="proc">Proc Details</h2><h3 id="proc/delete_muzzle_flash"><aside class="declaration">proc </aside>delete_muzzle_flash<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L288">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 288"/></a></aside>
+        </h3>
+        <p>Removes muzzle flash from unmanned vehicles</p><h3 id="proc/equip_turret"><aside class="declaration">proc </aside>equip_turret<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L197">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 197"/></a></aside>
+        </h3>
+        <p>Try to equip a turret on the vehicle</p><h3 id="proc/fire_shot"><aside class="declaration">proc </aside>fire_shot<aside>(/<a href="atom.html">atom</a>/target, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L266">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 266"/></a></aside>
+        </h3>
+        <p>Check if we have/create a new bullet and fire it at an atom target</p><h3 id="proc/hud_set_uav_ammo"><aside class="declaration">proc </aside>hud_set_uav_ammo<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/game/data_huds.dm#L693">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;data_huds.dm 693"/></a></aside>
+        </h3>
+        <p>Makes unmanned vehicle ammo visible</p><h3 id="proc/load_into_chamber"><aside class="declaration">proc </aside>load_into_chamber<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L255">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 255"/></a></aside>
+        </h3>
+        <p>Checks if we can or already have a bullet loaded that we can shoot</p><h3 id="proc/on_link"><aside class="declaration">proc </aside>on_link<aside>(/<a href="atom.html">atom</a>/remote_controller) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L230">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 230"/></a></aside>
+        </h3>
+        <p>Called when the drone is linked from a remote control</p><h3 id="proc/on_remote_toggle"><aside class="declaration">proc </aside>on_remote_toggle<aside>(/<a href="datum.html">datum</a>/source, is_on, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L244">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 244"/></a></aside>
+        </h3>
+        <p>Called when remote control is taken</p><h3 id="proc/on_unlink"><aside class="declaration">proc </aside>on_unlink<aside>(/<a href="atom.html">atom</a>/remote_controller) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L238">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 238"/></a></aside>
+        </h3>
+        <p>Called when the drone is unlinked to a remote control</p><h3 id="proc/reload_turret"><aside class="declaration">proc </aside>reload_turret<aside>(/<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/<a href="obj/item/ammo_magazine.html">ammo_magazine</a>/reload_ammo, /<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L174">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 174"/></a></aside>
+        </h3>
+        <p>Try to reload the turret of our vehicule</p><h3 id="proc/wrench_act">wrench_act<aside>(/<a href="mob.html">mob</a>/<a href="mob/living.html">living</a>/user, /<a href="obj.html">obj</a>/<a href="obj/item.html">item</a>/I) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0bd2bbe702017d05bb37988b91ac5a2611cae5f9/code/modules/vehicles/unmanned/unmanned_vehicle.dm#L150">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;vehicles&#x2F;unmanned&#x2F;unmanned_vehicle.dm 150"/></a></aside>
+        </h3>
+        <p>Try to desequip the turret</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/0bd2bbe702017d05bb37988b91ac5a2611cae5f9">0bd2bbe</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
