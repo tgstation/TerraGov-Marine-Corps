@@ -11,6 +11,8 @@
 	var/mature = FALSE
 	///How long does it take for the plant to be useable
 	var/maturation_time = 2 MINUTES
+	/// Was this plant destroyed as the result of positive interaction (e.g. eaten by xeno)?
+	var/was_ate = FALSE
 
 /obj/structure/xeno/plant/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -69,15 +71,19 @@
 	///Maximum amount of health recovered, depends on the xeno's max health
 	var/healing_amount_max_health_scaling = 0.5
 
+/obj/structure/xeno/plant/heal_fruit/Destroy()
+	if(mature)
+		var/datum/effect_system/smoke_spread/xeno/acid/opaque/plant_explosion = new(get_turf(src))
+		plant_explosion.set_up(3,src)
+		plant_explosion.start()
+		visible_message(span_danger("[src] bursts, releasing toxic gas!"))
+	return ..()
+
 /obj/structure/xeno/plant/heal_fruit/on_use(mob/user)
 	balloon_alert(user, "Consuming...")
 	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
-		var/datum/effect_system/smoke_spread/xeno/acid/opaque/plant_explosion = new(get_turf(src))
-		plant_explosion.set_up(3,src)
-		plant_explosion.start()
-		visible_message(span_danger("[src] bursts, releasing toxic gas!"))
 		qdel(src)
 		return TRUE
 
@@ -98,24 +104,27 @@
 	///How much total sunder should we remove
 	var/sunder_removal = 30
 
+/obj/structure/xeno/plant/armor_fruit/Destroy()
+	if(mature)
+		for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, 1))
+			var/turf/far_away_lands = get_turf(nearby_human)
+			for(var/x in 1 to 20)
+				var/turf/next_turf = get_step(far_away_lands, REVERSE_DIR(nearby_human.dir))
+				if(!next_turf)
+					break
+				far_away_lands = next_turf
+
+			nearby_human.throw_at(far_away_lands, 20, spin = TRUE)
+			to_chat(nearby_human, span_warning("[src] bursts, releasing a strong gust of pressurised gas!"))
+			nearby_human.adjust_stagger(3 SECONDS)
+			nearby_human.apply_damage(30, BRUTE, "chest", BOMB)
+	return ..()
+
 /obj/structure/xeno/plant/armor_fruit/on_use(mob/user)
 	balloon_alert(user, "Consuming...")
 	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
-		var/turf/far_away_lands = get_turf(user)
-		for(var/x in 1 to 20)
-			var/turf/next_turf = get_step(far_away_lands, REVERSE_DIR(user.dir))
-			if(!next_turf)
-				break
-			far_away_lands = next_turf
-
-		user.throw_at(far_away_lands, 20, spin = TRUE)
-		to_chat(user, span_warning("[src] bursts, releasing a strong gust of pressurised gas!"))
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			H.adjust_stagger(3 SECONDS)
-			H.apply_damage(30, BRUTE, "chest", BOMB)
 		qdel(src)
 		return TRUE
 
@@ -136,6 +145,12 @@
 	///How long should the buff last
 	var/duration = 1 MINUTES
 
+/obj/structure/xeno/plant/plasma_fruit/Destroy()
+	if(mature)
+		visible_message(span_warning("[src] releases a sticky substance before spontaneously bursting into flames!"))
+		flame_radius(3, get_turf(src), colour = "green")
+	return ..()
+
 /obj/structure/xeno/plant/plasma_fruit/can_interact(mob/user)
 	. = ..()
 	if(!.)
@@ -152,8 +167,6 @@
 	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
-		visible_message(span_warning("[src] releases a sticky substance before spontaneously bursting into flames!"))
-		flame_radius(3, get_turf(src), colour = "green")
 		qdel(src)
 		return TRUE
 
