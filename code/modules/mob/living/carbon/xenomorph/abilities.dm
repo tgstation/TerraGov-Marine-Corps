@@ -41,9 +41,29 @@
 	///The turf that was last weeded
 	var/turf/last_weeded_turf
 
+/datum/action/ability/activable/xeno/plant_weeds/New(Target)
+	. = ..()
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
+		RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), PROC_REF(update_ability_cost_shutters))
+
 /datum/action/ability/activable/xeno/plant_weeds/can_use_action(atom/A, silent = FALSE, override_flags)
-	ability_cost = initial(ability_cost) * initial(weed_type.ability_cost_mult)
+	update_ability_cost()
 	return ..()
+
+/// Updates the ability cost based on gamestate.
+/datum/action/ability/activable/xeno/plant_weeds/proc/update_ability_cost(shutters_recently_opened)
+	ability_cost = initial(ability_cost) * initial(weed_type.ability_cost_mult)
+	ability_cost = (!shutters_recently_opened && SSmonitor.gamestate == SHUTTERS_CLOSED) ? ability_cost/2 : ability_cost
+
+/**
+ * Updates the ability cost as if the gamestate was not SHUTTERS_CLOSED.
+ * The signal happens at the same time of gamestate changing, so that variable cannot be depended on.
+ */
+/datum/action/ability/activable/xeno/plant_weeds/proc/update_ability_cost_shutters()
+	SIGNAL_HANDLER
+	UnregisterSignal(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE))
+	update_ability_cost(TRUE)
+	update_button_icon()
 
 /datum/action/ability/activable/xeno/plant_weeds/action_activate()
 	if(max_range)
@@ -84,7 +104,7 @@
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.weeds_planted++
 	add_cooldown()
-	return succeed_activate(SSmonitor.gamestate == SHUTTERS_CLOSED ? ability_cost/2 : ability_cost)
+	succeed_activate()
 
 /datum/action/ability/activable/xeno/plant_weeds/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(choose_weed))
@@ -101,6 +121,7 @@
 		for(var/obj/alien/weeds/node/weed_type_possible AS in GLOB.weed_type_list)
 			if(initial(weed_type_possible.name) == weed_choice)
 				weed_type = weed_type_possible
+				update_ability_cost()
 				break
 		to_chat(owner, span_xenonotice("We will now spawn <b>[weed_choice]\s</b> when using the plant weeds ability."))
 	update_button_icon()
@@ -131,6 +152,7 @@
 	plant_weeds(owner)
 
 /datum/action/ability/activable/xeno/plant_weeds/update_button_icon()
+	name = "Plant Weeds ([ability_cost])"
 	action_icon_state = initial(weed_type.name)
 	if(auto_weeding)
 		if(!visual_references[VREF_IMAGE_ONTOP])
