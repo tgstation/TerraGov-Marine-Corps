@@ -146,9 +146,11 @@
 	var/duration = 1 MINUTES
 
 /obj/structure/xeno/plant/plasma_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
-	if(mature)
-		visible_message(span_warning("[src] releases a sticky substance before spontaneously bursting into flames!"))
-		flame_radius(3, get_turf(src), colour = "green")
+	if(!disassembled && mature)
+		var/datum/effect_system/smoke_spread/xeno/pyrogen_fire/plant_explosion = new(get_turf(src))
+		plant_explosion.set_up(4, src)
+		plant_explosion.start()
+		visible_message(span_warning("[src] bursts, releasing blue hot gas!"))
 	return ..()
 
 /obj/structure/xeno/plant/plasma_fruit/can_interact(mob/user)
