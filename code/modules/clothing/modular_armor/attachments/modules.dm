@@ -851,7 +851,6 @@
 		START_PROCESSING(SSobj, src)
 	else
 		stop_scanning()
-		STOP_PROCESSING(SSobj, src)
 
 /obj/item/armor_module/module/tactical_sensor/proc/stop_scanning()
 	active = FALSE
