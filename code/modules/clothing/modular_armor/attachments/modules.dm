@@ -805,3 +805,114 @@
 /obj/item/armor_module/module/night_vision/Destroy()
 	QDEL_NULL(attached_goggles)
 	return ..()
+
+
+
+/obj/item/armor_module/module/tactical_sensor
+	name = "Tactical sensor helmet module"
+	desc = "A helmet attachment that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "sensor_head"
+	worn_icon_state = "sensor_head_a"
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	active = FALSE
+	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
+	/// Who's using this item
+	var/mob/living/carbon/human/operator
+	///If a hostile was detected
+	var/hostile_detected = FALSE
+	///The time needed after the last move to not be detected by this motion detector
+	var/move_sensitivity = 1 SECONDS
+	///The range of this motion detector
+	var/range = 16
+	///The list of all the blips
+	var/list/obj/effect/blip/blips_list = list()
+
+/obj/item/armor_module/module/tactical_sensor/Destroy()
+	stop_scanning()
+	return ..()
+
+/obj/item/armor_module/module/tactical_sensor/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(stop_scanning))
+
+/obj/item/armor_module/module/tactical_sensor/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(parent, COMSIG_ITEM_UNEQUIPPED, PROC_REF(stop_scanning))
+	stop_scanning()
+	return ..()
+
+/obj/item/armor_module/module/tactical_sensor/activate(mob/living/user)
+	active = !active
+	to_chat(user, span_notice("You toggle \the [src] [active ? "enabling" : "disabling"] it."))
+	if(active)
+		operator = user
+		START_PROCESSING(SSobj, src)
+	else
+		stop_scanning()
+		STOP_PROCESSING(SSobj, src)
+
+/obj/item/armor_module/module/tactical_sensor/proc/stop_scanning()
+	active = FALSE
+	operator = null
+	STOP_PROCESSING(SSobj, src)
+	clean_blips()
+
+/obj/item/armor_module/module/tactical_sensor/process()
+	if(!operator?.client || operator.stat != CONSCIOUS)
+		stop_scanning()
+		return
+	hostile_detected = FALSE
+	for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(operator, range))
+		if(nearby_human == operator)
+			continue
+		if(nearby_human.last_move_time + move_sensitivity < world.time)
+			continue
+		prepare_blip(nearby_human, nearby_human.wear_id?.iff_signal & operator.wear_id.iff_signal ? MOTION_DETECTOR_FRIENDLY : MOTION_DETECTOR_HOSTILE)
+	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(operator, range))
+		if(nearby_xeno.last_move_time + move_sensitivity < world.time )
+			continue
+		prepare_blip(nearby_xeno, MOTION_DETECTOR_HOSTILE)
+	if(hostile_detected)
+		playsound(loc, 'sound/items/tick.ogg', 100, 0, 7, 2)
+	addtimer(CALLBACK(src, PROC_REF(clean_blips)), 1 SECONDS)
+
+///Clean all blips from operator screen
+/obj/item/armor_module/module/tactical_sensor/proc/clean_blips()
+	if(!operator)//We already cleaned
+		return
+	for(var/obj/effect/blip/blip AS in blips_list)
+		blip.remove_blip(operator)
+	blips_list.Cut()
+
+///Prepare the blip to be print on the operator screen
+/obj/item/armor_module/module/tactical_sensor/proc/prepare_blip(mob/target, status)
+	if(!operator.client)
+		return
+	if(status == MOTION_DETECTOR_HOSTILE)
+		hostile_detected = TRUE
+
+	var/list/actualview = getviewsize(operator.client.view)
+	var/viewX = actualview[1]
+	var/viewY = actualview[2]
+	var/turf/center_view = get_view_center(operator)
+	var/screen_pos_y = target.y - center_view.y + round(viewY * 0.5) + 1
+	var/dir
+	if(screen_pos_y < 1)
+		dir = SOUTH
+		screen_pos_y = 1
+	else if (screen_pos_y > viewY)
+		dir = NORTH
+		screen_pos_y = viewY
+	var/screen_pos_x = target.x - center_view.x + round(viewX * 0.5) + 1
+	if(screen_pos_x < 1)
+		dir = (dir ? dir == SOUTH ? SOUTHWEST : NORTHWEST : WEST)
+		screen_pos_x = 1
+	else if (screen_pos_x > viewX)
+		dir = (dir ? dir == SOUTH ? SOUTHEAST : NORTHEAST : EAST)
+		screen_pos_x = viewX
+	if(dir)
+		blips_list += new /obj/effect/blip/edge_blip(null, status, operator, screen_pos_x, screen_pos_y, dir)
+		return
+	blips_list += new /obj/effect/blip/close_blip(get_turf(target), status, operator)
