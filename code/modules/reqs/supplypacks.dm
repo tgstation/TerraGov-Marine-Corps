@@ -1272,6 +1272,11 @@ CLOTHING
 	contains = list(/obj/item/armor_module/module/night_vision)
 	cost = 300
 
+/datum/supply_packs/clothing/tactical_sensor
+	name = "Tactical Sensor Helmet Module"
+	contains = list(/obj/item/armor_module/module/tactical_sensor)
+	cost = 150
+
 /datum/supply_packs/clothing/night_vision_batteries
 	name = "Double pack of night vision batteries"
 	contains = list(/obj/item/cell/night_vision_battery, /obj/item/cell/night_vision_battery)
