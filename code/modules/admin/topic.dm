@@ -1963,7 +1963,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("createid")
 				if(!istype(H) || H.wear_id)
 					return
-				H.equip_to_slot_or_del(new /obj/item/card/id(H), SLOT_WEAR_ID)
+				H.equip_to_slot_or_del(new /obj/item/card/id(H), ITEM_SLOT_ID)
 			if("squad")
 				previous = H.assigned_squad
 				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads
@@ -1978,9 +1978,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/list/job_outfits = list()
 				for(var/path in job_paths)
 					var/datum/outfit/O = path
-					if(initial(O.can_be_admin_equipped))
-						var/outfit_name = initial(O.name)
-						job_outfits[outfit_name] = path
+					job_outfits[initial(O.name)] = path
 
 				var/list/picker = sortList(job_outfits)
 				picker.Insert(1, "{Naked}")
