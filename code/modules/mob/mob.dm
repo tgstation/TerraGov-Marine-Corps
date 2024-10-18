@@ -272,7 +272,6 @@
 		A.remove_action(src)
 
 	item_to_equip.screen_loc = null
-	item_to_equip.loc = src
 	item_to_equip.layer = ABOVE_HUD_LAYER
 	item_to_equip.plane = ABOVE_HUD_PLANE
 	item_to_equip.forceMove(src)
