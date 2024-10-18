@@ -55,7 +55,7 @@
 	if(xeno_attacker.a_intent == INTENT_HARM && isxenodrone(xeno_attacker))
 		balloon_alert(xeno_attacker, "Uprooted the plant")
 		xeno_attacker.do_attack_animation(src)
-		deconstruct(FALSE)
+		deconstruct(TRUE)
 		return FALSE
 	if(can_interact(xeno_attacker))
 		return on_use(xeno_attacker)
@@ -84,7 +84,7 @@
 	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
-		deconstruct()
+		deconstruct(FALSE)
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
@@ -125,7 +125,7 @@
 	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
-		deconstruct()
+		deconstruct(FALSE)
 		return TRUE
 
 	balloon_alert(user, "Armor restored")
@@ -169,7 +169,7 @@
 	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
-		deconstruct()
+		deconstruct(FALSE)
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
