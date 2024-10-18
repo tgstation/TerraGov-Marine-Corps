@@ -1530,6 +1530,7 @@
 			/obj/item/clothing/glasses/night_vision = -1,
 			/obj/item/armor_module/module/night_vision = -1,
 			/obj/item/cell/night_vision_battery = -1,
+			/obj/item/armor_module/module/tactical_sensor = -1,
 			/obj/item/clothing/mask/gas/swat = -1,
 			/obj/item/clothing/head/helmet/riot = -1,
 			/obj/item/clothing/suit/storage/marine/specialist/valhalla = -1,
