@@ -87,3 +87,59 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
+
+/datum/xeno_caste/praetorian/dancer
+	caste_type_path = /mob/living/carbon/xenomorph/praetorian/dancer
+	upgrade_name = ""
+	caste_name = "Dancer Praetorian"
+	display_name = "Praetorian"
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_desc = "A giant melee monster. It looks pretty strong."
+
+	// +2 melee damage
+	melee_damage = 25
+
+	// Loses some common armor (-5) for more speed (-0.3).
+	speed = -0.8
+	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 10, BIO = 40, FIRE = 45, ACID = 40)
+
+	// Loses ranged spit abilities for close combat combo abilities.
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/xeno_action/dodge,
+		/datum/action/ability/activable/xeno/impale,
+		/datum/action/ability/activable/xeno/tail_trip,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
+
+/datum/xeno_caste/praetorian/dancer/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/praetorian/dancer/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "An aberrant creature extremely proficient with its body and tail. Keep your distance if you don't wish to be finessed."
+	upgrade = XENO_UPGRADE_PRIMO
+	primordial_message = "With a flick of our tail, we dance through the shadows, striking with lethal precision."
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/xeno_action/dodge,
+		/datum/action/ability/activable/xeno/impale,
+		/datum/action/ability/activable/xeno/tail_trip,
+		/datum/action/ability/activable/xeno/charge/acid_dash, // No unique primordial ability at the moment. Replace eventually with something cooler!
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
