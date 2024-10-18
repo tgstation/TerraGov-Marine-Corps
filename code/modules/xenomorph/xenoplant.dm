@@ -71,7 +71,7 @@
 	///Maximum amount of health recovered, depends on the xeno's max health
 	var/healing_amount_max_health_scaling = 0.5
 
-/obj/structure/xeno/plant/heal_fruit/Destroy()
+/obj/structure/xeno/plant/heal_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(mature)
 		var/datum/effect_system/smoke_spread/xeno/acid/opaque/plant_explosion = new(get_turf(src))
 		plant_explosion.set_up(3,src)
@@ -84,7 +84,7 @@
 	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
-		qdel(src)
+		deconstruct()
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
@@ -104,7 +104,7 @@
 	///How much total sunder should we remove
 	var/sunder_removal = 30
 
-/obj/structure/xeno/plant/armor_fruit/Destroy()
+/obj/structure/xeno/plant/armor_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(mature)
 		for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, 1))
 			var/turf/far_away_lands = get_turf(nearby_human)
@@ -125,7 +125,7 @@
 	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
-		qdel(src)
+		deconstruct()
 		return TRUE
 
 	balloon_alert(user, "Armor restored")
@@ -145,7 +145,7 @@
 	///How long should the buff last
 	var/duration = 1 MINUTES
 
-/obj/structure/xeno/plant/plasma_fruit/Destroy()
+/obj/structure/xeno/plant/plasma_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(mature)
 		visible_message(span_warning("[src] releases a sticky substance before spontaneously bursting into flames!"))
 		flame_radius(3, get_turf(src), colour = "green")
@@ -167,7 +167,7 @@
 	if(!do_after(user, 2 SECONDS, IGNORE_HELD_ITEM, src))
 		return FALSE
 	if(!isxeno(user))
-		qdel(src)
+		deconstruct()
 		return TRUE
 
 	var/mob/living/carbon/xenomorph/X = user
