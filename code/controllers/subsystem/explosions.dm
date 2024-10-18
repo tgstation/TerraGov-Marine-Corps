@@ -137,38 +137,48 @@ SUBSYSTEM_DEF(explosions)
 		var/sound/far_explosion_sound = SFX_EXPLOSION_LARGE_DISTANT
 		var/sound/creak_sound = SFX_EXPLOSION_CREAK
 
-		for(var/MN in GLOB.player_list)
-			var/mob/M = MN
-			// Double check for client
-			var/turf/M_turf = get_turf(M)
-			if(M_turf && M_turf.z == epicenter.z)
-				var/dist = get_dist(M_turf, epicenter)
-				var/baseshakeamount
-				if(orig_max_distance - dist > 0)
-					baseshakeamount = sqrt((orig_max_distance - dist)*0.1)
-				if(devastation_range)
-					explosion_sound = SFX_EXPLOSION_LARGE
-				else if(heavy_impact_range)
-					explosion_sound = SFX_EXPLOSION_MED
-				else if(light_impact_range || weak_impact_range)
-					explosion_sound = SFX_EXPLOSION_SMALL
-					far_explosion_sound = SFX_EXPLOSION_SMALL_DISTANT
-				// If inside the blast radius + world.view - 2
-				if(dist <= round(max_range + world.view - 2, 1))
-					M.playsound_local(epicenter, explosion_sound, 75, 1, frequency, falloff = 5)
-					if(is_mainship_level(epicenter.z))
-						M.playsound_local(epicenter, creak_sound, 40, 1, frequency, falloff = 5)//ship groaning under explosion effect
-					if(baseshakeamount > 0)
-						shake_camera(M, 15, clamp(baseshakeamount, 0, 5))
-				// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
-				else if(dist <= far_dist)
-					var/far_volume = clamp(far_dist, 30, 60) // Volume is based on explosion size and dist
-					far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
-					M.playsound_local(epicenter, far_explosion_sound, far_volume, 1, frequency, falloff = 5)
-					if(is_mainship_level(epicenter.z))
-						M.playsound_local(epicenter, creak_sound, far_volume*3, 1, frequency, falloff = 5)//ship groaning under explosion effect
-					if(baseshakeamount > 0)
-						shake_camera(M, 7, clamp(baseshakeamount*0.15, 0, 1.5))
+		if(devastation_range)
+			explosion_sound = SFX_EXPLOSION_LARGE
+		else if(heavy_impact_range)
+			explosion_sound = SFX_EXPLOSION_MED
+		else if(light_impact_range || weak_impact_range)
+			explosion_sound = SFX_EXPLOSION_SMALL
+			far_explosion_sound = SFX_EXPLOSION_SMALL_DISTANT
+		explosion_sound = sound(get_sfx(explosion_sound))
+		far_explosion_sound = sound(get_sfx(far_explosion_sound))
+		creak_sound = sound(get_sfx(creak_sound))
+
+		var/list/listeners = SSmobs.clients_by_zlevel[epicenter.z].Copy()
+		for(var/mob/ai_eye AS in GLOB.aiEyes)
+			var/turf/eye_turf = get_turf(ai_eye)
+			if(!eye_turf || eye_turf.z != epicenter.z)
+				continue
+			listeners += ai_eye
+
+		for(var/mob/listener AS in listeners|SSmobs.dead_players_by_zlevel[epicenter.z])
+			var/turf/M_turf = get_turf(listener)
+			var/dist = get_dist(M_turf, epicenter)
+			if(dist > far_dist)
+				continue
+			var/baseshakeamount
+			if(orig_max_distance - dist > 0)
+				baseshakeamount = sqrt((orig_max_distance - dist)*0.1)
+			// If inside the blast radius + world.view - 2
+			if(dist <= round(max_range + world.view - 2, 1))
+				listener.playsound_local(epicenter, explosion_sound, 75, 1, frequency, falloff = 5)
+				if(is_mainship_level(epicenter.z))
+					listener.playsound_local(epicenter, creak_sound, 40, 1, frequency, falloff = 5)//ship groaning under explosion effect
+				if(baseshakeamount > 0)
+					shake_camera(listener, 15, clamp(baseshakeamount, 0, 5))
+				continue
+			// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
+			var/far_volume = clamp(far_dist, 30, 60) // Volume is based on explosion size and dist
+			far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
+			listener.playsound_local(epicenter, far_explosion_sound, far_volume, 1, frequency, falloff = 5)
+			if(is_mainship_level(epicenter.z))
+				listener.playsound_local(epicenter, creak_sound, far_volume*3, 1, frequency, falloff = 5)//ship groaning under explosion effect
+			if(baseshakeamount > 0)
+				shake_camera(listener, 7, clamp(baseshakeamount*0.15, 0, 1.5))
 
 	if(devastation_range > 0)
 		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, FALSE, TRUE)

@@ -51,7 +51,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 /proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE)
 	var/turf/turf_source = get_turf(source)
 
-	if(!turf_source)
+	if (!turf_source || !soundin || !vol)
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
@@ -61,29 +61,40 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		sound_range = round(0.5*vol) //if no specific range, the max range is equal to half the volume.
 
 	if(!frequency)
-		frequency = GET_RANDOM_FREQ // Same frequency for everybody
-	// Looping through the player list has the added bonus of working for mobs inside containers
+		frequency = GET_RANDOM_FREQ
 	var/sound/S = sound(get_sfx(soundin))
-	for(var/mob/listener AS in GLOB.player_list|GLOB.aiEyes)
-		if(!listener.client && !isAIeye(listener))
+
+	var/list/listeners = SSmobs.clients_by_zlevel[turf_source.z].Copy()
+	for(var/mob/ai_eye AS in GLOB.aiEyes)
+		var/turf/eye_turf = get_turf(ai_eye)
+		if(!eye_turf || eye_turf.z != turf_source.z)
+			continue
+		listeners += ai_eye
+
+	for(var/mob/listener AS in listeners|SSmobs.dead_players_by_zlevel[turf_source.z])
+		if(get_dist(listener, turf_source) > sound_range)
 			continue
 		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
 			continue
-		var/turf/T = get_turf(listener)
-		if(!T || T.z != turf_source.z || get_dist(listener, turf_source) > sound_range)
-			continue
 		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
 
+
+	//We do tanks separately, since they are not actually on the source z, and we need some other stuff to get accurate directional sound
 	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
 		if(!armor.interior || armor.z != turf_source.z || get_dist(armor.loc, turf_source) > sound_range)
 			continue
+		if(!length(armor.interior.occupants))
+			continue
+		var/turf/middle_turf = armor.interior.loaded_turfs[floor(length(armor.interior.loaded_turfs) * 0.5)]
+		var/turf/origin_point = locate(clamp(middle_turf.x - armor.x + turf_source.x, 1, world.maxx), clamp(middle_turf.y - armor.y + turf_source.y, 1, world.maxy), middle_turf.z)
+		//origin point is regardless of vehicle orientation for player QOL and simple sanity
+
 		for(var/mob/crew AS in armor.interior.occupants)
 			if(!crew.client)
 				continue
 			if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
 				continue
-			//turf source is null on purpose because it will not work properly since crew is on a different z
-			crew.playsound_local(null, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
+			crew.playsound_local(origin_point, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
 
 /**
  * Plays a sound locally
