@@ -829,6 +829,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
 	cost = 600
 
+/datum/supply_packs/weapons/chainsaw
+	name = "Chainsaw"
+	contains = list(/obj/item/weapon/twohanded/chainsaw)
+	cost = 500
+
 /datum/supply_packs/weapons/smart_pistol
 	name = "TX13 smartpistol"
 	contains = list(/obj/item/weapon/gun/pistol/smart_pistol)

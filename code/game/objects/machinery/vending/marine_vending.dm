@@ -1458,6 +1458,8 @@
 			/obj/item/ammo_magazine/rifle/chamberedrifle/flak = -1,
 			/obj/item/ammo_magazine/flamer_tank/backtank/X = -1,
 			/obj/item/weapon/twohanded/rocketsledge = -1,
+			/obj/item/weapon/twohanded/chainsaw = -1,
+			/obj/item/weapon/twohanded/chainsaw/sword = -1,
 			/obj/item/explosive/grenade/training = -1,
 			/obj/item/explosive/grenade/impact = -1,
 			/obj/item/explosive/grenade/phosphorus = -1,
