@@ -29,7 +29,8 @@
 /// Turns off / reverts everything that comes with activating it.
 /obj/item/attachable/motiondetector/proc/deactivate(mob/user)
 	if(motion_detector_component)
-		UnregisterSignal(user, COMSIG_COMPONENT_REMOVING)
+		if(user)
+			UnregisterSignal(user, COMSIG_COMPONENT_REMOVING)
 		motion_detector_component.RemoveComponent()
 		motion_detector_component = null
 	active = FALSE

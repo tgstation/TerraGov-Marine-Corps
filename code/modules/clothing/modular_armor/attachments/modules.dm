@@ -854,7 +854,8 @@
 	if(!motion_detector_component)
 		return
 
-	UnregisterSignal(user, COMSIG_COMPONENT_REMOVING)
+	if(user)
+		UnregisterSignal(user, COMSIG_COMPONENT_REMOVING)
 	motion_detector_component.RemoveComponent()
 	motion_detector_component = null
 	active = FALSE
