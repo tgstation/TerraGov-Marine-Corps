@@ -34,7 +34,7 @@
 		blip.remove_blip(human_parent)
 	blips_list.Cut()
 
-/// Scans a certain range for recently moved enemies and creates a blip for each of them.
+/// Scans a certain range for the recently moved and creates a blip for each of them.
 /datum/component/motion_detector/proc/do_scan()
 	// If they are not around to enjoy the blips, component goes away.
 	if(!human_parent?.client || human_parent.stat != CONSCIOUS)
