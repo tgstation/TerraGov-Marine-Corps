@@ -24,13 +24,13 @@
 	. += "Can be worn by attaching it to a pocket."
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
-	if(slot == SLOT_L_STORE || slot == SLOT_R_STORE)
+	if(slot & ITEM_SLOT_POCKET)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
-	..()
+	return ..()
 
 /obj/item/storage/pouch/dropped(mob/user)
 	mouse_opacity = initial(mouse_opacity)
-	..()
+	return ..()
 
 /obj/item/storage/pouch/vendor_equip(mob/user)
 	..()
