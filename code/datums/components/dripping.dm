@@ -7,6 +7,7 @@
 	var/drip_limit
 	var/drip_ratio
 	var/dripped_type = /obj/effect/decal/cleanable/blood/drip/tracking_fluid
+	var/turfs_moved = 0
 
 
 /datum/component/dripping/Initialize(drip_mode = DRIP_ON_WALK, drip_limit, drip_ratio, dripped_type)
@@ -34,9 +35,6 @@
 /datum/component/dripping/Destroy(force, silent)
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
-
-/datum/component/dripping
-	var/turfs_moved = 0
 
 /datum/component/dripping/proc/drip_on_walk(datum/source, atom/oldloc, direction, Forced = FALSE)
 	SIGNAL_HANDLER
