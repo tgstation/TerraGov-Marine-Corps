@@ -38,7 +38,7 @@
 
 	fire_delay = 0.2 SECONDS
 	heat_per_fire = 3
-	rounds_per_shot = 12
+	rounds_per_shot = 4
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	ammo_datum_type = /datum/ammo/energy/plasma/rifle_standard
 	force = 20
@@ -89,7 +89,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.2 SECONDS
 	heat_per_fire = 3
-	rounds_per_shot = 12
+	rounds_per_shot = 4
 	radial_icon_state = "plasma_weak"
 	message_to_user = "You set the plasma rifle's charge mode to standard fire."
 
@@ -100,7 +100,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.6 SECONDS
 	heat_per_fire = 12
-	rounds_per_shot = 48
+	rounds_per_shot = 16
 	radial_icon_state = "plasma_strong"
 	message_to_user = "You set the plasma rifle's charge mode to piercing fire."
 
@@ -111,7 +111,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 1.5 SECONDS
 	heat_per_fire = 33
-	rounds_per_shot = 100
+	rounds_per_shot = 33
 	radial_icon_state = "plasma_multi"
 	message_to_user = "You set the plasma rifle's charge mode to blast fire."
 
@@ -139,7 +139,7 @@
 	gun_firemode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 2 SECONDS
 	heat_per_fire = 50
-	rounds_per_shot = 180
+	rounds_per_shot = 60
 	windup_delay = 0.5 SECONDS
 	mode_list = list(
 		"Standard" = /datum/lasrifle/base/plasma_cannon/cannon_standard,
@@ -161,7 +161,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 2 SECONDS
 	heat_per_fire = 50
-	rounds_per_shot = 180
+	rounds_per_shot = 60
 	windup_delay = 0.5 SECONDS
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_cannon"
@@ -185,7 +185,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 1.5 SECONDS
 	heat_per_fire = 40
-	rounds_per_shot = 100
+	rounds_per_shot = 33
 	windup_delay = 0.5 SECONDS
 	icon_state = "plasma_cannon"
 	radial_icon_state = "plasma_strong"
@@ -258,7 +258,7 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 0.15 SECONDS
 	heat_per_fire = 3.3
-	rounds_per_shot = 12
+	rounds_per_shot = 4
 	radial_icon_state = "plasma_bouncy"
 	message_to_user = "You set the guns's firemode to standard fire."
 
@@ -269,6 +269,6 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	fire_delay = 1 SECONDS
 	heat_per_fire = 25
-	rounds_per_shot = 90
+	rounds_per_shot = 30
 	radial_icon_state = "plasma_cannon"
 	message_to_user = "You set the guns's firemode to overcharge."
