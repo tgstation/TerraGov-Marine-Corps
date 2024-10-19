@@ -754,6 +754,9 @@
 
 	return ..()
 
+/obj/item/weapon/twohanded/chainsaw/attack(mob/living/carbon/M, mob/living/carbon/user)
+	rip_apart(user)
+
 ///Handle chainsaw attack loop on object
 /obj/item/weapon/twohanded/chainsaw/attack_obj(obj/object, mob/living/user)
 	. = ..()
