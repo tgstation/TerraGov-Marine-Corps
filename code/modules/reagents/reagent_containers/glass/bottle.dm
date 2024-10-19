@@ -192,7 +192,7 @@
 	icon_state = "bottle2"
 	volume = 60
 	list_reagents = list(/datum/reagent/medicine/oxycodone = 60)
-	item_flags = CAN_REFILL
+	free_refills = FALSE
 
 /obj/item/reagent_containers/glass/bottle/hypervene
 	name = "\improper Hypervene bottle"

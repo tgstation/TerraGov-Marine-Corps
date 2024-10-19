@@ -312,11 +312,11 @@
 /datum/job/icc/leader
 	title = "ICC Leader"
 	paygrade = "ICC2"
-	outfit = /datum/outfit/job/icc/leader/trenchgun
+	outfit = /datum/outfit/job/icc/leader/icc_heavyshotgun
 	skills_type = /datum/skills/sl/icc
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/icc/leader/trenchgun,
+		/datum/outfit/job/icc/leader/icc_heavyshotgun,
 		/datum/outfit/job/icc/leader/icc_confrontationrifle,
 	)
 
@@ -354,7 +354,7 @@
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_ACCESSORY)
 
-/datum/outfit/job/icc/leader/ml101
+/datum/outfit/job/icc/leader/icc_heavyshotgun
 	suit_store = /obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun/icc_leader
 	belt = /obj/item/storage/belt/shotgun/icc/mixed
 

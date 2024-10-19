@@ -1797,12 +1797,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 	cost = 3
 
-/datum/supply_packs/imports/sawnoff
-	name = "Sawn Off Shotgun"
-	contains = list(/obj/item/weapon/gun/shotgun/double/sawn)
-	cost = 150
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/imports/leveraction
 	name = "Lever Action Rifle"
 	contains = list(/obj/item/weapon/gun/shotgun/pump/lever)
@@ -2040,6 +2034,11 @@ VEHICLES
 	contains = list(/obj/item/uav_turret/droid)
 	cost = 200
 	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/vehicles/tiny_uv
+	name = "Tiny unmanned vehicle - Skink"
+	contains = list(/obj/item/deployable_vehicle/tiny)
+	cost = 50
 
 /datum/supply_packs/vehicles/light_uv
 	name = "Light unmanned vehicle - Iguana"

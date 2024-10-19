@@ -78,11 +78,15 @@
 		span_notice("You fumble around figuring out how to use the [src]."))
 		if(!do_after(user, SKILL_TASK_EASY, NONE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
 			return
-
 	if(ismob(A))
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
+		if(M.faction != user.faction && !M.incapacitated())
+			user.visible_message(span_notice("[user] attempts to inject [M] with [src]."),
+			span_notice("You attempt to inject [M] with [src]."))
+			if(!do_after(user, SKILL_TASK_VERY_EASY, NONE, A, BUSY_ICON_HOSTILE) || (!in_range(A, user) || !user.Adjacent(A)))
+				return
 
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
@@ -522,6 +526,16 @@
 		/datum/reagent/medicine/quickclotplus = 30,
 	)
 	description_overlay = "Qk+"
+
+/obj/item/reagent_containers/hypospray/advanced/synaptizine
+	name = "Synaptizine hypospray"
+	desc = "A hypospray loaded with Synaptizine, a powerful stimulant that improves cardiovascular function, when used sparingly."
+	amount_per_transfer_from_this = 3
+	list_reagents = list(
+		/datum/reagent/medicine/synaptizine = 20,
+		/datum/reagent/medicine/hyronalin = 40,
+	)
+	description_overlay = "Sy"
 
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"

@@ -29,6 +29,7 @@
 /obj/item/detpack/Initialize(mapload)
 	. = ..()
 	set_frequency(frequency)
+	code = rand(1, 100)
 
 
 /obj/item/detpack/examine(mob/user)
@@ -259,6 +260,11 @@
 		return FALSE
 	if(target.resistance_flags & INDESTRUCTIBLE)
 		return FALSE
+	if(istype(target, /obj/vehicle/unmanned))
+		var/obj/vehicle/unmanned/unmanned_target = target
+		if(!unmanned_target.allow_detpacks)
+			to_chat(user, "[span_warning("[src] doesnt fit on [unmanned_target]")]!")
+			return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
 		if(!W.damageable)

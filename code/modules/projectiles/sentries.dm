@@ -464,10 +464,10 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(atom/target)
 	if(target.loc == loc)
 		return TRUE
-	var/list/turf/path = getline(src, target)
 	var/turf/starting_turf = get_turf(src)
+	var/list/turf/path = getline(starting_turf, target)
 	var/turf/target_turf = path[length(path)-1]
-	path -= get_turf(src)
+	path -= starting_turf
 	if(!length(path))
 		return FALSE
 
