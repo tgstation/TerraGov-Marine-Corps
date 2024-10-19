@@ -23,8 +23,9 @@
 		/datum/job/xenomorph = 2
 	)
 
-	deploy_time_lock = 15 SECONDS
-	xenorespawn_time = 15 SECONDS
+	shutters_drop_time = 5 SECONDS
+	deploy_time_lock = 5 SECONDS
+	xenorespawn_time = 2 MINUTES
 	whitelist_ground_maps = list(MAP_COLONY1)
 	blacklist_ground_maps = null
 	whitelist_ship_maps = list(MAP_EAGLE) //since it dont have survivor spawns, they should spawn at colony itself. And can be used to spawn marines later. Eagle is a fast dropship for emergency response.
@@ -76,9 +77,10 @@
 	if(world.time < (SSticker.round_start_time + 5 MINUTES))
 		return FALSE
 
-	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD)
+	var/list/living_player_list = count_humans_and_xenos(count_flags = COUNT_IGNORE_HUMAN_SSD|COUNT_IGNORE_XENO_SSD)
 	var/num_humans = living_player_list[1]
-	var/num_xenos = living_player_list[2]
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/num_xenos = xeno_job.total_positions
 	if(round_finished)
 		if(num_humans > num_xenos)
 			message_admins("Round finished: NTC Minor Victory.") //there were more humans than xenos left when round ended.
