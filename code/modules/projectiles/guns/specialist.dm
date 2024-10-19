@@ -400,6 +400,8 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		/obj/item/ammo_magazine/minigun_powerpack/fancy,
 		/obj/item/ammo_magazine/minigun_powerpack/merc,
 		)
+	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack,/obj/item/ammo_magazine/heavy_minigun)
+
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 1.2 SECONDS
@@ -407,13 +409,14 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	aim_slowdown = 0.8
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
+	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 12
 
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.14 SECONDS
 	windup_delay = 0.4 SECONDS
+	damage_mult = 1.3
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	scatter = 5
 	recoil_unwielded = 4

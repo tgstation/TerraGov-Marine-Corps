@@ -32,8 +32,8 @@
 	))
 
 /datum/storage/belt/medical_small
-	storage_slots = 15
-	max_storage_space = 30
+	storage_slots = 30
+	max_storage_space = 60
 	max_w_class = 3
 
 /datum/storage/belt/medical_small/New(atom/parent)
@@ -51,9 +51,9 @@
 	))
 
 /datum/storage/belt/lifesaver
-	storage_slots = 21 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
-	max_storage_space = 42
-	max_w_class = WEIGHT_CLASS_SMALL
+	storage_slots = 41 //can hold 3 "rows" of very limited medical equipment, but it *should* give a decent boost to squad medics.
+	max_storage_space = 82
+	max_w_class = WEIGHT_CLASS_NORMAL
 
 /datum/storage/belt/lifesaver/New(atom/parent)
 	. = ..()
@@ -69,9 +69,9 @@
 	))
 
 /datum/storage/belt/rig
-	storage_slots = 16
+	storage_slots = 26
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 42
+	max_storage_space = 82
 
 /datum/storage/belt/rig/New(atom/parent)
 	. = ..()
@@ -93,8 +93,8 @@
 	))
 
 /datum/storage/belt/hypospraybelt
-	storage_slots = 21
-	max_storage_space = 42
+	storage_slots = 31
+	max_storage_space = 52
 	max_w_class = WEIGHT_CLASS_SMALL
 
 /datum/storage/belt/hypospraybelt/New(atom/parent)
@@ -108,9 +108,9 @@
 	))
 
 /datum/storage/belt/security
-	storage_slots = 7
+	storage_slots = 14
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 21
+	max_storage_space = 31
 
 /datum/storage/belt/security/New(atom/parent)
 	. = ..()
@@ -142,12 +142,12 @@
 
 
 /datum/storage/belt/security/tactical
-	storage_slots = 9
+	storage_slots = 18
 
 /datum/storage/belt/marine
-	storage_slots = 6
+	storage_slots = 12
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 18
+	max_storage_space = 36
 
 /datum/storage/belt/marine/New(atom/parent)
 	. = ..()
@@ -187,24 +187,24 @@
 	))
 
 /datum/storage/belt/shotgun
-	storage_slots = 14
+	storage_slots = 28
 	max_w_class = WEIGHT_CLASS_SMALL
-	max_storage_space = 28
+	max_storage_space = 56
 
 /datum/storage/belt/shotgun/New(atom/parent)
 	. = ..()
 	set_holdable(list(/obj/item/ammo_magazine/handful))
 
 /datum/storage/belt/shotgun/martini
-	storage_slots = 12
-	max_storage_space = 24
+	storage_slots = 24
+	max_storage_space = 48
 	sprite_slots = 6
 	draw_mode = 1
 
 /datum/storage/belt/knifepouch
-	storage_slots = 6
+	storage_slots = 12
 	max_w_class = WEIGHT_CLASS_TINY
-	max_storage_space = 6
+	max_storage_space = 12
 	draw_mode = TRUE
 
 /datum/storage/belt/knifepouch/New(atom/parent)
@@ -212,26 +212,26 @@
 	set_holdable(list(/obj/item/stack/throwing_knife))
 
 /datum/storage/belt/grenade
-	storage_slots = 9
+	storage_slots = 18
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 27
+	max_storage_space = 40
 
 /datum/storage/belt/grenade/New(atom/parent)
 	. = ..()
 	set_holdable(list(/obj/item/explosive/grenade))
 
 /datum/storage/belt/grenade/b17
-	storage_slots = 16
-	max_storage_space = 48
+	storage_slots = 28
+	max_storage_space = 84
 
 /datum/storage/belt/sparepouch
 	storage_slots = null
-	max_storage_space = 9
+	max_storage_space = 18
 	max_w_class = WEIGHT_CLASS_NORMAL
 
 /datum/storage/belt/protein_pack
-	storage_slots = 20
-	max_storage_space = 20
+	storage_slots = 40
+	max_storage_space = 40
 	max_w_class = WEIGHT_CLASS_TINY
 	sprite_slots = 4
 

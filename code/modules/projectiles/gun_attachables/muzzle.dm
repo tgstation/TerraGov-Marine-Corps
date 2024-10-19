@@ -41,7 +41,7 @@
 	slot = ATTACHMENT_SLOT_MUZZLE
 	pixel_shift_x = 14 //Below the muzzle.
 	pixel_shift_y = 18
-	accuracy_mod = -0.05
+//	accuracy_mod = -0.05
 	accuracy_unwielded_mod = -0.1
 	size_mod = 1
 	sharp = IS_SHARP_ITEM_ACCURATE
@@ -102,9 +102,9 @@
 	icon_state = "ebarrel"
 	icon = 'icons/obj/items/guns/attachments/muzzle.dmi'
 	attach_shell_speed_mod = 1
-	accuracy_mod = 0.15
+	accuracy_mod = 0.2
 	accuracy_unwielded_mod = 0.1
-	scatter_mod = -1
+	scatter_mod = -2
 	size_mod = 1
 	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "ebarrel_big", /obj/item/weapon/gun/smg/som = "ebarrel_big", /obj/item/weapon/gun/shotgun/pump/t35 = "ebarrel_big")
 
@@ -117,6 +117,7 @@
 	attach_shell_speed_mod = 2
 	accuracy_mod = -0.05
 	damage_falloff_mod = -0.2
+	damage_mod = 0.25
 
 /obj/item/attachable/compensator
 	name = "recoil compensator"

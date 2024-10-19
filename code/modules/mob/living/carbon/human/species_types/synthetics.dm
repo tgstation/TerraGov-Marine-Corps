@@ -1,7 +1,7 @@
 /datum/species/synthetic
 	name = "Synthetic"
 	default_language_holder = /datum/language_holder/synthetic
-	unarmed_type = /datum/unarmed_attack/punch
+	unarmed_type = /datum/unarmed_attack/punch/strong
 
 	total_health = 125 //more health than regular humans
 
@@ -73,7 +73,7 @@
 	name = "Early Synthetic"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
 	default_language_holder = /datum/language_holder/synthetic
-	unarmed_type = /datum/unarmed_attack/punch
+	unarmed_type = /datum/unarmed_attack/punch/strong
 	slowdown = 1.15 //Slower than Late Synths
 	total_health = 200 //Tough boys, very tough boys
 	brute_mod = 0.6

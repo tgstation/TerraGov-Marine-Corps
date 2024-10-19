@@ -25,7 +25,7 @@
 	///Amount of substance stored currently
 	var/resource_storage_current = 0
 	///Amount required for operation
-	var/resource_drain_amount = 10
+	var/resource_drain_amount = 5
 	///Actions that the component provides
 	var/list/datum/action/component_actions = list(
 		/datum/action/chem_booster/configure = PROC_REF(configure),
@@ -59,15 +59,15 @@
 	///Information about how reagents boost the system's effects.
 	var/reagent_info = ""
 	///Vali brute healing is multiplied by this
-	var/brute_heal_amp = 1
+	var/brute_heal_amp = 1.5
 	///Vali burn healing is multiplied by this
-	var/burn_heal_amp = 1
+	var/burn_heal_amp = 1.5
 	///Vali toxin healing is multiplied by this
-	var/tox_heal = 0
+	var/tox_heal = 1
 	///Vali stamina regen is multiplied by this
-	var/stamina_regen_amp = 1
+	var/stamina_regen_amp = 1.5
 	///Vali movement speed buff is this value
-	var/movement_boost = 0
+	var/movement_boost = -0.5
 	///How much time left on vali heal till necrosis occurs
 	var/vali_necro_timer
 

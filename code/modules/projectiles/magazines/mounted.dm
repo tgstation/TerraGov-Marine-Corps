@@ -7,7 +7,7 @@
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	magazine_flags = NONE
 	caliber = CALIBER_10X30
-	max_rounds = 300
+	max_rounds = 600
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 5 SECONDS
 	icon_state_mini = "mag_hmg"
@@ -26,7 +26,7 @@
 	icon_state_mini = "mag_drum_big_green"
 	magazine_flags = NONE
 	caliber = CALIBER_10X28
-	max_rounds = 500
+	max_rounds = 1500
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 10 SECONDS
 
@@ -37,7 +37,7 @@
 	equip_slot_flags = ITEM_SLOT_BELT
 	icon_state = "mg08_small"
 	icon_state_mini = "mag_hmg"
-	max_rounds = 250
+	max_rounds = 850
 	reload_delay = 5 SECONDS
 
 /obj/item/ammo_magazine/standard_mmg
@@ -49,7 +49,7 @@
 	icon_state_mini = "mag_drum_big_armygreen"
 	magazine_flags = NONE
 	caliber = CALIBER_10x27_CASELESS
-	max_rounds = 150
+	max_rounds = 350
 	default_ammo = /datum/ammo/bullet/rifle/heavy
 	reload_delay = 1 SECONDS
 
@@ -61,7 +61,7 @@
 	icon = 'icons/obj/items/ammo/artillery.dmi'
 	magazine_flags = NONE
 	caliber = CALIBER_40MM
-	max_rounds = 30
+	max_rounds = 60
 	default_ammo = /datum/ammo/grenade_container/ags_grenade
 	reload_delay = 4 SECONDS
 
@@ -215,7 +215,7 @@
 	icon = 'icons/obj/items/ammo/machinegun.dmi'
 	magazine_flags = NONE
 	caliber = CALIBER_10X30
-	max_rounds = 300
+	max_rounds = 600
 	default_ammo = /datum/ammo/bullet/machinegun
 	reload_delay = 5 SECONDS
 	icon_state_mini = "mag_hmg"

@@ -1,7 +1,7 @@
 /datum/storage/holster
 	max_w_class = WEIGHT_CLASS_BULKY // normally the special item will be larger than what should fit. Child items will have lower limits and an override
-	storage_slots = 1
-	max_storage_space = 4
+	storage_slots = 4
+	max_storage_space = 16
 	draw_mode = 1
 	allow_drawing_method = TRUE
 
@@ -45,7 +45,7 @@
 	access_delay = 1.5 SECONDS ///0 out for satchel types
 
 /datum/storage/holster/backholster/rpg
-	storage_slots = 5
+	storage_slots = 15
 	max_w_class = WEIGHT_CLASS_BULKY
 	access_delay = 0.5 SECONDS
 
@@ -92,7 +92,7 @@
 
 /datum/storage/holster/backholster/flamer
 	storage_slots = null
-	max_storage_space = 16
+	max_storage_space = 26
 	max_w_class = WEIGHT_CLASS_NORMAL
 	access_delay = 0
 
@@ -112,8 +112,8 @@
 		flamer.update_ammo_count()
 
 /datum/storage/holster/t19
-	storage_slots = 4
-	max_storage_space = 10
+	storage_slots = 8
+	max_storage_space = 20
 	max_w_class = WEIGHT_CLASS_BULKY
 
 /datum/storage/holster/t19/New(atom/parent)
@@ -124,8 +124,8 @@
 	))
 
 /datum/storage/holster/flarepouch
-	storage_slots = 28
-	max_storage_space = 28
+	storage_slots = 48
+	max_storage_space = 48
 	refill_types = list(/obj/item/storage/box/m94)
 	refill_sound = SFX_RUSTLE
 
@@ -140,8 +140,8 @@
 
 
 /datum/storage/holster/icc_mg
-	storage_slots = 5
-	max_storage_space = 16
+	storage_slots = 10
+	max_storage_space = 32
 
 /datum/storage/holster/icc_mg/New(atom/parent)
 	. = ..()
@@ -152,8 +152,8 @@
 
 /datum/storage/holster/belt
 	use_sound = null
-	storage_slots = 7
-	max_storage_space = 15
+	storage_slots = 14
+	max_storage_space = 25
 	max_w_class = WEIGHT_CLASS_NORMAL
 
 /datum/storage/holster/belt/New(atom/parent)
@@ -171,7 +171,7 @@
 	))
 
 /datum/storage/holster/belt/m44
-	max_storage_space = 16
+	max_storage_space = 26
 	max_w_class = WEIGHT_CLASS_BULKY
 
 /datum/storage/holster/belt/m44/New(atom/parent)
@@ -182,7 +182,7 @@
 	))
 
 /datum/storage/holster/belt/mateba
-	max_storage_space = 16
+	max_storage_space = 26
 
 /datum/storage/holster/belt/mateba/New(atom/parent)
 	. = ..()
@@ -202,8 +202,8 @@
 	))
 
 /datum/storage/holster/belt/ts34
-	storage_slots = 3
-	max_storage_space = 8
+	storage_slots = 6
+	max_storage_space = 16
 
 /datum/storage/holster/belt/ts34/New(atom/parent)
 	. = ..()

@@ -6,6 +6,7 @@
 	armor_protection_flags = FEET
 	cold_protection_flags = FEET
 	heat_protection_flags = FEET
+	species_exception = list(/datum/species/robot)
 	inventory_flags = NOQUICKEQUIP|NOSLIPPING
 	min_cold_protection_temperature = SHOE_MIN_COLD_PROTECTION_TEMPERATURE
 	max_heat_protection_temperature = SHOE_MAX_HEAT_PROTECTION_TEMPERATURE

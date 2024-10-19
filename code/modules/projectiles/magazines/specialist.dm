@@ -8,7 +8,7 @@
 	icon_state = "t26"
 	icon = 'icons/obj/items/ammo/sniper.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 15
+	max_rounds = 35
 	default_ammo = /datum/ammo/bullet/sniper
 	reload_delay = 3
 	icon_state_mini = "mag_sniper"
@@ -45,7 +45,7 @@
 	caliber = CALIBER_762X54
 	icon_state = "svd"
 	default_ammo = /datum/ammo/bullet/sniper/svd
-	max_rounds = 10
+	max_rounds = 20
 	icon_state_mini = "mag_rifle"
 
 //tx8 magazines
@@ -57,7 +57,7 @@
 	icon = 'icons/obj/items/ammo/sniper.dmi'
 	caliber = CALIBER_10X28_CASELESS
 	default_ammo = /datum/ammo/bullet/rifle/tx8
-	max_rounds = 25
+	max_rounds = 45
 	icon_state_mini = "mag_rifle_big"
 
 /obj/item/ammo_magazine/rifle/tx8/incendiary
@@ -88,7 +88,7 @@
 	icon = 'icons/obj/items/ammo/rocket.dmi'
 	w_class = WEIGHT_CLASS_NORMAL
 	magazine_flags = MAGAZINE_REFUND_IN_CHAMBER
-	max_rounds = 1
+	max_rounds = 3
 	default_ammo = /datum/ammo/rocket
 	reload_delay = 60
 
@@ -132,7 +132,7 @@
 	caliber = CALIBER_84MM
 	icon_state = "rocket_he"
 	w_class = WEIGHT_CLASS_NORMAL
-	max_rounds = 1
+	max_rounds = 3
 	default_ammo = /datum/ammo/rocket/he
 	reload_delay = 60
 	bonus_overlay = "rocket_he"
@@ -172,7 +172,7 @@
 	caliber = CALIBER_67MM
 	icon_state = "shell"
 	w_class = WEIGHT_CLASS_BULKY
-	max_rounds = 1
+	max_rounds = 2
 	default_ammo = /datum/ammo/rocket/recoilless
 	reload_delay = 30
 
@@ -225,35 +225,46 @@
 
 /obj/item/ammo_magazine/rocket/oneuse
 	name = "\improper 68mm high-explosive shell"
-	desc = "A rocket used to reload a one use rocket once returned to an armory."
+	desc = "A rocket used to reload two-use rocket once returned to an armory."
 	caliber = CALIBER_68MM
 	icon_state = "rocket"
 	w_class = WEIGHT_CLASS_BULKY
-	max_rounds = 1
+	max_rounds = 2
 	default_ammo = /datum/ammo/rocket/oneuse
 	reload_delay = 30
 
+
 /obj/item/ammo_magazine/rocket/oneuse/anti_tank
 	default_ammo = /datum/ammo/rocket/recoilless/heat/mech
+
+/obj/item/ammo_magazine/internal/launcher/rocket/oneuse
+	name = "\improper 68mm internal tube"
+	desc = "The internal tube of a two use rpg."
+	caliber = CALIBER_68MM
+	default_ammo = /datum/ammo/rocket/recoilless
+	max_rounds = 2
+	current_rounds = 0
+	reload_delay = 30
+
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
 
 /obj/item/ammo_magazine/rocket/m57a4
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for a RL-57 quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
+	desc = "A thermobaric rocket tube for a RL-57 quad-quad launcher. Activate in hand to receive some metal when it's used up. The Rockets don't do much damage on a direct hit, but the fire effect is strong.."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
-	max_rounds = 4
+	max_rounds = 8
 	default_ammo = /datum/ammo/rocket/wp/quad
 	reload_delay = 10 SECONDS
 
 /obj/item/ammo_magazine/rocket/m57a4/ds
 	name = "\improper 84mm thermobaric rocket array"
-	desc = "A thermobaric rocket tube for a RL-57 quad launcher. Activate in hand to receive some metal when it's used up. Has huge red markings..."
+	desc = "A thermobaric rocket tube for a RL-57 quad-quad launcher. Activate in hand to receive some metal when it's used up. Has huge red markings..."
 	caliber = CALIBER_ROCKETARRAY
 	icon_state = "quad_rocket"
-	max_rounds = 4
+	max_rounds = 8
 	default_ammo = /datum/ammo/rocket/wp/quad/ds
 	reload_delay = 2 SECONDS
 
@@ -261,7 +272,7 @@
 	desc = "The internal tube of an RL-57 thermobaric launcher."
 	caliber = CALIBER_ROCKETARRAY
 	default_ammo = /datum/ammo/rocket/wp/quad
-	max_rounds = 4
+	max_rounds = 8
 
 /obj/item/ammo_magazine/internal/launcher/rocket/m57a4/ds
 	default_ammo = /datum/ammo/rocket/wp/quad/ds
@@ -376,7 +387,7 @@
 	icon_state = "railgun"
 	icon = 'icons/obj/items/ammo/misc.dmi'
 	default_ammo = /datum/ammo/bullet/railgun
-	max_rounds = 1
+	max_rounds = 6
 	reload_delay = 20 //Hard to reload.
 	w_class = WEIGHT_CLASS_NORMAL
 	icon_state_mini = "mag_railgun"
@@ -427,8 +438,8 @@
 	magazine_flags = MAGAZINE_WORN
 	w_class = WEIGHT_CLASS_HUGE
 	default_ammo = /datum/ammo/bullet/minigun
-	current_rounds = 500
-	max_rounds = 500
+	current_rounds = 1500
+	max_rounds = 1500
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
 /obj/item/ammo_magazine/minigun_powerpack/fancy
@@ -445,8 +456,8 @@
 	icon_state = "powerpack_sg"
 	magazine_flags = MAGAZINE_WORN|MAGAZINE_REFILLABLE
 	default_ammo = /datum/ammo/bullet/smart_minigun
-	current_rounds = 1000
-	max_rounds = 1000
+	current_rounds = 2000
+	max_rounds = 2000
 	caliber = CALIBER_10x26_CASELESS
 	item_map_variant_flags = null
 
@@ -461,8 +472,8 @@
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_HUGE
 	default_ammo = /datum/ammo/bullet/minigun
-	current_rounds = 1000
-	max_rounds = 1000
+	current_rounds = 2000
+	max_rounds = 2000
 	reload_delay = 0.75 SECONDS
 
 /obj/item/ammo_magazine/bike_minigun

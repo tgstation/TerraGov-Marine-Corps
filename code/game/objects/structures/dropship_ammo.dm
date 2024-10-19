@@ -212,11 +212,11 @@
 	icon_state = "30mm_crate"
 	desc = "A crate full of 30mm bullets used on the dropship heavy guns. Moving this will require some sort of lifter."
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/heavygun
-	travelling_time = 6 SECONDS
-	ammo_count = 2000
-	max_ammo_count = 2000
+	travelling_time = 0.2 SECONDS
+	ammo_count = 4000
+	max_ammo_count = 4000
 	transferable_ammo = TRUE
-	ammo_used_per_firing = 200
+	ammo_used_per_firing = 100
 	point_cost = 100
 	ammo_type = CAS_30MM
 	cas_effect = /obj/effect/overlay/blinking_laser/heavygun
@@ -286,8 +286,8 @@
 	icon_state = "30mm_crate_hv"
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/minirocket_pod
-	ammo_count = 400
-	max_ammo_count = 400
+	ammo_count = 800
+	max_ammo_count = 800
 	ammo_name = "railgun"
 	ammo_used_per_firing = 10
 	travelling_time = 0 SECONDS
@@ -319,9 +319,9 @@
 	name = "high-capacity laser battery"
 	icon_state = "laser_battery"
 	desc = "A high-capacity laser battery used to power laser beam weapons. Moving this will require some sort of lifter."
-	travelling_time = 1 SECONDS
-	ammo_count = 100
-	max_ammo_count = 100
+	travelling_time = 0.1 SECONDS
+	ammo_count = 400
+	max_ammo_count = 400
 	ammo_used_per_firing = 40
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/laser_beam_gun
 	ammo_name = "charge"
@@ -381,14 +381,14 @@
 	icon_state = "single"
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/rocket_pod
-	ammo_count = 1
-	max_ammo_count = 1
+	ammo_count = 3
+	max_ammo_count = 3
 	ammo_name = "rocket"
 	ammo_id = ""
 	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
 	bound_width = 64
 	bound_height = 32
-	travelling_time = 4 SECONDS
+	travelling_time = 0.3 SECONDS
 	point_cost = 0
 	ammo_type = CAS_MISSILE
 
@@ -404,7 +404,7 @@
 	name = "\improper AGM-224 'Widowmaker'"
 	desc = "The AGM-224 is the latest in air to ground missile technology. Earning the nickname of 'Widowmaker' from various pilots after improvements allow it to land at incredibly high speeds, at the cost of explosive payload. Well suited for ground bombardment, its high velocity making it reach its target quickly. Moving this will require some sort of lifter."
 	icon_state = "single"
-	travelling_time = 2 SECONDS //The epitome of ATGMs.
+	travelling_time = 1 SECONDS //The epitome of ATGMs.
 	ammo_id = ""
 	point_cost = 300
 	devastating_explosion_range = 2
@@ -420,7 +420,7 @@
 	point_cost = 225
 	devastating_explosion_range = 2
 	heavy_explosion_range = 4
-	travelling_time = 3 SECONDS
+	travelling_time = 0.2 SECONDS
 	prediction_type = CAS_AMMO_EXPLOSIVE
 
 // Da warcrime ATGM. Lower explosive yield, but long lasting fire.
@@ -434,7 +434,7 @@
 	heavy_explosion_range = 3
 	light_explosion_range = 4
 	fire_range = 3
-	travelling_time = 3 SECONDS
+	travelling_time = 0.3 SECONDS
 	prediction_type = CAS_AMMO_INCENDIARY
 	cas_effect = /obj/effect/overlay/blinking_laser/napalm
 
@@ -462,7 +462,7 @@
 	light_explosion_range = 5
 	fire_range = 7
 	prediction_type = CAS_AMMO_INCENDIARY
-	travelling_time = 6 SECONDS
+	travelling_time = 0.3 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/banshee
 
 /obj/structure/ship_ammo/cas/rocket/banshee/detonate_on(turf/impact, attackdir = NORTH)
@@ -481,7 +481,7 @@
 	heavy_explosion_range = 3
 	light_explosion_range = 4
 	prediction_type = CAS_AMMO_EXPLOSIVE
-	travelling_time = 6 SECONDS
+	travelling_time = 1 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/fatty
 
 /obj/structure/ship_ammo/cas/rocket/fatty/detonate_on(turf/impact, attackdir = NORTH)
@@ -515,7 +515,7 @@
 	devastating_explosion_range = 3
 	heavy_explosion_range = 5
 	light_explosion_range = 7
-	travelling_time = 6 SECONDS
+	travelling_time = 1 SECONDS
 	prediction_type = CAS_AMMO_EXPLOSIVE
 	cas_effect = /obj/effect/overlay/blinking_laser/monarch
 
@@ -541,11 +541,11 @@
 	icon_state = "minirocket"
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/minirocket_pod
-	ammo_count = 6
-	max_ammo_count = 6
+	ammo_count = 12
+	max_ammo_count = 12
 	ammo_name = "minirocket"
 	firing_voiceline = 'sound/voice/plane_vws/shot_missile.ogg'
-	travelling_time = 2 SECONDS
+	travelling_time = 0.5 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 175
 	ammo_type = CAS_MINI_ROCKET
@@ -574,7 +574,7 @@
 	desc = "A pack of laser guided incendiary mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_inc"
 	point_cost = 250
-	travelling_time = 4 SECONDS
+	travelling_time = 1 SECONDS
 	light_explosion_range = 3 //Slightly weaker than standard minirockets
 	fire_range = 3 //Fire range should be the same as the explosion range. Explosion should leave fire, not vice versa
 	prediction_type = CAS_AMMO_INCENDIARY
@@ -589,7 +589,7 @@
 	desc = "A pack of laser guided screening smoke mini rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket_smoke"
 	point_cost = 75
-	travelling_time = 4 SECONDS
+	travelling_time = 0.5 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/smoke
 	devastating_explosion_range = 0
 	heavy_explosion_range = 0
@@ -607,7 +607,7 @@
 	icon_state = "minirocket_tfoot"
 	point_cost = 200
 	devastating_explosion_range = 0
-	travelling_time = 4 SECONDS
+	travelling_time = 1 SECONDS
 	heavy_explosion_range = 0
 	light_explosion_range = 2
 	cas_effect = /obj/effect/overlay/blinking_laser/tfoot
@@ -624,7 +624,7 @@
 	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy. Moving this will require some sort of lifter."
 	icon_state = "minirocket_ilm"
 	point_cost = 50 // Not a real rocket, so its cheap
-	travelling_time = 4 SECONDS
+	travelling_time = 1 SECONDS
 	cas_effect = /obj/effect/overlay/blinking_laser/flare
 	firing_voiceline = 'sound/voice/plane_vws/shot_flare.ogg'
 	devastating_explosion_range = 0
@@ -648,11 +648,11 @@
 	icon_state = "bomb_200"
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/bomb_pod
-	ammo_count = 8
-	max_ammo_count = 8
+	ammo_count = 16
+	max_ammo_count = 16
 	ammo_name = "bomb_200"
 	firing_voiceline = 'sound/voice/plane_vws/shot_bomb.ogg'
-	travelling_time = 12 SECONDS
+	travelling_time = 2 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 200 // Bombs are numerous.
 	ammo_type = CAS_BOMB
@@ -693,8 +693,8 @@
 	heavy_explosion_range = 8
 	light_explosion_range = 0
 	ammo_name = "bomb_1000"
-	travelling_time = 14 SECONDS
-	point_cost = 600 // This is literally a minituare OB.
+	travelling_time = 3 SECONDS
+	point_cost = 400 // This is literally a minituare OB.
 	cas_effect = /obj/effect/overlay/blinking_laser/bomb_fat
 
 // Bomblets are small and numerious, with small paylods but high quantity.
@@ -708,7 +708,7 @@
 	max_ammo_count = 40
 	ammo_name = "bomb_50"
 	firing_voiceline = 'sound/voice/plane_vws/shot_bomb.ogg'
-	travelling_time = 10 SECONDS
+	travelling_time = 2 SECONDS
 	transferable_ammo = TRUE
 	point_cost = 150
 	ammo_type = CAS_BOMBLET
@@ -729,7 +729,7 @@
 	ammo_count = 20
 	max_ammo_count = 20
 	ammo_name = "bomb_75"
-	travelling_time = 12 SECONDS
+	travelling_time = 2 SECONDS
 	point_cost = 175
 	light_explosion_range = 3
 	prediction_type = CAS_AMMO_EXPLOSIVE

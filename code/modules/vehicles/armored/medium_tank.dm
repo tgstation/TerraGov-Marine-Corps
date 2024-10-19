@@ -6,14 +6,16 @@
 	turret_icon_state = "tank_turret"
 	hitbox = /obj/hitbox/medium
 	damage_icon_path = null
-	interior = null
+//	interior = /datum/interior/armored
 	icon_state = "tank"
-	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_UNDERLAY
+	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom)
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_ASSAULT
 	pixel_x = -16
 	pixel_y = -32
-	obj_integrity = 1300
-	max_integrity = 1300
-	max_occupants = 3
+	obj_integrity = 700
+	max_integrity = 700
+	max_occupants = 4
+	move_delay = 0.75 SECONDS
 
 /obj/vehicle/sealed/armored/multitile/medium/enter_locations(atom/movable/entering_thing)
 	return list(get_step(src, REVERSE_DIR(dir)))

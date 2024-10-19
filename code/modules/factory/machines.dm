@@ -10,7 +10,7 @@
 	///process type we will use to determine what step of the production process this machine will do
 	var/process_type = FACTORY_MACHINE_HEATER
 	///Time in ticks that this machine takes to process one item
-	var/cooldown_time = 1 SECONDS
+	var/cooldown_time = 12 SECONDS
 	///Curent item being processed
 	var/obj/item/factory_part/held_item
 	///Icon state displayed while something is being processed in the machine
