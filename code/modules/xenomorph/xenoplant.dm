@@ -11,8 +11,6 @@
 	var/mature = FALSE
 	///How long does it take for the plant to be useable
 	var/maturation_time = 2 MINUTES
-	/// Was this plant destroyed as the result of positive interaction (e.g. eaten by xeno)?
-	var/was_ate = FALSE
 
 /obj/structure/xeno/plant/Initialize(mapload, _hivenumber)
 	. = ..()
