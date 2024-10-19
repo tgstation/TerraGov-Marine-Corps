@@ -754,27 +754,6 @@
 
 	return ..()
 
-///Extra effect when attacking mob, such as xeno and human
-/obj/item/weapon/twohanded/chainsaw/attack(mob/living/carbon/M, mob/living/carbon/user)
-	rip_apart(user)
-	if(!active || issynth(M))
-		return ..()
-
-	if(isxeno(M))
-		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood/xeno) //leave pool of blood
-		return ..()
-
-	if(isrobot(M))
-		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood/oil)
-		return ..()
-
-	if(ishuman(M))
-		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood)
-		M.drip(18) //target lose an iso pill worth of blood
-		return ..()
-
-	return ..()
-
 ///Handle chainsaw attack loop on object
 /obj/item/weapon/twohanded/chainsaw/attack_obj(obj/object, mob/living/user)
 	. = ..()
