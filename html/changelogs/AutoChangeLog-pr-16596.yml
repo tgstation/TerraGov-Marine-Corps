@@ -1,0 +1,5 @@
+author: "AusarAtkin"
+delete-after: True
+changes:
+  - rscadd: "added chainsaw to req for 500 points"
+  - balance: "chainsaw now use fuel and do more damage while having a rev up delay."
