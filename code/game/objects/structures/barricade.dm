@@ -410,6 +410,12 @@
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
 
+/obj/structure/barricade/metal/Initialize(mapload, mob/user)
+	. = ..()
+	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
+		return
+	modify_max_integrity(max_integrity + 75)
+
 /obj/structure/barricade/metal/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
 
@@ -735,6 +741,12 @@
 	///ehther we react with other cades next to us ie when opening or so
 	var/linked = FALSE
 	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
+
+/obj/structure/barricade/plasteel/Initialize(mapload, mob/user)
+	. = ..()
+	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
+		return
+	modify_max_integrity(max_integrity + 100)
 
 /obj/structure/barricade/plasteel/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)

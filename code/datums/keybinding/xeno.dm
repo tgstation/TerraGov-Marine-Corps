@@ -694,6 +694,12 @@
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/screech_switch
+	name = "screech_switch"
+	full_name = "Queen: Screech Switch"
+	description = "Switches the type of Screech that will be performed."
+	keybind_signal = COMSIG_XENOABILITY_SCREECH_SWITCH
+
 /datum/keybinding/xeno/toggle_queen_zoom
 	name = "toggle_queen_zoom"
 	full_name = "Queen: Toggle Zoom"

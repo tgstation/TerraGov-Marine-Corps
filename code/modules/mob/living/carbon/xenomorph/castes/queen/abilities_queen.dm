@@ -71,7 +71,10 @@
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCREECH,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SCREECH_SWITCH,
 	)
+	// The type of screech that this ability will be doing.
+	var/selected_screech = "screech"
 
 /datum/action/ability/activable/xeno/screech/on_cooldown_finish()
 	to_chat(owner, span_warning("We feel our throat muscles vibrate. We are ready to screech again."))
@@ -80,34 +83,116 @@
 /datum/action/ability/activable/xeno/screech/use_ability(atom/A)
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
 
-	//screech is so powerful it kills huggers in our hands
-	for(var/obj/item/clothing/mask/facehugger/hugger in xeno_owner.get_held_items())
-		hugger.kill_hugger()
-		xeno_owner.dropItemToGround(hugger)
+	switch(selected_screech)
+		if("screech")
+			// Screech is so powerful it kills huggers in our hands.
+			for(var/obj/item/clothing/mask/facehugger/hugger in xeno_owner.get_held_items())
+				hugger.kill_hugger()
+				xeno_owner.dropItemToGround(hugger)
 
-	succeed_activate()
-	add_cooldown()
+			succeed_activate()
+			add_cooldown()
 
-	playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, 0)
-	xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
-	GLOB.round_statistics.queen_screech++
-	SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
-	xeno_owner.create_shriekwave() //Adds the visual effect. Wom wom wom
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, 0)
+			xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
+			GLOB.round_statistics.queen_screech++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
+			xeno_owner.create_shriekwave() // Adds the visual effect. Wom wom wom.
 
-	for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
-		if(get_dist(tank, xeno_owner) > WORLD_VIEW_NUM)
-			continue
-		if(tank.z != owner.z)
-			continue
-		for(var/mob/living/living_victim AS in tank.occupants)
-			living_victim.screech_act(xeno_owner, WORLD_VIEW_NUM) //todo: The effects of screech are weird due to relying on get_dist for a mob on a diff z-level
+			for(var/obj/vehicle/sealed/armored/tank AS in GLOB.tank_list)
+				if(get_dist(tank, xeno_owner) > WORLD_VIEW_NUM)
+					continue
+				if(tank.z != owner.z)
+					continue
+				for(var/mob/living/living_victim AS in tank.occupants)
+					living_victim.screech_act(xeno_owner, WORLD_VIEW_NUM) // Todo: The effects of screech are weird due to relying on get_dist for a mob on a diff z-level.
 
-	var/list/nearby_living = list() //if you're a hearer you get effected more severely
-	for(var/mob/living/living_victim in hearers(WORLD_VIEW, xeno_owner))
-		nearby_living.Add(living_victim)
+			var/list/nearby_living = list() // If you're a hearer, you get effected more severely.
+			for(var/mob/living/living_victim in hearers(WORLD_VIEW, xeno_owner))
+				nearby_living.Add(living_victim)
+			for(var/mob/living/living_victim AS in cheap_get_living_near(xeno_owner, WORLD_VIEW_NUM))
+				living_victim.screech_act(xeno_owner, WORLD_VIEW_NUM, living_victim in nearby_living)
+		if("heal_screech")
+			succeed_activate()
+			add_cooldown(30 SECONDS)
 
-	for(var/mob/living/living_victim AS in cheap_get_living_near(xeno_owner, WORLD_VIEW_NUM))
-		living_victim.screech_act(xeno_owner, WORLD_VIEW_NUM, living_victim in nearby_living)
+			for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, 5))
+				if(!xeno_owner.issamexenohive(affected_xeno))
+					continue
+				// Gives the benefit of Hivelord's Healing Infusion but it is halved in power (lower duration and less ticks of healing).
+				affected_xeno.apply_status_effect(/datum/status_effect/healing_infusion, HIVELORD_HEALING_INFUSION_DURATION / 2, HIVELORD_HEALING_INFUSION_TICKS / 2)
+
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_heal_screech.ogg', 75, 0)
+			xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
+		if("plasma_screech")
+			succeed_activate()
+			add_cooldown(30 SECONDS)
+
+			for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, 5))
+				if(!xeno_owner.issamexenohive(affected_xeno) || !(affected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA))
+					continue
+				// Gives the benefit of eatting powerfruit, but everything is halved (less plasma immediately restored, less plasma regen given, shorter duration).
+				affected_xeno.apply_status_effect(/datum/status_effect/plasma_surge, affected_xeno.xeno_caste.plasma_max / 2, 0.5, 30 SECONDS)
+
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_plasma_screech.ogg', 75, 0)
+			xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
+		if("frenzy_screech")
+			succeed_activate()
+			add_cooldown(30 SECONDS)
+
+			for(var/mob/living/carbon/xenomorph/affected_xeno in cheap_get_xenos_near(xeno_owner, 5))
+				if(!xeno_owner.issamexenohive(affected_xeno))
+					continue
+				// 30 seconds of 10% increase of melee damage.
+				affected_xeno.apply_status_effect(/datum/status_effect/frenzy_screech)
+
+			playsound(xeno_owner.loc, 'sound/voice/alien/queen_frenzy_screech.ogg', 75, 0)
+			xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
+
+/datum/action/ability/activable/xeno/screech/alternate_action_activate()
+	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
+	if(xeno_owner.upgrade != XENO_UPGRADE_PRIMO)
+		return
+	INVOKE_ASYNC(src, PROC_REF(switch_screech))
+	return COMSIG_KB_ACTIVATED
+
+/// Shows a radical menu that lets the owner choose which type of screech they want to use.
+/datum/action/ability/activable/xeno/screech/proc/switch_screech()
+	var/screech_images_list = list(
+		"Screech" = image('icons/Xeno/actions/queen.dmi', icon_state = "screech"),
+		"Healing Screech" = image('icons/Xeno/actions/queen.dmi', icon_state = "heal_screech"),
+		"Plasma Screech" = image('icons/Xeno/actions/queen.dmi', icon_state = "plasma_screech"),
+		"Frenzy Screech" = image('icons/Xeno/actions/queen.dmi', icon_state = "frenzy_screech")
+	)
+	var/screech_choice = show_radial_menu(owner, owner, screech_images_list, radius = 35)
+	if(!screech_choice)
+		return
+	switch(screech_choice)
+		if("Screech")
+			selected_screech = "screech"
+			name = "Screech ([ability_cost])"
+			desc = "A large area knockdown that causes pain and screen-shake."
+			to_chat(owner, span_xenonotice("Our screech will stun and deaf nearby enemies."))
+		if("Healing Screech")
+			selected_screech = "heal_screech"
+			name = "Healing Screech ([ability_cost])"
+			desc = "A beneficial screech that grants health and sunder regeneration to you and nearby allies."
+			to_chat(owner, span_xenonotice("Our screech will heal nearby allies."))
+		if("Plasma Screech")
+			selected_screech = "plasma_screech"
+			name = "Plasma Screech ([ability_cost])"
+			desc = "A beneficial screech that grants plasma regeneration to you and nearby allies."
+			to_chat(owner, span_xenonotice("Our screech will restore plasma of nearby allies."))
+		if("Frenzy Screech")
+			selected_screech = "frenzy_screech"
+			name = "Frenzy Screech ([ability_cost])"
+			desc = "A beneficial screech that grants an increase of 10% melee damage to you and nearby allies."
+			to_chat(owner, span_xenonotice("Our screech will bolster the damage of nearby allies."))
+	update_button_icon()
+
+/datum/action/ability/activable/xeno/screech/update_button_icon()
+	action_icon_state = selected_screech
+	return ..()
 
 /datum/action/ability/activable/xeno/screech/ai_should_start_consider()
 	return TRUE

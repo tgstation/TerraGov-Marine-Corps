@@ -90,6 +90,7 @@
 	if(armored_flags & ARMORED_HAS_PRIMARY_WEAPON)
 		turret_overlay = new()
 		turret_overlay.icon = turret_icon
+		turret_overlay.base_icon_state = turret_icon_state
 		turret_overlay.icon_state = turret_icon_state
 		turret_overlay.setDir(dir)
 		turret_overlay.layer = layer+0.002
@@ -114,8 +115,7 @@
 				icon_state += "_urban"
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
-	if(minimap_icon_state)
-		SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
+	update_minimap_icon()
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()
@@ -389,6 +389,16 @@
 	for(var/mob/living/carbon/human/crew AS in occupants)
 		if(crew.wear_id?.iff_signal & proj.iff_signal)
 			return FALSE
+	if(src == proj.shot_from)
+		return FALSE
+	if(src == proj.original_target)
+		return TRUE
+	if(!hitbox)
+		return ..()
+	if(proj.firer in hitbox.tank_desants)
+		return FALSE
+	if(proj.original_target in hitbox.tank_desants)
+		return FALSE
 	return ..()
 
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)
@@ -647,6 +657,16 @@
 		return
 	INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/armored_weapon, begin_fire), user, target, modifiers)
 
+///Updates the vehicles minimap icon
+/obj/vehicle/sealed/armored/proc/update_minimap_icon()
+	if(!minimap_icon_state)
+		return
+	SSminimaps.remove_marker(src)
+	minimap_icon_state = initial(minimap_icon_state)
+	if(armored_flags & ARMORED_IS_WRECK)
+		minimap_icon_state += "_wreck"
+	SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
+
 /atom/movable/vis_obj/turret_overlay
 	name = "Tank gun turret"
 	desc = "The shooty bit on a tank."
@@ -660,8 +680,7 @@
 	var/image/secondary_overlay
 
 /atom/movable/vis_obj/turret_overlay/Destroy()
-	if(primary_overlay)
-		QDEL_NULL(primary_overlay)
+	QDEL_NULL(primary_overlay)
 	return ..()
 
 /atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(gun_icon_state)
@@ -671,6 +690,7 @@
 
 	primary_overlay = new()
 	primary_overlay.icon = icon //VIS_INHERIT_ICON doesn't work with flick
+	primary_overlay.base_icon_state = gun_icon_state
 	primary_overlay.icon_state = gun_icon_state
 	vis_contents += primary_overlay
 

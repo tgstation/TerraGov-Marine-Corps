@@ -157,6 +157,7 @@
 	if(issamexenohive(X))
 		X.visible_message(span_warning("\The [X] nibbles [src]."),
 		span_warning("We nibble [src]."), null, 5)
+		X.do_attack_animation(src)
 		return FALSE
 	return ..()
 

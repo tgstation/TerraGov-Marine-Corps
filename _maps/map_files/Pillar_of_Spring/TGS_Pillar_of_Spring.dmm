@@ -15134,7 +15134,7 @@
 /area/mainship/hallways/stern_hallway)
 "sFo" = (
 /obj/structure/table/mainship/nometal,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/kitchenknife,
 /obj/item/storage/box/tgmc_mre,
 /turf/open/floor/mainship/mono,

@@ -5,8 +5,12 @@
 ///Available for unlock by default
 #define LOADOUT_ITEM_ROUNDSTART_UNLOCKABLE (1<<2)
 
+#define LOADOUT_ITEM_MG27 /obj/item/weapon/gun/standard_mmg/machinegunner
+#define LOADOUT_ITEM_TGMC_FLAMER /obj/item/weapon/gun/flamer/big_flamer/marinestandard/wide
+#define LOADOUT_ITEM_TGMC_MINIGUN /obj/item/weapon/gun/minigun/magharness
+
 GLOBAL_LIST_INIT(campaign_loadout_slots, list(ITEM_SLOT_OCLOTHING, ITEM_SLOT_ICLOTHING, ITEM_SLOT_GLOVES, ITEM_SLOT_EYES, ITEM_SLOT_EARS, \
-ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_ID, ITEM_SLOT_BELT, ITEM_SLOT_BACK, ITEM_SLOT_L_POCKET, ITEM_SLOT_R_POCKET, ITEM_SLOT_SUITSTORE))
+ITEM_SLOT_MASK, ITEM_SLOT_HEAD, ITEM_SLOT_FEET, ITEM_SLOT_ID, ITEM_SLOT_BELT, ITEM_SLOT_BACK, ITEM_SLOT_L_POCKET, ITEM_SLOT_R_POCKET, ITEM_SLOT_SUITSTORE, ITEM_SLOT_SECONDARY))
 
 //List of all loadout_item datums
 GLOBAL_LIST_INIT_TYPED(campaign_loadout_item_type_list, /datum/loadout_item, init_glob_loadout_item_list())
@@ -87,10 +91,29 @@ GLOBAL_LIST_INIT(campaign_loadout_items_by_role, init_campaign_loadout_items_by_
 			return FALSE
 	return TRUE
 
+///Any additional behavior when this datum is equipped to an outfit_holder
+/datum/loadout_item/proc/on_holder_equip(datum/outfit_holder)
+	//if there is a single whitelist item, this is a guaranteed mandatory prereq for src, so we autoequip for player QOL
+	if(length(item_whitelist) != 1)
+		return
+	for(var/item in item_whitelist)
+		equip_mandatory_item(outfit_holder, item, item_whitelist[item])
+
 ///Any post equip things related to this item
-/datum/loadout_item/proc/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
-	return role_post_equip(wearer, loadout)
+/datum/loadout_item/proc/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
+	role_post_equip(wearer, loadout, holder)
 
 ///A separate post equip proc for role specific code. Split for more flexible parent overriding
-/datum/loadout_item/proc/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/proc/role_post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	return
+
+///Equips a mandatory item when src is equipt for player convenience
+/datum/loadout_item/proc/equip_mandatory_item(datum/outfit_holder/outfit_holder, mandatory_type, mandatory_slot)
+	if(!mandatory_slot || !mandatory_type || !outfit_holder)
+		return
+	if(outfit_holder.equipped_things["[mandatory_slot]"]?.item_typepath == mandatory_type)
+		return
+	for(var/datum/loadout_item/item AS in outfit_holder.available_list["[mandatory_slot]"])
+		if(item.item_typepath != mandatory_type)
+			continue
+		outfit_holder.equip_loadout_item(item)

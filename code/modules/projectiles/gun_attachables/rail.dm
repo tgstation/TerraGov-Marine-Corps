@@ -104,6 +104,7 @@
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
 	///Handles the harness functionality, created when attached to a gun and removed on detach
+  
 	var/datum/component/reequip_component
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION
 	attachment_action_type = /datum/action/item_action/toggle

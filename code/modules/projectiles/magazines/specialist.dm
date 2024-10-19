@@ -233,6 +233,10 @@
 	default_ammo = /datum/ammo/rocket/oneuse
 	reload_delay = 30
 
+
+/obj/item/ammo_magazine/rocket/oneuse/anti_tank
+	default_ammo = /datum/ammo/rocket/recoilless/heat/mech
+
 /obj/item/ammo_magazine/internal/launcher/rocket/oneuse
 	name = "\improper 68mm internal tube"
 	desc = "The internal tube of a two use rpg."
@@ -241,6 +245,7 @@
 	max_rounds = 2
 	current_rounds = 0
 	reload_delay = 30
+
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN
@@ -436,10 +441,6 @@
 	current_rounds = 1500
 	max_rounds = 1500
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
-
-/obj/item/ammo_magazine/minigun_powerpack/snow
-	icon_state = "s_powerpack"
-	item_map_variant_flags = null
 
 /obj/item/ammo_magazine/minigun_powerpack/fancy
 	icon_state = "powerpack_fancy"
