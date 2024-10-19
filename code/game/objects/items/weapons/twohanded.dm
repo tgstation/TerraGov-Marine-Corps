@@ -643,61 +643,59 @@
 /obj/item/weapon/twohanded/chainsaw/Initialize(mapload)
 	. = ..()
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
-	AddElement(/datum/element/strappable) //Chainsaw can be strapped on hand
+	AddElement(/datum/element/strappable)
 
 ///handle icon change
 /obj/item/weapon/twohanded/chainsaw/update_icon_state()
 	. = ..()
-	if(active) //weapon is active
+	if(active)
 		icon_state = icon_state_on
 		return
-	else
-		icon_state = initial(icon_state)
+	icon_state = initial(icon_state)
 
 ///handle worn_icon change
 /obj/item/weapon/twohanded/chainsaw/update_item_state(mob/user)
 	. = ..()
-	if(active) //weapon is active
+	if(active)
 		worn_icon_state = worn_icon_state_on
 		return
-	if(CHECK_BITFIELD(item_flags, WIELDED)) // weapon is wielded but off
+	if(CHECK_BITFIELD(item_flags, WIELDED)) //weapon is wielded but off
 		worn_icon_state = worn_icon_state_w
 		return
-	else
-		worn_icon_state = initial(worn_icon_state)
+	worn_icon_state = initial(worn_icon_state)
 
-///proc to turn the chainsaw on or off
+///Proc to turn the chainsaw on or off
 /obj/item/weapon/twohanded/chainsaw/proc/toggle_motor(mob/user)
-	if(active && reagents.get_reagent_amount(/datum/reagent/fuel) >= fuel_used) //check if theres enough fuel to activate)
-		force += additional_damage
-		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
-		hitsound = 'sound/weapons/chainsawhit.ogg'
-		to_chat(user, span_warning("\The [src]'s motor whirr to lifel!"))
-		update_icon()
-		update_item_state()
-	else
+	if(!active)
 		force = initial(force)
 		hitsound = initial(hitsound)
-		if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
-			to_chat(user, span_warning("\The [src] doesn't have enough fuel!"))
-			return
-		to_chat(user, span_warning("\The [src]'s motor died down!"))
+		balloon_alert(user, "The motor died down!")
 		update_icon()
 		update_item_state()
+		return
+	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used)
+		balloon_alert(user, "Not enough fuel!")
+		return
+	force += additional_damage
+	playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
+	hitsound = 'sound/weapons/chainsawhit.ogg'
+	balloon_alert(user, "The motor whirr to lifel!")
+	update_icon()
+	update_item_state()
 
-///proc for the fuel cost and check and chainsaw noises
+///Proc for the fuel cost and check and chainsaw noises
 /obj/item/weapon/twohanded/chainsaw/proc/rip_apart(mob/user)
 	if(!active)
 		return
-	reagents.remove_reagent(/datum/reagent/fuel, fuel_used) //remove fuel by fuel_used amount
-	user.changeNext_move(attack_speed) //this is here because attacking object for some reason dont respect weapon attack speed
+	reagents.remove_reagent(/datum/reagent/fuel, fuel_used)
+	user.changeNext_move(attack_speed) //this is here because attacking object for some reason doesn't respect weapon attack speed
 	if(reagents.get_reagent_amount(/datum/reagent/fuel) < fuel_used && active) //turn off the chainsaw after one last attack when fuel ran out
 		playsound(loc, 'sound/items/weldingtool_off.ogg', 50)
 		to_chat(user, span_warning("\The [src] shuts off, using last bits of fuel!"))
 		active = FALSE
 		toggle_motor(user)
 		return
-	if(prob(1)) // small chance for an easter egg of simpson chainsaw noises
+	if(prob(0.1)) // small chance for an easter egg of simpson chainsaw noises
 		playsound(loc, 'sound/weapons/chainsaw_simpson.ogg', 60)
 	else
 		playsound(loc, 'sound/weapons/chainsawhit.ogg', 100, 1)
@@ -711,9 +709,10 @@
 /obj/item/weapon/twohanded/chainsaw/dropped(mob/user)
 	. = ..()
 	toggle_item_bump_attack(user, FALSE)
-	if(active)
-		active = FALSE
-		toggle_motor(user)
+	if(!active)
+		return
+	active = FALSE
+	toggle_motor(user)
 
 ///Chainsaw turn on when wielded
 /obj/item/weapon/twohanded/chainsaw/wield(mob/user)
@@ -740,45 +739,49 @@
 
 ///Refueling with fueltank
 /obj/item/weapon/twohanded/chainsaw/afterattack(obj/target, mob/user, flag)
-	if(istype(target, /obj/structure/reagent_dispensers/fueltank) && get_dist(user,target) <= 1)
-		var/obj/structure/reagent_dispensers/fueltank/saw = target
-		if(saw.reagents.total_volume == 0)
-			to_chat(user, span_warning("Out of fuel!"))
-			return ..()
-
-		var/fuel_transfer_amount = min(saw.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
-		saw.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
-		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		to_chat(user, span_notice("You refill [src] with fuel."))
-		update_icon()
+	if(!istype(target, /obj/structure/reagent_dispensers/fueltank) || get_dist(user,target) > 1)
+		return
+	var/obj/structure/reagent_dispensers/fueltank/saw = target
+	if(saw.reagents.total_volume == 0)
+		balloon_alert(user, "Out of fuel!")
+		return ..()
+	var/fuel_transfer_amount = min(saw.reagents.total_volume, (max_fuel - reagents.get_reagent_amount(/datum/reagent/fuel)))
+	saw.reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+	reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	balloon_alert(user, "You refill it with fuel.")
+	update_icon()
 
 	return ..()
 
-///extra effect when attacking mob, such as xeno and human
-/obj/item/weapon/twohanded/chainsaw/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+///Extra effect when attacking mob, such as xeno and human
+/obj/item/weapon/twohanded/chainsaw/attack(mob/living/carbon/M, mob/living/carbon/user)
 	rip_apart(user)
-	if(!active) //no extra effect when weapon is off
+	if(!active || issynth(M))
 		return ..()
 
 	if(isxeno(M))
 		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood/xeno) //leave pool of blood
 		return ..()
 
+	if(isrobot(M))
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood/oil)
+		return ..()
+
 	if(ishuman(M))
-		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood) //leave pool of blood
+		M.AddComponent(/datum/component/dripping, DRIP_ON_WALK, 6, 6, /obj/effect/decal/cleanable/blood)
 		M.drip(18) //target lose an iso pill worth of blood
 		return ..()
 
 	return ..()
 
-///handle chainsaw attack loop on object
+///Handle chainsaw attack loop on object
 /obj/item/weapon/twohanded/chainsaw/attack_obj(obj/object, mob/living/user)
 	. = ..()
-	if(!active) //attack only loop if chainsaw is on
+	if(!active)
 		return
 
-	if(user.do_actions) //check if user is busy doing something else, or in the middle of attack loop already
+	if(user.do_actions)
 		object.balloon_alert(user, "already busy")
 		return TRUE
 
@@ -813,7 +816,8 @@
 /// Allow the chainsword variant to be activated without being wielded
 /obj/item/weapon/twohanded/chainsaw/sword/unique_action(mob/user)
 	. = ..()
-	if(!CHECK_BITFIELD(item_flags, WIELDED))
-		playsound(loc, 'sound/machines/switch.ogg', 25)
-		toggle_active()
-		toggle_motor(user)
+	if(CHECK_BITFIELD(item_flags, WIELDED))
+		return
+	playsound(loc, 'sound/machines/switch.ogg', 25)
+	toggle_active()
+	toggle_motor(user)
