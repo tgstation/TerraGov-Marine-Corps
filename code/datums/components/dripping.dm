@@ -36,19 +36,19 @@
 	return ..()
 
 /datum/component/dripping
-    var/turfs_moved = 0
+	var/turfs_moved = 0
 
 /datum/component/dripping/proc/drip_on_walk(datum/source, atom/oldloc, direction, Forced = FALSE)
-    SIGNAL_HANDLER
-    var/mob/living/dripper = parent
-    if(!isturf(dripper.loc))
-        return
-    turfs_moved++
-    if(!(turfs_moved % drip_ratio))
-        return
-    new dripped_type(dripper.loc)
-    if(++drip_counter > drip_limit)
-        qdel(src)
+	SIGNAL_HANDLER
+	var/mob/living/dripper = parent
+	if(!isturf(dripper.loc))
+		return
+	turfs_moved++
+	if(!(turfs_moved % drip_ratio))
+		return
+	new dripped_type(dripper.loc)
+	if(++drip_counter > drip_limit)
+		qdel(src)
 
 /datum/component/dripping/process()
 	var/mob/living/dripper = parent
