@@ -174,12 +174,12 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 
 	if(grenades_primed)
 		stats += "[grenades_primed] grenade\s thrown."
+	if(grenade_hand_delimbs)
+		stats += "You blew off [grenade_hand_delimbs] hand[grenade_hand_delimbs != 1 ? "s" : ""] while holding grenades like an idiot."
 	if(traps_created)
 		stats += "[traps_created] trap\s/mine\s/hazard\s placed."
 	if(grenades_primed || traps_created)
 		stats += ""
-	if(grenade_hand_delimbs)
-		stats += "You blew off [grenade_hand_delimbs] hand[grenade_hand_delimbs != 1 ? "s" : ""] while trying to throw grenades, like an idiot."
 
 	stats += "Lost [limbs_lost] limb[limbs_lost != 1 ? "s" : ""]."
 	if(delimbs)
