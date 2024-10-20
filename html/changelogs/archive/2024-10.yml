@@ -135,3 +135,23 @@
   jonash07:
   - balance: Synth crit now deals damage by limb instead of applying it all over the
       body
+2024-10-20:
+  AusarAtkin:
+  - rscadd: added chainsaw to req for 500 points
+  - balance: chainsaw now use fuel and do more damage while having a rev up delay.
+  Lumipharon:
+  - bugfix: fixed a BAS exploit
+  - bugfix: fixed a bug with magharness guns in water
+  - qol: Sounds from outside tanks should now properly have directionality applied
+      to them
+  - code_imp: Improved some sound code performance.
+  Pariah919:
+  - rscadd: Added new ICC Recon Vehicle 'Fallow'. You can try it out in Valhalla.
+      It has no other spawn areas.
+  PibeCantina:
+  - balance: Makes king immune to rocket sledge stun
+  Runian:
+  - qol: Plant Weeds ability's button now dynamically shows its ability cost rather
+      than the consistent 75.
+  - bugfix: Plants Weeds ability no longer prevents usage if you have more than post-discounted,
+      but less than before-discounted plasma (for before shutters drop).
