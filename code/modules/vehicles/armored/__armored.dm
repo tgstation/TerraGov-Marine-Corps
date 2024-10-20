@@ -18,8 +18,14 @@
 	///Tank bitflags
 	var/armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS
 	///Sound file(s) to play when we drive around
-	var/engine_sound = 'sound/ambience/tank_driving.ogg'
-	///frequency to play the sound with
+	var/list/engine_sound = list('sound/vehicles/engine_rev_1.ogg', 'sound/vehicles/engine_rev_2.ogg')
+	///Sound file(s) to play inside the vehicle when we drive around
+	var/list/interior_engine_sound = list('sound/vehicles/engine_rev_interior_1.ogg', 'sound/vehicles/engine_rev_interior_2.ogg')
+	///Sound file(s) to play outside the vehicle when we've been idle for a while
+	var/list/idle_engine_sound = list('sound/vehicles/engine_idle_1.ogg', 'sound/vehicles/engine_idle_2.ogg', 'sound/vehicles/engine_idle_3.ogg')
+	///Sound file(s) to play inside the vehicle when we've been idle for a while
+	var/list/idle_interior_engine_sound = list('sound/vehicles/engine_idle_interior_1.ogg', 'sound/vehicles/engine_idle_interior_2.ogg')
+	///frequency to play the move sound with
 	var/engine_sound_length = 2 SECONDS
 	/// How long it takes to rev (vrrm vrrm!) TODO: merge this up to /vehicle here and on tg because of cars
 	COOLDOWN_DECLARE(enginesound_cooldown)
@@ -247,7 +253,7 @@
 	if(HAS_TRAIT(A, TRAIT_STOPS_TANK_COLLISION))
 		if(!TIMER_COOLDOWN_CHECK(src, COOLDOWN_VEHICLE_CRUSHSOUND))
 			visible_message(span_danger("[src] is stopped by [A]!"))
-			playsound(src, 'sound/effects/metal_crash.ogg', 45)
+			playsound(A, 'sound/effects/metal_crash.ogg', 45)
 			TIMER_COOLDOWN_START(src, COOLDOWN_VEHICLE_CRUSHSOUND, 1 SECONDS)
 		return
 	var/pilot
@@ -273,17 +279,30 @@
 
 /obj/vehicle/sealed/armored/emp_act(severity)
 	. = ..()
-	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	playsound(get_turf(src), 'sound/magic/lightningshock.ogg', 50, FALSE)
 	take_damage(400 / severity, BURN, ENERGY)
 	for(var/mob/living/living_occupant AS in occupants)
 		living_occupant.Stagger((6 - severity) SECONDS)
+
+/obj/vehicle/sealed/armored/process()
+	if(driver_amount() == 0)
+		return PROCESS_KILL
+	if(cooldown_vehicle_move + 1 > world.time)
+		return // driver present but they look to be moving so dont play idle
+	playsound(src, islist(idle_engine_sound) ? pick(idle_engine_sound) : idle_engine_sound, 30, TRUE, 10, channel=CHANNEL_TANK_DRIVING)
+	if(idle_interior_engine_sound && interior)
+		play_interior_sound(null, islist(idle_interior_engine_sound) ? pick(idle_interior_engine_sound) : idle_interior_engine_sound, 30, TRUE, channel=CHANNEL_TANK_DRIVING)
 
 ///Plays the engine sound for this vehicle if its not on cooldown
 /obj/vehicle/sealed/armored/proc/play_engine_sound(freq_vary = TRUE, sound_freq)
 	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
 		return
 	COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
-	playsound(get_turf(src), engine_sound, 100, freq_vary, 20, frequency = sound_freq)
+	///whether we play the outside sound for the interior or no
+	var/play_loc = interior_engine_sound ? src : get_turf(src)
+	playsound(play_loc, islist(engine_sound) ? pick(engine_sound) : engine_sound, 100, freq_vary, 20, frequency = sound_freq, channel=CHANNEL_TANK_DRIVING)
+	if(interior_engine_sound)
+		play_interior_sound(null, islist(interior_engine_sound) ? pick(interior_engine_sound) : interior_engine_sound, 60, freq_vary, channel=CHANNEL_TANK_DRIVING)
 
 ///called when a mob tried to leave our interior
 /obj/vehicle/sealed/armored/proc/interior_exit(mob/leaver, datum/interior/inside, teleport)
@@ -368,11 +387,15 @@
 	. = ..()
 	if(. && (flag & VEHICLE_CONTROL_EQUIPMENT))
 		RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, PROC_REF(on_mouseclick), TRUE)
+	if(. && (flag & VEHICLE_CONTROL_DRIVE) && !(datum_flags & DF_ISPROCESSING))
+		START_PROCESSING(SSobj, src)
 
 /obj/vehicle/sealed/armored/remove_controller_actions_by_flag(mob/M, flag)
 	. = ..()
 	if(. && (flag & VEHICLE_CONTROL_EQUIPMENT))
 		UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
+	if(. && (flag & VEHICLE_CONTROL_DRIVE) && (driver_amount() == 0))
+		STOP_PROCESSING(SSobj, src)
 
 /obj/vehicle/sealed/armored/remove_occupant(mob/M)
 	M?.hud_used?.remove_ammo_hud(primary_weapon)
@@ -614,10 +637,20 @@
 		return FALSE
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_TANK_SWIVEL)) //Slight cooldown to avoid spam
 		return FALSE
-	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
+	playsound(src, 'sound/vehicles/tankswivel.ogg', 80, TRUE)
+	play_interior_sound(null, 'sound/vehicles/turret_swivel_interior.ogg', 60, TRUE)
 	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 3 SECONDS)
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
+
+///playsound_local identical args, use this when a sound should be played for the occupants.
+/obj/vehicle/sealed/armored/proc/play_interior_sound(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, sound/sound_to_use, distance_multiplier)
+	if(!interior)
+		return
+	for(var/mob/crew AS in interior.occupants)
+		if(!crew.client)
+			continue
+		crew.playsound_local(arglist(args))
 
 ///handles mouseclicks by a user in the vehicle
 /obj/vehicle/sealed/armored/proc/on_mouseclick(mob/user, atom/target, turf/location, control, list/modifiers)

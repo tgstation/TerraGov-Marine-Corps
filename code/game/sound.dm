@@ -83,6 +83,8 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
 		if(!armor.interior || armor.z != turf_source.z || get_dist(armor.loc, turf_source) > sound_range)
 			continue
+		if(armor == source) // sounds vehicles with interiors make must be played inside the tank, see /obj/vehicle/sealed/armored/proc/play_interior_sound(...)
+			continue
 		if(!length(armor.interior.occupants))
 			continue
 		var/turf/middle_turf = armor.interior.loaded_turfs[floor(length(armor.interior.loaded_turfs) * 0.5)]

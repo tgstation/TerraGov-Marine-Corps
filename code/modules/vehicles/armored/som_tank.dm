@@ -31,6 +31,9 @@
 		/obj/item/ammo_magazine/tank,
 	)
 	engine_sound = SFX_HOVER_TANK
+	interior_engine_sound = null
+	idle_engine_sound = null
+	idle_interior_engine_sound = null
 	engine_sound_length = 1.2 SECONDS
 	vis_range_mod = 4
 	faction = FACTION_SOM
