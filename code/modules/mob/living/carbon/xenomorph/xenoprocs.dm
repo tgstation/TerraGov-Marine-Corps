@@ -610,6 +610,8 @@
 	update_xeno_gender(src, TRUE)
 
 /mob/living/carbon/xenomorph/proc/update_xeno_gender(mob/living/carbon/xenomorph/user, swapping = FALSE)
+	//until we get graphics
+	return
 	var/xgen = user.client?.prefs?.xenogender
 	if(swapping) //flips to next in selection
 		xgen += 1
