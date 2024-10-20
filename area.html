@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;area - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="area.html#var">Var Details</a> - <a href="area.html#proc">Proc Details</a></header>
+<main>
+<h1>area <aside>/<a href="area.html">area</a></aside><aside> inherits /<a href="atom.html">atom</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/game/area/area.dm#L1">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 1"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="area.html#var/all_fire_doors">all_fire_doors</a></th><td>Keeps a lit of adjacent firelocks, used for alarms/ZAS</td></tr>
+            <tr><th><a href="area.html#var/area_flavor">area_flavor</a></th><td>string used to determine specific icon variants when structures are used in an area</td></tr>
+            <tr><th><a href="area.html#var/area_has_base_lighting">area_has_base_lighting</a></th><td>Whether this area has a currently active base lighting, bool</td></tr>
+            <tr><th><a href="area.html#var/area_limited_icon_smoothing">area_limited_icon_smoothing</a></th><td>Boolean to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.</td></tr>
+            <tr><th><a href="area.html#var/base_lighting_alpha">base_lighting_alpha</a></th><td>alpha 0-255 of lighting_effect and thus baselighting intensity</td></tr>
+            <tr><th><a href="area.html#var/base_lighting_color">base_lighting_color</a></th><td>The colour of the light acting on this area</td></tr>
+            <tr><th><a href="area.html#var/cameras">cameras</a></th><td>Cameras in this area</td></tr>
+            <tr><th><a href="area.html#var/ceiling">ceiling</a></th><td>the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()</td></tr>
+            <tr><th><a href="area.html#var/fake_zlevel">fake_zlevel</a></th><td>Used in designating the &quot;level&quot; of maps pretending to be multi-z one Z</td></tr>
+            <tr><th><a href="area.html#var/lighting_effect">lighting_effect</a></th><td>The mutable appearance we underlay to show light</td></tr>
+            <tr><th><a href="area.html#var/max_ambience_cooldown">max_ambience_cooldown</a></th><td>Used to decide what the maximum time between ambience is</td></tr>
+            <tr><th><a href="area.html#var/min_ambience_cooldown">min_ambience_cooldown</a></th><td>Used to decide what the minimum time between ambience is</td></tr>
+            <tr><th><a href="area.html#var/outside">outside</a></th><td>Is this area considered inside or outside</td></tr>
+            <tr><th><a href="area.html#var/static_lighting">static_lighting</a></th><td>Whether this area allows static lighting and thus loads the lighting objects</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="area.html#proc/get_apc">get_apc</a></th><td>Returns the first APC it finds in an area</td></tr>
+            <tr><th><a href="area.html#proc/get_apc_list">get_apc_list</a></th><td>Returns a list of APCs in this area</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/all_fire_doors"><aside class="declaration">var </aside>all_fire_doors
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/game/area/area.dm#L52">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 52"/></a></h3>
+        <p>Keeps a lit of adjacent firelocks, used for alarms/ZAS</p><h3 id="var/area_flavor"><aside class="declaration">var </aside>area_flavor
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/game/area/area.dm#L67">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 67"/></a></h3>
+        <p>string used to determine specific icon variants when structures are used in an area</p><h3 id="var/area_has_base_lighting"><aside class="declaration">var </aside>area_has_base_lighting
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/modules/lighting/lighting_area.dm#L6">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 6"/></a></h3>
+        <p>Whether this area has a currently active base lighting, bool</p><h3 id="var/area_limited_icon_smoothing"><aside class="declaration">var </aside>area_limited_icon_smoothing
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/game/area/area.dm#L64">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 64"/></a></h3>
+        <p>Boolean to limit the areas (subtypes included) that atoms in this area can smooth with. Used for shuttles.</p><h3 id="var/base_lighting_alpha"><aside class="declaration">var </aside>base_lighting_alpha
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/modules/lighting/lighting_area.dm#L8">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 8"/></a></h3>
+        <p>alpha 0-255 of lighting_effect and thus baselighting intensity</p><h3 id="var/base_lighting_color"><aside class="declaration">var </aside>base_lighting_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/modules/lighting/lighting_area.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 10"/></a></h3>
+        <p>The colour of the light acting on this area</p><h3 id="var/cameras"><aside class="declaration">var </aside>cameras
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/game/area/area.dm#L50">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 50"/></a></h3>
+        <p>Cameras in this area</p><h3 id="var/ceiling"><aside class="declaration">var </aside>ceiling
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/game/area/area.dm#L42">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 42"/></a></h3>
+        <p>the material the ceiling is made of. Used for debris from airstrikes and orbital beacons in ceiling_debris()</p><h3 id="var/fake_zlevel"><aside class="declaration">var </aside>fake_zlevel
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/game/area/area.dm#L44">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 44"/></a></h3>
+        <p>Used in designating the &quot;level&quot; of maps pretending to be multi-z one Z</p><h3 id="var/lighting_effect"><aside class="declaration">var </aside>lighting_effect
+            <aside>&ndash; /mutable_appearance</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/modules/lighting/lighting_area.dm#L4">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_area.dm 4"/></a></h3>
+        <p>The mutable appearance we underlay to show light</p><h3 id="var/max_ambience_cooldown"><aside class="declaration">var </aside>max_ambience_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/game/area/area.dm#L61">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 61"/></a></h3>
+        <p>Used to decide what the maximum time between ambience is</p><h3 id="var/min_ambience_cooldown"><aside class="declaration">var </aside>min_ambience_cooldown
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/game/area/area.dm#L59">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 59"/></a></h3>
+        <p>Used to decide what the minimum time between ambience is</p><h3 id="var/outside"><aside class="declaration">var </aside>outside
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/game/area/area.dm#L46">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;area&#x2F;area.dm 46"/></a></h3>
+        <p>Is this area considered inside or outside</p><h3 id="var/static_lighting"><aside class="declaration">var </aside>static_lighting
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/modules/lighting/lighting_static/static_lighting_area.dm#L3">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;lighting&#x2F;lighting_static&#x2F;static_lighting_area.dm 3"/></a></h3>
+        <p>Whether this area allows static lighting and thus loads the lighting objects</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_apc"><aside class="declaration">proc </aside>get_apc<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/modules/power/power.dm#L307">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;power.dm 307"/></a></aside>
+        </h3>
+        <p>Returns the first APC it finds in an area</p><h3 id="proc/get_apc_list"><aside class="declaration">proc </aside>get_apc_list<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/0a057c9489c100fc6e24229f3892d1c62cdc7878/code/modules/power/power.dm#L299">
+        <img src="git.png" width="16" height="16" title="code&#x2F;modules&#x2F;power&#x2F;power.dm 299"/></a></aside>
+        </h3>
+        <p>Returns a list of APCs in this area</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/0a057c9489c100fc6e24229f3892d1c62cdc7878">0a057c9</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
