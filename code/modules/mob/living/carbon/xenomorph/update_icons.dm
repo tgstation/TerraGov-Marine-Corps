@@ -170,6 +170,17 @@
 	///The xeno this overlay belongs to
 	var/mob/living/carbon/xenomorph/owner
 
+/atom/movable/vis_obj/xeno_wounds/genital_overlay
+	layer = ABOVE_MOB_LAYER
+	icon = 'ntf_modular/icons/xeno/genitals.dmi' //this should probally be something more generic if saddles r ever added to anything other than rounies
+	var/mob/living/carbon/xenomorph/owner
+
+/atom/movable/vis_obj/xeno_wounds/genital_overlay/Initialize(mapload, new_owner)
+	owner = new_owner
+	if(!owner)
+		return INITIALIZE_HINT_QDEL
+	return ..()
+
 /atom/movable/vis_obj/xeno_wounds
 	vis_flags = VIS_INHERIT_DIR|VIS_INHERIT_ID
 

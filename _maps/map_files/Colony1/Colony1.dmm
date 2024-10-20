@@ -164,7 +164,7 @@
 	name = "HQ Northwest Hallways"
 	})
 "ajI" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
@@ -397,7 +397,7 @@
 	always_unpowered = 0
 	})
 "ayg" = (
-/obj/structure/inflatable/wall,
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/lv624/lazarus/security)
 "azO" = (
@@ -522,7 +522,11 @@
 "aFD" = (
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/floor/plating,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "aGj" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -565,7 +569,10 @@
 	static_lighting = 1
 	})
 "aHI" = (
-/obj/machinery/light_switch,
+/obj/machinery/light_switch{
+	req_access = list(5);
+	name = "cells light switch"
+	},
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "aHM" = (
@@ -617,7 +624,11 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "aPE" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -785,7 +796,11 @@
 /turf/open/floor/plating/warning{
 	dir = 9
 	},
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "aZZ" = (
 /turf/open/floor/plating/ground/snow/layer3,
 /area/lv624/ground/caves{
@@ -803,7 +818,7 @@
 	})
 "baH" = (
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/mainship/living/grunt_rnr)
 "bbA" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -876,7 +891,11 @@
 "bim" = (
 /obj/structure/largecrate/supply/weapons/pistols,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "biw" = (
 /obj/structure/table/reinforced,
 /obj/machinery/faxmachine/brig,
@@ -954,7 +973,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "bns" = (
-/obj/machinery/door/airlock/mainship/secure/tcomms,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/hangar)
 "bnS" = (
@@ -980,8 +999,13 @@
 	name = "HQ Western hallways"
 	})
 "bqP" = (
+/obj/structure/mineral_door/wood,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/lv624/lazarus/security)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "brc" = (
 /obj/machinery/light{
 	dir = 1
@@ -1148,7 +1172,7 @@
 	name = "HQ Northwest Hallways"
 	})
 "bEe" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /obj/effect/landmark/start/job/synthetic,
 /turf/open/floor/mainship/mono,
@@ -1180,8 +1204,9 @@
 /turf/open/floor/plating,
 /area/mainship/living/grunt_rnr)
 "bGC" = (
-/turf/closed/mineral/smooth,
-/area/lv624/lazarus/armory)
+/obj/machinery/door/airlock/mainship/security,
+/turf/open/floor/mainship,
+/area/mainship/groundhq/ntf/shipboard/brig_cells)
 "bHy" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal/large_stack,
@@ -1228,7 +1253,10 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/commandbunks)
 "bKv" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/medical/glass{
+	dir = 1;
+	req_one_access = null
+	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
@@ -1284,13 +1312,17 @@
 "bMS" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "bNo" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
 	},
 /obj/effect/landmark/start/job/security_officer,
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -1302,14 +1334,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"bOF" = (
-/obj/effect/landmark/start/job/xenomorph,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
 "bOQ" = (
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
@@ -1461,7 +1485,11 @@
 "bVK" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "bWo" = (
 /obj/structure/window/framed/mainship/white/toughened{
 	name = "kevlar-weave infused bulletproof window"
@@ -1610,7 +1638,7 @@
 /area/mainship/engineering/engineering_workshop)
 "cjZ" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 1
 	},
 /obj/item/clothing/suit/bio_suit/janitor,
@@ -1627,7 +1655,9 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
 "ckp" = (
-/obj/machinery/light_switch,
+/obj/machinery/light_switch{
+	req_access = list(5)
+	},
 /turf/closed/wall/mainship,
 /area/mainship/command/corporateliaison{
 	name = "Ground CEO Office"
@@ -1649,6 +1679,11 @@
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/machinery/power/smes/preset{
+	output_level = 1000;
+	input_level = 5000;
+	output_attempt = 0
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/engineering/engine_core)
@@ -1700,7 +1735,11 @@
 "cnX" = (
 /obj/machinery/door/poddoor/four_tile_ver,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "cos" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/snacks/grown/banana,
@@ -1717,6 +1756,7 @@
 "cpn" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
+/obj/item/defibrillator,
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular,
@@ -1808,10 +1848,6 @@
 /obj/structure/bed/stool,
 /turf/open/floor/mainship,
 /area/mainship/living/grunt_rnr)
-"cuw" = (
-/obj/structure/inflatable/wall,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground)
 "cvc" = (
 /obj/structure/closet/cabinet,
 /turf/open/floor/mainship,
@@ -1857,7 +1893,11 @@
 "czo" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "czt" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/ntf/dorm2)
@@ -1941,7 +1981,10 @@
 /turf/open/floor/plating/ground/snow/layer3,
 /area/mainship/living/grunt_rnr)
 "cDC" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/medical/glass{
+	dir = 1;
+	req_one_access = null
+	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/medical/lower_medical)
@@ -1950,9 +1993,6 @@
 /obj/machinery/door_control/mainship/engineering/armory,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
-"cEC" = (
-/turf/open/floor/plating,
-/area/mainship/groundhq/ntf/engineering/engine_core)
 "cFI" = (
 /obj/structure/closet/secure_closet/military_police{
 	locked = 0
@@ -2018,7 +2058,11 @@
 "cHr" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "cHI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2378,7 +2422,11 @@
 "ddC" = (
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "ddT" = (
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
@@ -2531,7 +2579,7 @@
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "doX" = (
 /obj/machinery/vending/MarineMed{
-	products = list("Pill Bottles" = list(/obj/item/storage/pill_bottle/bicaridine = -1, /obj/item/storage/pill_bottle/kelotane = -1, /obj/item/storage/pill_bottle/tramadol = -1, /obj/item/storage/pill_bottle/tricordrazine = -1, /obj/item/storage/pill_bottle/dylovene = -1, /obj/item/storage/pill_bottle/paracetamol = -1, /obj/item/storage/pill_bottle/isotonic = -1, /obj/item/storage/pill_bottle/aphrotoxin = 5, /obj/item/storage/pill_bottle = -1), "Auto Injector" = list(/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1, /obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1, /obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1, /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1, /obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1, /obj/item/reagent_containers/hypospray/autoinjector/combat = -1, /obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1, /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1, /obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30, /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 20, /obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20, /obj/item/reagent_containers/hypospray/autoinjector/alkysine = 20, /obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20, /obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10, /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20, /obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10, /obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin = 10), "Heal Pack" = list(/obj/item/stack/medical/heal_pack/gauze = -1, /obj/item/stack/medical/heal_pack/ointment = -1, /obj/item/stack/medical/splint = -1, /obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50, /obj/item/stack/medical/heal_pack/advanced/burn_pack = 50), "Misc" = list(/obj/item/healthanalyzer = 16, /obj/item/bodybag/cryobag = 24))
+	req_one_access = null
 	},
 /turf/open/floor/mainship/sterile/corner,
 /area/mainship/medical/lower_medical)
@@ -2694,9 +2742,6 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/groundhq/ntf/command/corporateliaison)
-"dCl" = (
-/turf/closed/mineral/smooth,
-/area/lv624/lazarus/security)
 "dCx" = (
 /obj/structure/window/framed/mainship/toughened{
 	name = "kevlar-weave infused bulletproof window"
@@ -2706,9 +2751,11 @@
 	name = "HQ Northeast Hallways"
 	})
 "dCB" = (
-/obj/structure/inflatable/wall,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/mainship/groundhq/ntf/living/starboard_garden)
+/obj/machinery/door/airlock/mainship/security{
+	dir = 1
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/shipboard/brig)
 "dCI" = (
 /obj/structure/window_frame/wood,
 /turf/open/floor/wood,
@@ -2826,7 +2873,11 @@
 "dLv" = (
 /obj/structure/window_frame,
 /turf/open/floor/plating,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "dMd" = (
 /obj/structure/table/mainship,
 /obj/item/tool/extinguisher/mini,
@@ -2948,7 +2999,11 @@
 "dQk" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/plating,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "dQm" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
@@ -3000,7 +3055,11 @@
 "dUV" = (
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "dVk" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -3113,7 +3172,7 @@
 	name = "HQ Central Hallways"
 	})
 "dZs" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
@@ -3181,10 +3240,6 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
-"ecW" = (
-/obj/machinery/floodlight/landing/hq,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground)
 "ecX" = (
 /obj/structure/table/wood,
 /obj/item/weapon/gun/shotgun/double,
@@ -3254,7 +3309,9 @@
 /turf/closed/wall,
 /area/mainship/engineering/engineering_workshop)
 "emY" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical{
+	req_access = null
+	},
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
@@ -3287,7 +3344,7 @@
 /turf/open/floor/plating,
 /area/mainship/living/grunt_rnr)
 "eol" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3331,7 +3388,7 @@
 	},
 /area/mainship/ntf/fcroom)
 "eqt" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/security,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "eqO" = (
@@ -3352,7 +3409,7 @@
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
 "esh" = (
 /obj/structure/closet/secure_closet/guncabinet/mp_armory,
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/lv624/lazarus/armory)
@@ -3504,7 +3561,11 @@
 /turf/open/floor/plating/warning{
 	dir = 5
 	},
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "eEr" = (
 /obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -3735,14 +3796,6 @@
 /obj/item/bedsheet/red,
 /turf/open/floor/wood,
 /area/mainship/hallways/ntf/dorm1)
-"eQt" = (
-/obj/structure/mineral_door/wood,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/structure/cable,
-/turf/open/floor/mainship/mono,
-/area/mainship/groundhq/ntf/shipboard/brig)
 "eRx" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -3817,7 +3870,11 @@
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "eYK" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/liaison_suit,
@@ -4317,7 +4374,11 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "fHo" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -4402,7 +4463,7 @@
 /area/mainship/groundhq/ntf/living/commandbunks)
 "fLI" = (
 /obj/structure/flora/pottedplant/ten,
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/commandbunks)
@@ -4511,9 +4572,6 @@
 /obj/item/tool/lighter/random,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
-"fVz" = (
-/turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
 "fWk" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -4553,7 +4611,9 @@
 	name = "HQ Western hallways"
 	})
 "gbv" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1
+	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/medical/medical_science)
 "gcg" = (
@@ -4632,7 +4692,11 @@
 "gfY" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/plating,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "giB" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -4659,15 +4723,17 @@
 "gkq" = (
 /obj/docking_port/stationary/ert/target{
 	id = "starboard_target";
-	name = "Groundside Landing zone."
+	name = "Groundside ERT Landing zone."
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
 	name = "HQ Northeast Hallways"
 	})
 "gkw" = (
-/obj/structure/mineral_door/wood,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/security{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "glb" = (
@@ -4776,7 +4842,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "gtY" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/research/glass{
+	id = "Containment Cell 3";
+	name = "\improper Containment Cell 3"
+	},
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Containment Cell 3";
 	name = "\improper Containment Cell 3"
@@ -4849,10 +4918,6 @@
 /obj/structure/table/black,
 /obj/item/tool/surgery/scalpel/laser3,
 /obj/effect/decal/cleanable/blood,
-/obj/item/weapon/gun/pistol/g22,
-/obj/item/ammo_magazine/pistol/g22,
-/obj/item/ammo_magazine/pistol/g22,
-/obj/item/ammo_magazine/pistol/g22,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/lv624/ground/caves{
 	ceiling = 2;
@@ -5072,7 +5137,11 @@
 "gRZ" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/ice,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "gSn" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/hop,
@@ -5086,9 +5155,6 @@
 /area/mainship/command/corporateliaison{
 	name = "Ground CEO Office"
 	})
-"gSy" = (
-/turf/open/floor/plating/ground/ice,
-/area/lv624/lazarus/armory)
 "gTe" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -5103,7 +5169,11 @@
 /obj/machinery/floodlight/landing/hq,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "gUy" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -5113,13 +5183,12 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/hangar2)
 "gUD" = (
-/obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 10
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/groundhq/ntf/hallways/aft_hallway{
-	name = "HQ Northeast Hallways"
+/obj/item/restraints/handcuffs,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
 	})
 "gUU" = (
 /obj/structure/table/mainship,
@@ -5163,7 +5232,7 @@
 	})
 "gXF" = (
 /obj/machinery/vending/MarineMed{
-	products = list("Pill Bottles" = list(/obj/item/storage/pill_bottle/bicaridine = -1, /obj/item/storage/pill_bottle/kelotane = -1, /obj/item/storage/pill_bottle/tramadol = -1, /obj/item/storage/pill_bottle/tricordrazine = -1, /obj/item/storage/pill_bottle/dylovene = -1, /obj/item/storage/pill_bottle/paracetamol = -1, /obj/item/storage/pill_bottle/isotonic = -1, /obj/item/storage/pill_bottle/aphrotoxin = 5, /obj/item/storage/pill_bottle = -1), "Auto Injector" = list(/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1, /obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1, /obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1, /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1, /obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1, /obj/item/reagent_containers/hypospray/autoinjector/combat = -1, /obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1, /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1, /obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30, /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 20, /obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20, /obj/item/reagent_containers/hypospray/autoinjector/alkysine = 20, /obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20, /obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10, /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20, /obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10, /obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin = 10), "Heal Pack" = list(/obj/item/stack/medical/heal_pack/gauze = -1, /obj/item/stack/medical/heal_pack/ointment = -1, /obj/item/stack/medical/splint = -1, /obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50, /obj/item/stack/medical/heal_pack/advanced/burn_pack = 50), "Misc" = list(/obj/item/healthanalyzer = 16, /obj/item/bodybag/cryobag = 24))
+	req_one_access = null
 	},
 /turf/open/floor/mainship/sterile,
 /area/centcom/practice/medical{
@@ -5183,6 +5252,7 @@
 /obj/item/tool/hand_labeler,
 /obj/item/tool/hand_labeler,
 /obj/machinery/door/window/secure{
+	req_access = list(2,42);
 	dir = 2
 	},
 /obj/machinery/door/window/secure{
@@ -5529,7 +5599,7 @@
 /area/mainship/groundhq/ntf/medical/medical_science)
 "hyi" = (
 /obj/machinery/door/airlock/mainship/security/checkpoint{
-	req_access = null
+	req_access = list(5)
 	},
 /turf/open/floor/mainship/mono,
 /area/deltastation/security/checkpoint/medical/medsci{
@@ -5545,7 +5615,11 @@
 "hyB" = (
 /obj/structure/largecrate/supply/ammo/pistol,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "hyC" = (
 /obj/alien/egg/hugger,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -5753,7 +5827,11 @@
 /obj/item/stack/sheet/mineral/iron,
 /obj/item/clothing/suit/storage/hazardvest,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "hLo" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -5812,7 +5890,11 @@
 "hQf" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "hQl" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -5854,7 +5936,11 @@
 /obj/structure/inflatable/wall,
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "hSU" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/start/job/prisoner,
@@ -5890,7 +5976,9 @@
 /turf/open/floor/wood,
 /area/mainship/ntf/fcroom)
 "hTX" = (
-/obj/machinery/vending/security,
+/obj/machinery/vending/security{
+	req_access = null
+	},
 /turf/open/floor/mainship/red{
 	dir = 6
 	},
@@ -5914,7 +6002,9 @@
 	name = "HQ Western hallways"
 	})
 "hVI" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/security{
+	dir = 1
+	},
 /turf/open/floor/mainship/red{
 	dir = 4
 	},
@@ -5944,7 +6034,11 @@
 "hWD" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/plating,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "hWX" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -5971,7 +6065,11 @@
 "hYG" = (
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "hZl" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -5985,7 +6083,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/bridgebunks)
 "iai" = (
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -6006,7 +6104,7 @@
 	})
 "iaZ" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/closet/secure_closet/engineering_personal{
 	req_access = null
 	},
@@ -6244,10 +6342,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/officer_study)
-"isS" = (
-/obj/structure/flora/ausbushes/ppflowers,
-/turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
 "isU" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -6428,7 +6522,11 @@
 /turf/open/floor/plating/warning{
 	dir = 10
 	},
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "iDO" = (
 /obj/structure/sink{
 	dir = 8;
@@ -6443,12 +6541,6 @@
 /area/mainship/groundhq/ntf/living/captain_mess{
 	name = "Kitchen"
 	})
-"iDW" = (
-/obj/structure/window/reinforced/tinted{
-	dir = 1
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/groundhq/ntf/shipboard/brig_cells)
 "iDZ" = (
 /obj/structure/bed,
 /obj/structure/bed,
@@ -6475,7 +6567,11 @@
 "iEL" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "iFm" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof,
@@ -6634,7 +6730,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /turf/open/floor/mainship/office,
 /area/mainship/command/corporateliaison{
 	name = "Ground CEO Office"
@@ -6644,7 +6740,15 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/mainship/living/grunt_rnr)
+"iQl" = (
+/obj/machinery/floodlight/landing/testroom,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "iQK" = (
 /obj/machinery/botany/editor,
 /turf/open/floor/tile/hydro,
@@ -6769,7 +6873,11 @@
 /obj/structure/flora/ausbushes/sunnybush,
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "iYw" = (
 /turf/open/floor/prison/rampbottom{
 	dir = 4
@@ -6925,14 +7033,6 @@
 /obj/structure/inflatable/wall,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
-"jip" = (
-/obj/structure/inflatable/wall,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/centcom/practice/medical{
-	outside = 0;
-	base_lighting_alpha = 0;
-	static_lighting = 1
-	})
 "jiG" = (
 /obj/structure/table/reinforced,
 /obj/structure/table/reinforced,
@@ -7000,7 +7100,11 @@
 "jns" = (
 /obj/item/tool/pickaxe,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "jnM" = (
 /obj/structure/cable,
 /obj/item/storage/toolbox/mechanical,
@@ -7049,7 +7153,9 @@
 	name = "Worker Preperations"
 	})
 "jrB" = (
-/obj/machinery/vending/security,
+/obj/machinery/vending/security{
+	req_access = null
+	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
 	},
@@ -7073,6 +7179,7 @@
 	dir = 2
 	},
 /obj/machinery/door/window/secure{
+	req_access = list(5);
 	dir = 1
 	},
 /obj/machinery/door/window/secure{
@@ -7095,7 +7202,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/bridgebunks)
@@ -7106,7 +7213,11 @@
 "jvr" = (
 /obj/structure/closet/crate/mass_produced_crate/construction,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "jvu" = (
 /obj/structure/bed,
 /obj/item/bedsheet/green,
@@ -7132,10 +7243,8 @@
 	},
 /area/mainship/groundhq/ntf/engineering/ce_room)
 "jwz" = (
-/obj/machinery/door/airlock/mainship/secure/tcomms{
-	dir = 2
-	},
 /obj/structure/cable,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/hangar)
 "jwK" = (
@@ -7482,10 +7591,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
-"jRT" = (
-/obj/machinery/vending/armor_supply,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "jSp" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -7605,11 +7710,19 @@
 "kaL" = (
 /obj/structure/inflatable/door,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "kby" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "kbK" = (
 /obj/machinery/light{
 	dir = 1
@@ -7663,7 +7776,7 @@
 /area/mainship/groundhq/ntf/living/commandbunks)
 "keq" = (
 /obj/machinery/door/airlock/mainship/security/checkpoint{
-	req_access = null
+	req_access = list(5)
 	},
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -7940,9 +8053,6 @@
 	on = 1
 	},
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
-	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
 	name = "HQ Northeast Hallways"
@@ -7989,7 +8099,7 @@
 /obj/structure/table/wood,
 /obj/item/portable_vendor/corporate{
 	req_role = /datum/job/terragov/command/ceo;
-	req_access = null;
+	req_access = list(202);
 	max_points = 100;
 	points = 100
 	},
@@ -8112,7 +8222,11 @@
 "kQm" = (
 /obj/item/toy/inflatable_duck,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "kQT" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -8256,7 +8370,7 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/ntf/engineering/upper_engineering)
 "kZa" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/ntf/dorm2)
@@ -8376,7 +8490,7 @@
 	})
 "liW" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -8842,10 +8956,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
-"lRI" = (
-/obj/effect/spawner/random/misc/structure/supplycrate,
-/turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
 "lRK" = (
 /turf/open/floor/plating/ground/ice,
 /area/lv624/ground/caves{
@@ -8921,8 +9031,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/cic)
 "lZf" = (
-/obj/structure/mineral_door/wood,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/security,
 /turf/open/floor/plating/plating_catwalk,
 /area/outpost/brig/wardens_office{
 	name = "CC Office"
@@ -8971,7 +9081,11 @@
 	})
 "mdS" = (
 /turf/open/floor/plating/warning,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "mee" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/darkyellow{
@@ -8979,7 +9093,9 @@
 	},
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "meu" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical{
+	req_access = null
+	},
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -8990,7 +9106,7 @@
 	})
 "mfk" = (
 /obj/machinery/vending/MarineMed{
-	products = list("Pill Bottles" = list(/obj/item/storage/pill_bottle/bicaridine = -1, /obj/item/storage/pill_bottle/kelotane = -1, /obj/item/storage/pill_bottle/tramadol = -1, /obj/item/storage/pill_bottle/tricordrazine = -1, /obj/item/storage/pill_bottle/dylovene = -1, /obj/item/storage/pill_bottle/paracetamol = -1, /obj/item/storage/pill_bottle/isotonic = -1, /obj/item/storage/pill_bottle/aphrotoxin = 5, /obj/item/storage/pill_bottle = -1), "Auto Injector" = list(/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1, /obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1, /obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1, /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1, /obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1, /obj/item/reagent_containers/hypospray/autoinjector/combat = -1, /obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1, /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1, /obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30, /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 20, /obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20, /obj/item/reagent_containers/hypospray/autoinjector/alkysine = 20, /obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20, /obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10, /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20, /obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10, /obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin = 10), "Heal Pack" = list(/obj/item/stack/medical/heal_pack/gauze = -1, /obj/item/stack/medical/heal_pack/ointment = -1, /obj/item/stack/medical/splint = -1, /obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50, /obj/item/stack/medical/heal_pack/advanced/burn_pack = 50), "Misc" = list(/obj/item/healthanalyzer = 16, /obj/item/bodybag/cryobag = 24))
+	req_one_access = null
 	},
 /turf/open/floor/mainship/sterile/corner{
 	dir = 4
@@ -9031,6 +9147,7 @@
 "mhr" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
+/obj/item/defibrillator,
 /obj/item/storage/firstaid/adv,
 /obj/item/storage/firstaid/fire,
 /obj/item/storage/firstaid/regular,
@@ -9166,7 +9283,11 @@
 /obj/structure/inflatable/wall,
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer0,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "msH" = (
 /obj/structure/closet/secure_closet/engineering_welding,
 /turf/open/floor/mainship/cargo,
@@ -9198,7 +9319,7 @@
 /area/mainship/ntf/fcroom)
 "muy" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 4
 	},
 /turf/open/floor/mainship/red{
@@ -9244,7 +9365,11 @@
 "mxR" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "mxU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9400,7 +9525,11 @@
 "mKu" = (
 /obj/item/toy/beach_ball,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "mKv" = (
 /obj/structure/table/mainship,
 /obj/item/storage/fancy/cigarettes/kpack,
@@ -9417,7 +9546,11 @@
 /obj/structure/inflatable/wall,
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "mNn" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -9426,7 +9559,11 @@
 "mNo" = (
 /obj/item/stack/sheet/wood/large_stack,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "mNK" = (
 /obj/machinery/autodoc{
 	active_power_usage = 20000
@@ -9567,7 +9704,11 @@
 "mVB" = (
 /obj/structure/prop/train/construction,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "mVN" = (
 /obj/machinery/light,
 /obj/structure/closet/firecloset/full,
@@ -9742,10 +9883,6 @@
 	base_lighting_alpha = 0;
 	static_lighting = 1
 	})
-"njP" = (
-/obj/structure/inflatable/wall,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/lv624/ground)
 "njQ" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/mainship,
@@ -9781,7 +9918,7 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/bridgebunks)
 "nnB" = (
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -9975,9 +10112,11 @@
 	static_lighting = 1
 	})
 "nzK" = (
-/obj/structure/mineral_door/wood,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/security{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/stern_hallway{
 	name = "HQ Western hallways"
@@ -10287,7 +10426,7 @@
 	name = "HQ Western hallways"
 	})
 "nUZ" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/mainship/groundhq/ntf/engineering/lower_engineering)
@@ -10431,6 +10570,10 @@
 	dir = 1
 	},
 /area/mainship/groundhq/ntf/medical/medical_science)
+"oec" = (
+/obj/structure/largecrate/supply/ammo/standard_ammo,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "oet" = (
 /turf/closed/wall/mainship/research/containment/wall/corner{
 	dir = 8
@@ -10584,8 +10727,10 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "orH" = (
-/obj/structure/mineral_door/wood,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/security{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/outpost/brig/wardens_office{
 	name = "CC Office"
@@ -10632,7 +10777,11 @@
 "ouS" = (
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "ovm" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
@@ -10713,6 +10862,7 @@
 /obj/item/explosive/grenade/smokebomb/sleep,
 /obj/item/explosive/grenade/smokebomb/sleep,
 /obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
+/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
 /turf/open/floor/mainship/mono,
 /area/lv624/lazarus/security)
 "ozR" = (
@@ -10728,7 +10878,11 @@
 "oAm" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/floor/plating/ground/ice,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "oAP" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
@@ -10741,7 +10895,11 @@
 "oAS" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/wood,
-/area/lv624/lazarus/security)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "oBh" = (
 /obj/machinery/door_control/mainship/checkpoint{
 	id = "northcheckpoint";
@@ -10854,8 +11012,8 @@
 	name = "HQ Western hallways"
 	})
 "oIp" = (
-/obj/machinery/door/airlock/prison,
-/turf/open/floor/mainship,
+/obj/machinery/door/airlock/mainship/security,
+/turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "oIR" = (
 /obj/structure/table/mainship,
@@ -10876,7 +11034,9 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/chapel)
 "oLu" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/medical/glass{
+	dir = 1
+	},
 /obj/structure/cable,
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
 	dir = 2;
@@ -10933,7 +11093,11 @@
 "oPZ" = (
 /obj/structure/flora/ausbushes/yellowbush,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "oRk" = (
 /obj/structure/bed,
 /obj/item/bedsheet/clown,
@@ -11010,7 +11174,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/hallways/bathroom)
 "oVK" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11096,7 +11260,11 @@
 "oZy" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "oZE" = (
 /obj/machinery/power/smes/preset,
 /obj/structure/cable,
@@ -11701,14 +11869,22 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "pHw" = (
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/engineering/ce_room)
 "pJC" = (
 /obj/structure/largecrate/supply/weapons/standard_carbine,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "pKf" = (
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/mainship/sterile/dark,
@@ -11746,7 +11922,11 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "pNu" = (
 /obj/structure/table/mainship,
 /obj/item/folder/red,
@@ -11882,7 +12062,11 @@
 "pUy" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "pVG" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/lv624/ground/caves{
@@ -11895,7 +12079,7 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "pWb" = (
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -11984,7 +12168,11 @@
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "qcU" = (
 /turf/open/floor/plating,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "qcZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/ai_node,
@@ -12045,7 +12233,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 1
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -12071,7 +12259,11 @@
 "qjQ" = (
 /obj/structure/window_frame,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "qkg" = (
 /turf/open/floor/mainship/red/full,
 /area/mainship/groundhq/ntf/command/cic)
@@ -12087,7 +12279,7 @@
 "qmp" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 1
 	},
 /turf/open/floor/mainship/mono,
@@ -12111,7 +12303,7 @@
 /obj/structure/bed/chair/comfy{
 	dir = 8
 	},
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -12173,9 +12365,6 @@
 /obj/structure/largecrate/supply/weapons/standard_smg,
 /turf/open/floor/mainship/mono,
 /area/mainship/squads/req)
-"qpK" = (
-/turf/closed/mineral/smooth/indestructible,
-/area/lv624/lazarus/armory)
 "qpP" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12207,11 +12396,19 @@
 "qrd" = (
 /obj/structure/largecrate/supply/supplies/sandbags,
 /turf/open/floor/wood,
-/area/lv624/lazarus/security)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "qrp" = (
 /obj/structure/closet/crate/construction,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "qrO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -12293,8 +12490,13 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/command/cic)
 "quH" = (
-/turf/open/floor/plating/ground/ice,
-/area/lv624/ground)
+/mob/living/carbon/human/species/monkey,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "qvp" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/mainship/mono,
@@ -12404,7 +12606,7 @@
 	static_lighting = 1
 	})
 "qBq" = (
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -12478,7 +12680,11 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "qJS" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -12609,7 +12815,11 @@
 "qRY" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "qSz" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
@@ -12799,11 +13009,19 @@
 /obj/item/tool/lighter,
 /obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "rar" = (
 /obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "raB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12905,7 +13123,8 @@
 /obj/item/clipboard,
 /obj/machinery/door_control/old/cic/armory{
 	id = "brig_armory";
-	pixel_x = -10
+	pixel_x = -10;
+	req_one_access = null
 	},
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -13076,7 +13295,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engine_core)
 "roG" = (
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -13132,7 +13351,11 @@
 /obj/structure/flora/ausbushes/sunnybush,
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "rqU" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
@@ -13279,7 +13502,11 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "rAO" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
@@ -13418,7 +13645,11 @@
 "rNs" = (
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "rOT" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -13442,8 +13673,12 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
 "rQw" = (
-/turf/closed/wall/r_wall,
-/area/lv624/ground)
+/obj/machinery/door/airlock/mainship/research/glass{
+	dir = 1;
+	name = "\improper Research Office Airlock"
+	},
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/groundhq/ntf/medical/medical_science)
 "rQy" = (
 /obj/structure/mineral_door/wood,
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
@@ -13465,7 +13700,9 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/medical/medical_science)
 "rSS" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical{
+	req_access = null
+	},
 /obj/machinery/light{
 	dir = 1
 	},
@@ -13585,6 +13822,7 @@
 /area/lv624/lazarus/armory)
 "sam" = (
 /obj/machinery/door/airlock/mainship/medical{
+	req_access = list(5);
 	name = "\improper CMO Office"
 	},
 /turf/open/floor/mainship/sterile/dark,
@@ -14000,7 +14238,9 @@
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "sGn" = (
-/obj/machinery/vending/security,
+/obj/machinery/vending/security{
+	req_access = null
+	},
 /turf/open/floor/mainship/cargo,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "sGH" = (
@@ -14192,9 +14432,6 @@
 	dir = 4
 	},
 /area/mainship/shipboard/sensors)
-"sVe" = (
-/turf/closed/mineral/smooth,
-/area/lv624/ground)
 "sVk" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/start/job/chiefshipengineer,
@@ -14357,7 +14594,9 @@
 	name = "HQ Central Hallways"
 	})
 "ten" = (
-/obj/structure/mineral_door/wood,
+/obj/machinery/door/airlock/mainship/security{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "tfq" = (
@@ -14529,17 +14768,13 @@
 /area/mainship/groundhq/ntf/hallways/stern_hallway{
 	name = "HQ Western hallways"
 	})
-"ttT" = (
-/obj/structure/inflatable/door,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground)
 "tua" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
 "tut" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -14611,7 +14846,7 @@
 /turf/open/floor/plating/mainship,
 /area/mainship/groundhq/ntf/command/cic)
 "tCv" = (
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -14630,7 +14865,7 @@
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/tool/shovel/etool,
 /obj/item/tool/taperoll/engineering,
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /obj/machinery/light{
 	dir = 1
@@ -14765,7 +15000,7 @@
 /turf/open/floor/mainship/red/full,
 /area/lv624/lazarus/armory)
 "tRx" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship/red{
 	dir = 1
@@ -14889,7 +15124,11 @@
 "ual" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "ucB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -14922,7 +15161,7 @@
 /area/mainship/medical/lower_medical)
 "udF" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 8
 	},
 /turf/open/floor/tile/hydro,
@@ -14932,7 +15171,11 @@
 "udS" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "ufd" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -14947,7 +15190,11 @@
 "ufL" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/wood,
-/area/lv624/lazarus/security)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "uhb" = (
 /obj/item/storage/box/crate/loot,
 /turf/open/floor/mainship/mono,
@@ -15028,7 +15275,9 @@
 	name = "HQ Western hallways"
 	})
 "ulU" = (
-/obj/machinery/vending/security,
+/obj/machinery/vending/security{
+	req_access = null
+	},
 /turf/open/floor/mainship/red/full,
 /area/mainship/groundhq/ntf/command/cic)
 "uma" = (
@@ -15117,7 +15366,7 @@
 	})
 "upD" = (
 /obj/structure/cable,
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,
@@ -15346,7 +15595,9 @@
 /turf/open/floor/plating,
 /area/mainship/groundhq/ntf/living/chapel)
 "uNL" = (
-/obj/machinery/vending/medical,
+/obj/machinery/vending/medical{
+	req_access = null
+	},
 /obj/machinery/light,
 /turf/open/floor/mainship/sterile/side,
 /area/centcom/practice/medical{
@@ -15383,7 +15634,7 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "uPD" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /obj/structure/table/reinforced,
 /obj/item/healthanalyzer,
@@ -15428,10 +15679,6 @@
 	},
 /turf/closed/wall,
 /area/mainship/shipboard/sensors)
-"uQZ" = (
-/obj/structure/flora/ausbushes/sunnybush,
-/turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
 "uRj" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8
@@ -15486,7 +15733,11 @@
 "uSL" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "uSY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -15521,7 +15772,8 @@
 /obj/structure/table/mainship,
 /obj/machinery/door_control/mainship/checkpoint{
 	id = "northcheckpoint";
-	name = "North Checkpoint Shutters"
+	name = "North Checkpoint Shutters";
+	req_one_access = null
 	},
 /obj/machinery/recharger{
 	pixel_y = 10
@@ -15531,7 +15783,11 @@
 "uVJ" = (
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "uWQ" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
@@ -15567,8 +15823,18 @@
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/engineering/engine_core)
 "uYi" = (
+/obj/item/weapon/gun/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/ammo_magazine/pistol/g22,
+/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
+/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin,
 /turf/open/floor/wood,
-/area/lv624/lazarus/security)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "uYo" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -15646,7 +15912,7 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/ntf/dorm1)
 "vdy" = (
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -15691,7 +15957,11 @@
 "vik" = (
 /obj/structure/largecrate/supply/ammo/standard_smg,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "viq" = (
 /obj/machinery/power/monitor{
 	name = "Core Power Monitoring"
@@ -15724,7 +15994,7 @@
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/living/commandbunks)
 "vkv" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/living/chapel)
@@ -15739,7 +16009,11 @@
 "vlV" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "vmP" = (
 /obj/machinery/hydroponics,
 /turf/open/floor/tile/hydro,
@@ -15758,10 +16032,6 @@
 	name = "HQ Tunnels";
 	always_unpowered = 0
 	})
-"vor" = (
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground)
 "vou" = (
 /obj/effect/ai_node,
 /turf/open/liquid/water/river/autosmooth,
@@ -15795,6 +16065,17 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
+"vqu" = (
+/obj/docking_port/stationary/ert/target{
+	id = "starboard_target";
+	name = "Groundside ERT Landing zone 2"
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "vrd" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -15805,7 +16086,7 @@
 	})
 "vsa" = (
 /obj/machinery/vending/MarineMed{
-	products = list("Pill Bottles" = list(/obj/item/storage/pill_bottle/bicaridine = -1, /obj/item/storage/pill_bottle/kelotane = -1, /obj/item/storage/pill_bottle/tramadol = -1, /obj/item/storage/pill_bottle/tricordrazine = -1, /obj/item/storage/pill_bottle/dylovene = -1, /obj/item/storage/pill_bottle/paracetamol = -1, /obj/item/storage/pill_bottle/isotonic = -1, /obj/item/storage/pill_bottle/aphrotoxin = 5, /obj/item/storage/pill_bottle = -1), "Auto Injector" = list(/obj/item/reagent_containers/hypospray/autoinjector/bicaridine = -1, /obj/item/reagent_containers/hypospray/autoinjector/kelotane = -1, /obj/item/reagent_containers/hypospray/autoinjector/tramadol = -1, /obj/item/reagent_containers/hypospray/autoinjector/tricordrazine = -1, /obj/item/reagent_containers/hypospray/autoinjector/dylovene = -1, /obj/item/reagent_containers/hypospray/autoinjector/combat = -1, /obj/item/reagent_containers/hypospray/autoinjector/isotonic = -1, /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline = -1, /obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 30, /obj/item/reagent_containers/hypospray/autoinjector/spaceacillin = 20, /obj/item/reagent_containers/hypospray/autoinjector/hypervene = 20, /obj/item/reagent_containers/hypospray/autoinjector/alkysine = 20, /obj/item/reagent_containers/hypospray/autoinjector/imidazoline = 20, /obj/item/reagent_containers/hypospray/autoinjector/quickclot = 10, /obj/item/reagent_containers/hypospray/autoinjector/medicalnanites = 20, /obj/item/reagent_containers/hypospray/autoinjector/russian_red = 10, /obj/item/reagent_containers/hypospray/autoinjector/aphrotoxin = 10), "Heal Pack" = list(/obj/item/stack/medical/heal_pack/gauze = -1, /obj/item/stack/medical/heal_pack/ointment = -1, /obj/item/stack/medical/splint = -1, /obj/item/stack/medical/heal_pack/advanced/bruise_pack = 50, /obj/item/stack/medical/heal_pack/advanced/burn_pack = 50), "Misc" = list(/obj/item/healthanalyzer = 16, /obj/item/bodybag/cryobag = 24))
+	req_one_access = null
 	},
 /turf/open/floor/mainship/sterile/corner,
 /area/centcom/practice/medical{
@@ -15882,15 +16163,21 @@
 	name = "HQ Central Hallways"
 	})
 "vvd" = (
-/obj/structure/mineral_door/wood,
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
+/obj/machinery/door/airlock/mainship/security{
+	dir = 1
+	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
 "vvj" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "vvv" = (
 /obj/item/cell/high,
 /obj/machinery/cell_charger,
@@ -15909,12 +16196,6 @@
 	outside = 0;
 	base_lighting_alpha = 0;
 	static_lighting = 1
-	})
-"vvF" = (
-/obj/structure/inflatable/wall,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/mainship/groundhq/ntf/hallways/starboard_hallway{
-	name = "HQ Central Hallways"
 	})
 "vvP" = (
 /obj/structure/cable,
@@ -16053,9 +16334,6 @@
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/plating,
 /area/mainship/squads/req)
-"vGa" = (
-/turf/closed/wall,
-/area/lv624/ground)
 "vGb" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/lamp,
@@ -16108,7 +16386,11 @@
 /obj/item/clothing/glasses/welding,
 /obj/item/radio,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "vHT" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
@@ -16327,7 +16609,7 @@
 	pixel_x = 5
 	},
 /obj/item/tool/pen,
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /obj/machinery/firealarm{
 	dir = 4
@@ -16375,9 +16657,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
-"vZc" = (
-/turf/closed/wall/wood,
-/area/lv624/lazarus/security)
 "vZT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/mineral_door/wood,
@@ -16423,11 +16702,19 @@
 /turf/open/floor/plating/warning{
 	dir = 6
 	},
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "wbB" = (
 /obj/item/target/syndicate,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "wbW" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/corner,
@@ -16447,7 +16734,11 @@
 "wcK" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "wcP" = (
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
@@ -16532,7 +16823,11 @@
 "wib" = (
 /obj/structure/largecrate/supply/ammo/standard_ammo,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "wiw" = (
 /obj/structure/sink{
 	dir = 4
@@ -16591,10 +16886,6 @@
 "wmQ" = (
 /turf/closed/wall,
 /area/mainship/groundhq/ntf/living/starboard_garden)
-"wnd" = (
-/obj/structure/flora/ausbushes/brflowers,
-/turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
 "wnk" = (
 /obj/structure/closet/firecloset,
 /turf/open/floor/mainship/cargo,
@@ -16745,7 +17036,11 @@
 "wwJ" = (
 /obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "wwT" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -16852,7 +17147,7 @@
 /turf/open/floor/wood,
 /area/mainship/hallways/ntf/dorm1)
 "wFg" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 4
@@ -16947,7 +17242,7 @@
 	},
 /area/mainship/engineering/engineering_workshop)
 "wKy" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -17040,7 +17335,11 @@
 "wPP" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "wPT" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
@@ -17057,9 +17356,6 @@
 	icon_state = "carpetside"
 	},
 /area/mainship/groundhq/ntf/command/corporateliaison)
-"wQG" = (
-/turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground)
 "wRh" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -17191,7 +17487,7 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/ntf/dorm1)
 "xak" = (
@@ -17234,7 +17530,11 @@
 "xaZ" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "xcC" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/plating/ground/snow/layer3,
@@ -17333,7 +17633,7 @@
 /obj/item/stack/sheet/plasteel/large_stack,
 /obj/item/stack/sheet/plasteel/large_stack,
 /obj/item/stack/sheet/plasteel/large_stack,
-/obj/machinery/power/apc/potato{
+/obj/machinery/power/apc/hyper{
 	dir = 1
 	},
 /obj/structure/cable,
@@ -17390,6 +17690,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/chapel)
+"xqI" = (
+/obj/item/card/id/captains_spare,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/command/cic)
 "xra" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -17446,7 +17750,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar2)
 "xvD" = (
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/outpost/brig/wardens_office{
@@ -17728,7 +18032,7 @@
 /obj/item/storage/toolbox/electrical,
 /obj/item/clothing/glasses/welding,
 /obj/item/storage/toolbox/mechanical,
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship/orange{
 	dir = 1
@@ -17737,7 +18041,11 @@
 "xUL" = (
 /obj/structure/prop/train/crates,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground)
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "xUO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17977,7 +18285,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
-/obj/machinery/power/apc/potato,
+/obj/machinery/power/apc/hyper,
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engine_core)
@@ -19788,9 +20096,9 @@ iAX
 iAX
 hKj
 hKj
-oGw
-oGw
-oGw
+hKj
+hKj
+hKj
 saC
 saC
 saC
@@ -19808,16 +20116,16 @@ saC
 xhk
 xhk
 xhk
-oIp
+hTC
 aCm
 xhk
-oIp
+hTC
 aCm
 xhk
-oIp
+hTC
 aCm
 xhk
-oIp
+hTC
 aCm
 xhk
 coM
@@ -19896,8 +20204,8 @@ iAX
 hKj
 hKj
 hKj
-oGw
-oGw
+hKj
+hKj
 saC
 oxh
 brx
@@ -20457,7 +20765,7 @@ xhk
 xhk
 xhk
 xhk
-ten
+oIp
 xhk
 xhk
 xhk
@@ -20529,7 +20837,7 @@ ntt
 dqV
 mqa
 dVz
-cEC
+pkj
 jJo
 dGK
 jnM
@@ -20882,7 +21190,7 @@ tyx
 ajY
 xhk
 xhk
-hTC
+bGC
 obK
 xhk
 tVw
@@ -20990,7 +21298,7 @@ ajY
 tVw
 ten
 dGW
-iDW
+tVw
 hVI
 tVw
 iJm
@@ -21099,7 +21407,7 @@ xhk
 xhk
 xhk
 xhk
-hTC
+bGC
 xhk
 xhk
 sIZ
@@ -21260,7 +21568,7 @@ dym
 act
 pje
 czf
-ahZ
+xqI
 tBk
 cMO
 cMO
@@ -21405,7 +21713,7 @@ gRm
 nSW
 gRm
 gRm
-eqt
+dCB
 nZi
 hKY
 mWF
@@ -21729,7 +22037,7 @@ tRS
 xTm
 aGL
 ajY
-eQt
+ssM
 ajY
 aGL
 eqt
@@ -23083,9 +23391,9 @@ xQz
 qFe
 lBn
 qFg
-qFg
-qFg
-qFg
+oec
+oec
+oec
 giB
 mNQ
 hqq
@@ -23298,7 +23606,7 @@ rXW
 qFg
 qpA
 qFg
-jRT
+qFg
 lQa
 mDb
 hnp
@@ -23782,8 +24090,8 @@ tad
 tad
 tad
 tad
-jip
-jip
+tad
+tad
 tad
 hKj
 hKj
@@ -25014,7 +25322,7 @@ wRn
 lrz
 mLh
 fav
-baH
+aZZ
 doP
 oyO
 mgs
@@ -25121,7 +25429,7 @@ wRn
 jPq
 mLh
 fav
-baH
+aZZ
 dUV
 oyO
 mgs
@@ -25333,22 +25641,22 @@ doP
 doP
 qrT
 fTV
-rQw
-rQw
-baH
-baH
-baH
+xRz
+xRz
+aZZ
+aZZ
+aZZ
 qjQ
 uVJ
-baH
-baH
+aZZ
+aZZ
 vlV
-baH
-baH
-uQZ
-baH
-isS
-baH
+aZZ
+aZZ
+xcC
+aZZ
+toH
+aZZ
 lpm
 jfc
 yjh
@@ -25441,20 +25749,20 @@ doP
 qrT
 fTV
 bim
-baH
+aZZ
 ual
 ual
-baH
+aZZ
 qjQ
-baH
-baH
-baH
-baH
-baH
-wnd
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+pWE
+aZZ
+aZZ
+aZZ
 uVJ
 lpm
 tXA
@@ -25548,21 +25856,21 @@ oyC
 wRn
 fTV
 wib
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 hYG
 hYG
-vGa
-uQZ
+fTV
+xcC
 hYG
 hYG
 hYG
-vGa
-baH
+fTV
+aZZ
 hYG
-vGa
+fTV
 frD
 hsy
 kkk
@@ -25655,20 +25963,20 @@ oyC
 wRn
 fTV
 pJC
-baH
+aZZ
 vlV
-baH
-vGa
-baH
-baH
-baH
-baH
-baH
+aZZ
+fTV
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 xUL
-isS
-baH
-baH
-baH
+toH
+aZZ
+aZZ
+aZZ
 xUL
 frD
 hkE
@@ -25762,21 +26070,21 @@ ira
 wRn
 fTV
 iYd
-baH
-baH
-baH
-baH
-lRI
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+xcN
+aZZ
 mNo
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 mNo
-uQZ
-baH
+xcC
+aZZ
 frD
 ted
 afY
@@ -25868,22 +26176,22 @@ fav
 xVs
 oyC
 fTV
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 hYG
-uQZ
-baH
-baH
+xcC
+aZZ
+aZZ
 oPZ
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 frD
 ted
 sKF
@@ -25976,21 +26284,21 @@ xVs
 oyC
 fav
 vik
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 hYG
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 mVB
-baH
-baH
-uQZ
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+xcC
+aZZ
+aZZ
+aZZ
+aZZ
 frD
 ted
 pQZ
@@ -26010,12 +26318,12 @@ eOe
 sVF
 hxS
 scJ
-gbv
+rQw
 rSP
 rSP
 rTJ
 tVh
-jip
+vix
 oGw
 doP
 doP
@@ -26069,7 +26377,7 @@ hKj
 hKj
 hKj
 hKj
-baH
+aZZ
 doP
 oGw
 oGw
@@ -26082,22 +26390,22 @@ fav
 xVs
 wRn
 uRC
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 mLY
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 jvr
-baH
-isS
-baH
-lRI
+aZZ
+toH
+aZZ
+xcN
 iyk
 wKy
 eKk
@@ -26122,7 +26430,7 @@ cAP
 ave
 rTJ
 tVh
-jip
+vix
 oGw
 oGw
 oGw
@@ -26176,35 +26484,35 @@ hKj
 hKj
 hKj
 hKj
-baH
+aZZ
 doP
 oGw
 oGw
 oGw
-baH
-lRI
+aZZ
+xcN
 doP
 doP
 fav
 fav
 fav
 fav
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 hYG
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 mNo
 mxR
 wwJ
 rar
 qrp
-baH
-baH
+aZZ
+aZZ
 frD
 hkE
 sPG
@@ -26282,36 +26590,36 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-isS
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+toH
+aZZ
+aZZ
+aZZ
 doP
 doP
 doP
 doP
 fTV
 hyB
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 hYG
-baH
-baH
-uQZ
-baH
+aZZ
+aZZ
+xcC
+aZZ
 bim
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 hYG
-baH
-baH
+aZZ
+aZZ
 qdC
 ted
 pQZ
@@ -26389,36 +26697,36 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 vlV
-baH
-baH
-baH
-baH
-baH
-baH
-fVz
-baH
-baH
-uQZ
-baH
-baH
-baH
-baH
-lRI
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+axU
+aZZ
+aZZ
+xcC
+aZZ
+aZZ
+aZZ
+aZZ
+xcN
+aZZ
+aZZ
+aZZ
 oPZ
-baH
-baH
-uQZ
-baH
+aZZ
+aZZ
+xcC
+aZZ
 hvQ
 ted
 oSV
@@ -26496,36 +26804,36 @@ hKj
 hKj
 hKj
 hKj
-baH
+aZZ
 pUy
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-fVz
-fVz
-fVz
-baH
-baH
-baH
-baH
-vGa
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-lRI
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+axU
+axU
+axU
+aZZ
+aZZ
+aZZ
+aZZ
+fTV
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+xcN
 frD
 ted
 pQZ
@@ -26603,36 +26911,36 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 qRY
-baH
-baH
+aZZ
+aZZ
 vlV
-fVz
+axU
 bMS
-fVz
-vGa
-baH
-baH
-baH
-baH
+axU
+fTV
+aZZ
+aZZ
+aZZ
+aZZ
 hYG
 hYG
-baH
-vGa
-baH
+aZZ
+fTV
+aZZ
 hYG
 hYG
-baH
-vGa
-baH
+aZZ
+fTV
+aZZ
 hYG
-vGa
+fTV
 frD
 jXq
 uUL
@@ -26710,35 +27018,35 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-rQw
-rQw
-baH
+aZZ
+aZZ
+xRz
+xRz
+aZZ
 uVJ
-baH
-baH
-baH
-baH
-fVz
-fVz
-fVz
-fVz
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+axU
+axU
+axU
+axU
+aZZ
+aZZ
+aZZ
+aZZ
 iEL
-baH
-baH
-isS
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+toH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 czo
 frD
 hkE
@@ -26817,36 +27125,36 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-rQw
-rQw
+aZZ
+aZZ
+xRz
+xRz
 oZy
-baH
-baH
-baH
-baH
-baH
-baH
-fVz
-fVz
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+axU
+axU
 doP
 doP
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 doP
 doP
 doP
-baH
-baH
-baH
-baH
-fVz
-fVz
-fVz
-fVz
-fVz
+aZZ
+aZZ
+aZZ
+aZZ
+axU
+axU
+axU
+axU
+axU
 lcI
 xsj
 tVL
@@ -26924,18 +27232,18 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 pUy
-baH
-baH
-baH
-fVz
+aZZ
+aZZ
+aZZ
+axU
 doP
 doP
 doP
@@ -26946,14 +27254,14 @@ aZZ
 doP
 doP
 doP
-baH
-fVz
-fVz
-fVz
-fVz
-fVz
-fVz
-fVz
+aZZ
+axU
+axU
+axU
+axU
+axU
+axU
+axU
 xHZ
 eYS
 koY
@@ -27031,17 +27339,17 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 czo
 doP
 doP
@@ -27054,13 +27362,13 @@ axU
 doP
 axU
 aZZ
-fVz
-fVz
-baH
-fVz
-baH
-baH
-baH
+axU
+axU
+aZZ
+axU
+aZZ
+aZZ
+aZZ
 frD
 ted
 afY
@@ -27138,18 +27446,18 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-fVz
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+axU
 doP
 doP
 doP
@@ -27245,15 +27553,15 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 elK
 elK
 mlx
@@ -27352,15 +27660,15 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 elK
 swJ
 cjC
@@ -27459,15 +27767,15 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 vlV
-baH
-baH
-lRI
+aZZ
+aZZ
+xcN
 elK
 wJA
 vug
@@ -27566,14 +27874,14 @@ hKj
 hKj
 hKj
 hKj
-baH
-isS
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+toH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 fGG
 elK
 iNk
@@ -27623,7 +27931,7 @@ dZi
 lxp
 lxp
 lxp
-vvF
+frD
 oGw
 oGw
 oGw
@@ -27673,15 +27981,15 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-lRI
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+xcN
 elK
 lnV
 jPe
@@ -27730,7 +28038,7 @@ dZi
 lxp
 lxp
 lxp
-vvF
+frD
 oGw
 nte
 oGw
@@ -27780,15 +28088,15 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-lRI
-lRI
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+xcN
+xcN
 elK
 uOn
 qtq
@@ -27887,15 +28195,15 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 elK
 elK
 sxq
@@ -27994,18 +28302,18 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-wnd
-fVz
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+pWE
+axU
 doP
 doP
 doP
@@ -28101,18 +28409,18 @@ oGw
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-fVz
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+axU
 doP
 doP
 doP
@@ -28208,18 +28516,18 @@ oGw
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 vlV
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 pUy
 vlV
-baH
+aZZ
 doP
 doP
 doP
@@ -28315,19 +28623,19 @@ oGw
 hKj
 hKj
 hKj
-baH
-baH
-rQw
-rQw
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+xRz
+xRz
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 doP
 doP
 doP
@@ -28421,20 +28729,20 @@ oGw
 hKj
 hKj
 hKj
-baH
-baH
-baH
-rQw
-rQw
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-fVz
-baH
+aZZ
+aZZ
+aZZ
+xRz
+xRz
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+axU
+aZZ
 doP
 doP
 doP
@@ -28528,28 +28836,28 @@ oGw
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 pGk
-baH
-baH
-baH
-baH
-baH
-isS
-baH
-fVz
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+toH
+aZZ
+axU
+aZZ
 fTV
-baH
+aZZ
 hYG
 hYG
-baH
+aZZ
 hYG
-baH
-fVz
+aZZ
+axU
 ddC
 ddC
 xkJ
@@ -28635,29 +28943,29 @@ oGw
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 vlV
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 qRY
-fVz
-fVz
-fVz
-fVz
+axU
+axU
+axU
+axU
 rNs
 udS
-fVz
-fVz
-fVz
+axU
+axU
+axU
 iEL
-fVz
+axU
 bMS
 ohd
 pYW
@@ -28689,7 +28997,7 @@ awx
 yaO
 oEu
 shl
-dCB
+wmQ
 oGw
 oGw
 oGw
@@ -28742,30 +29050,30 @@ oGw
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-fVz
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+axU
+aZZ
 hQf
-fVz
-fVz
-wnd
-baH
+axU
+axU
+pWE
+aZZ
 vlV
-baH
-fVz
-fVz
+aZZ
+axU
+axU
 xkJ
 wuK
 paQ
@@ -28849,18 +29157,18 @@ oGw
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 hKj
 hKj
 sED
@@ -28926,8 +29234,8 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
+hKj
+hKj
 hKj
 hKj
 hKj
@@ -28957,17 +29265,17 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 pUy
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 hKj
 hKj
 sED
@@ -29033,9 +29341,9 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
-oGw
+hKj
+hKj
+hKj
 hKj
 hKj
 "}
@@ -29063,18 +29371,18 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
+aZZ
+aZZ
 pUy
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 qRY
-baH
-baH
-baH
-wnd
-baH
+aZZ
+aZZ
+aZZ
+pWE
+aZZ
 hKj
 hKj
 sED
@@ -29139,10 +29447,10 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
-oGw
-oGw
+hKj
+hKj
+hKj
+hKj
 hKj
 hKj
 "}
@@ -29170,18 +29478,18 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 hKj
 jDE
 eLU
@@ -29246,10 +29554,10 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
-oGw
-oGw
+hKj
+hKj
+hKj
+hKj
 hKj
 hKj
 "}
@@ -29277,18 +29585,18 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-rQw
-rQw
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+xRz
+xRz
+aZZ
+aZZ
+aZZ
 vlV
-baH
-baH
-baH
+aZZ
+aZZ
+iQl
 hKj
 hKj
 sED
@@ -29352,11 +29660,11 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
-oGw
-oGw
-oGw
+hKj
+hKj
+hKj
+hKj
+hKj
 hKj
 hKj
 "}
@@ -29384,18 +29692,18 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-rQw
-rQw
-baH
-wnd
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+xRz
+xRz
+aZZ
+pWE
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 hKj
 hKj
 sED
@@ -29459,11 +29767,11 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
-oGw
-oGw
-oGw
+hKj
+hKj
+hKj
+hKj
+hKj
 hKj
 hKj
 "}
@@ -29490,19 +29798,19 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 pUy
-baH
+aZZ
 hKj
 hKj
 sED
@@ -29566,9 +29874,9 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
-oGw
+hKj
+hKj
+hKj
 hKj
 hKj
 hKj
@@ -29597,19 +29905,19 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 pUy
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 qRY
-baH
-baH
+aZZ
+aZZ
 hKj
 hKj
 sED
@@ -29673,8 +29981,8 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
+hKj
+hKj
 hKj
 hKj
 hKj
@@ -29704,17 +30012,17 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 uVJ
 doP
 hKj
@@ -29780,8 +30088,8 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
+hKj
+hKj
 hKj
 hKj
 hKj
@@ -29811,17 +30119,17 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 pUy
 pUy
-baH
-wnd
+aZZ
+pWE
 jns
 doP
 hKj
@@ -29887,8 +30195,8 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
+hKj
+hKj
 hKj
 hKj
 hKj
@@ -29920,16 +30228,16 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-wnd
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+pWE
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 doP
 hKj
 hKj
@@ -29993,9 +30301,9 @@ hKj
 hKj
 hKj
 hKj
-oGw
-oGw
-oGw
+hKj
+hKj
+hKj
 hKj
 hKj
 hKj
@@ -30027,15 +30335,15 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-baH
-rQw
-rQw
+aZZ
+aZZ
+aZZ
+aZZ
+xRz
+xRz
 hYG
 hYG
-rQw
+xRz
 hYG
 doP
 hKj
@@ -30100,7 +30408,7 @@ hKj
 hKj
 hKj
 hKj
-oGw
+hKj
 hKj
 hKj
 hKj
@@ -30135,13 +30443,13 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
-baH
-rQw
-rQw
-baH
-baH
+aZZ
+aZZ
+aZZ
+xRz
+xRz
+aZZ
+aZZ
 iTZ
 iTZ
 iTZ
@@ -30180,9 +30488,9 @@ ygd
 wjJ
 lzf
 mGA
-hKj
-hKj
-hKj
+doP
+doP
+doP
 gmg
 uNG
 gmg
@@ -30207,7 +30515,7 @@ hKj
 hKj
 hKj
 hKj
-oGw
+hKj
 hKj
 hKj
 hKj
@@ -30244,11 +30552,11 @@ hKj
 hKj
 hKj
 hKj
-baH
-baH
+aZZ
+aZZ
 hYG
-baH
-baH
+aZZ
+aZZ
 jnc
 snG
 qfG
@@ -30287,7 +30595,7 @@ mGA
 mGA
 mGA
 mGA
-quH
+lRK
 lRK
 lRK
 gmg
@@ -30314,7 +30622,7 @@ hKj
 hKj
 hKj
 hKj
-oGw
+hKj
 hKj
 hKj
 hKj
@@ -30352,10 +30660,10 @@ hKj
 hKj
 hKj
 hKj
-wQG
-cuw
-baH
-baH
+pVG
+kkr
+aZZ
+aZZ
 snG
 kUc
 kUc
@@ -30391,10 +30699,10 @@ ept
 xjk
 qvp
 pUy
-wnd
-baH
-wQG
-quH
+pWE
+aZZ
+pVG
+lRK
 doP
 lRK
 frB
@@ -30421,7 +30729,7 @@ hKj
 hKj
 hKj
 hKj
-oGw
+hKj
 hKj
 hKj
 hKj
@@ -30461,8 +30769,8 @@ oGw
 oGw
 mrE
 mrE
-wQG
-wQG
+pVG
+pVG
 qfG
 pvf
 qfG
@@ -30497,11 +30805,11 @@ mGA
 mGA
 iJC
 mGA
-baH
-baH
-baH
-wQG
-quH
+aZZ
+aZZ
+aZZ
+pVG
+lRK
 doP
 lRK
 gmg
@@ -30528,7 +30836,7 @@ hKj
 hKj
 hKj
 hKj
-oGw
+hKj
 hKj
 hKj
 hKj
@@ -30567,8 +30875,8 @@ oGw
 oGw
 oGw
 oGw
-njP
-njP
+wmO
+wmO
 hKj
 qfG
 kUc
@@ -30586,29 +30894,29 @@ pYf
 npa
 kOx
 szx
-baH
-baH
+aZZ
+aZZ
 aOS
-uQZ
-baH
-isS
+xcC
+aZZ
+toH
 ulO
 ihi
 eNV
 gbl
 ulO
 pUy
-baH
+aZZ
 qRY
 dLv
-baH
-baH
+aZZ
+aZZ
 pUy
-uQZ
+xcC
 qRY
-baH
-wQG
-quH
+aZZ
+pVG
+lRK
 doP
 lRK
 gmg
@@ -30635,7 +30943,7 @@ hKj
 hKj
 hKj
 hKj
-oGw
+hKj
 hKj
 hKj
 hKj
@@ -30693,10 +31001,10 @@ aTP
 aTP
 aTP
 szx
-baH
-baH
-baH
-wnd
+aZZ
+aZZ
+aZZ
+pWE
 pUy
 vlV
 ulO
@@ -30704,24 +31012,24 @@ hUR
 mps
 gbl
 ulO
-baH
-wnd
-baH
+aZZ
+pWE
+aZZ
 dLv
-baH
-baH
-baH
-baH
-baH
-baH
-wQG
-quH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+pVG
+lRK
 doP
 lRK
-hKj
-hKj
-hKj
-hKj
+doP
+doP
+doP
+doP
 doP
 doP
 doP
@@ -30742,7 +31050,7 @@ doP
 doP
 doP
 doP
-pVG
+doP
 doP
 doP
 doP
@@ -30818,10 +31126,10 @@ gPM
 gPM
 gPM
 gPM
-baH
-baH
-baH
-wQG
+aZZ
+aZZ
+aZZ
+pVG
 doP
 doP
 lRK
@@ -30925,7 +31233,7 @@ gPM
 uQd
 lWX
 gPM
-baH
+aZZ
 doP
 doP
 doP
@@ -31032,14 +31340,14 @@ cHO
 nuj
 xFh
 gPM
-baH
-baH
+aZZ
+aZZ
 hKj
 hKj
 hKj
 hKj
 hKj
-wQG
+pVG
 hKj
 doP
 doP
@@ -31139,14 +31447,14 @@ gPM
 gPM
 gPM
 gPM
-baH
-baH
-baH
-fVz
+aZZ
+aZZ
+aZZ
+axU
 doP
 doP
-wQG
-wQG
+pVG
+pVG
 hKj
 doP
 doP
@@ -31246,13 +31554,13 @@ esl
 wEY
 xNB
 jEU
-baH
-baH
-baH
-fVz
-wQG
-wQG
-wQG
+aZZ
+aZZ
+aZZ
+axU
+pVG
+pVG
+pVG
 doP
 hKj
 doP
@@ -31307,7 +31615,7 @@ oGw
 oGw
 oGw
 oGw
-bOF
+oGw
 oGw
 oGw
 oGw
@@ -31353,13 +31661,13 @@ gPM
 eSj
 pUq
 gPM
-baH
-isS
-baH
-fVz
-wQG
-wQG
-wQG
+aZZ
+toH
+aZZ
+axU
+pVG
+pVG
+pVG
 doP
 hKj
 doP
@@ -31414,7 +31722,7 @@ oGw
 mcR
 oGw
 oGw
-bOF
+oGw
 oGw
 oGw
 oGw
@@ -31433,14 +31741,14 @@ hKj
 hKj
 doP
 xaZ
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 gPM
 gPM
 gPM
@@ -31460,12 +31768,12 @@ gPM
 gPM
 gPM
 gPM
-baH
-baH
-baH
-fVz
-wQG
-wQG
+aZZ
+aZZ
+aZZ
+axU
+pVG
+pVG
 doP
 doP
 hKj
@@ -31539,15 +31847,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 vvj
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 gPM
 kXm
 hTR
@@ -31567,11 +31875,11 @@ gPM
 uQd
 lWX
 gPM
-baH
-baH
-isS
-fVz
-wQG
+aZZ
+aZZ
+toH
+axU
+pVG
 doP
 doP
 doP
@@ -31647,13 +31955,13 @@ hKj
 hKj
 doP
 xaZ
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 vvj
 gPM
 owj
@@ -31675,10 +31983,10 @@ nuj
 xFh
 gPM
 dUV
-baH
-baH
-fVz
-wQG
+aZZ
+aZZ
+axU
+pVG
 doP
 doP
 doP
@@ -31753,15 +32061,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 gPM
 gPM
 gPM
@@ -31781,13 +32089,13 @@ gPM
 gPM
 gPM
 gPM
-baH
-uQZ
-baH
-fVz
-wQG
-wQG
-wQG
+aZZ
+xcC
+aZZ
+axU
+pVG
+pVG
+pVG
 doP
 hKj
 pVG
@@ -31860,15 +32168,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 vvj
-baH
+aZZ
 vKo
 eaO
 pve
@@ -31888,13 +32196,13 @@ esl
 wEY
 pDU
 dpa
-baH
-baH
-baH
-fVz
-wQG
-wQG
-wQG
+aZZ
+aZZ
+aZZ
+axU
+pVG
+pVG
+pVG
 doP
 hKj
 pVG
@@ -31967,15 +32275,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 vvj
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 gPM
 aMb
 vJY
@@ -31995,12 +32303,12 @@ gPM
 mRM
 ePS
 gPM
-baH
-baH
-baH
-fVz
-wQG
-wQG
+aZZ
+aZZ
+aZZ
+axU
+pVG
+pVG
 hKj
 hKj
 hKj
@@ -32075,14 +32383,14 @@ hKj
 hKj
 doP
 xaZ
-baH
-baH
+aZZ
+aZZ
 qRY
-baH
-baH
-baH
-baH
-baH
+quH
+aZZ
+aZZ
+aZZ
+aZZ
 gPM
 gPM
 gPM
@@ -32102,14 +32410,14 @@ gPM
 gPM
 gPM
 gPM
-baH
-baH
-isS
-fVz
-wQG
-wQG
-wQG
-quH
+aZZ
+aZZ
+toH
+axU
+pVG
+pVG
+pVG
+lRK
 hKj
 hKj
 doP
@@ -32123,11 +32431,11 @@ doP
 doP
 doP
 doP
-cuw
-ttT
-ttT
-ttT
-cuw
+kkr
+iVu
+iVu
+iVu
+kkr
 doP
 doP
 doP
@@ -32181,15 +32489,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 gPM
 kXm
 hTR
@@ -32209,12 +32517,12 @@ gPM
 uQd
 lWX
 gPM
-baH
-baH
-baH
-fVz
-wQG
-wQG
+aZZ
+aZZ
+aZZ
+axU
+pVG
+pVG
 hKj
 lRK
 lRK
@@ -32226,19 +32534,19 @@ doP
 doP
 pVG
 doP
-cuw
-cuw
-cuw
+kkr
+kkr
+kkr
 hSK
 ddC
-wQG
-vor
-wQG
-cuw
-wQG
+pVG
+sjO
+pVG
+kkr
+pVG
 doP
-baH
-baH
+aZZ
+aZZ
 doP
 doP
 doP
@@ -32288,15 +32596,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 vvj
-baH
+aZZ
 gPM
 owj
 nuj
@@ -32316,12 +32624,12 @@ cHO
 nuj
 xFh
 gPM
-baH
-baH
-baH
-fVz
-wQG
-wQG
+aZZ
+aZZ
+aZZ
+axU
+pVG
+pVG
 hKj
 doP
 lRK
@@ -32330,22 +32638,22 @@ lRK
 lRK
 hKj
 hKj
-sVe
-fVz
-fVz
-cuw
+doP
+axU
+axU
+kkr
 aFD
 hWD
 hLb
 ddC
-wQG
-ecW
-wQG
-cuw
-fVz
-fVz
-baH
-baH
+pVG
+xzu
+pVG
+kkr
+axU
+axU
+aZZ
+aZZ
 doP
 doP
 doP
@@ -32395,15 +32703,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
+iQl
+aZZ
+aZZ
 vvj
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 gPM
 gPM
 gPM
@@ -32423,12 +32731,12 @@ gPM
 gPM
 gPM
 gPM
-baH
-baH
-baH
-fVz
-wQG
-wQG
+aZZ
+aZZ
+aZZ
+axU
+pVG
+pVG
 hKj
 doP
 doP
@@ -32437,27 +32745,27 @@ doP
 lRK
 lRK
 hKj
-baH
-baH
-fVz
-cuw
+aZZ
+aZZ
+axU
+kkr
 gfY
 dQk
-fVz
+axU
 ddC
-wQG
-wQG
-wQG
-cuw
+pVG
+pVG
+pVG
+kkr
 cHr
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 doP
 doP
 doP
@@ -32502,15 +32810,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 cAs
 oqc
 bbA
@@ -32530,13 +32838,13 @@ esl
 rHL
 vst
 dpa
-baH
-baH
-uQZ
-fVz
-wQG
-wQG
-wQG
+aZZ
+aZZ
+xcC
+axU
+pVG
+pVG
+pVG
 hKj
 doP
 doP
@@ -32544,27 +32852,27 @@ doP
 doP
 lRK
 hKj
-sVe
-baH
-fVz
+doP
+aZZ
+axU
 ddC
 ouS
-fVz
-fVz
+axU
+axU
 ddC
-ttT
-ttT
-ttT
-cuw
+iVu
+iVu
+iVu
+kkr
 cHr
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 doP
 doP
 doP
@@ -32609,14 +32917,14 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 vvj
 gPM
 bJA
@@ -32637,41 +32945,41 @@ gPM
 nsh
 iVG
 gPM
-baH
-baH
-baH
-fVz
-wQG
-wQG
-wQG
-wQG
+aZZ
+aZZ
+aZZ
+axU
+pVG
+pVG
+pVG
+pVG
 hKj
 doP
 doP
 doP
 lRK
 hKj
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 hYG
 gUt
-baH
-baH
+quH
+aZZ
 ddC
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 doP
 doP
 doP
@@ -32717,14 +33025,14 @@ hKj
 hKj
 doP
 xaZ
-baH
+aZZ
 vvj
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 gPM
 gPM
 gPM
@@ -32744,41 +33052,41 @@ gPM
 gPM
 gPM
 gPM
-isS
-baH
-baH
-fVz
-wQG
-wQG
-wQG
-wQG
+toH
+aZZ
+aZZ
+axU
+pVG
+pVG
+pVG
+pVG
 hKj
 doP
 doP
 doP
 lRK
-lRK
-baH
-baH
-baH
+hKj
+aZZ
+aZZ
+aZZ
 hYG
 raq
 qJp
-baH
+aZZ
 kaL
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 dUV
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 doP
 doP
 doP
@@ -32823,15 +33131,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-lRI
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+xcN
 gPM
 kXm
 hTR
@@ -32851,32 +33159,32 @@ gPM
 uQd
 lWX
 gPM
-baH
-baH
-baH
-fVz
-wQG
-wQG
-wQG
-wQG
+aZZ
+aZZ
+aZZ
+axU
+pVG
+pVG
+pVG
+pVG
 hKj
 doP
 doP
 doP
 lRK
 hKj
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 hYG
 vHP
 qJp
-baH
+aZZ
 ddC
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 iod
 iod
 iod
@@ -32930,15 +33238,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 vvj
-baH
-baH
-lRI
+aZZ
+aZZ
+xcN
 gPM
 owj
 nuj
@@ -32959,12 +33267,12 @@ nuj
 xFh
 gPM
 dUV
-baH
-baH
-fVz
-wQG
-wQG
-wQG
+aZZ
+aZZ
+axU
+pVG
+pVG
+pVG
 hKj
 doP
 doP
@@ -32972,18 +33280,18 @@ doP
 doP
 lRK
 hKj
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 hYG
 hYG
 hYG
 hYG
 ddC
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 rVj
 iWq
 iWq
@@ -33037,15 +33345,15 @@ qfG
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-lRI
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+xcN
 gPM
 gPM
 gPM
@@ -33065,12 +33373,12 @@ gPM
 gPM
 gPM
 gPM
-baH
-baH
-baH
-fVz
-wQG
-wQG
+aZZ
+aZZ
+aZZ
+axU
+pVG
+pVG
 hKj
 doP
 doP
@@ -33087,10 +33395,10 @@ kby
 kby
 kby
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 rVj
 rVj
 rVj
@@ -33145,14 +33453,14 @@ hKj
 hKj
 doP
 wPP
-fVz
-fVz
-fVz
-fVz
-fVz
-fVz
-baH
-baH
+axU
+axU
+axU
+axU
+axU
+axU
+aZZ
+aZZ
 rVa
 oqc
 bbA
@@ -33172,10 +33480,10 @@ esl
 rHL
 vst
 lRk
-baH
-uQZ
-baH
-fVz
+aZZ
+xcC
+aZZ
+axU
 hKj
 hKj
 doP
@@ -33187,17 +33495,17 @@ doP
 lRK
 hKj
 hKj
-baH
-baH
-baH
-baH
-baH
-lRI
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+xcN
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 rVj
 rVj
 rVj
@@ -33250,16 +33558,16 @@ gDP
 qfG
 usm
 hKj
-quH
-quH
-quH
-quH
-wQG
-wQG
-wQG
-fVz
-baH
-baH
+lRK
+lRK
+lRK
+lRK
+pVG
+pVG
+pVG
+axU
+aZZ
+aZZ
 gPM
 nsh
 pUq
@@ -33279,9 +33587,9 @@ gPM
 iVG
 ePS
 gPM
-wnd
-baH
-baH
+pWE
+aZZ
+aZZ
 hKj
 doP
 doP
@@ -33294,17 +33602,17 @@ doP
 lRK
 lRK
 hKj
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+vqu
+pVG
 rVj
 rVj
 rVj
@@ -33357,16 +33665,16 @@ uAC
 qfG
 qfG
 usm
-quH
-quH
+lRK
+lRK
 oAm
-quH
-quH
-quH
-quH
-fVz
-fVz
-baH
+lRK
+lRK
+lRK
+lRK
+axU
+axU
+aZZ
 gPM
 gPM
 gPM
@@ -33386,8 +33694,8 @@ gPM
 gPM
 gPM
 gPM
-baH
-baH
+aZZ
+aZZ
 doP
 doP
 doP
@@ -33401,17 +33709,17 @@ doP
 doP
 lRK
 hKj
-baH
+aZZ
 aZX
 pMJ
 pMJ
 iDI
-baH
+aZZ
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 rVj
 rVj
 rVj
@@ -33491,15 +33799,15 @@ dxi
 lnt
 dxi
 dxi
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 doP
-quH
-quH
-quH
-quH
-quH
+lRK
+lRK
+lRK
+lRK
+lRK
 doP
 doP
 doP
@@ -33508,17 +33816,17 @@ doP
 lRK
 lRK
 lRK
-baH
+aZZ
 eYe
 bVK
 qcU
 mdS
-baH
+aZZ
 cHr
-wQG
-vor
-wQG
-wQG
+pVG
+sjO
+pVG
+pVG
 rVj
 iWq
 rVj
@@ -33593,39 +33901,39 @@ jXb
 fBc
 xwd
 eok
-baH
-baH
+aZZ
+aZZ
 vlV
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 doP
 doP
 doP
 lRK
 hKj
 hKj
-baH
+aZZ
 eYe
 qcU
 qcU
 mdS
-baH
+aZZ
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 rVj
 iWq
 rVj
@@ -33701,38 +34009,38 @@ fOS
 ttS
 wta
 iPV
-baH
-baH
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 lRK
 doP
 lRK
 lRK
 hKj
 doP
-baH
+aZZ
 eEm
 rAx
 rAx
 wbi
-baH
+aZZ
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 iod
 iod
 iod
@@ -33785,20 +34093,20 @@ dCx
 gXE
 oCU
 usm
-wQG
-quH
-quH
-quH
-quH
-quH
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
 gRZ
-quH
-fVz
-baH
-lRI
-lRI
-lRI
-baH
+lRK
+axU
+aZZ
+xcN
+xcN
+xcN
+aZZ
 rsI
 rsI
 rsI
@@ -33807,50 +34115,50 @@ rsI
 bLN
 csa
 baH
-baH
-baH
-baH
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 lRK
 lRK
 lRK
 hKj
 hKj
 doP
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 dUV
-baH
-baH
-baH
-baH
-baH
-sVe
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+doP
 doP
 hKj
 "}
@@ -33892,20 +34200,20 @@ kUc
 gvK
 oCU
 hKj
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-fVz
-baH
-lRI
-lRI
-lRI
-lRI
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+axU
+aZZ
+xcN
+xcN
+xcN
+xcN
 rsI
 xJy
 rog
@@ -33913,51 +34221,51 @@ rog
 xJy
 xJy
 csa
-baH
-baH
-baH
-baH
-isS
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+aZZ
+aZZ
+toH
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 lRK
 hKj
 hKj
 hKj
 doP
 doP
-baH
-baH
-baH
-baH
-baH
-lRI
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+xcN
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 doP
 hKj
 "}
@@ -33999,19 +34307,19 @@ kUc
 gvK
 oCU
 hKj
-wQG
-wQG
-quH
+pVG
+pVG
+lRK
 wcK
-quH
-quH
-quH
-wQG
-fVz
-baH
-baH
-baH
-lRI
+lRK
+lRK
+lRK
+pVG
+axU
+aZZ
+aZZ
+aZZ
+xcN
 tbB
 rsI
 mUk
@@ -34020,25 +34328,25 @@ urC
 urC
 urC
 ety
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 qRY
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-gSy
-qpK
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+hKj
 tZf
 tZf
 tZf
@@ -34048,23 +34356,23 @@ fmZ
 fmZ
 caw
 fmZ
-ayg
-ayg
-wQG
-wQG
-wQG
-wQG
+fmZ
+fmZ
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
 doP
 hKj
 "}
@@ -34106,15 +34414,15 @@ kUc
 gvK
 oCU
 hKj
-wQG
-wQG
-quH
-quH
-quH
-quH
-quH
-wQG
-fVz
+pVG
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+pVG
+axU
 cCZ
 wta
 eok
@@ -34127,25 +34435,25 @@ eok
 wta
 aWR
 rsI
-baH
+aZZ
 pUy
-baH
+aZZ
 kQm
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-gSy
-qpK
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+hKj
 tZf
 xfa
 tZf
@@ -34156,22 +34464,22 @@ lUt
 pfz
 muy
 ecl
-ayg
-wQG
-wQG
-wQG
-wQG
+fmZ
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-sVe
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+doP
 doP
 hKj
 "}
@@ -34213,16 +34521,16 @@ gDP
 gvK
 oCU
 hKj
-wQG
-quH
-quH
+pVG
+lRK
+lRK
 gRZ
-quH
-quH
-quH
-wQG
-fVz
-baH
+lRK
+lRK
+lRK
+pVG
+axU
+aZZ
 eok
 kHS
 rfA
@@ -34234,25 +34542,25 @@ dga
 eok
 gFK
 rsI
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-qpK
-qpK
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+hKj
+hKj
 tZf
 hNY
 cvc
@@ -34264,21 +34572,21 @@ eSD
 kCF
 vsO
 ayg
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-sVe
-sVe
-sVe
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+doP
+doP
+doP
 doP
 hKj
 "}
@@ -34320,15 +34628,15 @@ kUc
 gvK
 oCU
 hKj
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-wQG
-fVz
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+pVG
+axU
 rqu
 eok
 jWo
@@ -34341,25 +34649,25 @@ oVL
 eok
 ctS
 rsI
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+aZZ
+iQl
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 hKj
-qpK
-bGC
+hKj
+doP
 tZf
 vhE
 aGj
@@ -34371,21 +34679,21 @@ aDL
 ozz
 uhO
 ayg
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
 qRY
-baH
-baH
-baH
-baH
-baH
-sVe
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+doP
 doP
 hKj
 "}
@@ -34427,16 +34735,16 @@ kUc
 gvK
 qfG
 hKj
-fVz
-fVz
-quH
-quH
-quH
-quH
-quH
-wQG
-fVz
-lRI
+axU
+axU
+lRK
+lRK
+lRK
+lRK
+lRK
+pVG
+axU
+xcN
 eok
 rqU
 eXX
@@ -34448,22 +34756,22 @@ iii
 eok
 ctS
 rsI
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 hKj
 rZn
 azO
@@ -34478,15 +34786,15 @@ eSD
 kLp
 djt
 ayg
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 iaK
 geg
 geg
@@ -34535,15 +34843,15 @@ gvK
 qfG
 hKj
 xaZ
-fVz
-quH
-quH
-quH
+axU
+lRK
+lRK
+lRK
 oAm
-quH
-fVz
+lRK
+axU
 czo
-lRI
+xcN
 eok
 jLr
 eXX
@@ -34555,21 +34863,21 @@ lpw
 eok
 gFK
 rsI
-baH
-baH
-baH
-wnd
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+aZZ
+pWE
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 hKj
 hKj
 cnk
@@ -34584,16 +34892,16 @@ uRV
 kKQ
 fAb
 gPq
-ayg
-wQG
-wQG
-wQG
-wQG
+fmZ
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 ncC
 xEZ
 pvI
@@ -34641,15 +34949,15 @@ kUc
 qyd
 qfG
 hKj
-baH
-fVz
-quH
-quH
-quH
-quH
-quH
-fVz
-lRI
+aZZ
+axU
+lRK
+lRK
+lRK
+lRK
+lRK
+axU
+xcN
 usy
 wta
 vqa
@@ -34662,21 +34970,21 @@ xtf
 eok
 ctS
 rsI
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 hKj
 doP
 pwY
@@ -34690,17 +34998,17 @@ fmZ
 fmZ
 fmZ
 caw
-ayg
-ayg
-wQG
-vor
-wQG
-wQG
+fmZ
+fmZ
+pVG
+sjO
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 iaK
 ncC
 eSR
@@ -34749,15 +35057,15 @@ dsW
 qfG
 hKj
 xaZ
-fVz
-quH
-quH
-quH
-fVz
-fVz
-fVz
-lRI
-lRI
+axU
+lRK
+lRK
+lRK
+axU
+axU
+axU
+xcN
+xcN
 eok
 mJy
 eXX
@@ -34769,45 +35077,45 @@ wta
 wta
 oyT
 rsI
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 hKj
 doP
 oZE
 mCl
-oGw
-oGw
-oGw
 bqP
+oGw
+oGw
+oGw
 bqP
 uYi
 qrd
 iaK
-baH
-baH
+aZZ
+aZZ
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 dCI
 xEZ
 eSR
@@ -34855,16 +35163,16 @@ gDP
 kCE
 qfG
 hKj
-sVe
-fVz
-fVz
-fVz
-fVz
-fVz
-baH
-baH
-baH
-baH
+doP
+axU
+axU
+axU
+axU
+axU
+aZZ
+aZZ
+aZZ
+aZZ
 eok
 iNQ
 eXX
@@ -34876,20 +35184,20 @@ jAW
 wta
 gFK
 rsI
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 mKu
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 hKj
 hKj
 doP
@@ -34898,23 +35206,23 @@ jQE
 doP
 heB
 oGw
-oGw
-dCl
+gUD
+doP
 oAS
 ufL
 iaK
-baH
+aZZ
 dUV
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 geg
 xEZ
 sLe
@@ -34959,19 +35267,19 @@ kRA
 gqT
 czt
 kUc
-gvK
+oHV
 qfG
 hKj
-sVe
-sVe
-baH
+doP
+doP
+aZZ
 xaZ
 dUV
 uSL
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 eok
 tvF
 iGJ
@@ -34983,20 +35291,20 @@ lab
 wta
 aWR
 rsI
-baH
-baH
-baH
-baH
-baH
-baH
-baH
-wQG
-quH
-quH
-quH
-quH
-quH
-quH
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+aZZ
+pVG
+lRK
+lRK
+lRK
+lRK
+lRK
+lRK
 hKj
 doP
 doP
@@ -35006,22 +35314,22 @@ doP
 gxH
 xEm
 pEp
-dCl
-vZc
-vZc
+doP
 iaK
-baH
-baH
+iaK
+iaK
+aZZ
+aZZ
 cHr
-wQG
-wQG
-wQG
-wQG
+pVG
+pVG
+pVG
+pVG
 cHr
-baH
-baH
-baH
-baH
+aZZ
+aZZ
+aZZ
+aZZ
 iaK
 iaK
 iaK
@@ -35066,7 +35374,7 @@ iyI
 mvL
 czt
 kUc
-pwP
+uyb
 qfG
 hKj
 hKj
@@ -35102,8 +35410,8 @@ doP
 doP
 doP
 doP
-quH
-quH
+lRK
+lRK
 hKj
 doP
 doP
@@ -35117,16 +35425,16 @@ doP
 doP
 doP
 doP
-rQw
-rQw
-rQw
-wQG
-wQG
-wQG
+xRz
+xRz
+xRz
+pVG
+pVG
+pVG
 cnX
-rQw
-rQw
-rQw
+xRz
+xRz
+xRz
 doP
 doP
 doP
@@ -35173,7 +35481,7 @@ dYa
 nxj
 czt
 kUc
-gUD
+oHV
 qfG
 hKj
 hKj

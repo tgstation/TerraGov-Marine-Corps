@@ -311,6 +311,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
 	///Handles displaying the various wound states of the xeno.
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
+	///Handles displaying the various wound states of the xeno.
+	var/atom/movable/vis_obj/xeno_wounds/genital_overlay/genital_overlay
 	///Handles displaying the various fire states of the xeno
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
 	///Handles displaying any equipped backpack item, such as a saddle
@@ -325,6 +327,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/xeno_desc = ""
 	///Profile picture set by player
 	var/xenoprofile_pic = ""
+	///fake gender var for xeno sprite
+	var/xenogender = 1
 
 	///A mob the xeno ate
 	var/mob/living/carbon/eaten_mob
