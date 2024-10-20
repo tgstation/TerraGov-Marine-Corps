@@ -601,3 +601,38 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+
+/mob/living/carbon/xenomorph/verb/swapgender()
+	set name = "Swap Gender"
+	set desc = "Swap between xeno genders in an instant, nothing compared to evolving."
+	set category = "Alien"
+
+	update_xeno_gender(src, TRUE)
+
+/mob/living/carbon/xenomorph/proc/update_xeno_gender(mob/living/carbon/xenomorph/user, swapping = FALSE)
+	var/xgen = user.client?.prefs?.xenogender
+	if(swapping) //flips to next in selection
+		xgen += 1
+	//updates the overlays
+	user.client?.prefs?.xenogender = xgen
+	genital_overlay.layer = layer + 0.2
+	genital_overlay.vis_flags |= VIS_HIDE
+	genital_overlay.icon_state = "none"
+	switch(xgen)
+		if(1) //female
+			genital_overlay.icon_state = "[xeno_caste.caste_name]_female_s"
+		if(2) //female big
+			genital_overlay.icon_state = "[xeno_caste.caste_name]_female_l"
+		if(3) //male
+			genital_overlay.icon_state = "[xeno_caste.caste_name]_male_s"
+		if(4) //male big
+			genital_overlay.icon_state = "[xeno_caste.caste_name]_male_l"
+		if(5) //male
+			genital_overlay.icon_state = "[xeno_caste.caste_name]_futa_s"
+		if(6) //male big
+			genital_overlay.icon_state = "[xeno_caste.caste_name]_futa_l"
+
+
+	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK) //ig if u cant see wounds u shouldnt see tiddies too maybe for things like being ethereal
+		apply_overlay(GENITAL_LAYER)
+		genital_overlay.vis_flags &= ~VIS_HIDE // Show the overlay

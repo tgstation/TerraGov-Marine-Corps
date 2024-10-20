@@ -397,7 +397,7 @@
 	always_unpowered = 0
 	})
 "ayg" = (
-/obj/structure/inflatable/wall,
+/obj/structure/window/framed/colony,
 /turf/open/floor/plating,
 /area/lv624/lazarus/security)
 "azO" = (
@@ -973,7 +973,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "bns" = (
-/obj/machinery/door/airlock/mainship/secure/tcomms,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/hangar)
 "bnS" = (
@@ -4723,7 +4723,7 @@
 "gkq" = (
 /obj/docking_port/stationary/ert/target{
 	id = "starboard_target";
-	name = "Groundside Landing zone."
+	name = "Groundside ERT Landing zone."
 	},
 /turf/open/floor/plating/mainship,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
@@ -7255,10 +7255,8 @@
 	},
 /area/mainship/groundhq/ntf/engineering/ce_room)
 "jwz" = (
-/obj/machinery/door/airlock/mainship/secure/tcomms{
-	dir = 2
-	},
 /obj/structure/cable,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/hallways/hangar)
 "jwK" = (
@@ -7605,10 +7603,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
-"jRT" = (
-/obj/machinery/vending/armor_supply,
-/turf/open/floor/mainship/mono,
-/area/mainship/squads/req)
 "jSp" = (
 /obj/structure/window/reinforced{
 	dir = 1;
@@ -10585,6 +10579,10 @@
 	dir = 1
 	},
 /area/mainship/groundhq/ntf/medical/medical_science)
+"oec" = (
+/obj/structure/largecrate/supply/ammo/standard_ammo,
+/turf/open/floor/mainship/mono,
+/area/mainship/squads/req)
 "oet" = (
 /turf/closed/wall/mainship/research/containment/wall/corner{
 	dir = 8
@@ -11016,8 +11014,10 @@
 	name = "HQ Western hallways"
 	})
 "oIp" = (
-/obj/machinery/door/airlock/prison,
-/turf/open/floor/mainship,
+/obj/machinery/door/poddoor/shutters/mainship/open{
+	id = sus
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "oIR" = (
 /obj/structure/table/mainship,
@@ -11066,6 +11066,9 @@
 /area/mainship/groundhq/ntf/engineering/upper_engineering)
 "oNQ" = (
 /obj/structure/table/reinforced,
+/obj/machinery/door_control/old/unmeltable{
+	id = sus
+	},
 /turf/open/floor/mainship/red,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "oOc" = (
@@ -16042,6 +16045,17 @@
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engineering_workshop)
+"vqu" = (
+/obj/docking_port/stationary/ert/target{
+	id = "starboard_target";
+	name = "Groundside ERT Landing zone 2"
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/lv624/ground/caves{
+	ceiling = 2;
+	name = "HQ Tunnels";
+	always_unpowered = 0
+	})
 "vrd" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -17661,6 +17675,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/chapel)
+"xqI" = (
+/obj/item/card/id/captains_spare,
+/turf/open/floor/mainship/mono,
+/area/mainship/groundhq/ntf/command/cic)
 "xra" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -20083,16 +20101,16 @@ saC
 xhk
 xhk
 xhk
-oIp
+hTC
 aCm
 xhk
-oIp
+hTC
 aCm
 xhk
-oIp
+hTC
 aCm
 xhk
-oIp
+hTC
 aCm
 xhk
 coM
@@ -20732,7 +20750,7 @@ xhk
 xhk
 xhk
 xhk
-ten
+oIp
 xhk
 xhk
 xhk
@@ -21535,7 +21553,7 @@ dym
 act
 pje
 czf
-ahZ
+xqI
 tBk
 cMO
 cMO
@@ -23358,9 +23376,9 @@ xQz
 qFe
 lBn
 qFg
-qFg
-qFg
-qFg
+oec
+oec
+oec
 giB
 mNQ
 hqq
@@ -23573,7 +23591,7 @@ rXW
 qFg
 qpA
 qFg
-jRT
+qFg
 lQa
 mDb
 hnp
@@ -33032,7 +33050,7 @@ doP
 doP
 doP
 lRK
-lRK
+hKj
 aZZ
 aZZ
 aZZ
@@ -33578,7 +33596,7 @@ aZZ
 cHr
 pVG
 pVG
-pVG
+vqu
 pVG
 rVj
 rVj
@@ -34323,8 +34341,8 @@ fmZ
 fmZ
 caw
 fmZ
-ayg
-ayg
+fmZ
+fmZ
 pVG
 pVG
 pVG
@@ -34431,7 +34449,7 @@ lUt
 pfz
 muy
 ecl
-ayg
+fmZ
 pVG
 pVG
 pVG
@@ -34859,7 +34877,7 @@ uRV
 kKQ
 fAb
 gPq
-ayg
+fmZ
 pVG
 pVG
 pVG
@@ -34965,8 +34983,8 @@ fmZ
 fmZ
 fmZ
 caw
-ayg
-ayg
+fmZ
+fmZ
 pVG
 sjO
 pVG
