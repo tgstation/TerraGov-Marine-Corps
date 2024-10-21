@@ -126,7 +126,7 @@
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/coilgun)
 	fire_sound = 'sound/vehicles/weapons/coil_fire.ogg'
 	windup_sound = 'sound/vehicles/weapons/coil_charge.ogg'
-	interior_fire_sound = 'sound/vehicles/weapons/coil_fire_interior.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/coilgun_fire_interior.ogg'
 	windup_delay = 0.6 SECONDS
 	projectile_delay = 3 SECONDS
 	maximum_magazines = 3
@@ -238,7 +238,7 @@
 	name = "secondary MLRS"
 	desc = "A pair of forward facing multiple launch rocket systems with a total of 12 homing rockets. Can unleash its entire payload in rapid succession."
 	icon_state = "mlrs"
-	fire_sound = 'sound/vehicles/weapons/mlrs.ogg'
+	fire_sound = 'sound/vehicles/weapons/mlrs_fire.ogg'
 	interior_fire_sound = 'sound/vehicles/weapons/mlrs_interior.ogg'
 	armored_weapon_flags = MODULE_SECONDARY|MODULE_FIXED_FIRE_ARC
 	ammo = /obj/item/ammo_magazine/tank/secondary_mlrs
