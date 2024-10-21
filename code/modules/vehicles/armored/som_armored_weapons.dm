@@ -7,7 +7,7 @@
 	Against armored targets however, it can prove less effective."
 	icon_state = "volkite"
 	fire_sound = 'sound/weapons/guns/fire/volkite_4.ogg'
-	interior_fire_sound = null
+	interior_fire_sound = 'sound/vehicles/weapons/volkite_fire_interior.ogg'
 	windup_sound = 'sound/vehicles/weapons/particle_charge.ogg'
 	windup_delay = 0.6 SECONDS
 	projectile_delay = 3 SECONDS
@@ -101,6 +101,7 @@
 	ammo = /obj/item/ammo_magazine/tank/particle_lance
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/particle_lance)
 	fire_sound = 'sound/vehicles/weapons/particle_fire.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/particle_fire_interior.ogg'
 	windup_sound = 'sound/vehicles/weapons/particle_charge.ogg'
 	windup_delay = 0.6 SECONDS
 	hud_state_empty = "battery_empty_flash"
@@ -125,7 +126,7 @@
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/coilgun)
 	fire_sound = 'sound/vehicles/weapons/coil_fire.ogg'
 	windup_sound = 'sound/vehicles/weapons/coil_charge.ogg'
-	// interior_fire_sound = 'sound/vehicles/weapons/coil_fire_interior.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/coil_fire_interior.ogg'
 	windup_delay = 0.6 SECONDS
 	projectile_delay = 3 SECONDS
 	maximum_magazines = 3
@@ -237,8 +238,8 @@
 	name = "secondary MLRS"
 	desc = "A pair of forward facing multiple launch rocket systems with a total of 12 homing rockets. Can unleash its entire payload in rapid succession."
 	icon_state = "mlrs"
-	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
-	interior_fire_sound = null
+	fire_sound = 'sound/vehicles/weapons/mlrs.ogg'
+	interior_fire_sound = 'sound/vehicles/weapons/mlrs_interior.ogg'
 	armored_weapon_flags = MODULE_SECONDARY|MODULE_FIXED_FIRE_ARC
 	ammo = /obj/item/ammo_magazine/tank/secondary_mlrs
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/secondary_mlrs)
