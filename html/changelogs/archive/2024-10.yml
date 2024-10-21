@@ -155,3 +155,8 @@
       than the consistent 75.
   - bugfix: Plants Weeds ability no longer prevents usage if you have more than post-discounted,
       but less than before-discounted plasma (for before shutters drop).
+2024-10-21:
+  AusarAtkin:
+  - bugfix: fixed chainsaw fuel cost on attack on mob
+  TiviPlus:
+  - rscdel: Remove tunnel naming
