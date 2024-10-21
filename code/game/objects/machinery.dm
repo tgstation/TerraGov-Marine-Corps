@@ -182,6 +182,9 @@
 	if(!.)
 		return FALSE
 
+	if(!allowed(user))
+		return FALSE
+
 	if(!is_operational())
 		return FALSE
 
