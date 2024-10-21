@@ -315,10 +315,17 @@
 	icon = 'icons/obj/doors/mainship/2x1engidoor.dmi'
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_ENGINEERING)
 
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/free_access
+	req_access = null
+
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass
 	name = "\improper Engineering Glass Airlock"
 	icon = 'icons/obj/doors/mainship/2x1engidoor_glass.dmi'
+	opacity = FALSE
 	glass = TRUE
+
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/glass/free_access
+	req_access = null
 
 //COMMAND
 /obj/machinery/door/airlock/multi_tile/mainship/comdoor

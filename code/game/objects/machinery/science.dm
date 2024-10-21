@@ -58,11 +58,14 @@
 /obj/machinery/science/isolation_centerfuge/open
 	icon_state = "isolation_centerfuge_off_open"
 
+/obj/machinery/science/isolation_centerfuge/open/broken
+	icon_state = "isolation_centerfuge_broken_open"
+
 /obj/machinery/science/isolation_centerfuge/on/closed
 	icon_state = "isolation_centerfuge_closed_on"
 
 /obj/machinery/science/isolation_centerfuge/on/open
-	icon_state = "isolation_centerfuge_off_open"
+	icon_state = "isolation_centerfuge_on_open"
 
 /obj/machinery/science/isolation_centerfuge/on/closed/spin
 	icon_state = "isolation_centerfuge_closed_on_spin"
@@ -94,3 +97,10 @@
 
 /obj/machinery/science/athogenic_Isolator/on/inserted
 	icon_state = "Pathogenic_Isolator_syringein_on"
+
+/obj/machinery/science/microscope
+	name = "Microscope"
+	icon_state = "microscope"
+
+/obj/machinery/science/microscope/slide
+	icon_state = "microscopeslide"
