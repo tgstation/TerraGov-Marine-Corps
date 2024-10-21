@@ -805,3 +805,69 @@
 /obj/item/armor_module/module/night_vision/Destroy()
 	QDEL_NULL(attached_goggles)
 	return ..()
+
+
+
+/obj/item/armor_module/module/tactical_sensor
+	name = "Tactical sensor helmet module"
+	desc = "A helmet attachment that detects hostile movement. Hostiles appear as red blips. Friendlies with the correct IFF signature appear as green, and their bodies as blue, unrevivable bodies as dark blue. It has a mode selection interface."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "sensor_head"
+	worn_icon_state = "sensor_head_a"
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	slot = ATTACHMENT_SLOT_HEAD_MODULE
+	active = FALSE
+	prefered_slot = SLOT_HEAD
+	toggle_signal = COMSIG_KB_HELMETMODULE
+	active = FALSE
+	var/datum/component/motion_detector/motion_detector_component
+
+/obj/item/armor_module/module/tactical_sensor/Destroy()
+	if(active)
+		deactivate()
+	return ..()
+
+/obj/item/armor_module/module/tactical_sensor/on_attach(obj/item/attaching_to, mob/user)
+	. = ..()
+	RegisterSignal(user, COMSIG_ITEM_UNEQUIPPED, PROC_REF(deactivate))
+
+/obj/item/armor_module/module/tactical_sensor/on_detach(obj/item/detaching_from, mob/user)
+	UnregisterSignal(user, COMSIG_ITEM_UNEQUIPPED, PROC_REF(deactivate))
+	deactivate(user)
+	return ..()
+
+/obj/item/armor_module/module/tactical_sensor/activate(mob/user, turn_off)
+	active = !active
+
+	to_chat(user, span_notice("You toggle \the [src] [active ? "enabling" : "disabling"] it."))
+	if(!active)
+		deactivate(user)
+		return
+	motion_detector_component = user.AddComponent(/datum/component/motion_detector)
+	RegisterSignal(user, COMSIG_COMPONENT_REMOVING, PROC_REF(deactivate_component))
+	active = TRUE
+	update_icon()
+
+/// Turns off / reverts everything that comes with activating it.
+/obj/item/armor_module/module/tactical_sensor/proc/deactivate(mob/user)
+	SIGNAL_HANDLER
+	if(!motion_detector_component)
+		return
+
+	if(user)
+		UnregisterSignal(user, COMSIG_COMPONENT_REMOVING)
+	motion_detector_component.RemoveComponent()
+	motion_detector_component = null
+	active = FALSE
+	update_icon()
+
+/// As the result of the removed component, turns off / reverts everything that comes with activating it.
+/obj/item/armor_module/module/tactical_sensor/proc/deactivate_component(datum/source, datum/component/removed_component)
+	SIGNAL_HANDLER
+	if(!motion_detector_component || removed_component != motion_detector_component)
+		return
+
+	UnregisterSignal(source, COMSIG_COMPONENT_REMOVING)
+	motion_detector_component = null
+	active = FALSE
+	update_icon()
