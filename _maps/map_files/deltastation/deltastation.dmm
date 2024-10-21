@@ -76831,7 +76831,7 @@
 /obj/effect/spawner/random/misc/structure/securecloset/regular,
 /obj/item/clothing/under/syndicate/combat,
 /obj/item/clothing/gloves/combat,
-/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/marine/srf,
 /obj/item/clothing/mask/gas/syndicate,
 /obj/item/clothing/under/syndicate,
 /turf/open/floor/prison/redfloor,
@@ -91030,7 +91030,7 @@
 /obj/item/clothing/under/syndicate,
 /obj/item/clothing/under/syndicate,
 /obj/item/clothing/gloves/combat,
-/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/marine/srf,
 /turf/open/floor/prison/redfloor,
 /area/deltastation/asteroidcaves/ship)
 "sBb" = (
@@ -115229,8 +115229,8 @@
 /obj/effect/spawner/random/engineering/plasteel,
 /obj/effect/spawner/random/engineering/plasteel,
 /obj/effect/spawner/random/engineering/plasteel,
-/obj/item/clothing/shoes/combat,
-/obj/item/clothing/shoes/combat,
+/obj/item/clothing/shoes/marine/srf,
+/obj/item/clothing/shoes/marine/srf,
 /obj/effect/turf_decal/delivery,
 /obj/machinery/light{
 	dir = 4

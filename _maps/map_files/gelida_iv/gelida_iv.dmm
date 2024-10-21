@@ -35884,7 +35884,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/landing_zone_2)
 "xNQ" = (
-/obj/item/clothing/shoes/veteran/pmc{
+/obj/item/clothing/shoes/marine/pmc{
 	name = "steel toe boots"
 	},
 /obj/machinery/light,
