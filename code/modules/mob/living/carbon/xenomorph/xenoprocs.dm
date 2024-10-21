@@ -610,29 +610,28 @@
 	update_xeno_gender(src, TRUE)
 
 /mob/living/carbon/xenomorph/proc/update_xeno_gender(mob/living/carbon/xenomorph/user, swapping = FALSE)
+	remove_overlay(GENITAL_LAYER)
 	var/xgen = user.client?.prefs?.xenogender
 	if(swapping) //flips to next in selection
 		xgen += 1
+	if(xgen >= 5) //revert to start if over max.
+		xgen = 1
 	//updates the overlays
 	user.client?.prefs?.xenogender = xgen
-	genital_overlay.layer = layer + 0.2
+	genital_overlay.layer = layer + 0.3
 	genital_overlay.vis_flags |= VIS_HIDE
+	genital_overlay.icon = src.icon
 	genital_overlay.icon_state = "none"
 	switch(xgen)
-		if(1) //female
-			genital_overlay.icon_state = "[xeno_caste.caste_name]_female_s"
-		if(2) //female big
-			genital_overlay.icon_state = "[xeno_caste.caste_name]_female_l"
-		if(3) //male
-			genital_overlay.icon_state = "[xeno_caste.caste_name]_male_s"
-		if(4) //male big
-			genital_overlay.icon_state = "[xeno_caste.caste_name]_male_l"
-		if(5) //male
-			genital_overlay.icon_state = "[xeno_caste.caste_name]_futa_s"
-		if(6) //male big
-			genital_overlay.icon_state = "[xeno_caste.caste_name]_futa_l"
-
+		if(1)
+			genital_overlay.icon_state = "[xeno_caste.caste_name]_female"
+		if(2)
+			genital_overlay.icon_state = "[xeno_caste.caste_name]_male"
+		if(3)
+			genital_overlay.icon_state = "[xeno_caste.caste_name]_futa"
+		if(4) //blank
+			genital_overlay.icon_state = null
 
 	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK) //ig if u cant see wounds u shouldnt see tiddies too maybe for things like being ethereal
 		apply_overlay(GENITAL_LAYER)
-		genital_overlay.vis_flags &= ~VIS_HIDE // Show the overlay
+	genital_overlay.vis_flags &= ~VIS_HIDE // Show the overlay

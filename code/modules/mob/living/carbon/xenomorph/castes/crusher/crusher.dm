@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/crusher
 	name = "Crusher"
 	desc = "A huge alien with an enormous armored head crest."
-	icon = 'icons/Xeno/castes/crusher.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/crusher.dmi'
 	icon_state = "Crusher Walking"
 	bubble_icon = "alienleft"
 	health = 300

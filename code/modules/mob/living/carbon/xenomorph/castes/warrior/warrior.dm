@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/warrior
 	name = "Warrior"
 	desc = "A beefy, alien with an armored carapace."
-	icon = 'icons/Xeno/castes/warrior.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/warrior.dmi'
 	icon_state = "Warrior Walking"
 	bubble_icon = "alienroyal"
 	health = 200

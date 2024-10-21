@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/bull
 	name = "Bull"
 	desc = "A bright red alien with a matching temper."
-	icon = 'icons/Xeno/castes/bull.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/bull.dmi'
 	icon_state = "Bull Walking"
 	bubble_icon = "alienleft"
 	health = 160
