@@ -197,3 +197,206 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	new /obj/effect/xenomorph/spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
 	for(var/obj/O in get_turf(xeno_owner))
 		O.acid_spray_act(xeno_owner)
+
+// ***************************************
+// *********** Dodge
+// ***************************************
+/datum/action/ability/xeno_action/dodge
+	name = "Dodge"
+	action_icon_state = "dodge"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Gain a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
+	ability_cost = 100
+	cooldown_duration = 12 SECONDS
+	use_state_flags = ABILITY_USE_BUSY
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DODGE,
+	)
+	/// The increase of speed when ability is active.
+	var/speed_buff = -0.4
+	/// How long the ability will last?
+	var/duration = 6 SECONDS
+
+/datum/action/ability/xeno_action/dodge/action_activate(atom/A)
+	owner.balloon_alert(owner, "Dodge ready!")
+
+	owner.add_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED, TRUE, 0, NONE, TRUE, speed_buff)
+	owner.allow_pass_flags |= (PASS_MOB|PASS_XENO)
+	owner.pass_flags |= (PASS_MOB|PASS_XENO)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+	addtimer(CALLBACK(src, PROC_REF(remove_effects)), duration)
+
+	succeed_activate()
+	add_cooldown()
+
+/// Automatically bumps living non-xenos if bump attacks are on.
+/datum/action/ability/xeno_action/dodge/proc/on_move(datum/source)
+	if(!isxeno(owner))
+		return FALSE
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(xeno_owner.stat == DEAD)
+		return FALSE
+	var/datum/action/bump_attack_toggle/bump_attack_action = xeno_owner.actions_by_path[/datum/action/bump_attack_toggle]
+	if(bump_attack_action == null || bump_attack_action.attacking) // Bump attacks are off if attacking is true, apparently.
+		return FALSE
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK) || xeno_owner.next_move > world.time)
+		return FALSE
+
+	var/turf/current_turf = get_turf(owner)
+	for(var/mob/living/living_mob in current_turf)
+		if(living_mob.stat == DEAD)
+			continue
+		if(isxeno(living_mob))
+			var/mob/living/carbon/xenomorph/xenomorph_mob = living_mob
+			if(owner.issamexenohive(xenomorph_mob))
+				continue
+		xeno_owner.Bump(living_mob)
+		return
+
+/// Removes the movespeed modifier and various pass_flags that was given by the dodge ability.
+/datum/action/ability/xeno_action/dodge/proc/remove_effects()
+	owner.balloon_alert(owner, "Dodge inactive!")
+
+	owner.remove_movespeed_modifier(MOVESPEED_ID_PRAETORIAN_DANCER_DODGE_SPEED)
+	owner.allow_pass_flags &= ~(PASS_MOB|PASS_XENO)
+	owner.pass_flags &= ~(PASS_MOB|PASS_XENO)
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+
+// ***************************************
+// *********** Impale
+// ***************************************
+/datum/action/ability/activable/xeno/impale
+	name = "Impale"
+	action_icon_state = "impale"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Impale a marine next to you with your tail for moderate damage. Marked enemies are impaled twice."
+	ability_cost = 100
+	cooldown_duration = 8 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPALE,
+	)
+	target_flags = ABILITY_MOB_TARGET
+
+/datum/action/ability/activable/xeno/impale/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!iscarbon(A))
+		if(!silent)
+			A.balloon_alert(owner, "cannot impale")
+		return FALSE
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/xenomorph_target = A
+		if(owner.issamexenohive(xenomorph_target))
+			A.balloon_alert(owner, "cannot impale ally")
+			return FALSE
+	var/mob/living/carbon/carbon_target = A
+	if(!owner.Adjacent(carbon_target))
+		carbon_target.balloon_alert(owner, "too far")
+		return FALSE
+	if(carbon_target.stat == DEAD)
+		carbon_target.balloon_alert(owner, "already dead")
+		return FALSE
+
+/datum/action/ability/activable/xeno/impale/use_ability(atom/target_atom)
+	. = ..()
+
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(!iscarbon(target_atom))
+		return
+	var/mob/living/carbon/living_target = target_atom
+	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] violently slices [living_target] with its tail [buffed ? "twice" : ""]!"), \
+		span_danger("We slice [living_target] with our tail[buffed ? " twice" : ""]!"))
+
+	try_impale(living_target)
+	if(buffed)
+		xeno_owner.emote("roar")
+		addtimer(CALLBACK(src, PROC_REF(try_impale), living_target), 0.1 SECONDS) // A short delay for animation coolness (and also if they're dead).
+
+	succeed_activate()
+	add_cooldown()
+
+/// Performs the main effect of impale ability like animating and attacking.
+/datum/action/ability/activable/xeno/impale/proc/try_impale(mob/living/carbon/living_target)
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
+	xeno_owner.face_atom(living_target)
+	xeno_owner.do_attack_animation(living_target, ATTACK_EFFECT_REDSLASH)
+	xeno_owner.spin(4, 1)
+	playsound(living_target, get_sfx(SFX_ALIEN_TAIL_ATTACK), 30, TRUE)
+	if(living_target.stat != DEAD) // If they drop dead from the first impale, keep the effects but do no damage.
+		living_target.apply_damage(damage, BRUTE, blocked = MELEE)
+
+// ***************************************
+// *********** Tail Trip
+// ***************************************
+/datum/action/ability/activable/xeno/tail_trip
+	name = "Tail Trip"
+	action_icon_state = "tail_trip"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Target a marine within two tiles of you to disorient and slows them. Marked enemies receive stronger debuffs and are stunned for a second."
+	ability_cost = 50
+	cooldown_duration = 8 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_TRIP,
+	)
+	target_flags = ABILITY_MOB_TARGET
+
+/datum/action/ability/activable/xeno/tail_trip/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!iscarbon(A))
+		if(!silent)
+			A.balloon_alert(owner, "cannot tail trip")
+		return FALSE
+	if(isxeno(A))
+		var/mob/living/carbon/xenomorph/xenomorph_target = A
+		if(owner.issamexenohive(xenomorph_target))
+			A.balloon_alert(owner, "cannot tail trip ally")
+			return FALSE
+	var/mob/living/carbon/carbon_target = A
+	if(get_dist(owner, carbon_target) > 2)
+		if(!silent)
+			carbon_target.balloon_alert(owner, "too far")
+		return FALSE
+	if(!line_of_sight(owner, carbon_target, 2))
+		if(!silent)
+			carbon_target.balloon_alert(owner, "need line of sight")
+		return FALSE
+	if(carbon_target.stat == DEAD)
+		carbon_target.balloon_alert(owner, "already dead")
+		return FALSE
+	if(carbon_target.stat == UNCONSCIOUS)
+		carbon_target.balloon_alert(owner, "not standing")
+		return FALSE
+
+/datum/action/ability/activable/xeno/tail_trip/use_ability(atom/target_atom)
+	. = ..()
+
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(!iscarbon(target_atom))
+		return
+
+	var/mob/living/carbon/living_target = target_atom
+
+	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
+	var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
+
+	xeno_owner.visible_message(span_danger("\The [xeno_owner] sweeps [living_target]'s legs with its tail!"), \
+		span_danger("We trip [living_target] with our tail!"))
+	shake_camera(living_target, 2, 1)
+	xeno_owner.face_atom(living_target)
+	xeno_owner.spin(4, 1)
+	xeno_owner.emote("tail")
+	playsound(living_target,'sound/weapons/alien_claw_block.ogg', 50, 1)
+
+	living_target.Paralyze(buffed ? 1 SECONDS : 0.1 SECONDS)
+	living_target.adjust_stagger(buffed ? 5 SECONDS : 4 SECONDS)
+	living_target.adjust_slowdown(buffed ? 1.2 : 0.9)
+	living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
+
+	succeed_activate()
+	add_cooldown()
