@@ -395,5 +395,5 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 			soundin = pick('sound/voice/robot/robot_warcry1.ogg', 'sound/voice/robot/robot_warcry2.ogg', 'sound/voice/robot/robot_warcry3.ogg')
 
 		if(SFX_HOVER_TANK)
-			soundin = pick('sound/vehicles/hover_1.ogg', 'sound/vehicles/hover_2.ogg', 'sound/vehicles/hover_3.ogg', 'sound/vehicles/hover_4.ogg')
+			soundin = pick('sound/vehicles/hover_tank/hover_1.ogg', 'sound/vehicles/hover_tank/hover_2.ogg', 'sound/vehicles/hover_tank/hover_3.ogg', 'sound/vehicles/hover_tank/hover_4.ogg')
 	return soundin

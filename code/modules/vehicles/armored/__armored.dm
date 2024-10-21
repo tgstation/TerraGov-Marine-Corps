@@ -289,20 +289,20 @@
 		return PROCESS_KILL
 	if(cooldown_vehicle_move + 1 > world.time)
 		return // driver present but they look to be moving so dont play idle
-	playsound(src, islist(idle_engine_sound) ? pick(idle_engine_sound) : idle_engine_sound, 30, TRUE, 10, channel=CHANNEL_TANK_DRIVING)
+	playsound(src, islist(idle_engine_sound) ? pick(idle_engine_sound) : idle_engine_sound, 30, !(armored_flags & ARMORED_ENGINE_FREQ_NO_VARY), 10, channel=CHANNEL_TANK_DRIVING)
 	if(idle_interior_engine_sound && interior)
-		play_interior_sound(null, islist(idle_interior_engine_sound) ? pick(idle_interior_engine_sound) : idle_interior_engine_sound, 30, TRUE, channel=CHANNEL_TANK_DRIVING)
+		play_interior_sound(null, islist(idle_interior_engine_sound) ? pick(idle_interior_engine_sound) : idle_interior_engine_sound, 30, !(armored_flags & ARMORED_ENGINE_FREQ_NO_VARY), channel=CHANNEL_TANK_DRIVING)
 
 ///Plays the engine sound for this vehicle if its not on cooldown
-/obj/vehicle/sealed/armored/proc/play_engine_sound(freq_vary = TRUE, sound_freq)
+/obj/vehicle/sealed/armored/proc/play_engine_sound(sound_freq)
 	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
 		return
 	COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
 	///whether we play the outside sound for the interior or no
 	var/play_loc = interior_engine_sound ? src : get_turf(src)
-	playsound(play_loc, islist(engine_sound) ? pick(engine_sound) : engine_sound, 100, freq_vary, 20, frequency = sound_freq, channel=CHANNEL_TANK_DRIVING)
+	playsound(play_loc, islist(engine_sound) ? pick(engine_sound) : engine_sound, 100, !(armored_flags & ARMORED_ENGINE_FREQ_NO_VARY), 20, frequency = sound_freq, channel = CHANNEL_TANK_DRIVING)
 	if(interior_engine_sound)
-		play_interior_sound(null, islist(interior_engine_sound) ? pick(interior_engine_sound) : interior_engine_sound, 60, freq_vary, channel=CHANNEL_TANK_DRIVING)
+		play_interior_sound(null, islist(interior_engine_sound) ? pick(interior_engine_sound) : interior_engine_sound, 60, !(armored_flags & ARMORED_ENGINE_FREQ_NO_VARY), channel = CHANNEL_TANK_DRIVING)
 
 ///called when a mob tried to leave our interior
 /obj/vehicle/sealed/armored/proc/interior_exit(mob/leaver, datum/interior/inside, teleport)

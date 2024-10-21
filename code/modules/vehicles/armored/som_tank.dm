@@ -13,7 +13,7 @@
 	minimap_icon_state = "som_tank"
 	minimap_flags = MINIMAP_FLAG_MARINE_SOM
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
-	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE|ARMORED_ENGINE_FREQ_NO_VARY
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	pixel_x = -65
 	pixel_y = -80
@@ -31,9 +31,9 @@
 		/obj/item/ammo_magazine/tank,
 	)
 	engine_sound = SFX_HOVER_TANK
-	interior_engine_sound = null
-	idle_engine_sound = null
-	idle_interior_engine_sound = null
+	interior_engine_sound = list('sound/vehicles/hover_tank/hover_interior_1.ogg', 'sound/vehicles/hover_tank/hover_interior_2.ogg', 'sound/vehicles/hover_tank/hover_interior_3.ogg', 'sound/vehicles/hover_tank/hover_interior_4.ogg')
+	idle_engine_sound = 'sound/vehicles/hover_tank/idle_1.ogg'
+	idle_interior_engine_sound = list('sound/vehicles/hover_tank/idle_interior_1.ogg', 'sound/vehicles/hover_tank/idle_interior_2.ogg')
 	engine_sound_length = 1.2 SECONDS
 	vis_range_mod = 4
 	faction = FACTION_SOM
@@ -61,7 +61,7 @@
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
 
-/obj/vehicle/sealed/armored/multitile/som_tank/play_engine_sound(freq_vary = TRUE, sound_freq = 32000) //arg override
+/obj/vehicle/sealed/armored/multitile/som_tank/play_engine_sound(sound_freq = 32000) //arg override
 	return ..()
 
 /obj/vehicle/sealed/armored/multitile/som_tank/lava_act()
