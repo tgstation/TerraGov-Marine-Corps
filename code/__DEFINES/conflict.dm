@@ -190,6 +190,7 @@
 #define SMOKE_SATRAPINE (1<<20) //nerve agent that purges painkillers and causes increasing pain
 #define SMOKE_XENO_TOXIC (1<<21) //deals damage to anyone inside it and inflicts the intoxicated debuff, dealing damage over time
 #define SMOKE_PURGER (1<<22) // This smoke removes any smoke has this in its effects_cycle, that removes certain types of smokes.
+#define SMOKE_XENO_PYROGEN (1<<23) // Smoke that acts like SMOKE_BLISTERING for non-xenos and applies pyrogen's melting fire status effect when entering.
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)
