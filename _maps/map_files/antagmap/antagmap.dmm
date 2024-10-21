@@ -9282,7 +9282,6 @@
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /obj/effect/landmark/start/job/survivor,
 /obj/item/clothing/under/lewd/panties,
-/obj/effect/landmark/survivor_spawn_pointer,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)
 "XP" = (

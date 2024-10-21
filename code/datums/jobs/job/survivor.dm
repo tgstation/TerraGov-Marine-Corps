@@ -76,6 +76,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/assistant
 
 	w_uniform = /obj/item/clothing/under/color/grey
+	id = /obj/item/card/id/captains_spare/survival
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 	wear_suit = /obj/item/clothing/suit/armor/vest
@@ -103,6 +104,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/scientist
 
 	w_uniform = /obj/item/clothing/under/rank/scientist
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/toxins
@@ -134,6 +136,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/doctor
 
 	w_uniform = /obj/item/clothing/under/rank/medical/blue
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/med
@@ -181,6 +184,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/liaison
 
 	w_uniform = /obj/item/clothing/under/liaison_suit
+	id = /obj/item/card/id/captains_spare/survival
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 	ears = /obj/item/radio/headset/survivor
@@ -204,6 +208,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/security
 
 	w_uniform = /obj/item/clothing/under/rank/security
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/armor/patrol
 	head = /obj/item/clothing/head/securitycap
 	shoes = /obj/item/clothing/shoes/marine/full
@@ -238,6 +243,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/civilian
 
 	w_uniform = /obj/item/clothing/under/colonist
+	id = /obj/item/card/id/captains_spare/survival
 	belt = /obj/item/storage/holster/belt/pistol/m4a3
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
@@ -261,8 +267,8 @@ Good luck, but do not expect to survive."})
 /datum/outfit/job/survivor/chef
 	name = "Chef Survivor"
 	jobtype = /datum/job/survivor/chef
-
 	w_uniform = /obj/item/clothing/under/rank/chef
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/chef
 	head = /obj/item/clothing/head/chefhat
 	shoes = /obj/item/clothing/shoes/black
@@ -296,6 +302,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/botanist
 
 	w_uniform = /obj/item/clothing/under/rank/hydroponics
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/apron/overalls
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/hydroponics
@@ -325,6 +332,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/atmos
 
 	w_uniform = /obj/item/clothing/under/rank/atmospheric_technician
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/hazardvest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/som
@@ -367,6 +375,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/chaplain
 
 	w_uniform = /obj/item/clothing/under/rank/chaplain
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
@@ -396,6 +405,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/miner
 
 	w_uniform = /obj/item/clothing/under/rank/miner
+	id = /obj/item/card/id/captains_spare/survival
 	head = /obj/item/clothing/head/helmet/space/rig/mining
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/som
@@ -424,6 +434,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/salesman
 
 	w_uniform = /obj/item/clothing/under/lawyer/purpsuit
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/lawyer/purpjacket
 	shoes = /obj/item/clothing/shoes/black
 	belt = /obj/item/storage/holster/belt/pistol/g22
@@ -456,6 +467,7 @@ Good luck, but do not expect to survive."})
 
 	w_uniform = /obj/item/clothing/under/CM_uniform
 	wear_suit = /obj/item/clothing/suit/storage/CMB
+	id = /obj/item/card/id/captains_spare/survival
 	shoes = /obj/item/clothing/shoes/jackboots
 	back = /obj/item/storage/backpack/satchel/sec
 	suit_store = /obj/item/storage/holster/belt/m44/full
@@ -486,6 +498,7 @@ Good luck, but do not expect to survive."})
 
 	w_uniform = /obj/item/clothing/under/rank/bartender
 	wear_suit = /obj/item/clothing/suit/armor/vest
+	id = /obj/item/card/id/captains_spare/survival
 	back = /obj/item/storage/backpack/satchel
 	belt = /obj/item/ammo_magazine/shotgun/buckshot
 	shoes = /obj/item/clothing/shoes/laceup
@@ -517,6 +530,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/chemist
 
 	w_uniform = /obj/item/clothing/under/rank/chemist
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/chemist
 	back = /obj/item/storage/backpack/satchel/chem
 	belt = /obj/item/storage/belt/hypospraybelt
@@ -573,6 +587,7 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/roboticist
 
 	w_uniform = /obj/item/clothing/under/rank/roboticist
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/science
 	belt = /obj/item/storage/belt/utility/full
 	shoes = /obj/item/clothing/shoes/black
@@ -602,7 +617,9 @@ Good luck, but do not expect to survive."})
 /datum/outfit/job/survivor/rambo
 	name = "Overpowered Survivor"
 	jobtype = /datum/job/survivor/rambo
+
 	w_uniform = /obj/item/clothing/under/marine/striped
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/armor/patrol
 	shoes = /obj/item/clothing/shoes/marine/clf/full
 	back = /obj/item/storage/holster/blade/machete/full

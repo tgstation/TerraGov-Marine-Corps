@@ -136,11 +136,6 @@
 
 	log_game("[round_finished]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [length(GLOB.clients)]\nTotal xenos spawned: [GLOB.round_statistics.total_xenos_created]\nTotal humans spawned: [GLOB.round_statistics.total_humans_created]")
 
-/datum/game_mode/infestation/extended_plus/pre_setup()
-	. = ..()
-	for(var/ssp in GLOB.survivor_spawn_pointers)
-		new /obj/effect/landmark/start/job/survivor(ssp)
-
 /datum/game_mode/infestation/extended_plus/post_setup()
 	. = ..()
 	for(var/i in GLOB.xeno_resin_silo_turfs)

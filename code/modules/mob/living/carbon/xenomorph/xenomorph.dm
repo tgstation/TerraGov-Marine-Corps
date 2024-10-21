@@ -49,6 +49,9 @@
 	wound_overlay = new(null, src)
 	vis_contents += wound_overlay
 
+	genital_overlay = new(src, src)
+	vis_contents += genital_overlay
+
 	fire_overlay = new(src, src)
 	vis_contents += fire_overlay
 
@@ -310,6 +313,7 @@
 	vis_contents -= wound_overlay
 	vis_contents -= fire_overlay
 	vis_contents -= backpack_overlay
+	QDEL_NULL(genital_overlay)
 	QDEL_NULL(wound_overlay)
 	QDEL_NULL(fire_overlay)
 	QDEL_NULL(backpack_overlay)

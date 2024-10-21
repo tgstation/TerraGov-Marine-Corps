@@ -227,6 +227,12 @@
 	access = ALL_MARINE_ACCESS
 	iff_signal = TGMC_LOYALIST_IFF
 
+/obj/item/card/id/captains_spare/survival
+	name = "identification card"
+	desc = "A colonist generalized ID card."
+	icon_state = "silver"
+	worn_icon_state = "silver_id"
+
 
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)
 	if(istype(H))
