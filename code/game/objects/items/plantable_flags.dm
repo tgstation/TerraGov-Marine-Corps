@@ -55,7 +55,8 @@
 	return ..()
 
 /obj/item/plantable_flag/deconstruct(disassembled = TRUE, mob/living/blame_mob)
-	SSaura.add_emitter(get_turf(src), AURA_HUMAN_FLAG, INFINITY, LOST_FLAG_AURA_STRENGTH, -1, faction)
+	if(SSticker.mode.round_type_flags & MODE_HUMAN_ONLY)
+		SSaura.add_emitter(get_turf(src), AURA_HUMAN_FLAG, INFINITY, LOST_FLAG_AURA_STRENGTH, -1, faction)
 
 	if(istype(blame_mob) && blame_mob.ckey)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
