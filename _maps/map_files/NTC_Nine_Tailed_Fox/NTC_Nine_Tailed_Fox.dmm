@@ -9413,9 +9413,7 @@
 	name = "Requisition Warehouse Shutters"
 	},
 /turf/open/floor/plating/plating_catwalk,
-/area/outpost/cargo{
-	outside = 1
-	})
+/area/mainship/squads/req)
 "iCK" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/red{
@@ -9455,7 +9453,6 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/living/port_emb)
 "iEX" = (
-/obj/item/tool/kitchen/tray,
 /obj/item/clothing/head/chefhat,
 /obj/structure/table/reinforced,
 /obj/item/tool/kitchen/rollingpin,
@@ -13212,12 +13209,6 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/deltastation/engineering/engine_smes{
 	outside = 0
-	})
-"lPe" = (
-/obj/structure/door/mineral_door/wood,
-/turf/open/floor/wood,
-/area/mainship/shipboard/port_missiles{
-	name = "Shipside Corpsec Office"
 	})
 "lPC" = (
 /obj/machinery/computer/cloning_console/vats,
@@ -33105,7 +33096,7 @@ odL
 aYd
 rvk
 epR
-lPe
+epR
 dLZ
 ldc
 aYd
@@ -33348,7 +33339,7 @@ aYd
 pZu
 epR
 aYd
-lPe
+epR
 wRj
 aYd
 mMj

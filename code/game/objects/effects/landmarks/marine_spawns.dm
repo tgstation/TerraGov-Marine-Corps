@@ -138,24 +138,6 @@
 	icon_state = "Shaft Miner"
 	job = /datum/job/survivor
 
-
-//a way to prevent antagmap spawning when not wanted.
-/obj/effect/landmark/survivor_spawn_pointer
-	icon = 'icons/mob/landmarks.dmi'
-	icon_state = "x"
-
-/obj/effect/landmark/survivor_spawn_pointer/Initialize(mapload)
-	. = ..()
-	GLOB.survivor_spawn_pointers += src
-
-/obj/effect/landmark/survivor_spawn_pointer/Destroy()
-	GLOB.survivor_spawn_pointers -= src
-	return ..()
-
-/obj/effect/landmark/survivor_spawn_pointer/after_round_start()
-	qdel(src)
-
-
 /obj/effect/landmark/start/job/fallen
 	job = /datum/job/fallen/marine
 

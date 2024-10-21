@@ -480,6 +480,7 @@
 	READ_FILE(S["xeno_desc"], xeno_desc)
 	READ_FILE(S["profile_pic"], profile_pic)
 	READ_FILE(S["xenoprofile_pic"], xenoprofile_pic)
+	READ_FILE(S["xenogender"], xenogender)
 
 
 	be_special = sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
@@ -549,6 +550,7 @@
 	xeno_desc = sanitize_text(xeno_desc, initial(xeno_desc))
 	profile_pic = sanitize_text(profile_pic, initial(profile_pic))
 	xenoprofile_pic = sanitize_text(xenoprofile_pic, initial(xenoprofile_pic))
+	xenogender = sanitize_text(xenogender, initial(xenogender))
 
 	if(!synthetic_name)
 		synthetic_name = "David"
@@ -642,6 +644,7 @@
 	xeno_desc = sanitize_text(xeno_desc, initial(xeno_desc))
 	profile_pic = sanitize_text(profile_pic, initial(profile_pic))
 	xenoprofile_pic = sanitize_text(xenoprofile_pic, initial(xenoprofile_pic))
+	xenogender = sanitize_text(xenogender, initial(xenogender))
 
 	WRITE_FILE(S["be_special"], be_special)
 
@@ -703,6 +706,7 @@
 	WRITE_FILE(S["xeno_desc"], xeno_desc)
 	WRITE_FILE(S["profile_pic"], profile_pic)
 	WRITE_FILE(S["xenoprofile_pic"], xenoprofile_pic)
+	WRITE_FILE(S["xenogender"], xenogender)
 
 	return TRUE
 

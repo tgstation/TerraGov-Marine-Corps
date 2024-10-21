@@ -76,6 +76,7 @@
 			data["xeno_desc"] = xeno_desc
 			data["profile_pic"] = profile_pic
 			data["xenoprofile_pic"] = xenoprofile_pic
+			data["xenogender"] = xenogender
 			data["med_record"] = med_record
 			data["gen_record"] = gen_record
 			data["sec_record"] = sec_record
@@ -641,6 +642,13 @@
 			if(!new_record)
 				return
 			xenoprofile_pic = new_record
+
+		if("xenogender")
+			var/new_xgender = text2num(params["newValue"])
+			if(!isnum(new_xgender))
+				return
+			new_xgender = round(new_xgender)
+			xenogender = new_xgender
 
 		if("windowflashing")
 			windowflashing = !windowflashing

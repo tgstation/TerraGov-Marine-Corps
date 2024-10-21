@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/praetorian
 	name = "Praetorian"
 	desc = "A huge, looming beast of an alien."
-	icon = 'icons/Xeno/castes/praetorian.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/praetorian.dmi'
 	icon_state = "Praetorian Walking"
 	health = 210
 	maxHealth = 210

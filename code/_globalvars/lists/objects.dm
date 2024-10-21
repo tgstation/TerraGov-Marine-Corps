@@ -163,5 +163,3 @@ GLOBAL_LIST_INIT(do_not_preserve_empty, typecacheof(list(
 	/obj/item/storage/backpack/marine/corpsman/satchel,
 	/obj/item/storage/backpack/marine/satchel/tech,
 	/obj/item/storage/backpack/marine/standard), only_root_path = TRUE))
-
-GLOBAL_LIST_EMPTY(survivor_spawn_pointers)

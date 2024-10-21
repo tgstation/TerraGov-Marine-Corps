@@ -187,7 +187,7 @@
 		new_xeno.toggle_nightvision(lighting_alpha)
 
 	new_xeno.update_spits() //Update spits to new/better ones
-
+	new_xeno.update_xeno_gender(new_xeno)
 	new_xeno.visible_message(span_xenodanger("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src]."), \
 	span_xenodanger("We emerge in a greater form from the husk of our old body. For the hive!"))
 

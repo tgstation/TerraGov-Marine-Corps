@@ -2,7 +2,7 @@
 	caste_base_type = /datum/xeno_caste/ravager
 	name = "Ravager"
 	desc = "A huge, nasty red alien with enormous scythed claws."
-	icon = 'icons/Xeno/castes/ravager.dmi'
+	icon = 'ntf_modular/icons/Xeno/castes/ravager.dmi'
 	icon_state = "Ravager Walking"
 	health = 250
 	maxHealth = 250
