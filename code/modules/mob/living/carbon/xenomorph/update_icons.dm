@@ -38,6 +38,7 @@
 				icon_state = "[xeno_caste.caste_name][is_a_rouny ? " rouny" : ""] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 	update_wounds()
+	update_xeno_gender()
 	update_snowflake_overlays()
 
 	hud_set_sunder()
