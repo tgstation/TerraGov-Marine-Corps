@@ -648,7 +648,7 @@
 			if(!isnum(new_xgender))
 				return
 			new_xgender = round(new_xgender)
-			xenogender = clamp(new_xgender, 1, 6)
+			xenogender = new_xgender
 
 		if("windowflashing")
 			windowflashing = !windowflashing
