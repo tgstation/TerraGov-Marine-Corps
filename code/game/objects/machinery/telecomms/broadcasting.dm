@@ -239,7 +239,7 @@
 				list_of_listeners += potential_hearer
 				continue
 
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), list_of_listeners, html_decode(message), language, speaker.voice, speaker.voice_filter, local = TRUE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), speaker, html_decode(message), language, speaker.voice, speaker.voice_filter, list_of_listeners, TRUE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE)
 
 	var/spans_part = ""
 	if(length(spans))
