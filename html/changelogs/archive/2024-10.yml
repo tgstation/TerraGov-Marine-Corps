@@ -160,3 +160,6 @@
   - bugfix: fixed chainsaw fuel cost on attack on mob
   TiviPlus:
   - rscdel: Remove tunnel naming
+2024-10-22:
+  Barnet2:
+  - bugfix: Naming a tunnel no longer leaks your ckey

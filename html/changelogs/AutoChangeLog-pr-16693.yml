@@ -1,4 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - bugfix: "Naming a tunnel no longer leaks your ckey"
