@@ -70,7 +70,7 @@
 	var/healing_amount_max_health_scaling = 0.5
 
 /obj/structure/xeno/plant/heal_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
-	if(mature)
+	if(!disassembled && mature)
 		var/datum/effect_system/smoke_spread/xeno/acid/opaque/plant_explosion = new(get_turf(src))
 		plant_explosion.set_up(3,src)
 		plant_explosion.start()
@@ -103,7 +103,7 @@
 	var/sunder_removal = 30
 
 /obj/structure/xeno/plant/armor_fruit/deconstruct(disassembled = TRUE, mob/living/blame_mob)
-	if(mature)
+	if(!disassembled && mature)
 		for (var/mob/living/carbon/human/nearby_human AS in cheap_get_humans_near(src, 1))
 			var/turf/far_away_lands = get_turf(nearby_human)
 			for(var/x in 1 to 20)
