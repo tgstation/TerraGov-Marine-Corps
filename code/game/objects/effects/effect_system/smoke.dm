@@ -416,6 +416,14 @@
 	color = "#f1ddcf" //A pinkish for now.
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
+
+/// Smoke that constantly makes pyrogen fire.
+/obj/effect/particle_effect/smoke/xeno/pyrogen_fire
+	alpha = 120
+	opacity = FALSE
+	color = "#cff1ee" // Blueish.
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_PYROGEN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+
 /////////////////////////////////////////////
 // Smoke spreads
 /////////////////////////////////////////////
@@ -491,6 +499,11 @@
 
 /datum/effect_system/smoke_spread/xeno/ozelomelyn
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/ozelomelyn
+
+
+/datum/effect_system/smoke_spread/xeno/pyrogen_fire
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire
+
 
 /////////////////////////////////////////////
 // Chem smoke

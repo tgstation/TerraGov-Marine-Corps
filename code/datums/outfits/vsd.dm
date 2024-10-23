@@ -8,7 +8,7 @@
 	ears = /obj/item/radio/headset/distress/vsd
 	glasses = /obj/item/clothing/glasses/night/vsd
 	w_uniform = /obj/item/clothing/under/vsd/webbing
-	shoes = /obj/item/clothing/shoes/marine/vsd
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/vsd
@@ -117,7 +117,7 @@
 	ears = /obj/item/radio/headset/distress/vsd
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
-	shoes = /obj/item/clothing/shoes/marine/vsd
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/marmor/desert
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/vsd/secondary
@@ -190,7 +190,7 @@
 	belt = /obj/item/storage/belt/lifesaver/full/upp
 	glasses = /obj/item/clothing/glasses/hud/health
 	w_uniform = /obj/item/clothing/under/vsd/medic
-	shoes = /obj/item/clothing/shoes/marine/vsd
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/vsd/medic
@@ -286,7 +286,7 @@
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
 	head = /obj/item/clothing/head/helmet/marine/vsd
-	shoes = /obj/item/clothing/shoes/marine/vsd
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	back = /obj/item/storage/backpack/lightpack/vsd
@@ -445,7 +445,7 @@
 	ears = /obj/item/radio/headset/distress/vsd
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
-	shoes = /obj/item/clothing/shoes/marine/vsd
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/juggernaut
 	suit_store = /obj/item/weapon/gun/rifle/vsd_lmg/juggernaut
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
@@ -490,7 +490,7 @@
 	ears = /obj/item/radio/headset/distress/vsd
 	glasses = /obj/item/clothing/glasses/meson
 	w_uniform = /obj/item/clothing/under/vsd/webbing
-	shoes = /obj/item/clothing/shoes/marine/vsd
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd/eod
 	suit_store = /obj/item/weapon/gun/launcher/rocket/vsd
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
@@ -538,7 +538,7 @@
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/distress/vsd
 	w_uniform = /obj/item/clothing/under/vsd/webbing
-	shoes = /obj/item/clothing/shoes/marine/vsd
+	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	r_pocket = /obj/item/storage/pouch/medical_injectors/firstaid
 	l_pocket = /obj/item/storage/pouch/magazine

@@ -5,7 +5,7 @@
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/marine/veteran/mercenary
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/veteran/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/mercenary
 	gloves = /obj/item/clothing/gloves/combat
 	head = /obj/item/clothing/head/helmet/marine/veteran/mercenary
@@ -19,7 +19,7 @@
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/marine/veteran/mercenary/miner
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/veteran/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/mercenary/miner
 	gloves = /obj/item/clothing/gloves/combat
 	head = /obj/item/clothing/head/helmet/marine/veteran/mercenary/miner
@@ -34,7 +34,7 @@
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/marine/veteran/mercenary/engineer
 	belt = /obj/item/storage/belt/utility/full
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/veteran/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/mercenary/engineer
 	gloves = /obj/item/clothing/gloves/combat
 	head = /obj/item/clothing/head/helmet/marine/veteran/mercenary/engineer
