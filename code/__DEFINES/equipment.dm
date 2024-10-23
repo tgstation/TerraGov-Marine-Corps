@@ -228,7 +228,7 @@
 #define ITEM_SLOT_R_HAND (1<<16) //right hand
 	#define ITEM_SLOT_HANDS (ITEM_SLOT_L_HAND|ITEM_SLOT_R_HAND) //a combo of the above
 #define ITEM_SLOT_ACTIVE_STORAGE (1<<17) // the currently open/active storage container 
-#define ITEM_SLOT_SECONDARY (1<<18) //campaign loadouts only //ivan todo i hate lumi
+#define ITEM_SLOT_SECONDARY (1<<18) //campaign loadouts only
 
 ///Inventory slot bits to plain english strings
 GLOBAL_LIST_INIT(inventory_slots_to_string, list(
@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 ))
 
 
-//Inventory slot strings. These are used for icons. (and checking if an item can be equipped in loadouts for some reason??)
+//Inventory slot strings. These are used for icons and the loadout vendor.
 #define slot_back_str "slot_back"
 #define slot_l_hand_str "slot_l_hand"
 #define slot_r_hand_str "slot_r_hand"
@@ -376,6 +376,7 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	ITEM_SLOT_HEAD,\
 )
 
+/// A list of all slots, generally used for looping through all slots.
 #define SLOT_ALL list(\
 	ITEM_SLOT_ID,\
 	ITEM_SLOT_EARS,\

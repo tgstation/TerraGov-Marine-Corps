@@ -518,7 +518,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/mob/living/carbon/human/human_user = user
 	if(!human_user.has_limb_for_slot(slot))
 		return
-	var/list/mob_equip = list() // ivan todo this looks stinky
+	var/list/mob_equip = list()
 	if(human_user.species.hud?.equip_slots)
 		mob_equip = human_user.species.hud.equip_slots
 
