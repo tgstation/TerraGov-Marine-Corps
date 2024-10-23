@@ -163,3 +163,11 @@
 2024-10-22:
   Barnet2:
   - bugfix: Naming a tunnel no longer leaks your ckey
+2024-10-23:
+  Runian:
+  - rscadd: On destruction, xeno fruit triggers effects that normally only occur if
+      a human tried to interact with it.
+  - rscadd: On destruction, power fruit releases 4-tile see-through smoke that burns
+      humans for inhaling it and applies pyrogen's burning fire stacks for walking
+      through it.
+  - rscdel: Power fruit no longer creates a 3-tile fire when used by a human.
