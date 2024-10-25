@@ -431,10 +431,6 @@
 	max_rounds = 500
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
-/obj/item/ammo_magazine/minigun_powerpack/snow
-	icon_state = "s_powerpack"
-	item_map_variant_flags = null
-
 /obj/item/ammo_magazine/minigun_powerpack/fancy
 	icon_state = "powerpack_fancy"
 	item_map_variant_flags = null

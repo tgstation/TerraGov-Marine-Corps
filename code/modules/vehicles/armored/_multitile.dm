@@ -116,7 +116,7 @@
 		return
 	for(var/mob/occupant AS in occupants)
 		mob_exit(occupant, FALSE, TRUE)
-	armored_flags ^= ARMORED_IS_WRECK
+	armored_flags |= ARMORED_IS_WRECK
 	obj_integrity = max_integrity
 	update_appearance(UPDATE_ICON_STATE|UPDATE_DESC|UPDATE_NAME)
 	smoke_holder = new(src, /particles/tank_wreck_smoke)
@@ -125,13 +125,14 @@
 		RegisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_smoke_dir))
 		update_smoke_dir(newdir = turret_overlay.dir)
 		turret_overlay.icon_state += "_wreck"
-		turret_overlay.primary_overlay.icon_state += "_wreck"
+		turret_overlay?.primary_overlay?.icon_state += "_wreck"
+	update_minimap_icon()
 
 ///Returns the vehicle to an unwrecked state
 /obj/vehicle/sealed/armored/multitile/proc/unwreck_vehicle(restore = FALSE)
 	if(!(armored_flags & ARMORED_IS_WRECK))
 		return
-	armored_flags ^= ARMORED_IS_WRECK
+	armored_flags &= ~ARMORED_IS_WRECK
 	obj_integrity = restore ? max_integrity : 50
 	update_appearance(UPDATE_ICON_STATE|UPDATE_DESC|UPDATE_NAME)
 	QDEL_NULL(smoke_holder)
@@ -140,7 +141,8 @@
 	if(turret_overlay)
 		UnregisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE)
 		turret_overlay.icon_state = turret_overlay.base_icon_state
-		turret_overlay.primary_overlay.icon_state = turret_overlay.primary_overlay.base_icon_state
+		turret_overlay?.primary_overlay?.icon_state = turret_overlay?.primary_overlay?.base_icon_state
+	update_minimap_icon()
 
 ///Updates the wreck smoke position
 /obj/vehicle/sealed/armored/multitile/proc/update_smoke_dir(datum/source, dir, newdir)
