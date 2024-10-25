@@ -547,4 +547,99 @@ GLOBAL_LIST_EMPTY(flamer_particles)
 /obj/item/weapon/gun/flamer/hydro_cannon/light_pilot(light)
 	return
 
+//STREAM FLAMETHROWER
+/obj/item/weapon/gun/stream_flamethrower
+	name = "\improper FL-112 flamethrower"
+	desc = "A lighter version of the standard flamer, which fires out a steady stream of fire that doesn't last as long, but deals more upfront damage. Doesn't take flamer nozzles."
+	icon = 'icons/obj/items/guns/special64.dmi'
+	icon_state =  "fl112"
+	equip_slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	force = 15
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
+	)
+	fire_sound = SFX_GUN_FLAMETHROWER
+	dry_fire_sound = 'sound/weapons/guns/fire/flamethrower_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/flamethrower_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/flamethrower_reload.ogg'
+	muzzle_flash = null
+	aim_slowdown = 1
+	wield_delay = 0.4 SECONDS
+	general_codex_key = "flame weapons"
+	attachable_allowed = list(
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/magnetic_harness,
+		)
+	attachments_by_slot = list(
+		ATTACHMENT_SLOT_MUZZLE,
+		ATTACHMENT_SLOT_RAIL,
+		ATTACHMENT_SLOT_STOCK,
+		ATTACHMENT_SLOT_UNDER,
+		ATTACHMENT_SLOT_MAGAZINE,
+	)
+	gun_features_flags = GUN_AMMO_COUNTER
+	gun_skill_category = SKILL_HEAVY_WEAPONS
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_DO_NOT_EJECT_HANDFULS
+	attachable_offset = list("rail_x" = 27, "rail_y" = 16,"under_x" = 52, "under_y" = 12)
+	fire_delay = 0.2 SECONDS
+	akimbo_additional_delay = 0.2
+	accuracy_mult_unwielded = 0.85
+	recoil_unwielded = 1
+
+	placed_overlay_iconstate = "flamer"
+
+	ammo_datum_type = /datum/ammo/flamethrower/stream_spray
+	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/stream
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/flamer_tank/stream,
+		/obj/item/ammo_magazine/flamer_tank/stream/x,
+		/obj/item/ammo_magazine/flamer_tank/stream_backtank,
+		/obj/item/ammo_magazine/flamer_tank/stream_backtank/x
+
+	)
+	///For the overlay iconstate of the pilot
+	var/lit_overlay_icon_state = "+lit"
+	///Var determining whether the pilot is lit on the flamer
+	var/is_lit = FALSE
+	///Pixel offset on the X axis for the pilot light overlay.
+	var/lit_overlay_offset_x = 0
+	///Pixel offset on the Y axis for the pilot light overlay.
+	var/lit_overlay_offset_y = 0
+
+/obj/item/weapon/gun/stream_flamethrower/Initialize(mapload)
+	. = ..()
+	if(!rounds)
+		return
+	light_pilot(TRUE)
+
+/// Handles updating the pilot overlay and the sounds
+/obj/item/weapon/gun/stream_flamethrower/proc/light_pilot(light)
+	is_lit = light
+	playsound(src, light ? 'sound/weapons/guns/interact/flamethrower_on.ogg' : 'sound/weapons/guns/interact/flamethrower_off.ogg', 25, 1)
+	update_icon()
+
+/obj/item/weapon/gun/stream_flamethrower/update_overlays()
+	. = ..()
+	if(!is_lit)
+		return
+	var/image/lit_overlay = image(icon, src, lit_overlay_icon_state)
+	lit_overlay.pixel_x += lit_overlay_offset_x
+	lit_overlay.pixel_y += lit_overlay_offset_y
+	. += lit_overlay
+
+/obj/item/weapon/gun/stream_flamethrower/reload(obj/item/new_mag, mob/living/user)
+	. = ..()
+	if(!.)
+		return
+	light_pilot(TRUE)
+
+/obj/item/weapon/gun/stream_flamethrower/unload(mob/living/user, drop = TRUE, after_fire = FALSE)
+	. = ..()
+	if(!.)
+		return
+	light_pilot(FALSE)
+
 #undef FLAMER_WATER

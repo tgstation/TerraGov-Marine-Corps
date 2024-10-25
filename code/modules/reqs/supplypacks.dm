@@ -357,6 +357,26 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/heavy_isg/sabot)
 	cost = 50
 
+/datum/supply_packs/weapons/fl112
+	name = "FL-112 Flamethrower"
+	contains = list(/obj/item/weapon/gun/stream_flamethrower)
+	cost = 100
+
+/datum/supply_packs/weapons/fl112_backtank
+	name = "FL-112 Normal Backtank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank/stream_backtank)
+	cost = 100
+
+/datum/supply_packs/weapons/fl112_x_tank
+	name = "FL-112 X Fuel Tank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank/stream/x)
+	cost = 15
+
+/datum/supply_packs/weapons/fl112_x_backtank
+	name = "FL-112 X Fuel Backtank"
+	contains = list(/obj/item/ammo_magazine/flamer_tank/stream_backtank/x)
+	cost = 150
+
 /datum/supply_packs/weapons/heayvlaser_emplacement
 	name = "Mounted Heavy Laser"
 	contains = list(/obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable)

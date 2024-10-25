@@ -148,6 +148,23 @@
 	damage = 6
 	burntime = 0.3 SECONDS
 
+/datum/ammo/flamethrower/stream_spray
+	name = "stream fire"
+	icon_state = "stream_fire"
+	max_range = 7
+	shell_speed = 0.5
+	damage = 17
+	burnlevel = 10
+	burntime = 0.2 SECONDS
+
+/datum/ammo/flamethrower/stream_spray/x
+	name = "stream fire"
+	hud_state = "flame_blue"
+	icon_state = "stream_fire_blue"
+	fire_color = "blue"
+	damage = 25
+	burnlevel = 20
+
 /datum/ammo/water
 	name = "water"
 	icon_state = "pulse1"

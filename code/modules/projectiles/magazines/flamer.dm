@@ -138,3 +138,46 @@
 	current_rounds = 280
 	reload_delay = 0 SECONDS
 
+//Ammo for the stream flamethrower
+/obj/item/ammo_magazine/flamer_tank/stream
+	name = "FL-112 tank"
+	desc = "A fuel tank containing a much more dilute solution of napthal mixed with good old diesel. Sprays further, but for a dramatically lower duration. Can't be refueled with welderpacks."
+	icon_state = "fl_112_tank"
+	w_class = WEIGHT_CLASS_SMALL
+	max_rounds = 50
+	current_rounds = 50
+	reload_delay = 0 SECONDS
+
+	default_ammo = /datum/ammo/flamethrower/stream_spray
+
+/obj/item/ammo_magazine/flamer_tank/stream/x
+	name = "FL-112 X fuel tank"
+	desc = "A fuel tank containing a much more dilute solution of napthal X mixed with good old diesel. Sprays further and much hotter but for a dramatically lower duration. Can't be refueled from x fuel tanks."
+	icon_state = "fl_112_tank_x"
+	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
+
+	default_ammo = /datum/ammo/flamethrower/stream_spray/x
+
+/obj/item/ammo_magazine/flamer_tank/stream_backtank
+	name = "FL-112 fuel back tank"
+	desc = "A specialized fuel tank for use with the FL-112 flamethrower."
+	icon_state = "fl112_backtank_stream"
+	equip_slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_BULKY
+	max_rounds = 300
+	current_rounds = 300
+	reload_delay = 1 SECONDS
+	caliber = CALIBER_FUEL_THICK
+	magazine_flags = MAGAZINE_WORN
+	icon_state_mini = "tank"
+
+	default_ammo = /datum/ammo/flamethrower/stream_spray
+
+
+/obj/item/ammo_magazine/flamer_tank/stream_backtank/x
+	name = "FL-112 X fuel back tank"
+	desc = "A specialized X fuel tank for use with the FL-112 flamethrower."
+	icon_state = "fl112_backtank_stream_x"
+	dispenser_type = /obj/structure/reagent_dispensers/fueltank/xfuel
+
+	default_ammo = /datum/ammo/flamethrower/stream_spray/x
