@@ -113,3 +113,4 @@ endmap
 map metnal
 	minplayers 40
   endmap
+  
