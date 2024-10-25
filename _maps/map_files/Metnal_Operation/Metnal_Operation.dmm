@@ -17040,7 +17040,6 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/effect/mapping_helpers/light/flickering/enable_random_flickering,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/Headquarters)
 "mca" = (
