@@ -44,6 +44,9 @@
 	// *** Abilities *** ///
 	resin_max_range = 1 // Widow can place resin structures from 1 tile away
 
+	// *** Pheromones *** //
+	aura_strength = 3 //As much as a hivelord, although big mommy she is basically hivelord+ now with more combat power.
+
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/psychic_whisper,
