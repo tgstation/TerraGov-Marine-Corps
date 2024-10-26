@@ -4990,10 +4990,6 @@
 	},
 /turf/open/floor/iron/textured,
 /area/metnal/inside/laundromat)
-"dxZ" = (
-/obj/effect/landmark/weed_node,
-/turf/open/liquid/lava/autosmoothing,
-/area/metnal/outside/central)
 "dyr" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -14617,7 +14613,6 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
 "krw" = (
-/obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /turf/open/liquid/lava/autosmoothing,
 /area/metnal/outside/central)
@@ -17410,10 +17405,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/urban/carpet/carpetblack,
 /area/metnal/inside/administration)
-"mrv" = (
-/obj/effect/landmark/weed_node,
-/turf/open/liquid/lava/autosmoothing,
-/area/metnal/outside/north)
 "msd" = (
 /obj/effect/landmark/xeno_resin_wall,
 /obj/effect/landmark/weed_node,
@@ -54813,7 +54804,7 @@ xVR
 sZH
 xVR
 xVR
-mrv
+vPN
 vPN
 vPN
 vPN
@@ -56440,7 +56431,7 @@ xVR
 kez
 oRN
 oRN
-dxZ
+oRN
 oRN
 oRN
 kez
