@@ -130,7 +130,7 @@
 	if(istype(I, /obj/item/uav_turret))
 		return equip_turret(I, user)
 	if(istype(I, /obj/item/explosive/plastique))
-		if(src.allow_explosives)
+		if(allow_explosives)
 			return equip_turret(I, user)
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload_turret(I, user)
