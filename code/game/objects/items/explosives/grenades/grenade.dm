@@ -106,7 +106,7 @@
 		else if(idiot.r_hand == src)
 			idiot.amputate_limb(BODY_ZONE_PRECISE_R_HAND)
 			in_hand = TRUE
-		if(in_hand == TRUE)
+		if(in_hand)
 			idiot.visible_message(span_danger("[idiot]'s hand is blown into tiny pieces by [src]!"),
 			span_userdanger("You feel incredible pain and stupidity as [src] blows your hand up."))
 			idiot.emote("scream")
