@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed the grenade hand explode message playing if your hand wasn't actually blown off"

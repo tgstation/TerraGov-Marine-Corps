@@ -82,6 +82,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/minelayer = list(CAT_ENGSUP, "M21 APRDS \"Minelayer\"", 5, "engi-explosive"),
 		/obj/item/storage/box/crate/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "engi-other"),
 		/obj/structure/closet/crate/uav_crate = list(CAT_ENGSUP, "Iguana Unmanned Vehicle", 50, "engi-other"),
+		/obj/structure/closet/crate/uvt_crate = list(CAT_ENGSUP, "Skink Unmanned Vehicle", 5, "engi-other"),
 		/obj/item/attachable/buildasentry = list(CAT_ENGSUP, "Build-A-Sentry Attachment", 30, "engi-other"),
 		/obj/item/ammo_magazine/flamer_tank/large = list(CAT_ENGSUP, "Flamethrower tank", 4, "engi-other"),
 		/obj/item/supply_beacon = list(CAT_ENGSUP, "Supply beacon", 5, "engi-other"),
@@ -719,6 +720,30 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/pinpointer = 1,
 		/obj/item/clothing/glasses/hud/health = 1,
 		/obj/item/clothing/head/modular/m10x/leader = 1,
+	),
+	FIELD_COMMANDER = list(
+		/obj/item/explosive/plastique = 1,
+		/obj/item/supply_beacon = 1,
+		/obj/item/healthanalyzer = 1,
+		/obj/item/roller/medevac = 1,
+		/obj/item/medevac_beacon = 1,
+		/obj/item/whistle = 1,
+		/obj/item/clothing/glasses/hud/health = 1,
+	),
+	SYNTHETIC = list(
+		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+		/obj/item/stack/sheet/metal/large_stack = 1,
+		/obj/item/tool/weldingtool/hugetank = 1,
+		/obj/item/tool/handheld_charger = 1,
+		/obj/item/defibrillator = 1,
+		/obj/item/medevac_beacon = 1,
+		/obj/item/roller/medevac = 1,
+		/obj/item/roller = 1,
+		/obj/item/bodybag/cryobag = 1,
+		/obj/item/reagent_containers/hypospray/advanced/oxycodone = 1,
+		/obj/item/tweezers = 1,
+		/obj/item/cell/high = 1,
+		/obj/item/circuitboard/apc = 1,
 	)
 ))
 

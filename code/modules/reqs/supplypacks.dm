@@ -829,6 +829,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
 	cost = 600
 
+/datum/supply_packs/weapons/chainsaw
+	name = "Chainsaw"
+	contains = list(/obj/item/weapon/twohanded/chainsaw)
+	cost = 500
+
 /datum/supply_packs/weapons/smart_pistol
 	name = "TX13 smartpistol"
 	contains = list(/obj/item/weapon/gun/pistol/smart_pistol)
@@ -2029,6 +2034,11 @@ VEHICLES
 	contains = list(/obj/item/uav_turret/droid)
 	cost = 200
 	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/vehicles/tiny_uv
+	name = "Tiny unmanned vehicle - Skink"
+	contains = list(/obj/item/deployable_vehicle/tiny)
+	cost = 50
 
 /datum/supply_packs/vehicles/light_uv
 	name = "Light unmanned vehicle - Iguana"

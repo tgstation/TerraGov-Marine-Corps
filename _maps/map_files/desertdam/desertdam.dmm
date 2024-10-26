@@ -32931,8 +32931,10 @@
 /area/desert_dam/exterior/valley/north_valley_dam)
 "gIF" = (
 /obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_crashsite)
+/turf/open/floor/prison/darkred/corners{
+	dir = 10
+	},
+/area/desert_dam/interior/lab_northeast/east_lab_security_armory)
 "gIL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -33740,7 +33742,6 @@
 /area/desert_dam/exterior/valley/valley_civilian)
 "hjo" = (
 /obj/machinery/light,
-/obj/machinery/computer/intel_computer,
 /turf/open/floor/mainship/blue{
 	dir = 6
 	},
@@ -34915,10 +34916,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/desert_dam/exterior/landing/landing_pad_one_external)
-"hUz" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/dirt,
-/area/desert_dam/exterior/valley/valley_crashsite)
 "hUA" = (
 /obj/machinery/microwave,
 /obj/structure/table/mainship,
@@ -41819,8 +41816,8 @@
 /area/desert_dam/building/medical/east_wing_hallway)
 "mrC" = (
 /obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_wilderness)
+/turf/open/floor/prison/bright_clean/two,
+/area/desert_dam/interior/lab_northeast/east_lab_biology)
 "mrN" = (
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/open{
@@ -43523,12 +43520,6 @@
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/plating,
 /area/desert_dam/building/warehouse/loading)
-"nzU" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/cave{
-	dir = 5
-	},
-/area/desert_dam/interior/caves/east_caves)
 "nAy" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -45038,9 +45029,9 @@
 /turf/open/floor/wood/broken,
 /area/desert_dam/interior/caves/central_caves)
 "owP" = (
-/obj/machinery/miner/damaged/platinum,
+/obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/exterior/valley/valley_medical)
+/area/desert_dam/exterior/valley/valley_crashsite)
 "oxb" = (
 /obj/effect/decal/cleanable/liquid_fuel,
 /turf/open/floor/prison,
@@ -47793,8 +47784,8 @@
 /area/desert_dam/interior/lab_northeast/east_lab_containment)
 "qar" = (
 /obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/desert_dam/interior/caves/temple)
+/turf/open/floor/prison/bright_clean,
+/area/desert_dam/interior/lab_northeast/east_lab_containment)
 "qaA" = (
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -56945,10 +56936,6 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark2,
 /area/desert_dam/interior/lab_northeast/east_lab_west_entrance)
-"vGq" = (
-/obj/machinery/miner/damaged/platinum,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/desert_dam/interior/caves/central_caves)
 "vGr" = (
 /obj/structure/shuttle/engine/propulsion/burst/left,
 /turf/open/floor/plating,
@@ -58780,6 +58767,7 @@
 /area/desert_dam/interior/dam_interior/hanger)
 "wLD" = (
 /obj/effect/ai_node,
+/obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/mars/random/cave{
 	dir = 1
 	},
@@ -96698,7 +96686,7 @@ rCV
 wjr
 bRg
 bRg
-mrC
+bRg
 bRg
 wjr
 bgH
@@ -97597,7 +97585,7 @@ amk
 amE
 aUj
 fcj
-ahr
+qar
 agQ
 kik
 amr
@@ -99053,7 +99041,7 @@ bij
 qsM
 bRg
 bRg
-mrC
+bRg
 bRg
 wjr
 dpr
@@ -101884,7 +101872,7 @@ rCV
 rCV
 mTi
 mTi
-hUz
+mTi
 mTi
 khK
 gDh
@@ -105320,7 +105308,7 @@ gbq
 qcc
 gbq
 qKx
-alI
+mrC
 ajY
 sAE
 afP
@@ -105353,7 +105341,7 @@ rCV
 mTi
 wVn
 vpK
-gIF
+aBk
 aBk
 egV
 aBk
@@ -106610,7 +106598,7 @@ cbD
 jWl
 caH
 cdw
-owP
+cdw
 cdw
 xaO
 xqW
@@ -107020,7 +107008,7 @@ aBk
 aBk
 aBk
 aBk
-aBk
+owP
 aBk
 aHb
 wbv
@@ -107952,7 +107940,7 @@ aBk
 aBk
 aBk
 aBk
-gIF
+aBk
 aBk
 aFb
 aBk
@@ -110007,7 +109995,7 @@ anT
 aod
 hHN
 lSu
-apH
+gIF
 aqd
 aqd
 anP
@@ -112137,7 +112125,7 @@ bgH
 wUw
 ucl
 aFz
-vGq
+aFz
 aFz
 bbr
 aFz
@@ -113786,7 +113774,7 @@ aFz
 aFz
 aFz
 aFz
-vGq
+aFz
 aFz
 aFz
 aFz
@@ -114519,7 +114507,7 @@ gGC
 gGC
 eUj
 sGQ
-qar
+sCp
 sCp
 dRK
 gGC
@@ -116101,7 +116089,7 @@ bAw
 bAw
 kvS
 bAw
-nzU
+lLB
 bAw
 bAw
 tEy
