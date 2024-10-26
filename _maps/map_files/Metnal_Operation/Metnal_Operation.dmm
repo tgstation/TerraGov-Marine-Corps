@@ -2998,6 +2998,10 @@
 	dir = 4
 	},
 /area/metnal/inside/research)
+"ckd" = (
+/obj/structure/closet/secure_closet/scientist,
+/turf/open/floor/prison/sterilewhite,
+/area/metnal/inside/research)
 "ckA" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -26059,12 +26063,6 @@
 	},
 /turf/open/floor/iron/dark/herringbone,
 /area/metnal/inside/landingzoneone)
-"slY" = (
-/obj/structure/prop/mainship/research/tankcompressor,
-/turf/open/floor/prison/whitepurple{
-	dir = 4
-	},
-/area/metnal/inside/research)
 "slZ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -31115,12 +31113,6 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
-"vAx" = (
-/obj/structure/closet/secure_closet/scientist,
-/turf/open/floor/prison/whitepurple{
-	dir = 4
-	},
-/area/metnal/inside/research)
 "vAK" = (
 /obj/effect/turf_decal/siding/dark_red{
 	dir = 1
@@ -62189,7 +62181,7 @@ agr
 agr
 dxo
 sNl
-gmg
+ckd
 dzu
 eAu
 kKa
@@ -62391,9 +62383,9 @@ tKV
 agr
 pyj
 bKc
-slY
-vAx
-vAx
+bKc
+bKc
+bKc
 oiM
 mkk
 agr
