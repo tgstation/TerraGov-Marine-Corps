@@ -51,7 +51,9 @@
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage,
 	)
+	///multiplier on plasma amount vs damage that is recieved on attack
 	var/plasma_damage_dealt_mult = 1.5
+	///multiplier on plasma amount vs damage that is recieved on being attacked
 	var/plasma_damage_recieved_mult = 0.5
 
 /datum/xeno_caste/ravager/on_caste_applied(mob/xenomorph)

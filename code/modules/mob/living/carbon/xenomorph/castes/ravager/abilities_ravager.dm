@@ -147,23 +147,27 @@
 	var/list/atom/movable/atoms_to_ravage = get_step(owner, owner.dir).contents.Copy()
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
 	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
+	///actual target we will check adjacency with
+	var/atom/adjacent_relative = X
 	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
 		if(X.plasma_stored >= STAGE_TWO_BLOODTHIRST)
 			var/turf/far = get_step(get_step(owner, owner.dir), owner.dir)
 			atoms_to_ravage += far.contents
 			atoms_to_ravage += get_step(far, turn(owner.dir, 90)).contents
 			atoms_to_ravage += get_step(far, turn(owner.dir, -90)).contents
-			if(X.plasma_stored >= STAGE_THREE_BLOODTHIRST)
-				far = get_step(far, owner.dir)
-				atoms_to_ravage += far.contents
-				atoms_to_ravage += get_step(far, turn(owner.dir, 90)).contents
-				atoms_to_ravage += get_step(far, turn(owner.dir, -90)).contents
+			var/turf/test = get_step(owner, owner.dir)
+			if(X.plasma_stored >= STAGE_THREE_BLOODTHIRST && test.Adjacent(far))
+				adjacent_relative = far
+				var/turf/furthest = get_step(far, owner.dir)
+				atoms_to_ravage += furthest.contents
+				atoms_to_ravage += get_step(furthest, turn(owner.dir, 90)).contents
+				atoms_to_ravage += get_step(furthest, turn(owner.dir, -90)).contents
 
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
 		if(ishitbox(ravaged) || isvehicle(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage) //Handles APC/Tank stuff. Has to be before the !ishuman check or else ravage does work properly on vehicles.
 			continue
-		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE) || !X.Adjacent(ravaged))
+		if(!(ravaged.resistance_flags & XENO_DAMAGEABLE) || !adjacent_relative.Adjacent(ravaged))
 			continue
 		if(!ishuman(ravaged))
 			ravaged.attack_alien(X, X.xeno_caste.melee_damage)
