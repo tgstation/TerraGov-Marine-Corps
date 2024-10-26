@@ -1609,10 +1609,6 @@
 /obj/effect/spawner/random/misc/structure/curtain/medical,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/experimentation)
-"bkv" = (
-/obj/structure/prop/urban/misc/machinery/screens/bluemultimonitorsmall_on,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/bridge)
 "bkA" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/floor/prison/plate,
@@ -3002,10 +2998,6 @@
 	dir = 4
 	},
 /area/metnal/inside/research)
-"ckd" = (
-/obj/structure/prop/urban/misc/machinery/screens/redalert,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/bridge)
 "ckA" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -8862,7 +8854,6 @@
 /turf/open/floor/mainship/silver,
 /area/metnal/inside/cargo)
 "gns" = (
-/obj/machinery/computer/nt_access,
 /obj/structure/table/black,
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
@@ -24780,10 +24771,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
-"rmy" = (
-/obj/structure/prop/urban/misc/machinery/screens/multimonitorsmall_on,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/bridge)
 "rmH" = (
 /obj/structure/prop/vehicle/truck/truckcargo,
 /obj/effect/decal/cleanable/blood/oil/streak,
@@ -54045,8 +54032,8 @@ krz
 gns
 afl
 dcH
-bkv
-rmy
+krz
+krz
 byn
 eQw
 nsf
@@ -55055,8 +55042,8 @@ krz
 gPM
 nsf
 hEB
-ckd
-rmy
+krz
+krz
 wVg
 hEB
 bdR
