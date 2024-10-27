@@ -207,7 +207,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/sentinel.dmi'
 	desc = "Throws a lump of compressed acid to stick to a target, which will leave a trail of acid behind them."
 	ability_cost = 75
-	cooldown_duration = 5 SECONDS
+	cooldown_duration = 45 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
 	)
