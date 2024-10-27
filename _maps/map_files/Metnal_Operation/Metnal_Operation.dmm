@@ -3487,14 +3487,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/cafeteria)
-"cDO" = (
-/obj/structure/nuke_disk_candidate{
-	set_associations = list("set1")
-	},
-/turf/open/floor/prison/whitegreen{
-	dir = 8
-	},
-/area/metnal/inside/experimentation)
 "cEf" = (
 /obj/effect/landmark/weed_node,
 /turf/open/lavaland/basalt,
@@ -10824,7 +10816,7 @@
 /area/metnal/outside/northwest)
 "hLc" = (
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set2","set3")
+	set_associations = list("set1","set2","set3")
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
@@ -36534,7 +36526,7 @@ edg
 edg
 edg
 fuu
-cDO
+kqb
 vLI
 nSb
 kqb
