@@ -98,7 +98,7 @@
 /// Start the equipping process. This is the proc you should yield in.
 /// Returns TRUE/FALSE depending on if it is allowed.
 /datum/strippable_item/proc/start_equip(atom/source, obj/item/equipping, mob/user)
-	if(isclothing(source))
+	if(isclothing(equipping))
 		source.visible_message(
 			"<span class='notice'>[user] tries to put [equipping] on [source].</span>",
 			"<span class='notice'>[user] tries to put [equipping] on you.</span>",
