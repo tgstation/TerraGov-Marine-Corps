@@ -57,6 +57,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/internal_injuries = 0
 	var/internal_injuries_inflicted = 0
 
+	var/grenade_hand_delimbs = 0
+
 	//Medical
 	var/self_heals = 0
 	var/heals = 0
@@ -172,6 +174,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 
 	if(grenades_primed)
 		stats += "[grenades_primed] grenade\s thrown."
+	if(grenade_hand_delimbs)
+		stats += "You blew off [grenade_hand_delimbs] hand[grenade_hand_delimbs != 1 ? "s" : ""] while holding grenades like an idiot."
 	if(traps_created)
 		stats += "[traps_created] trap\s/mine\s/hazard\s placed."
 	if(grenades_primed || traps_created)

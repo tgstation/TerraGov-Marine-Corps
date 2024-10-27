@@ -666,12 +666,12 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
 #define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
 #define GORGER_TRANSFUSION_HEAL 0.3 // in %
-#define GORGER_OPPOSE_COST 100
+#define GORGER_OPPOSE_COST 80
 #define GORGER_OPPOSE_HEAL 0.2 // in %
-#define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
+#define GORGER_PSYCHIC_LINK_CHANNEL 5 SECONDS
 #define GORGER_PSYCHIC_LINK_RANGE 15
 #define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
-#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.2 //in %
+#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.5 //in %
 #define GORGER_CARNAGE_HEAL 0.2
 #define GORGER_CARNAGE_MOVEMENT -0.5
 #define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left
