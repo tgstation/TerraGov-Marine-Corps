@@ -1,9 +1,0 @@
-author: "Sun-Soaked"
-delete-after: True
-changes:
-  - rscadd: "the Gorger Psylink, Infusion, and Oppose abilities on Gorger now have vfx."
-  - qol: "gorger drain now briefly stops gorger, preventing them from instantly cancelling it on accident."
-  - balance: "buffs oppose, increasing the damage and stagger on a direct marine hit and reducing the cost slightly."
-  - balance: "gorger psylink now activates more quickly, but is cancelled more easily (at 50% gorger hp instead of 20%)"
-  - imageadd: "A vfx shatter effect for Oppose."
-  - spellcheck: "removed repeated \"Into the ground\" from chat feedback on oppose."
