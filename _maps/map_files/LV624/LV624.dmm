@@ -3295,6 +3295,12 @@
 /obj/machinery/floodlight/colony,
 /turf/open/floor,
 /area/lv624/ground/river2)
+"bUc" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/jungle/vines,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle1)
 "bUv" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/platform,
@@ -3951,11 +3957,6 @@
 	},
 /turf/open/floor,
 /area/lv624/ground/river2)
-"cJL" = (
-/obj/structure/flora/jungle/planttop1,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle6)
 "cKj" = (
 /obj/effect/spawner/random/misc/structure/closet/tool,
 /obj/machinery/light{
@@ -7427,6 +7428,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/bar,
 /area/lv624/lazarus/canteen)
+"gPh" = (
+/obj/structure/flora/jungle/plantbot1,
+/turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
+/area/lv624/ground/jungle1)
 "gPG" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -9987,11 +9992,6 @@
 	dir = 8
 	},
 /area/lv624/lazarus/secure_storage)
-"jIK" = (
-/obj/structure/flora/jungle/plantbot1,
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/ground/grass,
-/area/lv624/ground/jungle6)
 "jIM" = (
 /obj/structure/rack,
 /obj/item/stack/sheet/metal{
@@ -10119,6 +10119,12 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle5)
+"jOv" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/open/ground/grass,
+/area/lv624/ground/jungle6)
 "jOx" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/ground/grass,
@@ -12608,6 +12614,10 @@
 	dir = 10
 	},
 /area/shuttle/drop2/lz2)
+"mGH" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/closed/gm/dense,
+/area/lv624/lazarus/spaceport2)
 "mGL" = (
 /obj/structure/flora/jungle/vines,
 /obj/structure/flora/jungle/vines/heavy,
@@ -15776,6 +15786,13 @@
 	},
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/main_hall)
+"qAG" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/gm/dense,
+/area/lv624/ground/caves/rock)
 "qAT" = (
 /obj/structure/flora/jungle/vines,
 /turf/open/ground/grass,
@@ -16530,6 +16547,13 @@
 	},
 /turf/open/floor/tile/darkish,
 /area/lv624/lazarus/sandtemple)
+"rnY" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/obj/structure/flora/jungle/planttop1,
+/turf/open/ground/grass,
+/area/lv624/ground/jungle1)
 "rog" = (
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 1
@@ -17627,6 +17651,9 @@
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/lv624/lazarus/spaceport)
+"sup" = (
+/turf/open/ground/grass,
+/area/lv624/ground/caves/rock)
 "suH" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/weed_node,
@@ -34201,9 +34228,9 @@ mOs
 mOs
 auJ
 oGz
-iPh
 avd
-xWM
+jOv
+gtS
 gtS
 qZa
 qZa
@@ -34381,12 +34408,12 @@ avd
 auJ
 kUz
 mOs
-mOs
-mOs
 avd
-aJX
-aJX
-kdu
+avd
+mOs
+qAG
+mGH
+rRx
 rRx
 rRx
 rRx
@@ -34564,13 +34591,13 @@ avd
 avd
 auJ
 avd
-aJX
 avd
-mOs
 mOs
 kdu
 tSf
 bdP
+wKQ
+wKQ
 wKQ
 wKQ
 wKQ
@@ -34747,8 +34774,6 @@ avd
 avd
 avd
 avd
-avd
-mOs
 vgb
 kdu
 tSf
@@ -34764,17 +34789,19 @@ vvX
 vvX
 vvX
 vvX
+vvX
+vvX
+vvX
+vvX
+vvX
+vvX
+vvX
+vvX
+vvX
+vvX
+vvX
+vvX
 tFj
-vvX
-vvX
-vvX
-vvX
-vvX
-vvX
-vvX
-vvX
-vvX
-vvX
 vvX
 vvX
 uvP
@@ -34928,9 +34955,7 @@ avd
 auJ
 mOs
 mOs
-avd
-aEz
-vgb
+auJ
 mOs
 kdu
 tSf
@@ -34945,21 +34970,23 @@ vvX
 vvX
 vvX
 vvX
-tFj
-vvX
-vvX
-vvX
-vvX
-vvX
-vvX
-vvX
-vvX
 vvX
 tFj
 vvX
 vvX
 vvX
-uvP
+vvX
+vvX
+vvX
+vvX
+vvX
+vvX
+vvX
+tFj
+vvX
+vvX
+vvX
+kmP
 rRx
 hrS
 vGi
@@ -35109,9 +35136,7 @@ auJ
 avd
 aJX
 mOs
-mOs
-avd
-avd
+sup
 jOx
 mOs
 kdu
@@ -35141,6 +35166,8 @@ gEa
 gEa
 gEa
 hIe
+vvX
+vvX
 uvP
 wfA
 cDx
@@ -35294,8 +35321,6 @@ vgb
 avd
 avd
 avd
-avd
-avd
 kdu
 tSf
 rOf
@@ -35323,6 +35348,8 @@ kSE
 kSE
 mGr
 kYG
+vvX
+vvX
 uvP
 wfA
 cDx
@@ -35473,8 +35500,6 @@ mOs
 aJX
 avd
 vgb
-aJX
-avd
 vgb
 yft
 avd
@@ -35505,6 +35530,8 @@ gfm
 szs
 cRC
 kYG
+vvX
+vvX
 uvP
 wfA
 hrS
@@ -35655,8 +35682,6 @@ rgo
 avd
 jOx
 avd
-avd
-vgb
 yft
 avd
 avd
@@ -35687,6 +35712,8 @@ szs
 szs
 cRC
 kYG
+vvX
+vvX
 uvP
 wfA
 cDx
@@ -35837,8 +35864,6 @@ avd
 avd
 mOs
 mOs
-avd
-auJ
 auJ
 aJX
 mOs
@@ -35869,6 +35894,8 @@ szs
 szs
 cRC
 kYG
+vvX
+vvX
 uvP
 tBK
 kdu
@@ -36019,10 +36046,8 @@ avd
 avd
 vgb
 mOs
-vgb
-aEz
-avd
 mOs
+avd
 mOs
 kdu
 tSf
@@ -36051,6 +36076,8 @@ szs
 szs
 cRC
 kYG
+vvX
+vvX
 uvP
 rRx
 kdu
@@ -36203,8 +36230,6 @@ avd
 avd
 avd
 avd
-avd
-mOs
 mOs
 kdu
 tSf
@@ -36233,7 +36258,9 @@ szs
 szs
 cRC
 kYG
-uvP
+tFj
+vvX
+kmP
 rRx
 mOs
 cQj
@@ -36384,8 +36411,6 @@ auJ
 auJ
 auJ
 auJ
-jxI
-auJ
 auJ
 mOs
 kdu
@@ -36415,6 +36440,8 @@ qQD
 szs
 cRC
 kYG
+vvX
+vvX
 uvP
 tSf
 mOs
@@ -36564,9 +36591,7 @@ avd
 avd
 avd
 kir
-auJ
-avd
-jxI
+vgb
 mOs
 auJ
 jOx
@@ -36597,6 +36622,8 @@ szs
 szs
 cRC
 kYG
+vvX
+vvX
 uvP
 tSf
 mOs
@@ -36745,11 +36772,9 @@ xWM
 dhk
 avd
 avd
-avd
-avd
-auJ
-auJ
-jxI
+mOs
+mOs
+vXZ
 auJ
 mOs
 kdu
@@ -36779,6 +36804,8 @@ szs
 szs
 cRC
 kYG
+vvX
+vvX
 uvP
 tSf
 gWm
@@ -36926,13 +36953,11 @@ tZS
 xWM
 avd
 cbx
-avd
-avd
+mOs
+mOs
+mOs
 aJX
 avd
-auJ
-mOs
-mOs
 mOs
 kdu
 tSf
@@ -36961,6 +36986,8 @@ gfm
 szs
 cRC
 kYG
+vvX
+vvX
 uvP
 tSf
 tSf
@@ -37109,13 +37136,11 @@ xWM
 aJX
 aJX
 kir
-cJL
-jIK
-avd
-auJ
-avd
 mOs
-mOs
+wEJ
+aSV
+avd
+avd
 kdu
 tSf
 rOf
@@ -37143,6 +37168,8 @@ qqj
 qqj
 drX
 kYG
+vvX
+vvX
 uvP
 jkz
 edz
@@ -37293,10 +37320,8 @@ aJX
 avd
 xWM
 xWM
-xWM
 avd
-mOs
-mOs
+avd
 mOs
 kdu
 tSf
@@ -37325,6 +37350,8 @@ vEW
 vEW
 vEW
 hIe
+vvX
+vvX
 vbu
 hiy
 ybc
@@ -37475,8 +37502,6 @@ iPh
 aJX
 mKd
 tlt
-xWM
-mKd
 mKd
 xWM
 utn
@@ -37493,7 +37518,9 @@ vvX
 vvX
 vvX
 vvX
+vvX
 tFj
+vvX
 vvX
 vvX
 vvX
@@ -37657,8 +37684,6 @@ avd
 xMw
 xWM
 sSz
-nny
-xWM
 mKd
 aJs
 oXY
@@ -37676,7 +37701,9 @@ vvX
 vvX
 vvX
 vvX
-tFj
+vvX
+vvX
+vvX
 vvX
 xWW
 vvX
@@ -37840,8 +37867,6 @@ avd
 mKd
 xWM
 xWM
-xWM
-xWM
 aJu
 utn
 kdu
@@ -37857,6 +37882,8 @@ vvX
 vvX
 vvX
 vvX
+vvX
+tFj
 vvX
 vvX
 tFj
@@ -38022,14 +38049,14 @@ avd
 avd
 mOs
 mOs
-mOs
-mOs
 auJ
 auJ
 kdu
 tSf
 aFp
 gLs
+ctO
+ctO
 ctO
 ctO
 ctO
@@ -38206,9 +38233,9 @@ mOs
 mOs
 mOs
 mOs
-mOs
-mOs
 kdu
+rRx
+rRx
 tSf
 tSf
 tSf
@@ -38388,8 +38415,8 @@ mOs
 mOs
 mOs
 mOs
-mOs
-mOs
+kdu
+kdu
 kdu
 rhp
 rhp
@@ -56080,8 +56107,8 @@ tGb
 oxg
 oxg
 twQ
-bdh
-qdJ
+oxg
+bUc
 mOs
 mOs
 mOs
@@ -56259,12 +56286,12 @@ ixE
 wvT
 wvT
 wvT
+wvT
+wvT
 bTL
 wvT
 rOQ
 bdh
-mOs
-mOs
 mOs
 mOs
 xqy
@@ -56442,11 +56469,11 @@ eHW
 xoN
 xoN
 xoN
+xoN
+xoN
 wvT
 rOQ
 gCL
-mOs
-mOs
 mOs
 mOs
 ylZ
@@ -56623,11 +56650,11 @@ hOU
 hOU
 hOU
 hOU
+cSr
+cSr
 iOa
 wvT
 wjg
-mOs
-mOs
 mOs
 mOs
 mOs
@@ -56805,11 +56832,11 @@ tbe
 tbe
 tbe
 tbe
+tbe
+tbe
 vJM
 wvT
 wjg
-mOs
-mOs
 mOs
 mOs
 mOs
@@ -56987,13 +57014,13 @@ ozj
 tbe
 tbe
 tbe
+tbe
+tbe
 vBV
 wvT
 elD
 ylZ
 nYm
-mOs
-mOs
 mOs
 wpO
 gCL
@@ -57169,13 +57196,13 @@ nZb
 tbe
 ofx
 vbA
+tbe
+tbe
 uYo
 wvT
 eXI
 kHK
 bdh
-gCL
-mEp
 xqy
 xqy
 cin
@@ -57351,13 +57378,13 @@ vbA
 tbe
 kqW
 vbA
+tbe
+tbe
 vJM
 wvT
 qay
 ylZ
 bdh
-mEp
-gCL
 ylZ
 njH
 xqy
@@ -57533,13 +57560,13 @@ vbA
 tbe
 nwx
 hny
+tbe
+tbe
 uYo
 wvT
 elD
 ylZ
 xqy
-mEp
-gCL
 ylZ
 ylZ
 obT
@@ -57715,13 +57742,13 @@ tbe
 hPw
 rKm
 sQz
+tbe
+tbe
 uYo
 wvT
 elD
 rYQ
 gGt
-gCL
-bdh
 bdh
 ylZ
 wFE
@@ -57897,12 +57924,12 @@ tbe
 seb
 tbe
 cEb
+tbe
+tbe
 vJM
 wvT
 rOQ
 bwI
-gCL
-mEp
 gCL
 bdh
 ylZ
@@ -58079,13 +58106,13 @@ tbe
 aUE
 dSX
 ePW
+tbe
+tbe
 gkh
 wvT
-rOQ
+rnY
 sgf
 rMB
-mOs
-mOs
 gCL
 bdh
 bdh
@@ -58261,12 +58288,12 @@ cSr
 cSr
 cSr
 cSr
+cSr
+cSr
 vxd
 wvT
 wjg
 xqy
-mOs
-mOs
 mOs
 mOs
 wpO
@@ -58443,13 +58470,13 @@ iSz
 iSz
 iSz
 xMb
+tbe
+tbe
 uYo
 euA
 qnE
-ylZ
+gPh
 gCL
-mOs
-mOs
 mOs
 gCL
 wpO
@@ -58625,13 +58652,13 @@ wVT
 wVT
 rBn
 arP
+tbe
+tbe
 uYo
 euA
 mQf
 ylZ
 nYm
-mOs
-mOs
 gCL
 bdh
 gCL
@@ -58807,13 +58834,13 @@ ycR
 ydT
 pSp
 arP
+tbe
+tbe
 uYo
 euA
 iol
 mOs
 bdh
-gCL
-gCL
 bdh
 ylZ
 ylZ
@@ -58989,13 +59016,13 @@ ydT
 ydT
 pSp
 arP
+tbe
+tbe
 uYo
 euA
 iol
 mOs
 mOs
-vwk
-gCL
 ylZ
 ylZ
 rGT
@@ -59171,13 +59198,13 @@ ydT
 ydT
 pSp
 arP
+tbe
+tbe
 uYo
 euA
 iol
 mOs
 mOs
-gCL
-gCL
 ylZ
 obT
 ylZ
@@ -59353,13 +59380,13 @@ ydT
 ydT
 pSp
 arP
+tbe
+tbe
 uYo
 euA
 iol
 mOs
 mOs
-gCL
-gCL
 ylZ
 ylZ
 ylZ
@@ -59535,13 +59562,13 @@ ydT
 ydT
 pSp
 arP
-uYo
+ozj
+tbe
+vBV
 euA
 iol
 mOs
-gCL
-bdh
-gCL
+vwk
 gCL
 bdh
 bwI
@@ -59717,14 +59744,14 @@ ydT
 ydT
 pSp
 arP
+tbe
+tbe
 uYo
 euA
 iol
 kHK
 bdh
-mOs
-mOs
-mOs
+bdh
 mOs
 mOs
 bdh
@@ -59899,13 +59926,13 @@ ydT
 ydT
 pSp
 arP
+tbe
+tbe
 uYo
 euA
 iol
 ylZ
-mOs
-mOs
-mOs
+bdh
 mOs
 mOs
 mOs
@@ -60081,13 +60108,13 @@ ydT
 ydT
 pSp
 arP
+tbe
+tbe
 uYo
 euA
 iol
 rYQ
 gCL
-mOs
-mOs
 mOs
 mOs
 mOs
@@ -60263,13 +60290,13 @@ ycR
 ydT
 pSp
 arP
+tbe
+tbe
 uYo
 euA
 iol
 bdh
 gCL
-mEp
-mOs
 mOs
 mOs
 mOs
@@ -60445,14 +60472,14 @@ bZH
 bZH
 hwv
 arP
+tbe
+tbe
 uYo
 euA
 iol
 vwk
 mEp
-bdh
 bwI
-mOs
 mOs
 mOs
 mOs
@@ -60627,15 +60654,15 @@ jEX
 jEX
 jEX
 xMb
+tbe
+tbe
 uYo
 euA
 iol
 gCL
 mEp
+gCL
 bdh
-gCL
-gCL
-mOs
 mOs
 mOs
 mOs
@@ -60809,13 +60836,13 @@ tIX
 tIX
 tIX
 tIX
+tIX
+tIX
 dxn
 euA
 iol
 mOs
-mOs
-gCL
-gCL
+sup
 gCL
 gCL
 mOs
@@ -60993,11 +61020,11 @@ euA
 euA
 euA
 euA
+euA
+euA
 iol
 mOs
 mOs
-gCL
-gCL
 gCL
 bdh
 gCL
@@ -61176,11 +61203,11 @@ sFU
 sFU
 sFU
 sFU
+sFU
+sFU
 mOs
-mOs
-mOs
-vwk
-bdh
+gCL
+bwI
 bdh
 bwI
 bdh

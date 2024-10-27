@@ -261,7 +261,7 @@
 	name = "low velocity chemical shell"
 	icon_state = "recoilless_rifle_smoke"
 	hud_state = "shell_le"
-	ammo_behavior_flags = AMMO_SNIPER|AMMO_IFF //We want this to specifically go farther than onscreen range and pass through friendlies.
+	ammo_behavior_flags = AMMO_SNIPER
 	accurate_range = 21
 	max_range = 21
 	damage = 10
@@ -479,24 +479,24 @@
 	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	var/turf/det_turf = get_turf(target_mob)
+	var/turf/det_turf = get_step_towards(target_mob, proj)
 	staggerstun(target_mob, proj, slowdown = 0.2, knockback = 1)
 	drop_nade(det_turf)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	var/turf/det_turf = target_obj.allow_pass_flags & PASS_PROJECTILE ? get_step_towards(target_obj, proj) : target_obj.loc
+	var/turf/det_turf = get_step_towards(target_obj, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	var/turf/det_turf = get_step_towards(target_turf, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
 /datum/ammo/rocket/atgun_shell/beehive/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	var/turf/det_turf = get_step_towards(target_turf, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
@@ -613,3 +613,27 @@
 		proj.proj_max_range -= 5
 		return
 	proj.proj_max_range = 0
+
+/datum/ammo/rocket/icc_lowvel_heat
+	name = "Low Velocity HEAT shell"
+	icon_state = "recoilless_rifle_heat"
+	hud_state = "shell_heat"
+	ammo_behavior_flags = AMMO_SNIPER
+	shell_speed = 1
+	damage = 180
+	penetration = 100
+	sundering = 0
+
+/datum/ammo/rocket/icc_lowvel_heat/drop_nade(turf/T)
+	explosion(T, flash_range = 1)
+
+/datum/ammo/rocket/icc_lowvel_high_explosive
+	name = "Low Velocity HE shell"
+	damage = 50
+	penetration = 100
+	sundering = 10
+	ammo_behavior_flags = AMMO_SNIPER // We want this to specifically go over onscreen range.
+	shell_speed = 1
+
+/datum/ammo/rocket/icc_lowvel_high_explosive/drop_nade(turf/T)
+	explosion(T, 0, 2, 3, 0, 2)

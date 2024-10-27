@@ -441,6 +441,9 @@
 /obj/structure/prop/mainship/hangar_stencil/two
 	icon_state = "dropship2"
 
+/obj/structure/prop/mainship/hangar_stencil/three
+	icon_state = "dropship3"
+
 /obj/structure/prop/mainship/brokengen //all the aesthetics of having a generator without any of the function
 	name = "\improper G-11 geothermal generator"
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. The powercell is missing and strange lines of text scroll by on its status panel, you get the feeling there's no fixing it."
@@ -981,6 +984,26 @@
 	desc = "A large stone brick fireplace."
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "fireplace"
+
+/obj/structure/prop/mainship/vat
+	name = "Stasis Vat"
+	desc = "A large vat used to store humans."
+	icon = 'icons/obj/machines/cryogenics2.dmi'
+	icon_state = "cell_off"
+	hit_sound = 'sound/effects/Glasshit.ogg'
+	max_integrity = 120
+	resistance_flags = XENO_DAMAGEABLE
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/mainship/vat/full
+	icon_state = "cell_off_occupied"
+
+/obj/structure/prop/mainship/vat/broken
+	desc = "A large vat used to store humans. This one doesnt seem functional..."
+	icon_state = "cell_broken"
+
+/obj/structure/prop/mainship/vat/broken/bloody
+	icon_state = "cell_bloody"
 
 //items props
 

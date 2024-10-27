@@ -33,7 +33,7 @@
 	if(!QDELETED(src))
 		gib()
 
-/mob/living/carbon/xenomorph/puppet/Life()
+/mob/living/carbon/xenomorph/puppet/Life(seconds_per_tick, times_fired)
 	. = ..()
 	var/atom/movable/master = weak_master?.resolve()
 	if(!master)

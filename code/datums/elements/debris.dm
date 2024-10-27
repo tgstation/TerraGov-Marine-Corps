@@ -81,7 +81,7 @@
 		debris_visuals.particles.spawning = debris_amount
 		debris_visuals.particles.scale = debris_scale
 	smoke_visuals.layer = ABOVE_OBJ_LAYER + 0.01
-	if(P.ammo.sound_bounce)
+	if(P.ammo.sound_bounce && prob(50))
 		var/pitch = 0
 		if(P.ammo.ammo_behavior_flags & AMMO_SOUND_PITCH)
 			pitch = 55000

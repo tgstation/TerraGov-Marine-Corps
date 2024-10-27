@@ -7,6 +7,10 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	icon_state = "deployable"
 	layer = ABOVE_ALL_MOB_LAYER//it flies after all
 
+/obj/machinery/camera/deployable/Initialize(mapload, newDir)
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, PROC_REF(on_mission_end))
+
 /obj/machinery/camera/deployable/update_icon_state()
 	. = ..()
 	if(obj_integrity <= 0)
@@ -14,6 +18,10 @@ GLOBAL_VAR_INIT(deployed_cameras, 0)
 	else
 		icon_state = "deployable"
 
+///Deletes itself on campaign mission end
+/obj/machinery/camera/deployable/proc/on_mission_end(datum/source, /datum/campaign_mission/ending_mission, winning_faction)
+	SIGNAL_HANDLER
+	qdel(src)
 
 /obj/item/deployable_camera
 	name = "Undeployed \"Huginn\" ROC-58 Observer"

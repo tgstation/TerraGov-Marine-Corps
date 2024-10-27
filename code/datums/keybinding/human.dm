@@ -36,7 +36,7 @@
 	quick_equip_slot = 5
 
 /datum/keybinding/human/unique_action
-	hotkey_keys = list("C")
+	hotkey_keys = list("Space")
 	name = "unique_action"
 	full_name = "Perform unique action"
 	keybind_signal = COMSIG_KB_UNIQUEACTION
@@ -46,6 +46,11 @@
 	name = "rail_attachment"
 	full_name = "Activate Rail attachment"
 	keybind_signal = COMSIG_KB_RAILATTACHMENT
+
+/datum/keybinding/human/muzzle_attachment
+	name = "muzzle_attachment"
+	full_name = "Activate Barrel attachment"
+	keybind_signal = COMSIG_KB_MUZZLEATTACHMENT
 
 /datum/keybinding/human/underrail_attachment
 	name = "underrail_attachment"

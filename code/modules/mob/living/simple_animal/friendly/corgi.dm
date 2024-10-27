@@ -92,7 +92,7 @@
 	icon_dead = "narsian_dead"
 
 
-/mob/living/simple_animal/corgi/narsie/Life()
+/mob/living/simple_animal/corgi/narsie/Life(seconds_per_tick, times_fired)
 	. = ..()
 	for(var/mob/living/simple_animal/P in range(1, src))
 		if(P == src || !prob(5))

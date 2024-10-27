@@ -292,11 +292,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/standard_agls/cloak)
 	cost = 30
 
-/datum/supply_packs/weapons/ags_tanglefoot
-	name = "AGLS-37 AGL Tanglefoot Grenades"
-	contains = list(/obj/item/ammo_magazine/standard_agls/tanglefoot)
-	cost = 55
-
 /datum/supply_packs/weapons/antitankgun
 	name = "AT-36 Anti Tank Gun"
 	contains = list(/obj/item/weapon/gun/standard_atgun)
@@ -834,6 +829,11 @@ WEAPONS
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
 	cost = 600
 
+/datum/supply_packs/weapons/chainsaw
+	name = "Chainsaw"
+	contains = list(/obj/item/weapon/twohanded/chainsaw)
+	cost = 500
+
 /datum/supply_packs/weapons/smart_pistol
 	name = "TX13 smartpistol"
 	contains = list(/obj/item/weapon/gun/pistol/smart_pistol)
@@ -1281,6 +1281,11 @@ CLOTHING
 	name = "Double pack of night vision batteries"
 	contains = list(/obj/item/cell/night_vision_battery, /obj/item/cell/night_vision_battery)
 	cost = 100
+
+/datum/supply_packs/clothing/saddle
+	name = "Runner Saddle"
+	contains = list(/obj/item/storage/backpack/marine/duffelbag/xenosaddle)
+	cost = 120
 
 /*******************************************************************************
 MEDICAL
@@ -1792,12 +1797,6 @@ Imports
 	contains = list(/obj/item/ammo_magazine/smg/ppsh/extended)
 	cost = 3
 
-/datum/supply_packs/imports/sawnoff
-	name = "Sawn Off Shotgun"
-	contains = list(/obj/item/weapon/gun/shotgun/double/sawn)
-	cost = 150
-	available_against_xeno_only = TRUE
-
 /datum/supply_packs/imports/leveraction
 	name = "Lever Action Rifle"
 	contains = list(/obj/item/weapon/gun/shotgun/pump/lever)
@@ -2035,6 +2034,11 @@ VEHICLES
 	contains = list(/obj/item/uav_turret/droid)
 	cost = 200
 	containertype = /obj/structure/closet/crate/weapon
+
+/datum/supply_packs/vehicles/tiny_uv
+	name = "Tiny unmanned vehicle - Skink"
+	contains = list(/obj/item/deployable_vehicle/tiny)
+	cost = 50
 
 /datum/supply_packs/vehicles/light_uv
 	name = "Light unmanned vehicle - Iguana"
@@ -2495,11 +2499,6 @@ FACTORY
 	name = "AGLS Cloak magazine assembly refill"
 	contains = list(/obj/item/factory_refill/agls_cloak_refill)
 	cost = 200
-
-/datum/supply_packs/factory/agls_tanglefoot_refill
-	name = "AGLS Tanglefoot magazine assembly refill"
-	contains = list(/obj/item/factory_refill/agls_tanglefoot_refill)
-	cost = 400
 
 /datum/supply_packs/factory/atgun_aphe_refill
 	name = "AT-36 AP-HE shell assembly refill"

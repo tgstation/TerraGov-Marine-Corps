@@ -18,7 +18,7 @@
 	var/bonus_projectile_quantity = 5
 
 /datum/ammo/bullet/micro_rail/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	var/turf/det_turf = get_step_towards(target_turf, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0, det_turf, 1)

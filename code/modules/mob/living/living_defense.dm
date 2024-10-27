@@ -200,7 +200,7 @@
 		return
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return FALSE
-	if(hard_armor.getRating(FIRE) >= 100)
+	if(soft_armor.getRating(FIRE) >= 100)
 		to_chat(src, span_warning("You are untouched by the flames."))
 		return FALSE
 	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being affected.

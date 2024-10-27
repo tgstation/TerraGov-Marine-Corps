@@ -214,11 +214,9 @@
 
 	to_chat(X, span_xenonotice("We now have <b>[LAZYLEN(X.tunnels)] of [HIVELORD_TUNNEL_SET_LIMIT]</b> tunnels."))
 
-	var/msg = stripped_input(X, "Give your tunnel a descriptive name:", "Tunnel Name")
 	newt.tunnel_desc = "[get_area(newt)] (X: [newt.x], Y: [newt.y])"
-	newt.name += " [msg]"
 
-	xeno_message("[X.name] has built a new tunnel named [newt.name] at [newt.tunnel_desc]!", "xenoannounce", 5, X.hivenumber)
+	xeno_message("[X.name] has built a new tunnel at [newt.tunnel_desc]!", "xenoannounce", 5, X.hivenumber)
 
 	if(LAZYLEN(X.tunnels) > HIVELORD_TUNNEL_SET_LIMIT) //if we exceed the limit, delete the oldest tunnel set.
 		var/obj/structure/xeno/tunnel/old_tunnel = X.tunnels[1]

@@ -111,8 +111,7 @@
 	if(isanimal(parent))
 		var/mob/living/simple_animal/animal_parent = parent
 		animal_parent.toggle_ai(AI_ON)
-	var/datum/component/ai_component = mob_parent.GetComponent(/datum/component/ai_controller)
-	ai_component.RemoveComponent()
+	mob_parent.remove_component(/datum/component/ai_controller)
 
 ///Handles what the slug does on hearing its owner
 /datum/component/companion/proc/handle_mob_master_speech(datum/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)

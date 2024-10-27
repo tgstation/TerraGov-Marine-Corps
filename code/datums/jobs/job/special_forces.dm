@@ -21,7 +21,7 @@
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/specops
 	w_uniform = /obj/item/clothing/under/marine/specops
-	shoes = /obj/item/clothing/shoes/combat
+	shoes = /obj/item/clothing/shoes/marine/srf/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/specops
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/modular/m10x
@@ -80,7 +80,7 @@
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/specops
 	w_uniform = /obj/item/clothing/under/marine/specops
-	shoes = /obj/item/clothing/shoes/combat
+	shoes = /obj/item/clothing/shoes/marine/srf/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/specops/support
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/modular/m10x
@@ -135,7 +135,7 @@
 	ears = /obj/item/radio/headset/distress/dutch
 	mask = /obj/item/clothing/mask/gas/specops
 	w_uniform = /obj/item/clothing/under/marine/specops
-	shoes = /obj/item/clothing/shoes/combat
+	shoes = /obj/item/clothing/shoes/marine/srf/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/specops/support
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/modular/m10x/welding
@@ -195,7 +195,7 @@
 	belt = /obj/item/storage/belt/lifesaver/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/specops/medic
 	head = /obj/item/clothing/head/modular/m10x
-	shoes = /obj/item/clothing/shoes/combat
+	shoes = /obj/item/clothing/shoes/marine/srf/full
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	glasses = /obj/item/clothing/glasses/hud/health
 	suit_store = /obj/item/weapon/gun/smg/m25/elite/suppressed
@@ -241,7 +241,7 @@
 	mask = /obj/item/clothing/mask/gas/specops
 	w_uniform = /obj/item/clothing/under/marine/specops
 	glasses = /obj/item/clothing/glasses/night
-	shoes = /obj/item/clothing/shoes/combat
+	shoes = /obj/item/clothing/shoes/marine/srf/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/specops/leader
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/beret/sec
