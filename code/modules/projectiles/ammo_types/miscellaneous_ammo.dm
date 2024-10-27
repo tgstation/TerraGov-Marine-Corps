@@ -150,7 +150,7 @@
 
 /datum/ammo/flamethrower/stream_spray
 	name = "stream fire"
-	icon_state = "stream_fire"
+	icon_state = "spray_flamer"
 	max_range = 7
 	shell_speed = 0.5
 	damage = 17
