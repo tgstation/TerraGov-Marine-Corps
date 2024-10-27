@@ -10816,7 +10816,7 @@
 /area/metnal/outside/northwest)
 "hLc" = (
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set1","set2","set3")
+	set_associations = list("set2","set3")
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
@@ -20433,7 +20433,7 @@
 /area/metnal/inside/bar)
 "ouX" = (
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set3")
+	set_associations = list("set1,"set3")
 	},
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
