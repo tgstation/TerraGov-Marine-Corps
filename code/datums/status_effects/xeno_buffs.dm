@@ -1107,8 +1107,7 @@
 			DEFILER_OZELOMELYN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_OZELOMELYN),
 			DEFILER_HEMODILE = image('icons/Xeno/actions.dmi', icon_state = DEFILER_HEMODILE),
 			DEFILER_TRANSVITOX = image('icons/Xeno/actions.dmi', icon_state = DEFILER_TRANSVITOX),
-			DEFILER_NEUROTOXIN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_NEUROTOXIN),
-			DEFILER_ACID = image('icons/Xeno/actions.dmi', icon_state = DEFILER_ACID),
+			DEFILER_NEUROTOXIN = image('icons/Xeno/actions.dmi', icon_state = DEFILER_NEUROTOXIN)
 		)
 	var/datum/status_effect/upgrade_toxin/effect = attached_effect
 	if(effect.buff_owner.incapacitated(TRUE))
