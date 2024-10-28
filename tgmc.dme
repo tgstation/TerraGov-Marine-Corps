@@ -2279,6 +2279,7 @@
 #include "code\modules\xenomorph\spawner.dm"
 #include "code\modules\xenomorph\trap.dm"
 #include "code\modules\xenomorph\tunnel.dm"
+#include "code\modules\xenomorph\upgrade_chambers.dm"
 #include "code\modules\xenomorph\xeno_turret.dm"
 #include "code\modules\xenomorph\xenoplant.dm"
 #include "code\modules\xenomorph\xenotowers.dm"
