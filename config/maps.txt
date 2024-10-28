@@ -112,3 +112,6 @@ endmap
 map colony1
 	minplayers 0
 endmap
+map bluesummers
+	minplayers 30
+endmap

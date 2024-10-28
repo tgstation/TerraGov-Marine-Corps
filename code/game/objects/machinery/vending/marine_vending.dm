@@ -1565,6 +1565,8 @@
 			/obj/item/ammo_magazine/rifle/chamberedrifle/flak = -1,
 			/obj/item/ammo_magazine/flamer_tank/backtank/X = -1,
 			/obj/item/weapon/twohanded/rocketsledge = -1,
+			/obj/item/weapon/twohanded/chainsaw = -1,
+			/obj/item/weapon/twohanded/chainsaw/sword = -1,
 			/obj/item/explosive/grenade/training = -1,
 			/obj/item/explosive/grenade/impact = -1,
 			/obj/item/explosive/grenade/phosphorus = -1,
@@ -1693,6 +1695,15 @@
 			/obj/item/ammo_magazine/tank/particle_lance = -1,
 			/obj/item/ammo_magazine/tank/coilgun = -1,
 			/obj/item/ammo_magazine/tank/secondary_mlrs = -1,
+		),
+		"ICC Assault Vehicle" = list(
+			/obj/item/armored_weapon/icc_lvrt_sarden = -1,
+			/obj/item/armored_weapon/icc_lvrt_cannon = -1,
+			/obj/item/armored_weapon/icc_coaxial = -1,
+			/obj/item/ammo_magazine/tank/sarden_clip/high_explosive = -1,
+			/obj/item/ammo_magazine/tank/sarden_clip = -1,
+			/obj/item/ammo_magazine/tank/icc_lowvel_cannon = -1,
+			/obj/item/ammo_magazine/tank/icc_lowvel_cannon/high_explosive = -1,
 		),
 	)
 

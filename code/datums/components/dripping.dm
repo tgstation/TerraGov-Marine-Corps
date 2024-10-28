@@ -7,6 +7,7 @@
 	var/drip_limit
 	var/drip_ratio
 	var/dripped_type = /obj/effect/decal/cleanable/blood/drip/tracking_fluid
+	var/turfs_moved = 0
 
 
 /datum/component/dripping/Initialize(drip_mode = DRIP_ON_WALK, drip_limit, drip_ratio, dripped_type)
@@ -35,18 +36,17 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-
 /datum/component/dripping/proc/drip_on_walk(datum/source, atom/oldloc, direction, Forced = FALSE)
 	SIGNAL_HANDLER
 	var/mob/living/dripper = parent
 	if(!isturf(dripper.loc))
 		return
-	if(!(drip_counter % drip_ratio))
+	turfs_moved++
+	if(!(turfs_moved % drip_ratio))
 		return
-	new /obj/effect/decal/cleanable/blood/drip/tracking_fluid(dripper.loc)
+	new dripped_type(dripper.loc)
 	if(++drip_counter > drip_limit)
 		qdel(src)
-
 
 /datum/component/dripping/process()
 	var/mob/living/dripper = parent
@@ -58,6 +58,6 @@
 	drip_counter += drip_ratio
 	if(!isturf(dripper.loc))
 		return
-	new /obj/effect/decal/cleanable/blood/drip/tracking_fluid(dripper.loc)
+	new dripped_type(dripper.loc)
 	if(world.time + drip_ratio > drip_limit)
 		qdel(src)
