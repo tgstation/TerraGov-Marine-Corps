@@ -1167,7 +1167,9 @@
 		return
 	var/mob/living/carbon/carbon_target = target
 	chamber_scaling = length(buff_owner.hive.veil_chambers)
-	carbon_target.reagents.add_reagent(injected_reagent, 1 + toxin_amount_per_chamber * chamber_scaling)
+	var/amount_to_inject = toxin_amount_per_chamber * chamber_scaling
+	if(amount_to_inject)
+		carbon_target.reagents.add_reagent(injected_reagent, amount_to_inject)
 
 // ***************************************
 // ***************************************
