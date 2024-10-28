@@ -126,15 +126,14 @@ Good luck, but do not expect to survive."})
 
 //Doctor
 /datum/job/survivor/doctor
-	title = "Doctor's Assistant Survivor"
+	title = "Doctor Survivor"
 	skills_type = /datum/skills/civilian/survivor/doctor
 	outfit = /datum/outfit/job/survivor/doctor
 
 
 /datum/outfit/job/survivor/doctor
-	name = "Doctor's Assistant Survivor"
+	name = "Doctor Survivor"
 	jobtype = /datum/job/survivor/doctor
-
 	w_uniform = /obj/item/clothing/under/rank/medical/blue
 	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
@@ -199,6 +198,8 @@ Good luck, but do not expect to survive."})
 //Security Guard
 /datum/job/survivor/security
 	title = "Security Guard Survivor"
+	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG)
+	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG)
 	skills_type = /datum/skills/civilian/survivor/marshal
 	outfit = /datum/outfit/job/survivor/security
 

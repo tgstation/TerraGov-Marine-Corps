@@ -9,6 +9,10 @@
 	goredcries = list(MALE = SFX_MALE_GORED, FEMALE = SFX_FEMALE_GORED)
 	gasps = list(MALE = SFX_MALE_GASP, FEMALE = SFX_FEMALE_GASP)
 	coughs = list(MALE = SFX_MALE_COUGH, FEMALE = SFX_FEMALE_COUGH)
+	groans = list(FEMALE = SFX_FEMALE_GROAN)
+	chokes = list(FEMALE = SFX_FEMALE_CHOKE)
+	sexymoanlights = list(FEMALE = SFX_FEMALE_SEXYMOANLIGHT)
+	sexymoanhvys = list(FEMALE = SFX_FEMALE_SEXYMOANHVY)
 	burstscreams = list(MALE = SFX_MALE_PREBURST, FEMALE = SFX_FEMALE_PREBURST)
 	warcries = list(MALE = SFX_MALE_WARCRY, FEMALE = SFX_FEMALE_WARCRY)
 	special_death_message = "<big>You have perished.</big><br><small>But it is not the end of you yet... if you still have your body with your head still attached, wait until somebody can resurrect you...</small>"

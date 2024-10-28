@@ -312,6 +312,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	name = "Crafty Combat Medic"
 	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
+	surgery = SKILL_SURGERY_PROFESSIONAL
 
 /datum/skills/combat_medic/pmc
 	name = "PMC Medic"

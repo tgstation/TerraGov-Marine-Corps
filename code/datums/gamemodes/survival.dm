@@ -18,8 +18,10 @@
 		/datum/job/survivor/miner = 2,
 		/datum/job/survivor/salesman = 1,
 		/datum/job/survivor/marshal = 1,
-		/datum/job/clf/standard = 1,
+		/datum/job/clf/standard = 2,
 		/datum/job/clf/medic = 1,
+		/datum/job/clf/specialist = 1,
+		/datum/job/clf/leader = 1,
 		/datum/job/xenomorph = 2
 	)
 

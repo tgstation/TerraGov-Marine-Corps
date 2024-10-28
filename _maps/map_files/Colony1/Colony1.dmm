@@ -522,11 +522,7 @@
 "aFD" = (
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/floor/plating,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "aGj" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -624,11 +620,7 @@
 /obj/structure/flora/ausbushes/ppflowers,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "aPE" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -796,11 +788,7 @@
 /turf/open/floor/plating/warning{
 	dir = 9
 	},
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "aZZ" = (
 /turf/open/floor/plating/ground/snow/layer3,
 /area/lv624/ground/caves{
@@ -891,11 +879,7 @@
 "bim" = (
 /obj/structure/largecrate/supply/weapons/pistols,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "biw" = (
 /obj/structure/table/reinforced,
 /obj/machinery/faxmachine/brig,
@@ -1312,11 +1296,7 @@
 "bMS" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "bNo" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -1485,11 +1465,7 @@
 "bVK" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "bWo" = (
 /obj/structure/window/framed/mainship/white/toughened{
 	name = "kevlar-weave infused bulletproof window"
@@ -1893,11 +1869,7 @@
 "czo" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "czt" = (
 /turf/closed/wall/mainship,
 /area/mainship/hallways/ntf/dorm2)
@@ -2058,11 +2030,7 @@
 "cHr" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "cHI" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -2422,11 +2390,7 @@
 "ddC" = (
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "ddT" = (
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
@@ -2873,11 +2837,7 @@
 "dLv" = (
 /obj/structure/window_frame,
 /turf/open/floor/plating,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "dMd" = (
 /obj/structure/table/mainship,
 /obj/item/tool/extinguisher/mini,
@@ -2999,11 +2959,7 @@
 "dQk" = (
 /obj/structure/largecrate/supply/supplies/mre,
 /turf/open/floor/plating,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "dQm" = (
 /obj/machinery/holopad,
 /turf/open/floor/mainship/mono,
@@ -3055,11 +3011,7 @@
 "dUV" = (
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "dVk" = (
 /obj/machinery/camera/autoname{
 	dir = 1
@@ -3561,19 +3513,11 @@
 /turf/open/floor/plating/warning{
 	dir = 5
 	},
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "eEr" = (
 /obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "eEV" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -3760,11 +3704,7 @@
 /obj/item/clothing/suit/storage/hazardvest,
 /obj/item/clothing/suit/storage/hazardvest,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "eOe" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/dark,
@@ -3870,11 +3810,7 @@
 /turf/open/floor/plating/warning{
 	dir = 1
 	},
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "eYK" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/under/liaison_suit,
@@ -4017,11 +3953,7 @@
 "fgz" = (
 /obj/structure/closet/crate/miningcar,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "fgD" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4374,11 +4306,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "fHo" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison,
@@ -4692,11 +4620,7 @@
 "gfY" = (
 /obj/structure/largecrate/supply/supplies/flares,
 /turf/open/floor/plating,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "giB" = (
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/squads/req)
@@ -5137,11 +5061,7 @@
 "gRZ" = (
 /obj/structure/flora/ausbushes/reedbush,
 /turf/open/floor/plating/ground/ice,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "gSn" = (
 /obj/structure/bed/fancy,
 /obj/item/bedsheet/hop,
@@ -5169,11 +5089,7 @@
 /obj/machinery/floodlight/landing/hq,
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "gUy" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
@@ -5615,11 +5531,7 @@
 "hyB" = (
 /obj/structure/largecrate/supply/ammo/pistol,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "hyC" = (
 /obj/alien/egg/hugger,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -5827,11 +5739,7 @@
 /obj/item/stack/sheet/mineral/iron,
 /obj/item/clothing/suit/storage/hazardvest,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "hLo" = (
 /obj/machinery/power/apc,
 /obj/structure/cable,
@@ -5890,11 +5798,7 @@
 "hQf" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "hQl" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -5936,11 +5840,7 @@
 /obj/structure/inflatable/wall,
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "hSU" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/start/job/prisoner,
@@ -6034,11 +5934,7 @@
 "hWD" = (
 /obj/structure/largecrate/supply/supplies/water,
 /turf/open/floor/plating,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "hWX" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -6065,11 +5961,7 @@
 "hYG" = (
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "hZl" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -6522,11 +6414,7 @@
 /turf/open/floor/plating/warning{
 	dir = 10
 	},
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "iDO" = (
 /obj/structure/sink{
 	dir = 8;
@@ -6567,11 +6455,7 @@
 "iEL" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "iFm" = (
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/bulletproof,
@@ -6744,11 +6628,7 @@
 "iQl" = (
 /obj/machinery/floodlight/landing/testroom,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "iQK" = (
 /obj/machinery/botany/editor,
 /turf/open/floor/tile/hydro,
@@ -6802,9 +6682,7 @@
 /area/mainship/squads/req)
 "iTZ" = (
 /turf/open/floor/plating/ground/snow/layer3,
-/area/mainship/groundhq/ntf/hallways/aft_hallway{
-	name = "HQ Northeast Hallways"
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "iUd" = (
 /obj/structure/table/mainship,
 /obj/item/book/manual/atmospipes,
@@ -6842,11 +6720,7 @@
 "iVu" = (
 /obj/structure/inflatable/door,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "iVG" = (
 /obj/structure/bed,
 /obj/item/bedsheet/blue,
@@ -6873,11 +6747,7 @@
 /obj/structure/flora/ausbushes/sunnybush,
 /obj/structure/largecrate/supply/floodlights,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "iYw" = (
 /turf/open/floor/prison/rampbottom{
 	dir = 4
@@ -7100,11 +6970,7 @@
 "jns" = (
 /obj/item/tool/pickaxe,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "jnM" = (
 /obj/structure/cable,
 /obj/item/storage/toolbox/mechanical,
@@ -7213,11 +7079,7 @@
 "jvr" = (
 /obj/structure/closet/crate/mass_produced_crate/construction,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "jvu" = (
 /obj/structure/bed,
 /obj/item/bedsheet/green,
@@ -7285,11 +7147,7 @@
 "jCh" = (
 /obj/item/ore/glass,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "jCj" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -7485,6 +7343,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/cic)
+"jKB" = (
+/turf/closed/mineral/smooth,
+/area/desert_dam/exterior/valley/valley_wilderness)
 "jLr" = (
 /obj/machinery/chem_dispenser/soda,
 /obj/structure/table/wood,
@@ -7710,19 +7571,11 @@
 "kaL" = (
 /obj/structure/inflatable/door,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "kby" = (
 /obj/structure/fence,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "kbK" = (
 /obj/machinery/light{
 	dir = 1
@@ -7845,11 +7698,7 @@
 "kkr" = (
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "kkC" = (
 /obj/structure/table/mainship,
 /obj/structure/paper_bin{
@@ -8031,11 +7880,7 @@
 "kBq" = (
 /obj/item/ore,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "kCg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 1
@@ -8222,11 +8067,7 @@
 "kQm" = (
 /obj/item/toy/inflatable_duck,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "kQT" = (
 /obj/machinery/status_display,
 /turf/closed/wall/mainship,
@@ -8756,11 +8597,7 @@
 "lBG" = (
 /obj/structure/closet/crate/trashcart,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "lCl" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -9081,11 +8918,7 @@
 	})
 "mdS" = (
 /turf/open/floor/plating/warning,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "mee" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/darkyellow{
@@ -9317,6 +9150,10 @@
 /obj/structure/toilet,
 /turf/open/floor/mainship/mono,
 /area/mainship/ntf/fcroom)
+"muq" = (
+/obj/effect/ai_node,
+/turf/open/floor/plating/ground/snow/layer1,
+/area/desert_dam/exterior/valley/valley_wilderness)
 "muy" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/hyper{
@@ -9332,11 +9169,7 @@
 "mvo" = (
 /obj/item/ore/slag,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "mvp" = (
 /obj/structure/closet/cabinet,
 /obj/item/reagent_containers/spray/cleaner,
@@ -9365,11 +9198,7 @@
 "mxR" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "mxU" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9525,11 +9354,7 @@
 "mKu" = (
 /obj/item/toy/beach_ball,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "mKv" = (
 /obj/structure/table/mainship,
 /obj/item/storage/fancy/cigarettes/kpack,
@@ -9546,11 +9371,7 @@
 /obj/structure/inflatable/wall,
 /obj/structure/inflatable/wall,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "mNn" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
@@ -9559,11 +9380,7 @@
 "mNo" = (
 /obj/item/stack/sheet/wood/large_stack,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "mNK" = (
 /obj/machinery/autodoc{
 	active_power_usage = 20000
@@ -9704,11 +9521,7 @@
 "mVB" = (
 /obj/structure/prop/train/construction,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "mVN" = (
 /obj/machinery/light,
 /obj/structure/closet/firecloset/full,
@@ -9974,6 +9787,9 @@
 "npa" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/grunt_rnr)
+"npt" = (
+/turf/open/floor/plating/ground/ice,
+/area/desert_dam/exterior/valley/valley_wilderness)
 "nqm" = (
 /obj/machinery/light{
 	dir = 8
@@ -10151,6 +9967,9 @@
 /obj/machinery/vending/snack,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/command/cic)
+"nCF" = (
+/turf/open/floor/plating/ground/snow/layer1,
+/area/desert_dam/exterior/valley/valley_wilderness)
 "nCM" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -10451,11 +10270,7 @@
 "nVm" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "nVy" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/mainship/orange/full,
@@ -10777,11 +10592,7 @@
 "ouS" = (
 /obj/machinery/power/port_gen/pacman,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "ovm" = (
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
@@ -10878,11 +10689,7 @@
 "oAm" = (
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/floor/plating/ground/ice,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "oAP" = (
 /obj/structure/window/framed/colony,
 /obj/machinery/door/poddoor/shutters/mainship/open/indestructible{
@@ -11093,11 +10900,7 @@
 "oPZ" = (
 /obj/structure/flora/ausbushes/yellowbush,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "oRk" = (
 /obj/structure/bed,
 /obj/item/bedsheet/clown,
@@ -11225,11 +11028,7 @@
 /obj/item/ore/coal,
 /obj/item/ore/gold,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "oYd" = (
 /obj/structure/catwalk,
 /turf/open/floor/plating/ground/snow/layer2,
@@ -11260,11 +11059,7 @@
 "oZy" = (
 /obj/machinery/camera/autoname/mainship,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "oZE" = (
 /obj/machinery/power/smes/preset,
 /obj/structure/cable,
@@ -11869,22 +11664,14 @@
 	dir = 4
 	},
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "pHw" = (
 /turf/closed/wall/mainship,
 /area/mainship/groundhq/ntf/engineering/ce_room)
 "pJC" = (
 /obj/structure/largecrate/supply/weapons/standard_carbine,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "pKf" = (
 /obj/machinery/smartfridge/chemistry,
 /turf/open/floor/mainship/sterile/dark,
@@ -11922,11 +11709,7 @@
 /turf/open/floor/plating/warning{
 	dir = 8
 	},
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "pNu" = (
 /obj/structure/table/mainship,
 /obj/item/folder/red,
@@ -12062,11 +11845,7 @@
 "pUy" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "pVG" = (
 /turf/open/floor/plating/ground/snow/layer1,
 /area/lv624/ground/caves{
@@ -12091,11 +11870,7 @@
 "pWE" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "pWX" = (
 /turf/open/floor/mainship/sterile/purple,
 /area/mainship/groundhq/ntf/medical/medical_science)
@@ -12168,11 +11943,7 @@
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "qcU" = (
 /turf/open/floor/plating,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "qcZ" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/ai_node,
@@ -12259,11 +12030,7 @@
 "qjQ" = (
 /obj/structure/window_frame,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "qkg" = (
 /turf/open/floor/mainship/red/full,
 /area/mainship/groundhq/ntf/command/cic)
@@ -12404,11 +12171,7 @@
 "qrp" = (
 /obj/structure/closet/crate/construction,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "qrO" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	on = 1
@@ -12492,11 +12255,7 @@
 "quH" = (
 /mob/living/carbon/human/species/monkey,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "qvp" = (
 /obj/structure/window/framed/colony,
 /turf/open/floor/mainship/mono,
@@ -12504,11 +12263,7 @@
 "qwM" = (
 /obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "qxo" = (
 /obj/structure/bed/chair/sofa{
 	dir = 4
@@ -12680,11 +12435,7 @@
 	dir = 1
 	},
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "qJS" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 4
@@ -12815,11 +12566,7 @@
 "qRY" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "qSz" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
@@ -12922,11 +12669,7 @@
 /obj/item/clothing/glasses/material,
 /obj/item/clothing/suit/storage/hazardvest,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "qVc" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/mono,
@@ -13009,19 +12752,11 @@
 /obj/item/tool/lighter,
 /obj/item/stack/sheet/mineral/phoron,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "rar" = (
 /obj/item/storage/box/crate/loot/materials_pack,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "raB" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -13124,7 +12859,7 @@
 /obj/machinery/door_control/old/cic/armory{
 	id = "brig_armory";
 	pixel_x = -10;
-	req_one_access = null
+	req_one_access = list(3)
 	},
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -13351,11 +13086,7 @@
 /obj/structure/flora/ausbushes/sunnybush,
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "rqU" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
@@ -13502,11 +13233,7 @@
 /turf/open/floor/plating/warning{
 	dir = 4
 	},
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "rAO" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
@@ -13645,11 +13372,7 @@
 "rNs" = (
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "rOT" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -13894,11 +13617,7 @@
 	},
 /obj/item/radio,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "sfy" = (
 /obj/structure/disposalpipe/segment/corner,
 /obj/structure/sink/bathroom{
@@ -14000,6 +13719,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/engineering/engine_core)
+"spn" = (
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/turf/open/floor/plating/ground/snow/layer3,
+/area/desert_dam/exterior/valley/valley_wilderness)
 "spZ" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
@@ -14684,11 +14407,7 @@
 "toH" = (
 /obj/structure/flora/ausbushes/ppflowers,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "toR" = (
 /obj/machinery/button/door{
 	name = "lockdown button";
@@ -15088,11 +14807,7 @@
 /obj/item/clothing/head/hardhat/orange,
 /obj/item/clothing/suit/storage/hazardvest,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "tZf" = (
 /turf/closed/wall,
 /area/lv624/lazarus/armory)
@@ -15124,11 +14839,7 @@
 "ual" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "ucB" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -15171,11 +14882,7 @@
 "udS" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "ufd" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -15286,6 +14993,9 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/living/chapel)
+"umc" = (
+/turf/closed/wall,
+/area/desert_dam/exterior/valley/valley_wilderness)
 "umn" = (
 /obj/structure/closet/secure_closet/injection,
 /turf/open/floor/mainship/red{
@@ -15733,11 +15443,7 @@
 "uSL" = (
 /obj/structure/flora/ausbushes/fernybush,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "uSY" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 4;
@@ -15783,11 +15489,7 @@
 "uVJ" = (
 /obj/structure/flora/ausbushes/palebush,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "uWQ" = (
 /turf/closed/wall/mainship/outer,
 /area/mainship/groundhq/ntf/hallways/aft_hallway{
@@ -15957,11 +15659,7 @@
 "vik" = (
 /obj/structure/largecrate/supply/ammo/standard_smg,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "viq" = (
 /obj/machinery/power/monitor{
 	name = "Core Power Monitoring"
@@ -16009,11 +15707,7 @@
 "vlV" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "vmP" = (
 /obj/machinery/hydroponics,
 /turf/open/floor/tile/hydro,
@@ -16071,19 +15765,11 @@
 	name = "Groundside ERT Landing zone 2"
 	},
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "vrd" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "vsa" = (
 /obj/machinery/vending/MarineMed{
 	req_one_access = null
@@ -16173,11 +15859,7 @@
 "vvj" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "vvv" = (
 /obj/item/cell/high,
 /obj/machinery/cell_charger,
@@ -16386,11 +16068,7 @@
 /obj/item/clothing/glasses/welding,
 /obj/item/radio,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "vHT" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
@@ -16503,6 +16181,9 @@
 "vNz" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/hallways/bathroom)
+"vOR" = (
+/turf/closed/wall/r_wall,
+/area/desert_dam/exterior/valley/valley_wilderness)
 "vPl" = (
 /obj/machinery/door/poddoor/shutters/mainship/open/checkpoint{
 	dir = 2;
@@ -16567,11 +16248,7 @@
 "vTf" = (
 /obj/item/ore/coal,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "vTm" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -16702,19 +16379,11 @@
 /turf/open/floor/plating/warning{
 	dir = 6
 	},
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "wbB" = (
 /obj/item/target/syndicate,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "wbW" = (
 /obj/machinery/vending/MarineMed/Blood,
 /turf/open/floor/mainship/sterile/corner,
@@ -16734,11 +16403,7 @@
 "wcK" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/ice,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "wcP" = (
 /obj/structure/mineral_door/wood,
 /obj/structure/cable,
@@ -16823,11 +16488,7 @@
 "wib" = (
 /obj/structure/largecrate/supply/ammo/standard_ammo,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "wiw" = (
 /obj/structure/sink{
 	dir = 4
@@ -17036,11 +16697,7 @@
 "wwJ" = (
 /obj/item/stack/sheet/plasteel/large_stack,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "wwT" = (
 /obj/machinery/door/firedoor/mainship{
 	dir = 2
@@ -17335,11 +16992,7 @@
 "wPP" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/ground/snow/layer2,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "wPT" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/wood,
@@ -17453,6 +17106,13 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
+"wYD" = (
+/obj/machinery/door/window/secure/brig/cell_1{
+	dir = 8;
+	req_access = S
+	},
+/turf/open/floor/mainship/red/full,
+/area/mainship/groundhq/ntf/shipboard/brig_cells)
 "wYQ" = (
 /obj/machinery/cryopod,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -17530,19 +17190,11 @@
 "xaZ" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "xcC" = (
 /obj/structure/flora/ausbushes/sunnybush,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "xcN" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/plating/ground/snow/layer3,
@@ -17604,6 +17256,11 @@
 /area/mainship/groundhq/ntf/hallways/starboard_hallway{
 	name = "HQ Central Hallways"
 	})
+"xiX" = (
+/obj/structure/inflatable/wall,
+/obj/structure/inflatable/wall,
+/turf/open/floor/plating/ground/snow/layer0,
+/area/desert_dam/exterior/valley/valley_wilderness)
 "xjk" = (
 /obj/structure/bed/chair/sofa/corner{
 	dir = 8
@@ -17612,7 +17269,7 @@
 /area/mainship/groundhq/ntf/living/grunt_rnr)
 "xkJ" = (
 /turf/open/floor/plating/ground/snow/layer2,
-/area/mainship/groundhq/ntf/living/grunt_rnr)
+/area/desert_dam/exterior/valley/valley_wilderness)
 "xlN" = (
 /obj/structure/closet/crate,
 /obj/item/stack/sheet/mineral/phoron{
@@ -17799,11 +17456,7 @@
 "xzu" = (
 /obj/machinery/floodlight/landing/hq,
 /turf/open/floor/plating/ground/snow/layer1,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "xzI" = (
 /obj/structure/mineral_door/wood,
 /turf/open/floor/mainship,
@@ -18041,11 +17694,7 @@
 "xUL" = (
 /obj/structure/prop/train/crates,
 /turf/open/floor/plating/ground/snow/layer3,
-/area/lv624/ground/caves{
-	ceiling = 2;
-	name = "HQ Tunnels";
-	always_unpowered = 0
-	})
+/area/desert_dam/exterior/valley/valley_wilderness)
 "xUO" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -21729,7 +21378,7 @@ xhk
 cTz
 ijg
 xhk
-cTz
+wYD
 bry
 sIZ
 hZl
@@ -25322,7 +24971,7 @@ wRn
 lrz
 mLh
 fav
-aZZ
+iTZ
 doP
 oyO
 mgs
@@ -25429,7 +25078,7 @@ wRn
 jPq
 mLh
 fav
-aZZ
+iTZ
 dUV
 oyO
 mgs
@@ -25643,33 +25292,33 @@ qrT
 fTV
 xRz
 xRz
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 qjQ
 uVJ
-aZZ
-aZZ
+iTZ
+iTZ
 vlV
-aZZ
-aZZ
+iTZ
+iTZ
 xcC
-aZZ
+iTZ
 toH
-aZZ
+iTZ
 lpm
 jfc
 yjh
 vva
 lpm
-aZZ
-aZZ
-aZZ
-xcN
-aZZ
+iTZ
+iTZ
+iTZ
+spn
+iTZ
 pWE
-aZZ
-xcN
+iTZ
+spn
 rTJ
 rTJ
 rTJ
@@ -25749,34 +25398,34 @@ doP
 qrT
 fTV
 bim
-aZZ
+iTZ
 ual
 ual
-aZZ
+iTZ
 qjQ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 pWE
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 uVJ
 lpm
 tXA
 vvP
 ted
 lpm
-aZZ
+iTZ
 pWE
-aZZ
+iTZ
 toH
-aZZ
-xcN
+iTZ
+spn
 xcC
-aZZ
+iTZ
 rTJ
 oZX
 pBf
@@ -25856,34 +25505,34 @@ oyC
 wRn
 fTV
 wib
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 hYG
 hYG
-fTV
+umc
 xcC
 hYG
 hYG
 hYG
-fTV
-aZZ
+umc
+iTZ
 hYG
-fTV
+umc
 frD
 hsy
 kkk
 ted
 lpm
 xcC
-aZZ
-aZZ
-aZZ
-aZZ
-xcN
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+spn
+iTZ
+iTZ
 rTJ
 cBe
 pWX
@@ -25963,20 +25612,20 @@ oyC
 wRn
 fTV
 pJC
-aZZ
+iTZ
 vlV
-aZZ
-fTV
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+umc
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 xUL
 toH
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 xUL
 frD
 hkE
@@ -25990,7 +25639,7 @@ nKd
 nKd
 nKd
 nKd
-aZZ
+iTZ
 rTJ
 bBe
 pWX
@@ -26070,21 +25719,21 @@ ira
 wRn
 fTV
 iYd
-aZZ
-aZZ
-aZZ
-aZZ
-xcN
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+spn
+iTZ
 mNo
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 mNo
 xcC
-aZZ
+iTZ
 frD
 ted
 afY
@@ -26097,7 +25746,7 @@ nKd
 auC
 dBZ
 jEZ
-aZZ
+iTZ
 rTJ
 hJa
 oVM
@@ -26176,22 +25825,22 @@ fav
 xVs
 oyC
 fTV
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 hYG
 xcC
-aZZ
-aZZ
+iTZ
+iTZ
 oPZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 frD
 ted
 sKF
@@ -26284,21 +25933,21 @@ xVs
 oyC
 fav
 vik
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 hYG
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 mVB
-aZZ
-aZZ
+iTZ
+iTZ
 xcC
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 frD
 ted
 pQZ
@@ -26377,7 +26026,7 @@ hKj
 hKj
 hKj
 hKj
-aZZ
+iTZ
 doP
 oGw
 oGw
@@ -26390,22 +26039,22 @@ fav
 xVs
 wRn
 uRC
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 mLY
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 jvr
-aZZ
+iTZ
 toH
-aZZ
-xcN
+iTZ
+spn
 iyk
 wKy
 eKk
@@ -26484,35 +26133,35 @@ hKj
 hKj
 hKj
 hKj
-aZZ
+iTZ
 doP
 oGw
 oGw
 oGw
-aZZ
-xcN
+iTZ
+spn
 doP
 doP
 fav
 fav
 fav
 fav
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 hYG
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 mNo
 mxR
 wwJ
 rar
 qrp
-aZZ
-aZZ
+iTZ
+iTZ
 frD
 hkE
 sPG
@@ -26590,36 +26239,36 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 toH
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 doP
 doP
 fTV
 hyB
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 hYG
-aZZ
-aZZ
+iTZ
+iTZ
 xcC
-aZZ
+iTZ
 bim
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 hYG
-aZZ
-aZZ
+iTZ
+iTZ
 qdC
 ted
 pQZ
@@ -26697,36 +26346,36 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 vlV
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-axU
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+xkJ
+iTZ
+iTZ
 xcC
-aZZ
-aZZ
-aZZ
-aZZ
-xcN
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+spn
+iTZ
+iTZ
+iTZ
 oPZ
-aZZ
-aZZ
+iTZ
+iTZ
 xcC
-aZZ
+iTZ
 hvQ
 ted
 oSV
@@ -26804,36 +26453,36 @@ hKj
 hKj
 hKj
 hKj
-aZZ
+iTZ
 pUy
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-axU
-axU
-axU
-aZZ
-aZZ
-aZZ
-aZZ
-fTV
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-xcN
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+xkJ
+xkJ
+xkJ
+iTZ
+iTZ
+iTZ
+iTZ
+umc
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+spn
 frD
 ted
 pQZ
@@ -26911,36 +26560,36 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 qRY
-aZZ
-aZZ
+iTZ
+iTZ
 vlV
-axU
+xkJ
 bMS
-axU
-fTV
-aZZ
-aZZ
-aZZ
-aZZ
+xkJ
+umc
+iTZ
+iTZ
+iTZ
+iTZ
 hYG
 hYG
-aZZ
-fTV
-aZZ
+iTZ
+umc
+iTZ
 hYG
 hYG
-aZZ
-fTV
-aZZ
+iTZ
+umc
+iTZ
 hYG
-fTV
+umc
 frD
 jXq
 uUL
@@ -27018,35 +26667,35 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-xRz
-xRz
-aZZ
+iTZ
+iTZ
+vOR
+vOR
+iTZ
 uVJ
-aZZ
-aZZ
-aZZ
-aZZ
-axU
-axU
-axU
-axU
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+xkJ
+xkJ
+xkJ
+xkJ
+iTZ
+iTZ
+iTZ
+iTZ
 iEL
-aZZ
-aZZ
+iTZ
+iTZ
 toH
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 czo
 frD
 hkE
@@ -27125,36 +26774,36 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-xRz
-xRz
+iTZ
+iTZ
+vOR
+vOR
 oZy
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-axU
-axU
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+xkJ
+xkJ
 doP
 doP
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-axU
-axU
-axU
-axU
-axU
+iTZ
+iTZ
+iTZ
+iTZ
+xkJ
+xkJ
+xkJ
+xkJ
+xkJ
 lcI
 xsj
 tVL
@@ -27232,36 +26881,36 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 pUy
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 doP
 doP
 doP
 doP
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 doP
-aZZ
-axU
-axU
-axU
-axU
-axU
-axU
-axU
+iTZ
+xkJ
+xkJ
+xkJ
+xkJ
+xkJ
+xkJ
+xkJ
 xHZ
 eYS
 koY
@@ -27339,36 +26988,36 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 czo
 doP
 doP
 doP
 doP
-xcN
-aZZ
-axU
-axU
+spn
+iTZ
+xkJ
+xkJ
 doP
-axU
-aZZ
-axU
-axU
-aZZ
-axU
-aZZ
-aZZ
-aZZ
+xkJ
+iTZ
+xkJ
+xkJ
+iTZ
+xkJ
+iTZ
+iTZ
+iTZ
 frD
 ted
 afY
@@ -27446,30 +27095,30 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+xkJ
 doP
 doP
 doP
 doP
 doP
-axU
-axU
-axU
-axU
-aZZ
+xkJ
+xkJ
+xkJ
+xkJ
+iTZ
 doP
-axU
+xkJ
 kzw
 kzw
 kzw
@@ -27553,15 +27202,15 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 elK
 elK
 mlx
@@ -27574,9 +27223,9 @@ doP
 axU
 doP
 doP
-aZZ
-axU
-axU
+iTZ
+xkJ
+xkJ
 kzw
 izi
 pAS
@@ -27660,15 +27309,15 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 elK
 swJ
 cjC
@@ -27682,8 +27331,8 @@ pVG
 pVG
 doP
 doP
-axU
-axU
+xkJ
+xkJ
 kzw
 izi
 vNz
@@ -27767,15 +27416,15 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 vlV
-aZZ
-aZZ
-xcN
+iTZ
+iTZ
+spn
 elK
 wJA
 vug
@@ -27790,7 +27439,7 @@ pVG
 doP
 doP
 doP
-axU
+xkJ
 kzw
 uSt
 vNz
@@ -27874,14 +27523,14 @@ hKj
 hKj
 hKj
 hKj
-aZZ
+iTZ
 toH
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 fGG
 elK
 iNk
@@ -27897,7 +27546,7 @@ oGw
 doP
 doP
 doP
-axU
+xkJ
 kzw
 izi
 flY
@@ -27981,15 +27630,15 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-xcN
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+spn
 elK
 lnV
 jPe
@@ -28003,8 +27652,8 @@ oGw
 oGw
 doP
 doP
-aZZ
-axU
+iTZ
+xkJ
 kzw
 kzw
 kzw
@@ -28088,15 +27737,15 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-xcN
-xcN
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+spn
+spn
 elK
 uOn
 qtq
@@ -28110,8 +27759,8 @@ oGw
 doP
 doP
 doP
-aZZ
-axU
+iTZ
+xkJ
 kzw
 mTD
 vNz
@@ -28195,15 +27844,15 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 elK
 elK
 sxq
@@ -28216,9 +27865,9 @@ oGw
 nte
 doP
 doP
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+xkJ
 kzw
 ean
 vNz
@@ -28302,18 +27951,18 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 pWE
-axU
+xkJ
 doP
 doP
 doP
@@ -28323,9 +27972,9 @@ nte
 doP
 doP
 doP
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+xkJ
 kzw
 mTD
 vNz
@@ -28409,18 +28058,18 @@ oGw
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+xkJ
 doP
 doP
 doP
@@ -28429,10 +28078,10 @@ oGw
 doP
 doP
 doP
-aZZ
-aZZ
+iTZ
+iTZ
 doP
-axU
+xkJ
 kzw
 vNz
 kzw
@@ -28516,18 +28165,18 @@ oGw
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 vlV
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 pUy
 vlV
-aZZ
+iTZ
 doP
 doP
 doP
@@ -28536,10 +28185,10 @@ doP
 doP
 doP
 xcN
-aZZ
+iTZ
 doP
 doP
-axU
+xkJ
 kzw
 fFj
 kzw
@@ -28623,19 +28272,19 @@ oGw
 hKj
 hKj
 hKj
-aZZ
-aZZ
-xRz
-xRz
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+vOR
+vOR
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 doP
@@ -28643,10 +28292,10 @@ doP
 doP
 doP
 aZZ
-aZZ
+iTZ
 doP
 doP
-axU
+xkJ
 kzw
 kzw
 kzw
@@ -28729,31 +28378,31 @@ oGw
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-xRz
-xRz
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-axU
-aZZ
+iTZ
+iTZ
+iTZ
+vOR
+vOR
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+xkJ
+iTZ
 doP
 doP
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-axU
-axU
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+iTZ
+xkJ
+xkJ
+iTZ
+xkJ
 xEq
 lxp
 lxp
@@ -28836,28 +28485,28 @@ oGw
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 pGk
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 toH
-aZZ
-axU
-aZZ
+iTZ
+xkJ
+iTZ
 fTV
-aZZ
+iTZ
 hYG
 hYG
-aZZ
+iTZ
 hYG
-aZZ
-axU
+iTZ
+xkJ
 ddC
 ddC
 xkJ
@@ -28943,31 +28592,31 @@ oGw
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 vlV
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 qRY
-axU
-axU
-axU
-axU
+xkJ
+xkJ
+xkJ
+xkJ
 rNs
 udS
-axU
-axU
-axU
+xkJ
+xkJ
+xkJ
 iEL
-axU
+xkJ
 bMS
-ohd
+iTZ
 pYW
 rmJ
 npa
@@ -29050,30 +28699,30 @@ oGw
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-axU
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+xkJ
+iTZ
 hQf
-axU
-axU
+xkJ
+xkJ
 pWE
-aZZ
+iTZ
 vlV
-aZZ
-axU
-axU
+iTZ
+xkJ
+xkJ
 xkJ
 wuK
 paQ
@@ -29157,18 +28806,18 @@ oGw
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 hKj
 hKj
 sED
@@ -29265,17 +28914,17 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 pUy
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 hKj
 hKj
 sED
@@ -29371,18 +29020,18 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
+iTZ
+iTZ
 pUy
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 qRY
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 pWE
-aZZ
+iTZ
 hKj
 hKj
 sED
@@ -29478,18 +29127,18 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 hKj
 jDE
 eLU
@@ -29585,17 +29234,17 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-xRz
-xRz
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+vOR
+vOR
+iTZ
+iTZ
+iTZ
 vlV
-aZZ
-aZZ
+iTZ
+iTZ
 iQl
 hKj
 hKj
@@ -29692,18 +29341,18 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-xRz
-xRz
-aZZ
+iTZ
+iTZ
+iTZ
+vOR
+vOR
+iTZ
 pWE
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 hKj
 hKj
 sED
@@ -29798,19 +29447,19 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 pUy
-aZZ
+iTZ
 hKj
 hKj
 sED
@@ -29905,19 +29554,19 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 pUy
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 qRY
-aZZ
-aZZ
+iTZ
+iTZ
 hKj
 hKj
 sED
@@ -30012,17 +29661,17 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 uVJ
 doP
 hKj
@@ -30119,16 +29768,16 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 pUy
 pUy
-aZZ
+iTZ
 pWE
 jns
 doP
@@ -30228,16 +29877,16 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 pWE
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 hKj
 hKj
@@ -30335,15 +29984,15 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 xRz
 xRz
 hYG
 hYG
-xRz
+vOR
 hYG
 doP
 hKj
@@ -30443,13 +30092,13 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 xRz
 xRz
-aZZ
-aZZ
+iTZ
+iTZ
 iTZ
 iTZ
 iTZ
@@ -30552,11 +30201,11 @@ hKj
 hKj
 hKj
 hKj
-aZZ
-aZZ
+iTZ
+iTZ
 hYG
-aZZ
-aZZ
+iTZ
+iTZ
 jnc
 snG
 qfG
@@ -30660,10 +30309,10 @@ hKj
 hKj
 hKj
 hKj
-pVG
+nCF
 kkr
-aZZ
-aZZ
+iTZ
+iTZ
 snG
 kUc
 kUc
@@ -30700,7 +30349,7 @@ xjk
 qvp
 pUy
 pWE
-aZZ
+iTZ
 pVG
 lRK
 doP
@@ -30768,9 +30417,9 @@ oGw
 oGw
 oGw
 mrE
-mrE
-pVG
-pVG
+xiX
+nCF
+nCF
 qfG
 pvf
 qfG
@@ -30805,9 +30454,9 @@ mGA
 mGA
 iJC
 mGA
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 pVG
 lRK
 doP
@@ -30821,8 +30470,8 @@ doP
 doP
 von
 jJD
-pVG
-pVG
+nCF
+nCF
 pVG
 pVG
 qVR
@@ -30894,11 +30543,11 @@ pYf
 npa
 kOx
 szx
-aZZ
-aZZ
+iTZ
+iTZ
 aOS
 xcC
-aZZ
+iTZ
 toH
 ulO
 ihi
@@ -30906,15 +30555,15 @@ eNV
 gbl
 ulO
 pUy
-aZZ
+iTZ
 qRY
 dLv
-aZZ
-aZZ
+iTZ
+iTZ
 pUy
 xcC
 qRY
-aZZ
+iTZ
 pVG
 lRK
 doP
@@ -30928,9 +30577,9 @@ doP
 doP
 von
 jJD
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
 pVG
 pVG
 pVG
@@ -31001,9 +30650,9 @@ aTP
 aTP
 aTP
 szx
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 pWE
 pUy
 vlV
@@ -31012,16 +30661,16 @@ hUR
 mps
 gbl
 ulO
-aZZ
+iTZ
 pWE
-aZZ
+iTZ
 dLv
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 pVG
 lRK
 doP
@@ -31035,13 +30684,13 @@ doP
 doP
 ihZ
 doP
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
 doP
 doP
 doP
@@ -31126,9 +30775,9 @@ gPM
 gPM
 gPM
 gPM
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 pVG
 doP
 doP
@@ -31142,22 +30791,22 @@ doP
 von
 von
 doP
-sjO
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
+muq
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
 doP
 doP
-pVG
+nCF
 nVm
 doP
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
 doP
 von
 doP
@@ -31233,7 +30882,7 @@ gPM
 uQd
 lWX
 gPM
-aZZ
+iTZ
 doP
 doP
 doP
@@ -31248,22 +30897,22 @@ pVG
 doP
 doP
 doP
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
 pVG
 doP
 doP
 doP
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
 doP
 von
 doP
@@ -31340,8 +30989,8 @@ cHO
 nuj
 xFh
 gPM
-aZZ
-aZZ
+iTZ
+iTZ
 hKj
 hKj
 hKj
@@ -31355,20 +31004,20 @@ pVG
 doP
 doP
 doP
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
 doP
 doP
 doP
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 doP
 doP
 doP
-pVG
+nCF
 doP
 doP
 doP
@@ -31447,10 +31096,10 @@ gPM
 gPM
 gPM
 gPM
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 doP
 doP
 pVG
@@ -31461,17 +31110,17 @@ doP
 pVG
 doP
 doP
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 doP
 doP
-pVG
-pVG
-sjO
-pVG
-pVG
+nCF
+nCF
+muq
+nCF
+nCF
 doP
 lDg
 doP
@@ -31479,8 +31128,8 @@ kkr
 doP
 doP
 doP
-pVG
-pVG
+nCF
+nCF
 nVm
 von
 von
@@ -31554,10 +31203,10 @@ esl
 wEY
 xNB
 jEU
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 pVG
@@ -31571,22 +31220,22 @@ doP
 doP
 doP
 doP
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
 doP
 doP
 doP
 tYD
 oXV
 kkr
-pVG
-pVG
+nCF
+nCF
 kBq
 nVm
 doP
@@ -31661,10 +31310,10 @@ gPM
 eSj
 pUq
 gPM
-aZZ
+iTZ
 toH
-aZZ
-axU
+iTZ
+xkJ
 pVG
 pVG
 pVG
@@ -31676,16 +31325,16 @@ doP
 doP
 doP
 doP
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
 kkr
 lBG
 fgz
@@ -31693,9 +31342,9 @@ sfn
 nVm
 kkr
 kBq
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
 doP
 doP
 doP
@@ -31741,14 +31390,14 @@ hKj
 hKj
 doP
 xaZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 gPM
 gPM
 gPM
@@ -31768,10 +31417,10 @@ gPM
 gPM
 gPM
 gPM
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 doP
@@ -31783,27 +31432,27 @@ pVG
 doP
 doP
 doP
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
 doP
-pVG
-pVG
+nCF
+nCF
 kkr
-pVG
-pVG
-sjO
-pVG
+nCF
+nCF
+muq
+nCF
 iVu
-pVG
-pVG
-sjO
+nCF
+nCF
+muq
 kBq
-pVG
+nCF
 doP
 doP
 hKj
@@ -31847,15 +31496,15 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 vvj
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 gPM
 kXm
 hTR
@@ -31875,10 +31524,10 @@ gPM
 uQd
 lWX
 gPM
-aZZ
-aZZ
+iTZ
+iTZ
 toH
-axU
+xkJ
 pVG
 doP
 doP
@@ -31889,28 +31538,28 @@ doP
 sjO
 doP
 doP
-pVG
-pVG
-pVG
-pVG
-sjO
-pVG
+nCF
+nCF
+nCF
+nCF
+muq
+nCF
 doP
 doP
 doP
 doP
 doP
 kkr
-pVG
+nCF
 qwM
-pVG
-pVG
+nCF
+nCF
 iVu
-pVG
-pVG
+nCF
+nCF
 kBq
-pVG
-pVG
+nCF
+nCF
 paj
 doP
 hKj
@@ -31955,13 +31604,13 @@ hKj
 hKj
 doP
 xaZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 vvj
 gPM
 owj
@@ -31983,9 +31632,9 @@ nuj
 xFh
 gPM
 dUV
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+xkJ
 pVG
 doP
 doP
@@ -31995,12 +31644,12 @@ pVG
 pVG
 pVG
 doP
-pVG
-pVG
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
+nCF
+nCF
 doP
 doP
 doP
@@ -32008,16 +31657,16 @@ doP
 doP
 doP
 vrd
-pVG
-pVG
+nCF
+nCF
 vrd
 eEr
 doP
 doP
 doP
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
 doP
 doP
 hKj
@@ -32061,15 +31710,15 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 gPM
 gPM
 gPM
@@ -32089,10 +31738,10 @@ gPM
 gPM
 gPM
 gPM
-aZZ
+iTZ
 xcC
-aZZ
-axU
+iTZ
+xkJ
 pVG
 pVG
 pVG
@@ -32104,28 +31753,28 @@ doP
 doP
 doP
 doP
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 doP
 doP
 doP
 doP
 noD
 doP
-pVG
-pVG
+nCF
+nCF
 xzu
 eOa
-pVG
+nCF
 doP
 jMq
 von
-pVG
+nCF
 vrd
-pVG
-pVG
+nCF
+nCF
 doP
 hKj
 "}
@@ -32168,15 +31817,15 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 vvj
-aZZ
+iTZ
 vKo
 eaO
 pve
@@ -32196,10 +31845,10 @@ esl
 wEY
 pDU
 dpa
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 pVG
@@ -32219,18 +31868,18 @@ doP
 doP
 doP
 doP
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 doP
 doP
 qUY
 doP
 doP
 von
-pVG
-pVG
+nCF
+nCF
 von
 von
 doP
@@ -32275,15 +31924,15 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 vvj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 gPM
 aMb
 vJY
@@ -32303,10 +31952,10 @@ gPM
 mRM
 ePS
 gPM
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 hKj
@@ -32325,10 +31974,10 @@ doP
 doP
 doP
 doP
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 doP
 doP
 doP
@@ -32336,8 +31985,8 @@ doP
 doP
 doP
 doP
-pVG
-pVG
+nCF
+nCF
 von
 doP
 paj
@@ -32383,14 +32032,14 @@ hKj
 hKj
 doP
 xaZ
-aZZ
-aZZ
+iTZ
+iTZ
 qRY
 quH
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 gPM
 gPM
 gPM
@@ -32410,10 +32059,10 @@ gPM
 gPM
 gPM
 gPM
-aZZ
-aZZ
+iTZ
+iTZ
 toH
-axU
+xkJ
 pVG
 pVG
 pVG
@@ -32443,8 +32092,8 @@ doP
 doP
 vTf
 kBq
-pVG
-pVG
+nCF
+nCF
 kBq
 mvo
 doP
@@ -32489,15 +32138,15 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 gPM
 kXm
 hTR
@@ -32517,10 +32166,10 @@ gPM
 uQd
 lWX
 gPM
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 hKj
@@ -32539,20 +32188,20 @@ kkr
 kkr
 hSK
 ddC
-pVG
-sjO
-pVG
+nCF
+muq
+nCF
 kkr
-pVG
+nCF
 doP
-aZZ
-aZZ
-doP
-doP
+iTZ
+iTZ
 doP
 doP
 doP
-pVG
+doP
+doP
+nCF
 jMq
 doP
 hKj
@@ -32596,15 +32245,15 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 vvj
-aZZ
+iTZ
 gPM
 owj
 nuj
@@ -32624,10 +32273,10 @@ cHO
 nuj
 xFh
 gPM
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 hKj
@@ -32639,21 +32288,21 @@ lRK
 hKj
 hKj
 doP
-axU
-axU
+xkJ
+xkJ
 kkr
 aFD
 hWD
 hLb
 ddC
-pVG
+nCF
 xzu
-pVG
+nCF
 kkr
-axU
-axU
-aZZ
-aZZ
+xkJ
+xkJ
+iTZ
+iTZ
 doP
 doP
 doP
@@ -32704,14 +32353,14 @@ hKj
 hKj
 doP
 iQl
-aZZ
-aZZ
+iTZ
+iTZ
 vvj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 gPM
 gPM
 gPM
@@ -32731,10 +32380,10 @@ gPM
 gPM
 gPM
 gPM
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 hKj
@@ -32745,27 +32394,27 @@ doP
 lRK
 lRK
 hKj
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+xkJ
 kkr
 gfY
 dQk
-axU
+xkJ
 ddC
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
 kkr
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 doP
@@ -32810,15 +32459,15 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 cAs
 oqc
 bbA
@@ -32838,10 +32487,10 @@ esl
 rHL
 vst
 dpa
-aZZ
-aZZ
+iTZ
+iTZ
 xcC
-axU
+xkJ
 pVG
 pVG
 pVG
@@ -32853,26 +32502,26 @@ doP
 lRK
 hKj
 doP
-aZZ
-axU
+iTZ
+xkJ
 ddC
 ouS
-axU
-axU
+xkJ
+xkJ
 ddC
 iVu
 iVu
 iVu
 kkr
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 doP
@@ -32917,14 +32566,14 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 vvj
 gPM
 bJA
@@ -32945,10 +32594,10 @@ gPM
 nsh
 iVG
 gPM
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 pVG
@@ -32959,27 +32608,27 @@ doP
 doP
 lRK
 hKj
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 hYG
 gUt
 quH
-aZZ
+iTZ
 ddC
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 doP
@@ -33025,14 +32674,14 @@ hKj
 hKj
 doP
 xaZ
-aZZ
+iTZ
 vvj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 gPM
 gPM
 gPM
@@ -33053,9 +32702,9 @@ gPM
 gPM
 gPM
 toH
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 pVG
@@ -33066,27 +32715,27 @@ doP
 doP
 lRK
 hKj
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 hYG
 raq
 qJp
-aZZ
+iTZ
 kaL
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 dUV
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 doP
@@ -33131,15 +32780,15 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-xcN
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+spn
 gPM
 kXm
 hTR
@@ -33159,10 +32808,10 @@ gPM
 uQd
 lWX
 gPM
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 pVG
@@ -33173,18 +32822,18 @@ doP
 doP
 lRK
 hKj
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 hYG
 vHP
 qJp
-aZZ
+iTZ
 ddC
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 iod
 iod
 iod
@@ -33238,15 +32887,15 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 vvj
-aZZ
-aZZ
-xcN
+iTZ
+iTZ
+spn
 gPM
 owj
 nuj
@@ -33267,9 +32916,9 @@ nuj
 xFh
 gPM
 dUV
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 pVG
@@ -33280,18 +32929,18 @@ doP
 doP
 lRK
 hKj
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 hYG
 hYG
 hYG
 hYG
 ddC
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 rVj
 iWq
 iWq
@@ -33345,15 +32994,15 @@ qfG
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-xcN
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+spn
 gPM
 gPM
 gPM
@@ -33373,10 +33022,10 @@ gPM
 gPM
 gPM
 gPM
-aZZ
-aZZ
-aZZ
-axU
+iTZ
+iTZ
+iTZ
+xkJ
 pVG
 pVG
 hKj
@@ -33395,10 +33044,10 @@ kby
 kby
 kby
 cHr
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 rVj
 rVj
 rVj
@@ -33453,14 +33102,14 @@ hKj
 hKj
 doP
 wPP
-axU
-axU
-axU
-axU
-axU
-axU
-aZZ
-aZZ
+xkJ
+xkJ
+xkJ
+xkJ
+xkJ
+xkJ
+iTZ
+iTZ
 rVa
 oqc
 bbA
@@ -33480,10 +33129,10 @@ esl
 rHL
 vst
 lRk
-aZZ
+iTZ
 xcC
-aZZ
-axU
+iTZ
+xkJ
 hKj
 hKj
 doP
@@ -33495,17 +33144,17 @@ doP
 lRK
 hKj
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-xcN
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+spn
 cHr
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 rVj
 rVj
 rVj
@@ -33558,16 +33207,16 @@ gDP
 qfG
 usm
 hKj
-lRK
-lRK
-lRK
-lRK
-pVG
-pVG
-pVG
-axU
-aZZ
-aZZ
+npt
+npt
+npt
+npt
+nCF
+nCF
+nCF
+xkJ
+iTZ
+iTZ
 gPM
 nsh
 pUq
@@ -33588,8 +33237,8 @@ iVG
 ePS
 gPM
 pWE
-aZZ
-aZZ
+iTZ
+iTZ
 hKj
 doP
 doP
@@ -33602,17 +33251,17 @@ doP
 lRK
 lRK
 hKj
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 cHr
-pVG
-pVG
+nCF
+nCF
 vqu
-pVG
+nCF
 rVj
 rVj
 rVj
@@ -33665,16 +33314,16 @@ uAC
 qfG
 qfG
 usm
-lRK
-lRK
+npt
+npt
 oAm
-lRK
-lRK
-lRK
-lRK
-axU
-axU
-aZZ
+npt
+npt
+npt
+npt
+xkJ
+xkJ
+iTZ
 gPM
 gPM
 gPM
@@ -33694,8 +33343,8 @@ gPM
 gPM
 gPM
 gPM
-aZZ
-aZZ
+iTZ
+iTZ
 doP
 doP
 doP
@@ -33709,17 +33358,17 @@ doP
 doP
 lRK
 hKj
-aZZ
+iTZ
 aZX
 pMJ
 pMJ
 iDI
-aZZ
+iTZ
 cHr
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 rVj
 rVj
 rVj
@@ -33799,34 +33448,34 @@ dxi
 lnt
 dxi
 dxi
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+doP
+npt
+npt
+npt
+npt
+npt
+doP
+doP
+doP
+doP
 doP
 lRK
 lRK
 lRK
-lRK
-lRK
-doP
-doP
-doP
-doP
-doP
-lRK
-lRK
-lRK
-aZZ
+iTZ
 eYe
 bVK
 qcU
 mdS
-aZZ
+iTZ
 cHr
-pVG
-sjO
-pVG
-pVG
+nCF
+muq
+nCF
+nCF
 rVj
 iWq
 rVj
@@ -33901,39 +33550,39 @@ jXb
 fBc
 xwd
 eok
-aZZ
-aZZ
+iTZ
+iTZ
 vlV
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 doP
 doP
 doP
 lRK
 hKj
 hKj
-aZZ
+iTZ
 eYe
 qcU
 qcU
 mdS
-aZZ
+iTZ
 cHr
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 rVj
 iWq
 rVj
@@ -34009,38 +33658,38 @@ fOS
 ttS
 wta
 iPV
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 lRK
 doP
 lRK
 lRK
 hKj
 doP
-aZZ
+iTZ
 eEm
 rAx
 rAx
 wbi
-aZZ
+iTZ
 cHr
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 iod
 iod
 iod
@@ -34093,20 +33742,20 @@ dCx
 gXE
 oCU
 usm
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
+nCF
+npt
+npt
+npt
+npt
+npt
 gRZ
-lRK
-axU
-aZZ
-xcN
-xcN
-xcN
-aZZ
+npt
+xkJ
+iTZ
+spn
+spn
+spn
+iTZ
 rsI
 rsI
 rsI
@@ -34115,49 +33764,49 @@ rsI
 bLN
 csa
 baH
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 lRK
 lRK
 lRK
 hKj
 hKj
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 cHr
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 dUV
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 hKj
@@ -34200,20 +33849,20 @@ kUc
 gvK
 oCU
 hKj
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-axU
-aZZ
-xcN
-xcN
-xcN
-xcN
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+xkJ
+iTZ
+spn
+spn
+spn
+spn
 rsI
 xJy
 rog
@@ -34221,51 +33870,51 @@ rog
 xJy
 xJy
 csa
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 toH
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 lRK
 hKj
 hKj
 hKj
 doP
 doP
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-xcN
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+spn
 cHr
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 hKj
 "}
@@ -34307,19 +33956,19 @@ kUc
 gvK
 oCU
 hKj
-pVG
-pVG
-lRK
+nCF
+nCF
+npt
 wcK
-lRK
-lRK
-lRK
-pVG
-axU
-aZZ
-aZZ
-aZZ
-xcN
+npt
+npt
+npt
+nCF
+xkJ
+iTZ
+iTZ
+iTZ
+spn
 tbB
 rsI
 mUk
@@ -34328,23 +33977,23 @@ urC
 urC
 urC
 ety
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 qRY
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 lRK
 hKj
 tZf
@@ -34358,21 +34007,21 @@ caw
 fmZ
 fmZ
 fmZ
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 hKj
 "}
@@ -34414,15 +34063,15 @@ kUc
 gvK
 oCU
 hKj
-pVG
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-pVG
-axU
+nCF
+nCF
+npt
+npt
+npt
+npt
+npt
+nCF
+xkJ
 cCZ
 wta
 eok
@@ -34435,23 +34084,23 @@ eok
 wta
 aWR
 rsI
-aZZ
+iTZ
 pUy
-aZZ
+iTZ
 kQm
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 lRK
 hKj
 tZf
@@ -34465,20 +34114,20 @@ pfz
 muy
 ecl
 fmZ
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 hKj
@@ -34521,16 +34170,16 @@ gDP
 gvK
 oCU
 hKj
-pVG
-lRK
-lRK
+nCF
+npt
+npt
 gRZ
-lRK
-lRK
-lRK
-pVG
-axU
-aZZ
+npt
+npt
+npt
+nCF
+xkJ
+iTZ
 eok
 kHS
 rfA
@@ -34542,23 +34191,23 @@ dga
 eok
 gFK
 rsI
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 hKj
 hKj
 tZf
@@ -34572,18 +34221,18 @@ eSD
 kCF
 vsO
 ayg
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 doP
@@ -34628,15 +34277,15 @@ kUc
 gvK
 oCU
 hKj
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-pVG
-axU
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+nCF
+xkJ
 rqu
 eok
 jWo
@@ -34649,22 +34298,22 @@ oVL
 eok
 ctS
 rsI
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 iQl
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 hKj
 hKj
 doP
@@ -34679,20 +34328,20 @@ aDL
 ozz
 uhO
 ayg
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 qRY
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
 doP
 doP
 hKj
@@ -34735,16 +34384,16 @@ kUc
 gvK
 qfG
 hKj
-axU
-axU
-lRK
-lRK
-lRK
-lRK
-lRK
-pVG
-axU
-xcN
+xkJ
+xkJ
+npt
+npt
+npt
+npt
+npt
+nCF
+xkJ
+spn
 eok
 rqU
 eXX
@@ -34756,22 +34405,22 @@ iii
 eok
 ctS
 rsI
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 hKj
 rZn
 azO
@@ -34786,15 +34435,15 @@ eSD
 kLp
 djt
 ayg
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 iaK
 geg
 geg
@@ -34843,15 +34492,15 @@ gvK
 qfG
 hKj
 xaZ
-axU
-lRK
-lRK
-lRK
+xkJ
+npt
+npt
+npt
 oAm
-lRK
-axU
+npt
+xkJ
 czo
-xcN
+spn
 eok
 jLr
 eXX
@@ -34863,21 +34512,21 @@ lpw
 eok
 gFK
 rsI
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
 pWE
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 hKj
 hKj
 cnk
@@ -34893,15 +34542,15 @@ kKQ
 fAb
 gPq
 fmZ
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 ncC
 xEZ
 pvI
@@ -34949,15 +34598,15 @@ kUc
 qyd
 qfG
 hKj
-aZZ
-axU
-lRK
-lRK
-lRK
-lRK
-lRK
-axU
-xcN
+iTZ
+xkJ
+npt
+npt
+npt
+npt
+npt
+xkJ
+spn
 usy
 wta
 vqa
@@ -34970,21 +34619,21 @@ xtf
 eok
 ctS
 rsI
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 hKj
 doP
 pwY
@@ -35000,15 +34649,15 @@ fmZ
 caw
 fmZ
 fmZ
-pVG
-sjO
-pVG
-pVG
+nCF
+muq
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 iaK
 ncC
 eSR
@@ -35057,15 +34706,15 @@ dsW
 qfG
 hKj
 xaZ
-axU
-lRK
-lRK
-lRK
-axU
-axU
-axU
-xcN
-xcN
+xkJ
+npt
+npt
+npt
+xkJ
+xkJ
+xkJ
+spn
+spn
 eok
 mJy
 eXX
@@ -35077,21 +34726,21 @@ wta
 wta
 oyT
 rsI
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
+npt
 hKj
 doP
 oZE
@@ -35104,18 +34753,18 @@ bqP
 uYi
 qrd
 iaK
-aZZ
-aZZ
+iTZ
+iTZ
 cHr
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 dCI
 xEZ
 eSR
@@ -35164,15 +34813,15 @@ kCE
 qfG
 hKj
 doP
-axU
-axU
-axU
-axU
-axU
-aZZ
-aZZ
-aZZ
-aZZ
+xkJ
+xkJ
+xkJ
+xkJ
+xkJ
+iTZ
+iTZ
+iTZ
+iTZ
 eok
 iNQ
 eXX
@@ -35184,20 +34833,20 @@ jAW
 wta
 gFK
 rsI
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 mKu
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
 hKj
 hKj
 doP
@@ -35211,18 +34860,18 @@ doP
 oAS
 ufL
 iaK
-aZZ
+iTZ
 dUV
 cHr
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 geg
 xEZ
 sLe
@@ -35271,15 +34920,15 @@ oHV
 qfG
 hKj
 doP
-doP
-aZZ
+jKB
+iTZ
 xaZ
 dUV
 uSL
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 eok
 tvF
 iGJ
@@ -35291,20 +34940,20 @@ lab
 wta
 aWR
 rsI
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-aZZ
-pVG
-lRK
-lRK
-lRK
-lRK
-lRK
-lRK
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+iTZ
+nCF
+npt
+npt
+npt
+npt
+npt
+npt
 hKj
 doP
 doP
@@ -35318,18 +34967,18 @@ doP
 iaK
 iaK
 iaK
-aZZ
-aZZ
+iTZ
+iTZ
 cHr
-pVG
-pVG
-pVG
-pVG
+nCF
+nCF
+nCF
+nCF
 cHr
-aZZ
-aZZ
-aZZ
-aZZ
+iTZ
+iTZ
+iTZ
+iTZ
 iaK
 iaK
 iaK
@@ -35410,8 +35059,8 @@ doP
 doP
 doP
 doP
-lRK
-lRK
+npt
+npt
 hKj
 doP
 doP

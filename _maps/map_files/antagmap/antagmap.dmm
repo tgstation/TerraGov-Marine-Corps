@@ -1203,6 +1203,10 @@
 /obj/item/reagent_containers/jerrycan,
 /turf/open/floor/mainship/cargo,
 /area/antag_ship/som/hangar)
+"hJ" = (
+/obj/effect/spawner/random/decal/blood,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/medbay)
 "hM" = (
 /turf/open/floor/mainship/black{
 	dir = 9
@@ -3325,11 +3329,11 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/medical_room)
 "sh" = (
-/obj/effect/spawner/random/decal/blood,
-/obj/structure/bed/roller,
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted{
 	dir = 8
 	},
+/obj/structure/table/reinforced/prison,
+/obj/item/storage/surgical_tray,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "si" = (
@@ -3720,9 +3724,8 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/security)
 "uv" = (
-/obj/machinery/iv_drip,
-/obj/effect/turf_decal/trimline,
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted,
+/obj/machinery/optable,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "uA" = (
@@ -8319,8 +8322,8 @@
 "Tf" = (
 /obj/effect/spawner/random/medical/bloodpack,
 /obj/machinery/iv_drip,
-/obj/effect/turf_decal/trimline,
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted,
+/obj/effect/turf_decal/trimline,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "Th" = (
@@ -9031,6 +9034,9 @@
 /obj/machinery/computer,
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/hangar)
+"Wp" = (
+/turf/open/floor/plating/ground/dirt,
+/area/lv624/ground/caves/rock)
 "Ws" = (
 /obj/structure/table/reinforced,
 /obj/machinery/computer/security/som_mainship,
@@ -15924,7 +15930,7 @@ CY
 aF
 BC
 Jf
-Jf
+hJ
 uv
 PL
 tT
@@ -17732,8 +17738,8 @@ aF
 aF
 GN
 GN
-aF
-Nj
+Wp
+gI
 gI
 Ns
 AN

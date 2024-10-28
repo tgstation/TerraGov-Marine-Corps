@@ -38,9 +38,6 @@
 		msg += "[icon2html(icon, user)] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
 
 	msg += "<EM>[src.name]!</EM></big></span>\n"
-	if(flavor_text)
-		msg += EXAMINE_SECTION_BREAK
-		msg += "[flavor_text]\n"
 
 	msg += EXAMINE_SECTION_BREAK
 	msg += "<span class='info'>"
