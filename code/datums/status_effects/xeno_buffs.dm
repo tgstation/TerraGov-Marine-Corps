@@ -1052,7 +1052,7 @@
 		return
 	chamber_scaling = length(buff_owner.hive.spur_chambers)
 	if(chamber_scaling > 0)
-		buff_owner.gain_plasma(buff_owner.xeno_caste.plasma_gain * plasma_regen_buff_per_chamber * chamber_scaling * (1 + buff_owner.recovery_aura * 0.05) + (buff_owner.xeno_caste.plasma_max * percent_buff_per_chamber * chamber_scaling))
+		buff_owner.gain_plasma(buff_owner.xeno_caste.plasma_gain * plasma_regen_buff_per_chamber * chamber_scaling + (buff_owner.xeno_caste.plasma_max * percent_buff_per_chamber * chamber_scaling))
 
 // ***************************************
 // ***************************************
