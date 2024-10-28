@@ -265,7 +265,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 /datum/hive_upgrade/building/upgrade_chamber
-	flags_upgrade = ABILITY_NUCLEARWAR
+	gamemode_flags = ABILITY_NUCLEARWAR
 	var/max_chambers = 3
 
 /datum/hive_upgrade/building/upgrade_chamber/shell
