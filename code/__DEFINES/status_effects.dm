@@ -39,6 +39,8 @@
 
 #define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
 
+#define STATUS_EFFECT_UPGRADE_CARAPACE /datum/status_effect/upgrade_carapace
+
 #define STATUS_EFFECT_UPGRADE_REGENERATION /datum/status_effect/upgrade_regeneration
 
 #define STATUS_EFFECT_UPGRADE_VAMPIRISM /datum/status_effect/upgrade_vampirism
