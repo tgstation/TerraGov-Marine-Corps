@@ -2255,7 +2255,7 @@
 			/obj/item/clothing/gloves/marine/veteran/pmc = -1,
 			/obj/item/clothing/gloves/marine/hyperscale = -1,
 			/obj/item/clothing/shoes/marine/full = -1,
-			/obj/item/clothing/shoes/veteran/pmc = -1,
+			/obj/item/clothing/shoes/marine/pmc/full = -1,
 			/obj/item/armor_module/armor/badge = -1,
 			/obj/item/armor_module/armor/cape = -1,
 			/obj/item/armor_module/armor/cape/kama = -1,

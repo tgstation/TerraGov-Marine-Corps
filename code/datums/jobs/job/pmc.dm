@@ -84,7 +84,7 @@
 	belt = /obj/item/storage/belt/lifesaver/quick
 	ears = /obj/item/radio/headset/distress/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
 	gloves = /obj/item/clothing/gloves/defibrillator
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc

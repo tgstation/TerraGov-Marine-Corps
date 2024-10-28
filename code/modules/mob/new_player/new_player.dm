@@ -376,8 +376,8 @@
 		return
 	if(!check_other_rights(client, R_ADMIN, FALSE))
 		message_admins(src+" joined as a ghost.")
-//		to_chat(src, span_warning("Only admins may observe, play instead!"))
-//		return FALSE
+		to_chat(src, span_warning("No peeking, play instead!"))
+		return FALSE
 	if(!client)
 		return TRUE
 	var/mob/dead/observer/observer = new()
