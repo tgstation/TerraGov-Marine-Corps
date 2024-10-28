@@ -92,7 +92,7 @@
 		remove_apply_upgrades(GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_VAMPIRISM)
 	if(href_list["celerity_buy"])
 		remove_apply_upgrades(GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_CELERITY)
-	if(href_list["adrenalin_buy"])
+	if(href_list["adrenaline_buy"])
 		remove_apply_upgrades(GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_ADRENALINE)
 	if(href_list["crush_buy"])
 		remove_apply_upgrades(GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_CRUSH)
@@ -637,7 +637,7 @@
 	dat += "[shell_chambers_built ? "<br><a href='?src=[text_ref(src)];vampirism_buy=1'>Vampirism</a> " : "<br>Vampirism "] | Cost: [upgrade_price] | Leech from our attacks."
 	dat += "<div align='center'>ATTACK</div>"
 	dat += "[spur_chambers_built ? "<br><a href='?src=[text_ref(src)];celerity_buy=1'>Celerity</a> " : "<br>Celerity "] | Cost: [upgrade_price] | Increase our movement speed."
-	dat += "[spur_chambers_built ? "<br><a href='?src=[text_ref(src)];adrenalin_buy=1'>Adrenalin</a> " : "<br>Adrenalin "] | Cost: [upgrade_price] | Increase our plasma regeneration."
+	dat += "[spur_chambers_built ? "<br><a href='?src=[text_ref(src)];adrenalin_buy=1'>Adrenaline</a> " : "<br>Adrenaline "] | Cost: [upgrade_price] | Increase our plasma regeneration."
 	dat += "[spur_chambers_built ? "<br><a href='?src=[text_ref(src)];crush_buy=1'>Crush</a> " : "<br>Crush "] | Cost: [upgrade_price] | Increase our damage to objects."
 	dat += "<div align='center'>UTILITY</div>"
 	dat += "[veil_chambers_built ? "<br><a href='?src=[text_ref(src)];toxin_buy=1'>Toxin</a> " : "<br>Toxin "] | Cost: [upgrade_price] | Inject neurotoxin into the target."
