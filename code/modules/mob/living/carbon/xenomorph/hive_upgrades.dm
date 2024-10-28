@@ -264,6 +264,49 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 
+/datum/hive_upgrade/building/upgrade_chamber
+	flags_upgrade = ABILITY_NUCLEARWAR
+	var/max_chambers = 3
+
+/datum/hive_upgrade/building/upgrade_chamber/shell
+	name = "Shell Upgrade Chamber"
+	desc = "Constructs a chamber that allows xenos to buy survival mutations. Build up to 3 structures to increase mutation power."
+	icon = "shell"
+	psypoint_cost = 200
+	building_type = /obj/structure/xeno/upgrade_chamber/shell
+
+/datum/hive_upgrade/building/upgrade_chamber/shell/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(length(buyer.hive.shell_chambers) >= max_chambers)
+		to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active shell chambers!"))
+		return FALSE
+
+/datum/hive_upgrade/building/upgrade_chamber/spur
+	name = "Spur Upgrade Chamber"
+	desc = "Constructs a chamber that allows xenos to buy attack mutations. Build up to 3 structures to increase mutation power."
+	icon = "spur"
+	psypoint_cost = 150
+	building_type = /obj/structure/xeno/upgrade_chamber/spur
+
+/datum/hive_upgrade/building/upgrade_chamber/spur/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(length(buyer.hive.spur_chambers) >= max_chambers)
+		to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active spur chambers!"))
+		return FALSE
+
+/datum/hive_upgrade/building/upgrade_chamber/veil
+	name = "Veil Upgrade Chamber"
+	desc = "Constructs a chamber that allows xenos to buy utility mutations. Build up to 3 structures to increase mutation power."
+	icon = "veil"
+	psypoint_cost = 100
+	building_type = /obj/structure/xeno/upgrade_chamber/veil
+
+/datum/hive_upgrade/building/upgrade_chamber/veil/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(length(buyer.hive.veil_chambers) >= max_chambers)
+		to_chat(buyer, span_xenowarning("Hive cannot support more than [max_chambers] active veil chambers!"))
+		return FALSE
+
 /datum/hive_upgrade/defence
 	category = "Defences"
 
