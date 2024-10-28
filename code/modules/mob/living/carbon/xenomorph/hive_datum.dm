@@ -24,11 +24,11 @@
 	var/list/obj/structure/xeno/pherotower/pherotowers = list()
 	///list of hivemind cores
 	var/list/obj/structure/xeno/hivemindcore/hivemindcores = list()
-	///list of shell upgrade chambers
+	/// List of shell upgrade chambers.
 	var/list/obj/structure/xeno/upgrade_chamber/shell/shell_chambers = list()
-	///list of spur upgrade chambers
+	/// List of spur upgrade chambers.
 	var/list/obj/structure/xeno/upgrade_chamber/spur/spur_chambers = list()
-	///list of veil upgrade chambers
+	/// List of veil upgrade chambers.
 	var/list/obj/structure/xeno/upgrade_chamber/veil/veil_chambers = list()
 
 	var/tier3_xeno_limit

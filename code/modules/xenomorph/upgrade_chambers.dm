@@ -1,6 +1,6 @@
 /obj/structure/xeno/upgrade_chamber
-	name = "upgrade_chamber"
-	desc = "You shouldnt see this"
+	name = "upgrade chamber"
+	desc = "You shouldn't see this!"
 	icon = 'icons/Xeno/1x1building.dmi'
 	icon_state = "shell_chamber"
 	bound_width = 32
@@ -14,7 +14,7 @@
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "upgrade_chamber", ABOVE_FLOAT_LAYER))
 
 /obj/structure/xeno/upgrade_chamber/shell
-	name = "Shell"
+	name = "Shell Chamber"
 	desc = "Shell upgrade chamber"
 	icon_state = "shell_chamber"
 
@@ -30,7 +30,7 @@
 	return ..()
 
 /obj/structure/xeno/upgrade_chamber/spur
-	name = "Spur"
+	name = "Spur Chamber"
 	desc = "Spur upgrade chamber"
 	icon_state = "spur_chamber"
 
@@ -46,7 +46,7 @@
 	return ..()
 
 /obj/structure/xeno/upgrade_chamber/veil
-	name = "Veil"
+	name = "Veil Chamber"
 	desc = "Veil upgrade chamber"
 	icon_state = "veil_chamber"
 
