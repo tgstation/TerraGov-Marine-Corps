@@ -46,6 +46,7 @@
 
 /datum/ammo/bullet/pepperball
 	name = "pepperball"
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
 	hud_state = "pepperball"
 	hud_state_empty = "pepperball_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
