@@ -1398,6 +1398,7 @@
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
+	X.biomass = min(X.biomass + 15, 100)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
@@ -1509,6 +1510,7 @@
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
+	X.biomass = min(X.biomass + 15, 100)
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.cocooned++
