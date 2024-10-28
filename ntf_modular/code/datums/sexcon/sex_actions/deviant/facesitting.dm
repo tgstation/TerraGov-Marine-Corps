@@ -56,16 +56,26 @@
 /datum/sex_action/facesittingtwo/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-	if(user.gender != FEMALE)
-		return FALSE
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/userxeno
+		if(userxeno.client?.prefs?.xenogender != 2 || userxeno.client?.prefs?.xenogender != 4)
+			return FALSE
+	else
+		if(user.gender != FEMALE)
+			return FALSE
 	return TRUE
 
 /datum/sex_action/facesittingtwo/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
 
-	if(user.gender != FEMALE)
-		return FALSE
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/userxeno
+		if(userxeno.client?.prefs?.xenogender != 2 || userxeno.client?.prefs?.xenogender != 4)
+			return FALSE
+	else
+		if(user.gender != FEMALE)
+			return FALSE
 	// Need to stand up
 	if(user.resting)
 		return FALSE

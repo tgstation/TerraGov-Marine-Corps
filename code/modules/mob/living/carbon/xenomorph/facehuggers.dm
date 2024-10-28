@@ -19,6 +19,7 @@
 	worn_icon_state = "facehugger"
 	w_class = WEIGHT_CLASS_TINY //Note: can be picked up by aliens unlike most other items of w_class below 4
 	resistance_flags = NONE
+	equip_slot_flags = ITEM_SLOT_MASK|ITEM_SLOT_OCLOTHING
 	inventory_flags = COVEREYES|COVERMOUTH
 	armor_protection_flags = FACE|EYES
 	atom_flags = CRITICAL_ATOM
@@ -27,7 +28,7 @@
 	worn_layer = FACEHUGGER_LAYER
 	layer = FACEHUGGER_LAYER
 	worn_item_state_slots = list(slot_wear_suit_str = "facehugger_crotch")
-	worn_icon_list = list(slot_wear_suit_str = 'icons/Xeno/Effects.dmi')
+	worn_icon_list = list(slot_wear_suit_str = 'ntf_modular/icons/Xeno/Effects.dmi')
 
 	///Whether the hugger is dead, active or inactive
 	var/stat = CONSCIOUS
@@ -648,7 +649,7 @@
 /// Try to put an embryo into the target mob
 /obj/item/clothing/mask/facehugger/proc/try_impregnate(mob/living/carbon/human/target)
 	ADD_TRAIT(src, TRAIT_NODROP, HUGGER_TRAIT)
-	var/as_planned = target?.wear_mask == src  || target?.w_suit == src
+	var/as_planned = target?.wear_mask == src  || target?.wear_suit == src
 	if((target.can_be_facehugged(src, FALSE, FALSE) || target.faction == FACTION_CLF) && !sterile && as_planned) //is hugger still on face and can they still be impregnated
 		var/obj/item/alien_embryo/embryo = new(target)
 		embryo.hivenumber = hivenumber

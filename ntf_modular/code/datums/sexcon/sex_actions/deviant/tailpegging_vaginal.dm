@@ -5,8 +5,13 @@
 /datum/sex_action/tailpegging_vaginal/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-	if(target.gender != FEMALE)
-		return FALSE
+	if(isxeno(target))
+		var/mob/living/carbon/xenomorph/targetxeno
+		if(targetxeno.client?.prefs?.xenogender != 2)
+			return FALSE
+	else
+		if(target.gender != FEMALE)
+			return FALSE
 	if(!isxeno(user))
 		return FALSE
 	return TRUE

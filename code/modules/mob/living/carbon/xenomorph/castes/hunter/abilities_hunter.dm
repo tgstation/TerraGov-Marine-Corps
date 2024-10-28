@@ -488,7 +488,7 @@
 
 	if(marked_target)
 		UnregisterSignal(marked_target, COMSIG_QDELETING)
-	if(require_los && !line_of_sight(X, A)) //Need line of sight.
+	if(require_los && !line_of_sight(X, A, 14, TRUE)) //Need line of sight.
 		to_chat(X, span_xenowarning("We lost line of sight to the target!"))
 		return fail_activate()
 

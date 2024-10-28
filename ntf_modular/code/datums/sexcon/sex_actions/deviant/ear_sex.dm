@@ -11,8 +11,13 @@
 	if(user == target)
 		return FALSE
 
-	if(user.gender != MALE)
-		return FALSE
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/userxeno
+		if(userxeno.client?.prefs?.xenogender < 3)
+			return FALSE
+	else
+		if(user.gender != MALE)
+			return FALSE
 	if(!user.sexcon.can_use_penis())
 		return
 	return TRUE
