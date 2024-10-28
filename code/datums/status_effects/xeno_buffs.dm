@@ -1136,8 +1136,7 @@
 		/datum/reagent/toxin/xeno_ozelomelyn,
 		/datum/reagent/toxin/xeno_hemodile,
 		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_neurotoxin,
-		/datum/reagent/toxin/acid,
+		/datum/reagent/toxin/xeno_neurotoxin
 	)
 
 /datum/status_effect/upgrade_toxin/on_apply()
