@@ -188,3 +188,7 @@
       (at 50% gorger hp instead of 20%)
   - imageadd: A vfx shatter effect for Oppose.
   - spellcheck: removed repeated "Into the ground" from chat feedback on oppose.
+2024-10-28:
+  Runian:
+  - balance: Xenomorphs can toggle movement intent to walk in order to bypass/ignore
+      wraith portals.
