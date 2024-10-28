@@ -726,7 +726,7 @@
 
 #define COMSIG_XENOMORPH_LEAP_BUMP "xenomorph_leap_bump" //from /mob/living/carbon/xenomorph/bump
 
-// Xeno xpgrade chambers
+// Xeno upgrade chambers
 #define COMSIG_UPGRADE_CHAMBER_SURVIVAL "upgrade_chamber_survival"
 #define COMSIG_UPGRADE_CHAMBER_ATTACK "upgrade_chamber_attack"
 #define COMSIG_UPGRADE_CHAMBER_UTILITY "upgrade_chamber_utility"
