@@ -6,18 +6,33 @@
 
 	if(user == target)
 		return FALSE
-	if(target.gender != FEMALE)
-		return FALSE
-	if(user.gender != MALE)
-		return FALSE
+	if(isxeno(target))
+		var/mob/living/carbon/xenomorph/targetxeno
+		if(targetxeno.client?.prefs?.xenogender != 2)
+			return FALSE
+	else
+		if(target.gender != FEMALE)
+			return FALSE
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/userxeno
+		if(userxeno.client?.prefs?.xenogender < 3)
+			return FALSE
+	else
+		if(user.gender != MALE)
+			return FALSE
 	return TRUE
 
 /datum/sex_action/nipple_sex/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
 
-	if(user.gender != MALE)
-		return FALSE
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/userxeno
+		if(userxeno.client?.prefs?.xenogender < 3)
+			return FALSE
+	else
+		if(user.gender != MALE)
+			return FALSE
 	if(!user.sexcon.can_use_penis())
 		return
 	return TRUE

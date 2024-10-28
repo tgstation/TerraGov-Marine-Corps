@@ -7,8 +7,13 @@
 	if(user == target)
 		return FALSE
 
-	if(user.gender != FEMALE)
-		return FALSE
+	if(isxeno(user))
+		var/mob/living/carbon/xenomorph/userxeno
+		if(userxeno.client?.prefs?.xenogender != 2 || userxeno.client?.prefs?.xenogender != 4)
+			return FALSE
+	else
+		if(user.gender != FEMALE)
+			return FALSE
 	if(!target.gender == MALE)
 		return FALSE
 	return TRUE

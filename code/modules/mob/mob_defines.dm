@@ -96,8 +96,6 @@
 	///Our mobs currently active storage
 	var/datum/storage/s_active //Carbon
 	var/obj/item/clothing/mask/wear_mask //Carbon
-	var/obj/item/clothing/mask/w_suit //Carbon, w mask cause some dumbass made human define wear_mask, different than the rest.
-	var/obj/item/clothing/under/wear_under //Carbon
 	///the current turf being examined in the stat panel
 	var/turf/listed_turf
 	///Has enough dexterity to interact with advanced objects?
