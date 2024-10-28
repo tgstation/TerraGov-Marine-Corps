@@ -60,13 +60,7 @@
 
 			var/list/directions = gibdirections[i]
 			if(length(directions))
-				gib.streak(directions)
-
-
-
-
-
-/obj/effect/spawner/gibspawner
+				gib.streak(directions, mapload)
 
 /obj/effect/spawner/gibspawner/generic
 	gibtypes = list(/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs,/obj/effect/decal/cleanable/blood/gibs/core)
