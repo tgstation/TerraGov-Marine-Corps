@@ -593,7 +593,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	req_admin_notify = TRUE
 	comm_title = "Syn"
 	paygrade = "Mk.I"
-	supervisors = "the acting captain"
+	supervisors = "the xenomorphs and CLF"
 	total_positions = 1
 	skills_type = /datum/skills/synthetic
 	access = ALL_ANTAGONIST_ACCESS

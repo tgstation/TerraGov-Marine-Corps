@@ -119,7 +119,7 @@
 	new /obj/item/storage/pill_bottle/meralyne(src)
 	new /obj/item/storage/pill_bottle/dermaline(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/lifesaver/beginner/Initialize(mapload, ...) //For beginner vendor
@@ -202,7 +202,7 @@
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/reagent_containers/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/healthanalyzer(src)
 
 /obj/item/storage/belt/lifesaver/icc

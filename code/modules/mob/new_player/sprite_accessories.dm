@@ -604,11 +604,6 @@
 	icon_state = "hair_mflattop"
 	gender = FEMALE
 
-/datum/sprite_accessory/hair/marine_mohawk
-	name = "Marine Mohawk"
-	icon_state = "hair_mmarinemohawk"
-	gender = MALE
-
 /datum/sprite_accessory/hair/marysue
 	name = "Mary Sue"
 	icon_state = "hair_marysue"

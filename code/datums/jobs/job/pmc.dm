@@ -22,7 +22,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
@@ -84,7 +84,7 @@
 	belt = /obj/item/storage/belt/lifesaver/quick
 	ears = /obj/item/radio/headset/distress/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc
 	gloves = /obj/item/clothing/gloves/defibrillator
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc
@@ -134,7 +134,7 @@
 	belt = /obj/item/belt_harness/marine
 	ears = /obj/item/radio/headset/distress/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/holster
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/gunner
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/gunner
@@ -193,7 +193,7 @@
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70_pmc
 	ears = /obj/item/radio/headset/distress/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/webbing
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/sniper
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/sniper
@@ -244,7 +244,7 @@
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/pmc
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/leader/holster
-	shoes = /obj/item/clothing/shoes/veteran/pmc
+	shoes = /obj/item/clothing/shoes/marine/pmc/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/veteran/pmc/leader
 	gloves = /obj/item/clothing/gloves/marine/veteran/pmc
 	head = /obj/item/clothing/head/helmet/marine/veteran/pmc/leader

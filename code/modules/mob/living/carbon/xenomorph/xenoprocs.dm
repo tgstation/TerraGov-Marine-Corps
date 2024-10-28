@@ -611,6 +611,8 @@
 
 /mob/living/carbon/xenomorph/proc/update_xeno_gender(mob/living/carbon/xenomorph/user, swapping = FALSE)
 	remove_overlay(GENITAL_LAYER)
+	if(!user)
+		return
 	if(lying_angle)
 		if(swapping)
 			user.balloon_alert(user, "Cannot while lying down.")
@@ -619,7 +621,7 @@
 		if(swapping)
 			user.balloon_alert(user, "Cannot while in this state.")
 		return
-	var/xgen = user.client?.prefs?.xenogender
+	var/xgen = user?.client?.prefs?.xenogender
 	if(swapping) //flips to next in selection
 		xgen += 1
 	if(xgen >= 5) //revert to start if over max.

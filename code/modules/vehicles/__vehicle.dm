@@ -43,6 +43,8 @@
 	///This vehicle will follow us when we move (like atrailer duh)
 	var/obj/vehicle/trailer
 	var/are_legs_exposed = FALSE
+	/// Whether this vehicle triggers gargoyles
+	var/trigger_gargoyle = TRUE
 
 /obj/vehicle/Initialize(mapload)
 	. = ..()
