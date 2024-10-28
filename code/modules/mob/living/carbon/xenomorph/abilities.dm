@@ -1613,7 +1613,6 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_IMPREGNATE,
 	)
-	var/larva_point_reward = 1
 
 /datum/action/ability/activable/xeno/impregnate/can_use_ability(atom/A, silent, override_flags)
 	. = ..()
@@ -1649,8 +1648,6 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	if(ishuman(A))
 		var/mob/living/carbon/human/victim = A
-		var/hivenumber = XENO_HIVE_NORMAL
-		hivenumber = X.hivenumber
 		X.face_atom(victim)
 		X.do_jitter_animation()
 		A.do_jitter_animation()
@@ -1663,51 +1660,7 @@
 		owner.visible_message(span_warning("[X] fucks [victim]!"), span_warning("We fuck [victim]!"), span_warning("You hear slapping."), 5, victim)
 		if(victim.stat == CONSCIOUS)
 			to_chat(victim, span_warning("[X] fucks you!"))
-		victim.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 20) // Remove aphrotoxin cause orgasm.
-		new /obj/effect/decal/cleanable/blood/splatter/xenocum(owner.loc)
-		var/impregdamagetodeal = (X.xeno_caste.melee_damage * X.xeno_melee_damage_modifier) / 2
-		victim.apply_damage(15, BURN, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
-		victim.apply_damage(impregdamagetodeal, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
-		if(ismonkey(victim))
-			victim.apply_damage(impregdamagetodeal, BRUTE, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE)
-		if(A.stat == DEAD)
-			to_chat(owner, span_warning("We impregnate \the [victim] with a dormant larva."))
-		var/obj/item/alien_embryo/embryo = new(victim)
-		if(prob(5))
-			to_chat(owner, span_warning("We sense we impregnated \the [victim] with TWINS!."))
-			var/obj/item/alien_embryo/embryo2 = new(victim)
-			embryo2.hivenumber = hivenumber
-			if(victim.gender==FEMALE)
-				embryo2.emerge_target = 2
-				embryo2.emerge_target_flavor = "pussy"
-			else
-				embryo2.emerge_target = 3
-				embryo2.emerge_target_flavor = "ass"
-			GLOB.round_statistics.now_pregnant++
-			SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
-			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
-			personal_statistics.impregnations++
-		embryo.hivenumber = hivenumber
-		if(victim.gender==FEMALE)
-			embryo.emerge_target = 2
-			embryo.emerge_target_flavor = "pussy"
-		else
-			embryo.emerge_target = 3
-			embryo.emerge_target_flavor = "ass"
-		GLOB.round_statistics.now_pregnant++
-		SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[X.ckey]
-		personal_statistics.impregnations++
-		if(HAS_TRAIT(victim, TRAIT_HIVE_TARGET))
-			var/psy_points_reward = PSY_DRAIN_REWARD_MIN + ((HIGH_PLAYER_POP - SSmonitor.maximum_connected_players_count) / HIGH_PLAYER_POP * (PSY_DRAIN_REWARD_MAX - PSY_DRAIN_REWARD_MIN))
-			psy_points_reward = clamp(psy_points_reward, PSY_DRAIN_REWARD_MIN, PSY_DRAIN_REWARD_MAX)
-			SEND_GLOBAL_SIGNAL(COMSIG_GLOB_HIVE_TARGET_DRAINED, X)
-			psy_points_reward = psy_points_reward * 3
-			SSpoints.add_strategic_psy_points(X.hivenumber, psy_points_reward)
-			SSpoints.add_tactical_psy_points(X.hivenumber, psy_points_reward*0.25)
-			var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-			xeno_job.add_job_points(larva_point_reward)
-			X.hive.update_tier_limits()
+		X.impregify(victim, X, damagemult = 3)
 		add_cooldown()
 		succeed_activate()
 	if(isxeno(A))

@@ -253,7 +253,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/clothing/mask/cigarette))
 		var/obj/item/clothing/mask/cigarette/C = W
-		if(C.lit)
+		if(C.heat)
 			light(span_notice("[user] lights [user.p_their()] [src] with the [C] after a few attempts."))
 
 	else if(istype(W, /obj/item/tool/candle))

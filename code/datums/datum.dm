@@ -61,6 +61,7 @@
 	 * add_timer() returns the truthy value of -1 when not stoppable, and else a truthy numeric index
 	 */
 	var/list/cooldowns
+	var/abstract_type
 
 	/// List for handling persistent filters.
 	var/list/filter_data

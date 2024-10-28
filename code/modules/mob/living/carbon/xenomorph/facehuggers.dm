@@ -359,7 +359,7 @@
 		go_idle()
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
-	if(isliving(finder) && stat == CONSCIOUS)
+	if(isliving(finder) && finder.faction != FACTION_CLF && stat == CONSCIOUS)
 		finder.visible_message(span_danger("\A [src] leaps out of \the [loc]!") )
 		forceMove(get_turf(src))
 		reset_life_timer()
@@ -545,6 +545,7 @@
 		if(attempt_lewd_attach(H))
 			var/obj/item/clothing/under/U = H.wear_suit
 			H.dropItemToGround(H.wear_suit)
+			H.wear_suit = null
 			if(H.wear_suit)
 				visible_message("<span class='warning'>[src] rips into [H]'s [U.name] and latches onto their pelvis!</span>")
 			else
@@ -609,7 +610,7 @@
 		targethole = rand(1, 3)
 	if(target.wear_suit)
 		var/obj/item/clothing/suit/O = target.wear_suit
-		if(istype(O, /obj/item/clothing/mask/facehugger))
+		if(istype(O, /obj/item/clothing/mask/facehugger) || HAS_TRAIT(O, TRAIT_NODROP))
 			targethole = 1
 		if(istype(O, /obj/item/clothing/suit/storage/marine/specialist))
 			targethole = 1

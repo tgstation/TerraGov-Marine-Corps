@@ -108,6 +108,7 @@
 	GLOB.mob_living_list += src
 	if(stat != DEAD)
 		GLOB.alive_living_list += src
+		sexcon = new /datum/sex_controller(src)
 	SSmobs.start_processing(src)
 
 	set_armor_datum()

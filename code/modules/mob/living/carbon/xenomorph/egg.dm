@@ -63,7 +63,7 @@
 	burst()
 
 /obj/alien/egg/proc/should_proc_burst(mob/living/carbon/carbon_mover)
-	if(issamexenohive(carbon_mover))
+	if(issamexenohive(carbon_mover) || carbon_mover.faction != FACTION_CLF)
 		return FALSE
 	if(carbon_mover.stat == DEAD)
 		return FALSE
