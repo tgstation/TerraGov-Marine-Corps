@@ -928,9 +928,9 @@
 	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
 	/// The amount of max health to be regenerated everytime the proc 'heal_wounds' is called.
-	var/health_regen_per_chamber = 0.02 // 2%
+	var/health_regen_per_chamber = 0.015 // 1.5%
 	/// The amount of sunder to be regenerated everytime the proc 'heal_wounds' is called.
-	var/sunder_regen_per_chamber = 0.33
+	var/sunder_regen_per_chamber = 0.166
 	/// The amount of times to multiply health/sunder regen by.
 	var/chamber_scaling = 0
 
