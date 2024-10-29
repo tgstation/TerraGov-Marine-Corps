@@ -937,6 +937,7 @@
 	chamber_scaling = length(buff_owner.hive.shell_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
 	RegisterSignal(SSdcs, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(on_heal_wounds))
+	return TRUE
 
 /datum/status_effect/upgrade_regeneration/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL)
