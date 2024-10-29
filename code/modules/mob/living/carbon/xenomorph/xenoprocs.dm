@@ -84,25 +84,6 @@
 			// Checks for can use done in overwatch action.
 			SEND_SIGNAL(src, COMSIG_XENOMORPH_WATCHXENO, target)
 
-	if(href_list["carapace_buy"])
-		remove_apply_upgrades(GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_CARAPACE)
-	if(href_list["regeneration_buy"])
-		remove_apply_upgrades(GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_REGENERATION)
-	if(href_list["vampirism_buy"])
-		remove_apply_upgrades(GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_VAMPIRISM)
-	if(href_list["celerity_buy"])
-		remove_apply_upgrades(GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_CELERITY)
-	if(href_list["adrenaline_buy"])
-		remove_apply_upgrades(GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_ADRENALINE)
-	if(href_list["crush_buy"])
-		remove_apply_upgrades(GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_CRUSH)
-	if(href_list["toxin_buy"])
-		remove_apply_upgrades(GLOB.xeno_utility_upgrades, STATUS_EFFECT_UPGRADE_TOXIN)
-	if(href_list["phero_buy"])
-		remove_apply_upgrades(GLOB.xeno_utility_upgrades, STATUS_EFFECT_UPGRADE_PHERO)
-	if(href_list["trail_buy"])
-		remove_apply_upgrades(GLOB.xeno_utility_upgrades, STATUS_EFFECT_UPGRADE_TRAIL)
-
 ///Send a message to all xenos. Force forces the message whether or not the hivemind is intact. Target is an atom that is pointed out to the hive. Filter list is a list of xenos we don't message.
 /proc/xeno_message(message = null, span_class = "xenoannounce", size = 5, hivenumber = XENO_HIVE_NORMAL, force = FALSE, atom/target = null, sound = null, apply_preferences = FALSE, filter_list = null, arrow_type, arrow_color, report_distance = FALSE)
 	if(!message)

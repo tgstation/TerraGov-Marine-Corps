@@ -152,7 +152,6 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 			to_chat(usr, span_xenonotice("This mutation requires a spur chamber to exist!"))
 			return
 
-
 	if(!length(xeno_user.hive?.veil_chambers))
 		var/is_utility_status_effect = locate(upgrade_to_apply) in GLOB.xeno_utility_upgrades
 		if(is_utility_status_effect)
