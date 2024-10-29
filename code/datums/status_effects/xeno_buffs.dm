@@ -1049,7 +1049,7 @@
 	buff_owner.remove_movespeed_modifier(MOVESPEED_ID_CELERITY_BUFF)
 	return ..()
 
-/// Sets the chamber_scaling to the amount of active survival chambers and adjusts movement speed accordingly.
+/// Sets the chamber_scaling to the amount of active spur chambers and adjusts movement speed accordingly.
 /datum/status_effect/upgrade_celerity/proc/update_buff()
 	SIGNAL_HANDLER
 	chamber_scaling = length(buff_owner.hive.spur_chambers)
@@ -1091,7 +1091,7 @@
 	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_PLASMA_REGEN)
 	return ..()
 
-/// Sets the chamber_scaling to the amount of active survival chambers.
+/// Sets the chamber_scaling to the amount of active spur chambers.
 /datum/status_effect/upgrade_adrenaline/proc/update_buff()
 	SIGNAL_HANDLER
 	chamber_scaling = length(buff_owner.hive.spur_chambers)
@@ -1145,10 +1145,12 @@
 	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_OBJ)
 	return ..()
 
+/// Sets the chamber_scaling to the amount of active spur chambers.
 /datum/status_effect/upgrade_crush/proc/update_buff()
 	SIGNAL_HANDLER
 	chamber_scaling = length(buff_owner.hive.spur_chambers)
 
+/// Deals bonus damage along with armour pentration to the object.
 /datum/status_effect/upgrade_crush/proc/on_obj_attack(datum/source, obj/attacked)
 	SIGNAL_HANDLER
 	if(!chamber_scaling)
