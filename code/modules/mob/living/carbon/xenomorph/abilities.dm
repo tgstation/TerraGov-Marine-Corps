@@ -1534,6 +1534,10 @@
 	for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
 		nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
 
+	if(owner.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+		personal_statistics.cocooned++
+
 /////////////////////////////////
 // blessing Menu
 /////////////////////////////////
