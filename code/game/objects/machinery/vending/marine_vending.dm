@@ -1485,6 +1485,8 @@
 			/obj/item/clothing/under/shorts/red = -1,
 			/obj/item/clothing/under/shorts/blue = -1,
 			/obj/item/clothing/under/shorts/green = -1,
+			/obj/item/clothing/under/dress/maid = -1,
+			/obj/item/clothing/under/dress/maid/sexy = -1,
 		),
 	)
 
@@ -2407,6 +2409,8 @@
 			/obj/item/clothing/under/shorts/red = -1,
 			/obj/item/clothing/under/shorts/blue = -1,
 			/obj/item/clothing/under/shorts/green = -1,
+			/obj/item/clothing/under/dress/maid = -1,
+			/obj/item/clothing/under/dress/maid/sexy = -1,
 		),
 	)
 
@@ -2745,6 +2749,8 @@
 			/obj/item/clothing/under/shorts/red = -1,
 			/obj/item/clothing/under/shorts/blue = -1,
 			/obj/item/clothing/under/shorts/green = -1,
+			/obj/item/clothing/under/dress/maid = -1,
+			/obj/item/clothing/under/dress/maid/sexy = -1,
 		),
 	)
 
@@ -3115,6 +3121,8 @@
 			/obj/item/clothing/under/shorts/red = -1,
 			/obj/item/clothing/under/shorts/blue = -1,
 			/obj/item/clothing/under/shorts/green = -1,
+			/obj/item/clothing/under/dress/maid = -1,
+			/obj/item/clothing/under/dress/maid/sexy = -1,
 		),
 	)
 

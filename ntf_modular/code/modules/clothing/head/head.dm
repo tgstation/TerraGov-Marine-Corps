@@ -39,3 +39,9 @@
 		/obj/item/armor_module/storage/helmet,
 	)
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+
+/obj/item/clothing/head/rabbitears
+	name = "rabbit ears"
+	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
+	icon_state = "bunny"
+	flags_armor_protection = NONE
