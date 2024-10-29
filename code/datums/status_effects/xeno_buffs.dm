@@ -1162,9 +1162,9 @@
 		var/expected_integrity = max(attacked.obj_integrity - expected_damage, 0)
 		// Since this signal is called before they actually attack themselves, we do just enough so the main attack does the finishing blow.
 		if(!expected_integrity)
-			attacked.take_damage(expected_integrity - 0.1, effects = FALSE, armour_penetration = 100)
+			attacked.take_damage(expected_integrity - 0.1, BRUTE, MELEE, FALSE, armour_penetration = 100)
 			return
-		attacked.take_damage(buff_owner.xeno_caste.melee_damage * damage_buff_per_chamber * chamber_scaling, effects = FALSE, armour_penetration = (penetration_buff_per_chamber * chamber_scaling))
+		attacked.take_damage(buff_owner.xeno_caste.melee_damage * damage_buff_per_chamber * chamber_scaling, BRUTE, MELEE, FALSE, armour_penetration = (penetration_buff_per_chamber * chamber_scaling))
 
 // ***************************************
 // *********** Upgrade Chambers Buffs - Utility
