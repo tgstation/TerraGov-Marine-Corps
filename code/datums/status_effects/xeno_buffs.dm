@@ -929,7 +929,7 @@
 	var/mob/living/carbon/xenomorph/buff_owner
 	/// The amount of max health to be regenerated everytime the proc 'heal_wounds' is called.
 	var/health_regen_per_chamber = 0.02 // 2%
-	/// The amount of sunder to be regenerated everything the proc 'heal_wounds' is called.
+	/// The amount of sunder to be regenerated everytime the proc 'heal_wounds' is called.
 	var/sunder_regen_per_chamber = 0.33
 	/// The amount of times to multiply health/sunder regen by.
 	var/chamber_scaling = 0
@@ -1028,16 +1028,19 @@
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_celerity
+	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
+	/// The amount of movement speed the owner get.
 	var/speed_buff_per_chamber = 0.1
+	/// The amount of times to multiply the speed by.
 	var/chamber_scaling = 0
 
 /datum/status_effect/upgrade_celerity/on_apply()
 	if(!isxeno(owner))
 		return FALSE
 	buff_owner = owner
-	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK, PROC_REF(update_buff))
 	chamber_scaling = length(buff_owner.hive.spur_chambers)
+	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK, PROC_REF(update_buff))
 	buff_owner.add_movespeed_modifier(MOVESPEED_ID_CELERITY_BUFF, TRUE, 0, NONE, TRUE, -speed_buff_per_chamber * chamber_scaling)
 	return TRUE
 
@@ -1046,6 +1049,7 @@
 	buff_owner.remove_movespeed_modifier(MOVESPEED_ID_CELERITY_BUFF)
 	return ..()
 
+/// Sets the chamber_scaling to the amount of active survival chambers and adjusts movement speed accordingly.
 /datum/status_effect/upgrade_celerity/proc/update_buff()
 	SIGNAL_HANDLER
 	chamber_scaling = length(buff_owner.hive.spur_chambers)
@@ -1065,9 +1069,13 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	tick_interval = 5 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_adrenaline
+	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
-	var/plasma_regen_buff_per_chamber = 0.12
-	var/percent_buff_per_chamber = 0.02
+	/// The amount of plasma to regenerate based on their caste's plasma regeneration.
+	var/plasma_regen_buff_per_chamber = 0.5 // 5%
+	/// The amount of plasma to regenerate based on their caste's maximum plasma.
+	var/plasma_percentage_buff_per_chamber = 0.01 // 1%
+	/// The amount of times to multiply both plasma regenerations by.
 	var/chamber_scaling = 0
 
 /datum/status_effect/upgrade_adrenaline/on_apply()
@@ -1075,14 +1083,28 @@
 		return FALSE
 	buff_owner = owner
 	chamber_scaling = length(buff_owner.hive.spur_chambers)
+	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK, PROC_REF(update_buff))
+	RegisterSignal(buff_owner, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(on_plasma_regen))
 	return TRUE
 
-/datum/status_effect/upgrade_adrenaline/tick()
-	if(HAS_TRAIT(buff_owner, TRAIT_NOPLASMAREGEN))
-		return
+/datum/status_effect/upgrade_adrenaline/on_remove()
+	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK)
+	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_PLASMA_REGEN)
+	return ..()
+
+/// Sets the chamber_scaling to the amount of active survival chambers.
+/datum/status_effect/upgrade_adrenaline/proc/update_buff()
+	SIGNAL_HANDLER
 	chamber_scaling = length(buff_owner.hive.spur_chambers)
-	if(chamber_scaling > 0)
-		buff_owner.gain_plasma(buff_owner.xeno_caste.plasma_gain * plasma_regen_buff_per_chamber * chamber_scaling + (buff_owner.xeno_caste.plasma_max * percent_buff_per_chamber * chamber_scaling))
+
+/// Gives the xenomorph more plasma (according to their plasma regeneration and maximum) everytime they are suppose to regen plasma.
+/datum/status_effect/upgrade_adrenaline/proc/on_plasma_regen(mob/living/carbon/xenomorph/source_xenomorph, plasma_mod, seconds_per_tick)
+	SIGNAL_HANDLER
+	if(!chamber_scaling)
+		return
+	var/plasma_regen_amount = buff_owner.xeno_caste.plasma_gain * plasma_regen_buff_per_chamber * chamber_scaling
+	var/plasma_max_amount = buff_owner.xeno_caste.plasma_max * plasma_percentage_buff_per_chamber * chamber_scaling
+	buff_owner.gain_plasma(plasma_regen_amount + plasma_max_amount)
 
 // ***************************************
 // ***************************************
