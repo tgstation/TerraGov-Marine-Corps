@@ -920,12 +920,14 @@
 /datum/status_effect/upgrade_regeneration
 	id = "upgrade_regeneration"
 	duration = -1
-	tick_interval = 5 SECONDS
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_regeneration
 	var/mob/living/carbon/xenomorph/buff_owner
-	var/regen_buff_per_chamber = 0.05
+	/// The amount of max health to be regenerated everytime the proc 'heal_wounds' is called.
+	var/health_regen_per_chamber = 0.033 // 3.3%
+	/// The amount of sunder to be regenerated everything the proc 'heal_wounds' is called.
 	var/sunder_regen_per_chamber = 0.33
+	/// The amount of times to multiply health/sunder regen by.
 	var/chamber_scaling = 0
 
 /datum/status_effect/upgrade_regeneration/on_apply()
@@ -933,16 +935,29 @@
 		return FALSE
 	buff_owner = owner
 	chamber_scaling = length(buff_owner.hive.shell_chambers)
-	return TRUE
+	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
+	RegisterSignal(SSdcs, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(on_heal_wounds))
 
-/datum/status_effect/upgrade_regeneration/tick()
-	chamber_scaling = length(buff_owner.hive.shell_chambers)
-	if(chamber_scaling > 0)
-		var/amount = buff_owner.maxHealth * regen_buff_per_chamber * chamber_scaling * (1 + buff_owner.recovery_aura * 0.05)
-		HEAL_XENO_DAMAGE(buff_owner, amount, FALSE)
-		buff_owner.adjust_sunder(-sunder_regen_per_chamber * chamber_scaling)
-		buff_owner.updatehealth()
+/datum/status_effect/upgrade_regeneration/on_remove()
+	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL)
+	UnregisterSignal(SSdcs, COMSIG_XENOMORPH_HEALTH_REGEN)
 	return ..()
+
+/// Sets the chamber_scaling to the amount of active survival chambers.
+/datum/status_effect/upgrade_regeneration/proc/update_buff()
+	SIGNAL_HANDLER
+	chamber_scaling = length(buff_owner.hive.shell_chambers)
+
+/// Heals the xenomorph a certain amount of health at minimum regardless and even more if in the correct conditions.
+/datum/status_effect/upgrade_regeneration/proc/on_heal_wounds(datum/controller/subsystem/processing/dcs/ssdcs, heal_data, seconds_per_tick)
+	SIGNAL_HANDLER
+	if(!chamber_scaling || !heal_data[1])
+		return
+	var/health_amount = buff_owner.maxHealth * regen_buff_per_chamber
+	var/sunder_amount = -sunder_regen_per_chamber * chamber_scaling
+	HEAL_XENO_DAMAGE(buff_owner, health_amount, FALSE)
+	buff_owner.adjust_sunder(sunder_amount)
+	buff_owner.updatehealth()
 
 // ***************************************
 // ***************************************
