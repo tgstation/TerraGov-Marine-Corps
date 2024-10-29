@@ -1122,17 +1122,22 @@
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_crush
+	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
-	var/penetration_buff_per_chamber = 15
+	/// The bonus damage to deal as percentage.
+	var/damage_buff_per_chamber = 0.333 // 33.3%
+	/// The armour pentration the damage damage has.
+	var/penetration_buff_per_chamber = 10
+	/// The amount of times to multiply the armour pentration by.
 	var/chamber_scaling = 0
 
 /datum/status_effect/upgrade_crush/on_apply()
 	if(!isxeno(owner))
 		return FALSE
 	buff_owner = owner
+	chamber_scaling = length(buff_owner.hive.spur_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK, PROC_REF(update_buff))
 	RegisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
-	chamber_scaling = length(buff_owner.hive.spur_chambers)
 	return TRUE
 
 /datum/status_effect/upgrade_crush/on_remove()
@@ -1146,8 +1151,10 @@
 
 /datum/status_effect/upgrade_crush/proc/on_obj_attack(datum/source, obj/attacked)
 	SIGNAL_HANDLER
+	if(!chamber_scaling)
+		return
 	if(attacked.resistance_flags & XENO_DAMAGEABLE)
-		attacked.take_damage(buff_owner.xeno_caste.melee_damage, armour_penetration = (penetration_buff_per_chamber * chamber_scaling))
+		attacked.take_damage(buff_owner.xeno_caste.melee_damage * damage_buff_per_chamber * chamber_scaling, armour_penetration = (penetration_buff_per_chamber * chamber_scaling))
 
 // ***************************************
 // *********** Upgrade Chambers Buffs - Utility
