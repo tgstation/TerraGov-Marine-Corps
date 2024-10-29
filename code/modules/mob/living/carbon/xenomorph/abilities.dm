@@ -1406,14 +1406,10 @@
 			continue
 		nearby_friendly_xenos += nearby_xeno
 
-	var/amount_of_friendly_xenos = length(nearby_friendly_xenos)
-	if(amount_of_friendly_xenos > 1)
-		// Split the reward amongst every xeno nearby, including themselves.
-		var/biomass_per_xeno = round(15/amount_of_friendly_xenos, 0.1)
-		for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
-			nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
-	else
-		X.gain_biomass(15)
+	// Split the reward amongst every xeno nearby, including themselves.
+	var/biomass_per_xeno = round(15/length(nearby_friendly_xenos), 0.1)
+	for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
+		nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
@@ -1533,14 +1529,10 @@
 			continue
 		nearby_friendly_xenos += nearby_xeno
 
-	var/amount_of_friendly_xenos = length(nearby_friendly_xenos)
-	if(amount_of_friendly_xenos > 1)
-		// Split the reward amongst every xeno nearby, including themselves.
-		var/biomass_per_xeno = round(15/amount_of_friendly_xenos, 0.1)
-		for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
-			nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
-	else
-		X.gain_biomass(15)
+	// Split the reward amongst every xeno nearby, including themselves.
+	var/biomass_per_xeno = round(15/length(nearby_friendly_xenos), 0.1)
+	for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
+		nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
 
 /////////////////////////////////
 // blessing Menu
