@@ -2,9 +2,9 @@ GLOBAL_LIST_INIT(sex_actions, build_sex_actions())
 
 #define SEX_ACTION(sex_action_type) GLOB.sex_actions[sex_action_type]
 
-#define MAX_AROUSAL 200
-#define PASSIVE_EJAC_THRESHOLD 108
-#define ACTIVE_EJAC_THRESHOLD 100
+#define MAX_AROUSAL 225
+#define PASSIVE_EJAC_THRESHOLD 208
+#define ACTIVE_EJAC_THRESHOLD 200
 #define AROUSAL_HARD_ON_THRESHOLD 20
 #define CHARGE_RECHARGE_RATE (CHARGE_FOR_CLIMAX / (5 MINUTES))
 #define AROUSAL_TIME_TO_UNHORNY (5 SECONDS)
