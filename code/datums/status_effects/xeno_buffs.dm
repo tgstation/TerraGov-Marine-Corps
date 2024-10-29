@@ -1236,36 +1236,39 @@
 	icon_state = "xenobuff_phero"
 
 /atom/movable/screen/alert/status_effect/upgrade_pheromones/Click()
-	var/datum/status_effect/upgrade_pheromones/effect = attached_effect
-	if(effect.buff_owner.incapacitated(TRUE))
-		to_chat(usr, span_warning("Cant do that right now!"))
-		return
-	var/phero_choice = show_radial_menu(effect.buff_owner, effect.buff_owner, GLOB.pheromone_images_list, radius = 35, require_near = TRUE)
+	var/datum/status_effect/upgrade_pheromones/status_effect = attached_effect
+	var/phero_choice = show_radial_menu(status_effect.buff_owner, status_effect.buff_owner, GLOB.pheromone_images_list, radius = 35, require_near = TRUE)
 	if(!phero_choice)
 		return
-	QDEL_NULL(effect.current_aura)
-	effect.emitted_aura = phero_choice
-	effect.current_aura = SSaura.add_emitter(effect.buff_owner, phero_choice, 6 + effect.phero_power_per_chamber * effect.chamber_scaling * 2, effect.phero_power_base + effect.phero_power_per_chamber * effect.chamber_scaling, -1, FACTION_XENO, effect.buff_owner.hivenumber)
+	QDEL_NULL(status_effect.current_aura)
+	status_effect.emitted_aura = phero_choice
+	status_effect.create_aura()
 
 /datum/status_effect/upgrade_pheromones
 	id = "upgrade_pheromones"
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_pheromones
+	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
+	/// The aura.
 	var/datum/aura_bearer/current_aura
-	var/phero_power_per_chamber = 1
-	var/phero_power_base = 1
-	var/chamber_scaling = 0
+	/// The aura to emit.
 	var/emitted_aura = AURA_XENO_RECOVERY
+	/// The initial value of the aura's power.
+	var/aura_power_base = 1
+	/// The phero power to increase by.
+	var/aura_power_per_chamber = 1
+	/// The amount of times to multiply the aura power by.
+	var/chamber_scaling = 0
 
 /datum/status_effect/upgrade_pheromones/on_apply()
 	if(!isxeno(owner))
 		return FALSE
 	buff_owner = owner
-	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
 	chamber_scaling = length(buff_owner.hive.veil_chambers)
-	current_aura = SSaura.add_emitter(buff_owner, AURA_XENO_RECOVERY, 6 + phero_power_per_chamber * chamber_scaling * 2, phero_power_base + phero_power_per_chamber * chamber_scaling, -1, FACTION_XENO, buff_owner.hivenumber)
+	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
+	create_aura()
 	return TRUE
 
 /datum/status_effect/upgrade_pheromones/on_remove()
@@ -1274,11 +1277,17 @@
 		current_aura.stop_emitting()
 	return ..()
 
+/// (Re)creates the aura.
+/datum/status_effect/upgrade_pheromones/proc/create_aura()
+	if(current_aura)
+		QDEL_NULL(current_aura)
+	current_aura = SSaura.add_emitter(buff_owner, emitted_aura, 6 + aura_power_per_chamber * chamber_scaling * 2, aura_power_base + aura_power_per_chamber * chamber_scaling, -1, FACTION_XENO, buff_owner.hivenumber)
+
+/// Sets the chamber_scaling to the amount of active veil chambers and recreates the aura.
 /datum/status_effect/upgrade_pheromones/proc/update_buff()
 	SIGNAL_HANDLER
 	chamber_scaling = length(buff_owner.hive.veil_chambers)
-	QDEL_NULL(current_aura)
-	current_aura = SSaura.add_emitter(buff_owner, emitted_aura, 6 + phero_power_per_chamber * chamber_scaling * 2, phero_power_base + phero_power_per_chamber * chamber_scaling, -1, FACTION_XENO, buff_owner.hivenumber)
+	create_aura()
 
 // ***************************************
 // ***************************************
@@ -1305,23 +1314,29 @@
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_trail
+	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
-	var/obj/selected_trail = /obj/effect/xenomorph/spray
+	/// The initial odds of the trail spawning.
 	var/base_chance = 25
+	/// The additional chance of the trail starting.
 	var/chance_per_chamber = 25
+	/// The amount of times to increase the additional chance of trail spawning by.
 	var/chamber_scaling = 0
+	/// The selected trail that will spawn upon moving.
+	var/obj/selected_trail = /obj/effect/xenomorph/spray
+	/// A list of trails that can be selected
 	var/list/selectable_trails = list(
 		/obj/effect/xenomorph/spray,
-		/obj/alien/resin/sticky/thin,
+		/obj/alien/resin/sticky/thin
 	)
 
 /datum/status_effect/upgrade_trail/on_apply()
 	if(!isxeno(owner))
 		return FALSE
 	buff_owner = owner
-	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
-	RegisterSignal(buff_owner, COMSIG_MOVABLE_MOVED, PROC_REF(do_acid_trail))
 	chamber_scaling = length(buff_owner.hive.veil_chambers)
+	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
+	RegisterSignal(buff_owner, COMSIG_MOVABLE_MOVED, PROC_REF(create_trail))
 	return TRUE
 
 /datum/status_effect/upgrade_trail/on_remove()
@@ -1329,15 +1344,17 @@
 	UnregisterSignal(buff_owner, COMSIG_MOVABLE_MOVED)
 	return ..()
 
+/// Sets the chamber_scaling to the amount of active veil chambers.
 /datum/status_effect/upgrade_trail/proc/update_buff()
 	SIGNAL_HANDLER
 	chamber_scaling = length(buff_owner.hive.veil_chambers)
 
-/datum/status_effect/upgrade_trail/proc/do_acid_trail()
+/// Rolls the dice and creates the selected trail if the dice is right.
+/datum/status_effect/upgrade_trail/proc/create_trail()
 	SIGNAL_HANDLER
-	if(buff_owner.incapacitated(TRUE))
+	if(buff_owner.incapacitated() || buff_owner.lying_angle || buff_owner.resting)
 		return
-	if(prob(base_chance + chance_per_chamber * chamber_scaling))
+	if(prob(base_chance + (chance_per_chamber * chamber_scaling)))
 		var/turf/T = get_turf(buff_owner)
 		if(T.density || isspaceturf(T))
 			return
