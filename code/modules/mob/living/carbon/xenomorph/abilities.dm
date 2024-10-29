@@ -1398,7 +1398,22 @@
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
-	X.gain_biomass(15)
+
+	var/list/mob/living/carbon/xenomorph/nearby_friendly_xenos = list()
+	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(X, 7))
+		// Intentionally includes the owner.
+		if(!X.issamexenohive(nearby_xeno))
+			continue
+		nearby_friendly_xenos += nearby_xeno
+
+	var/amount_of_friendly_xenos = length(nearby_friendly_xenos)
+	if(amount_of_friendly_xenos > 1)
+		// Split the reward amongst every xeno nearby, including themselves.
+		var/biomass_per_xeno = round(15/amount_of_friendly_xenos, 0.1)
+		for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
+			nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
+	else
+		X.gain_biomass(15)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
@@ -1510,10 +1525,22 @@
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
-	X.gain_biomass(15)
-	if(owner.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
-		personal_statistics.cocooned++
+
+	var/list/mob/living/carbon/xenomorph/nearby_friendly_xenos = list()
+	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(X, 7))
+		// Intentionally includes the owner.
+		if(!X.issamexenohive(nearby_xeno))
+			continue
+		nearby_friendly_xenos += nearby_xeno
+
+	var/amount_of_friendly_xenos = length(nearby_friendly_xenos)
+	if(amount_of_friendly_xenos > 1)
+		// Split the reward amongst every xeno nearby, including themselves.
+		var/biomass_per_xeno = round(15/amount_of_friendly_xenos, 0.1)
+		for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
+			nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
+	else
+		X.gain_biomass(15)
 
 /////////////////////////////////
 // blessing Menu
