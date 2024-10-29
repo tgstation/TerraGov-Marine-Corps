@@ -6,6 +6,12 @@
 	shadow_languages = list(/datum/language/xenocommon)
 	job_category = JOB_CAT_MARINE
 
+/datum/job/clf/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
+	. = ..()
+	SSminimaps.add_marker(C, MINIMAP_FLAG_MARINE_CLF, image('ntf_modular/icons/UI_icons/map_blips.dmi', null, comm_title))
+	var/datum/action/minimap/clf/mini = new
+	mini.give_action(C)
+
 /datum/job/clf/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"As a CLF member you are a ex NTC worker, now a servant of Xenomorphs, they are superior, evolved beings that you must serve.
@@ -296,6 +302,8 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 //CLF Specialist
 /datum/job/clf/specialist
 	title = "CLF Specialist"
+	paygrade = "CLF4"
+	comm_title = "CLF4"
 	skills_type = /datum/skills/crafty
 	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_LATEJOINABLE|JOB_FLAG_ALLOWS_PREFS_GEAR|JOB_FLAG_PROVIDES_BANK_ACCOUNT|JOB_FLAG_OVERRIDELATEJOINSPAWN|JOB_FLAG_PROVIDES_SQUAD_HUD
 	outfit = /datum/outfit/job/clf/specialist
