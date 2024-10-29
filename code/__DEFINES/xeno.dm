@@ -92,6 +92,14 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 	/datum/reagent/toxin/xeno_ozelomelyn,
 ))
 
+//List of Defiler toxin images
+GLOBAL_LIST_INIT(defiler_toxin_images_list, list(
+	DEFILER_OZELOMELYN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_OZELOMELYN),
+	DEFILER_HEMODILE = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_HEMODILE),
+	DEFILER_TRANSVITOX = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_TRANSVITOX),
+	DEFILER_NEUROTOXIN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_NEUROTOXIN)
+))
+
 //List of toxins improving defile's damage
 GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 	/datum/reagent/toxin/xeno_ozelomelyn,

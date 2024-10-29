@@ -1156,7 +1156,15 @@
 	if(!chamber_scaling)
 		return
 	if(attacked.resistance_flags & XENO_DAMAGEABLE)
-		attacked.take_damage(buff_owner.xeno_caste.melee_damage * damage_buff_per_chamber * chamber_scaling, armour_penetration = (penetration_buff_per_chamber * chamber_scaling))
+		var/adjusted_armour_penetration = penetration_buff_per_chamber * chamber_scaling
+		var/adjusted_damage = buff_owner.xeno_caste.melee_damage * damage_buff_per_chamber * chamber_scaling
+		var/expected_damage = round(attacked.modify_by_armor(adjusted_damage, MELEE, adjusted_armour_penetration, null, null), DAMAGE_PRECISION)
+		var/expected_integrity = max(attacked.obj_integrity - expected_damage, 0)
+		// Since this signal is called before they actually attack themselves, we do just enough so the main attack does the finishing blow.
+		if(!expected_integrity)
+			attacked.take_damage(expected_integrity - 0.1, effects = FALSE, armour_penetration = 100)
+			return
+		attacked.take_damage(buff_owner.xeno_caste.melee_damage * damage_buff_per_chamber * chamber_scaling, effects = FALSE, armour_penetration = (penetration_buff_per_chamber * chamber_scaling))
 
 // ***************************************
 // *********** Upgrade Chambers Buffs - Utility
@@ -1167,49 +1175,38 @@
 	icon_state = "xenobuff_generic"
 
 /atom/movable/screen/alert/status_effect/upgrade_toxin/Click()
-	var/static/list/upgrade_toxin_images_list = list(
-		DEFILER_OZELOMELYN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_OZELOMELYN),
-		DEFILER_HEMODILE = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_HEMODILE),
-		DEFILER_TRANSVITOX = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_TRANSVITOX),
-		DEFILER_NEUROTOXIN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_NEUROTOXIN)
-	)
-	var/datum/status_effect/upgrade_toxin/effect = attached_effect
-	if(effect.buff_owner.incapacitated(TRUE))
-		to_chat(usr, span_warning("Cant do that right now!"))
-		return
-	var/datum/reagent/toxin/toxin_choice = show_radial_menu(effect.buff_owner, effect.buff_owner, upgrade_toxin_images_list, radius = 35, require_near = TRUE)
+	var/datum/status_effect/upgrade_toxin/status_effect = attached_effect
+	var/datum/reagent/toxin/toxin_choice = show_radial_menu(status_effect.buff_owner, status_effect.buff_owner, GLOB.defiler_toxin_images_list, radius = 35, require_near = TRUE)
 	if(!toxin_choice)
 		return
-	for(var/toxin in effect.selectable_reagents)
-		var/datum/reagent/R = GLOB.chemical_reagents_list[toxin]
-		if(R.name == toxin_choice)
-			effect.injected_reagent = R.type
+	for(var/defiler_toxin in GLOB.defiler_toxin_type_list)
+		var/datum/reagent/reagent = GLOB.chemical_reagents_list[defiler_toxin]
+		if(reagent.name == toxin_choice)
+			status_effect.selected_reagent = reagent.type
 			break
-	effect.buff_owner.balloon_alert(effect.buff_owner, "[toxin_choice]")
+	status_effect.buff_owner.balloon_alert(status_effect.buff_owner, "[toxin_choice]")
 
 /datum/status_effect/upgrade_toxin
 	id = "upgrade_toxin"
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_toxin
+	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
+	/// The amount of toxins to inject.
 	var/toxin_amount_per_chamber = 1
+	/// The amount of times to multiply the toxin amount by.
 	var/chamber_scaling = 0
-	var/datum/reagent/toxin/injected_reagent = /datum/reagent/toxin/xeno_neurotoxin
-	var/list/selectable_reagents = list(
-		/datum/reagent/toxin/xeno_ozelomelyn,
-		/datum/reagent/toxin/xeno_hemodile,
-		/datum/reagent/toxin/xeno_transvitox,
-		/datum/reagent/toxin/xeno_neurotoxin
-	)
+	/// Currently selected reagent to inject.
+	var/datum/reagent/toxin/selected_reagent = /datum/reagent/toxin/xeno_neurotoxin
 
 /datum/status_effect/upgrade_toxin/on_apply()
 	if(!isxeno(owner))
 		return FALSE
 	buff_owner = owner
+	chamber_scaling = length(buff_owner.hive.veil_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
 	RegisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_slash))
-	chamber_scaling = length(buff_owner.hive.veil_chambers)
 	return TRUE
 
 /datum/status_effect/upgrade_toxin/on_remove()
@@ -1217,23 +1214,18 @@
 	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 	return ..()
 
+/// Sets the chamber_scaling to the amount of active veil chambers.
 /datum/status_effect/upgrade_toxin/proc/update_buff()
 	SIGNAL_HANDLER
 	chamber_scaling = length(buff_owner.hive.veil_chambers)
 
+/// Injects the human target with a variable amount of the selected reagent.
 /datum/status_effect/upgrade_toxin/proc/on_slash(datum/source, mob/living/target)
 	SIGNAL_HANDLER
-	if(target.stat == DEAD)
+	if(!chamber_scaling || target.stat == DEAD || !ishuman(target) || !target.can_sting())
 		return
-	if(!ishuman(target))
-		return
-	if(!target?.can_sting())
-		return
-	var/mob/living/carbon/carbon_target = target
-	chamber_scaling = length(buff_owner.hive.veil_chambers)
-	var/amount_to_inject = toxin_amount_per_chamber * chamber_scaling
-	if(amount_to_inject)
-		carbon_target.reagents.add_reagent(injected_reagent, amount_to_inject)
+	var/mob/living/carbon/human/human_target = target
+	human_target.reagents.add_reagent(selected_reagent, toxin_amount_per_chamber * chamber_scaling)
 
 // ***************************************
 // ***************************************
