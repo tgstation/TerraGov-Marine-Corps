@@ -1067,7 +1067,6 @@
 	id = "upgrade_adrenaline"
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
-	tick_interval = 5 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_adrenaline
 	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
