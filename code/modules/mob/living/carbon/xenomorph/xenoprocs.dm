@@ -637,7 +637,7 @@
 	dat += "[shell_chambers_built ? "<br><a href='?src=[text_ref(src)];vampirism_buy=1'>Vampirism</a> " : "<br>Vampirism "] | Cost: [upgrade_price] | Leech from our attacks."
 	dat += "<div align='center'>ATTACK</div>"
 	dat += "[spur_chambers_built ? "<br><a href='?src=[text_ref(src)];celerity_buy=1'>Celerity</a> " : "<br>Celerity "] | Cost: [upgrade_price] | Increase our movement speed."
-	dat += "[spur_chambers_built ? "<br><a href='?src=[text_ref(src)];adrenalin_buy=1'>Adrenaline</a> " : "<br>Adrenaline "] | Cost: [upgrade_price] | Increase our plasma regeneration."
+	dat += "[spur_chambers_built ? "<br><a href='?src=[text_ref(src)];adrenaline_buy=1'>Adrenaline</a> " : "<br>Adrenaline "] | Cost: [upgrade_price] | Increase our plasma regeneration."
 	dat += "[spur_chambers_built ? "<br><a href='?src=[text_ref(src)];crush_buy=1'>Crush</a> " : "<br>Crush "] | Cost: [upgrade_price] | Increase our damage to objects."
 	dat += "<div align='center'>UTILITY</div>"
 	dat += "[veil_chambers_built ? "<br><a href='?src=[text_ref(src)];toxin_buy=1'>Toxin</a> " : "<br>Toxin "] | Cost: [upgrade_price] | Inject neurotoxin into the target."
