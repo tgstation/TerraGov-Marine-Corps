@@ -232,15 +232,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /// Automatically bumps living non-xenos if bump attacks are on.
 /datum/action/ability/xeno_action/dodge/proc/on_move(datum/source)
-	if(!isxeno(owner))
+	if(owner.stat == DEAD)
 		return FALSE
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(xeno_owner.stat == DEAD)
-		return FALSE
-	var/datum/action/bump_attack_toggle/bump_attack_action = xeno_owner.actions_by_path[/datum/action/bump_attack_toggle]
+	var/datum/action/bump_attack_toggle/bump_attack_action = owner.actions_by_path[/datum/action/bump_attack_toggle]
 	if(bump_attack_action == null || bump_attack_action.attacking) // Bump attacks are off if attacking is true, apparently.
 		return FALSE
-	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK) || xeno_owner.next_move > world.time)
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_BUMP_ATTACK) || owner.next_move > world.time)
 		return FALSE
 
 	var/turf/current_turf = get_turf(owner)
@@ -251,7 +248,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			var/mob/living/carbon/xenomorph/xenomorph_mob = living_mob
 			if(owner.issamexenohive(xenomorph_mob))
 				continue
-		xeno_owner.Bump(living_mob)
+		owner.Bump(living_mob)
 		return
 
 /// Removes the movespeed modifier and various pass_flags that was given by the dodge ability.
