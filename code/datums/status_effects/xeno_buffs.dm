@@ -953,7 +953,7 @@
 	SIGNAL_HANDLER
 	if(!chamber_scaling || !heal_data[1])
 		return
-	var/health_amount = buff_owner.maxHealth * regen_buff_per_chamber
+	var/health_amount = buff_owner.maxHealth * health_regen_per_chamber
 	var/sunder_amount = -sunder_regen_per_chamber * chamber_scaling
 	HEAL_XENO_DAMAGE(buff_owner, health_amount, FALSE)
 	buff_owner.adjust_sunder(sunder_amount)
