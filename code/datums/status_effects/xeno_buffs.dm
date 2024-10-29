@@ -887,7 +887,7 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_carapace
 	var/mob/living/carbon/xenomorph/buff_owner
-	var/armor_buff_per_chamber = 5
+	var/armor_buff_per_chamber = 2.5
 	var/chamber_scaling = 0
 
 /datum/status_effect/upgrade_carapace/on_apply()
