@@ -73,6 +73,7 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 
 	SStgui.close_user_uis(usr, src)
 
+/// Tries to purchase a mutation. Denies if possible. Otherwise, removes conflicting mutations and gives the purchased mutation.
 /datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xeno_purchaser, upgrade_name)
 	if(!upgrade_name)
 		return
