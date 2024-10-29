@@ -6,10 +6,6 @@ type Upgrade = {
   name: string;
   desc: string;
 };
-type UpgradeCategories = {
-  category: string;
-  upgrades: Upgrade[];
-};
 
 type MutationData = {
   shell_chambers: number;
@@ -17,7 +13,9 @@ type MutationData = {
   veil_chambers: number;
   biomass: number;
   cost: number;
-  upgrades: UpgradeCategories[];
+  survival_mutations: Upgrade[];
+  attack_mutations: Upgrade[];
+  utility_mutations: Upgrade[];
 };
 
 export const MutationSelector = (props) => {
@@ -28,11 +26,13 @@ export const MutationSelector = (props) => {
     veil_chambers,
     biomass,
     cost,
-    upgrades,
+    survival_mutations,
+    attack_mutations,
+    utility_mutations,
   } = data;
 
   return (
-    <Window width={400} height={650}>
+    <Window width={900} height={625}>
       <Window.Content>
         <Section title={`Biomass: ${biomass}/100`} align={'center'}>
           <Flex direction="column-reverse" align={'center'}>
@@ -46,25 +46,48 @@ export const MutationSelector = (props) => {
             Veil Chambers: {veil_chambers}
           </Flex>
         </Section>
-        {upgrades.map((upgrade_category) => (
-          <Section
-            title={`${upgrade_category.category} - ${cost}`}
-            key={upgrade_category.category}
-          >
-            {upgrade_category.upgrades.map((upgrade) => (
-              <Box key={upgrade_category.category}>
-                <Button
-                  content={upgrade.name}
-                  key={upgrade.name}
-                  onClick={() => act('purchase', { type: upgrade.name })}
-                />
-                <Flex direction="column-reverse" align={'left'}>
-                  {upgrade.desc}
-                </Flex>
-              </Box>
-            ))}
-          </Section>
-        ))}
+        <Section title="Survival" key="Survival">
+          {survival_mutations.map((mutation) => (
+            <Box key={mutation.name}>
+              <Button
+                content={`${mutation.name} (${cost})`}
+                key={mutation.name}
+                onClick={() => act('purchase', { upgrade_name: mutation.name })}
+              />
+              <Flex direction="column-reverse" align={'left'}>
+                {mutation.desc}
+              </Flex>
+            </Box>
+          ))}
+        </Section>
+        <Section title="Attack" key="Attack">
+          {attack_mutations.map((mutation) => (
+            <Box key={mutation.name}>
+              <Button
+                content={`${mutation.name} (${cost})`}
+                key={mutation.name}
+                onClick={() => act('purchase', { upgrade_name: mutation.name })}
+              />
+              <Flex direction="column-reverse" align={'left'}>
+                {mutation.desc}
+              </Flex>
+            </Box>
+          ))}
+        </Section>
+        <Section title="Utility" key="Utility">
+          {utility_mutations.map((mutation) => (
+            <Box key={mutation.name}>
+              <Button
+                content={`${mutation.name} (${cost})`}
+                key={mutation.name}
+                onClick={() => act('purchase', { upgrade_name: mutation.name })}
+              />
+              <Flex direction="column-reverse" align={'left'}>
+                {mutation.desc}
+              </Flex>
+            </Box>
+          ))}
+        </Section>
       </Window.Content>
     </Window>
   );

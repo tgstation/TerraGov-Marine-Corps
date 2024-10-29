@@ -1,5 +1,13 @@
 GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 
+#define MUTATION_CATEGORY_SURVIVAL "Survival"
+#define MUTATION_CATEGORY_ATTACK "Attack"
+#define MUTATION_CATEGORY_UTILITY "Utility"
+
+#define MUTATION_STRUCTURE_CHAMBER "shell"
+#define MUTATION_STRUCTURE_SPUR "spur"
+#define MUTATION_STRUCTURE_VEIL "veil"
+
 /datum/mutation_datum
 	interaction_flags = INTERACT_UI_INTERACT
 
@@ -29,60 +37,26 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 		else
 			data["cost"] = XENO_UPGRADE_BIOMASS_COST_T4
 
-	var/list/upgrades = list(
-		list(
-			"category" = "Survival",
-			"upgrades" = list(
-				list(
-					"name" = "Carapace",
-					"desc" = "Increase our armor."
-				),
-				list(
-					"name" = "Regeneration",
-					"desc" = "Increase our health regeneration."
-				),
-				list(
-					"name" = "Vampirism",
-					"desc" = "Leech from our attacks."
-				)
-			)
-		),
-		list(
-			"category" = "Attack",
-			"upgrades" = list(
-				list(
-					"name" = "Celerity",
-					"desc" = "Increase our movement speed."
-				),
-				list(
-					"name" = "Adrenaline",
-					"desc" = "Increase our plasma regeneration."
-				),
-				list(
-					"name" = "Crush",
-					"desc" = "Increase our damage to objects."
-				)
-			)
-		),
-		list(
-			"category" = "Utility",
-			"upgrades" = list(
-				list(
-					"name" = "Toxin",
-					"desc" = "Inject toxins into our target."
-				),
-				list(
-					"name" = "Pheromones",
-					"desc" = "Ability to emit pheromones."
-				),
-				list(
-					"name" = "Trail",
-					"desc" = "Leave a trail behind."
-				)
-			)
-		)
-	)
-	data["upgrades"] = upgrades
+	data["survival_mutations"] = list()
+	for(var/datum/mutation_upgrade/survival/subtype_survival_mutation AS in subtypesof(/datum/mutation_upgrade/survival))
+		data["survival_mutations"] += list(list( // Double listing doesn't look like it makes sense, but it works.
+			"name" = subtype_survival_mutation.name,
+			"desc" = subtype_survival_mutation.desc
+		))
+
+	data["attack_mutations"] = list()
+	for(var/datum/mutation_upgrade/attack/subtype_attack_mutation AS in subtypesof(/datum/mutation_upgrade/attack))
+		data["attack_mutations"] += list(list(
+			"name" = subtype_attack_mutation.name,
+			"desc" = subtype_attack_mutation.desc
+		))
+
+	data["utility_mutations"] = list()
+	for(var/datum/mutation_upgrade/utility/subtype_utility_mutation AS in subtypesof(/datum/mutation_upgrade/utility))
+		data["utility_mutations"] += list(list(
+			"name" = subtype_utility_mutation.name,
+			"desc" = subtype_utility_mutation.desc
+		))
 
 	return data
 
@@ -90,37 +64,21 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 	. = ..()
 	if(.)
 		return
+	if(!isxeno(usr))
+		return
+
 	switch(action)
 		if("purchase")
-			var/type = params["type"]
-			if(type == "Carapace")
-				remove_apply_upgrades(usr, GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_CARAPACE)
-			if(type == "Regeneration")
-				remove_apply_upgrades(usr, GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_REGENERATION)
-			if(type == "Vampirism")
-				remove_apply_upgrades(usr, GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_VAMPIRISM)
-			if(type == "Celerity")
-				remove_apply_upgrades(usr, GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_CELERITY)
-			if(type == "Adrenaline")
-				remove_apply_upgrades(usr, GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_ADRENALINE)
-			if(type == "Crush")
-				remove_apply_upgrades(usr, GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_CRUSH)
-			if(type == "Toxin")
-				remove_apply_upgrades(usr, GLOB.xeno_utility_upgrades, STATUS_EFFECT_UPGRADE_TOXIN)
-			if(type == "Pheromones")
-				remove_apply_upgrades(usr, GLOB.xeno_utility_upgrades, STATUS_EFFECT_UPGRADE_PHERO)
-			if(type == "Trail")
-				remove_apply_upgrades(usr, GLOB.xeno_utility_upgrades, STATUS_EFFECT_UPGRADE_TRAIL)
+			try_purchase_mutation(usr, params["upgrade_name"])
 
 	SStgui.close_user_uis(usr, src)
 
-/datum/mutation_datum/proc/remove_apply_upgrades(mob/ui_usr, list/upgrades_to_remove, datum/status_effect/upgrade_to_apply)
-	if(!isxeno(ui_usr))
+/datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xeno_purchaser, upgrade_name)
+	if(!upgrade_name)
 		return
-	var/mob/living/carbon/xenomorph/xeno_user = ui_usr
 
 	var/upgrade_price
-	switch(xeno_user.xeno_caste.tier)
+	switch(xeno_purchaser.xeno_caste.tier)
 		if(XENO_TIER_ONE)
 			upgrade_price = XENO_UPGRADE_BIOMASS_COST_T1
 		if(XENO_TIER_TWO)
@@ -130,38 +88,118 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 		else
 			upgrade_price = XENO_UPGRADE_BIOMASS_COST_T4
 
-	if(xeno_user.biomass < upgrade_price)
+	if(xeno_purchaser.biomass < upgrade_price)
 		to_chat(usr, span_warning("You don't have enough biomass!"))
 		return
 
-	var/upgrade = locate(upgrade_to_apply) in xeno_user.status_effects
-	if(upgrade)
+	var/list/excluded_mutation_base_upgrades = list(
+		/datum/mutation_upgrade/survival,
+		/datum/mutation_upgrade/attack,
+		/datum/mutation_upgrade/utility
+	)
+
+	var/datum/mutation_upgrade/chosen_mutation_upgrade
+	for(var/datum/mutation_upgrade/subtype_mutation AS in subtypesof(/datum/mutation_upgrade) - excluded_mutation_base_upgrades)
+		if(subtype_mutation.name == upgrade_name)
+			chosen_mutation_upgrade = subtype_mutation
+			break
+
+	if(!chosen_mutation_upgrade)
+		return
+
+	switch(chosen_mutation_upgrade.required_structure)
+		if(MUTATION_STRUCTURE_CHAMBER)
+			if(!length(xeno_purchaser.hive?.shell_chambers))
+				to_chat(usr, span_xenonotice("This mutation requires a shell chamber to exist!"))
+				return
+		if(MUTATION_STRUCTURE_SPUR)
+			if(!length(xeno_purchaser.hive?.spur_chambers))
+				to_chat(usr, span_xenonotice("This mutation requires a spur chamber to exist!"))
+				return
+		if(MUTATION_STRUCTURE_VEIL)
+			if(!length(xeno_purchaser.hive?.veil_chambers))
+				to_chat(usr, span_xenonotice("This mutation requires a veil chamber to exist!"))
+				return
+
+	var/existing_upgrade = locate(chosen_mutation_upgrade.status_effect) in xeno_purchaser.status_effects
+	if(existing_upgrade)
 		to_chat(usr, span_xenonotice("Existing mutation chosen. No biomass spent."))
 		return
 
-	if(!length(xeno_user.hive?.shell_chambers))
-		var/is_survival_status_effect = locate(upgrade_to_apply) in GLOB.xeno_survival_upgrades
-		if(is_survival_status_effect)
-			to_chat(usr, span_xenonotice("This mutation requires a shell chamber to exist!"))
-			return
+	var/list/mutation_status_effects_to_remove = list()
+	for(var/datum/mutation_upgrade/subtype_mutation AS in subtypesof(/datum/mutation_upgrade) - excluded_mutation_base_upgrades)
+		if(chosen_mutation_upgrade.category == subtype_mutation.category)
+			mutation_status_effects_to_remove += subtype_mutation.status_effect
 
+	xeno_purchaser.use_biomass(upgrade_price)
+	to_chat(xeno_purchaser, span_xenonotice("Mutation gained."))
+	for(var/datum/status_effect/removed_status_effect AS in mutation_status_effects_to_remove)
+		xeno_purchaser.remove_status_effect(removed_status_effect)
+	xeno_purchaser.do_jitter_animation(500)
+	xeno_purchaser.apply_status_effect(chosen_mutation_upgrade.status_effect)
 
-	if(!length(xeno_user.hive?.spur_chambers))
-		var/is_attack_status_effect = locate(upgrade_to_apply) in GLOB.xeno_attack_upgrades
-		if(is_attack_status_effect)
-			to_chat(usr, span_xenonotice("This mutation requires a spur chamber to exist!"))
-			return
+/datum/mutation_upgrade
+	var/name
+	var/desc
+	var/category
+	var/required_structure
+	var/datum/status_effect/status_effect
 
-	if(!length(xeno_user.hive?.veil_chambers))
-		var/is_utility_status_effect = locate(upgrade_to_apply) in GLOB.xeno_utility_upgrades
-		if(is_utility_status_effect)
-			to_chat(usr, span_xenonotice("This mutation requires a veil chamber to exist!"))
-			return
+/datum/mutation_upgrade/survival
+	category = MUTATION_CATEGORY_SURVIVAL
+	required_structure = MUTATION_STRUCTURE_CHAMBER
 
-	xeno_user.use_biomass(upgrade_price)
-	to_chat(xeno_user, span_xenonotice("Mutation gained."))
-	for(var/datum/status_effect/removed_status_effect AS in upgrades_to_remove)
-		xeno_user.remove_status_effect(removed_status_effect)
-	xeno_user.do_jitter_animation(500)
-	xeno_user.apply_status_effect(upgrade_to_apply)
+/datum/mutation_upgrade/survival/carapace
+	name = "Carapace"
+	desc = "Increases our soft armor by 2.5 per Shell Chamber."
+	status_effect = STATUS_EFFECT_UPGRADE_CARAPACE
 
+/datum/mutation_upgrade/survival/regeneration
+	name = "Regeneration"
+	desc = "When regenerating health on weeds, regenerate 1.5% max health and 0.167 sunder per Shell Chamber."
+	status_effect = STATUS_EFFECT_UPGRADE_REGENERATION
+
+/datum/mutation_upgrade/survival/vampirism
+	name = "Vampirism"
+	desc = "When slashing living humans, heal 3.33% max health per Shell Chamber. Ravagers get half the bonus instead."
+	status_effect = STATUS_EFFECT_UPGRADE_VAMPIRISM
+
+/datum/mutation_upgrade/attack
+	category = MUTATION_CATEGORY_ATTACK
+	required_structure = MUTATION_STRUCTURE_SPUR
+
+/datum/mutation_upgrade/attack/celerity
+	name = "Celerity"
+	desc = "Move -0.1 units faster per Spur Chamber."
+	category = MUTATION_CATEGORY_ATTACK
+	required_structure = MUTATION_STRUCTURE_SPUR
+	status_effect = STATUS_EFFECT_UPGRADE_CELERITY
+
+/datum/mutation_upgrade/attack/adrenaline
+	name = "Adrenaline"
+	desc = "When regenerating plasma on weeds, regenerate 5% additional plasma and 1% maximum plasma per Spur Chamber. It is doubled if resting."
+	status_effect = STATUS_EFFECT_UPGRADE_ADRENALINE
+
+/datum/mutation_upgrade/attack/crush
+	name = "Crush"
+	desc = "When attacking structures, deal a second instance of damage that is a 1/3 of your melee damage with 15 AP per Spur Chamber."
+	status_effect = STATUS_EFFECT_UPGRADE_CRUSH
+
+/datum/mutation_upgrade/utility
+	category = MUTATION_CATEGORY_UTILITY
+	required_structure = MUTATION_STRUCTURE_VEIL
+
+/datum/mutation_upgrade/utility/toxin
+	name = "Toxin"
+	desc = "When slashing living humans, inject 1u of a chosen toxin into them per Veil Chamber."
+	status_effect = STATUS_EFFECT_UPGRADE_TOXIN
+
+/datum/mutation_upgrade/utility/pheromones
+	name = "Pheromones"
+	desc = "Allows you to emit a chosen pheromone starting at a power of 1 and an additional 1 per Veil Chamber."
+	status_effect = STATUS_EFFECT_UPGRADE_PHERO
+
+/datum/mutation_upgrade/utility/trail
+	name = "Trail"
+	desc = "When moving, randomly leave a chosen trail underneath you at a 25% chance and an additional 25% per Veil Chamber."
+	status_effect = STATUS_EFFECT_UPGRADE_TRAIL
