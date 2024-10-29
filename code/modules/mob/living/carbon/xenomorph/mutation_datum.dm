@@ -158,7 +158,7 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 			to_chat(usr, span_xenonotice("This mutation requires a veil chamber to exist!"))
 			return
 
-	xeno_user.biomass -= upgrade_price
+	xeno_user.use_biomass(upgrade_price)
 	to_chat(xeno_user, span_xenonotice("Mutation gained."))
 	for(var/datum/status_effect/removed_status_effect AS in upgrades_to_remove)
 		xeno_user.remove_status_effect(removed_status_effect)

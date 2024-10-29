@@ -581,10 +581,15 @@
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
 
-
 /mob/living/carbon/xenomorph/verb/upgrade_menu()
 	set name = "Mutations Menu"
 	set desc = "See current Upgrade Chambers and get mutations for yourself"
 	set category = "Alien"
 
 	GLOB.mutation_selector.interact(src)
+
+/mob/living/carbon/xenomorph/proc/use_biomass(value)
+	biomass = clamp(biomass - value, 0, 100)
+
+/mob/living/carbon/xenomorph/proc/gain_biomass(value)
+	biomass = clamp(biomass + value, 0, 100)
