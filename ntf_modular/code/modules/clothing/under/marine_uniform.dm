@@ -7,12 +7,12 @@
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster/vp)
 
 /obj/item/clothing/under/dress/maid
+	name = "maid costume"
 	icon = 'ntf_modular/icons/obj/clothing/uniforms/uniforms.dmi'
-    name = "maid costume"
-    desc = "Maid in China."
-    icon_state = "maid"
+	desc = "Maid in China."
+	icon_state = "maid"
 
 /obj/item/clothing/under/dress/maid/sexy
-    name = "sexy maid costume"
-    desc = "You must be a bit risque teasing all of them in a maid uniform!"
-    icon_state = "sexymaid"
+	name = "sexy maid costume"
+	desc = "You must be a bit risque teasing all of them in a maid uniform!"
+	icon_state = "sexymaid"

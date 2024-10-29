@@ -44,4 +44,4 @@
 	name = "rabbit ears"
 	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
 	icon_state = "bunny"
-	flags_armor_protection = NONE
+	armor_protection_flags = NONE
