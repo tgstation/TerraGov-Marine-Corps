@@ -1171,7 +1171,7 @@
 // ***************************************
 /atom/movable/screen/alert/status_effect/upgrade_toxin
 	name = "Toxin"
-	desc = "Inject toxin on attack."
+	desc = "Inject toxin on attack. Click to change toxin."
 	icon_state = "xenobuff_generic"
 
 /atom/movable/screen/alert/status_effect/upgrade_toxin/Click()
@@ -1232,7 +1232,7 @@
 // ***************************************
 /atom/movable/screen/alert/status_effect/upgrade_pheromones
 	name = "Pheromones"
-	desc = "Allows to emit pheromones."
+	desc = "Allows to emit pheromones. Click to change pheromones."
 	icon_state = "xenobuff_phero"
 
 /atom/movable/screen/alert/status_effect/upgrade_pheromones/Click()
@@ -1294,7 +1294,7 @@
 // ***************************************
 /atom/movable/screen/alert/status_effect/upgrade_trail
 	name = "Trail"
-	desc = "We leave an acid trail behind."
+	desc = "We leave an acid trail behind. Click to change trail."
 	icon_state = "xenobuff_generic"
 
 /atom/movable/screen/alert/status_effect/upgrade_trail/Click()
