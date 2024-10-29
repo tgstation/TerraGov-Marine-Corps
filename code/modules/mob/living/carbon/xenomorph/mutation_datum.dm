@@ -16,8 +16,8 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 	var/list/data = list()
 
 	data["shell_chambers"] = length(xeno_user.hive?.shell_chambers)
-	data["spur_chambers"] = length(xeno_user.hive?.shell_chambers)
-	data["veil_chambers"] = length(xeno_user.hive?.shell_chambers)
+	data["spur_chambers"] = length(xeno_user.hive?.spur_chambers)
+	data["veil_chambers"] = length(xeno_user.hive?.veil_chambers)
 	data["biomass"] = xeno_user.biomass
 	switch(xeno_user.xeno_caste.tier)
 		if(XENO_TIER_ONE)
@@ -100,17 +100,17 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 			if(type == "Vampirism")
 				remove_apply_upgrades(usr, GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_VAMPIRISM)
 			if(type == "Celerity")
-				remove_apply_upgrades(usr, GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_CELERITY)
+				remove_apply_upgrades(usr, GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_CELERITY)
 			if(type == "Adrenaline")
-				remove_apply_upgrades(usr, GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_ADRENALINE)
+				remove_apply_upgrades(usr, GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_ADRENALINE)
 			if(type == "Crush")
-				remove_apply_upgrades(usr, GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_CRUSH)
+				remove_apply_upgrades(usr, GLOB.xeno_attack_upgrades, STATUS_EFFECT_UPGRADE_CRUSH)
 			if(type == "Toxin")
-				remove_apply_upgrades(usr, GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_TOXIN)
+				remove_apply_upgrades(usr, GLOB.xeno_utility_upgrades, STATUS_EFFECT_UPGRADE_TOXIN)
 			if(type == "Pheromones")
-				remove_apply_upgrades(usr, GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_PHERO)
+				remove_apply_upgrades(usr, GLOB.xeno_utility_upgrades, STATUS_EFFECT_UPGRADE_PHERO)
 			if(type == "Trail")
-				remove_apply_upgrades(usr, GLOB.xeno_survival_upgrades, STATUS_EFFECT_UPGRADE_TRAIL)
+				remove_apply_upgrades(usr, GLOB.xeno_utility_upgrades, STATUS_EFFECT_UPGRADE_TRAIL)
 
 	SStgui.close_user_uis(usr, src)
 
@@ -138,6 +138,26 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 	if(upgrade)
 		to_chat(usr, span_xenonotice("Existing mutation chosen. No biomass spent."))
 		return
+
+	if(!length(xeno_user.hive?.shell_chambers))
+		var/is_survival_status_effect = locate(upgrade_to_apply) in GLOB.xeno_survival_upgrades
+		if(is_survival_status_effect)
+			to_chat(usr, span_xenonotice("This mutation requires a shell chamber to exist!"))
+			return
+
+
+	if(!length(xeno_user.hive?.spur_chambers))
+		var/is_attack_status_effect = locate(upgrade_to_apply) in GLOB.xeno_attack_upgrades
+		if(is_attack_status_effect)
+			to_chat(usr, span_xenonotice("This mutation requires a spur chamber to exist!"))
+			return
+
+
+	if(!length(xeno_user.hive?.veil_chambers))
+		var/is_utility_status_effect = locate(upgrade_to_apply) in GLOB.xeno_utility_upgrades
+		if(is_utility_status_effect)
+			to_chat(usr, span_xenonotice("This mutation requires a veil chamber to exist!"))
+			return
 
 	xeno_user.biomass -= upgrade_price
 	to_chat(xeno_user, span_xenonotice("Mutation gained."))
