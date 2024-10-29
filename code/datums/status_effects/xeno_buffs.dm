@@ -872,7 +872,6 @@
 	xeno_owner.remove_filter("frenzy_screech_outline")
 	return ..()
 
-
 // ***************************************
 // *********** Upgrade Chambers Buffs - Survival
 // ***************************************
@@ -886,16 +885,19 @@
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_carapace
+	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
+	/// The amount of soft armor given.
 	var/armor_buff_per_chamber = 2.5
+	/// The amount of times to multiply the armor buff by.
 	var/chamber_scaling = 0
 
 /datum/status_effect/upgrade_carapace/on_apply()
 	if(!isxeno(owner))
 		return FALSE
 	buff_owner = owner
-	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
 	chamber_scaling = length(buff_owner.hive.shell_chambers)
+	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
 	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(armor_buff_per_chamber * chamber_scaling)
 	return TRUE
 
@@ -904,6 +906,7 @@
 	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(-armor_buff_per_chamber * chamber_scaling)
 	return ..()
 
+/// Sets the chamber_scaling to the amount of active survival chambers and adjusts soft armor accordingly.
 /datum/status_effect/upgrade_carapace/proc/update_buff()
 	SIGNAL_HANDLER
 	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(armor_buff_per_chamber * (length(buff_owner.hive.shell_chambers) - chamber_scaling))
@@ -922,9 +925,10 @@
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_regeneration
+	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
 	/// The amount of max health to be regenerated everytime the proc 'heal_wounds' is called.
-	var/health_regen_per_chamber = 0.033 // 3.3%
+	var/health_regen_per_chamber = 0.02 // 2%
 	/// The amount of sunder to be regenerated everything the proc 'heal_wounds' is called.
 	var/sunder_regen_per_chamber = 0.33
 	/// The amount of times to multiply health/sunder regen by.
@@ -936,12 +940,12 @@
 	buff_owner = owner
 	chamber_scaling = length(buff_owner.hive.shell_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
-	RegisterSignal(SSdcs, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(on_heal_wounds))
+	RegisterSignal(buff_owner, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(on_heal_wounds))
 	return TRUE
 
 /datum/status_effect/upgrade_regeneration/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL)
-	UnregisterSignal(SSdcs, COMSIG_XENOMORPH_HEALTH_REGEN)
+	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_HEALTH_REGEN)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active survival chambers.
@@ -949,8 +953,8 @@
 	SIGNAL_HANDLER
 	chamber_scaling = length(buff_owner.hive.shell_chambers)
 
-/// Heals the xenomorph a certain amount of health at minimum regardless and even more if in the correct conditions.
-/datum/status_effect/upgrade_regeneration/proc/on_heal_wounds(datum/controller/subsystem/processing/dcs/ssdcs, heal_data, seconds_per_tick)
+/// Heals the xenomorph's health and sunder based on assigned variables.
+/datum/status_effect/upgrade_regeneration/proc/on_heal_wounds(mob/living/carbon/xenomorph/source_xenomorph, heal_data, seconds_per_tick)
 	SIGNAL_HANDLER
 	if(!chamber_scaling)
 		return
@@ -973,8 +977,11 @@
 	duration = -1
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/upgrade_vampirism
+	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
+	/// The amount of max health to be regenerated the owner hits an alive human.
 	var/leech_buff_per_chamber = 0.033
+	/// The amount of times to multiply the vampirism by.
 	var/chamber_scaling = 0
 
 /datum/status_effect/upgrade_vampirism/on_apply()
@@ -983,6 +990,7 @@
 	buff_owner = owner
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
 	RegisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_slash))
+	// Ravagers gets half of the effect since they eventually get their own version of vampirism.
 	chamber_scaling = isxenoravager(buff_owner) ? (length(buff_owner.hive.shell_chambers) * 0.5) : length(buff_owner.hive.shell_chambers)
 	return TRUE
 
@@ -991,20 +999,20 @@
 	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 	return ..()
 
+/// Sets the chamber_scaling to the amount of active survival chambers.
 /datum/status_effect/upgrade_vampirism/proc/update_buff()
 	SIGNAL_HANDLER
 	chamber_scaling = isxenoravager(buff_owner) ? (length(buff_owner.hive.shell_chambers) * 0.5) : length(buff_owner.hive.shell_chambers)
 
+/// Heals the xenomorph for hitting a non-dead human by a percentage of their max health.
 /datum/status_effect/upgrade_vampirism/proc/on_slash(datum/source, mob/living/target)
 	SIGNAL_HANDLER
 	if(target.stat == DEAD)
 		return
 	if(!ishuman(target))
 		return
-	var/bruteloss_healed = buff_owner.maxHealth * leech_buff_per_chamber * chamber_scaling
-	var/fireloss_healed = clamp(bruteloss_healed - buff_owner.bruteloss, 0, bruteloss_healed)
-	buff_owner.adjustBruteLoss(-bruteloss_healed)
-	buff_owner.adjustFireLoss(-fireloss_healed)
+	var/health_amount = buff_owner.maxHealth * leech_buff_per_chamber * chamber_scaling
+	HEAL_XENO_DAMAGE(buff_owner, health_amount, FALSE)
 	buff_owner.updatehealth()
 
 // ***************************************
