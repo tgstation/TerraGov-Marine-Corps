@@ -952,9 +952,9 @@
 /// Heals the xenomorph a certain amount of health at minimum regardless and even more if in the correct conditions.
 /datum/status_effect/upgrade_regeneration/proc/on_heal_wounds(datum/controller/subsystem/processing/dcs/ssdcs, heal_data, seconds_per_tick)
 	SIGNAL_HANDLER
-	if(!chamber_scaling || !heal_data[1])
+	if(!chamber_scaling)
 		return
-	var/health_amount = buff_owner.maxHealth * health_regen_per_chamber
+	var/health_amount = buff_owner.maxHealth * health_regen_per_chamber * chamber_scaling
 	var/sunder_amount = -sunder_regen_per_chamber * chamber_scaling
 	HEAL_XENO_DAMAGE(buff_owner, health_amount, FALSE)
 	buff_owner.adjust_sunder(sunder_amount)
