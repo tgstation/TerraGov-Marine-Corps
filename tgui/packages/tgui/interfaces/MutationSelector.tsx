@@ -1,6 +1,6 @@
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, Flex, Section } from '../components';
+import { Window } from '../layouts';
 
 type Upgrade = {
   name: string;
@@ -34,15 +34,15 @@ export const MutationSelector = (props) => {
   return (
     <Window width={400} height={650}>
       <Window.Content>
-        <Section title={`Biomass: ${biomass}/100`} align={"center"}>
-          <Flex direction="column-reverse" align={"center"}>
+        <Section title={`Biomass: ${biomass}/100`} align={'center'}>
+          <Flex direction="column-reverse" align={'center'}>
             Shell Chambers: {shell_chambers}
           </Flex>
-          <Flex direction="column-reverse" align={"center"}>
+          <Flex direction="column-reverse" align={'center'}>
             Spur Chambers: {spur_chambers}
           </Flex>
 
-          <Flex direction="column-reverse" align={"center"}>
+          <Flex direction="column-reverse" align={'center'}>
             Veil Chambers: {veil_chambers}
           </Flex>
         </Section>
@@ -56,9 +56,9 @@ export const MutationSelector = (props) => {
                 <Button
                   content={upgrade.name}
                   key={upgrade.name}
-                  onClick={() => act("purchase", { type: upgrade.name })}
+                  onClick={() => act('purchase', { type: upgrade.name })}
                 />
-                <Flex direction="column-reverse" align={"left"}>
+                <Flex direction="column-reverse" align={'left'}>
                   {upgrade.desc}
                 </Flex>
               </Box>
