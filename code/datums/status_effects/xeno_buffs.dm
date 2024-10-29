@@ -1071,7 +1071,7 @@
 	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
 	/// The amount of plasma to regenerate based on their caste's plasma regeneration.
-	var/plasma_regen_buff_per_chamber = 0.5 // 5%
+	var/plasma_regen_buff_per_chamber = 0.1 // 10%
 	/// The amount of plasma to regenerate based on their caste's maximum plasma.
 	var/plasma_percentage_buff_per_chamber = 0.01 // 1%
 	/// The amount of times to multiply both plasma regenerations by.
@@ -1096,14 +1096,18 @@
 	SIGNAL_HANDLER
 	chamber_scaling = length(buff_owner.hive.spur_chambers)
 
-/// Gives the xenomorph more plasma (according to their plasma regeneration and maximum) everytime they are suppose to regen plasma.
+/// Gives the xenomorph more plasma (according to their plasma regeneration and adjusted maximum) everytime they are suppose to regen plasma.
 /datum/status_effect/upgrade_adrenaline/proc/on_plasma_regen(mob/living/carbon/xenomorph/source_xenomorph, plasma_mod, seconds_per_tick)
 	SIGNAL_HANDLER
 	if(!chamber_scaling)
 		return
+	var/adjusted_plasma_max = buff_owner.xeno_caste.plasma_max * buff_owner.xeno_caste.plasma_regen_limit
 	var/plasma_regen_amount = buff_owner.xeno_caste.plasma_gain * plasma_regen_buff_per_chamber * chamber_scaling
-	var/plasma_max_amount = buff_owner.xeno_caste.plasma_max * plasma_percentage_buff_per_chamber * chamber_scaling
-	buff_owner.gain_plasma(plasma_regen_amount + plasma_max_amount)
+	var/plasma_max_amount = adjusted_plasma_max * plasma_percentage_buff_per_chamber * chamber_scaling
+	var/plasma_to_give = plasma_regen_amount + plasma_max_amount * ((buff_owner.resting || buff_owner.lying_angle) ? 2 : 1)
+	var/plasma_stored_predicted = (buff_owner.plasma_stored + plasma_to_give)
+	// Give only enough plasma to reach the adjusted amount (for castes like Hivelord).
+	buff_owner.gain_plasma(plasma_stored_predicted > adjusted_plasma_max ? plasma_stored_predicted - adjusted_plasma_max : plasma_to_give)
 
 // ***************************************
 // ***************************************
