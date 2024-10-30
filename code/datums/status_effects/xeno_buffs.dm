@@ -873,13 +873,8 @@
 	return ..()
 
 // ***************************************
-// *********** Upgrade Chambers Buffs - Survival
+// *********** Upgrade Chambers Buffs
 // ***************************************
-/atom/movable/screen/alert/status_effect/carapace
-	name = "Carapace"
-	desc = "Armor increased."
-	icon_state = "xenobuff_carapace"
-
 /datum/status_effect/mutation_upgrade
 	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
@@ -904,6 +899,14 @@
 			chamber_scaling = length(buff_owner.hive?.spur_chambers)
 		if(MUTATION_STRUCTURE_VEIL)
 			chamber_scaling = length(buff_owner.hive?.veil_chambers)
+
+// ***************************************
+// *********** Upgrade Chambers Buffs - Survival
+// ***************************************
+/atom/movable/screen/alert/status_effect/carapace
+	name = "Carapace"
+	desc = "Armor increased."
+	icon_state = "xenobuff_carapace"
 
 /datum/status_effect/mutation_upgrade/carapace
 	id = "mutation_upgrade_carapace"
