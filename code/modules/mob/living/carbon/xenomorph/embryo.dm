@@ -133,7 +133,7 @@
 		return
 
 	var/area/mob_area = get_area(affected_mob)
-	if(is_centcom_level(affected_mob.z) && istype(mob_area, /area/deathmatch) && !admin)
+	if(is_centcom_level(affected_mob.z) && !istype(mob_area, /area/deathmatch) && !admin)
 		return
 
 	var/mob/picked
