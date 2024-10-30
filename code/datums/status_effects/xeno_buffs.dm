@@ -875,86 +875,98 @@
 // ***************************************
 // *********** Upgrade Chambers Buffs - Survival
 // ***************************************
-/atom/movable/screen/alert/status_effect/upgrade_carapace
+/atom/movable/screen/alert/status_effect/carapace
 	name = "Carapace"
 	desc = "Armor increased."
 	icon_state = "xenobuff_carapace"
 
-/datum/status_effect/upgrade_carapace
-	id = "upgrade_carapace"
-	duration = -1
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/upgrade_carapace
+/datum/status_effect/mutation_upgrade
 	/// Owner typed as an xenomorph.
 	var/mob/living/carbon/xenomorph/buff_owner
-	/// The amount of soft armor given.
-	var/armor_buff_per_chamber = 2.5
-	/// The amount of times to multiply the armor buff by.
+	/// The structure to base chamber_scaling on.
+	var/chamber_structure
+	/// The amount of times to multiply the main effect by.
 	var/chamber_scaling = 0
 
-/datum/status_effect/upgrade_carapace/on_apply()
+/datum/status_effect/mutation_upgrade/on_apply()
 	if(!isxeno(owner))
 		return FALSE
 	buff_owner = owner
-	chamber_scaling = length(buff_owner.hive.shell_chambers)
+	update_chamber_scaling()
+	return TRUE
+
+/// Sets the chamber_scaling based on the amount of chambers in the xeno's hiver.
+/datum/status_effect/mutation_upgrade/proc/update_chamber_scaling()
+	switch(chamber_structure)
+		if(MUTATION_STRUCTURE_CHAMBER)
+			chamber_scaling = length(buff_owner.hive?.shell_chambers)
+		if(MUTATION_STRUCTURE_SPUR)
+			chamber_scaling = length(buff_owner.hive?.spur_chambers)
+		if(MUTATION_STRUCTURE_VEIL)
+			chamber_scaling = length(buff_owner.hive?.veil_chambers)
+
+/datum/status_effect/mutation_upgrade/carapace
+	id = "mutation_upgrade_carapace"
+	alert_type = /atom/movable/screen/alert/status_effect/carapace
+	chamber_structure = MUTATION_STRUCTURE_CHAMBER
+	/// The amount of soft armor given.
+	var/armor_buff_per_chamber = 2.5
+
+/datum/status_effect/mutation_upgrade/carapace/on_apply()
+	if(!..())
+		return FALSE
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
 	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(armor_buff_per_chamber * chamber_scaling)
 	return TRUE
 
-/datum/status_effect/upgrade_carapace/on_remove()
+/datum/status_effect/mutation_upgrade/carapace/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL)
 	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(-armor_buff_per_chamber * chamber_scaling)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active survival chambers and adjusts soft armor accordingly.
-/datum/status_effect/upgrade_carapace/proc/update_buff()
+/datum/status_effect/mutation_upgrade/carapace/proc/update_buff()
 	SIGNAL_HANDLER
 	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(armor_buff_per_chamber * (length(buff_owner.hive.shell_chambers) - chamber_scaling))
-	chamber_scaling = length(buff_owner.hive.shell_chambers)
+	update_chamber_scaling()
+
 
 // ***************************************
 // ***************************************
 // ***************************************
-/atom/movable/screen/alert/status_effect/upgrade_regeneration
+/atom/movable/screen/alert/status_effect/regeneration
 	name = "Regeneration"
 	desc = "Regeneration increased."
 	icon_state = "xenobuff_regeneration"
 
-/datum/status_effect/upgrade_regeneration
-	id = "upgrade_regeneration"
-	duration = -1
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/upgrade_regeneration
-	/// Owner typed as an xenomorph.
-	var/mob/living/carbon/xenomorph/buff_owner
+/datum/status_effect/mutation_upgrade/regeneration
+	id = "mutation_upgrade_regeneration"
+	alert_type = /atom/movable/screen/alert/status_effect/regeneration
+	chamber_structure = MUTATION_STRUCTURE_CHAMBER
 	/// The amount of max health to be regenerated everytime the proc 'heal_wounds' is called.
 	var/health_regen_per_chamber = 0.015 // 1.5%
 	/// The amount of sunder to be regenerated everytime the proc 'heal_wounds' is called.
 	var/sunder_regen_per_chamber = 0.166
-	/// The amount of times to multiply health/sunder regen by.
-	var/chamber_scaling = 0
 
-/datum/status_effect/upgrade_regeneration/on_apply()
-	if(!isxeno(owner))
+/datum/status_effect/mutation_upgrade/regeneration/on_apply()
+	if(!..())
 		return FALSE
-	buff_owner = owner
-	chamber_scaling = length(buff_owner.hive.shell_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
 	RegisterSignal(buff_owner, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(on_heal_wounds))
 	return TRUE
 
-/datum/status_effect/upgrade_regeneration/on_remove()
+/datum/status_effect/mutation_upgrade/regeneration/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL)
 	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_HEALTH_REGEN)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active survival chambers.
-/datum/status_effect/upgrade_regeneration/proc/update_buff()
+/datum/status_effect/mutation_upgrade/regeneration/proc/update_buff()
 	SIGNAL_HANDLER
-	chamber_scaling = length(buff_owner.hive.shell_chambers)
+	update_chamber_scaling()
 
 /// Heals the xenomorph's health and sunder based on assigned variables.
-/datum/status_effect/upgrade_regeneration/proc/on_heal_wounds(mob/living/carbon/xenomorph/source_xenomorph, heal_data, seconds_per_tick)
+/datum/status_effect/mutation_upgrade/regeneration/proc/on_heal_wounds(mob/living/carbon/xenomorph/source_xenomorph, heal_data, seconds_per_tick)
 	SIGNAL_HANDLER
 	if(!chamber_scaling)
 		return
@@ -967,49 +979,44 @@
 // ***************************************
 // ***************************************
 // ***************************************
-/atom/movable/screen/alert/status_effect/upgrade_vampirism
+/atom/movable/screen/alert/status_effect/vampirism
 	name = "Vampirism"
 	desc = "Leech from attacks."
 	icon_state = "xenobuff_vampirism"
 
-/datum/status_effect/upgrade_vampirism
-	id = "upgrade_vampirism"
-	duration = -1
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/upgrade_vampirism
-	/// Owner typed as an xenomorph.
-	var/mob/living/carbon/xenomorph/buff_owner
+/datum/status_effect/mutation_upgrade/vampirism
+	id = "mutation_upgrade_vampirism"
+	alert_type = /atom/movable/screen/alert/status_effect/vampirism
+	chamber_structure = MUTATION_STRUCTURE_CHAMBER
 	/// The amount of max health to be regenerated the owner hits an alive human.
 	var/leech_buff_per_chamber = 0.033
-	/// The amount of times to multiply the vampirism by.
-	var/chamber_scaling = 0
 
-/datum/status_effect/upgrade_vampirism/on_apply()
-	if(!isxeno(owner))
+/datum/status_effect/mutation_upgrade/vampirism/on_apply()
+	if(!..())
 		return FALSE
-	buff_owner = owner
+	// Ravagers gets half of the effect since they eventually get their own version of vampirism.
+	if(isxenoravager(buff_owner))
+		chamber_scaling /= 2
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
 	RegisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_slash))
-	// Ravagers gets half of the effect since they eventually get their own version of vampirism.
-	chamber_scaling = isxenoravager(buff_owner) ? (length(buff_owner.hive.shell_chambers) * 0.5) : length(buff_owner.hive.shell_chambers)
 	return TRUE
 
-/datum/status_effect/upgrade_vampirism/on_remove()
+/datum/status_effect/mutation_upgrade/vampirism/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL)
 	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active survival chambers.
-/datum/status_effect/upgrade_vampirism/proc/update_buff()
+/datum/status_effect/mutation_upgrade/vampirism/proc/update_buff()
 	SIGNAL_HANDLER
-	chamber_scaling = isxenoravager(buff_owner) ? (length(buff_owner.hive.shell_chambers) * 0.5) : length(buff_owner.hive.shell_chambers)
+	update_chamber_scaling()
+	if(isxenoravager(buff_owner))
+		chamber_scaling /= 2
 
 /// Heals the xenomorph for hitting a non-dead human by a percentage of their max health.
-/datum/status_effect/upgrade_vampirism/proc/on_slash(datum/source, mob/living/target)
+/datum/status_effect/mutation_upgrade/vampirism/proc/on_slash(datum/source, mob/living/target)
 	SIGNAL_HANDLER
-	if(target.stat == DEAD)
-		return
-	if(!ishuman(target))
+	if(target.stat == DEAD || !ishuman(target))
 		return
 	var/health_amount = buff_owner.maxHealth * leech_buff_per_chamber * chamber_scaling
 	HEAL_XENO_DAMAGE(buff_owner, health_amount, FALSE)
@@ -1018,86 +1025,72 @@
 // ***************************************
 // *********** Upgrade Chambers Buffs - Attack
 // ***************************************
-/atom/movable/screen/alert/status_effect/upgrade_celerity
+/atom/movable/screen/alert/status_effect/celerity
 	name = "Celerity"
 	desc = "Run faster."
 	icon_state = "xenobuff_attack"
 
-/datum/status_effect/upgrade_celerity
-	id = "upgrade_celerity"
-	duration = -1
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/upgrade_celerity
-	/// Owner typed as an xenomorph.
-	var/mob/living/carbon/xenomorph/buff_owner
+/datum/status_effect/mutation_upgrade/celerity
+	id = "mutation_upgrade_celerity"
+	alert_type = /atom/movable/screen/alert/status_effect/celerity
+	chamber_structure = MUTATION_STRUCTURE_SPUR
 	/// The amount of movement speed the owner get.
 	var/speed_buff_per_chamber = 0.1
-	/// The amount of times to multiply the speed by.
-	var/chamber_scaling = 0
 
-/datum/status_effect/upgrade_celerity/on_apply()
-	if(!isxeno(owner))
+/datum/status_effect/mutation_upgrade/celerity/on_apply()
+	if(!..())
 		return FALSE
-	buff_owner = owner
-	chamber_scaling = length(buff_owner.hive.spur_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK, PROC_REF(update_buff))
 	buff_owner.add_movespeed_modifier(MOVESPEED_ID_CELERITY_BUFF, TRUE, 0, NONE, TRUE, -speed_buff_per_chamber * chamber_scaling)
 	return TRUE
 
-/datum/status_effect/upgrade_celerity/on_remove()
+/datum/status_effect/mutation_upgrade/celerity/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK)
 	buff_owner.remove_movespeed_modifier(MOVESPEED_ID_CELERITY_BUFF)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active spur chambers and adjusts movement speed accordingly.
-/datum/status_effect/upgrade_celerity/proc/update_buff()
+/datum/status_effect/mutation_upgrade/celerity/proc/update_buff()
 	SIGNAL_HANDLER
-	chamber_scaling = length(buff_owner.hive.spur_chambers)
+	update_chamber_scaling()
 	buff_owner.add_movespeed_modifier(MOVESPEED_ID_CELERITY_BUFF, TRUE, 0, NONE, TRUE, -speed_buff_per_chamber * chamber_scaling)
 
 // ***************************************
 // ***************************************
 // ***************************************
-/atom/movable/screen/alert/status_effect/upgrade_adrenaline
+/atom/movable/screen/alert/status_effect/adrenaline
 	name = "Adrenaline"
 	desc = "Regenerate plasma."
 	icon_state = "xenobuff_attack"
 
-/datum/status_effect/upgrade_adrenaline
-	id = "upgrade_adrenaline"
-	duration = -1
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/upgrade_adrenaline
-	/// Owner typed as an xenomorph.
-	var/mob/living/carbon/xenomorph/buff_owner
+/datum/status_effect/mutation_upgrade/adrenaline
+	id = "mutation_upgrade_adrenaline"
+	alert_type = /atom/movable/screen/alert/status_effect/adrenaline
+	chamber_structure = MUTATION_STRUCTURE_SPUR
 	/// The amount of plasma to regenerate based on their caste's plasma regeneration.
 	var/plasma_regen_buff_per_chamber = 0.1 // 10%
 	/// The amount of plasma to regenerate based on their caste's maximum plasma.
 	var/plasma_percentage_buff_per_chamber = 0.01 // 1%
-	/// The amount of times to multiply both plasma regenerations by.
-	var/chamber_scaling = 0
 
-/datum/status_effect/upgrade_adrenaline/on_apply()
-	if(!isxeno(owner))
+/datum/status_effect/mutation_upgrade/adrenaline/on_apply()
+	if(!..())
 		return FALSE
-	buff_owner = owner
-	chamber_scaling = length(buff_owner.hive.spur_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK, PROC_REF(update_buff))
 	RegisterSignal(buff_owner, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(on_plasma_regen))
 	return TRUE
 
-/datum/status_effect/upgrade_adrenaline/on_remove()
+/datum/status_effect/mutation_upgrade/adrenaline/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK)
 	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_PLASMA_REGEN)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active spur chambers.
-/datum/status_effect/upgrade_adrenaline/proc/update_buff()
+/datum/status_effect/mutation_upgrade/adrenaline/proc/update_buff()
 	SIGNAL_HANDLER
-	chamber_scaling = length(buff_owner.hive.spur_chambers)
+	update_chamber_scaling()
 
 /// Gives the xenomorph more plasma (according to their plasma regeneration and adjusted maximum) everytime they are suppose to regen plasma.
-/datum/status_effect/upgrade_adrenaline/proc/on_plasma_regen(mob/living/carbon/xenomorph/source_xenomorph, plasma_mod, seconds_per_tick)
+/datum/status_effect/mutation_upgrade/adrenaline/proc/on_plasma_regen(mob/living/carbon/xenomorph/source_xenomorph, plasma_mod, seconds_per_tick)
 	SIGNAL_HANDLER
 	if(!chamber_scaling)
 		return
@@ -1112,46 +1105,39 @@
 // ***************************************
 // ***************************************
 // ***************************************
-/atom/movable/screen/alert/status_effect/upgrade_crush
+/atom/movable/screen/alert/status_effect/crush
 	name = "Crush"
 	desc = "Additional damage to objects."
 	icon_state = "xenobuff_attack"
 
-/datum/status_effect/upgrade_crush
-	id = "upgrade_crush"
-	duration = -1
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/upgrade_crush
-	/// Owner typed as an xenomorph.
-	var/mob/living/carbon/xenomorph/buff_owner
+/datum/status_effect/mutation_upgrade/crush
+	id = "mutation_upgrade_crush"
+	alert_type = /atom/movable/screen/alert/status_effect/crush
+	chamber_structure = MUTATION_STRUCTURE_SPUR
 	/// The bonus damage to deal as percentage.
 	var/damage_buff_per_chamber = 0.333 // 33.3%
 	/// The armour pentration the damage damage has.
 	var/penetration_buff_per_chamber = 10
-	/// The amount of times to multiply the armour pentration by.
-	var/chamber_scaling = 0
 
-/datum/status_effect/upgrade_crush/on_apply()
-	if(!isxeno(owner))
+/datum/status_effect/mutation_upgrade/crush/on_apply()
+	if(!..())
 		return FALSE
-	buff_owner = owner
-	chamber_scaling = length(buff_owner.hive.spur_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK, PROC_REF(update_buff))
 	RegisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_obj_attack))
 	return TRUE
 
-/datum/status_effect/upgrade_crush/on_remove()
+/datum/status_effect/mutation_upgrade/crush/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_ATTACK)
 	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_OBJ)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active spur chambers.
-/datum/status_effect/upgrade_crush/proc/update_buff()
+/datum/status_effect/mutation_upgrade/crush/proc/update_buff()
 	SIGNAL_HANDLER
-	chamber_scaling = length(buff_owner.hive.spur_chambers)
+	update_chamber_scaling()
 
 /// Deals bonus damage along with armour pentration to the object.
-/datum/status_effect/upgrade_crush/proc/on_obj_attack(datum/source, obj/attacked)
+/datum/status_effect/mutation_upgrade/crush/proc/on_obj_attack(datum/source, obj/attacked)
 	SIGNAL_HANDLER
 	if(!chamber_scaling)
 		return
@@ -1169,13 +1155,13 @@
 // ***************************************
 // *********** Upgrade Chambers Buffs - Utility
 // ***************************************
-/atom/movable/screen/alert/status_effect/upgrade_toxin
+/atom/movable/screen/alert/status_effect/toxin
 	name = "Toxin"
 	desc = "Inject toxin on attack. Click to change toxin."
 	icon_state = "xenobuff_generic"
 
-/atom/movable/screen/alert/status_effect/upgrade_toxin/Click()
-	var/datum/status_effect/upgrade_toxin/status_effect = attached_effect
+/atom/movable/screen/alert/status_effect/toxin/Click()
+	var/datum/status_effect/mutation_upgrade/toxin/status_effect = attached_effect
 	var/datum/reagent/toxin/toxin_choice = show_radial_menu(status_effect.buff_owner, status_effect.buff_owner, GLOB.defiler_toxin_images_list, radius = 35, require_near = TRUE)
 	if(!toxin_choice)
 		return
@@ -1186,41 +1172,34 @@
 			break
 	status_effect.buff_owner.balloon_alert(status_effect.buff_owner, "[toxin_choice]")
 
-/datum/status_effect/upgrade_toxin
-	id = "upgrade_toxin"
-	duration = -1
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/upgrade_toxin
-	/// Owner typed as an xenomorph.
-	var/mob/living/carbon/xenomorph/buff_owner
+/datum/status_effect/mutation_upgrade/toxin
+	id = "mutation_upgrade_toxin"
+	alert_type = /atom/movable/screen/alert/status_effect/toxin
+	chamber_structure = MUTATION_STRUCTURE_VEIL
 	/// The amount of toxins to inject.
 	var/toxin_amount_per_chamber = 1
-	/// The amount of times to multiply the toxin amount by.
-	var/chamber_scaling = 0
 	/// Currently selected reagent to inject.
 	var/datum/reagent/toxin/selected_reagent = /datum/reagent/toxin/xeno_neurotoxin
 
-/datum/status_effect/upgrade_toxin/on_apply()
-	if(!isxeno(owner))
+/datum/status_effect/mutation_upgrade/toxin/on_apply()
+	if(!..())
 		return FALSE
-	buff_owner = owner
-	chamber_scaling = length(buff_owner.hive.veil_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
 	RegisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_slash))
 	return TRUE
 
-/datum/status_effect/upgrade_toxin/on_remove()
+/datum/status_effect/mutation_upgrade/toxin/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY)
 	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active veil chambers.
-/datum/status_effect/upgrade_toxin/proc/update_buff()
+/datum/status_effect/mutation_upgrade/toxin/proc/update_buff()
 	SIGNAL_HANDLER
-	chamber_scaling = length(buff_owner.hive.veil_chambers)
+	update_chamber_scaling()
 
 /// Injects the human target with a variable amount of the selected reagent.
-/datum/status_effect/upgrade_toxin/proc/on_slash(datum/source, mob/living/target)
+/datum/status_effect/mutation_upgrade/toxin/proc/on_slash(datum/source, mob/living/target)
 	SIGNAL_HANDLER
 	if(!chamber_scaling || target.stat == DEAD || !ishuman(target) || !target.can_sting())
 		return
@@ -1230,13 +1209,13 @@
 // ***************************************
 // ***************************************
 // ***************************************
-/atom/movable/screen/alert/status_effect/upgrade_pheromones
+/atom/movable/screen/alert/status_effect/pheromones
 	name = "Pheromones"
 	desc = "Allows to emit pheromones. Click to change pheromones."
 	icon_state = "xenobuff_phero"
 
-/atom/movable/screen/alert/status_effect/upgrade_pheromones/Click()
-	var/datum/status_effect/upgrade_pheromones/status_effect = attached_effect
+/atom/movable/screen/alert/status_effect/pheromones/Click()
+	var/datum/status_effect/mutation_upgrade/pheromones/status_effect = attached_effect
 	var/phero_choice = show_radial_menu(status_effect.buff_owner, status_effect.buff_owner, GLOB.pheromone_images_list, radius = 35, require_near = TRUE)
 	if(!phero_choice)
 		return
@@ -1244,13 +1223,10 @@
 	status_effect.emitted_aura = phero_choice
 	status_effect.create_aura()
 
-/datum/status_effect/upgrade_pheromones
-	id = "upgrade_pheromones"
-	duration = -1
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/upgrade_pheromones
-	/// Owner typed as an xenomorph.
-	var/mob/living/carbon/xenomorph/buff_owner
+/datum/status_effect/mutation_upgrade/pheromones
+	id = "mutation_upgrade_pheromones"
+	alert_type = /atom/movable/screen/alert/status_effect/pheromones
+	chamber_structure = MUTATION_STRUCTURE_VEIL
 	/// The aura.
 	var/datum/aura_bearer/current_aura
 	/// The aura to emit.
@@ -1259,46 +1235,42 @@
 	var/aura_power_base = 1
 	/// The phero power to increase by.
 	var/aura_power_per_chamber = 1
-	/// The amount of times to multiply the aura power by.
-	var/chamber_scaling = 0
 
-/datum/status_effect/upgrade_pheromones/on_apply()
-	if(!isxeno(owner))
+/datum/status_effect/mutation_upgrade/pheromones/on_apply()
+	if(!..())
 		return FALSE
-	buff_owner = owner
-	chamber_scaling = length(buff_owner.hive.veil_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
 	create_aura()
 	return TRUE
 
-/datum/status_effect/upgrade_pheromones/on_remove()
+/datum/status_effect/mutation_upgrade/pheromones/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY)
 	if(current_aura)
 		current_aura.stop_emitting()
 	return ..()
 
 /// (Re)creates the aura.
-/datum/status_effect/upgrade_pheromones/proc/create_aura()
+/datum/status_effect/mutation_upgrade/pheromones/proc/create_aura()
 	if(current_aura)
 		QDEL_NULL(current_aura)
 	current_aura = SSaura.add_emitter(buff_owner, emitted_aura, 6 + aura_power_per_chamber * chamber_scaling * 2, aura_power_base + aura_power_per_chamber * chamber_scaling, -1, FACTION_XENO, buff_owner.hivenumber)
 
 /// Sets the chamber_scaling to the amount of active veil chambers and recreates the aura.
-/datum/status_effect/upgrade_pheromones/proc/update_buff()
+/datum/status_effect/mutation_upgrade/pheromones/proc/update_buff()
 	SIGNAL_HANDLER
-	chamber_scaling = length(buff_owner.hive.veil_chambers)
+	update_chamber_scaling()
 	create_aura()
 
 // ***************************************
 // ***************************************
 // ***************************************
-/atom/movable/screen/alert/status_effect/upgrade_trail
+/atom/movable/screen/alert/status_effect/trail
 	name = "Trail"
 	desc = "We leave an acid trail behind. Click to change trail."
 	icon_state = "xenobuff_generic"
 
-/atom/movable/screen/alert/status_effect/upgrade_trail/Click()
-	var/datum/status_effect/upgrade_trail/effect = attached_effect
+/atom/movable/screen/alert/status_effect/trail/Click()
+	var/datum/status_effect/mutation_upgrade/trail/effect = attached_effect
 	if(effect.buff_owner.incapacitated(TRUE))
 		to_chat(usr, span_warning("Cant do that right now!"))
 		return
@@ -1309,19 +1281,14 @@
 		effect.selected_trail = effect.selectable_trails[i+1]
 	effect.buff_owner.balloon_alert(effect.buff_owner, "[effect.selected_trail.name]")
 
-/datum/status_effect/upgrade_trail
-	id = "upgrade_trail"
-	duration = -1
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/upgrade_trail
-	/// Owner typed as an xenomorph.
-	var/mob/living/carbon/xenomorph/buff_owner
+/datum/status_effect/mutation_upgrade/trail
+	id = "mutation_upgrade_trail"
+	alert_type = /atom/movable/screen/alert/status_effect/trail
+	chamber_structure = MUTATION_STRUCTURE_VEIL
 	/// The initial odds of the trail spawning.
 	var/base_chance = 25
 	/// The additional chance of the trail starting.
 	var/chance_per_chamber = 25
-	/// The amount of times to increase the additional chance of trail spawning by.
-	var/chamber_scaling = 0
 	/// The selected trail that will spawn upon moving.
 	var/obj/selected_trail = /obj/effect/xenomorph/spray
 	/// A list of trails that can be selected
@@ -1330,27 +1297,25 @@
 		/obj/alien/resin/sticky/thin
 	)
 
-/datum/status_effect/upgrade_trail/on_apply()
-	if(!isxeno(owner))
+/datum/status_effect/mutation_upgrade/trail/on_apply()
+	if(!..())
 		return FALSE
-	buff_owner = owner
-	chamber_scaling = length(buff_owner.hive.veil_chambers)
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
 	RegisterSignal(buff_owner, COMSIG_MOVABLE_MOVED, PROC_REF(create_trail))
 	return TRUE
 
-/datum/status_effect/upgrade_trail/on_remove()
+/datum/status_effect/mutation_upgrade/trail/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY)
 	UnregisterSignal(buff_owner, COMSIG_MOVABLE_MOVED)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active veil chambers.
-/datum/status_effect/upgrade_trail/proc/update_buff()
+/datum/status_effect/mutation_upgrade/trail/proc/update_buff()
 	SIGNAL_HANDLER
-	chamber_scaling = length(buff_owner.hive.veil_chambers)
+	update_chamber_scaling()
 
 /// Rolls the dice and creates the selected trail if the dice is right.
-/datum/status_effect/upgrade_trail/proc/create_trail()
+/datum/status_effect/mutation_upgrade/trail/proc/create_trail()
 	SIGNAL_HANDLER
 	if(buff_owner.incapacitated() || buff_owner.lying_angle || buff_owner.resting)
 		return

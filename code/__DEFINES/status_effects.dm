@@ -39,23 +39,23 @@
 
 #define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
 
-#define STATUS_EFFECT_UPGRADE_CARAPACE /datum/status_effect/upgrade_carapace
+#define STATUS_EFFECT_UPGRADE_CARAPACE /datum/status_effect/mutation_upgrade/carapace
 
-#define STATUS_EFFECT_UPGRADE_REGENERATION /datum/status_effect/upgrade_regeneration
+#define STATUS_EFFECT_UPGRADE_REGENERATION /datum/status_effect/mutation_upgrade/regeneration
 
-#define STATUS_EFFECT_UPGRADE_VAMPIRISM /datum/status_effect/upgrade_vampirism
+#define STATUS_EFFECT_UPGRADE_VAMPIRISM /datum/status_effect/mutation_upgrade/vampirism
 
-#define STATUS_EFFECT_UPGRADE_CELERITY /datum/status_effect/upgrade_celerity
+#define STATUS_EFFECT_UPGRADE_CELERITY /datum/status_effect/mutation_upgrade/celerity
 
-#define STATUS_EFFECT_UPGRADE_ADRENALINE /datum/status_effect/upgrade_adrenaline
+#define STATUS_EFFECT_UPGRADE_ADRENALINE /datum/status_effect/mutation_upgrade/adrenaline
 
-#define STATUS_EFFECT_UPGRADE_CRUSH /datum/status_effect/upgrade_crush
+#define STATUS_EFFECT_UPGRADE_CRUSH /datum/status_effect/mutation_upgrade/crush
 
-#define STATUS_EFFECT_UPGRADE_TOXIN /datum/status_effect/upgrade_toxin
+#define STATUS_EFFECT_UPGRADE_TOXIN /datum/status_effect/mutation_upgrade/toxin
 
-#define STATUS_EFFECT_UPGRADE_PHERO /datum/status_effect/upgrade_pheromones
+#define STATUS_EFFECT_UPGRADE_PHERO /datum/status_effect/mutation_upgrade/pheromones
 
-#define STATUS_EFFECT_UPGRADE_TRAIL /datum/status_effect/upgrade_trail
+#define STATUS_EFFECT_UPGRADE_TRAIL /datum/status_effect/mutation_upgrade/trail
 
 #define STATUS_EFFECT_MINDMEND /datum/status_effect/mindmeld
 

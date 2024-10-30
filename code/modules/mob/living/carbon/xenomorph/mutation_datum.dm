@@ -1,13 +1,3 @@
-GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
-
-#define MUTATION_CATEGORY_SURVIVAL "Survival"
-#define MUTATION_CATEGORY_ATTACK "Attack"
-#define MUTATION_CATEGORY_UTILITY "Utility"
-
-#define MUTATION_STRUCTURE_CHAMBER "shell"
-#define MUTATION_STRUCTURE_SPUR "spur"
-#define MUTATION_STRUCTURE_VEIL "veil"
-
 /datum/mutation_datum
 	interaction_flags = INTERACT_UI_INTERACT
 
@@ -93,14 +83,8 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 		to_chat(usr, span_warning("You don't have enough biomass!"))
 		return
 
-	var/list/excluded_mutation_base_upgrades = list(
-		/datum/mutation_upgrade/survival,
-		/datum/mutation_upgrade/attack,
-		/datum/mutation_upgrade/utility
-	)
-
 	var/datum/mutation_upgrade/chosen_mutation_upgrade
-	for(var/datum/mutation_upgrade/subtype_mutation AS in subtypesof(/datum/mutation_upgrade) - excluded_mutation_base_upgrades)
+	for(var/datum/mutation_upgrade/subtype_mutation AS in GLOB.mutation_upgrades_buyable)
 		if(subtype_mutation.name == upgrade_name)
 			chosen_mutation_upgrade = subtype_mutation
 			break
@@ -128,7 +112,7 @@ GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
 		return
 
 	var/list/mutation_status_effects_to_remove = list()
-	for(var/datum/mutation_upgrade/subtype_mutation AS in subtypesof(/datum/mutation_upgrade) - excluded_mutation_base_upgrades)
+	for(var/datum/mutation_upgrade/subtype_mutation AS in GLOB.mutation_upgrades_buyable)
 		if(chosen_mutation_upgrade.category == subtype_mutation.category)
 			mutation_status_effects_to_remove += subtype_mutation.status_effect
 

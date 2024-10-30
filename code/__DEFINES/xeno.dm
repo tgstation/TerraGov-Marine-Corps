@@ -219,23 +219,28 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 /// Life runs every 2 seconds, but we don't want to multiply all healing by 2 due to seconds_per_tick
 #define XENO_PER_SECOND_LIFE_MOD 0.5
 
-GLOBAL_LIST_INIT(xeno_survival_upgrades, list(
-	/datum/status_effect/upgrade_carapace,
-	/datum/status_effect/upgrade_regeneration,
-	/datum/status_effect/upgrade_vampirism,
+// Mutations
+GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
+
+GLOBAL_LIST_INIT(mutation_upgrades_buyable, list(
+	/datum/mutation_upgrade/survival/carapace,
+	/datum/mutation_upgrade/survival/regeneration,
+	/datum/mutation_upgrade/survival/vampirism,
+	/datum/mutation_upgrade/attack/celerity,
+	/datum/mutation_upgrade/attack/adrenaline,
+	/datum/mutation_upgrade/attack/crush,
+	/datum/mutation_upgrade/utility/toxin,
+	/datum/mutation_upgrade/utility/pheromones,
+	/datum/mutation_upgrade/utility/toxin
 ))
 
-GLOBAL_LIST_INIT(xeno_attack_upgrades, list(
-	/datum/status_effect/upgrade_celerity,
-	/datum/status_effect/upgrade_adrenaline,
-	/datum/status_effect/upgrade_crush,
-))
+#define MUTATION_CATEGORY_SURVIVAL "Survival"
+#define MUTATION_CATEGORY_ATTACK "Attack"
+#define MUTATION_CATEGORY_UTILITY "Utility"
 
-GLOBAL_LIST_INIT(xeno_utility_upgrades, list(
-	/datum/status_effect/upgrade_toxin,
-	/datum/status_effect/upgrade_pheromones,
-	/datum/status_effect/upgrade_trail,
-))
+#define MUTATION_STRUCTURE_CHAMBER "shell"
+#define MUTATION_STRUCTURE_SPUR "spur"
+#define MUTATION_STRUCTURE_VEIL "veil"
 
 #define	XENO_UPGRADE_BIOMASS_COST_T1 15
 #define	XENO_UPGRADE_BIOMASS_COST_T2 20
