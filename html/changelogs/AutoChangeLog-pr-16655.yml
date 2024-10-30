@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - balance: "Xenomorphs can toggle movement intent to walk in order to bypass/ignore wraith portals."

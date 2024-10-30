@@ -297,8 +297,8 @@
 			//There is a chance to do enough damage here to gib certain mobs. Better update immediately.
 			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 			if(QDELETED(crushed_living))
-				charger.visible_message(span_danger("[charger] anihilates [preserved_name]!"),
-				span_xenodanger("We anihilate [preserved_name]!"))
+				charger.visible_message(span_danger("[charger] annihilates [preserved_name]!"),
+				span_xenodanger("We annihilate [preserved_name]!"))
 				return COMPONENT_MOVABLE_PREBUMP_PLOWED
 
 		return precrush2signal(crushed_living.post_crush_act(charger, src))
