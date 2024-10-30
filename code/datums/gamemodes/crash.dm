@@ -22,6 +22,10 @@
 	)
 	xenorespawn_time = 3 MINUTES
 	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
+	//We want tier 3s one xeno later.
+	gamemode_tier3_penalty = 1
+	//List of xenos we dont want to be playable.
+	gamemode_restricted_castes = list(/datum/xeno_caste/hivelord, /datum/xeno_caste/wraith, /datum/xeno_caste/hivemind)
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
@@ -194,7 +198,7 @@
 	if(stored_larva)
 		return //No need for respawns
 	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
-	if(!num_xenos)
+	if(num_xenos < 2)
 		xeno_job.add_job_positions(1)
 		return
 	var/larva_surplus = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
@@ -203,13 +207,10 @@
 	xeno_job.add_job_positions(1)
 	xeno_hive.update_tier_limits()
 
-/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
-	. = 0
-
-	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
-		if(!H.job)
-			continue
-		if(isspaceturf(H.loc))
-			continue
-		. += H.job.jobworth[/datum/job/xenomorph]
-
+///This checks to see if we're above our minimum xeno amount so that we get our 3rd xeno at 7 pop instead of 4.
+/datum/game_mode/infestation/crash/proc/check_starter_xenos()
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	if(xeno_job.total_positions < 3)
+		xeno_job.job_points_needed *= 2
+	else
+		xeno_job.job_points_needed = CRASH_LARVA_POINTS_NEEDED
