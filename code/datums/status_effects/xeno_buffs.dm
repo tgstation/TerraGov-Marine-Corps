@@ -1274,7 +1274,7 @@
 
 /atom/movable/screen/alert/status_effect/trail/Click()
 	var/datum/status_effect/mutation_upgrade/trail/effect = attached_effect
-	if(effect.buff_owner.incapacitated(TRUE))
+	if(effect.buff_owner.incapacitated())
 		to_chat(usr, span_warning("Cant do that right now!"))
 		return
 	var/i = effect.selectable_trails.Find(effect.selected_trail)
