@@ -3422,6 +3422,10 @@
 "cBs" = (
 /turf/open/lavaland/basalt/cave/corner,
 /area/metnal/outside/southwest)
+"cBw" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/metnal/caves/southeast/garbledradio)
 "cBV" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Cargonia";
@@ -3687,6 +3691,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/quartermaster)
 "cKK" = (
@@ -5833,6 +5838,11 @@
 	},
 /turf/open/floor/mainship,
 /area/metnal/inside/administration)
+"eeX" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/northwest)
 "efC" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/whitegreen,
@@ -6112,6 +6122,11 @@
 	dir = 9
 	},
 /area/metnal/outside/north)
+"eqS" = (
+/obj/effect/landmark/corpsespawner/colonist,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/officesquares,
+/area/metnal/inside/administration)
 "erf" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -6277,6 +6292,10 @@
 "ewp" = (
 /turf/open/lavaland/basalt/cave,
 /area/metnal/outside/southwest)
+"ewq" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plate,
+/area/metnal/inside/primarystorage)
 "ewB" = (
 /obj/effect/turf_decal/siding/dark{
 	dir = 1
@@ -9115,6 +9134,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/urban/metal/bluemetal1{
 	dir = 1
 	},
@@ -12793,6 +12813,11 @@
 	},
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
+"jgh" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/south)
 "jgz" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/silver{
@@ -15293,6 +15318,11 @@
 	},
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
+"kSZ" = (
+/obj/structure/bed/bunkbed,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/wood,
+/area/metnal/inside/colonydorms)
 "kTc" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -17474,6 +17504,11 @@
 	},
 /turf/open/floor/plating/ground/concrete,
 /area/metnal/outside/southeast)
+"muV" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/north)
 "mvd" = (
 /obj/effect/turf_decal/trimline/yellow/filled/warning{
 	dir = 4
@@ -17500,6 +17535,11 @@
 /obj/item/reagent_containers/pill/sleeptoxin,
 /turf/open/floor/carpet/side,
 /area/metnal/inside/northmeetingroom)
+"mvR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/urban/carpet/carpetblack,
+/area/metnal/inside/administration)
 "mwf" = (
 /obj/structure/grille/fence/east_west,
 /turf/open/lavaland/basalt,
@@ -19566,9 +19606,12 @@
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
 "nQY" = (
-/obj/effect/landmark/weed_node,
-/turf/closed/wall/prison,
-/area/metnal/outside/southeast)
+/obj/structure/bed/chair/comfy{
+	dir = 8
+	},
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/officesquares,
+/area/metnal/inside/administration)
 "nRf" = (
 /obj/structure/rack/nometal,
 /obj/effect/spawner/random/engineering/tool,
@@ -22469,6 +22512,14 @@
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
+"pRL" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/mainship/mono,
+/area/metnal/outside/southwest)
+"pRO" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/rock)
 "pSx" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner,
 /turf/open/floor/iron/dark/textured,
@@ -23997,6 +24048,7 @@
 /area/metnal/inside/meddesk)
 "qOA" = (
 /obj/effect/ai_node,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/lavaland/basalt/cave{
 	dir = 9
 	},
@@ -24818,6 +24870,7 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/executivedorms)
 "ror" = (
@@ -25709,6 +25762,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_two,
 /area/metnal/inside/research)
+"saC" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/west)
 "saD" = (
 /obj/effect/spawner/random/misc/shard,
 /obj/effect/landmark/weed_node,
@@ -26289,6 +26347,11 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"stJ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/prison/kitchen,
+/area/metnal/inside/kitchen)
 "stL" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/landmark/weed_node,
@@ -28554,6 +28617,7 @@
 /area/metnal/inside/mining)
 "tUi" = (
 /obj/effect/urban/decal/trash/fourteen,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/carpet/side{
 	dir = 10
 	},
@@ -28851,6 +28915,10 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
+"udN" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/prison,
+/area/metnal/inside/research)
 "ueb" = (
 /obj/structure/closet/radiation,
 /obj/item/clothing/mask/gas,
@@ -30672,6 +30740,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
+"vnL" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/southeast)
 "vnV" = (
 /obj/structure/curtain/black,
 /obj/effect/spawner/random/decal/blood,
@@ -32257,6 +32329,10 @@
 	dir = 8
 	},
 /area/metnal/caves/west/garbledradio)
+"woH" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/south)
 "wph" = (
 /obj/effect/spawner/random/decal/blood,
 /turf/open/lavaland/basalt,
@@ -33829,6 +33905,11 @@
 /obj/effect/spawner/random/misc/structure/girder/highspawn,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"xxw" = (
+/obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/northwest)
 "xxz" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 1
@@ -40687,7 +40768,7 @@ qbt
 grg
 hbJ
 iwP
-gmJ
+kSZ
 upI
 hzC
 xdB
@@ -43329,7 +43410,7 @@ xdB
 bIA
 wmD
 xdB
-sGy
+saC
 xdB
 nxO
 bSR
@@ -44302,7 +44383,7 @@ cZJ
 eIx
 cZJ
 cZJ
-dEG
+xxw
 cZJ
 cZJ
 upI
@@ -44479,7 +44560,7 @@ cZJ
 cZJ
 cZJ
 cZJ
-cDk
+eeX
 cZJ
 oRd
 rWa
@@ -44663,7 +44744,7 @@ edg
 edg
 edg
 cZJ
-cDk
+eeX
 cZJ
 cZJ
 cZJ
@@ -47032,7 +47113,7 @@ edg
 kEc
 ovI
 bYE
-kEc
+tgO
 kEc
 ovI
 kEc
@@ -47846,7 +47927,7 @@ edg
 edg
 jVs
 kEc
-kEc
+tgO
 jVs
 jVs
 edg
@@ -48360,7 +48441,7 @@ moo
 dxJ
 kez
 kez
-kez
+tUq
 kez
 moo
 kez
@@ -50012,7 +50093,7 @@ ujt
 qkt
 ujt
 xhl
-gJP
+pRL
 gJP
 gJP
 gJP
@@ -50738,7 +50819,7 @@ byC
 vaP
 xmi
 xVR
-hAT
+muV
 uoI
 xVR
 xVR
@@ -52622,7 +52703,7 @@ oMe
 kac
 oVk
 yjN
-pdd
+stJ
 duX
 uqk
 pdd
@@ -52663,7 +52744,7 @@ nqq
 qvM
 pTm
 ewG
-ewG
+rLX
 ewG
 jVs
 jVs
@@ -53342,7 +53423,7 @@ edg
 "}
 (92,1,1) = {"
 edg
-rqS
+pRO
 rqS
 edg
 edg
@@ -54058,7 +54139,7 @@ oRN
 oRN
 oRN
 oRN
-ilG
+jgh
 hAx
 xif
 kCh
@@ -54602,7 +54683,7 @@ vPN
 vPN
 vPN
 vPN
-kez
+tUq
 kez
 kez
 jOH
@@ -55749,7 +55830,7 @@ edg
 edg
 tyB
 cXP
-tyB
+gZT
 wzp
 wzp
 wzp
@@ -56617,7 +56698,7 @@ dsp
 lDZ
 kVU
 mjT
-xVR
+lur
 xVR
 qMO
 xVR
@@ -57149,7 +57230,7 @@ edg
 edg
 jVs
 jVs
-gJM
+brc
 gJM
 fpC
 tbt
@@ -59314,7 +59395,7 @@ oRN
 aRD
 aRD
 aRD
-xif
+woH
 xif
 xif
 hqJ
@@ -59677,7 +59758,7 @@ pPX
 pPX
 pPX
 pPX
-pPX
+ewq
 pPX
 hAK
 uvK
@@ -65367,7 +65448,7 @@ yge
 rAt
 xuS
 aak
-aak
+nQY
 tuA
 esM
 esM
@@ -65586,7 +65667,7 @@ kog
 vyH
 fMD
 ivg
-fMD
+udN
 oRk
 iNn
 nVp
@@ -66972,13 +67053,13 @@ eSU
 bbw
 bbw
 chU
-wPo
+mvR
 wPo
 chU
 utm
 ltN
 oyQ
-hfA
+eqS
 vQq
 gCT
 kNy
@@ -70031,8 +70112,8 @@ esM
 esM
 esM
 jQB
-esM
-nQY
+vnL
+bQM
 bQM
 bQM
 bQM
@@ -70666,7 +70747,7 @@ vfz
 gyO
 vfz
 gyO
-vfz
+cBw
 jVs
 edg
 edg
@@ -70686,7 +70767,7 @@ vfz
 gyO
 gyO
 vfz
-vfz
+cBw
 gyO
 vfz
 vfz
