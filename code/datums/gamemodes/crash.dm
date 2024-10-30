@@ -206,11 +206,3 @@
 		return //Things are balanced, no burrowed needed
 	xeno_job.add_job_positions(1)
 	xeno_hive.update_tier_limits()
-
-///This checks to see if we're above our minimum xeno amount so that we get our 3rd xeno at 7 pop instead of 4.
-/datum/game_mode/infestation/crash/proc/check_starter_xenos()
-	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	if(xeno_job.total_positions < 3)
-		xeno_job.job_points_needed *= 2
-	else
-		xeno_job.job_points_needed = CRASH_LARVA_POINTS_NEEDED
