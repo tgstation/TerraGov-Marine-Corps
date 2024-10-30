@@ -895,7 +895,7 @@
 	update_chamber_scaling()
 	return TRUE
 
-/// Sets the chamber_scaling based on the amount of chambers in the xeno's hiver.
+/// Sets the chamber_scaling based on the amount of chambers in the xeno's hive.
 /datum/status_effect/mutation_upgrade/proc/update_chamber_scaling()
 	switch(chamber_structure)
 		if(MUTATION_STRUCTURE_CHAMBER)
