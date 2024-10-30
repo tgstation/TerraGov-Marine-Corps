@@ -362,13 +362,15 @@
 		if("FRE4")
 			. = size ? "FRE" : "Freelancer Leader"
 		if("CLF0")
-			. = size ? "CLF" : "CLF Breeding Slave"
+			. = size ? "CLFB" : "CLF Breeding Slave"
 		if("CLF1")
-			. = size ? "CLF" : "CLF Standard"
+			. = size ? "CLFS" : "CLF Standard"
 		if("CLF2")
-			. = size ? "CLF" : "CLF Medic"
+			. = size ? "CLFM" : "CLF Medic"
 		if("CLF3")
-			. = size ? "CLF" : "CLF Leader"
+			. = size ? "CLFL" : "CLF Leader"
+		if("CLF4")
+			. = size ? "CLFS" : "CLF Specialist"
 		if("SOM_E1")
 			. = size ? "PTE" : "SOM Private"
 		if("SOM_E2")

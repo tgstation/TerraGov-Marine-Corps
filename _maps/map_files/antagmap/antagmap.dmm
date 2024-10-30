@@ -253,6 +253,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/inside)
+"bV" = (
+/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/medbay)
 "bZ" = (
 /obj/effect/turf_decal/warning_stripes/thin,
 /turf/open/floor/mainship/mono,
@@ -417,8 +423,11 @@
 	},
 /area/antag_ship)
 "cX" = (
-/obj/structure/largecrate/supply/medicine/blood,
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted,
+/obj/machinery/vending/medical{
+	name = "Stolen Medicament Vendor";
+	req_access = list(206)
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "cY" = (
@@ -477,6 +486,16 @@
 	dir = 5
 	},
 /area/antag_ship/pmc_ntf/starboard/medbay)
+"ds" = (
+/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
+	dir = 4
+	},
+/obj/item/bedsheet/medical,
+/obj/structure/bed{
+	dir = 8
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/medbay)
 "du" = (
 /obj/structure/closet/secure_closet/engineering_electrical,
 /turf/open/floor/plating/ground/desertdam/asphalt/threeside{
@@ -631,7 +650,9 @@
 /turf/open/floor/plating/ground/desertdam/asphalt/open,
 /area/antag_ship/icc/hangar/center)
 "et" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed{
+	isshared = 0
+	},
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -905,7 +926,9 @@
 /turf/open/floor/mainship/office,
 /area/antag_ship/som/bridge)
 "fY" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed{
+	isshared = 0
+	},
 /turf/open/floor/prison/whitegreen{
 	dir = 8
 	},
@@ -933,10 +956,6 @@
 /area/antag_ship/pmc_ntf/center/armory)
 "gh" = (
 /obj/effect/turf_decal/tile/transparent/dark_green,
-/obj/item/bedsheet/medical,
-/obj/structure/bed{
-	dir = 8
-	},
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "gk" = (
@@ -1192,6 +1211,16 @@
 	},
 /turf/open/floor/prison/blackfloor,
 /area/antag_ship/vsd/hall)
+"hG" = (
+/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
+	dir = 4
+	},
+/obj/structure/bed{
+	dir = 8
+	},
+/obj/item/bedsheet/medical,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/medbay)
 "hH" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -1728,7 +1757,9 @@
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship)
 "ks" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	isshared = 0
+	},
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/aft/engiroom/starboard)
 "kv" = (
@@ -1837,6 +1868,16 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/aft/spaceport)
+"kW" = (
+/obj/machinery/optable,
+/obj/item/clothing/mask/breath/medical,
+/obj/item/tank/anesthetic,
+/obj/machinery/light/mainship{
+	light_color = "#da2f1b"
+	},
+/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/medbay)
 "kX" = (
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
@@ -1979,6 +2020,8 @@
 /obj/machinery/power/apc,
 /obj/effect/landmark/weapon_spawn/tier4_weapon_spawn,
 /obj/structure/rack,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
+/obj/effect/landmark/weapon_spawn/tier3_weapon_spawn,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "lH" = (
@@ -2019,6 +2062,15 @@
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/weapon/gun/launcher/rocket/oneuse,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/incendiary/molotov,
+/obj/item/explosive/grenade/stick,
+/obj/item/explosive/grenade/stick,
+/obj/item/explosive/grenade/stick,
+/obj/item/explosive/grenade/stick,
+/obj/item/explosive/grenade/stick,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "lO" = (
@@ -2696,7 +2748,9 @@
 /obj/machinery/light/mainship{
 	light_color = "#da2f1b"
 	},
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	isshared = 0
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
 "oL" = (
@@ -2993,6 +3047,11 @@
 /obj/item/armor_module/storage/uniform/brown_vest,
 /obj/item/armor_module/storage/uniform/white_vest,
 /obj/item/armor_module/storage/uniform/white_vest,
+/obj/item/storage/backpack/lightpack,
+/obj/item/storage/backpack/lightpack,
+/obj/item/storage/backpack/lightpack,
+/obj/item/storage/backpack/lightpack,
+/obj/item/storage/backpack/lightpack,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "qg" = (
@@ -3153,6 +3212,14 @@
 /obj/machinery/cell_charger,
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/hangar/east)
+"rb" = (
+/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
+	dir = 8
+	},
+/obj/machinery/recharger,
+/obj/structure/table/reinforced/prison,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/medbay)
 "rc" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/spray/cleaner,
@@ -3175,6 +3242,7 @@
 /area/antag_ship/icc/warehouse)
 "rl" = (
 /obj/structure/table/reinforced/prison,
+/obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/ground/desertdam/asphalt/twoside{
 	dir = 4
 	},
@@ -3580,6 +3648,15 @@
 /obj/structure/cable,
 /turf/open/floor/prison/redfloor,
 /area/antag_ship/vsd/hall)
+"tJ" = (
+/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline,
+/obj/machinery/iv_drip,
+/obj/effect/spawner/random/medical/bloodpack,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/medbay)
 "tK" = (
 /obj/machinery/power/smes,
 /obj/effect/turf_decal/warning_stripes/thick,
@@ -3724,10 +3801,10 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/security)
 "uv" = (
-/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted,
-/obj/machinery/optable,
-/turf/open/floor/plating/asteroidfloor,
-/area/antag_ship/clf_base/medbay)
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 10
+	},
+/area/antag_ship/clf_base/hallways/outside)
 "uA" = (
 /obj/machinery/computer/camera_advanced/overwatch/som/xray{
 	req_access = list(204)
@@ -4143,6 +4220,21 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/edge,
 /area/antag_ship/clf_base/hallways/inside)
+"wQ" = (
+/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
+	dir = 8
+	},
+/obj/structure/closet/wardrobe/medic_white,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/tweezers,
+/obj/item/tweezers,
+/obj/item/tweezers,
+/obj/item/tweezers,
+/obj/item/tweezers,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/medbay)
 "wR" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
 /turf/open/floor/plating/ground/desertdam/asphalt,
@@ -4552,7 +4644,9 @@
 /turf/closed/mineral/smooth/desertdamrockwall/indestructible,
 /area/space)
 "zc" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	isshared = 0
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/warehouse)
 "zd" = (
@@ -4653,9 +4747,10 @@
 /turf/open/floor/grayscale/round/black,
 /area/antag_ship/vsd/med)
 "zJ" = (
-/obj/machinery/recharger,
-/turf/open/floor/plating/asteroidfloor,
-/area/antag_ship/clf_base/medbay)
+/turf/open/floor/plating/ground/desertdam/asphalt/edge{
+	dir = 10
+	},
+/area/lv624/ground/caves/rock)
 "zL" = (
 /obj/item/fulton_extraction_pack,
 /obj/item/fulton_extraction_pack,
@@ -5782,7 +5877,9 @@
 	},
 /area/shuttle/transport)
 "FQ" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	isshared = 0
+	},
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/aft/engiroom/port)
 "FS" = (
@@ -5845,6 +5942,10 @@
 /obj/structure/cable,
 /turf/open/floor/mainship/sterile/plain,
 /area/antag_ship/pmc_ntf/aft/engiroom/starboard)
+"Gt" = (
+/obj/structure/largecrate/supply/medicine/blood,
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/requisition)
 "Gu" = (
 /obj/structure/sink{
 	dir = 1
@@ -6251,7 +6352,9 @@
 /turf/open/floor/grass,
 /area/antag_ship/som/security/cell)
 "Iz" = (
-/obj/machinery/vending/MarineMed,
+/obj/machinery/vending/MarineMed{
+	isshared = 0
+	},
 /obj/machinery/light/mainship{
 	dir = 8
 	},
@@ -6662,11 +6765,7 @@
 	},
 /area/antag_ship/clf_base/armory)
 "KH" = (
-/obj/structure/bed{
-	dir = 8
-	},
-/obj/item/bedsheet/medical,
-/turf/open/floor/plating/asteroidfloor,
+/turf/closed/mineral/smooth,
 /area/antag_ship/clf_base/medbay)
 "KL" = (
 /obj/structure/rack,
@@ -6730,7 +6829,9 @@
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/generator_room)
 "Lb" = (
-/obj/machinery/vending/medical/shipside,
+/obj/machinery/vending/medical/shipside{
+	isshared = 0
+	},
 /turf/open/floor/plating/ground/concrete,
 /area/antag_ship/icc/medical_room)
 "Lg" = (
@@ -7145,6 +7246,12 @@
 	dir = 4
 	},
 /area/antag_ship/vsd/port)
+"Nu" = (
+/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
+	dir = 4
+	},
+/turf/open/floor/plating/asteroidfloor,
+/area/antag_ship/clf_base/medbay)
 "Nv" = (
 /obj/effect/landmark/start/latejoinclf,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
@@ -7319,15 +7426,10 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 8
 	},
-/obj/structure/closet/wardrobe/medic_white,
-/obj/item/tweezers,
-/obj/item/tweezers,
-/obj/item/tweezers,
-/obj/item/tweezers,
-/obj/item/tweezers,
-/obj/item/tweezers,
-/obj/item/tweezers,
-/obj/item/tweezers,
+/obj/machinery/vending/MarineMed{
+	isshared = 0;
+	name = "\improper Stolen Medical Vendor"
+	},
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "Oi" = (
@@ -8320,10 +8422,8 @@
 	},
 /area/antag_ship/icc/hangar/center)
 "Tf" = (
-/obj/effect/spawner/random/medical/bloodpack,
-/obj/machinery/iv_drip,
-/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted,
-/obj/effect/turf_decal/trimline,
+/obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted,
+/obj/machinery/bioprinter,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "Th" = (
@@ -9301,7 +9401,9 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	isshared = 0
+	},
 /turf/open/floor/prison,
 /area/antag_ship/vsd/engi)
 "XW" = (
@@ -9433,6 +9535,20 @@
 /obj/item/clothing/under/colonist/webbing,
 /obj/item/clothing/under/colonist/webbing,
 /obj/item/clothing/under/colonist/webbing,
+/obj/item/clothing/suit/storage/faction/militia,
+/obj/item/clothing/suit/storage/faction/militia,
+/obj/item/clothing/suit/storage/faction/militia,
+/obj/item/clothing/suit/storage/faction/militia,
+/obj/item/clothing/suit/storage/faction/militia,
+/obj/item/clothing/suit/storage/faction/militia,
+/obj/item/clothing/suit/storage/faction/militia,
+/obj/item/clothing/under/colonist/webbing,
+/obj/item/clothing/under/colonist/webbing,
+/obj/item/clothing/shoes/marine/clf/full,
+/obj/item/clothing/shoes/marine/clf/full,
+/obj/item/clothing/shoes/marine/clf/full,
+/obj/item/clothing/shoes/marine/clf/full,
+/obj/item/clothing/shoes/marine/clf/full,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/armory)
 "Yz" = (
@@ -9455,7 +9571,9 @@
 /turf/open/floor/wood/alt_three,
 /area/antag_ship/som/office/commander)
 "YA" = (
-/obj/machinery/vending/tool,
+/obj/machinery/vending/tool{
+	isshared = 0
+	},
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -9577,7 +9695,9 @@
 /turf/open/floor/mainship/mono,
 /area/antag_ship/som/preparation)
 "Zp" = (
-/obj/machinery/vending/MarineMed/Blood,
+/obj/machinery/vending/MarineMed/Blood{
+	isshared = 0
+	},
 /obj/machinery/light/mainship{
 	dir = 4
 	},
@@ -15264,7 +15384,7 @@ mr
 VD
 JC
 nW
-Gy
+Gt
 ZU
 Gy
 Gy
@@ -15747,7 +15867,7 @@ aU
 aU
 aU
 aU
-aU
+Gy
 aU
 aU
 aF
@@ -15836,13 +15956,13 @@ Ur
 Ym
 ZX
 Og
+rb
+tJ
+wQ
+bV
 sh
 PL
-aF
-aF
-aF
-aF
-aF
+zJ
 aF
 aF
 aF
@@ -15931,13 +16051,13 @@ aF
 BC
 Jf
 hJ
-uv
-PL
-tT
-tT
-tT
-tT
-aF
+Jf
+Jf
+Jf
+Jf
+kW
+KH
+zJ
 aF
 aF
 aF
@@ -16025,14 +16145,14 @@ rL
 aF
 Aw
 gA
-zJ
+Jf
+gh
+hG
+ds
+Nu
 Tf
-PL
-tT
-tT
-aF
-aF
-aF
+KH
+zJ
 aF
 aF
 tY
@@ -16119,16 +16239,16 @@ rF
 kJ
 aF
 vU
-KH
+Jf
 gh
 cX
 PL
-aF
-aF
-aF
-aF
-aF
-gW
+PL
+KH
+PL
+KH
+Wp
+uv
 gW
 gW
 ai
@@ -16222,7 +16342,7 @@ eB
 GN
 eB
 eB
-gW
+uv
 ai
 gW
 gW
