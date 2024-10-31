@@ -925,6 +925,11 @@
 	dir = 1
 	},
 /area/bluesummers/caves/mining/south)
+"aMq" = (
+/obj/structure/closet/secure_closet/miner,
+/obj/machinery/light,
+/turf/open/floor/tile/dark/yellow2,
+/area/bluesummers/caves/mining)
 "aMC" = (
 /obj/effect/spawner/random/misc/shard,
 /obj/effect/landmark/corpsespawner/colonist/regular,
@@ -2764,6 +2769,10 @@
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating/mainship,
 /area/bluesummers/inside/garage)
+"cGy" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/caves/rock)
 "cGM" = (
 /obj/machinery/faxmachine,
 /obj/structure/table/wood/fancy,
@@ -3413,6 +3422,12 @@
 	},
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/southeast/roofed)
+"dhA" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/tile/darkgreen/darkgreen2{
+	dir = 1
+	},
+/area/bluesummers/caves/dorms)
 "dhC" = (
 /obj/effect/spawner/random/misc/structure/office_chair_or_metal/north,
 /turf/open/floor/plating/dmg1,
@@ -10240,6 +10255,10 @@
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/southwest)
+"jeJ" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating,
+/area/bluesummers/caves/dorms)
 "jeM" = (
 /obj/item/reagent_containers/food/drinks/flask/barflask{
 	pixel_x = 8;
@@ -11567,6 +11586,10 @@
 	dir = 8
 	},
 /area/bluesummers/inside/industrial)
+"kdu" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/dmg1,
+/area/bluesummers/caves/northeast/garbledradio)
 "kdW" = (
 /turf/open/floor/tile/dark,
 /area/bluesummers/caves/mining)
@@ -14625,6 +14648,14 @@
 	},
 /turf/open/floor/plating,
 /area/bluesummers/inside/garage)
+"mwE" = (
+/obj/effect/spawner/random/misc/structure/girder/regularweighted,
+/turf/open/floor/plating,
+/area/bluesummers/caves/northeast/indoor)
+"mwL" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/dmg3,
+/area/bluesummers/caves/dorms)
 "mwS" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -14890,7 +14921,6 @@
 /area/bluesummers/caves/mining/drill)
 "mID" = (
 /obj/machinery/door/airlock/vault,
-/obj/effect/mapping_helpers/airlock/locked,
 /turf/open/floor/tile/dark,
 /area/bluesummers/caves/mining)
 "mIO" = (
@@ -14900,6 +14930,11 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/garage)
+"mIW" = (
+/obj/structure/window_frame/mainship,
+/obj/effect/spawner/random/misc/shard,
+/turf/open/floor/plating,
+/area/bluesummers/caves/mining)
 "mIY" = (
 /obj/structure/table/mainship,
 /obj/item/trash/plate{
@@ -16580,6 +16615,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating,
 /area/bluesummers/inside/food_processing/east)
+"ofp" = (
+/obj/structure/window/framed/mainship,
+/turf/open/floor/plating,
+/area/bluesummers/caves/mining/south)
 "ofx" = (
 /obj/structure/bed/chair/office/dark/east{
 	pixel_x = 7;
@@ -17448,11 +17487,6 @@
 /area/bluesummers/inside/recreation)
 "oPz" = (
 /obj/structure/prop/mainship/gelida/rails,
-/obj/machinery/door/poddoor/shutters/mainship{
-	id = "Terraforming Wing";
-	name = "\improper Terraforming Wing Shutters";
-	dir = 2
-	},
 /obj/structure/cable,
 /turf/open/floor/mainship/stripesquare,
 /area/bluesummers/caves/mining/south)
@@ -18782,11 +18816,8 @@
 	},
 /area/bluesummers/inside/space_port)
 "pRN" = (
-/obj/machinery/door/airlock/mainship/maint/free_access{
-	dir = 2
-	},
 /obj/structure/cable,
-/turf/open/floor/mainship/floor,
+/turf/open/floor/plating/dmg1,
 /area/bluesummers/caves/northeast/indoor)
 "pSh" = (
 /obj/effect/spawner/random/misc/structure/table_or_rack,
@@ -18857,6 +18888,9 @@
 /obj/effect/mapping_helpers/airlock/welded,
 /turf/open/floor/plating,
 /area/bluesummers/caves/northwest/garbledradio)
+"pUc" = (
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/caves/rock)
 "pUt" = (
 /obj/machinery/factory/compressor,
 /obj/effect/turf_decal/bot,
@@ -22375,6 +22409,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/bluesummers/inside/food_processing)
+"sSd" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/drought/cave,
+/area/bluesummers/caves/dorms)
 "sSx" = (
 /obj/structure/table/mainship,
 /obj/item/reagent_containers/food/drinks/britcup{
@@ -22393,6 +22431,10 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/inside/engineering/plant)
+"sTf" = (
+/obj/structure/window/framed/mainship,
+/turf/open/floor/plating,
+/area/bluesummers/caves/mining)
 "sTP" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/floor/plating,
@@ -25000,6 +25042,9 @@
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/plating/plating_catwalk,
 /area/bluesummers/caves/cryostorage/south)
+"vbw" = (
+/turf/open/floor/mainship/stripesquare,
+/area/bluesummers/caves/mining/south)
 "vbP" = (
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/caves/south)
@@ -27209,11 +27254,12 @@
 /turf/open/floor/plating/ground/drought/cave,
 /area/bluesummers/caves/northeast)
 "xlr" = (
-/obj/machinery/light{
-	dir = 8
-	},
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
+/obj/item/flashlight/lantern{
+	pixel_x = -8;
+	pixel_y = 1
+	},
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
 	},
@@ -29061,7 +29107,7 @@ put
 put
 put
 put
-rOc
+mCC
 rOc
 rOc
 rOc
@@ -29204,9 +29250,9 @@ rOc
 rOc
 rOc
 duD
-rOc
-rOc
-rOc
+rUr
+rUr
+cGy
 dBR
 mYj
 nFM
@@ -29244,7 +29290,7 @@ put
 put
 oTF
 put
-rOc
+mCC
 rOc
 rOc
 rOc
@@ -29386,7 +29432,7 @@ rOc
 rOc
 eGb
 qkZ
-rOc
+rUr
 boD
 bCq
 oFQ
@@ -29426,7 +29472,7 @@ mCC
 dzy
 gLV
 gLV
-rOc
+mCC
 rOc
 rOc
 rOc
@@ -29787,7 +29833,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+mCC
 put
 put
 meh
@@ -29969,7 +30015,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+mCC
 put
 meh
 rNx
@@ -31048,7 +31094,7 @@ mYj
 egP
 boD
 bCq
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -31230,7 +31276,7 @@ rOc
 bCq
 bCq
 bCq
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -31773,7 +31819,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 bCq
 mXp
@@ -31955,7 +32001,7 @@ dQS
 dQS
 dQS
 rOc
-rOc
+rUr
 bCq
 boD
 nFM
@@ -32137,7 +32183,7 @@ iWC
 kkl
 dQS
 rOc
-rOc
+rUr
 bCq
 bCq
 bCq
@@ -32292,7 +32338,7 @@ rOc
 bCq
 bCq
 rUr
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -32474,7 +32520,7 @@ rOc
 bCq
 bCq
 dlk
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -32657,7 +32703,7 @@ bCq
 bCq
 bCq
 bCq
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -32839,7 +32885,7 @@ bCq
 bCq
 bCq
 bCq
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -33204,7 +33250,7 @@ oFQ
 bCq
 bCq
 oFQ
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -33386,7 +33432,7 @@ egP
 bCq
 bCq
 bCq
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -35052,7 +35098,7 @@ rOc
 bCq
 bCq
 bCq
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -35230,11 +35276,11 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 bCq
 boD
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -35412,7 +35458,7 @@ wZp
 wZp
 rOc
 rOc
-rOc
+rUr
 bCq
 bCq
 bCq
@@ -35750,7 +35796,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 oFQ
 bCq
 rni
@@ -35931,8 +35977,8 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+rUr
+rUr
 bCq
 bCq
 bCq
@@ -36113,7 +36159,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 bCq
 bCq
@@ -36295,7 +36341,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 boD
 bCq
@@ -36477,7 +36523,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 egP
 bCq
 bCq
@@ -36659,7 +36705,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 bCq
 bCq
@@ -37026,7 +37072,7 @@ rOc
 bCq
 bCq
 bCq
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -37208,7 +37254,7 @@ rOc
 bCq
 bCq
 oFQ
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -37784,7 +37830,7 @@ bCq
 bCq
 bCq
 bCq
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -37932,7 +37978,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 bCq
 egP
@@ -37966,7 +38012,7 @@ bCq
 bCq
 bCq
 bCq
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -38114,7 +38160,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 bCq
 bCq
@@ -38141,14 +38187,14 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 boD
 bCq
 bCq
 dBR
 oLP
-rOc
+rUr
 rOc
 rOc
 rOc
@@ -38323,7 +38369,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 bCq
 nFM
@@ -38479,7 +38525,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 bCq
 bCq
@@ -38494,6 +38540,7 @@ bCq
 bCq
 bCq
 bCq
+rUr
 rOc
 rOc
 rOc
@@ -38503,8 +38550,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+rUr
 bCq
 bCq
 bCq
@@ -38661,7 +38707,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+rUr
 bCq
 oFQ
 bCq
@@ -38677,6 +38723,7 @@ bCq
 oFQ
 bCq
 bCq
+rUr
 rOc
 rOc
 rOc
@@ -38685,8 +38732,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+rUr
 bCq
 nFM
 mYj
@@ -38713,7 +38759,7 @@ put
 nSQ
 put
 put
-rOc
+mCC
 rOc
 rOc
 rOc
@@ -38859,6 +38905,7 @@ hTx
 hTx
 hTx
 hTx
+aDJ
 rOc
 rOc
 rOc
@@ -38867,8 +38914,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+aDJ
 igK
 hTx
 eKz
@@ -38895,7 +38941,7 @@ dQD
 dQD
 dQD
 dQD
-rOc
+ehU
 rOc
 rOc
 rOc
@@ -39027,7 +39073,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
 hTx
@@ -39077,8 +39123,8 @@ dQD
 dQD
 dQD
 dQD
-rOc
-rOc
+ehU
+ehU
 rOc
 rOc
 rOc
@@ -39209,7 +39255,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
 hTx
@@ -39245,8 +39291,8 @@ eUV
 kjz
 dQD
 dQD
-rOc
-rOc
+ehU
+ehU
 rOc
 rOc
 rOc
@@ -39260,7 +39306,7 @@ dQD
 dQD
 lWK
 mWU
-rOc
+ehU
 rOc
 rOc
 rOc
@@ -39402,7 +39448,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
 hTx
@@ -39585,11 +39631,11 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
 hTx
-rOc
+aDJ
 rOc
 rOc
 rOc
@@ -39767,11 +39813,11 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
 hTx
-rOc
+aDJ
 rOc
 rOc
 rOc
@@ -40136,7 +40182,7 @@ rOc
 hTx
 hTx
 hTx
-rOc
+aDJ
 rOc
 rOc
 rOc
@@ -40318,7 +40364,7 @@ rOc
 igK
 hTx
 hTx
-rOc
+aDJ
 rOc
 rOc
 rOc
@@ -40340,9 +40386,9 @@ mWU
 dQD
 dQD
 dQD
-rOc
-rOc
-rOc
+ehU
+ehU
+ehU
 dQD
 dQD
 dQD
@@ -40500,8 +40546,8 @@ rOc
 hTx
 hTx
 pUz
-rOc
-rOc
+aDJ
+aDJ
 aDJ
 nAB
 hTx
@@ -40524,8 +40570,8 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+ehU
+ehU
 dQD
 dQD
 dQD
@@ -40708,8 +40754,8 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+ehU
+ehU
 lWK
 dQD
 dQD
@@ -41041,7 +41087,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
 igK
@@ -41211,9 +41257,9 @@ igK
 hTx
 bYk
 pUz
-rOc
-rOc
-rOc
+aDJ
+aDJ
+aDJ
 hTx
 hTx
 igK
@@ -41223,7 +41269,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
 hTx
@@ -41404,8 +41450,8 @@ hTx
 rOc
 rOc
 rOc
-rOc
-rOc
+aDJ
+aDJ
 pUz
 hTx
 hTx
@@ -41586,7 +41632,7 @@ hTx
 rOc
 rOc
 rOc
-rOc
+aDJ
 aQo
 hTx
 hTx
@@ -45947,7 +45993,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
 pUz
@@ -46129,10 +46175,10 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
-rOc
+aDJ
 rOc
 rOc
 mPE
@@ -46311,10 +46357,10 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 igK
 hTx
-rOc
+aDJ
 rOc
 rOc
 frS
@@ -46493,7 +46539,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
 rOc
@@ -46675,7 +46721,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+aDJ
 hTx
 eKz
 rOc
@@ -47396,7 +47442,7 @@ hTx
 hTx
 hTx
 hTx
-rOc
+aDJ
 rOc
 rOc
 rOc
@@ -47578,7 +47624,7 @@ rOc
 hTx
 hTx
 hTx
-rOc
+aDJ
 rOc
 rOc
 rOc
@@ -47761,7 +47807,7 @@ aQo
 hTx
 hTx
 aQo
-rOc
+aDJ
 rOc
 rOc
 rOc
@@ -48163,7 +48209,7 @@ oMB
 knX
 pRh
 kKc
-eRA
+fFt
 fFt
 aQK
 dQD
@@ -51037,7 +51083,7 @@ rOc
 hTx
 hTx
 aQo
-rOc
+aDJ
 rOc
 rOc
 rOc
@@ -51219,7 +51265,7 @@ lPy
 eUV
 wwx
 igK
-rOc
+aDJ
 rOc
 rOc
 rOc
@@ -51761,7 +51807,7 @@ ngE
 ngE
 rOc
 rOc
-rOc
+aDJ
 eKz
 hTx
 hTx
@@ -51806,7 +51852,7 @@ xFF
 kjz
 tyi
 rOc
-rOc
+ehU
 dQD
 dQD
 dQD
@@ -51943,7 +51989,7 @@ ngE
 ngE
 rOc
 rOc
-rOc
+aDJ
 hTx
 hTx
 hTx
@@ -51988,7 +52034,7 @@ cJV
 cJV
 rOc
 rOc
-rOc
+ehU
 lWK
 dQD
 dQD
@@ -52170,8 +52216,8 @@ cJV
 pcJ
 rOc
 rOc
-rOc
-rOc
+ehU
+ehU
 dQD
 mWU
 dQD
@@ -52353,8 +52399,8 @@ sNo
 rOc
 rOc
 rOc
-rOc
-rOc
+ehU
+ehU
 dQD
 dQD
 dQD
@@ -52537,8 +52583,8 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+ehU
+ehU
 dQD
 dQD
 kjz
@@ -52720,7 +52766,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+ehU
 dQD
 kjz
 dRV
@@ -52883,8 +52929,8 @@ hTx
 hTx
 hTx
 hTx
-hTx
-vwI
+aDJ
+sSd
 nYm
 eeI
 ogb
@@ -52902,7 +52948,7 @@ prO
 eyv
 rOc
 rOc
-rOc
+ehU
 mWU
 nLf
 kjz
@@ -53065,8 +53111,8 @@ igK
 hTx
 hTx
 igK
-eKz
-cJV
+ifp
+jeJ
 gsi
 bbr
 eyv
@@ -53085,7 +53131,7 @@ eyv
 kjz
 dQD
 dQD
-pAN
+dQD
 dQD
 dQD
 rOc
@@ -53267,7 +53313,7 @@ ccc
 ccc
 aDB
 dQD
-dQD
+pAN
 dQD
 lWK
 rOc
@@ -53453,7 +53499,7 @@ dQD
 dQD
 dQD
 mWU
-rOc
+ehU
 rOc
 rOc
 rOc
@@ -53635,8 +53681,8 @@ dQD
 dQD
 dQD
 dQD
-rOc
-rOc
+ehU
+ehU
 rOc
 rOc
 rOc
@@ -53818,9 +53864,9 @@ vXm
 vXm
 vXm
 vXm
-rOc
-rOc
-rOc
+que
+que
+que
 rOc
 rOc
 rOc
@@ -53976,8 +54022,8 @@ emd
 emd
 vYU
 iFb
-tuG
-gsi
+mwL
+dhA
 eeI
 iQY
 vNH
@@ -54002,8 +54048,8 @@ vXm
 vXm
 vXm
 vXm
-rOc
-rOc
+que
+que
 rOc
 kpx
 kpx
@@ -54158,8 +54204,8 @@ emd
 rOc
 vYU
 vYU
-cJV
-gsi
+jeJ
+dhA
 bbr
 eyv
 eyv
@@ -55792,7 +55838,7 @@ edV
 oAx
 wXb
 qDV
-emd
+mwE
 wuL
 fBz
 rOc
@@ -56342,7 +56388,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+kcT
 vYU
 vYU
 vYU
@@ -56518,13 +56564,13 @@ vYU
 vYU
 aBU
 vYU
+kcT
+kcT
 rOc
 rOc
 rOc
 rOc
-rOc
-rOc
-rOc
+kcT
 vYU
 uNj
 vYU
@@ -56702,10 +56748,10 @@ vYU
 vYU
 vYU
 uNj
-rOc
-rOc
-rOc
-rOc
+kcT
+kcT
+kcT
+kcT
 vYU
 vYU
 vYU
@@ -57259,7 +57305,7 @@ wwl
 dVu
 lTj
 tXo
-jZv
+ofp
 oNm
 pzt
 hjD
@@ -57954,7 +58000,7 @@ rOc
 vYU
 vYU
 uNj
-rOc
+kcT
 rOc
 rOc
 rOc
@@ -58001,7 +58047,7 @@ eyV
 jZv
 rOc
 rOc
-rOc
+que
 vXm
 vXm
 wrg
@@ -58136,7 +58182,7 @@ aBU
 vYU
 aBU
 vYU
-rOc
+kcT
 rOc
 rOc
 rOc
@@ -58148,10 +58194,10 @@ wDe
 iZD
 ihb
 stv
-bwQ
+mIW
 lex
 nMs
-kum
+aMq
 bwQ
 ihb
 jsS
@@ -58183,7 +58229,7 @@ tjw
 jZv
 rOc
 rOc
-rOc
+que
 vXm
 vXm
 que
@@ -58318,7 +58364,7 @@ uNj
 kcT
 tbU
 vYU
-rOc
+kcT
 rOc
 bwQ
 bwQ
@@ -58332,7 +58378,7 @@ rNY
 wDP
 bwQ
 bHs
-mea
+yil
 kRl
 bwQ
 fzN
@@ -58365,7 +58411,7 @@ tXo
 rOc
 rOc
 rOc
-rOc
+que
 xZs
 ffW
 nfB
@@ -58514,7 +58560,7 @@ bwQ
 bwQ
 bwQ
 wzX
-bwQ
+sTf
 bwQ
 bwQ
 aHc
@@ -58547,7 +58593,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+que
 vXm
 nfB
 vaz
@@ -58676,7 +58722,7 @@ ngE
 (168,1,1) = {"
 ngE
 rOc
-rOc
+pUc
 vYU
 vYU
 xSG
@@ -58729,11 +58775,11 @@ rOc
 rOc
 rOc
 rOc
-rOc
+que
 vXm
 vXm
 tTz
-rOc
+que
 rOc
 rOc
 rOc
@@ -58915,8 +58961,8 @@ rOc
 vXm
 vXm
 vXm
-rOc
-rOc
+que
+que
 rOc
 rOc
 rOc
@@ -59055,7 +59101,7 @@ gYS
 tuH
 veo
 oTn
-bwQ
+sTf
 ris
 hdT
 uEI
@@ -59099,7 +59145,7 @@ vXm
 ffW
 vXm
 vXm
-rOc
+que
 rOc
 rOc
 rOc
@@ -59421,7 +59467,7 @@ bwQ
 bwQ
 bwQ
 bwQ
-bwQ
+mIW
 wzX
 bwQ
 bwQ
@@ -59785,7 +59831,7 @@ ikj
 wDe
 bXQ
 yil
-rYz
+mea
 jLd
 ygP
 gYS
@@ -59995,7 +60041,7 @@ tgf
 tBn
 iRH
 olK
-fBe
+vbw
 bFP
 xyr
 xyr
@@ -62185,12 +62231,12 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
-rOc
-rOc
-rOc
-rOc
+que
+que
+que
+que
+que
+vXm
 vXm
 vXm
 vXm
@@ -62711,7 +62757,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+kcT
 aBU
 vYU
 vYU
@@ -62721,7 +62767,7 @@ vYU
 xSG
 vYU
 vXm
-rOc
+que
 rOc
 rOc
 rOc
@@ -62893,8 +62939,8 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+kcT
+kcT
 aBU
 vYU
 uNj
@@ -62903,9 +62949,9 @@ xSG
 lwV
 xSG
 vXm
-rOc
-rOc
-rOc
+que
+que
+que
 rOc
 rOc
 hlj
@@ -63076,8 +63122,8 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+kcT
+kcT
 aBU
 vYU
 vYU
@@ -63089,7 +63135,7 @@ vXm
 vXm
 vXm
 piC
-rOc
+que
 hlj
 vaz
 nfB
@@ -63259,10 +63305,10 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
-rOc
-rOc
+kcT
+kcT
+kcT
+kcT
 vYU
 vYU
 vYU
@@ -63444,8 +63490,8 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+kcT
+kcT
 uNj
 vYU
 que
@@ -63479,8 +63525,8 @@ vXm
 vXm
 hlj
 hlj
-hlj
-rOc
+kdu
+que
 jvq
 jvq
 nZf
@@ -63662,8 +63708,8 @@ rOc
 rOc
 rOc
 rOc
-rOc
-rOc
+que
+nZf
 jth
 jvq
 bhh
@@ -63846,7 +63892,7 @@ rOc
 rOc
 rOc
 rOc
-rOc
+nZf
 xGX
 jvq
 jvq
