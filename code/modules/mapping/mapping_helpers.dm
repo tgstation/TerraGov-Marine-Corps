@@ -372,6 +372,8 @@
 /obj/effect/mapping_helpers/light/broken/Initialize(mapload)
 	. = ..()
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
+	if(light.status == LIGHT_BROKEN) //already broken, go home
+		return
 	if(!light)
 		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
 	if(light.status == LIGHT_EMPTY)
