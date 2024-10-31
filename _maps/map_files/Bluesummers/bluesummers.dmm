@@ -1715,6 +1715,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/light/broken,
 /obj/structure/cable,
 /turf/open/floor/mainship/emerald{
 	dir = 8
@@ -3542,6 +3543,7 @@
 /area/bluesummers/caves/cryostorage)
 "doH" = (
 /obj/machinery/light,
+/obj/effect/mapping_helpers/light/broken,
 /obj/structure/table/mainship,
 /obj/structure/prop/mainship/weapon_recharger,
 /turf/open/floor/mainship/emerald,
@@ -6069,6 +6071,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/outside/northeast/roofed)
 "fzd" = (
@@ -8442,6 +8445,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/mainship/emerald{
 	dir = 6
 	},
@@ -10444,6 +10448,7 @@
 /area/bluesummers/outside/southwest)
 "jnh" = (
 /obj/machinery/light,
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/caves/west)
 "jnq" = (
@@ -11168,6 +11173,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/prison/darkbrown/full,
 /area/bluesummers/outside/southwest/roofed)
 "jQu" = (
@@ -11694,6 +11700,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/southeast)
 "kiV" = (
@@ -13059,6 +13066,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/light/broken,
 /obj/effect/spawner/random/misc/structure/supplycrate,
 /turf/open/floor/prison/darkbrown/full,
 /area/bluesummers/outside/southwest/roofed)
@@ -14644,6 +14652,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/southwest/roofed)
 "mxS" = (
@@ -16439,6 +16448,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/mapping_helpers/light/broken,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating,
@@ -16922,6 +16932,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/outside/northeast/roofed)
 "ouL" = (
@@ -19211,6 +19222,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/plating/ground/drought,
 /area/bluesummers/outside/southwest/roofed)
 "qjH" = (
@@ -20744,6 +20756,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/light/broken,
 /obj/machinery/computer/cloning_console/vats,
 /turf/open/floor/mainship/emerald{
 	dir = 4
@@ -21038,6 +21051,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/outside/southeast/roofed)
 "rKZ" = (
@@ -21391,6 +21405,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/mainship/floor,
 /area/bluesummers/caves/southwest)
 "rXl" = (
@@ -23008,6 +23023,7 @@
 "tvk" = (
 /obj/effect/urban/decal/trash/three,
 /obj/machinery/light,
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/mainship/emerald,
 /area/bluesummers/caves/cloning)
 "tvD" = (
@@ -24298,6 +24314,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/plating,
 /area/bluesummers/outside/northeast/roofed)
 "uxN" = (
@@ -26117,6 +26134,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/outside/southeast)
 "weU" = (
@@ -26286,6 +26304,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/light/broken,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/dmg3,
 /area/bluesummers/outside/northeast/roofed)
@@ -26977,6 +26996,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/mapping_helpers/light/broken,
 /turf/open/floor/plating/dmg1,
 /area/bluesummers/outside/southeast/roofed)
 "wYt" = (
