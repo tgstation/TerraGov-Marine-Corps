@@ -985,6 +985,26 @@
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "fireplace"
 
+/obj/structure/prop/mainship/vat
+	name = "Stasis Vat"
+	desc = "A large vat used to store humans."
+	icon = 'icons/obj/machines/cryogenics2.dmi'
+	icon_state = "cell_off"
+	hit_sound = 'sound/effects/Glasshit.ogg'
+	max_integrity = 120
+	resistance_flags = XENO_DAMAGEABLE
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/mainship/vat/full
+	icon_state = "cell_off_occupied"
+
+/obj/structure/prop/mainship/vat/broken
+	desc = "A large vat used to store humans. This one doesnt seem functional..."
+	icon_state = "cell_broken"
+
+/obj/structure/prop/mainship/vat/broken/bloody
+	icon_state = "cell_bloody"
+
 //items props
 
 /obj/item/prop

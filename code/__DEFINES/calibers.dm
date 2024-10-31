@@ -86,5 +86,7 @@
 #define CALIBER_20 "20mm" //Dualcannon
 
 /// Vehicles
+#define CALIBER_30X17MM "30x170mm" // SARDEN
+#define CALIBER_76MM "76mm shell" // ICC LowVel
 #define CALIBER_11X35 "11x35mm"
 #define CALIBER_105MM "105mm" //MBT Main Cannon

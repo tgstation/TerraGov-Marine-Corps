@@ -475,7 +475,8 @@
 	cutter = source
 	chassis.atom_flags |= DIRLOCK
 	RegisterSignal(chassis, COMSIG_MOVABLE_MOVED, PROC_REF(drop_afterimage))
-	chassis.throw_at(target, laser_dash_range, 1, flying = TRUE)
+	RegisterSignal(chassis, COMSIG_MOVABLE_BUMP, PROC_REF(on_bump))
+	chassis.throw_at(target, laser_dash_range, 1)
 	return ..()
 
 ///signal handler, drops afterimage every move executed while dashing
@@ -483,10 +484,22 @@
 	SIGNAL_HANDLER
 	new /obj/effect/temp_visual/after_image(chassis.loc, chassis)
 
+///Wrapper for mob bump attacks mid lunge
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/on_bump(datum/source, atom/bumped)
+	SIGNAL_HANDLER
+	if(!ismob(bumped))
+		return
+	INVOKE_ASYNC(src, PROC_REF(do_bump_attack), bumped)
+	return COMPONENT_BUMP_RESOLVED
+
+///Hits a mob in the way
+/obj/item/mecha_parts/mecha_equipment/laser_sword/proc/do_bump_attack(mob/living/bumped_mob)
+	bumped_mob.attackby(src, cutter)
+
 ///Ends dash and executes attack
 /obj/item/mecha_parts/mecha_equipment/laser_sword/proc/end_dash(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED))
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_MOVABLE_MOVED, COMSIG_MOVABLE_BUMP))
 	chassis.remove_filter("dash_blur")
 	icon_state = initial(icon_state)
 	chassis.update_icon()
