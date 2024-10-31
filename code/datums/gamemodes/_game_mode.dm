@@ -569,8 +569,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 			continue
 		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
 			continue
-		if(H.status_flags & XENO_HOST)
-			continue
 		if(!(H.z in z_levels) || isspaceturf(H.loc))
 			continue
 		. += H.job.jobworth[/datum/job/xenomorph]
