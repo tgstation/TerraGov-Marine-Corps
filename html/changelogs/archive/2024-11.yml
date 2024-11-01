@@ -1,0 +1,11 @@
+2024-11-01:
+  Runian:
+  - rscadd: You can now chestburst while in EORD/Deathmatch Area without requiring
+      admin intervention.
+  - rscadd: 'Dancer Praetorian Strain & Abilities: Dodge, Impale, Tail Trip.'
+  - imageadd: 'Button Icons for: Dodge, Impale, Tail Trip.'
+  blackdav123:
+  - bugfix: Added xeno spawn points to vapor processing.
+  - balance: Roboticist survivor now has a skink drone instead of a buildasentry.
+  ivanmixo:
+  - bugfix: Fixed light break helper complaining about already broken lights
