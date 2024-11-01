@@ -890,7 +890,7 @@
 
 ///How many deciseconds remain in our irradiated status effect
 /mob/living/proc/amount_irradiated()
-	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated()
 	if(irradiated)
 		return irradiated.duration - world.time
 	return 0
@@ -899,7 +899,7 @@
 /mob/living/proc/irradiate(amount, ignore_canstun = FALSE) //Can't go below remaining duration
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated()
 	if(irradiated)
 		irradiated.duration = max(world.time + amount, irradiated.duration)
 	else if(amount > 0)
@@ -910,7 +910,7 @@
 /mob/living/proc/set_radiation(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated()
 	if(amount <= 0)
 		if(irradiated)
 			qdel(irradiated)
@@ -925,9 +925,13 @@
 /mob/living/proc/adjust_radiation(amount, ignore_canstun = FALSE)
 	if(status_flags & GODMODE)
 		return
-	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated(FALSE)
+	var/datum/status_effect/incapacitating/irradiated/irradiated = is_irradiated()
 	if(irradiated)
 		irradiated.duration += amount
 	else if(amount > 0)
 		irradiated = apply_status_effect(STATUS_EFFECT_IRRADIATED, amount)
 	return irradiated
+
+///Returns whether the mob has been recently hit by a sniper round
+/mob/living/proc/is_recently_sniped()
+	return has_status_effect(STATUS_EFFECT_SNIPED)

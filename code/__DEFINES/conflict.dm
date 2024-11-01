@@ -48,7 +48,7 @@
 ///Ammo will pass through windows and has damage reduced by smokes with SMOKE_NERF_BEAM
 #define AMMO_ENERGY (1<<3)
 ///Ammo is more likely to continue past cover such as cades
-#define AMMO_SNIPER (1<<4)
+#define AMMO_BETTER_COVER_RNG (1<<4)
 ///Ammo will attempt to add firestacks and ignite a hit mob if it deals any damage. Armor applies, regardless of AMMO_IGNORE_ARMOR
 #define AMMO_INCENDIARY (1<<5)
 ///Ammo type entirely ignores xenos
@@ -73,6 +73,8 @@
 #define AMMO_PASS_THROUGH_MOB (1<<15)
 ///If the projectile ricochet and miss sound is pitched up
 #define AMMO_SOUND_PITCH (1<<16)
+///Is this projectile considered sniper ammo, used for the anti sniper stacking status effect
+#define AMMO_SNIPER (1<<17)
 
 //Gun defines for gun related thing. More in the projectile folder.
 //gun_features_flags

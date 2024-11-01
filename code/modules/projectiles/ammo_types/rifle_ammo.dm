@@ -114,7 +114,7 @@
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
 	damage_falloff = 0.5
-	ammo_behavior_flags = AMMO_BALLISTIC
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	accurate_range = 25
 	max_range = 40
 	damage = 65
@@ -124,6 +124,7 @@
 /datum/ammo/bullet/rifle/garand
 	name = "heavy marksman bullet"
 	hud_state = "sniper"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	damage = 75
 	penetration = 25
 	sundering = 1.25
@@ -132,7 +133,7 @@
 	name = "light marksman bullet"
 	hud_state = "hivelo"
 	hud_state_empty = "hivelo_empty"
-	ammo_behavior_flags = AMMO_BALLISTIC
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	penetration = 15
 	damage = 32.5
 	sundering = 1.25
@@ -140,6 +141,7 @@
 /datum/ammo/bullet/rifle/icc_confrontationrifle
 	name = "armor-piercing heavy rifle bullet"
 	hud_state = "rifle_ap"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	damage = 50
 	penetration = 40
 	sundering = 3.5
