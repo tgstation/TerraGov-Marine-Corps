@@ -947,7 +947,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/regeneration
 	chamber_structure = MUTATION_STRUCTURE_CHAMBER
 	/// The amount of max health to be regenerated everytime the proc 'heal_wounds' is called.
-	var/health_regen_per_chamber = 0.015 // 1.5%
+	var/health_regen_per_chamber = 0.008 // 0.8%
 	/// The amount of sunder to be regenerated everytime the proc 'heal_wounds' is called.
 	var/sunder_regen_per_chamber = 0.166
 
@@ -992,7 +992,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/vampirism
 	chamber_structure = MUTATION_STRUCTURE_CHAMBER
 	/// The amount of max health to be regenerated the owner hits an alive human.
-	var/leech_buff_per_chamber = 0.033
+	var/leech_buff_per_chamber = 0.016
 
 /datum/status_effect/mutation_upgrade/vampirism/on_apply()
 	if(!..())
