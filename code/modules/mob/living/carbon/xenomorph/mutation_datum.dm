@@ -124,10 +124,15 @@
 	xeno_purchaser.apply_status_effect(chosen_mutation_upgrade.status_effect)
 
 /datum/mutation_upgrade
+	/// The name that is displayed in the TGUI.
 	var/name
+	/// The description that is displayed in the TGUI.
 	var/desc
+	/// The category slot that this upgrade takes. Upgrades that conflict with this category slot will be removed/replaced.
 	var/category
+	/// The structure that needs to exist for a successful purchase.
 	var/required_structure
+	/// The status effect given upon successful purchase.
 	var/datum/status_effect/status_effect
 
 /datum/mutation_upgrade/survival
