@@ -581,6 +581,7 @@
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
 
+/// Opens the mutation selector UI.
 /mob/living/carbon/xenomorph/verb/upgrade_menu()
 	set name = "Mutations Menu"
 	set desc = "See current Upgrade Chambers and get mutations for yourself"
