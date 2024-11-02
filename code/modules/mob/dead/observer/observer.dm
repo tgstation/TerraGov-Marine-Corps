@@ -978,11 +978,19 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		target_ghost.change_mob_type(/mob/living/carbon/human, delete_old_mob = TRUE)
 
 /mob/dead/observer/proc/observe_time_out()
-	to_chat(src, span_warning("Your time is up."))
-	client?.screen.Cut()
+	if(!client)
+		return
+	client.screen.Cut()
+	if(!client)
+		return
+
 	var/mob/new_player/M = new /mob/new_player()
-	M.key = key
-	M.client.observe_used = TRUE
+	if(SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
+		M.faction = faction
 	if(!client)
 		qdel(M)
 		return
+
+	M.key = key
+
+	to_chat(src, span_warning("Your time is up."))

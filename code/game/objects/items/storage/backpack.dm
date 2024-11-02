@@ -475,6 +475,11 @@
 	name = "\improper NT-CyberGhost Prototype"
 	desc = "NineTails Brand Prototype presence reduction device, it is attached at the back of most plate carriers and other armor, it was made generally for testing before it could be integrated into a smaller case and to be a cybernetic addition to one's body, this one does not perform as well as the real thing, and it's sorta bulky. Unlike the real cyberware, this one lacks the ability to real-time wipe user's image from observation tools."
 	icon = 'ntf_modular/icons/obj/storage/storage.dmi'
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
+		slot_s_store_str = 'ntf_modular/icons/mob/clothing/back.dmi',
+	)
 	icon_state = "scout_cloak"
 	var/camo_active = 0
 	var/camo_active_timer = 0
@@ -715,6 +720,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper
 	name = "\improper M68-B Thermal Cloak"
 	icon_state = "smock"
+	icon = 'icons/obj/items/storage/backpack.dmi'
 	desc = "The M68-B thermal cloak is a variant custom-purposed for snipers, allowing for faster, superior, stationary concealment at the expense of mobile concealment. It is designed to be paired with the lightweight M3 recon battle armor. Serves as a satchel."
 	shimmer_alpha = SCOUT_CLOAK_RUN_ALPHA * 0.5 //Half the normal shimmer transparency.
 
