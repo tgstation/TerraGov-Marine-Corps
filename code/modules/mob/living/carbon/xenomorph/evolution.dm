@@ -285,7 +285,7 @@
 		balloon_alert(src, "We can't evolve to that caste from our current one")
 		return FALSE
 
-	if(new_caste_type in GLOB.restricted_castes)
+	if(new_caste_type in SSticker.mode.restricted_castes)
 		balloon_alert(src, "Our weak hive can't support that caste!")
 		return FALSE
 

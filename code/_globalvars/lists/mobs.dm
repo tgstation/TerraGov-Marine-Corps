@@ -168,8 +168,6 @@ GLOBAL_LIST_INIT(hive_ui_static_data, init_hive_status_lists()) // init by make_
 			"evolution_max" = initial(caste.evolution_threshold)
 		))
 
-///List of castes we dont want to be evolvable.
-GLOBAL_LIST_EMPTY(restricted_castes)
 
 
 /proc/update_config_movespeed_type_lookup(update_mobs = TRUE)

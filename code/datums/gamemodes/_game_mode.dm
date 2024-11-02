@@ -2,7 +2,6 @@
 #define SERVER_LAST_ROUND "server last round"
 
 GLOBAL_VAR(common_report) //Contains common part of roundend report
-GLOBAL_VAR(tier3_penalty) //Increases the amount of xenos needed to evolve to t3 by the value.
 
 /datum/game_mode
 	var/name = ""
@@ -46,10 +45,10 @@ GLOBAL_VAR(tier3_penalty) //Increases the amount of xenos needed to evolve to t3
 	var/time_between_round = 0
 	///What factions are used in this gamemode, typically TGMC and xenos
 	var/list/factions = list(FACTION_TERRAGOV, FACTION_ALIEN)
-	///Increases the amount of xenos needed to evolve to tier3 by x
-	var/gamemode_tier3_penalty = 0
+	///Increases the amount of xenos needed to evolve to tier three by the value.
+	var/tier_three_penalty = 0
 	///List of castes we dont want to be evolvable depending on gamemode.
-	var/list/gamemode_restricted_castes
+	var/list/restricted_castes
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
@@ -112,9 +111,6 @@ GLOBAL_VAR(tier3_penalty) //Increases the amount of xenos needed to evolve to t3
 		if(!job) //dunno how or why but it errored in ci and i couldnt reproduce on local
 			continue
 		job.on_pre_setup()
-
-	GLOB.restricted_castes += gamemode_restricted_castes
-	GLOB.tier3_penalty = gamemode_tier3_penalty
 
 	return TRUE
 

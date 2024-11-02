@@ -22,10 +22,8 @@
 	)
 	xenorespawn_time = 3 MINUTES
 	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
-	//We want tier 3s one xeno later.
-	gamemode_tier3_penalty = 1
-	//List of xenos we dont want to be playable.
-	gamemode_restricted_castes = list(/datum/xeno_caste/hivelord, /datum/xeno_caste/wraith, /datum/xeno_caste/hivemind)
+	tier_three_penalty = 1
+	restricted_castes = list(/datum/xeno_caste/hivelord, /datum/xeno_caste/wraith, /datum/xeno_caste/hivemind)
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
