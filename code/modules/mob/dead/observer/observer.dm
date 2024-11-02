@@ -49,6 +49,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
+	var/unobserve_timer
 
 /mob/dead/observer/Initialize(mapload)
 	invisibility = GLOB.observer_default_invisibility
@@ -975,3 +976,13 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		client.holder.spatial_agent()
 	else
 		target_ghost.change_mob_type(/mob/living/carbon/human, delete_old_mob = TRUE)
+
+/mob/dead/observer/proc/observe_time_out()
+	to_chat(src, span_warning("Your time is up."))
+	client?.screen.Cut()
+	var/mob/new_player/M = new /mob/new_player()
+	M.key = key
+	M.client.observe_used = TRUE
+	if(!client)
+		qdel(M)
+		return
