@@ -600,6 +600,14 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		var/mob/living/carbon/xenomorph/xeno_crosser = crosser
 		if(xeno_crosser.m_intent == MOVE_INTENT_WALK)
 			return
+	var/turf/other_portal_turf = get_turf(linked_portal)
+	for(var/thing in other_portal_turf.contents)
+		// Prevents the crossing if blocked by a vehicle.
+		// Without this, crossers would "move" to the vehicle which would cause a bump attack instead of a teleport to the other side.
+		// While some argue "skill issue" as vehicles could simply move off the portal, it was determined to be an exploit rather than a skill issue.
+		if(ishitbox(thing) || isvehicle(thing))
+			return
+
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	crosser.pass_flags &= ~PASS_MOB
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))
