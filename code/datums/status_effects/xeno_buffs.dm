@@ -1038,7 +1038,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/celerity
 	chamber_structure = MUTATION_STRUCTURE_SPUR
 	/// The amount of movement speed the owner get.
-	var/speed_buff_per_chamber = 0.1
+	var/speed_buff_per_chamber = 0.05
 
 /datum/status_effect/mutation_upgrade/celerity/on_apply()
 	if(!..())
