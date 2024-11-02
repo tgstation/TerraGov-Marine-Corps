@@ -188,6 +188,8 @@
 	set_arousal(arousal + amount)
 
 /datum/sex_controller/proc/perform_deepthroat_oxyloss(mob/living/action_target, oxyloss_amt)
+	if(isxeno(action_target))
+		return
 	var/oxyloss_multiplier = 0
 	switch(force)
 		if(SEX_FORCE_LOW)
