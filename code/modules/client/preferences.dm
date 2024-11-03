@@ -192,6 +192,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///What outfit typepaths we've favorited in the SelectEquipment menu
 	var/list/favorite_outfits = list()
 
+	/// list("sequencename" = list(uid, uid, uid))
+	var/list/stim_sequences = list()
+
 	///List of slot_draw_order
 	var/list/slot_draw_order_pref = list()
 

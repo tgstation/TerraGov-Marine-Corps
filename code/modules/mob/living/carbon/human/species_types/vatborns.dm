@@ -2,6 +2,7 @@
 	name = "Vatborn"
 	icobase = 'icons/mob/human_races/r_vatborn.dmi'
 	namepool = /datum/namepool/vatborn
+	limb_type = SPECIES_LIMB_CLONE
 
 /datum/species/human/vatborn/prefs_name(datum/preferences/prefs)
 	return prefs.real_name
@@ -13,6 +14,7 @@
 	burn_mod = 1.05
 	slowdown = 0.05
 	joinable_roundstart = FALSE
+	limb_type = SPECIES_LIMB_CLONE
 
 /datum/species/human/vatgrown/random_name(gender)
 	return "CS-[gender == FEMALE ? "F": "M"]-[rand(111,999)]"

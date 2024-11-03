@@ -37,9 +37,6 @@
 	desc = "This looks like a projection of something."
 	anchored = TRUE
 
-/obj/effect/rune/attunement
-	luminosity = 5
-
 /obj/effect/soundplayer
 	anchored = TRUE
 	opacity = FALSE

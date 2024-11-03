@@ -58,7 +58,7 @@
 	var/gender = NEUTER // Determines if the accessory will be skipped or included in random hair generations
 	var/locked = FALSE		//Is this part locked from roundstart selection? Used for parts that apply effects
 
-	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Vat-Grown", "Vatborn") // Restrict some styles to specific species
+	var/list/species_allowed = list("Human","Human Hero", "Synthetic", "Early Synthetics", "Vat-Grown", "Vatborn", "Prototype Supersoldier") // Restrict some styles to specific species
 	var/do_colouration = TRUE	// Whether or not the accessory can be affected by colouration
 
 	var/datum/greyscale_config/greyscale_config

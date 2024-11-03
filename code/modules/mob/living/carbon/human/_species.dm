@@ -11,6 +11,8 @@
 	var/species_type = SPECIES_HUMAN
 	///Special effects that are inherent to our species
 	var/species_flags = NONE
+	///used in limb code to find which bodytype files to pull from, yes this code can defenitely be improved
+	var/limb_type = SPECIES_LIMB_GENERIC
 
 	//----Icon stuff here
 	///Normal icon file
