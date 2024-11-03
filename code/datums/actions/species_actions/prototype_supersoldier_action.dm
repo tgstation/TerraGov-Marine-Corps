@@ -178,6 +178,8 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	active_stims -= stim
 	stim.end_effects(owner)
 	qdel(stim)
+	if(length(active_stims) < 1)
+		owner.balloon_alert(owner, "stims finished")
 
 /datum/stim
 	/// displayed in UI
