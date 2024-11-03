@@ -37,21 +37,24 @@
 	for(var/datum/mutation_upgrade/survival/subtype_survival_mutation AS in subtypesof(/datum/mutation_upgrade/survival))
 		data["survival_mutations"] += list(list( // Double listing is how it needs to work.
 			"name" = subtype_survival_mutation.name,
-			"desc" = subtype_survival_mutation.desc
+			"desc" = subtype_survival_mutation.desc,
+			"owned" = locate(subtype_survival_mutation.status_effect) in xeno_user.status_effects
 		))
 
 	data["attack_mutations"] = list()
 	for(var/datum/mutation_upgrade/attack/subtype_attack_mutation AS in subtypesof(/datum/mutation_upgrade/attack))
 		data["attack_mutations"] += list(list(
 			"name" = subtype_attack_mutation.name,
-			"desc" = subtype_attack_mutation.desc
+			"desc" = subtype_attack_mutation.desc,
+			"owned" = locate(subtype_attack_mutation.status_effect) in xeno_user.status_effects
 		))
 
 	data["utility_mutations"] = list()
 	for(var/datum/mutation_upgrade/utility/subtype_utility_mutation AS in subtypesof(/datum/mutation_upgrade/utility))
 		data["utility_mutations"] += list(list(
 			"name" = subtype_utility_mutation.name,
-			"desc" = subtype_utility_mutation.desc
+			"desc" = subtype_utility_mutation.desc,
+			"owned" = locate(subtype_utility_mutation.status_effect) in xeno_user.status_effects
 		))
 
 	return data
