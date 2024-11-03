@@ -20,8 +20,8 @@
 	say_holder = new
 
 /datum/action/supersolder_stims/Destroy()
+	. = ..()
 	QDEL_NULL(say_holder)
-	return ..()
 
 /datum/action/supersolder_stims/give_action(mob/M)
 	. = ..()
@@ -111,6 +111,10 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 		if("change_pos")
 			var/old_pos = text2num(params["old_pos"])
 			var/new_pos = text2num(params["new_pos"])
+			if(new_pos < 1)
+				new_pos = length(stim_sequence)
+			else if (new_pos > length(stim_sequence))
+				new_pos = 1
 			stim_sequence.Swap(old_pos, new_pos)
 			owner.client?.prefs.save_preferences()
 			return TRUE

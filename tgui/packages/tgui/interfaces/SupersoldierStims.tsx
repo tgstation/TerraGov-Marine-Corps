@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react';
+import { useState } from 'react';
 
 import { useBackend } from '../backend';
 import { Button, Input, Section, Stack } from '../components';
@@ -64,6 +64,7 @@ export const SupersoldierStims = (_props) => {
                       <Button
                         icon="arrow-left"
                         align="start"
+                        content={index}
                         enabled={selected_stimset.includes(stim_uid)}
                         onClick={() =>
                           act('change_pos', {
@@ -93,7 +94,7 @@ export const SupersoldierStims = (_props) => {
                         enabled={selected_stimset.includes(stim_uid)}
                         align="end"
                         onClick={() =>
-                          act('change_stim_pos', {
+                          act('change_pos', {
                             sequence: activeStimSet,
                             new_pos: pos + 1,
                             old_pos: pos,
