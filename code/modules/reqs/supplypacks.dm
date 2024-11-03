@@ -837,7 +837,7 @@ WEAPONS
 /datum/supply_packs/weapons/smart_pistol
 	name = "TX13 smart machinepistol"
 	contains = list(/obj/item/weapon/gun/pistol/smart_pistol)
-	cost = 325
+	cost = 250
 
 /datum/supply_packs/weapons/smart_pistol_ammo
 	name = "TX13 smart machinepistol ammo"
