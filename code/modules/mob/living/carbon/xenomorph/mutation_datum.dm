@@ -17,6 +17,12 @@
 	data["spur_chambers"] = length(xeno_user.hive?.spur_chambers)
 	data["veil_chambers"] = length(xeno_user.hive?.veil_chambers)
 	data["biomass"] = xeno_user.biomass
+	return data
+
+/datum/mutation_datum/ui_static_data(mob/living/carbon/xenomorph/xeno_user)
+	var/list/data = list()
+
+	// Cost is not expected to change as switching castes closes the UI.
 	switch(xeno_user.xeno_caste.tier)
 		if(XENO_TIER_ONE)
 			data["cost"] = XENO_UPGRADE_BIOMASS_COST_T1
@@ -29,7 +35,7 @@
 
 	data["survival_mutations"] = list()
 	for(var/datum/mutation_upgrade/survival/subtype_survival_mutation AS in subtypesof(/datum/mutation_upgrade/survival))
-		data["survival_mutations"] += list(list( // Double listing doesn't look like it makes sense, but it works.
+		data["survival_mutations"] += list(list( // Double listing is how it needs to work.
 			"name" = subtype_survival_mutation.name,
 			"desc" = subtype_survival_mutation.desc
 		))
