@@ -152,12 +152,12 @@
 
 /datum/mutation_upgrade/survival/regeneration
 	name = "Regeneration"
-	desc = "When regenerating health on weeds, regenerate 1.5% max health and 0.167 sunder per Shell Chamber."
+	desc = "When regenerating health on weeds, regenerate 0.8% max health and 0.167 sunder per Shell Chamber."
 	status_effect = STATUS_EFFECT_UPGRADE_REGENERATION
 
 /datum/mutation_upgrade/survival/vampirism
 	name = "Vampirism"
-	desc = "When slashing living humans, heal 3.33% max health per Shell Chamber. Ravagers get half the bonus instead."
+	desc = "When slashing living humans, heal 1.67% max health per Shell Chamber. Ravagers get half the bonus instead."
 	status_effect = STATUS_EFFECT_UPGRADE_VAMPIRISM
 
 /datum/mutation_upgrade/attack
