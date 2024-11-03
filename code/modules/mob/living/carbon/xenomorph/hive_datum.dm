@@ -276,6 +276,10 @@
 			if(!isxeno(usr))
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOABILITY_BLESSINGSMENU)
+		if("Mutations")
+			if(!isxeno(usr))
+				return
+			GLOB.mutation_selector.interact(usr)
 		if("Compass")
 			var/atom/target = locate(params["target"])
 			if(isobserver(usr))
