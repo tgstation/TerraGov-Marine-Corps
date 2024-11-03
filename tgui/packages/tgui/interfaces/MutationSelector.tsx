@@ -9,8 +9,6 @@ import {
 } from '../components';
 import { Window } from '../layouts';
 
-const bar_text_width = 10.25;
-
 type Upgrade = {
   name: string;
   desc: string;
@@ -54,20 +52,8 @@ type UtilityMutationData = {
 };
 
 export const MutationSelector = (props) => {
-  const { act, data } = useBackend<MutationData>();
-  const {
-    shell_chambers,
-    spur_chambers,
-    veil_chambers,
-    biomass,
-    cost,
-    survival_mutations,
-    attack_mutations,
-    utility_mutations,
-  } = data;
-
   return (
-    <Window width={700} height={810}>
+    <Window theme="xeno" width={700} height={810}>
       <Window.Content>
         <Section title="Biomass" key="Biomass">
           <BiomassBar />
