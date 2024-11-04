@@ -31,6 +31,15 @@
 #define SKILL_COMBAT_DEFAULT 1
 #define SKILL_COMBAT_TRAINED 2
 
+///Firearms skill; Increase or decrase accuracy, recoil, damage, and firing delay of most guns; ability to tac reload
+#define SKILL_FIREARMS "firearms"
+
+#define SKILL_FIREARMS_UNTRAINED 0
+#define SKILL_FIREARMS_DEFAULT 1
+#define SKILL_FIREARMS_TRAINED 2
+
+///Damage mod for having the weapon specific skill above 0
+#define FIREARM_SKILL_DAM_MOD 0.05
 ///Damage mod for having the weapon specific skill above 0
 #define COMBAT_SKILL_DAM_MOD 0.05
 
