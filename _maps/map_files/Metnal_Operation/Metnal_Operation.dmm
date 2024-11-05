@@ -15346,6 +15346,10 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/outside/southeast)
+"kTA" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/bridge)
 "kTH" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -23435,6 +23439,10 @@
 	dir = 1
 	},
 /area/metnal/inside/landingzoneone)
+"qxy" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/executivedorms)
 "qxA" = (
 /obj/effect/turf_decal/tile/transparent/blue/opposingcorners,
 /obj/item/trash/used_stasis_bag,
@@ -50460,7 +50468,7 @@ kYP
 kYP
 kYP
 kYP
-kYP
+qxy
 kYP
 wvp
 kZF
@@ -54084,7 +54092,7 @@ kFW
 kFW
 kFW
 dxJ
-krz
+kTA
 gns
 afl
 dcH
@@ -57320,8 +57328,8 @@ oRN
 oRN
 oRN
 oRN
-kCT
-kCT
+oRN
+oRN
 moo
 hAK
 wvf
@@ -57522,8 +57530,8 @@ oRN
 oRN
 oRN
 oRN
-kCT
-kCT
+oRN
+oRN
 kCT
 hAK
 pPX
@@ -57723,9 +57731,9 @@ oRN
 oRN
 oRN
 oRN
-kCT
-kCT
-kCT
+oRN
+oRN
+oRN
 kCT
 hAK
 aCU
@@ -57923,9 +57931,9 @@ dxJ
 kez
 kez
 kez
-kCT
-kCT
-kCT
+oRN
+oRN
+oRN
 kCT
 kCT
 kCT
@@ -60352,8 +60360,8 @@ kez
 kez
 kCT
 kCT
-kCT
-kCT
+oRN
+oRN
 kCT
 kCT
 hAK
@@ -60553,10 +60561,10 @@ kez
 kez
 kez
 kez
-kCT
-kCT
-kCT
-kCT
+oRN
+oRN
+oRN
+oRN
 kCT
 hAK
 ntF
@@ -60755,10 +60763,10 @@ kez
 kez
 kez
 kez
-kCT
-kCT
-kCT
-kCT
+oRN
+oRN
+oRN
+oRN
 kCT
 hAK
 hAK
@@ -60957,7 +60965,7 @@ kez
 kez
 kez
 kez
-kCT
+oRN
 oRN
 oRN
 oRN
@@ -61163,7 +61171,7 @@ oRN
 oRN
 oRN
 oRN
-kCT
+oRN
 kCT
 hAK
 xrS
@@ -61365,7 +61373,7 @@ kez
 oRN
 oRN
 oRN
-kCT
+oRN
 kCT
 hAK
 hAK
@@ -61993,23 +62001,23 @@ kez
 kez
 kez
 kez
+dxJ
 kez
 kez
 kez
 kez
+dxJ
 kez
 kez
 kez
 kez
-kez
-kez
-kez
+dxJ
 kez
 kez
 kez
 mtn
 kFW
-kez
+dxJ
 kez
 kez
 kez
