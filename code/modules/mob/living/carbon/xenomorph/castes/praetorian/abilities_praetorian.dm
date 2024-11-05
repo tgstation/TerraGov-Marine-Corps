@@ -156,7 +156,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 	nade.activate(owner)
 
-/obj/item/explosive/grenade/smokebomb/xeno/update_overlays()
+/obj/item/explosive/grenade/sticky/xeno/update_overlays()
 	. = ..()
 	if(active)
 		. += image('icons/obj/items/grenade.dmi', "xenonade_active")
