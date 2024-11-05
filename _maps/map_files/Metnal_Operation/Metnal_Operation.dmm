@@ -12745,6 +12745,10 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
+"jds" = (
+/obj/structure/girder/reinforced,
+/turf/open/floor/tile/dark,
+/area/metnal/inside/recreation)
 "jdO" = (
 /obj/effect/turf_decal/woodsiding{
 	dir = 6
@@ -23148,10 +23152,6 @@
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/prison,
 /area/metnal/inside/research)
-"qne" = (
-/obj/effect/acid_hole,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/bridge)
 "qnt" = (
 /obj/structure/table/wood,
 /turf/open/floor/tile/dark,
@@ -27753,6 +27753,13 @@
 /obj/effect/spawner/random/misc/cigarettes,
 /turf/open/floor/plating/ground/dirt_alt,
 /area/metnal/outside/northwest)
+"tqb" = (
+/obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt/cave/corner{
+	dir = 1
+	},
+/area/metnal/caves/south)
 "tqk" = (
 /turf/open/floor/plating/mainship,
 /area/metnal/outside/central)
@@ -29416,6 +29423,10 @@
 	dir = 9
 	},
 /area/metnal/inside/mining)
+"usC" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/executivedorms)
 "usG" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/closet/cabinet,
@@ -29717,10 +29728,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/rock)
-"uDr" = (
-/obj/structure/girder/reinforced,
-/turf/open/floor/tile/dark,
-/area/metnal/inside/recreation)
 "uDB" = (
 /obj/structure/table/reinforced/prison,
 /obj/item/storage/surgical_tray,
@@ -31594,10 +31601,6 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
-"vNc" = (
-/obj/effect/acid_hole,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/executivedorms)
 "vNi" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -33799,6 +33802,10 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
+"xtm" = (
+/obj/effect/acid_hole,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/bridge)
 "xto" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 5
@@ -34288,13 +34295,6 @@
 	},
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
-"xMx" = (
-/obj/effect/landmark/xeno_resin_wall,
-/obj/effect/landmark/weed_node,
-/turf/open/lavaland/basalt/cave/corner{
-	dir = 1
-	},
-/area/metnal/caves/south)
 "xMz" = (
 /obj/effect/spawner/random/misc/structure/chair_or_metal/west,
 /turf/open/floor/prison/darkred{
@@ -50479,7 +50479,7 @@ kYP
 kYP
 kYP
 kYP
-vNc
+usC
 kYP
 wvp
 kZF
@@ -54103,7 +54103,7 @@ kFW
 kFW
 kFW
 dxJ
-qne
+xtm
 gns
 afl
 dcH
@@ -57264,12 +57264,12 @@ wzp
 wzp
 jDK
 tyB
-tyB
+hjk
 bBU
 tyB
 tyB
 bBU
-tyB
+hjk
 tyB
 jVs
 jVs
@@ -57659,16 +57659,16 @@ lNu
 tyB
 tyB
 cXP
-tyB
+hjk
 wzp
 wzp
 wzp
 wzp
 jDK
+hjk
 tyB
 tyB
-tyB
-tyB
+hjk
 jVs
 jVs
 jVs
@@ -58080,7 +58080,7 @@ jVs
 tyB
 tyB
 ufd
-xMx
+tqb
 lDm
 gJM
 edg
@@ -58473,7 +58473,7 @@ wzp
 tyB
 tmm
 tyB
-tyB
+hjk
 jVs
 jVs
 jVs
@@ -59272,19 +59272,19 @@ weM
 tyB
 tyB
 tyB
-tyB
+hjk
 wzp
 wzp
 wzp
 wzp
-tyB
+hjk
 cXP
 tmm
 tyB
-tyB
+hjk
 tyB
 bBU
-tyB
+hjk
 jVs
 jVs
 edg
@@ -60495,8 +60495,8 @@ tyB
 tyB
 tyB
 tyB
-tyB
-tyB
+hjk
+hjk
 jVs
 rFo
 gJM
@@ -66138,7 +66138,7 @@ pLr
 nFT
 nFT
 nFT
-uDr
+jds
 nFT
 nFT
 edg
