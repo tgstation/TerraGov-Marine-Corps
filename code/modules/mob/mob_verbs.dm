@@ -249,3 +249,11 @@
 	TIMER_COOLDOWN_START(src, COOLDOWN_POINT, 1 SECONDS)
 	point_to_atom(pointed_atom)
 	return TRUE
+
+/mob/living/carbon/verb/toggle_harmful_sex()
+	set name = "Toggle Sex Harm"
+	set desc = "Toggle getting harmed by rough sex etc."
+	set category = "IC"
+
+	client.prefs.harmful_sex_allowed = !client.prefs.harmful_sex_allowed
+	to_chat(src, span_notice("Harmful sex is now [client.prefs.harmful_sex_allowed ? "Allowed" : "Disallowed"]"))
