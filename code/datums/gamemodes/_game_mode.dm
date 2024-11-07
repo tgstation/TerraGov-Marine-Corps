@@ -561,9 +561,11 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		var/mob/living/carbon/human/H = i
 		if(!H.job)
 			continue
-		if(H.stat == DEAD && HAS_TRAIT(H, TRAIT_UNDEFIBBABLE))
+		if(H.stat == DEAD && !H.has_working_organs())
 			continue
 		if(count_flags & COUNT_IGNORE_HUMAN_SSD && !H.client)
+			continue
+		if(H.status_flags & XENO_HOST)
 			continue
 		if(!(H.z in z_levels) || isspaceturf(H.loc))
 			continue

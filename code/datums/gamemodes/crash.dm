@@ -196,7 +196,7 @@
 	if(stored_larva)
 		return //No need for respawns
 	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
-	if(num_xenos < 2)
+	if(!num_xenos)
 		xeno_job.add_job_positions(1)
 		return
 	var/larva_surplus = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
@@ -204,3 +204,13 @@
 		return //Things are balanced, no burrowed needed
 	xeno_job.add_job_positions(1)
 	xeno_hive.update_tier_limits()
+
+/datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
+	. = 0
+
+	for(var/mob/living/carbon/human/H AS in GLOB.human_mob_list)
+		if(!H.job)
+			continue
+		if(isspaceturf(H.loc))
+			continue
+		. += H.job.jobworth[/datum/job/xenomorph]
