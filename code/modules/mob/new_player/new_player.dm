@@ -372,6 +372,7 @@
 	if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
 		to_chat(src, span_warning("The game is still setting up, please try again later."))
 		return
+	take_ssd_mob()
 	if(client?.observe_used)
 		to_chat(src,  span_warning("You seen enough, time to play."))
 		return FALSE
@@ -479,3 +480,73 @@
 			to_chat(usr, span_notice("You have been added to the queue to join the game. Your position in queue is [length(SSticker.queued_players)]."))
 		return
 	late_choices()
+
+
+/mob/new_player/proc/take_ssd_mob()
+	var/mob/dead/observer/dead_src = src
+
+	if(!GLOB.ssd_posses_allowed)
+		to_chat(src, span_warning("Taking over SSD mobs is currently disabled."))
+		return
+
+	if(GLOB.key_to_time_of_death[src.key] + TIME_BEFORE_TAKING_BODY > world.time && !dead_src.started_as_observer)
+		to_chat(src, span_warning("You died too recently to be able to take a new mob."))
+		return
+
+	var/list/mob/living/free_ssd_mobs = list()
+	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
+		if(is_centcom_level(ssd_mob.z) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+			continue
+		free_ssd_mobs += ssd_mob
+
+	if(!length(free_ssd_mobs))
+		to_chat(src, span_warning("There aren't any SSD mobs."))
+		return FALSE
+
+	var/mob/living/new_mob = tgui_input_list(src, "Pick a mob", "Available Mobs", free_ssd_mobs)
+	if(!istype(new_mob) || !src.client)
+		return FALSE
+
+	if(new_mob.stat == DEAD)
+		to_chat(src, span_warning("You cannot join if the mob is dead."))
+		return FALSE
+	if(tgui_alert(src, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD mob", list("Yes", "No",)) != "Yes")
+		return
+	if(isxeno(new_mob))
+		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
+		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(src))
+			XENODEATHTIME_MESSAGE(src)
+			return
+
+	if(HAS_TRAIT(new_mob, TRAIT_POSSESSING))
+		to_chat(src, span_warning("That mob is currently possessing a different mob."))
+		return FALSE
+
+	if(new_mob.client)
+		to_chat(src, span_warning("That mob has been occupied."))
+		return FALSE
+
+	if(new_mob.afk_status == MOB_RECENTLY_DISCONNECTED) //We do not want to occupy them if they've only been gone for a little bit.
+		to_chat(src, span_warning("That player hasn't been away long enough. Please wait [round(timeleft(new_mob.afk_timer_id) * 0.1)] second\s longer."))
+		return FALSE
+
+	if(is_banned_from(src.ckey, new_mob?.job?.title))
+		to_chat(src, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
+		return
+
+	if(!ishuman(new_mob))
+		message_admins(span_adminnotice("[src.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
+		log_admin("[src.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
+		new_mob.transfer_mob(src)
+		return
+	if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(src.client.prefs.real_name))
+		to_chat(usr, span_warning("Someone has already joined the round with this character name. Please pick another."))
+		return
+	message_admins(span_adminnotice("[src.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
+	log_admin("[src.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
+	new_mob.transfer_mob(src)
+	var/mob/living/carbon/human/H = new_mob
+	var/datum/job/j = H.job
+	var/datum/outfit/job/o = j.outfit
+	H.on_transformation()
+	o.handle_id(H)
