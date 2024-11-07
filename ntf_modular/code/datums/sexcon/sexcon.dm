@@ -141,10 +141,7 @@
 	if(iscarbon(user))
 		log_combat(user, user, "Ejaculated")
 	user.visible_message(span_lovebold("[user] makes a mess!"))
-	var/sexhealrand = rand(5, 15)
-	user.adjustBruteLoss(-sexhealrand)
-	sexhealrand *= 0.5
-	user.adjustFireLoss(-sexhealrand)
+	user.heal_overall_damage(rand(15, 30), rand(15, 30), TRUE, TRUE)
 
 	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE)
 	add_cum_floor(get_turf(user))
@@ -222,18 +219,18 @@
 	pain_amt *= get_force_pain_multiplier(applied_force)
 	pain_amt *= get_speed_pain_multiplier(applied_speed)
 
-	var/sexhealrand = rand(0.2, 0.4)
+	var/sexhealrand = rand(2, 4)
 	//go go gadget sex healing.. magic?
 	if(user.buckled || user.lying_angle) //gooder resting
 		sexhealrand *= 4
-	user.adjustBruteLoss(-sexhealrand)
-	user.adjustFireLoss(-sexhealrand/2)
+	user.heal_overall_damage(sexhealrand, sexhealrand/2, TRUE, TRUE)
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xuser = user
 		xuser.gain_plasma(5, TRUE)
 
 	adjust_arousal(arousal_amt)
-	damage_from_pain(pain_amt)
+	if(user.client.prefs.harmful_sex_allowed)
+		damage_from_pain(pain_amt)
 	try_do_moan(arousal_amt, pain_amt, applied_force, giving)
 	try_do_pain_effect(pain_amt, giving)
 
@@ -589,9 +586,9 @@
 		if(SEX_FORCE_MID)
 			return 1.0
 		if(SEX_FORCE_HIGH)
-			return 2.0
+			return 1.5
 		if(SEX_FORCE_EXTREME)
-			return 3.0
+			return 2.0
 
 /datum/sex_controller/proc/get_speed_pain_multiplier(passed_speed)
 	switch(passed_speed)
