@@ -16,7 +16,7 @@ mode Extended
 endmode
 
 mode Extended Plus
-	requiredplayers 15
+	requiredplayers 0
 endmode
 
 mode Extended Mini

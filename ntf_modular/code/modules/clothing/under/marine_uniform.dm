@@ -9,6 +9,9 @@
 /obj/item/clothing/under/dress/maid
 	name = "maid costume"
 	icon = 'ntf_modular/icons/obj/clothing/uniforms/uniforms.dmi'
+	worn_icon_list = list(
+		slot_w_uniform_str = 'ntf_modular/icons/obj/clothing/uniforms/uniforms.dmi',
+	)
 	desc = "Maid in China."
 	icon_state = "maid"
 
