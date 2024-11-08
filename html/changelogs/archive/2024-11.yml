@@ -15,3 +15,6 @@
   - balance: Bluesummers is a bit easier for marines now.
   yyzsong:
   - balance: Rocket sledge price 600 -> 850
+2024-11-08:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed SH-34 secondary not spawning'
