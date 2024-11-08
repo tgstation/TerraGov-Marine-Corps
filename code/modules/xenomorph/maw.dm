@@ -26,9 +26,9 @@
 	name = "GENERIC_SMOKEAMMOTYPE"
 	cooldown_time = 4 MINUTES
 	///radius of the smoke we deploy
-	var/smokeradius = 4
+	var/smokeradius = 5
 	///The duration of the smoke in 2 second ticks
-	var/duration = 5
+	var/duration = 10
 	///datum typepath for the smoke we wanna use
 	var/datum/effect_system/smoke_spread/smoke_type = /datum/effect_system/smoke_spread/bad
 
@@ -108,6 +108,10 @@
 	. = ..()
 	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
 
+/datum/maw_ammo/smoke/acid_big/on_impact(turf/target)
+	. = ..()
+	for(var/turf/newspray in view(smokeradius*0.5, target))
+		new /obj/effect/xenomorph/spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 
 /datum/maw_ammo/hugger
 	name = "ball of huggers"
@@ -164,8 +168,6 @@
 	for(var/obj/item/clothing/mask/facehugger/paratrooper AS in spawned_huggers)
 		paratrooper.go_active()
 
-
-
 /datum/maw_ammo/xeno_fire
 	name = "plasma fire fireball"
 	radial_icon_state = "incendiary_mortar"
@@ -195,7 +197,6 @@
 		new /obj/fire/melting_fire(affecting)
 		for(var/mob/living/carbon/fired in affecting)
 			fired.take_overall_damage(20, BURN, FIRE, FALSE, FALSE, TRUE, 0, , max_limbs = 2)
-
 
 
 /obj/structure/xeno/acid_maw

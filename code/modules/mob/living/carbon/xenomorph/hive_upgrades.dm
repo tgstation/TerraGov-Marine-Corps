@@ -267,7 +267,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/building/acid_jaws
 	name = "acid jaws"
 	desc = "Constructs an acid maw that allows the hive to bombard it's enemies from afar. Requires open space and time to place."
-	psypoint_cost = 600
+	psypoint_cost = 450
 	icon = "jaws"
 	gamemode_flags = ABILITY_NUCLEARWAR
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
@@ -295,7 +295,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/building/acid_maw
 	name = "acid maw"
 	desc = "Constructs an acid maw that allows the hive to unleash it's most devastating bombardments from any location. Requires time to place and to prepare globs, but this structures acid is strong enough to eat through any cieling above it."
-	psypoint_cost = 1600
+	psypoint_cost = 1200
 	icon = "maw"
 	gamemode_flags = ABILITY_NUCLEARWAR
 	building_type = /obj/structure/xeno/acid_maw
