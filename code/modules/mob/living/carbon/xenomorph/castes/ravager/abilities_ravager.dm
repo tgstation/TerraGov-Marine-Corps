@@ -716,6 +716,7 @@
 	xeno.use_plasma(-xeno.xeno_caste.plasma_max) // fill it to the max so they can kill better
 	xeno.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_DEATHMARK, TRUE, 0, NONE, TRUE, -1.5) //Extra speed so they can get to where to kill better
 	xeno.emote("roar")
+	add_cooldown()
 
 /// on attack for deathmark, tracks the amount of dmg dealt
 /datum/action/ability/xeno_action/deathmark/proc/on_attack(datum/source, mob/living/attacked, damage)
@@ -741,4 +742,3 @@
 	xeno.playsound_local(xeno, 'sound/voice/hiss5.ogg', 50)
 	to_chat(owner, span_highdanger("THE QUEEN MOTHER IS PLEASED WITH YOUR PERFORMANCE ([damage_dealt]/[DEATHMARK_DAMAGE_OR_DIE])."))
 	owner.balloon_alert(owner, "deathmark expired")
-	add_cooldown()
