@@ -598,6 +598,12 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/antag_ship/som/engi)
+"ee" = (
+/obj/machinery/quick_vendor/vsd,
+/turf/open/floor/iron/dark/side{
+	dir = 8
+	},
+/area/antag_ship/vsd/armory)
 "ef" = (
 /turf/open/floor/mainship/black{
 	dir = 5
@@ -14657,7 +14663,7 @@ CN
 CN
 mg
 Uf
-HI
+ee
 HI
 HI
 NP

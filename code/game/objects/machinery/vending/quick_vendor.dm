@@ -76,6 +76,22 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		/datum/outfit/quick/som/squad_leader/charger,
 		/datum/outfit/quick/som/squad_leader/caliver,
 		/datum/outfit/quick/som/squad_leader/mpi,
+		/datum/outfit/quick/vsd/standard,
+		/datum/outfit/quick/vsd/standard/grunt_one,
+		/datum/outfit/quick/vsd/standard/ksg,
+		/datum/outfit/quick/vsd/engineer,
+		/datum/outfit/quick/vsd/engineer/l26,
+		/datum/outfit/quick/vsd/medic,
+		/datum/outfit/quick/vsd/medic/ksg,
+		/datum/outfit/quick/vsd/medic/vsd_rifle,
+		/datum/outfit/quick/vsd/spec,
+		/datum/outfit/quick/vsd/spec/demolitionist,
+		/datum/outfit/quick/vsd/spec/gunslinger,
+		/datum/outfit/quick/vsd/spec/uslspec_one,
+		/datum/outfit/quick/vsd/spec/uslspec_two,
+		/datum/outfit/quick/vsd/juggernaut,
+		/datum/outfit/quick/vsd/eod,
+
 	)
 
 	for(var/X in loadout_list)
@@ -254,4 +270,15 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 		"SOM Squad Medic",
 		"SOM Squad Veteran",
 		"SOM Squad Leader",
+	)
+
+/obj/machinery/quick_vendor/vsd
+	name = "VSD Kwik-E-Quip vendor"
+	faction = FACTION_SOM
+	categories = list(
+		"VSD Standard",
+		"VSD Engineer",
+		"VSD Medic",
+		"VSD Specialist",
+		"VSD Squad Leader",
 	)
