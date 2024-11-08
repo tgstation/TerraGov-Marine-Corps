@@ -10,9 +10,6 @@
 /datum/sex_action/masturbate_other_anus/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
-
-	return TRUE
-
 /datum/sex_action/masturbate_other_anus/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
 	user.visible_message(span_warning("[user] starts fingering [target]'s butt..."))

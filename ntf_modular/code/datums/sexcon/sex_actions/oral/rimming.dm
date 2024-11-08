@@ -11,8 +11,6 @@
 /datum/sex_action/rimming/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-
-
 	return TRUE
 
 /datum/sex_action/rimming/on_start(mob/living/carbon/user, mob/living/carbon/target)

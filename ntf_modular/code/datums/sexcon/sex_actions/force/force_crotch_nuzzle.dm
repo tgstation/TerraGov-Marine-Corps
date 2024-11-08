@@ -7,15 +7,9 @@
 /datum/sex_action/force_crotch_nuzzle/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-
-	return TRUE
-
 /datum/sex_action/force_crotch_nuzzle/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-
-	return TRUE
-
 /datum/sex_action/force_crotch_nuzzle/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
 	user.visible_message(span_warning("[user] forces [target]'s head against their crotch!"))

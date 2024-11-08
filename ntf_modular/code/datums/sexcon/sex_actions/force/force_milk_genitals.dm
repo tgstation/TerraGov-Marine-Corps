@@ -5,13 +5,7 @@
 /datum/sex_action/force_milk_genitals/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-	if(isxeno(target))
-		var/mob/living/carbon/xenomorph/targetxeno
-		if(targetxeno.client?.prefs?.xenogender < 3)
-			return FALSE
-	else
-		if(target.gender != MALE)
-			return FALSE
+
 	return TRUE
 
 /datum/sex_action/force_milk_genitals/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
@@ -20,14 +14,6 @@
 		return FALSE
 	if(user == target)
 		return FALSE
-
-	if(isxeno(target))
-		var/mob/living/carbon/xenomorph/targetxeno
-		if(targetxeno.client?.prefs?.xenogender < 3)
-			return FALSE
-	else
-		if(target.gender != MALE)
-			return FALSE
 	return TRUE
 
 /datum/sex_action/force_milk_genitals/on_start(mob/living/carbon/user, mob/living/carbon/target)
