@@ -117,6 +117,8 @@
 		if("observe")
 			try_to_observe()
 
+		if("Take SSD Mob")
+			take_ssd_mob()
 
 		if("late_join")
 			attempt_late_join(href_list["override"])
@@ -372,7 +374,6 @@
 	if(!SSticker || SSticker.current_state == GAME_STATE_STARTUP)
 		to_chat(src, span_warning("The game is still setting up, please try again later."))
 		return
-	take_ssd_mob()
 	if(client?.observe_used)
 		to_chat(src,  span_warning("You seen enough, time to play."))
 		return FALSE
@@ -495,7 +496,7 @@
 
 	var/list/mob/living/free_ssd_mobs = list()
 	for(var/mob/living/ssd_mob AS in GLOB.ssd_living_mobs)
-		if(is_centcom_level(ssd_mob.z) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
+		if(is_centcom_level(ssd_mob.z) || ishuman(ssd_mob) || ssd_mob.afk_status == MOB_RECENTLY_DISCONNECTED)
 			continue
 		free_ssd_mobs += ssd_mob
 
