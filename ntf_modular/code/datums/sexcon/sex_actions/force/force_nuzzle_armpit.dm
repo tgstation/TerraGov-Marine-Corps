@@ -7,14 +7,9 @@
 /datum/sex_action/force_armpit_nuzzle/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-
-	return TRUE
-
 /datum/sex_action/force_armpit_nuzzle/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
-
-
 	return TRUE
 
 /datum/sex_action/force_armpit_nuzzle/on_start(mob/living/carbon/user, mob/living/carbon/target)

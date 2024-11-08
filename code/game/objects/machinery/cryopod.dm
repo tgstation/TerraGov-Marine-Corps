@@ -344,9 +344,16 @@
 
 	GLOB.key_to_time_of_role_death[key] = world.time
 
-	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
+//	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 
-	qdel(src)
+	var/client/C = client
+	var/mob/new_player/NP = new()
+	var/mob/N = C.mob
+	NP.name = C.mob.name
+	C.screen.Cut()
+	C.mob.mind.transfer_to(NP, TRUE)
+
+	qdel(N)
 
 /mob/living/carbon/human/despawn()
 	assigned_squad?.remove_from_squad(src)
@@ -459,11 +466,12 @@
 		to_chat(initiator, span_warning("[src] is occupied."))
 		return FALSE
 
+/*
 	user.forceMove(src)
 	occupant = user
 	update_icon()
-	if(!do_after(user, 1 MINUTES, FALSE, user))
-		user.despawn()
+*/
+	user.despawn()
 	return TRUE
 
 /obj/machinery/cryopod/proc/go_out()

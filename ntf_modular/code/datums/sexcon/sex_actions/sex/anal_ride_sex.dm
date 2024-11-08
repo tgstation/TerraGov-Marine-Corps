@@ -8,8 +8,6 @@
 	if(user == target)
 		return FALSE
 
-	if(!target.gender == MALE)
-		return FALSE
 
 	return TRUE
 
@@ -17,8 +15,6 @@
 	if(user == target)
 		return FALSE
 
-	if(!target.gender == MALE)
-		return FALSE
 
 	return TRUE
 

@@ -12,7 +12,6 @@
 /datum/sex_action/tailpegging_anal/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
-
 	if(isxeno(user))
 		return TRUE
 	return FALSE

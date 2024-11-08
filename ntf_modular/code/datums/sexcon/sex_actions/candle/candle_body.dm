@@ -11,7 +11,6 @@
 /datum/sex_action/candle_body/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-
 	if(!get_candle_in_either_hand(user))
 		return FALSE
 	var/obj/item/tool/candle/C = get_candle_in_either_hand(user)
