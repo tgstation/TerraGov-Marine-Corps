@@ -2195,7 +2195,7 @@
 /area/metnal/caves/southwest)
 "bFa" = (
 /obj/effect/spawner/random/engineering/ore_box,
-/obj/effect/spawner/random/engineering/pickaxe,
+/obj/item/tool/pickaxe,
 /turf/open/floor/prison/darkbrown/full,
 /area/metnal/inside/emergencyequip)
 "bFt" = (
@@ -12256,7 +12256,7 @@
 /area/metnal/inside/research)
 "iMb" = (
 /obj/effect/landmark/weed_node,
-/obj/effect/spawner/random/engineering/pickaxe,
+/obj/item/tool/pickaxe,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "iMp" = (
@@ -13734,7 +13734,7 @@
 /area/metnal/inside/substation)
 "jLh" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/engineering/pickaxe,
+/obj/item/tool/pickaxe,
 /turf/open/floor/prison,
 /area/metnal/inside/centralminingequip)
 "jLt" = (
@@ -14878,8 +14878,8 @@
 /area/metnal/inside/research)
 "kCf" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/engineering/pickaxe,
-/obj/effect/spawner/random/engineering/pickaxe,
+/obj/item/tool/pickaxe,
+/obj/item/tool/pickaxe,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "kCh" = (
@@ -17999,7 +17999,7 @@
 /area/metnal/inside/research)
 "mLt" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/engineering/pickaxe,
+/obj/item/tool/pickaxe,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -29469,8 +29469,8 @@
 /area/metnal/outside/central)
 "uui" = (
 /obj/structure/rack/nometal,
-/obj/effect/spawner/random/engineering/pickaxe,
-/obj/effect/spawner/random/engineering/pickaxe,
+/obj/item/tool/pickaxe,
+/obj/item/tool/pickaxe,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "uuw" = (
