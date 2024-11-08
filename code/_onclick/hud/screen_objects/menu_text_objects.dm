@@ -73,10 +73,28 @@
 	maptext = "<span class='maptext' style=font-size:8px>JOIN GAME</span>"
 	icon_state = "join"
 
+/atom/movable/screen/text/lobby/clickable/join_game/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	update_text()
+	RegisterSignal(SSdcs, COMSIG_GLOB_GAMEMODE_LOADED, TYPE_PROC_REF(/atom/movable/screen/text/lobby, update_text))
+
+/atom/movable/screen/text/lobby/clickable/join_game/update_text()
+	var/mob/new_player/player = hud.mymob
+	if(SSticker?.current_state > GAME_STATE_PREGAME)
+		maptext = "<span class='maptext' style=font-size:8px>JOIN GAME</span>"
+		icon_state = "join"
+		return
+	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
+	icon_state = player.ready ? "ready" : "unready"
+
 /atom/movable/screen/text/lobby/clickable/join_game/Click()
 	. = ..()
 	var/mob/new_player/player = hud.mymob
-	player.attempt_late_join()
+	if(SSticker?.current_state > GAME_STATE_PREGAME)
+		player.attempt_late_join()
+		return
+	player.toggle_ready()
+	update_text()
 
 
 /atom/movable/screen/text/lobby/clickable/observe
@@ -87,21 +105,6 @@
 	. = ..()
 	var/mob/new_player/player = hud.mymob
 	player.try_to_observe()
-
-/atom/movable/screen/text/lobby/clickable/ready
-	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: NOT READY</span>"
-	icon_state = "unready"
-
-/atom/movable/screen/text/lobby/clickable/ready/update_text()
-	var/mob/new_player/player = hud.mymob
-	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
-
-/atom/movable/screen/text/lobby/clickable/ready/Click()
-	. = ..()
-	var/mob/new_player/player = hud.mymob
-	player.toggle_ready()
-	icon_state = player.ready ? "ready" : "unready"
-	update_text()
 
 /atom/movable/screen/text/lobby/clickable/manifest
 	maptext = "<span class='maptext' style=font-size:8px>VIEW MANIFEST</span>"
