@@ -12256,7 +12256,7 @@
 /area/metnal/inside/research)
 "iMb" = (
 /obj/effect/landmark/weed_node,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "iMp" = (
@@ -13734,7 +13734,7 @@
 /area/metnal/inside/substation)
 "jLh" = (
 /obj/structure/rack/nometal,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /turf/open/floor/prison,
 /area/metnal/inside/centralminingequip)
 "jLt" = (
@@ -14878,7 +14878,7 @@
 /area/metnal/inside/research)
 "kCf" = (
 /obj/structure/rack/nometal,
-/obj/item/tool/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
 /obj/item/tool/pickaxe,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
@@ -15975,6 +15975,12 @@
 /obj/structure/prop/brokenvendor/brokenweaponsrack,
 /turf/open/floor/wood,
 /area/metnal/inside/northmeetingroom)
+"llt" = (
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/effect/spawner/random/engineering/pickaxe,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/northwest)
 "llM" = (
 /obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
@@ -29978,6 +29984,12 @@
 /obj/structure/flora/drought/grass,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
+"uMy" = (
+/obj/structure/rack/nometal,
+/obj/effect/spawner/random/engineering/pickaxe,
+/obj/item/tool/pickaxe,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/northwest)
 "uMM" = (
 /obj/item/trash/cigbutt/cigarbutt,
 /turf/open/lavaland/basalt,
@@ -49247,7 +49259,7 @@ ibz
 uCv
 nSh
 ibz
-uui
+llt
 oGN
 oGN
 xGJ
@@ -50252,12 +50264,12 @@ qqY
 jBH
 xNw
 cZJ
-uui
+uMy
 ibz
 nSh
 oHI
 ibz
-uui
+llt
 cZJ
 cZJ
 xGJ
