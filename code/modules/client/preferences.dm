@@ -126,6 +126,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/profile_pic = ""
 	var/xenoprofile_pic = ""
 	var/xenogender = 1
+	var/harmful_sex_allowed = TRUE
 
 	var/list/exp = list()
 	var/list/menuoptions = list()

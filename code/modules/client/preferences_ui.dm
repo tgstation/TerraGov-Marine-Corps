@@ -76,7 +76,6 @@
 			data["xeno_desc"] = xeno_desc
 			data["profile_pic"] = profile_pic
 			data["xenoprofile_pic"] = xenoprofile_pic
-			data["xenogender"] = xenogender
 			data["med_record"] = med_record
 			data["gen_record"] = gen_record
 			data["sec_record"] = sec_record

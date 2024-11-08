@@ -6,29 +6,9 @@
 /datum/sex_action/force_suck_balls/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-	if(isxeno(user))
-		var/mob/living/carbon/xenomorph/userxeno
-		if(userxeno.client?.prefs?.xenogender < 3)
-			return FALSE
-	else
-		if(user.gender != MALE)
-			return FALSE
-	return TRUE
-
 /datum/sex_action/force_suck_balls/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-
-
-	if(isxeno(user))
-		var/mob/living/carbon/xenomorph/userxeno
-		if(userxeno.client?.prefs?.xenogender < 3)
-			return FALSE
-	else
-		if(user.gender != MALE)
-			return FALSE
-	return TRUE
-
 /datum/sex_action/force_suck_balls/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	user.visible_message(span_warning("[user] forces [target]'s head down to swallow and suck on their balls!"))
 	playsound(target, list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg'), 20, TRUE)

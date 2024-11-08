@@ -10,8 +10,6 @@
 /datum/sex_action/rub_body/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
-
-
 	return TRUE
 
 /datum/sex_action/rub_body/on_start(mob/living/carbon/user, mob/living/carbon/target)

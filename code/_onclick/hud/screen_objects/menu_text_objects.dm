@@ -88,6 +88,15 @@
 	var/mob/new_player/player = hud.mymob
 	player.try_to_observe()
 
+/atom/movable/screen/text/lobby/clickable/take_ssd_mob
+	maptext = "<span class='maptext' style=font-size:8px>TAKE SSD XENO</span>"
+	icon_state = "take_ssd_mob"
+
+/atom/movable/screen/text/lobby/clickable/take_ssd_mob/Click()
+	. = ..()
+	var/mob/new_player/player = hud.mymob
+	player.take_ssd_mob()
+
 /atom/movable/screen/text/lobby/clickable/ready
 	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: NOT READY</span>"
 	icon_state = "unready"
@@ -139,7 +148,7 @@
 	. = ..()
 	hud.mymob.client?.changes()
 
-
+/* we got no DB its over.
 /atom/movable/screen/text/lobby/clickable/polls
 	maptext = "<span class='maptext' style=font-size:8px>POLLS</span>"
 	icon_state = "poll"
@@ -161,4 +170,4 @@
 	var/mob/new_player/player = hud.mymob
 	player.handle_playeR_POLLSing()
 	fetch_polls()
-
+*/
