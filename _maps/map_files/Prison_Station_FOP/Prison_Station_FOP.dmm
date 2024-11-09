@@ -5704,6 +5704,7 @@
 	},
 /obj/effect/decal/cleanable/blood,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/darkred,
 /area/prison/security/checkpoint/maxsec_highsec)
 "asU" = (
@@ -16819,6 +16820,7 @@
 	dir = 6
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
 "bba" = (
@@ -18735,6 +18737,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/structure/disposalpipe/segment,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/cleanmarked,
 /area/prison/canteen)
 "bhc" = (
@@ -18769,6 +18772,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/ai_node,
 /turf/open/floor/prison/kitchen,
 /area/prison/kitchen)
@@ -23773,6 +23777,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/south/north)
 "bxp" = (
@@ -27736,6 +27741,7 @@
 /area/prison/cellblock/mediumsec/south)
 "bKD" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/bright_clean,
 /area/prison/holding/holding2)
 "bKE" = (
@@ -36064,6 +36070,7 @@
 /area/prison/security/monitoring/protective)
 "cmv" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/blue{
 	dir = 8
 	},
@@ -36985,6 +36992,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating,
 /area/prison/disposal)
 "cpu" = (
@@ -37756,6 +37764,7 @@
 /area/prison/pirate)
 "csr" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/carpet,
 /area/prison/pirate)
 "css" = (
@@ -40237,6 +40246,7 @@
 	dir = 6
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "dXl" = (
@@ -40251,6 +40261,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/ai_node,
 /turf/open/floor/prison/yellow{
 	dir = 1
@@ -40783,6 +40794,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/south/north)
 "fgf" = (
@@ -41154,12 +41166,14 @@
 	},
 /obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/prison/security/monitoring/highsec)
 "gnb" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/red/corner,
 /area/prison/cellblock/highsec/north/south)
 "gnd" = (
@@ -41264,6 +41278,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/south)
 "gCu" = (
@@ -41317,6 +41332,7 @@
 /area/prison/cellblock/highsec/north/south)
 "gGZ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/cellstripe{
 	dir = 8
 	},
@@ -41405,6 +41421,7 @@
 /area/prison/cellblock/mediumsec/north)
 "gPc" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating,
 /area/prison/maintenance/residential/access/north)
 "gPp" = (
@@ -42313,6 +42330,7 @@
 /area/prison/hangar/main)
 "iYm" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/bright_clean,
 /area/prison/visitation)
 "iYA" = (
@@ -42478,6 +42496,7 @@
 /area/prison/engineering/atmos)
 "jqt" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/prison/security/monitoring/highsec)
@@ -42598,10 +42617,12 @@
 /area/prison/research)
 "jEP" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/prison/cellblock/vip)
 "jEZ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/green{
 	dir = 8
 	},
@@ -42793,6 +42814,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/north)
 "kaY" = (
@@ -42886,6 +42908,7 @@
 /area/prison/cellblock/lowsec/ne)
 "kpA" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/holding/holding1)
 "kpB" = (
@@ -43015,6 +43038,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/cellblock/mediumsec/north)
 "kGQ" = (
@@ -43124,6 +43148,7 @@
 /area/prison/research/secret/biolab)
 "kWF" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/plate,
 /area/prison/recreation/medsec)
 "kWG" = (
@@ -44621,6 +44646,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/prison/residential/south)
@@ -44726,6 +44752,7 @@
 /area/prison/hangar/civilian)
 "oRV" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/highsec/north/north)
@@ -44985,6 +45012,7 @@
 /area/prison/hallway/central)
 "pEh" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/yellow,
 /area/prison/cellblock/mediumsec/south)
 "pEl" = (
@@ -45559,6 +45587,7 @@
 "qST" = (
 /obj/structure/window/reinforced,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/green,
 /area/prison/quarters/staff)
 "qTo" = (
@@ -45645,6 +45674,7 @@
 /area/prison/research/secret/biolab)
 "rdQ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/plate,
 /area/prison/recreation/highsec/n)
 "reb" = (
@@ -45777,6 +45807,7 @@
 /area/prison/residential/central)
 "rqp" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/prison/residential/central)
 "rqK" = (
@@ -46440,6 +46471,7 @@
 "sHr" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/prison/quarters/research)
 "sHD" = (
@@ -46931,6 +46963,7 @@
 /area/prison/cellblock/mediumsec/east)
 "tXr" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/mediumsec/south)
 "tXM" = (
@@ -47846,6 +47879,7 @@
 /area/prison/cellblock/highsec/north/north)
 "wmW" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/carpet,
 /area/prison/chapel)
 "wmY" = (
@@ -48153,6 +48187,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/prison/chapel)
 "xcb" = (
@@ -48237,6 +48272,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/yellow/corner{
 	dir = 8
 	},
@@ -48277,6 +48313,7 @@
 /area/prison/cellblock/mediumsec/west)
 "xwA" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison,
 /area/prison/hangar_storage/research)
 "xwG" = (
@@ -48565,6 +48602,7 @@
 /area/prison/cellblock/mediumsec/south)
 "yiA" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/laundry)

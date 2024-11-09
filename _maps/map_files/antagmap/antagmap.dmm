@@ -9387,6 +9387,7 @@
 /obj/item/bedsheet/brown,
 /obj/effect/decal/cleanable/blood/splatter/cum,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/item/clothing/under/lewd/panties,
 /turf/open/floor/plating/ground/dirt,
 /area/antag_ship/clf_base/hallways/outside)

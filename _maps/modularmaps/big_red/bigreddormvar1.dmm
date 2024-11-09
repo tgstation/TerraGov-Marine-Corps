@@ -34,6 +34,7 @@
 "hT" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/dorms)
 "iG" = (
@@ -297,6 +298,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor,
 /area/bigredv2/outside/dorms)
 "RW" = (
