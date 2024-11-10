@@ -1045,7 +1045,7 @@
 				else if(is_mentor(src))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = "<font color='green' size='4'><b>-- Mentor private message --</b></font>")
+						html = span_mentorsay("<size='4'></b>-- Mentor private message --</b></font>"))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
 						html = span_mentorsay("[holder.rank.name] PM from- <b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
