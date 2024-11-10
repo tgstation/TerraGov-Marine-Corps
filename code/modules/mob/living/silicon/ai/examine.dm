@@ -28,7 +28,3 @@
 	msg += "</span>"
 
 	return list(msg)
-
-/mob/living/silicon/ai/examine_title(mob/user, thats)
-	return null
-
