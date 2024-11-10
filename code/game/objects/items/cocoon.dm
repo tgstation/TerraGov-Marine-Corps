@@ -57,7 +57,6 @@
 			continue
 		xeno.gain_biomass(0.15)
 
-
 /obj/structure/cocoon/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
 	if(anchored && obj_integrity < max_integrity / 2)
