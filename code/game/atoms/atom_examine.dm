@@ -77,9 +77,8 @@
  *
  * ### Things to keep in mind:
  *
- * * TGUI tooltips in chat cannot use HTML stuff at all, so including
- * something like `<b><big>ffff</big></b>` will not work for tooltips.
- *
+ * * TGUI tooltips (not the main text) in chat cannot use HTML stuff at all, so
+ * including something like `<b><big>ffff</big></b>` will not work for tooltips.
  *
  * **Example usage:**
  * ```byond
