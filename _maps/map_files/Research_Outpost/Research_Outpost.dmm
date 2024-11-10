@@ -3082,6 +3082,7 @@
 "oC" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
 	},
@@ -4115,6 +4116,7 @@
 /area/outpost/cargo/security)
 "tk" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 1
@@ -5001,6 +5003,7 @@
 "xq" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/outpost/cargo/office)
 "xs" = (
@@ -5129,6 +5132,7 @@
 /area/outpost/lz1)
 "yd" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/blue2{
 	dir = 8
@@ -5253,6 +5257,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -5877,6 +5882,7 @@
 /area/outpost/yard/central)
 "Bz" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "BB" = (
@@ -6131,6 +6137,7 @@
 "CT" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "CU" = (
@@ -6218,6 +6225,7 @@
 /area/outpost/yard/north_east)
 "Dt" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay)
 "Du" = (
@@ -8398,6 +8406,7 @@
 "NJ" = (
 /obj/structure/bed/chair,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/brown2,
 /area/outpost/arrivals)
 "NK" = (
@@ -8559,6 +8568,7 @@
 /area/outpost/yard/south)
 "Ov" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
@@ -9549,6 +9559,7 @@
 "Tj" = (
 /obj/structure/cable,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -9991,6 +10002,7 @@
 /area/outpost/engineering/engine)
 "Vm" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark2,
 /area/outpost/cargo)
 "Vo" = (

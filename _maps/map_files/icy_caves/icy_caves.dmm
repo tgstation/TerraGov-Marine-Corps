@@ -2019,6 +2019,7 @@
 	dir = 5
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/office)
 "lh" = (
@@ -2340,6 +2341,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/garage)
 "mL" = (
@@ -2878,6 +2880,7 @@
 /area/icy_caves/outpost/mining/west)
 "pC" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/ground/snow/layer0,
 /area/icy_caves/outpost/outside/center)
 "pD" = (
@@ -3164,6 +3167,7 @@
 /area/icy_caves/outpost/mining/east)
 "qO" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating,
 /area/icy_caves/outpost/mining/west)
 "qP" = (
@@ -3198,6 +3202,7 @@
 "qW" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3236,6 +3241,7 @@
 /area/icy_caves/outpost/mining/east)
 "rd" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
@@ -3619,6 +3625,7 @@
 /area/icy_caves/outpost/medbay)
 "sv" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "sw" = (
@@ -3903,6 +3910,7 @@
 /area/icy_caves/outpost/LZ2)
 "tM" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/snow/layer0,
@@ -4121,6 +4129,7 @@
 "uQ" = (
 /obj/effect/decal/cleanable/blood/drip,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/medbay)
@@ -4412,6 +4421,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "wg" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/freezer,
 /area/icy_caves/outpost/dorms)
 "wh" = (
@@ -4940,6 +4950,7 @@
 /area/icy_caves/outpost/garage)
 "yK" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/refinery)
 "yO" = (
@@ -6030,6 +6041,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark/brown2{
 	dir = 8
@@ -6882,6 +6894,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/dorms)
 "HY" = (
@@ -7131,6 +7144,7 @@
 /area/icy_caves/outpost/garage)
 "Ji" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
 /turf/open/floor/tile/dark,
@@ -7270,6 +7284,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "JM" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/green2,
 /area/icy_caves/outpost/medbay)
 "JN" = (
@@ -8173,6 +8188,7 @@
 /area/icy_caves/caves/alienstuff)
 "Ob" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/research)
 "Oc" = (
@@ -8335,6 +8351,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "OQ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/prison/kitchen,
 /area/icy_caves/outpost/kitchen)
 "OR" = (
@@ -8442,6 +8459,7 @@
 /area/icy_caves/caves/alienstuff)
 "Pt" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
@@ -8701,6 +8719,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
 "QI" = (
@@ -8973,6 +8992,7 @@
 "Sa" = (
 /obj/structure/bed,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/icy_caves/outpost/dorms)
 "Sb" = (
@@ -9124,6 +9144,7 @@
 /area/icy_caves/outpost/outside)
 "SV" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
 "SW" = (
@@ -9571,6 +9592,7 @@
 /area/icy_caves/outpost/security)
 "Vf" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -9660,6 +9682,7 @@
 /area/icy_caves/outpost/garage)
 "VA" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood/broken,
 /area/icy_caves/caves/underground_cafeteria)
 "VB" = (
@@ -9998,6 +10021,7 @@
 /area/icy_caves/caves/northwestmonorail)
 "Xf" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
