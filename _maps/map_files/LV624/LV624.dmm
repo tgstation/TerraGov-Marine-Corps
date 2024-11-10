@@ -271,6 +271,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/brown{
 	dir = 9
 	},
@@ -454,6 +455,7 @@
 "ann" = (
 /obj/structure/closet/coffin/open,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/chapel{
 	dir = 1
 	},
@@ -1734,6 +1736,7 @@
 /area/lv624/ground/sand1)
 "aRg" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/corporate_affairs)
 "aRl" = (
@@ -3912,6 +3915,7 @@
 	})
 "cuY" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -5703,6 +5707,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 8
 	},
@@ -5903,6 +5908,7 @@
 /area/lv624/ground/caves/rock)
 "evx" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/green/greentaupe{
 	dir = 5
 	},
@@ -6448,6 +6454,7 @@
 "fbO" = (
 /obj/item/toy/inflatable_duck,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/liquid/water/river,
 /area/lv624/lazarus/fitness)
 "fbQ" = (
@@ -7203,6 +7210,7 @@
 /area/lv624/lazarus/kitchen)
 "fQf" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -8572,6 +8580,7 @@
 	})
 "hld" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
@@ -10692,6 +10701,7 @@
 /area/lv624/lazarus/corporate_affairs)
 "jlE" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/quartstorage/outdoors)
 "jlH" = (
@@ -10988,6 +10998,7 @@
 /area/lv624/lazarus/tablefort)
 "jCs" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/purple/whitepurple{
 	dir = 5
 	},
@@ -11262,6 +11273,7 @@
 /area/lv624/lazarus/quartstorage/dome)
 "jOu" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -12871,6 +12883,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/purple/taupepurple{
 	dir = 9
 	},
@@ -17491,6 +17504,7 @@
 	dir = 8
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/brown2{
 	dir = 4
 	},
@@ -19869,6 +19883,7 @@
 	})
 "sDw" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/lv624/ground/jungle8{
 	outside = 0
@@ -20623,6 +20638,7 @@
 /area/lv624/lazarus/main_hall)
 "tqS" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/spawner/random/engineering/wood,
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
@@ -21686,6 +21702,7 @@
 /area/mainship/patrol_base/som)
 "usH" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/structure/bed/chair/wood/wings{
 	dir = 4
 	},
@@ -22346,6 +22363,7 @@
 /area/lv624/ground/compound/n)
 "uZs" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/ai_node,
 /turf/open/floor/tile/vault{
 	dir = 8
@@ -22947,6 +22965,7 @@
 /area/lv624/lazarus/quartstorage)
 "vDe" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/lv624/lazarus/internal_affairs)
 "vEk" = (

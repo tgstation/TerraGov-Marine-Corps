@@ -394,6 +394,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/oscar_outpost/village/abandonedbase)
 "lx" = (
