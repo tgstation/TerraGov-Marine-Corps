@@ -82,7 +82,7 @@
 		var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
 		hive_status.update_tier_limits()
 		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
-		// 5 biomass to all xenomorphs.
+		// 2.5 biomass to all xenomorphs.
 		for(var/mob/living/carbon/xenomorph/xeno in GLOB.alive_xeno_list)
 			if(xeno.hivenumber != hivenumber)
 				continue
