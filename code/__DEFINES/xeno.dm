@@ -231,7 +231,7 @@ GLOBAL_LIST_INIT(mutation_upgrades_buyable, list(
 	/datum/mutation_upgrade/attack/crush,
 	/datum/mutation_upgrade/utility/toxin,
 	/datum/mutation_upgrade/utility/pheromones,
-	/datum/mutation_upgrade/utility/toxin
+	/datum/mutation_upgrade/utility/trail
 ))
 
 #define MUTATION_CATEGORY_SURVIVAL "Survival"
