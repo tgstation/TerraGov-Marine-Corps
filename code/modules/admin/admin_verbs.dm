@@ -991,10 +991,10 @@
 
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<font size='3' span class='staffpmin'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</span>")
+					html = "<font size='4' color='red'><b>-- Staff private message from [key_name(src, recipient, TRUE)] --</b></font>\n[span_adminsay("[span_linkify("[keywordparsedmsg]")]")]")
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<font size='3' span class='staffpmout'>Staff PM to-<b>[key_name(recipient, src, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</span>")
+					html = "<font size='4' color='red'><b>-- Staff private message to [key_name(src, recipient, TRUE)] --</b></font>\n[span_adminsay("[span_linkify("[keywordparsedmsg]")]")]")
 
 				window_flash(recipient, TRUE)
 				window_flash(src, TRUE)
@@ -1009,7 +1009,7 @@
 				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>")
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<font size='3' span class='staffpmin'>Staff PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</span>")
+					html = "<font size='4' color='red'><b>Staff private message from-[key_name(src, recipient, TRUE)]</b></font>\n[span_adminsay("[span_linkify("[keywordparsedmsg]")]")]")
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
 					html = span_notice("PM to-<b>Staff</b>: [span_linkify("[msg]")]"))
@@ -1030,13 +1030,13 @@
 				if(check_rights(R_ADMINTICKET, FALSE))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = "<font color='red' size='4'><b>-- Private Message --</b></font>")
+						html = "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = "<font color='red'>[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]</font>")
+						html = span_adminsay("[holder.fakekey ? "Administrator" : holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = "<font color='red'><i>Click on the staff member's name to reply.</i></font>")
+						html = "<font color='red'><b><i>Click on the staff member's name to reply.</i></b></font>")
 					to_chat(src,
 						type = MESSAGE_TYPE_ADMINPM,
 						html = span_notice("<b>[holder.fakekey ? "Administrator" : holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [span_linkify("[msg]")]"))
@@ -1045,10 +1045,10 @@
 				else if(is_mentor(src))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = "<font color='blue' size='2'><b>-- Mentor Message --</b></font>")
+						html = "<font color='green' size='4'><b>-- Mentor private message --</b></font>")
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = span_notice("[holder.rank.name] PM from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
+						html = span_mentorsay("[span_tooltip(holder.rank.name, "Private message")] from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
 						html = span_notice("<i>Click on the mentor's name to reply.</i>"))
