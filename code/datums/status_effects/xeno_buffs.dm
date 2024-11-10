@@ -1256,7 +1256,8 @@
 /datum/status_effect/mutation_upgrade/pheromones/proc/create_aura()
 	if(current_aura)
 		QDEL_NULL(current_aura)
-	current_aura = SSaura.add_emitter(buff_owner, emitted_aura, 6 + aura_power_per_chamber * chamber_scaling * 2, aura_power_base + aura_power_per_chamber * chamber_scaling, -1, FACTION_XENO, buff_owner.hivenumber)
+	if(chamber_scaling)
+		current_aura = SSaura.add_emitter(buff_owner, emitted_aura, 6 + aura_power_per_chamber * chamber_scaling * 2, aura_power_base + aura_power_per_chamber * chamber_scaling, -1, FACTION_XENO, buff_owner.hivenumber)
 
 /// Sets the chamber_scaling to the amount of active veil chambers and recreates the aura.
 /datum/status_effect/mutation_upgrade/pheromones/proc/update_buff()
