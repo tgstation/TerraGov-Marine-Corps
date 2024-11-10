@@ -82,15 +82,13 @@
  *
  * **Example usage:**
  * ```byond
- * .["small"] = "It is a small item."
+ * .["small"] = "It is a small [examine_descriptor(user)]." // It is a small item.
  * .["fireproof"] = "It is made of fire-retardant materials."
  * .["and conductive"] = "Blah blah blah."
  * ```
  * This will result in
  *
  * It is *small*, *fireproof* *and conductive*.
- *
- * where "item" is pulled from [/atom/proc/examine_descriptor]
  *
  * SIGNAL FUN:
  * Produces a signal [COMSIG_ATOM_EXAMINE_TAGS] - can use this to directly modify/add stuff to the examine tags list
