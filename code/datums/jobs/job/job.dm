@@ -171,7 +171,7 @@ GLOBAL_PROTECT(exp_specialmap)
 		message += span_role_body("Prefix your message with <b>;</b> to speak on the default radio channel, in most cases this is your squad radio. For additional prefixes, examine your headset.")
 	if(req_admin_notify)
 		message += separator_hr("[span_role_header("This is an important job.")]")
-		message += span_role_body("If you have to disconnect, please take a hypersleep pod. If you can't make it there, <b><u>adminhelp</u></b> using F1 or the Adminhelp verb.</big>")
+		message += span_role_body("If you have to disconnect, please take a hypersleep pod. If you can't make it there, <b><u>adminhelp</u></b> using F1 or the Adminhelp verb.")
 	to_chat(new_player, fieldset_block("[span_role_header("You are the [title].")]", jointext(message, ""), "examine_block"))
 
 /datum/outfit/job
