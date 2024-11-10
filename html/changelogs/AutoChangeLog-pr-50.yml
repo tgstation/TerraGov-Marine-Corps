@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - bugfix: "Latejoin survivors now spawn on the ground instead of the ship"
