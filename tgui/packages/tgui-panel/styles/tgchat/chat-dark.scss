@@ -1099,22 +1099,12 @@ $border-width-px: $border-width * 1px;
   .ooc_alert_#{$color-type} .separator::before {
     content: '';
     flex: 1;
-    border-bottom: 1px
-      solid
-      map.get(
-        $ooc_alert_border_colors,
-        $color-type
-      );
+    border-bottom: 1px solid map.get($ooc_alert_border_colors, $color-type);
   }
   .ooc_alert_#{$color-type} .separator::after {
     content: '';
     flex: 1;
-    border-bottom: 1px
-      solid
-      map.get(
-        $ooc_alert_border_colors,
-        $color-type
-      );
+    border-bottom: 1px solid map.get($ooc_alert_border_colors, $color-type);
   }
 }
 
