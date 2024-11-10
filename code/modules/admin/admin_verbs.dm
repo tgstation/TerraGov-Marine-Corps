@@ -1033,7 +1033,7 @@
 						html = "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = span_adminsay("[span_tooltip(holder.fakekey ? "Administrator" : holder.rank.name, "Private message")] from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
+						html = span_adminsay("[holder.fakekey ? "Administrator" : holder.rank.name] PM from- from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
 						html = "<font color='red'><b><i>Click on the staff member's name to reply.</i></b></font>")
@@ -1048,7 +1048,7 @@
 						html = "<font color='green' size='4'><b>-- Mentor private message --</b></font>")
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = span_mentorsay("[span_tooltip(holder.rank.name, "Private message")] from-<b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
+						html = span_mentorsay("[holder.rank.name] PM from- <b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
 						html = span_notice("<i>Click on the mentor's name to reply.</i>"))
