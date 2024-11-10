@@ -1,0 +1,4 @@
+author: "Aporhtonoma"
+delete-after: True
+changes:
+  - balance: "Widow can now emit drone level pheromones"
