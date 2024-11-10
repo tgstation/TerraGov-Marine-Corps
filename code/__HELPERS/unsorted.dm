@@ -794,7 +794,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 /proc/format_text(text)
 	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
 
-///Returns a string based on the weight class define used as argument
+///Returns a string based on the weight class define used as argument.
 /proc/weight_class_to_text(w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY)
@@ -810,7 +810,23 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		if(WEIGHT_CLASS_GIGANTIC)
 			. = "gigantic"
 		else
-			. = ""
+			. = "?????"
+
+///Returns an assoc list of WEIGHT CLASS TEXT = DESCRIPTION based on the arg you provide.
+/proc/weight_class_data(w_class)
+	. = list()
+	.[WEIGHT_CLASS_TEXT] = weight_class_to_text(w_class)
+	switch(w_class)
+		if(WEIGHT_CLASS_TINY, WEIGHT_CLASS_SMALL)
+			.[WEIGHT_CLASS_TOOLTIP] = "Fits in pockets and almost all containers, except some specialized containers. Takes up almost no space in containers."
+		if(WEIGHT_CLASS_NORMAL)
+			.[WEIGHT_CLASS_TOOLTIP] = "Fits in most containers. Takes up some space."
+		if(WEIGHT_CLASS_BULKY)
+			.[WEIGHT_CLASS_TOOLTIP] = "Only fits in rare specialized containers, such as holsters. Takes up a lot of space in containers."
+		if(WEIGHT_CLASS_HUGE, WEIGHT_CLASS_GIGANTIC)
+			.[WEIGHT_CLASS_TOOLTIP] = "Only fits in extremely rare specialized containers."
+		else
+			.[WEIGHT_CLASS_TOOLTIP] = "Yell at coders, this isn't supposed to happen."
 
 /// Converts a semver string into a list of numbers
 /proc/semver_to_list(semver_string)

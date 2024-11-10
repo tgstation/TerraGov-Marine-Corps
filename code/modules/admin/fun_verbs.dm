@@ -489,7 +489,7 @@
 
 	log_admin("Announce: [key_name(usr)] : [message]")
 	message_admins("[ADMIN_TPMONTY(usr)] Announces:")
-	send_ooc_announcement(message, "From [usr.client.holder.fakekey ? "Administrator" : usr.key]")
+	send_ooc_announcement(message, "From [usr.client.holder.fakekey ? "Administrator" : usr.key]", style = OOC_ALERT_ADMIN)
 
 
 /datum/admins/proc/force_distress()

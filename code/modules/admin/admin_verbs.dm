@@ -610,7 +610,7 @@
 		return
 
 	mob.log_talk(msg, LOG_DSAY)
-	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[holder.fakekey ? "" : "([holder.rank.name]) "][holder.fakekey ? "Administrator" : key]</span> says, \"<span class='message'>[msg]</span>\"</span>"
+	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[holder.fakekey ? "" : "[span_tooltip(holder.rank.name, "(STAFF)")] "][holder.fakekey ? "Administrator" : key]</span> says, \"<span class='message'>[msg]</span>\"</span>"
 
 	for(var/i in GLOB.clients)
 		var/client/C = i
