@@ -18,3 +18,6 @@
 2024-11-08:
   Lumipharon:
   - bugfix: 'Campaign: Fixed SH-34 secondary not spawning'
+2024-11-10:
+  Lumipharon:
+  - bugfix: fixed razorwire icons occasionally erroring out
