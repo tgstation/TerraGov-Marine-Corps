@@ -47,7 +47,7 @@
 	//Gives marine cloneloss for a total of 30.
 	victim.adjustCloneLoss(0.5)
 
-	// Slowly give biomass over time up to 6 biomass (assuming the time based on comment above is correct).
+	// Slowly give biomass over time up to 9 biomass (assuming the time based on comment above is correct).
 	for(var/mob/living/carbon/xenomorph/xeno in GLOB.alive_xeno_list)
 		if(xeno.hivenumber != hivenumber)
 			continue
@@ -55,7 +55,7 @@
 		var/datum/action/ability/activable/xeno/cocoon/cocoon_ability = xeno.actions_by_path[/datum/action/ability/activable/xeno/cocoon]
 		if(!cocoon_ability)
 			continue
-		xeno.gain_biomass(0.1)
+		xeno.gain_biomass(0.15)
 
 
 /obj/structure/cocoon/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
@@ -82,7 +82,7 @@
 		var/datum/hive_status/hive_status = GLOB.hive_datums[hivenumber]
 		hive_status.update_tier_limits()
 		GLOB.round_statistics.larva_from_cocoon += larva_point_reward / xeno_job.job_points_needed
-		// 2.5 biomass to all xenomorphs.
+		// 3.5 biomass to all xenomorphs.
 		for(var/mob/living/carbon/xenomorph/xeno in GLOB.alive_xeno_list)
 			if(xeno.hivenumber != hivenumber)
 				continue
@@ -90,7 +90,7 @@
 			var/datum/action/ability/activable/xeno/cocoon/cocoon_ability = xeno.actions_by_path[/datum/action/ability/activable/xeno/cocoon]
 			if(!cocoon_ability)
 				continue
-			xeno.gain_biomass(2.5)
+			xeno.gain_biomass(3.5)
 
 		release_victim()
 	update_icon()

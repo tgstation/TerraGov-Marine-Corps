@@ -1526,23 +1526,6 @@
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
 
-	var/list/mob/living/carbon/xenomorph/nearby_friendly_xenos = list()
-	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(X, 7))
-		// Intentionally includes the owner.
-		if(!X.issamexenohive(nearby_xeno))
-			continue
-		// Prevents Hivemind and Minions from getting biomass.
-		var/datum/action/ability/activable/xeno/cocoon/cocoon_ability = nearby_xeno.actions_by_path[/datum/action/ability/activable/xeno/cocoon]
-		if(!cocoon_ability)
-			continue
-		nearby_friendly_xenos += nearby_xeno
-
-	// Split the reward amongst every xeno nearby, including themselves.
-	var/biomass_per_xeno = round(10/length(nearby_friendly_xenos), 0.1)
-	for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
-		nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
-
-
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.cocooned++
