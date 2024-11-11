@@ -838,7 +838,7 @@
 	buff_owner = owner
 	if(!isxeno(buff_owner))
 		return FALSE
-	armor_modifier = buff_owner.soft_armor.scaleAllRatings(strength * 2.7)
+	armor_modifier = buff_owner.soft_armor.	armor_modifier = buff_owner.soft_armor.setRating(105.84, 22.68, 37.8, 22.68, 0, 0, 0, 0)
 	buff_owner.soft_armor = buff_owner.soft_armor.attachArmor(armor_modifier)
 	return TRUE
 
