@@ -1,3 +1,7 @@
 2024-11-10:
   K4rlox:
   - rscadd: loadout vendor in VSD
+2024-11-11:
+  Meghan-Rossi:
+  - bugfix: Latejoin survivors now spawn on the ground instead of the ship
+  - bugfix: Fixed restart votes never actually restarting the server.
