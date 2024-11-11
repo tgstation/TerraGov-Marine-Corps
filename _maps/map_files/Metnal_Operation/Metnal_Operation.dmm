@@ -12964,11 +12964,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/mining)
-"jmu" = (
-/turf/open/lavaland/basalt/cave{
-	dir = 10
-	},
-/area/metnal/caves/south/garbledradio)
 "jmz" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -34471,6 +34466,11 @@
 	},
 /turf/open/floor/prison,
 /area/metnal/inside/Headquarters)
+"xQr" = (
+/turf/open/lavaland/basalt/cave{
+	dir = 10
+	},
+/area/metnal/caves/south/garbledradio)
 "xQx" = (
 /obj/structure/rock/basalt/pile/alt3,
 /turf/open/floor/mainship_hull/gray,
@@ -61547,7 +61547,7 @@ jVs
 jVs
 jVs
 xxa
-jmu
+xQr
 hjk
 tyB
 cXP
@@ -61748,7 +61748,7 @@ edg
 edg
 edg
 jVs
-jmu
+xQr
 tyB
 cXP
 tyB
@@ -62958,7 +62958,7 @@ qru
 kog
 jVs
 tyB
-hjk
+tyB
 tyB
 hjk
 tyB
@@ -63159,9 +63159,9 @@ lRE
 esK
 kog
 tyB
-hjk
 tyB
-hjk
+tyB
+tyB
 tyB
 tyB
 wzp
@@ -63361,7 +63361,7 @@ xQx
 bCg
 wSZ
 hjk
-tyB
+hjk
 tyB
 tyB
 tyB
@@ -63565,8 +63565,8 @@ kog
 jVs
 jVs
 hjk
-hjk
 tyB
+hjk
 wzp
 wzp
 wzp
