@@ -2848,6 +2848,11 @@
 /obj/effect/spawner/random/misc/folder,
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
+"ccV" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/metnal/inside/Headquarters)
 "cdM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -9796,6 +9801,9 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt/glowing,
 /area/metnal/outside/northwest)
+"gXY" = (
+/turf/open/liquid/lava/autosmoothing/catwalk,
+/area/metnal/caves/south)
 "gYa" = (
 /turf/open/lavaland/basalt/cave,
 /area/metnal/caves/south)
@@ -16146,6 +16154,10 @@
 /obj/structure/prop/nt_computer,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/metnal/caves/nukestorage)
+"lsb" = (
+/obj/effect/spawner/random/misc/shard,
+/turf/open/ground/grass/weedable,
+/area/metnal/inside/Headquarters)
 "lsm" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -24507,6 +24519,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
+"rbU" = (
+/obj/effect/landmark/weed_node,
+/turf/open/ground/grass/weedable,
+/area/metnal/inside/Headquarters)
 "rcb" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/misc/structure/curtain/medical,
@@ -27362,9 +27378,6 @@
 /obj/structure/closet/secure_closet/chemical/colony,
 /turf/open/floor/prison,
 /area/metnal/inside/research)
-"taF" = (
-/turf/open/liquid/lava/autosmoothing/catwalk,
-/area/metnal/caves/south)
 "taN" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/indestructible,
@@ -55410,14 +55423,14 @@ fqQ
 fqQ
 nzl
 lco
-ihq
+lsb
 aRp
-kNL
+ccV
 lGs
 aRp
 dYv
-aRp
-vES
+rbU
+lsb
 maz
 fqQ
 dAQ
@@ -55619,7 +55632,7 @@ aRp
 qKY
 aRp
 aRp
-vES
+lsb
 maz
 qSC
 hAZ
@@ -56220,11 +56233,11 @@ maz
 lco
 ihq
 lGs
+rbU
 aRp
 aRp
 aRp
-aRp
-aRp
+rbU
 vES
 maz
 fqQ
@@ -60764,7 +60777,7 @@ tyB
 jDK
 tyB
 wzp
-taF
+gXY
 tyB
 tyB
 bBU
@@ -60964,9 +60977,9 @@ bBU
 tyB
 cXP
 tyB
-taF
-taF
-taF
+gXY
+gXY
+gXY
 tyB
 tyB
 cXP
@@ -61166,9 +61179,9 @@ tyB
 tyB
 fHi
 tyB
-taF
-taF
-taF
+gXY
+gXY
+gXY
 tyB
 tyB
 tyB
@@ -61368,8 +61381,8 @@ tyB
 tyB
 tmm
 tyB
-taF
-taF
+gXY
+gXY
 tyB
 oMs
 cXP
@@ -61569,9 +61582,9 @@ tyB
 bBU
 tyB
 tyB
-taF
-taF
-taF
+gXY
+gXY
+gXY
 iya
 oMs
 oMs
@@ -61771,8 +61784,8 @@ tyB
 tyB
 tyB
 tyB
-taF
-taF
+gXY
+gXY
 oMs
 oMs
 oMs
@@ -61973,8 +61986,8 @@ tyB
 tyB
 wzp
 wzp
-taF
-taF
+gXY
+gXY
 oMs
 oMs
 iya
@@ -62175,7 +62188,7 @@ wzp
 wzp
 wzp
 wzp
-taF
+gXY
 tyB
 oMs
 oMs
