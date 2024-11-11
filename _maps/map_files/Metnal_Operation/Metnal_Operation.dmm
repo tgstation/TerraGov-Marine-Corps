@@ -7328,7 +7328,6 @@
 "fea" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
-/obj/structure/catwalk,
 /turf/open/floor/plating/mainship,
 /area/metnal/outside/central)
 "fec" = (
