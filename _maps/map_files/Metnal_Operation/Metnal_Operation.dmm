@@ -25905,6 +25905,7 @@
 /area/metnal/inside/cargo)
 "seX" = (
 /obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
 /turf/open/floor/mainship_hull/gray,
 /area/metnal/inside/research)
 "sfl" = (
@@ -61346,7 +61347,7 @@ jVs
 jVs
 tyB
 tyB
-tyB
+bBU
 jGf
 fZT
 gJM
@@ -61542,10 +61543,10 @@ jVs
 jVs
 jVs
 jVs
-tyB
+hjk
 tyB
 cXP
-tyB
+bBU
 tyB
 tyB
 tyB
@@ -61946,7 +61947,7 @@ edg
 jVs
 tyB
 cXP
-cXP
+fHi
 tyB
 tyB
 tyB
@@ -62348,9 +62349,9 @@ edg
 edg
 jVs
 jVs
+hjk
 tyB
-tyB
-tyB
+hjk
 tyB
 wzp
 wzp
@@ -62751,7 +62752,7 @@ kog
 jVs
 jVs
 tyB
-tyB
+bBU
 tyB
 tyB
 wzp
@@ -62952,9 +62953,9 @@ qru
 kog
 jVs
 tyB
+hjk
 tyB
-tyB
-tyB
+hjk
 wzp
 wzp
 wzp
@@ -63153,9 +63154,9 @@ lRE
 esK
 kog
 tyB
-tyB
+hjk
 jVs
-tyB
+hjk
 wzp
 wzp
 wzp
@@ -63354,7 +63355,7 @@ seX
 xQx
 bCg
 wSZ
-tyB
+hjk
 jVs
 jVs
 tyB
@@ -63558,8 +63559,8 @@ rrX
 kog
 jVs
 jVs
-tyB
-tyB
+hjk
+hjk
 wzp
 wzp
 wzp
@@ -64160,11 +64161,11 @@ sHC
 kog
 cXi
 tyB
+bwT
 tyB
 tyB
 tyB
-tyB
-tyB
+hjk
 wzp
 wzp
 cXP
@@ -64766,7 +64767,7 @@ kog
 kog
 cXi
 tyB
-tyB
+bBU
 jVs
 wzp
 wzp
@@ -64959,7 +64960,7 @@ fMD
 mzf
 bFt
 kog
-tyB
+bwT
 tyB
 tyB
 tyB
@@ -64968,7 +64969,7 @@ tyB
 tyB
 cXi
 tyB
-tyB
+hjk
 jVs
 wzp
 wzp
@@ -65164,7 +65165,7 @@ kog
 tyB
 tyB
 tyB
-tyB
+bBU
 pXV
 pXV
 pXV
@@ -65768,7 +65769,7 @@ mzf
 qWQ
 kog
 tyB
-tyB
+bBU
 pXV
 pXV
 jVs
@@ -66373,7 +66374,7 @@ esM
 esM
 esM
 esM
-tyB
+bwT
 pXV
 jVs
 wzp
