@@ -60,6 +60,7 @@
 	name = "TELEBLOCKER"
 	icon = 'icons/obj/structures/campaign/blockers.dmi'
 	icon_state = "drop_blocker"
+	pixel_x = -16
 	mission_types = list(
 		/datum/campaign_mission/destroy_mission/supply_raid,
 		/datum/campaign_mission/destroy_mission/fire_support_raid,
@@ -71,6 +72,7 @@
 	name = "drop pod guidance disruptor array"
 	desc = "A sophisticated device intended to severely disrupt drop pod guidance systems, rendering them unusable while the tower stands."
 	icon_state = "drop_blocker"
+	pixel_x = -16
 	to_remove_flags = MISSION_DISALLOW_DROPPODS
 	faction = FACTION_SOM
 	owning_faction_notification = "A drop pod disruptor has been deployed in this area. Protect the disruptor to ensure hostile forces cannot deploy via drop pod. "
