@@ -3048,9 +3048,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "ckG" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/mars/random/cave,
+/turf/open/space/basic,
 /area/metnal/caves/south)
 "ckP" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -5127,11 +5125,6 @@
 	},
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
-"dCL" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/metnal/caves/southwest)
 "dCO" = (
 /obj/structure/cable,
 /turf/open/floor/carpet/side,
@@ -12122,6 +12115,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/Headquarters)
+"iCd" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south)
 "iCw" = (
 /obj/structure/table/black,
 /obj/effect/turf_decal/siding/wood{
@@ -15118,9 +15116,6 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/south)
-"kHr" = (
-/turf/open/space/basic,
-/area/metnal/caves/south)
 "kIo" = (
 /obj/structure/bookcase,
 /turf/open/floor/carpet/side,
@@ -25061,7 +25056,7 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "rpU" = (
-/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/south)
@@ -25633,7 +25628,7 @@
 	dir = 9
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/mars/random/cave,
+/turf/open/lavaland/basalt,
 /area/metnal/caves/southeast/garbledradio)
 "rPG" = (
 /turf/open/lavaland/basalt/cave{
@@ -30796,6 +30791,11 @@
 	},
 /turf/open/floor/prison/greenblue,
 /area/metnal/inside/meddesk)
+"vgF" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/southwest)
 "vgG" = (
 /obj/structure/stairs/seamless{
 	dir = 8
@@ -53670,7 +53670,7 @@ rmd
 rmd
 rmd
 ovI
-dCL
+vgF
 tgO
 rmd
 edg
@@ -53841,7 +53841,7 @@ xkR
 xkR
 dvf
 gJM
-jVs
+gJM
 jVs
 jVs
 jVs
@@ -54043,8 +54043,8 @@ jVs
 xkR
 gJM
 xkR
-jVs
-jVs
+gJM
+gJM
 jVs
 jVs
 jVs
@@ -54246,8 +54246,8 @@ boa
 gJM
 xkR
 rFo
-jVs
-jVs
+gJM
+gJM
 jVs
 jVs
 jVs
@@ -54448,8 +54448,8 @@ jVs
 gJM
 gJM
 gJM
-jVs
-jVs
+gJM
+gJM
 jVs
 jVs
 jVs
@@ -54650,9 +54650,9 @@ jVs
 lDm
 gJM
 lDm
-jVs
-jVs
-jVs
+gJM
+gJM
+gJM
 jVs
 jVs
 jVs
@@ -55263,7 +55263,7 @@ gJM
 xkR
 xkR
 gJM
-ckG
+rpU
 xkR
 boa
 gJM
@@ -55865,10 +55865,10 @@ edg
 jVs
 xkR
 gJM
-rpU
+iCd
 xkR
 gJM
-rpU
+iCd
 xkR
 gJM
 boa
@@ -56068,7 +56068,7 @@ jVs
 xkR
 gJM
 xkR
-ckG
+rpU
 gJM
 gJM
 gJM
@@ -60917,7 +60917,7 @@ gJM
 gJM
 gJM
 lDm
-kHr
+ckG
 nrA
 tyB
 tyB
