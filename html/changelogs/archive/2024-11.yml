@@ -15,3 +15,13 @@
   - balance: Bluesummers is a bit easier for marines now.
   yyzsong:
   - balance: Rocket sledge price 600 -> 850
+2024-11-08:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed SH-34 secondary not spawning'
+2024-11-10:
+  Lumipharon:
+  - bugfix: fixed razorwire icons occasionally erroring out
+2024-11-11:
+  Aporhtonoma:
+  - balance: puppeters puppets benefit from pheromones other xeno emit.
+  - balance: Widow can now emit drone level pheromones
