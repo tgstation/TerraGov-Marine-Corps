@@ -3048,7 +3048,9 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "ckG" = (
-/turf/open/space/basic,
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/mars/random/cave,
 /area/metnal/caves/south)
 "ckP" = (
 /obj/effect/landmark/xeno_resin_wall,
@@ -5125,6 +5127,11 @@
 	},
 /turf/open/floor/wood/alt_six,
 /area/metnal/inside/bar)
+"dCL" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/southwest)
 "dCO" = (
 /obj/structure/cable,
 /turf/open/floor/carpet/side,
@@ -15111,6 +15118,9 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/south)
+"kHr" = (
+/turf/open/space/basic,
+/area/metnal/caves/south)
 "kIo" = (
 /obj/structure/bookcase,
 /turf/open/floor/carpet/side,
@@ -25051,10 +25061,10 @@
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "rpU" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_resin_wall,
 /turf/open/floor/plating/ground/mars/random/cave,
-/area/metnal/caves/southwest)
+/area/metnal/caves/south)
 "rqf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -53660,7 +53670,7 @@ rmd
 rmd
 rmd
 ovI
-rpU
+dCL
 tgO
 rmd
 edg
@@ -54646,9 +54656,9 @@ jVs
 jVs
 jVs
 jVs
-jVs
-jVs
-jVs
+lDm
+boa
+gJM
 jVs
 jVs
 jVs
@@ -54843,16 +54853,16 @@ jVs
 boa
 lDm
 oKY
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
+gJM
+lDm
+lDm
+gJM
+gJM
+gJM
+gJM
+gJM
+boa
+lDm
 jVs
 jVs
 rFo
@@ -55045,18 +55055,18 @@ jVs
 xkR
 xkR
 gJM
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
+gJM
+gJM
+boa
+xkR
+xkR
+gJM
+xkR
+xkR
+gJM
+gJM
+gJM
+gJM
 lDm
 gJM
 gJM
@@ -55248,16 +55258,16 @@ jVs
 rFo
 gJM
 xkR
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
+gJM
+gJM
+xkR
+xkR
+gJM
+ckG
+xkR
+boa
+gJM
+gJM
 gJM
 gJM
 xkR
@@ -55451,14 +55461,14 @@ gJM
 lDm
 fYZ
 rFo
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
-jVs
+gJM
+gJM
+boa
+lDm
+gJM
+gJM
+gJM
+gJM
 xkR
 gJM
 boa
@@ -55653,11 +55663,11 @@ jVs
 rFo
 lDm
 lDm
-jVs
-jVs
-jVs
-jVs
-jVs
+gJM
+gJM
+gJM
+xkR
+xkR
 gJM
 xkR
 gJM
@@ -55855,11 +55865,11 @@ edg
 jVs
 xkR
 gJM
-lDm
+rpU
+xkR
 gJM
-gJM
-gJM
-gJM
+rpU
+xkR
 gJM
 boa
 lDm
@@ -56057,8 +56067,8 @@ jVs
 jVs
 xkR
 gJM
-gJM
-boa
+xkR
+ckG
 gJM
 gJM
 gJM
@@ -60907,7 +60917,7 @@ gJM
 gJM
 gJM
 lDm
-ckG
+kHr
 nrA
 tyB
 tyB
