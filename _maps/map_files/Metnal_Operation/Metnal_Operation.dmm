@@ -1721,8 +1721,10 @@
 /turf/open/floor/carpet,
 /area/metnal/inside/administration)
 "boV" = (
-/turf/open/liquid/lava/autosmoothing/catwalk,
-/area/metnal/caves/south)
+/turf/open/lavaland/basalt/cave{
+	dir = 10
+	},
+/area/metnal/caves/south/garbledradio)
 "boY" = (
 /obj/structure/bed/chair/office/light/west,
 /obj/machinery/light/mainship/small{
@@ -27360,6 +27362,9 @@
 /obj/structure/closet/secure_closet/chemical/colony,
 /turf/open/floor/prison,
 /area/metnal/inside/research)
+"taF" = (
+/turf/open/liquid/lava/autosmoothing/catwalk,
+/area/metnal/caves/south)
 "taN" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/closed/mineral/smooth/indestructible,
@@ -34466,11 +34471,6 @@
 	},
 /turf/open/floor/prison,
 /area/metnal/inside/Headquarters)
-"xQr" = (
-/turf/open/lavaland/basalt/cave{
-	dir = 10
-	},
-/area/metnal/caves/south/garbledradio)
 "xQx" = (
 /obj/structure/rock/basalt/pile/alt3,
 /turf/open/floor/mainship_hull/gray,
@@ -60559,8 +60559,8 @@ fpC
 tyB
 bBU
 tyB
-wzp
-wzp
+tyB
+tyB
 wzp
 wzp
 wzp
@@ -60762,10 +60762,10 @@ tyB
 tyB
 tyB
 jDK
+tyB
 wzp
-wzp
-wzp
-boV
+taF
+tyB
 tyB
 bBU
 cXP
@@ -60964,10 +60964,10 @@ bBU
 tyB
 cXP
 tyB
-boV
-boV
-boV
-boV
+taF
+taF
+taF
+tyB
 tyB
 cXP
 tyB
@@ -61166,9 +61166,9 @@ tyB
 tyB
 fHi
 tyB
-tyB
-boV
-boV
+taF
+taF
+taF
 tyB
 tyB
 tyB
@@ -61368,9 +61368,9 @@ tyB
 tyB
 tmm
 tyB
-boV
-boV
-boV
+taF
+taF
+tyB
 oMs
 cXP
 hjk
@@ -61547,7 +61547,7 @@ jVs
 jVs
 jVs
 xxa
-xQr
+boV
 hjk
 tyB
 cXP
@@ -61569,9 +61569,9 @@ tyB
 bBU
 tyB
 tyB
-tyB
-boV
-boV
+taF
+taF
+taF
 iya
 oMs
 oMs
@@ -61748,7 +61748,7 @@ edg
 edg
 edg
 jVs
-xQr
+boV
 tyB
 cXP
 tyB
@@ -61770,9 +61770,9 @@ tyB
 tyB
 tyB
 tyB
-boV
-boV
-boV
+tyB
+taF
+taF
 oMs
 oMs
 oMs
@@ -61973,8 +61973,8 @@ tyB
 tyB
 wzp
 wzp
-boV
-boV
+taF
+taF
 oMs
 oMs
 iya
@@ -62175,8 +62175,8 @@ wzp
 wzp
 wzp
 wzp
-wzp
-wzp
+taF
+tyB
 oMs
 oMs
 oMs
