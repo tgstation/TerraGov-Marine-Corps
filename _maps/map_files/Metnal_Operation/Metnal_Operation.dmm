@@ -12964,6 +12964,11 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/mining)
+"jmu" = (
+/turf/open/lavaland/basalt/cave{
+	dir = 10
+	},
+/area/metnal/caves/south/garbledradio)
 "jmz" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -61137,8 +61142,8 @@ ewG
 wpl
 bmy
 wpl
-jVs
-jVs
+ewG
+ewG
 jVs
 jVs
 jVs
@@ -61338,9 +61343,9 @@ jVs
 wHx
 ewG
 wHx
-jVs
-jVs
-jVs
+ewG
+ewG
+uoL
 jVs
 jVs
 jVs
@@ -61541,8 +61546,8 @@ jVs
 jVs
 jVs
 jVs
-jVs
-jVs
+xxa
+jmu
 hjk
 tyB
 cXP
@@ -61743,7 +61748,7 @@ edg
 edg
 edg
 jVs
-jVs
+jmu
 tyB
 cXP
 tyB
@@ -62151,7 +62156,7 @@ tyB
 gWn
 tyB
 tyB
-wzp
+tyB
 wzp
 wzp
 wzp
@@ -62353,7 +62358,7 @@ hjk
 tyB
 hjk
 tyB
-wzp
+tyB
 wzp
 wzp
 wzp
@@ -62553,8 +62558,8 @@ jVs
 tyB
 cXP
 tyB
-wzp
-wzp
+bBU
+tyB
 wzp
 wzp
 wzp
@@ -62755,8 +62760,8 @@ tyB
 bBU
 tyB
 tyB
-wzp
-wzp
+tyB
+tyB
 wzp
 wzp
 tyB
@@ -62956,8 +62961,8 @@ tyB
 hjk
 tyB
 hjk
-wzp
-wzp
+tyB
+tyB
 wzp
 wzp
 tmm
@@ -63155,10 +63160,10 @@ esK
 kog
 tyB
 hjk
-jVs
+tyB
 hjk
-wzp
-wzp
+tyB
+tyB
 wzp
 wzp
 wzp
@@ -63356,10 +63361,10 @@ xQx
 bCg
 wSZ
 hjk
-jVs
-jVs
 tyB
-wzp
+tyB
+tyB
+tyB
 wzp
 wzp
 wzp
@@ -63561,7 +63566,7 @@ jVs
 jVs
 hjk
 hjk
-wzp
+tyB
 wzp
 wzp
 wzp
@@ -63762,8 +63767,8 @@ kog
 jVs
 jVs
 tyB
-wzp
-wzp
+tyB
+tyB
 wzp
 wzp
 wzp
@@ -63964,7 +63969,7 @@ kog
 jVs
 jVs
 tyB
-wzp
+tyB
 wzp
 wzp
 wzp
@@ -64166,7 +64171,7 @@ tyB
 tyB
 tyB
 hjk
-wzp
+tyB
 wzp
 cXP
 wzp
@@ -64367,7 +64372,7 @@ tyB
 tyB
 tyB
 tyB
-wzp
+tyB
 wzp
 wzp
 wzp
