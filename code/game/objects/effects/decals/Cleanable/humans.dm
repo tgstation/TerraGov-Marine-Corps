@@ -58,7 +58,8 @@
 		return
 	if(CHECK_MULTIPLE_BITFIELDS(perp.pass_flags, HOVERING))
 		return
-
+	if(HAS_TRAIT(perp, TRAIT_LIGHT_STEP))
+		return
 	var/datum/limb/foot/l_foot = perp.get_limb("l_foot")
 	var/datum/limb/foot/r_foot = perp.get_limb("r_foot")
 	var/hasfeet = 1
