@@ -3038,6 +3038,11 @@
 	dir = 5
 	},
 /area/metnal/inside/mining)
+"cls" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/north)
 "clw" = (
 /obj/effect/ai_node,
 /turf/open/floor/prison/plate,
@@ -6579,13 +6584,6 @@
 "eEh" = (
 /turf/open/floor/carpet/side,
 /area/metnal/inside/cafeteria)
-"eEW" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/plate,
-/area/metnal/outside/east)
 "eFe" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -7257,6 +7255,7 @@
 	name = "Old Loader"
 	},
 /obj/effect/landmark/dropship_start_location,
+/obj/effect/landmark/weed_node,
 /turf/open/ground/grass/weedable,
 /area/metnal/inside/Headquarters)
 "fcf" = (
@@ -8402,12 +8401,9 @@
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
 "fSX" = (
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/open/ground/grass/weedable,
-/area/metnal/inside/Headquarters)
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/east)
 "fTw" = (
 /obj/effect/landmark/xeno_resin_wall,
 /obj/effect/landmark/weed_node,
@@ -8850,6 +8846,10 @@
 	dir = 5
 	},
 /area/metnal/inside/cargo)
+"gkQ" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/north)
 "gkV" = (
 /turf/open/lavaland/basalt/cave{
 	dir = 10
@@ -10051,9 +10051,12 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "hjU" = (
-/mob/living/simple_animal/chick,
-/turf/open/ground/grass/weedable,
-/area/metnal/inside/Headquarters)
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/prison/plate,
+/area/metnal/outside/east)
 "hkx" = (
 /turf/open/floor/mainship,
 /area/metnal/inside/Headquarters)
@@ -12783,11 +12786,6 @@
 	},
 /turf/open/floor/wood/alt_eight,
 /area/metnal/inside/colonydorms)
-"jdS" = (
-/obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/east)
 "jdU" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /obj/structure/cable,
@@ -13577,12 +13575,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/greenblue,
 /area/metnal/inside/meddesk)
-"jEF" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/darkred{
-	dir = 8
-	},
-/area/metnal/outside/north)
 "jEV" = (
 /obj/effect/landmark/weed_node,
 /turf/open/liquid/lava/autosmoothing/catwalk,
@@ -13860,7 +13852,6 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northwest)
 "jOF" = (
-/mob/living/simple_animal/chick,
 /obj/effect/ai_node,
 /turf/open/ground/grass/weedable,
 /area/metnal/inside/Headquarters)
@@ -18178,12 +18169,9 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
 "mPn" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/flora/ausbushes/leafybush,
-/turf/open/ground/grass/weedable,
-/area/metnal/inside/Headquarters)
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/north)
 "mPu" = (
 /obj/structure/cable,
 /obj/structure/prop/mainship/gelida/powerccable{
@@ -21024,6 +21012,13 @@
 	},
 /turf/open/floor/wood,
 /area/metnal/inside/northmeetingroom)
+"oKW" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/north)
 "oKY" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -21572,6 +21567,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
 /area/metnal/inside/kitchen)
+"pdX" = (
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/prison/darkred{
+	dir = 8
+	},
+/area/metnal/outside/north)
 "pdY" = (
 /obj/structure/cable,
 /turf/open/lavaland/basalt/glowing,
@@ -22562,13 +22563,6 @@
 "pPX" = (
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
-"pQm" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden{
-	dir = 4
-	},
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/north)
 "pQR" = (
 /obj/structure/cable,
 /obj/effect/turf_decal/arrows{
@@ -26939,12 +26933,11 @@
 	},
 /area/metnal/inside/research)
 "sHD" = (
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/mob/living/simple_animal/chick,
-/turf/open/ground/grass/weedable,
-/area/metnal/inside/Headquarters)
+/obj/effect/turf_decal/sandytile/sandyplating,
+/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/east)
 "sHO" = (
 /obj/structure/rack,
 /obj/item/clothing/head/hardhat/dblue,
@@ -28663,10 +28656,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
-"tSW" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/east)
 "tTh" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -28715,12 +28704,6 @@
 "tTS" = (
 /turf/open/floor/tile/barber,
 /area/metnal/inside/mining)
-"tTZ" = (
-/obj/effect/turf_decal/sandytile/sandyplating,
-/obj/structure/cable,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/east)
 "tUi" = (
 /obj/effect/urban/decal/trash/fourteen,
 /obj/effect/landmark/excavation_site_spawner,
@@ -29350,10 +29333,6 @@
 	},
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
-"umv" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/prison/plate,
-/area/metnal/outside/north)
 "umI" = (
 /obj/structure/cargo_container/nt,
 /turf/open/floor/plate,
@@ -29365,11 +29344,6 @@
 	},
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/medical)
-"unq" = (
-/obj/effect/ai_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/north)
 "unr" = (
 /obj/structure/sink{
 	dir = 4
@@ -29572,10 +29546,6 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/metnal/outside/east)
-"utZ" = (
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/north)
 "uug" = (
 /turf/open/floor/prison/darkred{
 	dir = 10
@@ -31596,9 +31566,6 @@
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
 "vJI" = (
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/structure/flora/ausbushes/stalkybush,
 /turf/open/ground/grass/weedable,
 /area/metnal/inside/Headquarters)
@@ -31972,11 +31939,6 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/metnal/inside/laundromat)
-"vVo" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/north)
 "vVP" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
@@ -34816,6 +34778,11 @@
 	},
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/bar)
+"xZC" = (
+/obj/structure/cable,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/east)
 "xZO" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/britcup,
@@ -35174,6 +35141,11 @@
 /obj/structure/prop/urban/containersextended/graffiti/nine,
 /turf/open/floor/plate,
 /area/metnal/inside/primarystorage)
+"ykC" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/lavaland/basalt,
+/area/metnal/outside/north)
 "ykJ" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -55279,7 +55251,7 @@ cLZ
 qBL
 aWP
 aWP
-mPn
+ihD
 aWP
 vJI
 cKj
@@ -55886,7 +55858,7 @@ kNL
 jOF
 ihD
 fbf
-hjU
+aRp
 kNL
 tme
 ieJ
@@ -56227,7 +56199,7 @@ uiY
 uiY
 aLk
 dkm
-jEF
+pdX
 vFd
 oub
 uiY
@@ -56285,7 +56257,7 @@ gJk
 fqQ
 maz
 lco
-ihq
+aRp
 lGs
 rbU
 aRp
@@ -56490,11 +56462,11 @@ lco
 usj
 dlc
 dlc
-sHD
 dlc
+aRp
 ecU
 dlc
-fSX
+dlc
 maz
 fqQ
 gJk
@@ -57263,8 +57235,8 @@ pFc
 kDQ
 kVU
 tqu
-vVo
-utZ
+cls
+mPn
 xVR
 xVR
 xVR
@@ -57429,8 +57401,8 @@ edg
 edg
 edg
 xVR
-unq
-utZ
+ykC
+mPn
 sco
 uiY
 wHR
@@ -57449,8 +57421,8 @@ isK
 kbm
 hAT
 sco
-umv
-pQm
+gkQ
+oKW
 cZT
 kVU
 osY
@@ -57465,8 +57437,8 @@ lds
 rXc
 kVU
 tqu
-utZ
-utZ
+mPn
+mPn
 xVR
 xVR
 xVR
@@ -63745,8 +63717,8 @@ siO
 siO
 siO
 siO
-tSW
-tSW
+fSX
+fSX
 joS
 joS
 joS
@@ -63947,8 +63919,8 @@ siO
 xXc
 siO
 siO
-tSW
-tSW
+fSX
+fSX
 joS
 joS
 joS
@@ -66977,8 +66949,8 @@ lIS
 siO
 uja
 tJT
-tTZ
-eEW
+sHD
+hjU
 bcF
 aqt
 joS
@@ -67179,7 +67151,7 @@ nVx
 lIS
 nVx
 nVx
-jdS
+xZC
 xVX
 joS
 bcF
@@ -71417,7 +71389,7 @@ siO
 siO
 siO
 joS
-tSW
+fSX
 joS
 dMl
 bQa
@@ -71618,8 +71590,8 @@ siO
 siO
 siO
 siO
-tSW
-tSW
+fSX
+fSX
 joS
 aqt
 joS
@@ -71821,7 +71793,7 @@ edg
 siO
 siO
 joS
-tSW
+fSX
 joS
 joS
 joS
