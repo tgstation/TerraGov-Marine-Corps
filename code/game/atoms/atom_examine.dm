@@ -5,7 +5,7 @@
 	var/article
 
 /**
- * Called when a mob examines (shift click or verb) this atom
+ * Called when a mob examines this atom. [/mob/verb/examinate]
  *
  * This is the actual proc that generates the text for examining something
  *
