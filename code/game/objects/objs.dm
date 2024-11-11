@@ -92,7 +92,7 @@
 	if(!isitem(src) && (resistance_flags & PROJECTILE_IMMUNE))
 		.["projectile immune"] = "Projectiles cannot damage this object."
 	if(!isxeno(user) && !isobserver(user))
-		return // humans can check the codex for these- xenos should be able to know them "in the moment"
+		return // humans can check the codex for most of these- xenos should be able to know them "in the moment"
 	if(resistance_flags & CRUSHER_IMMUNE)
 		.[span_xenonotice("crusher-proof")] = "Charging Crushers can't damage this object."
 	if(resistance_flags & BANISH_IMMUNE)
@@ -100,9 +100,9 @@
 	if(resistance_flags & PORTAL_IMMUNE)
 		.[span_xenonotice("portal immune")] = "Wraith portals can't teleport this object."
 	if(resistance_flags & XENO_DAMAGEABLE)
-		.[span_xenonotice("xeno destructible")] = "Xenomorphs can slash this object."
+		.[span_xenonotice("slashable")] = "Xenomorphs can slash this object."
 	else if(!isitem(src))
-		.[span_xenonotice("xeno indestructible")] = "Xenomorphs can't slash this object."
+		.[span_xenonotice("not slashable")] = "Xenomorphs can't slash this object."
 
 /obj/proc/setAnchored(anchorvalue)
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)

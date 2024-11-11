@@ -1,8 +1,18 @@
-//! Many procs related to examining atoms.
+//! This file contains all the procs related to examining atoms,
+//! except the verb you use to examine someone (see [/mob/verb/examinate])
 
 /atom
 	/// If non-null, overrides a/an/some in all cases
 	var/article
+	/// Text that appears preceding the name in [/atom/proc/examine_title].
+	/// Don't include spaces after this, since that proc adds a space on its own.
+	var/examine_thats = "That's"
+
+/mob/living/carbon/human
+	examine_thats = "This is"
+
+/mob/living/silicon/ai
+	examine_thats = "This is"
 
 /**
  * Called when a mob examines this atom. [/mob/verb/examinate]
@@ -93,7 +103,7 @@
 
 ///Generate the full examine string of this atom (including icon for chat)
 /atom/proc/examine_title(mob/user, thats = FALSE)
-	return "[icon2html(src, user)] [thats ? "That's ":""]<em>[get_examine_name(user)]</em>"
+	return "[icon2html(src, user)] [thats ? "[examine_thats] ":""]<em>[get_examine_name(user)]</em>"
 
 /**
  * This is called when we want to get a sort-of "descriptor" for this item, where applicable.
