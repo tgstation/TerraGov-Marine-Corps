@@ -1404,16 +1404,15 @@
 		// Intentionally includes the owner.
 		if(!X.issamexenohive(nearby_xeno))
 			continue
-		// Prevents Hivemind and Minions from getting biomass.
-		var/datum/action/ability/activable/xeno/psydrain/cocoon_ability = nearby_xeno.actions_by_path[/datum/action/ability/activable/xeno/psydrain]
-		if(!cocoon_ability)
+		if(nearby_xeno.xeno_caste.caste_flags & CASTE_NO_BIOMASS)
 			continue
 		nearby_friendly_xenos += nearby_xeno
 
-	// Split the reward amongst every xeno nearby, including themselves.
-	var/biomass_per_xeno = round(15/length(nearby_friendly_xenos), 0.1)
-	for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
-		nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
+	if(length(nearby_friendly_xenos))
+		// Split the reward amongst every xeno nearby, including themselves.
+		var/biomass_per_xeno = round(15/length(nearby_friendly_xenos), 0.1)
+		for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
+			nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))

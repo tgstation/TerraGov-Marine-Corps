@@ -85,9 +85,7 @@
 		for(var/mob/living/carbon/xenomorph/xeno in GLOB.alive_xeno_list)
 			if(xeno.hivenumber != hivenumber)
 				continue
-			// Prevents Hivemind and Minions from getting biomass.
-			var/datum/action/ability/activable/xeno/cocoon/cocoon_ability = xeno.actions_by_path[/datum/action/ability/activable/xeno/cocoon]
-			if(!cocoon_ability)
+			if(xeno.xeno_caste.caste_flags & CASTE_NO_BIOMASS)
 				continue
 			xeno.gain_biomass(3.5)
 
