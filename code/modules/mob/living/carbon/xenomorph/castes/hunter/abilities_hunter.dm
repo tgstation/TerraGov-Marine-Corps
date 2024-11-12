@@ -130,7 +130,7 @@
 ///Updates or cancels stealth
 /datum/action/ability/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
-	total_damage_taken = max(total_damage_taken - 5, 0)
+	total_damage_taken = max(total_damage_taken - 10, 0)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
