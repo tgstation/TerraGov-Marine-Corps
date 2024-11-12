@@ -1271,7 +1271,7 @@
 // ***************************************
 /atom/movable/screen/alert/status_effect/trail
 	name = "Trail"
-	desc = "We leave an acid trail behind. Click to change trail."
+	desc = "We leave a trail behind. Click to change trail."
 	icon_state = "xenobuff_generic"
 
 /atom/movable/screen/alert/status_effect/trail/Click()
@@ -1299,7 +1299,7 @@
 	/// A list of trails that can be selected
 	var/list/selectable_trails = list(
 		/obj/effect/xenomorph/spray,
-		/obj/alien/resin/sticky/thin
+		/obj/alien/resin/sticky/thin/temporary
 	)
 
 /datum/status_effect/mutation_upgrade/trail/on_apply()
