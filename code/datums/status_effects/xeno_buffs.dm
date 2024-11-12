@@ -836,7 +836,7 @@
 /datum/status_effect/blessing/warding/on_apply()
 	if(!isxeno(owner))
 		return FALSE
-	armor_modifier = getArmor(14*strength*2.7,3*strength*2.7,5*strength*2.7,3*strength*2.7,0,0,0,0)//create armor for puppets
+	armor_modifier = getArmor(14 * strength * 2.7 ,3 * strength * 2.7 ,5 * strength * 2.7 ,3 * strength *2.7 ,0 ,0 , 0 ,0 )//create armor for puppets
 	owner.soft_armor=owner.soft_armor.attachArmor(armor_modifier)//we add armor to the puppet
 	return TRUE
 
