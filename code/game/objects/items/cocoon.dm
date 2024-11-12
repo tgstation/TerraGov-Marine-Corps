@@ -53,7 +53,7 @@
 			continue
 		if(xeno.xeno_caste.caste_flags & CASTE_NO_BIOMASS)
 			continue
-		xeno.gain_biomass(0.15)
+		xeno.gain_biomass(0.1)
 
 /obj/structure/cocoon/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	. = ..()
@@ -85,7 +85,7 @@
 				continue
 			if(xeno.xeno_caste.caste_flags & CASTE_NO_BIOMASS)
 				continue
-			xeno.gain_biomass(3.5)
+			xeno.gain_biomass(4)
 
 		release_victim()
 	update_icon()
