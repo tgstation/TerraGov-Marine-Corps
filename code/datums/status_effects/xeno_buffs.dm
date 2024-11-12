@@ -1179,8 +1179,6 @@
 	id = "mutation_upgrade_toxin"
 	alert_type = /atom/movable/screen/alert/status_effect/toxin
 	chamber_structure = MUTATION_STRUCTURE_VEIL
-	/// The amount of toxins to inject.
-	var/toxin_amount_per_chamber = 1
 	/// Currently selected reagent to inject.
 	var/datum/reagent/toxin/selected_reagent = /datum/reagent/toxin/xeno_neurotoxin
 
@@ -1206,8 +1204,11 @@
 	SIGNAL_HANDLER
 	if(!chamber_scaling || target.stat == DEAD || !ishuman(target) || !target.can_sting())
 		return
+	var/datum/reagent/glob_reagent = GLOB.chemical_reagents_list[selected_reagent]
+	if(!glob_reagent)
+		return
 	var/mob/living/carbon/human/human_target = target
-	human_target.reagents.add_reagent(selected_reagent, toxin_amount_per_chamber * chamber_scaling)
+	human_target.reagents.add_reagent(selected_reagent, glob_reagent.custom_metabolism * chamber_scaling)
 
 // ***************************************
 // ***************************************

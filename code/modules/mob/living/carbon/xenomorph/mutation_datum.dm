@@ -190,7 +190,7 @@
 
 /datum/mutation_upgrade/utility/toxin
 	name = "Toxin"
-	desc = "When slashing living humans, inject 1u of a chosen toxin into them per Veil Chamber."
+	desc = "When slashing living humans, inject a variable amount of a chosen toxin into them. The amount depends on the toxin and Spur Chamber count."
 	status_effect = STATUS_EFFECT_UPGRADE_TOXIN
 
 /datum/mutation_upgrade/utility/pheromones
