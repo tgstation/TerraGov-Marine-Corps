@@ -831,15 +831,17 @@
 
 /datum/status_effect/blessing/warding
 	id = "blessing of warding"
+	var/datum/armor/armor_modifier
 
 /datum/status_effect/blessing/warding/on_apply()
 	if(!isxeno(owner))
 		return FALSE
-	owner.soft_armor = owner.soft_armor.modifyRating(105.84, 22.68, 37.8, 22.68, 0, 0, 0, 0)//we add armor to the puppet
+	armor_modifier = getArmor(14*strength*2.7,3*strength*2.7,5*strength*2.7,3*strength*2.7,0,0,0,0)//create armor for puppets
+	owner.soft_armor=owner.soft_armor.attachArmor(armor_modifier)//we add armor to the puppet
 	return TRUE
 
 /datum/status_effect/blessing/warding/on_remove()
-	owner.soft_armor = owner.soft_armor.modifyRating(-105.84, -22.68, -37.8, -22.68, 0, 0, 0, 0)//we take away armor on blessing removal
+	owner.soft_armor=owner.soft_armor.detachArmor(armor_modifier)//we take away armor on blessing removal
 	return ..()
 
 // ***************************************
