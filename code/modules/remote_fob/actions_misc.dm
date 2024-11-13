@@ -63,7 +63,7 @@
 	cade = new /obj/structure/barricade/metal(buildplace)
 	cade.setDir(fobdrone.dir)
 	if(console.do_wiring)
-		if(console.metal_remaining <= 1)
+		if(!console.metal_remaining)
 			fobdrone.balloon_alert(owner, "Not enough material for razor-wiring.")
 			return
 		console.metal_remaining -= 1
