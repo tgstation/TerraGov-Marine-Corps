@@ -7675,7 +7675,9 @@
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
 "gjD" = (
-/obj/effect/landmark/campaign_structure/asat_system,
+/obj/effect/landmark/campaign_structure/asat_system{
+	dir = 4
+	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzonetwo)
 "gjR" = (
@@ -18388,7 +18390,9 @@
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "pgi" = (
-/obj/effect/landmark/campaign_structure/asat_system,
+/obj/effect/landmark/campaign_structure/asat_system{
+	dir = 4
+	},
 /turf/open/floor/plating,
 /area/shuttle/drop2/lz2)
 "pgp" = (
@@ -19060,7 +19064,9 @@
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
 "pEo" = (
-/obj/effect/landmark/campaign_structure/asat_system,
+/obj/effect/landmark/campaign_structure/asat_system{
+	dir = 1
+	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
 "pEq" = (
