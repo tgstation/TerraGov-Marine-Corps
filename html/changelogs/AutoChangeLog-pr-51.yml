@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - bugfix: "Putting SSD players in hypersleep works again"
