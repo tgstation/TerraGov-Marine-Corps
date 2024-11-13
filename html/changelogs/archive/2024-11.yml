@@ -5,3 +5,6 @@
   Meghan-Rossi:
   - bugfix: Latejoin survivors now spawn on the ground instead of the ship
   - bugfix: Fixed restart votes never actually restarting the server.
+2024-11-13:
+  Meghan-Rossi:
+  - bugfix: Putting SSD players in hypersleep works again

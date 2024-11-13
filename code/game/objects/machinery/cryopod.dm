@@ -346,14 +346,11 @@
 
 //	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
 
-	var/client/C = client
 	var/mob/new_player/NP = new()
-	var/mob/N = C.mob
-	NP.name = C.mob.name
-	C.screen.Cut()
-	C.mob.mind.transfer_to(NP, TRUE)
+	client?.screen?.Cut()
+	NP.key = key
 
-	qdel(N)
+	qdel(src)
 
 /mob/living/carbon/human/despawn()
 	assigned_squad?.remove_from_squad(src)
