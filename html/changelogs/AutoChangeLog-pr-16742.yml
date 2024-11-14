@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Barb wiring via FOB Construction Drone now correctly uses 1 metal instead of 2."
