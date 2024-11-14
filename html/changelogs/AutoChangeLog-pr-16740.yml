@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - imageadd: "New Plasma Pistol sprite."
+  - imagedel: "Old Plasma Pistol sprite."
