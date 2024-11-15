@@ -16169,9 +16169,10 @@
 /turf/open/floor/officesquares,
 /area/metnal/inside/administration)
 "loR" = (
+/obj/effect/ai_node,
 /obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/prison/sterilewhite,
-/area/metnal/inside/experimentation)
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/southwest)
 "loU" = (
 /obj/effect/ai_node,
 /turf/open/floor/urban/tile/tileblackcheckered,
@@ -17230,11 +17231,6 @@
 	},
 /turf/open/floor/wood/fancy,
 /area/metnal/inside/medical)
-"mdS" = (
-/obj/effect/landmark/weed_node,
-/obj/effect/landmark/excavation_site_spawner,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/metnal/caves/southwest)
 "med" = (
 /obj/effect/turf_decal/siding/red{
 	dir = 10
@@ -22855,7 +22851,6 @@
 "pYw" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/spawner/random/misc/structure/curtain/medical,
-/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/experimentation)
 "pYz" = (
@@ -31643,11 +31638,6 @@
 	},
 /turf/open/floor/wood/fancy,
 /area/metnal/inside/medical)
-"vIM" = (
-/obj/effect/landmark/excavation_site_spawner,
-/obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/metnal/caves/south/garbledradio)
 "vIO" = (
 /obj/structure/cable,
 /obj/structure/prop/tgbrokenvendor/engidrobe,
@@ -36268,7 +36258,7 @@ anr
 qwB
 fuu
 kEc
-mdS
+bYE
 kEc
 kEc
 bYE
@@ -36903,7 +36893,7 @@ bYE
 kEc
 cgU
 kEc
-tgO
+kEc
 rmd
 edg
 edg
@@ -38288,7 +38278,7 @@ sWm
 vcM
 fnx
 iYP
-loR
+dwV
 pRs
 fuu
 edg
@@ -38508,7 +38498,7 @@ kEc
 ovI
 bgL
 bgL
-tgO
+kEc
 lOq
 eWf
 eWf
@@ -38706,7 +38696,7 @@ bYE
 bgL
 bgL
 tWP
-ovI
+loR
 bgL
 bgL
 bgL
@@ -52999,7 +52989,7 @@ nqq
 qvM
 pTm
 ewG
-rLX
+ewG
 ewG
 jVs
 jVs
@@ -53237,7 +53227,7 @@ gJM
 boa
 gJM
 gJM
-brc
+gJM
 gJM
 xOQ
 nHc
@@ -55459,7 +55449,7 @@ edg
 jVs
 gJM
 lDm
-fYZ
+lDm
 rFo
 gJM
 gJM
@@ -56849,7 +56839,7 @@ ewG
 ewG
 wIw
 ewG
-vIM
+wIw
 ewG
 wHx
 wIw
@@ -68757,7 +68747,7 @@ esM
 esM
 esM
 esM
-esM
+siw
 esM
 esM
 esM
@@ -68955,7 +68945,7 @@ esM
 esM
 esM
 esM
-esM
+siw
 esM
 esM
 esM
@@ -69152,7 +69142,7 @@ gog
 gog
 esM
 esM
-esM
+siw
 esM
 esM
 esM
@@ -71002,7 +70992,7 @@ vfz
 gyO
 vfz
 gyO
-cBw
+vfz
 jVs
 edg
 edg
@@ -72451,7 +72441,7 @@ dda
 dda
 dda
 dda
-mmj
+gdw
 rmd
 edg
 edg
