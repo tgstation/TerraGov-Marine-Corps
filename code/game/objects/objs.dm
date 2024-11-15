@@ -83,7 +83,7 @@
 /obj/examine_tags(mob/user)
 	. = ..()
 	if(resistance_flags & INDESTRUCTIBLE)
-		.["indestructible"] = "It's completely invulnerable to taking damage or being destroyed, such as by lava, explosions, plasma cutters and xenos."
+		.["indestructible"] = "It's completely invulnerable to damage or complete destruction. Some objects still have special interactions for xenos."
 		return // we do not want to say it's indestructible and then list 500 fucktillion things that are implied by the word "indestructible"
 	if(resistance_flags & UNACIDABLE)
 		.["[isxeno(user) ? span_xenonotice("acid-proof") : "acid-proof"]"] = "Acid does not stick to or affect this object."
@@ -102,7 +102,7 @@
 	if(resistance_flags & XENO_DAMAGEABLE)
 		.[span_xenonotice("slashable")] = "Xenomorphs can slash this object."
 	else if(!isitem(src))
-		.[span_xenonotice("not slashable")] = "Xenomorphs can't slash this object."
+		.[span_xenonotice("not slashable")] = "Xenomorphs can't slash this object. Some objects, like airlocks, have special interactions when attacked."
 
 /obj/proc/setAnchored(anchorvalue)
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
