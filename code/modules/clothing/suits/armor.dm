@@ -253,7 +253,7 @@
 	soft_armor = list(MELEE = 80, BULLET = 60, LASER = 50, ENERGY = 40, BOMB = 55, BIO = 30, FIRE = 30, ACID = 30) // on par with beret
 	inv_hide_flags = HIDEJUMPSUIT
 	siemens_coefficient = 0.6
-		allowed = list(
+	allowed = list(
 		/obj/item/weapon,
 		/obj/item/flashlight,
 		/obj/item/storage/fancy/cigarettes,
