@@ -13,6 +13,7 @@
 /area/metnal/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /area/metnal/caves/northwest
 	name = "Northwestern Caves"
@@ -31,6 +32,7 @@
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 	minimap_color = MINIMAP_AREA_ENGI_CAVE
 	always_unpowered = FALSE
+	area_flavor = CANNOT_NUKE
 
 /area/metnal/caves/northeast
 	name = "Northeastern Caves"
@@ -284,6 +286,7 @@
 	icon_state = "showroom"
 	minimap_color = MINIMAP_AREA_LIVING
 	ceiling = CEILING_DEEP_UNDERGROUND
+	area_flags = CANNOT_NUKE
 
 /area/metnal/inside/bathhouse
 	name = "The Bathhouse"
