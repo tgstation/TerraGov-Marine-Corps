@@ -29,3 +29,17 @@
   Pariah919:
   - imageadd: New SH-39 Combat Sprite. Sprite by MJP.
   - imagedel: Old SH-39 Sprite.
+2024-11-15:
+  Aporhtonoma:
+  - bugfix: fixes puppets ridiculous armor ratings if warding pheromones were applied
+      before it got warding blessing
+  Pariah919:
+  - imageadd: New Plasma Pistol sprite.
+  - imagedel: Old Plasma Pistol sprite.
+  Runian:
+  - bugfix: Barb wiring via FOB Construction Drone now correctly uses 1 metal instead
+      of 2.
+  TiviPlus:
+  - qol: Merged Join game and ready up lobby buttons
+  blackdav123:
+  - balance: 'Added a new praetorian primo: Slime Grenade.'

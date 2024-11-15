@@ -1,4 +1,0 @@
-author: "Aporhtonoma"
-delete-after: True
-changes:
-  - bugfix: "fixes puppets ridiculous armor ratings if warding pheromones were applied before it got warding blessing"
