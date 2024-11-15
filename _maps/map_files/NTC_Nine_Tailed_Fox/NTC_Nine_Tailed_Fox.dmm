@@ -105,8 +105,7 @@
 	})
 "afB" = (
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -150,8 +149,7 @@
 /area/mainship/living/cafeteria_starboard)
 "ahA" = (
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /obj/machinery/door/poddoor/shutters/mainship/open{
 	id = "prison_lockdown";
@@ -704,8 +702,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
@@ -775,12 +772,9 @@
 /area/mainship/hull/upper_hull)
 "aIO" = (
 /obj/structure/bookcase,
-/obj/item/storage/fancy/cigarettes/lady_finger{
-	pixel_y = 5
-	},
-/obj/item/megaphone,
 /obj/effect/ai_node,
-/obj/item/storage/holster/belt/pistol/g22/tranq,
+/obj/item/storage/fancy/cigar,
+/obj/item/tool/lighter/zippo,
 /turf/open/floor/carpet{
 	dir = 10;
 	icon_state = "carpetside"
@@ -1864,12 +1858,8 @@
 /area/mainship/living/cryo_cells)
 "bEn" = (
 /obj/structure/table/wood/fancy,
-/obj/item/toy/plush/rouny,
-/obj/effect/spawner/random/misc/plushie,
 /obj/item/toy/deck/kotahi,
 /obj/item/toy/deck,
-/obj/item/toy/dice/d20,
-/obj/item/toy/dice,
 /turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -2819,8 +2809,7 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -3188,9 +3177,10 @@
 /turf/open/floor/mainship/ntlogo,
 /area/mainship/squads/general)
 "cJI" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/structure/window/framed/mainship/requisitions,
-/turf/open/floor/plating,
+/obj/structure/table/wood/fancy,
+/obj/item/toy/dice,
+/obj/item/toy/dice/d20,
+/turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -3624,8 +3614,7 @@
 "dej" = (
 /obj/structure/cable,
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -4234,7 +4223,7 @@
 "dLZ" = (
 /obj/effect/ai_node,
 /turf/open/floor/carpet{
-	dir = 5;
+	dir = 1;
 	icon_state = "carpetside"
 	},
 /area/mainship/shipboard/port_missiles{
@@ -4335,8 +4324,7 @@
 	})
 "dSb" = (
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -5993,6 +5981,7 @@
 	name = "Shipside Medbay"
 	})
 "fxz" = (
+/obj/structure/filingcabinet,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
@@ -7642,8 +7631,7 @@
 /area/mainship/squads/req)
 "gUh" = (
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /obj/machinery/door/poddoor/shutters/mainship/cic/armory{
 	id = "brig_armory2"
@@ -8273,6 +8261,14 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/port_umbilical{
 	name = "Ship Floor 2 Hallways"
+	})
+"hyq" = (
+/turf/open/floor/carpet{
+	dir = 5;
+	icon_state = "carpetside"
+	},
+/area/mainship/shipboard/port_missiles{
+	name = "Shipside Corpsec Office"
 	})
 "hyG" = (
 /obj/machinery/shower{
@@ -9520,6 +9516,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/hop,
 /obj/effect/ai_node,
+/obj/item/toy/plush/fairy,
 /turf/open/floor/carpet{
 	dir = 6;
 	icon_state = "carpetside"
@@ -11150,8 +11147,6 @@
 /obj/item/clothing/under/rank/hydroponics,
 /obj/item/tool/minihoe,
 /obj/item/tool/minihoe,
-/obj/item/tool/hatchet,
-/obj/item/tool/hatchet,
 /obj/item/storage/bag/plants,
 /obj/item/storage/bag/plants,
 /obj/structure/closet/secure_closet/hydroponics{
@@ -11312,6 +11307,7 @@
 /area/mainship/squads/general)
 "kpg" = (
 /obj/structure/bed/chair/sofa/corner,
+/obj/effect/spawner/random/misc/plushie,
 /turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -11625,8 +11621,7 @@
 "kES" = (
 /obj/machinery/door/airlock/mainship/security{
 	name = "\improper Interrogation Room";
-	dir = 2;
-	req_access = list(5)
+	dir = 2
 	},
 /turf/open/floor/mainship/red{
 	dir = 4
@@ -11717,8 +11712,7 @@
 /area/mainship/hallways/hangar)
 "kHG" = (
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
@@ -12259,6 +12253,8 @@
 /obj/structure/closet/secure_closet/hos{
 	name = "Corpsec Commander's Locker"
 	},
+/obj/item/storage/holster/belt/mateba/officer/full,
+/obj/item/ammo_magazine/packet/mateba,
 /turf/open/floor/wood,
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
@@ -12312,9 +12308,8 @@
 	})
 "ldc" = (
 /obj/structure/bed,
-/obj/item/bedsheet/hos,
+/obj/effect/spawner/random/misc/bedsheet,
 /turf/open/floor/carpet{
-	dir = 6;
 	icon_state = "carpetside"
 	},
 /area/mainship/shipboard/port_missiles{
@@ -12671,7 +12666,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/filingcabinet,
+/obj/structure/filingcabinet/medical,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/chief_mp_office{
 	name = "CC Office"
@@ -13576,6 +13571,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/prisoner,
+/obj/machinery/recharger,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "miP" = (
@@ -14882,9 +14878,6 @@
 /turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "nxD" = (
-/obj/structure/closet/secure_closet/military_police{
-	locked = 0
-	},
 /obj/item/reagent_containers/spray/pepper,
 /obj/item/megaphone,
 /obj/item/binoculars,
@@ -14897,6 +14890,7 @@
 /obj/item/storage/box/flashbangs,
 /obj/item/flash,
 /obj/item/clothing/glasses/sunglasses/sechud,
+/obj/structure/closet/secure_closet/military_police,
 /turf/open/floor/mainship/cargo,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -16001,8 +15995,7 @@
 "ovj" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1;
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
@@ -16373,6 +16366,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig)
+"oLD" = (
+/obj/structure/bed/chair/sofa/left{
+	dir = 8
+	},
+/obj/item/toy/plush/rouny,
+/turf/open/floor/wood,
+/area/mainship/shipboard/port_missiles{
+	name = "Shipside Corpsec Office"
+	})
 "oMy" = (
 /obj/machinery/light{
 	dir = 4
@@ -17498,7 +17500,6 @@
 /turf/open/floor/mainship/tcomms,
 /area/mainship/command/telecomms)
 "pZu" = (
-/obj/item/radio/intercom/general,
 /obj/machinery/vending/marineFood{
 	density = 0;
 	pixel_y = 25
@@ -19024,6 +19025,7 @@
 /area/mainship/command/self_destruct)
 "rvk" = (
 /obj/effect/ai_node,
+/obj/item/radio/intercom/general,
 /turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -19903,9 +19905,10 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/bed/chair/sofa/left{
+/obj/structure/bed/chair/sofa{
 	dir = 8
 	},
+/obj/item/toy/plush/fairy,
 /turf/open/floor/wood,
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
@@ -21428,8 +21431,7 @@
 	})
 "tIX" = (
 /obj/machinery/door/airlock/mainship/security{
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -21997,6 +21999,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/hos,
 /obj/effect/landmark/start/job/prisoner,
+/obj/effect/spawner/random/misc/plushie/fiftyfifty,
 /turf/open/floor/mainship,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
 "umR" = (
@@ -23856,8 +23859,7 @@
 "wdS" = (
 /obj/machinery/door/airlock/mainship/security{
 	dir = 1;
-	name = "\improper Corpsec Office";
-	req_access = list(5)
+	name = "\improper Corpsec Office"
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
@@ -24736,9 +24738,12 @@
 	name = "Ship Floor 2 Hallways"
 	})
 "wRj" = (
-/obj/structure/window/framed/mainship/requisitions,
-/obj/structure/curtain/open/black,
-/turf/open/floor/plating,
+/obj/structure/bed,
+/obj/effect/spawner/random/misc/bedsheet,
+/turf/open/floor/carpet{
+	dir = 6;
+	icon_state = "carpetside"
+	},
 /area/mainship/shipboard/port_missiles{
 	name = "Shipside Corpsec Office"
 	})
@@ -33338,8 +33343,8 @@ pnK
 aYd
 pZu
 epR
-aYd
 epR
+hyq
 wRj
 aYd
 mMj
@@ -33580,7 +33585,7 @@ yfC
 aYd
 uZs
 bEn
-rPs
+cJI
 epR
 csL
 aYd
@@ -33822,7 +33827,7 @@ abG
 aYd
 kpg
 smk
-rPs
+oLD
 wOb
 rqa
 aYd
@@ -34066,7 +34071,7 @@ aYd
 aYd
 aYd
 aHv
-cJI
+aYd
 aYd
 aYd
 jki
