@@ -24,6 +24,7 @@
 	inventory_flags = NOSLIPPING
 	item_flags = SYNTH_RESTRICTED
 	siemens_coefficient = 0.6
+	slowdown = -0.5 //extra speed tradeoff for not being able to use a boot weapon, HoS only boots anyways
 
 /obj/item/clothing/shoes/ruggedboot
 	name = "Rugged Boots"
