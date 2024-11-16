@@ -1415,7 +1415,7 @@
 /area/metnal/inside/quartermaster)
 "aZX" = (
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set1","set2")
+	set_associations = list("set1")
 	},
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
@@ -10958,7 +10958,7 @@
 /area/metnal/outside/northwest)
 "hLc" = (
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set2","set3")
+	set_associations = list("set3")
 	},
 /turf/open/floor/prison/sterilewhite,
 /area/metnal/inside/security)
@@ -18586,7 +18586,7 @@
 	dir = 9
 	},
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set1")
+	set_associations = list("set1","set2")
 	},
 /turf/open/floor/wood/fancy,
 /area/metnal/inside/medical)
@@ -20701,7 +20701,7 @@
 /area/metnal/inside/bar)
 "ouX" = (
 /obj/structure/nuke_disk_candidate{
-	set_associations = list("set1","set3")
+	set_associations = list("set1","set2","set3")
 	},
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
