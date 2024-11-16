@@ -149,9 +149,7 @@
 	},
 /area/bigredv2/outside/library)
 "nr" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
@@ -209,9 +207,7 @@
 	},
 /area/bigredv2/outside/library)
 "uy" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "uM" = (
@@ -450,9 +446,7 @@
 /turf/open/floor/wood,
 /area/bigredv2/outside/library)
 "UU" = (
-/obj/structure/bookcase{
-	density = 0
-	},
+/obj/structure/bookcase,
 /obj/machinery/light{
 	dir = 8
 	},
