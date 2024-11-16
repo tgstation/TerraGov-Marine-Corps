@@ -11,3 +11,7 @@
 2024-11-14:
   Meghan-Rossi:
   - balance: Xeno egg laying cooldown reduced from 12 seconds to 8 seconds
+2024-11-16:
+  Meghan-Rossi:
+  - bugfix: Fixed character creation preview icon sometimes not updating.
+  - bugfix: fixed observer time out glitchiness
