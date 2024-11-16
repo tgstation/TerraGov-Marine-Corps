@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Hunter stealth break from incoming damage is now a total amount (45) instead of a single hit needing to be over 15"
