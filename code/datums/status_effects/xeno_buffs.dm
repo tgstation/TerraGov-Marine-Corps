@@ -1322,7 +1322,7 @@
 /// Rolls the dice and creates the selected trail if the dice is right.
 /datum/status_effect/mutation_upgrade/trail/proc/create_trail()
 	SIGNAL_HANDLER
-	if(buff_owner.incapacitated() || buff_owner.lying_angle || buff_owner.resting)
+	if(buff_owner.incapacitated() || buff_owner.lying_angle || buff_owner.resting || !chamber_scaling)
 		return
 	if(prob(base_chance + (chance_per_chamber * chamber_scaling)))
 		var/turf/T = get_turf(buff_owner)
