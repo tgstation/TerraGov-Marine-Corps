@@ -11,6 +11,8 @@
 /datum/sex_action/nipple_sex/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
+	return TRUE
+
 /datum/sex_action/nipple_sex/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	user.visible_message(span_warning("[user] slides their cock into [target]'s nipple!"))
 	playsound(target, list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg'), 20, TRUE)
