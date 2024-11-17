@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - rscadd: "Let ghosts and people in the lobby see all factions in the game manifest."
