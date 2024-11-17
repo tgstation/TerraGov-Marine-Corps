@@ -259,7 +259,7 @@
 	. = ..()
 	playsound(loc, 'sound/magic/lightningbolt.ogg', 75, 0)
 	new /obj/effect/temp_visual/teleporter_array(loc)
-	visible_message(span_danger("Reality warps around the [src] as the missile vanishes in a flash of light!"))
+	visible_message(span_danger("Reality warps around [src] as the missile vanishes in a flash of light!"))
 	capture_flags = NONE
 
 /obj/structure/campaign_objective/capture_objective/asat_system/update_icon_state()
