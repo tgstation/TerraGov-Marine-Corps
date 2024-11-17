@@ -43,3 +43,8 @@
   - qol: Merged Join game and ready up lobby buttons
   blackdav123:
   - balance: 'Added a new praetorian primo: Slime Grenade.'
+2024-11-17:
+  Lumipharon:
+  - bugfix: fixed bookshelves on some Big Red map variants still not being dense
+  - balance: Hunter stealth break from incoming damage is now a total amount (45)
+      instead of a single hit needing to be over 15
