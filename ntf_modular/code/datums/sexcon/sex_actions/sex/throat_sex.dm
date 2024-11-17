@@ -6,9 +6,13 @@
 /datum/sex_action/throat_sex/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
+	return TRUE
+
 /datum/sex_action/throat_sex/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
+	return TRUE
+
 /datum/sex_action/throat_sex/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
 	user.visible_message(span_warning("[user] slides his cock into [target]'s throat!"))
