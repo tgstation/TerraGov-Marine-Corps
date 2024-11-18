@@ -144,21 +144,21 @@
 		SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
 		personal_statistics.impregnations++
-		embryo.hivenumber = hivenumber
-		if(overrideflavor == "mouth")
-			embryo.emerge_target = 1
-			embryo.emerge_target_flavor = "mouth"
-		else
-			if(!overrideflavor)
-				if(victim.gender==FEMALE)
-					embryo.emerge_target = 2
-					embryo.emerge_target_flavor = "pussy"
-				else
-					embryo.emerge_target = 3
-					embryo.emerge_target_flavor = "ass"
+	embryo.hivenumber = hivenumber
+	if(overrideflavor == "mouth")
+		embryo.emerge_target = 1
+		embryo.emerge_target_flavor = "mouth"
+	else
+		if(!overrideflavor)
+			if(victim.gender==FEMALE)
+				embryo.emerge_target = 2
+				embryo.emerge_target_flavor = "pussy"
 			else
-				embryo.emerge_target = 4
-				embryo.emerge_target_flavor = overrideflavor
+				embryo.emerge_target = 3
+				embryo.emerge_target_flavor = "ass"
+		else
+			embryo.emerge_target = 4
+			embryo.emerge_target_flavor = overrideflavor
 	GLOB.round_statistics.now_pregnant++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "now_pregnant")
 	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[ckey]
