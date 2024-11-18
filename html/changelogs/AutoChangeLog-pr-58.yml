@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - bugfix: "Fixed larva sometimes being born to the wrong hive and not emerging from the right hole."
