@@ -15,3 +15,7 @@
   Meghan-Rossi:
   - bugfix: Fixed character creation preview icon sometimes not updating.
   - bugfix: fixed observer time out glitchiness
+2024-11-18:
+  Meghan-Rossi:
+  - bugfix: fixed some ERP panel actions being unusable.
+  - rscadd: Let ghosts and people in the lobby see all factions in the game manifest.
