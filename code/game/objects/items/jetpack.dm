@@ -148,26 +148,6 @@
 	playsound(loc, 'sound/effects/refill.ogg', 30, 1, 3)
 	balloon_alert(user, "Refilled")
 
-/obj/item/jetpack_marine/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
-		return
-	var/obj/item/ammo_magazine/flamer_tank/FT = I
-	if(FT.current_rounds == 0)
-		balloon_alert(user, "No fuel")
-		return
-
-	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
-	FT.current_rounds -= fuel_transfer_amount
-	fuel_left += fuel_transfer_amount
-	fuel_indicator = FUEL_INDICATOR_FULL
-	change_fuel_indicator()
-	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
-	balloon_alert(user, "Refilled")
-	update_icon()
-
 /datum/action/ability/activable/item_toggle/jetpack
 	name = "Use jetpack"
 	action_icon_state = "axe_sweep"
