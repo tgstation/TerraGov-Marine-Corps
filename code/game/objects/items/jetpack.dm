@@ -170,10 +170,15 @@
 		return
 	return ..()
 
+#define HEAVY_JETPACK_FUEL_USE 5
+#define HEAVY_JETPACK_FUEL_INDICATOR_FULL 35
+#define HEAVY_JETPACK_FUEL_INDICATOR_HALF_FULL 20
 /obj/item/jetpack_marine/heavy
 	name = "heavy lift jetpack"
 	desc = "An upgraded jetpack with enough fuel to send a person flying for a short while with extreme force. It provides better mobility for heavy users and enough thrust to be used in an aggressive manner. <b>Alt right click or middleclick to fly to a destination when the jetpack is equipped. Will collide with hostiles</b>"
 	cooldown_time = 5 SECONDS
+	fuel_max = 75
+	fuel_left = 75
 	speed = 2
 
 /obj/item/jetpack_marine/heavy/calculate_range(mob/living/carbon/human/human_user)
@@ -233,3 +238,23 @@
 
 	human_user.set_throwing(FALSE)
 	return COMPONENT_MOVABLE_PREBUMP_STOPPED
+
+/obj/item/jetpack_marine/heavy/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(.)
+		return
+	if(!istype(I, /obj/item/ammo_magazine/flamer_tank))
+		return
+	var/obj/item/ammo_magazine/flamer_tank/FT = I
+	if(FT.current_rounds == 0)
+		balloon_alert(user, "No fuel")
+		return
+
+	var/fuel_transfer_amount = min(FT.current_rounds, (fuel_max - fuel_left))
+	FT.current_rounds -= fuel_transfer_amount
+	fuel_left += fuel_transfer_amount
+	fuel_indicator = FUEL_INDICATOR_FULL
+	change_fuel_indicator()
+	playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+	balloon_alert(user, "Refilled")
+	update_icon()
