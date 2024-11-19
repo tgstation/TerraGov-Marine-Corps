@@ -513,7 +513,7 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 //Command Doll
 /datum/job/terragov/command/commanddoll
 	title = COMMAND_DOLL
-	paygrade = "O1"
+	paygrade = "E5"
 	comm_title = "CDoll"
 	total_positions = 4
 	access = ALL_MARINE_ACCESS
@@ -553,11 +553,11 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 		return
 	switch(playtime_mins)
 		if(0 to 1000) // starting
-			new_human.wear_id.paygrade = "O2"
+			new_human.wear_id.paygrade = "E5"
 		if(1001 to 2500) // 25 hrs
-			new_human.wear_id.paygrade = "O3"
+			new_human.wear_id.paygrade = "O1"
 		if(2501 to INFINITY) // 50 hrs
-			new_human.wear_id.paygrade = "O4"
+			new_human.wear_id.paygrade = "O2"
 /datum/outfit/job/command/commanddoll
 	name = COMMAND_DOLL
 	jobtype = /datum/job/terragov/command/commanddoll
