@@ -1,6 +1,6 @@
 #define FUEL_USE 5
-#define FUEL_INDICATOR_FULL 20
-#define FUEL_INDICATOR_HALF_FULL 10
+#define FUEL_INDICATOR_FULL 25
+#define FUEL_INDICATOR_HALF_FULL 15
 
 /obj/item/jetpack_marine
 	name = "marine jetpack"
@@ -17,9 +17,9 @@
 	///Time between uses
 	var/cooldown_time = 10 SECONDS
 	///maximum amount of fuel in the jetpack
-	var/fuel_max = 25
+	var/fuel_max = 35
 	///current amount of fuel in the jetpack
-	var/fuel_left = 25
+	var/fuel_left = 35
 	///threshold to change the jetpack fuel indicator
 	var/fuel_indicator = FUEL_INDICATOR_FULL
 	///How quick you will fly (warning, it rounds up to the nearest integer)
