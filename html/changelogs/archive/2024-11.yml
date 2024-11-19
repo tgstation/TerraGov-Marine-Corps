@@ -19,3 +19,7 @@
   Meghan-Rossi:
   - bugfix: fixed some ERP panel actions being unusable.
   - rscadd: Let ghosts and people in the lobby see all factions in the game manifest.
+2024-11-19:
+  Meghan-Rossi:
+  - bugfix: Fixed larva sometimes being born to the wrong hive and not emerging from
+      the right hole.
