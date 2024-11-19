@@ -792,19 +792,17 @@
 
 /obj/effect/vendor_bundle/commanddoll
 	gear_to_spawn = list(
-		/obj/item/weapon/energy/sword/ntc,
-		/obj/item/bodybag/cryobag,
-		/obj/item/roller/medevac,
-		/obj/item/medevac_beacon,
-		/obj/item/tweezers_advanced,
+		/obj/item/tweezers,
+		/obj/item/storage/holster/belt/mateba/officer/full,
 		/obj/item/reagent_containers/hypospray/advanced/oxycodone,
-		/obj/item/reagent_containers/hypospray/advanced/peridaxonplus,
-		/obj/item/reagent_containers/hypospray/advanced/quickclotplus,
+		/obj/item/storage/box/MRE,
 		/obj/item/reagent_containers/hypospray/advanced/big/combatmix,
 		/obj/item/storage/firstaid/adv,
+		/obj/item/defibrillator,
 		/obj/item/clothing/suit/modular/xenonauten/light/bikini/cdoll,
 		/obj/item/clothing/head/modular/m10x/leader,
-		/obj/item/storage/pouch/medkit/medic
+		/obj/item/storage/pouch/medkit/medic,
+		/obj/item/clothing/glasses/hud/health,
 	)
 
 /obj/effect/vendor_bundle/stretcher
