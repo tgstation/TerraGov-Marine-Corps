@@ -994,7 +994,7 @@
 					html = "<font size='4' color='red'><b>-- Staff private message --</b></font>\n[span_adminsay("PM from- [key_name(src, recipient, TRUE)]: [span_linkify("[keywordparsedmsg]")]")]")
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<font size='4' color='red'><b>-- Staff private message --</b></font>\n[span_adminsay("You private messaged [key_name(src, recipient, TRUE)]: [span_linkify("[keywordparsedmsg]")]")]")
+					html = "<font size='4' color='red'><b>-- Staff private message --</b></font>\n[span_adminsay("You private messaged [key_name(recipient, src, TRUE)]: [span_linkify("[keywordparsedmsg]")]")]")
 
 				window_flash(recipient, TRUE)
 				window_flash(src, TRUE)
