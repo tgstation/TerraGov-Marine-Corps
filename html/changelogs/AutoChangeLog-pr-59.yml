@@ -1,6 +1,0 @@
-author: "K4rlox"
-delete-after: True
-changes:
-  - balance: "command doll gets its esword swapped with a mateba, along with getting more med focused gear"
-  - bugfix: "command doll vendor now includes webbing, belts, mask, modules sections"
-  - bugfix: "command doll is now actually the lowest command"
