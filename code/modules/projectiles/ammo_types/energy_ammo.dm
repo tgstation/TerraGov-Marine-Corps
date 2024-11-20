@@ -70,7 +70,8 @@
 /datum/ammo/energy/tesla/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(isxeno(target_mob)) //need 1 second more than the actual effect time
 		var/mob/living/carbon/xenomorph/X = target_mob
-		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
+		if(!(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE))
+			X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
 
 /datum/ammo/energy/lasburster
 	name = "lasburster bolt"
