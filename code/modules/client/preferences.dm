@@ -111,6 +111,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/g_eyes = 0
 	var/b_eyes = 0
 
+	/// Genitalia overlay system
+	var/genitalia_ass = null
+	var/genitalia_boobs = null
+	var/genitalia_cock = null
+
 	//Species specific
 	var/moth_wings = "Plain"
 

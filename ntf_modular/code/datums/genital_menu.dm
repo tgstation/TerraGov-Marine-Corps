@@ -71,6 +71,7 @@ GLOBAL_LIST_INIT(possible_boob_sprites, list(
 				return TRUE
 
 			human.cock = GLOB.possible_cock_sprites[new_cock]
+			human.client?.prefs?.genitalia_cock = human.cock
 			human.update_genitals()
 			return TRUE
 
@@ -80,6 +81,7 @@ GLOBAL_LIST_INIT(possible_boob_sprites, list(
 				return TRUE
 
 			human.ass = GLOB.possible_ass_sprites[new_ass]
+			human.client?.prefs?.genitalia_ass = human.ass
 			human.update_genitals()
 			return TRUE
 
@@ -89,6 +91,7 @@ GLOBAL_LIST_INIT(possible_boob_sprites, list(
 				return TRUE
 
 			human.boobs = GLOB.possible_boob_sprites[new_boobs]
+			human.client?.prefs?.genitalia_boobs = human.boobs
 			human.update_genitals()
 			return TRUE
 
@@ -96,5 +99,8 @@ GLOBAL_LIST_INIT(possible_boob_sprites, list(
 			human.boobs = null
 			human.ass = null
 			human.cock = null
+			human.client?.prefs?.genitalia_boobs = null
+			human.client?.prefs?.genitalia_ass = null
+			human.client?.prefs?.genitalia_cock = null
 			human.update_genitals()
 			return TRUE
