@@ -39,6 +39,14 @@
 	parent.show_character_previews(image('icons/Xeno/castes/larva.dmi', icon_state = "Bloody Larva", dir = SOUTH))
 	return TRUE
 
+/datum/job/xenomorph/add_job_points(amount)
+	// In Crash, there is a different system to balance the amount of xenos to marines.
+	// Allowing late join marines to add job points in Crash may cause an unbalanced amount of xenos to exist.
+	if(SSticker.mode.round_type_flags & MODE_XENO_SPAWN_PROTECT)
+		return
+	return ..()
+
+
 /datum/job/xenomorph/add_job_positions(amount)
 	if(!(SSticker.mode.round_type_flags & MODE_XENO_SPAWN_PROTECT))
 		if(free_xeno_at_start > 0)

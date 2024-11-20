@@ -126,8 +126,10 @@
 	. = ..()
 
 	if(world.time > last_larva_check + larva_check_interval)
-		balance_scales()
-		last_larva_check = world.time
+		// Basically doing balancing every process until nothing happened.
+		var/xenos_were_added = balance_scales()
+		if(!xenos_were_added)
+			last_larva_check = world.time
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
@@ -187,21 +189,22 @@
 	to_chat(src, span_warning("This power doesn't work in this gamemode."))
 	return FALSE
 
+/// Adds or removes more xeno job slots if needed. Should return TRUE if any was added.
 /datum/game_mode/infestation/crash/proc/balance_scales()
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	if(stored_larva)
-		return //No need for respawns
-	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
-	if(!num_xenos)
+	var/burrowed_larva = xeno_job.total_positions - xeno_job.current_positions
+	var/total_xenos = xeno_hive.get_total_xeno_number() + burrowed_larva
+	if(!total_xenos)
+		// Ensure that there is always at least 1 xeno.
 		xeno_job.add_job_positions(1)
-		return
-	var/larva_surplus = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
-	if(larva_surplus < 1)
-		return //Things are balanced, no burrowed needed
+		return TRUE
+	var/potential_burrowed_larva = (get_total_joblarvaworth() - (total_xenos * xeno_job.job_points_needed)) / xeno_job.job_points_needed
+	if(potential_burrowed_larva < 1)
+		return FALSE
 	xeno_job.add_job_positions(1)
 	xeno_hive.update_tier_limits()
+	return TRUE
 
 /datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
 	. = 0
