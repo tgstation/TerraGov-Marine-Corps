@@ -23,3 +23,9 @@
   Meghan-Rossi:
   - bugfix: Fixed larva sometimes being born to the wrong hive and not emerging from
       the right hole.
+2024-11-20:
+  K4rlox:
+  - balance: command doll gets its esword swapped with a mateba, along with getting
+      more med focused gear
+  - bugfix: command doll vendor now includes webbing, belts, mask, modules sections
+  - bugfix: command doll is now actually the lowest command
