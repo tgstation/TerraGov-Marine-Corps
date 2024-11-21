@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - imageadd: "Updates the Railgun sprite to the modern pallete and a few tweaks to the sprite."
+  - imagedel: "Deleted old Railgun sprite."
