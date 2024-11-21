@@ -16,7 +16,7 @@
 
 /datum/sex_action/frotting/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] shoves his cock against [target]'s own!"))
+	user.visible_message(span_warning("[user] shoves [user.p_their()] cock against [target]'s own!"))
 
 /datum/sex_action/frotting/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user.sexcon.do_message_signature("[type]"))
@@ -31,4 +31,4 @@
 
 /datum/sex_action/frotting/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] lets go off both their cocks."))
+	user.visible_message(span_warning("[user] lets go of both their cocks."))

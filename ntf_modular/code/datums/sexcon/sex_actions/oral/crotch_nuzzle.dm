@@ -14,7 +14,7 @@
 
 /datum/sex_action/crotch_nuzzle/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] moves their head against [target]'s crotch..."))
+	user.visible_message(span_warning("[user] moves [user.p_their()] head against [target]'s crotch..."))
 
 /datum/sex_action/crotch_nuzzle/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user.sexcon.do_message_signature("[type]"))

@@ -20,12 +20,12 @@
 
 /datum/sex_action/facesitting/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] sits their butt on [target]'s face!"))
+	user.visible_message(span_warning("[user] sits [user.p_their()] butt on [target]'s face!"))
 
 /datum/sex_action/facesitting/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	var/verbstring = pick(list("rubs", "smushes", "forces"))
 	if(user.sexcon.do_message_signature("[type]"))
-		user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] [verbstring] their butt against [target] face."))
+		user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] [verbstring] [user.p_their()] butt against [target] face."))
 	target.make_sucking_noise()
 	do_thrust_animate(user, target)
 
@@ -69,7 +69,7 @@
 	return TRUE
 
 /datum/sex_action/facesittingtwo/on_start(mob/living/carbon/user, mob/living/carbon/target)
-	user.visible_message(span_warning("[user] sits their cunt on [target]'s face!"))
+	user.visible_message(span_warning("[user] sits [user.p_their()] cunt on [target]'s face!"))
 
 /datum/sex_action/facesittingtwo/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	var/verbstring = pick(list("rubs", "smushes", "forces"))

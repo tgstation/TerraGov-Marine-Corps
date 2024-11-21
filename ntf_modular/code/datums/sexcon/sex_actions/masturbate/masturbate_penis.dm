@@ -19,7 +19,7 @@
 	user.visible_message(span_warning("[user] starts jerking off..."))
 
 /datum/sex_action/masturbate_penis/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
-	var/chosen_verb = pick(list("jerks his cock", "strokes his cock", "masturbates", "jerks off"))
+	var/chosen_verb = pick(list("jerks [user.p_their()] cock", "strokes [user.p_their()] cock", "masturbates", "jerks off"))
 	if(user.sexcon.do_message_signature("[type]"))
 		user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] [chosen_verb]..."))
 	playsound(user, 'ntf_modular/sound/misc/mat/fingering.ogg', 30, TRUE, -2)
