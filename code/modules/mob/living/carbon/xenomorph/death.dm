@@ -3,7 +3,7 @@
 	playsound(loc, prob(50) ? 'sound/voice/alien/death.ogg' : 'sound/voice/alien/death2.ogg', 25, 1)
 
 
-/mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from its maw.", silent)
+/mob/living/carbon/xenomorph/death(gibbing, deathmessage = "lets out a waning guttural screech, green blood bubbling from [p_their()] maw.", silent)
 	return ..() //we're just changing the death message
 
 /mob/living/carbon/xenomorph/on_death()
