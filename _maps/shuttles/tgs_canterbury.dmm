@@ -714,9 +714,6 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "da" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
 /obj/structure/barricade/plasteel,
 /obj/machinery/door_control{
 	dir = 8;
