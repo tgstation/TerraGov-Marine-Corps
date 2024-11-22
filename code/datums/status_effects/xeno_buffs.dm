@@ -977,7 +977,6 @@
 	var/sunder_amount = -sunder_regen_per_chamber * chamber_scaling
 	HEAL_XENO_DAMAGE(buff_owner, health_amount, FALSE)
 	buff_owner.adjust_sunder(sunder_amount)
-	buff_owner.updatehealth()
 
 // ***************************************
 // ***************************************
@@ -1023,7 +1022,6 @@
 		return
 	var/health_amount = buff_owner.maxHealth * leech_buff_per_chamber * chamber_scaling
 	HEAL_XENO_DAMAGE(buff_owner, health_amount, FALSE)
-	buff_owner.updatehealth()
 
 // ***************************************
 // *********** Upgrade Chambers Buffs - Attack
