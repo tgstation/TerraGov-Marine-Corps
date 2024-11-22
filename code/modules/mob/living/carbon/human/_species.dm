@@ -166,6 +166,8 @@
 	var/joinable_roundstart = FALSE
 	///If this species counts as a human
 	var/count_human = FALSE
+	/// Whether this species can select genital overlays
+	var/has_genital_selection = FALSE
 
 /datum/species/New()
 	if(hud_type)

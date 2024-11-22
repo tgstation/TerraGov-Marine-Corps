@@ -63,3 +63,7 @@
 #include "code\datums\sexcon\sex_actions\candle\candle_body.dm"
 #include "code\datums\sexcon\sex_actions\candle\candle_breasts.dm"
 #include "code\datums\sexcon\sex_actions\candle\candle_butt.dm"
+#include "code\modules\mob\living\carbon\human\human_defines.dm"
+#include "code\modules\mob\living\carbon\human\update_icons.dm"
+#include "code\modules\mob\living\carbon\human\genital_selection.dm"
+#include "code\datums\genital_menu.dm"

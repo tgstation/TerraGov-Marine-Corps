@@ -481,6 +481,9 @@
 	READ_FILE(S["profile_pic"], profile_pic)
 	READ_FILE(S["xenoprofile_pic"], xenoprofile_pic)
 	READ_FILE(S["xenogender"], xenogender)
+	READ_FILE(S["genitalia_ass"], genitalia_ass)
+	READ_FILE(S["genitalia_boobs"], genitalia_boobs)
+	READ_FILE(S["genitalia_cock"], genitalia_cock)
 	READ_FILE(S["harmful_sex_allowed"], harmful_sex_allowed)
 
 
@@ -552,6 +555,9 @@
 	profile_pic = sanitize_text(profile_pic, initial(profile_pic))
 	xenoprofile_pic = sanitize_text(xenoprofile_pic, initial(xenoprofile_pic))
 	xenogender = sanitize_text(xenogender, initial(xenogender))
+	genitalia_ass = sanitize_text(genitalia_ass, initial(genitalia_ass))
+	genitalia_boobs = sanitize_text(genitalia_boobs, initial(genitalia_boobs))
+	genitalia_cock = sanitize_text(genitalia_cock, initial(genitalia_cock))
 	harmful_sex_allowed = sanitize_text(harmful_sex_allowed, initial(harmful_sex_allowed))
 
 	if(!synthetic_name)
@@ -647,6 +653,9 @@
 	profile_pic = sanitize_text(profile_pic, initial(profile_pic))
 	xenoprofile_pic = sanitize_text(xenoprofile_pic, initial(xenoprofile_pic))
 	xenogender = sanitize_text(xenogender, initial(xenogender))
+	genitalia_ass = sanitize_text(genitalia_ass, initial(genitalia_ass))
+	genitalia_boobs = sanitize_text(genitalia_boobs, initial(genitalia_boobs))
+	genitalia_cock = sanitize_text(genitalia_cock, initial(genitalia_cock))
 	harmful_sex_allowed = sanitize_text(harmful_sex_allowed, initial(harmful_sex_allowed))
 
 	WRITE_FILE(S["be_special"], be_special)
@@ -710,6 +719,9 @@
 	WRITE_FILE(S["profile_pic"], profile_pic)
 	WRITE_FILE(S["xenoprofile_pic"], xenoprofile_pic)
 	WRITE_FILE(S["xenogender"], xenogender)
+	WRITE_FILE(S["genitalia_ass"], genitalia_ass)
+	WRITE_FILE(S["genitalia_boobs"], genitalia_boobs)
+	WRITE_FILE(S["genitalia_cock"], genitalia_cock)
 	WRITE_FILE(S["harmful_sex_allowed"], xenogender)
 
 	return TRUE

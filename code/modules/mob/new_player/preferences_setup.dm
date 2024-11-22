@@ -216,6 +216,11 @@
 	character.underwear = underwear
 	character.undershirt = undershirt
 
+	if(character.species.has_genital_selection)
+		character.ass = genitalia_ass
+		character.boobs = genitalia_boobs
+		character.cock = genitalia_cock
+
 	character.update_body()
 	character.update_hair()
 

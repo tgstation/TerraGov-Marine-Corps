@@ -29,3 +29,6 @@
       more med focused gear
   - bugfix: command doll vendor now includes webbing, belts, mask, modules sections
   - bugfix: command doll is now actually the lowest command
+2024-11-22:
+  Keila-coon and a passing-by coder:
+  - rscadd: Added genitalia overlay system. Accessible through IC -> Genital Selection
