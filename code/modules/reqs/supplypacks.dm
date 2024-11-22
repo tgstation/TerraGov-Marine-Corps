@@ -827,7 +827,7 @@ WEAPONS
 /datum/supply_packs/weapons/rocketsledge
 	name = "Rocket Sledge"
 	contains = list(/obj/item/weapon/twohanded/rocketsledge)
-	cost = 600
+	cost = 850
 
 /datum/supply_packs/weapons/chainsaw
 	name = "Chainsaw"
@@ -835,11 +835,12 @@ WEAPONS
 	cost = 500
 
 /datum/supply_packs/weapons/smart_pistol
-	name = "TX13 smartpistol"
+	name = "TX13 smart machinepistol"
 	contains = list(/obj/item/weapon/gun/pistol/smart_pistol)
-	cost = 150
+	cost = 250
+
 /datum/supply_packs/weapons/smart_pistol_ammo
-	name = "TX13 smartpistol ammo"
+	name = "TX13 smart machinepistol ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
 

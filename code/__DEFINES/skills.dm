@@ -135,7 +135,7 @@
 #define SKILL_POLICE_FLASH 1
 #define SKILL_POLICE_MP 2
 
-///Powerloader skill; movespeed when using a powerloader (broken currently)
+///Powerloader skill; movespeed when using a powerloader
 #define SKILL_POWERLOADER "powerloader"
 
 #define SKILL_POWERLOADER_DEFAULT 0
