@@ -214,8 +214,6 @@
 
 	if(L.IsAdminSleeping())
 		L.ToggleAdminSleep()
-	else if(alert("Are you sure you want to sleep [key_name(L)]?", "Toggle Sleeping", "Yes", "No") != "Yes")
-		return
 	else if(!istype(L))
 		to_chat(usr, span_warning("Target is no longer valid."))
 		return
