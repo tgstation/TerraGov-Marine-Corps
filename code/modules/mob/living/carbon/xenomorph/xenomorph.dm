@@ -170,7 +170,7 @@
 		if(4201 to 10500) //70 hours
 			rank_name = "Ancient"
 		if(10501 to INFINITY) //175 hours
-			rank_name = "Prime"
+			rank_name = "Primal"
 		else
 			rank_name = "Young"
 	name = prefix + "[rank_name ? "[rank_name] " : ""][xeno_caste.display_name] ([nicknumber])"
