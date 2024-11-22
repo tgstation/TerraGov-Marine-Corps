@@ -1268,10 +1268,10 @@
 	desc = "The Raummetall-KT SG-29 is the TGMC's current standard IFF-capable medium machine gun. It's known for its ability to lay down heavy fire support very well. It is generally used when someone wants to hold a position or provide fire support. Requires special training and it cannot turn off IFF. It uses 10x26mm ammunition."
 	icon_state = "sg29"
 	worn_icon_state = "sg29"
-	icon = 'icons/obj/items/guns/machineguns.dmi'
+	icon = 'icons/obj/items/guns/machineguns64.dmi'
 	worn_icon_list = list(
-		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_1.dmi',
-		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_1.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/guns/machineguns_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/machineguns_right_64.dmi',
 	)
 	caliber = CALIBER_10x26_CASELESS //codex
 	max_shells = 300 //codex
@@ -1295,12 +1295,11 @@
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
 		/obj/item/attachable/stock/sgstock,
-		/obj/item/attachable/sgbarrel,
 	)
 
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock)
 	gun_skill_category = SKILL_SMARTGUN //Uses SG skill for the penalties.
 	attachable_offset = list("muzzle_x" = 42, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 12, "stock_y" = 13)
 	fire_delay = 0.2 SECONDS
@@ -1314,13 +1313,13 @@
 	placed_overlay_iconstate = "smartgun"
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/pmc
-	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/deathsquad
-	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/magnetic_harness, /obj/item/attachable/lasersight)
 
 /obj/item/weapon/gun/rifle/standard_smartmachinegun/patrol
-	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/sgbarrel, /obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
+	starting_attachment_types = list(/obj/item/attachable/stock/sgstock, /obj/item/attachable/motiondetector, /obj/item/attachable/lasersight)
 
 //-------------------------------------------------------
 //SG Target Rifle, has underbarreled spotting rifle that applies effects.

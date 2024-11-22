@@ -217,14 +217,6 @@
 	damage_mod = -0.15
 	gun_firemode_list_mod = list(GUN_FIREMODE_AUTOMATIC)
 
-/obj/item/attachable/sgbarrel
-	name = "SG-29 barrel"
-	icon_state = "sg29barrel"
-	icon = 'icons/obj/items/guns/attachments/muzzle.dmi'
-	desc = "A heavy barrel. CANNOT BE REMOVED."
-	slot = ATTACHMENT_SLOT_MUZZLE
-	attach_features_flags = NONE
-
 /obj/item/attachable/lace
 	name = "pistol lace"
 	desc = "A simple lace to wrap around your wrist."
