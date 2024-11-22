@@ -1231,14 +1231,14 @@
 	id = "mutation_upgrade_pheromones"
 	alert_type = /atom/movable/screen/alert/status_effect/pheromones
 	chamber_structure = MUTATION_STRUCTURE_VEIL
-	/// The aura.
+	/// The aura if it is not using the xeno's aura from pheromones ability.
 	var/datum/aura_bearer/current_aura
 	/// The aura to emit.
 	var/emitted_aura = AURA_XENO_RECOVERY
 	/// The initial value of the aura's power.
 	var/aura_power_base = 1
 	/// The phero power to increase by.
-	var/aura_power_per_chamber = 1
+	var/aura_power_per_chamber = 0.75
 
 /datum/status_effect/mutation_upgrade/pheromones/on_apply()
 	if(!..())
@@ -1253,12 +1253,35 @@
 		current_aura.stop_emitting()
 	return ..()
 
-/// (Re)creates the aura.
+/// Boosts the current aura (if they have pheromones already) or creates a aura.
 /datum/status_effect/mutation_upgrade/pheromones/proc/create_aura()
 	if(current_aura)
 		QDEL_NULL(current_aura)
-	if(chamber_scaling)
-		current_aura = SSaura.add_emitter(buff_owner, emitted_aura, 6 + aura_power_per_chamber * chamber_scaling * 2, aura_power_base + aura_power_per_chamber * chamber_scaling, -1, FACTION_XENO, buff_owner.hivenumber)
+	switch(emitted_aura)
+		if(AURA_XENO_RECOVERY)
+			var/datum/action/ability/xeno_action/pheromones/emit_recovery/recovery_pheromones = buff_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_recovery]
+			if(recovery_pheromones)
+				recovery_pheromones.bonus_aura_strength = aura_power_per_chamber * chamber_scaling
+				QDEL_NULL(buff_owner.current_aura)
+				recovery_pheromones.apply_pheros(AURA_XENO_RECOVERY)
+				return
+		if(AURA_XENO_WARDING)
+			var/datum/action/ability/xeno_action/pheromones/emit_warding/warding_pheromones = buff_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_warding]
+			if(warding_pheromones)
+				warding_pheromones.bonus_aura_strength = aura_power_per_chamber * chamber_scaling
+				QDEL_NULL(buff_owner.current_aura)
+				warding_pheromones.apply_pheros(AURA_XENO_WARDING)
+				return
+		if(AURA_XENO_FRENZY)
+			var/datum/action/ability/xeno_action/pheromones/emit_frenzy/frenzy_pheromones = buff_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_frenzy]
+			if(frenzy_pheromones)
+				frenzy_pheromones.bonus_aura_strength = aura_power_per_chamber * chamber_scaling
+				QDEL_NULL(buff_owner.current_aura)
+				frenzy_pheromones.apply_pheros(AURA_XENO_FRENZY)
+				return
+	if(!chamber_scaling)
+		return
+	current_aura = SSaura.add_emitter(buff_owner, emitted_aura, 6 + aura_power_per_chamber * chamber_scaling * 2, aura_power_base + aura_power_per_chamber * chamber_scaling, -1, FACTION_XENO, buff_owner.hivenumber)
 
 /// Sets the chamber_scaling to the amount of active veil chambers and recreates the aura.
 /datum/status_effect/mutation_upgrade/pheromones/proc/update_buff()

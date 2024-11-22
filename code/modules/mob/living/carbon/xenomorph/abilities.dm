@@ -633,6 +633,8 @@
 	ability_cost = 30
 	desc = "Opens your pheromone options."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING
+	/// Additional aura strength which will be added to the caste's aura strength.
+	var/bonus_aura_strength = 0
 
 /datum/action/ability/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -645,7 +647,8 @@
 		X.hud_set_pheromone()
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
-	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, -1, X.faction, X.hivenumber)
+	var/aura_strength = X.xeno_caste.aura_strength + bonus_aura_strength
+	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + aura_strength * 2, aura_strength, -1, X.faction, X.hivenumber)
 	X.balloon_alert(X, "[phero_choice]")
 	playsound(X.loc, SFX_ALIEN_DROOL, 25)
 
