@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - balance: "Xeno silo scaling raised to 2x from 1.5x"
