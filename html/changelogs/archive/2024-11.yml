@@ -48,3 +48,8 @@
   - bugfix: fixed bookshelves on some Big Red map variants still not being dense
   - balance: Hunter stealth break from incoming damage is now a total amount (45)
       instead of a single hit needing to be over 15
+2024-11-22:
+  Pariah919:
+  - imageadd: Updates the Railgun sprite to the modern pallete and a few tweaks to
+      the sprite.
+  - imagedel: Deleted old Railgun sprite.
