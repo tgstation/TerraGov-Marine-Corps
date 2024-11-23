@@ -3147,6 +3147,11 @@
 /obj/machinery/vending/cigarette/colony,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/recreation)
+"cmw" = (
+/turf/open/lavaland/basalt/cave{
+	dir = 4
+	},
+/area/metnal/caves/southeast)
 "cmA" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/effect/decal/cleanable/dirt,
@@ -14030,6 +14035,11 @@
 	dir = 4
 	},
 /area/metnal/inside/meddesk)
+"jOt" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/weed_node,
+/turf/open/lavaland/basalt,
+/area/metnal/caves/south)
 "jOx" = (
 /obj/structure/stairs/corner_seamless{
 	dir = 8
@@ -17435,11 +17445,6 @@
 /obj/effect/spawner/random/engineering/extinguisher,
 /turf/open/floor/prison/darkbrown/full,
 /area/metnal/inside/emergencyequip)
-"mgQ" = (
-/turf/open/lavaland/basalt/cave{
-	dir = 4
-	},
-/area/metnal/caves/southeast)
 "mhb" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -30355,6 +30360,11 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/north)
+"uJY" = (
+/obj/effect/ai_node,
+/obj/effect/landmark/xeno_resin_wall,
+/turf/open/floor/plating/ground/mars/random/cave,
+/area/metnal/caves/south/garbledradio)
 "uKf" = (
 /obj/effect/decal/cleanable/blood/gibs/robot/up,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -55930,8 +55940,8 @@ edg
 edg
 edg
 jVs
-jVs
-jVs
+wIw
+ewG
 wIw
 wIw
 ewG
@@ -56131,10 +56141,10 @@ edg
 edg
 edg
 edg
-edg
-jVs
-jVs
-jVs
+ewG
+wHx
+ewG
+ewG
 ewG
 wHx
 ewG
@@ -56333,10 +56343,10 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-jVs
+ewG
+ewG
+ewG
+ewG
 ewG
 ewG
 ewG
@@ -56535,10 +56545,10 @@ edg
 edg
 edg
 edg
-edg
-edg
-edg
-jVs
+ewG
+wpl
+wpl
+wpl
 ewG
 wpl
 ewG
@@ -56737,10 +56747,10 @@ edg
 edg
 edg
 edg
-edg
-jVs
-jVs
-jVs
+wHx
+wpl
+uSl
+wpl
 wHx
 wpl
 wpl
@@ -56939,10 +56949,10 @@ edg
 edg
 edg
 jVs
-jVs
 ewG
-ewG
-wIw
+wpl
+wpl
+uJY
 wIw
 wHx
 ewG
@@ -57141,7 +57151,7 @@ edg
 edg
 edg
 jVs
-jVs
+ewG
 wIw
 ewG
 ewG
@@ -57343,7 +57353,7 @@ edg
 edg
 edg
 jVs
-ewG
+wHx
 ewG
 ewG
 ewG
@@ -58199,9 +58209,9 @@ wzp
 wzp
 wzp
 jDK
-hjk
+jOt
 tyB
-tyB
+bBU
 hjk
 jVs
 jVs
@@ -58804,7 +58814,7 @@ wzp
 wzp
 tyB
 tyB
-tyB
+bBU
 tyB
 jVs
 jVs
@@ -59409,7 +59419,7 @@ wzp
 wzp
 tyB
 tyB
-tyB
+bBU
 tyB
 tyB
 tyB
@@ -64843,8 +64853,8 @@ edg
 jVs
 jVs
 mHf
-mgQ
-mgQ
+cmw
+cmw
 sgR
 dda
 dda
