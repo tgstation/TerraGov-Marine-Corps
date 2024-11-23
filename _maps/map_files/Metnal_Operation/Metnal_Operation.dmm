@@ -2076,7 +2076,7 @@
 "byQ" = (
 /obj/effect/landmark/weed_node,
 /obj/structure/cable,
-/turf/open/lavaland/basalt,
+/turf/closed/mineral/smooth/outdoor,
 /area/metnal/outside/northeast)
 "byY" = (
 /obj/item/trash/cigbutt/cigarbutt,
@@ -2228,6 +2228,12 @@
 	dir = 9
 	},
 /area/metnal/inside/cargo)
+"bDy" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/mineral/smooth/indestructible,
+/area/metnal/outside/northeast)
 "bDR" = (
 /obj/effect/landmark/corpsespawner/scientist/burst,
 /obj/effect/spawner/random/decal/blood,
@@ -8686,6 +8692,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/heatinggrate,
 /area/metnal/outside/north)
+"gbM" = (
+/obj/structure/cable,
+/turf/closed/mineral/smooth/outdoor,
+/area/metnal/outside/northeast)
 "gbP" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -19681,6 +19691,10 @@
 	dir = 1
 	},
 /area/metnal/inside/cargo)
+"nLj" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/smooth/outdoor,
+/area/metnal/outside/northeast)
 "nLp" = (
 /obj/machinery/air_alarm{
 	dir = 8
@@ -65370,10 +65384,10 @@ xDW
 xDW
 xDW
 eix
-eix
-eIt
-eIt
-eIt
+nLj
+pKJ
+pKJ
+pKJ
 byQ
 siO
 siO
@@ -65575,8 +65589,8 @@ sQs
 sQs
 sQs
 sQs
-eIt
-nQM
+bDy
+gbM
 siO
 siO
 siO
@@ -65777,8 +65791,8 @@ iVu
 iVu
 iVu
 sQs
-eIt
-nQM
+bDy
+gbM
 siO
 siO
 siO
@@ -65979,7 +65993,7 @@ iVu
 iVu
 iVu
 sQs
-eIt
+pKJ
 nQM
 xXc
 siO
