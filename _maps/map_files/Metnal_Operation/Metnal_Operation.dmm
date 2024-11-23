@@ -22542,13 +22542,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_two,
 /area/metnal/inside/research)
-"pGu" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
-/area/metnal/inside/substation)
 "pGw" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -31458,6 +31451,13 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"vuO" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/metnal/inside/substation)
 "vuP" = (
 /obj/structure/toilet/alternate,
 /obj/effect/turf_decal/siding/dark,
@@ -39749,7 +39749,7 @@ kWr
 nxy
 kWr
 iHz
-pGu
+vuO
 kWr
 nxy
 imA
@@ -62440,7 +62440,7 @@ tyB
 tyB
 cXP
 cXP
-cXP
+fHi
 wzp
 wzp
 wzp
@@ -67882,8 +67882,8 @@ edg
 vDK
 vfz
 vfz
-jVs
-jVs
+vfz
+nlb
 nlb
 vfz
 elY
@@ -68284,8 +68284,8 @@ edg
 edg
 edg
 edg
-edg
-jVs
+vfz
+vfz
 vfz
 qve
 nlb
