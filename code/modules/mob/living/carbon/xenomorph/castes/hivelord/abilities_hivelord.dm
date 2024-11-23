@@ -55,7 +55,7 @@
 	recycled_xeno.gib()
 
 	playsound(hivelord, 'sound/effects/alien/recycler.ogg', 40)
-	hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off its claws."), \
+	hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off [hivelord.p_their()] claws."), \
 	span_danger("We brush xenomorphs' bits off of our claws."), null, 20)
 	return succeed_activate() //dew it
 

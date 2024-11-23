@@ -35,13 +35,13 @@
  */
 /datum/component/xeno_iff/proc/on_examine(datum/source, mob/user, list/examine_list)
 	SIGNAL_HANDLER
-	examine_list += "It seems to have a small smart-IFF tag clamped onto it!"
+	examine_list += "[parent.p_they(TRUE)] seems to have a small smart-IFF tag clamped onto [parent.p_them()]!"
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(!H.wear_id || !CHECK_BITFIELD(iff_type, H.wear_id.iff_signal))
-			examine_list += "Your IFF recognizes its tag as hostile."
+			examine_list += "Your IFF recognizes [parent.p_their()] tag as hostile."
 		else
-			examine_list += "Its tag's IFF recognizes you as friendly."
+			examine_list += "[parent.p_their(TRUE)] tag's IFF recognizes you as friendly."
 
 /**
  * Handles when a xenomorph evolves by attaching a new component to the evolved xeno.
