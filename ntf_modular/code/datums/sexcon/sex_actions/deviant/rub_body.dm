@@ -14,7 +14,7 @@
 
 /datum/sex_action/rub_body/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] places their hands onto [target]..."))
+	user.visible_message(span_warning("[user] places [user.p_their()] hands onto [target]..."))
 
 /datum/sex_action/rub_body/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.sexcon.do_message_signature("[type]"))

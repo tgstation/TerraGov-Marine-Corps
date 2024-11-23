@@ -19364,6 +19364,7 @@
 /area/ice_colony/exterior/underground/caves/rock)
 "eIV" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/ice_colony/surface/engineering/tool)
 "eKa" = (
@@ -19864,6 +19865,7 @@
 /area/ice_colony/underground/hallway/north_west)
 "fry" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/darkgreen/darkgreen2{
 	dir = 8
 	},
@@ -20744,6 +20746,7 @@
 /area/ice_colony/surface/bar/bar)
 "gIW" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/substation/smes)
 "gJe" = (
@@ -21075,6 +21078,7 @@
 /area/ice_colony/exterior/surface/clearing/south)
 "hit" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/shuttle/dropship/five,
 /area/ice_colony/underground/responsehangar)
 "hiV" = (
@@ -22363,6 +22367,7 @@
 /area/ice_colony/surface/garage/one)
 "jdf" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/bar)
 "jdB" = (
@@ -22937,6 +22942,7 @@
 /area/ice_colony/surface/garage/one)
 "jRI" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_w)
@@ -23403,6 +23409,7 @@
 /area/ice_colony/underground/crew/chapel)
 "kvM" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/green/whitegreen{
 	dir = 10
 	},
@@ -23979,6 +23986,7 @@
 /area/ice_colony/surface/bar/canteen)
 "lqO" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
 "lrc" = (
@@ -24982,6 +24990,7 @@
 /obj/structure/bed,
 /obj/item/bedsheet/orange,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark/yellow2{
 	dir = 5
 	},
@@ -26661,6 +26670,7 @@
 /area/ice_colony/surface/clinic/lobby)
 "oIi" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/plating/icefloor,
 /area/ice_colony/exterior/surface/container_yard)
 "oIy" = (
@@ -28590,6 +28600,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/shuttle/dropship/fourteen,
 /area/ice_colony/surface/hangar/beta)
 "rsg" = (
@@ -28832,6 +28843,7 @@
 /area/ice_colony/underground/storage)
 "rFJ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/disposals)
 "rFS" = (
@@ -29795,6 +29807,7 @@
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "sKY" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 8;
 	on = 1
@@ -29837,6 +29850,7 @@
 /area/ice_colony/surface/substation/smes)
 "sQn" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "sQr" = (
@@ -33156,6 +33170,7 @@
 	dir = 4
 	},
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/freezer,
 /area/ice_colony/surface/dorms/restroom_e)
 "xjj" = (

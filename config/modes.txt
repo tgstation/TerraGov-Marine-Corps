@@ -27,6 +27,10 @@ mode Survival
 	requiredplayers 4
 endmode
 
+mode Extended - Survivor-Heavy
+	requiredplayers 0
+endmode
+
 mode Zombie Crash
 	requiredplayers 2
 endmode

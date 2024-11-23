@@ -1,0 +1,5 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - bugfix: "Fixed wrong pronouns being used in some ERP panel actions"
+  - bugfix: "Fixed force ear ERP action having user and target reversed"

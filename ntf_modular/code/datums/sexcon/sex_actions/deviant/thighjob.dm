@@ -4,12 +4,16 @@
 /datum/sex_action/thighjob/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
+	return TRUE
+
 /datum/sex_action/thighjob/can_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user == target)
 		return FALSE
+	return TRUE
+
 /datum/sex_action/thighjob/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] grabs [target]'s thighs and shoves his cock inbetween!"))
+	user.visible_message(span_warning("[user] grabs [target]'s thighs and shoves [user.p_their()] cock inbetween!"))
 
 /datum/sex_action/thighjob/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.sexcon.do_message_signature("[type]"))
@@ -22,4 +26,4 @@
 
 /datum/sex_action/thighjob/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] pulls his cock out from inbetween [target]'s thighs."))
+	user.visible_message(span_warning("[user] pulls [user.p_their()] cock out from inbetween [target]'s thighs."))

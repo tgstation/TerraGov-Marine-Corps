@@ -243,7 +243,7 @@
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
-				update_preview_icon()
+			update_preview_icon()
 
 		if("tab_change")
 			tab_index = params["tabIndex"]
@@ -300,6 +300,7 @@
 			if(!choice)
 				return
 			moth_wings = choice
+			update_preview_icon()
 
 		if("xeno_name")
 			var/newValue = params["newValue"]
@@ -486,6 +487,7 @@
 			r_hair = hex2num(copytext(new_color, 2, 4))
 			g_hair = hex2num(copytext(new_color, 4, 6))
 			b_hair = hex2num(copytext(new_color, 6, 8))
+			update_preview_icon()
 
 		if("grad_color")
 			var/new_grad = input(user, "Choose your character's secondary hair color:", "Gradient Color") as null|color

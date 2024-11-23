@@ -985,8 +985,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	M.key = key
 
-	to_chat(src, span_warning("Your time is up."))
+	to_chat(M, span_warning("Your time is up."))
 
-	if(!client)
+	if(!(M.client))
 		qdel(M)
 		return

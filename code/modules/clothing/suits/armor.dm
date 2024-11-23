@@ -250,10 +250,24 @@
 	worn_icon_state = "hos"
 	armor_protection_flags = CHEST|GROIN|ARMS|LEGS
 	item_flags = SYNTH_RESTRICTED
-	soft_armor = list(MELEE = 65, BULLET = 50, LASER = 50, ENERGY = 40, BOMB = 55, BIO = 30, FIRE = 30, ACID = 30)
-	inventory_flags = NONE
+	soft_armor = list(MELEE = 80, BULLET = 60, LASER = 50, ENERGY = 40, BOMB = 55, BIO = 30, FIRE = 30, ACID = 30) // on par with beret
 	inv_hide_flags = HIDEJUMPSUIT
 	siemens_coefficient = 0.6
+	allowed = list(
+		/obj/item/weapon,
+		/obj/item/flashlight,
+		/obj/item/storage/fancy/cigarettes,
+		/obj/item/tool/lighter,
+		/obj/item/weapon/baton,
+		/obj/item/restraints/handcuffs,
+		/obj/item/binoculars,
+		/obj/item/weapon/combat_knife,
+		/obj/item/storage/holster/belt,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/storage/belt/sparepouch,
+		/obj/item/storage/holster/blade,
+		/obj/item/storage/holster/belt
+	)
 
 /obj/item/clothing/suit/armor/hos/jensen
 	name = "armored trenchcoat"

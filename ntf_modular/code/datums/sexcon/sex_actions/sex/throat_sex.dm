@@ -6,12 +6,16 @@
 /datum/sex_action/throat_sex/shows_on_menu(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
+	return TRUE
+
 /datum/sex_action/throat_sex/can_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user == target)
 		return FALSE
+	return TRUE
+
 /datum/sex_action/throat_sex/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] slides his cock into [target]'s throat!"))
+	user.visible_message(span_warning("[user] slides [user.p_their()] cock into [target]'s throat!"))
 	playsound(target, list('ntf_modular/sound/misc/mat/insert (1).ogg','ntf_modular/sound/misc/mat/insert (2).ogg'), 20, TRUE)
 
 /datum/sex_action/throat_sex/on_perform(mob/living/carbon/user, mob/living/carbon/target)
@@ -40,7 +44,7 @@
 
 /datum/sex_action/throat_sex/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] pulls his cock out of [target]'s throat."))
+	user.visible_message(span_warning("[user] pulls [user.p_their()] cock out of [target]'s throat."))
 
 /datum/sex_action/throat_sex/is_finished(mob/living/carbon/user, mob/living/carbon/target)
 	if(user.sexcon.finished_check())

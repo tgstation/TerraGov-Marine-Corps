@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - bugfix: "Humans can do erp actions to xenos without grabbing them even what that would normally be required, since humans can't grab xenos."

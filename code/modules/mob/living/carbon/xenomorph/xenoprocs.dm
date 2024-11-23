@@ -635,16 +635,20 @@
 	switch(xgen)
 		if(1) //blank
 			genital_overlay.icon_state = null
+			gender=NEUTER
 			user.balloon_alert(user, "None")
 		if(2)
 			genital_overlay.icon_state = "[xeno_caste.caste_name]_female"
 			user.balloon_alert(user, "Female")
+			gender=FEMALE
 		if(3)
 			genital_overlay.icon_state = "[xeno_caste.caste_name]_male"
 			user.balloon_alert(user, "Male")
+			gender=MALE
 		if(4)
 			genital_overlay.icon_state = "[xeno_caste.caste_name]_futa"
 			user.balloon_alert(user, "Futa")
+			gender=FEMALE
 
 	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK) //ig if u cant see wounds u shouldnt see tiddies too maybe for things like being ethereal
 		apply_overlay(GENITAL_LAYER)

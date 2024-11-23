@@ -27,7 +27,7 @@
 
 	GLOB.round_statistics.defender_tail_sweeps++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
-	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] sweeps its tail in a wide circle!"), \
+	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] sweeps [xeno_owner.p_their()] tail in a wide circle!"), \
 	span_xenowarning("We sweep our tail in a wide circle!"))
 
 	xeno_owner.add_filter("defender_tail_sweep", 2, gauss_blur_filter(1)) //Add cool SFX
@@ -408,7 +408,7 @@
 		return fail_activate()
 	if(!do_after(owner, 0.5 SECONDS, TRUE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
-	owner.visible_message(span_xenowarning("\The [owner] starts swinging its tail in a circle!"), \
+	owner.visible_message(span_xenowarning("\The [owner] starts swinging [owner.p_their()] tail in a circle!"), \
 		span_xenowarning("We start swinging our tail in a wide circle!"))
 	do_spin() //kick it off
 

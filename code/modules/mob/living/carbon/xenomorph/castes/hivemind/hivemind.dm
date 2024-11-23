@@ -355,7 +355,7 @@
 			deconstruct(FALSE)
 			return
 
-	xeno_attacker.visible_message(span_danger("[xeno_attacker] nudges its head against [src]."), \
+	xeno_attacker.visible_message(span_danger("[xeno_attacker] nudges [xeno_attacker.p_their()] head against [src]."), \
 	span_danger("You nudge your head against [src]."))
 
 /obj/structure/xeno/hivemindcore/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)

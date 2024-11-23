@@ -625,7 +625,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	unarmed = SKILL_UNARMED_MASTER
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_ENGI
-	medical = SKILL_MEDICAL_PRACTICED
+	medical = SKILL_MEDICAL_COMPETENT
 	surgery = SKILL_SURGERY_TRAINED
 	leadership = SKILL_LEAD_EXPERT
 	police = SKILL_POLICE_MP
@@ -638,7 +638,6 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
-	stamina = SKILL_STAMINA_TRAINED
 
 /datum/skills/specialist/pmc
 	name = "PMC Specialist"

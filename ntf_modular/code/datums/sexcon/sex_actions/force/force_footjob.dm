@@ -18,7 +18,7 @@
 
 /datum/sex_action/force_footjob/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] grabs [target]'s feet and clamps them around his cock!"))
+	user.visible_message(span_warning("[user] grabs [target]'s feet and clamps them around [user.p_their()] cock!"))
 
 /datum/sex_action/force_footjob/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user.sexcon.do_message_signature("[type]"))
@@ -30,4 +30,4 @@
 
 /datum/sex_action/force_footjob/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] pulls his cock out from inbetween [target]'s feet."))
+	user.visible_message(span_warning("[user] pulls [user.p_their()] cock out from inbetween [target]'s feet."))
