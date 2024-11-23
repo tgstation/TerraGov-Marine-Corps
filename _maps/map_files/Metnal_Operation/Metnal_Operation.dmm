@@ -5130,12 +5130,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/west)
-"dzk" = (
-/obj/effect/turf_decal/stripes/end{
-	dir = 1
-	},
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/substation)
 "dzu" = (
 /obj/structure/closet/firecloset/full,
 /obj/machinery/light{
@@ -8689,13 +8683,6 @@
 /turf/open/floor/mainship/silver,
 /area/metnal/inside/cargo)
 "fZz" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/arrows,
-/obj/effect/turf_decal/arrows{
-	dir = 1
-	},
 /turf/closed/wall/r_wall/prison,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
@@ -11169,14 +11156,6 @@
 /obj/machinery/cic_maptable/drawable,
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
-"hOz" = (
-/obj/effect/turf_decal/arrows{
-	dir = 4
-	},
-/turf/open/floor/tile/dark/brown2{
-	dir = 4
-	},
-/area/metnal/inside/substation)
 "hOK" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/carpet/black,
@@ -11887,9 +11866,6 @@
 /turf/open/lavaland/basalt,
 /area/metnal/outside/central)
 "imA" = (
-/obj/effect/turf_decal/arrows{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
 	},
@@ -22570,19 +22546,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_two,
 /area/metnal/inside/research)
-"pGu" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/arrows{
-	dir = 1
-	},
-/obj/effect/turf_decal/arrows,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/substation)
 "pGw" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -26417,7 +26380,6 @@
 /turf/open/floor/tile/dark/gray,
 /area/metnal/inside/laundromat)
 "siF" = (
-/obj/structure/cable,
 /turf/closed/wall/r_wall/prison,
 /turf/open/floor/plating/heatinggrate,
 /area/metnal/inside/substation)
@@ -28355,11 +28317,12 @@
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southeast/garbledradio)
 "tuS" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/prison/plate,
-/area/metnal/inside/auxstorage)
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/metnal/inside/substation)
 "tvi" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Cargonia";
@@ -30734,9 +30697,6 @@
 /turf/open/lavaland/basalt/cave/corner,
 /area/metnal/caves/southwest/garbledradio)
 "uTJ" = (
-/obj/effect/turf_decal/arrows{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 9
 	},
@@ -30976,16 +30936,6 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
-"vby" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/structure/cable,
-/turf/open/floor/tile/dark/brown2{
-	dir = 4
-	},
-/area/metnal/inside/substation)
 "vce" = (
 /obj/structure/toilet,
 /turf/open/floor/iron/textured,
@@ -31516,13 +31466,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
-"vuO" = (
-/obj/structure/prop/mainship/gelida/powerccable{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/tile/dark,
-/area/metnal/inside/substation)
 "vuP" = (
 /obj/structure/toilet/alternate,
 /obj/effect/turf_decal/siding/dark,
@@ -31693,7 +31636,6 @@
 /obj/machinery/constructable_frame,
 /obj/item/stock_parts/capacitor,
 /obj/item/stock_parts/manipulator/pico,
-/obj/structure/cable,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -35170,15 +35112,6 @@
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/plating/ground/desertdam/asphalt,
 /area/metnal/caves/nukestorage)
-"xWT" = (
-/obj/effect/turf_decal/arrows{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
-/area/metnal/inside/substation)
 "xXa" = (
 /obj/effect/turf_decal/siding/dark/corner,
 /turf/open/lavaland/basalt,
@@ -39424,7 +39357,7 @@ tbb
 cWa
 cWa
 cWa
-vby
+cWa
 kJG
 jMx
 dBj
@@ -39619,10 +39552,10 @@ cJv
 aXs
 exc
 xWr
-dzk
-pGu
 jMx
-vuO
+jMx
+jMx
+sML
 xWr
 jMx
 jMx
@@ -39822,9 +39755,9 @@ rZz
 kDR
 kWr
 nxy
-xWT
-iHz
 kWr
+iHz
+tuS
 kWr
 nxy
 imA
@@ -40630,7 +40563,7 @@ fCf
 uhQ
 rLI
 eWu
-hOz
+dVC
 qXp
 dVC
 nVk
@@ -40831,7 +40764,7 @@ cxI
 xvZ
 vyN
 xWr
-siF
+jMx
 fZz
 siF
 xWr
@@ -65449,7 +65382,7 @@ ltj
 bpv
 vzg
 aAE
-tuS
+gqf
 djq
 jVD
 gqf
