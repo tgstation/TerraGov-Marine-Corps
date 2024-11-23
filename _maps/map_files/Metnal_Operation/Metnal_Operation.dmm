@@ -12470,6 +12470,11 @@
 	dir = 4
 	},
 /area/metnal/inside/research)
+"iPa" = (
+/turf/open/lavaland/basalt/cave/corner{
+	dir = 4
+	},
+/area/metnal/caves/south/garbledradio)
 "iPg" = (
 /turf/open/floor/plating/heatinggrate{
 	dir = 4
@@ -22511,12 +22516,6 @@
 	dir = 1
 	},
 /area/metnal/inside/colonydorms)
-"pHE" = (
-/obj/machinery/flasher/portable,
-/turf/open/floor/prison/red{
-	dir = 4
-	},
-/area/metnal/inside/security)
 "pHJ" = (
 /obj/structure/bed/chair/wood/wings{
 	dir = 8
@@ -49744,7 +49743,7 @@ gJM
 gJM
 gJM
 gJM
-jVs
+gJM
 jVs
 jVs
 gJM
@@ -49946,7 +49945,7 @@ gJM
 gJM
 lDm
 gJM
-jVs
+gJM
 jVs
 jVs
 gJM
@@ -59604,7 +59603,7 @@ xif
 xif
 ilG
 tDZ
-ewG
+tMm
 ewG
 ewG
 wIw
@@ -59806,14 +59805,14 @@ xif
 xif
 xif
 xif
-ewG
-ewG
+nrE
+iPa
 ewG
 wHx
 ewG
 ewG
 ewG
-jVs
+ewG
 jVs
 jVs
 ewG
@@ -60009,8 +60008,8 @@ xif
 ilG
 xif
 xif
-jVs
-jVs
+tMm
+ewG
 wIw
 ewG
 ewG
@@ -60213,7 +60212,7 @@ xif
 dcn
 jVs
 jVs
-jVs
+ewG
 ewG
 ewG
 ewG
@@ -60417,7 +60416,7 @@ jVs
 edg
 jVs
 jVs
-jVs
+ewG
 ewG
 mfr
 wIw
@@ -60624,7 +60623,7 @@ jVs
 ewG
 ewG
 ewG
-jVs
+ewG
 jVs
 jVs
 jVs
@@ -72293,8 +72292,8 @@ joS
 xDn
 eDX
 tPj
-pHE
-pHE
+wOF
+wOF
 aAd
 qLW
 ofB
