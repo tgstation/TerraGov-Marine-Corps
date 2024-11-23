@@ -2228,12 +2228,6 @@
 	dir = 9
 	},
 /area/metnal/inside/cargo)
-"bDy" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
-	dir = 2
-	},
-/turf/closed/mineral/smooth/indestructible,
-/area/metnal/outside/northeast)
 "bDR" = (
 /obj/effect/landmark/corpsespawner/scientist/burst,
 /obj/effect/spawner/random/decal/blood,
@@ -2867,6 +2861,10 @@
 /obj/machinery/smartfridge,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/medical)
+"cbJ" = (
+/obj/structure/prop/computer/broken,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "cbU" = (
 /obj/structure/table/black,
 /obj/effect/spawner/random/misc/paperbin{
@@ -2921,6 +2919,10 @@
 	dir = 1
 	},
 /area/metnal/inside/experimentation)
+"ceq" = (
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "cfd" = (
 /obj/machinery/door/airlock/medical{
 	dir = 2
@@ -3614,6 +3616,11 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/northeast)
+"cGZ" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "cHy" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -4264,6 +4271,10 @@
 /obj/effect/mapping_helpers/airlock_autoname,
 /turf/open/floor/plating/ground/concrete,
 /area/metnal/inside/executivedorms)
+"cXy" = (
+/obj/effect/spawner/random/machinery/disposal,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "cXA" = (
 /obj/machinery/door/airlock/medical,
 /turf/open/floor/prison/blue/plate,
@@ -5108,6 +5119,12 @@
 	},
 /turf/open/lavaland/basalt,
 /area/metnal/inside/landingzoneone)
+"dAo" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 8
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "dAz" = (
 /obj/effect/turf_decal/siding/dark_green,
 /obj/effect/landmark/weed_node,
@@ -6922,6 +6939,10 @@
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/east)
+"eMU" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
+/turf/closed/mineral/smooth/outdoor,
+/area/metnal/outside/northeast)
 "eMZ" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/random/misc/paperbin,
@@ -7920,6 +7941,10 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/metnal/inside/garage)
+"fvQ" = (
+/obj/effect/spawner/random/misc/table_parts,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "fwd" = (
 /obj/effect/decal/cleanable/vomit,
 /obj/structure/cable,
@@ -8692,10 +8717,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/heatinggrate,
 /area/metnal/outside/north)
-"gbM" = (
-/obj/structure/cable,
-/turf/closed/mineral/smooth/outdoor,
-/area/metnal/outside/northeast)
 "gbP" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -11173,6 +11194,10 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/metnal/inside/medical)
+"hRo" = (
+/obj/structure/largecrate/guns/merc,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "hRA" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -14039,6 +14064,12 @@
 /obj/item/clothing/shoes/magboots,
 /turf/open/floor/tile/brown/full,
 /area/metnal/inside/substation)
+"jSV" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "jTi" = (
 /obj/effect/turf_decal/siding/thinplating_new/light{
 	dir = 8
@@ -15459,6 +15490,10 @@
 /obj/item/reagent_containers/food/drinks/cans/cola,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"kRw" = (
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "kRS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/machinery/random_broken_computer/small,
@@ -16028,6 +16063,11 @@
 	},
 /turf/open/floor/prison/bright_clean/two,
 /area/metnal/inside/medical)
+"lgU" = (
+/obj/structure/table,
+/obj/effect/spawner/random/weaponry/gun/sidearms,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "lha" = (
 /obj/structure/bed/chair/office/light/north,
 /obj/effect/spawner/random/decal/blood,
@@ -16969,6 +17009,10 @@
 /obj/item/clothing/under/color/grey,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"lQC" = (
+/obj/structure/cable,
+/turf/closed/mineral/smooth/outdoor,
+/area/metnal/outside/northeast)
 "lQH" = (
 /obj/effect/turf_decal/siding/dark,
 /turf/open/lavaland/basalt,
@@ -19283,6 +19327,10 @@
 /obj/structure/cocoon/opened_cocoon,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/experimentation)
+"nwT" = (
+/obj/machinery/constructable_frame,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "nxh" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 6
@@ -19691,10 +19739,6 @@
 	dir = 1
 	},
 /area/metnal/inside/cargo)
-"nLj" = (
-/obj/machinery/door/poddoor/timed_late/containment/landing_zone,
-/turf/closed/mineral/smooth/outdoor,
-/area/metnal/outside/northeast)
 "nLp" = (
 /obj/machinery/air_alarm{
 	dir = 8
@@ -22401,6 +22445,12 @@
 	},
 /turf/open/floor/iron/textured,
 /area/metnal/inside/administration)
+"pEK" = (
+/obj/machinery/constructable_frame,
+/obj/effect/landmark/weed_node,
+/obj/effect/ai_node,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "pES" = (
 /obj/effect/landmark/weed_node,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22636,6 +22686,12 @@
 	dir = 8
 	},
 /area/metnal/outside/southwest)
+"pMm" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone{
+	dir = 2
+	},
+/turf/closed/mineral/smooth/indestructible,
+/area/metnal/outside/northeast)
 "pMp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -23414,6 +23470,12 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/mineralextraction)
+"qnm" = (
+/obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
+	dir = 2
+	},
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "qnt" = (
 /obj/structure/table/wood,
 /turf/open/floor/tile/dark,
@@ -26658,9 +26720,10 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
 "stS" = (
-/obj/structure/rock/medium,
-/turf/open/lavaland/basalt,
-/area/metnal/outside/east)
+/obj/structure/reagent_dispensers/fueltank/barrel,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "stT" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -28309,6 +28372,11 @@
 "tyB" = (
 /turf/open/lavaland/basalt,
 /area/metnal/caves/south)
+"tzb" = (
+/obj/structure/table,
+/obj/effect/spawner/random/misc/paperbin,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "tzA" = (
 /obj/machinery/chem_master,
 /obj/effect/turf_decal/siding/dark_green{
@@ -30929,6 +30997,11 @@
 "vfH" = (
 /turf/open/floor/prison/blue/plate,
 /area/metnal/inside/meddesk)
+"vfW" = (
+/obj/structure/largecrate/supply/ammo/shotgun,
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/plate,
+/area/metnal/inside/auxstorage)
 "vgD" = (
 /obj/machinery/atmospherics/components/unary/vent_pump{
 	dir = 1;
@@ -64406,7 +64479,7 @@ aqt
 joS
 joS
 joS
-joS
+aqt
 joS
 joS
 joS
@@ -64610,15 +64683,15 @@ dlA
 gYe
 gYe
 joS
+aqt
 joS
 joS
 joS
+aqt
 joS
 joS
 joS
-joS
-joS
-joS
+aqt
 joS
 cNq
 cNq
@@ -65013,15 +65086,15 @@ kIY
 mIn
 wRt
 gYe
-joS
-joS
-joS
-joS
-joS
-joS
-joS
-joS
-joS
+gYe
+gYe
+gYe
+gYe
+gYe
+dlA
+dlA
+gYe
+gYe
 joS
 joS
 joS
@@ -65215,17 +65288,17 @@ aAE
 wOe
 djq
 jVD
-joS
-joS
-joS
-joS
-joS
-joS
-joS
-joS
-joS
-joS
+wOe
+vfW
+fvQ
+fvQ
+wOe
+wOe
+wOe
 stS
+gYe
+joS
+joS
 joS
 joS
 dlk
@@ -65384,7 +65457,7 @@ xDW
 xDW
 xDW
 eix
-nLj
+eMU
 pKJ
 pKJ
 pKJ
@@ -65417,15 +65490,15 @@ kvn
 dmq
 jWv
 wOe
-joS
-joS
-joS
-joS
-joS
-joS
-joS
-joS
-aqt
+wOe
+wOe
+wOe
+wIx
+wOe
+kRw
+wOe
+ceq
+gYe
 aqt
 joS
 joS
@@ -65589,8 +65662,8 @@ sQs
 sQs
 sQs
 sQs
-bDy
-gbM
+pMm
+lQC
 siO
 siO
 siO
@@ -65619,15 +65692,15 @@ fkI
 wOe
 qFr
 gYe
-joS
-joS
-joS
-joS
-joS
-stS
-aqt
-joS
-joS
+wOe
+wIx
+lgU
+cGZ
+tzb
+wIx
+wOe
+hRo
+gYe
 lUA
 joS
 aqt
@@ -65791,8 +65864,8 @@ iVu
 iVu
 iVu
 sQs
-bDy
-gbM
+pMm
+lQC
 siO
 siO
 siO
@@ -65821,15 +65894,15 @@ ukn
 wOe
 wIx
 gYe
-joS
-aqt
-joS
-joS
-joS
-joS
-joS
-lUA
-aqt
+cXy
+wOe
+wOe
+dAo
+wOe
+wOe
+gYe
+gYe
+gYe
 joS
 joS
 joS
@@ -66023,13 +66096,13 @@ sTO
 tEv
 jjg
 gYe
-joS
-lUA
-lUA
-joS
-cYl
-lUA
-joS
+pEK
+nwT
+nwT
+cbJ
+wOe
+jSV
+gYe
 joS
 joS
 joS
@@ -66225,13 +66298,13 @@ biz
 gYe
 gYe
 gYe
-joS
-aqt
-joS
-joS
-joS
-joS
-aqt
+gYe
+gYe
+gYe
+gYe
+wOe
+qnm
+gYe
 joS
 joS
 aqt
@@ -66432,7 +66505,7 @@ xsO
 joS
 joS
 aqt
-joS
+xsO
 joS
 xsO
 joS
@@ -69533,7 +69606,7 @@ jVs
 vfz
 vfz
 jVs
-gyO
+jVs
 hce
 xuL
 gyO
@@ -69734,7 +69807,7 @@ vfz
 vfz
 qve
 vfz
-vfz
+jVs
 gcb
 aMl
 vfz
