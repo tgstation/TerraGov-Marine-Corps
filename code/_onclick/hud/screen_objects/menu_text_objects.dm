@@ -115,21 +115,6 @@
 	var/mob/new_player/player = hud.mymob
 	player.take_ssd_mob()
 
-/atom/movable/screen/text/lobby/clickable/ready
-	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: NOT READY</span>"
-	icon_state = "unready"
-
-/atom/movable/screen/text/lobby/clickable/ready/update_text()
-	var/mob/new_player/player = hud.mymob
-	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
-
-/atom/movable/screen/text/lobby/clickable/ready/Click()
-	. = ..()
-	var/mob/new_player/player = hud.mymob
-	player.toggle_ready()
-	icon_state = player.ready ? "ready" : "unready"
-	update_text()
-
 /atom/movable/screen/text/lobby/clickable/manifest
 	maptext = "<span class='maptext' style=font-size:8px>VIEW MANIFEST</span>"
 	icon_state = "manifest"
