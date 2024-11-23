@@ -17,7 +17,7 @@
 
 /datum/sex_action/scissoring/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] spreads her legs and aligns her cunt against [target]'s own!"))
+	user.visible_message(span_warning("[user] spreads [user.p_their()] legs and aligns [user.p_their()] cunt against [target]'s own!"))
 
 /datum/sex_action/scissoring/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.sexcon.do_message_signature("[type]"))
