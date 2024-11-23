@@ -265,22 +265,22 @@
 		. += "<span class='info'><img src=[xenoprofile_pic] width=250 height=250/></span>"
 
 	if(stat == DEAD)
-		. += "<span class='deadsay'>It is DEAD. Kicked the bucket. Off to that great hive in the sky.</span>"
+		. += "<span class='deadsay'>[p_they(TRUE)] is DEAD. Kicked the bucket. Off to that great hive in the sky.</span>"
 	else if(stat == UNCONSCIOUS)
-		. += "It quivers a bit, but barely moves."
+		. += "[p_they(TRUE)] quivers a bit, but barely moves."
 	else
 		var/percent = (health / maxHealth * 100)
 		switch(percent)
 			if(95 to 101)
-				. += "It looks quite healthy."
+				. += "[p_they(TRUE)] looks quite healthy."
 			if(75 to 94)
-				. += "It looks slightly injured."
+				. += "[p_they(TRUE)] looks slightly injured."
 			if(50 to 74)
-				. += "It looks injured."
+				. += "[p_they(TRUE)] looks injured."
 			if(25 to 49)
-				. += "It bleeds with sizzling wounds."
+				. += "[p_they(TRUE)] bleeds with sizzling wounds."
 			if(1 to 24)
-				. += "It is heavily injured and limping badly."
+				. += "[p_they(TRUE)] is heavily injured and limping badly."
 
 	. += "</span>"
 
@@ -292,7 +292,7 @@
 
 	if(hivenumber != XENO_HIVE_NORMAL)
 		var/datum/hive_status/hive = GLOB.hive_datums[hivenumber]
-		. += "It appears to belong to the [hive.prefix]hive"
+		. += "[p_they(TRUE)] appears to belong to the [hive.prefix]hive"
 	return
 
 
@@ -524,6 +524,9 @@
 
 /mob/living/carbon/xenomorph/equip_to_slot(obj/item/item_to_equip, slot, bitslot)
 	. = ..()
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
 	switch(slot)
 		if(SLOT_BACK)
 			back = item_to_equip

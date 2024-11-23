@@ -526,7 +526,7 @@
 		var/grab_bypass = (action.aggro_grab_instead_same_tile && userino.get_highest_grab_state_on(target) == GRAB_AGGRESSIVE)
 		if(!same_tile && !grab_bypass)
 			return FALSE
-	if(action.require_grab)
+	if(action.require_grab && (!isxeno(target) || !ishuman(user))) //don't ask humans to grab xenos, because they can't
 		var/grabstate = userino.get_highest_grab_state_on(target)
 		if(grabstate == null || grabstate < action.required_grab_state)
 			return FALSE

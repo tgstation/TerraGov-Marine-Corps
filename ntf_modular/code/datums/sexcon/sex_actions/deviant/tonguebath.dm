@@ -14,11 +14,11 @@
 
 /datum/sex_action/tonguebath/on_start(mob/living/carbon/user, mob/living/carbon/target)
 	..()
-	user.visible_message(span_warning("[user] sticks their tongue out, getting close to [target]..."))
+	user.visible_message(span_warning("[user] sticks [user.p_their()] tongue out, getting close to [target]..."))
 
 /datum/sex_action/tonguebath/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.sexcon.do_message_signature("[type]"))
-		user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] bathes [target]'s body with their tongue..."))
+		user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] bathes [target]'s body with [user.p_their()] tongue..."))
 	user.make_sucking_noise()
 
 	user.sexcon.perform_sex_action(target, 0.5, 0, TRUE)

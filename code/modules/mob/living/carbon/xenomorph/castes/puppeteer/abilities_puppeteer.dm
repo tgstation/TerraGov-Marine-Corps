@@ -291,7 +291,7 @@
 
 ///makes a puppet start a do_after to dexplode
 /datum/action/ability/activable/xeno/organic_bomb/proc/start_exploding_async(mob/living/puppet)
-	puppet.visible_message(span_danger("[puppet] bloats and slowly unfurls its stitched body!"))
+	puppet.visible_message(span_danger("[puppet] bloats and slowly unfurls [puppet.p_their()] stitched body!"))
 	if(do_after(puppet, 1.5 SECONDS, FALSE, puppet, BUSY_ICON_DANGER))
 		detonate(puppet)
 

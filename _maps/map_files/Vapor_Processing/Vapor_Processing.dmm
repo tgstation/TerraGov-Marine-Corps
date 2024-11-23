@@ -607,6 +607,10 @@
 	},
 /turf/open/floor/tile/bar,
 /area/medical/medbay2)
+"eg" = (
+/obj/effect/landmark/start/job/xenomorph,
+/turf/open/ground,
+/area/space)
 "ei" = (
 /obj/machinery/bioprinter{
 	stored_metal = 1000
@@ -14655,9 +14659,9 @@ FZ
 af
 af
 af
-af
-af
-af
+eg
+eg
+eg
 af
 Wq
 BJ
@@ -14751,15 +14755,15 @@ PG
 PG
 Ou
 HY
-af
-af
-af
+eg
+eg
+eg
 af
 Ou
 HY
-af
-af
-af
+eg
+eg
+eg
 af
 Ou
 BJ
@@ -14853,15 +14857,15 @@ PG
 PG
 af
 af
+eg
+eg
+eg
 af
 af
 af
-af
-af
-af
-af
-af
-af
+eg
+eg
+eg
 af
 af
 bE
@@ -14955,9 +14959,9 @@ PG
 PG
 PG
 af
-af
-af
-af
+eg
+eg
+eg
 HY
 bd
 af

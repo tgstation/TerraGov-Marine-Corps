@@ -116,7 +116,7 @@
 		var/mob/living/L = A
 		if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
 			toss_distance = FLOOR(toss_distance * 0.5, 1)
-			big_mob_message = ", struggling mightily to heft its bulk"
+			big_mob_message = ", struggling mightily to heft [L.p_their()]  bulk"
 	else if(ismecha(A))
 		toss_distance = FLOOR(toss_distance * 0.5, 1)
 		big_mob_message = ", struggling mightily to heft its bulk"
@@ -135,7 +135,7 @@
 
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
-	X.visible_message(span_xenowarning("\The [X] flings [A] away with its crest[big_mob_message]!"), \
+	X.visible_message(span_xenowarning("\The [X] flings [A] away with [X.p_their()] crest[big_mob_message]!"), \
 	span_xenowarning("We fling [A] away with our crest[big_mob_message]!"))
 
 	succeed_activate()

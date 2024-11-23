@@ -488,7 +488,7 @@
 	var/mob/living/carbon/xenomorph/xeno = owner
 	UnregisterSignal(xeno, COMSIG_MOVABLE_MOVED)
 	if(message)
-		xeno.visible_message(span_notice("[xeno] stops emitting its broad and weak psychic aura."),
+		xeno.visible_message(span_notice("[xeno] stops emitting [xeno.p_their()] broad and weak psychic aura."),
 		span_notice("We stop the effort of expanding our senses."), null, 5)
 	xeno.zoom_out()
 
