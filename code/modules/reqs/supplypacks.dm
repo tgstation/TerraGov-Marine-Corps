@@ -874,6 +874,11 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	cost = 10
 
+/datum/supply_packs/weapons/flamer_spray_nozzle
+	name = "Spray Nozzle"
+	contains = list(/obj/item/attachable/flamer_nozzle/wide)
+	cost = 200
+
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/
