@@ -189,7 +189,7 @@
 	to_chat(src, span_warning("This power doesn't work in this gamemode."))
 	return FALSE
 
-/// Adds or removes more xeno job slots if needed. Should return TRUE if any was added.
+/// Adds more xeno job slots if needed. Should return TRUE if any was added.
 /datum/game_mode/infestation/crash/proc/balance_scales()
 	// Add more xenos if there is not enough.
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
