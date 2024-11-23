@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - rscadd: "Added Survivor-Heavy Extended gamemode, an extended variant in which survivor slots are unlimited and non-survivor slots are very limited."
