@@ -13,3 +13,16 @@
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
+
+/mob/living/carbon/xenomorph/praetorian/dancer
+	caste_base_type = /datum/xeno_caste/praetorian/dancer
+
+/mob/living/carbon/xenomorph/praetorian/dancer/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack))
+
+/// Applies the dancer mark status effect to those that they slash and damage.
+/mob/living/carbon/xenomorph/praetorian/dancer/proc/on_postattack(mob/living/source, mob/living/target, damage)
+	SIGNAL_HANDLER
+	target.apply_status_effect(STATUS_EFFECT_DANCER_TAGGED, 4 SECONDS)
+

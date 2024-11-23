@@ -1,0 +1,64 @@
+2024-11-01:
+  Runian:
+  - rscadd: You can now chestburst while in EORD/Deathmatch Area without requiring
+      admin intervention.
+  - rscadd: 'Dancer Praetorian Strain & Abilities: Dodge, Impale, Tail Trip.'
+  - imageadd: 'Button Icons for: Dodge, Impale, Tail Trip.'
+  blackdav123:
+  - bugfix: Added xeno spawn points to vapor processing.
+  - balance: Roboticist survivor now has a skink drone instead of a buildasentry.
+  ivanmixo:
+  - bugfix: Fixed light break helper complaining about already broken lights
+2024-11-02:
+  blackdav123:
+  - balance: Moved some crash landing sites on Research Outpost.
+  - balance: Bluesummers is a bit easier for marines now.
+  yyzsong:
+  - balance: Rocket sledge price 600 -> 850
+2024-11-08:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed SH-34 secondary not spawning'
+2024-11-10:
+  Lumipharon:
+  - bugfix: fixed razorwire icons occasionally erroring out
+2024-11-11:
+  Aporhtonoma:
+  - balance: puppeters puppets benefit from pheromones other xeno emit.
+  - balance: Widow can now emit drone level pheromones
+2024-11-12:
+  Pariah919:
+  - imageadd: New SH-39 Combat Sprite. Sprite by MJP.
+  - imagedel: Old SH-39 Sprite.
+2024-11-15:
+  Aporhtonoma:
+  - bugfix: fixes puppets ridiculous armor ratings if warding pheromones were applied
+      before it got warding blessing
+  Pariah919:
+  - imageadd: New Plasma Pistol sprite.
+  - imagedel: Old Plasma Pistol sprite.
+  Runian:
+  - bugfix: Barb wiring via FOB Construction Drone now correctly uses 1 metal instead
+      of 2.
+  TiviPlus:
+  - qol: Merged Join game and ready up lobby buttons
+  blackdav123:
+  - balance: 'Added a new praetorian primo: Slime Grenade.'
+2024-11-17:
+  Lumipharon:
+  - bugfix: fixed bookshelves on some Big Red map variants still not being dense
+  - balance: Hunter stealth break from incoming damage is now a total amount (45)
+      instead of a single hit needing to be over 15
+2024-11-22:
+  Pariah919:
+  - imageadd: Updates the Railgun sprite to the modern pallete and a few tweaks to
+      the sprite.
+  - imagedel: Deleted old Railgun sprite.
+2024-11-23:
+  Lumipharon:
+  - bugfix: fixed FC sword having the wrong weight class
+  - imageadd: Added colour coded sprites for drop and tele blockers in campaign
+  Pariah919:
+  - imageadd: New Recoilless Rifle icon by Sponge, repallete by me.
+  - imagedel: Deleted old Recoilless Rifle icon.
+  blackdav123:
+  - balance: Xeno silo scaling raised to 2x from 1.5x

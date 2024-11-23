@@ -685,6 +685,7 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
+		/obj/item/clothing/glasses/night/m56_goggles,
 	)
 
 /obj/effect/vendor_bundle/basic_jaeger_smartgunner
@@ -693,6 +694,7 @@
 		/obj/item/clothing/shoes/marine/full,
 		/obj/item/clothing/gloves/marine,
 		/obj/item/storage/box/MRE,
+		/obj/item/clothing/glasses/night/m56_goggles,
 		/obj/item/facepaint/green,
 	)
 
@@ -1057,6 +1059,16 @@
 		/obj/item/clothing/under/marine/robotic,
 		/obj/item/tool/weldingtool,
 		/obj/item/stack/cable_coil,
+
+	)
+
+
+/obj/effect/vendor_bundle/robot/essentials_smartgunner
+	gear_to_spawn = list(
+		/obj/item/clothing/under/marine/robotic,
+		/obj/item/tool/weldingtool,
+		/obj/item/stack/cable_coil,
+		/obj/item/clothing/glasses/night/m56_goggles,
 	)
 
 /obj/effect/vendor_bundle/robot/light_armor

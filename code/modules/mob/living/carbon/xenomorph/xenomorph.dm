@@ -524,6 +524,9 @@
 
 /mob/living/carbon/xenomorph/equip_to_slot(obj/item/item_to_equip, slot, bitslot)
 	. = ..()
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
 	switch(slot)
 		if(SLOT_BACK)
 			back = item_to_equip
