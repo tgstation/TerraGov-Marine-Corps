@@ -40,12 +40,15 @@
 	return TRUE
 
 /datum/job/xenomorph/add_job_points(amount)
-	// In Crash, there is a different system to balance the amount of xenos to marines.
-	// Allowing late join marines to add job points in Crash may cause an unbalanced amount of xenos to exist.
-	if(SSticker.mode.round_type_flags & MODE_XENO_SPAWN_PROTECT)
-		return
-	return ..()
+	if(iscrashgamemode(SSticker.mode))
+		var/datum/game_mode/infestation/crash/crash_gamemode = SSticker.mode
+		var/jobpoint_difference = crash_gamemode.get_jobpoint_difference() + amount
+		// Only add job points if there is not enough xenos.
+		if(jobpoint_difference <= 0)
+			return
+		amount = min(amount, jobpoint_difference)
 
+	return ..()
 
 /datum/job/xenomorph/add_job_positions(amount)
 	if(!(SSticker.mode.round_type_flags & MODE_XENO_SPAWN_PROTECT))
