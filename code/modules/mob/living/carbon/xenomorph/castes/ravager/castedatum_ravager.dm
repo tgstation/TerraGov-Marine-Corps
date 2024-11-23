@@ -94,7 +94,7 @@
 	display_name = "Bloodthirster"
 	upgrade_name = ""
 	caste_desc = "A thirsting fighter that knows no rest."
-	caste_type_path = /mob/living/carbon/xenomorph/ravager
+	caste_type_path = /mob/living/carbon/xenomorph/ravager/bloodthirster
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "ravager" //used to match appropriate wound overlays
