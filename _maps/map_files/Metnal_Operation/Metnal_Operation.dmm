@@ -8682,10 +8682,6 @@
 	},
 /turf/open/floor/mainship/silver,
 /area/metnal/inside/cargo)
-"fZz" = (
-/turf/closed/wall/r_wall/prison,
-/turf/open/floor/tile/dark,
-/area/metnal/inside/substation)
 "fZT" = (
 /turf/open/lavaland/basalt/cave/corner{
 	dir = 4
@@ -22546,6 +22542,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood/alt_two,
 /area/metnal/inside/research)
+"pGu" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/turf/open/floor/tile/dark/brown2{
+	dir = 8
+	},
+/area/metnal/inside/substation)
 "pGw" = (
 /obj/structure/bed/chair/comfy{
 	dir = 1
@@ -26379,10 +26382,6 @@
 /obj/structure/mirror,
 /turf/open/floor/tile/dark/gray,
 /area/metnal/inside/laundromat)
-"siF" = (
-/turf/closed/wall/r_wall/prison,
-/turf/open/floor/plating/heatinggrate,
-/area/metnal/inside/substation)
 "siG" = (
 /obj/effect/turf_decal/siding/wideplating/terracotta{
 	dir = 5
@@ -28316,13 +28315,6 @@
 /obj/effect/landmark/xeno_resin_wall,
 /turf/open/lavaland/basalt,
 /area/metnal/caves/southeast/garbledradio)
-"tuS" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/cable,
-/turf/open/floor/tile/dark/brown2{
-	dir = 8
-	},
-/area/metnal/inside/substation)
 "tvi" = (
 /obj/machinery/door/poddoor/shutters/mainship{
 	id = "Cargonia";
@@ -39757,7 +39749,7 @@ kWr
 nxy
 kWr
 iHz
-tuS
+pGu
 kWr
 nxy
 imA
@@ -40765,8 +40757,8 @@ xvZ
 vyN
 xWr
 jMx
-fZz
-siF
+jMx
+jMx
 xWr
 pGW
 jMx
