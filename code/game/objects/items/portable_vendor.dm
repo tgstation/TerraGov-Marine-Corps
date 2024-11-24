@@ -198,8 +198,8 @@
 
 
 /obj/item/portable_vendor/corporate
-	name = "\improper Nanotrasen Automated Storage Briefcase"
-	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items. This one has the Nanotrasen logo stamped on its side."
+	name = "\improper Ninetails Automated Storage Briefcase"
+	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items. This one has the Ninetails logo stamped on its side."
 
 	req_access = list(ACCESS_NT_CORPORATE)
 	req_role = /datum/job/terragov/civilian/liaison
@@ -208,7 +208,7 @@
 		list("Cash", 2, /obj/item/spacecash/c500, "white", "$500 USD, unmarked bills"),
 		list("Cigars", 5, /obj/item/storage/fancy/cigar, "white", "Case of premium cigars, untampered."),
 		list("Space Drug Autoinjector", 10, /obj/item/reagent_containers/hypospray/autoinjector/spacedrugs, "white", "Drugs for junkie marines who still need that fix."),
-		list("Nanotrasen 'Space-Aged' 60-Year Old Whiskey", 20, /obj/item/reagent_containers/food/drinks/bottle/specialwhiskey, "white", "Aged at the bottom of a starship since 2378. You can guess how much it's worth."),
+		list("Ninetails 'Space-Aged' 60-Year Old Whiskey", 20, /obj/item/reagent_containers/food/drinks/bottle/specialwhiskey, "white", "Aged at the bottom of a starship since 2378. You can guess how much it's worth."),
 		list("Mindbreaker Toxin Autoinjector", 30, /obj/item/reagent_containers/hypospray/autoinjector/mindbreaker, "white", "Drugs for people whose PTSD have permanently scarred them."),
 		list("Roulettium Autoinjector", 30, /obj/item/reagent_containers/hypospray/autoinjector/roulettium, "white", "Drugs for people who really, really miss gambling. Enough for their life." ),
 		list("NT-06 Experimental Liquor", 40, /obj/item/reagent_containers/food/drinks/bottle/experimentalliquor, "white", "An experimental liquor we cooked up in the lab a few years back. Composed of ██████."),

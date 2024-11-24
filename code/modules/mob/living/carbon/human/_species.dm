@@ -137,6 +137,11 @@
 	var/list/burstscreams = list()
 	///List of sounds for certain emotes [/datum/emote/living/carbon/human/warcry/get_sound]
 	var/list/warcries = list()
+	//stupid erp panel shit
+	var/list/groans = list()
+	var/list/chokes = list()
+	var/list/sexymoanhvys = list()
+	var/list/sexymoanlights = list()
 
 	///Generic traits tied to having the species
 	var/list/inherent_traits = list()
@@ -161,6 +166,8 @@
 	var/joinable_roundstart = FALSE
 	///If this species counts as a human
 	var/count_human = FALSE
+	/// Whether this species can select genital overlays
+	var/has_genital_selection = FALSE
 
 /datum/species/New()
 	if(hud_type)

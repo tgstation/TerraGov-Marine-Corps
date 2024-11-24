@@ -14,5 +14,13 @@
 		nicknumber = 0
 		generate_nicknumber()
 
+	if(client.prefs?.xeno_desc)
+		xeno_desc = client.prefs.xeno_desc
+	if(client.prefs?.xenoprofile_pic)
+		xenoprofile_pic = client.prefs.xenoprofile_pic
+	if(client.prefs?.xenogender)
+		xenogender = client.prefs.xenogender
+	update_xeno_gender()
+
 	hud_update_rank()
 	generate_name()

@@ -5,7 +5,7 @@
 
 /obj/machinery/computer/intel_computer
 	name = "Intelligence computer"
-	desc = "A computer used to access the colonies central database. TGMC Intel division will occasionally request remote data retrieval from these computers"
+	desc = "A computer used to access the colonies central database. NTC Intel division will occasionally request remote data retrieval from these computers"
 	icon_state = "intel_computer"
 	screen_overlay = "intel_computer_screen"
 	circuit = /obj/item/circuitboard/computer/intel_computer
@@ -16,9 +16,9 @@
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
 	///How much supply points you get for completing the terminal
-	var/supply_reward = 1000
+	var/supply_reward = 200
 	///How much dropship points you get for completing the terminal
-	var/dropship_reward = 100
+	var/dropship_reward = 50
 
 	///How much progress we get every tick, up to 100
 	var/progress_interval = 0.75
@@ -56,16 +56,20 @@
 			progress = 0
 		return
 	progress += progress_interval
-	if(progress <= 100)
+	if(progress <= 100 && !printing_complete)
 		return
-	STOP_PROCESSING(SSmachines, src)
 	printing = FALSE
 	printing_complete = TRUE
 	update_minimap_icon()
 	SSpoints.supply_points[faction] += supply_reward
 	SSpoints.dropship_points += dropship_reward
-	minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "TGMC Intel Division")
+	minor_announce("Classified transmission recieved from [get_area(src)]. Bonus delivered as [supply_reward] supply points and [dropship_reward] dropship points.", title = "NTC Intel Division")
 	SSminimaps.remove_marker(src)
+	SStgui.close_uis(src)
+	active = FALSE
+	update_icon()
+	addtimer(CALLBACK(src, PROC_REF(resetcomputer)), 5 MINUTES)
+
 
 /obj/machinery/computer/intel_computer/Destroy()
 	GLOB.intel_computers -= src
@@ -127,3 +131,14 @@
 	active = FALSE
 	if(printing)
 		STOP_PROCESSING(SSmachines, src)
+
+/obj/machinery/computer/intel_computer/proc/resetcomputer()
+	START_PROCESSING(SSmachines, src)
+	first_login = FALSE
+	//GLOB.intel_computers += src
+	logged_in = FALSE
+	progress = 0
+	printing = FALSE
+	printing_complete = FALSE
+	update_icon()
+	update_minimap_icon()

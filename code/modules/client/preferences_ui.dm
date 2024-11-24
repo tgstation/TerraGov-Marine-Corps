@@ -55,6 +55,7 @@
 			data["synthetic_name"] = synthetic_name
 			data["synthetic_type"] = synthetic_type
 			data["robot_type"] = robot_type
+			data["moth_wings"] = moth_wings
 			data["random_name"] = random_name
 			data["ai_name"] = ai_name
 			data["age"] = age
@@ -72,6 +73,9 @@
 		if(BACKGROUND_INFORMATION)
 			data["slot"] = default_slot
 			data["flavor_text"] = flavor_text
+			data["xeno_desc"] = xeno_desc
+			data["profile_pic"] = profile_pic
+			data["xenoprofile_pic"] = xenoprofile_pic
 			data["med_record"] = med_record
 			data["gen_record"] = gen_record
 			data["sec_record"] = sec_record
@@ -239,7 +243,7 @@
 				random_character()
 				real_name = random_unique_name(gender)
 				save_character()
-				update_preview_icon()
+			update_preview_icon()
 
 		if("tab_change")
 			tab_index = params["tabIndex"]
@@ -289,6 +293,13 @@
 			if(!choice)
 				return
 			robot_type = choice
+			update_preview_icon()
+
+		if("moth_wings")
+			var/choice = tgui_input_list(ui.user, "What kind of moth wings do you want to play with? Only useable as a moth.", "Moth with type choice", GLOB.moth_wings_list)
+			if(!choice)
+				return
+			moth_wings = choice
 			update_preview_icon()
 
 		if("xeno_name")
@@ -476,6 +487,7 @@
 			r_hair = hex2num(copytext(new_color, 2, 4))
 			g_hair = hex2num(copytext(new_color, 4, 6))
 			b_hair = hex2num(copytext(new_color, 6, 8))
+			update_preview_icon()
 
 		if("grad_color")
 			var/new_grad = input(user, "Choose your character's secondary hair color:", "Gradient Color") as null|color
@@ -613,6 +625,31 @@
 			if(!new_record)
 				return
 			flavor_text = new_record
+
+		if("xeno_desc")
+			var/new_record = trim(html_encode(params["xenoDesc"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xeno_desc = new_record
+
+		if("profile_pic")
+			var/new_record = trim(html_encode(params["profilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			profile_pic = new_record
+
+		if("xenoprofile_pic")
+			var/new_record = trim(html_encode(params["xenoprofilePic"]), MAX_MESSAGE_LEN)
+			if(!new_record)
+				return
+			xenoprofile_pic = new_record
+
+		if("xenogender")
+			var/new_xgender = text2num(params["newValue"])
+			if(!isnum(new_xgender))
+				return
+			new_xgender = round(new_xgender)
+			xenogender = new_xgender
 
 		if("windowflashing")
 			windowflashing = !windowflashing

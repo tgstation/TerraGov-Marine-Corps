@@ -142,7 +142,7 @@
 	///Last time we spoke our slogan
 	var/last_slogan = 0
 	///The interval between slogans.
-	var/slogan_delay = 1 MINUTES
+	var/slogan_delay = 15 MINUTES
 	///Icon state when successfuly vending
 	var/icon_vend
 	///Icon state when failing to vend, be it by no access or money.
@@ -371,7 +371,7 @@
 		if(!wrenchable)
 			return
 
-		if(!do_after(user, 20, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 20, TRUE, src, BUSY_ICON_BUILD))
 			return
 
 		playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -472,7 +472,7 @@
 
 	if(tipped_level == 2)
 		user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
-		if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
+		if(!do_after(user,80, FALSE, src, BUSY_ICON_FRIENDLY))
 			return FALSE
 
 		user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
@@ -494,7 +494,7 @@
 	if(!iscarbon(user)) // AI can't heave remotely
 		return
 	user.visible_message(span_notice(" [user] begins to heave the vending machine back into place!"),span_notice(" You start heaving the vending machine back into place.."))
-	if(!do_after(user, 80, IGNORE_HELD_ITEM, src, BUSY_ICON_FRIENDLY))
+	if(!do_after(user, 80, FALSE, src, BUSY_ICON_FRIENDLY))
 		return FALSE
 	user.visible_message(span_notice(" [user] rights the [src]!"),span_notice(" You right the [src]!"))
 	flip_back()

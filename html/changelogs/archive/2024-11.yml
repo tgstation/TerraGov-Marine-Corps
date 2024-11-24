@@ -63,6 +63,14 @@
   blackdav123:
   - balance: Xeno silo scaling raised to 2x from 1.5x
 2024-11-24:
+  Meghan-Rossi:
+  - rscadd: Added Survivor-Heavy Extended gamemode, an extended variant in which survivor
+      slots are unlimited and non-survivor slots are very limited.
+  - bugfix: Fixed wrong pronouns being used in some ERP panel actions
+  - bugfix: Fixed force ear ERP action having user and target reversed
+  - rscadd: Made xenos' gender affect their pronouns.
+  - bugfix: Humans can do erp actions to xenos without grabbing them even what that
+      would normally be required, since humans can't grab xenos.
   TiviPlus:
   - rscadd: Added the new acid maw and acid jaws xeno structures
   blackdav123:

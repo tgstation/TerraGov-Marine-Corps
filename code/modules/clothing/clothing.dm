@@ -44,7 +44,10 @@
 		human_user.adjust_mob_accuracy(accuracy_mod)
 	if(armor_features_flags & ARMOR_FIRE_RESISTANT)
 		ADD_TRAIT(human_user, TRAIT_NON_FLAMMABLE, src)
-
+	if(armor_features_flags & MELEE_ONLY_ARMOR)
+		ADD_TRAIT(human_user, TRAIT_KNIGHT, src)
+		ADD_TRAIT(human_user, TRAIT_SWORD_EXPERT, src)
+		ADD_TRAIT(human_user, TRAIT_AXE_EXPERT, src)
 
 /obj/item/clothing/unequipped(mob/unequipper, slot)
 	if(!(equip_slot_flags & slotdefine2slotbit(slot)))
@@ -56,6 +59,10 @@
 		human_unequipper.adjust_mob_accuracy(-accuracy_mod)
 	if(armor_features_flags & ARMOR_FIRE_RESISTANT)
 		REMOVE_TRAIT(human_unequipper, TRAIT_NON_FLAMMABLE, src)
+	if(armor_features_flags & MELEE_ONLY_ARMOR)
+		REMOVE_TRAIT(human_unequipper, TRAIT_KNIGHT, src)
+		REMOVE_TRAIT(human_unequipper, TRAIT_AXE_EXPERT, src)
+		REMOVE_TRAIT(human_unequipper, TRAIT_SWORD_EXPERT, src)
 	return ..()
 
 /obj/item/clothing/vendor_equip(mob/user)

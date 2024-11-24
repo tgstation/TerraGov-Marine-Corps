@@ -165,6 +165,11 @@
 	results = list(/datum/reagent/hypervene = 3)
 	required_reagents = list(/datum/reagent/medicine/arithrazine = 1, /datum/reagent/medicine/dylovene = 1, /datum/reagent/medicine/ethylredoxrazine = 1)
 
+/datum/chemical_reaction/aphrotoxin
+	name = "Aphrotoxin"
+	results = list(/datum/reagent/toxin/xeno_aphrotoxin = 5)
+	required_reagents = list(/datum/reagent/medicine/quickclot = 1, /datum/reagent/toxin/phoron = 1, /datum/reagent/iron = 1, /datum/reagent/medicine/tramadol = 1, /datum/reagent/consumable/sugar = 1)
+
 /datum/chemical_reaction/neuraline
 	name = "Neuraline"
 	results = list(/datum/reagent/medicine/neuraline = 4, /datum/reagent/toxin/huskpowder = 1)

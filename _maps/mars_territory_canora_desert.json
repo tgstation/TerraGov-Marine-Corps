@@ -1,0 +1,6 @@
+{
+    "map_name": "Canora Desert",
+    "map_path": "map_files/mars_territory_canora_desert",
+    "map_file": "mars_territory_canora_desert.dmm",
+    "traits": [{"Antag Ship": true}]
+}

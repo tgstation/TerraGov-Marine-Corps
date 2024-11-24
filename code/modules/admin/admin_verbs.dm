@@ -318,8 +318,6 @@
 			return
 
 	log_admin("[key_name(usr)] accessed file: [path].")
-	message_admins("[ADMIN_TPMONTY(usr)] accessed file: [path].")
-
 
 /datum/admins/proc/recursive_download(folder)
 	if(!check_rights(R_LOG))

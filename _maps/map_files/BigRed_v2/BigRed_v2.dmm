@@ -8091,6 +8091,7 @@
 /area/bigredv2/outside/filtration_plant)
 "cZU" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/air_alarm{
 	dir = 4
@@ -8182,6 +8183,7 @@
 /area/bigredv2/outside/marshal_office)
 "dkJ" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor,
 /area/bigredv2/outside/cargo)
 "dnx" = (
@@ -8452,6 +8454,7 @@
 /area/bigredv2/caves/southwest)
 "dSP" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/wood,
 /area/bigredv2/outside/bar)
 "dVz" = (
@@ -10212,6 +10215,7 @@
 "hOL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor,
 /area/bigredv2/outside/marshal_office)
 "hPq" = (
@@ -11511,6 +11515,7 @@
 "kvX" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "kxw" = (
@@ -12564,6 +12569,7 @@
 /area/bigredv2/outside/virology)
 "mZU" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/grimy,
 /area/bigredv2/outside/marshal_office)
 "mZZ" = (
@@ -13813,6 +13819,7 @@
 /area/bigredv2/outside/c)
 "pRP" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 4
 	},
@@ -14405,6 +14412,7 @@
 /area/bigredv2/outside/hydroponics)
 "rkx" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
 "rlw" = (
@@ -16990,6 +16998,7 @@
 /area/bigredv2/outside/virology)
 "wQm" = (
 /obj/effect/landmark/start/job/survivor,
+/obj/effect/landmark/start/latejoinsurvivor,
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "wSJ" = (

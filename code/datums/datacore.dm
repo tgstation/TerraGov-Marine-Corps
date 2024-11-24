@@ -21,7 +21,9 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 	var/list/med = list()
 	var/list/mar = list()
 	var/list/heads = list()
+	var/list/xeno = list()
 	var/list/misc = list()
+	var/list/other = list()
 	var/list/isactive = list()
 	var/list/squads = list()
 	var/list/support = list()
@@ -74,8 +76,30 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 			squads[name] = squad_name
 			mar[name] = rank
 			department = 1
-		if(!department && !(name in heads) && (rank in GLOB.jobs_regular_all))
-			misc[name] = rank
+		if(!department && !(name in heads))
+			if(rank in GLOB.jobs_regular_all)
+				misc[name] = rank
+			else
+				if(ooc)
+					other[name] = rank
+	// Adds xenomorphs to the game manifest if it's being polled from the game lobby or ghosts
+	if(ooc)
+		for(var/mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
+			var/name = X.real_name
+			var/rank = X.xeno_caste.caste_name
+			//var/squad_name = "N/A"
+
+			if(ooc)
+				var/active = 0
+				for(var/mob/M in GLOB.player_list)
+					if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
+						active = 1
+						break
+				isactive[name] = active ? "Active" : "Inactive"
+			else
+				isactive[name] = !isdead(X)
+
+			xeno[name] = rank
 	if(length(heads) > 0)
 		dat += "<tr><th colspan=3>Command</th></tr>"
 		for(var/name in heads)
@@ -110,6 +134,17 @@ GLOBAL_DATUM_INIT(datacore, /datum/datacore, new)
 		dat += "<tr><th colspan=3>Miscellaneous</th></tr>"
 		for(var/name in misc)
 			dat += "<tr[even ? " class='alt'" : ""]><td>[misc[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	if(length(other) > 0)
+		dat += "<tr><th colspan=3>Other</th></tr>"
+		for(var/name in other)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[other[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
+			even = !even
+	// beno bois & gorls
+	if(length(xeno) > 0)
+		dat += "<tr><th colspan=3>Xenomorphs</th></tr>"
+		for(var/name in xeno)
+			dat += "<tr[even ? " class='alt'" : ""]><td>[xeno[name]]</td><td>[name]</td><td>[isactive[name]]</td></tr>"
 			even = !even
 
 	dat += "</table>"

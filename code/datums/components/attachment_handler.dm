@@ -398,4 +398,3 @@
 /datum/component/attachment_handler/proc/clean_references()
 	SIGNAL_HANDLER
 	QDEL_LIST_ASSOC_VAL(slots)
-

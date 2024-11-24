@@ -16,7 +16,8 @@
 	scatter_unwielded = 0
 	burst_scatter_mult = 0
 	burst_amount = 4
-	turret_flags = TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
+
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_ALERTS
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	deployable_item = /obj/machinery/deployable/mounted/sentry
@@ -239,7 +240,7 @@
 	name = "SG-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine."
 	icon_state = "sentry"
-	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_SAFETY|TURRET_RADIAL
+	turret_flags = TURRET_HAS_CAMERA|TURRET_ON|TURRET_IMMOBILE|TURRET_RADIAL|TURRET_SAFETY
 	max_shells = 100
 
 	ammo_datum_type = /datum/ammo/bullet/turret/gauss

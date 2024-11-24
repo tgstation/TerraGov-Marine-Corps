@@ -145,7 +145,7 @@
 
 
 /obj/item/clothing/under/gimmick/rank/captain/suit
-	name = "captain's suit"
+	name = "commander's suit"
 	desc = "A green suit and yellow necktie. Exemplifies authority."
 	icon_state = "green_suit"
 	worn_icon_state = "dg_suit"

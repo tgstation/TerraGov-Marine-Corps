@@ -17,6 +17,7 @@
 	circuit = /obj/item/circuitboard/computer/cryopodcontrol
 	resistance_flags = RESIST_ALL
 	var/state = STATE_GUN
+	dir = 2
 
 /obj/machinery/computer/cryopod/interact(mob/user)
 	. = ..()
@@ -343,7 +344,11 @@
 
 	GLOB.key_to_time_of_role_death[key] = world.time
 
-	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
+//	ghostize(FALSE) //We want to make sure they are not kicked to lobby.
+
+	var/mob/new_player/NP = new()
+	client?.screen?.Cut()
+	NP.key = key
 
 	qdel(src)
 
@@ -451,16 +456,19 @@
 		span_notice("You start climbing into [src]."))
 
 	var/mob/initiator = helper ? helper : user
-	if(!do_after(initiator, 20, NONE, user, BUSY_ICON_GENERIC))
+	if(!do_after(initiator, 20, TRUE, user, BUSY_ICON_GENERIC))
 		return FALSE
 
 	if(!QDELETED(occupant))
 		to_chat(initiator, span_warning("[src] is occupied."))
 		return FALSE
 
+/*
 	user.forceMove(src)
 	occupant = user
 	update_icon()
+*/
+	user.despawn()
 	return TRUE
 
 /obj/machinery/cryopod/proc/go_out()

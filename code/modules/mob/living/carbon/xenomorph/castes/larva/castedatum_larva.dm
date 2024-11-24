@@ -41,6 +41,7 @@
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/xeno_action/xenohide,
 	)
@@ -52,4 +53,3 @@
 
 /datum/xeno_caste/larva/young
 	upgrade = XENO_UPGRADE_INVALID
-

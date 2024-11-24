@@ -47,7 +47,7 @@
 	hivelord.face_atom(recycled_xeno) //Face towards the target so we don't look silly
 	hivelord.visible_message(span_warning("\The [hivelord] starts breaking apart \the [recycled_xeno]'s carcass."), \
 	span_danger("We slowly deconstruct upon \the [recycled_xeno]'s carcass!"), null, 20)
-	if(!do_after(owner, 7 SECONDS, IGNORE_HELD_ITEM, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, ABILITY_USE_BUSY)))
+	if(!do_after(owner, 7 SECONDS, FALSE, recycled_xeno, BUSY_ICON_GENERIC, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, TRUE, ABILITY_USE_BUSY)))
 		return
 
 	hivelord.record_recycle_points(recycled_xeno)
@@ -55,7 +55,7 @@
 	recycled_xeno.gib()
 
 	playsound(hivelord, 'sound/effects/alien/recycler.ogg', 40)
-	hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off its claws."), \
+	hivelord.visible_message(span_xenowarning("\The [hivelord] brushes xenomorphs' bits off [hivelord.p_their()] claws."), \
 	span_danger("We brush xenomorphs' bits off of our claws."), null, 20)
 	return succeed_activate() //dew it
 
@@ -66,8 +66,12 @@
 	ability_cost = 100
 	buildable_structures = list(
 		/turf/closed/wall/resin/regenerating/thick,
+		/turf/closed/wall/resin/membrane/thick,
 		/obj/alien/resin/sticky,
 		/obj/structure/mineral_door/resin/thick,
+		/obj/structure/bed/nest,
+		/obj/structure/bed/nest/wall,
+		/obj/structure/xeno/lighttower,
 	)
 
 // ***************************************
@@ -191,7 +195,7 @@
 	X.balloon_alert(X, "Digging...")
 	X.visible_message(span_xenonotice("[X] begins digging out a tunnel entrance."), \
 	span_xenonotice("We begin digging out a tunnel entrance."), null, 5)
-	if(!do_after(X, HIVELORD_TUNNEL_DIG_TIME, NONE, T, BUSY_ICON_BUILD))
+	if(!do_after(X, HIVELORD_TUNNEL_DIG_TIME, TRUE, T, BUSY_ICON_BUILD))
 		X.balloon_alert(X, "Digging aborted")
 		return fail_activate()
 

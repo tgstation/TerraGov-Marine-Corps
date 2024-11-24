@@ -16,7 +16,7 @@
 	set desc = "Change into another caste in the same tier."
 	set category = "Alien"
 
-	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < (15 MINUTES))
+	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < (5 MINUTES))
 		to_chat(src, span_warning("Your caste swap timer is not done yet."))
 		return
 
@@ -53,7 +53,7 @@
 		return xeno_caste.get_strain_options()
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		switch(tier)
-			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
+			if(XENO_TIER_ZERO)
 				return
 			if(XENO_TIER_ONE)
 				return GLOB.xeno_types_tier_one
@@ -61,19 +61,20 @@
 				return GLOB.xeno_types_tier_two
 			if(XENO_TIER_THREE)
 				return GLOB.xeno_types_tier_three
+			if(XENO_TIER_FOUR)
+				return GLOB.xeno_types_tier_four
 	if(HAS_TRAIT(src, TRAIT_REGRESSING))
 		switch(tier)
-			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
-				if(isxenoshrike(src))
-					return GLOB.xeno_types_tier_one
-				else
-					return
+			if(XENO_TIER_ZERO)
+				return
 			if(XENO_TIER_ONE)
 				return list(/datum/xeno_caste/larva)
 			if(XENO_TIER_TWO)
 				return GLOB.xeno_types_tier_one
 			if(XENO_TIER_THREE)
 				return GLOB.xeno_types_tier_two
+			if(XENO_TIER_FOUR)
+				return GLOB.xeno_types_tier_one
 	switch(tier)
 		if(XENO_TIER_ZERO)
 			if(!istype(xeno_caste, /datum/xeno_caste/hivemind))
@@ -85,8 +86,7 @@
 		if(XENO_TIER_THREE)
 			return GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_FOUR)
-			if(istype(xeno_caste, /datum/xeno_caste/shrike))
-				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king)
+			return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king, /mob/living/carbon/xenomorph/shrike)
 
 
 ///Handles the evolution or devolution of the xenomorph
@@ -123,7 +123,7 @@
 	span_xenonotice("We begin to twist and contort."))
 	do_jitter_animation(1000)
 
-	if(!regression && !do_after(src, 25, IGNORE_HELD_ITEM, null, BUSY_ICON_CLOCK))
+	if(!regression && !do_after(src, 25, FALSE, null, BUSY_ICON_CLOCK))
 		balloon_alert(src, span_warning("We must hold still while evolving."))
 		return
 
@@ -187,7 +187,7 @@
 		new_xeno.toggle_nightvision(lighting_alpha)
 
 	new_xeno.update_spits() //Update spits to new/better ones
-
+	new_xeno.update_xeno_gender(new_xeno)
 	new_xeno.visible_message(span_xenodanger("A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src]."), \
 	span_xenodanger("We emerge in a greater form from the husk of our old body. For the hive!"))
 

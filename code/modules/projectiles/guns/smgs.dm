@@ -36,7 +36,7 @@
 
 /obj/item/weapon/gun/smg/standard_machinepistol
 	name = "\improper MP-19 machinepistol"
-	desc = "The MP-19 is the TerraGov Marine Corps standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
+	desc = "The MP-19 is the Nine Tailed Fox standard-issue machine pistol. It's known for it's low recoil and scatter when used one handed. It's usually carried by specialized troops who do not have the space to carry a much larger gun like medics and engineers. It uses 10x20mm caseless rounds."
 	icon_state = "t19"
 	worn_icon_state = "t19"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mp19.ogg'
@@ -99,7 +99,7 @@
 
 /obj/item/weapon/gun/smg/standard_smg
 	name = "\improper SMG-90 submachinegun"
-	desc = "The SMG-90 is the TerraGov Marine Corps standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
+	desc = "The SMG-90 is the Nine Tailed Fox standard issue SMG. Its known for it's compact size and ease of use inside the field. It's usually carried by troops who want a lightweight firearm to rush with. It uses 10x20mm caseless rounds."
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_smg90.ogg'
 	icon_state = "t90"
 	worn_icon_state = "t90"
@@ -124,6 +124,7 @@
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/motiondetector,
 		/obj/item/attachable/buildasentry,
+		/obj/item/attachable/shoulder_mount,
 	)
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
@@ -294,12 +295,17 @@
 
 	item_map_variant_flags = NONE
 
-	burst_amount = 4
+	scatter = 4
+	fire_delay = 0.2 SECONDS
+	scatter_unwielded = 10
+	aim_slowdown = 0.15
+	burst_amount = 3
+	akimbo_additional_delay = 0.4
+	damage_falloff_mult = 0.9
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 1
 	damage_mult = 1.2
-	aim_slowdown = 0.2
-	scatter = 3
+	scatter = 4
 
 /obj/item/weapon/gun/smg/m25/elite/pmc
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/flashlight/under)

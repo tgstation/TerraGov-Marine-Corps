@@ -27,7 +27,7 @@ export const JobPreferences = (props) => {
 
   const xenoJobs = ['Xeno Queen', 'Xenomorph'];
   const commandRoles = [
-    'Captain',
+    'Commander',
     'Field Commander',
     'Staff Officer',
     'Pilot Officer',
@@ -47,7 +47,7 @@ export const JobPreferences = (props) => {
     'Transport Crewman',
   ];
   const marineJobs = [
-    'Squad Marine',
+    'Squad Operative',
     'Squad Engineer',
     'Squad Corpsman',
     'Squad Smartgunner',
@@ -63,7 +63,7 @@ export const JobPreferences = (props) => {
     'SOM Staff Officer',
     'SOM Commander',
   ];
-  const flavourJobs = ['Corporate Liaison'];
+  const flavourJobs = ['Operations Officer'];
 
   const JobList = ({ name, jobs }) => (
     <Section title={name}>

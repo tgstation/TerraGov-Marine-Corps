@@ -6,6 +6,7 @@
 	action_icon_state = "stomp"
 	action_icon = 'icons/Xeno/actions/crusher.dmi'
 	desc = "Knocks all adjacent targets away and down."
+
 	ability_cost = 100
 	cooldown_duration = 20 SECONDS
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY
@@ -67,6 +68,7 @@
 	action_icon_state = "cresttoss"
 	action_icon = 'icons/Xeno/actions/crusher.dmi'
 	desc = "Fling an adjacent target over and behind you, or away from you while on harm intent. Also works over barricades."
+
 	ability_cost = 75
 	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(
@@ -114,7 +116,7 @@
 		var/mob/living/L = A
 		if(L.mob_size >= MOB_SIZE_BIG) //Penalize toss distance for big creatures
 			toss_distance = FLOOR(toss_distance * 0.5, 1)
-			big_mob_message = ", struggling mightily to heft its bulk"
+			big_mob_message = ", struggling mightily to heft [L.p_their()]  bulk"
 	else if(ismecha(A))
 		toss_distance = FLOOR(toss_distance * 0.5, 1)
 		big_mob_message = ", struggling mightily to heft its bulk"
@@ -133,7 +135,7 @@
 
 	X.icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
 
-	X.visible_message(span_xenowarning("\The [X] flings [A] away with its crest[big_mob_message]!"), \
+	X.visible_message(span_xenowarning("\The [X] flings [A] away with [X.p_their()] crest[big_mob_message]!"), \
 	span_xenowarning("We fling [A] away with our crest[big_mob_message]!"))
 
 	succeed_activate()
@@ -174,6 +176,7 @@
 	action_icon_state = "crest_defense"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
 	desc = "Charges up the crushers charge in place, then unleashes the full bulk of the crusher at the target location. Does not crush in diagonal directions."
+
 	ability_cost = 175
 	cooldown_duration = 30 SECONDS
 	keybinding_signals = list(

@@ -256,7 +256,7 @@
 			return 0
 
 /obj/item/cell/crap
-	name = "\improper Nanotrasen brand rechargable AA battery"
+	name = "\improper Ninetails brand rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	maxcharge = 500
 
@@ -331,6 +331,12 @@
 	charge_amount = 25
 	charge_delay = 2 SECONDS //One hit on a resin thingy every 8 seconds, or one actual wall every 80 seconds.
 
+/obj/item/cell/night_vision_battery
+	name = "night vision goggle battery"
+	desc = "A small, non-rechargable, proprietary battery for night vision goggles."
+	maxcharge = 500
+	w_class = WEIGHT_CLASS_TINY
+
 /obj/item/cell/rtg/plasma_cutter
 	name = "plasma cutter cell"
 	desc = "You shouldn't be seeing this"
@@ -371,11 +377,3 @@
 	name = "large radiotope cell"
 	maxcharge = 1500
 	charge_amount = 50
-
-/obj/item/cell/night_vision_battery
-	name = "night vision goggle battery"
-	desc = "A small, non-rechargable, proprietary battery for night vision goggles."
-	icon_state = "night_vision"
-	maxcharge = 500
-	w_class = WEIGHT_CLASS_TINY
-	charge_overlay = ""

@@ -96,7 +96,7 @@
 	if(plant_target)
 		user.visible_message(span_notice("[user] begins unsecuring [src] from [plant_target]."),
 		span_notice("You begin unsecuring [src] from [plant_target]."))
-		if(!do_after(user, 30, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 30, TRUE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message(span_notice("[user] unsecures [src] from [plant_target]."),
 		span_notice("You unsecure [src] from [plant_target]."))
@@ -206,7 +206,7 @@
 		return FALSE
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
-		if(!do_after(user, 2 SECONDS, NONE, src, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, 2 SECONDS, TRUE, src, BUSY_ICON_UNSKILLED))
 			return FALSE
 
 	return TRUE
@@ -277,13 +277,13 @@
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_METAL)
 		user.visible_message(span_notice("[user] fumbles around figuring out how to use [src]."),
 		span_notice("You fumble around figuring out how to use [src]."))
-		if(!do_after(user, 5 SECONDS, NONE, target, BUSY_ICON_UNSKILLED))
+		if(!do_after(user, 5 SECONDS, TRUE, target, BUSY_ICON_UNSKILLED))
 			return
 
 	user.visible_message(span_warning("[user] is trying to plant [name] on [target]!"),
 	span_warning("You are trying to plant [name] on [target]!"))
 
-	if(do_after(user, 3 SECONDS, NONE, target, BUSY_ICON_HOSTILE))
+	if(do_after(user, 3 SECONDS, TRUE, target, BUSY_ICON_HOSTILE))
 		if((locate(/obj/item/detpack) in target) || (locate(/obj/item/explosive/plastique) in target)) //This needs a refactor.
 			to_chat(user, "[span_warning("There is already a device attached to [target]")].")
 			return

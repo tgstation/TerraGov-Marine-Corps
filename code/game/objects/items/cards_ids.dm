@@ -94,7 +94,7 @@
 	var/dorm = 0		// determines if this ID has claimed a dorm already
 	var/paygrade = null  // Marine's paygrade
 
-	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by squad marines.
+	var/assigned_fireteam = "" //which fire team this ID belongs to, only used by Squad Operatives.
 	/// Iff bitfield to determines hit and misses
 	var/iff_signal = NONE
 
@@ -215,7 +215,7 @@
 	registered_name = "Syndicate"
 	assignment = "Syndicate Overlord"
 	access = list(ACCESS_ILLEGAL_PIRATE)
-
+	iff_signal = SOM_IFF
 
 /obj/item/card/id/captains_spare
 	name = "captain's spare ID"
@@ -225,6 +225,13 @@
 	registered_name = CAPTAIN
 	assignment = CAPTAIN
 	access = ALL_MARINE_ACCESS
+	iff_signal = TGMC_LOYALIST_IFF
+
+/obj/item/card/id/captains_spare/survival
+	name = "identification card"
+	desc = "A colonist generalized ID card."
+	icon_state = "silver"
+	worn_icon_state = "silver_id"
 
 
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)
@@ -287,6 +294,16 @@
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 	)
 
+/obj/item/card/id/dogtag/specialist
+	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
+/obj/item/card/id/card/silver/commanddoll
+	marine_points = list(
+		CAT_CDSUP = DEFAULT_TOTAL_BUY_POINTS,
+	)
+
 /obj/item/card/id/dogtag/engineer
 	marine_points = list(
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
@@ -309,6 +326,7 @@
 
 /obj/item/card/id/dogtag/full
 	marine_points = list(
+		CAT_SPSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_SGSUP = DEFAULT_TOTAL_BUY_POINTS,
 		CAT_ENGSUP = ENGINEER_TOTAL_BUY_POINTS,
 		CAT_LEDSUP = DEFAULT_TOTAL_BUY_POINTS,

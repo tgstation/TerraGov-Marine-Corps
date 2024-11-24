@@ -28,12 +28,12 @@
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
-	evolve_min_xenos = 8
 	maximum_active_caste = 1
 	death_evolution_delay = 5 MINUTES
+	deevolves_to = /mob/living/carbon/xenomorph/drone
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_BUILDER|CASTE_STAGGER_RESISTANT|CASTE_LEADER_TYPE|CASTE_INSTANT_EVOLUTION|CASTE_EVOLUTION_ALLOWED
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
 	can_flags = CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_HOLD_JELLY|CASTE_CAN_CORRUPT_GENERATOR|CASTE_CAN_BE_GIVEN_PLASMA
 	caste_traits = null
@@ -55,17 +55,23 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/place_acidwell,
-		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/screech,
 		/datum/action/ability/xeno_action/bulwark,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal,
@@ -81,6 +87,8 @@
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/activable/xeno/command_minions,
+		/datum/action/ability/activable/psionic_interact, //Psychics for all the psykers!
+		/datum/action/ability/activable/xeno/impregnatequeen //So the Queen doesn't want to end themselves.
 	)
 
 
@@ -95,17 +103,23 @@
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/devour,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/activable/xeno/secrete_resin,
 		/datum/action/ability/activable/xeno/secrete_special_resin,
 		/datum/action/ability/xeno_action/blessing_menu,
+		/datum/action/ability/activable/xeno/tail_stab,
 		/datum/action/ability/xeno_action/place_acidwell,
-		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/screech, // Primo enables alterative action for screech.
 		/datum/action/ability/xeno_action/bulwark,
+		/datum/action/ability/activable/xeno/larval_growth_sting,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal,
@@ -118,9 +132,10 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/xeno_action/set_xeno_lead,
 		/datum/action/ability/activable/xeno/queen_give_plasma,
-		/datum/action/ability/xeno_action/sow,
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/activable/xeno/command_minions,
+		/datum/action/ability/activable/psionic_interact, //Psychics for all the psykers!
+		/datum/action/ability/activable/xeno/impregnatequeen, //So the Queen doesn't want to end themselves.
 		/datum/action/ability/xeno_action/ready_charge/queen_charge,
 	)

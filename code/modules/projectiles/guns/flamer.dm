@@ -28,6 +28,7 @@
 		/obj/item/attachable/flamer_nozzle,
 		/obj/item/attachable/flamer_nozzle/wide,
 		/obj/item/attachable/flamer_nozzle/wide/red,
+		/obj/item/attachable/shoulder_mount,
 		)
 	attachments_by_slot = list(
 		ATTACHMENT_SLOT_MUZZLE,
@@ -399,7 +400,7 @@
 
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard
 	name = "\improper FL-84 flamethrower"
-	desc = "The FL-84 flamethrower is the current standard issue flamethrower of the TGMC, and is used for area control and urban combat. Use unique action to use hydro cannon"
+	desc = "The FL-84 flamethrower is the current standard issue flamethrower of the NTC, and is used for area control and urban combat. Use unique action to use hydro cannon"
 	default_ammo_type = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "tl84"
 	worn_icon_state = "tl84"
@@ -434,7 +435,7 @@
 ///Flamer windup called before firing
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/proc/do_windup()
 	windup_checked = WEAPON_WINDUP_CHECKING
-	if(!do_after(gun_user, 1 SECONDS, IGNORE_USER_LOC_CHANGE, src))
+	if(!do_after(gun_user, 1 SECONDS, TRUE, src))
 		windup_checked = WEAPON_WINDUP_NOT_CHECKED
 		return
 	windup_checked = WEAPON_WINDUP_CHECKED

@@ -10,7 +10,7 @@
 	goredcries = list("neuter" = 'sound/voice/moth_scream.ogg')
 	burstscreams = list("neuter" = 'sound/voice/moth_scream.ogg')
 	warcries = list("neuter" = 'sound/voice/moth_scream.ogg')
-
+	joinable_roundstart = TRUE
 	flesh_color = "#E5CD99"
 
 	reagent_tag = IS_MOTH

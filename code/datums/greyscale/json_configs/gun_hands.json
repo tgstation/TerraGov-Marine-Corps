@@ -1,0 +1,24 @@
+{
+	"loaded":[
+		{
+			"type":"hyperscale",
+			"icon_state":"color"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"no_color",
+			"blend_mode":"overlay"
+		}
+	],
+	"loaded_w":[
+		{
+			"type":"hyperscale",
+			"icon_state":"color_w"
+		},
+		{
+			"type":"icon_state",
+			"icon_state":"no_color_w",
+			"blend_mode":"overlay"
+		}
+	]
+}

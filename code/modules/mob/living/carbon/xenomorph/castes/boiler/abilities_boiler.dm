@@ -240,7 +240,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		firer.reset_bombard_pointer()
 		return FALSE
 
-	firer.visible_message(span_notice("\The [firer] digs itself into the ground!"), \
+	firer.visible_message(span_notice("\The [firer] digs [firer.p_their()] self into the ground!"), \
 		span_notice("We dig ourselves into place! If we move, we must wait again to fire."), null, 5)
 	firer.set_bombard_pointer()
 	RegisterSignal(owner, COMSIG_MOB_ATTACK_RANGED, TYPE_PROC_REF(/datum/action/ability/activable/xeno/bombard, on_ranged_attack))

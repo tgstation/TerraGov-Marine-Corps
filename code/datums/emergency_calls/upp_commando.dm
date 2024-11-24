@@ -11,7 +11,7 @@
 	to_chat(H, "<B>You come from a long line of [pick(25;"professionals", 25;"renegades", 50;"rogue soldiers")] and quickly joined the local band to improve your living conditions.</B>")
 	to_chat(H, "")
 	to_chat(H, "<B>Today, you and your teammates are sent by the United Space Lepidoptera to [SSmapping.configs[SHIP_MAP].map_name] after a long period of lying still in a local asteroid belt. Commence the infiltration mission!</b>")
-	to_chat(H, "<B>Eliminate the TGMC force if necessary. Do not harm the civilians unless they attack you first.</B>")
+	to_chat(H, "<B>Eliminate the NTC force if necessary. Do not harm the civilians unless they attack you first.</B>")
 	to_chat(H, span_notice("You speak in a language that humans cannot understand, only you and your fellow pirates can.<br>Type in <b>\",0 <text>\" in the say verb</b> to speak in Galactic Common.<br>Type in <b>\";,0 <text>\" in the say verb</b> to commincate the radio in Galactic Common."))
 
 

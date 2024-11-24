@@ -49,6 +49,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	///If you can see things only ghosts see, like other ghosts
 	var/ghost_vision = TRUE
 	var/ghost_orbit = GHOST_ORBIT_CIRCLE
+	var/unobserve_timer
 
 /mob/dead/observer/Initialize(mapload)
 	invisibility = GLOB.observer_default_invisibility
@@ -795,11 +796,11 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 /mob/dead/observer/verb/view_manifest()
 	set category = "Ghost"
-	set name = "View Crew Manifest"
+	set name = "View Game Manifest"
 
-	var/dat = GLOB.datacore.get_manifest()
+	var/dat = GLOB.datacore.get_manifest(ooc = TRUE)
 
-	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Crew Manifest</div>", 370, 420)
+	var/datum/browser/popup = new(src, "manifest", "<div align='center'>Game Manifest</div>", 370, 420)
 	popup.set_content(dat)
 	popup.open(FALSE)
 
@@ -975,3 +976,17 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		client.holder.spatial_agent()
 	else
 		target_ghost.change_mob_type(/mob/living/carbon/human, delete_old_mob = TRUE)
+
+/mob/dead/observer/proc/observe_time_out()
+	client.screen.Cut()
+	var/mob/new_player/M = new /mob/new_player()
+	if(SSticker.mode?.round_type_flags & MODE_TWO_HUMAN_FACTIONS)
+		M.faction = faction
+
+	M.key = key
+
+	to_chat(M, span_warning("Your time is up."))
+
+	if(!(M.client))
+		qdel(M)
+		return

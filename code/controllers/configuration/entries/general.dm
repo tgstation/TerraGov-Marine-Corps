@@ -17,6 +17,11 @@ Basics, the most important.
 
 /datum/config_entry/string/wikiurl
 
+/datum/config_entry/flag/log_job_debug
+
+/datum/config_entry/flag/log_as_human_readable
+	config_entry_value = TRUE
+
 /datum/config_entry/string/forumurl
 
 /datum/config_entry/string/rulesurl

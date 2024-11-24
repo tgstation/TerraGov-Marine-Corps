@@ -4,11 +4,16 @@
 	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS)
 	display_order = JOB_DISPLAY_ORDER_SURVIVOR
-	skills_type = /datum/skills/civilian/survivor
 	faction = FACTION_TERRAGOV
+	total_positions = -1
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN
+	skills_type = /datum/skills/civilian/survivor
 
 /datum/job/survivor/after_spawn(mob/living/carbon/C, mob/M, latejoin = FALSE)
 	. = ..()
+	SSminimaps.add_marker(C, MINIMAP_FLAG_SURVIVOR, image('icons/UI_icons/map_blips.dmi', null, "survivor"))
+	var/datum/action/minimap/survivor/mini = new
+	mini.give_action(C)
 
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
 		C.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(C), SLOT_HEAD)
@@ -54,7 +59,7 @@
 	. = ..()
 	to_chat(M, {"In whatever case you have been through, you are here to survive and get yourself rescued.
 You appreciate the support of TerraGov and Nanotrasen should you be rescued.
-You are not hostile to TGMC, nor you should oppose or disrupt their objective, unless an admin says otherwise.
+You are not hostile to NTC, nor you should oppose or disrupt their objective, unless an admin says otherwise.
 If you find any other survivors in the area, cooperate with them to increase your chances of survival.
 Depending on the job you've undertook, you may have additional skills to help others when needed.
 Good luck, but do not expect to survive."})
@@ -71,10 +76,11 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/assistant
 
 	w_uniform = /obj/item/clothing/under/color/grey
+	id = /obj/item/card/id/captains_spare/survival
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
 	wear_suit = /obj/item/clothing/suit/armor/vest
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	mask = /obj/item/clothing/mask/gas/tactical/coif
 	head = /obj/item/clothing/head/welding/flipped
 	belt = /obj/item/storage/belt/utility/full
@@ -98,10 +104,11 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/scientist
 
 	w_uniform = /obj/item/clothing/under/rank/scientist
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/researcher
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/toxins
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	l_hand = /obj/item/storage/firstaid/adv
 	l_store = /obj/item/storage/pouch/surgery
 	r_store = /obj/item/flashlight/combat
@@ -119,16 +126,16 @@ Good luck, but do not expect to survive."})
 
 //Doctor
 /datum/job/survivor/doctor
-	title = "Doctor's Assistant Survivor"
+	title = "Doctor Survivor"
 	skills_type = /datum/skills/civilian/survivor/doctor
 	outfit = /datum/outfit/job/survivor/doctor
 
 
 /datum/outfit/job/survivor/doctor
-	name = "Doctor's Assistant Survivor"
+	name = "Doctor Survivor"
 	jobtype = /datum/job/survivor/doctor
-
 	w_uniform = /obj/item/clothing/under/rank/medical/blue
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/labcoat
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/med
@@ -137,7 +144,7 @@ Good luck, but do not expect to survive."})
 	r_store = /obj/item/storage/pouch/surgery
 	belt = /obj/item/storage/belt/rig
 	mask = /obj/item/clothing/mask/surgical
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 /datum/outfit/job/survivor/doctor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -176,9 +183,10 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/liaison
 
 	w_uniform = /obj/item/clothing/under/liaison_suit
+	id = /obj/item/card/id/captains_spare/survival
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp78
 	l_hand = /obj/item/flashlight/combat
 	l_store = /obj/item/tool/crowbar
@@ -190,6 +198,8 @@ Good luck, but do not expect to survive."})
 //Security Guard
 /datum/job/survivor/security
 	title = "Security Guard Survivor"
+	access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG)
+	minimal_access = list(ACCESS_CIVILIAN_PUBLIC, ACCESS_CIVILIAN_RESEARCH, ACCESS_CIVILIAN_ENGINEERING, ACCESS_CIVILIAN_LOGISTICS, ACCESS_MARINE_BRIG)
 	skills_type = /datum/skills/civilian/survivor/marshal
 	outfit = /datum/outfit/job/survivor/security
 
@@ -199,14 +209,15 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/security
 
 	w_uniform = /obj/item/clothing/under/rank/security
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/armor/patrol
 	head = /obj/item/clothing/head/securitycap
 	shoes = /obj/item/clothing/shoes/marine/full
 	back = /obj/item/storage/backpack/security
 	belt = /obj/item/storage/belt/security
 	gloves = /obj/item/clothing/gloves/black
-	suit_store = /obj/item/weapon/gun/pistol/g22
-	ears = /obj/item/radio/survivor
+	suit_store = /obj/item/storage/holster/belt/pistol/g22
+	ears = /obj/item/radio/headset/survivor
 
 /datum/outfit/job/survivor/security/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -233,9 +244,11 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/civilian
 
 	w_uniform = /obj/item/clothing/under/colonist
+	id = /obj/item/card/id/captains_spare/survival
+	belt = /obj/item/storage/holster/belt/pistol/m4a3
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 /datum/outfit/job/survivor/civilian/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -255,13 +268,13 @@ Good luck, but do not expect to survive."})
 /datum/outfit/job/survivor/chef
 	name = "Chef Survivor"
 	jobtype = /datum/job/survivor/chef
-
 	w_uniform = /obj/item/clothing/under/rank/chef
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/chef
 	head = /obj/item/clothing/head/chefhat
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 /datum/outfit/job/survivor/chef/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -290,10 +303,11 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/botanist
 
 	w_uniform = /obj/item/clothing/under/rank/hydroponics
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/apron/overalls
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/hydroponics
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	l_store = /obj/item/flashlight
 	r_store = /obj/item/tool/crowbar
 	l_hand = /obj/item/tool/hatchet
@@ -309,16 +323,17 @@ Good luck, but do not expect to survive."})
 
 //Atmospherics Technician
 /datum/job/survivor/atmos
-	title = "Atmospherics Technician Survivor"
+	title = "Technician Survivor"
 	skills_type = /datum/skills/civilian/survivor/atmos
 	outfit = /datum/outfit/job/survivor/atmos
 
 
 /datum/outfit/job/survivor/atmos
-	name = "Atmospherics Technician Survivor"
+	name = "Technician Survivor"
 	jobtype = /datum/job/survivor/atmos
 
 	w_uniform = /obj/item/clothing/under/rank/atmospheric_technician
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/hazardvest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/som
@@ -328,7 +343,7 @@ Good luck, but do not expect to survive."})
 	glasses = /obj/item/clothing/glasses/welding
 	r_store = /obj/item/storage/pouch/electronics/full
 	l_store = /obj/item/storage/pouch/construction
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 /datum/outfit/job/survivor/atmos/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -361,10 +376,12 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/chaplain
 
 	w_uniform = /obj/item/clothing/under/rank/chaplain
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/armor/vest
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/norm
-	ears = /obj/item/radio/survivor
+	belt = /obj/item/storage/holster/belt/m44/full
+	ears = /obj/item/radio/headset/survivor
 	l_hand = /obj/item/weapon/gun/shotgun/double
 	r_hand = /obj/item/ammo_magazine/handful/buckshot
 
@@ -389,13 +406,14 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/miner
 
 	w_uniform = /obj/item/clothing/under/rank/miner
+	id = /obj/item/card/id/captains_spare/survival
 	head = /obj/item/clothing/head/helmet/space/rig/mining
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/som
 	l_hand = /obj/item/weapon/twohanded/sledgehammer
 	r_store = /obj/item/reagent_containers/cup/glass/flask
 	r_hand = /obj/item/clothing/suit/space/rig/mining
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 /datum/outfit/job/survivor/miner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -417,12 +435,14 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/salesman
 
 	w_uniform = /obj/item/clothing/under/lawyer/purpsuit
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/lawyer/purpjacket
 	shoes = /obj/item/clothing/shoes/black
+	belt = /obj/item/storage/holster/belt/pistol/g22
 	back = /obj/item/storage/backpack/satchel
 	mask = /obj/item/clothing/mask/cigarette/pipe/bonepipe
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 
 /datum/outfit/job/survivor/salesman/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
@@ -448,13 +468,14 @@ Good luck, but do not expect to survive."})
 
 	w_uniform = /obj/item/clothing/under/CM_uniform
 	wear_suit = /obj/item/clothing/suit/storage/CMB
+	id = /obj/item/card/id/captains_spare/survival
 	shoes = /obj/item/clothing/shoes/jackboots
 	back = /obj/item/storage/backpack/satchel/sec
 	suit_store = /obj/item/storage/holster/belt/m44/full
 	belt = /obj/item/storage/belt/sparepouch
 	gloves = /obj/item/clothing/gloves/ruggedgloves
 	l_store = /obj/item/flashlight/combat
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	head = /obj/item/clothing/head/slouch
 
 /datum/outfit/job/survivor/marshal/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -478,11 +499,12 @@ Good luck, but do not expect to survive."})
 
 	w_uniform = /obj/item/clothing/under/rank/bartender
 	wear_suit = /obj/item/clothing/suit/armor/vest
+	id = /obj/item/card/id/captains_spare/survival
 	back = /obj/item/storage/backpack/satchel
 	belt = /obj/item/ammo_magazine/shotgun/buckshot
 	shoes = /obj/item/clothing/shoes/laceup
 	head = /obj/item/clothing/head/collectable/tophat
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_store = /obj/item/flashlight
 	r_store = /obj/item/tool/crowbar
@@ -509,12 +531,13 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/chemist
 
 	w_uniform = /obj/item/clothing/under/rank/chemist
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/chemist
 	back = /obj/item/storage/backpack/satchel/chem
 	belt = /obj/item/storage/belt/hypospraybelt
 	gloves = /obj/item/clothing/gloves/latex
 	shoes = /obj/item/clothing/shoes/white
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	glasses = /obj/item/clothing/glasses/science
 	l_store = /obj/item/flashlight
 	r_store = /obj/item/tool/crowbar
@@ -565,11 +588,12 @@ Good luck, but do not expect to survive."})
 	jobtype = /datum/job/survivor/roboticist
 
 	w_uniform = /obj/item/clothing/under/rank/roboticist
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/storage/labcoat/science
 	belt = /obj/item/storage/belt/utility/full
 	shoes = /obj/item/clothing/shoes/black
 	back = /obj/item/storage/backpack/satchel/tox
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor
 	glasses = /obj/item/clothing/glasses/welding/flipped
 	l_store = /obj/item/storage/pouch/electronics/full
 	r_store = /obj/item/flashlight/combat
@@ -589,12 +613,14 @@ Good luck, but do not expect to survive."})
 	title = "Rambo Survivor"
 	skills_type = /datum/skills/civilian/survivor/master
 	outfit = /datum/outfit/job/survivor/rambo
-	job_flags = JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_NOHEADSET|JOB_FLAG_OVERRIDELATEJOINSPAWN
+	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_ROUNDSTARTJOINABLE|JOB_FLAG_OVERRIDELATEJOINSPAWN
 
 /datum/outfit/job/survivor/rambo
 	name = "Overpowered Survivor"
 	jobtype = /datum/job/survivor/rambo
+
 	w_uniform = /obj/item/clothing/under/marine/striped
+	id = /obj/item/card/id/captains_spare/survival
 	wear_suit = /obj/item/clothing/suit/armor/patrol
 	shoes = /obj/item/clothing/shoes/marine/clf/full
 	back = /obj/item/storage/holster/blade/machete/full
@@ -605,4 +631,4 @@ Good luck, but do not expect to survive."})
 	r_store = /obj/item/flashlight/combat
 	glasses = /obj/item/clothing/glasses/m42_goggles
 	head = /obj/item/clothing/head/headband
-	ears = /obj/item/radio/survivor
+	ears = /obj/item/radio/headset/survivor

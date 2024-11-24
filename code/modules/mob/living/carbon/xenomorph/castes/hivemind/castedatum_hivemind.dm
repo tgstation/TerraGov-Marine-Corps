@@ -50,6 +50,7 @@
 		/datum/action/ability/xeno_action/rally_hive/hivemind,
 		/datum/action/ability/activable/xeno/command_minions,
 		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/activable/xeno/plant_weeds/ranged,
 		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind,
 		/datum/action/ability/activable/xeno/transfer_plasma/hivemind,
@@ -58,6 +59,7 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 		/datum/action/ability/activable/xeno/secrete_resin/hivemind,
+		/datum/action/ability/activable/psionic_interact,
 		/datum/action/ability/activable/xeno/secrete_special_resin/hivemind,
 	)
 

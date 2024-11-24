@@ -82,6 +82,8 @@
 		/// ship both attack logs and victim logs to the end of round attack.log just to ensure we don't lose information
 		if(LOG_ATTACK, LOG_VICTIM)
 			log_attack(log_text)
+		if(LOG_SAY, LOG_WHISPER, LOG_EMOTE, LOG_HIVEMIND, LOG_TELECOMMS, LOG_LOOC)
+			log_roleplay(log_text)
 		if(LOG_SAY)
 			log_say(log_text)
 		if(LOG_WHISPER)
