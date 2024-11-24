@@ -73,7 +73,7 @@
 */
 
 /datum/sprite_accessory/hair
-	species_allowed = list("Human","Synthetic","Early Synthetic", "Vat-Grown", "Vatborn")
+	species_allowed = list("Human","Synthetic","Early Synthetic", "Vat-Grown", "Vatborn", "Prototype Supersoldier")
 	icon = 'icons/mob/Human_face.dmi'
 
 /datum/sprite_accessory/hair/bald
@@ -1322,12 +1322,12 @@
 /datum/sprite_accessory/skin/human
 	name = "Default human skin"
 	icon_state = "default"
-	species_allowed = list("Human")
+	species_allowed = list("Human", "Prototype Supersoldier")
 
 /datum/sprite_accessory/skin/human_tatt01
 	name = "Tatt01 human skin"
 	icon_state = "tatt1"
-	species_allowed = list("Human")
+	species_allowed = list("Human", "Prototype Supersoldier")
 
 /datum/sprite_accessory/moth_wings
 	species_allowed = list("Moth")
