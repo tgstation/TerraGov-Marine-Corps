@@ -128,6 +128,7 @@
 		/obj/item/clothing/mask/facehugger/combat/acid,
 		/obj/item/clothing/mask/facehugger/combat/resin,
 		/obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn,
+		/obj/item/clothing/mask/facehugger/combat/chem_injector/aphrotoxin,
 	)
 	/// used to track our spawned huggers for animations and stuff
 	var/list/spawned_huggers = list()
