@@ -124,6 +124,8 @@
 	///huggers to choose to spawn
 	var/list/hugger_options = list(
 		/obj/item/clothing/mask/facehugger,
+		/obj/item/clothing/mask/facehugger/combat/slash,
+		/obj/item/clothing/mask/facehugger/combat/acid,
 		/obj/item/clothing/mask/facehugger/combat/resin,
 		/obj/item/clothing/mask/facehugger/combat/chem_injector/ozelomelyn,
 		/obj/item/clothing/mask/facehugger/combat/chem_injector/aphrotoxin,
