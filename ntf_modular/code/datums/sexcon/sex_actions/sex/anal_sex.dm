@@ -37,7 +37,6 @@
 	else
 		user.sexcon.perform_sex_action(target, 2.4, 9, FALSE)
 	target.sexcon.handle_passive_ejaculation()
-	user.sexcon.handle_passive_ejaculation()
 
 /datum/sex_action/anal_sex/on_finish(mob/living/carbon/user, mob/living/carbon/target)
 	..()
