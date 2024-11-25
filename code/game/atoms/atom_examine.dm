@@ -86,6 +86,11 @@
 
 	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
 
+/// Icon displayed in examine. Really just an icon2html wrapper,
+/// BUT we can override this on something like a mob if it has issues with icon2html
+/atom/proc/get_examine_icon(mob/user)
+	return icon2html(src, user)
+
 /**
  * Get the name of this object for examine
  *
@@ -103,7 +108,8 @@
 
 ///Generate the full examine string of this atom (including icon for chat)
 /atom/proc/examine_title(mob/user, thats = FALSE)
-	return "[icon2html(src, user)] [thats ? "[examine_thats] ":""]<em>[get_examine_name(user)]</em>"
+	var/examine_icon = get_examine_icon(user)
+	return "[examine_icon ? "[examine_icon] " : ""][thats ? "[examine_thats] ":""]<em>[get_examine_name(user)]</em>"
 
 /**
  * This is called when we want to get a sort-of "descriptor" for this item, where applicable.
@@ -130,7 +136,7 @@
  * ```byond
  * .["small"] = "It is a small [examine_descriptor(user)]." // It is a small item.
  * .["fireproof"] = "It is made of fire-retardant materials."
- * .["and conductive"] = "Blah blah blah."
+ * .["and conductive"] = "Blah blah blah." // Using 'and' in the final element's main text will work aswell.
  * ```
  * This will result in
  *

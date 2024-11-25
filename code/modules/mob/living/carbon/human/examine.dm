@@ -1,3 +1,6 @@
+/mob/living/carbon/human/get_examine_icon(mob/user)
+	return null // carbon human icons either don't work or are super fucked up
+
 /mob/living/carbon/human/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)
 	var/skipgloves = 0
