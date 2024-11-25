@@ -606,7 +606,103 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/stack/cable_coil, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle , SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle, SLOT_IN_BACKPACK)
+
+
+//Non-Deployed Marine Survivor
+/datum/job/survivor/non_deployed_marine
+	title = "Non-Deployed Marine Survivor"
+	skills_type = /datum/skills/civilian/survivor
+	outfit = /datum/outfit/job/survivor/non_deployed_marine
+
+/datum/outfit/job/survivor/non_deployed_marine
+	name = "Non-Deployed Marine Survivor"
+	jobtype = /datum/job/survivor/non_deployed_marine
+
+	w_uniform = /obj/item/clothing/under/marine/service
+	id = /obj/item/card/id/captains_spare/survival
+	gloves = /obj/item/clothing/gloves/white
+	shoes = /obj/item/clothing/shoes/marine/full
+	head = /obj/item/clothing/head/servicecap
+	back = /obj/item/storage/backpack/marine/satchel
+	ears = /obj/item/radio/headset/survivor
+
+/datum/outfit/job/survivor/non_deployed_marine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/pen, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/paper, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/folder/white, SLOT_IN_BACKPACK)
+
+
+//Prisoner Survivor
+/datum/job/survivor/prisoner
+	title = "Prisoner Survivor"
+	skills_type = /datum/skills/civilian/survivor
+	outfit = /datum/outfit/job/survivor/prisoner
+
+/datum/outfit/job/survivor/prisoner
+	name = "Prisoner Survivor"
+	jobtype = /datum/job/survivor/prisoner
+
+	w_uniform = /obj/item/clothing/under/rank/prisoner
+	id = /obj/item/card/id/captains_spare/survival
+	shoes = /obj/item/clothing/shoes/orange
+	back =  /obj/item/storage/backpack/security
+	mask = /obj/item/clothing/mask/gas/modular/skimask
+	ears = /obj/item/radio/headset/survivor
+
+/datum/outfit/job/survivor/prisoner/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/restraints/handcuffs, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle, SLOT_IN_BACKPACK)
+
+
+//Stripper Survivor
+/datum/job/survivor/stripper
+	title = "Stripper Survivor"
+	skills_type = /datum/skills/civilian/survivor
+	outfit = /datum/outfit/job/survivor/stripper
+
+/datum/outfit/job/survivor/stripper
+	name = "Stripper Survivor"
+	jobtype = /datum/job/survivor/stripper
+
+	w_uniform = /obj/item/clothing/under/lewd/stripper
+	id = /obj/item/card/id/captains_spare/survival
+	shoes = /obj/item/clothing/shoes/high_heels/red
+	back =  /obj/item/storage/backpack/satchel
+	ears = /obj/item/radio/headset/survivor
+	head = /obj/item/clothing/head/bunny_ears
+
+/datum/outfit/job/survivor/stripper/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle, SLOT_IN_BACKPACK)
+
+
+//Maid Survivor
+/datum/job/survivor/maid
+	title = "Maid Survivor"
+	skills_type = /datum/skills/civilian/survivor
+	outfit = /datum/outfit/job/survivor/maid
+
+/datum/outfit/job/survivor/maid
+	name = "Maid Survivor"
+	jobtype = /datum/job/survivor/maid
+
+	w_uniform = /obj/item/clothing/under/dress/maid
+	id = /obj/item/card/id/captains_spare/survival
+	gloves = /obj/item/clothing/gloves/latex
+	shoes = /obj/item/clothing/shoes/high_heels
+	back =  /obj/item/storage/backpack/satchel/norm
+	ears = /obj/item/radio/headset/survivor
+
+/datum/outfit/job/survivor/maid/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/soap/deluxe, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bucket, SLOT_IN_BACKPACK)
+
 
 // Rambo Survivor - pretty overpowered, pls spawn with caution
 /datum/job/survivor/rambo
