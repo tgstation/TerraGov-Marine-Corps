@@ -233,7 +233,7 @@
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [p_do()]n't seem responsive.")]\n"
 			else
-				msg += "[span_deadsay("[t_He] [t_is] completely unresponsive to anything and has fallen asleep, as if affected by Space Sleep Disorder. [t_He] may snap out of it soon.")]\n"
+				msg += "[span_deadsay("[t_He] [t_is] completely unresponsive to anything and [t_has] fallen asleep, as if affected by Space Sleep Disorder. [t_He] may snap out of it soon.")]\n"
 
 	var/total_brute = getBruteLoss()
 	var/total_burn = getFireLoss()
@@ -275,7 +275,7 @@
 	if(total_clone)
 		if(total_clone < 25)
 			if(isrobot(src))
-				msg += "[span_tinydeadsay("<i>[t_He] has minor structural damage, with some solder visibly frayed...</i>")]\n"
+				msg += "[span_tinydeadsay("<i>[t_He] [t_has] minor structural damage, with some solder visibly frayed...</i>")]\n"
 			else
 				msg += "[span_tinydeadsay("<i>[t_He] [t_is] slightly disfigured, with light signs of cellular damage...</i>")]\n"
 		else if (total_clone < 50)
