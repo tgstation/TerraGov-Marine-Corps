@@ -266,17 +266,24 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
 		. = override.Join("")
 
-/obj/item/examine(mob/user)
-	. = ..()
-	. += EXAMINE_SECTION_BREAK
-	. += "[gender == PLURAL ? "They are" : "It is"] a [weight_class_to_text(w_class)] item."
+/obj/item/examine_tags(mob/user)
+	var/list/parent_tags = ..()
+	var/list/weight_class_data = weight_class_data(w_class)
+	parent_tags.Insert(1, weight_class_data[WEIGHT_CLASS_TEXT]) // to make size display first, otherwise it looks goofy
+	. = parent_tags
+	.[weight_class_data[WEIGHT_CLASS_TEXT]] = "[gender == PLURAL ? "They're" : "It's"] a [weight_class_data[WEIGHT_CLASS_TEXT]] [examine_descriptor(user)]. [weight_class_data[WEIGHT_CLASS_TOOLTIP]]"
+	if(atom_flags & CONDUCT)
+		.["conductive"] = "It's conductive. If this is an oversuit item, like armor, it will prevent defibrillation while worn. \
+							Some conductive tools also have special interactions and dangers when being used."
+
+/obj/item/examine_descriptor(mob/user)
+	return "item"
 
 /obj/item/attack_ghost(mob/dead/observer/user)
 	. = ..()
 	if(. || !can_interact(user))
 		return
 	return interact(user)
-
 
 /obj/item/attack_hand(mob/living/user)
 	. = ..()
