@@ -994,7 +994,7 @@
 					html = "<font size='4' color='red'><b>-- Staff private message --</b></font>\n[span_adminsay("PM from- [key_name(src, recipient, TRUE)]: [span_linkify("[keywordparsedmsg]")]")]")
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<font size='4' color='red'><b>-- Staff private message --</b></font>\n[span_adminsay("You private messaged [key_name(recipient, src, TRUE)]: [span_linkify("[keywordparsedmsg]")]")]")
+					html = "<font size='4' color='red'><b>-- Staff private message --</b></font>\n[span_adminsay("PM to- [key_name(recipient, src, TRUE)]: [span_linkify("[keywordparsedmsg]")]")]")
 
 				window_flash(recipient, TRUE)
 				window_flash(src, TRUE)
@@ -1009,7 +1009,7 @@
 				admin_ticket_log(src, "<font color='#ff8c8c'>Reply PM from-<b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]</font>")
 				to_chat(recipient,
 					type = MESSAGE_TYPE_ADMINPM,
-					html = "<font size='4' color='red'><b>Reply from-[key_name(src, recipient, TRUE)]</b></font>\n[span_adminsay("[span_linkify("[keywordparsedmsg]")]")]")
+					html = "<font size='4' color='red'><b>-- Private message --</b></font>\n[span_adminsay("Reply from- <b>[key_name(src, recipient, TRUE)]</b>: [span_linkify("[keywordparsedmsg]")]")]")
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
 					html = span_notice("PM to-<b>Staff</b>: [span_linkify("[msg]")]"))
