@@ -819,7 +819,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 	.[WEIGHT_CLASS_TEXT] = weight_class_to_text(w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY, WEIGHT_CLASS_SMALL)
-			.[WEIGHT_CLASS_TOOLTIP] = "Fits virtually anywhere; in pockets, backpacks/satchels, and most other containers. Takes up little in containers."
+			.[WEIGHT_CLASS_TOOLTIP] = "Fits virtually anywhere; in pockets, backpacks/satchels, and most other containers. Takes up little space in containers."
 		if(WEIGHT_CLASS_NORMAL)
 			.[WEIGHT_CLASS_TOOLTIP] = "Fits in some standard containers and backpacks/satchels. Takes up some space."
 		if(WEIGHT_CLASS_BULKY)
