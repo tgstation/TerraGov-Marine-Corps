@@ -813,18 +813,19 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			. = "?????"
 
 ///Returns an assoc list of WEIGHT CLASS TEXT = DESCRIPTION based on the arg you provide.
+///Used by examine tags for giving each weight class a special description.
 /proc/weight_class_data(w_class)
 	. = list()
 	.[WEIGHT_CLASS_TEXT] = weight_class_to_text(w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY, WEIGHT_CLASS_SMALL)
-			.[WEIGHT_CLASS_TOOLTIP] = "Fits in pockets and almost all containers, except some specialized containers. Takes up almost no space in containers."
+			.[WEIGHT_CLASS_TOOLTIP] = "Fits virtually anywhere; in pockets, backpacks/satchels, and most other containers. Takes up little in containers."
 		if(WEIGHT_CLASS_NORMAL)
-			.[WEIGHT_CLASS_TOOLTIP] = "Fits in most containers. Takes up some space."
+			.[WEIGHT_CLASS_TOOLTIP] = "Fits in most standard containers. Takes up some space."
 		if(WEIGHT_CLASS_BULKY)
-			.[WEIGHT_CLASS_TOOLTIP] = "Only fits in rare specialized containers, such as holsters. Takes up a lot of space in containers."
+			.[WEIGHT_CLASS_TOOLTIP] = "Does not fit in standard containers."
 		if(WEIGHT_CLASS_HUGE, WEIGHT_CLASS_GIGANTIC)
-			.[WEIGHT_CLASS_TOOLTIP] = "Only fits in extremely rare specialized containers."
+			.[WEIGHT_CLASS_TOOLTIP] = "Often can't be stored at all, except in extremely rare specialized containers."
 		else
 			.[WEIGHT_CLASS_TOOLTIP] = "Yell at coders, this isn't supposed to happen."
 
