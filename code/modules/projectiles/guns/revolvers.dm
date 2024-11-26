@@ -208,7 +208,6 @@
 	worn_icon_state = "mateba"
 
 /obj/item/weapon/gun/revolver/mateba/custom/officer
-	damage_mult = 3
 
 //-------------------------------------------------------
 //MARSHALS REVOLVER
