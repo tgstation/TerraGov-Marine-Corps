@@ -50,6 +50,8 @@
 	pixel_shift_y = 17
 	stream_type = FLAMER_STREAM_CONE
 	burn_time_mod = 0.3
+	delay_mod = -20
+	windup_delay = 3 SECONDS
 
 ///Funny red wide nozzle that can fill entire screens with flames. Admeme only.
 /obj/item/attachable/flamer_nozzle/wide/red
@@ -62,9 +64,10 @@
 /obj/item/attachable/flamer_nozzle/long
 	name = "extended flamer nozzle"
 	icon_state = "long"
-	desc = "Rather than spreading the supplied fuel over an area, this nozzle launches a single fireball to ignite a target at range. Reduced volume per shot also means the next is ready quicker."
+	desc = "Rather than spreading the supplied fuel over an area, this nozzle launches a single fireball to ignite a target at range. Takes a little longer to fire due to needing to pressurize before each shot."
 	stream_type = FLAMER_STREAM_RANGED
-	delay_mod = -10
+	delay_mod = -20
+	windup_delay = 2 SECONDS
 
 /obj/item/attachable/flamer_nozzle/long/on_attach(attaching_item, mob/user)
 	. = ..()

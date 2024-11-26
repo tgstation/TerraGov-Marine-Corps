@@ -120,6 +120,8 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 	var/ammo_mod = null
 	///how much charge difference it now costs to shoot. negative means more shots per mag.
 	var/charge_mod = 0
+	///whether the attachment adds a windup delay before firing
+	var/windup_delay = 0
 	///what firemodes this attachment allows/adds.
 	var/gun_firemode_list_mod = null
 	///lazylist of attachment slot offsets for a gun.
@@ -205,6 +207,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.min_scatter_unwielded        += min_scatter_unwielded_mod
 		master_gun.aim_speed_modifier			+= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 		master_gun.iff_marine_damage_falloff	+= shot_marine_damage_falloff
+		master_gun.windup_delay                 += windup_delay
 		master_gun.add_aim_mode_fire_delay(name, initial(master_gun.aim_fire_delay) * aim_mode_delay_mod)
 		if(add_aim_mode)
 			var/datum/action/item_action/aim_mode/A = new (master_gun)
@@ -258,6 +261,7 @@ inaccurate. Don't worry if force is ever negative, it won't runtime.
 		master_gun.min_scatter_unwielded        -= min_scatter_unwielded_mod
 		master_gun.aim_speed_modifier			-= initial(master_gun.aim_speed_modifier)*aim_mode_movement_mult
 		master_gun.iff_marine_damage_falloff	-= shot_marine_damage_falloff
+		master_gun.windup_delay                 -= windup_delay
 		master_gun.remove_aim_mode_fire_delay(name)
 		if(add_aim_mode)
 			var/datum/action/item_action/aim_mode/action_to_delete = locate() in master_gun.actions
