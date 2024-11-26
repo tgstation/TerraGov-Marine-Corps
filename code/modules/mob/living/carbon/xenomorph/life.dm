@@ -21,7 +21,7 @@
 			zoom_out()
 	else
 		if(xeno_flags & XENO_ZOOMED)
-			if(loc != zoom_turf || lying_angle)
+			if(loc != zoom_turf)
 				zoom_out()
 		update_progression(seconds_per_tick)
 		update_evolving(seconds_per_tick)
