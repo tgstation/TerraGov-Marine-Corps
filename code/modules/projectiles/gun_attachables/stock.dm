@@ -119,7 +119,7 @@
 /obj/item/attachable/stock/sh23
 	name = "\improper SH-23 stock"
 	desc = "A irremovable SH-23 stock."
-	icon_state = "ml101"
+	icon_state = "sh23"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 
