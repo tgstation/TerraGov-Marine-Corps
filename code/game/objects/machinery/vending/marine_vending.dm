@@ -1487,6 +1487,9 @@
 			/obj/item/clothing/under/shorts/green = -1,
 			/obj/item/clothing/under/dress/maid = -1,
 			/obj/item/clothing/under/dress/maid/sexy = -1,
+			/obj/item/clothing/shoes/high_heels = -1,
+			/obj/item/clothing/shoes/high_heels/red = -1,
+			/obj/item/clothing/head/bunny_ears = -1,
 		),
 	)
 
@@ -2411,6 +2414,9 @@
 			/obj/item/clothing/under/shorts/green = -1,
 			/obj/item/clothing/under/dress/maid = -1,
 			/obj/item/clothing/under/dress/maid/sexy = -1,
+			/obj/item/clothing/shoes/high_heels = -1,
+			/obj/item/clothing/shoes/high_heels/red = -1,
+			/obj/item/clothing/head/bunny_ears = -1,
 		),
 	)
 
@@ -2751,6 +2757,9 @@
 			/obj/item/clothing/under/shorts/green = -1,
 			/obj/item/clothing/under/dress/maid = -1,
 			/obj/item/clothing/under/dress/maid/sexy = -1,
+			/obj/item/clothing/shoes/high_heels = -1,
+			/obj/item/clothing/shoes/high_heels/red = -1,
+			/obj/item/clothing/head/bunny_ears = -1,
 		),
 	)
 
@@ -3123,6 +3132,9 @@
 			/obj/item/clothing/under/shorts/green = -1,
 			/obj/item/clothing/under/dress/maid = -1,
 			/obj/item/clothing/under/dress/maid/sexy = -1,
+			/obj/item/clothing/shoes/high_heels = -1,
+			/obj/item/clothing/shoes/high_heels/red = -1,
+			/obj/item/clothing/head/bunny_ears = -1,
 		),
 	)
 

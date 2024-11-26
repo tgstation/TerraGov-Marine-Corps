@@ -134,6 +134,16 @@
 	desc = "The height of fashion, and they're pre-polished!"
 	icon_state = "laceups"
 
+/obj/item/clothing/shoes/high_heels
+	name = "high heels"
+	desc = "A pair of high-heeled shoes."
+	icon_state = "heels"
+
+/obj/item/clothing/shoes/high_heels/red
+	name = "red heels"
+	desc = "A pair of red high-heeled shoes."
+	icon_state = "heels_red"
+
 /obj/item/clothing/shoes/swimmingfins
 	desc = "Help you swim good."
 	name = "swimming fins"

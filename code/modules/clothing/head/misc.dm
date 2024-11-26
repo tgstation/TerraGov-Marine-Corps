@@ -20,6 +20,15 @@
 	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
 	armor_features_flags = ARMOR_NO_DECAP
 
+/obj/item/clothing/head/bunny_ears
+	name = "bunny ears"
+	icon_state = "bunny"
+	desc = "A pair of bunny ears."
+	worn_icon_state = "bunny"
+	armor_protection_flags = HEAD
+	soft_armor = list(MELEE = 50, BULLET = 70, LASER = 70, ENERGY = 60, BOMB = 55, BIO = 55, FIRE = 55, ACID = 60)
+	armor_features_flags = ARMOR_NO_DECAP
+
 /obj/item/clothing/head/powdered_wig
 	name = "powdered wig"
 	desc = "A powdered wig."
