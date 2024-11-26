@@ -201,7 +201,7 @@
 	sundering = 15
 
 /datum/ammo/bullet/shotgun/barrikada/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
+	staggerstun(target_mob, proj, weaken = 2 SECONDS, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
 
 /datum/ammo/bullet/shotgun/heavy_spread
 	name = "additional buckshot"
