@@ -475,7 +475,6 @@
 	aim_slowdown = 0.65
 	wield_delay = 0.95 SECONDS
 	cock_delay = 1.4 SECONDS
-	damage_falloff_mult = 0.5 // Rifled barrel, also has more slug variety
 //------------------------------------------------------
 //A hacky bolt action rifle. in here for the "pump" or bolt working action.
 
