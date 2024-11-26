@@ -449,8 +449,8 @@
 	desc = "An NTF clone of an ICC classic, slow to chamber but hits like a truck. Due to the reinforcement needed to slam 6 gauge downrange, the body of this shotgun has no attachment mounting points\n<b>Requires a pump, which is the Unique Action key.</b>"
 	equip_slot_flags = ITEM_SLOT_BACK
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
-	icon_state = "ks23"
-	worn_icon_state = "ks23"
+	icon_state = "sh23"
+	worn_icon_state = "sh23"
 	caliber = CALIBER_6G //codex
 	default_ammo_type = /datum/ammo/bullet/shotgun/heavy_buckshot
 	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
