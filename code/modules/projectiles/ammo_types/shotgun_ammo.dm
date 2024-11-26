@@ -213,6 +213,28 @@
 	damage = 50
 	damage_falloff = 4
 
+/datum/ammo/bullet/shotgun/heavy_flechette
+	name = "heavy flechette shell"
+	handful_icon_state = "heavy_shotgun_flechette"
+	icon_state = "flechette"
+	hud_state = "shotgun_flechette"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette/heavy_flechette_spread
+	bonus_projectiles_amount = 2
+	bonus_projectiles_scatter = 3
+	accuracy_var_low = 8
+	accuracy_var_high = 8
+	max_range = 15
+	damage = 60
+	damage_falloff = 0.5
+	penetration = 15
+	sundering = 12
+
+/datum/ammo/bullet/shotgun/flechette/heavy_flechette_spread
+	name = "additional flechette"
+	damage = 45
+	sundering = 7
+
 /datum/ammo/bullet/shotgun/sx16_flechette
 	name = "shotgun flechette shell"
 	handful_icon_state = "shotgun_flechette"
