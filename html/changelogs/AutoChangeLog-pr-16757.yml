@@ -1,4 +1,0 @@
-author: "blackdav123"
-delete-after: True
-changes:
-  - admin: "Toggle Sleeping no longer has a confirmation prompt."
