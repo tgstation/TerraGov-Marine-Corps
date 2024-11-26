@@ -609,15 +609,15 @@ Good luck, but do not expect to survive."})
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle, SLOT_IN_BACKPACK)
 
 
-//Non-Deployed Marine Survivor
-/datum/job/survivor/non_deployed_marine
-	title = "Non-Deployed Marine Survivor"
+//Non-Deployed Operative Survivor
+/datum/job/survivor/non_deployed_operative
+	title = "Non-Deployed Operative Survivor"
 	skills_type = /datum/skills/civilian/survivor
-	outfit = /datum/outfit/job/survivor/non_deployed_marine
+	outfit = /datum/outfit/job/survivor/non_deployed_operative
 
-/datum/outfit/job/survivor/non_deployed_marine
-	name = "Non-Deployed Marine Survivor"
-	jobtype = /datum/job/survivor/non_deployed_marine
+/datum/outfit/job/survivor/non_deployed_operative
+	name = "Non-Deployed Operative Survivor"
+	jobtype = /datum/job/survivor/non_deployed_operative
 
 	w_uniform = /obj/item/clothing/under/marine/service
 	id = /obj/item/card/id/captains_spare/survival
@@ -627,7 +627,7 @@ Good luck, but do not expect to survive."})
 	back = /obj/item/storage/backpack/marine/satchel
 	ears = /obj/item/radio/headset/survivor
 
-/datum/outfit/job/survivor/non_deployed_marine/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/survivor/non_deployed_operative/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/cans/waterbottle, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/tool/pen, SLOT_IN_BACKPACK)

@@ -51,7 +51,7 @@
 		/datum/job/survivor/miner = 6,
 		/datum/job/survivor/salesman = 2,
 		/datum/job/survivor/marshal = 2,
-		/datum/job/survivor/non_deployed_marine = 2,
+		/datum/job/survivor/non_deployed_operative = 2,
 		/datum/job/survivor/prisoner = 2,
 		/datum/job/survivor/stripper = -1,
 		/datum/job/survivor/maid = 3,

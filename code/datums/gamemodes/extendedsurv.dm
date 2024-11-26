@@ -26,7 +26,7 @@
 		/datum/job/survivor/miner = -1,
 		/datum/job/survivor/salesman = -1,
 		/datum/job/survivor/marshal = -1,
-		/datum/job/survivor/non_deployed_marine = -1,
+		/datum/job/survivor/non_deployed_operative = -1,
 		/datum/job/survivor/prisoner = -1,
 		/datum/job/survivor/stripper = -1,
 		/datum/job/survivor/maid = -1,
