@@ -4,6 +4,7 @@
 
 # Anything in here will be blocked from IC interactions, dead chat, and OOC
 [shared]
+"skibidi" = "The word skibidi is not allowed anywhere."
 "blockedinshared" = "This message is not allowed anywhere, please use a different weird test phrase."
 
 # Anything in here is blocked just from IC interactions, such as chat or names, but is allowed in dead chat and OOC
