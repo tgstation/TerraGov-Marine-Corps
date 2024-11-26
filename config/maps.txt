@@ -111,6 +111,6 @@ map bluesummers
 endmap
 
 map metnal
-	minplayers 40
+	minplayers 45
   endmap
   
