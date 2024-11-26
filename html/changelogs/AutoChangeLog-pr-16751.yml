@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Xeno castes who are suppose to be immune from plasma drain no longer have their plasma drained when directly hit by a tesla ball."
