@@ -142,3 +142,11 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "heavy_shotgun_barrikada"
 	default_ammo = /datum/ammo/bullet/shotgun/barrikada_slug
 	icon_state_mini = "buckshot"
+
+/obj/item/ammo_magazine/shotgun/heavy_flechette
+	name = "box of 6 gauge flechette shells"
+	desc = "A box filled with flechette spread shotgun shells. 6 Gauge."
+	caliber = CALIBER_6G
+	icon_state = "heavy_shotgun_flechette"
+	default_ammo = /datum/ammo/bullet/shotgun/heavy_flechette
+	icon_state_mini = "buckshot"

@@ -227,8 +227,8 @@
 	max_range = 15
 	damage = 60
 	damage_falloff = 0.5
-	penetration = 15
-	sundering = 12
+	penetration = 20
+	sundering = 10
 
 /datum/ammo/bullet/shotgun/flechette/heavy_flechette_spread
 	name = "additional flechette"
