@@ -1,0 +1,5 @@
+author: "AzonStarfall"
+delete-after: True
+changes:
+  - rscadd: "Made the Arachne fore hangar mostly symmetrical again."
+  - bugfix: "Fixed Tank Crew access on the Arachne vehicle bay."
