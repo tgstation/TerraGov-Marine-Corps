@@ -91,3 +91,6 @@
   Runian:
   - bugfix: Xeno castes who are suppose to be immune from plasma drain no longer have
       their plasma drained when directly hit by a tesla ball.
+2024-11-27:
+  YehnBeep:
+  - bugfix: fixed buttons on canterbury and bigbury for opening the south entryways
