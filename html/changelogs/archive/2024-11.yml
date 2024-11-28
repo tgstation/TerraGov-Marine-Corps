@@ -94,3 +94,12 @@
 2024-11-27:
   YehnBeep:
   - bugfix: fixed buttons on canterbury and bigbury for opening the south entryways
+2024-11-28:
+  AzonStarfall:
+  - rscadd: Made the Arachne fore hangar mostly symmetrical again.
+  - bugfix: Fixed Tank Crew access on the Arachne vehicle bay.
+  Runian:
+  - bugfix: Wraith portals are no longer affected / destroyed by lava.
+  YehnBeep:
+  - bugfix: Hunters can no longer stealth through tadpole console interaction telegraphs
+  - balance: Hunters can no longer break the tad console while stealthed

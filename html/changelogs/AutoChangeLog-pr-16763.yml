@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - bugfix: "Wraith portals are no longer affected / destroyed by lava."
