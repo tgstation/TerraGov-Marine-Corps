@@ -81,3 +81,9 @@
   - rscadd: 'New jobs: Non-Deployed Operative Survivor, Prisoner Survivor, Stripper
       Survivor, and Maid Survivor'
   - rscadd: 'New items: Bunny ears, High heels'
+2024-11-28:
+  W0LF-101:
+  - rscadd: Added SH-23 Heavy Shotgun
+  - rscadd: Added 6 gauge heavy flechettes
+  - balance: Added 2s weakness to "barrikada" slugs, to match the 12 gauge equivalent
+  - bugfix: Fixed missing wield sprite for ML-101
