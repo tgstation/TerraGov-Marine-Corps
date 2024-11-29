@@ -72,14 +72,14 @@
 			data["f_style"] = f_style
 		if(BACKGROUND_INFORMATION)
 			data["slot"] = default_slot
-			data["flavor_text"] = flavor_text
-			data["xeno_desc"] = xeno_desc
-			data["profile_pic"] = profile_pic
-			data["xenoprofile_pic"] = xenoprofile_pic
-			data["med_record"] = med_record
-			data["gen_record"] = gen_record
-			data["sec_record"] = sec_record
-			data["exploit_record"] = exploit_record
+			data["flavor_text"] = html_decode(flavor_text)
+			data["xeno_desc"] = html_decode(xeno_desc)
+			data["profile_pic"] = html_decode(profile_pic)
+			data["xenoprofile_pic"] = html_decode(xenoprofile_pic)
+			data["med_record"] = html_decode(med_record)
+			data["gen_record"] = html_decode(gen_record)
+			data["sec_record"] = html_decode(sec_record)
+			data["exploit_record"] = html_decode(exploit_record)
 		if(GEAR_CUSTOMIZATION)
 			data["gearsets"] = list()
 			for(var/g in GLOB.gear_datums)

@@ -1075,6 +1075,73 @@ $ooc_alert_text_colors: (
   'game': #b60000,
 );
 
+/* Colors */
+
+.white {
+  color: #000000;
+}
+
+.black {
+  color: #000000;
+}
+
+.darkgray {
+  color: #808080;
+}
+
+.gray {
+  color: #a9a9a9;
+}
+
+.grey {
+  color: #a9a9a9;
+}
+
+.orange {
+  color: #ff8c00;
+}
+
+.blue {
+  color: #0000ff;
+}
+
+.darkgreen {
+  color: #008000;
+}
+
+.yellow {
+  color: #ffcc00;
+}
+
+.pink {
+  color: #ffc0cb;
+}
+
+.cyan {
+  color: #00ffff;
+}
+
+.maroon {
+  color: #800000;
+}
+
+.crimson {
+  color: #dc143c;
+}
+
+.brown {
+  color: #8d4925;
+}
+
+.lightpurple {
+  color: #ad5aad;
+}
+
+.darkpink {
+  color: #e3209b;
+}
+
+
 @each $color-type, $color in $ooc_alert_text_colors {
   .ooc_alert_#{$color-type} {
     background: map.get($ooc_alert_bg_colors, $color-type);

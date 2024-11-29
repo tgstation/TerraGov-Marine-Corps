@@ -2054,6 +2054,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 5
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -2701,7 +2702,7 @@
 /turf/closed/wall/r_wall,
 /area/lv624/lazarus/secure_storage)
 "boY" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle5)
 "bpj" = (
@@ -3310,6 +3311,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 6
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -5555,9 +5557,11 @@
 /turf/closed/wall,
 /area/lv624/lazarus/quartstorage)
 "ebN" = (
-/obj/effect/landmark/patrol_point/som/som_24,
+/obj/effect/landmark/weed_node,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
+/area/lv624/ground/jungle3)
 "ebP" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
@@ -5949,7 +5953,7 @@
 "exE" = (
 /obj/structure/flora/jungle/vines,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/patrol_point/som/som_12,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "eyk" = (
@@ -6724,10 +6728,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/sandtemple/garbledradio)
-"fof" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
 "foG" = (
 /obj/structure/closet/firecloset/full,
 /turf/open/floor/tile/dark/brown2/corner{
@@ -6895,10 +6895,6 @@
 	dir = 8
 	},
 /area/lv624/lazarus/fitness)
-"fxE" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
 "fxN" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -7584,7 +7580,7 @@
 	},
 /area/lv624/lazarus/sleep_female)
 "ggI" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirtgrassborder{
 	dir = 4
 	},
@@ -7906,7 +7902,7 @@
 	ceiling = 6
 	})
 "gAy" = (
-/obj/effect/landmark/patrol_point/som/som_13,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/ground/grass,
 /area/lv624/ground/jungle3)
 "gAE" = (
@@ -8292,6 +8288,10 @@
 /obj/machinery/door/poddoor/mainship{
 	id = "corporate_blast";
 	name = "\improper Corporate Dome Blast Door"
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
@@ -9025,9 +9025,15 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central2)
 "hGB" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
+/obj/structure/cable,
+/obj/machinery/door/airlock/mainship/medical/glass/free_access{
+	dir = 1;
+	name = "\improper Auxillary Hydroponics Dome"
+	},
+/obj/structure/cable,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/hydroponics/aux)
 "hGO" = (
 /obj/machinery/newscaster{
 	dir = 8
@@ -11008,6 +11014,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/central3)
 "jDe" = (
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "jDl" = (
@@ -11759,11 +11769,11 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "knS" = (
-/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	dir = 4;
-	on = 1
-	},
 /obj/effect/ai_node,
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
+	dir = 1
+	},
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "koo" = (
@@ -12965,7 +12975,7 @@
 /turf/open/floor/plating/asteroidwarning/down,
 /area/deltastation/commons/dorms/barracks{
 	name = "CLF Bunks";
-	outside = s
+	outside = 0
 	})
 "lBK" = (
 /obj/effect/spawner/random/misc/structure/broken_reinforced_window/colonyspawn,
@@ -14045,7 +14055,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/secure_storage)
 "mBS" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /turf/open/floor/plating/ground/desertdam/asphalt/tile,
 /area/deltastation/engineering/lobby{
@@ -14922,7 +14932,7 @@
 	},
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
-	dir = 4
+	dir = 9
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/internal_affairs)
@@ -16097,7 +16107,7 @@
 /area/lv624/lazarus/bar)
 "oMV" = (
 /obj/structure/flora/jungle/vines,
-/obj/effect/landmark/patrol_point/som/som_14,
+/obj/effect/landmark/patrol_point/som/som_11,
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/ground/ruin)
 "oMX" = (
@@ -16653,6 +16663,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "pvx" = (
@@ -16696,7 +16707,7 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/quartstorage/dome)
 "pyc" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /obj/structure/cable,
 /obj/structure/cable,
 /obj/structure/cable,
@@ -17302,6 +17313,9 @@
 /area/lv624/lazarus/research)
 "qgf" = (
 /obj/machinery/light/small,
+/obj/machinery/atmospherics/components/unary/vent_pump/layer1{
+	dir = 1
+	},
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 1
 	},
@@ -19367,7 +19381,7 @@
 /area/lv624/lazarus/sandtemple/garbledradio)
 "sac" = (
 /obj/effect/ai_node,
-/obj/effect/landmark/patrol_point/tgmc_13,
+/obj/effect/landmark/patrol_point/tgmc_11,
 /turf/open/floor/plating/ground/dirtgrassborder/corner,
 /area/lv624/ground/jungle5)
 "sae" = (
@@ -20216,9 +20230,16 @@
 /turf/open/floor/tile/whiteyellow/full,
 /area/lv624/lazarus/quart)
 "sXN" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 4
+	},
+/obj/structure/cable,
 /turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/west1)
+/area/lv624/ground/jungle3)
 "sYe" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/dirt,
@@ -20367,15 +20388,6 @@
 /obj/structure/flora/jungle/vines,
 /turf/closed/wall,
 /area/lv624/lazarus/overgrown)
-"tek" = (
-/obj/machinery/door/airlock/mainship/medical/glass/free_access{
-	dir = 1;
-	name = "\improper Leisure Dome"
-	},
-/turf/open/floor/tile/purple/whitepurple{
-	dir = 5
-	},
-/area/lv624/lazarus/fitness)
 "teE" = (
 /turf/open/floor/tile/green/greentaupe{
 	dir = 9
@@ -22926,6 +22938,7 @@
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
 	dir = 4
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/blue/whiteblue{
 	dir = 4
 	},
@@ -23826,7 +23839,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle1)
 "wtF" = (
-/obj/effect/landmark/patrol_point/som/som_23,
+/obj/effect/landmark/patrol_point/som/som_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/east1)
 "wui" = (
@@ -24313,9 +24326,17 @@
 /turf/open/floor/tile/white,
 /area/lv624/lazarus/hydroponics/aux)
 "wOK" = (
-/obj/effect/landmark/patrol_point/som/som_21,
-/turf/open/floor/plating/ground/dirt,
-/area/lv624/ground/caves/east1)
+/obj/structure/window/framed/colony/reinforced,
+/obj/machinery/door/poddoor/mainship{
+	id = "corporate_blast";
+	name = "\improper Corporate Dome Blast Door"
+	},
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
+	dir = 6
+	},
+/obj/structure/cable,
+/turf/open/floor/plating,
+/area/lv624/lazarus/internal_affairs)
 "wON" = (
 /obj/machinery/light{
 	dir = 8
@@ -24579,7 +24600,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/lazarus/overgrown)
 "wZr" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
+/obj/effect/landmark/patrol_point/tgmc_21,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/west1)
 "wZK" = (
@@ -32959,7 +32980,7 @@ gKr
 gKr
 gKr
 gKr
-fxE
+wZr
 abc
 abc
 abc
@@ -33817,7 +33838,7 @@ gKr
 gKr
 gKr
 gKr
-hGB
+wZr
 abc
 abc
 abc
@@ -35249,7 +35270,7 @@ evp
 evp
 evp
 aym
-sXN
+wZr
 abc
 abc
 abc
@@ -39688,10 +39709,10 @@ rAp
 rAp
 cIp
 rDU
-wXm
-caQ
-xFL
-ffO
+hGB
+ebN
+edi
+sXN
 xhU
 xFL
 pyH
@@ -62939,7 +62960,7 @@ vTi
 vTi
 pmS
 mYJ
-jDe
+elZ
 doz
 pmS
 vTi
@@ -63800,7 +63821,7 @@ vyQ
 lQa
 dco
 anp
-fnp
+jDe
 doz
 dco
 vyQ
@@ -64087,7 +64108,7 @@ wdi
 dco
 dco
 vpc
-fnp
+jDe
 dSR
 dco
 dco
@@ -65773,7 +65794,7 @@ reF
 kDA
 kDA
 aJp
-tek
+eVA
 xhp
 ual
 xhp
@@ -66669,7 +66690,7 @@ aES
 aES
 rpf
 pmS
-vTi
+wOK
 nyG
 vTi
 pmS
@@ -84016,7 +84037,7 @@ fbc
 qHx
 sMD
 tYf
-fof
+wtF
 aah
 aah
 aah
@@ -86317,7 +86338,7 @@ mcN
 dUK
 aah
 mcN
-ebN
+wtF
 aah
 aah
 dUK
@@ -86599,7 +86620,7 @@ tYf
 tYf
 tYf
 tYf
-wOK
+wtF
 aah
 aah
 dUK
