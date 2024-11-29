@@ -324,9 +324,16 @@
 
 
 /mob/living/proc/on_spawn(mob/new_player/summoner)
+	ooc_notes = summoner.ooc_notes
+	ooc_notes_likes = summoner.ooc_notes_likes
+	ooc_notes_dislikes = summoner.ooc_notes_dislikes
+	ooc_notes_maybes = summoner.ooc_notes_maybes
+	ooc_notes_favs = summoner.ooc_notes_favs
+	ooc_notes_style = summoner.ooc_notes_style
 	return
 
 /mob/living/carbon/human/on_spawn(mob/new_player/summoner)
+	.=..()
 	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client)
 		summoner.client.prefs.copy_to(src)
 	update_names_joined_list(real_name)
@@ -334,6 +341,7 @@
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 /mob/living/silicon/ai/on_spawn(mob/new_player/summoner)
+	.=..()
 	if(!is_banned_from(summoner.ckey, "Appearance") && summoner.client?.prefs?.ai_name)
 		fully_replace_character_name(real_name, summoner.client.prefs.ai_name)
 	update_names_joined_list(real_name)
@@ -341,6 +349,7 @@
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 /mob/living/carbon/xenomorph/on_spawn(mob/new_player/summoner)
+	.=..()
 	overlay_fullscreen_timer(0.5 SECONDS, 10, "roundstart1", /atom/movable/screen/fullscreen/black)
 	overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 

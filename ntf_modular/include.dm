@@ -20,6 +20,8 @@
 #include "code\datums\sexcon\sex_actions\deviant\scissoring.dm"
 #include "code\datums\sexcon\sex_actions\deviant\tailpegging_anal.dm"
 #include "code\modules\mob\living\emote.dm"
+#include "code\modules\client\preferences.dm"
+#include "code\modules\mob\ooc_notes.dm"
 #include "code\datums\sexcon\sex_actions\deviant\tailpegging_vaginal.dm"
 #include "code\datums\sexcon\sex_actions\deviant\thighjob.dm"
 #include "code\datums\sexcon\sex_actions\deviant\titjob.dm"

@@ -622,7 +622,7 @@
 		if(istype(I))
 			I.examine(usr)
 
-	return ..()
+	return
 
 /mob/living/carbon/human/grabbed_self_attack()
 	. = ..()

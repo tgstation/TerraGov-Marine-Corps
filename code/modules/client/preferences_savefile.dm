@@ -485,7 +485,13 @@
 	READ_FILE(S["genitalia_boobs"], genitalia_boobs)
 	READ_FILE(S["genitalia_cock"], genitalia_cock)
 	READ_FILE(S["harmful_sex_allowed"], harmful_sex_allowed)
-
+	
+	READ_FILE(S["metadata"], metadata)
+	READ_FILE(S["metadata_likes"], metadata_likes)
+	READ_FILE(S["metadata_dislikes"], metadata_dislikes)
+	READ_FILE(S["metadata_maybes"], metadata_maybes)
+	READ_FILE(S["metadata_favs"], metadata_favs)
+	READ_FILE(S["metadata_ooc_style"], metadata_ooc_style)
 
 	be_special = sanitize_integer(be_special, NONE, MAX_BITFLAG, initial(be_special))
 
@@ -559,6 +565,20 @@
 	genitalia_boobs = sanitize_text(genitalia_boobs, initial(genitalia_boobs))
 	genitalia_cock = sanitize_text(genitalia_cock, initial(genitalia_cock))
 	harmful_sex_allowed = sanitize_text(harmful_sex_allowed, initial(harmful_sex_allowed))
+	
+	metadata = sanitize_text(metadata, initial(metadata))
+	metadata_likes = sanitize_text(metadata_likes, initial(metadata_likes))
+	metadata_dislikes = sanitize_text(metadata_dislikes, initial(metadata_dislikes))
+	metadata_maybes = sanitize_text(metadata_maybes, initial(metadata_maybes))
+	metadata_favs = sanitize_text(metadata_favs, initial(metadata_favs))
+	metadata_ooc_style = sanitize_integer(metadata_ooc_style, FALSE, TRUE, initial(metadata_ooc_style))
+	if(isnewplayer(parent.mob))
+		parent.mob.ooc_notes = metadata
+		parent.mob.ooc_notes_likes = metadata_likes
+		parent.mob.ooc_notes_dislikes = metadata_dislikes
+		parent.mob.ooc_notes_maybes = metadata_maybes
+		parent.mob.ooc_notes_favs = metadata_favs
+		parent.mob.ooc_notes_style = metadata_ooc_style
 
 	if(!synthetic_name)
 		synthetic_name = "David"
@@ -658,6 +678,13 @@
 	genitalia_cock = sanitize_text(genitalia_cock, initial(genitalia_cock))
 	harmful_sex_allowed = sanitize_text(harmful_sex_allowed, initial(harmful_sex_allowed))
 
+	metadata = sanitize_text(metadata, initial(metadata))
+	metadata_likes = sanitize_text(metadata_likes, initial(metadata_likes))
+	metadata_dislikes = sanitize_text(metadata_dislikes, initial(metadata_dislikes))
+	metadata_maybes = sanitize_text(metadata_maybes, initial(metadata_maybes))
+	metadata_favs = sanitize_text(metadata_favs, initial(metadata_favs))
+	metadata_ooc_style = sanitize_integer(metadata_ooc_style, FALSE, TRUE, initial(metadata_ooc_style))
+
 	WRITE_FILE(S["be_special"], be_special)
 
 	WRITE_FILE(S["synthetic_name"], synthetic_name)
@@ -722,7 +749,14 @@
 	WRITE_FILE(S["genitalia_ass"], genitalia_ass)
 	WRITE_FILE(S["genitalia_boobs"], genitalia_boobs)
 	WRITE_FILE(S["genitalia_cock"], genitalia_cock)
-	WRITE_FILE(S["harmful_sex_allowed"], xenogender)
+	WRITE_FILE(S["harmful_sex_allowed"], harmful_sex_allowed)
+	
+	WRITE_FILE(S["metadata"], metadata)
+	WRITE_FILE(S["metadata_likes"], metadata_likes)
+	WRITE_FILE(S["metadata_dislikes"], metadata_dislikes)
+	WRITE_FILE(S["metadata_maybes"], metadata_maybes)
+	WRITE_FILE(S["metadata_favs"], metadata_favs)
+	WRITE_FILE(S["metadata_ooc_style"], metadata_ooc_style)
 
 	return TRUE
 
