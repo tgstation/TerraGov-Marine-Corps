@@ -270,6 +270,12 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	ghost.client?.init_verbs()
 	ghost.mind?.current = ghost
 	ghost.faction = faction
+	ghost.ooc_notes = ooc_notes
+	ghost.ooc_notes_likes = ooc_notes_likes
+	ghost.ooc_notes_dislikes = ooc_notes_dislikes
+	ghost.ooc_notes_maybes = ooc_notes_maybes
+	ghost.ooc_notes_favs = ooc_notes_favs
+	ghost.ooc_notes_style = ooc_notes_style
 
 	if(!T)
 		T = SAFEPICK(GLOB.latejoin)
