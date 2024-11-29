@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - rscadd: "Added OOC notes system - use new verb OOC -> Set Meta-Info (OOC) to set your OOC notes, Can be done in lobby or while playing, saves with character."
