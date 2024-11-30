@@ -87,3 +87,7 @@
   - rscadd: Added 6 gauge heavy flechettes
   - balance: Added 2s weakness to "barrikada" slugs, to match the 12 gauge equivalent
   - bugfix: Fixed missing wield sprite for ML-101
+2024-11-30:
+  Meghan-Rossi:
+  - rscadd: Added OOC notes system - use new verb OOC -> Set Meta-Info (OOC) to set
+      your OOC notes, Can be done in lobby or while playing, saves with character.
