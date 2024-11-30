@@ -236,7 +236,7 @@
 		title = round_finished,
 		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps, and their struggle on [SSmapping.configs[GROUND_MAP].map_name]...",
 		play_sound = FALSE,
-		style = "game"
+		style = OOC_ALERT_GAME
 	)
 
 	var/sound/xeno_track

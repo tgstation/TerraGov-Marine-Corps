@@ -25,7 +25,6 @@
 	var/merge_type // This path and its children should merge with this stack, defaults to src.type
 	var/number_of_extra_variants = 0 //Determines whether the item should update it's sprites based on amount.
 
-
 /obj/item/stack/Initialize(mapload, new_amount)
 	. = ..()
 	if(new_amount)
@@ -87,12 +86,10 @@
 	number.maptext = MAPTEXT(amount)
 	. += number
 
-
 /obj/item/stack/Destroy()
 	if(usr && usr.interactee == src)
 		usr << browse(null, "window=stack")
 	return ..()
-
 
 /obj/item/stack/examine(mob/user)
 	. = ..()
