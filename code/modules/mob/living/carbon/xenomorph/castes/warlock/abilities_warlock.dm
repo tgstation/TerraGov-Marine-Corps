@@ -258,7 +258,7 @@
 		reflected_projectile.distance_travelled = 0
 
 		// If alternative reflection is on, try to deflect toward the targetted area that we're facing.
-		if(alternative_reflection && targetted_atom)
+		if(alternative_reflection)
 			var/bad_angle = TRUE
 			switch(dir)
 				if(NORTH)
