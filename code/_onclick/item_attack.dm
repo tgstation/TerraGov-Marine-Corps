@@ -3,12 +3,8 @@
 		return
 	if(rightclick)
 		return melee_attack_chain_alternate(user, target, params)
-	if(tool_behaviour)
-		to_chat(world, span_boldannounce("tool behavior initial: [tool_behaviour]"))
-		if(tool_attack_chain(user, target))
-			to_chat(world, span_boldannounce("tool_attack_chain: TRUE"))
-			return
-		to_chat(world, span_boldannounce("tool_attack_chain: FALSE"))
+	if(tool_behaviour && tool_attack_chain(user, target))
+		return
 	if(user.lying_angle)
 		user.balloon_alert(user, "Can't while prone!")
 		return
