@@ -761,7 +761,6 @@ directive is properly returned.
 	return TRUE
 
 /atom/proc/plasmacutter_act(mob/living/user, obj/item/I)
-	to_chat(user, span_warning("No plasmacutter_act for this atom."))
 	return FALSE
 
 ///This proc is called on atoms when they are loaded into a shuttle
