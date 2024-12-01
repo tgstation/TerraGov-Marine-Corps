@@ -258,6 +258,7 @@
 
 		// If alternative reflection is on, try to deflect toward the targetted area that we're facing.
 		if(alternative_reflection && targetted_atom)
+			var/direction_to_atom = angle_to_dir(Get_Angle(src, targetted_atom))
 			var/bad_angle = TRUE
 			switch(dir)
 				if(NORTH)
