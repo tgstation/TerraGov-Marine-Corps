@@ -3,8 +3,12 @@
 		return
 	if(rightclick)
 		return melee_attack_chain_alternate(user, target, params)
-	if(tool_behaviour && tool_attack_chain(user, target))
-		return
+	if(tool_behaviour)
+		to_chat(world, span_boldannounce("tool behavior initial: [tool_behaviour]"))
+		if(tool_attack_chain(user, target))
+			to_chat(world, span_boldannounce("tool_attack_chain: TRUE"))
+			return
+		to_chat(world, span_boldannounce("tool_attack_chain: FALSE"))
 	if(user.lying_angle)
 		user.balloon_alert(user, "Can't while prone!")
 		return
@@ -33,12 +37,12 @@
 			return target.wirecutter_act(user, src)
 		if(TOOL_WELDER)
 			return target.welder_act(user, src)
-		if(TOOL_WELD_CUTTER)
-			return target.weld_cut_act(user, src)
 		if(TOOL_ANALYZER)
 			return target.analyzer_act(user, src)
 		if(TOOL_FULTON)
 			return target.fulton_act(user, src)
+		if(TOOL_PLASMACUTTER)
+			return target.plasmacutter_act(user, src)
 
 
 ///Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
