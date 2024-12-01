@@ -80,10 +80,9 @@
 	if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
 		INVOKE_ASYNC(src, PROC_REF(use_ability))
 
-
 /datum/action/ability/activable/xeno/psychic_shield/action_activate()
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
-	if(xeno_owner.selected_ability == src)
+	if(xeno_owner.selected_ability == src && xeno_owner.upgrade == XENO_UPGRADE_PRIMO)
 		alternative_reflection = !alternative_reflection
 		// Reflects projectiles toward a target (targetted) / reflects projectiles as if it was bounced (normal).
 		owner.balloon_alert(owner, alternative_reflection ? "targetted reflection" : "normal reflection")
@@ -252,32 +251,43 @@
 /obj/effect/xeno/shield/proc/reflect_projectiles(atom/targetted_atom)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
 
-	// If alternative reflection is on, all projectiles will be sent toward a desired target.
-	if(alternative_reflection && targetted_atom)
-		for(var/obj/projectile/reflected_projectile AS in frozen_projectiles)
-			reflected_projectile.projectile_behavior_flags &= ~PROJECTILE_FROZEN
-			reflected_projectile.distance_travelled = 0
-			reflected_projectile.fire_at(targetted_atom, source = src, recursivity = TRUE)
-			record_rocket_reflection(owner, reflected_projectile)
-	else
-		var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
-		for(var/obj/projectile/proj AS in frozen_projectiles)
-			proj.projectile_behavior_flags &= ~PROJECTILE_FROZEN
-			proj.distance_travelled = 0 //we're effectively firing it fresh
-			var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
-			if(new_angle < 0)
-				new_angle += 360
-			else if(new_angle > 360)
-				new_angle -= 360
-			proj.fire_at(source = src, angle = new_angle, recursivity = TRUE)
+	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
+	for(var/obj/projectile/reflected_projectile AS in frozen_projectiles)
+		reflected_projectile.projectile_behavior_flags &= ~PROJECTILE_FROZEN
+		reflected_projectile.distance_travelled = 0
 
-			//Record those sick rocket shots
-			//Is not part of record_projectiles_frozen() because it is probably bad to be running that for every bullet!
-			record_rocket_reflection(owner, proj)
+		// If alternative reflection is on, try to deflect toward the targetted area that we're facing.
+		if(alternative_reflection && targetted_atom)
+			var/bad_angle = TRUE
+			switch(dir)
+				if(NORTH)
+					if(direction_to_atom == NORTHWEST || direction_to_atom == NORTH || direction_to_atom == NORTHEAST)
+						bad_angle = FALSE
+				if(EAST)
+					if(direction_to_atom == NORTHEAST || direction_to_atom == EAST || direction_to_atom == SOUTHEAST)
+						bad_angle = FALSE
+				if(SOUTH)
+					if(direction_to_atom == SOUTHEAST || direction_to_atom == SOUTH || direction_to_atom == SOUTHWEST)
+						bad_angle = FALSE
+				if(WEST)
+					if(direction_to_atom == SOUTHWEST || direction_to_atom == WEST || direction_to_atom == NORTHWEST)
+						bad_angle = FALSE
+			if(!bad_angle)
+				reflected_projectile.fire_at(targetted_atom, source = src, recursivity = TRUE)
+				record_rocket_reflection(owner, reflected_projectile)
+				continue
+
+		// If alternative reflection is off OR it fails to get an acceptable angle, reflect it as if it bounced off the shield.
+		var/bounced_angle = perpendicular_angle + (perpendicular_angle - reflected_projectile.dir_angle - 180)
+		if(bounced_angle < 0)
+			bounced_angle += 360
+		else if(bounced_angle > 360)
+			bounced_angle -= 360
+		reflected_projectile.fire_at(source = src, angle = bounced_angle, recursivity = TRUE)
+		record_rocket_reflection(owner, reflected_projectile)
 
 	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles), TRUE)
 	frozen_projectiles.Cut()
-
 
 /obj/effect/xeno/shield/special
 	max_integrity = 325
