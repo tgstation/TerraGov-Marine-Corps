@@ -333,11 +333,8 @@
 	onclose(user, key, src) // We want to register on the window itself
 
 /mob/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
 	if(href_list["ooc_notes"])
-		src.Examine_OOC()
+		ooc_notes_window(usr)
 	if(href_list["edit_ooc_notes"])
 		if(usr == src)
 			set_metainfo_panel(usr)
@@ -361,3 +358,5 @@
 	if(href_list["set_metainfo_ooc_style"])
 		if(usr == src)
 			set_metainfo_ooc_style(usr)
+	return ..()
+	
