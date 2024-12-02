@@ -468,7 +468,8 @@
 			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
-
+	L.adjustStaminaLoss(power)
+	/*
 	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage
 	var/stamina_loss_limit = L.maxHealth * 2
 	var/applied_damage = clamp(power, 0, (stamina_loss_limit - L.getStaminaLoss()))
@@ -478,7 +479,7 @@
 		L.adjustToxLoss(damage_overflow * 0.5)
 		L.adjustOxyLoss(damage_overflow * 0.5)
 		L.Losebreath(2) //So the oxy loss actually means something.
-
+	*/
 	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
 
 	if(current_cycle < 21) //Additional effects at higher cycles

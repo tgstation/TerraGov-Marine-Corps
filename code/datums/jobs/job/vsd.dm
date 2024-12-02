@@ -25,7 +25,6 @@
 
 	id = /obj/item/card/id/silver
 	ears = /obj/item/radio/headset/distress/vsd
-	glasses = /obj/item/clothing/glasses/night/vsd
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd

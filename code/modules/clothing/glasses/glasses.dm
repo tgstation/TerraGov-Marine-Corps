@@ -428,8 +428,8 @@
 	deactive_state = "night_vision_off"
 	worn_layer = COLLAR_LAYER	//The sprites are designed to render over helmets
 	worn_item_state_slots = list()
-	tint = COLOR_RED
-	darkness_view = 8
+	tint = COLOR_GREEN
+	darkness_view = 9
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
 	vision_flags = SEE_TURFS
 	toggleable = TRUE

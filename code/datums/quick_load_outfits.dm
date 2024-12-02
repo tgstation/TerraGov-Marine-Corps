@@ -2237,7 +2237,6 @@
 	name = "VSD Standard"
 	jobtype = "VSD Standard"
 	require_job = FALSE
-	glasses = /obj/item/clothing/glasses/night/vsd
 	w_uniform = /obj/item/clothing/under/vsd/webbing
 	shoes = /obj/item/clothing/shoes/marine/vsd/full
 	wear_suit = /obj/item/clothing/suit/storage/marine/vsd
