@@ -346,7 +346,7 @@ SUBSYSTEM_DEF(ticker)
 		tip = pick(SSstrings.get_list_from_file("tips/meme"))
 
 	if(tip)
-		to_chat(world, examine_block("[span_tip("<big>Tip of the round:</big>")][EXAMINE_SECTION_BREAK][html_encode(tip)]"))
+		to_chat(world, fieldset_block("[span_tip("<big>Tip of the round</big>")]", html_encode(tip), "examine_block"))
 
 
 /datum/controller/subsystem/ticker/proc/check_queue()

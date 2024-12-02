@@ -248,7 +248,7 @@
 /obj/machinery/door_control/mainship/vehicle
 	name = "\improper Vehicle Bay Shutters"
 	id = "vehicle_shutters"
-	req_one_access = list(ACCESS_MARINE_ARMORED, ACCESS_MARINE_MECH)
+	req_one_access = list(ACCESS_MARINE_ARMORED, ACCESS_MARINE_MECH, ACCESS_MARINE_ARMORED)
 
 /obj/machinery/door_control/mainship/tcomms
 	name = "Telecommunications Entrance"

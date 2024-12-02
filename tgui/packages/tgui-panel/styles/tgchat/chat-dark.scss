@@ -279,7 +279,7 @@ em {
   font-weight: bold;
 }
 .colorooc {
-  color: #4c6dff;
+  color: #cca300;
   font-weight: bold;
 }
 
@@ -305,15 +305,15 @@ em {
   font-weight: bold;
 }
 .headmentorooc {
-  color: #397339;
+  color: #3b863b;
   font-weight: bold;
 }
 .senioradminooc {
-  color: #cc707f;
+  color: #df7486;
   font-weight: bold;
 }
 .adminooc {
-  color: #c3324a;
+  color: #db1d3c;
   font-weight: bold;
 }
 .trialminooc {
@@ -329,7 +329,7 @@ em {
   font-weight: bold;
 }
 .mentorooc {
-  color: #329932;
+  color: #32b632;
   font-weight: bold;
 }
 .maintainerooc {
@@ -345,15 +345,15 @@ em {
   font-weight: bold;
 }
 .msay {
-  color: #927c66;
+  color: #119211;
   font-weight: bold;
 }
 .adminmsay {
-  color: #84664a;
+  color: #a06d3c;
   font-weight: bold;
 }
 .headminmsay {
-  color: #665442;
+  color: #8a5520;
   font-weight: bold;
 }
 .admin {
@@ -361,7 +361,7 @@ em {
   font-weight: bold;
 }
 .asay {
-  color: #cc1e58;
+  color: #ff4500;
   font-weight: bold;
 }
 .headminasay {
@@ -407,14 +407,14 @@ em {
 }
 
 .deadsay {
-  color: #b560ff;
+  color: #c788ff;
 }
 .bigdeadsay {
-  color: #b560ff;
+  color: #c788ff;
   font-size: 140%;
 }
 .tinydeadsay {
-  color: #b560ff;
+  color: #c788ff;
   font-size: 85%;
 }
 .radio {
@@ -424,7 +424,7 @@ em {
   color: #b21ab2;
 }
 .comradio {
-  color: #517ac5;
+  color: #6089d6;
 }
 .syndradio {
   color: #7f4648;
@@ -550,10 +550,10 @@ h2.alert {
   font-size: 85%;
 }
 .xenonotice {
-  color: #2c7f5c;
+  color: #57a383;
 }
 .boldnotice {
-  color: #6666cc;
+  color: #6685f5;
   font-weight: bold;
 }
 .warning {
@@ -561,7 +561,7 @@ h2.alert {
   font-style: italic;
 }
 .xenowarning {
-  color: #2c7f5c;
+  color: #57a383;
   font-style: italic;
 }
 .boldwarning {
@@ -579,7 +579,7 @@ h2.alert {
   font-size: 185%;
 }
 .xenodanger {
-  color: #359980;
+  color: #57a383;
   font-weight: bold;
 }
 .avoidharm {
@@ -592,12 +592,12 @@ h2.alert {
   font-size: 185%;
 }
 .xenohighdanger {
-  color: #359980;
+  color: #57a383;
   font-weight: bold;
   font-size: 1.5em;
 }
 .xenoannounce {
-  color: #2c7f5c;
+  color: #57a383;
   font-family: book-antiqua;
   font-weight: bold;
   font-style: italic;
@@ -631,16 +631,15 @@ h2.alert {
 }
 
 .role_header {
-  color: #8fb2ff;
+  color: rgb(215, 0, 0);
   display: block;
   text-align: center;
   font-weight: bold;
   font-size: 1.5em;
 }
 .role_body {
-  color: #d41010;
+  color: #e4e4e4;
   display: block;
-  text-align: center;
 }
 
 .round_setup {
@@ -1026,6 +1025,36 @@ h2.alert {
   height: 1px;
   margin: 8px 16px 8px 16px;
 }
+.examine_block .blockheader {
+  font-family: Verdana;
+  color: #abc6ec;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(100, 100, 100, 0.33);
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.25em;
+}
 
 .tooltip {
   font-style: italic;
@@ -1033,26 +1062,30 @@ h2.alert {
 }
 
 $ooc_alert_bg_colors: (
-  'ooc': #012753,
+  'ooc': #4d4100,
   'game': #4b0000,
 );
 
 $ooc_alert_border_colors: (
-  'ooc': #006deb,
-  'game': #db0000,
+  'ooc': #cca30070,
+  'game': #db000070,
 );
 
 $ooc_alert_text_colors: (
-  'ooc': #006deb,
+  'ooc': #cca300,
   'game': #db0000,
 );
+
+$border-width: 4;
+
+$border-width-px: $border-width * 1px;
 
 @each $color-type, $color in $ooc_alert_text_colors {
   .ooc_alert_#{$color-type} {
     background: map.get($ooc_alert_bg_colors, $color-type);
     border: 1px solid map.get($ooc_alert_border_colors, $color-type);
-    margin: 0.5em;
-    padding: 0.5em 0.5em 0.5em 0.2em;
+    margin: 7px 4px;
+    padding: 8px 12px;
     color: #ffffff;
     font-weight: bold;
     display: flex;
@@ -1062,6 +1095,16 @@ $ooc_alert_text_colors: (
   .ooc_alert_#{$color-type} .ooc_announcement_text {
     color: map.get($ooc_alert_text_colors, $color-type);
     padding: 0.5em 0 0 0.35em;
+  }
+  .ooc_alert_#{$color-type} .separator::before {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid map.get($ooc_alert_border_colors, $color-type);
+  }
+  .ooc_alert_#{$color-type} .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid map.get($ooc_alert_border_colors, $color-type);
   }
 }
 
@@ -1112,10 +1155,6 @@ $alert-subheader-header-colors: (
   'purple': #f7cfcf,
   'grey': #e9aa72,
 );
-
-$border-width: 4;
-
-$border-width-px: $border-width * 1px;
 
 .faction_alert_text {
   background: #202020;
