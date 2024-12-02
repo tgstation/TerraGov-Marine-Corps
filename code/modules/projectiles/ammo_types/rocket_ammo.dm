@@ -54,7 +54,7 @@
 	ammo_behavior_flags = AMMO_SNIPER // We want this one to specifically go over onscreen range.
 
 /datum/ammo/rocket/he/unguided/drop_nade(turf/T)
-	explosion(T, 0, 7, 0, 0, 2)
+	explosion(T, 0, 7, 0, 0, 2, throw_range = 4)
 
 /datum/ammo/rocket/ap
 	name = "kinetic penetrator"
