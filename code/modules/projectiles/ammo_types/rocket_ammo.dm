@@ -46,8 +46,8 @@
 	accurate_range = 20
 	max_range = 14
 	damage = 200
-	penetration = 100
-	sundering = 100
+	penetration = 75
+	sundering = 50
 
 /datum/ammo/rocket/he/unguided
 	damage = 100
