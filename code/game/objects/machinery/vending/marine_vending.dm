@@ -63,6 +63,7 @@
 		),
 		"Shotgun" = list(
 			/obj/item/weapon/gun/shotgun/pump/t35 = -1,
+			/obj/item/weapon/gun/shotgun/pump/sh23 = -1,
 			/obj/item/weapon/gun/shotgun/combat/standardmarine = -1,
 			/obj/item/weapon/gun/shotgun/combat/shq6 = -1,
 			/obj/item/weapon/gun/shotgun/double/marine = -1,
@@ -75,6 +76,12 @@
 			/obj/item/ammo_magazine/handful/slug = -1,
 			/obj/item/ammo_magazine/handful/buckshot = -1,
 			/obj/item/ammo_magazine/handful/flechette = -1,
+			/obj/item/ammo_magazine/shotgun/heavy_buckshot = -1,
+			/obj/item/ammo_magazine/shotgun/heavy_flechette = -1,
+			/obj/item/ammo_magazine/shotgun/barrikada = -1,
+			/obj/item/ammo_magazine/handful/heavy_buckshot = -1,
+			/obj/item/ammo_magazine/handful/heavy_flechette = -1,
+			/obj/item/ammo_magazine/handful/barrikada = -1,
 			/obj/item/weapon/gun/rifle/standard_autoshotgun = -1,
 			/obj/item/ammo_magazine/rifle/tx15_flechette = -1,
 			/obj/item/ammo_magazine/rifle/tx15_slug = -1,
@@ -1487,6 +1494,9 @@
 			/obj/item/clothing/under/shorts/green = -1,
 			/obj/item/clothing/under/dress/maid = -1,
 			/obj/item/clothing/under/dress/maid/sexy = -1,
+			/obj/item/clothing/shoes/high_heels = -1,
+			/obj/item/clothing/shoes/high_heels/red = -1,
+			/obj/item/clothing/head/bunny_ears = -1,
 		),
 	)
 
@@ -2411,6 +2421,9 @@
 			/obj/item/clothing/under/shorts/green = -1,
 			/obj/item/clothing/under/dress/maid = -1,
 			/obj/item/clothing/under/dress/maid/sexy = -1,
+			/obj/item/clothing/shoes/high_heels = -1,
+			/obj/item/clothing/shoes/high_heels/red = -1,
+			/obj/item/clothing/head/bunny_ears = -1,
 		),
 	)
 
@@ -2751,6 +2764,9 @@
 			/obj/item/clothing/under/shorts/green = -1,
 			/obj/item/clothing/under/dress/maid = -1,
 			/obj/item/clothing/under/dress/maid/sexy = -1,
+			/obj/item/clothing/shoes/high_heels = -1,
+			/obj/item/clothing/shoes/high_heels/red = -1,
+			/obj/item/clothing/head/bunny_ears = -1,
 		),
 	)
 
@@ -3123,6 +3139,9 @@
 			/obj/item/clothing/under/shorts/green = -1,
 			/obj/item/clothing/under/dress/maid = -1,
 			/obj/item/clothing/under/dress/maid/sexy = -1,
+			/obj/item/clothing/shoes/high_heels = -1,
+			/obj/item/clothing/shoes/high_heels/red = -1,
+			/obj/item/clothing/head/bunny_ears = -1,
 		),
 	)
 

@@ -62,3 +62,35 @@
   - imagedel: Deleted old Recoilless Rifle icon.
   blackdav123:
   - balance: Xeno silo scaling raised to 2x from 1.5x
+2024-11-24:
+  Meghan-Rossi:
+  - rscadd: Added Survivor-Heavy Extended gamemode, an extended variant in which survivor
+      slots are unlimited and non-survivor slots are very limited.
+  - bugfix: Fixed wrong pronouns being used in some ERP panel actions
+  - bugfix: Fixed force ear ERP action having user and target reversed
+  - rscadd: Made xenos' gender affect their pronouns.
+  - bugfix: Humans can do erp actions to xenos without grabbing them even what that
+      would normally be required, since humans can't grab xenos.
+  TiviPlus:
+  - rscadd: Added the new acid maw and acid jaws xeno structures
+  blackdav123:
+  - admin: Toggle Sleeping no longer has a confirmation prompt.
+2024-11-27:
+  Meghan-Rossi:
+  - rscdel: Disabled tutorials.
+  - rscadd: 'New jobs: Non-Deployed Operative Survivor, Prisoner Survivor, Stripper
+      Survivor, and Maid Survivor'
+  - rscadd: 'New items: Bunny ears, High heels'
+2024-11-28:
+  W0LF-101:
+  - rscadd: Added SH-23 Heavy Shotgun
+  - rscadd: Added 6 gauge heavy flechettes
+  - balance: Added 2s weakness to "barrikada" slugs, to match the 12 gauge equivalent
+  - bugfix: Fixed missing wield sprite for ML-101
+2024-11-30:
+  Meghan-Rossi:
+  - rscadd: Added OOC notes system - use new verb OOC -> Set Meta-Info (OOC) to set
+      your OOC notes, Can be done in lobby or while playing, saves with character.
+  - rscadd: 'New map: LV624Small, a copy of LV624 without the huge marine base taking
+      up the bottom half of the map.'
+  - bugfix: Fixed incorruptible generators starting out corrupted.

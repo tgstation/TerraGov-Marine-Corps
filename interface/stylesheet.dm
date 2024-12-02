@@ -209,6 +209,25 @@ h1.alert, h2.alert		{color: #000000;}
 .purple					{color: #5e2d79;}
 .holoparasite			{color: #35333a;}
 
+/* Colors */
+.white					{color: #FFFFFF;}
+.black					{color: #000000;}
+.darkgray				{color: #808080;}
+.gray					{color: #A9A9A9;}
+.grey					{color: #A9A9A9;}
+.red					{color: #FF0000;}
+.orange					{color: #FF8C00;}
+.blue					{color: #0000FF;}
+.darkgreen				{color: #008000;}
+.yellow					{color: #ffcc00;}
+.pink					{color: #ffc0cb;}
+.cyan					{color: #00ffff;}
+.maroon					{color: #800000;}
+.crimson				{color: #DC143C;}
+.brown					{color: #8D4925;}
+.lightpurple				{color: #AD5AAD;}
+.darkpink				{color: #E3209B;}
+
 .revennotice			{color: #1d2953;}
 .revenboldnotice		{color: #1d2953;	font-weight: bold;}
 .revenbignotice			{color: #1d2953;	font-weight: bold; font-size: 3;}

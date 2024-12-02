@@ -13,8 +13,11 @@ Format:
 endmap
 
 map lv624
-        default
 	minplayers 1
+endmap
+
+map lv624small
+    default
 endmap
 
 map bigred_v2

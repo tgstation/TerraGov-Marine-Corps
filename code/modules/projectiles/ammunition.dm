@@ -284,6 +284,12 @@
 	default_ammo = /datum/ammo/bullet/shotgun/barrikada_slug
 	caliber = CALIBER_6G
 
+/obj/item/ammo_magazine/handful/heavy_flechette
+	name = "handful of shotgun flechette shells (6g)"
+	icon_state = "heavy_shotgun_flechette"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/heavy_flechette
+	caliber = CALIBER_6G
 
 /obj/item/ammo_magazine/handful/martini
 	name = "The handful of crude heavy sniper bullet (.557/440)"

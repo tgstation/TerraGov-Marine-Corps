@@ -221,6 +221,13 @@
 		character.boobs = genitalia_boobs
 		character.cock = genitalia_cock
 
+	character.ooc_notes = metadata
+	character.ooc_notes_likes = metadata_likes
+	character.ooc_notes_dislikes = metadata_dislikes
+	character.ooc_notes_maybes = metadata_maybes
+	character.ooc_notes_favs = metadata_favs
+	character.ooc_notes_style = metadata_ooc_style
+
 	character.update_body()
 	character.update_hair()
 
