@@ -91,3 +91,6 @@
   Meghan-Rossi:
   - rscadd: Added OOC notes system - use new verb OOC -> Set Meta-Info (OOC) to set
       your OOC notes, Can be done in lobby or while playing, saves with character.
+  - rscadd: 'New map: LV624Small, a copy of LV624 without the huge marine base taking
+      up the bottom half of the map.'
+  - bugfix: Fixed incorruptible generators starting out corrupted.
