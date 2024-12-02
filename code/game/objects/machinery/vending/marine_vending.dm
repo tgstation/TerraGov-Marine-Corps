@@ -793,6 +793,7 @@
 			/obj/item/radio/headset/mainship/marine/bravo = -1,
 			/obj/item/radio/headset/mainship/marine/charlie = -1,
 			/obj/item/radio/headset/mainship/marine/delta = -1,
+			/obj/item/cell/night_vision_battery = 10,
 		),
 		"Mining Equipment" = list(
 			/obj/item/minerupgrade/automatic = 1,
@@ -2737,7 +2738,6 @@
 			/obj/item/clothing/glasses/sunglasses/fake/prescription = -1,
 			/obj/item/clothing/glasses/mgoggles = -1,
 			/obj/item/clothing/glasses/mgoggles/prescription = -1,
-			/obj/item/clothing/glasses/night/vsd = -1,
 		),
 		"Other" = list(
 			/obj/item/clothing/under/lewd/panties = -1,

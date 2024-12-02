@@ -2010,6 +2010,17 @@
 	name = "Captain's Room";
 	outside = 0
 	})
+"bKg" = (
+/obj/machinery/door/firedoor/mainship{
+	dir = 2
+	},
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "tankdoors";
+	name = "\improper Tank bay"
+	},
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "bKo" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -2378,6 +2389,16 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /turf/open/floor/stairs/rampbottom,
 /area/mainship/command/cic)
+"cah" = (
+/obj/structure/window/framed/mainship/requisitions,
+/obj/machinery/door/poddoor/mainship/ammo{
+	id = "tankdoors";
+	name = "\improper Tank bay"
+	},
+/turf/open/floor/plating,
+/area/outpost/cargo{
+	outside = 1
+	})
 "caj" = (
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/mainship/mono,
@@ -4342,6 +4363,12 @@
 	dir = 4
 	},
 /obj/structure/cable,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
+"dTt" = (
+/obj/structure/cable,
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/airlock/mainship/maint,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/lower_hull)
 "dTI" = (
@@ -10212,6 +10239,13 @@
 	dir = 1
 	},
 /area/mainship/groundhq/ntf/shipboard/brig_cells)
+"jqj" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/machinery/door/firedoor/mainship,
+/obj/machinery/door/airlock/mainship/maint,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "jql" = (
 /obj/structure/window/framed/mainship/requisitions,
 /turf/open/floor/mainship/mono,
@@ -11472,6 +11506,16 @@
 /obj/structure/cable,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/upper_hull)
+"kwv" = (
+/obj/machinery/light/floor,
+/obj/machinery/door_control/mainship{
+	id = "tankdoors";
+	name = "tank bay doors"
+	},
+/turf/open/floor/mainship/cargo,
+/area/outpost/cargo{
+	outside = 1
+	})
 "kwN" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer1{
@@ -16797,6 +16841,16 @@
 	outside = 0;
 	name = "Security Checkpoint"
 	})
+"phH" = (
+/obj/effect/ai_node,
+/obj/machinery/door_control/mainship{
+	id = "tankdoors";
+	name = "tank bay doors"
+	},
+/turf/open/floor/mainship/mono,
+/area/outpost/cargo{
+	outside = 1
+	})
 "phM" = (
 /obj/machinery/cryopod/right,
 /turf/open/floor/mainship/mono,
@@ -19135,6 +19189,15 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/campaign/jungle_outpost/outpost/living/bathroom)
+"rzr" = (
+/obj/machinery/door_control/mainship{
+	id = "tankdoors";
+	name = "tank bay doors"
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/bow_hallway{
+	name = "Ship Floor 1 Hallways"
+	})
 "rzy" = (
 /obj/effect/turf_decal/warning_stripes/thick,
 /obj/machinery/landinglight/cas{
@@ -24367,6 +24430,11 @@
 	dir = 1;
 	id = "vehicle_elevator_railing"
 	},
+/obj/machinery/door/poddoor/mainship/ammo{
+	dir = 2;
+	id = "tankdoors";
+	name = "\improper Tank bay"
+	},
 /turf/open/floor/mainship/mono,
 /area/outpost/cargo{
 	outside = 1
@@ -25651,7 +25719,9 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xEv" = (
-/obj/machinery/camera/autoname/mainship,
+/obj/machinery/camera/autoname/mainship{
+	dir = 8
+	},
 /turf/open/floor/mainship/empty,
 /area/outpost/cargo{
 	outside = 1
@@ -33248,9 +33318,9 @@ ezs
 kjD
 kjD
 kyS
-cam
+nlc
 aya
-fwn
+dTt
 aya
 aya
 aya
@@ -33490,10 +33560,10 @@ jrS
 kyS
 hZA
 kyS
-nlc
-aya
+cam
+bKg
 wZo
-aya
+bKg
 hcP
 hcP
 hcP
@@ -33733,9 +33803,9 @@ kyS
 kjD
 kyS
 cam
-aya
+bKg
 fwn
-aya
+bKg
 hcP
 hcP
 hcP
@@ -33975,10 +34045,10 @@ kyS
 kjD
 kyS
 cam
-aya
+bKg
 fwn
-aya
-xEv
+bKg
+hcP
 hcP
 kHA
 hcP
@@ -34213,13 +34283,13 @@ fOz
 fOz
 hxd
 wDa
-qsr
+rzr
 kjD
 kyS
 cam
-aya
+bKg
 fwn
-aya
+bKg
 hcP
 hcP
 hcP
@@ -34459,10 +34529,10 @@ kyS
 kjD
 kyS
 cam
-aya
+bKg
 wZo
-aya
-hcP
+bKg
+xEv
 hcP
 hcP
 hcP
@@ -34700,17 +34770,17 @@ lve
 kyS
 kjD
 kyS
-nlc
+cam
 aya
-lGG
+jqj
 aya
 jCB
+cah
+cah
+cah
 jCB
 jCB
-jCB
-jCB
-jCB
-dzM
+kwv
 izo
 izo
 woS
@@ -34942,7 +35012,7 @@ wDa
 xjA
 kjD
 kyS
-cam
+nlc
 aya
 fwn
 tFv
@@ -35188,7 +35258,7 @@ cam
 aya
 wZo
 aya
-coD
+phH
 kkx
 izo
 woS

@@ -8,7 +8,6 @@
 #define span_red(str) ("<span class='red'>" + str + "</span>")
 #define span_orange(str) ("<span class='orange'>" + str + "</span>")
 #define span_blue(str) ("<span class='blue'>" + str + "</span>")
-#define span_green(str) ("<span class='green'>" + str + "</span>")
 #define span_darkgreen(str) ("<span class='darkgreen'>" + str + "</span>") // Do not use regularly!
 #define span_purple(str) ("<span class='purple'>" + str + "</span>")
 #define span_yellow(str) ("<span class='yellow'>" + str + "</span>")
@@ -19,4 +18,3 @@
 #define span_brown(str) ("<span class='brown'>" + str + "</span>")
 #define span_lightpurple(str) ("<span class='lightpurple'>" + str + "</span>")
 #define span_darkpink(str) ("<span class='darkpink'>" + str + "</span>")
-#define span_rose(str) ("<span class='rose'>" + str + "</span>")
