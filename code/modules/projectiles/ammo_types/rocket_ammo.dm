@@ -28,7 +28,9 @@
 	explosion(T, 0, 4, 6, 0, 2)
 
 /datum/ammo/rocket/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(target_mob))
+	var/target_turf = get_turf(target_mob)
+	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	drop_nade(target_turf)
 
 /datum/ammo/rocket/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
@@ -84,9 +86,12 @@
 	explosion(T, 0, 2, 5, 0, 3)
 
 /datum/ammo/rocket/ltb/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(target_mob))
+	var/target_turf = get_turf(target_mob)
 	if(!isxeno(target_mob))
 		target_mob.gib()
+	else
+		staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	drop_nade(target_turf)
 
 /datum/ammo/rocket/ltb/heavy/drop_nade(turf/target_turf)
 	explosion(target_turf, 1, 4, 6, 0, 3)
@@ -439,9 +444,10 @@
 	explosion(T, flash_range = 1)
 
 /datum/ammo/rocket/atgun_shell/apcr/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(target_mob))
-	proj.proj_max_range -= 5
+	var/target_turf = get_turf(target_mob)
 	staggerstun(target_mob, proj, max_range = 20, stagger = 1 SECONDS, slowdown = 0.5, knockback = 2, hard_size_threshold = 3)
+	drop_nade(target_turf)
+	proj.proj_max_range -= 5
 
 /datum/ammo/rocket/atgun_shell/apcr/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	proj.proj_max_range -= 5
