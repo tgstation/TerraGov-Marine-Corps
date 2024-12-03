@@ -14,8 +14,8 @@
 	speed = 0
 
 	// *** Plasma *** //
-	plasma_max = 600 //  75 is the cost of plant_weeds
-	plasma_gain = 60
+	plasma_max = 1200 //  75 is the cost of plant_weeds
+	plasma_gain = 80
 
 	// *** Health *** //
 	max_health = 100
@@ -50,6 +50,7 @@
 		/datum/action/ability/xeno_action/rally_hive/hivemind,
 		/datum/action/ability/activable/xeno/command_minions,
 		/datum/action/ability/xeno_action/psychic_whisper,
+		/datum/action/ability/xeno_action/psychic_influence,
 		/datum/action/ability/activable/xeno/impregnate,
 		/datum/action/ability/activable/xeno/plant_weeds/ranged,
 		/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind,
