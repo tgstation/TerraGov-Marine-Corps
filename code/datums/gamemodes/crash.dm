@@ -209,6 +209,7 @@
 
 	return FALSE
 
+/// Gets the difference of job points between humans and xenos. Negative means too many xenos. Positive means too many humans.
 /datum/game_mode/infestation/crash/proc/get_jobpoint_difference()
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
