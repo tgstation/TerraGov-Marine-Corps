@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Xenomorphs retain their long sight/zoom while resting as intended."
