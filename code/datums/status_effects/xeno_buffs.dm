@@ -1070,7 +1070,7 @@
 	/// The amount of plasma to regenerate based on their caste's plasma regeneration.
 	var/plasma_regen_buff_per_chamber = 0.1 // 10%
 	/// The amount of plasma to regenerate based on their caste's maximum plasma.
-	var/plasma_percentage_buff_per_chamber = 0.01 // 1%
+	var/plasma_maximum_buff_per_chamber = 0.01 // 1%
 
 /datum/status_effect/mutation_upgrade/adrenaline/on_apply()
 	if(!..())
@@ -1089,18 +1089,18 @@
 	SIGNAL_HANDLER
 	update_chamber_scaling()
 
-/// Gives the xenomorph more plasma (according to their plasma regeneration and adjusted maximum) everytime they are suppose to regen plasma.
+/// Gives the xenomorph more plasma (according to their plasma regeneration and adjusted maximum) everytime they are suppose to regen plasma up to their adjusted maximum.
 /datum/status_effect/mutation_upgrade/adrenaline/proc/on_plasma_regen(mob/living/carbon/xenomorph/source_xenomorph, plasma_mod, seconds_per_tick)
 	SIGNAL_HANDLER
 	if(!chamber_scaling)
 		return
-	var/adjusted_plasma_max = buff_owner.xeno_caste.plasma_max * buff_owner.xeno_caste.plasma_regen_limit
-	var/plasma_regen_amount = buff_owner.xeno_caste.plasma_gain * plasma_regen_buff_per_chamber * chamber_scaling
-	var/plasma_max_amount = adjusted_plasma_max * plasma_percentage_buff_per_chamber * chamber_scaling
-	var/plasma_to_give = plasma_regen_amount + plasma_max_amount * ((buff_owner.resting || buff_owner.lying_angle) ? 2 : 1)
-	var/plasma_stored_predicted = (buff_owner.plasma_stored + plasma_to_give)
-	// Give only enough plasma to reach the adjusted amount (for castes like Hivelord).
-	buff_owner.gain_plasma(plasma_stored_predicted > adjusted_plasma_max ? plasma_stored_predicted - adjusted_plasma_max : plasma_to_give)
+
+	var/adjusted_plasma_maximum = buff_owner.xeno_caste.plasma_max * buff_owner.xeno_caste.plasma_regen_limit
+	var/plasma_from_regeneration = buff_owner.xeno_caste.plasma_gain * plasma_regen_buff_per_chamber * chamber_scaling
+	var/plasma_from_maximum = adjusted_plasma_maximum * plasma_maximum_buff_per_chamber * chamber_scaling
+	var/plasma_to_give = (plasma_from_regeneration + plasma_from_maximum) * ((buff_owner.resting || buff_owner.lying_angle) ? 2 : 1)
+	plasma_to_give = clamp(plasma_to_give, 0, adjusted_plasma_maximum - buff_owner.plasma_stored)
+	buff_owner.gain_plasma(plasma_to_give)
 
 // ***************************************
 // ***************************************
