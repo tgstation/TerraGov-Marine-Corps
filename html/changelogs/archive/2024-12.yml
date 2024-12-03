@@ -1,0 +1,6 @@
+2024-12-03:
+  blackdav123:
+  - balance: Removes hivemind, hivelord, and wraith from crash.
+  - balance: Xenos get extra t3 slots one xeno later on crash.
+  - bugfix: Rappel now correctly allows more than one marine to go down at a time.
+  - balance: Defiler and carrier can now pick reagents/huggers while staggered.

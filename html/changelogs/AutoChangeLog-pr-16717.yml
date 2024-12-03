@@ -1,5 +1,0 @@
-author: "blackdav123"
-delete-after: True
-changes:
-  - balance: "Removes hivemind, hivelord, and wraith from crash."
-  - balance: "Xenos get extra t3 slots one xeno later on crash."

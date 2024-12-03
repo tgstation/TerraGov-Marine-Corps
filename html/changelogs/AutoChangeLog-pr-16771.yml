@@ -1,4 +1,0 @@
-author: "blackdav123"
-delete-after: True
-changes:
-  - bugfix: "Rappel now correctly allows more than one marine to go down at a time."
