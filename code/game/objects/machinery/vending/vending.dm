@@ -334,6 +334,7 @@
 	tipped_level = 0
 	allow_pass_flags &= ~(PASS_LOW_STRUCTURE|PASS_MOB)
 	coverage = initial(coverage)
+	density = initial(density)
 
 /obj/machinery/vending/attackby(obj/item/I, mob/user, params)
 	. = ..()
