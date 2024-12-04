@@ -538,11 +538,6 @@
 	var/blocked = null //To determine if the hugger just rips off the protection or can infect.
 	if(ishuman(hugged))
 		var/mob/living/carbon/human/H = hugged
-
-		if(!H.has_limb(HEAD))
-			visible_message(span_warning("[src] looks for a face to hug on [H], but finds none!"))
-			return FALSE
-
 		if(attempt_lewd_attach(H))
 			var/obj/item/clothing/under/U = H.wear_suit
 			H.dropItemToGround(H.wear_suit)
@@ -552,7 +547,13 @@
 			else
 				visible_message("<span class='warning'>[src] latches onto [H]'s pelvis!</span>")
 			H.equip_to_slot(src, SLOT_WEAR_SUIT)
+			H.dropItemToGround(H.wear_ear)
+			H.wear_ear = null
 			return TRUE
+
+		if(!H.has_limb(HEAD))
+			visible_message(span_warning("[src] looks for a face to hug on [H], but finds none!"))
+			return FALSE
 
 		if(H.head)
 			var/obj/item/clothing/head/D = H.head
@@ -571,13 +572,7 @@
 			if(istype(W, /obj/item/clothing/mask/facehugger))
 				var/obj/item/clothing/mask/facehugger/hugger = W
 				if(hugger.stat != DEAD)
-					var/mob/living/carbon/human/B
-					if(B.wear_suit)
-						var/obj/item/clothing/under/U = B.wear_suit
-						if(istype(U, /obj/item/clothing/mask/facehugger))
-							var/obj/item/clothing/mask/facehugger/suithugger = U
-							if(suithugger.stat != DEAD)
-								return FALSE
+					return FALSE
 
 			if(W.anti_hug > 0 || HAS_TRAIT(W, TRAIT_NODROP))
 				if(!blocked)
@@ -590,6 +585,10 @@
 				hugged.visible_message(span_danger("[src] smashes against [hugged]'s [W.name] and rips it off!"))
 				hugged.dropItemToGround(W)
 
+				if(ishuman(hugged))
+					var/mob/living/carbon/human/H = hugged
+					H.dropItemToGround(H.wear_ear)
+					H.wear_ear = null
 	if(blocked)
 		hugged.visible_message(span_danger("[src] smashes against [hugged]'s [blocked]!"))
 		return FALSE
@@ -611,7 +610,8 @@
 		targethole = rand(1, 3)
 	if(target.wear_suit)
 		var/obj/item/clothing/suit/O = target.wear_suit
-		if(istype(O, /obj/item/clothing/mask/facehugger) || HAS_TRAIT(O, TRAIT_NODROP))
+		var/obj/item/clothing/mask/facehugger/hugger = target.wear_suit
+		if((istype(hugger) && (hugger.stat != DEAD)) || HAS_TRAIT(O, TRAIT_NODROP))
 			targethole = 1
 		if(istype(O, /obj/item/clothing/suit/storage/marine/specialist))
 			targethole = 1
