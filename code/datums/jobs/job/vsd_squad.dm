@@ -109,6 +109,7 @@
 
 	id = /obj/item/card/id/dogtag/som
 	ears = /obj/item/radio/headset/mainship/som
+	glasses = /obj/item/clothing/glasses/night/vsd
 
 //VSD Squad Leader
 /datum/job/vsd_squad/leader
@@ -132,6 +133,6 @@
 
 	id = /obj/item/card/id/dogtag/som
 	ears = /obj/item/radio/headset/mainship/som
-	glasses = /obj/item/clothing/glasses/hud/health
+	glasses = /obj/item/clothing/glasses/night/vsd
 
 

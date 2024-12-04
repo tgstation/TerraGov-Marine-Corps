@@ -22003,7 +22003,9 @@
 /turf/open/floor/plating,
 /area/mainship/living/officer_study)
 "uiN" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
+/obj/docking_port/stationary/marine_dropship/minidropship{
+	dir = 1
+	},
 /turf/open/floor/plating,
 /area/mainship/hallways/bow_hallway{
 	name = "Ship Floor 1 Hallways"
@@ -25719,13 +25721,10 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xEv" = (
-/obj/machinery/camera/autoname/mainship{
-	dir = 8
-	},
-/turf/open/floor/mainship/empty,
-/area/outpost/cargo{
-	outside = 1
-	})
+/obj/structure/cable,
+/obj/machinery/light/floor,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "xEE" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -34046,7 +34045,7 @@ kjD
 kyS
 cam
 bKg
-fwn
+xEv
 bKg
 hcP
 hcP
@@ -34054,7 +34053,7 @@ kHA
 hcP
 hcP
 wAs
-izo
+dzM
 izo
 izo
 izo
@@ -34532,7 +34531,7 @@ cam
 bKg
 wZo
 bKg
-xEv
+hcP
 hcP
 hcP
 hcP
