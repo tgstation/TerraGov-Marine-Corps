@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Campaign: Fixed ASAT minimap icon not updating correctly when the cap was stopped by marines"
-  - imageadd: "added an actual sprite for the ASAT objectives"

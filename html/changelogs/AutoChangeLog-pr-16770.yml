@@ -1,4 +1,0 @@
-author: "AusarAtkin"
-delete-after: True
-changes:
-  - bugfix: "fixed nuke notification in dchat"
