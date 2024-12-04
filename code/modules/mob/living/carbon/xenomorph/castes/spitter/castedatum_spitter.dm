@@ -43,7 +43,7 @@
 
 	// *** Ranged Attack *** //
 	spit_delay = 0.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
+	spit_types = list(/datum/ammo/xeno/toxin/upgrade1, /datum/ammo/xeno/acid/medium) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
 
 	acid_spray_duration = 10 SECONDS
 	acid_spray_damage_on_hit = 45
@@ -77,4 +77,4 @@
 	caste_flags = CASTE_EVOLUTION_ALLOWED|CASTE_ACID_BLOOD
 
 	spit_delay = 0.3 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)
+	spit_types = list(/datum/ammo/xeno/toxin/auto, /datum/ammo/xeno/toxin/upgrade1, /datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)
