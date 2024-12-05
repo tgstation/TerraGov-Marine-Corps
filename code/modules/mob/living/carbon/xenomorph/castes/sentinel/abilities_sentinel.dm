@@ -63,7 +63,7 @@
 	remaining_slashes = SENTINEL_TOXIC_SLASH_COUNT
 	ability_duration = addtimer(CALLBACK(src, PROC_REF(toxic_slash_deactivate), xeno_owner), SENTINEL_TOXIC_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(toxic_slash))
-	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_DISARM_HUAMN, PROC_REF(toxic_slash))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_DISARM_HUMAN, PROC_REF(toxic_slash))
 	xeno_owner.balloon_alert(xeno_owner, "Toxic Slash active")
 	xeno_owner.playsound_local(xeno_owner, 'sound/voice/alien/drool2.ogg', 25)
 	action_icon_state = "neuroclaws_on"
@@ -93,7 +93,7 @@
 ///Called when Toxic Slash expires.
 /datum/action/ability/xeno_action/toxic_slash/proc/toxic_slash_deactivate(mob/living/carbon/xenomorph/xeno_owner)
 	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
-	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_DISARM_HUAMN)
+	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_DISARM_HUMAN)
 	remaining_slashes = 0
 	deltimer(ability_duration) // Delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice
 	ability_duration = null
