@@ -594,6 +594,13 @@
 	max_rounds = 25
 	bonus_overlay = "v35_mag"
 
+/obj/item/ammo_magazine/rifle/som_big/update_overlays()
+	. = ..()
+	if(current_rounds <= 0)
+		return
+	var/remaining = CEILING((current_rounds / max(max_rounds, 1)) * 100, 25)
+	. += "[icon_state]_[remaining]"
+
 /obj/item/ammo_magazine/rifle/som_big/incendiary
 	name = "\improper V-35 incendiary magazine (10x27mm)"
 	desc = "A 10mm rifle magazine designed for the V-35, loaded with incendiary ammunition."

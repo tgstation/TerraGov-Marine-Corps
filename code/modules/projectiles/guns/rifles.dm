@@ -2285,6 +2285,9 @@
 	aim_fire_delay = 0.2 SECONDS
 	aim_speed_modifier = 2
 
+/obj/item/weapon/gun/rifle/som_big/standard
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/extended_barrel, /obj/item/attachable/verticalgrip)
+
 /obj/item/weapon/gun/rifle/som_big/support
 	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/attachable/foldable/bipod)
 //-------------------------------------------------------
