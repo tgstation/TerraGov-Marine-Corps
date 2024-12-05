@@ -2231,6 +2231,7 @@
 	icon_state = "v35"
 	icon = 'icons/obj/items/guns/rifles64.dmi'
 	worn_icon_state = "v35"
+	ammo_level_icon = "v35"
 
 	muzzleflash_iconstate = "muzzle_flash_medium"
 	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
