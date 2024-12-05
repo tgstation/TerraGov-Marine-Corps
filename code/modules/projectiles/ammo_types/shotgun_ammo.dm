@@ -196,9 +196,9 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 4
 	max_range = 15
-	damage = 125
+	damage = 130
 	penetration = 50
-	sundering = 15
+	sundering = 20
 
 /datum/ammo/bullet/shotgun/barrikada/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, weaken = 2 SECONDS, slowdown = 2, stagger = 3 SECONDS, knockback = 2)
@@ -210,7 +210,7 @@
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 50
+	damage = 60
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/heavy_flechette
@@ -225,15 +225,15 @@
 	accuracy_var_low = 8
 	accuracy_var_high = 8
 	max_range = 15
-	damage = 60
+	damage = 65
 	damage_falloff = 0.5
-	penetration = 20
-	sundering = 10
+	penetration = 25
+	sundering = 15
 
 /datum/ammo/bullet/shotgun/flechette/heavy_flechette_spread
 	name = "additional flechette"
-	damage = 45
-	sundering = 7
+	damage = 50
+	sundering = 10
 
 /datum/ammo/bullet/shotgun/sx16_flechette
 	name = "shotgun flechette shell"
