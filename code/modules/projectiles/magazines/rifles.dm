@@ -588,18 +588,13 @@
 	desc = "A 10mm rifle magazine designed for the V-35."
 	caliber = CALIBER_10x27_CASELESS
 	icon_state = "v35"
+	base_ammo_icon = "v35"
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/som_big
 	max_rounds = 25
 	bonus_overlay = "v35_mag"
-
-/obj/item/ammo_magazine/rifle/som_big/update_overlays()
-	. = ..()
-	if(current_rounds <= 0)
-		return
-	var/remaining = CEILING((current_rounds / max(max_rounds, 1)) * 100, 25)
-	. += "[icon_state]_[remaining]"
+	magazine_flags = MAGAZINE_REFILLABLE|MAGAZINE_SHOW_AMMO
 
 /obj/item/ammo_magazine/rifle/som_big/incendiary
 	name = "\improper V-35 incendiary magazine (10x27mm)"
