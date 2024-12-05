@@ -183,7 +183,7 @@
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 50
+	damage = 55
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
