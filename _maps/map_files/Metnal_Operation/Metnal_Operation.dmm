@@ -12445,9 +12445,7 @@
 /area/metnal/inside/meddesk)
 "iLh" = (
 /obj/structure/table/black,
-/obj/machinery/prop/computer/PC{
-	pixel_y = 5
-	},
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
 /turf/open/floor/iron/dark/textured,
 /area/metnal/inside/landingzoneone)
 "iLz" = (
@@ -15135,6 +15133,12 @@
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/lavaland/basalt,
 /area/metnal/outside/south)
+"kCF" = (
+/obj/effect/turf_decal/warning_stripes/box,
+/obj/effect/spawner/random/misc/structure/supplycrate,
+/obj/machinery/computer/shuttle/shuttle_control/dropship,
+/turf/open/floor/iron/dark/textured,
+/area/metnal/inside/landingzoneone)
 "kCN" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/plate,
@@ -66811,7 +66815,7 @@ aXl
 osz
 iVu
 xgY
-xgY
+kCF
 iVu
 iVu
 lnl
