@@ -82,7 +82,7 @@
 	sundering = 2
 
 /datum/ammo/bullet/rifle/som_big/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, max_range = 9, slowdown = 0.5)
+	staggerstun(target_mob, proj, max_range = 9, slowdown = 0.75)
 
 /datum/ammo/bullet/rifle/som_big/incendiary
 	name = "heavy incendiary bullet"
@@ -103,7 +103,8 @@
 	penetration = 45
 	sundering = 8
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOVABLE
-	bullet_color = LIGHT_COLOR_FIRE
+	bullet_color = LIGHT_COLOR_BLUE
+	on_pierce_multiplier = 0.8
 
 /datum/ammo/bullet/rifle/som_big/anti_armour/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, max_range = 9, slowdown = 1, stagger = 0.5 SECONDS)

@@ -603,7 +603,7 @@
 
 /obj/item/ammo_magazine/rifle/som_big/anti_armour
 	name = "\improper V-35 AT magazine (10x27mm)"
-	desc = "A 10mm rifle magazine designed for the V-35, loaded with powerful anti armor ammunition."
+	desc = "A 10mm rifle magazine designed for the V-35, loaded with powerful anti armor ammunition. Deals significant damage to vehicles, and can punch through some cover."
 	icon_state = "v35_at"
 	default_ammo = /datum/ammo/bullet/rifle/som_big/anti_armour
 	bonus_overlay = "v35_at"
