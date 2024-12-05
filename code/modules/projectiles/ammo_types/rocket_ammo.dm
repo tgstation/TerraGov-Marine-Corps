@@ -46,15 +46,15 @@
 	accurate_range = 20
 	max_range = 14
 	damage = 200
-	penetration = 100
-	sundering = 100
+	penetration = 75
+	sundering = 50
 
 /datum/ammo/rocket/he/unguided
 	damage = 100
 	ammo_behavior_flags = AMMO_SNIPER // We want this one to specifically go over onscreen range.
 
 /datum/ammo/rocket/he/unguided/drop_nade(turf/T)
-	explosion(T, 0, 7, 0, 0, 2)
+	explosion(T, 0, 7, 0, 0, 2, throw_range = 4)
 
 /datum/ammo/rocket/ap
 	name = "kinetic penetrator"
