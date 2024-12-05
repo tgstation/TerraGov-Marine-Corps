@@ -462,6 +462,7 @@
 	var/mob/living/carbon/xenomorph/X = owner
 
 	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(reagent_slash))
+	RegisterSignal(X, COMSIG_XENOMORPH_DISARM_HUMAN, PROC_REF(reagent_slash))
 
 	reagent_slash_count = DEFILER_REAGENT_SLASH_COUNT //Set the number of slashes
 	reagent_slash_duration_timer_id = addtimer(CALLBACK(src, PROC_REF(reagent_slash_deactivate), X), DEFILER_REAGENT_SLASH_DURATION, TIMER_STOPPABLE) //Initiate the timer and set the timer ID for reference
@@ -477,6 +478,7 @@
 ///Called when the duration of reagent slash lapses
 /datum/action/ability/xeno_action/reagent_slash/proc/reagent_slash_deactivate(mob/living/carbon/xenomorph/X)
 	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING) //unregister the signals; party's over
+	UnregisterSignal(X, COMSIG_XENOMORPH_DISARM_HUMAN)
 
 	reagent_slash_count = 0 //Zero out vars
 	deltimer(reagent_slash_duration_timer_id) //delete the timer so we don't have mismatch issues, and so we don't potentially try to deactivate the ability twice

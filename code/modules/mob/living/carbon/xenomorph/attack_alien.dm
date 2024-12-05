@@ -68,6 +68,7 @@
 					X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
 					"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 					Paralyze(10 SECONDS)
+		SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src, damage_to_deal)
 	else if(!ishuman(src))
 		if(randn <= 40)
 			if(!IsParalyzed())
