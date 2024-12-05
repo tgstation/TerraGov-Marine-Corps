@@ -38,7 +38,7 @@
 	name = "neurotoxic spit"
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
 	spit_cost = 55
-	added_spit_delay = 0
+	added_spit_delay = 0 SECONDS
 	damage_type = STAMINA
 	accurate_range = 5
 	max_range = 10
@@ -119,12 +119,19 @@
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	added_spit_delay = 0
 	spit_cost = 100
+	added_spit_delay = 0 SECONDS
 	damage = 40
 	smoke_strength = 1
 	reagent_transfer_amount = 10
 
+/datum/ammo/xeno/toxin/auto
+	damage = 12
+	damage_falloff = 0.2
+	spit_cost = 20
+	added_spit_delay = 0 SECONDS
+	smoke_strength = 0.25
+	reagent_transfer_amount = 2.5
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
@@ -222,7 +229,7 @@
 	sound_hit = SFX_ACID_HIT
 	sound_bounce = SFX_ACID_BOUNCE
 	damage_type = BURN
-	added_spit_delay = 5
+	added_spit_delay = 0.5 SECONDS
 	spit_cost = 50
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF
 	armor_type = ACID
@@ -252,7 +259,7 @@
 	damage = 12
 	damage_falloff = 0.2
 	spit_cost = 20
-	added_spit_delay = 0
+	added_spit_delay = 0 SECONDS
 
 /datum/ammo/xeno/acid/auto/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	drop_nade(get_turf(target_mob), proj)
@@ -273,7 +280,7 @@
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
-	added_spit_delay = 2
+	added_spit_delay = 0.2 SECONDS
 	spit_cost = 70
 	damage = 40
 
