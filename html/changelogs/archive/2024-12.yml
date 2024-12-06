@@ -13,3 +13,8 @@
   - imageadd: added an actual sprite for the ASAT objectives
   Runian:
   - bugfix: Xenomorphs retain their long sight/zoom while resting as intended.
+2024-12-06:
+  Lumipharon:
+  - balance: Reduced HE sadar AP value to 75 from 100
+  - balance: Reduces HE sadar sunder to 50 from 100
+  - balance: Unguided HE sadar rockets throw mobs 4 tiles instead of 7
