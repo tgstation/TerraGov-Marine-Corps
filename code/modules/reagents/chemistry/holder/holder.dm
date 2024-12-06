@@ -562,11 +562,11 @@
 	var/cached_total = total_volume
 	if(cached_total + amount > maximum_volume)
 		amount = (maximum_volume - cached_total) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
-		if(no_overdose)
-			var/overdose = glob_reagent.overdose_threshold
-			amount = clamp(amount,0,overdose - get_reagent_amount(reagent) )
-		if(amount<=0)
-			return FALSE
+	if(no_overdose)
+		var/overdose = glob_reagent.overdose_threshold
+		amount = clamp(amount,0,overdose - get_reagent_amount(reagent) )
+	if(amount<=0)
+		return FALSE
 	var/new_total = cached_total + amount
 	var/cached_temp = chem_temp
 	var/list/cached_reagents = reagent_list
@@ -616,10 +616,10 @@
 		handle_reactions()
 	return TRUE
 
-/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null) //// Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, /datum/reagent/consumable/ethanol/beer = 15)
+/datum/reagents/proc/add_reagent_list(list/list_reagents, list/data=null, reagtemp = 300, no_react = 0, safety = 0, no_overdose = FALSE) //// Like add_reagent but you can enter a list. Format it like this: list(/datum/reagent/toxin = 10, /datum/reagent/consumable/ethanol/beer = 15)
 	for(var/r_id in list_reagents)
 		var/amt = list_reagents[r_id]
-		add_reagent(r_id, amt, data)
+		add_reagent(r_id, amt, data = data, reagtemp = reagtemp, no_react = no_react, safety = safety, no_overdose = no_overdose)
 
 /datum/reagents/proc/remove_reagent(reagent, amount)
 	if(isnull(amount))
