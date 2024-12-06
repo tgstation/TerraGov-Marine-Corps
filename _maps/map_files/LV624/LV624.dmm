@@ -6078,7 +6078,6 @@
 /area/lv624/ground/caves/central1)
 "eFG" = (
 /obj/structure/cable,
-/obj/machinery/computer/arcade,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -22047,6 +22046,7 @@
 	can_wire = 0;
 	dir = 8
 	},
+/obj/machinery/computer/arcade,
 /turf/open/floor/mainship/silver/corner,
 /area/mainship/patrol_base/som)
 "uJy" = (

@@ -3835,7 +3835,6 @@
 /area/mainship/patrol_base/som)
 "dFU" = (
 /obj/structure/cable,
-/obj/machinery/computer/arcade,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -11978,6 +11977,7 @@
 	can_wire = 0;
 	dir = 8
 	},
+/obj/machinery/computer/arcade,
 /turf/open/floor/mainship/silver/corner,
 /area/mainship/patrol_base/som)
 "lnJ" = (
@@ -15339,7 +15339,7 @@
 /area/lv624/lazarus/main_hall)
 "orJ" = (
 /turf/closed/wall/indestructible/bulkhead{
-	name = ""Youfuckedup" monument.";
+	name = "'Youfuckedup' monument.";
 	desc = "To make a mistake is human, to blame it on someone else is even more human."
 	},
 /area/mainship/patrol_base/som)
