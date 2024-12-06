@@ -71,6 +71,7 @@
 
 /obj/item/implanter/blade
 	name = "blade implant implanter"
+	desc = "A wicked-looking folding blade capable of being concealed within a human's arm."
 	imp = /obj/item/implant/deployitem/blade
 
 /obj/item/implanter/suicide_dust
@@ -79,6 +80,7 @@
 
 /obj/item/implanter/sandevistan
 	name = "sandevistan implanter"
+	desc = "Overloads your central nervous system in order to do everything faster. Careful not to overuse it."
 	icon_state = "imp_spinal"
 	w_class = WEIGHT_CLASS_NORMAL
 	imp = /obj/item/implant/sandevistan
@@ -95,6 +97,7 @@
 
 /obj/item/implanter/jump_mod
 	name = "fortified ankles implant"
+	desc = "This augmentation enhances the users ability to jump with graphene fibre reinforcements and nanogel joint fluid capsules. Hold jump to jump higher."
 	imp = /obj/item/implant/jump_mod
 
 /obj/effect/supply_drop/jump_mod/Initialize(mapload)
