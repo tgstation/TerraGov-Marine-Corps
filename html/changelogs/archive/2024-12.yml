@@ -5,3 +5,7 @@
   Meghan-Rossi:
   - balance: facehuggers now remove headsets
   - balance: Queen and spitter now have neuro spit.
+2024-12-06:
+  Meghan-Rossi:
+  - rscadd: Defiler's Reagent Slash, Sentinel's Toxic Slash, and Hunter's Sneak Attack
+      now work on disarms too.
