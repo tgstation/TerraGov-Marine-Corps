@@ -30521,6 +30521,10 @@
 	dir = 8
 	},
 /area/metnal/caves/south)
+"uNe" = (
+/obj/item/weapon/karambit/fade,
+/turf/open/floor/plating/ground/desertdam/asphalt,
+/area/metnal/caves/nukestorage)
 "uNl" = (
 /obj/structure/table/black,
 /obj/effect/turf_decal/siding/wood{
@@ -54239,7 +54243,7 @@ dlT
 dlT
 xOQ
 dcG
-xOQ
+uNe
 dlT
 dlT
 dlT
@@ -55645,8 +55649,8 @@ jVs
 jVs
 rFo
 gJM
-xkR
 gJM
+xkR
 gJM
 xkR
 xkR
@@ -55656,7 +55660,7 @@ xkR
 boa
 gJM
 gJM
-gJM
+xkR
 gJM
 xkR
 rFo
@@ -55858,7 +55862,7 @@ gJM
 gJM
 gJM
 xkR
-gJM
+xkR
 boa
 xkR
 gJM
@@ -56048,9 +56052,9 @@ xkR
 jVs
 jVs
 jVs
-rFo
+boa
+gJM
 lDm
-lDm
 gJM
 gJM
 gJM
@@ -56060,7 +56064,7 @@ gJM
 xkR
 gJM
 gJM
-gJM
+xkR
 gJM
 gJM
 gJM
@@ -56259,8 +56263,8 @@ gJM
 iCd
 xkR
 gJM
-boa
-lDm
+rpU
+iCd
 gJM
 gJM
 lDm
