@@ -15,6 +15,8 @@
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
 	var/stealth_alpha_multiplier = 1
+	///Damage taken during stealth
+	var/total_damage_taken = 0
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -109,6 +111,7 @@
 	can_sneak_attack = FALSE
 	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
 	owner.alpha = initial(owner.alpha)
+	total_damage_taken = 0
 
 ///Signal wrapper to verify that an object is damageable before breaking stealth
 /datum/action/ability/xeno_action/stealth/proc/on_obj_attack(datum/source, obj/attacked)
@@ -127,6 +130,7 @@
 ///Updates or cancels stealth
 /datum/action/ability/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
+	total_damage_taken = max(total_damage_taken - 10, 0)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
@@ -195,8 +199,9 @@
 ///Breaks stealth if sufficient damage taken
 /datum/action/ability/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
+	total_damage_taken += damage_taken
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(damage_taken > xenoowner.xeno_caste.stealth_break_threshold)
+	if(total_damage_taken > xenoowner.xeno_caste.stealth_break_threshold)
 		cancel_stealth()
 
 ///Modifier to plasma regen when stealthed

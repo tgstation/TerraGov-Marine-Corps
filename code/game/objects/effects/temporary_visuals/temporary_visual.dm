@@ -148,3 +148,10 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 /obj/effect/temp_visual/oppose_shatter/Initialize(mapload)
 	. = ..()
 	animate(src, alpha = 0, time = 3 SECONDS)
+
+/obj/effect/temp_visual/hugger_ball_launch
+	icon = 'icons/mob/radial.dmi'
+	icon_state = "hugger_ball"
+	duration = 4 SECONDS
+	resistance_flags = RESIST_ALL
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

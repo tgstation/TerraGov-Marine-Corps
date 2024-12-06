@@ -81,7 +81,7 @@
 
 	if(is_wired)
 		balloon_alert(xeno_attacker, "Wire slices into us")
-		xeno_attacker.apply_damage(10, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
+		xeno_attacker.apply_damage(15, blocked = MELEE , sharp = TRUE, updating_health = TRUE)
 
 	return ..()
 
@@ -396,7 +396,7 @@
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon = 'icons/obj/structures/barricades/metal.dmi'
 	icon_state = "metal_0"
-	max_integrity = 200
+	max_integrity = 250
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/metal
@@ -511,11 +511,11 @@
 
 	switch(choice)
 		if(CADE_TYPE_BOMB)
-			soft_armor = soft_armor.modifyRating(bomb = 50)
+			soft_armor = soft_armor.modifyRating(bomb = 80)
 		if(CADE_TYPE_MELEE)
-			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 30, laser = 30, energy = 30)
+			soft_armor = soft_armor.modifyRating(melee = 30, bullet = 50, laser = 50, energy = 50)
 		if(CADE_TYPE_ACID)
-			soft_armor = soft_armor.modifyRating(acid = 20)
+			soft_armor = soft_armor.modifyRating(acid = 35)
 			resistance_flags |= UNACIDABLE
 
 	barricade_upgrade_type = choice
@@ -723,8 +723,8 @@
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon = 'icons/obj/structures/barricades/plasteel.dmi'
 	icon_state = "plasteel_closed_0"
-	max_integrity = 500
-	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
+	max_integrity = 550
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
 	coverage = 128
 	stack_type = /obj/item/stack/sheet/plasteel
 	stack_amount = 5
@@ -994,7 +994,7 @@
 	desc = "A bunch of bags filled with sand, stacked into a small wall. Surprisingly sturdy, albeit labour intensive to set up. Trusted to do the job since 1914."
 	icon = 'icons/obj/structures/barricades/sandbags.dmi'
 	icon_state = "sandbag_0"
-	max_integrity = 300
+	max_integrity = 325
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
 	coverage = 128
 	stack_type = /obj/item/stack/sandbags
@@ -1059,7 +1059,7 @@
 /obj/structure/barricade/metal/deployable
 	icon = 'icons/obj/structures/barricades/folding.dmi'
 	icon_state = "folding_0"
-	max_integrity = 300
+	max_integrity = 325
 	coverage = 100
 	barricade_type = "folding"
 	can_wire = TRUE
