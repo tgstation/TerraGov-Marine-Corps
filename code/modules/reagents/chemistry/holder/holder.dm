@@ -564,7 +564,8 @@
 		amount = (maximum_volume - cached_total) //Doesnt fit in. Make it disappear. Shouldnt happen. Will happen.
 	if(no_overdose)
 		var/overdose = glob_reagent.overdose_threshold
-		amount = clamp(amount,0,overdose - get_reagent_amount(reagent) )
+		if(overdose)
+			amount = clamp(amount,0,overdose - get_reagent_amount(reagent) )
 	if(amount<=0)
 		return FALSE
 	var/new_total = cached_total + amount
