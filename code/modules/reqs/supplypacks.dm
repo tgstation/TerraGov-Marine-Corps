@@ -2045,6 +2045,25 @@ Imports
 	contains = list(/obj/item/loot_box/marine)
 	cost = 500
 
+/datum/supply_packs/imports/sandevistan
+	name = "ChronOS spinal enchancement implant"
+	contains = list(/obj/item/implanter/sandevistan)
+	cost = 2500
+
+
+/datum/supply_packs/imports/mantisblade
+	name = "Mantis retractable armblade implant"
+	contains = list(/obj/item/implanter/blade)
+	cost = 500
+
+
+/datum/supply_packs/imports/jump_mod
+	name = "Fortified ankles jump boost implanter set"
+	contains = list(
+	/obj/item/implanter/jump_mod,
+	/obj/item/implanter/jump_mod,
+	)
+	cost = 200
 /*******************************************************************************
 VEHICLES
 *******************************************************************************/
