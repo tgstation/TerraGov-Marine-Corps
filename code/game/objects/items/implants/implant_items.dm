@@ -67,7 +67,7 @@
 	desc = "A wicked-looking folding blade capable of being concealed within a human's arm."
 	icon_state = "armblade"
 	worn_icon_state = "armblade"
-	force = 75
+	force = 50
 	attack_speed = 8
 	equip_slot_flags = NONE
 	w_class = WEIGHT_CLASS_BULKY //not needed but just in case why not

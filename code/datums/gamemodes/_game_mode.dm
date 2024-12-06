@@ -486,14 +486,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	if(GLOB.round_statistics.runner_items_stolen)
 		parts += "[GLOB.round_statistics.runner_items_stolen] items stolen by runners."
 
-	if(GLOB.round_statistics.sandevistan_uses)
-		var/sandevistan_text = "[GLOB.round_statistics.sandevistan_uses] number of times someone was boosted by a sandevistan"
-		if(GLOB.round_statistics.sandevistan_gibs)
-			sandevistan_text += ", of which [GLOB.round_statistics.sandevistan_gibs] resulted in a gib!"
-		else
-			sandevistan_text += ", and nobody was gibbed by it!"
-		parts += sandevistan_text
-
 	if(length(GLOB.round_statistics.req_items_produced))
 		parts += ""  // make it special from other stats above
 		parts += "Requisitions produced: "
