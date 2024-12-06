@@ -475,17 +475,10 @@
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
 	resistance_flags = PLASMACUTTER_IMMUNE
+	explosion_block = 2
 
 /turf/closed/shuttle/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
-
-/turf/closed/shuttle/re_corner/notdense
-	icon_state = "re_cornergrass"
-	density = FALSE
-
-/turf/closed/shuttle/re_corner/jungle
-	icon_state = "re_cornerjungle"
-	density = FALSE
 
 /turf/closed/shuttle/diagonal
 	icon_state = "diagonalWall"
