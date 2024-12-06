@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Reduced HE sadar AP value to 75 from 100"
+  - balance: "Reduces HE sadar sunder to 50 from 100"
+  - balance: "Unguided HE sadar rockets throw mobs 4 tiles instead of 7"
