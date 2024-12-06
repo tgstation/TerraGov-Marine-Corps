@@ -751,9 +751,6 @@ directive is properly returned.
 /atom/proc/welder_act(mob/living/user, obj/item/I)
 	return FALSE
 
-/atom/proc/weld_cut_act(mob/living/user, obj/item/I)
-	return FALSE
-
 /atom/proc/analyzer_act(mob/living/user, obj/item/I)
 	return FALSE
 
@@ -762,6 +759,9 @@ directive is properly returned.
 		return FALSE //Storage screens, worn containers, anything we want to be able to interact otherwise.
 	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
+
+/atom/proc/plasmacutter_act(mob/living/user, obj/item/I)
+	return FALSE
 
 ///This proc is called on atoms when they are loaded into a shuttle
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
