@@ -403,7 +403,7 @@
 	desc = "A magazine holding a projectile to be used inside a pepperball gun."
 	caliber = CALIBER_PEPPERBALL
 	icon_state = "pepperball"
-	icon = 'icons/obj/items/ammo/misc.dmi'
+	icon = 'ntf_modular/icons/obj/ammo/ammo.dmi'
 	default_ammo = /datum/ammo/bullet/pepperball
 	max_rounds = 70
 	w_class = WEIGHT_CLASS_NORMAL
