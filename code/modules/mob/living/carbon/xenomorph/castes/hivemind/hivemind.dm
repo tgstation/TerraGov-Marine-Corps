@@ -250,6 +250,12 @@
 		return
 	icon_state = "Hivemind"
 
+/mob/living/carbon/xenomorph/hivemind/update_icon()
+	. = ..()
+	if(status_flags & INCORPOREAL)
+		invisibility = INVISIBILITY_MAXIMUM
+	else
+		invisibility = 0
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return
 
