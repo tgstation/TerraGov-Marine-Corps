@@ -126,11 +126,11 @@
 	playsound(target, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE)
 	if(!isrobot(usr))
 		if(usr.gender == MALE)
-			new /obj/effect/decal/cleanable/blood/splatter/cum(turfu)
+			new /obj/effect/decal/cleanable/blood/splatter/cum(usr.loc)
 		else
-			new /obj/effect/decal/cleanable/blood/splatter/girlcum(turfu)
+			new /obj/effect/decal/cleanable/blood/splatter/girlcum(usr.loc)
 	else
-		new /obj/effect/decal/cleanable/blood/splatter/robotcum(turfu)
+		new /obj/effect/decal/cleanable/blood/splatter/robotcum(usr.loc)
 	after_ejaculation()
 
 /datum/sex_controller/proc/cum_into(oral = FALSE)
@@ -151,11 +151,11 @@
 	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE)
 	if(!isrobot(usr))
 		if(usr.gender == MALE)
-			new /obj/effect/decal/cleanable/blood/splatter/cum(turfu)
+			new /obj/effect/decal/cleanable/blood/splatter/cum(usr.loc)
 		else
-			new /obj/effect/decal/cleanable/blood/splatter/girlcum(turfu)
+			new /obj/effect/decal/cleanable/blood/splatter/girlcum(usr.loc)
 	else
-		new /obj/effect/decal/cleanable/blood/splatter/robotcum(turfu)
+		new /obj/effect/decal/cleanable/blood/splatter/robotcum(usr.loc)
 	after_ejaculation()
 
 /datum/sex_controller/proc/ejaculate_container(obj/item/reagent_containers/glass/C)
