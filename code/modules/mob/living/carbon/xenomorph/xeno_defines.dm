@@ -439,6 +439,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	var/blunt_stab = FALSE
 	var/fiery_stab = FALSE
 
+	var/preggo = FALSE
+
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 
 	///The resting cooldown
