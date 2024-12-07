@@ -176,6 +176,7 @@
 
 /mob/living/carbon/xenomorph/proc/xenoimpregify()
 	if(!preggo)
+		to_chat(src, span_alien("We feel a new larva forming within us."))
 		addtimer(CALLBACK(src, PROC_REF(xenobirth)), 5 MINUTES)
 		preggo = TRUE
 
