@@ -21,6 +21,8 @@
 	var/last_ejaculation_time = 0
 	var/last_moan = 0
 	var/last_pain = 0
+	var/msg_signature = ""
+	var/last_msg_signature = 0
 
 /datum/sex_controller/New(mob/living/owner)
 	user = owner
@@ -52,13 +54,13 @@
 	animate(pixel_x = oldx, pixel_y = oldy, time = time)
 
 /datum/sex_controller/proc/do_message_signature(sigkey)
-/* fuck that -vide
 	var/properkey = "[speed][force][sigkey]"
-	if(properkey == msg_signature && last_msg_signature + 4.0 SECONDS >= world.time)
+	if(properkey == msg_signature && last_msg_signature + 5 SECONDS >= world.time)
+		if(prob(10))
+			user.balloon_alert_to_viewers(pick("*plap*","*plop*","*slap*","*pap*"))
 		return FALSE
 	msg_signature = properkey
 	last_msg_signature = world.time
-*/
 	return TRUE
 
 /datum/sex_controller/proc/finished_check()
@@ -82,9 +84,6 @@
 /atom/movable/screen/fullscreen/love
 	icon = 'ntf_modular/icons/mob/screen_full.dmi'
 	icon_state = "lovehud"
-	layer = FULLSCREEN_CRIT_LAYER
-	plane = FULLSCREEN_PLANE
-	alpha = 0
 
 /atom/movable/screen/fullscreen/love/New(client/C)
 	. = ..()
@@ -125,7 +124,13 @@
 
 /datum/sex_controller/proc/cum_onto()
 	playsound(target, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE)
-	add_cum_floor(get_turf(target))
+	if(!isrobot(usr))
+		if(usr.gender == MALE)
+			new /obj/effect/decal/cleanable/blood/splatter/cum(usr.loc)
+		else
+			new /obj/effect/decal/cleanable/blood/splatter/girlcum(usr.loc)
+	else
+		new /obj/effect/decal/cleanable/blood/splatter/robotcum(usr.loc)
 	after_ejaculation()
 
 /datum/sex_controller/proc/cum_into(oral = FALSE)
@@ -144,7 +149,13 @@
 	user.heal_overall_damage(rand(15, 30), rand(15, 30), TRUE, TRUE)
 
 	playsound(user, 'ntf_modular/sound/misc/mat/endout.ogg', 50, TRUE)
-	add_cum_floor(get_turf(user))
+	if(!isrobot(usr))
+		if(usr.gender == MALE)
+			new /obj/effect/decal/cleanable/blood/splatter/cum(usr.loc)
+		else
+			new /obj/effect/decal/cleanable/blood/splatter/girlcum(usr.loc)
+	else
+		new /obj/effect/decal/cleanable/blood/splatter/robotcum(usr.loc)
 	after_ejaculation()
 
 /datum/sex_controller/proc/ejaculate_container(obj/item/reagent_containers/glass/C)
@@ -161,7 +172,7 @@
 
 /datum/sex_controller/proc/after_ejaculation()
 	set_arousal(40)
-	user.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 10) //rids of aphrotox greatly
+	user.reagents.remove_reagent(/datum/reagent/toxin/xeno_aphrotoxin, 25) //rids of aphrotox greatly
 	user.emote("sexmoanhvy")
 	user.playsound_local(user, 'ntf_modular/sound/misc/mat/end.ogg', 100)
 	last_ejaculation_time = world.time

@@ -26,7 +26,7 @@
 /datum/sex_action/anal_ride_sex/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user.sexcon.do_message_signature("[type]"))
 		user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] rides [target]."))
-	playsound(target, 'ntf_modular/sound/misc/mat/segso.ogg', 50, TRUE)
+	playsound(target, 'ntf_modular/sound/misc/mat/segso.ogg', 50, TRUE, 5)
 	do_thrust_animate(user, target)
 
 	if(target.sexcon.considered_limp())

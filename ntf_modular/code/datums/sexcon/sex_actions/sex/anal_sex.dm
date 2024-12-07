@@ -21,7 +21,7 @@
 /datum/sex_action/anal_sex/on_perform(mob/living/carbon/user, mob/living/carbon/target)
 	if(user.sexcon.do_message_signature("[type]"))
 		user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] fucks [target]'s ass."))
-	playsound(target, 'ntf_modular/sound/misc/mat/segso.ogg', 50, TRUE)
+	playsound(target, 'ntf_modular/sound/misc/mat/segso.ogg', 50, TRUE, 5)
 	do_thrust_animate(user, target)
 
 	user.sexcon.perform_sex_action(user, 2, 0, TRUE)

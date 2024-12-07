@@ -1828,6 +1828,7 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_STAB,
 	)
 	target_flags = ABILITY_MOB_TARGET
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_BUCKLED|ABILITY_USE_BUSY|ABILITY_USE_CRESTED|ABILITY_USE_FORTIFIED
 	///the length of our tail, better not change this.
 	var/range = 2
 	///our stabbing style.
@@ -1850,6 +1851,8 @@
 	. = ..()
 	if(!.)
 		return
+	if(owner.status_flags & INCORPOREAL) //Cant while incorporeal
+		return FALSE
 	//i could not make it so the mob turns away if at range here, for some reason, the xeno one for example or empty tile.
 	if(!line_of_sight(owner, A, range))
 		if(!silent)

@@ -22,7 +22,7 @@
 /datum/sex_action/scissoring/on_perform(mob/living/carbon/human/user, mob/living/carbon/human/target)
 	if(user.sexcon.do_message_signature("[type]"))
 		user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] scissors with [target]'s cunt."))
-	playsound(target, 'ntf_modular/sound/misc/mat/segso.ogg', 50, TRUE)
+	playsound(target, 'ntf_modular/sound/misc/mat/segso.ogg', 50, TRUE, 5)
 	do_thrust_animate(user, target)
 
 	user.sexcon.perform_sex_action(user, 1, 4, TRUE)

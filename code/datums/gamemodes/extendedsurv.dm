@@ -2,9 +2,10 @@
 	name = "Extended - Survivor-Heavy"
 	config_tag = "Extended - Survivor-Heavy"
 	valid_job_types = list(
-		/datum/job/terragov/command/commanddoll = 1,
+		/datum/job/terragov/squad/leader = 1,
 		/datum/job/terragov/squad/engineer = 1,
 		/datum/job/terragov/squad/corpsman = 1,
+		/datum/job/terragov/squad/standard = 1,
 		/datum/job/other/prisoner = 2,
 		/datum/job/xenomorph = 8,
 		/datum/job/xenomorph/queen = 1,

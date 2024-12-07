@@ -16,7 +16,8 @@
 	user.visible_message(span_warning("[user] starts sucking [target]'s nipples..."))
 
 /datum/sex_action/suck_nipples/on_perform(mob/living/carbon/user, mob/living/carbon/target)
-	user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] sucks [target]'s nipples..."))
+	if(user.sexcon.do_message_signature("[type]"))
+		user.visible_message(user.sexcon.spanify_force("[user] [user.sexcon.get_generic_force_adjective()] sucks [target]'s nipples..."))
 	user.make_sucking_noise()
 
 	user.sexcon.perform_sex_action(target, 1, 3, TRUE)

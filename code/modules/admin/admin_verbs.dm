@@ -419,6 +419,8 @@
 		dat += " | "
 		dat += individual_logging_panel_link(M, INDIVIDUAL_EMOTE_LOG, LOGSRC_CLIENT, "Emote Log", source, ntype)
 		dat += " | "
+		dat += individual_logging_panel_link(M, INDIVIDUAL_ROLEPLAY_LOG, LOGSRC_CLIENT, "RPLog", source, ntype)
+		dat += " | "
 		dat += individual_logging_panel_link(M, INDIVIDUAL_COMMS_LOG, LOGSRC_CLIENT, "Comms Log", source, ntype)
 		dat += " | "
 		dat += individual_logging_panel_link(M, INDIVIDUAL_OOC_LOG, LOGSRC_CLIENT, "OOC Log", source, ntype)
@@ -439,6 +441,8 @@
 	dat += individual_logging_panel_link(M, INDIVIDUAL_SAY_LOG, LOGSRC_MOB, "Say Log", source, ntype)
 	dat += " | "
 	dat += individual_logging_panel_link(M, INDIVIDUAL_EMOTE_LOG, LOGSRC_MOB, "Emote Log", source, ntype)
+	dat += " | "
+	dat += individual_logging_panel_link(M, INDIVIDUAL_ROLEPLAY_LOG, LOGSRC_MOB, "RPLog", source, ntype)
 	dat += " | "
 	dat += individual_logging_panel_link(M, INDIVIDUAL_COMMS_LOG, LOGSRC_MOB, "Comms Log", source, ntype)
 	dat += " | "
