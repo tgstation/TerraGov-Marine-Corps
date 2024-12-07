@@ -1392,8 +1392,8 @@
 
 	add_cooldown()
 	if(locate(/obj/item/alien_embryo) in A)
-		X.recurring_injection(A, list(/datum/reagent/consumable/larvajelly,/datum/reagent/medicine/tricordrazine,/datum/reagent/medicine/inaprovaline,/datum/reagent/medicine/dexalin), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3, TRUE)
-		A.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, 1, no_overdose = TRUE)
+		X.recurring_injection(A, list(/datum/reagent/consumable/larvajelly,/datum/reagent/medicine/tricordrazine,/datum/reagent/medicine/inaprovaline,/datum/reagent/medicine/dexalin), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3)
+		A.reagents.add_reagent(/datum/reagent/medicine/spaceacillin, 1)
 	else
 		X.recurring_injection(A, list(/datum/reagent/toxin/xeno_neurotoxin,/datum/reagent/consumable/larvajelly), XENO_LARVAL_CHANNEL_TIME, XENO_LARVAL_AMOUNT_RECURRING, 3)
 
