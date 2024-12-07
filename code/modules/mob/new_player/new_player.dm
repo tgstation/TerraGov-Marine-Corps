@@ -397,7 +397,6 @@
 	if(!client)
 		return TRUE
 	var/mob/dead/observer/observer = new()
-	message_admins("[src] joined as a ghost.")
 	if(!check_other_rights(client, R_ADMIN, FALSE))
 		observer.unobserve_timer = addtimer(CALLBACK(observer, TYPE_PROC_REF(/mob/dead/observer, observe_time_out)), 3 MINUTES, TIMER_STOPPABLE)
 		to_chat(src, span_alert("You have three minutes to observe before getting sent back to the lobby. You can only do this once a round."))
@@ -441,6 +440,7 @@
 	observer.name = observer.real_name
 
 	mind.transfer_to(observer, TRUE)
+	message_admins("[key_name_admin(observer)] joined as a ghost.")
 	observer.client?.init_verbs()
 	qdel(src)
 
