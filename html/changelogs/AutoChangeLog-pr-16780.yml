@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Fixed shuttle walls and fog blockers being completely ignored by explosions"

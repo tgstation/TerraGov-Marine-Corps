@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - qol: "During prep / quickbuild phase, xenomorphs can now pull items without a delay."
