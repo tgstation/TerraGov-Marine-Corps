@@ -476,7 +476,7 @@
 	to_chat(src, span_notice("You have [(xeno_flags & XENO_MOBHUD) ? "enabled" : "disabled"] the Xeno Status HUD."))
 
 
-/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, list/toxin = list(/datum/reagent/toxin/xeno_neurotoxin), channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4)
+/mob/living/carbon/xenomorph/proc/recurring_injection(mob/living/carbon/C, list/toxin = list(/datum/reagent/toxin/xeno_neurotoxin), channel_time = XENO_NEURO_CHANNEL_TIME, transfer_amount = XENO_NEURO_AMOUNT_RECURRING, count = 4, no_overdose = FALSE)
 	if(!C?.can_sting() || !toxin)
 		return FALSE
 	if(!length(toxin) && islist(toxin))
@@ -509,7 +509,7 @@
 		if(IsStaggered())
 			return FALSE
 		do_attack_animation(C)
-		C.reagents.add_reagent_list(toxin, transfer_amount)
+		C.reagents.add_reagent_list(toxin, transfer_amount, no_overdose = no_overdose)
 	while(i++ < count && do_after(src, channel_time, TRUE, C, BUSY_ICON_HOSTILE))
 	return TRUE
 
