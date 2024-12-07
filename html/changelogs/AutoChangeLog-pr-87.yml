@@ -1,4 +1,0 @@
-author: "W0LF-101"
-delete-after: True
-changes:
-  - bugfix: "Fixed 6 gauge slugs not applying stagger, knockback and weakness."
