@@ -228,3 +228,15 @@
 			continue
 		. += H.job.jobworth[/datum/job/xenomorph]
 
+/datum/game_mode/infestation/crash/get_adjusted_jobworth_list(list/jobworth_list)
+	var/list/adjusted_jobworth_list = deepCopyList(jobworth_list)
+	for(var/index in jobworth_list)
+		var/datum/job/scaled_job = SSjob.GetJobType(index)
+		if(!(index in SSticker.mode.valid_job_types))
+			continue
+		if(!isxenosjob(scaled_job))
+			continue
+		var/amount = jobworth_list[index]
+		var/jobpoint_difference = get_jobpoint_difference() + amount
+		adjusted_jobworth_list[index] = clamp(jobpoint_difference, 0, amount)
+	return adjusted_jobworth_list

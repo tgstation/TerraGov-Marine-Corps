@@ -39,17 +39,6 @@
 	parent.show_character_previews(image('icons/Xeno/castes/larva.dmi', icon_state = "Bloody Larva", dir = SOUTH))
 	return TRUE
 
-/datum/job/xenomorph/add_job_points(amount)
-	if(iscrashgamemode(SSticker.mode))
-		var/datum/game_mode/infestation/crash/crash_gamemode = SSticker.mode
-		var/jobpoint_difference = crash_gamemode.get_jobpoint_difference() + amount
-		// Only add job points if there is not enough xenos.
-		if(jobpoint_difference <= 0)
-			return
-		amount = min(amount, jobpoint_difference)
-
-	return ..()
-
 /datum/job/xenomorph/add_job_positions(amount)
 	if(!(SSticker.mode.round_type_flags & MODE_XENO_SPAWN_PROTECT))
 		if(free_xeno_at_start > 0)
