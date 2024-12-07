@@ -45,7 +45,8 @@
 			var/mob/living/carbon/xenomorph/X = target
 			X.impregify(user, "pussy")
 		if(isxeno(user) && ishuman(target))
-			user.xenoimpregify()
+			var/mob/living/carbon/xenomorph/X = user
+			X.xenoimpregify()
 
 
 
