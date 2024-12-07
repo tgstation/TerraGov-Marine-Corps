@@ -114,6 +114,7 @@
 	basecolor = "#ffffff"
 	desc = "Some semen or something, yuck."
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	alpha = 150
 	amount = 2
 
 /obj/effect/decal/cleanable/blood/splatter/cum/dry()
@@ -135,7 +136,7 @@
 
 /obj/effect/decal/cleanable/blood/splatter/xenocum
 	name = "xeno cum"
-	basecolor = "#b9ffcb"
+	basecolor = "#62ff8a"
 	desc = "Some acidic xeno semen or something, yuck."
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
 	amount = 2
@@ -151,6 +152,7 @@
 	basecolor = "#999999"
 	desc = "Some pussy juice or something, yuck."
 	random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
+	alpha = 100
 	amount = 2
 
 /obj/effect/decal/cleanable/blood/splatter/girlcum/dry()
