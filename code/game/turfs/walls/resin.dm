@@ -54,6 +54,7 @@
 	user.do_attack_animation(src, used_item = plasmacutter)
 	plasmacutter.cut_apart(user, name, src, charge_cost)
 	// 301 damage. Enough to kill normal and thick walls.
+	// Only reason why this is not ChangeTurf is to stop special walls from getting one-shot (e.g more health / melee armor).
 	take_damage(max(0, plasmacutter.force * (2 + PLASMACUTTER_RESIN_MULTIPLIER)), plasmacutter.damtype, MELEE)
 	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	return TRUE
