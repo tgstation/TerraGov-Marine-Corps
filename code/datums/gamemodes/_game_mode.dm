@@ -1012,5 +1012,6 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 /datum/game_mode/proc/get_map_color_variant()
 	return SSmapping.configs[GROUND_MAP].armor_style
 
+/// Adjusts the inputted jobworth list.
 /datum/game_mode/proc/get_adjusted_jobworth_list(list/jobworth_list)
 	return jobworth_list
