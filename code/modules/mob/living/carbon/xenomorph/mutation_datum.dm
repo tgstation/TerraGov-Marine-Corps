@@ -200,5 +200,5 @@
 
 /datum/mutation_upgrade/utility/trail
 	name = "Trail"
-	desc = "When moving, randomly leave a chosen trail underneath you at a 25% chance and an additional 25% per Veil Chamber."
+	desc = "When moving, randomly leave a chosen trail underneath you at a 33% chance for every Veil Chamber."
 	status_effect = STATUS_EFFECT_UPGRADE_TRAIL

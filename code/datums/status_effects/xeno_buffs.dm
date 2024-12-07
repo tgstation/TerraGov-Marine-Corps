@@ -1310,10 +1310,8 @@
 	id = "mutation_upgrade_trail"
 	alert_type = /atom/movable/screen/alert/status_effect/trail
 	chamber_structure = MUTATION_STRUCTURE_VEIL
-	/// The initial odds of the trail spawning.
-	var/base_chance = 25
 	/// The additional chance of the trail starting.
-	var/chance_per_chamber = 25
+	var/chance_per_chamber = 33.33
 	/// The selected trail that will spawn upon moving.
 	var/obj/selected_trail = /obj/effect/xenomorph/spray
 	/// A list of trails that can be selected
@@ -1344,7 +1342,7 @@
 	SIGNAL_HANDLER
 	if(buff_owner.incapacitated() || buff_owner.lying_angle || buff_owner.resting || !chamber_scaling)
 		return
-	if(prob(base_chance + (chance_per_chamber * chamber_scaling)))
+	if(prob(chance_per_chamber * chamber_scaling))
 		var/turf/T = get_turf(buff_owner)
 		if(T.density || isspaceturf(T))
 			return
