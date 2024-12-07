@@ -38,6 +38,24 @@
 	ChangeTurf(/turf/closed/wall/resin/thick)
 	return TRUE
 
+/turf/closed/wall/resin/plasmacutter_act(mob/living/user, obj/item/I)
+	if(!isplasmacutter(I) || user.do_actions)
+		return FALSE
+	if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return FALSE
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
+		return FALSE
+	var/charge_cost = PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD
+	if(!plasmacutter.start_cut(user, name, src, charge_cost, no_string = TRUE))
+		return FALSE
+
+	user.changeNext_move(plasmacutter.attack_speed)
+	user.do_attack_animation(src, used_item = plasmacutter)
+	plasmacutter.cut_apart(user, name, src, charge_cost)
+	take_damage(max(0, plasmacutter.force * (1 + PLASMACUTTER_RESIN_MULTIPLIER)), plasmacutter.damtype, MELEE)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
+	return TRUE
 
 /turf/closed/wall/resin/thick
 	name = "thick resin wall"
@@ -115,7 +133,6 @@
 	to_chat(user, span_warning("You scrape ineffectively at \the [src]."))
 	return TRUE
 
-
 /turf/closed/wall/resin/attackby(obj/item/I, mob/living/user, params)
 	if(I.item_flags & NOBLUDGEON || !isliving(user))
 		return
@@ -130,14 +147,8 @@
 	else if(I.damtype == BRUTE)
 		multiplier += 0.75
 
-	if(isplasmacutter(I) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
-
 	damage *= max(0, multiplier)
-	take_damage(damage, BRUTE, MELEE)
+	take_damage(damage, I.damtype, MELEE)
 	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)

@@ -18,3 +18,13 @@
   - balance: Reduced HE sadar AP value to 75 from 100
   - balance: Reduces HE sadar sunder to 50 from 100
   - balance: Unguided HE sadar rockets throw mobs 4 tiles instead of 7
+2024-12-07:
+  Lumipharon:
+  - bugfix: fixed plasma cannon blast mode causing throw on direct hit
+  - balance: Added some explosion block to vendors, mechs and tanks
+  - bugfix: fixed some minor tank interior visual issues
+  - balance: The nuke can no longer travel through portals
+  - bugfix: Fixed shuttle walls and fog blockers being completely ignored by explosions
+  - bugfix: fixed vendors being stuck as nondense after falling over
+  Runian:
+  - qol: During prep / quickbuild phase, xenomorphs can now pull items without a delay.
