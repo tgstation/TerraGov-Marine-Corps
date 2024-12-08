@@ -16,6 +16,8 @@ SUBSYSTEM_DEF(points)
 	var/list/xeno_strategic_points_by_hive = list()
 	///Assoc list of xeno tactical points: xeno_tactical_points_by_hive["hivenum"]
 	var/list/xeno_tactical_points_by_hive = list()
+	///Assoc list of xeno biomass points: xeno_biomass_points_by_hive["hivenum"]
+	var/list/xeno_biomass_points_by_hive = list()
 
 	var/ordernum = 1					//order number given to next order
 
@@ -91,6 +93,13 @@ SUBSYSTEM_DEF(points)
 	if(!CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_PSY_POINTS))
 		return
 	xeno_tactical_points_by_hive[hivenumber] += amount
+
+
+///Add amount of tactical psy points to the selected hive only if the gamemode support biomass
+/datum/controller/subsystem/points/proc/add_biomass_points(hivenumber, amount)
+	if(!CHECK_BITFIELD(SSticker.mode.round_type_flags, MODE_BIOMASS_POINTS))
+		return
+	xeno_biomass_points_by_hive[hivenumber] = clamp(xeno_biomass_points_by_hive[hivenumber] + amount, 0, 500)
 
 /datum/controller/subsystem/points/proc/approve_request(datum/supply_order/O, mob/living/user)
 	var/cost = 0

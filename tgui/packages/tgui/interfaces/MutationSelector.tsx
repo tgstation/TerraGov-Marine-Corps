@@ -64,8 +64,8 @@ const BiomassBar = (_props: any) => {
     <Tooltip content={`Costs ${cost} biomass to buy an upgrade!`}>
       <Flex mb={1}>
         <Flex.Item grow>
-          <ProgressBar color="green" value={biomass / 100}>
-            {`${biomass} / 100 `}
+          <ProgressBar color="green" value={biomass / 500}>
+            {`${biomass} / 500 `}
           </ProgressBar>
         </Flex.Item>
       </Flex>

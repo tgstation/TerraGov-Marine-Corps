@@ -42,6 +42,9 @@
 	var/datum/hive_purchases/purchases = new
 	/// The nuke HUD timer datum, shown on each xeno's screen
 	var/atom/movable/screen/text/screen_timer/nuke_hud_timer
+	/// The amount of biomass stored.
+	var/biomass = 0
+
 
 // ***************************************
 // *********** Init
@@ -159,6 +162,7 @@
 			"is_leader" = xeno.xeno_flags & XENO_LEADER,
 			"is_ssd" = !xeno.client,
 			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
+			"mutation_disabled" = caste.caste_flags & CASTE_NO_MUTATION
 		))
 
 	var/mob/living/carbon/xenomorph/xeno_user
@@ -177,7 +181,7 @@
 	.["user_maturity"] = isxeno(user) ? xeno_user.upgrade_stored : 0
 	.["user_next_mat_level"] = isxeno(user) && xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0
 	.["user_tracked"] = isxeno(user) && !isnull(xeno_user.tracked) ? REF(xeno_user.tracked) : ""
-
+	.["user_can_mutate"] = !isxeno(user) || (xeno_user.xeno_caste.caste_flags & CASTE_NO_MUTATION)
 	.["user_show_empty"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_EMPTY)
 	.["user_show_compact"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_COMPACT_MODE)
 	.["user_show_general"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_GENERAL)
@@ -1607,3 +1611,4 @@ to_chat will check for valid clients itself already so no need to double check f
 	if(faction == FACTION_ZOMBIE)
 		return FACTION_ZOMBIE
 	return FALSE
+

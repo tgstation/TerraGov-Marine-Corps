@@ -589,7 +589,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_STAGGER_RESISTANT (1<<15) //Resistant to some forms of stagger, such as projectiles
 #define CASTE_HAS_WOUND_MASK (1<<16) //uses an alpha mask for wounded states
 #define CASTE_EXCLUDE_STRAINS (1<<17) // denotes castes/basetypes that should be excluded from being evoable as a strain
-#define CASTE_NO_BIOMASS (1<<18) // Xenos are excluded from getting any biomass
+#define CASTE_NO_MUTATION (1<<18) // Xenos are excluded from getting any mutations.
 
 // Xeno defines that affect evolution, considering making a new var for these
 #define CASTE_LEADER_TYPE (1<<19) //Whether we are a leader type caste, such as the queen, shrike or ?king?, and is affected by queen ban and playtime restrictions

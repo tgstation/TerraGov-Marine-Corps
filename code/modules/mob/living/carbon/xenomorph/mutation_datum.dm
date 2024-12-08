@@ -16,7 +16,7 @@
 	data["shell_chambers"] = length(xeno_user.hive?.shell_chambers)
 	data["spur_chambers"] = length(xeno_user.hive?.spur_chambers)
 	data["veil_chambers"] = length(xeno_user.hive?.veil_chambers)
-	data["biomass"] = xeno_user.biomass
+	data["biomass"] = !isnull(SSpoints.xeno_biomass_points_by_hive[xeno_user.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[xeno_user.hivenumber] : 0
 	return data
 
 /datum/mutation_datum/ui_static_data(mob/living/carbon/xenomorph/xeno_user)
@@ -74,7 +74,9 @@
 
 /// Tries to purchase a mutation. Denies if possible. Otherwise, removes conflicting mutations and gives the purchased mutation.
 /datum/mutation_datum/proc/try_purchase_mutation(mob/living/carbon/xenomorph/xeno_purchaser, upgrade_name)
-	if(!upgrade_name)
+	if(!xeno_purchaser.hive || !upgrade_name)
+		return
+	if((xeno_purchaser.xeno_caste.caste_flags & CASTE_NO_MUTATION))
 		return
 
 	var/upgrade_price
@@ -88,8 +90,9 @@
 		else
 			upgrade_price = XENO_UPGRADE_BIOMASS_COST_T4
 
-	if(xeno_purchaser.biomass < upgrade_price)
-		to_chat(usr, span_warning("You don't have enough biomass!"))
+	var/current_biomass = !isnull(SSpoints.xeno_biomass_points_by_hive[xeno_purchaser.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[xeno_purchaser.hivenumber] : 0
+	if(current_biomass < upgrade_price)
+		to_chat(usr, span_warning("The hive does not have enough biomass!"))
 		return
 
 	var/datum/mutation_upgrade/chosen_mutation_upgrade
@@ -103,15 +106,15 @@
 
 	switch(chosen_mutation_upgrade.required_structure)
 		if(MUTATION_STRUCTURE_CHAMBER)
-			if(!length(xeno_purchaser.hive?.shell_chambers))
+			if(!length(xeno_purchaser.hive.shell_chambers))
 				to_chat(usr, span_xenonotice("This mutation requires a shell chamber to exist!"))
 				return
 		if(MUTATION_STRUCTURE_SPUR)
-			if(!length(xeno_purchaser.hive?.spur_chambers))
+			if(!length(xeno_purchaser.hive.spur_chambers))
 				to_chat(usr, span_xenonotice("This mutation requires a spur chamber to exist!"))
 				return
 		if(MUTATION_STRUCTURE_VEIL)
-			if(!length(xeno_purchaser.hive?.veil_chambers))
+			if(!length(xeno_purchaser.hive.veil_chambers))
 				to_chat(usr, span_xenonotice("This mutation requires a veil chamber to exist!"))
 				return
 
@@ -125,7 +128,7 @@
 		if(chosen_mutation_upgrade.category == subtype_mutation.category)
 			mutation_status_effects_to_remove += subtype_mutation.status_effect
 
-	xeno_purchaser.use_biomass(upgrade_price)
+	SSpoints.xeno_biomass_points_by_hive[xeno_purchaser.hivenumber] -= upgrade_price
 	to_chat(xeno_purchaser, span_xenonotice("Mutation gained."))
 	for(var/datum/status_effect/removed_status_effect AS in mutation_status_effects_to_remove)
 		xeno_purchaser.remove_status_effect(removed_status_effect)

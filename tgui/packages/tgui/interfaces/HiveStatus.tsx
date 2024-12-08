@@ -44,6 +44,7 @@ type InputPack = {
   user_evolution: number;
   user_purchase_perms: boolean;
   user_maturity: number;
+  user_can_mutate: boolean;
   user_next_mat_level: number;
   user_tracked: string;
   user_show_compact: boolean;
@@ -205,13 +206,14 @@ const BlessingsButton = (_props: any) => {
 
 const MutationsButton = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
-  const { user_ref } = data;
+  const { user_ref, user_can_mutate } = data;
 
   return (
     <Box className="Section__buttons" mr="90px">
       <Button
         onClick={() => act('Mutations', { xeno: user_ref })}
         icon={'store'}
+        disabled={!!user_can_mutate}
       >
         Mutations
       </Button>

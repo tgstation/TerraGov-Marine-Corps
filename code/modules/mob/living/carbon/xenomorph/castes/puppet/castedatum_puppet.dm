@@ -15,7 +15,7 @@
 	plasma_max = 2
 	plasma_gain = 0
 	max_health = 250
-	caste_flags = CASTE_NOT_IN_BIOSCAN|CASTE_DO_NOT_ANNOUNCE_DEATH|CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_NO_BIOMASS
+	caste_flags = CASTE_NOT_IN_BIOSCAN|CASTE_DO_NOT_ANNOUNCE_DEATH|CASTE_DO_NOT_ALERT_LOW_LIFE|CASTE_NO_MUTATION
 	minimap_icon = "puppet"
 	soft_armor = list(MELEE = 14, BULLET = 3, LASER = 5, ENERGY = 3, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 

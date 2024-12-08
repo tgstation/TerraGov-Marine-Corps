@@ -1401,21 +1401,7 @@
 
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
-
-	var/list/mob/living/carbon/xenomorph/nearby_friendly_xenos = list()
-	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(X, 7))
-		// Intentionally includes the owner.
-		if(!X.issamexenohive(nearby_xeno))
-			continue
-		if(nearby_xeno.xeno_caste.caste_flags & CASTE_NO_BIOMASS)
-			continue
-		nearby_friendly_xenos += nearby_xeno
-
-	if(length(nearby_friendly_xenos))
-		// Split the reward amongst every xeno nearby, including themselves.
-		var/biomass_per_xeno = round(15/length(nearby_friendly_xenos), 0.1)
-		for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
-			nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
+	SSpoints.add_biomass_points(X.hivenumber, 15)
 
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
