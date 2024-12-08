@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Hunter stealth damage threhold changed to 25 from 45"
