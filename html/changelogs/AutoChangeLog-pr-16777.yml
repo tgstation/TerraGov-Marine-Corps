@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Direct hit explosions from rockets will now reliably throw the victim away from the firer, instead of a random direction"
