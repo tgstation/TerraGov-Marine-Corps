@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Plasmacutters now do 301 damage instead of 231 damage against resin walls. Enough to one-shot thick resin walls as intended."
