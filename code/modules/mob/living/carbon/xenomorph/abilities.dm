@@ -1280,6 +1280,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
 	)
+	var/devour_delay = 15 SECONDS
 
 /datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
@@ -1334,8 +1335,12 @@
 	owner_xeno.face_atom(victim)
 	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
 	var/channel = SSsounds.random_available_channel()
+	if(isxenogorger(owner_xeno))
+		devour_delay = GORGER_DEVOUR_DELAY
+	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE) || !victim.client)
+		devour_delay = GORGER_DEVOUR_DELAY
 	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(owner_xeno, GORGER_DEVOUR_DELAY, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+	if(!do_after(owner_xeno, devour_delay, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		owner_xeno.stop_sound_channel(channel)
 		return
