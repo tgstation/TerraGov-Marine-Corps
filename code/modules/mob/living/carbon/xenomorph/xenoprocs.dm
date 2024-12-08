@@ -127,7 +127,7 @@
 		. += "Upgrade Progress: (FINISHED)"
 
 	if(!(xeno_caste.caste_flags & CASTE_NO_MUTATION))
-		. += "Biomass: [!isnull(SSpoints.xeno_biomass_points_by_hive[xeno_user.hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[xeno_user.hivenumber] : 0]/500"
+		. += "Biomass: [!isnull(SSpoints.xeno_biomass_points_by_hive[hivenumber]) ? SSpoints.xeno_biomass_points_by_hive[hivenumber] : 0]/500"
 
 	. += "Health: [health]/[maxHealth][overheal ? " + [overheal]": ""]" //Changes with balance scalar, can't just use the caste
 
