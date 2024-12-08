@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;layers.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/layers.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/layers.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/layers.html#define/SEETHROUGH_PLANE">SEETHROUGH_PLANE</a></th><td>Slightly above the game plane but does not catch mouse clicks. Useful for certain visuals that should be clicked through, like seethrough trees</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/ABOVE_MOB_PLATFORM_LAYER">ABOVE_MOB_PLATFORM_LAYER</a></th><td>for platform corner structures</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/EMISSIVE_PLANE">EMISSIVE_PLANE</a></th><td>This plane masks out lighting to create an &quot;emissive&quot; effect, ie for glowing lights in otherwise dark areas.</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/EMISSIVE_RENDER_TARGET">EMISSIVE_RENDER_TARGET</a></th><td>The render target used by the emissive layer.</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/EMISSIVE_LAYER_UNBLOCKABLE">EMISSIVE_LAYER_UNBLOCKABLE</a></th><td>The layer you should use if you <em>really</em> don't want an emissive overlay to be blocked.</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/BALLOON_CHAT_PLANE">BALLOON_CHAT_PLANE</a></th><td>Plane for balloon text (text that fades up)</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/TYPING_LAYER">TYPING_LAYER</a></th><td>Bubble for typing indicators</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/PLANE_RANGE">PLANE_RANGE</a></th><td>The range unique planes can be in
+Try and keep this to a nice whole number, so it's easy to look at a plane var and know what's going on</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/PLANE_MASTERS_GAME">PLANE_MASTERS_GAME</a></th><td>Plane master controller keys</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/PLANE_CRITICAL_DISPLAY">PLANE_CRITICAL_DISPLAY</a></th><td>This plane master will not go away if its layer is culled. useful for preserving effects</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/PLANE_CRITICAL_NO_RELAY">PLANE_CRITICAL_NO_RELAY</a></th><td>This plane master will temporarially remove relays to all other planes
+Allows us to retain the effects of a plane while cutting off the changes it makes</td></tr>
+        <tr><th><a href="code/__DEFINES/layers.html#define/PLANE_CRITICAL_CUT_RENDER">PLANE_CRITICAL_CUT_RENDER</a></th><td>We assume this plane master has a render target starting with *, it'll be removed, forcing it to render in place</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/ABOVE_MOB_PLATFORM_LAYER"><aside class="declaration">#define </aside>ABOVE_MOB_PLATFORM_LAYER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L139">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 139"/></a>
+    </h3>
+    <p>for platform corner structures</p><h3 id="define/BALLOON_CHAT_PLANE"><aside class="declaration">#define </aside>BALLOON_CHAT_PLANE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L192">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 192"/></a>
+    </h3>
+    <p>Plane for balloon text (text that fades up)</p><h3 id="define/EMISSIVE_LAYER_UNBLOCKABLE"><aside class="declaration">#define </aside>EMISSIVE_LAYER_UNBLOCKABLE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L182">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 182"/></a>
+    </h3>
+    <p>The layer you should use if you <em>really</em> don't want an emissive overlay to be blocked.</p><h3 id="define/EMISSIVE_PLANE"><aside class="declaration">#define </aside>EMISSIVE_PLANE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L178">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 178"/></a>
+    </h3>
+    <p>This plane masks out lighting to create an &quot;emissive&quot; effect, ie for glowing lights in otherwise dark areas.</p><h3 id="define/EMISSIVE_RENDER_TARGET"><aside class="declaration">#define </aside>EMISSIVE_RENDER_TARGET
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L180">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 180"/></a>
+    </h3>
+    <p>The render target used by the emissive layer.</p><h3 id="define/PLANE_CRITICAL_CUT_RENDER"><aside class="declaration">#define </aside>PLANE_CRITICAL_CUT_RENDER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L274">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 274"/></a>
+    </h3>
+    <p>We assume this plane master has a render target starting with *, it'll be removed, forcing it to render in place</p><h3 id="define/PLANE_CRITICAL_DISPLAY"><aside class="declaration">#define </aside>PLANE_CRITICAL_DISPLAY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L269">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 269"/></a>
+    </h3>
+    <p>This plane master will not go away if its layer is culled. useful for preserving effects</p><h3 id="define/PLANE_CRITICAL_NO_RELAY"><aside class="declaration">#define </aside>PLANE_CRITICAL_NO_RELAY
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L272">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 272"/></a>
+    </h3>
+    <p>This plane master will temporarially remove relays to all other planes
+Allows us to retain the effects of a plane while cutting off the changes it makes</p><h3 id="define/PLANE_MASTERS_GAME"><aside class="declaration">#define </aside>PLANE_MASTERS_GAME
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L262">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 262"/></a>
+    </h3>
+    <p>Plane master controller keys</p><h3 id="define/PLANE_RANGE"><aside class="declaration">#define </aside>PLANE_RANGE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L259">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 259"/></a>
+    </h3>
+    <p>The range unique planes can be in
+Try and keep this to a nice whole number, so it's easy to look at a plane var and know what's going on</p><h3 id="define/SEETHROUGH_PLANE"><aside class="declaration">#define </aside>SEETHROUGH_PLANE
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 32"/></a>
+    </h3>
+    <p>Slightly above the game plane but does not catch mouse clicks. Useful for certain visuals that should be clicked through, like seethrough trees</p><h3 id="define/TYPING_LAYER"><aside class="declaration">#define </aside>TYPING_LAYER
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/f38d83c22d40acaafaa1d5f348c590ce90e775cd/code/__DEFINES/layers.dm#L194">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;layers.dm 194"/></a>
+    </h3>
+    <p>Bubble for typing indicators</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/f38d83c22d40acaafaa1d5f348c590ce90e775cd">f38d83c</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
