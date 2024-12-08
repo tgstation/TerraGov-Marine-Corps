@@ -22125,7 +22125,10 @@
 /obj/item/shotgunbox/buckshot,
 /obj/structure/closet/secure_closet/guncabinet{
 	storage_capacity = 80;
-	req_access = list(200)
+	req_access = list(200);
+	name = "CEO gun cabinet";
+	max_integrity = 10000000;
+	obj_integrity = 10000000
 	},
 /obj/item/weapon/gun/launcher/rocket/oneuse,
 /obj/item/ammo_magazine/rifle/ap,

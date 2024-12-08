@@ -453,6 +453,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = 10000 //Overdosing for neuro is what happens when you run out of stamina to avoid its oxy and toxin damage
 	toxpwr = 0
+	var/neuro_stun_cd = 0
 
 /datum/reagent/toxin/xeno_neurotoxin/on_mob_life(mob/living/L, metabolism)
 	var/power
@@ -468,7 +469,15 @@
 			power = (15*effect_str)
 			L.reagent_pain_modifier -= PAIN_REDUCTION_VERY_HEAVY
 			L.jitter(8) //Shows that things are *really* bad
-	L.adjustStaminaLoss(power)
+			
+	var/stamina_loss_limit = L.maxHealth * 2
+	var/applied_damage = clamp(power, 0, (stamina_loss_limit - L.getStaminaLoss()))
+	var/damage_overflow = power - applied_damage
+	if(damage_overflow && COOLDOWN_CHECK(src, neuro_stun_cd))
+		L.adjustStaminaLoss(power)
+		COOLDOWN_START(src, neuro_stun_cd, 5 MINUTES) //only do the hard stun once every five minutes, unless the reagent is cleared completely
+	else
+		L.adjustStaminaLoss(applied_damage)
 	/*
 	//Apply stamina damage, then apply any 'excess' stamina damage beyond our maximum as tox and oxy damage
 	var/stamina_loss_limit = L.maxHealth * 2
@@ -481,6 +490,12 @@
 		L.Losebreath(2) //So the oxy loss actually means something.
 	*/
 	L.set_timed_status_effect(2 SECONDS, /datum/status_effect/speech/stutter, only_if_higher = TRUE)
+
+	var/excess_volume = max(0,volume-20)
+	if(excess_volume && (L.incapacitated(TRUE) || HAS_TRAIT(L, TRAIT_FLOORED))) //includes paralyzed, nested, resting
+		custom_metabolism = initial(custom_metabolism) * (1 + (excess_volume/20)) //normal speed below 20 units, double speed at 40 units, triple at 60, etc
+	else
+		custom_metabolism = initial(custom_metabolism)
 
 	if(current_cycle < 21) //Additional effects at higher cycles
 		return ..()

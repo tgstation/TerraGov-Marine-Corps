@@ -9,3 +9,14 @@
   Meghan-Rossi:
   - rscadd: Defiler's Reagent Slash, Sentinel's Toxic Slash, and Hunter's Sneak Attack
       now work on disarms too.
+2024-12-07:
+  K4rlox:
+  - rscadd: New buyable implants in the imports section on ASRS consoles
+  W0LF-101:
+  - bugfix: Fixed 6 gauge slugs not applying stagger, knockback and weakness.
+  - balance: buffs six gauge ammunition across the board.
+2024-12-08:
+  Meghan-Rossi:
+  - balance: Xenos can now keep people down for longer by disarming them more after
+      they've been knocked down
+  - rscdel: Larval sting on uninfested people no long injects acid, only neurotoxin.
