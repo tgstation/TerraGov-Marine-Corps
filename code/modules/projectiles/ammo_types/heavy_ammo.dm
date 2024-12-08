@@ -201,7 +201,9 @@
 	explosion(T, light_impact_range = 2, weak_impact_range = 4)
 
 /datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(target_mob))
+	var/target_turf = get_turf(target_mob)
+	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	drop_nade(target_turf)
 
 /datum/ammo/bullet/sarden/high_explosive/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
