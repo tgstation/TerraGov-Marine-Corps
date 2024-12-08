@@ -1227,32 +1227,45 @@
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY)
 	if(current_aura)
 		current_aura.stop_emitting()
+	switch(emitted_aura)
+		if(AURA_XENO_RECOVERY)
+			var/datum/action/ability/xeno_action/pheromones/emit_recovery/recovery_pheromones = buff_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_recovery]
+			if(recovery_pheromones)
+				recovery_pheromones.bonus_aura_strength = initial(recovery_pheromones.bonus_aura_strength)
+				recovery_pheromones.apply_pheros(AURA_XENO_RECOVERY)
+		if(AURA_XENO_WARDING)
+			var/datum/action/ability/xeno_action/pheromones/emit_warding/warding_pheromones = buff_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_warding]
+			if(warding_pheromones)
+				warding_pheromones.bonus_aura_strength = initial(warding_pheromones.bonus_aura_strength)
+				warding_pheromones.apply_pheros(AURA_XENO_WARDING)
+		if(AURA_XENO_FRENZY)
+			var/datum/action/ability/xeno_action/pheromones/emit_frenzy/frenzy_pheromones = buff_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_frenzy]
+			if(frenzy_pheromones)
+				frenzy_pheromones.bonus_aura_strength = initial(frenzy_pheromones.bonus_aura_strength)
+				frenzy_pheromones.apply_pheros(AURA_XENO_FRENZY)
 	return ..()
 
 /// Boosts the current aura (if they have pheromones already) or creates a aura.
 /datum/status_effect/mutation_upgrade/pheromones/proc/create_aura()
 	if(current_aura)
-		QDEL_NULL(current_aura)
+		current_aura.stop_emitting()
 	switch(emitted_aura)
 		if(AURA_XENO_RECOVERY)
 			var/datum/action/ability/xeno_action/pheromones/emit_recovery/recovery_pheromones = buff_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_recovery]
 			if(recovery_pheromones)
 				recovery_pheromones.bonus_aura_strength = aura_power_per_chamber * chamber_scaling
-				QDEL_NULL(buff_owner.current_aura)
 				recovery_pheromones.apply_pheros(AURA_XENO_RECOVERY)
 				return
 		if(AURA_XENO_WARDING)
 			var/datum/action/ability/xeno_action/pheromones/emit_warding/warding_pheromones = buff_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_warding]
 			if(warding_pheromones)
 				warding_pheromones.bonus_aura_strength = aura_power_per_chamber * chamber_scaling
-				QDEL_NULL(buff_owner.current_aura)
 				warding_pheromones.apply_pheros(AURA_XENO_WARDING)
 				return
 		if(AURA_XENO_FRENZY)
 			var/datum/action/ability/xeno_action/pheromones/emit_frenzy/frenzy_pheromones = buff_owner.actions_by_path[/datum/action/ability/xeno_action/pheromones/emit_frenzy]
 			if(frenzy_pheromones)
 				frenzy_pheromones.bonus_aura_strength = aura_power_per_chamber * chamber_scaling
-				QDEL_NULL(buff_owner.current_aura)
 				frenzy_pheromones.apply_pheros(AURA_XENO_FRENZY)
 				return
 	if(!chamber_scaling)
