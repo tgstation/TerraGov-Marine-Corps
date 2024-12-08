@@ -188,10 +188,10 @@
 	category = MUTATION_CATEGORY_UTILITY
 	required_structure = MUTATION_STRUCTURE_VEIL
 
-/datum/mutation_upgrade/utility/toxin
-	name = "Toxin"
-	desc = "When slashing living humans, inject a variable amount of a chosen toxin into them. The amount depends on the toxin and Spur Chamber count."
-	status_effect = STATUS_EFFECT_UPGRADE_TOXIN
+/datum/mutation_upgrade/utility/focus
+	name = "Focus"
+	desc = "Deal 1 additional melee damage for every Veil Chamber."
+	status_effect = STATUS_EFFECT_UPGRADE_FOCUS
 
 /datum/mutation_upgrade/utility/pheromones
 	name = "Pheromones"

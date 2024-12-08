@@ -1155,57 +1155,36 @@
 // ***************************************
 // *********** Upgrade Chambers Buffs - Utility
 // ***************************************
-/atom/movable/screen/alert/status_effect/toxin
-	name = "Toxin"
-	desc = "Inject toxin on attack. Click to change toxin."
+/atom/movable/screen/alert/status_effect/focus
+	name = "Focus"
+	desc = "Increases attack damage."
 	icon_state = "xenobuff_generic"
 
-/atom/movable/screen/alert/status_effect/toxin/Click()
-	var/datum/status_effect/mutation_upgrade/toxin/status_effect = attached_effect
-	var/datum/reagent/toxin/toxin_choice = show_radial_menu(status_effect.buff_owner, status_effect.buff_owner, GLOB.defiler_toxin_images_list, radius = 35, require_near = TRUE)
-	if(!toxin_choice)
-		return
-	for(var/defiler_toxin in GLOB.defiler_toxin_type_list)
-		var/datum/reagent/reagent = GLOB.chemical_reagents_list[defiler_toxin]
-		if(reagent.name == toxin_choice)
-			status_effect.selected_reagent = reagent.type
-			break
-	status_effect.buff_owner.balloon_alert(status_effect.buff_owner, "[toxin_choice]")
-
-/datum/status_effect/mutation_upgrade/toxin
-	id = "mutation_upgrade_toxin"
-	alert_type = /atom/movable/screen/alert/status_effect/toxin
+/datum/status_effect/mutation_upgrade/focus
+	id = "mutation_upgrade_focus"
+	alert_type = /atom/movable/screen/alert/status_effect/focus
 	chamber_structure = MUTATION_STRUCTURE_VEIL
-	/// Currently selected reagent to inject.
-	var/datum/reagent/toxin/selected_reagent = /datum/reagent/toxin/xeno_neurotoxin
+	/// The bonus melee damage for each chamber.
+	var/damage_buff_per_chamber = 1
 
-/datum/status_effect/mutation_upgrade/toxin/on_apply()
+/datum/status_effect/mutation_upgrade/focus/on_apply()
 	if(!..())
 		return FALSE
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
-	RegisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_slash))
+	buff_owner.xeno_caste.melee_damage += damage_buff_per_chamber * chamber_scaling
 	return TRUE
 
-/datum/status_effect/mutation_upgrade/toxin/on_remove()
+/datum/status_effect/mutation_upgrade/focus/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY)
-	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
+	buff_owner.xeno_caste.melee_damage -= damage_buff_per_chamber * chamber_scaling
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active veil chambers.
-/datum/status_effect/mutation_upgrade/toxin/proc/update_buff()
+/datum/status_effect/mutation_upgrade/focus/proc/update_buff()
 	SIGNAL_HANDLER
+	buff_owner.xeno_caste.melee_damage -= damage_buff_per_chamber * chamber_scaling
 	update_chamber_scaling()
-
-/// Injects the human target with a variable amount of the selected reagent.
-/datum/status_effect/mutation_upgrade/toxin/proc/on_slash(datum/source, mob/living/target)
-	SIGNAL_HANDLER
-	if(!chamber_scaling || target.stat == DEAD || !ishuman(target) || !target.can_sting())
-		return
-	var/datum/reagent/glob_reagent = GLOB.chemical_reagents_list[selected_reagent]
-	if(!glob_reagent)
-		return
-	var/mob/living/carbon/human/human_target = target
-	human_target.reagents.add_reagent(selected_reagent, glob_reagent.custom_metabolism * chamber_scaling)
+	buff_owner.xeno_caste.melee_damage += damage_buff_per_chamber * chamber_scaling
 
 // ***************************************
 // ***************************************

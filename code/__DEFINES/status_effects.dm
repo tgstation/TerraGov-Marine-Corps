@@ -51,7 +51,7 @@
 
 #define STATUS_EFFECT_UPGRADE_CRUSH /datum/status_effect/mutation_upgrade/crush
 
-#define STATUS_EFFECT_UPGRADE_TOXIN /datum/status_effect/mutation_upgrade/toxin
+#define STATUS_EFFECT_UPGRADE_FOCUS /datum/status_effect/mutation_upgrade/focus
 
 #define STATUS_EFFECT_UPGRADE_PHERO /datum/status_effect/mutation_upgrade/pheromones
 
