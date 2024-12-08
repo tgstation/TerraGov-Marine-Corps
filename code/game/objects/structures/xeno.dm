@@ -145,6 +145,10 @@
 	ignore_weed_destruction = FALSE
 	refundable = FALSE
 
+/obj/alien/resin/sticky/thin/temporary/Initialize(mapload)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(obj_destruction), MELEE), 3 SECONDS)
+
 //Resin Doors
 /obj/structure/mineral_door/resin
 	name = RESIN_DOOR

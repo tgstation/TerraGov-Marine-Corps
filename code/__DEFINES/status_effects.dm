@@ -39,6 +39,24 @@
 
 #define STATUS_EFFECT_DRAIN_SURGE /datum/status_effect/drain_surge
 
+#define STATUS_EFFECT_UPGRADE_CARAPACE /datum/status_effect/mutation_upgrade/carapace
+
+#define STATUS_EFFECT_UPGRADE_REGENERATION /datum/status_effect/mutation_upgrade/regeneration
+
+#define STATUS_EFFECT_UPGRADE_VAMPIRISM /datum/status_effect/mutation_upgrade/vampirism
+
+#define STATUS_EFFECT_UPGRADE_CELERITY /datum/status_effect/mutation_upgrade/celerity
+
+#define STATUS_EFFECT_UPGRADE_ADRENALINE /datum/status_effect/mutation_upgrade/adrenaline
+
+#define STATUS_EFFECT_UPGRADE_CRUSH /datum/status_effect/mutation_upgrade/crush
+
+#define STATUS_EFFECT_UPGRADE_FOCUS /datum/status_effect/mutation_upgrade/focus
+
+#define STATUS_EFFECT_UPGRADE_PHERO /datum/status_effect/mutation_upgrade/pheromones
+
+#define STATUS_EFFECT_UPGRADE_TRAIL /datum/status_effect/mutation_upgrade/trail
+
 #define STATUS_EFFECT_MINDMEND /datum/status_effect/mindmeld
 
 #define STATUS_EFFECT_REKNIT_FORM /datum/status_effect/reknit_form

@@ -633,6 +633,8 @@
 	ability_cost = 30
 	desc = "Opens your pheromone options."
 	use_state_flags = ABILITY_USE_STAGGERED|ABILITY_USE_NOTTURF|ABILITY_USE_BUSY|ABILITY_USE_LYING
+	/// Additional aura strength which will be added to the caste's aura strength.
+	var/bonus_aura_strength = 0
 
 /datum/action/ability/xeno_action/pheromones/proc/apply_pheros(phero_choice)
 	var/mob/living/carbon/xenomorph/X = owner
@@ -645,7 +647,8 @@
 		X.hud_set_pheromone()
 		return fail_activate()
 	QDEL_NULL(X.current_aura)
-	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + X.xeno_caste.aura_strength * 2, X.xeno_caste.aura_strength, -1, X.faction, X.hivenumber)
+	var/aura_strength = X.xeno_caste.aura_strength + bonus_aura_strength
+	X.current_aura = SSaura.add_emitter(X, phero_choice, 6 + aura_strength * 2, aura_strength, -1, X.faction, X.hivenumber)
 	X.balloon_alert(X, "[phero_choice]")
 	playsound(X.loc, SFX_ALIEN_DROOL, 25)
 
@@ -1399,6 +1402,21 @@
 	victim.do_jitter_animation(2)
 	victim.adjustCloneLoss(20)
 
+	var/list/mob/living/carbon/xenomorph/nearby_friendly_xenos = list()
+	for(var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(X, 7))
+		// Intentionally includes the owner.
+		if(!X.issamexenohive(nearby_xeno))
+			continue
+		if(nearby_xeno.xeno_caste.caste_flags & CASTE_NO_BIOMASS)
+			continue
+		nearby_friendly_xenos += nearby_xeno
+
+	if(length(nearby_friendly_xenos))
+		// Split the reward amongst every xeno nearby, including themselves.
+		var/biomass_per_xeno = round(15/length(nearby_friendly_xenos), 0.1)
+		for(var/mob/living/carbon/xenomorph/nearby_friendly_xeno AS in nearby_friendly_xenos)
+			nearby_friendly_xeno.gain_biomass(biomass_per_xeno)
+
 	ADD_TRAIT(victim, TRAIT_PSY_DRAINED, TRAIT_PSY_DRAINED)
 	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE))
 		victim.med_hud_set_status()
@@ -1509,6 +1527,7 @@
 	victim.dead_ticks = 0
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	X.eject_victim(TRUE, starting_turf)
+
 	if(owner.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.cocooned++

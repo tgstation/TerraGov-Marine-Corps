@@ -190,17 +190,30 @@ const BlessingsButton = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const { user_purchase_perms, user_ref } = data;
 
-  if (!user_purchase_perms) {
-    return <Box />;
-  }
-
   return (
     <Box className="Section__buttons">
       <Button
         onClick={() => act('Blessings', { xeno: user_ref })}
         icon={'store'}
+        disabled={!user_purchase_perms}
       >
         Blessings
+      </Button>
+    </Box>
+  );
+};
+
+const MutationsButton = (_props: any) => {
+  const { act, data } = useBackend<InputPack>();
+  const { user_ref } = data;
+
+  return (
+    <Box className="Section__buttons" mr="90px">
+      <Button
+        onClick={() => act('Mutations', { xeno: user_ref })}
+        icon={'store'}
+      >
+        Mutations
       </Button>
     </Box>
   );
@@ -253,7 +266,10 @@ const GeneralInfo = (_props: any) => {
             {' ' + hive_larva_burrowed}
           </Box>
         </Box>
-        <BlessingsButton />
+        <Box as="span">
+          <MutationsButton />
+          <BlessingsButton />
+        </Box>
       </Box>
       <Flex direction="column" className="Section__content">
         <Flex.Item>

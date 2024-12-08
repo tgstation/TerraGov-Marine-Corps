@@ -126,6 +126,10 @@
 	else //Upgrade process finished or impossible
 		. += "Upgrade Progress: (FINISHED)"
 
+	if(!(xeno_caste.caste_flags & CASTE_NO_BIOMASS))
+		. += "Biomass: [biomass]/100"
+
+
 	. += "Health: [health]/[maxHealth][overheal ? " + [overheal]": ""]" //Changes with balance scalar, can't just use the caste
 
 	if(xeno_caste.plasma_max > 0)
@@ -580,3 +584,9 @@
 
 /mob/living/carbon/xenomorph/on_eord(turf/destination)
 	revive(TRUE)
+
+/mob/living/carbon/xenomorph/proc/use_biomass(value)
+	biomass = clamp(biomass - value, 0, 100)
+
+/mob/living/carbon/xenomorph/proc/gain_biomass(value)
+	biomass = clamp(biomass + value, 0, 100)

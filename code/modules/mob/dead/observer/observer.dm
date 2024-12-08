@@ -902,6 +902,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		log_game("[key_name(usr)] has joined Valhalla as a Xenomorph.")
 		var/mob/living/carbon/xenomorph/new_xeno = new xeno_choice(pick(GLOB.spawns_by_job[/datum/job/fallen/xenomorph]))
 		new_xeno.transfer_to_hive(XENO_HIVE_FALLEN)
+		new_xeno.gain_biomass(100) // So they can test it out here.
 		ADD_TRAIT(new_xeno, TRAIT_VALHALLA_XENO, VALHALLA_TRAIT)
 		var/datum/job/xallhala_job = SSjob.GetJobType(/datum/job/fallen/xenomorph)
 		new_xeno.apply_assigned_role_to_spawn(xallhala_job)

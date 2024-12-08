@@ -92,6 +92,14 @@ GLOBAL_LIST_INIT(defiler_toxin_type_list, list(
 	/datum/reagent/toxin/xeno_ozelomelyn,
 ))
 
+//List of Defiler toxin images
+GLOBAL_LIST_INIT(defiler_toxin_images_list, list(
+	DEFILER_OZELOMELYN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_OZELOMELYN),
+	DEFILER_HEMODILE = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_HEMODILE),
+	DEFILER_TRANSVITOX = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_TRANSVITOX),
+	DEFILER_NEUROTOXIN = image('icons/Xeno/actions/defiler.dmi', icon_state = DEFILER_NEUROTOXIN)
+))
+
 //List of toxins improving defile's damage
 GLOBAL_LIST_INIT(defiler_toxins_typecache_list, typecacheof(list(
 	/datum/reagent/toxin/xeno_ozelomelyn,
@@ -210,3 +218,31 @@ GLOBAL_LIST_INIT(xeno_ai_spawnable, list(
 
 /// Life runs every 2 seconds, but we don't want to multiply all healing by 2 due to seconds_per_tick
 #define XENO_PER_SECOND_LIFE_MOD 0.5
+
+// Mutations
+GLOBAL_DATUM_INIT(mutation_selector, /datum/mutation_datum, new)
+
+GLOBAL_LIST_INIT(mutation_upgrades_buyable, list(
+	/datum/mutation_upgrade/survival/carapace,
+	/datum/mutation_upgrade/survival/regeneration,
+	/datum/mutation_upgrade/survival/vampirism,
+	/datum/mutation_upgrade/attack/celerity,
+	/datum/mutation_upgrade/attack/adrenaline,
+	/datum/mutation_upgrade/attack/crush,
+	/datum/mutation_upgrade/utility/focus,
+	/datum/mutation_upgrade/utility/pheromones,
+	/datum/mutation_upgrade/utility/trail
+))
+
+#define MUTATION_CATEGORY_SURVIVAL "Survival"
+#define MUTATION_CATEGORY_ATTACK "Attack"
+#define MUTATION_CATEGORY_UTILITY "Utility"
+
+#define MUTATION_STRUCTURE_CHAMBER "shell"
+#define MUTATION_STRUCTURE_SPUR "spur"
+#define MUTATION_STRUCTURE_VEIL "veil"
+
+#define	XENO_UPGRADE_BIOMASS_COST_T1 15
+#define	XENO_UPGRADE_BIOMASS_COST_T2 20
+#define	XENO_UPGRADE_BIOMASS_COST_T3 25
+#define	XENO_UPGRADE_BIOMASS_COST_T4 30
