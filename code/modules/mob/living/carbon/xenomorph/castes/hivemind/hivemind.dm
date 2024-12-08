@@ -250,6 +250,12 @@
 		return
 	icon_state = "Hivemind"
 
+/mob/living/carbon/xenomorph/hivemind/update_icon()
+	. = ..()
+	if(status_flags & INCORPOREAL)
+		invisibility = INVISIBILITY_MAXIMUM
+	else
+		invisibility = 0
 /mob/living/carbon/xenomorph/hivemind/update_icons()
 	return
 
@@ -258,13 +264,14 @@
 	if(!holder)
 		return
 
-	if(status_flags & INCORPOREAL)
-		holder.icon_state = ""
-
 	var/amount = round(health * 100 / maxHealth, 10)
 	if(!amount)
 		amount = 1 //don't want the 'zero health' icon when we still have 4% of our health
 	holder.icon_state = "health[amount]"
+	
+	holder.overlays.Cut()
+	if(status_flags & INCORPOREAL)
+		holder.overlays +=image('icons/Xeno/castes/hivemind.dmi', src, "hivemind_marker") 
 
 /mob/living/carbon/xenomorph/hivemind/DblClickOn(atom/A, params)
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_HIVEMIND_MANIFESTATION))
