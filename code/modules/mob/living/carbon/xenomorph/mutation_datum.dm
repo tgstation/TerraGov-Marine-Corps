@@ -195,10 +195,10 @@
 
 /datum/mutation_upgrade/utility/pheromones
 	name = "Pheromones"
-	desc = "Allows you to emit a chosen pheromone starting at a power of 1 and an additional 0.5 per Veil Chamber."
+	desc = "Allows you to emit a chosen pheromone starting at a power of 1 and an additional 0.25 per Veil Chamber."
 	status_effect = STATUS_EFFECT_UPGRADE_PHERO
 
 /datum/mutation_upgrade/utility/trail
 	name = "Trail"
-	desc = "When moving, randomly leave a chosen trail underneath you at a 33% chance for every Veil Chamber."
+	desc = "When moving, randomly leave a chosen trail underneath you at a 10% chance for every Veil Chamber."
 	status_effect = STATUS_EFFECT_UPGRADE_TRAIL

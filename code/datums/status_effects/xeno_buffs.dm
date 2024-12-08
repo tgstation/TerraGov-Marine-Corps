@@ -911,25 +911,25 @@
 	id = "mutation_upgrade_carapace"
 	alert_type = /atom/movable/screen/alert/status_effect/carapace
 	chamber_structure = MUTATION_STRUCTURE_CHAMBER
-	/// The amount of soft armor given.
-	var/armor_buff_per_chamber = 2.5
+	/// The amount of hard armor given.
+	var/armor_buff_per_chamber = 1
 
 /datum/status_effect/mutation_upgrade/carapace/on_apply()
 	if(!..())
 		return FALSE
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
-	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(armor_buff_per_chamber * chamber_scaling)
+	buff_owner.hard_armor = buff_owner.hard_armor.modifyAllRatings(armor_buff_per_chamber * chamber_scaling)
 	return TRUE
 
 /datum/status_effect/mutation_upgrade/carapace/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL)
-	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(-armor_buff_per_chamber * chamber_scaling)
+	buff_owner.hard_armor = buff_owner.hard_armor.modifyAllRatings(-armor_buff_per_chamber * chamber_scaling)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active survival chambers and adjusts soft armor accordingly.
 /datum/status_effect/mutation_upgrade/carapace/proc/update_buff()
 	SIGNAL_HANDLER
-	buff_owner.soft_armor = buff_owner.soft_armor.modifyAllRatings(armor_buff_per_chamber * (length(buff_owner.hive.shell_chambers) - chamber_scaling))
+	buff_owner.hard_armor = buff_owner.hard_armor.modifyAllRatings(armor_buff_per_chamber * (length(buff_owner.hive.shell_chambers) - chamber_scaling))
 	update_chamber_scaling()
 
 
@@ -989,8 +989,8 @@
 	id = "mutation_upgrade_vampirism"
 	alert_type = /atom/movable/screen/alert/status_effect/vampirism
 	chamber_structure = MUTATION_STRUCTURE_CHAMBER
-	/// The amount of max health to be regenerated the owner hits an alive human.
-	var/leech_buff_per_chamber = 0.016
+	/// The percentage of damage dealt to be healed after hitting an alive human.
+	var/leech_buff_per_chamber = 0.1
 
 /datum/status_effect/mutation_upgrade/vampirism/on_apply()
 	if(!..())
@@ -999,12 +999,12 @@
 	if(isxenoravager(buff_owner))
 		chamber_scaling /= 2
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
-	RegisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_slash))
+	RegisterSignal(buff_owner, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack))
 	return TRUE
 
 /datum/status_effect/mutation_upgrade/vampirism/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL)
-	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_ATTACK_LIVING)
+	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_POSTATTACK_LIVING)
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active survival chambers.
@@ -1015,11 +1015,11 @@
 		chamber_scaling /= 2
 
 /// Heals the xenomorph for hitting a non-dead human by a percentage of their max health.
-/datum/status_effect/mutation_upgrade/vampirism/proc/on_slash(datum/source, mob/living/target)
+/datum/status_effect/mutation_upgrade/vampirism/proc/on_postattack(datum/source, mob/living/target, damage_done)
 	SIGNAL_HANDLER
 	if(target.stat == DEAD || !ishuman(target))
 		return
-	var/health_amount = buff_owner.maxHealth * leech_buff_per_chamber * chamber_scaling
+	var/health_amount = damage_done * leech_buff_per_chamber * chamber_scaling
 	HEAL_XENO_DAMAGE(buff_owner, health_amount, FALSE)
 
 // ***************************************
@@ -1235,7 +1235,7 @@
 	/// The initial value of the aura's power.
 	var/aura_power_base = 1
 	/// The phero power to increase by.
-	var/aura_power_per_chamber = 0.5
+	var/aura_power_per_chamber = 0.25
 
 /datum/status_effect/mutation_upgrade/pheromones/on_apply()
 	if(!..())
@@ -1311,7 +1311,7 @@
 	alert_type = /atom/movable/screen/alert/status_effect/trail
 	chamber_structure = MUTATION_STRUCTURE_VEIL
 	/// The additional chance of the trail starting.
-	var/chance_per_chamber = 33.33
+	var/chance_per_chamber = 10
 	/// The selected trail that will spawn upon moving.
 	var/obj/selected_trail = /obj/effect/xenomorph/spray
 	/// A list of trails that can be selected
