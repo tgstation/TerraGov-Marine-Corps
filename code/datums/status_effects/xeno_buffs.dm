@@ -1235,7 +1235,7 @@
 	/// The initial value of the aura's power.
 	var/aura_power_base = 1
 	/// The phero power to increase by.
-	var/aura_power_per_chamber = 0.75
+	var/aura_power_per_chamber = 0.5
 
 /datum/status_effect/mutation_upgrade/pheromones/on_apply()
 	if(!..())
