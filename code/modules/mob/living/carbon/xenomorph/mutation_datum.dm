@@ -153,7 +153,7 @@
 
 /datum/mutation_upgrade/survival/carapace
 	name = "Carapace"
-	desc = "Increases our soft armor by 2.5 per Shell Chamber."
+	desc = "Increases our hard armor by 1 per Shell Chamber."
 	status_effect = STATUS_EFFECT_UPGRADE_CARAPACE
 
 /datum/mutation_upgrade/survival/regeneration
@@ -163,7 +163,7 @@
 
 /datum/mutation_upgrade/survival/vampirism
 	name = "Vampirism"
-	desc = "When slashing living humans, heal 1.67% max health per Shell Chamber. Ravagers get half the bonus instead."
+	desc = "When slashing living humans, heal 10% for damage dealt per Shell Chamber."
 	status_effect = STATUS_EFFECT_UPGRADE_VAMPIRISM
 
 /datum/mutation_upgrade/attack

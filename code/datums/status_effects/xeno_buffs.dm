@@ -995,9 +995,6 @@
 /datum/status_effect/mutation_upgrade/vampirism/on_apply()
 	if(!..())
 		return FALSE
-	// Ravagers gets half of the effect since they eventually get their own version of vampirism.
-	if(isxenoravager(buff_owner))
-		chamber_scaling /= 2
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_SURVIVAL, PROC_REF(update_buff))
 	RegisterSignal(buff_owner, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack))
 	return TRUE
