@@ -1760,6 +1760,25 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 		log_admin("[key_name(src)] randomized the name of [oldname] -> [key_name(H)].")
 		message_admins("[ADMIN_TPMONTY(usr)] randomized the name of [oldname] -> [ADMIN_TPMONTY(H)].")
 
+	else if(href_list["togglerouny"])
+		if(!check_rights(R_FUN))
+			return
+		var/mob/living/carbon/xenomorph/X = locate(href_list["togglerouny"]) in GLOB.mob_living_list
+
+		if(!istype(X))
+			to_chat(usr, span_warning("Target is no longer valid."))
+			return
+
+		if(!X.is_a_rouny)
+			X.is_a_rouny = TRUE
+			X.update_icons()
+			log_admin("[key_name(src)] toggled rouny sprites for [key_name(X)] on.")
+			message_admins("[ADMIN_TPMONTY(usr)] toggled rouny sprites for [ADMIN_TPMONTY(X)] on.")
+		else
+			X.is_a_rouny = FALSE
+			X.update_icons()
+			log_admin("[key_name(src)] toggled rouny sprites for [key_name(X)] off.")
+			message_admins("[ADMIN_TPMONTY(usr)] toggled rouny sprites for [ADMIN_TPMONTY(X)] off.")
 
 	else if(href_list["checkcontents"])
 		if(!check_rights(R_DEBUG))

@@ -406,7 +406,7 @@
 
 /obj/item/storage/holster/m25/Initialize(mapload)
 	. = ..()
-	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/gun/smg/m25))
+	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/gun/smg/m25,/obj/item/ammo_magazine/smg/m25,/obj/item/ammo_magazine/smg/m25/ap,/obj/item/ammo_magazine/smg/m25/extended,))
 
 /obj/item/storage/holster/m25/full/PopulateContents()
 	var/obj/item/new_item = new /obj/item/weapon/gun/smg/m25(src)

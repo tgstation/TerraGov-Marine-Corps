@@ -235,7 +235,7 @@
 
 /datum/storage/holster/m25
 	storage_slots = 6
-	max_storage_space = 15
+	max_storage_space = 20
 	max_w_class = WEIGHT_CLASS_BULKY
 
 /datum/storage/holster/m25/New(atom/parent)
