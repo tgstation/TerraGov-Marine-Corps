@@ -79,6 +79,7 @@
 			if(time_on > 7 SECONDS)
 				implant_owner.adjustFireLoss(1)
 		if(15.1 SECONDS to INFINITY)
+			implant_owner.adjustFireLoss(2)
 			if(COOLDOWN_CHECK(src, alertcooldown) || !exerted)
 				to_chat(implant_owner, span_userdanger("Your heart starts pounding and you start to rapidly cough up blood!"))
 				COOLDOWN_START(src, alertcooldown, 5 SECONDS)
