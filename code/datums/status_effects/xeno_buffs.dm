@@ -1008,8 +1008,6 @@
 /datum/status_effect/mutation_upgrade/vampirism/proc/update_buff()
 	SIGNAL_HANDLER
 	update_chamber_scaling()
-	if(isxenoravager(buff_owner))
-		chamber_scaling /= 2
 
 /// Heals the xenomorph for hitting a non-dead human by a percentage of their max health.
 /datum/status_effect/mutation_upgrade/vampirism/proc/on_postattack(datum/source, mob/living/target, damage_done)
