@@ -132,6 +132,14 @@
 	description = "Activate combat robot's autorepair"
 	keybind_signal = COMSIG_KB_ROBOT_AUTOREPAIR
 
+/datum/keybinding/human/stims_menu
+	hotkey_keys = list("g")
+	name = "stims menu"
+	full_name = "Supersoldier Stims"
+	description = "Manage injecting stims as a prototype supersoldier."
+	keybind_signal = COMSIG_KB_STIMS
+
+
 /datum/keybinding/human/move_order
 	name = "move_order"
 	full_name = "Issue Move Order"
