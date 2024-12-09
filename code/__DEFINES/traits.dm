@@ -188,7 +188,8 @@
 #define TRAIT_TANK_DESANT "tank_desant"
 ///Builds things better
 #define TRAIT_SUPERIOR_BUILDER "superior_builder"
-
+/// Does not ping tactical sensor
+#define TRAIT_TACTICAL_SENSOR_IMMUNE "tactical_sensor_immune"
 
 /// Prevents usage of manipulation appendages (picking, holding or using items, manipulating storage).
 #define TRAIT_HANDS_BLOCKED "handsblocked"

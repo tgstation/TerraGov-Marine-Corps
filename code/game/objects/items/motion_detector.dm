@@ -136,7 +136,9 @@
 			continue
 		prepare_blip(nearby_human, nearby_human.wear_id?.iff_signal & operator.wear_id.iff_signal ? MOTION_DETECTOR_FRIENDLY : MOTION_DETECTOR_HOSTILE)
 	for (var/mob/living/carbon/xenomorph/nearby_xeno AS in cheap_get_xenos_near(operator, range))
-		if(nearby_xeno.last_move_time + move_sensitivity < world.time )
+		if(nearby_xeno.last_move_time + move_sensitivity < world.time)
+			continue
+		if(HAS_TRAIT(nearby_xeno, TRAIT_TACTICAL_SENSOR_IMMUNE))
 			continue
 		prepare_blip(nearby_xeno, MOTION_DETECTOR_HOSTILE)
 	if(hostile_detected)

@@ -55,7 +55,7 @@
 
 #define STATUS_EFFECT_UPGRADE_PHERO /datum/status_effect/mutation_upgrade/pheromones
 
-#define STATUS_EFFECT_UPGRADE_TRAIL /datum/status_effect/mutation_upgrade/trail
+#define STATUS_EFFECT_UPGRADE_CAMOUFLAGE /datum/status_effect/mutation_upgrade/camouflage
 
 #define STATUS_EFFECT_MINDMEND /datum/status_effect/mindmeld
 

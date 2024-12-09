@@ -1184,7 +1184,6 @@
 // ***************************************
 // ***************************************
 // ***************************************
-// TODO: Replace Trail with this.
 /atom/movable/screen/alert/status_effect/camouflage
 	name = "Camouflage"
 	desc = "Increases your capabilities of stealth."
@@ -1194,31 +1193,73 @@
 	id = "mutation_upgrade_camouflage"
 	alert_type = /atom/movable/screen/alert/status_effect/camouflage
 	chamber_structure = MUTATION_STRUCTURE_VEIL
+	var/actively_cloaked = FALSE
 
 /datum/status_effect/mutation_upgrade/camouflage/on_apply()
 	if(!..())
 		return FALSE
 	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
-	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_BUFF_TRAIT)
-	// TODO: Waiting on motion sensor component PR to merge first.
+	ADD_TRAIT(buff_owner, TRAIT_SILENT_FOOTSTEPS, XENO_BUFF_TRAIT)
+	if(chamber_scaling >= 2)
+		ADD_TRAIT(buff_owner, TRAIT_TACTICAL_SENSOR_IMMUNE, XENO_BUFF_TRAIT)
 	if(chamber_scaling >= 3)
-		buff_owner.alpha = 64
+		RegisterSignal(buff_owner, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(give_camouflage))
 	return TRUE
 
 /datum/status_effect/mutation_upgrade/camouflage/on_remove()
 	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY)
-	REMOVE_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_BUFF_TRAIT)
+	REMOVE_TRAIT(buff_owner, TRAIT_SILENT_FOOTSTEPS, XENO_BUFF_TRAIT)
+	if(chamber_scaling >= 2)
+		REMOVE_TRAIT(buff_owner, TRAIT_TACTICAL_SENSOR_IMMUNE, XENO_BUFF_TRAIT)
 	if(chamber_scaling >= 3)
-		buff_owner.alpha = initial(buff_owner.alpha)
+		remove_camouflage()
+		UnregisterSignal(buff_owner, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(give_camouflage))
 	return ..()
 
 /// Sets the chamber_scaling to the amount of active veil chambers.
 /datum/status_effect/mutation_upgrade/camouflage/proc/update_buff()
 	SIGNAL_HANDLER
+	var/previous_chamber_scale = chamber_scaling
 	update_chamber_scaling()
-	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_BUFF_TRAIT)
-	if(chamber_scaling >= 3)
-		buff_owner.alpha = 64
+	// No change at all.
+	if(previous_chamber_scale == chamber_scaling)
+		return
+	// Scaling down.
+	if(previous_chamber_scale > chamber_scaling)
+		// Removes things based on the difference.
+		for(var/i = (chamber_scaling + 1) to previous_chamber_scale)
+			switch(i)
+				if(1)
+					REMOVE_TRAIT(buff_owner, TRAIT_SILENT_FOOTSTEPS, XENO_BUFF_TRAIT)
+				if(2)
+					REMOVE_TRAIT(buff_owner, TRAIT_TACTICAL_SENSOR_IMMUNE, XENO_BUFF_TRAIT)
+				if(3)
+					remove_camouflage()
+					UnregisterSignal(buff_owner, COMSIG_XENOMORPH_HEALTH_REGEN)
+		return
+	// Scaling up.
+	for(var/i = (previous_chamber_scale + 1) to chamber_scaling)
+		switch(i)
+			if(1)
+				ADD_TRAIT(buff_owner, TRAIT_SILENT_FOOTSTEPS, XENO_BUFF_TRAIT)
+			if(2)
+				ADD_TRAIT(buff_owner, TRAIT_TACTICAL_SENSOR_IMMUNE, XENO_BUFF_TRAIT)
+			if(3)
+				give_camouflage()
+				RegisterSignal(buff_owner, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(give_camouflage))
+
+/// Sets the alpha of the owner to normal.
+/datum/status_effect/mutation_upgrade/camouflage/proc/remove_camouflage()
+	buff_owner.alpha = initial(buff_owner.alpha)
+	UnregisterSignal(buff_owner, COMSIG_XENOMORPH_TAKING_DAMAGE)
+
+/// Sets the alpha of the owner if their alpha is normal.
+/datum/status_effect/mutation_upgrade/camouflage/proc/give_camouflage()
+	// No giving camouflage if they already got it or getting their alpha set by something else.
+	if(buff_owner.alpha != 255)
+		return
+	buff_owner.alpha = 64
+	RegisterSignal(buff_owner, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(remove_camouflage))
 
 // ***************************************
 // ***************************************
@@ -1311,73 +1352,3 @@
 	SIGNAL_HANDLER
 	update_chamber_scaling()
 	create_aura()
-
-// ***************************************
-// ***************************************
-// ***************************************
-/atom/movable/screen/alert/status_effect/trail
-	name = "Trail"
-	desc = "We leave a trail behind. Click to change trail."
-	icon_state = "xenobuff_generic"
-
-/atom/movable/screen/alert/status_effect/trail/Click()
-	var/datum/status_effect/mutation_upgrade/trail/effect = attached_effect
-	if(effect.buff_owner.incapacitated())
-		to_chat(usr, span_warning("Cant do that right now!"))
-		return
-	var/i = effect.selectable_trails.Find(effect.selected_trail)
-	if(length(effect.selectable_trails) == i)
-		effect.selected_trail = effect.selectable_trails[1]
-	else
-		effect.selected_trail = effect.selectable_trails[i+1]
-	effect.buff_owner.balloon_alert(effect.buff_owner, "[effect.selected_trail.name]")
-
-/datum/status_effect/mutation_upgrade/trail
-	id = "mutation_upgrade_trail"
-	alert_type = /atom/movable/screen/alert/status_effect/trail
-	chamber_structure = MUTATION_STRUCTURE_VEIL
-	/// The additional chance of the trail starting.
-	var/chance_per_chamber = 10
-	/// The selected trail that will spawn upon moving.
-	var/obj/selected_trail = /obj/effect/xenomorph/spray
-	/// A list of trails that can be selected
-	var/list/selectable_trails = list(
-		/obj/effect/xenomorph/spray,
-		/obj/alien/resin/sticky/thin/temporary
-	)
-
-/datum/status_effect/mutation_upgrade/trail/on_apply()
-	if(!..())
-		return FALSE
-	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
-	RegisterSignal(buff_owner, COMSIG_MOVABLE_MOVED, PROC_REF(create_trail))
-	return TRUE
-
-/datum/status_effect/mutation_upgrade/trail/on_remove()
-	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY)
-	UnregisterSignal(buff_owner, COMSIG_MOVABLE_MOVED)
-	return ..()
-
-/// Sets the chamber_scaling to the amount of active veil chambers.
-/datum/status_effect/mutation_upgrade/trail/proc/update_buff()
-	SIGNAL_HANDLER
-	update_chamber_scaling()
-
-/// Rolls the dice and creates the selected trail if the dice is right.
-/datum/status_effect/mutation_upgrade/trail/proc/create_trail()
-	SIGNAL_HANDLER
-	if(buff_owner.incapacitated() || buff_owner.lying_angle || buff_owner.resting || !chamber_scaling)
-		return
-	if(prob(chance_per_chamber * chamber_scaling))
-		var/turf/T = get_turf(buff_owner)
-		if(T.density || isspaceturf(T))
-			return
-		for(var/obj/O in T.contents)
-			if(is_type_in_typecache(O, GLOB.no_sticky_resin))
-				return
-		if(selected_trail == /obj/effect/xenomorph/spray)
-			new selected_trail(T, rand(2 SECONDS, 5 SECONDS))
-			for(var/obj/O in T)
-				O.acid_spray_act(buff_owner)
-		else
-			new selected_trail(T)

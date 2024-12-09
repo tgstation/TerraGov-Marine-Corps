@@ -202,7 +202,7 @@
 	desc = "Allows you to emit a chosen pheromone starting at a power of 1 and an additional 0.25 per Veil Chamber."
 	status_effect = STATUS_EFFECT_UPGRADE_PHERO
 
-/datum/mutation_upgrade/utility/trail
-	name = "Trail"
-	desc = "When moving, randomly leave a chosen trail underneath you at a 10% chance for every Veil Chamber."
-	status_effect = STATUS_EFFECT_UPGRADE_TRAIL
+/datum/mutation_upgrade/utility/camouflage
+	name = "Camouflage"
+	desc = "Grants various stealth effects based on the amount of Veil Chambers: slient step (1), immunity to tactical sensor detection (2), and stealth that is broken when taking damage & regained when healing (3)."
+	status_effect = STATUS_EFFECT_UPGRADE_CAMOUFLAGE
