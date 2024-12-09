@@ -8453,7 +8453,7 @@
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 9
 	},
-/obj/item/weapon/stunprod,
+/obj/item/weapon/baton/stunprod,
 /obj/item/storage/box/flashbangs,
 /obj/item/flash,
 /obj/item/clothing/glasses/sunglasses/sechud,

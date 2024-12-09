@@ -214,9 +214,9 @@
 	throwforce = 7
 	w_class = WEIGHT_CLASS_NORMAL
 	var/charges = 12
-	var/status = 0
+	status = 0
 
-/obj/item/weapon/stunprod/attack(mob/M, mob/user)
+/obj/item/weapon/baton/stunprod/attack(mob/M, mob/user)
 	if(isxeno(user))
 		return
 
