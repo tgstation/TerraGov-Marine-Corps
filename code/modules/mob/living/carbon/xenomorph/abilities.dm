@@ -1066,21 +1066,23 @@
 	)
 
 /datum/action/ability/xeno_action/xenohide/can_use_action(silent, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
 	if(HAS_TRAIT(owner, TRAIT_TANK_DESANT))
 		if(!silent)
 			owner.balloon_alert(owner, "cannot while on vehicle")
+		return FALSE
+	. = ..()
+	if(!.)
 		return FALSE
 
 /datum/action/ability/xeno_action/xenohide/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner
 	if(X.layer != XENO_HIDING_LAYER)
+		RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE, PROC_REF(action_activate))
 		X.layer = XENO_HIDING_LAYER
 		to_chat(X, span_notice("We are now hiding."))
 		button.add_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
 	else
+		UnregisterSignal(owner, COMSIG_XENOMORPH_POUNCE)
 		X.layer = MOB_LAYER
 		to_chat(X, span_notice("We have stopped hiding."))
 		button.cut_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE))
