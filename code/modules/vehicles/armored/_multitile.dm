@@ -8,21 +8,20 @@
 	hitbox = /obj/hitbox
 	interior = /datum/interior/armored
 	minimap_icon_state = "tank"
-	required_entry_skill = SKILL_LARGE_VEHICLE_TRAINED
 	atom_flags = DIRLOCK|BUMP_ATTACKABLE|PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_ASSAULT|ARMORED_WRECKABLE
 	appearance_flags = PIXEL_SCALE
 	pixel_x = -56
 	pixel_y = -48
-	max_integrity = 900
+	max_integrity = 1200
 	soft_armor = list(MELEE = 50, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 0, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/ability/smoke_launcher)
 	permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer)
 	max_occupants = 4
-	move_delay = 0.75 SECONDS
+	move_delay = 0.4 SECONDS
 	glide_size = 2.5
-	ram_damage = 100
+	ram_damage = 200
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)
@@ -164,7 +163,6 @@
 //THe HvX tank is not balanced at all for HvH
 /obj/vehicle/sealed/armored/multitile/campaign
 	desc = "A gigantic wall of metal designed for maximum SOM destruction. Drag yourself onto it at an entrance to get inside."
-	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	max_integrity = 1400
 	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
 	hard_armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 35, BIO = 100, FIRE = 0, ACID = 0)

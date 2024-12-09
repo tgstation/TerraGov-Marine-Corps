@@ -93,6 +93,8 @@
 	//doesnt work for some reason
 	var/severity = 0
 	switch(arousal)
+		if(0)
+			severity = 0
 		if(1 to 20)
 			severity = 1
 		if(20 to 40)

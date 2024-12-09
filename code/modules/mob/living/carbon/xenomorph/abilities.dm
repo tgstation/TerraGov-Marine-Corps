@@ -1648,9 +1648,6 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/victim = A
 	var/implanted_embryos = 0
-	if(X.client?.prefs?.xenogender > 2) //has dick
-		X.balloon_alert(X, "We lack the genital.")
-		return FALSE
 	for(var/obj/item/alien_embryo/implanted in A.contents)
 		implanted_embryos++
 		if(implanted_embryos >= MAX_LARVA_PREGNANCIES)

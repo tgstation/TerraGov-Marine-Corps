@@ -8,17 +8,16 @@
 	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_TRANSPORT
 	permitted_weapons = list(/obj/item/armored_weapon/secondary_weapon)
 	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/interior/medical, /obj/item/tank_module/interior/clone_bay)
-	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	minimap_icon_state = "apc"
 	turret_icon = null
 	pixel_x = -48
 	pixel_y = -40
-	max_integrity = 600
+	max_integrity = 900
 	soft_armor = list(MELEE = 40, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 40, ACID = 40)
 	max_occupants = 20 //Clown car? Clown car.
 	enter_delay = 0.5 SECONDS
-	ram_damage = 25
-	move_delay = 0.5 SECONDS
+	ram_damage = 50
+	move_delay = 0.3 SECONDS
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 		/obj/structure/largecrate,

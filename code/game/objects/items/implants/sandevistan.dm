@@ -68,19 +68,21 @@
 			if(COOLDOWN_CHECK(src, alertcooldown))
 				to_chat(implant_owner, span_alert("You feel your spine tingle."))
 				COOLDOWN_START(src, alertcooldown, 10 SECONDS)
-			implant_owner.hallucination += 2
-			implant_owner.adjustFireLoss(1)
+			implant_owner.hallucination += 1
 		if(6.1 SECONDS to 15 SECONDS)
 			if(COOLDOWN_CHECK(src, alertcooldown) || !exerted)
 				to_chat(implant_owner, span_userdanger("Your spine and brain feel like they're burning!"))
-				COOLDOWN_START(src, alertcooldown, 5 SECONDS)
+				COOLDOWN_START(src, alertcooldown, 3 SECONDS)
 			exerted = TRUE
 			implant_owner.set_drugginess(10)
 			implant_owner.hallucination += 10
-			if(time_on > 6 SECONDS)
+			if(time_on > 7 SECONDS)
 				implant_owner.adjustFireLoss(1)
-				implant_owner.adjustBruteLoss(0.5)
 		if(15.1 SECONDS to INFINITY)
+			implant_owner.adjustFireLoss(0.5)
+			if(COOLDOWN_CHECK(src, alertcooldown) || !exerted)
+				to_chat(implant_owner, span_userdanger("Your heart starts pounding and you start to rapidly cough up blood!"))
+				COOLDOWN_START(src, alertcooldown, 5 SECONDS)
 			var/mob/living/carbon/human/H = implant_owner
 			var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 			E.take_damage(0.5, TRUE)

@@ -517,7 +517,7 @@
 	dir = 6
 	},
 /obj/structure/table/black,
-/obj/item/weapon/stunprod,
+/obj/item/weapon/baton/stunprod,
 /obj/item/weapon/chainofcommand{
 	name = "whip"
 	},
