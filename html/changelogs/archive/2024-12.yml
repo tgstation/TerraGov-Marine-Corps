@@ -28,3 +28,15 @@
   - bugfix: fixed vendors being stuck as nondense after falling over
   Runian:
   - qol: During prep / quickbuild phase, xenomorphs can now pull items without a delay.
+2024-12-09:
+  Lumipharon:
+  - rscadd: Added the V-35 Battle rifle for SOM use in Campaign
+  - balance: Direct hit explosions from rockets will now reliably throw the victim
+      away from the firer, instead of a random direction
+  - balance: Hunter stealth damage threhold changed to 25 from 45
+  Runian:
+  - bugfix: Plasmacutters now do 301 damage instead of 231 damage against resin walls.
+      Enough to one-shot thick resin walls as intended.
+  blackdav123:
+  - balance: 'Defiler: Speed increased by .1'
+  - balance: Supply drop console cooldown reduced from 30 seconds to 15.
