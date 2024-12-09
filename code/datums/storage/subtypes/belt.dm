@@ -135,7 +135,7 @@
 			/obj/item/tool/taperoll/police,
 			/obj/item/ammo_magazine/rifle/pepperball,
 			/obj/item/ammo_magazine/rifle/pepperball/pepperball_mini,
-			/obj/item/weapon/stunprod,
+			/obj/item/weapon/baton/stunprod,
 			/obj/item/explosive/grenade/smokebomb/sleep,
 			/obj/item/roller/bedroll,
 			/obj/item/weapon/telebaton,
