@@ -140,9 +140,6 @@
 			/obj/item/roller/bedroll,
 			/obj/item/weapon/telebaton,
 		),
-		cant_hold_list = list(
-			/obj/item/weapon/gun,
-		)
 	)
 
 
