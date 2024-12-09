@@ -12,12 +12,11 @@
 	interior = /datum/interior/armored/som
 	minimap_icon_state = "som_tank"
 	minimap_flags = MINIMAP_FLAG_MARINE_SOM
-	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
-	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE|ARMORED_PURCHASABLE_ASSAULT
 	pass_flags = PASS_LOW_STRUCTURE|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE
 	pixel_x = -65
 	pixel_y = -80
-	max_integrity = 1200
+	max_integrity = 1000
 	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 85, BIO = 100, FIRE = 100, ACID = 70)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 5, ENERGY = 10, BOMB = 30, BIO = 100, FIRE = 0, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.55, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.6)
@@ -26,7 +25,7 @@
 	max_occupants = 4
 	move_delay = 0.3 SECONDS
 	glide_size = 4.333 //todo: Fix glidesize for vehicles. It generates visibly choppy glide, possibly related to how vehicles use cooldown for movedelay
-	ram_damage = 80
+	ram_damage = 100
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 	)

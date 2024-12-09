@@ -42,7 +42,7 @@
 	///reference to our interior datum if set, uses the typepath its set to
 	var/datum/interior/armored/interior
 	///Skill required to enter this vehicle
-	var/required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
+	var/required_entry_skill = 0
 	///What weapon we have in our primary slot
 	var/obj/item/armored_weapon/primary_weapon
 	///What weapon we have in our secondary slot
@@ -54,7 +54,7 @@
 	///list of weapons we allow to attach
 	var/list/permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer)
 	///list of mods we allow to attach
-	var/list/permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/passenger, /obj/item/tank_module/ability/zoom)
+	var/list/permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/passenger, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/ability/smoke_launcher)
 	///Minimap flags to use for this vehcile
 	var/minimap_flags = MINIMAP_FLAG_MARINE
 	///minimap iconstate to use for this vehicle

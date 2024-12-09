@@ -9,6 +9,7 @@
 	bound_width = 64
 	icon = 'icons/obj/machines/drone_fab.dmi'
 	icon_state = "drone_fab_idle"
+	faction = FACTION_TERRAGOV
 	/// actual UI that will be interacted with
 	var/datum/supply_ui/vehicles/supply_ui
 
@@ -22,5 +23,5 @@
 		supply_ui = new(src)
 		supply_ui.shuttle_id = SHUTTLE_VEHICLE_SUPPLY
 		supply_ui.home_id = "vehicle_home"
-		supply_ui.faction = FACTION_TERRAGOV
+		supply_ui.faction = faction
 	return supply_ui.interact(user)
