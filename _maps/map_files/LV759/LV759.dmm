@@ -77015,6 +77015,12 @@
 	},
 /turf/open/floor/plating,
 /area/lv759/indoors/mining_outpost/north)
+"nyS" = (
+/obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
+	dir = 2
+	},
+/turf/closed/mineral/smooth/black_stone/indestructible,
+/area/lv759/outdoors/colony_streets/north_east_street)
 "nyV" = (
 /turf/open/floor/prison{
 	dir = 10
@@ -181499,7 +181505,7 @@ lwn
 (210,1,1) = {"
 lwn
 jcQ
-aVz
+nyS
 nhc
 nhc
 nhc
