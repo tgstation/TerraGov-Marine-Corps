@@ -1065,6 +1065,10 @@
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIDE,
 	)
 
+/datum/action/ability/xeno_action/xenohide/remove_action(mob/living/L)
+	UnregisterSignal(L, COMSIG_XENOMORPH_POUNCE)
+	return ..()
+
 /datum/action/ability/xeno_action/xenohide/can_use_action(silent, override_flags)
 	if(HAS_TRAIT(owner, TRAIT_TANK_DESANT))
 		if(!silent)
