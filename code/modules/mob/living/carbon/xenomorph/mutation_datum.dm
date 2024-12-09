@@ -134,6 +134,7 @@
 		xeno_purchaser.remove_status_effect(removed_status_effect)
 	xeno_purchaser.do_jitter_animation(500)
 	xeno_purchaser.apply_status_effect(chosen_mutation_upgrade.status_effect)
+	xeno_message("[xeno_purchaser] has purchased [chosen_mutation_upgrade.name] Mutation.", "xenoannounce", 5, xeno_purchaser.hivenumber)
 
 /datum/mutation_upgrade
 	/// The name that is displayed in the TGUI.
