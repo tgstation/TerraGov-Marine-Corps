@@ -1184,6 +1184,45 @@
 // ***************************************
 // ***************************************
 // ***************************************
+// TODO: Replace Trail with this.
+/atom/movable/screen/alert/status_effect/camouflage
+	name = "Camouflage"
+	desc = "Increases your capabilities of stealth."
+	icon_state = "xenobuff_generic"
+
+/datum/status_effect/mutation_upgrade/camouflage
+	id = "mutation_upgrade_camouflage"
+	alert_type = /atom/movable/screen/alert/status_effect/camouflage
+	chamber_structure = MUTATION_STRUCTURE_VEIL
+
+/datum/status_effect/mutation_upgrade/camouflage/on_apply()
+	if(!..())
+		return FALSE
+	RegisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY, PROC_REF(update_buff))
+	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_BUFF_TRAIT)
+	// TODO: Waiting on motion sensor component PR to merge first.
+	if(chamber_scaling >= 3)
+		buff_owner.alpha = 64
+	return TRUE
+
+/datum/status_effect/mutation_upgrade/camouflage/on_remove()
+	UnregisterSignal(SSdcs, COMSIG_UPGRADE_CHAMBER_UTILITY)
+	REMOVE_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_BUFF_TRAIT)
+	if(chamber_scaling >= 3)
+		buff_owner.alpha = initial(buff_owner.alpha)
+	return ..()
+
+/// Sets the chamber_scaling to the amount of active veil chambers.
+/datum/status_effect/mutation_upgrade/camouflage/proc/update_buff()
+	SIGNAL_HANDLER
+	update_chamber_scaling()
+	ADD_TRAIT(src, TRAIT_SILENT_FOOTSTEPS, XENO_BUFF_TRAIT)
+	if(chamber_scaling >= 3)
+		buff_owner.alpha = 64
+
+// ***************************************
+// ***************************************
+// ***************************************
 /atom/movable/screen/alert/status_effect/pheromones
 	name = "Pheromones"
 	desc = "Allows to emit pheromones. Click to change pheromones."
