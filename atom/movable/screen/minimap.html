@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;atom&#x2F;movable&#x2F;screen&#x2F;minimap - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="atom/movable/screen/minimap.html#var">Var Details</a> - <a href="atom/movable/screen/minimap.html#proc">Proc Details</a></header>
+<main>
+<h1>minimap <aside>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/minimap.html">minimap</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/a9f74e6d921f15b5e63d5e7622ba64e60e29926d/code/controllers/subsystem/minimaps.dm#L374">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimaps.dm 374"/></a></h1>
+
+<p>Default HUD screen minimap object</p><table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="atom/movable/screen/minimap.html#var/choices_by_mob">choices_by_mob</a></th><td>assoc list of mob choices by clicking on coords. only exists fleetingly for the wait loop in [/proc/get_coords_from_click]</td></tr>
+            <tr><th><a href="atom/movable/screen/minimap.html#var/stop_polling">stop_polling</a></th><td>should get_coords_from_click stop waiting for an input?</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="atom/movable/screen/minimap.html#proc/get_coords_from_click">get_coords_from_click</a></th><td>lets the user get coordinates by clicking the actual map
+Returns a list(x_coord, y_coord)
+note: sleeps until the user makes a choice, stop_polling is set to TRUE or they disconnect</td></tr>
+            <tr><th><a href="atom/movable/screen/minimap.html#proc/on_click">on_click</a></th><td>Handles fetching the targetted coordinates when the mob tries to click on this map
+does the following:
+turns map targetted pixel into a list(x, y)
+gets z level of this map
+x and y minimap centering is reverted, then the x2 scaling of the map is removed
+round up to correct if an odd pixel was clicked and make sure its valid</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/choices_by_mob"><aside class="declaration">var </aside>choices_by_mob
+            <aside>&ndash; /list/mob</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/a9f74e6d921f15b5e63d5e7622ba64e60e29926d/code/controllers/subsystem/minimaps.dm#L382">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimaps.dm 382"/></a></h3>
+        <p>assoc list of mob choices by clicking on coords. only exists fleetingly for the wait loop in [/proc/get_coords_from_click]</p><h3 id="var/stop_polling"><aside class="declaration">var </aside>stop_polling
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/a9f74e6d921f15b5e63d5e7622ba64e60e29926d/code/controllers/subsystem/minimaps.dm#L384">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimaps.dm 384"/></a></h3>
+        <p>should get_coords_from_click stop waiting for an input?</p><h2 id="proc">Proc Details</h2><h3 id="proc/get_coords_from_click"><aside class="declaration">proc </aside>get_coords_from_click<aside>(/<a href="mob.html">mob</a>/user) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/a9f74e6d921f15b5e63d5e7622ba64e60e29926d/code/controllers/subsystem/minimaps.dm#L404">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimaps.dm 404"/></a></aside>
+        </h3>
+        <p>lets the user get coordinates by clicking the actual map
+Returns a list(x_coord, y_coord)
+note: sleeps until the user makes a choice, stop_polling is set to TRUE or they disconnect</p><h3 id="proc/on_click"><aside class="declaration">proc </aside>on_click<aside>(/<a href="datum.html">datum</a>/source, /<a href="atom.html">atom</a>/A, params) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/a9f74e6d921f15b5e63d5e7622ba64e60e29926d/code/controllers/subsystem/minimaps.dm#L424">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;minimaps.dm 424"/></a></aside>
+        </h3>
+        <p>Handles fetching the targetted coordinates when the mob tries to click on this map
+does the following:
+turns map targetted pixel into a list(x, y)
+gets z level of this map
+x and y minimap centering is reverted, then the x2 scaling of the map is removed
+round up to correct if an odd pixel was clicked and make sure its valid</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/a9f74e6d921f15b5e63d5e7622ba64e60e29926d">a9f74e6</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
