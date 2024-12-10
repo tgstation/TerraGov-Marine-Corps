@@ -6,6 +6,11 @@
 	var/xeno_structure_flags
 	///Which hive(number) do we belong to?
 	var/hivenumber = XENO_HIVE_NORMAL
+	///Is the structure currently detecting a threat
+	var/threat_warning
+	///List of turfs we are checking for hostiles in
+	var/list/prox_warning_turfs = list()
+	COOLDOWN_DECLARE(proxy_alert_cooldown)
 
 /obj/structure/xeno/Initialize(mapload, _hivenumber)
 	. = ..()
@@ -16,8 +21,11 @@
 	LAZYADDASSOC(GLOB.xeno_structures_by_hive, hivenumber, src)
 	if(xeno_structure_flags & CRITICAL_STRUCTURE)
 		LAZYADDASSOC(GLOB.xeno_critical_structures_by_hive, hivenumber, src)
+	if((xeno_structure_flags & XENO_STRUCT_WARNING_RADIUS))
+		set_proximity_warning()
 
 /obj/structure/xeno/Destroy()
+	prox_warning_turfs = null
 	if(!locate(src) in GLOB.xeno_structures_by_hive[hivenumber]+GLOB.xeno_critical_structures_by_hive[hivenumber]) //The rest of the proc is pointless to look through if its not in the lists
 		stack_trace("[src] not found in the list of (potentially critical) xeno structures!") //We dont want to CRASH because that'd block deletion completely. Just trace it and continue.
 		return ..()
@@ -77,3 +85,58 @@
 	take_damage(max(0, plasmacutter.force * (1 + PLASMACUTTER_RESIN_MULTIPLIER)), plasmacutter.damtype, MELEE)
 	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	return TRUE
+
+/obj/structure/xeno/silo/Moved(atom/old_loc, movement_dir, forced, list/old_locs)
+	. = ..()
+	if((xeno_structure_flags & XENO_STRUCT_WARNING_RADIUS))
+		set_proximity_warning()
+
+/obj/structure/xeno/proc/set_proximity_warning()
+	for(var/old_turf in prox_warning_turfs)
+		UnregisterSignal(old_turf, COMSIG_ATOM_ENTERED)
+	prox_warning_turfs.Cut()
+
+	for(var/new_turf in RANGE_TURFS(XENO_SILO_DETECTION_RANGE, src))
+		RegisterSignal(new_turf, COMSIG_ATOM_ENTERED, PROC_REF(proxy_alert))
+		prox_warning_turfs += new_turf
+
+///Alerts the Hive when hostiles get too close to this structure
+/obj/structure/xeno/proc/proxy_alert(datum/source, atom/movable/hostile)
+	SIGNAL_HANDLER
+
+	if(!COOLDOWN_CHECK(src, proxy_alert_cooldown))
+		return
+
+	if(!iscarbon(hostile) && !isvehicle(hostile))
+		return
+
+	if(iscarbon(hostile))
+		var/mob/living/carbon/carbon_triggerer = hostile
+		if(carbon_triggerer.stat == DEAD)
+			return
+		if(isxeno(hostile))
+			var/mob/living/carbon/xenomorph/xeno_triggerer = hostile
+			if(xeno_triggerer.hive == GLOB.hive_datums[hivenumber]) //Trigger proxy alert only for hostile xenos
+				return
+
+	if(isvehicle(hostile))
+		var/obj/vehicle/vehicle_triggerer = hostile
+		if(vehicle_triggerer.trigger_gargoyle == FALSE)
+			return
+
+	threat_warning = TRUE
+	GLOB.hive_datums[hivenumber].xeno_message("Our [name] has detected a nearby hostile [hostile] at [get_area(hostile)] (X: [hostile.x], Y: [hostile.y]).", "xenoannounce", 5, FALSE, hostile, 'sound/voice/alien/help1.ogg', FALSE, null, /atom/movable/screen/arrow/leader_tracker_arrow)
+	COOLDOWN_START(src, proxy_alert_cooldown, XENO_SILO_DETECTION_COOLDOWN)
+	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_SILO_DETECTION_COOLDOWN)
+	update_minimap_icon()
+	update_appearance(UPDATE_ICON)
+
+///Clears any threat warnings
+/obj/structure/xeno/proc/clear_warning()
+	threat_warning = FALSE
+	update_minimap_icon()
+	update_appearance(UPDATE_ICON)
+
+///resets minimap icon for structure
+/obj/structure/xeno/proc/update_minimap_icon()
+	return
