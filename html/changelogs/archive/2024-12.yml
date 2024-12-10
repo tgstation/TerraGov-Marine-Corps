@@ -23,3 +23,11 @@
 2024-12-09:
   Meghan-Rossi:
   - rscadd: Incorporeal hivemind eyes are now invisible to humans
+2024-12-10:
+  K4rlox:
+  - bugfix: ceo office locker is now indestructable
+  Meghan-Rossi:
+  - balance: nerfed xeno disarm damage against humans a bit
+  - balance: Neurotoxin only applies a long stun once every 5 minutes, unless removed
+      completely.  Resting or incapacitated marines process large doses of neurotoxin
+      faster.

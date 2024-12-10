@@ -1,4 +1,0 @@
-author: "Meghan-Rossi"
-delete-after: True
-changes:
-  - balance: "Neurotoxin only applies a long stun once every 5 minutes, unless removed completely.  Resting or incapacitated marines process large doses of neurotoxin faster."
