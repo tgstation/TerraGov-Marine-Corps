@@ -41,7 +41,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	name = "CLF Standard"
 	jobtype = /datum/job/clf/standard
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/dogtag/clf
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist
 	shoes = /obj/item/clothing/shoes/marine/clf/full
@@ -213,7 +213,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	name = "CLF Medic"
 	jobtype = /datum/job/clf/medic
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/dogtag/clf
 	belt = /obj/item/storage/belt/lifesaver/full/upp
 	ears = /obj/item/radio/headset/distress/dutch
 	head = /obj/item/clothing/head/tgmcberet/bloodred
@@ -319,7 +319,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	name = "CLF Specialist"
 	jobtype = /datum/job/clf/specialist
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/dogtag/clf
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist/webbing
@@ -423,7 +423,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	name = "CLF Leader"
 	jobtype = /datum/job/clf/leader
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/dogtag/clf
 	belt = /obj/item/storage/belt/marine
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/colonist/webbing
@@ -565,7 +565,7 @@ Your primary goal is to serve the hive, and ultimate goal is to liberate the col
 	name = "CLF Breeder"
 	jobtype = /datum/job/clf/breeder
 
-	id = /obj/item/card/id/silver
+	id = /obj/item/card/id/dogtag/clf
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/swimsuit/purple
 	shoes = /obj/item/clothing/shoes/sandal
@@ -668,7 +668,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	name = SYNTHETIC
 	jobtype = /datum/job/clf/silicon/synthetic
 
-	id = /obj/item/card/id/gold
+	id = /obj/item/card/id/dogtag/clf
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/distress/dutch
 	w_uniform = /obj/item/clothing/under/rank/synthetic
