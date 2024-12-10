@@ -634,6 +634,13 @@ The alternative is scattering them everywhere under their respective objects whi
 		personal_statistics.projectiles_reflected += amount
 	return TRUE
 
+/// Adds to the personal statistics if the reflected projectile was a rocket.
+/obj/effect/xeno/shield/proc/record_rocket_reflection(mob/user, obj/projectile/projectile)
+	if(!istype(projectile.ammo, /datum/ammo/rocket) || !user.ckey)
+		return
+	var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
+	personal_statistics.rockets_reflected++
+
 ///Tally when a structure is constructed
 /mob/proc/record_structures_built()
 	if(!ckey)
