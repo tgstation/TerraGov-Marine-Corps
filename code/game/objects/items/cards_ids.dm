@@ -341,6 +341,12 @@
 	worn_icon_state = "dogtag_som"
 	iff_signal = SOM_IFF
 
+/obj/item/card/id/dogtag/clf
+	name = "\improper CLF dogtag"
+	desc = "Used by the CLF."
+	icon_state = "dogtag"
+	worn_icon_state = "dogtag"
+	iff_signal = CLF_IFF
 
 /obj/item/card/id/dogtag/examine(mob/user)
 	. = ..()
