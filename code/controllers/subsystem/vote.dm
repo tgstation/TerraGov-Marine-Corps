@@ -75,24 +75,7 @@ SUBSYSTEM_DEF(vote)
 		total_votes += votes
 		if(votes > greatest_votes)
 			greatest_votes = votes
-	//default-vote for everyone who didn't vote
-	if(!CONFIG_GET(flag/default_no_vote) && length(choices))
-		var/list/non_voters = GLOB.directory.Copy()
-		non_voters -= voted
-		for (var/non_voter_ckey in non_voters)
-			var/client/C = non_voters[non_voter_ckey]
-			if(!C || C.is_afk())
-				non_voters -= non_voter_ckey
-		if(length(non_voters) > 0)
-			if(mode == "restart")
-				choices["Continue Playing"] += length(non_voters)
-				if(choices["Continue Playing"] >= greatest_votes)
-					greatest_votes = choices["Continue Playing"]
-			else if(mode == "gamemode")
-				if(GLOB.master_mode in choices)
-					choices[GLOB.master_mode] += length(non_voters)
-					if(choices[GLOB.master_mode] >= greatest_votes)
-						greatest_votes = choices[GLOB.master_mode]
+	//default-vote for everyone who didn't vote -- REMOVED
 	. = list()
 	if(greatest_votes)
 		for(var/option in choices)
