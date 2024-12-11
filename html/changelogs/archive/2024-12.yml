@@ -31,3 +31,6 @@
   - balance: Neurotoxin only applies a long stun once every 5 minutes, unless removed
       completely.  Resting or incapacitated marines process large doses of neurotoxin
       faster.
+2024-12-11:
+  Meghan-Rossi:
+  - bugfix: fixed electrified prodder sprites
