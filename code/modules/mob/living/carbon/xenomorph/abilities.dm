@@ -1074,9 +1074,7 @@
 		if(!silent)
 			owner.balloon_alert(owner, "cannot while on vehicle")
 		return FALSE
-	. = ..()
-	if(!.)
-		return FALSE
+	return ..()
 
 /datum/action/ability/xeno_action/xenohide/action_activate()
 	var/mob/living/carbon/xenomorph/X = owner

@@ -297,9 +297,7 @@
 /datum/action/ability/activable/xeno/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
 	if(!A)
 		return FALSE
-	. = ..()
-	if(!.)
-		return FALSE
+	return ..()
 
 /datum/action/ability/activable/xeno/pounce/use_ability(atom/A)
 	if(owner.buckled)
