@@ -553,20 +553,26 @@
 
 /obj/machinery/door/airlock/mainship/generic/pilot
 	name = "\improper Pilot's Office"
-	req_access = list(ACCESS_MARINE_PILOT)
+	req_one_access = list(ACCESS_MARINE_PILOT)
 
 /obj/machinery/door/airlock/mainship/generic/pilot/bunk
 	name = "\improper Pilot's Bunks"
 
 /obj/machinery/door/airlock/mainship/generic/pilot/quarters
 	name = "\improper Pilot's Quarters"
+	req_one_access = list(ACCESS_MARINE_MECH, ACCESS_MARINE_ARMORED)
 
-/obj/machinery/door/airlock/mainship/generic/mech_pilot
+/obj/machinery/door/airlock/mainship/generic/mech_bay
+	name = "\improper Mech Bay"
+	req_one_access = list(ACCESS_MARINE_MECH, ACCESS_MARINE_ARMORED)
+
+/obj/machinery/door/airlock/mainship/generic/mech_pilot/office
 	name = "\improper Mech Pilot's Office"
 	req_access = list(ACCESS_MARINE_MECH)
 
 /obj/machinery/door/airlock/mainship/generic/mech_pilot/bunk
 	name = "\improper Mech Pilot's Bunks"
+	req_one_access = list(ACCESS_MARINE_MECH, ACCESS_MARINE_ARMORED)
 
 /obj/machinery/door/airlock/mainship/generic/ert
 	name = "\improper Airlock"

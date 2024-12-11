@@ -129,7 +129,7 @@
 		title = round_finished,
 		text = announcement_body,
 		play_sound = FALSE,
-		style = "game"
+		style = OOC_ALERT_GAME
 	)
 
 	var/sound/som_track

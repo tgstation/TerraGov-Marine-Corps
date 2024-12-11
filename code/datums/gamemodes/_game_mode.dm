@@ -45,6 +45,10 @@ GLOBAL_VAR(common_report) //Contains common part of roundend report
 	var/time_between_round = 0
 	///What factions are used in this gamemode, typically TGMC and xenos
 	var/list/factions = list(FACTION_TERRAGOV, FACTION_ALIEN)
+	///Increases the amount of xenos needed to evolve to tier three by the value.
+	var/tier_three_penalty = 0
+	///List of castes we dont want to be evolvable depending on gamemode.
+	var/list/restricted_castes
 
 //Distress call variables.
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.

@@ -374,7 +374,7 @@
 	action_icon_state = "select_reagent0"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Selects which reagent to use for reagent slash and noxious gas. Neuro causes increasing pain and stamina damage. Hemodile slows targets down, multiplied by each other xeno-based toxin. Transvitox converts burns to toxin, and causes additional toxin damage when they take brute damage, both effects multiplied by other xeno-based toxins. Ozelomelyn purges all medicines from their system rapidly and causes minor toxin damage. Aphrotoxin boosts larva growth in hosts and makes them stumble around."
-	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
+	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING|ABILITY_USE_STAGGERED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT,

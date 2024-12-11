@@ -73,6 +73,9 @@
 /obj/item/clothing/proc/update_clothing_icon()
 	return
 
+/obj/item/clothing/examine_descriptor(mob/user)
+	return "clothing item"
+
 /obj/item/clothing/update_greyscale()
 	. = ..()
 	if(!greyscale_config)
@@ -269,6 +272,15 @@
 		var/mob/M = src.loc
 		M.update_inv_wear_mask()
 
+/obj/item/clothing/mask/examine_descriptor(mob/user)
+	return "mask"
+
+/obj/item/clothing/mask/examine_tags(mob/user)
+	. = ..()
+	if(anti_hug)
+		.["larval hugger proof"] = "It will protect the wearer from [anti_hug] larval hugger attack\s."
+	else if(initial(anti_hug) > 0 && !anti_hug)
+		.[span_warning("not larval hugger protective")] = "It won't protect the wearer from larval hugger attacks anymore. Replace it as soon as possible."
 
 ////////////////////////////////////////////////////////////////////////
 //Shoes

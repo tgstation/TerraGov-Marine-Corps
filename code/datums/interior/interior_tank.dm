@@ -144,6 +144,8 @@
 	icon_state = "tank_interior_10"
 /turf/open/interior/tank/eleven
 	icon_state = "tank_interior_11"
+	plane = GAME_PLANE
+
 /turf/open/interior/tank/fourteen
 	icon_state = "tank_interior_14"
 /turf/open/interior/tank/fifteen

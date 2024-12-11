@@ -268,7 +268,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER,
 	)
-	use_state_flags = ABILITY_USE_LYING
+	use_state_flags = ABILITY_USE_LYING|ABILITY_USE_STAGGERED
 
 /datum/action/ability/xeno_action/choose_hugger_type/give_action(mob/living/L)
 	. = ..()

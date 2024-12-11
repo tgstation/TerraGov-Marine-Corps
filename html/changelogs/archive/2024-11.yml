@@ -63,34 +63,43 @@
   blackdav123:
   - balance: Xeno silo scaling raised to 2x from 1.5x
 2024-11-24:
-  Meghan-Rossi:
-  - rscadd: Added Survivor-Heavy Extended gamemode, an extended variant in which survivor
-      slots are unlimited and non-survivor slots are very limited.
-  - bugfix: Fixed wrong pronouns being used in some ERP panel actions
-  - bugfix: Fixed force ear ERP action having user and target reversed
-  - rscadd: Made xenos' gender affect their pronouns.
-  - bugfix: Humans can do erp actions to xenos without grabbing them even what that
-      would normally be required, since humans can't grab xenos.
   TiviPlus:
   - rscadd: Added the new acid maw and acid jaws xeno structures
   blackdav123:
   - admin: Toggle Sleeping no longer has a confirmation prompt.
+2024-11-25:
+  Aporhtonoma:
+  - balance: HvX tank can see 1 tile further
+2024-11-26:
+  Neocloudy:
+  - refactor: examine has been refactored. please report issues on the github
+  - rscadd: examine tags when examining things. you can hover over them for a tooltip
+  - rscadd: examine tags exist for lots of states, some examples are item conductivity,
+      mask hugger protection, object vulnerability/invulnerability (xeno attacks/bombs/acid,
+      etc)
+  - rscadd: most/all things that use examine blocks have received style changes. (roundstart
+      tip, etc)
+  - rscadd: ooc, ooc announcements are yellow
+  - rscadd: new style for spawning in as a job
+  - rscadd: xeno chat styles are lighter (notice, warning, danger, highdanger, announce)
+  - rscadd: deadchat is a lighter color
+  - rscadd: admin/mentor pms updated to look like tg pms
+  - rscadd: tooltips in chat are more obvious, with a dotted underline and italicized
+      text
+  - qol: flavor text now appears closer to the bottom of the examine message when
+      you examine humans
+  Runian:
+  - bugfix: Xeno castes who are suppose to be immune from plasma drain no longer have
+      their plasma drained when directly hit by a tesla ball.
 2024-11-27:
-  Meghan-Rossi:
-  - rscdel: Disabled tutorials.
-  - rscadd: 'New jobs: Non-Deployed Operative Survivor, Prisoner Survivor, Stripper
-      Survivor, and Maid Survivor'
-  - rscadd: 'New items: Bunny ears, High heels'
+  YehnBeep:
+  - bugfix: fixed buttons on canterbury and bigbury for opening the south entryways
 2024-11-28:
-  W0LF-101:
-  - rscadd: Added SH-23 Heavy Shotgun
-  - rscadd: Added 6 gauge heavy flechettes
-  - balance: Added 2s weakness to "barrikada" slugs, to match the 12 gauge equivalent
-  - bugfix: Fixed missing wield sprite for ML-101
-2024-11-30:
-  Meghan-Rossi:
-  - rscadd: Added OOC notes system - use new verb OOC -> Set Meta-Info (OOC) to set
-      your OOC notes, Can be done in lobby or while playing, saves with character.
-  - rscadd: 'New map: LV624Small, a copy of LV624 without the huge marine base taking
-      up the bottom half of the map.'
-  - bugfix: Fixed incorruptible generators starting out corrupted.
+  AzonStarfall:
+  - rscadd: Made the Arachne fore hangar mostly symmetrical again.
+  - bugfix: Fixed Tank Crew access on the Arachne vehicle bay.
+  Runian:
+  - bugfix: Wraith portals are no longer affected / destroyed by lava.
+  YehnBeep:
+  - bugfix: Hunters can no longer stealth through tadpole console interaction telegraphs
+  - balance: Hunters can no longer break the tad console while stealthed

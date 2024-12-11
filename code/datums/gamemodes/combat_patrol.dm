@@ -123,7 +123,7 @@
 		title = round_finished,
 		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps and Sons of Mars, and their struggle on [SSmapping.configs[GROUND_MAP].map_name].",
 		play_sound = FALSE,
-		style = "game"
+		style = OOC_ALERT_GAME
 	)
 
 /datum/game_mode/hvh/combat_patrol/get_deploy_point_message(mob/living/user)
