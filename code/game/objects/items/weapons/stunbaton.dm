@@ -40,11 +40,11 @@
 /obj/item/weapon/baton/update_icon_state()
 	. = ..()
 	if(status)
-		icon_state = "[initial(name)]_active"
+		icon_state = "[initial(icon_state)]_active"
 	else if(!bcell)
-		icon_state = "[initial(name)]_nocell"
+		icon_state = "[initial(icon_state)]_nocell"
 	else
-		icon_state = "[initial(name)]"
+		icon_state = "[initial(icon_state)]"
 
 /obj/item/weapon/baton/examine(mob/user)
 	. = ..()
@@ -190,9 +190,9 @@
 
 //Makeshift stun baton. Replacement for stun gloves.
 /obj/item/weapon/baton/cattleprod
-	name = "stunprod"
+	name = "cattle prod"
 	desc = "An improvised stun baton."
-	icon_state = "stunprod_nocell"
+	icon_state = "stunprod"
 	worn_icon_state = "prod"
 	force = 3
 	throwforce = 5

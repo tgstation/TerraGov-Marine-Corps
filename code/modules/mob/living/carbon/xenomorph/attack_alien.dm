@@ -48,6 +48,9 @@
 			X.visible_message(null, "<span class='info'>We keep holding [src] down.</span>", null)
 			apply_damage(damage_to_deal, STAMINA, BODY_ZONE_CHEST, MELEE)
 			sound = 'sound/weapons/thudswoosh.ogg'
+			var/obj/item/radio/headset/mainship/headset = wear_ear
+			if(istype(headset))
+				headset.disable_locator(40 SECONDS)
 		else
 			X.do_attack_animation(src, ATTACK_EFFECT_DISARM2)
 			if(pulling)
@@ -69,6 +72,9 @@
 					X.visible_message("<span class='danger'>[X] slams [src] to the ground!</span>",
 					"<span class='danger'>We slam [src] to the ground!</span>", null, 5)
 					Paralyze(10 SECONDS)
+					var/obj/item/radio/headset/mainship/headset = wear_ear
+					if(istype(headset))
+						headset.disable_locator(40 SECONDS)
 		SEND_SIGNAL(X, COMSIG_XENOMORPH_DISARM_HUMAN, src, damage_to_deal)
 	else if(!ishuman(src))
 		if(randn <= 40)
