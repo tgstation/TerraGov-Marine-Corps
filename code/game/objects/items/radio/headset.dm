@@ -184,6 +184,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	var/faction = FACTION_TERRAGOV
 	///The type of minimap this headset gives access to
 	var/datum/action/minimap/minimap_type = /datum/action/minimap/marine
+	var/locator_disabled_timer = null
 
 /obj/item/radio/headset/mainship/Initialize(mapload)
 	. = ..()
@@ -274,11 +275,26 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	mini.give_action(wearer)
 	INVOKE_NEXT_TICK(src, PROC_REF(update_minimap_icon)) //Mobs are spawned inside nullspace sometimes so this is to avoid that hijinks
 
+/obj/item/radio/headset/mainship/proc/disable_locator(var/time)
+	if(wearer)
+		SSminimaps.remove_marker(wearer)
+	if(locator_disabled_timer)
+		if(time < timeleft(locator_disabled_timer))
+			return
+		else
+			deltimer(locator_disabled_timer)
+	locator_disabled_timer = addtimer(CALLBACK(src, PROC_REF(reenable_locator)), time, TIMER_STOPPABLE)
+
+/obj/item/radio/headset/mainship/proc/reenable_locator()
+	locator_disabled_timer = null
+	if(wearer)
+		update_minimap_icon()
+
 ///Updates the wearer's minimap icon
 /obj/item/radio/headset/mainship/proc/update_minimap_icon()
 	SIGNAL_HANDLER
 	SSminimaps.remove_marker(wearer)
-	if(!wearer.job || !wearer.job.minimap_icon)
+	if(!wearer.job || !wearer.job.minimap_icon || locator_disabled_timer)
 		return
 	var/marker_flags = initial(minimap_type.marker_flags)
 	if(wearer.stat == DEAD)
