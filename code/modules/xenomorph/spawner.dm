@@ -8,11 +8,7 @@
 	bound_height = 96
 	max_integrity = 500
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
-	xeno_structure_flags = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE|XENO_STRUCT_WARNING_RADIUS
-	///For minimap icon change if silo takes damage or nearby hostile
-	var/warning
-	COOLDOWN_DECLARE(spawner_damage_alert_cooldown)
-	COOLDOWN_DECLARE(spawner_proxy_alert_cooldown)
+	xeno_structure_flags = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE|XENO_STRUCT_WARNING_RADIUS|XENO_STRUCT_DAMAGE_ALERT
 	var/linked_minions = list()
 
 /obj/structure/xeno/spawner/Initialize(mapload, _hivenumber)
@@ -38,22 +34,6 @@
 		if(80 to 100)
 			. += span_info("It appears in good shape, pulsating healthily.")
 
-
-/obj/structure/xeno/spawner/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
-	. = ..()
-	spawner_damage_alert()
-
-///Alert if spawner is receiving damage
-/obj/structure/xeno/spawner/proc/spawner_damage_alert()
-	if(!COOLDOWN_CHECK(src, spawner_damage_alert_cooldown))
-		warning = FALSE
-		return
-	warning = TRUE
-	update_minimap_icon()
-	GLOB.hive_datums[hivenumber].xeno_message("Our [name] at [AREACOORD_NO_Z(src)] is under attack! It has [obj_integrity]/[max_integrity] Health remaining.", "xenoannounce", 5, FALSE, src, 'sound/voice/alien/help1.ogg',FALSE, null, /atom/movable/screen/arrow/silo_damaged_arrow)
-	COOLDOWN_START(src, spawner_damage_alert_cooldown, XENO_SILO_HEALTH_ALERT_COOLDOWN) //set the cooldown.
-	addtimer(CALLBACK(src, PROC_REF(clear_warning)), XENO_SILO_DETECTION_COOLDOWN) //clear warning
-
 /obj/structure/xeno/spawner/Destroy()
 	GLOB.xeno_spawners_by_hive[hivenumber] -= src
 	return ..()
@@ -61,7 +41,7 @@
 ///Change minimap icon if spawner is under attack or not
 /obj/structure/xeno/spawner/update_minimap_icon()
 	SSminimaps.remove_marker(src)
-	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "spawner[warning ? "_warn" : "_passive"]", ABOVE_FLOAT_LAYER))
+	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "spawner[threat_warning ? "_warn" : "_passive"]", ABOVE_FLOAT_LAYER))
 
 /// Transfers the spawned minion to the silo's hivenumber.
 /obj/structure/xeno/spawner/proc/on_spawn(list/newly_spawned_things)
