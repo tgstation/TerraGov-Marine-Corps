@@ -1,3 +1,6 @@
+/mob/living/carbon/human/get_examine_icon(mob/user)
+	return null // carbon human icons either don't work or are super fucked up
+
 /mob/living/carbon/human/examine(mob/user)
 	SHOULD_CALL_PARENT(FALSE)
 	var/skipgloves = 0
@@ -32,15 +35,10 @@
 	var/t_has = p_have()
 	var/t_is = p_are()
 
-	var/msg = "<big><span class='info'>This is "
+	var/msg = ""
 
-	if(icon)
-		msg += "[icon2html(icon, user)] " //fucking BYOND: this should stop dreamseeker crashing if we -somehow- examine somebody before their icon is generated
-
-	msg += "<EM>[src.name]!</EM></big></span>\n"
-
-	msg += EXAMINE_SECTION_BREAK
 	msg += "<span class='info'>"
+	msg += separator_hr("Outfit")
 
 	//uniform
 	if(w_uniform && !skipjumpsuit)
@@ -174,7 +172,7 @@
 	if(wear_id)
 		msg += "[t_He] [t_is] wearing [icon2html(wear_id, user)] \a [wear_id].\n"
 
-	msg += EXAMINE_SECTION_BREAK
+	msg += separator_hr("Status")
 
 	//jitters
 	if(stat != DEAD)
@@ -235,7 +233,7 @@
 			if(isxeno(user))
 				msg += "[span_xenowarning("[t_He] [p_do()]n't seem responsive.")]\n"
 			else
-				msg += "[span_deadsay("[t_He] [t_is] completely unresponsive to anything and has fallen asleep, as if affected by Space Sleep Disorder. [t_He] may snap out of it soon.")]\n"
+				msg += "[span_deadsay("[t_He] [t_is] completely unresponsive to anything and [t_has] fallen asleep, as if affected by Space Sleep Disorder. [t_He] may snap out of it soon.")]\n"
 
 	var/total_brute = getBruteLoss()
 	var/total_burn = getFireLoss()
@@ -277,9 +275,9 @@
 	if(total_clone)
 		if(total_clone < 25)
 			if(isrobot(src))
-				msg += "[span_tinydeadsay("<i>[t_He] has minor structural damage, with some solder visibly frayed...</i>")]\n"
+				msg += "[span_tinydeadsay("<i>[t_He] [t_has] minor structural damage, with some solder visibly frayed...</i>")]\n"
 			else
-				msg += "<span class='tinydeadsay'><i>[t_He] [t_is] slightly disfigured, with light signs of cellular damage...</i></span>\n"
+				msg += "[span_tinydeadsay("<i>[t_He] [t_is] slightly disfigured, with light signs of cellular damage...</i>")]\n"
 		else if (total_clone < 50)
 			if(isrobot(src))
 				msg += "[span_deadsay("<i>[t_He] look[p_s()] very shaky, with significant damage to [t_his] overall structure...</i>")]\n"
@@ -505,8 +503,12 @@
 			continue
 		msg += "[span_boldwarning("[t_He] [t_has] \a [embedded] sticking out of [t_his] flesh!")]\n"
 
+	if(flavor_text)
+		msg += separator_hr("Flavor Text")
+		msg += "</span>[flavor_text]<span class='info'>"
+
 	if(hasHUD(user,"security"))
-		msg += EXAMINE_SECTION_BREAK
+		msg += separator_hr("Security HUD")
 		var/perpname = "wot"
 		var/criminal = "None"
 
@@ -527,7 +529,7 @@
 			msg += "[span_deptradio("Security records:")] <a href='?src=[text_ref(src)];secrecord=`'>\[View\]</a>  <a href='?src=[text_ref(src)];secrecordadd=`'>\[Add comment\]</a>\n"
 
 	if(hasHUD(user,"medical"))
-		msg += EXAMINE_SECTION_BREAK
+		msg += separator_hr("Medical HUD")
 		var/cardcolor = holo_card_color
 		if(!cardcolor)
 			cardcolor = "none"
@@ -546,7 +548,7 @@
 				msg += "[span_deptradio("<a href='?src=[text_ref(src)];scanreport=1'>Body scan from [N.fields["last_scan_time"]]</a>")]\n"
 
 	if(hasHUD(user,"squadleader"))
-		msg += EXAMINE_SECTION_BREAK
+		msg += separator_hr("SL Utilities")
 		var/mob/living/carbon/human/H = user
 		if(assigned_squad) //examined mob is a marine in a squad
 			if(assigned_squad == H.assigned_squad) //same squad
@@ -571,6 +573,7 @@
 			embryocount ++
 			if(!implanted)
 				break
+		msg += separator_hr("Xeno Info")
 		if(species.species_flags & IS_SYNTHETIC)
 			msg += "[span_xenowarning("You sense [t_he] [t_is] not organic.")]\n"
 		if(status_flags & XENO_HOST)
@@ -603,7 +606,8 @@
 		if(reagents.get_reagent_amount(/datum/reagent/toxin/xeno_sanguinal))
 			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
-		msg += span_highdanger("<b>This player has been slept by staff. Best to leave them be.</b>\n")
+		msg += separator_hr("[span_boldwarning("Admin Slept")]")
+		msg += span_highdanger("This player has been slept by staff. Best to leave them be.\n")
 
 	msg += "</span>"
 	return list(msg)

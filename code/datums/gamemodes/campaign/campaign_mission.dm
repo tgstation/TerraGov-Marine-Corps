@@ -359,7 +359,7 @@
 		title = name,
 		text = "Next mission is [name], selected by [starting_faction] on the battlefield of [map_name].",
 		sound_override = 'sound/ambience/votestart.ogg',
-		style = "game"
+		style = OOC_ALERT_GAME
 	)
 
 ///Intro when the mission is started
@@ -376,7 +376,7 @@
 		title = "[starting_faction] [outcome]",
 		text = "The engagement between [starting_faction] and [hostile_faction] on [map_name] has ended in a [starting_faction] [outcome]!",
 		play_sound = FALSE,
-		style = "game"
+		style = OOC_ALERT_GAME
 	)
 
 	map_text_broadcast(starting_faction, outro_message[outcome][MISSION_STARTING_FACTION], op_name_starting)

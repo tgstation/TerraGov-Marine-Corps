@@ -80,6 +80,29 @@
 	soft_armor = null
 	return ..()
 
+/obj/examine_tags(mob/user)
+	. = ..()
+	if(resistance_flags & INDESTRUCTIBLE)
+		.["indestructible"] = "It's completely invulnerable to damage or complete destruction. Some objects still have special interactions for xenos."
+		return // we do not want to say it's indestructible and then list 500 fucktillion things that are implied by the word "indestructible"
+	if(resistance_flags & UNACIDABLE)
+		.["[isxeno(user) ? span_xenonotice("acid-proof") : "acid-proof"]"] = "Acid does not stick to or affect this object."
+	if(resistance_flags & PLASMACUTTER_IMMUNE)
+		.["plasma cutter-proof"] = "Plasma cutters cannot destroy this object."
+	if(!isitem(src) && (resistance_flags & PROJECTILE_IMMUNE))
+		.["projectile immune"] = "Projectiles cannot damage this object."
+	if(!isxeno(user) && !isobserver(user))
+		return // humans can check the codex for most of these- xenos should be able to know them "in the moment"
+	if(resistance_flags & CRUSHER_IMMUNE)
+		.[span_xenonotice("crusher-proof")] = "Charging Crushers can't damage this object."
+	if(resistance_flags & BANISH_IMMUNE)
+		.[span_xenonotice("banish immune")] = "Wraiths can't banish this object."
+	if(resistance_flags & PORTAL_IMMUNE)
+		.[span_xenonotice("portal immune")] = "Wraith portals can't teleport this object."
+	if(resistance_flags & XENO_DAMAGEABLE)
+		.[span_xenonotice("slashable")] = "Xenomorphs can slash this object."
+	else if(!isitem(src))
+		.[span_xenonotice("not slashable")] = "Xenomorphs can't slash this object. Some objects, like airlocks, have special interactions when attacked."
 
 /obj/proc/setAnchored(anchorvalue)
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
@@ -403,4 +426,23 @@
 			balloon_alert(user, "Cannot disassemble")
 		return FALSE
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+	return TRUE
+
+/obj/plasmacutter_act(mob/living/user, obj/item/I)
+	if(!isplasmacutter(I) || user.do_actions)
+		return FALSE
+	if(!(obj_flags & CAN_BE_HIT) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return FALSE
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
+		return FALSE
+	if(user.a_intent == INTENT_HARM) // Attack normally.
+		return FALSE
+	if(!plasmacutter.start_cut(user, name, src))
+		return FALSE
+	if(!do_after(user, plasmacutter.calc_delay(user), NONE, src, BUSY_ICON_HOSTILE))
+		return TRUE
+
+	plasmacutter.cut_apart(user, name, src)
+	deconstruct(FALSE)
 	return TRUE

@@ -547,8 +547,9 @@
 			else
 				visible_message("<span class='warning'>[src] latches onto [H]'s pelvis!</span>")
 			H.equip_to_slot(src, SLOT_WEAR_SUIT)
-			H.dropItemToGround(H.wear_ear)
-			H.wear_ear = null
+			var/obj/item/radio/headset/mainship/headset = H.wear_ear
+			if(istype(headset))
+				headset.disable_locator(40 SECONDS)
 			return TRUE
 
 		if(!H.has_limb(HEAD))
@@ -587,8 +588,9 @@
 
 				if(ishuman(hugged))
 					var/mob/living/carbon/human/H = hugged
-					H.dropItemToGround(H.wear_ear)
-					H.wear_ear = null
+					var/obj/item/radio/headset/mainship/headset = H.wear_ear
+					if(istype(headset))
+						headset.disable_locator(40 SECONDS)
 	if(blocked)
 		hugged.visible_message(span_danger("[src] smashes against [hugged]'s [blocked]!"))
 		return FALSE

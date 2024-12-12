@@ -725,13 +725,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!veh_ui || !veh_ui.current_veh_type)
 		return
 	var/obj/vehicle/sealed/armored/tanktype = veh_ui.current_veh_type
-	var/is_assault = initial(tanktype.armored_flags) & ARMORED_PURCHASABLE_ASSAULT
-	if(GLOB.purchased_tanks[user.faction]?["[is_assault]"])
-		to_chat(usr, span_danger("A vehicle of this type has already been purchased!"))
-		return
-	if(!GLOB.purchased_tanks[user.faction])
-		GLOB.purchased_tanks[user.faction] = list()
-	GLOB.purchased_tanks[user.faction]["[is_assault]"] += 1
 	var/obj/vehicle/sealed/armored/tank = new tanktype(loc)
 	if(veh_ui.current_primary)
 		var/obj/item/armored_weapon/gun = new veh_ui.current_primary(loc)
@@ -765,7 +758,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 GLOBAL_LIST_EMPTY(armored_gunammo)
 GLOBAL_LIST_EMPTY(armored_modtypes)
 GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
-GLOBAL_LIST_EMPTY(purchased_tanks)
 #define DEFAULT_MAX_ARMORED_AMMO 20
 
 ///im a lazy bum who cant use initial on lists, so we just load everything into a list
@@ -926,10 +918,6 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 			if(!ispath(newtype, /obj/vehicle/sealed/armored))
 				return
 			var/obj/vehicle/sealed/armored/tank_type = newtype
-			var/is_assault = initial(tank_type.armored_flags) & ARMORED_PURCHASABLE_ASSAULT
-			if(GLOB.purchased_tanks[usr.faction]?["[is_assault]"])
-				to_chat(usr, span_danger("A vehicle of this type has already been purchased!"))
-				return
 			current_veh_type = newtype
 			. = TRUE
 

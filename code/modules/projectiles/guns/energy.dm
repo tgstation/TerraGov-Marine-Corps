@@ -60,7 +60,7 @@
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_ALLOW_SYNTHETIC|GUN_NO_PITCH_SHIFT_NEAR_EMPTY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	gun_skill_category = SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
-
+	w_class = WEIGHT_CLASS_SMALL
 
 	fire_delay = 10
 	accuracy_mult = 1.15

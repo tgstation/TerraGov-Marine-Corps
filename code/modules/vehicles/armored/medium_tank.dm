@@ -8,11 +8,11 @@
 	damage_icon_path = null
 	interior = null
 	icon_state = "tank"
-	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_UNDERLAY
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_PURCHASABLE_ASSAULT
 	pixel_x = -16
 	pixel_y = -32
-	obj_integrity = 1300
-	max_integrity = 1300
+	obj_integrity = 1000
+	max_integrity = 1000
 	max_occupants = 3
 
 /obj/vehicle/sealed/armored/multitile/medium/enter_locations(atom/movable/entering_thing)

@@ -1280,6 +1280,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DEVOUR,
 	)
+	var/devour_delay = 15 SECONDS
 
 /datum/action/ability/activable/xeno/devour/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
@@ -1334,8 +1335,12 @@
 	owner_xeno.face_atom(victim)
 	owner_xeno.visible_message(span_danger("[owner_xeno] starts to devour [victim]!"), span_danger("We start to devour [victim]!"), null, 5)
 	var/channel = SSsounds.random_available_channel()
+	if(isxenogorger(owner_xeno))
+		devour_delay = GORGER_DEVOUR_DELAY
+	if(HAS_TRAIT(victim, TRAIT_UNDEFIBBABLE) || !victim.client)
+		devour_delay = GORGER_DEVOUR_DELAY
 	playsound(owner_xeno, 'sound/vore/struggle.ogg', 40, channel = channel)
-	if(!do_after(owner_xeno, GORGER_DEVOUR_DELAY, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+	if(!do_after(owner_xeno, devour_delay, FALSE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
 		to_chat(owner, span_warning("We stop devouring \the [victim]. They probably tasted gross anyways."))
 		owner_xeno.stop_sound_channel(channel)
 		return
@@ -1343,6 +1348,9 @@
 	ADD_TRAIT(victim, TRAIT_STASIS, TRAIT_STASIS)
 	victim.forceMove(owner_xeno)
 	owner_xeno.eaten_mob = victim
+	var/obj/item/radio/headset/mainship/headset = victim.wear_ear
+	if(istype(headset))
+		headset.disable_locator(40 SECONDS)
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/devour/ai_should_use(atom/target)
@@ -1643,9 +1651,6 @@
 	var/mob/living/carbon/xenomorph/X = owner
 	var/mob/living/victim = A
 	var/implanted_embryos = 0
-	if(X.client?.prefs?.xenogender > 2) //has dick
-		X.balloon_alert(X, "We lack the genital.")
-		return FALSE
 	for(var/obj/item/alien_embryo/implanted in A.contents)
 		implanted_embryos++
 		if(implanted_embryos >= MAX_LARVA_PREGNANCIES)

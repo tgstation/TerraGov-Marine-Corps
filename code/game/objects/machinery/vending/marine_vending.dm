@@ -2651,6 +2651,7 @@
 		),
 		"Belts" = list(
 			/obj/item/storage/belt/marine = -1,
+			/obj/item/storage/belt/shotgun = -1,
 			/obj/item/storage/belt/grenade = -1,
 			/obj/item/belt_harness/marine = -1,
 			/obj/item/storage/holster/belt/pistol/standard_pistol = -1,
