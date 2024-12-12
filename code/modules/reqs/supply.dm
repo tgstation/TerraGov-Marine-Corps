@@ -725,7 +725,6 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 	if(!veh_ui || !veh_ui.current_veh_type)
 		return
 	var/obj/vehicle/sealed/armored/tanktype = veh_ui.current_veh_type
-	var/is_assault = initial(tanktype.armored_flags) & ARMORED_PURCHASABLE_ASSAULT
 	var/obj/vehicle/sealed/armored/tank = new tanktype(loc)
 	if(veh_ui.current_primary)
 		var/obj/item/armored_weapon/gun = new veh_ui.current_primary(loc)
@@ -919,7 +918,6 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 			if(!ispath(newtype, /obj/vehicle/sealed/armored))
 				return
 			var/obj/vehicle/sealed/armored/tank_type = newtype
-			var/is_assault = initial(tank_type.armored_flags) & ARMORED_PURCHASABLE_ASSAULT
 			current_veh_type = newtype
 			. = TRUE
 
