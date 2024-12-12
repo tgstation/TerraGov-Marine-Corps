@@ -34,3 +34,8 @@
 2024-12-11:
   Meghan-Rossi:
   - bugfix: fixed electrified prodder sprites
+2024-12-12:
+  Meghan-Rossi:
+  - rscdel: Facehuggers no longer remove headsets
+  - rscadd: Facehuggers, devouring, and xeno disarm knockdowns all disable a headset's
+      location marker for 40 seconds.
