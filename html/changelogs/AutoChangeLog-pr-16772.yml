@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - rscadd: "Primordial Warlock can use their psychic shield to reflect projectiles in exchange for reduced shield health."
