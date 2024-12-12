@@ -35,9 +35,9 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	)
 	use_state_flags = ABILITY_USE_LYING
 	/// The offset in a direction for zoom_in
-	var/tile_offset = 7
+	var/tile_offset = 9
 	/// The size of the zoom for zoom_in
-	var/view_size = 4
+	var/view_size = 5
 
 /datum/action/ability/xeno_action/toggle_long_range/bull
 	tile_offset = 11
