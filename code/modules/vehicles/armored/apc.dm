@@ -17,7 +17,7 @@
 	max_occupants = 20 //Clown car? Clown car.
 	enter_delay = 0.5 SECONDS
 	ram_damage = 50
-	move_delay = 0.3 SECONDS
+	move_delay = 0.4 SECONDS
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
 		/obj/structure/largecrate,

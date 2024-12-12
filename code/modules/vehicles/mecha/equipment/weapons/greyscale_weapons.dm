@@ -126,7 +126,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 80
 	projectiles_cache = 960
 	projectiles_cache_max = 960
@@ -150,7 +150,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-4), "E" = list(61,36), "W" = list(-31,16)),
 	)
 	ammotype = /datum/ammo/bullet/shotgun/mech
-	max_integrity = 350
+	max_integrity = 150
 	projectiles = 10
 	projectiles_cache = 120
 	projectiles_cache_max = 120
@@ -174,7 +174,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-6), "E" = list(64,37), "W" = list(-34,17)),
 	)
 	ammotype = /datum/ammo/bullet/rifle/mech/lmg
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 120
 	projectiles_cache = 1200
 	projectiles_cache_max = 1200
@@ -198,7 +198,7 @@
 		MECHA_L_ARM = list("N" = list(-4,30), "S" = list(32,-15), "E" = list(80,24), "W" = list(-50,4)),
 	)
 	ammotype = /datum/ammo/tx54/mech
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 30
 	projectiles_cache = 300
 	projectiles_cache_max = 300
@@ -222,7 +222,7 @@
 		MECHA_L_ARM = list("N" = list(0,68), "S" = list(32,-6), "E" = list(80,33), "W" = list(-50,13)),
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech
-	max_integrity = 400
+	max_integrity = 200
 	energy_drain = 10
 	variance = 0
 	projectile_delay = 0.4 SECONDS
@@ -242,7 +242,7 @@
 		MECHA_L_ARM = list("N" = list(0,52), "S" = list(32,-6), "E" = list(75,31), "W" = list(-45,11)),
 	)
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/burst
-	max_integrity = 400
+	max_integrity = 200
 	energy_drain = 5
 	variance = 0
 	projectile_delay = 0.6 SECONDS
@@ -264,7 +264,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/smg
-	max_integrity = 400
+	max_integrity = 200
 	energy_drain = 5
 	variance = 0
 	projectile_delay = 0.2 SECONDS
@@ -284,7 +284,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/apfsds
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 1
 	projectiles_cache = 15
 	projectiles_cache_max = 15
@@ -309,7 +309,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/minigun/mech
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 200
 	projectiles_cache = 800
 	projectiles_cache_max = 800
@@ -354,7 +354,7 @@
 	fire_sound = 'sound/weapons/guns/fire/grenadelauncher.ogg'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /obj/item/explosive/grenade
-	max_integrity = 350
+	max_integrity = 150
 	projectiles = 10
 	projectiles_cache = 40
 	projectiles_cache_max = 40
@@ -386,7 +386,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/flamethrower/mech_flamer
-	max_integrity = 250
+	max_integrity = 50
 	projectiles = 20
 	projectiles_cache = 20 // low ammo counts so player cant just spam fire while rushing infinitely
 	projectiles_cache_max = 20
@@ -410,7 +410,7 @@
 	)
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/rocket/mech
-	max_integrity = 400
+	max_integrity = 200
 	projectiles = 1
 	projectiles_cache = 1
 	projectiles_cache_max = 1
@@ -435,7 +435,7 @@
 	desc = "A specialized mech laser blade made out of compressed energy with unimaginable power. Its compact size allows fast, short-ranged attacks. When activated, overloads the leg actuators to dash forward, before cutting with a superheated plasma beam. Melee core increases area cut and distance dashed. It is a top-of-the-line melee weapon of NTC's fine line of mecha close-range offensive capability."
 	icon_state = "moonlight"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	max_integrity = 400
+	max_integrity = 200
 	slowdown = 0
 	harmful = TRUE
 	equip_cooldown = 3 SECONDS
@@ -535,7 +535,7 @@
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.OGG'
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/lasgun/marine/mech/lance_strike
-	max_integrity = 400
+	max_integrity = 200
 	slowdown = 0.15
 	windup_delay = 0.6 SECONDS
 	harmful = TRUE
