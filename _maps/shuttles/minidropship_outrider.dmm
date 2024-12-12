@@ -33,6 +33,11 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
+"k" = (
+/obj/structure/window/reinforced/west,
+/obj/machinery/cic_maptable,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "l" = (
 /obj/machinery/vending/nanomed/tadpolemed{
 	dir = 8
@@ -80,8 +85,18 @@
 /obj/structure/window/framed/mainship/canterbury/dropship/reinforced,
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
+"s" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/warning_stripes/thick/corner,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
 "t" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
+	dir = 4
+	},
+/obj/effect/turf_decal/warning_stripes/thick/corner{
 	dir = 4
 	},
 /turf/open/floor/mainship/mono,
@@ -134,6 +149,12 @@
 /obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
+"C" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
 "D" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
 /obj/effect/turf_decal/warning_stripes/thick{
@@ -145,7 +166,6 @@
 "E" = (
 /obj/structure/window/reinforced/west,
 /obj/structure/window/reinforced,
-/obj/machinery/cic_maptable,
 /turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "F" = (
@@ -256,7 +276,7 @@ y
 t
 R
 d
-y
+s
 a
 a
 "}
@@ -275,7 +295,7 @@ o
 e
 K
 Y
-Y
+C
 D
 S
 I
@@ -283,9 +303,9 @@ a
 L
 "}
 (5,1,1) = {"
-a
-a
 n
+n
+k
 E
 F
 B
