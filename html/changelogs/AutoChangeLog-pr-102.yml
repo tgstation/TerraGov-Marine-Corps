@@ -1,5 +1,0 @@
-author: "Meghan-Rossi"
-delete-after: True
-changes:
-  - rscdel: "Facehuggers no longer remove headsets"
-  - rscadd: "Facehuggers, devouring, and xeno disarm knockdowns all disable a headset's location marker for 40 seconds."

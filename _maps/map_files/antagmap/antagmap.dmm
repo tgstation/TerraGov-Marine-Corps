@@ -424,10 +424,7 @@
 /area/antag_ship)
 "cX" = (
 /obj/effect/turf_decal/tile/transparent/dark_green/anticorner/contrasted,
-/obj/machinery/vending/medical{
-	name = "Stolen Medicament Vendor";
-	req_access = list(206)
-	},
+/obj/machinery/chem_master,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "cY" = (
@@ -490,9 +487,9 @@
 /obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
 	dir = 4
 	},
-/obj/item/bedsheet/medical,
-/obj/structure/bed{
-	dir = 8
+/obj/machinery/vending/medical{
+	name = "Stolen Medicament Vendor";
+	req_access = list(206)
 	},
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
@@ -7253,9 +7250,8 @@
 	},
 /area/antag_ship/vsd/port)
 "Nu" = (
-/obj/effect/turf_decal/tile/transparent/dark_green/half/contrasted{
-	dir = 4
-	},
+/obj/effect/turf_decal/tile/transparent/dark_green,
+/obj/machinery/chem_dispenser,
 /turf/open/floor/plating/asteroidfloor,
 /area/antag_ship/clf_base/medbay)
 "Nv" = (
@@ -16153,10 +16149,10 @@ aF
 Aw
 gA
 Jf
-gh
-hG
-ds
 Nu
+ds
+hG
+hG
 Tf
 KH
 zJ
