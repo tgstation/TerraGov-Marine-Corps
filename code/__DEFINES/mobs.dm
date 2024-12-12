@@ -760,7 +760,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define BOILER_LUMINOSITY_AMMO_NEUROTOXIN_COLOR LIGHT_COLOR_YELLOW
 #define BOILER_LUMINOSITY_AMMO_CORROSIVE_COLOR LIGHT_COLOR_GREEN
 #define BOILER_BOMBARD_COOLDOWN_REDUCTION 3 //Amount of seconds each glob stored reduces bombard cooldown by
-#define	BOILER_LUMINOSITY_THRESHOLD 3 //Amount of ammo needed to start glowing
+#define	BOILER_LUMINOSITY_THRESHOLD 2 //Amount of ammo needed to start glowing
 
 //Hivelord defines
 #define HIVELORD_TUNNEL_DISMANTLE_TIME 3 SECONDS
