@@ -726,7 +726,7 @@
 
 /obj/item/storage/holster/belt/pistol/smart_pistol
 	name = "\improper SP-13 holster rig"
-	desc = "A holster belt, which holds SP-13 smartpistol and magazines for it."
+	desc = "A holster belt, which holds SP-13 smart machinepistol and magazines for it."
 
 /obj/item/storage/holster/belt/pistol/smart_pistol/full/Initialize(mapload)
 	. = ..()

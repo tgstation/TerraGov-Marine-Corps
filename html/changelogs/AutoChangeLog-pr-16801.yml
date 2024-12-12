@@ -1,0 +1,4 @@
+author: "YehnBeep"
+delete-after: True
+changes:
+  - qol: "eshield's description now notes that the eshield module reduces a marine's armor to certain damage types. (Resistances on the module are unchanged, this change is strictly informational)."

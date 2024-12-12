@@ -2220,6 +2220,78 @@
 	)
 
 //-------------------------------------------------------
+// V-35 battle rifle
+
+/obj/item/weapon/gun/rifle/som_big
+	name = "\improper V-35 battle rifle"
+	desc = "The V-35 is a more recent addition to the SOM armory, \
+	where its superior per shot firepower serves as a cheaper alternative to vastly more expensive and maintenance intensive volkite weaponry. \
+	A variety of ammunition types further more gives the V-35 significant tactical flexibility that volkite weaponry typically lacks, in addition to the ability to use aim mode."
+
+	icon_state = "v35"
+	icon = 'icons/obj/items/guns/rifles64.dmi'
+	worn_icon_state = "v35"
+	ammo_level_icon = "v35"
+
+	muzzleflash_iconstate = "muzzle_flash_medium"
+	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/deagle_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/m4ra_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/m4ra_reload.ogg'
+	caliber = CALIBER_10x27_CASELESS
+	aim_slowdown = 0.75
+	wield_delay = 1 SECONDS
+	force = 20
+	max_shells = 20
+	default_ammo_type = /obj/item/ammo_magazine/rifle/som_big
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rifle/som_big,
+		/obj/item/ammo_magazine/rifle/som_big/incendiary,
+		/obj/item/ammo_magazine/rifle/som_big/anti_armour,
+	)
+	attachable_allowed = list(
+		/obj/item/attachable/suppressor,
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/lasersight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/foldable/bipod,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope,
+		/obj/item/attachable/scope/marine,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/motiondetector,
+	)
+
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_CAN_POINTBLANK|GUN_SMOKE_PARTICLES
+	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	attachable_offset = list("muzzle_x" = 54, "muzzle_y" = 20,"rail_x" = 23, "rail_y" = 22, "under_x" = 45, "under_y" = 14, "stock_x" = 14, "stock_y" = 10)
+
+	fire_delay = 0.65 SECONDS
+	accuracy_mult = 1.1
+	scatter = -2
+	burst_amount = 1
+	movement_acc_penalty_mult = 6
+
+	actions_types = list(/datum/action/item_action/aim_mode)
+	aim_fire_delay = 0.2 SECONDS
+	aim_speed_modifier = 2
+
+/obj/item/weapon/gun/rifle/som_big/standard
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/extended_barrel, /obj/item/attachable/verticalgrip)
+
+/obj/item/weapon/gun/rifle/som_big/support
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/attachable/foldable/bipod)
+//-------------------------------------------------------
 // V-41 SOM LMG
 
 /obj/item/weapon/gun/rifle/som_mg

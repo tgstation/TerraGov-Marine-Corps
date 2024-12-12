@@ -124,6 +124,86 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 
 // ***************************************
+// *********** Slime Grenade
+// ***************************************
+/datum/action/ability/xeno_action/sticky_grenade
+	name = "Slime grenade"
+	action_icon_state = "gas mine"
+	action_icon = 'icons/Xeno/actions/sentinel.dmi'
+	desc = "Throws a lump of compressed acid to stick to a target, which will leave a trail of acid behind them."
+	ability_cost = 75
+	cooldown_duration = 45 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOXIC_GRENADE,
+	)
+	///Type of nade to be thrown
+	var/nade_type = /obj/item/explosive/grenade/sticky/xeno
+
+/datum/action/ability/xeno_action/sticky_grenade/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return
+	if(owner.l_hand || owner.r_hand)
+		if(!silent)
+			owner.balloon_alert(owner, "Cannot create grenade, need empty hands")
+		return FALSE
+
+/datum/action/ability/xeno_action/sticky_grenade/action_activate()
+	var/obj/item/explosive/grenade/sticky/xeno/nade = new(owner.loc)
+	owner.put_in_hands(nade)
+	to_chat(owner, span_xenonotice("We vomit up a sticky lump.")) // Ewww...
+	add_cooldown()
+	succeed_activate()
+	nade.activate(owner)
+
+/obj/item/explosive/grenade/sticky/xeno/update_overlays()
+	. = ..()
+	if(active)
+		. += image('icons/obj/items/grenade.dmi', "xenonade_active")
+
+/obj/item/explosive/grenade/sticky/xeno
+	name = "\improper slime grenade"
+	desc = "A fleshy mass oozing acid. It appears to be rapidly decomposing."
+	greyscale_colors = "#42A500"
+	greyscale_config = /datum/greyscale_config/xenogrenade
+	self_sticky = TRUE
+	arm_sound = 'sound/voice/alien/yell_alt.ogg'
+	worn_icon_state = null
+	worn_icon_list = null
+	var/acid_spray_damage = 15
+
+/obj/item/explosive/grenade/sticky/xeno/prime()
+	for(var/turf/acid_tile AS in RANGE_TURFS(1, loc))
+		new /obj/effect/temp_visual/acid_splatter(acid_tile) //SFX
+		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, acid_spray_damage)
+	playsound(loc, SFX_ACID_BOUNCE, 35)
+	if(stuck_to)
+		clean_refs()
+	qdel(src)
+
+/obj/item/explosive/grenade/sticky/xeno/stuck_to(atom/hit_atom)
+	. = ..()
+	RegisterSignal(stuck_to, COMSIG_MOVABLE_MOVED, PROC_REF(drop_acid))
+	new /obj/effect/xenomorph/spray(get_turf(src), 5 SECONDS, acid_spray_damage)
+
+///causes acid tiles underneath target when stuck_to
+/obj/item/explosive/grenade/sticky/xeno/proc/drop_acid(datum/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	new /obj/effect/xenomorph/spray(get_turf(src), 5 SECONDS, acid_spray_damage)
+
+/obj/item/explosive/grenade/sticky/xeno/clean_refs()
+	stuck_to.cut_overlay(saved_overlay)
+	UnregisterSignal(stuck_to, COMSIG_MOVABLE_MOVED)
+	return ..()
+
+//Deals with picking up and using the grenade
+/obj/item/explosive/grenade/sticky/xeno/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	if(xeno_attacker.status_flags & INCORPOREAL)
+		return FALSE
+	attack_hand(xeno_attacker)
+
+
+// ***************************************
 // *********** Acid dash
 // ***************************************
 /datum/action/ability/activable/xeno/charge/acid_dash
@@ -197,6 +277,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	new /obj/effect/xenomorph/spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
 	for(var/obj/O in get_turf(xeno_owner))
 		O.acid_spray_act(xeno_owner)
+
+
 
 // ***************************************
 // *********** Dodge

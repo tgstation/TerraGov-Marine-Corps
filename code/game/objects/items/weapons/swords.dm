@@ -135,6 +135,7 @@
 	force = 75
 	attack_speed = 11
 	penetration = 15
+	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/weapon/sword/officersword/Initialize(mapload)
 	. = ..()

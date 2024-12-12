@@ -583,6 +583,33 @@
 	icon_state_mini = "mag_thin_red"
 	default_ammo = /datum/ammo/bullet/rifle/incendiary
 
+/obj/item/ammo_magazine/rifle/som_big
+	name = "\improper V-35 magazine (10x27mm)"
+	desc = "A 10mm rifle magazine designed for the V-35."
+	caliber = CALIBER_10x27_CASELESS
+	icon_state = "v35"
+	base_ammo_icon = "v35"
+	icon_state_mini = "mag_rifle_big"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/bullet/rifle/som_big
+	max_rounds = 25
+	bonus_overlay = "v35_mag"
+	magazine_flags = MAGAZINE_REFILLABLE|MAGAZINE_SHOW_AMMO
+
+/obj/item/ammo_magazine/rifle/som_big/incendiary
+	name = "\improper V-35 incendiary magazine (10x27mm)"
+	desc = "A 10mm rifle magazine designed for the V-35, loaded with incendiary ammunition."
+	icon_state = "v35_incend"
+	default_ammo = /datum/ammo/bullet/rifle/som_big/incendiary
+	bonus_overlay = "v35_incend"
+
+/obj/item/ammo_magazine/rifle/som_big/anti_armour
+	name = "\improper V-35 AT magazine (10x27mm)"
+	desc = "A 10mm rifle magazine designed for the V-35, loaded with powerful anti armor ammunition. Deals significant damage to vehicles, and can punch through some cover."
+	icon_state = "v35_at"
+	default_ammo = /datum/ammo/bullet/rifle/som_big/anti_armour
+	bonus_overlay = "v35_at"
+
 //-------------------------------------------------------
 //V-41 Machine Gun
 

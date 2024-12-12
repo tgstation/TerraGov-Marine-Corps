@@ -245,8 +245,9 @@ SUBSYSTEM_DEF(explosions)
 	turfs_by_dist[epicenter] = current_exp_block
 	turfs_in_range[epicenter] = current_exp_block
 
-	throwTurf[epicenter] += list(epicenter)
-	throwTurf[epicenter][epicenter] = list(max_range, null, throw_strength) //Random direction, strength scales with severity
+	if(throw_range)
+		throwTurf[epicenter] += list(epicenter)
+		throwTurf[epicenter][epicenter] = list(max_range, null, throw_strength) //Random direction, strength scales with severity
 
 /*
 We'll store how much each turf blocks the explosion's movement in turfs_in_range[turf] and how much movement is needed to reach it in turfs_by_dist[turf].

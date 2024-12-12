@@ -1,0 +1,42 @@
+2024-12-03:
+  blackdav123:
+  - balance: Removes hivemind, hivelord, and wraith from crash.
+  - balance: Xenos get extra t3 slots one xeno later on crash.
+  - bugfix: Rappel now correctly allows more than one marine to go down at a time.
+  - balance: Defiler and carrier can now pick reagents/huggers while staggered.
+2024-12-04:
+  AusarAtkin:
+  - bugfix: fixed nuke notification in dchat
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed ASAT minimap icon not updating correctly when the cap
+      was stopped by marines'
+  - imageadd: added an actual sprite for the ASAT objectives
+  Runian:
+  - bugfix: Xenomorphs retain their long sight/zoom while resting as intended.
+2024-12-06:
+  Lumipharon:
+  - balance: Reduced HE sadar AP value to 75 from 100
+  - balance: Reduces HE sadar sunder to 50 from 100
+  - balance: Unguided HE sadar rockets throw mobs 4 tiles instead of 7
+2024-12-07:
+  Lumipharon:
+  - bugfix: fixed plasma cannon blast mode causing throw on direct hit
+  - balance: Added some explosion block to vendors, mechs and tanks
+  - bugfix: fixed some minor tank interior visual issues
+  - balance: The nuke can no longer travel through portals
+  - bugfix: Fixed shuttle walls and fog blockers being completely ignored by explosions
+  - bugfix: fixed vendors being stuck as nondense after falling over
+  Runian:
+  - qol: During prep / quickbuild phase, xenomorphs can now pull items without a delay.
+2024-12-09:
+  Lumipharon:
+  - rscadd: Added the V-35 Battle rifle for SOM use in Campaign
+  - balance: Direct hit explosions from rockets will now reliably throw the victim
+      away from the firer, instead of a random direction
+  - balance: Hunter stealth damage threhold changed to 25 from 45
+  Runian:
+  - bugfix: Plasmacutters now do 301 damage instead of 231 damage against resin walls.
+      Enough to one-shot thick resin walls as intended.
+  blackdav123:
+  - balance: 'Defiler: Speed increased by .1'
+  - balance: Supply drop console cooldown reduced from 30 seconds to 15.

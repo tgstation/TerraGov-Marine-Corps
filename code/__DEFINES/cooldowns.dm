@@ -32,6 +32,7 @@
 #define COOLDOWN_HUD_ORDER "hud_order"
 #define COOLDOWN_CLOAK_IMPLANT "cloak_implant"
 #define COOLDOWN_DRONE_CLOAK "drone_cloak"
+#define COOLDOWN_MAW_GLOB "maw_glob"
 #define COOLDOWN_XENO_TURRETS_ALERT "xeno_turrets_alert"
 #define COOLDOWN_PARALYSE_ACID "acid_spray_paralyse"
 #define COOLDOWN_RELAY_MOVE "remote_relay_moves"

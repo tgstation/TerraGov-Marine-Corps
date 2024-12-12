@@ -162,16 +162,17 @@ GLOBAL_PROTECT(exp_specialmap)
 /datum/job/proc/map_check()
 	return TRUE
 
-
-/datum/job/proc/radio_help_message(mob/M)
-	to_chat(M, {"
-[span_role_header("You are the [title].")]
-[span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")]
-"})
+/// The message you get when spawning in as this job, called by [/datum/job/proc/after_spawn]
+/datum/job/proc/radio_help_message(mob/new_player)
+	var/list/message = list()
+	message += span_role_body("As the <b>[title]</b> you answer to [supervisors]. Special circumstances may change this.")
 	if(!(job_flags & JOB_FLAG_NOHEADSET))
-		to_chat(M, "<span class='role_body'>Prefix your message with ; to speak on the default radio channel. To see other prefixes, look closely at your headset.</span>")
+		message += separator_hr("[span_role_body("<b>Radio</b>")]")
+		message += span_role_body("Prefix your message with <b>;</b> to speak on the default radio channel, in most cases this is your squad radio. For additional prefixes, examine your headset.")
 	if(req_admin_notify)
-		to_chat(M, "<span class='role_body'>You are playing a job that is important for game progression. If you have to disconnect, please head to hypersleep, if you can't make it there, notify the admins via adminhelp.</span>")
+		message += separator_hr("[span_role_header("This is an important job.")]")
+		message += span_role_body("If you have to disconnect, please take a hypersleep pod. If you can't make it there, <b><u>adminhelp</u></b> using F1 or the Adminhelp verb.")
+	to_chat(new_player, fieldset_block("[span_role_header("You are the [title].")]", jointext(message, ""), "examine_block"))
 
 /datum/outfit/job
 	var/jobtype
