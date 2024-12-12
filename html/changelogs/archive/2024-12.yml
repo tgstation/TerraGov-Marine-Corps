@@ -20,3 +20,6 @@
   - balance: Xenos can now keep people down for longer by disarming them more after
       they've been knocked down
   - rscdel: Larval sting on uninfested people no long injects acid, only neurotoxin.
+2024-12-09:
+  Meghan-Rossi:
+  - rscadd: Incorporeal hivemind eyes are now invisible to humans
