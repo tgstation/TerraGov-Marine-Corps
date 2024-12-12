@@ -33,11 +33,6 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
-"k" = (
-/obj/structure/window/reinforced/west,
-/obj/machinery/cic_maptable,
-/turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
 "l" = (
 /obj/machinery/vending/nanomed/tadpolemed{
 	dir = 8
@@ -86,11 +81,9 @@
 /turf/open/floor/mainship/floor,
 /area/shuttle/minidropship)
 "s" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/warning_stripes/thick/corner,
-/turf/open/floor/mainship/mono,
+/obj/structure/window/reinforced/west,
+/obj/machinery/cic_maptable,
+/turf/open/floor/plating/plating_catwalk,
 /area/shuttle/minidropship)
 "t" = (
 /obj/structure/closet/walllocker/hydrant/extinguisher{
@@ -124,6 +117,14 @@
 	},
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
+"x" = (
+/obj/effect/turf_decal/warning_stripes/thick{
+	dir = 8;
+	layer = 3
+	},
+/obj/machinery/light,
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
 "y" = (
 /obj/machinery/light{
 	dir = 8
@@ -148,12 +149,6 @@
 "B" = (
 /obj/effect/attach_point/crew_weapon/minidropship,
 /turf/open/floor/plating/plating_catwalk,
-/area/shuttle/minidropship)
-"C" = (
-/obj/effect/turf_decal/warning_stripes/thick/corner{
-	dir = 8
-	},
-/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "D" = (
 /obj/docking_port/mobile/marine_dropship/minidropship,
@@ -218,6 +213,19 @@
 /obj/machinery/telecomms/relay/preset/telecomms/onboard,
 /turf/closed/wall/mainship/outer/canterbury,
 /area/shuttle/minidropship)
+"O" = (
+/obj/effect/turf_decal/warning_stripes/thick/corner{
+	dir = 8
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
+"P" = (
+/obj/machinery/door/poddoor/mainship/open{
+	id = "minidropship_podlock"
+	},
+/obj/machinery/door/poddoor/shutters/transit/nonsmoothing,
+/turf/open/floor/plating/plating_catwalk,
+/area/shuttle/minidropship)
 "R" = (
 /obj/effect/turf_decal/warning_stripes/thick{
 	dir = 8
@@ -265,7 +273,7 @@ A
 a
 u
 u
-a
+P
 A
 X
 "}
@@ -276,7 +284,7 @@ y
 t
 R
 d
-s
+x
 a
 a
 "}
@@ -295,7 +303,7 @@ o
 e
 K
 Y
-C
+O
 D
 S
 I
@@ -305,7 +313,7 @@ L
 (5,1,1) = {"
 n
 n
-k
+s
 E
 F
 B
