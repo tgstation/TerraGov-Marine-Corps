@@ -262,7 +262,9 @@
 	xenoowner.update_wounds()
 
 /datum/action/ability/xeno_action/stealth/disguise/handle_stealth()
-	return
+	if(!xeno_owner.plasma_stored)
+		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
+		cancel_stealth()
 
 // ***************************************
 // *********** Hunter's Pounce
