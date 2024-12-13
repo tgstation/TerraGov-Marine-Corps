@@ -191,7 +191,6 @@ SUBSYSTEM_DEF(explosions)
 	if(flash_range)
 		for(var/mob/living/carbon/carbon_viewers in viewers(flash_range, epicenter))
 			carbon_viewers.flash_act()
-			carbon_viewers.see
 
 	var/list/turfs_in_range = block(
 		locate(
