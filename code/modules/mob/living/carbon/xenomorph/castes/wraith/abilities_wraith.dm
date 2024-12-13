@@ -577,6 +577,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	user.forceMove(get_turf(linked_portal))
 
+/obj/effect/wraith_portal/lava_act()
+	return
+
 /// Link two portals
 /obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)
 	linked_portal = portal_to_link

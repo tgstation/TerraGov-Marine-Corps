@@ -8,7 +8,7 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/supplydrop
 	///Time between two supply drops
-	var/launch_cooldown = 30 SECONDS
+	var/launch_cooldown = 15 SECONDS
 	///The beacon we will send the supplies
 	var/datum/supply_beacon/supply_beacon = null
 	///The linked supply pad of this console

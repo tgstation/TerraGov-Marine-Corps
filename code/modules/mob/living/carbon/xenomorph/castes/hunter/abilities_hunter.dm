@@ -15,6 +15,8 @@
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
 	var/stealth_alpha_multiplier = 1
+	///Damage taken during stealth
+	var/total_damage_taken = 0
 
 /datum/action/ability/xeno_action/stealth/remove_action(mob/living/L)
 	if(stealth)
@@ -109,6 +111,7 @@
 	can_sneak_attack = FALSE
 	REMOVE_TRAIT(owner, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT)
 	owner.alpha = initial(owner.alpha)
+	total_damage_taken = 0
 
 ///Signal wrapper to verify that an object is damageable before breaking stealth
 /datum/action/ability/xeno_action/stealth/proc/on_obj_attack(datum/source, obj/attacked)
@@ -127,6 +130,7 @@
 ///Updates or cancels stealth
 /datum/action/ability/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
+	total_damage_taken = max(total_damage_taken - 10, 0)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
 	//Initial stealth
 	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
@@ -195,8 +199,9 @@
 ///Breaks stealth if sufficient damage taken
 /datum/action/ability/xeno_action/stealth/proc/damage_taken(mob/living/carbon/xenomorph/X, damage_taken)
 	SIGNAL_HANDLER
+	total_damage_taken += damage_taken
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(damage_taken > xenoowner.xeno_caste.stealth_break_threshold)
+	if(total_damage_taken > xenoowner.xeno_caste.stealth_break_threshold)
 		cancel_stealth()
 
 ///Modifier to plasma regen when stealthed
@@ -290,17 +295,11 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
+	if(!A)
 		return FALSE
-	if(!A || A.layer >= FLY_LAYER)
-		return FALSE
+	return ..()
 
 /datum/action/ability/activable/xeno/pounce/use_ability(atom/A)
-	if(owner.layer != MOB_LAYER)
-		owner.layer = MOB_LAYER
-		var/datum/action/ability/xeno_action/xenohide/hide_action = owner.actions_by_path[/datum/action/ability/xeno_action/xenohide]
-		hide_action?.button?.cut_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
 	if(owner.buckled)
 		owner.buckled.unbuckle_mob(owner)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))

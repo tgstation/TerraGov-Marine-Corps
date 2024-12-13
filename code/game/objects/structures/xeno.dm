@@ -187,7 +187,6 @@
 		toggle_state()
 		return TRUE
 
-
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
