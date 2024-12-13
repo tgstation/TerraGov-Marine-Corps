@@ -21,7 +21,7 @@
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 400
 
 	// *** Evolution *** //
 	// The only evolution path does not require threshold
