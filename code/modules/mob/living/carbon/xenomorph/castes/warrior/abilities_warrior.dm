@@ -271,7 +271,7 @@
 		living_target.resistance_flags |= RESTRAINED_NECKGRAB
 		living_target.drop_all_held_items()
 		living_target.Paralyze(0.1 SECONDS)
-		living_target.balloon_alert(src, "Grabbed [living_target]")
+		living_target.balloon_alert(xeno_owner, "Grabbed [living_target]")
 
 	xeno_owner.swap_hand()
 	var/datum/action/ability/xeno_action/empower/empower_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/empower]
