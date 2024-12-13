@@ -107,8 +107,6 @@ SUBSYSTEM_DEF(explosions)
 	if(isnull(throw_range))
 		throw_range = max(devastation_range, heavy_impact_range, light_impact_range)
 
-	var/orig_max_distance = max(devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range)
-
 	var/max_range = max(devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flame_range, throw_range)
 	var/started_at = REALTIMEOFDAY
 
@@ -131,12 +129,11 @@ SUBSYSTEM_DEF(explosions)
 	far_dist += heavy_impact_range * 5
 	far_dist += devastation_range * 20
 
+	var/frequency = GET_RAND_FREQUENCY
+	var/sound/explosion_sound = SFX_EXPLOSION_LARGE
+	var/sound/far_explosion_sound = SFX_EXPLOSION_LARGE_DISTANT
+	var/sound/creak_sound = SFX_EXPLOSION_CREAK
 	if(!silent)
-		var/frequency = GET_RAND_FREQUENCY
-		var/sound/explosion_sound = SFX_EXPLOSION_LARGE
-		var/sound/far_explosion_sound = SFX_EXPLOSION_LARGE_DISTANT
-		var/sound/creak_sound = SFX_EXPLOSION_CREAK
-
 		if(devastation_range)
 			explosion_sound = SFX_EXPLOSION_LARGE
 		else if(heavy_impact_range)
@@ -148,37 +145,40 @@ SUBSYSTEM_DEF(explosions)
 		far_explosion_sound = sound(get_sfx(far_explosion_sound))
 		creak_sound = sound(get_sfx(creak_sound))
 
-		var/list/listeners = SSmobs.clients_by_zlevel[epicenter.z].Copy()
-		for(var/mob/ai_eye AS in GLOB.aiEyes)
-			var/turf/eye_turf = get_turf(ai_eye)
-			if(!eye_turf || eye_turf.z != epicenter.z)
-				continue
-			listeners += ai_eye
+	var/list/listeners = SSmobs.clients_by_zlevel[epicenter.z].Copy()
+	for(var/mob/ai_eye AS in GLOB.aiEyes)
+		var/turf/eye_turf = get_turf(ai_eye)
+		if(!eye_turf || eye_turf.z != epicenter.z)
+			continue
+		listeners += ai_eye
 
-		for(var/mob/listener AS in listeners|SSmobs.dead_players_by_zlevel[epicenter.z])
-			var/turf/M_turf = get_turf(listener)
-			var/dist = get_dist(M_turf, epicenter)
-			if(dist > far_dist)
-				continue
-			var/baseshakeamount
-			if(orig_max_distance - dist > 0)
-				baseshakeamount = sqrt((orig_max_distance - dist)*0.1)
-			// If inside the blast radius + world.view - 2
-			if(dist <= round(max_range + world.view - 2, 1))
+	for(var/mob/listener AS in listeners|SSmobs.dead_players_by_zlevel[epicenter.z])
+		var/dist = get_dist(get_turf(listener), epicenter)
+		if(dist > far_dist)
+			continue
+
+		var/baseshakeamount
+		var/shake_max_distance = max(devastation_range, heavy_impact_range, light_impact_range, flame_range)
+		if(shake_max_distance - dist > 0)
+			baseshakeamount = sqrt((shake_max_distance - dist)*0.1)
+
+		if(dist <= round(max_range + world.view - 2, 1))
+			if(baseshakeamount > 0)
+				shake_camera(listener, 15, clamp(baseshakeamount, 0, 5))
+			if(!silent)
 				listener.playsound_local(epicenter, explosion_sound, 75, 1, frequency, falloff = 5)
 				if(is_mainship_level(epicenter.z))
 					listener.playsound_local(epicenter, creak_sound, 40, 1, frequency, falloff = 5)//ship groaning under explosion effect
-				if(baseshakeamount > 0)
-					shake_camera(listener, 15, clamp(baseshakeamount, 0, 5))
-				continue
-			// You hear a far explosion if you're outside the blast radius. Small bombs shouldn't be heard all over the station.
-			var/far_volume = clamp(far_dist, 30, 60) // Volume is based on explosion size and dist
+			continue
+
+		if(baseshakeamount > 0)
+			shake_camera(listener, 7, clamp(baseshakeamount*0.15, 0, 1.5))
+		if(!silent)
+			var/far_volume = clamp(far_dist, 30, 60)
 			far_volume += (dist <= far_dist * 0.5 ? 50 : 0) // add 50 volume if the mob is pretty close to the explosion
 			listener.playsound_local(epicenter, far_explosion_sound, far_volume, 1, frequency, falloff = 5)
 			if(is_mainship_level(epicenter.z))
 				listener.playsound_local(epicenter, creak_sound, far_volume*3, 1, frequency, falloff = 5)//ship groaning under explosion effect
-			if(baseshakeamount > 0)
-				shake_camera(listener, 7, clamp(baseshakeamount*0.15, 0, 1.5))
 
 	if(devastation_range > 0)
 		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, FALSE, TRUE)
@@ -191,6 +191,7 @@ SUBSYSTEM_DEF(explosions)
 	if(flash_range)
 		for(var/mob/living/carbon/carbon_viewers in viewers(flash_range, epicenter))
 			carbon_viewers.flash_act()
+			carbon_viewers.see
 
 	var/list/turfs_in_range = block(
 		locate(
