@@ -418,6 +418,16 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
 
+	//list of active tunnels
+	var/list/tunnels = list()
+	///Number of huggers the xeno is currently carrying
+	var/huggers = 0
+
+	var/datum/effect_system/smoke_spread/xeno/smoke
+	//Boiler ammo
+	var/corrosive_ammo = 0
+	var/neuro_ammo = 0
+
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 
 	///The resting cooldown

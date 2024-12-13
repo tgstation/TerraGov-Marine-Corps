@@ -39,7 +39,7 @@
 	. = ..()
 	hud_set_evasion()
 
-/mob/living/carbon/xenomorph/runner/proc/hud_set_evasion(duration)
+/mob/living/carbon/xenomorph/proc/hud_set_evasion(duration) //todo: this can probs be in the action
 	var/image/holder = hud_list[XENO_EVASION_HUD]
 	if(!holder)
 		return

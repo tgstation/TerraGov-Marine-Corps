@@ -454,6 +454,20 @@
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 	a_intent = INTENT_HARM
 
+///Checks for nearby intact weeds
+/mob/living/carbon/xenomorph/proc/check_weeds(turf/T, strict_turf_check = FALSE)
+	SHOULD_BE_PURE(TRUE)
+	if(isnull(T))
+		return FALSE
+	. = TRUE
+	if(locate(/obj/fire/flamer) in T)
+		return FALSE
+	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
+		if(QDESTROYING(W))
+			continue
+		return
+	return FALSE
+
 /// Handles logic for weeds nearby the xeno getting removed
 /mob/living/carbon/xenomorph/proc/handle_weeds_adjacent_removed(datum/source)
 	SIGNAL_HANDLER

@@ -14,16 +14,12 @@
 	upgrade = XENO_UPGRADE_NORMAL
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
-	var/datum/effect_system/smoke_spread/xeno/smoke
-	//Boiler ammo
-	var/corrosive_ammo = 0
-	var/neuro_ammo = 0
 
 /mob/living/carbon/xenomorph/boiler/get_liquid_slowdown()
 	return BOILER_WATER_SLOWDOWN
 
 ///updates the boiler's glow, based on its base glow/color, and its ammo reserves. More green ammo = more green glow; more yellow = more yellow.
-/mob/living/carbon/xenomorph/boiler/proc/update_boiler_glow()
+/mob/living/carbon/xenomorph/proc/update_boiler_glow() //todo: move to ability
 	var/current_ammo = corrosive_ammo + neuro_ammo
 	var/ammo_glow = BOILER_LUMINOSITY_AMMO * current_ammo
 	var/glow = CEILING(BOILER_LUMINOSITY_BASE + ammo_glow, 1)
@@ -45,7 +41,6 @@
 	. = ..()
 	smoke = new /datum/effect_system/smoke_spread/xeno/acid/opaque(src)
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
-	update_boiler_glow()
 	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, PROC_REF(gib_explode))
 
 // ***************************************

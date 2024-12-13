@@ -8,13 +8,12 @@
 	cooldown_duration = 40 SECONDS
 
 /datum/action/ability/activable/xeno/spray_acid/cone/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/target = get_turf(A)
 
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
 
-	if(!do_after(X, 5, NONE, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno_owner, 5, NONE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
@@ -25,20 +24,19 @@
 
 	succeed_activate()
 
-	playsound(X.loc, 'sound/effects/refill.ogg', 25, 1)
-	X.visible_message(span_xenowarning("\The [X] spews forth a wide cone of acid!"), \
+	playsound(xeno_owner.loc, 'sound/effects/refill.ogg', 25, 1)
+	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] spews forth a wide cone of acid!"), \
 	span_xenowarning("We spew forth a cone of acid!"), null, 5)
 
-	X.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 1)
-	start_acid_spray_cone(target, X.xeno_caste.acid_spray_range)
+	xeno_owner.add_movespeed_modifier(type, TRUE, 0, NONE, TRUE, 1)
+	start_acid_spray_cone(target, xeno_owner.xeno_caste.acid_spray_range)
 	add_cooldown()
 	addtimer(CALLBACK(src, PROC_REF(reset_speed)), rand(2 SECONDS, 3 SECONDS))
 
 /datum/action/ability/activable/xeno/spray_acid/cone/proc/reset_speed()
-	var/mob/living/carbon/xenomorph/spraying_xeno = owner
-	if(QDELETED(spraying_xeno))
+	if(QDELETED(xeno_owner))
 		return
-	spraying_xeno.remove_movespeed_modifier(type)
+	xeno_owner.remove_movespeed_modifier(type)
 
 /datum/action/ability/activable/xeno/spray_acid/ai_should_start_consider()
 	return TRUE
@@ -90,8 +88,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			break
 	if(is_blocked)
 		return
-
-	var/mob/living/carbon/xenomorph/praetorian/xeno_owner = owner
 
 	var/obj/effect/xenomorph/spray/spray = new(T, xeno_owner.xeno_caste.acid_spray_duration, xeno_owner.xeno_caste.acid_spray_damage, xeno_owner)
 	var/turf/next_normal_turf = get_step(T, facing)
@@ -227,8 +223,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/charge/acid_dash/use_ability(atom/A)
 	if(!A)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-
 	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
 	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
@@ -258,7 +252,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /datum/action/ability/activable/xeno/charge/acid_dash/charge_complete()
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(recast_available)
 		addtimer(CALLBACK(src, PROC_REF(charge_complete)), 2 SECONDS) //Delayed recursive call, this time you won't gain a recast so it will go on cooldown in 2 SECONDS.
 		recast = TRUE
@@ -273,7 +266,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/charge/acid_dash/proc/acid_steps(atom/A, atom/OldLoc, Dir, Forced)
 	SIGNAL_HANDLER
 	last_turf = OldLoc
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	new /obj/effect/xenomorph/spray(get_turf(xeno_owner), 5 SECONDS, xeno_owner.xeno_caste.acid_spray_damage) //Add a modifier here to buff the damage if needed
 	for(var/obj/O in get_turf(xeno_owner))
 		O.acid_spray_act(xeno_owner)
@@ -381,7 +373,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/impale/use_ability(atom/target_atom)
 	. = ..()
 
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(!iscarbon(target_atom))
 		return
 	var/mob/living/carbon/living_target = target_atom
@@ -399,7 +390,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /// Performs the main effect of impale ability like animating and attacking.
 /datum/action/ability/activable/xeno/impale/proc/try_impale(mob/living/carbon/living_target)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/damage = (xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier)
 	xeno_owner.face_atom(living_target)
 	xeno_owner.do_attack_animation(living_target, ATTACK_EFFECT_REDSLASH)
@@ -454,8 +444,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /datum/action/ability/activable/xeno/tail_trip/use_ability(atom/target_atom)
 	. = ..()
-
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(!iscarbon(target_atom))
 		return
 
