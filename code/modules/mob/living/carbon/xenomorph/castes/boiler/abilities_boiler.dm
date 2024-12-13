@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	else
 		xeno_owner.neuro_ammo++
 		xeno_owner.balloon_alert(xeno_owner,"Neuro globule prepared")
-	xeno_owner.update_boiler_glow()
+	xeno_owner.update_ammo_glow()
 	update_button_icon()
 
 /datum/action/ability/xeno_action/create_boiler_bomb/update_button_icon()
@@ -291,7 +291,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		xeno_owner.neuro_ammo--
 	owner.record_war_crime()
 
-	xeno_owner.update_boiler_glow()
+	xeno_owner.update_ammo_glow()
 	update_button_icon()
 	add_cooldown()
 
