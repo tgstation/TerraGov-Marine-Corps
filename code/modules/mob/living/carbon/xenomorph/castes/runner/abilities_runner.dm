@@ -159,11 +159,26 @@
 	return (hp_left_percent < 0.5)
 
 /datum/action/ability/xeno_action/evasion/process()
-	xeno_owner.hud_set_evasion(evasion_duration)
+	hud_set_evasion(evasion_duration)
 	if(evasion_duration <= 0)
 		evasion_deactivate()
 		return
 	evasion_duration--
+
+///Sets the evasion duration hud
+/datum/action/ability/xeno_action/evasion/proc/hud_set_evasion(duration)
+	var/image/holder = xeno_owner.hud_list[XENO_EVASION_HUD]
+	if(!holder)
+		return
+	holder.overlays.Cut()
+	holder.icon_state = ""
+	if(xeno_owner.stat == DEAD || !duration)
+		return
+	holder.icon = 'icons/mob/hud/xeno.dmi'
+	holder.icon_state = "evasion_duration[duration]"
+	holder.pixel_x = 24
+	holder.pixel_y = 24
+	xeno_owner.hud_list[XENO_EVASION_HUD] = holder
 
 /**
  * Called when the owner is hit by a flamethrower projectile.
@@ -211,7 +226,7 @@
 	evasion_duration = 0
 	owner.balloon_alert(owner, "Evasion ended")
 	owner.playsound_local(owner, 'sound/voice/hiss5.ogg', 50)
-	xeno_owner.hud_set_evasion(evasion_duration)
+	hud_set_evasion(evasion_duration)
 
 /// Determines whether or not a thrown projectile is dodged while the Evasion ability is active
 /datum/action/ability/xeno_action/evasion/proc/evasion_throw_dodge(datum/source, atom/movable/proj)
