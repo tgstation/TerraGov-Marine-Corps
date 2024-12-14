@@ -1581,11 +1581,6 @@
 /obj/structure/bed/chair,
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail)
-"iE" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/space/basic,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/caves)
 "iF" = (
 /turf/open/floor/tile/dark/green2/corner{
 	dir = 1
@@ -1887,10 +1882,6 @@
 	},
 /turf/open/shuttle/dropship/seven,
 /area/icy_caves/caves/northwestmonorail)
-"kp" = (
-/turf/open/space/basic,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/caves)
 "kr" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating/mainship,
@@ -3354,10 +3345,6 @@
 	dir = 9
 	},
 /area/icy_caves/outpost/medbay)
-"ry" = (
-/turf/open/space/basic,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/icy_caves/outpost/outside)
 "rz" = (
 /obj/structure/table,
 /obj/effect/spawner/random/medical/beaker/largeweighted,
@@ -26598,7 +26585,7 @@ Yl
 Yl
 Yl
 Yl
-kp
+Yl
 ZI
 ZP
 ZP
@@ -26754,7 +26741,7 @@ Yl
 Yl
 Yl
 Yl
-kp
+Yl
 ZI
 ZP
 ZP
@@ -28457,7 +28444,7 @@ Lv
 XO
 XO
 QP
-iE
+wD
 Yl
 Yl
 Yl
@@ -28769,7 +28756,7 @@ Za
 OW
 XO
 pR
-iE
+wD
 Yl
 Yl
 Yl
@@ -28925,7 +28912,7 @@ XO
 XO
 pR
 Za
-iE
+wD
 Yl
 ZP
 ZP
@@ -29079,8 +29066,8 @@ XO
 XO
 XO
 mU
-ry
-kp
+Za
+Yl
 Hx
 Mr
 Mr
@@ -29234,7 +29221,7 @@ iK
 OW
 XO
 pR
-ry
+Za
 ZP
 ZP
 ZP
