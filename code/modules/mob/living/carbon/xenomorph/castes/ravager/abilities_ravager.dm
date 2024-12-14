@@ -252,9 +252,6 @@
 	///Timer for Endure's warning
 	var/endure_warning_duration
 
-/datum/action/ability/xeno_action/endure/nocost
-	ability_cost = 0
-
 /datum/action/ability/xeno_action/endure/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We feel able to imbue ourselves with plasma to Endure once again!"))
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
@@ -372,9 +369,6 @@
 	var/rage_sunder
 	///Determines the Plasma to remove when Rage ends
 	var/rage_plasma
-
-/datum/action/ability/xeno_action/rage/nocost
-	ability_cost = 0
 
 /datum/action/ability/xeno_action/rage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We are able to enter our rage once again."))
@@ -632,7 +626,7 @@
 
 /datum/action/ability/xeno_action/bloodthirst
 	name = "bloodthirst"
-	desc = "tivi todo"
+	desc = "Passive ability for generating bloodthirst"
 	hidden = TRUE
 	///tick time of last time we attacked a human
 	var/last_fight_time
@@ -714,7 +708,7 @@
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(on_attack))
 	damage_dealt = 0
 	xeno.use_plasma(-xeno.xeno_caste.plasma_max) // fill it to the max so they can kill better
-	xeno.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_DEATHMARK, TRUE, 0, NONE, TRUE, -1.5) //Extra speed so they can get to where to kill better
+	xeno.add_movespeed_modifier(MOVESPEED_ID_RAVAGER_DEATHMARK, TRUE, 0, NONE, TRUE, -0.75) //Extra speed so they can get to where to kill better
 	xeno.emote("roar")
 	add_cooldown()
 

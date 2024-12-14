@@ -95,56 +95,32 @@
 	upgrade_name = ""
 	caste_desc = "A thirsting fighter that knows no rest."
 	caste_type_path = /mob/living/carbon/xenomorph/ravager/bloodthirster
-	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "ravager" //used to match appropriate wound overlays
-
-	// *** Melee Attacks *** //
-	melee_damage = 25
-	melee_ap = 15
-	attack_delay = 7
-
-	// *** Speed *** //
-	speed = -1.0
 
 	// *** Plasma *** //
 	plasma_max = 500
 	plasma_gain = 0
-	plasma_regen_limit = 0.5 // tivi todo
 	plasma_icon_state = "fury"
-
-	// *** Health *** //
-	max_health = 400
-
-	// *** Evolution *** //
-	upgrade_threshold = TIER_THREE_THRESHOLD
-
-	deevolves_to = /datum/xeno_caste/hunter
 
 	// *** Flags *** //
 	caste_flags = CASTE_INNATE_PLASMA_REGEN|CASTE_PLASMADRAIN_IMMUNE|CASTE_EVOLUTION_ALLOWED
 	can_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_LEADER
 	caste_traits = null
 
-	// *** Defense *** //
-	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 70, ACID = 40)
-
-	// *** Minimap Icon *** //
-	minimap_icon = "ravager"
-
 	// *** Abilities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/charge/nocost,
-		/datum/action/ability/activable/xeno/ravage/nocost,
-		/datum/action/ability/xeno_action/endure/nocost,
-		/datum/action/ability/xeno_action/rage/nocost,
-		/datum/action/ability/xeno_action/bloodthirst,
+		/datum/action/ability/activable/xeno/charge,
+		/datum/action/ability/activable/xeno/ravage,
+		/datum/action/ability/xeno_action/endure,
+		/datum/action/ability/xeno_action/rage,
+		/datum/action/ability/xeno_action,
 	)
 	plasma_damage_dealt_mult = 2
-	plasma_damage_recieved_mult = 0.5
+	plasma_damage_recieved_mult = 0.75
 
 /datum/xeno_caste/ravager/bloodthirster/normal
 	upgrade = XENO_UPGRADE_NORMAL
@@ -160,10 +136,10 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/charge/nocost,
-		/datum/action/ability/activable/xeno/ravage/nocost,
-		/datum/action/ability/xeno_action/endure/nocost,
-		/datum/action/ability/xeno_action/rage/nocost,
+		/datum/action/ability/activable/xeno/charge,
+		/datum/action/ability/activable/xeno/ravage,
+		/datum/action/ability/xeno_action/endure,
+		/datum/action/ability/xeno_action/rage,
 		/datum/action/ability/xeno_action/bloodthirst,
 		/datum/action/ability/xeno_action/deathmark,
 	)
