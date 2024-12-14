@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed silos not alerting if a vehicle approached"
+  - bugfix: "fixed xeno structures detecting things on old z-levels"
+  - code_imp: "Reworked some xeno structure damage and proximity alert code"
