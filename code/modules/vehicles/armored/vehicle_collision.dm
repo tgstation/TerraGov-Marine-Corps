@@ -42,7 +42,8 @@
 		return 0
 	log_attack("[key_name(pilot)] drove into [key_name(src)] with [veh]")
 	throw_at(get_step(get_step(loc, facing), facing), 3, 2, veh, 1)
-	return take_overall_damage(ram_damage, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 4)
+	//half damage to mobs since it was megabuffed.
+	return take_overall_damage(ram_damage/2, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 4)
 
 
 /mob/living/carbon/xenomorph/larva/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
@@ -50,7 +51,7 @@
 
 /obj/effect/alien/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	. = ..()
-	take_damage(ram_damage, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
+	take_damage(ram_damage/2, BRUTE, MELEE, TRUE, REVERSE_DIR(facing), 0, pilot)
 
 /obj/effect/alien/weeds/vehicle_collision(obj/vehicle/sealed/armored/veh, facing, mob/pilot, ram_damage = veh.ram_damage)
 	return

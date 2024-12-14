@@ -15,7 +15,7 @@
 	max_integrity = 900
 	soft_armor = list(MELEE = 40, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 40, ACID = 40)
 	max_occupants = 20 //Clown car? Clown car.
-	enter_delay = 0.5 SECONDS
+	enter_delay = 0.4 SECONDS
 	ram_damage = 50
 	move_delay = 0.4 SECONDS
 	easy_load_list = list(
