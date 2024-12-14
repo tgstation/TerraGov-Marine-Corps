@@ -117,7 +117,7 @@
 		/datum/action/ability/activable/xeno/ravage,
 		/datum/action/ability/xeno_action/endure,
 		/datum/action/ability/xeno_action/rage,
-		/datum/action/ability/xeno_action,
+		/datum/action/ability/xeno_action/bloodthirst,
 	)
 	plasma_damage_dealt_mult = 2
 	plasma_damage_recieved_mult = 0.75

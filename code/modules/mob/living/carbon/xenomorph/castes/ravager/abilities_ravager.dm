@@ -18,9 +18,6 @@
 	///charge distance
 	var/charge_range = RAV_CHARGEDISTANCE
 
-/datum/action/ability/activable/xeno/charge/nocost
-	ability_cost = 0
-
 /datum/action/ability/activable/xeno/charge/use_ability(atom/A)
 	if(!A)
 		return
@@ -126,9 +123,6 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
-/datum/action/ability/activable/xeno/ravage/nocost
-	ability_cost = 0
-
 /datum/action/ability/activable/xeno/ravage/on_cooldown_finish()
 	to_chat(owner, span_xenodanger("We gather enough strength to Ravage again."))
 	playsound(owner, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
@@ -152,16 +146,18 @@
 	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
 		if(X.plasma_stored >= STAGE_TWO_BLOODTHIRST)
 			var/turf/far = get_step(get_step(owner, owner.dir), owner.dir)
-			atoms_to_ravage += far.contents
-			atoms_to_ravage += get_step(far, turn(owner.dir, 90)).contents
-			atoms_to_ravage += get_step(far, turn(owner.dir, -90)).contents
-			var/turf/test = get_step(owner, owner.dir)
-			if(X.plasma_stored >= STAGE_THREE_BLOODTHIRST && test.Adjacent(far))
-				adjacent_relative = far
-				var/turf/furthest = get_step(far, owner.dir)
-				atoms_to_ravage += furthest.contents
-				atoms_to_ravage += get_step(furthest, turn(owner.dir, 90)).contents
-				atoms_to_ravage += get_step(furthest, turn(owner.dir, -90)).contents
+			if(!far.density)
+				atoms_to_ravage += far.contents
+				atoms_to_ravage += get_step(far, turn(owner.dir, 90)).contents
+				atoms_to_ravage += get_step(far, turn(owner.dir, -90)).contents
+				var/turf/temptstep = get_step(owner, owner.dir)
+				if(X.plasma_stored >= STAGE_THREE_BLOODTHIRST && temptstep.Adjacent(far))
+					adjacent_relative = far
+					var/turf/furthest = get_step(far, owner.dir)
+					if(!furthest.density)
+						atoms_to_ravage += furthest.contents
+						atoms_to_ravage += get_step(furthest, turn(owner.dir, 90)).contents
+						atoms_to_ravage += get_step(furthest, turn(owner.dir, -90)).contents
 
 	for(var/atom/movable/ravaged AS in atoms_to_ravage)
 		if(ishitbox(ravaged) || isvehicle(ravaged))
