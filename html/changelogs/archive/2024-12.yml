@@ -61,3 +61,6 @@
       -> 300
   - balance: Increases the price of scout rifle impact & incendiary magazine reqtorio
       refills from 200 -> 600
+2024-12-14:
+  Lumipharon:
+  - bugfix: fixed directional attacks trying to hit ghosts
