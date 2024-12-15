@@ -74,7 +74,7 @@ export const MESSAGE_TYPES = [
     name: 'Warnings',
     description: 'Urgent messages from the game and items, usually combat messages',
     selector:
-      '.warning, .boldwarning, .xenowarning, .danger, .xenodanger, .userdanger, .xenouserdanger, .xenoannounce',
+      '.alert, .warning, .boldwarning, .xenowarning, .danger, .xenodanger, .userdanger, .xenouserdanger, .xenoannounce',
   },
   {
     type: MESSAGE_TYPE_DEADCHAT,
@@ -100,7 +100,7 @@ export const MESSAGE_TYPES = [
     name: 'Combat Log',
     description: 'Urist McTraitor has stabbed you with a knife!',
     selector:
-      '.danger, .userdanger, .xenodanger, .xenouserdanger, .alert, .attack, .moderate, .disarm, .passive',
+      '.danger, .userdanger, .xenodanger, .xenouserdanger, .attack, .moderate, .disarm, .passive',
   },
   {
     type: MESSAGE_TYPE_UNKNOWN,
