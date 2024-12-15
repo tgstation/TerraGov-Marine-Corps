@@ -503,9 +503,9 @@
 			continue
 		msg += "[span_boldwarning("[t_He] [t_has] \a [embedded] sticking out of [t_his] flesh!")]\n"
 
-	if(flavor_text)
+	/*if(flavor_text)
 		msg += separator_hr("Flavor Text")
-		msg += "</span>[flavor_text]<span class='info'>"
+		msg += "</span>[flavor_text]<span class='info'>"*/
 
 	if(hasHUD(user,"security"))
 		msg += separator_hr("Security HUD")
