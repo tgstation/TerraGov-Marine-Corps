@@ -40,3 +40,32 @@
   blackdav123:
   - balance: 'Defiler: Speed increased by .1'
   - balance: Supply drop console cooldown reduced from 30 seconds to 15.
+2024-12-13:
+  Aporhtonoma:
+  - balance: tesla rifle can use recharger batteries
+  Lumipharon:
+  - balance: Plasma gun ammo has been confined to req
+  - bugfix: fixed a leap layering issue for xenos
+  Mannybrado:
+  - balance: uncrushable tile in the outrider tad has been opened (side door made
+      3 tiles, windows extended to include north side walls)
+  Runian:
+  - rscadd: Primordial Warlock can use their psychic shield to reflect projectiles
+      in exchange for reduced shield health.
+  YehnBeep:
+  - qol: eshield's description now notes that the eshield module reduces a marine's
+      armor to certain damage types. (Resistances on the module are unchanged, this
+      change is strictly informational).
+  yyzsong:
+  - balance: Increases the price of scout rifle magazine reqtorio refills from 200
+      -> 300
+  - balance: Increases the price of scout rifle impact & incendiary magazine reqtorio
+      refills from 200 -> 600
+2024-12-14:
+  Lumipharon:
+  - bugfix: fixed directional attacks trying to hit ghosts
+2024-12-15:
+  Lumipharon:
+  - bugfix: fixed silos not alerting if a vehicle approached
+  - bugfix: fixed xeno structures detecting things on old z-levels
+  - code_imp: Reworked some xeno structure damage and proximity alert code
