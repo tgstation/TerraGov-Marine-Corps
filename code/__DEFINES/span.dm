@@ -80,7 +80,7 @@
 #define span_xenoannounce(str) ("<span class='xenoannounce'>" + str + "</span>")
 #define span_xenodanger(str) ("<span class='xenodanger'>" + str + "</span>")
 #define span_xenonotice(str) ("<span class='xenonotice'>" + str + "</span>")
-#define span_xenouserdanger(str) ("<span class='xenohighdanger'>" + str + "</span>")
+#define span_xenouserdanger(str) ("<span class='xenouserdanger'>" + str + "</span>")
 #define span_xenowarning(str) ("<span class='xenowarning'>" + str + "</span>")
 #define span_yell(str) ("<span class='yell'>" + str + "</span>")
 #define span_deptradio(str) ("<span class='deptradio'>" + str + "</span>")
