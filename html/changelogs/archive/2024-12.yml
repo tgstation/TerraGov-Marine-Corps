@@ -64,3 +64,8 @@
 2024-12-14:
   Lumipharon:
   - bugfix: fixed directional attacks trying to hit ghosts
+2024-12-15:
+  Lumipharon:
+  - bugfix: fixed silos not alerting if a vehicle approached
+  - bugfix: fixed xeno structures detecting things on old z-levels
+  - code_imp: Reworked some xeno structure damage and proximity alert code
