@@ -72,7 +72,8 @@ export const MESSAGE_TYPES = [
   {
     type: MESSAGE_TYPE_WARNING,
     name: 'Warnings',
-    description: 'Urgent messages from the game and items, usually combat messages',
+    description:
+      'Urgent messages from the game and items, usually combat messages',
     selector:
       '.alert, .warning, .boldwarning, .xenowarning, .danger, .xenodanger, .userdanger, .xenouserdanger, .xenoannounce',
   },
