@@ -917,7 +917,6 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 			var/newtype = text2path(params["type"])
 			if(!ispath(newtype, /obj/vehicle/sealed/armored))
 				return
-			var/obj/vehicle/sealed/armored/tank_type = newtype
 			current_veh_type = newtype
 			. = TRUE
 
