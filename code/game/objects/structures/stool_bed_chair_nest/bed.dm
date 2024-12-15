@@ -821,6 +821,7 @@ GLOBAL_LIST_EMPTY(activated_medevac_stretchers)
 
 /obj/item/roller/bedroll/sec
 	name = "folded quik-clap bedroll"
+	icon = 'icons/ntfcustom.dmi'
 	icon_state = "bedroll_sec"
 	desc = "Corpsec Standard issue bedroll to deliver express hole-gaping punishments with comfort of a bed for the slut/stud-curity."
 	rollertype = /obj/structure/bed/bedroll/sec
