@@ -60,8 +60,10 @@
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TRIGGER_PSYCHIC_SHIELD,
 	)
 	use_state_flags = ABILITY_USE_BUSY
-	/// The actual shield object created by this ability
+	/// The actual shield object created by this ability.
 	var/obj/effect/xeno/shield/active_shield
+	/// Whether to use the alternative mode of projectile reflection. Makes shields weaker, but sends projectiles toward a selected target.
+	var/alternative_reflection = FALSE
 
 /datum/action/ability/activable/xeno/psychic_shield/remove_action(mob/M)
 	if(active_shield)
@@ -78,20 +80,28 @@
 	if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
 		INVOKE_ASYNC(src, PROC_REF(use_ability))
 
+/datum/action/ability/activable/xeno/psychic_shield/action_activate()
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(xeno_owner.selected_ability == src && xeno_owner.upgrade == XENO_UPGRADE_PRIMO)
+		alternative_reflection = !alternative_reflection
+		// Reflects projectiles toward a target (targetted) / reflects projectiles as if it was bounced (normal).
+		owner.balloon_alert(owner, alternative_reflection ? "targetted reflection" : "normal reflection")
+	return ..()
 
-/datum/action/ability/activable/xeno/psychic_shield/use_ability(atom/A)
+/datum/action/ability/activable/xeno/psychic_shield/use_ability(atom/targetted_atom)
 	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(active_shield)
 		if(ability_cost > xeno_owner.plasma_stored)
 			owner.balloon_alert(owner, "[ability_cost - xeno_owner.plasma_stored] more plasma!")
 			return FALSE
 		if(can_use_action(FALSE, ABILITY_USE_BUSY))
-			shield_blast()
+			shield_blast(targetted_atom)
 			cancel_shield()
 		return
 
-	if(A)
-		owner.dir = get_cardinal_dir(owner, A) //if activated by mouse click, we face the atom clicked
+	// If activated by mouse click, face the atom clicked.
+	if(targetted_atom)
+		owner.dir = get_cardinal_dir(owner, targetted_atom)
 
 	var/turf/target_turf = get_step(owner, owner.dir)
 	if(target_turf.density)
@@ -113,7 +123,10 @@
 	GLOB.round_statistics.psy_shields++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "psy_shields")
 
-	active_shield = new(target_turf, owner)
+	if(alternative_reflection)
+		active_shield = new /obj/effect/xeno/shield/special(target_turf, owner)
+	else
+		active_shield = new(target_turf, owner)
 	if(!do_after(owner, 6 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
 		cancel_shield()
 		return
@@ -132,10 +145,10 @@
 		QDEL_NULL(active_shield)
 
 ///AOE knockback triggerable by ending the shield early
-/datum/action/ability/activable/xeno/psychic_shield/proc/shield_blast()
+/datum/action/ability/activable/xeno/psychic_shield/proc/shield_blast(atom/targetted_atom)
 	succeed_activate()
 
-	active_shield.reflect_projectiles()
+	active_shield.reflect_projectiles(targetted_atom)
 
 	owner.visible_message(span_xenowarning("[owner] sends out a huge blast of psychic energy!"), span_xenowarning("We send out a huge blast of psychic energy!"))
 
@@ -189,6 +202,8 @@
 	var/mob/living/carbon/xenomorph/owner
 	///All the projectiles currently frozen by this obj
 	var/list/frozen_projectiles = list()
+	/// If reflecting projectiles should go to a targetted atom.
+	var/alternative_reflection = FALSE
 
 /obj/effect/xeno/shield/Initialize(mapload, creator)
 	. = ..()
@@ -204,6 +219,8 @@
 		bound_width = 96
 		bound_x = -32
 		pixel_x = -32
+	if(alternative_reflection) // The easy alternative to spriting 92 frames.
+		add_atom_colour("#ff000d", FIXED_COLOR_PRIORITY)
 
 /obj/effect/xeno/shield/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
 	if(!(cardinal_move & REVERSE_DIR(dir)))
@@ -233,28 +250,51 @@
 	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles))
 
 ///Reflects projectiles based on their relative incoming angle
-/obj/effect/xeno/shield/proc/reflect_projectiles()
+/obj/effect/xeno/shield/proc/reflect_projectiles(atom/targetted_atom)
 	playsound(loc, 'sound/effects/portal.ogg', 20)
-	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
-	for(var/obj/projectile/proj AS in frozen_projectiles)
-		proj.projectile_behavior_flags &= ~PROJECTILE_FROZEN
-		proj.distance_travelled = 0 //we're effectively firing it fresh
-		var/new_angle = (perpendicular_angle + (perpendicular_angle - proj.dir_angle - 180))
-		if(new_angle < 0)
-			new_angle += 360
-		else if(new_angle > 360)
-			new_angle -= 360
-		proj.fire_at(source = src, angle = new_angle, recursivity = TRUE)
 
-		//Record those sick rocket shots
-		//Is not part of record_projectiles_frozen() because it is probably bad to be running that for every bullet!
-		if(istype(proj.ammo, /datum/ammo/rocket) && owner.client)
-			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
-			personal_statistics.rockets_reflected++
+	var/perpendicular_angle = Get_Angle(get_turf(src), get_step(src, dir)) //the angle src is facing, get_turf because pixel_x or y messes with the angle
+	var/direction_to_atom = angle_to_dir(Get_Angle(src, targetted_atom))
+	for(var/obj/projectile/reflected_projectile AS in frozen_projectiles)
+		reflected_projectile.projectile_behavior_flags &= ~PROJECTILE_FROZEN
+		reflected_projectile.distance_travelled = 0
+
+		// If alternative reflection is on, try to deflect toward the targetted area that we're facing.
+		if(alternative_reflection)
+			var/bad_angle = TRUE
+			switch(dir)
+				if(NORTH)
+					if(direction_to_atom == NORTHWEST || direction_to_atom == NORTH || direction_to_atom == NORTHEAST)
+						bad_angle = FALSE
+				if(EAST)
+					if(direction_to_atom == NORTHEAST || direction_to_atom == EAST || direction_to_atom == SOUTHEAST)
+						bad_angle = FALSE
+				if(SOUTH)
+					if(direction_to_atom == SOUTHEAST || direction_to_atom == SOUTH || direction_to_atom == SOUTHWEST)
+						bad_angle = FALSE
+				if(WEST)
+					if(direction_to_atom == SOUTHWEST || direction_to_atom == WEST || direction_to_atom == NORTHWEST)
+						bad_angle = FALSE
+			if(!bad_angle)
+				reflected_projectile.fire_at(targetted_atom, source = src, recursivity = TRUE)
+				record_rocket_reflection(owner, reflected_projectile)
+				continue
+
+		// If alternative reflection is off OR it fails to get an acceptable angle, reflect it as if it bounced off the shield.
+		var/bounced_angle = perpendicular_angle + (perpendicular_angle - reflected_projectile.dir_angle - 180)
+		if(bounced_angle < 0)
+			bounced_angle += 360
+		else if(bounced_angle > 360)
+			bounced_angle -= 360
+		reflected_projectile.fire_at(source = src, angle = bounced_angle, recursivity = TRUE)
+		record_rocket_reflection(owner, reflected_projectile)
 
 	record_projectiles_frozen(owner, LAZYLEN(frozen_projectiles), TRUE)
 	frozen_projectiles.Cut()
 
+/obj/effect/xeno/shield/special
+	max_integrity = 325
+	alternative_reflection = TRUE
 
 // ***************************************
 // *********** psychic crush

@@ -744,12 +744,12 @@
 /atom/movable/screen/arrow/silo_damaged_arrow
 	name = "Hive damaged tracker arrow"
 	icon_state = "Red_arrow"
-	duration = XENO_SILO_DAMAGE_POINTER_DURATION
+	duration = XENO_STRUCTURE_DAMAGE_POINTER_DURATION
 
 /atom/movable/screen/arrow/turret_attacking_arrow
 	name = "Turret attacking arrow"
 	icon_state = "Green_arrow"
-	duration = XENO_SILO_DAMAGE_POINTER_DURATION
+	duration = XENO_STRUCTURE_DAMAGE_POINTER_DURATION
 
 /atom/movable/screen/arrow/attack_order_arrow
 	name = "attack order arrow"
