@@ -250,7 +250,7 @@
 /datum/action/ability/xeno_action/endure/proc/endure_warning()
 	if(QDELETED(owner))
 		return
-	to_chat(owner,span_highdanger("We feel the plasma draining from our veins... [initial(name)] will last for only [timeleft(endure_duration) * 0.1] more seconds!"))
+	to_chat(owner,span_userdanger("We feel the plasma draining from our veins... [initial(name)] will last for only [timeleft(endure_duration) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Turns off the Endure buff
@@ -280,7 +280,7 @@
 	endure_duration = initial(endure_duration)
 	endure_warning_duration = initial(endure_warning_duration)
 
-	to_chat(owner,span_highdanger("The last of the plasma drains from our body... We can no longer endure beyond our normal limits!"))
+	to_chat(owner,span_userdanger("The last of the plasma drains from our body... We can no longer endure beyond our normal limits!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Warns us when our health is critically low and tells us exactly how much more punishment we can take
@@ -359,7 +359,7 @@
 	var/rage_power_radius = CEILING(rage_power * 7, 1) //Define radius of the SFX
 
 	X.visible_message(span_danger("\The [X] becomes frenzied, bellowing with a shuddering roar!"), \
-	span_highdanger("We bellow as our fury overtakes us! RIP AND TEAR!"))
+	span_userdanger("We bellow as our fury overtakes us! RIP AND TEAR!"))
 	X.do_jitter_animation(1000)
 
 
@@ -432,7 +432,7 @@
 /datum/action/ability/xeno_action/rage/proc/rage_warning(bonus_duration = 0)
 	if(QDELETED(owner))
 		return
-	to_chat(owner,span_highdanger("Our rage begins to subside... [initial(name)] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!"))
+	to_chat(owner,span_userdanger("Our rage begins to subside... [initial(name)] will only last for only [(RAVAGER_RAGE_DURATION + bonus_duration) * (1-RAVAGER_RAGE_WARNING) * 0.1] more seconds!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Warns the user when his rage is about to end.
@@ -472,7 +472,7 @@
 
 	X.remove_filter("ravager_rage_outline")
 	X.visible_message(span_warning("[X] seems to calm down."), \
-	span_highdanger("Our rage subsides and its power leaves our body, leaving us exhausted."))
+	span_userdanger("Our rage subsides and its power leaves our body, leaving us exhausted."))
 
 	X.xeno_melee_damage_modifier = initial(X.xeno_melee_damage_modifier) //Reset rage melee damage bonus
 	X.remove_movespeed_modifier(MOVESPEED_ID_RAVAGER_RAGE) //Reset speed

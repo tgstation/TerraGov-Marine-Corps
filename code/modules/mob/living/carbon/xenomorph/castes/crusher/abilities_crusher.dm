@@ -36,12 +36,12 @@
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "crusher_stomp_victims")
 			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
 			M.Paralyze(3 SECONDS)
-			to_chat(M, span_highdanger("You are stomped on by [X]!"))
+			to_chat(M, span_userdanger("You are stomped on by [X]!"))
 			shake_camera(M, 3, 3)
 		else
 			step_away(M, X, 1) //Knock away
 			shake_camera(M, 2, 2)
-			to_chat(M, span_highdanger("You reel from the shockwave of [X]'s stomp!"))
+			to_chat(M, span_userdanger("You reel from the shockwave of [X]'s stomp!"))
 			M.take_overall_damage(damage, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
 			M.Paralyze(0.5 SECONDS)
 
