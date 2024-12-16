@@ -94,6 +94,7 @@
 		SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "intel[printing ? "_on" : "_off"]", ABOVE_FLOAT_LAYER))
 	else
 		SSminimaps.remove_marker(src)
+
 /obj/machinery/computer/intel_computer/ui_data(mob/user)
 	var/list/data = list()
 	data["logged_in"] = logged_in
@@ -142,5 +143,6 @@
 	progress = 0
 	printing = FALSE
 	printing_complete = FALSE
+	active = TRUE
 	update_icon()
 	update_minimap_icon()
