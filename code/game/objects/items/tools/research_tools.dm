@@ -20,9 +20,20 @@
 		add_filter("translator_on", 4, outline_filter(1, COLOR_CYAN))
 		to_chat(user, span_notice("I turn on the translator, translating xeno language straight to my neural implant."))
 		balloon_alert(user, "turns on")
+		if(ishuman(user) && !ismarinecommandjob(user) && on)
+			if(user.has_language(/datum/language/xenocommon))//failsafe
+				knowsxenolang = TRUE
+				return
+			else
+				knowsxenolang = FALSE
+			user.grant_language(/datum/language/xenocommon)
 	else
 		remove_filter("translator_on")
 		balloon_alert(user, "turns off")
+		if(ishuman(user) && !ismarinecommandjob(user) && on)
+			if(knowsxenolang)
+				return
+			user.remove_language(/datum/language/xenocommon)
 		to_chat(user, span_notice("I turn off the translator."))
 
 /obj/item/tool/research/xeno_analyzer/equipped(mob/living/carbon/human/user, slot)
@@ -42,12 +53,10 @@
 			return
 		unequipper.remove_language(/datum/language/xenocommon)
 
-/* didnt work
 /obj/item/tool/research/xeno_analyzer/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
 	. = ..()
 	if(message_language != /datum/language/common && on) //translates all languages to common.
 		say(message, language = /datum/language/common)
-*/
 
 /obj/item/tool/research/excavation_tool
 	name = "subterrain scanner and excavator"
