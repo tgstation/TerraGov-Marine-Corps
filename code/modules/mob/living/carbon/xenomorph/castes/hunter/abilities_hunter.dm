@@ -295,17 +295,11 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/pounce/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
+	if(!A)
 		return FALSE
-	if(!A || A.layer >= FLY_LAYER)
-		return FALSE
+	return ..()
 
 /datum/action/ability/activable/xeno/pounce/use_ability(atom/A)
-	if(owner.layer != MOB_LAYER)
-		owner.layer = MOB_LAYER
-		var/datum/action/ability/xeno_action/xenohide/hide_action = owner.actions_by_path[/datum/action/ability/xeno_action/xenohide]
-		hide_action?.button?.cut_overlay(mutable_appearance('icons/Xeno/actions/general.dmi', "selected_purple_frame", ACTION_LAYER_ACTION_ICON_STATE, FLOAT_PLANE)) // Removes Hide action icon border
 	if(owner.buckled)
 		owner.buckled.unbuckle_mob(owner)
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(movement_fx))
