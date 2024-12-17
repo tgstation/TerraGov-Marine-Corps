@@ -12,6 +12,9 @@
 	dir = 8
 	},
 /obj/machinery/door/airlock/dropship_hatch/left,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/open/shuttle/dropship/floor/out{
 	dir = 1
 	},
@@ -22,26 +25,36 @@
 /area/shuttle/dropship/alamo)
 "ae" = (
 /obj/structure/dropship_piece/one/cockpit/left,
+/obj/structure/prop/holidays/string_lights/corner,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "af" = (
+/obj/structure/prop/holidays/string_lights,
 /turf/closed/shuttle/dropship1/window,
 /area/shuttle/dropship/alamo)
 "ag" = (
+/obj/structure/prop/holidays/string_lights,
 /turf/closed/shuttle/dropship1/window{
 	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "ah" = (
+/obj/structure/prop/holidays/string_lights,
 /turf/closed/shuttle/dropship1/window{
 	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "ai" = (
 /obj/structure/dropship_piece/one/cockpit/right,
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "aj" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/closed/shuttle/dropship1/cornersalt{
 	dir = 4
 	},
@@ -57,6 +70,9 @@
 	},
 /area/shuttle/dropship/alamo)
 "an" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/cornersalt{
 	dir = 8
 	},
@@ -79,11 +95,17 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "ar" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
 /turf/closed/shuttle/dropship1/interiorwindow,
 /area/shuttle/dropship/alamo)
 "as" = (
 /obj/machinery/light,
 /obj/structure/bed/chair/dropship/pilot{
+	dir = 1
+	},
+/obj/structure/prop/holidays/string_lights{
 	dir = 1
 	},
 /turf/open/shuttle/dropship/floor/out{
@@ -98,11 +120,17 @@
 	pixel_x = -6;
 	pixel_y = -16
 	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 1
+	},
 /turf/open/shuttle/dropship/floor/out{
 	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "av" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/interiorwindow{
 	dir = 1
 	},
@@ -122,9 +150,14 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "ay" = (
+/obj/structure/prop/holidays/string_lights/corner,
 /turf/closed/shuttle/dropship1/cornersalt2,
 /area/shuttle/dropship/alamo)
 "aB" = (
+/obj/structure/prop/holidays/string_lights,
+/obj/structure/prop/holidays/wreath{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/interiormisc{
 	dir = 4
 	},
@@ -134,14 +167,22 @@
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "aD" = (
+/obj/structure/prop/holidays/string_lights,
+/obj/structure/prop/holidays/wreath{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/interiormisc{
 	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "aE" = (
+/obj/structure/prop/holidays/string_lights,
 /turf/closed/shuttle/dropship1/edge,
 /area/shuttle/dropship/alamo)
 "aF" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 1
+	},
 /turf/closed/shuttle/dropship1/cornersalt2{
 	dir = 1
 	},
@@ -151,6 +192,9 @@
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "aH" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/closed/shuttle/dropship1/finleft{
 	dir = 4
 	},
@@ -185,6 +229,9 @@
 	},
 /area/shuttle/dropship/alamo)
 "aO" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/finright{
 	dir = 4
 	},
@@ -199,6 +246,9 @@
 	},
 /area/shuttle/dropship/alamo)
 "aR" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/closed/shuttle/dropship1/finleft{
 	dir = 1
 	},
@@ -217,6 +267,9 @@
 	},
 /area/shuttle/dropship/alamo)
 "aV" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/finright{
 	dir = 1
 	},
@@ -231,6 +284,9 @@
 /turf/open/shuttle/dropship/thirtyeight,
 /area/shuttle/dropship/alamo)
 "aY" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/closed/shuttle/dropship1/finleft,
 /area/shuttle/dropship/alamo)
 "aZ" = (
@@ -241,6 +297,12 @@
 /area/shuttle/dropship/alamo)
 "ba" = (
 /obj/structure/bed/chair/dropship/doublewide/fieldcommander,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/shuttle/dropship/floor/alt,
 /area/shuttle/dropship/alamo)
 "bb" = (
@@ -259,6 +321,12 @@
 /area/shuttle/dropship/alamo)
 "bd" = (
 /obj/docking_port/mobile/marine_dropship/one,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/aislewindow{
 	dir = 1
 	},
@@ -295,6 +363,9 @@
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/dropship/alamo)
 "bn" = (
+/obj/structure/prop/holidays/string_lights/cap{
+	dir = 1
+	},
 /turf/open/shuttle/dropship,
 /area/shuttle/dropship/alamo)
 "bo" = (
@@ -308,6 +379,9 @@
 /turf/open/shuttle/dropship/eight,
 /area/shuttle/dropship/alamo)
 "br" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/closed/shuttle/dropship1/cornersalt,
 /area/shuttle/dropship/alamo)
 "bs" = (
@@ -324,6 +398,9 @@
 	},
 /area/shuttle/dropship/alamo)
 "bv" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/cornersalt{
 	dir = 1
 	},
@@ -332,6 +409,9 @@
 /turf/open/shuttle/dropship/eleven,
 /area/shuttle/dropship/alamo)
 "by" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/edge/alt,
 /area/shuttle/dropship/alamo)
 "bD" = (
@@ -370,6 +450,9 @@
 	},
 /area/shuttle/dropship/alamo)
 "bJ" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
 /turf/closed/shuttle/dropship1/wall,
 /area/shuttle/dropship/alamo)
 "bK" = (
@@ -391,11 +474,17 @@
 	},
 /area/shuttle/dropship/alamo)
 "bO" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
 /turf/closed/shuttle/dropship1/wall{
 	dir = 4
 	},
 /area/shuttle/dropship/alamo)
 "bP" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/wall{
 	dir = 8
 	},
@@ -475,6 +564,12 @@
 "di" = (
 /obj/machinery/telecomms/relay/preset/telecomms/onboard/nondense,
 /obj/machinery/holopad,
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/shuttle/dropship/five,
 /area/shuttle/dropship/alamo)
 "dS" = (
@@ -485,6 +580,9 @@
 "ec" = (
 /obj/machinery/door/poddoor/shutters/transit,
 /obj/machinery/door/airlock/dropship_hatch/right,
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "ez" = (
@@ -537,11 +635,23 @@
 	},
 /area/shuttle/dropship/alamo)
 "jS" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/aislewindow{
 	dir = 8
 	},
 /area/shuttle/dropship/alamo)
 "li" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/aislewindow{
 	dir = 4
 	},
@@ -584,14 +694,26 @@
 "tf" = (
 /turf/open/shuttle/dropship/thirtysix,
 /area/shuttle/dropship/alamo)
+"uO" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/open/shuttle/dropship/floor/out,
+/area/shuttle/dropship/alamo)
 "vw" = (
 /obj/structure/dropship_piece/one/engine/leftbottom,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
 "vQ" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
 /turf/open/shuttle/dropship/floor/out,
 /area/shuttle/dropship/alamo)
 "yv" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/finright,
 /area/shuttle/dropship/alamo)
 "yA" = (
@@ -617,9 +739,25 @@
 "DE" = (
 /turf/open/shuttle/dropship/nine,
 /area/shuttle/dropship/alamo)
+"DX" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 4
+	},
+/area/shuttle/dropship/alamo)
 "FA" = (
 /turf/closed/shuttle/dropship1/enginetwo{
 	dir = 8
+	},
+/area/shuttle/dropship/alamo)
+"HS" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 1
 	},
 /area/shuttle/dropship/alamo)
 "IA" = (
@@ -638,6 +776,7 @@
 	},
 /area/shuttle/dropship/alamo)
 "MG" = (
+/obj/structure/prop/holidays/string_lights/cap,
 /turf/closed/shuttle/dropship1/aislewindow,
 /area/shuttle/dropship/alamo)
 "Nj" = (
@@ -653,6 +792,20 @@
 /obj/structure/dropship_piece/one/engine/rightbottom,
 /turf/template_noop,
 /area/shuttle/dropship/alamo)
+"TK" = (
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/structure/prop/holidays/string_lights{
+	dir = 5
+	},
+/turf/open/shuttle/dropship/floor/out,
+/area/shuttle/dropship/alamo)
+"UI" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 8
+	},
+/turf/closed/shuttle/dropship1/edge/alt,
+/area/shuttle/dropship/alamo)
 "VW" = (
 /turf/open/shuttle/dropship/thirtyfive,
 /area/shuttle/dropship/alamo)
@@ -664,7 +817,26 @@
 /obj/machinery/vending/cola/alamo,
 /turf/open/shuttle/dropship/thirtynine,
 /area/shuttle/dropship/alamo)
+"YA" = (
+/obj/structure/bed/chair/dropship/doublewide/left,
+/obj/structure/bed/chair/dropship/doublewide/right,
+/obj/structure/prop/holidays/string_lights{
+	dir = 9
+	},
+/turf/open/shuttle/dropship/floor/out,
+/area/shuttle/dropship/alamo)
+"YY" = (
+/obj/structure/prop/holidays/string_lights{
+	dir = 4
+	},
+/turf/closed/shuttle/dropship1/edge/alt{
+	dir = 1
+	},
+/area/shuttle/dropship/alamo)
 "Zx" = (
+/obj/structure/prop/holidays/string_lights/corner{
+	dir = 8
+	},
 /turf/closed/shuttle/dropship1/wall{
 	dir = 1
 	},
@@ -705,8 +877,8 @@ aY
 bu
 be
 ac
-bu
-bu
+YY
+HS
 bt
 bF
 bH
@@ -729,10 +901,10 @@ ez
 Dp
 bw
 bD
-me
+TK
 br
-bu
-bu
+YY
+YY
 bO
 bJ
 bW
@@ -849,7 +1021,7 @@ ji
 OZ
 bI
 bj
-vQ
+uO
 ca
 cd
 ci
@@ -867,10 +1039,10 @@ me
 Dp
 bw
 aM
-me
+YA
 bv
-by
-by
+UI
+UI
 bP
 Zx
 cb
@@ -889,7 +1061,7 @@ yv
 gB
 bc
 ec
-gB
+DX
 by
 bs
 bE
