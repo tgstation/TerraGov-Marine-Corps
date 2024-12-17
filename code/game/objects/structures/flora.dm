@@ -138,7 +138,6 @@
 /obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/list/ckeys_that_took = list()
 	var/gift_type = /obj/item/a_gift/free
 	var/unlimited = FALSE
 	var/static/list/took_presents //shared between all xmas trees
@@ -191,8 +190,6 @@
 		return
 	if(!user.ckey)
 		return
-
-	if(ckeys_that_took[user.ckey])
 	to_chat(user, span_warning("You start rummaging through the pile of presents underneath the tree, trying to locate a gift addressed to you..."))
 	if(!do_after(user, 3 SECONDS))
 		return
@@ -209,7 +206,6 @@
 		to_chat(user, span_warning("There are no presents with your name on."))
 		return
 	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
-	ckeys_that_took[user.ckey] = TRUE
 
 	if(!unlimited)
 		took_presents[user.ckey] = TRUE
@@ -224,8 +220,6 @@
 /obj/structure/flora/tree/pine/xmas/presents/Destroy()
 	. = ..()
 	GLOB.christmastrees -= src
-
-
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'
