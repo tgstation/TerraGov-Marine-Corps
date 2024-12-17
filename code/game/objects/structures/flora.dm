@@ -191,6 +191,9 @@
 	if(!user.ckey)
 		return
 	to_chat(user, span_warning("You start rummaging through the pile of presents underneath the tree, trying to locate a gift addressed to you..."))
+	if(took_presents[user.ckey] && !unlimited)
+		to_chat(user, span_warning("There are no presents with your name on."))
+		return
 	if(!do_after(user, 3 SECONDS))
 		return
 	if(isxeno(user) || prob(1) || HAS_TRAIT(user, TRAIT_CHRISTMAS_GRINCH)) //Santa hates xenos, he also hates really unlucky marines and grinches
@@ -201,9 +204,6 @@
 		ADD_TRAIT(user, TRAIT_TOOK_COAL , TRAIT_TOOK_COAL)
 		new /obj/item/ore/coal(get_turf(user))
 		took_presents[user.ckey] = TRUE
-		return
-	if(took_presents[user.ckey] && !unlimited)
-		to_chat(user, span_warning("There are no presents with your name on."))
 		return
 	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
 
@@ -220,6 +220,37 @@
 /obj/structure/flora/tree/pine/xmas/presents/Destroy()
 	. = ..()
 	GLOB.christmastrees -= src
+
+/obj/structure/flora/tree/pine/xmas/presents/guntree
+	name = "Gun tree"
+	icon_state = "pinepresents_gun"
+	desc = "Reach in and seize your means of freedom!"
+	///populate potential gun list
+	var/gun_spawn_list
+	resistance_flags = RESIST_ALL
+	///bool to keep people from spamming guns and lagging the server
+	var/spawningguns = TRUE
+	///how many guns have we given
+	var/given_guns = 0
+	///hard cap on how many guns can be taken
+	var/gun_cap = 150
+
+/obj/structure/flora/tree/pine/xmas/presents/guntree/attack_hand(mob/living/user, list/modifiers)
+	if(!spawningguns || gun_cap >= given_guns)
+		to_chat(user, span_warning("The gun tree is still regenerating its supply, try again in a couple seconds..."))
+		return
+	to_chat(user, span_warning("You start rummaging through the pile of presents underneath the tree, trying to locate a gun appropriate for your size..."))
+	var/mob/living/carbon/human/present_receiver = user
+	var/obj/item/G = pick(subtypesof(/obj/item/weapon/gun))
+	G.desc += " Property of [present_receiver.real_name]."
+	present_receiver.balloon_alert_to_viewers("Got a [G]")
+	present_receiver.put_in_hands(G)
+	spawningguns = FALSE
+	++given_guns
+	addtimer(CALLBACK(src, PROC_REF(toggle_guns)), 3 SECONDS)
+
+/obj/structure/flora/tree/pine/xmas/presents/guntree/proc/toggle_guns()
+	spawningguns = TRUE
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'

@@ -607,6 +607,10 @@
 /obj/structure/largecrate/random/case,
 /turf/open/floor/wood/broken,
 /area/deathmatch)
+"AQ" = (
+/obj/structure/flora/tree/pine/xmas/presents/guntree,
+/turf/open/floor/grime,
+/area/deathmatch)
 "Ba" = (
 /obj/effect/turf_decal/riverdecal/edge,
 /obj/effect/decal/cleanable/dirt,
@@ -2458,7 +2462,7 @@ Oh
 pS
 JS
 Oh
-Oh
+AQ
 gr
 Oh
 Oh

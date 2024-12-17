@@ -70,6 +70,10 @@
 /obj/structure/window/framed/wood,
 /turf/open/floor/wood,
 /area/deathmatch)
+"hm" = (
+/obj/structure/flora/tree/pine/xmas/presents/guntree,
+/turf/open/floor/wood,
+/area/deathmatch)
 "hw" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/plating/asteroidplating{
@@ -1722,7 +1726,7 @@ uR
 Tb
 gK
 LT
-LT
+hm
 RZ
 LT
 LT

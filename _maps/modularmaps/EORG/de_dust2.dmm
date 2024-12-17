@@ -93,6 +93,10 @@
 	},
 /turf/open/floor/plating/ground/dirt,
 /area/deathmatch)
+"iL" = (
+/obj/structure/flora/tree/pine/xmas/presents/guntree,
+/turf/open/floor/wood,
+/area/deathmatch)
 "jk" = (
 /obj/effect/landmark/weapon_spawn/tier2_weapon_spawn,
 /turf/open/floor/tile,
@@ -1853,7 +1857,7 @@ FE
 FE
 mC
 Ht
-Ht
+iL
 Bt
 Ht
 Ht

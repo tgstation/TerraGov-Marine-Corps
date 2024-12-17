@@ -1162,6 +1162,11 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/asteroidfloor,
 /area/deathmatch)
+"DW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/flora/tree/pine/xmas/presents/guntree,
+/turf/open/floor/plating/asteroidfloor,
+/area/deathmatch)
 "EZ" = (
 /obj/structure/prop/mainship/valmoric,
 /turf/open/floor/grass,
@@ -3011,8 +3016,8 @@ pj
 EZ
 NA
 rK
-vJ
 Bs
+DW
 Xz
 fI
 KS

@@ -707,6 +707,10 @@
 	dir = 10
 	},
 /area/deathmatch)
+"qS" = (
+/obj/structure/flora/tree/pine/xmas/presents/guntree,
+/turf/open/floor/tile/dark/gray,
+/area/deathmatch)
 "qW" = (
 /obj/structure/largecrate/random,
 /turf/open/floor/plating/ground/snow/layer1,
@@ -3213,7 +3217,7 @@ vO
 ro
 AR
 Ye
-DE
+qS
 We
 ZJ
 jg
