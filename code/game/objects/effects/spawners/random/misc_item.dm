@@ -361,6 +361,7 @@
 
 /obj/effect/spawner/random_set/christmas_costume
 	name = "Random santa suit set spawner"
+	icon = 'icons/effects/random/misc.dmi'
 	icon_state = "random_santasuit"
 	spawn_nothing_percentage = 50
 	option_list = list(

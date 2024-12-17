@@ -1111,7 +1111,7 @@
 /obj/item/prop/mainship/candle
 	name = "candle"
 	desc = "An unlit decorative candle, it faintly smells of Santa and wrapping paper."
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "candle"
 	coverage = 5
 	light_power = 1
@@ -1154,7 +1154,7 @@
 /obj/item/prop/mainship/candle/short
 	name = "short candle"
 	desc = "A short unlit decorative candle, it faintly smells of fruitcake and wrapping paper."
-	icon = 'icons/Marine/mainship_props.dmi'
+	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "candleshort"
 	base_icon_state = "candleshort"
 
@@ -1162,7 +1162,7 @@
 /obj/structure/prop/holidays
 	coverage = 0
 	density = 0
-	icon = 'icons/Marine/holiday_props.dmi'
+	icon = 'icons/obj/holiday_props.dmi'
 	desc = "parent object for temporary holiday structures. If you are reading this, go find a mapper and tell them to search up error code: TOO MUCH EGGNOG"//hello future mapper. Next time use the sub types or instance the desc. Thanks -past mapper.
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
