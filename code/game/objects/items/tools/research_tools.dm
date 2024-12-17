@@ -19,8 +19,21 @@
 	if(on)
 		add_filter("translator_on", 4, outline_filter(1, COLOR_CYAN))
 		to_chat(user, span_notice("I turn on the translator, translating xeno language straight to my neural implant."))
+		balloon_alert(user, "turns on")
+		if(ishuman(user) && !ismarinecommandjob(user) && on)
+			if(user.has_language(/datum/language/xenocommon))//failsafe
+				knowsxenolang = TRUE
+				return
+			else
+				knowsxenolang = FALSE
+			user.grant_language(/datum/language/xenocommon)
 	else
 		remove_filter("translator_on")
+		balloon_alert(user, "turns off")
+		if(ishuman(user) && !ismarinecommandjob(user) && on)
+			if(knowsxenolang)
+				return
+			user.remove_language(/datum/language/xenocommon)
 		to_chat(user, span_notice("I turn off the translator."))
 
 /obj/item/tool/research/xeno_analyzer/equipped(mob/living/carbon/human/user, slot)
