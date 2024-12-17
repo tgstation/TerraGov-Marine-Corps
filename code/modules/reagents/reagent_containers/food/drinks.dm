@@ -141,7 +141,7 @@
 	list_reagents = list(/datum/reagent/consumable/soymilk = 50)
 
 /obj/item/reagent_containers/food/drinks/milk/xmas
-	list_reagents = list(/datum/reagent/consumable/drink/milk = 40, /datum/reagent/consumable/ethanol/eggnog = 10)
+	list_reagents = list(/datum/reagent/consumable/milk = 40, /datum/reagent/consumable/ethanol/eggnog = 10)
 	icon_state = "milkxmas"
 
 /obj/item/reagent_containers/food/drinks/coffee
