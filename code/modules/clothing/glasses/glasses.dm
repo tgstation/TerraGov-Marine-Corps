@@ -267,6 +267,13 @@
 	//This sends a signal that toggles the tint component's effects
 	toggle_item_state(user)
 
+/obj/item/clothing/glasses/welding/elf
+	item_flags = DELONDROP
+
+/obj/item/clothing/glasses/welding/elf/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_CHRISTMAS_ELF)
+
 ///Toggle the welding goggles on
 /obj/item/clothing/glasses/welding/proc/flip_up(mob/user)
 	DISABLE_BITFIELD(inventory_flags, COVEREYES)

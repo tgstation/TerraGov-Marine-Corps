@@ -105,3 +105,7 @@
 /datum/chemical_reaction/phoron_specialrecipe
 	results = list(/datum/reagent/consumable/ethanol/toxins_special = 5)
 	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 2, /datum/reagent/consumable/ethanol/vermouth = 1, /datum/reagent/toxin/phoron = 2)
+
+/datum/chemical_reaction/eggnog
+	results = list(/datum/reagent/consumable/ethanol/eggnog = 15)
+	required_reagents = list(/datum/reagent/consumable/ethanol/rum = 5, /datum/reagent/consumable/drink/milk/cream = 5, /datum/reagent/consumable/sugar = 2)

@@ -112,6 +112,10 @@
 	else
 		heal_overall_damage(0, -amount, updating_health = updating_health)
 
+///this is awful and snowflaky. I get away with it due to only being a TM.
+/mob/living/carbon/human/proc/remove_teleport_trait(mob/living/carbon/human/santa)
+	to_chat(santa, span_warning("You can teleport great distances again..."))
+	REMOVE_TRAIT(santa, TRAIT_TELEPORTED_ACROSS_ZLEVELS, TRAIT_SANTA_CLAUS)
 
 /mob/living/carbon/human/proc/adjustBruteLossByPart(amount, organ_name, obj/damage_source = null)
 	if(species?.brute_mod && amount > 0)

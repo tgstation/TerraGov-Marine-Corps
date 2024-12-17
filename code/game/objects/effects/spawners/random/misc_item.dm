@@ -349,3 +349,20 @@
 	loot = list(
 		/obj/effect/decal/cleanable/blood,
 	)
+
+/obj/effect/spawner/random/misc/present
+	name = "Random present spawner"
+	icon_state = "random_present"
+	spawn_loot_chance = 90
+	loot = list(
+		/obj/item/a_gift,
+		/obj/item/a_gift/free,
+	)
+
+/obj/effect/spawner/random_set/christmas_costume
+	name = "Random santa suit set spawner"
+	icon_state = "random_santasuit"
+	spawn_nothing_percentage = 50
+	option_list = list(
+		list(/obj/item/clothing/head/helmet/space/santahat, /obj/item/clothing/suit/space/santa,),
+	)

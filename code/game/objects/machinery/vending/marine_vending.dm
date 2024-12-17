@@ -76,6 +76,7 @@
 			/obj/item/ammo_magazine/standard_mmg = -1,
 		),
 		"Melee" = list(
+			/obj/item/weapon/twohanded/spear/candycane = -1,
 			/obj/item/weapon/combat_knife = -1,
 			/obj/item/attachable/bayonetknife = -1,
 			/obj/item/stack/throwing_knife = -1,
@@ -298,6 +299,7 @@
 			/obj/item/ammo_magazine/standard_mmg = -1,
 		),
 		"Melee" = list(
+			/obj/item/weapon/twohanded/spear/candycane = -1,
 			/obj/item/weapon/combat_knife = -1,
 			/obj/item/attachable/bayonetknife = -1,
 			/obj/item/stack/throwing_knife = -1,
@@ -504,6 +506,7 @@
 			/obj/item/ammo_magazine/standard_mmg = -1,
 		),
 		"Melee" = list(
+			/obj/item/weapon/twohanded/spear/candycane = -1,
 			/obj/item/weapon/combat_knife = -1,
 			/obj/item/attachable/bayonetknife = -1,
 			/obj/item/stack/throwing_knife = -1,
@@ -865,6 +868,9 @@
 	isshared = TRUE
 	product_ads = "Standard Issue Marine food!;It's good for you, and not the worst thing in the world.;Just fucking eat it.;You should have joined the Air Force if you wanted better food.;1200 calories in just a few bites!;Get that tabaso sauce to make it tasty!;Try the cornbread.;Try the pizza.;Try the pasta.;Try the tofu, wimp.;Try the pork.; 9 Flavors of Protein!; You'll never guess the mystery flavor!"
 	products = list(
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas1 = 25,
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas2 = 25,
+		/obj/item/reagent_containers/food/snacks/mre_pack/xmas3 = 25,
 		/obj/item/reagent_containers/food/snacks/protein_pack = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal1 = -1,
 		/obj/item/reagent_containers/food/snacks/mre_pack/meal2 = -1,
@@ -1272,6 +1278,8 @@
 			/obj/item/storage/pouch/protein_pack = -1,
 		),
 		"Headwear" = list(
+			/obj/item/clothing/head/helmet/space/elf/regular = -1,
+			/obj/item/clothing/head/helmet/space/santahat = -1,
 			/obj/item/clothing/head/modular/style/beret = -1,
 			/obj/item/clothing/head/modular/style/classic_beret = -1,
 			/obj/item/clothing/head/modular/style/boonie = -1,
@@ -1284,6 +1292,7 @@
 			/obj/item/clothing/head/modular/style/bandana = -1,
 		),
 		"Masks" = list(
+			/obj/item/clothing/mask/gas/tactical/coif/beard = -1,
 			/obj/item/clothing/mask/rebreather/scarf = -1,
 			/obj/item/clothing/mask/bandanna/skull = -1,
 			/obj/item/clothing/mask/bandanna/green = -1,
@@ -1421,6 +1430,7 @@
 	use_power = NO_POWER_USE
 	products = list(
 		"Weapon" = list(
+			/obj/item/weapon/twohanded/spear/candycane = -1,
 			/obj/item/weapon/gun/energy/lasgun/lasrifle/tesla = -1,
 			/obj/item/cell/lasgun/lasrifle/recharger = -1,
 			/obj/item/weapon/gun/rifle/railgun = -1,

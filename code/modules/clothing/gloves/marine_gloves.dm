@@ -106,6 +106,18 @@
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 30, BIO = 20, FIRE = 20, ACID = 25)
 	resistance_flags = UNACIDABLE
 
+/obj/item/clothing/gloves/marine/veteran/pmc/commando/santa
+	name = "\improper reindeer gloves"
+	desc = "A pair of wooly insulated gloves worn exclusively by Santa Claus."
+	icon_state = "christmas"
+	worn_icon_state = "greengloves"
+	soft_armor = list(MELEE = 35, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 80, BIO = 20, FIRE = 20, ACID = 25)
+	item_flags = DELONDROP
+
+/obj/item/clothing/gloves/marine/veteran/pmc/commando/santa/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+
 /obj/item/clothing/gloves/marine/som
 	name = "\improper SOM gloves"
 	desc = "Gloves with origins dating back to the old mining colonies, they look pretty tough."

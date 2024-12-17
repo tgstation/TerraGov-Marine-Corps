@@ -1108,6 +1108,129 @@
 	. = ..()
 	name = GLOB.namepool[/datum/namepool].get_random_name(pick(MALE, FEMALE))
 
+/obj/item/prop/mainship/candle
+	name = "candle"
+	desc = "An unlit decorative candle, it faintly smells of Santa and wrapping paper."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "candle"
+	coverage = 5
+	light_power = 1
+	light_system = MOVABLE_LIGHT
+	//light intensity while active
+	var/candlelight = 2
+	//is the candle on or off
+	var/litcandle = FALSE
+	//used for easy reverting back to default icon_state once the candle burns out
+	base_icon_state = "candle"
+
+/obj/item/prop/mainship/candle/Initialize()
+	. = ..()
+	desc = "An unlit decorative candle, it faintly smells of [pick("christmas","ornaments","Santa","pine trees")] and [pick("wrapping paper","sleigh bells","chestnuts","mistletoe")]."
+
+/obj/item/prop/mainship/candle/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/tool/lighter))
+		var/obj/item/tool/lighter/lighting_instrument = I
+		if(lighting_instrument.heat && !litcandle)
+			litcandle = TRUE
+			desc = "A brightly burning candle, it casts soft shadows all around it."
+			src.balloon_alert_to_viewers("Lights the candle")
+			icon_state += "_lit"
+			set_light(candlelight)
+
+/obj/item/prop/mainship/candle/attack_alien(mob/living/carbon/xenomorph/attackingxeno, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(litcandle)
+		attackingxeno.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+		attackingxeno.visible_message(span_danger("\The [attackingxeno] claws the candle, smothering the flame!"), \
+		span_danger("You smother the candle with your claw, extinguishing the flame!"), null, 5)
+		burnoutcandle()
+
+/obj/item/prop/mainship/candle/proc/burnoutcandle()
+	icon_state = base_icon_state
+	desc = "An unlit decorative candle, it faintly smells of [pick("christmas","ornaments","Santa","pine trees")] and [pick("wrapping paper","sleigh bells","chestnuts","mistletoe")]."
+	set_light(0)
+	litcandle = FALSE
+
+/obj/item/prop/mainship/candle/short
+	name = "short candle"
+	desc = "A short unlit decorative candle, it faintly smells of fruitcake and wrapping paper."
+	icon = 'icons/Marine/mainship_props.dmi'
+	icon_state = "candleshort"
+	base_icon_state = "candleshort"
+
+
+/obj/structure/prop/holidays
+	coverage = 0
+	density = 0
+	icon = 'icons/Marine/holiday_props.dmi'
+	desc = "parent object for temporary holiday structures. If you are reading this, go find a mapper and tell them to search up error code: TOO MUCH EGGNOG"//hello future mapper. Next time use the sub types or instance the desc. Thanks -past mapper.
+	layer = ABOVE_ALL_MOB_LAYER
+	anchored = TRUE
+
+/obj/structure/prop/holidays/string_lights
+	name = "M1 pattern festive bulb strings"
+	desc = "Strung from strut to strut, these standard issue M1 pattern 'festive bulb strings' flicker and shimmer to the tune of the output frequency of the engine... or the local power grid. Might want to ask the Bravo's to check which one it is for ya. Ya damn jarhead."
+	icon_state = "string_lights"
+
+
+/obj/structure/prop/holidays/string_lights/corner
+	icon_state = "strings_lights_corner"
+
+/obj/structure/prop/holidays/string_lights/cap
+	icon_state = "string_lights_cap"
+
+/obj/structure/prop/holidays/string_lights/green_and_red
+	icon_state = "string_lights_red_and_green"
+
+/obj/structure/prop/holidays/string_lights/green_and_red/corner
+	icon_state = "string_lights_red_and_green_corner"
+
+/obj/structure/prop/holidays/string_lights/green_and_red/cap
+	icon_state = "string_lights_red_and_green_cap"
+
+/obj/structure/prop/holidays/wreath
+	name = "M1 pattern festive needle torus"
+	desc = "In 2140 after a two different sub levels of the São Luís Bay Underground Habitat burned out (evidence points to a Bladerunner incident, but local police denies such claims) due to actual wreaths made with REAL needles, these have been issued ever since. They're made of ''''''pine'''''' scented poly-kevlon. According to the grunts from the American Corridor, during the SACO riots, protestors would pack these things into pillow cases, forming rudimentary body armor against soft point ballistics."
+	icon_state = "wreath"
+
+/obj/structure/prop/holidays/stocking
+	name = "\improper stocking"
+	desc = "A festive sock tacked to a wall, traditonally stuffed with presents."
+	icon_state = "stocking"
+	//how many presents we have stored
+	var/numberofpresents = 0
+
+/obj/structure/prop/holidays/stocking/Initialize()
+	. = ..()
+	pixel_y = 26
+	if(prob(80))
+		numberofpresents = rand(1,3)
+
+/obj/structure/prop/holidays/stocking/attack_hand(mob/living/user)
+	. = ..()
+	if(isxeno(user))
+		return
+	to_chat(user, span_warning("You start rummaging through the stocking..."))
+	if(!do_after(user, 4 SECONDS))
+		return
+	if(numberofpresents != 0)
+		var/obj/item/I = new /obj/item/a_gift(get_turf(user))
+		user.balloon_alert_to_viewers("A present tumbles free" ,ignored_mobs = user)
+		user.balloon_alert(user, "Found a present")
+		user.put_in_hands(I)
+		numberofpresents -= 1
+		return
+	else
+		user.balloon_alert(user, "Empty")
+
+/obj/structure/prop/holidays/stocking/attack_alien(mob/living/carbon/xenomorph/attackingxeno, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	if(!do_after(attackingxeno, 5 SECONDS, TRUE, src, BUSY_ICON_FRIENDLY))
+		return
+	attackingxeno.do_attack_animation(src, ATTACK_EFFECT_CLAW)
+	attackingxeno.visible_message(span_danger("\The [attackingxeno] pulls [src] down and slices it apart!"), \
+	span_danger("You pull the [src] down and rip it to shreds!"), null, 5)
+	qdel(src)
+
 /obj/item/prop/paint
 	name = "paint bucket"
 	desc = "It's a paint bucket."

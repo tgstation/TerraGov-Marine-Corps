@@ -298,3 +298,47 @@
 	if (ismob(src.loc))
 		var/mob/M = src.loc
 		M.update_inv_shoes()
+
+/obj/item/clothing/suit/space/santa
+	name = "Santa's suit"
+	desc = "Festive!"
+	icon_state = "santa"
+	worn_icon_state = "santa"
+	slowdown = 0
+	allowed = list(/obj/item) //for stuffing exta special presents
+
+/obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
+	desc = "That's not red dye. That's red blood."
+	soft_armor = list(MELEE = 90, BULLET = 85, LASER = 120, ENERGY = 120, BOMB = 120, BIO = 85, FIRE = 120, ACID = 40)
+	slowdown = 1
+	item_flags = DELONDROP
+	resistance_flags = UNACIDABLE
+
+/obj/item/clothing/suit/space/santa/special/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/suit_autodoc)
+	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+	AddElement(/datum/element/limb_support)
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+
+/obj/item/clothing/suit/space/santa/special/eventspawn //lesser version of above suit, still mostly bomb proof
+	soft_armor = list(MELEE = 75, BULLET = 90, LASER = 90, ENERGY = 65, BOMB = 120, BIO = 70, FIRE = 55, ACID = 25)
+
+/obj/item/clothing/suit/space/santa/special/eventspawn/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+
+/obj/item/clothing/suit/space/elf
+	name = "Elf suit"
+	desc = "Festive!"
+	icon_state = "elfcostume"
+	worn_icon_state = "elfcostume"
+	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 15, ENERGY = 15, BOMB = 100, BIO = 30, FIRE = 80, ACID = 10)
+	slowdown = 0.6
+
+/obj/item/clothing/suit/space/elf/nodrop
+	item_flags = DELONDROP
+
+/obj/item/clothing/suit/space/elf/nodrop/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_CHRISTMAS_ELF)

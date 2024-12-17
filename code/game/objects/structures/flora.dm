@@ -39,6 +39,7 @@
 	layer = ABOVE_FLY_LAYER
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
 	var/log_amount = 10
+	var/is_christmastree = FALSE
 	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/flora/tree/add_debris_element()
@@ -88,6 +89,9 @@
 	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
 	if(!do_after(user, cutting_time , NONE, src, BUSY_ICON_BUILD))
 		return
+	if(is_christmastree)
+		user.visible_message(span_notice("[user] has a change of heart and embraces the [src], vowing to be a better person for Christmas."),span_notice("You have a change of heart and decide to not be a grinch."), "You hear the sound of a gentle Christmas melodies.")
+		return
 
 	user.visible_message(span_notice("[user] fells [src] with the [I]."),span_notice("You fell [src] with the [I]."), "You hear the sound of a tree falling.")
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
@@ -100,6 +104,8 @@
 	qdel(src)
 
 /obj/structure/flora/tree/fire_act(burn_level)
+	if(is_christmastree)
+		return
 	take_damage(burn_level * 0.3, BURN, FIRE)
 
 
@@ -129,13 +135,58 @@
 	icon_variants = NONE
 	resistance_flags = null
 
-/obj/structure/flora/tree/xmas/presents
+/obj/structure/flora/tree/pine/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
 	var/gift_type = /obj/item/gift/marine
 	var/list/ckeys_that_took = list()
+	var/gift_type = /obj/item/a_gift/free
+	var/unlimited = FALSE
+	var/static/list/took_presents //shared between all xmas trees
+	///meme version of tree that only dispenses guns not presents
+	is_christmastree = TRUE
+	var/disable_slashing = FALSE
+	resistance_flags = RESIST_ALL
 
-/obj/structure/flora/tree/xmas/presents/attack_hand(mob/living/user)
+/obj/structure/flora/tree/pine/xmas/presents/Initialize(mapload)
+	. = ..()
+	GLOB.christmastrees += src
+	icon_state = "pinepresents"
+	if(!took_presents)
+		took_presents = list()
+
+/obj/structure/flora/tree/pine/xmas/presents/proc/disable_slashing()
+	SIGNAL_HANDLER
+	disable_slashing = TRUE
+
+/obj/structure/flora/tree/pine/xmas/presents/attack_alien(mob/living/carbon/xenomorph/X, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
+	. = ..()
+	if(isxenolarva(X))
+		to_chat(X, "You don't have any appendages to cut down the tree, try evolving first.")
+		return
+	if(disable_slashing)
+		to_chat(X, "Destroying this tree now wouldn't dampen the tallhosts' Christmas spirit, if only you had damaged it earlier...")
+		return
+	X.visible_message(span_notice("[X] begins to cut down [src] with their claws."),span_notice("You begin to cut down [src] with your claws."), "You hear the sound of slashing and hacking.")
+	if(!do_after(X, 1 MINUTES))
+		return
+	X.visible_message(span_notice("[X] fells [src] with their claws!"),span_notice("You fell [src] with the claws!."), "You hear the sound of a tree falling.")
+	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 10 , 0, 0)
+	for(var/i in 1 to log_amount)
+		new /obj/item/grown/log(get_turf(src))
+	var/obj/structure/flora/stump/stump = new(loc)
+	stump.name = "[name] stump"
+	var/sound/S = sound(get_sfx("queen"), channel = CHANNEL_ANNOUNCEMENTS, volume = 50)
+	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
+		var/mob/M = i
+		SEND_SOUND(M, S)
+		to_chat(M, span_xenoannounce("[X] has destroyed the tallhosts' present source and ruined Christmas! The Queen Mother is very pleased by this news and has rewarded [X] with a new color and name!"))
+	priority_announce("The cold hearted xenos have destroyed your Christmas tree in an attempt to ruin Christmas, pay them back with hot lead!", "High Command Festive Monitoring Station", sound = 'sound/AI/bioscan.ogg')
+	X.color = COLOR_LIME
+	X.name = "The Grinch"
+	qdel(src)
+
+/obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user, list/modifiers)
 	. = ..()
 	if(.)
 		return
@@ -143,12 +194,39 @@
 		return
 
 	if(ckeys_that_took[user.ckey])
+	to_chat(user, span_warning("You start rummaging through the pile of presents underneath the tree, trying to locate a gift addressed to you..."))
+	if(!do_after(user, 3 SECONDS))
+		return
+	if(isxeno(user) || prob(1) || HAS_TRAIT(user, TRAIT_CHRISTMAS_GRINCH)) //Santa hates xenos, he also hates really unlucky marines and grinches
+		if(HAS_TRAIT(user, TRAIT_TOOK_COAL))
+			to_chat(user, span_warning("Santa already has punished you with coal, you should be less greedy."))
+			return
+		to_chat(user, span_warning("After a bit of rummaging, you locate a small parcel with your name on it, it splits open to reveal coal."))
+		ADD_TRAIT(user, TRAIT_TOOK_COAL , TRAIT_TOOK_COAL)
+		new /obj/item/ore/coal(get_turf(user))
+		took_presents[user.ckey] = TRUE
+		return
+	if(took_presents[user.ckey] && !unlimited)
 		to_chat(user, span_warning("There are no presents with your name on."))
 		return
 	to_chat(user, span_warning("After a bit of rummaging, you locate a gift with your name on it!"))
 	ckeys_that_took[user.ckey] = TRUE
+
+	if(!unlimited)
+		took_presents[user.ckey] = TRUE
+
 	var/obj/item/G = new gift_type(src)
 	user.put_in_hands(G)
+
+/obj/structure/flora/tree/pine/xmas/presents/unlimited
+	desc = "A wonderous decorated Christmas tree. It has an endless supply of presents!"
+	unlimited = TRUE
+
+/obj/structure/flora/tree/pine/xmas/presents/Destroy()
+	. = ..()
+	GLOB.christmastrees -= src
+
+
 
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'

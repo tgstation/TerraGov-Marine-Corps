@@ -140,6 +140,10 @@
 	center_of_mass = list("x"=16, "y"=9)
 	list_reagents = list(/datum/reagent/consumable/soymilk = 50)
 
+/obj/item/reagent_containers/food/drinks/milk/xmas
+	list_reagents = list(/datum/reagent/consumable/drink/milk = 40, /datum/reagent/consumable/ethanol/eggnog = 10)
+	icon_state = "milkxmas"
+
 /obj/item/reagent_containers/food/drinks/coffee
 	name = "\improper Coffee"
 	desc = "Careful, the beverage you're about to enjoy is extremely hot."
