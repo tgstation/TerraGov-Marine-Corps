@@ -638,15 +638,15 @@
 			gender=NEUTER
 			user.balloon_alert(user, "None")
 		if(2)
-			genital_overlay.icon_state = "[xeno_caste.caste_name]_female"
+			genital_overlay.icon_state = "[icon_state]_female"
 			user.balloon_alert(user, "Female")
 			gender=FEMALE
 		if(3)
-			genital_overlay.icon_state = "[xeno_caste.caste_name]_male"
+			genital_overlay.icon_state = "[icon_state]_male"
 			user.balloon_alert(user, "Male")
 			gender=MALE
 		if(4)
-			genital_overlay.icon_state = "[xeno_caste.caste_name]_futa"
+			genital_overlay.icon_state = "[icon_state]_futa"
 			user.balloon_alert(user, "Futa")
 			gender=FEMALE
 
