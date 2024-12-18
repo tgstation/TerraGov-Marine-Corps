@@ -314,14 +314,14 @@ Master controller and performance related.
 /datum/config_entry/flag/tickcomp
 
 /*
-System command that invokes youtube-dlp, used by Play Internet Sound.
-You can install youtube-dlp with
-"pip install youtube-dlp" if you have pip installed
-from https://github.com/yt-dlp/yt-dlp/releases
+System command that invokes youtube-dl, used by Play Internet Sound.
+You can install youtube-dl with
+"pip install youtube-dl" if you have pip installed
+from https://github.com/rg3/youtube-dl/releases
 or your package manager
-The default value assumes youtube-dlp is in your system PATH
+The default value assumes youtube-dl is in your system PATH
 */
-/datum/config_entry/string/invoke_youtubedlp
+/datum/config_entry/string/invoke_youtubedl
 	protection = CONFIG_ENTRY_LOCKED | CONFIG_ENTRY_HIDDEN
 
 
