@@ -223,6 +223,11 @@
 	for(var/datum/maw_ammo/path AS in maw_options)
 		parsed_maw_options[path] = image(icon='icons/mob/radial.dmi', icon_state=path::radial_icon_state)
 	maw_options = parsed_maw_options
+	LAZYADDASSOC(GLOB.xeno_acid_jaws_by_hive, hivenumber, src)
+
+/obj/structure/xeno/acid_maw/Destroy()
+	GLOB.xeno_acid_jaws_by_hive[hivenumber] -= src
+	. = ..()
 
 /obj/structure/xeno/acid_maw/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
 	. = ..()
@@ -285,7 +290,6 @@
 	bound_width = 64
 	bound_height = 64
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
-	minimap_icon = "acid jaw"
 	maw_options = list(
 		/datum/maw_ammo/smoke/neuro,
 		/datum/maw_ammo/hugger,
