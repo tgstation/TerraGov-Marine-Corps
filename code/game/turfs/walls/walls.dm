@@ -192,6 +192,9 @@
 
 /turf/closed/wall/do_acid_melt()
 	. = ..()
+	if(SSmonitor.gamestate == SHUTTERS_CLOSED && CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active)
+		ScrapeAway()
+		return
 	if(acided_hole)
 		ScrapeAway()
 		return
