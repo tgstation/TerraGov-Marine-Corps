@@ -559,7 +559,7 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 ///snowflake replacement handling since we don't have tg's proper handling of individual body parts as overlays
 /mob/living/carbon/human/proc/update_bodyparts()
 	remove_overlay(BODYPARTS_LAYER)
-	overlays_standing[BODYPARTS_LAYER] = image(icon=stand_icon, layer=-BODYPARTS_LAYER)
+	overlays_standing[BODYPARTS_LAYER] = image(icon=stand_icon, icon_state="blank", layer=-BODYPARTS_LAYER)
 	apply_overlay(BODYPARTS_LAYER)
 
 /mob/living/carbon/human/update_inv_w_uniform()
