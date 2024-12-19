@@ -299,7 +299,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
 	sentry_stop_fire()
-	visible_message(span_highdanger("The [name] is knocked over!"))
+	visible_message(span_userdanger("The [name] is knocked over!"))
 	sentry_alert(SENTRY_ALERT_FALLEN)
 	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = FALSE
