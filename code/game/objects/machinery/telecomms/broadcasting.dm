@@ -225,7 +225,7 @@
 
 		var/list/list_of_listeners = list()
 		for(var/mob/living/carbon/human/potential_hearer in receive)
-			if(potential_hearer.stat >= UNCONSCIOUS || potential_hearer.disabilities & DEAF || !(potential_hearer.client?.prefs.sound_tts != TTS_SOUND_OFF))
+			if(potential_hearer.stat >= UNCONSCIOUS || !(potential_hearer.client?.prefs.sound_tts != TTS_SOUND_OFF) || potential_hearer == speaker || isdeaf(potential_hearer))
 				continue
 
 			var/radio_flags = potential_hearer?.client?.prefs?.radio_tts_flags
