@@ -21,7 +21,14 @@
 
 /datum/storage/backpack/santabag
 	max_w_class = WEIGHT_CLASS_NORMAL
-	max_storage_space = 400 // can store a ton of shit!
+	max_storage_space = 60 // can store a ton of shit!
+	access_delay = 0
+
+/datum/storage/backpack/santabag/New(atom/parent)
+	. = ..()
+	set_holdable(storage_type_limits_list = list(
+		/obj/item/weapon/gun/launcher/rocket/m57a4,
+	))
 
 /datum/storage/backpack/satchel //Smaller, but no delay
 	max_storage_space = 15

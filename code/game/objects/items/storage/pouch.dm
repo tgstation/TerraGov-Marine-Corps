@@ -553,7 +553,6 @@
 	. = ..()
 	storage_datum.sprite_slots = 1
 	storage_datum.max_w_class = WEIGHT_CLASS_BULKY
-	storage_datum.storage_slots = 7
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/dropper,
@@ -565,6 +564,36 @@
 		/obj/item/storage/pill_bottle/packet,
 		/obj/item/reagent_containers/hypospray,
 	))
+
+/obj/item/storage/pouch/santaspouch
+	name = "Santa's storage pouch"
+	desc = "A pouch bulging with all sorts of goodies for Santa to ingest while handing out beatings to naughty boys and girls."
+	icon_state = "medkit"
+	w_class = WEIGHT_CLASS_BULKY
+
+/obj/item/storage/pouch/santaspouch/Initialize(mapload)
+	. = ..()
+	storage_datum.max_w_class = WEIGHT_CLASS_BULKY
+	storage_datum.storage_slots = 8
+	storage_datum.set_holdable(can_hold_list = list(
+		/obj/item/reagent_containers/food/snacks/christmas_cookieone,
+		/obj/item/reagent_containers/food/snacks/christmas_cookietwo,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiethree,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiefour,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiefive,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiesix,
+		/obj/item/reagent_containers/food/snacks/christmas_cookieseven,
+		/obj/item/reagent_containers/food/drinks/bottle/eggnog,
+		/obj/item/reagent_containers/food/snacks/christmas_cookieone/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookietwo/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiethree/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiefour/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiefive/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiesix/special,
+		/obj/item/reagent_containers/food/snacks/christmas_cookieseven/special,
+		/obj/item/reagent_containers/food/drinks/bottle/eggnog/special,
+	))
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
 
 /obj/item/storage/pouch/medkit/firstaid
 	desc = "Standard marine first-aid pouch. Contains basic pills, splints, and a stabilizing injector."
@@ -863,6 +892,12 @@
 /obj/item/storage/pouch/construction/som/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.sprite_slots = null
+
+/obj/item/storage/pouch/construction/equippedengineer/elf/Initialize(mapload)
+	. = ..()
+	new /obj/item/stack/sandbags_empty/half (src)
+	new /obj/item/stack/sheet/metal/small_stack (src)
+	new /obj/item/stack/sheet/plasteel/medium_stack (src)
 
 /obj/item/storage/pouch/construction/icc
 	desc = "It's designed to hold construction materials - glass/metal sheets, metal rods, barbed wire, cable coil, and empty sandbags. It also has a hook for an entrenching tool. Made with synthetic tan."

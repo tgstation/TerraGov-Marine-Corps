@@ -45,6 +45,12 @@
 	icon_state = "gascoif"
 	inv_hide_flags = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
+/obj/item/clothing/mask/gas/tactical/coif/beard
+	name = "Tactical coifed Santa beard"
+	desc = "A cheap imitation of the real thing, the dense hairs still filter harmful gases out of the air via Christmas magic."
+	icon_state = "s_beard"
+	breathy = FALSE
+
 /obj/item/clothing/mask/gas/pmc
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
@@ -55,6 +61,74 @@
 	inv_hide_flags = HIDEEARS|HIDEFACE|HIDEALLHAIR
 	breathy = FALSE
 	voice_filter = "lowpass=f=750,volume=2"
+
+/obj/item/clothing/mask/gas/swat/santa
+	name = "\improper Santa's beard"
+	desc = "A dense mat of hair surrounding Santa's mouth, in addition to lending Santa a sense of authority, it's also dense enough to repel harmful gases and facehuggers."
+	icon_state = "s_beard"
+	anti_hug = 15
+	breathy = FALSE
+	item_flags = DELONDROP
+	inventory_flags = COVERMOUTH|BLOCKGASEFFECT
+	soft_armor = list(MELEE = 25, BULLET = 35, LASER = 25, ENERGY = 25, BOMB = 95, BIO = 85, FIRE = 25, ACID = 25) //if he ever shaved you could use santa's facial hair as a bombvest
+
+/obj/item/clothing/mask/gas/swat/santa/Initialize(mapload)
+	. = ..()
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_SANTA_CLAUS)
+
+/obj/item/clothing/mask/gas/swat/santa/proc/handle_speech(datum/source, list/speech_args)
+	var/message = speech_args[SPEECH_MESSAGE]
+	if(message[1] != "*")
+		message = replacetext(message, "marines", "little boys")
+		message = replacetext(message, "marine", "little boy")
+		message = replacetext(message, "bad", "naughty")
+		message = replacetext(message, "friend", "jingle buddy")
+		message = replacetext(message, "friends", "jingle buddies")
+		message = replacetext(message, "evil", "naughty")
+		message = replacetext(message, "awful", "naughty")
+		message = replacetext(message, "shuttle", "sleigh")
+		message = replacetext(message, "friend", "pal")
+		message = replacetext(message, "slave", "elf")
+		message = replacetext(message, "new", "freshly wrapped")
+		message = replacetext(message, "slaves", "elves")
+		message = replacetext(message, "bullet", "coal")
+		message = replacetext(message, "fuck", "fudge")
+		message = replacetext(message, "shit", "poo")
+		message = replacetext(message, "ass", "caboose")
+		message = replacetext(message, "bitch", "cow")
+		message = replacetext(message, "winter", "Christmas")
+		message = replacetext(message, "present", "gift")
+		message = replacetext(message, "star", "guiding light")
+		message = replacetext(message, "pill", "candy")
+		message = replacetext(message, "alcohol", "hot cocoa")
+		message = replacetext(message, "beer", "hot cocoa")
+		message = replacetext(message, "tequila", "hot cocoa")
+		message = replacetext(message, "vodka", "hot cocoa")
+		message = replacetext(message, "rum", "hot cocoa")
+		message = replacetext(message, "wine", "eggnog")
+		message = replacetext(message, "whiskey", "eggnog")
+		message = replacetext(message, "liquor", "eggnog")
+		message = replacetext(message, "gin", "eggnog")
+		message = replacetext(message, "sing", "carol")
+		message = replacetext(message, "funny", "jolly")
+		message = replacetext(message, "happy", "merry")
+		message = replacetext(message, "acid", "naughty juice")
+		message = replacetext(message, "xmas", "Christmas")
+		message = replacetext(message, "tiny", "christmas-light-sized")
+		message = replacetext(message, "small", "elf-sized")
+		message = replacetext(message, "big", "santa-sized")
+		message = replacetext(message, "huge", "north-pole-sized")
+		message = replacetext(message, "wife", "Mrs. Claus")
+		if(prob(30))
+			message += " Ho ho ho!"
+	speech_args[SPEECH_MESSAGE] = message
+
+/obj/item/clothing/mask/gas/swat/santa/equipped(mob/M, slot)
+	. = ..()
+	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
+
+/obj/item/clothing/mask/gas/swat/santa/eventspawn
+	anti_hug = 1
 
 /obj/item/clothing/mask/gas/pmc/damaged
 	name = "damaged M8 pattern armored balaclava"

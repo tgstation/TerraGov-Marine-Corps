@@ -31,6 +31,7 @@ GLOBAL_LIST_EMPTY(eord_roomba_spawns)
 GLOBAL_LIST_EMPTY(machines)
 GLOBAL_LIST_EMPTY(faxmachines)
 GLOBAL_LIST_EMPTY(atmospumps)
+GLOBAL_LIST_EMPTY(christmastrees)
 ///list of mainship lights, used for altering intensity and color during red and delta security levels
 GLOBAL_LIST_EMPTY(mainship_lights)
 ///list of shipside alarm effects used for delta level alert sirens
