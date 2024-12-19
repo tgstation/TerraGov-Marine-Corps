@@ -35,24 +35,6 @@
 		return
 	return ..()
 
-/mob/living/carbon/xenomorph/runner/med_hud_set_status()
-	. = ..()
-	hud_set_evasion()
-
-/mob/living/carbon/xenomorph/runner/proc/hud_set_evasion(duration)
-	var/image/holder = hud_list[XENO_EVASION_HUD]
-	if(!holder)
-		return
-	holder.overlays.Cut()
-	holder.icon_state = ""
-	if(stat == DEAD || !duration)
-		return
-	holder.icon = 'icons/mob/hud/xeno.dmi'
-	holder.icon_state = "evasion_duration[duration]"
-	holder.pixel_x = 24
-	holder.pixel_y = 24
-	hud_list[XENO_EVASION_HUD] = holder
-
 /mob/living/carbon/xenomorph/runner/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	. = ..()
 	if(!ishuman(over))
