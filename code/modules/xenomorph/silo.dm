@@ -6,21 +6,20 @@
 	desc = "A slimy, oozy resin bed filled with foul-looking egg-like ...things."
 	bound_width = 96
 	bound_height = 96
+	bound_x = -32
+	bound_y = -32
+	pixel_x = -32
+	pixel_y = -24
 	max_integrity = 1000
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE | PLASMACUTTER_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE|XENO_STRUCT_WARNING_RADIUS|XENO_STRUCT_DAMAGE_ALERT
 	///How many larva points one silo produce in one minute
 	var/larva_spawn_rate = 0.5
-	var/turf/center_turf
 	var/number_silo
 	COOLDOWN_DECLARE(silo_damage_alert_cooldown)
 
 /obj/structure/xeno/silo/Initialize(mapload, _hivenumber)
 	. = ..()
-	center_turf = get_step(src, NORTHEAST)
-	if(!istype(center_turf))
-		center_turf = loc
-
 	if(SSticker.mode?.round_type_flags & MODE_SILOS_SPAWN_MINIONS)
 		SSspawning.registerspawner(src, INFINITY, GLOB.xeno_ai_spawnable, 0, 0, CALLBACK(src, PROC_REF(on_spawn)))
 		SSspawning.spawnerdata[src].required_increment = 2 * max(45 SECONDS, 3 MINUTES - SSmonitor.maximum_connected_players_count * SPAWN_RATE_PER_PLAYER)/SSspawning.wait
@@ -36,13 +35,13 @@
 	name = "[siloprefix == "Normal" ? "" : "[siloprefix] "][name] [number_silo]"
 	LAZYADDASSOC(GLOB.xeno_resin_silos_by_hive, hivenumber, src)
 
-	if(!locate(/obj/alien/weeds) in center_turf)
-		new /obj/alien/weeds/node(center_turf)
+	if(!locate(/obj/alien/weeds) in loc)
+		new /obj/alien/weeds/node(loc)
 	if(GLOB.hive_datums[hivenumber])
 		RegisterSignals(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK), PROC_REF(is_burrowed_larva_host))
 		if(length(GLOB.xeno_resin_silos_by_hive[hivenumber]) == 1)
 			GLOB.hive_datums[hivenumber].give_larva_to_next_in_queue()
-	var/turf/tunnel_turf = get_step(center_turf, NORTH)
+	var/turf/tunnel_turf = get_step(src, NORTH)
 	if(tunnel_turf.can_dig_xeno_tunnel())
 		var/obj/structure/xeno/tunnel/newt = new(tunnel_turf, hivenumber)
 		newt.tunnel_desc = "[AREACOORD_NO_Z(newt)]"
@@ -56,7 +55,7 @@
 /obj/structure/xeno/silo/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	if(GLOB.hive_datums[hivenumber])
 		UnregisterSignal(GLOB.hive_datums[hivenumber], list(COMSIG_HIVE_XENO_MOTHER_PRE_CHECK, COMSIG_HIVE_XENO_MOTHER_CHECK))
-		GLOB.hive_datums[hivenumber].xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE,src.loc, 'sound/voice/alien/help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
+		GLOB.hive_datums[hivenumber].xeno_message("A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", "xenoannounce", 5, FALSE, loc, 'sound/voice/alien/help2.ogg',FALSE , null, /atom/movable/screen/arrow/silo_damaged_arrow)
 		notify_ghosts("\ A resin silo has been destroyed at [AREACOORD_NO_Z(src)]!", source = get_turf(src), action = NOTIFY_JUMP)
 		playsound(loc,'sound/effects/alien/egg_burst.ogg', 75)
 	return ..()
@@ -66,8 +65,7 @@
 
 	for(var/i in contents)
 		var/atom/movable/AM = i
-		AM.forceMove(get_step(center_turf, pick(CARDINAL_ALL_DIRS)))
-	center_turf = null
+		AM.forceMove(get_step(src, pick(CARDINAL_ALL_DIRS)))
 
 	STOP_PROCESSING(SSslowprocess, src)
 	return ..()
