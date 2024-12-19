@@ -609,17 +609,9 @@
 
 	update_xeno_gender(src, TRUE)
 
-/mob/living/carbon/xenomorph/proc/update_xeno_gender(mob/living/carbon/xenomorph/user, swapping = FALSE)
+/mob/living/carbon/xenomorph/proc/update_xeno_gender(mob/living/carbon/xenomorph/user = src, swapping = FALSE)
 	remove_overlay(GENITAL_LAYER)
 	if(!user)
-		return
-	if(lying_angle)
-		if(swapping)
-			user.balloon_alert(user, "Cannot while lying down.")
-		return //just remove overlays if layin and stop.
-	if(behemoth_charging)
-		if(swapping)
-			user.balloon_alert(user, "Cannot while in this state.")
 		return
 	var/xgen = user?.client?.prefs?.xenogender
 	if(swapping) //flips to next in selection
@@ -636,19 +628,23 @@
 		if(1) //blank
 			genital_overlay.icon_state = null
 			gender=NEUTER
-			user.balloon_alert(user, "None")
+			if(swapping)
+				user.balloon_alert(user, "None")
 		if(2)
 			genital_overlay.icon_state = "[icon_state]_female"
-			user.balloon_alert(user, "Female")
 			gender=FEMALE
+			if(swapping)
+				user.balloon_alert(user, "Female")
 		if(3)
 			genital_overlay.icon_state = "[icon_state]_male"
-			user.balloon_alert(user, "Male")
 			gender=MALE
+			if(swapping)
+				user.balloon_alert(user, "Male")
 		if(4)
 			genital_overlay.icon_state = "[icon_state]_futa"
-			user.balloon_alert(user, "Futa")
 			gender=FEMALE
+			if(swapping)
+				user.balloon_alert(user, "Futa")
 
 	if(xeno_caste.caste_flags & CASTE_HAS_WOUND_MASK) //ig if u cant see wounds u shouldnt see tiddies too maybe for things like being ethereal
 		apply_overlay(GENITAL_LAYER)
