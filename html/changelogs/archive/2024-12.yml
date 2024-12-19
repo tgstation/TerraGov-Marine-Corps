@@ -76,3 +76,7 @@
   yyzsong:
   - balance: Buffed shrike's movespeed (-0.4 -> -0.6)
   - balance: reverted shrike HP buff (500 -> 400)
+2024-12-19:
+  Lumipharon:
+  - balance: Reduced BR-8 accuracy slighty
+  - balance: Weak explosions no longer contribute to screen shake
