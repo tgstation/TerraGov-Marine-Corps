@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed strappable items not turning nodrop off, when forcefully unequipped"
