@@ -66,6 +66,7 @@
 	worn_icon_state = "giftbag"
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type = /datum/storage/backpack/santabag
+	item_flags = DELONDROP
 
 /obj/item/storage/backpack/cultpack
 	name = "trophy rack"

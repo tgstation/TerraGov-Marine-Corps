@@ -787,6 +787,22 @@
 				L.AdjustConfused(10 SECONDS)
 	return ..()
 
+/datum/reagent/consumable/ethanol/eggnog
+	name = "Eggnog"
+	description = "For enjoying the most wonderful time of the year."
+	nutriment_factor = 2 * REAGENTS_METABOLISM
+	color = "#fcfdc6" // rgb: 252, 253, 198
+	boozepwr = 1
+	taste_description = "custard and alcohol"
+
+/datum/reagent/consumable/ethanol/eggnog/on_mob_life(mob/living/L, metabolism)
+	if(HAS_TRAIT(L, TRAIT_CHRISTMAS_GRINCH))
+		return ..()
+	L.reagent_pain_modifier += PAIN_REDUCTION_LIGHT
+	L.heal_limb_damage(0.4)
+	L.blood_volume += 0.6
+	return ..()
+
 /datum/reagent/consumable/ethanol/drunkenblumpkin
 	name = "Drunken Blumpkin"
 	description = "A weird mix of whiskey and blumpkin juice."

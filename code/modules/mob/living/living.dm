@@ -645,6 +645,11 @@ below 100 is not dizzy
 	transfer_mob(M)
 
 	fully_replace_character_name(M.real_name, real_name)
+	if(isliving(src))
+		var/mob/living/objectivemob = src
+		if(objectivemob.objectivedatum)
+			objectivemob.mind.add_antag_datum(/datum/antagonist/event_santa)
+			add_verb(objectivemob, /client/verb/view_objectives)
 	return TRUE
 
 
