@@ -128,8 +128,10 @@
 	. = ..()
 
 	if(world.time > last_larva_check + larva_check_interval)
-		balance_scales()
-		last_larva_check = world.time
+		// Basically doing balancing every process until nothing happened.
+		var/xenos_were_added = balance_scales()
+		if(!xenos_were_added)
+			last_larva_check = world.time
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
 	shuttle_landed = TRUE
@@ -189,21 +191,32 @@
 	to_chat(src, span_warning("This power doesn't work in this gamemode."))
 	return FALSE
 
+/// Adds more xeno job slots if needed. Should return TRUE if any was added.
 /datum/game_mode/infestation/crash/proc/balance_scales()
+	// Add more xenos if there is not enough.
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
-	if(stored_larva)
-		return //No need for respawns
-	var/num_xenos = xeno_hive.get_total_xeno_number() + stored_larva
-	if(!num_xenos)
+	var/xenomorphs_below_ratio = get_jobpoint_difference() / xeno_job.job_points_needed
+	if(xenomorphs_below_ratio >= 1)
 		xeno_job.add_job_positions(1)
-		return
-	var/larva_surplus = (get_total_joblarvaworth() - (num_xenos * xeno_job.job_points_needed )) / xeno_job.job_points_needed
-	if(larva_surplus < 1)
-		return //Things are balanced, no burrowed needed
-	xeno_job.add_job_positions(1)
-	xeno_hive.update_tier_limits()
+		xeno_hive.update_tier_limits()
+		return TRUE
+
+	// Ensure that there is always at least 1 xeno.
+	var/total_xenos = xeno_hive.get_total_xeno_number() + (xeno_job.total_positions - xeno_job.current_positions)
+	if(!total_xenos)
+		xeno_job.add_job_positions(1)
+		xeno_hive.update_tier_limits()
+		return TRUE
+
+	return FALSE
+
+/// Gets the difference of job points between humans and xenos. Negative means too many xenos. Positive means too many humans.
+/datum/game_mode/infestation/crash/proc/get_jobpoint_difference()
+	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
+	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	var/total_xenos = xeno_hive.get_total_xeno_number() + (xeno_job.total_positions - xeno_job.current_positions)
+	return get_total_joblarvaworth() - (total_xenos * xeno_job.job_points_needed)
 
 /datum/game_mode/infestation/crash/get_total_joblarvaworth(list/z_levels, count_flags)
 	. = 0
@@ -215,3 +228,15 @@
 			continue
 		. += H.job.jobworth[/datum/job/xenomorph]
 
+/datum/game_mode/infestation/crash/get_adjusted_jobworth_list(list/jobworth_list)
+	var/list/adjusted_jobworth_list = deepCopyList(jobworth_list)
+	for(var/index in jobworth_list)
+		var/datum/job/scaled_job = SSjob.GetJobType(index)
+		if(!(index in SSticker.mode.valid_job_types))
+			continue
+		if(!isxenosjob(scaled_job))
+			continue
+		var/amount = jobworth_list[index]
+		var/jobpoint_difference = get_jobpoint_difference() + amount
+		adjusted_jobworth_list[index] = clamp(jobpoint_difference, 0, amount)
+	return adjusted_jobworth_list
