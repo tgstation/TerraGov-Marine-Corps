@@ -2,6 +2,7 @@
 	name = "Synthetic"
 	default_language_holder = /datum/language_holder/synthetic
 	unarmed_type = /datum/unarmed_attack/punch
+	limb_type = SPECIES_LIMB_HUMAN
 
 	total_health = 125 //more health than regular humans
 

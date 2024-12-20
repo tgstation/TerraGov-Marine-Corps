@@ -65,6 +65,8 @@
 
 
 /mob/living/carbon/human/adjust_ear_damage(damage = 0, deaf = 0)
+	if(HAS_TRAIT(src, TRAIT_EARDAMAGE_IMMUNE))
+		return
 	if(isspeciessynthetic(src))
 		return
 	return ..()
