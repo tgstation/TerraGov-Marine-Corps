@@ -553,6 +553,7 @@
 	. = ..()
 	storage_datum.sprite_slots = 1
 	storage_datum.max_w_class = WEIGHT_CLASS_BULKY
+	storage_datum.storage_slots = 7
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/healthanalyzer,
 		/obj/item/reagent_containers/dropper,
