@@ -114,7 +114,7 @@
 	if(!isvehicle(target_obj))
 		proj.proj_max_range -= 20 //can shoot through 1 piece of cover
 		return
-	proj.damage *= 2
+	proj.damage *= 1.8
 	proj.proj_max_range = 0
 
 /datum/ammo/bullet/rifle/tx8
