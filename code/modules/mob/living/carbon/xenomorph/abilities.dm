@@ -179,7 +179,7 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/plant_weeds/ranged/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
-	if (owner.status_flags & INCORPOREAL)
+	if (owner?.status_flags & INCORPOREAL)
 		return FALSE
 	return ..()
 
