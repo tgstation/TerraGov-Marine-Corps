@@ -44,16 +44,13 @@
 /datum/action/ability/activable/xeno/plant_weeds/New(Target)
 	. = ..()
 	if(SSmonitor.gamestate == SHUTTERS_CLOSED)
-		RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE), PROC_REF(update_ability_cost))
-	update_ability_cost()
+		RegisterSignals(SSdcs, list(COMSIG_GLOB_GAMESTATE_GROUNDSIDE), PROC_REF(update_ability_cost))
+		update_ability_cost()
 
-/**
- * Updates the ability cost as if the gamestate was not SHUTTERS_CLOSED.
- * The signal happens at the same time of gamestate changing, so that variable cannot be depended on.
- */
+///Updates the ability cost based on gamestate
 /datum/action/ability/activable/xeno/plant_weeds/proc/update_ability_cost(datum/source)
 	SIGNAL_HANDLER
-	ability_cost = initial(ability_cost) * initial(weed_type.ability_cost_mult) * (SSmonitor.gamestate == SHUTTERS_CLOSED) ? 0.5 : 1
+	ability_cost = initial(ability_cost) * initial(weed_type.ability_cost_mult) * ((SSmonitor.gamestate == SHUTTERS_CLOSED) ? 0.5 : 1)
 	update_button_icon()
 
 /datum/action/ability/activable/xeno/plant_weeds/action_activate()
