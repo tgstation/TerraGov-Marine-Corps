@@ -368,8 +368,8 @@
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
-	///If the gun is deployable, the time it takes for the weapon to undeploy.
-	var/undeploy_time = 0
+	///If the gun is deployable, the time it takes for the weapon to undeploy. Defaults to deploy time
+	var/undeploy_time = null
 	///If the gun is deployed, change the scatter amount by this number. Negative reduces scatter, positive adds.
 	var/deployed_scatter_change = 0
 	///Flags that the deployed sentry uses upon deployment.
@@ -407,7 +407,7 @@
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 	if(deployable_item)
-		AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
+		AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, isnum(undeploy_time) ? undeploy_time : deploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
