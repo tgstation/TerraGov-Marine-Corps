@@ -306,7 +306,7 @@
 
 /datum/loadout_item/secondary/kit/tgmc_corpsman/advanced
 	name = "Advanced meds"
-	desc = "A variety of advanced medical injectors including neuraline, as well as rezadone, a powerful chemical able to treat genetic damage in humanoids."
+	desc = "A variety of advanced medical injectors including neuraline, rezadone and Re-Grow, allowing for the treatment cloneloss and missing limbs."
 	ui_icon = "medkit"
 	purchase_cost = 30
 
@@ -315,5 +315,6 @@
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/rezadone, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/synaptizine, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/regrow, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/antitox_mix, SLOT_IN_BACKPACK)
