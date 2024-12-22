@@ -290,6 +290,7 @@
 	bound_width = 64
 	bound_height = 64
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	minimap_icon = "acid_jaw"
 	maw_options = list(
 		/datum/maw_ammo/smoke/neuro,
 		/datum/maw_ammo/hugger,
