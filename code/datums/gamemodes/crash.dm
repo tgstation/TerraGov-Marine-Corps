@@ -198,7 +198,7 @@
 	if(xenomorphs_below_ratio >= 1)
 		// Players who receive the join-prompt take up a slot, but aren't officially considered an xenomorph yet.
 		// Because of this, the time must be set no matter what.
-		xeno_job.add_job_positions(FLOOR(xenomorphs_below_ratio))
+		xeno_job.add_job_positions(FLOOR(xenomorphs_below_ratio, 1))
 		xeno_hive.update_tier_limits()
 		return
 
