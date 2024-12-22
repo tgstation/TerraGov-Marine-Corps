@@ -128,7 +128,7 @@
 	. = ..()
 
 	if(world.time > last_larva_check + larva_check_interval)
-		var/xenos_were_added = balance_scales()
+		balance_scales()
 		last_larva_check = world.time
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
@@ -194,11 +194,9 @@
 	// Add more xenos if there is not enough.
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/xenomorphs_below_ratio = get_jobpoint_difference() / xeno_job.job_points_needed
+	var/xenomorphs_below_ratio = FLOOR(get_jobpoint_difference() / xeno_job.job_points_needed, 1);
 	if(xenomorphs_below_ratio >= 1)
-		// Players who receive the join-prompt take up a slot, but aren't officially considered an xenomorph yet.
-		// Because of this, the time must be set no matter what.
-		xeno_job.add_job_positions(FLOOR(xenomorphs_below_ratio, 1))
+		xeno_job.add_job_positions(xenomorphs_below_ratio)
 		xeno_hive.update_tier_limits()
 		return
 
