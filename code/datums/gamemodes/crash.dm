@@ -191,16 +191,15 @@
 
 /// Adds more xeno job slots if needed. Should return TRUE if any was added.
 /datum/game_mode/infestation/crash/proc/balance_scales()
-	// Add more xenos if there is not enough.
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
+	// Spawn more xenos to help maintain the ratio.
 	var/xenomorphs_below_ratio = get_jobpoint_difference() / xeno_job.job_points_needed
 	if(xenomorphs_below_ratio >= 1)
 		xeno_job.add_job_positions(1)
 		xeno_hive.update_tier_limits()
 		return
-
-	// Ensure that there is always at least 1 xeno.
+	// Make sure there is at least one xeno regardless of ratio.
 	var/total_xenos = xeno_hive.get_total_xeno_number() + (xeno_job.total_positions - xeno_job.current_positions)
 	if(!total_xenos)
 		xeno_job.add_job_positions(1)
