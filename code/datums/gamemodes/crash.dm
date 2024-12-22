@@ -194,9 +194,9 @@
 	// Add more xenos if there is not enough.
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
-	var/xenomorphs_below_ratio = FLOOR(get_jobpoint_difference() / xeno_job.job_points_needed, 1);
+	var/xenomorphs_below_ratio = get_jobpoint_difference() / xeno_job.job_points_needed
 	if(xenomorphs_below_ratio >= 1)
-		xeno_job.add_job_positions(xenomorphs_below_ratio)
+		xeno_job.add_job_positions(1)
 		xeno_hive.update_tier_limits()
 		return
 
