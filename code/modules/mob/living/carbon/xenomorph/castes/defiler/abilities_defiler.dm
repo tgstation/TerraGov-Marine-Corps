@@ -151,7 +151,7 @@
 		if(50 to 99)
 			to_chat(living_target, span_danger("Your insides are in agony!"))
 		if(100 to INFINITY)
-			to_chat(living_target, span_highdanger("YOUR INSIDES FEEL LIKE THEY'RE ON FIRE!!"))
+			to_chat(living_target, span_userdanger("YOUR INSIDES FEEL LIKE THEY'RE ON FIRE!!"))
 
 	GLOB.round_statistics.defiler_defiler_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_defiler_stings")

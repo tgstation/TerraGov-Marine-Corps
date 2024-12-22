@@ -329,7 +329,7 @@
 	if(isnull(our_parent))
 		return ..()
 	our_parent.playsound_local(our_parent, SFX_ALIEN_HELP, 30, TRUE)
-	to_chat(our_parent, span_xenohighdanger("Your core has been destroyed!"))
+	to_chat(our_parent, span_xenouserdanger("Your core has been destroyed!"))
 	xeno_message("A sudden tremor ripples through the hive... \the [our_parent] has been slain!", "xenoannounce", 5, our_parent.hivenumber)
 	GLOB.key_to_time_of_role_death[our_parent.key] = world.time
 	GLOB.key_to_time_of_death[our_parent.key] = world.time
@@ -358,7 +358,7 @@
 	var/health_percent = round((max_integrity / obj_integrity) * 100)
 	switch(health_percent)
 		if(-INFINITY to 25)
-			to_chat(our_parent, span_xenohighdanger("Your core is under attack, and dangerous low on health!"))
+			to_chat(our_parent, span_xenouserdanger("Your core is under attack, and dangerous low on health!"))
 		if(26 to 75)
 			to_chat(our_parent, span_xenodanger("Your core is under attack, and low on health!"))
 		if(76 to INFINITY)

@@ -132,6 +132,7 @@
 		last_larva_check = world.time
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CRASH_SHIP_LANDED)
 	shuttle_landed = TRUE
 	shuttle.crashing = FALSE
 

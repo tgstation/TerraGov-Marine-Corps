@@ -1118,7 +1118,7 @@
 		user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
 		user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 		user.death()
-		to_chat(user, span_highdanger("Your life flashes before you as your spirit is torn from your body!"))
+		to_chat(user, span_userdanger("Your life flashes before you as your spirit is torn from your body!"))
 		user.ghostize(FALSE) //No return.
 		ENABLE_BITFIELD(gun_features_flags, GUN_CAN_POINTBLANK)
 		return
