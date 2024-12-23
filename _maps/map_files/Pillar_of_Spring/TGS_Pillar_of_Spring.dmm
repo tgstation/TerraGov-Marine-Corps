@@ -10401,9 +10401,8 @@
 	},
 /area/mainship/command/self_destruct)
 "mkJ" = (
-/obj/item/clothing/head/warning_cone,
-/obj/effect/spawner/random/misc/present,
-/turf/open/floor/plating,
+/obj/effect/spawner/random/food_or_drink/christmas_food,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "mle" = (
 /turf/closed/wall/mainship/research/containment/wall/east,
@@ -11951,10 +11950,10 @@
 /area/mainship/hull/lower_hull)
 "oaw" = (
 /obj/effect/spawner/random/misc/present{
-	pixel_x = 7;
-	pixel_y = 3
+	pixel_x = 4;
+	pixel_y = -4
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "obt" = (
 /obj/structure/table/wood/fancy,
@@ -14274,8 +14273,8 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/medical_science)
 "qIz" = (
-/obj/structure/flora/tree/pine/xmas/presents,
-/turf/open/floor/plating,
+/obj/docking_port/stationary/marine_dropship/minidropship,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "qIE" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -16825,9 +16824,11 @@
 /turf/open/floor/mainship/ntlogo/nt2,
 /area/mainship/squads/general)
 "tJG" = (
-/obj/item/clothing/head/warning_cone,
-/obj/effect/spawner/random/food_or_drink/christmas_food,
-/turf/open/floor/plating,
+/obj/effect/spawner/random/misc/present{
+	pixel_x = -8;
+	pixel_y = -5
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "tKd" = (
 /obj/structure/table/mainship/nometal,
@@ -16941,11 +16942,8 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "tRd" = (
-/obj/effect/spawner/random/misc/present{
-	pixel_x = 4;
-	pixel_y = -4
-	},
-/turf/open/floor/plating,
+/obj/effect/spawner/random/misc/present,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "tRh" = (
 /obj/structure/cable,
@@ -16998,8 +16996,15 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/hallways/hangar)
 "tTR" = (
-/obj/docking_port/stationary/marine_dropship/minidropship,
-/turf/open/floor/plating,
+/obj/effect/spawner/random/misc/present{
+	pixel_x = 4;
+	pixel_y = 7
+	},
+/obj/effect/spawner/random/misc/present{
+	pixel_x = -7;
+	pixel_y = -10
+	},
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "tTW" = (
 /obj/structure/cable,
@@ -18008,15 +18013,8 @@
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
 "vad" = (
-/obj/effect/spawner/random/misc/present{
-	pixel_x = 4;
-	pixel_y = 7
-	},
-/obj/effect/spawner/random/misc/present{
-	pixel_x = -7;
-	pixel_y = -10
-	},
-/turf/open/floor/plating,
+/obj/structure/flora/tree/pine/xmas/presents,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "vaj" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -19879,10 +19877,10 @@
 /area/mainship/medical/medical_science)
 "xlK" = (
 /obj/effect/spawner/random/misc/present{
-	pixel_x = -8;
-	pixel_y = -5
+	pixel_x = 7;
+	pixel_y = 3
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "xmu" = (
 /obj/effect/turf_decal/warning_stripes/thin{
@@ -51569,7 +51567,7 @@ gGg
 bEi
 bEi
 bEi
-dpY
+mkJ
 dpY
 rpB
 iXU
@@ -51826,8 +51824,8 @@ qxp
 snV
 bEi
 bEi
-dpY
-dpY
+oaw
+tTR
 hOe
 dpY
 dpY
@@ -52083,8 +52081,8 @@ thg
 sEl
 obQ
 wEI
-dpY
-dpY
+qIz
+vad
 hOe
 dpY
 dpY
@@ -52340,8 +52338,8 @@ rzG
 sKa
 jIc
 jIc
-dpY
-dpY
+tJG
+xlK
 hOe
 dpY
 dpY
@@ -52597,7 +52595,7 @@ gGg
 jIc
 jIc
 jIc
-dpY
+tRd
 dpY
 qIE
 gek
@@ -53389,7 +53387,7 @@ hFZ
 qPc
 dpY
 oGN
-tJG
+pwj
 tHk
 nzB
 kDx
@@ -53650,8 +53648,8 @@ kDx
 cfw
 kDx
 kDx
-tRd
-vad
+kDx
+kDx
 kDx
 kDx
 cxw
@@ -53907,8 +53905,8 @@ pwj
 cfw
 kDx
 kDx
-tTR
-qIz
+kDx
+kDx
 kDx
 kDx
 cxw
@@ -54164,8 +54162,8 @@ kDx
 cfw
 kDx
 kDx
-xlK
-oaw
+kDx
+kDx
 kDx
 kDx
 cxw
@@ -54417,7 +54415,7 @@ cxw
 qPc
 dpY
 oGN
-mkJ
+pwj
 nbW
 qWy
 kDx

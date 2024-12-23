@@ -234,6 +234,7 @@
 	var/given_guns = 0
 	///hard cap on how many guns can be taken
 	var/gun_cap = 150
+	is_christmastree = FALSE
 
 /obj/structure/flora/tree/pine/xmas/presents/guntree/attack_hand(mob/living/user, list/modifiers)
 	if(!spawningguns || gun_cap >= given_guns)
