@@ -86,3 +86,18 @@
 2024-12-22:
   Lumipharon:
   - bugfix: fixed radio TTS playing when it shouldn't
+2024-12-23:
+  Lumipharon:
+  - balance: Tac reload windup time is now purely for the new mag
+  - bugfix: Fixed tac reload getting the skill bonus twice.
+  - balance: 'Campaign: Increased engineer plasteel and metal amounts in suit storage'
+  - bugfix: fixed weeds being half price on Crash
+  - bugfix: fixed a bug with hunter stealth
+  - balance: 'Campaign: Increased cost of Scout rifle asset from 6 to 10 attrition
+      for two.'
+  Neocloudy:
+  - code_imp: Updated tgui chat constants so that bold warnings and alerts (red, nonitalic
+      nonbold) are under the warning category
+  - code_imp: All highdanger spans have been renamed to userdanger in the code
+  - qol: Admin announcements and roundend boxes are under the OOC category, so they
+      will appear in chat tabs with OOC enabled

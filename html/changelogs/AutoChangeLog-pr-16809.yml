@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Tac reload windup time is now purely for the new mag"
-  - bugfix: "Fixed tac reload getting the skill bonus twice."

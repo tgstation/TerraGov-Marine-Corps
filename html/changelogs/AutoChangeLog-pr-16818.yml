@@ -1,6 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - code_imp: "Updated tgui chat constants so that bold warnings and alerts (red, nonitalic nonbold) are under the warning category"
-  - code_imp: "All highdanger spans have been renamed to userdanger in the code"
-  - qol: "Admin announcements and roundend boxes are under the OOC category, so they will appear in chat tabs with OOC enabled"
