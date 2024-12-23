@@ -77,7 +77,7 @@
 	damage_falloff = 0.5
 	accurate_range = 18
 	max_range = 30
-	damage = 65
+	damage = 60
 	penetration = 20
 	sundering = 2
 
@@ -114,7 +114,7 @@
 	if(!isvehicle(target_obj))
 		proj.proj_max_range -= 20 //can shoot through 1 piece of cover
 		return
-	proj.damage *= 1.8
+	proj.damage *= 2
 	proj.proj_max_range = 0
 
 /datum/ammo/bullet/rifle/tx8
