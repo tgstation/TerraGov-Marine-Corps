@@ -145,11 +145,12 @@
 	is_christmastree = TRUE
 	var/disable_slashing = FALSE
 	resistance_flags = RESIST_ALL
+	base_icon_state = "pinepresents"
 
 /obj/structure/flora/tree/pine/xmas/presents/Initialize(mapload)
 	. = ..()
 	GLOB.christmastrees += src
-	icon_state = "pinepresents"
+	icon_state = base_icon_state
 	if(!took_presents)
 		took_presents = list()
 
@@ -234,18 +235,22 @@
 	var/given_guns = 0
 	///hard cap on how many guns can be taken
 	var/gun_cap = 150
-	is_christmastree = FALSE
+	base_icon_state = "pinepresents_gun"
+	unlimited = TRUE
+
+/obj/structure/flora/tree/pine/xmas/presents/guntree/Initialize(mapload)
+	. = ..()
+	gun_spawn_list = subtypesof(/obj/item/weapon/gun)
 
 /obj/structure/flora/tree/pine/xmas/presents/guntree/attack_hand(mob/living/user, list/modifiers)
-	if(!spawningguns || gun_cap >= given_guns)
+	if(!spawningguns || gun_cap <= given_guns)
 		to_chat(user, span_warning("The gun tree is still regenerating its supply, try again in a couple seconds..."))
 		return
 	to_chat(user, span_warning("You start rummaging through the pile of presents underneath the tree, trying to locate a gun appropriate for your size..."))
 	var/mob/living/carbon/human/present_receiver = user
-	var/obj/item/G = pick(subtypesof(/obj/item/weapon/gun))
-	G.desc += " Property of [present_receiver.real_name]."
-	present_receiver.balloon_alert_to_viewers("Got a [G]")
-	present_receiver.put_in_hands(G)
+	var/obj/item/G = pick(gun_spawn_list)
+	present_receiver.balloon_alert_to_viewers("Got a [G].name")
+	present_receiver.put_in_hands(new G)
 	spawningguns = FALSE
 	++given_guns
 	addtimer(CALLBACK(src, PROC_REF(toggle_guns)), 3 SECONDS)
