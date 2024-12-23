@@ -1346,7 +1346,7 @@
 	custom_metabolism = REAGENTS_METABOLISM * 5
 
 /datum/reagent/medicine/regrow/on_mob_add(mob/living/L, metabolism)
-	if(volume > 5 || L.stat == DEAD || (!ishuman(L)))
+	if(volume < 5 || L.stat == DEAD || (!ishuman(L)))
 		return
 	var/mob/living/carbon/human/human = L
 	var/limb_regrown = FALSE
