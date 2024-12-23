@@ -6907,6 +6907,7 @@
 	dir = 1;
 	on = 1
 	},
+/obj/item/trash/eat,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/emergencystorage)
 "eKc" = (
@@ -24719,10 +24720,6 @@
 	},
 /turf/open/floor/tile/dark,
 /area/metnal/inside/engineering)
-"qXZ" = (
-/obj/item/trash/eat,
-/turf/closed/wall/r_wall/prison,
-/area/metnal/inside/emergencystorage)
 "qYd" = (
 /obj/structure/platform{
 	dir = 8
@@ -58610,7 +58607,7 @@ dXM
 dXM
 dXM
 eJX
-qXZ
+fIO
 xif
 xif
 qly
