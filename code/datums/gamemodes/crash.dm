@@ -189,7 +189,7 @@
 	to_chat(src, span_warning("This power doesn't work in this gamemode."))
 	return FALSE
 
-/// Adds more xeno job slots if needed. Should return TRUE if any was added.
+/// Adds more xeno job slots if needed.
 /datum/game_mode/infestation/crash/proc/balance_scales()
 	var/datum/hive_status/normal/xeno_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
