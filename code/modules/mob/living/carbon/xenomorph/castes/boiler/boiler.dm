@@ -57,3 +57,11 @@
 	smoke.set_up(2, get_turf(src))
 	smoke.start()
 
+/mob/living/carbon/xenomorph/boiler/sizzler
+	caste_base_type = /datum/xeno_caste/boiler/sizzler
+
+/mob/living/carbon/xenomorph/boiler/sizzler/Initialize(mapload)
+	. = ..()
+	smoke = new /datum/effect_system/smoke_spread/xeno/acid/opaque(src)
+	ammo = GLOB.ammo_list[/datum/ammo/xeno/acid/airburst]
+	RegisterSignal(src, COMSIG_XENOMORPH_GIBBING, PROC_REF(gib_explode))

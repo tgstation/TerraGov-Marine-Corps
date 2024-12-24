@@ -406,6 +406,10 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	/// The amount of Wrath currently stored.
 	var/wrath_stored = 0
 
+	// *** Boiler vars *** //
+	///When true the boiler gains speed and resets the duration on attack
+	var/steam_rush = FALSE
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
