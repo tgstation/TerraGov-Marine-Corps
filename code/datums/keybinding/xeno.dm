@@ -265,6 +265,13 @@
 	description = "Create a smokescreen for a getaway."
 	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD_SELECT
 
+/datum/keybinding/xeno/steam_rush
+	name = "steam_rush"
+	full_name = "Boiler: Steam Rush"
+	description = "Speeds up and increases slash damage."
+	keybind_signal = COMSIG_XENOABILITY_STEAM_RUSH
+	hotkey_keys = list("Space")
+
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
 	full_name = "Bull: Plow Charge"
