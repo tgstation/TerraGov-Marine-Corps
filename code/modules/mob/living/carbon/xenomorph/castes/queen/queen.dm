@@ -16,8 +16,6 @@
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
-
-	var/breathing_counter = 0
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)

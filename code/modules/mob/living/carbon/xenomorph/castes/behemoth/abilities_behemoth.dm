@@ -104,7 +104,6 @@
 
 /datum/action/ability/xeno_action/ready_charge/behemoth_roll/charge_off(verbose = TRUE)
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = FALSE
 	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons()
@@ -112,7 +111,6 @@
 
 /datum/action/ability/xeno_action/ready_charge/behemoth_roll/charge_on(verbose = TRUE)
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = TRUE
 	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons()
@@ -302,7 +300,6 @@
 	if(LinkBlocked(owner_turf, get_step(owner, direction)) || owner_turf == get_turf(target))
 		owner.balloon_alert(owner, "No space")
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
 	if(behemoth_roll_action?.charge_ability_on)
 		behemoth_roll_action.charge_off()
@@ -372,7 +369,6 @@
 		return
 	if(owner.pulling)
 		owner.stop_pulling()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.plasma_stored < ability_cost)
 		end_charge(LANDSLIDE_ENDED_NO_PLASMA)
 		return
@@ -435,7 +431,6 @@
 		owner.stop_pulling()
 	var/owner_turf = get_turf(owner)
 	var/direct_turf = get_step(owner, direction)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(steps_to_take <= 0 || xeno_owner.wrath_stored < ability_cost)
 		if(LinkBlocked(owner_turf, direct_turf))
 			playsound(direct_turf, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
@@ -481,7 +476,6 @@
 /datum/action/ability/activable/xeno/landslide/proc/end_charge(reason)
 	ability_active = FALSE
 	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = FALSE
 	if(!xeno_owner.lying_angle)
 		xeno_owner.set_canmove(TRUE)
@@ -629,7 +623,6 @@
 
 /datum/action/ability/activable/xeno/earth_riser/alternate_action_activate()
 	if(!length(active_pillars))
-		var/mob/living/carbon/xenomorph/xeno_owner = owner
 		xeno_owner.balloon_alert(xeno_owner, "No active pillars")
 		return
 	add_cooldown(1.5 SECONDS)
@@ -644,7 +637,6 @@
 		return
 	var/turf/owner_turf = get_turf(owner)
 	var/turf/target_turf = get_turf(target)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/primal_wrath]
 	if(!line_of_sight(owner, target, primal_wrath_action?.ability_active? EARTH_RISER_ENHANCED_RANGE : EARTH_RISER_RANGE))
 		owner.balloon_alert(owner, "Out of range")
@@ -670,7 +662,6 @@
 /datum/action/ability/activable/xeno/earth_riser/proc/do_ability(turf/target_turf, enhanced)
 	if(!target_turf)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/new_pillar = new /obj/structure/earth_pillar(target_turf, xeno_owner, enhanced)
 	RegisterSignal(new_pillar, COMSIG_XENOABILITY_EARTH_PILLAR_THROW, PROC_REF(pillar_thrown))
 	RegisterSignal(new_pillar, COMSIG_QDELETING, PROC_REF(pillar_destroyed))
@@ -794,7 +785,6 @@
 
 /datum/action/ability/xeno_action/seismic_fracture/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
 	if(behemoth_roll_action?.charge_ability_on)
 		behemoth_roll_action.charge_off()
@@ -954,7 +944,6 @@
 /datum/action/ability/xeno_action/primal_wrath/process()
 	if(!owner)
 		return PROCESS_KILL
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.hivenumber == XENO_HIVE_FALLEN)
 		if(xeno_owner.wrath_stored < xeno_owner.xeno_caste.wrath_max)
 			xeno_owner.wrath_stored = xeno_owner.xeno_caste.wrath_max
@@ -974,7 +963,6 @@
 	decay_amount = round(decay_amount * PRIMAL_WRATH_DECAY_MULTIPLIER)
 
 /datum/action/ability/xeno_action/primal_wrath/action_activate()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.hivenumber != XENO_HIVE_FALLEN)
 		if(ability_active || currently_roaring)
 			return
@@ -1024,7 +1012,6 @@
 /datum/action/ability/xeno_action/primal_wrath/proc/end_ability()
 	currently_roaring = FALSE
 	owner.status_flags &= ~GODMODE
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.fortify = FALSE
 	xeno_owner.set_canmove(TRUE)
 
@@ -1054,7 +1041,6 @@
 	SIGNAL_HANDLER
 	if(!ability_active || source_action == src)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.wrath_stored = clamp(xeno_owner.wrath_stored - (action_cost / 2), 0, xeno_owner.xeno_caste.wrath_max)
 	return SUCCEED_ACTIVATE_CANCEL
 
@@ -1069,7 +1055,6 @@
 	SIGNAL_HANDLER
 	if(amount <= 0 || owner.stat || owner.lying_angle)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(ability_active)
 		if(amount >= xeno_owner.health)
 			var/damage_amount = (amount - xeno_owner.health)
@@ -1090,7 +1075,6 @@
 */
 /datum/action/ability/xeno_action/primal_wrath/proc/toggle_buff(toggle)
 	ability_active = !ability_active
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/activable/xeno/landslide/landslide_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/landslide]
 	var/datum/action/ability/activable/xeno/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/earth_riser]
 	if(!toggle)

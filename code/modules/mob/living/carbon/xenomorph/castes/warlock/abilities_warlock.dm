@@ -81,7 +81,6 @@
 		INVOKE_ASYNC(src, PROC_REF(use_ability))
 
 /datum/action/ability/activable/xeno/psychic_shield/action_activate()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.selected_ability == src && xeno_owner.upgrade == XENO_UPGRADE_PRIMO)
 		alternative_reflection = !alternative_reflection
 		// Reflects projectiles toward a target (targetted) / reflects projectiles as if it was bounced (normal).
@@ -89,7 +88,6 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/psychic_shield/use_ability(atom/targetted_atom)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(active_shield)
 		if(ability_cost > xeno_owner.plasma_stored)
 			owner.balloon_alert(owner, "[ability_cost - xeno_owner.plasma_stored] more plasma!")
@@ -134,7 +132,6 @@
 
 ///Removes the shield and resets the ability
 /datum/action/ability/activable/xeno/psychic_shield/proc/cancel_shield()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	action_icon_state = "psy_shield"
 	xeno_owner.update_glow()
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
@@ -340,7 +337,6 @@
 			crush(target_turfs[1])
 		return
 
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.selected_ability != src)
 		action_activate()
 		return
@@ -387,7 +383,6 @@
 ///Increases the area of effect, or triggers the crush if we've reached max iterations
 /datum/action/ability/activable/xeno/psy_crush/proc/do_channel(turf/target)
 	channel_loop_timer = null
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(!check_distance(target) || isnull(xeno_owner) || xeno_owner.stat == DEAD)
 		stop_crush()
 		return
@@ -418,7 +413,6 @@
 
 ///crushes all turfs in the AOE
 /datum/action/ability/activable/xeno/psy_crush/proc/crush(turf/target)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/crush_cost = ability_cost * current_iterations
 	if(crush_cost > xeno_owner.plasma_stored)
 		owner.balloon_alert(owner, "[crush_cost - xeno_owner.plasma_stored] more plasma!")
@@ -456,7 +450,6 @@
 /// stops channeling and unregisters all listeners, resetting the ability
 /datum/action/ability/activable/xeno/psy_crush/proc/stop_crush()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(channel_loop_timer)
 		deltimer(channel_loop_timer)
 		channel_loop_timer = null
@@ -556,7 +549,6 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/psy_blast/action_activate()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.selected_ability == src)
 		var/list/spit_types = xeno_owner.xeno_caste.spit_types
 		if(length(spit_types) <= 1)
@@ -578,7 +570,6 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(!xeno_owner.check_state())
 		return FALSE
 	var/datum/ammo/energy/xeno/selected_ammo = xeno_owner.ammo
@@ -589,7 +580,6 @@
 		return FALSE
 
 /datum/action/ability/activable/xeno/psy_blast/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	owner.balloon_alert(owner, "We channel our psychic power")
 	generate_particles(A, 7)
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
@@ -623,7 +613,6 @@
 	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
 
 /datum/action/ability/activable/xeno/psy_blast/update_button_icon()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	action_icon_state = ammo_type.icon_state
 	return ..()
@@ -644,6 +633,5 @@
 
 ///Cleans up when the channel finishes or is cancelled
 /datum/action/ability/activable/xeno/psy_blast/proc/end_channel()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	QDEL_NULL(particle_holder)
 	xeno_owner.update_glow()
