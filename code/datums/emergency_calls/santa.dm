@@ -80,8 +80,11 @@
 /datum/action/innate/summon_present/Activate()
 	var/mob/living/carbon/human/santamob = usr
 	to_chat(santamob, span_notice("You begin rifling through your bag, looking for a present."))
-	if(!do_after(santamob, 7 SECONDS))
+	if(!do_after(santamob, 7 SECONDS, NONE))
 		to_chat(santamob, "You give up looking for a present.")
+		return
+	if(locate(/obj/item/a_gift/santa) in get_turf(santamob))
+		to_chat(santamob, "There's a present here already, better use that one instead.")
 		return
 	var/obj/item/a_gift/santa/spawnedpresent = new (get_turf(santamob))
 	santamob.put_in_hands(spawnedpresent)

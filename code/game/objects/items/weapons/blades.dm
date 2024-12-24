@@ -147,7 +147,7 @@
 
 /obj/item/stack/throwing_knife/update_icon_state()
 	. = ..()
-	if(update_on_throwing)
+	if(update_on_throwing && !iscoal)
 		icon_state = "throwing_knife_[amount]"
 
 /obj/item/stack/throwing_knife/equipped(mob/user, slot)

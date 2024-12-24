@@ -69,6 +69,23 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 	contains_type = get_gift_type()
 
+/obj/item/a_gift/attack(mob/M, mob/user, def_zone)
+	if(HAS_TRAIT(M, TRAIT_SANTA_CLAUS) || HAS_TRAIT(M, TRAIT_CHRISTMAS_ELF))
+		to_chat(user, span_warning("[M] should deliver gifts, not receive them..."))
+		return
+	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS))
+		if(present_receiver == M)
+			to_chat(user, span_warning("[M] is already the intended recipient of this present."))
+			return
+		to_chat(user, span_warning("Using your Christmas powers, you begin to reassign the gift and its contents to [M]..."))
+		if(!do_after(user, 10 SECONDS))
+			to_chat(user, span_warning("You decide that [M] doesn't deserve this present."))
+			return
+		present_receiver = M
+		present_receiver_name = M.name
+		to_chat(user, span_warning("You reassign the gift and its contents to [M]."))
+		M.balloon_alert_to_viewers("[user] reassigns [present_receiver_name]'s gift to [M]" ,ignored_mobs = user)
+
 /obj/item/a_gift/examine(mob/user)
 	. = ..()
 	if(HAS_TRAIT(user, TRAIT_SANTA_CLAUS)) //santa can reveal the owner of a present just by looking at it

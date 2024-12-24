@@ -253,7 +253,7 @@
 	present_receiver.put_in_hands(new G)
 	spawningguns = FALSE
 	++given_guns
-	addtimer(CALLBACK(src, PROC_REF(toggle_guns)), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(toggle_guns)), 0.5 SECONDS)
 
 /obj/structure/flora/tree/pine/xmas/presents/guntree/proc/toggle_guns()
 	spawningguns = TRUE
