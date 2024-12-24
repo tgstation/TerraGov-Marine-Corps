@@ -347,11 +347,12 @@
 		text = "<font size='3'><b>[text]<b></font>"
 	return "[nametext][text]"
 
-
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
 	if(is_ic_filtered(message) || NON_ASCII_CHECK(message))
 		to_chat(sender, span_boldnotice("Message invalid. Check your message does not contain filtered words or characters."))
 		return
+	var/list/treated_message = sender?.treat_message(message)
+	message = treated_message["message"]
 
 	var/header = "AUTOMATED CIC NOTICE:"
 	var/sound = "sound/misc/notice3.ogg"
@@ -366,6 +367,11 @@
 	for(var/mob/living/marine AS in marines_list)
 		marine.playsound_local(marine, sound, 35)
 		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, message_type, message_color)
+	if(sender?.voice && SStts.tts_enabled)
+		var/list/extra_filters = list(TTS_FILTER_RADIO)
+		if(isrobot(sender))
+			extra_filters += TTS_FILTER_SILICON
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), sender, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, marines_list, TRUE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
 
 /datum/squad/proc/check_entry(datum/job/job)
 	if(!(job.title in current_positions))
