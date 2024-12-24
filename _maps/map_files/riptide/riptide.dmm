@@ -5010,6 +5010,7 @@
 	dir = 5
 	},
 /obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/kitchen,
 /area/riptide/inside/beachsushi)
 "dzA" = (
@@ -8003,6 +8004,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/ground,
 /area/riptide/outside/westbeach)
+"fCe" = (
+/obj/effect/landmark/weed_node,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/tile/dark/gray,
+/area/riptide/inside/engineering)
 "fCi" = (
 /obj/effect/spawner/random/food_or_drink/drink_alcohol_bottle,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -10966,6 +10973,11 @@
 	dir = 1
 	},
 /area/riptide/outside/volcano)
+"hJb" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/wood/thatch,
+/area/riptide/inside/canteen)
 "hJM" = (
 /turf/open/floor/tile/bar,
 /area/riptide/inside/medical)
@@ -13963,6 +13975,7 @@
 "jVn" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/turf_decal/sandytile,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/ground,
 /area/riptide/outside/northbeach)
 "jVt" = (
@@ -14169,6 +14182,7 @@
 /obj/structure/cable,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/dark2,
 /area/riptide/inside/guardcheck)
 "kcC" = (
@@ -15488,6 +15502,7 @@
 "kVj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood/darker,
 /area/riptide/inside/beachshop)
 "kVp" = (
@@ -25039,6 +25054,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 6
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/wood/alt_four,
 /area/riptide/inside/abandonedcottage)
 "rni" = (
@@ -26060,6 +26076,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 8
 	},
+/obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/tile/bar,
 /area/riptide/inside/beachdressing)
 "rTr" = (
@@ -34835,6 +34852,10 @@
 	},
 /turf/open/floor/plating,
 /area/riptide/inside/beachbar)
+"ybt" = (
+/obj/effect/landmark/excavation_site_spawner,
+/turf/open/floor/wood/darker,
+/area/riptide/inside/riverblocker)
 "yby" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -48386,7 +48407,7 @@ sir
 uHx
 lCn
 hbs
-cPy
+hJb
 hpT
 vtt
 uHx
@@ -49826,7 +49847,7 @@ iRE
 tSy
 tSy
 mOQ
-tss
+ybt
 tss
 lkm
 arZ
@@ -52568,7 +52589,7 @@ qOR
 azQ
 ady
 oxA
-pkU
+fCe
 jHO
 hjK
 drA
