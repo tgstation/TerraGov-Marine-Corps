@@ -139,7 +139,7 @@
 
 /datum/loadout_item/secondary/kit/som_corpsman/advanced
 	name = "Advanced meds"
-	desc = "A variety of advanced medical injectors including Russian Red, rezadone and Re-Grow, allowing for the treatment cloneloss and missing limbs."
+	desc = "A variety of advanced medical injectors including Russian Red, rezadone and Re-Grow, allowing for the treatment of cloneloss and missing limbs."
 	ui_icon = "medkit"
 	purchase_cost = 30
 
