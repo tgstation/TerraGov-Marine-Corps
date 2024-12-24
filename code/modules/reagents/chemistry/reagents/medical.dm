@@ -1336,3 +1336,44 @@
 		if (21 to INFINITY)
 			L.jitter(5)
 	return ..()
+
+/datum/reagent/medicine/regrow
+	name = "Re-grow"
+	description = "Re-grow is rare and unusual drug that stimulates the rapid (and horrifically painful) regeneration of missing limbs."
+	color = COLOR_REAGENT_SYNAPTIZINE
+	overdose_threshold = REAGENTS_OVERDOSE/5
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
+	custom_metabolism = REAGENTS_METABOLISM * 5
+
+/datum/reagent/medicine/regrow/on_mob_add(mob/living/L, metabolism)
+	if(volume < 5 || L.stat == DEAD || (!ishuman(L)))
+		return
+	var/mob/living/carbon/human/human = L
+	var/limb_regrown = FALSE
+	for(var/datum/limb/limb AS in human.limbs)
+		if(!(limb.limb_status & LIMB_DESTROYED))
+			continue
+		limb_regrown = TRUE
+		limb.biotize()
+		to_chat(human, span_userdanger("You feel unbelievable pain as your [limb.display_name] regrows before your eyes!"))
+		human.jitter(10)
+		human.Paralyze(1 SECONDS)
+		human.adjustStaminaLoss(20)
+	if(!limb_regrown)
+		return
+	human.emote("burstscream")
+	human.update_body()
+	human.updatehealth()
+	human.UpdateDamageIcon()
+
+/datum/reagent/medicine/regrow/on_mob_life(mob/living/L, metabolism)
+	L.reagent_shock_modifier -= PAIN_REDUCTION_SUPER_HEAVY
+	L.adjustToxLoss(effect_str * 2)
+	return ..()
+
+/datum/reagent/medicine/regrow/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(effect_str * 4, TOX)
+
+/datum/reagent/medicine/regrow/overdose_crit_process(mob/living/L, metabolism)
+	L.reagent_shock_modifier -= PAIN_REDUCTION_SUPER_HEAVY
+	L.apply_damages(effect_str, effect_str, effect_str * 4)
