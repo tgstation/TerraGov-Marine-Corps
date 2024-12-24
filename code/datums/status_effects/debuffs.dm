@@ -350,11 +350,8 @@
 
 /datum/status_effect/plasmadrain/tick(delta_time)
 	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(xenoowner.plasma_stored >= 0)
-		var/remove_plasma_amount = xenoowner.xeno_caste.plasma_max / 10
-		xenoowner.plasma_stored -= remove_plasma_amount
-		if(xenoowner.plasma_stored <= 0)
-			xenoowner.plasma_stored = 0
+	if(xenoowner.plasma_stored)
+		xenoowner.use_plasma(xenoowner.xeno_caste.plasma_max / 10)
 
 /datum/status_effect/noplasmaregen
 	id = "noplasmaregen"

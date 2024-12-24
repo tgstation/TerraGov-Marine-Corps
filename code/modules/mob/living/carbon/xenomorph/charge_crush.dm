@@ -206,7 +206,7 @@
 		charger.add_movespeed_modifier(MOVESPEED_ID_XENO_CHARGE, TRUE, 100, NONE, TRUE, -CHARGE_SPEED(src))
 
 	if(valid_steps_taken > steps_for_charge)
-		charger.plasma_stored -= round(CHARGE_SPEED(src) * plasma_use_multiplier) //Eats up plasma the faster you go. //now uses a multiplier
+		charger.use_plasma(round(CHARGE_SPEED(src) * plasma_use_multiplier))
 
 		switch(charge_type)
 			if(CHARGE_CRUSH) //Xeno Crusher
@@ -267,10 +267,6 @@
 	var/mob/living/carbon/xenomorph/charger = owner
 	if(charger.incapacitated() || charger.now_pushing)
 		return NONE
-
-	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
-		do_stop_momentum()
-		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
 	var/precrush = crushed.pre_crush_act(charger, src) //Negative values are codes. Positive ones are damage to deal.
 	switch(precrush)

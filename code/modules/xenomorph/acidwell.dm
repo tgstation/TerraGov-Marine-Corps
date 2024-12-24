@@ -135,7 +135,7 @@
 		balloon_alert(xeno_attacker, "Need [XENO_ACID_WELL_FILL_COST - xeno_attacker.plasma_stored] more plasma")
 		return
 
-	xeno_attacker.plasma_stored -= XENO_ACID_WELL_FILL_COST
+	xeno_attacker.use_plasma(XENO_ACID_WELL_FILL_COST)
 	charges++
 	charging = FALSE
 	update_icon()
