@@ -48,6 +48,10 @@
 		ADD_TRAIT(human_user, TRAIT_KNIGHT, src)
 		ADD_TRAIT(human_user, TRAIT_SWORD_EXPERT, src)
 		ADD_TRAIT(human_user, TRAIT_AXE_EXPERT, src)
+		human_user.set_skills(human_user.skills.modifyRating(unarmed=1))
+		human_user.set_skills(human_user.skills.modifyRating(melee_weapons=1))
+		human_user.set_skills(human_user.skills.modifyRating(stamina=1))
+
 
 /obj/item/clothing/unequipped(mob/unequipper, slot)
 	if(!(equip_slot_flags & slotdefine2slotbit(slot)))
@@ -63,6 +67,9 @@
 		REMOVE_TRAIT(human_unequipper, TRAIT_KNIGHT, src)
 		REMOVE_TRAIT(human_unequipper, TRAIT_AXE_EXPERT, src)
 		REMOVE_TRAIT(human_unequipper, TRAIT_SWORD_EXPERT, src)
+		human_unequipper.set_skills(human_unequipper.skills.modifyRating(unarmed=-1))
+		human_unequipper.set_skills(human_unequipper.skills.modifyRating(melee_weapons=-1))
+		human_unequipper.set_skills(human_unequipper.skills.modifyRating(stamina=-1))
 	return ..()
 
 /obj/item/clothing/vendor_equip(mob/user)
