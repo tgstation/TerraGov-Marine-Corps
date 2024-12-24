@@ -209,15 +209,16 @@ GLOBAL_PROTECT(exp_specialmap)
 	if(amount <= 0)
 		CRASH("occupy_job_positions() called with amount: [amount]")
 	current_positions += amount
-	for(var/index in jobworth)
+	var/adjusted_jobworth_list = SSticker.mode?.get_adjusted_jobworth_list(jobworth) || jobworth
+	for(var/index in adjusted_jobworth_list)
 		var/datum/job/scaled_job = SSjob.GetJobType(index)
 		if(!(index in SSticker.mode.valid_job_types))
 			continue
 		if(isxenosjob(scaled_job))
 			if(respawn && (SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN))
 				continue
-			GLOB.round_statistics.larva_from_marine_spawning += jobworth[index] / scaled_job.job_points_needed
-		scaled_job.add_job_points(jobworth[index])
+			GLOB.round_statistics.larva_from_marine_spawning += adjusted_jobworth_list[index] / scaled_job.job_points_needed
+		scaled_job.add_job_points(adjusted_jobworth_list[index])
 	var/datum/hive_status/normal_hive = GLOB.hive_datums[XENO_HIVE_NORMAL]
 	normal_hive.update_tier_limits()
 	return TRUE
