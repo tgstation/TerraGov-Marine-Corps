@@ -405,7 +405,7 @@
 	X.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
 	rage_plasma = min(X.xeno_caste.plasma_max - X.plasma_stored, X.xeno_caste.plasma_max * rage_power) //Calculate the plasma to restore (and take away later)
-	X.plasma_stored += rage_plasma //Regain a % of our maximum plasma scaling with rage
+	X.gain_plasma(rage_plasma)
 
 	rage_sunder = min(X.sunder, rage_power * 100) //Set our temporary Sunder recovery
 	X.adjust_sunder(-1 * rage_sunder) //Restores up to 50 Sunder temporarily.
