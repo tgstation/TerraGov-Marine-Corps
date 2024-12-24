@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;_onclick&#x2F;hud&#x2F;rendering&#x2F;_plane_master.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+</header>
+<main>
+<h1>code/_onclick/hud/rendering/_plane_master.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/_onclick/hud/rendering/_plane_master.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;_onclick&#x2F;hud&#x2F;rendering&#x2F;_plane_master.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/plane_master.html">plane_master</a>/openspace_backdrop</th><td>Things rendered on &quot;openspace&quot;; holes in multi-z</td></tr>
+        <tr><th>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/plane_master.html">plane_master</a>/floor</th><td>Contains just the floor</td></tr>
+        <tr><th>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/plane_master.html">plane_master</a>/game_world</th><td>Contains most things in the game world</td></tr>
+        <tr><th>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/plane_master.html">plane_master</a>/blackness</th><td>Plane master handling byond internal blackness
+vars are set as to replicate behavior when rendering to other planes
+do not touch this unless you know what you are doing</td></tr>
+        <tr><td colspan="2"><p>This system works by exploiting BYONDs color matrix filter to use layers to handle emissive blockers.</p>
+<p>Emissive overlays are pasted with an atom color that converts them to be entirely some specific color.
+Emissive blockers are pasted with an atom color that converts them to be entirely some different color.
+Emissive overlays and emissive blockers are put onto the same plane.
+The layers for the emissive overlays and emissive blockers cause them to mask eachother similar to normal BYOND objects.
+A color matrix filter is applied to the emissive plane to mask out anything that isn't whatever the emissive color is.
+This is then used to alpha mask the lighting plane.</p></td></tr>
+        <tr><th>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/plane_master.html">plane_master</a>/lighting</th><td>Contains all lighting objects</td></tr>
+        <tr><th>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/plane_master.html">plane_master</a>/emissive</th><td>Handles emissive overlays and emissive blockers.</td></tr>
+        <tr><th>/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/<a href="atom/movable/screen.html">screen</a>/<a href="atom/movable/screen/plane_master.html">plane_master</a>/parallax</th><td>Contains space parallax</td></tr></table></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/5f6841ed5cf045ff7ae0ec46a800c929c99c52db">5f6841e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>

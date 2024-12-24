@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;spatial_grid - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/spatial_grid.html#var">Var Details</a> - <a href="datum/controller/subsystem/spatial_grid.html#proc">Proc Details</a></header>
+<main>
+<h1>spatial_grid <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/spatial_grid.html">spatial_grid</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 96"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#var/dummy_list">dummy_list</a></th><td>empty spatial grid cell content lists are just a reference to this instead of a standalone list to save memory without needed to check if its null when iterating</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#var/grids_by_z_level">grids_by_z_level</a></th><td>list of the spatial_grid_cell datums per z level, arranged in the order of y index then x index</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#var/number_of_oranges_ears">number_of_oranges_ears</a></th><td>how many pregenerated /mob/oranges_ear instances currently exist. this should hopefully never exceed its starting value</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#var/pregenerated_oranges_ears">pregenerated_oranges_ears</a></th><td>list of all of /mob/oranges_ear instances we have pregenerated for view() iteration speedup</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#var/waiting_to_add_by_type">waiting_to_add_by_type</a></th><td>everything that spawns before us is added to this list until we initialize</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/after_world_bounds_expanded">after_world_bounds_expanded</a></th><td>the next unallocated /mob/oranges_ear that we try to allocate to assigned_atom's turf
+the next atom in atoms_that_need_ears an ear assigned to it
+the turf loc of the current assigned_atom. turfs are used to track oranges_ears already assigned to one location so we dont allocate more than one
+because allocating more than one oranges_ear to a given loc wastes view iterations
+adds cells to the grid for every z level when world.maxx or world.maxy is expanded after this subsystem is initialized. hopefully this is never needed.
+because i never tested this.</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/assign_oranges_ears">assign_oranges_ears</a></th><td>allocate one <a href="mob/oranges_ear.html" title="/mob/oranges_ear">/mob/oranges_ear</a> mob per turf containing atoms_that_need_ears and give them a reference to every listed atom in their turf.
+if an oranges_ear is allocated to a turf that already has an oranges_ear then the second one fails to allocate (and gives the existing one the atom it was assigned to)</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/enter_cell">enter_cell</a></th><td>find the spatial map cell that target belongs to, then add target's important_recusive_contents to it.
+make sure to provide the turf new_target is &quot;in&quot;</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/enter_pre_init_queue">enter_pre_init_queue</a></th><td>add a movable to the pre init queue for whichever type is specified so that when the subsystem initializes they get added to the grid</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/exit_cell">exit_cell</a></th><td>find the spatial map cell that target used to belong to, then subtract target's important_recusive_contents from it.
+make sure to provide the turf old_target used to be &quot;in&quot;</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/find_hanging_cell_refs_for_movable">find_hanging_cell_refs_for_movable</a></th><td>if shit goes south, this will find hanging references for qdeleting movables inside the spatial grid</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/force_remove_from_cell">force_remove_from_cell</a></th><td>find the cell this movable is associated with and removes it from all lists</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/get_cell_of">get_cell_of</a></th><td>get the grid cell encomapassing targets coordinates</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/get_cells_in_range">get_cells_in_range</a></th><td>get all grid cells intersecting the bounding box around center with sides of length 2 * range</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/orthogonal_range_search">orthogonal_range_search</a></th><td>https://en.wikipedia.org/wiki/Range_searching#Orthogonal_range_searching</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/pregenerate_more_oranges_ears">pregenerate_more_oranges_ears</a></th><td>creates number_to_generate new oranges_ear's and adds them to the subsystems list of ears.
+i really fucking hope this never gets called after init :clueless:</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/propogate_spatial_grid_to_new_z">propogate_spatial_grid_to_new_z</a></th><td>creates the spatial grid for a new z level</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/queued_item_deleted">queued_item_deleted</a></th><td>if a movable is inside our pre init queue before we're initialized and it gets deleted we need to remove that reference with this proc</td></tr>
+            <tr><th><a href="datum/controller/subsystem/spatial_grid.html#proc/remove_from_pre_init_queue">remove_from_pre_init_queue</a></th><td>removes an initialized and probably deleted movable from our pre init queue before we're initialized</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/dummy_list"><aside class="declaration">var </aside>dummy_list
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L110">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 110"/></a></h3>
+        <p>empty spatial grid cell content lists are just a reference to this instead of a standalone list to save memory without needed to check if its null when iterating</p><h3 id="var/grids_by_z_level"><aside class="declaration">var </aside>grids_by_z_level
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 102"/></a></h3>
+        <p>list of the spatial_grid_cell datums per z level, arranged in the order of y index then x index</p><h3 id="var/number_of_oranges_ears"><aside class="declaration">var </aside>number_of_oranges_ears
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L115">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 115"/></a></h3>
+        <p>how many pregenerated /mob/oranges_ear instances currently exist. this should hopefully never exceed its starting value</p><h3 id="var/pregenerated_oranges_ears"><aside class="declaration">var </aside>pregenerated_oranges_ears
+            <aside>&ndash; /list/mob/oranges_ear</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L113">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 113"/></a></h3>
+        <p>list of all of /mob/oranges_ear instances we have pregenerated for view() iteration speedup</p><h3 id="var/waiting_to_add_by_type"><aside class="declaration">var </aside>waiting_to_add_by_type
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L104">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 104"/></a></h3>
+        <p>everything that spawns before us is added to this list until we initialize</p><h2 id="proc">Proc Details</h2><h3 id="proc/after_world_bounds_expanded"><aside class="declaration">proc </aside>after_world_bounds_expanded<aside>(/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/processing/dcs.html">processing/dcs</a>/fucking_dcs, has_expanded_world_maxx, has_expanded_world_maxy) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L238">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 238"/></a></aside>
+        </h3>
+        <p>the next unallocated /mob/oranges_ear that we try to allocate to assigned_atom's turf
+the next atom in atoms_that_need_ears an ear assigned to it
+the turf loc of the current assigned_atom. turfs are used to track oranges_ears already assigned to one location so we dont allocate more than one
+because allocating more than one oranges_ear to a given loc wastes view iterations
+adds cells to the grid for every z level when world.maxx or world.maxy is expanded after this subsystem is initialized. hopefully this is never needed.
+because i never tested this.</p><h3 id="proc/assign_oranges_ears"><aside class="declaration">proc </aside>assign_oranges_ears<aside>(/list/atoms_that_need_ears) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L199">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 199"/></a></aside>
+        </h3>
+        <p>allocate one <a href="mob/oranges_ear.html" title="/mob/oranges_ear">/mob/oranges_ear</a> mob per turf containing atoms_that_need_ears and give them a reference to every listed atom in their turf.
+if an oranges_ear is allocated to a turf that already has an oranges_ear then the second one fails to allocate (and gives the existing one the atom it was assigned to)</p><h3 id="proc/enter_cell"><aside class="declaration">proc </aside>enter_cell<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/new_target, /<a href="turf.html">turf</a>/target_turf) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L354">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 354"/></a></aside>
+        </h3>
+        <p>find the spatial map cell that target belongs to, then add target's important_recusive_contents to it.
+make sure to provide the turf new_target is &quot;in&quot;</p><h3 id="proc/enter_pre_init_queue"><aside class="declaration">proc </aside>enter_pre_init_queue<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/waiting_movable, type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L146">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 146"/></a></aside>
+        </h3>
+        <p>add a movable to the pre init queue for whichever type is specified so that when the subsystem initializes they get added to the grid</p><h3 id="proc/exit_cell"><aside class="declaration">proc </aside>exit_cell<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/old_target, /<a href="turf.html">turf</a>/target_turf, exclusive_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L386">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 386"/></a></aside>
+        </h3>
+        <p>find the spatial map cell that target used to belong to, then subtract target's important_recusive_contents from it.
+make sure to provide the turf old_target used to be &quot;in&quot;</p>
+<ul>
+<li>old_target - the thing we want to remove from the spatial grid cell</li>
+<li>target_turf - the turf we use to determine the cell we're removing from</li>
+<li>exclusive_type - either null or a valid contents channel. if you just want to remove a single type from the grid cell then use this</li>
+</ul><h3 id="proc/find_hanging_cell_refs_for_movable"><aside class="declaration">proc </aside>find_hanging_cell_refs_for_movable<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/to_remove, remove_from_cells) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L436">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 436"/></a></aside>
+        </h3>
+        <p>if shit goes south, this will find hanging references for qdeleting movables inside the spatial grid</p><h3 id="proc/force_remove_from_cell"><aside class="declaration">proc </aside>force_remove_from_cell<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/to_remove, /<a href="datum.html">datum</a>/<a href="datum/spatial_grid_cell.html">spatial_grid_cell</a>/input_cell) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L421">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 421"/></a></aside>
+        </h3>
+        <p>find the cell this movable is associated with and removes it from all lists</p><h3 id="proc/get_cell_of"><aside class="declaration">proc </aside>get_cell_of<aside>(/<a href="atom.html">atom</a>/target) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L318">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 318"/></a></aside>
+        </h3>
+        <p>get the grid cell encomapassing targets coordinates</p><h3 id="proc/get_cells_in_range"><aside class="declaration">proc </aside>get_cells_in_range<aside>(/<a href="atom.html">atom</a>/center, range) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L326">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 326"/></a></aside>
+        </h3>
+        <p>get all grid cells intersecting the bounding box around center with sides of length 2 * range</p><h3 id="proc/orthogonal_range_search"><aside class="declaration">proc </aside>orthogonal_range_search<aside>(/<a href="atom.html">atom</a>/center, type, range) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L288">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 288"/></a></aside>
+        </h3>
+        <p>https://en.wikipedia.org/wiki/Range_searching#Orthogonal_range_searching</p>
+<p>searches through the grid cells intersecting a rectangular search space (with sides of length 2 * range) then returns all contents of type inside them.
+much faster than iterating through view() to find all of what you want.</p>
+<p>this does NOT return things only in range distance from center! the search space is a square not a circle, if you want only things in a certain distance
+then you need to filter that yourself</p>
+<ul>
+<li>center - the atom that is the center of the searched circle</li>
+<li>type - the type of grid contents you are looking for, see __DEFINES/spatial_grid.dm</li>
+<li>range - the bigger this is, the more spatial grid cells the search space intersects</li>
+</ul><h3 id="proc/pregenerate_more_oranges_ears"><aside class="declaration">proc </aside>pregenerate_more_oranges_ears<aside>(number_to_generate) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L191">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 191"/></a></aside>
+        </h3>
+        <p>creates number_to_generate new oranges_ear's and adds them to the subsystems list of ears.
+i really fucking hope this never gets called after init :clueless:</p><h3 id="proc/propogate_spatial_grid_to_new_z"><aside class="declaration">proc </aside>propogate_spatial_grid_to_new_z<aside>(/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/processing/dcs.html">processing/dcs</a>/fucking_dcs, /<a href="datum.html">datum</a>/space_level/z_level) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L176">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 176"/></a></aside>
+        </h3>
+        <p>creates the spatial grid for a new z level</p><h3 id="proc/queued_item_deleted"><aside class="declaration">proc </aside>queued_item_deleted<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/movable_being_deleted) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L171">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 171"/></a></aside>
+        </h3>
+        <p>if a movable is inside our pre init queue before we're initialized and it gets deleted we need to remove that reference with this proc</p><h3 id="proc/remove_from_pre_init_queue"><aside class="declaration">proc </aside>remove_from_pre_init_queue<aside>(/<a href="atom.html">atom</a>/<a href="atom/movable.html">movable</a>/movable_to_remove, exclusive_type) 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/5f6841ed5cf045ff7ae0ec46a800c929c99c52db/code/controllers/subsystem/spatial_gridmap.dm#L152">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;spatial_gridmap.dm 152"/></a></aside>
+        </h3>
+        <p>removes an initialized and probably deleted movable from our pre init queue before we're initialized</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/5f6841ed5cf045ff7ae0ec46a800c929c99c52db">5f6841e</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
