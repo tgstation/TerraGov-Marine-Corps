@@ -2571,3 +2571,14 @@ FACTORY
 	name = "500 Cigarettes refill"
 	contains = list(/obj/item/factory_refill/cigarette_refill)
 	cost = 500
+
+/datum/supply_packs/imports/present_pack
+	name = "TGMC Present Pack"
+	notes = "Contains a number of unaddressed presents from Santa's Workshop. All proceeds go to starving elves. Naughty recipients may be disappointed."
+	contains = list(
+		/obj/item/a_gift/free, //none of the gifts need delivered and can be opened by anyone who is not a grinch
+		/obj/item/a_gift/free,
+		/obj/item/a_gift/free,
+		/obj/item/a_gift/free,
+	)
+	cost = 150

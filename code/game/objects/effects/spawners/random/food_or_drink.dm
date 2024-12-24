@@ -356,3 +356,21 @@
 		/obj/item/reagent_containers/food/snacks/sandwiches/toastedsandwich = 5,
 		/obj/effect/spawner/random/food_or_drink/burger = 5,
 	)
+
+/obj/effect/spawner/random/food_or_drink/christmas_food
+	name = "Random christmas food"
+	icon_state = "random_xmas"
+	spawn_loot_chance = 30
+	loot = list(
+		/obj/item/reagent_containers/food/snacks/christmas_cookieone,
+		/obj/item/reagent_containers/food/snacks/christmas_cookietwo,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiethree,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiefour,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiefive,
+		/obj/item/reagent_containers/food/snacks/christmas_cookiesix,
+		/obj/item/reagent_containers/food/snacks/christmas_cookieseven,
+		/obj/item/reagent_containers/food/snacks/sliceable/pastries/fruitcake,
+		/obj/item/reagent_containers/food/snacks/pastries/cakeslicefruit,
+		/obj/item/reagent_containers/food/drinks/h_chocolate,
+		/obj/item/reagent_containers/food/drinks/milk/xmas,
+	)
