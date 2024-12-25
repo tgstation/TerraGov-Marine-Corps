@@ -403,8 +403,6 @@
 	shoes = /obj/item/clothing/shoes/galoshes
 	wear_suit = /obj/item/clothing/suit/space/grinch
 	gloves = /obj/item/clothing/gloves/insulated
-	mask = /obj/item/clothing/mask/gas/swat
-	head = /obj/item/clothing/head/helmet/thunderdome
 	r_store = /obj/item/storage/pouch/tools/full
 	l_store = /obj/item/storage/pouch/construction/full
 	back = /obj/item/storage/backpack/santabag
