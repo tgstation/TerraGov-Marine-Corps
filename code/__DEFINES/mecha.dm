@@ -67,6 +67,7 @@
 #define MECHA_AMMO_SNIPER "Anti-tank bullet"
 #define MECHA_AMMO_GRENADE "Frag grenade"
 #define MECHA_AMMO_FLAMER "Napalm"
+#define MECHA_AMMO_SMARTGUN "Smart autocannon bullet"
 
 /// Module is compatible with Ripley Exosuit models
 #define EXOSUIT_MODULE_RIPLEY (1<<0)

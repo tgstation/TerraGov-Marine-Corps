@@ -133,6 +133,20 @@
 	penetration = 10
 	hitscan_effect_icon = "beam_particle"
 
+/datum/ammo/energy/volkite/medium/mech
+
+	name = "supercharged thermal energy bolt"
+	deflagrate_multiplier = 1.25
+
+/datum/ammo/bullet/smartmachinegun/mech
+
+	name = "smart autocannon bullet"
+	ammo_behavior_flags = AMMO_IFF
+	damage = 40
+	penetration = 20
+	accurate_range = 8
+	damage_falloff = 1.25
+
 /datum/ammo/energy/lasgun/marine/mech/lance_strike
 	name = "particle lance"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_SNIPER|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB

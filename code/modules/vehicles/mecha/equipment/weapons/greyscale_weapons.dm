@@ -272,6 +272,26 @@
 	harmful = TRUE
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
+/obj/item/mecha_parts/mecha_equipment/weapon/energy/volkite
+	name = "\improper Prometheus volkite rifle"
+	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
+	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The Prometheus is a scaled up volkite rifle, it handles poorly at longer ranges, but it can decimate targets up close with great deflagration ability."
+	icon_state = "volkiterifle"
+	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
+	flash_offsets = list(
+		MECHA_R_ARM = list("N" = list(30,52), "S" = list(-2,6), "E" = list(72,14), "W" = list(-42,34)),
+		MECHA_L_ARM = list("N" = list(-3,52), "S" = list(32,6), "E" = list(72,34), "W" = list(-42,14)),
+	)
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	ammotype = /datum/ammo/energy/volkite/medium/mech
+	max_integrity = 400
+	energy_drain = 8
+	variance = 0
+	projectile_delay = 0.25 SECONDS
+	slowdown = 0.4
+	harmful = TRUE
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+
 /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/heavy_cannon
 	name = "\improper Themis heavy cannon"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
@@ -319,6 +339,30 @@
 	windup_delay = 0.5 SECONDS
 	harmful = TRUE
 	ammo_type = MECHA_AMMO_MINIGUN
+	hud_icons = list("smartgun", "smartgun_empty")
+	fire_mode = GUN_FIREMODE_AUTOMATIC
+
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/smartgun
+	name = "\improper Theia smart autocannon"
+	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
+	desc = "A prototype smartgun, the Theia smart autocannon is a new addition to the TGMC's mechanized arsenal. It is capable of providing great suppressive fire with its IFF capabilities, but it is generally weaker than other weapon options, and the rounds lose effectiveness over range."
+	icon_state = "smartgun"
+	fire_sound = SFX_AC_FIRE
+	flash_offsets = list(
+		MECHA_R_ARM = list("N" = list(33,60), "S" = list(-3,0), "E" = list(79,12), "W" = list(-49,32)),
+		MECHA_L_ARM = list("N" = list(-2,60), "S" = list(35,0), "E" = list(79,32), "W" = list(-49,12)),
+	)
+	mech_flags = EXOSUIT_MODULE_GREYSCALE
+	ammotype = /datum/ammo/bullet/smartmachinegun/mech
+	max_integrity = 400
+	projectiles = 100
+	projectiles_cache = 600
+	projectiles_cache_max = 600
+	variance = 5
+	projectile_delay = 0.4 SECONDS
+	slowdown = 0.5
+	harmful = TRUE
+	ammo_type = MECHA_AMMO_SMARTGUN
 	hud_icons = list("smartgun", "smartgun_empty")
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 
