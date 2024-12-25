@@ -43,7 +43,7 @@
 		spawnedhuman.offer_mob()
 
 /datum/action/innate/summon_garbage
-	name = "Summon Present"
+	name = "Summon Garbage"
 	action_icon_state = "present"
 
 /datum/action/innate/summon_garbage/Activate()
@@ -67,13 +67,67 @@
 
 /obj/item/storage/bag/trash/grinch/Initialize(mapload, ...)
 	. = ..()
-	pieces_of_trash = rand(1,15)
+	pieces_of_trash = rand(5,20)
 
 /obj/item/storage/bag/trash/grinch/throw_impact(atom/hit_atom, speed, bounce)
 	. = ..()
+	new /obj/effect/decal/cleanable/dirt(get_turf(hit_atom)) //spawn dirt where the bag originally hit
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/unfortunatehuman = hit_atom
 		unfortunatehuman.Stun(3 SECONDS)
 		unfortunatehuman.Knockdown(1 SECONDS)
-		to_chat(hit_atom, span_notice("The garbage bag hits you right in the face, stunning you for a second..."))
+		to_chat(unfortunatehuman, span_notice("The garbage bag hits you right in the face, stunning you for a second..."))
+	for(var/trashestothrow = 1 to pieces_of_trash)
+		var/turf/targetturf = locate(get_turf(hit_atom).x + rand(-10, 10), get_turf(hit_atom).y + rand(-10, 10), get_turf(hit_atom).z)
+		var/obj/item/trash/selectedtrash = new pick(typesof(/obj/item/trash))
+		selectedtrash.throw_at(targetturf, 10, 5)
 
+/datum/action/innate/return_to_point
+	name = "Return to safe zone"
+	action_icon_state = "present"
+	var/returning = FALSE
+	var/turf/safezone
+
+/datum/action/innate/return_to_point/Activate()
+	if(!returning)
+		to_chat(usr, "You begin establishing this as a safe hide out to return to in the event of danger.")
+		if(!do_after(usr, 10 SECONDS, NONE))
+			to_chat(usr, "You give up establishing this as a safe area to return to.")
+			return
+		safezone = get_turf(usr)
+		safezone = !safezone
+	else
+		to_chat(usr, "You concentrate on returning to your safezone...")
+		if(!do_after(usr, 2 SECONDS, NONE))
+			to_chat(usr, "You give up on escaping to your safe zone.")
+			return
+		safezone = !safezone
+		usr.forceMove(safezone)
+
+/datum/action/innate/vandalize_area
+	name = "Vandalize area"
+	action_icon_state = "present"
+	var/list/nearbyturfs = list()
+	var/pieces_of_trash = 10
+
+/obj/item/storage/bag/trash/grinch/Initialize(mapload, ...)
+	. = ..()
+	pieces_of_trash = rand(5,20)
+
+/datum/action/innate/vandalize_area/Activate()
+	to_chat(usr, "You start ruining the surrounding area...")
+	if(!do_after(usr, 5 SECONDS, NONE))
+		to_chat(usr, "You give up on ruining Christmas spirit through sheer property destruction.")
+		return
+	for(var/turf/near_turfs in range(10))
+		nearbyturfs += near_turfs
+	for(var/trashestothrow = 1 to pieces_of_trash)
+		var/turf/targetturf = pick(nearbyturfs)
+		var/obj/item/trash/selectedtrash = new pick(typesof(/obj/item/trash))
+		selectedtrash.throw_at(targetturf, 10, 5)
+	for(var/turfsinlist = 1 to nearbyturfs)
+		if(locate(/obj/effect/decal/cleanable/grinch_decal) in turfsinlist)
+			continue
+		if(prob(25))
+			var/obj/effect/decal/cleanable/grinch_decal/selecteddecal = pick(typesof(/obj/effect/decal/cleanable/grinch_decal))
+			new selecteddecal(turfsinlist)

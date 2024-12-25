@@ -153,3 +153,25 @@
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smashed_pie"
+
+/obj/effect/decal/cleanable/grinch_decal
+	name = "dirt"
+	desc = "Someone should clean that up."
+	density = FALSE
+	anchored = TRUE
+	layer = TURF_LAYER
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "dirt"
+	mouse_opacity = 0
+
+/obj/effect/decal/cleanable/dirt/grinch_decal1
+	icon_state = "grinch1"
+
+/obj/effect/decal/cleanable/dirt/grinch_decal2
+	icon_state = "grinch2"
+
+/obj/effect/decal/cleanable/dirt/grinch_decal3
+	icon_state = "grinch3"
+
+/obj/effect/decal/cleanable/dirt/grinch_decal4
+	icon_state = "grinch4"
