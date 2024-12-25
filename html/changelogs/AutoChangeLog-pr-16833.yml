@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - rscadd: "Campaign: Added Re-Grow to advanced med secondary kit, allowing for regeneration of missing limbs"
-  - bugfix: "Campaign: Fixed a couple of minor secondary kit bugs"

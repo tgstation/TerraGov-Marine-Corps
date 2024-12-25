@@ -101,3 +101,10 @@
   - code_imp: All highdanger spans have been renamed to userdanger in the code
   - qol: Admin announcements and roundend boxes are under the OOC category, so they
       will appear in chat tabs with OOC enabled
+2024-12-25:
+  Lumipharon:
+  - rscadd: 'Campaign: Added Re-Grow to advanced med secondary kit, allowing for regeneration
+      of missing limbs'
+  - bugfix: 'Campaign: Fixed a couple of minor secondary kit bugs'
+  blackdav123:
+  - balance: Moved research digsites on Kutjevo to be less marine sided.
