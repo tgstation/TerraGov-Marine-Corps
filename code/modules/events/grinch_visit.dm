@@ -49,7 +49,7 @@
 
 /datum/action/innate/summon_garbage
 	name = "Summon Garbage"
-	action_icon_state = "present"
+	action_icon_state = "bag"
 
 /datum/action/innate/summon_garbage/Activate()
 	var/mob/living/carbon/human/grinchmob = usr
@@ -174,7 +174,7 @@
 
 /datum/action/innate/return_to_point
 	name = "Return to safe zone"
-	action_icon_state = "present"
+	action_icon_state = "return_arrow"
 	var/returning = FALSE
 	var/turf/safezone
 
@@ -196,7 +196,7 @@
 
 /datum/action/innate/vandalize_area
 	name = "Vandalize area"
-	action_icon_state = "present"
+	action_icon_state = "rune"
 	var/list/nearbyturfs = list()
 	var/pieces_of_trash = 10
 
@@ -222,7 +222,7 @@
 
 /datum/action/innate/summon_coal
 	name = "Summon Coal"
-	action_icon_state = "present"
+	action_icon_state = "coal"
 
 /datum/action/innate/summon_coal/Activate()
 	var/mob/living/carbon/human/grinchmob = usr
@@ -230,15 +230,15 @@
 	if(!do_after(grinchmob, 1 SECONDS, NONE))
 		to_chat(grinchmob, "You give up looking for coal.")
 		return
-	if(locate(/obj/item/ore/coal) in get_turf(grinchmob))
+	if(locate(/obj/item/stack/throwing_knife/coal) in get_turf(grinchmob))
 		to_chat(grinchmob, "There's coal here already, better use that one instead.")
 		return
-	var/obj/item/ore/coal/spawnedcoal = new (get_turf(grinchmob))
+	var/obj/item/stack/throwing_knife/coal/spawnedcoal = new (get_turf(grinchmob))
 	grinchmob.put_in_hands(spawnedcoal)
 
 /datum/action/innate/summon_flashbang_trash
 	name = "Summon Explosive Trashbag"
-	action_icon_state = "present"
+	action_icon_state = "bgrenade"
 
 /datum/action/innate/summon_flashbang_trash/Activate()
 	var/mob/living/carbon/human/grinchmob = usr
