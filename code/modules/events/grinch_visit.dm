@@ -84,7 +84,7 @@
 		unfortunatehuman.Knockdown(1 SECONDS)
 		to_chat(unfortunatehuman, span_notice("The garbage bag hits you right in the face, stunning you for a second..."))
 	for(var/trashestothrow = 1 to pieces_of_trash)
-		var/turf/targetturf = locate(get_turf(hit_atom).x + rand(-10, 10), get_turf(hit_atom).y + rand(-10, 10), get_turf(hit_atom).z)
+		var/turf/targetturf = locate(hit_atom.x + rand(-10, 10), hit_atom.y + rand(-10, 10), hit_atom.z)
 		var/obj/item/trash/selectedtrash = pick(typesof(/obj/item/trash))
 		new selectedtrash(get_turf(hit_atom))
 		selectedtrash.throw_at(targetturf, 10, 5)
