@@ -733,6 +733,19 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	shotguns = SKILL_SHOTGUNS_TRAINED
 	heavy_weapons = SKILL_HEAVY_WEAPONS_TRAINED
 
+/datum/skills/grinch
+	name = "The Grinch"
+	engineer = SKILL_ENGINEER_MASTER
+	construction = SKILL_CONSTRUCTION_MASTER
+	combat = SKILL_COMBAT_UNTRAINED
+	smartgun = SKILL_SMART_DEFAULT
+	medical = SKILL_MEDICAL_MASTER
+	unarmed = SKILL_UNARMED_MASTER
+	surgery = SKILL_SURGERY_MASTER
+	melee_weapons = SKILL_MELEE_SUPER
+	leadership = SKILL_LEAD_MASTER
+	pilot = SKILL_PILOT_TRAINED
+
 /datum/skills/elf
 	name = "Elf"
 	unarmed = SKILL_UNARMED_WEAK

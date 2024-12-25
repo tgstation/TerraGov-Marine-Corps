@@ -135,7 +135,7 @@
 	title = "The Grinch"
 	access = ALL_ACCESS
 	minimal_access = ALL_ACCESS
-	skills_type = /datum/skills/santaclause
+	skills_type = /datum/skills/grinch
 	outfit = /datum/outfit/job/grinch
 
 /datum/outfit/job/santa/elf
@@ -400,14 +400,15 @@
 	belt = /obj/item/storage/belt/hypospraybelt/full
 	ears = /obj/item/radio/headset/distress/commando
 	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
-	shoes = /obj/item/clothing/shoes/green
+	shoes = /obj/item/clothing/shoes/galoshes
 	wear_suit = /obj/item/clothing/suit/space/grinch
-	gloves = /obj/item/clothing/gloves/green
+	gloves = /obj/item/clothing/gloves/insulated
 	mask = /obj/item/clothing/mask/gas/swat
 	head = /obj/item/clothing/head/helmet/thunderdome
 	r_store = /obj/item/storage/pouch/tools/full
 	l_store = /obj/item/storage/pouch/construction/full
 	back = /obj/item/storage/backpack/santabag
+	glasses = /obj/item/clothing/glasses/welding/superior
 
 /datum/outfit/job/grinch/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
