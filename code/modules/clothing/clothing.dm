@@ -312,6 +312,8 @@
 	desc = "Smells like old dumpster..."
 	icon_state = "grinchsuit"
 	worn_icon_state = "grinchsuit"
+	inventory_flags = COVEREYES|BLOCKSHARPOBJ
+	inv_hide_flags = HIDEEARS|HIDEEYES|HIDEALLHAIR
 	slowdown = -1.0
 	allowed = list(/obj/item) //for stuffing exta special presents
 	soft_armor = list(MELEE = 55, BULLET = 90, LASER = 120, ENERGY = 65, BOMB = 80, BIO = 70, FIRE = 95, ACID = 25)

@@ -14,6 +14,11 @@
 	var/turf/christmastreeturf
 
 /datum/round_event/grinch_visit/start()
+	for(var/obj/structure/flora/tree/pine/xmas/presents/christmastree)
+		if(christmastree.unlimited)
+			continue
+		else
+			christmastreeturf = christmastree
 	place_grinch()
 
 /datum/round_event/grinch_visit/announce()
@@ -29,6 +34,8 @@
 /datum/round_event/grinch_visit/proc/place_grinch()
 		var/turf/target = locate(christmastreeturf.x + rand(-3, 3), christmastreeturf.y + rand(-3, 3), christmastreeturf.z)
 		var/mob/living/carbon/human/spawnedhuman = new /mob/living/carbon/human(target)
+		spawnedhuman.h_style = "Bald"
+		spawnedhuman.f_style = "Shaved"
 		var/datum/job/J = SSjob.GetJobType(/datum/job/santa/grinch)
 		spawnedhuman.name = "The Grinch"
 		spawnedhuman.real_name = spawnedhuman.name
@@ -54,13 +61,13 @@
 /datum/action/innate/summon_garbage/Activate()
 	var/mob/living/carbon/human/grinchmob = usr
 	to_chat(grinchmob, span_notice("You begin filling a spare garbage bag with the most vile stuff you can find."))
-	if(!do_after(grinchmob, 3 SECONDS, NONE))
+	if(!do_after(grinchmob, 1.5 SECONDS, NONE))
 		to_chat(grinchmob, "You give up looking for garbage.")
 		return
-	if(locate(/obj/item/a_gift/santa) in get_turf(grinchmob))
+	if(locate(/obj/item/storage/bag/trash/grinch) in get_turf(grinchmob))
 		to_chat(grinchmob, "There's a garbage bag here already, better use that one instead.")
 		return
-	var/obj/item/a_gift/santa/spawnedpresent = new (get_turf(grinchmob))
+	var/obj/item/storage/bag/trash/grinch/spawnedpresent = new (get_turf(grinchmob))
 	grinchmob.put_in_hands(spawnedpresent)
 
 /obj/item/storage/bag/trash/grinch
@@ -76,17 +83,20 @@
 
 /obj/item/storage/bag/trash/grinch/throw_impact(atom/hit_atom, speed, bounce)
 	. = ..()
+	var/list/nearbyturfs = list()
+	for(var/turf/near_turfs in range(3))
+		nearbyturfs += near_turfs
 	new /obj/effect/decal/cleanable/dirt(get_turf(hit_atom)) //spawn dirt where the bag originally hit
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/unfortunatehuman = hit_atom
-		unfortunatehuman.Stun(3 SECONDS)
-		unfortunatehuman.Knockdown(1 SECONDS)
+		unfortunatehuman.Stun(4 SECONDS)
+		unfortunatehuman.Knockdown(2 SECONDS)
 		to_chat(unfortunatehuman, span_notice("The garbage bag hits you right in the face, stunning you for a second..."))
-	for(var/trashestothrow = 1 to pieces_of_trash)
-		var/turf/targetturf = locate(hit_atom.x + rand(-10, 10), hit_atom.y + rand(-10, 10), hit_atom.z)
-		var/obj/item/trash/selectedtrash = pick(typesof(/obj/item/trash))
-		new selectedtrash(get_turf(hit_atom))
-		selectedtrash.throw_at(targetturf, 10, 5)
+		balloon_alert_to_viewers("The [src] explodes into a pile trash as it hits [unfortunatehuman]'s face" ,ignored_mobs = unfortunatehuman)
+	for(var/thrown_trashes in nearbyturfs)
+		if(prob(25) && !isclosedturf(thrown_trashes))
+			var/obj/item/trash/trashestothrow = pick(typesof(/obj/item/trash))
+			new trashestothrow(thrown_trashes)
 	qdel(src)
 
 /obj/item/storage/bag/trash/grinch/flashbang
@@ -107,6 +117,14 @@
 			continue
 		if(!HAS_TRAIT(victim, TRAIT_FLASHBANGIMMUNE))
 			bang(target_turf, victim)
+	var/list/nearbyturfs = list()
+	for(var/turf/near_turfs in range(4))
+		nearbyturfs += near_turfs
+	for(var/thrown_trashes in nearbyturfs)
+		if(prob(25) && !isclosedturf(thrown_trashes))
+			var/obj/item/trash/trashestothrow = pick(typesof(/obj/item/trash))
+			new trashestothrow(thrown_trashes)
+	qdel(src)
 
 	new/obj/effect/particle_effect/smoke/flashbang(target_turf)
 	. = ..()
@@ -181,17 +199,17 @@
 /datum/action/innate/return_to_point/Activate()
 	if(!returning)
 		to_chat(usr, "You begin establishing this as a safe hide out to return to in the event of danger.")
-		if(!do_after(usr, 10 SECONDS, NONE))
+		if(!do_after(usr, 5 SECONDS, NONE))
 			to_chat(usr, "You give up establishing this as a safe area to return to.")
 			return
 		safezone = get_turf(usr)
-		safezone = !safezone
+		returning = !returning
 	else
 		to_chat(usr, "You concentrate on returning to your safezone...")
-		if(!do_after(usr, 2 SECONDS, NONE))
+		if(!do_after(usr, 1 SECONDS, NONE))
 			to_chat(usr, "You give up on escaping to your safe zone.")
 			return
-		safezone = !safezone
+		returning = !returning
 		usr.forceMove(safezone)
 
 /datum/action/innate/vandalize_area
@@ -202,21 +220,20 @@
 
 /datum/action/innate/vandalize_area/Activate()
 	to_chat(usr, "You start ruining the surrounding area...")
-	if(!do_after(usr, 5 SECONDS, NONE))
+	if(!do_after(usr, 3 SECONDS, NONE))
 		to_chat(usr, "You give up on ruining Christmas spirit through sheer property destruction.")
 		return
 	pieces_of_trash = rand(5,20)
-	for(var/turf/near_turfs in range(10))
+	for(var/turf/near_turfs in range(3))
 		nearbyturfs += near_turfs
-	for(var/trashestothrow = 1 to pieces_of_trash)
-		var/turf/targetturf = pick(nearbyturfs)
-		var/obj/item/trash/selectedtrash = pick(typesof(/obj/item/trash))
-		new selectedtrash(get_turf(usr))
-		selectedtrash.throw_at(targetturf, 10, 5)
-	for(var/turfsinlist = 1 to nearbyturfs)
+	for(var/trashestothrow in nearbyturfs)
+		if(prob(25) && !isclosedturf(trashestothrow))
+			var/obj/item/trash/selectedtrash = pick(typesof(/obj/item/trash))
+			new selectedtrash(trashestothrow)
+	for(var/turfsinlist in nearbyturfs)
 		if(locate(/obj/effect/decal/cleanable/grinch_decal) in turfsinlist)
 			continue
-		if(prob(25))
+		if(prob(25) && !isclosedturf(turfsinlist))
 			var/obj/effect/decal/cleanable/grinch_decal/selecteddecal = pick(typesof(/obj/effect/decal/cleanable/grinch_decal))
 			new selecteddecal(turfsinlist)
 
@@ -243,7 +260,7 @@
 /datum/action/innate/summon_flashbang_trash/Activate()
 	var/mob/living/carbon/human/grinchmob = usr
 	to_chat(grinchmob, span_notice("You begin filling a trashbag with a special contraption you've made..."))
-	if(!do_after(grinchmob, 15 SECONDS, NONE))
+	if(!do_after(grinchmob, 7 SECONDS, NONE))
 		to_chat(grinchmob, "You give up assembling your invention.")
 		return
 	if(locate(/obj/item/storage/bag/trash/grinch/flashbang) in get_turf(grinchmob))
