@@ -269,4 +269,4 @@
 	name = "\improper Grinchium bottle"
 	desc = "A small bottle. Contains 200 units of Grinchium, who knows where this medicine came from..."
 	icon_state = "bottle3"
-	list_reagents = list(/datum/reagent/medicine/grinchium = 200)
+	list_reagents = list(/datum/reagent/grinchium = 200)
