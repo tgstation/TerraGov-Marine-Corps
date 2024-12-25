@@ -84,6 +84,9 @@
 /obj/effect/decal/cleanable/liquid_fuel/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(I.damtype == BURN)
+		if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			balloon_alert(user, "Burning somebody alive won't ruin Christmas...")
+			return
 		ignite_fuel(I)
 		log_attack("[key_name(user)] ignites [src] in fuel in [AREACOORD(user)]")
 

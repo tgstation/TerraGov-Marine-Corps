@@ -136,6 +136,9 @@
 		user.visible_message(span_notice("[user] refills [W]."), span_notice("You refill [W]."))
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
+	if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		balloon_alert(user, "Explosions are full of Christmas magic.")
+		return
 	log_bomber(user, "triggered a fueltank explosion with", src, "using a welder")
 	var/self_message = user.a_intent != INTENT_HARM ? span_danger("You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.") : span_danger("[src] catastrophically explodes in a wave of flames as you begin to weld it.")
 	user.visible_message(span_warning("[user] catastrophically fails at refilling \his [W.name]!"), self_message)

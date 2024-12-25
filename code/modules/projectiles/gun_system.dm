@@ -1712,6 +1712,9 @@
 	if(HAS_TRAIT(src, TRAIT_GUN_SAFETY))
 		to_chat(user, span_warning("The safety is on!"))
 		return FALSE
+	if(HAS_TRAIT(src, TRAIT_ACTUAL_CHRISTMAS_GRINCH))
+		to_chat(user, span_warning("This won't help you ruin Christmas..."))
+		return FALSE
 	if(CHECK_BITFIELD(gun_features_flags, GUN_WIELDED_FIRING_ONLY)) //If we're not holding the weapon with both hands when we should.
 		if(!master_gun && !CHECK_BITFIELD(item_flags, WIELDED))
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")

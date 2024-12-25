@@ -538,6 +538,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(issynth(H) && CHECK_BITFIELD(item_flags, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(H, span_warning("Your programming prevents you from wearing this."))
 		return FALSE
+	if(HAS_TRAIT(H, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && CHECK_BITFIELD(item_flags, SYNTH_RESTRICTED) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(H, span_warning("Equipping this won't help you ruin Christmas."))
+		return FALSE
 
 	var/obj/item/selected_slot //the item in the specific slot we're trying to insert into
 	var/equip_to_slot = FALSE

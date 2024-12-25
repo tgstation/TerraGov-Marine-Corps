@@ -307,6 +307,21 @@
 	slowdown = 0
 	allowed = list(/obj/item) //for stuffing exta special presents
 
+/obj/item/clothing/suit/space/grinch
+	name = "Grinch's Hide"
+	desc = "Smells like old dumpster..."
+	icon_state = "grinchsuit"
+	worn_icon_state = "grinchsuit"
+	slowdown = -0.5
+	allowed = list(/obj/item) //for stuffing exta special presents
+	soft_armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 65, BOMB = 80, BIO = 70, FIRE = 95, ACID = 25)
+	item_flags = DELONDROP
+
+/obj/item/clothing/suit/space/grinch/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+	ADD_TRAIT(src, TRAIT_NODROP, TRAIT_ACTUAL_CHRISTMAS_GRINCH)
+
 /obj/item/clothing/suit/space/santa/special //for ERT, when santa has to give presents to REALLY naughty children
 	desc = "That's not red dye. That's red blood."
 	soft_armor = list(MELEE = 90, BULLET = 85, LASER = 120, ENERGY = 120, BOMB = 120, BIO = 85, FIRE = 120, ACID = 40)

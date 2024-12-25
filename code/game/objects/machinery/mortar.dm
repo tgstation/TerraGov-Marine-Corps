@@ -345,6 +345,10 @@
 		user.balloon_alert(user, "Your programming restricts operating this")
 		return
 
+	if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		balloon_alert(user, "Can't do this")
+		return
+
 	if(firing)
 		user.balloon_alert(user, "The gun is still firing.")
 		return

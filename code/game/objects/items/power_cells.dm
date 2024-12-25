@@ -75,6 +75,9 @@
 	if(!rigged)
 		return ..()
 
+	if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		to_chat(user, span_warning("Blowing up power cells isn't very Grinchy."))
+		return
 	if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, span_warning("Your programming restricts using rigged power cells."))
 		return
@@ -105,6 +108,9 @@
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, span_warning("Your programming restricts rigging of power cells."))
 			return
+		if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, span_warning("Blowing up power cells isn't very Grinchy."))
+			return
 
 		to_chat(user, "You inject the solution into the power cell.")
 
@@ -115,6 +121,9 @@
 	else if(ismultitool(I))
 		if(issynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, span_warning("Your programming restricts rigging of power cells."))
+			return
+		if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+			to_chat(user, span_warning("Blowing up power cells isn't very Grinchy."))
 			return
 		var/skill = user.skills.getRating(SKILL_ENGINEER)
 		var/delay = SKILL_TASK_EASY - (5 + skill * 1.25)

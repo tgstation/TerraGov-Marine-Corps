@@ -46,7 +46,9 @@
 	if(issynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		balloon_alert(user, "can't, against your programming")
 		return
-
+	if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) && !CONFIG_GET(flag/allow_synthetic_gun_use))
+		balloon_alert(user, "Can't do this")
+		return
 	activate(user)
 
 	balloon_alert_to_viewers("primes grenade")
