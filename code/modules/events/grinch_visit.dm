@@ -2,7 +2,7 @@
 /datum/round_event_control/grinch_visit
 	name = "Grinch Visit"
 	typepath = /datum/round_event/grinch_visit
-	weight = 5 ///manual trigger most of the time, somebody needs to keep an eye on the grinch
+	weight = 0 ///manual trigger most of the time, somebody needs to keep an eye on the grinch
 	earliest_start = 30 MINUTES
 	max_occurrences = 1
 
