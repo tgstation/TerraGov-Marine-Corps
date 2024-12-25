@@ -219,7 +219,7 @@
 //Special attack
 /datum/action/ability/activable/weapon_skill/shield_bash
 	name = "Shield bash"
-	action_icon_state = "shield_bash" //todo
+	action_icon_state = "shield_bash"
 	desc = "A powerful blow that hits foes in the direction you are facing. Causes knockback and stagger."
 	ability_cost = 5
 	cooldown_duration = 6 SECONDS
