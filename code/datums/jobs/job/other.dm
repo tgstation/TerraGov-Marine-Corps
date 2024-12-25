@@ -131,6 +131,13 @@
 	skills_type = /datum/skills/santaclause
 	outfit = /datum/outfit/job/santa/eventspawn
 
+/datum/job/santa/grinch
+	title = "The Grinch"
+	access = ALL_ACCESS
+	minimal_access = ALL_ACCESS
+	skills_type = /datum/skills/santaclause
+	outfit = /datum/outfit/job/santa/eventspawn
+
 /datum/outfit/job/santa/elf
 	name = "Elf"
 	jobtype = /datum/outfit/job/santa/elf/eventspawn
@@ -384,3 +391,32 @@
 	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/drinks/bottle/eggnog/special, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/pmc, SLOT_IN_BACKPACK)
+
+/datum/outfit/job/grinch //like ERT santa, but less OP
+	name = "The Grinch"
+	jobtype = /datum/job/santa/grinch
+
+	id = /obj/item/card/id/gold
+	belt = /obj/item/storage/belt/hypospraybelt/full
+	ears = /obj/item/radio/headset/distress/commando
+	w_uniform = /obj/item/clothing/under/marine/veteran/pmc/commando
+	shoes = /obj/item/clothing/shoes/green
+	wear_suit = /obj/item/clothing/suit/space/grinch
+	gloves = /obj/item/clothing/gloves/green
+	mask = /obj/item/clothing/mask/gas/swat
+	head = /obj/item/clothing/head/helmet/thunderdome
+	r_store = /obj/item/storage/pouch/tools/full
+	l_store = /obj/item/storage/pouch/construction/full
+	back = /obj/item/storage/backpack/santabag
+
+/datum/outfit/job/grinch/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	. = ..()
+
+	H.equip_to_slot_or_del(new /obj/item/binoculars, SLOT_IN_BACKPACK)
+
+	H.equip_to_slot_or_del(new /obj/item/whistle, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/megaphone, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar/red, SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new /obj/item/reagent_containers/food/snacks/sliceable/pastries/fruitcake, SLOT_IN_BACKPACK)
+

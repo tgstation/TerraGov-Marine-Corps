@@ -89,7 +89,7 @@
 	var/cutting_time = clamp(10, 20, 100 / cut_force) SECONDS
 	if(!do_after(user, cutting_time , NONE, src, BUSY_ICON_BUILD))
 		return
-	if(is_christmastree)
+	if(is_christmastree && !HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH))
 		user.visible_message(span_notice("[user] has a change of heart and embraces the [src], vowing to be a better person for Christmas."),span_notice("You have a change of heart and decide to not be a grinch."), "You hear the sound of a gentle Christmas melodies.")
 		return
 
@@ -197,7 +197,7 @@
 		return
 	if(!do_after(user, 3 SECONDS))
 		return
-	if(isxeno(user) || prob(1) || HAS_TRAIT(user, TRAIT_CHRISTMAS_GRINCH)) //Santa hates xenos, he also hates really unlucky marines and grinches
+	if(isxeno(user) || prob(1) || HAS_TRAIT(user, TRAIT_CHRISTMAS_GRINCH) ) //Santa hates xenos, he also hates really unlucky marines and grinches
 		if(HAS_TRAIT(user, TRAIT_TOOK_COAL))
 			to_chat(user, span_warning("Santa already has punished you with coal, you should be less greedy."))
 			return

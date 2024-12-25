@@ -94,6 +94,16 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 	if(present_receiver)
 		. += "This present is addressed to [present_receiver_name]."
 
+/obj/item/a_gift/attackby(obj/item/attacking_item, mob/user, params)
+	. = ..()
+	if(!HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH))
+		return
+	else
+		balloon_alert_to_viewers("[user] destroys the [src] with their [attacking_item]!")
+		new /obj/item/stack/sheet/cardboard(get_turf(src))
+		new /obj/effect/decal/cleanable/blood/gibs/robot(get_turf(src))
+		qdel(src)
+
 /obj/item/a_gift/attack_self(mob/M)
 	if(present_receiver == null && !freepresent && !HAS_TRAIT(M, TRAIT_SANTA_CLAUS))
 		to_chat(M, span_warning("You start unwrapping the present, trying to locate any sign of who the present belongs to..."))
