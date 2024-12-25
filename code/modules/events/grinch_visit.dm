@@ -12,11 +12,6 @@
 	announce_when = 0
 
 /datum/round_event/grinch_visit/start()
-	for(var/obj/structure/flora/tree/pine/xmas/presents/christmastree)
-		if(christmastree.unlimited)
-			continue
-		else
-			christmastreeturf = christmastree
 	place_grinch()
 
 /datum/round_event/grinch_visit/announce()
@@ -30,7 +25,7 @@
 
 ///proc for spawning santa(s) around christmas tree
 /datum/round_event/grinch_visit/proc/place_grinch()
-		var/mob/living/carbon/human/spawnedhuman = new /mob/living/carbon/human(target)
+		var/mob/living/carbon/human/spawnedhuman = new /mob/living/carbon/human
 		var/datum/job/J = SSjob.GetJobType(/datum/job/santa/eventspawn)
 		spawnedhuman.name = "The Grinch"
 		spawnedhuman.real_name = spawnedhuman.name
