@@ -128,6 +128,7 @@
 	upgrade_name = "Primordial"
 	upgrade = XENO_UPGRADE_PRIMO
 	caste_desc = "A living steam engine. Its body spews hot gas."
+	primordial_message = "Our steam is ceaseless. We are the hive's living engine. May our enemies perish in our scalding radiance."
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
@@ -138,4 +139,5 @@
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
 		/datum/action/ability/xeno_action/steam_rush,
+		/datum/action/ability/activable/xeno/high_pressure_spit,
 	)

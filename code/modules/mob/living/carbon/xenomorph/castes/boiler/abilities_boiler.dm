@@ -433,7 +433,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	succeed_activate()
 	add_cooldown()
 
-
+///Adds burn damage and resets timer during steam rush buff
 /datum/action/ability/xeno_action/steam_rush/proc/steam_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
 	SIGNAL_HANDLER
 	var/mob/living/rusher = owner
@@ -441,7 +441,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	var/mob/living/carbon/carbon_target = target
 
 	carbon_target.apply_damage(steam_damage, damagetype = BURN, blocked = ACID)
-	playsound(carbon_target, SFX_ACID_HIT, 25)
+	playsound(carbon_target, 'sound/voice/alien/hiss2.ogg', 25)
+	to_chat(carbon_target, span_danger("We are burned by the hot steam!"))
 
 	if(steam_rush_ability.steam_rush_duration) //Check if steam rush is active
 		deltimer(steam_rush_ability.steam_rush_duration) //Reset timers
@@ -455,11 +456,16 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	X.remove_movespeed_modifier(MOVESPEED_ID_BOILER_SIZZLER_STEAM_RUSH) //Reset speed
 
-	X.playsound_local(X, 'sound/voice/hiss5.ogg', 50) //Audio cue
+	X.playsound_local(X, 'sound/voice/alien/hiss2.ogg', 50) //Audio cue
 
 	X.steam_rush = FALSE
 	QDEL_NULL(particle_holder)
 	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
+
+/datum/action/ability/xeno_action/steam_rush/on_cooldown_finish()
+	to_chat(owner, span_xenodanger("Our blood is boiling once more; we can use steam rush again."))
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
+	return ..()
 
 /particles/sizzler_steam
 	icon = 'icons/effects/particles/smoke.dmi'
@@ -476,3 +482,44 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	friction = 0.1
 	gravity = list(0, 0.95)
 	grow = 0.1
+
+// ***************************************
+// *********** High-Pressure Spit
+// ***************************************
+/datum/action/ability/activable/xeno/high_pressure_spit
+	name = "High Pressure Spit"
+	action_icon_state = "acid_lance_glob"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
+	desc = "Fires a high pressure glob of acid that knocks back, stuns, and shatters the target."
+	ability_cost = 150
+	cooldown_duration = 25 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
+	)
+
+/datum/action/ability/activable/xeno/high_pressure_spit/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	new /obj/effect/temp_visual/wraith_warp(get_turf(owner))
+
+	if(!do_after(X, 1 SECONDS, NONE, target, BUSY_ICON_DANGER))
+		return fail_activate()
+
+	//Shoot at the thing
+	playsound(X.loc, 'sound/voice/alien/hiss2.ogg', 50, 1)
+
+	var/datum/ammo/xeno/acid/heavy/high_pressure_spit/high_pressure_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/high_pressure_spit]
+
+	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
+	newspit.generate_bullet(high_pressure_spit)
+	newspit.def_zone = X.get_limbzone_target()
+
+	newspit.fire_at(target, X, X, newspit.ammo.max_range)
+
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/high_pressure_spit/on_cooldown_finish() //Give high pressure spit a proper cooldown notification
+	to_chat(owner, span_xenodanger("Our steam is welling up; we can use high pressure spit again."))
+	owner.playsound_local(owner, 'sound/voice/alien/hiss2.ogg', 25, 0, 1)
+	return ..()

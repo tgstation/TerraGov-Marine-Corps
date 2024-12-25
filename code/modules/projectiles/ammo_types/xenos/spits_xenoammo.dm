@@ -339,7 +339,7 @@
 	icon_state = "neurotoxin"
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_PASS_THROUGH_MOB|AMMO_LEAVE_TURF
 	max_range = 3
-	shell_speed = 2
+	shell_speed = 1
 	damage = 10
 	penetration = 0
 	/// smoke type created when the projectile detonates
@@ -367,15 +367,24 @@
 /datum/ammo/xeno/acid/airburst/heavy
 	name = "acid steam glob"
 	icon_state = "neurotoxin"
-	added_spit_delay = 14 SECONDS
-	spit_cost = 500
+	added_spit_delay = 18 SECONDS
+	spit_cost = 700
 	damage = 35
-	stagger_stacks = 2
+	stagger_stacks = 2 SECONDS
 	slowdown_stacks = 3
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF
 	bonus_projectiles_type = /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
 	bonus_projectiles_scatter = 30
 	bonus_projectile_quantity = 5
+
+/datum/ammo/xeno/acid/airburst/heavy/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	. = ..()
+	if(iscarbon(target_mob))
+		var/mob/living/carbon/target_carbon = target_mob
+		if(target_carbon.issamexenohive(proj.firer))
+			return
+		target_carbon.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
+		target_carbon.add_slowdown(slowdown_stacks) //slow em down
 
 /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
 	max_range = 5
@@ -383,3 +392,28 @@
 	smoketype = /datum/effect_system/smoke_spread/xeno/acid/opaque
 	smoke_radius = 1
 	smoke_duration = 4
+
+///For the Sizzler Boiler's primo
+/datum/ammo/xeno/acid/heavy/high_pressure_spit
+	name = "pressurized steam glob"
+	icon_state = "boiler_gas"
+	damage = 50
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
+	max_range = 16
+	shell_speed = 1.5
+	stagger_stacks = 2 SECONDS
+	slowdown_stacks = 3
+	///How long it knocks down the target
+	var/knockdown_duration = 2 SECONDS
+	///Knockback dealt on hit
+	var/knockback = 7
+	///shatter effection duration when hitting mobs
+	var/shatter_duration = 10 SECONDS
+
+/datum/ammo/xeno/acid/heavy/high_pressure_spit/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(iscarbon(target_mob))
+		var/mob/living/carbon/target_carbon = target_mob
+		if(target_carbon.issamexenohive(proj.firer))
+			return
+		staggerstun(target_mob, proj, max_range, 0, knockdown_duration, stagger_stacks, slowdown_stacks, knockback)
+		target_carbon.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
