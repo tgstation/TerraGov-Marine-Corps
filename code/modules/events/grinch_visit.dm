@@ -35,7 +35,6 @@
 		spawnedhuman.apply_assigned_role_to_spawn(J)
 		spawnedhuman.grant_language(/datum/language/xenocommon)
 		ADD_TRAIT(spawnedhuman, TRAIT_ACTUAL_CHRISTMAS_GRINCH, TRAIT_ACTUAL_CHRISTMAS_GRINCH)
-		ADD_TRAIT(spawnedhuman, TRAIT_FLASHBANGIMMUNE, TRAIT_FLASHBANGIMMUNE)
 		var/datum/action/innate/summon_garbage/present_garbage = new(spawnedhuman)
 		present_garbage.give_action(spawnedhuman)
 		var/datum/action/innate/return_to_point/returntopoint = new(spawnedhuman)
@@ -104,7 +103,7 @@
 	var/turf/target_turf = get_turf(hit_atom)
 	playsound(target_turf, SFX_FLASHBANG, 65)
 	for(var/mob/living/carbon/victim in hearers(max_range, target_turf))
-		if(isxeno(victim))
+		if(isxeno(victim) || HAS_TRAIT(victim, TRAIT_ACTUAL_CHRISTMAS_GRINCH))
 			continue
 		if(!HAS_TRAIT(victim, TRAIT_FLASHBANGIMMUNE))
 			bang(target_turf, victim)

@@ -312,9 +312,9 @@
 	desc = "Smells like old dumpster..."
 	icon_state = "grinchsuit"
 	worn_icon_state = "grinchsuit"
-	slowdown = -0.5
+	slowdown = -1.0
 	allowed = list(/obj/item) //for stuffing exta special presents
-	soft_armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 65, BOMB = 80, BIO = 70, FIRE = 95, ACID = 25)
+	soft_armor = list(MELEE = 55, BULLET = 90, LASER = 120, ENERGY = 65, BOMB = 80, BIO = 70, FIRE = 95, ACID = 25)
 	item_flags = DELONDROP
 
 /obj/item/clothing/suit/space/grinch/Initialize(mapload)

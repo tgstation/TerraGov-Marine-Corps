@@ -136,7 +136,7 @@
 	access = ALL_ACCESS
 	minimal_access = ALL_ACCESS
 	skills_type = /datum/skills/santaclause
-	outfit = /datum/outfit/job/santa/eventspawn
+	outfit = /datum/outfit/job/grinch
 
 /datum/outfit/job/santa/elf
 	name = "Elf"
