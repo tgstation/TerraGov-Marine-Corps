@@ -30,7 +30,7 @@
 
 /obj/item/weapon/shield/dropped(mob/user)
 	. = ..()
-	special_attack.remove_action(user)
+	special_attack?.remove_action(user)
 
 ///Sets up the shield's defence components
 /obj/item/weapon/shield/proc/set_shield()
