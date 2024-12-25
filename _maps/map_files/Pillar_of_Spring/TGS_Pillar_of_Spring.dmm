@@ -14274,7 +14274,7 @@
 /area/mainship/medical/medical_science)
 "qIz" = (
 /obj/docking_port/stationary/marine_dropship/minidropship,
-/turf/open/floor/mainship/mono,
+/turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "qIE" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
@@ -52081,7 +52081,7 @@ thg
 sEl
 obQ
 wEI
-qIz
+dpY
 vad
 hOe
 dpY
@@ -53906,7 +53906,7 @@ cfw
 kDx
 kDx
 kDx
-kDx
+qIz
 kDx
 kDx
 cxw

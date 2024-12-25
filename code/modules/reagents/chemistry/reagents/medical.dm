@@ -1114,6 +1114,65 @@
 		L.vomit()
 	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 4 //Unlimited agony.
 
+/datum/reagent/grinchium // this isn't under /medicine so things that purge /datum/reagent/medicine like neuro/larval don't purge it
+	name = "Grinchium"
+	description = "Quickly purges the body of toxin damage, radiation and all other chemicals. Causes significant pain."
+	color = COLOR_REAGENT_STIMULON
+	overdose_threshold = REAGENTS_OVERDOSE * 0.5
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
+	custom_metabolism = REAGENTS_METABOLISM * 5
+	purge_list = list(/datum/reagent/medicine)
+	purge_rate = 5
+	taste_description = "drool"
+	taste_multi = 8
+
+/datum/reagent/grinchium/on_mob_life(mob/living/L, metabolism)
+	if(HAS_TRAIT(L, TRAIT_ACTUAL_CHRISTMAS_GRINCH))
+		L.heal_overall_damage(2*effect_str, 0)
+		if(volume > 5)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		if(volume > 10)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+			L.heal_overall_damage(1.5*effect_str, 0)
+		return ..()
+	if(prob(15))
+		L.Stun(2 SECONDS)
+	L.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
+	if(prob(15)) //causes vomiting
+		L.vomit()
+	return ..()
+
+/datum/reagent/grinchium/overdose_process(mob/living/L, metabolism)
+	if(HAS_TRAIT(L, TRAIT_ACTUAL_CHRISTMAS_GRINCH))
+		L.heal_overall_damage(2*effect_str, 0)
+		if(volume > 5)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		if(volume > 10)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+			L.heal_overall_damage(1.5*effect_str, 0)
+		return ..()
+	if(prob(30))
+		L.Stun(3 SECONDS)
+	L.apply_damages(effect_str, effect_str)
+	if(prob(20)) //heavy vomiting
+		L.vomit()
+	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.25//Massive pain.
+
+/datum/reagent/grinchium/overdose_crit_process(mob/living/L, metabolism)
+	if(HAS_TRAIT(L, TRAIT_ACTUAL_CHRISTMAS_GRINCH))
+		L.heal_overall_damage(2*effect_str, 0)
+		if(volume > 5)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+		if(volume > 10)
+			L.reagent_pain_modifier -= PAIN_REDUCTION_LIGHT
+			L.heal_overall_damage(1.5*effect_str, 0)
+		return ..()
+	if(prob(50))
+		L.Stun(4 SECONDS)
+	L.apply_damages(2*effect_str, 2*effect_str)
+	if(prob(70)) //violent vomiting
+		L.vomit()
+	L.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 4 //Unlimited agony.
 
 /datum/reagent/medicine/roulettium
 	name = "Roulettium"

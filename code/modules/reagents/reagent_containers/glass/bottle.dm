@@ -264,3 +264,9 @@
 	desc = "A small bottle. Contains Doctor's Delight - functions similar to tricordrazine, but is weaker and makes the patient hungry."
 	icon_state = "bottle3"
 	list_reagents = list(/datum/reagent/consumable/doctor_delight = 60)
+
+/obj/item/reagent_containers/glass/bottle/grinchium
+	name = "\improper Grinchium bottle"
+	desc = "A small bottle. Contains 200 units of Grinchium, who knows where this medicine came from..."
+	icon_state = "bottle3"
+	list_reagents = list(/datum/reagent/medicine/grinchium = 200)
