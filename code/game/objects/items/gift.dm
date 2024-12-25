@@ -96,7 +96,7 @@ GLOBAL_LIST_EMPTY(possible_gifts)
 
 /obj/item/a_gift/attackby(obj/item/attacking_item, mob/user, params)
 	. = ..()
-	if(!HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH))
+	if(!HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) || !istype(attacking_item, /obj/item/weapon || user.a_intent != INTENT_HARM))
 		return
 	else
 		balloon_alert_to_viewers("[user] destroys the [src] with their [attacking_item]!")
