@@ -206,6 +206,9 @@
 	icon_state = "maw"
 	bound_width = 96
 	bound_height = 64
+	bound_x = -32
+	pixel_x = -32
+	pixel_y = -8
 	max_integrity = 400
 	appearance_flags = PIXEL_SCALE|LONG_GLIDE
 	xeno_structure_flags = CRITICAL_STRUCTURE|IGNORE_WEED_REMOVAL
@@ -282,8 +285,11 @@
 	desc = "A hole in the ground. It's walls are coated with resin and there is some smoke billowing out."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "jaws"
-	bound_width = 64
-	bound_height = 64
+	bound_width = 32
+	bound_height = 32
+	bound_x = 0
+	pixel_x = -16
+	pixel_y = -16
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
 	minimap_icon = "acid jaw"
 	maw_options = list(
