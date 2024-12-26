@@ -1,0 +1,4 @@
+author: "jonash07"
+delete-after: True
+changes:
+  - admin: "Added game logs for the flag"
