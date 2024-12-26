@@ -89,11 +89,11 @@
 	new /obj/effect/decal/cleanable/dirt(get_turf(hit_atom)) //spawn dirt where the bag originally hit
 	if(ishuman(hit_atom))
 		var/mob/living/carbon/human/unfortunatehuman = hit_atom
-		unfortunatehuman.Stun(4 SECONDS)
-		unfortunatehuman.Knockdown(2 SECONDS)
+		unfortunatehuman.Stun(6 SECONDS)
+		unfortunatehuman.Knockdown(3 SECONDS)
 		to_chat(unfortunatehuman, span_notice("The garbage bag hits you right in the face, stunning you for a second..."))
 		balloon_alert_to_viewers("The [src] explodes into a pile trash as it hits [unfortunatehuman]'s face" ,ignored_mobs = unfortunatehuman)
-		unfortunatehuman.reagents.add_reagent(/datum/reagent/grinchium, 10)
+		unfortunatehuman.reagents.add_reagent(/datum/reagent/grinchium, 15)
 	for(var/thrown_trashes in nearbyturfs)
 		if(prob(25) && !isclosedturf(thrown_trashes))
 			var/obj/item/trash/trashestothrow = pick(typesof(/obj/item/trash))
@@ -171,9 +171,9 @@
 ///The effects applied to mobs in the inner_range
 /obj/item/storage/bag/trash/grinch/flashbang/proc/inner_effect(turf/T , mob/living/carbon/M, ear_safety)
 	if(ear_safety > 0)
-		M.apply_effects(stun = 2 SECONDS, paralyze = 1 SECONDS)
+		M.apply_effects(stun = 1 SECONDS, paralyze = 0.5 SECONDS)
 	else
-		M.apply_effects(stun = 10 SECONDS, paralyze = 3 SECONDS)
+		M.apply_effects(stun = 3 SECONDS, paralyze = 1 SECONDS)
 		if((prob(14) || (M == src.loc && prob(70))))
 			M.adjust_ear_damage(rand(1, 10),15)
 		else
@@ -207,6 +207,9 @@
 		returning = !returning
 	else
 		to_chat(usr, "You concentrate on returning to your safezone...")
+		if(isspaceturf(get_turf(safezone)))
+			returning = !returning
+			return
 		if(!do_after(usr, 1 SECONDS, NONE))
 			to_chat(usr, "You give up on escaping to your safe zone.")
 			return

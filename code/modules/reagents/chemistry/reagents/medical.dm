@@ -1116,11 +1116,11 @@
 
 /datum/reagent/grinchium // this isn't under /medicine so things that purge /datum/reagent/medicine like neuro/larval don't purge it
 	name = "Grinchium"
-	description = "Quickly purges the body of toxin damage, radiation and all other chemicals. Causes significant pain."
+	description = "Inflicts pain while also causing pain and slurring, only somebody who really hates Christmas could've invented this."
 	color = COLOR_REAGENT_STIMULON
 	overdose_threshold = REAGENTS_OVERDOSE * 0.5
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.5
-	custom_metabolism = REAGENTS_METABOLISM * 5
+	custom_metabolism = REAGENTS_METABOLISM * 0.5
 	purge_list = list(/datum/reagent/medicine)
 	purge_rate = 5
 	taste_description = "drool"
