@@ -52,6 +52,8 @@
 		summoncoal.give_action(spawnedhuman)
 		var/datum/action/innate/summon_flashbang_trash/summonflashbang = new(spawnedhuman)
 		summonflashbang.give_action(spawnedhuman)
+		var/datum/action/innate/summon_beartrap/summonbear = new(spawnedhuman)
+		summonbear.give_action(spawnedhuman)
 		spawnedhuman.offer_mob()
 
 /datum/action/innate/summon_garbage
@@ -272,3 +274,88 @@
 		return
 	var/obj/item/storage/bag/trash/grinch/flashbang/spawnedcoal = new (get_turf(grinchmob))
 	grinchmob.put_in_hands(spawnedcoal)
+
+/datum/action/innate/summon_beartrap
+	name = "Summon Beartrap"
+	action_icon_state = "beartrap"
+
+/datum/action/innate/summon_beartrap/Activate()
+	var/mob/living/carbon/human/grinchmob = usr
+	to_chat(grinchmob, span_notice("You begin rifling through your bag, looking for a trap."))
+	if(!do_after(grinchmob, 1 SECONDS, NONE))
+		to_chat(grinchmob, "You give up looking for a trap.")
+		return
+	if(locate(/obj/item/beartrap) in get_turf(grinchmob))
+		to_chat(grinchmob, "There's a trap here already, better use that one instead.")
+		return
+	var/obj/item/beartrap/spawnedcoal = new (get_turf(grinchmob))
+	grinchmob.put_in_hands(spawnedcoal)
+
+/obj/item/beartrap
+	name = "bear trap"
+	desc = "It's a heavy duty bear trap!"
+	icon = 'icons/obj/restraints.dmi'
+	icon_state = "beartrap"
+	var/deployed = FALSE
+	///connection list for huggers
+	var/static/list/listen_connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(trigger_trap),
+	)
+
+/obj/item/beartrap/Initialize(mapload, ...)
+	. = ..()
+	AddElement(/datum/element/connect_loc, listen_connections)
+
+/obj/item/beartrap/proc/trigger_trap(datum/source, atom/movable/AM, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(!deployed)
+		return
+	if(HAS_TRAIT(AM, TRAIT_ACTUAL_CHRISTMAS_GRINCH))
+		continue
+	if(ishuman(AM))
+		var/mob/living/carbon/crosser = AM
+		crosser.visible_message(span_warning("The [src] closes on [crosser]'s body!"), span_danger("You are gripped by [src]!"))
+		crosser.ParalyzeNoChain(6 SECONDS)
+		crosser.Stun(9 SECONDS)
+	qdel(src)
+
+/obj/item/beartrap/attack_self(mob/M)
+	to_chat(M, "You start deploying a bear trap.")
+	if(!do_after(M, 1 SECONDS, NONE))
+		to_chat(M, "You give up deploying a trap.")
+		return
+	deployed = TRUE
+	forceMove(get_turf(M))
+	anchored = TRUE
+	icon_state = "beartrap1"
+
+/obj/item/beartrap/attack_self(mob/M)
+	to_chat(M, "You start deploying a bear trap.")
+	if(!do_after(M, 1 SECONDS, NONE))
+		to_chat(M, "You give up deploying a trap.")
+		return
+	deployed = TRUE
+	forceMove(get_turf(M))
+	anchored = TRUE
+	icon_state = "beartrap1"
+
+/obj/item/beartrap/attackby(obj/item/attacking_item, mob/user, params)
+	. = ..()
+	if(HAS_TRAIT(user, TRAIT_ACTUAL_CHRISTMAS_GRINCH) || !istype(attacking_item, /obj/item/weapon || user.a_intent != INTENT_HARM))
+		return
+	to_chat(user, "You start disarming the [src].")
+	if(!do_after(user, 1 SECONDS, NONE))
+		to_chat(user, "You give up disarming the [src]")
+		return
+	to_chat(user, "You disarm the [src].")
+	qdel(src)
+
+/obj/item/beartrap/throw_impact(atom/hit_atom, speed, bounce)
+	. = ..()
+	if(prob(70))
+		return
+	if(ishuman(hit_atom))
+		var/mob/living/carbon/human/unfortunatehuman = hit_atom
+		unfortunatehuman.Stun(6 SECONDS)
+		unfortunatehuman.Knockdown(1 SECONDS)
+		to_chat(hit_atom, "You the undeployed [src] latches onto you.")
