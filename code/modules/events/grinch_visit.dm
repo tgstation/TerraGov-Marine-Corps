@@ -61,7 +61,7 @@
 /datum/action/innate/summon_garbage/Activate()
 	var/mob/living/carbon/human/grinchmob = usr
 	to_chat(grinchmob, span_notice("You begin filling a spare garbage bag with the most vile stuff you can find."))
-	if(!do_after(grinchmob, 1.5 SECONDS, NONE))
+	if(!do_after(grinchmob, 2 SECONDS, NONE))
 		to_chat(grinchmob, "You give up looking for garbage.")
 		return
 	if(locate(/obj/item/storage/bag/trash/grinch) in get_turf(grinchmob))
@@ -93,6 +93,7 @@
 		unfortunatehuman.Knockdown(2 SECONDS)
 		to_chat(unfortunatehuman, span_notice("The garbage bag hits you right in the face, stunning you for a second..."))
 		balloon_alert_to_viewers("The [src] explodes into a pile trash as it hits [unfortunatehuman]'s face" ,ignored_mobs = unfortunatehuman)
+		unfortunatehuman.reagents.add_reagent(/datum/reagent/grinchium, 10)
 	for(var/thrown_trashes in nearbyturfs)
 		if(prob(25) && !isclosedturf(thrown_trashes))
 			var/obj/item/trash/trashestothrow = pick(typesof(/obj/item/trash))
