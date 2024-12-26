@@ -94,7 +94,7 @@
 	. = ..()
 	if(!.)
 		return
-	if(S.smoke_traits & SMOKE_PURGER)
+	if(S.smoke_traits & SMOKE_PURGER && !(smoke_traits & SMOKE_PURGER))
 		lifetime -= 4
 
 /obj/effect/particle_effect/smoke/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
