@@ -311,7 +311,7 @@
 	if(!deployed)
 		return
 	if(HAS_TRAIT(AM, TRAIT_ACTUAL_CHRISTMAS_GRINCH))
-		continue
+		return
 	if(ishuman(AM))
 		var/mob/living/carbon/crosser = AM
 		crosser.visible_message(span_warning("The [src] closes on [crosser]'s body!"), span_danger("You are gripped by [src]!"))
