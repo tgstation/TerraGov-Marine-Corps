@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "fixed an ammo duplication exploit with the tank vendor"
