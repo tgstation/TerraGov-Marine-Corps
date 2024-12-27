@@ -128,12 +128,16 @@
 				continue
 
 		else
-			if(M.see_invisible < invisibility || (T != loc && T != src)) //if src is invisible to us or is inside something (and isn't a turf),
+			if(M.see_invisible < invisibility) //if src is invisible to us
 				if(!blind_message) // then people see blind message if there is one, otherwise nothing.
 					continue
 
 				msg = blind_message
 
+			if(T != loc && T != src) //if src is inside something (and isn't a turf),
+				if(!isnull(blind_message))  // then people see blind message if set, otherwise full message
+					msg = blind_message
+					
 			if((visible_message_flags & COMBAT_MESSAGE) && M.client.prefs.mute_others_combat_messages)
 				continue
 
