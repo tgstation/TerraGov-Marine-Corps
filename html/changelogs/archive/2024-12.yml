@@ -111,3 +111,15 @@
 2024-12-26:
   yyzsong:
   - balance: ravager can rage and endure in solid objects now
+2024-12-27:
+  Lumipharon:
+  - bugfix: Xeno structures actually build on your location instead of to the south
+      west
+  - balance: Minisentry deploy/undeploy time changed from 3 seconds to 1 second
+  - bugfix: fixed deployables using deploy time for undeploying instead of undeploy
+      time
+  - bugfix: fixed an ammo duplication exploit with the tank vendor
+  - balance: 'Campaign: V-35 reduced mag capacity and normal ammo reduced from 65
+      to 60 damage'
+  jonash07:
+  - admin: Added game logs for the flag

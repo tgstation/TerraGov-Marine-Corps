@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Minisentry deploy/undeploy time changed from 3 seconds to 1 second"
-  - bugfix: "fixed deployables using deploy time for undeploying instead of undeploy time"
