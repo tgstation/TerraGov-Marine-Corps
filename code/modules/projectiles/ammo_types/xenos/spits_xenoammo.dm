@@ -315,7 +315,7 @@
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF
 	bonus_projectiles_type = /datum/ammo/xeno/acid/airburst_bomblet
 	bonus_projectiles_scatter = 10
-	///How many
+	///How many projectiles we split into
 	var/bonus_projectile_quantity = 3
 
 /datum/ammo/xeno/acid/airburst/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -383,8 +383,8 @@
 		var/mob/living/carbon/target_carbon = target_mob
 		if(target_carbon.issamexenohive(proj.firer))
 			return
-		target_carbon.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
-		target_carbon.add_slowdown(slowdown_stacks) //slow em down
+		target_carbon.adjust_stagger(stagger_stacks)
+		target_carbon.add_slowdown(slowdown_stacks)
 
 /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
 	max_range = 5
@@ -411,9 +411,10 @@
 	var/shatter_duration = 10 SECONDS
 
 /datum/ammo/xeno/acid/heavy/high_pressure_spit/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(iscarbon(target_mob))
-		var/mob/living/carbon/target_carbon = target_mob
-		if(target_carbon.issamexenohive(proj.firer))
-			return
-		staggerstun(target_mob, proj, max_range, 0, knockdown_duration, stagger_stacks, slowdown_stacks, knockback)
-		target_carbon.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+	if(!iscarbon(target_mob))
+		return
+	var/mob/living/carbon/target_carbon = target_mob
+	if(target_carbon.issamexenohive(proj.firer))
+		return
+	staggerstun(target_mob, proj, max_range, 0, knockdown_duration, stagger_stacks, slowdown_stacks, knockback)
+	target_carbon.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)

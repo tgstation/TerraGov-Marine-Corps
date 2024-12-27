@@ -444,8 +444,8 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	playsound(carbon_target, 'sound/voice/alien/hiss2.ogg', 25)
 	to_chat(carbon_target, span_danger("We are burned by the hot steam!"))
 
-	if(steam_rush_ability.steam_rush_duration) //Check if steam rush is active
-		deltimer(steam_rush_ability.steam_rush_duration) //Reset timers
+	if(steam_rush_ability.steam_rush_duration)
+		deltimer(steam_rush_ability.steam_rush_duration)
 		steam_rush_ability.steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(steam_rush_deactivate)), duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
 ///Called when we want to end the steam rush ability
@@ -454,16 +454,16 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		return
 	var/mob/living/carbon/xenomorph/X = owner
 
-	X.remove_movespeed_modifier(MOVESPEED_ID_BOILER_SIZZLER_STEAM_RUSH) //Reset speed
+	X.remove_movespeed_modifier(MOVESPEED_ID_BOILER_SIZZLER_STEAM_RUSH)
 
-	X.playsound_local(X, 'sound/voice/alien/hiss2.ogg', 50) //Audio cue
+	X.playsound_local(X, 'sound/voice/alien/hiss2.ogg', 50)
 
 	X.steam_rush = FALSE
 	QDEL_NULL(particle_holder)
 	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
 
 /datum/action/ability/xeno_action/steam_rush/on_cooldown_finish()
-	to_chat(owner, span_xenodanger("Our blood is boiling once more; we can use steam rush again."))
+	owner.balloon_alert(owner, "Our blood is boiling once more; we can use steam rush again.")
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
@@ -505,12 +505,11 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	if(!do_after(X, 1 SECONDS, NONE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	//Shoot at the thing
 	playsound(X.loc, 'sound/voice/alien/hiss2.ogg', 50, 1)
 
 	var/datum/ammo/xeno/acid/heavy/high_pressure_spit/high_pressure_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/high_pressure_spit]
 
-	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
+	var/obj/projectile/newspit = new(get_turf(X))
 	newspit.generate_bullet(high_pressure_spit)
 	newspit.def_zone = X.get_limbzone_target()
 
@@ -519,7 +518,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/ability/activable/xeno/high_pressure_spit/on_cooldown_finish() //Give high pressure spit a proper cooldown notification
-	to_chat(owner, span_xenodanger("Our steam is welling up; we can use high pressure spit again."))
+/datum/action/ability/activable/xeno/high_pressure_spit/on_cooldown_finish()
+	owner.balloon_alert(owner, "Our steam is welling up; we can use high pressure spit again.")
 	owner.playsound_local(owner, 'sound/voice/alien/hiss2.ogg', 25, 0, 1)
 	return ..()
