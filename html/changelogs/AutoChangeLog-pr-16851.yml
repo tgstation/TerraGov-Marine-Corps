@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - qol: "Marine and SOM medical belts now have meds organized in the same order."
