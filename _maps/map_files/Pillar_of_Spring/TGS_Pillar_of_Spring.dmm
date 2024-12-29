@@ -3861,7 +3861,6 @@
 /turf/open/floor/wood,
 /area/mainship/command/corporateliaison)
 "eNP" = (
-/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
