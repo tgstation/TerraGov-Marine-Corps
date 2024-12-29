@@ -4,7 +4,7 @@
 	All chems - Deal an additional 60% of the weapons damage as true damage<BR>\
 	Bicaridine - Heals yourself and restores stamina upon attacking an enemy. Channel a heal on help intent to restore more health to allies<BR>\
 	Kelotane - Set your target aflame<BR>\
-	Tramadol - Slow your target for 1 second<BR>\
+	Tramadol - Speeds yourself up for 1 second and restores stamina upon attacking an enemy.<BR>\
 	Tricordrazine - Sunders and shatters your targets armor<BR>\
 	<BR>\
 	<b>Tips:</b><BR>\
@@ -226,7 +226,8 @@
 
 		if(/datum/reagent/medicine/tramadol)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
-			target.apply_status_effect(/datum/status_effect/incapacitating/harvester_slowdown, 1 SECONDS)
+			user.apply_status_effect(/datum/status_effect/incapacitating/harvester_speed_boost, 1 SECONDS)
+			user.adjustStaminaLoss(-15)
 
 		if(/datum/reagent/medicine/tricordrazine)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)

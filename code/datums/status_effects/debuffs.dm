@@ -381,22 +381,20 @@
 /datum/status_effect/noplasmaregen/tick(delta_time)
 	to_chat(owner, span_warning("You feel too weak to summon new plasma..."))
 
-/datum/status_effect/incapacitating/harvester_slowdown
-	id = "harvest_slow"
+/datum/status_effect/incapacitating/harvester_speed_boost
+	id = "harvest_speed"
 	tick_interval = 1 SECONDS
 	status_type = STATUS_EFFECT_REPLACE
-	var/debuff_slowdown = 2
+	var/debuff_speed_boost = -0.5
 
-/datum/status_effect/incapacitating/harvester_slowdown/on_apply()
+/datum/status_effect/incapacitating/harvester_speed_boost/on_apply()
 	. = ..()
 	if(!.)
 		return
-	if(HAS_TRAIT(owner, TRAIT_SLOWDOWNIMMUNE))
-		return
-	owner.add_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SLOWDOWN, TRUE, 0, NONE, TRUE, debuff_slowdown)
+	owner.add_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SPEED_BOOST, TRUE, 0, NONE, TRUE, debuff_speed_boost)
 
-/datum/status_effect/incapacitating/harvester_slowdown/on_remove()
-	owner.remove_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SLOWDOWN)
+/datum/status_effect/incapacitating/harvester_speed_boost/on_remove()
+	owner.remove_movespeed_modifier(MOVESPEED_ID_HARVEST_TRAM_SPEED_BOOST)
 	return ..()
 
 //MUTE
