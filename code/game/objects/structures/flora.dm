@@ -170,7 +170,6 @@
 	desc = "A tall tree covered in spiky-like needles, covering it's trunk."
 	icon = 'icons/obj/flora/joshuatree.dmi'
 	icon_state = "joshua"
-	pixel_x = 0
 	icon_variants = 4
 
 /obj/structure/flora/tree/jungle

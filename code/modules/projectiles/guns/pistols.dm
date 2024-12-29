@@ -93,7 +93,7 @@
 	default_ammo_type = /obj/item/ammo_magazine/pistol/plasma_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/plasma_pistol)
 	type_of_casings = null
-	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 21, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 	attachable_allowed = list(
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/flashlight,
@@ -833,43 +833,37 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 		/obj/item/attachable/lace,
 	)
 
-// Smart pistol, based on Calico M-950
+// Smart pistol, based on the MP-9.
 /obj/item/weapon/gun/pistol/smart_pistol
-	name = "\improper SP-13 smart pistol"
-	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. A cutting-edge miniaturization technology allows mounting of a KTLD IFF system on the pistol, albeit at high manufactoring cost and the usual specialized training required to use such a pistol. Unique design feature high-capacity mag on top of the barrel, with integrated sight."
-	icon = 'icons/obj/items/guns/pistols64.dmi'
+	name = "\improper SP-13 smart machinepistol"
+	desc = "The SP-13 is a IFF-capable sidearm used by the TerraGov Marine Corps. Cutting edge advancements in cost cutting allows for anyone to use this pistol without training due to the simplified KTLD system used at the cost of the barrel muzzle device. Uses 9mm."
 	icon_state = "sp13"
 	worn_icon_state = "sp13"
 	caliber = CALIBER_9X19 //codex
-	max_shells = 30 //codex
-	fire_sound = 'sound/weapons/guns/fire/tp14.ogg' //same bullets, same sound
+	max_shells = 40 //codex
+	fire_sound = 'sound/weapons/guns/fire/tp14.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tp14_reload.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol
 	allowed_ammo_types = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	attachable_allowed = list(
-		/obj/item/attachable/suppressor,
 		/obj/item/attachable/reddot,
 		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/flashlight,
-		/obj/item/attachable/verticalgrip,
-		/obj/item/attachable/lasersight,
-		/obj/item/attachable/gyro,
-		/obj/item/attachable/lace,
 	)
 
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_IFF|GUN_SMOKE_PARTICLES
-	gun_skill_category = SKILL_SMARTGUN
 	actions_types = list() // Inherits aimmode, but has IFF so..
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_SEMIAUTO)
 
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 20,"rail_x" = 13, "rail_y" = 23, "under_x" = 19, "under_y" = 13, "stock_x" = 21, "stock_y" = 17)
 
-	aim_slowdown = 0.2
-	wield_delay = 0.6 SECONDS
+	aim_slowdown = 0.35
+	wield_delay = 0.65 SECONDS
 	fire_delay = 0.2 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.85
-	scatter = 3
-	scatter_unwielded = 7
-	recoil = -2
+	damage_falloff_mult = 0.75
+	scatter = 0
+	scatter_unwielded = 8
 	recoil_unwielded = 2

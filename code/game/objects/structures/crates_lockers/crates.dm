@@ -256,8 +256,8 @@
 
 
 /obj/structure/closet/crate/miningcar
-	desc = "A mining car. This one doesn't work on rails, but has to be dragged."
-	name = "Mining car (not for rails)"
+	desc = "A mining car. Used on rails, or dragged by hand."
+	name = "\improper mining car"
 	icon_state = "closed_mcart"
 	density = TRUE
 	icon_opened = "open_mcart"

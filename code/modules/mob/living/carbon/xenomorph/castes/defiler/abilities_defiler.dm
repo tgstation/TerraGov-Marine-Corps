@@ -153,7 +153,7 @@
 		if(50 to 99)
 			to_chat(living_target, span_danger("Your insides are in agony!"))
 		if(100 to INFINITY)
-			to_chat(living_target, span_highdanger("YOUR INSIDES FEEL LIKE THEY'RE ON FIRE!!"))
+			to_chat(living_target, span_userdanger("YOUR INSIDES FEEL LIKE THEY'RE ON FIRE!!"))
 
 	GLOB.round_statistics.defiler_defiler_stings++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defiler_defiler_stings")
@@ -359,7 +359,7 @@
 	action_icon_state = "select_reagent0"
 	action_icon = 'icons/Xeno/actions/defiler.dmi'
 	desc = "Selects which reagent to use for reagent slash and noxious gas. Neuro causes increasing pain and stamina damage. Hemodile slows targets down, multiplied by each other xeno-based toxin. Transvitox converts burns to toxin, and causes additional toxin damage when they take brute damage, both effects multiplied by other xeno-based toxins. Ozelomelyn purges all medicines from their system rapidly and causes minor toxin damage."
-	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING
+	use_state_flags = ABILITY_USE_BUSY|ABILITY_USE_LYING|ABILITY_USE_STAGGERED
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SELECT_REAGENT,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_RADIAL_SELECT_REAGENT,

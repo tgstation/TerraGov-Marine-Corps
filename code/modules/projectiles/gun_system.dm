@@ -368,8 +368,8 @@
 
 	///If the gun is deployable, the time it takes for the weapon to deploy.
 	var/deploy_time = 0
-	///If the gun is deployable, the time it takes for the weapon to undeploy.
-	var/undeploy_time = 0
+	///If the gun is deployable, the time it takes for the weapon to undeploy. Defaults to deploy time
+	var/undeploy_time = null
 	///If the gun is deployed, change the scatter amount by this number. Negative reduces scatter, positive adds.
 	var/deployed_scatter_change = 0
 	///Flags that the deployed sentry uses upon deployment.
@@ -407,7 +407,7 @@
 	muzzle_flash = new(src, muzzleflash_iconstate)
 
 	if(deployable_item)
-		AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, undeploy_time)
+		AddComponent(/datum/component/deployable_item, deployable_item, deploy_time, isnum(undeploy_time) ? undeploy_time : deploy_time)
 
 	GLOB.nightfall_toggleable_lights += src
 
@@ -552,23 +552,19 @@
 //manages the overlays for the gun - separate from attachment overlays
 /obj/item/weapon/gun/update_overlays()
 	. = ..()
+	//magazines overlays
+	attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
+	if(CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) && length(chamber_items))
+		var/image/mag_overlay = get_magazine_overlay(chamber_items[current_chamber_position])
+		if(mag_overlay)
+			attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = mag_overlay
+			. += mag_overlay
+
 	//ammo level overlays
 	if(ammo_level_icon && length(chamber_items) && rounds > 0 && chamber_items[current_chamber_position].loc == src)
-		var/remaining = CEILING((rounds /(max_rounds)) * 100, 25)
+		var/remaining = CEILING(min(rounds / max_rounds, 1) * 100, 25)
 		var/image/ammo_overlay = image(icon, icon_state = "[ammo_level_icon]_[remaining]", pixel_x = icon_overlay_x_offset, pixel_y = icon_overlay_y_offset)
 		. += ammo_overlay
-
-	//magazines overlays
-	var/image/overlay = attachment_overlays[ATTACHMENT_SLOT_MAGAZINE]
-	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_MAGAZINES) || !length(chamber_items))
-		attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = null
-		return
-	if(!get_magazine_overlay(chamber_items[current_chamber_position]))
-		return
-	var/obj/item/current_mag = chamber_items[current_chamber_position]
-	overlay = get_magazine_overlay(current_mag)
-	attachment_overlays[ATTACHMENT_SLOT_MAGAZINE] = overlay
-	. += overlay
 
 /obj/item/weapon/gun/update_item_state()
 	var/current_state = worn_icon_state
@@ -1122,7 +1118,7 @@
 		user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", 0, TRUE)
 		user.apply_damage(200, OXY) //In case someone tried to defib them. Won't work.
 		user.death()
-		to_chat(user, span_highdanger("Your life flashes before you as your spirit is torn from your body!"))
+		to_chat(user, span_userdanger("Your life flashes before you as your spirit is torn from your body!"))
 		user.ghostize(FALSE) //No return.
 		ENABLE_BITFIELD(gun_features_flags, GUN_CAN_POINTBLANK)
 		return

@@ -840,6 +840,16 @@
 	resistance_flags = RESIST_ALL
 	opacity = TRUE
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+	explosion_block = EXPLOSION_BLOCK_PROC
+
+/obj/structure/dropship_piece/GetExplosionBlock(explosion_dir)
+	if(!density)
+		return 0
+	if(opacity)
+		return 2
+	if(allow_pass_flags & PASS_GLASS)
+		return 2
+	return 0
 
 /obj/structure/dropship_piece/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)

@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		plasma_mod = 0.4 //60% plasma cost reduction if used on non-hostile, non-blacklisted targets.
 
 	banishment_target.visible_message(span_warning("Space abruptly twists and warps around [banishment_target] as it suddenly vanishes!"), \
-	span_highdanger("The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time."))
+	span_userdanger("The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time."))
 	playsound(banished_turf, 'sound/weapons/emitter2.ogg', 50, 1) //this isn't quiet
 
 	to_chat(ghost,span_xenodanger("We have banished [banishment_target] to nullspace for [duration * 0.1] seconds."))
@@ -287,7 +287,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!banishment_target)
 		return
 
-	to_chat(owner,span_highdanger("Our banishment target [banishment_target.name] is about to return to reality at [AREACOORD_NO_Z(portal)]!"))
+	to_chat(owner,span_userdanger("Our banishment target [banishment_target.name] is about to return to reality at [AREACOORD_NO_Z(portal)]!"))
 	owner.playsound_local(owner, 'sound/voice/hiss4.ogg', 50, 0, 1)
 
 ///Ends the effect of the Banish ability
@@ -338,7 +338,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	banishment_target.visible_message(span_warning("[banishment_target.name] abruptly reappears!"), \
 	span_warning("You suddenly reappear back in what you believe to be reality."))
 
-	to_chat(owner, span_highdanger("Our target [banishment_target] has returned to reality at [AREACOORD_NO_Z(banishment_target)]")) //Always alert the Wraith
+	to_chat(owner, span_userdanger("Our target [banishment_target] has returned to reality at [AREACOORD_NO_Z(banishment_target)]")) //Always alert the Wraith
 	log_attack("[key_name(owner)] has unbanished [key_name(banishment_target)] at [AREACOORD(banishment_target)]")
 
 	QDEL_NULL(portal) //Eliminate the Brazil portal if we need to
@@ -577,6 +577,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		return
 	user.forceMove(get_turf(linked_portal))
 
+/obj/effect/wraith_portal/lava_act()
+	return
+
 /// Link two portals
 /obj/effect/wraith_portal/proc/link_portal(obj/effect/wraith_portal/portal_to_link)
 	linked_portal = portal_to_link
@@ -596,6 +599,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	SIGNAL_HANDLER
 	if(!linked_portal || !COOLDOWN_CHECK(src, portal_cooldown) || crosser.anchored || (crosser.resistance_flags & PORTAL_IMMUNE))
 		return
+	if(isxeno(crosser))
+		var/mob/living/carbon/xenomorph/xeno_crosser = crosser
+		if(xeno_crosser.m_intent == MOVE_INTENT_WALK)
+			return
 	COOLDOWN_START(linked_portal, portal_cooldown, 1)
 	crosser.pass_flags &= ~PASS_MOB
 	RegisterSignal(crosser, COMSIG_MOVABLE_MOVED, PROC_REF(do_teleport_atom))

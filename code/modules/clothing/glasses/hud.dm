@@ -7,6 +7,8 @@
 	///The user wearing the glasses
 	var/mob/living/carbon/human/affected_user
 
+/obj/item/clothing/glasses/hud/examine_descriptor(mob/user)
+	return "HUD"
 
 /obj/item/clothing/glasses/hud/Destroy()
 	if(affected_user)

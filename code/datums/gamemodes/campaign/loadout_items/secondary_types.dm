@@ -19,6 +19,18 @@
 	name = "Extra ammo"
 	desc = "Additional ammo for your primary weapon."
 	ui_icon = "default"
+	jobs_supported = list(
+		SQUAD_MARINE,
+		SQUAD_ENGINEER,
+		SQUAD_SMARTGUNNER,
+		SQUAD_LEADER,
+		FIELD_COMMANDER,
+		SOM_SQUAD_MARINE,
+		SOM_SQUAD_ENGINEER,
+		SOM_SQUAD_VETERAN,
+		SOM_SQUAD_LEADER,
+		SOM_FIELD_COMMANDER,
+	)
 
 /datum/loadout_item/secondary/kit/primary_ammo/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	var/datum/loadout_item/suit_store/main_gun/primary = holder.equipped_things["[ITEM_SLOT_SUITSTORE]"]
@@ -30,6 +42,7 @@
 
 /datum/loadout_item/secondary/kit/primary_ammo/default
 	jobs_supported = list(SQUAD_CORPSMAN, SOM_SQUAD_CORPSMAN)
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/secondary/kit/emp_nades
 	name = "EMP nades"

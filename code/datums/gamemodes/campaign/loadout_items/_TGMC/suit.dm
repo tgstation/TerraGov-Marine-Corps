@@ -60,11 +60,11 @@
 	jobs_supported = list(SQUAD_ENGINEER)
 
 /datum/loadout_item/suit_slot/light_shield/overclocked/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/cell/high, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/medium_shield
 	name = "M shield armor"
@@ -93,11 +93,11 @@
 	jobs_supported = list(SQUAD_ENGINEER)
 
 /datum/loadout_item/suit_slot/medium_shield/overclocked/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/cell/high, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/heavy_shield
 	name = "H shield armor"
@@ -176,11 +176,11 @@
 	req_desc = null
 
 /datum/loadout_item/suit_slot/heavy_tyr/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/cell/high, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
 
 /datum/loadout_item/suit_slot/heavy_tyr/universal
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER)
@@ -232,8 +232,8 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/suit_slot/medium_engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/cell/high, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/medium_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/half_stack, ITEM_SLOT_OCLOTHING, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/circuitboard/apc, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/cell/high, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_SUIT)

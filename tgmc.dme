@@ -1,4 +1,4 @@
-// DM Environment file for baystation12.dme.
+F// DM Environment file for baystation12.dme.
 // All manual changes should be made outside the BEGIN_ and END_ blocks.
  // New source code should be placed in .dm files: choose File/New --> Code File.
 // BEGIN_INTERNALS
@@ -30,6 +30,7 @@
 #include "code\__DEFINES\admin.dm"
 #include "code\__DEFINES\ai.dm"
 #include "code\__DEFINES\alerts.dm"
+#include "code\__DEFINES\announce.dm"
 #include "code\__DEFINES\apc_defines.dm"
 #include "code\__DEFINES\area.dm"
 #include "code\__DEFINES\assert.dm"
@@ -78,6 +79,7 @@
 #include "code\__DEFINES\instruments.dm"
 #include "code\__DEFINES\interaction.dm"
 #include "code\__DEFINES\is_helpers.dm"
+#include "code\__DEFINES\items.dm"
 #include "code\__DEFINES\jobs.dm"
 #include "code\__DEFINES\keybind.dm"
 #include "code\__DEFINES\language.dm"
@@ -750,6 +752,7 @@
 #include "code\game\area\ai_monitored.dm"
 #include "code\game\area\area.dm"
 #include "code\game\area\bigred.dm"
+#include "code\game\area\bluesummers.dm"
 #include "code\game\area\centcom.dm"
 #include "code\game\area\corsat.dm"
 #include "code\game\area\daedalusprison.dm"
@@ -785,6 +788,7 @@
 #include "code\game\area\campaign_maps\tgmc_raiding_base.dm"
 #include "code\game\atoms\_atom.dm"
 #include "code\game\atoms\atom_appearance.dm"
+#include "code\game\atoms\atom_examine.dm"
 #include "code\game\atoms\atom_movable.dm"
 #include "code\game\objects\empulse.dm"
 #include "code\game\objects\items.dm"
@@ -2297,6 +2301,7 @@
 #include "code\modules\xenomorph\acid_pools.dm"
 #include "code\modules\xenomorph\acidwell.dm"
 #include "code\modules\xenomorph\jellypod.dm"
+#include "code\modules\xenomorph\maw.dm"
 #include "code\modules\xenomorph\pherotower.dm"
 #include "code\modules\xenomorph\resin_gargoyle.dm"
 #include "code\modules\xenomorph\silo.dm"

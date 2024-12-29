@@ -225,6 +225,11 @@
 //This is an UNSAFE proc. Use mob_can_equip() before calling this one! Or rather use equip_to_slot_if_possible()
 /mob/living/carbon/human/equip_to_slot(obj/item/item_to_equip, slot, into_storage)
 	. = ..()
+	if(bitslot)
+		var/oldslot = slot
+		slot = slotbit2slotdefine(oldslot)
+	if(!has_limb_for_slot(slot))
+		return
 
 	if(into_storage)
 		var/obj/item/selected_storage_target

@@ -298,11 +298,8 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
-	var/obj/item/weapon/gun/internal_gun = get_internal_item()
-	internal_gun.stop_fire() //Comrade sentry has been sent to the gulags. He served the revolution well.
-	firing = FALSE
-	update_minimap_icon()
-	visible_message(span_highdanger("The [name] is knocked over!"))
+	sentry_stop_fire()
+	visible_message(span_userdanger("The [name] is knocked over!"))
 	sentry_alert(SENTRY_ALERT_FALLEN)
 	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = FALSE
@@ -375,10 +372,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 /obj/machinery/deployable/mounted/sentry/process()
 	update_icon()
 	if((machine_stat & EMPED) || !scan())
-		var/obj/item/weapon/gun/gun = get_internal_item()
-		gun?.stop_fire()
-		firing = FALSE
-		update_minimap_icon()
+		sentry_stop_fire()
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
 
@@ -425,9 +419,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
 		INVOKE_ASYNC(internal_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action))
 	if(!CHECK_BITFIELD(internal_gun.item_flags, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
-		internal_gun.stop_fire()
-		firing = FALSE
-		update_minimap_icon()
+		sentry_stop_fire()
 		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
@@ -435,19 +427,18 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
+	if(isclosedturf(loc))
+		sentry_stop_fire()
+		return
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	var/atom/target = get_target()
 	if(!target)
-		gun.stop_fire()
-		firing = FALSE
-		update_minimap_icon()
+		sentry_stop_fire()
 		return
 	sentry_alert(SENTRY_ALERT_HOSTILE, target)
 	update_icon()
 	if(target != gun.target)
-		gun.stop_fire()
-		firing = FALSE
-		update_minimap_icon()
+		sentry_stop_fire()
 	if(gun.rounds <= 0) //fucking lasers
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
@@ -458,6 +449,13 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 		return
 	gun.start_fire(src, target, bypass_checks = TRUE)
 	firing = TRUE
+	update_minimap_icon()
+
+///Ends firing
+/obj/machinery/deployable/mounted/sentry/proc/sentry_stop_fire()
+	var/obj/item/weapon/gun/gun = get_internal_item()
+	gun?.stop_fire()
+	firing = FALSE
 	update_minimap_icon()
 
 ///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
@@ -481,15 +479,11 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 				return FALSE
 
 	var/obj/item/weapon/gun/gun = get_internal_item()
-	for(var/turf/T AS in path)
-		var/obj/effect/particle_effect/smoke/smoke = locate() in T
-		if(smoke?.opacity)
+	for(var/turf/path_turf AS in path)
+		if(IS_OPAQUE_TURF(path_turf) || path_turf.density && !(path_turf.allow_pass_flags & PASS_PROJECTILE) && !(path_turf.type in GLOB.sentry_ignore_List))
 			return FALSE
 
-		if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE) && !(T.type in GLOB.sentry_ignore_List))
-			return FALSE
-
-		for(var/atom/movable/AM AS in T)
+		for(var/atom/movable/AM AS in path_turf)
 			if(AM == target)
 				continue
 			if(AM.opacity)

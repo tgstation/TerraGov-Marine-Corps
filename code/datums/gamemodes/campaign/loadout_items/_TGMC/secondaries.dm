@@ -142,7 +142,8 @@
 	jobs_supported = list(SQUAD_SMARTGUNNER)
 
 /datum/loadout_item/secondary/gun/marine/db_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, ITEM_SLOT_BELT)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_IN_HOLSTER)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
 
 //non-standard
 /datum/loadout_item/secondary/machete
@@ -305,14 +306,15 @@
 
 /datum/loadout_item/secondary/kit/tgmc_corpsman/advanced
 	name = "Advanced meds"
-	desc = "A variety of advanced medical injectors including neuraline, as well as rezadone, a powerful chemical able to treat genetic damage in humanoids."
+	desc = "A variety of advanced medical injectors including neuraline, rezadone and Re-Grow, allowing for the treatment of cloneloss and missing limbs."
 	ui_icon = "medkit"
 	purchase_cost = 30
 
 /datum/loadout_item/secondary/kit/tgmc_corpsman/advanced/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/rezadone, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/synaptizine, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/antitox_mix, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/rezadone, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/regrow, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/antitox_mix, SLOT_IN_BACKPACK)

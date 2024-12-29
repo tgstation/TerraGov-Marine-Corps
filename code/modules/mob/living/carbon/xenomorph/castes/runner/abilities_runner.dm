@@ -135,7 +135,7 @@
 	evade_active = TRUE
 	evasion_duration = RUNNER_EVASION_DURATION
 	owner.balloon_alert(owner, "Begin evasion: [evasion_duration]s.")
-	to_chat(owner, span_highdanger("We take evasive action, making us impossible to hit."))
+	to_chat(owner, span_userdanger("We take evasive action, making us impossible to hit."))
 	START_PROCESSING(SSprocessing, src)
 	RegisterSignals(owner, list(COMSIG_LIVING_STATUS_STUN,
 		COMSIG_LIVING_STATUS_KNOCKDOWN,

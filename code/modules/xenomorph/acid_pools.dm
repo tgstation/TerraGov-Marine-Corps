@@ -6,6 +6,8 @@
 	icon_state = "pool"
 	bound_width = 96
 	bound_height = 64
+	bound_x = -32
+	pixel_x = -32
 	max_integrity = 400
 	xeno_structure_flags = CRITICAL_STRUCTURE|IGNORE_WEED_REMOVAL
 

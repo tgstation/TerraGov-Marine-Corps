@@ -19,9 +19,9 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/pouch/examine(mob/user)
+/obj/item/storage/pouch/examine_tags(mob/user)
 	. = ..()
-	. += "Can be worn by attaching it to a pocket."
+	.["pocket attachable"] = "Can be worn by attaching it to a pocket."
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
 	if(slot & ITEM_SLOT_POCKET)

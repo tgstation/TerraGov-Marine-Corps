@@ -21,7 +21,9 @@
 		/datum/job/xenomorph = CRASH_LARVA_POINTS_NEEDED,
 	)
 	xenorespawn_time = 3 MINUTES
-	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT)
+	blacklist_ground_maps = list(MAP_BIG_RED, MAP_DELTA_STATION, MAP_PRISON_STATION, MAP_LV_624, MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_LAVA_OUTPOST, MAP_CORSAT, MAP_KUTJEVO_REFINERY, MAP_BLUESUMMERS)
+	tier_three_penalty = 1
+	restricted_castes = list(/datum/xeno_caste/hivelord, /datum/xeno_caste/wraith, /datum/xeno_caste/hivemind)
 
 	// Round end conditions
 	var/shuttle_landed = FALSE
@@ -130,6 +132,7 @@
 		last_larva_check = world.time
 
 /datum/game_mode/infestation/crash/proc/crash_shuttle(obj/docking_port/stationary/target)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CRASH_SHIP_LANDED)
 	shuttle_landed = TRUE
 	shuttle.crashing = FALSE
 

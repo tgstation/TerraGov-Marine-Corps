@@ -151,6 +151,7 @@
 		return
 	owner_xeno.face_atom(target_human)
 	owner_xeno.emote("roar")
+	owner_xeno.AdjustImmobilized(0.5 SECONDS)
 	ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
 	for(var/i = 0; i < GORGER_DRAIN_INSTANCES; i++)
 		target_human.Immobilize(GORGER_DRAIN_DELAY)
@@ -170,6 +171,10 @@
 // ***************************************
 // *********** Transfusion
 // ***************************************
+
+/obj/effect/ebeam/transfusion
+	name = "blood transfusion beam"
+
 /datum/action/ability/activable/xeno/transfusion
 	name = "Transfusion"
 	action_icon_state = "transfusion"
@@ -209,8 +214,12 @@
 			to_chat(owner, span_notice("We can only help living sisters."))
 		return FALSE
 	target_health = target_xeno.health
+	var/datum/beam/transfuse_beam = owner.beam(target_xeno, icon_state= "lichbeam", beam_type = /obj/effect/ebeam/essence_link)
+	transfuse_beam.visuals.alpha = 127
 	if(!do_after(owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, target_xeno, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL, extra_checks = CALLBACK(src, PROC_REF(extra_health_check), target_xeno)))
+		QDEL_NULL(transfuse_beam)
 		return FALSE
+	QDEL_NULL(transfuse_beam)
 	return TRUE
 
 ///An extra check for the do_mob in can_use_ability. If the target isn't immobile and has lost health, the ability is cancelled. The ability is also cancelled if the target is knocked into crit DURING the do_mob.
@@ -229,6 +238,7 @@
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 		personal_statistics.heals++
 	adjustOverheal(target_xeno, heal_amount)
+	new /obj/effect/temp_visual/healing(get_turf(target_xeno))
 	if(target_xeno.overheal)
 		target_xeno.balloon_alert(owner_xeno, "Overheal: [target_xeno.overheal]/[target_xeno.xeno_caste.overheal_max]")
 	add_cooldown()
@@ -250,11 +260,15 @@
 // *********** oppose
 // ***************************************
 
+/particles/bulwark_aoe/oppose_aoe
+	color = LIGHT_COLOR_BLOOD_MAGIC
+	fade = 3 SECONDS
+
 /datum/action/ability/activable/xeno/oppose
 	name = "Oppose"
 	action_icon_state = "rejuvenation"
 	action_icon = 'icons/Xeno/actions/gorger.dmi'
-	desc = "Violently suffuse the nearby ground with stored blood, staggering nearby marines and healing nearby xenomorphs."
+	desc = "Violently suffuse the ground with stored blood. A marine on your tile is staggered and injured, ajacent marines are staggered, and any nearby xenos are healed, including you."
 	cooldown_duration = 30 SECONDS
 	ability_cost = GORGER_OPPOSE_COST
 	keybinding_signals = list(
@@ -269,31 +283,46 @@
 	succeed_activate()
 
 	playsound(owner_xeno.loc, 'sound/effects/bang.ogg', 25, 0)
-	owner_xeno.visible_message(span_xenodanger("[owner_xeno] smashes her fists into the ground into the ground!"), \
+	owner_xeno.visible_message(span_xenodanger("[owner_xeno] smashes her fists into the ground!"), \
 	span_xenodanger("We smash our fists into the ground!"))
-	owner_xeno.create_stomp() //Adds the visual effect. Wom wom wom
-	for(var/mob/living/M in range(3))
+
+	owner_xeno.create_stomp() //Adds the visual effects. Wom wom wom
+	new /obj/effect/temp_visual/oppose_shatter(get_turf(owner_xeno)) //shatter displays stagger range
+
+	var/obj/effect/abstract/particle_holder/aoe_particles = new(owner.loc, /particles/bulwark_aoe/oppose_aoe) //particles display heal range
+	aoe_particles.particles.position = generator(GEN_SQUARE, 0, 16 + 3*32, LINEAR_RAND)
+	addtimer(CALLBACK(src, PROC_REF(stop_particles), aoe_particles), 0.5 SECONDS)
+
+	var/list/oppose_range = range(3)
+	for(var/mob/living/M in oppose_range)
 		if(M.stat == DEAD)
 			continue
 		var/distance = get_dist(M, owner_xeno)
-		if(owner_xeno.issamexenohive(M))  //Xenos can be healed up to three tiles away from you
+		if(owner_xeno.issamexenohive(M))  //Xenos in range will be healed and overhealed, including you.
 			var/mob/living/carbon/xenomorph/target_xeno = M
 			var/heal_amount = M.maxHealth * GORGER_OPPOSE_HEAL
 			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
 			adjustOverheal(target_xeno, heal_amount)
+			new /obj/effect/temp_visual/healing(get_turf(target_xeno))
 			if(owner.client)
 				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
 				personal_statistics.heals++
 		else if(distance == 0) //if we're right on top of them, they take actual damage
-			M.take_overall_damage(12, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
-			to_chat(M, span_highdanger("[owner_xeno] slams her fists into you, crushing you to the ground!"))
+			M.take_overall_damage(20, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
+			to_chat(M, span_userdanger("[owner_xeno] slams her fists into you, crushing you to the ground!"))
+			M.adjust_stagger(2 SECONDS)
+			M.adjust_slowdown(3)
 			shake_camera(M, 3, 3)
 		else if(distance <= 1) //marines will only be staggerslowed if they're one tile away from you
 			shake_camera(M, 2, 2)
-			to_chat(M, span_highdanger("Blood swells up from the ground around you!"))
+			to_chat(M, span_userdanger("Blood shatters the ground around you!"))
 			M.adjust_stagger(2 SECONDS)
 			M.adjust_slowdown(3)
 
+///Stops particle spawning, then gives existing particles time to fade out before deleting them.
+/datum/action/ability/activable/xeno/oppose/proc/stop_particles(obj/effect/abstract/particle_holder/aoe_particles)
+	aoe_particles.particles.spawning = 0
+	QDEL_IN(aoe_particles, 3 SECONDS)
 
 /datum/action/ability/activable/xeno/oppose/ai_should_use(atom/target)
 	return FALSE

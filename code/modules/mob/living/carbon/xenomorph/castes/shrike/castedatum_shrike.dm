@@ -14,14 +14,14 @@
 	melee_damage = 25
 
 	// *** Speed *** //
-	speed = -0.4
+	speed = -0.6
 
 	// *** Plasma *** //
 	plasma_max = 925
 	plasma_gain = 60
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 400
 
 	// *** Evolution *** //
 	// The only evolution path does not require threshold
