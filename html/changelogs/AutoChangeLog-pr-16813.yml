@@ -1,0 +1,4 @@
+author: "Technical-l"
+delete-after: True
+changes:
+  - balance: "adjusts fog zones and cave width on icy caves"
