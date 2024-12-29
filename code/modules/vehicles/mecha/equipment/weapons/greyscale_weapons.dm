@@ -275,7 +275,7 @@
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/volkite
 	name = "\improper Prometheus volkite rifle"
 	icon = 'icons/mecha/mecha_equipment_64x32.dmi'
-	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The Prometheus is a scaled up volkite rifle, it handles poorly at longer ranges, but it can decimate targets up close with great deflagration ability."
+	desc = "Volkite weapons are the pride of Martian weapons manufacturing, their construction being a tightly guarded secret. Infamous for its ability to deflagrate organic targets with its tremendous thermal energy, explosively burning flesh in a fiery blast that can be deadly to anyone unfortunate enough to be nearby. The Prometheus is a scaled up volkite rifle, it chews up energy and handles poorly at longer ranges, but it can decimate targets up close with great deflagration ability."
 	icon_state = "volkiterifle"
 	fire_sound = 'sound/weapons/guns/fire/volkite_3.ogg'
 	flash_offsets = list(
@@ -285,7 +285,7 @@
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/energy/volkite/medium/mech
 	max_integrity = 400
-	energy_drain = 8
+	energy_drain = 15
 	variance = 0
 	projectile_delay = 0.25 SECONDS
 	slowdown = 0.4
