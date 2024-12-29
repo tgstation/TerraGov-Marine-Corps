@@ -71,7 +71,7 @@
 	inv_box = new /atom/movable/screen/inventory/hand/right(null, src)
 	inv_box.icon = 'icons/mob/screen/alien.dmi'
 	using.alpha = ui_alpha
-	inv_box.slot_id = ITEM_SLOT_R_HAND
+	inv_box.slot_id = SLOT_R_HAND
 	inv_box.update_icon()
 	r_hand_hud_object = inv_box
 	static_inventory += inv_box
@@ -79,7 +79,7 @@
 	inv_box = new /atom/movable/screen/inventory/hand/left(null, src)
 	inv_box.icon = 'icons/mob/screen/alien.dmi'
 	using.alpha = ui_alpha
-	inv_box.slot_id = ITEM_SLOT_L_HAND
+	inv_box.slot_id = SLOT_L_HAND
 	inv_box.update_icon()
 	l_hand_hud_object = inv_box
 	static_inventory += inv_box

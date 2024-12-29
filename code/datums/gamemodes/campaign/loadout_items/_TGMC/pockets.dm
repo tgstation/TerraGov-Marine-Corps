@@ -75,10 +75,10 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
 /datum/loadout_item/r_pocket/shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/buckshot, SLOT_IN_R_POUCH)
 
 /datum/loadout_item/r_pocket/marine_construction
 	name = "Construction pouch"
@@ -88,10 +88,10 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
 /datum/loadout_item/r_pocket/marine_construction/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, ITEM_SLOT_R_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, ITEM_SLOT_R_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, ITEM_SLOT_R_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, ITEM_SLOT_R_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
 
 /datum/loadout_item/r_pocket/magazine
 	name = "Mag pouch-P"
@@ -197,10 +197,10 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
 /datum/loadout_item/l_pocket/shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/handful/flechette, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/l_pocket/marine_construction
 	name = "Construction pouch"
@@ -210,20 +210,20 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 
 /datum/loadout_item/l_pocket/marine_construction/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/shovel/etool, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags_empty/half, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sandbags/large_stack, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/l_pocket/marine_construction/engineer
 	desc = "A pouch containing additional metal, plasteel and barbed wire. Allows for the rapid establishment of fortified positions."
 	jobs_supported = list(SQUAD_ENGINEER)
 
 /datum/loadout_item/l_pocket/marine_construction/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_L_POUCH)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/barbed_wire/full, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/l_pocket/magazine
 	name = "Mag pouch-S"

@@ -224,7 +224,7 @@
 
 /obj/item/weapon/gun/energy/lasgun/pulse/Initialize(mapload, spawn_empty)
 	. = ..()
-	AddComponent(/datum/component/reequip, list(ITEM_SLOT_BELT)) //Innate mag harness, no more free pulse rifles for you >:(
+	AddComponent(/datum/component/reequip, list(SLOT_BELT)) //Innate mag harness, no more free pulse rifles for you >:(
 
 //-------------------------------------------------------
 //A practice version of M43, only for memes

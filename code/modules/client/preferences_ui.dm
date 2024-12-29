@@ -713,11 +713,11 @@
 
 		if("change_quick_equip")
 			var/editing_slot = params["selection"]
-			var/slot = tgui_input_list(ui.user, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
+			var/slot = tgui_input_list(usr, "Which slot would you like to draw/equip from?", "Preferred Slot", SLOT_FLUFF_DRAW)
 			if(!slot)
 				return
 			quick_equip[editing_slot] = slot_fluff_to_flag(slot)
-			to_chat(ui.user, span_notice("You will now equip/draw from the [slot] slot first."))
+			to_chat(src, span_notice("You will now equip/draw from the [slot] slot first."))
 
 		if("equip_slot_equip_position")
 			var/returned_item_list_position = slot_draw_order_pref.Find(slot_fluff_to_flag(params["changing_item"]))

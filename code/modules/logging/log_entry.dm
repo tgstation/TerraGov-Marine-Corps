@@ -2,7 +2,7 @@
 // Schema version must always be the very last element in the array.
 
 // Current Schema: 1.0.0
-// [timestamp, category, message, data, world_state, semver_pocket, id, schema_version]
+// [timestamp, category, message, data, world_state, semver_store, id, schema_version]
 
 /// A datum which contains log information.
 /datum/log_entry
@@ -32,11 +32,11 @@
 	var/list/data
 
 	/// Semver store of the log entry, used to store the schema of data entries
-	var/list/semver_pocket
+	var/list/semver_store
 
 GENERAL_PROTECT_DATUM(/datum/log_entry)
 
-/datum/log_entry/New(timestamp, category, message, flags, list/data, list/semver_pocket)
+/datum/log_entry/New(timestamp, category, message, flags, list/data, list/semver_store)
 	..()
 
 	src.id = next_id++
@@ -45,7 +45,7 @@ GENERAL_PROTECT_DATUM(/datum/log_entry)
 	src.flags = flags
 	src.message = message
 	with_data(data)
-	with_semver_pocket(semver_pocket)
+	with_semver_store(semver_store)
 
 /datum/log_entry/proc/with_data(list/data)
 	if(!isnull(data))
@@ -56,13 +56,13 @@ GENERAL_PROTECT_DATUM(/datum/log_entry)
 			src.data = data
 	return src
 
-/datum/log_entry/proc/with_semver_pocket(list/semver_pocket)
-	if(isnull(semver_pocket))
+/datum/log_entry/proc/with_semver_store(list/semver_store)
+	if(isnull(semver_store))
 		return
-	if(!islist(semver_pocket))
-		stack_trace("Log entry semver store was not a list, it was [semver_pocket.type]. We cannot reliably convert it to a list.")
+	if(!islist(semver_store))
+		stack_trace("Log entry semver store was not a list, it was [semver_store.type]. We cannot reliably convert it to a list.")
 	else
-		src.semver_pocket = semver_pocket
+		src.semver_store = semver_store
 	return src
 
 /// Converts the log entry to a human-readable string.
@@ -88,7 +88,7 @@ GENERAL_PROTECT_DATUM(/datum/log_entry)
 	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_MESSAGE, message)
 	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_DATA, data)
 	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_WORLD_STATE, world.get_world_state_for_logging())
-	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_SEMVER_STORE, semver_pocket)
+	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_SEMVER_STORE, semver_store)
 	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_ID, id)
 	MANUAL_JSON_ENTRY(json_entries, LOG_ENTRY_KEY_SCHEMA_VERSION, schema_version)
 	return "{[json_entries.Join(",")]}"

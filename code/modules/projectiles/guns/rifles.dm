@@ -1444,7 +1444,7 @@
 
 /obj/item/weapon/gun/rifle/sectoid_rifle/Initialize(mapload, spawn_empty)
 	. = ..()
-	AddComponent(/datum/component/reequip, list(ITEM_SLOT_BACK)) //Sectoids have alien powers that make them not lose their gun
+	AddComponent(/datum/component/reequip, list(SLOT_BACK)) //Sectoids have alien powers that make them not lose their gun
 
 //only sectoids can fire it
 /obj/item/weapon/gun/rifle/sectoid_rifle/able_to_fire(mob/user)

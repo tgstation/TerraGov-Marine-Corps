@@ -55,7 +55,7 @@
 /obj/item/blink_drive/equipped(mob/user, slot)
 	. = ..()
 	equipped_user = user
-	if(slot & ITEM_SLOT_BACK)
+	if(slot == SLOT_BACK)
 		blink_action.give_action(user)
 
 /obj/item/blink_drive/dropped(mob/user)

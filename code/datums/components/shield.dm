@@ -10,7 +10,7 @@
 	///Behavior flags
 	var/shield_flags = NONE
 	///What slots the parent item provides its shield effects in
-	var/slot_flags = ITEM_SLOT_HANDS
+	var/slot_flags = list(SLOT_L_HAND, SLOT_R_HAND)
 	///Shield priority layer
 	var/layer = 50
 	///Is the shield currently active
@@ -80,7 +80,7 @@
 ///Handles equipping the shield
 /datum/component/shield/proc/shield_equipped(datum/source, mob/living/user, slot)
 	SIGNAL_HANDLER
-	if(!(slot & ITEM_SLOT_HANDS))
+	if(!(slot in slot_flags))
 		shield_detach_from_user()
 		return
 	shield_affect_user(user)
@@ -209,7 +209,7 @@
 /datum/component/shield/overhealth
 	layer = 100
 	cover = list(MELEE = 0, BULLET = 80, LASER = 100, ENERGY = 100, BOMB = 0, BIO = 0, FIRE = 0, ACID = 80)
-	slot_flags = ITEM_SLOT_OCLOTHING //For now it only activates while worn on a single place, meaning only one active at a time. Need to handle overlays properly to allow for stacking.
+	slot_flags = list(SLOT_WEAR_SUIT) //For now it only activates while worn on a single place, meaning only one active at a time. Need to handle overlays properly to allow for stacking.
 	var/max_shield_integrity = 100
 	var/shield_integrity = 100
 	var/recharge_rate = 1 SECONDS

@@ -5,7 +5,7 @@
 	///Any special behavior flags
 	var/shield_flags = NONE
 	///The slots in which the parent can be in for the component to apply
-	var/slot_flags = ITEM_SLOT_HANDS
+	var/slot_flags = SLOT_L_HAND|SLOT_R_HAND
 	///Whether the component is currently active
 	var/active = TRUE
 

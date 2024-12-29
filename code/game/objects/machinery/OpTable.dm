@@ -98,7 +98,7 @@
 	if(buckling_human.wear_mask && !buckling_human.dropItemToGround(buckling_human.wear_mask))
 		to_chat(user, span_danger("You can't remove their mask!"))
 		return FALSE
-	if(!buckling_human.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/medical(buckling_human), ITEM_SLOT_MASK))
+	if(!buckling_human.equip_to_slot_or_del(new /obj/item/clothing/mask/breath/medical(buckling_human), SLOT_WEAR_MASK))
 		to_chat(user, span_danger("You can't fit the gas mask over their face!"))
 		return FALSE
 	buckling_human.visible_message("[span_notice("[user] fits the mask over [buckling_human]'s face and turns on the anesthetic.")]'")

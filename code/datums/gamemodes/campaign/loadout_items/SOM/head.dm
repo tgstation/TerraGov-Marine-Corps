@@ -9,8 +9,8 @@
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)
 
 /datum/loadout_item/helmet/som_standard/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, ITEM_SLOT_HEAD, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, ITEM_SLOT_HEAD, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/som_veteran
 	name = "Veteran helmet"
@@ -59,16 +59,16 @@
 	loadout_item_flags = NONE
 
 /datum/loadout_item/helmet/som_tyr/medic/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, ITEM_SLOT_HEAD, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, ITEM_SLOT_HEAD, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/som_tyr/engineer
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
 	loadout_item_flags = NONE
 
 /datum/loadout_item/helmet/som_tyr/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_HEAD, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_HEAD, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
 
 /datum/loadout_item/helmet/som_tyr/universal
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER)
@@ -90,5 +90,5 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/helmet/som_engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_HEAD, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_HEAD, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)

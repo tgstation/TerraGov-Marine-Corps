@@ -29,7 +29,7 @@
 		playsound(loc, storage_datum.use_sound, 15, 1, 6)
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
-	if(slot & ITEM_SLOT_BACK)
+	if(slot == SLOT_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 		if(storage_datum.use_sound)
 			playsound(loc, storage_datum.use_sound, 15, 1, 6)
@@ -378,7 +378,7 @@
 
 /obj/item/storage/backpack/marine/duffelbag/equipped(mob/equipper, slot)
 	. = ..()
-	if(slot & ITEM_SLOT_BACK)
+	if(slot == SLOT_BACK)
 		RegisterSignal(equipper, COMSIG_CLICK_RIGHT, PROC_REF(on_rclick_duffel_wearer))
 		RegisterSignal(equipper, COMSIG_MOVABLE_MOVED, PROC_REF(on_wearer_move))
 		for(var/mob/M AS in storage_datum.content_watchers)
@@ -678,7 +678,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
 		return FALSE
-	if(!(slot & ITEM_SLOT_BACK))
+	if(slot != SLOT_BACK)
 		return FALSE
 	return TRUE
 

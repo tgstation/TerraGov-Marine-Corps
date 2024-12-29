@@ -92,7 +92,7 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 				"message" = entry.message,
 				"timestamp" = entry.timestamp,
 				"data" = entry.data,
-				"semver" = entry.semver_pocket,
+				"semver" = entry.semver_store,
 			))
 		category_data["entries"] = entries
 		category_data["entry_count"] = category.entry_count
@@ -293,11 +293,11 @@ GENERAL_PROTECT_DATUM(/datum/log_holder)
 		Log(LOG_CATEGORY_NOT_FOUND, message, data)
 		CRASH("Attempted to log to a category that doesn't exist! [category]")
 
-	var/list/semver_pocket = null
+	var/list/semver_store = null
 	if(length(data))
-		semver_pocket = list()
-		data = recursive_jsonify(data, semver_pocket)
-	log_category.create_entry(message, data, semver_pocket)
+		semver_store = list()
+		data = recursive_jsonify(data, semver_store)
+	log_category.create_entry(message, data, semver_store)
 
 /// Recursively converts an associative list of datums into their jsonified(list) form
 /datum/log_holder/proc/recursive_jsonify(list/data_list, list/semvers)

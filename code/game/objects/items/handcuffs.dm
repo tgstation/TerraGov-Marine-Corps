@@ -35,7 +35,7 @@
 		return
 	var/mob/living/carbon/human/H = target
 
-	if (!H.has_limb_for_slot(ITEM_SLOT_HANDCUFF))
+	if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
 		to_chat(user, span_warning("\The [H] needs at least two wrists before you can cuff them together!"))
 		return
 
@@ -43,9 +43,9 @@
 
 	user.visible_message(span_notice("[user] tries to put [src] on [H]."))
 	if(do_after(user, cuff_delay, NONE, H, BUSY_ICON_HOSTILE, BUSY_ICON_HOSTILE, extra_checks = CALLBACK(user, TYPE_PROC_REF(/datum, Adjacent), H)) && !H.handcuffed)
-		if(H.has_limb_for_slot(ITEM_SLOT_HANDCUFF))
+		if(H.has_limb_for_slot(SLOT_HANDCUFFED))
 			user.dropItemToGround(src)
-			H.equip_to_slot_if_possible(src, ITEM_SLOT_HANDCUFF, 1, 0, 1, 1)
+			H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
 			return TRUE
 
 
@@ -127,7 +127,7 @@
 
 		if (ishuman(C))
 			var/mob/living/carbon/human/H = C
-			if (!H.has_limb_for_slot(ITEM_SLOT_HANDCUFF))
+			if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
 				to_chat(user, span_warning("\The [H] needs at least two wrists before you can cuff them together!"))
 				return
 

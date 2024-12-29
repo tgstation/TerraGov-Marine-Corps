@@ -41,8 +41,8 @@
 		var/obj/item/card/id/id = H.wear_id
 		id.access = list() // A bit gamey, but let's say ids have a security against zombies
 		id.iff_signal = NONE
-	H.equip_to_slot_or_del(new claw_type, ITEM_SLOT_R_HAND)
-	H.equip_to_slot_or_del(new claw_type, ITEM_SLOT_L_HAND)
+	H.equip_to_slot_or_del(new claw_type, SLOT_R_HAND)
+	H.equip_to_slot_or_del(new claw_type, SLOT_L_HAND)
 	var/datum/atom_hud/health_hud = GLOB.huds[DATA_HUD_MEDICAL_OBSERVER]
 	health_hud.add_hud_to(H)
 	H.job = new /datum/job/zombie //Prevent from skewing the respawn timer if you take a zombie, it's a ghost role after all
@@ -69,9 +69,9 @@
 		if(limb.limb_status & LIMB_DESTROYED && !(limb.parent?.limb_status & LIMB_DESTROYED) && prob(10))
 			limb.remove_limb_flags(LIMB_DESTROYED)
 			if(istype(limb, /datum/limb/hand/l_hand))
-				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, ITEM_SLOT_L_HAND)
+				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_L_HAND)
 			else if (istype(limb, /datum/limb/hand/r_hand))
-				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, ITEM_SLOT_R_HAND)
+				H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claw, SLOT_R_HAND)
 			H.update_body()
 		else if(limb.limb_status & LIMB_BROKEN && prob(20))
 			limb.remove_limb_flags(LIMB_BROKEN | LIMB_SPLINTED | LIMB_STABILIZED)

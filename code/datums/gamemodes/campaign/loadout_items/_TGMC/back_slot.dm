@@ -95,7 +95,7 @@
 
 /datum/loadout_item/back/marine_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, ITEM_SLOT_R_HAND)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_R_HAND)
 
 /datum/loadout_item/back/tgmc_heam_rocket_bag
 	name = "HEAM rocket bag"
@@ -151,9 +151,9 @@
 
 /datum/loadout_item/back/engineerpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/back/tgmc_rocket_bag
 	name = "Rocket bag"
@@ -173,16 +173,16 @@
 
 /datum/loadout_item/back/tech_backpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
 
 //smartgunner
 /datum/loadout_item/back/sg_minigun_powerpack

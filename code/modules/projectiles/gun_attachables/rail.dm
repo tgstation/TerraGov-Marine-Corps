@@ -110,7 +110,7 @@
 	. = ..()
 	if(!master_gun)
 		return
-	reequip_component = master_gun.AddComponent(/datum/component/reequip, list(ITEM_SLOT_SUITSTORE, ITEM_SLOT_BELT, ITEM_SLOT_BACK))
+	reequip_component = master_gun.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BELT, SLOT_BACK))
 
 /obj/item/attachable/magnetic_harness/on_detach(attaching_item, mob/user)
 	. = ..()

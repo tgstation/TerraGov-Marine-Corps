@@ -36,7 +36,7 @@
 ///Register click signals to be ready for deploying
 /datum/component/deployable_item/proc/register_for_deploy_signal(obj/item/item_equipped, mob/user, slot)
 	SIGNAL_HANDLER
-	if(!(slot & ITEM_SLOT_HANDS))
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return
 	RegisterSignal(user, COMSIG_MOB_MOUSEDOWN, PROC_REF(deploy))
 	RegisterSignal(item_equipped, COMSIG_ITEM_UNEQUIPPED, PROC_REF(unregister_signals))

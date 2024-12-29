@@ -37,7 +37,7 @@
 		if(slot_belt_str)
 			if(!(equip_slot_flags & ITEM_SLOT_BELT))
 				return FALSE
-			if(!item_list[ITEM_SLOT_ICLOTHING])
+			if(!item_list[SLOT_W_UNIFORM])
 				return FALSE
 			return TRUE
 		if(slot_glasses_str)
@@ -47,19 +47,19 @@
 		if(slot_w_uniform_str)
 			return (equip_slot_flags & ITEM_SLOT_ICLOTHING)
 		if(slot_l_store_str)
-			if(!item_list[ITEM_SLOT_ICLOTHING])
+			if(!item_list[SLOT_W_UNIFORM])
 				return FALSE
 			if(w_class <= 2 || (equip_slot_flags & ITEM_SLOT_POCKET))
 				return TRUE
 		if(slot_r_store_str)
-			if(!item_list[ITEM_SLOT_ICLOTHING])
+			if(!item_list[SLOT_W_UNIFORM])
 				return FALSE
 			if(w_class <= 2 || (equip_slot_flags & ITEM_SLOT_POCKET))
 				return TRUE
 		if(slot_s_store_str)
-			if(!item_list[ITEM_SLOT_ICLOTHING])
+			if(!item_list[SLOT_W_UNIFORM])
 				return FALSE
-			var/obj/item/jumpsuit = item_list[ITEM_SLOT_ICLOTHING]
+			var/obj/item/jumpsuit = item_list[SLOT_W_UNIFORM]
 			if(!jumpsuit.allowed)
 				return FALSE
 			if(jumpsuit.allowed.Find(item_type))

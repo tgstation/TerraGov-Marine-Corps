@@ -118,19 +118,19 @@
 /datum/loadout_item/secondary/gun/marine/standard_smg/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	var/datum/loadout_item/suit_store/main_gun/primary = holder.equipped_things["[ITEM_SLOT_SUITSTORE]"]
-	var/obj/item/storage/pouch/magazine/mag_pouch = wearer.r_pocket
+	var/obj/item/storage/pouch/magazine/mag_pouch = wearer.r_store
 	var/ammo_type = /obj/item/ammo_magazine/smg/m25
 	if(istype(mag_pouch) && (!istype(primary) || !(primary.ammo_type in mag_pouch.storage_datum.can_hold)))
-		wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_R_POCKET, TRUE, TRUE)
-		wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_R_POCKET, TRUE, TRUE)
-		wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_R_POCKET, TRUE, TRUE)
-	mag_pouch = wearer.l_pocket
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_R_POUCH)
+	mag_pouch = wearer.l_store
 	if(wearer.skills.getRating(SKILL_SMGS) >= SKILL_SMGS_TRAINED)
 		ammo_type = /obj/item/ammo_magazine/smg/m25/ap
 	if(istype(mag_pouch) && (!istype(primary) || !(primary.ammo_type in mag_pouch.storage_datum.can_hold)))
-		wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-		wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_L_POCKET, TRUE, TRUE)
-		wearer.equip_to_slot_or_del(new ammo_type, ITEM_SLOT_L_POCKET, TRUE, TRUE)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
+		wearer.equip_to_slot_or_del(new ammo_type, SLOT_IN_L_POUCH)
 
 /datum/loadout_item/secondary/gun/marine/db_shotgun
 	name = "SH-34 shotgun"
@@ -156,7 +156,7 @@
 	req_desc = "Requires a scabbard."
 
 /datum/loadout_item/secondary/machete/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new item_typepath(wearer), ITEM_SLOT_BELT)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_HOLSTER)
 	default_load(wearer, loadout, holder)
 
 /datum/loadout_item/secondary/machete/officer
@@ -176,10 +176,10 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 
 /datum/loadout_item/secondary/kit/mirage_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/mirage, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/he_nades
 	name = "HE nades"
@@ -188,10 +188,10 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 
 /datum/loadout_item/secondary/kit/he_nades/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/deploy_shield
 	name = "Deployable shield"
@@ -200,9 +200,9 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, SQUAD_SMARTGUNNER, FIELD_COMMANDER)
 
 /datum/loadout_item/secondary/kit/deploy_shield/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/shield/riot/marine/deployable, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/binoculars
 	name = "Tac binos"
@@ -212,10 +212,10 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER)
 
 /datum/loadout_item/secondary/kit/binoculars/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/crowbar, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/cameras
 	name = "Cameras"
@@ -224,10 +224,10 @@
 	jobs_supported = list(SQUAD_LEADER)
 
 /datum/loadout_item/secondary/kit/cameras/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/hud_tablet(wearer, /datum/job/terragov/squad/leader, wearer.assigned_squad), ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/deployable_camera, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/hud_tablet(wearer, /datum/job/terragov/squad/leader, wearer.assigned_squad), SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/tgmc_engineer
 	jobs_supported = list(SQUAD_ENGINEER)
@@ -239,9 +239,9 @@
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/sentry/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/large_mines
 	name = "Claymores"
@@ -249,9 +249,9 @@
 	ui_icon = "claymore"
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/large_mines/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/materials
 	name = "Metal/plasteel"
@@ -259,9 +259,9 @@
 	ui_icon = "materials"
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/materials/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/detpack
 	name = "Detpacks"
@@ -269,13 +269,13 @@
 	ui_icon = "default"
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/detpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	if(istype(wearer.back, /obj/item/storage/backpack/marine/tech))
-		wearer.equip_to_slot_or_del(new /obj/item/detpack, ITEM_SLOT_BACK, TRUE, TRUE)
+		wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	else
-		wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+		wearer.equip_to_slot_or_del(new /obj/item/assembly/signaler, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/razorburn
 	name = "Razorburn"
@@ -283,10 +283,10 @@
 	ui_icon = "default"
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/razorburn/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/chem_grenade/razorburn_large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/iguana
 	name = "Iguana"
@@ -296,9 +296,9 @@
 	purchase_cost = 75
 
 /datum/loadout_item/secondary/kit/tgmc_engineer/iguana/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/deployable_vehicle, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/uav_turret, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/deployable_vehicle, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/uav_turret, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/unmanned_vehicle_remote, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/tgmc_corpsman
 	jobs_supported = list(SQUAD_CORPSMAN)

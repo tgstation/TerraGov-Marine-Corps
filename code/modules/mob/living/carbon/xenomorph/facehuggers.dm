@@ -549,12 +549,12 @@
 		hugged.visible_message(span_danger("[src] smashes against [hugged]'s [blocked]!"))
 		return FALSE
 
-	hugged.equip_to_slot(src, ITEM_SLOT_MASK)
+	hugged.equip_to_slot(src, SLOT_WEAR_MASK)
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/equipped(mob/living/user, slot)
 	. = ..()
-	if(!(slot & ITEM_SLOT_MASK) || stat == DEAD)
+	if(slot != SLOT_WEAR_MASK || stat == DEAD)
 		reset_attach_status(FALSE)
 		return
 	if(ishuman(user))

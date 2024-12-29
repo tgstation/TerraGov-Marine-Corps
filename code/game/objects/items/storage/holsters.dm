@@ -32,7 +32,7 @@
 	storage_datum.holstered_item_underlay = src.holstered_item_underlay
 
 /obj/item/storage/holster/equipped(mob/user, slot)
-	if(slot & (ITEM_SLOT_BACK|ITEM_SLOT_BELT|ITEM_SLOT_SUITSTORE|ITEM_SLOT_R_POCKET|ITEM_SLOT_L_POCKET)) //add more if needed
+	if (slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE || slot == SLOT_L_STORE || slot == SLOT_R_STORE )	//add more if needed
 		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
 	return ..()
 
@@ -112,7 +112,7 @@
 		playsound(loc, storage_datum.use_sound, 15, 1, 6)
 
 /obj/item/storage/holster/backholster/equipped(mob/user, slot)
-	if(slot & ITEM_SLOT_BACK)
+	if (slot == SLOT_BACK)
 		mouse_opacity = MOUSE_OPACITY_OPAQUE //so it's easier to click when properly equipped.
 		if(storage_datum.use_sound)
 			playsound(loc, storage_datum.use_sound, 15, 1, 6)

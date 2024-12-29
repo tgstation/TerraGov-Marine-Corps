@@ -7,7 +7,7 @@
 	icon_state = "cape"
 	slot = ATTACHMENT_SLOT_CAPE
 	attachment_layer = CAPE_LAYER
-	prefered_slot = ITEM_SLOT_ICLOTHING
+	prefered_slot = SLOT_W_UNIFORM
 	greyscale_config = /datum/greyscale_config/cape
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_SAME_ICON|ATTACH_APPLY_ON_MOB|ATTACH_ACTIVATION|ATTACH_NO_HANDS
 	attach_delay = 0 SECONDS

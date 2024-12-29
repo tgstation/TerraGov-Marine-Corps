@@ -296,7 +296,7 @@
 
 ///Set up the link between belt and object
 /obj/item/belt_harness/proc/attach_item(obj/item/to_attach, mob/user)
-	reequip_component = to_attach.AddComponent(/datum/component/reequip, list(ITEM_SLOT_SUITSTORE, ITEM_SLOT_BACK))
+	reequip_component = to_attach.AddComponent(/datum/component/reequip, list(SLOT_S_STORE, SLOT_BACK))
 	RegisterSignals(reequip_component, list(COMSIG_REEQUIP_FAILURE, COMSIG_QDELETING), PROC_REF(detach_item))
 	playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 	to_chat(user, span_notice("[src] clicks as you hook \the [to_attach] into it."))
@@ -328,7 +328,7 @@
 
 /obj/item/belt_harness/marine/equipped(mob/user, slot)
 	. = ..()
-	if(slot & ITEM_SLOT_BELT)
+	if(slot == SLOT_BELT)
 		playsound(src,'sound/machines/click.ogg', 15, FALSE, 1)
 		to_chat(user, span_danger("!!REMEMBER TO ATTACH YOUR WEAPON TO YOUR HARNESS OR IT WON'T WORK!!"))
 

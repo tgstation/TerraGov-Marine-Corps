@@ -727,14 +727,14 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 	apply_overlay(SUIT_LAYER)
 
 /mob/living/carbon/human/update_inv_pockets()
-	if(l_pocket)
+	if(l_store)
 		if(client && hud_used?.hud_shown)
-			l_pocket.screen_loc = ui_storage1
-			client.screen += l_pocket
-	if(r_pocket)
+			l_store.screen_loc = ui_storage1
+			client.screen += l_store
+	if(r_store)
 		if(client && hud_used?.hud_shown)
-			r_pocket.screen_loc = ui_storage2
-			client.screen += r_pocket
+			r_store.screen_loc = ui_storage2
+			client.screen += r_store
 
 
 /mob/living/carbon/human/update_inv_wear_mask()

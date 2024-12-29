@@ -45,7 +45,7 @@
 
 /obj/item/jetpack_marine/equipped(mob/user, slot)
 	. = ..()
-	if(slot & ITEM_SLOT_BACK)
+	if(slot == SLOT_BACK)
 		toggle_action.give_action(user)
 
 /obj/item/jetpack_marine/dropped(mob/user)

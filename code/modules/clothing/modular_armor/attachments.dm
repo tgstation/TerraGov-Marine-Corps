@@ -50,7 +50,7 @@
 	///Layer for the attachment to be applied to.
 	var/attachment_layer
 	///Slot that is required for the action to appear to the equipper. If null the action will appear whenever the item is equiped to a slot.
-	var/prefered_slot = ITEM_SLOT_OCLOTHING
+	var/prefered_slot = SLOT_WEAR_SUIT
 
 	///List of slots this attachment has.
 	var/list/attachments_by_slot = list()
@@ -107,7 +107,7 @@
 ///Adds or removes actions based on whether the parent is in the correct slot.
 /obj/item/armor_module/proc/handle_actions(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(prefered_slot && !(slot & prefered_slot) || !CHECK_BITFIELD(attach_features_flags, ATTACH_ACTIVATION))
+	if(prefered_slot && (slot != prefered_slot) || !CHECK_BITFIELD(attach_features_flags, ATTACH_ACTIVATION))
 		LAZYREMOVE(actions_types, /datum/action/item_action/toggle)
 		var/datum/action/item_action/toggle/old_action = locate(/datum/action/item_action/toggle) in actions
 		old_action?.remove_action(user)

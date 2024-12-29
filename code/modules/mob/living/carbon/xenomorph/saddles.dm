@@ -40,8 +40,8 @@
 /obj/item/storage/backpack/marine/duffelbag/xenosaddle/mob_can_equip(mob/user, slot, warning, override_nodrop, bitslot)
 	if(!slot || !user)
 		return FALSE
-	if(HAS_TRAIT(src, TRAIT_NODROP) && !(slot & ITEM_SLOT_HANDS) && !override_nodrop) //No drops can only be equipped to a hand slot
-		if(slot & ITEM_SLOT_HANDS)
+	if(HAS_TRAIT(src, TRAIT_NODROP) && slot != SLOT_L_HAND && slot != SLOT_R_HAND && !override_nodrop) //No drops can only be equipped to a hand slot
+		if(slot == SLOT_L_HAND || slot == SLOT_R_HAND)
 			to_chat(user, span_notice("[src] is stuck to your hand!"))
 			return FALSE
 	if(isxenorunner(user))
@@ -64,7 +64,7 @@
 	if(!do_after(user, 3 SECONDS, NONE, target))
 		return
 	user.temporarilyRemoveItemFromInventory(src)
-	rouny.equip_to_slot_if_possible(src, ITEM_SLOT_BACK,TRUE)
+	rouny.equip_to_slot_if_possible(src,SLOT_BACK,TRUE)
 
 /obj/item/storage/backpack/marine/duffelbag/xenosaddle/equipped(mob/equipper, slot)
 	. = ..()

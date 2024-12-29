@@ -38,7 +38,7 @@
 				return TRUE
 
 			if(istype(wear_mask, /obj/item/clothing/mask/facehugger) && human_user != src)
-				human_user.stripPanelUnequip(wear_mask, src, ITEM_SLOT_MASK)
+				human_user.stripPanelUnequip(wear_mask, src, SLOT_WEAR_MASK)
 				return TRUE
 
 			if(health >= get_crit_threshold())

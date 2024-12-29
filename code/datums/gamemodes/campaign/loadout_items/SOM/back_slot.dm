@@ -67,7 +67,7 @@
 
 /datum/loadout_item/back/som_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, ITEM_SLOT_R_HAND)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_R_HAND)
 
 /datum/loadout_item/back/som_rocket_bag
 	name = "RPG bag"

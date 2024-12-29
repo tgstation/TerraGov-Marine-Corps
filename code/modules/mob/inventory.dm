@@ -60,7 +60,7 @@
 		update_inv_l_hand()
 		W.pixel_x = initial(W.pixel_x)
 		W.pixel_y = initial(W.pixel_y)
-		W.equipped(src, ITEM_SLOT_L_HAND)
+		W.equipped(src,SLOT_L_HAND)
 		return TRUE
 	return FALSE
 
@@ -88,7 +88,7 @@
 		update_inv_r_hand()
 		W.pixel_x = initial(W.pixel_x)
 		W.pixel_y = initial(W.pixel_y)
-		W.equipped(src, ITEM_SLOT_R_HAND)
+		W.equipped(src,SLOT_R_HAND)
 		return TRUE
 	return FALSE
 
@@ -310,12 +310,12 @@
 /mob/proc/doUnEquip(obj/item/I)
 	if(I == r_hand)
 		r_hand = null
-		I.unequipped(src, ITEM_SLOT_R_HAND)
+		I.unequipped(src, SLOT_R_HAND)
 		update_inv_r_hand()
 		return ITEM_UNEQUIP_DROPPED
 	else if (I == l_hand)
 		l_hand = null
-		I.unequipped(src, ITEM_SLOT_L_HAND)
+		I.unequipped(src, SLOT_L_HAND)
 		update_inv_l_hand()
 		return ITEM_UNEQUIP_DROPPED
 	return ITEM_UNEQUIP_FAIL
@@ -347,17 +347,17 @@
 /mob/living/carbon/human/get_equipped_items(include_pockets = FALSE)
 	var/list/items = ..()
 	if(!include_pockets)
-		items -= list(l_pocket, r_pocket)
+		items -= list(l_store, r_store)
 	return items
 
 ///Find the slot an item is equipped to and returns its slot define
 /mob/proc/get_equipped_slot(obj/equipped_item)
 	if(equipped_item == l_hand)
-		. = ITEM_SLOT_L_HAND
+		. = SLOT_L_HAND
 	else if(equipped_item == r_hand)
-		. = ITEM_SLOT_R_HAND
+		. = SLOT_R_HAND
 	else if(equipped_item == wear_mask)
-		. = ITEM_SLOT_MASK
+		. = SLOT_WEAR_MASK
 
 /mob/living/proc/unequip_everything()
 	var/list/items = list()
@@ -430,6 +430,10 @@
 
 /// Returns the item in a given slot
 /mob/proc/get_item_by_slot(slot_id)
+	return
+
+/// Returns the item in a given bit slot
+/mob/proc/get_item_by_slot_bit(slot_bit)
 	return
 
 //placeholder until tg inventory system

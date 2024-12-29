@@ -511,7 +511,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	balloon_alert(usr, "Automatic unloading [CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_AUTO_EJECT) ? "enabled" : "disabled"].")
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
-	if(!(slot & ITEM_SLOT_HANDS) && !CHECK_BITFIELD(item_flags, IS_DEPLOYED))
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND && !CHECK_BITFIELD(item_flags, IS_DEPLOYED))
 		return FALSE
 	return TRUE
 

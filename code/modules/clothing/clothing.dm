@@ -35,7 +35,7 @@
 
 /obj/item/clothing/equipped(mob/user, slot)
 	. = ..()
-	if(!(equip_slot_flags & slot))
+	if(!(equip_slot_flags & slotdefine2slotbit(slot)))
 		return
 	if(!ishuman(user))
 		return
@@ -47,7 +47,7 @@
 
 
 /obj/item/clothing/unequipped(mob/unequipper, slot)
-	if(!(equip_slot_flags & slot))
+	if(!(equip_slot_flags & slotdefine2slotbit(slot)))
 		return ..()
 	if(!ishuman(unequipper))
 		return ..()

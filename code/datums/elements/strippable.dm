@@ -197,7 +197,7 @@
 		return null
 
 	var/mob/mob_source = source
-	return mob_source.get_item_by_slot(item_slot)
+	return mob_source.get_item_by_slot_bit(item_slot)
 
 /datum/strippable_item/mob_item_slot/try_equip(atom/source, obj/item/equipping, mob/user)
 	. = ..()
@@ -207,7 +207,7 @@
 	if(!ismob(source))
 		return FALSE
 
-	if(!equipping.mob_can_equip(source, item_slot, TRUE, FALSE, FALSE))
+	if(!equipping.mob_can_equip(source, item_slot, warning = TRUE, override_nodrop = FALSE, bitslot = TRUE))
 		to_chat(user, "<span class='warning'>\The [equipping] doesn't fit in that place!</span>")
 		return FALSE
 
@@ -224,7 +224,7 @@
 	if(!do_after(user, get_equip_delay(equipping), NONE, source, BUSY_ICON_FRIENDLY))
 		return FALSE
 
-	if(!equipping.mob_can_equip(source, item_slot, TRUE, FALSE, FALSE))
+	if(!equipping.mob_can_equip(source, item_slot,warning = TRUE,override_nodrop = FALSE, bitslot = TRUE))
 		return FALSE
 
 	if(!user.temporarilyRemoveItemFromInventory(equipping))
@@ -237,7 +237,7 @@
 		return FALSE
 
 	var/mob/mob_source = source
-	mob_source.equip_to_slot(equipping, item_slot, FALSE)
+	mob_source.equip_to_slot(equipping, item_slot, TRUE)
 
 /datum/strippable_item/mob_item_slot/get_obscuring(atom/source)
 	if(iscarbon(source))

@@ -192,7 +192,7 @@
 
 
 /obj/item/clothing/suit/straight_jacket/equipped(mob/living/carbon/user, slot)
-	if(slot & ITEM_SLOT_OCLOTHING)
+	if(slot == SLOT_WEAR_SUIT)
 		ENABLE_BITFIELD(user.restrained_flags, RESTRAINED_STRAIGHTJACKET)
 		user.stop_pulling() //Can't pull if restrained.
 		if(user.handcuffed) //Keep the cuffs on.

@@ -90,7 +90,7 @@
 
 		inv_box = new /atom/movable/screen/inventory/hand/right(null, src)
 		inv_box.icon = ui_style
-		inv_box.slot_id = ITEM_SLOT_R_HAND
+		inv_box.slot_id = SLOT_R_HAND
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 		inv_box.update_icon()
@@ -100,7 +100,7 @@
 		inv_box = new /atom/movable/screen/inventory/hand/left(null, src)
 		inv_box.setDir(EAST)
 		inv_box.icon = ui_style
-		inv_box.slot_id = ITEM_SLOT_L_HAND
+		inv_box.slot_id = SLOT_L_HAND
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
 		inv_box.update_icon()
@@ -270,12 +270,12 @@
 			if(H.back)
 				H.back.screen_loc = ui_back
 				screenmob.client.screen += H.back
-			if(H.l_pocket)
-				H.l_pocket.screen_loc = ui_storage1
-				screenmob.client.screen += H.l_pocket
-			if(H.r_pocket)
-				H.r_pocket.screen_loc = ui_storage2
-				screenmob.client.screen += H.r_pocket
+			if(H.l_store)
+				H.l_store.screen_loc = ui_storage1
+				screenmob.client.screen += H.l_store
+			if(H.r_store)
+				H.r_store.screen_loc = ui_storage2
+				screenmob.client.screen += H.r_store
 		else
 			if(H.s_store)
 				screenmob.client.screen -= H.s_store
@@ -285,10 +285,10 @@
 				screenmob.client.screen -= H.belt
 			if(H.back)
 				screenmob.client.screen -= H.back
-			if(H.l_pocket)
-				screenmob.client.screen -= H.l_pocket
-			if(H.r_pocket)
-				screenmob.client.screen -= H.r_pocket
+			if(H.l_store)
+				screenmob.client.screen -= H.l_store
+			if(H.r_store)
+				screenmob.client.screen -= H.r_store
 
 	if(hud_version != HUD_STYLE_NOHUD)
 		if(H.r_hand)

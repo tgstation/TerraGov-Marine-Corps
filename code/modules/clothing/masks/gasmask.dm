@@ -26,7 +26,7 @@
 		return
 	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_GAS_BREATH))
 		return
-	if(slot & ITEM_SLOT_MASK)
+	if(slot != SLOT_WEAR_MASK)
 		return
 	for(var/M in get_hearers_in_view(hearing_range, src))
 		if(ismob(M))

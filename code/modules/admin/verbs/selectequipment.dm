@@ -211,7 +211,7 @@
 		qdel(target)
 	else
 		human_target = target
-		if(human_target.l_pocket || human_target.r_pocket || human_target.s_store) //saves a lot of time for admins and coders alike
+		if(human_target.l_store || human_target.r_store || human_target.s_store) //saves a lot of time for admins and coders alike
 			if(tgui_alert(usr,"Drop Items in Pockets? No will delete them.", "Robust quick dress shop", list("Yes", "No")) == "No")
 				delete_pocket = TRUE
 

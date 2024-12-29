@@ -89,7 +89,7 @@
 /obj/item/clothing/suit/storage/marine/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
 		return FALSE
-	if(!(slot & ITEM_SLOT_OCLOTHING))
+	if(slot != SLOT_WEAR_SUIT)
 		return FALSE
 	return TRUE //only give action button when armor is worn.
 
@@ -161,7 +161,7 @@
 /obj/item/clothing/suit/storage/marine/specialist/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
-	AddComponent(/datum/component/stun_mitigation, slot_override = ITEM_SLOT_OCLOTHING, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
 	AddElement(/datum/element/limb_support)
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use += src
@@ -438,10 +438,8 @@
 		return TRUE
 
 /obj/item/clothing/suit/storage/faction/item_action_slot_check(mob/user, slot)
-	if(!ishuman(user))
-		return FALSE
-	if(!(slot & ITEM_SLOT_OCLOTHING))
-		return FALSE
+	if(!ishuman(user)) return FALSE
+	if(slot != SLOT_WEAR_SUIT) return FALSE
 	return TRUE //only give action button when armor is worn.
 
 /obj/item/clothing/suit/storage/faction/UPP

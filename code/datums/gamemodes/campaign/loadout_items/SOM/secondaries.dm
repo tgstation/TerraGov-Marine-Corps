@@ -64,8 +64,8 @@
 	req_desc = "Requires a VX-42 or VX-33P."
 
 /datum/loadout_item/secondary/gun/som/sawn_off/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new item_typepath(wearer), ITEM_SLOT_BELT, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, ITEM_SLOT_L_HAND)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_BELT)
+	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_L_HAND)
 	default_load(wearer, loadout, holder)
 
 /datum/loadout_item/secondary/esword
@@ -78,7 +78,7 @@
 	loadout_item_flags = NONE
 
 /datum/loadout_item/secondary/esword/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new item_typepath(wearer), ITEM_SLOT_BELT, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_BELT)
 	default_load(wearer, loadout, holder)
 
 //kits
@@ -86,19 +86,19 @@
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_SQUAD_VETERAN, SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/secondary/kit/he_nades/som/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/binoculars/som
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN)
 
 /datum/loadout_item/secondary/kit/binoculars/som/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/crowbar, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/binoculars/fire_support/campaign/som, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/tool/crowbar, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/som_engineer
 	jobs_supported = list(SOM_SQUAD_ENGINEER)
@@ -120,9 +120,9 @@
 	ui_icon = "claymore"
 
 /datum/loadout_item/secondary/kit/som_engineer/large_mines/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/som_engineer/materials
 	name = "Metal/plasteel"
@@ -130,9 +130,9 @@
 	ui_icon = "materials"
 
 /datum/loadout_item/secondary/kit/som_engineer/materials/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, ITEM_SLOT_BACK, TRUE, TRUE)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, ITEM_SLOT_BACK, TRUE, TRUE)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/metal/large_stack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/stack/sheet/plasteel/large_stack, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/som_corpsman
 	jobs_supported = list(SOM_SQUAD_CORPSMAN)

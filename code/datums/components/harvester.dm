@@ -295,7 +295,7 @@
 	item_parent.update_appearance(UPDATE_ICON)
 	loaded_reagent = null
 	var/parent_slot = reagent_select_action.owner.get_equipped_slot(parent)
-	if(parent_slot & ITEM_SLOT_L_HAND)
+	if(parent_slot == SLOT_L_HAND)
 		reagent_select_action.owner.update_inv_l_hand()
 	else
 		reagent_select_action.owner.update_inv_r_hand()

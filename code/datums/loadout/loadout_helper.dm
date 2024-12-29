@@ -124,11 +124,11 @@
 	if(user.wear_ear)
 		return
 	if(user.job.outfit.ears)
-		user.equip_to_slot_or_del(new user.job.outfit.ears(user), ITEM_SLOT_EARS, override_nodrop = TRUE)
+		user.equip_to_slot_or_del(new user.job.outfit.ears(user), SLOT_EARS, override_nodrop = TRUE)
 		return
 	if(!user.assigned_squad)
 		return
-	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job.type), ITEM_SLOT_EARS, override_nodrop = TRUE)
+	user.equip_to_slot_or_del(new /obj/item/radio/headset/mainship/marine(null, user.assigned_squad, user.job.type), SLOT_EARS, override_nodrop = TRUE)
 
 /// Will check if the selected category can be bought according to the category choices left
 /proc/can_buy_category(category, category_choices)

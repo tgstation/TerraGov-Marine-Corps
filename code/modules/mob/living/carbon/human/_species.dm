@@ -69,7 +69,7 @@
 	var/knock_out_reduction = 1
 	///How much slowdown is innate to our species
 	var/slowdown = 0
-	///Inventory slots the race can't equip stuff to. Robots cannot wear shoes, for example.
+	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example
 	var/list/no_equip = list()
 
 	//----Related to dying in some way
@@ -453,20 +453,20 @@
 	 * unless you know exactly what it does
 	 */
 	var/list/gear = list(
-		"i_clothing" = list("loc" = ui_iclothing, "slot" = ITEM_SLOT_ICLOTHING, "state" = "uniform", "toggle" = TRUE),
-		"o_clothing" = list("loc" = ui_oclothing, "slot" = ITEM_SLOT_OCLOTHING, "state" = "suit", "toggle" = TRUE),
-		"mask" = list("loc" = ui_mask, "slot" = ITEM_SLOT_MASK, "state" = "mask", "toggle" = TRUE),
-		"gloves" = list("loc" = ui_gloves, "slot" = ITEM_SLOT_GLOVES, "state" = "gloves", "toggle" = TRUE),
-		"eyes" = list("loc" = ui_glasses, "slot" = ITEM_SLOT_EYES, "state" = "glasses","toggle" = TRUE),
-		"wear_ear" = list("loc" = ui_wear_ear, "slot" = ITEM_SLOT_EARS, "state" = "ears", "toggle" = TRUE),
-		"head" = list("loc" = ui_head, "slot" = ITEM_SLOT_HEAD, "state" = "head", "toggle" = TRUE),
-		"shoes" = list("loc" = ui_shoes, "slot" = ITEM_SLOT_FEET, "state" = "shoes", "toggle" = TRUE),
-		"suit storage" = list("loc" = ui_sstore1, "slot" = ITEM_SLOT_SUITSTORE, "state" = "suit_storage"),
-		"back" = list("loc" = ui_back, "slot" = ITEM_SLOT_BACK, "state" = "back"),
-		"id" = list("loc" = ui_id, "slot" = ITEM_SLOT_ID, "state" = "id"),
-		"storage1" = list("loc" = ui_storage1, "slot" = ITEM_SLOT_L_POCKET, "state" = "pocket"),
-		"storage2" = list("loc" = ui_storage2, "slot" = ITEM_SLOT_R_POCKET, "state" = "pocket"),
-		"belt" = list("loc" = ui_belt, "slot" = ITEM_SLOT_BELT, "state" = "belt")
+		"i_clothing" = list("loc" = ui_iclothing, "slot" = SLOT_W_UNIFORM, "state" = "uniform", "toggle" = TRUE),
+		"o_clothing" = list("loc" = ui_oclothing, "slot" = SLOT_WEAR_SUIT, "state" = "suit", "toggle" = TRUE),
+		"mask" = list("loc" = ui_mask, "slot" = SLOT_WEAR_MASK, "state" = "mask", "toggle" = TRUE),
+		"gloves" = list("loc" = ui_gloves, "slot" = SLOT_GLOVES, "state" = "gloves", "toggle" = TRUE),
+		"eyes" = list("loc" = ui_glasses, "slot" = SLOT_GLASSES, "state" = "glasses","toggle" = TRUE),
+		"wear_ear" = list("loc" = ui_wear_ear, "slot" = SLOT_EARS, "state" = "ears", "toggle" = TRUE),
+		"head" = list("loc" = ui_head, "slot" = SLOT_HEAD, "state" = "head", "toggle" = TRUE),
+		"shoes" = list("loc" = ui_shoes, "slot" = SLOT_SHOES, "state" = "shoes", "toggle" = TRUE),
+		"suit storage" = list("loc" = ui_sstore1, "slot" = SLOT_S_STORE, "state" = "suit_storage"),
+		"back" = list("loc" = ui_back, "slot" = SLOT_BACK, "state" = "back"),
+		"id" = list("loc" = ui_id, "slot" = SLOT_WEAR_ID, "state" = "id"),
+		"storage1" = list("loc" = ui_storage1, "slot" = SLOT_L_STORE, "state" = "pocket"),
+		"storage2" = list("loc" = ui_storage2, "slot" = SLOT_R_STORE, "state" = "pocket"),
+		"belt" = list("loc" = ui_belt, "slot" = SLOT_BELT, "state" = "belt")
 		)
 
 /datum/hud_data/New()
@@ -475,19 +475,28 @@
 		equip_slots |= gear[slot]["slot"]
 
 	if(has_hands)
-		equip_slots |= ITEM_SLOT_L_HAND
-		equip_slots |= ITEM_SLOT_R_HAND
-		equip_slots |= ITEM_SLOT_HANDCUFF
-	if(ITEM_SLOT_HEAD in equip_slots)
-		equip_slots |= ITEM_SLOT_HEAD
-	if(ITEM_SLOT_BACK in equip_slots)
-		equip_slots |= ITEM_SLOT_BACK
-	if(ITEM_SLOT_BELT in equip_slots)
-		equip_slots |= ITEM_SLOT_BELT
-	if(ITEM_SLOT_SUITSTORE in equip_slots)
-		equip_slots |= ITEM_SLOT_SUITSTORE
-	if(ITEM_SLOT_FEET in equip_slots)
-		equip_slots |= ITEM_SLOT_FEET
+		equip_slots |= SLOT_L_HAND
+		equip_slots |= SLOT_R_HAND
+		equip_slots |= SLOT_HANDCUFFED
+	if(SLOT_HEAD in equip_slots)
+		equip_slots |= SLOT_IN_HEAD
+	if(SLOT_BACK in equip_slots)
+		equip_slots |= SLOT_IN_BACKPACK
+		equip_slots |= SLOT_IN_B_HOLSTER
+	if(SLOT_BELT in equip_slots)
+		equip_slots |= SLOT_IN_HOLSTER
+		equip_slots |= SLOT_IN_BELT
+	if(SLOT_WEAR_SUIT in equip_slots)
+		equip_slots |= SLOT_IN_S_HOLSTER
+		equip_slots |= SLOT_IN_SUIT
+	if(SLOT_SHOES in equip_slots)
+		equip_slots |= SLOT_IN_BOOT
+	if(SLOT_W_UNIFORM in equip_slots)
+		equip_slots |= SLOT_IN_STORAGE
+		equip_slots |= SLOT_IN_L_POUCH
+		equip_slots |= SLOT_IN_R_POUCH
+		equip_slots |= SLOT_ACCESSORY
+		equip_slots |= SLOT_IN_ACCESSORY
 
 ///damage override at the species level, called by /mob/living/proc/apply_damage
 /datum/species/proc/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration, mob/living/carbon/human/victim, mob/attacker)

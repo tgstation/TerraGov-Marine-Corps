@@ -192,7 +192,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		camera = new /obj/machinery/camera/headset(src)
 
 /obj/item/radio/headset/mainship/equipped(mob/living/carbon/human/user, slot)
-	if(slot & ITEM_SLOT_EARS)
+	if(slot == SLOT_EARS)
 		if(faction && (faction != user.faction) && user.faction != FACTION_NEUTRAL)
 			safety_protocol(user)
 			return

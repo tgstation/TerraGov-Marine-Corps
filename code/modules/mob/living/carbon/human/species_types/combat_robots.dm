@@ -27,13 +27,13 @@
 	species_flags = NO_BREATHE|NO_BLOOD|NO_POISON|NO_PAIN|NO_CHEM_METABOLIZATION|NO_STAMINA|DETACHABLE_HEAD|HAS_NO_HAIR|ROBOTIC_LIMBS|IS_INSULATED
 
 	no_equip = list(
-		ITEM_SLOT_ICLOTHING,
-		ITEM_SLOT_HEAD,
-		ITEM_SLOT_MASK,
-		ITEM_SLOT_OCLOTHING,
-		ITEM_SLOT_FEET,
-		ITEM_SLOT_GLOVES,
-		ITEM_SLOT_EYES,
+		SLOT_W_UNIFORM,
+		SLOT_HEAD,
+		SLOT_WEAR_MASK,
+		SLOT_WEAR_SUIT,
+		SLOT_SHOES,
+		SLOT_GLOVES,
+		SLOT_GLASSES,
 	)
 	blood_color = "#2d2055" //an oil-like color - a little note, robots cannot shed blood in any way, due to their flags
 	hair_color = "#00000000"

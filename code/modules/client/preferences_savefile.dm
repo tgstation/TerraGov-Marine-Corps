@@ -4,7 +4,7 @@
 //	You do not need to raise this if you are adding new values that have sane defaults.
 //	Only raise this value when changing the meaning/format/name/layout of an existing value
 //	where you would want the updater procs below to run
-#define SAVEFILE_VERSION_MAX 47
+#define SAVEFILE_VERSION_MAX 46
 
 /datum/preferences/proc/savefile_needs_update(savefile/S)
 	var/savefile_version
@@ -56,12 +56,7 @@
 		toggles_sound |= SOUND_WEATHER
 		WRITE_FILE(S["toggles_sound"], toggles_sound)
 		to_chat(parent, span_userdanger("Due to a fix, preferences for weather sound have been reverted to default settings; these are now ON. Go into Preferences and set sound toggles to OFF if you wish to not hear these sounds."))
-	if(current_version < 47)
-		quick_equip = VALID_EQUIP_SLOTS
-		slot_draw_order_pref = SLOT_DRAW_ORDER
-		WRITE_FILE(S["quick_equip"], quick_equip)
-		WRITE_FILE(S["slot_draw_order_pref"], slot_draw_order_pref)
-		to_chat(parent, span_userdanger("Due to a refactor of slots, slot preferences have been reverted to defaults."))
+
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!

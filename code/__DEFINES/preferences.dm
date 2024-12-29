@@ -185,11 +185,11 @@
 
 ///The default Quick equip order list, adding/removing slots from this list will increase the amount of quick equip slots. Update the define above when
 #define QUICK_EQUIP_ORDER list(\
-	ITEM_SLOT_SUITSTORE,\
-	ITEM_SLOT_BELT,\
-	ITEM_SLOT_FEET,\
-	ITEM_SLOT_L_POCKET,\
-	ITEM_SLOT_R_POCKET\
+	SLOT_S_STORE,\
+	SLOT_BELT,\
+	SLOT_IN_BOOT,\
+	SLOT_L_STORE,\
+	SLOT_R_STORE\
 	)
 
 #define BE_SPECIAL_FLAGS list(\

@@ -399,17 +399,17 @@
 
 
 /obj/item/clothing/glasses/sunglasses/sechud/equipped(mob/living/carbon/human/user, slot)
-	if(slot & ITEM_SLOT_EYES)
+	if(slot == SLOT_GLASSES)
 		var/datum/atom_hud/H = GLOB.huds[hud_type]
 		H.add_hud_to(user)
-	return ..()
+	..()
 
 /obj/item/clothing/glasses/sunglasses/sechud/dropped(mob/living/carbon/human/user)
 	if(istype(user))
 		if(src == user.glasses) //dropped is called before the inventory reference is updated.
 			var/datum/atom_hud/H = GLOB.huds[hud_type]
 			H.remove_hud_from(user)
-	return ..()
+	..()
 
 
 /obj/item/clothing/glasses/sunglasses/sechud/tactical

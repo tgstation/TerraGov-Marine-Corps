@@ -126,7 +126,7 @@
 
 /obj/item/armor_module/module/tyr_extra_armor/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
-	attaching_to.AddComponent(/datum/component/stun_mitigation, slot_override = ITEM_SLOT_OCLOTHING, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
+	attaching_to.AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
 
 /obj/item/armor_module/module/tyr_extra_armor/on_detach(obj/item/detaching_from, mob/user)
 	detaching_from.remove_component(/datum/component/stun_mitigation)
@@ -373,7 +373,7 @@
 ///Handles starting the shield when the parent is equiped to the correct slot.
 /obj/item/armor_module/module/eshield/proc/handle_equip(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
-	if(!(slot & ITEM_SLOT_OCLOTHING) || !isliving(equipper))
+	if(slot != SLOT_WEAR_SUIT || !isliving(equipper))
 		return
 	if(!recharge_timer)
 		START_PROCESSING(SSobj, src)
@@ -384,7 +384,7 @@
 ///Handles removing the shield when the parent is unequipped
 /obj/item/armor_module/module/eshield/proc/handle_unequip(datum/source, mob/unequipper, slot)
 	SIGNAL_HANDLER
-	if(slot != ITEM_SLOT_OCLOTHING || !isliving(unequipper))
+	if(slot != SLOT_WEAR_SUIT || !isliving(unequipper))
 		return
 	UnregisterSignal(unequipper, COMSIG_LIVING_SHIELDCALL)
 	STOP_PROCESSING(SSobj, src)
@@ -524,7 +524,7 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
-	prefered_slot = ITEM_SLOT_HEAD
+	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_xn", /obj/item/clothing/head/modular/tdf = "")
 	///Mod for extra eye protection when activated.
@@ -575,7 +575,7 @@
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	active = FALSE
-	prefered_slot = ITEM_SLOT_HEAD
+	prefered_slot = SLOT_HEAD
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "welding_head_superior_xn", /obj/item/clothing/head/modular/tdf = "")
 
 /obj/item/armor_module/module/welding/superior/on_attach(obj/item/attaching_to, mob/user)
@@ -594,7 +594,7 @@
 	zoom_viewsize = 12
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	prefered_slot = ITEM_SLOT_HEAD
+	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
 
 /obj/item/armor_module/module/binoculars/activate(mob/living/user)
@@ -640,7 +640,7 @@
 	worn_icon_state = "artemis_head_a"
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_APPLY_ON_MOB
-	prefered_slot = ITEM_SLOT_HEAD
+	prefered_slot = SLOT_HEAD
 
 /obj/item/armor_module/module/artemis/on_attach(obj/item/attaching_to, mob/user)
 	. = ..()
@@ -658,7 +658,7 @@
 	worn_icon_state = "antenna_head_a"
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	prefered_slot = ITEM_SLOT_HEAD
+	prefered_slot = SLOT_HEAD
 	toggle_signal = COMSIG_KB_HELMETMODULE
 	///If the comms system is configured.
 	var/comms_setup = FALSE
@@ -666,7 +666,7 @@
 	var/startup_timer_id
 
 /obj/item/armor_module/module/antenna/handle_actions(datum/source, mob/user, slot)
-	if(!(slot & prefered_slot))
+	if(slot != prefered_slot)
 		UnregisterSignal(user, COMSIG_CAVE_INTERFERENCE_CHECK)
 		comms_setup = COMMS_OFF
 		if(startup_timer_id)
@@ -719,7 +719,7 @@
 	icon_state = "night_vision"
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_NO_HANDS
 	slot = ATTACHMENT_SLOT_HEAD_MODULE
-	prefered_slot = ITEM_SLOT_HEAD
+	prefered_slot = SLOT_HEAD
 	slowdown = 0.1
 	///The goggles this module deploys
 	var/obj/item/clothing/glasses/night_vision/mounted/attached_goggles
@@ -779,7 +779,7 @@
 ///Called when the parent is equipped; deploys the goggles
 /obj/item/armor_module/module/night_vision/proc/deploy(datum/source, mob/user, slot)
 	SIGNAL_HANDLER
-	if(!ishuman(user) || !(prefered_slot & slot))	//Must be human for the following procs to work
+	if(!ishuman(user) || prefered_slot != slot)	//Must be human for the following procs to work
 		return
 
 	var/mob/living/carbon/human/wearer = user
@@ -788,7 +788,7 @@
 		to_chat(wearer, span_warning("Could not deploy night vision system due to [wearer.head]!"))
 		return
 
-	INVOKE_ASYNC(wearer, TYPE_PROC_REF(/mob/living/carbon/human, equip_to_slot), attached_goggles, ITEM_SLOT_EYES)
+	INVOKE_ASYNC(wearer, TYPE_PROC_REF(/mob/living/carbon/human, equip_to_slot), attached_goggles, SLOT_GLASSES)
 
 ///Called when the parent is unequipped; undeploys the goggles
 /obj/item/armor_module/module/night_vision/proc/undeploy(datum/source, mob/user, slot)
