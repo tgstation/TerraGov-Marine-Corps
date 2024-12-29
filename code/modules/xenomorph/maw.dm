@@ -227,7 +227,7 @@
 
 /obj/structure/xeno/acid_maw/Destroy()
 	GLOB.xeno_acid_jaws_by_hive[hivenumber] -= src
-	. = ..()
+	return ..()
 
 /obj/structure/xeno/acid_maw/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
 	. = ..()
