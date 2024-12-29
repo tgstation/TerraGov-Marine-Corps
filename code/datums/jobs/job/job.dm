@@ -286,7 +286,7 @@ GLOBAL_PROTECT(exp_specialmap)
 				if(!admin_action)
 					stack_trace("[src] had an ID when apply_outfit_to_spawn() ran")
 				QDEL_NULL(wear_id)
-			equip_to_slot_or_del(id_card, ITEM_SLOT_ID)
+			equip_to_slot_or_del(id_card, SLOT_WEAR_ID)
 
 		if(player && isnull(job.outfit.back) && player.prefs.backpack > BACK_NOTHING)
 			var/obj/item/storage/backpack/new_backpack
@@ -295,9 +295,9 @@ GLOBAL_PROTECT(exp_specialmap)
 					new_backpack = new /obj/item/storage/backpack/marine(src)
 				if(BACK_SATCHEL)
 					new_backpack = new /obj/item/storage/backpack/marine/satchel(src)
-			equip_to_slot_or_del(new_backpack, ITEM_SLOT_BACK)
+			equip_to_slot_or_del(new_backpack, SLOT_BACK)
 
-		job.outfit.handle_id(src, player)
+		job.outfit.handle_id(src)
 
 		equip_role_outfit(job)
 

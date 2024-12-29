@@ -1963,7 +1963,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("createid")
 				if(!istype(H) || H.wear_id)
 					return
-				H.equip_to_slot_or_del(new /obj/item/card/id(H), ITEM_SLOT_ID)
+				H.equip_to_slot_or_del(new /obj/item/card/id(H), SLOT_WEAR_ID)
 			if("squad")
 				previous = H.assigned_squad
 				change = input("Choose the marine's new squad.", "Change Squad") as null|anything in SSjob.squads

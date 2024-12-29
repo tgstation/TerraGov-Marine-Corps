@@ -202,7 +202,7 @@
 		if(new_squaddie.wear_ear)
 			new_squaddie.dropItemToGround(new_squaddie.wear_ear)
 		headset = new()
-		new_squaddie.equip_to_slot_or_del(headset, ITEM_SLOT_EARS)
+		new_squaddie.equip_to_slot_or_del(headset, SLOT_EARS)
 
 	if(istype(headset))
 		headset.set_frequency(radio_freq)

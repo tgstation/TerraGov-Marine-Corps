@@ -11,26 +11,26 @@
 	. = ..()
 	//todo this should be handled better
 	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD])
-		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(spawned_carbon), ITEM_SLOT_HEAD)
-		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(spawned_carbon), ITEM_SLOT_OCLOTHING)
-		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(spawned_carbon), ITEM_SLOT_MASK)
-		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(spawned_carbon), ITEM_SLOT_FEET)
-		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(spawned_carbon), ITEM_SLOT_GLOVES)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(spawned_carbon), SLOT_HEAD)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(spawned_carbon), SLOT_W_UNIFORM)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(spawned_carbon), SLOT_WEAR_MASK)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(spawned_carbon), SLOT_SHOES)
+		spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(spawned_carbon), SLOT_GLOVES)
 
 	var/weapons = pick(SURVIVOR_WEAPONS)
 	var/obj/item/weapon/picked_weapon = weapons[1]
 	var/obj/item/ammo_magazine/picked_ammo = weapons[2]
-	spawned_carbon.equip_to_slot_or_del(new /obj/item/belt_harness(spawned_carbon), ITEM_SLOT_BELT)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/belt_harness(spawned_carbon), SLOT_BELT)
 	spawned_carbon.put_in_hands(new picked_weapon(spawned_carbon))
-	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), ITEM_SLOT_BACK, FALSE, TRUE)
-	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), ITEM_SLOT_BACK, FALSE, TRUE)
-	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), ITEM_SLOT_BACK, FALSE, TRUE)
-	spawned_carbon.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(spawned_carbon), ITEM_SLOT_BACK, FALSE, TRUE)
+	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), SLOT_IN_BACKPACK)
+	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), SLOT_IN_BACKPACK)
+	spawned_carbon.equip_to_slot_or_del(new picked_ammo(spawned_carbon), SLOT_IN_BACKPACK)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(spawned_carbon), SLOT_IN_BACKPACK)
 
-	spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(spawned_carbon), ITEM_SLOT_EYES)
-	spawned_carbon.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(spawned_carbon), ITEM_SLOT_R_POCKET)
-	spawned_carbon.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(spawned_carbon), ITEM_SLOT_L_POCKET)
-	spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/rugged(spawned_carbon), ITEM_SLOT_HEAD)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(spawned_carbon), SLOT_GLASSES)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(spawned_carbon), SLOT_R_STORE)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(spawned_carbon), SLOT_L_STORE)
+	spawned_carbon.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/rugged(spawned_carbon), SLOT_HEAD)
 
 	switch(SSmapping.configs[GROUND_MAP].map_name)
 		if(MAP_PRISON_STATION)
@@ -165,50 +165,6 @@ Good luck, but do not expect to survive."})
 	title = "Bartender Survivor"
 	outfit = /datum/outfit/job/survivor/bartender
 
-	w_uniform = /obj/item/clothing/under/rank/chemist
-	wear_suit = /obj/item/clothing/suit/storage/labcoat/chemist
-	back = /obj/item/storage/backpack/satchel/chem
-	belt = /obj/item/storage/belt/hypospraybelt
-	gloves = /obj/item/clothing/gloves/latex
-	shoes = /obj/item/clothing/shoes/white
-	ears = /obj/item/radio/survivor
-	glasses = /obj/item/clothing/glasses/science
-	l_store = /obj/item/flashlight
-	r_store = /obj/item/tool/crowbar
-	suit_store = /obj/item/healthanalyzer
-
-/datum/outfit/job/survivor/chemist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	. = ..()
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/bicaridine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/kelotane, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/tramadol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/tricordrazine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/bottle/lemoline/doctor, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/beaker/large, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/glass/beaker/large, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/bicaridine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/kelotane, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/tramadol, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/tricordrazine, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/dylovene, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/inaprovaline, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/hypervene, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/imialky, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/quickclotplus, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/big, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/big, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/syringe_case/empty, SLOT_IN_BELT)
-	H.equip_to_slot_or_del(new /obj/item/storage/syringe_case/empty, SLOT_IN_BELT)
-
-	H.equip_to_slot_or_del(new /obj/item/reagent_containers/dropper, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/bruise_pack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/heal_pack/advanced/burn_pack, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/stack/medical/splint, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/defibrillator, SLOT_IN_BACKPACK)
-	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health, SLOT_IN_BACKPACK)
-
 
 //Roboticist Survivor
 /datum/job/survivor/roboticist
@@ -228,8 +184,8 @@ Good luck, but do not expect to survive."})
 	back = /obj/item/storage/backpack/satchel/tox
 	ears = /obj/item/radio/survivor
 	glasses = /obj/item/clothing/glasses/welding/flipped
-	l_store = /obj/item/storage/pouch/electronics/full
-	r_store = /obj/item/flashlight/combat
+	l_pocket = /obj/item/storage/pouch/electronics/full
+	r_pocket = /obj/item/flashlight/combat
 
 /datum/outfit/job/survivor/roboticist/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	. = ..()
