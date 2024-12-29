@@ -2287,10 +2287,10 @@
 	aim_speed_modifier = 2
 
 /obj/item/weapon/gun/rifle/som_big/standard
-	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/extended_barrel, /obj/item/attachable/verticalgrip)
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/heavy_barrel, /obj/item/attachable/verticalgrip)
 
 /obj/item/weapon/gun/rifle/som_big/support
-	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/extended_barrel, /obj/item/attachable/foldable/bipod)
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness, /obj/item/attachable/heavy_barrel, /obj/item/attachable/foldable/bipod)
 //-------------------------------------------------------
 // V-41 SOM LMG
 

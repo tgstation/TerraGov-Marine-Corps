@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(monitor)
 	var/list/b17_in_use = list()
 
 /datum/controller/subsystem/monitor/Initialize()
-	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY), PROC_REF(set_groundside_calculation))
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_CRASH_SHIP_LANDED), PROC_REF(set_groundside_calculation))
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(set_shipside_calculation))
 	is_automatic_balance_on = CONFIG_GET(flag/is_automatic_balance_on)
 	return SS_INIT_SUCCESS
@@ -76,10 +76,12 @@ SUBSYSTEM_DEF(monitor)
 /datum/controller/subsystem/monitor/proc/set_groundside_calculation()
 	SIGNAL_HANDLER
 	gamestate = GROUNDSIDE
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GAMESTATE_GROUNDSIDE)
 
 /datum/controller/subsystem/monitor/proc/set_shipside_calculation()
 	SIGNAL_HANDLER
 	gamestate = SHIPSIDE
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_GAMESTATE_SHIPSIDE)
 
 ///Calculate the points supposedly representating of the situation
 /datum/controller/subsystem/monitor/proc/calculate_state_points()

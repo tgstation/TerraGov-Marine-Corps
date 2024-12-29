@@ -94,7 +94,7 @@
 			add_cooldown()
 
 			playsound(xeno_owner.loc, 'sound/voice/alien/queen_screech.ogg', 75, 0)
-			xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
+			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 			GLOB.round_statistics.queen_screech++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "queen_screech")
 			xeno_owner.create_shriekwave() // Adds the visual effect. Wom wom wom.
@@ -123,7 +123,7 @@
 				affected_xeno.apply_status_effect(/datum/status_effect/healing_infusion, HIVELORD_HEALING_INFUSION_DURATION / 2, HIVELORD_HEALING_INFUSION_TICKS / 2)
 
 			playsound(xeno_owner.loc, 'sound/voice/alien/queen_heal_screech.ogg', 75, 0)
-			xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
+			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 		if("plasma_screech")
 			succeed_activate()
 			add_cooldown(30 SECONDS)
@@ -135,7 +135,7 @@
 				affected_xeno.apply_status_effect(/datum/status_effect/plasma_surge, affected_xeno.xeno_caste.plasma_max / 2, 0.5, 30 SECONDS)
 
 			playsound(xeno_owner.loc, 'sound/voice/alien/queen_plasma_screech.ogg', 75, 0)
-			xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
+			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 		if("frenzy_screech")
 			succeed_activate()
 			add_cooldown(30 SECONDS)
@@ -147,7 +147,7 @@
 				affected_xeno.apply_status_effect(/datum/status_effect/frenzy_screech)
 
 			playsound(xeno_owner.loc, 'sound/voice/alien/queen_frenzy_screech.ogg', 75, 0)
-			xeno_owner.visible_message(span_xenohighdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
+			xeno_owner.visible_message(span_xenouserdanger("\The [xeno_owner] emits an ear-splitting guttural roar!"))
 
 /datum/action/ability/activable/xeno/screech/alternate_action_activate()
 	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner

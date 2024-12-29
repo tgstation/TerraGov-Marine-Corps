@@ -581,7 +581,7 @@
 
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += separator_hr("[span_boldwarning("Admin Slept")]")
-		msg += span_highdanger("This player has been slept by staff. Best to leave them be.\n")
+		msg += span_userdanger("This player has been slept by staff. Best to leave them be.\n")
 
 	msg += "</span>"
 	return list(msg)
