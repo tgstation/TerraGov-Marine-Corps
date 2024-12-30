@@ -293,6 +293,7 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 #define slot_l_hand_str "slot_l_hand"
 #define slot_r_hand_str "slot_r_hand"
 #define slot_w_uniform_str "slot_w_uniform"
+#define slot_accessory_str "slot_accessory"
 #define slot_in_accessory "slot_in_accessory"
 #define slot_head_str "slot_head"
 #define slot_in_head "slot_in_head"
@@ -313,18 +314,18 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 #define slot_in_l_store "slot_in_l_store"
 #define slot_r_store_str "slot_r_store"
 #define slot_in_r_store "slot_in_r_store"
-#define slot_tie_str "slot_tie"
 
 ///Correspondance between slot strings and slot numbers
 GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"slot_back" = SLOT_BACK,
-	"slot_in_back_str" = SLOT_IN_BACKPACK,
+	"slot_in_back" = SLOT_IN_BACKPACK,
 	"slot_l_hand" = SLOT_L_HAND,
 	"slot_r_hand" = SLOT_R_HAND,
 	"slot_w_uniform" = SLOT_W_UNIFORM,
-	"slot_in_accessory" = SLOT_ACCESSORY,
+	"slot_accessory" = SLOT_ACCESSORY,
+	"slot_in_accessory" = SLOT_IN_ACCESSORY,
 	"slot_head" = SLOT_HEAD,
-	"slot_in_head" = SLOT_HEAD,
+	"slot_in_head" = SLOT_IN_HEAD,
 	"slot_suit" = SLOT_WEAR_SUIT,
 	"slot_in_suit" = SLOT_IN_SUIT,
 	"slot_ear" = SLOT_EARS,
@@ -342,7 +343,6 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"slot_in_l_store" = SLOT_IN_L_POUCH,
 	"slot_r_store" = SLOT_R_STORE,
 	"slot_in_r_store" = SLOT_IN_R_POUCH,
-	"slot_tie" = SLOT_ACCESSORY,
 ))
 
 //I hate that this has to exist
