@@ -30,8 +30,7 @@
 	use_state_flags = ABILITY_USE_SOLIDOBJECT
 
 /datum/action/ability/xeno_action/change_form/action_activate()
-	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
-	xenomorph_owner.change_form()
+	xeno_owner.change_form()
 
 /datum/action/ability/activable/xeno/command_minions
 	name = "Command minions"
@@ -130,11 +129,11 @@
 	if(!turf_to_teleport_to)
 		return
 
-	var/mob/living/carbon/xenomorph/hivemind/hivemind_owner = owner
-	if(!hivemind_owner.check_weeds(turf_to_teleport_to, TRUE))
+	if(!xeno_owner.check_weeds(turf_to_teleport_to, TRUE))
 		owner.balloon_alert(owner, "No weeds in selected location")
 		return
-	if(!(hivemind_owner.status_flags & INCORPOREAL))
+	if(!(xeno_owner.status_flags & INCORPOREAL) && isxenohivemind(xeno_owner))
+		var/mob/living/carbon/xenomorph/hivemind/hivemind_owner = xeno_owner
 		hivemind_owner.start_teleport(turf_to_teleport_to)
 		return
-	hivemind_owner.abstract_move(turf_to_teleport_to)
+	xeno_owner.abstract_move(turf_to_teleport_to)

@@ -64,10 +64,9 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/ability/activable/xeno/blink/use_ability(atom/A)
 	. = ..()
-	var/mob/living/carbon/xenomorph/wraith/X = owner
-	var/turf/T = X.loc
-	var/turf/temp_turf = X.loc
-	var/check_distance = min(X.xeno_caste.wraith_blink_range, get_dist(X,A))
+	var/turf/T = xeno_owner.loc
+	var/turf/temp_turf = xeno_owner.loc
+	var/check_distance = min(xeno_owner.xeno_caste.wraith_blink_range, get_dist(xeno_owner,A))
 	var/list/fully_legal_turfs = list()
 
 	for (var/x = 1 to check_distance)
@@ -81,22 +80,22 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 		T = temp_turf
 
 	check_distance = min(length(fully_legal_turfs), check_distance) //Cap the check distance to the number of fully legal turfs
-	T = X.loc //Reset T to be our initial position
+	T = xeno_owner.loc //Reset T to be our initial position
 	if(check_distance)
 		T = fully_legal_turfs[check_distance]
 
-	X.face_atom(T) //Face the target so we don't look like an ass
+	xeno_owner.face_atom(T) //Face the target so we don't look like an ass
 
 	var/cooldown_mod = 1
 	var/mob/pulled_target = owner.pulling
 	if(pulled_target) //bring the pulled target with us if applicable but at the cost of sharply increasing the next cooldown
 
-		if(pulled_target.issamexenohive(X))
-			cooldown_mod = X.xeno_caste.wraith_blink_drag_friendly_multiplier
+		if(pulled_target.issamexenohive(xeno_owner))
+			cooldown_mod = xeno_owner.xeno_caste.wraith_blink_drag_friendly_multiplier
 		else
 			if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_HOSTILE)) //Grap-porting hostiles has a slight wind up
 				return fail_activate()
-			cooldown_mod = X.xeno_caste.wraith_blink_drag_nonfriendly_living_multiplier
+			cooldown_mod = xeno_owner.xeno_caste.wraith_blink_drag_nonfriendly_living_multiplier
 			if(ishuman(pulled_target))
 				var/mob/living/carbon/human/H = pulled_target
 				if(H.stat == UNCONSCIOUS) //Apply critdrag damage as if they were quickly pulled the same distance
@@ -104,15 +103,15 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 					if(!H.adjustOxyLoss(critdamage))
 						H.adjustBruteLoss(critdamage)
 
-		to_chat(X, span_xenodanger("We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_duration * cooldown_mod * 0.1] seconds due to the strain of doing so."))
+		to_chat(xeno_owner, span_xenodanger("We bring [pulled_target] with us. We won't be ready to blink again for [cooldown_duration * cooldown_mod * 0.1] seconds due to the strain of doing so."))
 
-	teleport_debuff_aoe(X) //Debuff when we vanish
+	teleport_debuff_aoe(xeno_owner) //Debuff when we vanish
 
 	if(pulled_target) //Yes, duplicate check because otherwise we end up with the initial teleport debuff AoE happening prior to the wind up which looks really bad and is actually exploitable via deliberate do after cancels
 		pulled_target.forceMove(T) //Teleport to our target turf
 
-	X.forceMove(T) //Teleport to our target turf
-	teleport_debuff_aoe(X) //Debuff when we reappear
+	xeno_owner.forceMove(T) //Teleport to our target turf
+	teleport_debuff_aoe(xeno_owner) //Debuff when we reappear
 
 	succeed_activate()
 	add_cooldown(cooldown_duration * cooldown_mod)
@@ -122,7 +121,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 ///Called by many of the Wraith's teleportation effects
 /datum/action/ability/activable/xeno/proc/teleport_debuff_aoe(atom/movable/teleporter, silent = FALSE)
-	var/mob/living/carbon/xenomorph/ghost = owner
 
 	if(!silent) //Sound effects
 		playsound(teleporter, 'sound/effects/EMPulse.ogg', 25, 1) //Sound at the location we are arriving at
@@ -137,8 +135,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 			continue
 
 		if(isxeno(living_target))
-			var/mob/living/carbon/xenomorph/X = living_target
-			if(X.issamexenohive(ghost)) //No friendly fire
+			var/mob/living/carbon/xenomorph/xeno_target = living_target
+			if(xeno_target.issamexenohive(xeno_owner)) //No friendly fire
 				continue
 
 		living_target.adjust_stagger(WRAITH_TELEPORT_DEBUFF_STAGGER_STACKS)
@@ -209,14 +207,13 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 /datum/action/ability/activable/xeno/banish/use_ability(atom/movable/A)
 	. = ..()
-	var/mob/living/carbon/xenomorph/wraith/ghost = owner
 	var/banished_turf = get_turf(A) //Set the banishment turf.
 	banishment_target = A //Set the banishment target
 	backup_coordinates[1] = banishment_target.x //Set up backup coordinates in case banish portal gets destroyed
 	backup_coordinates[2] = banishment_target.y
 	backup_coordinates[3] = banishment_target.z
 
-	ghost.face_atom(A) //Face the target so we don't look like an ass
+	xeno_owner.face_atom(A) //Face the target so we don't look like an ass
 
 	teleport_debuff_aoe(banishment_target) //Debuff when we disappear
 	portal = new /obj/effect/temp_visual/banishment_portal(banished_turf)
@@ -248,7 +245,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	banishment_target.forceMove(target_turf)
 
-	var/duration = ghost.xeno_caste.wraith_banish_base_duration //Set the duration
+	var/duration = xeno_owner.xeno_caste.wraith_banish_base_duration //Set the duration
 
 	portal.add_filter("banish_portal_1", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
 	portal.add_filter("banish_portal_2", 3, list("type" = "motion_blur", 0, 0)) //Cool filter appear
@@ -257,7 +254,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 
 	var/cooldown_mod = 1
 	var/plasma_mod = 1
-	if(isliving(banishment_target) && !(banishment_target.issamexenohive(ghost))) //We halve the max duration for living non-allies
+	if(isliving(banishment_target) && !(banishment_target.issamexenohive(xeno_owner))) //We halve the max duration for living non-allies
 		duration *= WRAITH_BANISH_NONFRIENDLY_LIVING_MULTIPLIER
 	else if(is_type_in_typecache(banishment_target, GLOB.wraith_banish_very_short_duration_list)) //Barricades should only be gone long enough to admit an infiltrator xeno or two; one way.
 		duration *= WRAITH_BANISH_VERY_SHORT_MULTIPLIER
@@ -269,8 +266,8 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	span_userdanger("The world around you reels, reality seeming to twist and tear until you find yourself trapped in a forsaken void beyond space and time."))
 	playsound(banished_turf, 'sound/weapons/emitter2.ogg', 50, 1) //this isn't quiet
 
-	to_chat(ghost,span_xenodanger("We have banished [banishment_target] to nullspace for [duration * 0.1] seconds."))
-	log_attack("[key_name(ghost)] has banished [key_name(banishment_target)] for [duration * 0.1] seconds at [AREACOORD(banishment_target)]")
+	to_chat(xeno_owner,span_xenodanger("We have banished [banishment_target] to nullspace for [duration * 0.1] seconds."))
+	log_attack("[key_name(xeno_owner)] has banished [key_name(banishment_target)] for [duration * 0.1] seconds at [AREACOORD(banishment_target)]")
 
 	addtimer(CALLBACK(src, PROC_REF(banish_warning)), duration * 0.7) //Warn when Banish is about to end
 	banish_duration_timer_id = addtimer(CALLBACK(src, PROC_REF(banish_deactivate)), duration, TIMER_STOPPABLE) //store the timer ID

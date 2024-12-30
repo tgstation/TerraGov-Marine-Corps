@@ -157,19 +157,6 @@
 	return_to_core()
 	to_chat(src, span_xenonotice("We were on top of fire, we got moved to our core."))
 
-/mob/living/carbon/xenomorph/hivemind/proc/check_weeds(turf/T, strict_turf_check = FALSE)
-	SHOULD_BE_PURE(TRUE)
-	if(isnull(T))
-		return FALSE
-	. = TRUE
-	if(locate(/obj/fire/flamer) in T)
-		return FALSE
-	for(var/obj/alien/weeds/W in range(strict_turf_check ? 0 : 1, T ? T : get_turf(src)))
-		if(QDESTROYING(W))
-			continue
-		return
-	return FALSE
-
 /mob/living/carbon/xenomorph/hivemind/handle_weeds_adjacent_removed()
 	if(loc_weeds_type || check_weeds(get_turf(src)))
 		return
