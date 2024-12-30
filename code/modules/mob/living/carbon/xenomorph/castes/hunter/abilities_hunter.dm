@@ -50,7 +50,7 @@
 	last_stealth = world.time
 	stealth = TRUE
 
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth))
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(handle_stealth_move))
 	RegisterSignal(owner, COMSIG_XENOMORPH_POUNCE_END, PROC_REF(sneak_attack_pounce))
 	RegisterSignal(owner, COMSIG_XENO_LIVING_THROW_HIT, PROC_REF(mob_hit))
 	RegisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(sneak_attack_slash))
@@ -127,29 +127,33 @@
 	to_chat(owner, span_xenodanger("We're ready to use Sneak Attack while stealthed."))
 	playsound(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 
+///Handles moving while in stealth
+/datum/action/ability/xeno_action/stealth/proc/handle_stealth_move()
+	SIGNAL_HANDLER
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(owner.m_intent == MOVE_INTENT_WALK)
+		xeno_owner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
+		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
+	else
+		xeno_owner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
+		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
+	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
+	if(!xeno_owner.plasma_stored)
+		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
+		cancel_stealth()
+
 ///Updates or cancels stealth
 /datum/action/ability/xeno_action/stealth/proc/handle_stealth()
 	SIGNAL_HANDLER
 	total_damage_taken = max(total_damage_taken - 10, 0)
-	var/mob/living/carbon/xenomorph/xenoowner = owner
-	//Initial stealth
-	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
+	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY)
 		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
 		return
-	//Stationary stealth
-	else if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(owner.last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY)
 		owner.alpha = HUNTER_STEALTH_STILL_ALPHA * stealth_alpha_multiplier
-	//Walking stealth
-	else if(owner.m_intent == MOVE_INTENT_WALK)
-		xenoowner.use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN)
-		owner.alpha = HUNTER_STEALTH_WALK_ALPHA * stealth_alpha_multiplier
-	//Running stealth
-	else
-		xenoowner.use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN)
-		owner.alpha = HUNTER_STEALTH_RUN_ALPHA * stealth_alpha_multiplier
-	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
-	if(!xenoowner.plasma_stored)
-		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
+	if(!xeno_owner.plasma_stored)
+		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
 
 /// Callback listening for a xeno using the pounce ability
@@ -258,12 +262,9 @@
 	xenoowner.update_wounds()
 
 /datum/action/ability/xeno_action/stealth/disguise/handle_stealth()
-	var/mob/living/carbon/xenomorph/xenoowner = owner
-	if(owner.last_move_intent >= world.time - HUNTER_STEALTH_STEALTH_DELAY)
-		xenoowner.use_plasma(owner.m_intent == MOVE_INTENT_WALK ? HUNTER_STEALTH_WALK_PLASMADRAIN : HUNTER_STEALTH_RUN_PLASMADRAIN)
-	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
-	if(!xenoowner.plasma_stored)
-		to_chat(xenoowner, span_xenodanger("We lack sufficient plasma to remain disguised."))
+	var/mob/living/carbon/xenomorph/xeno_owner = owner
+	if(!xeno_owner.plasma_stored)
+		to_chat(xeno_owner, span_xenodanger("We lack sufficient plasma to remain camouflaged."))
 		cancel_stealth()
 
 // ***************************************
