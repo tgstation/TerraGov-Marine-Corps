@@ -289,7 +289,7 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 
 //Inventory slot strings. These are used for icons. (and checking if an item can be equipped in loadouts for some reason??)
 #define slot_back_str "slot_back"
-#define slot_in_back_str "slot_in_back"
+#define slot_in_back "slot_in_back"
 #define slot_l_hand_str "slot_l_hand"
 #define slot_r_hand_str "slot_r_hand"
 #define slot_w_uniform_str "slot_w_uniform"
