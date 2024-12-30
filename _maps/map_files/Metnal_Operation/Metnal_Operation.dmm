@@ -4512,6 +4512,10 @@
 /obj/item/tool/stamp/qm,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"cZO" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/prison/darkred,
+/area/metnal/outside/north)
 "cZT" = (
 /obj/effect/turf_decal/sandytile/sandyplating,
 /turf/open/urban/street/asphalt,
@@ -12341,6 +12345,10 @@
 	dir = 10
 	},
 /area/metnal/caves/southwest/garbledradio)
+"iqa" = (
+/obj/effect/landmark/weed_node,
+/turf/open/floor/wood/alt_six,
+/area/metnal/inside/bar)
 "iqB" = (
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/sidewalkcenter,
@@ -19254,6 +19262,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/plate,
 /area/metnal/inside/cargo)
+"mXa" = (
+/obj/effect/landmark/weed_node,
+/turf/open/urban/street/sidewalkcenter,
+/area/metnal/outside/southeast)
 "mXl" = (
 /obj/machinery/light{
 	dir = 8
@@ -20222,6 +20234,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
 /area/metnal/inside/research)
+"nEF" = (
+/turf/open/urban/street/sidewalkcenter{
+	dir = 4
+	},
+/area/metnal/outside/southeast)
 "nEH" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -35546,6 +35563,7 @@
 	pixel_x = 10
 	},
 /obj/item/tool/kitchen/utensil/spoon,
+/obj/effect/landmark/weed_node,
 /turf/open/floor/prison/darkred{
 	dir = 1
 	},
@@ -48212,7 +48230,7 @@ siW
 hYT
 ekr
 ekr
-ekr
+jlV
 ekr
 ekr
 jlV
@@ -50037,7 +50055,7 @@ alB
 vuT
 gXN
 tNl
-ioB
+iqa
 tNl
 nLp
 brY
@@ -50844,7 +50862,7 @@ hqZ
 wKv
 jHh
 wNx
-qfM
+cZO
 wDy
 sFT
 oCA
@@ -51246,7 +51264,7 @@ puz
 puz
 reF
 dyR
-reF
+ijY
 vfy
 qfM
 xMz
@@ -63205,11 +63223,11 @@ oRN
 oRN
 kez
 kez
+dit
 pcp
 pcp
 pcp
-pcp
-jAs
+lDc
 jAs
 jAs
 jAs
@@ -63408,15 +63426,15 @@ oRN
 kez
 kez
 kez
+dxJ
 kez
 kez
 kez
+dxJ
 kez
 kez
 kez
-kez
-kez
-jAs
+fle
 jAs
 rcL
 pcp
@@ -63842,7 +63860,7 @@ kez
 kez
 kez
 kez
-kez
+dxJ
 mtn
 kFW
 kez
@@ -64223,7 +64241,7 @@ kez
 dxJ
 kez
 kez
-kez
+dxJ
 kJn
 kJn
 hUn
@@ -64238,12 +64256,12 @@ kez
 kez
 oUk
 kez
+dxJ
 kez
 kez
 kez
 kez
-kez
-kez
+dxJ
 kez
 kJn
 vaC
@@ -64436,7 +64454,7 @@ kJn
 kez
 kez
 kez
-kez
+dxJ
 kez
 kez
 kez
@@ -66254,12 +66272,12 @@ joS
 joS
 joS
 joS
-joS
-joS
-joS
-joS
-joS
-joS
+eHJ
+eHJ
+eHJ
+eHJ
+eHJ
+eHJ
 mqZ
 cTl
 cxv
@@ -66684,7 +66702,7 @@ sgJ
 qYU
 qYU
 qYU
-oAG
+qYU
 qYU
 uRO
 niJ
@@ -66886,8 +66904,8 @@ qYU
 qYU
 oAG
 xsz
-sgJ
-qYU
+mXa
+nEF
 smV
 niJ
 smV
