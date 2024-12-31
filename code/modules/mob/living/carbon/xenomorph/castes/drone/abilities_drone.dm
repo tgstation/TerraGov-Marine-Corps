@@ -98,7 +98,7 @@
 	heal_range = DRONE_HEAL_RANGE
 	target_flags = ABILITY_XENO_TARGET|ABILITY_HUMAN_TARGET
 
-/datum/action/ability/activable/xeno/psychic_cure/acidic_salve/use_ability(atom/target)
+/datum/action/ability/activable/xeno/psychic_cure/resin_salve/use_ability(atom/target)
 	if(!ismob(target))
 		return FALSE
 	if(xeno_owner.do_actions)

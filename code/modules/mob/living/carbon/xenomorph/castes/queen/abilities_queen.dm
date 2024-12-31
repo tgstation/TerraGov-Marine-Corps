@@ -146,7 +146,7 @@
 	for(var/obj/item/alien_embryo/implanted in A.contents)
 		implanted_embryos++
 	if(implanted_embryos >= MAX_LARVA_PREGNANCIES)
-		to_chat(owner, span_highdanger("This Host's belly looks like they are about to burst!.."))
+		to_chat(owner, span_danger("This Host's belly looks like they are about to burst!.."))
 	playsound(X, 'sound/effects/alien_plapping.ogg', 40, channel = channel)
 	if(!do_after(X, 1.5 SECONDS, FALSE, A, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
 		to_chat(owner, span_warning("We stop [sexverb] \the [A]. They probably were loose anyways."))
@@ -174,7 +174,7 @@
 				explosion(A.loc,0,0,0,1,1,0,1)
 				A.gib()
 		if(A.stat == CONSCIOUS)
-			to_chat(A, span_highdanger("You're too full, you feel like you're going to burst apart! You might want to beg [X] to stop... If they'll listen.")) //Way too many.
+			to_chat(A, span_danger("You're too full, you feel like you're going to burst apart! You might want to beg [X] to stop... If they'll listen.")) //Way too many.
 			if(implanted_embryos >= (MAX_LARVA_PREGNANCIES*2))
 				for(var/D in damagetypes)
 					A.apply_damage((damageperlarva/damagescaledivisor)*implanted_embryos, D, BODY_ZONE_PRECISE_GROIN, updating_health = TRUE) //It'll get worse!
@@ -198,7 +198,7 @@
 		personal_statistics.impregnations++
 
 	if(A.stat == DEAD)
-		owner.visible_message(span_highdanger("[X] causes [A]'s belly to blow up in a gorey mess!"), span_highdanger("We make [A]'s belly explode into a gorey mess!"), span_warning("You hear a gorey explosion."), 5, A)
+		owner.visible_message(span_danger("[X] causes [A]'s belly to blow up in a gorey mess!"), span_danger("We make [A]'s belly explode into a gorey mess!"), span_warning("You hear a gorey explosion."), 5, A)
 		for(var/obj/item/alien_embryo/implanted in A.contents)
 			new /obj/item/alien_embryo(A.loc)
 		explosion(A.loc,0,0,0,1,1,0,1)

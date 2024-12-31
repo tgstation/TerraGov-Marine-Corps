@@ -162,7 +162,7 @@
 	the_pod = null
 	var/mob/living/carbon/xenomorph/X = owner
 	X.balloon_alert(X, "YOUR POD IS DESTROYED")
-	to_chat(X, span_xenohighdanger("Our POD IS DESTROYED! Rebuild it if we can!"))
+	to_chat(X, span_xenodanger("Our POD IS DESTROYED! Rebuild it if we can!"))
 
 // ***************************************
 // *********** Dash explosion

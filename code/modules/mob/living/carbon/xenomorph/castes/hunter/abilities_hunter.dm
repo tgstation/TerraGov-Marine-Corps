@@ -832,7 +832,7 @@
 	addtimer(CALLBACK(src, PROC_REF(unset_target)), DEATH_MARK_TIMEOUT)
 
 	playsound(marked_target, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
-	to_chat(marked_target, span_highdanger("You feel uneasy."))
+	to_chat(marked_target, span_danger("You feel uneasy."))
 
 ///Nulls the target of our hunter's mark
 /datum/action/ability/activable/xeno/hunter_mark/assassin/proc/unset_target()
@@ -870,7 +870,7 @@
 		if(whereweat.get_lumcount() > 0.3) //is it a lit turf
 			X.balloon_alert(X, "We will be disoriented and sensed in this light.") //so its more visible to xeno.
 			//Marines can sense the manifestation if it's in lit-enough turf nearby.
-			X.visible_message(span_highdanger("Something begins to manifest nearby!"), span_xenohighdanger("We begin to manifest in the light... talls sense us!"))
+			X.visible_message(span_danger("Something begins to manifest nearby!"), span_xenodanger("We begin to manifest in the light... talls sense us!"))
 	else
 		if(whereweat.get_lumcount() > 0.4) //cant shift out a lit turf.
 			X.balloon_alert(X, "We need a darker spot.") //so its more visible to xeno.

@@ -196,14 +196,14 @@
 	span_xenodanger("Our dorsal vents widen, preparing to emit toxic smoke. We must keep still!"))
 	xeno_owner.balloon_alert(xeno_owner, "Keep still...")
 
-	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][(xeno_owner.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Power Up"
+	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][xeno_owner.is_a_rouny ? " rouny" : ""] Power Up"
 
 	if(!do_after(xeno_owner, DEFILER_GAS_CHANNEL_TIME, NONE, null, BUSY_ICON_HOSTILE))
 		if(!QDELETED(src))
 			to_chat(xeno_owner, span_xenodanger("We abort emitting fumes, our expended plasma resulting in nothing."))
-			xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][(xeno_owner.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
+			xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][xeno_owner.is_a_rouny ? " rouny" : ""] Running"
 			return fail_activate()
-	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][(xeno_owner.xeno_flags & XENO_ROUNY) ? " rouny" : ""] Running"
+	xeno_owner.icon_state = "[xeno_owner.xeno_caste.caste_name][xeno_owner.is_a_rouny ? " rouny" : ""] Running"
 
 	add_cooldown()
 	succeed_activate()

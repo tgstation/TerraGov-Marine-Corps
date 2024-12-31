@@ -17,7 +17,6 @@
 
 
 /datum/action/ability/xeno_action/call_of_the_burrowed/action_activate()
-	var/mob/living/carbon/xenomorph/shrike/caller = owner
 	var/datum/job/xeno_job = SSjob.GetJobType(/datum/job/xenomorph)
 	var/stored_larva = xeno_job.total_positions - xeno_job.current_positions
 	if(!stored_larva)
@@ -153,7 +152,7 @@
 	succeed_activate()
 	add_cooldown()
 	addtimer(CALLBACK(owner, TYPE_PROC_REF(/mob, update_icons)), 1 SECONDS)
-	owner.icon_state = "[xeno_owner.xeno_caste.caste_name][xeno.is_a_rouny ? " rouny" : ""] Screeching"
+	owner.icon_state = "[xeno_owner.xeno_caste.caste_name][xeno_owner.is_a_rouny ? " rouny" : ""] Screeching"
 	if(target) // Keybind use doesn't have a target
 		owner.face_atom(target)
 
