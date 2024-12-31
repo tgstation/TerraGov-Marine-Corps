@@ -1195,9 +1195,9 @@
 		return
 
 	log_directed_talk(X, L, msg, LOG_SAY, "psychic whisper")
-	to_chat(L, span_alien("You hear a strange, alien voice in your head. <i>\"[msg]\"</i>"))
-	to_chat(X, span_xenonotice("We said: \"[msg]\" to [L]"))
-	message_admins("[X] has sent [L] this psychic message: \"[msg]\" at [ADMIN_VERBOSEJMP(X)].")
+	to_chat(L, span_psychicin("You hear a strange, alien voice in your head. <i>\"[msg]\"</i>"))
+	to_chat(X, span_psychicout("We said: \"[msg]\" to [L]"))
+	message_admins("[ADMIN_LOOKUP(X)] has sent [ADMIN_LOOKUP(L)] this psychic message: \"[msg]\" at [ADMIN_VERBOSEJMP(X)].")
 
 // ***************************************
 // *********** Psychic Influence
@@ -1237,8 +1237,8 @@
 		return
 
 	log_directed_talk(X, L, msg, LOG_SAY, "psychic influence")
-	to_chat(L, "<span class='alien'><i>[msg]</i></span>")
-	to_chat(X, "<span class='xenonotice'>We influenced: [msg] to [L]</span>")
+	to_chat(L, "<span class='psychicin'><i>[msg]</i></span>")
+	to_chat(X, "<span class='psychicout'>We influenced: [msg] to [L]</span>")
 	for(var/_M in GLOB.observer_list) // it's the xeno's main method of S M U T, so it should be visible
 		var/mob/M = _M
 		if(M == L || M == X)
@@ -1254,9 +1254,9 @@
 			continue
 
 		if(check_other_rights(M.client, R_ADMIN, FALSE))
-			to_chat(M, "<span class='alien'>Psychic Influence: <b>[ADMIN_LOOKUP(X)] > [ADMIN_LOOKUP(L)]:</b> <i>\"[msg]\"</i></span>")
+			to_chat(M, "[FOLLOW_LINK(M, X)]<span class='psychicin'>Psychic Influence: <b>[ADMIN_LOOKUP(X)] > [ADMIN_LOOKUP(L)]:</b> <i>\"[msg]\"</i></span>")
 		else
-			to_chat(M, "<span class='alien'>Psychic Influence: <b>[X] > [L]:</b> <i>\"[msg]\"</i></span>")
+			to_chat(M, "[FOLLOW_LINK(M, X)]<span class='psychicin'>Psychic Influence: <b>[X] > [L]:</b> <i>\"[msg]\"</i></span>")
 
 /////////////////////////////////
 // Devour

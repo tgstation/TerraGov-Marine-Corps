@@ -186,6 +186,11 @@
 	icon_state = "hair_bobcutalt"
 	gender = FEMALE
 
+/datum/sprite_accessory/hair/bobshy
+	name = "Bobcut Shy"
+	icon_state = "hair_bobshy"
+	gender = FEMALE
+
 /datum/sprite_accessory/hair/boddicker
 	name = "Boddicker"
 	icon_state = "hair_boddicker"
@@ -910,6 +915,10 @@
 	name = "Short Hair 2"
 	icon_state = "hair_short2"
 
+/datum/sprite_accessory/hair/short2_alt
+	name = "Short Hair 2 Alt"
+	icon_state = "hair_short2_alt"
+
 /datum/sprite_accessory/hair/short3
 	name = "Short Hair 3"
 	icon_state = "hair_short3"
@@ -1053,6 +1062,11 @@
 /datum/sprite_accessory/hair/wisp
 	name = "Wisp"
 	icon_state = "hair_wisp"
+	gender = FEMALE
+
+/datum/sprite_accessory/hair/ladylike
+	name = "Ladylike"
+	icon_state = "hair_ladylike"
 	gender = FEMALE
 
 /datum/sprite_accessory/hair/wheeler

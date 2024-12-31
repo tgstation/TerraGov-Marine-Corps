@@ -165,7 +165,7 @@ h1.alert, h2.alert		{color: #000000;}
 .info					{color: #0000CC;}
 .debuginfo				{color: #493D26;	font-style: italic;}
 .notice					{color: #000099;}
-.xenonotice				{color: #2a623d;}
+.xenonotice, .psychicout	{color: #2a623d;}
 .boldnotice				{color: #000099;	font-weight: bold;}
 .warning				{color: #ff0000;	font-style: italic;}
 .xenowarning			{color: #2a623d;	font-style: italic;}
@@ -176,7 +176,7 @@ h1.alert, h2.alert		{color: #000000;}
 .xenouserdanger			{color: #2a623d; 	font-weight: bold; font-size: 1.5em;}
 .xenoannounce           {color: #1a472a;    font-family: book-antiqua; font-weight: bold; font-style: italic; font-size: 1.5em;}
 
-.alien					{color: #543354;}
+.alien, .psychicin		{color: #543354;}
 .newscaster				{color: #800000;}
 
 .role_header			{color: #db0000;	display: block; text-align: center; font-weight: bold; font-family: trebuchet-ms; font-size: 1.5em;}
