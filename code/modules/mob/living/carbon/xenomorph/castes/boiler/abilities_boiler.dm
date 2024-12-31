@@ -361,7 +361,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		deltimer(bombard_action.cooldown_timer)
 		bombard_action.cooldown_timer = null
 		bombard_action.countdown.stop()
-	bombard_action?.add_cooldown(boiler_owner.xeno_caste.bomb_delay + 8.5 SECONDS - ((boiler_owner.neuro_ammo + boiler_owner.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS))) //The cooldown of Bombard that is added when this ability is used. It is the calculation of Bombard cooldown + 10 seconds.
+	bombard_action?.add_cooldown(xeno_owner.xeno_caste.bomb_delay + 8.5 SECONDS - ((xeno_owner.neuro_ammo + xeno_owner.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS))) //The cooldown of Bombard that is added when this ability is used. It is the calculation of Bombard cooldown + 10 seconds.
 
 // ***************************************
 // *********** Steam Rush
@@ -503,4 +503,3 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	owner.balloon_alert(owner, "Our steam is welling up; we can use high pressure spit again.")
 	owner.playsound_local(owner, 'sound/voice/alien/hiss2.ogg', 25, 0, 1)
 	return ..()
-	bombard_action?.add_cooldown(xeno_owner.xeno_caste.bomb_delay + 8.5 SECONDS - ((xeno_owner.neuro_ammo + xeno_owner.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS))) //The cooldown of Bombard that is added when this ability is used. It is the calculation of Bombard cooldown + 10 seconds.
