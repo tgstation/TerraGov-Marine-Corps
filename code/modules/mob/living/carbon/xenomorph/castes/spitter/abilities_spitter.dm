@@ -9,15 +9,14 @@
 	cooldown_duration = 30 SECONDS
 
 /datum/action/ability/activable/xeno/spray_acid/line/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/X = owner
 	var/turf/target = get_turf(A)
 
 	if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
 		return
 
-	X.face_atom(target) //Face target so we don't look stupid
+	xeno_owner.face_atom(target) //Face target so we don't look stupid
 
-	if(X.do_actions || !do_after(X, 5, TRUE, target, BUSY_ICON_DANGER))
+	if(xeno_owner.do_actions || !do_after(xeno_owner, 5, NONE, target, BUSY_ICON_DANGER))
 		return
 
 	if(!can_use_ability(A, TRUE, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
@@ -25,8 +24,8 @@
 
 	succeed_activate()
 
-	playsound(X.loc, 'sound/effects/refill.ogg', 50, 1)
-	var/turflist = getline(X, target)
+	playsound(xeno_owner.loc, 'sound/effects/refill.ogg', 50, 1)
+	var/turflist = getline(xeno_owner, target)
 	spray_turfs(turflist)
 	add_cooldown()
 
@@ -113,21 +112,19 @@
 	)
 
 /datum/action/ability/activable/xeno/scatter_spit/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/X = owner
-
-	if(!do_after(X, 0.5 SECONDS, TRUE, target, BUSY_ICON_DANGER))
+	if(!do_after(xeno_owner, 0.5 SECONDS, NONE, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	//Shoot at the thing
-	playsound(X.loc, 'sound/effects/blobattack.ogg', 50, 1)
+	playsound(xeno_owner.loc, 'sound/effects/blobattack.ogg', 50, 1)
 
 	var/datum/ammo/xeno/acid/heavy/scatter/scatter_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/scatter]
 
-	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
-	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(X))
-	newspit.def_zone = X.get_limbzone_target()
+	var/obj/projectile/newspit = new /obj/projectile(get_turf(xeno_owner))
+	newspit.generate_bullet(scatter_spit, scatter_spit.damage * SPIT_UPGRADE_BONUS(xeno_owner))
+	newspit.def_zone = xeno_owner.get_limbzone_target()
 
-	newspit.fire_at(target, X, X, newspit.ammo.max_range)
+	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
 
 	succeed_activate()
 	add_cooldown()

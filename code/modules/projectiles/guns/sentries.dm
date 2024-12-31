@@ -92,7 +92,6 @@
 	max_integrity = 225
 	integrity_failure = 50
 	deploy_time = 1 SECONDS
-	undeploy_time = 1 SECONDS
 	turret_flags = TURRET_HAS_CAMERA|TURRET_ALERTS|TURRET_RADIAL
 	deployable_item = /obj/machinery/deployable/mounted/sentry/cope
 	turret_range = 9
@@ -229,7 +228,7 @@
 	extra_delay = 0.3 SECONDS
 	scatter = 3
 
-	deploy_time = 3 SECONDS
+	deploy_time = 1 SECONDS
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
 
 /obj/item/weapon/gun/sentry/mini/combat_patrol

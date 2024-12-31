@@ -748,6 +748,7 @@ GLOBAL_LIST_INIT(blacklisted_cargo_types, typecacheof(list(
 		for(var/ammo in veh_ui.secondary_ammo)
 			for(var/i=1 to veh_ui.secondary_ammo[ammo])
 				new ammo(dumploc)
+	SStgui.close_user_uis(user, veh_ui)
 
 /obj/docking_port/stationary/supply/vehicle
 	id = "vehicle_home"
@@ -918,6 +919,12 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 			if(!ispath(newtype, /obj/vehicle/sealed/armored))
 				return
 			current_veh_type = newtype
+			current_primary = null
+			current_secondary = null
+			current_driver_mod = null
+			current_gunner_mod = null
+			primary_ammo = list()
+			secondary_ammo = list()
 			. = TRUE
 
 		if("setprimary")
@@ -997,24 +1004,6 @@ GLOBAL_LIST_INIT(armored_guntypes, armored_init_guntypes())
 				return
 			current_gunner_mod = newtype
 			. = TRUE
-
-		if("deploy")
-			if(supply_shuttle.mode != SHUTTLE_IDLE)
-				to_chat(usr, span_danger("Elevator moving!"))
-				return
-			if(is_mainship_level(supply_shuttle.z))
-				to_chat(usr, span_danger("Elevator raised. Lower to deploy vehicle."))
-				return
-			supply_shuttle.buy(usr, src)
-			ui_act("send", params, ui, state)
-			SStgui.close_user_uis(usr, src)
-			current_veh_type = null
-			current_primary = null
-			current_secondary = null
-			current_driver_mod = null
-			current_gunner_mod = null
-			primary_ammo = list()
-			secondary_ammo = list()
 
 	if(.)
 		update_static_data(usr)

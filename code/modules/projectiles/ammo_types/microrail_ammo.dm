@@ -143,7 +143,7 @@
 			if(isliving(target))
 				var/mob/living/living_target = target
 				living_target.visible_message(span_danger("[living_target] is hit by the bomblet blast!"),
-					isxeno(living_target) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
+					isxeno(living_target) ? span_xenodanger("We are hit by the bomblet blast!") : span_userdanger("you are hit by the bomblet blast!"))
 				living_target.apply_damages(explosion_damage * 0.5, explosion_damage * 0.5, 0, 0, 0, blocked = BOMB, updating_health = TRUE)
 				staggerstun(living_target, P, stagger = stagger_amount, slowdown = slow_amount)
 			else if(isobj(target))

@@ -17,14 +17,11 @@
 
 /datum/action/ability/xeno_action/tail_sweep/can_use_action(silent, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.crest_defense && xeno_owner.plasma_stored < (ability_cost * 2))
 		to_chat(xeno_owner, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - xeno_owner.plasma_stored] more plasma!"))
 		return FALSE
 
 /datum/action/ability/xeno_action/tail_sweep/action_activate()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
-
 	GLOB.round_statistics.defender_tail_sweeps++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_tail_sweeps")
 	xeno_owner.visible_message(span_xenowarning("\The [xeno_owner] sweeps [xeno_owner.p_their()] tail in a wide circle!"), \
@@ -65,7 +62,6 @@
 	add_cooldown()
 
 /datum/action/ability/xeno_action/tail_sweep/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	to_chat(xeno_owner, span_notice("We gather enough strength to tail sweep again."))
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
@@ -106,13 +102,11 @@
 /datum/action/ability/activable/xeno/charge/forward_charge/use_ability(atom/A)
 	if(!A)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 
 	if(!do_after(xeno_owner, windup_time, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), A, FALSE, ABILITY_USE_BUSY)))
 		return fail_activate()
 
-	var/mob/living/carbon/xenomorph/defender/defender = xeno_owner
-	if(defender.fortify)
+	if(xeno_owner.fortify)
 		var/datum/action/ability/xeno_action/fortify/fortify_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/fortify]
 
 		fortify_action.set_fortify(FALSE, TRUE)
@@ -138,7 +132,6 @@
 	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target))) //we leap past xenos
 		return
 
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/mob/living/carbon/carbon_victim = living_target
 	var/extra_dmg = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier * 0.5 // 50% dmg reduction
 	carbon_victim.attack_alien_harm(xeno_owner, extra_dmg, FALSE, TRUE, FALSE, TRUE) //Location is always random, cannot crit, harm only
@@ -177,11 +170,9 @@
 
 /datum/action/ability/xeno_action/toggle_crest_defense/give_action()
 	. = ..()
-	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
 	last_crest_bonus = xeno_owner.xeno_caste.crest_defense_armor
 
 /datum/action/ability/xeno_action/toggle_crest_defense/on_xeno_upgrade()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.crest_defense)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-last_crest_bonus)
 		last_crest_bonus = xeno_owner.xeno_caste.crest_defense_armor
@@ -191,13 +182,10 @@
 		last_crest_bonus = xeno_owner.xeno_caste.crest_defense_armor
 
 /datum/action/ability/xeno_action/toggle_crest_defense/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
 	to_chat(xeno_owner, span_notice("We can [xeno_owner.crest_defense ? "raise" : "lower"] our crest."))
 	return ..()
 
 /datum/action/ability/xeno_action/toggle_crest_defense/action_activate()
-	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
-
 	if(xeno_owner.crest_defense)
 		set_crest_defense(FALSE)
 		add_cooldown()
@@ -218,7 +206,6 @@
 	return succeed_activate()
 
 /datum/action/ability/xeno_action/toggle_crest_defense/proc/set_crest_defense(on, silent = FALSE)
-	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
 	if(on)
 		if(!silent)
 			to_chat(xeno_owner, span_xenowarning("We tuck ourselves into a defensive stance."))
@@ -258,11 +245,9 @@
 
 /datum/action/ability/xeno_action/fortify/give_action()
 	. = ..()
-	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
 	last_fortify_bonus = xeno_owner.xeno_caste.fortify_armor
 
 /datum/action/ability/xeno_action/fortify/on_xeno_upgrade()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.fortify)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyAllRatings(-last_fortify_bonus)
 		xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(BOMB = -last_fortify_bonus)
@@ -275,13 +260,10 @@
 		last_fortify_bonus = xeno_owner.xeno_caste.fortify_armor
 
 /datum/action/ability/xeno_action/fortify/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	to_chat(xeno_owner, span_notice("We can [xeno_owner.fortify ? "stand up" : "fortify"] again."))
 	return ..()
 
 /datum/action/ability/xeno_action/fortify/action_activate()
-	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
-
 	if(xeno_owner.fortify)
 		set_fortify(FALSE)
 		add_cooldown()
@@ -305,7 +287,6 @@
 	return succeed_activate()
 
 /datum/action/ability/xeno_action/fortify/proc/set_fortify(on, silent = FALSE)
-	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
 	GLOB.round_statistics.defender_fortifiy_toggles++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "defender_fortifiy_toggles")
 	if(on)
@@ -345,13 +326,10 @@
 	)
 
 /datum/action/ability/xeno_action/regenerate_skin/on_cooldown_finish()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	to_chat(xeno_owner, span_notice("We feel we are ready to shred our skin and grow another."))
 	return ..()
 
 /datum/action/ability/xeno_action/regenerate_skin/action_activate()
-	var/mob/living/carbon/xenomorph/defender/xeno_owner = owner
-
 	if(!can_use_action(TRUE))
 		return fail_activate()
 
@@ -395,7 +373,6 @@
 	if(spin_loop_timer)
 		return TRUE
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.crest_defense && xeno_owner.plasma_stored < (ability_cost * 2))
 		to_chat(xeno_owner, span_xenowarning("We don't have enough plasma, we need [(ability_cost * 2) - xeno_owner.plasma_stored] more plasma!"))
 		return FALSE
@@ -419,7 +396,6 @@
 /// runs a spin, then starts the timer for a new spin if needed
 /datum/action/ability/xeno_action/centrifugal_force/proc/do_spin()
 	spin_loop_timer = null
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.spin(4, 1)
 	xeno_owner.enable_throw_parry(0.6 SECONDS)
 	playsound(xeno_owner, pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg'), 25, 1) //Sound effects
