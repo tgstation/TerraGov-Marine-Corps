@@ -272,6 +272,13 @@
 	keybind_signal = COMSIG_XENOABILITY_STEAM_RUSH
 	hotkey_keys = list("Space")
 
+/datum/keybinding/xeno/high_pressure_spit
+	name = "high_pressure_spit"
+	full_name = "Boiler: High Pressure Spit"
+	description = "Fires a high pressure glob of acid that shatters and massively knocksback the target."
+	keybind_signal = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT
+	hotkey_keys = list("E")
+
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
 	full_name = "Bull: Plow Charge"

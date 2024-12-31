@@ -475,7 +475,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	ability_cost = 150
 	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SCATTER_SPIT,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT,
 	)
 
 /datum/action/ability/activable/xeno/high_pressure_spit/use_ability(atom/target)
