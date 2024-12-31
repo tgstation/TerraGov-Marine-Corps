@@ -136,7 +136,7 @@
 
 
 /// This is the meat function for making radios hear vocal transmissions.
-/datum/signal/subspace/voc4al/broadcast()
+/datum/signal/subspace/vocal/broadcast()
 	set waitfor = FALSE
 
 	// Perform final composition steps on the message.
@@ -221,8 +221,8 @@
 
 		var/list/list_of_listeners = list()
 		for(var/mob/living/carbon/human/potential_hearer in receive)
-			var/prefs = potential_hearer.client?.prefs
-			if(!prefs || prefs.sound_tts == SOUND_OFF || potential_hearer.stat >= UNCONSCIOUS || isdeaf(potential_hearer))
+			var/datum/preferences/prefs = potential_hearer.client?.prefs
+			if(!prefs || prefs.sound_tts == TTS_SOUND_OFF || potential_hearer.stat >= UNCONSCIOUS || isdeaf(potential_hearer))
 				continue
 
 			var/radio_flags = prefs.radio_tts_flags
@@ -233,7 +233,7 @@
 				if(CHECK_BITFIELD(radio_flags, RADIO_TTS_SQUAD))
 					list_of_listeners += potential_hearer
 					continue
-				if(CHECK_BITFIELD(radio_flags, RADIO_TTS_SL) && is_speaker_squad_lead))
+				if(CHECK_BITFIELD(radio_flags, RADIO_TTS_SL) && is_speaker_squad_lead)
 					list_of_listeners += potential_hearer
 					continue
 			if(CHECK_BITFIELD(radio_flags, RADIO_TTS_COMMAND) && is_speaker_command_freq)
