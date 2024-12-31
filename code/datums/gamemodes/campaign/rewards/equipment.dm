@@ -158,7 +158,7 @@
 	detailed_desc = "A BR-8 scout rifle and assorted ammo. An accurate, powerful rifle with integrated IFF."
 	ui_icon = "scout"
 	uses = 2
-	cost = 6
+	cost = 10
 	equipment_to_spawn = list(
 		/obj/effect/supply_drop/scout,
 	)

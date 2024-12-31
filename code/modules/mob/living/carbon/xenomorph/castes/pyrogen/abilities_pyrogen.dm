@@ -15,16 +15,14 @@
 /datum/action/ability/activable/xeno/charge/fire_charge/use_ability(atom/target)
 	if(!target)
 		return
-	var/mob/living/carbon/xenomorph/pyrogen/xeno = owner
-
-	RegisterSignal(xeno, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
-	RegisterSignal(xeno, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
-	RegisterSignal(xeno, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
-	xeno.emote("roar")
-	xeno.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
+	RegisterSignal(xeno_owner, COMSIG_XENO_OBJ_THROW_HIT, PROC_REF(obj_hit))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(charge_complete))
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_LEAP_BUMP, PROC_REF(mob_hit))
+	xeno_owner.emote("roar")
+	xeno_owner.xeno_flags |= XENO_LEAPING //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
 	succeed_activate()
 
-	xeno.throw_at(target, PYROGEN_CHARGEDISTANCE, PYROGEN_CHARGESPEED, xeno)
+	xeno_owner.throw_at(target, PYROGEN_CHARGEDISTANCE, PYROGEN_CHARGESPEED, xeno_owner)
 
 	add_cooldown()
 
@@ -56,7 +54,6 @@
 	. = TRUE
 	if(living_target.stat || isxeno(living_target) || living_target.status_flags & GODMODE) //we leap past xenos
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	living_target.attack_alien_harm(xeno_owner, xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, FALSE, TRUE, FALSE, TRUE, INTENT_HARM) //Location is always random, cannot crit, harm only
 	var/fire_damage = PYROGEN_FIRECHARGE_DAMAGE
 	if(living_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE))
@@ -70,7 +67,6 @@
 ///Cleans up after charge is finished
 /datum/action/ability/activable/xeno/charge/fire_charge/charge_complete()
 	UnregisterSignal(owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENOMORPH_LEAP_BUMP))
-	var/mob/living/carbon/xenomorph/pyrogen/xeno_owner = owner
 	xeno_owner.xeno_flags &= ~XENO_LEAPING
 
 // ***************************************
@@ -88,19 +84,18 @@
 	)
 
 /datum/action/ability/activable/xeno/fireball/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/pyrogen/xeno = owner
-	playsound(get_turf(xeno), 'sound/effects/wind.ogg', 50)
-	if(!do_after(xeno, 0.6 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
+	playsound(get_turf(xeno_owner), 'sound/effects/wind.ogg', 50)
+	if(!do_after(xeno_owner, 0.6 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!can_use_ability(target, FALSE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
-	playsound(get_turf(xeno), 'sound/effects/alien/fireball.ogg', 50)
+	playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50)
 
 	var/obj/projectile/magic_bullshit = new(get_turf(src))
 	magic_bullshit.generate_bullet(/datum/ammo/xeno/fireball)
-	magic_bullshit.fire_at(target, xeno, xeno, PYROGEN_FIREBALL_MAXDIST, PYROGEN_FIREBALL_SPEED)
+	magic_bullshit.fire_at(target, xeno_owner, xeno_owner, PYROGEN_FIREBALL_MAXDIST, PYROGEN_FIREBALL_SPEED)
 	succeed_activate()
 	add_cooldown()
 

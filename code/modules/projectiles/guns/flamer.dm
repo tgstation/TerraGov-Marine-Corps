@@ -286,7 +286,7 @@
 		mob_caught.IgniteMob()
 
 		var/burn_message = "Augh! You are roasted by the flames!"
-		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_highdanger(burn_message))
+		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_userdanger(burn_message))
 
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"

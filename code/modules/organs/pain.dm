@@ -43,7 +43,7 @@
 				msg = span_danger("Your [partname] burns badly!")
 			if(91 to INFINITY)
 				flash_pain()
-				msg = span_highdanger("OH GOD! Your [partname] is on fire!")
+				msg = span_userdanger("OH GOD! Your [partname] is on fire!")
 	else
 		switch(amount)
 			if(1 to 10)
@@ -53,7 +53,7 @@
 				msg = span_danger("Your [partname] hurts badly.")
 			if(91 to INFINITY)
 				flash_pain()
-				msg = span_highdanger("OH GOD! Your [partname] is hurting terribly!")
+				msg = span_userdanger("OH GOD! Your [partname] is hurting terribly!")
 	if(msg && (msg != last_pain_message || prob(10)))
 		last_pain_message = msg
 		to_chat(src, msg)
@@ -73,7 +73,7 @@
 		return
 
 	var/msg = span_danger("[message]")
-	if(flash_strength >= 1) msg = span_highdanger("[message]")
+	if(flash_strength >= 1) msg = span_userdanger("[message]")
 
 	// Anti message spam checks
 	if(msg && ((msg != last_pain_message) || (world.time >= next_pain_time)))

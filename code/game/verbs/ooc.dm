@@ -368,9 +368,11 @@
 	if(!mob)
 		return
 
+/*
 	if(mob.stat == DEAD && !admin)
 		to_chat(src, span_warning("You must be alive to use LOOC."))
 		return
+*/
 
 	if(IsGuestKey(key))
 		to_chat(src, "Guests may not use LOOC.")

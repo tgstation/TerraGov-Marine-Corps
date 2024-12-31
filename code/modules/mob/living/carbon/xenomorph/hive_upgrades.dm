@@ -134,8 +134,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	category = "Buildings"
 	///The type of building created
 	var/building_type
-	///The location to spawn the building at. Southwest of the xeno by default.
-	var/building_loc = SOUTHWEST
 	///Building time, in seconds. 10 by default.
 	var/building_time = 10 SECONDS
 
@@ -143,7 +141,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	. = ..()
 	if(!.)
 		return
-	var/turf/buildloc = get_step(buyer, building_loc)
+	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
 
@@ -169,12 +167,10 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 
-	var/turf/buildloc = get_step(buyer, building_loc)
-
-	var/atom/built = new building_type(buildloc, buyer.hivenumber)
+	var/atom/built = new building_type(get_turf(buyer), buyer.hivenumber)
 	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
-	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
-	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
+	log_game("[buyer] has built \a [built] in [AREACOORD(built)], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has built \a [built] at [get_area(built)]!", "xenoannounce", 5, buyer.hivenumber)
 	return ..()
 
 /datum/hive_upgrade/building/silo
@@ -190,7 +186,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
-	var/turf/buildloc = get_step(buyer, building_loc)
+	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
 
@@ -229,7 +225,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	gamemode_flags = ABILITY_NUCLEARWAR
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/pherotower
-	building_loc = 0 //This results in spawning the structure under the user.
 	building_time = 5 SECONDS
 
 /datum/hive_upgrade/building/spawner
@@ -255,7 +250,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
-	var/turf/buildloc = get_step(buyer, building_loc)
+	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
 
@@ -278,7 +273,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
-	var/turf/buildloc = get_step(buyer, building_loc)
+	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
 
@@ -305,7 +300,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
-	var/turf/buildloc = get_step(buyer, building_loc)
+	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
 

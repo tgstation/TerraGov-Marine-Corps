@@ -618,7 +618,7 @@
 	icon_state_mini = "mag_rifle_big"
 	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/bullet/rifle/som_big
-	max_rounds = 25
+	max_rounds = 20
 	bonus_overlay = "v35_mag"
 	magazine_flags = MAGAZINE_REFILLABLE|MAGAZINE_SHOW_AMMO
 

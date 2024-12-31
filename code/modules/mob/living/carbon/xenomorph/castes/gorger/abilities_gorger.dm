@@ -24,59 +24,57 @@
 			to_chat(owner, span_xenowarning("We can't drain this!"))
 		return FALSE
 
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/human/target_human = target
-	if(!owner_xeno.Adjacent(target_human))
+	if(!xeno_owner.Adjacent(target_human))
 		if(!silent)
-			to_chat(owner_xeno, span_notice("We need to be next to our meal."))
+			to_chat(xeno_owner, span_notice("We need to be next to our meal."))
 		return FALSE
 
 	if(target_human.stat == DEAD)
-		if(owner_xeno.do_actions)
+		if(xeno_owner.do_actions)
 			return FALSE
 		return TRUE
 
 	if(!.)
 		return
 
-	if(owner_xeno.plasma_stored >= owner_xeno.xeno_caste.plasma_max)
+	if(xeno_owner.plasma_stored >= xeno_owner.xeno_caste.plasma_max)
 		if(!silent)
-			to_chat(owner_xeno, span_xenowarning("No need, we feel sated for now..."))
+			to_chat(xeno_owner, span_xenowarning("No need, we feel sated for now..."))
 		return FALSE
 
-#define DO_DRAIN_ACTION(owner_xeno, target_human) \
-	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB);\
-	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] stabs [owner_xeno.p_their()] tail into [target_human]!"));\
+#define DO_DRAIN_ACTION(xeno_owner, target_human) \
+	xeno_owner.do_attack_animation(target_human, ATTACK_EFFECT_REDSTAB);\
+	xeno_owner.visible_message(target_human, span_danger("[xeno_owner] stabs its tail into [target_human]!"));\
 	playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE);\
 	target_human.emote("scream");\
 	target_human.apply_damage(damage = 4, damagetype = BRUTE, def_zone = BODY_ZONE_HEAD, blocked = 0, sharp = TRUE, edge = FALSE, updating_health = TRUE);\
 \
 	var/drain_healing = GORGER_DRAIN_HEAL;\
-	HEAL_XENO_DAMAGE(owner_xeno, drain_healing, TRUE);\
-	adjustOverheal(owner_xeno, drain_healing);\
-	owner_xeno.gain_plasma(owner_xeno.xeno_caste.drain_plasma_gain)
+	HEAL_XENO_DAMAGE(xeno_owner, drain_healing, TRUE);\
+	adjustOverheal(xeno_owner, drain_healing);\
+	xeno_owner.gain_plasma(xeno_owner.xeno_caste.drain_plasma_gain)
 
 /datum/action/ability/activable/xeno/drain/use_ability(mob/living/carbon/human/target_human)
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target_human.stat == DEAD)
 		var/overheal_gain = 0
-		while((owner_xeno.health < owner_xeno.maxHealth || owner_xeno.overheal < owner_xeno.xeno_caste.overheal_max) &&do_after(owner_xeno, 2 SECONDS, TRUE, target_human, BUSY_ICON_HOSTILE))
-			overheal_gain = owner_xeno.heal_wounds(2.2)
-			adjustOverheal(owner_xeno, overheal_gain)
-			owner_xeno.adjust_sunder(-2.5)
-		to_chat(owner_xeno, span_notice("We feel fully restored."))
+		while((xeno_owner.health < xeno_owner.maxHealth || xeno_owner.overheal < xeno_owner.xeno_caste.overheal_max) &&do_after(xeno_owner, 2 SECONDS, NONE, target_human, BUSY_ICON_HOSTILE))
+			overheal_gain = xeno_owner.heal_wounds(2.2)
+			adjustOverheal(xeno_owner, overheal_gain)
+			xeno_owner.adjust_sunder(-2.5)
+		to_chat(xeno_owner, span_notice("We feel fully restored."))
 		return
-	owner_xeno.face_atom(target_human)
-	owner_xeno.emote("roar")
-	owner_xeno.AdjustImmobilized(0.5 SECONDS)
-	ADD_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
+	xeno_owner.face_atom(target_human)
+	xeno_owner.emote("roar")
+	xeno_owner.AdjustImmobilized(0.5 SECONDS)
+	ADD_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, src)
 	for(var/i = 0; i < GORGER_DRAIN_INSTANCES; i++)
 		target_human.Immobilize(GORGER_DRAIN_DELAY)
-		if(!do_after(owner_xeno, GORGER_DRAIN_DELAY, FALSE, target_human, ignore_turf_checks = FALSE))
+		if(!do_after(xeno_owner, GORGER_DRAIN_DELAY, IGNORE_HELD_ITEM, target_human))
 			break
-		DO_DRAIN_ACTION(owner_xeno, target_human)
+		DO_DRAIN_ACTION(xeno_owner, target_human)
 
-	REMOVE_TRAIT(owner_xeno, TRAIT_HANDS_BLOCKED, src)
+	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, src)
 	target_human.blur_eyes(1)
 	add_cooldown()
 
@@ -147,7 +145,6 @@
 	return TRUE
 
 /datum/action/ability/activable/xeno/transfusion/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/xenomorph/target_xeno = target
 	var/heal_amount = target_xeno.maxHealth * GORGER_TRANSFUSION_HEAL
 	HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
@@ -157,7 +154,7 @@
 	adjustOverheal(target_xeno, heal_amount)
 	new /obj/effect/temp_visual/healing(get_turf(target_xeno))
 	if(target_xeno.overheal)
-		target_xeno.balloon_alert(owner_xeno, "Overheal: [target_xeno.overheal]/[target_xeno.xeno_caste.overheal_max]")
+		target_xeno.balloon_alert(xeno_owner, "Overheal: [target_xeno.overheal]/[target_xeno.xeno_caste.overheal_max]")
 	add_cooldown()
 	succeed_activate()
 
@@ -195,16 +192,15 @@
 
 /datum/action/ability/activable/xeno/oppose/use_ability(atom/A)
 	. = ..()
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	add_cooldown()
 	succeed_activate()
 
-	playsound(owner_xeno.loc, 'sound/effects/bang.ogg', 25, 0)
-	owner_xeno.visible_message(span_xenodanger("[owner_xeno] smashes her fists into the ground!"), \
+	playsound(xeno_owner.loc, 'sound/effects/bang.ogg', 25, 0)
+	xeno_owner.visible_message(span_xenodanger("[xeno_owner] smashes her fists into the ground!"), \
 	span_xenodanger("We smash our fists into the ground!"))
 
-	owner_xeno.create_stomp() //Adds the visual effects. Wom wom wom
-	new /obj/effect/temp_visual/oppose_shatter(get_turf(owner_xeno)) //shatter displays stagger range
+	xeno_owner.create_stomp() //Adds the visual effects. Wom wom wom
+	new /obj/effect/temp_visual/oppose_shatter(get_turf(xeno_owner)) //shatter displays stagger range
 
 	var/obj/effect/abstract/particle_holder/aoe_particles = new(owner.loc, /particles/bulwark_aoe/oppose_aoe) //particles display heal range
 	aoe_particles.particles.position = generator(GEN_SQUARE, 0, 16 + 3*32, LINEAR_RAND)
@@ -214,8 +210,8 @@
 	for(var/mob/living/M in oppose_range)
 		if(M.stat == DEAD)
 			continue
-		var/distance = get_dist(M, owner_xeno)
-		if(owner_xeno.issamexenohive(M))  //Xenos in range will be healed and overhealed, including you.
+		var/distance = get_dist(M, xeno_owner)
+		if(xeno_owner.issamexenohive(M))  //Xenos in range will be healed and overhealed, including you.
 			var/mob/living/carbon/xenomorph/target_xeno = M
 			var/heal_amount = M.maxHealth * GORGER_OPPOSE_HEAL
 			HEAL_XENO_DAMAGE(target_xeno, heal_amount, FALSE)
@@ -226,13 +222,13 @@
 				personal_statistics.heals++
 		else if(distance == 0) //if we're right on top of them, they take actual damage
 			M.take_overall_damage(20, BRUTE, MELEE, updating_health = TRUE, max_limbs = 3)
-			to_chat(M, span_highdanger("[owner_xeno] slams her fists into you, crushing you to the ground!"))
+			to_chat(M, span_userdanger("[xeno_owner] slams her fists into you, crushing you to the ground!"))
 			M.adjust_stagger(2 SECONDS)
 			M.adjust_slowdown(3)
 			shake_camera(M, 3, 3)
 		else if(distance <= 1) //marines will only be staggerslowed if they're one tile away from you
 			shake_camera(M, 2, 2)
-			to_chat(M, span_highdanger("Blood shatters the ground around you!"))
+			to_chat(M, span_userdanger("Blood shatters the ground around you!"))
 			M.adjust_stagger(2 SECONDS)
 			M.adjust_slowdown(3)
 
@@ -278,8 +274,7 @@
 		if(!silent)
 			to_chat(owner, span_notice("We can only link to familiar biological lifeforms."))
 		return FALSE
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.health <= owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
+	if(xeno_owner.health <= xeno_owner.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH)
 		if(!silent)
 			to_chat(owner, span_notice("You are too hurt to link."))
 		return FALSE
@@ -308,21 +303,19 @@
 	if(HAS_TRAIT(owner, TRAIT_PSY_LINKED) || HAS_TRAIT(target, TRAIT_PSY_LINKED))
 		return fail_activate()
 
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	var/psychic_link = owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, owner_xeno.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
+	var/psychic_link = xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK, -1, target, GORGER_PSYCHIC_LINK_RANGE, GORGER_PSYCHIC_LINK_REDIRECT, xeno_owner.maxHealth * GORGER_PSYCHIC_LINK_MIN_HEALTH, TRUE)
 	RegisterSignal(psychic_link, COMSIG_XENO_PSYCHIC_LINK_REMOVED, PROC_REF(status_removed))
-	target.balloon_alert(owner_xeno, "link successul")
-	owner_xeno.balloon_alert(target, "linked to [owner_xeno]")
-	if(!owner_xeno.resting)
-		owner_xeno.set_resting(TRUE, TRUE)
-	RegisterSignal(owner_xeno, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link))
+	target.balloon_alert(xeno_owner, "link successul")
+	xeno_owner.balloon_alert(target, "linked to [xeno_owner]")
+	if(!xeno_owner.resting)
+		xeno_owner.set_resting(TRUE, TRUE)
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_UNREST, PROC_REF(cancel_psychic_link))
 	succeed_activate()
 
 ///Removes the status effect on unrest
 /datum/action/ability/activable/xeno/psychic_link/proc/cancel_psychic_link(datum/source)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
+	xeno_owner.remove_status_effect(STATUS_EFFECT_XENO_PSYCHIC_LINK)
 
 ///Cancels the status effect
 /datum/action/ability/activable/xeno/psychic_link/proc/status_removed(datum/source)
@@ -358,18 +351,16 @@
 
 /datum/action/ability/activable/xeno/carnage/use_ability(atom/A)
 	. = ..()
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 10 SECONDS, owner_xeno.xeno_caste.carnage_plasma_gain, owner_xeno.maxHealth * GORGER_CARNAGE_HEAL, GORGER_CARNAGE_MOVEMENT)
+	xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_CARNAGE, 10 SECONDS, xeno_owner.xeno_caste.carnage_plasma_gain, xeno_owner.maxHealth * GORGER_CARNAGE_HEAL, GORGER_CARNAGE_MOVEMENT)
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/carnage/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.plasma_stored > owner_xeno.xeno_caste.plasma_max * 0.8 && owner_xeno.health > owner_xeno.maxHealth * 0.9)
+	if(xeno_owner.plasma_stored > xeno_owner.xeno_caste.plasma_max * 0.8 && xeno_owner.health > xeno_owner.maxHealth * 0.9)
 		return FALSE
 	// nothing gained by slashing allies
-	if(target.get_xeno_hivenumber() == owner_xeno.get_xeno_hivenumber())
+	if(target.get_xeno_hivenumber() == xeno_owner.get_xeno_hivenumber())
 		return FALSE
 	return can_use_ability(target, TRUE)
 
@@ -392,40 +383,37 @@
 
 /datum/action/ability/activable/xeno/feast/can_use_ability(atom/target, silent, override_flags)
 	. = ..()
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(TIMER_COOLDOWN_CHECK(owner_xeno, FEAST_MISCLICK_CD))
+	if(TIMER_COOLDOWN_CHECK(xeno_owner, FEAST_MISCLICK_CD))
 		return FALSE
-	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
+	if(xeno_owner.has_status_effect(STATUS_EFFECT_XENO_FEAST))
 		return TRUE
-	if(owner_xeno.plasma_stored < owner_xeno.xeno_caste.feast_plasma_drain * 10)
+	if(xeno_owner.plasma_stored < xeno_owner.xeno_caste.feast_plasma_drain * 10)
 		if(!silent)
-			to_chat(owner_xeno, span_notice("Not enough to begin a feast. We need [owner_xeno.xeno_caste.feast_plasma_drain * 10] blood."))
+			to_chat(xeno_owner, span_notice("Not enough to begin a feast. We need [xeno_owner.xeno_caste.feast_plasma_drain * 10] blood."))
 		return FALSE
 
 /datum/action/ability/activable/xeno/feast/use_ability(atom/A)
 	. = ..()
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
-		to_chat(owner_xeno, span_notice("We decide to end our feast early..."))
-		owner_xeno.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
+	if(xeno_owner.has_status_effect(STATUS_EFFECT_XENO_FEAST))
+		to_chat(xeno_owner, span_notice("We decide to end our feast early..."))
+		xeno_owner.remove_status_effect(STATUS_EFFECT_XENO_FEAST)
 		return
 
-	owner_xeno.emote("roar")
-	owner_xeno.visible_message(owner_xeno, span_notice("[owner_xeno] begins to overflow with vitality!"))
-	owner_xeno.apply_status_effect(STATUS_EFFECT_XENO_FEAST, GORGER_FEAST_DURATION, owner_xeno.xeno_caste.feast_plasma_drain)
+	xeno_owner.emote("roar")
+	xeno_owner.visible_message(xeno_owner, span_notice("[xeno_owner] begins to overflow with vitality!"))
+	xeno_owner.apply_status_effect(STATUS_EFFECT_XENO_FEAST, GORGER_FEAST_DURATION, xeno_owner.xeno_caste.feast_plasma_drain)
 	TIMER_COOLDOWN_START(src, FEAST_MISCLICK_CD, 2 SECONDS)
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/feast/ai_should_use(atom/target)
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	// cancel the buff when at full health to conserve plasma, otherwise don't cancel
-	if(owner_xeno.has_status_effect(STATUS_EFFECT_XENO_FEAST))
-		return owner_xeno.health == owner_xeno.maxHealth
+	if(xeno_owner.has_status_effect(STATUS_EFFECT_XENO_FEAST))
+		return xeno_owner.health == xeno_owner.maxHealth
 	// small damage has more efficient alternatives to be healed with
-	if(owner_xeno.health > owner_xeno.maxHealth * 0.7)
+	if(xeno_owner.health > xeno_owner.maxHealth * 0.7)
 		return FALSE
 	// should use the ability when there is enough resource for the buff to tick a moderate amount of times
-	if(owner_xeno.plasma_stored / owner_xeno.xeno_caste.feast_plasma_drain < 7)
+	if(xeno_owner.plasma_stored / xeno_owner.xeno_caste.feast_plasma_drain < 7)
 		return FALSE
 	return can_use_ability(target, TRUE)
 

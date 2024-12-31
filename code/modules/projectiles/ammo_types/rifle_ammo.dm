@@ -93,7 +93,7 @@
 	damage_falloff = 0.5
 	accurate_range = 18
 	max_range = 30
-	damage = 65
+	damage = 60
 	penetration = 20
 	sundering = 2
 

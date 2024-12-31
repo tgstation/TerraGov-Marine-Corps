@@ -90,6 +90,12 @@
 	animate(src, 7 SECONDS, easing = CIRCULAR_EASING|EASE_IN, alpha = initial(alpha))
 	addtimer(VARSET_CALLBACK(src, opacity, initial(opacity)), 5 SECONDS)
 
+/obj/effect/particle_effect/smoke/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PURGER && !(smoke_traits & SMOKE_PURGER))
+		lifetime -= 4
 
 /obj/effect/particle_effect/smoke/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
@@ -288,13 +294,6 @@
 	color = "#791697"
 	smoke_traits = SMOKE_PLASMALOSS
 
-/obj/effect/particle_effect/smoke/plasmaloss/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(!.)
-		return
-	if(S.smoke_traits & SMOKE_PURGER)
-		lifetime -= 4
-
 //////////////////////////////////////
 // ANTIGAS SMOKE
 ////////////////////////////////////
@@ -333,13 +332,6 @@
 	strength = 2
 	smoke_traits = SMOKE_BLISTERING|SMOKE_XENO_NEURO|SMOKE_OXYLOSS|SMOKE_GASP|SMOKE_COUGH
 
-/obj/effect/particle_effect/smoke/satrapine/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(!.)
-		return
-	if(S.smoke_traits & SMOKE_PURGER)
-		lifetime -= 4
-
 /////////////////////////////////////////
 // BOILER SMOKES
 /////////////////////////////////////////
@@ -356,8 +348,6 @@
 		return
 	if(S.smoke_traits & SMOKE_PLASMALOSS)
 		lifetime -= 2
-	if(S.smoke_traits & SMOKE_PURGER)
-		lifetime -= 4
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn

@@ -2376,17 +2376,18 @@ FACTORY
 /datum/supply_packs/factory/scout_rifle_magazine_refill
 	name = "BR-8 scout rifle magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_magazine_refill)
-	cost = 180
+	cost = 300
 
 /datum/supply_packs/factory/scout_rifle_incen_magazine_refill
 	name = "BR-8 scout rifle incendiary magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_incen_magazine_refill)
-	cost = 200
+	cost = 600
 
 /datum/supply_packs/factory/scout_rifle_impact_magazine_refill
 	name = "BR-8 scout rifle impact magazine assembly refill"
 	contains = list(/obj/item/factory_refill/scout_rifle_impact_magazine_refill)
-	cost = 200
+	cost = 600
+
 /datum/supply_packs/factory/claymorerefill
 	name = "Claymore parts refill"
 	contains = list(/obj/item/factory_refill/claymore_refill)

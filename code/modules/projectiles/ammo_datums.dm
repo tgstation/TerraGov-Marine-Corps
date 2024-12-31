@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			if(isxeno(victim))
 				impact_message += span_xenodanger("The blast knocks you off your feet!")
 			else
-				impact_message += span_highdanger("The blast knocks you off your feet!")
+				impact_message += span_userdanger("The blast knocks you off your feet!")
 			victim.knockback(proj, knockback, 5)
 
 	//Check for and apply soft CC
@@ -192,7 +192,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(proj.firer == victim)
 			continue
 		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
-			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
+			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_userdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
 		victim.apply_damage(proj.damage * airburst_multiplier, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE)
 
 ///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.visible_message(span_danger("[victim] bursts into flames as they are deflagrated by \a [proj.name]!"))
 		else
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
-				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
+				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_userdanger("you are scorched by [target] as they burst into flames!"))
 		//Damages the victims, inflicts brief stagger+slow, and ignites
 		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE)
 

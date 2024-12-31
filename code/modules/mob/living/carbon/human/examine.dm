@@ -607,7 +607,7 @@
 			msg += "Sanguinal: Causes brute damage and bleeding from the brute damage. Does additional damage types in the presence of other xeno-based toxins. Toxin damage for Neuro, Stamina damage for Hemodile, and Burn damage for Transvitox.\n"
 	if(has_status_effect(STATUS_EFFECT_ADMINSLEEP))
 		msg += separator_hr("[span_boldwarning("Admin Slept")]")
-		msg += span_highdanger("This player has been slept by staff. Best to leave them be.\n")
+		msg += span_userdanger("This player has been slept by staff. Best to leave them be.\n")
 
 	msg += "</span>"
 	return list(msg)

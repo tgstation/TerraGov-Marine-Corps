@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - rscadd: "Ghosts can now use looc"

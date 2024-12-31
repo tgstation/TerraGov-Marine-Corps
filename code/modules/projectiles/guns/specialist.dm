@@ -365,12 +365,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 0.4 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.2
+	accuracy_mult = 1.1
 	scatter = -3
 
 /obj/item/weapon/gun/rifle/tx8/scout
 	starting_attachment_types = list(
-		/obj/item/attachable/reddot,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/verticalgrip,
 	)
