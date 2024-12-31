@@ -14,45 +14,43 @@
 	use_state_flags = ABILITY_USE_LYING
 
 /datum/action/ability/xeno_action/hive_message/action_activate()
-	var/mob/living/carbon/xenomorph/queen/Q = owner
-
 	//Preferring the use of multiline input as the message box is larger and easier to quickly proofread before sending to hive.
-	var/input = stripped_multiline_input(Q, "Maximum message length: [MAX_BROADCAST_LEN]", "Hive Message", "", MAX_BROADCAST_LEN, TRUE)
+	var/input = stripped_multiline_input(xeno_owner, "Maximum message length: [MAX_BROADCAST_LEN]", "Hive Message", "", MAX_BROADCAST_LEN, TRUE)
 	//Newlines are of course stripped and replaced with a space.
 	input = capitalize(trim(replacetext(input, "\n", " ")))
 	if(!input)
 		return
 	var/filter_result = is_ic_filtered(input)
 	if(filter_result)
-		to_chat(Q, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
+		to_chat(xeno_owner, span_warning("That announcement contained a word prohibited in IC chat! Consider reviewing the server rules.\n<span replaceRegex='show_filtered_ic_chat'>\"[input]\"</span>"))
 		SSblackbox.record_feedback(FEEDBACK_TALLY, "ic_blocked_words", 1, lowertext(config.ic_filter_regex.match))
 		REPORT_CHAT_FILTER_TO_USER(src, filter_result)
 		log_filter("IC", input, filter_result)
 		return FALSE
 	if(NON_ASCII_CHECK(input))
-		to_chat(Q, span_warning("That announcement contained characters prohibited in IC chat! Consider reviewing the server rules."))
+		to_chat(xeno_owner, span_warning("That announcement contained characters prohibited in IC chat! Consider reviewing the server rules."))
 		return FALSE
 
-	log_game("[key_name(Q)] has messaged the hive with: \"[input]\"")
-	deadchat_broadcast(" has messaged the hive: \"[input]\"", Q, Q)
+	log_game("[key_name(xeno_owner)] has messaged the hive with: \"[input]\"")
+	deadchat_broadcast(" has messaged the hive: \"[input]\"", xeno_owner, xeno_owner)
 	var/queens_word = "<span class='maptext' style=font-size:18pt;text-align:center valign='top'><u>HIVE MESSAGE:</u><br></span>" + input
 
 	var/sound/queen_sound = sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS)
 	var/sound/king_sound = sound('sound/voice/alien/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
-	for(var/mob/living/carbon/xenomorph/X AS in Q.hive.get_all_xenos())
-		to_chat(X, assemble_alert(
+	for(var/mob/living/carbon/xenomorph/xeno AS in xeno_owner.hive.get_all_xenos())
+		to_chat(xeno, assemble_alert(
 			title = "Hive Announcement",
-			subtitle = "From [Q.name]",
+			subtitle = "From [xeno_owner.name]",
 			message = input,
 			color_override = "purple"
 		))
-		switch(Q.caste_base_type) // TODO MAKE DYING SOUND A CASTE VAR????
+		switch(xeno_owner.caste_base_type) // TODO MAKE DYING SOUND A CASTE VAR????
 			if(/datum/xeno_caste/queen, /datum/xeno_caste/shrike)
-				SEND_SOUND(X, queen_sound)
+				SEND_SOUND(xeno, queen_sound)
 			if(/datum/xeno_caste/king)
-				SEND_SOUND(X, king_sound)
+				SEND_SOUND(xeno, king_sound)
 		//Display the ruler's hive message at the top of the game screen.
-		X.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
+		xeno.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
 
 	succeed_activate()
 	add_cooldown()
@@ -81,8 +79,6 @@
 	return ..()
 
 /datum/action/ability/activable/xeno/screech/use_ability(atom/A)
-	var/mob/living/carbon/xenomorph/queen/xeno_owner = owner
-
 	switch(selected_screech)
 		if("screech")
 			// Screech is so powerful it kills huggers in our hands.
@@ -313,33 +309,30 @@
 
 
 /datum/action/ability/xeno_action/toggle_queen_zoom/action_activate()
-	var/mob/living/carbon/xenomorph/queen/xeno = owner
-	if(xeno.do_actions)
+	if(xeno_owner.do_actions)
 		return
-	if(xeno.xeno_flags & XENO_ZOOMED)
-		zoom_xeno_out(xeno.observed_xeno ? FALSE : TRUE)
+	if(xeno_owner.xeno_flags & XENO_ZOOMED)
+		zoom_xeno_out(xeno_owner.observed_xeno ? FALSE : TRUE)
 		return
-	if(!do_after(xeno, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (xeno.xeno_flags & XENO_ZOOMED))
+	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_HELD_ITEM, null, BUSY_ICON_GENERIC) || (xeno_owner.xeno_flags & XENO_ZOOMED))
 		return
-	zoom_xeno_in(xeno.observed_xeno ? FALSE : TRUE) //No need for feedback message if our eye is elsewhere.
+	zoom_xeno_in(xeno_owner.observed_xeno ? FALSE : TRUE) //No need for feedback message if our eye is elsewhere.
 
 
 /datum/action/ability/xeno_action/toggle_queen_zoom/proc/zoom_xeno_in(message = TRUE)
-	var/mob/living/carbon/xenomorph/xeno = owner
-	RegisterSignal(xeno, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement))
 	if(message)
-		xeno.visible_message(span_notice("[xeno] emits a broad and weak psychic aura."),
+		xeno_owner.visible_message(span_notice("[xeno_owner] emits a broad and weak psychic aura."),
 		span_notice("We start focusing our psychic energy to expand the reach of our senses."), null, 5)
-	xeno.zoom_in(0, 12)
+	xeno_owner.zoom_in(0, 12)
 
 
 /datum/action/ability/xeno_action/toggle_queen_zoom/proc/zoom_xeno_out(message = TRUE)
-	var/mob/living/carbon/xenomorph/xeno = owner
-	UnregisterSignal(xeno, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	if(message)
-		xeno.visible_message(span_notice("[xeno] stops emitting its broad and weak psychic aura."),
+		xeno_owner.visible_message(span_notice("[xeno_owner] stops emitting its broad and weak psychic aura."),
 		span_notice("We stop the effort of expanding our senses."), null, 5)
-	xeno.zoom_out()
+	xeno_owner.zoom_out()
 
 
 /datum/action/ability/xeno_action/toggle_queen_zoom/proc/on_movement(datum/source, atom/oldloc, direction, Forced)
@@ -375,43 +368,39 @@
 
 /// Check if there is an empty slot and promote the passed xeno to a hive leader
 /datum/action/ability/xeno_action/set_xeno_lead/proc/select_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
-	var/mob/living/carbon/xenomorph/queen/xeno_ruler = owner
-
 	if(selected_xeno.xeno_flags & XENO_LEADER)
 		unset_xeno_leader(selected_xeno)
 		return
 
-	if(xeno_ruler.xeno_caste.queen_leader_limit <= length(xeno_ruler.hive.xeno_leader_list))
-		xeno_ruler.balloon_alert(xeno_ruler, "No more leadership slots")
+	if(xeno_owner.xeno_caste.queen_leader_limit <= length(xeno_owner.hive.xeno_leader_list))
+		xeno_owner.balloon_alert(xeno_owner, "No more leadership slots")
 		return
 
 	set_xeno_leader(selected_xeno)
 
 /// Remove the passed xeno's leadership
 /datum/action/ability/xeno_action/set_xeno_lead/proc/unset_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
-	var/mob/living/carbon/xenomorph/xeno_ruler = owner
-	xeno_ruler.balloon_alert(xeno_ruler, "Xeno demoted")
+	xeno_owner.balloon_alert(xeno_owner, "Xeno demoted")
 	selected_xeno.balloon_alert(selected_xeno, "Leadership removed")
 	selected_xeno.hive.remove_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
-	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
+	selected_xeno.handle_xeno_leader_pheromones(xeno_owner)
 
 	selected_xeno.update_leader_icon(FALSE)
 
 /// Promote the passed xeno to a hive leader, should not be called direct
 /datum/action/ability/xeno_action/set_xeno_lead/proc/set_xeno_leader(mob/living/carbon/xenomorph/selected_xeno)
-	var/mob/living/carbon/xenomorph/xeno_ruler = owner
 	if(!(selected_xeno.xeno_caste.can_flags & CASTE_CAN_BE_LEADER))
-		xeno_ruler.balloon_alert(xeno_ruler, "Xeno cannot lead")
+		xeno_owner.balloon_alert(xeno_owner, "Xeno cannot lead")
 		return
-	xeno_ruler.balloon_alert(xeno_ruler, "Xeno promoted")
+	xeno_owner.balloon_alert(xeno_owner, "Xeno promoted")
 	selected_xeno.balloon_alert(selected_xeno, "Promoted to leader")
-	to_chat(selected_xeno, span_xenoannounce("[xeno_ruler] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones."))
+	to_chat(selected_xeno, span_xenoannounce("[xeno_owner] has selected us as a Hive Leader. The other Xenomorphs must listen to us. We will also act as a beacon for the Queen's pheromones."))
 
-	xeno_ruler.hive.add_leader(selected_xeno)
+	xeno_owner.hive.add_leader(selected_xeno)
 	selected_xeno.hud_set_queen_overwatch()
-	selected_xeno.handle_xeno_leader_pheromones(xeno_ruler)
-	notify_ghosts("\ [xeno_ruler] has designated [selected_xeno] as a Hive Leader", source = selected_xeno, action = NOTIFY_ORBIT)
+	selected_xeno.handle_xeno_leader_pheromones(xeno_owner)
+	notify_ghosts("\ [xeno_owner] has designated [selected_xeno] as a Hive Leader", source = selected_xeno, action = NOTIFY_ORBIT)
 
 	selected_xeno.update_leader_icon(TRUE)
 
@@ -501,8 +490,7 @@
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma")
 			return FALSE
-	var/mob/living/carbon/xenomorph/giver = owner
-	if(giver.z != receiver.z)
+	if(xeno_owner.z != receiver.z)
 		if(!silent)
 			receiver.balloon_alert(owner, "Cannot give plasma, too far")
 		return FALSE

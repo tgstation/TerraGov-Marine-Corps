@@ -101,3 +101,31 @@
   - code_imp: All highdanger spans have been renamed to userdanger in the code
   - qol: Admin announcements and roundend boxes are under the OOC category, so they
       will appear in chat tabs with OOC enabled
+2024-12-25:
+  Lumipharon:
+  - rscadd: 'Campaign: Added Re-Grow to advanced med secondary kit, allowing for regeneration
+      of missing limbs'
+  - bugfix: 'Campaign: Fixed a couple of minor secondary kit bugs'
+  blackdav123:
+  - balance: Moved research digsites on Kutjevo to be less marine sided.
+2024-12-26:
+  yyzsong:
+  - balance: ravager can rage and endure in solid objects now
+2024-12-27:
+  Lumipharon:
+  - bugfix: Xeno structures actually build on your location instead of to the south
+      west
+  - balance: Minisentry deploy/undeploy time changed from 3 seconds to 1 second
+  - bugfix: fixed deployables using deploy time for undeploying instead of undeploy
+      time
+  - bugfix: fixed an ammo duplication exploit with the tank vendor
+  - balance: 'Campaign: V-35 reduced mag capacity and normal ammo reduced from 65
+      to 60 damage'
+  jonash07:
+  - admin: Added game logs for the flag
+2024-12-28:
+  blackdav123:
+  - qol: Marine and SOM medical belts now have meds organized in the same order.
+2024-12-30:
+  Technical-l:
+  - balance: adjusts fog zones and cave width on icy caves

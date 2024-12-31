@@ -6,6 +6,10 @@
 	icon_state = "spawner"
 	bound_width = 96
 	bound_height = 96
+	bound_x = -32
+	bound_y = -32
+	pixel_x = -32
+	pixel_y = -24
 	max_integrity = 500
 	resistance_flags = UNACIDABLE | DROPSHIP_IMMUNE
 	xeno_structure_flags = IGNORE_WEED_REMOVAL|CRITICAL_STRUCTURE|XENO_STRUCT_WARNING_RADIUS|XENO_STRUCT_DAMAGE_ALERT
