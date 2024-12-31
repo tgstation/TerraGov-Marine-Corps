@@ -219,13 +219,10 @@
 		if(frequency == FREQ_COMMAND || frequency == FREQ_COMMAND_SOM)
 			is_speaker_command_freq = TRUE
 
-		if(speaker in receive)
-			receive -= speaker //This list isn't used again, so we can just cut out the original speaker from it so TTS doesn't play twice
-
 		var/list/list_of_listeners = list()
 		for(var/mob/living/carbon/human/potential_hearer in receive)
 			var/prefs = potential_hearer.client?.prefs
-			if(!prefs || prefs.sound_tts == SOUND_OFF || potential_hearer.stat >= UNCONSCIOUS || potential_hearer == speaker || isdeaf(potential_hearer))
+			if(!prefs || prefs.sound_tts == SOUND_OFF || potential_hearer.stat >= UNCONSCIOUS || isdeaf(potential_hearer))
 				continue
 
 			var/radio_flags = prefs.radio_tts_flags
