@@ -386,10 +386,6 @@
 "cc" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/yard/west)
-"ce" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south)
 "cf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24983,7 +24979,7 @@ BJ
 BJ
 Js
 yW
-ce
+hK
 hK
 hK
 hK
