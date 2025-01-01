@@ -110,7 +110,7 @@
 	caste_desc = "Gross! The large creature is venting a hot steam."
 
 		// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 0.5 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/airburst, /datum/ammo/xeno/acid/airburst/heavy)
 
 	actions = list(
