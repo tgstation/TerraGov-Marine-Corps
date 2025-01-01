@@ -1,0 +1,6 @@
+2025-01-01:
+  Runian:
+  - balance: In Crash, marines do not add job points for xenomorphs if there are too
+      many xenomorphs.
+  yyzsong:
+  - balance: The nuke room on Research Outpost may no longer also have a disk.
