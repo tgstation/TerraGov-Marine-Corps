@@ -1,4 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - balance: "In Crash, marines do not add job points for xenomorphs if there are too many xenomorphs."

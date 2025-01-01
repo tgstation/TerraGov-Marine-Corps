@@ -1,0 +1,7 @@
+2025-01-01:
+  Meghan-Rossi:
+  - rscadd: Ghosts can now use looc
+  - rscadd: You can now emote while devoured.
+  Runian:
+  - balance: In Crash, marines do not add job points for xenomorphs if there are too
+      many xenomorphs.
