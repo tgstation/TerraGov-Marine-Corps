@@ -356,7 +356,7 @@ SUBSYSTEM_DEF(tts)
 	/// If false, play at full volume to each listener, regardless of distance
 	var/directionality = TRUE
 
-/datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch)
+/datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch, directionality)
 	. = ..()
 	src.identifier = identifier
 	src.request = request
