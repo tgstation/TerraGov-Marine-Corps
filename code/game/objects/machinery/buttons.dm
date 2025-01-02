@@ -291,8 +291,7 @@
 		if(istype(type, /datum/outfit))
 			continue
 		var/datum/outfit/out = type
-		if(initial(out.can_be_admin_equipped))
-			job_outfits[initial(out.name)] = out
+		job_outfits[initial(out.name)] = out
 
 	job_outfits = sortList(job_outfits)
 	job_outfits.Insert(1, "Naked")
