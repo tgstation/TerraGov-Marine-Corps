@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(tts)
 		var/audio_to_use = (tts_pref == TTS_SOUND_BLIPS) ? audio_blips : audio
 		if(!holder.has_language(language))
 			continue
-		listening_mob.playsound_local(get_turf(listening_mob), soundin = audio_to_use, vol = volume_to_play_at, channel = channel)
+		listening_mob.playsound_local(null, soundin = audio_to_use, vol = volume_to_play_at, channel = channel)
 
 // Need to wait for all HTTP requests to complete here because of a rustg crash bug that causes crashes when dd restarts whilst HTTP requests are ongoing.
 /datum/controller/subsystem/tts/Shutdown()
