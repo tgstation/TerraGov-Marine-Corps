@@ -219,6 +219,8 @@
 		if(frequency == FREQ_COMMAND || frequency == FREQ_COMMAND_SOM)
 			is_speaker_command_freq = TRUE
 
+		receive -= speaker //Speaker shouldn't be able to hear themselves over radio
+
 		var/list/list_of_listeners = list()
 		for(var/mob/living/carbon/human/potential_hearer in receive)
 			var/datum/preferences/prefs = potential_hearer.client?.prefs
@@ -241,7 +243,7 @@
 				continue
 
 		if(length(list_of_listeners))
-			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), speaker, html_decode(message), language, speaker.voice, speaker.voice_filter, list_of_listeners, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), speaker, html_decode(message), language, speaker.voice, speaker.voice_filter, list_of_listeners, TRUE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE, play_to_speaker = FALSE)
 
 
 	var/spans_part = ""
