@@ -241,7 +241,7 @@
 				continue
 
 		if(length(list_of_listeners))
-			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), speaker, html_decode(message), language, speaker.voice, speaker.voice_filter, list_of_listeners, TRUE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), speaker, html_decode(message), language, speaker.voice, speaker.voice_filter, list_of_listeners, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE)
 
 
 	var/spans_part = ""
