@@ -249,7 +249,7 @@ SUBSYSTEM_DEF(tts)
 				if(current_target.play_to_speaker && !(current_target.target in current_target.listeners))
 					current_target.listeners += current_target.target
 				for(var/mob/target in current_target.listeners)
-					audio_file = target.client?.prefs.sound_tts == TTS_SOUND_BLIP ? new(current_target.audio_file_blips) : new(current_target.audio_file)
+					audio_file = target.client?.prefs.sound_tts == TTS_SOUND_BLIPS? new(current_target.audio_file_blips) : new(current_target.audio_file)
 					SEND_SOUND(target, audio_file)
 				SHIFT_DATA_ARRAY(queued_tts_messages, tts_target, data)
 
