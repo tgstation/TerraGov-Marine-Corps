@@ -1,5 +1,5 @@
 #define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
-#define SPLINT_BURN_DAMAGE_MULTIPLIER 1.75
+#define BURN_SPLINT_DAMAGE_MULT 1.75
 /****************************************************
 				EXTERNAL ORGANS
 ****************************************************/
