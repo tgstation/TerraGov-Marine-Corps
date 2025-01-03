@@ -134,6 +134,13 @@
 	rounds = 100
 	ammo_type = MECHA_AMMO_LIGHTCANNON
 
+/obj/item/mecha_ammo/vendable/smartgun
+	name = "box of smart autocannon bullets"
+	desc = "A box of smart autocannon bullets. You don't see what's so smart about these bullets"
+	icon_state = "smartgun_ammo"
+	rounds = 200
+	ammo_type = MECHA_AMMO_SMARTGUN
+
 /obj/item/mecha_ammo/vendable/heavycannon
 	name = "heavy cannon shell"
 	desc = "A massive tank shell for loading into mech cannons."

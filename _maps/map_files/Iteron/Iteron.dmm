@@ -996,11 +996,11 @@
 	},
 /area/mainship/patrol_base/hanger)
 "oe" = (
-/obj/machinery/vending/mech_vendor,
 /obj/effect/turf_decal/warning_stripes/thin,
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 1
 	},
+/obj/machinery/vending/mech_vendor/tgmc,
 /turf/open/floor/prison/plate,
 /area/mainship/patrol_base)
 "oj" = (
