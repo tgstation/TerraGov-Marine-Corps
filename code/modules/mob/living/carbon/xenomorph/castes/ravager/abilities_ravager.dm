@@ -391,7 +391,7 @@
 	xeno_owner.add_filter("ravager_rage_outline", 5, outline_filter(1.5, COLOR_RED)) //Set our cool aura; also confirmation we have the buff
 
 	rage_plasma = min(xeno_owner.xeno_caste.plasma_max - xeno_owner.plasma_stored, xeno_owner.xeno_caste.plasma_max * rage_power) //Calculate the plasma to restore (and take away later)
-	xeno_owner.plasma_stored += rage_plasma //Regain a % of our maximum plasma scaling with rage
+	xeno_owner.gain_plasma(rage_plasma)
 
 	rage_sunder = min(xeno_owner.sunder, rage_power * 100) //Set our temporary Sunder recovery
 	xeno_owner.adjust_sunder(-1 * rage_sunder) //Restores up to 50 Sunder temporarily.
