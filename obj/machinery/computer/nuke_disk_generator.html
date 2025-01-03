@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;obj&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="obj/machinery/computer/nuke_disk_generator.html#var">Var Details</a> - <a href="obj/machinery/computer/nuke_disk_generator.html#proc">Proc Details</a></header>
+<main>
+<h1>nuke_disk_generator <aside>/<a href="obj.html">obj</a>/<a href="obj/machinery.html">machinery</a>/<a href="obj/machinery/computer.html">computer</a>/<a href="obj/machinery/computer/nuke_disk_generator.html">nuke_disk_generator</a></aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L7">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 7"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/busy">busy</a></th><td>Check if someone is printing already</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/completed_segments">completed_segments</a></th><td>What segment we are on, (once this hits total, disk is printed)</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/current_timer">current_timer</a></th><td>The current ID of the timer running</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/disk_color">disk_color</a></th><td>For designating minimap color icon</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/disk_type">disk_type</a></th><td>The type of disk we're printing</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/message">message</a></th><td>The flavor message that shows up in the UI upon segment completion</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/printing_time">printing_time</a></th><td>Time to print a disk</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/running">running</a></th><td>Is a segment currently running?</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/seconds_elapsed">seconds_elapsed</a></th><td>Overall seconds elapsed</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/segment_time">segment_time</a></th><td>Time needed for the machine to generate the disc</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/start_time">start_time</a></th><td>Time to start a segment</td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#var/total_segments">total_segments</a></th><td>Total number of times the hack is required</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="obj/machinery/computer/nuke_disk_generator.html#proc/update_minimap_icon">update_minimap_icon</a></th><td>Change minimap icon if its on or off</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/busy"><aside class="declaration">var </aside>busy
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L35">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 35"/></a></h3>
+        <p>Check if someone is printing already</p><h3 id="var/completed_segments"><aside class="declaration">var </aside>completed_segments
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L28">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 28"/></a></h3>
+        <p>What segment we are on, (once this hits total, disk is printed)</p><h3 id="var/current_timer"><aside class="declaration">var </aside>current_timer
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L30">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 30"/></a></h3>
+        <p>The current ID of the timer running</p><h3 id="var/disk_color"><aside class="declaration">var </aside>disk_color
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L51">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 51"/></a></h3>
+        <p>For designating minimap color icon</p><h3 id="var/disk_type"><aside class="declaration">var </aside>disk_type
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L40">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 40"/></a></h3>
+        <p>The type of disk we're printing</p><h3 id="var/message"><aside class="declaration">var </aside>message
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L54">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 54"/></a></h3>
+        <p>The flavor message that shows up in the UI upon segment completion</p><h3 id="var/printing_time"><aside class="declaration">var </aside>printing_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L23">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 23"/></a></h3>
+        <p>Time to print a disk</p><h3 id="var/running"><aside class="declaration">var </aside>running
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L37">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 37"/></a></h3>
+        <p>Is a segment currently running?</p><h3 id="var/seconds_elapsed"><aside class="declaration">var </aside>seconds_elapsed
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L32">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 32"/></a></h3>
+        <p>Overall seconds elapsed</p><h3 id="var/segment_time"><aside class="declaration">var </aside>segment_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L19">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 19"/></a></h3>
+        <p>Time needed for the machine to generate the disc</p><h3 id="var/start_time"><aside class="declaration">var </aside>start_time
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L21">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 21"/></a></h3>
+        <p>Time to start a segment</p><h3 id="var/total_segments"><aside class="declaration">var </aside>total_segments
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L26">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 26"/></a></h3>
+        <p>Total number of times the hack is required</p><h2 id="proc">Proc Details</h2><h3 id="proc/update_minimap_icon"><aside class="declaration">proc </aside>update_minimap_icon<aside>() 
+        
+    
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/2ac5b7481d167f20582e434d76b192d9758abcc9/code/game/objects/machinery/computer/nuke_disk_generator.dm#L186">
+        <img src="git.png" width="16" height="16" title="code&#x2F;game&#x2F;objects&#x2F;machinery&#x2F;computer&#x2F;nuke_disk_generator.dm 186"/></a></aside>
+        </h3>
+        <p>Change minimap icon if its on or off</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/2ac5b7481d167f20582e434d76b192d9758abcc9">2ac5b74</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
