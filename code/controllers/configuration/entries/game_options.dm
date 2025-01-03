@@ -110,6 +110,8 @@
 	max_val = 30 MINUTES
 	min_val = 0
 
+/datum/config_entry/flag/tts_no_whisper
+
 /datum/config_entry/string/tts_http_url
 	protection = CONFIG_ENTRY_LOCKED
 
