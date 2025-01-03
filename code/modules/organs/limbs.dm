@@ -1,5 +1,5 @@
 #define LIMB_MAX_DAMAGE_SEVER_RATIO 0.8
-
+#define SPLINT_BURN_DAMAGE_MULTIPLIER 1.75
 /****************************************************
 				EXTERNAL ORGANS
 ****************************************************/
@@ -208,7 +208,7 @@
 			to_chat(owner, span_userdanger("The splint on your [display_name] comes apart!"))
 			playsound(owner, 'sound/items/splint_break.ogg', 100, sound_range = 1, falloff = 5)
 		else
-			splint_health = max(splint_health - (brute + burn), 0)
+			splint_health = max(splint_health - (brute + burn*BURN_SPLINT_DAMAGE_MULT), 0)
 
 
 	var/can_cut = (prob(brute*2) || sharp) && !(limb_status & LIMB_ROBOT)
