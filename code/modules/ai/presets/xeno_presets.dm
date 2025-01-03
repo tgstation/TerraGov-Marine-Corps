@@ -100,6 +100,12 @@
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
 
+/mob/living/carbon/xenomorph/boiler/sizzler/ai
+
+/mob/living/carbon/xenomorph/boiler/sizzler/ai/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/xeno)
+
 /mob/living/carbon/xenomorph/nymph/ai
 
 /mob/living/carbon/xenomorph/nymph/ai/Initialize()
