@@ -225,7 +225,7 @@
 
 		var/list/list_of_listeners = list()
 		for(var/mob/living/carbon/human/potential_hearer in receive)
-			if(potential_hearer.stat >= UNCONSCIOUS || !(potential_hearer.client?.prefs.sound_tts != TTS_SOUND_OFF) || potential_hearer == speaker || isdeaf(potential_hearer))
+			if(potential_hearer.stat >= UNCONSCIOUS || !(potential_hearer.client?.prefs.sound_tts != TTS_SOUND_OFF) || isdeaf(potential_hearer))
 				continue
 
 			var/radio_flags = potential_hearer?.client?.prefs?.radio_tts_flags
@@ -239,7 +239,7 @@
 				list_of_listeners += potential_hearer
 				continue
 
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), speaker, html_decode(message), language, speaker.voice, speaker.voice_filter, list_of_listeners, TRUE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), speaker, html_decode(message), language, speaker.voice, speaker.voice_filter, list_of_listeners, FALSE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE)
 
 	var/spans_part = ""
 	if(length(spans))
