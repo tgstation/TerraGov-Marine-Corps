@@ -182,8 +182,17 @@
 		I.take_damage(brute / 2)
 		brute -= brute / 2
 
-	if(limb_status & LIMB_BROKEN && prob(40) && brute)
-		if(!(owner.species && (owner.species.species_flags & NO_PAIN)))
+	if((limb_status & LIMB_BROKEN) && brute)
+		if(internal_organs && !(limb_status & LIMB_SPLINTED))
+			var/datum/internal_organ/I = pick(internal_organs)
+			owner.custom_pain("You feel broken bones dislodging in your [display_name]!", 1)
+			var/damage_taken = (brute/4) * 1+(I.damage/3) //Damage inflicted scales with how damaged the organ already is
+			I.take_damage(damage_taken)
+			owner.traumatic_shock += damage_taken
+			playsound(owner, pick('sound/effects/organ_damage1.ogg', 'sound/effects/organ_damage2.ogg'), 80, sound_range = 1, falloff = 5)
+			owner.emote("pain")
+
+		else if(prob(40) && !(owner.species && (owner.species.species_flags & NO_PAIN)))
 			owner.emote("scream") //Getting hit on broken hand hurts
 
 	//Possibly trigger an internal wound, too.
