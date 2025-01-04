@@ -432,8 +432,9 @@
 			to_chat(M, message)
 	else
 		message = span_looc("[span_prefix("LOOC:")] [mob.name]: [span_message("[msg]")]")
-		for(var/mob/M in range(mob))
-			to_chat(M, message)
+		for(var/mob/M in GLOB.player_list)
+			if(get_dist(M,mob) <= world.view)
+				to_chat(M, message)
 
 	for(var/client/C AS in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)
