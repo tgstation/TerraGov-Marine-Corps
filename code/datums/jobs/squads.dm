@@ -367,11 +367,13 @@
 	for(var/mob/living/marine AS in marines_list)
 		marine.playsound_local(marine, sound, 35)
 		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, message_type, message_color)
-	if(sender?.voice && SStts.tts_enabled)
-		var/list/extra_filters = list(TTS_FILTER_RADIO)
-		if(isrobot(sender))
-			extra_filters += TTS_FILTER_SILICON
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), sender, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, marines_list, TRUE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
+	var/list/tts_listeners = filter_tts_listeners(sender, marines_list, radio_freq, RADIO_TTS_COMMAND)
+	if(!length(tts_listeners))
+		return
+	var/list/extra_filters = list(TTS_FILTER_RADIO)
+	if(isrobot(sender))
+		extra_filters += TTS_FILTER_SILICON
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), sender, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, tts_listeners, FALSE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
 
 /datum/squad/proc/check_entry(datum/job/job)
 	if(!(job.title in current_positions))

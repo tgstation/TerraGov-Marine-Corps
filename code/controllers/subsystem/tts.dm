@@ -426,3 +426,67 @@ SUBSYSTEM_DEF(tts)
 			return request.is_complete()
 	else
 		return request.is_complete() && request_blips.is_complete()
+
+///Returns a list of valid listeners for a remote tts message
+/*
+* Returns a list of valid listeners for a remote tts message
+* tts_flags will check if listners have the same tts pref flag(s), but radio tts will simply apply if radio_frequency is specified
+**/
+/proc/filter_tts_listeners(atom/movable/speaker, list/listeners, radio_frequency = null, tts_flags = NONE)
+	if(!SStts.tts_enabled || !speaker || !speaker.voice)
+		return
+	if(ismob(speaker))
+		var/mob/potential_user = speaker
+		if(is_banned_from(potential_user.ckey, "TTS") || potential_user.client?.prefs.muted & MUTE_TTS)
+			return
+
+	var/list/filtered_listeners = list()
+	for(var/mob/listener AS in listeners)
+		if(listener.stat >= UNCONSCIOUS || !(listener.client?.prefs.sound_tts != TTS_SOUND_OFF) || isdeaf(listener))
+			continue
+		var/listener_prefs = listener?.client?.prefs?.radio_tts_flags
+		if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_ALL)) //universal tts on
+			filtered_listeners += listener
+			continue
+		for(var/tts_pref in GLOB.all_radio_tts_options) //a matching pref
+			if(CHECK_BITFIELD(tts_flags, tts_pref) && CHECK_BITFIELD(listener_prefs, tts_pref))
+				filtered_listeners += listener
+				continue
+		if(radio_frequency && ishuman(listener))
+			var/mob/living/carbon/human/human_listener = listener
+			if(human_listener.assigned_squad?.radio_freq == radio_frequency)
+				if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_SQUAD))
+					filtered_listeners += listener
+					continue
+				if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_SL) && human_listener.assigned_squad?.squad_leader == speaker)
+					filtered_listeners += listener
+					continue
+
+	return filtered_listeners
+
+
+	/*
+	var/list/filtered_listeners = listeners.Copy()
+	filtered_listeners -= speaker
+	for(var/mob/listener AS in listeners)
+		if(listener.stat >= UNCONSCIOUS || !(listener.client?.prefs.sound_tts != TTS_SOUND_OFF) || isdeaf(listener))
+			filtered_listeners -= listener
+			continue
+		var/listener_prefs = listener?.client?.prefs?.radio_tts_flags
+		if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_ALL)) //universal tts on
+			continue
+		for(var/tts_pref in all_radio_tts_options) //a matching pref
+			if(CHECK_BITFIELD(tts_flags, tts_pref) && CHECK_BITFIELD(listener_prefs, tts_pref))
+				continue
+		if(radio_frequency && ishuman(listener))
+			var/mob/living/carbon/human/human_listener = listener
+			if(human_listener.assigned_squad?.radio_freq == radio_frequency)
+				if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_SQUAD))
+					continue
+				if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_SL) && human_listener.assigned_squad?.squad_leader == speaker)
+					continue
+
+		filtered_listeners -= listener
+
+	return filtered_listeners
+	**/

@@ -44,7 +44,7 @@ export const GameSettings = (props) => {
     data;
 
   // Remember to update this alongside defines
-  const TTSRadioSetting = ['sl', 'squad', 'command', 'all'];
+  const TTSRadioSetting = ['sl', 'squad', 'command', 'hivemind', 'all'];
   const TTSRadioSettingToBitfield = {
     sl: 1 << 0,
     squad: 1 << 1,
@@ -55,6 +55,7 @@ export const GameSettings = (props) => {
     sl: 'Squad Leader',
     squad: 'Squad',
     command: 'Command',
+    hivemind: 'Hivemind'
     all: 'All Channels',
   };
 

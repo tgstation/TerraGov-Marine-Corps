@@ -52,13 +52,14 @@
 		var/track = FOLLOW_LINK(ghost, src)
 		ghost.show_message("[track] [hivemind_start()] [span_message("hisses, <b>'[message]'</b>")][hivemind_end()]", 2)
 
-	var/list/listened = list()
+	var/list/tts_listeners = list()
 	for(var/mob/living/carbon/xenomorph/sister AS in hive.get_all_xenos())
 		if(sister.receive_hivemind_message(src, message))
-			listened += sister
-	if(SStts.tts_enabled && length(listened) && voice)
+			tts_listeners += sister
+	tts_listeners = filter_tts_listeners(src, tts_listeners, tts_flags = RADIO_TTS_HIVEMIND)
+	if(length(tts_listeners))
 		var/list/treated_message = treat_message(message)
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, treated_message["tts_message"], get_default_language(), voice, voice_filter, listened, TRUE, pitch = pitch, directionality = FALSE)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, treated_message["tts_message"], get_default_language(), voice, voice_filter, tts_listeners, FALSE, pitch = pitch, directionality = FALSE)
 
 	return TRUE
 
