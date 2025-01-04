@@ -7,3 +7,7 @@
 2025-01-02:
   Lumipharon:
   - rscadd: Added a shield bash skill, mainly for HvH
+2025-01-04:
+  blackdav123:
+  - bugfix: ICC leaders will now spawn with their guns and ammo.
+  - balance: ICC now have more meds and fewer empty inventory slots.
