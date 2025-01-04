@@ -37,11 +37,6 @@
 		E.process(multi_limb_regen_penalty)
 
 		if(!lying_angle && world.time - last_move_time < 15)
-			if(E.is_broken() && E.internal_organs && prob(15))
-				var/datum/internal_organ/I = pick(E.internal_organs)
-				custom_pain("You feel broken bones moving in your [E.display_name]!", 1)
-				I.take_damage(rand(3,5))
-
 			//Moving makes open wounds get infected much faster
 			if(!(E.limb_wound_status & LIMB_WOUND_DISINFECTED) && E.brute_dam >= 20)
 				if(prob((E.brute_dam - (E.limb_wound_status & LIMB_WOUND_BANDAGED ? 50 : 0)) * 4))
