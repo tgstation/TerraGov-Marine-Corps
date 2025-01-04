@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - bugfix: "Fixed LOOCs sent while devoured not being sent to anyone but the sender."

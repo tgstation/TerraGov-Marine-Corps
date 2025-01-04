@@ -5731,9 +5731,6 @@
 	},
 /area/mainship/patrol_base/som)
 "fAc" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /turf/open/floor/plating/catwalk,
 /area/mainship/patrol_base/som)
 "fAi" = (
@@ -7129,7 +7126,7 @@
 /turf/open/floor/tile/red/yellowfull,
 /area/lv624/ground/sand4)
 "gRf" = (
-/obj/machinery/power/smes/preset,
+/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /turf/open/floor/plating/catwalk,
 /area/mainship/patrol_base/som)
