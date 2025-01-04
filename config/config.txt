@@ -250,6 +250,7 @@ log_emote
 log_looc
 log_say
 allow_vote_restart
+allow_vote_endround
 allow_vote_groundmap
 allow_vote_shipmap
 allow_vote_mode
