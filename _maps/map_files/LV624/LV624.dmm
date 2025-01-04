@@ -6714,8 +6714,8 @@
 /turf/open/floor/tile/blue/whitebluefull,
 /area/lv624/lazarus/internal_affairs)
 "fnq" = (
-/obj/machinery/power/smes/preset,
 /obj/structure/cable,
+/obj/machinery/power/geothermal,
 /turf/open/floor/plating/catwalk,
 /area/mainship/patrol_base/som)
 "fnB" = (
@@ -20674,9 +20674,6 @@
 /turf/open/floor/plating/warning,
 /area/lv624/lazarus/robotics)
 "tsP" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /turf/open/floor/plating/catwalk,
 /area/mainship/patrol_base/som)
 "ttW" = (
