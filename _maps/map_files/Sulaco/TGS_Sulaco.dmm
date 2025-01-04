@@ -21824,6 +21824,7 @@
 /area/sulaco/disposal)
 "qNF" = (
 /obj/machinery/marine_selector/gear/commander,
+/obj/item/minimap_tablet,
 /turf/open/floor/prison,
 /area/sulaco/marine)
 "qOd" = (

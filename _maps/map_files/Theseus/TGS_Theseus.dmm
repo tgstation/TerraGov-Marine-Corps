@@ -9498,7 +9498,6 @@
 	pixel_x = -7;
 	pixel_y = 2
 	},
-/obj/item/minimap_tablet,
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
@@ -11928,6 +11927,7 @@
 /area/mainship/hallways/port_umbilical)
 "jEM" = (
 /obj/machinery/marine_selector/gear/commander,
+/obj/item/minimap_tablet,
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
 "jER" = (
