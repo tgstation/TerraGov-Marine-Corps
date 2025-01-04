@@ -1,0 +1,13 @@
+2025-01-01:
+  Runian:
+  - balance: In Crash, marines do not add job points for xenomorphs if there are too
+      many xenomorphs.
+  yyzsong:
+  - balance: The nuke room on Research Outpost may no longer also have a disk.
+2025-01-02:
+  Lumipharon:
+  - rscadd: Added a shield bash skill, mainly for HvH
+2025-01-04:
+  blackdav123:
+  - bugfix: ICC leaders will now spawn with their guns and ammo.
+  - balance: ICC now have more meds and fewer empty inventory slots.

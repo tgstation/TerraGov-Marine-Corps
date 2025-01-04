@@ -95,6 +95,7 @@
 //Weapon related ability keybinds
 #define COMSIG_WEAPONABILITY_AXESWEEP "weaponability_axesweep"
 #define COMSIG_WEAPONABILITY_SWORDLUNGE "weaponability_swordlunge"
+#define COMSIG_WEAPONABILITY_SHIELDBASH "weaponability_shieldbash"
 
 //Implant abilities
 #define COMSIG_IMPLANT_ABILITY_SANDEVISTAN "implant_ability_sandevistan"
