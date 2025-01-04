@@ -223,6 +223,8 @@ Voting
 */
 /datum/config_entry/flag/allow_vote_restart
 
+/datum/config_entry/flag/allow_vote_endround
+
 /datum/config_entry/flag/allow_vote_mode
 
 /datum/config_entry/flag/allow_vote_groundmap

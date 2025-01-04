@@ -122,10 +122,14 @@ SUBSYSTEM_DEF(vote)
 	if(!.)
 		return
 	var/restart = FALSE
+	var/endround = FALSE
 	switch(mode)
 		if("restart")
 			if(. == "Restart Round")
 				restart = TRUE
+		if("endround")
+			if(. == "End Round and Restart")
+				endround = TRUE
 		if("gamemode")
 			SSticker.save_mode(.) //changes the next game mode
 			if(GLOB.master_mode == .)
@@ -173,6 +177,18 @@ SUBSYSTEM_DEF(vote)
 		else
 			to_chat(world, "<span style='boltnotice'>Notice:Restart vote will not restart the server automatically because there are active admins on.</span>")
 			message_admins("A restart vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
+	if(endround)
+		var/active_admins = FALSE
+		for(var/client/C in GLOB.admins)
+			if(!C.is_afk() && check_rights_for(C, R_SERVER))
+				active_admins = TRUE
+				break
+		if(!active_admins)
+			SSticker.force_ending = TRUE
+			SSticker.mode.round_finished = "Democracy"
+		else
+			to_chat(world, "<span style='boltnotice'>Notice:End round vote will not restart the server automatically because there are active admins on.</span>")
+			message_admins("An end round vote has passed, but there are active admins on with +SERVER, so it has been canceled. If you wish, you may restart the server.")
 
 
 
@@ -232,6 +248,8 @@ SUBSYSTEM_DEF(vote)
 		switch(vote_type)
 			if("restart")
 				choices.Add("Restart Round", "Continue Playing")
+			if("endround")
+				choices.Add("End Round and Restart", "Continue Playing")
 			if("gamemode")
 				multiple_vote = TRUE
 				for(var/datum/game_mode/mode AS in config.votable_modes)
@@ -389,6 +407,7 @@ SUBSYSTEM_DEF(vote)
 		"allow_vote_shipmap" = CONFIG_GET(flag/allow_vote_shipmap),
 		"allow_vote_mode" = CONFIG_GET(flag/allow_vote_mode),
 		"allow_vote_restart" = CONFIG_GET(flag/allow_vote_restart),
+		"allow_vote_endround" = CONFIG_GET(flag/allow_vote_endround),
 		"vote_happening" = vote_happening,
 	)
 
@@ -434,6 +453,9 @@ SUBSYSTEM_DEF(vote)
 		if("toggle_restart")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_restart, !CONFIG_GET(flag/allow_vote_restart))
+		if("toggle_endround")
+			if(usr.client.holder && upper_admin)
+				CONFIG_SET(flag/allow_vote_endround, !CONFIG_GET(flag/allow_vote_endround))
 		if("toggle_gamemode")
 			if(usr.client.holder && upper_admin)
 				CONFIG_SET(flag/allow_vote_mode, !CONFIG_GET(flag/allow_vote_mode))
@@ -446,6 +468,9 @@ SUBSYSTEM_DEF(vote)
 		if("restart")
 			if(CONFIG_GET(flag/allow_vote_restart) || usr.client.holder)
 				initiate_vote("restart",usr.key)
+		if("endround")
+			if(CONFIG_GET(flag/allow_vote_endround) || usr.client.holder)
+				initiate_vote("endround",usr.key)
 		if("gamemode")
 			if(CONFIG_GET(flag/allow_vote_mode) || usr.client.holder)
 				initiate_vote("gamemode",usr.key)
