@@ -429,7 +429,7 @@ SUBSYSTEM_DEF(tts)
 
 /*
 * Returns a list of valid listeners for a remote tts message
-* tts_flags will check if listners have the same tts pref flag(s), but radio tts will simply apply if radio_frequency is specified
+* tts_flags will check if listeners have the same tts pref flag(s), but radio tts will simply apply if radio_frequency is specified
 **/
 /proc/filter_tts_listeners(atom/movable/speaker, list/listeners, radio_frequency = null, tts_flags = NONE)
 	if(!SStts.tts_enabled || !speaker || !speaker.voice)
