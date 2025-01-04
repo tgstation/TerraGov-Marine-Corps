@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - rscadd: "End round votes now exist, like restart votes but they do not skip mode/map votes."
