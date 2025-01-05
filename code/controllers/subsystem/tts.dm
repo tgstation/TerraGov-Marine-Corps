@@ -429,9 +429,10 @@ SUBSYSTEM_DEF(tts)
 
 /*
 * Returns a list of valid listeners for a remote tts message
-* tts_flags will check if listeners have the same tts pref flag(s), but radio tts will simply apply if radio_frequency is specified
+* radio_frequency: If specified, TTS will play if relevant RADIO_TTS_SQUAD or RADIO_TTS_SL are enabled
+* tts_flags: TTS bitflags. TTS will play if listeners have ANY matching bitflags in tts_pref. The two radio flags above do not need to be specified here
 **/
-/proc/filter_tts_listeners(atom/movable/speaker, list/listeners, radio_frequency = null, tts_flags = NONE)
+/proc/filter_tts_listeners(atom/movable/speaker, list/listeners, radio_frequency = null, tts_flags = null)
 	if(!SStts.tts_enabled || !speaker || !speaker.voice || !listeners)
 		return
 	if(ismob(speaker))
@@ -447,21 +448,23 @@ SUBSYSTEM_DEF(tts)
 		if(listener.stat >= UNCONSCIOUS || !(listener.client?.prefs.sound_tts != TTS_SOUND_OFF) || isdeaf(listener))
 			continue
 		var/listener_prefs = listener?.client?.prefs?.radio_tts_flags
+		if(!listener_prefs)
+			continue
 		if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_ALL))
 			filtered_listeners += listener
 			continue
-		for(var/tts_pref in GLOB.all_radio_tts_options)
-			if(CHECK_BITFIELD(tts_flags, tts_pref) && CHECK_BITFIELD(listener_prefs, tts_pref))
-				filtered_listeners += listener
-				continue
+		if(CHECK_BITFIELD(tts_flags, listener_prefs))
+			filtered_listeners += listener
+			continue
 		if(radio_frequency && ishuman(listener))
 			var/mob/living/carbon/human/human_listener = listener
-			if(human_listener.assigned_squad?.radio_freq == radio_frequency)
-				if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_SQUAD))
-					filtered_listeners += listener
-					continue
-				if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_SL) && human_listener.assigned_squad?.squad_leader == speaker)
-					filtered_listeners += listener
-					continue
+			if(human_listener.assigned_squad?.radio_freq != radio_frequency)
+				continue
+			if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_SQUAD))
+				filtered_listeners += listener
+				continue
+			if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_SL) && human_listener.assigned_squad?.squad_leader == speaker)
+				filtered_listeners += listener
+				continue
 
 	return filtered_listeners
