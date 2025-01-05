@@ -5,3 +5,10 @@
   Runian:
   - balance: In Crash, marines do not add job points for xenomorphs if there are too
       many xenomorphs.
+2025-01-05:
+  Meghan-Rossi:
+  - bugfix: Fixed LOOCs sent while devoured not being sent to anyone but the sender.
+  - rscadd: End round votes now exist, like restart votes but they do not skip mode/map
+      votes.
+  - bugfix: Fix looc messages being sorted into chat tabs with ooc enabled rather
+      than ones with looc enabled.
