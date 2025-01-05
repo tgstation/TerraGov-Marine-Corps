@@ -1,4 +1,0 @@
-author: "Meghan-Rossi"
-delete-after: True
-changes:
-  - bugfix: "Fix looc messages being sorted into chat tabs with ooc enabled rather than ones with looc enabled."
