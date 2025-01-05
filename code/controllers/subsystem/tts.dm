@@ -432,22 +432,25 @@ SUBSYSTEM_DEF(tts)
 * tts_flags will check if listeners have the same tts pref flag(s), but radio tts will simply apply if radio_frequency is specified
 **/
 /proc/filter_tts_listeners(atom/movable/speaker, list/listeners, radio_frequency = null, tts_flags = NONE)
-	if(!SStts.tts_enabled || !speaker || !speaker.voice)
+	if(!SStts.tts_enabled || !speaker || !speaker.voice || !listeners)
 		return
 	if(ismob(speaker))
 		var/mob/potential_user = speaker
 		if(is_banned_from(potential_user.ckey, "TTS") || potential_user.client?.prefs.muted & MUTE_TTS)
 			return
 
+	if(ismob(listeners))
+		listeners = list(listeners)
 	var/list/filtered_listeners = list()
+
 	for(var/mob/listener AS in listeners)
 		if(listener.stat >= UNCONSCIOUS || !(listener.client?.prefs.sound_tts != TTS_SOUND_OFF) || isdeaf(listener))
 			continue
 		var/listener_prefs = listener?.client?.prefs?.radio_tts_flags
-		if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_ALL)) //universal tts on
+		if(CHECK_BITFIELD(listener_prefs, RADIO_TTS_ALL))
 			filtered_listeners += listener
 			continue
-		for(var/tts_pref in GLOB.all_radio_tts_options) //a matching pref
+		for(var/tts_pref in GLOB.all_radio_tts_options)
 			if(CHECK_BITFIELD(tts_flags, tts_pref) && CHECK_BITFIELD(listener_prefs, tts_pref))
 				filtered_listeners += listener
 				continue
