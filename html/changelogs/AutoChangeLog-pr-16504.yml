@@ -1,6 +1,0 @@
-author: "PibeCantina"
-delete-after: True
-changes:
-  - rscadd: "Added Menthal Mining map"
-  - imageadd: "Added some icons and images map exclusive"
-  - config: "Added map to config"
