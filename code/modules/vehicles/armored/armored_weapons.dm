@@ -365,3 +365,34 @@
 	)
 	projectile_delay = 1 // spray visuals
 	hud_state_empty = "flame_empty"
+
+/obj/item/armored_weapon/tow
+	name = "\improper TOW-III launcher"
+	desc = "A single-shot, homing, vehicle-mounted TOW-III launcher designed for precision strikes against armored targets. Equipped with IFF."
+	icon_state = "seeker"
+	fire_sound = SFX_RPG_FIRE
+	armored_weapon_flags = MODULE_SECONDARY
+	ammo = /obj/item/ammo_magazine/tank/tow_missile
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/tow_missile)
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	maximum_magazines = 14
+	projectile_delay = 2 SECONDS
+	variance = 10
+	rearm_time = 1 SECONDS
+	hud_state_empty = "rocket_empty"
+
+/obj/item/armored_weapon/microrocket_pod
+	name = "microrocket pod"
+	desc = "A TGMC secondary vehicle-mounted multiple launch rocket system with a total of 6 homing microrockets. Capable of unleashing its entire payload in rapid succession."
+	icon_state = "secondary_rocket_multiple"
+	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
+	armored_weapon_flags = MODULE_SECONDARY
+	ammo = /obj/item/ammo_magazine/tank/microrocket_rack
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/microrocket_rack)
+	fire_mode = GUN_FIREMODE_BURSTFIRE
+	projectile_delay = 2 SECONDS
+	variance = 40
+	burst_amount = 6
+	projectile_burst_delay = 0.1 SECONDS
+	rearm_time = 5 SECONDS
+	hud_state_empty = "rocket_empty"
