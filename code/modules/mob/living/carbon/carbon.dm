@@ -90,7 +90,7 @@
 		return
 
 	if(IsAdminSleeping())
-		to_chat(shaker, span_highdanger("This player has been admin slept, do not interfere with them."))
+		to_chat(shaker, span_userdanger("This player has been admin slept, do not interfere with them."))
 		return
 
 	if(lying_angle || IsSleeping())
@@ -200,6 +200,8 @@
 
 /mob/living/carbon/fire_act(burn_level)
 	. = ..()
+	if(!.)
+		return
 	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT_ONE+10)
 
 //generates realistic-ish pulse output based on preset levels

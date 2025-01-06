@@ -7,6 +7,8 @@
 	var/jobtype = "Squad Marine"
 	///Restricts loadouts to a specific job. Set to false to allow any job to take the loadout.
 	var/require_job = TRUE
+	///Secondary weapon
+	var/secondary_weapon
 
 
 /datum/outfit/quick/equip(mob/living/carbon/human/H, visualsOnly = FALSE)

@@ -2,7 +2,7 @@
 	item_slot = ITEM_SLOT_HEAD
 	ui_icon = "helmet"
 
-/datum/loadout_item/helmet/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/helmet/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat, SLOT_IN_HEAD)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_HEAD)
 
@@ -57,11 +57,11 @@
 
 /datum/loadout_item/helmet/heavy
 	name = "H Helmet"
-	desc = "A standard TDF combat helmet. Apply to head for best results."
+	desc = "A heavy TDF combat helmet. Apply to head for best results."
 	req_desc = "Requires a heavy armor suit."
 	item_typepath = /obj/item/clothing/head/modular/tdf/heavy
 	jobs_supported = list(SQUAD_MARINE)
-	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION
+	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 	item_whitelist = list(
 		/obj/item/clothing/suit/modular/tdf/heavy/shield = ITEM_SLOT_OCLOTHING,
 		/obj/item/clothing/suit/modular/tdf/heavy/shield_overclocked = ITEM_SLOT_OCLOTHING,
@@ -118,7 +118,7 @@
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = NONE
 
-/datum/loadout_item/helmet/tyr/corpsman/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/helmet/tyr/corpsman/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
 
@@ -126,7 +126,7 @@
 	jobs_supported = list(SQUAD_ENGINEER)
 	loadout_item_flags = NONE
 
-/datum/loadout_item/helmet/tyr/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/helmet/tyr/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
 
@@ -148,7 +148,7 @@
 	jobs_supported = list(SQUAD_CORPSMAN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/helmet/mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/helmet/mimir/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/neuraline, SLOT_IN_HEAD)
 
@@ -159,7 +159,7 @@
 	jobs_supported = list(SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/helmet/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/helmet/engineer/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
 	wearer.equip_to_slot_or_del(new /obj/item/explosive/plastique, SLOT_IN_HEAD)
 

@@ -144,7 +144,7 @@ SUBSYSTEM_DEF(tts)
 		var/audio_to_use = (tts_pref == TTS_SOUND_BLIPS) ? audio_blips : audio
 		if(!holder.has_language(language))
 			continue
-		listening_mob.playsound_local(get_turf(listening_mob), soundin = audio_to_use, vol = volume_to_play_at, channel = channel)
+		listening_mob.playsound_local(null, soundin = audio_to_use, vol = volume_to_play_at, channel = channel)
 
 // Need to wait for all HTTP requests to complete here because of a rustg crash bug that causes crashes when dd restarts whilst HTTP requests are ongoing.
 /datum/controller/subsystem/tts/Shutdown()
@@ -256,7 +256,7 @@ SUBSYSTEM_DEF(tts)
 			else if(current_target.when_to_play < world.time)
 				audio_file = new(current_target.audio_file)
 				audio_file_blips = new(current_target.audio_file_blips)
-				play_tts(tts_target, current_target.listeners, audio_file, audio_file_blips, current_target.language, current_target.message_range, current_target.volume_offset, current_target.directionality)
+				play_tts(tts_target, current_target.listeners, audio_file, audio_file_blips, current_target.language, current_target.message_range, current_target.volume_offset, directionality = current_target.directionality)
 				if(length(data) != 1)
 					var/datum/tts_request/next_target = data[2]
 					next_target.when_to_play = world.time + current_target.audio_length
@@ -356,7 +356,7 @@ SUBSYSTEM_DEF(tts)
 	/// If false, play at full volume to each listener, regardless of distance
 	var/directionality = TRUE
 
-/datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch)
+/datum/tts_request/New(identifier, datum/http_request/request, datum/http_request/request_blips, message, target, local, datum/language/language, message_range, volume_offset, list/listeners, pitch, directionality)
 	. = ..()
 	src.identifier = identifier
 	src.request = request

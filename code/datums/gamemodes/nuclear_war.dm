@@ -1,7 +1,7 @@
 /datum/game_mode/infestation/nuclear_war
 	name = "Nuclear War"
 	config_tag = "Nuclear War"
-	silo_scaling = 1.5
+	silo_scaling = 2
 	round_type_flags = MODE_INFESTATION|MODE_LATE_OPENING_SHUTTER_TIMER|MODE_XENO_RULER|MODE_PSY_POINTS|MODE_PSY_POINTS_ADVANCED|MODE_DEAD_GRAB_FORBIDDEN|MODE_HIJACK_POSSIBLE|MODE_SILO_RESPAWN|MODE_SILOS_SPAWN_MINIONS|MODE_ALLOW_XENO_QUICKBUILD|MODE_FORCE_CUSTOMSQUAD_UI
 	xeno_abilities_flags = ABILITY_NUCLEARWAR
 	valid_job_types = list(

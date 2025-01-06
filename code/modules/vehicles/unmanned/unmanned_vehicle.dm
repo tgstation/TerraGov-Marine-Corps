@@ -47,6 +47,8 @@
 	var/unmanned_flags = OVERLAY_TURRET|HAS_LIGHTS
 	/// Iff flags, to prevent friendly fire from sg and aiming marines
 	var/iff_signal = TGMC_LOYALIST_IFF
+	/// If explosives should be usable on the vehicle
+	var/allow_explosives = TRUE
 	/// muzzleflash stuff
 	var/atom/movable/vis_obj/effect/muzzle_flash/flash
 	COOLDOWN_DECLARE(fire_cooldown)
@@ -125,7 +127,9 @@
 	. = ..()
 	if(.)
 		return
-	if(istype(I, /obj/item/uav_turret) || istype(I, /obj/item/explosive/plastique))
+	if(istype(I, /obj/item/uav_turret))
+		return equip_turret(I, user)
+	if(istype(I, /obj/item/explosive/plastique) && allow_explosives)
 		return equip_turret(I, user)
 	if(istype(I, /obj/item/ammo_magazine))
 		return reload_turret(I, user)

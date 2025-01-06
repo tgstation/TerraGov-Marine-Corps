@@ -14,7 +14,7 @@
 	anchored = TRUE
 	coverage = 20
 	atom_flags = CRITICAL_ATOM
-	resistance_flags = RESIST_ALL
+	resistance_flags = RESIST_ALL|PORTAL_IMMUNE
 	layer = BELOW_MOB_LAYER
 	interaction_flags = INTERACT_MACHINE_TGUI
 	var/deployable = TRUE
@@ -59,7 +59,7 @@
 /obj/machinery/nuclearbomb/proc/enable(reason)
 	GLOB.active_nuke_list += src
 	countdown.start()
-	notify_ghosts("[reason] enabled the [src], it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
+	notify_ghosts("The [src] has been enabled, it has [round(time MILLISECONDS)] seconds on the timer.", source = src, action = NOTIFY_ORBIT, extra_large = TRUE)
 	timer_enabled = TRUE
 	timer = addtimer(CALLBACK(src, PROC_REF(explode)), time, TIMER_STOPPABLE)
 	update_minimap_icon()

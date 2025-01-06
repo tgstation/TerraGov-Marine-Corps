@@ -373,6 +373,7 @@
 		var/obj/new_gun = new sentry_type(src)
 		deployed_turret = new_gun.loc
 		RegisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT, PROC_REF(clean_refs))
+	deployed_turret.set_on(FALSE)
 
 ///This cleans the deployed_turret ref when the sentry is destroyed.
 /obj/structure/dropship_equipment/shuttle/sentry_holder/proc/clean_refs(atom/source, disassembled)

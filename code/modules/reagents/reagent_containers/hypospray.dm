@@ -527,6 +527,16 @@
 	)
 	description_overlay = "Qk+"
 
+/obj/item/reagent_containers/hypospray/advanced/synaptizine
+	name = "Synaptizine hypospray"
+	desc = "A hypospray loaded with Synaptizine, a powerful stimulant that improves cardiovascular function, when used sparingly."
+	amount_per_transfer_from_this = 3
+	list_reagents = list(
+		/datum/reagent/medicine/synaptizine = 20,
+		/datum/reagent/medicine/hyronalin = 40,
+	)
+	description_overlay = "Sy"
+
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
 	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy. This one is a 120 unit version."

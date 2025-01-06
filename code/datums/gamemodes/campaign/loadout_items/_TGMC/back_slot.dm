@@ -93,7 +93,7 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_SMARTGUNNER, SQUAD_LEADER)
 	loadout_item_flags = NONE
 
-/datum/loadout_item/back/marine_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/back/marine_shotgun/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot, SLOT_R_HAND)
 
@@ -118,6 +118,15 @@
 	jobs_supported = list(SQUAD_MARINE, SQUAD_LEADER)
 	loadout_item_flags = NONE
 
+/datum/loadout_item/back/minigun_powerpack
+	name = "MG-100 powerpack"
+	desc = "A heavy reinforced backpack with support equipment, power cells, and spare rounds for the MG-100 Minigun System. You don't get any spare, so make it count."
+	req_desc = "Requires an MG-100."
+	item_typepath = /obj/item/ammo_magazine/minigun_powerpack
+	jobs_supported = list(SQUAD_MARINE)
+	loadout_item_flags = NONE
+	item_whitelist = list(/obj/item/weapon/gun/minigun/magharness = ITEM_SLOT_SUITSTORE)
+
 //corpsman
 /datum/loadout_item/back/corpsman_satchel
 	name = "Medical satchel"
@@ -135,19 +144,16 @@
 //engineer
 /datum/loadout_item/back/engineerpack
 	name = "Sentry welderpack"
-	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling. Loaded with 2 point defense sentries, excellent for defending areas or establishing killboxes."
+	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling. Loaded with a point defense sentry, excellent for defending areas or establishing killboxes."
 	item_typepath = /obj/item/storage/backpack/marine/engineerpack
 	jobs_supported = list(SQUAD_ENGINEER)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 
-/datum/loadout_item/back/engineerpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/back/engineerpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/sentry/mini/combat_patrol, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/tool/extinguisher/mini, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/dylovene, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/back/tgmc_rocket_bag
 	name = "Rocket bag"
@@ -161,15 +167,13 @@
 
 /datum/loadout_item/back/tech_backpack
 	name = "Demolition backpack"
-	desc = "The standard-issue backpack worn by TGMC technicians. Filled with a tremendous amount of detpacks, C4, claymores and grenades. Has a draw delay."
+	desc = "The standard-issue backpack worn by TGMC technicians. Filled with a detpacks, C4 and grenades. Has a draw delay."
 	item_typepath = /obj/item/storage/backpack/marine/tech
 	jobs_supported = list(SQUAD_ENGINEER)
 
-/datum/loadout_item/back/tech_backpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout)
+/datum/loadout_item/back/tech_backpack/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	. = ..()
-	wearer.equip_to_slot_or_del(new /obj/item/minelayer, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/storage/box/explosive_mines/large, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/smokebomb/antigas, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/detpack, SLOT_IN_BACKPACK)

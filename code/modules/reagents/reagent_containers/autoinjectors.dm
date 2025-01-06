@@ -206,11 +206,11 @@
 	name = "rezadone autoinjector"
 	desc = "A large auto-injector freshly loaded with rezadone."
 	icon_state = "autoinjector-8"
-	amount_per_transfer_from_this = 10
-	volume = 50
+	amount_per_transfer_from_this = 5
 	list_reagents = list(
-		/datum/reagent/medicine/rezadone = 50,
+		/datum/reagent/medicine/rezadone = 30,
 	)
+	description_overlay = "Rz"
 
 /obj/item/reagent_containers/hypospray/autoinjector/synaptizine
 	name = "synaptizine autoinjector"
@@ -325,6 +325,7 @@
 	volume = 100
 
 	list_reagents = list(/datum/reagent/toxin/pain = 100)
+
 /obj/item/reagent_containers/hypospray/autoinjector/spacedrugs //CL goodie
 	name = "space drugs autoinjector"
 	desc = "An auto-injector loaded with sweet, sweet space drugs... Hard to get as a marine."
@@ -333,6 +334,7 @@
 	volume = 25
 
 	list_reagents = list(/datum/reagent/space_drugs = 25)
+
 /obj/item/reagent_containers/hypospray/autoinjector/mindbreaker //made for debugging
 	name = "mindbreaker toxin autoinjector"
 	desc = "An auto-injector loaded with the hardest, deadliest drug around. May cure PTSD. May cause it."
@@ -342,3 +344,25 @@
 
 	list_reagents = list(/datum/reagent/toxin/mindbreaker = 50)
 
+/obj/item/reagent_containers/hypospray/autoinjector/antitox_mix
+	name = "Anti-toxin mix 4"
+	desc = "An auto-injector loaded a cocktail of chemicals intended for rapid treatment of severe toxin damage. Do not use without proper medical supervision."
+	icon_state = "Toxic"
+	amount_per_transfer_from_this = 15
+	list_reagents = list(
+		/datum/reagent/medicine/hyronalin = 7.5,
+		/datum/reagent/medicine/dylovene = 7.5,
+		/datum/reagent/medicine/tricordrazine = 7.5,
+		/datum/reagent/medicine/arithrazine = 7.5,
+	)
+	description_overlay = "Tx4"
+
+/obj/item/reagent_containers/hypospray/autoinjector/regrow
+	name = "Re-Grow autoinjector"
+	desc = "An auto-injector loaded with Re-Grow - able to rapidly regrow missing limbs."
+	icon_state = "AngelLight"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/medicine/regrow = 30,
+	)
+	description_overlay = "Grw"

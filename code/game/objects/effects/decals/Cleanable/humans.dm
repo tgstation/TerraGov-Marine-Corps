@@ -200,11 +200,12 @@
 	random_icon_states = list("gibmid1", "gibmid2", "gibmid3")
 
 
-/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions)
+/obj/effect/decal/cleanable/blood/gibs/proc/streak(list/directions, mapload = FALSE)
 	spawn (0)
 		var/direction = pick(directions)
 		for (var/i = 0, i < pick(1, 200; 2, 150; 3, 50; 4), i++)
-			sleep(0.3 SECONDS)
+			if(!mapload)
+				sleep(0.3 SECONDS)
 			if (i > 0)
 				var/obj/effect/decal/cleanable/blood/b = new /obj/effect/decal/cleanable/blood/splatter(src.loc)
 				b.basecolor = src.basecolor

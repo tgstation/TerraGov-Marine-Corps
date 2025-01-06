@@ -294,7 +294,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		//thrown weapon embedded object code.
 		if(affecting.limb_status & LIMB_DESTROYED)
 			hit_report += "(delimbed [affecting.display_name])"
-		else if(thrown_item.damtype == BRUTE && is_sharp(thrown_item) && prob(thrown_item.embedding.embed_chance))
+		else if(thrown_item.embedding && thrown_item.damtype == BRUTE && is_sharp(thrown_item) && prob(thrown_item.embedding.embed_chance))
 			thrown_item.embed_into(src, affecting)
 			hit_report += "(embedded in [affecting.display_name])"
 

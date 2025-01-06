@@ -198,7 +198,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 		return
 	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/machete_shield, jobs_supported, owner, 0)
 	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, jobs_supported, owner, 0)
-	owner_stats.unlock_loadout_item(/datum/loadout_item/belt/energy_sword, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/esword, jobs_supported, owner, 0)
 
 //skill modifying perks
 /datum/perk/skill_mod
@@ -275,13 +275,22 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/skill_mod/pistols
 	name = "Advanced pistol training"
-	desc = "Improved damage, accuracy and scatter with pistol type firearms."
+	desc = "Improved damage, accuracy and scatter with pistol type firearms. Unlocks additional pistols for some roles."
 	req_desc = "Requires Advanced combat training."
 	ui_icon = "pistols"
 	pistols = 1
 	all_jobs = TRUE
 	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 400
+
+/datum/perk/skill_mod/pistols/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/som/extended_pistol, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/som/highpower, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/marine/highpower, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/marine/laser_pistol, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/marine/standard_revolver, jobs_supported, owner, 0)
 
 /datum/perk/skill_mod/shotguns
 	name = "Advanced shotgun training"
@@ -389,6 +398,8 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/back/tgmc_heam_rocket_bag, SQUAD_MARINE, owner, 0)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_cannon, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/back/minigun_powerpack, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/minigun, SQUAD_MARINE, owner, 0)
 	else if(owner_stats.faction == FACTION_SOM)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/back/som_heat_rocket_bag, SOM_SQUAD_VETERAN, owner, 0)
 

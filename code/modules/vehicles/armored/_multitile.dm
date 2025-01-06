@@ -22,6 +22,7 @@
 	max_occupants = 4
 	move_delay = 0.75 SECONDS
 	glide_size = 2.5
+	vis_range_mod = 2
 	ram_damage = 100
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
@@ -116,7 +117,7 @@
 		return
 	for(var/mob/occupant AS in occupants)
 		mob_exit(occupant, FALSE, TRUE)
-	armored_flags ^= ARMORED_IS_WRECK
+	armored_flags |= ARMORED_IS_WRECK
 	obj_integrity = max_integrity
 	update_appearance(UPDATE_ICON_STATE|UPDATE_DESC|UPDATE_NAME)
 	smoke_holder = new(src, /particles/tank_wreck_smoke)
@@ -125,13 +126,14 @@
 		RegisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_smoke_dir))
 		update_smoke_dir(newdir = turret_overlay.dir)
 		turret_overlay.icon_state += "_wreck"
-		turret_overlay.primary_overlay.icon_state += "_wreck"
+		turret_overlay?.primary_overlay?.icon_state += "_wreck"
+	update_minimap_icon()
 
 ///Returns the vehicle to an unwrecked state
 /obj/vehicle/sealed/armored/multitile/proc/unwreck_vehicle(restore = FALSE)
 	if(!(armored_flags & ARMORED_IS_WRECK))
 		return
-	armored_flags ^= ARMORED_IS_WRECK
+	armored_flags &= ~ARMORED_IS_WRECK
 	obj_integrity = restore ? max_integrity : 50
 	update_appearance(UPDATE_ICON_STATE|UPDATE_DESC|UPDATE_NAME)
 	QDEL_NULL(smoke_holder)
@@ -140,7 +142,8 @@
 	if(turret_overlay)
 		UnregisterSignal(turret_overlay, COMSIG_ATOM_DIR_CHANGE)
 		turret_overlay.icon_state = turret_overlay.base_icon_state
-		turret_overlay.primary_overlay.icon_state = turret_overlay.primary_overlay.base_icon_state
+		turret_overlay?.primary_overlay?.icon_state = turret_overlay?.primary_overlay?.base_icon_state
+	update_minimap_icon()
 
 ///Updates the wreck smoke position
 /obj/vehicle/sealed/armored/multitile/proc/update_smoke_dir(datum/source, dir, newdir)
@@ -164,8 +167,8 @@
 	desc = "A gigantic wall of metal designed for maximum SOM destruction. Drag yourself onto it at an entrance to get inside."
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	max_integrity = 1400
-	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 85, BIO = 100, FIRE = 100, ACID = 75)
-	hard_armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 35, BIO = 100, FIRE = 0, ACID = 0)
+	soft_armor = list(MELEE = 90, BULLET = 95 , LASER = 95, ENERGY = 95, BOMB = 80, BIO = 100, FIRE = 100, ACID = 75)
+	hard_armor = list(MELEE = 10, BULLET = 5, LASER = 5, ENERGY = 5, BOMB = 40, BIO = 100, FIRE = 0, ACID = 0)
 	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.6, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.6)
 	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_UNDERLAY|ARMORED_HAS_HEADLIGHTS|ARMORED_WRECKABLE
 	move_delay = 0.6 SECONDS

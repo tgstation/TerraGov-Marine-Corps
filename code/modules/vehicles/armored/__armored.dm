@@ -116,8 +116,7 @@
 				icon_state += "_urban"
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
-	if(minimap_icon_state)
-		SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
+	update_minimap_icon()
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()
@@ -658,6 +657,16 @@
 	if(weapons_safety || zoom_mode)
 		return
 	INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/armored_weapon, begin_fire), user, target, modifiers)
+
+///Updates the vehicles minimap icon
+/obj/vehicle/sealed/armored/proc/update_minimap_icon()
+	if(!minimap_icon_state)
+		return
+	SSminimaps.remove_marker(src)
+	minimap_icon_state = initial(minimap_icon_state)
+	if(armored_flags & ARMORED_IS_WRECK)
+		minimap_icon_state += "_wreck"
+	SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
 
 /atom/movable/vis_obj/turret_overlay
 	name = "Tank gun turret"
