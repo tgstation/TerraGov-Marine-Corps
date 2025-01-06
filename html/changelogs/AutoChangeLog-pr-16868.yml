@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Campaign: TGMC corpsmen Mimir option now actually has mimir"
+  - balance: "Campaign: Corpsmen/engineers now have a antigas nade in most loadouts"
