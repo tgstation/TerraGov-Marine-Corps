@@ -375,7 +375,7 @@
 	ammo = /obj/item/ammo_magazine/tank/tow_missile
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/tow_missile)
 	fire_mode = GUN_FIREMODE_SEMIAUTO
-	maximum_magazines = 14
+	maximum_magazines = 13
 	projectile_delay = 2 SECONDS
 	variance = 10
 	rearm_time = 1 SECONDS
