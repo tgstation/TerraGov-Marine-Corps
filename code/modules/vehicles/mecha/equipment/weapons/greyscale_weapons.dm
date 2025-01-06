@@ -355,9 +355,9 @@
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
 	ammotype = /datum/ammo/bullet/smartmachinegun/mech
 	max_integrity = 400
-	projectiles = 100
-	projectiles_cache = 600
-	projectiles_cache_max = 600
+	projectiles = 50
+	projectiles_cache = 500
+	projectiles_cache_max = 500
 	variance = 5
 	projectile_delay = 0.4 SECONDS
 	slowdown = 0.5
