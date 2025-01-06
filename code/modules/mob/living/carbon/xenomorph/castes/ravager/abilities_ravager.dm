@@ -136,16 +136,16 @@
 	atoms_to_ravage += get_step(owner, turn(owner.dir, -45)).contents
 	atoms_to_ravage += get_step(owner, turn(owner.dir, 45)).contents
 	///actual target we will check adjacency with
-	var/atom/adjacent_relative = X
+	var/atom/adjacent_relative = xeno_owner
 	if(HAS_TRAIT(owner, TRAIT_BLOODTHIRSTER))
-		if(X.plasma_stored >= STAGE_TWO_BLOODTHIRST)
+		if(xeno_owner.plasma_stored >= STAGE_TWO_BLOODTHIRST)
 			var/turf/far = get_step(get_step(owner, owner.dir), owner.dir)
 			if(!far.density)
 				atoms_to_ravage += far.contents
 				atoms_to_ravage += get_step(far, turn(owner.dir, 90)).contents
 				atoms_to_ravage += get_step(far, turn(owner.dir, -90)).contents
 				var/turf/temptstep = get_step(owner, owner.dir)
-				if(X.plasma_stored >= STAGE_THREE_BLOODTHIRST && temptstep.Adjacent(far))
+				if(xeno_owner.plasma_stored >= STAGE_THREE_BLOODTHIRST && temptstep.Adjacent(far))
 					adjacent_relative = far
 					var/turf/furthest = get_step(far, owner.dir)
 					if(!furthest.density)
@@ -702,11 +702,11 @@
 	UnregisterSignal(owner, COMSIG_XENOMORPH_ATTACK_LIVING)
 	xeno.remove_movespeed_modifier(MOVESPEED_ID_RAVAGER_DEATHMARK)
 	if(damage_dealt < DEATHMARK_DAMAGE_OR_DIE)
-		to_chat(owner, span_highdanger("THE QUEEN MOTHER IS DISPLEASED WITH YOUR PERFORMANCE ([damage_dealt]/[DEATHMARK_DAMAGE_OR_DIE]). DEATH COMES TO TAKE ITS DUE."))
+		to_chat(owner, span_userdanger("THE QUEEN MOTHER IS DISPLEASED WITH YOUR PERFORMANCE ([damage_dealt]/[DEATHMARK_DAMAGE_OR_DIE]). DEATH COMES TO TAKE ITS DUE."))
 		xeno.take_overall_damage(999)
 		var/turf/balloonloc = get_turf(xeno)
 		balloonloc.balloon_alert_to_viewers("JUDGEMENT")
 		return
 	xeno.playsound_local(xeno, 'sound/voice/hiss5.ogg', 50)
-	to_chat(owner, span_highdanger("THE QUEEN MOTHER IS PLEASED WITH YOUR PERFORMANCE ([damage_dealt]/[DEATHMARK_DAMAGE_OR_DIE])."))
+	to_chat(owner, span_userdanger("THE QUEEN MOTHER IS PLEASED WITH YOUR PERFORMANCE ([damage_dealt]/[DEATHMARK_DAMAGE_OR_DIE])."))
 	owner.balloon_alert(owner, "deathmark expired")
