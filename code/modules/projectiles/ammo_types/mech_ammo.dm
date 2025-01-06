@@ -136,7 +136,8 @@
 /datum/ammo/energy/volkite/medium/mech
 
 	name = "supercharged thermal energy bolt"
-	deflagrate_multiplier = 1.25
+	damage = 25
+	deflagrate_multiplier = 1.1
 
 /datum/ammo/bullet/smartmachinegun/mech
 
