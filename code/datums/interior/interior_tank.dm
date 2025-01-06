@@ -79,6 +79,7 @@
 	name = "exit hatch"
 	icon = 'icons/obj/armored/3x3/tank_interior.dmi'
 	icon_state = "tank_interior_7"
+	mouse_opacity = MOUSE_OPACITY_OPAQUE
 	resistance_flags = RESIST_ALL
 	///owner of this object, assigned during interior linkage
 	var/obj/vehicle/sealed/armored/owner
