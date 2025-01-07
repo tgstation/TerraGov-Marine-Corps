@@ -31,7 +31,7 @@
 	play_sound = TRUE,
 	sound_override = 'sound/misc/adm_announce.ogg',
 	sender_override = "Server Admin Announcement",
-	style = "ooc",
+	style = OOC_ALERT_ADMIN,
 	encode_title = TRUE,
 	encode_text = FALSE,
 )

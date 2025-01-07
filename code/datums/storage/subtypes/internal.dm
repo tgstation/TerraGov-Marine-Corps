@@ -86,8 +86,10 @@
 			/obj/item/stack/sheet,
 			/obj/item/stack/sandbags,
 			/obj/item/stack/snow,
-			/obj/item/cell/lasgun/volkite/powerpack,
 			/obj/item/cell/lasgun/plasma,
+		),
+		cant_hold_list = list(
+			/obj/item/cell/lasgun/volkite/powerpack
 		),
 		storage_type_limits_list = list(
 			/obj/item/ammo_magazine/rifle,

@@ -105,6 +105,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	opacity = TRUE
+	explosion_block = INFINITY
 
 /obj/effect/forcefield/fog/Initialize(mapload)
 	. = ..()

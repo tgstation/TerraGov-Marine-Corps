@@ -92,7 +92,7 @@
 	unmanned_flags = GIVE_NIGHT_VISION
 	layer = XENO_HIDING_LAYER
 	trigger_gargoyle = FALSE
-	allow_detpacks = FALSE
+	allow_explosives = FALSE
 
 /obj/structure/closet/crate/uvt_crate
 	name = "\improper UV-T Skink Crate"

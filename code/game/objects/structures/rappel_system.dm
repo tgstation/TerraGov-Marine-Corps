@@ -123,8 +123,6 @@
 		if(RAPPEL_STATE_RETRACTING)
 			balloon_alert(user, "The rappel is currently retracting!")
 			return
-		if(RAPPEL_STATE_IN_USE)
-			return
 
 	var/turf/target_turf = get_turf(rope)
 	if(target_turf.density)

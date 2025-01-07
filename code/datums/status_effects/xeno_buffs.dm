@@ -835,15 +835,14 @@
 	var/datum/armor/armor_modifier
 
 /datum/status_effect/blessing/warding/on_apply()
-	buff_owner = owner
-	if(!isxeno(buff_owner))
+	if(!isxeno(owner))
 		return FALSE
-	armor_modifier = buff_owner.soft_armor.scaleAllRatings(strength * 2.7)
-	buff_owner.soft_armor = buff_owner.soft_armor.attachArmor(armor_modifier)
+	armor_modifier = getArmor(37.8 * strength ,8.1 * strength ,13.5 * strength ,8.1 * strength)
+	owner.soft_armor = owner.soft_armor.attachArmor(armor_modifier)
 	return TRUE
 
 /datum/status_effect/blessing/warding/on_remove()
-	buff_owner.soft_armor = buff_owner.soft_armor.detachArmor(armor_modifier)
+	owner.soft_armor = owner.soft_armor.detachArmor(armor_modifier)
 	armor_modifier = null
 	return ..()
 
