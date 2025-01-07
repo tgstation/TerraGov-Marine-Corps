@@ -253,7 +253,7 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	return ..()
 
 /datum/stim/trait/immediate_defib
-	name = "Immediate defibbrillation "
+	name = "Immediate defibbrillation"
 	desc = "Auto-sets health to 1 below defib threshold upon defibrillation. Two consecutive uses will deal enough damage to destroy the user's heart."
 	cast_say = "Injecting tissue stimulants..."
 	stim_uid = "immediate_defib"
