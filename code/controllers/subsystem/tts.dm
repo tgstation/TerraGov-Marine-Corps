@@ -444,8 +444,13 @@ SUBSYSTEM_DEF(tts)
 		listeners = list(listeners)
 	var/list/filtered_listeners = list()
 
-	for(var/mob/listener AS in listeners)
-		if(listener.stat >= UNCONSCIOUS || !(listener.client?.prefs.sound_tts != TTS_SOUND_OFF) || isdeaf(listener))
+	for(var/movable in listeners)
+		if(!ismob(movable)) //todo: Radio code includes non mob AM's in its listener list, but its not entirely clear if this is required
+			continue
+		var/mob/listener = movable
+		if(!(listener.client?.prefs.sound_tts != TTS_SOUND_OFF))
+			continue
+		if(isliving(listener) && (listener.stat >= UNCONSCIOUS || isdeaf(listener)))
 			continue
 		var/listener_prefs = listener?.client?.prefs?.radio_tts_flags
 		if(!listener_prefs)
