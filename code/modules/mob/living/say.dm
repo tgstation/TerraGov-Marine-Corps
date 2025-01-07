@@ -367,6 +367,8 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 		var/replacement = tts_message[length_regex.index]+tts_message[length_regex.index]+tts_message[length_regex.index]
 		tts_message = replacetext(tts_message, length_regex.match, replacement, length_regex.index)
 
+	tts_message = html_decode(tts_message)
+
 	return list("message" = message, "tts_message" = tts_message, "tts_filter" = tts_filter)
 
 
