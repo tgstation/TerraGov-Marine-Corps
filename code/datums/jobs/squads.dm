@@ -351,9 +351,6 @@
 	if(is_ic_filtered(message) || NON_ASCII_CHECK(message))
 		to_chat(sender, span_boldnotice("Message invalid. Check your message does not contain filtered words or characters."))
 		return
-	var/list/treated_message = sender?.treat_message(message)
-	message = treated_message["message"]
-
 	var/header = "AUTOMATED CIC NOTICE:"
 	var/sound = "sound/misc/notice3.ogg"
 	var/message_color = "#a9a9a9"
@@ -364,16 +361,19 @@
 		message_color = color
 		message_type = /atom/movable/screen/text/screen_text/command_order
 
+		var/list/tts_listeners = filter_tts_listeners(sender, marines_list, radio_freq, RADIO_TTS_COMMAND)
+		if(!length(tts_listeners))
+			return
+		var/list/treated_message = sender?.treat_message(message)
+		message = treated_message["message"]
+		var/list/extra_filters = list(TTS_FILTER_RADIO)
+		if(isrobot(sender))
+			extra_filters += TTS_FILTER_SILICON
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), sender, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, tts_listeners, FALSE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
+
 	for(var/mob/living/marine AS in marines_list)
 		marine.playsound_local(marine, sound, 35)
 		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[header]</u></span><br>" + message, message_type, message_color)
-	var/list/tts_listeners = filter_tts_listeners(sender, marines_list, radio_freq, RADIO_TTS_COMMAND)
-	if(!length(tts_listeners))
-		return
-	var/list/extra_filters = list(TTS_FILTER_RADIO)
-	if(isrobot(sender))
-		extra_filters += TTS_FILTER_SILICON
-	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), sender, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, tts_listeners, FALSE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
 
 /datum/squad/proc/check_entry(datum/job/job)
 	if(!(job.title in current_positions))
