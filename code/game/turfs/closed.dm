@@ -68,6 +68,25 @@
 			"The stone. The rock. The boulder. Its name matters not when we consume it.",
 			"Delicious, delectable, simply exquisite. Just a few more minerals and it'd be perfect...")), null, 5)
 
+/turf/closed/plasmacutter_act(mob/living/user, obj/item/I)
+	if(!isplasmacutter(I) || user.do_actions)
+		return FALSE
+	if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		to_chat(user, span_warning("[I] can't cut through this!"))
+		return FALSE
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
+		return FALSE
+	if(!plasmacutter.start_cut(user, name, src))
+		return FALSE
+	if(!do_after(user, PLASMACUTTER_CUT_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
+		return FALSE
+
+	plasmacutter.cut_apart(user, name, src)
+	// Change targetted turf to a new one to simulate deconstruction.
+	ChangeTurf(open_turf_type)
+	return TRUE
+
 /turf/closed/mineral/smooth
 	name = "rock"
 	icon = 'icons/turf/walls/lvwall.dmi'
@@ -361,24 +380,6 @@
 /turf/closed/glass/thin/intersection
 	icon_state = "Intersection"
 
-/turf/closed/attackby(obj/item/I, mob/user, params)
-	if(isplasmacutter(I) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE))
-			to_chat(user, span_warning("[P] can't cut through this!"))
-			return
-		else if(!P.start_cut(user, name, src))
-			return
-		else if(!do_after(user, PLASMACUTTER_CUT_DELAY, NONE, src, BUSY_ICON_FRIENDLY))
-			return
-		else
-			P.cut_apart(user, name, src) //purely a cosmetic effect
-
-		//change targetted turf to a new one to simulate deconstruction
-		ChangeTurf(open_turf_type)
-		return
-	return ..()
-
 //Ice Thin Wall
 /turf/closed/ice/thin
 	name = "thin ice wall"
@@ -475,17 +476,10 @@
 	icon = 'icons/turf/shuttle.dmi'
 	plane = FLOOR_PLANE
 	resistance_flags = PLASMACUTTER_IMMUNE
+	explosion_block = 2
 
 /turf/closed/shuttle/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
-
-/turf/closed/shuttle/re_corner/notdense
-	icon_state = "re_cornergrass"
-	density = FALSE
-
-/turf/closed/shuttle/re_corner/jungle
-	icon_state = "re_cornerjungle"
-	density = FALSE
 
 /turf/closed/shuttle/diagonal
 	icon_state = "diagonalWall"
@@ -530,6 +524,7 @@
 	icon = 'icons/turf/ert_shuttle.dmi'
 	icon_state = "stan4"
 	plane = GAME_PLANE
+	resistance_flags = RESIST_ALL
 
 /turf/closed/shuttle/ert/engines/left
 	icon_state = "leftengine_1"

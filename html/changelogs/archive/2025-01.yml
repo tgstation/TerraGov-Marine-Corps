@@ -1,0 +1,31 @@
+2025-01-01:
+  Runian:
+  - balance: In Crash, marines do not add job points for xenomorphs if there are too
+      many xenomorphs.
+  yyzsong:
+  - balance: The nuke room on Research Outpost may no longer also have a disk.
+2025-01-02:
+  Lumipharon:
+  - rscadd: Added a shield bash skill, mainly for HvH
+2025-01-04:
+  blackdav123:
+  - bugfix: ICC leaders will now spawn with their guns and ammo.
+  - balance: ICC now have more meds and fewer empty inventory slots.
+2025-01-05:
+  Barnet2:
+  - rscadd: Prison Station is now back in rotation.
+  Lumipharon:
+  - bugfix: Fixed radio TTS for real
+  PibeCantina:
+  - rscadd: Added Menthal Mining map
+  - imageadd: Added some icons and images map exclusive
+  - config: Added map to config
+  breadhunt:
+  - rscadd: Merged FC and SL prep rooms on Arachne, Sulaco and Pillar of Spring. Added
+      a minimap table war room outside the FC's office on Theseus.
+  - rscadd: Expanded Pillar of Spring engineer, medic and smartgunner prep rooms.
+2025-01-07:
+  Lumipharon:
+  - bugfix: 'Campaign: TGMC corpsmen Mimir option now actually has mimir'
+  - balance: 'Campaign: Corpsmen/engineers now have a antigas nade in most loadouts'
+  - server: Added TTS whisper config

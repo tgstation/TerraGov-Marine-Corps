@@ -59,7 +59,11 @@
 /datum/evolution_panel/ui_data(mob/living/carbon/xenomorph/xeno)
 	var/list/data = list()
 
-	data["bypass_evolution_checks"] = SSresinshaping.active
+	if(iscrashgamemode(SSticker.mode))
+		var/datum/game_mode/infestation/crash/crash_mode = SSticker.mode
+		data["bypass_evolution_checks"] = !crash_mode.shuttle_landed
+	else
+		data["bypass_evolution_checks"] = (SSticker.mode?.round_type_flags & MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active
 
 	data["can_evolve"] = \
 		!xeno.is_ventcrawling && \

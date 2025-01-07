@@ -9,7 +9,7 @@
 	if(living_parent.resting)
 		living_parent.get_up()
 
-/datum/ai_behavior/xeno/zombie/attack_target(datum/soure, atom/attacked)
+/datum/ai_behavior/xeno/zombie/attack_target(datum/source, atom/attacked)
 	if(world.time < mob_parent.next_move)
 		return
 	if(!attacked)

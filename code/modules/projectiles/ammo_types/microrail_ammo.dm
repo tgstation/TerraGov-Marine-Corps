@@ -18,7 +18,7 @@
 	var/bonus_projectile_quantity = 5
 
 /datum/ammo/bullet/micro_rail/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	var/turf/det_turf = target_turf.density ? get_step_towards(target_turf, proj) : target_turf
+	var/turf/det_turf = get_step_towards(target_turf, proj)
 	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0, det_turf, 1)
@@ -143,7 +143,7 @@
 			if(isliving(target))
 				var/mob/living/living_target = target
 				living_target.visible_message(span_danger("[living_target] is hit by the bomblet blast!"),
-					isxeno(living_target) ? span_xenodanger("We are hit by the bomblet blast!") : span_highdanger("you are hit by the bomblet blast!"))
+					isxeno(living_target) ? span_xenodanger("We are hit by the bomblet blast!") : span_userdanger("you are hit by the bomblet blast!"))
 				living_target.apply_damages(explosion_damage * 0.5, explosion_damage * 0.5, 0, 0, 0, blocked = BOMB, updating_health = TRUE)
 				staggerstun(living_target, P, stagger = stagger_amount, slowdown = slow_amount)
 			else if(isobj(target))

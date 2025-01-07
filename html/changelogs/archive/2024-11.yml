@@ -1,0 +1,105 @@
+2024-11-01:
+  Runian:
+  - rscadd: You can now chestburst while in EORD/Deathmatch Area without requiring
+      admin intervention.
+  - rscadd: 'Dancer Praetorian Strain & Abilities: Dodge, Impale, Tail Trip.'
+  - imageadd: 'Button Icons for: Dodge, Impale, Tail Trip.'
+  blackdav123:
+  - bugfix: Added xeno spawn points to vapor processing.
+  - balance: Roboticist survivor now has a skink drone instead of a buildasentry.
+  ivanmixo:
+  - bugfix: Fixed light break helper complaining about already broken lights
+2024-11-02:
+  blackdav123:
+  - balance: Moved some crash landing sites on Research Outpost.
+  - balance: Bluesummers is a bit easier for marines now.
+  yyzsong:
+  - balance: Rocket sledge price 600 -> 850
+2024-11-08:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed SH-34 secondary not spawning'
+2024-11-10:
+  Lumipharon:
+  - bugfix: fixed razorwire icons occasionally erroring out
+2024-11-11:
+  Aporhtonoma:
+  - balance: puppeters puppets benefit from pheromones other xeno emit.
+  - balance: Widow can now emit drone level pheromones
+2024-11-12:
+  Pariah919:
+  - imageadd: New SH-39 Combat Sprite. Sprite by MJP.
+  - imagedel: Old SH-39 Sprite.
+2024-11-15:
+  Aporhtonoma:
+  - bugfix: fixes puppets ridiculous armor ratings if warding pheromones were applied
+      before it got warding blessing
+  Pariah919:
+  - imageadd: New Plasma Pistol sprite.
+  - imagedel: Old Plasma Pistol sprite.
+  Runian:
+  - bugfix: Barb wiring via FOB Construction Drone now correctly uses 1 metal instead
+      of 2.
+  TiviPlus:
+  - qol: Merged Join game and ready up lobby buttons
+  blackdav123:
+  - balance: 'Added a new praetorian primo: Slime Grenade.'
+2024-11-17:
+  Lumipharon:
+  - bugfix: fixed bookshelves on some Big Red map variants still not being dense
+  - balance: Hunter stealth break from incoming damage is now a total amount (45)
+      instead of a single hit needing to be over 15
+2024-11-22:
+  Pariah919:
+  - imageadd: Updates the Railgun sprite to the modern pallete and a few tweaks to
+      the sprite.
+  - imagedel: Deleted old Railgun sprite.
+2024-11-23:
+  Lumipharon:
+  - bugfix: fixed FC sword having the wrong weight class
+  - imageadd: Added colour coded sprites for drop and tele blockers in campaign
+  Pariah919:
+  - imageadd: New Recoilless Rifle icon by Sponge, repallete by me.
+  - imagedel: Deleted old Recoilless Rifle icon.
+  blackdav123:
+  - balance: Xeno silo scaling raised to 2x from 1.5x
+2024-11-24:
+  TiviPlus:
+  - rscadd: Added the new acid maw and acid jaws xeno structures
+  blackdav123:
+  - admin: Toggle Sleeping no longer has a confirmation prompt.
+2024-11-25:
+  Aporhtonoma:
+  - balance: HvX tank can see 1 tile further
+2024-11-26:
+  Neocloudy:
+  - refactor: examine has been refactored. please report issues on the github
+  - rscadd: examine tags when examining things. you can hover over them for a tooltip
+  - rscadd: examine tags exist for lots of states, some examples are item conductivity,
+      mask hugger protection, object vulnerability/invulnerability (xeno attacks/bombs/acid,
+      etc)
+  - rscadd: most/all things that use examine blocks have received style changes. (roundstart
+      tip, etc)
+  - rscadd: ooc, ooc announcements are yellow
+  - rscadd: new style for spawning in as a job
+  - rscadd: xeno chat styles are lighter (notice, warning, danger, highdanger, announce)
+  - rscadd: deadchat is a lighter color
+  - rscadd: admin/mentor pms updated to look like tg pms
+  - rscadd: tooltips in chat are more obvious, with a dotted underline and italicized
+      text
+  - qol: flavor text now appears closer to the bottom of the examine message when
+      you examine humans
+  Runian:
+  - bugfix: Xeno castes who are suppose to be immune from plasma drain no longer have
+      their plasma drained when directly hit by a tesla ball.
+2024-11-27:
+  YehnBeep:
+  - bugfix: fixed buttons on canterbury and bigbury for opening the south entryways
+2024-11-28:
+  AzonStarfall:
+  - rscadd: Made the Arachne fore hangar mostly symmetrical again.
+  - bugfix: Fixed Tank Crew access on the Arachne vehicle bay.
+  Runian:
+  - bugfix: Wraith portals are no longer affected / destroyed by lava.
+  YehnBeep:
+  - bugfix: Hunters can no longer stealth through tadpole console interaction telegraphs
+  - balance: Hunters can no longer break the tad console while stealthed

@@ -45,6 +45,7 @@
 				if(!isxeno(living_victim))
 					living_victim.apply_damage(aoe_damage, BURN, null, ENERGY, FALSE, FALSE, TRUE, penetration)
 					staggerstun(living_victim, P, 10, slowdown = 1)
+					living_victim.do_jitter_animation(500)
 			else if(isobj(target))
 				var/obj/obj_victim = target
 				var/dam_mult = 1

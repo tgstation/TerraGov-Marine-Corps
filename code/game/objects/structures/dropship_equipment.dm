@@ -249,31 +249,29 @@
 	if(dropship_equipment_flags & IS_NOT_REMOVABLE)
 		to_chat(user, span_notice("You cannot remove [src]!"))
 		return
-	if(!current_acid)
-		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
-		if(!do_after(user, duration_time, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
-			return
-		if(attached_clamp.loaded || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
-			return
-		forceMove(attached_clamp.linked_powerloader)
-		attached_clamp.loaded = src
-		SEND_SIGNAL(src, COMSIG_DROPSHIP_EQUIPMENT_UNEQUIPPED)
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-		attached_clamp.update_icon()
-		to_chat(user, span_notice("You've [ship_base ? "uninstalled" : "grabbed"] [attached_clamp.loaded] with [attached_clamp]."))
-		if(ship_base)
-			ship_base.installed_equipment = null
-			ship_base = null
-			if(linked_shuttle)
-				linked_shuttle.equipments -= src
-				linked_shuttle = null
-				if(linked_console?.selected_equipment == src)
-					linked_console.selected_equipment = null
-		update_equipment()
-		return //removed or uninstalled equipment
-	to_chat(user, span_notice("You cannot touch [src] with the [attached_clamp] due to the acid on [src]."))
-
+	if(get_self_acid())
+		to_chat(user, span_notice("You cannot touch [src] with the [attached_clamp] due to the acid on [src]."))
+	playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+	var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
+	if(!do_after(user, duration_time, IGNORE_HELD_ITEM, src, BUSY_ICON_BUILD))
+		return
+	if(attached_clamp.loaded || !LAZYLEN(attached_clamp.linked_powerloader?.buckled_mobs) || attached_clamp.linked_powerloader.buckled_mobs[1] != user)
+		return
+	forceMove(attached_clamp.linked_powerloader)
+	attached_clamp.loaded = src
+	SEND_SIGNAL(src, COMSIG_DROPSHIP_EQUIPMENT_UNEQUIPPED)
+	playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+	attached_clamp.update_icon()
+	to_chat(user, span_notice("You've [ship_base ? "uninstalled" : "grabbed"] [attached_clamp.loaded] with [attached_clamp]."))
+	if(ship_base)
+		ship_base.installed_equipment = null
+		ship_base = null
+		if(linked_shuttle)
+			linked_shuttle.equipments -= src
+			linked_shuttle = null
+			if(linked_console?.selected_equipment == src)
+				linked_console.selected_equipment = null
+	update_equipment()
 
 /obj/structure/dropship_equipment/beforeShuttleMove(turf/newT, rotation, move_mode, obj/docking_port/mobile/moving_dock)
 	. = ..()
@@ -365,7 +363,6 @@
 	icon_state = "sentry_system"
 	dropship_equipment_flags = IS_INTERACTABLE
 	point_cost = 500
-	pixel_y = 32
 	var/deployment_cooldown
 	var/obj/machinery/deployable/mounted/sentry/deployed_turret
 	var/sentry_type = /obj/item/weapon/gun/sentry/big_sentry/dropship
@@ -376,6 +373,7 @@
 		var/obj/new_gun = new sentry_type(src)
 		deployed_turret = new_gun.loc
 		RegisterSignal(deployed_turret, COMSIG_OBJ_DECONSTRUCT, PROC_REF(clean_refs))
+	deployed_turret.set_on(FALSE)
 
 ///This cleans the deployed_turret ref when the sentry is destroyed.
 /obj/structure/dropship_equipment/shuttle/sentry_holder/proc/clean_refs(atom/source, disassembled)

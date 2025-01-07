@@ -576,7 +576,7 @@
 		visible_message(span_danger("[O] plows straight through [src]!"))
 		deconstruct(FALSE)
 
-/obj/structure/rack/deconstruct(disassembled = TRUE)
+/obj/structure/rack/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled && parts && dropmetal)
 		new parts(loc)
 	else if(dropmetal)
@@ -586,6 +586,12 @@
 
 /obj/structure/rack/nometal
 	dropmetal = FALSE
+
+/obj/structure/rack/lectern
+	icon = 'icons/obj/metnal_objects.dmi'
+	icon_state = "lectern"
+	dropmetal = FALSE
+	hit_sound = 'sound/effects/woodhit.ogg'
 
 /obj/structure/rack/wood
 	color = "#8B7B5B"

@@ -185,7 +185,7 @@
 /obj/item/explosive/plastique/genghis_charge/afterattack(atom/target, mob/user, flag)
 	if(istype(target, /turf/closed/wall/resin))
 		return ..()
-	if(istype(target, /obj/structure/door/resin))
+	if(istype(target, /obj/structure/mineral_door/resin))
 		return ..()
 	balloon_alert(user, "Insufficient organic matter!")
 
@@ -219,7 +219,7 @@
 /obj/fire/flamer/autospread/proc/turf_contains_valid_burnable(turf_to_check)
 	if(istype(turf_to_check, /turf/closed/wall/resin))
 		return TRUE
-	if(locate(/obj/structure/door/resin) in turf_to_check)
+	if(locate(/obj/structure/mineral_door/resin) in turf_to_check)
 		return TRUE
 	return FALSE
 

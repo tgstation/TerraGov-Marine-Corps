@@ -137,7 +137,7 @@
 /area/campaign/som_raiding/outpost/tunnel)
 "aW" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/burger,
 /obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/barber,
@@ -209,6 +209,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/campaign/som_raiding/outpost/security/southeast_post)
+"bx" = (
+/obj/structure/cable,
+/obj/structure/prop/vehicle/big_truck{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req/north)
 "by" = (
 /obj/structure/prop/mainship/gelida/rails{
 	dir = 1
@@ -355,6 +362,13 @@
 	},
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle/south_east)
+"cf" = (
+/obj/structure/cable,
+/obj/structure/prop/vehicle/big_truck/enclosed{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/campaign/som_raiding/outpost/req/north)
 "cg" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -443,7 +457,7 @@
 /area/campaign/som_raiding/outpost/security/cargo_post)
 "cA" = (
 /obj/structure/cable,
-/obj/structure/prop/vehicle/crane/destructible{
+/obj/structure/prop/vehicle/crane{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -1543,12 +1557,6 @@
 /obj/structure/flora/drought/shroom/gut,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/campaign/som_raiding/cave/tunnel_west)
-"iy" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
-	dir = 1
-	},
-/turf/open/floor/plating/ground/mars/random/cave/darker,
-/area/campaign/som_raiding/outpost/tunnel)
 "iz" = (
 /obj/structure/bed/chair/alt{
 	dir = 1
@@ -2462,7 +2470,7 @@
 /area/campaign/som_raiding/outpost/security/south_post)
 "ng" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/barber,
 /area/campaign/som_raiding/outpost/living/kitchen)
@@ -3678,12 +3686,6 @@
 /obj/structure/flora/jungle/large_bush,
 /turf/open/ground/grass/beach,
 /area/campaign/som_raiding/ground/jungle/west)
-"tT" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
-	dir = 8
-	},
-/turf/open/floor/plating/ground/concrete,
-/area/campaign/som_raiding/outpost/req/north)
 "tV" = (
 /turf/closed/wall/mainship/gray,
 /area/campaign/som_raiding/outpost/req/aux)
@@ -6441,7 +6443,7 @@
 	},
 /area/campaign/som_raiding/outpost/central_corridor)
 "Jr" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -6993,7 +6995,7 @@
 /turf/open/floor/mainship/sterile/side,
 /area/campaign/som_raiding/outpost/medbay)
 "Mx" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /obj/effect/turf_decal/box,
@@ -8275,6 +8277,12 @@
 /obj/structure/flora/jungle/grass,
 /turf/open/ground/grass/weedable,
 /area/campaign/som_raiding/ground/jungle/west)
+"Ty" = (
+/obj/structure/prop/vehicle/big_truck/enclosed{
+	dir = 4
+	},
+/turf/open/floor/plating/ground/mars/random/cave/darker,
+/area/campaign/som_raiding/outpost/tunnel)
 "Tz" = (
 /obj/structure/reagent_dispensers/fueltank,
 /turf/open/floor/tile/dark/yellow2{
@@ -23796,9 +23804,9 @@ JH
 JH
 JH
 JH
+cf
 JH
-JH
-JH
+bx
 JH
 JH
 JH
@@ -23948,9 +23956,9 @@ Aw
 Aw
 Aw
 Aw
-tT
 Aw
-tT
+Aw
+Aw
 Aw
 Aw
 Aw
@@ -25673,7 +25681,7 @@ Jr
 ve
 Jr
 ac
-iy
+ac
 ac
 gK
 st
@@ -25826,7 +25834,7 @@ ms
 qD
 qD
 qD
-ac
+Ty
 ac
 st
 st

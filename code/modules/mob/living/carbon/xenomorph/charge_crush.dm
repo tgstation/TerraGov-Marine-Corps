@@ -297,8 +297,8 @@
 			//There is a chance to do enough damage here to gib certain mobs. Better update immediately.
 			crushed_living.apply_damage(precrush, BRUTE, BODY_ZONE_CHEST, MELEE, updating_health = TRUE)
 			if(QDELETED(crushed_living))
-				charger.visible_message(span_danger("[charger] anihilates [preserved_name]!"),
-				span_xenodanger("We anihilate [preserved_name]!"))
+				charger.visible_message(span_danger("[charger] annihilates [preserved_name]!"),
+				span_xenodanger("We annihilate [preserved_name]!"))
 				return COMPONENT_MOVABLE_PREBUMP_PLOWED
 
 		return precrush2signal(crushed_living.post_crush_act(charger, src))
@@ -526,14 +526,15 @@
 	return PRECRUSH_ENTANGLED //Let's return this so that the charger may enter the turf in where it's entangled, if it survived the wounds without gibbing.
 
 
-/obj/structure/door/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
-	if(!anchored || !density)
+/obj/structure/mineral_door/post_crush_act(mob/living/carbon/xenomorph/charger, datum/action/ability/xeno_action/ready_charge/charge_datum)
+	if(!anchored)
 		return ..()
-
-	attempt_to_open(charger, TRUE, TRUE, angle2dir(Get_Angle(src, charger)), TRUE)
-	if(!CHECK_BITFIELD(door_flags, DOOR_OPEN))
+	if(!open)
+		toggle_state(charger)
+	if(density)
 		return PRECRUSH_STOPPED
-
+	charger.visible_message(span_danger("[charger] slams [src] open!"),
+	span_xenowarning("We slam [src] open!"))
 	return PRECRUSH_PLOWED
 
 

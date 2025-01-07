@@ -13,6 +13,7 @@
 	bound_y = -32
 	max_integrity = INFINITY
 	move_resist = INFINITY // non forcemoving this could break gliding so lets just say no
+	explosion_block = 1
 	///people riding on this hitbox that we want to move with us
 	var/list/atom/movable/tank_desants
 	///The "parent" that this hitbox is attached to and to whom it will relay damage
@@ -38,6 +39,7 @@
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_cross_hitbox),
 		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(on_jump_landed),
+		COMSIG_TURF_THROW_ENDED_HERE = PROC_REF(on_stop_throw),
 		COMSIG_ATOM_EXITED = PROC_REF(on_exited),
 		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
 	)
@@ -46,6 +48,8 @@
 /obj/hitbox/Destroy(force)
 	if(!force) // only when the parent is deleted
 		return QDEL_HINT_LETMELIVE
+	for(var/atom/movable/desant AS in tank_desants)
+		remove_desant(desant)
 	root?.hitbox = null
 	root = null
 	return ..()
@@ -85,17 +89,36 @@
 
 	return FALSE
 
+///Adds a new desant
+/obj/hitbox/proc/add_desant(atom/movable/new_desant)
+	if(HAS_TRAIT(new_desant, TRAIT_TANK_DESANT))
+		return
+	ADD_TRAIT(new_desant, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
+	new_desant.add_nosubmerge_trait(VEHICLE_TRAIT)
+	LAZYSET(tank_desants, new_desant, new_desant.layer)
+	RegisterSignal(new_desant, COMSIG_QDELETING, PROC_REF(on_desant_del))
+	new_desant.layer = ABOVE_MOB_PLATFORM_LAYER
+	root.add_desant(new_desant)
+
+///Removes a desant
+/obj/hitbox/proc/remove_desant(atom/movable/desant)
+	desant.layer = LAZYACCESS(tank_desants, desant)
+	desant.remove_traits(list(TRAIT_TANK_DESANT, TRAIT_NOSUBMERGE), VEHICLE_TRAIT)
+	LAZYREMOVE(tank_desants, desant)
+	UnregisterSignal(desant, COMSIG_QDELETING)
+	root.remove_desant(desant)
+
 ///signal handler when someone jumping lands on us
 /obj/hitbox/proc/on_jump_landed(datum/source, atom/movable/lander)
 	SIGNAL_HANDLER
-	if(HAS_TRAIT(lander, TRAIT_TANK_DESANT))
+	add_desant(lander)
+
+///signal handler when something thrown lands on us
+/obj/hitbox/proc/on_stop_throw(datum/source, atom/movable/thrown_movable)
+	SIGNAL_HANDLER
+	if(!isliving(thrown_movable)) //TODO: Make desants properly work for all AM's instead of mobs
 		return
-	ADD_TRAIT(lander, TRAIT_TANK_DESANT, VEHICLE_TRAIT)
-	lander.add_nosubmerge_trait(VEHICLE_TRAIT)
-	LAZYSET(tank_desants, lander, lander.layer)
-	RegisterSignal(lander, COMSIG_QDELETING, PROC_REF(on_desant_del))
-	lander.layer = ABOVE_MOB_PLATFORM_LAYER
-	root.add_desant(lander)
+	add_desant(thrown_movable)
 
 ///signal handler when we leave a turf under the hitbox
 /obj/hitbox/proc/on_exited(atom/source, atom/movable/AM, direction)
@@ -104,18 +127,11 @@
 		return
 	if(AM.loc in locs)
 		return
-	AM.layer = LAZYACCESS(tank_desants, AM)
-	LAZYREMOVE(tank_desants, AM)
-	UnregisterSignal(AM, COMSIG_QDELETING)
-	root.remove_desant(AM)
+	remove_desant(AM)
+
 	var/obj/hitbox/new_hitbox = locate(/obj/hitbox) in AM.loc //walking onto another vehicle
-	if(!new_hitbox)
-		AM.remove_traits(list(TRAIT_TANK_DESANT, TRAIT_NOSUBMERGE), VEHICLE_TRAIT)
-		return
-	LAZYSET(new_hitbox.tank_desants, AM, AM.layer)
-	new_hitbox.RegisterSignal(AM, COMSIG_QDELETING, PROC_REF(on_desant_del))
-	AM.layer = ABOVE_MOB_PLATFORM_LAYER //we set it separately so the original layer is recorded
-	new_hitbox.root.add_desant(AM)
+	if(new_hitbox)
+		new_hitbox.add_desant(AM)
 
 ///cleanup riders on deletion
 /obj/hitbox/proc/on_desant_del(datum/source)
@@ -137,7 +153,10 @@
 	var/new_z = (z != oldloc.z)
 	for(var/mob/living/tank_desant AS in tank_desants)
 		tank_desant.set_glide_size(root.glide_size)
-		tank_desant.forceMove(new_z ? loc : get_step(tank_desant, direction)) //For simplicity we just move desants to the middle of the tank on z change to avoid various issues
+		if(new_z)
+			tank_desant.abstract_move(loc) //todo: have some better code to actually preserve their location
+		else
+			tank_desant.forceMove(get_step(tank_desant, direction))
 		if(isxeno(tank_desant))
 			continue
 		if(move_dist > 1)
@@ -400,18 +419,3 @@
 //Some hover specific stuff for the SOM tank
 /obj/hitbox/rectangle/som_tank/get_projectile_loc(obj/item/armored_weapon/weapon)
 	return get_step(get_step(src, root.dir), root.dir)
-
-/obj/hitbox/rectangle/som_tank/on_jump_landed(datum/source, atom/lander)
-	if(HAS_TRAIT(lander, TRAIT_TANK_DESANT))
-		return
-	. = ..()
-	var/obj/vehicle/sealed/armored/multitile/som_tank/tank = root
-	tank.add_desant(lander)
-
-/obj/hitbox/rectangle/som_tank/on_exited(atom/source, atom/movable/AM, direction)
-	var/is_desant = HAS_TRAIT(AM, TRAIT_TANK_DESANT)
-	. = ..()
-	if(!is_desant || HAS_TRAIT(AM, TRAIT_TANK_DESANT))
-		return
-	var/obj/vehicle/sealed/armored/multitile/som_tank/tank = root
-	tank.remove_desant(AM)

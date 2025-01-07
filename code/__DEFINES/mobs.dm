@@ -549,14 +549,9 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define XENO_HEALTH_ALERT_TRIGGER_PERCENT 0.25 //If a xeno is damaged while its current hit points are less than this percent of its maximum, we send out an alert to the hive
 #define XENO_HEALTH_ALERT_TRIGGER_THRESHOLD 50 //If a xeno is damaged while its current hit points are less than this amount, we send out an alert to the hive
 #define XENO_HEALTH_ALERT_COOLDOWN 60 SECONDS //The cooldown on these xeno damage alerts
-#define XENO_SILO_HEALTH_ALERT_COOLDOWN 30 SECONDS //The cooldown on these xeno damage alerts
 #define XENO_HEALTH_ALERT_POINTER_DURATION 6 SECONDS //How long the alert directional pointer lasts.
 #define XENO_RALLYING_POINTER_DURATION 15 SECONDS //How long the rally hive pointer lasts
-#define XENO_SILO_DAMAGE_POINTER_DURATION 10 SECONDS //How long the alert directional pointer lasts when silos are damaged
-#define XENO_SILO_DETECTION_COOLDOWN 1 MINUTES
-#define XENO_SILO_DETECTION_RANGE 10//How far silos can detect hostiles
-#define XENO_GARGOYLE_DETECTION_COOLDOWN 30 SECONDS
-#define XENO_GARGOYLE_DETECTION_RANGE 10//How far gargoyles can detect hostiles
+
 #define XENO_RESTING_COOLDOWN 2 SECONDS
 #define XENO_UNRESTING_COOLDOWN 0.5 SECONDS
 
@@ -604,14 +599,6 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define CASTE_CAN_HOLD_JELLY (1<<5)//whether we can hold fireproof jelly in our hands
 #define CASTE_CAN_CORRUPT_GENERATOR (1<<6) //Can corrupt a generator
 #define CASTE_CAN_RIDE_CRUSHER (1<<7) //Can ride a crusher
-
-#define HIVE_STATUS_SHOW_EMPTY (1<<0)
-#define HIVE_STATUS_COMPACT_MODE (1<<1)
-#define HIVE_STATUS_SHOW_GENERAL (1<<2)
-#define HIVE_STATUS_SHOW_POPULATION (1<<3)
-#define HIVE_STATUS_SHOW_XENO_LIST (1<<4)
-#define HIVE_STATUS_SHOW_STRUCTURES (1<<5)
-#define HIVE_STATUS_DEFAULTS (HIVE_STATUS_SHOW_EMPTY | HIVE_STATUS_SHOW_GENERAL | HIVE_STATUS_SHOW_POPULATION | HIVE_STATUS_SHOW_XENO_LIST | HIVE_STATUS_SHOW_STRUCTURES)
 
 //Charge-Crush
 #define CHARGE_OFF 0
@@ -674,12 +661,12 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
 #define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
 #define GORGER_TRANSFUSION_HEAL 0.3 // in %
-#define GORGER_OPPOSE_COST 100
+#define GORGER_OPPOSE_COST 80
 #define GORGER_OPPOSE_HEAL 0.2 // in %
-#define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
+#define GORGER_PSYCHIC_LINK_CHANNEL 5 SECONDS
 #define GORGER_PSYCHIC_LINK_RANGE 15
 #define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
-#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.2 //in %
+#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.5 //in %
 #define GORGER_CARNAGE_HEAL 0.2
 #define GORGER_CARNAGE_MOVEMENT -0.5
 #define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left
@@ -953,6 +940,7 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 #define AURA_HUMAN_MOVE "move"
 #define AURA_HUMAN_HOLD "hold"
 #define AURA_HUMAN_FOCUS "focus"
+#define AURA_HUMAN_FLAG "flag"
 
 #define AURA_XENO_BLESSWARDING "Blessing Of Warding"
 #define AURA_XENO_BLESSFRENZY "Blessing Of Frenzy"
@@ -993,3 +981,6 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 ///Pixel_y offset when lying down
 #define CARBON_LYING_Y_OFFSET -6
+
+///Filter name for illusion impacts
+#define ILLUSION_HIT_FILTER "illusion_hit_filter"

@@ -87,7 +87,7 @@
 	///whether our storage box on hud changes color when full.
 	var/show_storage_fullness = TRUE
 	///Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/use_to_pickup
+	var/use_to_pickup = FALSE
 	///Set this to make the storage item group contents of the same type and display them as a number.
 	var/display_contents_with_number
 	///Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.

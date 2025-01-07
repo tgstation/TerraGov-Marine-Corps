@@ -116,6 +116,14 @@ GLOBAL_DATUM(campaign_admin_panel, /datum/campaign_admin_panel)
 			message_admins("[usr.client] [forced ? "forced" : "triggered"] autobalance")
 			log_admin("[usr.client] [forced ? "forced" : "triggered"] autobalance")
 			return TRUE
+		if("shuffle_teams")
+			var/choice = tgui_input_list(user, "Would you like to shuffle the teams?", "Shuffle teams", list("No", "Yes"))
+			if(choice != "Yes")
+				return FALSE
+			current_mode.shuffle_teams()
+			message_admins("[usr.client] shuffled the teams")
+			log_admin("[usr.client] shuffled the teams")
+			return TRUE
 		if("mission_start_timer")
 			if(current_mode.current_mission.mission_state != MISSION_STATE_LOADED)
 				to_chat(user, "Mission is not in pregame.")

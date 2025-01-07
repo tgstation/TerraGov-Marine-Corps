@@ -497,7 +497,7 @@
 	},
 /area/orion_outpost/surface/building/vehicledepot)
 "cN" = (
-/obj/structure/prop/vehicle/crawler/crawler_red/destructible,
+/obj/structure/prop/vehicle/crawler/crawler_red,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
 "cO" = (
@@ -2672,7 +2672,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
 "np" = (
-/obj/structure/prop/vehicle/van/destructible{
+/obj/structure/prop/vehicle/van{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -2795,7 +2795,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostnw)
 "nT" = (
-/obj/structure/prop/vehicle/crawler/crawler_red/destructible,
+/obj/structure/prop/vehicle/crawler/crawler_red,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostse)
 "nU" = (
@@ -2881,7 +2881,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/command)
 "on" = (
-/obj/structure/prop/vehicle/crawler/crawler_cargo/destructible,
+/obj/structure/prop/vehicle/crawler/crawler_cargo,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostse)
 "oo" = (
@@ -4550,7 +4550,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostw)
 "wk" = (
-/obj/structure/prop/vehicle/crane/destructible,
+/obj/structure/prop/vehicle/crane,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outposte)
 "wl" = (
@@ -4594,7 +4594,7 @@
 	},
 /area/orion_outpost/surface/building/administration)
 "wy" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete/lines,
@@ -4967,7 +4967,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostcent)
 "yh" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -5928,7 +5928,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/rock)
 "CH" = (
-/obj/structure/prop/vehicle/van/destructible{
+/obj/structure/prop/vehicle/van{
 	dir = 8
 	},
 /obj/structure/platform{
@@ -6094,7 +6094,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/vehicledepot)
 "Dt" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -6168,7 +6168,7 @@
 	},
 /area/orion_outpost/surface/building/medbay)
 "DQ" = (
-/obj/structure/prop/vehicle/crawler/crawler_fuel/destructible,
+/obj/structure/prop/vehicle/crawler/crawler_fuel,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostcent)
 "DR" = (
@@ -6393,7 +6393,7 @@
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/canteen)
 "EZ" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -6633,7 +6633,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/orion_outpost/surface/building/canteen)
 "Gw" = (
-/obj/structure/prop/vehicle/crawler/crawler_fuel/destructible,
+/obj/structure/prop/vehicle/crawler/crawler_fuel,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposts)
 "Gx" = (
@@ -6894,7 +6894,7 @@
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outpostse)
 "HI" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -7735,7 +7735,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/vehicledepot)
 "LN" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -7927,7 +7927,7 @@
 	},
 /area/orion_outpost/surface/building/command)
 "ML" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -8129,7 +8129,7 @@
 /turf/open/floor/bcircuit,
 /area/orion_outpost/surface/building/engineering)
 "NA" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible,
+/obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
 "NB" = (
@@ -9087,7 +9087,7 @@
 /turf/open/floor/plating/ground/concrete/lines,
 /area/orion_outpost/ground/outpostsw)
 "Sp" = (
-/obj/structure/prop/vehicle/crawler/destructible,
+/obj/structure/prop/vehicle/crawler,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/orion_outpost/ground/outposte)
 "Sq" = (
@@ -9310,7 +9310,7 @@
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostsw)
 "Tt" = (
-/obj/structure/prop/vehicle/crawler/destructible,
+/obj/structure/prop/vehicle/crawler,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostsw)
 "Tu" = (
@@ -10223,7 +10223,7 @@
 /turf/open/floor/mainship/blue,
 /area/orion_outpost/surface/building/administration)
 "XF" = (
-/obj/structure/prop/vehicle/crane/destructible,
+/obj/structure/prop/vehicle/crane,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/tadpolepad)
 "XH" = (
@@ -10633,7 +10633,7 @@
 /turf/open/ground/grass/weedable/patch/grassyellow,
 /area/orion_outpost/ground/outpostsw)
 "ZC" = (
-/obj/structure/prop/vehicle/crawler/crawler_blue/destructible,
+/obj/structure/prop/vehicle/crawler/crawler_blue,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostnw)
 "ZD" = (

@@ -13,6 +13,12 @@
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND "!open_timed_shutters_xeno_hivemind"
 #define COMSIG_GLOB_OPEN_TIMED_SHUTTERS_CRASH "!open_timed_shutters_crash"
 #define COMSIG_GLOB_OPEN_SHUTTERS_EARLY "!open_shutters_early"
+///Marine ship in Crash gamemode has landed
+#define COMSIG_GLOB_CRASH_SHIP_LANDED "!crash_ship_landed"
+///Gamemode changed to groundside state
+#define COMSIG_GLOB_GAMESTATE_GROUNDSIDE "!gamestate_groundside"
+///Gamemode changed to shipside state
+#define COMSIG_GLOB_GAMESTATE_SHIPSIDE "!gamestate_shipside"
 
 #define COMSIG_GLOB_TADPOLE_LAUNCHED "!tadpole_launched"
 #define COMSIG_GLOB_DROPPOD_LANDED "!pod_landed"
@@ -233,7 +239,10 @@
 #define COMSIG_ATOM_ATTACK_POWERLOADER "atom_attack_powerloader"//from base of atom/attack_powerloader: (mob/living/user, obj/item/powerloader_clamp/attached_clamp)
 ///from base of atom/emp_act(): (severity)
 #define COMSIG_ATOM_EMP_ACT "atom_emp_act"
-#define COMSIG_ATOM_EXAMINE "atom_examine"					//from base of atom/examine(): (/mob)
+///from base of atom/examine(): (/mob, list/examine_text)
+#define COMSIG_ATOM_EXAMINE "atom_examine"
+///from base of atom/examine_tags(): (/mob, list/examine_tags)
+#define COMSIG_ATOM_EXAMINE_TAGS "atom_examine_tags"
 ///from base of atom/get_examine_name(): (/mob, list/overrides)
 #define COMSIG_ATOM_GET_EXAMINE_NAME "atom_examine_name"
 	//Positions for overrides list
@@ -295,7 +304,8 @@
 #define COMSIG_ATOM_SET_LIGHT_ON "atom_set_light_on"
 ///Called right before the atom changes the value of light_flags to a different one, from base atom/set_light_flags(): (new_value)
 #define COMSIG_ATOM_SET_LIGHT_FLAGS "atom_set_light_flags"
-
+///From base of atom/get_self_acid
+#define COMSIG_ATOM_GET_SELF_ACID "atom_get_self_acid"
 
 // /atom/movable signals
 #define COMSIG_MOVABLE_PRE_MOVE "movable_pre_move"				//from base of atom/movable/Move(): (/atom, new_loc, direction)
@@ -333,7 +343,7 @@
 #define COMSIG_MOVABLE_POST_THROW "movable_post_throw"			//called on tail of atom/movable/throw_at()
 #define COMSIG_MOVABLE_DISPOSING "movable_disposing"			//called when the movable is added to a disposal holder object for disposal movement: (obj/structure/disposalholder/holder, obj/machinery/disposal/source)
 #define COMSIG_MOVABLE_HEAR "movable_hear"						//from base of atom/movable/Hear(): (message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
-#define COMSIG_MOVABLE_Z_CHANGED "movable_ztransit" 			//from base of atom/movable/onTransitZ(): (old_z, new_z)
+#define COMSIG_MOVABLE_Z_CHANGED "movable_ztransit" 			//from base of atom/movable/on_changed_z_level(): (old_z, new_z)
 #define COMSIG_MOVABLE_PREBUMP_TURF "movable_prebump_turf"
 #define COMSIG_MOVABLE_PREBUMP_MOVABLE "movable_prebump_movable"
 	#define COMPONENT_MOVABLE_PREBUMP_STOPPED (1<<0)
@@ -425,7 +435,11 @@
 	#define COMPONENT_CLOTHING_MECHANICS_TINTED (1<<0)
 	#define COMPONENT_CLOTHING_BLUR_PROTECTION (1<<1)
 
-#define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from base of /obj/machinery/deployable
+#define COMSIG_ITEM_DEPLOY "item_deploy" //From /obj/proc/do_deploy
+#define COMSIG_ITEM_UNDEPLOY "item_undeploy" //from /obj/proc/disassemble
+
+///From /obj/item/proc/pickup(): (/obj/item/picked_up_item)
+#define COMSIG_ITEM_ATTEMPT_PICK_UP "item_attempt_pick_up"
 
 ///from base of obj/item/quick_equip(): (mob/user)
 #define COMSIG_ITEM_QUICK_EQUIP "item_quick_equip"
@@ -682,9 +696,6 @@
 ///from /mob/living/proc/attack_alien_harm(mob/living/carbon/xenomorph/X, dam_bonus, set_location, random_location, no_head, no_crit, force_intent)
 #define COMSIG_XENOMORPH_ATTACK_LIVING "xenomorph_attack_living"
 	#define COMSIG_XENOMORPH_BONUS_APPLIED (1<<0)
-///from /mob/living/carbon/xenomorph/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, damage_flag, effects, armor_penetration, isrightclick)
-///only on INTENT_HARM, INTENT_DISARM, IF it does damaage
-#define COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH "xenomorph_attack_xenomorph"
 
 ///after attacking, accounts for armor
 #define COMSIG_XENOMORPH_POSTATTACK_LIVING "xenomorph_postattack_living"
@@ -793,7 +804,11 @@
 
 //Signals for CIC orders
 #define COMSIG_ORDER_SELECTED "order_selected"
-#define COMSIG_ORDER_SENT "order_updated"
+#define COMSIG_CIC_ORDER_SENT "order_updated"
+#define COMSIG_CIC_ORDER_OFF_CD "order_off_cd"
+
+#define COMSIG_SKILL_ORDER_SENT "skill_order_updated"
+#define COMSIG_SKILL_ORDER_OFF_CD "skill_order_off_cd"
 
 //Signals for automatic fire at component
 #define COMSIG_AUTOMATIC_SHOOTER_START_SHOOTING_AT "start_shooting_at"

@@ -121,5 +121,9 @@
 	/// Messages currently seen by this client
 	var/list/seen_messages
 
+	/// The direction we WANT to move, based off our keybinds
+	/// Will be udpated to be the actual direction later on
+	var/intended_direction = NONE
+
 	show_popup_menus = TRUE // right click menu no longer shows up
 	control_freak = CONTROL_FREAK_MACROS

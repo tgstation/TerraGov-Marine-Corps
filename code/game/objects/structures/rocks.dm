@@ -215,7 +215,6 @@
 	icon = 'icons/obj/structures/cave_decor.dmi'
 	icon_state = "stalagmite"
 	icon_variants = 6
-	density = FALSE
 
 /obj/structure/rock/variable/jungle
 	name = "rock"
@@ -282,6 +281,7 @@
 	light_range = 0.5
 	light_power = 0.5
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
+	density = FALSE
 
 /obj/structure/rock/variable/crystal_mound/Initialize(mapload)
 	. = ..()

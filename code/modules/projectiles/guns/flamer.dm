@@ -224,7 +224,7 @@
 			if(turf.density && istype(turf, /turf/closed/wall/resin))
 				walls_penetrated_wide -= 1
 			//Checks if there is a resin door on the turf
-			var/obj/structure/door/resin/door_to_check = locate() in turf
+			var/obj/structure/mineral_door/resin/door_to_check = locate() in turf
 			if(!isnull(door_to_check))
 				walls_penetrated_wide -= 1
 			//Check to ensure that we dont burn more walls than specified
@@ -285,7 +285,7 @@
 		mob_caught.IgniteMob()
 
 		var/burn_message = "Augh! You are roasted by the flames!"
-		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_highdanger(burn_message))
+		to_chat(mob_caught, isxeno(mob_caught) ? span_xenodanger(burn_message) : span_userdanger(burn_message))
 
 /obj/item/weapon/gun/flamer/big_flamer
 	name = "\improper FL-240 incinerator unit"
@@ -422,7 +422,7 @@
 /obj/item/weapon/gun/flamer/big_flamer/marinestandard/do_fire(obj/projectile/projectile_to_fire)
 	if(!target)
 		return
-	if(gun_user?.skills.getRating(SKILL_FIREARMS) < 0)
+	if(gun_user?.skills.getRating(SKILL_COMBAT) < 0)
 		switch(windup_checked)
 			if(WEAPON_WINDUP_NOT_CHECKED)
 				INVOKE_ASYNC(src, PROC_REF(do_windup))

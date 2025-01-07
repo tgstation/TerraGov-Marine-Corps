@@ -290,9 +290,8 @@
 	. = ..()
 	if(!shield_integrity)
 		return
-	var/obj/item/clothing/suit/reactive_suit = parent
 	var/mob/living/carbon/human/affected_human = affected
-	affected_human.overlays_standing[OVERHEALTH_SHIELD_LAYER] = list(mutable_appearance('icons/effects/effects.dmi', reactive_suit.shield_state, affected.layer + 0.01))
+	affected_human.overlays_standing[OVERHEALTH_SHIELD_LAYER] = list(mutable_appearance('icons/effects/effects.dmi', "shield-blue", affected.layer + 0.01))
 	affected_human.apply_overlay(OVERHEALTH_SHIELD_LAYER)
 
 /datum/component/shield/overhealth/deactivate_with_user()

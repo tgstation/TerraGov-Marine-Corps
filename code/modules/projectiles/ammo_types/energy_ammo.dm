@@ -70,6 +70,8 @@
 /datum/ammo/energy/tesla/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(isxeno(target_mob)) //need 1 second more than the actual effect time
 		var/mob/living/carbon/xenomorph/X = target_mob
+		if(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE)
+			return
 		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
 
 /datum/ammo/energy/lasburster
@@ -210,7 +212,7 @@
 /datum/ammo/energy/lasgun/marine/weakening
 	name = "weakening laser bolt"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_efficiency"
 	damage = 30
 	penetration = 10
 	sundering = 0
@@ -231,7 +233,7 @@
 /datum/ammo/energy/lasgun/marine/microwave
 	name = "microwave laser bolt"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_xray"
 	damage = 20
 	penetration = 20
 	sundering = 2
@@ -276,7 +278,7 @@
 /datum/ammo/energy/lasgun/marine/impact
 	name = "impact laser blast"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_impact"
 	damage = 35
 	penetration = 10
 	sundering = 0
@@ -290,7 +292,7 @@
 /datum/ammo/energy/lasgun/marine/cripple
 	name = "impact laser blast"
 	icon_state = "overchargedlaser"
-	hud_state = "laser_sniper"
+	hud_state = "laser_disabler"
 	damage = 20
 	penetration = 10
 	sundering = 0
@@ -313,7 +315,7 @@
 
 /datum/ammo/energy/lasgun/marine/autolaser/charge
 	name = "charged machine laser bolt"
-	hud_state = "laser_efficiency"
+	hud_state = "laser_overcharge"
 	damage = 50
 	penetration = 30
 	sundering = 3
@@ -327,7 +329,7 @@
 
 /datum/ammo/energy/lasgun/marine/autolaser/melting
 	name = "melting machine laser bolt"
-	hud_state = "laser_efficiency"
+	hud_state = "laser_melting"
 	damage = 15
 	penetration = 20
 	sundering = 0
@@ -375,7 +377,7 @@
 /datum/ammo/energy/lasgun/marine/shatter
 	name = "sniper shattering bolt"
 	icon_state = "microwavelaser"
-	hud_state = "laser_heat"
+	hud_state = "laser_impact"
 	damage = 40
 	penetration = 30
 	accurate_range_min = 5
@@ -399,7 +401,7 @@
 /datum/ammo/energy/lasgun/marine/ricochet
 	name = "sniper laser bolt"
 	icon_state = "microwavelaser"
-	hud_state = "laser_heat"
+	hud_state = "laser_disabler"
 	damage = 100
 	penetration = 30
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_SNIPER
@@ -432,6 +434,7 @@
 
 /datum/ammo/energy/lasgun/marine/pistol
 	name = "pistol laser bolt"
+	hud_state = "laser_efficiency"
 	damage = 20
 	penetration = 5
 	sundering = 1
@@ -465,7 +468,7 @@
 
 /datum/ammo/energy/lasgun/marine/xray
 	name = "xray heat bolt"
-	hud_state = "laser_xray"
+	hud_state = "laser_heat"
 	icon_state = "u_laser"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_INCENDIARY|AMMO_HITSCAN
 	damage = 25
@@ -476,6 +479,7 @@
 
 /datum/ammo/energy/lasgun/marine/xray/piercing
 	name = "xray piercing bolt"
+	hud_state = "laser_xray"
 	icon_state = "xray"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	damage = 25
@@ -661,24 +665,29 @@
 
 /datum/ammo/energy/plasma/smg_standard
 	icon_state = "plasma_ball_small"
-	damage = 22
+	damage = 14
 	penetration = 10
 	sundering = 0.5
-
-/datum/ammo/energy/plasma/smg_standard/one
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard
-
-/datum/ammo/energy/plasma/smg_standard/two
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/one
-
-/datum/ammo/energy/plasma/smg_standard/three
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/two
-
-/datum/ammo/energy/plasma/smg_standard/four
-	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/three
+	damage_falloff = 1.5
 
 /datum/ammo/energy/plasma/smg_standard/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	reflect(target_turf, proj, 5)
+
+/datum/ammo/energy/plasma/smg_standard/one
+	damage = 16
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard
+
+/datum/ammo/energy/plasma/smg_standard/two
+	damage = 18
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/one
+
+/datum/ammo/energy/plasma/smg_standard/three
+	damage = 20
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/two
+
+/datum/ammo/energy/plasma/smg_standard/four
+	damage = 22
+	bonus_projectiles_type = /datum/ammo/energy/plasma/smg_standard/three
 
 // Plasma //
 /datum/ammo/energy/sectoid_plasma

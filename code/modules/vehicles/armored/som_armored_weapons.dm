@@ -247,7 +247,7 @@
 
 /datum/action/item_action/coilgun_power
 	keybinding_signals = list(
-		KEYBINDING_ALTERNATE = COMSIG_KB_FIREMODE,
+		KEYBINDING_NORMAL = COMSIG_KB_FIREMODE,
 	)
 	use_obj_appeareance = FALSE
 	///The coilgun associated with this action

@@ -3031,7 +3031,7 @@
 	},
 /area/orion_outpost/surface/building/command)
 "oD" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete/lines{
@@ -10213,7 +10213,7 @@
 /turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "Xb" = (
-/obj/structure/prop/vehicle/crawler/destructible{
+/obj/structure/prop/vehicle/crawler{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/concrete,

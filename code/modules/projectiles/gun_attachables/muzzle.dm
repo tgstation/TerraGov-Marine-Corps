@@ -106,7 +106,12 @@
 	accuracy_unwielded_mod = 0.1
 	scatter_mod = -1
 	size_mod = 1
-	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "ebarrel_big", /obj/item/weapon/gun/smg/som = "ebarrel_big", /obj/item/weapon/gun/shotgun/pump/t35 = "ebarrel_big")
+	variants_by_parent_type = list(
+		/obj/item/weapon/gun/rifle/som = "ebarrel_big",
+		/obj/item/weapon/gun/rifle/som_big = "ebarrel_big",
+		/obj/item/weapon/gun/smg/som = "ebarrel_big",
+		/obj/item/weapon/gun/shotgun/pump/t35 = "ebarrel_big",
+	)
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
@@ -131,6 +136,7 @@
 	recoil_unwielded_mod = -2
 	variants_by_parent_type = list(
 		/obj/item/weapon/gun/rifle/som = "comp_big",
+		/obj/item/weapon/gun/rifle/som_big = "comp_big",
 		/obj/item/weapon/gun/smg/som = "comp_big",
 		/obj/item/weapon/gun/shotgun/som = "comp_big",
 		/obj/item/weapon/gun/shotgun/pump/t35 = "comp_big",
@@ -245,8 +251,6 @@
 	else
 		if(user.do_actions)
 			return
-		if(!do_after(user, 0.5 SECONDS, NONE, src, BUSY_ICON_BAR))
-			return
 		to_chat(user, span_notice("You deploy the [src]."))
 		ADD_TRAIT(master_gun, TRAIT_NODROP, PISTOL_LACE_TRAIT)
 		to_chat(user, span_warning("You feel the [src] shut around your wrist!"))
@@ -254,10 +258,6 @@
 		icon_state = "lace-on"
 
 	lace_deployed = !lace_deployed
-
-	for(var/i in master_gun.actions)
-		var/datum/action/action_to_update = i
-		action_to_update.update_button_icon()
 
 	update_icon()
 	return TRUE

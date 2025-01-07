@@ -212,7 +212,7 @@
 			continue
 		if((object.allow_pass_flags & PASS_PROJECTILE) && projectile)
 			continue
-		if((istype(object, /obj/structure/door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
+		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
 		if((object.allow_pass_flags & PASS_GLASS) && bypass_window)
 			continue
@@ -794,7 +794,7 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 /proc/format_text(text)
 	return replacetext(replacetext(text,"\proper ",""),"\improper ","")
 
-///Returns a string based on the weight class define used as argument
+///Returns a string based on the weight class define used as argument.
 /proc/weight_class_to_text(w_class)
 	switch(w_class)
 		if(WEIGHT_CLASS_TINY)
@@ -810,7 +810,24 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 		if(WEIGHT_CLASS_GIGANTIC)
 			. = "gigantic"
 		else
-			. = ""
+			. = "?????"
+
+///Returns an assoc list of WEIGHT CLASS TEXT = DESCRIPTION based on the arg you provide.
+///Used by examine tags for giving each weight class a special description.
+/proc/weight_class_data(w_class)
+	. = list()
+	.[WEIGHT_CLASS_TEXT] = weight_class_to_text(w_class)
+	switch(w_class)
+		if(WEIGHT_CLASS_TINY, WEIGHT_CLASS_SMALL)
+			.[WEIGHT_CLASS_TOOLTIP] = "Fits virtually anywhere; in pockets, backpacks/satchels, and most other containers. Takes up little space in containers."
+		if(WEIGHT_CLASS_NORMAL)
+			.[WEIGHT_CLASS_TOOLTIP] = "Fits in some standard containers and backpacks/satchels. Takes up some space."
+		if(WEIGHT_CLASS_BULKY)
+			.[WEIGHT_CLASS_TOOLTIP] = "Does not fit in standard containers."
+		if(WEIGHT_CLASS_HUGE, WEIGHT_CLASS_GIGANTIC)
+			.[WEIGHT_CLASS_TOOLTIP] = "Often can't be stored at all, except in uncommon specialized containers, like holsters for weapons."
+		else
+			.[WEIGHT_CLASS_TOOLTIP] = "Yell at coders, this isn't supposed to happen."
 
 /// Converts a semver string into a list of numbers
 /proc/semver_to_list(semver_string)

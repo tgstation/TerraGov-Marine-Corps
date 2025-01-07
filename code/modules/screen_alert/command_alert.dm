@@ -28,6 +28,9 @@
 	var/skill_min = SKILL_LEAD_TRAINED
 
 /datum/action/innate/message_squad/should_show()
+	. = ..()
+	if(!.)
+		return
 	return owner.skills.getRating(skill_name) >= skill_min
 
 /datum/action/innate/message_squad/can_use_action()
@@ -58,7 +61,9 @@
 	if(!can_use_action())
 		return
 	var/sound/S //Unique sound for squad leaders/non-squad leaders set further down
-	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, ORDER_COOLDOWN)
+	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
+	addtimer(CALLBACK(src, PROC_REF(update_button_icon)), CIC_ORDER_COOLDOWN + 1)
+	update_button_icon()
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
 	var/override_color // for squad colors
 	var/list/alert_receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list) // for full faction alerts, do this so that faction's AI and ghosts can hear aswell

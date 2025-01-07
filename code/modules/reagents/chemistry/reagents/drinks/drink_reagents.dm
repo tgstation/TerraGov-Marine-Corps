@@ -197,7 +197,7 @@
 	L.jitter(2)
 	if(prob(5) && ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		if(E)
 			E.take_damage(1, TRUE)
 		L.emote(pick("twitch", "blink_r", "shiver"))
@@ -210,7 +210,7 @@
 		L.Unconscious(10 SECONDS)
 	if(prob(30) && ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		if(E)
 			E.take_damage(1, TRUE)
 

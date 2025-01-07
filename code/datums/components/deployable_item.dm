@@ -27,10 +27,11 @@
 /datum/component/deployable_item/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(register_for_deploy_signal))
+	RegisterSignal(parent, COMSIG_ITEM_DEPLOY, PROC_REF(self_deploy))
 
 /datum/component/deployable_item/UnregisterFromParent()
 	. = ..()
-	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED)
+	UnregisterSignal(parent, COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DEPLOY)
 
 ///Register click signals to be ready for deploying
 /datum/component/deployable_item/proc/register_for_deploy_signal(obj/item/item_equipped, mob/user, slot)
@@ -45,6 +46,15 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(user, COMSIG_MOB_MOUSEDOWN)
 	UnregisterSignal(item_unequipped, COMSIG_ITEM_UNEQUIPPED)
+
+///Wrapper for objects deploying themselves
+/datum/component/deployable_item/proc/self_deploy(obj/source, mob/user, turf/location)
+	SIGNAL_HANDLER
+	if(!isturf(location))
+		return
+	if(deploy_check_callback && !deploy_check_callback.Invoke(user, location))
+		return
+	INVOKE_ASYNC(src, PROC_REF(finish_deploy), parent, user, location)
 
 ///Wrapper for proc/finish_deploy
 /datum/component/deployable_item/proc/deploy(mob/user, atom/object, turf/location, control, params)
@@ -69,7 +79,7 @@
 	var/direction_to_deploy
 	var/obj/deployed_machine
 
-	if(user)
+	if(user && item_to_deploy.loc == user) //somethings can be deployed remotely
 		if(!ishuman(user) || HAS_TRAIT(item_to_deploy, TRAIT_NODROP))
 			return
 
@@ -106,14 +116,12 @@
 			return
 		user.temporarilyRemoveItemFromInventory(item_to_deploy)
 
-		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_FIREMODE, COMSIG_KB_AUTOEJECT, COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
+		item_to_deploy.UnregisterSignal(user, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_KB_RAILATTACHMENT, COMSIG_KB_MUZZLEATTACHMENT, COMSIG_KB_UNDERRAILATTACHMENT, COMSIG_KB_UNLOADGUN, COMSIG_KB_AUTOEJECT, COMSIG_MOB_CLICK_RIGHT)) //This unregisters Signals related to guns, its for safety
 
 		direction_to_deploy = newdir
 
 	else
-		if(!direction)
-			CRASH("[item_to_deploy] attempted to deploy itself as a null user without the arg direction")
-		direction_to_deploy = direction
+		direction_to_deploy = direction || item_to_deploy.dir
 
 	deployed_machine = new deploy_type(location,item_to_deploy, user)//Creates new structure or machine at 'deploy' location and passes on 'item_to_deploy'
 	deployed_machine.setDir(direction_to_deploy)
@@ -127,7 +135,7 @@
 
 	deployed_machine.update_appearance()
 
-	if(user)
+	if(user && item_to_deploy.loc == user)
 		item_to_deploy.balloon_alert(user, "Deployed!")
 		user.transferItemToLoc(item_to_deploy, deployed_machine, TRUE)
 		if(user.client.prefs.toggles_gameplay & AUTO_INTERACT_DEPLOYABLES)
@@ -137,6 +145,15 @@
 
 	item_to_deploy.toggle_deployment_flag(TRUE)
 	RegisterSignal(deployed_machine, COMSIG_ITEM_UNDEPLOY, PROC_REF(undeploy))
+	RegisterSignal(item_to_deploy, COMSIG_MOVABLE_MOVED, PROC_REF(on_item_move))
+
+///Qdels the deployed object if the internal item is somehow removed
+/datum/component/deployable_item/proc/on_item_move(obj/item/source, old_loc, movement_dir, forced, old_locs)
+	SIGNAL_HANDLER
+	if(source.loc == old_loc)
+		return
+	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	qdel(old_loc)
 
 ///Wrapper for proc/finish_undeploy
 /datum/component/deployable_item/proc/undeploy(datum/source, mob/user)
@@ -160,7 +177,7 @@
 		sentry = deployed_machine
 	sentry?.set_on(FALSE)
 	user.balloon_alert(user, "You start disassembling [undeployed_item]")
-	if(!do_after(user, deploy_time, NONE, deployed_machine, BUSY_ICON_BUILD))
+	if(!do_after(user, undeploy_time, NONE, deployed_machine, BUSY_ICON_BUILD))
 		sentry?.set_on(TRUE)
 		return
 
@@ -168,6 +185,7 @@
 
 	user.unset_interaction()
 
+	UnregisterSignal(undeployed_item, COMSIG_MOVABLE_MOVED)
 	if((get_dist(deployed_machine, user) > 1) || deployed_machine.z != user.z)
 		undeployed_item.forceMove(get_turf(deployed_machine))
 	else

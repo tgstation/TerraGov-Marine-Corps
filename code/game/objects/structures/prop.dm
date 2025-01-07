@@ -441,6 +441,9 @@
 /obj/structure/prop/mainship/hangar_stencil/two
 	icon_state = "dropship2"
 
+/obj/structure/prop/mainship/hangar_stencil/three
+	icon_state = "dropship3"
+
 /obj/structure/prop/mainship/brokengen //all the aesthetics of having a generator without any of the function
 	name = "\improper G-11 geothermal generator"
 	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. The powercell is missing and strange lines of text scroll by on its status panel, you get the feeling there's no fixing it."
@@ -982,6 +985,26 @@
 	icon = 'icons/obj/structures/prop/mainship_64.dmi'
 	icon_state = "fireplace"
 
+/obj/structure/prop/mainship/vat
+	name = "Stasis Vat"
+	desc = "A large vat used to store humans."
+	icon = 'icons/obj/machines/cryogenics2.dmi'
+	icon_state = "cell_off"
+	hit_sound = 'sound/effects/Glasshit.ogg'
+	max_integrity = 120
+	resistance_flags = XENO_DAMAGEABLE
+	layer = ABOVE_MOB_LAYER
+
+/obj/structure/prop/mainship/vat/full
+	icon_state = "cell_off_occupied"
+
+/obj/structure/prop/mainship/vat/broken
+	desc = "A large vat used to store humans. This one doesnt seem functional..."
+	icon_state = "cell_broken"
+
+/obj/structure/prop/mainship/vat/broken/bloody
+	icon_state = "cell_bloody"
+
 //items props
 
 /obj/item/prop
@@ -1177,15 +1200,17 @@
 	icon = 'icons/obj/vehicles/64x64.dmi'
 	layer = ABOVE_MOB_PROP_LAYER
 	density = TRUE
+	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 300
+	coverage = 80
+	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 65, BOMB = 30, BIO = 100, FIRE = 75, ACID = 0)
 
 /obj/structure/prop/vehicle/van
 	name = "van"
 	desc = "An old van, seems to be broken down."
 	icon_state = "van"
-	coverage = 80
 	bound_height = 32
 	bound_width = 64
-	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/vehicle/van/Initialize(mapload)
 	. = ..()
@@ -1193,21 +1218,15 @@
 		bound_height = 64
 		bound_width = 32
 
-/obj/structure/prop/vehicle/van/destructible
-	max_integrity = 200
-	resistance_flags = XENO_DAMAGEABLE
-
-/obj/structure/prop/vehicle/van/destructible/wreck
+/obj/structure/prop/vehicle/van/wreck
 	icon_state = "van_wrecked"
 
 /obj/structure/prop/vehicle/truck
 	name = "truck"
 	desc = "An old truck, seems to be broken down."
 	icon_state = "truck"
-	coverage = 80
 	bound_height = 32
 	bound_width = 64
-	resistance_flags = RESIST_ALL
 
 /obj/structure/prop/vehicle/truck/Initialize(mapload)
 	. = ..()
@@ -1224,113 +1243,71 @@
 		bound_width = 32
 		pixel_x = -16
 
-/obj/structure/prop/vehicle/truck/destructible
-	max_integrity = 150
-	resistance_flags = XENO_DAMAGEABLE
-
-/obj/structure/prop/vehicle/truck/destructible/damaged
+/obj/structure/prop/vehicle/truck/damaged
 	icon_state = "truck_damaged"
 
-/obj/structure/prop/vehicle/truck/destructible/snow
+/obj/structure/prop/vehicle/truck/snow
 	icon_state = "truck_snow"
 
 /obj/structure/prop/vehicle/truck/truckcargo
 	icon_state = "truck_cargo"
+	max_integrity = 400
 
-/obj/structure/prop/vehicle/truck/truckcargo/destructible
-	max_integrity = 200
-	resistance_flags = XENO_DAMAGEABLE
-
-/obj/structure/prop/vehicle/truck/truckcargo/destructible/snow
+/obj/structure/prop/vehicle/truck/truckcargo/snow
 	icon_state = "truck_cargo_snow"
 
 /obj/structure/prop/vehicle/crane
 	name = "crane"
 	desc = "An old crane, seems to be broken down."
 	icon_state = "crane"
-	coverage = 80
 	bound_height = 64
 	bound_width = 64
-	resistance_flags = RESIST_ALL
+	max_integrity = 400
 
-/obj/structure/prop/vehicle/crane/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
-
-/obj/structure/prop/vehicle/crane/destructible/damaged
+/obj/structure/prop/vehicle/crane/damaged
 	icon_state = "crane_damaged"
 
-/obj/structure/prop/vehicle/crane/destructible/wreck
+/obj/structure/prop/vehicle/crane/wreck
 	icon_state = "crane_wreck"
 
-/obj/structure/prop/vehicle/crane/destructible/snow
+/obj/structure/prop/vehicle/crane/snow
 	icon_state = "crane_snow"
 
 /obj/structure/prop/vehicle/crane/cranecargo
 	icon_state = "crane_cargo"
-
-/obj/structure/prop/vehicle/crane/cranecargo/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 400
 
 /obj/structure/prop/vehicle/crawler
 	name = "crawler"
 	desc = "An old crawler, seems to be broken down."
 	icon_state = "crawler"
-	coverage = 80
 	bound_height = 32
 	bound_width = 64
-	resistance_flags = RESIST_ALL
-
-/obj/structure/prop/vehicle/crawler/destructible
-	max_integrity = 200
-	resistance_flags = XENO_DAMAGEABLE
-
+	max_integrity = 400
 
 /obj/structure/prop/vehicle/crawler/crawler_blue
 	icon_state = "crawler_crate_b"
 
-/obj/structure/prop/vehicle/crawler/crawler_blue/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
-
 /obj/structure/prop/vehicle/crawler/crawler_red
 	icon_state = "crawler_crate_r"
-
-/obj/structure/prop/vehicle/crawler/crawler_red/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/crawler/crawler_green
 	icon_state = "crawler_crate_g"
 
-/obj/structure/prop/vehicle/crawler/crawler_green/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
-
 /obj/structure/prop/vehicle/crawler/crawler_fuel
 	icon_state = "crawler_fuel"
 
-/obj/structure/prop/vehicle/crawler/crawler_fuel/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
-
 /obj/structure/prop/vehicle/crawler/crawler_cargo
 	icon_state = "crawler_cargo"
-
-/obj/structure/prop/vehicle/crawler/crawler_cargo/destructible
-	max_integrity = 300
-	resistance_flags = XENO_DAMAGEABLE
 
 /obj/structure/prop/vehicle/big_truck
 	name = "military truck"
 	desc = "A military truck, made for transporting equipment or personnel in bulk."
 	icon = 'icons/obj/vehicles/large_truck.dmi'
 	icon_state = "truck"
-	coverage = 80
 	bound_height = 128
 	bound_width = 128
-	resistance_flags = XENO_DAMAGEABLE
+	max_integrity = 700
 
 /obj/structure/prop/vehicle/big_truck/Initialize(mapload)
 	. = ..()
@@ -1392,7 +1369,6 @@
 	desc = "A decomissioned tank, all methods of propulsion have been disabled and the entrances sealed."
 	icon = 'icons/obj/structures/prop/tank_vertical.dmi'
 	icon_state = "tank_complete"
-	coverage = 80
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL
@@ -1682,7 +1658,6 @@
 	desc = "A decomissioned APC, all methods of propulsion have been disabled and the entrances sealed."
 	icon = 'icons/obj/structures/prop/apc.dmi'
 	icon_state = "apc_base"
-	coverage = 70
 	bound_height = 128
 	bound_width = 128
 	resistance_flags = RESIST_ALL

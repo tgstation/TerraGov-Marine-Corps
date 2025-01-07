@@ -16,8 +16,6 @@
 	tier = XENO_TIER_FOUR //Queen doesn't count towards population limit.
 	upgrade = XENO_UPGRADE_NORMAL
 	bubble_icon = "alienroyal"
-
-	var/breathing_counter = 0
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)
@@ -37,7 +35,7 @@
 
 /mob/living/carbon/xenomorph/queen/handle_special_state()
 	if(is_charging >= CHARGE_ON)
-		icon_state = "Queen Charging"
+		icon_state = "[xeno_caste.caste_name][(xeno_flags & XENO_ROUNY) ? " rouny" : ""] Charging"
 		return TRUE
 	return FALSE
 

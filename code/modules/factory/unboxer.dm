@@ -495,19 +495,13 @@
 /obj/item/factory_refill/agls_flare_refill
 	name = "box of rounded metal plates (AGLS Flare)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become AGLS Flare magazines for an AGL, once finished."
-	refill_type = /obj/item/factory_part/agls_he
+	refill_type = /obj/item/factory_part/agls_flare
 	refill_amount = 10
 
 /obj/item/factory_refill/agls_cloak_refill
 	name = "box of rounded metal plates (AGLS Smoke)"
 	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become AGLS Cloak Smoke magazines for an AGL, once finished."
 	refill_type = /obj/item/factory_part/agls_cloak
-	refill_amount = 10
-
-/obj/item/factory_refill/agls_tanglefoot_refill
-	name = "box of rounded metal plates (AGLS Tanglefoot)"
-	desc = "A box with round metal plates inside. Used to refill Unboxers. These will become AGLS Tanglefoot magazines for an AGL, once finished."
-	refill_type = /obj/item/factory_part/agls_tanglefoot
 	refill_amount = 10
 
 /obj/item/factory_refill/atgun_aphe_refill

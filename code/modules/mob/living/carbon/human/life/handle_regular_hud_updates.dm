@@ -89,19 +89,6 @@
 	if(!hud_used)
 		return
 
-	hud_used?.nutrition_icon?.update_icon()
-
-	hud_used?.pressure_icon?.update_icon()
-
-	hud_used?.toxin_icon?.update_icon()
-
-	hud_used?.oxygen_icon?.update_icon()
-
-	hud_used?.fire_icon?.update_icon()
-
-	hud_used?.bodytemp_icon?.update_icon()
-
-
 /mob/living/carbon/human/handle_healths_hud_updates()
 	if(!hud_used?.healths)
 		return

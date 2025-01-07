@@ -47,7 +47,7 @@
 	damage = 30
 	penetration = 35
 	sundering = 1
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_IFF|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	damage_falloff = 1
 	accurate_range = 7
 	accuracy = 10
@@ -174,3 +174,42 @@
 
 /datum/ammo/bullet/coilgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, weaken = 0.2 SECONDS, slowdown = 1, knockback = 3)
+
+
+// SARDEN
+
+/datum/ammo/bullet/sarden
+	name = "heavy autocannon armor piercing"
+	hud_state = "alloy_spike"
+	hud_state_empty = "smartgun_empty"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	damage = 40
+	penetration = 40
+	sundering = 3.5
+
+/datum/ammo/bullet/sarden/high_explosive
+	name = "heavy autocannon high explosive"
+	hud_state = "alloy_spike"
+	hud_state_empty = "smartgun_empty"
+	ammo_behavior_flags = AMMO_BALLISTIC
+	damage = 25
+	penetration = 30
+	sundering = 0.5
+	max_range = 21
+
+/datum/ammo/bullet/sarden/high_explosive/drop_nade(turf/T)
+	explosion(T, light_impact_range = 2, weak_impact_range = 4)
+
+/datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	var/target_turf = get_turf(target_mob)
+	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	drop_nade(target_turf)
+
+/datum/ammo/bullet/sarden/high_explosive/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
+
+/datum/ammo/bullet/sarden/high_explosive/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+
+/datum/ammo/bullet/sarden/high_explosive/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)

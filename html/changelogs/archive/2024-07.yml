@@ -262,3 +262,84 @@
   - bugfix: powerloader can now be repaired
   - bugfix: fixed LR-73 ammo box overlay sprite
   - bugfix: fixed sunglasses duplicating in the clothes vendor
+2024-07-19:
+  Barnet2:
+  - qol: You can either select acid shroud or just use it on a button press.
+  - bugfix: Acid Shroud can no longer be used infinitely.
+  ivanmixo:
+  - bugfix: Clone vat progress gets reset if it loses power
+2024-07-21:
+  Xander3359:
+  - bugfix: Xenos can no longer instaevo when the shuttle is crashed on crash gamemode
+  yyzsong:
+  - spellcheck: collor > color
+  - code_imp: adds defines for squad colours
+  - code_imp: changes the names of colour defines that use "colour" instead of "color"
+      to be in line with the rest of the defines
+2024-07-22:
+  Lumipharon:
+  - qol: Normal prop vehicles are now all destructable
+2024-07-23:
+  Apple-107:
+  - bugfix: fixed missing sprite for open panel on Req Operations Vendor
+  Ldip999:
+  - code_imp: Organ defines, get_organ_slot, remove_organ_slot
+  Runian:
+  - bugfix: Deconstructing reinforced table parts correctly give two metal instead
+      of one.
+  ivanmixo:
+  - qol: The percentage of armor left is no longer labeled as sunder in the xeno stat
+      panel
+  jonash07:
+  - imageadd: added 2 more icon overlays to tactical binoculars
+2024-07-24:
+  Apple-107:
+  - bugfix: Tadpole/Shuttle engines are now built from copium and are thus unable
+      to be melted or crushed.
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed an issue with some assets getting disabled forever'
+  - balance: Added EMP effects against tanks, blink drives and eshield modules. AT
+      mines are now EMP immune
+  - balance: Synth is no longer immune to gibbing
+  - bugfix: 'Campaign: Radio works in caves on Patrick''s Rest'
+  - bugfix: Mobs that land on tanks via any kind of throw now are correctly added
+      to desants
+  - balance: V-31 has slightly higher burst scatter
+  - balance: 'Campaign: Medical asset is now single use and costs 3 attrition'
+  - bugfix: 'Campaign: Fixed the Teleporter Array charges asset having twice as many
+      uses as intended'
+  Neocloudy:
+  - balance: CIC messages and comms console announcements use the same cooldown as
+      HUD orders from Send Orders/AI alerts.
+  - balance: CIC messages have a maximum length of 100.
+  ivanmixo:
+  - bugfix: Fixed being unable to join valhalla or the larva queue if you ghosted
+      as a xeno
+  jonash07:
+  - bugfix: fixed jaeger mk1 helmet duplicating in the armor vendor
+2024-07-25:
+  Lumipharon:
+  - bugfix: Fixed deploy points and lighting not working correctly in Combat Patrol
+      and Sensor Capture
+2024-07-26:
+  Lumipharon:
+  - balance: 'Campaign: TGMC Raiding base no longer allows the beacon to be planted
+      in the captain''s office'
+2024-07-27:
+  PibeCantina:
+  - qol: Neuraline shows up on scanner now
+2024-07-29:
+  Lauwma:
+  - balance: Harvester weapons now apply 5 stacks of fire when loaded with kelotane
+  Lumipharon:
+  - code_imp: Cleaned up some acid code
+  - balance: Plasma SMG scatter increased slightly
+  - balance: Plasma SMG bouncy mode damage decreases slightly for each bounce
+2024-07-31:
+  Lumipharon:
+  - balance: 'Campaign: Heat rockets have slightly more scatter'
+  - balance: Recoilless rifle has -10 scatter instead of -100
+  Notamaniac:
+  - bugfix: Vindicator Minigun Powerpacks won't show up as an error on snow maps anymore
+  Wisemonster:
+  - rscdel: Removed most of the glass panes by the fire range tables in Valhalla

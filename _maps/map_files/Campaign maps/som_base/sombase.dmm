@@ -6269,7 +6269,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/rocinante_base/surface/building/science/research_lab)
 "iHE" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible,
+/obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/ground/underground/caveN)
 "iIa" = (
@@ -8266,7 +8266,7 @@
 	},
 /area/rocinante_base/surface/building/administration)
 "lDZ" = (
-/obj/structure/prop/vehicle/crawler/destructible,
+/obj/structure/prop/vehicle/crawler,
 /turf/open/floor/plating/ground/concrete,
 /area/rocinante_base/surface/building/train_station)
 "lEz" = (
@@ -9600,7 +9600,7 @@
 /area/rocinante_base/surface/building/administration/central_com)
 "nzS" = (
 /obj/structure/table/black,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/mainship/red{
 	dir = 1
 	},
@@ -13181,7 +13181,7 @@
 /area/rocinante_base/surface/building/living/barracks)
 "sDO" = (
 /obj/structure/table/black,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/mainship/red{
 	dir = 9
 	},

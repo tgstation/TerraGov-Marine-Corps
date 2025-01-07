@@ -363,12 +363,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 0.4 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.2
+	accuracy_mult = 1.1
 	scatter = -3
 
 /obj/item/weapon/gun/rifle/tx8/scout
 	starting_attachment_types = list(
-		/obj/item/attachable/reddot,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/verticalgrip,
 	)
@@ -395,7 +395,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	default_ammo_type = null
-	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/minigun_powerpack,
+		/obj/item/ammo_magazine/minigun_powerpack/fancy,
+		/obj/item/ammo_magazine/minigun_powerpack/merc,
+		)
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 1.2 SECONDS
@@ -405,7 +409,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 12
 
@@ -522,7 +525,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	starting_attachment_types = list(/obj/item/weapon/gun/flamer/hydro_cannon/pepperball)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.1
 
@@ -810,7 +812,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	fire_delay = 1 SECONDS
-	scatter = -100
+	scatter = -10
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact
 	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/low_impact
@@ -882,6 +884,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 			human_user.update_inv_l_hand()
 		else if (src == human_user.r_hand)
 			human_user.update_inv_r_hand()
+
+/obj/item/weapon/gun/launcher/rocket/oneuse/anti_tank
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm AT rocket. Spacebar to shorten or extend it to make it storeable or fireable, respectively."
+	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse/anti_tank
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/oneuse/anti_tank)
 
 //SOM RPG
 /obj/item/weapon/gun/launcher/rocket/som

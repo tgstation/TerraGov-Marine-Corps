@@ -403,6 +403,14 @@
 
 	return old_component
 
+///Removes a component of a specified type
+/datum/proc/remove_component(datum/component/component_type)
+	if(ispath(component_type))
+		component_type = GetExactComponent(component_type)
+	if(!component_type)
+		return
+	component_type.RemoveComponent()
+
 /**
  * Removes a component source from this datum
  */

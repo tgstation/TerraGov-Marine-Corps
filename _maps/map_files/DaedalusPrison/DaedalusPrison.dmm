@@ -5402,7 +5402,7 @@
 /area/daedalusprison/inside/cargo)
 "evD" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/kitchen,
@@ -5876,7 +5876,7 @@
 	},
 /area/daedalusprison/inside/mechanicshop)
 "eRC" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -11479,7 +11479,7 @@
 /turf/open/floor/wood,
 /area/daedalusprison/inside/chapel)
 "jAA" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -17332,7 +17332,7 @@
 /area/daedalusprison/inside/security/medsec)
 "olj" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/kitchen)
 "oly" = (
@@ -20570,7 +20570,7 @@
 /turf/open/floor/prison,
 /area/daedalusprison/inside/southclass)
 "qNn" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 4
 	},
 /turf/open/floor/tile/dark2,
@@ -22137,7 +22137,7 @@
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/bunker)
 "sbN" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -24655,7 +24655,7 @@
 /turf/open/floor,
 /area/daedalusprison/inside/hydroponics)
 "uai" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible,
+/obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/cargo)
 "uak" = (
@@ -27106,7 +27106,7 @@
 	},
 /area/daedalusprison/inside/security/office)
 "wbI" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -28560,7 +28560,7 @@
 /area/daedalusprison/inside/janitorial)
 "xdB" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/kitchen)

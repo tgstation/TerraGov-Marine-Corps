@@ -76,7 +76,7 @@
 			var/mob/living/carbon/human/H = L
 			if(H.get_eye_protection() > 0)
 				continue
-			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+			var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 			if(E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
 				H.flash_act()
 				E.take_damage(rand(1, 5))

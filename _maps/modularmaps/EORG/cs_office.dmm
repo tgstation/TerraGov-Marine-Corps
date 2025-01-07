@@ -1128,7 +1128,7 @@
 /area/deathmatch)
 "zV" = (
 /obj/structure/table/reinforced,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/burger,
 /turf/open/floor/tile/cmo,
 /area/deathmatch)

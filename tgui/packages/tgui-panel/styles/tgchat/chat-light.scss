@@ -597,12 +597,7 @@ h2.alert {
   color: #72a0e5;
   font-weight: bold;
 }
-.highdanger {
-  color: #ff0000;
-  font-weight: bold;
-  font-size: 185%;
-}
-.xenohighdanger {
+.xenouserdanger {
   color: #2a623d;
   font-weight: bold;
   font-size: 1.5em;
@@ -642,7 +637,7 @@ h2.alert {
 }
 
 .role_header {
-  color: #000000;
+  color: rgb(0, 0, 0);
   display: block;
   text-align: center;
   font-weight: bold;
@@ -651,7 +646,6 @@ h2.alert {
 .role_body {
   color: #db0000;
   display: block;
-  text-align: center;
 }
 .round_setup {
   color: #db0000;
@@ -1046,6 +1040,29 @@ h2.alert {
   margin-left: 3em;
 }
 
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.25em;
+}
+
 .examine_block {
   background: rgba(0, 0, 0, 0.1);
   border: 1px solid #111a27;
@@ -1058,6 +1075,19 @@ h2.alert {
   background: #333;
   height: 1px;
   margin: 8px 16px 8px 16px;
+}
+.examine_block .blockheader {
+  font-family: Verdana;
+  color: #000000;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.tooltip {
+  font-style: italic;
+  border-bottom: 1px dashed #000;
 }
 
 $ooc_alert_bg_colors: (
@@ -1075,12 +1105,16 @@ $ooc_alert_text_colors: (
   'game': #b60000,
 );
 
+$border-width: 4;
+
+$border-width-px: $border-width * 1px;
+
 @each $color-type, $color in $ooc_alert_text_colors {
   .ooc_alert_#{$color-type} {
     background: map.get($ooc_alert_bg_colors, $color-type);
     border: 1px solid map.get($ooc_alert_border_colors, $color-type);
-    margin: 0.5em;
-    padding: 0.5em 0.5em 0.5em 0.2em;
+    margin: 7px 4px;
+    padding: 8px 12px;
     color: #000000;
     font-weight: bold;
     display: flex;
@@ -1090,6 +1124,16 @@ $ooc_alert_text_colors: (
   .ooc_alert_#{$color-type} .ooc_announcement_text {
     color: map.get($ooc_alert_text_colors, $color-type);
     padding: 0.5em 0 0 0.35em;
+  }
+  .ooc_alert_#{$color-type} .separator::before {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid map.get($ooc_alert_border_colors, $color-type);
+  }
+  .ooc_alert_#{$color-type} .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid map.get($ooc_alert_border_colors, $color-type);
   }
 }
 
@@ -1140,10 +1184,6 @@ $alert-subheader-header-colors: (
   'purple': #991200,
   'grey': #002c85,
 );
-
-$border-width: 4;
-
-$border-width-px: $border-width * 1px;
 
 .faction_alert_text {
   color: #202020;

@@ -113,7 +113,6 @@
 			break
 		if(amount < 1)
 			user.balloon_alert(user, "You finish emptying [src].")
-			break
 		var/obj/item/stack/sandbag = user.get_inactive_held_item()
 		if(istype(sandbag, /obj/item/stack/sandbags_empty) && sandbag.add(1))
 			continue
@@ -121,4 +120,3 @@
 		if(!sandbag && user.put_in_hands(E))
 			continue
 		E.add_to_stacks(user)
-

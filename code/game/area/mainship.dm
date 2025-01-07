@@ -148,9 +148,11 @@
 
 /area/mainship/hallways/hangar/flight_control
 	name = "Flight Control"
-	icon_state = "hangar"
 	minimap_color = MINIMAP_AREA_COMMAND
 
+/area/mainship/hallways/hangar/flight_observation
+	name = "Flight Observation"
+	minimap_color = MINIMAP_AREA_LIVING
 
 /area/mainship/living/tankerbunks
 	name = "Vehicle Crew Bunks"

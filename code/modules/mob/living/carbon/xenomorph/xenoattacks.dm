@@ -76,11 +76,6 @@
 	if(src == xeno_attacker)
 		return TRUE
 
-	if(isxenolarva(xeno_attacker)) //Larvas can't eat people
-		xeno_attacker.visible_message(span_danger("[xeno_attacker] nudges its head against \the [src]."), \
-		span_danger("We nudge our head against \the [src]."))
-		return FALSE
-
 	switch(xeno_attacker.a_intent)
 		if(INTENT_HELP)
 			if(on_fire)
@@ -93,43 +88,10 @@
 						span_notice("We extinguished the fire on [src]."), null, 5)
 					ExtinguishMob()
 				return TRUE
-
 			xeno_attacker.visible_message(span_notice("\The [xeno_attacker] caresses \the [src] with its scythe-like arm."), \
 			span_notice("We caress \the [src] with our scythe-like arm."), null, 5)
-
+			return TRUE
 		if(INTENT_GRAB)
-			if(anchored)
-				return FALSE
-			if(!xeno_attacker.start_pulling(src))
-				return FALSE
-			xeno_attacker.visible_message(span_warning("[xeno_attacker] grabs \the [src]!"), \
-			span_warning("We grab \the [src]!"), null, 5)
-			playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-
-		if(INTENT_HARM, INTENT_DISARM)//Can't slash other xenos for now. SORRY  // You can now! --spookydonut
-			if(issamexenohive(xeno_attacker))
-				xeno_attacker.do_attack_animation(src)
-				xeno_attacker.visible_message(span_warning("\The [xeno_attacker] nibbles \the [src]."), \
-				span_warning("We nibble \the [src]."), null, 5)
-				return TRUE
-			// Not at the base of the proc otherwise we can just nibble for free slashing effects
-			SEND_SIGNAL(xeno_attacker, COMSIG_XENOMORPH_ATTACK_HOSTILE_XENOMORPH, src, damage_amount, xeno_attacker.xeno_caste.melee_damage * xeno_attacker.xeno_melee_damage_modifier)
-			// copypasted from attack_alien.dm
-			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-			var/damage = xeno_attacker.xeno_caste.melee_damage
-
-			//Somehow we will deal no damage on this attack
-			if(!damage)
-				xeno_attacker.do_attack_animation(src)
-				playsound(xeno_attacker.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
-				xeno_attacker.visible_message(span_danger("\The [xeno_attacker] lunges at [src]!"), \
-				span_danger("We lunge at [src]!"), null, 5)
-				return FALSE
-
-			xeno_attacker.visible_message(span_danger("\The [xeno_attacker] slashes [src]!"), \
-			span_danger("We slash [src]!"), null, 5)
-			log_combat(xeno_attacker, src, "slashed")
-
-			xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_REDSLASH)
-			playsound(loc, SFX_ALIEN_CLAW_FLESH, 25, 1)
-			apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
+			return attack_alien_grab(xeno_attacker)
+		if(INTENT_HARM, INTENT_DISARM)
+			return attack_alien_harm(xeno_attacker)

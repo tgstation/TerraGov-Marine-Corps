@@ -7621,7 +7621,7 @@
 	},
 /area/slumbridge/inside/medical/foyer)
 "fRh" = (
-/obj/structure/prop/vehicle/van/destructible{
+/obj/structure/prop/vehicle/van{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -13569,7 +13569,7 @@
 /area/slumbridge/outside/northeast)
 "kdY" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/kitchen,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison/kitchen,
@@ -14210,7 +14210,7 @@
 /turf/open/floor/prison,
 /area/slumbridge/outside/southwest)
 "kFF" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/mainship,
@@ -21069,7 +21069,7 @@
 	},
 /area/slumbridge/outside/southwest)
 "pAj" = (
-/obj/structure/prop/vehicle/van/destructible{
+/obj/structure/prop/vehicle/van{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -23442,14 +23442,14 @@
 /turf/open/floor/tile/dark,
 /area/slumbridge/outside/southwest)
 "rkO" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating/platebot,
 /area/slumbridge/inside/houses/car)
 "rkT" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/variable/mosaic,
 /area/slumbridge/caves/southeastcaves/garbledradio)
 "rkU" = (
@@ -25520,7 +25520,7 @@
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/slumbridge/caves/minedrock)
 "sJw" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood/variable/wide/damaged,
 /area/slumbridge/caves/southeastcaves/garbledradio)
 "sJH" = (
@@ -25654,7 +25654,7 @@
 /turf/open/floor/tile/blue/whiteblue,
 /area/slumbridge/inside/medical/foyer)
 "sPX" = (
-/obj/structure/prop/vehicle/truck/destructible{
+/obj/structure/prop/vehicle/truck{
 	dir = 8
 	},
 /turf/open/floor/plating/platebot,
@@ -30446,7 +30446,7 @@
 /area/slumbridge/inside/medical/foyer)
 "wos" = (
 /obj/structure/table,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/spawner/random/food_or_drink/kitchenknife/butcherweighted,
 /turf/open/floor/prison/kitchen,
 /area/slumbridge/inside/colony/kitchen)
@@ -31618,7 +31618,7 @@
 /turf/open/floor/plating/scorched,
 /area/slumbridge/inside/pmcdome)
 "xdc" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible,
+/obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/mainship/plate,
 /area/slumbridge/inside/sombase/hangar)
 "xdi" = (

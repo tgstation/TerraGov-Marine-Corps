@@ -5606,8 +5606,9 @@
 /turf/open/floor,
 /area/bigredv2/outside/filtration_plant)
 "bkv" = (
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/closed/wall/r_wall/unmeltable,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "bkw" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
@@ -5655,12 +5656,14 @@
 /obj/structure/cryofeed/right{
 	name = "\improper coolant feed"
 	},
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/engine,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "bkJ" = (
 /obj/structure/cryofeed,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/engine,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "bkL" = (
 /obj/structure/table,
 /obj/machinery/light{
@@ -5737,8 +5740,9 @@
 /area/bigredv2/outside/bar)
 "blU" = (
 /obj/structure/window/framed/colony/reinforced/hull,
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/plating,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "blV" = (
 /obj/structure/bed/chair/office/light{
 	dir = 4
@@ -5835,8 +5839,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/effect/forcefield/allow_bullet_travel,
 /turf/open/floor/engine,
-/area/bigredv2/outside/filtration_plant)
+/area/bigredv2/caves/rock)
 "bnf" = (
 /obj/machinery/computer3/server/rack,
 /turf/open/floor,
@@ -8536,7 +8541,7 @@
 /area/bigredv2/outside/bar)
 "eed" = (
 /obj/structure/mirror/broken{
-	dir = 4
+	dir = 8
 	},
 /obj/effect/spawner/random/misc/soap/deluxeweighted,
 /obj/effect/landmark/weed_node,

@@ -27949,7 +27949,7 @@
 	},
 /area/ice_colony/underground/storage/highsec)
 "qDw" = (
-/obj/structure/prop/vehicle/crawler/destructible{
+/obj/structure/prop/vehicle/crawler{
 	dir = 1
 	},
 /turf/open/floor/tile/dark2,
@@ -30608,7 +30608,7 @@
 	},
 /area/ice_colony/underground/responsehangar)
 "tOr" = (
-/obj/structure/prop/vehicle/crawler/destructible,
+/obj/structure/prop/vehicle/crawler,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/garage/three)
 "tOA" = (

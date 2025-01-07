@@ -7675,7 +7675,9 @@
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/operations_hall)
 "gjD" = (
-/obj/effect/landmark/campaign_structure/asat_system,
+/obj/effect/landmark/campaign_structure/asat_system{
+	dir = 4
+	},
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzonetwo)
 "gjR" = (
@@ -9192,7 +9194,7 @@
 /turf/open/floor/tile/dark/blue2,
 /area/lawankaoutpost/colony/operations_administration)
 "hJw" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible,
+/obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/cargo)
 "hJN" = (
@@ -9535,12 +9537,6 @@
 	dir = 6
 	},
 /area/lawankaoutpost/colony/robotics)
-"hUA" = (
-/obj/effect/landmark/campaign_structure/asat_system,
-/turf/open/floor/plating/icefloor/warnplate{
-	dir = 8
-	},
-/area/shuttle/drop2/lz2)
 "hUT" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
@@ -18393,6 +18389,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/lawankaoutpost/caves/nanotrasen_lab)
+"pgi" = (
+/obj/effect/landmark/campaign_structure/asat_system{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/shuttle/drop2/lz2)
 "pgp" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/red/whitered{
@@ -19062,7 +19064,9 @@
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
 "pEo" = (
-/obj/effect/landmark/campaign_structure/asat_system,
+/obj/effect/landmark/campaign_structure/asat_system{
+	dir = 1
+	},
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/outside/northwest)
 "pEq" = (
@@ -20806,7 +20810,7 @@
 /turf/open/floor/wood,
 /area/lawankaoutpost/colony/bar)
 "rek" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -29311,7 +29315,7 @@
 /turf/open/floor/freezer,
 /area/lawankaoutpost/colony/northdorms)
 "xTI" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -48945,8 +48949,8 @@ xQt
 xQt
 nTr
 hSX
-xQt
 pEo
+xQt
 xQt
 xQt
 mHu
@@ -73812,7 +73816,7 @@ rxQ
 rxQ
 qXJ
 rxQ
-hUA
+rxQ
 rxQ
 rxQ
 rxQ
@@ -74247,7 +74251,7 @@ jsZ
 jsZ
 jsZ
 jsZ
-jsZ
+pgi
 jsZ
 jsZ
 sPq

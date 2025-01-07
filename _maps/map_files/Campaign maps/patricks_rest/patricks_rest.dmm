@@ -958,7 +958,7 @@
 /area/patricks_rest/ground/colonys)
 "es" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
 "et" = (
@@ -3882,7 +3882,7 @@
 /area/patricks_rest/ground/colonys)
 "ru" = (
 /obj/structure/table/reinforced/prison,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/prison/sterilewhite,
 /area/patricks_rest/surface/building/residential_cent)
 "rv" = (
@@ -4323,7 +4323,7 @@
 /area/patricks_rest/surface/building/offices)
 "tD" = (
 /obj/structure/table/reinforced,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/item/reagent_containers/food/snacks/soup/meatballsoup,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
@@ -4538,7 +4538,7 @@
 /obj/structure/window{
 	dir = 4
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
 "uE" = (
@@ -10782,7 +10782,7 @@
 /obj/structure/window{
 	dir = 8
 	},
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/grayscale/black,
 /area/patricks_rest/surface/building/residential_cent)
 "YZ" = (

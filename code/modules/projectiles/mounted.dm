@@ -77,10 +77,9 @@
 	if(!ishuman(user))
 		return
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			to_chat(user, "You can't get near that, it's melting!")
-			return
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return
 
 	reload(user, I)
 

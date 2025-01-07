@@ -234,7 +234,7 @@
 
 	COOLDOWN_START(src, defib_cooldown, 1 SECONDS) // 1 second before you can try again if you finish the do_after
 
-	var/datum/internal_organ/heart/heart = patient.internal_organs_by_name["heart"]
+	var/datum/internal_organ/heart/heart = patient.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!issynth(patient) && !isrobot(patient) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 

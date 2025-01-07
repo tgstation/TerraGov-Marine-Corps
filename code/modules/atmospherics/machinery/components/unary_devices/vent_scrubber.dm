@@ -65,7 +65,7 @@
 	..()
 	update_icon_nopipes()
 
-/obj/machinery/atmospherics/components/unary/vent_scrubber/weld_cut_act(mob/living/user, obj/item/W)
+/obj/machinery/atmospherics/components/unary/vent_scrubber/plasmacutter_act(mob/living/user, obj/item/W)
 	if(isplasmacutter(W))
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
 

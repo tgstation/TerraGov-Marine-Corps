@@ -793,6 +793,10 @@
 /obj/item/roller,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/patrol_base/som/medical)
+"jI" = (
+/obj/item/plantable_flag/som,
+/turf/open/floor/mainship/office,
+/area/mainship/patrol_base/som/command)
 "jK" = (
 /obj/structure/stairs/seamless,
 /turf/open/floor/plating/ground/concrete,
@@ -2871,10 +2875,8 @@
 /turf/open/floor/plating/ground/concrete,
 /area/mainship/patrol_base/som)
 "Jl" = (
+/obj/machinery/door/poddoor/mainship/open,
 /obj/structure/window/framed/prison/reinforced/nonshutter_hull,
-/obj/machinery/door/poddoor/campaign/som{
-	dir = 8
-	},
 /turf/open/floor/mainship/floor,
 /area/mainship/patrol_base/som)
 "Jm" = (
@@ -11566,7 +11568,7 @@ Uk
 RO
 iT
 Sy
-Sy
+jI
 Sy
 Sy
 Sy

@@ -276,3 +276,6 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 #define CATWALK_ROD_REQ 4
 ///Rods needed to reinforce a floor
 #define REINFORCED_FLOOR_ROD_REQ 2
+
+///Amount of fire stacks removed by extinguishers or similar effects
+#define EXTINGUISH_AMOUNT 20

@@ -520,16 +520,16 @@
 		return
 	if(camo_last_shimmer > world.time - SCOUT_CLOAK_STEALTH_DELAY) //Shimmer after taking aggressive actions
 		source.alpha = SCOUT_CLOAK_RUN_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_RUN_DRAIN)
 	else if(camo_last_stealth > world.time - SCOUT_CLOAK_STEALTH_DELAY) //We have an initial reprieve at max invisibility allowing us to reposition, albeit at a high drain rate
 		source.alpha = SCOUT_CLOAK_STILL_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_RUN_DRAIN)
 	else if(source.m_intent == MOVE_INTENT_WALK)
 		source.alpha = SCOUT_CLOAK_WALK_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_WALK_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_WALK_DRAIN)
 	else
 		source.alpha = SCOUT_CLOAK_RUN_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_RUN_DRAIN)
 
 ///Activates the cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage()
@@ -791,6 +791,18 @@
 		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		to_chat(user, span_notice("You refill [RS] with fuel."))
 		RS.update_icon()
+
+	else if(istype(I, /obj/item/weapon/twohanded/chainsaw))
+		var/obj/item/weapon/twohanded/chainsaw/saw = I
+		if(saw.reagents.get_reagent_amount(/datum/reagent/fuel) == saw.max_fuel || !reagents.total_volume)
+			return ..()
+
+		var/fuel_transfer_amount = min(reagents.total_volume, (saw.max_fuel - saw.reagents.get_reagent_amount(/datum/reagent/fuel)))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		saw.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [saw] with fuel."))
+		saw.update_icon()
 
 	else
 		return ..()
