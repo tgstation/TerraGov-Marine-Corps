@@ -5999,14 +5999,12 @@
 /turf/open/floor/mainship/mono,
 /area/crew_quarters/toilet)
 "hoR" = (
-/obj/machinery/cic_maptable/drawable/big{
-	pixel_x = 0
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
-	dir = 8
-	},
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "hpx" = (
 /obj/machinery/light/mainship{
 	dir = 8
@@ -7138,6 +7136,14 @@
 /obj/effect/turf_decal/warning_stripes/thick,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
+"iTm" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/effect/ai_node,
+/turf/open/floor/plating/plating_catwalk,
+/area/mainship/hull/lower_hull)
 "iTn" = (
 /obj/machinery/light/mainship,
 /obj/machinery/holopad,
@@ -10092,14 +10098,6 @@
 "mBZ" = (
 /turf/open/space,
 /area/space)
-"mCI" = (
-/obj/structure/disposalpipe/segment/corner{
-	dir = 8
-	},
-/obj/structure/cable,
-/obj/effect/ai_node,
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/lower_hull)
 "mDY" = (
 /obj/structure/cable,
 /obj/machinery/light/mainship/small{
@@ -11547,13 +11545,6 @@
 	dir = 1
 	},
 /area/mainship/medical/chemistry)
-"osi" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment/corner{
-	dir = 4
-	},
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
 "osF" = (
 /obj/structure/closet/crate/weapon,
 /obj/structure/disposalpipe/segment,
@@ -55775,9 +55766,9 @@ miU
 rUF
 xWS
 mRy
-hoR
 cPg
 vDF
+cPg
 fHj
 rUF
 diF
@@ -60921,7 +60912,7 @@ nJG
 nJG
 nJG
 nJG
-osi
+hoR
 wHk
 wPV
 mDY
@@ -61178,7 +61169,7 @@ cbS
 cbS
 cbS
 cbS
-mCI
+iTm
 esN
 esN
 esN
