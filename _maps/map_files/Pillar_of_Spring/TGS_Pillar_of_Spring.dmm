@@ -992,6 +992,13 @@
 	dir = 8
 	},
 /area/space)
+"bhR" = (
+/obj/structure/cable,
+/obj/structure/disposalpipe/segment/corner{
+	dir = 4
+	},
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "biq" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/air_alarm{
@@ -1189,10 +1196,17 @@
 	dir = 1
 	},
 /turf/open/floor/plating,
-/area/mainship/hull/lower_hull)
+/area/mainship/shipboard/firing_range)
 "bxv" = (
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/upper_medical)
+"bxw" = (
+/obj/structure/disposalpipe/segment/corner{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "bxQ" = (
 /obj/structure/window/framed/mainship,
 /turf/open/floor/plating,
@@ -1922,6 +1936,11 @@
 /obj/structure/prop/mainship/name_stencil/M,
 /turf/open/floor/mainship_hull,
 /area/space)
+"cpO" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable,
+/turf/open/floor/mainship/mono,
+/area/mainship/hull/lower_hull)
 "cqy" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment/corner,
@@ -6810,7 +6829,7 @@
 /area/mainship/medical/lower_medical)
 "iwe" = (
 /turf/open/floor/plating,
-/area/mainship/hull/lower_hull)
+/area/mainship/shipboard/firing_range)
 "iwj" = (
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/dark,
@@ -60896,17 +60915,17 @@ nWT
 nWT
 esN
 unX
-qeW
-rKn
-rKn
-rKn
+nJG
+nJG
+nJG
+nJG
 iwe
 bvM
-rKn
-rKn
-rKn
-rKn
-rCA
+nJG
+nJG
+nJG
+nJG
+bhR
 wHk
 wPV
 mDY
@@ -61153,17 +61172,17 @@ nWT
 nWT
 esN
 ssm
-hUz
-esN
-esN
-esN
-esN
-esN
-esN
-esN
-esN
-esN
-esN
+rCA
+cpO
+cpO
+cpO
+cpO
+cpO
+cpO
+cpO
+cpO
+cpO
+bxw
 esN
 esN
 esN
@@ -61408,19 +61427,19 @@ nWT
 nWT
 nWT
 nWT
-brL
-brL
-brL
-nWT
-nWT
-nWT
-nWT
-nWT
-nWT
-nWT
-nWT
-nWT
-nWT
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
+esN
 nWT
 nWT
 nWT
