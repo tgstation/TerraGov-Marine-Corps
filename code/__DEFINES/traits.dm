@@ -80,6 +80,7 @@
 #define SPECIES_TRAIT "species" // /datum/species innate trait
 #define CRYOPOD_TRAIT "cryopod"
 #define XENO_TRAIT "xeno"
+#define SUPERSOLDIER_TRAIT "supersoldier"
 #define ARMOR_TRAIT "armor"
 #define STAT_TRAIT "stat"
 #define NECKGRAB_TRAIT "neckgrab"
@@ -124,6 +125,8 @@
 #define TRAIT_DWARF "dwarf"
 /// Makes you way too tall. Like just too much, dude, it's kind of creepy. Humanoid only.
 #define TRAIT_TOO_TALL "too_tall"
+///massively decreases human MANUAL get up time
+#define TRAIT_QUICK_GETUP "quick_getup"
 
 #define ABSTRACT_ITEM_TRAIT "abstract_item"
 /// A trait given by any status effect

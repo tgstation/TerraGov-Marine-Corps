@@ -239,34 +239,26 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 /datum/stim/status_effect/finish_cast(mob/living/owner)
 	owner.set_timed_status_effect(stim_duration, effect_type, only_if_higher = TRUE)
 
-/datum/stim/status_effect/scatter
-	name = "Scatter"
-	cast_say = "Releasing muscarinic agonists..."
-	desc = "Decreases the amount of scatter from shooting guns by activating arm nerves beyond normal levels."
-	stim_uid = "scatterreduction"
-	stim_flags = NONE
-	effect_type = /datum/status_effect/gun_skill/scatter/buff
-
-/datum/stim/status_effect/accuracy
-	name = "Accuracy"
-	cast_say = "Releasing hypotropine..."
-	desc = "Increases accuracy at range from shooting guns by deepening perception by adjusting the pupils."
-	stim_uid = "accuracyimprovement"
-	stim_flags = NONE
-	effect_type = /datum/status_effect/gun_skill/accuracy/buff
-
 /datum/stim/trait
 	stim_flags = STIM_ABSTRACT
 	/// trait we will be applying
 	var/trait_type = null
 
 /datum/stim/trait/finish_cast(mob/living/owner)
-	ADD_TRAIT(owner, TRAIT_EARDAMAGE_IMMUNE, name)
+	ADD_TRAIT(owner, trait_type, SUPERSOLDIER_TRAIT)
 	return ..()
 
 /datum/stim/trait/end_effects(mob/living/owner)
-	REMOVE_TRAIT(owner, TRAIT_EARDAMAGE_IMMUNE, name)
+	REMOVE_TRAIT(owner, trait_type, SUPERSOLDIER_TRAIT)
 	return ..()
+
+/datum/stim/trait/immediate_defib
+	name = "Immediate defibbrillation "
+	desc = "Auto-sets health to 1 below defib threshold upon defibrillation. Two consecutive uses will deal enough damage to destroy the user's heart."
+	cast_say = "Injecting tissue stimulants..."
+	stim_uid = "immediate_defib"
+	stim_flags = NONE
+	trait_type = TRAIT_IMMEDIATE_DEFIB
 
 /datum/stim/trait/no_ear_damage
 	name = "Ear Resistance"
@@ -292,9 +284,25 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 	stim_flags = NONE
 	trait_type = TRAIT_SILENT_FOOTSTEPS
 
+/datum/stim/trait/quick_getup
+	name = "Quick Getup"
+	desc = "Increases lower muscular responsivity, allowing you to get up quickly after lying down."
+	cast_say = "Enhancing muscular responsiveness..."
+	stim_uid = "quickgetup"
+	stim_flags = NONE
+	trait_type = TRAIT_QUICK_GETUP
+
+/datum/stim/trait/tank_collision_immunity
+	name = "Vehicle Crash Immunity"
+	desc = "Enhances your body's weight, making you immune to being moved and damaged by vehicle collisions."
+	cast_say = "Increasing bone density..."
+	stim_uid = "tankcollisionimmunity"
+	stim_flags = NONE
+	trait_type = TRAIT_STOPS_TANK_COLLISION
+
 /datum/stim/portal_toggle
 	name = "Portal Vulnerability"
-	desc = "Inverts your dimensionalal alignment through a mix of targetted isotopes, making you immune to portals if you weren't already, and makes you able to go through them if you were."
+	desc = "Inverts your dimensional alignment through a mix of targetted isotopes, making you immune to portals if you weren't already, and makes you able to go through them if you were."
 	cast_say = "Inverting polarity..."
 	stim_uid = "portallchange"
 	stim_flags = NONE
@@ -310,13 +318,13 @@ GLOBAL_LIST_INIT(stim_type_lookup, init_stims())
 /datum/stim/speed_increase
 	name = "Speed Increase"
 	desc = "Increases your speed of movement, making you walk and move passively faster."
-	cast_say = "Adminstering adrenaline..."
+	cast_say = "Administering adrenaline..."
 	stim_uid = "speedincrease"
 	particles = /particles/stims/speed
 	stim_flags = NONE
 
 /datum/stim/speed_increase/finish_cast(mob/living/owner)
-	owner.add_movespeed_modifier(MOVESPEED_ID_STIM_INCREASE, TRUE, 0, NONE, TRUE, -1)
+	owner.add_movespeed_modifier(MOVESPEED_ID_STIM_INCREASE, TRUE, 0, NONE, TRUE, -0.5)
 	return ..()
 
 /datum/stim/speed_increase/end_effects(mob/living/owner)
