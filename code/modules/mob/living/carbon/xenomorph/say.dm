@@ -56,7 +56,7 @@
 	for(var/mob/living/carbon/xenomorph/sister AS in hive.get_all_xenos())
 		if(sister.receive_hivemind_message(src, message))
 			tts_listeners += sister
-	tts_listeners = filter_tts_listeners(src, tts_listeners, tts_flags = RADIO_TTS_HIVEMIND)
+	tts_listeners = filter_tts_listeners(src, tts_listeners, tts_flags = ((xeno_flags & XENO_LEADER) || (xeno_caste?.caste_flags & CASTE_LEADER_TYPE)) ? RADIO_TTS_HIVEMIND|RADIO_TTS_COMMAND : RADIO_TTS_HIVEMIND)
 	if(length(tts_listeners))
 		var/list/treated_message = treat_message(message)
 		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, treated_message["tts_message"], get_default_language(), voice, voice_filter, tts_listeners, FALSE, pitch = pitch, directionality = FALSE)

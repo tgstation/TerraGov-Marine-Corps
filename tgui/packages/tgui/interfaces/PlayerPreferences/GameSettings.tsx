@@ -56,7 +56,7 @@ export const GameSettings = (props) => {
   const TTSRadioSettingToName = {
     sl: 'Squad Leader',
     squad: 'Squad',
-    command: 'Command',
+    command: 'Command/Hive Leader',
     hivemind: 'Hivemind',
     all: 'All Channels',
   };
