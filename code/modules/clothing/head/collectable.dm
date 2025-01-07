@@ -25,7 +25,7 @@
 /obj/item/clothing/head/collectable/chef
 	name = "collectable chef's hat"
 	desc = "A rare Chef's Hat meant for hat collectors!"
-	icon_state = "hats"
+	icon_state = "chefhat"
 	worn_icon_state = "chefhat"
 
 /obj/item/clothing/head/collectable/paper
@@ -92,6 +92,11 @@
 	icon_state = "bunny"
 	worn_icon_state = "bunny"
 	armor_protection_flags = NONE
+	worn_icon_list = list(
+		slot_head_str = 'icons/mob/head_0.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/hats_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/hats_right.dmi',
+	)
 
 /obj/item/clothing/head/collectable/wizard
 	name = "collectable wizard's hat"
