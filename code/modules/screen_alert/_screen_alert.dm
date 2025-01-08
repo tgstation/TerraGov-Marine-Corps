@@ -6,10 +6,10 @@
  * * alert_type: typepath for screen text type we want to play here
  * * override_color: color of the screen text
  */
-/mob/proc/play_screen_text(text, alert_type = /atom/movable/screen/text/screen_text, override_color = null)
+/mob/proc/play_screen_text(text, alert_type = /atom/movable/screen/text/screen_text, override_color = null, override_textbox)
 	if(!client)
 		return
-	var/atom/movable/screen/text/screen_text/text_box = new alert_type()
+	var/atom/movable/screen/text/screen_text/text_box = override_textbox ? override_textbox : new alert_type()
 	text_box.text_to_play = text
 	if(override_color)
 		text_box.color = override_color

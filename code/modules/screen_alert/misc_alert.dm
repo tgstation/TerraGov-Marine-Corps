@@ -19,7 +19,9 @@
 
 /atom/movable/screen/text/screen_text/picture/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
-	overlays += image('icons/UI_Icons/screen_alert_images.dmi', icon_state = image_to_play, pixel_y = image_to_play_offset_y, pixel_x = image_to_play_offset_x)
+	var/image/alertimage = image('icons/UI_Icons/screen_alert_images.dmi', icon_state = image_to_play, pixel_y = image_to_play_offset_y, pixel_x = image_to_play_offset_x)
+	alertimage.appearance_flags = APPEARANCE_UI
+	overlays += alertimage
 
 /atom/movable/screen/text/screen_text/picture/tdf
 	image_to_play = "tdf"
@@ -106,3 +108,71 @@
 
 /atom/movable/screen/text/screen_text/picture/potrait/som_distress
 	image_to_play = "distress_som"
+
+/atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot
+	image_to_play = "custom"
+	fade_out_time = 99
+	//appearance_flags = KEEP_TOGETHER
+
+GLOBAL_VAR_INIT(manip, "<span class='maptext' style=font-size:8pt>")
+
+#define MAX_NON_COMMTITLE_LEN 15
+
+/atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot/Initialize(mapload, datum/hud/hud_owner, mob/living/mugshottee)
+	. = ..()
+	var/atom/movable/holding_movable = new
+	holding_movable.appearance_flags = APPEARANCE_UI|KEEP_TOGETHER
+
+	var/mutable_appearance/mugshot = mutable_appearance()
+	mugshot.appearance = mugshottee.appearance
+	//mugshot.appearance_flags |= APPEARANCE_UI|KEEP_TOGETHER
+	mugshot.pixel_x = 18 // image_to_play_offset_x
+	mugshot.pixel_y = image_to_play_offset_y
+	mugshot.layer = layer+0.1
+	mugshot.plane = plane
+	mugshot.transform = mugshot.transform.Scale(3)
+	mugshot.dir = SOUTH
+
+//	mugshot = mutable_appearance('icons/effects/alphacolors.dmi', "red")
+//	mugshot.transform = mugshot.transform.Scale(2)
+
+	var/mutable_appearance/alphafilter = mutable_appearance('icons/effects/alphacolors.dmi', "white")
+	alphafilter.appearance_flags = APPEARANCE_UI
+	alphafilter.pixel_x = -2
+	alphafilter.pixel_y = 24
+	alphafilter.transform = alphafilter.transform.Scale(2)
+	alphafilter.render_target = "*TEST"//"*[REF(src)]"
+
+	mugshot.overlays += alphafilter
+	add_filter("alphamask", 1, alpha_mask_filter(0, 0, null, "*TEST"))
+	mugshot.filters += filter(arglist(alpha_mask_filter(0, 0, null, "*TEST")))
+
+	holding_movable.overlays += mugshot
+
+	var/mutable_appearance/mugshot_name = mutable_appearance()
+	mugshot_name.appearance_flags = APPEARANCE_UI
+	mugshot_name.maptext_width = 64
+	mugshot_name.maptext_height = 10
+	mugshot_name.maptext_x = 1400
+	mugshot_name.plane = plane
+	mugshot_name.layer = layer+0.2
+
+	var/firstname = copytext(mugshottee.real_name, 1, findtext(mugshottee.real_name, " "))
+	var/lastname = trim(copytext(mugshottee.real_name, findtext(mugshottee.real_name, " ")))
+	var/nametouse
+	if(length(lastname) >= 1 && length(lastname) < MAX_NON_COMMTITLE_LEN)
+		nametouse = lastname
+	else if(length(firstname) >= 1 && length(firstname) < MAX_NON_COMMTITLE_LEN)
+		nametouse = firstname
+	else if(length(mugshottee.real_name) >= 1)
+		nametouse = copytext(mugshottee.real_name, 1, MAX_NON_COMMTITLE_LEN)
+	else
+		nametouse = "UNKNOWN"
+	var/user_name = mugshottee.comm_title + " " + nametouse
+	mugshot_name.maptext = user_name //GLOB.manip + user_name +"</span>"
+
+	holding_movable.overlays += mugshot_name
+
+	vis_contents += holding_movable
+
+#undef MAX_NON_COMMTITLE_LEN

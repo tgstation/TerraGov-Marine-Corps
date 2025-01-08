@@ -81,7 +81,7 @@
 				override_color = "grey"
 		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list | GLOB.observer_list)
 			marine.playsound_local(marine, 'sound/effects/sos-morse-code.ogg', 35)
-			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>Squad [human_owner.assigned_squad.name] Announcement:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order, "[human_owner.assigned_squad.color]")
+			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Squad [human_owner.assigned_squad.name] Announcement:</u></span><br>" + text, null, "[human_owner.assigned_squad.color]", new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, owner))
 			to_chat(marine, assemble_alert(
 				title = "Squad [human_owner.assigned_squad.name] Announcement",
 				subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",
