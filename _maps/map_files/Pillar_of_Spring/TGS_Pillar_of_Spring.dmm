@@ -1501,7 +1501,9 @@
 /obj/machinery/light/mainship{
 	dir = 4
 	},
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
 /area/mainship/squads/general)
 "bNh" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -3787,7 +3789,9 @@
 	dir = 8
 	},
 /obj/machinery/vending/dinnerware,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
 /area/mainship/squads/general)
 "eHV" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -5857,7 +5861,9 @@
 /area/mainship/command/cic)
 "hfu" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
 /area/mainship/squads/general)
 "hgl" = (
 /obj/vehicle/ridden/motorbike,
@@ -6996,7 +7002,9 @@
 /area/mainship/living/tankerbunks)
 "iIf" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/coffeeweighted,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
 /area/mainship/squads/general)
 "iII" = (
 /obj/structure/bed/chair/comfy{
@@ -8790,12 +8798,6 @@
 "leW" = (
 /turf/open/floor/mainship/purple/full,
 /area/mainship/hallways/boxingring)
-"lfH" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/mainship/hallways/hangar)
 "lgF" = (
 /obj/structure/prop/mainship/name_stencil,
 /turf/open/floor/mainship_hull,
@@ -10884,7 +10886,9 @@
 /area/mainship/medical/upper_medical)
 "nwt" = (
 /obj/effect/spawner/random/misc/structure/flavorvending/colaweighted,
-/turf/open/floor/mainship,
+/turf/open/floor/mainship/black{
+	dir = 4
+	},
 /area/mainship/squads/general)
 "nwy" = (
 /obj/item/weapon/telebaton,
@@ -11661,6 +11665,12 @@
 	dir = 8
 	},
 /area/mainship/squads/general)
+"oBe" = (
+/obj/machinery/cic_maptable/drawable/big{
+	pixel_x = 0
+	},
+/turf/closed/wall/mainship,
+/area/crew_quarters/toilet)
 "oCo" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship,
@@ -47016,7 +47026,7 @@ nzB
 kDx
 kDx
 kDx
-lfH
+kDx
 kDx
 plN
 aql
@@ -54992,7 +55002,7 @@ pqQ
 xLu
 fAJ
 fAJ
-fAJ
+oBe
 fAJ
 kVD
 cTx
@@ -59128,7 +59138,7 @@ hfu
 eHh
 bNe
 iIf
-cPg
+lkH
 bFc
 ini
 lPY
