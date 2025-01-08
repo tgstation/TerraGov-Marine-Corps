@@ -14,6 +14,7 @@
 #define ATTACK_EFFECT_REDSTAB "redstab"
 #define ATTACK_EFFECT_DRAIN_STING "drain_sting"
 #define ATTACK_EFFECT_YELLOWPUNCH "yellowpunch"
+#define ATTACK_EFFECT_WEAK_PUNCH "weak_punch"
 #define ATTACK_EFFECT_LASERSWORD pick("laser_slash","laser_slash2")
 
 //Damage flag defines //

@@ -106,7 +106,12 @@
 	accuracy_unwielded_mod = 0.1
 	scatter_mod = -2
 	size_mod = 1
-	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "ebarrel_big", /obj/item/weapon/gun/smg/som = "ebarrel_big", /obj/item/weapon/gun/shotgun/pump/t35 = "ebarrel_big")
+	variants_by_parent_type = list(
+		/obj/item/weapon/gun/rifle/som = "ebarrel_big",
+		/obj/item/weapon/gun/rifle/som_big = "ebarrel_big",
+		/obj/item/weapon/gun/smg/som = "ebarrel_big",
+		/obj/item/weapon/gun/shotgun/pump/t35 = "ebarrel_big",
+	)
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
@@ -132,6 +137,7 @@
 	recoil_unwielded_mod = -2
 	variants_by_parent_type = list(
 		/obj/item/weapon/gun/rifle/som = "comp_big",
+		/obj/item/weapon/gun/rifle/som_big = "comp_big",
 		/obj/item/weapon/gun/smg/som = "comp_big",
 		/obj/item/weapon/gun/shotgun/som = "comp_big",
 		/obj/item/weapon/gun/shotgun/pump/t35 = "comp_big",

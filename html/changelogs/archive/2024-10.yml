@@ -135,3 +135,75 @@
   jonash07:
   - balance: Synth crit now deals damage by limb instead of applying it all over the
       body
+2024-10-20:
+  AusarAtkin:
+  - rscadd: added chainsaw to req for 500 points
+  - balance: chainsaw now use fuel and do more damage while having a rev up delay.
+  Lumipharon:
+  - bugfix: fixed a BAS exploit
+  - bugfix: fixed a bug with magharness guns in water
+  - qol: Sounds from outside tanks should now properly have directionality applied
+      to them
+  - code_imp: Improved some sound code performance.
+  Pariah919:
+  - rscadd: Added new ICC Recon Vehicle 'Fallow'. You can try it out in Valhalla.
+      It has no other spawn areas.
+  PibeCantina:
+  - balance: Makes king immune to rocket sledge stun
+  Runian:
+  - qol: Plant Weeds ability's button now dynamically shows its ability cost rather
+      than the consistent 75.
+  - bugfix: Plants Weeds ability no longer prevents usage if you have more than post-discounted,
+      but less than before-discounted plasma (for before shutters drop).
+2024-10-21:
+  AusarAtkin:
+  - bugfix: fixed chainsaw fuel cost on attack on mob
+  TiviPlus:
+  - rscdel: Remove tunnel naming
+2024-10-22:
+  Barnet2:
+  - bugfix: Naming a tunnel no longer leaks your ckey
+2024-10-23:
+  Runian:
+  - rscadd: On destruction, xeno fruit triggers effects that normally only occur if
+      a human tried to interact with it.
+  - rscadd: On destruction, power fruit releases 4-tile see-through smoke that burns
+      humans for inhaling it and applies pyrogen's burning fire stacks for walking
+      through it.
+  - rscdel: Power fruit no longer creates a 3-tile fire when used by a human.
+2024-10-27:
+  Lumipharon:
+  - bugfix: fixed the grenade hand explode message playing if your hand wasn't actually
+      blown off
+  - bugfix: Moonlight particle cutter actually hits mobs again mid lunge
+  - bugfix: fixed a sentry exploit
+  Sun-Soaked:
+  - rscadd: the Gorger Psylink, Infusion, and Oppose abilities on Gorger now have
+      vfx.
+  - qol: gorger drain now briefly stops gorger, preventing them from instantly cancelling
+      it on accident.
+  - balance: buffs oppose, increasing the damage and stagger on a direct marine hit
+      and reducing the cost slightly.
+  - balance: gorger psylink now activates more quickly, but is cancelled more easily
+      (at 50% gorger hp instead of 20%)
+  - imageadd: A vfx shatter effect for Oppose.
+  - spellcheck: removed repeated "Into the ground" from chat feedback on oppose.
+2024-10-28:
+  Runian:
+  - balance: Xenomorphs can toggle movement intent to walk in order to bypass/ignore
+      wraith portals.
+2024-10-29:
+  xSlumLord:
+  - balance: changed xeno to marine ratio back to 2.46, down from 3
+2024-10-30:
+  Lumipharon:
+  - code_imp: Gib code improvements for mapload
+  - code_imp: Ported some optimisations to keyloop
+  - code_imp: Signal code improvements
+  Notamaniac:
+  - balance: Standard webbing can no longer hold powerpacks/powerbackpacks
+  - spellcheck: Plasma SMG now has a description
+  Runian:
+  - spellcheck: Crusher now annihilates instead of "anihilates".
+  blackdav123:
+  - bugfix: Skinks can no longer take c4 as a weapon.

@@ -99,13 +99,19 @@
 /obj/item/explosive/grenade/proc/prime()
 	if(ishuman(loc))
 		var/mob/living/carbon/human/idiot = loc
+		var/in_hand = FALSE
 		if(idiot.l_hand == src)
 			idiot.amputate_limb(BODY_ZONE_PRECISE_L_HAND)
+			in_hand = TRUE
 		else if(idiot.r_hand == src)
 			idiot.amputate_limb(BODY_ZONE_PRECISE_R_HAND)
-		idiot.visible_message(span_danger("[idiot]'s hand is blown into tiny pieces by [src]!"),
-		span_userdanger("You feel incredible pain and stupidity as [src] blows your hand up."))
-		idiot.emote("scream")
+			in_hand = TRUE
+		if(in_hand)
+			idiot.visible_message(span_danger("[idiot]'s hand is blown into tiny pieces by [src]!"),
+			span_userdanger("You feel incredible pain and stupidity as [src] blows your hand up."))
+			idiot.emote("scream")
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[idiot.ckey]
+			personal_statistics.grenade_hand_delimbs ++
 	explosion(loc, light_impact_range = src.light_impact_range, weak_impact_range = src.weak_impact_range)
 	qdel(src)
 

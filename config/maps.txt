@@ -105,3 +105,12 @@ endmap
 map corsat
 	minplayers 75
 endmap
+
+map bluesummers
+	minplayers 30
+endmap
+
+map metnal
+	minplayers 45
+  endmap
+  

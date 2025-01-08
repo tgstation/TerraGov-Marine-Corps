@@ -1,0 +1,138 @@
+2024-12-03:
+  blackdav123:
+  - balance: Removes hivemind, hivelord, and wraith from crash.
+  - balance: Xenos get extra t3 slots one xeno later on crash.
+  - bugfix: Rappel now correctly allows more than one marine to go down at a time.
+  - balance: Defiler and carrier can now pick reagents/huggers while staggered.
+2024-12-04:
+  AusarAtkin:
+  - bugfix: fixed nuke notification in dchat
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed ASAT minimap icon not updating correctly when the cap
+      was stopped by marines'
+  - imageadd: added an actual sprite for the ASAT objectives
+  Runian:
+  - bugfix: Xenomorphs retain their long sight/zoom while resting as intended.
+2024-12-06:
+  Lumipharon:
+  - balance: Reduced HE sadar AP value to 75 from 100
+  - balance: Reduces HE sadar sunder to 50 from 100
+  - balance: Unguided HE sadar rockets throw mobs 4 tiles instead of 7
+2024-12-07:
+  Lumipharon:
+  - bugfix: fixed plasma cannon blast mode causing throw on direct hit
+  - balance: Added some explosion block to vendors, mechs and tanks
+  - bugfix: fixed some minor tank interior visual issues
+  - balance: The nuke can no longer travel through portals
+  - bugfix: Fixed shuttle walls and fog blockers being completely ignored by explosions
+  - bugfix: fixed vendors being stuck as nondense after falling over
+  Runian:
+  - qol: During prep / quickbuild phase, xenomorphs can now pull items without a delay.
+2024-12-09:
+  Lumipharon:
+  - rscadd: Added the V-35 Battle rifle for SOM use in Campaign
+  - balance: Direct hit explosions from rockets will now reliably throw the victim
+      away from the firer, instead of a random direction
+  - balance: Hunter stealth damage threhold changed to 25 from 45
+  Runian:
+  - bugfix: Plasmacutters now do 301 damage instead of 231 damage against resin walls.
+      Enough to one-shot thick resin walls as intended.
+  blackdav123:
+  - balance: 'Defiler: Speed increased by .1'
+  - balance: Supply drop console cooldown reduced from 30 seconds to 15.
+2024-12-13:
+  Aporhtonoma:
+  - balance: tesla rifle can use recharger batteries
+  Lumipharon:
+  - balance: Plasma gun ammo has been confined to req
+  - bugfix: fixed a leap layering issue for xenos
+  Mannybrado:
+  - balance: uncrushable tile in the outrider tad has been opened (side door made
+      3 tiles, windows extended to include north side walls)
+  Runian:
+  - rscadd: Primordial Warlock can use their psychic shield to reflect projectiles
+      in exchange for reduced shield health.
+  YehnBeep:
+  - qol: eshield's description now notes that the eshield module reduces a marine's
+      armor to certain damage types. (Resistances on the module are unchanged, this
+      change is strictly informational).
+  yyzsong:
+  - balance: Increases the price of scout rifle magazine reqtorio refills from 200
+      -> 300
+  - balance: Increases the price of scout rifle impact & incendiary magazine reqtorio
+      refills from 200 -> 600
+2024-12-14:
+  Lumipharon:
+  - bugfix: fixed directional attacks trying to hit ghosts
+2024-12-15:
+  Lumipharon:
+  - bugfix: fixed silos not alerting if a vehicle approached
+  - bugfix: fixed xeno structures detecting things on old z-levels
+  - code_imp: Reworked some xeno structure damage and proximity alert code
+2024-12-18:
+  Lumipharon:
+  - bugfix: fixed squad/radio TTS
+  - bugfix: fixed an equip exploit
+  yyzsong:
+  - balance: Buffed shrike's movespeed (-0.4 -> -0.6)
+  - balance: reverted shrike HP buff (500 -> 400)
+2024-12-19:
+  Lumipharon:
+  - balance: Reduced BR-8 accuracy slighty
+  - balance: Weak explosions no longer contribute to screen shake
+2024-12-20:
+  Lumipharon:
+  - bugfix: fixed strappable items not turning nodrop off, when forcefully unequipped
+2024-12-22:
+  Lumipharon:
+  - bugfix: fixed radio TTS playing when it shouldn't
+2024-12-23:
+  Lumipharon:
+  - balance: Tac reload windup time is now purely for the new mag
+  - bugfix: Fixed tac reload getting the skill bonus twice.
+  - balance: 'Campaign: Increased engineer plasteel and metal amounts in suit storage'
+  - bugfix: fixed weeds being half price on Crash
+  - bugfix: fixed a bug with hunter stealth
+  - balance: 'Campaign: Increased cost of Scout rifle asset from 6 to 10 attrition
+      for two.'
+  Neocloudy:
+  - code_imp: Updated tgui chat constants so that bold warnings and alerts (red, nonitalic
+      nonbold) are under the warning category
+  - code_imp: All highdanger spans have been renamed to userdanger in the code
+  - qol: Admin announcements and roundend boxes are under the OOC category, so they
+      will appear in chat tabs with OOC enabled
+2024-12-25:
+  Lumipharon:
+  - rscadd: 'Campaign: Added Re-Grow to advanced med secondary kit, allowing for regeneration
+      of missing limbs'
+  - bugfix: 'Campaign: Fixed a couple of minor secondary kit bugs'
+  blackdav123:
+  - balance: Moved research digsites on Kutjevo to be less marine sided.
+2024-12-26:
+  yyzsong:
+  - balance: ravager can rage and endure in solid objects now
+2024-12-27:
+  Lumipharon:
+  - bugfix: Xeno structures actually build on your location instead of to the south
+      west
+  - balance: Minisentry deploy/undeploy time changed from 3 seconds to 1 second
+  - bugfix: fixed deployables using deploy time for undeploying instead of undeploy
+      time
+  - bugfix: fixed an ammo duplication exploit with the tank vendor
+  - balance: 'Campaign: V-35 reduced mag capacity and normal ammo reduced from 65
+      to 60 damage'
+  jonash07:
+  - admin: Added game logs for the flag
+2024-12-28:
+  blackdav123:
+  - qol: Marine and SOM medical belts now have meds organized in the same order.
+2024-12-30:
+  Technical-l:
+  - balance: adjusts fog zones and cave width on icy caves
+2024-12-31:
+  Lumipharon:
+  - code_imp: Made a large cleanup to xeno code, mainly regarding actions
+  - balance: Anti-gas smoke now purges all smoke types
+  - bugfix: fixed desants not being removed when a vehicle is destroyed
+  Mantlecrawler:
+  - qol: Acid Maw & Jaw now show up on hive status and on minimap

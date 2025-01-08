@@ -1106,18 +1106,12 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "Xb" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "aft_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
+/obj/structure/barricade/plasteel,
 /obj/machinery/door_control{
 	dir = 8;
 	id = "aft_engine_podlock"
 	},
-/turf/open/floor/plating,
+/turf/open/floor/mainship/stripesquare,
 /area/shuttle/canterbury)
 "Xf" = (
 /obj/machinery/iv_drip,
@@ -1406,7 +1400,7 @@ Yn
 qE
 XO
 ac
-ar
+gv
 bW
 Uo
 "}
@@ -1538,8 +1532,8 @@ ac
 SA
 RT
 ac
-ar
 Xb
+bW
 Uo
 "}
 (13,1,1) = {"
