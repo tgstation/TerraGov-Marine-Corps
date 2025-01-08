@@ -6018,9 +6018,6 @@
 /turf/open/floor/mainship/mono,
 /area/crew_quarters/toilet)
 "hoR" = (
-/obj/machinery/cic_maptable/drawable/big{
-	pixel_x = 0
-	},
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden{
 	dir = 8
 	},
@@ -55780,8 +55777,8 @@ rUF
 xWS
 mRy
 hoR
-cPg
 vDF
+cPg
 fHj
 rUF
 diF

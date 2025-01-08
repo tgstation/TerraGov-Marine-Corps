@@ -374,12 +374,6 @@
 	dir = 10
 	},
 /area/mainship/hallways/hangar/droppod)
-"apL" = (
-/obj/machinery/cic_maptable/drawable/big{
-	pixel_x = 0
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/general)
 "apO" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/wood,
@@ -25029,6 +25023,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
 	},
+/obj/machinery/cic_maptable/drawable/big{
+	pixel_x = 0
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "uCc" = (
@@ -40752,9 +40749,9 @@ miz
 aOG
 alG
 lqg
-apL
+lqg
 uBW
-apL
+lqg
 qtC
 oTv
 aOG
