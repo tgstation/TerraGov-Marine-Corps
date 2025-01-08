@@ -507,7 +507,7 @@
 
 /obj/item/armor_module/module/armorlock
 	name = "\improper Thor Armorlock Module"
-	desc = "Designed for mounting on modular armor. This module tivi todo."
+	desc = "Designed for mounting on modular armor. This module seals gaps in the armor when activated, making the user anable to do any actions but increasing their armor."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_armorlock"
 	worn_icon_state = "mod_armorlock_a"
@@ -537,6 +537,10 @@
 	parent?.soft_armor = parent?.soft_armor.attachArmor(locked_armor_mod)
 	playsound(user, 'sound/items/armorlocked.ogg', 50)
 
+	parent.siemens_coefficient += -0.9
+	parent.permeability_coefficient += -1
+	parent.gas_transfer_coefficient += -1
+
 	addtimer(CALLBACK(src, PROC_REF(end_armorlock), user, shield_overlay), ARMORLOCK_DURATION)
 	COOLDOWN_START(src, armorlock_cooldown, 1 MINUTES)
 
@@ -547,6 +551,10 @@
 	playsound(user, 'sound/items/armorunlock.ogg', 40)
 	user.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
 	user.move_resist = initial(user.move_resist)
+
+	parent.siemens_coefficient -= -0.9
+	parent.permeability_coefficient -= -1
+	parent.gas_transfer_coefficient -= -1
 
 /obj/item/armor_module/module/style
 	name = "\improper Armor Equalizer"
