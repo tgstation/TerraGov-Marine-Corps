@@ -29,3 +29,6 @@
   - bugfix: 'Campaign: TGMC corpsmen Mimir option now actually has mimir'
   - balance: 'Campaign: Corpsmen/engineers now have a antigas nade in most loadouts'
   - server: Added TTS whisper config
+2025-01-08:
+  Barnet2:
+  - bugfix: Pillar of Spring maintenance is no longer a dead end
