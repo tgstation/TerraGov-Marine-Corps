@@ -481,7 +481,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_illusion"
 	worn_icon_state = "mod_illusion_a"
-	slowdown = 0.1
+	slowdown = 0
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_MODULE
 	toggle_signal = COMSIG_KB_ARMORMODULE
@@ -495,7 +495,7 @@
 	user.alpha -= alpha_mod
 	var/mob/illusion/mirage_nade/fake = new(get_turf(user), user, null, 15 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(end_mirage), user, alpha_mod, fake), 15)
-	COOLDOWN_START(src, mirage_cooldown, 1 MINUTES)
+	COOLDOWN_START(src, mirage_cooldown, 30 SECONDS)
 
 /// just cleans up the alpha on both the user and the fake
 /obj/item/armor_module/module/mirage/proc/end_mirage(mob/user, alpha_mod, mob/illusion/mirage_nade/fake)
@@ -503,7 +503,7 @@
 	fake.alpha = user.alpha
 
 
-#define ARMORLOCK_DURATION 4 SECONDS
+#define ARMORLOCK_DURATION 6 SECONDS
 
 /obj/item/armor_module/module/armorlock
 	name = "\improper Thor Armorlock Module"
@@ -511,7 +511,7 @@
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_armorlock"
 	worn_icon_state = "mod_armorlock_a"
-	slowdown = 0.2
+	slowdown = 0.1
 	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 	slot = ATTACHMENT_SLOT_MODULE
 	toggle_signal = COMSIG_KB_ARMORMODULE
@@ -535,20 +535,19 @@
 	var/image/shield_overlay = image('icons/effects/effects.dmi', null, "shield-blue")
 	user.overlays += shield_overlay
 	parent?.soft_armor = parent?.soft_armor.attachArmor(locked_armor_mod)
-	playsound(user, 'sound/items/armorlocked.ogg', 50)
+	playsound(user, 'sound/items/armorlock.ogg', 50)
 
 	parent.siemens_coefficient += -0.9
 	parent.permeability_coefficient += -1
 	parent.gas_transfer_coefficient += -1
 
 	addtimer(CALLBACK(src, PROC_REF(end_armorlock), user, shield_overlay), ARMORLOCK_DURATION)
-	COOLDOWN_START(src, armorlock_cooldown, 1 MINUTES)
+	COOLDOWN_START(src, armorlock_cooldown, 45 SECONDS)
 
 ///handles cleanup after the lock is finished
 /obj/item/armor_module/module/armorlock/proc/end_armorlock(mob/living/user, image/shield_overlay)
 	user.overlays -= shield_overlay
 	parent?.soft_armor = parent?.soft_armor.detachArmor(locked_armor_mod)
-	playsound(user, 'sound/items/armorunlock.ogg', 40)
 	user.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
 	user.move_resist = initial(user.move_resist)
 
