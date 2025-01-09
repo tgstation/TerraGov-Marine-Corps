@@ -495,7 +495,7 @@
 		list("CONTAINMENT FAILED (1). RE-ATTEMPTING...", 47 SECONDS),
 		list("CONTAINMENT FAILED (2). RE-ATTEMPTING...", 49 SECONDS),
 		list("BLUESPACE CONTAINMENT SUCCESSFUL.", 53 SECONDS),
-		list("DISABLING ALERT SYSTEMS...", 55 SECONDS),
+		list("DISABLING ALERT SYSTEMS...", 55 SECONDS)
 	)
 	for(var/warning_data in warning_messages)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), warning_data[1]), warning_data[2])
