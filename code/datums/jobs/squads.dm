@@ -365,7 +365,6 @@
 		if(!length(tts_listeners))
 			return
 		var/list/treated_message = sender?.treat_message(message)
-		message = treated_message["message"]
 		var/list/extra_filters = list(TTS_FILTER_RADIO)
 		if(isrobot(sender))
 			extra_filters += TTS_FILTER_SILICON

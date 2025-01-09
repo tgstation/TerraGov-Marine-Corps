@@ -61,9 +61,6 @@
 	if(!can_use_action())
 		return
 
-	var/list/treated_message = human_owner?.treat_message(text)
-	text = treated_message["message"]
-
 	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
 	addtimer(CALLBACK(src, PROC_REF(update_button_icon)), CIC_ORDER_COOLDOWN + 1)
 	update_button_icon()
@@ -106,6 +103,7 @@
 	var/list/tts_listeners = filter_tts_listeners(human_owner, alert_receivers, null, RADIO_TTS_COMMAND)
 	if(!length(tts_listeners))
 		return
+	var/list/treated_message = human_owner?.treat_message(text) //we only treat the text here since it adds stutter to the text announcement otherwise
 	var/list/extra_filters = list(TTS_FILTER_RADIO)
 	if(isrobot(human_owner))
 		extra_filters += TTS_FILTER_SILICON

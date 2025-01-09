@@ -30,8 +30,6 @@
 	if(NON_ASCII_CHECK(input))
 		to_chat(xeno_owner, span_warning("That announcement contained characters prohibited in IC chat! Consider reviewing the server rules."))
 		return FALSE
-	var/list/treated_message = xeno_owner?.treat_message(input)
-	input = treated_message["message"]
 
 	log_game("[key_name(xeno_owner)] has messaged the hive with: \"[input]\"")
 	deadchat_broadcast(" has messaged the hive: \"[input]\"", xeno_owner, xeno_owner)
@@ -57,6 +55,7 @@
 
 	var/list/tts_listeners = filter_tts_listeners(xeno_owner, xeno_listeners, null, RADIO_TTS_HIVEMIND)
 	if(length(tts_listeners))
+		var/list/treated_message = xeno_owner?.treat_message(input)
 		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), xeno_owner, treated_message["tts_message"], xeno_owner.get_default_language(), xeno_owner.voice, xeno_owner.voice_filter, tts_listeners, FALSE, pitch = xeno_owner.pitch, directionality = FALSE)
 
 	succeed_activate()

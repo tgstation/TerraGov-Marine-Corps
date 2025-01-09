@@ -797,9 +797,6 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		return
 	. = TRUE
 
-	var/list/treated_message = sender?.treat_message(message)
-	message = treated_message["message"]
-
 	target.playsound_local(target, "sound/machines/dotprinter.ogg", 35)
 	to_chat(target, span_notice("<b><i>New message from [sender.real_name]:</b> [message]</i>"))
 	target.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>CIC MESSAGE FROM [sender.real_name]:</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order, "#32cd32")
@@ -807,6 +804,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/list/tts_listeners = filter_tts_listeners(sender, target, null, RADIO_TTS_COMMAND)
 	if(!length(tts_listeners))
 		return
+	var/list/treated_message = sender?.treat_message(message)
 	var/list/extra_filters = list(TTS_FILTER_RADIO)
 	if(isrobot(sender))
 		extra_filters += TTS_FILTER_SILICON
