@@ -507,7 +507,7 @@
 
 /obj/item/armor_module/module/armorlock
 	name = "\improper Thor Armorlock Module"
-	desc = "Designed for mounting on modular armor. This module seals gaps in the armor when activated, making the user anable to do any actions but increasing their armor."
+	desc = "Designed for mounting on modular armor. This module seals gaps in the armor when activated, making the user unable to do any actions but increasing their armor."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_armorlock"
 	worn_icon_state = "mod_armorlock_a"
