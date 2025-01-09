@@ -125,37 +125,30 @@ GLOBAL_VAR_INIT(manip, "<span class='maptext' style=font-size:8pt>")
 
 	var/mutable_appearance/mugshot = mutable_appearance()
 	mugshot.appearance = mugshottee.appearance
-	//mugshot.appearance_flags |= APPEARANCE_UI|KEEP_TOGETHER
-	mugshot.pixel_x = 18 // image_to_play_offset_x
-	mugshot.pixel_y = image_to_play_offset_y
+	mugshot.pixel_x = 17 // image_to_play_offset_x
+	mugshot.pixel_y = image_to_play_offset_y - 1 //scale shittery meant this didn't line up exactly without the -1
 	mugshot.layer = layer+0.1
 	mugshot.plane = plane
-	mugshot.transform = mugshot.transform.Scale(3)
+	mugshot.transform = mugshot.transform.Scale(3) //only need to scale once, although this can actually be after as well alpha filter stuff, makes no diff
 	mugshot.dir = SOUTH
 
-//	mugshot = mutable_appearance('icons/effects/alphacolors.dmi', "red")
-//	mugshot.transform = mugshot.transform.Scale(2)
-
-	var/mutable_appearance/alphafilter = mutable_appearance('icons/effects/alphacolors.dmi', "white")
+	var/mutable_appearance/alphafilter = mutable_appearance('icons/effects/alphacolors.dmi', "announcement")
 	alphafilter.appearance_flags = APPEARANCE_UI
-	alphafilter.pixel_x = -2
-	alphafilter.pixel_y = 24
-	alphafilter.transform = alphafilter.transform.Scale(2)
 	alphafilter.render_target = "*TEST"//"*[REF(src)]"
 
 	mugshot.overlays += alphafilter
-	add_filter("alphamask", 1, alpha_mask_filter(0, 0, null, "*TEST"))
-	mugshot.filters += filter(arglist(alpha_mask_filter(0, 0, null, "*TEST")))
+	mugshot.filters += filter(arglist(alpha_mask_filter(0, 0, null, "*TEST", MASK_INVERSE)))
 
 	holding_movable.overlays += mugshot
 
 	var/mutable_appearance/mugshot_name = mutable_appearance()
 	mugshot_name.appearance_flags = APPEARANCE_UI
 	mugshot_name.maptext_width = 64
-	mugshot_name.maptext_height = 10
-	mugshot_name.maptext_x = 1400
+	mugshot_name.maptext_x = 4 //figure out some centering magic here?
+	mugshot_name.maptext_y = -2
 	mugshot_name.plane = plane
 	mugshot_name.layer = layer+0.2
+
 
 	var/firstname = copytext(mugshottee.real_name, 1, findtext(mugshottee.real_name, " "))
 	var/lastname = trim(copytext(mugshottee.real_name, findtext(mugshottee.real_name, " ")))
@@ -169,7 +162,7 @@ GLOBAL_VAR_INIT(manip, "<span class='maptext' style=font-size:8pt>")
 	else
 		nametouse = "UNKNOWN"
 	var/user_name = mugshottee.comm_title + " " + nametouse
-	mugshot_name.maptext = user_name //GLOB.manip + user_name +"</span>"
+	mugshot_name.maptext = "<span class='maptext' style=font-size:8px>[user_name]</span>"
 
 	holding_movable.overlays += mugshot_name
 
