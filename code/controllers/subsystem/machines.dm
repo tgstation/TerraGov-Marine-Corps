@@ -8,6 +8,8 @@ SUBSYSTEM_DEF(machines)
 	var/list/processing = list()
 	var/list/powernets = list()
 	var/list/zlevel_cables = list() //up or down cables
+	var/generators_on_ground
+	var/active_bluespace_generators
 
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
