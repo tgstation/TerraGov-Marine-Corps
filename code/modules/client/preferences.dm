@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Volume to use for tts
 	var/volume_tts = 100
 	///Which types of comms the user wants to hear TTS from
-	var/radio_tts_flags = RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND
+	var/radio_tts_flags = RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND
 
 	/// Preference for letting people make TGUI windows use more accessible (basically, default) themes, where needed/possible.
 	/// Example application: health analyzers using this to choose between default themes or the NtOS themes.
