@@ -8,8 +8,12 @@ SUBSYSTEM_DEF(machines)
 	var/list/processing = list()
 	var/list/powernets = list()
 	var/list/zlevel_cables = list() //up or down cables
+	/// List of active generators groundside
 	var/generators_on_ground
+	/// List of active TBG generators; used for disks
 	var/active_bluespace_generators
+	/// List of lights for the TBG generator
+	var/generator_alarm_lights = list()
 
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()

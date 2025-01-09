@@ -458,14 +458,14 @@
 
 	//Time until explosion -- Devastate range -- Heavy range -- Light range -- Fire range
 	var/list/list_of_explosions = list(
-		list(0, 5, 10, 2, 30 SECONDS),
-		list(0, 10, 15, 7, 33 SECONDS),
-		list(0, 10, 17, 7, 35 SECONDS),
-		list(0, 15, 20, 15, 36 SECONDS),
-		list(0, 15, 20, 15, 37 SECONDS),
-		list(0, 15, 20, 15, 39 SECONDS),
-		list(0, 15, 20, 15, 45 SECONDS),
-		list(0, 15, 20, 15, 55 SECONDS)
+		list(0, 5, 10, 2, 40 SECONDS),
+		list(0, 10, 15, 7, 43 SECONDS),
+		list(0, 10, 17, 7, 45 SECONDS),
+		list(0, 15, 20, 15, 46 SECONDS),
+		list(0, 15, 20, 15, 47 SECONDS),
+		list(0, 15, 20, 15, 49 SECONDS),
+		list(0, 15, 20, 15, 50 SECONDS),
+		list(0, 15, 20, 15, 52 SECONDS)
 	)
 	for(var/explosion_data in list_of_explosions)
 		var/turf/epicenter = locate(loc.x + rand(-2,2), loc.y + rand(-2,2), loc.z)
@@ -475,20 +475,20 @@
 /obj/machinery/power/geothermal/tbg/proc/trigger_alarms()
 	alarm_soundloop.start()
 	//Trigger alarm lights obj/machinery/floor_warn_light
-	for(var/obj/machinery/floor_warn_light/self_destruct/light in (src))
+	for(var/obj/machinery/floor_warn_light/toggleable/generator/light in SSmachines.generator_alarm_lights)
 		light.enable()
 
 	say("REACTOR MELTDOWN IMMINENT.")
 	var/list/warning_messages = list(
 		list("STABILISATION REQUIRES BLUESPACE COMBUSTION. PLEASE EVACUATE THE AREA IMMEDIATELY.", 3 SECONDS)
-		list("BLUESPACE COMBUSTION IN T-20 SECONDS", 7 SECONDS)
-		list("BLUESPACE COMBUSTION IN T-15 SECONDS", 12 SECONDS),
-		list("BLUESPACE COMBUSTION IMMINENT. PLEASE EVACUATE THE AREA.", 17 SECONDS),
-		list("EXPLOSION IN 5", 22 SECONDS),
-		list("4", 16 SECONDS),
-		list("3", 17 SECONDS),
-		list("2", 18 SECONDS),
-		list("1", 19 SECONDS),
+		list("BLUESPACE COMBUSTION IN T-30 SECONDS", 7 SECONDS)
+		list("BLUESPACE COMBUSTION IN T-15 SECONDS", 22 SECONDS),
+		list("BLUESPACE COMBUSTION IMMINENT. PLEASE EVACUATE THE AREA.", 27 SECONDS),
+		list("EXPLOSION IN 5", 32 SECONDS),
+		list("4", 33 SECONDS),
+		list("3", 34 SECONDS),
+		list("2", 35 SECONDS),
+		list("1", 36 SECONDS),
 	)
 	for(var/warning_data in warning_messages)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), warning_data[1]), warning_data[2])
@@ -499,7 +499,7 @@
 	update_icon()
 	alarm_soundloop.stop()
 	//Disable alarmlights
-	for(var/obj/machinery/floor_warn_light/self_destruct/light in get_area(src))
+	for(var/obj/machinery/floor_warn_light/toggleable/generator/light in SSmachines.generator_alarm_lights)
 		light.disable()
 	say("Bluespace restabilisation successful. Catastrophic meltdown averted.")
 

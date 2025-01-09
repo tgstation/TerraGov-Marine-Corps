@@ -564,26 +564,40 @@
 	light_power = 6
 	light_range = 4
 
-/obj/machinery/floor_warn_light/self_destruct
-	name = "self destruct alarm light"
+/obj/machinery/floor_warn_light/toggleable
 	icon_state = "rotating_alarm_off"
 	light_power = 0
 	light_range = 0
 
-/obj/machinery/floor_warn_light/self_destruct/Initialize(mapload)
-	. = ..()
-	SSevacuation.alarm_lights += src
-
-/obj/machinery/floor_warn_light/self_destruct/Destroy()
-	. = ..()
-	SSevacuation.alarm_lights -= src
-
 ///Enables the alarm lights and makes them start flashing
-/obj/machinery/floor_warn_light/self_destruct/proc/enable()
+/obj/machinery/floor_warn_light/toggleable/proc/enable()
 	icon_state = "rotating_alarm"
 	set_light(4,6)
 
 ///Disables the alarm lights and makes them stop flashing
-/obj/machinery/floor_warn_light/self_destruct/proc/disable()
+/obj/machinery/floor_warn_light/toggleable/proc/disable()
 	icon_state = initial(icon_state)
 	set_light(0,0)
+
+/obj/machinery/floor_warn_light/toggleable/self_destruct
+	name = "self destruct alarm light"
+
+/obj/machinery/floor_warn_light/toggleable/self_destruct/Initialize(mapload)
+	. = ..()
+	SSevacuation.alarm_lights += src
+
+/obj/machinery/floor_warn_light/toggleable/self_destruct/Destroy()
+	. = ..()
+	SSevacuation.alarm_lights -= src
+
+
+/obj/machinery/floor_warn_light/toggleable/generator
+	name = "generator meltdown alarm light"
+
+/obj/machinery/floor_warn_light/toggleable/generator/Initialize(mapload)
+	. = ..()
+	SSmachines.generator_alarm_lights += src
+
+/obj/machinery/floor_warn_light/toggleable/generator/Destroy()
+	. = ..()
+	SSmachines.generator_alarm_lights -= src
