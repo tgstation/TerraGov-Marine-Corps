@@ -92,7 +92,7 @@
 
 	for(var/mob/mob_receiver in alert_receivers)
 		mob_receiver.playsound_local(mob_receiver, sound_alert, 35, channel = CHANNEL_ANNOUNCEMENTS)
-		marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Squad [human_owner.assigned_squad.name] Announcement:</u></span><br>" + text, new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, owner), "[human_owner.assigned_squad.color]")
+		mob_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>Squad [human_owner.assigned_squad.name] Announcement:</u></span><br>" + text, new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, owner), "[human_owner.assigned_squad.color]")
 		to_chat(mob_receiver, assemble_alert(
 			title = announcement_title,
 			subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",
