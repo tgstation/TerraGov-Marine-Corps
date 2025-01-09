@@ -134,7 +134,7 @@
 	alphafilter.render_target = "*mugshots"
 
 	mugshot.overlays += alphafilter
-	mugshot.filters += filter(arglist(alpha_mask_filter(0, 0, null, "*mugshots", MASK_INVERSE)))
+	mugshot.filters += filter(arglist(alpha_mask_filter(0, 0, null, "*mugshots")))
 
 	holding_movable.overlays += mugshot
 
