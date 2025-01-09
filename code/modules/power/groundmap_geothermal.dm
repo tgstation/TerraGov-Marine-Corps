@@ -163,7 +163,7 @@
 		return FALSE
 	balloon_alert_to_viewers("[src] beeps wildly and sprays random pieces everywhere!")
 	buildstate++
-	if(buildstate == GENERATOR_MEDIUM_DAMAGE)
+	if(is_on)
 		turn_off()
 	return TRUE
 
@@ -479,7 +479,7 @@
 	for(var/obj/machinery/floor_warn_light/toggleable/generator/light in SSmachines.generator_alarm_lights)
 		light.enable()
 
-	say("REACTOR MELTDOWN IMMINENT.")
+	say("WARNING: REACTOR MELTDOWN IMMINENT. Attempting to diagnose the issue...")
 	var/list/warning_messages = list(
 		list("STABILISATION REQUIRES BLUESPACE COMBUSTION. PLEASE EVACUATE THE AREA.", 3 SECONDS),
 		list("BLUESPACE COMBUSTION IN T-30 SECONDS", 7 SECONDS),
@@ -490,6 +490,12 @@
 		list("3", 34 SECONDS),
 		list("2", 35 SECONDS),
 		list("1", 36 SECONDS),
+		list("CATASTROPHIC MELTDOWN AVOIDED. HEAT LEVELS NOMINAL.", 40 SECONDS),
+		list("ATTEMPTING TO CONTAIN EXTERNAL COMBUSTION PROCESS...", 44 SECONDS),
+		list("CONTAINMENT FAILED (1). RE-ATTEMPTING...", 47 SECONDS),
+		list("CONTAINMENT FAILED (2). RE-ATTEMPTING...", 49 SECONDS),
+		list("BLUESPACE CONTAINMENT SUCCESSFUL.", 53 SECONDS),
+		list("DISABLING ALERT SYSTEMS...", 55 SECONDS),
 	)
 	for(var/warning_data in warning_messages)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), warning_data[1]), warning_data[2])
@@ -502,7 +508,7 @@
 	//Disable alarmlights
 	for(var/obj/machinery/floor_warn_light/toggleable/generator/light in SSmachines.generator_alarm_lights)
 		light.disable()
-	say("Bluespace restabilisation successful. Catastrophic meltdown averted.")
+	say("Bluespace restabilisation successful. Planetary assets protected.")
 
 /// TBG turbine attached to the TBG; purely visual
 /obj/machinery/power/tbg_turbine
@@ -524,6 +530,7 @@
 		return
 	if(connected.winding_down)
 		icon_state = "circ-on25"
+		return
 
 	if(connected.buildstate != GENERATOR_NO_DAMAGE)
 		icon_state = "circ-weld"
