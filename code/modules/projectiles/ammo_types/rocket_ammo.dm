@@ -578,7 +578,7 @@
 	turn_rate = 10
 
 /datum/ammo/rocket/homing/drop_nade(turf/T)
-	explosion(T, 0, 0, 2, 4, 1)
+	explosion(T, 0, 0, 0, 4, 1)
 
 /datum/ammo/rocket/homing/tow
 	name = "TOW-III missile"
