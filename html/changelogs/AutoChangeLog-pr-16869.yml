@@ -1,0 +1,5 @@
+author: "Tiviplus & Kuro"
+delete-after: True
+changes:
+  - rscadd: "Added the  homing \"TOW-III\" tank secondary"
+  - rscadd: "Added the homing \"Micromissile pod\" tank secondary"
