@@ -8,7 +8,7 @@
 
 /datum/looping_sound/generator/tbg
 	start_sound = 'sound/machines/generator/tbg_windup.ogg'
-	start_length = 100
+	start_length = 95
 	mid_sounds = list('sound/machines/generator/tbg_mid1.ogg'=1, 'sound/machines/generator/tbg_mid2.ogg'=1, 'sound/machines/generator/tbg_mid3.ogg'=1, 'sound/machines/generator/tbg_mid4.ogg'=1, 'sound/machines/generator/tbg_mid5.ogg'=1)
 	mid_length = 15
 	end_sound = 'sound/machines/generator/tbg_winddown.ogg'
