@@ -363,7 +363,8 @@
 	power_generation_max = 5000000 //Powers an entire colony
 	time_to_break = 5 SECONDS
 	voice = "Woman (Journalist)"
-	var/exploding = FALSE
+	//Stores whether we're in the turning off animation
+	var/winding_down = FALSE
 	//List of turbines connected for visuals
 	var/list/connected_turbines = list()
 	//Ambient soundloop
@@ -391,6 +392,8 @@
 
 /obj/machinery/power/geothermal/tbg/update_icon_state()
 	. = ..()
+	if(winding_down)
+		icon_state = "on25"
 	if(buildstate == GENERATOR_EXPLODING)
 		icon_state = "exploding"
 	for(var/obj/machinery/power/tbg_turbine/turbine in connected_turbines)
@@ -411,10 +414,9 @@
 
 /obj/machinery/power/geothermal/tbg/turn_off()
 	COOLDOWN_START(src, toggle_power, 10 SECONDS)
-	power_gen_percent = 1
+	. = ..()
+	winding_down = TRUE
 	update_icon()
-	update_desc()
-	stop_processing()
 	addtimer(CALLBACK(src, PROC_REF(finish_winding_down)), 10 SECONDS)
 	ambient_soundloop.stop()
 	SSmachines.active_bluespace_generators--
@@ -423,8 +425,7 @@
 
 /// Updates the turbine animation after the winding down sound effect has finished
 /obj/machinery/power/geothermal/tbg/proc/finish_winding_down()
-	is_on = FALSE
-	power_gen_percent = 0
+	winding_down = FALSE
 	update_icon()
 
 
@@ -474,16 +475,16 @@
 /// Triggers alarm visual effects and queues alarm warnings for ongoing TBG meltdown
 /obj/machinery/power/geothermal/tbg/proc/trigger_alarms()
 	alarm_soundloop.start()
-	//Trigger alarm lights obj/machinery/floor_warn_light
+	//Trigger alarm lights
 	for(var/obj/machinery/floor_warn_light/toggleable/generator/light in SSmachines.generator_alarm_lights)
 		light.enable()
 
 	say("REACTOR MELTDOWN IMMINENT.")
 	var/list/warning_messages = list(
-		list("STABILISATION REQUIRES BLUESPACE COMBUSTION. PLEASE EVACUATE THE AREA IMMEDIATELY.", 3 SECONDS)
-		list("BLUESPACE COMBUSTION IN T-30 SECONDS", 7 SECONDS)
+		list("STABILISATION REQUIRES BLUESPACE COMBUSTION. PLEASE EVACUATE THE AREA.", 3 SECONDS),
+		list("BLUESPACE COMBUSTION IN T-30 SECONDS", 7 SECONDS),
 		list("BLUESPACE COMBUSTION IN T-15 SECONDS", 22 SECONDS),
-		list("BLUESPACE COMBUSTION IMMINENT. PLEASE EVACUATE THE AREA.", 27 SECONDS),
+		list("BLUESPACE COMBUSTION IMMINENT. PLEASE EVACUATE THE AREA IMMEDIATELY.", 27 SECONDS),
 		list("EXPLOSION IN 5", 32 SECONDS),
 		list("4", 33 SECONDS),
 		list("3", 34 SECONDS),
@@ -521,6 +522,8 @@
 /obj/machinery/power/tbg_turbine/update_icon_state()
 	if(!connected)
 		return
+	if(connected.winding_down)
+		icon_state = "circ-on25"
 
 	if(connected.buildstate != GENERATOR_NO_DAMAGE)
 		icon_state = "circ-weld"
