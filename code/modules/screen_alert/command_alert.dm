@@ -93,7 +93,7 @@
 		S = sound('sound/misc/notice2.ogg')
 		S.channel = CHANNEL_ANNOUNCEMENTS
 		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
-			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[uppertext(human_owner.job.title)]'S ANNOUNCEMENT:</u></span><br>" + text, new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, owner))
+			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(human_owner.job.title)]'S ANNOUNCEMENT:</u></span><br>" + text, new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, owner))
 			to_chat(faction_receiver, assemble_alert(
 				title = "[human_owner.job.title]'s Announcement",
 				subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",
