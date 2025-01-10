@@ -6197,12 +6197,6 @@
 	},
 /turf/open/floor/mainship/tcomms,
 /area/mainship/hull/lower_hull)
-"hIw" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/obj/effect/ai_node,
-/turf/open/floor/mainship/mono,
-/area/mainship/hull/lower_hull)
 "hIF" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -7750,12 +7744,6 @@
 /obj/structure/benchpress,
 /turf/open/floor/mainship/mono,
 /area/mainship/engineering/engineering_workshop)
-"jRq" = (
-/obj/machinery/cic_maptable/drawable/big{
-	pixel_x = 0
-	},
-/turf/closed/wall/mainship,
-/area/crew_quarters/toilet)
 "jRQ" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -14908,14 +14896,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/crew_quarters/toilet)
-"sAR" = (
-/obj/structure/cable,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/light/mainship/small{
-	dir = 4
-	},
-/turf/open/floor/plating/plating_catwalk,
-/area/mainship/hull/lower_hull)
 "sBh" = (
 /obj/item/reagent_containers/jerrycan,
 /obj/item/reagent_containers/jerrycan,
@@ -15284,6 +15264,11 @@
 /area/mainship/living/grunt_rnr)
 "tdE" = (
 /obj/machinery/vending/nanomed,
+/obj/structure/cable,
+/turf/open/floor/mainship,
+/area/mainship/squads/general)
+"tdQ" = (
+/obj/effect/ai_node,
 /obj/structure/cable,
 /turf/open/floor/mainship,
 /area/mainship/squads/general)
@@ -18498,7 +18483,6 @@
 /turf/open/floor/mainship/green/full,
 /area/mainship/squads/req)
 "xbv" = (
-/obj/structure/disposalpipe/segment,
 /obj/structure/cable,
 /obj/machinery/power/apc/mainship{
 	dir = 4
@@ -55004,7 +54988,7 @@ pqQ
 xLu
 fAJ
 fAJ
-jRq
+fAJ
 fAJ
 kVD
 cTx
@@ -58878,7 +58862,7 @@ fmP
 nhn
 nbh
 eeX
-tis
+tdQ
 cPg
 rHh
 hcr
@@ -60949,21 +60933,21 @@ wPV
 qFT
 sYv
 xbv
-sAR
-hUz
-rCA
-hIw
-hUz
-fAo
-hUz
-hUz
-anW
-cbS
-hUz
-hUz
-hUz
-hUz
-rCA
+mDY
+wPV
+sYv
+qFT
+wPV
+hME
+wPV
+wPV
+hME
+wPV
+wPV
+wPV
+wPV
+wPV
+sYv
 lew
 sYv
 fgk
