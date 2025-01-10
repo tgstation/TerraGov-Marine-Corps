@@ -32,3 +32,10 @@
 2025-01-08:
   Barnet2:
   - bugfix: Pillar of Spring maintenance is no longer a dead end
+2025-01-10:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed the esword secondary not spawning, and requiring a backpack'
+  - rscadd: Added TTS options to announcements/overwatch/hivechat/hive messages
+  Tiviplus & Kuro:
+  - rscadd: Added the  homing "TOW-III" tank secondary
+  - rscadd: Added the homing "Micromissile pod" tank secondary
