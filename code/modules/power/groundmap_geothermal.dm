@@ -362,7 +362,7 @@
 	icon = 'icons/obj/machines/tbg.dmi'
 	power_generation_max = 5000000 //Powers an entire colony
 	time_to_break = 5 SECONDS
-	voice = "Woman (Journalist)"
+	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	//Stores whether we're in the turning off animation
 	var/winding_down = FALSE
 	//List of turbines connected for visuals
