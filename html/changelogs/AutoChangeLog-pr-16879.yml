@@ -1,0 +1,5 @@
+author: "breadhunt"
+delete-after: True
+changes:
+  - bugfix: "Fixed stray windows and tiles on Pillar of Spring"
+  - rscdel: "SL prep rooms now have 1 map table instead of 2 for space"
