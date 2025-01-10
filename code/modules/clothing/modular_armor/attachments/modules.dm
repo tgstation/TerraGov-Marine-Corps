@@ -526,6 +526,10 @@
 	. = ..()
 	locked_armor_mod = getArmor(arglist(locked_armor_mod))
 
+/obj/item/armor_module/module/armorlock/Destroy()
+	. = ..()
+	locked_armor_mod = null
+
 /obj/item/armor_module/module/armorlock/activate(mob/living/user)
 	if(!COOLDOWN_CHECK(src, armorlock_cooldown))
 		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, armorlock_cooldown)*0.1] seconds")
