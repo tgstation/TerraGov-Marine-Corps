@@ -11111,7 +11111,6 @@
 /turf/open/floor/freezer,
 /area/lv624/lazarus/toilet)
 "kUl" = (
-/obj/structure/cable,
 /obj/machinery/power/geothermal/tbg{
 	dir = 1
 	},

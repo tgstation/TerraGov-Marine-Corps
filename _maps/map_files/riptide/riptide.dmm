@@ -21098,7 +21098,6 @@
 	},
 /area/riptide/outside/southjungle)
 "oKZ" = (
-/obj/structure/cable,
 /obj/machinery/power/geothermal/tbg{
 	dir = 1
 	},
