@@ -489,7 +489,7 @@
 
 /obj/item/armor_module/module/mirage/activate(mob/living/user)
 	if(!COOLDOWN_CHECK(src, mirage_cooldown))
-		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, mirage_cooldown)/10] seconds")
+		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, mirage_cooldown)*0.1] seconds")
 		return
 	var/alpha_mod = user.alpha * 0.8
 	user.alpha -= alpha_mod
@@ -504,6 +504,9 @@
 
 
 #define ARMORLOCK_DURATION 6 SECONDS
+#define ARMORLOCK_SIEMENS_COEFF -0.9
+#define ARMORLOCK_PERMEABILITY_COEFF -1
+#define ARMORLOCK_GAS_TRANSFER_COEFF -1
 
 /obj/item/armor_module/module/armorlock
 	name = "\improper Thor Armorlock Module"
@@ -525,7 +528,7 @@
 
 /obj/item/armor_module/module/armorlock/activate(mob/living/user)
 	if(!COOLDOWN_CHECK(src, armorlock_cooldown))
-		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, armorlock_cooldown)/10] seconds")
+		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, armorlock_cooldown)*0.1] seconds")
 		return
 
 	user.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
@@ -537,9 +540,9 @@
 	parent?.soft_armor = parent?.soft_armor.attachArmor(locked_armor_mod)
 	playsound(user, 'sound/items/armorlock.ogg', 50)
 
-	parent.siemens_coefficient += -0.9
-	parent.permeability_coefficient += -1
-	parent.gas_transfer_coefficient += -1
+	parent.siemens_coefficient += ARMORLOCK_SIEMENS_COEFF
+	parent.permeability_coefficient += ARMORLOCK_PERMEABILITY_COEFF
+	parent.gas_transfer_coefficient += ARMORLOCK_GAS_TRANSFER_COEFF
 
 	addtimer(CALLBACK(src, PROC_REF(end_armorlock), user, shield_overlay), ARMORLOCK_DURATION)
 	COOLDOWN_START(src, armorlock_cooldown, 45 SECONDS)
@@ -551,9 +554,9 @@
 	user.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
 	user.move_resist = initial(user.move_resist)
 
-	parent.siemens_coefficient -= -0.9
-	parent.permeability_coefficient -= -1
-	parent.gas_transfer_coefficient -= -1
+	parent.siemens_coefficient -= ARMORLOCK_SIEMENS_COEFF
+	parent.permeability_coefficient -= ARMORLOCK_PERMEABILITY_COEFF
+	parent.gas_transfer_coefficient -= ARMORLOCK_GAS_TRANSFER_COEFF
 
 /obj/item/armor_module/module/style
 	name = "\improper Armor Equalizer"
