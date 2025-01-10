@@ -111,7 +111,6 @@
 
 /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot
 	image_to_play = "custom"
-	fade_out_time = 99
 
 #define MAX_NON_COMMTITLE_LEN 9
 
