@@ -119,6 +119,7 @@
 	. = ..()
 	var/atom/movable/holding_movable = new
 	holding_movable.appearance_flags = APPEARANCE_UI|KEEP_TOGETHER
+	holding_movable.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 	var/mutable_appearance/mugshot = mutable_appearance()
 	mugshot.appearance = mugshottee.appearance
