@@ -16,6 +16,10 @@
 /obj/item/camera_film,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"be" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
 "bq" = (
 /obj/machinery/light{
 	dir = 4
@@ -27,13 +31,6 @@
 /obj/structure/table,
 /obj/item/tool/lighter/random,
 /turf/open/floor,
-/area/bigredv2/outside/engineering)
-"bS" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/freezer,
 /area/bigredv2/outside/engineering)
 "ck" = (
 /obj/effect/decal/cleanable/dirt,
@@ -703,6 +700,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"Jz" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering/east)
 "JU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/structure/cable,
@@ -901,6 +902,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"SU" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "Tg" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -1058,7 +1063,7 @@
 /area/bigredv2/outside/engineering)
 
 (1,1,1) = {"
-bS
+Wo
 Jc
 uD
 MD
@@ -1091,7 +1096,7 @@ GH
 GH
 GH
 GH
-Pt
+SU
 Ds
 uk
 Wo
@@ -1183,7 +1188,7 @@ EH
 wt
 wt
 wt
-GH
+be
 GH
 GH
 LF
@@ -1236,7 +1241,7 @@ Pt
 Az
 Pt
 Pt
-Pt
+SU
 vR
 Ge
 Jq
@@ -1301,7 +1306,7 @@ Wo
 tR
 Wo
 Wo
-GH
+be
 LF
 LF
 LF
@@ -1411,7 +1416,7 @@ bN
 wt
 Ie
 Jv
-Ao
+Jz
 Ao
 Ao
 jf
@@ -1437,7 +1442,7 @@ qm
 (14,1,1) = {"
 Wo
 wW
-Pt
+SU
 Oa
 DH
 Ao
@@ -1524,7 +1529,7 @@ su
 (17,1,1) = {"
 Pt
 Pt
-Pt
+SU
 WD
 cD
 Ao
@@ -1585,7 +1590,7 @@ GE
 Ih
 ua
 ax
-Ao
+Jz
 Ao
 Ao
 jf
@@ -1697,7 +1702,7 @@ su
 "}
 (23,1,1) = {"
 Ao
-Ao
+Jz
 Gp
 Of
 KV

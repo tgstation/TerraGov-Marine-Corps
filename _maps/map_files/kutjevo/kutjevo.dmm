@@ -1036,6 +1036,7 @@
 /area/kutjevo/interior/complex/Northwest_Dorms)
 "bja" = (
 /obj/machinery/colony_floodlight_switch,
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/r_wall/kutjevo,
 /area/kutjevo/interior/power)
 "bjf" = (
@@ -1052,8 +1053,10 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/botany_medical_cave)
 "bkn" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/power/geothermal/tbg{
+	dir = 4
+	},
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "bks" = (
@@ -4888,6 +4891,10 @@
 /obj/item/stack/rods,
 /turf/open/floor/kutjevo/grey/plate,
 /area/kutjevo/interior/construction)
+"ffl" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/kutjevo,
+/area/kutjevo/interior/power)
 "ffu" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
@@ -5132,6 +5139,10 @@
 "fto" = (
 /turf/open/floor/kutjevo/grey/plate,
 /area/kutjevo/interior/complex/Northwest_Dorms)
+"fty" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/kutjevo,
+/area/kutjevo/interior/power)
 "ftF" = (
 /obj/machinery/door/airlock/mainship/maint{
 	dir = 1
@@ -8841,6 +8852,10 @@
 	dir = 6
 	},
 /area/kutjevo/interior/power)
+"jHb" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/kutjevo/multi_tiles,
+/area/kutjevo/interior/power)
 "jHO" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -9469,8 +9484,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
+	},
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "ksj" = (
@@ -10921,6 +10938,7 @@
 /area/kutjevo/exterior/runoff_bridge)
 "lSz" = (
 /obj/structure/largecrate/random/secure,
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/interior/filtration)
 "lSM" = (
@@ -11676,6 +11694,7 @@
 	},
 /area/kutjevo/interior/complex/med/locks)
 "mBD" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/kutjevo,
 /area/kutjevo/exterior/stonyfields)
 "mBG" = (
@@ -13708,6 +13727,9 @@
 "oKA" = (
 /obj/item/storage/toolbox/electrical,
 /obj/structure/cable,
+/obj/machinery/power/terminal{
+	dir = 1
+	},
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "oKC" = (
@@ -16392,6 +16414,13 @@
 /obj/structure/lattice,
 /turf/open/floor/plating/kutjevo,
 /area/kutjevo/interior/complex/botany/east_tech)
+"rAt" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/power)
 "rAP" = (
 /obj/effect/ai_node,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
@@ -20118,6 +20147,10 @@
 /obj/structure/flora/grass/tallgrass/autosmooth/desert,
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/scrubland/south)
+"vpd" = (
+/obj/machinery/power/smes/buildable/empty,
+/turf/open/floor/kutjevo/colors/orange,
+/area/kutjevo/interior/power)
 "vpq" = (
 /obj/structure/rock/variable/tinyrock,
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -22317,6 +22350,13 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/kutjevo/multi_tiles,
+/area/kutjevo/interior/power)
+"xGR" = (
+/obj/structure/platform/metalplatform{
+	dir = 1
+	},
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/kutjevo,
 /area/kutjevo/interior/power)
 "xGT" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -29871,13 +29911,13 @@ ceG
 pyp
 pyp
 sNp
-pyp
+fty
 hGH
 upQ
 hGH
 vdC
 vqW
-pyp
+fty
 pyp
 pyp
 wdw
@@ -31040,7 +31080,7 @@ dyU
 pyp
 pyp
 sNp
-pyp
+fty
 wEn
 xjY
 xjY
@@ -31213,7 +31253,7 @@ ddk
 ddk
 dbe
 tlv
-pyp
+fty
 pyp
 pyp
 wdw
@@ -31383,7 +31423,7 @@ xzY
 mIr
 cvm
 pyp
-pyp
+fty
 fdH
 fdH
 pyp
@@ -31544,7 +31584,7 @@ pBV
 bkn
 kGE
 tez
-wIG
+jHb
 psz
 xVt
 una
@@ -31708,10 +31748,10 @@ vVC
 vVC
 ePx
 pBV
-bkn
+rAt
 kGE
 wIG
-wIG
+jHb
 akd
 jrs
 cvm
@@ -31719,7 +31759,7 @@ dzD
 wIG
 wIG
 wIG
-xgV
+ffl
 pnM
 wIG
 ltX
@@ -31875,7 +31915,7 @@ vVC
 vVC
 cTz
 pBV
-bkn
+vpd
 oKA
 iSF
 wIG
@@ -32040,7 +32080,7 @@ cTz
 tIF
 ler
 ePx
-pyp
+fty
 pyp
 bja
 kNb
@@ -33042,16 +33082,16 @@ tPO
 iiS
 ePx
 ePx
+fty
 pyp
-pyp
-pyp
+fty
 vbV
 pFZ
 tjI
 uma
 pFZ
 pFZ
-vFc
+xGR
 kEL
 wIG
 cEH
@@ -33713,13 +33753,13 @@ cTz
 ePx
 vtT
 dxF
-pyp
+fty
 tql
 tql
 mBD
 tql
 huF
-pyp
+fty
 pBV
 pBV
 pyp

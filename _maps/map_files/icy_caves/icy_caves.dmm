@@ -1210,6 +1210,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean/two,
 /area/icy_caves/caves/northwestmonorail)
+"gz" = (
+/obj/effect/landmark/weed_node,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside/center)
 "gB" = (
 /turf/open/floor/tile/dark/brown2,
 /area/icy_caves/outpost/refinery)
@@ -1283,6 +1289,10 @@
 	dir = 10
 	},
 /area/icy_caves/caves/northwestmonorail)
+"gU" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside/center)
 "gX" = (
 /obj/machinery/light{
 	dir = 8
@@ -1317,6 +1327,10 @@
 	},
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/east)
+"ho" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/icy_caves/outpost/engineering)
 "hp" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark/green2{
@@ -1339,6 +1353,11 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/ground/ice,
 /area/icy_caves/caves/south)
+"hu" = (
+/obj/effect/landmark/start/job/survivor,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside/center)
 "hv" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/random/misc/paperbin,
@@ -4584,6 +4603,12 @@
 	},
 /turf/open/shuttle/escapepod/plain,
 /area/space)
+"wV" = (
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/snow/layer1,
+/area/icy_caves/outpost/outside)
 "wW" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating,
@@ -5038,6 +5063,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/outside/center)
+"zi" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal/tbg{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/engineering)
 "zj" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
@@ -5048,6 +5080,10 @@
 /obj/machinery/power/apc/drained,
 /turf/open/floor/tile/dark,
 /area/icy_caves/outpost/security)
+"zn" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/icy_caves/outpost/engineering)
 "zo" = (
 /obj/effect/decal/cleanable/blood/gibs/robot,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -5605,6 +5641,13 @@
 	},
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northwestmonorail/hallway)
+"BP" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/engineering)
 "BQ" = (
 /obj/item/lightstick/anchored,
 /turf/open/floor/plating/ground/ice,
@@ -6188,6 +6231,12 @@
 	dir = 4
 	},
 /area/icy_caves/caves/cavesbrig)
+"EF" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/structure/cable,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside/center)
 "EG" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/structure/cable,
@@ -7593,10 +7642,12 @@
 /turf/open/floor/tile/dark,
 /area/icy_caves/caves/northern)
 "Lq" = (
-/obj/machinery/power/geothermal,
 /obj/machinery/light/small,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
 /area/icy_caves/outpost/engineering)
 "Lr" = (
 /obj/item/shard,
@@ -9451,6 +9502,14 @@
 "Uu" = (
 /turf/open/floor/plating/ground/snow/layer2,
 /area/icy_caves/outpost/LZ1)
+"Uv" = (
+/obj/machinery/atmospherics/pipe/simple/green/hidden{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/tile/dark,
+/area/icy_caves/outpost/outside/center)
 "Uy" = (
 /obj/machinery/light{
 	dir = 1
@@ -13463,7 +13522,7 @@ pR
 pR
 XO
 XO
-XO
+wV
 cQ
 UE
 XW
@@ -23749,7 +23808,7 @@ Rp
 kg
 li
 DD
-HA
+Uv
 DD
 DD
 li
@@ -23759,8 +23818,8 @@ li
 li
 li
 li
-HA
-JW
+Uv
+gz
 li
 VM
 Ya
@@ -24216,14 +24275,14 @@ ZP
 ro
 ro
 ro
-ro
+ho
 ti
+ho
 ro
 ro
 ro
 ro
-ro
-ro
+ho
 li
 DD
 DD
@@ -24382,7 +24441,7 @@ Ha
 ro
 li
 my
-SV
+hu
 HA
 my
 li
@@ -24538,7 +24597,7 @@ Bs
 ro
 li
 kJ
-nu
+EF
 GS
 my
 li
@@ -24690,7 +24749,7 @@ vx
 yC
 Bx
 YU
-Ha
+BP
 ro
 VC
 HA
@@ -24843,10 +24902,10 @@ sj
 si
 Yz
 ol
-yx
+zn
 BI
 aW
-Ha
+zi
 ro
 li
 HA
@@ -25003,7 +25062,7 @@ Jo
 Xf
 aW
 Lq
-ro
+ho
 li
 HA
 my
@@ -25629,8 +25688,8 @@ ZI
 ZI
 ZI
 li
-HA
-my
+Uv
+gU
 li
 DD
 IE

@@ -1961,6 +1961,11 @@
 	dir = 9
 	},
 /area/lawankaoutpost/colony/engineering)
+"bEH" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/cold,
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "bFp" = (
 /turf/open/floor/tile/dark/yellow2{
 	dir = 8
@@ -3432,6 +3437,11 @@
 /obj/effect/landmark/campaign_structure/barricade/sandbags/asat,
 /turf/open/floor/plating/ground/dirt,
 /area/lawankaoutpost/caves/northwest/garbledradio)
+"cRs" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal/tbg,
+/turf/open/floor/podhatch/floor,
+/area/lawankaoutpost/colony/engineering)
 "cRx" = (
 /obj/structure/closet/crate/hydroponics/prespawned,
 /turf/open/floor,
@@ -5633,8 +5643,10 @@
 	},
 /area/lawankaoutpost/colony/medbay)
 "eJe" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 1
+	},
 /turf/open/floor/podhatch/floor,
 /area/lawankaoutpost/colony/engineering)
 "eJh" = (
@@ -8326,6 +8338,7 @@
 /area/lawankaoutpost/caves/nanotrasen_lab)
 "gNM" = (
 /obj/effect/ai_node,
+/obj/machinery/floor_warn_light/toggleable,
 /turf/open/floor/podhatch/floor,
 /area/lawankaoutpost/colony/engineering)
 "gNZ" = (
@@ -10771,6 +10784,10 @@
 	},
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lawankaoutpost/outside/south)
+"iYl" = (
+/obj/machinery/floor_warn_light/toggleable,
+/turf/closed/wall,
+/area/lawankaoutpost/colony/engineering)
 "iYn" = (
 /obj/structure/flora/ausbushes/grassybush{
 	pixel_x = -6;
@@ -25604,6 +25621,7 @@
 "uVo" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
+/obj/machinery/floor_warn_light/toggleable,
 /turf/open/floor/podhatch/floor,
 /area/lawankaoutpost/colony/engineering)
 "uVv" = (
@@ -27310,6 +27328,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/lawankaoutpost/colony/recdorms)
+"wmL" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/floor_warn_light/toggleable,
+/turf/open/floor/tile/dark/yellow2,
+/area/lawankaoutpost/colony/engineering)
 "wmY" = (
 /obj/structure/table,
 /obj/item/tool/plantspray/pests{
@@ -45998,7 +46021,7 @@ lKO
 oCi
 dnE
 sVp
-tRS
+iYl
 oqq
 xGW
 xGW
@@ -46641,7 +46664,7 @@ nva
 fBL
 hHa
 oDN
-tRS
+iYl
 eoN
 rps
 lCE
@@ -46855,7 +46878,7 @@ tRS
 tRS
 tRS
 tRS
-tRS
+iYl
 tRS
 tRS
 tRS
@@ -47081,7 +47104,7 @@ nva
 fPR
 tRS
 tRS
-tRS
+iYl
 tRS
 tRS
 lIK
@@ -47293,7 +47316,7 @@ xRG
 pIJ
 rkl
 tRS
-tRS
+iYl
 nva
 lCE
 tbA
@@ -47731,14 +47754,14 @@ nva
 skU
 rYj
 vtK
-tRS
+iYl
 hHa
 whJ
 cbn
 thw
-eJe
-eJe
-eJe
+mzy
+mzy
+mzy
 thw
 fRE
 tRS
@@ -48170,12 +48193,12 @@ nva
 nOE
 mOn
 wbv
-eJe
-eJe
+bEH
+cRs
 eJe
 thw
 pWn
-tRS
+iYl
 oqq
 oqq
 oqq
@@ -48593,20 +48616,20 @@ hSp
 nXF
 gfb
 tUI
-tRS
+iYl
 cJk
 cWH
 skU
 nva
 tIu
-tRS
+iYl
 wXM
 whJ
 agY
 thw
-eJe
-eJe
-eJe
+mzy
+mzy
+mzy
 tBt
 aOy
 tRS
@@ -49242,13 +49265,13 @@ tRS
 tRS
 tRS
 tRS
-tRS
+iYl
 tRS
 tRS
 lCE
 qYa
 jLV
-tRS
+iYl
 tRS
 tRS
 nva
@@ -50116,12 +50139,12 @@ rsN
 tQf
 sVp
 tZF
-tRS
+iYl
 knq
 ruy
 lIK
 bkB
-tRS
+iYl
 oqq
 xGW
 xGW
@@ -50546,7 +50569,7 @@ tAI
 cfk
 fkw
 sbB
-fig
+wmL
 mBa
 mEt
 tUI

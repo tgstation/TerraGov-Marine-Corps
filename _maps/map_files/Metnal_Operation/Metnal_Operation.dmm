@@ -4999,6 +4999,10 @@
 /obj/structure/closet/firecloset,
 /turf/open/floor/carpet/side,
 /area/metnal/inside/executivedorms)
+"dnD" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/prison,
+/area/metnal/inside/substation)
 "dnQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/ai_node,
@@ -9021,6 +9025,16 @@
 /obj/effect/landmark/weed_node,
 /turf/open/urban/street/asphalt,
 /area/metnal/outside/northeast)
+"gcv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/cold,
+/turf/open/floor/plating/heatinggrate{
+	dir = 4
+	},
+/area/metnal/inside/substation)
 "gcw" = (
 /obj/effect/spawner/random/decal/blood,
 /obj/effect/decal/cleanable/dirt,
@@ -9736,6 +9750,7 @@
 /area/metnal/inside/laundromat)
 "gDt" = (
 /obj/effect/spawner/random/weaponry/gun/rifles,
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "gDz" = (
@@ -15570,6 +15585,13 @@
 	},
 /turf/open/floor/prison/sterilewhite/full,
 /area/metnal/inside/colonydorms)
+"kAa" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal/tbg,
+/turf/open/floor/plating/heatinggrate{
+	dir = 4
+	},
+/area/metnal/inside/substation)
 "kAf" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -18982,6 +19004,7 @@
 /obj/effect/turf_decal/caution{
 	dir = 8
 	},
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor/tile/dark,
 /area/metnal/inside/substation)
 "mNi" = (
@@ -25035,6 +25058,7 @@
 /area/metnal/inside/colonydorms)
 "qKC" = (
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/substation)
 "qKL" = (
@@ -26865,6 +26889,12 @@
 	dir = 1
 	},
 /area/metnal/outside/east)
+"rXt" = (
+/obj/structure/cable,
+/turf/open/floor/plating/heatinggrate{
+	dir = 4
+	},
+/area/metnal/inside/substation)
 "rXw" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/decal/cleanable/blood,
@@ -29039,6 +29069,15 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/wood,
 /area/metnal/inside/colonydorms)
+"tpM" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 1
+	},
+/turf/open/floor/plating/heatinggrate{
+	dir = 4
+	},
+/area/metnal/inside/substation)
 "tpT" = (
 /obj/structure/table/wood/fancy,
 /obj/effect/spawner/random/misc/cigarettes,
@@ -31884,6 +31923,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/closed/wall/r_wall/prison,
 /area/metnal/inside/substation)
 "vei" = (
@@ -39815,11 +39855,11 @@ nZH
 kED
 jMx
 ymg
-ymg
-uoQ
-ymg
-ymg
-ymg
+rXt
+gcv
+kAa
+tpM
+rXt
 uoQ
 jMx
 jVs
@@ -40015,7 +40055,7 @@ jMx
 vdB
 wLc
 jMx
-jMx
+dnD
 hzp
 lLK
 jMW
@@ -40620,16 +40660,16 @@ cJv
 aXs
 exc
 xWr
+dnD
 jMx
-jMx
-jMx
+dnD
 sEF
 xWr
+dnD
 jMx
-jMx
-jMx
+dnD
 saP
-jMx
+dnD
 lkt
 bLe
 bLe
@@ -41018,7 +41058,7 @@ sYI
 sYI
 sGy
 kXz
-jMx
+dnD
 sJy
 oCP
 bhk
@@ -41235,7 +41275,7 @@ pQR
 aPi
 oaX
 cAv
-jMx
+dnD
 jMx
 jVs
 jVs
@@ -41826,20 +41866,20 @@ ohk
 ahE
 nqO
 kXz
-jMx
+dnD
 pcB
 kui
 xvZ
 vyN
 xWr
+dnD
 jMx
-jMx
-jMx
+dnD
 hoT
 pGW
+dnD
 jMx
-jMx
-jMx
+dnD
 vfA
 jFt
 jMx
@@ -42442,7 +42482,7 @@ nSo
 nSo
 eai
 mPI
-jMx
+dnD
 jMx
 bqp
 jMx
@@ -42639,7 +42679,7 @@ jMx
 xWr
 jmL
 jMx
-jMx
+dnD
 jMx
 jMx
 qKC
