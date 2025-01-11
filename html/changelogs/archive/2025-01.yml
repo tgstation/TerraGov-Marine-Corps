@@ -39,3 +39,14 @@
   Tiviplus & Kuro:
   - rscadd: Added the  homing "TOW-III" tank secondary
   - rscadd: Added the homing "Micromissile pod" tank secondary
+2025-01-11:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed some map issues'
+  TiviPlus:
+  - bugfix: fixed petrified marines being flingable, along with other typically immobile
+      situations being flingable
+  breadhunt:
+  - bugfix: Fixed stray windows and tiles on Pillar of Spring
+  - rscdel: SL prep rooms now have 1 map table instead of 2 for space
+  yyzsong:
+  - balance: Adds preplaced tunnel landmarks to Prison Station
