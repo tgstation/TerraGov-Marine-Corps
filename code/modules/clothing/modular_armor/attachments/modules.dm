@@ -491,7 +491,7 @@
 	if(!COOLDOWN_CHECK(src, mirage_cooldown))
 		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, mirage_cooldown)*0.1] seconds")
 		return
-	var/alpha_mod = user.alpha * 0.8
+	var/alpha_mod = user.alpha * 0.95
 	user.alpha -= alpha_mod
 	var/mob/illusion/mirage_nade/fake = new(get_turf(user), user, null, 15 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(end_mirage), user, alpha_mod, fake), 15)
@@ -541,12 +541,9 @@
 
 	var/image/shield_overlay = image('icons/effects/effects.dmi', null, "shield-blue")
 	user.overlays += shield_overlay
-	parent?.soft_armor = parent?.soft_armor.attachArmor(locked_armor_mod)
+	user.status_flags |= GODMODE
 	playsound(user, 'sound/items/armorlock.ogg', 50)
 
-	parent.siemens_coefficient += ARMORLOCK_SIEMENS_COEFF
-	parent.permeability_coefficient += ARMORLOCK_PERMEABILITY_COEFF
-	parent.gas_transfer_coefficient += ARMORLOCK_GAS_TRANSFER_COEFF
 
 	addtimer(CALLBACK(src, PROC_REF(end_armorlock), user, shield_overlay), ARMORLOCK_DURATION)
 	COOLDOWN_START(src, armorlock_cooldown, 45 SECONDS)
@@ -554,13 +551,9 @@
 ///handles cleanup after the lock is finished
 /obj/item/armor_module/module/armorlock/proc/end_armorlock(mob/living/user, image/shield_overlay)
 	user.overlays -= shield_overlay
-	parent?.soft_armor = parent?.soft_armor.detachArmor(locked_armor_mod)
 	user.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
 	user.move_resist = initial(user.move_resist)
-
-	parent.siemens_coefficient -= ARMORLOCK_SIEMENS_COEFF
-	parent.permeability_coefficient -= ARMORLOCK_PERMEABILITY_COEFF
-	parent.gas_transfer_coefficient -= ARMORLOCK_GAS_TRANSFER_COEFF
+	user.status_flags &= ~GODMODE
 
 /obj/item/armor_module/module/style
 	name = "\improper Armor Equalizer"
