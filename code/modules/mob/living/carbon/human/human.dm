@@ -1116,6 +1116,7 @@
 	return ..()
 
 /mob/living/carbon/human/get_up()
-	if(!do_after(src, 2 SECONDS, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
+	var/get_up_time = (HAS_TRAIT(src, TRAIT_QUICK_GETUP) ? 5 : 20)
+	if(!do_after(src, get_up_time, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
 		return
 	return ..()
