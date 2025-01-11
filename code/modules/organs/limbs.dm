@@ -182,7 +182,7 @@
 		I.take_damage(brute / 2)
 		brute -= brute / 2
 
-	if((limb_status & LIMB_BROKEN) && brute)
+	if((limb_status & LIMB_BROKEN || limb_status & LIMB_STABILIZED) && brute)
 		if(internal_organs && !(limb_status & LIMB_SPLINTED))
 			var/datum/internal_organ/I = pick(internal_organs)
 			owner.custom_pain("You feel broken bones dislodging in your [display_name]!", 1)
