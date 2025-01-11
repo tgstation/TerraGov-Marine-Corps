@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "Added the new marine \"Prototype Supersoldier\" race which is weaker by default but can use stimulants to be more flexible"
