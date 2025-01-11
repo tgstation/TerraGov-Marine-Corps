@@ -4177,6 +4177,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/prison/darkred{
 	dir = 9
 	},
@@ -7914,6 +7915,7 @@
 /area/prison/chapel)
 "azA" = (
 /obj/machinery/light/small,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/wood,
 /area/prison/chapel)
 "azB" = (
@@ -27525,6 +27527,7 @@
 /obj/machinery/shower{
 	dir = 8
 	},
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/prison/kitchen,
 /area/prison/holding/holding2)
 "bJU" = (
@@ -39862,6 +39865,7 @@
 /area/prison/cellblock/mediumsec/west)
 "cON" = (
 /obj/structure/sink,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/prison/plate,
 /area/prison/cellblock/lowsec/sw)
 "cPs" = (
@@ -40584,6 +40588,13 @@
 	},
 /turf/open/floor/prison/bright_clean/two,
 /area/prison/residential/south)
+"eGv" = (
+/obj/structure/sink{
+	dir = 8
+	},
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/sterilewhite,
+/area/prison/medbay)
 "eIO" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
@@ -46193,6 +46204,7 @@
 /area/prison/cellblock/highsec/south/north)
 "smL" = (
 /obj/machinery/light/small,
+/obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/wood/broken,
 /area/prison/residential/south)
 "snZ" = (
@@ -46609,6 +46621,13 @@
 /obj/item/taperecorder,
 /turf/open/floor/prison,
 /area/prison/security/head)
+"tiT" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/wood,
+/area/prison/residential/north)
 "tjY" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison,
@@ -47063,6 +47082,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"upT" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/mediumsec/west)
 "uqh" = (
 /obj/structure/table/wood,
 /turf/open/floor/wood/broken,
@@ -47115,6 +47138,13 @@
 	dir = 4
 	},
 /area/prison/cellblock/mediumsec/west)
+"uzu" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/wood,
+/area/prison/quarters/research)
 "uBX" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -47901,6 +47931,10 @@
 	},
 /turf/open/floor/plating,
 /area/prison/hangar/civilian)
+"wxA" = (
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/plate,
+/area/prison/cellblock/protective)
 "wzD" = (
 /obj/effect/turf_decal/woodsiding,
 /turf/open/ground/grass,
@@ -48366,6 +48400,13 @@
 	},
 /turf/open/floor/prison,
 /area/prison/hangar_storage/research)
+"xPq" = (
+/obj/structure/sink,
+/obj/effect/landmark/xeno_tunnel_spawn,
+/turf/open/floor/prison/cellstripe{
+	dir = 4
+	},
+/area/prison/cellblock/mediumsec/south)
 "xRA" = (
 /obj/structure/flora/pottedplant/ten,
 /turf/open/floor/wood,
@@ -61785,7 +61826,7 @@ hlo
 awm
 aJN
 avN
-aLa
+tiT
 axb
 pCK
 nuz
@@ -74473,7 +74514,7 @@ crs
 cwH
 cqI
 cqK
-crs
+upT
 cwH
 cqI
 cxL
@@ -82705,7 +82746,7 @@ cun
 quF
 cuN
 cun
-quF
+xPq
 cuN
 cun
 cxN
@@ -85920,7 +85961,7 @@ apH
 aqt
 aqW
 apK
-apH
+eGv
 aqt
 aqW
 apK
@@ -90124,7 +90165,7 @@ bUC
 okw
 bUC
 bPX
-bYM
+wxA
 chv
 cvX
 bXv
@@ -96731,7 +96772,7 @@ pBH
 jfX
 aDA
 aEA
-aFQ
+uzu
 aHb
 aED
 drJ

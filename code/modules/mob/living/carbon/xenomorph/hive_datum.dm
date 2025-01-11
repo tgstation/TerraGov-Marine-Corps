@@ -875,12 +875,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 		to_chat(X, "<span class='[span_class]'><font size=[size]> [message][report_distance ? " Distance: [get_dist(X, target)]" : ""]</font></span>")
 
-// This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
-/datum/hive_status/proc/hive_mind_message(mob/living/carbon/xenomorph/sender, message)
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/X = i
-		X.receive_hivemind_message(sender, message)
-
 ///Used for setting the trackers of all xenos in the hive, like when a nuke activates
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())

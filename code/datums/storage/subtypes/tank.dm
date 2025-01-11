@@ -36,4 +36,6 @@
 		/obj/item/ammo_magazine/tank/secondary_flamer_tank,
 		/obj/item/ammo_magazine/tank/secondary_mlrs,
 		/obj/item/ammo_magazine/icc_mg,
+		/obj/item/ammo_magazine/tank/microrocket_rack,
+		/obj/item/ammo_magazine/tank/tow_missile,
 	))

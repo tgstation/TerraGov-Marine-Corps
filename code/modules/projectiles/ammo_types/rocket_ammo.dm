@@ -569,6 +569,31 @@
 	rotate.Turn(proj.dir_angle)
 	animate(proj, transform = rotate, time = SSprojectiles.wait)
 
+/datum/ammo/rocket/homing/microrocket /// this is basically a tgmc version of the above
+	name = "homing HE microrocket"
+	shell_speed = 0.3
+	damage = 75
+	penetration = 40
+	sundering = 10
+	turn_rate = 10
+
+/datum/ammo/rocket/homing/drop_nade(turf/T)
+	explosion(T, 0, 0, 2, 4, 1)
+
+/datum/ammo/rocket/homing/tow
+	name = "TOW-III missile"
+	icon_state = "rocket_he"
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SPECIAL_PROCESS|AMMO_IFF
+	shell_speed = 0.3
+	turn_rate = 10
+	damage = 60
+	penetration = 30
+	sundering = 10
+	max_range = 30
+
+/datum/ammo/rocket/homing/tow/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 0, 2)
+
 /datum/ammo/rocket/coilgun
 	name = "kinetic penetrator"
 	icon_state = "tank_coilgun"

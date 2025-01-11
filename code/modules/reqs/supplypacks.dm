@@ -874,6 +874,16 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	cost = 10
 
+/datum/supply_packs/weapons/tow_rocket
+	name = "TOW Missile"
+	contains = list(/obj/item/ammo_magazine/tank/tow_missile)
+	cost = 5 // marginally cheaper due to being a single loader
+
+/datum/supply_packs/weapons/microrocket_pod
+	name = "Microrocket pod"
+	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
+	cost = 10
+
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/

@@ -653,13 +653,16 @@
 				if("command")
 					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_COMMAND)
 
+				if("hivemind")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_HIVEMIND)
+
 				if("all")
 					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
 					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)) //Enable all other channels when 'ALL' is enabled
 						for(var/flag in GLOB.all_radio_tts_options)
 							ENABLE_BITFIELD(radio_tts_flags, flag)
 
-			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND))
+			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND|RADIO_TTS_HIVEMIND))
 				DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
 
 		if("accessible_tgui_themes")
