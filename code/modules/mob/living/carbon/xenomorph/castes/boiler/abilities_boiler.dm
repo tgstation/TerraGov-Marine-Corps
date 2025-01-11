@@ -371,7 +371,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	name = "Steam Rush"
 	action_icon_state = "steam_rush"
 	action_icon = 'icons/Xeno/actions/boiler.dmi'
-	desc = "Grants a short speed boost. Slashes deal extra burn damage and reset the duration."
+	desc = "Grants a short speed boost. Slashes deal extra burn damage and extend the duration."
 	ability_cost = 100
 	cooldown_duration = 25 SECONDS
 	keybinding_signals = list(
@@ -427,7 +427,7 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 
 	if(steam_rush_ability.steam_rush_duration)
 		deltimer(steam_rush_ability.steam_rush_duration)
-		steam_rush_ability.steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(steam_rush_deactivate)), duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+		steam_rush_ability.steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(steam_rush_deactivate)), duration + 1 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
 
 ///Called when we want to end the steam rush ability
 /datum/action/ability/xeno_action/steam_rush/proc/steam_rush_deactivate()
@@ -463,6 +463,48 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 	friction = 0.1
 	gravity = list(0, 0.95)
 	grow = 0.1
+
+// ***************************************
+// *********** Smokescreen Spit
+// ***************************************
+
+/datum/action/ability/xeno_action/smokescreen_spit
+	name = "Smokescreen Spit"
+	action_icon_state = "acid_glob"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
+	desc = "Empowers your next spit to create a wide smokescreen."
+	ability_cost = 350
+	cooldown_duration = 30 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SMOKESCREEN_SPIT,
+	)
+	use_state_flags = ABILITY_USE_STAGGERED
+	/// Timer for the window you have to fire smokescreen spit
+	var/smokescreen_spit_window
+	/// Duration of the window you have to fire smokescreen spit
+	var/window_duration = 1.5 SECONDS
+
+/datum/action/ability/xeno_action/smokescreen_spit/action_activate()
+	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
+
+	X.ammo = /datum/ammo/xeno/acid/airburst/heavy
+	X.update_spits(TRUE)
+	X.balloon_alert(owner, "We prepare to fire a smokescreen!")
+
+	smokescreen_spit_window = addtimer(CALLBACK(src, PROC_REF(smokescreen_spit_deactivate)), window_duration, TIMER_UNIQUE)
+
+	succeed_activate()
+	add_cooldown()
+
+///Called when smokescreen ability ends to reset our ammo
+/datum/action/ability/xeno_action/smokescreen_spit/proc/smokescreen_spit_deactivate()
+	if(QDELETED(owner))
+		return
+	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
+
+	X.ammo = /datum/ammo/xeno/acid/airburst
+	X.update_spits(TRUE)
+	X.balloon_alert(owner, "Our spit returns to normal.")
 
 // ***************************************
 // *********** High-Pressure Spit

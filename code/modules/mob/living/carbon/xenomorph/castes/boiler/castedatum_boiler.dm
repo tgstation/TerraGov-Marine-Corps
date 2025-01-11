@@ -111,7 +111,7 @@
 
 		// *** Ranged Attack *** //
 	spit_delay = 0.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/airburst, /datum/ammo/xeno/acid/airburst/heavy)
+	spit_types = list(/datum/ammo/xeno/acid/airburst)
 
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
@@ -120,6 +120,7 @@
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/xeno_action/smokescreen_spit,
 		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
 		/datum/action/ability/xeno_action/steam_rush,
 	)
@@ -137,6 +138,7 @@
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/xeno_action/smokescreen_spit,
 		/datum/action/ability/activable/xeno/spray_acid/line/boiler,
 		/datum/action/ability/xeno_action/steam_rush,
 		/datum/action/ability/activable/xeno/high_pressure_spit,

@@ -310,7 +310,7 @@
 ///For the Sizzler Boiler's Spit
 /datum/ammo/xeno/acid/airburst
 	name = "acid steam spittle"
-	spit_cost = 70
+	spit_cost = 50
 	damage = 15
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF
 	bonus_projectiles_type = /datum/ammo/xeno/acid/airburst_bomblet
@@ -367,8 +367,8 @@
 /datum/ammo/xeno/acid/airburst/heavy
 	name = "acid steam glob"
 	icon_state = "neurotoxin"
-	added_spit_delay = 18 SECONDS
-	spit_cost = 700
+	added_spit_delay = 1 SECONDS
+	spit_cost = 50
 	damage = 35
 	stagger_stacks = 2 SECONDS
 	slowdown_stacks = 3
