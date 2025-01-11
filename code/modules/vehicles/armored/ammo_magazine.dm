@@ -55,16 +55,6 @@
 	default_ammo = /datum/ammo/flamethrower/tank_flamer
 	max_rounds = 120
 
-/obj/item/ammo_magazine/tank/towlauncher
-	name = "TOW Launcher Magazine"
-	desc = "A secondary armament rocket magazine"
-	caliber = CALIBER_68MM
-	icon_state = "quad_rocket"
-	icon = 'icons/obj/items/ammo/rocket.dmi'
-	w_class = WEIGHT_CLASS_GIGANTIC
-	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
-	max_rounds = 5
-
 /obj/item/ammo_magazine/tank/secondary_cupola
 	name = "HSG-102 Cupola Magazine"
 	desc = "A secondary armament MG magazine"
@@ -187,3 +177,22 @@
 	max_rounds = 1
 	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
 
+/obj/item/ammo_magazine/tank/tow_missile
+	name = "\improper TOW-III missile"
+	desc = "A TOw-III homing missile for the secondary TOW launcher."
+	caliber = CALIBER_68MM
+	icon_state = "seekerammo"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/rocket/homing/tow
+	max_rounds = 1
+	loading_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+
+/obj/item/ammo_magazine/tank/microrocket_rack
+	name = "microrocket pod rack"
+	desc = "A 3x2 rack containing high explosive homing microrockets."
+	caliber = CALIBER_32MM
+	icon_state = "secondary_rocketpod"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/rocket/homing/microrocket
+	max_rounds = 6
+	loading_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
