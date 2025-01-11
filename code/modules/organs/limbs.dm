@@ -187,6 +187,7 @@
 			var/datum/internal_organ/I = pick(internal_organs)
 			owner.custom_pain("You feel broken bones dislodging in your [display_name]!", 1)
 			var/damage_taken = (2 + (brute/2)) * (1-(I.damage/40)) //Damage starts to cap off as the organ gets more damaged
+			I.take_damage(damage_taken)
 			owner.traumatic_shock += damage_taken
 			playsound(owner, pick('sound/effects/organ_damage1.ogg', 'sound/effects/organ_damage2.ogg'), 80, sound_range = 1, falloff = 5)
 			owner.emote("pain")
