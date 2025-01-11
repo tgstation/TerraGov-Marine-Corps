@@ -199,47 +199,10 @@
 			continue
 		hearer.Hear(rendered, virt, language, message, frequency, spans)
 
-
-	//Check that speaker isn't banned from TTS
 	var/atom/movable/speaker = virt?.source
-	var/banned = FALSE
-	if(ismob(speaker))
-		var/mob/potential_user = speaker
-		if(is_banned_from(potential_user.ckey, "TTS") || potential_user.client?.prefs.muted & MUTE_TTS)
-			banned = TRUE
-
-	//If they aren't, handle radio TTS
-	if(speaker && speaker.voice && !banned)
-		var/is_speaker_squad_lead = FALSE
-		if(ishuman(speaker))
-			var/mob/living/carbon/human/human_speaker = speaker
-			if(human_speaker.assigned_squad?.squad_leader == speaker)
-				is_speaker_squad_lead = TRUE
-
-		var/is_speaker_command_freq = FALSE
-		if(frequency == FREQ_COMMAND || frequency == FREQ_COMMAND_SOM)
-			is_speaker_command_freq = TRUE
-
-		if(speaker in receive)
-			receive -= speaker //This list isn't used again, so we can just cut out the original speaker from it so TTS doesn't play twice
-
-		var/list/list_of_listeners = list()
-		for(var/mob/living/carbon/human/potential_hearer in receive)
-			if(potential_hearer.stat >= UNCONSCIOUS || !(potential_hearer.client?.prefs.sound_tts != TTS_SOUND_OFF) || isdeaf(potential_hearer))
-				continue
-
-			var/radio_flags = potential_hearer?.client?.prefs?.radio_tts_flags
-			if(CHECK_BITFIELD(radio_flags, RADIO_TTS_ALL))
-				list_of_listeners += potential_hearer
-				continue
-			if(potential_hearer.assigned_squad?.radio_freq == frequency && (CHECK_BITFIELD(radio_flags, RADIO_TTS_SQUAD) || (CHECK_BITFIELD(radio_flags, RADIO_TTS_SL) && is_speaker_squad_lead)))
-				list_of_listeners += potential_hearer
-				continue
-			if(CHECK_BITFIELD(radio_flags, RADIO_TTS_COMMAND) && is_speaker_command_freq)
-				list_of_listeners += potential_hearer
-				continue
-
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), speaker, html_decode(message), language, speaker.voice, speaker.voice_filter, list_of_listeners, FALSE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE)
+	var/list/tts_listeners = filter_tts_listeners(speaker, receive, frequency, (frequency == FREQ_COMMAND || frequency == FREQ_COMMAND_SOM) ? RADIO_TTS_COMMAND : NONE)
+	if(length(tts_listeners))
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), speaker, html_decode(message), language, speaker.voice, speaker.voice_filter, tts_listeners, FALSE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE)
 
 	var/spans_part = ""
 	if(length(spans))

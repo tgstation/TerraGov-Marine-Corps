@@ -13469,7 +13469,7 @@
 /area/gelida/indoors/c_block/mining)
 "jVX" = (
 /obj/structure/table/mainship,
-/obj/item/weapon/gun/rifle/tx11,
+/obj/item/weapon/gun/rifle/tx11/scopeless,
 /turf/open/floor/prison/blue/plate{
 	dir = 1
 	},
@@ -20248,7 +20248,7 @@
 /obj/item/ammo_magazine/rifle/tx11,
 /obj/item/ammo_magazine/rifle/tx11,
 /obj/item/ammo_magazine/rifle/tx11,
-/obj/item/weapon/gun/rifle/tx11{
+/obj/item/weapon/gun/rifle/tx11/scopeless{
 	pixel_y = -6
 	},
 /turf/open/floor/prison,
@@ -27253,7 +27253,7 @@
 /area/gelida/indoors/a_block/security)
 "tRN" = (
 /obj/structure/closet/crate/ammo,
-/obj/item/weapon/gun/rifle/tx11,
+/obj/item/weapon/gun/rifle/tx11/scopeless,
 /turf/open/shuttle/dropship/floor,
 /area/gelida/landing_zone_forecon/UD6_Typhoon)
 "tRT" = (

@@ -76,9 +76,13 @@
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	item_typepath = /obj/item/weapon/energy/sword/som
 	loadout_item_flags = NONE
+	item_whitelist = null
+	req_desc = null
 
 /datum/loadout_item/secondary/esword/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_BELT)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_BELT)
+	if(!isstorageobj(wearer.back))
+		return
 	default_load(wearer, loadout, holder)
 
 //kits

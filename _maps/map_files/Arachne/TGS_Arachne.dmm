@@ -374,12 +374,6 @@
 	dir = 10
 	},
 /area/mainship/hallways/hangar/droppod)
-"apL" = (
-/obj/machinery/cic_maptable/drawable/big{
-	pixel_x = 0
-	},
-/turf/open/floor/mainship/floor,
-/area/mainship/squads/general)
 "apO" = (
 /obj/structure/bed/chair/wood/wings,
 /turf/open/floor/wood,
@@ -4683,10 +4677,6 @@
 	},
 /turf/open/floor/mainship/floor,
 /area/mainship/shipboard/brig)
-"dXo" = (
-/obj/machinery/vending/weapon,
-/turf/open/floor/mainship/floor,
-/area/space)
 "dXZ" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
 /turf/open/floor/mainship/floor,
@@ -4809,10 +4799,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
-"eeE" = (
-/obj/machinery/marine_selector/clothes/commander,
-/turf/open/floor/mainship/floor,
-/area/space)
 "eff" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -8279,12 +8265,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hallways/starboard_hallway)
-"gTw" = (
-/obj/machinery/marine_selector/clothes/leader,
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/space)
 "gTZ" = (
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 4
@@ -10900,14 +10880,6 @@
 /obj/structure/window/framed/mainship/hull,
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
-"iVk" = (
-/obj/machinery/light/mainship{
-	dir = 4
-	},
-/turf/open/floor/mainship/black{
-	dir = 4
-	},
-/area/space)
 "iVx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -13801,10 +13773,6 @@
 	dir = 1
 	},
 /area/mainship/engineering/engineering_workshop)
-"lnT" = (
-/obj/machinery/vending/armor_supply,
-/turf/open/floor/mainship/floor,
-/area/space)
 "loy" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -16701,13 +16669,6 @@
 	dir = 4
 	},
 /area/mainship/hallways/port_hallway)
-"nCG" = (
-/obj/machinery/disposal,
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/open/floor/mainship/floor,
-/area/space)
 "nCM" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/tcomms,
@@ -18790,10 +18751,6 @@
 /obj/structure/bed/chair/sofa/left,
 /turf/open/floor/wood,
 /area/mainship/living/commandbunks)
-"pjb" = (
-/obj/machinery/marine_selector/clothes/leader,
-/turf/open/space/basic,
-/area/space)
 "pje" = (
 /obj/machinery/vending/cigarette,
 /obj/structure/disposalpipe/segment{
@@ -19863,11 +19820,6 @@
 	},
 /turf/open/floor/wood,
 /area/mainship/hallways/starboard_ert)
-"qfF" = (
-/obj/machinery/vending/uniform_supply,
-/obj/structure/cable,
-/turf/open/floor/mainship/floor,
-/area/space)
 "qfK" = (
 /obj/structure/table/mainship/nometal,
 /obj/item/clipboard{
@@ -20630,13 +20582,6 @@
 	},
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
-"qOC" = (
-/obj/machinery/marine_selector/gear/commander,
-/obj/machinery/light/mainship{
-	dir = 1
-	},
-/turf/open/floor/mainship/floor,
-/area/space)
 "qOG" = (
 /obj/effect/turf_decal/warning_stripes,
 /obj/vehicle/ridden/powerloader,
@@ -25029,6 +24974,9 @@
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
 	dir = 8
 	},
+/obj/machinery/cic_maptable/drawable/big{
+	pixel_x = 0
+	},
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/general)
 "uCc" = (
@@ -25342,10 +25290,6 @@
 	dir = 4
 	},
 /area/mainship/shipboard/firing_range)
-"uOG" = (
-/obj/machinery/vending/weapon,
-/turf/open/space/basic,
-/area/space)
 "uOM" = (
 /obj/machinery/marine_selector/gear/leader,
 /turf/open/floor/mainship/black{
@@ -27016,10 +26960,6 @@
 	dir = 8
 	},
 /area/mainship/hallways/hangar)
-"wdM" = (
-/obj/machinery/marine_selector/gear/leader,
-/turf/open/space/basic,
-/area/space)
 "wer" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/junction/flipped{
@@ -28136,12 +28076,6 @@
 /obj/machinery/light/mainship/small,
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/hull/port_hull)
-"xaW" = (
-/obj/machinery/marine_selector/gear/leader,
-/turf/open/floor/mainship/black{
-	dir = 5
-	},
-/area/space)
 "xaX" = (
 /obj/docking_port/stationary/marine_dropship/crash_target,
 /obj/structure/disposalpipe/segment{
@@ -40752,9 +40686,9 @@ miz
 aOG
 alG
 lqg
-apL
+lqg
 uBW
-apL
+lqg
 qtC
 oTv
 aOG
@@ -42035,9 +41969,9 @@ meP
 meP
 jzy
 meP
-xaW
-iVk
-gTw
+meP
+meP
+meP
 meP
 kPR
 vkb
@@ -42340,11 +42274,11 @@ meP
 meP
 meP
 jzy
-pjb
 meP
-wdM
-pjb
-uOG
+meP
+meP
+meP
+meP
 meP
 bwF
 vkb
@@ -42545,7 +42479,7 @@ meP
 meP
 jzy
 meP
-nCG
+meP
 meP
 meP
 meP
@@ -42645,7 +42579,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -42747,7 +42681,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -42849,7 +42783,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -42951,7 +42885,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -43053,7 +42987,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -43155,7 +43089,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -43257,7 +43191,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -43359,7 +43293,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -43461,7 +43395,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -43563,7 +43497,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -43665,7 +43599,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -43767,7 +43701,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -43869,7 +43803,7 @@ meP
 meP
 meP
 meP
-meP
+jzy
 meP
 meP
 meP
@@ -44174,7 +44108,7 @@ meP
 (144,1,1) = {"
 meP
 meP
-dXo
+meP
 jzy
 meP
 meP
@@ -44276,7 +44210,7 @@ meP
 (145,1,1) = {"
 meP
 meP
-eeE
+meP
 jzy
 jzy
 jzy
@@ -44378,7 +44312,7 @@ meP
 (146,1,1) = {"
 meP
 meP
-qOC
+meP
 meP
 meP
 meP
@@ -44480,12 +44414,12 @@ meP
 (147,1,1) = {"
 meP
 meP
-lnT
-qfF
 meP
 meP
 meP
-eeE
+meP
+meP
+meP
 meP
 meP
 meP
@@ -44587,7 +44521,7 @@ meP
 meP
 meP
 meP
-qOC
+meP
 meP
 meP
 meP

@@ -7484,10 +7484,6 @@
 /obj/structure/cargo_container/hd,
 /turf/open/floor/plating/ground/concrete,
 /area/campaign/tgmc_raiding/underground/cargo)
-"Ee" = (
-/obj/structure/closet/secure_closet/captain,
-/turf/open/floor/carpet/blue,
-/area/campaign/tgmc_raiding/underground/command/captain)
 "Ef" = (
 /obj/structure/flora/drought/tall_cactus,
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -26484,7 +26480,7 @@ IH
 IH
 IH
 IH
-Ee
+ra
 ie
 CR
 rZ
