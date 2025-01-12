@@ -143,3 +143,50 @@
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
 		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
+
+/datum/xeno_caste/praetorian/oppressor
+	caste_type_path = /mob/living/carbon/xenomorph/praetorian/oppressor
+	upgrade_name = ""
+	caste_name = "Oppressor Praetorian"
+	display_name = "Praetorian"
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_desc = "A giant melee monster with a weird tail! It looks pretty strong."
+
+	// TEMPORARY
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/activable/xeno/spray_acid/cone,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
+
+/datum/xeno_caste/praetorian/oppressor/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/praetorian/oppressor/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A fearsome entity adept at using its brute strength to immobilize and relocate its foes. Approach with extreme caution or risk being torn from your comrades."
+	upgrade = XENO_UPGRADE_PRIMO
+	primordial_message = "With relentless power, we shatter their formations, seizing them in our grasp and rendering them helpless."
+
+	// TEMPORARY
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/xeno_spit,
+		/datum/action/ability/activable/xeno/spray_acid/cone,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
