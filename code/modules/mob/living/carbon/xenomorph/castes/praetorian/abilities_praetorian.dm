@@ -467,3 +467,60 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	succeed_activate()
 	add_cooldown()
+
+// ***************************************
+// *********** Abduct
+// ***************************************
+/datum/action/ability/activable/xeno/abduct
+	name = "Abduct"
+	action_icon_state = "abduct"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Throw your tail out and hook in any humans caught in it. Ends prematurely if blocked or hits anything dense."
+	ability_cost = 50
+	cooldown_duration = 15 SECONDS
+
+// ***************************************
+// *********** Dislocate
+// ***************************************
+/datum/action/ability/activable/xeno/dislocate
+	name = "Dislocate"
+	action_icon_state = "punch"
+	action_icon = 'icons/Xeno/actions/warrior.dmi'
+	desc = "Shrike a human with enough force that they are thrown backwards."
+	ability_cost = 50
+	cooldown_duration = 12 SECONDS
+	target_flags = ABILITY_MOB_TARGET
+
+// ***************************************
+// *********** Dislocate
+// ***************************************
+/datum/action/ability/activable/xeno/item_throw
+	name = "Item Throw"
+	action_icon_state = "item_throw"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Pick up a nearby item momentarily and throw it in a chosen direction. The item's size determines elements such as how fast or hard it hits."
+	ability_cost = 50
+	cooldown_duration = 12 SECONDS
+
+// ***************************************
+// *********** Tail Lash
+// ***************************************
+/datum/action/ability/activable/xeno/tail_lash
+	name = "Tail Lash"
+	action_icon_state = "tail_lash"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "Knock back humans that are in front of you."
+	ability_cost = 50
+	cooldown_duration = 13 SECONDS
+
+// ***************************************
+// *********** Tail Seize
+// ***************************************
+/datum/action/ability/activable/xeno/tail_seize
+	name = "Tail Seize"
+	action_icon_state = "tail_seize"
+	action_icon = 'icons/Xeno/actions/praetorian.dmi'
+	desc = "After a short delay, pull a selected human toward you."
+	ability_cost = 50
+	cooldown_duration = 15 SECONDS
+	target_flags = ABILITY_MOB_TARGET

@@ -152,15 +152,22 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A giant melee monster with a weird tail! It looks pretty strong."
 
-	// TEMPORARY
+	// Lose -0.5 aura strength. Arbitary.
+	aura_strength = 4
+
+	// Lose ranged spit abilities for displacement abilities.
+	// What this does: long straight displacement + slow/root.
+	// What alternatives does (aka warrior): short corner/angular displacement + slow/stun.
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/xeno_spit,
-		/datum/action/ability/activable/xeno/spray_acid/cone,
+		/datum/action/ability/activable/xeno/abduct,
+		/datum/action/ability/activable/xeno/dislocate,
+		/datum/action/ability/activable/xeno/item_throw,
+		/datum/action/ability/activable/xeno/tail_lash,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
@@ -176,15 +183,20 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "With relentless power, we shatter their formations, seizing them in our grasp and rendering them helpless."
 
-	// TEMPORARY
+	/*
+		Mediocre individual
+	*/
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/xeno_spit,
-		/datum/action/ability/activable/xeno/spray_acid/cone,
+		/datum/action/ability/activable/xeno/abduct,
+		/datum/action/ability/activable/xeno/dislocate,
+		/datum/action/ability/activable/xeno/item_throw,
+		/datum/action/ability/activable/xeno/tail_lash,
+		/datum/action/ability/activable/xeno/tail_seize, // A neutered verison of the Primordial Defiler's tentacle ability.
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
