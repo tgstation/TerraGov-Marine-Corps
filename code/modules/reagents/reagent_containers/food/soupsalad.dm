@@ -29,7 +29,7 @@
 	icon_state = "meatballsoup"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#785210"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/drink/tomatojuice = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/tomatojuice = 3)
 	bitesize = 5
 	tastes = list("meat" = 1)
 
@@ -64,7 +64,7 @@
 	desc = "Not very funny."
 	icon_state = "clownstears"
 	filling_color = "#C4FBFF"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/drink/banana = 5, /datum/reagent/water = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/banana = 5, /datum/reagent/water = 10)
 	bitesize = 5
 	tastes = list("a bad joke" = 1)
 
@@ -104,11 +104,11 @@
 		if(1)
 			reagents.add_reagent(/datum/reagent/consumable/nutriment, 6)
 			reagents.add_reagent(/datum/reagent/consumable/capsaicin, 3)
-			reagents.add_reagent(/datum/reagent/consumable/drink/tomatojuice, 2)
+			reagents.add_reagent(/datum/reagent/consumable/tomatojuice, 2)
 		if(2)
 			reagents.add_reagent(/datum/reagent/consumable/nutriment, 6)
 			reagents.add_reagent(/datum/reagent/consumable/frostoil, 3)
-			reagents.add_reagent(/datum/reagent/consumable/drink/tomatojuice, 2)
+			reagents.add_reagent(/datum/reagent/consumable/tomatojuice, 2)
 		if(3)
 			reagents.add_reagent(/datum/reagent/consumable/nutriment, 5)
 			reagents.add_reagent(/datum/reagent/water, 5)
@@ -118,7 +118,7 @@
 			reagents.add_reagent(/datum/reagent/water, 10)
 		if(5)
 			reagents.add_reagent(/datum/reagent/consumable/nutriment, 2)
-			reagents.add_reagent(/datum/reagent/consumable/drink/banana,, 10)
+			reagents.add_reagent(/datum/reagent/consumable/banana,, 10)
 		if(6)
 			reagents.add_reagent(/datum/reagent/consumable/nutriment, 6)
 			reagents.add_reagent(/datum/reagent/blood, 10)
@@ -127,10 +127,10 @@
 			reagents.add_reagent(/datum/reagent/toxin, 10)
 		if(8)
 			reagents.add_reagent(/datum/reagent/consumable/nutriment, 5)
-			reagents.add_reagent(/datum/reagent/consumable/drink/tomatojuice, 10)
+			reagents.add_reagent(/datum/reagent/consumable/tomatojuice, 10)
 		if(9)
 			reagents.add_reagent(/datum/reagent/consumable/nutriment, 6)
-			reagents.add_reagent(/datum/reagent/consumable/drink/tomatojuice, 5)
+			reagents.add_reagent(/datum/reagent/consumable/tomatojuice, 5)
 			reagents.add_reagent(/datum/reagent/medicine/imidazoline, 5)
 /obj/item/reagent_containers/food/snacks/soup/hotchili
 	name = "Hot Chili"
@@ -138,7 +138,7 @@
 	icon_state = "hotchili"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#FF3C00"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/drink/tomatojuice = 2, /datum/reagent/consumable/capsaicin = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/capsaicin = 3)
 	bitesize = 5
 	tastes = list("hot peppers" = 1)
 
@@ -147,7 +147,7 @@
 	desc = "This slush is barely a liquid!"
 	icon_state = "coldchili"
 	filling_color = "#2B00FF"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/drink/tomatojuice = 2, /datum/reagent/consumable/frostoil = 3)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/tomatojuice = 2, /datum/reagent/consumable/frostoil = 3)
 	trash = /obj/item/trash/snack_bowl
 	bitesize = 5
 	tastes = list("tomato" = 1, "mint" = 1)
@@ -166,14 +166,14 @@
 	name = "chili con carnival"
 	desc = "A delicious stew of meat, chiles, and salty, salty clown tears."
 	icon_state = "clownchili"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/drink/tomatojuice = 4, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/drink/banana = 1, /datum/reagent/consumable/laughter = 1)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/tomatojuice = 4, /datum/reagent/consumable/nutriment/vitamin = 4, /datum/reagent/consumable/banana = 1, /datum/reagent/consumable/laughter = 1)
 	tastes = list("tomato" = 1, "hot peppers" = 2, "clown feet" = 2, "kind of funny" = 2, "someone's parents" = 2)
 
 /obj/item/reagent_containers/food/snacks/soup/monkeysdelight
 	name = "monkey's delight"
 	desc = "A delicious soup with dumplings and hunks of monkey meat simmered to perfection, in a broth that tastes faintly of bananas."
 	icon_state = "monkeysdelight"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 3,  /datum/reagent/consumable/nutriment/protein = 9, /datum/reagent/consumable/drink/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 3,  /datum/reagent/consumable/nutriment/protein = 9, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 10)
 	tastes = list("the jungle" = 1, "banana" = 1)
 
 /obj/item/reagent_containers/food/snacks/soup/tomatosoup
@@ -182,7 +182,7 @@
 	icon_state = "tomatosoup"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#D92929"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/drink/tomatojuice = 10)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 5, /datum/reagent/consumable/tomatojuice = 10)
 	bitesize = 3
 	tastes = list("tomato" = 1)
 
@@ -190,7 +190,7 @@
 	name = "eyeball soup"
 	desc = "It looks back at you..."
 	icon_state = "eyeballsoup"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/drink/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/consumable/tomatojuice = 10, /datum/reagent/consumable/nutriment/vitamin = 4)
 	tastes = list("tomato" = 1, "squirming" = 1)
 
 /obj/item/reagent_containers/food/snacks/soup/miso
@@ -249,7 +249,7 @@
 	desc = "A nice and warm stew. Healthy and strong."
 	icon_state = "stew"
 	filling_color = "#9E673A"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/drink/tomatojuice = 5, /datum/reagent/consumable/drink/carrotjuice = 5, /datum/reagent/water = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 10, /datum/reagent/consumable/tomatojuice = 5, /datum/reagent/consumable/carrotjuice = 5, /datum/reagent/water = 5)
 	bitesize = 7
 	volume = 100
 	tastes = list("tomato" = 1, "carrot" = 1)
@@ -272,7 +272,7 @@
 	name = "french onion soup"
 	desc = "Good enough to make a grown mime cry."
 	icon_state = "onionsoup"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/drink/tomatojuice = 8, /datum/reagent/consumable/nutriment/vitamin = 5)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 7, /datum/reagent/consumable/nutriment/protein = 8, /datum/reagent/consumable/tomatojuice = 8, /datum/reagent/consumable/nutriment/vitamin = 5)
 
 /obj/item/reagent_containers/food/snacks/soup/bisque
 	name = "bisque"
@@ -319,7 +319,7 @@
 	name = "oatmeal"
 	desc = "A nice bowl of oatmeal."
 	icon_state = "oatmeal"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 11, /datum/reagent/consumable/drink/milk = 10, /datum/reagent/consumable/nutriment/vitamin = 6)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 11, /datum/reagent/consumable/milk = 10, /datum/reagent/consumable/nutriment/vitamin = 6)
 	tastes = list("oats" = 1, "milk" = 1)
 
 /obj/item/reagent_containers/food/snacks/soup/zurek
@@ -344,7 +344,7 @@
 	icon_state = "aesirsalad"
 	trash = /obj/item/trash/snack_bowl
 	filling_color = "#468C00"
-	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/drink/doctor_delight = 8, /datum/reagent/medicine/tricordrazine = 8)
+	list_reagents = list(/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/doctor_delight = 8, /datum/reagent/medicine/tricordrazine = 8)
 	bitesize = 3
 	tastes = list("leaves" = 1)
 

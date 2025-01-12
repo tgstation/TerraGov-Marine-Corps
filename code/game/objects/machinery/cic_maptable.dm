@@ -173,7 +173,7 @@
 		tool.set_zlevel(new_z, tool.minimap_flag)
 
 /obj/machinery/cic_maptable/drawable/big
-	icon = 'icons/Marine/mainship_props96.dmi'
+	icon = 'icons/obj/structures/prop/mainship_96.dmi'
 	layer = ABOVE_OBJ_LAYER
 	pixel_x = -16
 	pixel_y = -14

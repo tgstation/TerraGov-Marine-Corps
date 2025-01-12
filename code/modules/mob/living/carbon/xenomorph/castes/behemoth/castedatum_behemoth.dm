@@ -16,11 +16,14 @@
 	weeds_speed_mod = -0.2
 
 	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 20
+	plasma_max = 300
+	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 650
+	max_health = 700
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.8
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -33,7 +36,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 20, BULLET = 20, LASER = 20, ENERGY = 20, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 60, BIO = 50, FIRE = 50, ACID = 50)
 	hard_armor = list(MELEE = 10, BULLET = 10, LASER = 10, ENERGY = 10, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 
 	// *** Minimap Icon *** //
@@ -72,3 +75,13 @@
 		/datum/action/ability/xeno_action/seismic_fracture,
 		/datum/action/ability/xeno_action/primal_wrath,
 	)
+
+/datum/xeno_caste/behemoth/on_caste_applied(mob/xenomorph)
+	. = ..()
+	xenomorph.AddElement(/datum/element/ridable, /datum/component/riding/creature/crusher) // we use the same riding element as crusher
+	xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
+
+/datum/xeno_caste/behemoth/on_caste_removed(mob/xenomorph)
+	. = ..()
+	xenomorph.RemoveElement(/datum/element/ridable, /datum/component/riding/creature/crusher)
+	xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)

@@ -134,8 +134,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	category = "Buildings"
 	///The type of building created
 	var/building_type
-	///The location to spawn the building at. Southwest of the xeno by default.
-	var/building_loc = SOUTHWEST
 	///Building time, in seconds. 10 by default.
 	var/building_time = 10 SECONDS
 
@@ -143,7 +141,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	. = ..()
 	if(!.)
 		return
-	var/turf/buildloc = get_step(buyer, building_loc)
+	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
 
@@ -159,7 +157,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
-	if(!buildloc.check_alien_construction(buyer, silent) || !buildloc.check_disallow_alien_fortification(buyer, silent))
+	if(!buildloc.check_alien_construction(buyer, silent, building_type) || !buildloc.check_disallow_alien_fortification(buyer, silent))
 		return FALSE
 
 /datum/hive_upgrade/building/on_buy(mob/living/carbon/xenomorph/buyer)
@@ -169,12 +167,10 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!can_buy(buyer, FALSE))
 		return FALSE
 
-	var/turf/buildloc = get_step(buyer, building_loc)
-
-	var/atom/built = new building_type(buildloc, buyer.hivenumber)
+	var/atom/built = new building_type(get_turf(buyer), buyer.hivenumber)
 	to_chat(buyer, span_notice("We build [built] for [psypoint_cost] psy points."))
-	log_game("[buyer] has built \a [built] in [AREACOORD(buildloc)], spending [psypoint_cost] psy points in the process")
-	xeno_message("[buyer] has built \a [built] at [get_area(buildloc)]!", "xenoannounce", 5, buyer.hivenumber)
+	log_game("[buyer] has built \a [built] in [AREACOORD(built)], spending [psypoint_cost] psy points in the process")
+	xeno_message("[buyer] has built \a [built] at [get_area(built)]!", "xenoannounce", 5, buyer.hivenumber)
 	return ..()
 
 /datum/hive_upgrade/building/silo
@@ -190,7 +186,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
-	var/turf/buildloc = get_step(buyer, building_loc)
+	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
 
@@ -229,7 +225,6 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	gamemode_flags = ABILITY_NUCLEARWAR
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
 	building_type = /obj/structure/xeno/pherotower
-	building_loc = 0 //This results in spawning the structure under the user.
 	building_time = 5 SECONDS
 
 /datum/hive_upgrade/building/spawner
@@ -255,7 +250,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	if(!.)
 		return
 
-	var/turf/buildloc = get_step(buyer, building_loc)
+	var/turf/buildloc = get_turf(buyer)
 	if(!buildloc)
 		return FALSE
 
@@ -263,6 +258,57 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		if(!silent)
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
+
+/datum/hive_upgrade/building/acid_jaws
+	name = "acid jaws"
+	desc = "Constructs an acid maw that allows the hive to bombard it's enemies from afar. Requires open space and time to place."
+	psypoint_cost = 450
+	icon = "jaws"
+	gamemode_flags = ABILITY_NUCLEARWAR
+	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL
+	building_type = /obj/structure/xeno/acid_maw/acid_jaws
+
+/datum/hive_upgrade/building/acid_jaws/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	var/turf/buildloc = get_turf(buyer)
+	if(!buildloc)
+		return FALSE
+
+	if(buildloc.density)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+		return FALSE
+	var/area/buildzone = get_area(buyer)
+	if(buildzone.ceiling > CEILING_UNDERGROUND)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("We need open space to allow this structure to bombard enemies!"))
+		return FALSE
+
+/datum/hive_upgrade/building/acid_maw
+	name = "acid maw"
+	desc = "Constructs an acid maw that allows the hive to unleash it's most devastating bombardments from any location. Requires time to place and to prepare globs, but this structures acid is strong enough to eat through any cieling above it."
+	psypoint_cost = 1200
+	icon = "maw"
+	gamemode_flags = ABILITY_NUCLEARWAR
+	building_type = /obj/structure/xeno/acid_maw
+
+/datum/hive_upgrade/building/acid_maw/can_buy(mob/living/carbon/xenomorph/buyer, silent = TRUE)
+	. = ..()
+	if(!.)
+		return
+
+	var/turf/buildloc = get_turf(buyer)
+	if(!buildloc)
+		return FALSE
+
+	if(buildloc.density)
+		if(!silent)
+			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
+		return FALSE
+
 
 /datum/hive_upgrade/defence
 	category = "Defences"
@@ -298,7 +344,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("No weeds here!"))
 		return FALSE
 
-	if(!T.check_alien_construction(buyer, silent = silent, planned_building = /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
+	if(!T.check_alien_construction(buyer, silent, /obj/structure/xeno/xeno_turret) || !T.check_disallow_alien_fortification(buyer))
 		return FALSE
 
 	for(var/obj/structure/xeno/xeno_turret/turret AS in GLOB.xeno_resin_turrets_by_hive[blocker.hivenumber])
@@ -359,7 +405,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
 		return FALSE
 
-	if(!buildloc.check_alien_construction(buyer, silent) || !buildloc.check_disallow_alien_fortification(buyer, silent))
+	if(!buildloc.check_alien_construction(buyer, silent, /obj/structure/xeno/resin_gargoyle) || !buildloc.check_disallow_alien_fortification(buyer, silent))
 		return FALSE
 
 /datum/hive_upgrade/defence/gargoyle/on_buy(mob/living/carbon/xenomorph/buyer)
@@ -380,7 +426,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 /datum/hive_upgrade/defence/special_walls
 	name = "Special Resin Walls"
 	desc = "Gives your hive 50 special resin walls to build."
-	psypoint_cost = 100
+	psypoint_cost = 125
 	icon = "specialresin"
 	gamemode_flags = ABILITY_NUCLEARWAR
 	upgrade_flags = UPGRADE_FLAG_USES_TACTICAL

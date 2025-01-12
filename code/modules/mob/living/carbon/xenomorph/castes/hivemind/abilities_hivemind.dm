@@ -1,8 +1,9 @@
 /datum/action/ability/xeno_action/return_to_core
 	name = "Return to Core"
 	action_icon_state = "lay_hivemind"
+	action_icon = 'icons/Xeno/actions/hivemind.dmi'
 	desc = "Teleport back to your core."
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
 
 /datum/action/ability/xeno_action/return_to_core/action_activate()
 	SEND_SIGNAL(owner, COMSIG_XENOMORPH_CORE_RETURN)
@@ -21,19 +22,20 @@
 /datum/action/ability/xeno_action/change_form
 	name = "Change form"
 	action_icon_state = "manifest"
+	action_icon = 'icons/Xeno/actions/hivemind.dmi'
 	desc = "Change from your incorporeal form to your physical on and vice-versa."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOMORPH_HIVEMIND_CHANGE_FORM,
 	)
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
 
 /datum/action/ability/xeno_action/change_form/action_activate()
-	var/mob/living/carbon/xenomorph/xenomorph_owner = owner
-	xenomorph_owner.change_form()
+	xeno_owner.change_form()
 
 /datum/action/ability/activable/xeno/command_minions
 	name = "Command minions"
 	action_icon_state = "minion_agressive"
+	action_icon = 'icons/Xeno/actions/leader.dmi'
 	desc = "Command all minions, ordering them to converge on this location. Rightclick to change minion behaviour."
 	ability_cost = 100
 	keybinding_signals = list(
@@ -62,6 +64,9 @@
 	minions_agressive = !minions_agressive
 	SEND_SIGNAL(owner, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED, minions_agressive)
 	update_button_icon()
+
+/datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind
+	hivemind_heal = TRUE
 
 /datum/action/ability/activable/xeno/psychic_cure/queen_give_heal/hivemind/can_use_action(silent = FALSE, override_flags, selecting = FALSE)
 	if (owner.status_flags & INCORPOREAL)
@@ -94,12 +99,12 @@
 
 /datum/action/ability/xeno_action/teleport
 	name = "Teleport"
-	action_icon_state = "resync"
+	action_icon_state = "resync" // TODO: i think i missed an icon
 	desc = "Pick a location on the map and instantly manifest there if possible."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMISG_XENOMORPH_HIVEMIND_TELEPORT,
 	)
-	use_state_flags = ABILITY_USE_CLOSEDTURF
+	use_state_flags = ABILITY_USE_SOLIDOBJECT
 	///Is the map being shown to the player right now?
 	var/showing_map = FALSE
 
@@ -115,25 +120,20 @@
 	owner.client?.screen += shown_map
 	showing_map = TRUE
 	var/list/polled_coords = shown_map.get_coords_from_click(owner)
-
-	if(!polled_coords)
-		owner.client?.screen -= shown_map
-		shown_map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
-		showing_map = FALSE
-		return
-
 	owner.client?.screen -= shown_map
 	showing_map = FALSE
+	if(!polled_coords)
+		shown_map.UnregisterSignal(owner, COMSIG_MOB_CLICKON)
+		return
 	var/turf/turf_to_teleport_to = locate(polled_coords[1], polled_coords[2], owner.z)
-
 	if(!turf_to_teleport_to)
 		return
 
-	var/mob/living/carbon/xenomorph/hivemind/hivemind_owner = owner
-	if(!hivemind_owner.check_weeds(turf_to_teleport_to, TRUE))
+	if(!xeno_owner.check_weeds(turf_to_teleport_to, TRUE))
 		owner.balloon_alert(owner, "No weeds in selected location")
 		return
-	if(!(hivemind_owner.status_flags & INCORPOREAL))
+	if(!(xeno_owner.status_flags & INCORPOREAL) && isxenohivemind(xeno_owner))
+		var/mob/living/carbon/xenomorph/hivemind/hivemind_owner = xeno_owner
 		hivemind_owner.start_teleport(turf_to_teleport_to)
 		return
-	hivemind_owner.abstract_move(turf_to_teleport_to)
+	xeno_owner.abstract_move(turf_to_teleport_to)

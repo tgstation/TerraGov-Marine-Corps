@@ -1,7 +1,23 @@
+// ***************************************
+// *********** Resin building
+// ***************************************
+/datum/action/ability/activable/xeno/secrete_resin/widow
+	ability_cost = 100
+	buildable_structures = list(
+		/turf/closed/wall/resin/regenerating/thick,
+		/obj/alien/resin/sticky,
+		/obj/structure/mineral_door/resin/thick,
+	)
+
+// ***************************************
+// *********** Web Spit
+// ***************************************
+
 /datum/action/ability/activable/xeno/web_spit
 	name = "Web Spit"
 	desc = "Spit a web to your target, this causes different effects depending on where you hit. Spitting the head causes the target to be temporarily blind, body and arms will cause the target to be weakened, and legs will snare the target for a brief while."
 	action_icon_state = "web_spit"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 125
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
@@ -9,14 +25,13 @@
 	)
 
 /datum/action/ability/activable/xeno/web_spit/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/ammo/xeno/web/web_spit = GLOB.ammo_list[/datum/ammo/xeno/web]
-	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
+	var/obj/projectile/newspit = new /obj/projectile(get_turf(xeno_owner))
 
-	newspit.generate_bullet(web_spit, web_spit.damage * SPIT_UPGRADE_BONUS(X))
-	newspit.def_zone = X.get_limbzone_target()
+	newspit.generate_bullet(web_spit, web_spit.damage * SPIT_UPGRADE_BONUS(xeno_owner))
+	newspit.def_zone = xeno_owner.get_limbzone_target()
 
-	newspit.fire_at(target, X, X, newspit.ammo.max_range)
+	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
 	succeed_activate()
 	add_cooldown()
 
@@ -28,6 +43,7 @@
 	name = "Leash Ball"
 	desc = "Spit a huge web ball that snares groups of targets for a brief while."
 	action_icon_state = "leash_ball"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 250
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -36,16 +52,15 @@
 
 /datum/action/ability/activable/xeno/leash_ball/use_ability(atom/A)
 	var/turf/target = get_turf(A)
-	var/mob/living/carbon/xenomorph/X = owner
-	X.face_atom(target)
-	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_DANGER))
+	xeno_owner.face_atom(target)
+	if(!do_after(xeno_owner, 1 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
 		return fail_activate()
 	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
-	leash_ball.hivenumber = X.hivenumber
-	var/obj/projectile/newspit = new (get_turf(X))
+	leash_ball.hivenumber = xeno_owner.hivenumber
+	var/obj/projectile/newspit = new (get_turf(xeno_owner))
 
 	newspit.generate_bullet(leash_ball)
-	newspit.fire_at(target, X, X, newspit.ammo.max_range)
+	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
 	succeed_activate()
 	add_cooldown()
 
@@ -54,7 +69,7 @@
 	icon = 'icons/Xeno/Effects.dmi'
 	icon_state = "aoe_leash"
 	desc = "Sticky and icky. Destroy it when you are stuck!"
-	destroy_sound = "alien_resin_break"
+	destroy_sound = SFX_ALIEN_RESIN_BREAK
 	max_integrity = 75
 	layer = ABOVE_ALL_MOB_LAYER
 	anchored = TRUE
@@ -117,7 +132,7 @@
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	xeno_attacker.visible_message(span_xenonotice("\The [xeno_attacker] tears down \the [src]!"), \
 	span_xenonotice("We tear down \the [src]."))
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	take_damage(max_integrity)
 
 // ***************************************
@@ -128,6 +143,7 @@
 	name = "Birth Spiderling"
 	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy 5 spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 	action_icon_state = "spawn_spiderling"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 100
 	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
@@ -143,18 +159,16 @@
 
 /datum/action/ability/xeno_action/create_spiderling/give_action(mob/living/L)
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = L
-	var/max_spiderlings = X?.xeno_caste.max_spiderlings ? X.xeno_caste.max_spiderlings : 5
+	var/max_spiderlings = xeno_owner?.xeno_caste.max_spiderlings ? xeno_owner.xeno_caste.max_spiderlings : 5
 	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy [max_spiderlings] spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 
 /datum/action/ability/xeno_action/create_spiderling/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/xenomorph/X = owner
-	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
+	if(length(spiderlings) >= xeno_owner.xeno_caste.max_spiderlings)
 		if(!silent)
-			X.balloon_alert(X, "Max Spiderlings")
+			xeno_owner.balloon_alert(xeno_owner, "Max Spiderlings")
 		return FALSE
 
 /// The action to create spiderlings
@@ -167,12 +181,11 @@
 	add_cooldown()
 
 /datum/action/ability/xeno_action/create_spiderling/alternate_action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
 	if(cannibalise_charges <= 0)
-		X.balloon_alert(X, "No charges remaining!")
+		xeno_owner.balloon_alert(xeno_owner, "No charges remaining!")
 		return
-	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
-		X.balloon_alert(X, "Max Spiderlings")
+	if(length(spiderlings) >= xeno_owner.xeno_caste.max_spiderlings)
+		xeno_owner.balloon_alert(xeno_owner, "Max Spiderlings")
 		return
 	INVOKE_ASYNC(src, PROC_REF(use_cannibalise))
 	return COMSIG_KB_ACTIVATED
@@ -181,12 +194,11 @@
 /datum/action/ability/xeno_action/create_spiderling/proc/use_cannibalise()
 	if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_DANGER))
 		return FALSE
-	var/mob/living/carbon/xenomorph/X = owner
 	if(cannibalise_charges <= 0)
-		X.balloon_alert(X, "No charges remaining!")
+		xeno_owner.balloon_alert(xeno_owner, "No charges remaining!")
 		return
-	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
-		X.balloon_alert(X, "Max Spiderlings")
+	if(length(spiderlings) >= xeno_owner.xeno_caste.max_spiderlings)
+		xeno_owner.balloon_alert(xeno_owner, "Max Spiderlings")
 		return
 	add_spiderling()
 	cannibalise_charges -= 1
@@ -216,6 +228,7 @@
 	name = "Spiderling Mark"
 	desc = "Send your spawn on a valid target, they will automatically destroy themselves out of sheer fury after 15 seconds."
 	action_icon_state = "spiderling_mark"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 50
 	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
@@ -255,6 +268,7 @@
 	name = "Burrow"
 	desc = "Burrow into the ground, allowing you and your active spiderlings to hide in plain sight. You cannot use abilities, attack nor move while burrowed. Use the ability again to unburrow if you're already burrowed."
 	action_icon_state = "burrow"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 0
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -277,22 +291,21 @@
 /// Burrow code for xenomorphs
 /datum/action/ability/xeno_action/burrow/proc/xeno_burrow()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!HAS_TRAIT(X, TRAIT_BURROWED))
-		to_chat(X, span_xenowarning("We start burrowing into the ground..."))
+	if(!HAS_TRAIT(xeno_owner, TRAIT_BURROWED))
+		to_chat(xeno_owner, span_xenowarning("We start burrowing into the ground..."))
 		INVOKE_ASYNC(src, PROC_REF(xeno_burrow_doafter))
 		return
-	UnregisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE)
-	ADD_TRAIT(X, TRAIT_NON_FLAMMABLE, initial(name))
-	X.soft_armor = X.soft_armor.modifyRating(fire = 100)
-	X.hard_armor = X.hard_armor.modifyRating(fire = 100)
-	X.mouse_opacity = initial(X.mouse_opacity)
-	X.density = TRUE
-	X.allow_pass_flags &= ~PASSABLE
-	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
-	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
-	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
-	X.update_icons()
+	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	ADD_TRAIT(xeno_owner, TRAIT_NON_FLAMMABLE, initial(name))
+	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(fire = 100)
+	xeno_owner.hard_armor = xeno_owner.hard_armor.modifyRating(fire = 100)
+	xeno_owner.mouse_opacity = initial(xeno_owner.mouse_opacity)
+	xeno_owner.density = TRUE
+	xeno_owner.allow_pass_flags &= ~PASSABLE
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(xeno_owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
+	xeno_owner.update_icons()
 	add_cooldown()
 	owner.unbuckle_all_mobs(TRUE)
 
@@ -310,13 +323,12 @@
 	ADD_TRAIT(owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
 	// We register for movement so that we unburrow if bombed
-	var/mob/living/carbon/xenomorph/X = owner
-	X.soft_armor = X.soft_armor.modifyRating(fire = -100)
-	X.hard_armor = X.hard_armor.modifyRating(fire = -100)
-	REMOVE_TRAIT(X, TRAIT_NON_FLAMMABLE, initial(name))
+	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(fire = -100)
+	xeno_owner.hard_armor = xeno_owner.hard_armor.modifyRating(fire = -100)
+	REMOVE_TRAIT(xeno_owner, TRAIT_NON_FLAMMABLE, initial(name))
 	// Update here without waiting for life
-	X.update_icons()
-	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(xeno_burrow))
+	xeno_owner.update_icons()
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(xeno_burrow))
 
 // ***************************************
 // *********** Attach Spiderlings
@@ -325,6 +337,7 @@
 	name = "Attach Spiderlings"
 	desc = "Attach your current spiderlings to you "
 	action_icon_state = "attach_spiderling"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 0
 	cooldown_duration = 0 SECONDS
 	keybinding_signals = list(
@@ -341,10 +354,9 @@
 		/// yeet off all spiderlings if we are carrying any
 		owner.unbuckle_all_mobs(TRUE)
 		return
-	var/mob/living/carbon/xenomorph/widow/X = owner
-	var/datum/action/ability/xeno_action/create_spiderling/create_spiderling_action = X.actions_by_path[/datum/action/ability/xeno_action/create_spiderling]
+	var/datum/action/ability/xeno_action/create_spiderling/create_spiderling_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/create_spiderling]
 	if(!(length(create_spiderling_action.spiderlings)))
-		X.balloon_alert(X, "No spiderlings")
+		xeno_owner.balloon_alert(xeno_owner, "No spiderlings")
 		return fail_activate()
 	var/list/mob/living/carbon/xenomorph/spiderling/remaining_spiderlings = create_spiderling_action.spiderlings.Copy()
 	// First make the spiderlings stop what they are doing and return to the widow
@@ -374,6 +386,7 @@
 	name = "Cannibalise Spiderling"
 	desc = "Consume one of your children, storing their biomass for future use. If any charges of Cannibalise are stored, alt-use of Birth Spiderling will create one spiderling in exchange for one charge of Cannibalise. Up to three charges of Cannibalise may be stored at once."
 	action_icon_state = "cannibalise_spiderling"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 150
 	cooldown_duration = 2 SECONDS
 	keybinding_signals = list(
@@ -418,6 +431,7 @@
 	name = "Web Hook"
 	desc = "Shoot out a web and pull it to traverse forward"
 	action_icon_state = "web_hook"
+	action_icon = 'icons/Xeno/actions/widow.dmi'
 	ability_cost = 200
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(

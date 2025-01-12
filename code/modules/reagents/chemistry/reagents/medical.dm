@@ -43,7 +43,7 @@
 	L.setDrowsyness(L.drowsyness, 20)
 	if(ishuman(L)) //Critical overdose causes total blackout and heart damage. Too much stimulant
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		E.take_damage(0.5*effect_str, TRUE)
 	if(prob(10))
 		L.emote(pick("twitch","blink_r","shiver"))
@@ -83,7 +83,7 @@
 
 /datum/reagent/medicine/paracetamol
 	name = "Paracetamol"
-	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor."
+	description = "Most probably know this as Tylenol, but this chemical is a mild, simple painkiller, good for enduring heavy labor. Do not mix with Tramadol."
 	color = COLOR_REAGENT_PARACETAMOL
 	custom_metabolism = REAGENTS_METABOLISM * 0.125
 	purge_list = list(/datum/reagent/medicine/kelotane, /datum/reagent/medicine/bicaridine)
@@ -161,7 +161,7 @@
 	L.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		if(E)
 			E.take_damage(3*effect_str, TRUE)
 
@@ -354,7 +354,7 @@
 	name = "Dylovene"
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = COLOR_REAGENT_DYLOVENE
-	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/research/stimulon, /datum/reagent/consumable/drink/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
+	purge_list = list(/datum/reagent/toxin, /datum/reagent/medicine/research/stimulon, /datum/reagent/consumable/atomiccoffee, /datum/reagent/medicine/paracetamol, /datum/reagent/medicine/larvaway)
 	purge_rate = 1
 	overdose_threshold = REAGENTS_OVERDOSE
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
@@ -377,7 +377,7 @@
 	if(!ishuman(L))
 		return
 	var/mob/living/carbon/human/H = L
-	var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+	var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 	if(E)
 		E.take_damage(0.5*effect_str, TRUE)
 
@@ -385,7 +385,7 @@
 	L.apply_damages(2*effect_str, 2*effect_str)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+		var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 		if(E)
 			E.take_damage(1.5*effect_str, TRUE)
 
@@ -472,7 +472,6 @@
 	custom_metabolism = REAGENTS_METABOLISM * 2
 	overdose_threshold = 5
 	overdose_crit_threshold = 6
-	scannable = FALSE
 
 /datum/reagent/medicine/neuraline/on_mob_add(mob/living/L, metabolism)
 	var/mob/living/carbon/human/H = L
@@ -619,7 +618,7 @@
 	L.adjust_blindness(-5)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+		var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 		if(E)
 			E.heal_organ_damage(effect_str)
 	return ..()
@@ -788,7 +787,7 @@
 		if(target_IB)
 			break
 	if(target_IB)
-		to_chat(body, span_highdanger("The deep ache in your [target_IB.parent_limb.display_name] erupts into searing pain!"))
+		to_chat(body, span_userdanger("The deep ache in your [target_IB.parent_limb.display_name] erupts into searing pain!"))
 		ticks_left = ticks_to_cure_IB
 
 ///If something else removes the wound before the drug finishes with it, we need to clean references.
@@ -904,7 +903,7 @@
 	L.adjustBrainLoss(0.1*effect_str, TRUE)
 	if(prob(15) && ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/affected_organ = pick("heart","lungs","liver","kidneys")
+		var/affected_organ = pick(ORGAN_SLOT_HEART,ORGAN_SLOT_LUNGS,ORGAN_SLOT_LIVER,ORGAN_SLOT_KIDNEYS)
 		var/datum/internal_organ/I = H.internal_organs_by_name[affected_organ]
 		I.take_damage(5.5*effect_str)
 
@@ -913,7 +912,7 @@
 /datum/reagent/medicine/ultrazine/overdose_process(mob/living/L, metabolism)
 	if(ishuman(L))
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		if(E)
 			E.take_damage(0.5*effect_str, TRUE)
 	else
@@ -926,7 +925,7 @@
 		L.adjustToxLoss(1.5*effect_str)
 	else
 		var/mob/living/carbon/human/H = L
-		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		var/datum/internal_organ/heart/E = H.get_organ_slot(ORGAN_SLOT_HEART)
 		if(E)
 			E.take_damage(1.5*effect_str, TRUE)
 
@@ -1256,7 +1255,7 @@
 		/datum/reagent/medicine/dermaline,
 		/datum/reagent/medicine/paracetamol,
 		/datum/reagent/medicine/russian_red,
-		/datum/reagent/consumable/drink/doctor_delight,
+		/datum/reagent/consumable/doctor_delight,
 	)
 	purge_rate = 5
 
@@ -1337,3 +1336,44 @@
 		if (21 to INFINITY)
 			L.jitter(5)
 	return ..()
+
+/datum/reagent/medicine/regrow
+	name = "Re-grow"
+	description = "Re-grow is rare and unusual drug that stimulates the rapid (and horrifically painful) regeneration of missing limbs."
+	color = COLOR_REAGENT_SYNAPTIZINE
+	overdose_threshold = REAGENTS_OVERDOSE/5
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/5
+	custom_metabolism = REAGENTS_METABOLISM * 5
+
+/datum/reagent/medicine/regrow/on_mob_add(mob/living/L, metabolism)
+	if(volume < 5 || L.stat == DEAD || (!ishuman(L)))
+		return
+	var/mob/living/carbon/human/human = L
+	var/limb_regrown = FALSE
+	for(var/datum/limb/limb AS in human.limbs)
+		if(!(limb.limb_status & LIMB_DESTROYED))
+			continue
+		limb_regrown = TRUE
+		limb.biotize()
+		to_chat(human, span_userdanger("You feel unbelievable pain as your [limb.display_name] regrows before your eyes!"))
+		human.jitter(10)
+		human.Paralyze(1 SECONDS)
+		human.adjustStaminaLoss(20)
+	if(!limb_regrown)
+		return
+	human.emote("burstscream")
+	human.update_body()
+	human.updatehealth()
+	human.UpdateDamageIcon()
+
+/datum/reagent/medicine/regrow/on_mob_life(mob/living/L, metabolism)
+	L.reagent_shock_modifier -= PAIN_REDUCTION_SUPER_HEAVY
+	L.adjustToxLoss(effect_str * 2)
+	return ..()
+
+/datum/reagent/medicine/regrow/overdose_process(mob/living/L, metabolism)
+	L.apply_damage(effect_str * 4, TOX)
+
+/datum/reagent/medicine/regrow/overdose_crit_process(mob/living/L, metabolism)
+	L.reagent_shock_modifier -= PAIN_REDUCTION_SUPER_HEAVY
+	L.apply_damages(effect_str, effect_str, effect_str * 4)

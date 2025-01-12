@@ -145,6 +145,11 @@
 		if(head)
 			projectile_to_fire.accuracy *= head.accuracy_mod //todo: we can probably just make the accuracy_mod apply directly to the gun like attachments do
 	projectile_to_fire.projectile_speed = projectile_to_fire.ammo.shell_speed
+	if(!isliving(firer))
+		return
+	var/mob/living/living_firer = firer
+	if(living_firer.IsStaggered())
+		projectile_to_fire.damage *= STAGGER_DAMAGE_MULTIPLIER
 	if((projectile_to_fire.ammo.ammo_behavior_flags & AMMO_IFF) && ishuman(firer))
 		var/mob/living/carbon/human/human_firer = firer
 		var/obj/item/card/id/id = human_firer.get_idcard()

@@ -9,17 +9,20 @@
 	wound_type = "bull" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 21
+	melee_damage = 24
 
 	// *** Speed *** //
 	speed = -0.8
 
 	// *** Plasma *** //
-	plasma_max = 270 //High plasma is need for charging
-	plasma_gain = 18
+	plasma_max = 340 //High plasma is need for charging
+	plasma_gain = 24
 
 	// *** Health *** //
-	max_health = 325
+	max_health = 450
+
+	// *** Sunder *** //
+	sunder_multiplier = 0.9
 
 	// *** Evolution *** //
 	evolution_threshold = 225
@@ -33,7 +36,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 40, ENERGY = 40, BOMB = 0, BIO = 35, FIRE = 50, ACID = 35)
+	soft_armor = list(MELEE = 50, BULLET = 55, LASER = 55, ENERGY = 55, BOMB = 20, BIO = 35, FIRE = 50, ACID = 35)
 
 	// *** Minimap Icon *** //
 	minimap_icon = "bull"
@@ -46,7 +49,7 @@
 		/datum/action/ability/activable/xeno/bull_charge,
 		/datum/action/ability/activable/xeno/bull_charge/headbutt,
 		/datum/action/ability/activable/xeno/bull_charge/gore,
-		/datum/action/ability/xeno_action/toggle_long_range,
+		/datum/action/ability/xeno_action/toggle_long_range/bull,
 	)
 
 /datum/xeno_caste/bull/normal

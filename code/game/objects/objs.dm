@@ -78,9 +78,31 @@
 /obj/Destroy()
 	hard_armor = null
 	soft_armor = null
-	QDEL_NULL(current_acid)
 	return ..()
 
+/obj/examine_tags(mob/user)
+	. = ..()
+	if(resistance_flags & INDESTRUCTIBLE)
+		.["indestructible"] = "It's completely invulnerable to damage or complete destruction. Some objects still have special interactions for xenos."
+		return // we do not want to say it's indestructible and then list 500 fucktillion things that are implied by the word "indestructible"
+	if(resistance_flags & UNACIDABLE)
+		.["[isxeno(user) ? span_xenonotice("acid-proof") : "acid-proof"]"] = "Acid does not stick to or affect this object."
+	if(resistance_flags & PLASMACUTTER_IMMUNE)
+		.["plasma cutter-proof"] = "Plasma cutters cannot destroy this object."
+	if(!isitem(src) && (resistance_flags & PROJECTILE_IMMUNE))
+		.["projectile immune"] = "Projectiles cannot damage this object."
+	if(!isxeno(user) && !isobserver(user))
+		return // humans can check the codex for most of these- xenos should be able to know them "in the moment"
+	if(resistance_flags & CRUSHER_IMMUNE)
+		.[span_xenonotice("crusher-proof")] = "Charging Crushers can't damage this object."
+	if(resistance_flags & BANISH_IMMUNE)
+		.[span_xenonotice("banish immune")] = "Wraiths can't banish this object."
+	if(resistance_flags & PORTAL_IMMUNE)
+		.[span_xenonotice("portal immune")] = "Wraith portals can't teleport this object."
+	if(resistance_flags & XENO_DAMAGEABLE)
+		.[span_xenonotice("slashable")] = "Xenomorphs can slash this object."
+	else if(!isitem(src))
+		.[span_xenonotice("not slashable")] = "Xenomorphs can't slash this object. Some objects, like airlocks, have special interactions when attacked."
 
 /obj/proc/setAnchored(anchorvalue)
 	SEND_SIGNAL(src, COMSIG_OBJ_SETANCHORED, anchorvalue)
@@ -97,6 +119,12 @@
 	if(density)
 		return 4 SECONDS
 	return ..()
+
+/obj/do_acid_melt()
+	. = ..()
+	for(var/mob/mob in contents)
+		mob.forceMove(get_turf(src))
+	deconstruct(FALSE)
 
 /obj/get_soft_armor(armor_type, proj_def_zone)
 	return soft_armor.getRating(armor_type)
@@ -308,10 +336,9 @@
 	if(!welder.tool_use_check(user, fuel_req))
 		return FALSE
 
-	for(var/obj/effect/xenomorph/acid/A in loc)
-		if(A.acid_t == src)
-			balloon_alert(user, "It's melting")
-			return TRUE
+	if(get_self_acid())
+		balloon_alert(user, "It's melting!")
+		return TRUE
 
 	if(obj_integrity <= max_integrity * repair_threshold)
 		return BELOW_INTEGRITY_THRESHOLD
@@ -373,10 +400,49 @@
 		grabbed_mob.Paralyze(2 SECONDS)
 		user.drop_held_item()
 	step_towards(grabbed_mob, src)
-	var/damage = base_damage + (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/damage = base_damage + (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
 	grabbed_mob.apply_damage(damage, BRUTE, "head", MELEE, is_sharp, updating_health = TRUE)
 	user.visible_message(span_danger("[user] slams [grabbed_mob]'s face against [src]!"),
 	span_danger("You slam [grabbed_mob]'s face against [src]!"))
 	log_combat(user, grabbed_mob, "slammed", "", "against \the [src]")
 	take_damage(damage, BRUTE, MELEE)
+	return TRUE
+
+/obj/footstep_override(atom/movable/source, list/footstep_overrides)
+	footstep_overrides[FOOTSTEP_PLATING] = layer
+
+/obj/proc/do_deploy(mob/user, turf/location)
+	if(!istype(location))
+		location = get_turf(src)
+	SEND_SIGNAL(src, COMSIG_ITEM_DEPLOY, user, location)
+
+///Dissassembles the device
+/obj/proc/disassemble(mob/user)
+	var/obj/item/internal_item = get_internal_item()
+	if(!internal_item)
+		return FALSE
+	if(internal_item.item_flags & DEPLOYED_NO_PICKUP)
+		if(user)
+			balloon_alert(user, "Cannot disassemble")
+		return FALSE
+	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
+	return TRUE
+
+/obj/plasmacutter_act(mob/living/user, obj/item/I)
+	if(!isplasmacutter(I) || user.do_actions)
+		return FALSE
+	if(!(obj_flags & CAN_BE_HIT) || CHECK_BITFIELD(resistance_flags, PLASMACUTTER_IMMUNE) || CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE))
+		return FALSE
+	var/obj/item/tool/pickaxe/plasmacutter/plasmacutter = I
+	if(!plasmacutter.powered || (plasmacutter.item_flags & NOBLUDGEON))
+		return FALSE
+	if(user.a_intent == INTENT_HARM) // Attack normally.
+		return FALSE
+	if(!plasmacutter.start_cut(user, name, src))
+		return FALSE
+	if(!do_after(user, plasmacutter.calc_delay(user), NONE, src, BUSY_ICON_HOSTILE))
+		return TRUE
+
+	plasmacutter.cut_apart(user, name, src)
+	deconstruct(FALSE)
 	return TRUE

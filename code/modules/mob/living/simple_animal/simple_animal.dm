@@ -46,7 +46,7 @@
 	attack_sound = null
 	friendly = "nuzzles" //If the mob does no damage with it's attack
 	var/obj_damage = 0 //how much damage this simple animal does to objects, if any
-	var/attacked_sound = "punch" //Played when someone punches the creature
+	var/attacked_sound = SFX_PUNCH //Played when someone punches the creature
 	var/armour_penetration = 0 //How much armour they ignore, as a flat reduction from the targets armour value
 	var/melee_damage_type = BRUTE //Damage type of a simple mob's melee attack, should it do damage.
 	var/list/damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1) // 1 for full damage , 0 for none , -1 for 1:1 heal from that source
@@ -282,10 +282,10 @@
 			stack_trace("Something attempted to set simple animals AI to an invalid state: [togglestatus]")
 
 
-/mob/living/simple_animal/onTransitZ(old_z, new_z)
+/mob/living/simple_animal/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
 	. = ..()
 	if(AIStatus == AI_Z_OFF)
-		SSidlenpcpool.idle_mobs_by_zlevel[old_z] -= src
+		SSidlenpcpool.idle_mobs_by_zlevel[old_turf.z] -= src
 		toggle_ai(initial(AIStatus))
 
 

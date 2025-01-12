@@ -135,6 +135,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/mute_others_combat_messages = FALSE
 	///Whether to mute xeno health alerts from when other xenos are badly hurt.
 	var/mute_xeno_health_alert_messages = TRUE
+	///Whether we generate a xeno name to show in the chatbox and on the mob.
+	var/show_xeno_rank = TRUE
 
 	///whether the user wants to hear tts
 	var/sound_tts = TTS_SOUND_ENABLED
@@ -144,7 +146,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/tts_pitch = 0
 	///Volume to use for tts
 	var/volume_tts = 100
+	///Which types of comms the user wants to hear TTS from
+	var/radio_tts_flags = RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND
 
+	/// Preference for letting people make TGUI windows use more accessible (basically, default) themes, where needed/possible.
+	/// Example application: health analyzers using this to choose between default themes or the NtOS themes.
+	var/accessible_tgui_themes = FALSE
 
 	/// Chat on map
 	var/chat_on_map = TRUE
@@ -185,8 +192,14 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///What outfit typepaths we've favorited in the SelectEquipment menu
 	var/list/favorite_outfits = list()
 
+	/// list("sequencename" = list(uid, uid, uid))
+	var/list/stim_sequences = list()
+
 	///List of slot_draw_order
 	var/list/slot_draw_order_pref = list()
+
+	///State tracking of hive status toggles
+	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
 
 /datum/preferences/New(client/C)
 	if(!istype(C))
@@ -220,6 +233,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	random_character()
 	menuoptions = list()
 	key_bindings = deepCopyList(GLOB.hotkey_keybinding_list_by_key) // give them default keybinds and update their movement keys
+	save_keybinds()
 	for(var/i in 1 to CUSTOM_EMOTE_SLOTS)
 		var/datum/custom_emote/emote = new
 		emote.id = i

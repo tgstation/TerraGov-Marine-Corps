@@ -139,6 +139,16 @@ GLOBAL_LIST_EMPTY_TYPED(custom_updating_encryptkeys, /obj/item/encryptionkey)
 	channels = list(RADIO_CHANNEL_ECHO = TRUE, RADIO_CHANNEL_COMMAND = TRUE, RADIO_CHANNEL_CAS = TRUE, RADIO_CHANNEL_ALPHA = TRUE, RADIO_CHANNEL_BRAVO = TRUE, RADIO_CHANNEL_CHARLIE = TRUE, RADIO_CHANNEL_DELTA = TRUE, RADIO_CHANNEL_ENGINEERING = TRUE, RADIO_CHANNEL_MEDICAL = TRUE, RADIO_CHANNEL_REQUISITIONS = TRUE)
 	independent = TRUE
 
+/obj/item/encryptionkey/vsd
+	name = "\improper Security Detail encryption key"
+	channels = list(RADIO_CHANNEL_VSD = TRUE)
+	independent = TRUE
+
+/obj/item/encryptionkey/erp
+	name = "\improper Pranksters encryption key"
+	channels = list(RADIO_CHANNEL_ERP = TRUE)
+	independent = TRUE
+
 //SOM
 
 /obj/item/encryptionkey/engi/som

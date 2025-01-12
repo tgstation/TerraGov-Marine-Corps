@@ -37,7 +37,7 @@
 		return FALSE	//godmode
 
 	if(species?.has_organ["brain"])
-		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
+		var/datum/internal_organ/brain/sponge = get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(sponge)
 			sponge.take_damage(amount, silent)
 			sponge.damage = clamp(sponge.damage, 0, MAX_BRAINLOSS)
@@ -53,7 +53,7 @@
 		return FALSE	//godmode
 
 	if(species?.has_organ["brain"])
-		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
+		var/datum/internal_organ/brain/sponge = get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(sponge)
 			sponge.damage = clamp(amount, 0, MAX_BRAINLOSS)
 			brainloss = sponge.damage
@@ -68,7 +68,7 @@
 		return FALSE	//godmode
 
 	if(species?.has_organ["brain"])
-		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
+		var/datum/internal_organ/brain/sponge = get_organ_slot(ORGAN_SLOT_BRAIN)
 		if(sponge) //Make sure they actually have a brain
 			brainloss = min(sponge.damage, MAX_BRAINLOSS)
 		else
@@ -312,7 +312,7 @@ This function restores all limbs.
 	//replace missing internal organs
 	for(var/organ_slot in species.has_organ)
 		var/internal_organ_type = species.has_organ[organ_slot]
-		if(!internal_organs_by_name[organ_slot])
+		if(!get_organ_slot(organ_slot))
 			var/datum/internal_organ/IO = new internal_organ_type(src)
 			internal_organs_by_name[organ_slot] = IO
 

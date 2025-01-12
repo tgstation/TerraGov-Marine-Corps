@@ -13,6 +13,8 @@
 	var/list/map_light_colours = list(COLOR_WHITE, COLOR_WHITE, COLOR_WHITE, COLOR_WHITE)
 	///Light levels for the map
 	var/list/map_light_levels = list(200, 100, 75, 50)
+	///Camo color associated with this map
+	var/map_armor_color = MAP_ARMOR_STYLE_DEFAULT
 	///The actual z-level the mission is played on
 	var/datum/space_level/mission_z_level
 	///Optional delay for each faction to be able to deploy, typically used in attacker/defender missions
@@ -76,6 +78,8 @@
 	)
 	/// Timer used to calculate how long till mission ends
 	var/game_timer
+	/// Timer for when the mission starts
+	var/start_timer
 	///The length of time until mission ends, if timed
 	var/max_game_time = 0
 	///Whether the max game time has been reached
@@ -179,7 +183,7 @@
 	play_selection_intro()
 	load_map()
 	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, load_objective_description)), 5 SECONDS) //will be called before the map is entirely loaded otherwise, but this is cringe
-	addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), mission_start_delay)
+	start_timer = addtimer(CALLBACK(src, TYPE_PROC_REF(/datum/campaign_mission, start_mission)), mission_start_delay, TIMER_STOPPABLE)
 	load_pre_mission_bonuses()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_CAMPAIGN_TELEBLOCKER_DISABLED, COMSIG_GLOB_CAMPAIGN_DROPBLOCKER_DISABLED), PROC_REF(remove_mission_flag))
 
@@ -305,6 +309,7 @@
 /datum/campaign_mission/proc/start_mission()
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(SSdcs, COMSIG_GLOB_CAMPAIGN_MISSION_STARTED)
+	start_timer = null
 	if(!shutter_open_delay[MISSION_STARTING_FACTION])
 		SEND_GLOBAL_SIGNAL(GLOB.faction_to_campaign_door_signal[starting_faction])
 	else
@@ -335,18 +340,11 @@
 	apply_outcome()
 	play_outro()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CAMPAIGN_MISSION_ENDED, src, winning_faction)
-	for(var/i in GLOB.quick_loadouts)
-		var/datum/outfit/quick/outfit = GLOB.quick_loadouts[i]
-		outfit.quantity = initial(outfit.quantity)
-	for(var/job in GLOB.campaign_loadout_items_by_role)
-		for(var/datum/loadout_item/loadout_item AS in GLOB.campaign_loadout_items_by_role[job])
-			loadout_item.quantity = initial(loadout_item.quantity)
 	for(var/mob/living/carbon/human/corpse AS in GLOB.dead_human_list) //clean up all the bodies and refund normal roles if required
 		if(corpse.z != mission_z_level.z_value)
 			continue
 		if(!HAS_TRAIT(corpse, TRAIT_UNDEFIBBABLE) && corpse?.job?.job_cost)
 			corpse.job.free_job_positions(1)
-
 		qdel(corpse)
 
 ///Unregisters all signals when the mission finishes
@@ -356,10 +354,13 @@
 
 ///Intro when the mission is selected
 /datum/campaign_mission/proc/play_selection_intro()
-	to_chat(world, span_round_header("|[name]|"))
-	to_chat(world, span_round_body("Next mission selected by [starting_faction] as [name] on the battlefield of [map_name]."))
-	for(var/mob/player AS in GLOB.player_list)
-		player.playsound_local(null, 'sound/ambience/votestart.ogg', 10, 1)
+	send_ooc_announcement(
+		sender_override = "Mission Starting",
+		title = name,
+		text = "Next mission is [name], selected by [starting_faction] on the battlefield of [map_name].",
+		sound_override = 'sound/ambience/votestart.ogg',
+		style = OOC_ALERT_GAME
+	)
 
 ///Intro when the mission is started
 /datum/campaign_mission/proc/play_start_intro()
@@ -367,10 +368,16 @@
 	map_text_broadcast(hostile_faction, intro_message[MISSION_HOSTILE_FACTION], op_name_hostile)
 
 ///Outro when the mission is finished
-/datum/campaign_mission/proc/play_outro() //todo: make generic
-	to_chat(world, span_round_header("|[starting_faction] [outcome]|"))
+/datum/campaign_mission/proc/play_outro()
 	log_game("[outcome]\nMission: [name]")
-	to_chat(world, span_round_body("Thus ends the story of the brave men and women of both the [starting_faction] and [hostile_faction], and their struggle on [map_name]."))
+
+	send_ooc_announcement(
+		sender_override = "[name] Complete",
+		title = "[starting_faction] [outcome]",
+		text = "The engagement between [starting_faction] and [hostile_faction] on [map_name] has ended in a [starting_faction] [outcome]!",
+		play_sound = FALSE,
+		style = OOC_ALERT_GAME
+	)
 
 	map_text_broadcast(starting_faction, outro_message[outcome][MISSION_STARTING_FACTION], op_name_starting)
 	map_text_broadcast(hostile_faction, outro_message[outcome][MISSION_HOSTILE_FACTION], op_name_hostile)
@@ -519,7 +526,9 @@
 	if(!mech_faction)
 		return
 	var/total_count = (heavy_mech + medium_mech + light_mech)
-	for(var/obj/effect/landmark/campaign/mech_spawner/mech_spawner AS in GLOB.campaign_mech_spawners[mech_faction])
+	if(!total_count)
+		return
+	for(var/obj/effect/landmark/campaign/vehicle_spawner/mech/mech_spawner AS in GLOB.campaign_mech_spawners[mech_faction])
 		if(!heavy_mech && !medium_mech && !light_mech)
 			break
 		var/new_mech
@@ -531,11 +540,28 @@
 			light_mech --
 		else
 			continue
-		new_mech = mech_spawner.spawn_mech()
+		new_mech = mech_spawner.spawn_vehicle()
 		GLOB.campaign_structures += new_mech
 		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
 	map_text_broadcast(mech_faction, override_message ? override_message : "[total_count] mechs have been deployed for this mission.", "Mechs available")
+
+///spawns mechs for a faction
+/datum/campaign_mission/proc/spawn_tank(tank_faction, quantity, override_message)
+	if(!tank_faction)
+		return
+	if(!quantity)
+		return
+	var/remaining_count = quantity
+	for(var/obj/effect/landmark/campaign/vehicle_spawner/tank/tank_spawner AS in GLOB.campaign_tank_spawners[tank_faction])
+		if(!remaining_count)
+			break
+		remaining_count --
+		var/new_tank = tank_spawner.spawn_vehicle()
+		GLOB.campaign_structures += new_tank
+		RegisterSignal(new_tank, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
+
+	map_text_broadcast(tank_faction, override_message ? override_message : "[quantity] mechs have been deployed for this mission.", "Mechs available")
 
 ///Returns the current mission, if its the campaign gamemode
 /proc/get_current_mission()

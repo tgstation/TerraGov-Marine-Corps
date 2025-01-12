@@ -74,9 +74,12 @@
 
 #define STATUS_EFFECT_INTOXICATED /datum/status_effect/stacking/intoxicated //Damage over time
 
+#define STATUS_EFFECT_DANCER_TAGGED /datum/status_effect/incapacitating/dancer_tagged //Additional damage/effects by Praetorian Dancer's abilities.
+
 #define STATUS_EFFECT_REPAIR_MODE /datum/status_effect/incapacitating/repair_mode //affected is blinded and stunned, but heals over time
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting
+#define STATUS_EFFECT_MELTING_FIRE /datum/status_effect/stacking/melting_fire
 ///damage over time
 #define STATUS_EFFECT_MICROWAVE /datum/status_effect/stacking/microwave
 ///armor reduction

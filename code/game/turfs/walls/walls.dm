@@ -190,6 +190,13 @@
 		bullethole_overlay = image('icons/effects/bulletholes.dmi', src, "bhole_[bullethole_variation]_[current_bulletholes]")
 	. += bullethole_overlay
 
+/turf/closed/wall/do_acid_melt()
+	. = ..()
+	if(acided_hole)
+		ScrapeAway()
+		return
+	new /obj/effect/acid_hole(src)
+
 ///Applies damage to the wall
 /turf/closed/wall/proc/take_damage(damage_amount, damage_type = BRUTE, armor_type = null, armour_penetration = 0)
 	if(resistance_flags & INDESTRUCTIBLE) //Hull is literally invincible
@@ -224,6 +231,7 @@
 	if(user?.client)
 		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[user.ckey]
 		personal_statistics.integrity_repaired += repair_amount
+		personal_statistics.mission_integrity_repaired += repair_amount
 		personal_statistics.times_repaired++
 	wall_integrity += repair_amount
 	update_icon()
@@ -500,7 +508,7 @@
 
 	var/mob/living/grabbed_mob = grab.grabbed_thing
 	step_towards(grabbed_mob, src)
-	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/damage = (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
 	var/state = user.grab_state
 	switch(state)
 		if(GRAB_PASSIVE)
@@ -522,5 +530,5 @@
 			user.drop_held_item()
 	grabbed_mob.apply_damage(damage, blocked = MELEE, updating_health = TRUE)
 	take_damage(damage, BRUTE, MELEE)
-	playsound(src, get_sfx("slam"), 40)
+	playsound(src, SFX_SLAM, 40)
 	return TRUE

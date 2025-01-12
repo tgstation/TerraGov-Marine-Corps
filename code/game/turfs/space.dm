@@ -6,6 +6,7 @@
 	icon_state = "0"
 	can_bloody = FALSE
 	light_power = 0.25
+	allow_construction = FALSE
 	///What type of debuff do we apply when someone walks through this tile?
 	var/debuff_type = /datum/status_effect/spacefreeze
 

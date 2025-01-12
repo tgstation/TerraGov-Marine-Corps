@@ -8,12 +8,16 @@
 	desc = "Yell at the admin that spawned this in please."
 	icon = 'icons/obj/armored/hardpoint_modules.dmi'
 	icon_state = "ltb_cannon"
+	///Special behavior flags
+	var/tank_mod_flags = NONE
 	///reference to current overlay added to owner
 	var/image/overlay
 	///vehicle this overlay is attached to
 	var/obj/vehicle/sealed/armored/owner
 	///Bool whether this module is a driver module or not
 	var/is_driver_module = TRUE
+	///Bool whether this module is visually attached to the hull or not
+	var/attached_to_hull = FALSE
 
 ///Called to apply modules to a vehicle
 /obj/item/tank_module/proc/on_equip(obj/vehicle/sealed/armored/vehicle, mob/living/user)
@@ -30,7 +34,7 @@
 		vehicle.driver_utility_module = src
 	else
 		vehicle.gunner_utility_module = src
-	if(!vehicle.turret_overlay)
+	if(!vehicle.turret_overlay || attached_to_hull)
 		overlay = image(vehicle.icon, null, icon_state)
 		vehicle.add_overlay(overlay)
 	else
@@ -64,6 +68,7 @@
 	name = "overdrive module"
 	desc = "A module that enhances the speed of armored combat vehicles by increasing fuel efficiency."
 	icon_state = "overdrive"
+	attached_to_hull = TRUE
 
 /obj/item/tank_module/overdrive/on_equip(obj/vehicle/sealed/armored/vehicle, mob/living/user)
 	. = ..()
@@ -124,6 +129,15 @@
 	flag_controller = VEHICLE_CONTROL_EQUIPMENT
 	ability_to_grant = /datum/action/vehicle/sealed/armored/zoom
 
+/obj/item/tank_module/ability/smoke_launcher
+	name = "smoke launcher module"
+	desc = "Allows the driver to launch a smokescreen in front of the tank."
+	icon_state = "smoke_launcher"
+	tank_mod_flags = TANK_MOD_NOT_FABRICABLE
+	is_driver_module = TRUE
+	flag_controller = VEHICLE_CONTROL_DRIVE
+	ability_to_grant = /datum/action/vehicle/sealed/armored/smoke_screen
+
 /obj/item/tank_module/interior
 	name = "generic interior module"
 	desc = "you shouldnt see this"
@@ -171,4 +185,11 @@
 	desc = "A medical interior package, stocked with a operating table and a medical vendor."
 	icon_state = "medical_interior"
 	interior_typepath = /datum/interior/armored/medical
+	set_max_occupants = 12
+
+/obj/item/tank_module/interior/clone_bay
+	name = "clone bay interior"
+	desc = "A clone interior package, designed for the rapid production of cheap clone soldiers."
+	icon_state = "cloner_interior"
+	interior_typepath = /datum/interior/armored/clone_bay
 	set_max_occupants = 12

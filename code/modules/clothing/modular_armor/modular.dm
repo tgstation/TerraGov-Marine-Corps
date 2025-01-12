@@ -239,6 +239,14 @@
 		/obj/item/armor_module/armor/badge,
 	)
 
+/obj/item/clothing/suit/modular/rownin/erp
+	name = "\improper ERP rownin Skeleton"
+	desc = "A modified version of the Rowning Skeleton that offers much better, more entertaining and prank-inducing, design. Oh, also improved armor, but that part isn't as important. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	soft_armor = MARINE_ARMOR_MEDIUM
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+
+	allowed_uniform_type = /obj/item/clothing/under/rank/clown/erp
+
 /obj/item/clothing/suit/modular/hardsuit_exoskeleton
 	name = "FleckTex WY-01 modular exoskeleton"
 	desc = "FleckTex Dynamics brand new modular hardsuit exoskeleton, designed for full compatiability with jaeger modules. Comes with pre-installed light armour-plating and a shoulder lamp. Mount armor pieces to it by clicking on the frame with the components. Use Alt-Click to remove any attached items."
@@ -247,7 +255,7 @@
 	greyscale_config = /datum/greyscale_config/exoskeleton
 	colorable_allowed = PRESET_COLORS_ALLOWED
 	colorable_colors = ARMOR_PALETTES_LIST
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 	allowed_uniform_type = /obj/item/clothing/under
 	attachments_allowed = list(
 
@@ -297,7 +305,7 @@
 	item_state_worn = TRUE
 
 	greyscale_config = /datum/greyscale_config/armor_mk1
-	greyscale_colors = ARMOR_PALETTE_DESERT
+	greyscale_colors = ARMOR_PALETTE_BLACK
 
 	armor_protection_flags = HEAD
 	armor_features_flags = ARMOR_NO_DECAP
@@ -387,7 +395,7 @@
 	worn_icon_state = "gas_alt"
 	worn_icon_list = list(slot_wear_mask_str)
 	item_state_worn = TRUE
-	greyscale_colors = ARMOR_PALETTE_DRAB
+	greyscale_colors = ARMOR_PALETTE_BLACK
 
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = PRESET_COLORS_ALLOWED

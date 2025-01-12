@@ -42,8 +42,10 @@
 		storage_strings += "<br><U>You can only carry the following in this</U>:"
 		for(var/X in storage_datum.can_hold)
 			var/obj/item/A = X
-			storage_strings += "[initial(A.name)]"
-
+			//check if the weight classes of the items are smaller or equal to the maximum weight class.
+			if(A.w_class <= src.storage_datum.max_w_class)
+				storage_strings += "[initial(A.name)]"
+				
 	if(length(storage_datum.storage_type_limits))
 		storage_strings += "<br><U>You can also carry the following special items in this</U>:"
 		for(var/X in storage_datum.storage_type_limits)

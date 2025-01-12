@@ -29,7 +29,7 @@
 		if(prob(grabbed_stun_chance))
 			grabbed_mob.Paralyze(1 SECONDS)
 
-	var/damage = (user.skills.getRating(SKILL_CQC) * CQC_SKILL_DAMAGE_MOD)
+	var/damage = (user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DAMAGE_MOD)
 	switch(state)
 		if(GRAB_PASSIVE)
 			damage += base_damage
@@ -52,10 +52,10 @@
 	return 0 //only carbon liveforms have this proc
 
 /mob/living/emp_act(severity)
+	. = ..()
 	var/list/L = GetAllContents()
 	for(var/obj/O in L)
 		O.emp_act(severity)
-	..()
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM, speed = 5)
@@ -90,7 +90,7 @@
 
 /mob/living/turf_collision(turf/T, speed)
 	take_overall_damage(speed * 5, BRUTE, MELEE, FALSE, FALSE, TRUE, 0, 2)
-	playsound(src, get_sfx("slam"), 40)
+	playsound(src, SFX_SLAM, 40)
 
 /mob/living/proc/near_wall(direction,distance=1)
 	var/turf/T = get_step(get_turf(src),direction)
@@ -121,7 +121,7 @@
 		on_fire = TRUE
 		RegisterSignal(src, COMSIG_LIVING_DO_RESIST, PROC_REF(resist_fire))
 		to_chat(src, span_danger("You are on fire! Use Resist to put yourself out!"))
-		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_highdanger("You burst into flames!"))
+		visible_message(span_danger("[src] bursts into flames!"), isxeno(src) ? span_xenodanger("You burst into flames!") : span_userdanger("You burst into flames!"))
 		update_fire()
 		SEND_SIGNAL(src, COMSIG_LIVING_IGNITED, fire_stacks)
 		return TRUE
@@ -133,17 +133,16 @@
 	if(!.)
 		return
 	update_fire()
-	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
-	var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
-	if(istype(F))
-		F.kill_hugger()
-		dropItemToGround(F)
-	if(istype(G))
-		G.kill_hugger()
-		dropItemToGround(G)
+
+	for(var/obj/item/clothing/mask/facehugger/hugger in get_held_items())
+		hugger.kill_hugger()
+		dropItemToGround(hugger)
 
 ///Puts out any fire on the mob
 /mob/living/proc/ExtinguishMob()
+	var/datum/status_effect/stacking/melting_fire/xeno_fire = has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+	if(xeno_fire)
+		remove_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(!on_fire)
 		return FALSE
 	on_fire = FALSE
@@ -187,12 +186,13 @@
 		return FALSE
 	if(status_flags & GODMODE)
 		return TRUE //while godmode will stop the damage, we don't want the process to stop in case godmode is removed
+	if(pass_flags & PASS_FIRE) //As above, we want lava to keep processing in case pass_fire is removed
+		return TRUE
 
 	var/lava_damage = 20
 	take_overall_damage(max(modify_by_armor(lava_damage, FIRE), lava_damage * 0.3), BURN, updating_health = TRUE, max_limbs = 3) //snowflakey interaction to stop complete lava immunity
-	if(!CHECK_BITFIELD(pass_flags, PASS_FIRE))//Pass fire allow to cross lava without igniting
-		adjust_fire_stacks(20)
-		IgniteMob()
+	adjust_fire_stacks(20)
+	IgniteMob()
 	return TRUE
 
 /mob/living/fire_act(burn_level)
@@ -200,15 +200,14 @@
 		return
 	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
 		return FALSE
-	if(hard_armor.getRating(FIRE) >= 100)
+	if(soft_armor.getRating(FIRE) >= 100)
 		to_chat(src, span_warning("You are untouched by the flames."))
+		return FALSE
+	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being affected.
 		return FALSE
 
 	take_overall_damage(rand(10, burn_level), BURN, FIRE, updating_health = TRUE, max_limbs = 4)
 	to_chat(src, span_warning("You are burned!"))
-
-	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being ignited
-		return FALSE
 
 	. = TRUE
 	adjust_fire_stacks(burn_level)

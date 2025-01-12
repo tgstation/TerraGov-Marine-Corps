@@ -131,6 +131,9 @@
 #define MAGAZINE_HANDFUL (1<<1)
 #define MAGAZINE_WORN (1<<2)
 #define MAGAZINE_REFUND_IN_CHAMBER (1<<3)
+#define MAGAZINE_NOT_FABRICABLE (1<<4)
+///ammo count shown on mag sprite
+#define MAGAZINE_SHOW_AMMO (1<<5)
 
 //Slowdown from various armors.
 #define SHOES_SLOWDOWN -1.0			// How much shoes slow you down by default. Negative values speed you up
@@ -155,7 +158,7 @@
 //Define sniper laser multipliers
 
 #define SNIPER_LASER_DAMAGE_MULTIPLIER 1.5 //+50% damage vs the aimed target
-#define SNIPER_LASER_SLOWDOWN_STACKS 3 // Slowdown applied on hit vs the aimed target.
+#define SNIPER_LASER_SLOWDOWN_STACKS 2.25 // Slowdown applied on hit vs the aimed target.
 
 //Define lasrifle
 #define ENERGY_STANDARD_AMMO_COST 20
@@ -188,7 +191,9 @@
 #define SMOKE_XENO_OZELOMELYN (1<<19) //Smoke that purges chemicals and does minor capped toxin damage for Defiler.
 #define SMOKE_SATRAPINE (1<<20) //nerve agent that purges painkillers and causes increasing pain
 #define SMOKE_XENO_TOXIC (1<<21) //deals damage to anyone inside it and inflicts the intoxicated debuff, dealing damage over time
-#define SMOKE_PURGER (1<<22) // This smoke removes any smoke has this in its effects_cycle, that removes certain types of smokes.
+///Purges all types of smoke
+#define SMOKE_PURGER (1<<22)
+#define SMOKE_XENO_PYROGEN (1<<23) // Smoke that acts like SMOKE_BLISTERING for non-xenos and applies pyrogen's melting fire status effect when entering.
 
 //Incapacitated
 #define INCAPACITATED_IGNORE_RESTRAINED (1<<0)

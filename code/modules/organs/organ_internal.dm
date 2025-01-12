@@ -11,6 +11,8 @@
 	var/damage = 0 // amount of damage to the organ
 	var/min_bruised_damage = 10
 	var/min_broken_damage = 30
+	///The effects when this limb is damaged. Used by health analyzers.
+	var/damage_description
 	var/parent_limb = "chest"
 	var/robotic = 0 //1 for 'assisted' organs (e.g. pacemaker), 2 for actual cyber organ.
 	var/removed_type //When removed, forms this object.
@@ -86,31 +88,10 @@
 	set_organ_status()
 
 /datum/internal_organ/proc/emp_act(severity)
-	switch(robotic)
-		if(0)
-			return
-		if(1)
-			switch (severity)
-				if (1.0)
-					take_damage(20,0)
-					return
-				if (2.0)
-					take_damage(7,0)
-					return
-				if(3.0)
-					take_damage(3,0)
-					return
-		if(2)
-			switch (severity)
-				if (1.0)
-					take_damage(40,0)
-					return
-				if (2.0)
-					take_damage(15,0)
-					return
-				if(3.0)
-					take_damage(10,0)
-					return
+	if(!robotic)
+		return
+	take_damage((5 - severity) * 5 * robotic)
+
 
 /datum/internal_organ/proc/mechanize() //Being used to make robutt hearts, etc
 	if(robotic_type)
@@ -133,6 +114,7 @@
 	removed_type = /obj/item/organ/heart
 	robotic_type = /obj/item/organ/heart/prosthetic
 	organ_id = ORGAN_HEART
+	damage_description = "Bruised hearts cause reduced constitution, suffocation and pain. Broken hearts prevent revival until repaired."
 
 /datum/internal_organ/heart/process()
 	. = ..()
@@ -160,6 +142,7 @@
 	removed_type = /obj/item/organ/lungs
 	robotic_type = /obj/item/organ/lungs/prosthetic
 	organ_id = ORGAN_LUNGS
+	damage_description = "Bruised lungs cause suffocation, slowdown and slower endurance regeneration. Broken lungs significantly worsen these effects."
 
 /datum/internal_organ/lungs/process()
 	..()
@@ -191,6 +174,7 @@
 	removed_type = /obj/item/organ/liver
 	robotic_type = /obj/item/organ/liver/prosthetic
 	organ_id = ORGAN_LIVER
+	damage_description = "Damaged livers slowly increase toxin damage instead of healing it, take damage when processing toxins, become less effective at processing toxins, and deal toxin damage when processing toxins."
 	///lower value, higher resistance.
 	var/alcohol_tolerance = 0.005
 	///How fast we clean out toxins/toxloss. Adjusts based on organ damage.
@@ -243,6 +227,7 @@
 	removed_type = /obj/item/organ/kidneys
 	robotic_type = /obj/item/organ/kidneys/prosthetic
 	organ_id = ORGAN_KIDNEYS
+	damage_description = "Bruised and broken kidneys reduce the amount of reagents a person can have in their system before they feel drawbacks."
 	///Tracks the number of reagent/medicine datums we currently have
 	var/current_medicine_count = 0
 	///How many drugs we can take before they overwhelm us. Decreases with damage
@@ -258,12 +243,12 @@
 	. = ..()
 	if(!carbon_mob)
 		return
-	RegisterSignal(carbon_mob.reagents, COMSIG_NEW_REAGENT_ADD, PROC_REF(owner_added_reagent))
-	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENT_DELETING, PROC_REF(owner_removed_reagent))
+	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENTS_NEW_REAGENT, PROC_REF(owner_added_reagent))
+	RegisterSignal(carbon_mob.reagents, COMSIG_REAGENTS_DEL_REAGENT, PROC_REF(owner_removed_reagent))
 
 /datum/internal_organ/kidneys/clean_owner()
 	if(owner?.reagents)
-		UnregisterSignal(owner.reagents, list(COMSIG_NEW_REAGENT_ADD, COMSIG_REAGENT_DELETING))
+		UnregisterSignal(owner.reagents, list(COMSIG_REAGENTS_NEW_REAGENT, COMSIG_REAGENTS_DEL_REAGENT))
 	return ..()
 
 ///Signaled proc. Check if the added reagent was under reagent/medicine. If so, increment medicine counter and potentially notify owner.
@@ -327,6 +312,7 @@
 	robotic_type = /obj/item/organ/brain/prosthetic
 	vital = TRUE
 	organ_id = ORGAN_BRAIN
+	damage_description = "Brain damage reduces the patient's skills."
 
 /datum/internal_organ/brain/set_organ_status()
 	var/old_organ_status = organ_status
@@ -357,6 +343,7 @@
 	robotic_type = /obj/item/organ/eyes/prosthetic
 	var/eye_surgery_stage = 0 //stores which stage of the eye surgery the eye is at
 	organ_id = ORGAN_EYES
+	damage_description = "Bruised eyes cause blurry vision. Broken eyes cause blindness."
 
 /datum/internal_organ/eyes/process() //Eye damage replaces the old eye_stat var.
 	..()

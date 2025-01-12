@@ -8,7 +8,7 @@
 #define ABILITY_USE_BUSY (1 << 7) // ignore being in a do_after or similar
 #define ABILITY_TARGET_SELF (1 << 9) // allow self-targetting
 #define ABILITY_IGNORE_PLASMA (1 << 10) // ignore plasma cost
-#define ABILITY_USE_CLOSEDTURF (1 << 11) // can be used while being on a closed turf.
+#define ABILITY_USE_SOLIDOBJECT (1 << 11) // can be used while being on a solid object (closed turf or dense door).
 #define ABILITY_IGNORE_COOLDOWN (1 << 12) // ignore cooldown
 #define ABILITY_IGNORE_DEAD_TARGET (1 << 13) // bypass checks of a dead target
 #define ABILITY_IGNORE_SELECTED_ABILITY (1 << 14) // bypass the check of the selected ability

@@ -30,9 +30,8 @@
 	var/datum/action/harvester/reagent_select/reagent_select_action
 	///The maximum amount that one chemical can be loaded
 	var/max_loadable_reagent_amount = 30
-	var/loadup_on_attack = FALSE
 
-/datum/component/harvester/Initialize(max_reagent_amount, loadup_on_attack)
+/datum/component/harvester/Initialize(max_reagent_amount)
 	if(!isitem(parent))
 		return COMPONENT_INCOMPATIBLE
 
@@ -40,8 +39,6 @@
 
 	if(max_reagent_amount)
 		max_loadable_reagent_amount = max_reagent_amount
-	if(loadup_on_attack)
-		src.loadup_on_attack = loadup_on_attack
 
 	reagent_select_action = new
 	LAZYADD(item_parent.actions, reagent_select_action)
@@ -178,7 +175,7 @@
 /datum/component/harvester/proc/update_loaded_color(datum/source, list/overlays_list)
 	SIGNAL_HANDLER
 	var/obj/item/item_parent = parent
-	var/image/item_overlay = image('icons/obj/items/vali.dmi', item_parent, "[initial(item_parent.icon_state)]_loaded")
+	var/image/item_overlay = image('icons/obj/items/weapons/vali.dmi', item_parent, "[initial(item_parent.icon_state)]_loaded")
 	if(!loaded_reagent)
 		item_overlay.color = COLOR_GREEN
 	else
@@ -224,7 +221,8 @@
 
 		if(/datum/reagent/medicine/kelotane)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
-			target.fire_act(10)
+			target.adjust_fire_stacks(5)
+			target.IgniteMob()
 
 		if(/datum/reagent/medicine/tramadol)
 			target.apply_damage(weapon.force*0.6, BRUTE, user.zone_selected)
@@ -245,8 +243,7 @@
 	user.update_inv_r_hand()
 	user.update_inv_l_hand()
 
-	if(loadup_on_attack)
-		INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
+	INVOKE_ASYNC(src, PROC_REF(activate_blade_async), source, user)
 
 ///Handles behavior when attacking a mob with bicaridine
 /datum/component/harvester/proc/attack_bicaridine(datum/source, mob/living/target, mob/living/user, obj/item/weapon)

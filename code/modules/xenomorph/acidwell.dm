@@ -10,8 +10,8 @@
 	anchored = TRUE
 	max_integrity = 5
 
-	hit_sound = "alien_resin_move"
-	destroy_sound = "alien_resin_move"
+	hit_sound = SFX_ALIEN_RESIN_MOVE
+	destroy_sound = SFX_ALIEN_RESIN_MOVE
 	///How many charges of acid this well contains
 	var/charges = 1
 	///If a xeno is charging this well
@@ -62,7 +62,7 @@
 		return
 	. += span_xenonotice("An acid well made by [creator]. It currently has <b>[charges]/[XENO_ACID_WELL_MAX_CHARGES] charges</b>.")
 
-/obj/structure/xeno/acidwell/deconstruct(disassembled = TRUE)
+/obj/structure/xeno/acidwell/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	visible_message(span_danger("[src] suddenly collapses!") )
 	return ..()
 
@@ -93,7 +93,7 @@
 	acid_smoke.set_up(0, src) //acid smoke in the immediate vicinity
 	acid_smoke.start()
 
-	for(var/obj/flamer_fire/F in T) //Extinguish all flames in turf
+	for(var/obj/fire/flamer/F in T) //Extinguish all flames in turf
 		qdel(F)
 
 /obj/structure/xeno/acidwell/attackby(obj/item/I, mob/user, params)
@@ -107,7 +107,7 @@
 		if(!do_after(xeno_attacker, XENO_ACID_WELL_FILL_TIME, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 			balloon_alert(xeno_attacker, "Stopped removing")
 			return
-		playsound(src, "alien_resin_break", 25)
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 		deconstruct(TRUE, xeno_attacker)
 		return
 

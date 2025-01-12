@@ -63,6 +63,7 @@
 
 
 /obj/item/implant/neurostim/emp_act(severity)
+	. = ..()
 	if(malfunction)
 		return
 	if (prob(80))

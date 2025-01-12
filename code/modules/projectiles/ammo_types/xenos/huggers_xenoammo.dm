@@ -17,20 +17,20 @@
 	///The type of hugger thrown
 	var/obj/item/clothing/mask/facehugger/hugger_type = /obj/item/clothing/mask/facehugger
 
-/datum/ammo/xeno/hugger/on_hit_mob(mob/M, obj/projectile/proj)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(M), hivenumber)
+/datum/ammo/xeno/hugger/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(target_mob), hivenumber)
 	hugger.go_idle()
 
-/datum/ammo/xeno/hugger/on_hit_obj(obj/O, obj/projectile/proj)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(O), hivenumber)
+/datum/ammo/xeno/hugger/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(get_turf(target_obj), hivenumber)
 	hugger.go_idle()
 
-/datum/ammo/xeno/hugger/on_hit_turf(turf/T, obj/projectile/P)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T, hivenumber)
+/datum/ammo/xeno/hugger/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(target_turf.density ? proj.loc : target_turf, hivenumber)
 	hugger.go_idle()
 
-/datum/ammo/xeno/hugger/do_at_max_range(turf/T, obj/projectile/P)
-	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(T.density ? P.loc : T, hivenumber)
+/datum/ammo/xeno/hugger/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	var/obj/item/clothing/mask/facehugger/hugger = new hugger_type(target_turf.density ? proj.loc : target_turf, hivenumber)
 	hugger.go_idle()
 
 /datum/ammo/xeno/hugger/slash

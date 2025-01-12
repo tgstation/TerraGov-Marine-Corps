@@ -1,10 +1,5 @@
-// the types of priority announcements
-#define ANNOUNCEMENT_REGULAR 1
-#define ANNOUNCEMENT_PRIORITY 2
-#define ANNOUNCEMENT_COMMAND 3
-
-// don't use any of these macros outside of here to keep the appearance of alerts consistent (unless you need to make them global for some reason)
-// if you want to design a faction alert to use in a message or something, use assemble_alert()
+// Do not use these macros outside of here (unless you absolutely have to or something), this is mainly to make sure they appear consistent
+// The best way to use these for to_chats or something would be assemble_alert()
 
 // a style for extra padding on alert titles
 #define span_alert_header(str) ("<span class='alert_header'>" + str + "</span>")
@@ -68,7 +63,17 @@
  * * receivers - a list of all players to send the message to. defaults to all humans, AIs and ghosts
  * * playing_sound - optional, is this playing sound?
  */
-/proc/priority_announce(message, title = "Announcement", subtitle = "", type = ANNOUNCEMENT_REGULAR, sound = 'sound/misc/notice2.ogg', channel_override = CHANNEL_ANNOUNCEMENTS, color_override, list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list), playing_sound = TRUE)
+/proc/priority_announce(
+	message,
+	title = "Announcement",
+	subtitle = "",
+	type = ANNOUNCEMENT_REGULAR,
+	sound = 'sound/misc/notice2.ogg',
+	channel_override = CHANNEL_ANNOUNCEMENTS,
+	color_override,
+	list/receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list),
+	playing_sound = TRUE
+)
 	if(!message)
 		return
 
@@ -114,7 +119,7 @@
 			if(playing_sound)
 				SEND_SOUND(M, s)
 
-
+///Spawns a paper at each communications printer
 /proc/print_command_report(papermessage, papertitle = "paper", announcemessage = "A report has been downloaded and printed out at all communications consoles.", announcetitle = "Incoming Classified Message", announce = TRUE)
 	if(announce)
 		priority_announce(announcemessage, announcetitle, sound = 'sound/AI/commandreport.ogg')

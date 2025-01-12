@@ -209,6 +209,7 @@
 	name = "Enclosed Area"
 	icon_state = "transparent"
 	minimap_color = null
+	area_flags = CANNOT_NUKE
 
 /area/lv624/ground/caves/west1
 	name = "Western Caves"

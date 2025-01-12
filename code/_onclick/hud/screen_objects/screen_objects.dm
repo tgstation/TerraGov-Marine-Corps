@@ -567,7 +567,7 @@
 
 /atom/movable/screen/SL_locator
 	name = "sl locator"
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/mob/screen/arrows.dmi'
 	icon_state = "Blue_arrow"
 	alpha = 0 //invisible
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
@@ -582,145 +582,6 @@
 
 /atom/movable/screen/drop/Click()
 	usr.drop_item_v()
-
-/atom/movable/screen/bodytemp
-	name = "body temperature"
-	icon_state = "temp0"
-	screen_loc = ui_temp
-
-/atom/movable/screen/bodytemp/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	if(!human_mymob.species)
-		switch(human_mymob.bodytemperature) //310.055 optimal body temp
-			if(370 to INFINITY)
-				icon_state = "temp4"
-			if(350 to 370)
-				icon_state = "temp3"
-			if(335 to 350)
-				icon_state = "temp2"
-			if(320 to 335)
-				icon_state = "temp1"
-			if(300 to 320)
-				icon_state = "temp0"
-			if(295 to 300)
-				icon_state = "temp-1"
-			if(280 to 295)
-				icon_state = "temp-2"
-			if(260 to 280)
-				icon_state = "temp-3"
-			else
-				icon_state = "temp-4"
-		return
-
-	var/temp_step
-	if(human_mymob.bodytemperature >= human_mymob.species.body_temperature)
-		temp_step = (human_mymob.species.heat_level_1 - human_mymob.species.body_temperature) / 4
-
-		if(human_mymob.bodytemperature >= human_mymob.species.heat_level_1)
-			icon_state = "temp4"
-		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 3)
-			icon_state = "temp3"
-		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 2)
-			icon_state = "temp2"
-		else if(human_mymob.bodytemperature >= human_mymob.species.body_temperature + temp_step * 1)
-			icon_state = "temp1"
-		else
-			icon_state = "temp0"
-		return
-
-	if(human_mymob.bodytemperature < human_mymob.species.body_temperature)
-		temp_step = (human_mymob.species.body_temperature - human_mymob.species.cold_level_1)/4
-
-		if(human_mymob.bodytemperature <= human_mymob.species.cold_level_1)
-			icon_state = "temp-4"
-		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 3)
-			icon_state = "temp-3"
-		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 2)
-			icon_state = "temp-2"
-		else if(human_mymob.bodytemperature <= human_mymob.species.body_temperature - temp_step * 1)
-			icon_state = "temp-1"
-		else
-			icon_state = "temp0"
-
-/atom/movable/screen/oxygen
-	name = "oxygen"
-	icon_state = "oxy0"
-	screen_loc = ui_oxygen
-
-/atom/movable/screen/oxygen/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	if(human_mymob.hal_screwyhud == 3 || human_mymob.oxygen_alert)
-		icon_state = "oxy1"
-	else
-		icon_state = "oxy0"
-
-/atom/movable/screen/toxin
-	name = "toxin"
-	icon_state = "tox0"
-	screen_loc = ui_toxin
-
-/atom/movable/screen/toxin/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	if(human_mymob.hal_screwyhud == 4)
-		icon_state = "tox1"
-	else
-		icon_state = "tox0"
-
-/atom/movable/screen/pressure
-	name = "pressure"
-	icon_state = "pressure0"
-	screen_loc = ui_pressure
-
-/atom/movable/screen/pressure/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	icon_state = "pressure[human_mymob.pressure_alert]"
-
-/atom/movable/screen/nutrition
-	name = "nutrition"
-	icon_state = "nutrition1"
-	screen_loc = ui_nutrition
-
-/atom/movable/screen/nutrition/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	switch(human_mymob.nutrition)
-		if(NUTRITION_OVERFED to INFINITY)
-			icon_state = "nutrition0"
-		if(NUTRITION_HUNGRY to NUTRITION_OVERFED) //Not-hungry.
-			icon_state = "nutrition1" //Empty icon.
-		if(NUTRITION_STARVING to NUTRITION_HUNGRY)
-			icon_state = "nutrition3"
-		else
-			icon_state = "nutrition4"
-
-/atom/movable/screen/fire
-	name = "body temperature"
-	icon_state = "fire0"
-	screen_loc = ui_fire
-
-/atom/movable/screen/fire/update_icon_state()
-	. = ..()
-	if(!ishuman(hud?.mymob))
-		return
-	var/mob/living/carbon/human/human_mymob = hud.mymob
-	if(human_mymob.fire_alert)
-		icon_state = "fire[human_mymob.fire_alert]" //fire_alert is either 0 if no alert, 1 for cold and 2 for heat.
-	else
-		icon_state = "fire0"
 
 /atom/movable/screen/toggle_inv
 	name = "toggle"
@@ -821,7 +682,7 @@
 #undef AMMO_HUD_ICON_EMPTY
 
 /atom/movable/screen/arrow
-	icon = 'icons/Marine/marine-items.dmi'
+	icon = 'icons/mob/screen/arrows.dmi'
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	screen_loc = ui_sl_dir
 	alpha = 128 //translucent
@@ -875,7 +736,6 @@
 	STOP_PROCESSING(SSprocessing, src)
 	return ..()
 
-
 /atom/movable/screen/arrow/leader_tracker_arrow
 	name = "hive leader tracker arrow"
 	icon_state = "Blue_arrow"
@@ -884,27 +744,27 @@
 /atom/movable/screen/arrow/silo_damaged_arrow
 	name = "Hive damaged tracker arrow"
 	icon_state = "Red_arrow"
-	duration = XENO_SILO_DAMAGE_POINTER_DURATION
+	duration = XENO_STRUCTURE_DAMAGE_POINTER_DURATION
 
 /atom/movable/screen/arrow/turret_attacking_arrow
 	name = "Turret attacking arrow"
 	icon_state = "Green_arrow"
-	duration = XENO_SILO_DAMAGE_POINTER_DURATION
+	duration = XENO_STRUCTURE_DAMAGE_POINTER_DURATION
 
 /atom/movable/screen/arrow/attack_order_arrow
 	name = "attack order arrow"
 	icon_state = "Attack_arrow"
-	duration = ORDER_DURATION
+	duration = CIC_ORDER_DURATION
 
 /atom/movable/screen/arrow/rally_order_arrow
 	name = "Rally order arrow"
 	icon_state = "Rally_arrow"
-	duration = RALLY_ORDER_DURATION
+	duration = CIC_ORDER_DURATION
 
 /atom/movable/screen/arrow/defend_order_arrow
 	name = "Defend order arrow"
 	icon_state = "Defend_arrow"
-	duration = ORDER_DURATION
+	duration = CIC_ORDER_DURATION
 
 /atom/movable/screen/arrow/hunter_mark_arrow
 	name = "hunter mark arrow"

@@ -25,6 +25,8 @@
 
 	var/static/list/connections = list(
 		COMSIG_OBJ_TRY_ALLOW_THROUGH = PROC_REF(can_climb_over),
+		COMSIG_FIND_FOOTSTEP_SOUND = TYPE_PROC_REF(/atom/movable, footstep_override),
+		COMSIG_TURF_CHECK_COVERED = TYPE_PROC_REF(/atom/movable, turf_cover_check),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
@@ -126,12 +128,8 @@
 	var/obj/item/anesthetic_mask = buckled_human.wear_mask
 	buckled_human.dropItemToGround(anesthetic_mask)
 	qdel(anesthetic_mask)
-	addtimer(CALLBACK(src, PROC_REF(remove_knockout), buckled_mob), rand(2 SECONDS, 4 SECONDS))
+	addtimer(TRAIT_CALLBACK_REMOVE(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT), rand(2 SECONDS, 4 SECONDS))
 	return ..()
-
-///Wakes the buckled mob back up after they're released
-/obj/machinery/optable/proc/remove_knockout(mob/living/buckled_mob)
-	REMOVE_TRAIT(buckled_mob, TRAIT_KNOCKEDOUT, OPTABLE_TRAIT)
 
 /obj/machinery/optable/MouseDrop_T(atom/A, mob/user)
 

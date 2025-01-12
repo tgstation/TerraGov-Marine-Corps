@@ -13,8 +13,8 @@
 	pixel_y = -16
 	xeno_structure_flags = IGNORE_WEED_REMOVAL
 
-	hit_sound = "alien_resin_move"
-	destroy_sound = "alien_resin_move"
+	hit_sound = SFX_ALIEN_RESIN_MOVE
+	destroy_sound = SFX_ALIEN_RESIN_MOVE
 	///How many actual jellies the pod has stored
 	var/chargesleft = 0
 	///Max amount of jellies the pod can hold

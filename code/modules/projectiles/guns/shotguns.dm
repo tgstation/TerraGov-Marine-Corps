@@ -24,7 +24,7 @@
 	gun_skill_category = SKILL_SHOTGUNS
 	item_map_variant_flags = NONE
 
-	fire_delay = 6
+	fire_delay = 0.6 SECONDS
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.75
 	scatter = 4
@@ -62,7 +62,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 	starting_attachment_types = list(/obj/item/weapon/gun/grenade_launcher/underslung/invisible)
 
-	fire_delay = 15 //one shot every 1.5 seconds.
+	fire_delay = 1.5 SECONDS
 	accuracy_mult_unwielded = 0.5 //you need to wield this gun for any kind of accuracy
 	scatter_unwielded = 10
 	damage_mult = 0.75  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than T-32.
@@ -103,10 +103,10 @@
 		/obj/item/attachable/stock/t39stock,
 	)
 
-	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 20, "under_x" = 23, "under_y" = 12, "stock_x" = 13, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 20,"rail_x" = 15, "rail_y" = 20, "under_x" = 23, "under_y" = 12, "stock_x" = 11, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/stock/t39stock)
 
-	fire_delay = 14 //one shot every 1.4 seconds.
+	fire_delay = 1.4 SECONDS
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.65
 	scatter = 3
@@ -124,7 +124,7 @@
 /obj/item/weapon/gun/shotgun/combat/masterkey
 	name = "masterkey shotgun"
 	desc = "A weapon-mounted, three-shot shotgun. Reloadable with any normal 12 gauge shell. The short barrel reduces the ammo's effectiveness drastically in exchange for fitting as a attachment.."
-	icon = 'icons/Marine/marine-weapons.dmi'
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	icon_state = "masterkey"
 	max_chamber_items = 2
 	attachable_allowed = list()
@@ -136,7 +136,7 @@
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	damage_mult = 0.6 // 40% less damage, but MUCH higher falloff.
 	scatter = 3
-	fire_delay = 20 // Base shotgun fire delay.
+	fire_delay = 2 SECONDS
 	pixel_shift_x = 14
 	pixel_shift_y = 18
 
@@ -169,7 +169,7 @@
 	reciever_flags = AMMO_RECIEVER_TOGGLES_OPEN|AMMO_RECIEVER_TOGGLES_OPEN_EJECTS|AMMO_RECIEVER_HANDFULS
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
-	fire_delay = 2
+	fire_delay = 0.2 SECONDS
 	burst_delay = 2
 	scatter = 4
 	scatter_unwielded = 8
@@ -185,10 +185,11 @@
 	worn_icon_state = "sshotgun"
 	equip_slot_flags = ITEM_SLOT_BELT
 	attachable_allowed = list()
-	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES|GUN_WIELDED_FIRING_ONLY
+	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
-
-	fire_delay = 2
+	damage_mult = 1
+	damage_falloff_mult = 2
+	fire_delay = 0.2 SECONDS
 	accuracy_mult = 0.9
 	scatter = 4
 	scatter_unwielded = 10
@@ -272,7 +273,7 @@
 	cock_locked_message = "The pump is locked! Fire it first!"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
-	fire_delay = 20
+	fire_delay = 2 SECONDS
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -313,7 +314,7 @@
 		/obj/item/attachable/stock/pal12,
 	)
 
-	fire_delay = 15
+	fire_delay = 1.5 SECONDS
 	damage_mult = 0.75
 	accuracy_mult = 1.25
 	accuracy_mult_unwielded = 1
@@ -379,6 +380,63 @@
 /obj/item/weapon/gun/shotgun/pump/trenchgun/icc_leader
 	starting_attachment_types = list(
 		/obj/item/attachable/stock/trenchgun,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/compensator,
+	)
+
+//------------------------------------------------------
+// ML-101 Heavy Shotgun
+
+/obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun
+	name = "\improper ML-101 heavy pump shotgun"
+	desc = "Curiously using a rifled barrel in a shotgun. The ML-101 shotgun is used by ICC personnel forces to devastate targets at close range. Uses 6 gauge shells.\n<b>Requires a pump, which is the Unique Action key.</b>"
+	equip_slot_flags = ITEM_SLOT_BACK
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	icon_state = "ks23"
+	worn_icon_state = "ks23"
+	caliber = CALIBER_6G //codex
+	default_ammo_type = /datum/ammo/bullet/shotgun/heavy_buckshot
+	fire_sound = 'sound/weapons/guns/fire/ks23.ogg'
+	reload_sound = 'sound/weapons/guns/interact/ks23_insert.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/ks23_pump.ogg'
+	max_chamber_items = 5
+	attachable_allowed = list(
+		/obj/item/attachable/bayonet,
+		/obj/item/attachable/bayonetknife,
+		/obj/item/attachable/bayonetknife/som,
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/verticalgrip,
+		/obj/item/attachable/angledgrip,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/extended_barrel,
+		/obj/item/attachable/heavy_barrel,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/stock/icc_heavyshotgun,
+		/obj/item/attachable/motiondetector,
+	)
+
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = 0, "stock_y" = 12)
+	item_map_variant_flags = NONE
+
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/icc_heavyshotgun,
+	)
+
+	fire_delay = 2.75 SECONDS
+	scatter_unwielded = 10
+	recoil = 0 // It has a stock. It's on the sprite.
+	recoil_unwielded = 0
+	aim_slowdown = 0.65
+	wield_delay = 0.95 SECONDS
+	cock_delay = 1.4 SECONDS
+	damage_falloff_mult = 0.5 // Rifled barrel, also has more slug variety
+
+/obj/item/weapon/gun/shotgun/pump/icc_heavyshotgun/icc_leader
+	starting_attachment_types = list(
+		/obj/item/attachable/stock/icc_heavyshotgun,
 		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/compensator,
 	)
@@ -493,7 +551,6 @@
 
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 17, "rail_y" = 25, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_slowdown = 0.35
 	aim_time = 0.5 SECONDS
 
@@ -583,7 +640,7 @@
 	attachable_offset = list("muzzle_x" = 50, "muzzle_y" = 21,"rail_x" = 8, "rail_y" = 21, "under_x" = 37, "under_y" = 16, "stock_x" = 20, "stock_y" = 14)
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 
-	fire_delay = 8
+	fire_delay = 0.8 SECONDS
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.7
 	scatter = 2
@@ -628,11 +685,10 @@
 	)
 	attachable_offset = list ("muzzle_x" = 45, "muzzle_y" = 23,"rail_x" = 21, "rail_y" = 23, "under_x" = 19, "under_y" = 14, "stock_x" = 15, "stock_y" = 12)
 	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.3 SECONDS
 	aim_speed_modifier = 2
 
-	fire_delay = 10
+	fire_delay = 1 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.8
 	damage_falloff_mult = 0.5
@@ -728,7 +784,7 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 9, "rail_y" = 21, "under_x" = 18, "under_y" = 12, "stock_x" = -3, "stock_y" = 16)
 	item_map_variant_flags = NONE
 
-	fire_delay = 20
+	fire_delay = 2 SECONDS
 	scatter_unwielded = 10
 	recoil = 2
 	recoil_unwielded = 4
@@ -810,7 +866,7 @@
 	icon_state = "v51"
 	icon = 'icons/obj/items/guns/shotguns64.dmi'
 	worn_icon_state = "v51"
-	fire_sound = "shotgun_som"
+	fire_sound = SFX_SHOTGUN_SOM
 	dry_fire_sound = 'sound/weapons/guns/fire/v51_empty.ogg'
 	reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
 	hand_reload_sound = 'sound/weapons/guns/interact/v51_load.ogg'
@@ -875,8 +931,8 @@
 /obj/item/weapon/gun/shotgun/micro_grenade
 	name = "\improper VA-61 micro rail launcher"
 	desc = "An in-built railgun designed to fire so called 'micro grenades'. By using railgun technology, the projectile does not need any propellant, helping greatly increase usable space for the payload."
-	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "va61"
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	fire_sound = 'sound/weapons/guns/fire/pred_plasma_shot.ogg'
 	max_chamber_items = 2
 	gun_features_flags = GUN_IS_ATTACHMENT|GUN_AMMO_COUNTER|GUN_ATTACHMENT_FIRE_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_WIELDED_FIRING_ONLY
@@ -890,3 +946,53 @@
 	accuracy_mult = 1.1
 	scatter = 0
 	recoil = 1
+
+// KSG
+
+/obj/item/weapon/gun/shotgun/pump/ksg
+	name = "\improper L12 pump-action shotgun"
+	desc = "A fourteen-round pump action shotgun. A sight to behold. Fires 12 gauge shotgun rounds, it's fourteen-round capacity makes it smooth when clearing rooms. A label on the side says: 'ONLY FOR CQC!!'."
+	icon = 'icons/obj/items/guns/shotguns64.dmi'
+	icon_state = "l12"
+	worn_icon_state = "l12"
+	cock_animation = "l12_pump"
+	fire_sound = 'sound/weapons/guns/fire/shotgun_heavy.ogg'
+	reload_sound = 'sound/weapons/guns/interact/shotgun_cmb_insert.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/trenchgun_pump.ogg'
+	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
+	attachable_allowed = list(
+		/obj/item/attachable/reddot,
+		/obj/item/attachable/gyro,
+		/obj/item/attachable/flashlight,
+		/obj/item/attachable/flashlight/under,
+		/obj/item/attachable/compensator,
+		/obj/item/attachable/scope/mini,
+		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/motiondetector,
+		/obj/item/attachable/verticalgrip,
+	)
+	item_map_variant_flags = NONE
+	attachable_offset = list("muzzle_x" = 45, "muzzle_y" = 19,"rail_x" = 32, "rail_y" = 22, "under_x" = 36, "under_y" = 13, "stock_x" = 0, "stock_y" = 12)
+
+	fire_delay = 2 SECONDS
+	max_chamber_items = 14
+	damage_mult = 0.85
+	accuracy_mult_unwielded = 1
+
+	scatter = 6
+	min_scatter = 4
+	scatter_increase = 8
+	scatter_decay = 3
+	scatter_decay_unwielded = 1
+
+	scatter_unwielded = 10
+	recoil = 0
+	recoil_unwielded = 0
+	cock_delay = 1.2 SECONDS
+	aim_slowdown = 0.55
+
+/obj/item/weapon/gun/shotgun/pump/ksg/standard
+	starting_attachment_types = list(/obj/item/attachable/reddot, /obj/item/attachable/verticalgrip, /obj/item/attachable/compensator,)
+
+/obj/item/weapon/gun/shotgun/pump/ksg/support
+	starting_attachment_types = list(/obj/item/attachable/motiondetector, /obj/item/attachable/flashlight/under, /obj/item/attachable/compensator,)

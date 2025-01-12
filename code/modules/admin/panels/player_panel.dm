@@ -464,6 +464,7 @@
 		<a href='?src=[ref];transform=early_synth;mob=[REF(M)]'>Early_Synth</a> |
 		<a href='?src=[ref];transform=vatborn;mob=[REF(M)]'>Vatborn</a> |
 		<a href='?src=[ref];transform=vatgrown;mob=[REF(M)]'>Vatgrown</a> |
+		<a href='?src=[ref];transform=prototype_supersoldier;mob=[REF(M)]'>Prototype Supersoldier</a> |
 		<a href='?src=[ref];transform=combat_robot;mob=[REF(M)]'>Combat_Robot</a> |
 		<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> |
 		<a href='?src=[ref];transform=moth;mob=[REF(M)]'>Moth</a> |
@@ -484,6 +485,8 @@
 		<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> |
 		<a href='?src=[ref];transform=wraith;mob=[REF(M)]'>Wraith</a> |
 		<a href='?src=[ref];transform=puppeteer;mob=[REF(M)]'>Puppeteer</a> |
+		<a href='?src=[ref];transform=pyrogen;mob=[REF(M)]'>Pyrogen</a> |
+
 		<br> Alien Tier 3:
 		<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
 		<a href='?src=[ref];transform=widow;mob=[REF(M)]'>Widow</a> |

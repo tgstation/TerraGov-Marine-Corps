@@ -8,7 +8,7 @@
 /obj/item/storage/holster
 	name = "holster"
 	desc = "Holds stuff, and sometimes goes swoosh."
-	icon_state = "backpack"
+	icon = 'icons/obj/items/storage/holster.dmi'
 	w_class = WEIGHT_CLASS_BULKY
 	equip_slot_flags = ITEM_SLOT_BACK
 	storage_type = /datum/storage/holster
@@ -91,6 +91,7 @@
 /obj/item/storage/holster/backholster
 	name = "backpack holster"
 	desc = "You wear this on your back and put items into it. Usually one special item too."
+	icon = 'icons/obj/items/storage/backholster.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
@@ -310,6 +311,10 @@
 	var/obj/item/new_item = new /obj/item/weapon/sword/machete(src)
 	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
 
+/obj/item/storage/holster/blade/machete/full_alt/PopulateContents()
+	var/obj/item/new_item = new /obj/item/weapon/sword/machete/alt(src)
+	INVOKE_ASYNC(storage_datum, TYPE_PROC_REF(/datum/storage, handle_item_insertion), new_item)
+
 /obj/item/storage/holster/blade/machete/full_harvester
 	name = "H5 Pattern M2132 harvester scabbard"
 
@@ -377,7 +382,6 @@
 	icon_state = "t35_holster"
 	holsterable_allowed = list(/obj/item/weapon/gun/shotgun/pump/t35)
 
-
 /obj/item/storage/holster/t35/full/Initialize(mapload)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(
@@ -392,14 +396,13 @@
 	name = "\improper M276 pattern M25 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the M25 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "m25_holster"
-	icon = 'icons/obj/clothing/belts.dmi'
 	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/smg/m25,
 		/obj/item/weapon/gun/smg/m25/holstered,
 	)
 
-/obj/item/storage/holster/m25/full/Initialize(mapload)
+/obj/item/storage/holster/m25/Initialize(mapload)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(/obj/item/weapon/gun/smg/m25))
 
@@ -411,7 +414,6 @@
 	name = "\improper M276 pattern MP-19 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version is designed for the MP-19 SMG, and features a larger frame to support the gun. Due to its unorthodox design, it isn't a very common sight, and is only specially issued."
 	icon_state = "t19_holster"
-	icon = 'icons/obj/clothing/belts.dmi'
 	equip_slot_flags = ITEM_SLOT_BELT
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/smg/standard_machinepistol,
@@ -428,7 +430,7 @@
 	name = "flare pouch"
 	desc = "A pouch designed to hold flares and a single flaregun. Refillable with a M94 flare pack."
 	equip_slot_flags = ITEM_SLOT_POCKET
-	icon = 'icons/Marine/marine-pouches.dmi'
+	icon = 'icons/obj/clothing/pouches.dmi'
 	icon_state = "flare"
 	holsterable_allowed = list(/obj/item/weapon/gun/grenade_launcher/single_shot/flare/marine)
 	storage_type = /datum/storage/holster/flarepouch
@@ -456,6 +458,7 @@
 	name = "\improper ML-41 scabbard (10x26mm)"
 	desc = "A backpack holster allowing the storage of any a ML-41 Assault Machinegun, also carries ammo for the other portion of the system."
 	icon_state = "icc_bagmg"
+	icon = 'icons/obj/items/storage/backholster.dmi'
 	holsterable_allowed = list(
 		/obj/item/weapon/gun/rifle/icc_mg,
 	)
@@ -474,7 +477,6 @@
 /obj/item/storage/holster/belt
 	name = "pistol belt"
 	desc = "A belt-holster assembly that allows one to hold a pistol and two magazines."
-	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "m4a3_holster"
 	equip_slot_flags = ITEM_SLOT_BELT
 	item_flags = HAS_UNDERLAY
@@ -497,16 +499,6 @@
 /obj/item/storage/holster/belt/pistol/m4a3
 	name = "\improper M4A3 holster rig"
 	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun. It also contains side pouches that can store 9mm or .45 magazines."
-
-/obj/item/storage/holster/belt/pistol/m4a3/full/Initialize(mapload)
-	. = ..()
-	storage_datum.set_holdable(can_hold_list = list(
-		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/cell/lasgun/lasrifle,
-		/obj/item/cell/lasgun/plasma,
-	))
 
 /obj/item/storage/holster/belt/pistol/m4a3/full/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
@@ -573,7 +565,7 @@
 	desc = "A belt with origins dating back to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
 
-/obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)
+/obj/item/storage/holster/belt/pistol/m4a3/som/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
@@ -613,13 +605,6 @@
 /obj/item/storage/holster/belt/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
-
-/obj/item/storage/holster/belt/pistol/stand/Initialize(mapload, ...)
-	. = ..()
-	storage_datum.set_holdable(can_hold_list = list(
-		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol,
-	))
 
 /obj/item/storage/holster/belt/pistol/standard_pistol
 	name = "\improper T457 pattern pistol holster rig"
@@ -741,7 +726,7 @@
 
 /obj/item/storage/holster/belt/pistol/smart_pistol
 	name = "\improper SP-13 holster rig"
-	desc = "A holster belt, which holds SP-13 smartpistol and magazines for it."
+	desc = "A holster belt, which holds SP-13 smart machinepistol and magazines for it."
 
 /obj/item/storage/holster/belt/pistol/smart_pistol/full/Initialize(mapload)
 	. = ..()

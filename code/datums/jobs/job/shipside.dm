@@ -365,7 +365,7 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 	belt = /obj/item/storage/belt/utility/full
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
+	wear_suit = /obj/item/clothing/suit/storage/marine/pilot
 	shoes = /obj/item/clothing/shoes/marine/full
 	gloves = /obj/item/clothing/gloves/marine/insulated
 	glasses = /obj/item/clothing/glasses/welding/superior
@@ -447,9 +447,9 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	belt = /obj/item/storage/holster/belt/pistol/m4a3/vp70
 	ears = /obj/item/radio/headset/mainship/mcom
 	w_uniform = /obj/item/clothing/under/marine/officer/pilot
-	wear_suit = /obj/item/clothing/suit/modular/xenonauten/pilot
+	wear_suit = /obj/item/clothing/suit/storage/marine/pilot
 	shoes = /obj/item/clothing/shoes/marine/full
-	gloves = /obj/item/clothing/gloves/insulated
+	gloves = /obj/item/clothing/gloves/marine/insulated
 	glasses = /obj/item/clothing/glasses/sunglasses/aviator
 	head = /obj/item/clothing/head/helmet/marine/pilot
 	r_store = /obj/item/storage/pouch/general/large
@@ -994,7 +994,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
 	r_store = /obj/item/storage/pouch/surgery
-	l_store = /obj/item/storage/pouch/medkit/medic
+	l_store = /obj/item/storage/pouch/medkit/doctor
 
 
 /datum/outfit/job/medical/professor/robot
@@ -1084,7 +1084,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
 	r_store = /obj/item/storage/pouch/surgery
-	l_store = /obj/item/storage/pouch/medkit/medic
+	l_store = /obj/item/storage/pouch/medkit/doctor
 
 
 /datum/outfit/job/medical/medicalofficer/robot
@@ -1178,7 +1178,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	r_store = /obj/item/storage/pouch/surgery
-	l_store = /obj/item/storage/pouch/medkit/medic
+	l_store = /obj/item/storage/pouch/medkit/doctor
 
 
 /datum/outfit/job/medical/researcher/robot

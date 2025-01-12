@@ -8,9 +8,9 @@
 
 	/* Health and life related vars */
 	/// Maximum health that should be possible.
-	var/maxHealth = 100
+	var/maxHealth = LIVING_DEFAULT_MAX_HEALTH
 	/// Mob's current health
-	var/health = 100
+	var/health = LIVING_DEFAULT_MAX_HEALTH
 	/// Health at which a mob dies
 	var/health_threshold_dead = -100
 	/// Health at which a mob goes into crit
@@ -153,3 +153,5 @@
 	var/time_entered_stasis = 0
 	///The world.time of when this mob entered a cryo tube
 	var/time_entered_cryo = 0
+	///The z level this mob is currently registered in
+	var/registered_z = null

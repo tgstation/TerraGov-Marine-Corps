@@ -25,7 +25,6 @@
 	var/merge_type // This path and its children should merge with this stack, defaults to src.type
 	var/number_of_extra_variants = 0 //Determines whether the item should update it's sprites based on amount.
 
-
 /obj/item/stack/Initialize(mapload, new_amount)
 	. = ..()
 	if(new_amount)
@@ -87,16 +86,15 @@
 	number.maptext = MAPTEXT(amount)
 	. += number
 
-
 /obj/item/stack/Destroy()
 	if(usr && usr.interactee == src)
 		usr << browse(null, "window=stack")
 	return ..()
 
-
 /obj/item/stack/examine(mob/user)
 	. = ..()
 	if(amount > 1)
+		. += EXAMINE_SECTION_BREAK
 		. += "There are [amount] [singular_name]\s in the [stack_name]."
 
 /obj/item/stack/equipped(mob/user, slot)
@@ -117,7 +115,7 @@
 	if(.)
 		return
 
-	if(!recipes)
+	if(!recipes || recipes?.len <= 1)
 		return
 
 	if(QDELETED(src) || get_amount() <= 0)
@@ -229,11 +227,15 @@
 			return
 		T.PlaceOnTop(R.result_type)
 	else
-		O = new R.result_type(get_turf(user))
+		O = new R.result_type(get_turf(user), user)
 	if(O)
 		O.setDir(user.dir)
 		O.color = color
 	use(R.req_amount * multiplier)
+
+	if(isitemstack(O))
+		var/obj/item/stack/stack = O
+		stack.merge_with_stack_in_hands(user)
 
 	if(QDELETED(O))
 		return //It's a stack and has already been merged
@@ -266,18 +268,18 @@
 			return FALSE
 
 	if(recipe.crafting_flags & CRAFT_ON_SOLID_GROUND)
-		if(isclosedturf(dest_turf))
+		if(!isopenturf(dest_turf))
 			builder.balloon_alert(builder, "cannot be made on a wall!")
 			return FALSE
-
-		if(is_type_in_typecache(dest_turf, GLOB.turfs_without_ground))
-			builder.balloon_alert(builder, "must be made on solid ground!")
+		var/turf/open/open_turf = dest_turf
+		if(!open_turf.allow_construction)
+			builder.balloon_alert(builder, "cant build here!")
 			return FALSE
 
-		var/area/area = get_area(dest_turf)
-		if(area.area_flags & NO_CONSTRUCTION)
-			builder.balloon_alert(builder, "cannot be made in this area!")
-			return FALSE
+	var/area/area = get_area(dest_turf)
+	if(area.area_flags & NO_CONSTRUCTION)
+		builder.balloon_alert(builder, "cannot be made in this area!")
+		return FALSE
 
 	if(recipe.crafting_flags & CRAFT_CHECK_DENSITY)
 		for(var/obj/object in dest_turf)
@@ -398,6 +400,21 @@
 /// Proc for special actions and radial menus on subtypes. Returning FALSE cancels the recipe menu for a stack.
 /obj/item/stack/proc/select_radial(mob/user)
 	return TRUE
+
+/**
+	Merges stack into the one that user is currently holding in their left or right hand.
+	Returns TRUE if the stack was merged, FALSE otherwise.
+*/
+/obj/item/stack/proc/merge_with_stack_in_hands(mob/user)
+	var/obj/item/stack/stack_in_hands = null
+	if(istype(user.l_hand, merge_type))
+		stack_in_hands = user.l_hand
+	else if(istype(user.r_hand, merge_type))
+		stack_in_hands = user.r_hand
+	if(stack_in_hands && merge(stack_in_hands))
+		return TRUE
+	return FALSE
+
 
 #undef STACK_CHECK_CARDINALS
 #undef STACK_CHECK_ADJACENT

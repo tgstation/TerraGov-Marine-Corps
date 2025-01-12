@@ -269,7 +269,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	worn_icon_state = "svd"
 	max_shells = 10 //codex
 	caliber = CALIBER_762X54 //codex
-	fire_sound = "svd_fire"
+	fire_sound = SFX_SVD_FIRE
 	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/svd_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/svd_reload.ogg'
@@ -363,12 +363,12 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 
 	fire_delay = 0.4 SECONDS
 	burst_amount = 1
-	accuracy_mult = 1.2
+	accuracy_mult = 1.1
 	scatter = -3
 
 /obj/item/weapon/gun/rifle/tx8/scout
 	starting_attachment_types = list(
-		/obj/item/attachable/reddot,
+		/obj/item/attachable/magnetic_harness,
 		/obj/item/attachable/extended_barrel,
 		/obj/item/attachable/verticalgrip,
 	)
@@ -395,7 +395,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	reload_sound = 'sound/weapons/guns/interact/minigun_reload.ogg'
 	cocked_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	default_ammo_type = null
-	allowed_ammo_types = list(/obj/item/ammo_magazine/minigun_powerpack)
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/minigun_powerpack,
+		/obj/item/ammo_magazine/minigun_powerpack/fancy,
+		/obj/item/ammo_magazine/minigun_powerpack/merc,
+		)
 	w_class = WEIGHT_CLASS_HUGE
 	force = 20
 	wield_delay = 1.2 SECONDS
@@ -405,7 +409,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 	attachable_allowed = list(/obj/item/attachable/flashlight, /obj/item/attachable/magnetic_harness)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 12)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 12
 
@@ -507,7 +510,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	max_shells = 100 //codex
 	caliber = CALIBER_PEPPERBALL
-	fire_sound = "gun_fb12" // idk why i called it "fb-12", ah too late now
+	fire_sound = SFX_GUN_FB12 // idk why i called it "fb-12", ah too late now
 	default_ammo_type = /obj/item/ammo_magazine/rifle/pepperball
 	allowed_ammo_types = list(/obj/item/ammo_magazine/rifle/pepperball)
 	force = 30 // two shots weeds as it has no bayonet
@@ -522,7 +525,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	starting_attachment_types = list(/obj/item/weapon/gun/flamer/hydro_cannon/pepperball)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.1 SECONDS
 	aim_speed_modifier = 0.1
 
@@ -541,8 +543,6 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	name = "coaxial watercannon"
 	desc = "For the quenching of unfortunate mistakes."
 	icon_state = "hydrocannon_pepper"
-
-
 
 /obj/item/weapon/gun/rifle/pepperball/pepperball_mini
 	name = "mini pepperball gun"
@@ -812,7 +812,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 	fire_delay = 1 SECONDS
-	scatter = -100
+	scatter = -10
 
 /obj/item/weapon/gun/launcher/rocket/recoillessrifle/low_impact
 	default_ammo_type = /obj/item/ammo_magazine/rocket/recoilless/low_impact
@@ -885,6 +885,11 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		else if (src == human_user.r_hand)
 			human_user.update_inv_r_hand()
 
+/obj/item/weapon/gun/launcher/rocket/oneuse/anti_tank
+	desc = "This is the premier disposable rocket launcher used throughout the galaxy, it cannot be reloaded or unloaded on the field. This one fires an 84mm AT rocket. Spacebar to shorten or extend it to make it storeable or fireable, respectively."
+	default_ammo_type = /obj/item/ammo_magazine/rocket/oneuse/anti_tank
+	allowed_ammo_types = list(/obj/item/ammo_magazine/rocket/oneuse/anti_tank)
+
 //SOM RPG
 /obj/item/weapon/gun/launcher/rocket/som
 	name = "\improper V-71 rocket launcher"
@@ -909,7 +914,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list()
 	reload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
 	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
-	fire_sound = "rpg_fire"
+	fire_sound = SFX_RPG_FIRE
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
@@ -952,7 +957,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	attachable_allowed = list()
 	reload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
 	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
-	fire_sound = "rpg_fire"
+	fire_sound = SFX_RPG_FIRE
 
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
@@ -965,6 +970,48 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	if(!.)
 		return FALSE
 	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/icc/thermobaric))
+		gun_user?.record_war_crime()
+
+//VSD RPG
+/obj/item/weapon/gun/launcher/rocket/vsd
+	name = "\improper C153 shoulder launcher"
+	desc = "An Anti-personnel Rocket Launcher made by Crash Core. Used mainly by V.S.D specialists, it can fire three specialized rounds. High Explosive, Incendiary Explosive, and a Chemical Capped High Explosive."
+	icon = 'icons/obj/items/guns/special64.dmi'
+	icon_state = "c153"
+	worn_icon_state = "c153"
+	worn_icon_list = list(
+		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_64.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_64.dmi',
+	)
+	inhand_x_dimension = 64
+	inhand_y_dimension = 32
+	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER|GUN_SHOWS_LOADED|GUN_SMOKE_PARTICLES
+	caliber = CALIBER_84MM //codex
+	load_method = MAGAZINE //codex
+	default_ammo_type = /obj/item/ammo_magazine/rocket/vsd/he
+	allowed_ammo_types = list(
+		/obj/item/ammo_magazine/rocket/vsd/he,
+		/obj/item/ammo_magazine/rocket/vsd/incendiary,
+		/obj/item/ammo_magazine/rocket/vsd/chemical,
+	)
+	wield_delay = 1 SECONDS
+	aim_slowdown = 1
+	attachable_allowed = list()
+	reload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
+	unload_sound = 'sound/weapons/guns/interact/rpg_load.ogg'
+	fire_sound = "rpg_fire"
+
+	attachable_offset = list("muzzle_x" = 53, "muzzle_y" = 20, "rail_x" = 44, "rail_y" = 21, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+
+	windup_delay = 0.6 SECONDS
+	scatter = -1
+	movement_acc_penalty_mult = 5 //You shouldn't fire this on the move
+
+/obj/item/weapon/gun/launcher/rocket/vsd/do_fire(obj/object_to_fire)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(istype(in_chamber, /obj/item/ammo_magazine/rocket/vsd/incendiary))
 		gun_user?.record_war_crime()
 
 //-------------------------------------------------------
@@ -980,7 +1027,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 		slot_l_hand_str = 'icons/mob/inhands/guns/special_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/special_right_1.dmi',
 	)
-	max_shells = 3 //codex
+	max_shells = 1 //codex
 	caliber = CALIBER_RAILGUN
 	fire_sound = 'sound/weapons/guns/fire/railgun.ogg'
 	fire_rattle = 'sound/weapons/guns/fire/railgun.ogg'
@@ -1004,7 +1051,7 @@ Note that this means that snipers will have a slowdown of 3, due to the scope
 	gun_features_flags = GUN_WIELDED_FIRING_ONLY|GUN_WIELDED_STABLE_FIRING_ONLY|GUN_AMMO_COUNTER
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT|AMMO_RECIEVER_CYCLE_ONLY_BEFORE_FIRE
 
-	fire_delay = 3 SECONDS
+	fire_delay = 2 SECONDS
 	burst_amount = 1
 	accuracy_mult = 2
 	recoil = 3

@@ -93,27 +93,27 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	///Base fire stacks added on hit if the projectile has AMMO_INCENDIARY
 	var/incendiary_strength = 10
 
-/datum/ammo/proc/do_at_max_range(turf/T, obj/projectile/proj)
+/datum/ammo/proc/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	return
 
 ///Does it do something special when shield blocked? Ie. a flare or grenade that still blows up.
-/datum/ammo/proc/on_shield_block(mob/M, obj/projectile/proj)
+/datum/ammo/proc/on_shield_block(mob/target_mob, obj/projectile/proj)
 	return
 
 ///Special effects when hitting dense turfs.
-/datum/ammo/proc/on_hit_turf(turf/T, obj/projectile/proj)
+/datum/ammo/proc/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	return
 
 ///Special effects when hitting mobs.
-/datum/ammo/proc/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/proc/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	return
 
 ///Special effects when hitting objects.
-/datum/ammo/proc/on_hit_obj(obj/O, obj/projectile/proj)
+/datum/ammo/proc/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	return
 
 ///Special effects for leaving a turf. Only called if the projectile has AMMO_LEAVE_TURF enabled
-/datum/ammo/proc/on_leave_turf(turf/T, obj/projectile/proj)
+/datum/ammo/proc/on_leave_turf(turf/target_turf, obj/projectile/proj)
 	return
 
 ///Handles CC application on the victim
@@ -161,7 +161,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			if(isxeno(victim))
 				impact_message += span_xenodanger("The blast knocks you off your feet!")
 			else
-				impact_message += span_highdanger("The blast knocks you off your feet!")
+				impact_message += span_userdanger("The blast knocks you off your feet!")
 			victim.knockback(proj, knockback, 5)
 
 	//Check for and apply soft CC
@@ -192,7 +192,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		if(proj.firer == victim)
 			continue
 		victim.visible_message(span_danger("[victim] is hit by backlash from \a [proj.name]!"),
-			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_highdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
+			isxeno(victim) ? span_xenodanger("We are hit by backlash from \a </b>[proj.name]</b>!") : span_userdanger("You are hit by backlash from \a </b>[proj.name]</b>!"))
 		victim.apply_damage(proj.damage * airburst_multiplier, proj.ammo.damage_type, blocked = armor_type, updating_health = TRUE)
 
 ///handles the probability of a projectile hit to trigger fire_burst, based off actual damage done
@@ -206,7 +206,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	var/deflagrate_chance = victim.modify_by_armor(proj.damage - (proj.distance_travelled * proj.damage_falloff), FIRE, proj.penetration) * deflagrate_multiplier
 	if(prob(deflagrate_chance))
 		new /obj/effect/temp_visual/shockwave(get_turf(victim), 2)
-		playsound(target, "incendiary_explosion", 40)
+		playsound(target, SFX_INCENDIARY_EXPLOSION, 40)
 		fire_burst(target, proj)
 
 ///the actual fireblast triggered by deflagrate
@@ -218,7 +218,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			victim.visible_message(span_danger("[victim] bursts into flames as they are deflagrated by \a [proj.name]!"))
 		else
 			victim.visible_message(span_danger("[victim] is scorched by [target] as they burst into flames!"),
-				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_highdanger("you are scorched by [target] as they burst into flames!"))
+				isxeno(victim) ? span_xenodanger("We are scorched by [target] as they burst into flames!") : span_userdanger("you are scorched by [target] as they burst into flames!"))
 		//Damages the victims, inflicts brief stagger+slow, and ignites
 		victim.apply_damage(fire_burst_damage, BURN, blocked = FIRE, updating_health = TRUE)
 
@@ -258,7 +258,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		new_proj.fire_at(target, shooter, source, range, speed, new_angle, TRUE, loc_override = origin_override)
 
 ///A variant of Fire_bonus_projectiles without fixed scatter and no link between gun and bonus_projectile accuracy
-/datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, mob/living/shooter, atom/source, projectile_amount, range, speed, angle, target)
+/datum/ammo/proc/fire_directionalburst(obj/projectile/main_proj, mob/living/shooter, atom/source, projectile_amount, angle, target, loc_override)
 	var/effect_icon = ""
 	var/proj_type = /obj/projectile
 	if(istype(main_proj, /obj/projectile/hitscan))
@@ -266,7 +266,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 		var/obj/projectile/hitscan/main_proj_hitscan = main_proj
 		effect_icon = main_proj_hitscan.effect_icon
 	for(var/i = 1 to projectile_amount) //Want to run this for the number of bonus projectiles.
-		var/obj/projectile/new_proj = new proj_type(main_proj.loc, effect_icon)
+		var/obj/projectile/new_proj = new proj_type(loc_override ? loc_override : main_proj.loc, effect_icon)
 		if(bonus_projectiles_type)
 			new_proj.generate_bullet(bonus_projectiles_type)
 		else //If no bonus type is defined then the extra projectiles are the same as the main one.
@@ -283,7 +283,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			new_angle += 360
 		if(new_angle > 360)
 			new_angle -= 360
-		new_proj.fire_at(target, shooter, main_proj.loc, range, speed, new_angle, TRUE)
+		new_proj.fire_at(target, shooter, loc_override ? loc_override : main_proj.loc, null, null, new_angle, TRUE, scan_loc = TRUE)
 
 /datum/ammo/proc/drop_flame(turf/T)
 	if(!istype(T))
@@ -343,10 +343,10 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	name = "default bullet"
 	icon_state = "bullet"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	sound_hit 	 = "ballistic_hit"
-	sound_armor = "ballistic_armor"
-	sound_miss	 = "ballistic_miss"
-	sound_bounce = "ballistic_bounce"
+	sound_hit = SFX_BALLISTIC_HIT
+	sound_armor = SFX_BALLISTIC_ARMOR
+	sound_miss = SFX_BALLISTIC_MISS
+	sound_bounce = SFX_BALLISTIC_BOUNCE
 	point_blank_range = 2
 	accurate_range_min = 0
 	shell_speed = 3
@@ -354,3 +354,4 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	shrapnel_chance = 10
 	bullet_color = COLOR_VERY_SOFT_YELLOW
 	barricade_clear_distance = 2
+

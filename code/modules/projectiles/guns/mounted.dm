@@ -2,8 +2,8 @@
 /obj/item/storage/box/hsg_102
 	name = "\improper HSG-102 crate"
 	desc = "A large and rusted metal case. It has not seen much use. Written in faded letters on its top, it says, \"This is a HSG-102 heavy smartgun\". There are many other warning labels atop that are too faded to read."
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "crate"
+	icon = 'icons/obj/items/ammo/machinegun.dmi'
+	icon_state = "hsg102_crate"
 	w_class = WEIGHT_CLASS_HUGE
 
 /obj/item/storage/box/hsg_102/Initialize(mapload)
@@ -25,7 +25,7 @@
 
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
+	icon = 'icons/obj/machines/deployable/heavy_smartgun.dmi'
 	icon_state = "turret"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
@@ -75,7 +75,6 @@
 /obj/item/weapon/gun/hsg_102/hsg_nest
 	name = "\improper HSG-102 heavy smartgun nest"
 	desc = "A HSG-102 heavy smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.</span>"
-	icon = 'icons/Marine/marine-hmg.dmi'
 	icon_state = "entrenched"
 
 	default_ammo_type = /obj/item/ammo_magazine/hsg_102/hsg_nest
@@ -104,7 +103,7 @@
 
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
+	icon = 'icons/obj/machines/deployable/minigun.dmi'
 	icon_state = "minigun"
 	caliber = CALIBER_762X51
 
@@ -122,7 +121,6 @@
 	item_flags = IS_DEPLOYABLE|TWOHANDED
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_time = 2 SECONDS
 	aim_fire_delay = 0.05 SECONDS
 
@@ -143,7 +141,7 @@
 /obj/item/weapon/gun/standard_minigun/nest
 	name = "\improper MG-2005 mounted minigun nest"
 	desc = "A MG-2005 mounted minigun mounted upon a small reinforced post with sandbags."
-	icon = 'icons/Marine/marine-hmg.dmi'
+	icon = 'icons/obj/machines/deployable/minigun.dmi'
 	icon_state = "minigun_nest"
 
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
@@ -162,13 +160,13 @@
 	desc = "The ATR-22 is a recoiling barrel 20mm autocannon, created to be used against low flying targets, it is however able to engage ground targets at medium ranges with extreme efficency even if the recoil makes it near impossible to hit anything close by, its bullets will shred hard targets such as armored foes or walls. Both barrels can be fired at the same time rather than in sequence, but will incur large scatter penalties do so."
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-ac.dmi'
-	icon_state = "autocannon"
+	icon = 'icons/obj/machines/deployable/atr22.dmi'
+	icon_state = "atr22"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/guns/misc_right_1.dmi',
 	)
-	fire_sound = "ac_fire"
+	fire_sound = SFX_AC_FIRE
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 
 	default_ammo_type = /obj/item/ammo_magazine/auto_cannon
@@ -182,7 +180,7 @@
 	extra_delay = 1.5 SECONDS
 
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_IFF|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_BURSTFIRE, GUN_FIREMODE_AUTOBURST)
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
@@ -213,8 +211,8 @@
 
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "heavylaser_deployed"
+	icon = 'icons/obj/machines/deployable/heavy_laser.dmi'
+	icon_state = "heavylaser"
 
 	fire_sound = 'sound/weapons/guns/fire/tank_flamethrower.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
@@ -227,7 +225,7 @@
 	fire_delay = 0.7 SECONDS
 
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
-	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES|GUN_AMMO_COUNT_BY_SHOTS_REMAINING
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
@@ -282,7 +280,6 @@
 	radial_icon_state = "laser_ricochet"
 	description = "Fires an experiment laser pulse capable of bouncing off many wall surfaces. The laser increases in potency when bouncing, before collapsing entirely after exceeding its threshold."
 
-
 /obj/item/weapon/gun/energy/lasgun/lasrifle/heavy_laser/deployable
 	icon_state = "heavylaser_deployable"
 	item_flags = IS_DEPLOYABLE|TWOHANDED
@@ -296,7 +293,7 @@
 
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-fkgun.dmi'
+	icon = 'icons/obj/machines/deployable/fk88.dmi'
 	icon_state = "isg"
 	fire_sound = 'sound/weapons/guns/fire/tank_cannon1.ogg'
 	reload_sound = 'sound/weapons/guns/interact/tat36_reload.ogg'
@@ -314,9 +311,9 @@
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
 
-	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
+	attachable_allowed = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
-	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/hsg_102/nest)
+	starting_attachment_types = list(/obj/item/attachable/scope/unremovable/standard_atgun)
 
 	allowed_ammo_types = list(
 		/obj/item/ammo_magazine/heavy_isg/he,
@@ -341,7 +338,6 @@
 /obj/item/weapon/gun/hsg_102/death
 	name = "\improper \"Death incarnate\" heavy machine gun"
 	desc = "It looks like a regular HSG-102, however glowing archaeic writing glows faintly on its sides and top. It beckons for blood."
-	icon = 'icons/Marine/marine-hmg.dmi'
 
 	aim_slowdown = 3
 	scatter = 30
@@ -363,7 +359,7 @@
 	desc = "An absolute monster of a weapon, this is a watercooled heavy machinegun modernized by some crazy armorer with a wheeling kit included. Considering the mish mash of parts for the wheeling kit, you think its from another model of the gun. The pinnacle at holding a chokepoint. Holds 500 rounds of 10x28mm caseless in a box case. IS NOT IFF CAPABLE. Aiming carefully recommended. Can be repaired with a blowtorch once deployed. Alt Right click to unanchor and reanchor it."
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
-	icon = 'icons/Marine/marine-hmg.dmi'
+	icon = 'icons/obj/machines/deployable/mg08.dmi'
 	icon_state = "mg08"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
@@ -413,7 +409,7 @@
 	desc = "The MG-27 is the SG-29s aging IFF-less cousin, made for rapid accurate machinegun fire in a short amount of time, you could use it while standing, not a great idea. Use the tripod for actual combat. It uses 10x27mm boxes."
 	equip_slot_flags = ITEM_SLOT_BACK
 	w_class = WEIGHT_CLASS_BULKY
-	icon = 'icons/Marine/marine-mmg.dmi'
+	icon = 'icons/obj/machines/deployable/mounted_machinegun.dmi'
 	icon_state = "t27"
 	worn_icon_state = "t27"
 	worn_icon_list = list(
@@ -454,7 +450,6 @@
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	deployable_item = /obj/machinery/deployable/mounted
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.05 SECONDS
 	aim_speed_modifier = 5
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
@@ -480,7 +475,7 @@
 	name = "\improper PTR-41/1785 anti-mech gun"
 	desc = "The PTR-41/1785 is a bottom shelf solution modernized for dealing with armor, while one could use it while standing it is obviously not a great idea. It is recommended to be used while the bipod is deployed. It uses 14.5mm high velocity rounds that will certainly leave a hole in whatever unfortunate soul is hit by it."
 	w_class = WEIGHT_CLASS_BULKY
-	icon = 'icons/Marine/clf_heavyrifle.dmi'
+	icon = 'icons/obj/machines/deployable/clf_heavyrifle.dmi'
 	icon_state = "ptrs"
 	worn_icon_state = "ptrs"
 	worn_icon_list = list(
@@ -542,9 +537,9 @@
 	name = "\improper AT-36 anti tank gun"
 	desc = "The AT-36 is a light dual purpose anti tank and anti personnel weapon used by the TGMC. Used for light vehicle or bunker busting on a short notice. Best used by two people. It can move around with wheels, and has an ammo rack intergral to the weapon. CANNOT BE UNDEPLOYED ONCE DEPLOYED! It uses several types of 37mm shells boxes. Alt-right click on it to anchor it so that it cannot be moved by anyone, then alt-right click again to move it."
 	w_class = WEIGHT_CLASS_BULKY
-	icon = 'icons/Marine/marine-atgun.dmi'
-	icon_state = "tat36"
-	worn_icon_state = "tat36"
+	icon = 'icons/obj/machines/deployable/at36.dmi'
+	icon_state = "at36"
+	worn_icon_state = "at36"
 	caliber = CALIBER_37MM // codex
 	max_shells = 1 //codex
 	fire_sound = 'sound/weapons/guns/fire/tat36.ogg'
@@ -565,7 +560,6 @@
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 
 	gun_firemode_list = list(GUN_FIREMODE_SEMIAUTO)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_time = 6 SECONDS
 	reciever_flags = AMMO_RECIEVER_MAGAZINES|AMMO_RECIEVER_AUTO_EJECT
 	soft_armor = list(MELEE = 60, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 100, FIRE = 0, ACID = 0)
@@ -640,19 +634,19 @@
 
 /obj/item/weapon/gun/standard_agls
 	name = "\improper AGLS-37 Kauser automatic grenade launcher"
-	desc = "The AGLS-37 automatic grenade launching IFF capable system, it's too heavy to be wielded or operated without the tripod. On the back, it reads: \"The Explosions and Fragmentation from this weapon ARE NOT friendly fire capable. Kauser is not obligated to buy you new body parts for you or your friends if you lose them.\"\nCan be deployed with Crtl-Click. Can be repaired with a blowtorch once deployed."
+	desc = "The AGLS-37 automatic grenade launching system. It's too heavy to be wielded or operated without the tripod. On the back, it reads: \"Kauser is not obligated to buy you new body parts for you or your friends if you lose them.\"\nCan be deployed with Crtl-Click. Can be repaired with a blowtorch once deployed."
 	w_class = WEIGHT_CLASS_HUGE
 	equip_slot_flags = ITEM_SLOT_BACK
 	caliber = CALIBER_40MM
-	icon = 'icons/Marine/marine-hmg.dmi'
-	icon_state = "ags"
-	fire_sound = 'sound/weapons/guns/fire/ags.ogg'
+	icon = 'icons/obj/machines/deployable/agls.dmi'
+	icon_state = "agls"
+	fire_sound = 'sound/weapons/guns/fire/agls.ogg'
 	reload_sound = 'sound/weapons/guns/interact/minigun_cocked.ogg'
 	default_ammo_type = /obj/item/ammo_magazine/standard_agls
 	scatter = 0
 	fire_delay = 1.1 SECONDS
 	burst_amount = 0
-	accuracy_mult = 1.2 //it's got a bipod
+	accuracy_mult = 1.2
 	item_flags = IS_DEPLOYABLE|TWOHANDED
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
@@ -671,7 +665,6 @@
 		/obj/item/ammo_magazine/standard_agls/incendiary,
 		/obj/item/ammo_magazine/standard_agls/flare,
 		/obj/item/ammo_magazine/standard_agls/cloak,
-		/obj/item/ammo_magazine/standard_agls/tanglefoot,
 	)
 
 	deploy_time = 6 SECONDS
@@ -689,13 +682,12 @@
 	if(istype(in_chamber, /obj/item/ammo_magazine/standard_agls/incendiary))
 		gun_user?.record_war_crime()
 
-
 // Non-TGMC HMG
 
 /obj/item/weapon/gun/icc_hmg
 	name = "\improper KRD-61ES mounted heavy machinegun"
 	desc = "The KRD-61ES machinegun is the export variant of the ML-91 HMG. It's too heavy to be wielded or operated without the tripod. No extra work required, just deploy it with Ctrl-Click. Can be repaired with a blowtorch once deployed."
-	icon = 'icons/Marine/marine-mmg.dmi'
+	icon = 'icons/obj/machines/deployable/mounted_machinegun.dmi'
 	icon_state = "kord"
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/guns/misc_left_1.dmi',
@@ -722,7 +714,6 @@
 	item_flags = IS_DEPLOYABLE|TWOHANDED
 	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_SMOKE_PARTICLES
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
-	actions_types = list(/datum/action/item_action/aim_mode)
 	aim_fire_delay = 0.05 SECONDS
 	aim_speed_modifier = 5
 

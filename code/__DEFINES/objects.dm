@@ -202,9 +202,8 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 //Item sprite variants
 #define ITEM_JUNGLE_VARIANT (1<<0)
 #define ITEM_ICE_VARIANT (1<<1)
-#define ITEM_ICE_PROTECTION (1<<2)
-#define ITEM_PRISON_VARIANT (1<<3)
-#define ITEM_DESERT_VARIANT (1<<4)
+#define ITEM_PRISON_VARIANT (1<<2)
+#define ITEM_DESERT_VARIANT (1<<3)
 
 #define ITEM_UNEQUIP_FAIL 0
 #define ITEM_UNEQUIP_DROPPED 1
@@ -272,3 +271,11 @@ GLOBAL_LIST_INIT(restricted_camera_networks, list( //Those networks can only be 
 
 ///Burn level applied by lava if it calls fire_act
 #define LAVA_BURN_LEVEL 60
+
+///Rods needed to build a catwalk
+#define CATWALK_ROD_REQ 4
+///Rods needed to reinforce a floor
+#define REINFORCED_FLOOR_ROD_REQ 2
+
+///Amount of fire stacks removed by extinguishers or similar effects
+#define EXTINGUISH_AMOUNT 20

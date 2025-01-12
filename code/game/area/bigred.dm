@@ -55,6 +55,7 @@
 /area/bigredv2/caves/rock
 	name = "Enclosed Area"
 	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/caves/north
 	name = "Northern Caves"
@@ -247,6 +248,7 @@
 	icon_state = "ass_line"
 	ceiling = CEILING_UNDERGROUND_METAL
 	outside = FALSE
+	area_flags = CANNOT_NUKE
 
 /area/bigredv2/outside/engineering
 	name = "West Engineering Complex"

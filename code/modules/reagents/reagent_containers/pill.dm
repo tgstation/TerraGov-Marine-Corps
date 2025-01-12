@@ -9,7 +9,7 @@
 	worn_icon_state = "pill"
 	possible_transfer_amounts = null
 	amount_per_transfer_from_this = 15
-	init_reagent_flags = AMOUNT_SKILLCHECK
+	reagent_flags = AMOUNT_SKILLCHECK
 	w_class = WEIGHT_CLASS_TINY
 	volume = 60
 	attack_speed = 1 //War against input locking while pill munching
@@ -34,7 +34,7 @@
 				to_chat(H, span_warning("You can't eat pills."))
 				return
 
-		to_chat(M, span_notice("You swallow [src]."))
+		to_chat(M, span_green("You swallow [src]."))
 		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
 			record_reagent_consumption(reagents.total_volume, reagents.reagent_list, user)
@@ -51,7 +51,7 @@
 			to_chat(user, span_warning("They have a monitor for a head, where do you think you're going to put that?"))
 			return
 
-		user.visible_message(span_warning("[user] attempts to force [M] to swallow [src]."))
+		user.visible_message(span_green("[user] attempts to force [M] to swallow [src]."))
 
 		var/ingestion_time = max(1 SECONDS, 3 SECONDS - 1 SECONDS * user.skills.getRating(SKILL_MEDICAL))
 
@@ -59,7 +59,7 @@
 			return
 
 		user.dropItemToGround(src) //icon update
-		visible_message("<span class='warning'>[user] forces [M] to swallow [src].")
+		visible_message(span_green("[user] forces [M] to swallow the pill."))
 
 		var/rgt_list_text = get_reagent_list_text()
 
@@ -189,7 +189,7 @@
 
 /obj/item/reagent_containers/pill/zoom
 	pill_desc = "A Zoom pill! Gotta go fast!"
-	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyronalin = 5, /datum/reagent/consumable/nutriment = 3)
+	list_reagents = list(/datum/reagent/medicine/synaptizine = 3, /datum/reagent/medicine/hyronalin = 5)
 	pill_id = 14
 
 /obj/item/reagent_containers/pill/russian_red

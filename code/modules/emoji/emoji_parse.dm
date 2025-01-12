@@ -1,6 +1,6 @@
 /proc/emoji_parse(text) //turns :ai: into an emoji in text.
 	. = text
-	var/static/list/emojis = icon_states(icon('icons/misc/emoji.dmi'))
+	var/static/list/emojis = icon_states(icon(EMOJI_SET))
 	var/parsed = ""
 	var/pos = 1
 	var/search = 0
@@ -30,7 +30,7 @@
 
 /proc/emoji_sanitize(text) //cuts any text that would not be parsed as an emoji
 	. = text
-	var/static/list/emojis = icon_states(icon('icons/misc/emoji.dmi'))
+	var/static/list/emojis = icon_states(icon(EMOJI_SET))
 	var/final = "" //only tags are added to this
 	var/pos = 1
 	var/search = 0

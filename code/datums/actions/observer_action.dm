@@ -22,7 +22,7 @@
 
 /datum/action/observer_action/show_hivestatus
 	name = "Show Hive status"
-	action_icon = 'icons/Xeno/actions.dmi'
+	action_icon = 'icons/Xeno/actions/queen.dmi'
 	action_icon_state = "watch_xeno"
 
 
@@ -63,7 +63,8 @@
 	if(new_mob.stat == DEAD)
 		to_chat(owner, span_warning("You cannot join if the mob is dead."))
 		return FALSE
-
+	if(tgui_alert(owner, "Are you sure you want to take " + new_mob.real_name +" ("+new_mob.job.title+")?", "Take SSD mob", list("Yes", "No",)) != "Yes")
+		return
 	if(isxeno(new_mob))
 		var/mob/living/carbon/xenomorph/ssd_xeno = new_mob
 		if(ssd_xeno.tier != XENO_TIER_MINION && XENODEATHTIME_CHECK(owner))
@@ -85,13 +86,23 @@
 	if(is_banned_from(owner.ckey, new_mob?.job?.title))
 		to_chat(owner, span_warning("You are jobbaned from the [new_mob?.job.title] role."))
 		return
+
+	if(!ishuman(new_mob))
+		message_admins(span_adminnotice("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
+		log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
+		new_mob.transfer_mob(owner)
+		return
+	if(CONFIG_GET(flag/prevent_dupe_names) && GLOB.real_names_joined.Find(owner.client.prefs.real_name))
+		to_chat(usr, span_warning("Someone has already joined the round with this character name. Please pick another."))
+		return
 	message_admins(span_adminnotice("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd."))
 	log_admin("[owner.key] took control of [new_mob.name] as [new_mob.p_they()] was ssd.")
 	new_mob.transfer_mob(owner)
-	if(!ishuman(new_mob))
-		return
 	var/mob/living/carbon/human/H = new_mob
-	H.fully_replace_character_name(H.real_name, H.species.random_name(H.gender))
+	var/datum/job/j = H.job
+	var/datum/outfit/job/o = j.outfit
+	H.on_transformation()
+	o.handle_id(H)
 
 //respawn button for campaign gamemode
 /datum/action/observer_action/campaign_respawn

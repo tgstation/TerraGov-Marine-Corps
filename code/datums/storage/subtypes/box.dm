@@ -17,7 +17,7 @@
 	. = ..()
 	set_holdable(list(/obj/item/reagent_containers/food/snacks/packaged_meal))
 
-/datum/storage/box/mre/remove_from_storage(obj/item/item, atom/new_location, mob/user)
+/datum/storage/box/mre/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE)
 	. = ..()
 	if(. && !length(parent.contents) && !gc_destroyed)
 		qdel(parent)
@@ -73,7 +73,7 @@
 /datum/storage/box/visual/magazine/compact/New(atom/parent)
 	. = ..()
 	set_holdable(
-		can_hold_list = list(/obj/item/ammo_magazine), //Able to hold all ammo due to this box being unobtainable. admemes beware of the rocket crate.
+		can_hold_list = list(/obj/item/ammo_magazine, /obj/item/cell/lasgun), //Able to hold all ammo due to this box being unobtainable. admemes beware of the rocket crate.
 		cant_hold_list = list()
 	)
 

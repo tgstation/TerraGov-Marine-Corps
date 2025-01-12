@@ -63,7 +63,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	var/obj/effect/overlay/perk/perk_animation = new
 	owner.vis_contents += perk_animation
 	flick(ui_icon, perk_animation)
-	addtimer(CALLBACK(src, PROC_REF(remove_unlock_animation), owner, perk_animation), 0.9 SECONDS, TIMER_CLIENT_TIME)
+	addtimer(CALLBACK(src, PROC_REF(remove_unlock_animation), owner, perk_animation), 1.8 SECONDS, TIMER_CLIENT_TIME)
 
 ///callback for removing the eye from viscontents
 /datum/perk/proc/remove_unlock_animation(mob/living/carbon/owner, obj/effect/overlay/perk/perk_animation)
@@ -132,14 +132,21 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/trait/hp_boost/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/heavy_tyr/universal, /datum/loadout_item/suit_slot/heavy_tyr, SQUAD_MARINE)
-		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/universal, list(SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, FIELD_COMMANDER), owner)
-		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/universal, list(SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_LEADER, FIELD_COMMANDER), owner)
-
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/universal, list(SQUAD_LEADER, FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/universal, list(SQUAD_LEADER, FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/medic, list(SQUAD_CORPSMAN), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/corpsman, list(SQUAD_CORPSMAN), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/heavy_tyr/engineer, list(SQUAD_ENGINEER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/tyr/engineer, list(SQUAD_ENGINEER), owner)
 	else if(owner_stats.faction == FACTION_SOM)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, /datum/loadout_item/suit_slot/som_heavy_tyr, SOM_SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, /datum/loadout_item/suit_slot/som_heavy_tyr/veteran, SOM_SQUAD_VETERAN)
-		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, list(SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER), owner)
-		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/som_tyr/universal, list(SOM_SQUAD_CORPSMAN, SOM_SQUAD_ENGINEER, SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/som_heavy_tyr/universal, list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/som_tyr/universal, list(SOM_SQUAD_LEADER, SOM_FIELD_COMMANDER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/som_heavy_tyr/medic, list(SOM_SQUAD_CORPSMAN), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/som_tyr/medic, list(SOM_SQUAD_CORPSMAN), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_slot/som_heavy_tyr/engineer, list(SOM_SQUAD_ENGINEER), owner)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/helmet/som_tyr/engineer, list(SOM_SQUAD_ENGINEER), owner)
 
 /datum/perk/trait/hp_boost/two
 	name = "Extreme constitution"
@@ -178,7 +185,7 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 
 /datum/perk/trait/sword_master
 	name = "Sword master"
-	desc = "You are able to wield a sword with considerable skill. Grants access to a special lunge attack when wielding any sword, and allows some roles to select a sword as a back or suit stored weapon."
+	desc = "You are able to wield a sword with considerable skill. Grants access to a special lunge attack when wielding any sword, and allows some roles to select a sword in different slots."
 	req_desc = "Requires Melee specialisation."
 	ui_icon = "sword"
 	traits = list(TRAIT_SWORD_EXPERT)
@@ -189,14 +196,15 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/trait/sword_master/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
 	if(!istype(owner_stats))
 		return
+	owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/machete_shield, jobs_supported, owner, 0)
 	owner_stats.unlock_loadout_item(/datum/loadout_item/back/machete, jobs_supported, owner, 0)
-	owner_stats.unlock_loadout_item(/datum/loadout_item/belt/energy_sword, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/esword, jobs_supported, owner, 0)
 
 //skill modifying perks
 /datum/perk/skill_mod
-	var/cqc
+	var/unarmed
 	var/melee_weapons
-	var/firearms
+	var/combat
 	var/pistols
 	var/shotguns
 	var/rifles
@@ -218,28 +226,28 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	. = ..()
 
 /datum/perk/skill_mod/apply_perk(mob/living/carbon/owner)
-	owner.set_skills(owner.skills.modifyRating(cqc, melee_weapons, firearms, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
+	owner.set_skills(owner.skills.modifyRating(unarmed, melee_weapons, combat, pistols, shotguns, rifles, smgs, heavy_weapons, smartgun, \
 	engineer, construction, leadership, medical, surgery, pilot, police, powerloader, large_vehicle, stamina))
 
 /datum/perk/skill_mod/remove_perk(mob/living/carbon/owner)
-	owner.set_skills(owner.skills.modifyRating(-cqc, -melee_weapons, -firearms, -pistols, -shotguns, -rifles, -smgs, -heavy_weapons, -smartgun, \
+	owner.set_skills(owner.skills.modifyRating(-unarmed, -melee_weapons, -combat, -pistols, -shotguns, -rifles, -smgs, -heavy_weapons, -smartgun, \
 	-engineer, -construction, -leadership, -medical, -surgery, -pilot, -police, -powerloader, -large_vehicle, -stamina))
 
-/datum/perk/skill_mod/cqc
+/datum/perk/skill_mod/unarmed
 	name = "Hand to hand expertise"
 	desc = "Advanced hand to hand combat training gives you an edge when you need to punch someone in the face. Improved unarmed damage and stun chance."
 	ui_icon = "cqc_1"
-	cqc = 1
+	unarmed = 1
 	all_jobs = TRUE
 	unlock_cost = 250
 
-/datum/perk/skill_mod/cqc/two
+/datum/perk/skill_mod/unarmed/two
 	name = "Hand to hand specialisation"
 	desc = "Muscle augments combined with specialised hand to hand combat training turn your body into a lethal weapon. Greatly improved unarmed damage and stun chance."
 	req_desc = "Requires Hand to hand expertise."
 	ui_icon = "cqc_2"
 	unlock_cost = 350
-	prereq_perks = list(/datum/perk/skill_mod/cqc)
+	prereq_perks = list(/datum/perk/skill_mod/unarmed)
 
 /datum/perk/skill_mod/melee
 	name = "Melee expertise"
@@ -257,32 +265,41 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	prereq_perks = list(/datum/perk/skill_mod/melee)
 	unlock_cost = 400
 
-/datum/perk/skill_mod/firearms
-	name = "Advanced firearm training"
+/datum/perk/skill_mod/combat
+	name = "Advanced combat training"
 	desc = "Improved handling for all firearms. A prerequisite for all gun skills perks, and increases the speed of tactical reloads."
 	ui_icon = "firearms"
-	firearms = 1
+	combat = 1
 	all_jobs = TRUE
 	unlock_cost = 400
 
 /datum/perk/skill_mod/pistols
 	name = "Advanced pistol training"
-	desc = "Improved damage, accuracy and scatter with pistol type firearms."
-	req_desc = "Requires Advanced firearm training."
+	desc = "Improved damage, accuracy and scatter with pistol type firearms. Unlocks additional pistols for some roles."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "pistols"
 	pistols = 1
 	all_jobs = TRUE
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 400
+
+/datum/perk/skill_mod/pistols/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
+	if(!istype(owner_stats))
+		return
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/som/extended_pistol, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/som/highpower, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/marine/highpower, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/marine/laser_pistol, jobs_supported, owner, 0)
+	owner_stats.unlock_loadout_item(/datum/loadout_item/secondary/gun/marine/standard_revolver, jobs_supported, owner, 0)
 
 /datum/perk/skill_mod/shotguns
 	name = "Advanced shotgun training"
 	desc = "Improved damage, accuracy and scatter with shotgun type firearms. Unlocks access to a shotgun secondary weapon in the backslot for some roles."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "shotguns"
 	shotguns = 1
 	all_jobs = TRUE
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 600
 
 /datum/perk/skill_mod/shotguns/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
@@ -294,11 +311,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/rifles
 	name = "Advanced rifle training"
 	desc = "Improved damage, accuracy and scatter with rifle type firearms. Unlocks new weapons and ammo types for some roles."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "rifles"
 	rifles = 1
 	all_jobs = TRUE
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 1000
 
 /datum/perk/skill_mod/rifles/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
@@ -337,11 +354,11 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 /datum/perk/skill_mod/smgs
 	name = "Advanced SMG training"
 	desc = "Improved damage, accuracy and scatter with SMG type firearms. Unlocks new weapons and ammo types for some roles."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "smgs"
 	smgs = 1
 	all_jobs = TRUE
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 500
 
 /datum/perk/skill_mod/smgs/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
@@ -362,17 +379,17 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	else if(owner_stats.faction == FACTION_SOM)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg, SOM_SQUAD_MARINE)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg_and_shield, SOM_SQUAD_MARINE)
-		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_marine/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_marine/smg, SOM_SQUAD_CORPSMAN)
+		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_medic/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_medic/smg, SOM_SQUAD_CORPSMAN)
 		owner_stats.replace_loadout_option(/datum/loadout_item/suit_store/main_gun/som_engineer/smg/enhanced, /datum/loadout_item/suit_store/main_gun/som_engineer/smg, SOM_SQUAD_ENGINEER)
 
 /datum/perk/skill_mod/heavy_weapons
 	name = "Heavy weapon specialisation"
 	desc = "Improved damage, accuracy and scatter with heavy weapon type firearms. Unlocks new weapons and ammo types for some roles."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "heavy"
 	heavy_weapons = 1
 	all_jobs = TRUE
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 800
 
 /datum/perk/skill_mod/heavy_weapons/unlock_bonus(mob/living/carbon/owner, datum/individual_stats/owner_stats)
@@ -381,26 +398,38 @@ Needed both for a purchase list and effected list (if one perk impacts multiple 
 	if(owner_stats.faction == FACTION_TERRAGOV)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/back/tgmc_heam_rocket_bag, SQUAD_MARINE, owner, 0)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/plasma_cannon, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/back/minigun_powerpack, SQUAD_MARINE, owner, 0)
+		owner_stats.unlock_loadout_item(/datum/loadout_item/suit_store/main_gun/marine/minigun, SQUAD_MARINE, owner, 0)
 	else if(owner_stats.faction == FACTION_SOM)
 		owner_stats.unlock_loadout_item(/datum/loadout_item/back/som_heat_rocket_bag, SOM_SQUAD_VETERAN, owner, 0)
 
 /datum/perk/skill_mod/smartgun
 	name = "Advanced smartgun training"
 	desc = "Improved damage, accuracy and scatter with smartguns type firearms."
-	req_desc = "Requires Advanced firearm training."
+	req_desc = "Requires Advanced combat training."
 	ui_icon = "smartguns"
 	smartgun = 1
 	jobs_supported = list(SQUAD_SMARTGUNNER, CAPTAIN)
-	prereq_perks = list(/datum/perk/skill_mod/firearms)
+	prereq_perks = list(/datum/perk/skill_mod/combat)
 	unlock_cost = 800
 
 /datum/perk/skill_mod/construction
 	name = "Advanced construction training"
-	desc = "Faster construction times when building. Some items may no longer have a penalty delay when constructing."
+	desc = "Faster construction times when building. Some items may no longer have a penalty delay when constructing, and engineers exclusively build tougher barricades."
 	ui_icon = "construction"
 	construction = 2
 	all_jobs = TRUE
-	unlock_cost = 300
+	unlock_cost = 350
+
+/datum/perk/skill_mod/construction/apply_perk(mob/living/carbon/owner)
+	. = ..()
+	if((owner.skills.getRating(SKILL_CONSTRUCTION)) < SKILL_CONSTRUCTION_MASTER)
+		return
+	ADD_TRAIT(owner, TRAIT_SUPERIOR_BUILDER, type)
+
+/datum/perk/skill_mod/construction/remove_perk(mob/living/carbon/owner)
+	. = ..()
+	REMOVE_TRAIT(owner, TRAIT_SUPERIOR_BUILDER, type)
 
 /datum/perk/skill_mod/leadership
 	name = "Advanced leadership training"

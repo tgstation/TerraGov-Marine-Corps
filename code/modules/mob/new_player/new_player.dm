@@ -287,7 +287,7 @@
 	popup.set_content(output)
 	popup.open(FALSE)
 
-/mob/new_player/Move()
+/mob/new_player/Move(atom/newloc, direction, glide_size_override)
 	return FALSE
 
 

@@ -36,6 +36,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/upp,
 		/obj/item/explosive/grenade/som,
 		/obj/item/explosive/grenade/sectoid,
+		/obj/item/explosive/grenade/creampie,
 		/obj/item/explosive/grenade/incendiary,
 		/obj/item/explosive/grenade/incendiary/som,
 		/obj/item/explosive/grenade/incendiary/molotov,
@@ -64,6 +65,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/flashbang/stun,
 		/obj/item/explosive/grenade/bullet/laser,
 		/obj/item/explosive/grenade/bullet/hefa,
+		/obj/item/explosive/grenade/emp,
 	)
 	reciever_flags = NONE
 
@@ -145,10 +147,18 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/multinade_launcher/unloaded
 	default_ammo_type = null
 
+/obj/item/weapon/gun/grenade_launcher/multinade_launcher/erp
+	name = "\improper PL-70 assault pie launcher"
+	icon_state = "t70_erp"
+	worn_icon_state = "t70_erp"
+	fire_animation = "t70_erp_fire"
+	starting_attachment_types = list(/obj/item/attachable/magnetic_harness)
+	default_ammo_type = /obj/item/explosive/grenade/creampie
+
 /obj/item/weapon/gun/grenade_launcher/underslung
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher."
-	icon = 'icons/Marine/marine-weapons.dmi'
+	icon = 'icons/obj/items/guns/attachments/gun.dmi'
 	icon_state = "grenade"
 	max_shells = 2 //codex
 	max_chamber_items = 1
@@ -188,6 +198,7 @@ The Grenade Launchers
 		/obj/item/explosive/grenade/impact,
 		/obj/item/explosive/grenade/sticky,
 		/obj/item/explosive/grenade/flashbang/stun,
+		/obj/item/explosive/grenade/emp,
 	)
 
 	wield_delay_mod = 0.2 SECONDS
@@ -198,7 +209,6 @@ The Grenade Launchers
 /obj/item/weapon/gun/grenade_launcher/underslung/battle_rifle
 	name = "\improper BR-64 underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, two-shot grenade launcher designed to fit the BR-64."
-	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "t64_grenade"
 	pixel_shift_x = 21
 	pixel_shift_y = 15

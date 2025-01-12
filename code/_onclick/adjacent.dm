@@ -123,14 +123,6 @@
 			return TRUE
 	return FALSE
 
-
-/mob/living/silicon/decoy/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
-	for(var/turf/myloc AS in locs)
-		if(myloc.Adjacent(neighbor, target = neighbor, mover = src))
-			return TRUE
-	return FALSE
-
-
 /obj/machinery/door/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	if(isturf(loc) && bound_width > 32 || bound_height > 32) //locs will show loc if loc is not a turf
 		for(var/turf/myloc AS in locs)
@@ -155,7 +147,7 @@
 		return TRUE
 
 	if(isitem(loc)) //Special case handling.
-		if(istype(loc, /obj/item/storage/internal) || istype(loc, /obj/item/armor_module)) //Special holders, could be contained really deep, like webbings, so let's go one step further.
+		if(item_flags & IN_STORAGE)
 			return loc.Adjacent(neighbor)
 		else //Backpacks and other containers.
 			if(!isturf(loc.loc)) //Item is inside an item neither held by neighbor nor in a turf. Can't access.

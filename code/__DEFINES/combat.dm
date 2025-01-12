@@ -14,6 +14,7 @@
 #define ATTACK_EFFECT_REDSTAB "redstab"
 #define ATTACK_EFFECT_DRAIN_STING "drain_sting"
 #define ATTACK_EFFECT_YELLOWPUNCH "yellowpunch"
+#define ATTACK_EFFECT_WEAK_PUNCH "weak_punch"
 #define ATTACK_EFFECT_LASERSWORD pick("laser_slash","laser_slash2")
 
 //Damage flag defines //
@@ -71,6 +72,12 @@
 #define EXPLODE_HEAVY 2
 #define EXPLODE_LIGHT 3
 #define EXPLODE_WEAK 4
+
+#define EMP_NONE 0
+#define EMP_DEVASTATE 1
+#define EMP_HEAVY 2
+#define EMP_LIGHT 3
+#define EMP_WEAK 4
 
 ///Xenomorph accuracy
 #define XENO_DEFAULT_ACCURACY 70

@@ -15,7 +15,7 @@
 	anchored = TRUE
 	opacity = TRUE
 	density = TRUE
-	icon = 'icons/Marine/apc.dmi'
+	icon = 'icons/obj/structures/prop/broken_apc.dmi'
 	icon_state = "apc"
 
 
@@ -190,7 +190,6 @@
 /obj/item/storage/box/pizza
 	name = "food delivery box"
 	desc = "A space-age food storage device, capable of keeping food extra fresh. Actually, it's just a box."
-	icon = 'icons/obj/items/storage/storage.dmi'
 
 /obj/item/storage/box/pizza/Initialize(mapload, ...)
 	. = ..()
@@ -336,7 +335,6 @@
 /obj/item/compass
 	name = "compass"
 	desc = "A small compass that can tell you your coordinates on use."
-	icon = 'icons/Marine/marine-navigation.dmi'
 	icon_state = "compass"
 	w_class = WEIGHT_CLASS_TINY
 

@@ -376,11 +376,8 @@ You are also in charge of communicating with command and letting them know about
 		return
 	if(!new_human.assigned_squad)
 		return
-	if(new_human.assigned_squad.squad_leader != new_human)
-		if(new_human.assigned_squad.squad_leader)
-			new_human.assigned_squad.demote_leader()
+	if(!ismarineleaderjob(new_human.assigned_squad?.squad_leader?.job)) //If there's no proper SL already in the squad, promote to leader
 		new_human.assigned_squad.promote_leader(new_human)
-
 
 /datum/job/terragov/squad/vatgrown
 	title = SQUAD_MARINE

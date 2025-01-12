@@ -159,6 +159,11 @@
 	resistance_flags = RESIST_ALL
 	icon_state = "wall-invincible"
 
+/turf/closed/wall/kutjevo
+	icon = 'icons/turf/walls/kutjevo_wall.dmi'
+	icon_state = "kutjevo_wall-0"
+	base_icon_state = "kutjevo_wall"
+
 //tyson
 /turf/closed/wall/tyson
 	name = "outer wall"
@@ -239,12 +244,6 @@
 	return
 
 /turf/closed/wall/indestructible/fire_act(burn_level)
-	return
-
-/turf/closed/wall/indestructible/attackby(obj/item/I, mob/user, params)
-	if(isplasmacutter(I)) //needed for user feedback, if not included the user will not receive a message when trying plasma cutter wall/indestructible turfs
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		to_chat(user, span_warning("[P] can't cut through this!"))
 	return
 
 /turf/closed/wall/indestructible/mineral
@@ -407,6 +406,10 @@
 	max_integrity = 3000
 	explosion_block = 4
 
+/turf/closed/wall/dark_colony
+	icon = 'icons/turf/walls/dark_col_wall.dmi'
+	icon_state = "dark_col_wall-0"
+
 /turf/closed/wall/brick
 	name = "brick wall"
 	desc = "A wall made out of weathered brick."
@@ -460,3 +463,35 @@
 		'icons/turf/walls/siding_red_2.dmi',
 		'icons/turf/walls/siding_red_3.dmi',
 	)
+
+/turf/closed/wall/urban
+	name = "bare metal walls"
+	desc = "A thick and chunky metal wall. The surface is barren and imposing."
+	icon = 'icons/turf/walls/urban_wall_regular.dmi'
+	icon_state = "urban_wall_regular-0"
+	walltype = "wall"
+	base_icon_state = "urban_wall_regular"
+
+/turf/closed/wall/urban/colony/ribbed
+	name = "bare metal walls"
+	desc = "A thick and chunky metal wall. The surface is barren and imposing."
+	icon = 'icons/turf/walls/hybrisa_colony_walls.dmi'
+	icon_state = "wall-reinforced"
+	walltype = "wall"
+	base_icon_state = "hybrisa_colony_walls"
+
+/turf/closed/wall/urban/colony/engineering/ribbed
+	name = "bare metal walls"
+	desc = "A thick and chunky metal wall. The surface is barren and imposing."
+	icon = 'icons/turf/walls/hybrisa_colony_walls.dmi'
+	icon_state = "wall-reinforced"
+	walltype = "wall"
+	base_icon_state = "hybrisa_colony_walls"
+
+/turf/closed/wall/hangar
+	name = "strange metal wall"
+	desc = "Nigh indestructible walls that make up the hull of an unknown ancient ship."
+	icon = 'icons/turf/walls/engineer_walls.dmi'
+	icon_state = "engineer_walls-0"
+	walltype = "wall"
+	base_icon_state = "engineer_walls"

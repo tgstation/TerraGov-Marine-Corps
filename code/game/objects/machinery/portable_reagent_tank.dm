@@ -109,11 +109,11 @@
 	update_icon()
 
 /obj/machinery/deployable/reagent_tank/disassemble(mob/user)
-	. = ..()
 	var/obj/item/storage/internal_bag = get_internal_item()
 	for(var/mob/watching in internal_bag?.storage_datum.content_watchers)
 		internal_bag.storage_datum.close(watching)
 	playsound(src, 'sound/machines/elevator_openclose.ogg', 50)
+	return ..()
 
 /obj/item/storage/reagent_tank
 	name = "portable reagent dispenser"

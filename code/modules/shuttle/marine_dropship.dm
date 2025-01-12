@@ -24,8 +24,8 @@
 		if(prob(A.crash_break_probability))
 			A.overload_lighting()
 			A.set_broken()
-		for(var/obj/effect/soundplayer/alarmplayer AS in GLOB.ship_alarms)
-			alarmplayer.deltalarm.stop(alarmplayer)	//quiet the delta klaxon alarms
+		for(var/obj/effect/soundplayer/deltaplayer/alarmplayer AS in GLOB.ship_alarms)
+			alarmplayer.loop_sound.stop(alarmplayer)	//quiet the delta klaxon alarms
 		CHECK_TICK
 
 	for(var/i in GLOB.alive_living_list) //knock down mobs
@@ -139,20 +139,15 @@
 	dheight = 10
 	width = 11
 	height = 21
-
 	ignitionTime = 10 SECONDS
 	callTime = 38 SECONDS // same as old transit time with flight optimisation
 	rechargeTime = 2 MINUTES
 	prearrivalTime = 12 SECONDS
-
 	var/list/left_airlocks = list()
 	var/list/right_airlocks = list()
 	var/list/rear_airlocks = list()
-
 	var/obj/docking_port/stationary/hijack_request
-
 	var/list/equipments = list()
-
 	var/hijack_state = HIJACK_STATE_NORMAL
 	///If the automatic cycle system is activated
 	var/automatic_cycle_on = FALSE
@@ -307,10 +302,8 @@
 			playsound(loc,'sound/effects/alert.ogg', 50)
 			addtimer(CALLBACK(src, PROC_REF(request_to), S), 15 SECONDS)
 
-
 /obj/docking_port/mobile/marine_dropship/proc/do_start_hijack_timer(hijack_time = LOCKDOWN_TIME)
 	addtimer(CALLBACK(src, PROC_REF(reset_hijack)), hijack_time)
-
 
 /obj/docking_port/mobile/marine_dropship/proc/request_to(obj/docking_port/stationary/S)
 	set_idle()
@@ -327,7 +320,6 @@
 	for(var/obj/machinery/landinglight/light AS in GLOB.landing_lights)
 		if(light.linked_port == destination)
 			light.turn_on()
-
 
 /obj/docking_port/mobile/marine_dropship/getStatusText()
 	if(hijack_state == HIJACK_STATE_CALLED_DOWN)
@@ -438,7 +430,7 @@
 			to_chat(user, span_warning("We were unable to prevent the bird from flying as it is already taking off."))
 		D.silicon_lock_airlocks(TRUE)
 		to_chat(user, span_warning("We have overriden the shuttle lockdown!"))
-		playsound(user, "alien_roar", 50)
+		playsound(user, SFX_ALIEN_ROAR, 50)
 		priority_announce("Alamo lockdown protocol compromised. Interference preventing remote control.", "Dropship Lock Alert", type = ANNOUNCEMENT_PRIORITY, color_override = "red")
 		return FALSE
 	if(D.mode != SHUTTLE_IDLE && D.mode != SHUTTLE_RECHARGING)
@@ -490,9 +482,8 @@
 
 // control computer
 /obj/machinery/computer/shuttle/marine_dropship
-	icon = 'icons/Marine/shuttle-parts.dmi'
-	icon_state = "console"
-	screen_overlay = "console_emissive"
+	icon_state = "dropship_console"
+	screen_overlay = "dropship_console_emissive"
 	resistance_flags = RESIST_ALL
 	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 	possible_destinations = "lz1;lz2;alamo"
@@ -514,6 +505,7 @@
 		shuttle.set_idle()
 		shuttle.set_hijack_state(HIJACK_STATE_CALLED_DOWN)
 		shuttle.do_start_hijack_timer()
+		shuttle.unlock_all()
 	interact(xeno_attacker) //Open the UI
 
 /obj/machinery/computer/shuttle/marine_dropship/ui_state(mob/user)
@@ -749,7 +741,6 @@
 			to_chat(user, span_warning("ERROR. This shouldn't happen, please report it."))
 			CRASH("moveShuttleToDock() returned a non-zero-nor-one value.")
 
-
 /obj/machinery/computer/shuttle/marine_dropship/one
 	name = "\improper 'Alamo' flight controls"
 	desc = "The flight controls for the 'Alamo' Dropship. Named after the Alamo Mission, stage of the Battle of the Alamo in the United States' state of Texas in the Spring of 1836. The defenders held to the last, encouraging other Texians to rally to the flag."
@@ -764,7 +755,8 @@
 /obj/machinery/computer/shuttle/marine_dropship/two
 	name = "\improper 'Normandy' flight controls"
 	desc = "The flight controls for the 'Normandy' Dropship. Named after a department in France, noteworthy for the famous naval invasion of Normandy on the 6th of June 1944, a bloody but decisive victory in World War II and the campaign for the Liberation of France."
-	icon_state = "console2"
+	icon_state = "dropship_console2"
+	screen_overlay = "dropship_console2_emissive"
 	possible_destinations = "lz1;lz2;alamo;normandy"
 
 /obj/machinery/door/poddoor/shutters/transit/afterShuttleMove(turf/oldT, list/movement_force, shuttle_dir, shuttle_preferred_direction, move_dir, rotation)
@@ -848,6 +840,16 @@
 	resistance_flags = RESIST_ALL
 	opacity = TRUE
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+	explosion_block = EXPLOSION_BLOCK_PROC
+
+/obj/structure/dropship_piece/GetExplosionBlock(explosion_dir)
+	if(!density)
+		return 0
+	if(opacity)
+		return 2
+	if(allow_pass_flags & PASS_GLASS)
+		return 2
+	return 0
 
 /obj/structure/dropship_piece/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
@@ -1004,7 +1006,7 @@
 
 /obj/structure/dropship_piece/glassone/tadpole
 	icon_state = "shuttle_glass1"
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	allow_pass_flags = PASS_GLASS
 
@@ -1015,7 +1017,7 @@
 /obj/structure/dropship_piece/glasstwo/tadpole
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_glass2"
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 	allow_pass_flags = PASS_GLASS
 
@@ -1023,7 +1025,7 @@
 	icon = 'icons/turf/dropship2.dmi'
 	icon_state = "shuttle_single_window"
 	allow_pass_flags = PASS_GLASS
-	resistance_flags = NONE
+	resistance_flags = XENO_DAMAGEABLE | DROPSHIP_IMMUNE
 	opacity = FALSE
 
 /obj/structure/dropship_piece/tadpole/cockpit
@@ -1273,6 +1275,39 @@
 	icon_state = "brown_rearwing_rrrb"
 	opacity = FALSE
 
+/obj/structure/dropship_piece/four/dropshipfront
+	icon_state = "dropshipfrontwhite1"
+	opacity = FALSE
+
+/obj/structure/dropship_piece/four/dropshipventone
+	icon_state = "dropshipvent1"
+
+/obj/structure/dropship_piece/four/dropshipventtwo
+	icon_state = "dropshipvent2"
+
+/obj/structure/dropship_piece/four/dropshipwingtopone
+	icon_state = "dropshipwingtop1"
+
+/obj/structure/dropship_piece/four/dropshipwingtoptwo
+	icon_state = "dropshipwingtop2"
+
+/obj/structure/dropship_piece/four/dropshipventthree
+	icon_state = "dropshipvent3"
+
+/obj/structure/dropship_piece/four/dropshipventfour
+	icon_state = "dropshipvent4"
+
+/obj/structure/dropship_piece/four/rearwing/lefttop
+	icon_state = "white_rearwing_lt"
+
+/obj/structure/dropship_piece/four/rearwing/righttop
+	icon_state = "white_rearwing_rt"
+
+/obj/structure/dropship_piece/four/rearwing/leftbottom
+	icon_state = "white_rearwing_lb"
+
+/obj/structure/dropship_piece/four/rearwing/rightbottom
+	icon_state = "white_rearwing_rb"
 
 //Dropship control console
 

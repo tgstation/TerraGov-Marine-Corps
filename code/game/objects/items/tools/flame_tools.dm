@@ -377,7 +377,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return TRUE
 
 /obj/item/clothing/mask/cigarette/attack_turf(turf/target_turf, mob/living/user)
-	if(!lit && locate(/obj/flamer_fire) in target_turf.contents)
+	if(!lit && locate(/obj/fire/flamer) in target_turf.contents)
 		light(span_notice("[user] lights [user.p_their()] [src] with the burning ground."))
 		return TRUE
 	return ..()

@@ -43,7 +43,7 @@
 /obj/item/flashlight/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	if(turn_light(xeno_attacker, FALSE) != CHECKS_PASSED)
 		return
-	playsound(loc, "alien_claw_metal", 25, 1)
+	playsound(loc, SFX_ALIEN_CLAW_METAL, 25, 1)
 	xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW)
 	to_chat(xeno_attacker, span_warning("We disable the metal thing's lights.") )
 
@@ -163,6 +163,16 @@
 	icon_state = "lampgreen"
 	worn_icon_state = "lampgreen"
 	light_range = 5
+
+/obj/item/device/flashlight/lamp/tripod
+	name = "tripod lamp"
+	desc = "An emergency light tube mounted onto a tripod. It seemingly lasts forever."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "tripod_lamp"
+	light_range = 6//pretty good
+
+/obj/item/device/flashlight/lamp/tripod/grey
+	icon_state = "tripod_lamp_grey"
 
 /obj/item/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"

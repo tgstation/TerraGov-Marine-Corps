@@ -50,11 +50,11 @@
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 3 SECONDS
 
-/datum/ammo/bullet/smg/squash/on_hit_mob(mob/M, obj/projectile/proj)
-	if(!isliving(M))
+/datum/ammo/bullet/smg/squash/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!isliving(target_mob))
 		return
 
-	var/mob/living/living_victim = M
+	var/mob/living/living_victim = target_mob
 	living_victim.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 
@@ -73,10 +73,10 @@
 	penetration = 15
 	sundering = 1
 
-/datum/ammo/bullet/smg/rad/on_hit_mob(mob/M, obj/projectile/proj)
-	if(!isliving(M))
+/datum/ammo/bullet/smg/rad/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!isliving(target_mob))
 		return
-	var/mob/living/living_victim = M
+	var/mob/living/living_victim = target_mob
 	if(!prob(living_victim.modify_by_armor(proj.damage, BIO, penetration, proj.def_zone)))
 		return
 	living_victim.apply_radiation(2, 2)

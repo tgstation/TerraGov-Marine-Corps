@@ -1,5 +1,5 @@
 // points per minute
-#define DROPSHIP_POINT_RATE 18 * (GLOB.current_orbit/3)
+#define DROPSHIP_POINT_RATE 18 * ((6 - GLOB.current_orbit)/3)
 #define SUPPLY_POINT_RATE 20 * (GLOB.current_orbit/3)
 
 SUBSYSTEM_DEF(points)

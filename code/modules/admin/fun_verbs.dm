@@ -169,7 +169,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE , encode = FALSE)
+	var/msg = tgui_input_text(usr, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE , encode = FALSE, max_length = INFINITY)
 
 	if(!msg)
 		return
@@ -291,10 +291,11 @@
 
 	to_chat(world, assemble_alert(
 		title = "Custom Information",
-		subtitle = "The following custom information has been set for this round.",
+		subtitle = "An admin set custom information for this round.",
 		message = GLOB.custom_info,
 		color_override = "red"
 	))
+	SEND_SOUND(src, sound('sound/misc/adm_announce.ogg'))
 
 	log_admin("[key_name(usr)] has changed the custom event text: [GLOB.custom_info]")
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
@@ -310,10 +311,11 @@
 
 	to_chat(src, assemble_alert(
 		title = "Custom Information",
-		subtitle = "The following custom information has been set for this round.",
+		subtitle = "An admin set custom information for this round.",
 		message = GLOB.custom_info,
 		color_override = "red"
 	))
+	SEND_SOUND(src, sound('sound/misc/adm_announce.ogg'))
 
 
 /datum/admins/proc/sound_file(S as sound)
@@ -478,7 +480,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/message = tgui_input_text(usr, "Global message to send:", "Admin Announce", multiline = TRUE, encode = FALSE)
+	var/message = tgui_input_text(usr, "Global message to send:", "Admin Announce", multiline = TRUE, encode = FALSE, max_length = INFINITY)
 
 	message = noscript(message)
 
@@ -487,7 +489,7 @@
 
 	log_admin("Announce: [key_name(usr)] : [message]")
 	message_admins("[ADMIN_TPMONTY(usr)] Announces:")
-	to_chat(world, span_event_announcement("<b>[usr.client.holder.fakekey ? "Administrator" : "[usr.client.key] ([usr.client.holder.rank])"] Announces:</b>\n [message]"))
+	send_ooc_announcement(message, "From [usr.client.holder.fakekey ? "Administrator" : usr.key]", style = OOC_ALERT_ADMIN)
 
 
 /datum/admins/proc/force_distress()
@@ -1098,21 +1100,21 @@
 	var/choice = tgui_input_list(usr, "What would you like to set gravity to?", "Gravity adjustment", list("Standard gravity", "Low gravity", "John Woo", "Exceeding orbital velocity"))
 	switch(choice)
 		if("Standard gravity")
-			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity return to normal."))
+			to_chat(GLOB.mob_living_list, span_userdanger("You feel gravity return to normal."))
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
 				living_mob.set_jump_component()
 		if("Low gravity")
-			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity pull gently at you."))
+			to_chat(GLOB.mob_living_list, span_userdanger("You feel gravity pull gently at you."))
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
 				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 32, jump_pass_flags = PASS_LOW_STRUCTURE|PASS_FIRE|PASS_DEFENSIVE_STRUCTURE|PASS_TANK)
 		if("John Woo")
-			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity grow weak, and the urge to fly."))
+			to_chat(GLOB.mob_living_list, span_userdanger("You feel gravity grow weak, and the urge to fly."))
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = "jump", flags = JUMP_SPIN, jump_pass_flags = HOVERING|PASS_PROJECTILE|PASS_TANK)
+				living_mob.set_jump_component(duration = 1 SECONDS, cooldown = 1.5 SECONDS, cost = 2, height = 48, sound = SFX_JUMP, flags = JUMP_SPIN, jump_pass_flags = HOVERING|PASS_PROJECTILE|PASS_TANK)
 		if("Exceeding orbital velocity")
-			to_chat(GLOB.mob_living_list, span_highdanger("You feel gravity fade to nothing. Will you even come back down?"))
+			to_chat(GLOB.mob_living_list, span_userdanger("You feel gravity fade to nothing. Will you even come back down?"))
 			for(var/mob/living/living_mob AS in GLOB.mob_living_list)
-				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = "jump", flags = JUMP_SPIN, jump_pass_flags = HOVERING|PASS_PROJECTILE|PASS_TANK)
+				living_mob.set_jump_component(duration = 4 SECONDS, cooldown = 6 SECONDS, cost = 0, height = 128, sound = SFX_JUMP, flags = JUMP_SPIN, jump_pass_flags = HOVERING|PASS_PROJECTILE|PASS_TANK)
 		else
 			return
 

@@ -1,6 +1,8 @@
-//Any loadout that is intended for the new player loadout vendor
-///When making new loadouts, remember to also add the typepath to the list under init_beginner_loadouts() or else it won't show up in the vendor
+/*!
+ * Any loadout that is intended for the new player loadout vendor
+ */
 
+///When making new loadouts, remember to also add the typepath to the list under init_beginner_loadouts() or else it won't show up in the vendor
 
 /datum/outfit/quick/beginner
 	name = "Beginner loadout base"
@@ -228,7 +230,7 @@
 	human.equip_to_slot_or_del(new /obj/item/ammo_magazine/flamer_tank/mini, SLOT_IN_BACKPACK)
 	human.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline, SLOT_IN_BACKPACK)
 
-	human.equip_to_slot_or_del(new /obj/item/cell/lasgun/volkite/powerpack/marine, SLOT_IN_SUIT)
+	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
 	human.equip_to_slot_or_del(new /obj/item/storage/box/m94, SLOT_IN_SUIT)
 
 	human.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/bicaridine, SLOT_IN_ACCESSORY)

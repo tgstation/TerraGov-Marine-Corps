@@ -37,26 +37,51 @@
 	desc = "This looks like a projection of something."
 	anchored = TRUE
 
-/obj/effect/rune/attunement
-	luminosity = 5
-
 /obj/effect/soundplayer
 	anchored = TRUE
 	opacity = FALSE
 	icon_state = "speaker"
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	var/datum/looping_sound/alarm_loop/deltalarm
+	///The sound we want to loop
+	var/datum/looping_sound/loop_sound
+	///The typepath of our looping sound datum
+	var/sound_type
+	///Do we start immediately
+	var/start_on_init = TRUE
 
 /obj/effect/soundplayer/Initialize(mapload)
 	. = ..()
-	deltalarm = new(null, FALSE)
-	GLOB.ship_alarms += src
+	if(!sound_type)
+		return INITIALIZE_HINT_QDEL
 	icon_state = ""
+	loop_sound = new sound_type(null, FALSE)
+	if(start_on_init)
+		loop_sound.start(src)
 
 /obj/effect/soundplayer/Destroy()
 	. = ..()
-	QDEL_NULL(deltalarm)
+	QDEL_NULL(loop_sound)
+
+/obj/effect/soundplayer/deltaplayer
+	sound_type = /datum/looping_sound/alarm_loop
+	start_on_init = FALSE
+
+/obj/effect/soundplayer/deltaplayer/Initialize(mapload)
+	. = ..()
+	GLOB.ship_alarms += src
+
+/obj/effect/soundplayer/deltaplayer/Destroy()
+	. = ..()
 	GLOB.ship_alarms -= src
+
+/obj/effect/soundplayer/riverplayer
+	sound_type = /datum/looping_sound/river_loop
+
+/obj/effect/soundplayer/dripplayer
+	sound_type = /datum/looping_sound/drip_loop
+
+/obj/effect/soundplayer/waterreservoirplayer
+	sound_type = /datum/looping_sound/water_res_loop
 
 /obj/effect/forcefield
 	anchored = TRUE
@@ -71,12 +96,16 @@
 	if(icon_state == "blocker")
 		icon_state = ""
 
+/obj/effect/forcefield/allow_bullet_travel
+	resistance_flags = RESIST_ALL | PROJECTILE_IMMUNE
+
 /obj/effect/forcefield/fog
 	name = "dense fog"
 	desc = "It looks way too dangerous to traverse. Best wait until it has cleared up."
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	opacity = TRUE
+	explosion_block = INFINITY
 
 /obj/effect/forcefield/fog/Initialize(mapload)
 	. = ..()

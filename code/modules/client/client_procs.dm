@@ -269,12 +269,7 @@
 		return
 
 	if(GLOB.custom_info)
-		to_chat(src, assemble_alert(
-			title = "Custom Information",
-			subtitle = "The following custom information has been set for this round.",
-			message = GLOB.custom_info,
-			color_override = "red"
-		))
+		custom_info()
 
 	connection_time = world.time
 	connection_realtime = world.realtime
@@ -302,7 +297,6 @@
 
 	send_resources()
 
-	generate_clickcatcher()
 	apply_clickcatcher()
 
 	if(prefs.lastchangelog != GLOB.changelog_hash) //bolds the changelog button on the interface so we know there are updates.
@@ -873,6 +867,7 @@
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=[msay]")
 					else
 						winset(src, "default-[REF(key)]", "parent=default;name=[key];command=")
+	calculate_move_dir()
 
 /client/proc/change_view(new_size)
 	if(isnull(new_size))
@@ -903,15 +898,11 @@
 	winset(src, "mainwindow", "is-maximized=true")
 
 
-/client/proc/generate_clickcatcher()
-	if(void)
-		return
-	void = new()
-	screen += void
-
-
+///Creates and applies a clickcatcher
 /client/proc/apply_clickcatcher()
-	generate_clickcatcher()
+	if(!void)
+		void = new()
+	screen |= void
 	var/list/actualview = getviewsize(view)
 	void.UpdateGreed(actualview[1], actualview[2])
 

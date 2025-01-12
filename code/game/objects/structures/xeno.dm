@@ -6,7 +6,7 @@
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
-	hit_sound = "alien_resin_break"
+	hit_sound = SFX_ALIEN_RESIN_BREAK
 	anchored = TRUE
 	max_integrity = 1
 	resistance_flags = UNACIDABLE
@@ -81,7 +81,7 @@
 	opacity = FALSE
 	max_integrity = 36
 	layer = RESIN_STRUCTURE_LAYER
-	hit_sound = "alien_resin_move"
+	hit_sound = SFX_ALIEN_RESIN_MOVE
 	var/slow_amt = 8
 	/// Does this refund build points when destoryed?
 	var/refundable = TRUE
@@ -108,6 +108,9 @@
 	if(!ishuman(crosser))
 		return
 
+	if(HAS_TRAIT(crosser, TRAIT_TANK_DESANT))
+		return
+
 	if(CHECK_MULTIPLE_BITFIELDS(crosser.allow_pass_flags, HOVERING))
 		return
 
@@ -126,7 +129,7 @@
 		if(CHECK_BITFIELD(SSticker.mode?.round_type_flags, MODE_ALLOW_XENO_QUICKBUILD) && SSresinshaping.active && refundable)
 			SSresinshaping.quickbuild_points_by_hive[xeno_attacker.hivenumber]++
 		xeno_attacker.do_attack_animation(src, ATTACK_EFFECT_CLAW) //SFX
-		playsound(src, "alien_resin_break", 25) //SFX
+		playsound(src, SFX_ALIEN_RESIN_BREAK, 25) //SFX
 		deconstruct(TRUE)
 		return
 
@@ -148,6 +151,7 @@
 	icon = 'icons/obj/smooth_objects/resin-door.dmi'
 	icon_state = "resin-door-1"
 	base_icon_state = "resin-door"
+	resistance_flags = NONE
 	layer = RESIN_STRUCTURE_LAYER
 	max_integrity = 100
 	smoothing_flags = SMOOTH_BITMASK
@@ -158,9 +162,9 @@
 		SMOOTH_GROUP_MINERAL_STRUCTURES,
 	)
 	soft_armor = list(MELEE = 33, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 15, BIO = 0, FIRE = 0, ACID = 0)
-	trigger_sound = "alien_resin_move"
-	hit_sound = "alien_resin_move"
-	destroy_sound = "alien_resin_move"
+	trigger_sound = SFX_ALIEN_RESIN_MOVE
+	hit_sound = SFX_ALIEN_RESIN_MOVE
+	destroy_sound = SFX_ALIEN_RESIN_MOVE
 
 	///The delay before the door closes automatically after being open
 	var/close_delay = 10 SECONDS
@@ -183,7 +187,6 @@
 		toggle_state()
 		return TRUE
 
-
 /obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/xenomorph/larva/M)
 	var/turf/cur_loc = M.loc
 	if(!istype(cur_loc))
@@ -205,7 +208,7 @@
 		return TRUE
 
 	src.balloon_alert(xeno_attacker, "Destroying...")
-	playsound(src, "alien_resin_break", 25)
+	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 	if(do_after(xeno_attacker, 1 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_HOSTILE))
 		src.balloon_alert(xeno_attacker, "Destroyed")
 		qdel(src)

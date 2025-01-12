@@ -24,13 +24,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 //Turfs
 //#define isturf(A) (istype(A, /turf)) This is actually a byond built-in. Added here for completeness sake.
 
-GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
-	/turf/open/space,
-	/turf/open/liquid/lava,
-	/turf/open/liquid/water,
-	/turf/open/space
-	)))
-
 #define isopenturf(A) (istype(A, /turf/open))
 
 #define isopengroundturf(A) (istype(A, /turf/open/ground/jungle) || istype(A, /turf/open/ground/grass))
@@ -42,8 +35,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define iswater(A) (istype(A, /turf/open/liquid/water))
 
 #define isbasalt(A) (istype(A, /turf/open/lavaland/basalt))
-
-#define islavacatwalk(A) (istype(A, /turf/open/lavaland/catwalk))
 
 #define isfloorturf(A) (istype(A, /turf/open/floor))
 
@@ -140,10 +131,10 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
+#define isAIeye(A) (istype(A, /mob/camera/aiEye))
+
 //Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
-
-#define isshade(A) (istype(A, /mob/living/simple_animal/shade))
 
 #define ismouse(A) (istype(A, /mob/living/simple_animal/mouse))
 
@@ -158,10 +149,6 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isbear(A) (istype(A, /mob/living/simple_animal/hostile/bear))
 
 #define iscarp(A) (istype(A, /mob/living/simple_animal/hostile/carp))
-
-#define isconstruct(A) (istype(A, /mob/living/simple_animal/construct))
-
-#define isclown(A) (istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
 
 //Misc mobs
 #define isobserver(A) (istype(A, /mob/dead/observer))
@@ -194,6 +181,8 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 #define isdatumstorage(A) (istype(A, /datum/storage))
 
 #define isstorageobj(A) (istype(A, /obj/item/storage))
+
+#define isholster(A) (istype(A, /obj/item/storage/holster))
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
 
@@ -257,13 +246,15 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isAPC(A) (istype(A, /obj/machinery/power/apc))
 
-#define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
+#define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/decal/cleanable/rune)) //if something is cleanable
 
 #define isvehicle(A) (istype(A, /obj/vehicle))
 
 #define ismecha(A) (istype(A, /obj/vehicle/sealed/mecha))
 
 #define isarmoredvehicle(A) (istype(A, /obj/vehicle/sealed/armored))
+
+#define ishitbox(A) (istype(A, /obj/hitbox))
 
 #define isorgan(A) (istype(A, /datum/limb))
 
@@ -283,10 +274,11 @@ GLOBAL_LIST_INIT(turfs_without_ground, typecacheof(list(
 
 #define isbarricade(A) (istype(A, /obj/structure/barricade))
 
+#define isfire(A) istype(A, /obj/fire)
+
 #define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
 #define isimplant(A) (istype(A, /obj/item/implant))
-
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

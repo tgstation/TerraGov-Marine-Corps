@@ -17,6 +17,30 @@
 	volume = 50
 	range = 20
 
+/datum/looping_sound/river_loop
+	mid_sounds = list(
+		'sound/ambience/river/stream_1.ogg' = 1,
+		'sound/ambience/river/stream_2.ogg' = 1,
+		'sound/ambience/river/stream_3.ogg' = 1,
+	)
+	mid_length = 2.5 SECONDS
+	volume = 25
+	range = 14
+	falloff = 2
+	ambient_sound = TRUE
+
+/datum/looping_sound/water_res_loop
+	mid_sounds = list('sound/effects/wave1.ogg' = 1, 'sound/effects/wave2.ogg' = 1, 'sound/effects/wave3.ogg' = 1)
+	mid_length = 4 SECONDS
+	volume = 28
+	range = 7
+
+/datum/looping_sound/drip_loop
+	mid_sounds = list('sound/effects/drip1.ogg' = 1, 'sound/effects/drip2.ogg' = 1, 'sound/effects/drip3.ogg' = 1, 'sound/effects/drip4.ogg' = 1, 'sound/effects/drip5.ogg' = 1)
+	mid_length = 4
+	volume = 25
+	range = 7
+
 /datum/looping_sound/radio
 	mid_sounds = list('sound/effects/radio_chatter/radio1.ogg' = 1, 'sound/effects/radio_chatter/radio2.ogg' = 1, 'sound/effects/radio_chatter/radio3.ogg' = 1, 'sound/effects/radio_chatter/radio4.ogg' = 1, 'sound/effects/radio_chatter/radio5.ogg' = 1, 'sound/effects/radio_chatter/radio6.ogg' = 1, 'sound/effects/radio_chatter/radio7.ogg' = 1, 'sound/effects/radio_chatter/radio8.ogg' = 1)
 	mid_length = 35 SECONDS

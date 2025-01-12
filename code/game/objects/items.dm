@@ -26,39 +26,59 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/attack_speed = 11
 	///Byond tick delay between right click alternate attacks
 	var/attack_speed_alternate = 11
-	var/list/attack_verb //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	///Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	var/list/attack_verb
 
-	var/sharp = FALSE		// whether this item cuts
-	var/edge = FALSE		// whether this item is more likely to dismember
-	var/pry_capable = FALSE //whether this item can be used to pry things open.
-	var/heat = 0 //whether this item is a source of heat, and how hot it is (in Kelvin).
+	///whether this item cuts
+	var/sharp = FALSE
+	///whether this item is more likely to dismember
+	var/edge = FALSE
+	///whether this item can be used to pry things open.
+	var/pry_capable = FALSE
+	///whether this item is a source of heat, and how hot it is (in Kelvin).
+	var/heat = 0
 
+	///sound this item makes when you hit something with it
 	var/hitsound = null
+	///The weight class being how big, mainly used for storage purposes
 	var/w_class = WEIGHT_CLASS_NORMAL
-	var/item_flags = NONE	//flags for item stuff that isn't clothing/equipping specific.
-	var/equip_slot_flags = NONE		//This is used to determine on which slots an item can fit.
+	///flags for item stuff that isn't clothing/equipping specific.
+	var/item_flags = NONE
+	///This is used to determine on which slots an item can fit.
+	var/equip_slot_flags = NONE
 
 	//Since any item can now be a piece of clothing, this has to be put here so all items share it.
-	var/inventory_flags = NONE //This flag is used for various clothing/equipment item stuff
-	var/inv_hide_flags = NONE //This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	///This flag is used for various clothing/equipment item stuff
+	var/inventory_flags = NONE
+	///This flag is used to determine when items in someone's inventory cover others. IE helmets making it so you can't see glasses, etc.
+	var/inv_hide_flags = NONE
 
 	var/obj/item/master = null
 
-	var/armor_protection_flags = NONE //see setup.dm for appropriate bit flags
-	var/heat_protection_flags = NONE //flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
-	var/cold_protection_flags = NONE //flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	///see setup.dm for appropriate bit flags
+	var/armor_protection_flags = NONE
+	///flags which determine which body parts are protected from heat. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/heat_protection_flags = NONE
+	///flags which determine which body parts are protected from cold. Use the HEAD, CHEST, GROIN, etc. flags. See setup.dm
+	var/cold_protection_flags = NONE
 
-	var/max_heat_protection_temperature //Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection_flags flags
-	var/min_cold_protection_temperature //Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection_flags flags
+	///Set this variable to determine up to which temperature (IN KELVIN) the item protects against heat damage. Keep at null to disable protection. Only protects areas set by heat_protection_flags flags
+	var/max_heat_protection_temperature
+	///Set this variable to determine down to which temperature (IN KELVIN) the item protects against cold damage. 0 is NOT an acceptable number due to if(varname) tests!! Keep at null to disable protection. Only protects areas set by cold_protection_flags flags
+	var/min_cold_protection_temperature
 
 	///list of /datum/action's that this item has.
 	var/list/actions
 	///list of paths of action datums to give to the item on Initialize().
 	var/list/actions_types
-	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
-	var/permeability_coefficient = 1 // for chemicals/diseases
-	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
-	var/slowdown = 0 // How much clothing is slowing you down. Negative values speeds you up
+	/// for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
+	var/gas_transfer_coefficient = 1
+	/// for chemicals/diseases
+	var/permeability_coefficient = 1
+	/// for electrical admittance/conductance (electrocution checks and shit)
+	var/siemens_coefficient = 1
+	/// How much clothing is slowing you down. Negative values speeds you up
+	var/slowdown = 0
 	var/breakouttime = 0
 
 	///list() of species types, if a species cannot put items in a certain slot, but species type is in list, it will be able to wear that item
@@ -131,8 +151,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 	var/active = FALSE
 
-
-
 	//Coloring vars
 	///Some defines to determine if the item is allowed to be recolored.
 	var/colorable_allowed = NONE
@@ -142,9 +160,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/list/icon_state_variants = list()
 	///Current variant selected.
 	var/current_variant
-
-
-
 
 /obj/item/Initialize(mapload)
 	if(species_exception)
@@ -201,6 +216,20 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 /obj/item/proc/update_item_state(mob/user)
 	worn_icon_state = "[initial(icon_state)][item_flags & WIELDED ? "_w" : ""]"
 
+/**
+ * Checks if an item is allowed to be used on an atom/target
+ * Returns TRUE if allowed.
+ *
+ * Args:
+ * target_self - Whether we will check if we (src) are in target, preventing people from using items on themselves.
+ * not_inside - Whether target (or target's loc) has to be a turf.
+ */
+/obj/item/proc/check_allowed_items(atom/target, not_inside = FALSE, target_self = FALSE)
+	if(!target_self && (src in target))
+		return FALSE
+	if(not_inside && !isturf(target.loc) && !isturf(target))
+		return FALSE
+	return TRUE
 
 //user: The mob that is suiciding
 //damagetype: The type of damage the item will inflict on the user
@@ -237,16 +266,24 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
 		. = override.Join("")
 
-/obj/item/examine(mob/user)
-	. = ..()
-	. += "[gender == PLURAL ? "They are" : "It is"] a [weight_class_to_text(w_class)] item."
+/obj/item/examine_tags(mob/user)
+	var/list/parent_tags = ..()
+	var/list/weight_class_data = weight_class_data(w_class)
+	parent_tags.Insert(1, weight_class_data[WEIGHT_CLASS_TEXT]) // to make size display first, otherwise it looks goofy
+	. = parent_tags
+	.[weight_class_data[WEIGHT_CLASS_TEXT]] = "[gender == PLURAL ? "They're" : "It's"] a [weight_class_data[WEIGHT_CLASS_TEXT]] [examine_descriptor(user)]. [weight_class_data[WEIGHT_CLASS_TOOLTIP]]"
+	if(atom_flags & CONDUCT)
+		.["conductive"] = "It's conductive. If this is an oversuit item, like armor, it will prevent defibrillation while worn. \
+							Some conductive tools also have special interactions and dangers when being used."
+
+/obj/item/examine_descriptor(mob/user)
+	return "item"
 
 /obj/item/attack_ghost(mob/dead/observer/user)
 	. = ..()
 	if(. || !can_interact(user))
 		return
 	return interact(user)
-
 
 /obj/item/attack_hand(mob/living/user)
 	. = ..()
@@ -287,19 +324,19 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
-/obj/item/attackby(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/facepaint) && colorable_allowed != NONE)
-		color_item(I, user)
+/obj/item/attackby(obj/item/attacking_item, mob/user, params)
+	if(istype(attacking_item, /obj/item/facepaint) && colorable_allowed != NONE)
+		color_item(attacking_item, user)
 		return TRUE
 
 	. = ..()
 	if(.)
 		return TRUE
 
-	if(!istype(I, /obj/item/storage))
+	if(!istype(attacking_item, /obj/item/storage))
 		return
 
-	var/obj/item/storage/S = I
+	var/obj/item/storage/S = attacking_item
 
 	if(!S.storage_datum.use_to_pickup || !isturf(loc))
 		return
@@ -328,9 +365,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	else if(S.storage_datum.can_be_inserted(src, user))
 		S.storage_datum.handle_item_insertion(src, FALSE, user)
 
-/obj/item/attackby_alternate(obj/item/I, mob/user, params)
-	if(istype(I, /obj/item/facepaint))
-		alternate_color_item(I, user)
+/obj/item/attackby_alternate(obj/item/attacking_item, mob/user, params)
+	if(istype(attacking_item, /obj/item/facepaint))
+		alternate_color_item(attacking_item, user)
 		return TRUE
 
 	. = ..()
@@ -359,33 +396,10 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	SHOULD_CALL_PARENT(TRUE)
 	SEND_SIGNAL(src, COMSIG_ITEM_REMOVED_INVENTORY, user)
 
-// called just as an item is picked up (loc is not yet changed)
+///Called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
+	SEND_SIGNAL(src, COMSIG_ITEM_ATTEMPT_PICK_UP, user)
 	SEND_SIGNAL(user, COMSIG_LIVING_PICKED_UP_ITEM, src)
-	if(!current_acid) //handle acid removal
-		item_flags |= IN_INVENTORY
-		return
-	//i hate cm code please god someone make acid into a component already
-	if(!ishuman(user)) //gotta have limbs Morty
-		return
-	user.visible_message(span_danger("Corrosive substances seethe all over [user] as it retrieves the acid-soaked [src]!"),
-	span_danger("Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [src]!"))
-	playsound(user, "acid_hit", 25)
-	var/mob/living/carbon/human/H = user
-	H.emote("pain")
-	var/raw_damage = current_acid.acid_damage * 0.25 //It's spread over 4 areas.
-	var/list/affected_limbs = list("l_hand", "r_hand", "l_arm", "r_arm")
-	var/limb_count = null
-	for(var/datum/limb/X in H.limbs)
-		if(limb_count > 4) //All target limbs affected
-			break
-		if(!affected_limbs.Find(X.name) )
-			continue
-		if(istype(X) && X.take_damage_limb(0, H.modify_by_armor(raw_damage * randfloat(0.75, 1.25), ACID, def_zone = X.name)))
-			H.UpdateDamageIcon()
-		limb_count++
-	UPDATEHEALTH(H)
-	QDEL_NULL(current_acid)
 	item_flags |= IN_INVENTORY
 
 ///Called to return an item to equip using the quick equip hotkey. Base proc returns the item itself, overridden for storage behavior.
@@ -711,7 +725,9 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	return
 
 /obj/item/proc/update_item_sprites()
-	switch(SSmapping.configs[GROUND_MAP].armor_style)
+	//we call the config directly for pregame where mode isn't set yet
+	var/armor_style = SSticker.mode ? SSticker.mode.get_map_color_variant() : SSmapping.configs[GROUND_MAP].armor_style
+	switch(armor_style)
 		if(MAP_ARMOR_STYLE_JUNGLE)
 			if(item_map_variant_flags & ITEM_JUNGLE_VARIANT)
 				if(colorable_allowed & PRESET_COLORS_ALLOWED)
@@ -745,9 +761,6 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 					greyscale_colors = ARMOR_PALETTE_DESERT
 				else if(colorable_allowed & ICON_STATE_VARIANTS_ALLOWED)
 					current_variant = DESERT_VARIANT
-
-	if(SSmapping.configs[GROUND_MAP].environment_traits[MAP_COLD] && (item_map_variant_flags & ITEM_ICE_PROTECTION))
-		min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 
 	if(!greyscale_colors)
 		return
@@ -986,7 +999,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		return TRUE
 	var/safety = user.get_eye_protection()
 	var/mob/living/carbon/human/H = user
-	var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+	var/datum/internal_organ/eyes/E = H.get_organ_slot(ORGAN_SLOT_EYES)
 	switch(safety)
 		if(1)
 			E.take_damage(rand(1, 2), TRUE)
@@ -1102,13 +1115,9 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 					if(!W.reagents)
 						break
 					W.reagents.reaction(atm)
-					if(istype(atm, /obj/flamer_fire))
-						var/obj/flamer_fire/FF = atm
-						if(FF.firelevel > 20)
-							FF.firelevel -= 20
-							FF.updateicon()
-						else
-							qdel(atm)
+					if(isfire(atm))
+						var/obj/fire/FF = atm
+						FF.set_fire(FF.burn_ticks - EXTINGUISH_AMOUNT)
 						continue
 					if(isliving(atm)) //For extinguishing mobs on fire
 						var/mob/living/M = atm
@@ -1175,9 +1184,10 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/tool_use_check(mob/living/user, amount)
 	return !amount
 
-
-// Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
-// Returns TRUE on success, FALSE on failure.
+/**
+ * Generic use proc. Depending on the item, it uses up fuel, charges, sheets, etc.
+ * Returns TRUE on success, FALSE on failure.
+ */
 /obj/item/proc/use(used)
 	return !used
 
@@ -1503,3 +1513,25 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 ///Returns whether this is considered beneficial if embedded in a mob
 /obj/item/proc/is_beneficial_implant()
 	return FALSE
+
+///Mult on submerge height for changing the alpha of submerged items
+#define ITEM_LIQUID_TURF_ALPHA_MULT 11
+
+/obj/item/set_submerge_level(turf/new_loc, turf/old_loc, submerge_icon, submerge_icon_state, duration)
+	var/old_alpha_mod = istype(old_loc) ? old_loc.get_submerge_height(TRUE) : 0
+	var/new_alpha_mod = istype(new_loc) ? new_loc.get_submerge_height(TRUE) : 0
+
+	alpha -= (new_alpha_mod - old_alpha_mod) * ITEM_LIQUID_TURF_ALPHA_MULT
+
+#undef ITEM_LIQUID_TURF_ALPHA_MULT
+
+///Proc that gets called by a vendor when you refill something
+///Returns FALSE if it's not elligible for refills
+/obj/item/proc/refill(mob/user)
+	SHOULD_CALL_PARENT(TRUE)
+	if(!(item_flags & CAN_REFILL))
+		user.balloon_alert(user, "Can't refill this")
+		return FALSE
+	user.balloon_alert(user, "Refilled") //If all checks passed, it's safe to throw the balloon alert
+	return TRUE
+

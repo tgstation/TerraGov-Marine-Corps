@@ -30,7 +30,7 @@
 /datum/loadout_item/feet/marine_boots
 	name = "Combat boots"
 	desc = "Standard issue combat boots for combat scenarios or combat situations. All combat, all the time."
-	item_typepath = /obj/item/clothing/shoes/marine/full
+	item_typepath = /obj/item/clothing/shoes/marine/tdf/full
 	jobs_supported = list(SQUAD_MARINE, SQUAD_CORPSMAN, SQUAD_ENGINEER, SQUAD_SMARTGUNNER, SQUAD_LEADER, FIELD_COMMANDER, STAFF_OFFICER, CAPTAIN)
 	loadout_item_flags = LOADOUT_ITEM_ROUNDSTART_OPTION|LOADOUT_ITEM_DEFAULT_CHOICE
 

@@ -150,7 +150,7 @@
 	playsound(src, 'sound/items/deconstruct.ogg', 50, TRUE)
 	return TRUE
 
-/obj/machinery/grill/deconstruct(disassembled = TRUE)
+/obj/machinery/grill/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	finish_grill()
 	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/stack/sheet/metal(loc, 5)

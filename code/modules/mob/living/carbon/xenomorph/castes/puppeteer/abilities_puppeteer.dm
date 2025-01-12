@@ -4,6 +4,7 @@
 /datum/action/ability/activable/xeno/flay
 	name = "Flay"
 	action_icon_state = "flay"
+	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Takes a chunk of flesh from the victim marine through a quick swiping motion, adding 100 biomass to your biomass collection."
 	ability_cost = 0
 	cooldown_duration = 20 SECONDS
@@ -17,35 +18,33 @@
 	if(!.)
 		return
 
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/human/target_human = target
 	if(!ishuman(target))
 		if(!silent)
-			owner_xeno.balloon_alert(owner_xeno, "not suitable!")
+			xeno_owner.balloon_alert(xeno_owner, "not suitable!")
 		return FALSE
 
-	if(!owner_xeno.Adjacent(target_human))
+	if(!xeno_owner.Adjacent(target_human))
 		if(!silent)
-			owner_xeno.balloon_alert(owner_xeno, "not adjacent!")
+			xeno_owner.balloon_alert(xeno_owner, "not adjacent!")
 		return FALSE
 
 	if(target_human.stat == DEAD)
 		if(!silent)
-			owner_xeno.balloon_alert(owner_xeno, "dead!")
+			xeno_owner.balloon_alert(xeno_owner, "dead!")
 		return FALSE
 
 /datum/action/ability/activable/xeno/flay/use_ability(mob/living/carbon/human/target_human)
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
-	owner_xeno.face_atom(target_human)
-	owner_xeno.do_attack_animation(target_human, ATTACK_EFFECT_REDSLASH)
-	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] flays and rips skin and flesh from [target_human]!"))
-	playsound(target_human, "alien_claw_flesh", 25, TRUE)
+	xeno_owner.face_atom(target_human)
+	xeno_owner.do_attack_animation(target_human, ATTACK_EFFECT_REDSLASH)
+	xeno_owner.visible_message(target_human, span_danger("[xeno_owner] flays and rips skin and flesh from [target_human]!"))
+	playsound(target_human, SFX_ALIEN_CLAW_FLESH, 25, TRUE)
 	target_human.emote("scream")
-	owner_xeno.emote("roar")
+	xeno_owner.emote("roar")
 	target_human.apply_damage(30, def_zone = BODY_ZONE_CHEST, blocked = MELEE, sharp = TRUE, edge = FALSE, updating_health = TRUE, penetration = 15)
 	target_human.Paralyze(0.8 SECONDS)
 
-	owner_xeno.gain_plasma(owner_xeno.xeno_caste.flay_plasma_gain)
+	xeno_owner.gain_plasma(xeno_owner.xeno_caste.flay_plasma_gain)
 
 	add_cooldown()
 
@@ -55,6 +54,7 @@
 /datum/action/ability/activable/xeno/pincushion
 	name = "Pincushion"
 	action_icon_state = "pincushion"
+	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Launch a spine from your tail. This attack will help deter any organic as well as support your puppets and teammates in direct combat."
 	cooldown_duration = 5 SECONDS
 	keybinding_signals = list(
@@ -65,24 +65,22 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/carbon/xenomorph/X = owner
-	if(X.do_actions)
+	if(xeno_owner.do_actions)
 		return FALSE
-	X.face_atom(victim)
-	if(!do_after(X, 0.3 SECONDS, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(X, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = X.health))))
+	xeno_owner.face_atom(victim)
+	if(!do_after(xeno_owner, 0.3 SECONDS, IGNORE_HELD_ITEM|IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE, victim, BUSY_ICON_DANGER, extra_checks = CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = xeno_owner.health))))
 		return FALSE
 	succeed_activate()
 
 /datum/action/ability/activable/xeno/pincushion/use_ability(atom/victim)
-	var/mob/living/carbon/xenomorph/xeno = owner
 	var/turf/current_turf = get_turf(owner)
-	playsound(xeno.loc, 'sound/bullets/spear_armor1.ogg', 25, 1)
-	xeno.visible_message(span_warning("[xeno] shoots a spike!"), span_xenonotice("We discharge a spinal spike from our body."))
+	playsound(xeno_owner.loc, 'sound/bullets/spear_armor1.ogg', 25, 1)
+	xeno_owner.visible_message(span_warning("[xeno_owner] shoots a spike!"), span_xenonotice("We discharge a spinal spike from our body."))
 
 	var/obj/projectile/spine = new /obj/projectile(current_turf)
 	spine.generate_bullet(/datum/ammo/xeno/spine)
-	spine.def_zone = xeno.get_limbzone_target()
-	spine.fire_at(victim, xeno, xeno, range = 6, speed = 1)
+	spine.def_zone = xeno_owner.get_limbzone_target()
+	spine.fire_at(victim, xeno_owner, xeno_owner, range = 6, speed = 1)
 
 	add_cooldown()
 // ***************************************
@@ -92,6 +90,7 @@
 /datum/action/ability/xeno_action/dreadful_presence
 	name = "Dreadful Presence"
 	action_icon_state = "dreadful_presence"
+	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Emit a menacing presence, striking fear into the organics and slowing them for a short duration."
 	ability_cost = 50
 	cooldown_duration = 20 SECONDS
@@ -121,6 +120,7 @@
 /datum/action/ability/activable/xeno/refurbish_husk
 	name = "Refurbish Husk"
 	action_icon_state = "refurbish_husk"
+	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Harvest the biomass and organs of a body in order to create a meat puppet to do your bidding."
 	cooldown_duration = 25 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -134,35 +134,34 @@
 	. = ..()
 	if(!.)
 		return
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	var/mob/living/carbon/human/target_human = target
 	if(!ishuman(target))
 		if(!silent)
-			owner_xeno.balloon_alert(owner_xeno, "not suitable!")
+			xeno_owner.balloon_alert(xeno_owner, "not suitable!")
 		return FALSE
-	if(length(puppets) >= owner_xeno.xeno_caste.max_puppets)
+	if(length(puppets) >= xeno_owner.xeno_caste.max_puppets)
 		if(!silent)
-			owner_xeno.balloon_alert(owner_xeno, "too many puppets! (max: [owner_xeno.xeno_caste.max_puppets])")
+			xeno_owner.balloon_alert(xeno_owner, "too many puppets! (max: [xeno_owner.xeno_caste.max_puppets])")
 		return FALSE
 	if(HAS_TRAIT(target, TRAIT_MAPSPAWNED) || HAS_TRAIT(target, TRAIT_HOLLOW))
 		if(!silent)
-			owner_xeno.balloon_alert(owner_xeno, "of no use!")
+			xeno_owner.balloon_alert(xeno_owner, "of no use!")
 		return FALSE
 
-	if(!owner_xeno.Adjacent(target_human))
+	if(!xeno_owner.Adjacent(target_human))
 		if(!silent)
-			owner_xeno.balloon_alert(owner_xeno, "not adjacent!")
+			xeno_owner.balloon_alert(xeno_owner, "not adjacent!")
 		return FALSE
 
 #ifndef TESTING
 	if(!HAS_TRAIT(target_human, TRAIT_UNDEFIBBABLE) || target_human.stat != DEAD)
-		owner_xeno.balloon_alert(owner_xeno, "not dead and unrevivable!")
+		xeno_owner.balloon_alert(xeno_owner, "not dead and unrevivable!")
 		return FALSE
 #endif
 
-	owner_xeno.face_atom(target_human)
-	owner_xeno.visible_message(target_human, span_danger("[owner_xeno] begins carving out, doing all sorts of horrible things to [target_human]!"))
-	if(!do_after(owner_xeno, 8 SECONDS, IGNORE_HELD_ITEM, target_human, BUSY_ICON_DANGER, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+	xeno_owner.face_atom(target_human)
+	xeno_owner.visible_message(target_human, span_danger("[xeno_owner] begins carving out, doing all sorts of horrible things to [target_human]!"))
+	if(!do_after(xeno_owner, 8 SECONDS, IGNORE_HELD_ITEM, target_human, BUSY_ICON_DANGER, extra_checks = CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = xeno_owner.health))))
 		return FALSE
 	succeed_activate()
 
@@ -190,10 +189,9 @@
 
 /datum/action/ability/activable/xeno/refurbish_husk/proc/postattack(mob/living/source, mob/living/target, damage)
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(target.stat == DEAD)
 		return
-	owner_xeno.gain_plasma(floor(damage / 0.9))
+	xeno_owner.gain_plasma(floor(damage / 0.9))
 
 // ***************************************
 // *********** Stitch Puppet
@@ -201,6 +199,7 @@
 /datum/action/ability/activable/xeno/puppet
 	name = "Stitch Puppet"
 	action_icon_state = "stitch_puppet"
+	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Uses 125 biomass to create a flesh homunculus to do your bidding, at an adjacent target location."
 	ability_cost = 125
 	cooldown_duration = 25 SECONDS
@@ -214,29 +213,28 @@
 	if(!.)
 		return
 
-	var/mob/living/carbon/xenomorph/owner_xeno = owner
 	if(isclosedturf(target))
 		if(!silent)
-			target.balloon_alert(owner_xeno, "dense area")
+			target.balloon_alert(xeno_owner, "dense area")
 		return FALSE
 
 	var/datum/action/ability/activable/xeno/refurbish_husk/huskaction = owner.actions_by_path[/datum/action/ability/activable/xeno/refurbish_husk]
-	if(length(huskaction.puppets) >= owner_xeno.xeno_caste.max_puppets)
+	if(length(huskaction.puppets) >= xeno_owner.xeno_caste.max_puppets)
 		if(!silent)
-			owner_xeno.balloon_alert(owner_xeno, "too many puppets! (max: [owner_xeno.xeno_caste.max_puppets])")
+			xeno_owner.balloon_alert(xeno_owner, "too many puppets! (max: [xeno_owner.xeno_caste.max_puppets])")
 		return FALSE
 
-	if(!owner_xeno.Adjacent(target))
+	if(!xeno_owner.Adjacent(target))
 		if(!silent)
-			owner_xeno.balloon_alert(owner_xeno, "not adjacent!")
+			xeno_owner.balloon_alert(xeno_owner, "not adjacent!")
 		return FALSE
 
-	owner_xeno.face_atom(target)
+	xeno_owner.face_atom(target)
 	//reverse gib here
-	owner_xeno.visible_message(span_warning("[owner_xeno] begins to vomit out biomass and skillfully sews various bits and pieces together!"))
-	if(!do_after(owner_xeno, 8 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(owner_xeno, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = owner_xeno.health))))
+	xeno_owner.visible_message(span_warning("[xeno_owner] begins to vomit out biomass and skillfully sews various bits and pieces together!"))
+	if(!do_after(xeno_owner, 8 SECONDS, IGNORE_HELD_ITEM, target, BUSY_ICON_CLOCK, extra_checks = CALLBACK(xeno_owner, TYPE_PROC_REF(/mob, break_do_after_checks), list("health" = xeno_owner.health))))
 		return FALSE
-	owner_xeno.visible_message(span_warning("[owner_xeno] forms a repulsive puppet!"))
+	xeno_owner.visible_message(span_warning("[xeno_owner] forms a repulsive puppet!"))
 	succeed_activate()
 
 /datum/action/ability/activable/xeno/puppet/use_ability(atom/target)
@@ -252,6 +250,7 @@
 /datum/action/ability/activable/xeno/organic_bomb
 	name = "Organic Bomb"
 	action_icon_state = "organic_bomb"
+	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Causes one of our puppets to detonate on selection, spewing acid out of the puppet's body in all directions, gibbing the puppet."
 	cooldown_duration = 30 SECONDS
 	ability_cost = 100
@@ -310,6 +309,7 @@
 /datum/action/ability/activable/xeno/articulate
 	name = "Articulate"
 	action_icon_state = "mimicry"
+	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Takes direct control of a Puppet’s vocal chords. Allows you to speak directly through your puppet to the talls."
 	cooldown_duration = 10 SECONDS
 	target_flags = ABILITY_MOB_TARGET
@@ -355,6 +355,7 @@
 /datum/action/ability/activable/xeno/tendril_patch
 	name = "Tendrils"
 	action_icon_state = "living_construct"
+	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Burrow freshly created tendrils to tangle organics in a 3x3 patch."
 	ability_cost = 175
 	cooldown_duration = 40 SECONDS
@@ -435,7 +436,6 @@
 	succeed_activate()
 
 /datum/action/ability/activable/xeno/puppet_blessings/use_ability(mob/living/victim)
-	var/mob/living/carbon/xenomorph/xeno = owner
 	var/choice = show_radial_menu(owner, owner, GLOB.puppeteer_phero_images_list, radius = 35)
 	if(!choice)
 		return fail_activate()
@@ -451,9 +451,9 @@
 		victim.balloon_alert(owner, "already has this blessing!")
 		return fail_activate()
 	victim.balloon_alert(owner, "[choice]")
-	victim.apply_status_effect(effect_path, xeno)
+	victim.apply_status_effect(effect_path, xeno_owner)
 	victim.med_hud_set_status()
-	playsound(get_turf(xeno), "alien_drool", 25)
+	playsound(get_turf(xeno_owner), SFX_ALIEN_DROOL, 25)
 	add_cooldown()
 
 // ***************************************
@@ -462,6 +462,7 @@
 /datum/action/ability/xeno_action/puppeteer_unleash
 	name = "Unleash Puppets"
 	action_icon_state = "enrage"
+	action_icon = 'icons/Xeno/actions/puppeteer.dmi'
 	desc = "Send out your puppets to attack nearby humans"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_UNLEASHPUPPETS,

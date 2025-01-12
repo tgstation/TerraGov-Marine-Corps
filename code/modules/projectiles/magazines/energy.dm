@@ -3,7 +3,7 @@
 /obj/item/cell/lasgun
 	name = "\improper lasgun Battery"
 	desc = "A specialized high density battery used to power lasguns."
-	icon = 'icons/obj/items/ammo.dmi'
+	icon = 'icons/obj/items/ammo/energy.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
@@ -105,15 +105,19 @@
 	charge_amount = 24
 	charge_delay = 2 SECONDS
 
+/obj/item/cell/lasgun/volkite/turret/hover_bike
+	maxcharge = 1500
+	charge_amount = 100
+
 /obj/item/cell/lasgun/volkite/powerpack
 	name = "\improper M-70 powerpack"
 	desc = "A heavy reinforced backpack with an array of ultradensity energy cells, linked to a miniature radioisotope thermoelectric generator for continuous power generation. Used to power the largest man portable volkite weaponry. Click drag cells to the powerpack to recharge."
-	icon = 'icons/obj/items/storage/storage.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
 	)
 	icon_state = "volkite_powerpack"
+	icon = 'icons/obj/items/ammo/powerpack.dmi'
 	charge_overlay = null
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BACK
@@ -191,9 +195,8 @@
 /obj/item/cell/lasgun/volkite/powerpack/marine
 	name = "\improper TE powerpack"
 	desc = "A recently developed mass produced side pouch which charges any TE technological achievement."
-	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "lasgun_pouch"
-	charge_overlay = "lasgun_cell"
+	charge_overlay = "lasgun_pouch"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_POCKET
 	magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
@@ -202,3 +205,12 @@
 	maxcharge = 2400
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	self_recharge = FALSE
+
+/obj/item/cell/lasgun/volkite/powerpack/marine/backpack
+	name = "\improper TE powerbackpack"
+	desc = "A recently developed mass produced backpack which charges any TE technological achievement."
+	icon_state = "lasgun_backpack"
+	charge_overlay = "lasgun_backpack"
+	equip_slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	maxcharge = 12000

@@ -36,7 +36,7 @@
 	quick_equip_slot = 5
 
 /datum/keybinding/human/unique_action
-	hotkey_keys = list("C")
+	hotkey_keys = list("Space")
 	name = "unique_action"
 	full_name = "Perform unique action"
 	keybind_signal = COMSIG_KB_UNIQUEACTION
@@ -46,6 +46,11 @@
 	name = "rail_attachment"
 	full_name = "Activate Rail attachment"
 	keybind_signal = COMSIG_KB_RAILATTACHMENT
+
+/datum/keybinding/human/muzzle_attachment
+	name = "muzzle_attachment"
+	full_name = "Activate Barrel attachment"
+	keybind_signal = COMSIG_KB_MUZZLEATTACHMENT
 
 /datum/keybinding/human/underrail_attachment
 	name = "underrail_attachment"
@@ -126,6 +131,14 @@
 	full_name = "Activate combat robot autorepair"
 	description = "Activate combat robot's autorepair"
 	keybind_signal = COMSIG_KB_ROBOT_AUTOREPAIR
+
+/datum/keybinding/human/stims_menu
+	hotkey_keys = list("g")
+	name = "stims menu"
+	full_name = "Supersoldier Stims"
+	description = "Manage injecting stims as a prototype supersoldier."
+	keybind_signal = COMSIG_KB_STIMS
+
 
 /datum/keybinding/human/move_order
 	name = "move_order"

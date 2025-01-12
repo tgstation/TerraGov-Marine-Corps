@@ -93,6 +93,15 @@
 		return FALSE
 	return TRUE //only give action button when armor is worn.
 
+/obj/item/clothing/suit/storage/marine/pilot
+	name = "\improper PAS-50 pattern pilot armor"
+	desc = "A light piece of armor used by dropship pilots to protect themselves while flying in the cockpit. Excels in protecting the wearer against high-velocity solid projectiles."
+	icon_state = "pilot_chest"
+	worn_icon_state = "pilot_chest"
+	soft_armor = list(MELEE = 40, BULLET = 50, LASER = 50, ENERGY = 25, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
+	slowdown = 0.25
+	item_map_variant_flags = NONE
+
 /obj/item/clothing/suit/storage/marine/mech_pilot
 	name = "\improper PAS-13 pattern mech pilot armor"
 	desc = "A somewhat sparsely armored but robust armored vest, still in use despite the rise of exoskeleton armor due to ease of use and manufacturing. While the suit is a bit more encumbering to wear with the mech pilot uniform, it offers the them a degree of protection that they otherwise do not enjoy outside their mech."
@@ -113,7 +122,7 @@
 
 /obj/item/clothing/suit/storage/marine/transport_crewman
 	name = "\improper PAS-74 pattern transport armor"
-	desc = "A somewhat sparsely armored but robust armored vest. Used by transport crewmen so that they can pretend that they may survice when their vehicle is overrun."
+	desc = "A somewhat sparsely armored but robust armored vest. Used by transport crewmen so that they can pretend that they may survive when their vehicle is overrun."
 	icon_state = "transport_crewman_suit"
 	worn_icon_state = "transport_crewman_suit"
 	slowdown = SLOWDOWN_ARMOR_LIGHT
@@ -146,7 +155,6 @@
 	icon_state = "xarmor"
 	soft_armor = list(MELEE = 75, BULLET = 80, LASER = 80, ENERGY = 85, BOMB = 85, BIO = 70, FIRE = 85, ACID = 70)
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
-	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 	item_flags = AUTOBALANCE_CHECK
 
@@ -154,7 +162,7 @@
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
 	AddComponent(/datum/component/stun_mitigation, slot_override = SLOT_WEAR_SUIT, shield_cover = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50))
-	AddElement(/datum/element/limb_support, supporting_limbs)
+	AddElement(/datum/element/limb_support)
 	if(item_flags & AUTOBALANCE_CHECK)
 		SSmonitor.stats.b18_in_use += src
 
@@ -165,6 +173,19 @@
 
 /obj/item/clothing/suit/storage/marine/specialist/valhalla
 	item_flags = NONE
+
+/obj/item/clothing/suit/storage/marine/specialist/tdf
+	name = "\improper Ace class hardsuit"
+	desc = "The Ace class is what would be called a light hardsuit, good mobility and good protection compared to the standard TDF battle armor but pales in comparison to the more advanced and heavier hardsuits out there and not as fancy, it's integrated SMES only provides enough power for its powered exoskeleton and the autodoc system to run for several hours. Provides excellent protection however it does reduce mobility somewhat. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
+	icon = 'icons/mob/modular/tdf_armor.dmi'
+	worn_icon_list = list(
+		slot_wear_suit_str = 'icons/mob/modular/tdf_armor.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/suits_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/suits_right.dmi',
+	)
+	icon_state = "tdf_hardsuit"
+	worn_icon_state = "tdf_hardsuit"
+	item_map_variant_flags = NONE
 
 /obj/item/clothing/suit/storage/marine/B17
 	name = "\improper B17 defensive armor"
@@ -292,13 +313,12 @@
 	attachments_by_slot = list(ATTACHMENT_SLOT_STORAGE)
 	attachments_allowed = list(/obj/item/armor_module/storage/grenade)
 	starting_attachments = list(/obj/item/armor_module/storage/grenade)
-	supporting_limbs = CHEST | GROIN | ARM_LEFT | ARM_RIGHT | HAND_LEFT | HAND_RIGHT | LEG_LEFT | LEG_RIGHT | FOOT_LEFT | FOOT_RIGHT | HEAD //B18 effectively stabilizes these.
 	resistance_flags = UNACIDABLE
 
 /obj/item/clothing/suit/storage/marine/veteran/pmc/commando/Initialize(mapload, ...)
 	. = ..()
 	AddComponent(/datum/component/suit_autodoc)
-	AddElement(/datum/element/limb_support, supporting_limbs)
+	AddElement(/datum/element/limb_support)
 
 /*===========================I.o.M================================*/
 
@@ -750,3 +770,79 @@
 	icon_state = "specops_vest_leader"
 	soft_armor = list(MELEE = 50, BULLET = 50, LASER = 40, ENERGY = 35, BOMB = 30, BIO = 5, FIRE = 25, ACID = 30)
 	slowdown = SLOWDOWN_ARMOR_MEDIUM
+
+//===========================V.S.D================================
+
+/obj/item/clothing/suit/storage/marine/vsd
+	name = "Crasher multi-threat light ballistic armor"
+	desc = "The Vyacheslav Security Detail's main body armor. Protects the user from most bullet calibers."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	worn_icon_list = list(
+		slot_wear_suit_str = 'icons/mob/clothing/suits/ert_suits.dmi',
+	)
+	icon_state = "vsd_main_larmor"
+	worn_icon_state = "vsd_main_larmor"
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 20, ENERGY = 15, BOMB = 30, BIO = 10, FIRE = 25, ACID = 30)
+	item_map_variant_flags = NONE
+	armor_features_flags = NONE
+
+/obj/item/clothing/suit/storage/marine/vsd/desert
+	name = "Crasher multi-threat light ballistic armor"
+	icon_state = "vsd_main_larmor_d"
+	worn_icon_state = "vsd_main_larmor_d"
+
+/obj/item/clothing/suit/storage/marine/vsd/secondary
+	name = "Crasher multi-threat light ballistic armor"
+	icon_state = "vsd_secondary_larmor"
+	worn_icon_state = "vsd_secondary_larmor"
+
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor
+	name = "Crasher multi-threat medium-set ballistic armor"
+	desc = "The Vyacheslav Security Detail's uncommon use body armor, used usually by engineers. Protects the user from most bullet calibers."
+	slowdown = SLOWDOWN_ARMOR_MEDIUM
+	icon_state = "vsd_marmor"
+	worn_icon_state = "vsd_marmor"
+	soft_armor = list(MELEE = 40, BULLET = 70, LASER = 20, ENERGY = 15, BOMB = 40, BIO = 10, FIRE = 25, ACID = 30)
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor/desert
+	name = "Crasher multi-threat medium-set ballistic armor"
+	icon_state = "vsd_marmor_d"
+	worn_icon_state = "vsd_marmor_d"
+
+/obj/item/clothing/suit/storage/marine/vsd/marmor/upp
+	name = "Crasher multi-threat medium-set ballistic armor"
+	icon_state = "vsd_marmor_upp"
+	worn_icon_state = "vsd_marmor_upp"
+
+/obj/item/clothing/suit/storage/marine/vsd/harmor
+	name = "Crasher multi-threat heavy-set ballistic armor"
+	desc = "The Vyacheslav Security Detail's leader set of armor, rarely given to the grunts. Protects the user from most bullet calibers."
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	icon_state = "vsd_harmor"
+	worn_icon_state = "vsd_harmor"
+	soft_armor = list(MELEE = 45, BULLET = 75, LASER = 20, ENERGY = 15, BOMB = 45, BIO = 10, FIRE = 25, ACID = 30)
+
+/obj/item/clothing/suit/storage/marine/vsd/harmor/upp
+	name = "Crasher multi-threat heavy-set ballistic armor"
+	icon_state = "vsd_harmor_upp"
+	worn_icon_state = "vsd_harmor_upp"
+
+/obj/item/clothing/suit/storage/marine/vsd/juggernaut
+	name = "Crasher multi-threat 'Juggernaut' set ballistic armor"
+	desc = "The Vyacheslav Security Detail's juggernaut set, given to the best and trusted veterans. Protects the user from almost all bullet calibers."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
+	icon_state = "vsd_juggernaut_one"
+	worn_icon_state = "vsd_juggernaut_one"
+	soft_armor = list(MELEE = 50, BULLET = 90, LASER = 20, ENERGY = 15, BOMB = 50, BIO = 10, FIRE = 25, ACID = 30)
+
+/obj/item/clothing/suit/storage/marine/vsd/eod
+	name = "Crasher multi-threat 'Syndicate' set ballistic armor"
+	desc = "The Vyacheslav Security Detail's syndicate given set. Protects the user from almost all bullet calibers. A sticker on the inside reads 'EXPERIMENTAL: courtesy of the Syndicate'."
+	icon = 'icons/obj/clothing/suits/ert_suits.dmi'
+	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
+	icon_state = "vsd_juggernaut_two"
+	worn_icon_state = "vsd_juggernaut_two"
+	soft_armor = list(MELEE = 50, BULLET = 75, LASER = 20, ENERGY = 15, BOMB = 100, BIO = 10, FIRE = 25, ACID = 30)

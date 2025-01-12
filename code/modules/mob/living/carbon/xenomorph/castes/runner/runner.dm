@@ -12,7 +12,6 @@
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_NORMAL
 	pixel_x = -16  //Needed for 2x2
-	old_x = -16
 	inherent_verbs = list(
 		/mob/living/carbon/xenomorph/proc/vent_crawl,
 	)
@@ -36,19 +35,30 @@
 		return
 	return ..()
 
-/mob/living/carbon/xenomorph/runner/med_hud_set_status()
+/mob/living/carbon/xenomorph/runner/MouseDrop(atom/over, src_location, over_location, src_control, over_control, params)
 	. = ..()
-	hud_set_evasion()
+	if(!ishuman(over))
+		return
+	if(!back)
+		balloon_alert(over,"This runner isn't wearing a saddle!")
+		return
+	if(!do_after(over, 3 SECONDS, NONE, src))
+		return
+	var/obj/item/storage/backpack/marine/duffelbag/xenosaddle/saddle = back
+	dropItemToGround(saddle,TRUE)
 
-/mob/living/carbon/xenomorph/runner/proc/hud_set_evasion(duration)
-	var/image/holder = hud_list[XENO_EVASION_HUD]
-	if(!holder)
-		return
-	holder.overlays.Cut()
-	holder.icon_state = "hudblank"
-	if(stat == DEAD || !duration)
-		return
-	holder.icon_state = "evasion_duration[duration]"
-	holder.pixel_x = 24
-	holder.pixel_y = 24
-	hud_list[XENO_EVASION_HUD] = holder
+/mob/living/carbon/xenomorph/runner/can_mount(mob/living/user, target_mounting = FALSE)
+	. = ..()
+	if(!target_mounting)
+		user = pulling
+	if(!ishuman(user))
+		return FALSE
+	var/mob/living/carbon/human/human_pulled = user
+	if(human_pulled.stat == DEAD)
+		return FALSE
+	if(!istype(back, /obj/item/storage/backpack/marine/duffelbag/xenosaddle)) //cant ride without a saddle
+		return FALSE
+	return TRUE
+
+/mob/living/carbon/xenomorph/runner/resisted_against(datum/source)
+	user_unbuckle_mob(source, source)

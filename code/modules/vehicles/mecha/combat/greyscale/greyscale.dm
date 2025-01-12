@@ -28,6 +28,7 @@
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
 	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
+	explosion_block = 2
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -119,12 +120,16 @@
 		if(key == MECHA_R_ARM)
 			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
 			if(right_gun)
-				. += image('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", pixel_x=-32)
+				var/mutable_appearance/r_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", appearance_flags = KEEP_APART)
+				r_gun.pixel_x = -32
+				. += r_gun
 			continue
 		if(key == MECHA_L_ARM)
 			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
 			if(left_gun)
-				. += image('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", pixel_x=-32)
+				var/mutable_appearance/l_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", appearance_flags = KEEP_APART)
+				l_gun.pixel_x = -32
+				. += l_gun
 			continue
 
 		if(!istype(limbs[key], /datum/mech_limb))
@@ -135,6 +140,9 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
 	update_icon() //when available pass UPDATE_OVERLAYS since this is just for layering order
+
+/obj/vehicle/sealed/mecha/combat/greyscale/throw_bounce(atom/hit_atom, turf/old_throw_source)
+	return //no bounce for us
 
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"

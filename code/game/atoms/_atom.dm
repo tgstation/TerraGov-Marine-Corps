@@ -16,16 +16,10 @@
 
 	var/resistance_flags = PROJECTILE_IMMUNE
 
-	///If non-null, overrides a/an/some in all cases
-	var/article
-
 	///a very temporary list of overlays to remove
 	var/list/remove_overlays
 	///a very temporary list of overlays to add
 	var/list/add_overlays
-
-	///Lazy assoc list for managing filters attached to us
-	var/list/filter_data
 
 	///Related to do_after/do_mob overlays, I can't get my hopes high.
 	var/list/display_icons
@@ -113,9 +107,6 @@
 	///The color this atom will be if we choose to draw it on the minimap
 	var/minimap_color = MINIMAP_SOLID
 
-	///The acid currently on this atom
-	var/obj/effect/xenomorph/acid/current_acid = null
-
 	///Cooldown for telling someone they're buckled
 	COOLDOWN_DECLARE(buckle_message_cooldown)
 
@@ -125,7 +116,6 @@
 	var/list/alternate_appearances
 	///var containing our storage, see atom/proc/create_storage()
 	var/datum/storage/storage_datum
-
 
 /*
 We actually care what this returns, since it can return different directives.
@@ -183,20 +173,6 @@ directive is properly returned.
 /atom/proc/return_gas()
 	if(loc)
 		return loc.return_gas()
-
-///returns if we can melt an object, but also the speed at which it happens. 1 just means we melt it. 0,5 means we need a higher strength acid. higher than 1 just makes it melt faster
-/atom/proc/dissolvability(acid_strength)
-	return 1
-
-//returns how long it takes to apply acid on this atom
-/atom/proc/get_acid_delay()
-	return 1 SECONDS
-
-///returns if we are able to apply acid to the atom, also checks if there is already a stronger acid on this atom
-/atom/proc/should_apply_acid(acid_strength)
-	if(!current_acid)
-		return TRUE
-	return acid_strength >= current_acid.acid_strength
 
 /atom/proc/on_reagent_change()
 	return
@@ -306,100 +282,6 @@ directive is properly returned.
 			found += A.search_contents_for(path,filter_path)
 	return found
 
-
-//mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
-/mob/verb/examinate(atom/examinify as mob|obj|turf in view())
-	set name = "Examine"
-	set category = "IC"
-
-	if(is_blind(src))
-		to_chat(src, span_notice("Something is there but you can't see it."))
-		return
-
-	face_atom(examinify)
-	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
-
-	if(length(result))
-		for(var/i in 1 to (length(result) - 1))
-			result[i] += "\n"
-
-	to_chat(src, examine_block(span_infoplain(result.Join())))
-	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
-
-/**
- * Get the name of this object for examine
- *
- * You can override what is returned from this proc by registering to listen for the
- * [COMSIG_ATOM_GET_EXAMINE_NAME] signal
- */
-/atom/proc/get_examine_name(mob/user)
-	. = "\a [src]"
-	var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
-	if(article)
-		. = "[article] [src]"
-		override[EXAMINE_POSITION_ARTICLE] = article
-	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
-		. = override.Join("")
-
-///Generate the full examine string of this atom (including icon for goonchat)
-/atom/proc/get_examine_string(mob/user, thats = FALSE)
-	return "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
-
-/atom/proc/examine(mob/user)
-	SHOULD_CALL_PARENT(TRUE)
-	var/examine_string = get_examine_string(user, thats = TRUE)
-	if(examine_string)
-		. = list("[examine_string].")
-	else
-		. = list()
-
-	if(desc)
-		. += desc
-	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
-		. += span_notice("The codex has <a href='?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
-
-	if((get_dist(user,src) <= 2) && reagents)
-		if(reagents.reagent_flags & TRANSPARENT)
-			. += "It contains:"
-			if(length(reagents.reagent_list)) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
-				var/total_volume = 0
-				for(var/datum/reagent/R in reagents.reagent_list)
-					total_volume += R.volume
-				. +=  span_notice("[total_volume] units of various reagents.")
-			else
-				. += "Nothing."
-		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
-			if(reagents.total_volume)
-				. += span_notice("It has [reagents.total_volume] unit\s left.")
-			else
-				. += span_warning("It's empty.")
-		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
-			if(isxeno(user))
-				return
-			if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
-				. += "It contains these reagents:"
-				if(length(reagents.reagent_list))
-					for(var/datum/reagent/R in reagents.reagent_list)
-						. += "[R.volume] units of [R.name]"
-				else
-					. += "Nothing."
-			else
-				. += "You don't know what's in it."
-		else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
-			var/obj/item/reagent_containers/C = src
-			if(!reagents.total_volume)
-				. += span_notice("\The [src] is empty!")
-			else if (reagents.total_volume<= C.volume*0.3)
-				. += span_notice("\The [src] is almost empty!")
-			else if (reagents.total_volume<= C.volume*0.6)
-				. += span_notice("\The [src] is half full!")
-			else if (reagents.total_volume<= C.volume*0.9)
-				. += span_notice("\The [src] is almost full!")
-			else
-				. += span_notice("\The [src] is full!")
-
-	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
-
 /// Checks if the colors given are different and if so causes a greyscale icon update
 /// The colors argument can be either a list or the full color string
 /atom/proc/set_greyscale_colors(list/colors, update=TRUE)
@@ -508,71 +390,10 @@ directive is properly returned.
 			//we were deleted
 			return
 
-///Add filters by priority to an atom
-/atom/proc/add_filter(name,priority,list/params)
-	LAZYINITLIST(filter_data)
-	var/list/p = params.Copy()
-	p["priority"] = priority
-	filter_data[name] = p
-	update_filters()
-
-///Sorts our filters by priority and reapplies them
-/atom/proc/update_filters()
-	filters = null
-	filter_data = sortTim(filter_data, GLOBAL_PROC_REF(cmp_filter_data_priority), TRUE)
-	for(var/f in filter_data)
-		var/list/data = filter_data[f]
-		var/list/arguments = data.Copy()
-		arguments -= "priority"
-		filters += filter(arglist(arguments))
-	UNSETEMPTY(filter_data)
-
-/atom/proc/transition_filter(name, time, list/new_params, easing, loop)
-	var/filter = get_filter(name)
-	if(!filter)
-		return
-
-	var/list/old_filter_data = filter_data[name]
-
-	var/list/params = old_filter_data.Copy()
-	for(var/thing in new_params)
-		params[thing] = new_params[thing]
-
-	animate(filter, new_params, time = time, easing = easing, loop = loop)
-	for(var/param in params)
-		filter_data[name][param] = params[param]
-
-/atom/proc/change_filter_priority(name, new_priority)
-	if(!filter_data || !filter_data[name])
-		return
-
-	filter_data[name]["priority"] = new_priority
-	update_filters()
-
-/obj/item/update_filters()
+/obj/item/update_filters() // tivi todo move this to items
 	. = ..()
 	for(var/datum/action/A AS in actions)
 		A.update_button_icon()
-
-///returns a filter in the managed filters list by name
-/atom/proc/get_filter(name)
-	if(filter_data && filter_data[name])
-		return filters[filter_data.Find(name)]
-
-///removes a filter from the atom
-/atom/proc/remove_filter(name_or_names)
-	if(!filter_data)
-		return
-	var/list/names = islist(name_or_names) ? name_or_names : list(name_or_names)
-
-	for(var/name in names)
-		if(filter_data[name])
-			filter_data -= name
-	update_filters()
-
-/atom/proc/clear_filters()
-	filter_data = null
-	filters = null
 
 /*
 	Atom Colour Priority System
@@ -588,7 +409,7 @@ directive is properly returned.
 /atom/proc/add_atom_colour(coloration, colour_priority)
 	if(!atom_colours || !length(atom_colours))
 		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+		atom_colours.len = COLOR_PRIORITY_AMOUNT //four priority levels currently.
 	if(!coloration)
 		return
 	if(colour_priority > length(atom_colours))
@@ -603,7 +424,7 @@ directive is properly returned.
 /atom/proc/remove_atom_colour(colour_priority, coloration)
 	if(!atom_colours)
 		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+		atom_colours.len = COLOR_PRIORITY_AMOUNT //four priority levels currently.
 	if(colour_priority > length(atom_colours))
 		return
 	if(coloration && atom_colours[colour_priority] != coloration)
@@ -619,7 +440,7 @@ directive is properly returned.
 /atom/proc/update_atom_colour()
 	if(!atom_colours)
 		atom_colours = list()
-		atom_colours.len = COLOUR_PRIORITY_AMOUNT //four priority levels currently.
+		atom_colours.len = COLOR_PRIORITY_AMOUNT //four priority levels currently.
 	color = null
 	for(var/C in atom_colours)
 		if(islist(C))
@@ -678,14 +499,9 @@ directive is properly returned.
 		update_light()
 	if(loc)
 		SEND_SIGNAL(loc, COMSIG_ATOM_INITIALIZED_ON, src) //required since spawning something doesn't call Move hence it doesn't call Entered.
-		if(isturf(loc))
-			if(opacity)
-				var/turf/T = loc
-				T.directional_opacity = ALL_CARDINALS // No need to recalculate it in this case, it's guaranteed to be on afterwards anyways.
-
-			if(smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK))
-				QUEUE_SMOOTH(src)
-				QUEUE_SMOOTH_NEIGHBORS(src)
+		if(isturf(loc) && (smoothing_flags & (SMOOTH_CORNERS|SMOOTH_BITMASK)))
+			QUEUE_SMOOTH(src)
+			QUEUE_SMOOTH_NEIGHBORS(src)
 
 	if(length(smoothing_groups))
 		sortTim(smoothing_groups) //In case it's not properly ordered, let's avoid duplicate entries with the same values.
@@ -715,6 +531,25 @@ directive is properly returned.
 /atom/proc/setDir(newdir)
 	SEND_SIGNAL(src, COMSIG_ATOM_DIR_CHANGE, dir, newdir)
 	dir = newdir
+
+/**
+ * Wash this atom
+ *
+ * This will clean it off any temporary stuff like blood. Override this in your item to add custom cleaning behavior.
+ * Returns true if any washing was necessary and thus performed
+ */
+/atom/proc/wash()
+	SHOULD_CALL_PARENT(TRUE)
+	if(SEND_SIGNAL(src, COMSIG_COMPONENT_CLEAN_ACT) & COMPONENT_CLEANED)
+		return TRUE
+
+	// Basically "if has washable coloration"
+	if(length(atom_colours) >= WASHABLE_COLOR_PRIORITY && atom_colours[WASHABLE_COLOR_PRIORITY])
+		remove_atom_colour(WASHABLE_COLOR_PRIORITY)
+		return TRUE
+	if(clean_blood())
+		return TRUE
+	return FALSE
 
 /atom/vv_get_dropdown()
 	. = ..()
@@ -916,9 +751,6 @@ directive is properly returned.
 /atom/proc/welder_act(mob/living/user, obj/item/I)
 	return FALSE
 
-/atom/proc/weld_cut_act(mob/living/user, obj/item/I)
-	return FALSE
-
 /atom/proc/analyzer_act(mob/living/user, obj/item/I)
 	return FALSE
 
@@ -927,6 +759,9 @@ directive is properly returned.
 		return FALSE //Storage screens, worn containers, anything we want to be able to interact otherwise.
 	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
+
+/atom/proc/plasmacutter_act(mob/living/user, obj/item/I)
+	return FALSE
 
 ///This proc is called on atoms when they are loaded into a shuttle
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
@@ -1035,7 +870,7 @@ directive is properly returned.
 			if(HUD_LIST_LIST)
 				hud_list[hud] = list()
 			else
-				var/image/I = image('icons/mob/hud.dmi', src, "")
+				var/image/I = image('icons/mob/hud/human.dmi', src, "")
 				I.appearance_flags = RESET_COLOR|RESET_TRANSFORM|KEEP_APART
 				hud_list[hud] = I
 
@@ -1130,3 +965,33 @@ directive is properly returned.
 ///Interaction for using a grab on an atom
 /atom/proc/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	return
+
+///Checks if there is acid melting this atom
+/atom/proc/get_self_acid()
+	var/list/acid_list = list()
+	SEND_SIGNAL(src, COMSIG_ATOM_GET_SELF_ACID, acid_list)
+	if(!length(acid_list))
+		return
+	return acid_list[1]
+
+///returns if we can melt an object, but also the speed at which it happens. 1 just means we melt it. 0,5 means we need a higher strength acid. higher than 1 just makes it melt faster
+/atom/proc/dissolvability(acid_strength)
+	return 1
+
+//returns how long it takes to apply acid on this atom
+/atom/proc/get_acid_delay()
+	return 1 SECONDS
+
+///returns if we are able to apply acid to the atom, also checks if there is already a stronger acid on this atom
+/atom/proc/should_apply_acid(acid_strength)
+	if(resistance_flags & UNACIDABLE || !dissolvability(acid_strength))
+		return ATOM_CANNOT_ACID
+	var/obj/effect/xenomorph/acid/current_acid = get_self_acid()
+	if(acid_strength <= current_acid?.acid_strength)
+		return ATOM_STRONGER_ACID
+	return ATOM_CAN_ACID
+
+///What happens when with atom is melted by acid
+/atom/proc/do_acid_melt()
+	visible_message(span_xenodanger("[src] collapses under its own weight into a puddle of goop and undigested debris!"))
+	playsound(src, SFX_ACID_HIT, 25)

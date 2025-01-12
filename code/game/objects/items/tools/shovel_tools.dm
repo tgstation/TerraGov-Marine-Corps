@@ -71,7 +71,7 @@
 
 	if(dirt_amt)
 		balloon_alert(user, "Dumps the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]")
-		playsound(user.loc, "rustle", 30, 1, 6)
+		playsound(user.loc, SFX_RUSTLE, 30, 1, 6)
 		if(dirt_type == DIRT_TYPE_SNOW)
 			var/obj/item/stack/snow/S = locate() in target_turf
 			if(S && (S.amount + dirt_amt < S.max_amount))

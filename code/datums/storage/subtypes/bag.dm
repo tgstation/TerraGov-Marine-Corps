@@ -152,7 +152,7 @@
 		show_to(user)
 	sheetsnatcher.update_icon()
 
-/datum/storage/bag/sheetsnatcher/remove_from_storage(obj/item/item, atom/new_location, mob/user) // Instead of removing
+/datum/storage/bag/sheetsnatcher/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE) // Instead of removing
 	var/obj/item/stack/sheet/S = item
 	if(!istype(S))
 		return FALSE

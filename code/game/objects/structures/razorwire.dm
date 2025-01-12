@@ -1,7 +1,7 @@
 /obj/structure/razorwire
 	name = "razorwire obstacle"
 	desc = "A bundle of barbed wire supported by metal rods. Used to deny access to areas under (literal) pain of entanglement and injury. A classic fortification since the 1900s."
-	icon = 'icons/obj/structures/barbedwire.dmi'
+	icon = 'icons/obj/structures/barricades/barbedwire.dmi'
 	icon_state = "barbedwire_x"
 	base_icon_state = "barbedwire_x"
 	density = TRUE
@@ -18,7 +18,7 @@
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
-/obj/structure/razorwire/deconstruct(disassembled = TRUE)
+/obj/structure/razorwire/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
 			new sheet_type(loc)
@@ -211,10 +211,7 @@
 	return ..()
 
 /obj/structure/razorwire/update_icon_state()
-	. = ..()
-	var/health_percent = round(obj_integrity/max_integrity * 100)
-	var/remaining = CEILING(health_percent, 25)
-	icon_state = "[base_icon_state]_[remaining]"
+	icon_state = "[base_icon_state]_[CEILING(ROUND_UP(obj_integrity/max_integrity * 100), 25)]"
 
 /obj/structure/razorwire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()

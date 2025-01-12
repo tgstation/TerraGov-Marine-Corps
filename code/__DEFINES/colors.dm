@@ -1,3 +1,15 @@
+//different types of atom colorations
+/// Only used by rare effects like greentext coloring mobs and when admins varedit color
+#define ADMIN_COLOR_PRIORITY 1
+/// e.g. purple effect of the revenant on a mob, black effect when mob electrocuted
+#define TEMPORARY_COLOR_PRIORITY 2
+/// Color splashed onto an atom (e.g. paint on turf)
+#define WASHABLE_COLOR_PRIORITY 3
+/// Color inherent to the atom (e.g. blob color)
+#define FIXED_COLOR_PRIORITY 4
+///how many colour priority levels there are.
+#define COLOR_PRIORITY_AMOUNT 4
+
 #define COLOR_INPUT_DISABLED "#F0F0F0"
 #define COLOR_INPUT_ENABLED "#D3B5B5"
 
@@ -122,13 +134,13 @@
 #define COLOR_PACKET_RYETALYN "#AC6D32"
 
 //Color defines used by medicine
-#define COLOR_REAGENT_INAPROVALINE "#9966CC" // rgb: 200, 165, 220
-#define COLOR_REAGENT_RYETALYN "#C8A5DC" // rgb: 200, 165, 220
+#define COLOR_REAGENT_INAPROVALINE "#9966CC" // rgb(200, 165, 220)
+#define COLOR_REAGENT_RYETALYN "#C8A5DC" // rgb(200, 165, 220)
 #define COLOR_REAGENT_PARACETAMOL "#cac5c5"
 #define COLOR_REAGENT_TRAMADOL "#8a8686"
 #define COLOR_REAGENT_OXYCODONE "#4b4848"
 #define COLOR_REAGENT_HYDROCODONE "#C805DC"
-#define COLOR_REAGENT_LEPORAZINE "#C8A5DC" // rgb: 200, 165, 220
+#define COLOR_REAGENT_LEPORAZINE "#C8A5DC" // rgb(200, 165, 220)
 #define COLOR_REAGENT_KELOTANE "#CC9900"
 #define COLOR_REAGENT_DERMALINE "#ffef00"
 #define COLOR_REAGENT_SALINE_GLUCOSE "#d4f1f9"
@@ -136,28 +148,28 @@
 #define COLOR_REAGENT_DEXALINPLUS "#2445ff"
 #define COLOR_REAGENT_TRICORDRAZINE "#f8f8f8"
 #define COLOR_REAGENT_DYLOVENE "#669900"
-#define COLOR_REAGENT_ADMINORDRAZINE "#C8A5DC" // rgb: 200, 165, 220
-#define COLOR_REAGENT_SYNAPTIZINE "#C8A5DC" // rgb: 200, 165, 220
-#define COLOR_REAGENT_NEURALINE "#C8A5DC" // rgb: 200, 165, 220
-#define COLOR_REAGENT_HYRONALIN "#426300" // rgb: 200, 165, 220
-#define COLOR_REAGENT_ARITHRAZINE "#C8A5DC" // rgb: 200, 165, 220
-#define COLOR_REAGENT_RUSSIAN_RED "#3d0000" // rgb: 200, 165, 220
+#define COLOR_REAGENT_ADMINORDRAZINE "#C8A5DC" // rgb(200, 165, 220)
+#define COLOR_REAGENT_SYNAPTIZINE "#C8A5DC" // rgb(200, 165, 220)
+#define COLOR_REAGENT_NEURALINE "#C8A5DC" // rgb(200, 165, 220)
+#define COLOR_REAGENT_HYRONALIN "#426300" // rgb(200, 165, 220)
+#define COLOR_REAGENT_ARITHRAZINE "#C8A5DC" // rgb(200, 165, 220)
+#define COLOR_REAGENT_RUSSIAN_RED "#3d0000" // rgb(200, 165, 220)
 #define COLOR_REAGENT_ALKYSINE "#0292AC"
-#define COLOR_REAGENT_IMIDAZOLINE "#F7A151" // rgb: 200, 165, 220
+#define COLOR_REAGENT_IMIDAZOLINE "#F7A151" // rgb(200, 165, 220)
 #define COLOR_REAGENT_PERIDAXON_PLUS "#FFC896"
 #define COLOR_REAGENT_BICARIDINE "#DA0000"
 #define COLOR_REAGENT_MERALYNE "#FD5964"
 #define COLOR_REAGENT_QUICKCLOT "#E07BAD"
 #define COLOR_REAGENT_QUICKCLOTPLUS "#f1accf"
 #define COLOR_REAGENT_NANOBLOOD "#A10808"
-#define COLOR_REAGENT_ULTRAZINE "#C8A5DC" // rgb: 200, 165, 220
-#define COLOR_REAGENT_CRYOXADONE "#C8A5DC" // rgb: 200, 165, 220
-#define COLOR_REAGENT_CLONEXADONE "#C8A5DC" // rgb: 200, 165, 220
-#define COLOR_REAGENT_REZADONE "#669900" // rgb: 102, 153, 0
-#define COLOR_REAGENT_SPACEACILLIN "#90F7F5" // rgb: 200, 165, 220
-#define COLOR_REAGENT_POLYHEXANIDE "#C8A5DC" // rgb: 200, 165, 220
-#define COLOR_REAGENT_LARVAWAY "#C8A5DC" // rgb: 200, 165, 220
-#define COLOR_REAGENT_ETHYLREDOXRAZINE "#605048" // rgb: 96, 80, 72
+#define COLOR_REAGENT_ULTRAZINE "#C8A5DC" // rgb(200, 165, 220)
+#define COLOR_REAGENT_CRYOXADONE "#C8A5DC" // rgb(200, 165, 220)
+#define COLOR_REAGENT_CLONEXADONE "#C8A5DC" // rgb(200, 165, 220)
+#define COLOR_REAGENT_REZADONE "#669900" // rgb(102, 153, 0)
+#define COLOR_REAGENT_SPACEACILLIN "#90F7F5" // rgb(200, 165, 220)
+#define COLOR_REAGENT_POLYHEXANIDE "#C8A5DC" // rgb(200, 165, 220)
+#define COLOR_REAGENT_LARVAWAY "#C8A5DC" // rgb(200, 165, 220)
+#define COLOR_REAGENT_ETHYLREDOXRAZINE "#605048" // rgb(96, 80, 72)
 #define COLOR_REAGENT_HYPERVENE "#AC6D32"
 #define COLOR_REAGENT_ROULETTIUM "#19C832"
 #define COLOR_REAGENT_LEMOLINE "#66801e"
@@ -168,26 +180,26 @@
 #define COLOR_REAGENT_STIMULON "#19C832"
 
 //Color defines used by toxin
-#define COLOR_TOXIN_TOXIN "#CF3600" // rgb: 207, 54, 0
-#define COLOR_TOXIN_AMATOXIN "#792300" // rgb: 121, 35, 0
-#define COLOR_TOXIN_MUTAGEN "#13BC5E" // rgb: 19, 188, 94
-#define COLOR_TOXIN_PHORON "#E71B00" // rgb: 231, 27, 0
-#define COLOR_TOXIN_LEXORIN "#C8A5DC" // rgb: 200, 165, 220
-#define COLOR_TOXIN_CYANIDE "#CF3600" // rgb: 207, 54, 0
-#define COLOR_TOXIN_MINTTOXIN "#CF3600" // rgb: 207, 54, 0
-#define COLOR_TOXIN_CARPOTOXIN "#003333" // rgb: 0, 51, 51
-#define COLOR_TOXIN_HUSKPOWDER "#669900" // rgb: 102, 153, 0
-#define COLOR_TOXIN_MINDBREAKER "#B31008" // rgb: 139, 166, 233
-#define COLOR_TOXIN_FERTILIZER "#664330" // rgb: 102, 67, 48
-#define COLOR_TOXIN_PLANTBGONE "#49002E" // rgb: 73, 0, 46
-#define COLOR_TOXIN_SLEEPTOXIN "#E895CC" // rgb: 232, 149, 204
-#define COLOR_TOXIN_CHLORALHYDRATE "#000067" // rgb: 0, 0, 103
-#define COLOR_TOXIN_POTASSIUM_CHLORIDE "#FFFFFF" // rgb: 255,255,255
-#define COLOR_TOXIN_PLASTICIDE "#CF3600" // rgb: 207, 54, 0
-#define COLOR_TOXIN_ACID "#DB5008" // rgb: 219, 80, 8
-#define COLOR_TOXIN_POLYACID "#8E18A9" // rgb: 142, 24, 169
-#define COLOR_TOXIN_NANITES "#535E66" // rgb: 83, 94, 102
-#define COLOR_TOXIN_XENO_NEUROTOXIN "#CF3600" // rgb: 207, 54, 0
+#define COLOR_TOXIN_TOXIN "#CF3600" // rgb(207, 54, 0)
+#define COLOR_TOXIN_AMATOXIN "#792300" // rgb(121, 35, 0)
+#define COLOR_TOXIN_MUTAGEN "#13BC5E" // rgb(19, 188, 94)
+#define COLOR_TOXIN_PHORON "#E71B00" // rgb(231, 27, 0)
+#define COLOR_TOXIN_LEXORIN "#C8A5DC" // rgb(200, 165, 220)
+#define COLOR_TOXIN_CYANIDE "#CF3600" // rgb(207, 54, 0)
+#define COLOR_TOXIN_MINTTOXIN "#CF3600" // rgb(207, 54, 0)
+#define COLOR_TOXIN_CARPOTOXIN "#003333" // rgb(0, 51, 51)
+#define COLOR_TOXIN_HUSKPOWDER "#669900" // rgb(102, 153, 0)
+#define COLOR_TOXIN_MINDBREAKER "#B31008" // rgb(139, 166, 233)
+#define COLOR_TOXIN_FERTILIZER "#664330" // rgb(102, 67, 48)
+#define COLOR_TOXIN_PLANTBGONE "#49002E" // rgb(73, 0, 46)
+#define COLOR_TOXIN_SLEEPTOXIN "#E895CC" // rgb(232, 149, 204)
+#define COLOR_TOXIN_CHLORALHYDRATE "#000067" // rgb(0, 0, 103)
+#define COLOR_TOXIN_POTASSIUM_CHLORIDE "#FFFFFF" // rgb(255, 255, 255)
+#define COLOR_TOXIN_PLASTICIDE "#CF3600" // rgb(207, 54, 0)
+#define COLOR_TOXIN_ACID "#DB5008" // rgb(219, 80, 8)
+#define COLOR_TOXIN_POLYACID "#8E18A9" // rgb(142, 24, 169)
+#define COLOR_TOXIN_NANITES "#535E66" // rgb(83, 94, 102)
+#define COLOR_TOXIN_XENO_NEUROTOXIN "#CF3600" // rgb(207, 54, 0)
 #define COLOR_TOXIN_XENO_HEMODILE "#602CFF"
 #define COLOR_TOXIN_XENO_TRANSVITOX "#94FF00"
 #define COLOR_TOXIN_XENO_SANGUINAL "#bb0a1e"
@@ -233,6 +245,8 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_PURPLE "#952CF4"
 /// Less-saturated light purple. rgb(155, 81, 255)
 #define LIGHT_COLOR_LAVENDER "#9B51FF"
+///lighter, pinker purple
+#define LIGHT_COLOR_PURPLE_PINK "#e2a3ff"
 ///slightly desaturated bright yellow.
 #define LIGHT_COLOR_HOLY_MAGIC "#FFF743"
 /// deep crimson
@@ -281,6 +295,17 @@ Important note: colors can end up significantly different from the basic html pi
 #define LIGHT_COLOR_EMISSIVE_ORANGE "#faac64"
 
 //Colors used by special resin walls.
-#define COLLOR_WALL_BULLETPROOF "#ed99f6"
+#define COLOR_WALL_BULLETPROOF "#ed99f6"
 #define COLOR_WALL_FIREPROOF "#ff696e"
 #define COLOR_WALL_HARDY "#6699ff"
+
+//Colours associated with squads
+#define COLOR_SQUAD_ALPHA "#e61919" // rgb(230,25,25)
+#define COLOR_SQUAD_BRAVO "#ffc32d" // rgb(255,195,45)
+#define COLOR_SQUAD_CHARLIE "#c864c8" // rgb(200,100,200)
+#define COLOR_SQUAD_DELTA "#4148c8" // rgb(65,72,200)
+
+#define COLOR_SQUAD_ZULU "#FF6A00" //rgb(255,106,0)
+#define COLOR_SQUAD_YANKEE "#009999" // rgb(0, 153, 153)
+#define COLOR_SQUAD_XRAY "#008000" // rgb(0, 128, 0)
+#define COLOR_SQUAD_WHISKEY "#CC00CC" // rgb(204, 0, 204)

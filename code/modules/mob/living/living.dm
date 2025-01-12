@@ -1,4 +1,4 @@
-/mob/living/proc/Life()
+/mob/living/proc/Life(seconds_per_tick, times_fired)
 	if(stat == DEAD || notransform || HAS_TRAIT(src, TRAIT_STASIS)) //If we're dead or notransform don't bother processing life
 		return
 
@@ -9,6 +9,21 @@
 	handle_organs()
 
 	updatehealth()
+
+	if(client)
+		var/turf/T = get_turf(src)
+		if(!T)
+			return
+		if(registered_z != T.z)
+#ifdef TESTING
+			message_admins("[ADMIN_LOOKUPFLW(src)] has somehow ended up in Z-level [T.z] despite being registered in Z-level [registered_z]. If you could ask them how that happened and notify coderbus, it would be appreciated.")
+#endif
+			log_game("Z-TRACKING: [src] has somehow ended up in Z-level [T.z] despite being registered in Z-level [registered_z].")
+			update_z(T.z)
+		return
+	if(registered_z)
+		log_game("Z-TRACKING: [src] of type [src.type] has a Z-registration despite not having a client.")
+		update_z(null)
 
 
 //this updates all special effects: knockdown, druggy, etc.., DELETE ME!!
@@ -32,7 +47,7 @@
 
 ///Update what auras we'll receive this life tick if it's either new or stronger than current. aura_type as AURA_ define, strength as number.
 /mob/living/proc/receive_aura(aura_type, strength)
-	if(received_auras[aura_type] > strength)
+	if(received_auras[aura_type] && received_auras[aura_type] > strength)
 		return
 	received_auras[aura_type] = strength
 
@@ -169,17 +184,17 @@
 	return (health <= get_crit_threshold() && stat == UNCONSCIOUS)
 
 
-/mob/living/Move(atom/newloc, direct)
+/mob/living/Move(atom/newloc, direction, glide_size_override)
 	if(buckled)
 		if(buckled.loc != newloc) //not updating position
 			if(!buckled.anchored)
-				return buckled.Move(newloc, direct)
+				return buckled.Move(newloc, direction, glide_size)
 			else
 				return FALSE
 	else if(lying_angle)
-		if(direct & EAST)
+		if(direction & EAST)
 			set_lying_angle(90)
-		else if(direct & WEST)
+		else if(direction & WEST)
 			set_lying_angle(270)
 
 	. = ..()
@@ -208,6 +223,18 @@
 		if(client)
 			reset_perspective()
 
+///Updates the mob's registered_z
+/mob/living/proc/update_z(new_z) // 1+ to register, null to unregister
+	if(registered_z == new_z)
+		return
+	if(registered_z)
+		SSmobs.clients_by_zlevel[registered_z] -= src
+	if(isnull(client))
+		registered_z = null
+		return
+	if(new_z)
+		SSmobs.clients_by_zlevel[new_z] += src
+	registered_z = new_z
 
 /mob/living/proc/do_camera_update(oldLoc)
 	return
@@ -743,9 +770,10 @@ below 100 is not dizzy
 /mob/living/can_interact_with(datum/D)
 	return D == src || D.Adjacent(src)
 
-/mob/living/onTransitZ(old_z, new_z)
+/mob/living/on_changed_z_level(turf/old_turf, turf/new_turf, notify_contents = TRUE)
 	set_jump_component()
-	return ..()
+	. = ..()
+	update_z(new_turf?.z)
 
 /**
  * Changes the inclination angle of a mob, used by humans and others to differentiate between standing up and prone positions.
@@ -866,8 +894,8 @@ below 100 is not dizzy
 	. = ..()
 	if(!.)
 		return
-	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
-	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER] minutes.")
+	log_admin("[key_name(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER / 600] minutes.")
+	message_admins("[ADMIN_TPMONTY(src)] (Job: [(job) ? job.title : "Unassigned"]) has been away for [AFK_TIMER / 600] minutes.")
 
 ///Transfer the candidate mind into src
 /mob/living/proc/transfer_mob(mob/candidate)

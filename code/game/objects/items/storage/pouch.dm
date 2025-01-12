@@ -1,6 +1,6 @@
 /obj/item/storage/pouch
 	name = "abstract pouch"
-	icon = 'icons/Marine/marine-pouches.dmi'
+	icon = 'icons/obj/clothing/pouches.dmi'
 	icon_state = "small_drop"
 	w_class = WEIGHT_CLASS_BULKY //does not fit in backpack
 	equip_slot_flags = ITEM_SLOT_POCKET
@@ -19,9 +19,9 @@
 	. = ..()
 	update_icon()
 
-/obj/item/storage/pouch/examine(mob/user)
+/obj/item/storage/pouch/examine_tags(mob/user)
 	. = ..()
-	. += "Can be worn by attaching it to a pocket."
+	.["pocket attachable"] = "Can be worn by attaching it to a pocket."
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
 	if(slot == SLOT_L_STORE || slot == SLOT_R_STORE)
@@ -443,8 +443,7 @@
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_small(src)
 	new /obj/item/explosive/grenade/chem_grenade/razorburn_large(src)
 
-/obj/item/storage/pouch/explosive/antigas/Initialize(mapload)
-	. = ..()
+/obj/item/storage/pouch/explosive/antigas/PopulateContents()
 	new /obj/item/explosive/grenade/smokebomb/antigas(src)
 	new /obj/item/explosive/grenade/smokebomb/antigas(src)
 	new /obj/item/explosive/grenade/smokebomb/antigas(src)
@@ -496,14 +495,17 @@
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 	new /obj/item/explosive/grenade/flashbang/stun(src)
 
-/obj/item/storage/pouch/grenade/standard/Initialize(mapload)
-	. = ..()
+/obj/item/storage/pouch/grenade/standard/PopulateContents()
 	new /obj/item/explosive/grenade(src)
 	new /obj/item/explosive/grenade(src)
 	new /obj/item/explosive/grenade(src)
 	new /obj/item/explosive/grenade/bullet/laser(src)
 	new /obj/item/explosive/grenade/bullet/laser(src)
 	new /obj/item/explosive/grenade/incendiary(src)
+
+/obj/item/storage/pouch/grenade/emp
+	fill_type = /obj/item/explosive/grenade/emp
+	fill_number = 6
 
 /obj/item/storage/pouch/grenade/som
 	desc = "It can contain grenades. This one looks to be made out of traditional SOM leather."
@@ -529,14 +531,17 @@
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
 
-/obj/item/storage/pouch/grenade/som/standard/Initialize(mapload)
-	. = ..()
+/obj/item/storage/pouch/grenade/som/standard/PopulateContents()
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/som(src)
 	new /obj/item/explosive/grenade/incendiary/som(src)
 	new /obj/item/explosive/grenade/incendiary/som(src)
+
+/obj/item/storage/pouch/grenade/som/emp
+	fill_type = /obj/item/explosive/grenade/emp
+	fill_number = 6
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
@@ -573,13 +578,22 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/inaprovaline(src)
 
+/obj/item/storage/pouch/medkit/doctor/PopulateContents()
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
+
 /obj/item/storage/pouch/medkit/medic/PopulateContents()
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/burn_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
 	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/heal_pack/advanced/bruise_pack(src)
+	new /obj/item/reagent_containers/hypospray/advanced/quickclotplus_medkit(src)
+	new /obj/item/reagent_containers/hypospray/advanced/peridaxonplus_medkit(src)
 	new /obj/item/reagent_containers/hypospray/advanced/meraderm(src)
 
 /obj/item/storage/pouch/medkit/som
@@ -962,7 +976,7 @@
 				if(!cont)
 					break
 
-			playsound(user.loc, "rustle", 15, TRUE, 6)
+			playsound(user.loc, SFX_RUSTLE, 15, TRUE, 6)
 			to_chat(user, span_notice("You refill [src] with [M]."))
 			return TRUE
 

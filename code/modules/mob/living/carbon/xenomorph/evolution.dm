@@ -16,12 +16,25 @@
 	set desc = "Change into another caste in the same tier."
 	set category = "Alien"
 
-	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < 9000) //casteswap timer, 15 minutes
+	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < (15 MINUTES))
 		to_chat(src, span_warning("Your caste swap timer is not done yet."))
 		return
 
 	SStgui.close_user_uis(src, GLOB.evo_panel)
 	ADD_TRAIT(src, TRAIT_CASTE_SWAP, TRAIT_CASTE_SWAP)
+	GLOB.evo_panel.ui_interact(src)
+
+/mob/living/carbon/xenomorph/verb/strain_swap()
+	set name = "Strain Swap"
+	set desc = "Change into a strain of your current caste."
+	set category = "Alien"
+
+	if(world.time - (GLOB.key_to_time_of_caste_swap[key] ? GLOB.key_to_time_of_caste_swap[key] : -INFINITY) < (5 MINUTES)) // yes this is shared
+		to_chat(src, span_warning("Your caste swap timer is not done yet."))
+		return
+
+	SStgui.close_user_uis(src, GLOB.evo_panel)
+	ADD_TRAIT(src, TRAIT_STRAIN_SWAP, TRAIT_STRAIN_SWAP)
 	GLOB.evo_panel.ui_interact(src)
 
 /mob/living/carbon/xenomorph/verb/regress()
@@ -36,6 +49,8 @@
 ///Creates a list of possible /datum/xeno_caste options for a caste based on their tier.
 /mob/living/carbon/xenomorph/proc/get_evolution_options()
 	. = list()
+	if(HAS_TRAIT(src, TRAIT_STRAIN_SWAP))
+		return xeno_caste.get_strain_options()
 	if(HAS_TRAIT(src, TRAIT_CASTE_SWAP))
 		switch(tier)
 			if(XENO_TIER_ZERO, XENO_TIER_FOUR)
@@ -71,7 +86,7 @@
 			return GLOB.xeno_types_tier_four + /datum/xeno_caste/hivemind
 		if(XENO_TIER_FOUR)
 			if(istype(xeno_caste, /datum/xeno_caste/shrike))
-				return list(/mob/living/carbon/xenomorph/queen, /mob/living/carbon/xenomorph/king)
+				return list(/datum/xeno_caste/queen, /datum/xeno_caste/king)
 
 
 ///Handles the evolution or devolution of the xenomorph
@@ -126,7 +141,7 @@
 
 ///Actually changes the xenomorph to another caste
 /mob/living/carbon/xenomorph/proc/finish_evolve(new_mob_type)
-	var/mob/living/carbon/xenomorph/new_xeno = new new_mob_type(get_turf(src))
+	var/mob/living/carbon/xenomorph/new_xeno = new new_mob_type(get_turf(src), TRUE)
 
 	if(!istype(new_xeno))
 		//Something went horribly wrong!
@@ -136,10 +151,12 @@
 		return
 	new_xeno.upgrade_stored = upgrade_stored
 	while(new_xeno.upgrade_stored >= new_xeno.xeno_caste?.upgrade_threshold && new_xeno.upgrade_possible())
-		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
+		if(!new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)) //Upgrade tier wasn't set properly, let's avoid looping forever
+			qdel(new_xeno)
+			stack_trace("[src] tried to evolve and upgrade, but the castes upgrade tier wasn't valid.")
+			return
 
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_EVOLVED, new_xeno)
-
 	for(var/obj/item/W in contents) //Drop stuff
 		dropItemToGround(W)
 
@@ -152,6 +169,8 @@
 	new_xeno.nicknumber = nicknumber
 	new_xeno.hivenumber = hivenumber
 	new_xeno.transfer_to_hive(hivenumber)
+	new_xeno.generate_name() // This is specifically for numbered xenos who want to keep their previous number instead of a random new one.
+	new_xeno.hive?.update_ruler() // Since ruler wasn't set during initialization, update ruler now.
 	transfer_observers_to(new_xeno)
 
 	if(new_xeno.health - getBruteLoss(src) - getFireLoss(src) > 0) //Cmon, don't kill the new one! Shouldnt be possible though
@@ -199,13 +218,12 @@
 
 	new_xeno.upgrade_stored = max(upgrade_stored, new_xeno.upgrade_stored)
 	while(new_xeno.upgrade_possible() && new_xeno.upgrade_stored >= new_xeno.xeno_caste.upgrade_threshold)
-		new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)
+		if(!new_xeno.upgrade_xeno(new_xeno.upgrade_next(), TRUE)) //This return shouldn't be possible to trigger, unless you varedit upgrade right on the tick the xeno evos
+			return
 	var/atom/movable/screen/zone_sel/selector = new_xeno.hud_used?.zone_sel
 	selector?.set_selected_zone(zone_selected, new_xeno)
 	qdel(src)
 	INVOKE_ASYNC(new_xeno, TYPE_PROC_REF(/atom, do_jitter_animation), 1000)
-
-	new_xeno.overlay_fullscreen_timer(2 SECONDS, 20, "roundstart2", /atom/movable/screen/fullscreen/spawning_in)
 
 ///Check if the xeno is currently able to evolve
 /mob/living/carbon/xenomorph/proc/generic_evolution_checks()
@@ -235,7 +253,7 @@
 		balloon_alert(src, "The restraints are too restricting to allow us to evolve")
 		return FALSE
 
-	if(isnull(get_evolution_options()) || !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO))
+	if(length(get_evolution_options()) < 1 || (!HAS_TRAIT(src, TRAIT_STRAIN_SWAP) && !(xeno_caste.caste_flags & CASTE_EVOLUTION_ALLOWED)) || HAS_TRAIT(src, TRAIT_VALHALLA_XENO)) // todo: why does this flag still exist?
 		balloon_alert(src, "We are already the apex of form and function. Let's go forth and spread the hive!")
 		return FALSE
 
@@ -265,6 +283,10 @@
 /mob/living/carbon/xenomorph/proc/caste_evolution_checks(new_caste_type, regression = FALSE)
 	if(!regression && !(new_caste_type in get_evolution_options()))
 		balloon_alert(src, "We can't evolve to that caste from our current one")
+		return FALSE
+
+	if(new_caste_type in SSticker.mode.restricted_castes)
+		balloon_alert(src, "Our weak hive can't support that caste!")
 		return FALSE
 
 	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
@@ -310,15 +332,7 @@
 		if(new_caste.tier == XENO_TIER_THREE && no_room_tier_three)
 			balloon_alert(src, "The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die")
 			return FALSE
-		var/potential_queens = length(hive.xenos_by_typepath[/datum/xeno_caste/larva]) + length(hive.xenos_by_typepath[/datum/xeno_caste/drone])
-		if(SSticker.mode?.round_type_flags & MODE_XENO_RULER && !hive.living_xeno_ruler && potential_queens == 1)
-			if(isxenolarva(src) && new_caste_type != /datum/xeno_caste/drone)
-				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Drone!"))
-				return FALSE
-			else if(isxenodrone(src) && new_caste_type != /datum/xeno_caste/shrike)
-				to_chat(src, span_xenonotice("The hive currently has no sister able to become a ruler! The survival of the hive requires from us to be a Shrike!"))
-				return FALSE
-		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold)
+		if(!CHECK_BITFIELD(new_caste_flags, CASTE_INSTANT_EVOLUTION) && xeno_caste.evolution_threshold && evolution_stored < xeno_caste.evolution_threshold && !SSresinshaping.active)
 			to_chat(src, span_warning("We must wait before evolving. Currently at: [evolution_stored] / [xeno_caste.evolution_threshold]."))
 			return FALSE
 	return TRUE

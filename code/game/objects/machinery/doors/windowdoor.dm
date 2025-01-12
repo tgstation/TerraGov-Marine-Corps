@@ -40,7 +40,7 @@
 
 /obj/machinery/door/window/Destroy()
 	density = FALSE
-	playsound(src, "shatter", 50, 1)
+	playsound(src, SFX_SHATTER, 50, 1)
 	return ..()
 
 
@@ -50,6 +50,10 @@
 		return
 	icon_state = density ? base_state : "[base_state]open"
 
+/obj/machinery/door/window/emp_act(severity)
+	. = ..()
+	if(prob(30 / severity))
+		open()
 
 /obj/machinery/door/window/proc/open_and_close()
 	open()

@@ -12,7 +12,7 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,20,30,60)
 	volume = 60
-	init_reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 
 	var/label_text = ""
 
@@ -76,34 +76,7 @@
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 
 	if(user.a_intent == INTENT_HARM)
-		if(!is_open_container()) //Can't splash stuff from a sealed container. I dare you to try.
-			to_chat(user, span_warning("An airtight seal prevents you from splashing the solution!"))
-			return
-
-		if(ismob(target) && target.reagents && reagents.total_volume)
-			to_chat(user, span_notice("You splash the solution onto [target]."))
-			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
-
-			var/mob/living/M = target
-			var/list/injected = list()
-			for(var/datum/reagent/R in src.reagents.reagent_list)
-				injected += R.name
-			var/contained = english_list(injected)
-			log_combat(user, M, "splashed", src, "Reagents: [contained]")
-			record_reagent_consumption(reagents.total_volume, injected, user, M)
-
-			visible_message(span_warning("[target] has been splashed with something by [user]!"))
-			reagents.reaction(target, TOUCH)
-			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
-			return
-
-
-		else if(reagents.total_volume)
-			to_chat(user, span_notice("You splash the solution onto [target]."))
-			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
-			reagents.reaction(target, TOUCH)
-			addtimer(CALLBACK(reagents, TYPE_PROC_REF(/datum/reagents, clear_reagents)), 5)
-			return
+		try_splash(user, target)
 
 /obj/item/reagent_containers/glass/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -196,7 +169,7 @@
 	desc = "A cryostasis beaker that allows for chemical storage without reactions. Can hold up to 60 units."
 	icon_state = "beakernoreact"
 	volume = 60
-	init_reagent_flags = OPENCONTAINER|NO_REACT
+	reagent_flags = OPENCONTAINER|NO_REACT
 	amount_per_transfer_from_this = 10
 
 /obj/item/reagent_containers/glass/beaker/bluespace

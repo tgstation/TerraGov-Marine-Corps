@@ -34,7 +34,7 @@ Basics, the most important.
 
 /// Host of the webmap
 /datum/config_entry/string/webmap_host
-	config_entry_value = "https://affectedarc07.co.uk/tgmc.php?m="
+	config_entry_value = "https://webmap.affectedarc07.co.uk/maps/tgmc/"
 
 /datum/config_entry/string/python_path
 

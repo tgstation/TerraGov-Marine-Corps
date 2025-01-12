@@ -73,10 +73,7 @@
 /datum/component/after_image/proc/spawn_image()
 	if(!previous_loc || get_turf(owner) == previous_loc)
 		return
-
 	var/obj/effect/temp_visual/after_image/after_image = new(previous_loc, owner, image_duration)
-	after_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
-	after_image.layer = BELOW_MOB_LAYER
 
 	//need to recalculate position based on glide_size since it's not possible to get otherwise
 	var/per_step = glide_size * 2 //i don't know why i need to multiply by 2, but that's what seems to make it line up properly

@@ -27,13 +27,13 @@
 
 	//inherited, could use some changes
 	ping = "ping_s"
-	sound_hit 	 = "energy_hit"
-	sound_armor = "ballistic_armor"
-	sound_miss	 = "ballistic_miss"
-	sound_bounce = "ballistic_bounce"
+	sound_hit = SFX_ENERGY_HIT
+	sound_armor = SFX_BALLISTIC_ARMOR
+	sound_miss = SFX_BALLISTIC_MISS
+	sound_bounce = SFX_BALLISTIC_BOUNCE
 
-/datum/ammo/energy/volkite/on_hit_mob(mob/M,obj/projectile/P)
-	deflagrate(M, P)
+/datum/ammo/energy/volkite/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	deflagrate(target_mob, proj)
 
 /datum/ammo/energy/volkite/medium
 	max_range = 25
@@ -61,3 +61,9 @@
 	accuracy_var_high = 3
 	penetration = 5
 	deflagrate_multiplier = 0.9
+
+/datum/ammo/energy/volkite/demi_culverin
+	max_range = 18
+	accurate_range = 7
+	damage = 15
+	fire_burst_damage = 15

@@ -5,6 +5,7 @@
 	map_file = '_maps/map_files/desparity/desparity.dmm'
 	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
 	map_light_levels = list(225, 150, 100, 75)
+	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 	mission_icon = "combat_patrol"
 	starting_faction_objective_description = "Major Victory: Wipe out all hostiles in the AO or capture and hold the sensor towers for a points victory. Minor Victory: Eliminate more hostiles than you lose."
 	hostile_faction_objective_description = "Major Victory: Wipe out all hostiles in the AO or capture and hold the sensor towers for a points victory. Minor Victory: Eliminate more hostiles than you lose."
@@ -58,7 +59,7 @@
 	)
 
 	///Point limit to win the game via objectives
-	var/capture_point_target = 400
+	var/capture_point_target = 375
 	///starting team's point count
 	var/start_team_cap_points = 0
 	///hostile team's point count
@@ -220,6 +221,7 @@
 	map_file = '_maps/map_files/Orion_Military_Outpost/orionoutpost.dmm'
 	map_light_colours = list(COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW, COLOR_MISSION_YELLOW)
 	map_light_levels = list(225, 150, 100, 75)
+	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 
 /datum/campaign_mission/tdm/first_mission
 	name = "First Contact"
@@ -228,6 +230,7 @@
 	map_traits = list(ZTRAIT_AWAY = TRUE, ZTRAIT_RAIN = TRUE)
 	map_light_colours = list(LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN, LIGHT_COLOR_PALE_GREEN)
 	map_light_levels = list(200, 100, 75, 50)
+	map_armor_color = MAP_ARMOR_STYLE_JUNGLE
 	mission_start_delay = 3 MINUTES
 
 /datum/campaign_mission/tdm/first_mission/end_mission()

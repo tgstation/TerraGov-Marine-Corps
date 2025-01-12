@@ -211,7 +211,7 @@
 
 	///How quickly the caste enters vents
 	var/vent_enter_speed = XENO_DEFAULT_VENT_ENTER_TIME
-	///How quickly the caste enters vents
+	///How quickly the caste exits vents
 	var/vent_exit_speed = XENO_DEFAULT_VENT_EXIT_TIME
 	///Whether the caste enters and crawls through vents silently
 	var/silent_vent_crawl = FALSE
@@ -227,14 +227,9 @@
 	for(var/trait in caste_traits)
 		ADD_TRAIT(xenomorph, trait, XENO_TRAIT)
 	xenomorph.AddComponent(/datum/component/bump_attack)
-	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.RegisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK, TYPE_PROC_REF(/mob/living/carbon/xenomorph, grabbed_self_attack))
 
 /datum/xeno_caste/proc/on_caste_removed(mob/xenomorph)
-	var/datum/component/bump_attack = xenomorph.GetComponent(/datum/component/bump_attack)
-	bump_attack?.RemoveComponent()
-	if(can_flags & CASTE_CAN_RIDE_CRUSHER)
-		xenomorph.UnregisterSignal(xenomorph, COMSIG_GRAB_SELF_ATTACK)
+	xenomorph.remove_component(/datum/component/bump_attack)
 	for(var/trait in caste_traits)
 		REMOVE_TRAIT(xenomorph, trait, XENO_TRAIT)
 
@@ -244,6 +239,30 @@
 	while(initial(current_type.upgrade) != XENO_UPGRADE_BASETYPE)
 		current_type = initial(current_type.parent_type)
 	return current_type
+
+/// basetype = list(strain1, strain2)
+GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
+/proc/init_glob_strain_list()
+	var/list/strain_list = list()
+	for(var/datum/xeno_caste/root_caste AS in GLOB.xeno_caste_datums)
+		if(root_caste.parent_type != /datum/xeno_caste)
+			continue
+		strain_list[root_caste] = list()
+		for(var/datum/xeno_caste/typepath AS in subtypesof(root_caste))
+			if(typepath::upgrade != XENO_UPGRADE_BASETYPE)
+				continue
+			if(typepath::caste_flags & CASTE_EXCLUDE_STRAINS)
+				continue
+			strain_list[root_caste] += typepath
+	return strain_list
+
+///returns a list of strains(xeno castedatum paths) that this caste can currently evolve to
+/datum/xeno_caste/proc/get_strain_options()
+	var/datum/xeno_caste/root_type = type
+	while(initial(root_type.parent_type) != /datum/xeno_caste)
+		root_type = root_type::parent_type
+	var/list/options = GLOB.strain_list[root_type]
+	return options?.Copy()
 
 /mob/living/carbon/xenomorph
 	name = "Drone"
@@ -266,7 +285,7 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	sight = SEE_SELF|SEE_OBJS|SEE_TURFS|SEE_MOBS
-	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER
+	appearance_flags = TILE_BOUND|PIXEL_SCALE|KEEP_TOGETHER|LONG_GLIDE
 	see_infrared = TRUE
 	hud_type = /datum/hud/alien
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD, XENO_RANK_HUD, QUEEN_OVERWATCH_HUD, ARMOR_SUNDER_HUD, XENO_DEBUFF_HUD, XENO_FIRE_HUD, XENO_BLESSING_HUD, XENO_EVASION_HUD)
@@ -286,9 +305,12 @@
 
 	///State tracking of hive status toggles
 	var/status_toggle_flags = HIVE_STATUS_DEFAULTS
-
+	///Handles displaying the various wound states of the xeno.
 	var/atom/movable/vis_obj/xeno_wounds/wound_overlay
+	///Handles displaying the various fire states of the xeno
 	var/atom/movable/vis_obj/xeno_wounds/fire_overlay/fire_overlay
+	///Handles displaying any equipped backpack item, such as a saddle
+	var/atom/movable/vis_obj/xeno_wounds/backpack_overlay/backpack_overlay
 	var/datum/xeno_caste/xeno_caste
 	/// /datum/xeno_caste that we will be on init
 	var/caste_base_type
@@ -395,6 +417,15 @@
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+
+	//list of active tunnels
+	var/list/tunnels = list()
+	///Number of huggers the xeno is currently carrying
+	var/huggers = 0
+	///Boiler acid ammo
+	var/corrosive_ammo = 0
+	///Boiler Neuro ammo
+	var/neuro_ammo = 0
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 

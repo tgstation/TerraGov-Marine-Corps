@@ -74,6 +74,9 @@
 		return
 
 	if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
+		if(isrobot(jumper) || issynth(jumper))
+			to_chat(jumper, span_warning("Your leg servos do not allow you to jump!"))
+			return
 		to_chat(jumper, span_warning("Catch your breath!"))
 		return
 
@@ -98,18 +101,17 @@
 	jumper.adjustStaminaLoss(stamina_cost)
 	jumper.pass_flags |= effective_jumper_allow_pass_flags
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	jumper.add_nosubmerge_trait(JUMP_COMPONENT)
 	RegisterSignal(parent, COMSIG_MOB_THROW, PROC_REF(jump_throw))
 
 	jumper.add_filter(JUMP_COMPONENT, 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
 	var/shadow_filter = jumper.get_filter(JUMP_COMPONENT)
 
+	animate(jumper, pixel_z = jumper.pixel_z + effective_jump_height, layer = max(MOB_JUMP_LAYER, original_layer), time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
+	animate(pixel_z = jumper.pixel_z - effective_jump_height, layer = original_layer, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
 	if(jump_flags & JUMP_SPIN)
 		var/spin_number = ROUND_UP(effective_jump_duration * 0.1)
-		jumper.animation_spin(effective_jump_duration / spin_number, spin_number, jumper.dir == WEST ? FALSE : TRUE)
-
-	animate(jumper, pixel_y = jumper.pixel_y + effective_jump_height, layer = MOB_JUMP_LAYER, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
-	animate(pixel_y = jumper.pixel_y - effective_jump_height, layer = original_layer, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
-
+		jumper.animation_spin(effective_jump_duration / spin_number, spin_number, jumper.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
 	if(jump_flags & JUMP_SHADOW)
 		animate(shadow_filter, y = -effective_jump_height, size = 4, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 		animate(y = 0, size = 0.9, time = effective_jump_duration / 2, easing = CIRCULAR_EASING|EASE_IN)
@@ -122,7 +124,7 @@
 /datum/component/jump/proc/end_jump(mob/living/jumper, original_pass_flags)
 	jumper.remove_filter(JUMP_COMPONENT)
 	jumper.pass_flags = original_pass_flags
-	REMOVE_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
+	jumper.remove_traits(list(TRAIT_SILENT_FOOTSTEPS, TRAIT_NOSUBMERGE), JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
 	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)
 	UnregisterSignal(parent, COMSIG_MOB_THROW)

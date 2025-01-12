@@ -1,7 +1,6 @@
 //Landmarks and other helpers which speed up the mapping process and reduce the number of unique instances/subtypes of items/turf/ect
 
 
-
 /obj/effect/baseturf_helper //Set the baseturfs of every turf in the /area/ it is placed.
 	name = "baseturf editor"
 	icon = 'icons/effects/mapping_helpers.dmi'
@@ -118,6 +117,21 @@
 	airlock.locked = TRUE
 	var/turf/current_turf = get_turf(airlock)
 	current_turf.atom_flags |= AI_BLOCKED
+
+/obj/effect/mapping_helpers/airlock/free_access
+	name = "airlock free access helper"
+	icon_state = "airlock_free_access"
+
+/obj/effect/mapping_helpers/airlock/free_access/Initialize(mapload)
+	. = ..()
+	if(!mapload)
+		log_world("### MAP WARNING, [src] spawned outside of mapload!")
+		return
+	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	if(!airlock)
+		CRASH("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+	airlock.req_access = null
+	airlock.req_one_access = null
 
 /obj/effect/mapping_helpers/airlock/abandoned
 	name = "airlock abandoned helper"
@@ -360,10 +374,13 @@
 	var/obj/machinery/light/light = locate(/obj/machinery/light) in loc
 	if(!light)
 		CRASH("### MAP WARNING, [src] failed to find an light at [AREACOORD(src)]")
-	if(light.status == LIGHT_BROKEN || light.status == LIGHT_EMPTY)
+	if(light.status == LIGHT_BROKEN) //already broken, go home
+		return
+	if(light.status == LIGHT_EMPTY)
 		log_mapping("[src] at [AREACOORD(src)] tried to make [light] broken, but it couldn't be done!")
-	else
-		light.broken()
+		return
+
+	light.broken()
 
 /obj/effect/mapping_helpers/light/turnedoff
 	name = "light area turnoff helper"

@@ -9,13 +9,12 @@
 	worn_icon_state = "hypo"
 	icon_state = "hypo"
 	amount_per_transfer_from_this = 10
-	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30)
+	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30, 60)
 	volume = 60
-	init_reagent_flags = OPENCONTAINER
+	reagent_flags = OPENCONTAINER
 	equip_slot_flags = ITEM_SLOT_BELT
 	item_flags = NOBLUDGEON
 	w_class = WEIGHT_CLASS_SMALL
-	interaction_flags = INTERACT_OBJ_UI
 	var/skilllock = 1
 	var/inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	var/core_name = "hypospray"
@@ -79,11 +78,15 @@
 		span_notice("You fumble around figuring out how to use the [src]."))
 		if(!do_after(user, SKILL_TASK_EASY, NONE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
 			return
-
 	if(ismob(A))
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
+		if(M.faction != user.faction && !M.incapacitated())
+			user.visible_message(span_notice("[user] attempts to inject [M] with [src]."),
+			span_notice("You attempt to inject [M] with [src]."))
+			if(!do_after(user, SKILL_TASK_VERY_EASY, NONE, A, BUSY_ICON_HOSTILE) || (!in_range(A, user) || !user.Adjacent(A)))
+				return
 
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
@@ -206,6 +209,9 @@
 	desc.maptext_width = 16
 	. += desc
 
+/obj/item/reagent_containers/hypospray/unique_action(mob/user, special_treatment)
+	ui_interact(user)
+
 /obj/item/reagent_containers/hypospray/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -273,7 +279,7 @@
 	desc = "The hypospray is a sterile, air-needle reusable autoinjector for rapid administration of drugs to patients with customizable dosages. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy."
 	core_name = "hypospray"
 	icon_state = "hypo"
-	init_reagent_flags = REFILLABLE|DRAINABLE
+	reagent_flags = REFILLABLE|DRAINABLE
 	liquifier = TRUE
 
 /obj/item/reagent_containers/hypospray/advanced/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -347,6 +353,7 @@
 	if(get_dist(user,src) > 2)
 		. += span_warning("You're too far away to see [src]'s reagent display!")
 		return
+	. += span_notice("Use to inject into yourself. Unique Action to open the hypospray menu.")
 
 	. += display_reagents(user)
 
@@ -374,6 +381,7 @@
 		/datum/reagent/medicine/bicaridine = 60,
 	)
 	description_overlay = "Bi"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/kelotane
 	name = "kelotane hypospray"
@@ -382,6 +390,7 @@
 		/datum/reagent/medicine/kelotane = 60,
 	)
 	description_overlay = "Ke"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/tramadol
 	name = "tramadol hypospray"
@@ -390,6 +399,7 @@
 		/datum/reagent/medicine/tramadol = 60,
 	)
 	description_overlay = "Ta"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine
 	name = "tricordrazine hypospray"
@@ -398,6 +408,7 @@
 		/datum/reagent/medicine/tricordrazine = 60,
 	)
 	description_overlay = "Ti"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/dylovene
 	name = "dylovene hypospray"
@@ -406,6 +417,7 @@
 		/datum/reagent/medicine/dylovene = 60,
 	)
 	description_overlay = "Dy"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/inaprovaline
 	name = "inaprovaline hypospray"
@@ -487,6 +499,16 @@
 	)
 	description_overlay = "Pe+"
 
+/obj/item/reagent_containers/hypospray/advanced/peridaxonplus_medkit
+	name = "Peridaxon+ hypospray"
+	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 3
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon_plus = 6,
+		/datum/reagent/medicine/hyronalin = 12,
+	)
+	description_overlay = "Pe+"
+
 /obj/item/reagent_containers/hypospray/advanced/quickclotplus
 	name = "Quickclot+ hypospray"
 	desc = "A hypospray loaded with quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
@@ -496,6 +518,25 @@
 	)
 	description_overlay = "Qk+"
 
+/obj/item/reagent_containers/hypospray/advanced/quickclotplus_medkit
+	name = "Quickclot+ hypospray"
+	desc = "A hypospray loaded with quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/medicine/quickclotplus = 30,
+	)
+	description_overlay = "Qk+"
+
+/obj/item/reagent_containers/hypospray/advanced/synaptizine
+	name = "Synaptizine hypospray"
+	desc = "A hypospray loaded with Synaptizine, a powerful stimulant that improves cardiovascular function, when used sparingly."
+	amount_per_transfer_from_this = 3
+	list_reagents = list(
+		/datum/reagent/medicine/synaptizine = 20,
+		/datum/reagent/medicine/hyronalin = 40,
+	)
+	description_overlay = "Sy"
+
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"
 	desc = "MK2 medical hypospray, which manages to fit even more reagents. Comes complete with an internal reagent analyzer, digital labeler and 2 letter tagger. Handy. This one is a 120 unit version."
@@ -503,6 +544,7 @@
 	icon_state = "hypomed"
 	core_name = "hypospray"
 	volume = 120
+	possible_transfer_amounts = list(1, 3, 5, 10, 15, 20, 30, 60, 120)
 
 /obj/item/reagent_containers/hypospray/advanced/big/bicaridine
 	name = "big bicaridine hypospray"

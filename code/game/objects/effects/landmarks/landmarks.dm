@@ -430,7 +430,7 @@
 	icon_state = "weapon6"
 	weapon_list = list(	/obj/item/weapon/gun/pistol/chimp,
 						/obj/item/weapon/banhammer,
-						/obj/item/weapon/chainsword,
+						/obj/item/weapon/twohanded/chainsaw/sword,
 						)
 
 /obj/effect/landmark/sensor_tower
@@ -462,6 +462,10 @@
 /obj/effect/landmark/valhalla/marine_spawner_landmark
 	name = "Marine spawner landmark"
 	spawns = "marine"
+
+/obj/effect/landmark/valhalla/vehicle_spawner_landmark
+	name = "Vehicle spawner landmark"
+	spawns = "vehicle"
 
 /obj/effect/landmark/eord_roomba
 	name = "EORD roomba spawn point"

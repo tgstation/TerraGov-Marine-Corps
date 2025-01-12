@@ -98,6 +98,9 @@
 /atom/movable/screen/text/screen_text/picture/potrait/som_reinforcement
 	image_to_play = "reinforcement_som"
 
+/atom/movable/screen/text/screen_text/picture/potrait/vsd_reinforcement
+	image_to_play = "vsd_syndicate_red"
+
 /atom/movable/screen/text/screen_text/picture/potrait/tgmc_distress
 	image_to_play = "distress_tgmc"
 

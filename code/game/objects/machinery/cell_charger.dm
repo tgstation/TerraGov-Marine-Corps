@@ -93,11 +93,9 @@
 
 
 /obj/machinery/cell_charger/emp_act(severity)
-	if(machine_stat & (BROKEN|NOPOWER))
-		return
+	. = ..()
 	if(charging)
 		charging.emp_act(severity)
-	..(severity)
 
 
 /obj/machinery/cell_charger/process()
@@ -105,7 +103,7 @@
 	if((machine_stat & (BROKEN|NOPOWER)) || !anchored)
 		return
 
-	if (charging && !charging.fully_charged())
+	if (charging && !charging.is_fully_charged())
 		charging.give(active_power_usage*GLOB.CELLRATE)
 
 		updateicon()

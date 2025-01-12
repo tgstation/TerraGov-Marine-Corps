@@ -12,18 +12,18 @@
 	gib_flick = "gibbed-a-small"
 
 	// *** Melee Attacks *** //
-	melee_damage = 18
+	melee_damage = 19
 
 	// *** Speed *** //
-	speed = -1.2
+	speed = -1.1
 	weeds_speed_mod = -0.4
 
 	// *** Plasma *** //
 	plasma_max = 1000
-	plasma_gain = 40
+	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 380
 
 	// *** Evolution *** //
 	evolution_threshold = 100

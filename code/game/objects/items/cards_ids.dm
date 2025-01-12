@@ -85,7 +85,7 @@
 	///How many points you can use to buy items
 	var/marine_points = list()
 
-	///What category of items can you buy - used for armor and poucehs
+	///What category of items can you buy - used for armor and pouches
 	var/marine_buy_choices = list()
 
 	//alt titles are handled a bit weirdly in order to unobtrusively integrate into existing ID system

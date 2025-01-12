@@ -10,18 +10,18 @@
 	wound_type = "crusher" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 24
+	melee_damage = 25
 	attack_delay = 8
 
 	// *** Speed *** //
 	speed = -0.1
 
 	// *** Plasma *** //
-	plasma_max = 400
-	plasma_gain = 30
+	plasma_max = 520
+	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 400
+	max_health = 485
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -33,7 +33,7 @@
 	caste_traits = list(TRAIT_STOPS_TANK_COLLISION)
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 40, ACID = 100)
+	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 50, ACID = 100)
 
 	// *** Sunder *** //
 	sunder_multiplier = 0.7

@@ -19,11 +19,17 @@
 		"No Top" = "_r",
 	)
 
-/obj/item/clothing/under/marine/holster
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+/obj/item/clothing/under/marine/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/marine/brown_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
 /obj/item/clothing/under/marine/corpman_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+/obj/item/clothing/under/marine/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /obj/item/clothing/under/marine/hyperscale
 	name = "\improper 8E Chameleon TGMC uniform"
@@ -34,12 +40,6 @@
 	greyscale_config = /datum/greyscale_config/marine_uniform
 	colorable_colors = ARMOR_PALETTES_LIST
 	colorable_allowed = ICON_STATE_VARIANTS_ALLOWED|PRESET_COLORS_ALLOWED
-
-/obj/item/clothing/under/marine/black_vest
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
-
-/obj/item/clothing/under/marine/brown_vest
-	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
 
 //Squad colored turtlenecks
 /obj/item/clothing/under/marine/squad/neck
@@ -55,8 +55,8 @@
 	desc = "A standard issued TGMC turtleneck colored blue, with a slight hint of bravery."
 	icon_state = "delta_merc"
 
-/obj/item/clothing/under/marine/squad/neck/charile
-	name = "\improper TGMC Charile turtleneck"
+/obj/item/clothing/under/marine/squad/neck/charlie
+	name = "\improper TGMC Charlie turtleneck"
 	desc = "A standard issued TGMC turtleneck colored purple, you're reminded of how proper squad cohesion can make or break a mission."
 	icon_state = "charlie_merc"
 
@@ -565,8 +565,20 @@
 		to_chat(user, span_warning("You can't equip this as it requires mounting screws on your body!"))
 		return FALSE
 
-/obj/item/clothing/under/marine/robotic/webbing
+/obj/item/clothing/under/marine/robotic/black_vest
 	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/marine/robotic/brown_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
+/obj/item/clothing/under/marine/robotic/corpman_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+/obj/item/clothing/under/marine/robotic/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/webbing)
+
+/obj/item/clothing/under/marine/robotic/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
 
 /obj/item/clothing/under/marine/specops
 	name = "Tactical turtleneck"
@@ -580,3 +592,86 @@
 	worn_icon_state = "specops_uniform"
 	min_cold_protection_temperature = ICE_PLANET_MIN_COLD_PROTECTION_TEMPERATURE
 	has_sensor = 0
+
+/obj/item/clothing/under/vsd
+	name = "V.S.D jumpsuit"
+	desc = "The standard uniform for Vyacheslav. Both technician use and combat use!"
+	icon = 'icons/mob/clothing/uniforms/ert_uniforms.dmi'
+	icon_state = "vsd_uniform_main"
+	worn_icon_state = "vsd_uniform_main"
+	worn_icon_list = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+	)
+	has_sensor = FALSE
+
+/obj/item/clothing/under/vsd/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/medic
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+/obj/item/clothing/under/vsd/secondary
+	name = "V.S.D jumpsuit"
+	icon_state = "vsd_uniform_secondary"
+	worn_icon_state = "vsd_uniform_secondary"
+
+/obj/item/clothing/under/vsd/secondary/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/upp
+	name = "V.S.D jumpsuit"
+	icon_state = "upp_retired"
+	worn_icon_state = "upp_retired"
+
+/obj/item/clothing/under/vsd/upp/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/shirt
+	name = "V.S.D shirt"
+	icon_state = "vsd_shirt"
+	worn_icon_state = "vsd_shirt"
+
+/obj/item/clothing/under/vsd/shirt/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/vsd/sleeveless
+	name = "V.S.D shirt"
+	icon_state = "vsd_shirt_sleeveless"
+	worn_icon_state = "vsd_shirt_sleeveless"
+
+/obj/item/clothing/under/vsd/sleeveless/webbing
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+//TDF
+/obj/item/clothing/under/tdf
+	name = "\improper TDF uniform"
+	desc = "The standard uniform of TDF military personnel. A very easy to recognize design with its distinct blues to represent the TDF."
+	icon = 'icons/obj/clothing/uniforms/ert_uniforms.dmi'
+	icon_state = "tdf_uniform"
+	worn_icon_list = list(
+		slot_w_uniform_str = 'icons/mob/clothing/uniforms/ert_uniforms.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/uniforms_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/uniforms_right.dmi',
+	)
+	worn_icon_state = "tdf_uniform"
+	siemens_coefficient = 0.9
+	has_sensor = 2
+
+/obj/item/clothing/under/tdf/black_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/black_vest)
+
+/obj/item/clothing/under/tdf/brown_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/brown_vest)
+
+/obj/item/clothing/under/tdf/corpman_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)
+
+/obj/item/clothing/under/tdf/holster
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/holster)
+
+/obj/item/clothing/under/tdf/medic
+	icon_state = "tdf_uniform_medic"
+	worn_icon_state = "tdf_uniform_medic"
+
+/obj/item/clothing/under/tdf/medic/corpman_vest
+	starting_attachments = list(/obj/item/armor_module/storage/uniform/white_vest)

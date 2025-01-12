@@ -141,7 +141,7 @@
 	updateUsrDialog()
 
 	if(href_list["item"])
-		var/obj/item/I 
+		var/obj/item/I
 		switch(state)
 			if(STATE_GUN)
 				I = locate(href_list["item"]) in GLOB.cryoed_item_list_gun
@@ -236,6 +236,8 @@
 	desc = "A bewildering tangle of machinery and pipes linking the hypersleep chambers to the hypersleep bay.."
 	icon = 'icons/obj/machines/cryogenics.dmi'
 	icon_state = "cryo_rear"
+	layer = UNDERFLOOR_OBJ_LAYER
+	plane = FLOOR_PLANE
 	anchored = TRUE
 
 	var/orient_right //Flips the sprite.
@@ -354,6 +356,10 @@
 		if(!QDELETED(src))
 			qdel(src)
 		return
+	if(storage_datum)
+		for(var/obj/item/item_in_storage AS in src)
+			storage_datum.remove_from_storage(item_in_storage)
+			item_in_storage.store_in_cryo()
 	moveToNullspace()
 	if(istype(src, /obj/item/weapon/gun))
 		GLOB.cryoed_item_list_gun += src
@@ -373,11 +379,6 @@
 		GLOB.cryoed_item_list_containers += src
 	else
 		GLOB.cryoed_item_list_other += src
-
-/obj/item/storage/store_in_cryo()
-	for(var/obj/item/I AS in src)
-		I.store_in_cryo()
-	return ..()
 
 /obj/machinery/cryopod/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()

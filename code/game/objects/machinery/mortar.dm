@@ -109,6 +109,11 @@
 
 	ui_interact(user)
 
+/obj/machinery/deployable/mortar/disassemble(mob/user)
+	for(var/obj/loaded_item in chamber_items)
+		chamber_items -= loaded_item
+		loaded_item.forceMove(get_turf(src))
+	return ..()
 
 /obj/machinery/deployable/mortar/ui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -268,7 +273,7 @@
 		if(TALLY_ROCKET_ARTY)
 			GLOB.round_statistics.rocket_shells_fired++
 			SSblackbox.record_feedback("tally", "round_statistics", 1, "rocket_shells_fired")
-	playsound(loc, fire_sound, 50, 1)
+	playsound(loc, fire_sound, GUN_FIRE_SOUND_VOLUME, 1)
 	flick(icon_state + "_fire", src)
 	var/obj/projectile/shell = new /obj/projectile(loc)
 	var/datum/ammo/ammo = GLOB.ammo_list[arty_shell.ammo_type]
@@ -379,7 +384,7 @@
 	var/firing_spread = max_offset + spread
 	if(firing_spread > max_spread)
 		firing_spread = max_spread
-	var/list/turf_list = list()
+	var/list/turf_list = RANGE_TURFS(firing_spread, target)
 	var/obj/in_chamber
 	var/next_chamber_position = length(chamber_items)
 	var/amount_to_fire = fire_amount
@@ -387,8 +392,6 @@
 		amount_to_fire = length(chamber_items)
 	if(amount_to_fire > length(chamber_items))
 		amount_to_fire = length(chamber_items)
-	for(var/turf/spread_turf in RANGE_TURFS(firing_spread, target))
-		turf_list += spread_turf
 	//Probably easier to declare and update a counter than it is to keep accessing a client and datum multiple times
 	var/shells_fired = 0
 	var/war_crimes_counter = 0
@@ -423,7 +426,7 @@
 /obj/item/mortar_kit
 	name = "\improper TA-50S mortar"
 	desc = "A manual, crew-operated mortar system intended to rain down 80mm goodness on anything it's aimed at. Needs to be set down first to fire. Ctrl+Click on a tile to deploy, drag the mortar's sprites to mob's sprite to undeploy."
-	icon = 'icons/Marine/mortar.dmi'
+	icon = 'icons/obj/machines/deployable/mortar.dmi'
 	icon_state = "mortar"
 	max_integrity = 200
 	soft_armor = list(MELEE = 0, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 15, BIO = 100, FIRE = 0, ACID = 0)
@@ -437,7 +440,7 @@
 
 /obj/item/mortar_kit/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/deployable_item, deployable_item, 1 SECONDS)
+	AddComponent(/datum/component/deployable_item, deployable_item, 1 SECONDS, 1 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
 	do_unique_action(user)
@@ -474,7 +477,7 @@
 /obj/item/mortar_kit/howitzer
 	name = "\improper TA-100Y howitzer"
 	desc = "A manual, crew-operated and towable howitzer, will rain down 150mm laserguided and accurate shells on any of your foes."
-	icon = 'icons/Marine/howitzer.dmi'
+	icon = 'icons/obj/machines/deployable/howitzer.dmi'
 	icon_state = "howitzer"
 	max_integrity = 400
 	item_flags = IS_DEPLOYABLE|TWOHANDED|DEPLOYED_NO_PICKUP|DEPLOY_ON_INITIALIZE
@@ -647,18 +650,17 @@
 		rocketsloaded++
 	user.balloon_alert(user, "Right click to fire")
 
-
 // Shells themselves //
 
 /obj/item/mortal_shell
 	name = "\improper 80mm mortar shell"
 	desc = "An unlabeled 80mm mortar shell, probably a casing."
-	icon = 'icons/Marine/mortar.dmi'
+	icon = 'icons/obj/items/ammo/artillery.dmi'
 	worn_icon_list = list(
 		slot_l_hand_str = 'icons/mob/inhands/weapons/ammo_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/weapons/ammo_right.dmi',
 	)
-	icon_state = "mortar_ammo_cas"
+	icon_state = "mortar"
 	w_class = WEIGHT_CLASS_SMALL
 	atom_flags = CONDUCT
 	///Ammo datum typepath that the shell uses
@@ -667,38 +669,37 @@
 /obj/item/mortal_shell/he
 	name = "\improper 80mm high explosive mortar shell"
 	desc = "An 80mm mortar shell, loaded with a high explosive charge."
-	icon_state = "mortar_ammo_he"
+	icon_state = "mortar_he"
 	ammo_type = /datum/ammo/mortar
 
 /obj/item/mortal_shell/incendiary
 	name = "\improper 80mm incendiary mortar shell"
 	desc = "An 80mm mortar shell, loaded with a napalm charge."
-	icon_state = "mortar_ammo_inc"
+	icon_state = "mortar_inc"
 	ammo_type = /datum/ammo/mortar/incend
 
 /obj/item/mortal_shell/smoke
 	name = "\improper 80mm smoke mortar shell"
 	desc = "An 80mm mortar shell, loaded with smoke dispersal agents. Can be fired at marines more-or-less safely. Way slimmer than your typical 80mm."
-	icon_state = "mortar_ammo_smk"
+	icon_state = "mortar_smk"
 	ammo_type = /datum/ammo/mortar/smoke
 
 /obj/item/mortal_shell/plasmaloss
 	name = "\improper 80mm tangle mortar shell"
 	desc = "An 80mm mortar shell, loaded with plasma-draining Tanglefoot gas. Can be fired at marines more-or-less safely."
-	icon_state = "mortar_ammo_fsh"
+	icon_state = "mortar_fsh"
 	ammo_type = /datum/ammo/mortar/smoke/plasmaloss
 
 /obj/item/mortal_shell/flare
 	name = "\improper 80mm flare mortar shell"
 	desc = "An 80mm mortar shell, loaded with an illumination flare, far slimmer than your typical 80mm shell. Can be fired out of larger cannons."
-	icon_state = "mortar_ammo_flr"
+	icon_state = "mortar_flr"
 	ammo_type = /datum/ammo/mortar/flare
 
 /obj/item/mortal_shell/howitzer
 	name = "\improper 150mm artillery shell"
 	desc = "An unlabeled 150mm shell, probably a casing."
-	icon = 'icons/Marine/howitzer.dmi'
-	icon_state = "howitzer_ammo"
+	icon_state = "howitzer"
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/item/mortal_shell/howitzer/he
@@ -709,19 +710,19 @@
 /obj/item/mortal_shell/howitzer/plasmaloss
 	name = "\improper 150mm 'Tanglefoot' artillery shell"
 	desc = "An 150mm artillery shell, loaded with a toxic intoxicating gas, whatever is hit by this will have their abilities sapped slowly. Acommpanied by a small moderate explosion."
-	icon_state = "howitzer_ammo_purp"
+	icon_state = "howitzer_plasmaloss"
 	ammo_type = /datum/ammo/mortar/smoke/howi/plasmaloss
 
 /obj/item/mortal_shell/howitzer/incendiary
 	name = "\improper 150mm incendiary artillery shell"
 	desc = "An 150mm artillery shell, loaded with explosives to punch through light structures then burn out whatever is on the other side. Will ruin their day and skin."
-	icon_state = "howitzer_ammo_incend"
+	icon_state = "howitzer_incend"
 	ammo_type = /datum/ammo/mortar/howi/incend
 
 /obj/item/mortal_shell/howitzer/white_phos
 	name = "\improper 150mm white phosporous 'spotting' artillery shell"
 	desc = "An 150mm artillery shell, loaded with a 'spotting' gas that sets anything it hits aflame, whatever is hit by this will have their day, skin and future ruined, with a demand for a warcrime tribunal."
-	icon_state = "howitzer_ammo_wp"
+	icon_state = "howitzer_wp"
 	ammo_type = /datum/ammo/mortar/smoke/howi/wp
 
 /obj/item/mortal_shell/rocket
@@ -736,34 +737,33 @@
 /obj/item/mortal_shell/rocket/mlrs
 	name = "\improper 60mm rocket"
 	desc = "A 60mm rocket loaded with explosives, meant to be used in saturation fire with high scatter."
-	icon_state = "mlrs_rocket"
+	icon_state = "mlrs"
 	ammo_type = /datum/ammo/mortar/rocket/mlrs
 
 /obj/item/mortal_shell/rocket/mlrs/gas
 	name = "\improper 60mm 'X-50' rocket"
 	desc = "A 60mm rocket loaded with deadly X-50 gas that drains the energy and life out of anything unfortunate enough to find itself inside of it."
-	icon_state = "mlrs_rocket_gas"
+	icon_state = "mlrs_gas"
 	ammo_type = /datum/ammo/mortar/rocket/smoke/mlrs
 
 /obj/item/mortal_shell/rocket/mlrs/cloak
 	name = "\improper 60mm 'S-2' cloak rocket"
 	desc = "A 60mm rocket loaded with cloak smoke that hides any friendlies inside of it with advanced chemical technology."
-	icon_state = "mlrs_rocket_cloak"
+	icon_state = "mlrs_cloak"
 	ammo_type = /datum/ammo/mortar/rocket/smoke/mlrs/cloak
 
 /obj/item/mortal_shell/rocket/mlrs/incendiary
 	name = "\improper 60mm incendiary rocket"
 	desc = "A 60mm rocket loaded with an incendiary payload with a minor side of explosive."
-	icon_state = "mlrs_rocket_incendiary"
+	icon_state = "mlrs_incendiary"
 	ammo_type = /datum/ammo/mortar/rocket/mlrs/incendiary
 
 /obj/structure/closet/crate/mortar_ammo
 	name = "\improper T-50S mortar ammo crate"
 	desc = "A crate containing live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
-	icon = 'icons/Marine/mortar.dmi'
-	icon_state = "closed_mortar_crate"
-	icon_opened = "open_mortar_crate"
-	icon_closed = "closed_mortar_crate"
+	icon_state = "closed_mortar"
+	icon_opened = "open_mortar"
+	icon_closed = "closed_mortar"
 
 /obj/structure/closet/crate/mortar_ammo/full/PopulateContents()
 	new /obj/item/mortal_shell/he(src)

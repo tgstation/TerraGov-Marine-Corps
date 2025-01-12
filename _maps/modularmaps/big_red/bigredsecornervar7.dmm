@@ -48,10 +48,6 @@
 "B" = (
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
-"C" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "E" = (
 /turf/open/floor/plating/ground/mars/random/cave/rock,
 /area/bigredv2/caves/southeast/garbledradio)
@@ -76,17 +72,9 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast/garbledradio)
-"L" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
 "M" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/bigredv2/caves/southeast)
-"R" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
 /turf/open/floor/plating/ground/mars/random/cave,
 /area/bigredv2/caves/southeast)
 "V" = (
@@ -2254,7 +2242,7 @@ v
 v
 v
 v
-C
+B
 B
 B
 e
@@ -2946,7 +2934,7 @@ r
 B
 B
 B
-B
+I
 B
 B
 B
@@ -3096,7 +3084,7 @@ e
 B
 B
 B
-I
+B
 v
 v
 v
@@ -3290,11 +3278,11 @@ B
 B
 B
 B
-L
+B
 v
 v
 v
-R
+B
 B
 B
 B

@@ -8,6 +8,11 @@
 	icon_state = "green"
 	always_unpowered = TRUE
 
+/area/orion_outpost/ground/rock
+	name = "Enclosed Area"
+	icon_state = "transparent"
+	area_flags = CANNOT_NUKE
+
 /area/orion_outpost/surface
 	name = "Surface"
 	icon_state = "red"

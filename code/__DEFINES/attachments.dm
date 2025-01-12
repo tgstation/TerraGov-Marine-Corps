@@ -66,3 +66,5 @@
 #define ATTACHMENT_SLOT_ARM_SECONDARY_COLOR "arm_secondary_color"
 #define ATTACHMENT_SLOT_CHEST_SECONDARY_COLOR "chest_secondary_color"
 #define ATTACHMENT_SLOT_HELM_SECONDARY_COLOR "helm_secondary_color"
+
+#define ATTACHMENT_SLOT_WEAPON "attachment_slot_weapon"

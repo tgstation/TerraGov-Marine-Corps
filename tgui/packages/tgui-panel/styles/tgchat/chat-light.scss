@@ -597,12 +597,7 @@ h2.alert {
   color: #72a0e5;
   font-weight: bold;
 }
-.highdanger {
-  color: #ff0000;
-  font-weight: bold;
-  font-size: 185%;
-}
-.xenohighdanger {
+.xenouserdanger {
   color: #2a623d;
   font-weight: bold;
   font-size: 1.5em;
@@ -642,7 +637,7 @@ h2.alert {
 }
 
 .role_header {
-  color: #000000;
+  color: rgb(0, 0, 0);
   display: block;
   text-align: center;
   font-weight: bold;
@@ -651,7 +646,6 @@ h2.alert {
 .role_body {
   color: #db0000;
   display: block;
-  text-align: center;
 }
 .round_setup {
   color: #db0000;
@@ -717,7 +711,7 @@ h2.alert {
 }
 
 .green {
-  color: #29b245;
+  color: #14a833;
 }
 
 .nicegreen {
@@ -1046,11 +1040,49 @@ h2.alert {
   margin-left: 3em;
 }
 
+// Provides a horizontal bar with text in the middle
+// I got this off stackoverflow
+.separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.separator::before,
+.separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.separator:not(:empty)::before {
+  margin-right: 0.25em;
+}
+
+.separator:not(:empty)::after {
+  margin-left: 0.25em;
+}
+
 .examine_block {
-  background: #f2f7fa;
+  background: rgba(0, 0, 0, 0.1);
   border: 1px solid #111a27;
-  margin: 0.5em;
-  padding: 0.5em 0.75em;
+  margin: 7px 4px;
+  padding: 8px 12px;
+}
+
+.examine_block hr {
+  border: none;
+  background: #333;
+  height: 1px;
+  margin: 8px 16px 8px 16px;
+}
+.examine_block .blockheader {
+  font-family: Verdana;
+  color: #000000;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.3em;
 }
 
 .tooltip {
@@ -1058,57 +1090,100 @@ h2.alert {
   border-bottom: 1px dashed #000;
 }
 
-$alert-stripe-colors: (
-  'default': #b3bfff,
-  'green': #adffad,
-  'blue': #b3bfff,
-  'pink': #ffb3df,
-  'yellow': #fff3b3,
-  'orange': #ffe2b3,
-  'red': #ffb3b3,
-  'purple': #fac2ff,
-  'grey': #e3e3e3,
+$ooc_alert_bg_colors: (
+  'ooc': #bdc8ff,
+  'game': #ffbbb3,
 );
 
-$alert-stripe-alternate-colors: (
-  'default': #bdc8ff,
-  'green': #bdffbd,
-  'blue': #bdc8ff,
-  'pink': #ffc2e5,
-  'yellow': #fff5c2,
-  'orange': #ffe8c2,
-  'red': #ffc2c2,
-  'purple': #fbd1ff,
-  'grey': #ebebeb,
+$ooc_alert_border_colors: (
+  'ooc': #002eb8,
+  'game': #b60000,
 );
 
-$alert-major-header-colors: (
-  'default': #003061,
-  'green': #005229,
-  'blue': #003061,
-  'pink': #800033,
-  'yellow': #754900,
-  'orange': #823208,
-  'red': #800029,
-  'purple': #450d8c,
-  'grey': #800033,
-);
-
-$alert-subheader-header-colors: (
-  'default': #6b0020,
-  'green': #6b0020,
-  'blue': #6b0020,
-  'pink': #002c85,
-  'yellow': #002c85,
-  'orange': #002c85,
-  'red': #002c85,
-  'purple': #002c85,
-  'grey': #002c85,
+$ooc_alert_text_colors: (
+  'ooc': #002eb8,
+  'game': #b60000,
 );
 
 $border-width: 4;
 
 $border-width-px: $border-width * 1px;
+
+@each $color-type, $color in $ooc_alert_text_colors {
+  .ooc_alert_#{$color-type} {
+    background: map.get($ooc_alert_bg_colors, $color-type);
+    border: 1px solid map.get($ooc_alert_border_colors, $color-type);
+    margin: 7px 4px;
+    padding: 8px 12px;
+    color: #000000;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ooc_alert_#{$color-type} .ooc_announcement_text {
+    color: map.get($ooc_alert_text_colors, $color-type);
+    padding: 0.5em 0 0 0.35em;
+  }
+  .ooc_alert_#{$color-type} .separator::before {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid map.get($ooc_alert_border_colors, $color-type);
+  }
+  .ooc_alert_#{$color-type} .separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid map.get($ooc_alert_border_colors, $color-type);
+  }
+}
+
+$alert-stripe-colors: (
+  'default': #c6ccec,
+  'green': #ceebc2,
+  'blue': #c6ccec,
+  'pink': #ecc6d9,
+  'yellow': #fff3b3,
+  'orange': #ffe2b3,
+  'red': #ffbbb3,
+  'purple': #e6d1f0,
+  'grey': #e3e3e3,
+);
+
+$alert-stripe-alternate-colors: (
+  'default': #ced3ef,
+  'green': #d8efce,
+  'blue': #ced3ef,
+  'pink': #f0d1e1,
+  'yellow': #fff5c2,
+  'orange': #ffe8c2,
+  'red': #ffc8c2,
+  'purple': #ead9f2,
+  'grey': #ebebeb,
+);
+
+$alert-major-header-colors: (
+  'default': #003061,
+  'green': #1f440e,
+  'blue': #003061,
+  'pink': #602040,
+  'yellow': #990f00,
+  'orange': #b14810,
+  'red': #a80e00,
+  'purple': #5b2673,
+  'grey': #a80e00,
+);
+
+$alert-subheader-header-colors: (
+  'default': #991200,
+  'green': #002c85,
+  'blue': #991200,
+  'pink': #002c85,
+  'yellow': #214164,
+  'orange': #002c85,
+  'red': #483c3c,
+  'purple': #991200,
+  'grey': #002c85,
+);
 
 .faction_alert_text {
   color: #202020;

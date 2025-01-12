@@ -1,4 +1,4 @@
-/mob/living/carbon/human/Move(NewLoc, direct)
+/mob/living/carbon/human/Move(atom/newloc, direction, glide_size_override)
 	. = ..()
 	if(!.)
 		return

@@ -17,7 +17,7 @@
 	///This component's personal uid
 	var/personal_uid
 
-/datum/component/seethrough_mob/Initialize(target_alpha = 100, animation_time = 0.5 SECONDS, clickthrough = TRUE)
+/datum/component/seethrough_mob/Initialize(target_alpha = 170, animation_time = 0.5 SECONDS, clickthrough = TRUE)
 	. = ..()
 
 	if(!ismob(parent))
@@ -114,7 +114,6 @@
 /datum/action/ability/xeno_action/toggle_seethrough
 	name = "Toggle Seethrough"
 	desc = "Allows you to see behind your massive body and click through it."
-	action_icon = 'icons/Xeno/actions.dmi'
 	action_icon_state = "xenohide"
 	cooldown_duration = 1 SECONDS
 	use_state_flags = ABILITY_USE_LYING

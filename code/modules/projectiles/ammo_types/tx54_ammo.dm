@@ -12,7 +12,7 @@
 	handful_icon_state = "20mm_airburst"
 	handful_amount = 3
 	ping = null //no bounce off.
-	sound_bounce = "rocket_bounce"
+	sound_bounce = SFX_ROCKET_BOUNCE
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
 	armor_type = BOMB
 	damage_falloff = 0.5
@@ -34,22 +34,26 @@
 	projectile_greyscale_config = /datum/greyscale_config/projectile
 	projectile_greyscale_colors = COLOR_AMMO_AIRBURST
 
-/datum/ammo/tx54/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, slowdown = 0.5, knockback = 1)
-	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, M) )
+/datum/ammo/tx54/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	var/turf/det_turf = get_step_towards(target_mob, proj)
+	staggerstun(target_mob, proj, max_range, slowdown = 0.5, knockback = 1)
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_mob), loc_override = det_turf)
 
-/datum/ammo/tx54/on_hit_obj(obj/O, obj/projectile/proj)
-	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, O) )
+/datum/ammo/tx54/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	var/turf/det_turf = get_step_towards(target_obj, proj)
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_obj), loc_override = det_turf)
 
-/datum/ammo/tx54/on_hit_turf(turf/T, obj/projectile/proj)
-	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, T) )
+/datum/ammo/tx54/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = get_step_towards(target_turf, proj)
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
-/datum/ammo/tx54/do_at_max_range(turf/T, obj/projectile/proj)
-	playsound(proj, sound(get_sfx("explosion_micro")), 30, falloff = 5)
-	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, 4, 3, Get_Angle(proj.firer, get_turf(proj)) )
+/datum/ammo/tx54/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	var/turf/det_turf = get_step_towards(target_turf, proj)
+	playsound(det_turf, SFX_EXPLOSION_MICRO, 30, falloff = 5)
+	fire_directionalburst(proj, proj.firer, proj.shot_from, bonus_projectile_quantity, Get_Angle(proj.starting_turf, target_turf), loc_override = det_turf)
 
 /datum/ammo/tx54/incendiary
 	name = "20mm incendiary grenade"
@@ -109,17 +113,17 @@
 /datum/ammo/tx54/he/drop_nade(turf/T)
 	explosion(T, 0, 0, 1, 3, 1)
 
-/datum/ammo/tx54/he/on_hit_mob(mob/M, obj/projectile/P)
-	drop_nade(get_turf(M))
+/datum/ammo/tx54/he/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	drop_nade(get_turf(target_mob))
 
-/datum/ammo/tx54/he/on_hit_obj(obj/O, obj/projectile/P)
-	drop_nade(get_turf(O))
+/datum/ammo/tx54/he/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_nade(get_turf(target_obj))
 
-/datum/ammo/tx54/he/on_hit_turf(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/tx54/he/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
-/datum/ammo/tx54/he/do_at_max_range(turf/T, obj/projectile/P)
-	drop_nade(T.density ? P.loc : T)
+/datum/ammo/tx54/he/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 //The secondary projectiles
 /datum/ammo/bullet/tx54_spread
@@ -129,13 +133,14 @@
 	accuracy_var_low = 5
 	accuracy_var_high = 5
 	max_range = 4
+	shell_speed = 3
 	damage = 20
 	penetration = 20
-	sundering = 3
+	sundering = 1.5
 	damage_falloff = 0
 
-/datum/ammo/bullet/tx54_spread/on_hit_mob(mob/M, obj/projectile/proj)
-	staggerstun(M, proj, max_range = 3, stagger = 0.6 SECONDS, slowdown = 0.3)
+/datum/ammo/bullet/tx54_spread/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, max_range = 3, stagger = 0.6 SECONDS, slowdown = 0.3)
 
 /datum/ammo/bullet/tx54_spread/incendiary
 	name = "incendiary flechette"
@@ -144,7 +149,7 @@
 	penetration = 10
 	sundering = 1.5
 
-/datum/ammo/bullet/tx54_spread/incendiary/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/incendiary/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	return
 
 /datum/ammo/bullet/tx54_spread/incendiary/drop_flame(turf/T)
@@ -152,8 +157,8 @@
 		return
 	T.ignite(5, 10)
 
-/datum/ammo/bullet/tx54_spread/incendiary/on_leave_turf(turf/T, obj/projectile/proj)
-	drop_flame(T)
+/datum/ammo/bullet/tx54_spread/incendiary/on_leave_turf(turf/target_turf, obj/projectile/proj)
+	drop_flame(target_turf)
 
 /datum/ammo/bullet/tx54_spread/smoke
 	name = "chemical bomblet"
@@ -162,6 +167,7 @@
 	damage = 5
 	penetration = 0
 	sundering = 0
+	shrapnel_chance = 0
 	///The smoke type loaded in this ammo
 	var/datum/effect_system/smoke_spread/trail_spread_system = /datum/effect_system/smoke_spread/tactical
 
@@ -175,11 +181,11 @@
 		QDEL_NULL(trail_spread_system)
 	return ..()
 
-/datum/ammo/bullet/tx54_spread/smoke/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/smoke/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	return
 
-/datum/ammo/bullet/tx54_spread/smoke/on_leave_turf(turf/T, obj/projectile/proj)
-	trail_spread_system.set_up(0, T)
+/datum/ammo/bullet/tx54_spread/smoke/on_leave_turf(turf/target_turf, obj/projectile/proj)
+	trail_spread_system.set_up(0, target_turf)
 	trail_spread_system.start()
 
 /datum/ammo/bullet/tx54_spread/smoke/dense
@@ -216,9 +222,37 @@
 		QDEL_NULL(chemical_payload)
 	return ..()
 
-/datum/ammo/bullet/tx54_spread/razor/on_hit_mob(mob/M, obj/projectile/proj)
+/datum/ammo/bullet/tx54_spread/razor/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	return
 
-/datum/ammo/bullet/tx54_spread/razor/on_leave_turf(turf/T, obj/projectile/proj)
-	chemical_payload.set_up(0, T, reagent_list, RAZOR_FOAM)
+/datum/ammo/bullet/tx54_spread/razor/on_leave_turf(turf/target_turf, obj/projectile/proj)
+	chemical_payload.set_up(0, target_turf, reagent_list, RAZOR_FOAM)
 	chemical_payload.start()
+
+
+/datum/ammo/tx54/tank_cannister
+	name = "cannister"
+	icon_state = "cannister_shot"
+	damage = 30
+	penetration = 0
+	ammo_behavior_flags = AMMO_SNIPER
+	damage_falloff = 0.5
+	max_range = 3
+	projectile_greyscale_colors = "#4f0303"
+	bonus_projectiles_type = /datum/ammo/bullet/tx54_spread/tank_cannister
+	bonus_projectiles_scatter = 6
+	bonus_projectile_quantity = 12
+
+/datum/ammo/bullet/tx54_spread/tank_cannister
+	name = "cannister shot"
+	icon_state = "flechette"
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
+	max_range = 7
+	damage = 50
+	penetration = 15
+	sundering = 2
+	damage_falloff = 1
+	shrapnel_chance = 15
+
+/datum/ammo/bullet/tx54_spread/tank_cannister/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	staggerstun(target_mob, proj, max_range = 4, stagger = 2 SECONDS, slowdown = 0.2)

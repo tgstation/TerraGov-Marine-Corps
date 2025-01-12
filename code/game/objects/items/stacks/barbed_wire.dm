@@ -2,7 +2,6 @@
 /obj/item/stack/barbed_wire
 	name = "barbed wire"
 	desc = "A spiky length of wire."
-	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "barbed_wire"
 	item_flags = NOBLUDGEON
 	singular_name = "length"
@@ -52,7 +51,7 @@
 /obj/item/stack/razorwire
 	name = "razor wire assembly"
 	desc = "A bundle of barbed wire supported by metal rods. Used to deny access to areas under pain of entanglement and injury. A classic fortification since the 1900s."
-	icon = 'icons/obj/structures/barbedwire.dmi'
+	icon = 'icons/obj/structures/barricades/barbedwire.dmi'
 	icon_state = "barbedwire_assembly"
 	w_class = WEIGHT_CLASS_BULKY
 	force = 15

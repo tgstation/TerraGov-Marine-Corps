@@ -21,10 +21,6 @@
 	qdel(src)
 	return TRUE
 
-/obj/effect/decal/cleanable/greenglow/Initialize(mapload)
-	. = ..()
-	QDEL_IN(src, 2 MINUTES)
-
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"
 	desc = "Someone should clean that up."
@@ -35,6 +31,18 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "dirt"
 	mouse_opacity = 0
+
+/obj/effect/decal/cleanable/dirt/grime1
+	icon_state = "grime1"
+
+/obj/effect/decal/cleanable/dirt/grime2
+	icon_state = "grime2"
+
+/obj/effect/decal/cleanable/dirt/grime3
+	icon_state = "grime3"
+
+/obj/effect/decal/cleanable/dirt/grime4
+	icon_state = "grime4"
 
 /obj/effect/decal/cleanable/glass
 	name = "broken glass"
@@ -72,6 +80,10 @@
 	layer = TURF_LAYER
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenglow"
+
+/obj/effect/decal/cleanable/greenglow/Initialize(mapload)
+	. = ..()
+	set_light(1, 0.5, LIGHT_COLOR_EMISSIVE_GREEN)
 
 /obj/effect/decal/cleanable/cobweb
 	name = "cobweb"

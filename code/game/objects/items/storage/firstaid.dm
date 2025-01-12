@@ -153,6 +153,7 @@
 	name = "syringe case"
 	desc = "It's a medical case for storing syringes and bottles."
 	icon_state = "syringe_case"
+	icon = 'icons/obj/items/storage/firstaid.dmi'
 	throw_speed = 2
 	throw_range = 8
 	w_class = WEIGHT_CLASS_SMALL
@@ -272,7 +273,7 @@
 	greyscale_colors = "#d9cd07#f2cdbb" //default colors
 	storage_type = /datum/storage/pill_bottle
 	///What kind of pill we are filling our pill bottle with
-	var/pill_type_to_fill
+	var/obj/item/pill_type_to_fill
 	///Short description in overlay
 	var/description_overlay = ""
 
@@ -326,12 +327,29 @@
 	. = ..()
 	update_icon()
 
+/obj/item/storage/pill_bottle/refill(mob/user)
+	. = ..()
+	if(!.)
+		return
+	var/available_space = storage_datum.max_storage_space
+	for(var/obj/item/stored_item in contents)
+		available_space -= stored_item.w_class
+	if(!available_space)
+		return
+	var/pills_to_add = round(available_space/initial(pill_type_to_fill.w_class))
+	if(storage_datum.storage_slots)
+		pills_to_add = min(pills_to_add, storage_datum.storage_slots, storage_datum.storage_slots - length(contents))
+	for(var/i in 1 to pills_to_add)
+		new pill_type_to_fill(src)
+	update_icon()
+
 /obj/item/storage/pill_bottle/kelotane
 	name = "kelotane pill bottle"
 	desc = "Contains pills that heal burns, but cause slight pain. Take two to heal faster, but have slightly more pain."
 	pill_type_to_fill = /obj/item/reagent_containers/pill/kelotane
 	greyscale_colors = "#CC9900#FFFFFF"
 	description_overlay = "Ke"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/kelotane/Initialize(mapload, ...)
 	. = ..()
@@ -351,6 +369,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/dylovene
 	greyscale_colors = "#669900#ffffff"
 	description_overlay = "Dy"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/dylovene/Initialize(mapload, ...)
 	. = ..()
@@ -362,6 +381,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/isotonic
 	greyscale_colors = "#5c0e0e#ffffff"
 	description_overlay = "Is"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/isotonic/Initialize(mapload, ...)
 	. = ..()
@@ -381,6 +401,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/tramadol
 	greyscale_colors = "#8a8686#ffffff"
 	description_overlay = "Ta"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/tramadol/Initialize(mapload, ...)
 	. = ..()
@@ -394,6 +415,7 @@
 	greyscale_config = /datum/greyscale_config/pillbottlebox
 	greyscale_colors = "#f8f4f8#ffffff"
 	description_overlay = "Pa"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/paracetamol/Initialize(mapload, ...)
 	. = ..()
@@ -413,6 +435,7 @@
 	pill_type_to_fill = /obj/item/reagent_containers/pill/bicaridine
 	greyscale_colors = "#DA0000#ffffff"
 	description_overlay = "Bi"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/bicaridine/Initialize(mapload, ...)
 	. = ..()
@@ -485,6 +508,7 @@
 	greyscale_colors = "#f8f8f8#ffffff"
 	greyscale_config = /datum/greyscale_config/pillbottleround
 	description_overlay = "Ti"
+	item_flags = CAN_REFILL
 
 /obj/item/storage/pill_bottle/tricordrazine/Initialize(mapload, ...)
 	. = ..()
@@ -511,14 +535,11 @@
 	. = ..()
 	storage_datum.max_storage_space = 7
 
-/obj/item/storage/pill_bottle/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-	if(!istype(I, /obj/item/facepaint) || isnull(greyscale_config))
-		return
+/obj/item/storage/pill_bottle/attackby(obj/item/attacking_item, mob/user, params)
+	if(!istype(attacking_item, /obj/item/facepaint) || isnull(greyscale_config))
+		return ..()
 
-	var/obj/item/facepaint/paint = I
+	var/obj/item/facepaint/paint = attacking_item
 	if(paint.uses < 1)
 		to_chat(user, span_warning("\the [paint] is out of color!"))
 		return

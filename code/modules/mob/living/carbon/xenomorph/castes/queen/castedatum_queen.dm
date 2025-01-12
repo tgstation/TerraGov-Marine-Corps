@@ -11,17 +11,17 @@
 	wound_type = "queen" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage = 23
+	melee_damage = 28
 
 	// *** Speed *** //
 	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 1200
-	plasma_gain = 70
+	plasma_gain = 90
 
 	// *** Health *** //
-	max_health = 500
+	max_health = 600
 
 	// *** Sunder *** //
 	sunder_multiplier = 0.8
@@ -104,7 +104,7 @@
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/xeno_action/lay_egg,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
-		/datum/action/ability/activable/xeno/screech,
+		/datum/action/ability/activable/xeno/screech, // Primo enables alterative action for screech.
 		/datum/action/ability/xeno_action/bulwark,
 		/datum/action/ability/activable/xeno/corrosive_acid/strong,
 		/datum/action/ability/activable/xeno/xeno_spit,

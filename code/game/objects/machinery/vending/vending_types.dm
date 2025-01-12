@@ -55,7 +55,7 @@
 		/obj/item/reagent_containers/food/drinks/cans/sodawater = -1,
 		/obj/item/reagent_containers/food/drinks/flask/barflask = -1,
 		/obj/item/reagent_containers/food/drinks/flask/vacuumflask = -1,
-		/obj/item/reagent_containers/food/drinks/drinkingglass = -1,
+		/obj/item/reagent_containers/cup/glass/drinkingglass = -1,
 		/obj/item/reagent_containers/food/drinks/ice = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/melonliquor = -1,
 		/obj/item/reagent_containers/food/drinks/bottle/bluecuracao = -1,
@@ -173,12 +173,7 @@
 		"Hypospray" = list (
 			/obj/item/reagent_containers/hypospray/autoinjector/dexalinplus = 10,
 			/obj/item/reagent_containers/hypospray/autoinjector/sleeptoxin = 10,
-			/obj/item/reagent_containers/hypospray/advanced = 5,
-			/obj/item/reagent_containers/hypospray/advanced/bicaridine = 5,
-			/obj/item/reagent_containers/hypospray/advanced/kelotane = 5,
-			/obj/item/reagent_containers/hypospray/advanced/tramadol = 5,
-			/obj/item/reagent_containers/hypospray/advanced/tricordrazine = 5,
-			/obj/item/reagent_containers/hypospray/advanced/dylovene = 5,
+			/obj/item/reagent_containers/hypospray/advanced = 30,
 		),
 		"Reagent Bottle" = list(
 			/obj/item/reagent_containers/glass/bottle/bicaridine = -1,
@@ -526,10 +521,10 @@
 	icon_vend = "dinnerware-vend"
 	icon_deny = "dinnerware-deny"
 	products = list(
-		/obj/item/tool/kitchen/tray = 8,
+		/obj/item/storage/kitchen_tray = 8,
 		/obj/item/tool/kitchen/utensil/fork = 6,
 		/obj/item/tool/kitchen/knife = 3,
-		/obj/item/reagent_containers/food/drinks/drinkingglass = 8,
+		/obj/item/reagent_containers/cup/glass/drinkingglass = 8,
 		/obj/item/clothing/suit/storage/chef/classic = 2,
 		/obj/item/tool/kitchen/utensil/spoon = 2,
 		/obj/item/tool/kitchen/utensil/knife = 2,
@@ -544,8 +539,8 @@
 	icon_state = "sovietsoda"
 	product_ads = "For Tsar and Country.;Have you fulfilled your nutrition quota today?;Very nice!;We are simple people, for this is all we eat.;If there is a person, there is a problem. If there is no person, then there is no problem."
 	products = list(
-		/obj/item/reagent_containers/food/drinks/drinkingglass/soda = 30,
-		/obj/item/reagent_containers/food/drinks/drinkingglass/cola = 20,
+		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/soda = 30,
+		/obj/item/reagent_containers/cup/glass/drinkingglass/filled/cola = 20,
 	)
 	idle_power_usage = 211
 
