@@ -514,6 +514,17 @@
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
+/datum/ammo/energy/lasersentry
+	name = "laser sentry bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+	damage = 35
+	penetration = 15
+	sundering = 2
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_IFF|AMMO_HITSCAN
+	hitscan_effect_icon = "beam"
+	bullet_color = COLOR_LASER_RED
+
 /datum/ammo/energy/plasma
 	name = "superheated plasma"
 	icon_state = "plasma_small"
