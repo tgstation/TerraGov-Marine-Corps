@@ -60,8 +60,8 @@
 	desc = "A fuel canister for the SFT-575 sentry gun. Just feed it into the sentry gun's fuel port when its fuel is depleted."
 	caliber = CALIBER_FUEL
 	icon_state = "flamer_sentry"
-	max_rounds = 100
-	default_ammo = /datum/ammo/flamer
+	max_rounds = 500
+	default_ammo = /datum/ammo/flamethrower/sentry
 
 /obj/item/ammo_magazine/sentry/laser
 	name = "\improper SLT-576 sentry gun laser battery"

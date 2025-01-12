@@ -276,6 +276,11 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber AM-5 antimaterial rifle and a 75-round drum magazine."
 	icon_state = "sniper_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/sniper.dmi'
+	fire_sound = 'sound/weapons/guns/fire/sniper_heavy.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/sniper_empty.ogg'
+	unload_sound = 'sound/weapons/guns/interact/sniper_heavy_unload.ogg'
+	reload_sound = 'sound/weapons/guns/interact/sniper_heavy_reload.ogg'
+	cocked_sound = 'sound/weapons/guns/interact/sniper_heavy_cocked.ogg'
 
 	turret_range = 12
 	deploy_time = 10 SECONDS
@@ -329,6 +334,8 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy caliber SM-10 shotgun and a 100-round drum magazine."
 	icon_state = "shotgun_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/shotgun.dmi'
+	fire_sound = 'sound/weapons/guns/fire/shotgun.ogg'
+	dry_fire_sound = 'sound/weapons/guns/fire/shotgun_empty.ogg'
 
 	turret_range = 8
 	deploy_time = 5 SECONDS
@@ -382,16 +389,17 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a heavy flamethrower and a 200-round drum magazine."
 	icon_state = "flamer_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/flamer.dmi'
+	fire_sound = "gun_flamethrower"
 
 	turret_range = 8
 	deploy_time = 5 SECONDS
-	max_shells = 200
-	fire_delay = 2 SECONDS
+	max_shells = 500
+	fire_delay = 0.1 SECONDS
 	burst_amount = 1
 
 	scatter = 5
 
-	ammo_datum_type = /datum/ammo/flamer
+	ammo_datum_type = /datum/ammo/flamethrower/sentry
 	default_ammo_type = /obj/item/ammo_magazine/sentry/flamer
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/flamer)
 
@@ -433,6 +441,7 @@
 	desc = "A deployable, fully automatic turret with AI targeting capabilities. Armed with a high-energy laser and a 500-shot magazine."
 	icon_state = "laser_sentry"
 	icon = 'icons/obj/machines/deployable/sentry/laser.dmi'
+	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 
 	turret_range = 10
 	deploy_time = 5 SECONDS
