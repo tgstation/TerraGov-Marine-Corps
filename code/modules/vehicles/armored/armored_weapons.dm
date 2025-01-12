@@ -404,7 +404,7 @@
 	desc = "A crackling energy weapon, a slightly scaled up model of the classic BFG 9000. Point at people who killed your rabbit."
 	icon_state = "bfg"
 	fire_sound = 'sound/weapons/guns/fire/tank_bfg.ogg'
-	armored_weapon_flags = ARMORED_WEAPON_NO_VENDOR
+	armored_weapon_flags = MODULE_NOT_FABRICABLE
 	ammo = /obj/item/ammo_magazine/tank/bfg
 	accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/bfg,

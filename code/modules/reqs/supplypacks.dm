@@ -844,46 +844,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
 
-/datum/supply_packs/weapons/ltb_he_shell
-	name = "LTB High Explosive tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
-	cost = 10
-
-/datum/supply_packs/weapons/ltb_apfds_shell
-	name = "LTB APFDS tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/apfds)
-	cost = 10
-
-/datum/supply_packs/weapons/ltb_canister_shell
-	name = "LTB Canister tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/canister)
-	cost = 10
-
-/datum/supply_packs/weapons/secondary_flamer_tank
-	name = "Spray flamer tank"
-	contains = list(/obj/item/ammo_magazine/tank/secondary_flamer_tank)
-	cost = 10
-
-/datum/supply_packs/weapons/ltaap_rounds
-	name = "LTAAP tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
-	cost = 10
-
-/datum/supply_packs/weapons/cupola_rounds
-	name = "Cupola tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
-	cost = 10
-
-/datum/supply_packs/weapons/tow_rocket
-	name = "TOW Missile"
-	contains = list(/obj/item/ammo_magazine/tank/tow_missile)
-	cost = 5 // marginally cheaper due to being a single loader
-
-/datum/supply_packs/weapons/microrocket_pod
-	name = "Microrocket pod"
-	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
-	cost = 10
-
 /*******************************************************************************
 EXPLOSIVES
 *******************************************************************************/
@@ -2129,9 +2089,34 @@ VEHICLES
 	cost = 50
 	containertype = /obj/structure/closet/crate/ammo
 
-/datum/supply_packs/vehicles/ltb_shells
-	name = "LTB tank shell"
+/datum/supply_packs/vehicles/bfg_cannon
+	name = "Tank-mounted BFG 9500"
+	contains = list(/obj/item/armored_weapon/bfg)
+	cost = 1600
+
+/datum/supply_packs/vehicles/bfg_rounds
+	name = "BFG tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/bfg)
+	cost = 200
+
+/datum/supply_packs/vehicles/ltb_he_shell
+	name = "LTB High Explosive tank shell"
 	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltb_apfds_shell
+	name = "LTB APFDS tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/apfds)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltb_canister_shell
+	name = "LTB Canister tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/canister)
+	cost = 10
+
+/datum/supply_packs/vehicles/secondary_flamer_tank
+	name = "Spray flamer tank"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_flamer_tank)
 	cost = 10
 
 /datum/supply_packs/vehicles/ltaap_rounds
@@ -2144,15 +2129,15 @@ VEHICLES
 	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
 	cost = 10
 
-/datum/supply_packs/vehicles/bfg_cannon
-	name = "Tank-mounted BFG 9500"
-	contains = list(/obj/item/armored_weapon/bfg)
-	cost = 1600
+/datum/supply_packs/vehicles/tow_rocket
+	name = "TOW Missile"
+	contains = list(/obj/item/ammo_magazine/tank/tow_missile)
+	cost = 5 // marginally cheaper due to being a single loader
 
-/datum/supply_packs/vehicles/bfg_rounds
-	name = "BFG tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/bfg)
-	cost = 200
+/datum/supply_packs/vehicles/microrocket_pod
+	name = "Microrocket pod"
+	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
+	cost = 10
 
 /*******************************************************************************
 FACTORY
