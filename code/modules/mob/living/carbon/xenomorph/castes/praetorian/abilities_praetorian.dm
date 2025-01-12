@@ -492,7 +492,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	target_flags = ABILITY_MOB_TARGET
 
 // ***************************************
-// *********** Dislocate
+// *********** Item Throw
 // ***************************************
 /datum/action/ability/activable/xeno/item_throw
 	name = "Item Throw"
