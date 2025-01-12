@@ -88,7 +88,7 @@
 	else
 		alert_receivers = GLOB.alive_human_list_faction[human_owner.faction] + GLOB.ai_list + GLOB.observer_list
 		sound_alert = 'sound/misc/notice2.ogg'
-		announcement_title = "[uppertext(human_owner.job.title)]'s Announcement"
+		announcement_title = "[human_owner.job.title]'s Announcement"
 
 	for(var/mob/mob_receiver in alert_receivers)
 		mob_receiver.playsound_local(mob_receiver, sound_alert, 35, channel = CHANNEL_ANNOUNCEMENTS)
