@@ -50,3 +50,10 @@
   - rscdel: SL prep rooms now have 1 map table instead of 2 for space
   yyzsong:
   - balance: Adds preplaced tunnel landmarks to Prison Station
+2025-01-12:
+  TiviPlus:
+  - rscadd: Added the bloodthirster ravager strain, which takes damage when not dealing
+      damage, but gets buffs from dealing a lot of damage
+  - balance: Homing tank secondary pod damage nerfed
+  - rscadd: Added the new marine "Prototype Supersoldier" race which is weaker by
+      default but can use stimulants to be more flexible

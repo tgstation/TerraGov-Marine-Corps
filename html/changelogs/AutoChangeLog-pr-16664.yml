@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Added the bloodthirster ravager strain, which takes damage when not dealing damage, but gets buffs from dealing a lot of damage"
