@@ -137,8 +137,8 @@
 	. = ..()
 	RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_delta_alert))
 
-/obj/machinery/door/poddoor/shutters/mainship/selfdestruct/proc/on_delta_alert()
-	if(SSsecurity_level.get_current_level_as_number() != SEC_LEVEL_DELTA)
+/obj/machinery/door/poddoor/shutters/mainship/selfdestruct/proc/on_delta_alert(datum/source, next_level, previous_level)
+	if(next_level != SEC_LEVEL_DELTA)
 		return
 	open()
 

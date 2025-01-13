@@ -14,11 +14,11 @@
 	var/announcement_color = "default"
 	/// The numerical level of this security level, see defines for more information.
 	var/number_level = -1
-	/// The sound that we will play when this security level is set
+	/// The sound that we will play when this security level is set.
 	var/sound
-	/// Our announcement when lowering to this level
+	/// Our announcement when lowering to this level.
 	var/lowering_body
-	/// Our announcement when elevating to this level
+	/// Our announcement when elevating to this level.
 	var/elevating_body
 	/// Our configuration key for lowering to text, if set, will override the default lowering to announcement.
 	var/lowering_to_configuration_key

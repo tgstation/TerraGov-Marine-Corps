@@ -48,7 +48,7 @@ SUBSYSTEM_DEF(security_level)
 		CRASH("set_level was called with an invalid security level([new_level])")
 
 	if(announce)
-		level_announce(selected_level, current_security_level.number_level) // We want to announce BEFORE updating to the new level
+		level_announce(selected_level, current_security_level.number_level)
 
 	SSsecurity_level.most_recent_level = current_security_level.number_level
 
