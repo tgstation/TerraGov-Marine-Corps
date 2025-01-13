@@ -2095,7 +2095,7 @@ VEHICLES
 	cost = 1600
 
 /datum/supply_packs/vehicles/bfg_rounds
-	name = "BFG tank magazine"
+	name = "Tank BFG antimatter container"
 	contains = list(/obj/item/ammo_magazine/tank/bfg)
 	cost = 200
 
