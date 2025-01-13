@@ -392,7 +392,7 @@
 	fire_mode = GUN_FIREMODE_BURSTFIRE
 	projectile_delay = 2 SECONDS
 	variance = 40
-	burst_amount = 6
+	burst_amount = 3
 	projectile_burst_delay = 0.1 SECONDS
 	rearm_time = 5 SECONDS
 	hud_state_empty = "rocket_empty"
