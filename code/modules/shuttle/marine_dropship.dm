@@ -177,7 +177,7 @@
 		for(var/mob/living/carbon/human/human AS in GLOB.alive_human_list)
 			if(human.faction != FACTION_TERRAGOV)
 				return
-			human.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[op_name]</u></span><br>" + "[SSmapping.configs[GROUND_MAP].map_name]<br>" + "[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>" + "36th Marine LRPRR Platoon<br>" + "[human.job.title], [human]", /atom/movable/screen/text/screen_text/picture)
+			human.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(op_name, "[SSmapping.configs[GROUND_MAP].map_name]<br>[GAME_YEAR]-[time2text(world.realtime, "MM-DD")] [stationTimestamp("hh:mm")]<br>36th Marine LRPRR Platoon<br>[human.job.title], [human]", LEFT_ALIGN_TEXT), /atom/movable/screen/text/screen_text/picture)
 
 /obj/docking_port/mobile/marine_dropship/proc/lockdown_all()
 	lockdown_airlocks("rear")

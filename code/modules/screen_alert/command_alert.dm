@@ -92,7 +92,7 @@
 
 	for(var/mob/mob_receiver in alert_receivers)
 		mob_receiver.playsound_local(mob_receiver, sound_alert, 35, channel = CHANNEL_ANNOUNCEMENTS)
-		mob_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[announcement_title]:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order, override_color)
+		mob_receiver.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(announcement_title, text, CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order, override_color)
 		to_chat(mob_receiver, assemble_alert(
 			title = announcement_title,
 			subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",

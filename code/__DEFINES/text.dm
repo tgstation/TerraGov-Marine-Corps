@@ -24,6 +24,15 @@
 /// Smallest size. (ie: whisper runechat) - Size options: 6pt 12pt 18pt.
 #define MAPTEXT_SPESSFONT(text) {"<span style='font-family: \"Spess Font\"; font-size: 6pt; line-height: 1.4; -dm-text-outline: 1px black'>[##text]</span>"}
 
+#define CENTER_ALIGN_TEXT "center"
+#define LEFT_ALIGN_TEXT "left"
+
+#define MAPTEXT_HUDMESSAGE_TITLE(text, alignment) "<span style='font-family: \"Pixellari\"; font-size: 12pt; -dm-text-outline: 1px black; text-align: [##alignment]; line-height: 1.5; valign: top'><u>[##announcement_title]:</u></span>"
+
+#define MAPTEXT_HUDMESSAGE(text) {"<span style='font-family: \"Pixellari\"; font-size: 12pt; -dm-text-outline: 1px black'>[##text]</span>"}
+
+#define HUD_ANNOUNCEMENT_FORMATTING(title, text, alignment) (MAPTEXT_HUDMESSAGE_TITLE(##title, ##alignment) + "<br>" + MAPTEXT_HUDMESSAGE(##text))
+
 /**
  * Prepares a text to be used for maptext, using a variable size font.
  *
