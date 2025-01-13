@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Humans (or any breathing species) who are critdragged by xenomorphs now correctly take only oxygen damage instead of brute damage and oxygen damage at the same time."

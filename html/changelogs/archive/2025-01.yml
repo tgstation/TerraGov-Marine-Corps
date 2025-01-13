@@ -32,3 +32,31 @@
 2025-01-08:
   Barnet2:
   - bugfix: Pillar of Spring maintenance is no longer a dead end
+2025-01-10:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed the esword secondary not spawning, and requiring a backpack'
+  - rscadd: Added TTS options to announcements/overwatch/hivechat/hive messages
+  Tiviplus & Kuro:
+  - rscadd: Added the  homing "TOW-III" tank secondary
+  - rscadd: Added the homing "Micromissile pod" tank secondary
+2025-01-11:
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed some map issues'
+  TiviPlus:
+  - bugfix: fixed petrified marines being flingable, along with other typically immobile
+      situations being flingable
+  breadhunt:
+  - bugfix: Fixed stray windows and tiles on Pillar of Spring
+  - rscdel: SL prep rooms now have 1 map table instead of 2 for space
+  yyzsong:
+  - balance: Adds preplaced tunnel landmarks to Prison Station
+2025-01-12:
+  TiviPlus:
+  - rscadd: Added the bloodthirster ravager strain, which takes damage when not dealing
+      damage, but gets buffs from dealing a lot of damage
+  - balance: Homing tank secondary pod damage nerfed
+  - rscadd: Added the new marine "Prototype Supersoldier" race which is weaker by
+      default but can use stimulants to be more flexible
+2025-01-13:
+  TiviPlus:
+  - balance: Tank Chaingun has IFF again
