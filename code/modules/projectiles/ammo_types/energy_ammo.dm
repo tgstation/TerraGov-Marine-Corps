@@ -106,7 +106,9 @@
 	explosion(T, 0, 0, 4, 0, 0)
 
 /datum/ammo/energy/bfg/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(target_mob))
+	var/target_turf = get_turf(target_mob)
+	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	drop_nade(target_turf)
 
 /datum/ammo/energy/bfg/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
