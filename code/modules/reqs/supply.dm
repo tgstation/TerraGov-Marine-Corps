@@ -776,8 +776,6 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 		if(vehtype != current_veh_type)
 			continue
 		for(var/obj/item/armored_weapon/gun AS in GLOB.armored_guntypes[vehtype])
-			if(initial(gun.armored_weapon_flags) & ARMORED_WEAPON_NO_VENDOR)
-				continue
 			var/primary_selected = (current_primary == gun)
 			var/secondary_selected = (current_secondary == gun)
 			if(initial(gun.armored_weapon_flags) & MODULE_PRIMARY)
@@ -890,7 +888,7 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 			var/obj/item/armored_weapon/newtype = text2path(params["type"])
 			if(!(newtype in GLOB.armored_guntypes[current_veh_type]))
 				return
-			if(initial(newtype.armored_weapon_flags) & ARMORED_WEAPON_NO_VENDOR)
+			if(initial(newtype.armored_weapon_flags) & MODULE_NOT_FABRICABLE)
 				return
 			current_primary = newtype
 			var/list/assoc_cast = GLOB.armored_gunammo[newtype]
@@ -905,7 +903,7 @@ GLOBAL_LIST_EMPTY(purchased_tanks)
 			var/obj/item/armored_weapon/newtype = text2path(params["type"])
 			if(!(newtype in GLOB.armored_guntypes[current_veh_type]))
 				return
-			if(initial(newtype.armored_weapon_flags) & ARMORED_WEAPON_NO_VENDOR)
+			if(initial(newtype.armored_weapon_flags) & MODULE_NOT_FABRICABLE)
 				return
 			current_secondary = newtype
 			var/list/assoc_cast = GLOB.armored_gunammo[newtype]

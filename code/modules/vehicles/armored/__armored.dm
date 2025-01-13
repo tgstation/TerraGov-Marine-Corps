@@ -57,7 +57,6 @@
 		/obj/item/armored_weapon/ltaap,
 		/obj/item/armored_weapon/secondary_weapon,
 		/obj/item/armored_weapon/secondary_flamer,
-		/obj/item/armored_weapon/bfg,
 	)
 	///list of mods we allow to attach
 	var/list/permitted_mods = list(

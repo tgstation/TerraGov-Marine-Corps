@@ -180,7 +180,7 @@
 		living.add_slowdown(2)
 		log_attack("[living] was zapped by [source]")
 
-/// executes a BFG zap. just damages xenos in an AOE from the source
+/// executes a BFG zap. just damages living mobs in an AOE from the source
 /proc/bfg_beam(atom/source, zap_range, damage, armor_pierce, list/blacklistmobs)
 	for(var/mob/living/target in oview(zap_range, source))
 		if(target.stat == DEAD)
@@ -188,5 +188,5 @@
 		if(target in blacklistmobs)
 			continue
 		source.beam(target, icon_state="bfg", time = 3, maxdistance = zap_range + 2)
-		target.apply_damage(damage, BURN, 50, penetration=armor_pierce)
+		target.apply_damage(damage, BURN, BODY_ZONE_CHEST, penetration=armor_pierce, updating_health=TRUE)
 		log_attack("[target] was zapped by [source]")

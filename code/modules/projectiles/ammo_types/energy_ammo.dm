@@ -87,7 +87,13 @@
 	bullet_color = COLOR_PALE_GREEN_GRAY
 
 /datum/ammo/energy/bfg/ammo_process(obj/projectile/proj, damage)
-	bfg_beam(proj, 3, damage, penetration)
+	if(proj.distance_travelled <= 2)
+		return
+	// range expands as it flies to avoid hitting the shooter and tank riders
+	var/bfg_range = 3
+	if(proj.distance_travelled <= 4)
+		bfg_range = (proj.distance_travelled - 2)
+	bfg_beam(proj, bfg_range, damage, penetration)
 
 	//handling for BFG sound. yes it's kinda wierd to use distance traveled and probably will break at high lag
 	//but this is super snowflake and I don't wanna bother something like making looping sounds attachable to projectiles today
@@ -95,6 +101,21 @@
 	var/sound_delay_time = BFG_SOUND_DELAY_SECONDS/proj.projectile_speed
 	if(proj.distance_travelled % sound_delay_time)
 		playsound(proj, 'sound/weapons/guns/misc/bfg_fly.ogg', 30, FALSE)
+
+/datum/ammo/energy/bfg/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 0, 0)
+
+/datum/ammo/energy/bfg/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	drop_nade(get_turf(target_mob))
+
+/datum/ammo/energy/bfg/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
+
+/datum/ammo/energy/bfg/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+
+/datum/ammo/energy/bfg/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
 
 /datum/ammo/energy/lasburster
 	name = "lasburster bolt"
