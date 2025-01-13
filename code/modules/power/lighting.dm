@@ -434,7 +434,7 @@
 	light_type = /obj/item/light_bulb/bulb
 
 /// Changes the light's appearance based on the security level
-/obj/machinery/light/mainship/proc/on_alert_change(new_level, most_recent_level)
+/obj/machinery/light/mainship/proc/on_alert_change(datum/source, new_level, most_recent_level)
 	SIGNAL_HANDLER
 	var/bulb_type = "tube" // the base light sprite
 	if(istype(src, /obj/machinery/light/mainship/small))

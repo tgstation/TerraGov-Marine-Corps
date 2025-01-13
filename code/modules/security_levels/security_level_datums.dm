@@ -64,8 +64,8 @@
  */
 /datum/security_level/red
 	name = "red"
-	lowering_body = "The destruction of the ship has been averted. A Code Red emergency will remain in place. Please prepare to evacuate immediately. There is still an immediate and serious threat to the ship. All shipside personnel are strongly advised to carry a sidearm and wear a helmet."
-	elevating_body = "Code Red emergency declared. Please prepare to evacuate immediately. There is an immediate and serious threat to the ship. All shipside personnel are strongly advised to carry a sidearm and wear a helmet."
+	lowering_body = "The destruction of the ship has been averted. A Code Red emergency will remain in place. Please prepare to evacuate or defend immediately. There is still an immediate and serious threat to the ship. All shipside personnel are strongly advised to carry a sidearm and wear a helmet."
+	elevating_body = "Code Red emergency declared. Please prepare to evacuate or defend immediately. There is an immediate and serious threat to the ship. All shipside personnel are strongly advised to carry a weapon and wear a helmet."
 	announcement_color = "red"
 	sound = 'sound/misc/security_level/red.ogg' // More angry alarm
 	number_level = SEC_LEVEL_RED
