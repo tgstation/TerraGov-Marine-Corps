@@ -175,6 +175,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/scaling_method = SCALING_METHOD_NORMAL
 	///If the game is in fullscreen mode
 	var/fullscreen_mode = FALSE
+	///Hide status bar (bottom left)
+	var/show_status_bar = TRUE
 
 	///Whether or not the MC tab of the Stat Panel refreshes fast. This is expensive so make sure you need it.
 	var/fast_mc_refresh = FALSE

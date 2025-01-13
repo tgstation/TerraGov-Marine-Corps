@@ -14,6 +14,7 @@
 #define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
+#define COMSIG_KB_CLIENT_FULLSCREEN_DOWN "keybinding_client_fullscreen_down"
 #define COMSIG_KB_CLIENT_SAY_DOWN "keybinding_client_say_down"
 #define COMSIG_KB_CLIENT_RADIO_DOWN "keybinding_client_radio_down"
 #define COMSIG_KB_CLIENT_ME_DOWN "keybinding_client_me_down"

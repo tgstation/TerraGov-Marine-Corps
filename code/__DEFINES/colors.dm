@@ -10,9 +10,6 @@
 ///how many colour priority levels there are.
 #define COLOR_PRIORITY_AMOUNT 4
 
-#define COLOR_INPUT_DISABLED "#F0F0F0"
-#define COLOR_INPUT_ENABLED "#D3B5B5"
-
 #define LIGHTMODE_BACKGROUND "none"
 #define LIGHTMODE_TEXT "#000000"
 

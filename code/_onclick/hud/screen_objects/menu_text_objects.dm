@@ -7,14 +7,27 @@
  * hrefs will make the text blue though  so dont do it :/
  */
 
+#define COLOR_HOVER_MOUSE COLOR_ORANGE
+
 ///Unclickable Lobby UI objects
 /atom/movable/screen/text/lobby
 	screen_loc = "CENTER"
 	maptext_height = 480
 	maptext_width = 480
-	maptext_x = 24
-	maptext_y = 9
+	maptext_x = 28
+	maptext_y = 5
+	/// if this text has a different color that we want to display when it's not being mosued over
+	var/unhighlighted_color
 
+/atom/movable/screen/text/lobby/Initialize(mapload, datum/hud/hud_owner)
+	. = ..()
+	update_appearance(UPDATE_ICON)
+
+/atom/movable/screen/text/lobby/update_icon(updates)
+	. = ..()
+	if(color == COLOR_HOVER_MOUSE)
+		return
+	color = unhighlighted_color
 
 ///This proc updates the maptext of the buttons.
 /atom/movable/screen/text/lobby/proc/update_text()
@@ -35,13 +48,15 @@
 	. = ..()
 	if(!(atom_flags & INITIALIZED)) //yes this can happen, fuck me
 		return
-	color = COLOR_ORANGE
+	color = COLOR_HOVER_MOUSE
 	var/mob/new_player/player = usr
 	player.playsound_local(player, 'sound/effects/menu_click.ogg', 50)
+	update_appearance(UPDATE_ICON)
 
 /atom/movable/screen/text/lobby/clickable/MouseExited(location, control, params)
 	. = ..()
-	color = initial(color)
+	color = unhighlighted_color
+	update_appearance(UPDATE_ICON)
 
 /atom/movable/screen/text/lobby/clickable/Click()
 	if(!(atom_flags & INITIALIZED)) //yes this can happen, fuck me
@@ -50,27 +65,26 @@
 	var/mob/new_player/player = usr
 	player.playsound_local(player, 'sound/effects/menu_select.ogg', 50)
 
-
 /atom/movable/screen/text/lobby/clickable/setup_character
-	maptext = "<span class='maptext' style=font-size:6px>CHARACTER: ...</span>"
+	maptext = "<span class='lobbytext'>CHARACTER LOADING</span>"
 	icon_state = "setup"
+	maptext_x = 23
 	///Bool, whether we registered to listen for charachter updates already
 	var/registered = FALSE
-	maptext_y = 11
 
 /atom/movable/screen/text/lobby/clickable/setup_character/Click()
 	. = ..()
 	hud.mymob.client?.prefs.ShowChoices(hud.mymob)
 
 /atom/movable/screen/text/lobby/clickable/setup_character/update_text()
-	maptext = "<span class='maptext' style=font-size:6px>CHARACTER: [hud?.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown User"]</span>"
+	maptext = "<span class='lobbytext'>[hud?.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown Character"]</span>"
 	if(registered)
 		return
 	RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, PROC_REF(update_text))
 	registered = TRUE
 
 /atom/movable/screen/text/lobby/clickable/join_game
-	maptext = "<span class='maptext' style=font-size:8px>JOIN GAME</span>"
+	maptext = "<span class='lobbytext'>JOIN GAME</span>"
 	icon_state = "join"
 
 /atom/movable/screen/text/lobby/clickable/join_game/Initialize(mapload, datum/hud/hud_owner)
@@ -81,11 +95,15 @@
 /atom/movable/screen/text/lobby/clickable/join_game/update_text()
 	var/mob/new_player/player = hud.mymob
 	if(SSticker?.current_state > GAME_STATE_PREGAME)
-		maptext = "<span class='maptext' style=font-size:8px>JOIN GAME</span>"
+		maptext = "<span class='lobbytext'>JOIN GAME</span>"
 		icon_state = "join"
+		unhighlighted_color = null
+		update_appearance(UPDATE_ICON)
 		return
-	maptext = "<span class='maptext' style=font-size:8px>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
+	unhighlighted_color = player.ready ? COLOR_GREEN : COLOR_RED
+	maptext = "<span class='lobbytext'>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
 	icon_state = player.ready ? "ready" : "unready"
+	update_appearance(UPDATE_ICON)
 
 /atom/movable/screen/text/lobby/clickable/join_game/Click()
 	. = ..()
@@ -98,7 +116,7 @@
 
 
 /atom/movable/screen/text/lobby/clickable/observe
-	maptext = "<span class='maptext' style=font-size:8px>OBSERVE</span>"
+	maptext = "<span class='lobbytext'>OBSERVE</span>"
 	icon_state = "observe"
 
 /atom/movable/screen/text/lobby/clickable/observe/Click()
@@ -107,7 +125,7 @@
 	player.try_to_observe()
 
 /atom/movable/screen/text/lobby/clickable/manifest
-	maptext = "<span class='maptext' style=font-size:8px>VIEW MANIFEST</span>"
+	maptext = "<span class='lobbytext'>VIEW MANIFEST</span>"
 	icon_state = "manifest"
 
 /atom/movable/screen/text/lobby/clickable/manifest/Click()
@@ -116,7 +134,7 @@
 	player.view_manifest()
 
 /atom/movable/screen/text/lobby/clickable/xenomanifest
-	maptext = "<span class='maptext' style=font-size:8px>VIEW HIVE LEADERS</span>"
+	maptext = "<span class='lobbytext'>VIEW HIVE LEADERS</span>"
 	icon_state = "manifest"
 
 /atom/movable/screen/text/lobby/clickable/xenomanifest/Click()
@@ -125,7 +143,7 @@
 	player.view_xeno_manifest()
 
 /atom/movable/screen/text/lobby/clickable/background
-	maptext = "<span class='maptext' style=font-size:8px>BACKGROUND</span>"
+	maptext = "<span class='lobbytext'>BACKGROUND</span>"
 	icon_state = "background"
 
 /atom/movable/screen/text/lobby/clickable/background/Click()
@@ -135,7 +153,7 @@
 
 
 /atom/movable/screen/text/lobby/clickable/changelog
-	maptext = "<span class='maptext' style=font-size:8px>CHANGELOG</span>"
+	maptext = "<span class='lobbytext'>CHANGELOG</span>"
 	icon_state = "changelog"
 
 /atom/movable/screen/text/lobby/clickable/changelog/Click()
@@ -144,7 +162,7 @@
 
 
 /atom/movable/screen/text/lobby/clickable/polls
-	maptext = "<span class='maptext' style=font-size:8px>POLLS</span>"
+	maptext = "<span class='lobbytext'>POLLS</span>"
 	icon_state = "poll"
 
 /atom/movable/screen/text/lobby/clickable/polls/update_text()
@@ -155,9 +173,9 @@
 	var/mob/new_player/player = hud.mymob
 	var/hasnewpolls = player.check_playerpolls()
 	if(isnull(hasnewpolls))
-		maptext = "<span class='maptext' style=font-size:8px>NO DATABASE!</span>"
+		maptext = "<span class='lobbytext'>NO DATABASE!</span>"
 		return
-	maptext = "<span class='maptext' style=font-size:8px>SHOW POLLS[hasnewpolls ? " (NEW!)" : ""]</span>"
+	maptext = "<span class='lobbytext'>SHOW POLLS[hasnewpolls ? " (NEW!)" : ""]</span>"
 
 /atom/movable/screen/text/lobby/clickable/polls/Click()
 	. = ..()
