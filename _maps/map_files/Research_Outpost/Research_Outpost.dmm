@@ -4156,6 +4156,12 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
+"ts" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/outpost/yard/south_east)
 "tt" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -24973,7 +24979,7 @@ yW
 yW
 yW
 yW
-oK
+ts
 VN
 BJ
 BJ
