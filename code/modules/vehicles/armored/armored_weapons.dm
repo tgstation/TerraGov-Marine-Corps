@@ -408,5 +408,4 @@
 	fire_mode = GUN_FIREMODE_SEMIAUTO
 	projectile_delay = 8 SECONDS
 	variance = 0
-	//windup_delay = 5 // TIED TO ANIMATION
 	hud_state_empty = "electrothermal_empty"
