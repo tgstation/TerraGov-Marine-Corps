@@ -29,9 +29,11 @@ SUBSYSTEM_DEF(security_level)
 	return SS_INIT_SUCCESS
 
 /**
- * Sets a new security level as our current level
+ * Sets a new security level as our current level. This is how anything should be changing the security level.
  *
- * This is how everything should change the security level.
+ * Produces a signal: [COMSIG_SECURITY_LEVEL_CHANGED]
+ *
+ * Can use this for world objects that react to the security level being updated. (red lights, etc)
  *
  * Arguments:
  * * new_level - The new security level that will become our current level
