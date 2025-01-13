@@ -57,3 +57,6 @@
   - balance: Homing tank secondary pod damage nerfed
   - rscadd: Added the new marine "Prototype Supersoldier" race which is weaker by
       default but can use stimulants to be more flexible
+2025-01-13:
+  TiviPlus:
+  - balance: Tank Chaingun has IFF again
