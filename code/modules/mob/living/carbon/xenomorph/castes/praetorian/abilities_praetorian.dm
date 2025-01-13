@@ -471,13 +471,122 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // ***************************************
 // *********** Abduct
 // ***************************************
+
+#define OPPRESSOR_ABDUCT_RANGE 8
+
 /datum/action/ability/activable/xeno/abduct
 	name = "Abduct"
 	action_icon_state = "abduct"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Throw your tail out and hook in any humans caught in it. Ends prematurely if blocked or hits anything dense."
 	ability_cost = 50
-	cooldown_duration = 15 SECONDS
+	cooldown_duration = 1 SECONDS
+	/// Reference to beam hook.
+	var/datum/beam/hook_beam
+	/// The current projectile if there is one around.
+	var/obj/projectile/tail_projectile
+	/// A list of mobs that were hit by the projectile.
+	var/list/hooked_humans = list()
+	/// The turf in front of the owner when the projectile was initially fired.
+	var/turf/initial_turf
+	/// A timer to cancel the ability if it has gone for too long.
+	var/ability_timer // Only needed because there are niche bugs that causes projectiles to be stuck.
+
+/datum/action/ability/activable/xeno/abduct/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!isnull(tail_projectile))
+		return FALSE
+
+/datum/action/ability/activable/xeno/abduct/use_ability(atom/movable/target)
+	xeno_owner.face_atom(target)
+	if(!do_after(owner, 0.8 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
+		return
+	// Face them!
+	xeno_owner.face_atom(target)
+	initial_turf = get_step(xeno_owner, xeno_owner.dir)
+	// Shoot your shot!
+	tail_projectile = new(get_turf(xeno_owner))
+	tail_projectile.generate_bullet(/datum/ammo/xeno/oppressor_tail)
+	var/datum/ammo/xeno/oppressor_tail/tail_ammo = tail_projectile.ammo
+	tail_ammo.ability_creator = src
+	tail_projectile.fire_at(target, xeno_owner, xeno_owner, range = OPPRESSOR_ABDUCT_RANGE, speed = 1)
+	hook_beam = owner.beam(tail_projectile, "curse1", 'icons/effects/beam.dmi')
+	RegisterSignal(tail_projectile, COMSIG_QDELETING, PROC_REF(on_proj_qdel))
+	playsound(get_turf(xeno_owner), 'sound/bullets/spear_armor1.ogg', 25, 1)
+	// Keep still until it's done.
+	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	ability_timer = addtimer(CALLBACK(src, PROC_REF(proj_timed_out)), 1.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	succeed_activate()
+	add_cooldown()
+
+/// Throw all hooked humans to initial turf and do additional effects if needed.
+/datum/action/ability/activable/xeno/abduct/proc/successful_hook()
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	var/amount_hooked = hooked_humans.len
+	for(var/mob/living/carbon/human/human_mob AS in hooked_humans)
+		var/distance = get_dist(human_mob, initial_turf)
+		human_mob.throw_at(owner, distance, 1, initial_turf, FALSE)
+		if(human_mob.stat == UNCONSCIOUS)
+			var/critdamage = HUMAN_CRITDRAG_OXYLOSS * distance
+			if(!human_mob.adjustOxyLoss(critdamage))
+				human_mob.adjustBruteLoss(critdamage)
+		human_mob.add_slowdown(0.3 * hooked_humans.len)
+		human_mob.adjust_stagger(0.5 SECONDS * hooked_humans.len)
+		if(amount_hooked >= 3)
+			human_mob.AdjustImmobilized(1 SECONDS)
+	xeno_owner.add_slowdown(0.3 * amount_hooked) // Don't bite off more than what you can chew.
+	// The last hooked person has the sound around them.
+	if(hooked_humans.len)
+		playsound(hooked_humans[hooked_humans.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	// Everything else is handled when the projectile is qdel'd.
+
+/// Deletes the projectile.
+// This is important since the xeno owner is immobile until the projectile is gone.
+/datum/action/ability/activable/xeno/abduct/proc/proj_timed_out()
+	SIGNAL_HANDLER
+	QDEL_NULL(tail_projectile)
+
+/// Reverts the xeno and sets variables back to normal. Used for ending the hooking prematurely as needed.
+/datum/action/ability/activable/xeno/abduct/proc/on_proj_qdel(datum/source)
+	SIGNAL_HANDLER
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	QDEL_NULL(hook_beam)
+	tail_projectile = null
+	deltimer(ability_timer)
+	initial_turf = null
+	hooked_humans.Cut()
+
+/datum/ammo/xeno/oppressor_tail
+	name = "oppressor tail"
+	icon_state = ""
+	shell_speed = 1
+	max_range = OPPRESSOR_ABDUCT_RANGE
+	bullet_color = COLOR_WHITE
+	sound_hit = 'sound/bullets/spear_armor1.ogg'
+	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_PASS_THROUGH_MOB
+	var/datum/action/ability/activable/xeno/abduct/ability_creator
+
+/datum/ammo/xeno/oppressor_tail/on_hit_mob(mob/target_mob, obj/projectile/proj)
+	if(!ishuman(target_mob) || target_mob.stat == DEAD)
+		return
+
+	ability_creator.hooked_humans += target_mob
+	if(length(ability_creator.hooked_humans) >= 3)
+		ability_creator.successful_hook()
+		proj.proj_max_range = 0
+
+///Special effects when hitting objects.
+/datum/ammo/xeno/oppressor_tail/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	ability_creator.successful_hook()
+	proj.proj_max_range = 0
+
+/datum/ammo/xeno/oppressor_tail/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	ability_creator.successful_hook()
+
+/datum/ammo/xeno/oppressor_tail/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	ability_creator.successful_hook()
 
 // ***************************************
 // *********** Dislocate
@@ -501,6 +610,117 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Pick up a nearby item momentarily and throw it in a chosen direction. The item's size determines elements such as how fast or hard it hits."
 	ability_cost = 50
 	cooldown_duration = 12 SECONDS
+	/// If they have moved at least a single tile since picking up an item. Used as a single-tile grace period before dropping.
+	var/single_tile_grace_period = TRUE
+	/// If we are holding an item.
+	var/obj/item/held_item
+	/// Mutable appearance of the held item.
+	var/mutable_appearance/held_appearance
+
+/datum/action/ability/activable/xeno/item_throw/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	// Any target is acceptable if we have an item.
+	if(held_item)
+		return TRUE
+	// If we do not, we only want items.
+	if(!isitem(A))
+		if(!silent)
+			A.balloon_alert(owner, "not an item")
+		return FALSE
+	if(!owner.Adjacent(A))
+		if(!silent)
+			A.balloon_alert(owner, "too far")
+		return FALSE
+
+/datum/action/ability/activable/xeno/item_throw/use_ability(atom/A)
+	if(!held_item)
+		// Grab the floor item like a rouny.
+		playsound(owner, 'sound/voice/alien/pounce2.ogg', 30)
+		var/obj/item/interacted_item = A
+		interacted_item.forceMove(owner)
+		held_item = interacted_item
+		held_appearance = mutable_appearance(interacted_item.icon, interacted_item.icon_state)
+		held_appearance.layer = ABOVE_OBJ_LAYER
+		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
+		RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(owner_turned))
+		owner.add_movespeed_modifier(MOVESPEED_ID_SNATCH, TRUE, 0, NONE, TRUE, 2)
+		owner_turned(null, null, owner.dir)
+		succeed_activate()
+		ability_cost = 0 // Throwing will cost nothing (and won't cause a warning if not enough plasma).
+		single_tile_grace_period = TRUE
+		return
+	// Throw!
+	owner.remove_movespeed_modifier(MOVESPEED_ID_SNATCH)
+	held_item.throwforce += held_item.w_class * 15 // Ranges from 15 - 90 damage.
+	RegisterSignal(held_item, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throwend))
+	held_item.forceMove(get_turf(owner))
+	// Speed 5 for maximum damage.
+	held_item.throw_at(A, max(2, 11 - (held_item.w_class * 2)), 5) // Ranges from 9 - 2 tiles.
+	held_item = null
+	owner.overlays -= held_appearance
+	playsound(src, 'sound/effects/throw.ogg', 30, 1)
+	succeed_activate()
+	ability_cost = initial(ability_cost)
+	add_cooldown()
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
+
+/datum/action/ability/activable/xeno/item_throw/proc/on_throwend(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
+	var/obj/item/item_source = source
+	item_source.throwforce -= item_source.w_class * 15
+
+/// On move, drop the item if grace period is over. Otherwise, remove the grace period.
+/datum/action/ability/activable/xeno/item_throw/proc/on_move()
+	SIGNAL_HANDLER
+	if(single_tile_grace_period)
+		single_tile_grace_period = FALSE
+		return
+	drop_item()
+
+/datum/action/ability/activable/xeno/item_throw/proc/drop_item()
+	if(!held_item)
+		return
+	owner.remove_movespeed_modifier(MOVESPEED_ID_SNATCH)
+	held_item.forceMove(get_turf(owner))
+	held_item = null
+	owner.overlays -= held_appearance
+	held_appearance = null
+	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
+	add_cooldown()
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
+
+/// Signal handler to update the item overlay when the owner is changing dir.
+/datum/action/ability/activable/xeno/item_throw/proc/owner_turned(datum/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	if(!new_dir || new_dir == old_dir)
+		return
+	owner.overlays -= held_appearance
+	var/matrix/new_transform = held_appearance.transform
+	switch(old_dir)
+		if(NORTH)
+			new_transform.Translate(-15, -12)
+		if(SOUTH)
+			new_transform.Translate(-15, 12)
+		if(EAST)
+			new_transform.Translate(-35, 0)
+		if(WEST)
+			new_transform.Translate(5, 0)
+	switch(new_dir)
+		if(NORTH)
+			new_transform.Translate(15, 12)
+		if(SOUTH)
+			new_transform.Translate(15, -12)
+		if(EAST)
+			new_transform.Translate(35, 0)
+		if(WEST)
+			new_transform.Translate(-5, 0)
+	held_appearance.transform = new_transform
+	owner.overlays += held_appearance
 
 // ***************************************
 // *********** Tail Lash
