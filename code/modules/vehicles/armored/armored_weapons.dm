@@ -333,7 +333,7 @@
 	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 5
-	projectile_delay = 0.1 SECONDS
+	projectile_delay = 0.15 SECONDS
 	rearm_time = 3 SECONDS
 	hud_state_empty = "rifle_empty"
 

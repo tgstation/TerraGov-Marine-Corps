@@ -44,7 +44,7 @@
 
 /datum/ammo/bullet/minigun/ltaap
 	name = "chaingun bullet"
-	damage = 30
+	damage = 25
 	penetration = 35
 	sundering = 1
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_IFF
