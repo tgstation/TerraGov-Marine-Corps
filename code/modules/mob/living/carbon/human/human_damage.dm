@@ -165,7 +165,7 @@
 /mob/living/carbon/human/adjustOxyLoss(amount, forced = FALSE)
 	if(species.species_flags & NO_BREATHE && !forced)
 		oxyloss = 0
-		return FALSE
+		return
 	return ..()
 
 /mob/living/carbon/human/setOxyLoss(amount, forced = FALSE)
