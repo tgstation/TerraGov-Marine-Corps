@@ -62,10 +62,6 @@
 	else
 		return
 
-	for(var/X in master_gun.actions)
-		var/datum/action/A = X
-		A.update_button_icon()
-
 	update_icon()
 
 /obj/item/attachable/flashlight/attackby(obj/item/I, mob/user, params)
@@ -108,7 +104,7 @@
 	slot = ATTACHMENT_SLOT_RAIL
 	pixel_shift_x = 13
 	///Handles the harness functionality, created when attached to a gun and removed on detach
-	var/datum/component/reequip_component
+	var/datum/component/reequip/reequip_component
 
 /obj/item/attachable/magnetic_harness/on_attach(attaching_item, mob/user)
 	. = ..()
@@ -149,20 +145,6 @@
 	. = ..()
 	ENABLE_BITFIELD(master_gun.item_flags, IS_DEPLOYABLE)
 	master_gun.deployable_item = /obj/machinery/deployable/mounted/sentry/buildasentry
-	master_gun.ignored_terrains = list(
-		/obj/machinery/deployable/mounted,
-		/obj/machinery/miner,
-	)
-	if(master_gun.ammo_datum_type && CHECK_BITFIELD(initial(master_gun.ammo_datum_type.ammo_behavior_flags), AMMO_ENERGY) || istype(master_gun, /obj/item/weapon/gun/energy)) //If the guns ammo is energy, the sentry will shoot at things past windows.
-		master_gun.ignored_terrains += list(
-			/obj/structure/window,
-			/obj/structure/window/reinforced,
-			/obj/machinery/door/window,
-			/obj/structure/window/framed,
-			/obj/structure/window/framed/colony,
-			/obj/structure/window/framed/mainship,
-			/obj/structure/window/framed/prison,
-		)
 	master_gun.turret_flags |= TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS
 	master_gun.AddComponent(/datum/component/deployable_item, master_gun.deployable_item, deploy_time, undeploy_time)
 	update_icon()
@@ -172,6 +154,5 @@
 	var/obj/item/weapon/gun/detaching_gun = detaching_item
 	DISABLE_BITFIELD(detaching_gun.item_flags, IS_DEPLOYABLE)
 	qdel(detaching_gun.GetComponent(/datum/component/deployable_item))
-	detaching_gun.ignored_terrains = null
 	detaching_gun.deployable_item = null
 	detaching_gun.turret_flags &= ~(TURRET_HAS_CAMERA|TURRET_SAFETY|TURRET_ALERTS)

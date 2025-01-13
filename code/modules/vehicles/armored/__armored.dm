@@ -91,6 +91,7 @@
 	if(armored_flags & ARMORED_HAS_PRIMARY_WEAPON)
 		turret_overlay = new()
 		turret_overlay.icon = turret_icon
+		turret_overlay.base_icon_state = turret_icon_state
 		turret_overlay.icon_state = turret_icon_state
 		turret_overlay.setDir(dir)
 		turret_overlay.layer = layer+0.002
@@ -115,8 +116,7 @@
 				icon_state += "_urban"
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
-	if(minimap_icon_state)
-		SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
+	update_minimap_icon()
 	GLOB.tank_list += src
 
 /obj/vehicle/sealed/armored/Destroy()
@@ -154,11 +154,20 @@
 	if(Adjacent(entering_thing, src))
 		return list(get_turf(entering_thing))
 
-/obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag)
+/obj/vehicle/sealed/armored/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	playsound(get_turf(src), SFX_EXPLOSION_LARGE, 100, TRUE) //destroy sound is normally very quiet
 	new /obj/effect/temp_visual/explosion(get_turf(src), 7, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	for(var/mob/living/nearby_mob AS in occupants + cheap_get_living_near(src, 7))
 		shake_camera(nearby_mob, 4, 2)
+	if(istype(blame_mob) && blame_mob.ckey)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[blame_mob.ckey]
+		if(faction == blame_mob.faction)
+			personal_statistics.tanks_destroyed --
+			personal_statistics.mission_tanks_destroyed --
+		else
+			personal_statistics.tanks_destroyed ++
+			personal_statistics.mission_tanks_destroyed ++
+
 	return ..()
 
 /obj/vehicle/sealed/armored/update_icon_state()
@@ -245,7 +254,7 @@
 	var/list/drivers = return_drivers()
 	if(length(drivers))
 		pilot = drivers[1]
-	A.vehicle_collision(src, get_dir(src, A), get_turf(loc), get_turf(loc), pilot)
+	A.vehicle_collision(src, get_dir(src, A), pilot)
 
 /obj/vehicle/sealed/armored/auto_assign_occupant_flags(mob/new_occupant)
 	if(interior) //handled by interior seats
@@ -262,6 +271,14 @@
 /obj/vehicle/sealed/armored/exit_location(mob/M)
 	return get_step(src, REVERSE_DIR(dir))
 
+/obj/vehicle/sealed/armored/emp_act(severity)
+	. = ..()
+	playsound(src, 'sound/magic/lightningshock.ogg', 50, FALSE)
+	take_damage(400 / severity, BURN, ENERGY)
+	for(var/mob/living/living_occupant AS in occupants)
+		living_occupant.Stagger((6 - severity) SECONDS)
+
+///Plays the engine sound for this vehicle if its not on cooldown
 /obj/vehicle/sealed/armored/proc/play_engine_sound(freq_vary = TRUE, sound_freq)
 	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
 		return
@@ -295,7 +312,8 @@
 	if(isliving(thing_to_load))
 		user.visible_message(span_notice("[user] starts to stuff [thing_to_load] into \the [src]!"))
 		return mob_try_enter(thing_to_load, user, TRUE)
-	user.temporarilyRemoveItemFromInventory(thing_to_load)
+	if(isitem(thing_to_load))
+		user.temporarilyRemoveItemFromInventory(thing_to_load)
 	thing_to_load.forceMove(interior.door.get_enter_location())
 	user.balloon_alert(user, "item thrown inside")
 	return TRUE
@@ -372,6 +390,16 @@
 	for(var/mob/living/carbon/human/crew AS in occupants)
 		if(crew.wear_id?.iff_signal & proj.iff_signal)
 			return FALSE
+	if(src == proj.shot_from)
+		return FALSE
+	if(src == proj.original_target)
+		return TRUE
+	if(!hitbox)
+		return ..()
+	if(proj.firer in hitbox.tank_desants)
+		return FALSE
+	if(proj.original_target in hitbox.tank_desants)
+		return FALSE
 	return ..()
 
 /obj/vehicle/sealed/armored/attack_hand(mob/living/user)
@@ -461,14 +489,14 @@
 	else
 		try_easy_load(I, user)
 		return
-	if(length(primary_weapon.ammo_magazine) >= primary_weapon.maximum_magazines)
+	if((length(weapon_to_load.ammo_magazine) >= weapon_to_load.maximum_magazines) && weapon_to_load.ammo)
 		balloon_alert(user, "magazine already full")
 		return
 	user.temporarilyRemoveItemFromInventory(I)
 	I.forceMove(weapon_to_load)
 	if(!weapon_to_load.ammo)
 		weapon_to_load.ammo = I
-		balloon_alert(user, "primary gun loaded")
+		balloon_alert(user, "weapon loaded")
 		for(var/mob/occupant AS in occupants)
 			occupant?.hud_used?.update_ammo_hud(weapon_to_load, list(weapon_to_load.ammo.default_ammo.hud_state, weapon_to_load.ammo.default_ammo.hud_state_empty), weapon_to_load.ammo.current_rounds)
 	else
@@ -514,29 +542,6 @@
 		gunner_utility_module.on_unequip(user)
 		balloon_alert(user, "detached")
 		return
-	if(interior?.secondary_breech) // if interior handle by gun breech
-		return
-	if(istype(I, /obj/item/ammo_magazine))
-		if(!secondary_weapon)
-			balloon_alert(user, "no primary weapon")
-			return
-		if(!(I.type in secondary_weapon.accepted_ammo))
-			balloon_alert(user, "not accepted ammo")
-			return
-		if(length(secondary_weapon.ammo_magazine) >= secondary_weapon.maximum_magazines)
-			balloon_alert(user, "magazine already full")
-			return
-		user.temporarilyRemoveItemFromInventory(I)
-		I.forceMove(secondary_weapon)
-		if(!secondary_weapon.ammo)
-			secondary_weapon.ammo = I
-			balloon_alert(user, "secondary gun loaded")
-			for(var/mob/occupant AS in occupants)
-				occupant?.hud_used?.update_ammo_hud(secondary_weapon, list(secondary_weapon.ammo.default_ammo.hud_state, secondary_weapon.ammo.default_ammo.hud_state_empty), secondary_weapon.ammo.current_rounds)
-		else
-			secondary_weapon.ammo_magazine += I
-			balloon_alert(user, "magazines [length(secondary_weapon.ammo_magazine)]/[secondary_weapon.maximum_magazines]")
-
 
 /obj/vehicle/sealed/armored/welder_act(mob/living/user, obj/item/I)
 	return welder_repair_act(user, I, 50, 5 SECONDS, 0, SKILL_ENGINEER_METAL, 5, 2 SECONDS)
@@ -653,6 +658,16 @@
 		return
 	INVOKE_ASYNC(selected, TYPE_PROC_REF(/obj/item/armored_weapon, begin_fire), user, target, modifiers)
 
+///Updates the vehicles minimap icon
+/obj/vehicle/sealed/armored/proc/update_minimap_icon()
+	if(!minimap_icon_state)
+		return
+	SSminimaps.remove_marker(src)
+	minimap_icon_state = initial(minimap_icon_state)
+	if(armored_flags & ARMORED_IS_WRECK)
+		minimap_icon_state += "_wreck"
+	SSminimaps.add_marker(src, minimap_flags, image('icons/UI_icons/map_blips_large.dmi', null, minimap_icon_state, HIGH_FLOAT_LAYER))
+
 /atom/movable/vis_obj/turret_overlay
 	name = "Tank gun turret"
 	desc = "The shooty bit on a tank."
@@ -666,8 +681,7 @@
 	var/image/secondary_overlay
 
 /atom/movable/vis_obj/turret_overlay/Destroy()
-	if(primary_overlay)
-		QDEL_NULL(primary_overlay)
+	QDEL_NULL(primary_overlay)
 	return ..()
 
 /atom/movable/vis_obj/turret_overlay/proc/update_gun_overlay(gun_icon_state)
@@ -677,6 +691,7 @@
 
 	primary_overlay = new()
 	primary_overlay.icon = icon //VIS_INHERIT_ICON doesn't work with flick
+	primary_overlay.base_icon_state = gun_icon_state
 	primary_overlay.icon_state = gun_icon_state
 	vis_contents += primary_overlay
 

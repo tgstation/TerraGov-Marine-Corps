@@ -50,7 +50,7 @@
 
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_IFF
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
 	damage = 100
 	penetration = 35
 	sundering = 0

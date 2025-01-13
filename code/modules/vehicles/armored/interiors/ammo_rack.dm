@@ -57,3 +57,15 @@
 	icon = 'icons/obj/armored/3x4/som_ammo_rack.dmi'
 	pixel_x = -18
 	pixel_y = -5
+
+/obj/structure/ammo_rack/primary/icc
+	icon_state = "primaryrack"
+	icon = 'icons/obj/armored/2x2/icc_lvrt.dmi'
+	pixel_y = -20
+	pixel_x = -34
+
+/obj/structure/ammo_rack/secondary/icc
+	icon_state = "secondaryrack"
+	icon = 'icons/obj/armored/2x2/icc_lvrt.dmi'
+	pixel_x = -18
+	pixel_y = -5

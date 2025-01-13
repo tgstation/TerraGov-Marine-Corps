@@ -94,7 +94,7 @@
 
 /obj/item/weapon/twohanded/glaive/harvester/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/harvester, 60, TRUE)
+	AddComponent(/datum/component/harvester, 60)
 
 /obj/item/weapon/twohanded/glaive/harvester/wield(mob/user)
 	. = ..()

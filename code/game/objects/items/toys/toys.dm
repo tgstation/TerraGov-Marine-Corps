@@ -535,6 +535,29 @@
 	worn_icon_state = "rounyplush"
 	attack_verb = list("slashes", "bites", "pounces")
 
+/obj/item/toy/plush/witch
+	name = "witch plushie"
+	desc = "A plushie depicting an adorable witch. It likes to steal books."
+	icon_state = "marisa"
+	worn_icon_state = "marisa"
+
+/obj/item/toy/plush/fairy
+	name = "fairy plushie"
+	desc = "A plushie depicting an adorable fairy. It's cold to the touch."
+	icon_state = "cirno"
+	worn_icon_state = "cirno"
+
+/obj/item/toy/plush/royalqueen
+	name = "royal queen plushie"
+	desc = "A plushie depicting a royal xenomorph queen. Smells faintly of stardust and baguettes, with a tag that has Wee! written on it."
+	icon_state = "queenplushie"
+	worn_icon_state = "queenplushie"
+	attack_verb = list("nuzzles", "bops", "pats")
+
+/obj/item/toy/plush/royalqueen/Initialize(mapload)
+	. = ..()
+	AddComponent(/datum/component/squeak, 'sound/items/wee.ogg', 20)
+
 #define HIGH_GNOME_MOVE_RANGE 40
 #define STANDARD_GNOME_PIPE_CHANCE 50
 #define GNOME_EXCLUSION_RANGE 21 //20 is the max view of a ghost

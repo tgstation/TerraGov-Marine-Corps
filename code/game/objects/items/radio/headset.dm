@@ -1,3 +1,4 @@
+// Defines for TTS modes.
 // Used for translating channels to tokens on examination
 GLOBAL_LIST_INIT(channel_tokens, list(
 	RADIO_CHANNEL_REQUISITIONS = RADIO_TOKEN_REQUISITIONS,
@@ -26,7 +27,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 
 	equip_slot_flags = ITEM_SLOT_EARS
 	var/obj/item/encryptionkey/keyslot2 = null
-
 
 /obj/item/radio/headset/Initialize(mapload)
 	if(keyslot)
@@ -210,7 +210,7 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 ///Explodes the headset if you put on an enemy's headset
 /obj/item/radio/headset/mainship/proc/safety_protocol(mob/living/carbon/human/user)
 	balloon_alert_to_viewers("Explodes")
-	playsound(user, 'sound/effects/explosion_micro1.ogg', 50, 1)
+	playsound(user, 'sound/effects/explosion/micro1.ogg', 50, 1)
 	if(wearer)
 		wearer.ex_act(EXPLODE_LIGHT)
 	qdel(src)
@@ -296,6 +296,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 		var/image/overlay = image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon)
 		overlay.color = wearer.assigned_squad.color
 		underlay.overlays += overlay
+
+		if(wearer.assigned_squad?.squad_leader == wearer)
+			var/image/leader_trim = image('icons/UI_icons/map_blips.dmi', null, "leader_trim")
+			underlay.overlays += leader_trim
+
 		SSminimaps.add_marker(wearer, marker_flags, underlay)
 		return
 	SSminimaps.add_marker(wearer, marker_flags, image('icons/UI_icons/map_blips.dmi', null, wearer.job.minimap_icon))
@@ -658,6 +663,11 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	name = "security detail headset"
 	keyslot = /obj/item/encryptionkey/vsd
 	frequency = FREQ_VSD
+
+/obj/item/radio/headset/distress/erp
+	name = "prankster headset"
+	keyslot = /obj/item/encryptionkey/erp
+	frequency = FREQ_ERP
 
 //SOM headsets
 

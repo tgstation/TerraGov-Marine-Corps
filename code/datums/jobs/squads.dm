@@ -36,7 +36,7 @@
 /datum/squad/alpha
 	name = "Alpha"
 	id = ALPHA_SQUAD
-	color = "#e61919" // rgb(230,25,25)
+	color = COLOR_SQUAD_ALPHA
 	access = list(ACCESS_MARINE_ALPHA)
 	radio_freq = FREQ_ALPHA
 
@@ -44,7 +44,7 @@
 /datum/squad/bravo
 	name = "Bravo"
 	id = BRAVO_SQUAD
-	color = "#ffc32d" // rgb(255,195,45)
+	color = COLOR_SQUAD_BRAVO
 	access = list(ACCESS_MARINE_BRAVO)
 	radio_freq = FREQ_BRAVO
 
@@ -52,14 +52,14 @@
 /datum/squad/charlie
 	name = "Charlie"
 	id = CHARLIE_SQUAD
-	color = "#c864c8" // rgb(200,100,200)
+	color = COLOR_SQUAD_CHARLIE
 	access = list(ACCESS_MARINE_CHARLIE)
 	radio_freq = FREQ_CHARLIE
 
 /datum/squad/delta
 	name = "Delta"
 	id = DELTA_SQUAD
-	color = "#4148c8" // rgb(65,72,200)
+	color = COLOR_SQUAD_DELTA
 	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_DELTA
 
@@ -67,7 +67,7 @@
 /datum/squad/zulu
 	name = "Zulu"
 	id = ZULU_SQUAD
-	color = "#FF6A00"
+	color = COLOR_SQUAD_ZULU
 	access = list(ACCESS_MARINE_ALPHA) //No unique SOM access yet
 	radio_freq = FREQ_ZULU
 	faction = FACTION_SOM
@@ -86,7 +86,7 @@
 /datum/squad/yankee
 	name = "Yankee"
 	id = YANKEE_SQUAD
-	color = "#009999"
+	color = COLOR_SQUAD_YANKEE
 	access = list(ACCESS_MARINE_BRAVO)
 	radio_freq = FREQ_YANKEE
 	faction = FACTION_SOM
@@ -105,7 +105,7 @@
 /datum/squad/xray
 	name = "Xray"
 	id = XRAY_SQUAD
-	color = "#008000"
+	color = COLOR_SQUAD_XRAY
 	access = list(ACCESS_MARINE_CHARLIE)
 	radio_freq = FREQ_XRAY
 	faction = FACTION_SOM
@@ -124,7 +124,7 @@
 /datum/squad/whiskey
 	name = "Whiskey"
 	id = WHISKEY_SQUAD
-	color = "#CC00CC"
+	color = COLOR_SQUAD_WHISKEY
 	access = list(ACCESS_MARINE_DELTA)
 	radio_freq = FREQ_WHISKEY
 	faction = FACTION_SOM
@@ -188,7 +188,7 @@
 		CRASH("attempted to insert marine [new_squaddie] into squad while already having one")
 
 	if(!(new_squaddie.job.title in current_positions))
-		CRASH("Attempted to insert [new_squaddie.job.title] into squad [name]")
+		return FALSE
 
 	current_positions[new_squaddie.job.title]++
 
@@ -224,7 +224,6 @@
 	marines_list += new_squaddie
 	new_squaddie.assigned_squad = src
 	new_squaddie.hud_set_job(faction)
-	new_squaddie.update_action_buttons()
 	new_squaddie.update_inv_head()
 	new_squaddie.update_inv_wear_suit()
 	return TRUE
@@ -272,7 +271,6 @@
 
 	leaving_squaddie.assigned_squad = null
 	leaving_squaddie.hud_set_job(faction)
-	leaving_squaddie.update_action_buttons()
 	leaving_squaddie.update_inv_head()
 	leaving_squaddie.update_inv_wear_suit()
 	return TRUE
@@ -302,11 +300,12 @@
 	to_chat(squad_leader, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
 	var/mob/living/carbon/human/H = squad_leader
 	squad_leader = null
-	H.update_action_buttons()
 	H.hud_set_job(faction)
 	H.update_inv_head()
 	H.update_inv_wear_suit()
-
+	if(istype(H.wear_ear, /obj/item/radio/headset/mainship/))
+		var/obj/item/radio/headset/mainship/radio = H.wear_ear
+		radio.update_minimap_icon()
 
 /datum/squad/proc/promote_leader(mob/living/carbon/human/H)
 	if(squad_leader)
@@ -331,9 +330,11 @@
 		R.use_command = TRUE
 
 	squad_leader.hud_set_job(faction)
-	squad_leader.update_action_buttons()
 	squad_leader.update_inv_head()
 	squad_leader.update_inv_wear_suit()
+	if(istype(squad_leader.wear_ear, /obj/item/radio/headset/mainship/))
+		var/obj/item/radio/headset/mainship/radio = squad_leader.wear_ear
+		radio.update_minimap_icon()
 	to_chat(squad_leader, "<font size='3' color='blue'>You're now the Squad Leader for [src]!</font>")
 
 
@@ -346,12 +347,10 @@
 		text = "<font size='3'><b>[text]<b></font>"
 	return "[nametext][text]"
 
-
 /datum/squad/proc/message_squad(message, mob/living/carbon/human/sender)
 	if(is_ic_filtered(message) || NON_ASCII_CHECK(message))
 		to_chat(sender, span_boldnotice("Message invalid. Check your message does not contain filtered words or characters."))
 		return
-
 	var/header = "AUTOMATED CIC NOTICE:"
 	var/sound = "sound/misc/notice3.ogg"
 	var/message_color = "#a9a9a9"
@@ -361,6 +360,15 @@
 		sound = "sound/machinery/dotprinter.ogg"
 		message_color = color
 		message_type = /atom/movable/screen/text/screen_text/command_order
+
+		var/list/tts_listeners = filter_tts_listeners(sender, marines_list, radio_freq, RADIO_TTS_COMMAND)
+		if(!length(tts_listeners))
+			return
+		var/list/treated_message = sender?.treat_message(message)
+		var/list/extra_filters = list(TTS_FILTER_RADIO)
+		if(isrobot(sender))
+			extra_filters += TTS_FILTER_SILICON
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), sender, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, tts_listeners, FALSE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
 
 	for(var/mob/living/marine AS in marines_list)
 		marine.playsound_local(marine, sound, 35)
@@ -417,6 +425,7 @@
 GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 ///initializes a new custom squad. all args mandatory
 /proc/create_squad(squad_name, squad_color, mob/living/carbon/human/creator)
+	var/list/radio_blacklist = list(MODE_KEY_BINARY, MODE_KEY_R_HAND, MODE_KEY_L_HAND, MODE_KEY_INTERCOM, MODE_KEY_DEPARTMENT)
 	//Create the squad
 	if(!squad_name)
 		return
@@ -443,15 +452,15 @@ GLOBAL_LIST_EMPTY_TYPED(custom_squad_radio_freqs, /datum/squad)
 	LAZYADDASSOCSIMPLE(GLOB.reverseradiochannels, "[freq]", radio_channel_name)
 	new_squad.faction = squad_faction
 	var/key_prefix = lowertext_name[1]
-	if(GLOB.department_radio_keys[key_prefix])
+	if(GLOB.department_radio_keys[key_prefix] || (key_prefix in radio_blacklist))
 		for(var/letter in splittext(lowertext_name, ""))
-			if(!GLOB.department_radio_keys[letter])
+			if(!(GLOB.department_radio_keys[letter] && !(letter in radio_blacklist)))
 				key_prefix = letter
 				break
-	if(GLOB.department_radio_keys[key_prefix])
+	if(GLOB.department_radio_keys[key_prefix] || (key_prefix in radio_blacklist))
 		//okay... mustve been a very short name, randomly pick things from the alphabet now
 		for(var/letter in shuffle(GLOB.alphabet))
-			if(!GLOB.department_radio_keys[letter])
+			if(!(GLOB.department_radio_keys[letter] && !(letter in radio_blacklist)))
 				key_prefix = letter
 				break
 

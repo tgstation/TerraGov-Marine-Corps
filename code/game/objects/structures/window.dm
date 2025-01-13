@@ -191,7 +191,7 @@
 		to_chat(user, (state ? span_notice("You have pried the window into the frame.") : span_notice("You have pried the window out of the frame.")))
 
 
-/obj/structure/window/deconstruct(disassembled = TRUE)
+/obj/structure/window/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
 		if(reinf)
 			new /obj/item/stack/sheet/glass/reinforced(loc, 2)
@@ -417,9 +417,8 @@
 /obj/structure/window/framed/update_nearby_icons()
 	QUEUE_SMOOTH_NEIGHBORS(src)
 
-/obj/structure/window/framed/update_icon()
-	QUEUE_SMOOTH(src)
-	return ..()
+/obj/structure/window/framed/update_icon_state()
+	QUEUE_SMOOTH(src) //we update icon state through the smoothing system exclusively
 
 /obj/structure/window/framed/deconstruct(disassembled = TRUE, leave_frame = TRUE)
 	if(window_frame && leave_frame)
@@ -643,6 +642,13 @@
 	base_icon_state = "prison_rwindow"
 	basestate = "prison_rwindow"
 	window_frame = /obj/structure/window_frame/prison/reinforced
+
+/obj/structure/window/framed/prison/colony
+	name = "window"
+	icon = 'icons/obj/smooth_objects/prison_rwindow.dmi'
+	icon_state = "window-reinforced"
+	base_icon_state = "prison_rwindow"
+	basestate = "prison_rwindow"
 
 /obj/structure/window/framed/prison/reinforced/hull
 	name = "hull window"

@@ -133,7 +133,6 @@
 	DISABLE_BITFIELD(atom_flags, INITIALIZED)
 	soft_armor = null
 	hard_armor = null
-	QDEL_NULL(current_acid)
 	..()
 	return QDEL_HINT_IWILLGC
 
@@ -314,8 +313,9 @@
 	if(W.directional_opacity != old_directional_opacity)
 		W.reconsider_lights()
 
-	if(thisarea.lighting_effect)
+	if(thisarea.area_has_base_lighting)
 		W.add_overlay(thisarea.lighting_effect)
+		W.luminosity = 1
 
 	if(!W.smoothing_behavior == NO_SMOOTHING)
 		return W
@@ -559,7 +559,7 @@
 			if(!silent)
 				to_chat(builder, span_warning("There is a plant growing here, destroying it would be a waste to the hive."))
 			return FALSE
-		if(istype(O, /obj/structure/door/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/alien/resin))
+		if(istype(O, /obj/structure/mineral_door) || istype(O, /obj/structure/ladder) || istype(O, /obj/alien/resin))
 			has_obstacle = TRUE
 			break
 		if(istype(O, /obj/structure/bed))

@@ -33,7 +33,7 @@
 	var/firing
 
 ///Change minimap icon if its firing or not firing
-/obj/structure/xeno/xeno_turret/proc/update_minimap_icon()
+/obj/structure/xeno/xeno_turret/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, MINIMAP_FLAG_XENO, image('icons/UI_icons/map_blips.dmi', null, "xeno_turret[firing ? "_firing" : "_passive"]"))
 
@@ -68,7 +68,7 @@
 	set_hostile(null)
 	set_last_hostile(null)
 	STOP_PROCESSING(SSobj, src)
-	playsound(loc,'sound/effects/xeno_turret_death.ogg', 70)
+	playsound(loc,'sound/effects/alien/turret_death.ogg', 70)
 	return ..()
 
 /obj/structure/xeno/xeno_turret/ex_act(severity)
@@ -128,14 +128,8 @@
 	if(I.damtype == BURN) //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
-	if(isplasmacutter(I) && !user.do_actions)
-		var/obj/item/tool/pickaxe/plasmacutter/P = I
-		if(P.start_cut(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
-			multiplier += PLASMACUTTER_RESIN_MULTIPLIER
-			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
-
 	damage *= max(0, multiplier)
-	take_damage(damage, BRUTE, MELEE)
+	take_damage(damage, I.damtype, MELEE)
 	playsound(src, SFX_ALIEN_RESIN_BREAK, 25)
 
 ///Signal handler for hard del of hostile

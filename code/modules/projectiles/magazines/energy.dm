@@ -116,7 +116,7 @@
 		slot_l_hand_str = 'icons/mob/inhands/equipment/backpacks_left.dmi',
 		slot_r_hand_str = 'icons/mob/inhands/equipment/backpacks_right.dmi',
 	)
-	icon_state = "volkite"
+	icon_state = "volkite_powerpack"
 	icon = 'icons/obj/items/ammo/powerpack.dmi'
 	charge_overlay = null
 	atom_flags = CONDUCT
@@ -196,7 +196,7 @@
 	name = "\improper TE powerpack"
 	desc = "A recently developed mass produced side pouch which charges any TE technological achievement."
 	icon_state = "lasgun_pouch"
-	charge_overlay = null
+	charge_overlay = "lasgun_pouch"
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_POCKET
 	magazine_features_flags = MAGAZINE_REFUND_IN_CHAMBER|MAGAZINE_WORN
@@ -205,3 +205,12 @@
 	maxcharge = 2400
 	cell_type = /obj/item/cell/lasgun/lasrifle
 	self_recharge = FALSE
+
+/obj/item/cell/lasgun/volkite/powerpack/marine/backpack
+	name = "\improper TE powerbackpack"
+	desc = "A recently developed mass produced backpack which charges any TE technological achievement."
+	icon_state = "lasgun_backpack"
+	charge_overlay = "lasgun_backpack"
+	equip_slot_flags = ITEM_SLOT_BACK
+	w_class = WEIGHT_CLASS_HUGE
+	maxcharge = 12000

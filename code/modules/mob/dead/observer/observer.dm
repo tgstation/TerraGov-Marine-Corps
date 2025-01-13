@@ -201,7 +201,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		switch(tgui_alert(ghost, "What would you like to do?", "Burrowed larva source available", list("Join as Larva", "Cancel"), 0))
 			if("Join as Larva")
 				var/mob/living/carbon/human/original_corpse = ghost.can_reenter_corpse.resolve()
-				if(SSticker.mode.attempt_to_join_as_larva(ghost.client))
+				if(SSticker.mode.attempt_to_join_as_larva(ghost.client) && ishuman(original_corpse))
 					original_corpse?.set_undefibbable()
 		return
 
@@ -849,7 +849,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 	if(!isnull(can_reenter_corpse) && tgui_alert(usr, "Are you sure? You won't be able to get revived.", "Confirmation", list("Yes", "No")) == "Yes")
 		var/mob/living/carbon/human/human_current = can_reenter_corpse.resolve()
-		if(istype(human_current))
+		if(ishuman(human_current))
 			human_current.set_undefibbable(TRUE)
 		can_reenter_corpse = null
 		to_chat(usr, span_boldwarning("You can no longer be revived."))
@@ -892,7 +892,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		return
 
 	var/mob/living/carbon/human/original_corpse = can_reenter_corpse?.resolve()
-	original_corpse?.set_undefibbable(TRUE)
+	if(ishuman(original_corpse))
+		original_corpse?.set_undefibbable(TRUE)
 
 	if(choice == "Xenomorph")
 		var/mob/living/carbon/xenomorph/xeno_choice = tgui_input_list(usr, "You are about to embark to the ghastly walls of Valhalla. What xenomorph would you like to have?", "Join Valhalla", GLOB.all_xeno_types)

@@ -125,6 +125,8 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	after_image.density = initial(density)
 	after_image.alpha = initial(alpha)
 	after_image.appearance_flags = RESET_COLOR|RESET_ALPHA|PASS_MOUSE
+	after_image.mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	after_image.layer = BELOW_MOB_LAYER
 	after_image.setDir(owner.dir)
 	after_image.pixel_x = owner.pixel_x
 	after_image.pixel_y = owner.pixel_y
@@ -163,7 +165,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon = 'icons/effects/orders.dmi'
 	var/icon_state_on
 	hud_possible = list(SQUAD_HUD_TERRAGOV, SQUAD_HUD_SOM)
-	duration = ORDER_DURATION
+	duration = CIC_ORDER_DURATION
 	layer = TURF_LAYER
 
 /obj/effect/temp_visual/order/Initialize(mapload, faction)
@@ -194,7 +196,7 @@ GLOBAL_LIST_EMPTY(blood_particles)
 /obj/effect/temp_visual/order/rally_order
 	name = "rally order"
 	icon_state_on = "rally"
-	duration = RALLY_ORDER_DURATION
+	duration = CIC_ORDER_DURATION
 
 ///Set visuals for the hud
 /obj/effect/temp_visual/order/proc/set_visuals(faction)

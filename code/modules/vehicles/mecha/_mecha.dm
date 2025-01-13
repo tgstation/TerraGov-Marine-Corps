@@ -190,8 +190,8 @@
 	var/ui_y = 600
 	/// ref to screen object that displays in the middle of the UI
 	var/atom/movable/screen/mech_view/ui_view
-	///Current owning faction
-	var/faction
+	///holds the EMP timer
+	var/emp_timer
 
 /obj/item/radio/mech //this has to go somewhere
 	subspace_transmission = TRUE
@@ -263,8 +263,10 @@
 	QDEL_NULL(smoke_system)
 	QDEL_NULL(ui_view)
 
-	GLOB.mechas_list -= src //global mech list
-	for(var/datum/atom_hud/squad/mech_status_hud in GLOB.huds) //Add to the squad HUD
+	emp_timer = null
+
+	GLOB.mechas_list -= src
+	for(var/datum/atom_hud/squad/mech_status_hud in GLOB.huds)
 		mech_status_hud.remove_from_hud(src)
 	return ..()
 
@@ -400,7 +402,9 @@
 		flick(phase_state, src)
 	return TRUE
 
+///Restores the mech after EMP
 /obj/vehicle/sealed/mecha/proc/restore_equipment()
+	emp_timer = null
 	mecha_flags &= ~MECHA_EMPED
 	equipment_disabled = FALSE
 	update_appearance(UPDATE_OVERLAYS)

@@ -293,8 +293,8 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 			special_filter += TTS_FILTER_RADIO
 		if(issilicon(src))
 			special_filter += TTS_FILTER_SILICON
-
-		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = message_range, volume_offset = (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0, pitch = pitch, special_filters = special_filter.Join("|"))
+		if(!CONFIG_GET(flag/tts_no_whisper) || message_mode != MODE_WHISPER)
+			INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), src, html_decode(tts_message_to_use), message_language, voice_to_use, filter.Join(","), listened, message_range = message_range, volume_offset = (job?.job_flags & JOB_FLAG_LOUDER_TTS) ? 20 : 0, pitch = pitch, special_filters = special_filter.Join("|"))
 
 	//speech bubble
 	var/list/speech_bubble_recipients = list()
@@ -366,6 +366,8 @@ GLOBAL_LIST_INIT(department_radio_keys_som, list(
 	while(length_regex.Find(tts_message))
 		var/replacement = tts_message[length_regex.index]+tts_message[length_regex.index]+tts_message[length_regex.index]
 		tts_message = replacetext(tts_message, length_regex.match, replacement, length_regex.index)
+
+	tts_message = html_decode(tts_message)
 
 	return list("message" = message, "tts_message" = tts_message, "tts_filter" = tts_filter)
 

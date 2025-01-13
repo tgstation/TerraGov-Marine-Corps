@@ -13,7 +13,7 @@
 	///Current loaded magazines: top one empties into ammo
 	var/list/obj/item/ammo_magazine/ammo_magazine = list()
 	///maximum magazines ammo_magazine can hold
-	var/maximum_magazines = 5
+	var/maximum_magazines = 0
 	///ammo types we'll be able to accept
 	var/list/accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/ltb_cannon,
@@ -320,7 +320,6 @@
 	projectile_delay = 2
 	variance = 5
 	rearm_time = 1 SECONDS
-	maximum_magazines = 5
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/ltaap
@@ -336,7 +335,6 @@
 	variance = 5
 	projectile_delay = 0.1 SECONDS
 	rearm_time = 3 SECONDS
-	maximum_magazines = 5
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/apc_cannon
@@ -362,9 +360,39 @@
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 5
 	rearm_time = 1 SECONDS
-	maximum_magazines = 5
 	accepted_ammo = list(
 		/obj/item/ammo_magazine/tank/secondary_flamer_tank,
 	)
 	projectile_delay = 1 // spray visuals
 	hud_state_empty = "flame_empty"
+
+/obj/item/armored_weapon/tow
+	name = "\improper TOW-III launcher"
+	desc = "A single-shot, homing, vehicle-mounted TOW-III launcher designed for precision strikes against armored targets. Equipped with IFF."
+	icon_state = "seeker"
+	fire_sound = SFX_RPG_FIRE
+	armored_weapon_flags = MODULE_SECONDARY
+	ammo = /obj/item/ammo_magazine/tank/tow_missile
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/tow_missile)
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	maximum_magazines = 13
+	projectile_delay = 2 SECONDS
+	variance = 10
+	rearm_time = 1 SECONDS
+	hud_state_empty = "rocket_empty"
+
+/obj/item/armored_weapon/microrocket_pod
+	name = "microrocket pod"
+	desc = "A TGMC secondary vehicle-mounted multiple launch rocket system with a total of 6 homing microrockets. Capable of unleashing its entire payload in rapid succession."
+	icon_state = "secondary_rocket_multiple"
+	fire_sound = 'sound/weapons/guns/fire/launcher.ogg'
+	armored_weapon_flags = MODULE_SECONDARY
+	ammo = /obj/item/ammo_magazine/tank/microrocket_rack
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/microrocket_rack)
+	fire_mode = GUN_FIREMODE_BURSTFIRE
+	projectile_delay = 2 SECONDS
+	variance = 40
+	burst_amount = 6
+	projectile_burst_delay = 0.1 SECONDS
+	rearm_time = 5 SECONDS
+	hud_state_empty = "rocket_empty"

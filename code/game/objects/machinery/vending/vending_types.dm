@@ -521,7 +521,7 @@
 	icon_vend = "dinnerware-vend"
 	icon_deny = "dinnerware-deny"
 	products = list(
-		/obj/item/tool/kitchen/tray = 8,
+		/obj/item/storage/kitchen_tray = 8,
 		/obj/item/tool/kitchen/utensil/fork = 6,
 		/obj/item/tool/kitchen/knife = 3,
 		/obj/item/reagent_containers/cup/glass/drinkingglass = 8,

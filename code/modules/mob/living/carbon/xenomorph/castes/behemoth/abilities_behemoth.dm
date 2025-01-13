@@ -104,7 +104,6 @@
 
 /datum/action/ability/xeno_action/ready_charge/behemoth_roll/charge_off(verbose = TRUE)
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = FALSE
 	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons()
@@ -112,7 +111,6 @@
 
 /datum/action/ability/xeno_action/ready_charge/behemoth_roll/charge_on(verbose = TRUE)
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = TRUE
 	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons()
@@ -236,6 +234,7 @@
 	target_flags = ABILITY_TURF_TARGET
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_LANDSLIDE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_CANCEL_LANDSLIDE,
 	)
 	/// Whether this ability is currently active or not.
 	var/ability_active = FALSE
@@ -243,6 +242,10 @@
 	var/current_charges = 1
 	/// The maximum amount of charges we can have.
 	var/maximum_charges = 1
+
+/datum/action/ability/activable/xeno/landslide/alternate_action_activate()
+	if(can_use_ability(null, FALSE, ABILITY_IGNORE_SELECTED_ABILITY))
+		INVOKE_ASYNC(src, PROC_REF(use_ability))
 
 /datum/action/ability/activable/xeno/landslide/give_action(mob/living/L)
 	. = ..()
@@ -297,7 +300,6 @@
 	if(LinkBlocked(owner_turf, get_step(owner, direction)) || owner_turf == get_turf(target))
 		owner.balloon_alert(owner, "No space")
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
 	if(behemoth_roll_action?.charge_ability_on)
 		behemoth_roll_action.charge_off()
@@ -308,7 +310,7 @@
 	xeno_owner.set_canmove(FALSE)
 	xeno_owner.behemoth_charging = TRUE
 	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
-	playsound(xeno_owner, 'sound/effects/behemoth/landslide_roar.ogg', 40, TRUE)
+	playsound(xeno_owner, 'sound/effects/alien/behemoth/landslide_roar.ogg', 40, TRUE)
 	var/which_step = pick(0, 1)
 	new /obj/effect/temp_visual/behemoth/landslide/dust(owner_turf, direction, which_step)
 	do_warning(xeno_owner, get_affected_turfs(owner_turf, direction, LANDSLIDE_RANGE), LANDSLIDE_WIND_UP + 0.5 SECONDS)
@@ -317,7 +319,7 @@
 	if(primal_wrath_action?.ability_active)
 		var/animation_time = LANDSLIDE_RANGE * LANDSLIDE_ENHANCED_STEP_DELAY
 		addtimer(CALLBACK(src, PROC_REF(enhanced_do_charge), direction, charge_damage, LANDSLIDE_ENHANCED_STEP_DELAY, LANDSLIDE_RANGE), LANDSLIDE_ENHANCED_WIND_UP)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), xeno_owner, 'sound/effects/behemoth/landslide_enhanced_charge.ogg', 30, TRUE), LANDSLIDE_ENHANCED_WIND_UP)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), xeno_owner, 'sound/effects/alien/behemoth/landslide_enhanced_charge.ogg', 30, TRUE), LANDSLIDE_ENHANCED_WIND_UP)
 		animate(xeno_owner, time = LANDSLIDE_ENHANCED_WIND_UP, flags = ANIMATION_END_NOW)
 		animate(pixel_y = xeno_owner.pixel_y + (LANDSLIDE_RANGE / 2), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_OUT)
 		animate(pixel_y = initial(xeno_owner.pixel_y), time = animation_time / 2, easing = CIRCULAR_EASING|EASE_IN)
@@ -367,7 +369,6 @@
 		return
 	if(owner.pulling)
 		owner.stop_pulling()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.plasma_stored < ability_cost)
 		end_charge(LANDSLIDE_ENDED_NO_PLASMA)
 		return
@@ -401,7 +402,7 @@
 					continue
 				hit_object(affected_object)
 	if(LinkBlocked(owner_turf, direct_turf))
-		playsound(direct_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
+		playsound(direct_turf, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
 		xeno_owner.do_attack_animation(direct_turf)
 		addtimer(CALLBACK(src, PROC_REF(end_charge)), LANDSLIDE_ENDING_COLLISION_DELAY)
 		return
@@ -430,10 +431,9 @@
 		owner.stop_pulling()
 	var/owner_turf = get_turf(owner)
 	var/direct_turf = get_step(owner, direction)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(steps_to_take <= 0 || xeno_owner.wrath_stored < ability_cost)
 		if(LinkBlocked(owner_turf, direct_turf))
-			playsound(direct_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 40, TRUE)
+			playsound(direct_turf, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
 			xeno_owner.do_attack_animation(direct_turf)
 		new /obj/effect/temp_visual/behemoth/crack/landslide(get_turf(owner), direction, pick(1, 2))
 		end_charge()
@@ -476,7 +476,6 @@
 /datum/action/ability/activable/xeno/landslide/proc/end_charge(reason)
 	ability_active = FALSE
 	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = FALSE
 	if(!xeno_owner.lying_angle)
 		xeno_owner.set_canmove(TRUE)
@@ -500,7 +499,7 @@
 	if(!living_target.lying_angle)
 		living_target.Knockdown(LANDSLIDE_KNOCKDOWN_DURATION)
 		new /obj/effect/temp_visual/behemoth/landslide/hit(get_turf(living_target))
-		playsound(living_target, 'sound/effects/behemoth/landslide_hit_mob.ogg', 30, TRUE)
+		playsound(living_target, 'sound/effects/alien/behemoth/landslide_hit_mob.ogg', 30, TRUE)
 	living_target.emote("scream")
 	shake_camera(living_target, 1, 0.8)
 	living_target.apply_damage(damage, BRUTE, blocked = MELEE)
@@ -523,9 +522,9 @@
 		var/obj/structure/reagent_dispensers/fueltank/tank_target = object_target
 		tank_target.explode()
 		return
-	if(istype(object_target, /obj/structure/door/resin))
-		var/obj/structure/door/resin/resin_door = object_target
-		resin_door.open(TRUE, TRUE)
+	if(istype(object_target, /obj/structure/mineral_door/resin))
+		var/obj/structure/mineral_door/resin/resin_door = object_target
+		resin_door.toggle_state()
 		return
 	if(object_target.obj_integrity <= LANDSLIDE_OBJECT_INTEGRITY_THRESHOLD || istype(object_target, /obj/structure/closet))
 		playsound(object_turf, 'sound/effects/meteorimpact.ogg', 30, TRUE)
@@ -624,7 +623,6 @@
 
 /datum/action/ability/activable/xeno/earth_riser/alternate_action_activate()
 	if(!length(active_pillars))
-		var/mob/living/carbon/xenomorph/xeno_owner = owner
 		xeno_owner.balloon_alert(xeno_owner, "No active pillars")
 		return
 	add_cooldown(1.5 SECONDS)
@@ -639,7 +637,6 @@
 		return
 	var/turf/owner_turf = get_turf(owner)
 	var/turf/target_turf = get_turf(target)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/primal_wrath]
 	if(!line_of_sight(owner, target, primal_wrath_action?.ability_active? EARTH_RISER_ENHANCED_RANGE : EARTH_RISER_RANGE))
 		owner.balloon_alert(owner, "Out of range")
@@ -647,7 +644,7 @@
 	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
 	if(behemoth_roll_action?.charge_ability_on)
 		behemoth_roll_action.charge_off()
-	playsound(target_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 30, TRUE)
+	playsound(target_turf, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
 	new /obj/effect/temp_visual/behemoth/stomp/west(owner_turf, owner.dir)
 	new /obj/effect/temp_visual/behemoth/crack(owner_turf, owner.dir)
 	var/wind_up_duration = EARTH_RISER_WIND_UP
@@ -665,7 +662,6 @@
 /datum/action/ability/activable/xeno/earth_riser/proc/do_ability(turf/target_turf, enhanced)
 	if(!target_turf)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/new_pillar = new /obj/structure/earth_pillar(target_turf, xeno_owner, enhanced)
 	RegisterSignal(new_pillar, COMSIG_XENOABILITY_EARTH_PILLAR_THROW, PROC_REF(pillar_thrown))
 	RegisterSignal(new_pillar, COMSIG_QDELETING, PROC_REF(pillar_destroyed))
@@ -703,7 +699,7 @@
 	while(length(active_pillars) > maximum_pillars)
 		var/obj/structure/earth_pillar/oldest_pillar = popleft(active_pillars)
 		new /obj/effect/temp_visual/behemoth/earth_pillar/broken(oldest_pillar.loc)
-		playsound(oldest_pillar.loc, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
+		playsound(oldest_pillar.loc, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
 		qdel(oldest_pillar)
 	update_button_icon()
 
@@ -789,14 +785,13 @@
 
 /datum/action/ability/xeno_action/seismic_fracture/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
 	if(behemoth_roll_action?.charge_ability_on)
 		behemoth_roll_action.charge_off()
 	var/owner_turf = get_turf(xeno_owner)
 	new /obj/effect/temp_visual/behemoth/stomp/east(owner_turf, owner.dir)
 	new /obj/effect/temp_visual/behemoth/crack(owner_turf, owner.dir)
-	playsound(owner_turf, 'sound/effects/behemoth/behemoth_stomp.ogg', 30, TRUE)
+	playsound(owner_turf, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
 	var/datum/action/ability/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/primal_wrath]
 	do_ability(owner_turf, SEISMIC_FRACTURE_WIND_UP, primal_wrath_action?.ability_active)
 
@@ -826,7 +821,7 @@
 	if(!enhanced)
 		return
 	new /obj/effect/temp_visual/shockwave/enhanced(get_turf(owner), SEISMIC_FRACTURE_ATTACK_RADIUS, owner.dir)
-	playsound(owner, 'sound/effects/behemoth/landslide_roar.ogg', 40, TRUE)
+	playsound(owner, 'sound/effects/alien/behemoth/landslide_roar.ogg', 40, TRUE)
 	var/list/turf/extra_turfs_to_warn = filled_turfs(target_turf, SEISMIC_FRACTURE_ATTACK_RADIUS_ENHANCED, bypass_window = TRUE, projectile = TRUE)
 	for(var/turf/extra_turf_to_warn AS in extra_turfs_to_warn)
 		if(isclosedturf(extra_turf_to_warn))
@@ -949,7 +944,6 @@
 /datum/action/ability/xeno_action/primal_wrath/process()
 	if(!owner)
 		return PROCESS_KILL
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.hivenumber == XENO_HIVE_FALLEN)
 		if(xeno_owner.wrath_stored < xeno_owner.xeno_caste.wrath_max)
 			xeno_owner.wrath_stored = xeno_owner.xeno_caste.wrath_max
@@ -969,7 +963,6 @@
 	decay_amount = round(decay_amount * PRIMAL_WRATH_DECAY_MULTIPLIER)
 
 /datum/action/ability/xeno_action/primal_wrath/action_activate()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.hivenumber != XENO_HIVE_FALLEN)
 		if(ability_active || currently_roaring)
 			return
@@ -986,7 +979,7 @@
 	xeno_owner.face_atom(target)
 	xeno_owner.set_canmove(FALSE)
 	var/owner_turf = get_turf(xeno_owner)
-	playsound(owner_turf, 'sound/effects/behemoth/primal_wrath_roar.ogg', 75, TRUE)
+	playsound(owner_turf, 'sound/effects/alien/behemoth/primal_wrath_roar.ogg', 75, TRUE)
 	do_ability(owner_turf)
 	addtimer(CALLBACK(src, PROC_REF(end_ability)), PRIMAL_WRATH_ACTIVATION_DURATION)
 	succeed_activate()
@@ -1019,7 +1012,6 @@
 /datum/action/ability/xeno_action/primal_wrath/proc/end_ability()
 	currently_roaring = FALSE
 	owner.status_flags &= ~GODMODE
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.fortify = FALSE
 	xeno_owner.set_canmove(TRUE)
 
@@ -1039,8 +1031,8 @@
 		var/resolve_time = 0.2 SECONDS
 		animate(floor_plane.get_filter("primal_wrath"), size = 0, time = resolve_time, flags = ANIMATION_PARALLEL)
 		animate(world_plane.get_filter("primal_wrath"), size = 0, time = resolve_time, flags = ANIMATION_PARALLEL)
-		addtimer(CALLBACK(floor_plane, TYPE_PROC_REF(/atom, remove_filter), "primal_wrath"), resolve_time)
-		addtimer(CALLBACK(world_plane, TYPE_PROC_REF(/atom, remove_filter), "primal_wrath"), resolve_time)
+		addtimer(CALLBACK(floor_plane, TYPE_PROC_REF(/datum, remove_filter), "primal_wrath"), resolve_time)
+		addtimer(CALLBACK(world_plane, TYPE_PROC_REF(/datum, remove_filter), "primal_wrath"), resolve_time)
 		return
 	addtimer(CALLBACK(src, PROC_REF(ability_check), affected_living, xeno_source), 0.1 SECONDS)
 
@@ -1049,7 +1041,6 @@
 	SIGNAL_HANDLER
 	if(!ability_active || source_action == src)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.wrath_stored = clamp(xeno_owner.wrath_stored - (action_cost / 2), 0, xeno_owner.xeno_caste.wrath_max)
 	return SUCCEED_ACTIVATE_CANCEL
 
@@ -1064,7 +1055,6 @@
 	SIGNAL_HANDLER
 	if(amount <= 0 || owner.stat || owner.lying_angle)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(ability_active)
 		if(amount >= xeno_owner.health)
 			var/damage_amount = (amount - xeno_owner.health)
@@ -1085,7 +1075,6 @@
 */
 /datum/action/ability/xeno_action/primal_wrath/proc/toggle_buff(toggle)
 	ability_active = !ability_active
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/activable/xeno/landslide/landslide_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/landslide]
 	var/datum/action/ability/activable/xeno/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/earth_riser]
 	if(!toggle)
@@ -1201,7 +1190,7 @@
 	density = TRUE
 	max_integrity = 200
 	soft_armor = list(MELEE = 25, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 0, BIO = 100, FIRE = 100, ACID = 0)
-	destroy_sound = 'sound/effects/behemoth/earth_pillar_destroyed.ogg'
+	destroy_sound = 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg'
 	coverage = 128
 	/// The xeno owner of this object.
 	var/mob/living/carbon/xenomorph/xeno_owner
@@ -1222,7 +1211,7 @@
 		animate(src, pixel_x = random_x, pixel_y = 500, time = 0)
 		animate(pixel_x = 0, pixel_y = 0, time = 0.5 SECONDS)
 		return
-	playsound(src, 'sound/effects/behemoth/earth_pillar_rising.ogg', 40, TRUE)
+	playsound(src, 'sound/effects/alien/behemoth/earth_pillar_rising.ogg', 40, TRUE)
 	particle_holder = new(src, /particles/earth_pillar)
 	particle_holder.pixel_y = -4
 	animate(particle_holder, pixel_y = 4, time = 1.0 SECONDS)
@@ -1232,7 +1221,7 @@
 	RegisterSignals(src, list(COMSIG_ATOM_BULLET_ACT, COMSIG_ATOM_EX_ACT, COMSIG_ATOM_ATTACK_HAND, COMSIG_ATOM_ATTACK_HAND_ALTERNATE, COMSIG_ATOM_ATTACKBY), PROC_REF(call_update_icon_state))
 
 /obj/structure/earth_pillar/Destroy()
-	playsound(loc, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
+	playsound(loc, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/broken(loc)
 	xeno_owner = null
 	return ..()
@@ -1278,7 +1267,7 @@
 			if(isxenobehemoth(xeno_attacker))
 				xeno_attacker.do_attack_animation(src)
 				do_jitter_animation(jitter_loops = 1)
-				playsound(src, 'sound/effects/behemoth/earth_pillar_eating.ogg', 30, TRUE)
+				playsound(src, 'sound/effects/alien/behemoth/earth_pillar_eating.ogg', 30, TRUE)
 				xeno_attacker.visible_message(span_xenowarning("\The [xeno_attacker] eats away at the [src.name]!"), \
 				span_xenonotice(pick(
 					"We eat away at the stone. It tastes good, as expected of our primary diet.",
@@ -1387,11 +1376,11 @@
 /// VFX + SFX for when the rock doesn't hit anything.
 /datum/ammo/xeno/earth_pillar/proc/rock_broke(turf/hit_turf, obj/projectile/proj)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/broken(hit_turf)
-	playsound(hit_turf, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
+	playsound(hit_turf, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 30, TRUE)
 
 /// Does some stuff if the rock DOES hit something.
 /datum/ammo/xeno/earth_pillar/proc/on_hit_anything(turf/hit_turf, obj/projectile/proj)
-	playsound(hit_turf, 'sound/effects/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
+	playsound(hit_turf, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/destroyed(hit_turf)
 	var/list/turf/affected_turfs = filled_turfs(hit_turf, EARTH_PILLAR_SPREAD_RADIUS, include_edge = FALSE, bypass_window = TRUE, projectile = TRUE)
 	behemoth_area_attack(proj.firer, affected_turfs, damage_multiplier = EARTH_PILLAR_SPREAD_DAMAGE_MULTIPLIER)
@@ -1429,7 +1418,7 @@
 		if(isclosedturf(affected_turf))
 			continue
 		new /obj/effect/temp_visual/behemoth/crack(affected_turf)
-		playsound(affected_turf, 'sound/effects/behemoth/seismic_fracture_explosion.ogg', 15)
+		playsound(affected_turf, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 15)
 		var/attack_vfx = enhanced? /obj/effect/temp_visual/behemoth/seismic_fracture/enhanced : /obj/effect/temp_visual/behemoth/seismic_fracture
 		new attack_vfx(affected_turf, enhanced? FALSE : null)
 		for(var/atom/movable/affected_atom AS in affected_turf)
@@ -1478,7 +1467,7 @@
 	var/warning_type = primal_wrath_action?.ability_active? /obj/effect/temp_visual/behemoth/warning/enhanced : /obj/effect/temp_visual/behemoth/warning
 	for(var/turf/target_turf AS in target_turfs)
 		new warning_type(target_turf, duration)
-		playsound(target_turf, 'sound/effects/behemoth/behemoth_rumble.ogg', 15, TRUE)
+		playsound(target_turf, 'sound/effects/alien/behemoth/rumble.ogg', 15, TRUE)
 		for(var/mob/living/target_living in target_turf)
 			if(xeno_owner.issamexenohive(target_living) || target_living.stat == DEAD || CHECK_BITFIELD(target_living.status_flags, INCORPOREAL|GODMODE))
 				continue

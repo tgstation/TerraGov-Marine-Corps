@@ -18,7 +18,7 @@
 	max_integrity = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
-/obj/structure/razorwire/deconstruct(disassembled = TRUE)
+/obj/structure/razorwire/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
 		if(obj_integrity > max_integrity * 0.5)
 			new sheet_type(loc)
@@ -50,8 +50,6 @@
 	if(!isliving(O))
 		return
 	if(CHECK_BITFIELD(O.pass_flags, PASS_DEFENSIVE_STRUCTURE))
-		return
-	if(HAS_TRAIT(O, TRAIT_TANK_DESANT))
 		return
 	var/mob/living/M = O
 	if(M.status_flags & INCORPOREAL)
@@ -213,10 +211,7 @@
 	return ..()
 
 /obj/structure/razorwire/update_icon_state()
-	. = ..()
-	var/health_percent = round(obj_integrity/max_integrity * 100)
-	var/remaining = CEILING(health_percent, 25)
-	icon_state = "[base_icon_state]_[remaining]"
+	icon_state = "[base_icon_state]_[CEILING(ROUND_UP(obj_integrity/max_integrity * 100), 25)]"
 
 /obj/structure/razorwire/effect_smoke(obj/effect/particle_effect/smoke/S)
 	. = ..()

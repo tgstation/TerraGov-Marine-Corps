@@ -93,3 +93,24 @@ endmap
 map lv759
 	minplayers 65
 endmap
+
+map lavaoutpost
+	minplayers 20
+endmap
+
+map desertdam
+	minplayers 60
+endmap
+
+map corsat
+	minplayers 75
+endmap
+
+map bluesummers
+	minplayers 30
+endmap
+
+map metnal
+	minplayers 45
+  endmap
+  

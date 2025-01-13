@@ -1,0 +1,345 @@
+2024-07-01:
+  Apple-107:
+  - bugfix: doubled-up windows on Outrider Tadpole
+  Ldip999:
+  - bugfix: Fixed inability to create squads on Sulaco
+  - bugfix: Webmap fixed
+  Notamaniac:
+  - imageadd: TE Powerpacks now has an overlay that changes color depending on their
+      remanining charge
+2024-07-03:
+  Barnet2:
+  - balance: Boiler - Zoom reduced to about miniscope range (4 tiles)
+  - balance: Boiler - Opaque gas is back
+  - balance: Boiler - Boiler gas radius reduced from 4 to 3 tile radius
+  - balance: Boiler - Able to shoot within 5 tiles of yourself
+  Helg2:
+  - bugfix: fixed powerpacks worn icon states.
+  Ldip999:
+  - qol: Same as last rows in req export history now stack
+  - imageadd: Sprite for active radiopack
+  - code_imp: Modified radiopack code to initialize beacon with aditional parameters
+  Lumipharon:
+  - bugfix: 'Campaign: Respawning in campaign now DNR''s your body like it used to'
+  Notamaniac:
+  - bugfix: Fixed Strain Swapping not being instant and relying on evo timer
+  Wisemonster:
+  - rscadd: Added a surgery practice area to marine Valhalla.
+  - code_imp: Modified the marine spawner buttons in xeno Valhalla to be usable by
+      marines.
+  - balance: The research facility on LV-759 has been significantly damaged by the
+      xeno outbreak there, making it easier for the xenos to move around.
+  - balance: Removed most of the sandbags by the area just outside of the research
+      facility on LV-759
+  - balance: Removed some sandbags scattered around the streets of LV-759
+  - balance: Removed some more shutters at the road security checkpoints on LV-759
+  - balance: Signs, computers/machinery, and monitors on LV-759 have had their health
+      decreased from 500 to between 50-80, and can now be slashed.
+  - rscdel: Removed a pair of tactical binoculars from LV-759
+  - rscdel: Removed some platforms by east colony street and the pool on LV-759
+  blackdav123:
+  - rscadd: Engineering storage modules can now hold miner upgrades.
+2024-07-04:
+  Apple-107:
+  - bugfix: APC/Tank should now be able to get to Tadpole on Theseus and Arachne
+  Dragonfruits:
+  - imageadd: Replaced title screen 13 with updated remake
+  Joe13413:
+  - imageadd: Added visual clarity to windows on Kutjevo Refinery and Meridian Riptide
+  Ldip999:
+  - qol: Req export history no longer displays worthless items
+  - bugfix: Webmap fixed even if there are spaces in the map name
+  Runian:
+  - balance: Shrike and Hivemind's healing ability no longer cancels if target moves.
+  TiviPlus:
+  - code_imp: backend code now supports mob height
+2024-07-05:
+  Lumipharon:
+  - bugfix: fixed a flicker issue with windows when taking damage
+  - rscadd: 'Campaign: Replaced Mech War with Combined Arms'
+  - rscadd: Added vehicle deployment for vehicle in Campaign
+  - code_imp: Fixed an issue with wrong ordered args in transition_filters()
+  - bugfix: fixed some visual issues with shutters
+  tyeagg:
+  - balance: clf suicide vest detonates faster
+2024-07-06:
+  Ldip999:
+  - bugfix: Fixes custom squads being assigned tokens that were already in use by
+      non radio prefixes
+  Lumipharon:
+  - bugfix: fixed some issues with truck prop positioning and hitboxes
+  - code_imp: Cleaned up some LV prop code
+  - bugfix: Added a work around to avoid multitile bound issues related to z-level
+      expansion
+  Notamaniac:
+  - bugfix: Blank shotgun shells should no longer show up as an error
+  Wisemonster:
+  - bugfix: Fixed an issue with headsets and ASRS tablets in Valhalla
+  ivanmixo:
+  - rscdel: Deleted a dead var on the marine xalhalla spawner
+2024-07-07:
+  Ldip999:
+  - bugfix: Adds 3 missing squad telecoms to sulaco
+  - bugfix: Pillar of Spring medbay shutters 1 are now linked to it's proper button
+  - qol: Makes large orders easier to read
+  - bugfix: Fixes bug that can crash game on particularly large orders
+  - code_imp: Vastly optimized req request packets
+  - bugfix: Fixed AI double spawning
+  Lumipharon:
+  - bugfix: fixed a fueltank runtime
+  - bugfix: Fixes an incorrect icon state for coilgun ammo in the storage rack
+  - bugfix: Fixes a bug with tank MLRS ammo
+  - rscadd: Guns can be fired offhand with right click
+  - rscadd: Updated how HvH Deploy points function to avoid tanks clipping into walls
+  - rscadd: 'Campaign: Coilgun'
+  - code_imp: Cleaned up some baselight code
+  Notamaniac:
+  - code_imp: Added some sanity checks to upgrading and evoing at full upgrade
+  - balance: The area east of LZ2 has been converted into a nature reserve that you
+      can no longer pod into and get stuck in.
+  Wisemonster:
+  - rscadd: Added marine spawners to the firing range of Valhalla
+  - rscadd: Added the SOM tank and it's guns/ammo to marine Valhalla
+  - rscadd: Added a mech computer to the Valhalla vehicle area.
+2024-07-08:
+  Ldip999:
+  - balance: Space extinguishes fire
+  Lumipharon:
+  - rscadd: 'Campaign: Marines 3rd tank spawn comes with LTAAP'
+  blackdav123:
+  - rscadd: 'Added :trol: emoji'
+2024-07-10:
+  Ldip999:
+  - qol: Supply beacons on the maps now have a brown background and a red flashing
+      tip, hopefully making them easier to see.
+  - qol: Kitting is now recorded for round end personal stats
+  - qol: Isotonic autoinjector now has a tag
+  - rscadd: Reward for healing in campaign
+  - rscadd: Reward for repairing in campaign
+  - rscadd: Reward for blowing up tanks
+  - bugfix: fixed supply bluescreening
+  - qol: Taken over SSD mobs will now load your active character slot if possible
+  - bugfix: Ordering req console now the proper width
+  - balance: Corpsman can now suture without fumbling
+  - code_imp: Dynamic surgery skill requirements
+  Lumipharon:
+  - bugfix: fixed afterimage opacity for real
+  - balance: Tanks are worth 30 points in Combined Arms instead of 10
+  - balance: Combat Patrol mission's point goal is reduced from 400 to 375
+  - bugfix: fixed tanks ramming mechs for triple damage
+  - bugfix: fixed some inconsistancies with vehicle ramming
+  - balance: C4 is immune to all explosions below devastate.
+  - balance: Mecha heavy cannon no longer pierces mechs or tanks
+  - bugfix: fixed being unable to directly load a tank weapon that required external
+      loading
+  - bugfix: Riding a tank across z-levels will no longer curse you to death
+  - bugfix: fixed a broken sprite for empty cannister shot
+  Wisemonster:
+  - rscadd: Added a keybind for canceling behemoth's landslide charge
+  Xander3359:
+  - balance: Xenos no longer need evo points to evolve in prep phase
+  blackdav123:
+  - bugfix: Tad windows can now all be slashed.
+  jonash07:
+  - bugfix: fixed the technician backpack's sprite
+  - bugfix: fixed the reagent scanner's sprite
+2024-07-11:
+  Arturlang:
+  - rscadd: You can now right click full sandbags to empty them,
+  Fallouttec:
+  - qol: changed the names of factory refills, they all now have either a unique name
+      or an added suffix to denote which factory item this refill produces.
+  - qol: descriptions of all factory refills now also mention which item these will
+      produce once completed.
+  Helg2:
+  - admin: server verbs now use tgui alerts and inputs instead of byond ones.
+  Lumipharon:
+  - rscadd: 'Campaign: added some implants to the mission reward tables'
+  - bugfix: 'Campaign: fixed a couple of mapping issues on the Rocinante base map'
+  - balance: 'Campaign: Some missions with mechs now scale number of mechs and tanks
+      with player pop'
+  - code_imp: Fixed a missing mapper icon for deploy points
+  Notamaniac:
+  - bugfix: Baneling acid icon now shows correctly
+  WinterDarkraven:
+  - spellcheck: X-fuel backpacks are renamed from "Type X back fuel tank" in req
+2024-07-12:
+  Cheese:
+  - qol: Boilers, queens, and bulls can now use their long range vision while resting.
+  Joe13413:
+  - balance: removed nutriment from zoom pills
+  Ldip999:
+  - bugfix: SSD takeover confirmation doesn't automatically assume yes
+  - bugfix: SSD takeover now updates your ID as well
+  - bugfix: SSD takeover now uses your synth name on synths
+  - bugfix: SSD takeover now changes your voice too
+  Lumipharon:
+  - balance: Added a welder bag for SOM in campaign as a default back slot item
+  jonash07:
+  - bugfix: fixed the empty mortar bags sprite
+2024-07-14:
+  Cheese:
+  - rscadd: The amount of items runners steal is now tracked.
+  Lumipharon:
+  - balance: 'Campaign: SOM medic and engineer MPI loadouts now come with a UGL'
+  - bugfix: 'Campaign: SOM medics correctly receive the AP V-21 if they have the SMG
+      perk'
+  - bugfix: 'Campaign: TGMC standards get SMG mags in their pouches if they chose
+      the SMG belt holster'
+  - bugfix: Certain random events will no longer happen in the campaign gamemode
+  Notamaniac:
+  - bugfix: Syntheised instruments should no longer be off key
+  Pariah919:
+  - balance: DMR no longer has minimum range penalties and has mildly higher penetration.
+  blackdav123:
+  - rscadd: Added redcoat and bluecoat loadouts.
+  - rscadd: Added a full martini belt.
+  - rscadd: Added civil war quick equip vendors.
+2024-07-16:
+  Barnet2:
+  - rscadd: Fumo dolls re-added, you can find them in the arcade prize pool!
+  Fallouttec:
+  - balance: Changed price of Mortar Flare and Smoke Refills for Factory, they now
+      cost 50 points per refill item
+  - balance: changed the price of FK-88 ammo refills for Factory to be 200 for HE
+      and 225 for APFDS shells
+  Ldip999:
+  - rscadd: Added SG-62 ammo bins to reqtorio
+  blackdav123:
+  - qol: Defender can now use regenerate skin while resting.
+  - rscadd: Added 10 more intel computers to Magmoor.
+  jonash07:
+  - code_imp: removed useless powerloader code
+2024-07-17:
+  Barnet2:
+  - rscadd: Adds acid shroud for boiler; creates a small smokescreen on yourself for
+      LoS block to (potentially) escape a chasing marine. It resets the cooldown of
+      Bombard + 10 seconds, so only use it when you have to!
+  - balance: Increases boiler zoom by 2
+  - balance: Reduces normal boiler glob range to zoom range
+  - bugfix: Synths and robots no longer get a "catch your breath" message when trying
+      to jump, instead a silicon specific message
+  Fallouttec:
+  - rscadd: Added Rangefinders to Requisitions for 200 Points, comes with free Fire
+      Support Encryption Key!
+  Ldip999:
+  - balance: Medic medkit pouches now contain QC+ and Pe+ exactly like the medic autoinjector
+      pouch
+  Lumipharon:
+  - rscdel: Removed the flash powder reaction
+  - code_imp: Made some 515.1640 compatibility fixes
+  - balance: 'Campaign: Increased purchase cost of plasma weapons by 50 credits'
+  - balance: 'Campaign: Decreased unlock cost of plasma weaponry by 100 credits'
+  - balance: 'Campaign: Increased the cost of Advanced SMG training by 100 credits'
+  RipGrayson:
+  - bugfix: Fixed stalagmites on LV759 being invisible
+  Wisemonster:
+  - spellcheck: Changed the TGMC campaign tank's description to reflect it fighting
+      the SOM
+  Xander3359:
+  - balance: You can now open worn duffelbags with a 2 second channel
+2024-07-18:
+  Cheese:
+  - rscadd: ':clueless: emoji, to OOC and Dchat. Do they know?'
+  Ldip999:
+  - bugfix: Loadout vendor now applies the GHMME flag
+  - code_imp: Implemented SPT_PROB and SPT_PROB_RATE
+  Lumipharon:
+  - bugfix: 'Campaign: NT base rescue objective no longer layers over c4 attached
+      to it'
+  - bugfix: 'Campaign: NT base rescue telegib area is deactivated after both signals
+      are sent'
+  - admin: Campaign panel autobalance button prompts if you want to force it or not
+  Notamaniac:
+  - rscadd: Adds Retrograde Sentinel Strain, which has the Sentinels old neurospit,
+      acid spit and neurotox sting. Primo is replaced with a neurogas grenade (which
+      is transparent)
+  - qol: The SMG-45 has been recalibered into .41 AE, and it's corresponding packets
+      have been added to the marine vendor.
+  Wisemonster:
+  - rscadd: Added the TGMC campaign tank to Valhalla
+  jonash07:
+  - bugfix: powerloader can now be repaired
+  - bugfix: fixed LR-73 ammo box overlay sprite
+  - bugfix: fixed sunglasses duplicating in the clothes vendor
+2024-07-19:
+  Barnet2:
+  - qol: You can either select acid shroud or just use it on a button press.
+  - bugfix: Acid Shroud can no longer be used infinitely.
+  ivanmixo:
+  - bugfix: Clone vat progress gets reset if it loses power
+2024-07-21:
+  Xander3359:
+  - bugfix: Xenos can no longer instaevo when the shuttle is crashed on crash gamemode
+  yyzsong:
+  - spellcheck: collor > color
+  - code_imp: adds defines for squad colours
+  - code_imp: changes the names of colour defines that use "colour" instead of "color"
+      to be in line with the rest of the defines
+2024-07-22:
+  Lumipharon:
+  - qol: Normal prop vehicles are now all destructable
+2024-07-23:
+  Apple-107:
+  - bugfix: fixed missing sprite for open panel on Req Operations Vendor
+  Ldip999:
+  - code_imp: Organ defines, get_organ_slot, remove_organ_slot
+  Runian:
+  - bugfix: Deconstructing reinforced table parts correctly give two metal instead
+      of one.
+  ivanmixo:
+  - qol: The percentage of armor left is no longer labeled as sunder in the xeno stat
+      panel
+  jonash07:
+  - imageadd: added 2 more icon overlays to tactical binoculars
+2024-07-24:
+  Apple-107:
+  - bugfix: Tadpole/Shuttle engines are now built from copium and are thus unable
+      to be melted or crushed.
+  Lumipharon:
+  - bugfix: 'Campaign: Fixed an issue with some assets getting disabled forever'
+  - balance: Added EMP effects against tanks, blink drives and eshield modules. AT
+      mines are now EMP immune
+  - balance: Synth is no longer immune to gibbing
+  - bugfix: 'Campaign: Radio works in caves on Patrick''s Rest'
+  - bugfix: Mobs that land on tanks via any kind of throw now are correctly added
+      to desants
+  - balance: V-31 has slightly higher burst scatter
+  - balance: 'Campaign: Medical asset is now single use and costs 3 attrition'
+  - bugfix: 'Campaign: Fixed the Teleporter Array charges asset having twice as many
+      uses as intended'
+  Neocloudy:
+  - balance: CIC messages and comms console announcements use the same cooldown as
+      HUD orders from Send Orders/AI alerts.
+  - balance: CIC messages have a maximum length of 100.
+  ivanmixo:
+  - bugfix: Fixed being unable to join valhalla or the larva queue if you ghosted
+      as a xeno
+  jonash07:
+  - bugfix: fixed jaeger mk1 helmet duplicating in the armor vendor
+2024-07-25:
+  Lumipharon:
+  - bugfix: Fixed deploy points and lighting not working correctly in Combat Patrol
+      and Sensor Capture
+2024-07-26:
+  Lumipharon:
+  - balance: 'Campaign: TGMC Raiding base no longer allows the beacon to be planted
+      in the captain''s office'
+2024-07-27:
+  PibeCantina:
+  - qol: Neuraline shows up on scanner now
+2024-07-29:
+  Lauwma:
+  - balance: Harvester weapons now apply 5 stacks of fire when loaded with kelotane
+  Lumipharon:
+  - code_imp: Cleaned up some acid code
+  - balance: Plasma SMG scatter increased slightly
+  - balance: Plasma SMG bouncy mode damage decreases slightly for each bounce
+2024-07-31:
+  Lumipharon:
+  - balance: 'Campaign: Heat rockets have slightly more scatter'
+  - balance: Recoilless rifle has -10 scatter instead of -100
+  Notamaniac:
+  - bugfix: Vindicator Minigun Powerpacks won't show up as an error on snow maps anymore
+  Wisemonster:
+  - rscdel: Removed most of the glass panes by the fire range tables in Valhalla

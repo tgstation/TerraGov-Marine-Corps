@@ -51,7 +51,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 /proc/playsound(atom/source, soundin, vol, vary, sound_range, falloff, is_global, frequency, channel = 0, ambient_sound = FALSE)
 	var/turf/turf_source = get_turf(source)
 
-	if(!turf_source)
+	if (!turf_source || !soundin || !vol)
 		return
 
 	//allocate a channel if necessary now so its the same for everyone
@@ -61,29 +61,40 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		sound_range = round(0.5*vol) //if no specific range, the max range is equal to half the volume.
 
 	if(!frequency)
-		frequency = GET_RANDOM_FREQ // Same frequency for everybody
-	// Looping through the player list has the added bonus of working for mobs inside containers
+		frequency = GET_RANDOM_FREQ
 	var/sound/S = sound(get_sfx(soundin))
-	for(var/mob/M AS in GLOB.player_list|GLOB.aiEyes)
-		if(!M.client && !istype(M, /mob/camera/aiEye))
-			continue
-		if(ambient_sound && !(M.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
-			continue
-		var/turf/T = get_turf(M)
-		if(!T || T.z != turf_source.z || get_dist(M, turf_source) > sound_range)
-			continue
-		M.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S, sound_reciever = M)
 
+	var/list/listeners = SSmobs.clients_by_zlevel[turf_source.z].Copy()
+	for(var/mob/ai_eye AS in GLOB.aiEyes)
+		var/turf/eye_turf = get_turf(ai_eye)
+		if(!eye_turf || eye_turf.z != turf_source.z)
+			continue
+		listeners += ai_eye
+
+	for(var/mob/listener AS in listeners|SSmobs.dead_players_by_zlevel[turf_source.z])
+		if(get_dist(listener, turf_source) > sound_range)
+			continue
+		if(ambient_sound && !(listener.client?.prefs?.toggles_sound & SOUND_AMBIENCE))
+			continue
+		listener.playsound_local(turf_source, soundin, vol, vary, frequency, falloff, is_global, channel, S)
+
+
+	//We do tanks separately, since they are not actually on the source z, and we need some other stuff to get accurate directional sound
 	for(var/obj/vehicle/sealed/armored/armor AS in GLOB.tank_list)
 		if(!armor.interior || armor.z != turf_source.z || get_dist(armor.loc, turf_source) > sound_range)
 			continue
+		if(!length(armor.interior.occupants))
+			continue
+		var/turf/middle_turf = armor.interior.loaded_turfs[floor(length(armor.interior.loaded_turfs) * 0.5)]
+		var/turf/origin_point = locate(clamp(middle_turf.x - armor.x + turf_source.x, 1, world.maxx), clamp(middle_turf.y - armor.y + turf_source.y, 1, world.maxy), middle_turf.z)
+		//origin point is regardless of vehicle orientation for player QOL and simple sanity
+
 		for(var/mob/crew AS in armor.interior.occupants)
 			if(!crew.client)
 				continue
 			if(ambient_sound && !(crew.client.prefs.toggles_sound & SOUND_AMBIENCE))
 				continue
-			//turf source is null on purpose because it will not work properly since crew is on a different z
-			crew.playsound_local(null, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S, sound_reciever = crew)
+			crew.playsound_local(origin_point, soundin, vol*0.5, vary, frequency, falloff, is_global, channel, S)
 
 /**
  * Plays a sound locally
@@ -99,12 +110,9 @@ A good representation is: 'byond applies a volume reduction to the sound every X
  * * channel - Optional: Picks a random available channel if not set
  * * sound_to_use - Optional: Will default to soundin
  * * distance_multiplier - Affects x and z hearing
- * * sound_reciever - Defaults to src, the thing that is hearing this sound
  */
-/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1, mob/sound_reciever)
-	if(!sound_reciever)
-		sound_reciever = src
-	if(!sound_reciever.client)
+/mob/proc/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1)
+	if(!client)
 		return FALSE
 
 	if(!sound_to_use)
@@ -139,9 +147,9 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 	if(!is_global)
 		sound_to_use.environment = SOUND_ENVIRONMENT_ROOM
 
-	SEND_SOUND(sound_reciever, sound_to_use)
+	SEND_SOUND(src, sound_to_use)
 
-/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1, mob/sound_reciever)
+/mob/living/playsound_local(turf/turf_source, soundin, vol, vary, frequency, falloff, is_global, channel = 0, sound/sound_to_use, distance_multiplier = 1)
 	if(ear_deaf > 0)
 		return FALSE
 	return ..()
@@ -199,17 +207,17 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if(SFX_SHATTER)
 			soundin = pick('sound/effects/glassbr1.ogg','sound/effects/glassbr2.ogg','sound/effects/glassbr3.ogg')
 		if(SFX_EXPLOSION_LARGE)
-			soundin = pick('sound/effects/explosion_large1.ogg','sound/effects/explosion_large2.ogg','sound/effects/explosion_large3.ogg','sound/effects/explosion_large4.ogg','sound/effects/explosion_large5.ogg','sound/effects/explosion_large6.ogg')
+			soundin = pick('sound/effects/explosion/large1.ogg','sound/effects/explosion/large2.ogg','sound/effects/explosion/large3.ogg','sound/effects/explosion/large4.ogg','sound/effects/explosion/large5.ogg','sound/effects/explosion/large6.ogg')
 		if(SFX_EXPLOSION_MICRO)
-			soundin = pick('sound/effects/explosion_micro1.ogg','sound/effects/explosion_micro2.ogg','sound/effects/explosion_micro3.ogg')
+			soundin = pick('sound/effects/explosion/micro1.ogg','sound/effects/explosion/micro2.ogg','sound/effects/explosion/micro3.ogg')
 		if(SFX_EXPLOSION_SMALL)
-			soundin = pick('sound/effects/explosion_small1.ogg','sound/effects/explosion_small2.ogg','sound/effects/explosion_small3.ogg','sound/effects/explosion_small4.ogg')
+			soundin = pick('sound/effects/explosion/small1.ogg','sound/effects/explosion/small2.ogg','sound/effects/explosion/small3.ogg','sound/effects/explosion/small4.ogg')
 		if(SFX_EXPLOSION_MED)
-			soundin = pick('sound/effects/explosion_med1.ogg','sound/effects/explosion_med2.ogg','sound/effects/explosion_med3.ogg','sound/effects/explosion_med4.ogg','sound/effects/explosion_med5.ogg','sound/effects/explosion_med6.ogg')
+			soundin = pick('sound/effects/explosion/medium1.ogg','sound/effects/explosion/medium2.ogg','sound/effects/explosion/medium3.ogg','sound/effects/explosion/medium4.ogg','sound/effects/explosion/medium5.ogg','sound/effects/explosion/medium6.ogg')
 		if(SFX_EXPLOSION_SMALL_DISTANT)
-			soundin = pick('sound/effects/explosion_smallfar1.ogg','sound/effects/explosion_smallfar2.ogg','sound/effects/explosion_smallfar3.ogg','sound/effects/explosion_smallfar4.ogg')
+			soundin = pick('sound/effects/explosion/small_far1.ogg','sound/effects/explosion/small_far2.ogg','sound/effects/explosion/small_far3.ogg','sound/effects/explosion/small_far4.ogg')
 		if(SFX_EXPLOSION_LARGE_DISTANT)
-			soundin = pick('sound/effects/explosion_far1.ogg','sound/effects/explosion_far2.ogg','sound/effects/explosion_far3.ogg','sound/effects/explosion_far4.ogg','sound/effects/explosion_far5.ogg')
+			soundin = pick('sound/effects/explosion/far1.ogg','sound/effects/explosion/far2.ogg','sound/effects/explosion/far3.ogg','sound/effects/explosion/far4.ogg','sound/effects/explosion/far5.ogg')
 		if(SFX_EXPLOSION_CREAK)
 			soundin = pick('sound/effects/creak1.ogg','sound/effects/creak2.ogg')
 		if(SFX_SPARKS)
@@ -300,15 +308,15 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if(SFX_ALIEN_TAIL_ATTACK)
 			soundin = 'sound/weapons/alien_tail_attack.ogg'
 		if(SFX_ALIEN_FOOTSTEP_LARGE)
-			soundin = pick('sound/effects/alien_footstep_large1.ogg','sound/effects/alien_footstep_large2.ogg','sound/effects/alien_footstep_large3.ogg')
+			soundin = pick('sound/effects/alien/footstep_large1.ogg','sound/effects/alien/footstep_large2.ogg','sound/effects/alien/footstep_large3.ogg')
 		if(SFX_ALIEN_CHARGE)
-			soundin = pick('sound/effects/alien_footstep_charge1.ogg','sound/effects/alien_footstep_charge2.ogg','sound/effects/alien_footstep_charge3.ogg')
+			soundin = pick('sound/effects/alien/footstep_charge1.ogg','sound/effects/alien/footstep_charge2.ogg','sound/effects/alien/footstep_charge3.ogg')
 		if(SFX_ALIEN_RESIN_BUILD)
-			soundin = pick('sound/effects/alien_resin_build1.ogg','sound/effects/alien_resin_build2.ogg','sound/effects/alien_resin_build3.ogg')
+			soundin = pick('sound/effects/alien/resin_build1.ogg','sound/effects/alien/resin_build2.ogg','sound/effects/alien/resin_build3.ogg')
 		if(SFX_ALIEN_RESIN_BREAK)
-			soundin = pick('sound/effects/alien_resin_break1.ogg','sound/effects/alien_resin_break2.ogg')
+			soundin = pick('sound/effects/alien/resin_break1.ogg','sound/effects/alien/resin_break2.ogg')
 		if(SFX_ALIEN_RESIN_MOVE)
-			soundin = pick('sound/effects/alien_resin_move1.ogg','sound/effects/alien_resin_move2.ogg')
+			soundin = pick('sound/effects/alien/resin_move1.ogg','sound/effects/alien/resin_move2.ogg')
 		if(SFX_ALIEN_TALK)
 			soundin = pick('sound/voice/alien/talk.ogg','sound/voice/alien/talk2.ogg','sound/voice/alien/talk3.ogg')
 		if(SFX_ALIEN_GROWL)
@@ -316,7 +324,7 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if(SFX_ALIEN_HISS)
 			soundin = pick('sound/voice/alien/hiss1.ogg','sound/voice/alien/hiss2.ogg','sound/voice/alien/hiss3.ogg')
 		if(SFX_ALIEN_TAIL_SWIPE)
-			soundin = pick('sound/effects/alien_tail_swipe1.ogg','sound/effects/alien_tail_swipe2.ogg','sound/effects/alien_tail_swipe3.ogg')
+			soundin = pick('sound/effects/alien/tail_swipe1.ogg','sound/effects/alien/tail_swipe2.ogg','sound/effects/alien/tail_swipe3.ogg')
 		if(SFX_ALIEN_HELP)
 			soundin = pick('sound/voice/alien/help1.ogg','sound/voice/alien/help2.ogg')
 		if(SFX_ALIEN_DROOL)
@@ -328,13 +336,13 @@ A good representation is: 'byond applies a volume reduction to the sound every X
 		if(SFX_QUEEN)
 			soundin = pick('sound/voice/alien/queen_command.ogg','sound/voice/alien/queen_command2.ogg','sound/voice/alien/queen_command3.ogg')
 		if(SFX_ALIEN_VENTPASS)
-			soundin = pick('sound/effects/alien_ventpass1.ogg', 'sound/effects/alien_ventpass2.ogg')
+			soundin = pick('sound/effects/alien/ventpass1.ogg', 'sound/effects/alien/ventpass2.ogg')
 		if(SFX_BEHEMOTH_STEP_SOUNDS)
-			soundin = pick('sound/effects/alien_footstep_large1.ogg', 'sound/effects/alien_footstep_large2.ogg', 'sound/effects/alien_footstep_large3.ogg')
+			soundin = pick('sound/effects/alien/footstep_large1.ogg', 'sound/effects/alien/footstep_large2.ogg', 'sound/effects/alien/footstep_large3.ogg')
 		if(SFX_BEHEMOTH_ROLLING)
-			soundin = 'sound/effects/behemoth/behemoth_roll.ogg'
+			soundin = 'sound/effects/alien/behemoth/roll.ogg'
 		if(SFX_BEHEMOTH_EARTH_PILLAR_HIT)
-			soundin = pick('sound/effects/behemoth/earth_pillar_hit_1.ogg', 'sound/effects/behemoth/earth_pillar_hit_2.ogg', 'sound/effects/behemoth/earth_pillar_hit_3.ogg', 'sound/effects/behemoth/earth_pillar_hit_4.ogg', 'sound/effects/behemoth/earth_pillar_hit_5.ogg', 'sound/effects/behemoth/earth_pillar_hit_6.ogg')
+			soundin = pick('sound/effects/alien/behemoth/earth_pillar_hit_1.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_2.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_3.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_4.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_5.ogg', 'sound/effects/alien/behemoth/earth_pillar_hit_6.ogg')
 
 		// Human
 		if(SFX_MALE_SCREAM)

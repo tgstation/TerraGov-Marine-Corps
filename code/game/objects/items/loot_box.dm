@@ -171,7 +171,7 @@
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)
 		to_chat(new_xeno, span_xenoannounce("The Queen Mother has hurled us through Bluespace, we live for the hive!"))
-		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+		new_xeno << sound('sound/effects/alien/new_larva.ogg')
 	return INITIALIZE_HINT_QDEL
 
 //The actual drop sets

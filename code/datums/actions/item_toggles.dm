@@ -38,3 +38,7 @@
 	else
 		visual_references[VREF_MUTABLE_LINKED_OBJ] = null
 	return ..()
+
+/datum/action/ability/activable/item_toggle/remove_action(mob/M)
+	deselect()
+	return ..()

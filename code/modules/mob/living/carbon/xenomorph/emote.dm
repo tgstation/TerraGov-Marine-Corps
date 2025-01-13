@@ -109,22 +109,22 @@
 	key_third_person = "tailsweeps"
 	message = "swipes its tail."
 	emote_type = EMOTE_AUDIBLE
-	sound = 'sound/effects/alien_tail_swipe1.ogg'
+	sound = 'sound/effects/alien/tail_swipe1.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/tail/one
 	key = "tail1"
-	sound = 'sound/effects/alien_tail_swipe1.ogg'
+	sound = 'sound/effects/alien/tail_swipe1.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/tail/two
 	key = "tail2"
-	sound = 'sound/effects/alien_tail_swipe2.ogg'
+	sound = 'sound/effects/alien/tail_swipe2.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/tail/three
 	key = "tail3"
-	sound = 'sound/effects/alien_tail_swipe3.ogg'
+	sound = 'sound/effects/alien/tail_swipe3.ogg'
 
 
 /datum/emote/living/carbon/xenomorph/run_emote(mob/user, params, type_override, intentional = FALSE, prefix)

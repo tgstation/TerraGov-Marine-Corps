@@ -33,7 +33,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/campaign/jungle_outpost/ground/jungle)
 "dm" = (
-/obj/structure/door/mineral_door/wood,
+/obj/structure/mineral_door/wood,
 /turf/open/floor/wood,
 /area/campaign/jungle_outpost/outpost/living/hydro)
 "dt" = (

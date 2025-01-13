@@ -326,7 +326,7 @@
 	change_state(GIRDER_BROKEN)
 
 
-/obj/structure/girder/deconstruct(disassembled = TRUE)
+/obj/structure/girder/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(disassembled)
 		if(reinforcement)
 			new reinforcement(loc)

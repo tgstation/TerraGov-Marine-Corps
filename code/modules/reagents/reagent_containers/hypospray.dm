@@ -78,11 +78,15 @@
 		span_notice("You fumble around figuring out how to use the [src]."))
 		if(!do_after(user, SKILL_TASK_EASY, NONE, A, BUSY_ICON_UNSKILLED) || (!in_range(A, user) || !user.Adjacent(A)))
 			return
-
 	if(ismob(A))
 		var/mob/M = A
 		if(!M.can_inject(user, TRUE, user.zone_selected, TRUE))
 			return
+		if(M.faction != user.faction && !M.incapacitated())
+			user.visible_message(span_notice("[user] attempts to inject [M] with [src]."),
+			span_notice("You attempt to inject [M] with [src]."))
+			if(!do_after(user, SKILL_TASK_VERY_EASY, NONE, A, BUSY_ICON_HOSTILE) || (!in_range(A, user) || !user.Adjacent(A)))
+				return
 
 	var/list/injected = list()
 	for(var/datum/reagent/R in reagents.reagent_list)
@@ -377,6 +381,7 @@
 		/datum/reagent/medicine/bicaridine = 60,
 	)
 	description_overlay = "Bi"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/kelotane
 	name = "kelotane hypospray"
@@ -385,6 +390,7 @@
 		/datum/reagent/medicine/kelotane = 60,
 	)
 	description_overlay = "Ke"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/tramadol
 	name = "tramadol hypospray"
@@ -393,6 +399,7 @@
 		/datum/reagent/medicine/tramadol = 60,
 	)
 	description_overlay = "Ta"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/tricordrazine
 	name = "tricordrazine hypospray"
@@ -401,6 +408,7 @@
 		/datum/reagent/medicine/tricordrazine = 60,
 	)
 	description_overlay = "Ti"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/dylovene
 	name = "dylovene hypospray"
@@ -409,6 +417,7 @@
 		/datum/reagent/medicine/dylovene = 60,
 	)
 	description_overlay = "Dy"
+	item_flags = CAN_REFILL
 
 /obj/item/reagent_containers/hypospray/advanced/inaprovaline
 	name = "inaprovaline hypospray"
@@ -490,6 +499,16 @@
 	)
 	description_overlay = "Pe+"
 
+/obj/item/reagent_containers/hypospray/advanced/peridaxonplus_medkit
+	name = "Peridaxon+ hypospray"
+	desc = "A hypospray loaded with Peridaxon Plus, a chemical that heals organs while causing a buildup of toxins. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 3
+	list_reagents = list(
+		/datum/reagent/medicine/peridaxon_plus = 6,
+		/datum/reagent/medicine/hyronalin = 12,
+	)
+	description_overlay = "Pe+"
+
 /obj/item/reagent_containers/hypospray/advanced/quickclotplus
 	name = "Quickclot+ hypospray"
 	desc = "A hypospray loaded with quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
@@ -498,6 +517,25 @@
 		/datum/reagent/medicine/quickclotplus = 60,
 	)
 	description_overlay = "Qk+"
+
+/obj/item/reagent_containers/hypospray/advanced/quickclotplus_medkit
+	name = "Quickclot+ hypospray"
+	desc = "A hypospray loaded with quick-clot plus, a chemical designed to remove internal bleeding. Use with antitoxin. !DO NOT USE IN ACTIVE COMBAT!"
+	amount_per_transfer_from_this = 5
+	list_reagents = list(
+		/datum/reagent/medicine/quickclotplus = 30,
+	)
+	description_overlay = "Qk+"
+
+/obj/item/reagent_containers/hypospray/advanced/synaptizine
+	name = "Synaptizine hypospray"
+	desc = "A hypospray loaded with Synaptizine, a powerful stimulant that improves cardiovascular function, when used sparingly."
+	amount_per_transfer_from_this = 3
+	list_reagents = list(
+		/datum/reagent/medicine/synaptizine = 20,
+		/datum/reagent/medicine/hyronalin = 40,
+	)
+	description_overlay = "Sy"
 
 /obj/item/reagent_containers/hypospray/advanced/big
 	name = "big hypospray"

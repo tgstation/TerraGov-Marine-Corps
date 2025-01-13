@@ -166,7 +166,7 @@
 		/obj/item/tool/kitchen/utensil/knife = 20,
 		/obj/item/tool/kitchen/utensil/pknife = 20,
 		/obj/item/tool/kitchen/rollingpin = 10,
-		/obj/item/tool/kitchen/tray = 5,
+		/obj/item/storage/kitchen_tray = 5,
 	)
 
 /obj/effect/spawner/random/food_or_drink/drink_cans

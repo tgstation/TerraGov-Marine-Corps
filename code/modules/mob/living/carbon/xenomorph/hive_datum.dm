@@ -128,6 +128,9 @@
 	// Spawners
 	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawners_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(spawner))
+	// Acid Jaws
+	for(var/obj/structure/xeno/acid_maw/acid_jaws AS in GLOB.xeno_acid_jaws_by_hive[hivenumber])
+		.["hive_structures"] += list(get_structure_packet(acid_jaws))
 
 	.["xeno_info"] = list()
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
@@ -164,12 +167,12 @@
 	.["user_next_mat_level"] = isxeno(user) && xeno_user.upgrade_possible() ? xeno_user.xeno_caste.upgrade_threshold : 0
 	.["user_tracked"] = isxeno(user) && !isnull(xeno_user.tracked) ? REF(xeno_user.tracked) : ""
 
-	.["user_show_empty"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_EMPTY : 0
-	.["user_show_compact"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_COMPACT_MODE : 0
-	.["user_show_general"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_GENERAL : 0
-	.["user_show_population"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_POPULATION : 0
-	.["user_show_xeno_list"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_XENO_LIST : 0
-	.["user_show_structures"] = isxeno(user) ? xeno_user.status_toggle_flags & HIVE_STATUS_SHOW_STRUCTURES : 0
+	.["user_show_empty"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_EMPTY)
+	.["user_show_compact"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_COMPACT_MODE)
+	.["user_show_general"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_GENERAL)
+	.["user_show_population"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_POPULATION)
+	.["user_show_xeno_list"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_XENO_LIST)
+	.["user_show_structures"] = !!(user.client.prefs.status_toggle_flags & HIVE_STATUS_SHOW_STRUCTURES)
 
 /// Returns a data entry for the "xeno structures" list based on the structure passed
 /datum/hive_status/proc/get_structure_packet(obj/structure/xeno/struct)
@@ -209,9 +212,31 @@
 
 /datum/hive_status/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
 	. = ..()
+	/// Actions that don't require you to be a xeno
+	switch(action)
+		if("ToggleGeneral")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_GENERAL
+			usr.client.prefs.save_preferences()
+		if("ToggleCompact")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_COMPACT_MODE
+			usr.client.prefs.save_preferences()
+		if("TogglePopulation")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_POPULATION
+			usr.client.prefs.save_preferences()
+		if("ToggleXenoList")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_XENO_LIST
+			usr.client.prefs.save_preferences()
+		if("ToggleStructures")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_STRUCTURES
+			usr.client.prefs.save_preferences()
+		if("ToggleEmpty")
+			usr.client.prefs.status_toggle_flags ^= HIVE_STATUS_SHOW_EMPTY
+
+	/// If the action we're sending is to observe, this will be the xeno being observed. Otherwise it's the xeno pressing the button.
 	var/mob/living/carbon/xenomorph/xeno_target = locate(params["xeno"])
 	if(QDELETED(xeno_target))
 		return
+
 	switch(action)
 		if("Evolve")
 			if(!isxeno(usr))
@@ -240,10 +265,6 @@
 			if(!isxeno(usr))
 				return
 			SEND_SIGNAL(usr, COMSIG_XENOABILITY_BLESSINGSMENU)
-		if("ToggleEmpty")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_EMPTY)
 		if("Compass")
 			var/atom/target = locate(params["target"])
 			if(isobserver(usr))
@@ -252,26 +273,6 @@
 			if(!isxeno(usr))
 				return
 			xeno_target.set_tracked(target)
-		if("ToggleGeneral")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_GENERAL)
-		if("ToggleCompact")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_COMPACT_MODE)
-		if("TogglePopulation")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_POPULATION)
-		if("ToggleXenoList")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_XENO_LIST)
-		if("ToggleStructures")
-			if(!isxeno(usr))
-				return
-			TOGGLE_BITFIELD(xeno_target.status_toggle_flags, HIVE_STATUS_SHOW_STRUCTURES)
 
 /// Returns the string location of the xeno
 /datum/hive_status/proc/get_xeno_location(atom/xeno)
@@ -874,12 +875,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 		to_chat(X, "<span class='[span_class]'><font size=[size]> [message][report_distance ? " Distance: [get_dist(X, target)]" : ""]</font></span>")
 
-// This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
-/datum/hive_status/proc/hive_mind_message(mob/living/carbon/xenomorph/sender, message)
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/X = i
-		X.receive_hivemind_message(sender, message)
-
 ///Used for setting the trackers of all xenos in the hive, like when a nuke activates
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
@@ -1039,7 +1034,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	message_admins("[key_name(xeno_candidate)] has joined as [ADMIN_TPMONTY(new_xeno)].")
 
 	xeno_candidate.mob.mind.transfer_to(new_xeno, TRUE)
-	new_xeno.playsound_local(new_xeno, 'sound/effects/xeno_newlarva.ogg')
+	new_xeno.playsound_local(new_xeno, 'sound/effects/alien/new_larva.ogg')
 	to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva awakened from slumber!"))
 	if(!larva_already_reserved)
 		xeno_job.occupy_job_positions(1)
@@ -1199,7 +1194,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
 	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
 
-	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + length(psychictowers) + 1, 1))
+	tier3_xeno_limit = max(threes, FLOOR(((zeros + ones + twos + fours) - SSticker.mode.tier_three_penalty) / 3 + length(psychictowers) + 1, 1))
 	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(psychictowers) * 2 + 1 - threes)
 
 // ***************************************

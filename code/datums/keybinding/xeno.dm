@@ -252,6 +252,19 @@
 	keybind_signal = COMSIG_XENOABILITY_BOMBARD
 	hotkey_keys = list("R")
 
+/datum/keybinding/xeno/acid_shroud
+	name = "acid_shroud"
+	full_name = "Boiler: Acid Shroud"
+	description = "Create a smokescreen for a getaway."
+	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD
+	hotkey_keys = list("Q")
+
+/datum/keybinding/xeno/acid_shroud_select
+	name = "select_acid_shroud"
+	full_name = "Boiler: Select Acid Shroud"
+	description = "Create a smokescreen for a getaway."
+	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD_SELECT
+
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
 	full_name = "Bull: Plow Charge"
@@ -674,12 +687,36 @@
 	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/dodge
+	name = "Dodge"
+	full_name = "Praetorian: Dodge"
+	description = "Gain a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
+	keybind_signal = COMSIG_XENOABILITY_DODGE
+
+/datum/keybinding/xeno/impale
+	name = "Impale"
+	full_name = "Praetorian: Impale"
+	description = "Impale a marine next to you with your tail for moderate damage. Marked enemies are impaled twice."
+	keybind_signal = COMSIG_XENOABILITY_IMPALE
+
+/datum/keybinding/xeno/tail_trip
+	name = "Tail Trip"
+	full_name = "Praetorian: Tail Trip"
+	description = "Target a marine within two tiles of you to disorient and slows them. Marked enemies receive stronger debuffs and are stunned for a second."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_TRIP
+
 /datum/keybinding/xeno/screech
 	name = "screech"
 	full_name = "Queen: Screech"
 	description = ""
 	keybind_signal = COMSIG_XENOABILITY_SCREECH
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/screech_switch
+	name = "screech_switch"
+	full_name = "Queen: Screech Switch"
+	description = "Switches the type of Screech that will be performed."
+	keybind_signal = COMSIG_XENOABILITY_SCREECH_SWITCH
 
 /datum/keybinding/xeno/toggle_queen_zoom
 	name = "toggle_queen_zoom"
@@ -1114,6 +1151,12 @@
 	full_name = "Behemoth: Landslide"
 	description = "Rush forward in the selected direction, damaging enemies caught in a wide path."
 	keybind_signal = COMSIG_XENOABILITY_LANDSLIDE
+
+/datum/keybinding/xeno/cancel_landslide
+	name = "Cancel Landslide"
+	full_name = "Behemoth: Cancel Landslide"
+	description = "Cancels landslide without having to select the ability"
+	keybind_signal = COMSIG_XENOABILITY_CANCEL_LANDSLIDE
 
 /datum/keybinding/xeno/earth_riser
 	name = "Earth Riser"

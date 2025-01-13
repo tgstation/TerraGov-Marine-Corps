@@ -2053,10 +2053,6 @@
 /obj/structure/table/mainship,
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/daedalusprison/inside/engineering)
-"bLB" = (
-/obj/structure/prop/vehicle/truck/destructible,
-/turf/open/floor/plating/ground/concrete,
-/area/daedalusprison/inside/garage)
 "bLJ" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
 /turf/open/floor/plating,
@@ -4986,10 +4982,6 @@
 /obj/structure/cable,
 /turf/open/floor/prison/darkred,
 /area/daedalusprison/inside/centralhalls)
-"eeH" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible,
-/turf/open/floor/plating/ground/concrete,
-/area/daedalusprison/inside/garage)
 "eeZ" = (
 /turf/closed/wall,
 /area/daedalusprison/inside/hydroponics)
@@ -5410,7 +5402,7 @@
 /area/daedalusprison/inside/cargo)
 "evD" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/kitchen,
@@ -5700,10 +5692,6 @@
 	dir = 6
 	},
 /area/daedalusprison/inside/colonydorms)
-"eIU" = (
-/obj/effect/landmark/patrol_point/tgmc_14,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/northwest)
 "eIZ" = (
 /obj/effect/spawner/random/misc/plant,
 /turf/open/floor/prison/darkyellow{
@@ -5887,6 +5875,12 @@
 	dir = 10
 	},
 /area/daedalusprison/inside/mechanicshop)
+"eRC" = (
+/obj/structure/prop/vehicle/truck/truckcargo{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/daedalusprison/inside/garage)
 "eRN" = (
 /obj/structure/table/mainship,
 /obj/item/tool/minihoe,
@@ -7200,6 +7194,10 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/security/office)
+"fTQ" = (
+/obj/effect/landmark/patrol_point/tgmc_21,
+/turf/open/floor/plating,
+/area/daedalusprison/inside/landingzoneone)
 "fTR" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 10
@@ -7504,6 +7502,10 @@
 	dir = 8
 	},
 /area/daedalusprison/inside/mechanicshop)
+"gkO" = (
+/obj/effect/landmark/patrol_point/tgmc_11,
+/turf/open/floor/plating/ground/ice,
+/area/daedalusprison/caves/northwest/garbledradio)
 "glb" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 5
@@ -7900,10 +7902,6 @@
 /obj/machinery/vending/cola,
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/colonydorms)
-"gzV" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/southwest/garbledradio)
 "gAD" = (
 /obj/structure/table/mainship,
 /turf/open/floor/prison/kitchen,
@@ -7963,10 +7961,6 @@
 	dir = 8
 	},
 /area/daedalusprison/inside/laundromat)
-"gDm" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/northeast)
 "gDy" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -9426,10 +9420,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/centralhalls)
-"hUv" = (
-/obj/effect/landmark/patrol_point/tgmc_12,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/northwest)
 "hUT" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/prison/darkred{
@@ -11488,6 +11478,12 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/daedalusprison/inside/chapel)
+"jAA" = (
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/daedalusprison/outside/east)
 "jBa" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/ammo_casing/bullet,
@@ -14734,10 +14730,6 @@
 	dir = 1
 	},
 /area/daedalusprison/inside/westernbooth)
-"mfR" = (
-/obj/effect/landmark/patrol_point/tgmc_23,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
 "mfS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/blood/gibs,
@@ -16834,10 +16826,6 @@
 	},
 /turf/open/floor/plating/ground/snow/layer2,
 /area/daedalusprison/outside/south)
-"nNx" = (
-/obj/structure/prop/vehicle/truck/destructible,
-/turf/open/floor/plating/ground/concrete,
-/area/daedalusprison/outside/east)
 "nNB" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/glass,
@@ -17344,7 +17332,7 @@
 /area/daedalusprison/inside/security/medsec)
 "olj" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/kitchen)
 "oly" = (
@@ -19203,10 +19191,6 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/medical)
-"pCr" = (
-/obj/effect/landmark/patrol_point/tgmc_22,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
 "pCw" = (
 /obj/machinery/sleeper{
 	dir = 8
@@ -20586,7 +20570,7 @@
 /turf/open/floor/prison,
 /area/daedalusprison/inside/southclass)
 "qNn" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 4
 	},
 /turf/open/floor/tile/dark2,
@@ -21079,10 +21063,6 @@
 	},
 /turf/open/floor/prison/red,
 /area/daedalusprison/inside/habitationnorth)
-"rkk" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/northeast)
 "rkp" = (
 /obj/effect/turf_decal/tracks/wheels/bloody,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -21799,10 +21779,6 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/centralhalls)
-"rLe" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/southwest/garbledradio)
 "rLi" = (
 /obj/item/tool/wet_sign,
 /turf/open/floor/prison/darkred,
@@ -22161,7 +22137,7 @@
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/bunker)
 "sbN" = (
-/obj/structure/prop/vehicle/truck/truckcargo/destructible{
+/obj/structure/prop/vehicle/truck/truckcargo{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/concrete,
@@ -23098,10 +23074,6 @@
 	},
 /turf/open/floor/wood,
 /area/daedalusprison/inside/bar)
-"sJA" = (
-/obj/effect/landmark/patrol_point/tgmc_24,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
 "sJI" = (
 /obj/structure/table/reinforced/weak,
 /obj/item/reagent_containers/spray/cleaner,
@@ -24279,10 +24251,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/daedalusprison/inside/hydroponics)
-"tIN" = (
-/obj/effect/landmark/patrol_point/tgmc_11,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/northwest)
 "tIQ" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -24687,7 +24655,7 @@
 /turf/open/floor,
 /area/daedalusprison/inside/hydroponics)
 "uai" = (
-/obj/structure/prop/vehicle/crane/cranecargo/destructible,
+/obj/structure/prop/vehicle/crane/cranecargo,
 /turf/open/floor/tile/dark2,
 /area/daedalusprison/inside/cargo)
 "uak" = (
@@ -24766,10 +24734,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/staffbreakroom)
-"uea" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/northeast)
 "uee" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/turf_decal/tracks/wheels/bloody{
@@ -26123,10 +26087,6 @@
 	},
 /turf/open/floor/tile/dark/yellow2/corner,
 /area/daedalusprison/inside/engineering)
-"viA" = (
-/obj/effect/landmark/patrol_point/tgmc_21,
-/turf/open/floor/plating/ground/snow/layer0,
-/area/daedalusprison/inside/landingzoneone)
 "viJ" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 1
@@ -27145,6 +27105,12 @@
 	dir = 4
 	},
 /area/daedalusprison/inside/security/office)
+"wbI" = (
+/obj/structure/prop/vehicle/truck{
+	dir = 8
+	},
+/turf/open/floor/plating/ground/concrete,
+/area/daedalusprison/inside/garage)
 "wcn" = (
 /obj/machinery/light{
 	dir = 8
@@ -28231,10 +28197,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/lobby)
-"wQq" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/southwest/garbledradio)
 "wQs" = (
 /obj/machinery/shower,
 /obj/machinery/light{
@@ -28598,7 +28560,7 @@
 /area/daedalusprison/inside/janitorial)
 "xdB" = (
 /obj/structure/table/mainship,
-/obj/item/tool/kitchen/tray,
+/obj/item/storage/kitchen_tray,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/kitchen,
 /area/daedalusprison/inside/kitchen)
@@ -29851,11 +29813,6 @@
 /obj/machinery/faxmachine,
 /turf/open/floor/tile/dark/red2/corner,
 /area/daedalusprison/inside/cargo)
-"yeO" = (
-/obj/effect/landmark/patrol_point/tgmc_13,
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/turf/open/floor/plating/ground/ice,
-/area/daedalusprison/caves/northwest)
 "yfZ" = (
 /obj/structure/window/framed/prison/reinforced,
 /turf/open/floor/prison,
@@ -31055,7 +31012,7 @@ hoO
 ira
 kji
 mEN
-tIN
+ira
 ira
 hoO
 hoO
@@ -31477,11 +31434,11 @@ sLx
 hoO
 ira
 ira
-hUv
+ira
 ngx
 wTh
 kji
-eIU
+ira
 hoO
 sLx
 sLx
@@ -32326,7 +32283,7 @@ sLx
 sLx
 hoO
 hoO
-yeO
+iys
 iys
 iys
 iys
@@ -35476,7 +35433,7 @@ dVz
 dVz
 dVz
 dVz
-dtB
+dVz
 dVz
 dVz
 dVz
@@ -35687,7 +35644,7 @@ dVz
 dVz
 dVz
 dVz
-dVz
+dtB
 dVz
 dVz
 dVz
@@ -35896,7 +35853,7 @@ liI
 dVz
 dVz
 dVz
-rLe
+dVz
 dVz
 dVz
 dVz
@@ -36327,7 +36284,7 @@ dVz
 dVz
 dVz
 dVz
-gzV
+dVz
 dVz
 dVz
 dVz
@@ -36754,7 +36711,7 @@ liI
 dVz
 dVz
 dVz
-wQq
+dVz
 dVz
 dVz
 liI
@@ -42122,7 +42079,7 @@ sLx
 liI
 liI
 dXG
-vXd
+gkO
 avY
 aeT
 vXd
@@ -63623,7 +63580,7 @@ uLT
 oOP
 afh
 aif
-nNx
+jAA
 aif
 aif
 mJy
@@ -63826,10 +63783,10 @@ kVY
 hCI
 oOP
 oSI
-eeH
+eRC
 oSI
 oSI
-bLB
+wbI
 oSI
 das
 oOP
@@ -64462,17 +64419,17 @@ oFS
 oFS
 oOP
 oSI
-bLB
+wbI
 oSI
 oSI
-eeH
+eRC
 oSI
 oSI
 kkz
 aif
 aif
 aif
-nNx
+jAA
 aif
 mJy
 jdm
@@ -66683,7 +66640,7 @@ mkY
 mkY
 mkY
 mkY
-gDm
+mkY
 jxu
 jxu
 mkY
@@ -67104,7 +67061,7 @@ sLx
 hoO
 mkY
 nMf
-uea
+mkY
 cqx
 nMf
 mkY
@@ -67531,7 +67488,7 @@ hoO
 mkY
 bce
 mkY
-rkk
+mkY
 cqx
 nMf
 hoO
@@ -71946,7 +71903,7 @@ sHQ
 sHQ
 sHQ
 sHQ
-sHQ
+fTQ
 sHQ
 sHQ
 gfH
@@ -72163,7 +72120,7 @@ sHQ
 sHQ
 gfH
 gfH
-pCr
+gfH
 gfH
 gfH
 mYW
@@ -72801,7 +72758,7 @@ gfH
 gfH
 wWU
 gfH
-sJA
+gfH
 mYW
 wqt
 sLx
@@ -73008,7 +72965,7 @@ gfH
 gfH
 gfH
 gfH
-viA
+gfH
 gfH
 wWU
 gfH
@@ -73223,7 +73180,7 @@ gfH
 gfH
 gfH
 gfH
-mfR
+gfH
 gfH
 gfH
 mYW

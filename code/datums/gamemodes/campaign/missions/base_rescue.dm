@@ -73,12 +73,37 @@
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_pre_mission_bonuses()
 	. = ..()
-	spawn_mech(attacking_faction, 0, 0, 4)
-	spawn_mech(defending_faction, 0, 0, 2)
-
 	var/datum/faction_stats/defending_team = mode.stat_list[defending_faction]
 	defending_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_cas/instant)
 	defending_team.add_asset(/datum/campaign_asset/asset_disabler/tgmc_mortar/instant)
+
+	var/tanks_to_spawn = 0
+	var/mechs_to_spawn = 0
+	var/current_pop = length(GLOB.clients)
+	switch(current_pop)
+		if(0 to 59)
+			tanks_to_spawn = 0
+		if(60 to 75)
+			tanks_to_spawn = 1
+		if(76 to 90)
+			tanks_to_spawn = 2
+		else
+			tanks_to_spawn = 3
+
+	switch(current_pop)
+		if(0 to 39)
+			mechs_to_spawn = 1
+		if(40 to 49)
+			mechs_to_spawn = 2
+		if(50 to 79)
+			mechs_to_spawn = 3
+		else
+			mechs_to_spawn = 4
+
+	spawn_tank(attacking_faction, tanks_to_spawn)
+	spawn_tank(defending_faction, tanks_to_spawn)
+	spawn_mech(attacking_faction, 0, 0, mechs_to_spawn)
+	spawn_mech(defending_faction, 0, 0, max(0, mechs_to_spawn - 1))
 
 /datum/campaign_mission/destroy_mission/base_rescue/load_mission_brief()
 	starting_faction_mission_brief = "NanoTrasen has issues an emergency request for assistance at an isolated medical facility located in the Western Ayolan Ranges. \

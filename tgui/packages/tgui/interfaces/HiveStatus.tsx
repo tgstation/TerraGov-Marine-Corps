@@ -95,7 +95,7 @@ type DeathTimer = {
   end_time: number;
 };
 
-export const HiveStatus = (_props) => {
+export const HiveStatus = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const {
     hive_name,
@@ -186,7 +186,7 @@ const CachedCollapsible = (props: {
   );
 };
 
-const BlessingsButton = (_props) => {
+const BlessingsButton = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const { user_purchase_perms, user_ref } = data;
 
@@ -206,7 +206,7 @@ const BlessingsButton = (_props) => {
   );
 };
 
-const GeneralInfo = (_props) => {
+const GeneralInfo = (_props: any) => {
   const { data } = useBackend<InputPack>();
   const {
     hive_larva_burrowed,
@@ -331,7 +331,7 @@ const XenoCountdownBar = (props: {
   );
 };
 
-const LarvaBar = (_props) => {
+const LarvaBar = (_props: any) => {
   const { data } = useBackend<InputPack>();
   const { hive_larva_current, hive_larva_threshold, hive_larva_rate } = data;
 
@@ -355,7 +355,7 @@ const LarvaBar = (_props) => {
   );
 };
 
-const MaturityBar = (_props) => {
+const MaturityBar = (_props: any) => {
   const { data } = useBackend<InputPack>();
   const { user_xeno, user_maturity, user_next_mat_level } = data;
 
@@ -385,7 +385,7 @@ const MaturityBar = (_props) => {
   );
 };
 
-const EvolutionBar = (_props) => {
+const EvolutionBar = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const { static_info, user_ref, user_xeno, user_index, user_evolution } = data;
 
@@ -427,7 +427,7 @@ type PyramidCalc = {
   total: number; // Total xeno count for this tier.
 };
 
-const PopulationPyramid = (_props) => {
+const PopulationPyramid = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const {
     hive_max_tier_two,
@@ -441,8 +441,6 @@ const PopulationPyramid = (_props) => {
     user_show_empty,
     user_show_compact,
   } = data;
-  const [showEmpty, toggleEmpty] = useState(true);
-  const [showCompact, toggleCompact] = useState(false);
 
   const primos: boolean[] = []; // Index is tier.
   const pyramid_data: PyramidCalc[] = [];
@@ -479,28 +477,7 @@ const PopulationPyramid = (_props) => {
     hive_total++;
   });
 
-  const ShowButtons = (_props) => {
-    if (!user_xeno) {
-      // Observers will not be able to cache empty toggle.
-      return (
-        <div>
-          <Button.Checkbox
-            checked={showCompact}
-            onClick={() => toggleCompact(!showCompact)}
-          >
-            Compact Mode
-          </Button.Checkbox>
-          <Button.Checkbox
-            checked={showEmpty}
-            tooltip="Display all castes"
-            onClick={() => toggleEmpty(!showEmpty)}
-          >
-            Show Empty
-          </Button.Checkbox>
-        </div>
-      );
-    }
-
+  const ShowButtons = (_props: any) => {
     return (
       <div>
         <Button.Checkbox
@@ -520,18 +497,15 @@ const PopulationPyramid = (_props) => {
     );
   };
 
-  const compact_display = user_xeno ? user_show_compact : showCompact;
-  const empty_display = user_xeno ? user_show_empty : showEmpty;
-
   return (
     <Section
       title={`Total Living Sisters: ${hive_total}`}
-      align={compact_display ? 'left' : 'center'}
+      align={user_show_compact ? 'left' : 'center'}
       buttons={<ShowButtons />}
     >
       <Flex
         direction="column-reverse"
-        align={compact_display ? 'left' : 'center'}
+        align={user_show_compact ? 'left' : 'center'}
       >
         {pyramid_data.map((tier_info, tier) => {
           // Hardcoded tier check for limited slots.
@@ -541,20 +515,18 @@ const PopulationPyramid = (_props) => {
               : 0 + tier === 3
                 ? hive_max_tier_three
                 : 0;
-          const TierSlots = (_props) => {
+          const TierSlots = (_props: any) => {
             return (
               <Box
                 as="span"
                 textColor={tier_info.total === max_slots ? 'bad' : 'good'}
               >
-                ({tier_info.total}/{max_slots})
+                ({tier_info.total}/{max_slots || 0})
               </Box>
             );
           };
           const slot_text =
             tier === 2 || tier === 3 ? <TierSlots /> : tier_info.total;
-          // Praetorian name way too long. Clips into Rav.
-          const row_width = tier === 3 ? 8 : 7;
           const primordial = primos[tier] ? (
             <Box as="span" textColor="good">
               [Primordial]
@@ -562,7 +534,7 @@ const PopulationPyramid = (_props) => {
           ) : (
             ''
           );
-          if (compact_display) {
+          if (user_show_compact) {
             // Display less busy compact mode
             if (tier === 0) {
               return (
@@ -583,11 +555,11 @@ const PopulationPyramid = (_props) => {
                 {tier === 2 || tier === 3
                   ? ` (${tier_info.total}/${max_slots || 0}) `
                   : ` ${tier_info.total} `}
-                Sisters {!empty_display && tier_info.total === 0 ? '' : '| '}
+                Sisters {!user_show_empty && tier_info.total === 0 ? '' : '| '}
                 {tier_info.index
                   .map((value, idx) => {
                     const count = tier_info.caste[idx];
-                    if (!empty_display && count === 0) {
+                    if (!user_show_empty && count === 0) {
                       return null;
                     }
                     const static_entry = static_info[value];
@@ -609,14 +581,14 @@ const PopulationPyramid = (_props) => {
               <Flex className="Section__content">
                 {tier_info.index.map((value, idx) => {
                   const count = tier_info.caste[idx];
-                  if (!empty_display && count === 0) {
+                  if (!user_show_empty && count === 0) {
                     return <Box key={tier} />;
                   }
                   const static_entry = static_info[value];
                   return (
                     <Flex.Item
                       width="100%"
-                      minWidth={row_width}
+                      minWidth={8}
                       bold
                       key={static_entry.name}
                     >
@@ -634,14 +606,14 @@ const PopulationPyramid = (_props) => {
               </Flex>
               <Flex>
                 {tier_info.caste.map((count, idx) => {
-                  if (!empty_display && count === 0) {
+                  if (!user_show_empty && count === 0) {
                     return <Box key={tier} />;
                   }
                   const static_entry = static_info[tier_info.index[idx]];
                   return (
                     <Flex.Item
                       width="100%"
-                      minWidth={row_width}
+                      minWidth={8}
                       key={static_entry.name}
                       fontSize={static_entry.is_unique ? 1 : 1.25}
                     >
@@ -680,7 +652,7 @@ const default_sort: sort_by = {
   down: true,
 };
 
-const XenoList = (_props) => {
+const XenoList = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
   const {
     xeno_info,
@@ -1018,7 +990,7 @@ const ActionButtons = (props: ActionButtonProps) => {
   );
 };
 
-const StructureList = (_props) => {
+const StructureList = (_props: any) => {
   const { act, data } = useBackend<InputPack>();
 
   const { user_ref, hive_structures, user_tracked } = data;

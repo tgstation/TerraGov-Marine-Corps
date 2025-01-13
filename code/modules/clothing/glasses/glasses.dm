@@ -27,6 +27,14 @@
 	///Color to use for the HUD tint; leave null if no tint
 	var/tint
 
+/obj/item/clothing/glasses/examine_descriptor(mob/user)
+	return "eyewear"
+
+/obj/item/clothing/glasses/examine_tags(mob/user)
+	. = ..()
+	if(prescription)
+		.["prescription"] = "It will help reduce symptoms of nearsightedness when worn."
+
 /obj/item/clothing/glasses/Initialize(mapload)
 	. = ..()
 	if(active)	//For glasses that spawn active
@@ -233,7 +241,6 @@
 	worn_icon_state = "welding-g"
 	actions_types = list(/datum/action/item_action/toggle)
 	inventory_flags = COVEREYES
-	inv_hide_flags = HIDEEYES
 	eye_protection = 2
 	activation_sound = null
 	deactivation_sound = null
@@ -263,7 +270,6 @@
 ///Toggle the welding goggles on
 /obj/item/clothing/glasses/welding/proc/flip_up(mob/user)
 	DISABLE_BITFIELD(inventory_flags, COVEREYES)
-	DISABLE_BITFIELD(inv_hide_flags, HIDEEYES)
 	DISABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = 0
 	update_icon()
@@ -273,7 +279,6 @@
 ///Toggle the welding goggles off
 /obj/item/clothing/glasses/welding/proc/flip_down(mob/user)
 	ENABLE_BITFIELD(inventory_flags, COVEREYES)
-	ENABLE_BITFIELD(inv_hide_flags, HIDEEYES)
 	ENABLE_BITFIELD(armor_protection_flags, EYES)
 	eye_protection = initial(eye_protection)
 	update_icon()
@@ -371,12 +376,13 @@
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/fake/big
+	name = "big sunglasses"
 	desc = "A pair of larger than average designer sunglasses. Doesn't seem like it'll block flashes."
 	icon_state = "bigsunglasses"
 	worn_icon_state = "bigsunglasses"
 
 /obj/item/clothing/glasses/sunglasses/fake/big/prescription
-	name = "prescription sunglasses"
+	name = "big prescription sunglasses"
 	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/sechud

@@ -58,6 +58,8 @@ GLOBAL_LIST_EMPTY(campaign_objectives)
 GLOBAL_LIST_EMPTY(campaign_structures)
 ///List of all mech spawners in campaign mode
 GLOBAL_LIST_EMPTY(campaign_mech_spawners)
+///List of all tank spawners in campaign mode
+GLOBAL_LIST_EMPTY(campaign_tank_spawners)
 ///Locations for rewards to spawn by faction
 GLOBAL_LIST_EMPTY(campaign_reward_spawners)
 ///List of all teleporter arrays
@@ -111,6 +113,7 @@ GLOBAL_LIST_EMPTY(xeno_resin_turrets_by_hive)
 GLOBAL_LIST_EMPTY(xeno_spawners_by_hive)
 GLOBAL_LIST_EMPTY(xeno_structures_by_hive)
 GLOBAL_LIST_EMPTY(xeno_critical_structures_by_hive)
+GLOBAL_LIST_EMPTY(xeno_acid_jaws_by_hive)
 
 GLOBAL_LIST_EMPTY(shuttle_controls_list)
 

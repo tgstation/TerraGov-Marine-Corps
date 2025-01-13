@@ -220,6 +220,19 @@
 	anti_hug = 6
 	item_map_variant_flags = (ITEM_JUNGLE_VARIANT|ITEM_ICE_VARIANT|ITEM_PRISON_VARIANT)
 
+/obj/item/clothing/head/helmet/marine/specialist/tdf
+	name = "\improper Ace Class Hardsuit Helmet"
+	desc = "The helmet that pairs with the Ace hardsuit, heavily armored and reinforced."
+	icon = 'icons/mob/modular/tdf_helmets.dmi'
+	worn_icon_list = list(
+		slot_head_str = 'icons/mob/modular/tdf_helmets.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/hats_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/hats_right.dmi',
+	)
+	icon_state = "tdf_helmet_hardsuit"
+	worn_icon_state = "tdf_helmet_hardsuit"
+	item_map_variant_flags = NONE
+
 /obj/item/clothing/head/helmet/marine/grenadier
 	name = "\improper B17 helmet"
 	desc = "A heavy duty helmet created to complement the B17 marine armor. Practically explosive proof. Unless you stand next to a nuke or something like that."

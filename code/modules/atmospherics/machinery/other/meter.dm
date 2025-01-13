@@ -71,7 +71,7 @@
 		deconstruct()
 	return TRUE
 
-/obj/machinery/meter/deconstruct(disassembled = TRUE)
+/obj/machinery/meter/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		new /obj/item/pipe_meter(loc)
 	return ..()

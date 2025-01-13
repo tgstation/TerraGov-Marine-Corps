@@ -220,23 +220,15 @@
 /obj/item/cell/proc/is_fully_charged()
 	return charge == maxcharge
 
-/**
- * Determines explosivity based on charge, then explodes
- *
- * * 1000-cell	explosion(epicenter, 0, 0, 1, 1)
- * * 2500-cell	explosion(epicenter, 0, 0, 1, 1)
- * * 10000-cell	explosion(epicenter, 0, 1, 3, 3)
- * * 15000-cell	explosion(epicenter, 0, 2, 4, 4)
- */
+///Explodes, scaling with cell charge
 /obj/item/cell/proc/explode()
-	var/turf/epicenter = get_turf(loc)
+	var/turf/epicenter = get_turf(src)
 
-	var/devastation_range = 0 //round(charge/11000)
 	var/heavy_impact_range = clamp(round(sqrt(charge) * 0.01), 0, 3)
 	var/light_impact_range = clamp(round(sqrt(charge) * 0.15), 0, 4)
-	var/flash_range = clamp(round(sqrt(charge) * 0.15), -1, 4)
+	var/flash_range = clamp(round(sqrt(charge) * 0.05), -1, 4)
 
-	explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, 0, flash_range)
+	explosion(epicenter, 0, heavy_impact_range, light_impact_range, 0, flash_range)
 
 	QDEL_IN(src, 1)
 

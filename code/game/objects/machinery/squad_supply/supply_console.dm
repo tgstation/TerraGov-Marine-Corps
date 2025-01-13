@@ -8,7 +8,7 @@
 	interaction_flags = INTERACT_MACHINE_TGUI
 	circuit = /obj/item/circuitboard/computer/supplydrop
 	///Time between two supply drops
-	var/launch_cooldown = 30 SECONDS
+	var/launch_cooldown = 15 SECONDS
 	///The beacon we will send the supplies
 	var/datum/supply_beacon/supply_beacon = null
 	///The linked supply pad of this console
@@ -81,7 +81,7 @@
 					beacon_list -= beacon_name
 					continue
 			var/datum/supply_beacon/supply_beacon_choice = beacon_list[tgui_input_list(ui.user, "Select the beacon to send supplies", "Beacon choice", beacon_list)]
-			if(!istype(supply_beacon_choice) && is_ground_level(supply_beacon.drop_location.z))
+			if(!istype(supply_beacon_choice) && is_ground_level(supply_beacon?.drop_location?.z))
 				return
 			supply_beacon = supply_beacon_choice
 			RegisterSignal(supply_beacon, COMSIG_QDELETING, PROC_REF(clean_supply_beacon), override = TRUE)

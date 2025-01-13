@@ -126,3 +126,19 @@ one type of shotgun ammo, but I think it helps in referencing it. ~N
 	icon_state = "mbx900_tracker"
 	default_ammo = /datum/ammo/bullet/shotgun/mbx900_tracker
 	icon_state_mini = "mbx900_tracker"
+
+/obj/item/ammo_magazine/shotgun/heavy_buckshot
+	name = "box of 6 gauge buckshot shells"
+	desc = "A box filled with buckshot spread shotgun shells. 6 Gauge."
+	caliber = CALIBER_6G
+	icon_state = "heavy_shotgun_buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/heavy_buckshot
+	icon_state_mini = "buckshot"
+
+/obj/item/ammo_magazine/shotgun/barrikada
+	name = "box of 6 gauge 'Barrikada' shells"
+	desc = "A box filled with high velocity shotgun slugs nicknamed 'Barrikada'. Rated to break through basically everything up to including tank engines. 6 Gauge."
+	caliber = CALIBER_6G
+	icon_state = "heavy_shotgun_barrikada"
+	default_ammo = /datum/ammo/bullet/shotgun/barrikada_slug
+	icon_state_mini = "buckshot"

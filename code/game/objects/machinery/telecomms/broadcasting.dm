@@ -199,6 +199,11 @@
 			continue
 		hearer.Hear(rendered, virt, language, message, frequency, spans)
 
+	var/atom/movable/speaker = virt?.source
+	var/list/tts_listeners = filter_tts_listeners(speaker, receive, frequency, (frequency == FREQ_COMMAND || frequency == FREQ_COMMAND_SOM) ? RADIO_TTS_COMMAND : NONE)
+	if(length(tts_listeners))
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), speaker, html_decode(message), language, speaker.voice, speaker.voice_filter, tts_listeners, FALSE, pitch = speaker.pitch, special_filters = TTS_FILTER_RADIO, directionality = FALSE)
+
 	var/spans_part = ""
 	if(length(spans))
 		spans_part = "(spans:"

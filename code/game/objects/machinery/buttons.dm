@@ -281,12 +281,11 @@
 		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
 	linked = new xeno_wanted(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 
-/obj/machinery/button/valhalla/xeno_button
+/obj/machinery/button/valhalla/marine_spawner
 	name = "Marine spawner"
-	///The list of outfits we can equip on the humans we're spawning
-	var/outfit_list = list()
 
-/obj/machinery/button/valhalla/xeno_button/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+/// Generates a list of jobs datums to spawn on a mob
+/obj/machinery/button/valhalla/marine_spawner/proc/spawn_humans(mob/living/user)
 	var/list/job_outfits = list()
 	for(var/type in subtypesof(/datum/outfit/job))
 		if(istype(type, /datum/outfit))
@@ -298,41 +297,46 @@
 	job_outfits = sortList(job_outfits)
 	job_outfits.Insert(1, "Naked")
 
-	var/datum/outfit/selected_outfit = tgui_input_list(usr, "Which outfit do you want the human to wear?", "Human spawn", job_outfits)
+	var/datum/outfit/selected_outfit = tgui_input_list(user, "Which outfit do you want the human to wear?", "Human spawn", job_outfits)
 	if(!selected_outfit)
 		return
 
 	QDEL_NULL(linked)
 	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
-		to_chat(xeno_attacker, span_warning("An error occured, yell at the coders."))
+		to_chat(user, span_warning("An error occured, yell at the coders."))
 		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
 	linked = new /mob/living/carbon/human(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
 	if(selected_outfit == "Naked" || !selected_outfit)
 		return
 	linked.equipOutfit(job_outfits[selected_outfit], FALSE)
 
+/obj/machinery/button/valhalla/marine_spawner/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	spawn_humans(xeno_attacker)
+
+/obj/machinery/button/valhalla/marine_spawner/attack_hand(mob/living/user)
+	spawn_humans(user)
+	var/list/item_blacklist = typecacheof(list(
+		/obj/item/supplytablet,
+		/obj/item/radio/headset,
+	))
+	for(var/obj/item/item in linked.contents)
+		if(item.type in item_blacklist)
+			qdel(item) // Prevents blacklisted items from being spawned, like ASRS tablets and headsets
+
 /obj/machinery/button/valhalla/vehicle_button
 	name = "Vehicle Spawner"
 
-/obj/machinery/button/valhalla/vehicle_button/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
-	var/list/spawnable_vehicles = list(/obj/vehicle/sealed/armored/multitile,
-	/obj/vehicle/sealed/armored/multitile/apc)
+/// Generates a list of vehicles to spawn
+/obj/machinery/button/valhalla/vehicle_button/proc/spawn_vehicles(mob/living/user)
+	var/list/spawnable_vehicles = list(
+		/obj/vehicle/sealed/armored/multitile,
+		/obj/vehicle/sealed/armored/multitile/apc,
+		/obj/vehicle/sealed/armored/multitile/som_tank,
+		/obj/vehicle/sealed/armored/multitile/campaign,
+		/obj/vehicle/sealed/armored/multitile/icc_lvrt,
+	)
 
-	var/selected_vehicle = tgui_input_list(usr, "Which vehicle do you want to spawn?", "Vehicle spawn", spawnable_vehicles)
-	if(!selected_vehicle)
-		return
-
-	QDEL_NULL(linked)
-	if(!get_turf(GLOB.valhalla_button_spawn_landmark[link]))
-		to_chat(xeno_attacker, span_warning("An error occured, yell at the coders."))
-		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
-	linked = new selected_vehicle(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
-
-/obj/machinery/button/valhalla/vehicle_button/attack_hand(mob/living/user)
-	var/list/spawnable_vehicles = list(/obj/vehicle/sealed/armored/multitile,
-	/obj/vehicle/sealed/armored/multitile/apc)
-
-	var/selected_vehicle = tgui_input_list(usr, "Which vehicle do you want to spawn?", "Vehicle spawn", spawnable_vehicles)
+	var/selected_vehicle = tgui_input_list(user, "Which vehicle do you want to spawn?", "Vehicle spawn", spawnable_vehicles)
 	if(!selected_vehicle)
 		return
 
@@ -341,5 +345,11 @@
 		to_chat(user, span_warning("An error occured, yell at the coders."))
 		CRASH("Valhalla button linked with an improper landmark: button ID: [link].")
 	linked = new selected_vehicle(get_turf(GLOB.valhalla_button_spawn_landmark[link]))
+
+/obj/machinery/button/valhalla/vehicle_button/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
+	spawn_vehicles(xeno_attacker)
+
+/obj/machinery/button/valhalla/vehicle_button/attack_hand(mob/living/user)
+	spawn_vehicles(user)
 
 #undef DOOR_FLAG_OPEN_ONLY

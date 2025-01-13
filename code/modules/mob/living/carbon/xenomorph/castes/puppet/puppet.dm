@@ -33,7 +33,7 @@
 	if(!QDELETED(src))
 		gib()
 
-/mob/living/carbon/xenomorph/puppet/Life()
+/mob/living/carbon/xenomorph/puppet/Life(seconds_per_tick, times_fired)
 	. = ..()
 	var/atom/movable/master = weak_master?.resolve()
 	if(!master)
@@ -42,14 +42,6 @@
 		adjustBruteLoss(15)
 	else
 		adjustBruteLoss(-5)
-
-/mob/living/carbon/xenomorph/puppet/can_receive_aura(aura_type, atom/source, datum/aura_bearer/bearer)
-	. = ..()
-	var/atom/movable/master = weak_master?.resolve()
-	if(!master)
-		return
-	if(source != master) //puppeteer phero only
-		return FALSE
 
 /mob/living/carbon/xenomorph/puppet/med_hud_set_status()
 	. = ..()

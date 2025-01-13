@@ -131,6 +131,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isAI(A) (istype(A, /mob/living/silicon/ai))
 
+#define isAIeye(A) (istype(A, /mob/camera/aiEye))
+
 //Simple animals
 #define isanimal(A) (istype(A, /mob/living/simple_animal))
 
@@ -179,6 +181,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define isdatumstorage(A) (istype(A, /datum/storage))
 
 #define isstorageobj(A) (istype(A, /obj/item/storage))
+
+#define isholster(A) (istype(A, /obj/item/storage/holster))
 
 #define isitemstack(A) (istype(A, /obj/item/stack))
 
@@ -242,7 +246,7 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isAPC(A) (istype(A, /obj/machinery/power/apc))
 
-#define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/rune)) //if something is cleanable
+#define is_cleanable(A) (istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/decal/cleanable/rune)) //if something is cleanable
 
 #define isvehicle(A) (istype(A, /obj/vehicle))
 
@@ -275,11 +279,6 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 #define is_reagent_container(O) (istype(O, /obj/item/reagent_containers))
 
 #define isimplant(A) (istype(A, /obj/item/implant))
-
-#define isdoorkey(A) istype(A, /obj/item/key/door)
-
-#define islock(A) istype(A, /obj/item/lock)
-
 //Assemblies
 #define isassembly(O) (istype(O, /obj/item/assembly))
 

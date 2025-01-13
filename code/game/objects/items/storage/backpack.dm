@@ -369,9 +369,8 @@
 
 /obj/item/storage/backpack/marine/duffelbag
 	name = "\improper TGMC Duffelbag"
-	desc = "A massive bag designed for those interested in being the squad Mule. \
-	Features extra storage space at the cost of speed. \
-	Any squadmates can easily access the storage with right-click"
+	desc = "A hard to reach backpack with no draw delay but is hard to access. \
+	Any squadmates can easily access the storage with right-click."
 	icon = 'icons/obj/items/storage/duffelbag.dmi'
 	icon_state = "duffel"
 	worn_icon_state = "duffel"
@@ -381,12 +380,13 @@
 	. = ..()
 	if(slot == SLOT_BACK)
 		RegisterSignal(equipper, COMSIG_CLICK_RIGHT, PROC_REF(on_rclick_duffel_wearer))
+		RegisterSignal(equipper, COMSIG_MOVABLE_MOVED, PROC_REF(on_wearer_move))
 		for(var/mob/M AS in storage_datum.content_watchers)
 			storage_datum.close(M)
 
 /obj/item/storage/backpack/marine/duffelbag/unequipped(mob/unequipper, slot)
 	. = ..()
-	UnregisterSignal(unequipper, COMSIG_CLICK_RIGHT)
+	UnregisterSignal(unequipper, list(COMSIG_CLICK_RIGHT, COMSIG_MOVABLE_MOVED))
 
 /obj/item/storage/backpack/marine/duffelbag/Adjacent(atom/neighbor, atom/target, atom/movable/mover)
 	if(item_flags & IN_INVENTORY && loc.Adjacent(neighbor)) //Special check to ensure that worn duffels are adjacent
@@ -396,9 +396,18 @@
 ///Allows non-wearers to access this inventory
 /obj/item/storage/backpack/marine/duffelbag/proc/on_rclick_duffel_wearer(datum/source, mob/clicker)
 	SIGNAL_HANDLER
-	if(clicker == loc || !source.Adjacent(clicker)) //Wearer can't open this inventory
+	if(clicker == loc || !source.Adjacent(clicker)) //Wearer can't use this to bypass restrictions
 		return
 	storage_datum.open(clicker)
+
+///Closes the duffelbag when our wearer moves if it's worn on user's back
+/obj/item/storage/backpack/marine/duffelbag/proc/on_wearer_move(datum/source)
+	SIGNAL_HANDLER
+	if(!iscarbon(source))
+		return
+	var/mob/living/carbon/carbon_user = source
+	if(carbon_user.back == src && carbon_user.s_active == storage_datum)
+		storage_datum.close(carbon_user)
 
 /datum/storage/backpack/duffelbag
 	access_delay = 0
@@ -418,12 +427,12 @@
 	if(!iscarbon(user))
 		return TRUE
 	var/mob/living/carbon/carbon_user = user
-	if(carbon_user.back == parent)
+	if(carbon_user.back == parent && !do_after(carbon_user, 2 SECONDS))
 		return TRUE
 	return ..()
 
 /datum/storage/backpack/duffelbag/attempt_draw_object(mob/living/carbon/user, start_from_left)
-	if(user.back == parent)
+	if(user.back == parent && user.s_active != src)
 		to_chat(user, span_notice("You can't grab anything out of [parent] while it's on your back."))
 		return
 	return ..()
@@ -511,16 +520,16 @@
 		return
 	if(camo_last_shimmer > world.time - SCOUT_CLOAK_STEALTH_DELAY) //Shimmer after taking aggressive actions
 		source.alpha = SCOUT_CLOAK_RUN_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_RUN_DRAIN)
 	else if(camo_last_stealth > world.time - SCOUT_CLOAK_STEALTH_DELAY) //We have an initial reprieve at max invisibility allowing us to reposition, albeit at a high drain rate
 		source.alpha = SCOUT_CLOAK_STILL_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_RUN_DRAIN)
 	else if(source.m_intent == MOVE_INTENT_WALK)
 		source.alpha = SCOUT_CLOAK_WALK_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_WALK_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_WALK_DRAIN)
 	else
 		source.alpha = SCOUT_CLOAK_RUN_ALPHA
-		camo_adjust_energy(src, SCOUT_CLOAK_RUN_DRAIN)
+		camo_adjust_energy(source, SCOUT_CLOAK_RUN_DRAIN)
 
 ///Activates the cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage()
@@ -783,6 +792,18 @@
 		to_chat(user, span_notice("You refill [RS] with fuel."))
 		RS.update_icon()
 
+	else if(istype(I, /obj/item/weapon/twohanded/chainsaw))
+		var/obj/item/weapon/twohanded/chainsaw/saw = I
+		if(saw.reagents.get_reagent_amount(/datum/reagent/fuel) == saw.max_fuel || !reagents.total_volume)
+			return ..()
+
+		var/fuel_transfer_amount = min(reagents.total_volume, (saw.max_fuel - saw.reagents.get_reagent_amount(/datum/reagent/fuel)))
+		reagents.remove_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		saw.reagents.add_reagent(/datum/reagent/fuel, fuel_transfer_amount)
+		playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		to_chat(user, span_notice("You refill [saw] with fuel."))
+		saw.update_icon()
+
 	else
 		return ..()
 
@@ -803,6 +824,12 @@
 	. = ..()
 	. += "[reagents.total_volume] units of fuel left!"
 
+/obj/item/storage/backpack/marine/engineerpack/som
+	name = "\improper SOM technician welderpack"
+	desc = "A specialized backpack worn by SOM technicians. It carries a fueltank for quick welder refueling."
+	icon_state = "som_engineer_pack"
+	worn_icon_state = "som_engineer_pack"
+	storage_type = /datum/storage/backpack/satchel
 
 /obj/item/storage/backpack/lightpack
 	name = "\improper lightweight combat pack"

@@ -819,6 +819,7 @@
 /obj/item/storage/box/visual/magazine/compact/standard_heavysmg
 	name = "SMG-45 magazine box"
 	desc = "A box specifically designed to hold a large amount of SMG-45 magazines."
+	closed_overlay = "mag_box_small_overlay_smg45"
 
 /obj/item/storage/box/visual/magazine/compact/standard_heavysmg/Initialize(mapload, ...)
 	. = ..()
@@ -968,7 +969,7 @@
 /obj/item/storage/box/visual/magazine/compact/lasrifle
 	name = "LR-73 cell box"
 	desc = "A box specifically designed to hold a large amount of TX-73 cells."
-	closed_overlay = "mag_box_small_overlay_tx73"
+	closed_overlay = "mag_box_small_overlay_lr73"
 
 /obj/item/storage/box/visual/magazine/compact/lasrifle/Initialize(mapload, ...)
 	. = ..()

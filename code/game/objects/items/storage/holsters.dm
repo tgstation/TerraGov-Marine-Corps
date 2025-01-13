@@ -500,16 +500,6 @@
 	name = "\improper M4A3 holster rig"
 	desc = "The M4A3 is a common holster belt. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry a handgun. It also contains side pouches that can store 9mm or .45 magazines."
 
-/obj/item/storage/holster/belt/pistol/m4a3/full/Initialize(mapload)
-	. = ..()
-	storage_datum.set_holdable(can_hold_list = list(
-		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol,
-		/obj/item/weapon/gun/energy/lasgun/lasrifle/standard_marine_pistol,
-		/obj/item/cell/lasgun/lasrifle,
-		/obj/item/cell/lasgun/plasma,
-	))
-
 /obj/item/storage/holster/belt/pistol/m4a3/full/PopulateContents()
 	var/obj/item/weapon/gun/new_gun = new /obj/item/weapon/gun/pistol/rt3(src)
 	new /obj/item/ammo_magazine/pistol/ap(src)
@@ -575,7 +565,7 @@
 	desc = "A belt with origins dating back to old colony security holster rigs."
 	icon_state = "som_belt_pistol"
 
-/obj/item/storage/holster/belt/pistol/m4a3/som/serpenta/Initialize(mapload, ...)
+/obj/item/storage/holster/belt/pistol/m4a3/som/Initialize(mapload, ...)
 	. = ..()
 	storage_datum.set_holdable(can_hold_list = list(
 		/obj/item/weapon/gun/pistol,
@@ -615,13 +605,6 @@
 /obj/item/storage/holster/belt/pistol/stand
 	name = "\improper M276 pattern M4A3 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the TGMC. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."
-
-/obj/item/storage/holster/belt/pistol/stand/Initialize(mapload, ...)
-	. = ..()
-	storage_datum.set_holdable(can_hold_list = list(
-		/obj/item/weapon/gun/pistol,
-		/obj/item/ammo_magazine/pistol,
-	))
 
 /obj/item/storage/holster/belt/pistol/standard_pistol
 	name = "\improper T457 pattern pistol holster rig"
@@ -743,7 +726,7 @@
 
 /obj/item/storage/holster/belt/pistol/smart_pistol
 	name = "\improper SP-13 holster rig"
-	desc = "A holster belt, which holds SP-13 smartpistol and magazines for it."
+	desc = "A holster belt, which holds SP-13 smart machinepistol and magazines for it."
 
 /obj/item/storage/holster/belt/pistol/smart_pistol/full/Initialize(mapload)
 	. = ..()

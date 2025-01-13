@@ -14,14 +14,14 @@
 	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 575
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 420
+	max_health = 400
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD

@@ -28,10 +28,13 @@
 	///If these weeds are not destroyed but just swapped
 	var/swapped = FALSE
 
-/obj/alien/weeds/deconstruct(disassembled = TRUE)
+/obj/alien/weeds/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	GLOB.round_statistics.weeds_destroyed++
 	SSblackbox.record_feedback("tally", "round_statistics", 1, "weeds_destroyed")
 	return ..()
+
+/obj/alien/weeds/plasmacutter_act(mob/living/user, obj/item/I)
+	return FALSE // Just attack normally.
 
 /obj/alien/weeds/Initialize(mapload, obj/alien/weeds/node/node, swapped = FALSE)
 	. = ..()

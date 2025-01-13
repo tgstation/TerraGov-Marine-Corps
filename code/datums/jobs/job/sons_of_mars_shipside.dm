@@ -599,7 +599,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the SOM h
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
-	r_store = /obj/item/storage/pouch/medkit/medic
+	r_store = /obj/item/storage/pouch/medkit/doctor
 	l_store = /obj/item/storage/pouch/surgery
 
 /datum/outfit/job/som/medical/professor/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

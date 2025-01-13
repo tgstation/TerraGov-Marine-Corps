@@ -359,7 +359,7 @@
 		title = name,
 		text = "Next mission is [name], selected by [starting_faction] on the battlefield of [map_name].",
 		sound_override = 'sound/ambience/votestart.ogg',
-		style = "game"
+		style = OOC_ALERT_GAME
 	)
 
 ///Intro when the mission is started
@@ -376,7 +376,7 @@
 		title = "[starting_faction] [outcome]",
 		text = "The engagement between [starting_faction] and [hostile_faction] on [map_name] has ended in a [starting_faction] [outcome]!",
 		play_sound = FALSE,
-		style = "game"
+		style = OOC_ALERT_GAME
 	)
 
 	map_text_broadcast(starting_faction, outro_message[outcome][MISSION_STARTING_FACTION], op_name_starting)
@@ -526,7 +526,9 @@
 	if(!mech_faction)
 		return
 	var/total_count = (heavy_mech + medium_mech + light_mech)
-	for(var/obj/effect/landmark/campaign/mech_spawner/mech_spawner AS in GLOB.campaign_mech_spawners[mech_faction])
+	if(!total_count)
+		return
+	for(var/obj/effect/landmark/campaign/vehicle_spawner/mech/mech_spawner AS in GLOB.campaign_mech_spawners[mech_faction])
 		if(!heavy_mech && !medium_mech && !light_mech)
 			break
 		var/new_mech
@@ -538,11 +540,28 @@
 			light_mech --
 		else
 			continue
-		new_mech = mech_spawner.spawn_mech()
+		new_mech = mech_spawner.spawn_vehicle()
 		GLOB.campaign_structures += new_mech
 		RegisterSignal(new_mech, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
 
 	map_text_broadcast(mech_faction, override_message ? override_message : "[total_count] mechs have been deployed for this mission.", "Mechs available")
+
+///spawns mechs for a faction
+/datum/campaign_mission/proc/spawn_tank(tank_faction, quantity, override_message)
+	if(!tank_faction)
+		return
+	if(!quantity)
+		return
+	var/remaining_count = quantity
+	for(var/obj/effect/landmark/campaign/vehicle_spawner/tank/tank_spawner AS in GLOB.campaign_tank_spawners[tank_faction])
+		if(!remaining_count)
+			break
+		remaining_count --
+		var/new_tank = tank_spawner.spawn_vehicle()
+		GLOB.campaign_structures += new_tank
+		RegisterSignal(new_tank, COMSIG_QDELETING, TYPE_PROC_REF(/datum/campaign_mission, remove_mission_object))
+
+	map_text_broadcast(tank_faction, override_message ? override_message : "[quantity] mechs have been deployed for this mission.", "Mechs available")
 
 ///Returns the current mission, if its the campaign gamemode
 /proc/get_current_mission()

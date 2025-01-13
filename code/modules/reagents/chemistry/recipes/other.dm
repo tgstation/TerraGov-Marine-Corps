@@ -228,28 +228,6 @@
 
 
 //Explosives and pyrotechnics
-
-
-/datum/chemical_reaction/flash_powder
-	name = "Flash powder"
-	required_reagents = list(/datum/reagent/aluminum = 1, /datum/reagent/potassium = 1, /datum/reagent/sulfur = 1)
-
-/datum/chemical_reaction/flash_powder/on_reaction(datum/reagents/holder, created_volume)
-	var/location = get_turf(holder.get_holder())
-	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
-	s.set_up(2, 1, location)
-	s.start()
-	for(var/mob/living/carbon/M in viewers(WORLD_VIEW, location))
-		switch(get_dist(M, location))
-			if(0 to 3)
-				if(M.flash_act())
-					M.Paralyze(30 SECONDS)
-
-			if(4 to 5)
-				if(M.flash_act())
-					M.Stun(10 SECONDS)
-
-
 /datum/chemical_reaction/napalm
 	name = "Napalm"
 	required_reagents = list(/datum/reagent/aluminum = 1, /datum/reagent/toxin/phoron = 2, /datum/reagent/toxin/acid = 1 )

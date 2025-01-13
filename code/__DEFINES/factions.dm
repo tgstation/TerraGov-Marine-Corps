@@ -19,6 +19,7 @@
 #define FACTION_PIRATE "Pirate"
 #define FACTION_SPECFORCE "Special Forces"
 #define FACTION_VSD "Vyacheslav Security Detail"
+#define FACTION_ERP "Emergency Response Pranksters"
 
 //Alignement are currently only used by req.
 ///Mob with a neutral alignement cannot be sold by anyone
@@ -36,6 +37,7 @@ GLOBAL_LIST_INIT(faction_to_alignement, list(
 	FACTION_NANOTRASEN = ALIGNEMENT_FRIENDLY,
 	FACTION_FREELANCERS = ALIGNEMENT_FRIENDLY,
 	FACTION_SPECFORCE = ALIGNEMENT_FRIENDLY,
+	FACTION_ERP = ALIGNEMENT_FRIENDLY,
 	//Hostile
 	FACTION_XENO = ALIGNEMENT_HOSTILE,
 	FACTION_CLF = ALIGNEMENT_HOSTILE,
@@ -74,6 +76,7 @@ GLOBAL_LIST_INIT(faction_to_iff, list(
 	FACTION_SPECFORCE = TGMC_LOYALIST_IFF,
 	FACTION_NANOTRASEN = TGMC_LOYALIST_IFF,
 	FACTION_FREELANCERS = TGMC_LOYALIST_IFF,
+	FACTION_ERP = TGMC_LOYALIST_IFF,
 	FACTION_CLF = CLF_IFF,
 	FACTION_DEATHSQUAD = DEATHSQUAD_IFF,
 	FACTION_IMP = IMP_IFF,
@@ -122,13 +125,13 @@ GLOBAL_LIST_INIT(faction_to_portrait, list(
 
 GLOBAL_LIST_INIT(faction_to_mech_spawner, list(
 	FACTION_TERRAGOV = list(
-		"heavy" = /obj/effect/landmark/campaign/mech_spawner/heavy,
-		"medium" = /obj/effect/landmark/campaign/mech_spawner,
-		"light" = /obj/effect/landmark/campaign/mech_spawner/light,
+		"heavy" = /obj/effect/landmark/campaign/vehicle_spawner/mech/heavy,
+		"medium" = /obj/effect/landmark/campaign/vehicle_spawner/mech,
+		"light" = /obj/effect/landmark/campaign/vehicle_spawner/mech/light,
 	),
 	FACTION_SOM = list(
-		"heavy" = /obj/effect/landmark/campaign/mech_spawner/som/heavy,
-		"medium" = /obj/effect/landmark/campaign/mech_spawner/som,
-		"light" = /obj/effect/landmark/campaign/mech_spawner/som/light,
+		"heavy" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som/heavy,
+		"medium" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som,
+		"light" = /obj/effect/landmark/campaign/vehicle_spawner/mech/som/light,
 	),
 ))

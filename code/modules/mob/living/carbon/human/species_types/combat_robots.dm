@@ -6,7 +6,6 @@
 	brute_damage_icon_state = "robot_brute"
 	burn_damage_icon_state = "robot_burn"
 	eyes = "blank_eyes"
-	hud_type = /datum/hud_data/robotic
 	default_language_holder = /datum/language_holder/robot
 	namepool = /datum/namepool/robotic
 

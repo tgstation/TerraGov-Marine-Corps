@@ -573,10 +573,6 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"eH" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "eI" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
@@ -888,10 +884,6 @@
 "hP" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2,
 /area/oscar_outpost/outside/east)
-"hQ" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "hV" = (
 /obj/structure/fence,
 /obj/effect/ai_node,
@@ -1068,10 +1060,6 @@
 	},
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/road)
-"jZ" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "kk" = (
 /obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
@@ -1896,10 +1884,6 @@
 "sk" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
-"sr" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "st" = (
 /obj/machinery/optable,
 /obj/machinery/camera/autoname/mainship{
@@ -2291,10 +2275,6 @@
 	pixel_y = 6
 	},
 /turf/open/floor/plating/ground/dirt2,
-/area/oscar_outpost/outside/north)
-"vX" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/dirt,
 /area/oscar_outpost/outside/north)
 "wf" = (
 /obj/item/weapon/gun/hsg_102/hsg_nest{
@@ -3930,10 +3910,6 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"Nf" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "Nh" = (
 /obj/structure/table/reinforced,
 /obj/structure/barricade/metal,
@@ -8676,7 +8652,7 @@ ZE
 ZE
 ZE
 ZE
-eH
+ZE
 ZE
 ZE
 ZE
@@ -8987,7 +8963,7 @@ ZE
 ZE
 ZE
 ZE
-Nf
+ZE
 ZE
 ZE
 ZE
@@ -9140,7 +9116,7 @@ ZE
 ZE
 ZE
 ZE
-vX
+ZE
 ZE
 ZE
 ZE
@@ -11772,9 +11748,9 @@ ZE
 sV
 ZE
 ZE
-jZ
 ZE
-sr
+ZE
+ZE
 ZE
 ZE
 ZE
@@ -12080,7 +12056,7 @@ ZE
 ZE
 HC
 ZE
-hQ
+ZE
 ZE
 ZE
 ZE
@@ -18904,7 +18880,7 @@ ZE
 ZE
 ZE
 ZE
-Nf
+ZE
 ZE
 ZE
 ZE
@@ -19212,7 +19188,7 @@ YC
 Up
 ZE
 ZE
-sr
+ZE
 ZE
 ZE
 QW
@@ -19370,7 +19346,7 @@ ZE
 ZE
 ZE
 ZE
-jZ
+ZE
 ZE
 ZE
 ZE

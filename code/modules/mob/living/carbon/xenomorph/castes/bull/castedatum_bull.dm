@@ -49,7 +49,7 @@
 		/datum/action/ability/activable/xeno/bull_charge,
 		/datum/action/ability/activable/xeno/bull_charge/headbutt,
 		/datum/action/ability/activable/xeno/bull_charge/gore,
-		/datum/action/ability/xeno_action/toggle_long_range,
+		/datum/action/ability/xeno_action/toggle_long_range/bull,
 	)
 
 /datum/xeno_caste/bull/normal

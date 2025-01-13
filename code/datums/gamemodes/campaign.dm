@@ -130,7 +130,7 @@
 		title = round_finished,
 		text = announcement_body,
 		play_sound = FALSE,
-		style = "game"
+		style = OOC_ALERT_GAME
 	)
 
 	var/sound/som_track
@@ -193,7 +193,11 @@
 ///sets up the newly selected mission
 /datum/game_mode/hvh/campaign/proc/load_new_mission(datum/campaign_mission/new_mission)
 	current_mission = new_mission
-	addtimer(CALLBACK(src, PROC_REF(autobalance_cycle)), CAMPAIGN_AUTOBALANCE_DELAY) //we autobalance teams after a short delay to account for slow respawners
+	addtimer(CALLBACK(src, PROC_REF(autobalance_cycle)), CAMPAIGN_AUTOBALANCE_DELAY, TIMER_CLIENT_TIME) //we autobalance teams after a short delay to account for slow respawners
+	//TIMER_CLIENT_TIME as loading a new z-level messes with the timing otherwise
+	for(var/faction in factions)
+		for(var/player in GLOB.alive_human_list_faction[faction])
+			stat_list[faction].interact(player) //gives the mission brief
 	current_mission.load_mission()
 	TIMER_COOLDOWN_START(src, COOLDOWN_BIOSCAN, bioscan_interval)
 
@@ -204,13 +208,13 @@
 		return
 
 	message_admins("Campaign autobalance run: [autobalance_faction_list ? "[autobalance_faction_list[1]] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[1]])] players, \
-	autobalance_faction_list[2] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])] players." : "teams balanced."] \
+	[autobalance_faction_list[2]] has [length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])] players." : "teams balanced."] \
 	Forced autobalance is [forced ? "ON." : "OFF."]")
 
 	for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[autobalance_faction_list[1]])
 		if(stat_list[faction_member.faction].faction_leader == faction_member)
 			continue
-		swap_player_team(faction_member, autobalance_faction_list[2], forced)
+		INVOKE_ASYNC(src, PROC_REF(swap_player_team), faction_member, autobalance_faction_list[2], forced)
 
 	addtimer(CALLBACK(src, PROC_REF(autobalance_bonus)), CAMPAIGN_AUTOBALANCE_DECISION_TIME + 1 SECONDS)
 
@@ -228,7 +232,7 @@
 		return list(factions[2], factions[1])
 
 ///Actually swaps the player to the other team, unless balance has been restored
-/datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction, forced = FALSE)
+/datum/game_mode/hvh/campaign/proc/swap_player_team(mob/living/carbon/human/user, new_faction, forced = FALSE, fund_bonus = TRUE)
 	if(!user.client)
 		return
 	if(forced)
@@ -245,7 +249,8 @@
 	user.job.add_job_positions(1)
 	qdel(user)
 	var/datum/individual_stats/new_stats = stat_list[new_faction].get_player_stats(ghost)
-	new_stats.give_funds(max(stat_list[new_faction].accumulated_mission_reward * 0.5, 200)) //Added credits for swapping team
+	if(fund_bonus)
+		new_stats.give_funds(max(stat_list[new_faction].accumulated_mission_reward * 0.5, 200)) //Added credits for swapping team
 	player_respawn(ghost) //auto open the respawn screen
 
 ///buffs the weaker team if players don't voluntarily switch
@@ -256,6 +261,21 @@
 
 	var/autobal_num = ROUND_UP((length(GLOB.alive_human_list_faction[autobalance_faction_list[1]]) - length(GLOB.alive_human_list_faction[autobalance_faction_list[2]])) * 0.2)
 	current_mission.spawn_mech(autobalance_faction_list[2], 0, 0, autobal_num, "[autobal_num] additional mechs granted for autobalance")
+
+///Shuffles the teams forcefully
+/datum/game_mode/hvh/campaign/proc/shuffle_teams()
+	var/list/player_list = GLOB.player_list.Copy()
+	player_list = shuffle(player_list)
+	for(var/i = 1 to length(player_list))
+		var/mob/player = player_list[i]
+		var/new_faction_index = (i % 2) + 1
+		var/new_faction = factions[new_faction_index]
+		if(player.faction == new_faction)
+			continue
+		if(ishuman(player))
+			swap_player_team(player, new_faction, TRUE, FALSE)
+		else
+			player.faction = new_faction
 
 //respawn stuff
 
@@ -375,8 +395,17 @@
 				ready_candidate?.client?.screen?.Cut()
 				qdel(ready_candidate)
 				return
+
+			var/mob/living/carbon/human/human_current
 			if(isobserver(candidate))
+				var/mob/dead/observer/observer_candidate = candidate
+				if(!isnull(observer_candidate.can_reenter_corpse))
+					human_current = observer_candidate.can_reenter_corpse.resolve()
 				qdel(candidate)
+			else if(ishuman(candidate))
+				human_current = candidate
+
+			human_current?.set_undefibbable(TRUE)
 
 
 ///Actually respawns the player, if still able

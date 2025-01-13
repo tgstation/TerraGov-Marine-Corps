@@ -65,7 +65,7 @@
 	START_PROCESSING(SSobj, src)
 
 
-/obj/structure/flora/tree/deconstruct(disassembled = TRUE)
+/obj/structure/flora/tree/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	density = FALSE
 	var/obj/structure/flora/stump/S = new(loc)
 	S.name = "[name] stump"
@@ -170,7 +170,6 @@
 	desc = "A tall tree covered in spiky-like needles, covering it's trunk."
 	icon = 'icons/obj/flora/joshuatree.dmi'
 	icon_state = "joshua"
-	pixel_x = 0
 	icon_variants = 4
 
 /obj/structure/flora/tree/jungle

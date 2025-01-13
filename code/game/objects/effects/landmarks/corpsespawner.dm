@@ -67,23 +67,14 @@
 	equip_items_to_mob(victim)
 	switch(death_type)
 		if(CHESTBURST_DEATH)
-			var/datum/internal_organ/heart
-			var/datum/internal_organ/lungs
-			heart = victim.internal_organs_by_name["heart"]
-			victim.internal_organs_by_name -= "heart"
-			lungs = victim.internal_organs_by_name["lungs"]
-			victim.internal_organs_by_name -= "lungs"
-			victim.internal_organs -= heart
-			victim.internal_organs -= lungs
+			victim.remove_organ_slot(ORGAN_SLOT_HEART)
+			victim.remove_organ_slot(ORGAN_SLOT_LUNGS)
 			victim.chestburst = CARBON_CHEST_BURSTED
 			victim.update_burst()
 		if(COCOONED_DEATH) //Just cocooned
 			new /obj/structure/cocoon/opened_cocoon(loc)
 		if(HEADBITE_DEATH) //removed brain
-			var/datum/internal_organ/brain
-			brain = victim.internal_organs_by_name["brain"] //This removes (and later garbage collects) the organ. No brain means instant death.
-			victim.internal_organs_by_name -= "brain"
-			victim.internal_organs -= brain
+			victim.remove_organ_slot(ORGAN_SLOT_BRAIN)
 			victim.update_headbite()
 	qdel(src)
 
@@ -332,6 +323,9 @@
 /obj/effect/landmark/corpsespawner/scientist/burst
 	death_type = CHESTBURST_DEATH
 
+/obj/effect/landmark/corpsespawner/scientist/regular
+	death_type = REGULAR_DEATH
+
 /obj/effect/landmark/corpsespawner/engineer/rig/regular
 	death_type = REGULAR_DEATH
 
@@ -418,6 +412,23 @@
 /obj/effect/landmark/corpsespawner/colonist/regular
 	death_type = REGULAR_DEATH
 
+/obj/effect/landmark/corpsespawner/roboticist
+	name = "Roboticist"
+	corpseuniform = /obj/item/clothing/under/rank/roboticist
+	corpsesuit = /obj/item/clothing/suit/storage/labcoat/science
+	corpsebelt = /obj/item/storage/belt/utility/full
+	corpseback = /obj/item/storage/backpack/satchel/tox
+	corpseshoes = /obj/item/clothing/shoes/black
+	corpseglasses = /obj/item/clothing/glasses/welding/flipped
+	corpseid = 1
+	corpseidjob = "Roboticist"
+
+/obj/effect/landmark/corpsespawner/roboticist/burst
+	death_type = CHESTBURST_DEATH
+
+/obj/effect/landmark/corpsespawner/roboticist/regular
+	death_type = REGULAR_DEATH
+
 /////////////////Officers//////////////////////
 
 /obj/effect/landmark/corpsespawner/bridgeofficer
@@ -464,7 +475,7 @@
 	corpsemask = /obj/item/clothing/mask/gas
 	corpsehelmet = /obj/item/clothing/head/helmet/marine/veteran/pmc
 	corpsegloves = /obj/item/clothing/gloves/marine/veteran/pmc
-	corpseshoes = /obj/item/clothing/shoes/veteran/pmc
+	corpseshoes = /obj/item/clothing/shoes/marine/pmc
 	corpsepocket1 = /obj/item/tool/lighter/zippo
 	corpseid = 1
 	corpseidjob = "Private Security Officer"
@@ -557,6 +568,9 @@
 	corpsegloves = /obj/item/clothing/gloves/marine/som
 	corpseshoes = /obj/item/clothing/shoes/marine/som/knife
 	corpsepocket1 = /obj/item/tool/lighter/zippo
+
+/obj/effect/landmark/corpsespawner/som/burst
+	death_type = CHESTBURST_DEATH
 
 /obj/effect/landmark/corpsespawner/som_officer
 	name = "SOM staff officer"

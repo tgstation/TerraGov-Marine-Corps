@@ -844,10 +844,6 @@
 /obj/machinery/floodlight/outpost/oscar,
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/east)
-"eH" = (
-/obj/effect/landmark/patrol_point/som/som_13,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "eI" = (
 /turf/open/floor/plating/ground/dirtgrassborder/corner2{
 	dir = 8
@@ -1640,10 +1636,6 @@
 /obj/structure/platform/trench,
 /turf/open/ground/grass,
 /area/oscar_outpost/outside/east)
-"jZ" = (
-/obj/effect/landmark/patrol_point/som/som_22,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "kk" = (
 /obj/structure/table/wood/rustic,
 /obj/item/reagent_containers/glass/bucket,
@@ -2820,10 +2812,6 @@
 /obj/effect/spawner/random/misc/plushie/nospawnninetynine,
 /turf/open/floor/mainship/sterile/dark,
 /area/oscar_outpost)
-"sr" = (
-/obj/effect/landmark/patrol_point/som/som_23,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "st" = (
 /obj/machinery/optable,
 /obj/machinery/camera/autoname/mainship{
@@ -3209,10 +3197,6 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"vM" = (
-/obj/effect/landmark/patrol_point/som/som_14,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "vP" = (
 /obj/structure/fence,
 /obj/structure/platform/trench{
@@ -3242,10 +3226,6 @@
 /obj/docking_port/stationary/crashmode,
 /turf/open/floor/plating/ground/dirt2,
 /area/oscar_outpost/outside/west)
-"vX" = (
-/obj/effect/landmark/patrol_point/som/som_12,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "vY" = (
 /obj/structure/fence{
 	cut = 1
@@ -5489,10 +5469,6 @@
 	dir = 2
 	},
 /area/oscar_outpost)
-"Nf" = (
-/obj/effect/landmark/patrol_point/som/som_24,
-/turf/open/floor/plating/ground/dirt,
-/area/oscar_outpost/outside/north)
 "Nm" = (
 /turf/open/floor/plating/ground/dirtgrassborder,
 /area/oscar_outpost/outside/northeast)
@@ -10276,7 +10252,7 @@ ZE
 ZE
 ZE
 ZE
-eH
+ZE
 ZE
 ZE
 ZE
@@ -10740,7 +10716,7 @@ ZE
 ZE
 ZE
 ZE
-vX
+ZE
 ZE
 ZE
 ZE
@@ -10892,7 +10868,7 @@ ZE
 ZE
 ZE
 ZE
-vM
+ZE
 ZE
 ZE
 ZE
@@ -20504,7 +20480,7 @@ xU
 ZE
 ZE
 ZE
-Nf
+ZE
 ZE
 ZE
 ZE
@@ -20812,7 +20788,7 @@ th
 th
 xU
 ZE
-sr
+ZE
 ZE
 ZE
 jk
@@ -20970,7 +20946,7 @@ ZE
 ZE
 ZE
 ZE
-jZ
+ZE
 ZE
 ZE
 ZE

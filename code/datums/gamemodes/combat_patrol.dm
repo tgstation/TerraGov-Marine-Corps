@@ -5,7 +5,7 @@
 	shutters_drop_time = 3 MINUTES
 	whitelist_ship_maps = list(MAP_COMBAT_PATROL_BASE)
 	blacklist_ship_maps = null
-	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS)
+	blacklist_ground_maps = list(MAP_WHISKEY_OUTPOST, MAP_OSCAR_OUTPOST, MAP_FORT_PHOBOS, MAP_CHIGUSA, MAP_CORSAT)
 	bioscan_interval = 3 MINUTES
 	/// Timer used to calculate how long till round ends
 	var/game_timer
@@ -123,7 +123,7 @@
 		title = round_finished,
 		text = "Thus ends the story of the brave men and women of the TerraGov Marine Corps and Sons of Mars, and their struggle on [SSmapping.configs[GROUND_MAP].map_name].",
 		play_sound = FALSE,
-		style = "game"
+		style = OOC_ALERT_GAME
 	)
 
 /datum/game_mode/hvh/combat_patrol/get_deploy_point_message(mob/living/user)

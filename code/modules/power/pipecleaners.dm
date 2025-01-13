@@ -106,7 +106,7 @@ By design, d1 is the smallest direction and d2 is the highest
 		QDEL_NULL(stored)
 	return ..()									// then go ahead and delete the pipe_cleaner
 
-/obj/structure/pipe_cleaner/deconstruct(disassembled = TRUE)
+/obj/structure/pipe_cleaner/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!(atom_flags & NODECONSTRUCT))
 		var/turf/T = get_turf(loc)
 		if(T)
@@ -126,7 +126,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/structure/pipe_cleaner/update_icon()
 	color = null
-	add_atom_colour(pipe_cleaner_color, FIXED_COLOUR_PRIORITY)
+	add_atom_colour(pipe_cleaner_color, FIXED_COLOR_PRIORITY)
 	return ..()
 
 // Items usable on a pipe_cleaner :
@@ -220,7 +220,7 @@ By design, d1 is the smallest direction and d2 is the highest
 
 /obj/item/stack/pipe_cleaner_coil/update_icon()
 	color = null
-	add_atom_colour(pipe_cleaner_color, FIXED_COLOUR_PRIORITY)
+	add_atom_colour(pipe_cleaner_color, FIXED_COLOR_PRIORITY)
 	return ..()
 
 /obj/item/stack/pipe_cleaner_coil/attack_hand(mob/user)

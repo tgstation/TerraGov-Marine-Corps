@@ -234,7 +234,7 @@
 
 	COOLDOWN_START(src, defib_cooldown, 1 SECONDS) // 1 second before you can try again if you finish the do_after
 
-	var/datum/internal_organ/heart/heart = patient.internal_organs_by_name["heart"]
+	var/datum/internal_organ/heart/heart = patient.get_organ_slot(ORGAN_SLOT_HEART)
 	if(!issynth(patient) && !isrobot(patient) && heart && prob(25))
 		heart.take_damage(5) //Allow the defibrillator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
@@ -244,7 +244,7 @@
 		patient.setOxyLoss(0)
 		patient.updatehealth()
 
-		var/heal_target = patient.get_death_threshold() - patient.health + 1
+		var/heal_target = patient.get_crit_threshold() - patient.health + 1
 		var/all_loss = patient.getBruteLoss() + patient.getFireLoss() + patient.getToxLoss()
 		if(all_loss && (heal_target > 0))
 			var/brute_ratio = patient.getBruteLoss() / all_loss
@@ -253,6 +253,9 @@
 			if(tox_ratio)
 				patient.adjustToxLoss(-(tox_ratio * heal_target))
 			patient.heal_overall_damage(brute_ratio*heal_target, burn_ratio*heal_target, TRUE) // explicitly also heals robot parts
+
+		if(HAS_TRAIT_FROM(patient, TRAIT_IMMEDIATE_DEFIB, SUPERSOLDIER_TRAIT))
+			heart.take_damage(15) // estimated to be 1/2 of the health of the heart so 2 zaps kill you
 
 	else if(!issynth(patient)) // TODO make me a trait :)
 		patient.adjustBruteLoss(-defib_heal_amt)

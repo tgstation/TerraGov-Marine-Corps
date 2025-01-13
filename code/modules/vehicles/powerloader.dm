@@ -1,4 +1,3 @@
-
 /obj/vehicle/ridden/powerloader
 	name = "\improper RPL-Y Cargo Loader"
 	icon = 'icons/obj/powerloader.dmi'
@@ -7,7 +6,7 @@
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
 	anchored = TRUE
 	allow_pass_flags = NONE
-	move_delay = 8
+	move_delay = 6
 	light_system = HYBRID_LIGHT
 	light_power = 8
 	light_range = 0
@@ -17,9 +16,7 @@
 	max_integrity = 200
 	var/list/move_sounds = list('sound/mecha/powerloader_step.ogg', 'sound/mecha/powerloader_step2.ogg')
 	var/list/change_dir_sounds = list('sound/mecha/powerloader_turn.ogg', 'sound/mecha/powerloader_turn2.ogg')
-	var/panel_open = FALSE
 	var/light_range_on = 4
-
 
 /obj/vehicle/ridden/powerloader/Initialize(mapload)
 	. = ..()
@@ -44,18 +41,6 @@
 		return
 	return user_unbuckle_mob(user, user) //clicking the powerloader with its own clamp unbuckles the pilot.
 
-/obj/vehicle/ridden/powerloader/attackby(obj/item/I, mob/user, params)
-	. = ..()
-	if(.)
-		return
-
-	if(!isscrewdriver(I))
-		return
-	to_chat(user, span_notice("You screw the panel [panel_open ? "closed" : "open"]."))
-	playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
-	panel_open = !panel_open
-
-
 /obj/vehicle/ridden/powerloader/user_unbuckle_mob(mob/living/buckled_mob, mob/user, silent)
 	if(!LAZYLEN(buckled_mobs) || buckled_mob.buckled != src)
 		return FALSE
@@ -76,13 +61,13 @@
 		playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 		set_light(0)
 
-
 /obj/vehicle/ridden/powerloader/post_buckle_mob(mob/buckling_mob)
 	. = ..()
 	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
 	icon_state = "powerloader"
 	overlays += image(icon_state= "powerloader_overlay", layer = MOB_LAYER + 0.1)
-	move_delay = max(4, move_delay - buckling_mob.skills.getRating(SKILL_POWERLOADER))
+	move_delay = max(2, move_delay - buckling_mob.skills.getRating(SKILL_POWERLOADER))
+	set_vehicle_speed()
 	var/clamp_equipped = 0
 	for(var/obj/item/powerloader_clamp/PC in contents)
 		if(!buckling_mob.put_in_hands(PC))
@@ -99,9 +84,17 @@
 	overlays.Cut()
 	playsound(loc, 'sound/mecha/powerloader_buckle.ogg', 25)
 	move_delay = initial(move_delay)
+	set_vehicle_speed()
 	icon_state = "powerloader_open"
 	buckled_mob.drop_all_held_items() //drop the clamp when unbuckling
 
+/// Sets the powerloader's actual move delay (as it is handled in the component).
+/obj/vehicle/ridden/powerloader/proc/set_vehicle_speed()
+	var/datum/component/riding/vehicle/powerloader/vehicle_component = GetComponent(/datum/component/riding/vehicle/powerloader)
+	vehicle_component.vehicle_move_delay = move_delay
+
+/obj/vehicle/ridden/powerloader/welder_act(mob/living/user, obj/item/I)
+	return welder_repair_act(user, I, 10, 2 SECONDS, fuel_req = 1)
 
 /obj/vehicle/ridden/powerloader/user_buckle_mob(mob/living/buckling_mob, mob/user, check_loc = FALSE, silent) //check_loc needs to be FALSE here.
 	if(buckling_mob != user)
@@ -145,7 +138,6 @@
 	var/obj/vehicle/ridden/powerloader/linked_powerloader
 	var/obj/loaded
 
-
 /obj/item/powerloader_clamp/dropped(mob/user)
 	// Don't call ..() so it's not deleted
 	// We actually store the clamps in powerloader
@@ -154,7 +146,6 @@
 		return
 	forceMove(linked_powerloader)
 	linked_powerloader.unbuckle_mob(user)
-
 
 /obj/item/powerloader_clamp/attack(mob/living/victim, mob/living/user, def_zone)
 	if(victim in linked_powerloader.buckled_mobs)
@@ -168,7 +159,6 @@
 		user.visible_message(span_notice("[user] grabs [loaded] with [src]."),
 			span_notice("You grab [loaded] with [src]."))
 	return ..()
-
 
 /obj/item/powerloader_clamp/afterattack(atom/target, mob/user, proximity)
 	. = ..()

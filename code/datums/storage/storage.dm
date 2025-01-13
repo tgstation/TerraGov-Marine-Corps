@@ -87,7 +87,7 @@
 	///whether our storage box on hud changes color when full.
 	var/show_storage_fullness = TRUE
 	///Set this to make it possible to use this item in an inverse way, so you can have the item in your hand and click items on the floor to pick them up.
-	var/use_to_pickup
+	var/use_to_pickup = FALSE
 	///Set this to make the storage item group contents of the same type and display them as a number.
 	var/display_contents_with_number
 	///Set this variable to allow the object to have the 'empty' verb, which dumps all the contents on the floor.
@@ -346,29 +346,40 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		close(M)
 		return
 
-///Called when you RIGHT click on parent with an empty hand
-///Attempts to draw an object from our storage
+
+/**
+ * Called when you RIGHT click on parent with an empty hand
+ * Attempts to draw an object from our storage
+ */
 /datum/storage/proc/on_attack_hand_alternate(datum/source, mob/living/user)
 	SIGNAL_HANDLER
 	if(parent.Adjacent(user))
 		INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user)
 
-///Called when you alt + left click on parent
-///Attempts to draw an object from our storage
+/**
+ * Called when you alt + left click on parent
+ * Attempts to draw an object from our storage
+ */
+
 /datum/storage/proc/on_alt_click(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(parent.Adjacent(user))
 		INVOKE_ASYNC(src, PROC_REF(attempt_draw_object), user)
 
-///Called when you alt + right click on parent
-///Opens the inventory of our storage
+/**
+ * Called when you alt + right click on parent
+ * Opens the inventory of our storage
+ */
+
 /datum/storage/proc/on_alt_right_click(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(parent.Adjacent(user))
 		open(user)
 
-///Called when you ctrl + left click on parent
-///Attempts to draw an object from out storage, but it draw from the left side instead of the right
+/**
+ * Called when you ctrl + left click on parent
+ * Attempts to draw an object from out storage, but it draw from the left side instead of the right
+ */
 /datum/storage/proc/on_ctrl_click(datum/source, mob/user)
 	SIGNAL_HANDLER
 	if(parent.Adjacent(user))

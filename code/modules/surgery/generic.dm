@@ -289,6 +289,7 @@
 		/obj/item/stack/cable_coil = 75,
 		/obj/item/shard = 20,
 	)
+	surgery_skill_required = SKILL_SURGERY_TRAINED
 	open_step = 0
 	min_duration = SUTURE_MIN_DURATION
 	max_duration = SUTURE_MAX_DURATION

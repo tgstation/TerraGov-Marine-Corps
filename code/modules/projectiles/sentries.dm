@@ -1,3 +1,14 @@
+GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
+
+///Creates the list of atoms that will be ignored by sentry target pathing
+/proc/set_sentry_ignore_List()
+	. = list(
+		/obj/machinery/deployable/mounted,
+		/obj/machinery/miner,
+	)
+	. += typesof(/obj/hitbox)
+	. += typesof(/obj/vehicle/sealed/armored/multitile)
+
 /obj/machinery/deployable/mounted/sentry
 	resistance_flags = UNACIDABLE|XENO_DAMAGEABLE
 	use_power = 0
@@ -22,8 +33,6 @@
 	var/obj/item/radio/radio
 	///Iff signal of the sentry. If the /gun has a set IFF then this will be the same as that. If not the sentry will get its IFF signal from the deployer
 	var/iff_signal = NONE
-	///List of terrains/structures/machines that the sentry ignores for targetting. (If a window is inside the list, the sentry will shot at targets even if the window breaks los) For accuracy, this is on a specific typepath base and not istype().
-	var/list/ignored_terrains
 	///For minimap icon change if sentry is firing
 	var/firing
 
@@ -42,7 +51,6 @@
 
 	knockdown_threshold = gun?.knockdown_threshold ? gun.knockdown_threshold : initial(gun.knockdown_threshold)
 	range = CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL) ?  gun.turret_range - 2 : gun.turret_range
-	ignored_terrains = gun?.ignored_terrains ? gun.ignored_terrains : initial(gun.ignored_terrains)
 
 	radio = new(src)
 
@@ -100,7 +108,7 @@
 	GLOB.marine_turrets -= src
 	return ..()
 
-/obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE)
+/obj/machinery/deployable/mounted/sentry/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!disassembled)
 		explosion(loc, light_impact_range = 3)
 	return ..()
@@ -142,7 +150,7 @@
 		span_notice("You set [src] upright."))
 
 	DISABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
-	density = TRUE
+	density = initial(density)
 	set_on(TRUE)
 
 /obj/machinery/deployable/mounted/sentry/reload(mob/user, ammo_magazine)
@@ -290,11 +298,8 @@
 /obj/machinery/deployable/mounted/sentry/proc/knock_down()
 	if(CHECK_BITFIELD(machine_stat, KNOCKED_DOWN))
 		return
-	var/obj/item/weapon/gun/internal_gun = get_internal_item()
-	internal_gun.stop_fire() //Comrade sentry has been sent to the gulags. He served the revolution well.
-	firing = FALSE
-	update_minimap_icon()
-	visible_message(span_highdanger("The [name] is knocked over!"))
+	sentry_stop_fire()
+	visible_message(span_userdanger("The [name] is knocked over!"))
 	sentry_alert(SENTRY_ALERT_FALLEN)
 	ENABLE_BITFIELD(machine_stat, KNOCKED_DOWN)
 	density = FALSE
@@ -367,10 +372,7 @@
 /obj/machinery/deployable/mounted/sentry/process()
 	update_icon()
 	if((machine_stat & EMPED) || !scan())
-		var/obj/item/weapon/gun/gun = get_internal_item()
-		gun?.stop_fire()
-		firing = FALSE
-		update_minimap_icon()
+		sentry_stop_fire()
 		return
 	playsound(loc, 'sound/items/detector.ogg', 25, FALSE)
 
@@ -417,9 +419,7 @@
 	if(CHECK_BITFIELD(internal_gun.reciever_flags, AMMO_RECIEVER_REQUIRES_UNIQUE_ACTION) && length(internal_gun.chamber_items))
 		INVOKE_ASYNC(internal_gun, TYPE_PROC_REF(/obj/item/weapon/gun, do_unique_action))
 	if(!CHECK_BITFIELD(internal_gun.item_flags, IS_DEPLOYED) || get_dist(src, gun_target) > range || (!CHECK_BITFIELD(get_dir(src, gun_target), dir) && !CHECK_BITFIELD(internal_gun.turret_flags, TURRET_RADIAL)) || !check_target_path(gun_target))
-		internal_gun.stop_fire()
-		firing = FALSE
-		update_minimap_icon()
+		sentry_stop_fire()
 		return
 	if(internal_gun.gun_firemode != GUN_FIREMODE_SEMIAUTO)
 		return
@@ -427,20 +427,19 @@
 
 ///Sees if theres a target to shoot, then handles firing.
 /obj/machinery/deployable/mounted/sentry/proc/sentry_start_fire()
+	if(isclosedturf(loc))
+		sentry_stop_fire()
+		return
 	var/obj/item/weapon/gun/gun = get_internal_item()
 	var/atom/target = get_target()
 	if(!target)
-		gun.stop_fire()
-		firing = FALSE
-		update_minimap_icon()
+		sentry_stop_fire()
 		return
 	sentry_alert(SENTRY_ALERT_HOSTILE, target)
 	update_icon()
 	if(target != gun.target)
-		gun.stop_fire()
-		firing = FALSE
-		update_minimap_icon()
-	if(!gun.rounds)
+		sentry_stop_fire()
+	if(gun.rounds <= 0) //fucking lasers
 		sentry_alert(SENTRY_ALERT_AMMO)
 		return
 	if(CHECK_BITFIELD(gun.turret_flags, TURRET_RADIAL))
@@ -452,14 +451,21 @@
 	firing = TRUE
 	update_minimap_icon()
 
+///Ends firing
+/obj/machinery/deployable/mounted/sentry/proc/sentry_stop_fire()
+	var/obj/item/weapon/gun/gun = get_internal_item()
+	gun?.stop_fire()
+	firing = FALSE
+	update_minimap_icon()
+
 ///Checks the path to the target for obstructions. Returns TRUE if the path is clear, FALSE if not.
 /obj/machinery/deployable/mounted/sentry/proc/check_target_path(atom/target)
 	if(target.loc == loc)
 		return TRUE
-	var/list/turf/path = getline(src, target)
 	var/turf/starting_turf = get_turf(src)
+	var/list/turf/path = getline(starting_turf, target)
 	var/turf/target_turf = path[length(path)-1]
-	path -= get_turf(src)
+	path -= starting_turf
 	if(!length(path))
 		return FALSE
 
@@ -473,15 +479,11 @@
 				return FALSE
 
 	var/obj/item/weapon/gun/gun = get_internal_item()
-	for(var/turf/T AS in path)
-		var/obj/effect/particle_effect/smoke/smoke = locate() in T
-		if(smoke?.opacity)
+	for(var/turf/path_turf AS in path)
+		if(IS_OPAQUE_TURF(path_turf) || path_turf.density && !(path_turf.allow_pass_flags & PASS_PROJECTILE) && !(path_turf.type in GLOB.sentry_ignore_List))
 			return FALSE
 
-		if(IS_OPAQUE_TURF(T) || T.density && !(T.allow_pass_flags & PASS_PROJECTILE) && !(T.type in ignored_terrains))
-			return FALSE
-
-		for(var/atom/movable/AM AS in T)
+		for(var/atom/movable/AM AS in path_turf)
 			if(AM == target)
 				continue
 			if(AM.opacity)
@@ -490,7 +492,7 @@
 				continue
 			if(ismob(AM))
 				continue
-			if(AM.type in ignored_terrains) //todo:accurately populate ignored_terrains
+			if(AM.type in GLOB.sentry_ignore_List) //todo:accurately populate GLOB.sentry_ignore_List
 				continue
 			if(AM.allow_pass_flags & (gun.ammo_datum_type::ammo_behavior_flags & AMMO_ENERGY ? (PASS_GLASS|PASS_PROJECTILE) : PASS_PROJECTILE))
 				continue
@@ -515,13 +517,14 @@
 	if(!match_iff(user)) //You can't steal other faction's turrets
 		to_chat(user, span_notice("Access denied."))
 		return
+	var/obj/item/weapon/gun/internal_gun = get_internal_item()
 	. = ..()
-	var/obj/item/weapon/gun/gun = get_internal_item()
-	if(!gun)
+	if(!.)
 		return
-	if(CHECK_BITFIELD(gun.turret_flags, TURRET_INACCURATE))
-		gun.accuracy_mult += 0.15
-		gun.scatter -= 10
+	if(internal_gun?.turret_flags & TURRET_INACCURATE)
+		internal_gun.accuracy_mult += 0.15
+		internal_gun.scatter -= 10
+
 
 ///Checks the users faction against turret IFF, used to stop hostile factions from interacting with turrets in ways they shouldn't.
 /obj/machinery/deployable/mounted/sentry/proc/match_iff(mob/user)
@@ -559,39 +562,9 @@
 	internal_gun?.update_ammo_count() //checks if the battery has recharged enough to fire
 	return ..()
 
-///Dissassembles the device
 /obj/machinery/deployable/mounted/sentry/cope/disassemble(mob/user)
-	var/obj/item/item = get_internal_item()
-	if(!item)
+	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/internal_gun = get_internal_item()
+	. = ..()
+	if(!.)
 		return
-	if(CHECK_BITFIELD(item.item_flags, DEPLOYED_NO_PICKUP))
-		balloon_alert(user, "Cannot disassemble")
-		return
-	if(!match_iff(user)) //You can't steal other faction's turrets
-		to_chat(user, span_notice("Access denied."))
-		return
-	operator?.unset_interaction()
-
-	var/obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope/attached_item = get_internal_item() //Item the machine is undeploying
-
-	if(!ishuman(user))
-		return
-	set_on(FALSE)
-	user.balloon_alert(user, "You start disassembling [attached_item]")
-	if(!do_after(user, attached_item.undeploy_time, NONE, src, BUSY_ICON_BUILD))
-		set_on(TRUE)
-		return
-
-	DISABLE_BITFIELD(attached_item.item_flags, IS_DEPLOYED)
-
-	attached_item.reset()
-	user.unset_interaction()
-	user.put_in_hands(attached_item)
-
-	attached_item.max_integrity = max_integrity
-	attached_item.obj_integrity = obj_integrity
-
-	internal_item = null
-
-	QDEL_NULL(src)
-	attached_item.update_appearance()
+	internal_gun?.reset()

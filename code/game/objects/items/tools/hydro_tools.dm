@@ -97,9 +97,9 @@
 	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "hatchet"
 	atom_flags = CONDUCT
-	force = 25
+	force = 35
 	w_class = WEIGHT_CLASS_SMALL
-	throwforce = 20
+	throwforce = 25
 	throw_speed = 4
 	throw_range = 4
 	sharp = IS_SHARP_ITEM_BIG
@@ -115,7 +115,7 @@
 	desc = "A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow."
 	icon = 'icons/obj/items/tools.dmi'
 	icon_state = "scythe"
-	force = 13
+	force = 35
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 3

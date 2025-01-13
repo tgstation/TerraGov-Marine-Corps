@@ -233,7 +233,7 @@
 
 /datum/ammo/grenade_container/ags_grenade
 	name = "grenade shell"
-	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_IFF
+	ammo_behavior_flags = AMMO_TARGET_TURF
 	icon_state = "grenade_projectile"
 	hud_state = "grenade_he"
 	hud_state_empty = "grenade_empty"

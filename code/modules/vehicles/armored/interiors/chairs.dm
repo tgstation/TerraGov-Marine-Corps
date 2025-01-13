@@ -5,7 +5,6 @@
 	icon_state = "vehicle_chair"
 	resistance_flags = RESIST_ALL
 	dir = EAST
-	buckling_y = 10
 
 /obj/structure/bed/chair/loader_seat/update_overlays()
 	. = ..()
@@ -31,7 +30,7 @@
 	icon_state = "vehicle_chair"
 	resistance_flags = RESIST_ALL
 	dir = EAST
-	buckling_x = 0
+	buckling_x = -2
 	buckling_y = 0
 	///owner of this object, assigned during interior linkage
 	var/obj/vehicle/sealed/armored/owner
@@ -75,6 +74,7 @@
 
 /obj/structure/bed/chair/vehicle_crew/driver
 	name = "driver seat"
+	buckling_x = 12
 
 /obj/structure/bed/chair/vehicle_crew/driver/post_buckle_mob(mob/buckling_mob)
 	. = ..()
@@ -112,6 +112,7 @@
 	icon_state = "driver_chair"
 	dir = NORTH
 	pixel_y = 3
+	buckling_x = 0
 	buckling_y = 10
 
 /obj/structure/bed/chair/vehicle_crew/driver/som/handle_layer()
@@ -122,6 +123,7 @@
 	icon_state = "chair"
 	dir = NORTH
 	pixel_y = 1
+	buckling_x = 0
 	buckling_y = 9
 
 /obj/structure/bed/chair/vehicle_crew/gunner/som/handle_layer()

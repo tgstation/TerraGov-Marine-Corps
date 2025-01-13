@@ -582,20 +582,6 @@
 	},
 /turf/open/floor/plating,
 /area/shuttle/canterbury)
-"cp" = (
-/obj/machinery/door/poddoor/mainship{
-	dir = 1;
-	id = "aft_engine_podlock"
-	},
-/obj/machinery/door/poddoor/shutters/transit{
-	dir = 2
-	},
-/obj/machinery/door_control{
-	dir = 8;
-	id = "aft_engine_podlock"
-	},
-/turf/open/floor/plating,
-/area/shuttle/canterbury)
 "cs" = (
 /obj/machinery/door/airlock/mainship/medical/glass/free_access{
 	dir = 2
@@ -718,6 +704,9 @@
 	dir = 8
 	},
 /obj/structure/barricade/plasteel,
+/obj/machinery/air_alarm{
+	dir = 4
+	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "cZ" = (
@@ -725,13 +714,11 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/canterbury)
 "da" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/machinery/air_alarm{
-	dir = 8
-	},
 /obj/structure/barricade/plasteel,
+/obj/machinery/door_control{
+	dir = 8;
+	id = "aft_engine_podlock"
+	},
 /turf/open/floor/mainship/cargo,
 /area/shuttle/canterbury)
 "db" = (
@@ -1019,7 +1006,7 @@ KE
 bW
 bW
 da
-cp
+co
 "}
 (10,1,1) = {"
 ac

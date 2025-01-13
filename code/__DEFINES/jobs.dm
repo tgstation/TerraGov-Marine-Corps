@@ -156,6 +156,8 @@ GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine),
 #define LARVA_POINTS_SHIPSIDE 1
 #define LARVA_POINTS_SHIPSIDE_STRONG 1.5
 #define LARVA_POINTS_REGULAR 3.25
+///How many marines per xeno at optimal ratio
+#define XENO_MARINE_RATIO 2.46
 
 #define SURVIVOR_POINTS_REGULAR 1
 
@@ -182,3 +184,11 @@ GLOBAL_LIST_INIT(jobs_fallen_marine, typecacheof(list(/datum/job/fallen/marine),
 #define ENGINEER_TOTAL_BUY_POINTS 75
 /// How many points the field commander can spend
 #define COMMANDER_TOTAL_BUY_POINTS 45
+
+GLOBAL_LIST_INIT(default_marine_points, list(
+		"SMARTGUNNER SUPPLIES" = DEFAULT_TOTAL_BUY_POINTS,
+		"ENGINEERING SUPPLIES" = ENGINEER_TOTAL_BUY_POINTS,
+		"LEADER SUPPLIES" = DEFAULT_TOTAL_BUY_POINTS,
+		"MEDICAL SUPPLIES" = MEDIC_TOTAL_BUY_POINTS,
+		"COMMANDER SUPPLIES" = COMMANDER_TOTAL_BUY_POINTS,
+	))

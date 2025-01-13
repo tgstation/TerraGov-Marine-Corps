@@ -55,16 +55,6 @@
 	default_ammo = /datum/ammo/flamethrower/tank_flamer
 	max_rounds = 120
 
-/obj/item/ammo_magazine/tank/towlauncher
-	name = "TOW Launcher Magazine"
-	desc = "A secondary armament rocket magazine"
-	caliber = CALIBER_68MM
-	icon_state = "quad_rocket"
-	icon = 'icons/obj/items/ammo/rocket.dmi'
-	w_class = WEIGHT_CLASS_GIGANTIC
-	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
-	max_rounds = 5
-
 /obj/item/ammo_magazine/tank/secondary_cupola
 	name = "HSG-102 Cupola Magazine"
 	desc = "A secondary armament MG magazine"
@@ -138,10 +128,10 @@
 	desc = "A set of extremely dense kinetic penetrator rounds for a tank mounted coilgun."
 	caliber = CALIBER_84MM
 	icon_state = "coilgun"
-	w_class = WEIGHT_CLASS_GIGANTIC
+	w_class = WEIGHT_CLASS_NORMAL
 	default_ammo = /datum/ammo/rocket/coilgun/holder //this doesn't strictly matter since its overridden
-	max_rounds = 4
-	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+	max_rounds = 1
+	loading_sound = 'sound/vehicles/weapons/coilgun_cycle.ogg'
 
 /obj/item/ammo_magazine/tank/secondary_flamer_tank
 	name = "napalm stream tank"
@@ -150,3 +140,59 @@
 	icon_state = "sflamer"
 	max_rounds = 150
 	default_ammo = /datum/ammo/flamethrower/armored_spray
+
+// ICC Recon Tank
+/obj/item/ammo_magazine/tank/sarden_clip
+	name = "EM-2600 'SARDEN' APDS Clip (30mm)"
+	desc = "A 7 round clip for a EM-2600 Autocannon. Loaded with Armor Piercing rounds."
+	caliber = CALIBER_30X17MM
+	icon_state = "sarden_clip_apds"
+	max_rounds = 7
+	default_ammo = /datum/ammo/bullet/sarden
+
+/obj/item/ammo_magazine/tank/sarden_clip/high_explosive
+	name = "EM-2600 'SARDEN' High Explosive Clip (30mm)"
+	desc = "A 7 round clip for a EM-2600 Autocannon. Loaded with High Explosive rounds."
+	caliber = CALIBER_30X17MM
+	icon_state = "sarden_clip_apds"
+	max_rounds = 7
+	default_ammo = /datum/ammo/bullet/sarden/high_explosive
+
+/obj/item/ammo_magazine/tank/icc_lowvel_cannon
+	name = "EM-2500 HEAT shell (76mm)"
+	desc = "A 76mm HEAT shell filled for targeting hard targets."
+	caliber = CALIBER_76MM
+	icon_state = "icc_lvrt_cannon_heat"
+	w_class = WEIGHT_CLASS_NORMAL
+	default_ammo = /datum/ammo/rocket/icc_lowvel_heat
+	max_rounds = 1
+	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+
+/obj/item/ammo_magazine/tank/icc_lowvel_cannon/high_explosive
+	name = "EM-2500 HE shell (76mm)"
+	desc = "A 76mm HE shell filled for targeting large groups of soft targets."
+	caliber = CALIBER_76MM
+	icon_state = "icc_lvrt_cannon_heat"
+	default_ammo = /datum/ammo/rocket/icc_lowvel_high_explosive
+	max_rounds = 1
+	loading_sound = 'sound/vehicles/weapons/ltb_reload.ogg'
+
+/obj/item/ammo_magazine/tank/tow_missile
+	name = "\improper TOW-III missile"
+	desc = "A TOw-III homing missile for the secondary TOW launcher."
+	caliber = CALIBER_68MM
+	icon_state = "seekerammo"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/rocket/homing/tow
+	max_rounds = 1
+	loading_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'
+
+/obj/item/ammo_magazine/tank/microrocket_rack
+	name = "microrocket pod rack"
+	desc = "A 3x2 rack containing high explosive homing microrockets."
+	caliber = CALIBER_32MM
+	icon_state = "secondary_rocketpod"
+	w_class = WEIGHT_CLASS_GIGANTIC
+	default_ammo = /datum/ammo/rocket/homing/microrocket
+	max_rounds = 6
+	loading_sound = 'sound/weapons/guns/interact/launcher_reload.ogg'

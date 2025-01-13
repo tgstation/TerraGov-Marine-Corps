@@ -5,7 +5,7 @@ help: "Please replace it with the proper spawner."
 /turf/closed/wall/resin:
   banned: TRUE
 
-/obj/structure/door/resin:
+/obj/structure/mineral_door/resin:
   banned: TRUE
 
 /obj/structure/xeno/xeno_turret:

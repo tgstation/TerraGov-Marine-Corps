@@ -440,7 +440,7 @@
 
 /obj/item/mortar_kit/Initialize(mapload)
 	. = ..()
-	AddComponent(/datum/component/deployable_item, deployable_item, 1 SECONDS)
+	AddComponent(/datum/component/deployable_item, deployable_item, 1 SECONDS, 1 SECONDS)
 
 /obj/item/mortar_kit/attack_self(mob/user)
 	do_unique_action(user)

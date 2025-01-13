@@ -994,7 +994,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/cmo
 	r_store = /obj/item/storage/pouch/surgery
-	l_store = /obj/item/storage/pouch/medkit/medic
+	l_store = /obj/item/storage/pouch/medkit/doctor
 
 
 /datum/outfit/job/medical/professor/robot
@@ -1084,7 +1084,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/surgery/purple
 	r_store = /obj/item/storage/pouch/surgery
-	l_store = /obj/item/storage/pouch/medkit/medic
+	l_store = /obj/item/storage/pouch/medkit/doctor
 
 
 /datum/outfit/job/medical/medicalofficer/robot
@@ -1178,7 +1178,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 	glasses = /obj/item/clothing/glasses/hud/health
 	mask = /obj/item/clothing/mask/surgical
 	r_store = /obj/item/storage/pouch/surgery
-	l_store = /obj/item/storage/pouch/medkit/medic
+	l_store = /obj/item/storage/pouch/medkit/doctor
 
 
 /datum/outfit/job/medical/researcher/robot

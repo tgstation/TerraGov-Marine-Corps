@@ -83,3 +83,9 @@
 	if(launched && active && !istype(hit_atom, /turf/open)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
 		explosion(loc, light_impact_range = 1, flash_range = 2)
 		qdel(src)
+
+/obj/item/explosive/grenade/creampie
+	name = "\improper ERP4 HE Banana Cream Pie grenade"
+	desc = "A high explosive munition, hidden in the form of a tasty cream pie!"
+	icon = 'icons/obj/items/food/piecake.dmi'
+	icon_state = "pie"

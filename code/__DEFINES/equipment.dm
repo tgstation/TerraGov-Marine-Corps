@@ -119,7 +119,8 @@
 #define AUTOBALANCE_CHECK (1<<20)
 ///This item is in any storage
 #define IN_STORAGE (1<<21)
-
+///If an item can be restocked/refilled in a vendor, despite not being infinite supply
+#define CAN_REFILL (1<<22)
 
 //storage_flags
 ///If a storage container can be restocked into a vendor
@@ -225,6 +226,7 @@
 #define ITEM_SLOT_HANDCUFF (1<<14) //the slot for handcuffs
 #define ITEM_SLOT_L_HAND (1<<15) //left hand
 #define ITEM_SLOT_R_HAND (1<<16) //right hand
+#define ITEM_SLOT_SECONDARY (1<<17) //campaign loadouts only
 
 ///Inventory slot bits to plain english strings
 GLOBAL_LIST_INIT(inventory_slots_to_string, list(
@@ -245,6 +247,7 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 	"[ITEM_SLOT_HANDCUFF]" = "Handcuffs",
 	"[ITEM_SLOT_L_HAND]" = "Left hand",
 	"[ITEM_SLOT_R_HAND]" = "Right hand",
+	"[ITEM_SLOT_SECONDARY]" = "Secondary",
 ))
 
 //=================================================

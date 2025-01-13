@@ -90,6 +90,12 @@
 	animate(src, 7 SECONDS, easing = CIRCULAR_EASING|EASE_IN, alpha = initial(alpha))
 	addtimer(VARSET_CALLBACK(src, opacity, initial(opacity)), 5 SECONDS)
 
+/obj/effect/particle_effect/smoke/effect_smoke(obj/effect/particle_effect/smoke/S)
+	. = ..()
+	if(!.)
+		return
+	if(S.smoke_traits & SMOKE_PURGER && !(smoke_traits & SMOKE_PURGER))
+		lifetime -= 4
 
 /obj/effect/particle_effect/smoke/proc/on_cross(datum/source, atom/movable/O, oldloc, oldlocs)
 	SIGNAL_HANDLER
@@ -285,13 +291,6 @@
 	color = "#791697"
 	smoke_traits = SMOKE_PLASMALOSS
 
-/obj/effect/particle_effect/smoke/plasmaloss/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(!.)
-		return
-	if(S.smoke_traits & SMOKE_PURGER)
-		lifetime -= 4
-
 //////////////////////////////////////
 // ANTIGAS SMOKE
 ////////////////////////////////////
@@ -330,13 +329,6 @@
 	strength = 2
 	smoke_traits = SMOKE_BLISTERING|SMOKE_XENO_NEURO|SMOKE_OXYLOSS|SMOKE_GASP|SMOKE_COUGH
 
-/obj/effect/particle_effect/smoke/satrapine/effect_smoke(obj/effect/particle_effect/smoke/S)
-	. = ..()
-	if(!.)
-		return
-	if(S.smoke_traits & SMOKE_PURGER)
-		lifetime -= 4
-
 /////////////////////////////////////////
 // BOILER SMOKES
 /////////////////////////////////////////
@@ -353,8 +345,6 @@
 		return
 	if(S.smoke_traits & SMOKE_PLASMALOSS)
 		lifetime -= 2
-	if(S.smoke_traits & SMOKE_PURGER)
-		lifetime -= 4
 
 //Xeno acid smoke.
 /obj/effect/particle_effect/smoke/xeno/burn
@@ -368,6 +358,7 @@
 /obj/effect/particle_effect/smoke/xeno/burn/opaque
 	alpha = 255
 	opacity = TRUE
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_ACID|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 //Xeno light acid smoke.for acid huggers
 /obj/effect/particle_effect/smoke/xeno/burn/light
@@ -375,20 +366,19 @@
 
 //Xeno neurotox smoke.
 /obj/effect/particle_effect/smoke/xeno/neuro
-	alpha = 120
-	opacity = FALSE
+	alpha = 255
+	opacity = TRUE
 	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_EXTINGUISH
 
 ///Xeno neurotox smoke for Defilers; doesn't extinguish
 /obj/effect/particle_effect/smoke/xeno/neuro/medium
-	alpha = 255
-	opacity = TRUE
-	color = "#ffbf58" //Mustard orange?
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 ///Xeno neurotox smoke for neurospit; doesn't extinguish or blind
 /obj/effect/particle_effect/smoke/xeno/neuro/light
+	alpha = 120
+	opacity = FALSE
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_NEURO|SMOKE_GASP|SMOKE_COUGH|SMOKE_NEURO_LIGHT //Light neuro smoke doesn't extinguish
 
 /obj/effect/particle_effect/smoke/xeno/toxic
@@ -415,6 +405,14 @@
 /obj/effect/particle_effect/smoke/xeno/ozelomelyn
 	color = "#f1ddcf" //A pinkish for now.
 	smoke_traits = SMOKE_XENO|SMOKE_XENO_OZELOMELYN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
+
+
+/// Smoke that constantly makes pyrogen fire.
+/obj/effect/particle_effect/smoke/xeno/pyrogen_fire
+	alpha = 120
+	opacity = FALSE
+	color = "#cff1ee" // Blueish.
+	smoke_traits = SMOKE_XENO|SMOKE_XENO_PYROGEN|SMOKE_GASP|SMOKE_COUGH|SMOKE_HUGGER_PACIFY
 
 /////////////////////////////////////////////
 // Smoke spreads
@@ -491,6 +489,11 @@
 
 /datum/effect_system/smoke_spread/xeno/ozelomelyn
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/ozelomelyn
+
+
+/datum/effect_system/smoke_spread/xeno/pyrogen_fire
+	smoke_type = /obj/effect/particle_effect/smoke/xeno/pyrogen_fire
+
 
 /////////////////////////////////////////////
 // Chem smoke

@@ -90,7 +90,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 
 
 /obj/machinery/cloning/vats
-	name = "Clone Vat"
+	name = "clone vat"
 	icon = 'icons/obj/machines/cloning.dmi'
 	icon_state = "cell_0"
 	use_power = IDLE_POWER_USE
@@ -101,12 +101,17 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	light_color = LIGHT_COLOR_EMISSIVE_GREEN
 	layer = ABOVE_MOB_LAYER
 
+	/// ID of the timer that determines when a clone finishes growing
 	var/timerid
+	/// The mob inside the clone vat
 	var/mob/living/carbon/human/occupant
+	/// The beaker that holds the "biomass"
 	var/obj/item/reagent_containers/glass/beaker
+	/// The control terminal
 	var/obj/machinery/computer/cloning_console/vats/linked_console
-
+	/// Amount of biomass required to start growing and the amount of reagents that gets removed on successful grow
 	var/biomass_required = 40
+	/// The amount of times it takes for the clone to pop out
 	var/grow_timer = 15 MINUTES
 
 
@@ -121,7 +126,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		deltimer(timerid)
 		timerid = null
 
-	// Force tthe clone out, if they have a client
+	// Force the clone out, if they have a client
 	if(occupant)
 		eject_user()
 
@@ -130,6 +135,12 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	linked_console = null
 	return ..()
 
+/obj/machinery/cloning/vats/power_change()
+	. = ..()
+	if(!powered())
+		deltimer(timerid)
+		timerid = null
+		visible_message(span_warning("<b>[src]</b> beeps in error, 'Power failure, reverting clone progress due to safety concerns!'."))
 
 /obj/machinery/cloning/vats/relaymove(mob/user)
 	eject_user()
@@ -172,9 +183,8 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 			return
 
 		// Check if the beaker contains anything other than biomass juice
-		for(var/instance in hit_by.reagents.reagent_list)
-			var/datum/reagent/regent = instance
-			if(!istype(regent, /datum/reagent/medicine/biomass) && !istype(regent, /datum/reagent/medicine/biomass/xeno))
+		for(var/datum/reagent/instance AS in hit_by.reagents.reagent_list)
+			if(!istype(instance, /datum/reagent/medicine/biomass) && !istype(instance, /datum/reagent/medicine/biomass/xeno))
 				to_chat(user, span_warning("\The [src] rejects the beaker due to incompatible contents."))
 				return
 
@@ -223,6 +233,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 		return
 	. += emissive_appearance(icon, "[icon_state]_emissive", alpha = src.alpha)
 
+/// Eat up the biomass, start the grow timer
 /obj/machinery/cloning/vats/proc/grow_human(instant = FALSE)
 	use_power = ACTIVE_POWER_USE
 	// Ensure we cleanup the beaker contents
@@ -237,7 +248,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	timerid = addtimer(CALLBACK(src, PROC_REF(finish_growing_human)), grow_timer, TIMER_STOPPABLE)
 	update_icon()
 
-
+/// Spawn the human, add them to the SSD mob list, delete the timer
 /obj/machinery/cloning/vats/proc/finish_growing_human()
 	use_power = IDLE_POWER_USE
 	occupant = new(src)
@@ -253,9 +264,10 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	notify_ghosts(span_boldnotice("A new clone is available! Name: [name]"), enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)
 
 	// Cleanup the timers
+	deltimer(timerid)
 	timerid = null
 
-
+/// Pop the grown human out
 /obj/machinery/cloning/vats/proc/eject_user(silent = FALSE)
 	if(!occupant)
 		return

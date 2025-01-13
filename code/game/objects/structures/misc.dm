@@ -140,7 +140,7 @@
 	var/obj/structure/broken_state = /obj/structure/xenoautopsy/tank/escaped
 
 
-/obj/structure/xenoautopsy/tank/deconstruct(disassembled = TRUE)
+/obj/structure/xenoautopsy/tank/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	if(!broken_state)
 		return ..()
 

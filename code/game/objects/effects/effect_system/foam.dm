@@ -147,7 +147,7 @@
 	var/obj/effect/particle_effect/foam/F = new(location.resolve())
 	var/foamcolor = mix_color_from_reagents(carrying_reagents.reagent_list)
 	carrying_reagents.copy_to(F, spread_amount ? carrying_reagents.total_volume/spread_amount : carrying_reagents.total_volume) //this magically duplicates chems
-	F.add_atom_colour(foamcolor, FIXED_COLOUR_PRIORITY)
+	F.add_atom_colour(foamcolor, FIXED_COLOR_PRIORITY)
 	F.spread_amount = spread_amount
 	F.foam_flags = foam_flags
 

@@ -20,7 +20,9 @@
 		/obj/item/binoculars,
 		/obj/item/weapon/combat_knife,
 		/obj/item/attachable/bayonetknife,
-		/obj/item/storage/holster/blade
+		/obj/item/storage/holster/blade,
+		/obj/item/tool/hatchet,
+		/obj/item/tool/scythe
 	)
 
 

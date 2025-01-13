@@ -33,8 +33,8 @@
 	var/used_casings = 0
 	///flags specifically for magazines.
 	var/magazine_flags = MAGAZINE_REFILLABLE
-	///the default mag icon state.
-	var/base_mag_icon
+	///the default icon if MAGAZINE_SHOW_AMMO is used.
+	var/base_ammo_icon
 	//Stats to modify on the gun, just like the attachments do, only has used ones add more as you need.
 	var/scatter_mod = 0
 	///Increases or decreases scatter chance but for onehanded firing.
@@ -46,7 +46,9 @@
 
 /obj/item/ammo_magazine/Initialize(mapload, spawn_empty)
 	. = ..()
-	base_mag_icon = icon_state
+	base_icon_state = icon_state
+	if(!base_ammo_icon)
+		base_ammo_icon = icon_state
 	current_rounds = spawn_empty ? 0 : max_rounds
 	update_icon()
 
@@ -56,9 +58,18 @@
 		setDir(current_rounds + round(current_rounds/3))
 		return
 	if(current_rounds <= 0)
-		icon_state = base_mag_icon + "_e"
+		icon_state = base_icon_state + "_e"
 		return
-	icon_state = base_mag_icon
+	icon_state = base_icon_state
+
+/obj/item/ammo_magazine/update_overlays()
+	. = ..()
+	if(current_rounds <= 0)
+		return
+	if(!(magazine_flags & MAGAZINE_SHOW_AMMO))
+		return
+	var/remaining = CEILING((current_rounds / max_rounds) * 100, 25)
+	. += "[base_ammo_icon]_[remaining]"
 
 /obj/item/ammo_magazine/examine(mob/user)
 	. = ..()
@@ -215,6 +226,13 @@
 /obj/item/ammo_magazine/proc/get_ammo_percent()		// return % charge of cell
 	return 100.0*current_rounds/max_rounds
 
+/obj/item/ammo_magazine/refill(mob/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	current_rounds = initial(max_rounds)
+	update_icon()
+
 /obj/item/ammo_magazine/handful
 	name = "generic handful of bullets or shells"
 	desc = "A handful of rounds to reload on the go."
@@ -262,6 +280,28 @@
 	current_rounds = 5
 	default_ammo = /datum/ammo/bullet/shotgun/incendiary
 	caliber = CALIBER_12G
+
+/obj/item/ammo_magazine/handful/heavy_buckshot
+	name = "handful of shotgun buckshot shells (6g)"
+	icon_state = "heavy_shotgun_buckshot"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/heavy_buckshot
+	caliber = CALIBER_6G
+
+/obj/item/ammo_magazine/handful/barrikada
+	name = "handful of shotgun 'Barrikada' shells (6g)"
+	icon_state = "heavy_shotgun_barrikada"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/shotgun/barrikada_slug
+	caliber = CALIBER_6G
+
+
+/obj/item/ammo_magazine/handful/martini
+	name = "The handful of crude heavy sniper bullet (.557/440)"
+	icon_state = "crude_heavy_sniper"
+	current_rounds = 5
+	default_ammo = /datum/ammo/bullet/sniper/martini
+	caliber = CALIBER_557
 
 /obj/item/ammo_magazine/handful/micro_grenade
 	name = "handful of airburst micro grenades (10g)"

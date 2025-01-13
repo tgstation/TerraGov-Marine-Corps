@@ -5,6 +5,7 @@ import {
   LabeledList,
   Section,
   Stack,
+  Tooltip,
 } from '../../components';
 import {
   LoopingSelectionPreference,
@@ -41,6 +42,25 @@ export const GameSettings = (props) => {
   const { act, data } = useBackend<GameSettingData>();
   const { ui_style_color, scaling_method, pixel_size, parallax, is_admin } =
     data;
+
+  // Remember to update this alongside defines
+  // todo: unfuck. Bruh why is this being handled in the tsx?
+  const TTSRadioSetting = ['sl', 'squad', 'command', 'hivemind', 'all'];
+  const TTSRadioSettingToBitfield = {
+    sl: 1 << 0,
+    squad: 1 << 1,
+    command: 1 << 2,
+    all: 1 << 3,
+    hivemind: 1 << 4,
+  };
+  const TTSRadioSettingToName = {
+    sl: 'Squad Leader',
+    squad: 'Squad',
+    command: 'Command/Hive Leader',
+    hivemind: 'Hivemind',
+    all: 'All Channels',
+  };
+
   return (
     <Section title="Game Settings">
       <Stack fill>
@@ -77,6 +97,31 @@ export const GameSettings = (props) => {
                 label="Text to speech volume"
                 value="volume_tts"
               />
+              <LabeledList.Item label={'Text to Speech radio configuration'}>
+                {TTSRadioSetting.map((setting) => (
+                  <Button.Checkbox
+                    inline
+                    key={setting}
+                    content={TTSRadioSettingToName[setting]}
+                    checked={
+                      TTSRadioSettingToBitfield[setting] &
+                      data['radio_tts_flags']
+                    }
+                    onClick={() =>
+                      act('toggle_radio_tts_setting', {
+                        newsetting: setting,
+                      })
+                    }
+                  />
+                ))}
+              </LabeledList.Item>
+              <Tooltip content="Use more accessible TGUI themes/layouts wherever possible.">
+                <ToggleFieldPreference
+                  label="Accessible TGUI themes"
+                  value="accessible_tgui_themes"
+                  action="accessible_tgui_themes"
+                />
+              </Tooltip>
               <ToggleFieldPreference
                 label="Fullscreen mode"
                 value="fullscreen_mode"

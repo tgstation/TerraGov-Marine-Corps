@@ -367,6 +367,10 @@
 			if(!istype(user) || user.stat)
 				to_chat(user, span_warning("Must be alive to do this!"))
 				return
+			var/datum/campaign_mission/current_mission = get_current_mission()
+			if(!current_mission || current_mission.mission_state == MISSION_STATE_FINISHED)
+				to_chat(user, span_warning("Wait for the next mission to be selected!"))
+				return
 			var/obj/item/card/id/user_id = user.get_idcard()
 			if(!(user_id.id_flags & CAN_BUY_LOADOUT))
 				to_chat(user, span_warning("You have already selected a loadout for this mission."))

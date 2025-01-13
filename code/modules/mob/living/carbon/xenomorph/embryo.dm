@@ -29,7 +29,7 @@
 	if(iscarbon(affected_mob))
 		var/mob/living/carbon/C = affected_mob
 		C.med_hud_set_status()
-
+	RegisterSignal(affected_mob, COMSIG_HUMAN_SET_UNDEFIBBABLE, PROC_REF(on_host_dnr))
 
 /obj/item/alien_embryo/Destroy()
 	if(affected_mob)
@@ -66,6 +66,10 @@
 
 	process_growth()
 
+///Kills larva when host goes DNR
+/obj/item/alien_embryo/proc/on_host_dnr(datum/source)
+	SIGNAL_HANDLER
+	qdel(src)
 
 /obj/item/alien_embryo/proc/process_growth()
 
@@ -128,7 +132,8 @@
 	if(!affected_mob)
 		return
 
-	if(is_centcom_level(affected_mob.z) && !admin)
+	var/area/mob_area = get_area(affected_mob)
+	if(is_centcom_level(affected_mob.z) && !istype(mob_area, /area/deathmatch) && !admin)
 		return
 
 	var/mob/picked
@@ -151,7 +156,7 @@
 	if(picked)
 		picked.mind.transfer_to(new_xeno, TRUE)
 		to_chat(new_xeno, span_xenoannounce("We are a xenomorph larva inside a host! Move to burst out of it!"))
-		new_xeno << sound('sound/effects/xeno_newlarva.ogg')
+		new_xeno << sound('sound/effects/alien/new_larva.ogg')
 
 	stage = 6
 
@@ -199,12 +204,11 @@
 
 	victim.apply_damage(200, BRUTE, victim.get_limb("chest"), updating_health = TRUE) //lethal armor ignoring brute damage
 	var/datum/internal_organ/O
-	for(var/i in list("heart", "lungs", "liver", "kidneys", "appendix")) //Bruise all torso internal organs
-		O = victim.internal_organs_by_name[i]
+	for(var/i in list(ORGAN_SLOT_HEART, ORGAN_SLOT_LUNGS, ORGAN_SLOT_LIVER, ORGAN_SLOT_KIDNEYS, ORGAN_SLOT_APPENDIX)) //Bruise all torso internal organs
+		O = victim.get_organ_slot(i)
 
 		if(!victim.mind && !victim.client) //If we have no client or mind, permadeath time; remove the organs. Mainly for the NPC colonist bodies
-			victim.internal_organs_by_name -= i
-			victim.internal_organs -= O
+			victim.remove_organ_slot(i)
 		else
 			O.take_damage(O.min_bruised_damage, TRUE)
 
