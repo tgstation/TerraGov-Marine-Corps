@@ -73,7 +73,11 @@
 
 	if(screen == 1)
 		dat += "Select an event to trigger:<ul>"
-		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Red alert'>Red alert</A></li>"
+		for(var/iter_level_text AS in SSsecurity_level.available_levels)
+			var/datum/security_level/iter_level_datum = SSsecurity_level.available_levels[iter_level_text]
+			if(!(iter_level_datum.sec_level_flags & SEC_LEVEL_CAN_SWITCH_WITH_AUTH))
+				continue
+			dat += "<li><a href='?src=[text_ref(src)];trigger_event=[iter_level_datum.name]'>Set alert level to [iter_level_datum.name]</a></li>"
 
 		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
 		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
@@ -140,8 +144,8 @@
 	if(confirmed)
 		confirmed = FALSE
 		trigger_event(event)
-		log_game("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed event [event].")
-		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered and [ADMIN_TPMONTY(event_confirmed_by)] confirmed event [event].")
+		log_game("[key_name(event_triggered_by)] triggered and [key_name(event_confirmed_by)] confirmed keycard auth event [event].")
+		message_admins("[ADMIN_TPMONTY(event_triggered_by)] triggered and [ADMIN_TPMONTY(event_confirmed_by)] confirmed keycard auth event [event].")
 	reset()
 
 /obj/machinery/keycard_auth/proc/receive_request(obj/machinery/keycard_auth/source)
@@ -160,9 +164,11 @@
 	busy = FALSE
 
 /obj/machinery/keycard_auth/proc/trigger_event()
+	var/potential_alert_level = SSsecurity_level.text_level_to_number(event)
+	if(potential_alert_level) // Maybe there's a better way to do this.
+		SSsecurity_level.set_level(potential_alert_level)
+		return
 	switch(event)
-		if("Red alert")
-			SSsecurity_level.set_level(SEC_LEVEL_RED)
 		if("Grant Emergency Maintenance Access")
 			SSmarine_main_ship.make_maint_all_access()
 		if("Revoke Emergency Maintenance Access")

@@ -51,11 +51,19 @@
 //Object specific defines
 #define CANDLE_LUM 3 //For how bright candles are
 
-#define SEC_LEVEL_GREEN 0
-#define SEC_LEVEL_BLUE 1
-#define SEC_LEVEL_RED 2
-#define SEC_LEVEL_DELTA 3
+#define SEC_LEVEL_GREEN (1<<0)
+#define SEC_LEVEL_BLUE (1<<1)
+#define SEC_LEVEL_RED (1<<2)
+#define SEC_LEVEL_DELTA (1<<3)
 
+/// Players can change to this through comms consoles
+#define SEC_LEVEL_CAN_SWITCH_COMMS_CONSOLE (1<<0)
+/// Players can change to this but only through keycard authentication, which requires someone else
+#define SEC_LEVEL_CAN_SWITCH_WITH_AUTH (1<<1)
+/// Players cannot change to *or from* this manually
+#define SEC_LEVEL_CANNOT_SWITCH (1<<2)
+/// Shows evacuation and related options in comms consoles
+#define SEC_LEVEL_IS_EMERGENCY (1<<3)
 
 //=================================================
 #define HOSTILE_STANCE_IDLE 1

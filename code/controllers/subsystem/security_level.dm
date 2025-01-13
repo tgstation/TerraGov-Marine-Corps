@@ -4,7 +4,7 @@
  *
  * Subsystem that handles setting the security level of the marine ship.
  *
- * See `/datum/security_level` for additional usage.
+ * See [/datum/security_level] for additional usage.
  *
  * This replaces hardcoded security levels with a new system that makes new security levels extremely
  * easy to implement, and existing ones extremely easy to modify.
@@ -28,6 +28,9 @@ SUBSYSTEM_DEF(security_level)
 	current_security_level = available_levels[number_level_to_text(SEC_LEVEL_GREEN)]
 	return SS_INIT_SUCCESS
 
+/datum/controller/subsystem/security_level/stat_entry()
+	return ..("Current Level: [uppertext(current_security_level.name)] Previous Level: [uppertext(number_level_to_text(most_recent_level))]")
+
 /**
  * Sets a new security level as our current level. This is how anything should be changing the security level.
  *
@@ -37,11 +40,15 @@ SUBSYSTEM_DEF(security_level)
  *
  * Arguments:
  * * new_level - The new security level that will become our current level
- * * announce - Play the announcement, set FALSE if you're doing your own custom announcement to prevent duplicates
+ * * announce - Play the announcement, set to FALSE if you're doing your own custom announcement to prevent duplicates
+ * * allow_illegal_switching_from - Set to TRUE if you want to allow switching from a sec level that prevents it
  */
-/datum/controller/subsystem/security_level/proc/set_level(new_level, announce = TRUE)
+/datum/controller/subsystem/security_level/proc/set_level(new_level, announce = TRUE, allow_illegal_switching_from = FALSE)
 	new_level = istext(new_level) ? new_level : number_level_to_text(new_level)
 	if(new_level == current_security_level.name) // If we are already at the desired level, do nothing
+		return
+
+	if(!allow_illegal_switching_from && (current_security_level.sec_level_flags & SEC_LEVEL_CANNOT_SWITCH))
 		return
 
 	var/datum/security_level/selected_level = available_levels[new_level]

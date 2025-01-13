@@ -3,7 +3,7 @@
  *
  * The base class for datumized security levels. These are used by `SSsecurity_level`.
  *
- * These represent possible security levels for the security level subsystem.
+ * Each subtype represents a possible security level for the security level subsystem.
  *
  * Base type is abstract
  */
@@ -16,6 +16,11 @@
 	var/number_level = -1
 	/// The sound that we will play when this security level is set.
 	var/sound
+	/// Governs whether players can switch to this security level and, if so,
+	/// what methods they can use to set it. See defines in __game.dm.
+	/// If, for whatever reason, you want to use multiple flags, that is supported.
+	/// (example: a security level accessible through a comms console *or* keycard auth)
+	var/sec_level_flags = SEC_LEVEL_CAN_SWITCH_COMMS_CONSOLE
 	/// Our announcement when lowering to this level.
 	var/lowering_body
 	/// Our announcement when elevating to this level.
@@ -60,7 +65,7 @@
 /**
  * RED
  *
- * Hostile threats on ship
+ * Hostile threats on/about to be on ship
  */
 /datum/security_level/red
 	name = "red"
@@ -69,6 +74,7 @@
 	announcement_color = "red"
 	sound = 'sound/misc/security_level/red.ogg' // More angry alarm
 	number_level = SEC_LEVEL_RED
+	sec_level_flags = SEC_LEVEL_CAN_SWITCH_WITH_AUTH
 
 /**
  * DELTA
@@ -81,3 +87,4 @@
 	sound = 'sound/misc/airraid.ogg' // Scary siren
 	number_level = SEC_LEVEL_DELTA
 	elevating_to_configuration_key = /datum/config_entry/string/alert_delta
+	sec_level_flags = (SEC_LEVEL_CANNOT_SWITCH|SEC_LEVEL_IS_EMERGENCY)
