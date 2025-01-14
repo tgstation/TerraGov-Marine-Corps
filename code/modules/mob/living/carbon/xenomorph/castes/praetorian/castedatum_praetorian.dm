@@ -189,11 +189,10 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/abduct,
+		/datum/action/ability/activable/xeno/abduct, // This gets two more tiles of range, but takes a little more longer.
 		/datum/action/ability/activable/xeno/dislocate,
 		/datum/action/ability/activable/xeno/item_throw,
 		/datum/action/ability/activable/xeno/tail_lash,
-		/datum/action/ability/activable/xeno/tail_seize, // A neutered verison of the Primordial Defiler's tentacle ability.
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
