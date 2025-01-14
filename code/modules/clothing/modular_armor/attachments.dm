@@ -105,6 +105,7 @@
 	icon_state = initial(icon_state)
 	update_icon()
 
+///called when the item is dropped: relevant when item is forcedropped from a non-hand slot so we can remove the actions.
 /obj/item/armor_module/proc/handle_unequip_actions(datum/source, mob/user)
 	SIGNAL_HANDLER
 	handle_actions(source, user, null)
