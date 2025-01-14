@@ -214,11 +214,7 @@
 				return
 
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
-	user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(
-		"<u>[text_source]</u>",
-		message,
-		LEFT_ALIGN_TEXT
-	), portrait_to_use)
+	user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("<u>[text_source]</u>", message, LEFT_ALIGN_TEXT), portrait_to_use)
 
 ///Generates status tab info for the mission
 /datum/campaign_mission/proc/get_status_tab_items(mob/source, list/items)
