@@ -488,6 +488,24 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	/// A timer for when to conclude the ability.
 	var/ability_timer
 
+
+/datum/action/ability/activable/xeno/abduct/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(ability_timer)
+		if(!silent)
+			target.balloon_alert(xeno_owner, "already abducting")
+		return FALSE
+		turf_line = get_turf_line(target, xeno_owner.upgrade == XENO_UPGRADE_PRIMO ? 7 : 5)
+
+	var/direction_to = get_dir(xeno_owner, target)
+	var/list/turf/turf_line_pre = get_turf_line(target, 1)
+	if(!turf_line_pre.len) // Being really nice by preventing them from using the ability if it would of done nothing.
+		if(!silent)
+			target.balloon_alert(xeno_owner, "blocked")
+		return FALSE
+
 /datum/action/ability/activable/xeno/abduct/use_ability(atom/movable/target)
 	// Face them!
 	xeno_owner.face_atom(target)
@@ -499,37 +517,42 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	// This is where they'll be thrown to later.
 	initial_turf = get_step(xeno_owner, xeno_owner.dir)
 	// Make the path from here to there.
-	LAZYINITLIST(turf_line)
-	var/list/turf_line_unfiltered = getline(xeno_owner, target)
-
-	var/distance_so_far = 0
-	var/turf/last_unfiltered_turf
-	for(var/turf/unfiltered_turf in turf_line_unfiltered)
-		if(!last_unfiltered_turf && length(turf_line_unfiltered) > 1)
-			last_unfiltered_turf = get_turf(xeno_owner)
-			continue
-		if(unfiltered_turf.density || isspaceturf(unfiltered_turf))
-			break
-		var/blocked = FALSE
-		for(var/obj/object_on_turf in unfiltered_turf)
-			if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_PROJECTILE) && !(object_on_turf.atom_flags & ON_BORDER))
-				blocked = TRUE
-				break
-		if(distance_so_far > 6 || blocked)
-			break
-		distance_so_far += 1
-		turf_line += unfiltered_turf
-
+	turf_line = get_turf_line(target, xeno_owner.upgrade == XENO_UPGRADE_PRIMO ? 7 : 5)
 	LAZYINITLIST(telegraphed_atoms)
 	for(var/turf/turf_from_line in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
-
+	// Now wait until it is done.
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-	// No interruptions allowed -- including getting moved!
+	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), turf_line.len > 5 ? 1.4 SECONDS : 1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(cancel_pull))
 	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(cancel_pull))
 
+/// Get a filtered line of turfs from the owner to target.
+/datum/action/ability/activable/xeno/abduct/proc/get_turf_line(atom/movable/target, distance)
+	var/list/turf_line_unfiltered = getline(xeno_owner, target)
+	var/list/turf_line_filtered = list()
+	for(var/turf/unfiltered_turf in turf_line_unfiltered)
+		if(unfiltered_turf.density)
+			break
+		var/blocked = FALSE
+		for(var/obj/object_on_turf in unfiltered_turf)
+			if(isbarricade(object_on_turf))
+				var/obj/structure/barricade/barricade_on_turf = object_on_turf
+				if(!barricade_on_turf.climbable)
+					blocked = TRUE
+					break
+				continue
+			if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_PROJECTILE))
+				blocked = TRUE
+				break
+		if(blocked || turf_line_filtered.len > distance)
+			break
+		turf_line_filtered += unfiltered_turf
+
+	(xeno_owner.upgrade == XENO_UPGRADE_PRIMO ? 7 : 5)
+	return turf_line_filtered
+
+/// Successfully ends the ability by throwing all humans in the affected turfs at the initial turf.
 /datum/action/ability/activable/xeno/abduct/proc/pull_them_in()
 	// The reward of success.
 	var/list/mob/living/carbon/human/human_mobs = list()
@@ -544,20 +567,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	var/total_humans = human_mobs.len
 	for(var/mob/living/carbon/human/human_mob in human_mobs)
-		human_mob.Paralyze(0.1 SECONDS)
-		human_mob.apply_effect(0.1 SECONDS, WEAKEN)
-		var/distance = get_dist(human_mob, initial_turf)
-		human_mob.throw_at(owner, distance, 2, initial_turf, FALSE) // TODO: Make this higher distance because it can fail to go all the way.
-		// Preventing this from infinitely being used as a cost-free drag against the crit.
 		if(human_mob.stat == UNCONSCIOUS)
-			var/critdamage = HUMAN_CRITDRAG_OXYLOSS * distance
-			if(!human_mob.adjustOxyLoss(critdamage)) // TODO: Make this a signal that does damage every movement. Ends on death / throw end.
-				human_mob.adjustBruteLoss(critdamage)
-		// Additional effects:
+			RegisterSignal(human_mob, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_while_thrown))
+			RegisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
+		human_mob.throw_at(owner, 6, 2, initial_turf, FALSE)
+		human_mob.Paralyze(0.1 SECONDS)
 		human_mob.add_slowdown(0.3 * total_humans)
 		human_mob.adjust_stagger(0.5 SECONDS * total_humans)
-		if(total_humans >= 3)
-			human_mob.AdjustImmobilized(1 SECONDS)
+		human_mob.apply_effect(total_humans >= 3 ? 1 SECONDS : 0.1 SECONDS, WEAKEN)
 	if(total_humans)
 		xeno_owner.add_slowdown(0.4 * total_humans) // Don't bite off more than what you can chew.
 		playsound(human_mobs[total_humans], 'sound/voice/alien/pounce.ogg', 25, TRUE) //
@@ -566,28 +583,44 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	// Cleanup.
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(xeno_owner, COMSIG_ATOM_DIR_CHANGE)
+	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
 	QDEL_LIST(telegraphed_atoms)
 	deltimer(ability_timer)
 	telegraphed_atoms = null
 	turf_line = null
 	initial_turf = null
 
+/// Prematurely ends the ability and punishes the ability owner a little.
 /datum/action/ability/activable/xeno/abduct/proc/cancel_pull()
 	// The price of failure (or being sabotaged by your teammates).
 	xeno_owner.Knockdown(1 SECONDS)
-	xeno_owner.add_slowdown(0.6)
+	xeno_owner.add_slowdown(0.9)
 	succeed_activate()
 	add_cooldown()
 	// Cleanup.
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(xeno_owner, COMSIG_ATOM_DIR_CHANGE)
+	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
 	QDEL_LIST(telegraphed_atoms)
 	deltimer(ability_timer)
 	telegraphed_atoms = null
 	turf_line = null
 	initial_turf = null
+
+/// Does brute/oxygen damage to unconscious humans if they move.
+/datum/action/ability/activable/xeno/abduct/proc/on_movement_while_thrown(datum/source)
+	var/mob/living/carbon/human/human_mob = source
+	if(human_mob.stat != UNCONSCIOUS)
+		UnregisterSignal(human_mob, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW)
+		return
+	if(!human_mob.adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS))
+		human_mob.adjustBruteLoss(HUMAN_CRITDRAG_OXYLOSS)
+
+/// Removes signals for COMSIG_MOVABLE_MOVED and COMSIG_MOVABLE_POST_THROW for thrown humans.
+/datum/action/ability/activable/xeno/abduct/proc/on_throw_end(datum/source)
+	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 
 /obj/effect/xeno/abduct_warning
 	icon = 'icons/Xeno/Effects.dmi'
@@ -644,14 +677,28 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
 	carbon_target.apply_damage(damage, BRUTE, target_limb ? target_limb : 0, MELEE)
 	carbon_target.apply_effect(0.1 SECONDS, WEAKEN) // So they go through mobs and what not.
-	carbon_target.knockback(xeno_owner, 2, 2)
 	if(ishuman(carbon_target) && carbon_target.stat == UNCONSCIOUS)
-		var/critdamage = HUMAN_CRITDRAG_OXYLOSS * 2
-		if(!carbon_target.adjustOxyLoss(critdamage))
-			carbon_target.adjustBruteLoss(critdamage)
+		RegisterSignal(carbon_target, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_while_thrown))
+		RegisterSignal(carbon_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
+	carbon_target.knockback(xeno_owner, 2, 2)
 
 	succeed_activate()
 	add_cooldown()
+
+/// Does brute/oxygen damage to unconscious humans if they move.
+/datum/action/ability/activable/xeno/dislocate/proc/on_movement_while_thrown(datum/source)
+	var/mob/living/carbon/human/human_mob = source
+	if(human_mob.stat != UNCONSCIOUS)
+		UnregisterSignal(human_mob, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW)
+		return
+	if(!human_mob.adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS))
+		human_mob.adjustBruteLoss(HUMAN_CRITDRAG_OXYLOSS)
+
+/// Removes signals for COMSIG_MOVABLE_MOVED and COMSIG_MOVABLE_POST_THROW for thrown humans.
+/datum/action/ability/activable/xeno/dislocate/proc/on_throw_end(datum/source)
+	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 
 // ***************************************
 // *********** Item Throw
@@ -698,14 +745,14 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		held_appearance.layer = ABOVE_OBJ_LAYER
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 		RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(owner_turned))
-		owner.add_movespeed_modifier(MOVESPEED_ID_SNATCH, TRUE, 0, NONE, TRUE, 2)
+		owner.add_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB, TRUE, 0, NONE, TRUE, 2)
 		owner_turned(null, null, owner.dir)
 		succeed_activate()
 		ability_cost = 0 // Throwing will cost nothing (and won't cause a warning if not enough plasma).
 		single_tile_grace_period = TRUE
 		return
 	// Throw!
-	owner.remove_movespeed_modifier(MOVESPEED_ID_SNATCH)
+	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
 	held_item.throwforce += held_item.w_class * 15 // Ranges from 15 - 90 damage.
 	RegisterSignal(held_item, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throwend))
 	held_item.forceMove(get_turf(owner))
@@ -713,7 +760,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	held_item.throw_at(A, max(2, 11 - (held_item.w_class * 2)), 5) // Ranges from 9 - 2 tiles.
 	held_item = null
 	owner.overlays -= held_appearance
-	playsound(src, 'sound/effects/throw.ogg', 30, 1)
+	playsound(xeno_owner, 'sound/effects/throw.ogg', 30, 1)
 	succeed_activate()
 	ability_cost = initial(ability_cost)
 	add_cooldown()
@@ -737,7 +784,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/item_throw/proc/drop_item()
 	if(!held_item)
 		return
-	owner.remove_movespeed_modifier(MOVESPEED_ID_SNATCH)
+	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
 	held_item.forceMove(get_turf(owner))
 	held_item = null
 	owner.overlays -= held_appearance
@@ -823,9 +870,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			affected_human.throw_at(throwlocation, 2, 1, owner, TRUE)
 			// Preventing this from infinitely being used as a cost-free throw against the crit.
 			if(affected_human.stat == UNCONSCIOUS)
-				var/critdamage = HUMAN_CRITDRAG_OXYLOSS * 2
-				if(!affected_human.adjustOxyLoss(critdamage))
-					affected_human.adjustBruteLoss(critdamage)
+				RegisterSignal(affected_human, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_while_thrown))
+				RegisterSignal(affected_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
 
 	xeno_owner.spin(4, 1)
 	xeno_owner.emote("tail")
@@ -833,14 +879,17 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 	add_cooldown()
 
-// ***************************************
-// *********** Tail Seize
-// ***************************************
-/datum/action/ability/activable/xeno/tail_seize
-	name = "Tail Seize"
-	action_icon_state = "tail_seize"
-	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "After a short delay, pull a selected human toward you."
-	ability_cost = 50
-	cooldown_duration = 15 SECONDS
-	target_flags = ABILITY_MOB_TARGET
+/// Does brute/oxygen damage to unconscious humans if they move.
+/datum/action/ability/activable/xeno/tail_lash/proc/on_movement_while_thrown(datum/source)
+	var/mob/living/carbon/human/human_mob = source
+	if(human_mob.stat != UNCONSCIOUS)
+		UnregisterSignal(human_mob, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW)
+		return
+	if(!human_mob.adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS))
+		human_mob.adjustBruteLoss(HUMAN_CRITDRAG_OXYLOSS)
+
+/// Removes signals for COMSIG_MOVABLE_MOVED and COMSIG_MOVABLE_POST_THROW for thrown humans.
+/datum/action/ability/activable/xeno/tail_lash/proc/on_throw_end(datum/source)
+	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
