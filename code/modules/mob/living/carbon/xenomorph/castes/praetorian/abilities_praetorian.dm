@@ -478,121 +478,120 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Throw your tail out and hook in any humans caught in it. Ends prematurely if blocked or hits anything dense."
 	ability_cost = 50
-	cooldown_duration = 13 SECONDS
-	/// Reference to beam hook.
-	var/datum/beam/hook_beam
-	/// The current projectile if there is one around.
-	var/obj/projectile/tail_projectile
-	/// A list of mobs that were hit by the projectile.
-	var/list/hooked_humans = list()
+	cooldown_duration = 16 SECONDS
 	/// The turf in front of the owner when the projectile was initially fired.
 	var/turf/initial_turf
-	/// A timer to cancel the ability if it has gone for too long.
-	var/ability_timer // Only needed because there are niche bugs that causes projectiles to be stuck.
-
-/datum/action/ability/activable/xeno/abduct/can_use_ability(atom/A, silent = FALSE, override_flags)
-	. = ..()
-	if(!.)
-		return FALSE
-	if(!isnull(tail_projectile))
-		return FALSE
+	/// A list of turfs that will be used to get mobs who will get affected by the ability.
+	var/list/turf/turf_line
+	/// The created effects that need to be deleted later.
+	var/list/obj/effect/xeno/abduct_warning/telegraphed_atoms
+	/// A timer for when to conclude the ability.
+	var/ability_timer
 
 /datum/action/ability/activable/xeno/abduct/use_ability(atom/movable/target)
-	xeno_owner.face_atom(target)
-	if(!do_after(owner, 0.8 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
-		return
 	// Face them!
 	xeno_owner.face_atom(target)
+	if(!do_after(owner, 1.2 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
+		// You can cancel it if you want to, but you can't spam this as part of some mind games.
+		add_cooldown(cooldown_duration/2)
+		return
+	xeno_owner.face_atom(target)
+	// This is where they'll be thrown to later.
 	initial_turf = get_step(xeno_owner, xeno_owner.dir)
-	// Shoot your shot!
-	tail_projectile = new(get_turf(xeno_owner))
-	tail_projectile.generate_bullet(/datum/ammo/xeno/oppressor_tail)
-	var/datum/ammo/xeno/oppressor_tail/tail_ammo = tail_projectile.ammo
-	tail_ammo.ability_creator = src
-	tail_projectile.fire_at(target, xeno_owner, xeno_owner, range = 8, speed = 1)
-	hook_beam = owner.beam(tail_projectile, "curse1", 'icons/effects/beam.dmi')
-	RegisterSignal(tail_projectile, COMSIG_QDELETING, PROC_REF(on_proj_qdel))
-	playsound(get_turf(xeno_owner), 'sound/bullets/spear_armor1.ogg', 25, 1)
-	// Keep still until it's done.
-	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	ability_timer = addtimer(CALLBACK(src, PROC_REF(proj_timed_out)), 1.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-	succeed_activate()
-	add_cooldown()
+	// Make the path from here to there.
+	LAZYINITLIST(turf_line)
+	var/list/turf_line_unfiltered = getline(xeno_owner, target)
 
-/// Throw all hooked humans to initial turf and do additional effects if needed.
-/datum/action/ability/activable/xeno/abduct/proc/successful_hook()
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	var/amount_hooked = hooked_humans.len
-	for(var/mob/living/carbon/human/human_mob AS in hooked_humans)
-		// Initial throw:
-		human_mob.Paralyze(0.5 SECONDS)
-		human_mob.apply_effect(0.2 SECONDS, WEAKEN)
+	var/distance_so_far = 0
+	var/turf/last_unfiltered_turf
+	for(var/turf/unfiltered_turf in turf_line_unfiltered)
+		if(!last_unfiltered_turf && length(turf_line_unfiltered) > 1)
+			last_unfiltered_turf = get_turf(xeno_owner)
+			continue
+		if(unfiltered_turf.density || isspaceturf(unfiltered_turf))
+			break
+		var/blocked = FALSE
+		for(var/obj/object_on_turf in unfiltered_turf)
+			if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_PROJECTILE) && !(object_on_turf.atom_flags & ON_BORDER))
+				blocked = TRUE
+				break
+		if(distance_so_far > 6 || blocked)
+			break
+		distance_so_far += 1
+		turf_line += unfiltered_turf
+
+	LAZYINITLIST(telegraphed_atoms)
+	for(var/turf/turf_from_line in turf_line)
+		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
+
+	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	// No interruptions allowed -- including getting moved!
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(cancel_pull))
+	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(cancel_pull))
+
+/datum/action/ability/activable/xeno/abduct/proc/pull_them_in()
+	// The reward of success.
+	var/list/mob/living/carbon/human/human_mobs = list()
+	for(var/turf/turf_from_line in turf_line)
+		for(var/atom/movable/target in turf_from_line.contents)
+			if(!ishuman(target))
+				continue
+			var/mob/living/carbon/human/human_mob = target
+			if(human_mob.stat == DEAD)
+				continue
+			human_mobs += target
+
+	var/total_humans = human_mobs.len
+	for(var/mob/living/carbon/human/human_mob in human_mobs)
+		human_mob.Paralyze(0.1 SECONDS)
+		human_mob.apply_effect(0.1 SECONDS, WEAKEN)
 		var/distance = get_dist(human_mob, initial_turf)
-		human_mob.throw_at(owner, distance, 2, initial_turf, FALSE)
+		human_mob.throw_at(owner, distance, 2, initial_turf, FALSE) // TODO: Make this higher distance because it can fail to go all the way.
 		// Preventing this from infinitely being used as a cost-free drag against the crit.
 		if(human_mob.stat == UNCONSCIOUS)
 			var/critdamage = HUMAN_CRITDRAG_OXYLOSS * distance
-			if(!human_mob.adjustOxyLoss(critdamage))
+			if(!human_mob.adjustOxyLoss(critdamage)) // TODO: Make this a signal that does damage every movement. Ends on death / throw end.
 				human_mob.adjustBruteLoss(critdamage)
-		// Due to the above, they could be dead right now.
-		if(human_mob.stat == DEAD)
-			continue
 		// Additional effects:
-		human_mob.add_slowdown(0.3 * hooked_humans.len)
-		human_mob.adjust_stagger(0.5 SECONDS * hooked_humans.len)
-		if(amount_hooked >= 3)
+		human_mob.add_slowdown(0.3 * total_humans)
+		human_mob.adjust_stagger(0.5 SECONDS * total_humans)
+		if(total_humans >= 3)
 			human_mob.AdjustImmobilized(1 SECONDS)
-	// The last hooked human gets the sound around them.
-	if(amount_hooked)
-		xeno_owner.add_slowdown(0.4 * amount_hooked) // Don't bite off more than what you can chew.
-		playsound(hooked_humans[amount_hooked], 'sound/voice/alien/pounce.ogg', 25, TRUE)
-	// Everything else is handled when the projectile is qdel'd.
-
-/// Deletes the projectile.
-// This is important since the xeno owner is immobile until the projectile is gone.
-/datum/action/ability/activable/xeno/abduct/proc/proj_timed_out()
-	SIGNAL_HANDLER
-	QDEL_NULL(tail_projectile)
-
-/// Reverts the xeno and sets variables back to normal. Used for ending the hooking prematurely as needed.
-/datum/action/ability/activable/xeno/abduct/proc/on_proj_qdel(datum/source)
-	SIGNAL_HANDLER
+	if(total_humans)
+		xeno_owner.add_slowdown(0.4 * total_humans) // Don't bite off more than what you can chew.
+		playsound(human_mobs[total_humans], 'sound/voice/alien/pounce.ogg', 25, TRUE) //
+	succeed_activate()
+	add_cooldown()
+	// Cleanup.
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	QDEL_NULL(hook_beam)
-	tail_projectile = null
+	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(xeno_owner, COMSIG_ATOM_DIR_CHANGE)
+	QDEL_LIST(telegraphed_atoms)
 	deltimer(ability_timer)
+	telegraphed_atoms = null
+	turf_line = null
 	initial_turf = null
-	hooked_humans.Cut()
 
-/datum/ammo/xeno/oppressor_tail
-	name = "oppressor tail"
-	icon_state = ""
-	shell_speed = 1
-	max_range = 8
-	bullet_color = COLOR_WHITE
-	sound_hit = 'sound/bullets/spear_armor1.ogg'
-	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_PASS_THROUGH_MOB
-	var/datum/action/ability/activable/xeno/abduct/ability_creator
+/datum/action/ability/activable/xeno/abduct/proc/cancel_pull()
+	// The price of failure (or being sabotaged by your teammates).
+	xeno_owner.Knockdown(1 SECONDS)
+	xeno_owner.add_slowdown(0.6)
+	succeed_activate()
+	add_cooldown()
+	// Cleanup.
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(xeno_owner, COMSIG_ATOM_DIR_CHANGE)
+	QDEL_LIST(telegraphed_atoms)
+	deltimer(ability_timer)
+	telegraphed_atoms = null
+	turf_line = null
+	initial_turf = null
 
-/datum/ammo/xeno/oppressor_tail/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	if(!ishuman(target_mob) || target_mob.stat == DEAD)
-		return
-
-	ability_creator.hooked_humans += target_mob
-	if(length(ability_creator.hooked_humans) >= 3)
-		ability_creator.successful_hook()
-		proj.proj_max_range = 0
-
-///Special effects when hitting objects.
-/datum/ammo/xeno/oppressor_tail/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	ability_creator.successful_hook()
-	proj.proj_max_range = 0
-
-/datum/ammo/xeno/oppressor_tail/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	ability_creator.successful_hook()
-
-/datum/ammo/xeno/oppressor_tail/do_at_max_range(turf/target_turf, obj/projectile/proj)
-	ability_creator.successful_hook()
+/obj/effect/xeno/abduct_warning
+	icon = 'icons/Xeno/Effects.dmi'
+	icon_state = "abduct_hook"
 
 // ***************************************
 // *********** Dislocate
@@ -605,6 +604,54 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	ability_cost = 50
 	cooldown_duration = 12 SECONDS
 	target_flags = ABILITY_MOB_TARGET
+
+/datum/action/ability/activable/xeno/dislocate/can_use_ability(atom/target, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!iscarbon(target))
+		if(!silent)
+			target.balloon_alert(xeno_owner, "cannot dislocate")
+		return FALSE
+	if(isxeno(target))
+		var/mob/living/carbon/xenomorph/xenomorph_target = target
+		if(xeno_owner.issamexenohive(xenomorph_target))
+			if(!silent)
+				target.balloon_alert(xeno_owner, "cannot dislocate ally")
+			return FALSE
+	var/mob/living/carbon/carbon_target = target
+	if(!xeno_owner.Adjacent(carbon_target))
+		carbon_target.balloon_alert(xeno_owner, "too far")
+		return FALSE
+	if(carbon_target.stat == DEAD)
+		carbon_target.balloon_alert(xeno_owner, "already dead")
+		return FALSE
+
+/datum/action/ability/activable/xeno/dislocate/use_ability(atom/target)
+	var/mob/living/carbon/carbon_target = target
+	var/datum/limb/target_limb
+	target_limb = carbon_target.get_limb(xeno_owner.zone_selected)
+	if(!target_limb || (target_limb.limb_status & LIMB_DESTROYED))
+		target_limb = carbon_target.get_limb(BODY_ZONE_CHEST)
+
+	xeno_owner.face_atom(target)
+
+	carbon_target.Shake(duration = 0.1 SECONDS)
+	xeno_owner.do_attack_animation(carbon_target)
+	new /obj/effect/temp_visual/warrior/punch/weak(get_turf(carbon_target))
+	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE)
+
+	var/damage = xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier
+	carbon_target.apply_damage(damage, BRUTE, target_limb ? target_limb : 0, MELEE)
+	carbon_target.apply_effect(0.1 SECONDS, WEAKEN) // So they go through mobs and what not.
+	carbon_target.knockback(xeno_owner, 2, 2)
+	if(ishuman(carbon_target) && carbon_target.stat == UNCONSCIOUS)
+		var/critdamage = HUMAN_CRITDRAG_OXYLOSS * 2
+		if(!carbon_target.adjustOxyLoss(critdamage))
+			carbon_target.adjustBruteLoss(critdamage)
+
+	succeed_activate()
+	add_cooldown()
 
 // ***************************************
 // *********** Item Throw
@@ -738,6 +785,53 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Knock back humans that are in front of you."
 	ability_cost = 50
 	cooldown_duration = 13 SECONDS
+
+/datum/action/ability/activable/xeno/tail_lash/use_ability(atom/target)
+	xeno_owner.face_atom(target)
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(xeno_owner.dir)
+		if(NORTH)
+			lower_left = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 1, xeno_owner.y + 2, xeno_owner.z)
+		if(SOUTH)
+			lower_left = locate(xeno_owner.x - 1, xeno_owner.y - 2, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
+		if(WEST)
+			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
+		if(EAST)
+			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 1, xeno_owner.z)
+
+	for(var/turf/affected_tile in block(lower_left, upper_right))
+		affected_tile.Shake(duration = 0.1 SECONDS)
+		for(var/atom/movable/affected AS in affected_tile)
+			if(!ishuman(affected))
+				continue
+			if(affected.move_resist >= MOVE_FORCE_OVERPOWERING)
+				continue
+			var/mob/living/carbon/human/affected_human = affected
+			if(affected_human.stat == DEAD)
+				continue
+			affected_human.Paralyze(0.1 SECONDS)
+			affected_human.apply_effect(0.1 SECONDS, WEAKEN)
+			var/throwlocation = affected_human.loc
+			for(var/x in 1 to 2)
+				throwlocation = get_step(throwlocation, owner.dir)
+			affected_human.throw_at(throwlocation, 2, 1, owner, TRUE)
+			// Preventing this from infinitely being used as a cost-free throw against the crit.
+			if(affected_human.stat == UNCONSCIOUS)
+				var/critdamage = HUMAN_CRITDRAG_OXYLOSS * 2
+				if(!affected_human.adjustOxyLoss(critdamage))
+					affected_human.adjustBruteLoss(critdamage)
+
+	xeno_owner.spin(4, 1)
+	xeno_owner.emote("tail")
+	playsound(xeno_owner, 'sound/weapons/alien_claw_block.ogg', 50, 1)
+	succeed_activate()
+	add_cooldown()
 
 // ***************************************
 // *********** Tail Seize
