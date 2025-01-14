@@ -472,15 +472,13 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 // *********** Abduct
 // ***************************************
 
-#define OPPRESSOR_ABDUCT_RANGE 8
-
 /datum/action/ability/activable/xeno/abduct
 	name = "Abduct"
 	action_icon_state = "abduct"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Throw your tail out and hook in any humans caught in it. Ends prematurely if blocked or hits anything dense."
 	ability_cost = 50
-	cooldown_duration = 1 SECONDS
+	cooldown_duration = 13 SECONDS
 	/// Reference to beam hook.
 	var/datum/beam/hook_beam
 	/// The current projectile if there is one around.
@@ -511,7 +509,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	tail_projectile.generate_bullet(/datum/ammo/xeno/oppressor_tail)
 	var/datum/ammo/xeno/oppressor_tail/tail_ammo = tail_projectile.ammo
 	tail_ammo.ability_creator = src
-	tail_projectile.fire_at(target, xeno_owner, xeno_owner, range = OPPRESSOR_ABDUCT_RANGE, speed = 1)
+	tail_projectile.fire_at(target, xeno_owner, xeno_owner, range = 8, speed = 1)
 	hook_beam = owner.beam(tail_projectile, "curse1", 'icons/effects/beam.dmi')
 	RegisterSignal(tail_projectile, COMSIG_QDELETING, PROC_REF(on_proj_qdel))
 	playsound(get_turf(xeno_owner), 'sound/bullets/spear_armor1.ogg', 25, 1)
@@ -526,20 +524,28 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	var/amount_hooked = hooked_humans.len
 	for(var/mob/living/carbon/human/human_mob AS in hooked_humans)
+		// Initial throw:
+		human_mob.Paralyze(0.5 SECONDS)
+		human_mob.apply_effect(0.2 SECONDS, WEAKEN)
 		var/distance = get_dist(human_mob, initial_turf)
-		human_mob.throw_at(owner, distance, 1, initial_turf, FALSE)
+		human_mob.throw_at(owner, distance, 2, initial_turf, FALSE)
+		// Preventing this from infinitely being used as a cost-free drag against the crit.
 		if(human_mob.stat == UNCONSCIOUS)
 			var/critdamage = HUMAN_CRITDRAG_OXYLOSS * distance
 			if(!human_mob.adjustOxyLoss(critdamage))
 				human_mob.adjustBruteLoss(critdamage)
+		// Due to the above, they could be dead right now.
+		if(human_mob.stat == DEAD)
+			continue
+		// Additional effects:
 		human_mob.add_slowdown(0.3 * hooked_humans.len)
 		human_mob.adjust_stagger(0.5 SECONDS * hooked_humans.len)
 		if(amount_hooked >= 3)
 			human_mob.AdjustImmobilized(1 SECONDS)
-	xeno_owner.add_slowdown(0.3 * amount_hooked) // Don't bite off more than what you can chew.
-	// The last hooked person has the sound around them.
-	if(hooked_humans.len)
-		playsound(hooked_humans[hooked_humans.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	// The last hooked human gets the sound around them.
+	if(amount_hooked)
+		xeno_owner.add_slowdown(0.4 * amount_hooked) // Don't bite off more than what you can chew.
+		playsound(hooked_humans[amount_hooked], 'sound/voice/alien/pounce.ogg', 25, TRUE)
 	// Everything else is handled when the projectile is qdel'd.
 
 /// Deletes the projectile.
@@ -562,7 +568,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "oppressor tail"
 	icon_state = ""
 	shell_speed = 1
-	max_range = OPPRESSOR_ABDUCT_RANGE
+	max_range = 8
 	bullet_color = COLOR_WHITE
 	sound_hit = 'sound/bullets/spear_armor1.ogg'
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_PASS_THROUGH_MOB
