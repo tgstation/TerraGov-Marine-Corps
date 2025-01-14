@@ -164,10 +164,10 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/abduct,
-		/datum/action/ability/activable/xeno/dislocate,
-		/datum/action/ability/activable/xeno/item_throw,
-		/datum/action/ability/activable/xeno/tail_lash,
+		/datum/action/ability/activable/xeno/abduct, // Pull marines out of position in a straight line.
+		/datum/action/ability/activable/xeno/dislocate, // Simple knockback.
+		/datum/action/ability/activable/xeno/item_throw, // Throwing items at marines to hurt them.
+		/datum/action/ability/activable/xeno/tail_lash, // Weaker verison of the Shrike's Unrelenting Force.
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
@@ -183,9 +183,6 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	primordial_message = "With relentless power, we shatter their formations, seizing them in our grasp and rendering them helpless."
 
-	/*
-		Mediocre individual
-	*/
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
