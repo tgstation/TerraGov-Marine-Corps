@@ -28,6 +28,7 @@
 	open_turf_type = /turf/open/floor/plating/ground/desertdam/cave/inner_cave_floor
 	minimap_color = MINIMAP_BLACK
 	resistance_flags = UNACIDABLE
+	var/times_munched = 0
 
 /turf/closed/mineral/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_ROCK, -10, 5, 1)
@@ -67,6 +68,13 @@
 			"One bite, two bites... why not just finish the whole rock?",
 			"The stone. The rock. The boulder. Its name matters not when we consume it.",
 			"Delicious, delectable, simply exquisite. Just a few more minerals and it'd be perfect...")), null, 5)
+		var/mob/living/carbon/xenomorph/behemoth/behemoth_attacker = xeno_attacker
+		if(behemoth_attacker.upgrade == XENO_UPGRADE_PRIMO && !CHECK_BITFIELD(resistance_flags, INDESTRUCTIBLE) && !behemoth_attacker.do_actions)
+			if(do_after(behemoth_attacker, 8 SECONDS, NONE, src, BUSY_ICON_GENERIC))
+				playsound(behemoth_attacker, 'sound/items/eatfood.ogg', 15, 1)
+				times_munched++
+				if(times_munched >= 5)
+					ChangeTurf(open_turf_type)
 
 /turf/closed/plasmacutter_act(mob/living/user, obj/item/I)
 	if(!isplasmacutter(I) || user.do_actions)
