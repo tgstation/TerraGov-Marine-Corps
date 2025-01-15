@@ -699,7 +699,7 @@
 	description = "Impale a marine next to you with your tail for moderate damage. Marked enemies are impaled twice."
 	keybind_signal = COMSIG_XENOABILITY_IMPALE
 
-/datum/keybinding/xeno/tail_trip
+/datum/keybinding/xeno/abduct
 	name = "Abduct"
 	full_name = "Praetorian: Tail Trip"
 	description = "After a delay, grab marines from a variable amount of tiles away. Canceling early has consequences."
