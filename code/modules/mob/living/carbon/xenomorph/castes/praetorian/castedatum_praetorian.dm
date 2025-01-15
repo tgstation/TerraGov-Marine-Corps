@@ -156,8 +156,8 @@
 	aura_strength = 4
 
 	// Lose ranged spit abilities for displacement abilities.
-	// What this does: long straight displacement + slow/root.
-	// What alternatives does (aka warrior): short corner/angular displacement + slow/stun.
+	// What this does: long straight displacement + lots of disarming.
+	// What alternatives does (aka warrior): short corner/angular displacement + slow/stagger/stun.
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
