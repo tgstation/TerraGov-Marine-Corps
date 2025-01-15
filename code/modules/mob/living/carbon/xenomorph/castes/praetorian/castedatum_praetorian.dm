@@ -92,7 +92,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/praetorian/dancer
 	upgrade_name = ""
 	caste_name = "Dancer Praetorian"
-	display_name = "Praetorian"
+	display_name = "Dancer"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A giant melee monster. It looks pretty strong."
 
@@ -148,7 +148,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/praetorian/oppressor
 	upgrade_name = ""
 	caste_name = "Oppressor Praetorian"
-	display_name = "Praetorian"
+	display_name = "Oppressor"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A giant melee monster with a weird tail! It looks pretty strong."
 
