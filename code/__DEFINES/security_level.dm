@@ -3,7 +3,7 @@
 /// BLUE - Possible threats.
 #define SEC_LEVEL_BLUE 2
 /// RED - Severe threats. Boarding imminent or actively happening.
-/// Sec levels above this will turn mainship lights red.
+/// This is the level that will be set when evac and SD are both called off.
 #define SEC_LEVEL_RED 3
 /// DELTA - Destruction of the ship is imminent.
 #define SEC_LEVEL_DELTA 4
