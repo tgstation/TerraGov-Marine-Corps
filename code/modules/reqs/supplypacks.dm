@@ -1450,6 +1450,15 @@ MEDICAL
 	containertype = /obj/structure/closet/crate/secure/surgery
 	access = ACCESS_MARINE_MEDBAY
 
+/datum/supply_packs/medical/tweezers_advanced
+
+	name = "EPS-12 shrapnel drill"
+	notes = "contains the EPS-12 shrapnel drill"
+	contains = list(/obj/item/tweezers_advanced)
+	cost = 300
+	containertype = /obj/structure/closet/crate/secure/surgery
+	access = ACCESS_MARINE_MEDBAY
+
 /*******************************************************************************
 ENGINEERING
 *******************************************************************************/
