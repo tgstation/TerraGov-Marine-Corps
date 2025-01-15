@@ -349,6 +349,10 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
 
+/datum/action/ability/activable/xeno/banish/Destroy()
+	banish_deactivate()
+	. = ..()
+
 // ***************************************
 // *********** Recall
 // ***************************************
