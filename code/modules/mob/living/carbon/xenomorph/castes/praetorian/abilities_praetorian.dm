@@ -765,11 +765,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/item/item_atom = A
 	if(item_atom.anchored)
 		if(!silent)
-			A.balloon_alert(owner, "item is anchored")
+			item_atom.balloon_alert(owner, "item is anchored")
 		return FALSE
-	if(!owner.Adjacent(A))
+	if(!owner.Adjacent(item_atom))
 		if(!silent)
-			A.balloon_alert(owner, "too far")
+			item_atom.balloon_alert(owner, "too far")
 		return FALSE
 
 /datum/action/ability/activable/xeno/item_throw/use_ability(atom/A)
