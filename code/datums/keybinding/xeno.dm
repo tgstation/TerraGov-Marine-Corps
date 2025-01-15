@@ -699,6 +699,12 @@
 	description = "Impale a marine next to you with your tail for moderate damage. Marked enemies are impaled twice."
 	keybind_signal = COMSIG_XENOABILITY_IMPALE
 
+/datum/keybinding/xeno/tail_trip
+	name = "Tail Trip"
+	full_name = "Praetorian: Tail Trip"
+	description = "Target a marine within two tiles of you to disorient and slows them. Marked enemies receive stronger debuffs and are stunned for a second."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_TRIP
+
 /datum/keybinding/xeno/abduct
 	name = "Abduct"
 	full_name = "Praetorian: Abduct"
@@ -717,7 +723,7 @@
 	description = "Pick up an item and throw it. Damage and range varies based on item's size."
 	keybind_signal = COMSIG_XENOABILITY_ITEM_THROW
 
-/datum/keybinding/xeno/tail_trip
+/datum/keybinding/xeno/tail_lash
 	name = "Tail Lash"
 	full_name = "Praetorian: Tail Lash"
 	description = "Knock back marines in a 2x3 radius where you're facing by two tiles."
