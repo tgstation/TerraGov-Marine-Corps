@@ -178,6 +178,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/range = 3
 
 /datum/action/ability/activable/xeno/banish/Destroy()
+	banish_deactivate()
 	QDEL_NULL(reserved_area) //clean up
 	return ..()
 
@@ -348,10 +349,6 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	to_chat(owner, span_xenodanger("We are able to banish again."))
 	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
 	return ..()
-
-/datum/action/ability/activable/xeno/banish/Destroy()
-	banish_deactivate()
-	. = ..()
 
 // ***************************************
 // *********** Recall
