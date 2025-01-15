@@ -152,6 +152,7 @@
 #define COMSIG_XENOABILITY_DISLOCATE "xenoability_dislocate"
 #define COMSIG_XENOABILITY_ITEM_THROW "xenoability_item_throw"
 #define COMSIG_XENOABILITY_TAIL_LASH "xenoability_tail_lash"
+#define COMSIG_XENOABILITY_RAPID_ADVANCE "xenoability_rapid_advance"
 #define COMSIG_XENOABILITY_HIDE "xenoability_hide"
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
 #define COMSIG_XENOABILITY_OZELOMELYN_STING "xenoability_ozelomelyn_sting"

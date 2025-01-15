@@ -355,11 +355,11 @@
 	keybind_signal = COMSIG_XENOABILITY_CRESTTOSS
 	hotkey_keys = list("E")
 
-/datum/keybinding/xeno/advance
-	name = "advance"
+/datum/keybinding/xeno/rapid_advance
+	name = "rapid advance"
 	full_name = "Crusher: Rapid Advance"
 	description = "Charges up the crushers charge, then unleashes the full bulk of the crusher into a direction."
-	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+	keybind_signal = COMSIG_XENOABILITY_RAPID_ADVANCE
 	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/forward_charge
@@ -722,6 +722,12 @@
 	full_name = "Praetorian: Tail Lash"
 	description = "Knock back marines in a 2x3 radius where you're facing by two tiles."
 	keybind_signal = COMSIG_XENOABILITY_TAIL_LASH
+
+/datum/keybinding/xeno/advance
+	name = "Advance"
+	full_name = "Praetorian: Advance"
+	description = "Launch yourself with tremendous speed toward a location. Hitting a marine will cause them to be launched incredibly far."
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE
 
 /datum/keybinding/xeno/screech
 	name = "screech"
