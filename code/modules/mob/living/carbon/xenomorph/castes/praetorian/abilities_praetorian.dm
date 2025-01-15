@@ -762,6 +762,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(owner, "not an item")
 		return FALSE
+	var/obj/item/item_atom = A
+	if(item_atom.anchored)
+		if(!silent)
+			A.balloon_alert(owner, "item is anchored")
+		return FALSE
 	if(!owner.Adjacent(A))
 		if(!silent)
 			A.balloon_alert(owner, "too far")
