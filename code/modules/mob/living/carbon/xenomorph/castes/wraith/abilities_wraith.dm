@@ -178,6 +178,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	var/range = 3
 
 /datum/action/ability/activable/xeno/banish/Destroy()
+	banish_deactivate()
 	QDEL_NULL(reserved_area) //clean up
 	return ..()
 
