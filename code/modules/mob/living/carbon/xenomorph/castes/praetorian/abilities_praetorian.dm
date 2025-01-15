@@ -479,6 +479,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Throw your tail out and hook in any humans caught in it. Ends prematurely if blocked or hits anything dense."
 	ability_cost = 50
 	cooldown_duration = 16 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ABDUCT,
+	)
 	/// The turf in front of the owner when the projectile was initially fired.
 	var/turf/initial_turf
 	/// A list of turfs that will be used to get mobs who will get affected by the ability.
@@ -497,7 +500,30 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			target.balloon_alert(xeno_owner, "already abducting")
 		return FALSE
+	// Getting direction without calling face_atom on the owner.
 	var/direction_to = get_dir(xeno_owner, target)
+	var/dx = target.x - xeno_owner.x
+	var/dy = target.y - xeno_owner.y
+	if(!dx && !dy)
+		if(target.pixel_y > 16)
+			direction_to = NORTH
+		else if(target.pixel_y < -16)
+			direction_to = SOUTH
+		else if(target.pixel_x > 16)
+			direction_to = EAST
+		else if(target.pixel_x < -16)
+			direction_to = WEST
+	else if(abs(dx) < abs(dy))
+		if(dy > 0)
+			direction_to = NORTH
+		else
+			direction_to = SOUTH
+	else
+		if(dx > 0)
+			direction_to = EAST
+		else
+			direction_to = WEST
+
 	var/turf/initial_turf_pre = get_step(xeno_owner, direction_to)
 	var/list/turf/turf_line_pre = get_turf_line(initial_turf_pre, target, 1)
 	if(!turf_line_pre.len) // Being really nice by preventing them from using the ability if it would of done nothing.
@@ -637,6 +663,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Shrike a human with enough force that they are thrown backwards."
 	ability_cost = 50
 	cooldown_duration = 12 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DISLOCATE,
+	)
 	target_flags = ABILITY_MOB_TARGET
 
 /datum/action/ability/activable/xeno/dislocate/can_use_ability(atom/target, silent = FALSE, override_flags)
@@ -711,6 +740,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Pick up a nearby item momentarily and throw it in a chosen direction. The item's size determines elements such as how fast or hard it hits."
 	ability_cost = 50
 	cooldown_duration = 12 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ITEM_THROW,
+	)
 	/// If they have moved at least a single tile since picking up an item. Used as a single-tile grace period before dropping.
 	var/single_tile_grace_period = TRUE
 	/// If we are holding an item.
@@ -833,6 +865,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Knock back humans that are in front of you."
 	ability_cost = 50
 	cooldown_duration = 13 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_LASH,
+	)
 
 /datum/action/ability/activable/xeno/tail_lash/use_ability(atom/target)
 	xeno_owner.face_atom(target)
