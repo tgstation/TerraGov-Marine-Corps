@@ -80,8 +80,8 @@
 	icon_state = "bfg_ball"
 	hud_state = "electrothermal"
 	hud_state_empty = "electrothermal_empty"
-	ammo_behavior_flags = AMMO_ENERGY|AMMO_SPECIAL_PROCESS
-	shell_speed = 0.1
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_SPECIAL_PROCESS|AMMO_PASS_THROUGH_MOB
+	shell_speed = 0.2
 	damage = 150
 	penetration = 50
 	bullet_color = COLOR_PALE_GREEN_GRAY
@@ -90,8 +90,8 @@
 	if(proj.distance_travelled <= 2)
 		return
 	// range expands as it flies to avoid hitting the shooter and tank riders
-	var/bfg_range = 3
-	if(proj.distance_travelled <= 4)
+	var/bfg_range = 4
+	if(proj.distance_travelled < bfg_range)
 		bfg_range = (proj.distance_travelled - 2)
 	bfg_beam(proj, bfg_range, damage, penetration)
 
@@ -104,11 +104,6 @@
 
 /datum/ammo/energy/bfg/drop_nade(turf/T)
 	explosion(T, 0, 0, 4, 0, 0)
-
-/datum/ammo/energy/bfg/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	var/target_turf = get_turf(target_mob)
-	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
-	drop_nade(target_turf)
 
 /datum/ammo/energy/bfg/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
