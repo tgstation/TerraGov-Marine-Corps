@@ -10,6 +10,8 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	wound_type = "shrike" //used to match appropriate wound overlays
 
+	gib_flick = "gibbed-a-shrike"
+
 	// *** Melee Attacks *** //
 	melee_damage = 25
 
