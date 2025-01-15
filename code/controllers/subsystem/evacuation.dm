@@ -167,7 +167,7 @@ SUBSYSTEM_DEF(evacuation)
 	dest_index = 1
 	priority_announce("The emergency destruct system has been deactivated.", title = "Self Destruct System", type = ANNOUNCEMENT_PRIORITY, sound = 'sound/AI/selfdestruct_deactivated.ogg', color_override = "purple")
 	if(evac_status == EVACUATION_STATUS_STANDING_BY)
-		SSsecurity_level.set_level(SEC_LEVEL_RED, TRUE, TRUE)
+		SSsecurity_level.set_level(SEC_LEVEL_RED, TRUE)
 	for(var/obj/machinery/floor_warn_light/self_destruct/light AS in alarm_lights)
 		light.disable()
 	return TRUE

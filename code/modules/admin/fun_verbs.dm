@@ -697,7 +697,7 @@
 	if(tgui_alert(usr, "Switch from code [SSsecurity_level.get_current_level_as_text()] to code [sec_level]?", "Set Security Level", list("Yes", "No")) != "Yes")
 		return
 
-	SSsecurity_level.set_level(sec_level, TRUE, TRUE)
+	SSsecurity_level.set_level(sec_level, TRUE)
 
 	log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")

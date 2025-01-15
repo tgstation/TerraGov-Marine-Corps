@@ -182,7 +182,7 @@
 						//if the self_destruct is active we try to cancel it (which includes lowering alert level to red)
 						if(!SSevacuation.cancel_self_destruct(1))
 							//if SD wasn't active (likely canceled manually in the SD room), then we lower the alert level manually.
-							SSsecurity_level.set_level(SEC_LEVEL_RED, TRUE, TRUE) //both SD and evac are inactive, lowering the security level.
+							SSsecurity_level.set_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
 
 				log_game("[key_name(usr)] has canceled the emergency evacuation.")
 				message_admins("[ADMIN_TPMONTY(usr)] has canceled the emergency evacuation.")
