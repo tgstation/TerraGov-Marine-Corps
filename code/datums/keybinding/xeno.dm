@@ -700,10 +700,28 @@
 	keybind_signal = COMSIG_XENOABILITY_IMPALE
 
 /datum/keybinding/xeno/tail_trip
-	name = "Tail Trip"
+	name = "Abduct"
 	full_name = "Praetorian: Tail Trip"
-	description = "Target a marine within two tiles of you to disorient and slows them. Marked enemies receive stronger debuffs and are stunned for a second."
-	keybind_signal = COMSIG_XENOABILITY_TAIL_TRIP
+	description = "After a delay, grab marines from a variable amount of tiles away. Canceling early has consequences."
+	keybind_signal = COMSIG_XENOABILITY_ABDUCT
+
+/datum/keybinding/xeno/dodge
+	name = "Dislocate"
+	full_name = "Praetorian: Dislocate"
+	description = "Punch a marine and knock them back by two tiles."
+	keybind_signal = COMSIG_XENOABILITY_DISLOCATE
+
+/datum/keybinding/xeno/impale
+	name = "Item Throw"
+	full_name = "Praetorian: Item Throw"
+	description = "Pick up an item and throw it. Damage and range varies based on item's size."
+	keybind_signal = COMSIG_XENOABILITY_ITEM_THROW
+
+/datum/keybinding/xeno/tail_trip
+	name = "Tail Lash"
+	full_name = "Praetorian: Tail Lash"
+	description = "Knock back marines in a 2x3 radius where you're facing by two tiles."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_LASH
 
 /datum/keybinding/xeno/screech
 	name = "screech"
