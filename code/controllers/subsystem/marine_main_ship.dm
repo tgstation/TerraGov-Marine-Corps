@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(marine_main_ship)
 	/// Is maintenance AA enabled on ship?
 	var/maint_all_access = FALSE
 
-/// Sets the `maint_all_access` var. Maintenance airlocks will refer to this.
+/// Sets the [maint_all_access] var. Maintenance airlocks will refer to this.
 /datum/controller/subsystem/marine_main_ship/proc/make_maint_all_access()
 	maint_all_access = TRUE
 	priority_announce(
@@ -21,7 +21,7 @@ SUBSYSTEM_DEF(marine_main_ship)
 		color_override = "grey"
 	)
 
-/// Disables the `maint_all_access` var. Maintenance airlocks will refer to this.
+/// Disables the [maint_all_access] var. Maintenance airlocks will refer to this.
 /datum/controller/subsystem/marine_main_ship/proc/revoke_maint_all_access()
 	maint_all_access = FALSE
 	priority_announce(

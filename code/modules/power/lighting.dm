@@ -434,39 +434,35 @@
 	light_type = /obj/item/light_bulb/bulb
 
 /// Changes the light's appearance based on the security level
-/obj/machinery/light/mainship/proc/on_alert_change(datum/source, new_level, most_recent_level)
+/obj/machinery/light/mainship/proc/on_alert_change(datum/source, datum/security_level/new_level, datum/security_level/previous_level)
 	SIGNAL_HANDLER
 	var/bulb_type = "tube" // the base light sprite
 	if(istype(src, /obj/machinery/light/mainship/small))
 		bulb_type = "bulb"
-	switch(new_level)
-		if(SEC_LEVEL_GREEN, SEC_LEVEL_BLUE)
-			if(most_recent_level < SEC_LEVEL_RED)
-				return
-			var/area/active_area = get_area(src)
-			if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
-				return
-			base_icon_state = bulb_type
-			light_color = bulb_colour
-			light_range = brightness
-			update_light()
-			update_appearance(UPDATE_ICON)
-		if(SEC_LEVEL_RED, SEC_LEVEL_DELTA)
-			if(most_recent_level > SEC_LEVEL_BLUE)
-				return
-			var/area/active_area = get_area(src)
-			if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
-				return
-			base_icon_state = "[bulb_type]_red"
-			light_color = COLOR_SOMEWHAT_LIGHTER_RED
-			light_range = 7.5
-			if(prob(75)) //randomize light range on most lights, patchy lighting gives a sense of danger
-				var/rangelevel = pick(5.5,6.0,6.5,7.0)
-				if(prob(15))
-					rangelevel -= pick(0.5,1.0,1.5,2.0)
-				light_range = rangelevel
-			update_light()
-			update_appearance(UPDATE_ICON)
+	var/most_recent_level_red_lights = ((previous_level.sec_level_flags & SEC_LEVEL_FLAG_RED_LIGHTS))
+	if(!(new_level.sec_level_flags & SEC_LEVEL_FLAG_RED_LIGHTS) && most_recent_level_red_lights)
+		var/area/active_area = get_area(src)
+		if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
+			return
+		base_icon_state = bulb_type
+		light_color = bulb_colour
+		light_range = brightness
+		update_light()
+		update_appearance(UPDATE_ICON)
+	else if((new_level.sec_level_flags & SEC_LEVEL_FLAG_RED_LIGHTS) && !most_recent_level_red_lights)
+		var/area/active_area = get_area(src)
+		if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
+			return
+		base_icon_state = "[bulb_type]_red"
+		light_color = COLOR_SOMEWHAT_LIGHTER_RED
+		light_range = 7.5
+		if(prob(75)) //randomize light range on most lights, patchy lighting gives a sense of danger
+			var/rangelevel = pick(5.5,6.0,6.5,7.0)
+			if(prob(15))
+				rangelevel -= pick(0.5,1.0,1.5,2.0)
+			light_range = rangelevel
+		update_light()
+		update_appearance(UPDATE_ICON)
 
 /obj/machinery/light/red
 	base_icon_state = "tube_red"

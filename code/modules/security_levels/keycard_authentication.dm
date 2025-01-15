@@ -75,7 +75,7 @@
 		dat += "Select an event to trigger:<ul>"
 		for(var/iter_level_text AS in SSsecurity_level.available_levels)
 			var/datum/security_level/iter_level_datum = SSsecurity_level.available_levels[iter_level_text]
-			if(!(iter_level_datum.sec_level_flags & SEC_LEVEL_CAN_SWITCH_WITH_AUTH))
+			if(!(iter_level_datum.sec_level_flags & SEC_LEVEL_FLAG_CAN_SWITCH_WITH_AUTH))
 				continue
 			dat += "<li><a href='?src=[text_ref(src)];trigger_event=[iter_level_datum.name]'>Set alert level to [iter_level_datum.name]</a></li>"
 

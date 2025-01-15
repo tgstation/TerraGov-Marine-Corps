@@ -408,7 +408,7 @@
 
 		if(STATE_ALERT_LEVEL)
 			dat += "Current alert level: [SSsecurity_level.get_current_level_as_text()]<BR>"
-			if((SSsecurity_level.current_security_level.sec_level_flags & SEC_LEVEL_IS_EMERGENCY) || SSevacuation.evac_status)
+			if((SSsecurity_level.current_security_level.sec_level_flags & SEC_LEVEL_FLAG_IS_EMERGENCY) || SSevacuation.evac_status)
 				if(SSevacuation.dest_status >= NUKE_EXPLOSION_ACTIVE)
 					dat += "<font color='red'><b>The self-destruct mechanism is active. [SSevacuation.evac_status != EVACUATION_STATUS_INITIATING ? "You have to manually deactivate the self-destruct mechanism." : ""]</b></font><BR>"
 				switch(SSevacuation.evac_status)
@@ -418,10 +418,10 @@
 						dat += "<font color='red'><b>Evacuation in progress.</b></font><BR>"
 					if(EVACUATION_STATUS_COMPLETE)
 						dat += "<font color='red'><b>Evacuation complete.</b></font><BR>"
-			if(!(SSsecurity_level.current_security_level.sec_level_flags & SEC_LEVEL_CANNOT_SWITCH))
+			if(!(SSsecurity_level.current_security_level.sec_level_flags & SEC_LEVEL_FLAG_CANNOT_SWITCH))
 				for(var/iter_level_text AS in SSsecurity_level.available_levels)
 					var/datum/security_level/iter_level_datum = SSsecurity_level.available_levels[iter_level_text]
-					if(!(iter_level_datum.sec_level_flags & SEC_LEVEL_CAN_SWITCH_COMMS_CONSOLE))
+					if(!(iter_level_datum.sec_level_flags & SEC_LEVEL_FLAG_CAN_SWITCH_COMMS_CONSOLE))
 						continue
 					dat += "<A HREF='?src=[text_ref(src)];operation=securitylevel;newalertlevel=[iter_level_datum.name]'>[iter_level_datum.name]</A><BR>"
 

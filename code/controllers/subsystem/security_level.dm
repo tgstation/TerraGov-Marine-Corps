@@ -15,9 +15,6 @@ SUBSYSTEM_DEF(security_level)
 	init_order = INIT_ORDER_SECURITY_LEVEL
 	/// Currently set security level
 	var/datum/security_level/current_security_level
-	/// The most recent security level number. Relevant if you want to avoid repeat actions
-	/// in situations like going from Green to Blue and vice versa (see: mainship lights)
-	var/most_recent_level = SEC_LEVEL_GREEN
 	/// A list of initialised security level datums.
 	var/list/available_levels = list()
 
@@ -29,26 +26,21 @@ SUBSYSTEM_DEF(security_level)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/security_level/stat_entry()
-	return ..("Current Level: [uppertext(current_security_level.name)] Previous Level: [uppertext(number_level_to_text(most_recent_level))]")
+	return ..("Current Level: [uppertext(current_security_level.name)]")
 
 /**
  * Sets a new security level as our current level. This is how anything should be changing the security level.
  *
- * Produces a signal: [COMSIG_SECURITY_LEVEL_CHANGED]
- *
- * Can use this for world objects that react to the security level being updated. (red lights, etc)
+ * Produces a signal: [COMSIG_SECURITY_LEVEL_CHANGED].
+ * Can use it for world objects that react to the security level being updated. (red lights, etc)
  *
  * Arguments:
  * * new_level - The new security level that will become our current level
  * * announce - Play the announcement, set to FALSE if you're doing your own custom announcement to prevent duplicates
- * * allow_illegal_switching_from - Set to TRUE if you want to allow switching from a sec level that prevents it
  */
-/datum/controller/subsystem/security_level/proc/set_level(new_level, announce = TRUE, allow_illegal_switching_from = FALSE)
+/datum/controller/subsystem/security_level/proc/set_level(new_level, announce = TRUE)
 	new_level = istext(new_level) ? new_level : number_level_to_text(new_level)
 	if(new_level == current_security_level.name) // If we are already at the desired level, do nothing
-		return
-
-	if(!allow_illegal_switching_from && (current_security_level.sec_level_flags & SEC_LEVEL_CANNOT_SWITCH))
 		return
 
 	var/datum/security_level/selected_level = available_levels[new_level]
@@ -59,11 +51,10 @@ SUBSYSTEM_DEF(security_level)
 	if(announce)
 		level_announce(selected_level, current_security_level.number_level)
 
-	SSsecurity_level.most_recent_level = current_security_level.number_level
-
-	SSsecurity_level.current_security_level = selected_level
-	SEND_SIGNAL(src, COMSIG_SECURITY_LEVEL_CHANGED, selected_level.number_level, SSsecurity_level.most_recent_level)
-	SSblackbox.record_feedback(FEEDBACK_TALLY, "security_level_changes", 1, selected_level.name)
+	var/datum/security_level/previous_level = current_security_level // for signals
+	current_security_level = selected_level
+	SEND_SIGNAL(src, COMSIG_SECURITY_LEVEL_CHANGED, selected_level, previous_level)
+	SSblackbox.record_feedback(FEEDBACK_TALLY, "security_level_changes", 1, selected_level.name, previous_level)
 
 /**
  * Returns the current security level as a number

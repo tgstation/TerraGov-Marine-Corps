@@ -48,12 +48,13 @@ FIRE ALARM
 			pixel_x = 32
 
 	if(is_mainship_level(z))
-		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_level_change))
+		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
 
 	update_icon()
 
 /// wrapper so we can update the icon on `COMSIG_SECURITY_LEVEL_CHANGED`
-/obj/machinery/firealarm/proc/on_alert_level_change(datum/source, next_level, previous_level)
+/obj/machinery/firealarm/proc/on_alert_change(datum/source, datum/security_level/next_level, datum/security_level/previous_level)
+	SIGNAL_HANDLER
 	update_icon()
 
 /obj/machinery/firealarm/update_icon()
@@ -66,15 +67,7 @@ FIRE ALARM
 	if(A.alarm_state_flags & ALARM_WARNING_FIRE)
 		set_light_color(LIGHT_COLOR_EMISSIVE_ORANGE)
 	else
-		switch(SSsecurity_level.get_current_level_as_text())
-			if("delta")
-				set_light_color(LIGHT_COLOR_PINK)
-			if("red")
-				set_light_color(LIGHT_COLOR_EMISSIVE_RED)
-			if("blue")
-				set_light_color(LIGHT_COLOR_BLUE)
-			else
-				set_light_color(LIGHT_COLOR_EMISSIVE_GREEN)
+		set_light_color(SSsecurity_level.current_security_level.fire_alarm_light_color)
 
 	set_light(initial(light_range))
 

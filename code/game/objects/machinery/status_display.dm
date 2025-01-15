@@ -29,16 +29,12 @@
 /obj/machinery/status_display/Initialize(mapload)
 	. = ..()
 	if(is_mainship_level(z))
-		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_level_change))
+		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
 
 /// Called on security level change, sets the active picture based on current level
-/obj/machinery/status_display/proc/on_alert_level_change(datum/source, next_level, previous_level)
+/obj/machinery/status_display/proc/on_alert_change(datum/source, datum/security_level/next_level, datum/security_level/previous_level)
 	SIGNAL_HANDLER
-	switch(next_level)
-		if(SEC_LEVEL_GREEN, SEC_LEVEL_BLUE)
-			set_picture("default")
-		if(SEC_LEVEL_RED, SEC_LEVEL_DELTA)
-			set_picture("redalert")
+	set_picture(next_level.status_display_icon)
 
 /// Immediately blank the display.
 /obj/machinery/status_display/proc/remove_display()
@@ -50,6 +46,8 @@
 /// Immediately change the display to the given picture.
 /obj/machinery/status_display/proc/set_picture(state)
 	remove_display()
+	if(!(state in GLOB.status_display_icons))
+		return
 	add_overlay(state)
 
 
