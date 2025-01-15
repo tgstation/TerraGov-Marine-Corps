@@ -758,7 +758,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	if(held_item)
 		return TRUE
 	// If we do not, we only want items.
-	if(!isitem(A))
+	if(!isitem(A) || isgrabitem(A))
 		if(!silent)
 			A.balloon_alert(owner, "not an item")
 		return FALSE
