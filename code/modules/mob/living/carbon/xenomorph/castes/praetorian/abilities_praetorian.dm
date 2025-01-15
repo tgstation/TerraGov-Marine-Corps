@@ -497,10 +497,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			target.balloon_alert(xeno_owner, "already abducting")
 		return FALSE
-		turf_line = get_turf_line(target, xeno_owner.upgrade == XENO_UPGRADE_PRIMO ? 7 : 5)
-
 	var/direction_to = get_dir(xeno_owner, target)
-	var/list/turf/turf_line_pre = get_turf_line(target, 1)
+	var/turf/initial_turf_pre = get_step(xeno_owner, direction_to)
+	var/list/turf/turf_line_pre = get_turf_line(initial_turf_pre, target, 1)
 	if(!turf_line_pre.len) // Being really nice by preventing them from using the ability if it would of done nothing.
 		if(!silent)
 			target.balloon_alert(xeno_owner, "blocked")
@@ -517,21 +516,23 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	// This is where they'll be thrown to later.
 	initial_turf = get_step(xeno_owner, xeno_owner.dir)
 	// Make the path from here to there.
-	turf_line = get_turf_line(target, xeno_owner.upgrade == XENO_UPGRADE_PRIMO ? 7 : 5)
+	turf_line = get_turf_line(initial_turf, target, xeno_owner.upgrade == XENO_UPGRADE_PRIMO ? 8 : 6)
 	LAZYINITLIST(telegraphed_atoms)
 	for(var/turf/turf_from_line in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
 	// Now wait until it is done.
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), turf_line.len > 5 ? 1.4 SECONDS : 1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), turf_line.len > 6 ? 1.4 SECONDS : 1 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(cancel_pull))
 	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(cancel_pull))
 
-/// Get a filtered line of turfs from the owner to target.
-/datum/action/ability/activable/xeno/abduct/proc/get_turf_line(atom/movable/target, distance)
-	var/list/turf_line_unfiltered = getline(xeno_owner, target)
+/// Get a filtered line of turfs from a turf to a target.
+/datum/action/ability/activable/xeno/abduct/proc/get_turf_line(turf/starting_turf, atom/movable/target, distance)
+	var/list/turf_line_unfiltered = getline(starting_turf, target)
 	var/list/turf_line_filtered = list()
 	for(var/turf/unfiltered_turf in turf_line_unfiltered)
+		if(turf_line_filtered.len > distance)
+			break
 		if(unfiltered_turf.density)
 			break
 		var/blocked = FALSE
@@ -545,11 +546,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_PROJECTILE))
 				blocked = TRUE
 				break
-		if(blocked || turf_line_filtered.len > distance)
+		if(blocked)
 			break
 		turf_line_filtered += unfiltered_turf
-
-	(xeno_owner.upgrade == XENO_UPGRADE_PRIMO ? 7 : 5)
 	return turf_line_filtered
 
 /// Successfully ends the ability by throwing all humans in the affected turfs at the initial turf.
@@ -586,6 +585,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
 	QDEL_LIST(telegraphed_atoms)
 	deltimer(ability_timer)
+	ability_timer = null
 	telegraphed_atoms = null
 	turf_line = null
 	initial_turf = null
@@ -603,6 +603,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
 	QDEL_LIST(telegraphed_atoms)
 	deltimer(ability_timer)
+	ability_timer = null
 	telegraphed_atoms = null
 	turf_line = null
 	initial_turf = null
