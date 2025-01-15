@@ -705,13 +705,13 @@
 	description = "After a delay, grab marines from a variable amount of tiles away. Canceling early has consequences."
 	keybind_signal = COMSIG_XENOABILITY_ABDUCT
 
-/datum/keybinding/xeno/dodge
+/datum/keybinding/xeno/dislocate
 	name = "Dislocate"
 	full_name = "Praetorian: Dislocate"
 	description = "Punch a marine and knock them back by two tiles."
 	keybind_signal = COMSIG_XENOABILITY_DISLOCATE
 
-/datum/keybinding/xeno/impale
+/datum/keybinding/xeno/item_throw
 	name = "Item Throw"
 	full_name = "Praetorian: Item Throw"
 	description = "Pick up an item and throw it. Damage and range varies based on item's size."
