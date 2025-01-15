@@ -68,3 +68,8 @@
   - bugfix: Humans (or any breathing species) who are critdragged by xenomorphs now
       correctly take only oxygen damage instead of brute damage and oxygen damage
       at the same time.
+2025-01-15:
+  Tiviplus & Lumipharon:
+  - rscadd: Many announcements now show a mugshot
+  midnight0gamer:
+  - rscadd: Adds soda dispenser to Valhalla.
