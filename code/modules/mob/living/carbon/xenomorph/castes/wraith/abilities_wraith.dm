@@ -534,6 +534,7 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	icon_state = "portal"
 	anchored = TRUE
 	opacity = FALSE
+	obj_flags = CAN_BE_HIT
 	vis_flags = VIS_HIDE
 	resistance_flags = UNACIDABLE | CRUSHER_IMMUNE | BANISH_IMMUNE
 	/// Visual object for handling the viscontents
@@ -629,6 +630,18 @@ GLOBAL_LIST_INIT(wraith_banish_very_short_duration_list, typecacheof(list(
 	if(!linked_portal) // A lot of racing conditions here
 		return
 	bullet.fire_at(shooter = bullet.firer, range = max(bullet.proj_max_range - bullet.distance_travelled, 0), angle = bullet.dir_angle, recursivity = TRUE, loc_override = get_turf(linked_portal))
+
+/// Handles slashing a portal to destroy it
+/obj/effect/wraith_portal/attacked_by(obj/item/I, mob/living/user, def_zone)
+	if(!I.sharp)
+		return
+	var/channel = SSsounds.random_available_channel()
+	playsound(user, "sound/effects/portal_opening.ogg", 30, channel = channel)
+	if(!do_after(user, 5 SECONDS, NONE, src))
+		user.stop_sound_channel(channel)
+		return
+	Destroy()
+	return
 
 /obj/effect/portal_effect
 	appearance_flags = KEEP_TOGETHER|TILE_BOUND|PIXEL_SCALE
