@@ -701,7 +701,7 @@
 
 /datum/keybinding/xeno/abduct
 	name = "Abduct"
-	full_name = "Praetorian: Tail Trip"
+	full_name = "Praetorian: Abduct"
 	description = "After a delay, grab marines from a variable amount of tiles away. Canceling early has consequences."
 	keybind_signal = COMSIG_XENOABILITY_ABDUCT
 
