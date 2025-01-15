@@ -12,14 +12,14 @@
 	melee_damage = 24
 
 	// *** Speed *** //
-	speed = -1.1
+	speed = -1.25
 
 	// *** Plasma *** //
 	plasma_max = 400
 	plasma_gain = 35
 
 	// *** Health *** //
-	max_health = 340
+	max_health = 260
 
 	// *** Evolution *** //
 	evolution_threshold = 225
