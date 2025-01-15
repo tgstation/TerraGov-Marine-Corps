@@ -1,0 +1,4 @@
+author: "Notamaniac"
+delete-after: True
+changes:
+  - bugfix: "Wraiths can no longer delete people using banish."
