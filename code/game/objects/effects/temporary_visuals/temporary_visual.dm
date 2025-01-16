@@ -199,6 +199,7 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	duration = 1 SECONDS
 
 /obj/effect/temp_visual/gib_particles/Initialize(mapload, gib_color)
+	. = ..()
 	blood = new(src, /particles/blood_explosion)
 	blood.color = gib_color
 	gib_splatter = new(src, /particles/gib_splatter)
