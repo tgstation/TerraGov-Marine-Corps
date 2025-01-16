@@ -45,3 +45,8 @@
 	desc = "Wearing these makes you looks useless, and only good for your sex appeal."
 	icon_state = "bunny"
 	armor_protection_flags = NONE
+	worn_icon_list = list(
+		slot_head_str = 'icons/mob/head_0.dmi',
+		slot_l_hand_str = 'icons/mob/inhands/clothing/hats_left.dmi',
+		slot_r_hand_str = 'icons/mob/inhands/clothing/hats_right.dmi',
+	)
