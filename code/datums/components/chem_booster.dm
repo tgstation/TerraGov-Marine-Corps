@@ -166,6 +166,9 @@
 	wearer.overlays -= resource_overlay
 	wearer = null
 
+	REMOVE_TRAIT(user, VALI_TRAIT, VALI_TRAIT)
+	to_chat(user, span_danger("Your body relaxes as the module retracts itself from you"))
+
 ///Sets up actions and vars when the suit is equipped
 /datum/component/chem_booster/proc/equipped(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
@@ -178,6 +181,8 @@
 
 	wearer.overlays += resource_overlay
 	update_resource(0)
+	ADD_TRAIT(equipper, VALI_TRAIT, VALI_TRAIT)
+	to_chat(equipper, span_danger("Your skin crawls as needles and probes nestles themselves into your body"))
 
 /datum/component/chem_booster/process()
 	if(resource_storage_current < resource_drain_amount)
@@ -354,7 +359,7 @@
 /datum/component/chem_booster/proc/manage_weapon_connection(obj/item/weapon_to_connect)
 	if(connected_weapon)
 		wearer.balloon_alert(wearer, "Disconnected [connected_weapon]")
-		REMOVE_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
+		REMOVE_TRAIT(connected_weapon, TRAIT_NODROP, TRAIT_NODROP)
 		UnregisterSignal(connected_weapon, COMSIG_ITEM_ATTACK)
 		UnregisterSignal(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
 		connected_weapon = null
@@ -364,7 +369,7 @@
 		return FALSE
 
 	connected_weapon = weapon_to_connect
-	ADD_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
+	ADD_TRAIT(connected_weapon, TRAIT_NODROP, TRAIT_NODROP)
 	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource))
 	RegisterSignals(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
 	return TRUE
