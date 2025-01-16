@@ -180,7 +180,7 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	count = 22
 	spawning = 22
 	lifespan = 1 SECONDS
-	fade = 1.2 SECONDS
+	fade = 1.7 SECONDS
 	grow = 0.05
 	gravity = list(0, -3)
 	scale = generator(GEN_NUM, 1, 1.25)
