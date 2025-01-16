@@ -166,7 +166,7 @@
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/abduct, // Pull marines out of position in a straight line.
 		/datum/action/ability/activable/xeno/dislocate, // Simple knockback.
-		/datum/action/ability/activable/xeno/advance, // Slam into a marine to launch them in a direction.
+		/datum/action/ability/activable/xeno/advance_oppressor, // Slam into a marine to launch them in a direction.
 		/datum/action/ability/activable/xeno/tail_lash, // Weaker verison of the Shrike's Unrelenting Force.
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
@@ -191,7 +191,7 @@
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/abduct,
 		/datum/action/ability/activable/xeno/dislocate,
-		/datum/action/ability/activable/xeno/advance,
+		/datum/action/ability/activable/xeno/advance_oppressor,
 		/datum/action/ability/activable/xeno/tail_lash,
 		/datum/action/ability/activable/xeno/item_throw, // Throwing items at marines to hurt them.
 		/datum/action/ability/xeno_action/pheromones,

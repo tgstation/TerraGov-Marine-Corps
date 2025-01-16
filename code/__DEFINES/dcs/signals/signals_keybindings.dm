@@ -190,7 +190,7 @@
 #define COMSIG_XENOABILITY_STOMP "xenoability_stomp"
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"
 #define COMSIG_XENOABILITY_CRESTTOSS "xenoability_cresttoss"
-#define COMSIG_XENOABILITY_RAPID_ADVANCE "xenoability_rapid_advance"
+#define COMSIG_XENOABILITY_ADVANCE "xenoability_advance"
 
 #define COMSIG_XENOABILITY_DEVOUR "xenoability_devour"
 #define COMSIG_XENOABILITY_DRAIN "xenoability_drain"
@@ -339,4 +339,4 @@
 #define COMSIG_XENOABILITY_DISLOCATE "xenoability_dislocate"
 #define COMSIG_XENOABILITY_ITEM_THROW "xenoability_item_throw"
 #define COMSIG_XENOABILITY_TAIL_LASH "xenoability_tail_lash"
-#define COMSIG_XENOABILITY_ADVANCE "xenoability_advance"
+#define COMSIG_XENOABILITY_ADVANCE_OPPRESSOR "xenoability_advance_oppressor" //

@@ -951,9 +951,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 
 // ***************************************
-// *********** Advance
+// *********** Advance (Oppressor)
 // ***************************************
-/datum/action/ability/activable/xeno/advance
+/datum/action/ability/activable/xeno/advance_oppressor
 	name = "Advance"
 	action_icon_state = "advance"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
@@ -964,7 +964,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
 	)
 
-/datum/action/ability/activable/xeno/advance/use_ability(atom/target)
+/datum/action/ability/activable/xeno/advance_oppressor/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 	if(!do_after(xeno_owner, 0.8 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER))
 		return
@@ -983,19 +983,19 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 
 /// Shake the turf under for cool points.
-/datum/action/ability/activable/xeno/advance/proc/on_move(datum/source)
+/datum/action/ability/activable/xeno/advance_oppressor/proc/on_move(datum/source)
 	SIGNAL_HANDLER
 	var/turf/current_turf = get_turf(source)
 	current_turf.Shake(duration = 0.2 SECONDS)
 
 /// Ends the charge when hitting an object.
-/datum/action/ability/activable/xeno/advance/proc/obj_hit(datum/source, obj/obj_hit, speed)
+/datum/action/ability/activable/xeno/advance_oppressor/proc/obj_hit(datum/source, obj/obj_hit, speed)
 	SIGNAL_HANDLER
 	obj_hit.hitby(xeno_owner, speed)
 	charge_complete()
 
 /// Ends the charge when hitting a human. Knocks them back pretty far.
-/datum/action/ability/activable/xeno/advance/proc/mob_hit(datum/source, mob/living/living_hit)
+/datum/action/ability/activable/xeno/advance_oppressor/proc/mob_hit(datum/source, mob/living/living_hit)
 	SIGNAL_HANDLER
 	if(!ishuman(living_hit))
 		return
@@ -1011,7 +1011,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	charge_complete()
 
 /// Cleans up after charge is finished.
-/datum/action/ability/activable/xeno/advance/proc/charge_complete()
+/datum/action/ability/activable/xeno/advance_oppressor/proc/charge_complete()
 	SIGNAL_HANDLER
 	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_XENO_OBJ_THROW_HIT, COMSIG_MOVABLE_POST_THROW, COMSIG_XENOMORPH_LEAP_BUMP))
 	xeno_owner.xeno_flags &= ~XENO_LEAPING

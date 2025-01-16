@@ -166,7 +166,7 @@
 // ***************************************
 // *********** Advance
 // ***************************************
-/datum/action/ability/activable/xeno/rapid_advance
+/datum/action/ability/activable/xeno/advance
 	name = "Rapid Advance"
 	action_icon_state = "crest_defense"
 	action_icon = 'icons/Xeno/actions/defender.dmi'
@@ -174,17 +174,17 @@
 	ability_cost = 175
 	cooldown_duration = 30 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_RAPID_ADVANCE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
 	)
 	///Max charge range
 	var/advance_range = 7
 
-/datum/action/ability/activable/xeno/rapid_advance/on_cooldown_finish()
+/datum/action/ability/activable/xeno/advance/on_cooldown_finish()
 	to_chat(owner, span_xenowarning("<b>We can now rapidly charge forward again.</b>"))
 	playsound(owner, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
 	return ..()
 
-/datum/action/ability/activable/xeno/rapid_advance/can_use_ability(atom/A, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/advance/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -193,7 +193,7 @@
 		return FALSE
 
 
-/datum/action/ability/activable/xeno/rapid_advance/use_ability(atom/A)
+/datum/action/ability/activable/xeno/advance/use_ability(atom/A)
 	xeno_owner.face_atom(A)
 	xeno_owner.set_canmove(FALSE)
 	if(!do_after(xeno_owner, 1 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER) || (QDELETED(A)) || xeno_owner.z != A.z)
@@ -219,10 +219,10 @@
 	succeed_activate()
 	add_cooldown()
 
-/datum/action/ability/activable/xeno/rapid_advance/ai_should_start_consider()
+/datum/action/ability/activable/xeno/advance/ai_should_start_consider()
 	return TRUE
 
-/datum/action/ability/activable/xeno/rapid_advance/ai_should_use(atom/target)
+/datum/action/ability/activable/xeno/advance/ai_should_use(atom/target)
 	if(!iscarbon(target))
 		return FALSE
 	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))

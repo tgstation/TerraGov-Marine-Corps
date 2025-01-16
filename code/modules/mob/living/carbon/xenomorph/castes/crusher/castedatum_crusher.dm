@@ -80,5 +80,5 @@
 		/datum/action/ability/activable/xeno/stomp,
 		/datum/action/ability/xeno_action/ready_charge,
 		/datum/action/ability/activable/xeno/cresttoss,
-		/datum/action/ability/activable/xeno/rapid_advance,
+		/datum/action/ability/activable/xeno/advance,
 	)
