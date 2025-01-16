@@ -20,7 +20,9 @@
 	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7
+	///AM that is pulling us
 	var/mob/pulledby = null
+	///AM we are pulling
 	var/atom/movable/pulling
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
 	var/glide_modifier_flags = NONE
