@@ -72,6 +72,10 @@
 	var/movement_boost = 0
 	///How much time left on vali heal till necrosis occurs
 	var/vali_necro_timer
+	///When you last gained greenblood from attacking. Used to trigger greenblood decaying.
+	var/last_attack_time = 0
+	///How much time until greenblood decaying occurs
+	var/greenblood_decay_timer
 
 	/**
 	 * This list contains the vali stat increases that correspond to each reagent
@@ -185,6 +189,9 @@
 
 /datum/component/chem_booster/process()
 	if(!boost_on)
+		greenblood_decay_timer = world.time - last_attack_time
+		if(greenblood_decay_timer < 5 SECONDS)
+			return
 		if(resource_storage_current >= resource_decay_amount)
 			update_resource(-resource_decay_amount)
 		return
@@ -385,6 +392,7 @@
 	if(resource_storage_current >= resource_storage_max)
 		return
 	update_resource(round(10*connected_weapon.attack_speed/11))
+	last_attack_time = world.time
 
 ///Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource
 /datum/component/chem_booster/proc/update_resource(amount)
