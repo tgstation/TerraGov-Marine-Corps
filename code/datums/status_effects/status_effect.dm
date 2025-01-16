@@ -208,8 +208,6 @@
 /datum/status_effect/stacking/proc/on_threshold_drop()
 
 /datum/status_effect/stacking/proc/can_have_status()
-	if(owner.soft_armor?.getRating(FIRE) >= 100)
-		return FALSE
 	return owner.stat != DEAD
 
 /datum/status_effect/stacking/proc/can_gain_stacks()
