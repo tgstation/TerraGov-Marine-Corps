@@ -12,13 +12,15 @@
 
 /mob/living/carbon/human/gib_animation()
 	var/datum/ethnicity/ethnic_datum = GLOB.ethnicities_list[ethnicity]
-	new /obj/effect/overlay/temp/gib_animation/human(loc, 0, src, species?.gibbed_anim ? species.gibbed_anim : ethnic_datum ? ethnic_datum.icon_name : "default")
+	new /obj/effect/overlay/temp/gib_animation/human(loc, 0, src, species?.gibbed_anim ? species.gibbed_anim : ethnic_datum ? ethnic_datum.icon_name : "default", get_blood_color())
 
 /mob/living/carbon/human/spawn_gibs()
 	if(species)
 		hgibs(loc, species.flesh_color, species.blood_color)
+		new /obj/effect/temp_visual/gib_particles(get_turf(src), species.blood_color)
 	else
 		hgibs(loc)
+		new /obj/effect/temp_visual/gib_particles(get_turf(src), get_blood_color())
 
 
 
