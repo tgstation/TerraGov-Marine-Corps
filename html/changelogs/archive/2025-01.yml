@@ -73,3 +73,19 @@
   - rscadd: Many announcements now show a mugshot
   midnight0gamer:
   - rscadd: Adds soda dispenser to Valhalla.
+2025-01-16:
+  Lauwma:
+  - balance: Critdrag damage is back to 6 per tile
+  Lumipharon:
+  - balance: 'Campaign: Small handling nerfs to the V-35'
+  Notamaniac:
+  - bugfix: Wraiths can no longer delete people using banish.
+  TiviPlus:
+  - balance: nerfed tank ltaap firerate and damage
+  - bugfix: fixed an exploit allowing some attachments to persist when taken off
+  - balance: tank micromissiles now fire in 3 shot bursts instead of 6
+  tyeagg:
+  - imageadd: new vsd komandir portrait sprite
+  yyzsong:
+  - spellcheck: Recoilless Rifle shell factory refills are now named similarly to
+      their single-shell counterparts.
