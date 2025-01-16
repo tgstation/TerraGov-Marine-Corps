@@ -169,7 +169,7 @@ window "infowindow"
 	elem "discord"
 		type = BUTTON
 		pos = 92,5
-		size = 88x20
+		size = 87x20
 		anchor1 = 15,0
 		anchor2 = 29,0
 		saved-params = "is-checked"

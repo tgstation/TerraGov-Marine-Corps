@@ -1,5 +1,6 @@
 // Stuff that is relatively "core" and is used in other defines/helpers
 
+///TODO ENSURE ALL MAGIC 32 NUMBERS USE THESE DEFINES
 /**
  * The game's world.icon_size. \
  * Ideally divisible by 16. \

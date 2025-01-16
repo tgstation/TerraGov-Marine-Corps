@@ -21,13 +21,7 @@
 
 /atom/movable/screen/text/lobby/Initialize(mapload, datum/hud/hud_owner)
 	. = ..()
-	update_appearance(UPDATE_ICON)
-
-/atom/movable/screen/text/lobby/update_icon(updates)
-	. = ..()
-	if(color == COLOR_HOVER_MOUSE)
-		return
-	color = unhighlighted_color
+	add_atom_colour(unhighlighted_color, FIXED_COLOR_PRIORITY)
 
 ///This proc updates the maptext of the buttons.
 /atom/movable/screen/text/lobby/proc/update_text()
@@ -48,15 +42,13 @@
 	. = ..()
 	if(!(atom_flags & INITIALIZED)) //yes this can happen, fuck me
 		return
-	color = COLOR_HOVER_MOUSE
+	add_atom_colour(COLOR_HOVER_MOUSE, TEMPORARY_COLOR_PRIORITY)
 	var/mob/new_player/player = usr
 	player.playsound_local(player, 'sound/effects/menu_click.ogg', 50)
-	update_appearance(UPDATE_ICON)
 
 /atom/movable/screen/text/lobby/clickable/MouseExited(location, control, params)
 	. = ..()
-	color = unhighlighted_color
-	update_appearance(UPDATE_ICON)
+	remove_atom_colour(TEMPORARY_COLOR_PRIORITY, COLOR_HOVER_MOUSE)
 
 /atom/movable/screen/text/lobby/clickable/Click()
 	if(!(atom_flags & INITIALIZED)) //yes this can happen, fuck me
@@ -97,13 +89,13 @@
 	if(SSticker?.current_state > GAME_STATE_PREGAME)
 		maptext = "<span class='lobbytext'>JOIN GAME</span>"
 		icon_state = "join"
-		unhighlighted_color = null
-		update_appearance(UPDATE_ICON)
+		remove_atom_colour(FIXED_COLOR_PRIORITY, unhighlighted_color)
 		return
+	remove_atom_colour(FIXED_COLOR_PRIORITY, unhighlighted_color)
 	unhighlighted_color = player.ready ? COLOR_GREEN : COLOR_RED
+	add_atom_colour(unhighlighted_color, FIXED_COLOR_PRIORITY)
 	maptext = "<span class='lobbytext'>YOU ARE: [player.ready ? "" : "NOT "]READY</span>"
 	icon_state = player.ready ? "ready" : "unready"
-	update_appearance(UPDATE_ICON)
 
 /atom/movable/screen/text/lobby/clickable/join_game/Click()
 	. = ..()
