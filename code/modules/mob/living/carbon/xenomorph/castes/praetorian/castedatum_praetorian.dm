@@ -152,22 +152,18 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A giant melee monster with a weird tail! It looks pretty strong."
 
-	// Lose -0.5 aura strength. Arbitary.
 	aura_strength = 4
 
-	// Lose ranged spit abilities for displacement abilities.
-	// What this does: long straight displacement + lots of disarming.
-	// What alternatives does (aka warrior): short corner/angular displacement + slow/stagger/stun.
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/abduct, // Pull marines out of position in a straight line.
-		/datum/action/ability/activable/xeno/dislocate, // Simple knockback.
-		/datum/action/ability/activable/xeno/advance_oppressor, // Slam into a marine to launch them in a direction.
-		/datum/action/ability/activable/xeno/tail_lash, // Weaker verison of the Shrike's Unrelenting Force.
+		/datum/action/ability/activable/xeno/abduct,
+		/datum/action/ability/activable/xeno/dislocate,
+		/datum/action/ability/activable/xeno/advance_oppressor,
+		/datum/action/ability/activable/xeno/tail_lash,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
@@ -193,7 +189,7 @@
 		/datum/action/ability/activable/xeno/dislocate,
 		/datum/action/ability/activable/xeno/advance_oppressor,
 		/datum/action/ability/activable/xeno/tail_lash,
-		/datum/action/ability/activable/xeno/item_throw, // Throwing items at marines to hurt them.
+		/datum/action/ability/activable/xeno/item_throw,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
