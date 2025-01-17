@@ -674,6 +674,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	/// Mutable appearance of the held item.
 	var/mutable_appearance/held_appearance
 
+/datum/action/ability/activable/xeno/item_throw/Destroy()
+	drop_item()
+	return ..()
+
 /datum/action/ability/activable/xeno/item_throw/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
@@ -703,16 +707,20 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		held_appearance = mutable_appearance(interacted_item.icon, interacted_item.icon_state)
 		held_appearance.layer = ABOVE_OBJ_LAYER
 		RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-		RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(owner_turned))
+		RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(on_owner_turn))
+		RegisterSignal(owner, COMSIG_MOB_DEATH, PROC_REF(drop_item))
+		RegisterSignal(owner, COMSIG_MOB_STAT_CHANGED, PROC_REF(drop_item)) // No need to check for the specifics regarding stat as anything that isn't CONSCIOUS should cause it to drop.
+		RegisterSignal(held_item, COMSIG_QDELETING, PROC_REF(on_item_qdel))
+
 		owner.add_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB, TRUE, 0, NONE, TRUE, 2)
-		owner_turned(null, null, owner.dir)
+		on_owner_turn(null, null, owner.dir)
 		succeed_activate()
 		ability_cost = 0 // Throwing will cost nothing to prevent the ability from failing to recast if they happen to have not enough plasma.
 		used_movement_allowance = FALSE
 		return
 	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
 	held_item.throwforce += min(held_item.w_class * 15, 90) // Upper limit to prevent any weird weight classes (e.g. above WEIGHT_CLASS_GIGANTIC)
-	RegisterSignal(held_item, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throwend))
+	RegisterSignal(held_item, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
 	held_item.forceMove(get_turf(owner))
 	// A speed of 5 is required to inflict maximum damage to mobs.
 	held_item.throw_at(A, max(2, 11 - (held_item.w_class * 2)), 5)
@@ -722,13 +730,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	succeed_activate()
 	ability_cost = initial(ability_cost)
 	add_cooldown()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_MOB_DEATH, COMSIG_MOB_STAT_CHANGED))
 
 /// Reduces throwforce by what it was increased by.
-/datum/action/ability/activable/xeno/item_throw/proc/on_throwend(datum/source)
+/datum/action/ability/activable/xeno/item_throw/proc/on_throw_end(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
+	UnregisterSignal(source, list(COMSIG_MOVABLE_POST_THROW, COMSIG_QDELETING))
 	var/obj/item/item_source = source
 	item_source.throwforce -= min(item_source.w_class * 15, 90)
 
@@ -742,21 +749,30 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /// Drops the item on the floor, thus ending the ability.
 /datum/action/ability/activable/xeno/item_throw/proc/drop_item()
-	SIGNAL_HANDLER
 	if(!held_item)
 		return
-	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_MOB_DEATH, COMSIG_MOB_STAT_CHANGED))
+	UnregisterSignal(held_item, COMSIG_QDELETING)
 	held_item.forceMove(get_turf(owner))
 	held_item = null
+	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
 	owner.overlays -= held_appearance
 	held_appearance = null
 	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	add_cooldown()
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
-/// Signal handler to update the item overlay when the owner is changing dir.
-/datum/action/ability/activable/xeno/item_throw/proc/owner_turned(datum/source, old_dir, new_dir)
+/// Handles the unexpected qdel of the held item.
+/datum/action/ability/activable/xeno/item_throw/proc/on_item_qdel()
+	SIGNAL_HANDLER
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE, COMSIG_MOB_DEATH, COMSIG_MOB_STAT_CHANGED))
+	held_item = null
+	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
+	owner.overlays -= held_appearance
+	held_appearance = null
+	add_cooldown()
+
+/// Turns the held_appearance accordingly whenever the owner turns.
+/datum/action/ability/activable/xeno/item_throw/proc/on_owner_turn(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER
 	if(!new_dir || new_dir == old_dir)
 		return
