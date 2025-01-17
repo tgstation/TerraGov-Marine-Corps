@@ -204,7 +204,7 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	blood.color = gib_color
 	gib_splatter = new(src, /particles/gib_splatter)
 	gib_splatter.color = gib_color
-	addtimer(CALLBACK(src, PROC_REF(stop_spawning)), 5)
+	addtimer(CALLBACK(src, PROC_REF(stop_spawning)), 5, TIMER_CLIENT_TIME)
 
 /obj/effect/temp_visual/gib_particles/proc/stop_spawning()
 	blood.particles.count = 0
