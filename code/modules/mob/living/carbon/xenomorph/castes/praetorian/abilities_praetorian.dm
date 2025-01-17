@@ -567,7 +567,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 					continue
 				human_mobs += target
 
-		var/total_humans = human_mobs.len
 		for(var/mob/living/carbon/human/human_mob in human_mobs)
 			if(human_mob.stat == UNCONSCIOUS)
 				RegisterSignal(human_mob, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_while_thrown))
@@ -693,7 +692,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 	INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, adjustBruteLoss), HUMAN_CRITDRAG_OXYLOSS)
 
-
 /// Removes signals for COMSIG_MOVABLE_MOVED and COMSIG_MOVABLE_POST_THROW for thrown humans.
 /datum/action/ability/activable/xeno/dislocate/proc/on_throw_end(datum/source)
 	SIGNAL_HANDLER
@@ -713,8 +711,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ITEM_THROW,
 	)
-	/// If they have moved at least a single tile since picking up an item. Used as a single-tile grace period before dropping.
-	var/single_tile_grace_period = TRUE
+	/// If they have moved at least a single tile since picking up an item.
+	var/used_movement_allowance = FALSE
 	/// If we are holding an item.
 	var/obj/item/held_item
 	/// Mutable appearance of the held item.
@@ -756,12 +754,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		owner.add_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB, TRUE, 0, NONE, TRUE, 2)
 		owner_turned(null, null, owner.dir)
 		succeed_activate()
-		ability_cost = 0 // Throwing will cost nothing (and won't cause a warning if not enough plasma).
-		single_tile_grace_period = TRUE
+		ability_cost = 0 // Throwing will cost nothing to prevent the ability from failing to recast if they happen to have not enough plasma.
+		used_movement_allowance = FALSE
 		return
 	// Throw!
 	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
-	held_item.throwforce += held_item.w_class * 15 // Ranges from 15 - 90 damage.
+	held_item.throwforce += min(held_item.w_class * 15, 90) // Upper limit to prevent any weird weight classes (e.g. above WEIGHT_CLASS_GIGANTIC)
 	RegisterSignal(held_item, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throwend))
 	held_item.forceMove(get_turf(owner))
 	// Speed 5 for maximum damage.
@@ -775,17 +773,18 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
+/// Reduces throwforce by what it was increased by.
 /datum/action/ability/activable/xeno/item_throw/proc/on_throwend(datum/source)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 	var/obj/item/item_source = source
-	item_source.throwforce -= item_source.w_class * 15
+	item_source.throwforce -= min(item_source.w_class * 15, 90)
 
-/// On move, drop the item if grace period is over. Otherwise, remove the grace period.
+/// On move, drop the item if they used their movement allowance. Otherwise, use up their allowance.
 /datum/action/ability/activable/xeno/item_throw/proc/on_move()
 	SIGNAL_HANDLER
-	if(single_tile_grace_period)
-		single_tile_grace_period = FALSE
+	if(!used_movement_allowance)
+		used_movement_allowance = TRUE
 		return
 	drop_item()
 
@@ -951,7 +950,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /datum/action/ability/activable/xeno/advance_oppressor/proc/obj_hit(datum/source, obj/obj_hit, speed)
 	SIGNAL_HANDLER
 	obj_hit.hitby(xeno_owner, speed)
-	charge_complete()
 
 /// Ends the charge when hitting a human. Knocks them back pretty far.
 /datum/action/ability/activable/xeno/advance_oppressor/proc/mob_hit(datum/source, mob/living/living_hit)
@@ -962,7 +960,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), 5, 5, src)
 	living_hit.apply_effect(2 SECONDS, WEAKEN)
 	INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, MELEE)
-	charge_complete()
 
 /// Cleans up after charge is finished.
 /datum/action/ability/activable/xeno/advance_oppressor/proc/charge_complete()
