@@ -500,8 +500,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			target.balloon_alert(xeno_owner, "already abducting")
 		return FALSE
 
-	var/turf/initial_turf_pre = get_step(xeno_owner, get_cardinal_dir(xeno_owner, target))
-	var/list/turf/turf_line_pre = get_turf_line(initial_turf_pre, target, 1)
+	var/list/turf/turf_line_pre = get_turf_line(get_step(xeno_owner, get_cardinal_dir(xeno_owner, target)), target, 1)
 	if(!turf_line_pre.len) // Being really nice by preventing them from using the ability if it would of done nothing.
 		if(!silent)
 			target.balloon_alert(xeno_owner, "blocked")
@@ -525,8 +524,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	// Now wait until it is done.
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 1.2 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
-	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(pull_them_in), TRUE)
-	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(pull_them_in), FALSE)
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
+	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(failed_pull))
 
 /// Get a filtered line of turfs from a turf to a target.
 /datum/action/ability/activable/xeno/abduct/proc/get_turf_line(turf/starting_turf, atom/movable/target, distance)
@@ -553,39 +552,46 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		turf_line_filtered += unfiltered_turf
 	return turf_line_filtered
 
-/// Ends the ability by throwing all humans in the affected turfs to athe initial turf (success) or punishes the owner (failure)
-/datum/action/ability/activable/xeno/abduct/proc/pull_them_in(success)
+/// Ends the ability by throwing all humans in the affected turfs to the initial turf.
+/datum/action/ability/activable/xeno/abduct/proc/pull_them_in()
 	SIGNAL_HANDLER
-	if(success)
-		var/list/mob/living/carbon/human/human_mobs = list()
-		for(var/turf/turf_from_line AS in turf_line)
-			for(var/atom/movable/target AS in turf_from_line.contents)
-				if(!ishuman(target))
-					continue
-				var/mob/living/carbon/human/human_mob = target
-				if(human_mob.stat == DEAD)
-					continue
-				human_mobs += target
+	var/list/mob/living/carbon/human/human_mobs = list()
+	for(var/turf/turf_from_line AS in turf_line)
+		for(var/atom/movable/target AS in turf_from_line.contents)
+			if(!ishuman(target))
+				continue
+			var/mob/living/carbon/human/human_mob = target
+			if(human_mob.stat == DEAD)
+				continue
+			human_mobs += target
 
-		for(var/mob/living/carbon/human/human_mob in human_mobs)
-			if(human_mob.stat == UNCONSCIOUS)
-				RegisterSignal(human_mob, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_while_thrown))
-				RegisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
-			human_mob.throw_at(owner, 6, 2, initial_turf, FALSE)
-			human_mob.Paralyze(0.1 SECONDS)
-			human_mob.add_slowdown(0.3 * human_mobs.len)
-			human_mob.adjust_stagger(0.5 SECONDS * human_mobs.len)
-			human_mob.apply_effect(human_mobs.len >= 3 ? 1 SECONDS : 0.1 SECONDS, WEAKEN)
-		if(human_mobs.len)
-			xeno_owner.add_slowdown(0.4 * human_mobs.len) // Don't bite off more than what you can chew.
-			playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
-	else
-		// This is so that Abduct has a meaningful risk to it.
-		xeno_owner.Knockdown(1 SECONDS)
-		xeno_owner.add_slowdown(0.9)
+	for(var/mob/living/carbon/human/human_mob in human_mobs)
+		if(human_mob.stat == UNCONSCIOUS)
+			RegisterSignal(human_mob, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_while_thrown))
+			RegisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
+		human_mob.throw_at(owner, 6, 2, initial_turf, FALSE)
+		human_mob.Paralyze(0.1 SECONDS)
+		human_mob.add_slowdown(0.3 * human_mobs.len)
+		human_mob.adjust_stagger(0.5 SECONDS * human_mobs.len)
+		human_mob.apply_effect(human_mobs.len >= 3 ? 1 SECONDS : 0.1 SECONDS, WEAKEN)
+	if(human_mobs.len)
+		xeno_owner.add_slowdown(0.4 * human_mobs.len) // Don't bite off more than what you can chew.
+		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
 	succeed_activate()
 	add_cooldown()
-	// Cleanup.
+	cleanup_variables()
+
+/// Ends the ability by punishing the owner.
+/datum/action/ability/activable/xeno/abduct/proc/failed_pull()
+	SIGNAL_HANDLER
+	xeno_owner.Knockdown(1 SECONDS)
+	xeno_owner.add_slowdown(0.9)
+	succeed_activate()
+	add_cooldown()
+	cleanup_variables()
+
+/// Cleans up any variables, signals, and undoes any traits that the ability gave.
+/datum/action/ability/activable/xeno/abduct/proc/cleanup_variables()
 	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	UnregisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
@@ -595,7 +601,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	telegraphed_atoms = null
 	turf_line = null
 	initial_turf = null
-
 
 /// Does brute/oxygen damage to unconscious humans if they move.
 /datum/action/ability/activable/xeno/abduct/proc/on_movement_while_thrown(datum/source)
