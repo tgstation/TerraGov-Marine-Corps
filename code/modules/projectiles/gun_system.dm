@@ -195,8 +195,8 @@
 	var/damage_mult = 1
 	///Same as above, for damage bleed (falloff)
 	var/damage_falloff_mult = 1
-	///Multiplier, bullet damage decreased for Vali users
-	var/vali_penalty = 0.1
+	///Multiplies the projectile's damage for Vali users
+	var/damage_mult_vali = 0.1
 	///Screen shake when the weapon is fired while wielded.
 	var/recoil = 0
 	///Screen shake when the weapon is fired while unwielded.
@@ -1795,7 +1795,7 @@
 		if(living_firer.IsStaggered())
 			projectile_to_fire.damage *= STAGGER_DAMAGE_MULTIPLIER
 		if(HAS_TRAIT(living_firer, VALI_TRAIT))
-			projectile_to_fire.damage *= vali_penalty
+			projectile_to_fire.damage *= damage_mult_vali
 
 ///Sets the projectile accuracy and scatter
 /obj/item/weapon/gun/proc/setup_bullet_accuracy()
