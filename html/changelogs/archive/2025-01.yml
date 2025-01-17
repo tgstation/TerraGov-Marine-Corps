@@ -89,3 +89,10 @@
   yyzsong:
   - spellcheck: Recoilless Rifle shell factory refills are now named similarly to
       their single-shell counterparts.
+2025-01-17:
+  Lumipharon:
+  - bugfix: fixed a pull slowdown bug for xenos
+  blackdav123:
+  - rscadd: Added Sizzler boiler strain
+  novaepee:
+  - imageadd: new xenomorph gib animation
