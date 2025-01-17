@@ -144,6 +144,29 @@
 	action_icon_state = "glob_grenade"
 	action_icon = 'icons/Xeno/actions/spitter.dmi'
 	desc = "Toss a biological grenade at your target. Has various effects depending on selection, right click to select which grenade to use. Stores up to 5 uses."
+	var/current_grenades = 5
+	var/max_grenades = 5
+
+/datum/action/ability/activable/xeno/toss_grenade/give_action(mob/living/L)
+	. = ..()
+	var/mutable_appearance/counter_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	counter_maptext.pixel_x = 16
+	counter_maptext.pixel_y = -4
+	counter_maptext.maptext = MAPTEXT("[current_grenades]/[max_grenades]")
+	visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER] = counter_maptext
+
+/datum/action/ability/activable/xeno/toss_grenade/remove_action(mob/living/carbon/xenomorph/X)
+	. = ..()
+	button.cut_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER])
+	visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER] = null
+
+/datum/action/ability/activable/xeno/toss_grenade/update_button_icon()
+	button.cut_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER])
+	var/mutable_appearance/number = visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER]
+	number.maptext = MAPTEXT("[current_grenades]/[max_grenades]")
+	visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER] = number
+	button.add_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER])
+	return ..()
 
 /obj/item/explosive/grenade/globadier
 	name = "Acidic Grenade"

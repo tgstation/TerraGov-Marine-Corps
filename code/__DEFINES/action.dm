@@ -39,11 +39,11 @@
 // extra reference for how many boiler acid globs we have
 #define VREF_MUTABLE_AMMO_COUNTER "VREF_AMMO_COUNTER"
 // extra reference for how many globadier acid mines we have
-#define VREF_MUTABLE_ACID_MINES_COUNTER "VREF__COUNTER"
+#define VREF_MUTABLE_ACID_MINES_COUNTER "VREF_ACIDMINE_COUNTER"
 // extra reference for how many globadier grenades we have
-#define VREF_MUTABLE_GLOB_GRENADES_COUNTER "VREF__COUNTER"
+#define VREF_MUTABLE_GLOB_GRENADES_COUNTER "VREF_GLOBGRENADE_COUNTER"
 // extra reference for how many globadier gas mines we have
-#define VREF_MUTABLE_GAS_MINES_COUNTER "VREF__COUNTER"
+#define VREF_MUTABLE_GAS_MINES_COUNTER "VREF_GASMINE_COUNTER"
 
 
 /// Actions that toggle on click/trigger

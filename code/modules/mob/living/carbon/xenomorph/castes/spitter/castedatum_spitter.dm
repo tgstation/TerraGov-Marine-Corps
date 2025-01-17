@@ -92,7 +92,26 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/scatter_spit,
-		// /datum/action/ability/activable/xeno/toss_grenade,
-		// /datum/action/ability/activable/xeno/acid_rocket,
+		/datum/action/ability/activable/xeno/toss_grenade,
+		/datum/action/ability/activable/xeno/plant_weeds,
+	)
+
+/datum/xeno_caste/spitter/globadier/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/spitter/globadier/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A master of area control, covered in strange globulets."
+	primordial_message = "Let no cover guard our enemies."
+	upgrade = XENO_UPGRADE_PRIMO
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/scatter_spit,
+		/datum/action/ability/activable/xeno/toss_grenade,
+		/datum/action/ability/activable/xeno/acid_rocket,
 		/datum/action/ability/activable/xeno/plant_weeds,
 	)
