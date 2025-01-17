@@ -72,7 +72,7 @@
 	spit_types = list(/datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)
 
 /datum/xeno_caste/spitter/globadier
-	caste_type_path = /mob/living/carbon/xenomorph/spitter/globadier
+	//caste_type_path = /mob/living/carbon/xenomorph/spitter/globadier
 	upgrade_name = ""
 	caste_name = "Globadier Spitter"
 	display_name = "Globadier"

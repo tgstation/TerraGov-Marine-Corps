@@ -138,11 +138,39 @@
 // ***************************************
 // *********** Acid Grenade
 // ***************************************
-// greyscale_colors = "#42A500"
+/obj/item/explosive/grenade/globadier
+	name = "Acidic Grenade"
+	desc = "A gross looking glob of acid"
+	greyscale_colors = "#81ff92"
+	greyscale_config = /datum/greyscale_config/xenogrenade
+	det_time = 2 SECONDS
+	dangerous = TRUE
+	arm_sound = 'sound/voice/alien/yell_alt.ogg'
+	var/acid_damage = 20
+
+/obj/item/explosive/grenade/globadier/prime()
+	for(var/acid_tile in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
+		new /obj/effect/temp_visual/acid_splatter(acid_tile)
+		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, acid_damage)
+	qdel(src)
+
+/obj/item/explosive/grenade/globadier/update_overlays()
+	. = ..()
+	if(active)
+		. += image('icons/obj/items/grenade.dmi', "xenonade_active")
 
 // ***************************************
 // *********** Fire Grenade
 // ***************************************
+/obj/item/explosive/grenade/globadier/incen
+	name = "Melting Grenade"
+	desc = "A swirling mix of acid and purple sparks"
+	greyscale_colors = "#9e1dd1"
+
+
+/obj/item/explosive/grenade/globadier/incen/prime()
+	flame_radius(0.5, get_turf(src), fire_type = /obj/fire/melting_fire, burn_intensity = 20, burn_duration = 36, colour = "purple")
+	qdel(src)
 
 // ***************************************
 // *********** Acid Mine
