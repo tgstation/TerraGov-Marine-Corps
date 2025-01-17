@@ -326,7 +326,7 @@
 /obj/structure/largecrate/supply/floodlights
 	name = "floodlight crate (x4)"
 	desc = "A crate containing four floodlights."
-	supplies = list(/obj/machinery/floodlight = 4)
+	supplies = list(/obj/item/deployable_floodlight = 4)
 
 /obj/structure/largecrate/supply/generator
 	name = "\improper P.A.C.M.A.N. crate"
