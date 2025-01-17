@@ -559,9 +559,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			human_mobs += target
 
 	for(var/mob/living/carbon/human/human_mob in human_mobs)
-		if(human_mob.stat == UNCONSCIOUS)
-			RegisterSignal(human_mob, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_while_thrown))
-			RegisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
 		human_mob.throw_at(owner, 6, 2, initial_turf, FALSE)
 		human_mob.Paralyze(0.1 SECONDS)
 		human_mob.add_slowdown(0.3 * human_mobs.len)
@@ -595,24 +592,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	turf_line = null
 	initial_turf = null
 
-/// Does brute/oxygen damage to unconscious humans if they move.
-/datum/action/ability/activable/xeno/abduct/proc/on_movement_while_thrown(datum/source)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/human/human_mob = source
-	if(human_mob.stat != UNCONSCIOUS)
-		UnregisterSignal(human_mob, COMSIG_MOVABLE_MOVED)
-		UnregisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW)
-		return
-
-	if(human_mob.adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS))
-		return
-	INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, adjustBruteLoss), HUMAN_CRITDRAG_OXYLOSS)
-
-/// Removes signals for COMSIG_MOVABLE_MOVED and COMSIG_MOVABLE_POST_THROW for thrown humans.
-/datum/action/ability/activable/xeno/abduct/proc/on_throw_end(datum/source)
-	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 
 /obj/effect/xeno/abduct_warning
 	icon = 'icons/Xeno/Effects.dmi'
@@ -670,31 +649,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE)
 	carbon_target.apply_effect(0.1 SECONDS, WEAKEN)
-	if(ishuman(carbon_target) && carbon_target.stat == UNCONSCIOUS)
-		RegisterSignal(carbon_target, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_while_thrown))
-		RegisterSignal(carbon_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
 	carbon_target.knockback(xeno_owner, 2, 2)
 
 	succeed_activate()
 	add_cooldown()
-
-/// Does brute/oxygen damage to unconscious humans if they move.
-/datum/action/ability/activable/xeno/dislocate/proc/on_movement_while_thrown(datum/source)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/human/human_mob = source
-	if(human_mob.stat != UNCONSCIOUS)
-		UnregisterSignal(human_mob, COMSIG_MOVABLE_MOVED)
-		UnregisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW)
-		return
-	if(human_mob.adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS))
-		return
-	INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, adjustBruteLoss), HUMAN_CRITDRAG_OXYLOSS)
-
-/// Removes signals for COMSIG_MOVABLE_MOVED and COMSIG_MOVABLE_POST_THROW for thrown humans.
-/datum/action/ability/activable/xeno/dislocate/proc/on_throw_end(datum/source)
-	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 
 // ***************************************
 // *********** Item Throw
@@ -874,34 +832,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			for(var/x in 1 to 2)
 				throwlocation = get_step(throwlocation, owner.dir)
 			affected_human.throw_at(throwlocation, 2, 1, owner, TRUE)
-			// Preventing this from infinitely being used as a cost-free throw against the crit.
-			if(affected_human.stat == UNCONSCIOUS)
-				RegisterSignal(affected_human, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_while_thrown))
-				RegisterSignal(affected_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
 
 	xeno_owner.spin(4, 1)
 	xeno_owner.emote("tail")
 	playsound(xeno_owner, 'sound/weapons/alien_claw_block.ogg', 50, 1)
 	succeed_activate()
 	add_cooldown()
-
-/// Does brute/oxygen damage to unconscious humans if they move.
-/datum/action/ability/activable/xeno/tail_lash/proc/on_movement_while_thrown(datum/source)
-	SIGNAL_HANDLER
-	var/mob/living/carbon/human/human_mob = source
-	if(human_mob.stat != UNCONSCIOUS)
-		UnregisterSignal(human_mob, COMSIG_MOVABLE_MOVED)
-		UnregisterSignal(human_mob, COMSIG_MOVABLE_POST_THROW)
-		return
-	if(human_mob.adjustOxyLoss(HUMAN_CRITDRAG_OXYLOSS))
-		return
-	INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, adjustBruteLoss), HUMAN_CRITDRAG_OXYLOSS)
-
-/// Removes signals for COMSIG_MOVABLE_MOVED and COMSIG_MOVABLE_POST_THROW for thrown humans.
-/datum/action/ability/activable/xeno/tail_lash/proc/on_throw_end(datum/source)
-	SIGNAL_HANDLER
-	UnregisterSignal(source, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(source, COMSIG_MOVABLE_POST_THROW)
 
 // ***************************************
 // *********** Advance (Oppressor)
