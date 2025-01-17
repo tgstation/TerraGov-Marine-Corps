@@ -501,27 +501,23 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return FALSE
 
 	var/list/turf/turf_line_pre = get_turf_line(get_step(xeno_owner, get_cardinal_dir(xeno_owner, target)), target, 1)
-	if(!turf_line_pre.len) // Being really nice by preventing them from using the ability if it would of done nothing.
+	if(!turf_line_pre.len)
 		if(!silent)
 			target.balloon_alert(xeno_owner, "blocked")
 		return FALSE
 
 /datum/action/ability/activable/xeno/abduct/use_ability(atom/A)
-	// Face them!
 	xeno_owner.face_atom(A)
 	if(!do_after(owner, 1.2 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
-		// You can cancel it if you want to, but you can't spam this as part of some mind games.
 		add_cooldown(cooldown_duration/2)
 		return
 	xeno_owner.face_atom(A)
-	// This is where they'll be thrown to later.
+	// This is only tracked to prevent the ability owner from u-turning while it is in progress to get a different outcome.
 	initial_turf = get_step(xeno_owner, xeno_owner.dir)
-	// Make the path from here to there.
 	turf_line = get_turf_line(initial_turf, A, 7)
 	LAZYINITLIST(telegraphed_atoms)
 	for(var/turf/turf_from_line AS in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
-	// Now wait until it is done.
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 1.2 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
@@ -724,10 +720,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 	if(!.)
 		return FALSE
-	// Any target is acceptable if we have an item.
 	if(held_item)
 		return TRUE
-	// If we do not, we only want items.
 	if(!isitem(A) || isgrabitem(A))
 		if(!silent)
 			A.balloon_alert(owner, "not an item")
@@ -744,7 +738,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /datum/action/ability/activable/xeno/item_throw/use_ability(atom/A)
 	if(!held_item)
-		// Grab the floor item like a rouny.
 		playsound(owner, 'sound/voice/alien/pounce2.ogg', 30)
 		var/obj/item/interacted_item = A
 		interacted_item.forceMove(owner)
@@ -759,13 +752,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		ability_cost = 0 // Throwing will cost nothing to prevent the ability from failing to recast if they happen to have not enough plasma.
 		used_movement_allowance = FALSE
 		return
-	// Throw!
 	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
 	held_item.throwforce += min(held_item.w_class * 15, 90) // Upper limit to prevent any weird weight classes (e.g. above WEIGHT_CLASS_GIGANTIC)
 	RegisterSignal(held_item, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throwend))
 	held_item.forceMove(get_turf(owner))
-	// Speed 5 for maximum damage.
-	held_item.throw_at(A, max(2, 11 - (held_item.w_class * 2)), 5) // Ranges from 9 - 2 tiles.
+	// A speed of 5 is required to inflict maximum damage to mobs.
+	held_item.throw_at(A, max(2, 11 - (held_item.w_class * 2)), 5)
 	held_item = null
 	owner.overlays -= held_appearance
 	playsound(xeno_owner, 'sound/effects/throw.ogg', 30, 1)
