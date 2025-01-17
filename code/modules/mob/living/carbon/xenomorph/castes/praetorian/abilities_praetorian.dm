@@ -517,7 +517,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	// This is where they'll be thrown to later.
 	initial_turf = get_step(xeno_owner, xeno_owner.dir)
 	// Make the path from here to there.
-	turf_line = get_turf_line(initial_turf, target, 7)
+	turf_line = get_turf_line(initial_turf, A, 7)
 	LAZYINITLIST(telegraphed_atoms)
 	for(var/turf/turf_from_line AS in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
@@ -536,21 +536,18 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			break
 		if(unfiltered_turf.density)
 			break
-		var/blocked = FALSE
 		for(var/obj/object_on_turf in unfiltered_turf)
 			if(isbarricade(object_on_turf))
 				var/obj/structure/barricade/barricade_on_turf = object_on_turf
 				if(!barricade_on_turf.climbable)
-					blocked = TRUE
-					break
+					break end_of_loop
 				continue
 			if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_THROW))
-				blocked = TRUE
-				break
-		if(blocked)
-			break
+				break end_of_loop
 		turf_line_filtered += unfiltered_turf
-	return turf_line_filtered
+
+	end_of_loop:
+		return turf_line_filtered
 
 /// Ends the ability by throwing all humans in the affected turfs to the initial turf.
 /datum/action/ability/activable/xeno/abduct/proc/pull_them_in()
