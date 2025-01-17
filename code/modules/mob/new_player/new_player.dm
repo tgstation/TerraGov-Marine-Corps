@@ -388,19 +388,18 @@
 		return FALSE
 	if(tgui_alert(src, "Are you sure you wish to observe?[SSticker.mode?.observe_respawn_message()]", "Observe", list("Yes", "No")) != "Yes")
 		return
-/*
 	if(!check_other_rights(client, R_ADMIN, FALSE))
 		message_admins(src+" joined as a ghost.")
 		to_chat(src, span_warning("No peeking, play instead!"))
 		return FALSE
-*/
 	if(!client)
 		return TRUE
 	var/mob/dead/observer/observer = new()
+/*
 	if(!check_other_rights(client, R_ADMIN, FALSE))
 		observer.unobserve_timer = addtimer(CALLBACK(observer, TYPE_PROC_REF(/mob/dead/observer, observe_time_out)), 3 MINUTES, TIMER_STOPPABLE)
 		to_chat(src, span_alert("You have three minutes to observe before getting sent back to the lobby. You can only do this once a round."))
-
+*/
 	spawning = TRUE
 	observer.started_as_observer = TRUE
 
