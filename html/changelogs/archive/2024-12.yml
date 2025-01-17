@@ -126,3 +126,13 @@
 2024-12-28:
   blackdav123:
   - qol: Marine and SOM medical belts now have meds organized in the same order.
+2024-12-30:
+  Technical-l:
+  - balance: adjusts fog zones and cave width on icy caves
+2024-12-31:
+  Lumipharon:
+  - code_imp: Made a large cleanup to xeno code, mainly regarding actions
+  - balance: Anti-gas smoke now purges all smoke types
+  - bugfix: fixed desants not being removed when a vehicle is destroyed
+  Mantlecrawler:
+  - qol: Acid Maw & Jaw now show up on hive status and on minimap

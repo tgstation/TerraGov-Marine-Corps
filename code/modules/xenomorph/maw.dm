@@ -201,7 +201,7 @@
 
 /obj/structure/xeno/acid_maw
 	name = "acid maw"
-	desc = "A deep hole in the ground. it's walls are coated with resin and you see the occasional vent or fang."
+	desc = "A deep hole in the ground. Its walls are coated with resin and you see the occasional vent or fang."
 	icon = 'icons/Xeno/3x3building.dmi'
 	icon_state = "maw"
 	bound_width = 96
@@ -226,6 +226,11 @@
 	for(var/datum/maw_ammo/path AS in maw_options)
 		parsed_maw_options[path] = image(icon='icons/mob/radial.dmi', icon_state=path::radial_icon_state)
 	maw_options = parsed_maw_options
+	LAZYADDASSOC(GLOB.xeno_acid_jaws_by_hive, hivenumber, src)
+
+/obj/structure/xeno/acid_maw/Destroy()
+	GLOB.xeno_acid_jaws_by_hive[hivenumber] -= src
+	return ..()
 
 /obj/structure/xeno/acid_maw/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
 	. = ..()
@@ -282,7 +287,7 @@
 
 /obj/structure/xeno/acid_maw/acid_jaws
 	name = "acid jaws"
-	desc = "A hole in the ground. It's walls are coated with resin and there is some smoke billowing out."
+	desc = "A hole in the ground. Its walls are coated with resin and there is some smoke billowing out."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "jaws"
 	bound_width = 32
@@ -291,7 +296,7 @@
 	pixel_x = -16
 	pixel_y = -16
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
-	minimap_icon = "acid jaw"
+	minimap_icon = "acid_jaw"
 	maw_options = list(
 		/datum/maw_ammo/smoke/neuro,
 		/datum/maw_ammo/hugger,

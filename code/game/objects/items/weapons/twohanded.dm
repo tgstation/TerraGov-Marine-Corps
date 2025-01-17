@@ -245,7 +245,7 @@
 	succeed_activate()
 	add_cooldown()
 	var/mob/living/carbon/carbon_owner = owner
-	carbon_owner.Move(get_step_towards(carbon_owner, A), get_dir(src, A))
+	carbon_owner.Move(get_step(carbon_owner, angle_to_dir(Get_Angle(carbon_owner, A))), get_dir(carbon_owner, A))
 	carbon_owner.face_atom(A)
 	activate_particles(owner.dir)
 	playsound(owner, 'sound/effects/alien/tail_swipe3.ogg', 50, 0, 5)

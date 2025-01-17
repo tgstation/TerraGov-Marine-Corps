@@ -168,6 +168,10 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 
+/mob/living/carbon/xenomorph/ravager/bloodthirster/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
 //----RAVAGER END----//
 //================//
 //RAVAGER ERT START
@@ -305,6 +309,13 @@
 	upgrade = XENO_UPGRADE_NORMAL
 
 /mob/living/carbon/xenomorph/boiler/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
+
+/mob/living/carbon/xenomorph/boiler/sizzler
+	upgrade = XENO_UPGRADE_NORMAL
+
+/mob/living/carbon/xenomorph/boiler/sizzler/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_THREE_THRESHOLD
 

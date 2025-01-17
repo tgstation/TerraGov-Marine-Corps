@@ -13,6 +13,11 @@
 	head = /obj/item/clothing/head/helmet/marine/icc
 	mask = /obj/item/clothing/mask/gas/icc
 
+	head_contents = list(
+		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/oxycodone = 1,
+	)
+
 // Basic standard equipment
 /datum/outfit/job/icc/standard
 	name = "ICC Standard"
@@ -38,7 +43,8 @@
 	)
 
 	suit_contents = list(
-		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 2,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
 	)
 
 	webbing_contents = list(
@@ -95,7 +101,8 @@
 	)
 
 	suit_contents = list(
-		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 2,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
 	)
 
 	webbing_contents = list(
@@ -183,10 +190,13 @@
 		/obj/item/defibrillator = 1,
 		/obj/item/storage/box/m94 = 1,
 		/obj/item/reagent_containers/hypospray/advanced/combat_advanced = 1,
+		/obj/item/weapon/gun/pistol/icc_dpistol = 1,
+		/obj/item/ammo_magazine/pistol/icc_dpistol = 1,
 	)
 
 	suit_contents = list(
-		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 2,
+		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 1,
+		/obj/item/tool/extinguisher = 1,
 	)
 
 	webbing_contents = list(
@@ -245,11 +255,15 @@
 	backpack_contents = list(
 		/obj/item/tool/crowbar/red = 1,
 		/obj/item/explosive/grenade/som = 6,
+		/obj/item/explosive/grenade/incendiary/som = 2,
+		/obj/item/tool/extinguisher = 1,
+		/obj/item/reagent_containers/hypospray/autoinjector/combat_advanced = 1,
 		/obj/item/storage/box/m94 = 1,
 	)
 
 	suit_contents = list(
-		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 2,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
 	)
 
 	webbing_contents = list(
