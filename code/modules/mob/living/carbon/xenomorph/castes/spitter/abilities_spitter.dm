@@ -138,6 +138,13 @@
 // ***************************************
 // *********** Acid Grenade
 // ***************************************
+
+/datum/action/ability/activable/xeno/toss_grenade
+	name = "Toss Grenade"
+	action_icon_state = "glob_grenade"
+	action_icon = 'icons/Xeno/actions/spitter.dmi'
+	desc = "Toss a biological grenade at your target. Has various effects depending on selection, right click to select which grenade to use. Stores up to 5 uses."
+
 /obj/item/explosive/grenade/globadier
 	name = "Acidic Grenade"
 	desc = "A gross looking glob of acid"
@@ -146,7 +153,7 @@
 	det_time = 2 SECONDS
 	dangerous = TRUE
 	arm_sound = 'sound/voice/alien/yell_alt.ogg'
-	var/acid_damage = 20
+	var/acid_damage = 40
 
 /obj/item/explosive/grenade/globadier/prime()
 	for(var/acid_tile in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
@@ -179,3 +186,13 @@
 // ***************************************
 // *********** Gas Mine
 // ***************************************
+
+// ***************************************
+// *********** Acid Rocket
+// ***************************************
+
+/datum/action/ability/activable/xeno/acid_rocket
+	name = "Acid Rocket"
+	action_icon_state = "xadar"
+	action_icon = 'icons/Xeno/actions/spitter.dmi'
+	desc = "Fire an acid rocket, costing 30% of your current health and plasma, and dealing heavy damage where you aim it."

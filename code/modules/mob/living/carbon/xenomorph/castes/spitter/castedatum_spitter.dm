@@ -72,7 +72,7 @@
 	spit_types = list(/datum/ammo/xeno/acid/auto, /datum/ammo/xeno/acid/medium)
 
 /datum/xeno_caste/spitter/globadier
-	//caste_type_path = /mob/living/carbon/xenomorph/spitter/globadier
+	caste_type_path = /mob/living/carbon/xenomorph/spitter/globadier
 	upgrade_name = ""
 	caste_name = "Globadier Spitter"
 	display_name = "Globadier"
@@ -92,5 +92,7 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/scatter_spit,
-		/datum/action/ability/activable
+		// /datum/action/ability/activable/xeno/toss_grenade,
+		// /datum/action/ability/activable/xeno/acid_rocket,
+		/datum/action/ability/activable/xeno/plant_weeds,
 	)
