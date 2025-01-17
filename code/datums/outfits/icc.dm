@@ -189,13 +189,12 @@
 		/obj/item/explosive/grenade/som = 6,
 		/obj/item/defibrillator = 1,
 		/obj/item/storage/box/m94 = 1,
-		/obj/item/reagent_containers/hypospray/advanced/combat_advanced = 1,
 		/obj/item/weapon/gun/pistol/icc_dpistol = 1,
 		/obj/item/ammo_magazine/pistol/icc_dpistol = 1,
 	)
 
 	suit_contents = list(
-		/obj/item/reagent_containers/food/snacks/wrapped/barcaridine = 1,
+		/obj/item/reagent_containers/hypospray/advanced/combat_advanced = 1,
 		/obj/item/tool/extinguisher = 1,
 	)
 
