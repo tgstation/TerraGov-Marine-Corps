@@ -521,7 +521,7 @@
 	damage = 35
 	penetration = 15
 	sundering = 2
-	ammo_behavior_flags = AMMO_ENERGY|AMMO_IFF|AMMO_HITSCAN
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN
 	hitscan_effect_icon = "beam"
 	bullet_color = COLOR_LASER_RED
 
