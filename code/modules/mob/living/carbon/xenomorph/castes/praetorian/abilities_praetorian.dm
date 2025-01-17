@@ -667,6 +667,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ITEM_THROW,
 	)
+	use_state_flags = ABILITY_USE_STAGGERED
 	/// If they have moved at least a single tile since picking up an item.
 	var/used_movement_allowance = FALSE
 	/// If we are holding an item.
