@@ -532,18 +532,22 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			break
 		if(unfiltered_turf.density)
 			break
+		var/blocked = FALSE
 		for(var/obj/object_on_turf in unfiltered_turf)
 			if(isbarricade(object_on_turf))
 				var/obj/structure/barricade/barricade_on_turf = object_on_turf
 				if(!barricade_on_turf.climbable)
-					break end_of_loop
+					blocked = TRUE
+					break
 				continue
 			if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_THROW))
-				break end_of_loop
+				blocked = TRUE
+				break
+		if(blocked)
+			break
 		turf_line_filtered += unfiltered_turf
 
-	end_of_loop:
-		return turf_line_filtered
+	return turf_line_filtered
 
 /// Ends the ability by throwing all humans in the affected turfs to the initial turf.
 /datum/action/ability/activable/xeno/abduct/proc/pull_them_in()
