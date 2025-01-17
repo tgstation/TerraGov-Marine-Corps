@@ -545,7 +545,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 					blocked = TRUE
 					break
 				continue
-			if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_PROJECTILE))
+			if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_THROW))
 				blocked = TRUE
 				break
 		if(blocked)
@@ -672,7 +672,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE)
 
 	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE)
-	carbon_target.apply_effect(0.1 SECONDS, WEAKEN) // So they go through mobs and what not.
+	carbon_target.apply_effect(0.1 SECONDS, WEAKEN)
 	if(ishuman(carbon_target) && carbon_target.stat == UNCONSCIOUS)
 		RegisterSignal(carbon_target, COMSIG_MOVABLE_MOVED, PROC_REF(on_movement_while_thrown))
 		RegisterSignal(carbon_target, COMSIG_MOVABLE_POST_THROW, PROC_REF(on_throw_end))
