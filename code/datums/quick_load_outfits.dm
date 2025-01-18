@@ -1136,7 +1136,7 @@
 //Base SOM marine outfit
 /datum/outfit/quick/som/marine
 	name = "SOM Squad Marine"
-	jobtype = "SOM Squad Standard"
+	jobtype = SOM_SQUAD_MARINE
 
 	ears = /obj/item/radio/headset/mainship/som
 	w_uniform = /obj/item/clothing/under/som/webbing

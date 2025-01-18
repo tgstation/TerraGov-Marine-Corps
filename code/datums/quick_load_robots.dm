@@ -36,7 +36,7 @@
 
 //---- Squad Marine loadouts
 /datum/outfit/quick/beginner_robot/marine
-	jobtype = "Squad Marine"
+	jobtype = SQUAD_MARINE
 
 /datum/outfit/quick/beginner_robot/marine/rifleman
 	name = "Rifleman"
