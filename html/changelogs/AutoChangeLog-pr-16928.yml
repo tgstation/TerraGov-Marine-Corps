@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Having 100+ fire armor (aka fire immunity) correctly prevents you from getting any melting stacks (from Pyrogen)."
