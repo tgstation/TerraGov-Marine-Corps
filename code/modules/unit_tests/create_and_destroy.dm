@@ -26,6 +26,8 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 		/obj/merge_conflict_marker,
 		///Base type with no disk type
 		/obj/machinery/computer/nuke_disk_generator,
+		///created by owning tank with necessary arg
+		/atom/movable/vis_obj/turret_overlay,
 	)
 	//This turf existing is an error in and of itself
 	ignore += typesof(/turf/baseturf_skipover)
