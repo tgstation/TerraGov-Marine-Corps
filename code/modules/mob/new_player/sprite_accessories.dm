@@ -576,6 +576,7 @@
 /datum/sprite_accessory/hair/longdtails
 	name = "Big Tails"
 	icon_state = "hair_longdtails"
+	gender = FEMALE
 
 /datum/sprite_accessory/hair/longstraight
 	name = "Long Straight Hair"
