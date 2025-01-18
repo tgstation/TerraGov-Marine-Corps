@@ -601,11 +601,11 @@ What you lack in equipment and military training you make up in bravery and conv
 	job_flags = JOB_FLAG_LATEJOINABLE|JOB_FLAG_BOLD_NAME_ON_SELECTION|JOB_FLAG_PROVIDES_SQUAD_HUD|JOB_FLAG_CAN_SEE_ORDERS
 	job_cost = 0
 	outfits = list(
-		/datum/outfit/job/icc/leader/trenchgun/campaign,
+		/datum/outfit/job/icc/leader/icc_heavyshotgun/campaign,
 		/datum/outfit/job/icc/leader/icc_confrontationrifle/campaign,
 	)
 
-/datum/outfit/job/icc/leader/trenchgun/campaign
+/datum/outfit/job/icc/leader/icc_heavyshotgun/campaign
 	ears = /obj/item/radio/headset/mainship/som
 
 /datum/outfit/job/icc/leader/icc_confrontationrifle/campaign

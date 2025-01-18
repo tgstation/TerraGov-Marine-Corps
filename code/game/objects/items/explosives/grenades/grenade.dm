@@ -30,7 +30,6 @@
 	///Weak impact range when exploding
 	var/weak_impact_range = 0
 
-
 /obj/item/explosive/grenade/Initialize(mapload)
 	. = ..()
 	det_time = rand(det_time - 1 SECONDS, det_time + 1 SECONDS)

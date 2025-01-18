@@ -44,17 +44,20 @@ export const GameSettings = (props) => {
     data;
 
   // Remember to update this alongside defines
-  const TTSRadioSetting = ['sl', 'squad', 'command', 'all'];
+  // todo: unfuck. Bruh why is this being handled in the tsx?
+  const TTSRadioSetting = ['sl', 'squad', 'command', 'hivemind', 'all'];
   const TTSRadioSettingToBitfield = {
     sl: 1 << 0,
     squad: 1 << 1,
     command: 1 << 2,
     all: 1 << 3,
+    hivemind: 1 << 4,
   };
   const TTSRadioSettingToName = {
     sl: 'Squad Leader',
     squad: 'Squad',
-    command: 'Command',
+    command: 'Command/Hive Leader',
+    hivemind: 'Hivemind',
     all: 'All Channels',
   };
 
