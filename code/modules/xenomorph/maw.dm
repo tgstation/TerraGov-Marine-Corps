@@ -191,6 +191,7 @@
 
 //literally just to make minion throw into the air anim
 /datum/maw_ammo/minion/proc/create_launch_minion_anim(obj/structure/xeno/acid_maw/maw)
+	playsound(maw, 'sound/effects/thoomp.ogg', 80, TRUE)
 	var/obj/effect/temp_visual/thrown_minion/anim = new(maw.loc, minion_options)
 	anim.pixel_x = (maw.bound_width/2) - rand(48, 30)
 	anim.transform = matrix().Turn(rand(360))
