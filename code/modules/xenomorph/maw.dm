@@ -202,7 +202,7 @@
 
 /obj/structure/xeno/acid_maw
 	name = "acid maw"
-	desc = "A deep hole in the ground. it's walls are coated with resin and you see the occasional vent or fang."
+	desc = "A deep hole in the ground. Its walls are coated with resin and you see the occasional vent or fang."
 	icon = 'icons/Xeno/3x3building.dmi'
 	icon_state = "maw"
 	bound_width = 96
@@ -288,7 +288,7 @@
 
 /obj/structure/xeno/acid_maw/acid_jaws
 	name = "acid jaws"
-	desc = "A hole in the ground. It's walls are coated with resin and there is some smoke billowing out."
+	desc = "A hole in the ground. Its walls are coated with resin and there is some smoke billowing out."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "jaws"
 	bound_width = 32

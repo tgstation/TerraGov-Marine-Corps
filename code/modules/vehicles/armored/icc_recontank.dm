@@ -8,7 +8,7 @@
 	damage_icon_path = 'icons/obj/armored/2x2/icc_lvrt_damage.dmi'
 	interior = /datum/interior/armored/icc_lvrt
 	hitbox = /obj/hitbox/medium
-	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_HAS_UNDERLAY|ARMORED_PURCHASABLE_ASSAULT
+	armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_SECONDARY_WEAPON|ARMORED_HAS_HEADLIGHTS|ARMORED_HAS_UNDERLAY
 	permitted_weapons = list(/obj/item/armored_weapon/icc_lvrt_sarden, /obj/item/armored_weapon/icc_lvrt_cannon, /obj/item/armored_weapon/icc_coaxial)
 	permitted_mods = list(/obj/item/tank_module/ability/smoke_launcher)
 	minimap_icon_state = "apc"

@@ -35,5 +35,7 @@
 				return /mob/living/carbon/human/species/moth
 		if("Vatborn")
 			return /mob/living/carbon/human/species/vatborn
+		if("Prototype Supersoldier")
+			return /mob/living/carbon/human/species/prototype_supersoldier
 		else
 			return /mob/living/carbon/human
