@@ -773,7 +773,13 @@
 		new_species = race
 	return ..()
 
+/// Turns our human into a selected species `new_species`
+/// new_species must be either a string or a species datum
 /mob/living/carbon/human/proc/set_species(new_species, default_colour)
+	// Here we'll convert the species into a string. It's a bandaid fix
+	if(istype(new_species, /datum/species))
+		var/datum/species/old_type = new_species
+		new_species = old_type.name
 
 	if(!new_species)
 		new_species = "Human"
