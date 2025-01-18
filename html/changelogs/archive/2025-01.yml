@@ -96,3 +96,15 @@
   - rscadd: Added Sizzler boiler strain
   novaepee:
   - imageadd: new xenomorph gib animation
+2025-01-18:
+  Barnet2:
+  - balance: Prison Station metal roofs are now glass, allowing marines to pod and
+      land Tadpole.
+  - bugfix: Fixes some stray wall props on Pillar of Spring.
+  Lumipharon:
+  - bugfix: Crew monitors no longer track all humans
+  Xander3359:
+  - admin: fix VV "Jump To"
+  - admin: fix VV "Set Species"
+  yyzsong:
+  - spellcheck: general psi structure spellcheck/grammar/wording adjustments
