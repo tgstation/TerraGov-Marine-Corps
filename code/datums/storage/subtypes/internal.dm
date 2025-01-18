@@ -81,13 +81,6 @@
 /datum/storage/internal/webbing/New(atom/parent)
 	. = ..()
 	set_holdable(
-		can_hold_list = list(
-			/obj/item/stack/razorwire,
-			/obj/item/stack/sheet,
-			/obj/item/stack/sandbags,
-			/obj/item/stack/snow,
-			/obj/item/cell/lasgun/plasma,
-		),
 		cant_hold_list = list(
 			/obj/item/cell/lasgun/volkite/powerpack
 		),
@@ -95,6 +88,7 @@
 			/obj/item/ammo_magazine/rifle,
 			/obj/item/ammo_magazine/smg,
 			/obj/item/ammo_magazine/sniper,
+			/obj/item/ammo_magazine/packet,
 			/obj/item/cell/lasgun,
 		)
 	)
