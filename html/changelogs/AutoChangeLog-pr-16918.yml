@@ -1,0 +1,4 @@
+author: "Neocloudy"
+delete-after: True
+changes:
+  - rscdel: "Wraith can no longer be picked. Forcefully devolved Warlocks will devolve to Warriors instead."
