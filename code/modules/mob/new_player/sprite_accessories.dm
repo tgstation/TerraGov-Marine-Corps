@@ -573,6 +573,10 @@
 	name = "Long Hair Alternate 2"
 	icon_state = "hair_longalt2"
 
+/datum/sprite_accessory/hair/longdtails
+	name = "Big Tails"
+	icon_state = "hair_longdtails"
+
 /datum/sprite_accessory/hair/longstraight
 	name = "Long Straight Hair"
 	icon_state = "hair_longstraight"
