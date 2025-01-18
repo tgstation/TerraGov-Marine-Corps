@@ -309,6 +309,10 @@
 #define COMSIG_XENOABILITY_FIREBALL "xenoability_fireball"
 #define COMSIG_XENOABILITY_HEATRAY "xenoability_heatray"
 
+#define COMSIG_XENOABILITY_FORM_SHIFT "xenoability_form_shift"
+#define COMSIG_XENOABILITY_FORM_SHIFT_CONFIGURE "xenoability_form_shift_configure"
+#define COMSIG_XENOABILITY_CRYOGEN_SHOT "xenoability_cryogen_shot"
+
 #define COMSIG_XENOABILITY_TENDRILS "xenoability_tendrils"
 #define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"
 #define COMSIG_XENOABILITY_PUPPET "xenoability_puppet"

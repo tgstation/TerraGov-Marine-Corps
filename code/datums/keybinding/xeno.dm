@@ -1205,3 +1205,21 @@
 	full_name = "Pyrogen: Heatray"
 	description = "After a windup, unleash a heat ray that will cook any marine it comes across."
 	keybind_signal = COMSIG_XENOABILITY_HEATRAY
+
+/datum/keybinding/xeno/form_shift
+	name = "Form Shift"
+	full_name = "Cryogen: Form Shift"
+	description = "Double tap any movement direction to dash towards it. Grants a brief period of invulnerability."
+	keybind_signal = COMSIG_XENOABILITY_FORM_SHIFT
+
+/datum/keybinding/xeno/form_shift_configure
+	name = "Configure Form Shift"
+	full_name = "Cryogen: Configure Form Shift"
+	description = "Alter various settings related to the Form Shift ability."
+	keybind_signal = COMSIG_XENOABILITY_FORM_SHIFT_CONFIGURE
+
+/datum/keybinding/xeno/cryogen_shot
+	name = "Charged Shot"
+	full_name = "Cryogen: Charged Shot"
+	description = "to do"
+	keybind_signal = COMSIG_XENOABILITY_CRYOGEN_SHOT

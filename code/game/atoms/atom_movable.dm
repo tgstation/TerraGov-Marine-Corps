@@ -519,7 +519,7 @@
 
 	step(src, angle_to_dir(new_angle))
 
-/atom/movable/proc/throw_at(atom/target, range, speed = 5, thrower, spin, flying = FALSE, targetted_throw = TRUE)
+/atom/movable/proc/throw_at(atom/target, range, speed = 5, thrower, spin, flying = FALSE, targetted_throw = TRUE, bounce = TRUE)
 	set waitfor = FALSE
 	if(!target || !src)
 		return FALSE
@@ -630,7 +630,7 @@
 	if(!originally_dir_locked)
 		atom_flags &= ~DIRLOCK
 	if(isobj(src) && throwing)
-		throw_impact(get_turf(src), speed)
+		throw_impact(get_turf(src), speed, bounce)
 	stop_throw(flying, original_layer)
 
 ///Clean up all throw vars
