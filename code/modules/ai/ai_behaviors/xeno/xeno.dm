@@ -30,6 +30,8 @@
 			ability_list += action
 
 /datum/ai_behavior/xeno/process()
+	if(mob_parent.notransform)
+		return ..()
 	if(mob_parent.do_actions) //No activating more abilities if they're already in the progress of doing one
 		return ..()
 
