@@ -212,6 +212,7 @@
 			paratrooper.notransform = TRUE
 			paratrooper.density = FALSE
 			paratrooper.set_canmove(FALSE)
+			paratrooper.setDir(pick(GLOB.cardinals))
 
 			var/xoffset = (target.x - candidate.x) * 32
 			var/yoffset = (target.y - candidate.y) * 32 + 600
