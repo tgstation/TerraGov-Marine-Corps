@@ -184,7 +184,8 @@
 	var/list/spawned_minions = list()
 
 /datum/maw_ammo/minion/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
-	for(var/i=0 to minion_count)
+	create_launch_minion_anim(maw)//0 length timer avoidance
+	for(var/i=1 to minion_count)
 		addtimer(CALLBACK(src, PROC_REF(create_launch_minion_anim), maw), i*2) // staggers launches
 	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
 
