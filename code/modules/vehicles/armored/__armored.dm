@@ -25,7 +25,7 @@
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
 	///Cool and good turret overlay that allows independently swiveling guns
-	var/atom/movable/vis_obj/turret_overlay/turret_overlay = /atom/movable/vis_obj/turret_overlay/offset
+	var/atom/movable/vis_obj/turret_overlay/turret_overlay = /atom/movable/vis_obj/turret_overlay
 	///Icon for the rotating turret icon. also should hold the icons for the weapon icons
 	var/turret_icon = 'icons/obj/armored/1x1/tinytank_gun.dmi'
 	///Iconstate for the rotating main turret
