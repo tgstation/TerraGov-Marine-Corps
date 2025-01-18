@@ -48,6 +48,9 @@
 
 /// Create the mob and delete the corpse spawner
 /obj/effect/landmark/corpsespawner/proc/create_mob()
+	if(death_type != REGULAR_DEATH)
+		qdel(src)
+		return
 	var/mob/living/carbon/human/victim = new(loc)
 	SSmobs.stop_processing(victim)
 	GLOB.round_statistics.total_humans_created[victim.faction]-- //corpses don't count
@@ -81,6 +84,8 @@
 
 
 /obj/effect/landmark/corpsespawner/proc/equip_items_to_mob(mob/living/carbon/human/corpse)
+	if(!corpse)
+		return FALSE
 	if(corpseuniform)
 		corpse.equip_to_slot_or_del(new corpseuniform(corpse), SLOT_W_UNIFORM)
 	if(corpsesuit)
