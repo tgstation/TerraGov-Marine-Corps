@@ -165,5 +165,5 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 /obj/effect/temp_visual/thrown_minion/Initialize(mapload, list/minion_options)
 	. = ..()
 	var/mob/living/carbon/xenomorph/type = pick(minion_options)
-	icon = type::icon
-	icon_state = type::icon_state
+	icon = initial(type.icon)
+	icon_state = initial(type.icon_state)
