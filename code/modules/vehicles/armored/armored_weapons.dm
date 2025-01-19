@@ -330,7 +330,7 @@
 	windup_delay = 5
 	windup_sound = 'sound/weapons/guns/fire/tank_minigun_start.ogg'
 	ammo = /obj/item/ammo_magazine/tank/ltaap_chaingun
-	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/ltaap_chaingun, /obj/item/ammo_magazine/tank/ltaap_chaingun/hv)
 	fire_mode = GUN_FIREMODE_AUTOMATIC
 	variance = 5
 	projectile_delay = 0.1 SECONDS
