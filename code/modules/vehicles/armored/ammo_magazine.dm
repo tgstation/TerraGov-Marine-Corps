@@ -47,6 +47,7 @@
 /obj/item/ammo_magazine/tank/ltaap_chaingun/hv
 	name = "\improper LTA-AP HV chaingun Magazine"
 	desc = "A primary armament chaingun magazine. Loaded with high velocity, non-IFF rounds."
+	icon_state = "ltaap_hv"
 	default_ammo = /datum/ammo/bullet/minigun/ltaap/hv
 	max_rounds = 200
 	magazine_flags = MAGAZINE_REFILLABLE|MAGAZINE_NOT_FABRICABLE
