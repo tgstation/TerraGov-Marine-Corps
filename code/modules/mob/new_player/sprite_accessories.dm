@@ -479,6 +479,11 @@
 	icon_state = "hair_highandtight"
 	gender = MALE
 
+/datum/sprite_accessory/hair/highdrills
+	name = "Twin Drills"
+	icon_state = "hair_highdrills"
+	gender = FEMALE
+
 /datum/sprite_accessory/hair/highfade
 	name = "High Fade"
 	icon_state = "hair_highfade"
