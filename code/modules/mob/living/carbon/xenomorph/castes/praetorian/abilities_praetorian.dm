@@ -481,8 +481,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ABDUCT,
 	)
-	/// The turf in front of the owner when the projectile was initially fired.
-	var/turf/initial_turf
 	/// A list of turfs that will be used to get mobs who will get affected by the ability.
 	var/list/turf/turf_line
 	/// The created effects that need to be deleted later.
@@ -491,30 +489,40 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/ability_timer
 
 
-/datum/action/ability/activable/xeno/abduct/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/abduct/Destroy()
+	cleanup_variables()
+	return ..()
+
+/datum/action/ability/activable/xeno/abduct/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(ability_timer)
 		if(!silent)
-			target.balloon_alert(xeno_owner, "already abducting")
+			A.balloon_alert(xeno_owner, "already abducting")
 		return FALSE
-
-	var/list/turf/turf_line_pre = get_turf_line(get_step(xeno_owner, get_cardinal_dir(xeno_owner, target)), target, 1)
+	var/distance_to_target = get_dist(xeno_owner, A)
+	if(!distance_to_target)
+		if(!silent)
+			A.balloon_alert(xeno_owner, "too short")
+		return FALSE
+	if(distance_to_target > 7)
+		if(!silent)
+			A.balloon_alert(xeno_owner, "too far")
+		return FALSE
+	var/list/turf/turf_line_pre = get_turf_line(get_step(xeno_owner, get_dir(xeno_owner, A)))
 	if(!turf_line_pre.len)
 		if(!silent)
-			target.balloon_alert(xeno_owner, "blocked")
+			A.balloon_alert(xeno_owner, "blocked")
 		return FALSE
 
 /datum/action/ability/activable/xeno/abduct/use_ability(atom/A)
 	xeno_owner.face_atom(A)
-	if(!do_after(owner, 1.2 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER))
+	if(!do_after(owner, 1.2 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(A, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
 		add_cooldown(cooldown_duration/2)
 		return
 	xeno_owner.face_atom(A)
-	// This is only tracked to prevent the ability owner from u-turning while it is in progress to get a different outcome.
-	initial_turf = get_step(xeno_owner, xeno_owner.dir)
-	turf_line = get_turf_line(initial_turf, A, 7)
+	turf_line = get_turf_line(A)
 	LAZYINITLIST(telegraphed_atoms)
 	for(var/turf/turf_from_line AS in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
@@ -523,29 +531,42 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
 	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(failed_pull))
 
-/// Get a filtered line of turfs from a turf to a target.
-/datum/action/ability/activable/xeno/abduct/proc/get_turf_line(turf/starting_turf, atom/movable/target, distance)
-	var/list/turf_line_unfiltered = getline(starting_turf, target)
+/// Get a filtered line of turfs going from the owner to the target. This excludes the turf the owner is currently on.
+/datum/action/ability/activable/xeno/abduct/proc/get_turf_line(atom/target)
+	var/list/turf_line_unfiltered = getline(get_step(xeno_owner, get_dir(xeno_owner, target)), target)
 	var/list/turf_line_filtered = list()
-	for(var/turf/unfiltered_turf AS in turf_line_unfiltered)
-		if(turf_line_filtered.len > distance)
-			break
-		if(unfiltered_turf.density)
-			break
-		var/blocked = FALSE
-		for(var/obj/object_on_turf in unfiltered_turf)
-			if(isbarricade(object_on_turf))
-				var/obj/structure/barricade/barricade_on_turf = object_on_turf
-				if(!barricade_on_turf.climbable)
-					blocked = TRUE
-					break
-				continue
-			if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_THROW))
-				blocked = TRUE
+	// Used for checking against barricades and must be cardinal since barricades only face cardinal directions.
+	var/direction = get_cardinal_dir(xeno_owner, target)
+	end_the_loop:
+		for(var/turf/unfiltered_turf AS in turf_line_unfiltered)
+			if(unfiltered_turf.density)
 				break
-		if(blocked)
-			break
-		turf_line_filtered += unfiltered_turf
+			var/hit_same_side_barricade = FALSE
+			for(var/obj/object_on_turf in unfiltered_turf)
+				if(isbarricade(object_on_turf))
+					var/obj/structure/barricade/barricade_on_turf = object_on_turf
+					if(!barricade_on_turf.climbable)
+						if(barricade_on_turf.dir == direction)
+							// Similar to Warrior's lunge, no passing over even if it comes from similar directions.
+							// Cannot early break since it is possible that other barricades (that weren't checked yet) might want to block it.
+							hit_same_side_barricade = TRUE
+							continue
+						if(barricade_on_turf.dir == NORTH && direction == SOUTH)
+							break end_the_loop
+						if(barricade_on_turf.dir == EAST && direction == WEST)
+							break end_the_loop
+						if(barricade_on_turf.dir == WEST && direction == EAST)
+							break end_the_loop
+						if(barricade_on_turf.dir == SOUTH && direction == NORTH)
+							break end_the_loop
+					continue
+				if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_THROW))
+					break end_the_loop
+			if(hit_same_side_barricade)
+				turf_line_filtered += unfiltered_turf
+				break
+			direction = get_cardinal_dir(unfiltered_turf, target)
+			turf_line_filtered += unfiltered_turf
 
 	return turf_line_filtered
 
@@ -563,7 +584,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			human_mobs += target
 
 	for(var/mob/living/carbon/human/human_mob in human_mobs)
-		human_mob.throw_at(owner, 6, 2, initial_turf, FALSE)
+		human_mob.throw_at(owner, 6, 2, turf_line[1], FALSE)
 		human_mob.Paralyze(0.1 SECONDS)
 		human_mob.add_slowdown(0.3 * human_mobs.len)
 		human_mob.adjust_stagger(0.5 SECONDS * human_mobs.len)
@@ -594,8 +615,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	ability_timer = null
 	telegraphed_atoms = null
 	turf_line = null
-	initial_turf = null
-
 
 /obj/effect/xeno/abduct_warning
 	icon = 'icons/Xeno/Effects.dmi'
@@ -673,7 +692,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	)
 	use_state_flags = ABILITY_USE_STAGGERED
 	/// If they have moved at least a single tile since picking up an item.
-	var/used_movement_allowance = FALSE
+	var/has_moved_already = FALSE
 	/// If we are holding an item.
 	var/obj/item/held_item
 	/// Mutable appearance of the held item.
@@ -721,7 +740,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		on_owner_turn(null, null, owner.dir)
 		succeed_activate()
 		ability_cost = 0 // Throwing will cost nothing to prevent the ability from failing to recast if they happen to have not enough plasma.
-		used_movement_allowance = FALSE
+		has_moved_already = FALSE
 		return
 	owner.remove_movespeed_modifier(MOVESPEED_ID_OPPRESSOR_ITEM_GRAB)
 	held_item.throwforce += min(held_item.w_class * 15, 90) // Upper limit to prevent any weird weight classes (e.g. above WEIGHT_CLASS_GIGANTIC)
@@ -744,11 +763,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/obj/item/item_source = source
 	item_source.throwforce -= min(item_source.w_class * 15, 90)
 
-/// On move, drop the item if they used their movement allowance. Otherwise, use up their allowance.
+/// On move, drop the item if they moved once already. Otherwise, set it so that they'll drop the item if they move again.
 /datum/action/ability/activable/xeno/item_throw/proc/on_move()
 	SIGNAL_HANDLER
-	if(!used_movement_allowance)
-		used_movement_allowance = TRUE
+	if(!has_moved_already)
+		has_moved_already = TRUE
 		return
 	drop_item()
 
@@ -837,7 +856,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
 			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 1, xeno_owner.z)
 
-	for(var/turf/affected_tile in block(lower_left, upper_right))
+	for(var/turf/affected_tile AS in block(lower_left, upper_right))
 		affected_tile.Shake(duration = 0.1 SECONDS)
 		for(var/atom/movable/affected AS in affected_tile)
 			if(!ishuman(affected))
