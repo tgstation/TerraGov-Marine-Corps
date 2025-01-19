@@ -138,6 +138,20 @@
 // ***************************************
 // *********** Acid Grenade
 // ***************************************
+// Cooldown between recharging grenades
+#define GLOBADIER_GRENADE_REGEN_COOLDOWN 10 SECONDS
+#define GLOBADIER_GRENADE_THROW_RANGE 8
+#define GLOBADIER_GRENADE_THROW_SPEED 2
+//Grenade Defines, for the radial menu
+#define ACID_GRENADE /obj/item/explosive/grenade/globadier
+#define FIRE_GRENADE /obj/item/explosive/grenade/globadier/incen
+#define RESIN_GRENADE /obj/item/explosive/grenade/globadier/resin
+//List of all images used for grenades, in the radial selection menu
+GLOBAL_LIST_INIT(globadier_images_list, list(
+	ACID_GRENADE = image('icons/xeno/effects.dmi', icon_state = "acid"),
+	FIRE_GRENADE = image('icons/effects/fire.dmi', icon_state = "purple_3"),
+	RESIN_GRENADE = image('icons/xeno/effects.dmi', icon_state = "sticky"),
+))
 
 /datum/action/ability/activable/xeno/toss_grenade
 	name = "Toss Grenade"
@@ -146,6 +160,13 @@
 	desc = "Toss a biological grenade at your target. Has various effects depending on selection, right click to select which grenade to use. Stores up to 5 uses."
 	var/current_grenades = 5
 	var/max_grenades = 5
+	var/selected_grenade = /obj/item/explosive/grenade/globadier
+	cooldown_duration = 2 SECONDS
+	ability_cost = 200
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOSS_GRENADE,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PICK_GRENADE,
+	)
 
 /datum/action/ability/activable/xeno/toss_grenade/give_action(mob/living/L)
 	. = ..()
@@ -167,6 +188,44 @@
 	visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER] = number
 	button.add_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER])
 	return ..()
+
+//Handle automatic regeneration of grenades, every GLOBADIER_GRENADE_REGEN_COOLDOWN seconds
+/datum/action/ability/activable/xeno/toss_grenade/proc/regen_grenade()
+	if(current_grenades < max_grenades)
+		current_grenades++
+		update_button_icon()
+		if(current_grenades < max_grenades) //If we still have less than the total amount of grenades, call the timer again to add another grenade in 10s
+			addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE)
+
+/datum/action/ability/activable/xeno/toss_grenade/use_ability(atom/target)
+	if(current_grenades <= 0)
+		owner.balloon_alert(owner, "No Grenades!")
+		return fail_activate()
+	var/obj/item/explosive/grenade/globadier/nade = new selected_grenade(owner.loc)
+	nade.activate(owner)
+	nade.throw_at(target,GLOBADIER_GRENADE_THROW_RANGE,GLOBADIER_GRENADE_THROW_SPEED)
+	owner.visible_message(span_xenowarning("\The [owner] throws something towards \the [target]!"), \
+	span_xenowarning("We throw a grenade towards \the [target]!"))
+	current_grenades--
+	addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE)
+	update_button_icon()
+	succeed_activate()
+	add_cooldown()
+
+// Handles selecting which grenade the xeno wants
+/datum/action/ability/activable/xeno/toss_grenade/alternate_action_activate()
+	var/grenade_choice = show_radial_menu(owner, owner, GLOB.globadier_images_list, radius = 48)
+	if(!grenade_choice)
+		return
+	selected_grenade = grenade_choice
+
+
+
+
+
+// ***************************************
+// *********** Acid Grenade
+// ***************************************
 
 /obj/item/explosive/grenade/globadier
 	name = "Acidic Grenade"
@@ -199,16 +258,50 @@
 
 
 /obj/item/explosive/grenade/globadier/incen/prime()
-	flame_radius(0.5, get_turf(src), fire_type = /obj/fire/melting_fire, burn_intensity = 20, burn_duration = 36, colour = "purple")
+	flame_radius(0.5, get_turf(src), fire_type = /obj/fire/melting_fire, burn_intensity = 20, burn_duration = 72, colour = "purple")
+	qdel(src)
+
+// ***************************************
+// *********** Resin Grenade
+// ***************************************
+/obj/item/explosive/grenade/globadier/resin
+	name = "Resin Grenade"
+	desc = "A rapidly melting ball of xeno taffy"
+	greyscale_colors = "#6808e6"
+
+
+/obj/item/explosive/grenade/globadier/resin/prime()
+	for(var/resin_tile in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
+		new /obj/alien/resin/sticky/thin(resin_tile)
 	qdel(src)
 
 // ***************************************
 // *********** Acid Mine
 // ***************************************
+/datum/action/ability/xeno_action/acid_mine
+	name = "Acid Mine"
+	action_icon_state = "acid_mine"
+	action_icon = 'icons/Xeno/actions/spitter.dmi'
+	desc = "Place an acid mine at your location"
+	cooldown_duration = 5 SECONDS
+	ability_cost = 150
+	// var/mine_type =
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_MINE,
+	)
 
 // ***************************************
 // *********** Gas Mine
 // ***************************************
+/datum/action/ability/xeno_action/acid_mine/gas_mine
+	name = "Gas Mine"
+	desc = "Place an gas mine at your location"
+	cooldown_duration = 5 SECONDS
+	ability_cost = 200
+	// mine_type =
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GAS_MINE,
+	)
 
 // ***************************************
 // *********** Acid Rocket
@@ -219,3 +312,8 @@
 	action_icon_state = "xadar"
 	action_icon = 'icons/Xeno/actions/spitter.dmi'
 	desc = "Fire an acid rocket, costing 30% of your current health and plasma, and dealing heavy damage where you aim it."
+	cooldown_duration = 1 MINUTES
+	ability_cost = 400
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_ROCKET,
+	)

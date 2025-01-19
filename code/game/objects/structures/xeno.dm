@@ -359,3 +359,48 @@
 		return
 	X.visible_message(span_notice("[X] is splattered with jelly!"))
 	INVOKE_ASYNC(src, PROC_REF(activate_jelly), X)
+
+/obj/structure/xeno/acid_mine
+	name = "acid mine"
+	desc = "A weird bulb, filled with acid."
+	icon = 'icons/obj/items/mines.dmi'
+	icon_state = "acid_mine"
+	density = FALSE
+	opacity = FALSE
+	anchored = TRUE
+	max_integrity = 5
+	hit_sound = SFX_ALIEN_RESIN_BREAK
+
+/obj/structure/xeno/acid_mine/Initialize(mapload)
+	. = ..()
+	var/static/list/connections = list(
+		COMSIG_ATOM_ENTERED = PROC_REF(detonate),
+	)
+	AddElement(/datum/element/connect_loc, connections)
+
+/obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	for(var/spatter_effect in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
+		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
+	return ..()
+
+//Handles checking the mob that walks over the mine, dealing damage, and deleting the mine
+/obj/structure/xeno/acid_mine/proc/detonate(datum/source, atom/movable/A, oldloc, oldlocs)
+	SIGNAL_HANDLER
+	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
+		return
+	if(!ishuman(A))
+		return
+	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", air_pass = TRUE))
+		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
+	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(A,1))
+		human_victim.apply_damage(15, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
+		human_victim.apply_damage(15, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
+		to_chat(human_victim, span_danger("We are spattered with acid from the mine!"))
+		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
+	qdel(src)
+
+/obj/structure/xeno/acid_mine/gas_mine
+	name = "gas mine"
+	desc = "A weird bulb, overflowing with acid. Small wisps of gas escape every so often."
+	icon_state = "gas_mine"
+
