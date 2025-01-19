@@ -271,6 +271,10 @@
 	var/datum/maw_ammo/ammo = new selected_type
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
 	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_attacker), ammo.impact_time-2 SECONDS)
+	GLOB.round_statistics.acid_maw_fires++
+	if(xeno_attacker.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
+		personal_statistics.acid_maw_uses++
 	ammo.launch_animation(clicked_turf, src)
 	S_TIMER_COOLDOWN_START(src, COOLDOWN_MAW_GLOB, ammo.cooldown_time)
 
@@ -302,3 +306,10 @@
 		/datum/maw_ammo/hugger,
 		/datum/maw_ammo/xeno_fire,
 	)
+
+/obj/structure/xeno/acid_maw/acid_jaws/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
+	GLOB.round_statistics.acid_jaw_fires++
+	if(xeno_attacker.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
+		personal_statistics.acid_jaw_uses++
+	. = ..()
