@@ -249,7 +249,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Choose Hugger Type"
 	action_icon_state = "facehugger"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Selects which hugger type you will build with the Spawn Hugger ability."
+	desc = "Selects which hugger type you will build with the Use/Throw Facehugger ability."
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CHOOSE_HUGGER,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_SWITCH_HUGGER,
@@ -294,10 +294,10 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	return succeed_activate()
 
 /datum/action/ability/xeno_action/build_hugger_turret
-	name = "build hugger turret"
+	name = "Build Hugger Turret"
 	action_icon_state = "hugger_turret"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Build a hugger turret"
+	desc = "Construct a turret that will launch huggers at enemy marines. The type of hugger launched will be the type selected when the turret is built."
 	ability_cost = 800
 	cooldown_duration = 5 MINUTES
 	keybinding_signals = list(
@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Call of Younger"
 	action_icon_state = "call_younger"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Appeals to the larva inside the Marine. The Marine loses his balance, and larva's progress accelerates."
+	desc = "Appeals to the larva inside the Marine. The Marine loses their balance, and larva's growth progress accelerates."
 	ability_cost = 150
 	cooldown_duration = 20 SECONDS
 	keybinding_signals = list(
@@ -372,12 +372,12 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 
 	if(!(locate(/obj/item/alien_embryo) in target))
 		if(!silent)
-			target.balloon_alert(owner, "He's not infected")
+			target.balloon_alert(owner, "Not infected")
 		return FALSE
 
 	if(target.stat == DEAD)
 		if(!silent)
-			target.balloon_alert(owner, "He's dead")
+			target.balloon_alert(owner, "Dead")
 		return FALSE
 
 	if(!line_of_sight(owner, target, 9))
@@ -404,7 +404,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	victim.emote("scream")
 	owner.visible_message(span_xenowarning("\the [owner] emits an unusual roar!"), \
 	span_xenowarning("We called out to the younger one inside [victim]!"))
-	victim.visible_message(span_xenowarning("\The [victim] loses his balance, falling to the side!"), \
+	victim.visible_message(span_xenowarning("\The [victim] loses [victim.p_their()] balance, falling to the side!"), \
 	span_xenowarning("You feel like something inside you is tearing out!"))
 
 	victim.apply_effects(2 SECONDS, 1 SECONDS)
