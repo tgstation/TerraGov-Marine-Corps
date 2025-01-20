@@ -82,13 +82,16 @@
 	. = ..()
 	set_holdable(
 		cant_hold_list = list(
-			/obj/item/cell/lasgun/volkite/powerpack
+			/obj/item/cell/lasgun/volkite/powerpack,
+			/obj/item/stack/razorwire,
+			/obj/item/stack/sheet,
+			/obj/item/stack/sandbags,
+			/obj/item/stack/snow,
 		),
 		storage_type_limits_list = list(
 			/obj/item/ammo_magazine/rifle,
 			/obj/item/ammo_magazine/smg,
 			/obj/item/ammo_magazine/sniper,
-			/obj/item/ammo_magazine/packet,
 			/obj/item/cell/lasgun,
 		)
 	)
