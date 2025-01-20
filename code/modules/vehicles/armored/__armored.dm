@@ -52,9 +52,18 @@
 	///Our driver utility module
 	var/obj/item/tank_module/gunner_utility_module
 	///list of weapons we allow to attach
-	var/list/permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer)
+	var/list/permitted_weapons = list(
+		/obj/item/armored_weapon,
+		/obj/item/armored_weapon/ltaap,
+		/obj/item/armored_weapon/secondary_weapon,
+		/obj/item/armored_weapon/secondary_flamer,
+	)
 	///list of mods we allow to attach
-	var/list/permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/passenger, /obj/item/tank_module/ability/zoom)
+	var/list/permitted_mods = list(
+		/obj/item/tank_module/overdrive,
+		/obj/item/tank_module/passenger,
+		/obj/item/tank_module/ability/zoom
+	)
 	///Minimap flags to use for this vehcile
 	var/minimap_flags = MINIMAP_FLAG_MARINE
 	///minimap iconstate to use for this vehicle
