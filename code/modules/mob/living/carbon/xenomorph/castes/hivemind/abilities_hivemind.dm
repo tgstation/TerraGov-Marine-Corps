@@ -146,6 +146,8 @@
 	use_state_flags = ABILITY_USE_SOLIDOBJECT
 	/// The currently selected artillery to use/shoot.
 	var/obj/structure/xeno/acid_maw/selected_artillery
+	/// If we're waiting on player input. Used to prevent switching artillery mid-input.
+	var/waiting_on_player_input = FALSE
 
 /datum/action/ability/activable/xeno/shoot_xeno_artillery/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -165,17 +167,22 @@
 			xeno_owner.balloon_alert(xeno_owner, "cooldown: [timeleft/10] seconds")
 		return FALSE
 
+/datum/action/ability/activable/xeno/shoot_xeno_artillery/fail_activate()
+	waiting_on_player_input = FALSE
+	return ..()
+
 /datum/action/ability/activable/xeno/shoot_xeno_artillery/action_activate()
+	waiting_on_player_input = TRUE
 	var/selected_type = show_radial_menu(xeno_owner, xeno_owner, selected_artillery.maw_options)
 	if(!selected_type || !can_use_action(TRUE))
 		return fail_activate()
-
 	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(selected_artillery.z, MINIMAP_FLAG_XENO)
 	xeno_owner.client.screen += map
 	var/list/polled_coords = map.get_coords_from_click(xeno_owner)
 	xeno_owner?.client?.screen -= map
 	if(!polled_coords || !can_use_action(TRUE))
 		return fail_activate()
+	waiting_on_player_input = FALSE
 
 	var/datum/maw_ammo/ammo = new selected_type
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], selected_artillery.z)
@@ -185,7 +192,7 @@
 	update_button_icon()
 
 /datum/action/ability/activable/xeno/shoot_xeno_artillery/alternate_action_activate()
-	if(!GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber])
+	if(!GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber] || waiting_on_player_input)
 		return
 	if(length(GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber]) == 1)
 		selected_artillery = GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber][1]
