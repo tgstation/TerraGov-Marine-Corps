@@ -235,8 +235,18 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /obj/item/explosive/grenade/globadier/prime()
 	for(var/acid_tile in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
+		for(var/mob/living/carbon/human/affected AS in cheap_get_humans_near(src,1))
+			var/throwlocation = affected.loc
+			for(var/x in 1 to 2)
+				throwlocation = get_step(throwlocation, pick(GLOB.alldirs))
+			if(affected.stat == DEAD)
+				continue
+			affected.throw_at(throwlocation, 6, 1.5, src, TRUE)
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, acid_damage)
+		var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src))
+		A.set_up(1,src)
+		A.start()
 	qdel(src)
 
 /obj/item/explosive/grenade/globadier/update_overlays()
@@ -268,7 +278,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /obj/item/explosive/grenade/globadier/resin/prime()
 	for(var/resin_tile in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
-		new /obj/alien/resin/sticky/thin(resin_tile)
+		new /obj/alien/resin/sticky(resin_tile)
 	qdel(src)
 
 // ***************************************
@@ -366,7 +376,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 // ***************************************
 // *********** Acid Rocket
 // ***************************************
-
+#define GLOBADIER_XADAR_PERCENT_HEALTH_PLAS_COST 0.3 // 30%
 /datum/action/ability/activable/xeno/acid_rocket
 	name = "Acid Rocket"
 	action_icon_state = "xadar"
@@ -382,7 +392,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	if(!do_after(xeno_owner, 0.4 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	if(!prob(1))
+	if(!prob(5))
 		playsound(xeno_owner.loc, 'sound/effects/blobattack.ogg', 50, 1)
 	else
 		playsound(xeno_owner.loc, 'sound/effects/kaboom.ogg', 50, 1)
@@ -394,6 +404,6 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	newshell.def_zone = xeno_owner.get_limbzone_target()
 
 	newshell.fire_at(target, xeno_owner, xeno_owner, newshell.ammo.max_range)
-	xeno_owner.adjustBruteLoss(xeno_owner.health * 0.3)
-	succeed_activate(xeno_owner.plasma_stored * 0.3)
+	xeno_owner.adjustBruteLoss(xeno_owner.health * GLOBADIER_XADAR_PERCENT_HEALTH_PLAS_COST)
+	succeed_activate(xeno_owner.plasma_stored * GLOBADIER_XADAR_PERCENT_HEALTH_PLAS_COST)
 	add_cooldown()

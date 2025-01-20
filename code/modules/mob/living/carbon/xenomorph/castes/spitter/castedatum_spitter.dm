@@ -74,7 +74,7 @@
 /datum/xeno_caste/spitter/globadier
 	caste_type_path = /mob/living/carbon/xenomorph/spitter/globadier
 	upgrade_name = ""
-	caste_name = "Globadier Spitter"
+	caste_name = "Globadier"
 	display_name = "Globadier"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A mutated variant of a spitter. It carries round globs of acid on its back"
