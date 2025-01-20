@@ -53,6 +53,14 @@
 	scale = 0.15
 	grow = 0.02
 
+/particles/explosion_water/tiny
+	count = 25
+	spawning = 25
+	scale = 0.1
+	fade = 100
+	grow = 0.025
+	velocity = generator(GEN_CIRCLE, 5, 5)
+
 /particles/smoke_wave
 	icon = 'icons/effects/96x96.dmi'
 	icon_state = "smoke3"
@@ -275,7 +283,7 @@
 	var/turf/turf_type = get_turf(src)
 	if(iswater(turf_type))
 		if(tiny)
-			explosion_smoke = new(src, /particles/explosion_water)
+			explosion_smoke = new(src, /particles/explosion_water/tiny)
 		else
 			explosion_smoke = new(src, /particles/explosion_water)
 			smoke_wave = new(src, /particles/wave_water)
@@ -307,7 +315,9 @@
 				large_kickup = new(src, /particles/dirt_kickup_large/deva)
 			else
 				large_kickup = new(src, /particles/dirt_kickup_large)
-			if(small)
+			if(large)
+				smoke_wave.particles.velocity = generator(GEN_CIRCLE, 6 * radius, 6 * radius)
+			else if(small)
 				smoke_wave.particles.velocity = generator(GEN_CIRCLE, 3 * radius, 3 * radius)
 			else
 				smoke_wave.particles.velocity = generator(GEN_CIRCLE, 5 * radius, 5 * radius)

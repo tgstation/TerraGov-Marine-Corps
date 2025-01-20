@@ -66,8 +66,8 @@
 	var/angle = !isnull(P.dir_angle) ? P.dir_angle : round(Get_Angle(P.starting_turf, source), 1)
 	var/x_component = sin(angle) * debris_velocity
 	var/y_component = cos(angle) * debris_velocity
-	var/x_component_smoke = sin(angle) * -40
-	var/y_component_smoke = cos(angle) * -40
+	var/x_component_smoke = sin(angle) * -37
+	var/y_component_smoke = cos(angle) * -37
 	var/obj/effect/abstract/particle_holder/debris_visuals
 	var/obj/effect/abstract/particle_holder/smoke_visuals
 	var/position_offset = rand(-6,6)
