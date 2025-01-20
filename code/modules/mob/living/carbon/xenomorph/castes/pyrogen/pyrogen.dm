@@ -27,3 +27,10 @@
 
 /mob/living/carbon/xenomorph/pyrogen/primordial
 	upgrade = XENO_UPGRADE_PRIMO
+
+/mob/living/carbon/xenomorph/pyrogen/cryogen
+	caste_base_type = /datum/xeno_caste/pyrogen/cryogen
+
+/mob/living/carbon/xenomorph/pyrogen/cryogen/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD
