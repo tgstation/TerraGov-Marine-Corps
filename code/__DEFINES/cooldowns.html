@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>code&#x2F;__DEFINES&#x2F;cooldowns.dm - byond</title>
+</head>
+<body>
+<header>
+    <a href="index.html">byond</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="code/__DEFINES/cooldowns.html#define">Define Details</a></header>
+<main>
+<h1>code/__DEFINES/cooldowns.dm 
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/17fd0d0127d3438724e1105ed134822e5d408103/code/__DEFINES/cooldowns.dm">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;cooldowns.dm"/></a></h1>
+
+<table class="summary" cellspacing="0">
+        <tr><th><a href="code/__DEFINES/cooldowns.html#define/COOLDOWN_BORG_SELF_REPAIR">COOLDOWN_BORG_SELF_REPAIR</a></th><td>COOLDOWN SYSTEMS</td></tr>
+        <tr><th><a href="code/__DEFINES/cooldowns.html#define/TIMER_COOLDOWN_CHECK">TIMER_COOLDOWN_CHECK</a></th><td>Returns TRUE if still cooling down, FALSE otherwise</td></tr>
+        <tr><th><a href="code/__DEFINES/cooldowns.html#define/S_TIMER_COOLDOWN_START">S_TIMER_COOLDOWN_START</a></th><td>Stoppable timer cooldowns.
+Use indexes the same as the regular tiemr cooldowns.
+They make use of the TIMER_COOLDOWN_CHECK() and TIMER_COOLDOWN_END() macros the same, just not the TIMER_COOLDOWN_START() one.
+A bit more expensive than the regular timers, but can be reset before they end and the time left can be checked.</td></tr>
+        <tr><th><a href="code/__DEFINES/cooldowns.html#define/COOLDOWN_DECLARE">COOLDOWN_DECLARE</a></th><td>Cooldown system based on storing world.time on a variable, plus the cooldown time.
+Better performance over timer cooldowns, lower control. Same functionality.</td></tr></table><h2 id="define">Define Details</h2>
+<h3 id="define/COOLDOWN_BORG_SELF_REPAIR"><aside class="declaration">#define </aside>COOLDOWN_BORG_SELF_REPAIR
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/17fd0d0127d3438724e1105ed134822e5d408103/code/__DEFINES/cooldowns.dm#L102">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;cooldowns.dm 102"/></a>
+    </h3>
+    <p>COOLDOWN SYSTEMS</p><h3 id="define/COOLDOWN_DECLARE"><aside class="declaration">#define </aside>COOLDOWN_DECLARE
+            <aside>(cd_index)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/17fd0d0127d3438724e1105ed134822e5d408103/code/__DEFINES/cooldowns.dm#L137">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;cooldowns.dm 137"/></a>
+    </h3>
+    <p>Cooldown system based on storing world.time on a variable, plus the cooldown time.
+Better performance over timer cooldowns, lower control. Same functionality.</p><h3 id="define/S_TIMER_COOLDOWN_START"><aside class="declaration">#define </aside>S_TIMER_COOLDOWN_START
+            <aside>(cd_source, cd_index, cd_time)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/17fd0d0127d3438724e1105ed134822e5d408103/code/__DEFINES/cooldowns.dm#L125">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;cooldowns.dm 125"/></a>
+    </h3>
+    <p>Stoppable timer cooldowns.
+Use indexes the same as the regular tiemr cooldowns.
+They make use of the TIMER_COOLDOWN_CHECK() and TIMER_COOLDOWN_END() macros the same, just not the TIMER_COOLDOWN_START() one.
+A bit more expensive than the regular timers, but can be reset before they end and the time left can be checked.</p><h3 id="define/TIMER_COOLDOWN_CHECK"><aside class="declaration">#define </aside>TIMER_COOLDOWN_CHECK
+            <aside>(cd_source, cd_index)</aside>
+            <a href="https://github.com/tgstation/TerraGov-Marine-Corps/blob/17fd0d0127d3438724e1105ed134822e5d408103/code/__DEFINES/cooldowns.dm#L114">
+        <img src="git.png" width="16" height="16" title="code&#x2F;__DEFINES&#x2F;cooldowns.dm 114"/></a>
+    </h3>
+    <p>Returns TRUE if still cooling down, FALSE otherwise</p></main>
+<footer>
+    tgmc.dme
+    <a href="https://github.com/tgstation/TerraGov-Marine-Corps/tree/17fd0d0127d3438724e1105ed134822e5d408103">17fd0d0</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
