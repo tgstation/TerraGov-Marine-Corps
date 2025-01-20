@@ -268,12 +268,14 @@
 		wearer.balloon_alert(wearer, "Halting green blood injection")
 		COOLDOWN_START(src, chemboost_activation_cooldown, 10 SECONDS)
 		setup_bonus_effects()
+		REMOVE_TRAIT(wearer, VALI_TRAIT, VALI_TRAIT)
 		return
 
 	processing_start = world.time
 	START_PROCESSING(SSobj, src)
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, PROC_REF(on_off))
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
+	ADD_TRAIT(wearer, VALI_TRAIT, VALI_TRAIT)
 	to_chat(wearer, span_notice("Commensing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
 	if(automatic_meds_use)
 		to_chat(wearer, get_meds_beaker_contents())
