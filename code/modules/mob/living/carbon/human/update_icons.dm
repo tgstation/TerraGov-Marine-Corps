@@ -518,9 +518,9 @@ GLOBAL_LIST_EMPTY(damage_icon_parts)
 
 	if(head?.inv_hide_flags & HIDE_EXCESS_HAIR)
 		var/image/mask = image('icons/mob/human_face.dmi', null, "Jeager_Mask")
-		mask.render_target = "*[REF(src)]"
+		mask.render_target = "*jaegFACE[REF(src)]"
 		hair_final.overlays += mask
-		hair_final.filters += filter(arglist(alpha_mask_filter(0, 0, null, "*[REF(src)]")))
+		hair_final.filters += filter(arglist(alpha_mask_filter(0, 0, null, "*jaegFACE[REF(src)]")))
 
 	overlays_standing[HAIR_LAYER] = hair_final
 	apply_overlay(HAIR_LAYER)

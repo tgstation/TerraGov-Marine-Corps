@@ -123,6 +123,7 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/clothing/glasses/hud/health = list(CAT_MEDSUP, "Medical HUD glasses", 2, "corps-tools"),
 		/obj/item/clothing/gloves/defibrillator = list(CAT_MEDSUP, "Advanced medical gloves", 5, "corps-tools"),
 		/obj/item/healthanalyzer/gloves = list(CAT_MEDSUP, "Health scanner gloves", 2, "corps-tools"),
+		/obj/item/tweezers_advanced = list(CAT_MEDSUP, "Shrapnel Drill", 16, "corps-tools"),
 	))
 
 GLOBAL_LIST_INIT(leader_gear_listed_products, list(
@@ -320,6 +321,8 @@ GLOBAL_LIST_INIT(marine_clothes_listed_products, list(
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
 		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Svalinn Energy Shield System", 0 , "black"),
+		/obj/item/armor_module/module/mirage = list(CAT_ARMMOD, "Loki Illusion Module", 0, "black"),
+		/obj/item/armor_module/module/armorlock = list(CAT_ARMMOD, "Thor Armorlock Module", 0, "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
@@ -394,6 +397,8 @@ GLOBAL_LIST_INIT(engineer_clothes_listed_products, list(
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
 		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Svalinn Energy Shield System", 0 , "black"),
+		/obj/item/armor_module/module/mirage = list(CAT_ARMMOD, "Loki Illusion Module", 0, "black"),
+		/obj/item/armor_module/module/armorlock = list(CAT_ARMMOD, "Thor Armorlock Module", 0, "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
@@ -447,6 +452,8 @@ GLOBAL_LIST_INIT(medic_clothes_listed_products, list(
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
 		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Svalinn Energy Shield System", 0 , "black"),
+		/obj/item/armor_module/module/mirage = list(CAT_ARMMOD, "Loki Illusion Module", 0, "black"),
+		/obj/item/armor_module/module/armorlock = list(CAT_ARMMOD, "Thor Armorlock Module", 0, "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),
@@ -570,6 +577,8 @@ GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/item/armor_module/module/better_shoulder_lamp = list(CAT_ARMMOD, "Baldur light armor module", 0,"black"),
 		/obj/effect/vendor_bundle/vali = list(CAT_ARMMOD, "Vali chemical enhancement set", 0,"black"),
 		/obj/item/armor_module/module/eshield = list(CAT_ARMMOD, "Svallin Energy Shield System", 0 , "black"),
+		/obj/item/armor_module/module/mirage = list(CAT_ARMMOD, "Loki Illusion Module", 0, "black"),
+		/obj/item/armor_module/module/armorlock = list(CAT_ARMMOD, "Thor Armorlock Module", 0, "black"),
 		/obj/item/clothing/mask/gas = list(CAT_MAS, "Transparent gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical = list(CAT_MAS, "Tactical gas mask", 0,"black"),
 		/obj/item/clothing/mask/gas/tactical/coif = list(CAT_MAS, "Tactical coifed gas mask", 0,"black"),

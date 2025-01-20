@@ -1,4 +1,0 @@
-author: "Neocloudy"
-delete-after: True
-changes:
-  - bugfix: "Full faction announcements (done by the FC, CMO, etc...) will no longer have fully capitalized titles in chat. (on-map titles are still capitalized)"
