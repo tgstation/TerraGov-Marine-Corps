@@ -56,7 +56,7 @@ OPERATIONS
 	contains = list(/obj/item/minerupgrade/overclock)
 	cost = 50
 
-/datum/supply_packs/operations/binoculars_tatical
+/datum/supply_packs/operations/binoculars_tactical
 	name = "Tactical binoculars crate"
 	contains = list(
 		/obj/item/binoculars/tactical,
@@ -79,7 +79,7 @@ OPERATIONS
 	cost = 130
 
 /datum/supply_packs/operations/deployable_camera
-	name = "3 Deployable Cameras"
+	name = "3 Deployable cameras"
 	contains = list(
 		/obj/item/deployable_camera,
 		/obj/item/deployable_camera,
@@ -88,7 +88,7 @@ OPERATIONS
 	cost = 20
 
 /datum/supply_packs/operations/exportpad
-	name = "ASRS Bluespace Export Point"
+	name = "ASRS bluespace export point"
 	contains = list(/obj/machinery/exportpad)
 	cost = 300
 
