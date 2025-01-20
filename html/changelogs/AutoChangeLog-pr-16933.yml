@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - qol: "Block Movement is now on a keybind that you can use to face directions without moving."
