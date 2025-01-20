@@ -78,7 +78,7 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/spitter,
 	/mob/living/carbon/xenomorph/spitter/primordial,
 	/mob/living/carbon/xenomorph/spitter/globadier,
-	///mob/living/carbon/xenomorph/spitter/primordial,
+	/mob/living/carbon/xenomorph/spitter/globadier/primordial,
 	/mob/living/carbon/xenomorph/hivelord,
 	/mob/living/carbon/xenomorph/hivelord/primordial,
 	/mob/living/carbon/xenomorph/carrier,

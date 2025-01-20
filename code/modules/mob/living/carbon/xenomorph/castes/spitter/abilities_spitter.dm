@@ -284,7 +284,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	var/mine_type = /obj/structure/xeno/acid_mine
 	var/max_charges = 5
 	var/current_charges = 5
-var/regen_time = 90 SECONDS
+	var/regen_time = 90 SECONDS
 	var/vref = VREF_MUTABLE_ACID_MINES_COUNTER
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_MINE,
@@ -377,3 +377,22 @@ var/regen_time = 90 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_ROCKET,
 	)
+
+/datum/action/ability/activable/xeno/acid_rocket/use_ability(atom/target)
+	if(!do_after(xeno_owner, 0.4 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
+		return fail_activate()
+
+	if(!prob(1))
+		playsound(xeno_owner.loc, 'sound/effects/blobattack.ogg', 50, 1)
+	else
+		playsound(xeno_owner.loc, 'sound/effects/kaboom.ogg', 50, 1)
+
+	var/datum/ammo/rocket/he/xadar/shell = GLOB.ammo_list[/datum/ammo/rocket/he/xadar]
+
+	var/obj/projectile/newshell = new /obj/projectile(get_turf(xeno_owner))
+	newshell.generate_bullet(shell)
+	newshell.def_zone = xeno_owner.get_limbzone_target()
+
+	newshell.fire_at(target, xeno_owner, xeno_owner, newshell.ammo.max_range)
+	succeed_activate()
+	add_cooldown()
