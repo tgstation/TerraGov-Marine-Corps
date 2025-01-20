@@ -125,7 +125,7 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 		if(!length(paths_to_check) || length(paths_checked) > PATHFINDER_MAX_TRIES)
 			return
 		//We created a atom path for each adjacent atom, we sort every atoms by their heuristic score
-		sortTim(paths_to_check, PROC_REF(cmp_path_step), TRUE) //Very cheap cause almost sorted
+		sortTim(paths_to_check, GLOBAL_PROC_REF(cmp_path_step), TRUE) //Very cheap cause almost sorted
 		current_path = paths_to_check[paths_to_check[1]] //We take the atom with the smaller heuristic score (distance to goal + distance already made)
 		current_atom = current_path.current_atom
 	paths_checked[current_atom] = current_path
