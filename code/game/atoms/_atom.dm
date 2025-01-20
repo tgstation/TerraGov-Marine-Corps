@@ -934,7 +934,7 @@ directive is properly returned.
 
 ///Adds the debris element for projectile impacts
 /atom/proc/add_debris_element()
-	AddElement(/datum/element/debris, null, -15, 8, 0.7)
+	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
 /**
 	Returns a number after taking into account both soft and hard armor for the specified damage type, usually damage
