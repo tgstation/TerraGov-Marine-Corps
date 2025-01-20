@@ -57,9 +57,12 @@
 		var/datum/mech_limb/limb = new new_limb_type
 		limb.attach(src, key)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
+/obj/vehicle/sealed/mecha/combat/greyscale/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	. = ..()
 	var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	explosion.pixel_x = 16
+
+/obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
 		limb?.detach(src)

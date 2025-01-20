@@ -320,7 +320,8 @@
 		if(L.stat == DEAD) //Can't drag dead human bodies.
 			to_chat(usr,span_xenowarning("This looks gross, better not touch it."))
 			return FALSE
-		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+		if(pulling != L)
+			pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
 	do_attack_animation(L, ATTACK_EFFECT_GRAB)
 	SEND_SIGNAL(src, COMSIG_XENOMORPH_GRAB)
 	return ..()

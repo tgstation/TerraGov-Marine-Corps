@@ -156,6 +156,18 @@ GLOBAL_DATUM_INIT(flare_particles, /particles/flare_smoke, new)
 	resistance_flags = RESIST_ALL
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
+/obj/effect/temp_visual/thrown_minion
+	duration = 4 SECONDS
+	resistance_flags = RESIST_ALL
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	randomdir = TRUE
+
+/obj/effect/temp_visual/thrown_minion/Initialize(mapload, list/minion_options)
+	. = ..()
+	var/mob/living/carbon/xenomorph/type = pick(minion_options)
+	icon = initial(type.icon)
+	icon_state = initial(type.icon_state)
+
 /particles/blood_explosion
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"

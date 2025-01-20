@@ -76,6 +76,7 @@
 #define COMSIG_KB_AUTOEJECT "keybind_autoeject"
 #define COMSIG_KB_GIVE "keybind_give"
 #define COMSIG_KB_HELMETMODULE "keybinding_helmetmodule"
+#define COMSIG_KB_ARMORMODULE "keybinding_armormodule"
 #define COMSIG_KB_ROBOT_AUTOREPAIR "keybinding_robot_autorepair"
 #define COMSIG_KB_STIMS "keybinding_stims_menu"
 #define COMSIG_KB_SUITLIGHT "keybinding_suitlight"
@@ -174,6 +175,9 @@
 #define COMSIG_XENOABILITY_BOMBARD "xenoability_bombard"
 #define COMSIG_XENOABILITY_ACID_SHROUD "xenoability_acid_shroud"
 #define COMSIG_XENOABILITY_ACID_SHROUD_SELECT "xenoability_acid_shroud_select"
+#define COMSIG_XENOABILITY_SMOKESCREEN_SPIT "xenoability_smokescreen_spit"
+#define COMSIG_XENOABILITY_STEAM_RUSH "xenoability_steam_rush"
+#define COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT "xenoability_high_pressure_spit"
 
 #define COMSIG_XENOABILITY_THROW_HUGGER "xenoability_throw_hugger"
 #define COMSIG_XENOABILITY_CALL_YOUNGER "xenoability_call_younger"
