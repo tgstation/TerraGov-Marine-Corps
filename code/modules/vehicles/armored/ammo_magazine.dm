@@ -35,7 +35,7 @@
 	default_ammo = /datum/ammo/tx54/tank_cannister
 
 /obj/item/ammo_magazine/tank/ltaap_chaingun
-	name = "\improper LTA-AP chaingun Magazine"
+	name = "\improper LTA-AP chaingun magazine"
 	desc = "A primary armament chaingun magazine."
 	caliber = CALIBER_762X51
 	icon_state = "ltaap"
