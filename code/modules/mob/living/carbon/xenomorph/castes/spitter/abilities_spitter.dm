@@ -373,7 +373,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	action_icon = 'icons/Xeno/actions/spitter.dmi'
 	desc = "Fire an acid rocket, costing 30% of your current health and plasma, and dealing heavy damage where you aim it."
 	cooldown_duration = 1 MINUTES
-	ability_cost = 400
+	ability_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_ROCKET,
 	)
@@ -394,5 +394,6 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	newshell.def_zone = xeno_owner.get_limbzone_target()
 
 	newshell.fire_at(target, xeno_owner, xeno_owner, newshell.ammo.max_range)
-	succeed_activate()
+	xeno_owner.adjustBruteLoss(xeno_owner.health * 0.3)
+	succeed_activate(xeno_owner.plasma_stored * 0.3)
 	add_cooldown()
