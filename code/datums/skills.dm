@@ -63,6 +63,8 @@ engineer = 0, construction = 0, leadership = 0, medical = 0, surgery = 0, pilot 
 	var/police = SKILL_POLICE_DEFAULT
 	var/powerloader = SKILL_POWERLOADER_DEFAULT
 	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
+	///whether we can use greyscale mechs or not
+	var/mech = SKILL_MECH_DEFAULT
 	///Effects stamina regen rate and regen delay
 	var/stamina = SKILL_STAMINA_DEFAULT
 
@@ -447,7 +449,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_METAL
 	construction = SKILL_CONSTRUCTION_METAL
 	powerloader = SKILL_POWERLOADER_PRO
-	large_vehicle = SKILL_LARGE_VEHICLE_VETERAN
+	mech = SKILL_MECH_DEFAULT
 
 /datum/skills/assault_crewman
 	name = ASSAULT_CREWMAN
@@ -665,6 +667,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	police = SKILL_POLICE_MP
 	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_VETERAN
+	mech = SKILL_MECH_TRAINED
 
 /* Deathsquad */
 /datum/skills/deathsquad
