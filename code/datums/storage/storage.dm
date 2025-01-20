@@ -292,19 +292,19 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	if(!isnull(can_hold_list) && !isnull(storage_type_limits_list)) //Making sure can_hold_list also includes the things that bypass our w_class
 		can_hold_list += storage_type_limits_list
 
-	if(!isnull(can_hold_list))
+	if(!isnull(can_hold_list)) //Limits what can be held to what is in this list
 		var/unique_key = can_hold_list.Join("-")
 		if(!GLOB.cached_storage_typecaches[unique_key])
 			GLOB.cached_storage_typecaches[unique_key] = typecacheof(can_hold_list)
 		can_hold = GLOB.cached_storage_typecaches[unique_key]
 
-	if(!isnull(cant_hold_list))
+	if(!isnull(cant_hold_list)) //Sets what cannot be held, regardless of if it is on the other lists
 		var/unique_key = cant_hold_list.Join("-")
 		if(!GLOB.cached_storage_typecaches[unique_key])
 			GLOB.cached_storage_typecaches[unique_key] = typecacheof(cant_hold_list)
 		cant_hold = GLOB.cached_storage_typecaches[unique_key]
 
-	if(!isnull(storage_type_limits_list))
+	if(!isnull(storage_type_limits_list)) //Permits items to bypass w_class
 		var/unique_key = storage_type_limits_list.Join("-")
 		if(!GLOB.cached_storage_typecaches[unique_key])
 			GLOB.cached_storage_typecaches[unique_key] = typecacheof(storage_type_limits_list)
