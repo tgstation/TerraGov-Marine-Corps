@@ -1969,6 +1969,7 @@ VEHICLES
 
 /datum/supply_packs/vehicles
 	group = "Vehicles"
+	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/motorbike
 	name = "All-Terrain Motorbike"
