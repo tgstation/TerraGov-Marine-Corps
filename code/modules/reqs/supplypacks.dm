@@ -133,7 +133,7 @@ OPERATIONS
 	available_against_xeno_only = TRUE
 
 /datum/supply_packs/operations/droppod
-	name = "Zeus drop pod"
+	name = "Zeus orbital drop pod"
 	contains = list(/obj/structure/droppod)
 	containertype = null
 	cost = 50
@@ -2564,7 +2564,7 @@ FACTORY
 	cost = 500
 
 /datum/supply_packs/factory/drop_pod_refill
-	name = "Zeus drop pod assembly refill"
+	name = "Zeus orbital drop pod assembly refill"
 	contains = list(/obj/item/factory_refill/drop_pod_refill)
 	cost = 250
 
