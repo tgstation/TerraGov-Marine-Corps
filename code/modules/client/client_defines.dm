@@ -46,6 +46,9 @@
 	var/middragtime = 0 //MMB exploit detection
 	var/atom/middragatom //MMB exploit detection
 
+	/// If this client has been fully initialized or not
+	var/fully_created = FALSE
+
 	/// datum wrapper for client view
 	var/datum/view_data/view_size
 

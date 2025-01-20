@@ -130,6 +130,13 @@ export const GameSettings = (props) => {
                 rightLabel={'Windowed'}
               />
               <ToggleFieldPreference
+                label="Status Bar (Bottom left text)"
+                value="show_status_bar"
+                action="show_status_bar"
+                leftLabel={'Show'}
+                rightLabel={'Hide'}
+              />
+              <ToggleFieldPreference
                 label="TGUI Window Mode"
                 value="tgui_fancy"
                 action="tgui_fancy"
