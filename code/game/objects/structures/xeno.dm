@@ -390,7 +390,7 @@
 		return
 	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
 		return
-	detonate()
+	INVOKE_ASYNC(src,PROC_REF(detonate))
 
 //Handles detonating the mine, and dealing damage to those nearby
 /obj/structure/xeno/acid_mine/proc/detonate()

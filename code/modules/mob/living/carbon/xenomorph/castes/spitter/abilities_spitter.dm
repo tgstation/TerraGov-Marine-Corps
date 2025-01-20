@@ -214,6 +214,9 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 // Handles selecting which grenade the xeno wants
 /datum/action/ability/activable/xeno/toss_grenade/alternate_action_activate()
+	INVOKE_ASYNC(src, PROC_REF(selectgrenade))
+
+/datum/action/ability/activable/xeno/toss_grenade/proc/selectgrenade()
 	var/grenade_choice = show_radial_menu(owner, owner, GLOB.globadier_images_list, radius = 48)
 	if(!grenade_choice)
 		return
