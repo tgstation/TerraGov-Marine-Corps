@@ -229,6 +229,10 @@
 	dir = 8
 	},
 /area/outpost/engineering)
+"bk" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/space/basic,
+/area/space)
 "bl" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/asteroidwarning{
@@ -601,7 +605,7 @@
 "dl" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/plating,
+/turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
 "dm" = (
 /obj/machinery/door/airlock/mainship/security/glass/free_access{
@@ -1370,13 +1374,6 @@
 	dir = 5
 	},
 /area/outpost/cargo/engineering)
-"gK" = (
-/obj/machinery/power/terminal{
-	dir = 1
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "gM" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -2981,9 +2978,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/power/geothermal/bigred,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/machinery/power/terminal,
+/turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
 "oe" = (
 /turf/closed/wall/r_wall,
@@ -3136,6 +3133,13 @@
 	dir = 1
 	},
 /area/outpost/yard/central)
+"oN" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal/tbg{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/outpost/engineering/engine)
 "oO" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 6
@@ -3273,7 +3277,6 @@
 /turf/open/liquid/water/river,
 /area/outpost/engineering/engine)
 "pt" = (
-/obj/structure/cable,
 /obj/effect/spawner/random/engineering/toolbox,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
@@ -3802,9 +3805,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/power/geothermal/bigred,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/machinery/power/terminal,
+/turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
 "rJ" = (
 /turf/open/floor/plating/dmg3,
@@ -3910,7 +3913,8 @@
 /area/outpost/cargo)
 "sk" = (
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/machinery/power/terminal,
+/turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
 "sl" = (
 /obj/effect/ai_node,
@@ -4104,7 +4108,7 @@
 "te" = (
 /obj/machinery/power/apc/drained,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
 "tf" = (
 /obj/machinery/door/airlock/multi_tile/mainship/research{
@@ -4656,7 +4660,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/spawner/random/engineering/powercell,
-/turf/open/floor/plating,
+/turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
 "vR" = (
 /obj/effect/landmark/start/job/xenomorph,
@@ -5069,9 +5073,11 @@
 	},
 /area/outpost/yard/north_east)
 "xG" = (
-/obj/machinery/power/smes/buildable/empty/dist,
 /obj/structure/cable,
-/turf/open/floor/plating,
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
+	},
+/turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
 "xO" = (
 /obj/machinery/power/apc/drained,
@@ -5578,8 +5584,8 @@
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/south_cent)
 "Ac" = (
-/obj/machinery/power/geothermal/bigred,
 /obj/structure/cable,
+/obj/machinery/power/smes,
 /turf/open/floor/plating,
 /area/outpost/engineering/engine)
 "Af" = (
@@ -5758,7 +5764,7 @@
 "AZ" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
-/turf/open/floor/plating,
+/turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
 "Ba" = (
 /obj/structure/cable,
@@ -6429,13 +6435,6 @@
 	},
 /turf/open/floor/tile/dark/brown2/corner,
 /area/outpost/hallway/south_cent)
-"Eq" = (
-/obj/structure/cable,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/open/floor/plating,
-/area/outpost/engineering/engine)
 "Es" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -8082,6 +8081,13 @@
 	dir = 6
 	},
 /area/outpost/medbay)
+"Mo" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/outpost/engineering/engine)
 "Mp" = (
 /turf/open/floor/marking/asteroidwarning{
 	dir = 8
@@ -9958,7 +9964,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/tile/dark,
 /area/outpost/engineering/engine)
 "Vb" = (
 /turf/open/floor/plating/ground/mars/dirttosand{
@@ -12582,7 +12588,7 @@ Kv
 Kv
 Kv
 Kv
-Kv
+bk
 Kv
 Kv
 Kv
@@ -24474,10 +24480,10 @@ Cy
 Cy
 DX
 MG
-sk
+MG
 xG
-gK
-Eq
+MG
+ih
 MU
 ih
 MG
@@ -24606,14 +24612,14 @@ Cy
 Cy
 DX
 te
-sk
-xG
-gK
+fj
+oN
+fj
 AZ
 UZ
-sk
-sk
-sk
+fj
+fj
+fj
 CU
 DC
 CU
@@ -24738,14 +24744,14 @@ Db
 DX
 DX
 MG
-sk
-xG
-gK
+MG
+Mo
+MG
 pt
 MU
 MG
 MG
-sk
+fj
 MG
 DX
 MG
@@ -24870,15 +24876,15 @@ TB
 wR
 DX
 RA
-sk
-MG
+fj
+fj
 FJ
 MG
 MU
 MG
 CU
-sk
-Ac
+fj
+MG
 rH
 Ac
 MG
@@ -25009,10 +25015,10 @@ eE
 MU
 MG
 CU
+fj
+fj
 sk
-sk
-sk
-sk
+Ac
 hf
 CU
 MG
@@ -25142,7 +25148,7 @@ MU
 MG
 CU
 MG
-Ac
+MG
 od
 Ac
 MG

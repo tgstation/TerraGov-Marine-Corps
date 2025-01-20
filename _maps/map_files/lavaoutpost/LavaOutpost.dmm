@@ -26,6 +26,10 @@
 "ax" = (
 /turf/closed/wall/r_wall,
 /area/lavaland/security/infocenter)
+"ay" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/tile/dark2,
+/area/lavaland/engie/engine)
 "aI" = (
 /turf/open/space/basic,
 /area/space)
@@ -336,6 +340,10 @@
 /obj/effect/ai_node,
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/south)
+"eh" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/lavaland/engie/engine)
 "el" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark2,
@@ -677,6 +685,11 @@
 	dir = 1
 	},
 /turf/open/floor/plating/asteroidfloor,
+/area/lavaland/engie/engine)
+"hS" = (
+/obj/effect/decal/cleanable/blood,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "hT" = (
 /obj/structure/rack,
@@ -1048,9 +1061,9 @@
 /turf/open/floor/plating/asteroidfloor,
 /area/lavaland/cave/northeast)
 "lk" = (
-/obj/machinery/power/geothermal/bigred,
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
+/obj/machinery/power/geothermal/tbg,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "lm" = (
@@ -2335,6 +2348,10 @@
 	dir = 4
 	},
 /area/shuttle/drop1/lz1)
+"ze" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/mineral/smooth/indestructible,
+/area/lavaland/cave/southwest)
 "zi" = (
 /obj/effect/ai_node,
 /turf/open/floor/marking,
@@ -2673,6 +2690,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
+/obj/machinery/power/tbg_turbine/cold,
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "Cu" = (
@@ -4537,6 +4555,9 @@
 "Wp" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/ai_node,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 1
+	},
 /turf/open/floor/tile/dark2,
 /area/lavaland/engie/engine)
 "Wq" = (
@@ -10230,7 +10251,7 @@ HQ
 HQ
 HQ
 HQ
-KP
+ze
 aI
 aI
 aI
@@ -26257,7 +26278,7 @@ fw
 fw
 fw
 fw
-fw
+eh
 fw
 fw
 fw
@@ -27025,13 +27046,13 @@ fE
 cW
 aY
 ds
-fw
+eh
 aY
 dq
 gF
 aY
 aY
-fw
+eh
 WU
 aY
 aY
@@ -27537,7 +27558,7 @@ al
 fw
 fw
 aY
-fw
+eh
 fw
 ks
 ks
@@ -27547,16 +27568,16 @@ aY
 ks
 ks
 fw
-fw
+eh
 aY
 fw
 fw
 fw
 fw
+eh
 fw
 fw
-fw
-fw
+eh
 al
 aZ
 al
@@ -27798,9 +27819,9 @@ aY
 ks
 ks
 ks
-aY
+ay
 ke
-aY
+ay
 ks
 ks
 ks
@@ -28826,9 +28847,9 @@ aY
 ks
 ks
 ks
-aY
+ay
 gF
-dq
+hS
 ks
 ks
 ks
@@ -29079,7 +29100,7 @@ al
 fw
 fw
 aY
-fw
+eh
 fw
 ks
 ks
@@ -29089,16 +29110,16 @@ aY
 ks
 ks
 fw
-fw
+eh
 gF
 fw
 fw
 fw
 fw
+eh
 fw
 fw
-fw
-fw
+eh
 al
 al
 aZ
@@ -29595,13 +29616,13 @@ bo
 cW
 aY
 WU
-fw
+eh
 aY
 aY
 BC
 aY
 aY
-fw
+eh
 eQ
 aY
 gF
@@ -30369,7 +30390,7 @@ fw
 fw
 fw
 fw
-fw
+eh
 fw
 fw
 fw

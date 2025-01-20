@@ -391,6 +391,10 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"ve" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
 "vs" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/cave,
@@ -490,6 +494,10 @@
 "zA" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/southwest)
+"zX" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "Ah" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating/ground/mars/cavetodirt{
@@ -536,6 +544,10 @@
 "BS" = (
 /obj/machinery/computer/arcade,
 /turf/open/floor,
+/area/bigredv2/outside/engineering/east)
+"Ca" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
 /area/bigredv2/outside/engineering/east)
 "Cu" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -670,13 +682,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/bigredv2/caves/southwest)
-"Ie" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "IN" = (
 /obj/machinery/vending/cola,
 /turf/open/floor,
@@ -1054,7 +1059,7 @@
 /area/bigredv2/caves/rock)
 
 (1,1,1) = {"
-Ie
+OK
 Sw
 uD
 Va
@@ -1087,7 +1092,7 @@ vP
 vP
 vP
 vP
-Qe
+zX
 EF
 wG
 OK
@@ -1179,7 +1184,7 @@ NI
 Mw
 Mw
 Mw
-vP
+ve
 vP
 vP
 ZD
@@ -1232,7 +1237,7 @@ Qe
 ub
 Qe
 Qe
-Qe
+zX
 oX
 Zv
 Fs
@@ -1297,7 +1302,7 @@ OK
 JS
 OK
 OK
-vP
+ve
 ZD
 ZD
 ZD
@@ -1407,7 +1412,7 @@ OA
 Mw
 ky
 jg
-Oo
+Ca
 Oo
 Oo
 yu
@@ -1433,7 +1438,7 @@ zc
 (14,1,1) = {"
 OK
 DP
-Qe
+zX
 PH
 eH
 Oo
@@ -1520,7 +1525,7 @@ RB
 (17,1,1) = {"
 Qe
 Qe
-Qe
+zX
 fe
 yc
 Oo
@@ -1581,7 +1586,7 @@ Pp
 Qo
 RM
 XI
-Oo
+Ca
 Oo
 Oo
 yu
@@ -1693,7 +1698,7 @@ RB
 "}
 (23,1,1) = {"
 Oo
-Oo
+Ca
 Aq
 km
 HC

@@ -24420,11 +24420,7 @@
 "bzC" = (
 /obj/effect/turf_decal/warning_stripes,
 /obj/structure/cable,
-/obj/machinery/power/geothermal{
-	desc = "A thermoelectric generator fueled by searing hot uranium!";
-	fail_rate = 5;
-	name = "thermoelectric generator"
-	},
+/obj/machinery/power/geothermal,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "bzD" = (
@@ -26741,9 +26737,11 @@
 	},
 /area/prison/cellblock/highsec/south/north)
 "bHo" = (
-/obj/machinery/air_alarm,
 /obj/structure/cable,
-/turf/open/floor/plating/plating_catwalk/prison,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/floor/prison,
 /area/prison/engineering)
 "bHp" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
@@ -29106,7 +29104,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden{
 	dir = 5
 	},
-/turf/open/floor/plating,
+/turf/open/floor/prison,
 /area/prison/engineering)
 "bPb" = (
 /obj/structure/cable,
@@ -29374,18 +29372,17 @@
 /turf/open/floor/wood,
 /area/prison/library)
 "bQe" = (
-/obj/machinery/power/geothermal{
-	desc = "A thermoelectric generator fueled by searing hot uranium!";
-	fail_rate = 5;
-	name = "thermoelectric generator"
-	},
-/obj/structure/cable,
-/turf/open/floor/plating,
+/obj/structure/rack,
+/obj/effect/spawner/random/engineering/tool,
+/turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/engineering)
 "bQf" = (
 /obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/machinery/power/geothermal/tbg{
+	dir = 4
 	},
 /turf/open/floor/prison,
 /area/prison/engineering)
@@ -31024,7 +31021,7 @@
 	dir = 1
 	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/prison,
 /area/prison/engineering)
 "bVZ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
@@ -31816,7 +31813,7 @@
 	dir = 10
 	},
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating,
+/turf/open/floor/prison,
 /area/prison/engineering)
 "bYS" = (
 /obj/machinery/power/monitor,
@@ -32248,7 +32245,7 @@
 	dir = 9
 	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/prison,
 /area/prison/engineering)
 "caA" = (
 /obj/machinery/vending/engivend,
@@ -32788,7 +32785,6 @@
 /turf/open/floor/plating/plating_catwalk/prison,
 /area/prison/engineering)
 "ccl" = (
-/obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
 	},
@@ -39947,6 +39943,14 @@
 	dir = 1
 	},
 /area/prison/quarters/research)
+"cTN" = (
+/obj/structure/cable,
+/obj/machinery/air_alarm,
+/obj/machinery/power/monitor{
+	name = "Main Power Grid Monitoring"
+	},
+/turf/open/floor/prison,
+/area/prison/engineering)
 "cTQ" = (
 /turf/open/liquid/water/river,
 /area/prison/residential/central)
@@ -40414,14 +40418,6 @@
 /obj/effect/ai_node,
 /turf/open/floor/prison,
 /area/prison/research/secret/dissection)
-"eny" = (
-/obj/structure/rack,
-/obj/effect/spawner/random/engineering/tool,
-/obj/effect/turf_decal/warning_stripes/thin{
-	dir = 1
-	},
-/turf/open/floor/plating,
-/area/prison/engineering)
 "eov" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -41314,6 +41310,11 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/red,
 /area/prison/cellblock/highsec/north/south)
+"gGV" = (
+/obj/effect/landmark/lv624/fog_blocker,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/prison,
+/area/prison/cellblock/lowsec/se)
 "gGZ" = (
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor/prison/cellstripe{
@@ -41589,6 +41590,10 @@
 /obj/item/stack/rods,
 /turf/open/space/sea,
 /area/space)
+"hpD" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/prison,
+/area/prison/engineering)
 "hpX" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/ai_node,
@@ -42092,6 +42097,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/plating,
 /area/prison/cellblock/maxsec/south)
+"izG" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/prison,
+/area/prison/library)
 "iAQ" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone,
 /turf/closed/wall/r_wall/prison,
@@ -42260,6 +42269,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/hallway/central)
+"iUq" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
+	},
+/turf/open/floor/prison,
+/area/prison/engineering)
 "iVq" = (
 /turf/open/floor/plating/icefloor/warnplate{
 	dir = 4
@@ -43005,6 +43021,10 @@
 	},
 /turf/open/floor/wood,
 /area/prison/chapel)
+"kEa" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/prison,
+/area/prison/holding/holding2)
 "kGj" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -43200,7 +43220,7 @@
 "ldL" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/plating_catwalk/prison,
+/turf/open/floor/prison,
 /area/prison/engineering)
 "ldM" = (
 /obj/effect/spawner/random/engineering/structure/tank/fuelweighted,
@@ -43963,7 +43983,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/turf/open/floor/plating,
+/turf/open/floor/prison,
 /area/prison/engineering)
 "mYM" = (
 /obj/structure/cable,
@@ -45988,6 +46008,10 @@
 	},
 /turf/open/floor/wood/broken,
 /area/prison/residential/south)
+"rKa" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/prison,
+/area/prison/engineering)
 "rKg" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -91693,7 +91717,7 @@ vSz
 bRS
 swF
 vSz
-bPX
+izG
 bQd
 okw
 rTA
@@ -92202,7 +92226,7 @@ bGx
 myW
 myW
 myW
-myW
+gGV
 vSz
 bRS
 swF
@@ -92210,15 +92234,15 @@ vSz
 bQi
 bQi
 bQi
+rKa
 bQi
 bQi
-bQi
-bQi
+rKa
 bQi
 bQi
 aDM
 aXf
-bQi
+rKa
 bQi
 bQi
 bQi
@@ -92465,10 +92489,10 @@ bRS
 swF
 vSz
 bQi
+iUq
 bQe
-bQe
-bQe
-bQe
+bWc
+bWc
 bVV
 bXw
 ths
@@ -92721,11 +92745,11 @@ oPA
 bRS
 swF
 vSz
-bQi
+rKa
 bQf
-bRA
-bRA
-bRA
+cbJ
+cbJ
+cbJ
 bVW
 ejV
 bYQ
@@ -92980,11 +93004,11 @@ nQX
 vSz
 bQi
 bHo
-ycx
+bRA
 ldL
-ycx
+bRA
 bVX
-bUF
+bRA
 bYR
 bOZ
 ejV
@@ -93236,18 +93260,18 @@ bcq
 vSz
 vSz
 bQi
-bQe
-bQe
-bQe
-bQe
-eny
+cTN
+bWc
+bWc
+bWc
+bVW
 bXz
 ejV
-bYu
+ccn
 wfX
 ejV
 cej
-bRC
+hpD
 bRC
 cfh
 bRC
@@ -93489,16 +93513,16 @@ bEY
 bDz
 bDz
 bDz
-bDz
+kEa
 bDz
 bDz
 bDz
 bQi
 bRC
 bRC
+hpD
 bRC
-bRC
-bRC
+hpD
 bYS
 bYv
 ejV
@@ -93765,7 +93789,7 @@ cbK
 cgC
 chE
 ciT
-bQi
+rKa
 ckK
 ckY
 cmA
@@ -94264,14 +94288,14 @@ bLl
 bIZ
 bIZ
 bOH
-bQi
+rKa
 cuU
 bTh
 bUF
 bWb
-bRC
+hpD
 ejV
-ejV
+bRA
 cbM
 cdg
 ejV
@@ -94528,8 +94552,8 @@ bWc
 ycx
 bXB
 aTt
-bUF
-bUF
+bRA
+bRA
 ccl
 eIO
 cfs
@@ -94787,11 +94811,11 @@ bRC
 bYX
 caA
 mYC
-ccn
+bYu
 cbJ
 cft
 cgD
-bQi
+rKa
 chH
 cjK
 ciU
@@ -95038,11 +95062,11 @@ bIZ
 bQi
 bRC
 bRC
-bRC
+hpD
 bRC
 bRC
 bYY
-bRC
+hpD
 bRC
 ccn
 cek

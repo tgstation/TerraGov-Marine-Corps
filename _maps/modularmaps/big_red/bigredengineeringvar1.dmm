@@ -37,6 +37,10 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"cw" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "cG" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	dir = 1;
@@ -134,13 +138,6 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
-"hx" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "hG" = (
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor/plating,
@@ -249,6 +246,10 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
+"mn" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
 "mo" = (
 /obj/structure/table,
 /obj/machinery/light,
@@ -1147,6 +1148,10 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
+"ZP" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering/east)
 "ZV" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -1156,7 +1161,7 @@
 /area/bigredv2/outside/engineering/east)
 
 (1,1,1) = {"
-hx
+vr
 fl
 FG
 qD
@@ -1189,7 +1194,7 @@ xG
 xG
 xG
 xG
-Uf
+cw
 ZJ
 wW
 vr
@@ -1281,7 +1286,7 @@ zn
 bJ
 bJ
 bJ
-xG
+mn
 xG
 xG
 Ft
@@ -1334,7 +1339,7 @@ Uf
 os
 Uf
 Uf
-Uf
+cw
 zF
 wg
 Wq
@@ -1368,7 +1373,7 @@ JM
 vr
 vr
 bR
-xG
+mn
 xG
 xG
 Qo
@@ -1509,7 +1514,7 @@ jR
 bJ
 Gu
 UO
-pu
+ZP
 pu
 pu
 Ml
@@ -1535,7 +1540,7 @@ Ft
 (14,1,1) = {"
 vr
 Pz
-Uf
+cw
 JM
 Nb
 pu
@@ -1622,7 +1627,7 @@ Ft
 (17,1,1) = {"
 Uf
 Uf
-Uf
+cw
 CU
 Ib
 pu
@@ -1683,7 +1688,7 @@ jy
 LO
 Iu
 WA
-pu
+ZP
 pu
 pu
 Ml
@@ -1795,7 +1800,7 @@ Ft
 "}
 (23,1,1) = {"
 pu
-pu
+ZP
 lE
 YK
 sS

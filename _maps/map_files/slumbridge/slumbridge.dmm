@@ -1440,6 +1440,12 @@
 /obj/structure/cable,
 /turf/open/floor/tile/dark/green2/corner,
 /area/slumbridge/inside/colony/hydro)
+"bgQ" = (
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/floor/podhatch/floor,
+/area/slumbridge/inside/engi/engine)
 "bhd" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -2843,6 +2849,10 @@
 	},
 /turf/open/floor/plating/ground/mars/random/cave/darker,
 /area/slumbridge/outside/northeast)
+"cdx" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/slumbridge/inside/engi/engineroom)
 "cdK" = (
 /obj/machinery/door/airlock/mainship/generic,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -3449,6 +3459,11 @@
 	},
 /turf/open/floor/prison/blackfloor,
 /area/slumbridge/inside/colony/vault)
+"cAU" = (
+/obj/structure/cable,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/plating/catwalk,
+/area/slumbridge/inside/engi/engine)
 "cBc" = (
 /obj/effect/spawner/random/misc/structure/directional_window,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -10208,6 +10223,10 @@
 "hJy" = (
 /turf/open/floor/tile/red/whitered/full,
 /area/slumbridge/landingzonetwo)
+"hJO" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/slumbridge/inside/engi/engineroom)
 "hKo" = (
 /obj/machinery/door/airlock/multi_tile/mainship/engineering/glass{
 	dir = 2
@@ -11318,6 +11337,10 @@
 /obj/effect/landmark/xeno_resin_door,
 /turf/open/ground/grass/weedable/patch,
 /area/slumbridge/outside/northeast)
+"iux" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/slumbridge/inside/sombase/west)
 "iuJ" = (
 /obj/structure/toilet{
 	dir = 1
@@ -11740,9 +11763,6 @@
 	dir = 6
 	},
 /area/slumbridge/outside/southwest)
-"iKR" = (
-/turf/open/floor/podhatch/floor,
-/area/slumbridge/inside/engi/engine)
 "iKZ" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -12310,6 +12330,10 @@
 /obj/structure/cable,
 /turf/open/floor/prison,
 /area/slumbridge/inside/prison/outerringnorth)
+"jjO" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/slumbridge/inside/sombase/west)
 "jjU" = (
 /turf/closed/mineral/smooth/bigred,
 /area/slumbridge/inside/engi/west)
@@ -13754,6 +13778,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
 	},
+/obj/machinery/floor_warn_light/toggleable/generator,
 /turf/open/floor,
 /area/slumbridge/inside/engi/engineroom)
 "klY" = (
@@ -13984,6 +14009,11 @@
 	dir = 8
 	},
 /area/slumbridge/inside/zeta/south)
+"kvK" = (
+/obj/effect/landmark/corpsespawner/engineer/regular,
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/plating/catwalk,
+/area/slumbridge/inside/engi/engine)
 "kwq" = (
 /obj/structure/lattice,
 /obj/structure/window_frame/colony,
@@ -15947,6 +15977,12 @@
 	},
 /turf/open/floor/plating/mainship,
 /area/slumbridge/landingzoneone)
+"lOY" = (
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
+	},
+/turf/open/floor/podhatch/floor,
+/area/slumbridge/inside/engi/engine)
 "lPH" = (
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -18527,6 +18563,10 @@
 /obj/effect/spawner/random/misc/trash,
 /turf/open/floor,
 /area/slumbridge/inside/engi/south)
+"nGD" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/open/floor/plating/catwalk,
+/area/slumbridge/inside/engi/engine)
 "nGK" = (
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
 /area/slumbridge/outside/northwest)
@@ -21208,6 +21248,13 @@
 	},
 /turf/open/floor/wood,
 /area/slumbridge/inside/colony/bar)
+"pIK" = (
+/obj/machinery/power/geothermal/tbg{
+	dir = 8
+	},
+/obj/structure/cable,
+/turf/open/floor/podhatch/floor,
+/area/slumbridge/inside/engi/engine)
 "pIT" = (
 /obj/machinery/light{
 	dir = 4
@@ -26810,6 +26857,10 @@
 	},
 /turf/open/floor/elevatorshaft,
 /area/slumbridge/inside/zeta/north)
+"tIE" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall/unmeltable,
+/area/slumbridge/caves/rock)
 "tII" = (
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
@@ -30015,9 +30066,8 @@
 /turf/open/floor/plating,
 /area/slumbridge/inside/medical/southern)
 "vYH" = (
-/obj/machinery/power/geothermal/bigred,
 /obj/structure/cable,
-/turf/open/floor/plating/catwalk,
+/turf/open/floor/podhatch/floor,
 /area/slumbridge/inside/engi/engine)
 "waa" = (
 /turf/open/floor/podhatch/floor,
@@ -33156,6 +33206,10 @@
 /obj/structure/prop/brokenvendor/brokenuniformvendor,
 /turf/open/floor/wood,
 /area/slumbridge/inside/engi/west)
+"ykm" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/slumbridge/inside/engi/engine)
 "yko" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -37528,7 +37582,7 @@ pjL
 ooG
 ooG
 ooG
-ooG
+aEa
 ooG
 fnu
 pZC
@@ -48798,15 +48852,15 @@ fFo
 ith
 oyU
 hKo
+cdx
 ith
 ith
 ith
-ith
-ith
+cdx
 ydS
 ith
 ith
-ith
+cdx
 ith
 ePG
 iQo
@@ -49169,7 +49223,7 @@ whJ
 pmA
 ofR
 tXo
-ith
+cdx
 ith
 ith
 mZn
@@ -49893,7 +49947,7 @@ oyU
 oyU
 fod
 mdP
-saE
+hJO
 saE
 fXo
 fXo
@@ -50425,7 +50479,7 @@ fFo
 cxf
 pQz
 saE
-saE
+hJO
 vAB
 vAB
 vAB
@@ -50435,7 +50489,7 @@ vAB
 vAB
 vAB
 vAB
-saE
+hJO
 saE
 nbt
 nbt
@@ -50787,16 +50841,16 @@ dHe
 dHe
 iAf
 xuJ
-dsK
+cAU
 iAf
 dsK
 xXL
 dsK
-xXL
+nGD
 dsK
 xXL
 dsK
-xXL
+nGD
 xXL
 xXL
 xXL
@@ -50965,23 +51019,23 @@ dHe
 dHe
 dHe
 dHe
-hQu
+tIE
 kzs
 emD
 kUg
 emD
+emD
+emD
 vYH
-iKR
-vYH
-xXL
-vYH
-iKR
+lOY
 vYH
 emD
 emD
 emD
 emD
-aFF
+emD
+emD
+ykm
 xXL
 nbt
 nNd
@@ -51151,13 +51205,13 @@ vyr
 vyr
 vyr
 vyr
+vyr
+vyr
 vYH
-iKR
+pIK
 vYH
-xXL
-vYH
-iKR
-vYH
+vyr
+vyr
 vyr
 vyr
 vyr
@@ -51327,23 +51381,23 @@ hHf
 hHf
 hHf
 hHf
-hQu
+tIE
 hdl
 hdl
 hdl
 hdl
+fym
+fym
 vYH
-iKR
-vYH
-xXL
-vYH
-iKR
+bgQ
 vYH
 fym
 fym
 fym
 fym
-aFF
+fym
+fym
+ykm
 tTW
 nbt
 nNd
@@ -51516,11 +51570,11 @@ acW
 fuj
 xXL
 xXL
-xXL
+nGD
 seD
 xXL
 xXL
-tTW
+kvK
 seD
 xXL
 xXL
@@ -52064,11 +52118,11 @@ xZs
 xZs
 igV
 xZs
-xZs
+jjO
 igV
 igV
 xZs
-xZs
+jjO
 xZs
 igV
 xZs
@@ -52962,11 +53016,11 @@ yef
 yef
 liM
 liM
-liM
+iux
 liM
 qSz
 liM
-liM
+iux
 rWF
 tku
 kND

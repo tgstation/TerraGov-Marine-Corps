@@ -449,6 +449,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"tw" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
 "tJ" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -948,6 +952,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
+"OT" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering/east)
 "Pk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/machinery/machine_frame,
@@ -977,6 +985,10 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
+/area/bigredv2/outside/engineering)
+"PX" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
 /area/bigredv2/outside/engineering)
 "PZ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1146,13 +1158,6 @@
 	},
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
-"Zh" = (
-/obj/machinery/shower{
-	dir = 8
-	},
-/obj/effect/decal/cleanable/dirt,
-/turf/open/floor/freezer,
-/area/bigredv2/outside/engineering)
 "Zo" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/random/dirt,
@@ -1179,7 +1184,7 @@
 /area/bigredv2/outside/engineering)
 
 (1,1,1) = {"
-Zh
+lU
 uU
 YJ
 QT
@@ -1212,7 +1217,7 @@ Ib
 Ib
 Ib
 Ib
-EV
+PX
 Jk
 zx
 lU
@@ -1304,7 +1309,7 @@ tW
 GG
 GG
 GG
-Ib
+tw
 Ib
 Ib
 Lx
@@ -1357,7 +1362,7 @@ EV
 qs
 EV
 EV
-EV
+PX
 OF
 uj
 SK
@@ -1391,7 +1396,7 @@ kV
 lU
 lU
 AT
-Ib
+tw
 Ib
 Ib
 yN
@@ -1532,7 +1537,7 @@ CS
 GG
 Ri
 nZ
-UM
+OT
 UM
 UM
 xT
@@ -1558,7 +1563,7 @@ Lx
 (14,1,1) = {"
 lU
 HO
-EV
+PX
 kV
 BK
 UM
@@ -1645,7 +1650,7 @@ Lx
 (17,1,1) = {"
 EV
 EV
-EV
+PX
 jR
 bB
 UM
@@ -1706,7 +1711,7 @@ xk
 Mr
 Qe
 Pz
-UM
+OT
 UM
 UM
 xT
@@ -1818,7 +1823,7 @@ Lx
 "}
 (23,1,1) = {"
 UM
-UM
+OT
 vw
 uv
 bA
