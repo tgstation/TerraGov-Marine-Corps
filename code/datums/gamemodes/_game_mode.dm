@@ -489,7 +489,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.points_from_xenos] requisitions points gained from xenomorph sales."
 	if(GLOB.round_statistics.runner_items_stolen)
 		parts += "[GLOB.round_statistics.runner_items_stolen] items stolen by runners."
-
+	if(GLOB.round_statistics.acid_maw_fires)
+		parts += "[GLOB.round_statistics.acid_maw_fires] Acid Maw uses."
+	if(GLOB.round_statistics.acid_jaw_fires)
+		parts += "[GLOB.round_statistics.acid_jaw_fires] Acid Jaw uses."
 	if(GLOB.round_statistics.sandevistan_uses)
 		var/sandevistan_text = "[GLOB.round_statistics.sandevistan_uses] number of times someone was boosted by a sandevistan"
 		if(GLOB.round_statistics.sandevistan_gibs)

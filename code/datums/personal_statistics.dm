@@ -99,6 +99,8 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/huggers_created = 0
 	var/impregnations = 0
 	var/items_snatched = 0
+	var/acid_maw_uses = 0
+	var/acid_jaw_uses = 0
 
 	//Close air support
 	var/cas_cannon_shots = 0
@@ -240,6 +242,10 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 		support_stats += "Repaired [apcs_repaired] APC\s."
 	if(items_snatched)
 		support_stats += "Snatched [items_snatched] item\s."
+	if(acid_maw_uses)
+		support_stats += "Fired the Acid Maw [acid_maw_uses] time\s"
+	if(acid_jaw_uses)
+		support_stats += "Fired the Acid Jaw [acid_jaw_uses] time\s"
 
 	if(generator_sabotages_performed)
 		support_stats += "Sabotaged [generator_sabotages_performed] generator\s."
