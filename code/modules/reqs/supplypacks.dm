@@ -219,6 +219,26 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/sentry/sniper)
 	cost = 100
 
+/datum/supply_packs/weapons/sentry_flamer
+	name = "SFT-575 Flamethrower Sentry"
+	contains = list(/obj/item/storage/box/crate/sentry_flamer)
+	cost = 400
+
+/datum/supply_packs/weapons/sentry_flamer_ammo
+	name = "SFT-575 Flamethrower Sentry Ammo"
+	contains = list(/obj/item/ammo_magazine/sentry/flamer)
+	cost = 150
+
+/datum/supply_packs/weapons/sentry_laser
+	name = "SLT-576 Laser Sentry"
+	contains = list(/obj/item/storage/box/crate/sentry_laser)
+	cost = 400
+
+/datum/supply_packs/weapons/sentry_laser_ammo
+	name = "SLT-576 Laser Sentry Ammo"
+	contains = list(/obj/item/ammo_magazine/sentry/laser)
+	cost = 200
+
 /datum/supply_packs/weapons/buildasentry
 	name = "Build-A-Sentry Attachment System"
 	contains = list(
