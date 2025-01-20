@@ -21,7 +21,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 485
+	max_health = 450
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -36,7 +36,7 @@
 	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 50, ACID = 100)
 
 	// *** Sunder *** //
-	sunder_multiplier = 0.7
+	sunder_multiplier = 0.9
 
 	// *** Minimap Icon *** //
 	minimap_icon = "crusher"
