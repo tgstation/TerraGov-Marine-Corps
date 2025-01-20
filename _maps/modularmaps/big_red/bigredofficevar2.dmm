@@ -9,6 +9,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "aT" = (
@@ -184,10 +185,6 @@
 /obj/item/shard,
 /turf/open/floor/mainship/sterile/dark,
 /area/bigredv2/outside/office_complex)
-"eK" = (
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
-/turf/open/floor/plating/icefloor,
-/area/bigredv2/outside/office_complex)
 "eN" = (
 /obj/structure/window_frame/mainship/white,
 /turf/open/floor/plating,
@@ -206,6 +203,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/asteroidfloor,
 /area/bigredv2/outside/c)
+"gq" = (
+/obj/effect/ai_node,
+/obj/structure/cable,
+/turf/open/floor/tile/red/redtaupecorner{
+	dir = 4
+	},
+/area/bigredv2/outside/office_complex)
 "gJ" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -529,6 +533,7 @@
 "qN" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/landmark/weed_node,
+/obj/structure/cable,
 /turf/open/floor/tile/red/redtaupecorner{
 	dir = 8
 	},
@@ -536,6 +541,14 @@
 "qP" = (
 /obj/machinery/cryopod,
 /turf/open/floor/mainship/mono,
+/area/bigredv2/outside/office_complex)
+"rm" = (
+/obj/structure/cable,
+/turf/open/floor/tile/red/redtaupecorner,
+/area/bigredv2/outside/office_complex)
+"rr" = (
+/obj/structure/cable,
+/turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "rt" = (
 /turf/open/floor/marking/asteroidwarning{
@@ -549,6 +562,11 @@
 /turf/open/floor/mainship/blue{
 	dir = 1
 	},
+/area/bigredv2/outside/office_complex)
+"sa" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
+/turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "sd" = (
 /obj/machinery/firealarm{
@@ -667,6 +685,10 @@
 	name = "\improper Office Complex Shutters"
 	},
 /turf/open/floor/plating,
+/area/bigredv2/outside/office_complex)
+"uK" = (
+/obj/structure/cable,
+/turf/open/floor/plating/icefloor,
 /area/bigredv2/outside/office_complex)
 "uL" = (
 /obj/effect/turf_decal/tracks/wheels/bloody{
@@ -799,6 +821,7 @@
 "yn" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/cable,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "ys" = (
@@ -1015,6 +1038,8 @@
 /obj/effect/turf_decal/tracks/wheels/bloody{
 	dir = 4
 	},
+/obj/machinery/power/apc,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "ET" = (
@@ -1030,6 +1055,14 @@
 /obj/structure/bed/chair/office/light,
 /turf/open/floor,
 /area/bigredv2/outside/c)
+"Fe" = (
+/obj/machinery/door/airlock/mainship/generic{
+	dir = 1;
+	name = "\improper Private Office"
+	},
+/obj/structure/cable,
+/turf/open/floor,
+/area/bigredv2/outside/office_complex)
 "Fp" = (
 /turf/open/floor/marking/asteroidwarning,
 /area/bigredv2/outside/se)
@@ -1232,10 +1265,7 @@
 /turf/open/floor/plating/icefloor,
 /area/bigredv2/outside/office_complex)
 "MJ" = (
-/obj/structure/table,
-/obj/machinery/computer/pod/old{
-	name = "Personal Computer"
-	},
+/obj/machinery/computer/intel_computer,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "MN" = (
@@ -1565,6 +1595,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sign/prop1,
+/obj/structure/cable,
 /turf/open/floor,
 /area/bigredv2/outside/office_complex)
 "WY" = (
@@ -1607,6 +1638,7 @@
 	dir = 1;
 	on = 1
 	},
+/obj/structure/cable,
 /turf/open/floor/tile/red/redtaupecorner,
 /area/bigredv2/outside/office_complex)
 "XM" = (
@@ -2126,7 +2158,7 @@ RN
 Tx
 wF
 pA
-wF
+uK
 Tx
 Tx
 Tx
@@ -2172,17 +2204,17 @@ Tx
 Tx
 aT
 mv
-Am
-Cj
-Xu
+sa
+Fe
+gq
 aC
 yn
-eK
+OS
 yn
 yn
 XJ
-Hj
-mv
+rm
+rr
 Fp
 "}
 (20,1,1) = {"
@@ -2196,7 +2228,7 @@ Jk
 Fu
 Tx
 EA
-mv
+rr
 WJ
 Tx
 dP

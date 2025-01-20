@@ -5075,6 +5075,7 @@
 /area/bigredv2/outside/virology)
 "aXv" = (
 /obj/machinery/light,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/virology)
 "aXw" = (
@@ -13585,6 +13586,11 @@
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/tile/dark,
+/area/bigredv2/outside/nanotrasen_lab/inside)
+"pqQ" = (
+/obj/structure/cable,
+/obj/machinery/computer/intel_computer,
+/turf/open/floor/wood,
 /area/bigredv2/outside/nanotrasen_lab/inside)
 "prH" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
@@ -41773,7 +41779,7 @@ hya
 rHD
 jGk
 bEs
-sEu
+pqQ
 jJZ
 rHD
 tQE

@@ -106,6 +106,10 @@
 /obj/machinery/atmospherics/components/unary/vent_pump,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"fG" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
+/area/bigredv2/outside/engineering/east)
 "fI" = (
 /obj/machinery/light{
 	dir = 8
@@ -1655,7 +1659,7 @@ Kn
 hr
 Zx
 pu
-Zs
+fG
 Um
 Zs
 Zs
