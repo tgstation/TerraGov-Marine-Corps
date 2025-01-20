@@ -89,7 +89,7 @@
 		damage_overlay.layer = layer+0.001
 		vis_contents += damage_overlay
 	if(armored_flags & ARMORED_HAS_PRIMARY_WEAPON)
-		turret_overlay = new turret_overlay(src, src)
+		turret_overlay = new turret_overlay(null, src)
 		setDir(dir) //update turret offsets if needed
 		if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 			switch(SSmapping.configs[GROUND_MAP].armor_style)
@@ -128,7 +128,8 @@
 		QDEL_NULL(gunner_utility_module)
 	if(damage_overlay)
 		QDEL_NULL(damage_overlay)
-	if(turret_overlay)
+	// can de delled before init makes these due to globs
+	if(isatom(turret_overlay))
 		QDEL_NULL(turret_overlay)
 	if(isdatum(interior))
 		QDEL_NULL(interior)
