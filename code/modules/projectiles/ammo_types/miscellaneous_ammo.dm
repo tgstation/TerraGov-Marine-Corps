@@ -148,6 +148,14 @@
 	damage = 6
 	burntime = 0.3 SECONDS
 
+/datum/ammo/flamethrower/sentry // is also a spray
+	name = "spraying flames"
+	icon_state = "spray_flamer"
+	max_range = 7
+	shell_speed = 0.3
+	damage = 6
+	burntime = 0.3 SECONDS
+
 /datum/ammo/water
 	name = "water"
 	icon_state = "pulse1"

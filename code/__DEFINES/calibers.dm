@@ -85,6 +85,7 @@
 #define CALIBER_10X20 "10x20mm" //Minisentry
 #define CALIBER_10X30 "10x30mm caseless"
 #define CALIBER_20 "20mm" //Dualcannon
+#define CALIBER_LASER "Laser cartridge" //Laser Sentry
 
 /// Vehicles
 #define CALIBER_30X17MM "30x170mm" // SARDEN
