@@ -370,31 +370,35 @@
 	anchored = TRUE
 	max_integrity = 5
 	hit_sound = SFX_ALIEN_RESIN_BREAK
+	var/acid_damage = 30
 
 /obj/structure/xeno/acid_mine/Initialize(mapload)
 	. = ..()
 	var/static/list/connections = list(
-		COMSIG_ATOM_ENTERED = PROC_REF(detonate),
+		COMSIG_ATOM_ENTERED = PROC_REF(oncrossed),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 
-/obj/structure/xeno/acidwell/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
-	for(var/spatter_effect in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
-		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
+/obj/structure/xeno/acid_mine/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	detonate()
 	return ..()
 
-//Handles checking the mob that walks over the mine, dealing damage, and deleting the mine
-/obj/structure/xeno/acid_mine/proc/detonate(datum/source, atom/movable/A, oldloc, oldlocs)
+//Checks if the mob walking over the mine is human, and calls detonate if so
+/obj/structure/xeno/acid_mine/proc/oncrossed(datum/source, atom/movable/A, oldloc, oldlocs)
 	SIGNAL_HANDLER
-	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
-		return
 	if(!ishuman(A))
 		return
+	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
+		return
+	detonate()
+
+//Handles detonating the mine, and dealing damage to those nearby
+/obj/structure/xeno/acid_mine/proc/detonate()
 	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", air_pass = TRUE))
 		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
-	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(A,1))
-		human_victim.apply_damage(15, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
-		human_victim.apply_damage(15, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
+	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
+		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
+		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
 		to_chat(human_victim, span_danger("We are spattered with acid from the mine!"))
 		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
 	qdel(src)
@@ -403,4 +407,10 @@
 	name = "gas mine"
 	desc = "A weird bulb, overflowing with acid. Small wisps of gas escape every so often."
 	icon_state = "gas_mine"
+	acid_damage = 40
 
+/obj/structure/xeno/acid_mine/gas_mine/detonate()
+	var/datum/effect_system/smoke_spread/xeno/acid/opaque/A = new(get_turf(src))
+	A.set_up(1,src)
+	A.start()
+	..()

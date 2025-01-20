@@ -91,9 +91,11 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/activable/xeno/scatter_spit,
-		/datum/action/ability/activable/xeno/toss_grenade,
 		/datum/action/ability/activable/xeno/plant_weeds,
+		/datum/action/ability/activable/xeno/toss_grenade,
+		/datum/action/ability/activable/xeno/scatter_spit,
+		/datum/action/ability/xeno_action/acid_mine,
+		/datum/action/ability/xeno_action/acid_mine/gas_mine,
 	)
 
 /datum/xeno_caste/spitter/globadier/normal

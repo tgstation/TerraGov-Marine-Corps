@@ -219,10 +219,6 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		return
 	selected_grenade = grenade_choice
 
-
-
-
-
 // ***************************************
 // *********** Acid Grenade
 // ***************************************
@@ -285,10 +281,70 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	desc = "Place an acid mine at your location"
 	cooldown_duration = 5 SECONDS
 	ability_cost = 150
-	// var/mine_type =
+	var/mine_type = /obj/structure/xeno/acid_mine
+	var/max_charges = 5
+	var/current_charges = 5
+var/regen_time = 90 SECONDS
+	var/vref = VREF_MUTABLE_ACID_MINES_COUNTER
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_MINE,
 	)
+
+/datum/action/ability/xeno_action/acid_mine/proc/regen_mine()
+	if(current_charges < max_charges)
+		current_charges++
+		update_button_icon()
+		if(current_charges < max_charges) //If we still have less than the total amount of mines, call the timer again to add another mine after the regen time
+			addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE)
+
+/datum/action/ability/xeno_action/acid_mine/can_use_action(silent = FALSE, override_flags)
+	. = ..()
+	var/turf/T = get_turf(owner)
+	if(!T || !T.is_weedable() || T.density)
+		if(!silent)
+			to_chat(owner, span_warning("We can't do that here."))
+		return FALSE
+
+	if(!xeno_owner.loc_weeds_type)
+		if(!silent)
+			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+		return FALSE
+
+	if(!T.check_alien_construction(owner, silent, /obj/structure/xeno/trap) || !T.check_disallow_alien_fortification(owner, silent))
+		return FALSE
+
+/datum/action/ability/xeno_action/acid_mine/give_action(mob/living/L)
+	. = ..()
+	var/mutable_appearance/counter_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	counter_maptext.pixel_x = 16
+	counter_maptext.pixel_y = -4
+	counter_maptext.maptext = MAPTEXT("[current_charges]/[max_charges]")
+	visual_references[vref] = counter_maptext
+
+/datum/action/ability/xeno_action/acid_mine/remove_action(mob/living/carbon/xenomorph/X)
+	. = ..()
+	button.cut_overlay(visual_references[vref])
+	visual_references[vref] = null
+
+/datum/action/ability/xeno_action/acid_mine/update_button_icon()
+	button.cut_overlay(visual_references[vref])
+	var/mutable_appearance/number = visual_references[vref]
+	number.maptext = MAPTEXT("[current_charges]/[max_charges]")
+	visual_references[vref] = number
+	button.add_overlay(visual_references[vref])
+	return ..()
+
+/datum/action/ability/xeno_action/acid_mine/action_activate()
+	if(current_charges <= 0)
+		owner.balloon_alert(owner, "No Mines!")
+		return fail_activate()
+	var/turf/T = get_turf(owner)
+	new mine_type(T)
+	current_charges--
+	playsound(T, SFX_ALIEN_RESIN_BUILD, 25)
+	addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE)
+	update_button_icon()
+	succeed_activate()
 
 // ***************************************
 // *********** Gas Mine
@@ -298,7 +354,11 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	desc = "Place an gas mine at your location"
 	cooldown_duration = 5 SECONDS
 	ability_cost = 200
-	// mine_type =
+	mine_type = /obj/structure/xeno/acid_mine/gas_mine
+	max_charges = 2
+	current_charges = 2
+	regen_time = 2 MINUTES
+	vref = VREF_MUTABLE_GAS_MINES_COUNTER
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GAS_MINE,
 	)
