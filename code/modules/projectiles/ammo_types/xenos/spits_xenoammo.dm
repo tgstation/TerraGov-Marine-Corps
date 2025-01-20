@@ -307,8 +307,6 @@
 	max_range = 8
 	puddle_duration = 1 SECONDS //Lasts 2-4 seconds
 
-<<<<<<< HEAD
-=======
 ///For the Sizzler Boiler's Spit
 /datum/ammo/xeno/acid/airburst
 	name = "acid steam spittle"
@@ -420,7 +418,7 @@
 		return
 	staggerstun(target_mob, proj, max_range, 0, knockdown_duration, stagger_stacks, slowdown_stacks, knockback)
 	target_carbon.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
->>>>>>> upstream/master
+
 ///For the Globadiers XADAR
 #define XADAR_VEHICLE_DAMAGE_MULT 1.5
 
