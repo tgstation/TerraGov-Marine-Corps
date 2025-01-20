@@ -153,6 +153,7 @@
 	var/damage_multiplier = 1.15
 	/// Speed bonus given by this ability.
 	var/speed_addition = -0.4
+	use_state_flags = ABILITY_USE_BUCKLED
 
 /datum/action/ability/xeno_action/enhancement/New(Target)
 	. = ..()
