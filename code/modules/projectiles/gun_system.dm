@@ -805,7 +805,8 @@
 /obj/item/weapon/gun/proc/change_target(datum/source, atom/src_object, atom/over_object, turf/src_location, turf/over_location, src_control, over_control, params)
 	SIGNAL_HANDLER
 	set_target(get_turf_on_clickcatcher(over_object, gun_user, params))
-	gun_user?.face_atom(target)
+	if(!HAS_TRAIT(gun_user, TRAIT_INCAPACITATED))
+		gun_user?.face_atom(target)
 
 
 

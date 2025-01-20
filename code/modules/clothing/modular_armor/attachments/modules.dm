@@ -150,7 +150,7 @@
 	soft_armor = list(MELEE = 10, BULLET = 15, LASER = 15, ENERGY = 15, BOMB = 15, BIO = 5, FIRE = 10, ACID = 5)
 
 /obj/item/armor_module/module/tyr_head
-	name = "Tyr Helmet System"
+	name = "\improper Tyr Helmet System"
 	desc = "Designed for mounting on a modular helmet. When attached, this system provides substantial resistance to most damaging hazards, ranging from xeno slashes to friendly fire incidents."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "tyr_head"
@@ -217,7 +217,7 @@
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 25, FIRE = 0, ACID = 20)
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet
-	name = "Mark 2 Mimir Environmental Helmet System"
+	name = "\improper Mark 2 Mimir Environmental Helmet System"
 	desc = "Designed for mounting on a modular helmet. This newer model provides great resistance to acid, biological, and even radiological attacks. Pairing this with a Mimir suit module and mask will provide the user with immunity from xenomorph cloud reagents entering bloodstream."
 	icon_state = "mimir_head"
 	worn_icon_state = "mimir_head_a"
@@ -227,13 +227,13 @@
 	variants_by_parent_type = list(/obj/item/clothing/head/modular/m10x = "mimir_head_xn", /obj/item/clothing/head/modular/tdf = "")
 
 /obj/item/armor_module/module/mimir_environment_protection/mimir_helmet/mark1 //gas protection
-	name = "Mark 1 Mimir Environmental Helmet System"
+	name = "\improper Mark 1 Mimir Environmental Helmet System"
 	desc = "Designed for mounting on a modular helmet. This older model provides minor resistance to acid and biological attacks. Pairing this with a Mimir suit module and mask will provide the user with immunity from xenomorph cloud reagents entering bloodstream."
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 15, FIRE = 0, ACID = 15)
 
 //Explosive defense armor
 /obj/item/armor_module/module/hlin_explosive_armor
-	name = "Hlin Explosive Compensation Module"
+	name = "\improper Hlin Explosive Compensation Module"
 	desc = "Designed for mounting on modular armor. Uses a complex set of armor plating and compensation to lessen the effect of explosions. Will impact mobility"
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_boomimmune"
@@ -256,7 +256,7 @@
 	slot = ATTACHMENT_SLOT_MODULE
 
 /obj/item/armor_module/module/chemsystem
-	name = "Vali chemical enhancement module"
+	name = "\improper Vali chemical enhancement module"
 	desc = "Designed for mounting on modular armor. This experimental module runs on green blood taken from xenos with harvester class weapons; Green blood heals the user and boosts any chems in the suit injection system. \nUse the suit menu to connect harvester class weapons, control the injection system, find chem boost information, and more."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_chemsystem"
@@ -291,7 +291,7 @@
 	icon_state = initial(icon_state)
 
 /obj/item/armor_module/module/eshield
-	name = "Svalinn Energy Shield System"
+	name = "\improper Svalinn Energy Shield System"
 	desc = "A brand new innovation in armor systems, this module creates a shield around the user that is capable of negating all damage at the cost of increased vulnerability to melee, biological, and acid attacks. If it sustains too much it will deactivate, and leave the user vulnerable."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "mod_eshield"
@@ -465,7 +465,7 @@
 
 //original Martian design, donutsteel
 /obj/item/armor_module/module/eshield/som
-	name = "Aegis Energy Dispersion Module"
+	name = "\improper Aegis Energy Dispersion Module"
 	desc = "A sophisticated shielding unit, designed to disperse the energy of incoming impacts, rendering them harmless to the user. If it sustains too much it will deactivate, and leave the user vulnerable. It is unclear if this was a purely  SOM designed module, or whether it was reverse engineered from the TGMC's 'Svalinn' shield system which was developed around the same time."
 
 /obj/item/armor_module/module/eshield/som/overclocked
@@ -474,6 +474,86 @@
 	shield_color_low = COLOR_MAROON
 	shield_color_mid = LIGHT_COLOR_RED_ORANGE
 	shield_color_full = LIGHT_COLOR_ELECTRIC_CYAN
+
+/obj/item/armor_module/module/mirage
+	name = "\improper Loki Illusion Module"
+	desc = "Designed for mounting on modular armor. This module creates a holographic projection of the user, which can be used to distract enemies and draw their fire when the user is hit."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_illusion"
+	worn_icon_state = "mod_illusion_a"
+	slowdown = 0
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	slot = ATTACHMENT_SLOT_MODULE
+	toggle_signal = COMSIG_KB_ARMORMODULE
+	COOLDOWN_DECLARE(mirage_cooldown)
+
+/obj/item/armor_module/module/mirage/activate(mob/living/user)
+	if(!COOLDOWN_CHECK(src, mirage_cooldown))
+		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, mirage_cooldown)*0.1] seconds")
+		return
+	var/alpha_mod = user.alpha * 0.95
+	user.alpha -= alpha_mod
+	var/mob/illusion/mirage_nade/fake = new(get_turf(user), user, null, 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(end_mirage), user, alpha_mod, fake), 15)
+	COOLDOWN_START(src, mirage_cooldown, 30 SECONDS)
+
+/// just cleans up the alpha on both the user and the fake
+/obj/item/armor_module/module/mirage/proc/end_mirage(mob/user, alpha_mod, mob/illusion/mirage_nade/fake)
+	user.alpha += alpha_mod
+	fake.alpha = user.alpha
+
+
+#define ARMORLOCK_DURATION 6 SECONDS
+#define ARMORLOCK_SIEMENS_COEFF -0.9
+#define ARMORLOCK_PERMEABILITY_COEFF -1
+#define ARMORLOCK_GAS_TRANSFER_COEFF -1
+
+/obj/item/armor_module/module/armorlock
+	name = "\improper Thor Armorlock Module"
+	desc = "Designed for mounting on modular armor. This module seals gaps in the armor when activated, making the user unable to do any actions but increasing their armor."
+	icon = 'icons/mob/modular/modular_armor_modules.dmi'
+	icon_state = "mod_armorlock"
+	worn_icon_state = "mod_armorlock_a"
+	slowdown = 0.1
+	attach_features_flags = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
+	slot = ATTACHMENT_SLOT_MODULE
+	toggle_signal = COMSIG_KB_ARMORMODULE
+	COOLDOWN_DECLARE(armorlock_cooldown)
+	///This is the armor amounts we will be adding and removing when armor lock is activated
+	var/datum/armor/locked_armor_mod = list(MELEE = 50, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 50, BIO = 50, FIRE = 50, ACID = 50)
+
+/obj/item/armor_module/module/armorlock/Initialize(mapload)
+	. = ..()
+	locked_armor_mod = getArmor(arglist(locked_armor_mod))
+
+/obj/item/armor_module/module/armorlock/Destroy()
+	. = ..()
+	locked_armor_mod = null
+
+/obj/item/armor_module/module/armorlock/activate(mob/living/user)
+	if(!COOLDOWN_CHECK(src, armorlock_cooldown))
+		balloon_alert(user, "[COOLDOWN_TIMELEFT(src, armorlock_cooldown)*0.1] seconds")
+		return
+
+	user.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
+	user.move_resist = MOVE_FORCE_OVERPOWERING
+	user.log_message("has been armor locked for [ARMORLOCK_DURATION] ticks", LOG_ATTACK, color="pink")
+
+	var/image/shield_overlay = image('icons/effects/effects.dmi', null, "shield-blue")
+	user.overlays += shield_overlay
+	user.status_flags |= GODMODE
+	playsound(user, 'sound/items/armorlock.ogg', 50)
+
+
+	addtimer(CALLBACK(src, PROC_REF(end_armorlock), user, shield_overlay), ARMORLOCK_DURATION)
+	COOLDOWN_START(src, armorlock_cooldown, 45 SECONDS)
+
+///handles cleanup after the lock is finished
+/obj/item/armor_module/module/armorlock/proc/end_armorlock(mob/living/user, image/shield_overlay)
+	user.overlays -= shield_overlay
+	user.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_STOPS_TANK_COLLISION, TRAIT_IMMOBILE, TRAIT_INCAPACITATED), REF(src))
+	user.move_resist = initial(user.move_resist)
+	user.status_flags &= ~GODMODE
 
 /obj/item/armor_module/module/style
 	name = "\improper Armor Equalizer"
@@ -516,7 +596,7 @@
  *   Helmet Modules
 */
 /obj/item/armor_module/module/welding
-	name = "Welding Helmet Module"
+	name = "welding Helmet Module"
 	desc = "Designed for mounting on a modular helmet. This module can be toggled on or off to function as welding protection for your delicate eyes."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "welding_head"
@@ -559,7 +639,7 @@
 	user.update_inv_head()
 
 /obj/item/armor_module/module/welding/som
-	name = "Integrated Welding Helmet Module"
+	name = "integrated welding Helmet Module"
 	desc = "Built in welding module for a SOM engineering helmet. This module can be toggled on or off to function as welding protection for your delicate eyes."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "welding_head_som"
@@ -567,7 +647,7 @@
 	attach_features_flags = ATTACH_ACTIVATION|ATTACH_APPLY_ON_MOB
 
 /obj/item/armor_module/module/welding/superior
-	name = "Superior Welding Helmet Module"
+	name = "superior welding Helmet Module"
 	desc = "Designed for mounting on a modular helmet. This more expensive module can be toggled on or off to function as welding protection for your delicate eyes, strangely smells like potatoes."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "welding_head"
@@ -583,7 +663,7 @@
 	parent.AddComponent(/datum/component/clothing_tint, TINT_4, active)
 
 /obj/item/armor_module/module/binoculars
-	name = "Binocular Helmet Module"
+	name = "binocular Helmet Module"
 	desc = "Designed for mounting on a modular helmet. Can be flipped down to view into the distance."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "binocular_head"
@@ -651,7 +731,7 @@
 #define COMMS_SETUP 2
 
 /obj/item/armor_module/module/antenna
-	name = "Antenna helmet module"
+	name = "antenna helmet module"
 	desc = "Designed for mounting on a modular Helmet. This module is able to shield against the interference of caves, allowing for normal messaging in shallow caves, and only minor interference when deep."
 	icon = 'icons/mob/modular/modular_armor_modules.dmi'
 	icon_state = "antenna_head"
