@@ -24,6 +24,8 @@
 	var/resource_storage_max = 200
 	///Amount of substance stored currently
 	var/resource_storage_current = 0
+	///Amount decayed passively when healing is off
+	var/resource_decay_amount = 2
 	///Amount required for operation
 	var/resource_drain_amount = 10
 	///Actions that the component provides
@@ -48,7 +50,7 @@
 	///Item connected to the system
 	var/obj/item/connected_weapon
 	///When was the effect activated. Used to activate negative effects after a certain amount of use
-	var/processing_start = 0
+	var/healing_start = 0
 	///Internal reagent storage used to store and automatically inject reagents into the wearer
 	var/obj/item/reagent_containers/glass/beaker/meds_beaker
 	///Whether the contents on the meds_beaker will be injected into the wearer when the system is turned on
@@ -70,6 +72,10 @@
 	var/movement_boost = 0
 	///How much time left on vali heal till necrosis occurs
 	var/vali_necro_timer
+	///When you last gained greenblood from attacking. Used to trigger greenblood decaying.
+	var/last_attack_time = 0
+	///How much time until greenblood decaying occurs
+	var/greenblood_decay_timer
 
 	/**
 	 * This list contains the vali stat increases that correspond to each reagent
@@ -156,6 +162,7 @@
 	if(boost_on)
 		on_off()
 	manage_weapon_connection()
+	STOP_PROCESSING(SSobj, src)
 
 	if(!wearer)
 		return
@@ -178,8 +185,16 @@
 
 	wearer.overlays += resource_overlay
 	update_resource(0)
+	START_PROCESSING(SSobj, src)
 
 /datum/component/chem_booster/process()
+	if(!boost_on)
+		greenblood_decay_timer = world.time - last_attack_time
+		if(greenblood_decay_timer < 5 SECONDS)
+			return
+		if(resource_storage_current >= resource_decay_amount)
+			update_resource(-resource_decay_amount)
+		return
 	if(resource_storage_current < resource_drain_amount)
 		to_chat(wearer, span_warning("Insufficient green blood to maintain operation."))
 		on_off()
@@ -190,7 +205,7 @@
 
 	wearer.adjustToxLoss(-tox_heal*boost_amount)
 	wearer.heal_overall_damage(6*boost_amount*brute_heal_amp, 6*boost_amount*burn_heal_amp)
-	vali_necro_timer = world.time - processing_start
+	vali_necro_timer = world.time - healing_start
 	if(vali_necro_timer > 20 SECONDS)
 		return
 	if(connected_weapon)
@@ -236,7 +251,7 @@
 		if(VALI_INFO)
 			to_chat(wearer, span_notice("[reagent_info]"))
 
-///Handles turning on/off the processing part of the component, along with the negative effects related to this
+///Handles turning on/off the healing part of the component, along with the negative effects related to this
 /datum/component/chem_booster/proc/on_off(datum/source)
 	SIGNAL_HANDLER
 	if(!boost_on)
@@ -252,9 +267,8 @@
 	boost_on = !boost_on
 	SEND_SIGNAL(src, COMSIG_CHEMSYSTEM_TOGGLED, boost_on)
 	if(!boost_on)
-		STOP_PROCESSING(SSobj, src)
 		wearer.clear_fullscreen("degeneration")
-		vali_necro_timer = world.time - processing_start
+		vali_necro_timer = world.time - healing_start
 		var/necrotized_counter = FLOOR(min(vali_necro_timer, 20 SECONDS)/200 + (vali_necro_timer-20 SECONDS)/100, 1)
 		if(necrotized_counter >= 1)
 			for(var/datum/limb/limb_to_ruin AS in shuffle(wearer.limbs))
@@ -270,8 +284,7 @@
 		setup_bonus_effects()
 		return
 
-	processing_start = world.time
-	START_PROCESSING(SSobj, src)
+	healing_start = world.time
 	RegisterSignal(wearer, COMSIG_MOB_DEATH, PROC_REF(on_off))
 	playsound(get_turf(wearer), 'sound/effects/bubbles.ogg', 30, 1)
 	to_chat(wearer, span_notice("Commensing green blood injection.<b>[(automatic_meds_use && meds_beaker.reagents.total_volume) ? " Adding additional reagents." : ""]</b>"))
@@ -378,7 +391,8 @@
 		return
 	if(resource_storage_current >= resource_storage_max)
 		return
-	update_resource(round(20*connected_weapon.attack_speed/11))
+	update_resource(round(10*connected_weapon.attack_speed/11))
+	last_attack_time = world.time
 
 ///Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource
 /datum/component/chem_booster/proc/update_resource(amount)
