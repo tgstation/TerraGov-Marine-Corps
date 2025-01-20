@@ -47,6 +47,8 @@
 	var/boost_icon = "cboost_t1"
 	///Item connected to the system
 	var/obj/item/connected_weapon
+	///Item connected to the system 2 Electric boogaloo
+	var/obj/item/connected_weapon_2
 	///When was the effect activated. Used to activate negative effects after a certain amount of use
 	var/processing_start = 0
 	///Internal reagent storage used to store and automatically inject reagents into the wearer
@@ -335,6 +337,10 @@
 		wearer.balloon_alert(wearer, "You need to be holding a harvester")
 		return
 
+	if(held_item == connected_weapon || held_item == connected_weapon_2)
+		manage_weapon_connection(held_item)
+		return
+
 	if(!held_item.GetComponent(/datum/component/harvester))
 		wearer.balloon_alert(wearer, "You need to be holding a harvester")
 		return
@@ -352,7 +358,7 @@
 
 ///Handles the setting up and removal of signals and vars related to connecting an item to the suit
 /datum/component/chem_booster/proc/manage_weapon_connection(obj/item/weapon_to_connect)
-	if(connected_weapon)
+	if(connected_weapon == weapon_to_connect)
 		wearer.balloon_alert(wearer, "Disconnected [connected_weapon]")
 		REMOVE_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
 		UnregisterSignal(connected_weapon, COMSIG_ITEM_ATTACK)
@@ -360,13 +366,27 @@
 		connected_weapon = null
 		return TRUE
 
+	if(connected_weapon_2 == weapon_to_connect)
+		wearer.balloon_alert(wearer, "disconnected [connected_weapon_2]")
+		REMOVE_TRAIT(connected_weapon_2, TRAIT_NODROP, VALI_TRAIT)
+		UnregisterSignal(connected_weapon_2, COMSIG_ITEM_ATTACK)
+		UnregisterSignal(connected_weapon_2, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED))
+		connected_weapon_2 = null
+		return TRUE
+
 	if(!weapon_to_connect)
 		return FALSE
 
-	connected_weapon = weapon_to_connect
-	ADD_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
-	RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource))
-	RegisterSignals(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
+	if(!connected_weapon)
+		connected_weapon = weapon_to_connect
+		ADD_TRAIT(connected_weapon, TRAIT_NODROP, VALI_TRAIT)
+		RegisterSignal(connected_weapon, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource))
+		RegisterSignals(connected_weapon, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
+		return TRUE
+	connected_weapon_2 = weapon_to_connect
+	ADD_TRAIT(connected_weapon_2, TRAIT_NODROP, VALI_TRAIT)
+	RegisterSignal(connected_weapon_2, COMSIG_ITEM_ATTACK, PROC_REF(drain_resource_2))
+	RegisterSignals(connected_weapon_2, list(COMSIG_ITEM_EQUIPPED_NOT_IN_SLOT, COMSIG_ITEM_DROPPED), PROC_REF(vali_connect))
 	return TRUE
 
 ///Handles resource collection and is ativated when attacking with a weapon.
@@ -379,6 +399,17 @@
 	if(resource_storage_current >= resource_storage_max)
 		return
 	update_resource(round(20*connected_weapon.attack_speed/11))
+
+///Handles resource collection and is ativated when attacking with a weapon.
+/datum/component/chem_booster/proc/drain_resource_2(datum/source, mob/living/M, mob/living/user)
+	SIGNAL_HANDLER
+	if(!isxeno(M))
+		return
+	if(M.stat == DEAD)
+		return
+	if(resource_storage_current >= resource_storage_max)
+		return
+	update_resource(round(20*connected_weapon_2.attack_speed/11))
 
 ///Adds or removes resource from the suit. Signal gets sent at every 25% of stored resource
 /datum/component/chem_booster/proc/update_resource(amount)
