@@ -510,10 +510,9 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(xeno_owner, "too far")
 		return FALSE
-	var/list/turf/turf_line_pre = get_turf_line(get_step(xeno_owner, get_cardinal_dir(xeno_owner, A)))
-	if(!turf_line_pre.len)
+	if(!check_path(get_step(xeno_owner, get_cardinal_dir(xeno_owner, A)), A))
 		if(!silent)
-			A.balloon_alert(xeno_owner, "blocked")
+			A.balloon_alert(xeno_owner, "path blocked")
 		return FALSE
 
 /datum/action/ability/activable/xeno/abduct/use_ability(atom/A)
@@ -522,7 +521,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		add_cooldown(cooldown_duration/2)
 		return
 	xeno_owner.face_atom(A)
-	turf_line = get_turf_line(A)
+	turf_line = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, A)), A)
 	LAZYINITLIST(telegraphed_atoms)
 	for(var/turf/turf_from_line AS in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
@@ -530,42 +529,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 1.2 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
 	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(failed_pull))
-
-/// Get a filtered line of turfs going from the owner to the target. This excludes the turf the owner is currently on.
-/datum/action/ability/activable/xeno/abduct/proc/get_turf_line(atom/target)
-	var/list/turf_line_unfiltered = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, target)), target)
-	var/list/turf_line_filtered = list()
-	// Used for checking against barricades and must be cardinal since barricades only face cardinal directions.
-	var/direction = get_cardinal_dir(xeno_owner, target)
-	end_the_loop:
-		for(var/turf/unfiltered_turf AS in turf_line_unfiltered)
-			if(unfiltered_turf.density)
-				break
-			var/hit_same_side_barricade = FALSE
-			for(var/obj/object_on_turf in unfiltered_turf)
-				if(!object_on_turf.density)
-					continue
-				if(!(object_on_turf.allow_pass_flags & PASS_DEFENSIVE_STRUCTURE))
-					break end_the_loop
-				if(!isbarricade(object_on_turf))
-					continue
-				var/obj/structure/barricade/barricade_on_turf = object_on_turf
-				if(barricade_on_turf.climbable)
-					continue
-				if(direction == REVERSE_DIR(barricade_on_turf.dir))
-					break end_the_loop
-				if(barricade_on_turf.dir != direction)
-					continue
-				// Similar to Warrior's lunge, no passing over even if it comes from similar directions.
-				// Cannot early break since it is possible that other barricades (that weren't checked yet) might want to block it.
-				hit_same_side_barricade = TRUE
-			if(hit_same_side_barricade)
-				turf_line_filtered += unfiltered_turf
-				break
-			direction = get_cardinal_dir(unfiltered_turf, target)
-			turf_line_filtered += unfiltered_turf
-
-	return turf_line_filtered
 
 /// Ends the ability by throwing all humans in the affected turfs to the initial turf.
 /datum/action/ability/activable/xeno/abduct/proc/pull_them_in()
