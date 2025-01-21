@@ -74,7 +74,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/cell/high = list(CAT_ENGSUP, "High capacity powercell", 1, "engi-tool"),
 		/obj/item/clothing/glasses/welding/superior = list(CAT_ENGSUP, "Superior welding goggles", 2, "engi-tool"),
 		/obj/item/armor_module/module/welding/superior = list(CAT_ENGSUP, "Superior welding module", 2, "engi-tool"),
-		/obj/item/explosive/plastique/genghis_charge = list(CAT_ENGSUP, "EX-62 Genghis incendiary charge", 15, "engi-explosive"),
+		/obj/item/explosive/plastique/genghis_charge = list(CAT_ENGSUP, "EX-62 Genghis incendiary charge", 5, "engi-explosive"),
 		/obj/item/detpack = list(CAT_ENGSUP, "Detonation pack", 5, "engi-explosive"),
 		/obj/item/explosive/plastique = list(CAT_ENGSUP, "Plastique explosive", 2, "engi-explosive"),
 		/obj/item/storage/box/explosive_mines/large = list(CAT_ENGSUP, "Large M20 mine box", 35, "engi-explosive"),
