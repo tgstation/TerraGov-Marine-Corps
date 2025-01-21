@@ -1,0 +1,5 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - rscadd: "gibbing particles"
+  - soundadd: "gib sound"
