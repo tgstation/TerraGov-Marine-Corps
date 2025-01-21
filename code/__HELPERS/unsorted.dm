@@ -1191,55 +1191,6 @@ will handle it, but:
 				areas += V
 	return areas
 
-/**
- *	Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
- *	Variables:
- *	center - where the cone begins, or center of a circle drawn with this
- *	max_row_count - how many rows are checked
- *	starting_row - from how far should the turfs start getting included in the cone
- *	cone_width - big the angle of the cone is
- *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
- *	blocked - whether the cone should take into consideration solid walls
- */
-/proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE)
-	var/right_angle = cone_direction + cone_width/2
-	var/left_angle = cone_direction - cone_width/2
-
-	//These are needed because degrees need to be from 0 to 359 for the checks to function
-	if(right_angle >= 360)
-		right_angle -= 360
-
-	if(left_angle < 0)
-		left_angle += 360
-
-	///the 3 directions in the direction on the cone that will be checked
-	var/cardinals = GLOB.cardinals - REVERSE_DIR(cone_direction)
-	///turfs that are checked whether the cone can continue further from them
-	var/list/turfs_to_check = list(get_turf(center))
-	var/list/cone_turfs = list()
-
-	for(var/r in 1 to max_row_count)
-		for(var/X in turfs_to_check)
-			var/turf/trf = X
-			for(var/direction in cardinals)
-				var/turf/T = get_step(trf, direction)
-				if(cone_turfs.Find(T))
-					continue
-				if(get_dist(center, T) < starting_row)
-					continue
-				var/turf_angle = Get_Angle(center, T)
-				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
-					continue
-				if(turf_angle > right_angle && turf_angle < left_angle)
-					continue
-				if(blocked)
-					if(T.density || LinkBlocked(trf, T) || TurfBlockedNonWindow(T))
-						continue
-				cone_turfs += T
-				turfs_to_check += T
-			turfs_to_check -= trf
-	return	cone_turfs
-
 ///Returns a list of all locations (except the area) the movable is within.
 /proc/get_nested_locs(atom/movable/atom_on_location, include_turf = FALSE)
 	. = list()
@@ -1261,7 +1212,7 @@ will handle it, but:
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
  *	blocked - whether the cone should take into consideration obstacles
  */
-/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, pass_flags_checked = NONE)
+/proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, pass_flags_checked = NONE)
 	var/right_angle = cone_direction + cone_width/2
 	var/left_angle = cone_direction - cone_width/2
 
