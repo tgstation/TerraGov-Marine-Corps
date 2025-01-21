@@ -1259,13 +1259,9 @@ will handle it, but:
  *	starting_row - from how far should the turfs start getting included in the cone. -1 required to include center turf due to byond
  *	cone_width - big the angle of the cone is
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
- *	blocked - whether the cone should take into consideration solid walls
- *	bypass_window - whether it will go through transparent windows like lasers
- *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects like projectiles
- *	bypass_xeno - whether to bypass dense xeno structures like flamers
- *	air_pass - whether to bypass non airtight atoms
+ *	blocked - whether the cone should take into consideration obstacles
  */
-/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, pass_flags_checked = NONE)
 	var/right_angle = cone_direction + cone_width/2
 	var/left_angle = cone_direction - cone_width/2
 
@@ -1293,7 +1289,7 @@ will handle it, but:
 					continue
 				if(turf_angle > right_angle && turf_angle < left_angle)
 					continue
-				if(blocked && LinkBlocked(old_turf, turf_to_check, bypass_window, projectile, bypass_xeno, air_pass))
+				if(blocked && LinkBlocked(old_turf, turf_to_check, pass_flags_checked))
 					continue
 				cone_turfs += turf_to_check
 				turfs_to_check += turf_to_check

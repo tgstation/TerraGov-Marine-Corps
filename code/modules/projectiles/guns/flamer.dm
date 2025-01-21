@@ -174,7 +174,7 @@
 		if(FLAMER_STREAM_CONE)
 			//direction in degrees
 			var/dir_to_target = Get_Angle(src, target)
-			var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 1, cone_angle, dir_to_target, bypass_xeno = TRUE, air_pass = TRUE)
+			var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 1, cone_angle, dir_to_target, pass_flags_checked = PASS_AIR|PASS_XENO)
 			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src), flame_max_wall_pen_wide)
 		if(FLAMER_STREAM_RANGED)
 			return ..()
