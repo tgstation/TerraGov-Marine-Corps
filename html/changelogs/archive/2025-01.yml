@@ -125,3 +125,41 @@
 2025-01-20:
   blackdav123:
   - rscadd: Added big tails and twin drills hairstyles.
+2025-01-21:
+  Cheese:
+  - rscadd: Acid Maw and Jaw uses are now stattracked
+  Looking4bros:
+  - bugfix: Regular webbing can no longer hold things it wasn't supposed to
+  Lumipharon:
+  - balance: Reduce vali heal mult from 6 to 4
+  - balance: Xeno toxins and satrapine apply negative multipliers to vali
+  - balance: Mera/Derm have small negative mults to their opposite healing types for
+      vali
+  - balance: 'Campaign: Tank LTAAP has HV, non-IFF ammo'
+  - bugfix: Fixes custom squad radio overriding other radio channels
+  Sun-Soaked:
+  - balance: drones can now print a resin glob, change their pheros, and use their
+      primo ability while mounted
+  TiviPlus:
+  - code_imp: Added backend for offsettable tank turrets
+  - bugfix: Fixed dchat runechat only showing for the owner
+  - bugfix: Fixed being able to tear up empty space
+  - bugfix: Fix mech explosion being on deletion and not dying
+  - rscadd: Added xeno maw "minion" ammo type
+  - rscadd: Flamer and laser sentry now available for purchase in req
+  - soundadd: all sentries now use gun-type specific sounds (ie shotgun sentry sounds
+      like a shotgun) instead of all using the default sound
+  Tiviplus & Kuro:
+  - rscadd: Added Loki armor module which can be activated to make the user 80% transparent
+      as well as spawn a mirage clone
+  - rscadd: Added Thor armor lock module which allows you to become immobile for 4
+      seconds  in exchange for 50 extra armor
+  - bugfix: fixed a number of module names not prefixing "the" correctly in some cases
+  - bugfix: fixed being incapacited still allowing you to spin by trying to shoot
+      your gun
+  blackdav123:
+  - qol: Block Movement is now on a keybind that you can use to face directions without
+      moving.
+  tyeagg:
+  - rscadd: gibbing particles
+  - soundadd: gib sound

@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Flamer and laser sentry now available for purchase in req"
-  - soundadd: "all sentries now use gun-type specific sounds (ie shotgun sentry sounds like a shotgun) instead of all using the default sound"
