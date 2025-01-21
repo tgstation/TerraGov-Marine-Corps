@@ -343,10 +343,13 @@
 	if(owner.do_actions || !target || !can_use_action(TRUE) || !check_distance(target, TRUE))
 		return fail_activate()
 
+	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 	if(!do_after(owner, 0.8 SECONDS, NONE, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
+		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 		return fail_activate()
 
 	owner.visible_message(span_xenowarning("\The [owner] starts channeling their psychic might!"), span_xenowarning("We start channeling our psychic might!"))
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_CRUSH_ABILITY_TRAIT)
 	owner.add_movespeed_modifier(MOVESPEED_ID_WARLOCK_CHANNELING, TRUE, 0, NONE, TRUE, 0.9)
 
 	particle_holder = new(owner, channel_particle)
@@ -579,14 +582,12 @@
 /datum/action/ability/activable/xeno/psy_blast/use_ability(atom/A)
 	owner.balloon_alert(owner, "We channel our psychic power")
 	generate_particles(A, 7)
-	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
 	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		end_channel()
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 		return fail_activate()
 
 	succeed_activate()
@@ -606,7 +607,6 @@
 
 	add_cooldown()
 	update_button_icon()
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
 
 /datum/action/ability/activable/xeno/psy_blast/update_button_icon()
