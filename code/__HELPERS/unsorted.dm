@@ -206,7 +206,7 @@
 			continue
 		if(object.atom_flags & ON_BORDER && object.dir != direction)
 			continue
-		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
+		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && (pass_flags_checked & PASS_XENO)) //xeno objects are bypassed by flamers
 			continue
 		if(pass_flags_checked & object.allow_pass_flags)
 			continue
