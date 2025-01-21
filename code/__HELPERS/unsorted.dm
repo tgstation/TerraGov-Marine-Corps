@@ -174,51 +174,41 @@
 	var/angle = abs(degree_one - degree_two) % 360
 	return angle > 180 ? 360 - angle : angle
 
-/**
- *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
- *	Variables:
- *	bypass_window - check for PASS_GLASS - laser like behavior
- *	projectile - check for PASS_PROJECTILE - bullet like behavior
- *	bypass_xeno - whether to bypass dense xeno structures like flamers
- *	air_pass - whether to bypass non airtight atoms
- */
-/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+
+///Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
+/proc/LinkBlocked(turf/A, turf/B, pass_flags_checked = NONE)
 	if(isnull(A) || isnull(B))
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
-	if(B.density && (!istype(B, /turf/closed/wall/resin) || !bypass_xeno))
+	if(B.density && (!istype(B, /turf/closed/wall/resin) || !(pass_flags_checked & PASS_XENO))) //TODO: Unsnowflake this check here and in DirBlocked()
 		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
 		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
-		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, iStep, bypass_window, projectile, bypass_xeno, air_pass) && !LinkBlocked(iStep, B, bypass_window, projectile, bypass_xeno, air_pass))
+		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && (pass_flags_checked & PASS_XENO))) && !LinkBlocked(A, iStep, pass_flags_checked) && !LinkBlocked(iStep, B, pass_flags_checked))
 			return FALSE
 
 		var/turf/pStep = get_step(A,adir & (EAST|WEST))
-		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, pStep, bypass_window, projectile, bypass_xeno, air_pass) && !LinkBlocked(pStep, B, bypass_window, projectile, bypass_xeno, air_pass))
+		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && (pass_flags_checked & PASS_XENO))) && !LinkBlocked(A, pStep, pass_flags_checked) && !LinkBlocked(pStep, B, pass_flags_checked))
 			return FALSE
 		return TRUE
 
-	if(DirBlocked(A, adir, bypass_window, projectile, bypass_xeno, air_pass))
+	if(DirBlocked(A, adir, pass_flags_checked))
 		return TRUE
-	if(DirBlocked(B, rdir, bypass_window, projectile, bypass_xeno, air_pass))
+	if(DirBlocked(B, rdir, pass_flags_checked))
 		return TRUE
 	return FALSE
 
 ///Checks if moving in a direction is blocked
-/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+/proc/DirBlocked(turf/loc, direction, pass_flags_checked = NONE)
 	for(var/obj/object in loc)
 		if(!object.density)
 			continue
-		if((object.allow_pass_flags & PASS_PROJECTILE) && projectile)
+		if(object.atom_flags & ON_BORDER && object.dir != direction)
 			continue
 		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
 			continue
-		if((object.allow_pass_flags & PASS_GLASS) && bypass_window)
-			continue
-		if((object.allow_pass_flags & PASS_AIR) && air_pass)
-			continue
-		if(object.atom_flags & ON_BORDER && object.dir != direction)
+		if(pass_flags_checked & object.allow_pass_flags)
 			continue
 		return TRUE
 	return FALSE
@@ -1315,21 +1305,12 @@ will handle it, but:
 
 GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 
-/**
- *	Draws a line between two atoms, then checks if the path is blocked.
- *	Variables:
- *	start -start point of the path
- *	end - end point of the path
- *	bypass_window - whether it will go through transparent windows in the same way as lasers
- *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects in the same way as projectiles
- *	bypass_xeno - whether to bypass dense xeno structures in the same way as flamers
- *	air_pass - whether to bypass non airtight atoms
- */
-/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+///Draws a line between two atoms, then checks if the path is blocked
+/proc/check_path(atom/start, atom/end, pass_flags_checked = NONE)
 	var/list/path_to_target = getline(start, end)
 	var/line_count = 1
 	while(line_count < length(path_to_target))
-		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno, air_pass))
+		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], pass_flags_checked))
 			return FALSE
 		line_count ++
 	return TRUE

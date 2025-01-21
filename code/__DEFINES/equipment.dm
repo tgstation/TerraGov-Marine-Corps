@@ -28,6 +28,22 @@
 #define PASSABLE (PASS_THROW|PASS_PROJECTILE|PASS_AIR)
 #define HOVERING (PASS_LOW_STRUCTURE|PASS_MOB|PASS_DEFENSIVE_STRUCTURE|PASS_FIRE)
 
+///List of all pass flags so we can iterate through them
+GLOBAL_LIST_INIT(pass_flags, list(
+	PASS_LOW_STRUCTURE,
+	PASS_GLASS,
+	PASS_GRILLE,
+	PASS_MOB,
+	PASS_DEFENSIVE_STRUCTURE,
+	PASS_FIRE,
+	PASS_XENO,
+	PASS_THROW,
+	PASS_PROJECTILE,
+	PASS_AIR,
+	PASS_WALKOVER,
+	PASS_TANK,
+))
+
 //==========================================================================================
 
 
