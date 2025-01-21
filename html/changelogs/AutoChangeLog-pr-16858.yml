@@ -1,0 +1,4 @@
+author: "yyzsong"
+delete-after: True
+changes:
+  - balance: "moves a landing site on the Research Outpost map for the Crash gamemode"
