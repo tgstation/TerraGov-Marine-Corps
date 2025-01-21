@@ -545,7 +545,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			for(var/obj/object_on_turf in unfiltered_turf)
 				if(!object_on_turf.density)
 					continue
-				if(!(object_on_turf.allow_pass_flags & PASS_THROW))
+				if(!(object_on_turf.allow_pass_flags & PASS_DEFENSIVE_STRUCTURE))
 					break end_the_loop
 				if(!isbarricade(object_on_turf))
 					continue
