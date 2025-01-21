@@ -510,7 +510,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(xeno_owner, "too far")
 		return FALSE
-	var/list/turf/turf_line_pre = get_turf_line(get_step(xeno_owner, get_dir(xeno_owner, A)))
+	var/list/turf/turf_line_pre = get_turf_line(get_step(xeno_owner, get_cardinal_dir(xeno_owner, A)))
 	if(!turf_line_pre.len)
 		if(!silent)
 			A.balloon_alert(xeno_owner, "blocked")
@@ -533,7 +533,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /// Get a filtered line of turfs going from the owner to the target. This excludes the turf the owner is currently on.
 /datum/action/ability/activable/xeno/abduct/proc/get_turf_line(atom/target)
-	var/list/turf_line_unfiltered = getline(get_step(xeno_owner, get_dir(xeno_owner, target)), target)
+	var/list/turf_line_unfiltered = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, target)), target)
 	var/list/turf_line_filtered = list()
 	// Used for checking against barricades and must be cardinal since barricades only face cardinal directions.
 	var/direction = get_cardinal_dir(xeno_owner, target)
