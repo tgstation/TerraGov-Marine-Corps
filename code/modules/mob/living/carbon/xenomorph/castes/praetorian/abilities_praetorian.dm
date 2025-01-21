@@ -543,25 +543,22 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 				break
 			var/hit_same_side_barricade = FALSE
 			for(var/obj/object_on_turf in unfiltered_turf)
-				if(isbarricade(object_on_turf))
-					var/obj/structure/barricade/barricade_on_turf = object_on_turf
-					if(!barricade_on_turf.climbable)
-						if(barricade_on_turf.dir == direction)
-							// Similar to Warrior's lunge, no passing over even if it comes from similar directions.
-							// Cannot early break since it is possible that other barricades (that weren't checked yet) might want to block it.
-							hit_same_side_barricade = TRUE
-							continue
-						if(barricade_on_turf.dir == NORTH && direction == SOUTH)
-							break end_the_loop
-						if(barricade_on_turf.dir == EAST && direction == WEST)
-							break end_the_loop
-						if(barricade_on_turf.dir == WEST && direction == EAST)
-							break end_the_loop
-						if(barricade_on_turf.dir == SOUTH && direction == NORTH)
-							break end_the_loop
+				if(!object_on_turf.density)
 					continue
-				if(object_on_turf.density && !(object_on_turf.allow_pass_flags & PASS_THROW))
+				if(!(object_on_turf.allow_pass_flags & PASS_THROW))
 					break end_the_loop
+				if(!isbarricade(object_on_turf))
+					continue
+				var/obj/structure/barricade/barricade_on_turf = object_on_turf
+				if(barricade_on_turf.climbable)
+					continue
+				if(direction == REVERSE_DIR(barricade_on_turf.dir))
+					break end_the_loop
+				if(barricade_on_turf.dir != direction)
+					continue
+				// Similar to Warrior's lunge, no passing over even if it comes from similar directions.
+				// Cannot early break since it is possible that other barricades (that weren't checked yet) might want to block it.
+				hit_same_side_barricade = TRUE
 			if(hit_same_side_barricade)
 				turf_line_filtered += unfiltered_turf
 				break
