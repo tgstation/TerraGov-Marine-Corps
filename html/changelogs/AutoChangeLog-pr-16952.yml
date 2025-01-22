@@ -1,6 +1,0 @@
-author: "yyzsong"
-delete-after: True
-changes:
-  - spellcheck: "Carrier: Call of Younger will now respect the target's pronouns"
-  - spellcheck: "Carrier: Adds proper ability description to the Build Hugger Turret ability, capitalizes ability name"
-  - spellcheck: "Carrier: Abilities will now exclusively use the term \"facehugger\" instead of \"hugger\" or \"young one\""
