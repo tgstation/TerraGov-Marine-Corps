@@ -121,7 +121,7 @@
 		name = "[(!newname)	? "identification card"	: "[newname]'s ID Card"][(!newjob) ? "" : " ([newjob])"]"
 		return
 
-	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment])"]"
+	name = "[(!registered_name)	? "identification card"	: "[registered_name]'s ID Card"][(!assignment) ? "" : " ([assignment], "][(!paygrade) ? ")" : "[paygrade])"]"
 	if(isliving(loc))
 		var/mob/living/L = loc
 		L.name = L.get_visible_name()
