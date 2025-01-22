@@ -19,4 +19,4 @@
 /mob/living/keybind_face_direction(direction)
 	if(stat > CONSCIOUS)
 		return
-	return ..()
+	facedir(direction)
