@@ -173,10 +173,7 @@ export const GameSettings = (props) => {
                 leftLabel={'Enabled'}
                 rightLabel={'Disabled'}
               />
-              <TextFieldPreference
-                label={'FPS'}
-                value={'clientfps'}
-              />
+              <TextFieldPreference label={'FPS'} value={'clientfps'} />
               <ToggleFieldPreference
                 label="Auto Fit viewport"
                 value="auto_fit_viewport"
