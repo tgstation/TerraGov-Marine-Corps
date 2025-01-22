@@ -1252,12 +1252,15 @@ will handle it, but:
 
 GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 
-///Draws a line between two atoms, then checks if the path is blocked
+/**
+ * Draws a line between two atoms, then checks if the path is blocked
+ * Returns the last turf in the list it can successfully path to
+*/
 /proc/check_path(atom/start, atom/end, pass_flags_checked = NONE)
 	var/list/path_to_target = getline(start, end)
 	var/line_count = 1
 	while(line_count < length(path_to_target))
 		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], pass_flags_checked))
-			return FALSE
+			break
 		line_count ++
-	return TRUE
+	return path_to_target[line_count]
