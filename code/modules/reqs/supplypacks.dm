@@ -2234,22 +2234,22 @@ FACTORY
 	cost = 750
 
 /datum/supply_packs/factory/sadar_refill_he
-	name = "SADAR HE missile assembly refill"
+	name = "RL-152 SADAR HE missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_he_refill)
 	cost = 500
 
 /datum/supply_packs/factory/sadar_refill_he_unguided
-	name = "SADAR HE unguided missile assembly refill"
+	name = "RL-152 SADAR HE unguided missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_he_unguided_refill)
 	cost = 500
 
 /datum/supply_packs/factory/sadar_refill_ap
-	name = "SADAR AP missile assembly refill"
+	name = "RL-152 SADAR AP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_ap_refill)
 	cost = 600
 
 /datum/supply_packs/factory/sadar_refill_wp
-	name = "SADAR WP missile assembly refill"
+	name = "RL-152 SADAR WP missile assembly refill"
 	contains = list(/obj/item/factory_refill/sadar_wp_refill)
 	cost = 400
 
