@@ -1,0 +1,6 @@
+author: "tyeagg"
+delete-after: True
+changes:
+  - rscadd: "new tiny explosions for ammo explosions and icc frag ammo"
+  - code_imp: "adjusted particle effects for impact effect"
+  - imageadd: "paper debris and new debris sprites"
