@@ -1,0 +1,4 @@
+author: "Looking4bros"
+delete-after: True
+changes:
+  - bugfix: "human bump attacks respects human IFF"
