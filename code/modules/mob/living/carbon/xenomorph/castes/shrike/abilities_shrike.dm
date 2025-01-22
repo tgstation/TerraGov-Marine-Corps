@@ -72,13 +72,15 @@
 	return ..()
 
 
-/datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/target, silent = FALSE, override_flags)
+/datum/action/ability/activable/xeno/psychic_fling/can_use_ability(atom/movable/target, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
 	if(QDELETED(target))
 		return FALSE
 	if(!isitem(target) && !ishuman(target) && !isdroid(target))	//only items, droids, and mobs can be flung.
+		return FALSE
+	if(target.move_resist >= MOVE_FORCE_OVERPOWERING)
 		return FALSE
 	var/max_dist = 3 //the distance only goes to 3 now, since this is more of a utility then an attack.
 	if(!line_of_sight(owner, target, max_dist))
@@ -181,6 +183,8 @@
 		for(var/atom/movable/affected AS in affected_tile)
 			if(!ishuman(affected) && !istype(affected, /obj/item) && !isdroid(affected))
 				affected.Shake(duration = 0.5 SECONDS)
+				continue
+			if(affected.move_resist >= MOVE_FORCE_OVERPOWERING)
 				continue
 			if(ishuman(affected))
 				var/mob/living/carbon/human/H = affected

@@ -37,7 +37,8 @@
 
 	var/sound/queen_sound = sound(get_sfx(SFX_QUEEN), channel = CHANNEL_ANNOUNCEMENTS)
 	var/sound/king_sound = sound('sound/voice/alien/xenos_roaring.ogg', channel = CHANNEL_ANNOUNCEMENTS)
-	for(var/mob/living/carbon/xenomorph/xeno AS in xeno_owner.hive.get_all_xenos())
+	var/list/xeno_listeners = xeno_owner.hive.get_all_xenos()
+	for(var/mob/living/carbon/xenomorph/xeno AS in xeno_listeners)
 		to_chat(xeno, assemble_alert(
 			title = "Hive Announcement",
 			subtitle = "From [xeno_owner.name]",
@@ -51,6 +52,11 @@
 				SEND_SOUND(xeno, king_sound)
 		//Display the ruler's hive message at the top of the game screen.
 		xeno.play_screen_text(queens_word, /atom/movable/screen/text/screen_text/queen_order)
+
+	var/list/tts_listeners = filter_tts_listeners(xeno_owner, xeno_listeners, null, RADIO_TTS_HIVEMIND)
+	if(length(tts_listeners))
+		var/list/treated_message = xeno_owner?.treat_message(input)
+		INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), xeno_owner, treated_message["tts_message"], xeno_owner.get_default_language(), xeno_owner.voice, xeno_owner.voice_filter, tts_listeners, FALSE, pitch = xeno_owner.pitch, directionality = FALSE)
 
 	succeed_activate()
 	add_cooldown()

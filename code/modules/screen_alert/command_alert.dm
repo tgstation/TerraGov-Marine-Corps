@@ -60,14 +60,20 @@
 		return
 	if(!can_use_action())
 		return
-	var/sound/S //Unique sound for squad leaders/non-squad leaders set further down
+
 	TIMER_COOLDOWN_START(owner, COOLDOWN_HUD_ORDER, CIC_ORDER_COOLDOWN)
 	addtimer(CALLBACK(src, PROC_REF(update_button_icon)), CIC_ORDER_COOLDOWN + 1)
 	update_button_icon()
 	log_game("[key_name(human_owner)] has broadcasted the hud message [text] at [AREACOORD(human_owner)]")
-	var/override_color // for squad colors
-	var/list/alert_receivers = (GLOB.alive_human_list + GLOB.ai_list + GLOB.observer_list) // for full faction alerts, do this so that faction's AI and ghosts can hear aswell
+	var/override_color
+	var/list/alert_receivers
+	var/sound_alert
+	var/announcement_title
+
 	if(human_owner.assigned_squad)
+		alert_receivers = human_owner.assigned_squad.marines_list + GLOB.observer_list
+		sound_alert = 'sound/effects/sos-morse-code.ogg'
+		announcement_title = "Squad [human_owner.assigned_squad.name] Announcement"
 		switch(human_owner.assigned_squad.id)
 			if(ALPHA_SQUAD)
 				override_color = "red"
@@ -79,24 +85,27 @@
 				override_color = "blue"
 			else
 				override_color = "grey"
-		for(var/mob/living/carbon/human/marine AS in human_owner.assigned_squad.marines_list | GLOB.observer_list)
-			marine.playsound_local(marine, 'sound/effects/sos-morse-code.ogg', 35)
-			marine.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>Squad [human_owner.assigned_squad.name] Announcement:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order, "[human_owner.assigned_squad.color]")
-			to_chat(marine, assemble_alert(
-				title = "Squad [human_owner.assigned_squad.name] Announcement",
-				subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",
-				message = text,
-				color_override = override_color
-			))
+	else
+		alert_receivers = GLOB.alive_human_list_faction[human_owner.faction] + GLOB.ai_list + GLOB.observer_list
+		sound_alert = 'sound/misc/notice2.ogg'
+		announcement_title = "[human_owner.job.title]'s Announcement"
+
+	for(var/mob/mob_receiver in alert_receivers)
+		mob_receiver.playsound_local(mob_receiver, sound_alert, 35, channel = CHANNEL_ANNOUNCEMENTS)
+		mob_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[uppertext(announcement_title)]:</u></span><br>" + text, new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, owner), override_color)
+		to_chat(mob_receiver, assemble_alert(
+			title = announcement_title,
+			subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",
+			message = text,
+			color_override = override_color
+		))
+
+	var/list/tts_listeners = filter_tts_listeners(human_owner, alert_receivers, null, RADIO_TTS_COMMAND)
+	if(!length(tts_listeners))
 		return
-	for(var/mob/faction_receiver in alert_receivers)
-		S = sound('sound/misc/notice2.ogg')
-		S.channel = CHANNEL_ANNOUNCEMENTS
-		if(faction_receiver.faction == human_owner.faction || isdead(faction_receiver))
-			faction_receiver.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>[uppertext(human_owner.job.title)]'S ANNOUNCEMENT:</u></span><br>" + text, /atom/movable/screen/text/screen_text/command_order)
-			to_chat(faction_receiver, assemble_alert(
-				title = "[human_owner.job.title]'s Announcement",
-				subtitle = "Sent by [human_owner.get_paygrade(0) ? human_owner.get_paygrade(0) : human_owner.job.title] [human_owner.real_name]",
-				message = text
-			))
-			SEND_SOUND(faction_receiver, S)
+	var/list/treated_message = human_owner?.treat_message(text) //we only treat the text here since it adds stutter to the text announcement otherwise
+	var/list/extra_filters = list(TTS_FILTER_RADIO)
+	if(isrobot(human_owner))
+		extra_filters += TTS_FILTER_SILICON
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), human_owner, treated_message["tts_message"], human_owner.get_default_language(), human_owner.voice, human_owner.voice_filter, tts_listeners, FALSE, pitch = human_owner.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
+

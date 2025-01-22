@@ -219,6 +219,26 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/sentry/sniper)
 	cost = 100
 
+/datum/supply_packs/weapons/sentry_flamer
+	name = "SFT-575 Flamethrower Sentry"
+	contains = list(/obj/item/storage/box/crate/sentry_flamer)
+	cost = 400
+
+/datum/supply_packs/weapons/sentry_flamer_ammo
+	name = "SFT-575 Flamethrower Sentry Ammo"
+	contains = list(/obj/item/ammo_magazine/sentry/flamer)
+	cost = 150
+
+/datum/supply_packs/weapons/sentry_laser
+	name = "SLT-576 Laser Sentry"
+	contains = list(/obj/item/storage/box/crate/sentry_laser)
+	cost = 400
+
+/datum/supply_packs/weapons/sentry_laser_ammo
+	name = "SLT-576 Laser Sentry Ammo"
+	contains = list(/obj/item/ammo_magazine/sentry/laser)
+	cost = 200
+
 /datum/supply_packs/weapons/buildasentry
 	name = "Build-A-Sentry Attachment System"
 	contains = list(
@@ -872,6 +892,16 @@ WEAPONS
 /datum/supply_packs/weapons/cupola_rounds
 	name = "Cupola tank magazine"
 	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
+	cost = 10
+
+/datum/supply_packs/weapons/tow_rocket
+	name = "TOW Missile"
+	contains = list(/obj/item/ammo_magazine/tank/tow_missile)
+	cost = 5 // marginally cheaper due to being a single loader
+
+/datum/supply_packs/weapons/microrocket_pod
+	name = "Microrocket pod"
+	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
 	cost = 10
 
 /*******************************************************************************
@@ -2243,32 +2273,32 @@ FACTORY
 	cost = 400
 
 /datum/supply_packs/factory/standard_recoilless_refill
-	name = "Recoilless standard missile assembly refill"
+	name = "RL-160 RR HE shell assembly refill"
 	contains = list(/obj/item/factory_refill/normal_rr_missile_refill)
 	cost = 300
 
 /datum/supply_packs/factory/light_recoilless_refill
-	name = "Recoilless light missile assembly refill"
+	name = "RL-160 RR LE shell assembly refill"
 	contains = list(/obj/item/factory_refill/light_rr_missile_refill)
 	cost = 300
 
 /datum/supply_packs/factory/heat_recoilless_refill
-	name = "Recoilless heat missile assembly refill"
+	name = "RL-160 RR HEAT shell assembly refill"
 	contains = list(/obj/item/factory_refill/heat_rr_missile_refill)
 	cost = 300
 
 /datum/supply_packs/factory/smoke_recoilless_refill
-	name = "Recoilless smoke missile assembly refill"
+	name = "RL-160 RR smoke shell assembly refill"
 	contains = list(/obj/item/factory_refill/smoke_rr_missile_refill)
 	cost = 300
 
 /datum/supply_packs/factory/cloak_recoilless_refill
-	name = "Recoilless cloak missile assembly refill"
+	name = "RL-160 RR cloak shell assembly refill"
 	contains = list(/obj/item/factory_refill/cloak_rr_missile_refill)
 	cost = 300
 
 /datum/supply_packs/factory/tfoot_recoilless_refill
-	name = "Recoilless tfoot missile assembly refill"
+	name = "RL-160 RR tanglefoot shell assembly refill"
 	contains = list(/obj/item/factory_refill/tfoot_rr_missile_refill)
 	cost = 300
 

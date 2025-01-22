@@ -17,6 +17,7 @@
 	set_holdable(can_hold_list = list(
 		/obj/item/ammo_magazine/tank/ltb_cannon,
 		/obj/item/ammo_magazine/tank/ltaap_chaingun,
+		/obj/item/ammo_magazine/tank/ltaap_chaingun/hv,
 		/obj/item/ammo_magazine/tank/ltb_cannon/heavy,
 		/obj/item/ammo_magazine/tank/ltb_cannon/apfds,
 		/obj/item/ammo_magazine/tank/ltb_cannon/canister,
@@ -36,4 +37,6 @@
 		/obj/item/ammo_magazine/tank/secondary_flamer_tank,
 		/obj/item/ammo_magazine/tank/secondary_mlrs,
 		/obj/item/ammo_magazine/icc_mg,
+		/obj/item/ammo_magazine/tank/microrocket_rack,
+		/obj/item/ammo_magazine/tank/tow_missile,
 	))

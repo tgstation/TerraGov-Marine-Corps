@@ -53,6 +53,8 @@ GLOBAL_VAR_INIT(running_create_and_destroy, FALSE)
 	ignore += typesof(/obj/hitbox)
 	//Screen objects don't play nicely when spawned manually.
 	ignore += typesof(/atom/movable/screen)
+	///created by owning tank with necessary arg
+	ignore += typesof(/atom/movable/vis_obj/turret_overlay)
 
 	var/list/cached_contents = spawn_at.contents.Copy()
 	var/original_turf_type = spawn_at.type
