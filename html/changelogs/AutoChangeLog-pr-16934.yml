@@ -1,0 +1,5 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - rscadd: "Added 5 new intel computers to Big Red."
+  - bugfix: "Fixed an APC on a modular in Big Red."
