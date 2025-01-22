@@ -64,11 +64,11 @@
 	jump_start_time = world.timeofday
 
 ///Performs the jump
-/datum/component/jump/proc/do_jump(mob/living/jumper)
+/datum/component/jump/proc/do_jump(mob/living/jumper, buckled_check = TRUE)
 	SIGNAL_HANDLER
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
 		return
-	if(jumper.buckled)
+	if(buckled_check && jumper.buckled)
 		return
 	if(jumper.incapacitated())
 		return
