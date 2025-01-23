@@ -1,0 +1,4 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - bugfix: "Crashed canterbury on big red now uses its own area."
