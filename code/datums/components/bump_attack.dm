@@ -89,9 +89,9 @@
 	var/mob/living/living_target = target
 	if(bumper.faction == living_target.faction)
 		return //FF
-	if(ishuman(target))
+	if(ishuman(target) && bumper.wear_id)
 		var/mob/living/carbon/human/human_target = target
-		if(bumper.wear_id.iff_signal == human_target.wear_id.iff_signal)
+		if(human_target.wear_id && (bumper.wear_id.iff_signal == human_target.wear_id.iff_signal))
 			return //FF
 	if(isxeno(target))
 		var/mob/living/carbon/xenomorph/xeno = target
