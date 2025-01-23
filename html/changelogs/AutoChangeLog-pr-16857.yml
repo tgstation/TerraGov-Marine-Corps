@@ -1,4 +1,0 @@
-author: "ivanmixo"
-delete-after: True
-changes:
-  - refactor: "Refactored the way outfits populate the contents of containers"
