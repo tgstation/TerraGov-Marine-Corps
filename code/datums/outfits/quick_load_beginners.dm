@@ -448,6 +448,32 @@
 		/obj/item/explosive/plastique = 1,
 	)
 
+/datum/outfit/quick/beginner/engineer/point_sentry
+	name = "Sentry Pointman"
+	desc = "The perfect mobile guard. Equipped with a point defence sentry and flechette shotgun, you are the ideal engineer for protecting medics or locking down a flank."
+
+	suit_store = /obj/item/weapon/gun/shotgun/pump/t35/beginner/flechette
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/mirage_engineer
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/m10x/superiorwelding
+	back = /obj/item/storage/backpack/marine/engineerpack
+	belt = /obj/item/storage/belt/shotgun/flechette
+	glasses = /obj/item/clothing/glasses/meson
+	l_hand = /obj/item/paper/tutorial/point_sentry
+
+	backpack_contents = list(
+		/obj/item/storage/box/m94 = 3,
+		/obj/item/ammo_magazine/minisentry = 2,
+		/obj/item/weapon/gun/sentry/mini = 1,
+	)
+
+	suit_contents = list(
+		/obj/item/stack/sheet/metal/large_stack = 1,
+		/obj/item/stack/sheet/plasteel/small_stack = 1,
+		/obj/item/cell/high = 1,
+		/obj/item/explosive/plastique = 1,
+	)
+
 
 /datum/outfit/quick/beginner/corpsman
 	jobtype = "Squad Corpsman"
