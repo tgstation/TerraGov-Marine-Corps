@@ -1,4 +1,0 @@
-author: "blackdav123"
-delete-after: True
-changes:
-  - bugfix: "Block Movement keybind now lets you rotate scopes and binoculars like before."

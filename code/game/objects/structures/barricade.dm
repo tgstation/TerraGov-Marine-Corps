@@ -340,7 +340,7 @@
 	can_wire = FALSE
 
 /obj/structure/barricade/wooden/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
 /obj/structure/barricade/wooden/attackby(obj/item/I, mob/user, params)
 	. = ..()
@@ -417,7 +417,7 @@
 	modify_max_integrity(max_integrity + 75)
 
 /obj/structure/barricade/metal/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 /obj/structure/barricade/metal/update_overlays()
 	. = ..()
@@ -749,7 +749,7 @@
 	modify_max_integrity(max_integrity + 100)
 
 /obj/structure/barricade/plasteel/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 /obj/structure/barricade/plasteel/handle_barrier_chance(mob/living/M)
 	if(closed)
