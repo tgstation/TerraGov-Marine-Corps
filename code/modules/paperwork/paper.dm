@@ -126,6 +126,10 @@
 		H.makeup_style = null
 		H.update_body()
 
+/obj/item/paper/attack_self(mob/user)
+	. = ..()
+	examine(user)
+
 /obj/item/paper/proc/addtofield(id, text, links = 0)
 	var/locid = 0
 	var/laststart = 1

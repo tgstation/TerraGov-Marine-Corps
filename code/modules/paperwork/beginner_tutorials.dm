@@ -23,7 +23,7 @@
 	that heals all different types of damage. Make sure not to take more than two of each pill at a time - medicine takes a while to process through your system, \
 	and too many at once risks a dangerous overdose. \
 	Your gauze and ointment are body-part specific, unlike medication, but once you start applying one, you will keep applying it to all body parts that require treatment \
-	as long as you hold still. You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	as long as you hold still. You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	While holding your AR-12, use Z to wield your weapon with both hands, increasing accuracy and stability and reducing recoil. \
 	In the top left of your screen are several weapon-specific buttons. The "Take Aim" button toggles aim mode, a feature that slows your rate of fire \
@@ -78,7 +78,7 @@
 	Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine \
 	that is so heavily injured they are unconscious on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	While holding your MG-60, use Z to wield your weapon with both hands, increasing accuracy and stability and reducing recoil. \
 	In the top left of your screen are several weapon-specific buttons. The "Take Aim" button toggles aim mode, a feature that slows your rate of fire \
@@ -130,7 +130,7 @@
 	applying one, you will keep applying it to all body parts that require treatment as long as you hold still. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	On running out of ammo, the empty magazine will automatically eject from the DMR. \
 	To reload, simply grab a new magazine with an empty hand and click your gun with it. \
@@ -179,7 +179,7 @@
 	Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	While holding your SH-39, use Z to wield your weapon with both hands, increasing accuracy and stability and reducing recoil.<BR>
 	<BR>
@@ -230,7 +230,7 @@
 	applying one, you will keep applying it to all body parts that require treatment as long as you hold still.\
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	On running out of ammo, the empty battery will automatically eject from the rifle. \
 	To reload, simply grab a new battery with an empty hand and click your gun with it. \
@@ -280,7 +280,7 @@
 	Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	While holding your AR-11, use Z to wield your weapon with both hands, increasing accuracy and stability and reducing recoil. \
 	In the top left of your screen are several weapon-specific buttons. \
@@ -332,7 +332,7 @@
 	Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	While holding your AR-18, use Z to wield your weapon with both hands, increasing accuracy and stability and reducing recoil. \
 	In the top left of your screen are several weapon-specific buttons. \
@@ -376,7 +376,7 @@
 	applying one, you will keep applying it to all body parts that require treatment as long as you hold still. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	While holding your grenade launcher, press Z to wield it. You MUST wield your grenade launcher to use it!<BR>
 	<BR>
@@ -431,7 +431,7 @@
 	Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	Through your building expertise, marines can hold various critical locations, ensuring steady progress towards mission completion."}
 
@@ -479,7 +479,7 @@
 	Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	By removing resin structures with your flamethrower, you ensure area denial and dominance, flushing xenomorphs out and providing favorable battle circumstances for your \
 	fellow marines."}
@@ -519,7 +519,7 @@
 	Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	Your ability to treat terrain as a sandbox has infinite potential for assisting your allies."}
 
@@ -574,7 +574,7 @@
 	Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	Through your point defense, marines can keep their most vulnerable members alive and work to win the mission."}
 
@@ -608,7 +608,7 @@
 	<BR>
 	As your rifle is bolt-action, it needs to be racked after every shot. Do this by pressing your Unique Action key, which defaults to the spacebar.<BR>
 	<BR>
-	Your backpack contains ammo packets. You can click on your shotgun shell pouch to quickly transfer ammo into the pouch. \
+	Your backpack contains ammo bottles. You can click on your shotgun shell pouch to quickly transfer ammo into the pouch. \
 	You can then reload your repeater by clicking it while it's in your hand with the handful of bullets.<BR>
 	<BR>
 	Before you do ANYTHING to a patient, use your medical analyzer on them. Not analyzing is the number one cause of overdoses. \
@@ -705,7 +705,7 @@
 	require treatment as long as you hold still. Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right-clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	Your flare gun can be rapidly reloaded by just right-clicking the flare pouch with it in hand. \
 	Your flare pouch can be refilled by left clicking on it while holding a flare box. \
@@ -767,7 +767,7 @@
 	applying one, you will keep applying it to all body parts that require treatment as long as you hold still. Your splints are used to alleviate the effects of bone fractures, \
 	by applying them to a fractured limb. Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is \
 	so heavily injured they are unconscious on the ground (referred to as "critical condition") to rescue them from that state. \
-	You can remove pills from their packets directly by right clicking on the packet, even while it's in storage.<BR>
+	You can remove pills from their bottles directly by right clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	Your flare gun can be rapidly reloaded by just right clicking the flare pouch with it in hand. \
 	Your flare pouch can be refilled by left clicking on it while holding a flare box. \
