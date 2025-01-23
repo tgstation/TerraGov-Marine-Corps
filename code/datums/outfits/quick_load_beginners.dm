@@ -474,6 +474,41 @@
 		/obj/item/explosive/plastique = 1,
 	)
 
+/datum/outfit/quick/beginner/engineer/mortar
+	name = "Mortar Firesupport"
+	desc = "For those cheering from a distance. Equipped with a mortar bag, range finder, and an AR11, you are perfect for providing supporting fire and securing positions."
+	suit_store = /obj/item/weapon/gun/rifle/tx11/freelancerone
+	wear_suit = /obj/item/clothing/suit/modular/xenonauten/engineer
+	mask = /obj/item/clothing/mask/gas
+	head = /obj/item/clothing/head/modular/m10x/superiorwelding
+	back = /obj/item/storage/holster/backholster/mortar/full
+	glasses = /obj/item/clothing/glasses/meson
+	l_hand = /obj/item/paper/tutorial/mortar
+
+	backpack_contents = list(
+		/obj/item/mortal_shell/he = 5,
+		/obj/item/mortal_shell/incendiary = 4,
+		/obj/item/mortal_shell/plasmaloss = 4,
+	)
+
+	suit_contents = list(
+		/obj/item/stack/sheet/metal/large_stack = 2,
+		/obj/item/stack/sheet/plasteel/medium_stack = 1,
+		/obj/item/circuitboard/apc = 1,
+		/obj/item/cell/high = 1,
+	)
+
+	belt_contents = list(
+		/obj/item/ammo_magazine/rifle/tx11 = 6,
+	)
+
+	webbing_contents = list(
+		/obj/item/explosive/grenade/chem_grenade/razorburn_small = 1,
+		/obj/item/compass = 1,
+		/obj/item/binoculars/tactical/range = 1,
+		/obj/item/stack/medical/heal_pack/gauze = 1,
+		/obj/item/stack/medical/heal_pack/ointment = 1,
+	)
 
 /datum/outfit/quick/beginner/corpsman
 	jobtype = "Squad Corpsman"

@@ -13,7 +13,7 @@
 	Your helmet contains two protein bars, in case you get hungry, and your boots contain a standard-issue combat knife for clearing weeds or breaking things.<BR>
 	<BR>
 	Try to spend as much time as possible near other marines - being alone is very dangerous. \
-	Your versatility is an immense strength and makes you the ideal battle buddy for virtually any other marine.\
+	Your versatility is an immense strength and makes you the ideal battle buddy for virtually any other marine. \
 	You can easily work with a shotgunner to clear close quarters areas, or perhaps with a machine gunner to hold a fortified position, or even take point in front of a marksman. \
 	When not in immediate danger, use your flare gun to keep your surroundings lit, as your and your fellow marines' lives may very well depend on it.<BR>
 	<BR>
@@ -155,7 +155,7 @@
 
 /obj/item/paper/tutorial/beginner_shotgunner
 	name = "Shotgunner Tutorial"
-	info = {"As a shotgunner, you are the spearhead of the marine force.\
+	info = {"As a shotgunner, you are the spearhead of the marine force. \
 	Your semiautomatic SH-39 fires slugs that will devastate any target at short to medium range, dealing heavy damage as well as leaving them stunned and staggered. \
 	Your role is to be at the front of any marine push, side by side with your fellow marines as you charge into danger. Your shotgun shell rig on your belt, \
 	as well as your backpack, hold many additional slugs to reload your shotgun with. \
@@ -219,7 +219,7 @@
 	Your webbing contains Bicaridine (heals brute damage), Kelotane (heals burn damage), Tramadol (a painkiller), Tricordrazine (heals all damage, but slowly), \
 	and gauze and ointment, which also heal brute and burn damage, respectively. Your helmet contains protein bars and your boots contain an MRE, in case you get hungry.<BR>
 	<BR>
-	Switching between the different modes of your laser rifle is key to mastery on the battlefield.\
+	Switching between the different modes of your laser rifle is key to mastery on the battlefield. \
 	Like other frontliners, you aim to lead the push into enemy territory, clearing the path forward and facing xenomorphs head-on.<BR>
 	<BR>
 	<b>TIPS</b><BR>
@@ -227,7 +227,7 @@
 	BKTT is an acronym that is used to describe the combination of Bicaridine, Kelotane, Tricordizine, and Tramadol used as an all-rounder combat medicine mix \
 	for any situation that heals all different types of damage. Make sure not to take more than two of each pill at a time - medicine takes a while to process \
 	through your system, and too many at once risks a dangerous overdose. Your gauze and ointment are body-part specific, unlike medication, but once you start \
-	applying one, you will keep applying it to all body parts that require treatment as long as you hold still.\
+	applying one, you will keep applying it to all body parts that require treatment as long as you hold still. \
 	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
 	on the ground (referred to as "critical condition") to rescue them from that state. \
 	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
@@ -285,7 +285,7 @@
 	While holding your AR-11, use Z to wield your weapon with both hands, increasing accuracy and stability and reducing recoil. \
 	In the top left of your screen are several weapon-specific buttons. \
 	The "Take Aim" button toggles aim mode, a feature that slows your rate of fire in exchange for allowing you to shoot through allied marines. \
-	The second option changes the firing mode, between Single Automatic, Burst, and Burst Automatic. Automatic modes will keep firing as long as you hold down the mouse button.\
+	The second option changes the firing mode, between Single Automatic, Burst, and Burst Automatic. Automatic modes will keep firing as long as you hold down the mouse button. \
 	The tactical sensor option toggles your tactical sensor - you should keep this on always.<BR>
 	<BR>
 	Your tactical sensor will periodically blip, detecting moving targets in an area a little bigger than your screen. \
@@ -391,7 +391,7 @@
 
 /obj/item/paper/tutorial/builder
 	name = "Builder Tutorial"
-	info = {"The Builder loadout is designed around you establishing defenses, barricades made from metal, plasteel or sandbags.\
+	info = {"The Builder loadout is designed around you establishing defenses, barricades made from metal, plasteel or sandbags. \
 	You are the frontline - without you marines will be exposed to attacks from any and all directions. \
 	Your backpack contains some materials, a box of flares, and extra drums for your gun, as well as gauze and ointment to treat injuries with.
 	Your left pocket contains a tool pouch for all the tools you'll need to perform your engineering duties. \
@@ -459,7 +459,7 @@
 	Red resin walls are fire-resistant and require you to engage them in close quarters with a melee weapon to detroy them - the bayonet on your laser carbine is good for this,\
 	just be careful about any xenomorphs lurking in the mazes!<BR>
 	<BR>
-	Requisitions offers many useful upgrades to your kit. You can request a SURT pyrotechnic module for your armor that will make you unable to be set on fire.\
+	Requisitions offers many useful upgrades to your kit. You can request a SURT pyrotechnic module for your armor that will make you unable to be set on fire. \
 	You can also request X Fuel, a fuel for flamethrowers that burns hotter for longer and appears blue. \
 	<BR>
 	Your laser carbine is good for short-range defense. You can toggle the modes of it using unique action (default: space bar). \
@@ -492,7 +492,7 @@
 	This loadout also comes with a few materials for defenses in your suit storage, and a MP19 SMG for self-defense in your technician welderpack. \
 	Your left pocket contains a tool pouch for all the tools you'll need to perform your engineering duties. \
 	Your right pouch contains a first aid kit, complete with Bicaridine (heals brute damage), Kelotane (heals burn damage), Tramadol (a painkiller), \
-	Tricordrazine (heals all damage, but slowly), and Dylovene (heals toxin damage), as well as splints and inaprovaline.\
+	Tricordrazine (heals all damage, but slowly), and Dylovene (heals toxin damage), as well as splints and inaprovaline. \
 	Your helmet contains protein bars for eating, and your boots contain an MRE for further eating. \
 	The optical mesons on your eyewear slot give you the ability to see the shape of rooms behind solid walls, though you can't see anything (including xenomorphs!) \
 	behind those walls. \
@@ -543,6 +543,9 @@
 	<BR>
 	<b>TIPS</b><BR>
 	<BR>
+	Your shotgun will be key to keeping xenos at bay. Press the unique action key (default: spacebar) to pump your shotgun, \
+	and you can right click to take shells out of your belt. Click them onto your shotgun to reload it.<BR>
+	<BR>
 	You can deploy your sentry by ctrl-clicking it onto an adjacent tile. \
 	You will then have the option to switch it to radial mode, which will increase its vision to 360 degrees at the cost of 1 range. \
 	If it gets damaged, you can quickly pick it back up by dragging it to your character. You can also repair it using your welder.<BR>
@@ -577,6 +580,62 @@
 	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
 	<BR>
 	Through your point defense, marines can keep their most vulnerable members alive and work to win the mission."}
+
+/obj/item/paper/tutorial/mortar
+	name = "Mortar Engineer Tutorial"
+	info = {"The mortar firesupport loadout is equipped to fortify an area and keep xenos at bay. \
+	You are both sword and shield - your High Explosive and Incendiary shells can be used to threaten xenomorph escape routes, and where they heal. \
+	Your tanglefoot shells will create a gas that drains xenomorph plasma, preventing them from using abilities and keeping them away while your allies safely push. \
+	Your backpack contains a variety of these shells, along with the mortar you will be using to fire them. \
+	Your primary weapon is an AR11 rifle, which deals considerable damage and holds a large amount of ammo. \
+	Your left pocket contains a tool pouch for all the tools you'll need to perform your engineering duties, including a welder to fix your mortar. \
+	Your right pouch contains a first aid kit, complete with Bicaridine (heals brute damage), Kelotane (heals burn damage), Tramadol (a painkiller), \
+	Tricordrazine (heals all damage, but slowly), and Dylovene (heals toxin damage), as well as splints and inaprovaline. \
+	Your helmet contains protein bars for eating, and your boots contain an MRE for further eating. \
+	The optical mesons on your eyewear slot give you the ability to see the shape of rooms behind solid walls, though you can't see anything (including xenomorphs!) \
+	behind those walls. This can help you see good locations to fire your mortar. \
+	Use your quicker build speed and tools to aid and repair barricades, and fix APCs for generating the nuclear disks to win the round! \
+	Your helmet has a welding goggles module equipped on it, use this to protect your eyes while you weld and repair. \
+	Your suit storage contains materials, along with a spare power cell and a circuit board for building new APCs. \
+	Your uniform webbing has additional tools, including a rangefinder which you can link to your mortar and a compass that can be used to manually input coordinates.<BR>
+	<BR>
+	<b>TIPS</b><BR>
+	<BR>
+	The AR11 has a much higher firerate while on burst mode. Click the ability icon or set a Switch Fire Mode keybind to swap it to burst auto.<BR>
+	<BR>
+	You can deploy your mortar by ctrl-clicking it onto an adjacent tile. \
+	You can manually input coordinates to fire with it, but instead you should use the rangefinders in your webbing to do this. \
+	Clicking the mortar with your rangefinder will link it, and you can then zoom and ctrl-click on any tile to send those coordinates to the mortar. \
+	To fire a shell, simply put one into the mortar then right click if you have marked coordinates. \
+	If it gets damaged, you can quickly pick it back up by dragging it to your character. You can also repair it using your welder.<BR>
+	<BR>
+	Mortars have a minimum range of 15 tiles that you must fire outside. \
+	Shells will have an extra tile of variance every 15 tiles they fly. You can manually correct for this by modifying the Latitude and Longitude Offsets. \
+	When you run out, extra shells can be purchased from requisitions. Use the :u prefix to access the requisitions radio channel.<BR>
+	<BR>
+	Explosive shells should be used for direct attacks. Hitting resting xenos while they heal can buy significant time for your allies to push. \
+	Incendiary shells can be used for both direct attacks and as a deterrant. \
+	Launching an incendiary shell onto a xenomorph's only escape route can often result in a kill. \
+	Tanglefoot shells drain the plasma of any xenomorph that stay inside the gas, preventing them from using abilities. \
+	This means it is perfectly safe to fire tanglefoot onto your allies, \
+	and can be especially useful when pushing a dangerous choke or attempting to rescue dead marines.<BR>
+	<BR>
+	In your suit you will find a spare powercell. When fixing apcs swap the empty battery for your full one.<BR>
+	<BR>
+	When building defensive barricades it is best to not make them "flush" with nearby doors or walls. \
+	Instead pull back 1 tile and build it there; this prevents xenos from hiding around the corner behind the walls and smacking your cades freely without repercussion.<BR>
+	<BR>
+	BKTT is an acronym that is used to describe the combination of Bicaridine, Kelotane, Tricordizine, and Tramadol \
+	used as an all-rounder combat medicine mix for any situation that heals all different types of damage. \
+	Make sure not to take more than two of each pill at a time - medicine takes a while to process through your system, \
+	and too many at once risks a dangerous overdose. Your gauze and ointment are body-part specific, unlike medication, but once you start \
+	applying one, you will keep applying it to all body parts that require treatment as long as you hold still. \
+	Your splints are used to alleviate the effects of bone fractures, by applying them to a fractured limb. \
+	Your inaprovaline autoinjector is not to be applied to yourself - rather, it should be applied to an alive marine that is so heavily injured they are unconscious \
+	on the ground (referred to as "critical condition") to rescue them from that state. \
+	You can remove pills from their bottles directly by right-clicking on the bottle, even while it's in storage.<BR>
+	<BR>
+	Through your fire support, marines can keep the push moving and safely enter into dangerous areas."}
 
 /obj/item/paper/tutorial/lifesaver
 	name = "Lifesaver Tutorial"
