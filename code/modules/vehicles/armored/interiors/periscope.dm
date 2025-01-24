@@ -32,7 +32,7 @@
 ///signal handler for canceling the looking
 /obj/structure/periscope/proc/stop_looking(mob/source)
 	SIGNAL_HANDLER
-	unset_interaction(source)
+	source.unset_interaction()
 
 /obj/structure/periscope/on_unset_interaction(mob/user)
 	. = ..()
