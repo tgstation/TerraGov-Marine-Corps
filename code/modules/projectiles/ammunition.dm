@@ -219,7 +219,7 @@
 /obj/item/ammo_magazine/fire_act(burn_level)
 	if(!current_rounds)
 		return
-	explosion(loc, 0, 0, 0, 1, 1, throw_range = FALSE)
+	explosion(loc, 0, 0, 0, 1, 1, throw_range = FALSE, tiny = TRUE)
 	qdel(src)
 
 //Helper proc, to allow us to see a percentage of how full the magazine is.

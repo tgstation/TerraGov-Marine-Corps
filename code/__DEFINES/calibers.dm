@@ -65,6 +65,7 @@
 #define CALIBER_84MM "84mm rocket"
 #define CALIBER_67MM "67mm shell"
 #define CALIBER_68MM "68mm rocket"
+#define CALIBER_32MM "32mm rocket"
 #define CALIBER_37MM "37mm"
 #define CALIBER_15CM "155mm" //Heavy Infantry Support Gun
 
@@ -84,6 +85,7 @@
 #define CALIBER_10X20 "10x20mm" //Minisentry
 #define CALIBER_10X30 "10x30mm caseless"
 #define CALIBER_20 "20mm" //Dualcannon
+#define CALIBER_LASER "Laser cartridge" //Laser Sentry
 
 /// Vehicles
 #define CALIBER_30X17MM "30x170mm" // SARDEN

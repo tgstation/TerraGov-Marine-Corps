@@ -4432,7 +4432,7 @@
 /area/rocinante_base/surface/building/science/bio_lab)
 "gci" = (
 /obj/machinery/floor_warn_light,
-/turf/closed/shuttle/re_corner,
+/turf/closed/shuttle,
 /area/rocinante_base/surface/building/science/tele_lab)
 "gdi" = (
 /obj/machinery/vending/coffee,
@@ -12809,7 +12809,7 @@
 /turf/open/floor/plating/dmg1,
 /area/rocinante_base/surface/building/mining_construction)
 "sdN" = (
-/turf/closed/shuttle/re_corner,
+/turf/closed/shuttle,
 /area/rocinante_base/surface/building/science/tele_lab)
 "seF" = (
 /obj/structure/flora/ausbushes/grassybush,

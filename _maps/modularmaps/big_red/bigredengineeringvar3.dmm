@@ -12,6 +12,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering/east)
+"ba" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
 "bh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
@@ -27,6 +31,10 @@
 	},
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering)
+"bo" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering/east)
 "bA" = (
 /obj/structure/table,
 /obj/effect/spawner/random/engineering/toolbox,
@@ -185,6 +193,10 @@
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
 /obj/item/clothing/glasses/welding,
+/turf/open/floor,
+/area/bigredv2/outside/engineering/east)
+"is" = (
+/obj/machinery/computer/intel_computer,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
 "ix" = (
@@ -448,10 +460,6 @@
 	},
 /obj/structure/cable,
 /turf/open/floor/plating,
-/area/bigredv2/outside/engineering)
-"tw" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
 /area/bigredv2/outside/engineering)
 "tJ" = (
 /obj/structure/bed/chair{
@@ -952,10 +960,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
-"OT" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering/east)
 "Pk" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/spawner/random/machinery/machine_frame,
@@ -985,10 +989,6 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /turf/open/floor,
-/area/bigredv2/outside/engineering)
-"PX" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
 /area/bigredv2/outside/engineering)
 "PZ" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1089,6 +1089,10 @@
 "UM" = (
 /turf/closed/wall,
 /area/bigredv2/outside/engineering/east)
+"UN" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "Vk" = (
 /obj/item/stack/sheet/metal,
 /turf/open/floor,
@@ -1217,7 +1221,7 @@ Ib
 Ib
 Ib
 Ib
-PX
+UN
 Jk
 zx
 lU
@@ -1309,7 +1313,7 @@ tW
 GG
 GG
 GG
-tw
+ba
 Ib
 Ib
 Lx
@@ -1362,7 +1366,7 @@ EV
 qs
 EV
 EV
-PX
+UN
 OF
 uj
 SK
@@ -1396,7 +1400,7 @@ kV
 lU
 lU
 AT
-tw
+ba
 Ib
 Ib
 yN
@@ -1537,7 +1541,7 @@ CS
 GG
 Ri
 nZ
-OT
+bo
 UM
 UM
 xT
@@ -1563,7 +1567,7 @@ Lx
 (14,1,1) = {"
 lU
 HO
-PX
+UN
 kV
 BK
 UM
@@ -1650,7 +1654,7 @@ Lx
 (17,1,1) = {"
 EV
 EV
-PX
+UN
 jR
 bB
 UM
@@ -1683,7 +1687,7 @@ HK
 KP
 ho
 UM
-nV
+is
 Yk
 nV
 nV
@@ -1711,7 +1715,7 @@ xk
 Mr
 Qe
 Pz
-OT
+bo
 UM
 UM
 xT
@@ -1823,7 +1827,7 @@ Lx
 "}
 (23,1,1) = {"
 UM
-OT
+bo
 vw
 uv
 bA

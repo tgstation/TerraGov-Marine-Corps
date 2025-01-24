@@ -32,14 +32,14 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"cg" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering/east)
 "ci" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor,
-/area/bigredv2/outside/engineering)
-"cw" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
 /area/bigredv2/outside/engineering)
 "cG" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
@@ -246,10 +246,6 @@
 /obj/effect/landmark/start/job/survivor,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
-"mn" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall/r_wall,
-/area/bigredv2/outside/engineering)
 "mo" = (
 /obj/structure/table,
 /obj/machinery/light,
@@ -568,6 +564,10 @@
 "AJ" = (
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering/east)
+"Br" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
+/area/bigredv2/outside/engineering/east)
 "BG" = (
 /obj/structure/table,
 /obj/effect/decal/cleanable/dirt,
@@ -846,6 +846,10 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"Mg" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall,
+/area/bigredv2/outside/engineering)
 "Ml" = (
 /obj/machinery/door/airlock/mainship/engineering/free_access{
 	name = "\improper Engine Reactor Control"
@@ -928,6 +932,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/bigredv2/outside/engineering/east)
+"Qw" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/bigredv2/outside/engineering)
 "QE" = (
 /obj/machinery/light{
 	dir = 4
@@ -1148,10 +1156,6 @@
 /obj/effect/landmark/excavation_site_spawner,
 /turf/open/floor,
 /area/bigredv2/outside/engineering/east)
-"ZP" = (
-/obj/machinery/floor_warn_light/toggleable/generator,
-/turf/closed/wall,
-/area/bigredv2/outside/engineering/east)
 "ZV" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -1194,7 +1198,7 @@ xG
 xG
 xG
 xG
-cw
+Mg
 ZJ
 wW
 vr
@@ -1286,7 +1290,7 @@ zn
 bJ
 bJ
 bJ
-mn
+Qw
 xG
 xG
 Ft
@@ -1339,7 +1343,7 @@ Uf
 os
 Uf
 Uf
-cw
+Mg
 zF
 wg
 Wq
@@ -1373,7 +1377,7 @@ JM
 vr
 vr
 bR
-mn
+Qw
 xG
 xG
 Qo
@@ -1514,7 +1518,7 @@ jR
 bJ
 Gu
 UO
-ZP
+cg
 pu
 pu
 Ml
@@ -1540,7 +1544,7 @@ Ft
 (14,1,1) = {"
 vr
 Pz
-cw
+Mg
 JM
 Nb
 pu
@@ -1627,7 +1631,7 @@ Ft
 (17,1,1) = {"
 Uf
 Uf
-cw
+Mg
 CU
 Ib
 pu
@@ -1660,7 +1664,7 @@ Kn
 hr
 Zx
 pu
-Zs
+Br
 Um
 Zs
 Zs
@@ -1688,7 +1692,7 @@ jy
 LO
 Iu
 WA
-ZP
+cg
 pu
 pu
 Ml
@@ -1800,7 +1804,7 @@ Ft
 "}
 (23,1,1) = {"
 pu
-ZP
+cg
 lE
 YK
 sS

@@ -70,7 +70,6 @@
 	particles = new /particles/maw_smoke_glob
 
 /datum/maw_ammo/smoke/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
-	. = ..()
 	var/obj/effect/temp_visual/maw_gas_launch/anim = new(maw.loc)
 	var/obj/effect/particle_effect/smoke/smoke_effecttype = smoke_type::smoke_type
 	anim.particles.color = smoke_effecttype::color
@@ -133,7 +132,6 @@
 	var/list/spawned_huggers = list()
 
 /datum/maw_ammo/hugger/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
-	. = ..()
 	var/obj/effect/temp_visual/hugger_ball_launch/anim = new(maw.loc)
 	anim.pixel_x = (maw.bound_width/2) - 16
 	animate(anim, anim.duration, easing=EASE_OUT|CUBIC_EASING, pixel_y=600)
@@ -168,6 +166,76 @@
 	for(var/obj/item/clothing/mask/facehugger/paratrooper AS in spawned_huggers)
 		paratrooper.go_active()
 
+/datum/maw_ammo/minion
+	name = "ball of minions"
+	radial_icon_state = "minion"
+	cooldown_time = 5 MINUTES
+	/// range_turfs that minions will be dropped around the target
+	var/drop_range = 7
+	/// how many minions get dropped at once, does not stack on turfs if theres not enough turfs
+	var/minion_count = 16
+	///minions to choose to spawn
+	var/list/minion_options = list(
+		/mob/living/carbon/xenomorph/beetle/ai,
+		/mob/living/carbon/xenomorph/mantis/ai,
+		/mob/living/carbon/xenomorph/scorpion/ai,
+	)
+	/// used to track our spawned minions for animations and stuff
+	var/list/spawned_minions = list()
+
+/datum/maw_ammo/minion/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
+	create_launch_minion_anim(maw)//0 length timer avoidance
+	for(var/i=1 to minion_count)
+		addtimer(CALLBACK(src, PROC_REF(create_launch_minion_anim), maw), i*2) // staggers launches
+	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
+
+//literally just to make minion throw into the air anim
+/datum/maw_ammo/minion/proc/create_launch_minion_anim(obj/structure/xeno/acid_maw/maw)
+	playsound(maw, 'sound/effects/thoomp.ogg', 80, TRUE)
+	var/obj/effect/temp_visual/thrown_minion/anim = new(maw.loc, minion_options)
+	anim.pixel_x = (maw.bound_width/2) - rand(48, 30)
+	anim.transform = matrix().Turn(rand(360))
+	animate(anim, anim.duration, transform=matrix().Turn(rand(360)), easing=EASE_OUT|CUBIC_EASING, pixel_y=600)
+
+/datum/maw_ammo/minion/impact_visuals(turf/target)
+	var/list/turf/turfs = RANGE_TURFS(drop_range, target)
+	assignturfs:
+		while(length(turfs) && minion_count) // does not double stackhuggers: if 5 tiles free 5 huggers spawn
+			var/turf/candidate = pick_n_take(turfs)
+			if(candidate.density)
+				continue assignturfs
+			for(var/atom/blocker AS in candidate.contents)
+				if(blocker.density)
+					continue assignturfs
+			minion_count--
+			var/minion_type = pick(minion_options)
+			var/mob/living/carbon/xenomorph/paratrooper = new minion_type(candidate)
+			paratrooper.notransform = TRUE
+			paratrooper.density = FALSE
+			paratrooper.set_canmove(FALSE)
+			paratrooper.setDir(pick(GLOB.cardinals))
+
+			var/xoffset = (target.x - candidate.x) * 32
+			var/yoffset = (target.y - candidate.y) * 32 + 600
+			paratrooper.pixel_x = xoffset
+			paratrooper.pixel_y = yoffset
+
+			animate(paratrooper, 2 SECONDS, pixel_x=initial(paratrooper.pixel_x), pixel_y=initial(paratrooper.pixel_y), easing=EASE_OUT|CUBIC_EASING)
+			spawned_minions += paratrooper
+			CHECK_TICK // not in a hurry, we have 2 sec after all :)
+
+/datum/maw_ammo/minion/on_impact(turf/target)
+	for(var/mob/living/carbon/xenomorph/paratrooper AS in spawned_minions)
+		paratrooper.density = TRUE
+
+	addtimer(CALLBACK(src, PROC_REF(minion_activate)), 3 SECONDS)
+
+///mkminion activate and start moving/attacking
+/datum/maw_ammo/minion/proc/minion_activate()
+	for(var/mob/living/carbon/xenomorph/paratrooper AS in spawned_minions)
+		paratrooper.notransform = FALSE
+		paratrooper.set_canmove(TRUE)
+
 /datum/maw_ammo/xeno_fire
 	name = "plasma fire fireball"
 	radial_icon_state = "incendiary_mortar"
@@ -201,7 +269,7 @@
 
 /obj/structure/xeno/acid_maw
 	name = "acid maw"
-	desc = "A deep hole in the ground. it's walls are coated with resin and you see the occasional vent or fang."
+	desc = "A deep hole in the ground. Its walls are coated with resin and you see the occasional vent or fang."
 	icon = 'icons/Xeno/3x3building.dmi'
 	icon_state = "maw"
 	bound_width = 96
@@ -217,6 +285,7 @@
 	///list of paths that we can choose from when using this maw. converts to a list for radials on init (path = image)
 	var/list/maw_options = list(
 		/datum/maw_ammo/smoke/acid_big,
+		/datum/maw_ammo/minion,
 	)
 
 /obj/structure/xeno/acid_maw/Initialize(mapload, _hivenumber)
@@ -271,6 +340,10 @@
 	var/datum/maw_ammo/ammo = new selected_type
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
 	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_attacker), ammo.impact_time-2 SECONDS)
+	GLOB.round_statistics.acid_maw_fires++
+	if(xeno_attacker.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
+		personal_statistics.acid_maw_uses++
 	ammo.launch_animation(clicked_turf, src)
 	S_TIMER_COOLDOWN_START(src, COOLDOWN_MAW_GLOB, ammo.cooldown_time)
 
@@ -287,7 +360,7 @@
 
 /obj/structure/xeno/acid_maw/acid_jaws
 	name = "acid jaws"
-	desc = "A hole in the ground. It's walls are coated with resin and there is some smoke billowing out."
+	desc = "A hole in the ground. Its walls are coated with resin and there is some smoke billowing out."
 	icon = 'icons/Xeno/2x2building.dmi'
 	icon_state = "jaws"
 	bound_width = 32
@@ -302,3 +375,10 @@
 		/datum/maw_ammo/hugger,
 		/datum/maw_ammo/xeno_fire,
 	)
+
+/obj/structure/xeno/acid_maw/acid_jaws/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
+	GLOB.round_statistics.acid_jaw_fires++
+	if(xeno_attacker.client)
+		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
+		personal_statistics.acid_jaw_uses++
+	. = ..()

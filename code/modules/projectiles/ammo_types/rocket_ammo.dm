@@ -88,7 +88,8 @@
 /datum/ammo/rocket/ltb/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/target_turf = get_turf(target_mob)
 	if(!isxeno(target_mob))
-		target_mob.gib()
+		if(!(target_mob.status_flags & GODMODE))
+			target_mob.gib()
 	else
 		staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
 	drop_nade(target_turf)
@@ -531,7 +532,7 @@
 
 /datum/ammo/bullet/tank_apfds/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	proj.proj_max_range -= 2
-	if(ishuman(target_mob) && prob(35))
+	if(ishuman(target_mob) && !(target_mob.status_flags & GODMODE) && prob(35))
 		target_mob.gib()
 
 /datum/ammo/bullet/tank_apfds/on_hit_obj(obj/target_object, obj/projectile/proj)
@@ -568,6 +569,31 @@
 	var/matrix/rotate = matrix()
 	rotate.Turn(proj.dir_angle)
 	animate(proj, transform = rotate, time = SSprojectiles.wait)
+
+/datum/ammo/rocket/homing/microrocket /// this is basically a tgmc version of the above
+	name = "homing HE microrocket"
+	shell_speed = 0.3
+	damage = 75
+	penetration = 40
+	sundering = 10
+	turn_rate = 10
+
+/datum/ammo/rocket/homing/microrocket/drop_nade(turf/T)
+	explosion(T, 0, 0, 0, 4, 1)
+
+/datum/ammo/rocket/homing/tow
+	name = "TOW-III missile"
+	icon_state = "rocket_he"
+	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SPECIAL_PROCESS|AMMO_IFF
+	shell_speed = 0.3
+	turn_rate = 10
+	damage = 60
+	penetration = 30
+	sundering = 10
+	max_range = 30
+
+/datum/ammo/rocket/homing/tow/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 0, 2)
 
 /datum/ammo/rocket/coilgun
 	name = "kinetic penetrator"
@@ -620,7 +646,8 @@
 
 /datum/ammo/rocket/coilgun/high/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(ishuman(target_mob) && prob(50)) //it only has AMMO_PASS_THROUGH_MOB so it can keep going if it gibs a mob
-		target_mob.gib()
+		if(!(target_mob.status_flags & GODMODE))
+			target_mob.gib()
 		proj.proj_max_range -= 5
 		return
 	proj.proj_max_range = 0
