@@ -380,7 +380,7 @@ SUBSYSTEM_DEF(minimaps)
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	///assoc list of mob choices by clicking on coords. only exists fleetingly for the wait loop in [/proc/get_coords_from_click]
 	var/list/mob/choices_by_mob
-	///should get_coords_from_click stop waiting for an input?
+	///assoc list to determine if get_coords_from_click should stop waiting for an input for that specific mob
 	var/list/mob/stop_polling
 
 /atom/movable/screen/minimap/Initialize(mapload, datum/hud/hud_owner, target, flags)
