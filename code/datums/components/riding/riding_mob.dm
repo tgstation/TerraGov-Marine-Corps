@@ -245,7 +245,6 @@
 /datum/component/riding/creature/crusher/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(check_carrier_fall_over))
-	RegisterSignal(parent, COMSIG_ELEMENT_JUMP_STARTED, PROC_REF(make_rider_jump))
 
 /datum/component/riding/creature/crusher/log_riding(mob/living/living_parent, mob/living/rider)
 	if(!istype(living_parent) || !istype(rider))
@@ -277,15 +276,6 @@
 		. = riding_offsets["[mob_type]"]
 	else if(riding_offsets["[RIDING_OFFSET_ALL]"])
 		. = riding_offsets["[RIDING_OFFSET_ALL]"]
-
-/// If the crusher jumps, the rider(s) jumps alongside them
-/datum/component/riding/creature/crusher/proc/make_rider_jump()
-	SIGNAL_HANDLER
-
-	var/atom/movable/parentmovable = parent
-	for(var/mob/living/rider AS in parentmovable.buckled_mobs)
-		var/datum/component/jump/riderjump = rider.GetComponent(/datum/component/jump)
-		riderjump?.do_jump(rider, buckled_check = FALSE)
 
 // ***************************************
 // *********** Widow
