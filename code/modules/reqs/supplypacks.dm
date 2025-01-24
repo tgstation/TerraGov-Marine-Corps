@@ -861,7 +861,7 @@ SMARTGUN
 	cost = 150
 
 /datum/supply_packs/smartguns/smarttarget_rifle
-	name = "SG-62 Smart Target Rifle"
+	name = "SG-62 smart target rifle"
 	contains = list(/obj/item/weapon/gun/rifle/standard_smarttargetrifle)
 	cost = 400
 
