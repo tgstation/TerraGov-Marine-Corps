@@ -104,10 +104,10 @@
 		playsound(proj, 'sound/weapons/guns/misc/bfg_fly.ogg', 30, FALSE)
 
 /datum/ammo/energy/bfg/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	proj.max_range -= 2
+	proj.proj_max_range -= 2
 
 /datum/ammo/energy/bfg/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	proj.max_range -= 2
+	proj.proj_max_range -= 2
 
 /datum/ammo/energy/bfg/drop_nade(turf/T)
 	explosion(T, 0, 0, 4, 0, 0)
