@@ -1,0 +1,4 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "The laser sentry no longer has IFF when it shouldn't have"
