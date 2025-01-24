@@ -1,0 +1,4 @@
+author: "Sun-Soaked"
+delete-after: True
+changes:
+  - balance: "drones can now print a resin glob, change their pheros, and use their primo ability while mounted"
