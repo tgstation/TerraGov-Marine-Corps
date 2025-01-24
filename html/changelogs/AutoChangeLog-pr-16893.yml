@@ -1,5 +1,0 @@
-author: "Barnet2"
-delete-after: True
-changes:
-  - balance: "Prison Station metal roofs are now glass, allowing marines to pod and land Tadpole."
-  - bugfix: "Fixes some stray wall props on Pillar of Spring."

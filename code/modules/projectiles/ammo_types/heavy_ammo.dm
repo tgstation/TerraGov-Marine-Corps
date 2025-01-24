@@ -53,6 +53,13 @@
 	accuracy = 10
 	barricade_clear_distance = 4
 
+/datum/ammo/bullet/minigun/ltaap/hv
+	damage = 35
+	penetration = 30
+	ammo_behavior_flags = AMMO_BALLISTIC
+	hud_state = "hivelo_impact"
+	hud_state_empty = "hivelo_empty"
+
 /datum/ammo/bullet/auto_cannon
 	name = "autocannon high-velocity bullet"
 	hud_state = "minigun"

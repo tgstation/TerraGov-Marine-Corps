@@ -1,0 +1,6 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Reduce vali heal mult from 6 to 4"
+  - balance: "Xeno toxins and satrapine apply negative multipliers to vali"
+  - balance: "Mera/Derm have small negative mults to their opposite healing types for vali"

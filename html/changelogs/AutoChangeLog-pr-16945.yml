@@ -1,0 +1,4 @@
+author: "Cheese"
+delete-after: True
+changes:
+  - rscadd: "Acid Maw and Jaw uses are now stattracked"
