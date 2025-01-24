@@ -197,3 +197,8 @@
   - imageadd: paper debris and new debris sprites
   yyzsong:
   - spellcheck: 'Carrier: Fixes the description of the primordial ability'
+2025-01-24:
+  Looking4bros:
+  - bugfix: humans bumpslash xenos again
+  blackdav123:
+  - bugfix: Crashed canterbury on big red now uses its own area.
