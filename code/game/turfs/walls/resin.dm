@@ -23,7 +23,7 @@
 	var/is_normal_resin_wall = TRUE
 
 /turf/closed/wall/resin/add_debris_element()
-	AddElement(/datum/element/debris, null, -15, 8, 0.7)
+	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
 /turf/closed/wall/resin/Initialize(mapload)
 	. = ..()
