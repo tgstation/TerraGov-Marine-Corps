@@ -388,6 +388,7 @@
 
 /obj/machinery/power/geothermal/tbg/Destroy()
 	QDEL_NULL(ambient_soundloop)
+	QDEL_NULL(alarm_soundloop)
 	. = ..()
 
 /obj/machinery/power/geothermal/tbg/update_icon_state()
