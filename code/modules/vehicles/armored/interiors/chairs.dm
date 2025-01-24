@@ -78,10 +78,17 @@
 
 /obj/structure/bed/chair/vehicle_crew/driver/post_buckle_mob(mob/buckling_mob)
 	. = ..()
+	buckling_mob.reset_perspective(owner)
+	ADD_TRAIT(buckling_mob, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	buckling_mob.update_sight()
+	buckling_mob.client.view_size.set_view_radius_to(4.5)
 	owner.add_control_flags(buckling_mob, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 
 /obj/structure/bed/chair/vehicle_crew/driver/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
+	REMOVE_TRAIT(buckled_mob, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	buckled_mob.update_sight()
+	buckled_mob.client.view_size.reset_to_default()
 	owner.remove_control_flags(buckled_mob, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 
 /obj/structure/bed/chair/vehicle_crew/gunner
