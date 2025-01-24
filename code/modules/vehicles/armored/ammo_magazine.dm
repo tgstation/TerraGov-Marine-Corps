@@ -208,6 +208,7 @@
 	name = "\improper BFG antimatter container"
 	desc = "An antimatter containment chamber containing antimatter for a BFG glob. Do not open at threat of exploding."
 	icon_state = "bfg"
+	w_class = WEIGHT_CLASS_GIGANTIC
 	caliber = CALIBER_ANTIMATTER
 	default_ammo = /datum/ammo/energy/bfg
 	max_rounds = 1
