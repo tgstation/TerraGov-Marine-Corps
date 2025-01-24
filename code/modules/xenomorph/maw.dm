@@ -340,12 +340,12 @@
 	var/datum/maw_ammo/ammo = new selected_type
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
 	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_attacker), ammo.impact_time-2 SECONDS)
-	if(istype(src, /obj/structure/xeno/acid_maw))	//this is stinky but we need to call parent for acid jaw regardless so have to do the tracking, for both, here
+	if(type == /obj/structure/xeno/acid_maw)	//this is stinky but we need to call parent for acid jaw regardless so have to do the tracking, for both, here
 		GLOB.round_statistics.acid_maw_fires++
 		if(xeno_attacker.client)
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
 			personal_statistics.acid_maw_uses++
-	else if(istype(src, /obj/structure/xeno/acid_maw/acid_jaws))
+	else if(type == /obj/structure/xeno/acid_maw/acid_jaws)
 		GLOB.round_statistics.acid_jaw_fires++
 		if(xeno_attacker.client)
 			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
