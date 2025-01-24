@@ -371,8 +371,7 @@
 	var/datum/looping_sound/generator/tbg/ambient_soundloop
 	//Explosion alarm soundloop
 	var/datum/looping_sound/alarm_loop/generator/alarm_soundloop
-	//Effect to play when slashed
-	var/datum/effect_system/spark_spread/sparks
+
 	COOLDOWN_DECLARE(toggle_power)
 
 /obj/machinery/power/geothermal/tbg/Initialize()
