@@ -80,10 +80,11 @@
 	icon_state = "bfg_ball"
 	hud_state = "electrothermal"
 	hud_state_empty = "electrothermal_empty"
-	ammo_behavior_flags = AMMO_ENERGY|AMMO_SPECIAL_PROCESS|AMMO_PASS_THROUGH_MOB
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_SPECIAL_PROCESS|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 0.2
 	damage = 150
 	penetration = 50
+	max_range = 20
 	bullet_color = COLOR_PALE_GREEN_GRAY
 
 /datum/ammo/energy/bfg/ammo_process(obj/projectile/proj, damage)
@@ -102,14 +103,14 @@
 	if(proj.distance_travelled % sound_delay_time)
 		playsound(proj, 'sound/weapons/guns/misc/bfg_fly.ogg', 30, FALSE)
 
-/datum/ammo/energy/bfg/drop_nade(turf/T)
-	explosion(T, 0, 0, 4, 0, 0)
-
 /datum/ammo/energy/bfg/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)
+	proj.max_range -= 2
 
 /datum/ammo/energy/bfg/on_hit_turf(turf/target_turf, obj/projectile/proj)
-	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+	proj.max_range -= 2
+
+/datum/ammo/energy/bfg/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 0, 0)
 
 /datum/ammo/energy/bfg/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
