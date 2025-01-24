@@ -67,6 +67,9 @@
 /datum/component/jump/proc/start_jump(mob/living/jumper)
 	SIGNAL_HANDLER
 
+	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
+		return
+
 	if(jumper.buckled)
 		return
 	if(jumper.incapacitated())
@@ -80,15 +83,13 @@
 		return
 
 	do_jump(jumper)
+	jumper.adjustStaminaLoss(stamina_cost)
 	//Forces all who ride to jump alongside the jumper.
 	for(var/mob/buckled_mob AS in jumper.buckled_mobs)
-		do_jump(buckled_mob, FALSE)
+		do_jump(buckled_mob)
 
 ///Performs the jump
-/datum/component/jump/proc/do_jump(mob/living/jumper, use_stamina = TRUE)
-
-	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
-		return
+/datum/component/jump/proc/do_jump(mob/living/jumper)
 
 	var/effective_jump_duration = jump_duration
 	var/effective_jump_height = jump_height
@@ -108,8 +109,6 @@
 	var/original_pass_flags = jumper.pass_flags
 
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_STARTED, effective_jump_height, effective_jump_duration)
-	if(use_stamina)
-		jumper.adjustStaminaLoss(stamina_cost)
 	jumper.pass_flags |= effective_jumper_allow_pass_flags
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	jumper.add_nosubmerge_trait(JUMP_COMPONENT)
