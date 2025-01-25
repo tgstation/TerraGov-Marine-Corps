@@ -1,17 +1,17 @@
 // ***************************************
 // *********** Form Shift
 // ***************************************
-#define CRYOGEN_FORM_SHIFT_RANGE 3 // How far we can go with this ability.
+#define CRYOGEN_FORM_SHIFT_RANGE 2 // How far we can go with this ability.
 #define CRYOGEN_FORM_SHIFT_SPEED 5 // How fast the ability happens.
 #define CRYOGEN_FORM_SHIFT_DURATION 0.6 SECONDS // The duration for which we benefit from Form Shift's bonuses.
 
 /datum/action/ability/activable/xeno/form_shift
 	name = "Form Shift"
+	desc = "Double tap any movement direction to dash towards it. Grants a brief period of invulnerability."
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	action_icon_state = "evasion"
-	desc = "Double tap any movement direction to dash towards it. Grants a brief period of invulnerability."
 	ability_cost = 50
-	cooldown_duration = 4 SECONDS
+	cooldown_duration = 3 SECONDS
 	use_state_flags = ABILITY_IGNORE_COOLDOWN
 	keybind_flags = ABILITY_KEYBIND_USE_ABILITY|ABILITY_IGNORE_SELECTED_ABILITY
 	target_flags = ABILITY_TURF_TARGET
@@ -67,13 +67,13 @@
 
 /datum/action/ability/activable/xeno/form_shift/proc/set_signals(toggle)
 	if(!toggle)
-		UnregisterSignal(xeno_owner, list(COMSIG_KB_MOVEMENT_EAST_DOWN, COMSIG_KB_MOVEMENT_NORTH_DOWN, COMSIG_KB_MOVEMENT_SOUTH_DOWN, COMSIG_KB_MOVEMENT_WEST_DOWN, COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
+		UnregisterSignal(xeno_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED, COMSIG_KB_MOVEMENT_EAST_DOWN, COMSIG_KB_MOVEMENT_NORTH_DOWN, COMSIG_KB_MOVEMENT_SOUTH_DOWN, COMSIG_KB_MOVEMENT_WEST_DOWN))
 		return
+	RegisterSignals(xeno_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(stop_ability))
 	RegisterSignal(xeno_owner, COMSIG_KB_MOVEMENT_EAST_DOWN, PROC_REF(dash_east))
 	RegisterSignal(xeno_owner, COMSIG_KB_MOVEMENT_NORTH_DOWN, PROC_REF(dash_north))
 	RegisterSignal(xeno_owner, COMSIG_KB_MOVEMENT_SOUTH_DOWN, PROC_REF(dash_south))
 	RegisterSignal(xeno_owner, COMSIG_KB_MOVEMENT_WEST_DOWN, PROC_REF(dash_west))
-	RegisterSignals(xeno_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(stop_ability))
 
 /// Checks if we can dash to the east.
 /datum/action/ability/activable/xeno/form_shift/proc/dash_east()
@@ -111,6 +111,7 @@
 	animate(xeno_owner, alpha = 0, time = 0)
 	animate(alpha = initial(xeno_owner.alpha), time = CRYOGEN_FORM_SHIFT_DURATION)
 	new /obj/effect/temp_visual/after_image(get_turf(xeno_owner), xeno_owner)
+	xeno_owner.pass_flags |= (PASS_GLASS|PASS_GRILLE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_PROJECTILE)
 	xeno_owner.status_flags |= (GODMODE|INCORPOREAL)
 	addtimer(CALLBACK(src, PROC_REF(end_dash)), CRYOGEN_FORM_SHIFT_DURATION)
 	xeno_owner.throw_at(target_turf ? get_ranged_target_turf(xeno_owner, closest_cardinal_dir(angle2dir(Get_Angle(get_turf(xeno_owner), target_turf))), CRYOGEN_FORM_SHIFT_RANGE) : get_ranged_target_turf(xeno_owner, direction, CRYOGEN_FORM_SHIFT_RANGE), CRYOGEN_FORM_SHIFT_RANGE, CRYOGEN_FORM_SHIFT_SPEED, targetted_throw = FALSE, bounce = FALSE)
@@ -124,6 +125,7 @@
 
 /// Gets rid of dash bonuses, if any.
 /datum/action/ability/activable/xeno/form_shift/proc/end_dash()
+	xeno_owner.pass_flags &= ~(PASS_GLASS|PASS_GRILLE|PASS_MOB|PASS_FIRE|PASS_XENO|PASS_PROJECTILE)
 	xeno_owner.status_flags &= ~(GODMODE|INCORPOREAL)
 
 /// Stops the ability altogether.
@@ -167,22 +169,26 @@
 // ***************************************
 // *********** Charge Shot
 // ***************************************
-#define CRYOGEN_CHARGE_SHOT_LEVEL_TWO 1
-#define CRYOGEN_CHARGE_SHOT_LEVEL_THREE 2
+#define CRYOGEN_CHARGE_SHOT_LEVEL_ONE 2
+#define CRYOGEN_CHARGE_SHOT_LEVEL_TWO 4
 #define CRYOGEN_CHARGE_SHOT_FULL_CHARGE_SIZE 1
 
 /datum/action/ability/xeno_action/cryogen_shot
 	name = "Charge Shot"
+	desc = "to do"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	action_icon_state = "fireball"
-	desc = "to do"
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_CRYOGEN_SHOT,
 	)
 	/// Whether the ability is active or not.
-	var/ability_active = TRUE
+	var/ability_active = FALSE
+	///
+	var/toggle_timer
 	/// How much we've charged our projectile.
 	var/charge_stored
+	/// Whether auto-charge is active or not. Auto-Charge will automatically charge a shot without needing the player to hold down a button.
+	var/auto_charge = FALSE
 
 /datum/action/ability/xeno_action/cryogen_shot/give_action(mob/living/L)
 	. = ..()
@@ -195,9 +201,41 @@
 /datum/action/ability/xeno_action/cryogen_shot/action_activate(silent = FALSE)
 	ability_active = !ability_active
 	set_toggle(ability_active)
-	xeno_owner.balloon_alert(xeno_owner, "Charge Shot [ability_active ? "active" : "false"]")
+	if(!silent)
+		xeno_owner.balloon_alert(xeno_owner, "Charge Shot [ability_active ? "enabled" : "disabled"]")
 	if(!ability_active)
-		UnregisterSignal(xeno_owner, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_MOUSEUP))
+		set_signals(FALSE)
+		STOP_PROCESSING(SSprocessing, src)
+		charge_stored = 0
+		return
+	set_signals(TRUE)
+	if(auto_charge)
+		START_PROCESSING(SSprocessing, src)
+
+/datum/action/ability/xeno_action/cryogen_shot/alternate_action_activate(silent = FALSE)
+	auto_charge = !auto_charge
+	if(!silent)
+		xeno_owner.balloon_alert(xeno_owner, "Auto Charge [auto_charge ? "enabled" : "disabled"]")
+	if(!auto_charge)
+		if(charge_stored)
+			UnregisterSignal(xeno_owner, COMSIG_MOB_MOUSEDOWN)
+			RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEUP, PROC_REF(fire_charge))
+			return
+		UnregisterSignal(xeno_owner, COMSIG_MOB_MOUSEUP)
+		RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_charge))
+		return
+	UnregisterSignal(xeno_owner, COMSIG_MOB_MOUSEUP)
+	RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(fire_charge))
+
+/datum/action/ability/xeno_action/cryogen_shot/proc/set_signals(toggle)
+	message_admins("cryogen_shot/set_signals([toggle])")
+	UnregisterSignal(xeno_owner, COMSIG_MOB_MOUSEUP)
+	if(!toggle)
+		UnregisterSignal(xeno_owner, list(COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED))
+		return
+	//RegisterSignals(xeno_owner, list(COMSIG_MOB_DEATH, COMSIG_XENOMORPH_EVOLVED, COMSIG_XENOMORPH_DEEVOLVED), PROC_REF(stop_ability))
+	if(auto_charge)
+		RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(fire_charge))
 		return
 	RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_charge))
 
@@ -205,33 +243,38 @@
 	SIGNAL_HANDLER
 	UnregisterSignal(xeno_owner, COMSIG_MOB_MOUSEDOWN)
 	RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEUP, PROC_REF(fire_charge))
-	START_PROCESSING(SSslowprocess, src)
+	START_PROCESSING(SSprocessing, src)
 
 /datum/action/ability/xeno_action/cryogen_shot/proc/fire_charge(datum/source, atom/atom_target, turf/turf_target)
 	SIGNAL_HANDLER
-	UnregisterSignal(xeno_owner, COMSIG_MOB_MOUSEUP)
-	//play a sound
-	var/datum/ammo/xeno/cryogen_shot/projectile = determine_charge()
+	STOP_PROCESSING(SSprocessing, src)
+	if(charge_stored < CRYOGEN_CHARGE_SHOT_LEVEL_ONE)
+		charge_stored = 0
+		UnregisterSignal(xeno_owner, COMSIG_MOB_MOUSEUP)
+		RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_charge))
+		return
+	set_signals(FALSE)
+	var/datum/ammo/xeno/cryogen_shot/projectile = GLOB.ammo_list[/datum/ammo/xeno/cryogen_shot/mid_charge]
+	if(charge_stored >= CRYOGEN_CHARGE_SHOT_LEVEL_TWO)
+	projectile = GLOB.ammo_list[/datum/ammo/xeno/cryogen_shot/full_charge]
 	var/source_turf = get_turf(xeno_owner)
 	var/obj/projectile/new_projectile = new /obj/projectile(source_turf)
 	new_projectile.generate_bullet(projectile)
 	new_projectile.fire_at(atom_target ? atom_target : turf_target, xeno_owner, source_turf, new_projectile.ammo.max_range)
-
-/datum/action/ability/xeno_action/cryogen_shot/proc/determine_charge()
-	if(charge_stored >= CRYOGEN_CHARGE_SHOT_LEVEL_THREE)
-		return GLOB.ammo_list[/datum/ammo/xeno/cryogen_shot/full_charge]
-	if(charge_stored >= CRYOGEN_CHARGE_SHOT_LEVEL_TWO)
-		return GLOB.ammo_list[/datum/ammo/xeno/cryogen_shot/mid_charge]
-	else return GLOB.ammo_list[/datum/ammo/xeno/cryogen_shot]
+	add_cooldown((cooldown_duration * charge_stored) / CRYOGEN_CHARGE_SHOT_LEVEL_ONE)
+	succeed_activate()
+	toggle_timer = addtimer(CALLBACK(src, PROC_REF(set_signals), TRUE), timeleft(cooldown_timer), TIMER_STOPPABLE)
+	message_admins("cryogen_shot/fire_charge([source], [atom_target], [turf_target])")
+	charge_stored = 0
 
 /datum/action/ability/xeno_action/cryogen_shot/process()
 	charge_stored++
-	if(charge_stored >= CRYOGEN_CHARGE_SHOT_LEVEL_THREE)
-		//do something
-		STOP_PROCESSING(SSslowprocess, src)
+	if(charge_stored == CRYOGEN_CHARGE_SHOT_LEVEL_TWO)
+		message_admins("level 2")
+		STOP_PROCESSING(SSprocessing, src)
 		return
-	if(charge_stored >= CRYOGEN_CHARGE_SHOT_LEVEL_TWO)
-		//do something
+	if(charge_stored == CRYOGEN_CHARGE_SHOT_LEVEL_ONE)
+		message_admins("level 1")
 		return
 	//do something
 
@@ -243,18 +286,14 @@
 	armor_type = FIRE
 	ammo_behavior_flags = AMMO_XENO|AMMO_ENERGY|AMMO_SKIPS_ALIENS
 	bullet_color = COLOR_PULSE_BLUE
-	damage = 10
 	damage_falloff = 0
-	slowdown_stacks = 1
 
 /datum/ammo/xeno/cryogen_shot/mid_charge
-	damage = 20
+	damage = 15
 	slowdown_stacks = 3
 
 /datum/ammo/xeno/cryogen_shot/full_charge
 	ammo_behavior_flags = AMMO_XENO|AMMO_ENERGY|AMMO_SKIPS_ALIENS|AMMO_LEAVE_TURF|AMMO_PASS_THROUGH_MOVABLE
-	shell_speed = 2
-	damage = 30
 	slowdown_stacks = 5
 
 /datum/ammo/xeno/cryogen_shot/full_charge/do_at_max_range(turf/target_turf, obj/projectile/proj)
@@ -281,7 +320,6 @@
 				var/mob/living/affected_living = affected_movable
 				if(xeno_firer.issamexenohive(affected_living) || affected_living.stat == DEAD || CHECK_BITFIELD(affected_living.status_flags, INCORPOREAL|GODMODE))
 					continue
-				step_away(affected_living, target_turf, 1, 1)
 				affected_living.emote("scream")
 				affected_living.Knockdown(0.1 SECONDS)
 			if(istype(affected_movable, /obj/fire))

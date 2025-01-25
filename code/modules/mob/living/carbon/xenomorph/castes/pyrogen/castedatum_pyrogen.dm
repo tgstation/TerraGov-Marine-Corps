@@ -75,12 +75,27 @@
 // *********** Cryogen
 // ***************************************
 /datum/xeno_caste/pyrogen/cryogen
-	caste_name = "Pyrogen"
+	caste_name = "Cryogen"
 	display_name = "Cryogen"
-	upgrade_name = ""
 	caste_desc = "to do"
 	caste_type_path = /mob/living/carbon/xenomorph/pyrogen/cryogen
-	wound_type = "pyrogen"
+
+	// *** Melee Attacks *** //
+	melee_damage = 20
+	attack_delay = 8
+
+	// *** Speed *** //
+	speed = -0.8
+
+	// *** Plasma *** //
+	plasma_max = 650
+	plasma_gain = 65
+
+	// *** Health *** //
+	max_health = 375
+
+	// *** Minimap Icon *** //
+	//minimap_icon = "cryogen"
 
 	// *** Abilities *** //
 	actions = list(
@@ -89,7 +104,6 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/form_shift,
 		/datum/action/ability/xeno_action/cryogen_shot,
-		/datum/action/ability/activable/xeno/firestorm,
 	)
 
 /datum/xeno_caste/pyrogen/cryogen/normal
@@ -108,6 +122,5 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/form_shift,
 		/datum/action/ability/xeno_action/cryogen_shot,
-		/datum/action/ability/activable/xeno/firestorm,
 		/datum/action/ability/xeno_action/heatray,
 	)
