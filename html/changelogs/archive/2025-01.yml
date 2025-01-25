@@ -202,3 +202,11 @@
   - bugfix: humans bumpslash xenos again
   blackdav123:
   - bugfix: Crashed canterbury on big red now uses its own area.
+2025-01-25:
+  Lumipharon:
+  - bugfix: The laser sentry no longer has IFF when it shouldn't have
+  SandPoot:
+  - bugfix: Fixed observer minimap teleporting being straight up broken and unreliable.
+  novaepee:
+  - imageadd: Replace crate sprites
+  - rscadd: SG req category for easier use for req and smartgunners

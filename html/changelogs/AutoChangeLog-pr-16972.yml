@@ -1,5 +1,0 @@
-author: "novaepee"
-delete-after: True
-changes:
-  - imageadd: "Replace crate sprites"
-  - rscadd: "SG req category for easier use for req and smartgunners"
