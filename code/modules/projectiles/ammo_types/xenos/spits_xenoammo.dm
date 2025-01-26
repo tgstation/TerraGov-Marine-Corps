@@ -427,6 +427,7 @@
 	icon_state = "xadar"
 	damage = 120
 	penetration = 30
+	damage_type = BURN
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
 
 /datum/ammo/rocket/he/xadar/on_hit_obj(obj/target_obj, obj/projectile/proj)
@@ -437,9 +438,15 @@
 	wawa.root.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
 
 /datum/ammo/rocket/he/xadar/drop_nade(turf/T)
-	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,2))
+	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(T,2))
 		human_victim.adjust_stagger(4 SECONDS)
 		human_victim.apply_damage(150, BURN, BODY_ZONE_CHEST, ACID,  penetration = 40)
+		var/throwlocation = human_victim.loc
+		for(var/x in 1 to 3)
+			throwlocation = get_step(throwlocation, pick(GLOB.alldirs))
+		if(human_victim.stat == DEAD)
+			continue
+		human_victim.throw_at(throwlocation, 6, 1.5, src, TRUE)
 	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", air_pass = TRUE, projectile = TRUE))
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
