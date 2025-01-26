@@ -282,7 +282,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 	var/area/buildzone = get_area(buyer)
-	if(buildzone.ceiling >= CEILING_UNDERGROUND)
+	if(buildzone.ceiling > CEILING_UNDERGROUND)
 		if(!silent)
 			to_chat(buyer, span_xenowarning("We need open space to allow this structure to bombard enemies!"))
 		return FALSE
