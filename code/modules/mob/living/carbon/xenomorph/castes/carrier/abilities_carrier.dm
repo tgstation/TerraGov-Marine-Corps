@@ -297,7 +297,7 @@ GLOBAL_LIST_INIT(hugger_images_list,  list(
 	name = "Build Hugger Turret"
 	action_icon_state = "hugger_turret"
 	action_icon = 'icons/Xeno/actions/carrier.dmi'
-	desc = "Construct a turret that will launch facehuggers at enemy marines. The type of facehugger currently when the turret is built will determine the type of facehugger that is fired."
+	desc = "Construct a turret that will launch facehuggers at enemy marines. The type of facehugger currently selected when the turret is built will determine the type of facehugger that is fired."
 	ability_cost = 800
 	cooldown_duration = 5 MINUTES
 	keybinding_signals = list(

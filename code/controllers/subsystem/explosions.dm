@@ -93,10 +93,10 @@ SUBSYSTEM_DEF(explosions)
 // 5 explosion power is a (0, 1, 3) explosion.
 // 1 explosion power is a (0, 0, 1) explosion.
 
-/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, color = LIGHT_COLOR_LAVA)
-	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, color)
+/proc/explosion(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range = 0, throw_range, adminlog = TRUE, silent = FALSE, smoke = FALSE, color = LIGHT_COLOR_LAVA, tiny = FALSE)
+	return SSexplosions.explode(epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, color, tiny)
 
-/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, color)
+/datum/controller/subsystem/explosions/proc/explode(atom/epicenter, devastation_range, heavy_impact_range, light_impact_range, weak_impact_range, flash_range, flame_range, throw_range, adminlog, silent, smoke, color, tiny)
 	epicenter = get_turf(epicenter)
 	if(!epicenter)
 		return
@@ -138,8 +138,11 @@ SUBSYSTEM_DEF(explosions)
 			explosion_sound = SFX_EXPLOSION_LARGE
 		else if(heavy_impact_range)
 			explosion_sound = SFX_EXPLOSION_MED
-		else if(light_impact_range || weak_impact_range)
+		else if(light_impact_range)
 			explosion_sound = SFX_EXPLOSION_SMALL
+			far_explosion_sound = SFX_EXPLOSION_SMALL_DISTANT
+		else if(weak_impact_range || tiny)
+			explosion_sound = SFX_EXPLOSION_MICRO
 			far_explosion_sound = SFX_EXPLOSION_SMALL_DISTANT
 		explosion_sound = sound(get_sfx(explosion_sound))
 		far_explosion_sound = sound(get_sfx(far_explosion_sound))
@@ -184,8 +187,10 @@ SUBSYSTEM_DEF(explosions)
 		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, FALSE, TRUE)
 	else if(heavy_impact_range > 0)
 		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, FALSE, FALSE)
-	else if(light_impact_range > 0 || weak_impact_range > 0)
+	else if(light_impact_range > 0)
 		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, TRUE, FALSE)
+	else if(tiny || weak_impact_range > 0)
+		new /obj/effect/temp_visual/explosion(epicenter, max_range, color, FALSE, FALSE, TRUE)
 
 	//flash mobs
 	if(flash_range)
