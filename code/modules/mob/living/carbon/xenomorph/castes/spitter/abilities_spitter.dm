@@ -329,7 +329,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
-			owner.balloon_alert(owner, "We can only shape on weeds. We must find some resin before we start building!")
+			owner.balloon_alert(owner, "We must be on weeds!")
 		return FALSE
 
 	if(!T.check_alien_construction(owner, silent, /obj/structure/xeno/trap) || !T.check_disallow_alien_fortification(owner, silent))
