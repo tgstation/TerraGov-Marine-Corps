@@ -11,7 +11,7 @@
 		/datum/job/terragov/command/fieldcommander = 1,
 		/datum/job/terragov/command/corpseccommander = 1,
 		/datum/job/terragov/command/staffofficer = 2,
-		/datum/job/terragov/command/commanddoll = 2,
+		/datum/job/terragov/command/vanguard = 2,
 		/datum/job/terragov/command/pilot = 2,
 		/datum/job/terragov/command/transportofficer = 2,
 		/datum/job/terragov/command/transport_crewman = 3,

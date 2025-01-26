@@ -146,6 +146,12 @@
 		/obj/item/armor_module/storage/medical,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/light/vanguard
+	starting_attachments = list(
+		/obj/item/armor_module/module/valkyrie_autodoc,
+		/obj/item/armor_module/storage/medical,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/heavy
 	name = "\improper Xenonauten-H pattern armored vest"
 	desc = "A XN-H vest, also known as Xenonauten, a set vest with modular attachments made to work in many enviroments. This one seems to be a heavy variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
@@ -257,11 +263,6 @@
 	slowdown = 0
 	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 40, BIO = 40, FIRE = 50, ACID = 40)
 
-/obj/item/clothing/suit/modular/xenonauten/light/bikini/cdoll
-	starting_attachments = list(
-		/obj/item/armor_module/module/valkyrie_autodoc,
-		/obj/item/armor_module/storage/medical,
-	)
 /obj/item/clothing/suit/modular/xenonauten/bulletresistant
 	name = "\improper NTC bullet-resistant armor"
 	desc = "A set of armor that excels in protecting the wearer against high-velocity solid projectiles. This one has bullet resistant padding on the limbs aswell."

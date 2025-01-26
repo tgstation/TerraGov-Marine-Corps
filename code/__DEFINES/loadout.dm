@@ -19,7 +19,7 @@
 #define CAT_ENGSUP "ENGINEERING SUPPLIES"
 #define CAT_LEDSUP "LEADER SUPPLIES"
 #define CAT_SPSUP "SPECIALIST SUPPLIES"
-#define CAT_CDSUP "COMMAND DOLL SUPPLIES"
+#define CAT_CDSUP "VANGUARD SUPPLIES"
 #define CAT_SGSUP "SMARTGUNNER SUPPLIES"
 #define CAT_FCSUP "COMMANDER SUPPLIES"
 #define CAT_LOAD "LOADOUT"
@@ -247,9 +247,11 @@ GLOBAL_LIST_INIT(specialist_gear_listed_products, list(
 	))
 
 
-GLOBAL_LIST_INIT(commanddoll_gear_listed_products, list(
+GLOBAL_LIST_INIT(vanguard_gear_listed_products, list(
 
-	/obj/effect/vendor_bundle/commanddoll = list(CAT_ESS, "Essential Command Doll Set", 0, "white"),
+	/obj/effect/vendor_bundle/vanguard = list(CAT_ESS, "Essential Vanguard Set", 0, "white"),
+	/obj/item/clothing/under/marine/spec_operative = list(CAT_CDSUP, "Spec-Ops Uniform", 10, "orange"),
+	/obj/item/clothing/under/spec_operative/tback = list(CAT_CDSUP, "Spec-Ops Uniform (Leotard Variant)", 10, "orange"),
 	/obj/item/armor_module/module/tyr_extra_armor = list(CAT_CDSUP, "Tyr2 Armor Module", 5, "black"),
 	/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet = list(CAT_CDSUP, "Mimir2 Helmet Module", 2, "black"),
 	/obj/item/armor_module/module/mimir_environment_protection = list(CAT_CDSUP, "Mimir2 Armor Module", 3, "black"),
@@ -342,7 +344,7 @@ GLOBAL_LIST_INIT(job_specific_points_vendor, list(
 	SQUAD_ENGINEER = GLOB.engineer_gear_listed_products,
 	SQUAD_CORPSMAN = GLOB.medic_gear_listed_products,
 	SQUAD_SPECIALIST = GLOB.specialist_gear_listed_products,
-	COMMAND_DOLL = GLOB.commanddoll_gear_listed_products,
+	VANGUARD = GLOB.vanguard_gear_listed_products,
 	SQUAD_LEADER = GLOB.leader_gear_listed_products,
 	FIELD_COMMANDER = GLOB.commander_gear_listed_products,
 	SQUAD_SMARTGUNNER = GLOB.smartgunner_gear_listed_products,
@@ -917,7 +919,7 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 		/obj/item/clothing/glasses/hud/health = 1,
 		/obj/item/clothing/under/marine/corpsman = 1,
 	),
-	COMMAND_DOLL = list(
+	VANGUARD = list(
 		/obj/item/clothing/suit/modular/xenonauten/bulletresistant = 1,
 		/obj/item/bodybag/cryobag = 1,
 		/obj/item/defibrillator = 1,
