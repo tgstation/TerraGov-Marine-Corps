@@ -420,12 +420,12 @@
 	target_carbon.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
 ///For the Globadiers XADAR
-#define XADAR_VEHICLE_DAMAGE_MULT 1.5
+#define XADAR_VEHICLE_DAMAGE_MULT 1.3
 
 /datum/ammo/rocket/he/xadar
 	name = "Acid Rocket"
 	icon_state = "xadar"
-	damage = 60
+	damage = 120
 	penetration = 30
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
 
@@ -437,10 +437,9 @@
 	wawa.root.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
 
 /datum/ammo/rocket/he/xadar/drop_nade(turf/T)
-	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
+	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,2))
 		human_victim.adjust_stagger(4 SECONDS)
-		human_victim.apply_damage(90, BURN, BODY_ZONE_CHEST, ACID,  penetration = 35)
-	explosion(T, 0, 0, 0, 4, throw_range = 4)
+		human_victim.apply_damage(150, BURN, BODY_ZONE_CHEST, ACID,  penetration = 40)
 	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", air_pass = TRUE, projectile = TRUE))
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
