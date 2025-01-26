@@ -370,6 +370,7 @@
 	anchored = TRUE
 	max_integrity = 5
 	hit_sound = SFX_ALIEN_RESIN_BREAK
+	/// The damage dealt to mobs nearby the detonation point of the mine
 	var/acid_damage = 30
 
 /obj/structure/xeno/acid_mine/Initialize(mapload)
@@ -383,23 +384,22 @@
 	detonate()
 	return ..()
 
-//Checks if the mob walking over the mine is human, and calls detonate if so
+/// Checks if the mob walking over the mine is human, and calls detonate if so
 /obj/structure/xeno/acid_mine/proc/oncrossed(datum/source, atom/movable/A, oldloc, oldlocs)
 	SIGNAL_HANDLER
 	if(!ishuman(A))
 		return
 	if(CHECK_MULTIPLE_BITFIELDS(A.allow_pass_flags, HOVERING))
 		return
-	INVOKE_ASYNC(src,PROC_REF(detonate))
+	INVOKE_ASYNC(src, PROC_REF(detonate))
 
-//Handles detonating the mine, and dealing damage to those nearby
+///Handles detonating the mine, and dealing damage to those nearby
 /obj/structure/xeno/acid_mine/proc/detonate()
 	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", air_pass = TRUE))
 		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
 	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
 		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)
 		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_R_LEG, ACID,  penetration = 30)
-		to_chat(human_victim, span_danger("We are spattered with acid from the mine!"))
 		playsound(src, "sound/bullets/acid_impact1.ogg", 10)
 	qdel(src)
 
@@ -413,4 +413,4 @@
 	var/datum/effect_system/smoke_spread/xeno/acid/opaque/A = new(get_turf(src))
 	A.set_up(1,src)
 	A.start()
-	..()
+	return ..()

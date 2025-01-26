@@ -158,19 +158,22 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	action_icon_state = "glob_grenade"
 	action_icon = 'icons/Xeno/actions/spitter.dmi'
 	desc = "Toss a biological grenade at your target. Has various effects depending on selection, right click to select which grenade to use. Stores up to 5 uses."
-	var/current_grenades = 5
-	var/max_grenades = 5
-	var/selected_grenade = /obj/item/explosive/grenade/globadier
 	cooldown_duration = 2 SECONDS
 	ability_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TOSS_GRENADE,
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PICK_GRENADE,
 	)
+	///The current amount of grenades this ability has
+	var/current_grenades = 5
+	///The max amount of grenades this ability can store
+	var/max_grenades = 5
+	///Which grenade this ability uses
+	var/selected_grenade = /obj/item/explosive/grenade/globadier
 
 /datum/action/ability/activable/xeno/toss_grenade/give_action(mob/living/L)
 	. = ..()
-	var/mutable_appearance/counter_maptext = mutable_appearance(icon = null, icon_state = null, layer = ACTION_LAYER_MAPTEXT)
+	var/mutable_appearance/counter_maptext = mutable_appearance(layer = ACTION_LAYER_MAPTEXT)
 	counter_maptext.pixel_x = 16
 	counter_maptext.pixel_y = -4
 	counter_maptext.maptext = MAPTEXT("[current_grenades]/[max_grenades]")
@@ -189,7 +192,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	button.add_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER])
 	return ..()
 
-//Handle automatic regeneration of grenades, every GLOBADIER_GRENADE_REGEN_COOLDOWN seconds
+///Handle automatic regeneration of grenades, every GLOBADIER_GRENADE_REGEN_COOLDOWN seconds
 /datum/action/ability/activable/xeno/toss_grenade/proc/regen_grenade()
 	if(current_grenades < max_grenades)
 		current_grenades++
@@ -212,11 +215,10 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	succeed_activate()
 	add_cooldown()
 
-// Handles selecting which grenade the xeno wants
 /datum/action/ability/activable/xeno/toss_grenade/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(selectgrenade))
 
-/datum/action/ability/activable/xeno/toss_grenade/proc/selectgrenade()
+/// Handles selecting which grenade the xeno wants/datum/action/ability/activable/xeno/toss_grenade/proc/selectgrenade()
 	var/grenade_choice = show_radial_menu(owner, owner, GLOB.globadier_images_list, radius = 48)
 	if(!grenade_choice)
 		return
@@ -227,14 +229,13 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 // ***************************************
 
 /obj/item/explosive/grenade/globadier
-	name = "Acidic Grenade"
+	name = "acidic grenade"
 	desc = "A gross looking glob of acid"
 	greyscale_colors = "#81ff92"
 	greyscale_config = /datum/greyscale_config/xenogrenade
 	det_time = 2 SECONDS
 	dangerous = TRUE
 	arm_sound = 'sound/voice/alien/yell_alt.ogg'
-	var/acid_damage = 40
 
 /obj/item/explosive/grenade/globadier/prime()
 	for(var/acid_tile in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
@@ -246,9 +247,9 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 				continue
 			affected.throw_at(throwlocation, 6, 1.5, src, TRUE)
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
-		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, acid_damage)
+		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
 		var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src))
-		A.set_up(1,src)
+		A.set_up(1, src)
 		A.start()
 	qdel(src)
 
@@ -261,7 +262,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 // *********** Fire Grenade
 // ***************************************
 /obj/item/explosive/grenade/globadier/incen
-	name = "Melting Grenade"
+	name = "melting grenade"
 	desc = "A swirling mix of acid and purple sparks"
 	greyscale_colors = "#9e1dd1"
 
@@ -274,7 +275,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 // *********** Resin Grenade
 // ***************************************
 /obj/item/explosive/grenade/globadier/resin
-	name = "Resin Grenade"
+	name = "resin grenade"
 	desc = "A rapidly melting ball of xeno taffy"
 	greyscale_colors = "#6808e6"
 
@@ -294,33 +295,40 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	desc = "Place an acid mine at your location"
 	cooldown_duration = 5 SECONDS
 	ability_cost = 150
+	///Which mine the ability uses
 	var/mine_type = /obj/structure/xeno/acid_mine
+	///How many mines the ability can store at max
 	var/max_charges = 5
+	///Current amount of mines stored
 	var/current_charges = 5
+	///Recharge time between generating new mines
 	var/regen_time = 90 SECONDS
+	///A reference to the VREF used to display the current / max charges on the ability
 	var/vref = VREF_MUTABLE_ACID_MINES_COUNTER
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_MINE,
 	)
 
+///Called every regen time seconds, increments the counter of mines & calls the timer again if there are still less than max mines
 /datum/action/ability/xeno_action/acid_mine/proc/regen_mine()
-	if(current_charges < max_charges)
-		current_charges++
-		update_button_icon()
-		if(current_charges < max_charges) //If we still have less than the total amount of mines, call the timer again to add another mine after the regen time
-			addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE)
+	if(!current_charges < max_charges)
+		return
+	current_charges++
+	update_button_icon()
+	if(current_charges < max_charges) //If we still have less than the total amount of mines, call the timer again to add another mine after the regen time
+		addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE)
 
 /datum/action/ability/xeno_action/acid_mine/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	var/turf/T = get_turf(owner)
 	if(!T || !T.is_weedable() || T.density)
 		if(!silent)
-			to_chat(owner, span_warning("We can't do that here."))
+			owner.balloon_alert(owner, "We can't do that here.")
 		return FALSE
 
 	if(!xeno_owner.loc_weeds_type)
 		if(!silent)
-			to_chat(owner, span_warning("We can only shape on weeds. We must find some resin before we start building!"))
+			owner.balloon_alertballoon_alert(owner, "We can only shape on weeds. We must find some resin before we start building!")
 		return FALSE
 
 	if(!T.check_alien_construction(owner, silent, /obj/structure/xeno/trap) || !T.check_disallow_alien_fortification(owner, silent))
@@ -402,11 +410,11 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 	var/datum/ammo/rocket/he/xadar/shell = GLOB.ammo_list[/datum/ammo/rocket/he/xadar]
 
-	var/obj/projectile/newshell = new /obj/projectile(get_turf(xeno_owner))
+	var/obj/projectile/newshell = new(get_turf(xeno_owner))
 	newshell.generate_bullet(shell)
 	newshell.def_zone = xeno_owner.get_limbzone_target()
 
 	newshell.fire_at(target, xeno_owner, xeno_owner, newshell.ammo.max_range)
-	xeno_owner.adjustBruteLoss(xeno_owner.health * GLOBADIER_XADAR_PERCENT_HEALTH_PLAS_COST)
+	xeno_owner.adjustBruteLoss(xeno_owner.health * GLOBADIER_XADAR_PERCENT_HEALTH_PLAS_COST, TRUE)
 	succeed_activate(xeno_owner.plasma_stored * GLOBADIER_XADAR_PERCENT_HEALTH_PLAS_COST)
 	add_cooldown()
