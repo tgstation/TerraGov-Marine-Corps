@@ -240,17 +240,10 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /obj/item/explosive/grenade/globadier/prime()
 	for(var/acid_tile in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
-		for(var/mob/living/carbon/human/affected AS in cheap_get_humans_near(src,1))
-			var/throwlocation = affected.loc
-			for(var/x in 1 to 2)
-				throwlocation = get_step(throwlocation, pick(GLOB.alldirs))
-			if(affected.stat == DEAD)
-				continue
-			affected.throw_at(throwlocation, 6, 1.5, src, TRUE)
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
 		var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src))
-		A.set_up(1, src)
+		A.set_up(0.5, src)
 		A.start()
 	qdel(src)
 
@@ -394,14 +387,14 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	action_icon_state = "xadar"
 	action_icon = 'icons/Xeno/actions/spitter.dmi'
 	desc = "Fire an acid rocket, costing 30% of your current health and plasma, and dealing heavy damage where you aim it."
-	cooldown_duration = 1 MINUTES
+	cooldown_duration = 2 MINUTES
 	ability_cost = 200
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_ROCKET,
 	)
 
 /datum/action/ability/activable/xeno/acid_rocket/use_ability(atom/target)
-	if(!do_after(xeno_owner, 0.4 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
+	if(!do_after(xeno_owner, 0.8 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
 		return fail_activate()
 
 	if(!prob(5))
