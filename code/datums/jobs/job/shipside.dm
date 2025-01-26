@@ -139,6 +139,7 @@ Make the TGMC proud!"})
 			new_human.wear_id.paygrade = "MO6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "M10" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 
 //Campaign version with specific loadout
@@ -376,6 +377,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 
 
@@ -439,6 +441,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 
 //apc/jeep driver
@@ -492,6 +495,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 
 
