@@ -620,8 +620,8 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	stamina = SKILL_STAMINA_TRAINED
 
 
-/datum/skills/specialist/commanddoll
-	name = COMMAND_DOLL
+/datum/skills/specialist/vanguard
+	name = VANGUARD
 	unarmed = SKILL_UNARMED_MASTER
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	engineer = SKILL_ENGINEER_ENGI

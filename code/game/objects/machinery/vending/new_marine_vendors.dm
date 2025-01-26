@@ -547,19 +547,19 @@
 	. = ..()
 	listed_products = GLOB.specialist_gear_listed_products
 
-/obj/machinery/marine_selector/gear/commanddoll
-	name = "NEXUS Automated Command Doll Equipment Rack"
-	desc = "An automated Command Doll equipment rack hooked up to a colossal storage unit."
+/obj/machinery/marine_selector/gear/vanguard
+	name = "NEXUS Automated Vanguard Equipment Rack"
+	desc = "An automated Vanguard equipment rack hooked up to a colossal storage unit."
 	icon_state = "squadleader"
 	icon_vend = "squadleader-vend"
 	icon_deny = "squadleader-deny"
-	vendor_role = /datum/job/terragov/command/commanddoll
-	req_access = list(ACCESS_MARINE_DOLLPREP)
+	vendor_role = /datum/job/terragov/command/vanguard
+	req_access = list(ACCESS_MARINE_VANGPREP)
 	lock_flags = JOB_LOCK
 
-/obj/machinery/marine_selector/gear/commanddoll/Initialize(mapload)
+/obj/machinery/marine_selector/gear/vanguard/Initialize(mapload)
 	. = ..()
-	listed_products = GLOB.commanddoll_gear_listed_products
+	listed_products = GLOB.vanguard_gear_listed_products
 
 /obj/machinery/marine_selector/gear/engi
 	name = "NEXUS Automated Engineer Equipment Rack"
@@ -792,7 +792,7 @@
 		/obj/item/clothing/glasses/hud/health,
 	)
 
-/obj/effect/vendor_bundle/commanddoll
+/obj/effect/vendor_bundle/vanguard
 	gear_to_spawn = list(
 		/obj/item/tweezers,
 		/obj/item/storage/holster/belt/mateba/officer/full,
@@ -801,7 +801,7 @@
 		/obj/item/reagent_containers/hypospray/advanced/big/combatmix,
 		/obj/item/storage/firstaid/adv,
 		/obj/item/defibrillator,
-		/obj/item/clothing/suit/modular/xenonauten/light/bikini/cdoll,
+		/obj/item/clothing/suit/modular/xenonauten/light/vanguard,
 		/obj/item/clothing/head/modular/m10x/leader,
 		/obj/item/storage/pouch/medkit/medic,
 		/obj/item/clothing/glasses/hud/health,
