@@ -214,22 +214,22 @@ WEAPONS
 	cost = 100
 
 /datum/supply_packs/weapons/sentry_flamer
-	name = "SFT-575 Flamethrower Sentry"
+	name = "SFT-575 flamethrower sentry"
 	contains = list(/obj/item/storage/box/crate/sentry_flamer)
 	cost = 400
 
 /datum/supply_packs/weapons/sentry_flamer_ammo
-	name = "SFT-575 Flamethrower Sentry Ammo"
+	name = "SFT-575 flamethrower sentry ammo"
 	contains = list(/obj/item/ammo_magazine/sentry/flamer)
 	cost = 150
 
 /datum/supply_packs/weapons/sentry_laser
-	name = "SLT-576 Laser Sentry"
+	name = "SLT-576 laser sentry"
 	contains = list(/obj/item/storage/box/crate/sentry_laser)
 	cost = 400
 
 /datum/supply_packs/weapons/sentry_laser_ammo
-	name = "SLT-576 Laser Sentry Ammo"
+	name = "SLT-576 laser sentry ammo"
 	contains = list(/obj/item/ammo_magazine/sentry/laser)
 	cost = 200
 
@@ -786,46 +786,6 @@ WEAPONS
 /datum/supply_packs/weapons/smart_pistol_ammo
 	name = "SP-13 smart machinepistol ammo"
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
-	cost = 10
-
-/datum/supply_packs/weapons/ltb_he_shell
-	name = "LTB HE tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
-	cost = 10
-
-/datum/supply_packs/weapons/ltb_apfds_shell
-	name = "LTB APFDS tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/apfds)
-	cost = 10
-
-/datum/supply_packs/weapons/ltb_canister_shell
-	name = "LTB Canister tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/canister)
-	cost = 10
-
-/datum/supply_packs/weapons/ltaap_rounds
-	name = "LTAAP tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
-	cost = 10
-
-/datum/supply_packs/weapons/secondary_flamer_tank
-	name = "OMR Mk.3 flamer tank"
-	contains = list(/obj/item/ammo_magazine/tank/secondary_flamer_tank)
-	cost = 10
-
-/datum/supply_packs/weapons/cupola_rounds
-	name = "Cupola tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
-	cost = 10
-
-/datum/supply_packs/weapons/tow_rocket
-	name = "TOW missile"
-	contains = list(/obj/item/ammo_magazine/tank/tow_missile)
-	cost = 5 // marginally cheaper due to being a single loader
-
-/datum/supply_packs/weapons/microrocket_pod
-	name = "Microrocket pod"
-	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
 	cost = 10
 
 /*******************************************************************************
@@ -2122,6 +2082,46 @@ VEHICLES
 	contains = list(/obj/item/unmanned_vehicle_remote)
 	cost = 10
 	containertype = /obj/structure/closet/crate
+
+/datum/supply_packs/vehicles/ltb_he_shell
+	name = "LTB HE tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltb_apfds_shell
+	name = "LTB APFDS tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/apfds)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltb_canister_shell
+	name = "LTB Canister tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/canister)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltaap_rounds
+	name = "LTAAP tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	cost = 10
+
+/datum/supply_packs/vehicles/secondary_flamer_tank
+	name = "OMR Mk.3 flamer tank"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_flamer_tank)
+	cost = 10
+
+/datum/supply_packs/vehicles/cupola_rounds
+	name = "Cupola tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
+	cost = 10
+
+/datum/supply_packs/vehicles/tow_rocket
+	name = "TOW missile"
+	contains = list(/obj/item/ammo_magazine/tank/tow_missile)
+	cost = 5 // marginally cheaper due to being a single loader
+
+/datum/supply_packs/vehicles/microrocket_pod
+	name = "Microrocket pod"
+	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
+	cost = 10
 
 /datum/supply_packs/vehicles/mounted_hsg
 	name = "Dropship mounted HSG-102 heavy smartgun"
