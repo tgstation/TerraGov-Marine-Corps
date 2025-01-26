@@ -83,6 +83,14 @@
 		mob.ghostize()
 		return FALSE
 
+		//NTF EDIT ADDITION BEGIN - PIXEL_SHIFT - PORTED FROM SKYRAT #870
+	if(mob.shifting)
+		mob.pixel_shift(direction)
+		return FALSE
+	else if(mob.is_shifted)
+		mob.unpixel_shift()
+	//NTF EDIT ADDITION END
+
 	var/mob/living/L = mob  //Already checked for isliving earlier
 
 	if(L.remote_control) //we're controlling something, our movement is relayed to it
