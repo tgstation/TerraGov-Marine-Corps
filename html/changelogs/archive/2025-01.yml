@@ -210,3 +210,6 @@
   novaepee:
   - imageadd: Replace crate sprites
   - rscadd: SG req category for easier use for req and smartgunners
+2025-01-26:
+  novaepee:
+  - bugfix: SG category not showing in req
