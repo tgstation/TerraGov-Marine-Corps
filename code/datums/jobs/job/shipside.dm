@@ -510,21 +510,21 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 	H.equip_to_slot_or_hand(new /obj/item/stack/sandbags/large_stack, SLOT_IN_R_POUCH)
 	H.equip_to_slot_or_hand(new /obj/item/stack/barbed_wire/full, SLOT_IN_R_POUCH)
 
-//Command Doll
-/datum/job/terragov/command/commanddoll
-	title = COMMAND_DOLL
+//Vanguard
+/datum/job/terragov/command/vanguard
+	title = VANGUARD
 	paygrade = "E5"
-	comm_title = "CDoll"
+	comm_title = "VNG"
 	total_positions = 4
 	access = ALL_MARINE_ACCESS
 	minimal_access = ALL_MARINE_ACCESS
 	display_order = JOB_DISPLAY_ORDER_STAFF_OFFICER
-	skills_type = /datum/skills/specialist/commanddoll
-	outfit = /datum/outfit/job/command/commanddoll
+	skills_type = /datum/skills/specialist/vanguard
+	outfit = /datum/outfit/job/command/vanguard
 	multiple_outfits = TRUE
 	outfits = list(
-		/datum/outfit/job/command/commanddoll,
-		/datum/outfit/job/command/commanddoll/robot,
+		/datum/outfit/job/command/vanguard,
+		/datum/outfit/job/command/vanguard/robot,
 	)
 	exp_requirements = XP_REQ_INTERMEDIATE
 	exp_type = EXP_TYPE_REGULAR_ALL
@@ -535,15 +535,16 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 		/datum/job/terragov/silicon/synthetic = SYNTH_POINTS_REGULAR,
 		/datum/job/terragov/command/mech_pilot = MECH_POINTS_REGULAR,
 	)
-	minimap_icon = "commanddoll"
+	minimap_icon = "vanguard"
 
-/datum/job/terragov/command/commanddoll/radio_help_message(mob/M)
+/datum/job/terragov/command/vanguard/radio_help_message(mob/M)
 	. = ..()
-	to_chat(M, {"\nYou are a Command Doll, fancy name for a premium free-use slut and an elite bodyguard hired by the corporation to serve the command staff in any way possible, mostly sexual...
-	do your job and try not to stain the bridge too much. You are the lowest command, surprising you are even command but you can lead if all the other command mysteriously died or something...
-	Though it also means you failed your job to be a bodyguard."})
+	to_chat(M, {"\nYou are a Vanguard Unit, an elite bodyguard serving under the corporation to guard the command staff and provide tactical assistance to the deployed marines when required.
+	You have also been tasked to provide 'special morale support' when needed or requested by a commanding officer.
+	You are the lowest command, even though you are trained to be a leader, but you can take control if all the other command are missing, dead or unavailable.
+	Though it also means you have likely failed your job as a bodyguard."})
 
-/datum/job/terragov/command/commanddoll/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
+/datum/job/terragov/command/vanguard/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
 		return
@@ -558,18 +559,19 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 			new_human.wear_id.paygrade = "O1"
 		if(2501 to INFINITY) // 50 hrs
 			new_human.wear_id.paygrade = "O2"
-/datum/outfit/job/command/commanddoll
-	name = COMMAND_DOLL
-	jobtype = /datum/job/terragov/command/commanddoll
 
-	id = /obj/item/card/id/card/silver/commanddoll
+/datum/outfit/job/command/vanguard
+	name = VANGUARD
+	jobtype = /datum/job/terragov/command/vanguard
+
+	id = /obj/item/card/id/card/silver/vanguard
 	ears = /obj/item/radio/headset/mainship/mcom
-	w_uniform = /obj/item/clothing/under/spec_operative/tback
+	w_uniform = /obj/item/clothing/under/marine/officer
 	shoes = /obj/item/clothing/shoes/marine/sneakingboots
 	r_store = /obj/item/storage/pouch/general/large
 
 
-/datum/outfit/job/command/commanddoll/robot
+/datum/outfit/job/command/vanguard/robot
 	species = SPECIES_COMBAT_ROBOT
 
 	w_uniform = /obj/item/clothing/under/marine/robotic

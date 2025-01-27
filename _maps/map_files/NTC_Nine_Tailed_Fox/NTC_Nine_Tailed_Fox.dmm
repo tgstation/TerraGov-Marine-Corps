@@ -1602,7 +1602,7 @@
 	},
 /area/mainship/squads/general)
 "bsS" = (
-/obj/machinery/marine_selector/gear/commanddoll,
+/obj/machinery/marine_selector/gear/vanguard,
 /turf/open/floor/wood,
 /area/mainship/living/officer_study)
 "btj" = (
@@ -4761,7 +4761,7 @@
 	name = "Research"
 	})
 "enM" = (
-/obj/machinery/marine_selector/gear/commanddoll,
+/obj/machinery/marine_selector/gear/vanguard,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "eoc" = (
