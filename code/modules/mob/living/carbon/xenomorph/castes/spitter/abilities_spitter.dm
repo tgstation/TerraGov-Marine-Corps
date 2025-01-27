@@ -194,11 +194,11 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 ///Handle automatic regeneration of grenades, every GLOBADIER_GRENADE_REGEN_COOLDOWN seconds
 /datum/action/ability/activable/xeno/toss_grenade/proc/regen_grenade()
-	if(current_grenades < max_grenades)
-		current_grenades++
-		update_button_icon()
-		if(current_grenades < max_grenades) //If we still have less than the total amount of grenades, call the timer again to add another grenade in 10s
-			addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE)
+	if(!(current_grenades < max_grenades))
+		return
+	current_grenades++
+	update_button_icon()
+	addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE)
 
 /datum/action/ability/activable/xeno/toss_grenade/use_ability(atom/target)
 	if(current_grenades <= 0)
@@ -305,7 +305,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 ///Called every regen time seconds, increments the counter of mines & calls the timer again if there are still less than max mines
 /datum/action/ability/xeno_action/acid_mine/proc/regen_mine()
-	if(!current_charges < max_charges)
+	if(!(current_charges < max_charges))
 		return
 	current_charges++
 	update_button_icon()
@@ -360,6 +360,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE)
 	update_button_icon()
 	succeed_activate()
+	add_cooldown()
 
 // ***************************************
 // *********** Gas Mine

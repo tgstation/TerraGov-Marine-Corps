@@ -431,7 +431,6 @@
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
 
 /datum/ammo/rocket/he/xadar/on_hit_obj(obj/target_obj, obj/projectile/proj)
-	drop_nade(get_turf(target_obj))
 	if(istype(target_obj,/obj/hitbox))
 		var/obj/hitbox/wawa = target_obj
 		wawa.root.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
