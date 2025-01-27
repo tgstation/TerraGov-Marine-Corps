@@ -276,7 +276,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /obj/item/explosive/grenade/globadier/resin/prime()
 	for(var/resin_tile in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
-		new /obj/alien/resin/sticky(resin_tile)
+		new /obj/alien/resin/sticky/globadier(resin_tile)
 	qdel(src)
 
 // ***************************************

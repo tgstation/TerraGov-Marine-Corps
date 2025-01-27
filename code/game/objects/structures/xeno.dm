@@ -135,7 +135,7 @@
 
 	return ..()
 
-// Praetorian Sticky Resin spit uses this.
+// Hivelord Sticky Resin spit uses this.
 /obj/alien/resin/sticky/thin
 	name = "thin sticky resin"
 	desc = "A thin layer of disgusting sticky slime."
@@ -144,6 +144,11 @@
 
 	ignore_weed_destruction = FALSE
 	refundable = FALSE
+
+// Globadier Resin Grenade uses this
+/obj/alien/resin/sticky/globadier
+	refundable = FALSE
+	ignore_weed_destruction = FALSE
 
 //Resin Doors
 /obj/structure/mineral_door/resin
