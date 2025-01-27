@@ -421,6 +421,8 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+	/// The type of tail they have to use in tail stab or other reasons, blunt stab false means they have the usual sharp xeno tail.
+	var/blunt_stab = FALSE
 
 	//list of active tunnels
 	var/list/tunnels = list()

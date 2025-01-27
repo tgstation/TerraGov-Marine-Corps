@@ -56,6 +56,7 @@ GLOBAL_LIST_EMPTY(personal_statistics_list)
 	var/delimbs = 0
 	var/internal_injuries = 0
 	var/internal_injuries_inflicted = 0
+	var/tail_stabs = 0
 
 	var/grenade_hand_delimbs = 0
 
