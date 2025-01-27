@@ -213,3 +213,9 @@
 2025-01-26:
   novaepee:
   - bugfix: SG category not showing in req
+2025-01-27:
+  Apple-107:
+  - bugfix: updates ID cards to respect rank rather than everyone being a PVT
+  - rscadd: Marine's Rank is now prefixed to their ID card
+  TiviPlus:
+  - bugfix: Fixes round time timestamps

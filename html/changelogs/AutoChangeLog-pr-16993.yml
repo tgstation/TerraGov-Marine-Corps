@@ -1,4 +1,0 @@
-author: "Apple-107"
-delete-after: True
-changes:
-  - bugfix: "updates ID cards to respect rank rather than everyone being a PVT"
