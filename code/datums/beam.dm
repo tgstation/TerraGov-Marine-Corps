@@ -169,7 +169,7 @@
 			continue
 		if(living in blacklistmobs)
 			continue
-		if(!check_path(source, living, TRUE, TRUE))
+		if(!check_path(source, living, PASS_PROJECTILE|PASS_GLASS) != get_turf(living))
 			continue
 		source.beam(living, icon_state="lightning[rand(1,12)]", time = 3, maxdistance = zap_range + 2)
 		if(living.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
@@ -185,7 +185,7 @@
 			continue
 		if(target in blacklistmobs)
 			continue
-		if(!check_path(source, target, TRUE, TRUE))
+		if(!check_path(source, target, PASS_PROJECTILE|PASS_GLASS) != get_turf(target))
 			continue
 		source.beam(target, icon_state="bfg", time = 3, maxdistance = zap_range + 2)
 		target.apply_damage(damage, BURN, BODY_ZONE_CHEST, ENERGY, FALSE, FALSE, TRUE, armor_pierce)
