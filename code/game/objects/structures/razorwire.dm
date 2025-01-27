@@ -52,7 +52,7 @@
 	if(CHECK_BITFIELD(O.pass_flags, PASS_DEFENSIVE_STRUCTURE))
 		return
 	var/mob/living/M = O
-	if(M.status_flags & INCORPOREAL)
+	if(M.status_flags & (INCORPOREAL|GODMODE))
 		return
 	if(CHECK_BITFIELD(M.restrained_flags, RESTRAINED_RAZORWIRE))
 		return

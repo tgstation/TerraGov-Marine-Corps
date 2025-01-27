@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - balance: "Razor untangle delay changed from 5 seconds to 2 seconds. Crusher charge unchanged"
+  - balance: "Godmode prevents razor entanglement"
