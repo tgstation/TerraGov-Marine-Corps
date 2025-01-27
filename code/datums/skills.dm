@@ -160,7 +160,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	src.police+difference,\
 	src.powerloader+difference,\
 	src.large_vehicle+difference,\
-	src.mech+mech,\
+	src.mech+difference,\
 	src.stamina+difference)
 
 /// acts as [/proc/modifyRating] but sets the rating directly rather than modify it
