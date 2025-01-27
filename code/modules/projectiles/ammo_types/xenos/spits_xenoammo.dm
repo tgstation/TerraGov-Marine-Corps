@@ -432,8 +432,8 @@
 
 /datum/ammo/rocket/he/xadar/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	if(istype(target_obj,/obj/hitbox))
-		var/obj/hitbox/wawa = target_obj
-		wawa.root.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
+		var/obj/hitbox/vehiclehitbox = target_obj
+		vehiclehitbox.root.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
 		return
 	if(isvehicle(target_obj))
 		target_obj.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
