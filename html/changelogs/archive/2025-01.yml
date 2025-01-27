@@ -121,3 +121,11 @@
   Runian:
   - bugfix: Having 100+ fire armor (aka fire immunity) correctly prevents you from
       getting any melting stacks (from Pyrogen).
+2025-01-27:
+  DrCrawler:
+  - rscadd: Command Dolls are now re-branded into Vanguard Units.
+  - rscdel: Vanguards can no longer get a free Spec-Ops leotard.
+  - qol: Lets Vanguard Units pick between the Spec-Ops suit variants.
+  - balance: Though the Spec-Ops suits for Vanguards cost 10 loadout points.
+  - bugfix: Fixes Vanguard Unit's missing map icon.
+  - refactor: Renames everything related to CDolls to suit the new job title.
