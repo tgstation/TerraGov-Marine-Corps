@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - bugfix: "Ravager: fixed deathmark not having a keybind"
+  - bugfix: "Ravager: fixed deathmark not having a sprite set"
