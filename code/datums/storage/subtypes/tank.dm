@@ -28,6 +28,7 @@
 		/obj/item/ammo_magazine/tank/icc_lowvel_cannon/high_explosive,
 		/obj/item/ammo_magazine/tank/sarden_clip,
 		/obj/item/ammo_magazine/tank/sarden_clip/high_explosive,
+		/obj/item/ammo_magazine/tank/bfg,
 	))
 
 /datum/storage/tank/ammorack_secondary/New(atom/parent)

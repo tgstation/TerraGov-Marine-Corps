@@ -193,11 +193,11 @@
 			chassis.swivel_turret(current_target)
 			return AUTOFIRE_CONTINUE
 	else if(chassis.turret_overlay)
-		chassis.turret_overlay.secondary_overlay.dir = get_cardinal_dir(chassis, current_target)
+		chassis.turret_overlay.secondary_overlay?.dir = get_cardinal_dir(chassis, current_target)
 		chassis.turret_overlay.update_appearance(UPDATE_OVERLAYS)
 	else
 		chassis.cut_overlay(chassis.secondary_weapon_overlay)
-		chassis.secondary_weapon_overlay.dir = get_cardinal_dir(chassis, current_target)
+		chassis.secondary_weapon_overlay?.dir = get_cardinal_dir(chassis, current_target)
 		chassis.add_overlay(chassis.secondary_weapon_overlay)
 
 	do_fire(source_turf)
@@ -338,7 +338,7 @@
 	hud_state_empty = "rifle_empty"
 
 /obj/item/armored_weapon/apc_cannon
-	name = "MKV-7 utility payload launcher"
+	name = "\improper MKV-7 utility payload launcher"
 	desc = "A double barrelled cannon which can rapidly deploy utility packages to the battlefield."
 	icon_state = "APC uninstalled dualcannon"
 	fire_sound = 'sound/weapons/guns/fire/tank_smokelauncher.ogg'
@@ -396,3 +396,16 @@
 	projectile_burst_delay = 0.1 SECONDS
 	rearm_time = 5 SECONDS
 	hud_state_empty = "rocket_empty"
+
+/obj/item/armored_weapon/bfg
+	name = "\improper BFG 9500"
+	desc = "A crackling energy weapon, a slightly scaled up model of the classic BFG 9000. Point at people who killed your rabbit."
+	icon_state = "bfg"
+	fire_sound = 'sound/weapons/guns/fire/tank_bfg.ogg'
+	armored_weapon_flags = MODULE_PRIMARY|MODULE_NOT_FABRICABLE
+	ammo = /obj/item/ammo_magazine/tank/bfg
+	accepted_ammo = list(/obj/item/ammo_magazine/tank/bfg)
+	fire_mode = GUN_FIREMODE_SEMIAUTO
+	projectile_delay = 8 SECONDS
+	variance = 0
+	hud_state_empty = "electrothermal_empty"
