@@ -139,7 +139,7 @@
 // *********** Acid Grenade
 // ***************************************
 // Cooldown between recharging grenades
-#define GLOBADIER_GRENADE_REGEN_COOLDOWN 10 SECONDS
+#define GLOBADIER_GRENADE_REGEN_COOLDOWN 15 SECONDS
 #define GLOBADIER_GRENADE_THROW_RANGE 8
 #define GLOBADIER_GRENADE_THROW_SPEED 2
 //Grenade Defines, for the radial menu
@@ -165,9 +165,9 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_PICK_GRENADE,
 	)
 	///The current amount of grenades this ability has
-	var/current_grenades = 5
+	var/current_grenades = 6
 	///The max amount of grenades this ability can store
-	var/max_grenades = 5
+	var/max_grenades = 6
 	///Which grenade this ability uses
 	var/selected_grenade = /obj/item/explosive/grenade/globadier
 
@@ -262,7 +262,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 
 /obj/item/explosive/grenade/globadier/incen/prime()
-	flame_radius(0.5, get_turf(src), fire_type = /obj/fire/melting_fire, burn_intensity = 20, burn_duration = 72, colour = "purple")
+	flame_radius(0.5, get_turf(src), fire_type = /obj/fire/melting_fire, burn_intensity = 20, burn_duration = 144, colour = "purple")
 	qdel(src)
 
 // ***************************************
@@ -276,7 +276,14 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /obj/item/explosive/grenade/globadier/resin/prime()
 	for(var/resin_tile in filled_turfs(get_turf(src), 0.5, "circle", air_pass = TRUE))
-		new /obj/alien/resin/sticky/globadier(resin_tile)
+		new /obj/alien/resin/sticky/thin(resin_tile)
+	for(var/mob/living/carbon/human/affected AS in cheap_get_humans_near(src,1))
+		var/throwlocation = affected.loc
+		for(var/x in 1 to 2)
+			throwlocation = get_step(throwlocation, pick(GLOB.alldirs))
+		if(affected.stat == DEAD)
+			continue
+		affected.throw_at(throwlocation, 6, 1.5, src, TRUE)
 	qdel(src)
 
 // ***************************************
@@ -292,11 +299,11 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	///Which mine the ability uses
 	var/mine_type = /obj/structure/xeno/acid_mine
 	///How many mines the ability can store at max
-	var/max_charges = 5
+	var/max_charges = 6
 	///Current amount of mines stored
-	var/current_charges = 5
+	var/current_charges = 6
 	///Recharge time between generating new mines
-	var/regen_time = 90 SECONDS
+	var/regen_time = 40 SECONDS
 	///A reference to the VREF used to display the current / max charges on the ability
 	var/vref = VREF_MUTABLE_ACID_MINES_COUNTER
 	keybinding_signals = list(
@@ -368,12 +375,11 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 /datum/action/ability/xeno_action/acid_mine/gas_mine
 	name = "Gas Mine"
 	desc = "Place an gas mine at your location"
-	cooldown_duration = 5 SECONDS
 	ability_cost = 200
 	mine_type = /obj/structure/xeno/acid_mine/gas_mine
-	max_charges = 2
-	current_charges = 2
-	regen_time = 2 MINUTES
+	max_charges = 3
+	current_charges = 3
+	regen_time = 80 SECONDS
 	vref = VREF_MUTABLE_GAS_MINES_COUNTER
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GAS_MINE,

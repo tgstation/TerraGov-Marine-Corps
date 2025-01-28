@@ -145,11 +145,6 @@
 	ignore_weed_destruction = FALSE
 	refundable = FALSE
 
-// Globadier Resin Grenade uses this
-/obj/alien/resin/sticky/globadier
-	refundable = FALSE
-	ignore_weed_destruction = FALSE
-
 //Resin Doors
 /obj/structure/mineral_door/resin
 	name = RESIN_DOOR
