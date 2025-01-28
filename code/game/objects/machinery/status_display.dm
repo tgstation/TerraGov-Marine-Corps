@@ -8,6 +8,8 @@
 #define SD_AI_EMOTE 1  // 1 = AI emoticon
 #define SD_AI_BSOD 2  // 2 = Blue screen of death
 
+//! TODO PORT THE TG STATUS DISPLAYS
+
 /// Status display which can show images and scrolling text.
 /obj/machinery/status_display
 	name = "status display"

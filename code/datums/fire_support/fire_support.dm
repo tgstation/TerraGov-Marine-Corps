@@ -62,8 +62,8 @@
 		playsound(target_turf, initiate_sound, 100)
 	if(initiate_chat_message)
 		to_chat(user, span_notice(initiate_chat_message))
-	if(portrait_type && initiate_screen_message && initiate_title)
-		user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>[initiate_title]</u></span><br>" + initiate_screen_message, portrait_type)
+	if(portrait_type && initiate_title && initiate_screen_message)
+		user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING(initiate_title, initiate_screen_message, LEFT_ALIGN_TEXT), portrait_type)
 
 ///Actually begins the fire support attack
 /datum/fire_support/proc/start_fire_support(turf/target_turf)
