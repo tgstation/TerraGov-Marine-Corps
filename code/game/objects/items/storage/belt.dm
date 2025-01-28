@@ -8,7 +8,7 @@
 	worn_icon_state = "utility"
 	item_state_worn = TRUE
 	equip_slot_flags = ITEM_SLOT_BELT
-	attack_verb = list("whipped", "lashed", "disciplined")
+	attack_verb = list("whips", "lashes", "disciplines")
 	w_class = WEIGHT_CLASS_BULKY
 	storage_type = /datum/storage/belt
 
