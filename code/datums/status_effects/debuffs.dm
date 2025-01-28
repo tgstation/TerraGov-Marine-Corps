@@ -167,7 +167,7 @@
 	if(prob(20))
 		if(carbon_owner)
 			carbon_owner.handle_dreams()
-		if(prob(10) && owner.health > owner.health_threshold_crit)
+		if(prob(10) && owner.health > owner.get_crit_threshold())
 			owner.emote("snore")
 
 ///Basically a temporary self-inflicted shutdown for maintenance
