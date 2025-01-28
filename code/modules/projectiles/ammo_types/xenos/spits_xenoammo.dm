@@ -418,3 +418,36 @@
 		return
 	staggerstun(target_mob, proj, max_range, 0, knockdown_duration, stagger_stacks, slowdown_stacks, knockback)
 	target_carbon.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
+
+///Multipler on vehicle damage dealt, for the globadiers primo, Acid Rocket
+#define XADAR_VEHICLE_DAMAGE_MULT 1.3
+
+/datum/ammo/rocket/he/xadar
+	name = "Acid Rocket"
+	icon_state = "xadar"
+	damage = 30
+	penetration = 10
+	damage_type = BURN
+	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF|AMMO_SKIPS_ALIENS
+
+/datum/ammo/rocket/he/xadar/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	if(istype(target_obj,/obj/hitbox))
+		var/obj/hitbox/vehiclehitbox = target_obj
+		vehiclehitbox.root.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
+		return
+	if(isvehicle(target_obj))
+		target_obj.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
+
+/datum/ammo/rocket/he/xadar/drop_nade(turf/T)
+	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(T,2))
+		human_victim.adjust_stagger(4 SECONDS)
+		human_victim.apply_damage(90, BURN, BODY_ZONE_CHEST, ACID,  penetration = 10)
+		var/throwlocation = human_victim.loc
+		for(var/x in 1 to 3)
+			throwlocation = get_step(throwlocation, pick(GLOB.alldirs))
+		if(human_victim.stat == DEAD)
+			continue
+		human_victim.throw_at(throwlocation, 6, 1.5, src, TRUE)
+	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", air_pass = TRUE, projectile = TRUE))
+		new /obj/effect/temp_visual/acid_splatter(acid_tile)
+		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)

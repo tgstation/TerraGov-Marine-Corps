@@ -12,7 +12,7 @@
 		. += nearby_living
 
 ///Returns a list of humans via get_dist and same z level method, very cheap compared to range()
-/proc/cheap_get_humans_near(atom/movable/source, distance)
+/proc/cheap_get_humans_near(atom/source, distance)
 	. = list()
 	var/turf/source_turf = get_turf(source)
 	if(!source_turf)
