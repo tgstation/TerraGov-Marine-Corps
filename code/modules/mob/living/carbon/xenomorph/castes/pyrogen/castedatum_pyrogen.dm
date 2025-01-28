@@ -69,3 +69,58 @@
 		/datum/action/ability/activable/xeno/firestorm,
 		/datum/action/ability/xeno_action/heatray,
 	)
+
+
+// ***************************************
+// *********** Cryogen
+// ***************************************
+/datum/xeno_caste/pyrogen/cryogen
+	caste_name = "Cryogen"
+	display_name = "Cryogen"
+	caste_desc = "to do"
+	caste_type_path = /mob/living/carbon/xenomorph/pyrogen/cryogen
+
+	// *** Melee Attacks *** //
+	melee_damage = 20
+	attack_delay = 8
+
+	// *** Speed *** //
+	speed = -0.8
+
+	// *** Plasma *** //
+	plasma_max = 650
+	plasma_gain = 65
+
+	// *** Health *** //
+	max_health = 375
+
+	// *** Minimap Icon *** //
+	//minimap_icon = "cryogen"
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/form_shift,
+		/datum/action/ability/xeno_action/cryogen_shot,
+	)
+
+/datum/xeno_caste/pyrogen/cryogen/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/pyrogen/cryogen/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "to do"
+	primordial_message = "to do"
+	upgrade = XENO_UPGRADE_PRIMO
+
+	// *** Abilities *** //
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/form_shift,
+		/datum/action/ability/xeno_action/cryogen_shot,
+		/datum/action/ability/xeno_action/heatray,
+	)
