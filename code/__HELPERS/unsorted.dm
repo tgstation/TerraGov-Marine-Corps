@@ -174,51 +174,41 @@
 	var/angle = abs(degree_one - degree_two) % 360
 	return angle > 180 ? 360 - angle : angle
 
-/**
- *	Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
- *	Variables:
- *	bypass_window - check for PASS_GLASS - laser like behavior
- *	projectile - check for PASS_PROJECTILE - bullet like behavior
- *	bypass_xeno - whether to bypass dense xeno structures like flamers
- *	air_pass - whether to bypass non airtight atoms
- */
-/proc/LinkBlocked(turf/A, turf/B, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+
+///Returns true if the path from A to B is blocked. Checks both paths where the direction is diagonal
+/proc/LinkBlocked(turf/A, turf/B, pass_flags_checked = NONE)
 	if(isnull(A) || isnull(B))
 		return TRUE
 	var/adir = get_dir(A, B)
 	var/rdir = get_dir(B, A)
-	if(B.density && (!istype(B, /turf/closed/wall/resin) || !bypass_xeno))
+	if(B.density && (!istype(B, /turf/closed/wall/resin) || !(pass_flags_checked & PASS_XENO))) //TODO: Unsnowflake this check here and in DirBlocked()
 		return TRUE
 	if(adir & (adir - 1))//is diagonal direction
 		var/turf/iStep = get_step(A, adir & (NORTH|SOUTH))
-		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, iStep, bypass_window, projectile, bypass_xeno, air_pass) && !LinkBlocked(iStep, B, bypass_window, projectile, bypass_xeno, air_pass))
+		if((!iStep.density || (istype(iStep, /turf/closed/wall/resin) && (pass_flags_checked & PASS_XENO))) && !LinkBlocked(A, iStep, pass_flags_checked) && !LinkBlocked(iStep, B, pass_flags_checked))
 			return FALSE
 
 		var/turf/pStep = get_step(A,adir & (EAST|WEST))
-		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && bypass_xeno)) && !LinkBlocked(A, pStep, bypass_window, projectile, bypass_xeno, air_pass) && !LinkBlocked(pStep, B, bypass_window, projectile, bypass_xeno, air_pass))
+		if((!pStep.density || (istype(pStep, /turf/closed/wall/resin) && (pass_flags_checked & PASS_XENO))) && !LinkBlocked(A, pStep, pass_flags_checked) && !LinkBlocked(pStep, B, pass_flags_checked))
 			return FALSE
 		return TRUE
 
-	if(DirBlocked(A, adir, bypass_window, projectile, bypass_xeno, air_pass))
+	if(DirBlocked(A, adir, pass_flags_checked))
 		return TRUE
-	if(DirBlocked(B, rdir, bypass_window, projectile, bypass_xeno, air_pass))
+	if(DirBlocked(B, rdir, pass_flags_checked))
 		return TRUE
 	return FALSE
 
 ///Checks if moving in a direction is blocked
-/proc/DirBlocked(turf/loc, direction, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+/proc/DirBlocked(turf/loc, direction, pass_flags_checked = NONE)
 	for(var/obj/object in loc)
 		if(!object.density)
 			continue
-		if((object.allow_pass_flags & PASS_PROJECTILE) && projectile)
-			continue
-		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && bypass_xeno) //xeno objects are bypassed by flamers
-			continue
-		if((object.allow_pass_flags & PASS_GLASS) && bypass_window)
-			continue
-		if((object.allow_pass_flags & PASS_AIR) && air_pass)
-			continue
 		if(object.atom_flags & ON_BORDER && object.dir != direction)
+			continue
+		if((istype(object, /obj/structure/mineral_door/resin) || istype(object, /obj/structure/xeno)) && (pass_flags_checked & PASS_XENO)) //xeno objects are bypassed by flamers
+			continue
+		if(pass_flags_checked & object.allow_pass_flags)
 			continue
 		return TRUE
 	return FALSE
@@ -1201,55 +1191,6 @@ will handle it, but:
 				areas += V
 	return areas
 
-/**
- *	Generates a cone shape. Any other checks should be handled with the resulting list. Can work with up to 359 degrees
- *	Variables:
- *	center - where the cone begins, or center of a circle drawn with this
- *	max_row_count - how many rows are checked
- *	starting_row - from how far should the turfs start getting included in the cone
- *	cone_width - big the angle of the cone is
- *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
- *	blocked - whether the cone should take into consideration solid walls
- */
-/proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE)
-	var/right_angle = cone_direction + cone_width/2
-	var/left_angle = cone_direction - cone_width/2
-
-	//These are needed because degrees need to be from 0 to 359 for the checks to function
-	if(right_angle >= 360)
-		right_angle -= 360
-
-	if(left_angle < 0)
-		left_angle += 360
-
-	///the 3 directions in the direction on the cone that will be checked
-	var/cardinals = GLOB.cardinals - REVERSE_DIR(cone_direction)
-	///turfs that are checked whether the cone can continue further from them
-	var/list/turfs_to_check = list(get_turf(center))
-	var/list/cone_turfs = list()
-
-	for(var/r in 1 to max_row_count)
-		for(var/X in turfs_to_check)
-			var/turf/trf = X
-			for(var/direction in cardinals)
-				var/turf/T = get_step(trf, direction)
-				if(cone_turfs.Find(T))
-					continue
-				if(get_dist(center, T) < starting_row)
-					continue
-				var/turf_angle = Get_Angle(center, T)
-				if(right_angle > left_angle && (turf_angle > right_angle || turf_angle < left_angle))
-					continue
-				if(turf_angle > right_angle && turf_angle < left_angle)
-					continue
-				if(blocked)
-					if(T.density || LinkBlocked(trf, T) || TurfBlockedNonWindow(T))
-						continue
-				cone_turfs += T
-				turfs_to_check += T
-			turfs_to_check -= trf
-	return	cone_turfs
-
 ///Returns a list of all locations (except the area) the movable is within.
 /proc/get_nested_locs(atom/movable/atom_on_location, include_turf = FALSE)
 	. = list()
@@ -1269,13 +1210,9 @@ will handle it, but:
  *	starting_row - from how far should the turfs start getting included in the cone. -1 required to include center turf due to byond
  *	cone_width - big the angle of the cone is
  *	cone_direction - at what angle should the cone be made, relative to the game board's orientation
- *	blocked - whether the cone should take into consideration solid walls
- *	bypass_window - whether it will go through transparent windows like lasers
- *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects like projectiles
- *	bypass_xeno - whether to bypass dense xeno structures like flamers
- *	air_pass - whether to bypass non airtight atoms
+ *	blocked - whether the cone should take into consideration obstacles
  */
-/proc/generate_true_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+/proc/generate_cone(atom/center, max_row_count = 10, starting_row = 1, cone_width = 60, cone_direction = 0, blocked = TRUE, pass_flags_checked = NONE)
 	var/right_angle = cone_direction + cone_width/2
 	var/left_angle = cone_direction - cone_width/2
 
@@ -1303,7 +1240,7 @@ will handle it, but:
 					continue
 				if(turf_angle > right_angle && turf_angle < left_angle)
 					continue
-				if(blocked && LinkBlocked(old_turf, turf_to_check, bypass_window, projectile, bypass_xeno, air_pass))
+				if(blocked && LinkBlocked(old_turf, turf_to_check, pass_flags_checked))
 					continue
 				cone_turfs += turf_to_check
 				turfs_to_check += turf_to_check
@@ -1316,20 +1253,14 @@ will handle it, but:
 GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
 
 /**
- *	Draws a line between two atoms, then checks if the path is blocked.
- *	Variables:
- *	start -start point of the path
- *	end - end point of the path
- *	bypass_window - whether it will go through transparent windows in the same way as lasers
- *	projectile - whether PASS_PROJECTILE will be checked to ignore dense objects in the same way as projectiles
- *	bypass_xeno - whether to bypass dense xeno structures in the same way as flamers
- *	air_pass - whether to bypass non airtight atoms
- */
-/proc/check_path(atom/start, atom/end, bypass_window = FALSE, projectile = FALSE, bypass_xeno = FALSE, air_pass = FALSE)
+ * Draws a line between two atoms, then checks if the path is blocked
+ * Returns the last turf in the list it can successfully path to
+*/
+/proc/check_path(atom/start, atom/end, pass_flags_checked = NONE)
 	var/list/path_to_target = getline(start, end)
 	var/line_count = 1
 	while(line_count < length(path_to_target))
-		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], bypass_window, projectile, bypass_xeno, air_pass))
-			return FALSE
+		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], pass_flags_checked))
+			break
 		line_count ++
-	return TRUE
+	return path_to_target[line_count]

@@ -35,7 +35,7 @@
 	if(!T || !isturf(T))
 		return
 	playsound(T, 'sound/effects/EMPulse.ogg', 50)
-	var/list/turf/target_turfs = generate_true_cone(T, aoe_range, -1, 359, 0, air_pass = TRUE)
+	var/list/turf/target_turfs = generate_cone(T, aoe_range, -1, 359, 0, pass_flags_checked = PASS_AIR)
 	for(var/turf/target_turf AS in target_turfs)
 		for(var/atom/movable/target AS in target_turf)
 			if(isliving(target))
