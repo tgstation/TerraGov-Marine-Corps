@@ -10,6 +10,9 @@
 	opacity = TRUE
 	allow_pass_flags = PASS_AIR
 
+/obj/structure/bookcase/add_debris_element()
+	AddElement(/datum/element/debris, DEBRIS_PAPER, -40, 5)
+
 /obj/structure/bookcase/Initialize(mapload)
 	. = ..()
 	for(var/obj/item/I in loc)

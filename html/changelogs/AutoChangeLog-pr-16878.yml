@@ -1,7 +1,0 @@
-author: "Tiviplus & Kuro"
-delete-after: True
-changes:
-  - rscadd: "Added Loki armor module which can be activated to make the user 80% transparent as well as spawn a mirage clone"
-  - rscadd: "Added Thor armor lock module which allows you to become immobile for 4 seconds  in exchange for 50 extra armor"
-  - bugfix: "fixed a number of module names not prefixing \"the\" correctly in some cases"
-  - bugfix: "fixed being incapacited still allowing you to spin by trying to shoot your gun"
