@@ -13,6 +13,7 @@
 	bound_y = -32
 	max_integrity = INFINITY
 	move_resist = INFINITY // non forcemoving this could break gliding so lets just say no
+	explosion_block = 1
 	///people riding on this hitbox that we want to move with us
 	var/list/atom/movable/tank_desants
 	///The "parent" that this hitbox is attached to and to whom it will relay damage
@@ -47,6 +48,8 @@
 /obj/hitbox/Destroy(force)
 	if(!force) // only when the parent is deleted
 		return QDEL_HINT_LETMELIVE
+	for(var/atom/movable/desant AS in tank_desants)
+		remove_desant(desant)
 	root?.hitbox = null
 	root = null
 	return ..()
@@ -97,6 +100,14 @@
 	new_desant.layer = ABOVE_MOB_PLATFORM_LAYER
 	root.add_desant(new_desant)
 
+///Removes a desant
+/obj/hitbox/proc/remove_desant(atom/movable/desant)
+	desant.layer = LAZYACCESS(tank_desants, desant)
+	desant.remove_traits(list(TRAIT_TANK_DESANT, TRAIT_NOSUBMERGE), VEHICLE_TRAIT)
+	LAZYREMOVE(tank_desants, desant)
+	UnregisterSignal(desant, COMSIG_QDELETING)
+	root.remove_desant(desant)
+
 ///signal handler when someone jumping lands on us
 /obj/hitbox/proc/on_jump_landed(datum/source, atom/movable/lander)
 	SIGNAL_HANDLER
@@ -116,18 +127,11 @@
 		return
 	if(AM.loc in locs)
 		return
-	AM.layer = LAZYACCESS(tank_desants, AM)
-	LAZYREMOVE(tank_desants, AM)
-	UnregisterSignal(AM, COMSIG_QDELETING)
-	root.remove_desant(AM)
+	remove_desant(AM)
+
 	var/obj/hitbox/new_hitbox = locate(/obj/hitbox) in AM.loc //walking onto another vehicle
-	if(!new_hitbox)
-		AM.remove_traits(list(TRAIT_TANK_DESANT, TRAIT_NOSUBMERGE), VEHICLE_TRAIT)
-		return
-	LAZYSET(new_hitbox.tank_desants, AM, AM.layer)
-	new_hitbox.RegisterSignal(AM, COMSIG_QDELETING, PROC_REF(on_desant_del))
-	AM.layer = ABOVE_MOB_PLATFORM_LAYER //we set it separately so the original layer is recorded
-	new_hitbox.root.add_desant(AM)
+	if(new_hitbox)
+		new_hitbox.add_desant(AM)
 
 ///cleanup riders on deletion
 /obj/hitbox/proc/on_desant_del(datum/source)

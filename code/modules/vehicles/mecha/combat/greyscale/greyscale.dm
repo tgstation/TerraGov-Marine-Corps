@@ -28,6 +28,7 @@
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
 	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
+	explosion_block = 2
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -56,9 +57,12 @@
 		var/datum/mech_limb/limb = new new_limb_type
 		limb.attach(src, key)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
+/obj/vehicle/sealed/mecha/combat/greyscale/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	. = ..()
 	var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	explosion.pixel_x = 16
+
+/obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
 		limb?.detach(src)
@@ -139,6 +143,9 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
 	update_icon() //when available pass UPDATE_OVERLAYS since this is just for layering order
+
+/obj/vehicle/sealed/mecha/combat/greyscale/throw_bounce(atom/hit_atom, turf/old_throw_source)
+	return //no bounce for us
 
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"

@@ -252,6 +252,9 @@
 /turf/open/shuttle/escapepod/plain
 	icon_state = "floor1"
 
+/turf/open/shuttle/escapepod/plain/buildable
+	allow_construction = TRUE
+
 /turf/open/shuttle/escapepod/zero
 	icon_state = "floor0"
 
@@ -263,6 +266,9 @@
 
 /turf/open/shuttle/escapepod/five
 	icon_state = "floor5"
+
+/turf/open/shuttle/escapepod/five/buildable
+	allow_construction = TRUE
 
 /turf/open/shuttle/escapepod/six
 	icon_state = "floor6"

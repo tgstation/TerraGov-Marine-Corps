@@ -33,12 +33,12 @@
 			return target.wirecutter_act(user, src)
 		if(TOOL_WELDER)
 			return target.welder_act(user, src)
-		if(TOOL_WELD_CUTTER)
-			return target.weld_cut_act(user, src)
 		if(TOOL_ANALYZER)
 			return target.analyzer_act(user, src)
 		if(TOOL_FULTON)
 			return target.fulton_act(user, src)
+		if(TOOL_PLASMACUTTER)
+			return target.plasmacutter_act(user, src)
 
 
 ///Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.

@@ -56,6 +56,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/dark,
 /area/outpost/science/research)
+"ap" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/ground/mars/random/dirt,
+/area/outpost/yard/south)
 "aq" = (
 /obj/structure/cable,
 /turf/open/floor/tile/dark/brown2{
@@ -305,10 +309,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating/asteroidfloor,
 /area/outpost/cargo)
-"bG" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/sand,
-/area/outpost/yard/central)
 "bH" = (
 /turf/open/floor/tile/dark/brown2{
 	dir = 5
@@ -386,10 +386,6 @@
 "cc" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/yard/west)
-"ce" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south)
 "cf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -1827,6 +1823,15 @@
 	},
 /turf/open/floor/tile/dark,
 /area/outpost/hallway/central)
+"iS" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/tile/dark/brown2{
+	dir = 5
+	},
+/area/outpost/dormitories)
 "iT" = (
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/mars/cavetodirt,
@@ -4151,6 +4156,12 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
+"ts" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/outpost/yard/south_east)
 "tt" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -5754,7 +5765,6 @@
 "Ba" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/manifold4w/green/hidden,
-/obj/docking_port/stationary/crashmode,
 /turf/open/floor/tile/dark/brown2/corner{
 	dir = 1
 	},
@@ -5805,10 +5815,6 @@
 	dir = 8
 	},
 /area/outpost/hallway/central)
-"Bm" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/tile/dark/red2,
-/area/outpost/brig/wardens_office)
 "Bn" = (
 /turf/open/floor/plating/asteroidwarning{
 	dir = 4
@@ -19813,7 +19819,7 @@ yW
 yW
 ai
 RD
-bG
+EA
 EA
 FH
 sY
@@ -21780,7 +21786,7 @@ aN
 ey
 VB
 aN
-bG
+EA
 EA
 oM
 CY
@@ -22330,7 +22336,7 @@ Hs
 Mb
 mN
 ES
-wa
+ap
 Ip
 kJ
 Ab
@@ -23370,7 +23376,7 @@ yb
 yb
 iL
 tK
-ZD
+iS
 ki
 ki
 ki
@@ -24969,13 +24975,13 @@ yW
 yW
 yW
 yW
-oK
+ts
 VN
 BJ
 BJ
 Js
 yW
-ce
+hK
 hK
 hK
 hK
@@ -25207,7 +25213,7 @@ Qo
 lp
 zg
 Tp
-Bm
+FG
 yY
 tz
 tx

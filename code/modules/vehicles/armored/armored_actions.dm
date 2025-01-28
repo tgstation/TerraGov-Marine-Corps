@@ -124,7 +124,7 @@
 		owner.client.view_size.set_view_radius_to(4.5)
 		SEND_SOUND(owner, sound('sound/mecha/imag_enh.ogg', volume=50))
 	else
-		owner.client.view_size.reset_to_default()
+		owner.client.view_size.set_view_radius_to("[chassis.vis_range_mod]x[chassis.vis_range_mod]")
 	update_button_icon()
 
 /datum/action/vehicle/sealed/armored/zoom/remove_action(mob/M)

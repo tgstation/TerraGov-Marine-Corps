@@ -285,6 +285,10 @@
 		balloon_alert(src, "We can't evolve to that caste from our current one")
 		return FALSE
 
+	if(new_caste_type in SSticker.mode.restricted_castes)
+		balloon_alert(src, "Our weak hive can't support that caste!")
+		return FALSE
+
 	var/no_room_tier_two = length(hive.xenos_by_tier[XENO_TIER_TWO]) >= hive.tier2_xeno_limit
 	var/no_room_tier_three = length(hive.xenos_by_tier[XENO_TIER_THREE]) >= hive.tier3_xeno_limit
 	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[new_caste_type][XENO_UPGRADE_BASETYPE] // tivi todo make so evo takes the strict caste datums

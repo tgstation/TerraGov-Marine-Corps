@@ -1,5 +1,0 @@
-author: "Runian"
-delete-after: True
-changes:
-  - qol: "Plant Weeds ability's button now dynamically shows its ability cost rather than the consistent 75."
-  - bugfix: "Plants Weeds ability no longer prevents usage if you have more than post-discounted, but less than before-discounted plasma (for before shutters drop)."

@@ -70,6 +70,8 @@
 /datum/ammo/energy/tesla/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(isxeno(target_mob)) //need 1 second more than the actual effect time
 		var/mob/living/carbon/xenomorph/X = target_mob
+		if(X.xeno_caste.caste_flags & CASTE_PLASMADRAIN_IMMUNE)
+			return
 		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
 
 /datum/ammo/energy/lasburster
@@ -511,6 +513,17 @@
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+
+/datum/ammo/energy/lasersentry
+	name = "laser sentry bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+	damage = 35
+	penetration = 15
+	sundering = 2
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN
+	hitscan_effect_icon = "beam"
+	bullet_color = COLOR_LASER_RED
 
 /datum/ammo/energy/plasma
 	name = "superheated plasma"

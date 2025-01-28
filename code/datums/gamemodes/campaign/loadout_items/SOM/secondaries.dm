@@ -76,9 +76,13 @@
 	jobs_supported = list(SOM_SQUAD_MARINE, SOM_SQUAD_ENGINEER, SOM_SQUAD_VETERAN, SOM_SQUAD_LEADER)
 	item_typepath = /obj/item/weapon/energy/sword/som
 	loadout_item_flags = NONE
+	item_whitelist = null
+	req_desc = null
 
 /datum/loadout_item/secondary/esword/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
-	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_IN_BELT)
+	wearer.equip_to_slot_or_del(new item_typepath(wearer), SLOT_BELT)
+	if(!isstorageobj(wearer.back))
+		return
 	default_load(wearer, loadout, holder)
 
 //kits
@@ -111,7 +115,7 @@
 
 /datum/loadout_item/secondary/kit/som_engineer/sentry/post_equip(mob/living/carbon/human/wearer, datum/outfit/quick/loadout, datum/outfit_holder/holder)
 	wearer.equip_to_slot_or_del(new /obj/item/weapon/gun/energy/lasgun/lasrifle/volkite/cope, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/ammo_magazine/minisentry, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/explosive/grenade/som, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/combat_advanced, SLOT_IN_BACKPACK)
 
 /datum/loadout_item/secondary/kit/som_engineer/large_mines
@@ -139,7 +143,7 @@
 
 /datum/loadout_item/secondary/kit/som_corpsman/advanced
 	name = "Advanced meds"
-	desc = "A variety of advanced medical injectors including Russian Red, as well as rezadone, a powerful chemical able to treat genetic damage in humanoids."
+	desc = "A variety of advanced medical injectors including Russian Red, rezadone and Re-Grow, allowing for the treatment of cloneloss and missing limbs."
 	ui_icon = "medkit"
 	purchase_cost = 30
 
@@ -148,5 +152,6 @@
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/rezadone, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/russian_red, SLOT_IN_BACKPACK)
-	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/advanced/synaptizine, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/regrow, SLOT_IN_BACKPACK)
+	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/synaptizine, SLOT_IN_BACKPACK)
 	wearer.equip_to_slot_or_del(new /obj/item/reagent_containers/hypospray/autoinjector/antitox_mix, SLOT_IN_BACKPACK)

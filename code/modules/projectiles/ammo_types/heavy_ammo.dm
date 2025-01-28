@@ -44,14 +44,21 @@
 
 /datum/ammo/bullet/minigun/ltaap
 	name = "chaingun bullet"
-	damage = 30
-	penetration = 35
+	damage = 15
+	penetration = 20
 	sundering = 1
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_IFF
 	damage_falloff = 1
 	accurate_range = 7
 	accuracy = 10
 	barricade_clear_distance = 4
+
+/datum/ammo/bullet/minigun/ltaap/hv
+	damage = 35
+	penetration = 30
+	ammo_behavior_flags = AMMO_BALLISTIC
+	hud_state = "hivelo_impact"
+	hud_state_empty = "hivelo_empty"
 
 /datum/ammo/bullet/auto_cannon
 	name = "autocannon high-velocity bullet"
@@ -201,7 +208,9 @@
 	explosion(T, light_impact_range = 2, weak_impact_range = 4)
 
 /datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	drop_nade(get_turf(target_mob))
+	var/target_turf = get_turf(target_mob)
+	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	drop_nade(target_turf)
 
 /datum/ammo/bullet/sarden/high_explosive/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	drop_nade(target_obj.density ? get_step_towards(target_obj, proj) : target_obj.loc)

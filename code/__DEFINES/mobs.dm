@@ -100,7 +100,7 @@
 #define CARBON_RECOVERY_OXYLOSS -5
 
 #define CARBON_KO_OXYLOSS 50
-#define HUMAN_CRITDRAG_OXYLOSS 3 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious
+#define HUMAN_CRITDRAG_OXYLOSS 6 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious
 
 #define HEAT_DAMAGE_LEVEL_1 1 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 2 //Amount of damage applied when your body temperature passes the 400K point
@@ -376,21 +376,20 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define NO_OVERDOSE (1<<4)
 #define NO_POISON (1<<5)
 #define NO_CHEM_METABOLIZATION (1<<6)
-#define HAS_SKIN_TONE (1<<7)
-#define HAS_SKIN_COLOR (1<<8)
-#define HAS_LIPS (1<<9)
-#define HAS_UNDERWEAR (1<<10)
-#define HAS_NO_HAIR (1<<11)
-#define IS_SYNTHETIC (1<<12)
-#define NO_STAMINA (1<<13)
-#define DETACHABLE_HEAD (1<<14)
-#define USES_ALIEN_WEAPONS (1<<15)
-#define NO_DAMAGE_OVERLAY (1<<16)
-#define HEALTH_HUD_ALWAYS_DEAD (1<<17)
-#define PARALYSE_RESISTANT (1<<18)
-#define ROBOTIC_LIMBS (1<<19)
-#define GREYSCALE_BLOOD (1<<20)
-#define IS_INSULATED (1<<21)
+#define HAS_SKIN_COLOR (1<<7)
+#define HAS_LIPS (1<<8)
+#define HAS_UNDERWEAR (1<<9)
+#define HAS_NO_HAIR (1<<10)
+#define IS_SYNTHETIC (1<<11)
+#define NO_STAMINA (1<<12)
+#define DETACHABLE_HEAD (1<<13)
+#define USES_ALIEN_WEAPONS (1<<14)
+#define NO_DAMAGE_OVERLAY (1<<15)
+#define HEALTH_HUD_ALWAYS_DEAD (1<<16)
+#define PARALYSE_RESISTANT (1<<17)
+#define ROBOTIC_LIMBS (1<<18)
+#define GREYSCALE_BLOOD (1<<19)
+#define IS_INSULATED (1<<20)
 
 //=================================================
 
@@ -549,14 +548,9 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define XENO_HEALTH_ALERT_TRIGGER_PERCENT 0.25 //If a xeno is damaged while its current hit points are less than this percent of its maximum, we send out an alert to the hive
 #define XENO_HEALTH_ALERT_TRIGGER_THRESHOLD 50 //If a xeno is damaged while its current hit points are less than this amount, we send out an alert to the hive
 #define XENO_HEALTH_ALERT_COOLDOWN 60 SECONDS //The cooldown on these xeno damage alerts
-#define XENO_SILO_HEALTH_ALERT_COOLDOWN 30 SECONDS //The cooldown on these xeno damage alerts
 #define XENO_HEALTH_ALERT_POINTER_DURATION 6 SECONDS //How long the alert directional pointer lasts.
 #define XENO_RALLYING_POINTER_DURATION 15 SECONDS //How long the rally hive pointer lasts
-#define XENO_SILO_DAMAGE_POINTER_DURATION 10 SECONDS //How long the alert directional pointer lasts when silos are damaged
-#define XENO_SILO_DETECTION_COOLDOWN 1 MINUTES
-#define XENO_SILO_DETECTION_RANGE 10//How far silos can detect hostiles
-#define XENO_GARGOYLE_DETECTION_COOLDOWN 30 SECONDS
-#define XENO_GARGOYLE_DETECTION_RANGE 10//How far gargoyles can detect hostiles
+
 #define XENO_RESTING_COOLDOWN 2 SECONDS
 #define XENO_UNRESTING_COOLDOWN 0.5 SECONDS
 
@@ -666,12 +660,12 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define GORGER_DRAIN_HEAL 40 // overheal gained each time the target is drained
 #define GORGER_DRAIN_BLOOD_DRAIN 20 // amount of plasma drained when feeding on something
 #define GORGER_TRANSFUSION_HEAL 0.3 // in %
-#define GORGER_OPPOSE_COST 100
+#define GORGER_OPPOSE_COST 80
 #define GORGER_OPPOSE_HEAL 0.2 // in %
-#define GORGER_PSYCHIC_LINK_CHANNEL 10 SECONDS
+#define GORGER_PSYCHIC_LINK_CHANNEL 5 SECONDS
 #define GORGER_PSYCHIC_LINK_RANGE 15
 #define GORGER_PSYCHIC_LINK_REDIRECT 0.5 //in %
-#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.2 //in %
+#define GORGER_PSYCHIC_LINK_MIN_HEALTH 0.5 //in %
 #define GORGER_CARNAGE_HEAL 0.2
 #define GORGER_CARNAGE_MOVEMENT -0.5
 #define GORGER_FEAST_DURATION -1 // lasts indefinitely, self-cancelled when insufficient plasma left

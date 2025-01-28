@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - qol: "Sounds from outside tanks should now properly have directionality applied to them"
-  - code_imp: "Improved some sound code performance."

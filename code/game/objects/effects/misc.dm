@@ -37,9 +37,6 @@
 	desc = "This looks like a projection of something."
 	anchored = TRUE
 
-/obj/effect/rune/attunement
-	luminosity = 5
-
 /obj/effect/soundplayer
 	anchored = TRUE
 	opacity = FALSE
@@ -108,6 +105,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "smoke"
 	opacity = TRUE
+	explosion_block = INFINITY
 
 /obj/effect/forcefield/fog/Initialize(mapload)
 	. = ..()

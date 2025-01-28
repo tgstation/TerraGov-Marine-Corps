@@ -265,6 +265,27 @@
 	description = "Create a smokescreen for a getaway."
 	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD_SELECT
 
+/datum/keybinding/xeno/smokescreen_spit
+	name = "smokescreen_spit"
+	full_name = "Boiler - Sizzler: Smokescreen Spit"
+	description = "Empowers your next spit to create a smokescreen."
+	keybind_signal = COMSIG_XENOABILITY_SMOKESCREEN_SPIT
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/steam_rush
+	name = "steam_rush"
+	full_name = "Boiler - Sizzler: Steam Rush"
+	description = "Speeds up and increases slash damage."
+	keybind_signal = COMSIG_XENOABILITY_STEAM_RUSH
+	hotkey_keys = list("Space")
+
+/datum/keybinding/xeno/high_pressure_spit
+	name = "high_pressure_spit"
+	full_name = "Boiler - Sizzler: High Pressure Spit"
+	description = "Fires a high pressure glob of acid that shatters and massively knocksback the target."
+	keybind_signal = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT
+	hotkey_keys = list("E")
+
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
 	full_name = "Bull: Plow Charge"
@@ -686,6 +707,24 @@
 	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
 	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
 	hotkey_keys = list("E")
+
+/datum/keybinding/xeno/dodge
+	name = "Dodge"
+	full_name = "Praetorian: Dodge"
+	description = "Gain a speed boost upon activation and the ability to pass through mobs. Enemies automatically receive bump attacks when passed."
+	keybind_signal = COMSIG_XENOABILITY_DODGE
+
+/datum/keybinding/xeno/impale
+	name = "Impale"
+	full_name = "Praetorian: Impale"
+	description = "Impale a marine next to you with your tail for moderate damage. Marked enemies are impaled twice."
+	keybind_signal = COMSIG_XENOABILITY_IMPALE
+
+/datum/keybinding/xeno/tail_trip
+	name = "Tail Trip"
+	full_name = "Praetorian: Tail Trip"
+	description = "Target a marine within two tiles of you to disorient and slows them. Marked enemies receive stronger debuffs and are stunned for a second."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_TRIP
 
 /datum/keybinding/xeno/screech
 	name = "screech"
