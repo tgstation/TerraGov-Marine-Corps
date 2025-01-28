@@ -88,7 +88,7 @@ export const MESSAGE_TYPES = [
     name: 'OOC',
     description: 'OOC messages, admin announcements and round announcements',
     selector:
-      '.ooc, .colorooc, .looc, .adminooc, .hostooc, .projleadooc, .headcoderooc, .headminooc, .headmentorooc, .trialminooc, .candiminooc, .mentorooc, .maintainerooc, .contributorooc, .otherooc, .ooc_alert_ooc, .ooc_alert_game',
+      '.ooc, .colorooc, .looc, .looc_heard_staff, .adminooc, .hostooc, .projleadooc, .headcoderooc, .headminooc, .headmentorooc, .trialminooc, .candiminooc, .mentorooc, .maintainerooc, .contributorooc, .otherooc, .ooc_alert_ooc, .ooc_alert_game',
   },
   {
     type: MESSAGE_TYPE_ADMINPM,
