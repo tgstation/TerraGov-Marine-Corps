@@ -129,3 +129,6 @@
   - balance: Though the Spec-Ops suits for Vanguards cost 10 loadout points.
   - bugfix: Fixes Vanguard Unit's missing map icon.
   - refactor: Renames everything related to CDolls to suit the new job title.
+2025-01-28:
+  DrCrawler:
+  - rscadd: PIXEL SHIFTING!!!!
