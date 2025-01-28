@@ -40,7 +40,7 @@
 		worn_icon_state = "telebaton_1"
 		w_class = WEIGHT_CLASS_NORMAL
 		force = 20
-		attack_verb = list("smacked", "struck", "slapped")
+		attack_verb = list("smacks", "strikes", "slaps")
 	else
 		user.visible_message(span_notice(" [user] collapses their telescopic baton."),\
 		span_notice("You collapse the baton."),\
@@ -49,7 +49,7 @@
 		worn_icon_state = "telebaton_0"
 		w_class = WEIGHT_CLASS_SMALL
 		force = 3//not so robust now
-		attack_verb = list("hit", "punched")
+		attack_verb = list("hits", "punches")
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

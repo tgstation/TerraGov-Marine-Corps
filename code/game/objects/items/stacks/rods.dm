@@ -10,7 +10,7 @@
 	throw_speed = 5
 	throw_range = 20
 	max_amount = 60
-	attack_verb = list("hit", "bludgeoned", "whacked")
+	attack_verb = list("hits", "bludgeons", "whacks")
 
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)

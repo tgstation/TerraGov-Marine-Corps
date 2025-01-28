@@ -26,7 +26,7 @@ GLOBAL_DATUM_INIT(welding_sparks_prepdoor, /mutable_appearance, mutable_appearan
 	var/attack_speed = 11
 	///Byond tick delay between right click alternate attacks
 	var/attack_speed_alternate = 11
-	///Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
+	///Used in attackby() to say how something was attacked "[x] [z.attack_verb] [y] with their [z]!" Should be in simple present tense!
 	var/list/attack_verb
 
 	///whether this item cuts

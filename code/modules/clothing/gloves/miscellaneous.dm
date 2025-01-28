@@ -169,11 +169,11 @@
 
 /obj/item/weapon/heldglove/boxing/hook
 	icon_state = "boxing_p"
-	attack_verb = list("punched")
+	attack_verb = list("punches")
 
 /obj/item/weapon/heldglove/boxing/jab
 	icon_state = "boxing_j"
-	attack_verb = list("jabbed")
+	attack_verb = list("jabs")
 
 
 /obj/item/clothing/gloves/heldgloves/boxing/green

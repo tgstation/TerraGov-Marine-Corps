@@ -168,7 +168,7 @@
 	atom_flags = CONDUCT
 	item_flags = TWOHANDED
 	force_wielded = 75
-	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
+	attack_verb = list("attacks", "chops", "cleaves", "tears", "cuts")
 
 /obj/item/weapon/twohanded/fireaxe/wield(mob/user)
 	. = ..()
@@ -308,7 +308,7 @@
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
 	atom_flags = NOBLOODY
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 
@@ -331,7 +331,7 @@
 	edge = 1
 	sharp = IS_SHARP_ITEM_SIMPLE
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb = list("attacked", "stabbed", "jabbed", "torn", "gored")
+	attack_verb = list("attacks", "stabs", "jabs", "tears", "gores")
 	///Based on what direction the tip of the spear is pointed at in the sprite; maybe someone makes a spear that points northwest
 	var/current_angle = 45
 
@@ -419,7 +419,7 @@
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
 	atom_flags = CONDUCT
-	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
+	attack_verb = list("slices", "slashes", "jabs", "tears", "gores")
 	resistance_flags = UNACIDABLE
 	attack_speed = 12 //Default is 7.
 
@@ -447,7 +447,7 @@
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
 	atom_flags = CONDUCT | TWOHANDED
-	attack_verb = list("smashed", "hammered")
+	attack_verb = list("smashes", "hammers")
 	attack_speed = 20
 	///amount of fuel stored inside
 	var/max_fuel = 50
@@ -596,7 +596,7 @@
 	force_wielded = 85
 	penetration = 10
 	attack_speed = 20
-	attack_verb = list("attacked", "walloped", "smashed", "shattered", "bashed")
+	attack_verb = list("attacks", "wallops", "smashes", "shatters", "bashes")
 
 /obj/item/weapon/twohanded/sledgehammer/wield(mob/user)
 	. = ..()
@@ -622,7 +622,7 @@
 	icon_state = "chainsaw_off"
 	worn_icon_state = "chainsaw"
 	atom_flags = TWOHANDED
-	attack_verb = list("gored", "torn", "ripped", "shred", "slashed", "cut")
+	attack_verb = list("gores", "tears", "rips", "shreds", "slashes", "cuts")
 	force = 20
 	force_wielded = 75
 	throwforce = 30

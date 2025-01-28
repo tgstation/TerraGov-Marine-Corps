@@ -17,7 +17,7 @@
 	atom_flags = CONDUCT
 	hitsound = 'sound/items/trayhit1.ogg'
 	storage_type = /datum/storage/kitchen_tray
-	attack_verb = list("attacked", "slammed", "slapped")
+	attack_verb = list("attacks", "slams", "slaps")
 	/// Shield bash cooldown. based on world.time
 	var/cooldown = 0
 
@@ -30,7 +30,7 @@
 	. = ..()
 	if(!length(contents))
 		return
-	
+
 	for(var/obj/item/thing in src)
 		var/image/item_image = image("icon" = thing.icon, "icon_state" = thing.icon_state, "layer" = layer+0.01)
 		item_image.pixel_x = rand(-10, 10)

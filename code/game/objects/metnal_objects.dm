@@ -45,7 +45,7 @@
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 // rocks

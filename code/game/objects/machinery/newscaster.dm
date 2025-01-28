@@ -16,4 +16,4 @@
 	)
 	icon_state = "newspaper"
 	w_class = WEIGHT_CLASS_TINY	//Let's make it fit in trashbags!
-	attack_verb = list("bapped")
+	attack_verb = list("baps")

@@ -177,7 +177,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 7
 	throw_range = 15
-	attack_verb = list("stamped")
+	attack_verb = list("stamps")
 
 /obj/item/tool/stamp/qm
 	name = "Quartermaster's Stamp"

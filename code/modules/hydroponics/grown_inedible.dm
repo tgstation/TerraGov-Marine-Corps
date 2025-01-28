@@ -44,7 +44,7 @@
 	w_class = WEIGHT_CLASS_NORMAL
 	throw_speed = 3
 	throw_range = 3
-	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
+	attack_verb = list("bashes", "batters", "bludgeons", "whacks")
 
 
 /obj/item/grown/log/attackby(obj/item/I, mob/user, params)
@@ -90,7 +90,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 1
 	throw_range = 3
-	attack_verb = list("stung")
+	attack_verb = list("stings")
 	hitsound = ""
 
 	var/potency_divisior = 5

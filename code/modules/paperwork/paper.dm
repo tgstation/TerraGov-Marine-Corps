@@ -18,7 +18,7 @@
 	throw_speed = 1
 	equip_slot_flags = ITEM_SLOT_HEAD
 	armor_protection_flags = HEAD
-	attack_verb = list("bapped")
+	attack_verb = list("baps")
 
 	var/info		//What's actually written on the paper.
 	var/info_links	//A different version of the paper which includes html links at fields and EOF

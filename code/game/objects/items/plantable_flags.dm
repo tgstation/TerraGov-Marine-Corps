@@ -23,7 +23,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 55
 	attack_speed = 15
-	attack_verb = list("stabbed", "thrust", "smashed", "thumped", "bashed", "attacked", "clubbed", "speared", "jabbed", "torn", "gored")
+	attack_verb = list("stabs", "thrusts", "smashes", "thumps", "bashes", "attacks", "clubs", "spears", "jabs", "tears", "gores")
 	sharp = IS_SHARP_ITEM_BIG
 	throw_speed = 1
 	throw_range = 2

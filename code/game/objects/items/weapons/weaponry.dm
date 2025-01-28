@@ -7,7 +7,7 @@
 	w_class = WEIGHT_CLASS_SMALL
 	throw_speed = 7
 	throw_range = 15
-	attack_verb = list("banned")
+	attack_verb = list("bans")
 
 /obj/item/weapon/banhammer/attack(mob/M as mob, mob/user as mob)
 	to_chat(M, "<font color='red'><b> You have been banned FOR NO REISIN by [user]<b></font>")
@@ -43,7 +43,7 @@
 	force = 20
 	throwforce = 15
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("jabbed","stabbed","ripped")
+	attack_verb = list("jabs","stabs","rips")
 
 /obj/item/weapon/baseballbat
 	name = "\improper wooden baseball bat"
@@ -57,7 +57,7 @@
 	throw_speed = 3
 	throw_range = 7
 	throwforce = 7
-	attack_verb = list("smashed", "beaten", "slammed", "struck", "smashed", "battered", "cracked")
+	attack_verb = list("smashes", "beats", "slams", "strikes", "smashes", "batters", "cracks")
 	hitsound = 'sound/weapons/genhit3.ogg'
 
 /obj/item/weapon/baseballbat/metal
@@ -82,7 +82,7 @@
 	throw_speed = 3
 	throw_range = 4
 	throwforce = 7
-	attack_verb = list("patted", "tapped")
+	attack_verb = list("pats", "taps")
 	attack_speed = 4
 
 /obj/item/weapon/butterfly/attack_self(mob/user)
@@ -97,7 +97,7 @@
 		hitsound = 'sound/weapons/bladeslice.ogg'
 		icon_state += "_open"
 		w_class = WEIGHT_CLASS_NORMAL
-		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 		return
 	to_chat(user, span_notice("The [src] can now be concealed."))
 	force = initial(force)
@@ -123,7 +123,7 @@
 	force = 8
 	throwforce = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("hit", "bludgeoned", "whacked", "bonked")
+	attack_verb = list("hits", "bludgeons", "whacks", "bonks")
 
 /obj/item/weapon/wirerod/attackby(obj/item/I, mob/user, params)
 	. = ..()

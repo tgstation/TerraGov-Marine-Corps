@@ -8,7 +8,7 @@
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
 	usesound = 'sound/items/ratchet.ogg'
-	attack_verb = list("bashed", "battered", "bludgeoned", "whacked")
+	attack_verb = list("bashes", "batters", "bludgeons", "whacks")
 	tool_behaviour = TOOL_WRENCH
 
 
@@ -23,7 +23,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	attack_verb = list("stabbed")
+	attack_verb = list("stabs")
 	tool_behaviour = TOOL_SCREWDRIVER
 	/// If the item should be assigned a random color
 	var/random_color = TRUE
@@ -71,7 +71,7 @@
 	throw_speed = 2
 	throw_range = 9
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("pinched", "nipped")
+	attack_verb = list("pinches", "nips")
 	sharp = IS_SHARP_ITEM_SIMPLE
 	edge = 1
 	tool_behaviour = TOOL_WIRECUTTER
@@ -338,7 +338,7 @@
 	throwforce = 7
 	worn_icon_state = "crowbar"
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("attacked", "bashed", "battered", "bludgeoned", "whacked")
+	attack_verb = list("attacks", "bashes", "batters", "bludgeons", "whacks")
 	pry_capable = IS_PRY_CAPABLE_CROWBAR
 	tool_behaviour = TOOL_CROWBAR
 	usesound = 'sound/items/crowbar.ogg'

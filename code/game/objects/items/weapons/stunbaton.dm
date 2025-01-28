@@ -10,7 +10,7 @@
 	edge = 0
 	throwforce = 7
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("beaten")
+	attack_verb = list("beats")
 	req_one_access = list(ACCESS_MARINE_BRIG, ACCESS_MARINE_ARMORY, ACCESS_MARINE_CAPTAIN, ACCESS_NT_CORPORATE, ACCESS_NT_PMC_GREEN)
 	var/stunforce = 10
 	var/agonyforce = 80
@@ -199,7 +199,7 @@
 	stunforce = 0
 	agonyforce = 60	//same force as a stunbaton, but uses way more charge.
 	hitcost = 2500
-	attack_verb = list("poked")
+	attack_verb = list("pokes")
 	equip_slot_flags = NONE
 	has_user_lock = FALSE
 

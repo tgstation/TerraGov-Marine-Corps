@@ -88,7 +88,7 @@
 	force = 5
 	throwforce = 7
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("slashed", "sliced", "cut", "clawed")
+	attack_verb = list("slashes", "slices", "cuts", "claws")
 
 //Hatchets and things to kill kudzu
 /obj/item/tool/hatchet
@@ -104,7 +104,7 @@
 	throw_range = 4
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
-	attack_verb = list("chopped", "torn", "cut")
+	attack_verb = list("chops", "tears", "cuts")
 
 /obj/item/tool/hatchet/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1)
@@ -122,7 +122,7 @@
 	w_class = WEIGHT_CLASS_BULKY
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BACK
-	attack_verb = list("chopped", "sliced", "cut", "reaped")
+	attack_verb = list("chops", "slices", "cuts", "reaps")
 
 /obj/item/tool/scythe/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return
