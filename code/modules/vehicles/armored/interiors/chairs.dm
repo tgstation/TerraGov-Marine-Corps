@@ -36,6 +36,8 @@
 	var/obj/vehicle/sealed/armored/owner
 	///The skill required to man this chair
 	var/skill_req = SKILL_LARGE_VEHICLE_VETERAN
+	///tile range we increase vision by
+	var/vis_range_mod = 1
 
 /obj/structure/bed/chair/vehicle_crew/Destroy()
 	owner = null
@@ -60,13 +62,13 @@
 /obj/structure/bed/chair/vehicle_crew/post_buckle_mob(mob/buckling_mob)
 	. = ..()
 	buckling_mob.reset_perspective(owner)
-	if(owner.vis_range_mod)
-		buckling_mob.client.view_size.set_view_radius_to("[owner.vis_range_mod]x[owner.vis_range_mod]")
+	if(vis_range_mod)
+		buckling_mob.client.view_size.add(vis_range_mod)
 
 /obj/structure/bed/chair/vehicle_crew/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
 	buckled_mob.reset_perspective()
-	if(owner.vis_range_mod)
+	if(vis_range_mod)
 		buckled_mob.client.view_size.reset_to_default()
 
 /obj/structure/bed/chair/vehicle_crew/relaymove(mob/living/user, direct)
@@ -75,20 +77,19 @@
 /obj/structure/bed/chair/vehicle_crew/driver
 	name = "driver seat"
 	buckling_x = 12
+	vis_range_mod = 4
 
 /obj/structure/bed/chair/vehicle_crew/driver/post_buckle_mob(mob/buckling_mob)
 	. = ..()
 	buckling_mob.reset_perspective(owner)
 	ADD_TRAIT(buckling_mob, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
 	buckling_mob.update_sight()
-	buckling_mob.client.view_size.set_view_radius_to(4.5)
 	owner.add_control_flags(buckling_mob, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 
 /obj/structure/bed/chair/vehicle_crew/driver/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
 	REMOVE_TRAIT(buckled_mob, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
 	buckled_mob.update_sight()
-	buckled_mob.client.view_size.reset_to_default()
 	owner.remove_control_flags(buckled_mob, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 
 /obj/structure/bed/chair/vehicle_crew/gunner
@@ -121,6 +122,7 @@
 	pixel_y = 3
 	buckling_x = 0
 	buckling_y = 10
+	vis_range_mod = 4
 
 /obj/structure/bed/chair/vehicle_crew/driver/som/handle_layer()
 	return
@@ -132,6 +134,7 @@
 	pixel_y = 1
 	buckling_x = 0
 	buckling_y = 9
+	vis_range_mod = 4
 
 /obj/structure/bed/chair/vehicle_crew/gunner/som/handle_layer()
 	return
