@@ -728,9 +728,6 @@
 #define COMSIG_XENO_PROJECTILE_HIT "xeno_projectile_hit"			///from [/mob/living/carbon/xenomorph/projectile_hit] called when a projectile hits a xeno but before confirmation of a hit (can miss due to inaccuracy/evasion)
 	#define COMPONENT_PROJECTILE_DODGE (1<<0)
 
-#define COMSIG_XENOMORPH_WRAITH_RECALL "xenomorph_wraith_recall"
-	#define COMPONENT_BANISH_TARGETS_EXIST (1<<0)
-
 #define COMSIG_XENO_PSYCHIC_LINK_REMOVED "xeno_psychic_link_removed"
 
 #define COMSIG_XENOMORPH_LEAP_BUMP "xenomorph_leap_bump" //from /mob/living/carbon/xenomorph/bump
