@@ -327,7 +327,7 @@
 		if(0 to 19)
 			final_msg += span_info("You're [pick("free of grime", "pristine", "freshly laundered")].")
 		if(20 to 79)
-			final_msg += span_info(pick("You've got some grime on you", "You're a bit dirty"))
+			final_msg += span_info(pick("You've got some grime on you.", "You're a bit dirty."))
 		if(80 to 150)
 			final_msg += span_info(pick("You're not far off filthy.", "You're pretty dirty.", "There's still one or two clean spots left on you."))
 		else
