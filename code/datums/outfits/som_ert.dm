@@ -383,6 +383,11 @@
 		/obj/item/tool/crowbar/red = 1,
 	)
 
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
+	)
+
 
 /datum/outfit/job/som/ert/veteran/shotgunner
 	belt = /obj/item/storage/belt/shotgun/som/flechette
@@ -550,6 +555,11 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
 	)
 
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
+	)
+
 
 /datum/outfit/job/som/ert/veteran/breacher_rpg
 	head = /obj/item/clothing/head/modular/som/lorica
@@ -662,6 +672,11 @@
 
 	r_pocket_contents = list(
 		/obj/item/cell/lasgun/volkite = 3,
+	)
+
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
 	)
 
 
