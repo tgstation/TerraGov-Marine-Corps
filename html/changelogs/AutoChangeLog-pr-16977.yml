@@ -1,0 +1,6 @@
+author: "blackdav123"
+delete-after: True
+changes:
+  - rscadd: "Added two new beginner engi loadouts, point sentry and mortar."
+  - qol: "Papers can now be read by using them in hand."
+  - spellcheck: "Fixed typos in the beginner tutorial papers."
