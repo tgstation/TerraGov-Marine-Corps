@@ -20,7 +20,7 @@
 	light_power = 3
 	/// tracks for how many process ticks the fire will exist.Can be reduced by other sources
 	var/burn_ticks = 10
-	///The color the flames and associated particles appear
+	///The color the flames
 	var/flame_color = "red"
 	///Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature
 	var/burn_level = 20
@@ -109,10 +109,6 @@
 		burn_ticks = new_burn_ticks
 	if(new_burn_level)
 		burn_level = new_burn_level
-	if(!GLOB.flamer_particles[flame_color])
-		GLOB.flamer_particles[flame_color] = new /particles/flamer_fire(flame_color)
-
-	particles = GLOB.flamer_particles[flame_color]
 	update_appearance(UPDATE_ICON)
 
 	if((fire_stacks + fire_damage) <= 0)
