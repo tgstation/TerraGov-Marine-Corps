@@ -1682,7 +1682,9 @@
 /area/lv624/ground/jungle9)
 "iT" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/components/unary/vent_pump,
+/obj/machinery/power/geothermal/tbg{
+	dir = 4
+	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "iV" = (
@@ -1727,8 +1729,10 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/caves/rock)
 "jh" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
+	},
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "jj" = (
@@ -1963,6 +1967,10 @@
 /obj/machinery/light/small,
 /turf/open/floor/wood/broken,
 /area/lv624/lazarus/spaceport)
+"kt" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/r_wall,
+/area/lv624/lazarus/engineering)
 "kw" = (
 /turf/open/floor/plating,
 /area/lv624/lazarus/research/caves)
@@ -2201,11 +2209,9 @@
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "lO" = (
-/obj/machinery/power/geothermal,
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/cable,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
 "lP" = (
@@ -7042,6 +7048,12 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden,
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/jungle9)
+"KA" = (
+/obj/structure/cable,
+/obj/effect/ai_node,
+/obj/machinery/atmospherics/components/unary/vent_pump,
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "KB" = (
 /obj/machinery/door/airlock/multi_tile/mainship/medidoor/medbay/free_access,
 /turf/open/floor/plating,
@@ -8361,7 +8373,6 @@
 /area/lv624/lazarus/research/caves)
 "Rb" = (
 /obj/structure/cable,
-/obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/corpsespawner/colonist,
 /turf/open/floor/tile/dark,
 /area/lv624/lazarus/engineering)
@@ -8837,6 +8848,13 @@
 	},
 /turf/open/floor/plating,
 /area/lv624/lazarus/medbay)
+"Tn" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/floor/tile/dark,
+/area/lv624/lazarus/engineering)
 "To" = (
 /obj/effect/landmark/campaign_structure/sensor_tower,
 /turf/open/floor/plating/ground/dirt,
@@ -14142,7 +14160,7 @@ ua
 FC
 FC
 zj
-zj
+kt
 Jd
 Jd
 zj
@@ -14151,7 +14169,7 @@ zj
 ox
 ox
 ox
-zj
+kt
 zj
 Ww
 Ww
@@ -14461,7 +14479,7 @@ nn
 nn
 nn
 qf
-zj
+kt
 vl
 uI
 XJ
@@ -14560,10 +14578,10 @@ zj
 zj
 GM
 zj
+kt
 zj
 zj
-zj
-zj
+kt
 Jd
 zj
 vv
@@ -14660,7 +14678,7 @@ FC
 ua
 ua
 ua
-zj
+kt
 vO
 oY
 DL
@@ -14868,7 +14886,7 @@ FC
 FC
 ua
 ua
-zj
+kt
 iG
 iK
 kM
@@ -14877,10 +14895,10 @@ zj
 nU
 qf
 KR
-zj
+kt
 vO
 uY
-zj
+kt
 Wh
 OM
 IC
@@ -14976,7 +14994,7 @@ zj
 zj
 zj
 XJ
-zj
+kt
 zj
 zj
 Jd
@@ -15079,9 +15097,9 @@ ua
 ua
 XJ
 jh
-jh
-jh
-jh
+qf
+qf
+qf
 XJ
 ox
 hG
@@ -15184,7 +15202,7 @@ ua
 XJ
 iT
 Rb
-Zl
+KA
 Sy
 Wc
 Zl
@@ -15286,17 +15304,17 @@ ua
 ua
 qI
 zj
-jh
-jh
+Tn
+qf
 lO
-jh
+qf
 XJ
 qi
 rS
 uz
 vL
 xZ
-zj
+kt
 Ww
 Ww
 Ww
@@ -15392,14 +15410,14 @@ FC
 zj
 zj
 zj
+kt
 zj
 zj
-zj
-zj
+kt
 XJ
 XJ
 XJ
-zj
+kt
 zj
 Ww
 zb
