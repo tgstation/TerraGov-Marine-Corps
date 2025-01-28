@@ -269,9 +269,10 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	var/prefix = "icons/misc/lobby_art/"
-	ASYNC
-		var/list/lobby_art = flist(prefix) //flist is blocking, this is needed for tests
-		icon = icon("[prefix]" + pick(lobby_art))
+	var/list/lobby_art = flist(prefix)
+	if(!length(lobby_art))
+		return
+	icon = icon("[prefix]" + pick(lobby_art))
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
