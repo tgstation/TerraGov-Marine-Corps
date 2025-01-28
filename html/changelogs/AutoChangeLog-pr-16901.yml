@@ -1,7 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - rscadd: "Adds the req-only BFG-9500 weapon for tank for 1600 points"
-  - bugfix: "fixed tank main gun being unable to fire if no secondary gun was equipped"
-  - bugfix: "tesla rifle no longer is blocked by LoS, and goes off density instead"
-  - qol: "All tank ammo and weapons have been moved from the weapons tab to the vehicles tab"
