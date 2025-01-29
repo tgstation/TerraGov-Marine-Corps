@@ -1,5 +1,0 @@
-author: "00ze-cyclone"
-delete-after: True
-changes:
-  - bugfix: "you no longer switch from spread mode to spread mode the first time you change mode on lasbine"
-  - spellcheck: "lasers from cripple mode are now properly named"

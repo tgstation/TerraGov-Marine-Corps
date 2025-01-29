@@ -235,3 +235,21 @@
   - bugfix: ACs can no longer use any mech related objects as intended
   yyzsong:
   - bugfix: removes the ability to place jaws in caves on a few specific maps
+2025-01-29:
+  00ze-cyclone:
+  - bugfix: you no longer switch from spread mode to spread mode the first time you
+      change mode on lasbine
+  - spellcheck: lasers from cripple mode are now properly named
+  Lumipharon:
+  - bugfix: Ghost runetext is no longer visible if the ghost itself is not
+  - bugfix: fixed a loadout exploit
+  - code_imp: Improved some path checking procs
+  TiviPlus:
+  - imageadd: added new lobby art by Zaha
+  - code_imp: Drastically reduced icons sent by reworking how lobby art is loaded
+  blackdav123:
+  - rscadd: Added two new beginner engi loadouts, point sentry and mortar.
+  - qol: Papers can now be read by using them in hand.
+  - spellcheck: Fixed typos in the beginner tutorial papers.
+  tyeagg:
+  - bugfix: tdf glove mob sprite

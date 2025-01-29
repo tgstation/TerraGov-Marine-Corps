@@ -1,5 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - imageadd: "added new lobby art by Zaha"
-  - code_imp: "Drastically reduced icons sent by reworking how lobby art is loaded"

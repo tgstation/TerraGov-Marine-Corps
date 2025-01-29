@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "Ghost runetext is no longer visible if the ghost itself is not"
