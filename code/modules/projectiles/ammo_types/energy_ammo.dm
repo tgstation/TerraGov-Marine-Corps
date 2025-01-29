@@ -331,7 +331,7 @@
 	staggerstun(target_mob, proj, max_range = 6, knockback = knockback_dist)
 
 /datum/ammo/energy/lasgun/marine/cripple
-	name = "impact laser blast"
+	name = "crippling laser blast"
 	icon_state = "overchargedlaser"
 	hud_state = "laser_disabler"
 	damage = 20
