@@ -17,7 +17,7 @@
 	equip_slot_flags = ITEM_SLOT_BELT
 	w_class = WEIGHT_CLASS_NORMAL
 
-	attack_verb = list("struck", "pistol whipped", "hit", "bashed")
+	attack_verb = list("strikes", "pistol whips", "hits", "bashes")
 	var/bullets = 7
 
 /obj/item/toy/gun/examine(mob/user)
@@ -83,7 +83,7 @@
 	icon_state = "foamcrossbow"
 	worn_icon_state = "crossbow"
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("attacked", "struck", "hit")
+	attack_verb = list("attacks", "strikes", "hits")
 	var/bullets = 5
 
 /obj/item/toy/crossbow/examine(mob/user)
@@ -191,7 +191,7 @@
 	icon = 'icons/obj/items/weapons/energy.dmi'
 	icon_state = "sword"
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("attacked", "struck", "hit")
+	attack_verb = list("attacks", "strikes", "hits")
 
 /obj/item/toy/sword/attack_self(mob/user as mob)
 	src.active = !( src.active )
@@ -224,6 +224,6 @@
 	force = 5
 	throwforce = 5
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced")
+	attack_verb = list("attacks", "slashes", "stabs", "slices")
 
 

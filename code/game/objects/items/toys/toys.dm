@@ -152,7 +152,7 @@
 	icon = 'icons/obj/items/crayons.dmi'
 	icon_state = "crayonred"
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb = list("attacked", "coloured")
+	attack_verb = list("attacks", "colours")
 	var/colour = "#FF0000" //RGB
 	var/shadeColour = "#220000" //RGB
 	var/uses = 30 //0 for unlimited uses
@@ -390,7 +390,7 @@
 	icon_state = "d66"
 	w_class = WEIGHT_CLASS_TINY
 	var/sides = 6
-	attack_verb = list("diced")
+	attack_verb = list("dices")
 
 /obj/item/toy/dice/Initialize(mapload)
 	. = ..()
@@ -426,7 +426,7 @@
 	w_class = WEIGHT_CLASS_TINY
 	throw_speed = 3
 	throw_range = 15
-	attack_verb = list("HONKED")
+	attack_verb = list("HONKS")
 
 
 /obj/item/toy/bikehorn/Initialize(mapload)

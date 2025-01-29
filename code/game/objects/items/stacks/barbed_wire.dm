@@ -10,7 +10,7 @@
 	throwforce = 5
 	throw_speed = 5
 	throw_range = 20
-	attack_verb = list("hit", "whacked", "sliced")
+	attack_verb = list("hits", "whacks", "slices")
 	max_amount = 20
 	merge_type = /obj/item/stack/barbed_wire
 
@@ -57,7 +57,7 @@
 	force = 15
 	throwforce = 10
 	throw_range = 5
-	attack_verb = list("hit", "whacked", "sliced")
+	attack_verb = list("hits", "whacks", "slices")
 	singular_name = "bundle"
 	max_amount = 10
 	merge_type = /obj/item/stack/razorwire
