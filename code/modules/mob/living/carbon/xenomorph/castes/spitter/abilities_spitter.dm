@@ -239,7 +239,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	arm_sound = 'sound/voice/alien/yell_alt.ogg'
 
 /obj/item/explosive/grenade/globadier/prime()
-	for(var/acid_tile in filled_turfs(get_turf(src), 1, "circle", air_pass = TRUE))
+	for(var/acid_tile in filled_turfs(get_turf(src), 1, "square", air_pass = TRUE))
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
 		var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src))
