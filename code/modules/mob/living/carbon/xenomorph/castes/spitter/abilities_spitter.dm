@@ -252,6 +252,13 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	if(active)
 		. += image('icons/obj/items/grenade.dmi', "xenonade_active")
 
+///Reset the timer of the grenade when its picked up
+/obj/item/explosive/grenade/globadier/attack_hand(mob/living/user)
+	if(active)
+		deltimer(det_timer)
+		det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
+	. = ..()
+
 // ***************************************
 // *********** Fire Grenade
 // ***************************************
