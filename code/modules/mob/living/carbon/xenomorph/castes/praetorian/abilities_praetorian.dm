@@ -511,7 +511,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			A.balloon_alert(xeno_owner, "too far")
 		return FALSE
 	var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, A))
-	if(check_path(xeno_owner, start_turf) != start_turf)
+	if(check_path(xeno_owner, start_turf, PASS_THROW) != start_turf)
 		if(!silent)
 			A.balloon_alert(xeno_owner, "path blocked")
 		return FALSE
@@ -522,7 +522,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		add_cooldown(cooldown_duration/2)
 		return
 	xeno_owner.face_atom(A)
-	turf_line = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, A)), A)
+	turf_line = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, A)), check_path(xeno_owner, A, PASS_THROW))
 	LAZYINITLIST(telegraphed_atoms)
 	for(var/turf/turf_from_line AS in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
