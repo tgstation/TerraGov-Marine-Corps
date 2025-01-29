@@ -842,6 +842,12 @@
 	description = "While active, will increase the ravagers healing for a while for every time it hits a new enemy. Effects stack."
 	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
 
+/datum/keybinding/xeno/ravager_deathmark
+	name = "deathmark"
+	full_name = "Ravager: Deathmark"
+	description = "Mark yourself for death, filling your bloodthirst, but failing to deal enough damage to living creatures while it is active instantly kills you."
+	keybind_signal = COMSIG_XENOABILITY_DEATHMARK
+
 /datum/keybinding/xeno/ravage
 	name = "ravage"
 	full_name = "Ravager: Ravage"

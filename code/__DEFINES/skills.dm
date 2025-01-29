@@ -152,6 +152,12 @@
 #define SKILL_LARGE_VEHICLE_EXPERIENCED 2
 #define SKILL_LARGE_VEHICLE_VETERAN 3
 
+///mech vehicle skill; can you use greyscale mechs or not
+#define SKILL_MECH "mech"
+
+#define SKILL_MECH_DEFAULT 0
+#define SKILL_MECH_TRAINED 1
+
 ///Stamina skill - you do cardio, right?; buff stamina-related things
 #define SKILL_STAMINA "stamina"
 

@@ -91,6 +91,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/wraith/primordial,
 	/mob/living/carbon/xenomorph/ravager,
 	/mob/living/carbon/xenomorph/ravager/primordial,
+	/mob/living/carbon/xenomorph/ravager/bloodthirster,
+	/mob/living/carbon/xenomorph/ravager/bloodthirster/primordial,
 	/mob/living/carbon/xenomorph/praetorian,
 	/mob/living/carbon/xenomorph/praetorian/primordial,
 	/mob/living/carbon/xenomorph/praetorian/dancer,

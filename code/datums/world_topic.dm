@@ -45,6 +45,7 @@
 	. = list()
 	.["version"] = GLOB.game_version
 	.["mode"] = GLOB.master_mode
+	.["identifier"] = CONFIG_GET(string/serversqlname)
 	.["respawn"] = GLOB.respawn_allowed
 	.["enter"] = GLOB.enter_allowed
 	.["vote"] = CONFIG_GET(flag/allow_vote_mode)
