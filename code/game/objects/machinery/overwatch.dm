@@ -170,7 +170,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	screen_overlay = "overwatch_med_screen"
 	name = "Medical Overwatch Console"
 	desc = "Overwatching patients are one of the responsibilities of shipside medical personnel. Just make sure you don't get bored."
-	req_access = list(ACCESS_MARINE_BRIDGE,ACCESS_MARINE_MEDBAY)
+	req_access = list(ACCESS_MARINE_MEDBAY)
 	circuit = /obj/item/circuitboard/computer/supplyoverwatch
 
 /obj/machinery/computer/camera_advanced/overwatch/som
@@ -615,7 +615,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(OW_MONITOR)//Info screen.
 				dat += get_squad_info()
 
-	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>Requisition Overwatch Console</div>", 550, 550)
+	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>Medical Overwatch Console</div>", 550, 550)
 	popup.set_content(dat)
 	popup.open()
 
