@@ -26,6 +26,7 @@
 	layer = ABOVE_MOB_LAYER
 	resistance_flags = RESIST_ALL | DROPSHIP_IMMUNE
 	allow_pass_flags = PASS_PROJECTILE|PASS_AIR
+	pixel_x = -16
 	///How many sheets of material we have stored
 	var/stored_mineral = 0
 	///Current status of the miner
