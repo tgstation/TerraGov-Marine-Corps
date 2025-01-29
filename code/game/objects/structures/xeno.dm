@@ -395,7 +395,7 @@
 
 ///Handles detonating the mine, and dealing damage to those nearby
 /obj/structure/xeno/acid_mine/proc/detonate()
-	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", air_pass = TRUE))
+	for(var/spatter_effect in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
 		new /obj/effect/temp_visual/acid_splatter(spatter_effect)
 	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(src,1))
 		human_victim.apply_damage(acid_damage/2, BURN, BODY_ZONE_L_LEG, ACID,  penetration = 30)

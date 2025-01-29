@@ -448,6 +448,6 @@
 		if(human_victim.stat == DEAD)
 			continue
 		human_victim.throw_at(throwlocation, 6, 1.5, src, TRUE)
-	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", air_pass = TRUE, projectile = TRUE))
+	for(var/acid_tile in filled_turfs(get_turf(T), 1.5, "circle", pass_flags_checked = PASS_AIR|PASS_PROJECTILE))
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
