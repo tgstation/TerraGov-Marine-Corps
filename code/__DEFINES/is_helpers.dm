@@ -236,6 +236,8 @@ GLOBAL_VAR_INIT(refid_filter, TYPEID(filter(type="angular_blur")))
 
 #define isstructure(A) (istype(A, /obj/structure))
 
+#define isxenostructure(A) (istype(A, /obj/structure/xeno))
+
 #define iscable(A) (istype(A, /obj/structure/cable))
 
 #define isladder(A) (istype(A, /obj/structure/ladder))
