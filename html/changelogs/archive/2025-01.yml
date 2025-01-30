@@ -253,3 +253,12 @@
   - spellcheck: Fixed typos in the beginner tutorial papers.
   tyeagg:
   - bugfix: tdf glove mob sprite
+2025-01-30:
+  TiviPlus:
+  - balance: maturity requirements for primordial have been lowered
+  jonash07:
+  - qol: You can now interact with xeno structures like tunnels as a baneling while
+      running
+  yyzsong:
+  - spellcheck: updates attack verbs to use the simple present tense like emotes instead
+      of the simple past tense.
