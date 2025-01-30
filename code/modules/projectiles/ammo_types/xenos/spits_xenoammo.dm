@@ -434,9 +434,11 @@
 	if(istype(target_obj,/obj/hitbox))
 		var/obj/hitbox/vehiclehitbox = target_obj
 		vehiclehitbox.root.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
+		drop_nade(get_turf(target_obj))
 		return
 	if(isvehicle(target_obj))
 		target_obj.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
+		drop_nade(get_turf(target_obj))
 
 /datum/ammo/rocket/he/xadar/drop_nade(turf/T)
 	for(var/mob/living/carbon/human/human_victim AS in cheap_get_humans_near(T,2))

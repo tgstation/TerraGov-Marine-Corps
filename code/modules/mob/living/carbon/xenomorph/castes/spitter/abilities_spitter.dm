@@ -140,6 +140,7 @@
 // ***************************************
 // Cooldown between recharging grenades
 #define GLOBADIER_GRENADE_REGEN_COOLDOWN 15 SECONDS
+#define GLOBADIER_GRENADE_PICKUP_CD 1.5 SECONDS
 #define GLOBADIER_GRENADE_THROW_RANGE 8
 #define GLOBADIER_GRENADE_THROW_SPEED 2
 //Grenade Defines, for the radial menu
@@ -239,12 +240,12 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	arm_sound = 'sound/voice/alien/yell_alt.ogg'
 
 /obj/item/explosive/grenade/globadier/prime()
+	var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src))
+	A.set_up(0.5, src)
+	A.start()
 	for(var/acid_tile in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		new /obj/effect/xenomorph/spray(acid_tile, 5 SECONDS, 40)
-		var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src))
-		A.set_up(0.5, src)
-		A.start()
 	qdel(src)
 
 /obj/item/explosive/grenade/globadier/update_overlays()
@@ -255,8 +256,9 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 ///Reset the timer of the grenade when its picked up
 /obj/item/explosive/grenade/globadier/attack_hand(mob/living/user)
 	if(active)
+		var/curtime = timeleft(det_timer)
 		deltimer(det_timer)
-		det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), det_time, TIMER_STOPPABLE)
+		det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), (curtime + GLOBADIER_GRENADE_PICKUP_CD), TIMER_STOPPABLE)
 	. = ..()
 
 // ***************************************
