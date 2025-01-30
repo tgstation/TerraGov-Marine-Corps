@@ -1,10 +1,9 @@
 /**
  * ## Security Level Subsystem
- * ### `SSsecurity_level`
  *
- * Subsystem that handles setting the security level of the marine ship.
+ * Subsystem that controls the security level of the marine ship.
  *
- * See [/datum/security_level] for additional usage.
+ * See [/datum/security_level] for usage.
  *
  * This replaces hardcoded security levels with a new system that makes new security levels extremely
  * easy to implement, and existing ones extremely easy to modify.

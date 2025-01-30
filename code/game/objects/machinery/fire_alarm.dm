@@ -67,7 +67,7 @@ FIRE ALARM
 	if(A.alarm_state_flags & ALARM_WARNING_FIRE)
 		set_light_color(LIGHT_COLOR_EMISSIVE_ORANGE)
 	else
-		set_light_color(SSsecurity_level.current_security_level.fire_alarm_light_color)
+		set_light_color(SSsecurity_level?.current_security_level?.fire_alarm_light_color || LIGHT_COLOR_WHITE)
 
 	set_light(initial(light_range))
 
