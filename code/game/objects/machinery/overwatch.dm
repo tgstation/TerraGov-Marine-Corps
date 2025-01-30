@@ -274,10 +274,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 					dat += "----------------------<br>"
 					dat += "<b>Rail Gun Control</b><br>"
 					dat += "<b>Current Rail Gun Status:</b> "
-					var/cooldown_left = (SSmarine_main_ship.rail_gun?.last_firing + 600) - world.time // 60 seconds between shots
+					var/cooldown_left = (GLOB.rail_gun?.last_firing + 600) - world.time // 60 seconds between shots
 					if(cooldown_left > 0)
 						dat += "Rail Gun on cooldown ([round(cooldown_left/10)] seconds)<br>"
-					else if(!SSmarine_main_ship.rail_gun?.rail_gun_ammo?.ammo_count)
+					else if(!GLOB.rail_gun?.rail_gun_ammo?.ammo_count)
 						dat += "<font color='red'>Ammo depleted.</font><br>"
 					else
 						dat += "<font color='green'>Ready!</font><br>"
@@ -483,12 +483,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(operator.interactee != src)
 				to_chat(operator, "[icon2html(src, operator)] [span_warning("You're busy doing something else, and press the wrong button!")]")
 				return
-			if((SSmarine_main_ship.rail_gun?.last_firing + 600) > world.time)
+			if((GLOB.rail_gun?.last_firing + 600) > world.time)
 				to_chat(operator, "[icon2html(src, operator)] [span_warning("The Rail Gun hasn't cooled down yet!")]")
 			else if(!selected_target)
 				to_chat(operator, "[icon2html(src, operator)] [span_warning("No target detected!")]")
 			else
-				SSmarine_main_ship.rail_gun?.fire_rail_gun(get_turf(selected_target),operator)
+				GLOB.rail_gun?.fire_rail_gun(get_turf(selected_target),operator)
 		if("back")
 			state = OW_MAIN
 		if("use_cam")
@@ -548,7 +548,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				dat += "----------------------<br>"
 				dat += "<b>Orbital Bombardment Control</b><br>"
 				dat += "<b>Current Cannon Status:</b> "
-				if(!SSmarine_main_ship.orbital_cannon?.chambered_tray)
+				if(!GLOB.orbital_cannon?.chambered_tray)
 					dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
 				else
 					dat += "<font color='green'>Ready!</font><br>"
@@ -623,7 +623,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(busy)
 		to_chat(operator, "[icon2html(src, operator)] [span_warning("The [name] is busy processing another action!")]")
 		return
-	if(!SSmarine_main_ship.orbital_cannon?.chambered_tray)
+	if(!GLOB.orbital_cannon?.chambered_tray)
 		to_chat(operator, "[icon2html(src, operator)] [span_warning("The orbital cannon has no ammo chambered.")]")
 		return
 	if(!selected_target)
@@ -641,7 +641,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		to_chat(operator, "[icon2html(src, operator)] [span_warning("The target's landing zone appears to be out of bounds.")]")
 		return
 	busy = TRUE //All set, let's do this.
-	var/warhead_type = SSmarine_main_ship.orbital_cannon.tray.warhead.name	//For the AI and Admin logs.
+	var/warhead_type = GLOB.orbital_cannon.tray.warhead.name	//For the AI and Admin logs.
 
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered from overwatch consoles. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(T)]"))
@@ -678,7 +678,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	var/turf/target = locate(T.x + x_offset,T.y + y_offset,T.z)
 	if(target && istype(target))
 		target.ceiling_debris_check(5)
-		SSmarine_main_ship.orbital_cannon?.fire_ob_cannon(target,user)
+		GLOB.orbital_cannon?.fire_ob_cannon(target,user)
 
 /obj/machinery/computer/camera_advanced/overwatch/proc/change_lead(datum/source, mob/living/carbon/human/target)
 	if(!source || source != operator)

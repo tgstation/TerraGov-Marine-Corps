@@ -326,7 +326,6 @@ F// DM Environment file for baystation12.dme.
 #include "code\controllers\subsystem\loopingsound.dm"
 #include "code\controllers\subsystem\machines.dm"
 #include "code\controllers\subsystem\mapping.dm"
-#include "code\controllers\subsystem\marine_main_ship.dm"
 #include "code\controllers\subsystem\minimaps.dm"
 #include "code\controllers\subsystem\mobs.dm"
 #include "code\controllers\subsystem\modularmapping.dm"

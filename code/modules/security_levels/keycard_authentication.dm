@@ -170,11 +170,36 @@
 		return
 	switch(event)
 		if("Grant Emergency Maintenance Access")
-			SSmarine_main_ship.make_maint_all_access()
+			make_maint_all_access()
 		if("Revoke Emergency Maintenance Access")
-			SSmarine_main_ship.revoke_maint_all_access()
+			revoke_maint_all_access()
+
+GLOBAL_VAR_INIT(maint_all_access, FALSE)
+/// Enables all access for maintenance airlocks
+/proc/make_maint_all_access()
+	GLOB.maint_all_access = TRUE
+	priority_announce(
+		title = "Attention!",
+		subtitle = "Shipside emergency declared.",
+		message = "The maintenance access requirement has been revoked on all maintenance airlocks.",
+		sound = 'sound/misc/notice1.ogg',
+		color_override = "grey"
+	)
+	SSblackbox.record_feedback(FEEDBACK_NESTED_TALLY, "keycard_auth_events", 1, list("emergency maintenance access", "enabled"))
+
+/// Disables all access for maintenance airlocks
+/proc/revoke_maint_all_access()
+	GLOB.maint_all_access = FALSE
+	priority_announce(
+		title = "Attention!",
+		subtitle = "Shipside emergency revoked.",
+		message = "The maintenance access requirement has been restored on all maintenance airlocks.",
+		sound = 'sound/misc/notice2.ogg',
+		color_override = "grey"
+	)
+	SSblackbox.record_feedback(FEEDBACK_NESTED_TALLY, "keycard_auth_events", 1, list("emergency maintenance access", "disabled"))
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(is_mainship_level(z) && SSmarine_main_ship.maint_all_access && (ACCESS_MARINE_ENGINEERING in req_access+req_one_access))
+	if(is_mainship_level(z) && GLOB.maint_all_access && (ACCESS_MARINE_ENGINEERING in req_access+req_one_access))
 		return TRUE
 	return ..(M)
