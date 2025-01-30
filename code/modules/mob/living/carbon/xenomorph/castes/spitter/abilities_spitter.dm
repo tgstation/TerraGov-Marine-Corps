@@ -258,7 +258,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	if(active)
 		var/curtime = timeleft(det_timer)
 		deltimer(det_timer)
-		det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), (curtime + GLOBADIER_GRENADE_PICKUP_CD), TIMER_STOPPABLE)
+		det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), min((curtime + GLOBADIER_GRENADE_PICKUP_CD),2 SECONDS), TIMER_STOPPABLE)
 	. = ..()
 
 // ***************************************

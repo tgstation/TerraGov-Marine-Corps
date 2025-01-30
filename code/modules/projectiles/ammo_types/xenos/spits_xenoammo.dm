@@ -419,8 +419,8 @@
 	staggerstun(target_mob, proj, max_range, 0, knockdown_duration, stagger_stacks, slowdown_stacks, knockback)
 	target_carbon.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
 
-///Multipler on vehicle damage dealt, for the globadiers primo, Acid Rocket
-#define XADAR_VEHICLE_DAMAGE_MULT 1.3
+///Vehicle damage dealt, for the globadiers primo, Acid Rocket
+#define XADAR_VEHICLE_DAMAGE 117 /// 1.3 * 90
 
 /datum/ammo/rocket/he/xadar
 	name = "Acid Rocket"
@@ -433,11 +433,11 @@
 /datum/ammo/rocket/he/xadar/on_hit_obj(obj/target_obj, obj/projectile/proj)
 	if(istype(target_obj,/obj/hitbox))
 		var/obj/hitbox/vehiclehitbox = target_obj
-		vehiclehitbox.root.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
+		vehiclehitbox.root.take_damage(XADAR_VEHICLE_DAMAGE)
 		drop_nade(get_turf(target_obj))
 		return
 	if(isvehicle(target_obj))
-		target_obj.take_damage(90 * XADAR_VEHICLE_DAMAGE_MULT)
+		target_obj.take_damage(XADAR_VEHICLE_DAMAGE)
 		drop_nade(get_turf(target_obj))
 
 /datum/ammo/rocket/he/xadar/drop_nade(turf/T)
