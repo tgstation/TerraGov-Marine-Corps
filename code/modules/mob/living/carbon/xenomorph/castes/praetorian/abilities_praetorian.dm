@@ -477,7 +477,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Throw your tail out and hook in any humans caught in it. Ends prematurely if blocked or hits anything dense."
 	ability_cost = 50
-	cooldown_duration = 16 SECONDS
+	cooldown_duration = 12 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ABDUCT,
 	)
@@ -518,8 +518,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /datum/action/ability/activable/xeno/abduct/use_ability(atom/A)
 	xeno_owner.face_atom(A)
-	if(!do_after(owner, 0.6 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(A, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
-		add_cooldown(cooldown_duration/4)
+	if(!do_after(owner, 0.1 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(A, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
+		add_cooldown(1 SECONDS)
 		return
 	xeno_owner.face_atom(A)
 	turf_line = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, A)), check_path(xeno_owner, A, PASS_THROW))
@@ -527,7 +527,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	for(var/turf/turf_from_line AS in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 0.6 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 0.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
 	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(failed_pull))
 
@@ -547,11 +547,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	for(var/mob/living/carbon/human/human_mob in human_mobs)
 		human_mob.throw_at(owner, 6, 2, turf_line[1], FALSE)
 		human_mob.Paralyze(0.5 SECONDS)
-		human_mob.add_slowdown(0.5 * human_mobs.len)
-		human_mob.adjust_stagger(1 SECONDS * human_mobs.len)
+		human_mob.add_slowdown(0.8 * human_mobs.len)
+		human_mob.adjust_stagger(4 SECONDS * human_mobs.len)
 		human_mob.apply_effect(human_mobs.len >= 3 ? 1.5 SECONDS : 0.5 SECONDS, WEAKEN)
 	if(human_mobs.len)
-		xeno_owner.add_slowdown(0.5 * human_mobs.len) // Don't bite off more than what you can chew.
+		xeno_owner.add_slowdown(0.4 * human_mobs.len)
 		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
 	succeed_activate()
 	add_cooldown()
@@ -590,7 +590,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/warrior.dmi'
 	desc = "Shrike a human with enough force that they are thrown backwards."
 	ability_cost = 50
-	cooldown_duration = 12 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DISLOCATE,
 	)
@@ -600,9 +600,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	. = ..()
 	if(!.)
 		return FALSE
-	if(!iscarbon(target))
-		if(!silent)
-			target.balloon_alert(xeno_owner, "cannot dislocate")
+	if(!iscarbon(target)) // No balloon as it can get really spammy.
 		return FALSE
 	if(isxeno(target))
 		var/mob/living/carbon/xenomorph/xenomorph_target = target
@@ -647,7 +645,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Pick up a nearby item momentarily and throw it in a chosen direction. The item's size determines elements such as how fast or hard it hits."
 	ability_cost = 50
-	cooldown_duration = 12 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ITEM_THROW,
 	)
@@ -793,7 +791,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Knock back humans that are in front of you."
 	ability_cost = 50
-	cooldown_duration = 13 SECONDS
+	cooldown_duration = 11 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_LASH,
 	)
@@ -849,7 +847,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
 	desc = "Launch yourself with tremendous speed toward a location. If you hit a marine, they are launched incredibly far."
 	ability_cost = 50
-	cooldown_duration = 12 SECONDS
+	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
 	)
