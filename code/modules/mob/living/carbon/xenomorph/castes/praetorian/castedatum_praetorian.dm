@@ -152,8 +152,6 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A giant melee monster with a weird tail! It looks pretty strong."
 
-	aura_strength = 4
-
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
