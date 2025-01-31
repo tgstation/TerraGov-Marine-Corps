@@ -37226,6 +37226,7 @@
 /turf/open/floor/prison,
 /area/prison/disposal)
 "cqm" = (
+/obj/structure/nuke_disk_candidate,
 /turf/open/floor/prison,
 /area/prison/disposal)
 "cqo" = (
@@ -40183,6 +40184,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/bright_clean,
 /area/prison/laundry)
+"dNU" = (
+/obj/item/tool/kitchen/utensil/spoon,
+/turf/open/floor/plating/ground/dirt,
+/area/space)
 "dOO" = (
 /obj/machinery/vending/cola,
 /turf/open/floor/prison/bright_clean/two,
@@ -42336,9 +42341,8 @@
 /turf/open/floor/prison/darkred/full,
 /area/prison/security/monitoring/maxsec/panopticon)
 "jdI" = (
-/obj/structure/nuke_disk_candidate,
-/turf/open/floor/prison,
-/area/prison/security/head)
+/turf/open/floor/plating,
+/area/prison/cellblock/protective)
 "jej" = (
 /obj/structure/toilet{
 	dir = 4
@@ -44736,6 +44740,12 @@
 /obj/item/reagent_containers/spray,
 /turf/open/floor/prison/kitchen,
 /area/prison/residential/north)
+"oZF" = (
+/obj/structure/nuke_disk_candidate,
+/turf/open/floor/prison/darkred{
+	dir = 4
+	},
+/area/prison/security/monitoring/medsec/south)
 "pbf" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
@@ -46437,6 +46447,10 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison/green/corner,
 /area/prison/cellblock/lowsec/se)
+"sJU" = (
+/obj/effect/landmark/corpsespawner/prisoner,
+/turf/open/floor/plating/ground/dirt,
+/area/space)
 "sKg" = (
 /obj/effect/landmark/weed_node,
 /turf/open/floor/prison,
@@ -83527,7 +83541,7 @@ bju
 czl
 czB
 czN
-czN
+oZF
 cAa
 czU
 aab
@@ -93002,7 +93016,7 @@ cnh
 coc
 cav
 cpp
-cqh
+cpY
 cqh
 cqh
 cqh
@@ -93258,8 +93272,8 @@ cqS
 cni
 cod
 bYM
-cpp
-bWl
+jdI
+sJU
 bWl
 aab
 aab
@@ -93516,7 +93530,7 @@ cht
 cof
 coK
 cpp
-bWl
+dNU
 bWl
 aab
 adO
@@ -93773,7 +93787,7 @@ cmz
 chH
 cgI
 cpq
-cpq
+cjR
 cpq
 cpq
 cpq
@@ -96597,7 +96611,7 @@ cgI
 cgI
 cgI
 cgI
-cgI
+coi
 cgI
 cpx
 vrN
@@ -107890,7 +107904,7 @@ bSd
 bNm
 bNm
 bNm
-jdI
+bZz
 tkT
 psK
 bZx
