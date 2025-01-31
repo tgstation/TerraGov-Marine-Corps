@@ -518,8 +518,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /datum/action/ability/activable/xeno/abduct/use_ability(atom/A)
 	xeno_owner.face_atom(A)
-	if(!do_after(owner, 1.2 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(A, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
-		add_cooldown(cooldown_duration/2)
+	if(!do_after(owner, 0.6 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(A, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
+		add_cooldown(cooldown_duration/4)
 		return
 	xeno_owner.face_atom(A)
 	turf_line = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, A)), check_path(xeno_owner, A, PASS_THROW))
@@ -527,7 +527,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	for(var/turf/turf_from_line AS in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
 	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 1.2 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	ability_timer = addtimer(CALLBACK(src, PROC_REF(pull_them_in)), 0.6 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_MOVED, PROC_REF(failed_pull))
 	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(failed_pull))
 
@@ -546,12 +546,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 	for(var/mob/living/carbon/human/human_mob in human_mobs)
 		human_mob.throw_at(owner, 6, 2, turf_line[1], FALSE)
-		human_mob.Paralyze(0.1 SECONDS)
-		human_mob.add_slowdown(0.3 * human_mobs.len)
-		human_mob.adjust_stagger(0.5 SECONDS * human_mobs.len)
-		human_mob.apply_effect(human_mobs.len >= 3 ? 1 SECONDS : 0.1 SECONDS, WEAKEN)
+		human_mob.Paralyze(0.5 SECONDS)
+		human_mob.add_slowdown(0.5 * human_mobs.len)
+		human_mob.adjust_stagger(1 SECONDS * human_mobs.len)
+		human_mob.apply_effect(human_mobs.len >= 3 ? 1.5 SECONDS : 0.5 SECONDS, WEAKEN)
 	if(human_mobs.len)
-		xeno_owner.add_slowdown(0.4 * human_mobs.len) // Don't bite off more than what you can chew.
+		xeno_owner.add_slowdown(0.5 * human_mobs.len) // Don't bite off more than what you can chew.
 		playsound(human_mobs[human_mobs.len], 'sound/voice/alien/pounce.ogg', 25, TRUE)
 	succeed_activate()
 	add_cooldown()
@@ -632,7 +632,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE)
 
 	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE)
-	carbon_target.apply_effect(0.1 SECONDS, WEAKEN)
+	carbon_target.apply_effect(1 SECONDS, WEAKEN)
 	carbon_target.knockback(xeno_owner, 2, 2)
 
 	succeed_activate()
@@ -827,8 +827,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			var/mob/living/carbon/human/affected_human = affected
 			if(affected_human.stat == DEAD)
 				continue
-			affected_human.Paralyze(0.1 SECONDS)
-			affected_human.apply_effect(0.1 SECONDS, WEAKEN)
+			affected_human.Paralyze(1 SECONDS)
+			affected_human.apply_effect(1 SECONDS, WEAKEN)
 			var/throwlocation = affected_human.loc
 			for(var/x in 1 to 2)
 				throwlocation = get_step(throwlocation, owner.dir)
