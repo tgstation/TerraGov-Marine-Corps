@@ -235,7 +235,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	desc = "A gross looking glob of acid"
 	greyscale_colors = "#81ff92"
 	greyscale_config = /datum/greyscale_config/xenogrenade
-	det_time = 2 SECONDS
+	det_time = 1.5 SECONDS
 	dangerous = TRUE
 	arm_sound = 'sound/voice/alien/yell_alt.ogg'
 
