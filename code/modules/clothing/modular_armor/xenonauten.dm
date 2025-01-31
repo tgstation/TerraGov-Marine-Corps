@@ -260,7 +260,7 @@
 	name = "\improper NTC-B bikini armor"
 	desc = "A NTC-B vest, a set... of extra-light bikini armor? with modular attachments made to work in many enviroments. This one seems to be a bikini variant. Alt-Click to remove attached items. Use it to toggle the built-in flashlight."
 	greyscale_config = /datum/greyscale_config/xenonaut/bikini
-	slowdown = 0
+	slowdown = SLOWDOWN_ARMOR_VERY_LIGHT
 	soft_armor = list(MELEE = 35, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 40, BIO = 40, FIRE = 50, ACID = 40)
 
 /obj/item/clothing/suit/modular/xenonauten/bulletresistant
