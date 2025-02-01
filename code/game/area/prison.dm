@@ -42,6 +42,9 @@
 /area/prison/security/monitoring/lowsec/sw
 	name = "Southwest Low-Security Monitoring"
 
+/area/prison/security/monitoring/lowsec/e
+	name = "East Low-Security Monitoring"
+
 /area/prison/security/monitoring/medsec/south
 	name = "Medium-Security Monitoring"
 	ceiling = CEILING_DEEP_UNDERGROUND_METAL

@@ -3,7 +3,10 @@
     "map_path": "map_files/Prison_Station_FOP",
     "map_file": "Prison_Station_FOP.dmm",
 	"disk_sets": {
-		"basic": 1
+		"set1": 1,
+		"set2": 1,
+		"set3": 1,
+		"set4": 1
 	},
     "armor": "prison",
 	"quickbuilds": 1200,
