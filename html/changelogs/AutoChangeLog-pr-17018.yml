@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - bugfix: "Hive status GUI's width is now longer to fit all castes rather than cutting them off."
