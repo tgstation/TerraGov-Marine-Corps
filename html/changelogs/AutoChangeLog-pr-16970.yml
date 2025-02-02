@@ -1,0 +1,4 @@
+author: "Sun-Soaked"
+delete-after: True
+changes:
+  - qol: "mobs buckled to a jumping mob now jump alongside them"
