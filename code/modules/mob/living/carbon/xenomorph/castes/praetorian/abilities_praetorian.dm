@@ -506,10 +506,6 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		if(!silent)
 			A.balloon_alert(xeno_owner, "too short")
 		return FALSE
-	if(distance_to_target > 7)
-		if(!silent)
-			A.balloon_alert(xeno_owner, "too far")
-		return FALSE
 	var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, A))
 	if(check_path(xeno_owner, start_turf, PASS_THROW) != start_turf)
 		if(!silent)
@@ -517,12 +513,16 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return FALSE
 
 /datum/action/ability/activable/xeno/abduct/use_ability(atom/A)
-	xeno_owner.face_atom(A)
-	if(!do_after(owner, 0.1 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(A, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
+	var/turf/targetted_turf = get_turf(A)
+	while(get_dist(xeno_owner, targetted_turf) > 7) // Allows targetting beyond maximum range to automatically do maximum range.
+		targetted_turf = get_step(targetted_turf, REVERSE_DIR(get_dir(xeno_owner, targetted_turf)))
+
+	xeno_owner.face_atom(targetted_turf)
+	if(!do_after(owner, 0.1 SECONDS, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER) || !can_use_ability(targetted_turf, TRUE, ABILITY_IGNORE_SELECTED_ABILITY))
 		add_cooldown(1 SECONDS)
 		return
-	xeno_owner.face_atom(A)
-	turf_line = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, A)), check_path(xeno_owner, A, PASS_THROW))
+	xeno_owner.face_atom(targetted_turf)
+	turf_line = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, targetted_turf)), check_path(xeno_owner, targetted_turf, PASS_THROW))
 	LAZYINITLIST(telegraphed_atoms)
 	for(var/turf/turf_from_line AS in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
@@ -795,8 +795,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	desc = "Knock back humans that are in front of you."
 	ability_cost = 50
 	cooldown_duration = 11 SECONDS
+	keybind_flags = ABILITY_KEYBIND_USE_ABILITY | ABILITY_IGNORE_SELECTED_ABILITY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_TAIL_LASH,
+		KEYBINDING_ALTERNATE = COMSIG_XENOABILITY_TAIL_LASH_SELECT,
 	)
 
 /datum/action/ability/activable/xeno/tail_lash/use_ability(atom/target)

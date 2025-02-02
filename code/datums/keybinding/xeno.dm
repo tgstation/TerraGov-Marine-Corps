@@ -729,7 +729,7 @@
 /datum/keybinding/xeno/abduct
 	name = "Abduct"
 	full_name = "Praetorian: Abduct"
-	description = "After a delay, grab marines from a variable amount of tiles away. Canceling early has consequences."
+	description = "After a delay, grab marines from a 7 tiles away. Canceling early has consequences."
 	keybind_signal = COMSIG_XENOABILITY_ABDUCT
 
 /datum/keybinding/xeno/dislocate
@@ -749,6 +749,12 @@
 	full_name = "Praetorian: Tail Lash"
 	description = "Knock back marines in a 2x3 radius where you're facing by two tiles."
 	keybind_signal = COMSIG_XENOABILITY_TAIL_LASH
+
+/datum/keybinding/xeno/tail_lash_select
+	name = "Tail Lash (Select)"
+	full_name = "Praetorian: Select Tail Lash"
+	description = "Knock back marines in a 2x3 radius where you're facing by two tiles."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_LASH_SELECT
 
 /datum/keybinding/xeno/advance_oppressor
 	name = "Advance (Oppressor)"
