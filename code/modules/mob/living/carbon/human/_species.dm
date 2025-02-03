@@ -70,7 +70,7 @@
 	///how much the stunned effect is reduced per Life call
 	var/knock_out_reduction = 1
 	///How much slowdown is innate to our species
-	var/slowdown = 0
+	var/slowdown = -1
 	///Inventory slots the race can't equip stuff to. Golems cannot wear jumpsuits, for example
 	var/list/no_equip = list()
 
