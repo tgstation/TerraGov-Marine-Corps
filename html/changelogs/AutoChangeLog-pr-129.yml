@@ -1,0 +1,6 @@
+author: "DrCrawler"
+delete-after: True
+changes:
+  - rscadd: "Combat droids can now wear shoes."
+  - rscadd: "All species besides combat droids are now innately as fast as they would be while wearing shoes."
+  - rscdel: "Removed shoe speed boost."
