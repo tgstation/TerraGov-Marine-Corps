@@ -1200,11 +1200,15 @@
 
 ///Toggles AM between throwing states
 /atom/movable/proc/set_throwing(new_throwing)
+	if(throwing == new_throwing)
+		return
 	throwing = new_throwing
 	if(throwing)
 		pass_flags |= PASS_THROW
+		add_nosubmerge_trait(THROW_TRAIT)
 	else
 		pass_flags &= ~PASS_THROW
+		REMOVE_TRAIT(src, TRAIT_NOSUBMERGE, THROW_TRAIT)
 
 ///Toggles AM between flying states
 /atom/movable/proc/set_flying(flying, new_layer)
