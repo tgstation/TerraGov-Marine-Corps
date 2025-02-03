@@ -304,7 +304,6 @@
 	armor_protection_flags = FEET
 	equip_slot_flags = ITEM_SLOT_FEET
 	permeability_coefficient = 0.50
-	slowdown = SHOES_SLOWDOWN
 	blood_sprite_state = "shoeblood"
 	soft_armor = list(MELEE = 25, BULLET = 15, LASER = 5, ENERGY = 5, BOMB = 5, BIO = 5, FIRE = 5, ACID = 20)
 

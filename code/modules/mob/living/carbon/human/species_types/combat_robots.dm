@@ -11,7 +11,6 @@
 
 	unarmed_type = /datum/unarmed_attack/punch/strong
 	total_health = 150
-	slowdown = SHOES_SLOWDOWN //because they don't wear boots
 
 	cold_level_1 = -1
 	cold_level_2 = -1
@@ -31,7 +30,7 @@
 //		SLOT_HEAD,
 //		SLOT_WEAR_MASK,
 //		SLOT_WEAR_SUIT,
-		SLOT_SHOES,
+//		SLOT_SHOES,
 //		SLOT_GLOVES,
 //		SLOT_GLASSES,
 	)
