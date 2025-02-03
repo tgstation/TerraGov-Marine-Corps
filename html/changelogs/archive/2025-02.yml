@@ -1,3 +1,6 @@
 2025-02-01:
   DrCrawler:
   - balance: Bikini armor is no longer weightless and slightly slows you down.
+2025-02-02:
+  DrCrawler:
+  - bugfix: Hopefully fixed vanguards not having job icons.
