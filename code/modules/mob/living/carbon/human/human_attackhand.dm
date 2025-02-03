@@ -113,12 +113,12 @@
 			if(!human_user.melee_damage || !target_zone)
 				human_user.do_attack_animation(src)
 				playsound(loc, attack.miss_sound, 25, TRUE)
-				visible_message(span_danger("[human_user] tried to [attack_verb] [src]!"), null, null, 5)
-				log_combat(human_user, src, "[attack_verb]ed", "(missed)")
+				visible_message(span_danger("[human_user] [attack_verb] at [src], but misses!"), null, null, 5)
+				log_combat(human_user, src, "[attack_verb]", "(missed)")
 				if(!human_user.mind?.bypass_ff && !mind?.bypass_ff && human_user.faction == faction)
 					var/turf/T = get_turf(src)
-					log_ffattack("[key_name(human_user)] missed a [attack_verb] against [key_name(src)] in [AREACOORD(T)].")
-					msg_admin_ff("[ADMIN_TPMONTY(human_user)] missed a [attack_verb] against [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)].")
+					log_ffattack("[key_name(human_user)] missed a punch against [key_name(src)] in [AREACOORD(T)].")
+					msg_admin_ff("[ADMIN_TPMONTY(human_user)] missed a punch against [ADMIN_TPMONTY(src)] in [ADMIN_VERBOSEJMP(T)].")
 				return FALSE
 
 			human_user.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
@@ -129,7 +129,7 @@
 
 			playsound(loc, attack.attack_sound, 25, TRUE)
 
-			visible_message(span_danger("[human_user] [attack_verb]ed [src]!"), null, null, 5)
+			visible_message(span_danger("[human_user] [attack_verb] [src]!"), null, null, 5)
 			var/list/hit_report = list()
 			if(damage >= 4 && prob(25))
 				visible_message(span_danger("[human_user] has weakened [src]!"), null, null, 5)
@@ -141,7 +141,7 @@
 
 			hit_report += "(RAW DMG: [damage])"
 
-			log_combat(human_user, src, "[attack_verb]ed", "[hit_report.Join(" ")]")
+			log_combat(human_user, src, "[attack_verb]", "[hit_report.Join(" ")]")
 			if(!human_user.mind?.bypass_ff && !mind?.bypass_ff && human_user.faction == faction)
 				var/turf/T = get_turf(src)
 				human_user.ff_check(damage, src)
@@ -167,8 +167,8 @@
 						chance = !hand ? 40 : 20
 
 					if(prob(chance))
-						visible_message("<span class='danger'>[src]'s [W] goes off during struggle!", null, null, 5)
-						log_combat(human_user, src, "disarmed", "making their [W] go off")
+						visible_message("<span class='danger'>[src]'s [W.name] goes off during struggle!", null, null, 5)
+						log_combat(human_user, src, "disarmed", "making their [W.name] go off")
 						var/list/turfs = list()
 						for(var/turf/T in view())
 							turfs += T
@@ -180,25 +180,25 @@
 			if (randn <= 25)
 				apply_effect(3 SECONDS, WEAKEN)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				visible_message(span_danger("[human_user] has pushed [src]!"), null, null, 5)
+				visible_message(span_danger("[human_user] pushes [src] over!"), null, null, 5)
 				log_combat(human_user, src, "pushed")
 				return
 
 			if(randn <= 60)
 				//BubbleWrap: Disarming breaks a pull
 				if(pulling)
-					visible_message(span_danger("[human_user] has broken [src]'s grip on [pulling]!"), null, null, 5)
+					visible_message(span_danger("[human_user] breaks [src]'s grip on [pulling]!"), null, null, 5)
 					stop_pulling()
 				else
 					drop_held_item()
-					visible_message(span_danger("[human_user] has disarmed [src]!"), null, null, 5)
+					visible_message(span_danger("[human_user] disarms [src]!"), null, null, 5)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				log_combat(user, src, "disarmed")
 				return
 
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, 7)
-			visible_message(span_danger("[human_user] attempted to disarm [src]!"), null, null, 5)
+			visible_message(span_danger("[human_user] attempts to disarm [src]!"), null, null, 5)
 			log_combat(human_user, src, "missed a disarm")
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)
@@ -327,7 +327,7 @@
 		if(0 to 19)
 			final_msg += span_info("You're [pick("free of grime", "pristine", "freshly laundered")].")
 		if(20 to 79)
-			final_msg += span_info(pick("You've got some grime on you", "You're a bit dirty"))
+			final_msg += span_info(pick("You've got some grime on you.", "You're a bit dirty."))
 		if(80 to 150)
 			final_msg += span_info(pick("You're not far off filthy.", "You're pretty dirty.", "There's still one or two clean spots left on you."))
 		else

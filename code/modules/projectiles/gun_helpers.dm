@@ -180,11 +180,11 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 /obj/item/weapon/gun/proc/update_force_list()
 	switch(force)
 		if(-50 to 15)
-			attack_verb = list("struck", "hit", "bashed") //Unlikely to ever be -50, but just to be safe.
+			attack_verb = list("strikes", "hits", "bashes") //Unlikely to ever be -50, but just to be safe.
 		if(16 to 35)
-			attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
+			attack_verb = list("smashes", "strikes", "whacks", "beats", "cracks")
 		else
-			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
+			attack_verb = list("slashes", "stabs", "spears", "tears", "punctures", "pierces", "gores") //Greater than 35
 
 
 /proc/get_active_firearm(mob/user)

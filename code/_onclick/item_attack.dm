@@ -126,7 +126,7 @@
 
 /mob/living/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 
-	var/message_verb = "attacked"
+	var/message_verb = "attacks"
 	if(LAZYLEN(attacking_item.attack_verb))
 		message_verb = pick(attacking_item.attack_verb)
 	var/message_hit_area
@@ -354,7 +354,7 @@
  * def_zone: targetted area that will be attacked
  */
 /mob/living/proc/attacked_by_alternate(obj/item/I, mob/living/user, def_zone)
-	var/message_verb = "attacked"
+	var/message_verb = "attacks"
 	if(LAZYLEN(I.attack_verb))
 		message_verb = pick(I.attack_verb)
 	var/message_hit_area

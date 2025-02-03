@@ -17,7 +17,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_NORMAL
 	atom_flags = CONDUCT|NOBLOODY
-	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
+	attack_verb = list("attacks", "chops", "cleaves", "tears", "cuts")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 
@@ -50,7 +50,7 @@
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
 	atom_flags = NOBLOODY
-	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("attacks", "slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	equip_slot_flags = ITEM_SLOT_BELT
