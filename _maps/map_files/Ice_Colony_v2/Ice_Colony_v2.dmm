@@ -20867,7 +20867,7 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/east)
 "gOB" = (
-/obj/machinery/miner/damaged/platinum,
+/obj/machinery/miner/damaged,
 /turf/open/floor/plating/ground/snow/layer1,
 /area/ice_colony/exterior/surface/valley/south/excavation)
 "gOC" = (
