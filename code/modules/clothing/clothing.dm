@@ -199,7 +199,7 @@
 	blood_sprite_state = "bloodyhands"
 	armor_protection_flags = HANDS
 	equip_slot_flags = ITEM_SLOT_GLOVES
-	attack_verb = list("challenged")
+	attack_verb = list("challenges")
 
 
 /obj/item/clothing/gloves/update_greyscale(list/colors, update)
