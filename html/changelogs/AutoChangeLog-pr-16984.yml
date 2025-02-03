@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - rscadd: "New supersoldier stim: Heartstopper. Instantly kills you when you go crit"
+  - bugfix: "fixed robots being crittable when the flag is destroyed"
+  - code_imp: "added a on-crit proc"
