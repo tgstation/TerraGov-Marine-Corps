@@ -13,7 +13,7 @@
 
 /turf/open/liquid/Initialize(mapload)
 	AddElement(/datum/element/submerge) //added first so it loads all the contents correctly
-	RegisterSignal(src, COMSIG_TURF_JUMP_ENDED_HERE, PROC_REF(on_jump_landing))
+	RegisterSignals(src, list(COMSIG_TURF_JUMP_ENDED_HERE, COMSIG_TURF_THROW_ENDED_HERE), PROC_REF(atom_entered))
 	return ..()
 
 /turf/open/liquid/Destroy(force)
@@ -30,12 +30,7 @@
 
 /turf/open/liquid/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
 	. = ..()
-	if(!check_submerge(arrived))
-		return FALSE
-	. = TRUE
-	if(!isliving(arrived))
-		return
-	apply_slowdown(arrived)
+	return atom_entered(src, arrived)
 
 /turf/open/liquid/get_submerge_height(turf_only = FALSE)
 	. = ..()
@@ -52,7 +47,15 @@
 		return 0
 	return mob_liquid_depth
 
-///Checks if the AM is actually 'in' the liquid
+///Effects applied to anything that lands in the liquid
+/turf/open/liquid/proc/atom_entered(datum/source, atom/movable/arrived)
+	SIGNAL_HANDLER
+	if(!check_submerge(arrived))
+		return FALSE
+	entry_effects(arrived)
+	return TRUE
+
+///Returns TRUE if the AM is actually in the liquid instead of above it
 /turf/open/liquid/proc/check_submerge(atom/movable/submergee)
 	if(SEND_SIGNAL(src, COMSIG_TURF_CHECK_COVERED))
 		return FALSE
@@ -60,18 +63,14 @@
 		return FALSE
 	if(HAS_TRAIT(submergee, TRAIT_NOSUBMERGE))
 		return FALSE
-
-///Applies liquid slowdown to an entering mob
-/turf/open/liquid/proc/apply_slowdown(mob/living/target)
-	target.next_move_slowdown += (target.get_liquid_slowdown() * slowdown_multiplier)
-
-///Effects applied to anything that jumps onto the liquid
-/turf/open/liquid/proc/on_jump_landing(datum/source, mob/living/jumper)
-	SIGNAL_HANDLER
-	if(!check_submerge(jumper))
-		return FALSE
-	apply_slowdown(jumper)
 	return TRUE
+
+///Applies liquid effects to an AM
+/turf/open/liquid/proc/entry_effects(atom/movable/target)
+	if(!isliving(target))
+		return
+	var/mob/living_target = target
+	living_target.next_move_slowdown += (living_target.get_liquid_slowdown() * slowdown_multiplier)
 
 /turf/open/liquid/water
 	name = "river"
@@ -218,14 +217,6 @@
 	minimap_color = MINIMAP_LAVA
 	slowdown_multiplier = 1.5
 
-/turf/open/liquid/lava/Entered(atom/movable/arrived, atom/old_loc, list/atom/old_locs)
-	. = ..()
-	if(!.)
-		return
-	//todo: throw burning shit bad
-	if(burn_stuff(arrived))
-		START_PROCESSING(SSobj, src)
-
 /turf/open/liquid/lava/Exited(atom/movable/leaver, direction)
 	. = ..()
 	if(isliving(leaver))
@@ -237,11 +228,9 @@
 	if(!burn_stuff())
 		STOP_PROCESSING(SSobj, src)
 
-/turf/open/liquid/lava/on_jump_landing(datum/source, mob/living/jumper)
+/turf/open/liquid/lava/entry_effects(atom/movable/target)
 	. = ..()
-	if(!.)
-		return
-	if(burn_stuff(jumper))
+	if(burn_stuff(target))
 		START_PROCESSING(SSobj, src)
 
 ///Handles burning turf contents or an entering AM. Returns true to keep processing
