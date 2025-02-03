@@ -1,0 +1,14 @@
+2025-02-01:
+  jonash07:
+  - qol: KLTD smart goggles are located in the smartgunner equipment rack again
+  yyzsong:
+  - spellcheck: Updates item throwing chat messages to use the simple present tense
+      instead of the perfect present tense.
+2025-02-03:
+  Pariah919:
+  - balance: MMG and GPMG have vgrip now.
+  Runian:
+  - bugfix: Hive status GUI's width is now longer to fit all castes rather than cutting
+      them off.
+  Sun-Soaked:
+  - qol: mobs buckled to a jumping mob now jump alongside them
