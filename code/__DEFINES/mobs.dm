@@ -834,7 +834,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 #define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets
 #define DANCER_MAX_IMPALE_MULT 2.5 //the maximum multiplier dancer impale can gain from debuffs
 #define DANCER_NONHUMAN_IMPALE_MULT 1.5//the flat damage multiplier done by impale to non-carbon targets
-#define DANCER_TWIRL_CHARGEDISTANCE 4
+
 //misc
 
 #define STANDARD_SLOWDOWN_REGEN 0.3
