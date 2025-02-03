@@ -3,6 +3,7 @@
 	display_name = "Pyrogen"
 	upgrade_name = ""
 	caste_desc = "A xenomorph constantly engulfed by plasma flames."
+	base_strain_type = /mob/living/carbon/xenomorph/pyrogen
 	caste_type_path = /mob/living/carbon/xenomorph/pyrogen
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE
