@@ -152,6 +152,12 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A giant melee monster with a weird tail! It looks pretty strong."
 
+	// +2 melee damage
+	melee_damage = 25
+
+	// +10 armor
+	soft_armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 20, BIO = 50, FIRE = 60, ACID = 50)
+
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
