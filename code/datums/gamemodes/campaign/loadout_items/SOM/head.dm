@@ -33,7 +33,7 @@
 	jobs_supported = list(SOM_FIELD_COMMANDER)
 
 /datum/loadout_item/helmet/som_surt
-	name = "Hades Helmet"
+	name = "'Hades' incendiary insulation system helmet"
 	desc = "A standard combat helmet with a Hades fireproof module."
 	req_desc = "Requires a suit with a Hades module."
 	item_typepath = /obj/item/clothing/head/modular/som/hades
@@ -41,7 +41,7 @@
 	item_whitelist = list(/obj/item/clothing/suit/modular/som/heavy/pyro = ITEM_SLOT_OCLOTHING)
 
 /datum/loadout_item/helmet/som_tyr
-	name = "Lorica Helmet"
+	name = "'Lorica' armor reinforcement system helmet"
 	desc = "A bulky helmet paired with the 'Lorica' armor module, designed for outstanding protection at the cost of significant weight and reduced flexibility. \
 	Substantial additional armor improves protection against all damage."
 	req_desc = "Requires a suit with a Lorica module."
@@ -75,8 +75,8 @@
 	loadout_item_flags = NONE
 
 /datum/loadout_item/helmet/som_mimir
-	name = "Biohazard helmet"
-	desc = "A standard combat helmet with a Mithridatius 'Mith' environmental protection module."
+	name = "'Mithridatius' hostile environment protection helmet"
+	desc = "A standard combat helmet with an integrated Mithridatius 'Mith' hostile environment protection module."
 	req_desc = "Requires a suit with a Mithridatius environmental protection module."
 	item_typepath = /obj/item/clothing/head/modular/som/bio
 	jobs_supported = list(SOM_SQUAD_VETERAN)
