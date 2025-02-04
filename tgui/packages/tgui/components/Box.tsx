@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { BooleanLike, classes } from 'common/react';
+import { BooleanLike, classes } from 'tgui-core/react';
 import { createElement, ReactNode } from 'react';
 
 import { CSS_COLORS } from '../constants';

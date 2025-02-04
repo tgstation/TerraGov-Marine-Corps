@@ -5,7 +5,7 @@ import {
   KEY_ESCAPE,
   KEY_UP,
   KEY_Z,
-} from '../../common/keycodes';
+} from 'tgui-core/keycodes';
 import { useBackend, useLocalState } from '../backend';
 import { Button, Input, Section, Stack } from '../components';
 import { Window } from '../layouts';
@@ -103,8 +103,8 @@ export const ListInputModal = (_) => {
     setSearchBarVisible(!searchBarVisible);
     setSearchQuery('');
   };
-  const filteredItems = items.filter(
-    (item) => item?.toLowerCase().includes(searchQuery.toLowerCase()),
+  const filteredItems = items.filter((item) =>
+    item?.toLowerCase().includes(searchQuery.toLowerCase()),
   );
   // Dynamically changes the window height based on the message.
   const windowHeight =

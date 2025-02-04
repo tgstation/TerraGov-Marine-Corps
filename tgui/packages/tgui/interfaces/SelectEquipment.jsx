@@ -1,6 +1,6 @@
 import { filter, map, sortBy, uniq } from 'common/collections';
-import { flow } from 'common/fp';
-import { createSearch } from 'common/string';
+import { flow } from 'tgui-core/fp';
+import { createSearch } from 'tgui-core/string';
 
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Icon, Input, Section, Stack, Tabs } from '../components';

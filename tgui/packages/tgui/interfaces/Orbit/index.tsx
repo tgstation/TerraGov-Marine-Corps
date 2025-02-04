@@ -1,6 +1,4 @@
 import { filter, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
-import { capitalizeFirst, multiline } from 'common/string';
 import { useBackend, useLocalState } from 'tgui/backend';
 import {
   Box,
@@ -14,6 +12,8 @@ import {
   Stack,
 } from 'tgui/components';
 import { Window } from 'tgui/layouts';
+import { flow } from 'tgui-core/fp';
+import { capitalizeFirst, multiline } from 'tgui-core/string';
 
 import { getDisplayColor, getDisplayName, isJobOrNameMatch } from './helpers';
 import type { Observable, OrbitData } from './types';

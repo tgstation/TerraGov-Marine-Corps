@@ -1,4 +1,4 @@
-import { clamp01 } from 'common/math';
+import { clamp01 } from 'tgui-core/math';
 
 import { Box } from '../../components';
 

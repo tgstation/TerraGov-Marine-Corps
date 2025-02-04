@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { shallowDiffers } from 'common/react';
+import { shallowDiffers } from 'tgui-core/react';
 import { Component, createRef } from 'react';
 import { Button } from 'tgui/components';
 

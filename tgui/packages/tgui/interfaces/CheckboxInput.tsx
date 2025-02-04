@@ -1,4 +1,4 @@
-import { createSearch, decodeHtmlEntities } from 'common/string';
+import { createSearch, decodeHtmlEntities } from 'tgui-core/string';
 
 import { useBackend, useLocalState } from '../backend';
 import {

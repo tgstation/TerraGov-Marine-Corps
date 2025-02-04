@@ -1,5 +1,5 @@
 import { createPopper, VirtualElement } from '@popperjs/core';
-import { classes } from 'common/react';
+import { classes } from 'tgui-core/react';
 import { Component, ReactNode } from 'react';
 import { findDOMNode, render } from 'react-dom';
 

@@ -1,4 +1,4 @@
-import { classes } from 'common/react';
+import { classes } from 'tgui-core/react';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';

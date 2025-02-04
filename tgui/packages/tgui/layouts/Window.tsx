@@ -4,9 +4,9 @@
  * @license MIT
  */
 
-import { classes } from 'common/react';
-import { decodeHtmlEntities, toTitleCase } from 'common/string';
 import { PropsWithChildren, ReactNode, useEffect } from 'react';
+import { classes } from 'tgui-core/react';
+import { decodeHtmlEntities, toTitleCase } from 'tgui-core/string';
 
 import { backendSuspendStart, useBackend } from '../backend';
 import { globalStore } from '../backend';

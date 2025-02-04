@@ -1,5 +1,5 @@
-import { KEY } from 'common/keys';
-import { BooleanLike } from 'common/react';
+import { KEY } from 'tgui-core/keys';
+import { BooleanLike } from 'tgui-core/react';
 import { Component, createRef, RefObject } from 'react';
 import { dragStartHandler } from 'tgui/drag';
 

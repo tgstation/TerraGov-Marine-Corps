@@ -1,4 +1,4 @@
-import { KEY } from 'common/keys';
+import { KEY } from 'tgui-core/keys';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';

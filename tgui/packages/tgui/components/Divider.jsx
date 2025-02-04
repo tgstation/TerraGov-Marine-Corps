@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { classes } from 'common/react';
+import { classes } from 'tgui-core/react';
 
 export const Divider = (props) => {
   const { vertical, hidden } = props;

@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { canRender, classes } from 'common/react';
+import { canRender, classes } from 'tgui-core/react';
 import { PropsWithChildren, ReactNode } from 'react';
 
 import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';

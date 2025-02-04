@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { clamp, toFixed } from 'common/math';
+import { clamp, toFixed } from 'tgui-core/math';
 import { Component, createRef } from 'react';
 
 const isSafeNumber = (value: number) => {

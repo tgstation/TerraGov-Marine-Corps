@@ -1,8 +1,8 @@
 import { filter, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
-import { classes } from 'common/react';
-import { createSearch } from 'common/string';
 import { useState } from 'react';
+import { flow } from 'tgui-core/fp';
+import { classes } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import { Button, ByondUi, Flex, Input, Section } from '../components';

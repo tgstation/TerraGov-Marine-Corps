@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { classes } from 'common/react';
+import { classes } from 'tgui-core/react';
 import { Component, createRef, ReactNode, RefObject } from 'react';
 
 import { logger } from '../logging';

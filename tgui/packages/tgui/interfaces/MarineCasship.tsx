@@ -15,7 +15,7 @@ import {
   KEY_SPACE,
   KEY_UP,
   KEY_W,
-} from '../../common/keycodes';
+} from 'tgui-core/keycodes';
 import { useBackend } from '../backend';
 import { Button, NoticeBox, ProgressBar, Stack } from '../components';
 import { Window } from '../layouts';

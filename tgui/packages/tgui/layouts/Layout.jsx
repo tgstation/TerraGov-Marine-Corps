@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { classes } from 'common/react';
+import { classes } from 'tgui-core/react';
 
 import { computeBoxClassName, computeBoxProps } from '../components/Box';
 import { addScrollableNode, removeScrollableNode } from '../events';

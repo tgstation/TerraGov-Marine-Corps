@@ -4,8 +4,8 @@
  * @license MIT
  */
 
-import { Color } from 'common/color';
-import { toFixed } from 'common/math';
+import { Color } from 'tgui-core/color';
+import { toFixed } from 'tgui-core/math';
 import { useSelector } from 'tgui/backend';
 import { Box } from 'tgui/components';
 

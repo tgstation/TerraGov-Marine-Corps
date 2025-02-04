@@ -5,8 +5,8 @@
  * @license MIT
  */
 
-import { KEY_ENTER, KEY_ESCAPE, KEY_TAB } from 'common/keycodes';
-import { classes } from 'common/react';
+import { KEY_ENTER, KEY_ESCAPE, KEY_TAB } from 'tgui-core/keycodes';
+import { classes } from 'tgui-core/react';
 import { Component, createRef } from 'react';
 
 import { Box } from './Box';

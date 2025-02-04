@@ -1,5 +1,5 @@
-import { toFixed } from 'common/math';
-import { toTitleCase } from 'common/string';
+import { toFixed } from 'tgui-core/math';
+import { toTitleCase } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
 import {

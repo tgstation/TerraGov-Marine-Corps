@@ -1,4 +1,4 @@
-import { BooleanLike, classes } from 'common/react';
+import { BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
 import { Button, Flex, Table } from '../components';

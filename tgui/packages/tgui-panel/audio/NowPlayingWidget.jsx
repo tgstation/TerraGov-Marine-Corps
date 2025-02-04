@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { toFixed } from 'common/math';
+import { toFixed } from 'tgui-core/math';
 import { useDispatch, useSelector } from 'tgui/backend';
 import { Button, Flex, Knob } from 'tgui/components';
 

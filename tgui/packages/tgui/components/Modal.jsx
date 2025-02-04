@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { classes } from 'common/react';
+import { classes } from 'tgui-core/react';
 
 import { computeBoxClassName, computeBoxProps } from './Box';
 import { Dimmer } from './Dimmer';
