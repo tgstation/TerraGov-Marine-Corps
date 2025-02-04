@@ -88,6 +88,7 @@
 /area/kutjevo/exterior/space_port
 	name = "Kutjevo Complex - Northwest Space Port"
 	icon_state = "green"
+	always_unpowered = FALSE
 	ceiling = CEILING_NONE
 	minimap_color = MINIMAP_AREA_LZ
 
