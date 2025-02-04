@@ -2,17 +2,31 @@ Any time you make a change to the schema files, remember to increment the databa
 
 The latest database version is 2.0; The query to update the schema revision table is:
 
-INSERT INTO `schema_revision` (`major`, `minor`) VALUES (2, 2);
+INSERT INTO `schema_revision` (`major`, `minor`) VALUES (2, 3);
 or
-INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (2, 2);
+INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (2, 3);
 
 In any query remember to add a prefix to the table names if you use one.
 
 ----------------------------------------------------
+Version 2.3, 04 February 2025, by TiviPlus
+Fixed admin rank table flags being capped at 16 in the DB instead of 24 (byond max)
+Fixed staminaloss in dead table being unsigned
+
+```sql
+ALTER TABLE 'admin_ranks'
+	MODIFY COLUMN `flags` mediumint(5) unsigned NOT NULL,
+	MODIFY COLUMN `exclude_flags` mediumint(5) unsigned NOT NULL,
+	MODIFY COLUMN `can_edit_flags` mediumint(5) unsigned NOT NULL;
+
+ALTER TABLE `death`
+	MODIFY COLUMN 'staminaloss' smallint(5) signed NOT NULL;
+```
+----------------------------------------------------
 Version 2.2, 04 April 2024, by TiviPlus
 Added `tutorial_completions` to mark what ckeys have completed contextual tutorials.
 
-```
+```sql
 CREATE TABLE `tutorial_completions` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `ckey` VARCHAR(32) NOT NULL,
@@ -24,9 +38,9 @@ CREATE TABLE `tutorial_completions` (
 
 Version 2.1, 2 February 2021, by TiviPlus - adds playtime tracking to notes
 Modified table `messages`, adding column `playtime` to show the user's playtime when the note was created
-
+```sql
 ALTER TABLE `messages` ADD `playtime` INT(11) NULL DEFAULT(NULL) AFTER `severity`
-
+```
 ----------------------------------------------------
 
 Version 2.0 13 November 2020, by TiviPlus - Fixed various stickyban ban queries and update with /tg/station style datumized poll handling:
@@ -38,6 +52,7 @@ Added procedure `set_poll_deleted` that's called when deleting a poll to set del
 
 Created missing stickyban tables `stickyban_matched_cid` and `stickyban_matched_ip`, added columm `last_matched` to `stickyban_matched_ckey` and added column `deleted_ckey` to `messages` . These missing was causing queries to fail.
 
+```sql
 ALTER TABLE `stickyban_matched_ckey`
 	ADD COLUMN `last_matched` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `first_matched`;
 
@@ -92,7 +107,7 @@ UPDATE `poll_textreply` SET deleted = 1 WHERE pollid = poll_id;
 END
 $$
 DELIMITER ;
-
+```
 ----------------------------------------------------
 
 Version 1.0, 28 February 2018, by LaKiller8 - initial release, inspired by /tg/station schema
