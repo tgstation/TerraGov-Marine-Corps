@@ -167,6 +167,9 @@
 	gloves = /obj/item/clothing/gloves/marine
 	l_pocket = /obj/item/pamphlet/tank_loader
 
+/datum/outfit/job/command/mech_pilot/fallen
+	ears = null
+
 /datum/outfit/job/command/transport_crewman
 	name = TRANSPORT_CREWMAN
 	jobtype = /datum/job/terragov/command/transport_crewman

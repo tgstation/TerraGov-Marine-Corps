@@ -78,7 +78,7 @@
 	skills_type = /datum/skills/assault_crewman
 	access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC)
 	minimal_access = list(ACCESS_MARINE_WO, ACCESS_MARINE_PREP, ACCESS_MARINE_ARMORED, ACCESS_CIVILIAN_PUBLIC, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
-	outfit = /datum/outfit/job/command/assault_crewman
+	outfit = /datum/outfit/job/command/assault_crewman/fallen
 
 /datum/job/fallen/marine/fieldcommander
 	title = ROLE_FALLEN(FIELD_COMMANDER)
