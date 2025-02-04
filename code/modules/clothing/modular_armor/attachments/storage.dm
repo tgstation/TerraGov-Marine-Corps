@@ -56,19 +56,19 @@
 
 /** General storage */
 /obj/item/armor_module/storage/general
-	name = "General Purpose Storage module"
+	name = "general-purpose storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like binoculars, maps, and motion detectors."
 	icon_state = "mod_general_bag"
 	storage_type = /datum/storage/internal/general
 
 /obj/item/armor_module/storage/general/som
-	name = "General Purpose Storage module"
+	name = "general-purpose storage module"
 	desc = "Designed for mounting on SOM combat armor. Certainly not as specialised as any other storage modules, but definitely able to hold some larger things, like pistols or magazines."
 	icon_state = "mod_general_bag_som"
 	worn_icon_state = "mod_general_bag_som_a"
 
 /obj/item/armor_module/storage/ammo_mag
-	name = "Magazine Storage module"
+	name = "magazine storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Holds some magazines. Don’t expect to fit specialist munitions or LMG drums in, but you can get some good mileage. Looks like it might slow you down a bit."
 	icon_state = "mod_mag_bag"
 	storage_type = /datum/storage/internal/ammo_mag
@@ -93,19 +93,19 @@
 	new /obj/item/ammo_magazine/rifle/tx54/incendiary(src)
 
 /obj/item/armor_module/storage/engineering
-	name = "Engineering Storage module"
+	name = "engineering storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold about as much as a tool pouch, and sometimes small spools of things like barbed wire, or an entrenching tool."
 	icon_state = "mod_engineer_bag"
 	storage_type = /datum/storage/internal/engineering
 
 /obj/item/armor_module/storage/engineering/som
-	name = "Engineering Storage module"
+	name = "engineering storage module"
 	desc = "Designed for mounting on SOM combat armor. Can hold about as much as a tool pouch, and sometimes small spools of things like barbed wire, or an entrenching tool."
 	icon_state = "mod_engineer_bag_som"
 	worn_icon_state = "mod_engineer_bag_som_a"
 
 /obj/item/armor_module/storage/medical
-	name = "Medical Storage module"
+	name = "medical storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag"
 	storage_type = /datum/storage/internal/medical
@@ -118,13 +118,13 @@
 	new /obj/item/storage/pill_bottle/tramadol(src)
 
 /obj/item/armor_module/storage/medical/som
-	name = "Medical Storage module"
+	name = "medical storage module"
 	desc = "Designed for mounting on SOM combat armor. Can hold a substantial variety of medical supplies and apparatus, but cannot hold as much as a medkit could."
 	icon_state = "mod_medic_bag_som"
 	worn_icon_state = "mod_medic_bag_som_a"
 
 /obj/item/armor_module/storage/injector
-	name = "Injector Storage module"
+	name = "injector Storage module"
 	desc = "Designed for mounting on the Jaeger Combat Exoskeleton. Can hold a substantial variety of injectors."
 	icon_state = "mod_injector_bag"
 	storage_type = /datum/storage/internal/injector
