@@ -164,8 +164,7 @@ jobs:
       - name: Find Alternate Tests
         id: alternate_test_finder
         run: |
-          ALTERNATE_TESTS_JSON=$(jq -nRc '[inputs | capture("^(?<major>[0-9]+)\\.(?<minor>[0-9]+): (?<map>.+)$")]' .github/alternate_byond_versions.txt)
-          echo "alternate_tests=$ALTERNATE_TESTS_JSON" >> $GITHUB_OUTPUT
+          ALTERNATE_TESTS_JSON=$(jq -nRc '[inputs | capture("^(?<major>[0-9]+)\\.(?<minor>[0-9]+): (?<map>[^;]+);?(?<max_client_version>[0-9]+)?$")]' .github/alternate_byond_versions.txt)
       - name: Collect byond client version configuration
         id: max_required_byond_client
         #the regex here does not filter out non-numbers because error messages about no input are less helpful then error messages about bad input (which includes the bad input)
@@ -186,7 +185,7 @@ jobs:
     uses: ./.github/workflows/run_integration_tests.yml
     with:
       map: ${{ matrix.map }}
-      max_required_byond_client: ${{needs.collect_data.outputs.max_required_byond_client}}
+      max_required_byond_client: ${{ matrix.setup.max_client_version || needs.collect_data.outputs.max_required_byond_client }}
 
   run_alternate_tests:
     if: ( !contains(github.event.head_commit.message, '[ci skip]') && needs.collect_data.outputs.alternate_tests != '[]' )

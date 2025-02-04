@@ -218,9 +218,9 @@
 		return
 
 	var/dat = {"
-<A href='?src=[text_ref(src)];power=1'>Turn [on ? "Off" : "On"]</A><BR>
+<A href='byond://?src=[text_ref(src)];power=1'>Turn [on ? "Off" : "On"]</A><BR>
 <B>Current Detonation Mode:</B> [det_mode ? "Demolition" : "Breach"]<BR>
-<A href='?src=[text_ref(src)];det_mode=1'><B>Set Detonation Mode:</B> [det_mode ? "Breach" : "Demolition"]</A><BR>
+<A href='byond://?src=[text_ref(src)];det_mode=1'><B>Set Detonation Mode:</B> [det_mode ? "Breach" : "Demolition"]</A><BR>
 <B>Frequency/Code for Detpack:</B><BR>
 <A href='byond://?src=[text_ref(src)];freq=-10'>-</A>
 <A href='byond://?src=[text_ref(src)];freq=-2'>-</A>

@@ -29,10 +29,10 @@
 
 	dat += "<br>"
 
-	dat += "<a href='?src=[ref];evac_authority=init_evac'>Initiate Evacuation</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=cancel_evac'>Cancel Evacuation</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=toggle_evac'>Toggle Evacuation Permission</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=force_evac'>Force Evacuation Now</a><br>"
+	dat += "<a href='byond://?src=[ref];evac_authority=init_evac'>Initiate Evacuation</a><br>"
+	dat += "<a href='byond://?src=[ref];evac_authority=cancel_evac'>Cancel Evacuation</a><br>"
+	dat += "<a href='byond://?src=[ref];evac_authority=toggle_evac'>Toggle Evacuation Permission</a><br>"
+	dat += "<a href='byond://?src=[ref];evac_authority=force_evac'>Force Evacuation Now</a><br>"
 
 	dat += "<br>"
 
@@ -49,10 +49,10 @@
 
 	dat += "<br>"
 
-	dat += "<a href='?src=[ref];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [SSmapping.configs[SHIP_MAP].map_name] NOW</a><br>"
-	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission</a><br>"
+	dat += "<a href='byond://?src=[ref];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
+	dat += "<a href='byond://?src=[ref];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
+	dat += "<a href='byond://?src=[ref];evac_authority=use_dest'>Destruct the [SSmapping.configs[SHIP_MAP].map_name] NOW</a><br>"
+	dat += "<a href='byond://?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission</a><br>"
 
 	dat += "<br><br>"
 
@@ -61,9 +61,9 @@
 		var/mob/living/carbon/human/H = i
 		if(!iscorporateliaisonjob(H.job))
 			continue
-		dat += "<tr><td><a href='?priv_msg=[REF(H)]'>[H.real_name]</a>[H.client ? "" : " <i>(logged out)</i>"][H.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+		dat += "<tr><td><a href='byond://?priv_msg=[REF(H)]'>[H.real_name]</a>[H.client ? "" : " <i>(logged out)</i>"][H.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 		dat += "<td>[get_area(get_turf(H))]</td>"
-		dat += "<td><a href='?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
+		dat += "<td><a href='byond://?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
 		dat += "</table>"
 
 
@@ -71,9 +71,9 @@
 	dat += "<table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
 	for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 		var/mob/living/carbon/xenomorph/X = i
-		dat += "<tr><td><a href='?priv_msg=[REF(X)]'>[X.real_name]</a>[X.client ? "" : " <i>(logged out)</i>"]</td>"
+		dat += "<tr><td><a href='byond://?priv_msg=[REF(X)]'>[X.real_name]</a>[X.client ? "" : " <i>(logged out)</i>"]</td>"
 		dat += "<td>[get_area(get_turf(X))]</td>"
-		dat += "<td><a href='?src=[ref];playerpanel=[REF(X)]'>PP</A></td></TR>"
+		dat += "<td><a href='byond://?src=[ref];playerpanel=[REF(X)]'>PP</A></td></TR>"
 	dat += "</table>"
 
 
@@ -82,9 +82,9 @@
 		var/mob/living/carbon/human/H = i
 		if(!issurvivorjob(H.job))
 			continue
-		dat += "<tr><td><a href='?priv_msg=[REF(H)]'>[H.real_name]</a>[H.client ? "" : " <i>(logged out)</i>"][H.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+		dat += "<tr><td><a href='byond://?priv_msg=[REF(H)]'>[H.real_name]</a>[H.client ? "" : " <i>(logged out)</i>"][H.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 		dat += "<td>[get_area(get_turf(H))]</td>"
-		dat += "<td><a href='?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
+		dat += "<td><a href='byond://?src=[ref];playerpanel=[REF(H)]'>PP</A></td></TR>"
 	dat += "</table>"
 
 	log_admin("[key_name(usr)] opened the mode panel.")

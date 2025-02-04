@@ -25,19 +25,19 @@
 	switch(screen)
 		if(0) // --- Main Menu ---
 			dat += "<br>[temp]<br>"
-			dat += "<br>Current Network: <a href='?src=[REF(src)];network=1'>[network]</a><br>"
+			dat += "<br>Current Network: <a href='byond://?src=[REF(src)];network=1'>[network]</a><br>"
 			if(length(servers))
 				dat += "<br>Detected Telecommunication Servers:<ul>"
 				for(var/obj/machinery/telecomms/T in servers)
-					dat += "<li><a href='?src=[REF(src)];viewserver=[T.id]'>[REF(T)] [T.name]</a> ([T.id])</li>"
+					dat += "<li><a href='byond://?src=[REF(src)];viewserver=[T.id]'>[REF(T)] [T.name]</a> ([T.id])</li>"
 				dat += "</ul>"
-				dat += "<br><a href='?src=[REF(src)];operation=release'>\[Flush Buffer\]</a>"
+				dat += "<br><a href='byond://?src=[REF(src)];operation=release'>\[Flush Buffer\]</a>"
 
 			else
-				dat += "<br>No servers detected. Scan for servers: <a href='?src=[REF(src)];operation=scan'>\[Scan\]</a>"
+				dat += "<br>No servers detected. Scan for servers: <a href='byond://?src=[REF(src)];operation=scan'>\[Scan\]</a>"
 		if(1) // --- Viewing Server ---
 			dat += "<br>[temp]<br>"
-			dat += "<center><a href='?src=[REF(src)];operation=mainmenu'>\[Main Menu\]</a>     <a href='?src=[REF(src)];operation=refresh'>\[Refresh\]</a></center>"
+			dat += "<center><a href='byond://?src=[REF(src)];operation=mainmenu'>\[Main Menu\]</a>     <a href='byond://?src=[REF(src)];operation=refresh'>\[Refresh\]</a></center>"
 			dat += "<br>Current Network: [network]"
 			dat += "<br>Selected Server: [SelectedServer.id]"
 
@@ -53,7 +53,7 @@
 				i++
 				// If the log is a speech file
 				if(C.input_type == "Speech File")
-					dat += "<li><font color = #6ff76f>[C.name]</font>  <font color = #f75454><a href='?src=[REF(src)];delete=[i]'>\[X\]</a></font><br>"
+					dat += "<li><font color = #6ff76f>[C.name]</font>  <font color = #f75454><a href='byond://?src=[REF(src)];delete=[i]'>\[X\]</a></font><br>"
 
 					// -- Determine race of orator --
 
@@ -93,11 +93,11 @@
 					dat += "</li><br>"
 
 				else if(C.input_type == "Execution Error")
-					dat += "<li><font color = #ff6363>[C.name]</font>  <a href='?src=[REF(src)];delete=[i]'>\[X\]</a><br>"
+					dat += "<li><font color = #ff6363>[C.name]</font>  <a href='byond://?src=[REF(src)];delete=[i]'>\[X\]</a><br>"
 					dat += "<u><font color = #e8e784>Error</font></u>: \"[C.parameters["message"]]\"<br>"
 					dat += "</li><br>"
 				else
-					dat += "<li><font color = #8e8ef9>[C.name]</font>  <a href='?src=[REF(src)];delete=[i]'>\[X\]</a><br>"
+					dat += "<li><font color = #8e8ef9>[C.name]</font>  <a href='byond://?src=[REF(src)];delete=[i]'>\[X\]</a><br>"
 					dat += "<u><font color = #58f498>Data type</font></u>: [C.input_type]<br>"
 					dat += "<u><font color = #58f498>Contents</font></u>: <i>(unintelligible)</i><br>"
 					dat += "</li><br>"

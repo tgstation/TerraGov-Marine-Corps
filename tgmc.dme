@@ -68,6 +68,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\__DEFINES\fire_support.dm"
 #include "code\__DEFINES\flags.dm"
 #include "code\__DEFINES\foam.dm"
+#include "code\__DEFINES\font_awesome_icons.dm"
 #include "code\__DEFINES\fonts.dm"
 #include "code\__DEFINES\food.dm"
 #include "code\__DEFINES\footsteps.dm"
