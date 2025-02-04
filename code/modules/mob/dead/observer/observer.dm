@@ -35,6 +35,8 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/lastsetting = null	//Stores the last setting that ghost_others was set to, for a little more efficiency when we update ghost images. Null means no update is necessary
 
 	var/inquisitive_ghost = FALSE
+	var/health_scan = FALSE
+	var/obj/item/healthanalyzer/integrated/health_analyzer
 	///A weakref to the original corpse of the observer
 	var/datum/weakref/can_reenter_corpse
 	var/started_as_observer //This variable is set to 1 when you enter the game as an observer.
@@ -869,6 +871,18 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 		to_chat(src, span_notice("You will now examine everything you click on."))
 	else
 		to_chat(src, span_notice("You will no longer examine things you click on."))
+
+/mob/dead/observer/verb/toggle_health_scan()
+	set category = "Ghost"
+	set name = "Toggle Health Scan"
+	set desc = "Toggles whether you health-scan living beings on click"
+
+	if(health_scan)
+		to_chat(src, "<span class='notice'>Health scan disabled.</span>")
+		health_scan = FALSE
+	else
+		to_chat(src, "<span class='notice'>Health scan enabled.</span>")
+		health_scan = TRUE
 
 /mob/dead/observer/verb/join_valhalla()
 	set name = "Join Valhalla"
