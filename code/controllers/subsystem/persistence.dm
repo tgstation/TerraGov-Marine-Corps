@@ -259,7 +259,7 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/season_datum/weapons/guns/pistol_seasonal_two
 	name = "G22 and high-power gats"
-	description = "Four pistols for the pistol mains."
+	description = "Three pistols for the pistol mains."
 	item_list = list(
 		/obj/item/weapon/gun/pistol/g22 = -1,
 		/obj/item/ammo_magazine/pistol/g22 = -1,
@@ -267,8 +267,6 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/pistol/vp78 = -1,
 		/obj/item/weapon/gun/pistol/heavy = -1,
 		/obj/item/ammo_magazine/pistol/heavy = -1,
-		/obj/item/weapon/gun/pistol/highpower = -1,
-		/obj/item/ammo_magazine/pistol/highpower = -1,
 		)
 
 /datum/season_datum/weapons/guns/copsandrobbers_seasonal
