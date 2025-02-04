@@ -12,3 +12,15 @@
       them off.
   Sun-Soaked:
   - qol: mobs buckled to a jumping mob now jump alongside them
+2025-02-04:
+  PibeCantina:
+  - balance: Replaces plat miner on south ice colony with a phoron one
+  SomrNetwork:
+  - balance: Sizzler strain
+  TiviPlus:
+  - rscadd: 'New supersoldier stim: Heartstopper. Instantly kills you when you go
+      crit'
+  - bugfix: fixed robots being crittable when the flag is destroyed
+  - code_imp: added a on-crit proc
+  novaepee:
+  - rscadd: Give shipside medical an overwatch console
