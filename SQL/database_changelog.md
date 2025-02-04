@@ -2,10 +2,13 @@ Any time you make a change to the schema files, remember to increment the databa
 
 The latest database version is 2.0; The query to update the schema revision table is:
 
+```sql
 INSERT INTO `schema_revision` (`major`, `minor`) VALUES (2, 3);
 or
+```
+```sql
 INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (2, 3);
-
+```
 In any query remember to add a prefix to the table names if you use one.
 
 ----------------------------------------------------
