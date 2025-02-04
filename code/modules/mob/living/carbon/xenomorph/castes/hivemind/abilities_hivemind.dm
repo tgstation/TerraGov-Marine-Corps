@@ -173,23 +173,9 @@
 
 /datum/action/ability/activable/xeno/shoot_xeno_artillery/action_activate()
 	waiting_on_player_input = TRUE
-	var/selected_type = show_radial_menu(xeno_owner, xeno_owner, selected_artillery.maw_options)
-	if(!selected_type || !can_use_action(TRUE))
-		return fail_activate()
-	var/atom/movable/screen/minimap/map = SSminimaps.fetch_minimap_object(selected_artillery.z, MINIMAP_FLAG_XENO)
-	xeno_owner.client.screen += map
-	var/list/polled_coords = map.get_coords_from_click(xeno_owner)
-	xeno_owner?.client?.screen -= map
-	if(!polled_coords || !can_use_action(TRUE))
+	if(!selected_artillery.try_fire(xeno_owner, xeno_owner, FALSE, FALSE, FALSE) || !can_use_action(TRUE))
 		return fail_activate()
 	waiting_on_player_input = FALSE
-
-	var/datum/maw_ammo/ammo = new selected_type
-	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], selected_artillery.z)
-	addtimer(CALLBACK(selected_artillery, TYPE_PROC_REF(/obj/structure/xeno/acid_maw, maw_impact_start), ammo, clicked_turf, xeno_owner), ammo.impact_time - 2 SECONDS)
-	ammo.launch_animation(clicked_turf, selected_artillery)
-	S_TIMER_COOLDOWN_START(selected_artillery, COOLDOWN_MAW_GLOB, ammo.cooldown_time)
-	update_button_icon()
 
 /datum/action/ability/activable/xeno/shoot_xeno_artillery/alternate_action_activate()
 	if(!GLOB.xeno_acid_jaws_by_hive[xeno_owner.hivenumber] || waiting_on_player_input)
