@@ -1,10 +1,5 @@
 import { filter, sortBy } from 'common/collections';
-import { flow } from 'common/fp';
-import { BooleanLike, classes } from 'common/react';
-import { createSearch } from 'common/string';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -16,7 +11,12 @@ import {
   Stack,
   Tabs,
   Tooltip,
-} from '../components';
+} from 'tgui-core/components';
+import { flow } from 'tgui-core/fp';
+import { BooleanLike, classes } from 'tgui-core/react';
+import { createSearch } from 'tgui-core/string';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 enum Food {
