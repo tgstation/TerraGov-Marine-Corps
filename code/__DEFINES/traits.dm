@@ -103,7 +103,6 @@
 #define TIMESHIFT_TRAIT "timeshift"
 #define BRAIN_TRAIT "brain"
 #define WIDOW_ABILITY_TRAIT "widow_ability_trait"
-#define PSYCHIC_BLAST_ABILITY_TRAIT "psychic_blast_ability_trait"
 #define PSYCHIC_CRUSH_ABILITY_TRAIT "psychic_crush_ability_trait"
 #define VORTEX_ABILITY_TRAIT "vortex_ability_trait"
 #define PETRIFY_ABILITY_TRAIT "petrify_ability_trait"
