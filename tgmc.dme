@@ -2300,6 +2300,7 @@ F// DM Environment file for baystation12.dme.
 #include "interface\fonts\easvhs.dm"
 #include "interface\fonts\fonts_datum.dm"
 #include "interface\fonts\grand_9k.dm"
+#include "interface\fonts\jersey_15.dm"
 #include "interface\fonts\pixellari.dm"
 #include "interface\fonts\spess_font.dm"
 #include "interface\fonts\tiny_unicode.dm"
