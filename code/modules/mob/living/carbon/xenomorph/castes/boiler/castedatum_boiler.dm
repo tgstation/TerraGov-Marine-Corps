@@ -3,7 +3,7 @@
 	display_name = "Boiler"
 	upgrade_name = ""
 	caste_desc = "Gross!"
-
+	base_strain_type = /mob/living/carbon/xenomorph/boiler
 	caste_type_path = /mob/living/carbon/xenomorph/boiler
 
 	tier = XENO_TIER_THREE

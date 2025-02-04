@@ -3,6 +3,7 @@
 	display_name = "Drone"
 	upgrade_name = ""
 	caste_desc = "A builder of hives. Only drones may evolve into Shrikes."
+	base_strain_type = /mob/living/carbon/xenomorph/drone
 	caste_type_path = /mob/living/carbon/xenomorph/drone
 
 	tier = XENO_TIER_ONE

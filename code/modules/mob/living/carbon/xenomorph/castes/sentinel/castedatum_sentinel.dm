@@ -3,6 +3,7 @@
 	display_name = "Sentinel"
 	upgrade_name = ""
 	caste_desc = "A weak ranged combat alien."
+	base_strain_type = /mob/living/carbon/xenomorph/sentinel
 	caste_type_path = /mob/living/carbon/xenomorph/sentinel
 	tier = XENO_TIER_ONE
 	upgrade = XENO_UPGRADE_BASETYPE

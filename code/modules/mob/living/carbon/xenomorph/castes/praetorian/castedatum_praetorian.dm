@@ -3,6 +3,7 @@
 	display_name = "Praetorian"
 	upgrade_name = ""
 	caste_desc = "A giant ranged monster. It looks pretty strong."
+	base_strain_type = /mob/living/carbon/xenomorph/praetorian
 	caste_type_path = /mob/living/carbon/xenomorph/praetorian
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
