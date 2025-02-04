@@ -94,7 +94,6 @@
 /area/kutjevo/exterior/Northwest_Colony
 	name = "Kutjevo - Northwest Colony Grounds"
 	icon_state = "rf_dunes"
-	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_COLONY
 	ambience = list('sound/effects/wind/wind_2_1.ogg' = 1, 'sound/effects/wind/wind_2_2.ogg' = 1, 'sound/effects/wind/wind_3_1.ogg' = 1, 'sound/effects/wind/wind_4_1.ogg' = 1, 'sound/effects/wind/wind_4_2.ogg' = 1, 'sound/effects/wind/wind_5_1.ogg' = 1)
 	min_ambience_cooldown = 10 SECONDS
