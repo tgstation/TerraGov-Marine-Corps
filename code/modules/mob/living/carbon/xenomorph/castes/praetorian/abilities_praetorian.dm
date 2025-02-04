@@ -856,7 +856,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	ability_cost = 50
 	cooldown_duration = 10 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ADVANCE_OPPRESSOR,
 	)
 
 /datum/action/ability/activable/xeno/advance_oppressor/use_ability(atom/target)
