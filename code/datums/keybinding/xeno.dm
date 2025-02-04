@@ -760,7 +760,7 @@
 	name = "Advance (Oppressor)"
 	full_name = "Praetorian: Advance"
 	description = "Launch yourself with tremendous speed toward a location. Hitting a marine will cause them to be launched incredibly far."
-	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE_OPPRESSOR
 
 /datum/keybinding/xeno/screech
 	name = "screech"
