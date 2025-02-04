@@ -542,6 +542,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			var/mob/living/carbon/human/human_mob = target
 			if(human_mob.stat == DEAD)
 				continue
+			if(human_mob.move_resist >= MOVE_FORCE_OVERPOWERING)
+				continue
 			human_mobs += target
 
 	for(var/mob/living/carbon/human/human_mob in human_mobs)
@@ -823,9 +825,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	for(var/turf/affected_tile AS in block(lower_left, upper_right))
 		affected_tile.Shake(duration = 0.1 SECONDS)
 		for(var/atom/movable/affected AS in affected_tile)
-			if(!ishuman(affected))
-				continue
-			if(affected.move_resist >= MOVE_FORCE_OVERPOWERING)
+			if(!ishuman(affected) || affected.move_resist >= MOVE_FORCE_OVERPOWERING)
 				continue
 			var/mob/living/carbon/human/affected_human = affected
 			if(affected_human.stat == DEAD)
@@ -890,7 +890,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 /// Ends the charge when hitting a human. Knocks them back pretty far.
 /datum/action/ability/activable/xeno/advance_oppressor/proc/mob_hit(datum/source, mob/living/living_hit)
 	SIGNAL_HANDLER
-	if(!ishuman(living_hit))
+	if(!ishuman(living_hit) || living_hit.move_resist >= MOVE_FORCE_OVERPOWERING)
 		return
 
 	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), 5, 5, src)
