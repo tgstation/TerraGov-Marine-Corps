@@ -29,9 +29,9 @@
 
 
 
-#define MAPTEXT_HUDMESSAGE_TITLE(text, alignment) {"<span style='font-family: \"Jersey 15\"; font-size: 18pt; line-height: 1.25; text-align: [##alignment]'><u>[##text]</u></span>"}
+#define MAPTEXT_HUDMESSAGE_TITLE(text, alignment) {"<span style='font-family: \"F25 Bank\"; font-size: 14pt; line-height: 1.25; text-align: [##alignment]'><u>[##text]</u></span>"}
 
-#define MAPTEXT_HUDMESSAGE(text) {"<span style='font-family: \"Jersey 15\"; font-size: 13pt; line-height: 1; -dm-text-outline: 1px black'>[##text]</span>"}
+#define MAPTEXT_HUDMESSAGE(text) {"<span style='font-family: \"F25 Bank\"; font-size: 12pt; line-height: 1; -dm-text-outline: 1px black'>[##text]</span>"}
 
 #define HUD_ANNOUNCEMENT_FORMATTING(title, text, alignment) (MAPTEXT_HUDMESSAGE_TITLE(##title, ##alignment) + "<br>" + MAPTEXT_HUDMESSAGE(##text))
 
