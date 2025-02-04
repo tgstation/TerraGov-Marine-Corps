@@ -788,46 +788,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
 
-/datum/supply_packs/weapons/ltb_he_shell
-	name = "LTB HE tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
-	cost = 10
-
-/datum/supply_packs/weapons/ltb_apfds_shell
-	name = "LTB APFDS tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/apfds)
-	cost = 10
-
-/datum/supply_packs/weapons/ltb_canister_shell
-	name = "LTB Canister tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/canister)
-	cost = 10
-
-/datum/supply_packs/weapons/ltaap_rounds
-	name = "LTAAP tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
-	cost = 10
-
-/datum/supply_packs/weapons/secondary_flamer_tank
-	name = "OMR Mk.3 flamer tank"
-	contains = list(/obj/item/ammo_magazine/tank/secondary_flamer_tank)
-	cost = 10
-
-/datum/supply_packs/weapons/cupola_rounds
-	name = "Cupola tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
-	cost = 10
-
-/datum/supply_packs/weapons/tow_rocket
-	name = "TOW missile"
-	contains = list(/obj/item/ammo_magazine/tank/tow_missile)
-	cost = 5 // marginally cheaper due to being a single loader
-
-/datum/supply_packs/weapons/microrocket_pod
-	name = "Microrocket pod"
-	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
-	cost = 10
-
 /*******************************************************************************
 SMARTGUN
 *******************************************************************************/
@@ -1190,14 +1150,14 @@ ARMOR
 	cost = 400
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
-	name = "Valkyrie autodoc armor module"
+	name = "Valkyrie automedical system"
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 	)
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
-	name = "Surt fireproof module set"
+	name = "Surt thermal insulation system set"
 	contains = list(
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/fire_proof_helmet,
@@ -1205,14 +1165,14 @@ ARMOR
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
-	name = "Tyr mark 2 armor module"
+	name = "Tyr Mk.2 armor reinforcement system"
 	contains = list(
 		/obj/item/armor_module/module/tyr_extra_armor,
 	)
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Mimir mark 2 module set"
+	name = "Mimir Mk.2 environmental resistance system set"
 	contains = list(
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection,
@@ -1220,12 +1180,12 @@ ARMOR
 	cost = 150
 
 /datum/supply_packs/armor/modular/attachments/hlin_bombimmune
-	name = "Hlin explosive armor module"
+	name = "Hlin explosive compensation system"
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/artemis_mark_two
-	name = "Freyr mark 2 helmet module"
+	name = "Freyr Mk.2 visual assistance helmet system"
 	contains = list(
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 	)
@@ -2036,11 +1996,13 @@ VEHICLES
 
 /datum/supply_packs/vehicles
 	group = "Vehicles"
+	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/motorbike
 	name = "All-terrain motorbike"
 	cost = 400
 	contains = list(/obj/vehicle/ridden/motorbike)
+	containertype = null
 
 /datum/supply_packs/vehicles/sidecar
 	name = "Motorbike sidecar upgrade"
@@ -2056,16 +2018,19 @@ VEHICLES
 	name = "Combat droid with weapon equipped"
 	contains = list(/obj/vehicle/unmanned/droid)
 	cost = 400
+	containertype = null
 
 /datum/supply_packs/vehicles/droid_scout
 	name = "Scout droid"
 	contains = list(/obj/vehicle/unmanned/droid/scout)
 	cost = 300
+	containertype = null
 
 /datum/supply_packs/vehicles/droid_powerloader
 	name = "Powerloader droid"
 	contains = list(/obj/vehicle/unmanned/droid/ripley)
 	cost = 300
+	containertype = null
 
 /datum/supply_packs/vehicles/droid_weapon
 	name = "Droid weapon"
@@ -2155,6 +2120,56 @@ VEHICLES
 	contains = list(/obj/item/cell/lasgun/heavy_laser, /obj/item/cell/lasgun/heavy_laser, /obj/item/cell/lasgun/heavy_laser)
 	cost = 50
 	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/bfg_cannon
+	name = "Tank-mounted BFG 9500"
+	contains = list(/obj/item/armored_weapon/bfg)
+	cost = 1600
+
+/datum/supply_packs/vehicles/bfg_rounds
+	name = "Tank BFG antimatter container"
+	contains = list(/obj/item/ammo_magazine/tank/bfg)
+	cost = 200
+
+/datum/supply_packs/vehicles/ltb_he_shell
+	name = "LTB High Explosive tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltb_apfds_shell
+	name = "LTB APFDS tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/apfds)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltb_canister_shell
+	name = "LTB Canister tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/canister)
+	cost = 10
+
+/datum/supply_packs/vehicles/secondary_flamer_tank
+	name = "Spray flamer tank"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_flamer_tank)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltaap_rounds
+	name = "LTAAP tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	cost = 10
+
+/datum/supply_packs/vehicles/cupola_rounds
+	name = "Cupola tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
+	cost = 10
+
+/datum/supply_packs/vehicles/tow_rocket
+	name = "TOW Missile"
+	contains = list(/obj/item/ammo_magazine/tank/tow_missile)
+	cost = 5 // marginally cheaper due to being a single loader
+
+/datum/supply_packs/vehicles/microrocket_pod
+	name = "Microrocket pod"
+	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
+	cost = 10
 
 /*******************************************************************************
 FACTORY

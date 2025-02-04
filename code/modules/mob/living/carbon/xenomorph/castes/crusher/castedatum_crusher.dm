@@ -3,6 +3,7 @@
 	display_name = "Crusher"
 	upgrade_name = ""
 	caste_desc = "A huge tanky xenomorph."
+	base_strain_type = /mob/living/carbon/xenomorph/crusher
 	caste_type_path = /mob/living/carbon/xenomorph/crusher
 
 	tier = XENO_TIER_THREE

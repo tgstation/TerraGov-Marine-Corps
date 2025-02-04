@@ -102,29 +102,28 @@
 			else
 				display_class = "otherooc"
 
-
 		if(CONFIG_GET(flag/allow_admin_ooccolor) && check_rights(R_COLOR, FALSE))
 			display_colour = prefs.ooccolor
 
-	for(var/client/C AS in GLOB.clients)
-		if(!(C.prefs.toggles_chat & CHAT_OOC))
+	for(var/client/recv_client AS in GLOB.clients)
+		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
 
 		var/display_name = key
 		if(holder?.fakekey)
-			if(check_other_rights(C, R_ADMIN, FALSE))
+			if(check_other_rights(recv_client, R_ADMIN, FALSE))
 				display_name = "[holder.fakekey]/([key])"
 			else
 				display_name = holder.fakekey
 
 		// Admins open straight to player panel
-		if(check_other_rights(C, R_ADMIN, FALSE))
+		if(check_other_rights(recv_client, R_ADMIN, FALSE))
 			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
-		var/avoid_highlight = C == src
+		var/avoid_highlight = recv_client == src
 		if(display_colour)
-			to_chat(C, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+			to_chat(recv_client, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 		else
-			to_chat(C, "<span class='[display_class]'>[span_prefix("OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>", avoid_highlighting = avoid_highlight)
+			to_chat(recv_client, "<span class='[display_class]'>[span_prefix("OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/xooc_wrapper()
@@ -205,10 +204,10 @@
 	mob.log_talk(msg, LOG_XOOC)
 
 	// Send chat message to non-admins
-	for(var/client/C AS in GLOB.clients)
-		if(!(C.prefs.toggles_chat & CHAT_OOC))
+	for(var/client/recv_client AS in GLOB.clients)
+		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(C.mob in GLOB.xeno_mob_list) && !(C.mob in GLOB.observer_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
+		if(!(recv_client.mob in GLOB.xeno_mob_list) && !(recv_client.mob in GLOB.observer_list) || check_other_rights(recv_client, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
 			continue
 
 		var/display_name = mob.name
@@ -216,14 +215,14 @@
 		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
 			display_name = display_key
 
-		var/avoid_highlight = C == src
-		to_chat(C, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		var/avoid_highlight = recv_client == src
+		to_chat(recv_client, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
-	for(var/client/C AS in GLOB.admins)
-		if(!(C.prefs.toggles_chat & CHAT_OOC))
+	for(var/client/recv_staff AS in GLOB.admins)
+		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!check_other_rights(C, R_ADMIN, FALSE)) // Check if the client is still an admin.
+		if(!check_other_rights(recv_staff, R_ADMIN, FALSE)) // Check if the client is still an admin.
 			continue
 
 		var/display_name = mob.name
@@ -236,8 +235,8 @@
 		else
 			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
 
-		var/avoid_highlight = C == src
-		to_chat(C, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		var/avoid_highlight = recv_staff == src
+		to_chat(recv_staff, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/mooc_wrapper()
@@ -315,10 +314,10 @@
 	mob.log_talk(msg, LOG_MOOC)
 
 	// Send chat message to non-admins
-	for(var/client/C AS in GLOB.clients)
-		if(!(C.prefs.toggles_chat & CHAT_OOC))
+	for(var/client/recv_client AS in GLOB.clients)
+		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(C.mob in GLOB.human_mob_list) && !(C.mob in GLOB.observer_list) && !(C.mob in GLOB.ai_list) || check_other_rights(C, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
+		if(!(recv_client.mob in GLOB.human_mob_list) && !(recv_client.mob in GLOB.observer_list) && !(recv_client.mob in GLOB.ai_list) || check_other_rights(recv_client, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
 			continue
 
 		// If the verb caller is an admin and not a human mob, use their key, or if they're stealthmode, hide their key instead.
@@ -327,14 +326,14 @@
 		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin)  // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
 			display_name = display_key
 
-		var/avoid_highlight = C == src
-		to_chat(C, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		var/avoid_highlight = recv_client == src
+		to_chat(recv_client, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 	// Send chat message to admins
-	for(var/client/C AS in GLOB.admins)
-		if(!(C.prefs.toggles_chat & CHAT_OOC))
+	for(var/client/recv_staff AS in GLOB.admins)
+		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!check_other_rights(C, R_ADMIN, FALSE)) // Check if the client is still an admin.
+		if(!check_other_rights(recv_staff, R_ADMIN, FALSE)) // Check if the client is still an admin.
 			continue
 
 		var/display_name = mob.name
@@ -347,8 +346,8 @@
 		else
 			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
 
-		var/avoid_highlight = C == src
-		to_chat(C, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		var/avoid_highlight = recv_staff == src
+		to_chat(recv_staff, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/looc_wrapper()
@@ -424,21 +423,29 @@
 
 	var/message
 
-	if(admin && isobserver(mob))
+	if(admin && isobserver(mob)) // LOOC speaker is a ghost and an admin, make that obvious
 		message = span_looc("[span_prefix("LOOC:")] [usr.client.holder.fakekey ? "Administrator" : usr.client.key]: [span_message("[msg]")]")
-		for(var/mob/M in range(mob))
-			to_chat(M, message)
+		for(var/mob/in_range_mob in range(mob))
+			to_chat(in_range_mob, message)
 	else
 		message = span_looc("[span_prefix("LOOC:")] [mob.name]: [span_message("[msg]")]")
-		for(var/mob/M in range(mob))
-			to_chat(M, message)
+		for(var/mob/in_range_mob in range(mob))
+			to_chat(in_range_mob, message)
+			if(in_range_mob.client?.prefs?.chat_on_map)
+				in_range_mob.create_chat_message(mob, raw_message = "(LOOC: [msg])", runechat_flags = OOC_MESSAGE)
 
-	for(var/client/C AS in GLOB.admins)
-		if(!check_other_rights(C, R_ADMIN, FALSE) || C.mob == mob)
+	for(var/client/recv_staff AS in GLOB.admins)
+		if(!check_other_rights(recv_staff, R_ADMIN, FALSE) && !is_mentor(recv_staff))
 			continue
-		if(C.prefs.toggles_chat & CHAT_LOOC)
-			to_chat(C, "<font color='#6699CC'>[span_ooc("<span class='prefix'>LOOC: [ADMIN_TPMONTY(mob)]")]: [span_message("[msg]")]</span></font>")
+		if(!recv_staff.prefs.hear_looc_anywhere_as_staff)
+			continue
+		if(is_mentor(recv_staff) && !isobserver(recv_staff.mob))
+			continue // If we are a mentor, only hear LOOC from anywhere as a ghost
+		if(recv_staff.mob == mob)
+			continue
 
+		if(recv_staff.prefs.toggles_chat & CHAT_LOOC)
+			to_chat(recv_staff, span_looc_heard_staff("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing LOOC from anywhere enabled.", "LOOC")]: [ADMIN_TPMONTY(mob)]: [span_message("[msg]")]"))
 
 /client/verb/motd()
 	set name = "MOTD"

@@ -4,7 +4,7 @@
 	upgrade_name = ""
 	caste_desc = ""
 	wound_type = ""
-
+	base_strain_type = /mob/living/carbon/xenomorph/scorpion
 	caste_type_path = /mob/living/carbon/xenomorph/scorpion
 
 	tier = XENO_TIER_MINION

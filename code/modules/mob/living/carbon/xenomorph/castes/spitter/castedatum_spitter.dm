@@ -3,6 +3,7 @@
 	display_name = "Spitter"
 	upgrade_name = ""
 	caste_desc = "Gotta dodge!"
+	base_strain_type = /mob/living/carbon/xenomorph/spitter
 	caste_type_path = /mob/living/carbon/xenomorph/spitter
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE

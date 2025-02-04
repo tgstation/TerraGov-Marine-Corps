@@ -1,0 +1,5 @@
+author: "Rug-Dealer"
+delete-after: True
+changes:
+  - bugfix: "Modular chest plates now have the correct description for the armor they provide."
+  - bugfix: "Some arm and leg plates no longer have descriptions that state they provide high protection and encumbrance."

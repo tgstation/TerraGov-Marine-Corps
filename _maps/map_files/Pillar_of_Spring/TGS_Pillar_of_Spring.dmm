@@ -9930,7 +9930,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/living/grunt_rnr)
 "mpw" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/machinery/computer/crew,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "mqD" = (
@@ -9953,7 +9953,7 @@
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
 "mqY" = (
-/obj/machinery/computer/crew,
+/obj/machinery/computer/camera_advanced/overwatch/medical,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "mrK" = (
@@ -14201,8 +14201,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "rDn" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/recharger,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "rEw" = (
@@ -17094,6 +17093,10 @@
 "vjE" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
+"vkm" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "vkB" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/emerald{
@@ -47792,7 +47795,7 @@ sDn
 uvB
 euF
 gqB
-lAT
+vkm
 mqY
 wcT
 nkC

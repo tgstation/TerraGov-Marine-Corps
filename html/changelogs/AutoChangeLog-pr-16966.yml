@@ -1,0 +1,4 @@
+author: "Runian"
+delete-after: True
+changes:
+  - balance: "Warlock is no longer immobilized when casting with their psyblast ability."
