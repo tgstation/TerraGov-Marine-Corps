@@ -400,3 +400,11 @@
 	SHOULD_CALL_PARENT(TRUE)
 	SIGNAL_HANDLER
 	return NONE
+
+/mob/living/carbon/attack_ghost(mob/dead/observer/user)
+	if(!user.health_scan)
+		return FALSE
+	if(isnull(user.health_analyzer))
+		user.health_analyzer = new()
+	user.health_analyzer.analyze_vitals(src, user)
+	return TRUE
