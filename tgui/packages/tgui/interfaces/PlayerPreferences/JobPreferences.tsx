@@ -9,7 +9,7 @@ import {
   Modal,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 
 export const JobPreferences = (props) => {
   const { act, data } = useBackend<JobPreferencesData>();

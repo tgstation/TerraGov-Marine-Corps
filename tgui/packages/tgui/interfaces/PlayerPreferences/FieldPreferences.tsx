@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Button, Input, LabeledList } from '../../components';
+import { Button, Input, LabeledList } from 'tgui-core/components';
 
 export const TextFieldPreference = (props) => {
   const { act, data } = useBackend<any>();

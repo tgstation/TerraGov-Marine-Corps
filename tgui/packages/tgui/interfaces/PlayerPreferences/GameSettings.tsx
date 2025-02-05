@@ -5,7 +5,7 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 import {
   LoopingSelectionPreference,
   SelectFieldPreference,

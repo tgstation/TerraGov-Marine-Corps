@@ -10,7 +10,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from '../../components';
+} from 'tgui-core/components';
 import { Window } from '../../layouts';
 import { MechWeapon, tabs } from './data';
 import { MechAssembly } from './MechAssembly';

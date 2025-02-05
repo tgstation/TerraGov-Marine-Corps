@@ -8,7 +8,7 @@
  */
 
 import { vecLength, vecSubtract } from 'common/vector';
-import { canStealFocus, globalEvents } from 'tgui/events';
+import { canStealFocus, globalEvents } from 'tgui-core/events';
 import { focusMap } from 'tgui/focus';
 
 // Empyrically determined number for the smallest possible

@@ -7,7 +7,7 @@ import {
   Modal,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 
 export const ShowDesc = (props) => {
   const [desc, setdesc] = useLocalState('desc', '');

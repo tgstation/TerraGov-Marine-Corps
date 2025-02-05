@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button, Flex, Modal, TextArea } from '../../components';
+import { Button, Flex, Modal, TextArea } from 'tgui-core/components';
 import { NameInputModalData } from './Types';
 
 export const NameInputModal = (props: NameInputModalData) => {

@@ -7,7 +7,7 @@ import {
   KEY_Z,
 } from 'tgui-core/keycodes';
 import { useBackend, useLocalState } from '../backend';
-import { Button, Input, Section, Stack } from '../components';
+import { Button, Input, Section, Stack } from 'tgui-core/components';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';

@@ -9,7 +9,7 @@ import {
   ProgressBar,
   Section,
   Table,
-} from '../../components';
+} from 'tgui-core/components';
 import { CampaignData } from './index';
 
 export const CampaignOverview = (props) => {

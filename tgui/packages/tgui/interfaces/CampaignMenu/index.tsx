@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from '../../backend';
-import { Button, Modal, Section, Stack, Tabs } from '../../components';
+import { Button, Modal, Section, Stack, Tabs } from 'tgui-core/components';
 import { Window } from '../../layouts';
 import { CampaignAssets } from './CampaignAssets';
 import { CampaignMissions } from './CampaignMissions';

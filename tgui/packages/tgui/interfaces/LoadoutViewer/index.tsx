@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Button, Flex, Section, Stack } from '../../components';
+import { Button, Flex, Section, Stack } from 'tgui-core/components';
 import { Window } from '../../layouts';
 import { Loadout } from '../LoadoutManager/Types';
 import { SlotSelector } from './Slots';

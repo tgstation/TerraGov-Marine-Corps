@@ -11,7 +11,7 @@ import {
   ProgressBar,
   Section,
   Tooltip,
-} from '../components';
+} from 'tgui-core/components';
 import { Window } from '../layouts';
 
 type InputPack = {

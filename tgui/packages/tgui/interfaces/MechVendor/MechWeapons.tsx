@@ -9,7 +9,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from '../../components';
+} from 'tgui-core/components';
 import {
   equipTabs,
   MECHA_ARMOR,

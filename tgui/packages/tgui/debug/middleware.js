@@ -12,7 +12,7 @@ import {
   toggleDebugLayout,
   toggleKitchenSink,
 } from './actions';
-import { globalEvents } from '.tgui-core/events';
+import { globalEvents } from 'tgui-core/events';
 
 // prettier-ignore
 const relayedTypes = [

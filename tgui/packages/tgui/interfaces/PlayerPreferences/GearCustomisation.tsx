@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Box, Button, LabeledList, Section, Stack } from '../../components';
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 
 export const GearCustomization = (props) => {
   const { act, data } = useBackend<GearCustomizationData>();

@@ -8,7 +8,7 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 import { IndividualData, PerkData } from './index';
 
 export const IndividualPerks = (props) => {

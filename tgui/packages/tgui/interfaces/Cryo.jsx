@@ -5,7 +5,7 @@ import {
   LabeledList,
   ProgressBar,
   Section,
-} from '../components';
+} from 'tgui-core/components';
 import { Window } from '../layouts';
 import { BeakerContents } from './common/BeakerContents';
 

@@ -1,7 +1,7 @@
 import { toFixed } from 'tgui-core/math';
 
 import { useBackend, useLocalState } from '../backend';
-import { Button, Input, NumberInput, Section, Table } from '../components';
+import { Button, Input, NumberInput, Section, Table } from 'tgui-core/components';
 import { Window } from '../layouts';
 
 const MatrixMathTesterInput = (props: { value: number; varName: string }) => {

@@ -8,7 +8,7 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 import { CampaignData, FactionReward } from './index';
 
 export const CampaignPurchase = (props) => {

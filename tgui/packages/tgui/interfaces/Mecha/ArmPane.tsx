@@ -7,7 +7,7 @@ import {
   ProgressBar,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 import { MechWeapon, OperatorData } from './data';
 
 export const ArmPane = (props: { weapon: MechWeapon }) => {

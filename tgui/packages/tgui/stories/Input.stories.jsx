@@ -15,7 +15,7 @@ import {
   NumberInput,
   Section,
   Slider,
-} from '../components';
+} from 'tgui-core/components';
 
 export const meta = {
   title: 'Input',

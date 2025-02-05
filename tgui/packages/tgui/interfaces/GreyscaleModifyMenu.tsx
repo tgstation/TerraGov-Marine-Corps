@@ -8,7 +8,7 @@ import {
   LabeledList,
   Section,
   Table,
-} from '../components';
+} from 'tgui-core/components';
 import { Window } from '../layouts';
 
 type ColorEntry = {

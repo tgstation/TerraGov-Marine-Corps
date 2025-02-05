@@ -1,4 +1,3 @@
-import { useBackend } from '../../backend';
 import {
   AnimatedNumber,
   Box,
@@ -7,8 +6,9 @@ import {
   Flex,
   Section,
   Table,
-} from '../../components';
-import { TableRow } from '../../components/Table';
+} from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 import { ResearchData, ResearchResource, RewardTier } from './Types';
 import { hexToRGB, objectToArray } from './Utility';
@@ -122,7 +122,7 @@ const constructTierInfo = (tier: RewardTier) => {
       </Box>
       <Table>
         {rewards_list.map((item, i) => (
-          <TableRow key={i}>{`> ${item}`}</TableRow>
+          <Table.Row key={i}>{`> ${item}`}</Table.Row>
         ))}
       </Table>
     </Box>

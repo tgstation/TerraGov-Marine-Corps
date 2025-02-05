@@ -8,7 +8,7 @@ import {
   ProgressBar,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 import { KelvinZeroCelcius, OperatorData } from './data';
 
 export const MechStatPane = (props) => {

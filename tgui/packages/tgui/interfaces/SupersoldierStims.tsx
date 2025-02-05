@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
-import { Button, Input, Section, Stack } from '../components';
+import { Button, Input, Section, Stack } from 'tgui-core/components';
 import { Window } from '../layouts';
 
 type Stim = {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
-import { Box, Button, Dropdown, Stack, TextArea } from '../components';
+import { Box, Button, Dropdown, Stack, TextArea } from 'tgui-core/components';
 import { Window } from '../layouts';
 
 type SquadManagerData = {

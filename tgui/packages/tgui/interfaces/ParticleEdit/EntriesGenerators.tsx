@@ -7,7 +7,7 @@ import {
   LabeledList,
   NumberInput,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 import {
   EntryGeneratorNumbersListProps,
   FloatGeneratorColorProps,

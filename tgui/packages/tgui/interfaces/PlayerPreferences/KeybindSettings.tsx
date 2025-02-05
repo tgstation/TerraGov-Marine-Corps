@@ -8,7 +8,7 @@ import {
   LabeledList,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
 import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {

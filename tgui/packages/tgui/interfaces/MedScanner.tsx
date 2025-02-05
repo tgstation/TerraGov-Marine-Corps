@@ -9,7 +9,7 @@ import {
   Section,
   Stack,
   Tooltip,
-} from '../components';
+} from 'tgui-core/components';
 import { Window } from '../layouts';
 
 type MedScannerData = {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button, Flex, Modal, TextArea } from '../../components';
+import { Button, Flex, Modal, TextArea } from 'tgui-core/components';
 
 export const TextInputModal = (props: TextInputModalData) => {
   const { label, button_text, onSubmit, onBack, areaHeigh, areaWidth } = props;

@@ -9,7 +9,7 @@ import {
   Section,
   Stack,
   Table,
-} from '../../components';
+} from 'tgui-core/components';
 import { CampaignData, MissionData } from './index';
 
 export const CampaignMissions = (props) => {
