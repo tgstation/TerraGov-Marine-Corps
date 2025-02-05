@@ -153,6 +153,14 @@ export const backendMiddleware = (store) => {
       globalEvents.emit('byond/mouseup');
     }
 
+    if (type === 'byond/ctrldown') {
+      globalEvents.emit('byond/ctrldown');
+    }
+
+    if (type === 'byond/ctrlup') {
+      globalEvents.emit('byond/ctrlup');
+    }
+
     if (type === 'backend/suspendStart' && !suspendInterval) {
       logger.log(`suspending (${Byond.windowId})`);
       // Keep sending suspend messages until it succeeds.
@@ -244,7 +252,10 @@ type BackendState<TData> = {
   config: {
     title: string;
     status: number;
-    interface: string;
+    interface: {
+      name: string;
+      layout: string;
+    };
     refreshing: boolean;
     window: {
       key: string;
@@ -266,10 +277,6 @@ type BackendState<TData> = {
   shared: Record<string, any>;
   suspending: boolean;
   suspended: boolean;
-  debug?: {
-    debugLayout: boolean;
-    kitchenSink: boolean;
-  };
 };
 
 /**
