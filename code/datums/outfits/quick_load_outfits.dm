@@ -294,6 +294,10 @@
 		/obj/item/stack/barbed_wire/half_stack = 1,
 	)
 
+	belt_contents = list(
+		/obj/item/weapon/gun/smg/m25/holstered = 1,
+	)
+
 
 /datum/outfit/quick/tgmc/marine/standard_lasermg
 	name = "Laser Machinegunner"
@@ -329,6 +333,10 @@
 		/obj/item/storage/box/MRE = 1,
 		/obj/item/ammo_magazine/smg/m25/extended = 3,
 		/obj/item/ammo_magazine/packet/p10x20mm = 1,
+	)
+
+	belt_contents = list(
+		/obj/item/weapon/gun/smg/m25 = 1,
 	)
 
 
@@ -1188,6 +1196,11 @@
 		/obj/item/explosive/grenade/som = 1,
 	)
 
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
+	)
+
 
 /datum/outfit/quick/som/marine/breacher
 	name = "V-21 Breacher"
@@ -1238,6 +1251,11 @@
 		/obj/item/explosive/grenade/incendiary/som = 1,
 	)
 
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
+	)
+
 
 /datum/outfit/quick/som/marine/machine_gunner
 	name = "V-41 Machinegunner"
@@ -1264,6 +1282,11 @@
 		/obj/item/stack/sandbags_empty/half = 1,
 		/obj/item/stack/sandbags/large_stack = 1,
 		/obj/item/stack/barbed_wire/half_stack = 1,
+	)
+
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
 	)
 
 
@@ -1872,6 +1895,12 @@
 		/obj/item/tool/extinguisher/mini = 1,
 		/obj/item/storage/box/MRE/som = 1,
 	)
+
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
+	)
+
 
 //Base SOM leader outfit
 /datum/outfit/quick/som/squad_leader
