@@ -607,7 +607,7 @@
 			if("medical")
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 			if("squadleader")
-				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/radio/headset/mainship/marine)
+				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/radio/headset/mainship)
 			else
 				return 0
 	else
