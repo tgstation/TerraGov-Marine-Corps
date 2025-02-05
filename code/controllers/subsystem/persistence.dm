@@ -30,7 +30,6 @@ SUBSYSTEM_DEF(persistence)
 		SEASONAL_GUNS = list(
 		/datum/season_datum/weapons/guns/pistol_seasonal_one,
 		/datum/season_datum/weapons/guns/rifle_seasonal_one,
-		/datum/season_datum/weapons/guns/pistol_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_two,
 		/datum/season_datum/weapons/guns/rifle_seasonal_three,
 		/datum/season_datum/weapons/guns/copsandrobbers_seasonal,
@@ -255,18 +254,6 @@ SUBSYSTEM_DEF(persistence)
 		/obj/item/ammo_magazine/revolver/judge/buckshot = -1,
 		/obj/item/weapon/gun/revolver/upp = -1,
 		/obj/item/ammo_magazine/revolver/upp = -1,
-		)
-
-/datum/season_datum/weapons/guns/pistol_seasonal_two
-	name = "G22 and high-power gats"
-	description = "Three pistols for the pistol mains."
-	item_list = list(
-		/obj/item/weapon/gun/pistol/g22 = -1,
-		/obj/item/ammo_magazine/pistol/g22 = -1,
-		/obj/item/weapon/gun/pistol/vp78 = -1,
-		/obj/item/ammo_magazine/pistol/vp78 = -1,
-		/obj/item/weapon/gun/pistol/heavy = -1,
-		/obj/item/ammo_magazine/pistol/heavy = -1,
 		)
 
 /datum/season_datum/weapons/guns/copsandrobbers_seasonal
