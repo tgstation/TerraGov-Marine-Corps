@@ -12888,7 +12888,7 @@
 "lkZ" = (
 /obj/structure/table/mainship/nometal,
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/computer/camera_advanced/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/military/main,
 /turf/open/floor/mainship/silver,
 /area/mainship/command/cic)
 "llf" = (
@@ -16613,14 +16613,14 @@
 /area/mainship/command/bridge)
 "rau" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/charlie,
+/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
 /area/mainship/command/cic)
 "raw" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/delta,
+/obj/machinery/computer/camera_advanced/overwatch/military/delta,
 /turf/open/floor/mainship/silver{
 	dir = 8
 	},
@@ -20120,7 +20120,7 @@
 	pixel_x = 17;
 	pixel_y = 16
 	},
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/machinery/computer/camera_advanced/overwatch/military/alpha,
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/silver{
 	dir = 4
@@ -20136,7 +20136,7 @@
 	pixel_x = -17;
 	pixel_y = 16
 	},
-/obj/machinery/computer/camera_advanced/overwatch/bravo,
+/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
