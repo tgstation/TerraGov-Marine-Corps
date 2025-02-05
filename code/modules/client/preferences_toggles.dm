@@ -131,7 +131,7 @@
 	set category = "Preferences"
 	set name = "Game Preferences"
 	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
-	prefs.ShowChoices(usr)
+	prefs.ShowChoices(mob)
 
 
 GLOBAL_LIST_INIT(ghost_forms, list("Default" = GHOST_DEFAULT_FORM, "Ghost Ian 1" = "ghostian", "Ghost Ian 2" = "ghostian2", "Skeleton" = "skeleghost", "Red" = "ghost_red",\

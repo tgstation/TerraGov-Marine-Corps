@@ -187,7 +187,7 @@ Sensors indicate [num_som_delta || "no"] unknown lifeform signature[num_som_delt
 	if(!message)
 		return
 	user.playsound_local(user, "sound/effects/CIC_order.ogg", 10, 1)
-	user.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + message, GLOB.faction_to_portrait[user.faction])
+	user.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", message, LEFT_ALIGN_TEXT), GLOB.faction_to_portrait[user.faction])
 
 ///Returns a message to play to a mob when they deploy into the AO
 /datum/game_mode/hvh/proc/get_deploy_point_message(mob/living/user)
