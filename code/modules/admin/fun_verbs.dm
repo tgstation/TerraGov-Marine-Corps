@@ -397,14 +397,21 @@
 	if(data["url"])
 		web_sound_url = data["url"]
 		title = data["title"]
-		music_extra_data["start"] = data["start_time"]
-		music_extra_data["end"] = data["end_time"]
+		music_extra_data["duration"] = DisplayTimeText(data["duration"] * 1 SECONDS)
 		music_extra_data["link"] = data["webpage_url"]
-		music_extra_data["title"] = data["title"]
+		music_extra_data["artist"] = data["artist"]
+		music_extra_data["upload_date"] = data["upload_date"]
+		music_extra_data["album"] = data["album"]
 		switch(tgui_alert(usr, "Show the title of and link to this song to the players?\n[title]", "Play Internet Sound", list("Yes", "No", "Cancel")))
 			if("Yes")
+				music_extra_data["title"] = data["title"]
 				show = TRUE
 			if("No")
+				music_extra_data["link"] = "Song Link Hidden"
+				music_extra_data["title"] = "Song Title Hidden"
+				music_extra_data["artist"] = "Song Artist Hidden"
+				music_extra_data["upload_date"] = "Song Upload Date Hidden"
+				music_extra_data["album"] = "Song Album Hidden"
 				show = FALSE
 			else
 				return
@@ -428,6 +435,18 @@
 		else
 			return
 
+	var/anon = tgui_alert(usr, "Display who played the song?", "Credit Yourself?", list("No", "Yes", "Cancel"))
+	switch(anon)
+		if("Yes")
+			if(show)
+				to_chat(world, span_boldannounce("[src] played: <a href='[data["webpage_url"]]'>[title]</a>"))
+			else
+				to_chat(world, span_boldannounce("[src] played some music"))
+		if("No")
+			if(show)
+				to_chat(world, span_boldannounce("An admin played: <a href='[data["webpage_url"]]'>[title]</a>"))
+		else
+			return
 	for(var/i in targets)
 		var/mob/M = i
 		var/client/C = M?.client
@@ -435,8 +454,6 @@
 			continue
 		if(C.prefs.toggles_sound & SOUND_MIDI)
 			C.tgui_panel?.play_music(web_sound_url, music_extra_data)
-			if(show)
-				to_chat(C, span_boldnotice("An admin played: <a href='[data["webpage_url"]]'>[title]</a>"))
 
 	log_admin("[key_name(usr)] played web sound: [web_sound_input] - [title] - [style]")
 	message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [title] - [style]")
