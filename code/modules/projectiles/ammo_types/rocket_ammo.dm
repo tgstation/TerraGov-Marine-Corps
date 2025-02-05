@@ -320,8 +320,8 @@
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
 	damage = 100
-	penetration = 100
-	sundering = 100
+	penetration = 50
+	sundering = 25
 	max_range = 30
 
 /datum/ammo/rocket/som
