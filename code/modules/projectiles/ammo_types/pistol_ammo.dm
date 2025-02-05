@@ -96,11 +96,10 @@
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
 	hud_state = "pistol_squash"
-	accuracy = 5
-	damage = 32
+	damage = 24
 	penetration = 10
 	shrapnel_chance = 25
-	sundering = 2
+	sundering = 0.75
 
 /datum/ammo/bullet/pistol/mankey
 	name = "live monkey"
