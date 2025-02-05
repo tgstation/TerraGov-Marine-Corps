@@ -1,9 +1,17 @@
 import { filter, map, sortBy, uniq } from 'common/collections';
+import {
+  Box,
+  Button,
+  Icon,
+  Input,
+  Section,
+  Stack,
+  Tabs,
+} from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
 import { createSearch } from 'tgui-core/string';
 
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Icon, Input, Section, Stack, Tabs } from '../components';
 import { Window } from '../layouts';
 
 // here's an important mental define:

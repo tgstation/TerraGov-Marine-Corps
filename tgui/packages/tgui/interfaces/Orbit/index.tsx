@@ -1,5 +1,6 @@
 import { filter, sortBy } from 'common/collections';
 import { useBackend, useLocalState } from 'tgui/backend';
+import { Window } from 'tgui/layouts';
 import {
   Box,
   Button,
@@ -10,8 +11,7 @@ import {
   NoticeBox,
   Section,
   Stack,
-} from 'tgui/components';
-import { Window } from 'tgui/layouts';
+} from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
 import { capitalizeFirst, multiline } from 'tgui-core/string';
 

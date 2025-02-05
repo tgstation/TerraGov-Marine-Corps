@@ -1,11 +1,11 @@
 import { filter, sortBy } from 'common/collections';
 import { useState } from 'react';
+import { Button, ByondUi, Flex, Input, Section } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
 import { classes } from 'tgui-core/react';
 import { createSearch } from 'tgui-core/string';
 
 import { useBackend } from '../backend';
-import { Button, ByondUi, Flex, Input, Section } from '../components';
 import { Window } from '../layouts';
 
 /**

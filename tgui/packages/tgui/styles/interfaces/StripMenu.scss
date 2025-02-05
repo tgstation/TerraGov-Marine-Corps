@@ -2,7 +2,7 @@
 @use '../colors.scss';
 @use '../atomic/color.scss';
 
-@use '../components/Button.scss';
+@use 'tgui-core/components/Button.scss';
 
 //Colors for obscured slots, based on Button.scss
 $button-gray: darken(Button.$color-default, 20%);

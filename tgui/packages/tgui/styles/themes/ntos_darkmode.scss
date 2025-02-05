@@ -6,7 +6,7 @@
 @use 'sass:color';
 @use 'sass:meta';
 
-$nanotrasen: hsl(213, 30%, 32%);
+$nanotrasen: hsl(0, 0%, 17.25%);
 
 @use '../colors.scss' with (
   $fg-map-keys: (),
@@ -16,7 +16,7 @@ $nanotrasen: hsl(213, 30%, 32%);
   $color-bg: color.scale($nanotrasen, $lightness: -45%)
 );
 
-.theme-ntos {
+.theme-ntos_darkmode {
   // Components
   @include meta.load-css(
     '~tgui-core/styles/components/Button',

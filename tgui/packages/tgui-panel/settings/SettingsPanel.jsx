@@ -21,7 +21,7 @@ import {
   Stack,
   Tabs,
   TextArea,
-} from 'tgui/components';
+} from 'tgui-core/components';
 
 import { ChatPageSettings } from '../chat';
 import { rebuildChat, saveChatToDisk } from '../chat/actions';

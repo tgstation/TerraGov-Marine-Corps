@@ -1,6 +1,3 @@
-import { capitalize } from 'tgui-core/string';
-
-import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
   Button,
@@ -10,8 +7,11 @@ import {
   Input,
   Section,
   Stack,
-} from '../../components';
-import { formatTime } from '../../format';
+} from 'tgui-core/components';
+import { formatTime } from 'tgui-core/format';
+import { capitalize } from 'tgui-core/string';
+
+import { useBackend, useLocalState } from '../../backend';
 import {
   BodypartPickerData,
   ColorDisplayData,

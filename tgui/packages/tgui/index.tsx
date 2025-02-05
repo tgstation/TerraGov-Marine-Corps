@@ -21,11 +21,11 @@ import './styles/themes/som.scss';
 import './styles/themes/xeno.scss';
 
 import { perf } from 'common/perf';
+import { setupGlobalEvents } from 'tgui-core/events';
+import { setupHotKeys } from 'tgui-core/hotkeys';
 import { setupHotReloading } from 'tgui-dev-server/link/client.cjs';
 
 import { setGlobalStore } from './backend';
-import { setupGlobalEvents } from './events';
-import { setupHotKeys } from './hotkeys';
 import { loadIconRefMap } from './icons';
 import { captureExternalLinks } from './links';
 import { createRenderer } from './renderer';
@@ -65,13 +65,7 @@ function setupApp() {
   // Enable hot module reloading
   if (module.hot) {
     setupHotReloading();
-    // prettier-ignore
-    module.hot.accept([
-      './components',
-      './debug',
-      './layouts',
-      './routes',
-    ], () => {
+    module.hot.accept(['./debug', './layouts', './routes'], () => {
       renderApp();
     });
   }
