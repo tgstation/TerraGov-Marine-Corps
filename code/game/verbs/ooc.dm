@@ -116,6 +116,7 @@
 			else
 				display_name = holder.fakekey
 
+		// Admins open straight to player panel
 		if(check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE))
 			display_name = "[ADMIN_TPMONTY(usr)]"
 		var/avoid_highlight = recv_client == src
@@ -138,7 +139,7 @@
 	if(!msg)
 		return
 
-	var/admin = check_rights(R_ADMIN, FALSE)
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
 		return
@@ -250,7 +251,7 @@
 	set name = "MOOC"
 	set category = "OOC"
 
-	var/admin = check_rights(R_ADMIN, FALSE)
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
 		return
@@ -365,7 +366,7 @@
 
 	if(!msg)
 		return
-	var/admin = check_rights(R_ADMIN, FALSE)
+	var/admin = check_rights(R_ADMIN|R_MENTOR, FALSE)
 
 	if(!mob)
 		return
