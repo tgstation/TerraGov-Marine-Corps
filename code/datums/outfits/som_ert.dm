@@ -143,6 +143,8 @@
 		/obj/item/reagent_containers/hypospray/advanced/combat_advanced = 1,
 	)
 
+	belt_contents = null
+
 /datum/outfit/job/som/ert/medic/standard_assaultrifle
 	suit_store = /obj/item/weapon/gun/rifle/som/mag_harness
 
