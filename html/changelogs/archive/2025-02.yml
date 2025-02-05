@@ -24,3 +24,28 @@
   - code_imp: added a on-crit proc
   novaepee:
   - rscadd: Give shipside medical an overwatch console
+2025-02-05:
+  Lumipharon:
+  - qol: Hive status screen groups strains by parent type
+  Neocloudy:
+  - admin: Mentor ghosts may now see LOOC from anywhere.
+  - admin: Staff may turn off LOOC spying in preferences.
+  - qol: LOOC now outputs in runechat.
+  - qol: Mentor OOC is slightly darker.
+  - qol: Msay is now tagged with "MENTOR:" to reduce confusion for admins.
+  - soundadd: Admin tickets turned into mentor tickets will not play the admin bwoink
+      sound, instead using the mentor bwoink sound.
+  - bugfix: Mentor PMs will not be super small anymore.
+  Rug-Dealer:
+  - bugfix: Modular chest plates now have the correct description for the armor they
+      provide.
+  - bugfix: Some arm and leg plates no longer have descriptions that state they provide
+      high protection and encumbrance.
+  Runian:
+  - balance: Warlock is no longer immobilized when casting with their psyblast ability.
+  Xander3359:
+  - bugfix: Fix "Toggle Seethrough" toggle being lost when gaining primo
+  jonash07:
+  - qol: vendors now vend the item into your selected hand
+  yyzsong:
+  - spellcheck: Updates armour module stylization
