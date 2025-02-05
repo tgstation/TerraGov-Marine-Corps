@@ -111,14 +111,13 @@
 
 		var/display_name = key
 		if(holder?.fakekey)
-			if(check_other_rights(recv_client, R_ADMIN, FALSE))
+			if(check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE))
 				display_name = "[holder.fakekey]/([key])"
 			else
 				display_name = holder.fakekey
 
-		// Admins open straight to player panel
-		if(check_other_rights(recv_client, R_ADMIN, FALSE))
-			display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
+		if(check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE))
+			display_name = "[ADMIN_TPMONTY(usr)]"
 		var/avoid_highlight = recv_client == src
 		if(display_colour)
 			to_chat(recv_client, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
@@ -207,7 +206,7 @@
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(recv_client.mob in GLOB.xeno_mob_list) && !(recv_client.mob in GLOB.observer_list) || check_other_rights(recv_client, R_ADMIN, FALSE)) // If the client is a xeno, an observer, and not an admin.
+		if(!(recv_client.mob in GLOB.xeno_mob_list) && !(recv_client.mob in GLOB.observer_list) || check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE)) // If the client is a xeno, an observer, and not staff.
 			continue
 
 		var/display_name = mob.name
@@ -220,16 +219,18 @@
 
 	// Send chat message to admins
 	for(var/client/recv_staff AS in GLOB.admins)
-		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE)) // Check if the client is still staff.
 			continue
-		if(!check_other_rights(recv_staff, R_ADMIN, FALSE)) // Check if the client is still an admin.
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
+			continue
+		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
 			continue
 
 		var/display_name = mob.name
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
 		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
 			display_name = display_key
-		display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
+		display_name = "[ADMIN_TPMONTY(mob)]"
 		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
 			display_name = "[mob.key]/([display_name])"
 		else
@@ -317,7 +318,7 @@
 	for(var/client/recv_client AS in GLOB.clients)
 		if(!(recv_client.prefs.toggles_chat & CHAT_OOC))
 			continue
-		if(!(recv_client.mob in GLOB.human_mob_list) && !(recv_client.mob in GLOB.observer_list) && !(recv_client.mob in GLOB.ai_list) || check_other_rights(recv_client, R_ADMIN, FALSE)) // If the client is a human, an observer, and not an admin.
+		if(!(recv_client.mob in GLOB.human_mob_list) && !(recv_client.mob in GLOB.observer_list) && !(recv_client.mob in GLOB.ai_list) || check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE)) // If the client is a human, an observer, and not staff.
 			continue
 
 		// If the verb caller is an admin and not a human mob, use their key, or if they're stealthmode, hide their key instead.
@@ -331,16 +332,18 @@
 
 	// Send chat message to admins
 	for(var/client/recv_staff AS in GLOB.admins)
-		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE)) // Check if the client is still staff.
 			continue
-		if(!check_other_rights(recv_staff, R_ADMIN, FALSE)) // Check if the client is still an admin.
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
+			continue
+		if(!(recv_staff.prefs.toggles_chat & CHAT_OOC))
 			continue
 
 		var/display_name = mob.name
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
 		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin) // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
 			display_name = display_key
-		display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
+		display_name = "[ADMIN_TPMONTY(mob)]"
 		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
 			display_name = "[mob.key]/([display_name])"
 		else
@@ -435,12 +438,10 @@
 				in_range_mob.create_chat_message(mob, raw_message = "(LOOC: [msg])", runechat_flags = OOC_MESSAGE)
 
 	for(var/client/recv_staff AS in GLOB.admins)
-		if(!check_other_rights(recv_staff, R_ADMIN, FALSE) && !is_mentor(recv_staff))
+		if(!check_other_rights(recv_staff, R_ADMIN|R_MENTOR, FALSE))
 			continue
-		if(!recv_staff.prefs.hear_looc_anywhere_as_staff)
+		if(!recv_staff.prefs.hear_ooc_anywhere_as_staff)
 			continue
-		if(is_mentor(recv_staff) && !isobserver(recv_staff.mob))
-			continue // If we are a mentor, only hear LOOC from anywhere as a ghost
 		if(recv_staff.mob == mob)
 			continue
 
