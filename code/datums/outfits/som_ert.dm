@@ -143,7 +143,6 @@
 		/obj/item/reagent_containers/hypospray/advanced/combat_advanced = 1,
 	)
 
-	belt_contents = null
 
 /datum/outfit/job/som/ert/medic/standard_assaultrifle
 	suit_store = /obj/item/weapon/gun/rifle/som/mag_harness
@@ -674,11 +673,6 @@
 
 	r_pocket_contents = list(
 		/obj/item/cell/lasgun/volkite = 3,
-	)
-
-	belt_contents = list(
-		/obj/item/weapon/gun/pistol/som/burst = 1,
-		/obj/item/ammo_magazine/pistol/som/extended = 6,
 	)
 
 
