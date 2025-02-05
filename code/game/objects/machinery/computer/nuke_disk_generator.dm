@@ -21,6 +21,10 @@
 	var/start_time = 15 SECONDS
 	///Time to print a disk
 	var/printing_time = 15 SECONDS
+	///How much faster disk generators get while the colony power speed boost is active
+	var/overclock_multiplier = 3.0
+	///Current power boost right now; set to 1 if disabled
+	var/current_overclock_multiplier = 1
 
 	///Total number of times the hack is required
 	var/total_segments = 5
@@ -63,6 +67,8 @@
 
 	GLOB.nuke_disk_generators += src
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(set_broken))
+	RegisterSignal(SSmachines, COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED, PROC_REF(start_power_overclocking))
+	RegisterSignal(SSmachines, COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED, PROC_REF(stop_power_overclocking))
 
 /obj/machinery/computer/nuke_disk_generator/Destroy()
 	GLOB.nuke_disk_generators -= src
@@ -73,7 +79,7 @@
 	. = ..()
 	if(. || !current_timer)
 		if(running)
-			seconds_elapsed += 2
+			seconds_elapsed += 2 * current_overclock_multiplier
 		return
 
 	seconds_elapsed = (segment_time/10) * completed_segments
@@ -112,6 +118,8 @@
 	data["progress"] = seconds_elapsed * 10 / (segment_time * total_segments) //*10 because we need to convert to deciseconds
 
 	data["time_left"] = current_timer ? round(timeleft(current_timer) * 0.1, 2) : "You shouldn't be seeing this, yell at coders."
+
+	data["overclock_multiplier"] = current_overclock_multiplier
 
 	data["flavor_text"] = technobabble[completed_segments + 1]
 
@@ -161,7 +169,7 @@
 
 			busy = FALSE
 
-			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time, TIMER_STOPPABLE)
+			current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time/current_overclock_multiplier, TIMER_STOPPABLE)
 			update_minimap_icon()
 			running = TRUE
 
@@ -186,6 +194,26 @@
 /obj/machinery/computer/nuke_disk_generator/proc/update_minimap_icon()
 	SSminimaps.remove_marker(src)
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "[disk_color]_disk[current_timer ? "_on" : "_off"]", VERY_HIGH_FLOAT_LAYER))
+
+///Applies the overclock boost when colony power is active
+/obj/machinery/computer/nuke_disk_generator/proc/start_power_overclocking()
+	if(current_overclock_multiplier != 1) //Already activated!
+		return
+	current_overclock_multiplier = overclock_multiplier
+	if(current_timer)
+		deltimer(current_timer)
+		var/seconds_remaining = (seconds_elapsed SECONDS) - (segment_time*completed_segments)
+		current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), (segment_time-seconds_remaining)/overclock_multiplier, TIMER_STOPPABLE)
+
+///Stops the overclock boost; called when xenos take down colony power again
+/obj/machinery/computer/nuke_disk_generator/proc/stop_power_overclocking()
+	if(current_overclock_multiplier == 1) //Already deactivated!
+		return
+	current_overclock_multiplier = 1
+	if(current_timer)
+		deltimer(current_timer)
+		var/seconds_remaining = (seconds_elapsed SECONDS) - (segment_time*completed_segments)
+		current_timer = addtimer(CALLBACK(src, PROC_REF(complete_segment)), segment_time-seconds_remaining, TIMER_STOPPABLE)
 
 /obj/machinery/computer/nuke_disk_generator/red
 	name = "red nuke disk generator"

@@ -413,9 +413,6 @@
 "aeM" = (
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering/generator)
-"aeN" = (
-/turf/open/floor/tile/dark/yellow2/corner,
-/area/ice_colony/surface/engineering/generator)
 "aeO" = (
 /turf/open/floor/tile/dark/yellow2,
 /area/ice_colony/surface/engineering/generator)
@@ -576,18 +573,18 @@
 	},
 /area/ice_colony/surface/engineering/generator)
 "afT" = (
-/obj/machinery/power/geothermal,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/cable,
-/turf/open/floor/plating/platebot,
+/obj/machinery/floor_warn_light/toggleable/self_destruct,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/surface/engineering/generator)
 "afU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
 /obj/structure/cable,
+/obj/machinery/power/tbg_turbine/cold,
 /turf/open/floor/podhatch/floor,
 /area/ice_colony/surface/engineering/generator)
 "afW" = (
@@ -776,8 +773,8 @@
 "agM" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/yellow2/corner{
-	dir = 1
+/turf/open/floor/tile/dark/yellow2{
+	dir = 8
 	},
 /area/ice_colony/surface/engineering/generator)
 "agN" = (
@@ -902,6 +899,10 @@
 	dir = 10
 	},
 /area/ice_colony/surface/engineering)
+"ahU" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/yellow2,
+/area/ice_colony/surface/engineering/generator)
 "ahV" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/cable,
@@ -20769,9 +20770,7 @@
 /area/ice_colony/underground/maintenance/south)
 "gJL" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 4
-	},
+/turf/open/floor/tile/dark/yellow2/corner,
 /area/ice_colony/surface/engineering/generator)
 "gJO" = (
 /obj/structure/cable,
@@ -20891,6 +20890,10 @@
 /obj/effect/spawner/random/misc/structure/flavorvending,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/leisure)
+"gPZ" = (
+/obj/machinery/floor_warn_light/toggleable/self_destruct,
+/turf/closed/wall,
+/area/ice_colony/surface/engineering/generator)
 "gQE" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/structure/cable,
@@ -21289,6 +21292,11 @@
 /obj/effect/decal/cleanable/blood/xeno,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/command)
+"hwb" = (
+/turf/open/floor/tile/dark/yellow2/corner{
+	dir = 1
+	},
+/area/ice_colony/surface/engineering/generator)
 "hwE" = (
 /obj/effect/landmark/excavation_site_spawner,
 /obj/effect/ai_node,
@@ -21725,6 +21733,11 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/wood,
 /area/ice_colony/underground/crew/bball/garbledradio)
+"iks" = (
+/obj/structure/cable,
+/obj/machinery/floor_warn_light/toggleable/self_destruct,
+/turf/closed/wall/r_wall,
+/area/ice_colony/surface/engineering)
 "ikJ" = (
 /obj/effect/turf_underlay/icefloor,
 /obj/effect/landmark/lv624/fog_blocker,
@@ -22182,9 +22195,8 @@
 /area/ice_colony/surface/hydroponics/lobby)
 "iQV" = (
 /obj/structure/cable,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 1
-	},
+/obj/machinery/floor_warn_light/toggleable/self_destruct,
+/turf/open/floor/podhatch/floor,
 /area/ice_colony/surface/engineering/generator)
 "iRU" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -22339,6 +22351,10 @@
 	},
 /turf/open/floor/freezer,
 /area/ice_colony/surface/bar/canteen)
+"jbM" = (
+/obj/machinery/floor_warn_light/toggleable/self_destruct,
+/turf/closed/wall/r_wall,
+/area/ice_colony/surface/engineering/generator)
 "jcG" = (
 /obj/machinery/air_alarm{
 	dir = 4
@@ -25445,6 +25461,11 @@
 "njX" = (
 /turf/closed/wall/r_wall,
 /area/ice_colony/underground/maintenance/engineering/garbledradio)
+"nkb" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal/tbg,
+/turf/open/floor/podhatch/floor,
+/area/ice_colony/surface/engineering/generator)
 "nlt" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone/lz2{
 	dir = 2
@@ -27747,6 +27768,9 @@
 	dir = 4
 	},
 /area/ice_colony/underground/medical/hallway/garbledradio)
+"qol" = (
+/turf/open/floor/podhatch/floor,
+/area/ice_colony/surface/engineering/generator)
 "qop" = (
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 8
@@ -28310,6 +28334,12 @@
 /obj/effect/ai_node,
 /turf/open/floor,
 /area/ice_colony/surface/mining)
+"rcl" = (
+/obj/structure/cable,
+/turf/open/floor/tile/dark/yellow2/corner{
+	dir = 4
+	},
+/area/ice_colony/surface/engineering/generator)
 "rcF" = (
 /obj/effect/landmark/corpsespawner/security,
 /obj/effect/decal/cleanable/blood,
@@ -29047,12 +29077,20 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
+"rUj" = (
+/obj/machinery/floor_warn_light/toggleable/self_destruct,
+/turf/closed/wall,
+/area/ice_colony/surface/engineering)
 "rUq" = (
 /obj/machinery/door/airlock/multi_tile/mainship/generic{
 	name = "\improper Underground Sports Center"
 	},
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/crew/bball/garbledradio)
+"rUR" = (
+/obj/machinery/floor_warn_light/toggleable/self_destruct,
+/turf/closed/wall,
+/area/ice_colony/surface/engineering/tool)
 "rVe" = (
 /obj/structure/table/wood,
 /obj/item/clipboard,
@@ -30273,6 +30311,13 @@
 /obj/effect/landmark/weed_node,
 /turf/open/floor/wood,
 /area/ice_colony/surface/bar/bar)
+"tsF" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 1
+	},
+/turf/open/floor/podhatch/floor,
+/area/ice_colony/surface/engineering/generator)
 "tsK" = (
 /obj/effect/landmark/weed_node,
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
@@ -30341,9 +30386,7 @@
 /area/ice_colony/underground/medical/treatment/garbledradio)
 "tvt" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/yellow2{
-	dir = 8
-	},
+/turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering/generator)
 "tvQ" = (
 /obj/effect/spawner/random/misc/plant,
@@ -30932,6 +30975,10 @@
 	},
 /turf/open/floor/tile/darkgreen/darkgreen2,
 /area/ice_colony/underground/medical/lobby/garbledradio)
+"unI" = (
+/obj/machinery/floor_warn_light/toggleable/self_destruct,
+/turf/closed/wall/r_wall,
+/area/ice_colony/surface/engineering)
 "uoc" = (
 /obj/structure/window/reinforced/tinted{
 	dir = 4
@@ -31133,7 +31180,7 @@
 /obj/structure/cable,
 /obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/yellow2/corner{
+/turf/open/floor/tile/dark/yellow2{
 	dir = 4
 	},
 /area/ice_colony/surface/engineering/generator)
@@ -31169,10 +31216,6 @@
 	dir = 10
 	},
 /area/ice_colony/exterior/surface/landing_pad2)
-"uCG" = (
-/obj/effect/landmark/weed_node,
-/turf/open/floor/tile/dark/yellow2,
-/area/ice_colony/surface/engineering/generator)
 "uCK" = (
 /obj/machinery/door/poddoor/timed_late/containment/landing_zone{
 	dir = 2
@@ -32561,6 +32604,11 @@
 	dir = 8
 	},
 /area/ice_colony/underground/hangar)
+"wsS" = (
+/turf/open/floor/tile/dark/yellow2{
+	dir = 1
+	},
+/area/ice_colony/surface/engineering/generator)
 "wsW" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -62859,11 +62907,11 @@ aec
 aed
 aed
 aft
-agi
+rUj
 agi
 agi
 ahm
-agi
+rUj
 aeI
 jRj
 wkf
@@ -63281,17 +63329,17 @@ aec
 kun
 adN
 aex
-aed
+rUR
 afv
 nzS
 agh
 gPz
 ahL
 agf
+unI
 aeI
 aeI
-aeI
-aeI
+unI
 hCU
 nsF
 nsF
@@ -64125,10 +64173,10 @@ afA
 nzS
 ahL
 acx
-aed
+rUR
 svt
 svt
-aed
+rUR
 afD
 afA
 sar
@@ -64136,10 +64184,10 @@ agI
 ahf
 ahO
 ahW
+iks
 aiz
 aiz
-aiz
-aeI
+unI
 jRj
 wkf
 nsF
@@ -64973,22 +65021,22 @@ abJ
 nzS
 gPz
 acy
+gPZ
 acT
-acT
-acT
+gPZ
 aeL
 dol
 dol
 hMm
 dol
 aeL
-acT
+gPZ
 acT
 acT
 qGl
 ajB
 ahX
-aeI
+unI
 jRj
 wkf
 wkf
@@ -65400,13 +65448,13 @@ acN
 acT
 ugP
 aeM
-aeN
-afi
+aeM
+aeM
 gJL
 afS
 afi
 uzd
-aeP
+rcl
 aeP
 ahp
 jDU
@@ -65612,18 +65660,18 @@ aeI
 aeh
 aeM
 aeM
-uCG
-adC
-adC
-afT
-adC
-iQV
+tvt
 aeM
+aeO
+afT
+qol
+iQV
+wsS
 xhb
 acT
 ajA
 ajF
-aeI
+unI
 aeI
 jRj
 wkf
@@ -65821,18 +65869,18 @@ uSg
 adj
 adj
 adj
-aeh
+jbM
 adC
 aej
 aeP
-aej
-aej
+aeP
+ahU
 afU
-aej
-aeP
-aej
-adC
-aeh
+nkb
+tsF
+wsS
+aeM
+jbM
 aeI
 wQl
 aeI
@@ -66036,13 +66084,13 @@ adj
 ban
 adD
 aeM
-aeO
-adC
-adC
-afT
-adC
-iQV
 aeM
+aeM
+aeO
+afT
+qol
+iQV
+wsS
 aig
 ban
 wkf
@@ -66248,13 +66296,13 @@ adj
 ban
 fIg
 adT
-aeR
+aeM
 tvt
-adS
+aeR
 afR
 adS
 agM
-aeM
+hwb
 wcb
 ban
 wkf
@@ -66885,10 +66933,10 @@ adj
 adj
 aeh
 aeh
+jbM
 aeh
 aeh
-aeh
-aeh
+jbM
 aeh
 aeh
 jmh
