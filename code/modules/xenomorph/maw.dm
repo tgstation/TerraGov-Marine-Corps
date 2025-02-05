@@ -341,7 +341,7 @@
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
 	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_attacker), ammo.impact_time-2 SECONDS)
 	//this is stinky but we need to call parent for acid jaw regardless so have to do the tracking, for both, here
-	switch(src.type)
+	switch(type)
 		if(/obj/structure/xeno/acid_maw)
 			GLOB.round_statistics.acid_maw_fires++
 			if(xeno_attacker.client)
