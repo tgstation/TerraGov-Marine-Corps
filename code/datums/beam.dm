@@ -161,15 +161,20 @@
 	INVOKE_ASYNC(newbeam, TYPE_PROC_REF(/datum/beam, Start))
 	return newbeam
 
+/// Shocks xenos, returns shocked xenos.
 /proc/zap_beam(atom/source, zap_range, damage, list/blacklistmobs)
-	for(var/mob/living/carbon/xenomorph/living AS in cheap_get_xenos_near(source, zap_range))
+	var/list/xenos = cheap_get_xenos_near(source, zap_range)
+	for(var/mob/living/carbon/xenomorph/living AS in xenos)
 		if(!living)
-			return
+			return list()
 		if(living.stat == DEAD)
+			xenos -= living
 			continue
 		if(living in blacklistmobs)
+			xenos -= living
 			continue
 		if(check_path(source, living, PASS_PROJECTILE|PASS_GLASS) != get_turf(living))
+			xenos -= living
 			continue
 		source.beam(living, icon_state="lightning[rand(1,12)]", time = 3, maxdistance = zap_range + 2)
 		if(living.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
@@ -177,6 +182,7 @@
 			living.apply_status_effect(/datum/status_effect/plasmadrain, 3 SECONDS)
 		living.add_slowdown(2)
 		log_attack("[living] was zapped by [source]")
+	return xenos
 
 /// executes a BFG zap. just damages living mobs in an AOE from the source
 /proc/bfg_beam(atom/source, zap_range, damage, armor_pierce, list/blacklistmobs)
