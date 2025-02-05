@@ -322,6 +322,9 @@
 	if(is_ground_level(origin.z)) //Safety check to prevent instant transmission
 		to_chat(owner, span_warning("The shuttle can't move while docked on the planet"))
 		return
+	var/area/landing_area = get_area(remote_eye)
+	if(!(landing_area.area_flags & MARINE_BASE))
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ)
 	origin.shuttle_port.callTime = SHUTTLE_LANDING_CALLTIME
 	origin.next_fly_state = SHUTTLE_ON_GROUND
 	origin.open_prompt = FALSE
