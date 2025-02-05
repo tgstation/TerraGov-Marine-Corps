@@ -287,9 +287,6 @@
 	return ..(shock_damage, source, siemens_coeff, def_zone)
 
 /mob/living/carbon/human/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
 	if(href_list["squadfireteam"])
 		if(usr.incapacitated() || get_dist(usr, src) >= 7 || !hasHUD(usr,"squadleader"))
 			return
