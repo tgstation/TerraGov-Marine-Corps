@@ -192,7 +192,7 @@
 /obj/effect/xeno/shield
 	icon = 'icons/Xeno/96x96.dmi'
 	icon_state = "shield"
-	resistance_flags = BANISH_IMMUNE|UNACIDABLE|PLASMACUTTER_IMMUNE
+	resistance_flags = UNACIDABLE|PLASMACUTTER_IMMUNE
 	max_integrity = 650
 	layer = ABOVE_MOB_LAYER
 	///Who created the shield
