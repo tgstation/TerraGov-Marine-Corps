@@ -263,8 +263,6 @@ SUBSYSTEM_DEF(persistence)
 	item_list = list(
 		/obj/item/weapon/gun/pistol/g22 = -1,
 		/obj/item/ammo_magazine/pistol/g22 = -1,
-		/obj/item/weapon/gun/pistol/vp78 = -1,
-		/obj/item/ammo_magazine/pistol/vp78 = -1,
 		/obj/item/weapon/gun/pistol/heavy = -1,
 		/obj/item/ammo_magazine/pistol/heavy = -1,
 		/obj/item/weapon/gun/pistol/highpower = -1,
