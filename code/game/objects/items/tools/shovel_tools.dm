@@ -11,7 +11,7 @@
 	force = 8
 	throwforce = 4
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("bashed", "bludgeoned", "thrashed", "whacked")
+	attack_verb = list("bashes", "bludgeons", "thrashes", "whacks")
 	var/dirt_overlay = "shovel_overlay"
 	var/folded = FALSE
 	var/dirt_type = NO_DIRT // 0 for no dirt, 1 for brown dirt, 2 for snow, 3 for big red, 4 for basalt(lava-land).

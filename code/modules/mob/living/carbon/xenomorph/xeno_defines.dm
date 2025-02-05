@@ -4,7 +4,9 @@
 	var/upgrade_name = "Young"
 	var/caste_desc = null
 	var/job_type = /datum/job/xenomorph
-
+	///The parent strain of this caste
+	var/base_strain_type
+	///The base caste typepath
 	var/caste_type_path = null
 
 	///primordial message that is shown when a caste becomes primordial

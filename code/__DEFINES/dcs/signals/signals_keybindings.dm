@@ -24,10 +24,6 @@
 #define COMSIG_KB_LIVING_RESIST_DOWN "keybinding_living_resist_down"
 #define COMSIG_KB_LIVING_JUMP_DOWN "keybind_living_jump_down"
 #define COMSIG_KB_LIVING_JUMP_UP "keybind_living_jump_up"
-#define COMSIG_KB_MOB_FACENORTH_DOWN "keybinding_mob_facenorth_down"
-#define COMSIG_KB_MOB_FACEEAST_DOWN "keybinding_mob_faceeast_down"
-#define COMSIG_KB_MOB_FACESOUTH_DOWN "keybinding_mob_facesouth_down"
-#define COMSIG_KB_MOB_FACEWEST_DOWN "keybinding_mob_facewest_down"
 #define COMSIG_KB_MOB_STOPPULLING_DOWN "keybinding_mob_stoppulling_down"
 #define COMSIG_KB_MOB_CYCLEINTENTRIGHT_DOWN "keybinding_mob_cycleintentright_down"
 #define COMSIG_KB_MOB_CYCLEINTENTLEFT_DOWN "keybinding_mob_cycleintentleft_down"
@@ -47,6 +43,7 @@
 #define COMSIG_KB_MOVEMENT_SOUTH_DOWN "keybinding_movement_south_down"
 #define COMSIG_KB_MOVEMENT_WEST_DOWN "keybinding_movement_west_down"
 #define COMSIG_KB_MOVEMENT_EAST_DOWN "keybinding_movement_east_down"
+#define COMSIG_KB_MOB_BLOCKMOVEMENT_DOWN "keybinding_mob_blockmovement_down"
 
 //Admin
 #define COMSIG_KB_ADMIN_ASAY_DOWN "keybinding_admin_asay_down"
@@ -76,6 +73,7 @@
 #define COMSIG_KB_AUTOEJECT "keybind_autoeject"
 #define COMSIG_KB_GIVE "keybind_give"
 #define COMSIG_KB_HELMETMODULE "keybinding_helmetmodule"
+#define COMSIG_KB_ARMORMODULE "keybinding_armormodule"
 #define COMSIG_KB_ROBOT_AUTOREPAIR "keybinding_robot_autorepair"
 #define COMSIG_KB_STIMS "keybinding_stims_menu"
 #define COMSIG_KB_SUITLIGHT "keybinding_suitlight"
@@ -258,6 +256,7 @@
 #define COMSIG_XENOABILITY_ENDURE "xenoability_endure"
 #define COMSIG_XENOABILITY_RAGE "xenoability_rage"
 #define COMSIG_XENOABILITY_VAMPIRISM "xenoability_vampirism"
+#define COMSIG_XENOABILITY_DEATHMARK "xenoability_deathmark"
 
 #define COMSIG_XENOABILITY_RUNNER_POUNCE "xenoability_runner_pounce"
 #define COMSIG_XENOABILITY_HUNTER_POUNCE "xenoability_hunter_pounce"

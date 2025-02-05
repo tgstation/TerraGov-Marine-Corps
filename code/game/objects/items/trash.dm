@@ -190,7 +190,7 @@
 	icon_state = "crushed_solocup"
 	throwforce = 0
 	w_class = WEIGHT_CLASS_TINY
-	attack_verb = list("bludgeoned", "whacked", "slapped")
+	attack_verb = list("bludgeons", "whacks", "slaps")
 
 /obj/item/trash/trashbag
 	name = "trash bag"
