@@ -1164,6 +1164,8 @@ F// DM Environment file for baystation12.dme.
 #include "code\game\objects\machinery\kitchen\microwave.dm"
 #include "code\game\objects\machinery\kitchen\processor.dm"
 #include "code\game\objects\machinery\kitchen\smartfridge.dm"
+#include "code\game\objects\machinery\overwatch\support_code.dm"
+#include "code\game\objects\machinery\overwatch\types.dm"
 #include "code\game\objects\machinery\pipe\construction.dm"
 #include "code\game\objects\machinery\pipe\pipe_dispenser.dm"
 #include "code\game\objects\machinery\practice\medical.dm"
