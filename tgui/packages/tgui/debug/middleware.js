@@ -4,6 +4,7 @@
  * @license MIT
  */
 
+import { globalEvents } from 'tgui-core/events';
 import { acquireHotKey } from 'tgui-core/hotkeys';
 import { KEY_BACKSPACE, KEY_F10, KEY_F11, KEY_F12 } from 'tgui-core/keycodes';
 
@@ -12,7 +13,6 @@ import {
   toggleDebugLayout,
   toggleKitchenSink,
 } from './actions';
-import { globalEvents } from 'tgui-core/events';
 
 // prettier-ignore
 const relayedTypes = [

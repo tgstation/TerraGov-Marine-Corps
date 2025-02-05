@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-import { useLocalState } from '../backend';
+import { useState } from 'react';
 import { Button, Section, Tabs } from 'tgui-core/components';
 
 export const meta = {
@@ -15,7 +15,7 @@ export const meta = {
 const TAB_RANGE = ['Tab #1', 'Tab #2', 'Tab #3', 'Tab #4'];
 
 const Story = (props) => {
-  const [tabProps, setTabProps] = useLocalState('tabProps', {});
+  const [tabProps, setTabProps] = useState({});
   return (
     <>
       <Section>
@@ -102,8 +102,8 @@ const Story = (props) => {
 };
 
 const TabsPrefab = (props) => {
-  const [tabIndex, setTabIndex] = useLocalState('tabIndex', 0);
-  const [tabProps] = useLocalState('tabProps', {});
+  const [tabIndex, setTabIndex] = useState(0);
+  const [tabProps] = useState({});
   return (
     <Tabs
       vertical={tabProps.vertical}

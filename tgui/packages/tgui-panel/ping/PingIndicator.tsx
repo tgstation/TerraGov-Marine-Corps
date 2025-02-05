@@ -4,10 +4,10 @@
  * @license MIT
  */
 
-import { Color } from 'tgui-core/color';
-import { toFixed } from 'tgui-core/math';
 import { useSelector } from 'tgui/backend';
+import { Color } from 'tgui-core/color';
 import { Box } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
 
 import { selectPing } from './selectors';
 
@@ -17,7 +17,7 @@ export const PingIndicator = (props) => {
     new Color(220, 40, 40),
     new Color(220, 200, 40),
     new Color(60, 220, 40),
-  ]);
+  ]).toString();
   const roundtrip = ping.roundtrip ? toFixed(ping.roundtrip) : '--';
   return (
     <div className="Ping">

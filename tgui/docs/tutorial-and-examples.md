@@ -75,7 +75,7 @@ Finally, the `ui_act` proc is called by the interface whenever the user used an
 input. The input's `action` and `params` are passed to the proc.
 
 ```dm
-/obj/machinery/my_machine/ui_act(action, params)
+/obj/machinery/my_machine/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
   . = ..()
   if(.)
     return
@@ -124,7 +124,7 @@ snippet (make sure component name matches the file name):
 
 ```jsx
 import { useBackend } from '../backend';
-import { Button, LabeledList, Section } from 'tgui-core/components';
+import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const SampleInterface = (props, context) => {
@@ -256,7 +256,7 @@ JSX code, and wrap it into a second, smaller React component:
 
 ```jsx
 import { useBackend } from '../backend';
-import { Button, LabeledList, Section } from 'tgui-core/components';
+import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const SampleInterface = (props, context) => {
@@ -311,7 +311,7 @@ upon code review):
   data["var"] = var
   return data
 
-/obj/copypasta/ui_act(action, params)
+/obj/copypasta/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
   if(..())
     return
   switch(action)
@@ -327,7 +327,7 @@ And the template:
 
 ```jsx
 import { useBackend } from '../backend';
-import { Button, LabeledList, Section } from 'tgui-core/components';
+import { Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
 export const SampleInterface = (props, context) => {
