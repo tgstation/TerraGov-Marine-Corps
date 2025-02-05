@@ -44,7 +44,6 @@
 	max_integrity = 250
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASSABLE
-	atom_flags = 2
 	/// Range, duh.
 	var/max_range = 4
 	/// Battery to run on
