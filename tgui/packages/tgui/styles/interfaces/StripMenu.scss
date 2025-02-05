@@ -2,13 +2,13 @@
 @use '../colors.scss';
 @use '../atomic/color.scss';
 
-@use 'tgui-core/components/Button.scss';
+@use '~tgui-core/styles/components/Button' as button;
 
-//Colors for obscured slots, based on Button.scss
-$button-gray: darken(Button.$color-default, 20%);
-$button-gray-hover: Button.$color-default;
-$button-main: Button.$color-default;
-$button-main-hover: lighten(Button.$color-default, 15%);
+// Colors for obscured slots, based on Button.scss
+$button-gray: darken(button.$color-default, 20%);
+$button-gray-hover: button.$color-default;
+$button-main: button.$color-default;
+$button-main-hover: lighten(button.$color-default, 15%);
 
 //Make columns have constant width, allowing buttons to cut off with ellipsis at the end
 .strip-menu-table {

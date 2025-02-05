@@ -13,7 +13,7 @@ import {
   Stack,
 } from 'tgui-core/components';
 import { flow } from 'tgui-core/fp';
-import { capitalizeFirst, multiline } from 'tgui-core/string';
+import { capitalizeFirst } from 'tgui-core/string';
 
 import { getDisplayColor, getDisplayName, isJobOrNameMatch } from './helpers';
 import type { Observable, OrbitData } from './types';
@@ -93,7 +93,7 @@ const ObservableSearch = (props) => {
             color={auto_observe ? 'good' : 'transparent'}
             icon={auto_observe ? 'toggle-on' : 'toggle-off'}
             onClick={() => act('toggle_observe')}
-            tooltip={multiline`Toggle Auto-Observe. When active, you'll
+            tooltip={`Toggle Auto-Observe. When active, you'll
             see the UI / full inventory of whoever you're orbiting. Neat!`}
             tooltipPosition="bottom-start"
           />
