@@ -85,7 +85,7 @@
 	UnregisterSignal(user, list(COMSIG_MOB_CLICK_SHIFT, COMSIG_ORDER_SELECTED, COMSIG_MOB_MIDDLE_CLICK))
 	UnregisterSignal(SSdcs, COMSIG_GLOB_OB_LASER_CREATED)
 
-/obj/machinery/computer/camera_advanced/overwatch/military/get_dat(mob/user)
+/obj/machinery/computer/camera_advanced/overwatch/military/get_dat()
 	var/dat
 	if(!operator)
 		dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>----------</A><BR>"
@@ -132,7 +132,7 @@
 	dat += "<br><br><a href='?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
 	return dat
 
-/obj/machinery/computer/camera_advanced/overwatch/military/main/get_dat(mob/user)
+/obj/machinery/computer/camera_advanced/overwatch/military/main/get_dat()
 	var/dat
 	if(!operator)
 		dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>----------</A><BR>"
@@ -161,62 +161,6 @@
 	dat += get_firesupport_data()
 
 	dat += "<A href='?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
-	return dat
-
-///fire support
-/obj/machinery/computer/camera_advanced/overwatch/military/proc/get_firesupport_data()
-	var/list/target_list = current_squad ? current_squad.squad_laser_targets : GLOB.active_laser_targets //if theres no current squad, this is a main console (check this tho)
-	var/dat
-	dat += "<b>Orbital Bombardment Control</b><br>"
-	dat += "<b>Current Cannon Status:</b> "
-	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
-		dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
-	else
-		dat += "<font color='green'>Ready!</font><br>"
-	dat += "<B>[current_squad ? "[current_squad.name] " : ""]Laser Targets:</b><br>"
-	if(length(target_list))
-		for(var/obj/effect/overlay/temp/laser_target/ob_lase AS in target_list)
-			if(ob_lase.lasertype != LASER_TYPE_OB)
-				continue
-			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(ob_lase)];selected_target=[REF(ob_lase)]'>[ob_lase]</a><br>"
-	else
-		dat += "[span_warning("None")]<br>"
-	dat += "<b>Selected Target:</b><br>"
-	if(!selected_target) // Clean the targets if nothing is selected
-		dat += "[span_warning("None")]<br>"
-	else if(!(selected_target in target_list) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
-		dat += "[span_warning("None")]<br>"
-		selected_target = null
-	else
-		dat += "<font color='green'>[selected_target.name]</font><br>"
-	dat += "<A href='?src=[text_ref(src)];operation=dropbomb'>\[FIRE!\]</a><br>"
-	dat += "----------------------<BR>"
-
-	dat += "<b>Rail Gun Control</b><br>"
-	dat += "<b>Current Rail Gun Status:</b> "
-	var/cooldown_left = (GLOB.marine_main_ship?.rail_gun?.last_firing + 600) - world.time // 60 seconds between shots
-	if(cooldown_left > 0)
-		dat += "Rail Gun on cooldown ([round(cooldown_left/10)] seconds)<br>"
-	else if(!GLOB.marine_main_ship?.rail_gun?.rail_gun_ammo?.ammo_count)
-		dat += "<font color='red'>Ammo depleted.</font><br>"
-	else
-		dat += "<font color='green'>Ready!</font><br>"
-	dat += "<B>[current_squad ? "[current_squad.name] " : ""]Laser Targets:</b><br>"
-	if(length(target_list))
-		for(var/obj/effect/overlay/temp/laser_target/lase AS in target_list) //for whatever reason we can fire railgun on any lase type... in practical terms, any type EXCEPT railgun
-			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(lase)];selected_target=[REF(lase)]'>[lase]</a><br>"
-	else
-		dat += "[span_warning("None")]<br>"
-	dat += "<b>Selected Target:</b><br>"
-	if(!selected_target) // Clean the targets if nothing is selected
-		dat += "[span_warning("None")]<br>"
-	else if(!(selected_target in target_list) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
-		dat += "[span_warning("None")]<br>"
-		selected_target = null
-	else
-		dat += "<font color='green'>[selected_target.name]</font><br>"
-	dat += "<A href='?src=[text_ref(src)];operation=shootrailgun'>\[FIRE!\]</a><br>"
-	dat += "----------------------<br>"
 	return dat
 
 /obj/machinery/computer/camera_advanced/overwatch/military/Topic(href, href_list)
@@ -320,6 +264,62 @@
 				GLOB.marine_main_ship?.rail_gun?.fire_rail_gun(get_turf(selected_target),operator)
 	updateUsrDialog()
 
+///Provides details on available firesupport options
+/obj/machinery/computer/camera_advanced/overwatch/military/proc/get_firesupport_data()
+	var/list/target_list = current_squad ? current_squad.squad_laser_targets : GLOB.active_laser_targets //if theres no current squad, this should be a main overwatch console
+	var/dat
+	dat += "<b>Orbital Bombardment Control</b><br>"
+	dat += "<b>Current Cannon Status:</b> "
+	if(!GLOB.marine_main_ship?.orbital_cannon?.chambered_tray)
+		dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
+	else
+		dat += "<font color='green'>Ready!</font><br>"
+	dat += "<B>[current_squad ? "[current_squad.name] " : ""]Laser Targets:</b><br>"
+	if(length(target_list))
+		for(var/obj/effect/overlay/temp/laser_target/ob_lase AS in target_list)
+			if(ob_lase.lasertype != LASER_TYPE_OB)
+				continue
+			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(ob_lase)];selected_target=[REF(ob_lase)]'>[ob_lase]</a><br>"
+	else
+		dat += "[span_warning("None")]<br>"
+	dat += "<b>Selected Target:</b><br>"
+	if(!selected_target) // Clean the targets if nothing is selected
+		dat += "[span_warning("None")]<br>"
+	else if(!(selected_target in target_list) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
+		dat += "[span_warning("None")]<br>"
+		selected_target = null
+	else
+		dat += "<font color='green'>[selected_target.name]</font><br>"
+	dat += "<A href='?src=[text_ref(src)];operation=dropbomb'>\[FIRE!\]</a><br>"
+	dat += "----------------------<BR>"
+
+	dat += "<b>Rail Gun Control</b><br>"
+	dat += "<b>Current Rail Gun Status:</b> "
+	var/cooldown_left = (GLOB.marine_main_ship?.rail_gun?.last_firing + 600) - world.time // 60 seconds between shots
+	if(cooldown_left > 0)
+		dat += "Rail Gun on cooldown ([round(cooldown_left/10)] seconds)<br>"
+	else if(!GLOB.marine_main_ship?.rail_gun?.rail_gun_ammo?.ammo_count)
+		dat += "<font color='red'>Ammo depleted.</font><br>"
+	else
+		dat += "<font color='green'>Ready!</font><br>"
+	dat += "<B>[current_squad ? "[current_squad.name] " : ""]Laser Targets:</b><br>"
+	if(length(target_list))
+		for(var/obj/effect/overlay/temp/laser_target/lase AS in target_list) //for whatever reason we can fire railgun on any lase type... in practical terms, any type EXCEPT railgun
+			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(lase)];selected_target=[REF(lase)]'>[lase]</a><br>"
+	else
+		dat += "[span_warning("None")]<br>"
+	dat += "<b>Selected Target:</b><br>"
+	if(!selected_target) // Clean the targets if nothing is selected
+		dat += "[span_warning("None")]<br>"
+	else if(!(selected_target in target_list) && !(selected_target in GLOB.active_orbital_beacons)) // Or available
+		dat += "[span_warning("None")]<br>"
+		selected_target = null
+	else
+		dat += "<font color='green'>[selected_target.name]</font><br>"
+	dat += "<A href='?src=[text_ref(src)];operation=shootrailgun'>\[FIRE!\]</a><br>"
+	dat += "----------------------<br>"
+	return dat
+
 ///Signal handler for radial menu
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/attempt_radial(datum/source, atom/A, params)
 	SIGNAL_HANDLER
@@ -406,7 +406,6 @@
 		SSminimaps.remove_marker(marked_lase)
 		marked_lase = null
 
-
 ///This is an orbital light. Basically, huge thing which the CIC can use to light up areas for a bit of time.
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/attempt_spotlight(datum/source, atom/A, params)
 	if(!powered())
@@ -449,7 +448,7 @@
 	SIGNAL_HANDLER
 	current_order = order
 
-///////////////////////////////////////////
+///Messages all available squads
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/send_to_squads(txt)
 	for(var/datum/squad/squad AS in watchable_squads)
 		squad.message_squad(txt)
@@ -518,6 +517,7 @@
 		target.ceiling_debris_check(5)
 		GLOB.marine_main_ship?.orbital_cannon?.fire_ob_cannon(target,user)
 
+///Changes the current squad leader
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/change_lead(datum/source, mob/living/carbon/human/target)
 	if(!source || source != operator)
 		return
@@ -547,7 +547,7 @@
 	to_chat(source, "[icon2html(src, source)] [target.real_name] is [target_squad]'s new leader!")
 	target_squad.promote_leader(target)
 
-
+///Marks a marine for insubordination
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/mark_insubordination()
 	if(!usr || usr != operator)
 		return
@@ -577,6 +577,7 @@
 						wanted_marine.sec_hud_set_security_status()
 					return
 
+///Moves a marine to another squad
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/transfer_squad(datum/source, mob/living/carbon/human/transfer_marine, datum/squad/new_squad)
 	if(!source || source != operator)
 		return
@@ -648,7 +649,7 @@
 		extra_filters += TTS_FILTER_SILICON
 	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), sender, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, tts_listeners, FALSE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
 
-///Radial squad select menu.
+///Radial menu squad select menu
 /obj/machinery/computer/camera_advanced/overwatch/military/proc/squad_select(datum/source, atom/A)
 	var/list/squad_options = list()
 

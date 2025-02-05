@@ -103,9 +103,8 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	if(.)
 		return
 	watchable_squads = SSjob.active_squads[faction]
-	var/dat = get_dat(user)
 	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>[overwatch_title ? overwatch_title : current_squad ? current_squad.name : ""] Overwatch Console</div>", 550, 820)
-	popup.set_content(dat)
+	popup.set_content(get_dat())
 	popup.open()
 
 /obj/machinery/computer/camera_advanced/overwatch/Topic(href, href_list)
@@ -122,7 +121,12 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if("monitor")
 			overwatch_flags |= OVERWATCH_ON_MONITOR
 			if(href_list["squad_id"])
-				current_squad = get_squad_by_id(href_list["squad_id"])
+				var/new_squad_id = href_list["squad_id"]
+				current_squad = null
+				for(var/datum/squad/squad AS in watchable_squads)
+					if(squad.id == new_squad_id)
+						current_squad = squad
+						break
 		if("change_operator")
 			if(operator != usr)
 				if(current_squad)
@@ -222,10 +226,10 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 				if(T)
 					var/mob/living/silicon/ai/recipientai = operator
 					recipientai.eyeobj.setLoc(T)
-					// operator.eyeobj.setLoc(get_turf(src))
 	updateUsrDialog()
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/get_dat(mob/user)
+///Provided data for interact(). Overridable
+/obj/machinery/computer/camera_advanced/overwatch/proc/get_dat()
 	var/dat
 	if(!operator)
 		dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>----------</A><BR>"
@@ -237,7 +241,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		dat += get_squad_info()
 		return dat
 
-	if(!current_squad) //No squad has been set yet. Pick one.
+	if(!current_squad)
 		dat += "<br>Current Squad: <A href='?src=[text_ref(src)];operation=pick_squad'>----------</A><BR>"
 		return dat
 
@@ -251,12 +255,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<br><br><a href='?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
 	return dat
 
-/obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_by_id(id)
-	for(var/datum/squad/squad AS in watchable_squads)
-		if(squad.id == id)
-			return squad
-	return FALSE
-
+///Provides info on the currently selected squad
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_info()
 	var/dat = ""
 	if(!current_squad)
@@ -336,31 +335,32 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 		if(ID?.assigned_fireteam)
 			fteam = " \[[ID.assigned_fireteam]\]"
 		var/marine_infos = "<tr><td><A href='?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl][fteam]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
-		switch(role)
-			if(SQUAD_LEADER)
-				leader_text += marine_infos
-				leader_count++
-			if(SQUAD_CORPSMAN)
-				medic_text += marine_infos
-				medic_count++
-			if(SQUAD_ENGINEER)
-				engi_text += marine_infos
-				engi_count++
-			if(SQUAD_SMARTGUNNER)
-				smart_text += marine_infos
-				smart_count++
-			if(SQUAD_MARINE)
-				marine_text += marine_infos
-				marine_count++
-			else
-				misc_text += marine_infos
+
+		if(role in GLOB.jobs_squad_standard)
+			marine_text += marine_infos
+			marine_count++
+		else if(role in GLOB.jobs_squad_corpsman)
+			medic_text += marine_infos
+			medic_count++
+		else if(role in GLOB.jobs_squad_engineer)
+			engi_text += marine_infos
+			engi_count++
+		else if(role in GLOB.jobs_squad_specialist)
+			smart_text += marine_infos
+			smart_count++
+		else if(role in GLOB.jobs_squad_leader)
+			leader_text += marine_infos
+			leader_count++
+		else
+			misc_text += marine_infos
+
 	if(current_squad.overwatch_officer)
 		dat += "<b>Squad Overwatch:</b> [current_squad.overwatch_officer.name]<br>"
 	else
 		dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
 	dat += "----------------------<br>"
 	dat += "<b>[leader_count ? "Squad Leader Deployed":"<font color='red'>No Squad Leader Deployed!</font>"]</b><br>"
-	dat += "<b>Squad Smartgunners: [smart_count] Deployed</b><br>"
+	dat += "<b>[faction == FACTION_SOM ? "Squad Veterans" : "Squad Smartgunners"]: [smart_count] Deployed</b><br>" //this is kinda snowflake but sue me
 	dat += "<b>Squad Corpsmen: [medic_count] Deployed | Squad Engineers: [engi_count] Deployed</b><br>"
 	dat += "<b>Squad Marines: [marine_count] Deployed</b><br>"
 	dat += "<b>Total: [current_squad.get_total_members()] Deployed</b><br>"
@@ -386,6 +386,7 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += get_squad_info_ending()
 	return dat
 
+///Provides config options for squad info
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_info_ending()
 	var/dat = ""
 	dat += "----------------------<br>"
@@ -395,3 +396,22 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	dat += "<A href='?src=[text_ref(src)];operation=choose_z'>{Change Locations Ignored}</a><br>"
 	dat += "<br><A href='?src=[text_ref(src)];operation=back'>{Back}</a>"
 	return dat
+
+//This is an effect to be sure it is properly deleted and it does not interfer with existing lights too much.
+/obj/effect/overwatch_light
+	name = "overwatch beam of light"
+	desc = "You are not supposed to see this. Please report it."
+	icon_state = "" //No sprite
+	invisibility = INVISIBILITY_MAXIMUM
+	resistance_flags = RESIST_ALL
+	light_system = STATIC_LIGHT
+	light_color = COLOR_TESLA_BLUE
+	light_range = 15	//This is a HUGE light.
+	light_power = SQRTWO
+
+/obj/effect/overwatch_light/Initialize(mapload)
+	. = ..()
+	set_light(light_range, light_power)
+	playsound(src,'sound/mecha/heavylightswitch.ogg', 25, 1, 20)
+	visible_message(span_warning("You see a twinkle in the sky before your surroundings are hit with a beam of light!"))
+	QDEL_IN(src, SPOTLIGHT_DURATION)
