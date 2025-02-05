@@ -23,7 +23,7 @@ ALTER TABLE `admin_ranks`
 	MODIFY COLUMN `can_edit_flags` mediumint(5) unsigned NOT NULL;
 
 ALTER TABLE `death`
-	MODIFY COLUMN 'staminaloss' smallint(5) signed NOT NULL;
+	MODIFY COLUMN `staminaloss` smallint(5) signed NOT NULL;
 ```
 ----------------------------------------------------
 Version 2.2, 04 April 2024, by TiviPlus
