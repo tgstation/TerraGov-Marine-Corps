@@ -58,7 +58,7 @@
 
 /obj/machinery/deployable/tesla_turret/Initialize(mapload, obj/item/tesla_turret/internal_item, mob/deployer)
 	. = ..()
-	if(internal_item.battery)
+	if(internal_item?.battery)
 		battery = internal_item.battery
 		internal_item.battery = null
 
