@@ -238,7 +238,7 @@
 			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
 
 		var/avoid_highlight = recv_staff == src
-		to_chat(recv_staff, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>XOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
+		to_chat(recv_staff, "<font color='#6D2A6D'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "XOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 
 /client/verb/mooc_wrapper()
@@ -351,14 +351,12 @@
 			display_name = "[holder.fakekey]/([mob.key]/[display_name])"
 
 		var/avoid_highlight = recv_staff == src
-		to_chat(recv_staff, "<font color='#B75800'>[span_ooc("<span class='prefix'>MOOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
-
+		to_chat(recv_staff, "<font color='#B75800'>[span_ooc("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "MOOC")]: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
 
 /client/verb/looc_wrapper()
 	set hidden = TRUE
 	var/message = input("", "LOOC \"text\"") as null|text
 	looc(message)
-
 
 /client/verb/looc(msg as text)
 	set name = "LOOC"
@@ -447,7 +445,7 @@
 			continue
 
 		if(recv_staff.prefs.toggles_chat & CHAT_LOOC)
-			to_chat(recv_staff, span_looc_heard_staff("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing LOOC from anywhere enabled.", "LOOC")]: [ADMIN_TPMONTY(mob)]: [span_message("[msg]")]"))
+			to_chat(recv_staff, span_looc_heard_staff("<span class='prefix'>[span_tooltip("You are seeing this because you are staff and have hearing OOC channels from anywhere enabled.", "LOOC")]: [ADMIN_TPMONTY(mob)]: [span_message("[msg]")]"))
 
 /client/verb/motd()
 	set name = "MOTD"
