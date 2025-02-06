@@ -20202,6 +20202,7 @@
 /area/sulaco/telecomms)
 "oIc" = (
 /obj/machinery/atmospherics/components/unary/vent_scrubber/on,
+/obj/machinery/computer/camera_advanced/overwatch/medical,
 /turf/open/floor/prison/whitegreen/corner{
 	dir = 8
 	},

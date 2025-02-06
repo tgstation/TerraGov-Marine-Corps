@@ -3,6 +3,7 @@
 	display_name = "Hivelord"
 	upgrade_name = ""
 	caste_desc = "A builder of REALLY BIG hives."
+	base_strain_type = /mob/living/carbon/xenomorph/hivelord
 	caste_type_path = /mob/living/carbon/xenomorph/hivelord
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE

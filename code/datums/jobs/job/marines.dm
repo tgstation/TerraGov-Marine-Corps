@@ -76,18 +76,13 @@ Make your way to the cafeteria for some post-cryosleep chow, and then get equipp
 			new_human.wear_id.paygrade = "E3E"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E8" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/squad/standard/radio_help_message(mob/M)
 	. = ..()
 	to_chat(M, {"\nYou are a rank-and-file marine of the TGMC, and that is your strength.
 What you lack alone, you gain standing shoulder to shoulder with the men and women of the TerraGov Marine Corps. Ooh-rah!"})
 
-
-/datum/outfit/job/marine/standard
-	name = SQUAD_MARINE
-	jobtype = /datum/job/terragov/squad/standard
-
-	id = /obj/item/card/id/dogtag
 
 //Squad Engineer
 /datum/job/terragov/squad/engineer
@@ -125,13 +120,6 @@ What you lack alone, you gain standing shoulder to shoulder with the men and wom
 	to_chat(M, {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
 Your squaddies will look to you when it comes to construction in the field of battle."})
 
-
-/datum/outfit/job/marine/engineer
-	name = SQUAD_ENGINEER
-	jobtype = /datum/job/terragov/squad/engineer
-
-	id = /obj/item/card/id/dogtag/engineer
-
 /datum/job/terragov/squad/engineer/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
 	if(!ishuman(new_mob))
@@ -151,6 +139,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 //Squad Corpsman
 /datum/job/terragov/squad/corpsman
@@ -188,11 +177,6 @@ Your squaddies will look to you when it comes to construction in the field of ba
 	to_chat(M, {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
 You may not be a fully-fledged doctor, but you stand between life and death when it matters."})
 
-/datum/outfit/job/marine/corpsman
-	name = SQUAD_CORPSMAN
-	jobtype = /datum/job/terragov/squad/corpsman
-
-	id = /obj/item/card/id/dogtag/corpsman
 
 /datum/job/terragov/squad/corpsman/after_spawn(mob/living/carbon/new_mob, mob/user, latejoin = FALSE)
 	. = ..()
@@ -213,6 +197,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 //Squad Smartgunner
 /datum/job/terragov/squad/smartgunner
@@ -266,12 +251,8 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
-/datum/outfit/job/marine/smartgunner
-	name = SQUAD_SMARTGUNNER
-	jobtype = /datum/job/terragov/squad/smartgunner
-
-	id = /obj/item/card/id/dogtag/smartgun
 
 //Squad Specialist
 /datum/job/terragov/squad/specialist
@@ -300,12 +281,6 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 You can serve a variety of roles, so choose carefully."})
 
 
-/datum/outfit/job/marine/specialist
-	name = SQUAD_SPECIALIST
-	jobtype = /datum/job/terragov/squad/specialist
-
-	id = /obj/item/card/id/dogtag
-	head = /obj/item/clothing/head/helmet/specrag
 
 //Squad Leader
 /datum/job/terragov/squad/leader
@@ -334,7 +309,7 @@ You can serve a variety of roles, so choose carefully."})
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		Squad Leaders are basically the boss of any able-bodied squad. Though while they are not trained compared to engineers, corpsmen and smartgunners, they are (usually) capable of leading the squad. They have access to command assets such as a ship railgun, orbital bombardment as examples.
 		<br /><br />
@@ -346,12 +321,6 @@ You can serve a variety of roles, so choose carefully."})
 	. = ..()
 	to_chat(M, {"\nYou are responsible for the men and women of your squad. Make sure they are on task, working together, and communicating.
 You are also in charge of communicating with command and letting them know about the situation first hand. Keep out of harm's way."})
-
-/datum/outfit/job/marine/leader
-	name = SQUAD_LEADER
-	jobtype = /datum/job/terragov/squad/leader
-
-	id = /obj/item/card/id/dogtag/leader
 
 /datum/job/terragov/squad/leader/after_spawn(mob/living/carbon/C, mob/user, latejoin = FALSE)
 	. = ..()
@@ -370,6 +339,7 @@ You are also in charge of communicating with command and letting them know about
 			new_human.wear_id.paygrade = "E9"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9E" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 	if(SSticker.mode.round_type_flags & MODE_FORCE_CUSTOMSQUAD_UI)
 		addtimer(CALLBACK(GLOB.squad_manager, TYPE_PROC_REF(/datum, interact), new_human), 2 SECONDS)
 	if(!latejoin)
@@ -399,7 +369,3 @@ You are also in charge of communicating with command and letting them know about
 /datum/job/terragov/squad/vatgrown/return_spawn_type(datum/preferences/prefs)
 	return /mob/living/carbon/human/species/vatgrown
 
-/datum/outfit/job/marine/vatgrown
-	name = SQUAD_VATGROWN
-	jobtype = /datum/job/terragov/squad/vatgrown
-	id = /obj/item/card/id/dogtag

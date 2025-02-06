@@ -103,7 +103,6 @@
 #define TIMESHIFT_TRAIT "timeshift"
 #define BRAIN_TRAIT "brain"
 #define WIDOW_ABILITY_TRAIT "widow_ability_trait"
-#define PSYCHIC_BLAST_ABILITY_TRAIT "psychic_blast_ability_trait"
 #define PSYCHIC_CRUSH_ABILITY_TRAIT "psychic_crush_ability_trait"
 #define VORTEX_ABILITY_TRAIT "vortex_ability_trait"
 #define PETRIFY_ABILITY_TRAIT "petrify_ability_trait"
@@ -204,6 +203,7 @@
 #define TRAIT_UNDEFIBBABLE "undefibbable"//human can't be revived
 #define TRAIT_HOLLOW "hollowedout" //examine trait for puppeteer
 #define TRAIT_IMMEDIATE_DEFIB "immediate_defib"//immediately revives when defibbed, rather than just healing
+#define TRAIT_CRIT_IS_DEATH "crit_is_death" ///instantly causes enough oxy damage to kill the user when they hit critical health
 #define TRAIT_HEALING_INFUSION "healing_infusion"//greatly improves natural healing for xenos
 #define TRAIT_PSY_DRAINED "psy_drained"//mob was drained of life force by a xenos
 #define TRAIT_HIVE_TARGET "hive_target"//mob is targeted for draining by the hive

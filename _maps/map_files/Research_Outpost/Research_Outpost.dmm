@@ -386,10 +386,6 @@
 "cc" = (
 /turf/open/floor/plating/ground/mars/random/dirt,
 /area/outpost/yard/west)
-"ce" = (
-/obj/docking_port/stationary/crashmode,
-/turf/open/floor/plating/ground/mars/random/cave,
-/area/outpost/caves/south)
 "cf" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
@@ -4160,6 +4156,12 @@
 /obj/structure/window/framed/colony,
 /turf/open/floor/tile/dark,
 /area/outpost/medbay/chemistry)
+"ts" = (
+/obj/docking_port/stationary/crashmode,
+/turf/open/floor/plating/asteroidwarning{
+	dir = 1
+	},
+/area/outpost/yard/south_east)
 "tt" = (
 /obj/structure/cable,
 /obj/effect/ai_node,
@@ -24973,13 +24975,13 @@ yW
 yW
 yW
 yW
-oK
+ts
 VN
 BJ
 BJ
 Js
 yW
-ce
+hK
 hK
 hK
 hK

@@ -14,7 +14,7 @@
 	worn_icon_state = "pickaxe"
 	w_class = WEIGHT_CLASS_BULKY
 	var/digspeed = 40 //moving the delay to an item var so R&D can make improved picks. --NEO
-	attack_verb = list("hit", "pierced", "sliced", "attacked")
+	attack_verb = list("hits", "pierces", "slices", "attacks")
 	var/drill_sound = 'sound/weapons/genhit.ogg'
 	var/drill_verb = "picking"
 	sharp = IS_SHARP_ITEM_SIMPLE
@@ -91,7 +91,7 @@
 	damtype = BURN
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	drill_verb = "cutting"
-	attack_verb = list("dissolves", "disintegrates", "liquefies", "subliminates", "vaporizes")
+	attack_verb = list("dissolves", "disintegrates", "liquefies", "subliminates", "vaporizes") //See PC did the verbs correctly the first time around.
 	heat = 3800
 	light_system = MOVABLE_LIGHT
 	light_range = 2

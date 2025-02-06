@@ -57,9 +57,12 @@
 		var/datum/mech_limb/limb = new new_limb_type
 		limb.attach(src, key)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
+/obj/vehicle/sealed/mecha/combat/greyscale/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	. = ..()
 	var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
 	explosion.pixel_x = 16
+
+/obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
 		limb?.detach(src)
@@ -67,7 +70,7 @@
 
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
-	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
 		balloon_alert(entering_mob, "You don't know how to pilot this")
 		return FALSE
 	return ..()

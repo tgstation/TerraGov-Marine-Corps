@@ -91,6 +91,8 @@ GLOBAL_LIST_INIT(all_xeno_types, list(
 	/mob/living/carbon/xenomorph/wraith/primordial,
 	/mob/living/carbon/xenomorph/ravager,
 	/mob/living/carbon/xenomorph/ravager/primordial,
+	/mob/living/carbon/xenomorph/ravager/bloodthirster,
+	/mob/living/carbon/xenomorph/ravager/bloodthirster/primordial,
 	/mob/living/carbon/xenomorph/praetorian,
 	/mob/living/carbon/xenomorph/praetorian/primordial,
 	/mob/living/carbon/xenomorph/praetorian/dancer,
@@ -146,13 +148,15 @@ GLOBAL_LIST_INIT(hive_ui_static_data, init_hive_status_lists()) // init by make_
 	. = list()
 	// Initializes static ui data used by all hive status UI
 	var/list/per_tier_counter = list()
-	for(var/caste_type_path AS in GLOB.xeno_caste_datums)
-		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[caste_type_path][XENO_UPGRADE_BASETYPE]
+	for(var/caste_type AS in GLOB.xeno_caste_datums)
+		var/datum/xeno_caste/caste = GLOB.xeno_caste_datums[caste_type][XENO_UPGRADE_BASETYPE]
 		if(caste.caste_flags & CASTE_HIDE_IN_STATUS)
 			continue
-		var/type_path = initial(caste.caste_type_path)
+		var/base_strain_typepath = initial(caste.base_strain_type)
+		if(GLOB.hive_ui_caste_index[base_strain_typepath])
+			continue
 
-		GLOB.hive_ui_caste_index[type_path] = length(.) //Starts from 0.
+		GLOB.hive_ui_caste_index[base_strain_typepath] = length(.) //Starts from 0.
 
 		var/icon/xeno_minimap = icon('icons/UI_icons/map_blips.dmi', initial(caste.minimap_icon))
 		var/tier = initial(caste.tier)
@@ -163,7 +167,7 @@ GLOBAL_LIST_INIT(hive_ui_static_data, init_hive_status_lists()) // init by make_
 
 		. += list(list(
 			"name" = initial(caste.caste_name),
-			"is_queen" = type_path == /mob/living/carbon/xenomorph/queen,
+			"is_queen" = base_strain_typepath == /mob/living/carbon/xenomorph/queen,
 			"minimap" = icon2base64(xeno_minimap),
 			"sort_mod" = per_tier_counter[tier]++,
 			"tier" = GLOB.tier_as_number[tier],
