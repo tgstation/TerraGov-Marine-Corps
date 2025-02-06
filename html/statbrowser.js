@@ -67,7 +67,6 @@ function createStatusTab(name) {
 	button.textContent = name;
 	button.className = "button";
 	//ORDERING ALPHABETICALLY
-	button.style.order = name.charCodeAt(0);
 	button.style.order = ({"Status": 1, "MC": 2, "Tickets": 3})[name] || name.charCodeAt(0);
 	//END ORDERING
 	menu.appendChild(button);
