@@ -1057,7 +1057,7 @@ h2.alert {
 .separator::after {
   content: '';
   flex: 1;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid hsl(215.5, 39.3%, 11%);
 }
 
 .separator:not(:empty)::before {
@@ -1143,56 +1143,56 @@ $border-width-px: $border-width * 1px;
 }
 
 $alert-stripe-colors: (
-  'default': #c6ccec,
-  'green': #ceebc2,
-  'blue': #c6ccec,
-  'pink': #ecc6d9,
-  'yellow': #fff3b3,
-  'orange': #ffe2b3,
-  'red': #ffbbb3,
-  'purple': #e6d1f0,
-  'grey': #e3e3e3,
+  'default': hsl(231, 50%, 85%),
+  'green': hsl(102, 51%, 84%),
+  'blue': hsl(231, 50%, 85%),
+  'pink': hsl(330, 50%, 85%),
+  'yellow': hsl(51, 100%, 85%),
+  'orange': hsl(37, 100%, 85%),
+  'red': hsl(6, 100%, 85%),
+  'purple': hsl(281, 51%, 88%),
+  'grey': hsl(0, 0%, 89%),
 );
 
 $alert-stripe-alternate-colors: (
-  'default': #ced3ef,
-  'green': #d8efce,
-  'blue': #ced3ef,
-  'pink': #f0d1e1,
-  'yellow': #fff5c2,
-  'orange': #ffe8c2,
-  'red': #ffc8c2,
-  'purple': #ead9f2,
-  'grey': #ebebeb,
+  'default': hsl(231, 51%, 87%),
+  'green': hsl(102, 51%, 87%),
+  'blue': hsl(231, 51%, 87%),
+  'pink': hsl(329, 51%, 88%),
+  'yellow': hsl(50, 100%, 88%),
+  'orange': hsl(37, 100%, 88%),
+  'red': hsl(6, 100%, 88%),
+  'purple': hsl(281, 49%, 90%),
+  'grey': hsl(0, 0%, 92%),
 );
 
 $alert-major-header-colors: (
-  'default': #003061,
-  'green': #1f440e,
-  'blue': #003061,
-  'pink': #602040,
-  'yellow': #990f00,
-  'orange': #b14810,
-  'red': #a80e00,
-  'purple': #5b2673,
-  'grey': #a80e00,
+  'default': hsl(210, 100%, 19%),
+  'green': hsl(101, 66%, 16%),
+  'blue': hsl(210, 100%, 19%),
+  'pink': hsl(330, 50%, 25%),
+  'yellow': hsl(6, 100%, 30%),
+  'orange': hsl(21, 83%, 38%),
+  'red': hsl(5, 100%, 33%),
+  'purple': hsl(281, 50%, 30%),
+  'grey': hsl(5, 100%, 33%),
 );
 
 $alert-subheader-header-colors: (
-  'default': #991200,
-  'green': #002c85,
-  'blue': #991200,
-  'pink': #002c85,
-  'yellow': #214164,
-  'orange': #002c85,
-  'red': #483c3c,
-  'purple': #991200,
-  'grey': #002c85,
+  'default': hsl(7, 100%, 30%),
+  'green': hsl(220, 100%, 26%),
+  'blue': hsl(7, 100%, 30%),
+  'pink': hsl(220, 100%, 26%),
+  'yellow': hsl(211, 50%, 26%),
+  'orange': hsl(220, 100%, 26%),
+  'red': hsl(0, 9%, 26%),
+  'purple': hsl(7, 100%, 30%),
+  'grey': hsl(220, 100%, 26%),
 );
 
 .faction_alert_text {
-  color: #202020;
-  background: #eaeaea;
+  color: hsl(0, 0%, 13%);
+  background: hsl(0, 0%, 92%);
   padding: 0.5rem 0.5rem;
 }
 .faction_alert_subtitle {
@@ -1216,7 +1216,7 @@ $alert-subheader-header-colors: (
 
 @each $color-name, $color-value in $alert-stripe-colors {
   .faction_alert_#{$color-name} {
-    color: #ffffff;
+    color: hsl(0, 0%, 100%);
     box-shadow: none;
     font-weight: bold;
     margin: 1rem 0 1rem 0;
