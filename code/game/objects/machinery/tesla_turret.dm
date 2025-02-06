@@ -3,6 +3,7 @@
 	desc = "A turret that drains plasma of nearby xenomorphs."
 	icon = 'icons/obj/machines/deployable/sentry/tesla.dmi'
 	icon_state = "grounding_rod_open0"
+	max_integrity = 250
 	var/obj/item/cell/battery
 
 /obj/item/tesla_turret/Initialize(mapload)
@@ -33,7 +34,19 @@
 		return
 	if(!user.put_in_active_hand(battery))
 		battery.forceMove(drop_location())
+	balloon_alert(user, "removed battery")
 	battery = null
+
+/obj/machinery/tesla_turret/attackby(obj/item/cell/inserting_item, mob/user, params)
+	. = ..()
+	if(!istype(inserting_item))
+		return
+	if(!user.temporarilyRemoveItemFromInventory(inserting_item))
+		return
+
+	battery = inserting_item
+	battery.moveToNullspace()
+	return TRUE
 
 /obj/machinery/deployable/tesla_turret
 	icon = 'icons/obj/machines/deployable/sentry/tesla.dmi'
@@ -41,19 +54,18 @@
 	base_icon_state = "grounding_rod"
 	density = TRUE
 	anchored = TRUE
-	max_integrity = 250
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASSABLE
 	/// Range, duh.
-	var/max_range = 4
+	var/max_range = 5
 	/// Battery to run on
 	var/obj/item/cell/battery
 	/// Is this running
 	VAR_PRIVATE/active = FALSE
 	/// Cost for having active but doing nothing
-	var/passive_cost = 100
+	var/passive_cost = 50
 	/// Cost PER XENO to drain on shock
-	var/active_cost = 200
+	var/active_cost = 100
 
 /obj/machinery/deployable/tesla_turret/Initialize(mapload, obj/item/tesla_turret/internal_item, mob/deployer)
 	. = ..()
@@ -94,6 +106,7 @@
 	if(!user.put_in_active_hand(battery))
 		battery.forceMove(drop_location())
 	battery = null
+	balloon_alert(user, "removed battery")
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/deployable/tesla_turret/interact(mob/user)
@@ -106,21 +119,23 @@
 		return
 	toggle(!active)
 
-/obj/machinery/deployable/tesla_turret/proc/toggle(state)
+/obj/machinery/deployable/tesla_turret/proc/toggle(state, silent = FALSE)
 	if(state)
 		active = TRUE
 		START_PROCESSING(SSobj, src)
-		balloon_alert_to_viewers("turned on")
+		if(!silent)
+			balloon_alert_to_viewers("turned on")
 	else
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)
-		balloon_alert_to_viewers("turned off")
+		if(!silent)
+			balloon_alert_to_viewers("turned off")
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/deployable/tesla_turret/process()
 	if(!battery || !active || !battery.use(0))
 		balloon_alert_to_viewers("shuts off!")
-		toggle(FALSE)
+		toggle(FALSE, TRUE)
 		return
 	if(battery.use(passive_cost))
 		var/xeno_amount = length(zap_beam(src, max_range, 4))
@@ -129,7 +144,8 @@
 		battery.use(active_cost * xeno_amount)
 		playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
 	else
-		toggle(FALSE)
+		balloon_alert_to_viewers("shuts off!")
+		toggle(FALSE, TRUE)
 
 /obj/machinery/deployable/tesla_turret/MouseDrop(mob/living/carbon/human/marine)
 	if(marine != usr || !in_range(src, marine))
