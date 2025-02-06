@@ -37,7 +37,7 @@
 	balloon_alert(user, "removed battery")
 	battery = null
 
-/obj/machinery/tesla_turret/attackby(obj/item/cell/inserting_item, mob/user, params)
+/obj/item/tesla_turret/attackby(obj/item/cell/inserting_item, mob/user, params)
 	. = ..()
 	if(!istype(inserting_item))
 		return
