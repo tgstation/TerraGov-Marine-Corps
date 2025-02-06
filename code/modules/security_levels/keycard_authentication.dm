@@ -165,7 +165,7 @@
 
 /obj/machinery/keycard_auth/proc/trigger_event()
 	var/potential_alert_level = SSsecurity_level.text_level_to_number(event)
-	if(potential_alert_level) // Maybe there's a better way to do this.
+	if(potential_alert_level)
 		SSsecurity_level.set_level(potential_alert_level)
 		return
 	switch(event)
