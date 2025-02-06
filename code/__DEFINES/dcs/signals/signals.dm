@@ -22,6 +22,7 @@
 
 #define COMSIG_GLOB_TADPOLE_LAUNCHED "!tadpole_launched"
 #define COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ "!tadpole_landed_out_lz"
+#define COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED "!tadpole_rappel_deployed"
 #define COMSIG_GLOB_DROPPOD_LANDED "!pod_landed"
 #define COMSIG_GLOB_EVACUATION_STARTED "!evacuation_started"
 

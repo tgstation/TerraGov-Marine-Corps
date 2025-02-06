@@ -230,6 +230,7 @@
 	rope.update_icon_state()
 	flick("rope_deploy", rope)
 	SSminimaps.add_marker(rope, MINIMAP_FLAG_MARINE, image('icons/UI_icons/map_blips.dmi', null, "rappel"))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED)
 
 	playsound(target, 'sound/effects/tadpolehovering.ogg', 100, TRUE, falloff = 2.5)
 	playsound(target, 'sound/effects/rappel.ogg', 50, TRUE)
