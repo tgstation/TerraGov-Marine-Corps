@@ -79,8 +79,8 @@
  */
 /datum/security_level/red
 	name = "red"
-	lowering_body = "There is an immediate threat to the ship. Please prepare to evacuate or defend immediately. All shipside personnel are strongly advised to carry a sidearm and wear a helmet."
-	elevating_body = "There is an immediate threat to the ship. Please prepare to evacuate or defend immediately. All shipside personnel are strongly advised to carry a weapon and wear a helmet."
+	lowering_body = "There is an immediate threat to the ship. Please prepare to evacuate or hold immediately. All shipside personnel are strongly advised to carry a firearm and wear a helmet."
+	elevating_body = "There is an immediate threat to the ship. Please prepare to evacuate or hold immediately. All shipside personnel are strongly advised to carry a firearm and wear a helmet."
 	announcement_color = "red"
 	status_display_icon = "redalert"
 	fire_alarm_light_color = LIGHT_COLOR_EMISSIVE_RED
