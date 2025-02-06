@@ -534,7 +534,7 @@ GLOBAL_LIST_INIT(campaign_mission_pool, list(
 			for(var/mob/living/carbon/human/faction_member in GLOB.alive_human_list_faction[faction])
 				faction_member.playsound_local(null, 'sound/effects/CIC_order.ogg', 30, 1)
 				var/portrait = choice.asset_portrait ? choice.asset_portrait : faction_portrait
-				faction_member.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>OVERWATCH</u></span><br>" + "[choice.name] asset activated", portrait)
+				faction_member.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("OVERWATCH", "[choice.name] asset activated", LEFT_ALIGN_TEXT), portrait)
 				to_chat(faction_member, span_warning("[user] has activated the [choice.name] campaign asset."))
 			return TRUE
 
