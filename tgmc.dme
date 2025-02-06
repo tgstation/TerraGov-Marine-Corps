@@ -2256,6 +2256,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\modules\vehicles\armored\som_armored_weapons.dm"
 #include "code\modules\vehicles\armored\som_tank.dm"
 #include "code\modules\vehicles\armored\tank_fabricator.dm"
+#include "code\modules\vehicles\armored\truck.dm"
 #include "code\modules\vehicles\armored\vehicle_collision.dm"
 #include "code\modules\vehicles\armored\interiors\ammo_rack.dm"
 #include "code\modules\vehicles\armored\interiors\breech.dm"
