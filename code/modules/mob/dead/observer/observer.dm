@@ -37,6 +37,7 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 	var/inquisitive_ghost = FALSE
 	/// Stores variable set in toggle_health_scan.
 	var/health_scan = FALSE
+	/// Creates health_analyzer to scan with on toggle_health_scan toggle.
 	var/obj/item/healthanalyzer/integrated/health_analyzer
 	///A weakref to the original corpse of the observer
 	var/datum/weakref/can_reenter_corpse
