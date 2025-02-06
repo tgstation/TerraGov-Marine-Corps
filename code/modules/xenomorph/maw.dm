@@ -305,7 +305,7 @@
 	. = ..()
 	try_fire(xeno_attacker, src)
 
-/// Tries to fire the acid maw after going through all the checks and player inputs.
+/// Tries to fire the acid maw after going through various checks and player inputs.
 /obj/structure/xeno/acid_maw/proc/try_fire(mob/living/carbon/xenomorph/xeno_shooter, atom/radical_target, slient, leaders_only = TRUE, requires_adjacency = TRUE)
 	if(xeno_shooter.hivenumber != hivenumber)
 		if(!slient)
@@ -349,18 +349,18 @@
 
 	var/datum/maw_ammo/ammo = new selected_type
 	var/turf/clicked_turf = locate(polled_coords[1], polled_coords[2], z)
-	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_attacker), ammo.impact_time-2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(maw_impact_start), ammo, clicked_turf, xeno_shooter), ammo.impact_time-2 SECONDS)
 	//this is stinky but we need to call parent for acid jaw regardless so have to do the tracking, for both, here
 	switch(type)
 		if(/obj/structure/xeno/acid_maw)
 			GLOB.round_statistics.acid_maw_fires++
-			if(xeno_attacker.client)
-				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
+			if(xeno_shooter.client)
+				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_shooter.ckey]
 				personal_statistics.acid_maw_uses++
 		if(/obj/structure/xeno/acid_maw/acid_jaws)
 			GLOB.round_statistics.acid_jaw_fires++
-			if(xeno_attacker.client)
-				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
+			if(xeno_shooter.client)
+				var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_shooter.ckey]
 				personal_statistics.acid_jaw_uses++
 	ammo.launch_animation(clicked_turf, src)
 	S_TIMER_COOLDOWN_START(src, COOLDOWN_MAW_GLOB, ammo.cooldown_time)
