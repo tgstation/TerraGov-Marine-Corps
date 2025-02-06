@@ -166,6 +166,13 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	desc = "Big Brother Requisition demands to see money flowing into the void that is greed."
 	circuit = /obj/item/circuitboard/computer/supplyoverwatch
 
+/obj/machinery/computer/camera_advanced/overwatch/medical
+	screen_overlay = "overwatch_med_screen"
+	name = "Medical Overwatch Console"
+	desc = "Overwatching patients are one of the responsibilities of shipside medical personnel. Just make sure you don't get bored."
+	req_access = list(ACCESS_MARINE_MEDBAY)
+	circuit = /obj/item/circuitboard/computer/supplyoverwatch
+
 /obj/machinery/computer/camera_advanced/overwatch/som
 	faction = FACTION_SOM
 	icon_state = "som_console"
@@ -579,6 +586,39 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	popup.open()
 
 
+/obj/machinery/computer/camera_advanced/overwatch/medical/interact(mob/living/user)
+	. = ..()
+	if(.)
+		return
+
+	var/dat
+	if(!operator)
+		dat += "<B>Main Operator:</b> <A href='?src=[text_ref(src)];operation=change_main_operator'>----------</A><BR>"
+	else
+		dat += "<B>Main Operator:</b> <A href='?src=[text_ref(src)];operation=change_main_operator'>[operator.name]</A><BR>"
+		dat += "   <A href='?src=[text_ref(src)];operation=logout_main'>{Stop Overwatch}</A><BR>"
+		dat += "----------------------<br>"
+		switch(state)
+			if(OW_MAIN)
+				for(var/datum/squad/S AS in watchable_squads)
+					dat += "<b>[S.name] Squad</b> <a href='?src=[text_ref(src)];operation=message;current_squad=[text_ref(S)]'>\[Message Squad\]</a><br>"
+					if(S.squad_leader)
+						dat += "<b>Leader:</b> <a href='?src=[text_ref(src)];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
+						dat += "<a href='?src=[text_ref(src)];operation=sl_message;current_squad=[text_ref(S)]'>\[MSG\]</a><br>"
+					else
+						dat += "<b>Leader:</b> <font color=red>NONE</font><br>"
+					if(S.overwatch_officer)
+						dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
+					else
+						dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
+					dat += "<A href='?src=[text_ref(src)];operation=monitor;squad_id=[S.id]'>[S.name] Squad Monitor</a><br>"
+			if(OW_MONITOR)//Info screen.
+				dat += get_squad_info()
+
+	var/datum/browser/popup = new(user, "overwatch", "<div align='center'>Medical Overwatch Console</div>", 550, 550)
+	popup.set_content(dat)
+	popup.open()
+
 /obj/machinery/computer/camera_advanced/overwatch/req/interact(mob/living/user)
 	. = ..()
 	if(.)
@@ -791,13 +831,24 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 	visible_message(span_boldnotice("[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file."))
 	to_chat(transfer_marine, "[icon2html(src, transfer_marine)] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been transfered to [new_squad]!</font>")
 
+///Messages a specific individual
 /obj/machinery/computer/camera_advanced/overwatch/proc/message_member(mob/living/target, message, mob/living/carbon/human/sender)
 	if(!target.client)
 		return
+	. = TRUE
+
 	target.playsound_local(target, "sound/machines/dotprinter.ogg", 35)
 	to_chat(target, span_notice("<b><i>New message from [sender.real_name]:</b> [message]</i>"))
-	target.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>CIC MESSAGE FROM [sender.real_name]:</u></span><br>" + message, /atom/movable/screen/text/screen_text/command_order, "#32cd32")
-	return TRUE
+	target.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>CIC MESSAGE FROM [sender.real_name]:</u></span><br>" + message, new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, sender), "#32cd32")
+
+	var/list/tts_listeners = filter_tts_listeners(sender, target, null, RADIO_TTS_COMMAND)
+	if(!length(tts_listeners))
+		return
+	var/list/treated_message = sender?.treat_message(message)
+	var/list/extra_filters = list(TTS_FILTER_RADIO)
+	if(isrobot(sender))
+		extra_filters += TTS_FILTER_SILICON
+	INVOKE_ASYNC(SStts, TYPE_PROC_REF(/datum/controller/subsystem/tts, queue_tts_message), sender, treated_message["tts_message"], sender.get_default_language(), sender.voice, sender.voice_filter, tts_listeners, FALSE, pitch = sender.pitch, special_filters = extra_filters.Join("|"), directionality = FALSE)
 
 ///Signal handler for radial menu
 /obj/machinery/computer/camera_advanced/overwatch/proc/attempt_radial(datum/source, atom/A, params)

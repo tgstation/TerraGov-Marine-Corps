@@ -104,7 +104,6 @@
 
 /datum/action/ability/xeno_action/ready_charge/behemoth_roll/charge_off(verbose = TRUE)
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = FALSE
 	REMOVE_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons()
@@ -112,7 +111,6 @@
 
 /datum/action/ability/xeno_action/ready_charge/behemoth_roll/charge_on(verbose = TRUE)
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = TRUE
 	ADD_TRAIT(xeno_owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
 	xeno_owner.update_icons()
@@ -302,7 +300,6 @@
 	if(LinkBlocked(owner_turf, get_step(owner, direction)) || owner_turf == get_turf(target))
 		owner.balloon_alert(owner, "No space")
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
 	if(behemoth_roll_action?.charge_ability_on)
 		behemoth_roll_action.charge_off()
@@ -372,7 +369,6 @@
 		return
 	if(owner.pulling)
 		owner.stop_pulling()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.plasma_stored < ability_cost)
 		end_charge(LANDSLIDE_ENDED_NO_PLASMA)
 		return
@@ -435,7 +431,6 @@
 		owner.stop_pulling()
 	var/owner_turf = get_turf(owner)
 	var/direct_turf = get_step(owner, direction)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(steps_to_take <= 0 || xeno_owner.wrath_stored < ability_cost)
 		if(LinkBlocked(owner_turf, direct_turf))
 			playsound(direct_turf, 'sound/effects/alien/behemoth/stomp.ogg', 40, TRUE)
@@ -481,7 +476,6 @@
 /datum/action/ability/activable/xeno/landslide/proc/end_charge(reason)
 	ability_active = FALSE
 	REMOVE_TRAIT(owner, TRAIT_SILENT_FOOTSTEPS, XENO_TRAIT)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.behemoth_charging = FALSE
 	if(!xeno_owner.lying_angle)
 		xeno_owner.set_canmove(TRUE)
@@ -629,7 +623,6 @@
 
 /datum/action/ability/activable/xeno/earth_riser/alternate_action_activate()
 	if(!length(active_pillars))
-		var/mob/living/carbon/xenomorph/xeno_owner = owner
 		xeno_owner.balloon_alert(xeno_owner, "No active pillars")
 		return
 	add_cooldown(1.5 SECONDS)
@@ -644,7 +637,6 @@
 		return
 	var/turf/owner_turf = get_turf(owner)
 	var/turf/target_turf = get_turf(target)
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/xeno_action/primal_wrath/primal_wrath_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/primal_wrath]
 	if(!line_of_sight(owner, target, primal_wrath_action?.ability_active? EARTH_RISER_ENHANCED_RANGE : EARTH_RISER_RANGE))
 		owner.balloon_alert(owner, "Out of range")
@@ -670,7 +662,6 @@
 /datum/action/ability/activable/xeno/earth_riser/proc/do_ability(turf/target_turf, enhanced)
 	if(!target_turf)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/new_pillar = new /obj/structure/earth_pillar(target_turf, xeno_owner, enhanced)
 	RegisterSignal(new_pillar, COMSIG_XENOABILITY_EARTH_PILLAR_THROW, PROC_REF(pillar_thrown))
 	RegisterSignal(new_pillar, COMSIG_QDELETING, PROC_REF(pillar_destroyed))
@@ -794,7 +785,6 @@
 
 /datum/action/ability/xeno_action/seismic_fracture/action_activate()
 	. = ..()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/xeno_action/ready_charge/behemoth_roll/behemoth_roll_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/ready_charge/behemoth_roll]
 	if(behemoth_roll_action?.charge_ability_on)
 		behemoth_roll_action.charge_off()
@@ -817,7 +807,7 @@
 /datum/action/ability/xeno_action/seismic_fracture/proc/do_ability(turf/target_turf, wind_up, enhanced)
 	if(!target_turf)
 		return
-	var/list/turf/turfs_to_attack = filled_turfs(target_turf, SEISMIC_FRACTURE_ATTACK_RADIUS, include_edge = FALSE, bypass_window = TRUE, projectile = TRUE)
+	var/list/turf/turfs_to_attack = filled_turfs(target_turf, SEISMIC_FRACTURE_ATTACK_RADIUS, include_edge = FALSE, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
 	if(!length(turfs_to_attack))
 		owner.balloon_alert(owner, "Unable to use here")
 		return
@@ -832,14 +822,14 @@
 		return
 	new /obj/effect/temp_visual/shockwave/enhanced(get_turf(owner), SEISMIC_FRACTURE_ATTACK_RADIUS, owner.dir)
 	playsound(owner, 'sound/effects/alien/behemoth/landslide_roar.ogg', 40, TRUE)
-	var/list/turf/extra_turfs_to_warn = filled_turfs(target_turf, SEISMIC_FRACTURE_ATTACK_RADIUS_ENHANCED, bypass_window = TRUE, projectile = TRUE)
+	var/list/turf/extra_turfs_to_warn = filled_turfs(target_turf, SEISMIC_FRACTURE_ATTACK_RADIUS_ENHANCED, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
 	for(var/turf/extra_turf_to_warn AS in extra_turfs_to_warn)
 		if(isclosedturf(extra_turf_to_warn))
 			extra_turfs_to_warn -= extra_turf_to_warn
 	if(length(extra_turfs_to_warn) && length(turfs_to_attack))
 		extra_turfs_to_warn -= turfs_to_attack
 	do_warning(owner, extra_turfs_to_warn, wind_up + SEISMIC_FRACTURE_ENHANCED_DELAY)
-	var/list/turf/extra_turfs = filled_turfs(target_turf, SEISMIC_FRACTURE_ATTACK_RADIUS + 1, bypass_window = TRUE, projectile = TRUE)
+	var/list/turf/extra_turfs = filled_turfs(target_turf, SEISMIC_FRACTURE_ATTACK_RADIUS + 1, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
 	if(length(extra_turfs) && length(turfs_to_attack))
 		extra_turfs -= turfs_to_attack
 	addtimer(CALLBACK(src, PROC_REF(do_attack_extra), target_turf, extra_turfs, turfs_to_attack, enhanced, SEISMIC_FRACTURE_ATTACK_RADIUS_ENHANCED, SEISMIC_FRACTURE_ATTACK_RADIUS_ENHANCED - SEISMIC_FRACTURE_ATTACK_RADIUS), wind_up + SEISMIC_FRACTURE_ENHANCED_DELAY)
@@ -863,7 +853,7 @@
 		for(var/turf/turf_to_check AS in turfs_to_check)
 			if((turf_to_check in extra_turfs) || (turf_to_check in excepted_turfs) || (turf_to_check in turfs_to_attack))
 				continue
-			if(!line_of_sight(origin_turf, turf_to_check) || LinkBlocked(origin_turf, turf_to_check, TRUE, TRUE))
+			if(!line_of_sight(origin_turf, turf_to_check) || LinkBlocked(origin_turf, turf_to_check, PASS_GLASS|PASS_PROJECTILE))
 				continue
 			extra_turfs += turf_to_check
 	behemoth_area_attack(owner, turfs_to_attack, enhanced)
@@ -954,7 +944,6 @@
 /datum/action/ability/xeno_action/primal_wrath/process()
 	if(!owner)
 		return PROCESS_KILL
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.hivenumber == XENO_HIVE_FALLEN)
 		if(xeno_owner.wrath_stored < xeno_owner.xeno_caste.wrath_max)
 			xeno_owner.wrath_stored = xeno_owner.xeno_caste.wrath_max
@@ -974,7 +963,6 @@
 	decay_amount = round(decay_amount * PRIMAL_WRATH_DECAY_MULTIPLIER)
 
 /datum/action/ability/xeno_action/primal_wrath/action_activate()
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(xeno_owner.hivenumber != XENO_HIVE_FALLEN)
 		if(ability_active || currently_roaring)
 			return
@@ -1024,7 +1012,6 @@
 /datum/action/ability/xeno_action/primal_wrath/proc/end_ability()
 	currently_roaring = FALSE
 	owner.status_flags &= ~GODMODE
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.fortify = FALSE
 	xeno_owner.set_canmove(TRUE)
 
@@ -1054,7 +1041,6 @@
 	SIGNAL_HANDLER
 	if(!ability_active || source_action == src)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	xeno_owner.wrath_stored = clamp(xeno_owner.wrath_stored - (action_cost / 2), 0, xeno_owner.xeno_caste.wrath_max)
 	return SUCCEED_ACTIVATE_CANCEL
 
@@ -1069,7 +1055,6 @@
 	SIGNAL_HANDLER
 	if(amount <= 0 || owner.stat || owner.lying_angle)
 		return
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	if(ability_active)
 		if(amount >= xeno_owner.health)
 			var/damage_amount = (amount - xeno_owner.health)
@@ -1090,7 +1075,6 @@
 */
 /datum/action/ability/xeno_action/primal_wrath/proc/toggle_buff(toggle)
 	ability_active = !ability_active
-	var/mob/living/carbon/xenomorph/xeno_owner = owner
 	var/datum/action/ability/activable/xeno/landslide/landslide_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/landslide]
 	var/datum/action/ability/activable/xeno/earth_riser/earth_riser_action = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/earth_riser]
 	if(!toggle)
@@ -1398,7 +1382,7 @@
 /datum/ammo/xeno/earth_pillar/proc/on_hit_anything(turf/hit_turf, obj/projectile/proj)
 	playsound(hit_turf, 'sound/effects/alien/behemoth/earth_pillar_destroyed.ogg', 40, TRUE)
 	new /obj/effect/temp_visual/behemoth/earth_pillar/destroyed(hit_turf)
-	var/list/turf/affected_turfs = filled_turfs(hit_turf, EARTH_PILLAR_SPREAD_RADIUS, include_edge = FALSE, bypass_window = TRUE, projectile = TRUE)
+	var/list/turf/affected_turfs = filled_turfs(hit_turf, EARTH_PILLAR_SPREAD_RADIUS, include_edge = FALSE, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
 	behemoth_area_attack(proj.firer, affected_turfs, damage_multiplier = EARTH_PILLAR_SPREAD_DAMAGE_MULTIPLIER)
 
 /datum/ammo/xeno/earth_pillar/landslide/do_at_max_range(turf/target_turf, obj/projectile/proj)
@@ -1455,7 +1439,7 @@
 					if(affected_pillar.warning_flashes < initial(affected_pillar.warning_flashes))
 						continue
 					affected_pillar.call_area_attack()
-					var/list/turf/spread_turfs = filled_turfs(affected_pillar.loc, EARTH_PILLAR_SPREAD_RADIUS, include_edge = FALSE, bypass_window = TRUE, projectile = TRUE)
+					var/list/turf/spread_turfs = filled_turfs(affected_pillar.loc, EARTH_PILLAR_SPREAD_RADIUS, include_edge = FALSE, pass_flags_checked = PASS_GLASS|PASS_PROJECTILE)
 					var/wind_up_duration = initial(affected_pillar.warning_flashes) * 10
 					do_warning(xeno_owner, spread_turfs, wind_up_duration)
 					addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(behemoth_area_attack), xeno_owner, spread_turfs, enhanced), wind_up_duration)

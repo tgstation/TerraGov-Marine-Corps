@@ -12,7 +12,7 @@
 	throw_speed = 5
 	throw_range = 10
 	w_class = WEIGHT_CLASS_NORMAL
-	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
+	attack_verb = list("mops", "bashes", "bludgeons", "whacks")
 	var/mopping = 0
 	var/mopcount = 0
 
@@ -25,7 +25,7 @@
 	if(source.reagents.has_reagent(/datum/reagent/water, 1))
 		wash()
 		for(var/obj/effect/O in src)
-			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+			if(istype(O, /obj/effect/decal/cleanable/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				qdel(O)
 	source.reagents.reaction(src, TOUCH, 10)	//10 is the multiplier for the reaction effect. probably needed to wet the floor properly.
 	source.reagents.remove_any(1)				//reaction() doesn't use up the reagents
@@ -33,7 +33,7 @@
 
 /obj/item/tool/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
-	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
+	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/decal/cleanable/rune))
 		if(reagents.total_volume < 1)
 			balloon_alert(user, "Mop is dry")
 			return
@@ -60,7 +60,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("warned", "cautioned", "smashed")
+	attack_verb = list("warns", "cautions", "smashes")
 
 /obj/item/clothing/head/warning_cone
 	name = "warning cone"
@@ -73,7 +73,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("warned", "cautioned", "smashed")
+	attack_verb = list("warns", "cautions", "smashes")
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 20, ACID = 20)
 
 

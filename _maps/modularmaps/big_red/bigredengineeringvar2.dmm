@@ -431,6 +431,10 @@
 /obj/effect/spawner/random/engineering/tool,
 /turf/open/floor,
 /area/bigredv2/outside/engineering)
+"wY" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
+/area/bigredv2/outside/engineering/east)
 "xf" = (
 /turf/open/floor/plating/ground/mars/cavetodirt{
 	dir = 8
@@ -1557,7 +1561,7 @@ Sv
 pX
 Wi
 Ao
-ib
+wY
 At
 ib
 ib

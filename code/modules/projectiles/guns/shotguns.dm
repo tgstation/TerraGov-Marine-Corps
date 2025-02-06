@@ -83,7 +83,6 @@
 	icon_state = "t39"
 	worn_icon_state = "t39"
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_sh39.ogg'
-	gun_features_flags = GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_SMOKE_PARTICLES
 	default_ammo_type = /datum/ammo/bullet/shotgun/buckshot
 	attachable_allowed = list(
 		/obj/item/attachable/bayonet,
@@ -103,7 +102,7 @@
 		/obj/item/attachable/stock/t39stock,
 	)
 
-	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 20,"rail_x" = 18, "rail_y" = 20, "under_x" = 23, "under_y" = 12, "stock_x" = 13, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 41, "muzzle_y" = 20,"rail_x" = 15, "rail_y" = 20, "under_x" = 23, "under_y" = 12, "stock_x" = 11, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/attachable/stock/t39stock)
 
 	fire_delay = 1.4 SECONDS
@@ -809,6 +808,10 @@
 /obj/item/weapon/gun/shotgun/pump/t35/beginner
 	default_ammo_type = /datum/ammo/bullet/shotgun/slug
 	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/gyro, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
+
+/obj/item/weapon/gun/shotgun/pump/t35/beginner/flechette
+	default_ammo_type = /datum/ammo/bullet/shotgun/flechette
+	starting_attachment_types = list(/obj/item/attachable/foldable/t35stock, /obj/item/attachable/verticalgrip, /obj/item/attachable/magnetic_harness, /obj/item/attachable/bayonet)
 
 //-------------------------------------------------------
 //THE MYTH, THE GUN, THE LEGEND, THE DEATH, THE ZX

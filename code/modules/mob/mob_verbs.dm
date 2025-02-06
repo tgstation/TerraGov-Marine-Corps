@@ -1,3 +1,39 @@
+/**
+ * This is a mob verb for speed reasons (nice one BYOND).
+ * See [this BYOND forum post](https://secure.byond.com/forum/?post=1326139&page=2#comment8198716)
+ * for why this isnt something like `/atom/verb/examine`.
+ *
+ * SIGNAL FUN:
+ * Produces a signal [COMSIG_MOB_EXAMINATE], for doing stuff to people who examine things,
+ * like applying debilitating effects to someone who examines a specific type of atom.
+ */
+/mob/verb/examinate(atom/examinify as mob|obj|turf in view())
+	set name = "Examine"
+	set category = "IC"
+
+	if(is_blind(src))
+		to_chat(src, span_warning("Something is there, but you can't see it!"))
+		return
+
+	face_atom(examinify)
+	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
+	var/atom_title = examinify.examine_title(src, thats = TRUE)
+
+	if(length(result))
+		for(var/i in 1 to (length(result) - 1))
+			if(result[i] != EXAMINE_SECTION_BREAK)
+				result[i] += "\n"
+			else
+				// remove repeated <hr's> and ones on the ends.
+				if((i == 1) || (i == length(result)) || (result[i - 1] == EXAMINE_SECTION_BREAK))
+					result.Cut(i, i + 1)
+					i--
+
+	var/result_combined = (atom_title ? fieldset_block("[examine_header(atom_title)]", jointext(result, ""), "examine_block") : examine_block(jointext(result, "")))
+
+	to_chat(src, span_infoplain(result_combined))
+	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
+
 /mob/verb/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
@@ -99,7 +135,7 @@
 	var/mob/living/liver
 	if(isliving(usr))
 		liver = usr
-		if(liver.health >= liver.health_threshold_crit)
+		if(liver.health >= liver.get_crit_threshold())
 			to_chat(src, "You can only use this when you're dead or crit.")
 			return
 

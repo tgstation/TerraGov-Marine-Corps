@@ -16,14 +16,10 @@
 
 	var/resistance_flags = PROJECTILE_IMMUNE
 
-	///If non-null, overrides a/an/some in all cases
-	var/article
-
 	///a very temporary list of overlays to remove
 	var/list/remove_overlays
 	///a very temporary list of overlays to add
 	var/list/add_overlays
-
 
 	///Related to do_after/do_mob overlays, I can't get my hopes high.
 	var/list/display_icons
@@ -285,108 +281,6 @@ directive is properly returned.
 		if(length(A.contents))
 			found += A.search_contents_for(path,filter_path)
 	return found
-
-
-//mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
-/mob/verb/examinate(atom/examinify as mob|obj|turf in view())
-	set name = "Examine"
-	set category = "IC"
-
-	if(is_blind(src))
-		to_chat(src, span_notice("Something is there but you can't see it."))
-		return
-
-	face_atom(examinify)
-	var/list/result = examinify.examine(src) // if a tree is examined but no client is there to see it, did the tree ever really exist?
-
-	if(length(result))
-		for(var/i in 1 to (length(result) - 1))
-			if(result[i] != EXAMINE_SECTION_BREAK)
-				result[i] += "\n"
-			else
-				// remove repeated <hr's> and ones on the ends.
-				if((i == 1) || (i == length(result)) || (result[i - 1] == EXAMINE_SECTION_BREAK))
-					result.Cut(i, i + 1)
-					i--
-
-	to_chat(src, examine_block(span_infoplain(result.Join())))
-	SEND_SIGNAL(src, COMSIG_MOB_EXAMINATE, examinify)
-
-/**
- * Get the name of this object for examine
- *
- * You can override what is returned from this proc by registering to listen for the
- * [COMSIG_ATOM_GET_EXAMINE_NAME] signal
- */
-/atom/proc/get_examine_name(mob/user)
-	. = "\a [src]"
-	var/list/override = list(gender == PLURAL ? "some" : "a", " ", "[name]")
-	if(article)
-		. = "[article] [src]"
-		override[EXAMINE_POSITION_ARTICLE] = article
-	if(SEND_SIGNAL(src, COMSIG_ATOM_GET_EXAMINE_NAME, user, override) & COMPONENT_EXNAME_CHANGED)
-		. = override.Join("")
-
-///Generate the full examine string of this atom (including icon for goonchat)
-/atom/proc/get_examine_string(mob/user, thats = FALSE)
-	return "[icon2html(src, user)] [thats? "That's ":""][get_examine_name(user)]"
-
-/atom/proc/examine(mob/user)
-	SHOULD_CALL_PARENT(TRUE)
-	var/examine_string = get_examine_string(user, thats = TRUE)
-	if(examine_string)
-		. = list("[examine_string].", EXAMINE_SECTION_BREAK)
-	else
-		. = list()
-
-	if(desc)
-		. += desc
-	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
-		. += EXAMINE_SECTION_BREAK
-		. += span_notice("The codex has <a href='?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
-
-	if((get_dist(user,src) <= 2) && reagents)
-		. += EXAMINE_SECTION_BREAK
-		if(reagents.reagent_flags & TRANSPARENT)
-			. += "It contains:"
-			if(length(reagents.reagent_list)) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
-				var/total_volume = 0
-				for(var/datum/reagent/R in reagents.reagent_list)
-					total_volume += R.volume
-				. +=  span_notice("[total_volume] units of various reagents.")
-			else
-				. += "Nothing."
-		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_VISIBLE))
-			if(reagents.total_volume)
-				. += span_notice("It has [reagents.total_volume] unit\s left.")
-			else
-				. += span_warning("It's empty.")
-		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
-			if(isxeno(user))
-				return
-			if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
-				. += "It contains these reagents:"
-				if(length(reagents.reagent_list))
-					for(var/datum/reagent/R in reagents.reagent_list)
-						. += "[R.volume] units of [R.name]"
-				else
-					. += "Nothing."
-			else
-				. += "You don't know what's in it."
-		else if(reagents.reagent_flags & AMOUNT_ESTIMEE)
-			var/obj/item/reagent_containers/C = src
-			if(!reagents.total_volume)
-				. += span_notice("\The [src] is empty!")
-			else if (reagents.total_volume<= C.volume*0.3)
-				. += span_notice("\The [src] is almost empty!")
-			else if (reagents.total_volume<= C.volume*0.6)
-				. += span_notice("\The [src] is half full!")
-			else if (reagents.total_volume<= C.volume*0.9)
-				. += span_notice("\The [src] is almost full!")
-			else
-				. += span_notice("\The [src] is full!")
-
-	SEND_SIGNAL(src, COMSIG_ATOM_EXAMINE, user, .)
 
 /// Checks if the colors given are different and if so causes a greyscale icon update
 /// The colors argument can be either a list or the full color string
@@ -677,13 +571,13 @@ directive is properly returned.
 	if(href_list[VV_HK_ATOM_JUMP_TO])
 		if(!check_rights(NONE))
 			return
-		var/x = text2num(href_list["X"])
-		var/y = text2num(href_list["Y"])
-		var/z = text2num(href_list["Z"])
-		var/client/C = usr.client
-
-		if(x == 0 && y == 0 && z == 0)
+		var/target = GET_VV_TARGET
+		if(!target)
 			return
+		var/turf/target_turf = get_turf(target)
+		if(!target_turf)
+			return
+		var/client/C = usr.client
 
 		var/message
 		if(!isobserver(usr))
@@ -691,12 +585,11 @@ directive is properly returned.
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		var/turf/T = locate(x, y, z)
-		O.forceMove(T)
+		O.forceMove(target_turf)
 
 		if(message)
-			log_admin("[key_name(O)] jumped to coordinates [AREACOORD(T)].")
-			message_admins("[ADMIN_TPMONTY(O)] jumped to coordinates [ADMIN_VERBOSEJMP(T)].")
+			log_admin("[key_name(O)] jumped to coordinates [AREACOORD(target_turf)].")
+			message_admins("[ADMIN_TPMONTY(O)] jumped to coordinates [ADMIN_VERBOSEJMP(target_turf)].")
 
 	if(href_list[VV_HK_MODIFY_TRANSFORM])
 		if(!check_rights(R_DEBUG))
@@ -857,9 +750,6 @@ directive is properly returned.
 /atom/proc/welder_act(mob/living/user, obj/item/I)
 	return FALSE
 
-/atom/proc/weld_cut_act(mob/living/user, obj/item/I)
-	return FALSE
-
 /atom/proc/analyzer_act(mob/living/user, obj/item/I)
 	return FALSE
 
@@ -868,6 +758,9 @@ directive is properly returned.
 		return FALSE //Storage screens, worn containers, anything we want to be able to interact otherwise.
 	to_chat(user, span_warning("Cannot extract [src]."))
 	return TRUE
+
+/atom/proc/plasmacutter_act(mob/living/user, obj/item/I)
+	return FALSE
 
 ///This proc is called on atoms when they are loaded into a shuttle
 /atom/proc/connect_to_shuttle(obj/docking_port/mobile/port, obj/docking_port/stationary/dock, idnum, override=FALSE)
@@ -1040,7 +933,7 @@ directive is properly returned.
 
 ///Adds the debris element for projectile impacts
 /atom/proc/add_debris_element()
-	AddElement(/datum/element/debris, null, -15, 8, 0.7)
+	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
 /**
 	Returns a number after taking into account both soft and hard armor for the specified damage type, usually damage

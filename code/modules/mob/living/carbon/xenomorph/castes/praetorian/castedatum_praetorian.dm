@@ -3,6 +3,7 @@
 	display_name = "Praetorian"
 	upgrade_name = ""
 	caste_desc = "A giant ranged monster. It looks pretty strong."
+	base_strain_type = /mob/living/carbon/xenomorph/praetorian
 	caste_type_path = /mob/living/carbon/xenomorph/praetorian
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -81,7 +82,7 @@
 		/datum/action/ability/activable/xeno/corrosive_acid,
 		/datum/action/ability/activable/xeno/xeno_spit,
 		/datum/action/ability/activable/xeno/spray_acid/cone,
-		/datum/action/ability/activable/xeno/charge/acid_dash,
+		/datum/action/ability/xeno_action/sticky_grenade,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,

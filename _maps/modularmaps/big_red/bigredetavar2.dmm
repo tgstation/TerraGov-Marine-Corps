@@ -872,8 +872,7 @@
 /turf/open/floor/freezer,
 /area/bigredv2/outside/general_offices)
 "Su" = (
-/obj/structure/rack,
-/obj/item/mass_spectrometer/adv,
+/obj/machinery/computer/intel_computer,
 /turf/open/floor/engine/atmosdark,
 /area/bigredv2/outside/general_offices)
 "Sw" = (
@@ -931,6 +930,7 @@
 /obj/item/stack/sheet/mineral/uranium{
 	amount = 50
 	},
+/obj/item/mass_spectrometer/adv,
 /turf/open/floor/engine/atmosdark,
 /area/bigredv2/outside/general_offices)
 "UY" = (

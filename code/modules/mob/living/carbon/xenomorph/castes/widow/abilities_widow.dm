@@ -25,14 +25,13 @@
 	)
 
 /datum/action/ability/activable/xeno/web_spit/use_ability(atom/target)
-	var/mob/living/carbon/xenomorph/X = owner
 	var/datum/ammo/xeno/web/web_spit = GLOB.ammo_list[/datum/ammo/xeno/web]
-	var/obj/projectile/newspit = new /obj/projectile(get_turf(X))
+	var/obj/projectile/newspit = new /obj/projectile(get_turf(xeno_owner))
 
-	newspit.generate_bullet(web_spit, web_spit.damage * SPIT_UPGRADE_BONUS(X))
-	newspit.def_zone = X.get_limbzone_target()
+	newspit.generate_bullet(web_spit, web_spit.damage * SPIT_UPGRADE_BONUS(xeno_owner))
+	newspit.def_zone = xeno_owner.get_limbzone_target()
 
-	newspit.fire_at(target, X, X, newspit.ammo.max_range)
+	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
 	succeed_activate()
 	add_cooldown()
 
@@ -53,16 +52,15 @@
 
 /datum/action/ability/activable/xeno/leash_ball/use_ability(atom/A)
 	var/turf/target = get_turf(A)
-	var/mob/living/carbon/xenomorph/X = owner
-	X.face_atom(target)
-	if(!do_after(X, 1 SECONDS, NONE, X, BUSY_ICON_DANGER))
+	xeno_owner.face_atom(target)
+	if(!do_after(xeno_owner, 1 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
 		return fail_activate()
 	var/datum/ammo/xeno/leash_ball = GLOB.ammo_list[/datum/ammo/xeno/leash_ball]
-	leash_ball.hivenumber = X.hivenumber
-	var/obj/projectile/newspit = new (get_turf(X))
+	leash_ball.hivenumber = xeno_owner.hivenumber
+	var/obj/projectile/newspit = new (get_turf(xeno_owner))
 
 	newspit.generate_bullet(leash_ball)
-	newspit.fire_at(target, X, X, newspit.ammo.max_range)
+	newspit.fire_at(target, xeno_owner, xeno_owner, newspit.ammo.max_range)
 	succeed_activate()
 	add_cooldown()
 
@@ -97,7 +95,7 @@
 			continue
 		if(HAS_TRAIT(victim, TRAIT_LEASHED))
 			continue
-		if(!check_path(src, victim, projectile = TRUE))
+		if(check_path(src, victim, pass_flags_checked = PASS_PROJECTILE) != get_turf(victim))
 			continue
 		leash_victims += victim
 	for(var/mob/living/carbon/human/snared_victim AS in leash_victims)
@@ -161,18 +159,16 @@
 
 /datum/action/ability/xeno_action/create_spiderling/give_action(mob/living/L)
 	. = ..()
-	var/mob/living/carbon/xenomorph/X = L
-	var/max_spiderlings = X?.xeno_caste.max_spiderlings ? X.xeno_caste.max_spiderlings : 5
+	var/max_spiderlings = xeno_owner?.xeno_caste.max_spiderlings ? xeno_owner.xeno_caste.max_spiderlings : 5
 	desc = "Give birth to a spiderling after a short charge-up. The spiderlings will follow you until death. You can only deploy [max_spiderlings] spiderlings at one time. On alt-use, if any charges of Cannibalise are stored, create a spiderling at no plasma cost or cooldown."
 
 /datum/action/ability/xeno_action/create_spiderling/can_use_action(silent = FALSE, override_flags)
 	. = ..()
 	if(!.)
 		return FALSE
-	var/mob/living/carbon/xenomorph/X = owner
-	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
+	if(length(spiderlings) >= xeno_owner.xeno_caste.max_spiderlings)
 		if(!silent)
-			X.balloon_alert(X, "Max Spiderlings")
+			xeno_owner.balloon_alert(xeno_owner, "Max Spiderlings")
 		return FALSE
 
 /// The action to create spiderlings
@@ -185,12 +181,11 @@
 	add_cooldown()
 
 /datum/action/ability/xeno_action/create_spiderling/alternate_action_activate()
-	var/mob/living/carbon/xenomorph/X = owner
 	if(cannibalise_charges <= 0)
-		X.balloon_alert(X, "No charges remaining!")
+		xeno_owner.balloon_alert(xeno_owner, "No charges remaining!")
 		return
-	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
-		X.balloon_alert(X, "Max Spiderlings")
+	if(length(spiderlings) >= xeno_owner.xeno_caste.max_spiderlings)
+		xeno_owner.balloon_alert(xeno_owner, "Max Spiderlings")
 		return
 	INVOKE_ASYNC(src, PROC_REF(use_cannibalise))
 	return COMSIG_KB_ACTIVATED
@@ -199,12 +194,11 @@
 /datum/action/ability/xeno_action/create_spiderling/proc/use_cannibalise()
 	if(!do_after(owner, 0.5 SECONDS, NONE, owner, BUSY_ICON_DANGER))
 		return FALSE
-	var/mob/living/carbon/xenomorph/X = owner
 	if(cannibalise_charges <= 0)
-		X.balloon_alert(X, "No charges remaining!")
+		xeno_owner.balloon_alert(xeno_owner, "No charges remaining!")
 		return
-	if(length(spiderlings) >= X.xeno_caste.max_spiderlings)
-		X.balloon_alert(X, "Max Spiderlings")
+	if(length(spiderlings) >= xeno_owner.xeno_caste.max_spiderlings)
+		xeno_owner.balloon_alert(xeno_owner, "Max Spiderlings")
 		return
 	add_spiderling()
 	cannibalise_charges -= 1
@@ -297,22 +291,21 @@
 /// Burrow code for xenomorphs
 /datum/action/ability/xeno_action/burrow/proc/xeno_burrow()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/xenomorph/X = owner
-	if(!HAS_TRAIT(X, TRAIT_BURROWED))
-		to_chat(X, span_xenowarning("We start burrowing into the ground..."))
+	if(!HAS_TRAIT(xeno_owner, TRAIT_BURROWED))
+		to_chat(xeno_owner, span_xenowarning("We start burrowing into the ground..."))
 		INVOKE_ASYNC(src, PROC_REF(xeno_burrow_doafter))
 		return
-	UnregisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE)
-	ADD_TRAIT(X, TRAIT_NON_FLAMMABLE, initial(name))
-	X.soft_armor = X.soft_armor.modifyRating(fire = 100)
-	X.hard_armor = X.hard_armor.modifyRating(fire = 100)
-	X.mouse_opacity = initial(X.mouse_opacity)
-	X.density = TRUE
-	X.allow_pass_flags &= ~PASSABLE
-	REMOVE_TRAIT(X, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
-	REMOVE_TRAIT(X, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
-	REMOVE_TRAIT(X, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
-	X.update_icons()
+	UnregisterSignal(xeno_owner, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	ADD_TRAIT(xeno_owner, TRAIT_NON_FLAMMABLE, initial(name))
+	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(fire = 100)
+	xeno_owner.hard_armor = xeno_owner.hard_armor.modifyRating(fire = 100)
+	xeno_owner.mouse_opacity = initial(xeno_owner.mouse_opacity)
+	xeno_owner.density = TRUE
+	xeno_owner.allow_pass_flags &= ~PASSABLE
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(xeno_owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
+	REMOVE_TRAIT(xeno_owner, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
+	xeno_owner.update_icons()
 	add_cooldown()
 	owner.unbuckle_all_mobs(TRUE)
 
@@ -330,13 +323,12 @@
 	ADD_TRAIT(owner, TRAIT_BURROWED, WIDOW_ABILITY_TRAIT)
 	ADD_TRAIT(owner, TRAIT_HANDS_BLOCKED, WIDOW_ABILITY_TRAIT)
 	// We register for movement so that we unburrow if bombed
-	var/mob/living/carbon/xenomorph/X = owner
-	X.soft_armor = X.soft_armor.modifyRating(fire = -100)
-	X.hard_armor = X.hard_armor.modifyRating(fire = -100)
-	REMOVE_TRAIT(X, TRAIT_NON_FLAMMABLE, initial(name))
+	xeno_owner.soft_armor = xeno_owner.soft_armor.modifyRating(fire = -100)
+	xeno_owner.hard_armor = xeno_owner.hard_armor.modifyRating(fire = -100)
+	REMOVE_TRAIT(xeno_owner, TRAIT_NON_FLAMMABLE, initial(name))
 	// Update here without waiting for life
-	X.update_icons()
-	RegisterSignal(X, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(xeno_burrow))
+	xeno_owner.update_icons()
+	RegisterSignal(xeno_owner, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(xeno_burrow))
 
 // ***************************************
 // *********** Attach Spiderlings
@@ -362,10 +354,9 @@
 		/// yeet off all spiderlings if we are carrying any
 		owner.unbuckle_all_mobs(TRUE)
 		return
-	var/mob/living/carbon/xenomorph/widow/X = owner
-	var/datum/action/ability/xeno_action/create_spiderling/create_spiderling_action = X.actions_by_path[/datum/action/ability/xeno_action/create_spiderling]
+	var/datum/action/ability/xeno_action/create_spiderling/create_spiderling_action = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/create_spiderling]
 	if(!(length(create_spiderling_action.spiderlings)))
-		X.balloon_alert(X, "No spiderlings")
+		xeno_owner.balloon_alert(xeno_owner, "No spiderlings")
 		return fail_activate()
 	var/list/mob/living/carbon/xenomorph/spiderling/remaining_spiderlings = create_spiderling_action.spiderlings.Copy()
 	// First make the spiderlings stop what they are doing and return to the widow

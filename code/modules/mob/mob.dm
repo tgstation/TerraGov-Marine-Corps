@@ -206,11 +206,11 @@
 		equip_to_slot_if_possible(W, slot, FALSE) // equiphere
 
 
-///Attempts to put an item in either hand
+///Attempts to put an item in either hand, prioritizing the active hand
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = FALSE, warning = FALSE, redraw_mob = TRUE)
-	if(equip_to_slot_if_possible(W, SLOT_L_HAND, TRUE, del_on_fail, warning, redraw_mob))
+	if(equip_to_slot_if_possible(W, (hand ? SLOT_L_HAND : SLOT_R_HAND), TRUE, del_on_fail, warning, redraw_mob))
 		return TRUE
-	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, TRUE, del_on_fail, warning, redraw_mob))
+	else if(equip_to_slot_if_possible(W, (hand ? SLOT_R_HAND : SLOT_L_HAND), TRUE, del_on_fail, warning, redraw_mob))
 		return TRUE
 	return FALSE
 
@@ -233,17 +233,13 @@
 		if(!do_after(src, item_to_equip.equip_delay_self, NONE, item_to_equip, BUSY_ICON_FRIENDLY))
 			to_chat(src, "You stop putting on \the [item_to_equip]")
 			return FALSE
-		equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
-		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
-			item_to_equip.unwield(src)
-		return TRUE
-	else
-		equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
-		//This will unwield items -without- triggering lights.
-		if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
-			item_to_equip.unwield(src)
-		return TRUE
+		//calling the proc again with ignore_delay saves a boatload of copypaste
+		return equip_to_slot_if_possible(item_to_equip, slot, TRUE, del_on_fail, warning, redraw_mob, override_nodrop)
+	equip_to_slot(item_to_equip, slot) //This proc should not ever fail.
+	//This will unwield items -without- triggering lights.
+	if(CHECK_BITFIELD(item_to_equip.item_flags, TWOHANDED))
+		item_to_equip.unwield(src)
+	return TRUE
 
 /**
 *This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.

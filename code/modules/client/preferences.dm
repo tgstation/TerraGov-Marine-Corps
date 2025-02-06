@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///Volume to use for tts
 	var/volume_tts = 100
 	///Which types of comms the user wants to hear TTS from
-	var/radio_tts_flags = RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND
+	var/radio_tts_flags = RADIO_TTS_SL | RADIO_TTS_SQUAD | RADIO_TTS_COMMAND | RADIO_TTS_HIVEMIND
 
 	/// Preference for letting people make TGUI windows use more accessible (basically, default) themes, where needed/possible.
 	/// Example application: health analyzers using this to choose between default themes or the NtOS themes.
@@ -180,6 +180,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/fast_mc_refresh = FALSE
 	///When enabled, will split the 'Admin' panel into several tabs.
 	var/split_admin_tabs = TRUE
+	///When enabled, can hear LOOC from anywhere in any situation.
+	///Mentors may only hear LOOC from anywhere if they are a ghost.
+	var/hear_looc_anywhere_as_staff = TRUE
 
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"
@@ -191,6 +194,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 	///What outfit typepaths we've favorited in the SelectEquipment menu
 	var/list/favorite_outfits = list()
+
+	/// list("sequencename" = list(uid, uid, uid))
+	var/list/stim_sequences = list()
 
 	///List of slot_draw_order
 	var/list/slot_draw_order_pref = list()

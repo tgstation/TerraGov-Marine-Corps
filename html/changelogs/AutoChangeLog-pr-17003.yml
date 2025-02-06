@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - bugfix: "Some SOM and marine hvh outfits' holster contents are once again filled"

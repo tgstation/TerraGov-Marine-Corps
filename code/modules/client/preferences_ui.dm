@@ -142,6 +142,7 @@
 			data["fullscreen_mode"] = fullscreen_mode
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
+			data["hear_looc_anywhere_as_staff"] = hear_looc_anywhere_as_staff
 		if(KEYBIND_SETTINGS)
 			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["key_bindings"] = list()
@@ -653,13 +654,16 @@
 				if("command")
 					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_COMMAND)
 
+				if("hivemind")
+					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_HIVEMIND)
+
 				if("all")
 					TOGGLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
 					if(CHECK_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)) //Enable all other channels when 'ALL' is enabled
 						for(var/flag in GLOB.all_radio_tts_options)
 							ENABLE_BITFIELD(radio_tts_flags, flag)
 
-			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND))
+			if(!CHECK_MULTIPLE_BITFIELDS(radio_tts_flags, RADIO_TTS_SL|RADIO_TTS_SQUAD|RADIO_TTS_COMMAND|RADIO_TTS_HIVEMIND))
 				DISABLE_BITFIELD(radio_tts_flags, RADIO_TTS_ALL)
 
 		if("accessible_tgui_themes")
@@ -936,6 +940,9 @@
 
 		if("split_admin_tabs")
 			split_admin_tabs = !split_admin_tabs
+
+		if("hear_looc_anywhere_as_staff")
+			hear_looc_anywhere_as_staff = !hear_looc_anywhere_as_staff
 
 		else //  Handle the unhandled cases
 			return

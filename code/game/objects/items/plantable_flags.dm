@@ -23,7 +23,7 @@
 	w_class = WEIGHT_CLASS_HUGE
 	force = 55
 	attack_speed = 15
-	attack_verb = list("stabbed", "thrust", "smashed", "thumped", "bashed", "attacked", "clubbed", "speared", "jabbed", "torn", "gored")
+	attack_verb = list("stabs", "thrusts", "smashes", "thumps", "bashes", "attacks", "clubs", "spears", "jabs", "tears", "gores")
 	sharp = IS_SHARP_ITEM_BIG
 	throw_speed = 1
 	throw_range = 2
@@ -179,6 +179,7 @@
 	update_appearance(UPDATE_ICON_STATE)
 	if(deployer)
 		new_internal_item.lift_flag(deployer)
+		log_game("[key_name(deployer)] has deployed the flag at [AREACOORD(src)].")
 
 /obj/structure/plantable_flag/Destroy()
 	clear_internal_item()
@@ -223,3 +224,4 @@
 	if(!current_internal_item)
 		return
 	disassemble(user)
+	log_game("[key_name(user)] has undeployed the flag at [AREACOORD(src)].")

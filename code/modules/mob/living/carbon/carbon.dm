@@ -90,7 +90,7 @@
 		return
 
 	if(IsAdminSleeping())
-		to_chat(shaker, span_highdanger("This player has been admin slept, do not interfere with them."))
+		to_chat(shaker, span_userdanger("This player has been admin slept, do not interfere with them."))
 		return
 
 	if(lying_angle || IsSleeping())
@@ -183,7 +183,7 @@
 		inertia_dir = get_dir(target, src)
 		step(src, inertia_dir)
 
-	visible_message(span_warning("[src] has thrown [thrown_thing]."), null, null, 5)
+	visible_message(span_warning("[src] throws [thrown_thing]."), null, null, 5)
 
 	playsound(src, 'sound/effects/throw.ogg', 30, 1)
 

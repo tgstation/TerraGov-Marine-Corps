@@ -262,28 +262,28 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 			if("gethumans")
 				log_admin("[key_name(usr)] mass-teleported all humans.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all humans.")
-				to_chat(GLOB.alive_human_list, span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported all humans."))
+				to_chat(GLOB.alive_human_list, span_userdanger("[key_name_admin(usr, FALSE)] mass-teleported all humans."))
 				for(var/i in GLOB.alive_human_list)
 					var/mob/M = i
 					M.forceMove(T)
 			if("getxenos")
 				log_admin("[key_name(usr)] mass-teleported all Xenos.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported all Xenos.")
-				to_chat(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL], span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported all xenos."))
+				to_chat(GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL], span_userdanger("[key_name_admin(usr, FALSE)] mass-teleported all xenos."))
 				for(var/i in GLOB.alive_xeno_list_hive[XENO_HIVE_NORMAL])
 					var/mob/M = i
 					M.forceMove(T)
 			if("getall")
 				log_admin("[key_name(usr)] mass-teleported everyone.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-teleported everyone.")
-				to_chat(GLOB.mob_living_list, span_highdanger("[key_name_admin(usr, FALSE)] mass-teleported everyone."))
+				to_chat(GLOB.mob_living_list, span_userdanger("[key_name_admin(usr, FALSE)] mass-teleported everyone."))
 				for(var/i in GLOB.mob_living_list)
 					var/mob/M = i
 					M.forceMove(T)
 			if("rejuvall")
 				log_admin("[key_name(usr)] mass-rejuvenated cliented mobs.")
 				message_admins("[ADMIN_TPMONTY(usr)] mass-rejuvenated cliented mobs.")
-				to_chat(GLOB.mob_living_list, span_highdanger("[key_name_admin(usr, FALSE)] mass-rejuvenated everyone."))
+				to_chat(GLOB.mob_living_list, span_userdanger("[key_name_admin(usr, FALSE)] mass-rejuvenated everyone."))
 				for(var/i in GLOB.mob_living_list)
 					var/mob/living/L = i
 					if(!L.client)
@@ -468,6 +468,8 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/skeleton, location, null, delmob)
 			if("monkey")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/monkey, location, null, delmob, "Monkey") //todo doublecheck this
+			if("prototype_supersoldier")
+				newmob = M.change_mob_type(/mob/living/carbon/human/species/prototype_supersoldier, location, null, delmob) //todo doublecheck this
 			if("moth")
 				newmob = M.change_mob_type(/mob/living/carbon/human/species/moth, location, null, delmob, "Moth")
 			if("zombie")
@@ -1978,9 +1980,7 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				var/list/job_outfits = list()
 				for(var/path in job_paths)
 					var/datum/outfit/O = path
-					if(initial(O.can_be_admin_equipped))
-						var/outfit_name = initial(O.name)
-						job_outfits[outfit_name] = path
+					job_outfits[initial(O.name)] = path
 
 				var/list/picker = sortList(job_outfits)
 				picker.Insert(1, "{Naked}")

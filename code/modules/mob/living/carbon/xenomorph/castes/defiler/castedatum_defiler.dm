@@ -3,7 +3,7 @@
 	display_name = "Defiler"
 	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
-
+	base_strain_type = /mob/living/carbon/xenomorph/defiler
 	caste_type_path = /mob/living/carbon/xenomorph/defiler
 
 	tier = XENO_TIER_THREE
@@ -14,7 +14,7 @@
 	melee_damage = 26
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -1
 
 	// *** Plasma *** //
 	plasma_max = 575

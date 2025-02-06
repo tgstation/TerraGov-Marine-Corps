@@ -1,0 +1,51 @@
+2025-02-01:
+  jonash07:
+  - qol: KLTD smart goggles are located in the smartgunner equipment rack again
+  yyzsong:
+  - spellcheck: Updates item throwing chat messages to use the simple present tense
+      instead of the perfect present tense.
+2025-02-03:
+  Pariah919:
+  - balance: MMG and GPMG have vgrip now.
+  Runian:
+  - bugfix: Hive status GUI's width is now longer to fit all castes rather than cutting
+      them off.
+  Sun-Soaked:
+  - qol: mobs buckled to a jumping mob now jump alongside them
+2025-02-04:
+  PibeCantina:
+  - balance: Replaces plat miner on south ice colony with a phoron one
+  SomrNetwork:
+  - balance: Sizzler strain
+  TiviPlus:
+  - rscadd: 'New supersoldier stim: Heartstopper. Instantly kills you when you go
+      crit'
+  - bugfix: fixed robots being crittable when the flag is destroyed
+  - code_imp: added a on-crit proc
+  novaepee:
+  - rscadd: Give shipside medical an overwatch console
+2025-02-05:
+  Lumipharon:
+  - qol: Hive status screen groups strains by parent type
+  Neocloudy:
+  - admin: Mentor ghosts may now see LOOC from anywhere.
+  - admin: Staff may turn off LOOC spying in preferences.
+  - qol: LOOC now outputs in runechat.
+  - qol: Mentor OOC is slightly darker.
+  - qol: Msay is now tagged with "MENTOR:" to reduce confusion for admins.
+  - soundadd: Admin tickets turned into mentor tickets will not play the admin bwoink
+      sound, instead using the mentor bwoink sound.
+  - bugfix: Mentor PMs will not be super small anymore.
+  Rug-Dealer:
+  - bugfix: Modular chest plates now have the correct description for the armor they
+      provide.
+  - bugfix: Some arm and leg plates no longer have descriptions that state they provide
+      high protection and encumbrance.
+  Runian:
+  - balance: Warlock is no longer immobilized when casting with their psyblast ability.
+  Xander3359:
+  - bugfix: Fix "Toggle Seethrough" toggle being lost when gaining primo
+  jonash07:
+  - qol: vendors now vend the item into your selected hand
+  yyzsong:
+  - spellcheck: Updates armour module stylization

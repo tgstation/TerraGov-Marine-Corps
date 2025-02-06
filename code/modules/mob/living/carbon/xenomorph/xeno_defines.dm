@@ -4,7 +4,9 @@
 	var/upgrade_name = "Young"
 	var/caste_desc = null
 	var/job_type = /datum/job/xenomorph
-
+	///The parent strain of this caste
+	var/base_strain_type
+	///The base caste typepath
 	var/caste_type_path = null
 
 	///primordial message that is shown when a caste becomes primordial
@@ -406,6 +408,10 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 	/// The amount of Wrath currently stored.
 	var/wrath_stored = 0
 
+	// *** Boiler vars *** //
+	///When true the boiler gains speed and resets the duration on attack
+	var/steam_rush = FALSE
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
@@ -417,6 +423,15 @@ GLOBAL_LIST_INIT(strain_list, init_glob_strain_list())
 
 	/// The type of footstep this xeno has.
 	var/footstep_type = FOOTSTEP_XENO_MEDIUM
+
+	//list of active tunnels
+	var/list/tunnels = list()
+	///Number of huggers the xeno is currently carrying
+	var/huggers = 0
+	///Boiler acid ammo
+	var/corrosive_ammo = 0
+	///Boiler Neuro ammo
+	var/neuro_ammo = 0
 
 	COOLDOWN_DECLARE(xeno_health_alert_cooldown)
 

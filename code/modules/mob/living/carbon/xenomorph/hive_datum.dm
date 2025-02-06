@@ -42,6 +42,14 @@
 /datum/hive_status/New()
 	. = ..()
 	LAZYINITLIST(candidates)
+	/*
+	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
+		if(caste_type.upgrade != XENO_UPGRADE_BASETYPE)
+			continue
+		if(caste_type.type != caste_type.base_strain_type)
+			continue
+			xenos_by_typepath[caste_type] = list()
+	*/
 
 	for(var/datum/xeno_caste/caste_type AS in subtypesof(/datum/xeno_caste))
 		if(caste_type.upgrade == XENO_UPGRADE_BASETYPE)
@@ -128,6 +136,9 @@
 	// Spawners
 	for(var/obj/structure/xeno/spawner/spawner AS in GLOB.xeno_spawners_by_hive[hivenumber])
 		.["hive_structures"] += list(get_structure_packet(spawner))
+	// Acid Jaws
+	for(var/obj/structure/xeno/acid_maw/acid_jaws AS in GLOB.xeno_acid_jaws_by_hive[hivenumber])
+		.["hive_structures"] += list(get_structure_packet(acid_jaws))
 
 	.["xeno_info"] = list()
 	for(var/mob/living/carbon/xenomorph/xeno AS in get_all_xenos())
@@ -144,7 +155,7 @@
 			"plasma" = round((xeno.plasma_stored / (caste.plasma_max * plasma_multi)) * 100, 1),
 			"is_leader" = xeno.xeno_flags & XENO_LEADER,
 			"is_ssd" = !xeno.client,
-			"index" = GLOB.hive_ui_caste_index[caste.caste_type_path],
+			"index" = GLOB.hive_ui_caste_index[caste.base_strain_type],
 		))
 
 	var/mob/living/carbon/xenomorph/xeno_user
@@ -199,7 +210,7 @@
 	.["user_index"] = 0
 	if(isxeno(user))
 		var/mob/living/carbon/xenomorph/xeno_user = user
-		.["user_index"] = GLOB.hive_ui_caste_index[xeno_user.xeno_caste.caste_type_path]
+		.["user_index"] = GLOB.hive_ui_caste_index[xeno_user.xeno_caste.base_strain_type]
 
 	.["user_purchase_perms"] = FALSE
 	if(isxeno(user))
@@ -872,12 +883,6 @@ to_chat will check for valid clients itself already so no need to double check f
 
 		to_chat(X, "<span class='[span_class]'><font size=[size]> [message][report_distance ? " Distance: [get_dist(X, target)]" : ""]</font></span>")
 
-// This is to simplify the process of talking in hivemind, this will invoke the receive proc of all xenos in this hive
-/datum/hive_status/proc/hive_mind_message(mob/living/carbon/xenomorph/sender, message)
-	for(var/i in get_all_xenos())
-		var/mob/living/carbon/xenomorph/X = i
-		X.receive_hivemind_message(sender, message)
-
 ///Used for setting the trackers of all xenos in the hive, like when a nuke activates
 /datum/hive_status/proc/set_all_xeno_trackers(atom/target)
 	for(var/mob/living/carbon/xenomorph/X AS in get_all_xenos())
@@ -1197,7 +1202,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	var/threes = length(xenos_by_tier[XENO_TIER_THREE])
 	var/fours = length(xenos_by_tier[XENO_TIER_FOUR])
 
-	tier3_xeno_limit = max(threes, FLOOR((zeros + ones + twos + fours) / 3 + length(psychictowers) + 1, 1))
+	tier3_xeno_limit = max(threes, FLOOR(((zeros + ones + twos + fours) - SSticker.mode.tier_three_penalty) / 3 + length(psychictowers) + 1, 1))
 	tier2_xeno_limit = max(twos, (zeros + ones + fours) + length(psychictowers) * 2 + 1 - threes)
 
 // ***************************************

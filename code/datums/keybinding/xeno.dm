@@ -265,6 +265,27 @@
 	description = "Create a smokescreen for a getaway."
 	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD_SELECT
 
+/datum/keybinding/xeno/smokescreen_spit
+	name = "smokescreen_spit"
+	full_name = "Boiler - Sizzler: Smokescreen Spit"
+	description = "Empowers your next spit to create a smokescreen."
+	keybind_signal = COMSIG_XENOABILITY_SMOKESCREEN_SPIT
+	hotkey_keys = list("C")
+
+/datum/keybinding/xeno/steam_rush
+	name = "steam_rush"
+	full_name = "Boiler - Sizzler: Steam Rush"
+	description = "Speeds up and increases slash damage."
+	keybind_signal = COMSIG_XENOABILITY_STEAM_RUSH
+	hotkey_keys = list("Space")
+
+/datum/keybinding/xeno/high_pressure_spit
+	name = "high_pressure_spit"
+	full_name = "Boiler - Sizzler: High Pressure Spit"
+	description = "Fires a high pressure glob of acid that shatters and massively knocksback the target."
+	keybind_signal = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT
+	hotkey_keys = list("E")
+
 /datum/keybinding/xeno/plow_charge
 	name = "plow_charge"
 	full_name = "Bull: Plow Charge"
@@ -790,6 +811,12 @@
 	full_name = "Ravager: Toggle vampirism"
 	description = "While active, will increase the ravagers healing for a while for every time it hits a new enemy. Effects stack."
 	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
+
+/datum/keybinding/xeno/ravager_deathmark
+	name = "deathmark"
+	full_name = "Ravager: Deathmark"
+	description = "Mark yourself for death, filling your bloodthirst, but failing to deal enough damage to living creatures while it is active instantly kills you."
+	keybind_signal = COMSIG_XENOABILITY_DEATHMARK
 
 /datum/keybinding/xeno/ravage
 	name = "ravage"

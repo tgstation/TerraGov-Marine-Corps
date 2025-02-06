@@ -33,12 +33,12 @@
 			return target.wirecutter_act(user, src)
 		if(TOOL_WELDER)
 			return target.welder_act(user, src)
-		if(TOOL_WELD_CUTTER)
-			return target.weld_cut_act(user, src)
 		if(TOOL_ANALYZER)
 			return target.analyzer_act(user, src)
 		if(TOOL_FULTON)
 			return target.fulton_act(user, src)
+		if(TOOL_PLASMACUTTER)
+			return target.plasmacutter_act(user, src)
 
 
 ///Called when the item is in the active hand, and clicked; alternately, there is an 'activate held object' verb or you can hit pagedown.
@@ -126,7 +126,7 @@
 
 /mob/living/attacked_by(obj/item/attacking_item, mob/living/user, def_zone)
 
-	var/message_verb = "attacked"
+	var/message_verb = "attacks"
 	if(LAZYLEN(attacking_item.attack_verb))
 		message_verb = pick(attacking_item.attack_verb)
 	var/message_hit_area
@@ -354,7 +354,7 @@
  * def_zone: targetted area that will be attacked
  */
 /mob/living/proc/attacked_by_alternate(obj/item/I, mob/living/user, def_zone)
-	var/message_verb = "attacked"
+	var/message_verb = "attacks"
 	if(LAZYLEN(I.attack_verb))
 		message_verb = pick(I.attack_verb)
 	var/message_hit_area

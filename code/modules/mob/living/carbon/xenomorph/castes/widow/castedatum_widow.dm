@@ -3,6 +3,7 @@
 	display_name = "Widow"
 	upgrade_name = ""
 	caste_desc = "You don't think you've seen a tarantula this giant before."
+	base_strain_type = /mob/living/carbon/xenomorph/widow
 	caste_type_path = /mob/living/carbon/xenomorph/widow
 
 	tier = XENO_TIER_THREE
@@ -35,6 +36,9 @@
 	// *** Defense *** //
 	soft_armor = list(MELEE = 30, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 15, BIO = 10, FIRE = 15, ACID = 10)
 
+	// *** Pheromones *** //
+	aura_strength = 2 //Widows aura is the same as drones.
+
 	// *** Minimap Icon *** //
 	minimap_icon = "widow"
 
@@ -60,6 +64,10 @@
 		/datum/action/ability/xeno_action/attach_spiderlings,
 		/datum/action/ability/activable/xeno/cannibalise,
 		/datum/action/ability/activable/xeno/spiderling_mark,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)
 
 /datum/xeno_caste/widow/on_caste_applied(mob/xenomorph)
@@ -102,4 +110,8 @@
 		/datum/action/ability/activable/xeno/spiderling_mark,
 		/datum/action/ability/xeno_action/sow,
 		/datum/action/ability/activable/xeno/web_hook,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
 	)

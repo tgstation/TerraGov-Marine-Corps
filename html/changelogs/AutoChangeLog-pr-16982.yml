@@ -1,0 +1,4 @@
+author: "Cheese"
+delete-after: True
+changes:
+  - bugfix: "Acid Maw stats no longer also include acid jaw stats."

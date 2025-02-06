@@ -1666,6 +1666,14 @@
 /obj/effect/ai_node,
 /turf/open/floor/mainship/sterile/side,
 /area/centcom/valhalla)
+"cfr" = (
+/obj/machinery/chem_dispenser/soda{
+	dir = 8;
+	pixel_x = -17;
+	pixel_y = -1
+	},
+/turf/closed/mineral/smooth/indestructible,
+/area/centcom/valhalla)
 "cfQ" = (
 /obj/machinery/status_display/ai,
 /turf/closed/wall,
@@ -24657,7 +24665,7 @@ aqy
 gzY
 lEp
 lEp
-lEp
+cfr
 lEp
 box
 box

@@ -36,7 +36,7 @@
 	throwforce = 10
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	melee_mod = 25
 	slot = ATTACHMENT_SLOT_MUZZLE
 	pixel_shift_x = 14 //Below the muzzle.
@@ -73,7 +73,7 @@
 	attack_speed = 8
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	melee_mod = 25
 	slot = ATTACHMENT_SLOT_MUZZLE
 	pixel_shift_x = 14 //Below the muzzle.
@@ -106,7 +106,12 @@
 	accuracy_unwielded_mod = 0.1
 	scatter_mod = -1
 	size_mod = 1
-	variants_by_parent_type = list(/obj/item/weapon/gun/rifle/som = "ebarrel_big", /obj/item/weapon/gun/smg/som = "ebarrel_big", /obj/item/weapon/gun/shotgun/pump/t35 = "ebarrel_big")
+	variants_by_parent_type = list(
+		/obj/item/weapon/gun/rifle/som = "ebarrel_big",
+		/obj/item/weapon/gun/rifle/som_big = "ebarrel_big",
+		/obj/item/weapon/gun/smg/som = "ebarrel_big",
+		/obj/item/weapon/gun/shotgun/pump/t35 = "ebarrel_big",
+	)
 
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
@@ -131,6 +136,7 @@
 	recoil_unwielded_mod = -2
 	variants_by_parent_type = list(
 		/obj/item/weapon/gun/rifle/som = "comp_big",
+		/obj/item/weapon/gun/rifle/som_big = "comp_big",
 		/obj/item/weapon/gun/smg/som = "comp_big",
 		/obj/item/weapon/gun/shotgun/som = "comp_big",
 		/obj/item/weapon/gun/shotgun/pump/t35 = "comp_big",
