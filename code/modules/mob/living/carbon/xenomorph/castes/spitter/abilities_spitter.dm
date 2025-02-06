@@ -141,8 +141,8 @@
 // Cooldown between recharging grenades
 #define GLOBADIER_GRENADE_REGEN_COOLDOWN 15 SECONDS
 #define GLOBADIER_GRENADE_PICKUP_CD 1.5 SECONDS
-#define GLOBADIER_GRENADE_THROW_RANGE 8
-#define GLOBADIER_GRENADE_THROW_SPEED 2
+#define GLOBADIER_GRENADE_THROW_RANGE 7
+#define GLOBADIER_GRENADE_THROW_SPEED 1.8
 //Grenade Defines, for the radial menu
 #define ACID_GRENADE /obj/item/explosive/grenade/globadier
 #define FIRE_GRENADE /obj/item/explosive/grenade/globadier/incen
