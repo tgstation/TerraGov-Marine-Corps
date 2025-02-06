@@ -6,6 +6,7 @@
 @use 'sass:meta';
 @use './base.scss';
 @use '~tgui-core/styles';
+
 // Core styles
 @include meta.load-css('./reset.scss');
 
@@ -42,7 +43,7 @@
 // NT Theme
 .Layout__content {
   background-image: url('../assets/bg-tgmc.svg');
-  background-size: 70%;
+  background-size: 70% 70%;
   background-position: center;
   background-repeat: no-repeat;
 }
