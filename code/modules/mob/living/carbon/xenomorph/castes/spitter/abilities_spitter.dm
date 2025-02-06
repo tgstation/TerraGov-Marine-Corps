@@ -147,11 +147,13 @@
 #define ACID_GRENADE /obj/item/explosive/grenade/globadier
 #define FIRE_GRENADE /obj/item/explosive/grenade/globadier/incen
 #define RESIN_GRENADE /obj/item/explosive/grenade/globadier/resin
+#define GAS_GRENADE /obj/item/explosive/grenade/globadier/gas
 //List of all images used for grenades, in the radial selection menu
 GLOBAL_LIST_INIT(globadier_images_list, list(
 	ACID_GRENADE = image('icons/xeno/effects.dmi', icon_state = "acid"),
 	FIRE_GRENADE = image('icons/effects/fire.dmi', icon_state = "purple_3"),
 	RESIN_GRENADE = image('icons/xeno/effects.dmi', icon_state = "sticky"),
+	GAS_GRENADE = image('icons/effects/particles/smoke.dmi', icon_state = "smoke_3")
 ))
 
 /datum/action/ability/activable/xeno/toss_grenade
@@ -235,7 +237,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	desc = "A gross looking glob of acid"
 	greyscale_colors = "#81ff92"
 	greyscale_config = /datum/greyscale_config/xenogrenade
-	det_time = 1.5 SECONDS
+	det_time = 1 SECONDS
 	dangerous = TRUE
 	arm_sound = 'sound/voice/alien/yell_alt.ogg'
 
@@ -264,10 +266,12 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 // ***************************************
 // *********** Fire Grenade
 // ***************************************
+
 /obj/item/explosive/grenade/globadier/incen
 	name = "melting grenade"
 	desc = "A swirling mix of acid and purple sparks"
 	greyscale_colors = "#9e1dd1"
+	det_time = 1.5 SECONDS
 
 
 /obj/item/explosive/grenade/globadier/incen/prime()
@@ -277,10 +281,12 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 // ***************************************
 // *********** Resin Grenade
 // ***************************************
+
 /obj/item/explosive/grenade/globadier/resin
 	name = "resin grenade"
 	desc = "A rapidly melting ball of xeno taffy"
 	greyscale_colors = "#6808e6"
+	det_time = 1.5 SECONDS
 
 
 /obj/item/explosive/grenade/globadier/resin/prime()
@@ -296,8 +302,26 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	qdel(src)
 
 // ***************************************
+// *********** Gas Grenade
+// ***************************************
+
+/obj/item/explosive/grenade/globadier/gas
+	name = "gas grenade"
+	desc = "A smoking ball of acid"
+	greyscale_colors = "#be340a"
+	det_time = 1.5 SECONDS
+
+/obj/item/explosive/grenade/globadier/gas/prime()
+	var/datum/effect_system/smoke_spread/xeno/neuro/light/A = new(get_turf(src))
+	A.set_up(2, src)
+	A.start()
+	qdel(src)
+
+
+// ***************************************
 // *********** Acid Mine
 // ***************************************
+
 /datum/action/ability/xeno_action/acid_mine
 	name = "Acid Mine"
 	action_icon_state = "acid_mine"
