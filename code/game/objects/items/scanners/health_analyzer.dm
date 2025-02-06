@@ -69,7 +69,7 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 
 /obj/item/healthanalyzer/ui_state(mob/user)
 	if(isobserver(user))
-		return GLOB.always_state
+		return GLOB.observer_state
 	else
 		return GLOB.not_incapacitated_state
 
