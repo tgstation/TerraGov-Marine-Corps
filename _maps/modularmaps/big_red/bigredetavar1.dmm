@@ -717,6 +717,10 @@
 "Fo" = (
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/bigredv2/caves/northeast/garbledradio)
+"FP" = (
+/obj/machinery/computer/intel_computer,
+/turf/open/floor,
+/area/bigredv2/outside/general_offices)
 "FY" = (
 /obj/machinery/vending/engivend,
 /turf/open/floor,
@@ -1170,7 +1174,7 @@ Zt
 zS
 Zl
 xa
-gk
+FP
 Zc
 gk
 xa

@@ -3,7 +3,7 @@
 	icon = 'icons/obj/items/weapons/knives.dmi'
 	icon_state = "shiv"
 	desc = "A makeshift glass shiv."
-	attack_verb = list("shanked", "shived")
+	attack_verb = list("shanks", "shivs")
 	hitsound = 'sound/weapons/slash.ogg'
 
 /obj/item/tool/kitchen/knife/shiv/plasma
@@ -33,7 +33,7 @@
 	throw_range = 6
 	attack_speed = 8
 	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 
 /obj/item/weapon/combat_knife/attackby(obj/item/I, mob/user)
 	if(!istype(I,/obj/item/stack/cable_coil))
@@ -86,7 +86,7 @@
 	throw_range = 6
 	attack_speed = 8
 	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut", "hooked")
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts", "hooks")
 
 //Try to do a fancy trick with your cool knife
 /obj/item/weapon/karambit/attack_self(mob/user)
@@ -126,7 +126,7 @@
 	throw_speed = 5
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	equip_slot_flags = ITEM_SLOT_POCKET
 	max_amount = 5
 	amount = 5

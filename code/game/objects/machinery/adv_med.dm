@@ -168,14 +168,14 @@
 /obj/machinery/bodyscanner/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
-			for(var/atom/movable/A as mob|obj in src)
+			for(var/atom/movable/A AS in src)
 				A.loc = src.loc
 				ex_act(severity)
 			qdel(src)
 			return
 		if(EXPLODE_HEAVY)
 			if (prob(50))
-				for(var/atom/movable/A as mob|obj in src)
+				for(var/atom/movable/A AS in src)
 					A.loc = src.loc
 					ex_act(severity)
 				qdel(src)
@@ -183,7 +183,7 @@
 		if(EXPLODE_LIGHT)
 			if(!prob(75))
 				return
-			for(var/atom/movable/A as mob|obj in src)
+			for(var/atom/movable/A AS in src)
 				A.loc = src.loc
 				ex_act(severity)
 			qdel(src)

@@ -9529,6 +9529,7 @@
 /obj/machinery/light/mainship{
 	dir = 1
 	},
+/obj/machinery/vending/nanomed,
 /turf/open/floor/mainship/black{
 	dir = 1
 	},
@@ -9929,7 +9930,7 @@
 /turf/open/floor/mainship/stripesquare,
 /area/mainship/living/grunt_rnr)
 "mpw" = (
-/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
+/obj/machinery/computer/crew,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "mqD" = (
@@ -9952,7 +9953,7 @@
 /turf/open/floor/engine,
 /area/mainship/engineering/port_atmos)
 "mqY" = (
-/obj/machinery/computer/crew,
+/obj/machinery/computer/camera_advanced/overwatch/medical,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "mrK" = (
@@ -12865,9 +12866,6 @@
 "pVb" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
-/obj/machinery/light/mainship{
-	dir = 1
-	},
 /turf/open/floor/mainship/black{
 	dir = 4
 	},
@@ -14203,8 +14201,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "rDn" = (
-/obj/structure/table/mainship/nometal,
-/obj/machinery/recharger,
+/obj/effect/spawner/random/misc/structure/flavorvending/snackweighted,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "rEw" = (
@@ -15262,11 +15259,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
 /area/mainship/living/grunt_rnr)
-"tdE" = (
-/obj/machinery/vending/nanomed,
-/obj/structure/cable,
-/turf/open/floor/mainship,
-/area/mainship/squads/general)
 "tdQ" = (
 /obj/effect/ai_node,
 /obj/structure/cable,
@@ -17101,6 +17093,10 @@
 "vjE" = (
 /turf/open/floor/mainship/mono,
 /area/mainship/living/commandbunks)
+"vkm" = (
+/obj/structure/bed/chair/office/dark,
+/turf/open/floor/mainship/sterile/dark,
+/area/mainship/medical/lower_medical)
 "vkB" = (
 /obj/structure/prop/mainship/mapping_computer,
 /turf/open/floor/mainship/emerald{
@@ -47799,7 +47795,7 @@ sDn
 uvB
 euF
 gqB
-lAT
+vkm
 mqY
 wcT
 nkC
@@ -56549,7 +56545,7 @@ fPK
 vVG
 rUF
 lSq
-tdE
+bSp
 rrh
 oCN
 hxc

@@ -3,6 +3,7 @@
 	display_name = "Bull"
 	upgrade_name = ""
 	caste_desc = "A well defended hit-and-runner."
+	base_strain_type = /mob/living/carbon/xenomorph/bull
 	caste_type_path = /mob/living/carbon/xenomorph/bull
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE

@@ -362,3 +362,186 @@ GLOBAL_LIST_INIT(boiler_glob_image_list, list(
 		bombard_action.cooldown_timer = null
 		bombard_action.countdown.stop()
 	bombard_action?.add_cooldown(xeno_owner.xeno_caste.bomb_delay + 8.5 SECONDS - ((xeno_owner.neuro_ammo + xeno_owner.corrosive_ammo) * (BOILER_BOMBARD_COOLDOWN_REDUCTION SECONDS))) //The cooldown of Bombard that is added when this ability is used. It is the calculation of Bombard cooldown + 10 seconds.
+
+// ***************************************
+// *********** Steam Rush
+// ***************************************
+
+/datum/action/ability/xeno_action/steam_rush
+	name = "Steam Rush"
+	action_icon_state = "steam_rush"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
+	desc = "Grants a short speed boost. Slashes deal extra burn damage and extend the duration."
+	ability_cost = 100
+	cooldown_duration = 25 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_STEAM_RUSH,
+	)
+	/// Holds the particles instead of the mob.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	/// The increase of speed when ability is active.
+	var/speed_buff = -1
+	/// How long the ability will last?
+	var/duration = 1.5 SECONDS
+	///Timer for steam rush's duration
+	var/steam_rush_duration
+	/// How much extra burn damage is dealt on slash
+	var/steam_damage = 10
+
+/datum/action/ability/xeno_action/steam_rush/action_activate()
+	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
+
+	if(X.steam_rush)
+		to_chat(X, span_xenodanger("Our body is already spewing steam!"))
+		return
+
+	X.emote("roar")
+	X.visible_message(span_danger("[X]'s body is hissing with steam!"), \
+	span_xenowarning("We feel steam spraying from our body!"))
+
+	X.steam_rush = TRUE
+
+	steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(steam_rush_deactivate)), duration, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+
+	X.add_movespeed_modifier(MOVESPEED_ID_BOILER_SIZZLER_STEAM_RUSH, TRUE, 0, NONE, TRUE, speed_buff)
+
+	particle_holder = new(owner, /particles/sizzler_steam)
+	particle_holder.pixel_y = -8
+	particle_holder.pixel_x = 10
+
+	RegisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING, PROC_REF(steam_slash))
+
+	succeed_activate()
+	add_cooldown()
+
+///Adds burn damage and resets timer during steam rush buff
+/datum/action/ability/xeno_action/steam_rush/proc/steam_slash(datum/source, mob/living/target, damage, list/damage_mod, list/armor_mod)
+	SIGNAL_HANDLER
+	var/mob/living/rusher = owner
+	var/datum/action/ability/xeno_action/steam_rush/steam_rush_ability = rusher.actions_by_path[/datum/action/ability/xeno_action/steam_rush]
+	var/mob/living/carbon/carbon_target = target
+
+	carbon_target.apply_damage(steam_damage, damagetype = BURN, blocked = ACID)
+	playsound(carbon_target, 'sound/voice/alien/hiss2.ogg', 25)
+	to_chat(carbon_target, span_danger("We are burned by the hot steam!"))
+
+	if(steam_rush_ability.steam_rush_duration)
+		deltimer(steam_rush_ability.steam_rush_duration)
+		steam_rush_ability.steam_rush_duration = addtimer(CALLBACK(src, PROC_REF(steam_rush_deactivate)), duration + 1 SECONDS, TIMER_UNIQUE|TIMER_STOPPABLE|TIMER_OVERRIDE)
+
+///Called when we want to end the steam rush ability
+/datum/action/ability/xeno_action/steam_rush/proc/steam_rush_deactivate()
+	if(QDELETED(owner))
+		return
+	var/mob/living/carbon/xenomorph/X = owner
+
+	X.remove_movespeed_modifier(MOVESPEED_ID_BOILER_SIZZLER_STEAM_RUSH)
+
+	X.playsound_local(X, 'sound/voice/alien/hiss2.ogg', 50)
+
+	X.steam_rush = FALSE
+	QDEL_NULL(particle_holder)
+	UnregisterSignal(X, COMSIG_XENOMORPH_ATTACK_LIVING)
+
+/datum/action/ability/xeno_action/steam_rush/on_cooldown_finish()
+	owner.balloon_alert(owner, "Our blood is boiling once more; we can use steam rush again.")
+	owner.playsound_local(owner, 'sound/effects/alien/new_larva.ogg', 25, 0, 1)
+	return ..()
+
+/particles/sizzler_steam
+	icon = 'icons/effects/particles/smoke.dmi'
+	icon_state = list("steam_1" = 1, "steam_2" = 1, "steam_3" = 2)
+	width = 100
+	height = 300
+	count = 50
+	spawning = 3
+	lifespan = 1.5 SECONDS
+	fade = 3 SECONDS
+	velocity = list(0, 0.3, 0)
+	position = list(5, 32, 0)
+	drift = generator(GEN_SPHERE, 0, 1, NORMAL_RAND)
+	friction = 0.1
+	gravity = list(0, 0.95)
+	grow = 0.1
+
+// ***************************************
+// *********** Smokescreen Spit
+// ***************************************
+
+/datum/action/ability/xeno_action/smokescreen_spit
+	name = "Smokescreen Spit"
+	action_icon_state = "acid_glob"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
+	desc = "Empowers your next spit to create a wide smokescreen."
+	ability_cost = 350
+	cooldown_duration = 30 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_SMOKESCREEN_SPIT,
+	)
+	use_state_flags = ABILITY_USE_STAGGERED
+	/// Timer for the window you have to fire smokescreen spit
+	var/smokescreen_spit_window
+	/// Duration of the window you have to fire smokescreen spit
+	var/window_duration = 1.5 SECONDS
+
+/datum/action/ability/xeno_action/smokescreen_spit/action_activate()
+	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
+
+	X.ammo = /datum/ammo/xeno/acid/airburst/heavy
+	X.update_spits(TRUE)
+	X.balloon_alert(owner, "We prepare to fire a smokescreen!")
+
+	smokescreen_spit_window = addtimer(CALLBACK(src, PROC_REF(smokescreen_spit_deactivate)), window_duration, TIMER_UNIQUE)
+
+	succeed_activate()
+	add_cooldown()
+
+///Called when smokescreen ability ends to reset our ammo
+/datum/action/ability/xeno_action/smokescreen_spit/proc/smokescreen_spit_deactivate()
+	if(QDELETED(owner))
+		return
+	var/mob/living/carbon/xenomorph/boiler/sizzler/X = owner
+
+	X.ammo = /datum/ammo/xeno/acid/airburst
+	X.update_spits(TRUE)
+	X.balloon_alert(owner, "Our spit returns to normal.")
+
+// ***************************************
+// *********** High-Pressure Spit
+// ***************************************
+/datum/action/ability/activable/xeno/high_pressure_spit
+	name = "High Pressure Spit"
+	action_icon_state = "acid_lance_glob"
+	action_icon = 'icons/Xeno/actions/boiler.dmi'
+	desc = "Fires a high pressure glob of acid that knocks back, stuns, and shatters the target."
+	ability_cost = 150
+	cooldown_duration = 25 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT,
+	)
+
+/datum/action/ability/activable/xeno/high_pressure_spit/use_ability(atom/target)
+	var/mob/living/carbon/xenomorph/X = owner
+
+	new /obj/effect/temp_visual/wraith_warp(get_turf(owner))
+
+	if(!do_after(X, 1 SECONDS, NONE, target, BUSY_ICON_DANGER))
+		return fail_activate()
+
+	playsound(X.loc, 'sound/voice/alien/hiss2.ogg', 50, 1)
+
+	var/datum/ammo/xeno/acid/heavy/high_pressure_spit/high_pressure_spit = GLOB.ammo_list[/datum/ammo/xeno/acid/heavy/high_pressure_spit]
+
+	var/obj/projectile/newspit = new(get_turf(X))
+	newspit.generate_bullet(high_pressure_spit)
+	newspit.def_zone = X.get_limbzone_target()
+
+	newspit.fire_at(target, X, X, newspit.ammo.max_range)
+
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/high_pressure_spit/on_cooldown_finish()
+	owner.balloon_alert(owner, "Our steam is welling up; we can use high pressure spit again.")
+	owner.playsound_local(owner, 'sound/voice/alien/hiss2.ogg', 25, 0, 1)
+	return ..()

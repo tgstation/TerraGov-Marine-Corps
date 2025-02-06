@@ -571,13 +571,13 @@ directive is properly returned.
 	if(href_list[VV_HK_ATOM_JUMP_TO])
 		if(!check_rights(NONE))
 			return
-		var/x = text2num(href_list["X"])
-		var/y = text2num(href_list["Y"])
-		var/z = text2num(href_list["Z"])
-		var/client/C = usr.client
-
-		if(x == 0 && y == 0 && z == 0)
+		var/target = GET_VV_TARGET
+		if(!target)
 			return
+		var/turf/target_turf = get_turf(target)
+		if(!target_turf)
+			return
+		var/client/C = usr.client
 
 		var/message
 		if(!isobserver(usr))
@@ -585,12 +585,11 @@ directive is properly returned.
 			message = TRUE
 
 		var/mob/dead/observer/O = C.mob
-		var/turf/T = locate(x, y, z)
-		O.forceMove(T)
+		O.forceMove(target_turf)
 
 		if(message)
-			log_admin("[key_name(O)] jumped to coordinates [AREACOORD(T)].")
-			message_admins("[ADMIN_TPMONTY(O)] jumped to coordinates [ADMIN_VERBOSEJMP(T)].")
+			log_admin("[key_name(O)] jumped to coordinates [AREACOORD(target_turf)].")
+			message_admins("[ADMIN_TPMONTY(O)] jumped to coordinates [ADMIN_VERBOSEJMP(target_turf)].")
 
 	if(href_list[VV_HK_MODIFY_TRANSFORM])
 		if(!check_rights(R_DEBUG))
@@ -934,7 +933,7 @@ directive is properly returned.
 
 ///Adds the debris element for projectile impacts
 /atom/proc/add_debris_element()
-	AddElement(/datum/element/debris, null, -15, 8, 0.7)
+	AddElement(/datum/element/debris, null, -40, 8, 0.7)
 
 /**
 	Returns a number after taking into account both soft and hard armor for the specified damage type, usually damage
