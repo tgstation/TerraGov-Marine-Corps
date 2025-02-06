@@ -1319,6 +1319,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\game\turfs\walls\walls.dm"
 #include "code\game\verbs\ooc.dm"
 #include "code\game\verbs\suicide.dm"
+#include "code\game\verbs\typing.dm"
 #include "code\game\verbs\who.dm"
 #include "code\modules\admin\admin_ranks.dm"
 #include "code\modules\admin\admin_verbs.dm"
