@@ -73,6 +73,10 @@
 		battery = internal_item.battery
 		internal_item.battery = null
 
+/obj/machinery/deployable/tesla_turret/Destroy()
+	QDEL_NULL(battery)
+	return ..()
+
 /obj/machinery/deployable/tesla_turret/examine(mob/user)
 	. = ..()
 	if(!battery || !in_range(src, user))
