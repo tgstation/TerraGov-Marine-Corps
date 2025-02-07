@@ -74,8 +74,6 @@
 		battery = internal_item.battery
 		internal_item.battery = null
 
-	hud_set_tesla_battery()
-
 /obj/machinery/deployable/tesla_turret/Destroy()
 	QDEL_NULL(battery)
 	return ..()
