@@ -27,10 +27,10 @@
 
 /obj/item/tesla_turret/AltClick(mob/user)
 	. = ..()
+	if(!in_range(src, user))
+		return
 	if(!battery)
 		balloon_alert(user, "no battery")
-		return
-	if(!in_range(src, user))
 		return
 	if(!user.put_in_active_hand(battery))
 		battery.forceMove(drop_location())
@@ -97,6 +97,8 @@
 
 /obj/machinery/deployable/tesla_turret/AltClick(mob/user)
 	. = ..()
+	if(!in_range(src, user))
+		return
 	if(!battery)
 		balloon_alert(user, "no battery")
 		return
@@ -138,9 +140,14 @@
 		toggle(FALSE, TRUE)
 		return
 	if(battery.use(passive_cost))
-		var/xeno_amount = length(zap_beam(src, max_range, 4))
+		/// Needs to have enough charge to hit at least one xeno
+		var/max_targets = max(trunc(battery.charge / active_cost), 0)
+		if(!max_targets)
+			return
+		var/xeno_amount = length(zap_beam(src, max_range, 4, max_targets = max_targets))
 		if(!xeno_amount)
 			return
+		/// I will actually explode if this math doesn't work
 		battery.use(active_cost * xeno_amount)
 		playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
 	else
