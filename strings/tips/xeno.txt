@@ -1,4 +1,5 @@
 You can replace normal weed pods with sticky/resting weed pods, but cannot do the inverse.
+Melt away flares to reduce marines' visability!
 Stagger stops most xenomorphs from using abilities. Watch out for weapons that can stagger!
 Different castes have different pheromone strengths, with drone being the lowest and king being the highest.
 Pheromones do not stack, only the strongest applies.
@@ -34,6 +35,7 @@ As a larva, stay on weeds while growing. You will grow faster as a result.
 As a runner, warlock, or larva, you can pass over window frames without climbing onto them beforehand.
 As a caste with acid, you can click directly on a lower-level acid puddle to upgrade it.
 As a drone or sentinel, your corrosive acid is very weak, but it's better than nothing.
+A fortified defender is one of the best ways to stall a push.
 As a xeno, spread weeds as much as you can, especially near the front-line fighters.
 Before you evolve into the Hivemind as a drone, hide in a secure area! Once you evolve, you will create a core that cannot be moved.
 As a hivelord, build as many tunnels as you can to help mobilize the hive!
@@ -81,7 +83,6 @@ Hunter has AP and knockdown when striking from stealth, which can be chained wit
 Defiler can vent crawl.
 Spitter can vent crawl.
 Defiler has one of the highest slash damages among the entire hive, use it to your advantage.
-A fortified defender is one of the best ways to stall a push.
 Skilled defilers can easily kill any marine in a span of seconds.
 As a xeno, always have an escape plan.
 Tileswapping marines via help intent can have interesting consequences.
