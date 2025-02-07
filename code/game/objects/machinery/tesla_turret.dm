@@ -56,7 +56,7 @@
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASSABLE
-	hud_possible = list(MACHINE_AMMO_HUD, MACHINE_HEALTH_HUD)
+	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	/// Range, duh.
 	var/max_range = 5
 	/// Battery to run on
