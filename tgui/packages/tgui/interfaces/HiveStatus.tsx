@@ -669,7 +669,7 @@ const XenoList = (_props: any) => {
     return (
       <Button
         ml={-1}
-        backgroundColor="transparent"
+        backgroundColor="rgba(0, 0, 0, 0)"
         tooltip={props.tip}
         icon={
           sortingBy.category !== props.text
@@ -856,7 +856,7 @@ const XenoList = (_props: any) => {
                       overflow: 'hidden', // hiding overflow prevents the button being slightly scrollable
                       marginTop: '-3px', // magic number, lines up button text with other cols
                     }}
-                    backgroundColor="transparent"
+                    backgroundColor="rgba(0, 0, 0, 0)"
                     tooltip={
                       user_ref !== entry.ref
                         ? user_tracked === entry.ref
