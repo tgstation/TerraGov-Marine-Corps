@@ -56,6 +56,7 @@
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASSABLE
+	hud_possible = list(MACHINE_AMMO_HUD, MACHINE_HEALTH_HUD)
 	/// Range, duh.
 	var/max_range = 5
 	/// Battery to run on
@@ -72,6 +73,8 @@
 	if(internal_item?.battery)
 		battery = internal_item.battery
 		internal_item.battery = null
+
+	hud_set_tesla_battery()
 
 /obj/machinery/deployable/tesla_turret/Destroy()
 	QDEL_NULL(battery)
@@ -157,6 +160,7 @@
 	else
 		balloon_alert_to_viewers("shuts off!")
 		toggle(FALSE, TRUE)
+	hud_set_tesla_battery()
 
 /obj/machinery/deployable/tesla_turret/MouseDrop(mob/living/carbon/human/marine)
 	if(marine != usr || !in_range(src, marine))
@@ -179,3 +183,4 @@
 	icon_state = "[base_icon_state][!!battery]"
 	if(active)
 		icon_state = "[base_icon_state]hit"
+	hud_set_tesla_battery()
