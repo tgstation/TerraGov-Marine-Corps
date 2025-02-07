@@ -21,7 +21,7 @@ export const SupplyDropConsole = (_props) => {
 
   return (
     <Window width={350} height={350}>
-      <Window.Content scrollable>
+      <Window.Content>
         <Section title="Supply drop">
           <LabeledList>
             <LabeledList.Item label={'Current beacon'}>
@@ -50,7 +50,7 @@ export const SupplyDropConsole = (_props) => {
             title="Supply pad status"
             buttons={
               <Button
-                icon="reload"
+                icon="refresh"
                 content="Update"
                 onClick={() => act('refresh_pad')}
               />
