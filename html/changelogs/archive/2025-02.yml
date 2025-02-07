@@ -49,3 +49,11 @@
   - qol: vendors now vend the item into your selected hand
   yyzsong:
   - spellcheck: Updates armour module stylization
+2025-02-07:
+  Cheese:
+  - bugfix: Acid Maw stats no longer also include acid jaw stats.
+  Lumipharon:
+  - balance: Disposable AP and sunder reduced from 100 and 100, to 50 and 25
+  - balance: Highpower pistol seasonal removed from the game
+  ivanmixo:
+  - bugfix: Some SOM and marine hvh outfits' holster contents are once again filled
