@@ -719,7 +719,7 @@
 #define BARRICADE_PLASTEEL_FIRM 2
 
 /obj/structure/barricade/plasteel
-	name = "plasteel barricade"
+	name = "folding plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon = 'icons/obj/structures/barricades/plasteel.dmi'
 	icon_state = "plasteel_closed_0"
@@ -735,12 +735,16 @@
 	closed = TRUE
 	can_wire = TRUE
 	climbable = TRUE
+	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
 	///What state is our barricade in for construction steps?
 	var/build_state = BARRICADE_PLASTEEL_FIRM
 	var/busy = FALSE //Standard busy check
-	///ehther we react with other cades next to us ie when opening or so
+	///wether we react with other cades next to us ie when opening or so
 	var/linked = FALSE
-	COOLDOWN_DECLARE(tool_cooldown) //Delay to apply tools to prevent spamming
+	///If we can be linked to nearby cades of the sametype
+	var/linkable = TRUE
+	///The skill type of this cade, used for fumble checks
+	var/skilltype = SKILL_ENGINEER_PLASTEEL
 
 /obj/structure/barricade/plasteel/Initialize(mapload, mob/user)
 	. = ..()
@@ -769,9 +773,9 @@
 			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
 /obj/structure/barricade/plasteel/welder_act(mob/living/user, obj/item/I)
-	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, SKILL_ENGINEER_PLASTEEL, 1)
+	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, skilltype, 1)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
-		balloon_alert(user, "Too damaged. Use plasteel sheets.")
+		balloon_alert(user, "Too damaged. Use [barricade_type] sheets.")
 
 /obj/structure/barricade/plasteel/screwdriver_act(mob/living/user, obj/item/I)
 	if(!isscrewdriver(I))
@@ -787,8 +791,8 @@
 
 	switch(build_state)
 		if(BARRICADE_PLASTEEL_FIRM) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
-			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
+				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 
@@ -804,8 +808,8 @@
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			build_state = BARRICADE_PLASTEEL_ANCHORED
 		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
+				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("bolt protection panel replaced")
@@ -826,15 +830,16 @@
 
 	switch(build_state)
 		if(BARRICADE_PLASTEEL_FIRM)
-			balloon_alert_to_viewers("[linked ? "un" : "" ]linked")
-			linked = !linked
-			for(var/direction in GLOB.cardinals)
-				for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
-					cade.update_icon()
-			update_icon()
+			if(linkable)
+				balloon_alert_to_viewers("[linked ? "un" : "" ]linked")
+				linked = !linked
+				for(var/direction in GLOB.cardinals)
+					for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+						cade.update_icon()
+				update_icon()
 		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing.
-			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
-				var/fumbling_time = 5 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
+				var/fumbling_time = 5 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("disassembling")
@@ -865,8 +870,8 @@
 
 	switch(build_state)
 		if(BARRICADE_PLASTEEL_ANCHORED) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
-			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
+				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("anchor bolts loosened")
@@ -887,8 +892,8 @@
 				balloon_alert(user, "can't anchor here")
 				return
 
-			if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_PLASTEEL)
-				var/fumbling_time = 1 SECONDS * ( SKILL_ENGINEER_PLASTEEL - user.skills.getRating(SKILL_ENGINEER) )
+			if(user.skills.getRating(SKILL_ENGINEER) < skilltype)
+				var/fumbling_time = 1 SECONDS * ( skilltype - user.skills.getRating(SKILL_ENGINEER) )
 				if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED))
 					return
 			balloon_alert_to_viewers("secured bolts")
@@ -903,14 +908,14 @@
 	if(.)
 		return
 
-	if(!istype(I, /obj/item/stack/sheet/plasteel))
+	if(!istype(I, stack_type))
 		return
-	var/obj/item/stack/sheet/plasteel/plasteel_sheets = I
+	var/obj/item/stack/sheet/stack = I
 	if(obj_integrity >= max_integrity * 0.3)
 		return
 
-	if(plasteel_sheets.get_amount() < 2)
-		balloon_alert(user, "You need at least 2 plasteel")
+	if(stack.get_amount() < 2)
+		balloon_alert(user, "You need at least 2 [barricade_type] sheets")
 		return
 
 	if(LAZYACCESS(user.do_actions, src))
@@ -925,7 +930,7 @@
 		balloon_alert(user, "It's melting!")
 		return TRUE
 
-	if(!plasteel_sheets.use(2))
+	if(!stack.use(2))
 		return
 
 	repair_damage(max_integrity * 0.3, user)
@@ -949,7 +954,7 @@
 	user?.visible_message(span_notice("[user] flips [src] [closed ? "closed" :"open"]."),
 		span_notice("You flip [src] [closed ? "closed" :"open"]."))
 
-	if(!linked)
+	if(!linked || !linkable)
 		update_icon()
 		return
 	for(var/direction in GLOB.cardinals)
@@ -1137,3 +1142,38 @@
 	var/image/new_overlay = image(icon, src, "[icon_state]_overlay", dir == SOUTH ? BELOW_OBJ_LAYER : ABOVE_MOB_LAYER, dir)
 	new_overlay.pixel_y = (dir == SOUTH ? -32 : 32)
 	. += new_overlay
+
+/*----------------------*/
+// NONFOLDING PLASTEEL
+/*----------------------*/
+
+/obj/structure/barricade/metal/plasteel
+	name = "plasteel barricade"
+	desc = "A sturdy and easily assembled barricade made of reinforced plasteel plates, the pinnacle of strongpoints. Use a blowtorch to repair."
+	icon = 'icons/obj/structures/barricades/plasteel.dmi'
+	icon_state = "new_plasteel_0"
+	max_integrity = 400
+	stack_type = /obj/item/stack/sheet/plasteel
+	destroyed_stack_amount = 2
+	barricade_type = "new_plasteel"
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
+
+/obj/structure/barricade/metal/plasteel/attempt_barricade_upgrade()
+	return //not upgradable
+
+/*----------------------*/
+// FOLDING METAL
+/*----------------------*/
+
+/obj/structure/barricade/plasteel/metal
+	name = "folding metal barricade"
+	desc = "A folding barricade made out of metal, making it slightly stronger than a normal metal barricade. Use a blowtorch to repair. Can be flipped down to create a path."
+	icon_state = "folding_metal_closed_0"
+	icon = 'icons/obj/structures/barricades/metal.dmi'
+	max_integrity = 350
+	stack_type = /obj/item/stack/sheet/metal
+	stack_amount = 6
+	destroyed_stack_amount = 3
+	barricade_type = "folding_metal"
+	linkable = FALSE
+	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 40)
