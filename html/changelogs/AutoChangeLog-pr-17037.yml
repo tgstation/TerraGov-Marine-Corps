@@ -1,0 +1,5 @@
+author: "The_Man"
+delete-after: True
+changes:
+  - rscadd: "Added new verb \"Toggle Health Scan\" for spectators."
+  - qol: "If \"Toggle Health Scan\" is enabled, spectators will health scan on click."
