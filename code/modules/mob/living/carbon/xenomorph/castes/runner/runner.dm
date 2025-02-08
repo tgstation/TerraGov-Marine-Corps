@@ -73,6 +73,8 @@
 
 /mob/living/carbon/xenomorph/runner/acidder/death(gibbing, deathmessage, silent)
 	for(var/turf/acid_tile AS in RANGE_TURFS(2, loc))
+		if(!line_of_sight(loc, acid_tile))
+			continue
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
 			new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
