@@ -46,8 +46,6 @@ As a hunter, a second activation of your mirages ability will exchange your plac
 As a ravager or the Queen, you are fire-resistant, NOT fireproof. You can still get lit on fire, but you take very little damage from it. As the King, however, you're fireproof until your armor is damaged by sunder.
 As a ravager, rage mode will make you stagger immune, reset your armour, give you additional fury and boost your speed for a time. Use it as an escape tool, especially if you're too low on rage to endure.
 As a spitter, boiler, praetorian, or the Queen, take advantage of unguarded barricades and defenses; melt or constantly spit acid on them if you can.
-AIM FOR THE TURRETS, CRUSHER! AIM FOR THE TURRETS! RAAAGH!
-As a crusher, you can escape razorsharp wires by resisting. Get out of that spot immediately!
 As a ravager, you passively gain rage while on fire.
 As a ravager, don't get overconfident.
 As a ravager, you will regenerate your rage, up to a point.
@@ -57,7 +55,6 @@ As a gorger, you have very little armour. You do not have to consider sunder as 
 As a gorger, overheal will let you drain corpses even if you're taking damage! This also applies to anyone else that you've overhealed.
 As a gorger, you may psy drain for free.
 As a warlock, your offensive abilities can be cast through glass. Give laser-using marines a taste of their own medicine.
-Warlocks can block artillery with their shield. Try it some time.
 As a boiler, primordial hivelord, the King or the Queen, you have the most powerful corrosive acid for melting things.
 As the Shrike, take advantage of your psychic abilities. Use Psychic Fling and Unrelenting Force to displace a marine or even push certain and hazardous objects towards your enemies and vice versa.
 As the Queen, your screech does not only affect the mobs on view, but affects through walls or gases. However, the effect of the screech will be reduced.
@@ -92,9 +89,3 @@ As a boiler, you'll begin to glow with the more globules you have stored.
 If you see a red dot, RUN!
 Allowing marines to push caves only to block off their exit is hillariously effective.
 As a xeno, a Tier 3 unit takes up both a Tier 3 and Tier 2 slot.
-Xenomorphs can jump onto tanks and APC's, dramatically reducing the chances of the vehicle being able to shoot them. Take care- aim mode shots and direct fire from other marines can still hit you!
-Certain xenomorphs can evolve into strains, which possess different abilities and stats. They aren't necessarily an upgrade, but can offer different utility or options.
-T4's and hivelords can place Gargoyles. These cheap structures will alert the hive when hostiles move near them. Place them on digsites, chokes or disks to know where marines are pushing!
-If you find yourself dealing with extreme sunder as a xenomorph, consider asking your T4's/Hivelord to place down an Acid Pool. Resting on them will increase your sunder recovery rate.
-Digsites are visible on the minimap for all xenomorphs as yellow or green crosshair icons. Keep an eye on them- researchers can harvest them for req points.
-While runners can't evade if they are on fire, they also can jump over fire!
