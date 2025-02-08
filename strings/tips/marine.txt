@@ -1,8 +1,16 @@
 Go to Valhalla to experiment with loadouts and weapons. You don't reset your respawn time in Valhalla!
+As a squad marine, you can handle most weapons in the game; your weapons vendor has a wide selection, and the area of operations will have additional firearms you can steal.
+If you have an AI onboard the ship, consider bringing a AI coordinate unit next time you use the artillery. Or just simply ask the AI for scan a tile for your coordinates for your strikes.
+You can jump on tanks and APC's. As long as you have one empty hand you won't be thrown off when it moves.
+You can shoot any target riding on a tank or APC by directly clicking on them. Tanks and APC's often lack methods to deal with hostile riders, and need help from other marines.
+Assault Crewmen can drive APC's, but Transport Crewmen cannot drive tanks. Transport Crewman can still act as a loader for a tank though.
+Got a xenomorph riding on the roof of your vehicle as an Assault Crewman or Transport Crewman? If you have an explosive weapon, try shooting a wall next to you to dislodge them.
+Acid Jaws must be placed outside in the open. This makes them vulnerable to CAS, OB's, Mortars, or being scouted by the Tadpole. Use the xeno structure pinpointer to locate them, and consider lasing them with tactical binoculars if xenomorphs are putting up a heavy defence.
+Lasers have different firing modes that have different effects on xenomorphs, making them extremely versatile in any situation!
 Fire disables pheromones, use this information to your advantage.
 Silo rushing isn't worth it when multiple marines die and get psychic drained for a new silo.
 Fire does NOT hurt pyrogen, the xenomorph on FIRE!
-DO NOT SHUFFLE THE FC OR SL WITH BINOCULAR!
+DO NOT SHUFFLE THE FC OR SL THAT IS USING THE BINOCULAR!
 Don't get left behind, corpsmen! Use your minimap to check where marines are, whether alive or dead!
 Catch larval facehuggers by having an empty hand and throw mode on.
 Use fire to remove facehugger on marine's face before the facehugger impregnate!
@@ -25,7 +33,6 @@ When pushing into an area, check the flanks. Especially so in caves and enclosed
 Resin structures are weaker to melee than they are to bullets. Take out your knives, swords and bayonets!
 Always clear weeds and alien structures as you advance. A resin maze forces marines to engage in CQC against xenomorphs, which decreases your survival rate. That said, this increases your PB chances!
 Always check for traps beneath loose objects on weeds - it could save your FACE!
-As a human, you can do almost anything if you put your mind to it; it just takes time.
 Any marine can link plasteel barricades together using a crowbar. Click one, and then click one adjacent. Repeat as needed.
 A lone marine is a dead marine and a happy xeno. Stick together!
 Be mindful when using hand grenades. Getting stunned or knocked over after priming a grenade will drop it at your feet. This is obviously very dangerous for not only you, but your friends as well.
@@ -52,7 +59,7 @@ During Self Destruct, green control rods are armed control rods. Each rods take 
 A fit marine can carry many weapons: in their armor, belt, even hanging from their back.
 Requisitions has many supplies to enhance the combat power of marine units, such as attachments, ammunition, and other toys; ask their crew what's in store and you may be pleasantly surprised. DISCLAIMER: Extra gears' availability is dependent on supply.
 As a marine, you can climb over waist-high obstacles like sandbags, window frames or tables by CTRL+clicking them or drag-clicking yourself onto them.
-You can jump over waist-high obstacles like platforms, tables, and window frames, for a small stamina cost (Default: Spacebar).
+You can jump over waist-high obstacles like platforms, tables, and window frames, for a small stamina cost (Default: C).
 The Terra Experimental laser rifles have a mode selector that can be switched using the Unique Action command (Default: Spacebar). Some modes are better than other modes in specific circumstances.
 You can remove armor pieces (leg pieces, arm pieces and chest pieces) and armor modules (Valkyrie, Baldur, etc.) from the XM-02 Combat Exoskeleton by Alt+clicking the exoskeleton.
 You can customize armor pieces and the exoskeleton helmet using any kind of facepaint for a personal touch. Paint the armor pieces before you put them in the exoskeleton!
@@ -82,7 +89,6 @@ As a marine, please try not to aim for the head. It benefits the xenomorphs as t
 Not being ready at the start of the round means xenos get more burrowed larva, and that you don't get to play as quickly.
 As a squad marine, you can vend seperate Jaeger Pattern armor pieces and modules for the XM-02 Combat Exoskeleton from a Surplus Equipment Vendor. It is a modular piece of equipment after all.
 As a squad marine, you can practice using your weapons on the Firing Range.
-As a squad marine, you can handle every type of weapon featured in the game.
 As a squad marine, when you are in a tight situation, do not be a hero! Whenever possible, recover and re-arm and leave the enemies for another try.
 As a squad marine, do not be afraid to take risks. See a xeno that is almost dead and slowly retreating? Take the chance to charge and kill it! You have better chances to survive with a squadmate with you.
 As a squad marine, you can help out your squad by bringing extra ammunition and food to share.
