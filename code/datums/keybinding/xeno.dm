@@ -708,6 +708,12 @@
 	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
 	hotkey_keys = list("E")
 
+/datum/keybinding/xeno/acid_dash_acidder
+	name = "Acidder: Acid Dash"
+	full_name = "Acidder: Acid Dash"
+	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
+	keybind_signal = COMSIG_XENOABILITY_ACID_DASH_ACIDDER
+
 /datum/keybinding/xeno/dodge
 	name = "Dodge"
 	full_name = "Praetorian: Dodge"

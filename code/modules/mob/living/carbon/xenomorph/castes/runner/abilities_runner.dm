@@ -400,17 +400,32 @@
 	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
-/datum/action/ability/activable/xeno/corrosive_acid/acid_runner
+/datum/action/ability/activable/xeno/corrosive_acid/acidder
 	ability_cost = 25
 	acid_type = /obj/effect/xenomorph/acid/strong
 	acid_speed_multiplier = 0.5
+
+/datum/action/ability/activable/xeno/charge/acid_dash/acidder
+	ability_cost = 50
+	cooldown_duration = 15 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH_ACIDDER,
+	)
+	do_acid_spray_act = FALSE
+
+/datum/action/ability/activable/xeno/charge/acid_dash/acidder/mob_hit(datum/source, mob/living/living_target)
+	. = ..()
+	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target)))
+		return
+	var/mob/living/carbon/carbon_victim = living_target
+	carbon_victim.apply_damage(20, BURN, null, ACID)
 
 /datum/action/ability/activable/xeno/acidic_missile
 	name = "Acidic Missile"
 	action_icon_state = "pounce"
 	action_icon = 'icons/Xeno/actions/runner.dmi'
 	desc = "Slowly build up acid in preparation to launch yourself as an acidic missile. Can launch yourself early if desired. Will slow you down initially, but will ramp up speed at maximum acid of 5x5."
-	ability_cost = 75
+	ability_cost = 100
 	cooldown_duration = 60 SECONDS
 	/// The particles effects from activation.
 	var/obj/effect/abstract/particle_holder/particle_holder
@@ -419,9 +434,16 @@
 	/// The acid level of the ability. Affects radius and movement speed.
 	var/acid_level = 0
 
+/datum/action/ability/activable/xeno/acidic_missile/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(xeno_owner.plasma_stored < ability_cost)
+		return FALSE
+
 /datum/action/ability/activable/xeno/acidic_missile/use_ability(atom/A)
 	if(!acid_level)
-		particle_holder = new(owner, /particles/acid_runner_steam)
+		particle_holder = new(owner, /particles/acidder_steam)
 		particle_holder.pixel_y = -8
 		particle_holder.pixel_x = 10
 		increase_acid_level()
@@ -488,7 +510,7 @@
 			continue
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
-			new /obj/effect/xenomorph/spray(acid_tile, 3 SECONDS)
+			new /obj/effect/xenomorph/spray(acid_tile, 3 SECONDS, 16)
 			for (var/atom/movable/atom_in_acid AS in acid_tile)
 				atom_in_acid.acid_spray_act(xeno_owner)
 	acid_level = 0
@@ -499,7 +521,7 @@
 
 	succeed_activate()
 
-/particles/acid_runner_steam
+/particles/acidder_steam
 	icon = 'icons/effects/particles/smoke.dmi'
 	icon_state = list("steam_1" = 1, "steam_2" = 1, "steam_3" = 2)
 	width = 100

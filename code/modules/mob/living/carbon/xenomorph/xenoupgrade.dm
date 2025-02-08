@@ -84,7 +84,7 @@
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 
-/mob/living/carbon/xenomorph/runner/acid/primordial
+/mob/living/carbon/xenomorph/runner/acidder/primordial
 	upgrade = XENO_UPGRADE_PRIMO
 	upgrade_stored = TIER_ONE_THRESHOLD
 

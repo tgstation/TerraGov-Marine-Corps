@@ -70,13 +70,15 @@
 		/datum/action/ability/activable/xeno/snatch,
 	)
 
-/datum/xeno_caste/runner/acid
-	caste_type_path = /mob/living/carbon/xenomorph/runner/acid
+/datum/xeno_caste/runner/acidder
+	caste_type_path = /mob/living/carbon/xenomorph/runner/acidder
 	upgrade_name = ""
 	caste_name = "Acid Runner"
 	display_name = "Acidder"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A fast, four-legged terror. It got acid covered all over it."
+
+	acid_spray_damage = 16
 
 	// -11 melee damage. Attacking does a second instance of melee damage as burn damage.
 	melee_damage = 12
@@ -93,14 +95,15 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/corrosive_acid/acid_runner,
+		/datum/action/ability/activable/xeno/charge/acid_dash/acidder,
+		/datum/action/ability/activable/xeno/corrosive_acid/acidder,
 		/datum/action/ability/xeno_action/xenohide,
 	)
 
-/datum/xeno_caste/runner/acid/normal
+/datum/xeno_caste/runner/acidder/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/runner/acid/primordial
+/datum/xeno_caste/runner/acidder/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "An agile acid-wielding predator. Its speed and corrosive touch spell doom for any who stand in its way."
 	primordial_message = "With our nimble movements and acidic touch, we close in and dissolve all resistance."
@@ -110,7 +113,8 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/corrosive_acid/acid_runner,
+		/datum/action/ability/activable/xeno/charge/acid_dash/acidder,
+		/datum/action/ability/activable/xeno/corrosive_acid/acidder,
 		/datum/action/ability/activable/xeno/acidic_missile,
 		/datum/action/ability/xeno_action/xenohide,
 	)
