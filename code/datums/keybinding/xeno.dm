@@ -714,6 +714,12 @@
 	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
 	keybind_signal = COMSIG_XENOABILITY_ACID_DASH_ACIDDER
 
+/datum/keybinding/xeno/acidic_missile
+	name = "Acidder: Acidic Missile"
+	full_name = "Acidder: Acid Missile"
+	description = "Begin building up acid. If you're already building up acid, launch yourself at a target and splash acid all around you."
+	keybind_signal = COMSIG_XENOABILITY_ACIDIC_MISSILE
+
 /datum/keybinding/xeno/dodge
 	name = "Dodge"
 	full_name = "Praetorian: Dodge"

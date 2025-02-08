@@ -143,6 +143,7 @@
 #define COMSIG_XENOABILITY_SPRAY_ACID "xenoability_spray_acid"
 #define COMSIG_XENOABILITY_ACID_DASH "xenoability_acid_dash"
 #define COMSIG_XENOABILITY_ACID_DASH_ACIDDER "xenoability_acid_dash_acidder"
+#define COMSIG_XENOABILITY_ACIDIC_MISSILE "xenoability_acidic_missile"
 #define COMSIG_XENOABILITY_DODGE "xenoability_dodge"
 #define COMSIG_XENOABILITY_IMPALE "xenoability_impale"
 #define COMSIG_XENOABILITY_TAIL_TRIP "xenoability_tail_trip"

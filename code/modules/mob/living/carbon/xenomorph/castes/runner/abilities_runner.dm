@@ -429,6 +429,9 @@
 	desc = "Slowly build up acid in preparation to launch yourself as an acidic missile. Can launch yourself early if desired. Will slow you down initially, but will ramp up speed at maximum acid of 5x5."
 	ability_cost = 100
 	cooldown_duration = 60 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_MISSILE,
+	)
 	/// The particles effects from activation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 	/// The timer id for the acid explode proc or acid increase proc.
