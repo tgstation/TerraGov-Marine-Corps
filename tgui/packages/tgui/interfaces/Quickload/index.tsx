@@ -1,4 +1,5 @@
-import { useBackend, useLocalState } from '../../backend';
+import { useBackend } from '../../backend';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -19,12 +20,7 @@ import {
 
 const LoadoutItem = (props: LoadoutItemData) => {
   const { act } = useBackend();
-  const { loadout } = props;
-
-  const [showDesc, setShowDesc] = useLocalState<String | null>(
-    'showDesc',
-    null,
-  );
+  const { loadout, setShowDesc } = props;
 
   return (
     <LabeledList.Item
@@ -49,7 +45,7 @@ const LoadoutItem = (props: LoadoutItemData) => {
 };
 
 const LoadoutList = (props: LoadoutListData) => {
-  const { loadout_list } = props;
+  const { loadout_list, setShowDesc } = props;
   return (
     <Stack.Item>
       <Section height={23} fill scrollable>
@@ -59,6 +55,7 @@ const LoadoutList = (props: LoadoutListData) => {
               <LoadoutItem
                 key={loadout_visible.name}
                 loadout={loadout_visible}
+                setShowDesc={setShowDesc}
               />
             );
           })}
@@ -83,7 +80,7 @@ const JobTabs = (props: LoadoutTabData) => {
             {categories_to_use.map((role, i) => (
               <Tabs.Tab
                 key={i}
-                selected={job === role.jobs}
+                selected={job === role}
                 onClick={() => setJob(role)}
               >
                 {role}
@@ -105,9 +102,9 @@ export const Quickload = (props) => {
   const ui_theme_to_use = data.ui_theme;
   const default_job_tab = data.vendor_categories[0];
 
-  const [showDesc, setShowDesc] = useLocalState('showDesc', null);
+  const [showDesc, setShowDesc] = useState(null);
 
-  const [job, setJob] = useLocalState('job', default_job_tab);
+  const [job, setJob] = useState(default_job_tab);
 
   return (
     <Window
@@ -127,6 +124,7 @@ export const Quickload = (props) => {
           <JobTabs job={job} setJob={setJob} />
           <LoadoutList
             loadout_list={loadout_list.filter((loadout) => loadout.job === job)}
+            setShowDesc={setShowDesc}
           />
         </Stack>
       </Window.Content>
