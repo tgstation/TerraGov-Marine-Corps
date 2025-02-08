@@ -853,12 +853,15 @@ So if we are on the 32th absolute pixel coordinate we are on tile 1, but if we a
 			return ..()
 
 		if(sniped)
+			if(sniped.check_duration())
+				return ..()
+
 			proj.damage = proj.damage * 0.1
 			///The -1 is because we don't want to take away damage from guns firing on cooldown
 			sniped.duration = max(world.time + shooter.fire_delay - 1, sniped.duration)
 			return ..()
 
-		apply_status_effect(STATUS_EFFECT_SNIPED, shooter.fire_delay)
+		apply_status_effect(STATUS_EFFECT_SNIPED, shooter.fire_delay - 1)
 	return ..()
 
 ///visual and audio feedback for hits
