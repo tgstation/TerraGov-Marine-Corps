@@ -3,6 +3,7 @@
 	display_name = "Puppeteer"
 	upgrade_name = ""
 	caste_desc = "An alien creature of terrifying display, it has a tail adorned with needles that drips a strange chemical and elongated claws."
+	base_strain_type = /mob/living/carbon/xenomorph/puppeteer
 	caste_type_path = /mob/living/carbon/xenomorph/puppeteer
 	primordial_message = "The organics will tremble at our swarm. We are legion."
 

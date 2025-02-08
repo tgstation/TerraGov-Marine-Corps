@@ -3,6 +3,7 @@
 	display_name = "Ravager"
 	upgrade_name = ""
 	caste_desc = "A brutal, devastating front-line attacker."
+	base_strain_type = /mob/living/carbon/xenomorph/ravager
 	caste_type_path = /mob/living/carbon/xenomorph/ravager
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
