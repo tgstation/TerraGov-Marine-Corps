@@ -4,6 +4,9 @@
 #define GENERATOR_HEAVY_DAMAGE 3
 #define GENERATOR_EXPLODING 4
 
+//Count of all generators on the ground
+GLOBAL_VAR_INIT(generators_on_ground, 0)
+
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"
 	icon = 'icons/turf/geothermal.dmi'
@@ -31,16 +34,16 @@
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator", ABOVE_FLOAT_LAYER))
 
 	if(is_ground_level(z))
-		SSmachines.generators_on_ground++
+		GLOB.generators_on_ground++
 
 	if(corrupted)
 		corrupt(corrupted)
 
 /obj/machinery/power/geothermal/Destroy() //just in case
 	if(is_ground_level(z))
-		SSmachines.generators_on_ground--
+		GLOB.generators_on_ground--
 		if(is_on)
-			SSmachines.active_bluespace_generators--
+			GLOB.active_bluespace_generators--
 	return ..()
 
 /obj/machinery/power/geothermal/examine(mob/user, distance, infix, suffix)
@@ -107,11 +110,11 @@
 
 /obj/machinery/power/geothermal/process()
 	if(corrupted && corruption_on)
-		if(!SSmachines.generators_on_ground) //Prevent division by 0
+		if(!GLOB.generators_on_ground) //Prevent division by 0
 			return PROCESS_KILL
 		if((length(GLOB.humans_by_zlevel["2"]) > 0.2 * length(GLOB.alive_human_list_faction[FACTION_TERRAGOV])))
 			//You get points proportional to the % of generators corrupted (for example, if 66% of generators are corrupted the hive gets 0.66 points per second)
-			var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / SSmachines.generators_on_ground
+			var/points_generated = GENERATOR_PSYCH_POINT_OUTPUT / GLOB.generators_on_ground
 			SSpoints.add_strategic_psy_points(corrupted, points_generated)
 			SSpoints.add_tactical_psy_points(corrupted, points_generated*0.25)
 		return
@@ -123,11 +126,11 @@
 		update_icon()
 		switch(power_gen_percent)
 			if(10)
-				balloon_alert_to_viewers("[src] begins to whirr as it powers up.")
+				balloon_alert_to_viewers("begins to whirr as it powers up.")
 			if(50)
-				balloon_alert_to_viewers("[src] begins to hum loudly as it reaches half capacity.")
+				balloon_alert_to_viewers("hums loudly as it reaches half capacity.")
 			if(100)
-				balloon_alert_to_viewers("[src] rumbles loudly as the combustion and thermal chambers reach full strength.")
+				balloon_alert_to_viewers("rumbles loudly as the generator reaches full strength.")
 		add_avail(power_generation_max * (power_gen_percent / 100) ) //Nope, all good, just add the power
 
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
@@ -161,7 +164,7 @@
 /obj/machinery/power/geothermal/proc/damage_generator()
 	if(buildstate >= GENERATOR_HEAVY_DAMAGE)
 		return FALSE
-	balloon_alert_to_viewers("[src] beeps wildly and sprays random pieces everywhere!")
+	balloon_alert_to_viewers("beeps wildly and sprays random pieces everywhere!")
 	buildstate++
 	if(is_on)
 		turn_off()
@@ -224,8 +227,8 @@
 	if(corrupted)
 		if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
 			user.visible_message(span_notice("[user] fumbles around figuring out the resin tendrils on [src]."),
-			span_notice("You fumble around figuring out the resin tendrils on [src]."))
-			user.balloon_alert(user, "You fumble around figuring out the resin tendrils on [src].")
+			span_notice("You fumble around trying to burn off the resin tendrils."))
+			user.balloon_alert(user, "You fumble around trying to burn off the resin tendrils.")
 			var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 			if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
 				return
@@ -235,8 +238,8 @@
 			return
 		playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 		user.visible_message(span_notice("[user] carefully starts burning [src]'s resin off."),
-		span_notice("You carefully start burning [src]'s resin off."))
-		user.balloon_alert(user, "You carefully start burning [src]'s resin off.")
+		span_notice("You start carefully burning the resin off."))
+		user.balloon_alert(user, "You start carefully burning the resin off.")
 		add_overlay(GLOB.welding_sparks)
 
 		if(!do_after(user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20) SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))))
@@ -244,9 +247,7 @@
 			return FALSE
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		user.visible_message(span_notice("[user] burns [src]'s resin off."),
-		span_notice("You burn [src]'s resin off."))
-		user.balloon_alert(user, "You burn [src]'s resin off.")
+		user.balloon_alert(user, "You burn the resin off.")
 		cut_overlay(GLOB.welding_sparks)
 		corrupted = 0
 		stop_processing()
@@ -256,8 +257,7 @@
 		return
 
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s internals."),
-		span_notice("You fumble around figuring out [src]'s internals."))
+		user.balloon_alert(user, "You fumble around figuring out how the internals work.")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GENERATOR_HEAVY_DAMAGE || is_on)
 			return
@@ -266,9 +266,7 @@
 		to_chat(user, span_warning("You need more welding fuel to complete this task."))
 		return
 	playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
-	user.visible_message(span_notice("[user] starts welding [src]'s internal damage."),
-	span_notice("You start welding [src]'s internal damage."))
-	user.balloon_alert(user, "You start welding [src]'s internal damage.")
+	user.balloon_alert(user, "You start welding the internals back together.")
 	add_overlay(GLOB.welding_sparks)
 
 	if(!do_after(user, 20 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 20) SECONDS, NONE, src, BUSY_ICON_BUILD, extra_checks = CALLBACK(WT, TYPE_PROC_REF(/obj/item/tool/weldingtool, isOn))) || buildstate != GENERATOR_HEAVY_DAMAGE || is_on)
@@ -277,9 +275,7 @@
 
 	playsound(loc, 'sound/items/welder2.ogg', 25, 1)
 	buildstate = GENERATOR_MEDIUM_DAMAGE
-	user.visible_message(span_notice("[user] welds [src]'s internal damage."),
-	span_notice("You weld [src]'s internal damage."))
-	user.balloon_alert(user, "You weld [src]'s internal damage.")
+	user.balloon_alert(user, "You weld the internals back together.")
 	cut_overlay(GLOB.welding_sparks)
 	update_icon()
 	record_generator_repairs(user)
@@ -289,24 +285,18 @@
 	if(buildstate != GENERATOR_MEDIUM_DAMAGE || is_on)
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s wiring."),
-		span_notice("You fumble around figuring out [src]'s wiring."))
-		user.balloon_alert(user, "You fumble around figuring out [src]'s wiring.")
+		user.balloon_alert(user, "You fumble around figuring out how the wiring works.")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || buildstate != GENERATOR_MEDIUM_DAMAGE || is_on)
 			return
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
-	user.visible_message(span_notice("[user] starts securing [src]'s wiring."),
-	span_notice("You start securing [src]'s wiring."))
-	user.balloon_alert(user, "You start securing [src]'s wiring.")
+	user.balloon_alert(user, "You start securing the wiring.")
 	if(!do_after(user, 12 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 4, 0, 12) SECONDS, NONE, src, BUSY_ICON_BUILD) || buildstate != GENERATOR_MEDIUM_DAMAGE || is_on)
 		return FALSE
 
 	playsound(loc, 'sound/items/wirecutter.ogg', 25, 1)
 	buildstate = GENERATOR_LIGHT_DAMAGE
-	user.visible_message(span_notice("[user] secures [src]'s wiring."),
-	span_notice("You secure [src]'s wiring."))
-	user.balloon_alert(user, "You secure [src]'s wiring.")
+	user.balloon_alert(user, "You secure the wiring.")
 	update_icon()
 	record_generator_repairs(user)
 	return TRUE
@@ -315,26 +305,20 @@
 	if(buildstate != GENERATOR_LIGHT_DAMAGE || is_on)
 		return
 	if(user.skills.getRating(SKILL_ENGINEER) < SKILL_ENGINEER_ENGI)
-		user.visible_message(span_notice("[user] fumbles around figuring out [src]'s tubing and plating."),
-		span_notice("You fumble around figuring out [src]'s tubing and plating."))
-		user.balloon_alert(user, "You fumble around figuring out [src]'s tubing and plating.")
+		user.balloon_alert(user, "You fumble around figuring out the tubing and plating.")
 		var/fumbling_time = 10 SECONDS - 2 SECONDS * user.skills.getRating(SKILL_ENGINEER)
 		if(!do_after(user, fumbling_time, NONE, src, BUSY_ICON_UNSKILLED) || buildstate != GENERATOR_LIGHT_DAMAGE || is_on)
 			return
 
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
-	user.visible_message(span_notice("[user] starts repairing [src]'s tubing and plating."),
-	span_notice("You start repairing [src]'s tubing and plating."))
-	user.balloon_alert(user, "You start repairing [src]'s tubing and plating.")
+	user.balloon_alert(user, "You start repairing the tubing and plating.")
 
 	if(!do_after(user, 15 SECONDS - clamp((user.skills.getRating(SKILL_ENGINEER) - SKILL_ENGINEER_ENGI) * 5, 0, 15) SECONDS, NONE, src, BUSY_ICON_BUILD) || buildstate != GENERATOR_LIGHT_DAMAGE || is_on)
 		return FALSE
 
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
 	buildstate = GENERATOR_NO_DAMAGE
-	user.visible_message(span_notice("[user] repairs [src]'s tubing and plating."),
-	span_notice("You repair [src]'s tubing and plating."))
-	user.balloon_alert(user, "You repair [src]'s tubing and plating.")
+	user.balloon_alert(user, "You repair the tubing and plating.")
 	update_icon()
 	record_generator_repairs(user)
 	return TRUE
@@ -352,10 +336,17 @@
 	name = "\improper Reinforced Reactor Turbine"
 	is_corruptible = FALSE
 
+//Counter of how many TBGs there are active, for disks
+GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 
-/*	Thermo-bluespace generator -- the main, big boy generator that engineers need to be concerned with
-	While active -- Generates a shitton of power and overclocks disk generation speed
-	Xenos can disable it after a short windup, which if the generator is past 50%, triggers a massive explosion */
+/**
+ * Thermo-bluespace generator
+ *
+ * The main, big boy generator that engineers need to be concerned with
+ * While active -- Generates a shitton of power and overclocks disk generation speed
+ * Xenos can disable it after a short windup, which if the generator is running, triggers a massive explosion
+		*/
+
 /obj/machinery/power/geothermal/tbg
 	name = "\improper Thermo-Bluespace Generator"
 	desc = "A marvel of modern engineering and a shining example of pioneering bluespace technology, able to power entire colonies with very little material consumption - perfectly suited for isolated areas on the outer rim.\nHighly volatile, but that shouldn't matter on some quiet backwater colony, right..?"
@@ -388,7 +379,7 @@
 /obj/machinery/power/geothermal/tbg/Destroy()
 	QDEL_NULL(ambient_soundloop)
 	QDEL_NULL(alarm_soundloop)
-	. = ..()
+	return ..()
 
 /obj/machinery/power/geothermal/tbg/update_icon_state()
 	. = ..()
@@ -408,8 +399,8 @@
 /obj/machinery/power/geothermal/tbg/turn_on()
 	COOLDOWN_START(src, toggle_power, 10 SECONDS)
 	ambient_soundloop.start()
-	SSmachines.active_bluespace_generators++
-	SEND_SIGNAL(SSmachines, COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED)
+	GLOB.active_bluespace_generators++
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED)
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/turn_off()
@@ -419,9 +410,9 @@
 	update_icon()
 	addtimer(CALLBACK(src, PROC_REF(finish_winding_down)), 10 SECONDS)
 	ambient_soundloop.stop()
-	SSmachines.active_bluespace_generators--
-	if(!SSmachines.active_bluespace_generators)
-		SEND_SIGNAL(SSmachines, COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED)
+	GLOB.active_bluespace_generators--
+	if(!GLOB.active_bluespace_generators)
+		SEND_SIGNAL(SSdcs, COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED)
 
 /// Updates the turbine animation after the winding down sound effect has finished
 /obj/machinery/power/geothermal/tbg/proc/finish_winding_down()
@@ -432,7 +423,8 @@
 /obj/machinery/power/geothermal/tbg/damage_generator()
 	if(buildstate >= GENERATOR_EXPLODING) //Already exploding; can't be damaged more than that!
 		return FALSE
-	if(!..())
+	. = ..()
+	if(!.)
 		return FALSE
 
 	var/sparks_target = pick(src, connected_turbines)
@@ -457,7 +449,7 @@
 	addtimer(CALLBACK(src, PROC_REF(trigger_alarms)), 3 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(finish_meltdown)), 60 SECONDS)
 
-	//Time until explosion -- Devastate range -- Heavy range -- Light range -- Fire range
+	//Devastate range -- Heavy range -- Light range -- Fire range -- Time until explosion
 	var/list/list_of_explosions = list(
 		list(0, 5, 10, 2, 40 SECONDS),
 		list(0, 10, 15, 7, 43 SECONDS),
@@ -476,7 +468,7 @@
 /obj/machinery/power/geothermal/tbg/proc/trigger_alarms()
 	alarm_soundloop.start()
 	//Trigger alarm lights
-	for(var/obj/machinery/floor_warn_light/toggleable/generator/light in SSmachines.generator_alarm_lights)
+	for(var/obj/machinery/floor_warn_light/toggleable/generator/light AS in GLOB.generator_alarm_lights)
 		light.enable()
 
 	say("WARNING: REACTOR MELTDOWN IMMINENT. Attempting to diagnose the issue...")
@@ -506,7 +498,7 @@
 	update_icon()
 	alarm_soundloop.stop()
 	//Disable alarmlights
-	for(var/obj/machinery/floor_warn_light/toggleable/generator/light in SSmachines.generator_alarm_lights)
+	for(var/obj/machinery/floor_warn_light/toggleable/generator/light AS in GLOB.generator_alarm_lights)
 		light.disable()
 	say("Bluespace restabilisation successful. Planetary assets protected.")
 
@@ -557,7 +549,7 @@
 		. += image(icon, src, "circ_overlay_corrupted", layer)
 
 // Forward all repair/xeno attack actions to the central TBG engine
-/obj/machinery/power/tbg_turbine/welder_act/(mob/living/user, obj/item/I)
+/obj/machinery/power/tbg_turbine/welder_act(mob/living/user, obj/item/I)
 	if(connected)
 		connected.welder_act(user, I)
 
