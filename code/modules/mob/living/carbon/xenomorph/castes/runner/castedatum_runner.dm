@@ -70,7 +70,6 @@
 		/datum/action/ability/activable/xeno/snatch,
 	)
 
-
 /datum/xeno_caste/runner/acid
 	caste_type_path = /mob/living/carbon/xenomorph/runner/acid
 	upgrade_name = ""
