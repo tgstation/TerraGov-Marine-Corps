@@ -11,9 +11,9 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accuracy_var_low = 7
 	accuracy_var_high = 7
-	damage = 15
+	damage = 17.5
 	accurate_range = 4
-	damage_falloff = 1.4
+	damage_falloff = 1
 	sundering = 0.5
 	penetration = 5
 
@@ -83,7 +83,7 @@
 
 /datum/ammo/bullet/smg/heavy
 	name = "heavy submachinegun bullet"
-	damage = 20
+	damage = 22.5
 	penetration = 10
 	sundering = 1
-	damage_falloff = 1.2
+
