@@ -391,10 +391,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	xeno_owner.do_attack_animation(target_atom, ATTACK_EFFECT_REDSTAB)
 	playsound(xeno_owner, get_sfx(SFX_ALIEN_TAIL_ATTACK), 30, TRUE)
 	xeno_owner.visible_message(span_danger("\The [xeno_owner] violently spears \the [target_atom] with their tail!"))
-	if(ishitbox(target_atom) || isvehicle(target_atom) || !ishuman(target_atom))
+	if(!ishuman(target_atom))
 		target_atom.attack_alien(xeno_owner, xeno_owner.xeno_caste.melee_damage * DANCER_NONHUMAN_IMPALE_MULT)
 
-	if(ishuman(target_atom))
+	else
 		var/mob/living/carbon/human/human_victim = target_atom
 		var/marked = human_victim.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 		var/buff_multiplier = min(DANCER_MAX_IMPALE_MULT, determine_buff_mult(human_victim))
