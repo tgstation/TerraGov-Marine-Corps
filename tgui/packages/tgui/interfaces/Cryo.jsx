@@ -1,4 +1,3 @@
-import { useBackend } from '../backend';
 import {
   AnimatedNumber,
   Button,
@@ -6,6 +5,8 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { BeakerContents } from './common/BeakerContents';
 
