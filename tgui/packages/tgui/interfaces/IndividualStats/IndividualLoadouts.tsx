@@ -1,7 +1,7 @@
+import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import { classes } from 'tgui-core/react';
 
 import { useBackend, useLocalState } from '../../backend';
-import { Box, Button, LabeledList, Section, Stack } from 'tgui-core/components';
 import { IndividualData, LoadoutItemData, OutfitCostData } from './index';
 
 export const IndividualLoadouts = (props) => {
