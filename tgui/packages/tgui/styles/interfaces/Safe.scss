@@ -10,7 +10,7 @@
 }
 
 .Safe__engraving-arrow {
-  color: hsl(217.3, 25.9%, 28.0%);
+  color: hsl(217.3, 25.9%, 28%);
 }
 
 .Safe__engraving-hinge {
@@ -39,7 +39,7 @@
 }
 
 .Safe__dialer-number {
-  color: hsl(0.0, 0.0%, 73.3%);
+  color: hsl(0, 0%, 73.3%);
   display: inline;
   background-color: hsl(218.8, 25.4%, 13.1%);
   font-size: 1.5rem;
@@ -49,7 +49,7 @@
 
 .Safe__contents {
   border: 10px solid hsl(218.8, 25.4%, 13.1%);
-  background-color: hsl(218.2, 26.8%, 8.0%);
+  background-color: hsl(218.2, 26.8%, 8%);
   height: calc(85% + 7.5px);
   text-align: left;
   padding: 5px;
@@ -64,8 +64,12 @@
   font-family: 'Comic Sans MS', cursive, sans-serif;
   font-style: italic;
   color: black;
-  box-shadow: 5px 5px hsl(0.0, 0.0%, 6.7%);
-  background-image: linear-gradient(to bottom, hsl(56.1, 28.7%, 57.6%) 0%, hsl(56.3, 20.9%, 46.1%) 100%);
+  box-shadow: 5px 5px hsl(0, 0%, 6.7%);
+  background-image: linear-gradient(
+    to bottom,
+    hsl(56.1, 28.7%, 57.6%) 0%,
+    hsl(56.3, 20.9%, 46.1%) 100%
+  );
   transform: rotate(-1deg);
 
   &:before {
@@ -73,8 +77,12 @@
     display: block;
     width: 24px;
     height: 40px;
-    background-image: linear-gradient(to bottom, transparent 0%, hsl(0.0, 0.0%, 100.0%) 100%);
-    box-shadow: 1px 1px hsl(0.0, 0.0%, 6.7%);
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      hsl(0, 0%, 100%) 100%
+    );
+    box-shadow: 1px 1px hsl(0, 0%, 6.7%);
     opacity: 0.2;
     position: absolute;
     top: -30px;

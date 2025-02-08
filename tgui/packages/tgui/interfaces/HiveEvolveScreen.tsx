@@ -1,5 +1,10 @@
 import { useBackend } from '../backend';
-import { Button, Collapsible, ProgressBar, Section } from 'tgui-core/components';
+import {
+  Button,
+  Collapsible,
+  ProgressBar,
+  Section,
+} from 'tgui-core/components';
 import { Window } from '../layouts';
 
 const EvolveProgress = (props) => (

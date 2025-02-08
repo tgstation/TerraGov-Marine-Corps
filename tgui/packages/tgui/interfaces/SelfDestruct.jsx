@@ -1,5 +1,10 @@
 import { useBackend } from '../backend';
-import { Button, LabeledList, ProgressBar, Section } from 'tgui-core/components';
+import {
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from 'tgui-core/components';
 import { Window } from '../layouts';
 
 export const SelfDestruct = (props) => {

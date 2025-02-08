@@ -2,7 +2,13 @@ import { KEY } from 'tgui-core/keys';
 import { useState } from 'react';
 
 import { useBackend } from '../backend';
-import { Box, Button, RestrictedInput, Section, Stack } from 'tgui-core/components';
+import {
+  Box,
+  Button,
+  RestrictedInput,
+  Section,
+  Stack,
+} from 'tgui-core/components';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';
