@@ -1,5 +1,3 @@
-import { classes } from 'tgui-core/react';
-
 import { useState } from 'react';
 import {
   Box,
@@ -10,8 +8,10 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
 import { Window } from '../../layouts';
-import { MechWeapon, tabs, MECHA_ASSEMBLY, MECHA_WEAPONS } from './data';
+import { MECHA_ASSEMBLY, MECHA_WEAPONS, MechWeapon, tabs } from './data';
 import { MechAssembly } from './MechAssembly';
 import { MechWeapons } from './MechWeapons';
 

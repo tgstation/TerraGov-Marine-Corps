@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -8,7 +9,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { useState } from 'react';
 import { formatTime } from 'tgui-core/format';
 import { capitalize } from 'tgui-core/string';
 
@@ -95,7 +95,7 @@ export const MechAssembly = (props) => {
   const left_weapon_scatter = left_weapon ? left_weapon.scatter : 0;
   const right_weapon_scatter = right_weapon ? right_weapon.scatter : 0;
 
-  ///TODO: replace collapsibles with tooltips instead (see any tg ui with underlined text)
+  // /TODO: replace collapsibles with tooltips instead (see any tg ui with underlined text)
   return (
     <Stack>
       <Stack.Item>

@@ -1,4 +1,3 @@
-import { useBackend } from '../backend';
 import {
   Button,
   Divider,
@@ -7,6 +6,8 @@ import {
   ProgressBar,
   Section,
 } from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 export const SupplyDropConsole = (_props) => {

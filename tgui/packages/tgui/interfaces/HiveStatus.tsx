@@ -1,7 +1,4 @@
-import { round } from 'tgui-core/math';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -12,6 +9,9 @@ import {
   Section,
   Tooltip,
 } from 'tgui-core/components';
+import { round } from 'tgui-core/math';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type InputPack = {

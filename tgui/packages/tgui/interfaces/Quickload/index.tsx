@@ -1,4 +1,3 @@
-import { useBackend } from '../../backend';
 import { useState } from 'react';
 import {
   Box,
@@ -10,6 +9,8 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import { Window } from '../../layouts';
 import {
   LoadoutItemData,

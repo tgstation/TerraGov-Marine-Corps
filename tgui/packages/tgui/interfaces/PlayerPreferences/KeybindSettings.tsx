@@ -1,6 +1,4 @@
-import { useState, Component } from 'react';
-
-import { useBackend } from '../../backend';
+import { Component, useState } from 'react';
 import {
   Box,
   Button,
@@ -9,8 +7,10 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { TextInputModal } from './TextInputModal';
 import { globalEvents } from 'tgui-core/events';
+
+import { useBackend } from '../../backend';
+import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {
   SHIFT: true,

@@ -1,7 +1,7 @@
-import { KEY } from 'tgui-core/keys';
-import { BooleanLike } from 'tgui-core/react';
 import { Component, createRef, RefObject } from 'react';
 import { dragStartHandler } from 'tgui/drag';
+import { KEY } from 'tgui-core/keys';
+import { BooleanLike } from 'tgui-core/react';
 
 import { Channel, ChannelIterator } from './ChannelIterator';
 import { ChatHistory } from './ChatHistory';

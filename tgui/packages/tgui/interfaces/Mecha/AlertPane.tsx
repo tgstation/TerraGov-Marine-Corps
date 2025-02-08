@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
 import { Box, Button, Stack } from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import {
   InternalDamageToDamagedDesc,
   InternalDamageToNormalDesc,

@@ -1,6 +1,4 @@
-import { classes } from 'tgui-core/react';
 import { useState } from 'react';
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -10,6 +8,9 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend } from '../../backend';
 import {
   equipTabs,
   MECHA_ARMOR,
@@ -19,7 +20,6 @@ import {
   MechPower,
   MechUtility,
   MechVendData,
-  MechWeapon,
 } from './data';
 
 const SelectedEquipment = (props) => {

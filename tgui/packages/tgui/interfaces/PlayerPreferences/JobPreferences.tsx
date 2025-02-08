@@ -1,6 +1,4 @@
 import { useState } from 'react';
-
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -10,6 +8,8 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 
 export const JobPreferences = (props) => {
   const { act, data } = useBackend<JobPreferencesData>();

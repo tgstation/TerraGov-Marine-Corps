@@ -1,7 +1,4 @@
-import { map } from 'common/collections';
 import { Fragment, useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   AnimatedNumber,
   Box,
@@ -16,6 +13,8 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 const category_icon = {

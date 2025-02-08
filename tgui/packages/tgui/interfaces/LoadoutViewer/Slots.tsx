@@ -1,8 +1,8 @@
 import { range } from 'common/collections';
+import { Box, Button, Flex, Section, Stack } from 'tgui-core/components';
 
 import { resolveAsset } from '../../assets';
 import { useBackend } from '../../backend';
-import { Box, Button, Flex, Section, Stack } from 'tgui-core/components';
 import { getGridSpotKey, GridSpotKey, LoadoutSlotData, SLOTS } from './Types';
 
 const ROWS = 4;

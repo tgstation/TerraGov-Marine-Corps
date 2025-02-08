@@ -1,5 +1,6 @@
-import { useBackend } from '../../backend';
 import { ByondUi } from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 
 export const ProfilePicture = (props) => {
   const { data } = useBackend<ProfilePictureData>();

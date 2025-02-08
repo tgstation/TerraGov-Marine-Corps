@@ -1,3 +1,4 @@
+import { Button, NoticeBox, ProgressBar, Stack } from 'tgui-core/components';
 import {
   KEY_1,
   KEY_2,
@@ -16,8 +17,8 @@ import {
   KEY_UP,
   KEY_W,
 } from 'tgui-core/keycodes';
+
 import { useBackend } from '../backend';
-import { Button, NoticeBox, ProgressBar, Stack } from 'tgui-core/components';
 import { Window } from '../layouts';
 
 // _DEFINES/cas.dm

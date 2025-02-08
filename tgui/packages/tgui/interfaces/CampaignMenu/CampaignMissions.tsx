@@ -1,6 +1,3 @@
-import { classes } from 'tgui-core/react';
-
-import { useBackend, useLocalState } from '../../backend';
 import {
   Box,
   Button,
@@ -10,6 +7,9 @@ import {
   Stack,
   Table,
 } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend, useLocalState } from '../../backend';
 import { CampaignData, MissionData } from './index';
 
 export const CampaignMissions = (props) => {

@@ -1,7 +1,4 @@
-import { KEY } from 'tgui-core/keys';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -9,6 +6,9 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { KEY } from 'tgui-core/keys';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { InputButtons } from './common/InputButtons';
 import { Loader } from './common/Loader';

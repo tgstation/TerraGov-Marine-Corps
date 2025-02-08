@@ -1,7 +1,7 @@
+import { Button, Flex, Table } from 'tgui-core/components';
 import { BooleanLike, classes } from 'tgui-core/react';
 
 import { useBackend } from '../backend';
-import { Button, Flex, Table } from 'tgui-core/components';
 import { Window } from '../layouts';
 
 type AlternateAction = {

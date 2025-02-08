@@ -1,4 +1,3 @@
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -6,6 +5,8 @@ import {
   Section,
   Tooltip,
 } from 'tgui-core/components';
+
+import { useBackend } from '../../backend';
 import { MechaUtility, OperatorData } from './data';
 
 const UtilityName = (props: { name: string }) => {

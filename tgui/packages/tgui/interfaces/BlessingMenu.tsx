@@ -1,7 +1,4 @@
-import { classes } from 'tgui-core/react';
 import { useState } from 'react';
-
-import { useBackend } from '../backend';
 import {
   Box,
   Button,
@@ -13,6 +10,9 @@ import {
   Stack,
   Tabs,
 } from 'tgui-core/components';
+import { classes } from 'tgui-core/react';
+
+import { useBackend } from '../backend';
 import { Window } from '../layouts';
 
 type BlessingData = {

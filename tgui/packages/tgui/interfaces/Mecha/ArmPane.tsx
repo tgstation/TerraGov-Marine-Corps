@@ -1,6 +1,3 @@
-import { toFixed } from 'tgui-core/math';
-
-import { useBackend } from '../../backend';
 import {
   Button,
   LabeledList,
@@ -8,6 +5,9 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+
+import { useBackend } from '../../backend';
 import { MechWeapon, OperatorData } from './data';
 
 export const ArmPane = (props: { weapon: MechWeapon }) => {
