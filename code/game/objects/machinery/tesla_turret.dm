@@ -41,6 +41,9 @@
 	. = ..()
 	if(!istype(inserting_item))
 		return
+	if(battery)
+		balloon_alert(user, "already has")
+		return
 	if(!user.temporarilyRemoveItemFromInventory(inserting_item))
 		return
 
@@ -91,6 +94,9 @@
 /obj/machinery/deployable/tesla_turret/attackby(obj/item/cell/inserting_item, mob/user, params)
 	. = ..()
 	if(!istype(inserting_item))
+		return
+	if(battery)
+		balloon_alert(user, "already has")
 		return
 	if(!user.temporarilyRemoveItemFromInventory(inserting_item))
 		return
