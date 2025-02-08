@@ -69,3 +69,44 @@
 		/datum/action/ability/activable/xeno/pounce/runner,
 		/datum/action/ability/activable/xeno/snatch,
 	)
+
+
+/datum/xeno_caste/runner/acid
+	caste_type_path = /mob/living/carbon/xenomorph/runner/acid
+	upgrade_name = ""
+	caste_name = "Acid Runner"
+	display_name = "Acid Runner"
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_desc = "A fast, four-legged terror. It got acid covered all over it."
+
+	// -11 melee damage. Attacking will do melee damage again, except in burn damage.
+	melee_damage = 12
+
+	// Gain armor (+10) for less speed (0.2).
+	speed = -1.2
+	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 10, BIO = 15, FIRE = 30, ACID = 15)
+
+	// Loses pounce and evasion for acid-themed abilities.
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/xenohide,
+	)
+
+/datum/xeno_caste/runner/acid/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/runner/acid/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "TBD"
+	primordial_message = "TBD"
+	upgrade = XENO_UPGRADE_PRIMO
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/xenohide,
+		// TBD
+	)

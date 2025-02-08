@@ -30,7 +30,7 @@
 /mob/living/carbon/xenomorph/runner/UnarmedAttack(atom/A, has_proximity, modifiers)
 	/// Runner should not be able to slash while evading.
 	var/datum/action/ability/xeno_action/evasion/evasion_action = actions_by_path[/datum/action/ability/xeno_action/evasion]
-	if(evasion_action.evade_active)
+	if(evasion_action?.evade_active)
 		balloon_alert(src, "Cannot slash while evading")
 		return
 	return ..()
@@ -62,3 +62,22 @@
 
 /mob/living/carbon/xenomorph/runner/resisted_against(datum/source)
 	user_unbuckle_mob(source, source)
+
+/mob/living/carbon/xenomorph/runner/acid
+	caste_base_type = /datum/xeno_caste/runner/acid
+
+/mob/living/carbon/xenomorph/runner/acid/Initialize(mapload)
+	. = ..()
+	RegisterSignal(src, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_attack_obj))
+	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack_living))
+
+/// Deals a second instance of melee damage as burn damage to damageable objects.
+/mob/living/carbon/xenomorph/runner/acid/proc/on_attack_obj(mob/living/carbon/xenomorph/source, obj/target)
+	SIGNAL_HANDLER
+	if(target.resistance_flags & XENO_DAMAGEABLE)
+		target.take_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, BURN, ACID)
+
+/// Deals a second instance of melee damage as burn damage to living beings.
+/mob/living/carbon/xenomorph/runner/acid/proc/on_postattack_living(mob/living/carbon/xenomorph/source, mob/living/target, damage)
+	SIGNAL_HANDLER
+	target.apply_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, BURN, null, ACID)
