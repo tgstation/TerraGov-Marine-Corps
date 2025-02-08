@@ -448,6 +448,7 @@
 		particle_holder.pixel_x = 10
 		increase_acid_level()
 		return
+	deltimer(timer_id)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_complete))
 	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(on_stagger))
 	xeno_owner.xeno_flags |= XENO_LEAPING
