@@ -11,9 +11,9 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accuracy_var_low = 7
 	accuracy_var_high = 7
-	damage = 20
+	damage = 15
 	accurate_range = 4
-	damage_falloff = 1
+	damage_falloff = 1.4
 	sundering = 0.5
 	penetration = 5
 
@@ -45,7 +45,7 @@
 	penetration = 15
 	armor_type = BOMB
 	sundering = 1
-	damage_falloff = 2
+	damage_falloff = 1.7
 	shrapnel_chance = 0
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 3 SECONDS
@@ -83,6 +83,7 @@
 
 /datum/ammo/bullet/smg/heavy
 	name = "heavy submachinegun bullet"
-	damage = 27.5
+	damage = 20
 	penetration = 10
 	sundering = 1
+	damage_falloff = 1.2
