@@ -37,7 +37,6 @@
 		/datum/job/xenomorph = NUCLEAR_WAR_LARVA_POINTS_NEEDED,
 	)
 	var/siloless_hive_timer
-	deploy_time_lock = 15 SECONDS
 
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	. = ..()
@@ -90,7 +89,7 @@
 	if(siloless_hive_timer)
 		return
 
-	silo_owner.xeno_message("We don't have any silos or corrupted generators! The hive will collapse if nothing is done", "xenoannounce", 6, TRUE)
+	silo_owner.xeno_message("We don't have any silos or corrupted generators! The hive will collapse if nothing is done.", "xenoannounce", 6, TRUE)
 	siloless_hive_timer = addtimer(CALLBACK(src, PROC_REF(siloless_hive_collapse)), NUCLEAR_WAR_SILO_COLLAPSE, TIMER_STOPPABLE)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SILOLESS_COLLAPSE)
 
