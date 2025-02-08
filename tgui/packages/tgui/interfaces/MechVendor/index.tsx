@@ -1,10 +1,9 @@
 import { classes } from 'tgui-core/react';
 
-import { useLocalState } from '../../backend';
+import { useState } from 'react';
 import {
   Box,
   Button,
-  Divider,
   LabeledList,
   Modal,
   Section,
@@ -12,16 +11,13 @@ import {
   Tabs,
 } from 'tgui-core/components';
 import { Window } from '../../layouts';
-import { MechWeapon, tabs } from './data';
+import { MechWeapon, tabs, MECHA_ASSEMBLY, MECHA_WEAPONS } from './data';
 import { MechAssembly } from './MechAssembly';
 import { MechWeapons } from './MechWeapons';
 
 export const MechVendor = (props) => {
-  const [showDesc, setShowDesc] = useLocalState<MechWeapon | null>(
-    'showDesc',
-    null,
-  );
-  const [selectedTab, setSelectedTab] = useLocalState('selectedTab', tabs[0]);
+  const [showDesc, setShowDesc] = useState<MechWeapon | null>(null);
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
 
   return (
     <Window title={'Mecha Assembler'} width={1440} height={620}>
@@ -123,22 +119,11 @@ export const MechVendor = (props) => {
             );
           })}
         </Tabs>
-        <PanelContent />
+        {selectedTab === MECHA_ASSEMBLY && <MechAssembly />}
+        {selectedTab === MECHA_WEAPONS && (
+          <MechWeapons setShowDesc={setShowDesc} />
+        )}
       </Window.Content>
     </Window>
   );
-};
-
-const PanelContent = (props) => {
-  const [selectedTab, setSelectedTab] = useLocalState('selectedTab', tabs[0]);
-  {
-    switch (selectedTab) {
-      case 'Mecha Assembly':
-        return <MechAssembly />;
-      case 'Weapons':
-        return <MechWeapons />;
-      default:
-        return null;
-    }
-  }
 };
