@@ -403,8 +403,8 @@
 /datum/action/ability/activable/xeno/corrosive_acid/acidder
 	desc = "Cover an object with acid to slowly melt it. Takes less time than usual."
 	ability_cost = 25
-	acid_type = /obj/effect/xenomorph/acid/strong
-	acid_speed_multiplier = 0.5
+	acid_type = /obj/effect/xenomorph/acid/weak
+	acid_speed_multiplier = 0.75 // 50% faster
 
 /datum/action/ability/activable/xeno/charge/acid_dash/acidder
 	ability_cost = 50
