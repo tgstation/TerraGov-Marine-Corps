@@ -2,6 +2,7 @@ Go to Valhalla to experiment with loadouts and weapons. You don't reset your res
 Fire disables pheromones, use this information to your advantage.
 Silo rushing isn't worth it when multiple marines die and get psychic drained for a new silo.
 Fire does NOT hurt pyrogen, the xenomorph on FIRE!
+DO NOT SHUFFLE THE FC OR SL WITH BINOCULAR!
 Don't get left behind, corpsmen! Use your minimap to check where marines are, whether alive or dead!
 Catch larval facehuggers by having an empty hand and throw mode on.
 Use fire to remove facehugger on marine's face before the facehugger impregnate!
@@ -16,6 +17,7 @@ Trading your life for a Xenomorph's is almost always worth it.
 You do not need to be in harm intent to point blank xenomorphs!
 The mini map (green icon on the top of the screen) helps you know where the frontline is at and where revivable marines are. You can keybind it in game preferences.
 No round has ever been won behind a barricade.
+If you have a fracture, find a corpsman.  You can splint your fracture yourself, but it will break in a single hit.  A corpsman can give you a durable splint.
 You can refill the marine jetpack with flamer tanks.
 Jetpacks can fly over most things. Use them to escape your poor decisions of overextending.
 If the main push is stagnating and the area is congested, try to coordinate with a few others and go to a different area.
@@ -168,10 +170,14 @@ The CL can order pizza with their fax-machine.
 Insulting your fellow marines is terrible for morale. Be kind.
 The admins are usually not out to get you.
 The most dangerous tactic is the unexpected.
+As an engieneer, the marines are counting on your to reinforce the area.
+A good an engieneer is one that will dismantle everything in the room for extra metal.
+A marine can miss, a turret rarely does.
 The Baldur armor module significantly increases your light output. Become the flashlight you always wanted to be!
 Try not to bump into corpsmen. Your life might depend on it.
 With a cigarette pack in hand, target the mouth and click yourself to instantly take one.
-Spamming flares can be incredibly helpful, especially when the King uses Nightfall! Many marines cannot see in darkness, so if you lighten up the firing lane with flares, marines can shoot better.
+A firing lane is useless without visibility; use flares to have visibility!
+Spamming flares increase visibility, especially when the King uses Nightfall! Many marines cannot see in darkness, so if you lighten up the firing lane with flares, marines can shoot better.
 The cryopods in medbay heal most types of damage but not organ damage!
 When in doubt, throw them in the autodoc.
 Medbay may sometimes run out of power. To avoid this, scream at your nearest engineer to repair the fusion reactors or replace the power cell in medbay's APC.
