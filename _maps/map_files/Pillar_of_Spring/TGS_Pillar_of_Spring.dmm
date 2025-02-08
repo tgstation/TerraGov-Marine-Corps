@@ -9715,7 +9715,7 @@
 	},
 /area/mainship/medical/upper_medical)
 "lYL" = (
-/obj/machinery/computer/sleep_console,
+/obj/machinery/computer/body_scanconsole,
 /turf/open/floor/mainship/sterile/side,
 /area/mainship/medical/lower_medical)
 "lYQ" = (
@@ -16724,7 +16724,7 @@
 	},
 /area/mainship/command/airoom)
 "uMj" = (
-/obj/machinery/computer/body_scanconsole,
+/obj/machinery/computer/sleep_console,
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/lower_medical)
 "uMG" = (
