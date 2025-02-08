@@ -176,8 +176,8 @@
 		shake_camera(current_mob, 0.7 SECONDS)
 		to_chat(current_mob, span_warning("The deck of the [SSmapping.configs[SHIP_MAP].map_name] shudders as her orbital cannon opens fire."))
 	playsound(loc, 'sound/effects/obfire.ogg', 100, FALSE, 20, 4)
-	for(var/mob/M AS in hearers(WARHEAD_FALLING_SOUND_RANGE, target))
-		M.playsound_local(target, ob_sound, falloff = 2)
+	for(var/mob/mob AS in cheap_get_living_near(target, WARHEAD_FALLING_SOUND_RANGE))
+		mob.playsound_local(target, ob_sound, falloff = 2)
 
 	new /obj/effect/temp_visual/ob_impact(target, tray.warhead)
 
