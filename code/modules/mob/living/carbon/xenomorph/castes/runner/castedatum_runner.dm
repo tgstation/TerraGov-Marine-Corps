@@ -83,8 +83,8 @@
 	// -12 melee damage. Attacking does a second instance of melee damage as burn damage + status effect.
 	melee_damage = 11
 
-	// Gain armor (+10) for less speed (0.2).
-	speed = -1.2
+	// Gain armor (+10) for less speed (0.1).
+	speed = -1.3
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 10, BIO = 15, FIRE = 30, ACID = 15)
 
 	// Gets acid blood.
@@ -95,8 +95,9 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/charge/acid_dash/acidder,
 		/datum/action/ability/activable/xeno/corrosive_acid/acidder,
+		/datum/action/ability/activable/xeno/charge/acid_dash/acidder,
+		/datum/action/ability/activable/xeno/acid_shroud/acidder,
 		/datum/action/ability/xeno_action/xenohide,
 	)
 
@@ -113,8 +114,9 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/charge/acid_dash/acidder,
 		/datum/action/ability/activable/xeno/corrosive_acid/acidder,
+		/datum/action/ability/activable/xeno/charge/acid_dash/acidder,
+		/datum/action/ability/activable/xeno/acid_shroud/acidder,
 		/datum/action/ability/activable/xeno/acidic_missile,
 		/datum/action/ability/xeno_action/xenohide,
 	)

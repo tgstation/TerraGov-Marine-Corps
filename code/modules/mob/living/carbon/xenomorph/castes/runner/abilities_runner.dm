@@ -439,6 +439,14 @@
 	/// The acid level of the ability. Affects radius and movement speed.
 	var/acid_level = 0
 
+
+/datum/action/ability/activable/xeno/acid_shroud/acidder
+	desc = "Creates a smokescreen below yourself."
+	ability_cost = 50
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_ACIDDER,
+	)
+
 /datum/action/ability/activable/xeno/acidic_missile/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
 	if(!.)

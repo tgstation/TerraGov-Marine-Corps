@@ -259,6 +259,12 @@
 	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD
 	hotkey_keys = list("Q")
 
+/datum/keybinding/xeno/acid_shroud_acidder
+	name = "Acidder: Acid Shroud"
+	full_name = "Acidder: Acid Shroud"
+	description = "Create a smokescreen for a getaway."
+	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD_ACIDDER
+
 /datum/keybinding/xeno/acid_shroud_select
 	name = "select_acid_shroud"
 	full_name = "Boiler: Select Acid Shroud"
