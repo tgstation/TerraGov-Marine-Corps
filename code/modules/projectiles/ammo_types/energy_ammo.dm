@@ -245,7 +245,7 @@
 	name = "overcharged laser bolt"
 	icon_state = "overchargedlaser"
 	hud_state = "laser_sniper"
-	damage = 35
+	damage = 40
 	penetration = 20
 	sundering = 2
 	hitscan_effect_icon = "beam_heavy"
