@@ -446,6 +446,7 @@
 		/obj/item/attachable/lasersight,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/weapon/gun/flamer/mini_flamer,
 		/obj/item/attachable/motiondetector,
@@ -467,7 +468,7 @@
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.55
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/energy_rifle_mode/standard,
 		"Overcharge" = /datum/lasrifle/energy_rifle_mode/overcharge,
@@ -567,7 +568,7 @@
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
-	damage_falloff_mult = 0.7
+	damage_falloff_mult = 0.5
 	aim_slowdown = 0
 	mode_list = list(
 		"Standard" = /datum/lasrifle/energy_pistol_mode/standard,
@@ -787,7 +788,6 @@
 	scatter = -4
 	scatter_unwielded = 10
 	fire_delay = 0.8 SECONDS
-	damage_falloff_mult = 0.5
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
 	movement_acc_penalty_mult = 6
@@ -864,6 +864,7 @@
 		/obj/item/attachable/bayonetknife/som,
 		/obj/item/attachable/flashlight,
 		/obj/item/attachable/magnetic_harness,
+		/obj/item/attachable/scope/marine,
 		/obj/item/attachable/scope/mini,
 		/obj/item/weapon/gun/grenade_launcher/underslung,
 		/obj/item/weapon/gun/flamer/mini_flamer,
@@ -889,7 +890,7 @@
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
 	movement_acc_penalty_mult = 6
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.3
 	windup_sound = 'sound/weapons/guns/fire/laser_charge_up.ogg'
 	mode_list = list(
 		"Standard" = /datum/lasrifle/energy_mg_mode/standard,
