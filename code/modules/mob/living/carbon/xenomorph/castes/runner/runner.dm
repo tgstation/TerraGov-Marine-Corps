@@ -76,6 +76,8 @@
 		new /obj/effect/temp_visual/acid_splatter(acid_tile)
 		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
 			new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
+			for (var/atom/movable/atom_in_acid AS in acid_tile)
+				atom_in_acid.acid_spray_act(src)
 	return ..()
 
 /// Deals a second instance of melee damage as burn damage to damageable objects.
