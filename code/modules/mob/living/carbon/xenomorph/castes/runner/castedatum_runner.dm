@@ -75,7 +75,7 @@
 	caste_type_path = /mob/living/carbon/xenomorph/runner/acid
 	upgrade_name = ""
 	caste_name = "Acid Runner"
-	display_name = "Acid Runner"
+	display_name = "Acidder"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A fast, four-legged terror. It got acid covered all over it."
 
@@ -85,6 +85,9 @@
 	// Gain armor (+10) for less speed (0.2).
 	speed = -1.2
 	soft_armor = list(MELEE = 40, BULLET = 40, LASER = 40, ENERGY = 40, BOMB = 10, BIO = 15, FIRE = 30, ACID = 15)
+
+	// Gets acid blood.
+	caste_flags = CASTE_ACID_BLOOD|CASTE_EVOLUTION_ALLOWED
 
 	// Loses pounce and evasion for acid-themed abilities.
 	actions = list(
@@ -100,8 +103,8 @@
 
 /datum/xeno_caste/runner/acid/primordial
 	upgrade_name = "Primordial"
-	caste_desc = "TBD"
-	primordial_message = "TBD"
+	caste_desc = "An agile acid-wielding predator. Its speed and corrosive touch spell doom for any who stand in its way."
+	primordial_message = "With our nimble movements and acidic touch, we close in and dissolve all resistance."
 	upgrade = XENO_UPGRADE_PRIMO
 
 	actions = list(
