@@ -80,8 +80,8 @@
 
 	acid_spray_damage = 16
 
-	// -11 melee damage. Attacking does a second instance of melee damage as burn damage.
-	melee_damage = 12
+	// -12 melee damage. Attacking does a second instance of melee damage as burn damage + status effect.
+	melee_damage = 11
 
 	// Gain armor (+10) for less speed (0.2).
 	speed = -1.2

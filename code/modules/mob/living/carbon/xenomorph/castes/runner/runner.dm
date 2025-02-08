@@ -88,3 +88,8 @@
 /mob/living/carbon/xenomorph/runner/acidder/proc/on_postattack_living(mob/living/carbon/xenomorph/source, mob/living/target, damage)
 	SIGNAL_HANDLER
 	target.apply_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, BURN, null, ACID)
+	var/datum/status_effect/stacking/melting_acid/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_ACID)
+	if(!debuff)
+		target.apply_status_effect(STATUS_EFFECT_MELTING_ACID, 2)
+		return
+	debuff.add_stacks(2)

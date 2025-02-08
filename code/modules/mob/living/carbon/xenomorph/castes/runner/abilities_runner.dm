@@ -401,6 +401,7 @@
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
 /datum/action/ability/activable/xeno/corrosive_acid/acidder
+	desc = "Cover an object with acid to slowly melt it. Takes less time than usual."
 	ability_cost = 25
 	acid_type = /obj/effect/xenomorph/acid/strong
 	acid_speed_multiplier = 0.5
@@ -411,6 +412,7 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH_ACIDDER,
 	)
+	charge_range = 7
 	do_acid_spray_act = FALSE
 
 /datum/action/ability/activable/xeno/charge/acid_dash/acidder/mob_hit(datum/source, mob/living/living_target)
@@ -491,11 +493,12 @@
 /// Ends the ability and explodes with a radius based on acid level.
 /datum/action/ability/activable/xeno/acidic_missile/proc/acid_explosion(got_canceled = FALSE, do_emote = FALSE)
 	deltimer(timer_id)
-	add_cooldown()
-
 	QDEL_NULL(particle_holder)
+	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
+
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_ACIDIC_MISSILE)
 	xeno_owner.remove_atom_colour(FIXED_COLOR_PRIORITY, "#bcff70")
+	add_cooldown()
 
 	if(acid_level && got_canceled)
 		acid_level--
@@ -519,7 +522,6 @@
 	if(got_canceled)
 		fail_activate()
 		return
-
 	succeed_activate()
 
 /particles/acidder_steam
