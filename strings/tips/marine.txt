@@ -1,11 +1,13 @@
 Go to Valhalla to experiment with loadouts and weapons. You don't reset your respawn time in Valhalla!
 Fire disables pheromones, use this information to your advantage.
 Catch larval facehuggers by having an empty hand and throw mode on.
+If you have an AI onboard the ship, consider bringing a AI coordinate unit next time you use the artillery. Or just simply ask the AI for scan a tile for your coordinates for your strikes. Coordinate Coordination.
 Standing in a corner on harm intent stops you from behing shuffled, unless you're a marine and a xenomorph on help intent walks into you.
 Jumping will allow you to throw grenades farther, and over allies. Yeet those grenades to xenomorphs!
 Hunger will slow you down. A single protein bar will fill everyone's stomach. Take an extra protein bar too much and you become slower (ironic) and fat.
 If you are low on blood, eating food can help you replenish blood.
 Roll on snow to instantly extinguish fire.
+Portable spotlights help with visability. You can find them in armament vendors.
 Putting an instrument in your armor slot allows you to still be able to play it, charge into battle with song!
 Many maps spawn with free metal, plasteel and other important supplies in key spots. As a marine, remember to grab them and as a xeno, make sure to melt them.
 Trading your life for a Xenomorph's is almost always worth it.
@@ -180,3 +182,9 @@ Always stick to your squad, or at least have a buddy.
 Walking to and from the FOB by yourself is an easy way to die.
 Xenomorphs are well-armored. Over time, their exoskeleton will wear down by sunder, and they will be very vulnerable.
 You can attach a bullet charger to a BR-127 to become a discount autosniper.
+You can jump on tanks and APC's. As long as you have one empty hand you won't be thrown off when it moves.
+You can shoot any target riding on a tank or APC by directly clicking on them. Tanks and APC's often lack methods to deal with hostile riders, and need help from other marines.
+Assault Crewmen can drive APC's, but Transport Crewmen cannot drive tanks. Transport Crewman can still act as a loader for a tank though.
+Got a xenomorph riding on the roof of your vehicle as an Assault Crewman or Transport Crewman? If you have an explosive weapon, try shooting a wall next to you to dislodge them.
+Acid Jaws must be placed outside in the open. This makes them vulnerable to CAS, OB's, Mortars, or being scouted by the Tadpole. Use the xeno structure pinpointer to locate them, and consider lasing them with tactical binoculars if xenomorphs are putting up a heavy defence.
+Lasers have different firing modes that have different effects on xenomorphs, making them extremely versatile in any situation.
