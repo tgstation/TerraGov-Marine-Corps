@@ -400,6 +400,11 @@
 	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
+/datum/action/ability/activable/xeno/corrosive_acid/acid_runner
+	ability_cost = 25
+	acid_type = /obj/effect/xenomorph/acid/strong
+	acid_speed_multiplier = 0.5
+
 /datum/action/ability/activable/xeno/acidic_missile
 	name = "Acidic Missile"
 	action_icon_state = "pounce"
@@ -493,7 +498,6 @@
 		return
 
 	succeed_activate()
-
 
 /particles/acid_runner_steam
 	icon = 'icons/effects/particles/smoke.dmi'

@@ -79,7 +79,7 @@
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A fast, four-legged terror. It got acid covered all over it."
 
-	// -11 melee damage. Attacking will do melee damage again, except in burn damage.
+	// -11 melee damage. Attacking does a second instance of melee damage as burn damage.
 	melee_damage = 12
 
 	// Gain armor (+10) for less speed (0.2).
@@ -91,6 +91,7 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/corrosive_acid/acid_runner,
 		/datum/action/ability/xeno_action/xenohide,
 	)
 
@@ -107,7 +108,7 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/xeno_action/xenohide,
+		/datum/action/ability/activable/xeno/corrosive_acid/acid_runner,
 		/datum/action/ability/activable/xeno/acidic_missile,
-		// TBD
+		/datum/action/ability/xeno_action/xenohide,
 	)
