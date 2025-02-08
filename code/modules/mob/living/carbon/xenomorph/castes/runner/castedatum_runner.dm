@@ -108,5 +108,6 @@
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/xeno_action/xenohide,
+		/datum/action/ability/activable/xeno/acidic_missile,
 		// TBD
 	)

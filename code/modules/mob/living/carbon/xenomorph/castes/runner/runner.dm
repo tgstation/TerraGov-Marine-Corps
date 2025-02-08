@@ -71,6 +71,13 @@
 	RegisterSignal(src, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_attack_obj))
 	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack_living))
 
+/mob/living/carbon/xenomorph/runner/acid/death(gibbing, deathmessage, silent)
+	for(var/turf/acid_tile AS in RANGE_TURFS(2, loc))
+		new /obj/effect/temp_visual/acid_splatter(acid_tile)
+		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
+			new /obj/effect/xenomorph/spray(acid_tile, 6 SECONDS, 16)
+	return ..()
+
 /// Deals a second instance of melee damage as burn damage to damageable objects.
 /mob/living/carbon/xenomorph/runner/acid/proc/on_attack_obj(mob/living/carbon/xenomorph/source, obj/target)
 	SIGNAL_HANDLER
