@@ -400,6 +400,8 @@
 	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
+
+// TODO: COMMENTS & STAGGER SIGNAL STUFF
 /datum/action/ability/activable/xeno/acidic_missile
 	name = "Acidic Missile"
 	action_icon_state = "pounce"
