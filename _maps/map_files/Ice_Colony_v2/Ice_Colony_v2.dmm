@@ -12318,6 +12318,7 @@
 "bAO" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
+/obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
 /area/ice_colony/underground/hallway/north_west)
 "bAP" = (
@@ -18398,7 +18399,7 @@
 "dpq" = (
 /obj/effect/landmark/xeno_tunnel_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves)
+/area/ice_colony/underground/maintenance/engineering)
 "dpy" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment{
@@ -18706,10 +18707,11 @@
 /turf/open/floor/tile/dark2,
 /area/ice_colony/surface/engineering)
 "dLD" = (
-/obj/effect/ai_node,
 /obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves/ice_w)
+/area/ice_colony/underground/maintenance/engineering)
 "dNp" = (
 /obj/effect/ai_node,
 /turf/open/floor/tile/dark2,
@@ -19776,9 +19778,10 @@
 /turf/open/floor/wood,
 /area/ice_colony/surface/dorms)
 "foy" = (
-/obj/effect/landmark/weed_node,
+/obj/effect/landmark/xeno_resin_door,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves)
+/area/ice_colony/underground/maintenance/engineering)
 "foD" = (
 /obj/structure/rack,
 /obj/effect/spawner/random/engineering/shovel{
@@ -24014,8 +24017,8 @@
 /area/ice_colony/underground/hallway/north_west/garbledradio)
 "lBI" = (
 /obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
-/obj/effect/landmark/xeno_resin_wall,
-/turf/open/floor/plating/ground/ice,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
+/turf/closed/mineral/smooth/bluefrostwall,
 /area/ice_colony/exterior/underground/caves)
 "lBY" = (
 /obj/structure/table/mainship/nometal,
@@ -30799,7 +30802,7 @@
 "urb" = (
 /obj/effect/landmark/xeno_silo_spawn,
 /turf/open/floor/plating/ground/ice,
-/area/ice_colony/exterior/underground/caves)
+/area/ice_colony/underground/maintenance/engineering)
 "urw" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/spawner/random/engineering/shovel,
@@ -31741,6 +31744,7 @@
 /area/ice_colony/surface/research)
 "vBk" = (
 /obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/exterior/underground/caves)
 "vBp" = (
@@ -33753,8 +33757,8 @@
 /turf/open/floor/plating,
 /area/ice_colony/underground/maintenance/north)
 "yba" = (
-/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /obj/effect/landmark/xeno_resin_wall,
+/obj/effect/landmark/lv624/fog_blocker/xeno_spawn,
 /turf/open/floor/plating/ground/ice,
 /area/ice_colony/underground/maintenance/engineering)
 "ybf" = (
@@ -37180,15 +37184,7 @@ tbJ
 gje
 gje
 uSg
-oxN
-oxN
 ksZ
-oxN
-oxN
-oxN
-xHc
-uSg
-oxN
 oxN
 oxN
 oxN
@@ -37198,7 +37194,15 @@ uSg
 uSg
 oxN
 oxN
-ksZ
+oxN
+oxN
+oxN
+oxN
+uSg
+uSg
+oxN
+oxN
+oxN
 uSg
 uSg
 uSg
@@ -37602,21 +37606,21 @@ uSg
 uSg
 uSg
 oxN
+oxN
+oxN
+oxN
+oxN
+uSg
+uSg
+ksZ
+oxN
 ksZ
 oxN
 oxN
 oxN
-xHc
-uSg
 oxN
 oxN
-oxN
-oxN
-oxN
-oxN
-oxN
-oxN
-oxN
+ksZ
 oxN
 uSg
 oxN
@@ -37694,7 +37698,7 @@ qFy
 qbo
 qbo
 qbo
-uSg
+uQB
 jJX
 jJX
 jJX
@@ -37813,10 +37817,10 @@ oxN
 uSg
 uSg
 uSg
+ksZ
 oxN
 oxN
-oxN
-oxN
+ksZ
 uSg
 uSg
 uSg
@@ -38014,19 +38018,19 @@ oxN
 oxN
 oxN
 oxN
-ksZ
+oxN
 oxN
 oxN
 oxN
 oCm
 oxN
 oxN
-ksZ
+oxN
 oCm
 uSg
 oxN
 oxN
-dLD
+oCm
 uSg
 uSg
 uSg
@@ -38046,7 +38050,7 @@ oxN
 uSg
 uSg
 oxN
-ksZ
+oxN
 oxN
 oCm
 oxN
@@ -38226,18 +38230,18 @@ uSg
 oxN
 oxN
 oxN
-oxN
+ksZ
 oxN
 oxN
 oxN
 oxN
 oCm
 oxN
+ksZ
 oxN
 oxN
 oxN
-oxN
-oxN
+ksZ
 uSg
 uSg
 uSg
@@ -38252,7 +38256,7 @@ uSg
 uSg
 uSg
 oxN
-ksZ
+oxN
 oxN
 oxN
 uSg
@@ -38464,19 +38468,19 @@ uSg
 uSg
 uSg
 oxN
+ksZ
 oxN
 oxN
 oxN
 oxN
 oxN
+ksZ
 oxN
 oxN
 oxN
 oxN
 oxN
-oxN
-oxN
-oxN
+ksZ
 uSg
 uSg
 uSg
@@ -38488,8 +38492,8 @@ lGN
 oxN
 oxN
 oxN
-oxN
 ksZ
+oxN
 oxN
 oxN
 oxN
@@ -38662,7 +38666,7 @@ uqz
 uqz
 vyR
 uqz
-kNX
+uqz
 uqz
 kNX
 vyR
@@ -38785,9 +38789,9 @@ ePo
 vYE
 ePo
 ePo
+ePo
+ePo
 sij
-ePo
-ePo
 vYE
 ePo
 ePo
@@ -38894,7 +38898,7 @@ oxN
 oCm
 oxN
 uSg
-ksZ
+oxN
 oxN
 oxN
 oxN
@@ -38913,7 +38917,7 @@ uSg
 oxN
 oxN
 oxN
-xHc
+uSg
 uSg
 uSg
 uSg
@@ -39105,21 +39109,21 @@ oxN
 oxN
 oxN
 oxN
-xHc
+uSg
 uSg
 oxN
 oxN
 oxN
 oxN
 oxN
-oxN
+ksZ
 oxN
 oxN
 oCm
 oxN
 oxN
 oxN
-oxN
+ksZ
 uSg
 uSg
 oxN
@@ -39635,7 +39639,7 @@ uQB
 uQB
 uQB
 ePo
-ePo
+sij
 vYE
 ePo
 uQB
@@ -40177,19 +40181,19 @@ uSg
 uSg
 oxN
 oxN
+ksZ
 oxN
 oxN
 oxN
 oxN
+oxN
+oxN
+fYj
 oxN
 oxN
 oxN
 oCm
-oxN
-oxN
-oxN
-oCm
-oxN
+ksZ
 oCm
 oxN
 uSg
@@ -40391,17 +40395,17 @@ oCm
 oxN
 oxN
 oxN
-ksZ
+oxN
 oCm
 oxN
 oxN
 oxN
 uSg
-ksZ
 oxN
 oxN
 oxN
-ksZ
+oxN
+oxN
 oxN
 oxN
 uSg
@@ -41439,7 +41443,7 @@ dmv
 dmv
 hOn
 uSg
-siC
+dmv
 dmv
 dmv
 hOn
@@ -41449,7 +41453,7 @@ siC
 uqz
 vyR
 uqz
-uqz
+kNX
 uqz
 kNX
 vyR
@@ -57012,13 +57016,13 @@ byc
 fXA
 uQB
 uQB
-uQB
-uQB
-uQB
+lBI
 xxV
 xxV
 xxV
-uQB
+xxV
+xxV
+xxV
 bCg
 hwO
 oBz
@@ -57224,10 +57228,10 @@ byc
 fXA
 byc
 uQB
-uQB
-bwK
-tFB
-bwK
+xxV
+byc
+byc
+byc
 dpq
 uQB
 xxV
@@ -57437,11 +57441,11 @@ bqP
 byc
 uQB
 vBk
-bwK
-bwK
-bwK
+byc
+byc
+byc
 urb
-bwK
+byc
 xxV
 bCg
 hwO
@@ -57649,11 +57653,11 @@ bqP
 bwq
 byc
 yba
-bwK
-bwK
-foy
 byc
-bwK
+byc
+cwO
+byc
+byc
 xxV
 bCg
 bBP
@@ -57861,8 +57865,8 @@ bqP
 bQv
 byc
 yba
-bwK
-bwK
+byc
+byc
 byc
 byc
 byc
@@ -58072,8 +58076,8 @@ bkJ
 bud
 bRu
 cwO
+yba
 jJD
-lBI
 jJD
 jJD
 lTt
@@ -58284,8 +58288,8 @@ nWU
 fXA
 byc
 byc
-byc
 pcw
+byc
 byc
 cwO
 byc
@@ -58496,9 +58500,9 @@ xsf
 bqP
 bqP
 fXA
-fXA
+foy
 byc
-pcw
+byc
 byc
 byc
 byc
@@ -58708,10 +58712,10 @@ hWM
 wEr
 bxh
 cwO
-fXA
+foy
 cwO
 byc
-pcw
+byc
 byc
 tFB
 uQB
@@ -58920,10 +58924,10 @@ eRB
 nWU
 sxL
 byc
-lTt
-byc
-byc
-byc
+dLD
+pcw
+pcw
+pcw
 tFB
 uQB
 uQB
