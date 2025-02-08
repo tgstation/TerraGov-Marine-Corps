@@ -57,3 +57,7 @@
   - balance: Highpower pistol seasonal removed from the game
   ivanmixo:
   - bugfix: Some SOM and marine hvh outfits' holster contents are once again filled
+2025-02-08:
+  The_Man:
+  - rscadd: Added new verb "Toggle Health Scan" for spectators.
+  - qol: If "Toggle Health Scan" is enabled, spectators will health scan on click.
