@@ -415,6 +415,13 @@
 	charge_range = 7
 	do_acid_spray_act = FALSE
 
+/datum/action/ability/activable/xeno/acid_shroud/acidder
+	desc = "Creates a smokescreen below yourself."
+	ability_cost = 50
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_ACIDDER,
+	)
+
 /datum/action/ability/activable/xeno/charge/acid_dash/acidder/mob_hit(datum/source, mob/living/living_target)
 	. = ..()
 	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target)))
@@ -438,14 +445,6 @@
 	var/timer_id
 	/// The acid level of the ability. Affects radius and movement speed.
 	var/acid_level = 0
-
-
-/datum/action/ability/activable/xeno/acid_shroud/acidder
-	desc = "Creates a smokescreen below yourself."
-	ability_cost = 50
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_ACIDDER,
-	)
 
 /datum/action/ability/activable/xeno/acidic_missile/can_use_ability(atom/A, silent = FALSE, override_flags)
 	. = ..()
