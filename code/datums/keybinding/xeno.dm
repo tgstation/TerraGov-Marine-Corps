@@ -737,6 +737,7 @@
 	full_name = "Praetorian: Baton Pass"
 	description = "Inject another xenomorph with your built-up adrenaline, increasing their movement speed considerably for 6 seconds. Puts dodge on cooldown when used. Less effect on quick xenos."
 	keybind_signal = COMSIG_XENOABILITY_BATONPASS
+
 /datum/keybinding/xeno/abduct
 	name = "Abduct"
 	full_name = "Praetorian: Abduct"
