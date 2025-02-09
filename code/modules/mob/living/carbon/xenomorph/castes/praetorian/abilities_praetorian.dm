@@ -402,7 +402,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		human_victim.apply_damage(adj_damage, BRUTE, blocked = MELEE, penetration = (marked ? DANCER_IMPALE_PENETRATION : 0))
 		human_victim.Shake(duration = 0.5 SECONDS)
 		//you got shishkebabbed really bad
-		if(buff_multiplier > 1.5)
+		if(buff_multiplier > 1.70)
 			xeno_owner.emote("roar")
 			human_victim.knockback(xeno_owner, 1, 1)
 			human_victim.emote("scream")
@@ -411,7 +411,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 
 /// Determines the total damage multiplier of impale based on the presence of several debuffs.
 /datum/action/ability/activable/xeno/impale/proc/determine_buff_mult(mob/living/carbon/human/living_target)
-	var/adjusted_mult = 1
+	var/adjusted_mult = 1.20
 	//tier 1 debuffs
 	if(living_target.IsStaggered())
 		adjusted_mult += 0.25
