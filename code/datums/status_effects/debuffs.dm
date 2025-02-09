@@ -579,8 +579,6 @@
 	var/mob/living/carbon/debuff_owner
 	/// Used for the fire effect.
 	var/obj/vis_melt_fire/visual_fire
-	/// Xenomorph which created the debuff.
-	var/mob/living/carbon/xenomorph/debuff_creator
 
 /obj/vis_melt_fire
 	name = "ouch ouch ouch"
@@ -622,10 +620,12 @@
 	else
 		visual_fire.icon_state = "melting_low_stacks"
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
-	if(QDELETED(debuff_creator))
-		return
-	debuff_creator.gain_plasma(5, TRUE)
-
+	for(var/mob/living/carbon/xenomorph/pyrogen/nearby_pyrogen in cheap_get_xenos_near(debuff_owner, 10))
+		if(nearby_pyrogen.stat == DEAD)
+			continue
+		var/amount_to_heal = 2 // HEAL_XENO_DAMAGE requires it as a variable.
+		HEAL_XENO_DAMAGE(nearby_pyrogen, amount_to_heal, FALSE)
+		nearby_pyrogen.gain_plasma(5, TRUE)
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/melting_fire/proc/call_resist_debuff()
