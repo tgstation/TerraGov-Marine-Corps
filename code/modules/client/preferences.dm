@@ -181,7 +181,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///When enabled, will split the 'Admin' panel into several tabs.
 	var/split_admin_tabs = TRUE
 	///When enabled, can hear OOC channels from anywhere in any situation.
-	///Ex: mentors/admins being able to hear XOOC as a xeno, or LOOC when not nearby the speaker.
+	///Ex: mentors/admins being able to hear XOOC as a human, or LOOC when not nearby the speaker.
 	var/hear_ooc_anywhere_as_staff = TRUE
 
 	/// New TGUI Preference preview
