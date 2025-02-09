@@ -100,7 +100,7 @@
 #define CARBON_RECOVERY_OXYLOSS -5
 
 #define CARBON_KO_OXYLOSS 50
-#define HUMAN_CRITDRAG_OXYLOSS 3 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious
+#define HUMAN_CRITDRAG_OXYLOSS 6 //the amount of oxyloss taken per tile a human is dragged by a xeno while unconscious
 
 #define HEAT_DAMAGE_LEVEL_1 1 //Amount of damage applied when your body temperature just passes the 360.15k safety point
 #define HEAT_DAMAGE_LEVEL_2 2 //Amount of damage applied when your body temperature passes the 400K point
@@ -376,21 +376,20 @@ GLOBAL_LIST_INIT(xenoupgradetiers, list(XENO_UPGRADE_BASETYPE, XENO_UPGRADE_INVA
 #define NO_OVERDOSE (1<<4)
 #define NO_POISON (1<<5)
 #define NO_CHEM_METABOLIZATION (1<<6)
-#define HAS_SKIN_TONE (1<<7)
-#define HAS_SKIN_COLOR (1<<8)
-#define HAS_LIPS (1<<9)
-#define HAS_UNDERWEAR (1<<10)
-#define HAS_NO_HAIR (1<<11)
-#define IS_SYNTHETIC (1<<12)
-#define NO_STAMINA (1<<13)
-#define DETACHABLE_HEAD (1<<14)
-#define USES_ALIEN_WEAPONS (1<<15)
-#define NO_DAMAGE_OVERLAY (1<<16)
-#define HEALTH_HUD_ALWAYS_DEAD (1<<17)
-#define PARALYSE_RESISTANT (1<<18)
-#define ROBOTIC_LIMBS (1<<19)
-#define GREYSCALE_BLOOD (1<<20)
-#define IS_INSULATED (1<<21)
+#define HAS_SKIN_COLOR (1<<7)
+#define HAS_LIPS (1<<8)
+#define HAS_UNDERWEAR (1<<9)
+#define HAS_NO_HAIR (1<<10)
+#define IS_SYNTHETIC (1<<11)
+#define NO_STAMINA (1<<12)
+#define DETACHABLE_HEAD (1<<13)
+#define USES_ALIEN_WEAPONS (1<<14)
+#define NO_DAMAGE_OVERLAY (1<<15)
+#define HEALTH_HUD_ALWAYS_DEAD (1<<16)
+#define PARALYSE_RESISTANT (1<<17)
+#define ROBOTIC_LIMBS (1<<18)
+#define GREYSCALE_BLOOD (1<<19)
+#define IS_INSULATED (1<<20)
 
 //=================================================
 
@@ -924,11 +923,11 @@ GLOBAL_LIST_INIT(human_body_parts, list(BODY_ZONE_HEAD,
 
 #define IGNORE_LOC_CHANGE (IGNORE_USER_LOC_CHANGE|IGNORE_TARGET_LOC_CHANGE)
 
-#define TIER_ONE_THRESHOLD 420
+#define TIER_ONE_THRESHOLD 300
 
-#define TIER_TWO_THRESHOLD 840
+#define TIER_TWO_THRESHOLD 600
 
-#define TIER_THREE_THRESHOLD 1750
+#define TIER_THREE_THRESHOLD 900
 
 
 // Pheromones and buff orders

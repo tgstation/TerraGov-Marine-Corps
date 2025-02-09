@@ -75,7 +75,7 @@
 //bitflags that were previously under atom_flags, these only apply to items.
 //clothing specific stuff uses inventory_flags.
 //item_flags
-/// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+/// when an item has this it produces no "X [Z.attack_verb] Y with their Z!" message with the default handler
 #define NOBLUDGEON (1<<0)
 /// Deletes on drop instead of falling on the floor.
 #define DELONDROP (1<<1)
@@ -289,14 +289,21 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 
 //Inventory slot strings. These are used for icons. (and checking if an item can be equipped in loadouts for some reason??)
 #define slot_back_str "slot_back"
+#define slot_in_back "slot_in_back"
 #define slot_l_hand_str "slot_l_hand"
 #define slot_r_hand_str "slot_r_hand"
 #define slot_w_uniform_str "slot_w_uniform"
+#define slot_accessory_str "slot_accessory"
+#define slot_in_accessory "slot_in_accessory"
 #define slot_head_str "slot_head"
+#define slot_in_head "slot_in_head"
 #define slot_wear_suit_str "slot_suit"
+#define slot_in_suit "slot_in_suit"
 #define slot_ear_str "slot_ear"
 #define slot_belt_str "slot_belt"
+#define slot_in_belt "slot_in_belt"
 #define slot_shoes_str "slot_shoes"
+#define slot_in_boot "slot_in_boot"
 #define slot_wear_mask_str "slot_wear_mask"
 #define slot_handcuffed_str "slot_handcuffed"
 #define slot_wear_id_str "slot_wear_id"
@@ -304,20 +311,28 @@ GLOBAL_LIST_INIT(inventory_slots_to_string, list(
 #define slot_glasses_str "slot_glasses"
 #define slot_s_store_str "slot_s_store"
 #define slot_l_store_str "slot_l_store"
+#define slot_in_l_store "slot_in_l_store"
 #define slot_r_store_str "slot_r_store"
-#define slot_tie_str "slot_tie"
+#define slot_in_r_store "slot_in_r_store"
 
 ///Correspondance between slot strings and slot numbers
 GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"slot_back" = SLOT_BACK,
+	"slot_in_back" = SLOT_IN_BACKPACK,
 	"slot_l_hand" = SLOT_L_HAND,
 	"slot_r_hand" = SLOT_R_HAND,
 	"slot_w_uniform" = SLOT_W_UNIFORM,
+	"slot_accessory" = SLOT_ACCESSORY,
+	"slot_in_accessory" = SLOT_IN_ACCESSORY,
 	"slot_head" = SLOT_HEAD,
+	"slot_in_head" = SLOT_IN_HEAD,
 	"slot_suit" = SLOT_WEAR_SUIT,
+	"slot_in_suit" = SLOT_IN_SUIT,
 	"slot_ear" = SLOT_EARS,
 	"slot_belt" = SLOT_BELT,
+	"slot_in_belt" = SLOT_IN_BELT,
 	"slot_shoes" = SLOT_SHOES,
+	"slot_in_boot" = SLOT_IN_BOOT,
 	"slot_wear_mask" = SLOT_WEAR_MASK,
 	"slot_handcuffed" = SLOT_HANDCUFFED,
 	"slot_wear_id" = SLOT_WEAR_ID,
@@ -325,8 +340,9 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 	"slot_glasses" = SLOT_GLASSES,
 	"slot_s_store" = SLOT_S_STORE,
 	"slot_l_store" = SLOT_L_STORE,
+	"slot_in_l_store" = SLOT_IN_L_POUCH,
 	"slot_r_store" = SLOT_R_STORE,
-	"slot_tie" = SLOT_ACCESSORY,
+	"slot_in_r_store" = SLOT_IN_R_POUCH,
 ))
 
 //I hate that this has to exist

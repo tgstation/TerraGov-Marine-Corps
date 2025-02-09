@@ -20,7 +20,9 @@
 	var/turf/throw_source = null
 	var/throw_speed = 2
 	var/throw_range = 7
+	///AM that is pulling us
 	var/mob/pulledby = null
+	///AM we are pulling
 	var/atom/movable/pulling
 	var/atom/movable/moving_from_pull		//attempt to resume grab after moving instead of before.
 	var/glide_modifier_flags = NONE
@@ -635,15 +637,15 @@
 
 ///Clean up all throw vars
 /atom/movable/proc/stop_throw(flying = FALSE, original_layer)
-	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
-	if(loc)
-		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 	set_throwing(FALSE)
 	if(flying)
 		set_flying(FALSE, original_layer)
 	thrower = null
 	thrown_speed = 0
 	throw_source = null
+	SEND_SIGNAL(src, COMSIG_MOVABLE_POST_THROW)
+	if(loc)
+		SEND_SIGNAL(loc, COMSIG_TURF_THROW_ENDED_HERE, src)
 
 /atom/movable/proc/handle_buckled_mob_movement(newloc, direct, glide_size_override)
 	for(var/m in buckled_mobs)
@@ -1198,11 +1200,15 @@
 
 ///Toggles AM between throwing states
 /atom/movable/proc/set_throwing(new_throwing)
+	if(throwing == new_throwing)
+		return
 	throwing = new_throwing
 	if(throwing)
 		pass_flags |= PASS_THROW
+		add_nosubmerge_trait(THROW_TRAIT)
 	else
 		pass_flags &= ~PASS_THROW
+		REMOVE_TRAIT(src, TRAIT_NOSUBMERGE, THROW_TRAIT)
 
 ///Toggles AM between flying states
 /atom/movable/proc/set_flying(flying, new_layer)
@@ -1382,3 +1388,11 @@ GLOBAL_LIST_EMPTY(submerge_filter_timer_list)
 	SIGNAL_HANDLER
 	UnregisterSignal(src, SIGNAL_REMOVETRAIT(TRAIT_NOSUBMERGE))
 	set_submerge_level(loc, duration = 0.1)
+
+/**
+* A wrapper for setDir that should only be able to fail by living mobs.
+*
+* Called from [/atom/movable/proc/keyLoop], this exists to be overwritten by living mobs with a check to see if we're actually alive enough to change directions
+*/
+/atom/movable/proc/keybind_face_direction(direction)
+	setDir(direction)

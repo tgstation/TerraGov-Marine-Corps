@@ -174,7 +174,7 @@
 		if(FLAMER_STREAM_CONE)
 			//direction in degrees
 			var/dir_to_target = Get_Angle(src, target)
-			var/list/turf/turfs_to_ignite = generate_true_cone(get_turf(src), range, 1, cone_angle, dir_to_target, bypass_xeno = TRUE, air_pass = TRUE)
+			var/list/turf/turfs_to_ignite = generate_cone(get_turf(src), range, 1, cone_angle, dir_to_target, pass_flags_checked = PASS_AIR|PASS_XENO)
 			recursive_flame_cone(1, turfs_to_ignite, dir_to_target, range, current_target, get_turf(src), flame_max_wall_pen_wide)
 		if(FLAMER_STREAM_RANGED)
 			return ..()
@@ -195,7 +195,7 @@
 	var/turf/turf_to_check = get_turf(src)
 	if(iteration > 1)
 		turf_to_check = path_to_target[iteration - 1]
-	if(LinkBlocked(turf_to_check, path_to_target[iteration], bypass_xeno = TRUE, air_pass = TRUE)) //checks if it's actually possible to get to the next tile in the line
+	if(LinkBlocked(turf_to_check, path_to_target[iteration], PASS_AIR|PASS_XENO)) //checks if it's actually possible to get to the next tile in the line
 		return
 	if(turf_to_check.density && istype(turf_to_check, /turf/closed/wall/resin))
 		walls_penetrated -= 1

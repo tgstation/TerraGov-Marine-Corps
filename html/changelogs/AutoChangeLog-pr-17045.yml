@@ -1,0 +1,5 @@
+author: "Lumipharon"
+delete-after: True
+changes:
+  - bugfix: "Fireteams work for SOM"
+  - bugfix: "Fireteams can now be assigned screenwide as intended, instead of only when adjacent"

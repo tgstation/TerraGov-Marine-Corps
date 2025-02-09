@@ -1,0 +1,4 @@
+author: "SandPoot"
+delete-after: True
+changes:
+  - bugfix: "Fixed hivemind's health hud/ui."

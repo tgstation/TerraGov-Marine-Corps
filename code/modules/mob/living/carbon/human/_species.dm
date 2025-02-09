@@ -11,6 +11,8 @@
 	var/species_type = SPECIES_HUMAN
 	///Special effects that are inherent to our species
 	var/species_flags = NONE
+	///used in limb code to find which bodytype files to pull from, yes this code can defenitely be improved
+	var/limb_type = SPECIES_LIMB_GENERIC
 
 	//----Icon stuff here
 	///Normal icon file
@@ -360,7 +362,7 @@
 //Species unarmed attacks
 /datum/unarmed_attack
 	///Empty hand hurt intent verb
-	var/attack_verb = list("attack")
+	var/attack_verb = list("attacks")
 	///Extra empty hand attack damage
 	var/damage = 0
 	///Sound that plays when you land a punch
@@ -389,7 +391,7 @@
 	return FALSE
 
 /datum/unarmed_attack/bite
-	attack_verb = list("bite") // 'x has biteed y', needs work
+	attack_verb = list("bites")
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
 	damage = 5
@@ -402,15 +404,15 @@
 	return TRUE
 
 /datum/unarmed_attack/punch
-	attack_verb = list("punch")
+	attack_verb = list("punches")
 	damage = 3
 
 /datum/unarmed_attack/punch/strong
-	attack_verb = list("punch","bust","jab")
+	attack_verb = list("punches","busts","jabs")
 	damage = 10
 
 /datum/unarmed_attack/claws
-	attack_verb = list("scratch", "claw")
+	attack_verb = list("scratches", "claws")
 	attack_sound = 'sound/weapons/slice.ogg'
 	miss_sound = 'sound/weapons/slashmiss.ogg'
 	damage = 5
@@ -418,12 +420,12 @@
 	edge = 1
 
 /datum/unarmed_attack/claws/strong
-	attack_verb = list("slash")
+	attack_verb = list("slashes")
 	damage = 10
 	shredding = 1
 
 /datum/unarmed_attack/bite/strong
-	attack_verb = list("maul")
+	attack_verb = list("mauls")
 	damage = 15
 	shredding = 1
 

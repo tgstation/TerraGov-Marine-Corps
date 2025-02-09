@@ -287,9 +287,6 @@
 	return ..(shock_damage, source, siemens_coeff, def_zone)
 
 /mob/living/carbon/human/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
 	if(href_list["squadfireteam"])
 		if(usr.incapacitated() || get_dist(usr, src) >= 7 || !hasHUD(usr,"squadleader"))
 			return
@@ -297,7 +294,7 @@
 		if(!H.mind)
 			return
 		var/obj/item/card/id/ID = get_idcard()
-		if(!ID || !(ID.rank in GLOB.jobs_marines))//still a marine, with an ID.
+		if(!ID || !(ID.rank in GLOB.jobs_squad_roles))//still a marine, with an ID.
 			return
 		if(!(assigned_squad == H.assigned_squad)) //still same squad
 			return
@@ -305,7 +302,7 @@
 		if(!newfireteam || H.incapacitated() || get_dist(H, src) >= 7) //We might've moved away or gotten incapacitated in the meantime
 			return
 		ID = get_idcard()
-		if(!ID || !(ID.rank in GLOB.jobs_marines))//still a marine with an ID
+		if(!ID || !(ID.rank in GLOB.jobs_squad_roles))//still a marine with an ID
 			return
 		if(!(assigned_squad == H.assigned_squad)) //still same squad
 			return
@@ -773,7 +770,13 @@
 		new_species = race
 	return ..()
 
+/// Turns our human into a selected species `new_species`
+/// new_species must be either a string or a species datum
 /mob/living/carbon/human/proc/set_species(new_species, default_colour)
+	// Here we'll convert the species into a string. It's a bandaid fix
+	if(istype(new_species, /datum/species))
+		var/datum/species/old_type = new_species
+		new_species = old_type.name
 
 	if(!new_species)
 		new_species = "Human"
@@ -1116,6 +1119,13 @@
 	return ..()
 
 /mob/living/carbon/human/get_up()
-	if(!do_after(src, 2 SECONDS, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
+	var/get_up_time = (HAS_TRAIT(src, TRAIT_QUICK_GETUP) ? 5 : 20)
+	if(!do_after(src, get_up_time, IGNORE_LOC_CHANGE|IGNORE_HELD_ITEM, src))
 		return
 	return ..()
+
+/mob/living/carbon/human/attack_ghost(mob/dead/observer/user)
+	if(!user.health_scan)
+		return FALSE
+	user.health_analyzer.analyze_vitals(src, user)
+	return TRUE
