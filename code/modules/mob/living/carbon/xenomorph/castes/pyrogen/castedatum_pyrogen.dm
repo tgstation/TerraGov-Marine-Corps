@@ -50,6 +50,7 @@
 		/datum/action/ability/activable/xeno/charge/fire_charge,
 		/datum/action/ability/activable/xeno/fireball,
 		/datum/action/ability/activable/xeno/firestorm,
+		/datum/action/ability/activable/xeno/inferno,
 	)
 
 /datum/xeno_caste/pyrogen/normal
@@ -69,5 +70,6 @@
 		/datum/action/ability/activable/xeno/charge/fire_charge,
 		/datum/action/ability/activable/xeno/fireball,
 		/datum/action/ability/activable/xeno/firestorm,
-		/datum/action/ability/xeno_action/heatray,
+		/datum/action/ability/activable/xeno/inferno,
+		/datum/action/ability/activable/xeno/infernal_trigger,
 	)

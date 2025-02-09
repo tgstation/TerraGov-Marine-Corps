@@ -126,7 +126,7 @@
 	flick("fireball_explosion", src)
 
 // ***************************************
-// *********** Firenado
+// *********** Fire Storm
 // ***************************************
 /datum/action/ability/activable/xeno/firestorm
 	name = "Fire Storm"
@@ -174,112 +174,104 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/xeno_action/heatray
-	name = "Heat Ray"
+// ***************************************
+// *********** Inferno
+// ***************************************
+/datum/action/ability/activable/xeno/inferno
+	name = "Inferno"
 	action_icon_state = "heatray"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
-	desc = "Microwave any target infront of you in a range of 7 tiles"
-	target_flags = ABILITY_TURF_TARGET
-	ability_cost = 150
-	cooldown_duration = 15 SECONDS
-	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_HEATRAY,
-	)
-	///list of turfs we are hitting while shooting our beam
-	var/list/turf/targets
-	///ref to beam that is currently active
-	var/datum/beam/beam
-	///particle holder for the particle visual effects
-	var/obj/effect/abstract/particle_holder/particles
-	///ref to looping timer for the fire loop
-	var/timer_ref
-	/// world time of the moment we started firing
-	var/started_firing
+	desc = "After a short delay, release a burst of fire in a 5x5 radius. All tiles are set on fire. Humans are set on fire and burnt."
+	ability_cost = 50
+	cooldown_duration = 13 SECONDS
 
-/datum/action/ability/xeno_action/heatray/can_use_action(silent, override_flags)
-	. = ..()
-	if(!.)
-		return
-	if(SSmonitor.gamestate == SHUTTERS_CLOSED && is_ground_level(owner.z))
-		if(!silent)
-			owner.balloon_alert(owner, "too early")
-		return FALSE
-
-/datum/action/ability/xeno_action/heatray/action_activate()
-	if(timer_ref)
-		stop_beaming()
-		return
-
-	ADD_TRAIT(owner, TRAIT_IMMOBILE, HEATRAY_BEAM_ABILITY_TRAIT)
-
-	if(!do_after(owner, PYROGEN_HEATRAY_CHARGEUP, IGNORE_HELD_ITEM, owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_action), FALSE, ABILITY_USE_BUSY)))
-		QDEL_NULL(beam)
-		targets = null
-		REMOVE_TRAIT(owner, TRAIT_IMMOBILE, HEATRAY_BEAM_ABILITY_TRAIT)
-		add_cooldown(10 SECONDS)
+/datum/action/ability/activable/xeno/inferno/use_ability(atom/target)
+	if(!do_after(xeno_owner, 0.8 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	var/turf/check_turf = get_step(owner, owner.dir)
-	LAZYINITLIST(targets)
-	while(check_turf && length(targets) < PYROGEN_HEATRAY_RANGE)
-		targets += check_turf
-		check_turf = get_step(check_turf, owner.dir)
-	if(!LAZYLEN(targets))
-		return
+	playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50)
+	new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(xeno_owner))
+	for(var/turf/turf_in_range AS in RANGE_TURFS(2, xeno_owner.loc)) // 5x5
+		if(!line_of_sight(xeno_owner, turf_in_range, 2))
+			continue
+		var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in turf_in_range.contents
+		if(fire_in_turf) // Refreshing the melting fire.
+			fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
+			continue
+		new /obj/fire/melting_fire(turf_in_range)
+		for(var/mob/living/carbon/human/human_in_turf in turf_in_range.contents)
+			if(human_in_turf.stat == DEAD)
+				continue
+			human_in_turf.take_overall_damage(30, BURN, FIRE, max_limbs = 2)
+			var/datum/status_effect/stacking/melting_fire/debuff = human_in_turf.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+			if(!debuff)
+				human_in_turf.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 2)
+				continue
+			debuff.add_stacks(2)
 
-	beam = owner.loc.beam(targets[length(targets)], "heatray", beam_type = /obj/effect/ebeam)
-	playsound(owner, 'sound/effects/alien/firebeam.ogg', 80)
-	REMOVE_TRAIT(owner, TRAIT_IMMOBILE, HEATRAY_BEAM_ABILITY_TRAIT)
-	RegisterSignals(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE), PROC_REF(stop_beaming))
-	started_firing = world.time
-	execute_attack()
-
-/// recursive proc for firing the actual beam
-/datum/action/ability/xeno_action/heatray/proc/execute_attack()
-	if(!can_use_action(TRUE))
-		stop_beaming()
-		return
 	succeed_activate()
-	for(var/turf/target AS in targets)
-		for(var/victim in target)
-			if(ishuman(victim))
-				var/mob/living/carbon/human/human_victim = victim
-				if(human_victim.stat == DEAD || human_victim.status_flags & GODMODE)
-					continue
-				var/damage = PYROGEN_HEATRAY_HIT_DAMAGE
-				var/datum/status_effect/stacking/melting_fire/debuff = human_victim.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-				if(debuff)
-					damage += debuff.stacks * PYROGEN_HEATRAY_BONUS_DAMAGE_PER_MELTING_STACK
-
-				human_victim.take_overall_damage(damage, BURN, FIRE, updating_health = TRUE, max_limbs = 2)
-
-				human_victim.flash_weak_pain()
-				animation_flash_color(human_victim)
-			else if(isvehicle(victim) || ishitbox(victim))
-				var/obj/obj_victim = victim
-				var/damage_add = 0
-				if(ismecha(obj_victim))
-					damage_add = 20
-				obj_victim.take_damage((PYROGEN_HEATRAY_VEHICLE_HIT_DAMAGE + damage_add), BURN, FIRE)
-	if(world.time - started_firing > PYROGEN_HEATRAY_MAXDURATION)
-		stop_beaming()
-		return
-	timer_ref = addtimer(CALLBACK(src, PROC_REF(execute_attack)), PYROGEN_HEATRAY_REFIRE_TIME, TIMER_STOPPABLE)
-
-/// Gets rid of the beam.
-/datum/action/ability/xeno_action/heatray/proc/stop_beaming()
-	SIGNAL_HANDLER
-	UnregisterSignal(owner, list(COMSIG_MOVABLE_MOVED, COMSIG_ATOM_DIR_CHANGE))
-	QDEL_NULL(beam)
-	deltimer(timer_ref)
-	timer_ref = null
-	targets = null
-	started_firing = 0
 	add_cooldown()
 
+// ***************************************
+// *********** Infernal Trigger
+// ***************************************
+/datum/action/ability/activable/xeno/infernal_trigger
+	name = "Infernal Trigger"
+	action_icon_state = "heatray"
+	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
+	desc = "Causes a chosen human's flame to burst outwardly. The severity of the damage is based on how badly they were on fire. In addition, the area near them is set on fire."
+	target_flags = ABILITY_MOB_TARGET
+	ability_cost = 40
+	cooldown_duration = 6 SECONDS
 
+/datum/action/ability/activable/xeno/infernal_trigger/can_use_ability(atom/A, silent, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!ishuman(A))
+		if(!silent)
+			xeno_owner.balloon_alert(owner, "not a human")
+		return FALSE
+	var/mob/living/carbon/human/human_target = A
+	if(human_target.stat == DEAD)
+		if(!silent)
+			xeno_owner.balloon_alert(owner, "already dead")
+		return FALSE
+	if(!human_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE))
+		if(!silent)
+			xeno_owner.balloon_alert(owner, "not on fire")
+		return FALSE
+	if(!line_of_sight(xeno_owner, human_target, 9))
+		if(!silent)
+			xeno_owner.balloon_alert(owner, "can't directly see")
+		return FALSE
 
-//firenade
+/datum/action/ability/activable/xeno/infernal_trigger/use_ability(atom/target)
+	if(!do_after(xeno_owner, 0.5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER))
+		return fail_activate()
+
+	var/mob/living/carbon/human/human_target = target
+	var/datum/status_effect/stacking/melting_fire/debuff = human_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
+	human_target.take_overall_damage(min(debuff.stacks * 20, 150), BURN, FIRE, max_limbs = 6)
+	qdel(debuff)
+
+	for(var/turf/turf_in_range AS in RANGE_TURFS(1, target.loc))
+		for(var/mob/living/carbon/human/human_in_turf in turf_in_range.contents)
+			if(human_in_turf.stat == DEAD)
+				continue
+			if(human_in_turf == human_target)
+				continue
+			human_in_turf.take_overall_damage(25, BURN, FIRE, max_limbs = 2)
+		var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in turf_in_range.contents
+		if(fire_in_turf) // Refreshing the melting fire.
+			fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
+			continue
+		new /obj/fire/melting_fire(turf_in_range)
+
+	succeed_activate()
+	add_cooldown()
+
+// Firestorm's Firenado
 /obj/effect/xenomorph/firenado
 	name = "Plasma Whirlwind"
 	desc = "A glowing whirlwind of... cold plasma? Seems to \"burn\" "
@@ -355,9 +347,10 @@
 		return
 	for(var/mob/living/carbon/human/human_here in loc)
 		mob_act(human_here)
-	for(var/turf/turf_in_range AS in RANGE_TURFS(1, loc))
-		if(!locate(/obj/fire/melting_fire) in turf_in_range.contents)
-			new /obj/fire/melting_fire(turf_in_range)
+	refresh_or_create_fire(loc)
+	var/list/turf/nearby_turfs = RANGE_TURFS(1, loc) // 3x3
+	var/list/turf/all_nonfire_turfs = get_acceptable_turfs(nearby_turfs)
+	refresh_or_create_fire(all_nonfire_turfs.len ? pick(all_nonfire_turfs) : pick(nearby_turfs))
 
 /// Applies various effects to humans who enter the same loc as the firenado.
 /obj/effect/xenomorph/firenado/proc/on_cross(datum/source, atom/arrived, oldloc, oldlocs)
@@ -376,3 +369,22 @@
 	else
 		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_TORNADO_MELTING_FIRE_STACKS)
 	target.take_overall_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN, FIRE, max_limbs = 2)
+
+/// Returns a list of open turfs that do not contain melting fire.
+/obj/effect/xenomorph/firenado/proc/get_acceptable_turfs(list/turf/possible_turfs)
+	var/list/turf/all_nonfire_turfs = list()
+	for(var/turf/turf_in_list in possible_turfs)
+		if(isclosedturf(turf_in_list))
+			continue
+		if(locate(/obj/fire/melting_fire) in turf_in_list.contents)
+			continue
+		all_nonfire_turfs += turf_in_list
+	return all_nonfire_turfs
+
+/// Refreshes the burn ticks of the melting fire on a turf or creates one if it does not exist.
+/obj/effect/xenomorph/firenado/proc/refresh_or_create_fire(turf/target_turf)
+	var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in target_turf.contents
+	if(fire_in_turf)
+		fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
+		return
+	new /obj/fire/melting_fire(target_turf)
