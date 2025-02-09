@@ -112,6 +112,19 @@
 	for(var/turf/newspray in view(smokeradius*0.5, target))
 		new /obj/effect/xenomorph/spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
 
+/datum/maw_ammo/smoke/acid_small
+	name = "tactical acid maw glob"
+	cooldown_time = 3 MINUTES
+	radial_icon_state = "acid_smoke_mortar"
+	smoke_type = /datum/effect_system/smoke_spread/xeno/acid
+	smokeradius = 7
+	duration = 10
+
+/datum/maw_ammo/smoke/acid_small/on_impact(turf/target)
+	. = ..()
+	for(var/turf/newspray in view(smokeradius*0.5, target))
+		new /obj/effect/xenomorph/spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
+
 /datum/maw_ammo/hugger
 	name = "ball of huggers"
 	radial_icon_state = "hugger_ball"
@@ -165,6 +178,19 @@
 /datum/maw_ammo/hugger/on_impact(turf/target)
 	for(var/obj/item/clothing/mask/facehugger/paratrooper AS in spawned_huggers)
 		paratrooper.go_active()
+
+/datum/maw_ammo/hugger/big
+	name = "ball of huggers"
+	radial_icon_state = "hugger_ball"
+	cooldown_time = 10 MINUTES
+	/// range_turfs that huggers will be dropped around the target
+	drop_range = 9
+	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
+	hugger_count = 60
+
+/datum/maw_ammo/hugger/big/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
+	. = ..()
+	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
 
 /datum/maw_ammo/minion
 	name = "ball of minions"
@@ -284,7 +310,7 @@
 	var/minimap_icon = "acid_maw"
 	///list of paths that we can choose from when using this maw. converts to a list for radials on init (path = image)
 	var/list/maw_options = list(
-		/datum/maw_ammo/smoke/acid_big,
+		/datum/maw_ammo/hugger/big,
 		/datum/maw_ammo/minion,
 	)
 
@@ -372,7 +398,7 @@
 	minimap_icon = "acid_jaw"
 	maw_options = list(
 		/datum/maw_ammo/smoke/neuro,
-		/datum/maw_ammo/hugger,
+		/datum/maw_ammo/smoke/acid_small,
 		/datum/maw_ammo/xeno_fire,
 	)
 
