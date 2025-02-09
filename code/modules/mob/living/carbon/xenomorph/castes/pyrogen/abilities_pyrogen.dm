@@ -179,7 +179,7 @@
 // ***************************************
 /datum/action/ability/activable/xeno/inferno
 	name = "Inferno"
-	action_icon_state = "heatray"
+	action_icon_state = "inferno"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "After a short delay, release a burst of fire in a 5x5 radius. All tiles are set on fire. Humans are set on fire and burnt."
 	ability_cost = 50
@@ -217,7 +217,7 @@
 // ***************************************
 /datum/action/ability/activable/xeno/infernal_trigger
 	name = "Infernal Trigger"
-	action_icon_state = "heatray"
+	action_icon_state = "infernaltrigger"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Causes a chosen human's flame to burst outwardly. The severity of the damage is based on how badly they were on fire. In addition, the area near them is set on fire."
 	target_flags = ABILITY_MOB_TARGET
