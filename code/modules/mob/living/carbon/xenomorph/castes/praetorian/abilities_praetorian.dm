@@ -525,13 +525,12 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			continue
 		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into our flesh and yanks us towards them!"))
 		var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
-		var/slowtime = (buffed ? 3 SECONDS : 1.5 SECONDS)
 		living_target.apply_damage(damage, BRUTE, blocked = MELEE, updating_health = TRUE)
 		living_target.Shake(duration = 0.1 SECONDS)
-		living_target.spin(slowtime, 1)
+		living_target.spin(2 SECONDS, 1)
 
 		living_target.throw_at(xeno_owner, 1, 3, xeno_owner)
-		living_target.adjust_slowdown(slowtime)
+		living_target.adjust_slowdown(buffed? 0.9 : 0.3)
 		if(buffed)
 			living_target.AdjustKnockdown(0.1 SECONDS)
 
