@@ -65,7 +65,10 @@
 
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 18.75) + ((reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) / reagents.total_volume) * bitesize * 18.75) //adds our next bite to our total nutrition in body and stomach
+		var/bite_nutrition = ((reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) / reagents.total_volume) * bitesize * 18.75)
+		if(reagents.total_volume < bitesize)
+			bite_nutrition = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 18.75
+		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 18.75) + bite_nutrition //adds our next bite to our total nutrition in body and stomach
 		if(M == user)								//If you're eating it yourself
 			var/mob/living/carbon/H = M
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
