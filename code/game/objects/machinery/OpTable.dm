@@ -239,7 +239,7 @@
 	. = ..()
 	if(!istype(carried_person))
 		return
-	if(carried_person.is_rider())
+	if(carried_person.is_rider(user))
 		return
 	user.unbuckle_mob(carried_person.rider)
 	take_victim(carried_person.rider, user)
