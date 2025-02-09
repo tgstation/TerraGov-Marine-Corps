@@ -1052,8 +1052,8 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/kutjevo/exterior/complex_border/botany_medical_cave)
 "bkn" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "bks" = (
@@ -9469,8 +9469,8 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "ksj" = (
