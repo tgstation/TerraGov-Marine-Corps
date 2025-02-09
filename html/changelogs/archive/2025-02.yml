@@ -61,3 +61,11 @@
   The_Man:
   - rscadd: Added new verb "Toggle Health Scan" for spectators.
   - qol: If "Toggle Health Scan" is enabled, spectators will health scan on click.
+2025-02-09:
+  Runian:
+  - rscadd: New strain for Praetorian called Oppressor.
+  - rscadd: 'Oppressor abilities: Abduct, Dislocate, Advance, Tail Lash, and Item
+      Throw.'
+  - imageadd: 'Button icons for: Abduct, Advance, Tail Lash, and Item Throw,'
+  - bugfix: The display name for the Dancer strain has been changed to remove confusion
+      within the Strain Swap menu and to differentiate itself from the base caste.
