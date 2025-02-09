@@ -1,3 +1,4 @@
+import { useBackend, useLocalState } from '../backend';
 import {
   Box,
   Button,
@@ -8,9 +9,7 @@ import {
   Section,
   Stack,
   Tabs,
-} from 'tgui-core/components';
-
-import { useBackend, useLocalState } from '../backend';
+} from '../components';
 import { Window } from '../layouts';
 
 type VendingData = {
