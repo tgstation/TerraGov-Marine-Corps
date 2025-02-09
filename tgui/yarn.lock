@@ -8147,6 +8147,16 @@ resolve@^1.20.0:
   languageName: unknown
   linkType: soft
 
+"tgui-core@npm:^1.8.0":
+  version: 1.8.0
+  resolution: "tgui-core@npm:1.8.0"
+  peerDependencies:
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  checksum: 33b920051aaaf40d4fd8614a201182d7d3b0658eb818c66eddfe638b6188f05b26b24c773374983ad91f40bd12b233b9bd54b1fd446d7f86896a69eaa142171f
+  languageName: node
+  linkType: hard
+
 "tgui-dev-server@workspace:*, tgui-dev-server@workspace:packages/tgui-dev-server":
   version: 0.0.0-use.local
   resolution: "tgui-dev-server@workspace:packages/tgui-dev-server"
@@ -8252,6 +8262,7 @@ resolve@^1.20.0:
     marked: ^4.2.12
     react: ^18.2.0
     react-dom: ^18.2.0
+    tgui-core: ^1.8.0
     tgui-dev-server: "workspace:*"
     tgui-polyfill: "workspace:*"
   languageName: unknown
