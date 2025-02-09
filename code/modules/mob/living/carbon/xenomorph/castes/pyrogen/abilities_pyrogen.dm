@@ -184,6 +184,9 @@
 	desc = "After a short delay, release a burst of fire in a 5x5 radius. All tiles are set on fire. Humans are set on fire and burnt."
 	ability_cost = 50
 	cooldown_duration = 13 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNO,
+	)
 
 /datum/action/ability/activable/xeno/inferno/use_ability(atom/target)
 	if(!do_after(xeno_owner, 0.8 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER))
@@ -223,6 +226,9 @@
 	target_flags = ABILITY_MOB_TARGET
 	ability_cost = 40
 	cooldown_duration = 6 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNAL_TRIGGER,
+	)
 
 /datum/action/ability/activable/xeno/infernal_trigger/can_use_ability(atom/A, silent, override_flags)
 	. = ..()

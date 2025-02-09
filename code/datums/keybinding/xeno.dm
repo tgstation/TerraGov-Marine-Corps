@@ -1263,8 +1263,14 @@
 	description = "Unleash a fireball after a small windup."
 	keybind_signal = COMSIG_XENOABILITY_FIREBALL
 
-/datum/keybinding/xeno/heatray
-	name = "Heatray"
-	full_name = "Pyrogen: Heatray"
-	description = "After a windup, unleash a heat ray that will cook any marine it comes across."
-	keybind_signal = COMSIG_XENOABILITY_HEATRAY
+/datum/keybinding/xeno/inferno
+	name = "Inferno"
+	full_name = "Pyrogen: Inferno"
+	description = "After a windup, release a large radius of fire and burning nearby marines in the process."
+	keybind_signal = COMSIG_XENOABILITY_INFERNO
+
+/datum/keybinding/xeno/infernal_trigger
+	name = "Infernal Trigger"
+	full_name = "Pyrogen: Infernal Trigger"
+	description = "After a windup, cause a marine who is on fire to explode their flames outward and set on fire those around them."
+	keybind_signal = COMSIG_XENOABILITY_INFERNAL_TRIGGER
