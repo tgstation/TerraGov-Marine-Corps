@@ -1,0 +1,4 @@
+author: "Rug-Dealer"
+delete-after: True
+changes:
+  - rscadd: "Added assault crewman to Valhalla, allowing you to test tanks and APCs again."
