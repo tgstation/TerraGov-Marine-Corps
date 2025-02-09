@@ -195,6 +195,17 @@
 		user.transferItemToLoc(I, src)
 		anes_tank = I
 		to_chat(user, span_notice("You connect \the [anes_tank] to \the [src]."))
+	
+	if(istype(I, /obj/item/riding_offhand))
+		var/obj/item/riding_offhand/carry_obj = I
+		if(carry_obj.is_rider(user))
+			return
+		if(victim)
+			balloon_alert(user, "already has patient!")
+			return
+		if(!take_victim(carry_obj.rider, user))
+			return
+		qdel(carry_obj)
 
 /obj/machinery/optable/grab_interact(obj/item/grab/grab, mob/user, base_damage = BASE_OBJ_SLAM_DAMAGE, is_sharp = FALSE)
 	. = ..()
@@ -234,13 +245,3 @@
 		return 0
 
 	return 1
-
-/obj/machinery/optable/attackby(obj/item/riding_offhand/carried_person, mob/user, params)
-	. = ..()
-	if(!istype(carried_person))
-		return
-	if(carried_person.is_rider(user))
-		return
-	user.unbuckle_mob(carried_person.rider)
-	take_victim(carried_person.rider, user)
-	qdel(carried_person)
