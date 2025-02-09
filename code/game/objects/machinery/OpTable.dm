@@ -234,3 +234,13 @@
 		return 0
 
 	return 1
+
+/obj/machinery/optable/attackby(obj/item/riding_offhand/carried_person, mob/user, params)
+	. = ..()
+	if(!istype(carried_person))
+		return
+	if(carried_person.is_rider())
+		return
+	user.unbuckle_mob(carried_person.rider)
+	take_victim(carried_person.rider, user)
+	qdel(carried_person)
