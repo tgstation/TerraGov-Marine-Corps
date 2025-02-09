@@ -64,7 +64,6 @@
 	if(round_stage == INFESTATION_MARINE_CRASHING)
 		round_finished = MODE_INFESTATION_M_MINOR
 		return
-	round_finished = MODE_INFESTATION_M_MAJOR
 
 /datum/game_mode/infestation/nuclear_war/get_hivemind_collapse_countdown()
 	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
@@ -75,6 +74,11 @@
 		return
 
 	//handle potential stopping
+	if(round_stage != INFESTATION_MARINE_DEPLOYMENT)
+		if(siloless_hive_timer)
+			deltimer(siloless_hive_timer)
+			siloless_hive_timer = null
+		return
 	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
 		if(siloless_hive_timer)
 			deltimer(siloless_hive_timer)

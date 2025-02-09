@@ -352,6 +352,8 @@ GLOBAL_VAR_INIT(corrupted_generators, 0)
 	is_on = FALSE
 	if(is_ground_level(z))
 		GLOB.corrupted_generators += 1
+	if(SSticker.mode)
+		SSticker.mode.update_silo_death_timer(GLOB.hive_datums[hivenumber])
 	power_gen_percent = 0
 	cur_tick = 0
 	icon_state = "off"
