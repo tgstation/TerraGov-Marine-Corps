@@ -158,7 +158,6 @@
 		var/xeno_amount = length(zap_beam(src, max_range, 4, max_targets = max_targets))
 		if(!xeno_amount)
 			return
-		/// I will actually explode if this math doesn't work
 		battery.use(active_cost * xeno_amount)
 		playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
 	else
