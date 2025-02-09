@@ -253,6 +253,8 @@
 	var/mob/living/carbon/human/human_target = target
 	var/datum/status_effect/stacking/melting_fire/debuff = human_target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	human_target.take_overall_damage(min(debuff.stacks * 20, 150), BURN, FIRE, max_limbs = 6)
+	
+	playsound(get_turf(human_target), 'sound/effects/alien/fireball.ogg', 50)
 	new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(human_target))
 	qdel(debuff)
 
