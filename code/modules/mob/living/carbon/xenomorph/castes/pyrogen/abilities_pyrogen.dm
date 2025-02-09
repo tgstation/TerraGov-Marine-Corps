@@ -247,7 +247,7 @@
 		return FALSE
 
 /datum/action/ability/activable/xeno/infernal_trigger/use_ability(atom/target)
-	if(!do_after(xeno_owner, 0.5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER))
+	if(!do_after(xeno_owner, 0.5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER) || !can_use_ability(target, TRUE, ABILITY_IGNORE_PLASMA))
 		return fail_activate()
 
 	var/mob/living/carbon/human/human_target = target
