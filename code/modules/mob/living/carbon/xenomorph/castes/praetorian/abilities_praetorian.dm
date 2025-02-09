@@ -288,7 +288,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_DODGE,
 	)
 	/// The increase of speed when ability is active.
-	var/speed_buff = -0.4
+	var/speed_buff = -0.3
 	/// How long the ability will last?
 	var/duration = 8 SECONDS
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
@@ -467,12 +467,11 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		to_chat(living_target, span_xenowarning("Our legs are struck by \the [xeno_owner]'s tail!"))
 		var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 		if(buffed)
-			living_target.ParalyzeNoChain	(2 SECONDS)
+			living_target.ParalyzeNoChain(2 SECONDS)
 			shake_camera(living_target, 2, 1)
-		living_target.AdjustKnockdown(buffed? 1 SECONDS : 0.5 SECONDS)
-		living_target.adjust_stagger(buffed ? 5 SECONDS : 3 SECONDS)
+		living_target.AdjustKnockdown(buffed ? 1 SECONDS : 0.5 SECONDS)
+		living_target.adjust_stagger(buffed ? 3 SECONDS : 1.5 SECONDS)
 		living_target.apply_damage(damage, STAMINA, updating_health = TRUE)
-
 	addtimer(CALLBACK(xeno_owner, TYPE_PROC_REF(/datum, remove_filter), "dancer_tail_trip"), 0.6 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(remove_swing), swing), 3 SECONDS)
 	succeed_activate()
