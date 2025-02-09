@@ -140,8 +140,11 @@
 // ***************************************
 // Cooldown between recharging grenades
 #define GLOBADIER_GRENADE_REGEN_COOLDOWN 15 SECONDS
+/// How much extra time is added to a grenades fuse when it is picked up
 #define GLOBADIER_GRENADE_PICKUP_CD 1.5 SECONDS
+/// Range that globadier can throw grenades
 #define GLOBADIER_GRENADE_THROW_RANGE 7
+/// Speed at which grenades fly when thrown
 #define GLOBADIER_GRENADE_THROW_SPEED 1.8
 //Grenade Defines, for the radial menu
 #define ACID_GRENADE /obj/item/explosive/grenade/globadier
@@ -153,14 +156,14 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	ACID_GRENADE = image('icons/xeno/effects.dmi', icon_state = "acid"),
 	FIRE_GRENADE = image('icons/effects/fire.dmi', icon_state = "purple_3"),
 	RESIN_GRENADE = image('icons/xeno/effects.dmi', icon_state = "sticky"),
-	GAS_GRENADE = image('icons/effects/particles/smoke.dmi', icon_state = "smoke_3")
+	GAS_GRENADE = image('icons/effects/effects.dmi', icon_state = "smoke")
 ))
 
 /datum/action/ability/activable/xeno/toss_grenade
 	name = "Toss Grenade"
 	action_icon_state = "glob_grenade"
 	action_icon = 'icons/Xeno/actions/spitter.dmi'
-	desc = "Toss a biological grenade at your target. Has various effects depending on selection, right click to select which grenade to use. Stores up to 5 uses."
+	desc = "Toss a biological grenade at your target. Has various effects depending on selection, right click to select which grenade to use. Stores up to 6 uses."
 	cooldown_duration = 2 SECONDS
 	ability_cost = 150
 	keybinding_signals = list(
@@ -173,6 +176,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	var/max_grenades = 6
 	///Which grenade this ability uses
 	var/selected_grenade = /obj/item/explosive/grenade/globadier
+	///The timer untill we regenerate another grenade
+	var/timer
 
 /datum/action/ability/activable/xeno/toss_grenade/give_action(mob/living/L)
 	. = ..()
@@ -182,10 +187,19 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	counter_maptext.maptext = MAPTEXT("[current_grenades]/[max_grenades]")
 	visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER] = counter_maptext
 
+	var/mutable_appearance/timer_maptext = mutable_appearance(layer = ACTION_LAYER_MAPTEXT)
+	timer_maptext.pixel_x = 16
+	timer_maptext.pixel_y = 24
+	timer_maptext.maptext = MAPTEXT("[timeleft(timer) ? "[round(timeleft(timer) / 10)]s" : ""]")
+	visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER] = timer_maptext
+
 /datum/action/ability/activable/xeno/toss_grenade/remove_action(mob/living/carbon/xenomorph/X)
 	. = ..()
 	button.cut_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER])
 	visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER] = null
+
+	button.cut_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER])
+	visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER] = null
 
 /datum/action/ability/activable/xeno/toss_grenade/update_button_icon()
 	button.cut_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER])
@@ -193,15 +207,13 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	number.maptext = MAPTEXT("[current_grenades]/[max_grenades]")
 	visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER] = number
 	button.add_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_COUNTER])
-	return ..()
 
-///Handle automatic regeneration of grenades, every GLOBADIER_GRENADE_REGEN_COOLDOWN seconds
-/datum/action/ability/activable/xeno/toss_grenade/proc/regen_grenade()
-	if(!(current_grenades < max_grenades))
-		return
-	current_grenades++
-	update_button_icon()
-	addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE)
+	button.cut_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER])
+	var/mutable_appearance/time = visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER]
+	time.maptext = MAPTEXT("[timeleft(timer) ? "[round(timeleft(timer) / 10)]s" : ""]")
+	visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER] = time
+	button.add_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER])
+	return ..()
 
 /datum/action/ability/activable/xeno/toss_grenade/use_ability(atom/target)
 	if(current_grenades <= 0)
@@ -213,13 +225,37 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	owner.visible_message(span_xenowarning("\The [owner] throws something towards \the [target]!"), \
 	span_xenowarning("We throw a grenade towards \the [target]!"))
 	current_grenades--
-	addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE)
+	timer = addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE|TIMER_STOPPABLE)
+	START_PROCESSING(SSprocessing, src)
 	update_button_icon()
 	succeed_activate()
 	add_cooldown()
 
 /datum/action/ability/activable/xeno/toss_grenade/alternate_action_activate()
 	INVOKE_ASYNC(src, PROC_REF(selectgrenade))
+
+
+/datum/action/ability/activable/xeno/toss_grenade/process()
+	if(!timeleft(timer))
+		STOP_PROCESSING(SSprocessing, src)
+		button.cut_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER])
+		return
+	button.cut_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER])
+	var/mutable_appearance/time = visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER]
+	time.maptext = MAPTEXT("[timeleft(timer) ? "[round(timeleft(timer) / 10)]s" : ""]")
+	visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER] = time
+	button.add_overlay(visual_references[VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER])
+
+///Handle automatic regeneration of grenades, every GLOBADIER_GRENADE_REGEN_COOLDOWN seconds
+/datum/action/ability/activable/xeno/toss_grenade/proc/regen_grenade()
+	if(!(current_grenades < max_grenades))
+		return
+	current_grenades++
+	update_button_icon()
+	if((current_grenades < max_grenades)) // Second if check as current_grenades has changed
+		timer = addtimer(CALLBACK(src, PROC_REF(regen_grenade)), GLOBADIER_GRENADE_REGEN_COOLDOWN, TIMER_UNIQUE|TIMER_STOPPABLE)
+		return
+	owner.balloon_alert(owner, "Max Grenades!")
 
 /// Handles selecting which grenade the xeno wants
 /datum/action/ability/activable/xeno/toss_grenade/proc/selectgrenade()
@@ -339,6 +375,10 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	var/regen_time = 40 SECONDS
 	///A reference to the VREF used to display the current / max charges on the ability
 	var/vref = VREF_MUTABLE_ACID_MINES_COUNTER
+	///A reference to the VREF used to display the abilites timer
+	var/timervref = VREF_MUTABLE_ACID_MINE_TIMER
+	///The timer the regen period uses
+	var/timer
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_MINE,
 	)
@@ -350,7 +390,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	current_charges++
 	update_button_icon()
 	if(current_charges < max_charges) //If we still have less than the total amount of mines, call the timer again to add another mine after the regen time
-		addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE)
+		timer = addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE|TIMER_STOPPABLE)
 
 /datum/action/ability/xeno_action/acid_mine/can_use_action(silent = FALSE, override_flags)
 	. = ..()
@@ -376,10 +416,19 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	counter_maptext.maptext = MAPTEXT("[current_charges]/[max_charges]")
 	visual_references[vref] = counter_maptext
 
+	var/mutable_appearance/timer_maptext = mutable_appearance(layer = ACTION_LAYER_MAPTEXT)
+	timer_maptext.pixel_x = 16
+	timer_maptext.pixel_y = 24
+	timer_maptext.maptext = MAPTEXT("[timeleft(timer) ? "[round(timeleft(timer) / 10)]s" : ""]")
+	visual_references[timervref] = timer_maptext
+
 /datum/action/ability/xeno_action/acid_mine/remove_action(mob/living/carbon/xenomorph/X)
 	. = ..()
 	button.cut_overlay(visual_references[vref])
 	visual_references[vref] = null
+
+	button.cut_overlay(visual_references[timervref])
+	visual_references[timervref] = null
 
 /datum/action/ability/xeno_action/acid_mine/update_button_icon()
 	button.cut_overlay(visual_references[vref])
@@ -387,6 +436,12 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	number.maptext = MAPTEXT("[current_charges]/[max_charges]")
 	visual_references[vref] = number
 	button.add_overlay(visual_references[vref])
+
+	button.cut_overlay(visual_references[timervref])
+	var/mutable_appearance/time = visual_references[timervref]
+	time.maptext = MAPTEXT("[timeleft(timer) ? "[round(timeleft(timer) / 10)]s" : ""]")
+	visual_references[timervref] = time
+	button.add_overlay(visual_references[timervref])
 	return ..()
 
 /datum/action/ability/xeno_action/acid_mine/action_activate()
@@ -397,10 +452,22 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	new mine_type(T)
 	current_charges--
 	playsound(T, SFX_ALIEN_RESIN_BUILD, 25)
-	addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE)
+	timer = addtimer(CALLBACK(src, PROC_REF(regen_mine)), regen_time, TIMER_UNIQUE|TIMER_STOPPABLE)
+	START_PROCESSING(SSprocessing, src)
 	update_button_icon()
 	succeed_activate()
 	add_cooldown()
+
+/datum/action/ability/xeno_action/acid_mine/process()
+	if(!timeleft(timer))
+		STOP_PROCESSING(SSprocessing, src)
+		button.cut_overlay(visual_references[timervref])
+		return
+	button.cut_overlay(visual_references[timervref])
+	var/mutable_appearance/time = visual_references[timervref]
+	time.maptext = MAPTEXT("[timeleft(timer) ? "[round(timeleft(timer) / 10)]s" : ""]")
+	visual_references[timervref] = time
+	button.add_overlay(visual_references[timervref])
 
 // ***************************************
 // *********** Gas Mine
@@ -414,6 +481,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	current_charges = 3
 	regen_time = 80 SECONDS
 	vref = VREF_MUTABLE_GAS_MINES_COUNTER
+	timervref = VREF_MUTABLE_GAS_MINE_TIMER
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_GAS_MINE,
 	)

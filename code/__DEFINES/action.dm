@@ -44,7 +44,12 @@
 #define VREF_MUTABLE_GLOB_GRENADES_COUNTER "VREF_GLOBGRENADE_COUNTER"
 // extra reference for how many globadier gas mines we have
 #define VREF_MUTABLE_GAS_MINES_COUNTER "VREF_GASMINE_COUNTER"
-
+// extra reference for how long untill we recharge a new globadier grenade
+#define VREF_MUTABLE_GLOB_GRENADES_CHARGETIMER "VREF_GLOBGRENADE_CHARGETIMER"
+// extra reference for how long untill we recharge a new acid mine
+#define VREF_MUTABLE_GAS_MINE_TIMER "VREF_GASMINE_CHARGETIMER"
+// extra reference for how long untill we recharge a new gas mine
+#define VREF_MUTABLE_ACID_MINE_TIMER "VREF_ACIDMINE_CHARGETIMER"
 
 /// Actions that toggle on click/trigger
 #define ACTION_TOGGLE "toggle"
