@@ -4,6 +4,7 @@
 	icon = 'icons/obj/machines/deployable/sentry/tesla.dmi'
 	icon_state = "grounding_rod_open0"
 	max_integrity = 250
+	/// Battery to be used by the device, is moved into the deployable when deployed, and back when undeployed
 	var/obj/item/cell/battery
 
 /obj/item/tesla_turret/Initialize(mapload)
@@ -23,16 +24,28 @@
 	if(!battery || !in_range(src, user))
 		return
 	. += span_notice("There is \a [battery] inside. [battery.charge]/[battery.maxcharge] left.")
-	. += span_notice("Alt-click to remove it.")
+	. += span_notice("<b>Use</b> inhand or <b>Right-click</b> to remove it.")
 
-/obj/item/tesla_turret/AltClick(mob/user)
+/obj/item/tesla_turret/attack_self(mob/living/user)
 	. = ..()
 	if(!in_range(src, user))
 		return
 	if(!battery)
 		balloon_alert(user, "no battery")
 		return
-	if(!user.put_in_active_hand(battery))
+	if(!user.put_in_hands(battery))
+		battery.forceMove(drop_location())
+	balloon_alert(user, "removed battery")
+	battery = null
+
+/obj/item/tesla_turret/attack_hand_alternate(mob/living/user)
+	. = ..()
+	if(!in_range(src, user))
+		return
+	if(!battery)
+		balloon_alert(user, "no battery")
+		return
+	if(!user.put_in_hands(battery))
 		battery.forceMove(drop_location())
 	balloon_alert(user, "removed battery")
 	battery = null
@@ -86,7 +99,7 @@
 	if(!battery || !in_range(src, user))
 		return
 	. += span_notice("There is \a [battery] inside. [battery.charge]/[battery.maxcharge] left.")
-	. += span_notice("Alt-click to remove it.")
+	. += span_notice("<b>Right-click</b> to remove it.")
 	if(!active)
 		return
 	. += span_warning("It is currently active.")
@@ -106,7 +119,7 @@
 	update_appearance(UPDATE_ICON)
 	return TRUE
 
-/obj/machinery/deployable/tesla_turret/AltClick(mob/user)
+/obj/machinery/deployable/tesla_turret/attack_hand_alternate(mob/living/user)
 	. = ..()
 	if(!in_range(src, user))
 		return
@@ -116,7 +129,7 @@
 	if(active)
 		balloon_alert(user, "turn off first")
 		return
-	if(!user.put_in_active_hand(battery))
+	if(!user.put_in_hands(battery))
 		battery.forceMove(drop_location())
 	battery = null
 	balloon_alert(user, "removed battery")
