@@ -467,7 +467,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		to_chat(living_target, span_xenowarning("Our legs are struck by \the [xeno_owner]'s tail!"))
 		var/buffed = living_target.has_status_effect(STATUS_EFFECT_DANCER_TAGGED)
 		if(buffed)
-			living_target.ParalyzeNoChain(2 SECONDS)
+			living_target.ParalyzeNoChain(1.5 SECONDS)
 			shake_camera(living_target, 2, 1)
 		living_target.AdjustKnockdown(buffed ? 1 SECONDS : 0.5 SECONDS)
 		living_target.adjust_stagger(buffed ? 3 SECONDS : 1.5 SECONDS)
@@ -521,6 +521,10 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	var/list/inrange = orange(2, xeno_owner)
 
 	for (var/mob/living/carbon/human/living_target in inrange)
+		var/start_turf = get_step(xeno_owner, get_cardinal_dir(xeno_owner, living_target))
+		//no hooking through solid obstacles
+		if(check_path(xeno_owner, start_turf, PASS_THROW) != start_turf)
+			continue
 		if(living_target.stat == DEAD)
 			continue
 		to_chat(living_target, span_xenowarning("\The [xeno_owner] hooks into our flesh and yanks us towards them!"))
@@ -559,8 +563,8 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	name = "Baton Pass"
 	action_icon_state = "baton_pass"
 	action_icon = 'icons/Xeno/actions/praetorian.dmi'
-	desc = "Inject another xenomorph with your built-up adrenaline, increasing their movement speed considerably for 6 seconds. Puts dodge on cooldown when used. Less effect on quick xenos."
-	cooldown_duration = 40 SECONDS
+	desc = "Inject another xenomorph with your built-up adrenaline, increasing their movement speed considerably for 6 seconds. Adds a short cooldown to dodge when used. Less effect on quick xenos."
+	cooldown_duration = 30 SECONDS
 	ability_cost = 150
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_BATONPASS,
@@ -600,7 +604,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	carbon_target.apply_status_effect(STATUS_EFFECT_XENO_BATONPASS)
 
 	var/datum/action/ability/xeno_action/dodge/ourdodge = xeno_owner.actions_by_path[/datum/action/ability/xeno_action/dodge]
-	ourdodge?.add_cooldown()
+	ourdodge?.add_cooldown(DANCER_DODGE_BATONPASS_CD)
 	succeed_activate()
 	add_cooldown()
 
