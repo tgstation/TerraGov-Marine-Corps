@@ -400,29 +400,29 @@
 	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
-/datum/action/ability/activable/xeno/corrosive_acid/acidder
+/datum/action/ability/activable/xeno/corrosive_acid/thioacetic
 	desc = "Cover an object with acid to slowly melt it. Takes less time than usual."
 	ability_cost = 25
 	acid_type = /obj/effect/xenomorph/acid/weak
 	acid_speed_multiplier = 0.75 // 50% faster
 
-/datum/action/ability/activable/xeno/charge/acid_dash/acidder
+/datum/action/ability/activable/xeno/charge/acid_dash/thioacetic
 	ability_cost = 50
 	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH_ACIDDER,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH_THIOACETIC,
 	)
 	charge_range = 7
 	do_acid_spray_act = FALSE
 
-/datum/action/ability/activable/xeno/acid_shroud/acidder
+/datum/action/ability/activable/xeno/acid_shroud/thioacetic
 	desc = "Creates a smokescreen below yourself."
 	ability_cost = 50
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_ACIDDER,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_THIOACETIC,
 	)
 
-/datum/action/ability/activable/xeno/charge/acid_dash/acidder/mob_hit(datum/source, mob/living/living_target)
+/datum/action/ability/activable/xeno/charge/acid_dash/thioacetic/mob_hit(datum/source, mob/living/living_target)
 	. = ..()
 	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target)))
 		return

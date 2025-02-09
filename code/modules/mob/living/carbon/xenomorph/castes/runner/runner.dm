@@ -63,16 +63,16 @@
 /mob/living/carbon/xenomorph/runner/resisted_against(datum/source)
 	user_unbuckle_mob(source, source)
 
-/mob/living/carbon/xenomorph/runner/acidder
-	caste_base_type = /datum/xeno_caste/runner/acidder
+/mob/living/carbon/xenomorph/runner/thioacetic
+	caste_base_type = /datum/xeno_caste/runner/thioacetic
 
-/mob/living/carbon/xenomorph/runner/acidder/Initialize(mapload)
+/mob/living/carbon/xenomorph/runner/thioacetic/Initialize(mapload)
 	. = ..()
 	ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
 	RegisterSignal(src, COMSIG_XENOMORPH_ATTACK_OBJ, PROC_REF(on_attack_obj))
 	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack_living))
 
-/mob/living/carbon/xenomorph/runner/acidder/death(gibbing, deathmessage, silent)
+/mob/living/carbon/xenomorph/runner/thioacetic/death(gibbing, deathmessage, silent)
 	for(var/turf/acid_tile AS in RANGE_TURFS(2, loc))
 		if(!line_of_sight(loc, acid_tile))
 			continue
@@ -84,13 +84,13 @@
 	return ..()
 
 /// Deals a second instance of melee damage as burn damage to damageable objects.
-/mob/living/carbon/xenomorph/runner/acidder/proc/on_attack_obj(mob/living/carbon/xenomorph/source, obj/target)
+/mob/living/carbon/xenomorph/runner/thioacetic/proc/on_attack_obj(mob/living/carbon/xenomorph/source, obj/target)
 	SIGNAL_HANDLER
 	if(target.resistance_flags & XENO_DAMAGEABLE)
 		target.take_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, BURN, ACID)
 
 /// Deals a second instance of melee damage as burn damage to living beings.
-/mob/living/carbon/xenomorph/runner/acidder/proc/on_postattack_living(mob/living/carbon/xenomorph/source, mob/living/target, damage)
+/mob/living/carbon/xenomorph/runner/thioacetic/proc/on_postattack_living(mob/living/carbon/xenomorph/source, mob/living/target, damage)
 	SIGNAL_HANDLER
 	target.apply_damage(xeno_caste.melee_damage * xeno_melee_damage_modifier, BURN, null, ACID)
 	var/datum/status_effect/stacking/melting_acid/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_ACID)
