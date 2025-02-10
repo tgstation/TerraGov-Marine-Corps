@@ -467,7 +467,7 @@
 	scatter_unwielded = 10
 	fire_delay = 0.2 SECONDS
 	accuracy_mult_unwielded = 0.55
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.2
 	mode_list = list(
 		"Standard" = /datum/lasrifle/energy_rifle_mode/standard,
 		"Overcharge" = /datum/lasrifle/energy_rifle_mode/overcharge,
@@ -567,7 +567,7 @@
 	fire_delay = 0.15 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.9
-	damage_falloff_mult = 0.7
+	damage_falloff_mult = 0.2
 	aim_slowdown = 0
 	mode_list = list(
 		"Standard" = /datum/lasrifle/energy_pistol_mode/standard,
@@ -658,7 +658,7 @@
 	autoburst_delay = 0.35 SECONDS
 	accuracy_mult = 1
 	accuracy_mult_unwielded = 0.65
-	damage_falloff_mult = 0.7
+	damage_falloff_mult = 0.5
 	movement_acc_penalty_mult = 4
 	mode_list = list(
 		"Auto burst standard" = /datum/lasrifle/energy_carbine_mode/auto_burst,
@@ -787,7 +787,6 @@
 	scatter = -4
 	scatter_unwielded = 10
 	fire_delay = 0.8 SECONDS
-	damage_falloff_mult = 0.5
 	accuracy_mult = 1.2
 	accuracy_mult_unwielded = 0.5
 	movement_acc_penalty_mult = 6
@@ -889,7 +888,7 @@
 	accuracy_mult_unwielded = 0.3
 	scatter_unwielded = 30
 	movement_acc_penalty_mult = 6
-	damage_falloff_mult = 0.5
+	damage_falloff_mult = 0.3
 	windup_sound = 'sound/weapons/guns/fire/laser_charge_up.ogg'
 	mode_list = list(
 		"Standard" = /datum/lasrifle/energy_mg_mode/standard,
