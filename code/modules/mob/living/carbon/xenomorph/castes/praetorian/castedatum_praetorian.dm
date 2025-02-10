@@ -100,9 +100,14 @@
 	// +2 melee damage
 	melee_damage = 25
 
-	// Loses some common armor (-5) for more speed (-0.2).
+	// +30 hp
+	max_health = 420
+
+	// Gains more speed (-0.2).
 	speed = -0.7
-	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 10, BIO = 40, FIRE = 45, ACID = 40)
+
+	// +10 melee armor
+	soft_armor = list(MELEE = 55, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 50, ACID = 40)
 
 	// Loses ranged spit abilities for close combat combo abilities.
 	actions = list(
