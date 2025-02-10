@@ -394,10 +394,3 @@
 		/datum/maw_ammo/hugger,
 		/datum/maw_ammo/xeno_fire,
 	)
-
-/obj/structure/xeno/acid_maw/acid_jaws/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount, damage_type, armor_type, effects, armor_penetration, isrightclick)
-	GLOB.round_statistics.acid_jaw_fires++
-	if(xeno_attacker.client)
-		var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[xeno_attacker.ckey]
-		personal_statistics.acid_jaw_uses++
-	. = ..()
