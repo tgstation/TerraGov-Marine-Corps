@@ -1,18 +1,16 @@
-import { filter, sortBy } from 'common/collections';
 import { useBackend, useLocalState } from 'tgui/backend';
 import { Window } from 'tgui/layouts';
 import {
-  Box,
   Button,
   Collapsible,
   Icon,
+  Image,
   Input,
   LabeledList,
   NoticeBox,
   Section,
   Stack,
 } from 'tgui-core/components';
-import { flow } from 'tgui-core/fp';
 import { capitalizeFirst } from 'tgui-core/string';
 
 import { getDisplayColor, getDisplayName, isJobOrNameMatch } from './helpers';
@@ -52,24 +50,20 @@ const ObservableSearch = (props) => {
     'searchQuery',
     '',
   );
+
   /** Gets a list of Observables, then filters the most relevant to orbit */
-  const orbitMostRelevant = (searchQuery: string) => {
-    /** Returns the most orbited observable that matches the search. */
-    const mostRelevant: Observable = flow([
-      // Filters out anything that doesn't match search
-      filter<Observable>((observable) =>
-        isJobOrNameMatch(observable, searchQuery),
-      ),
-      // Sorts descending by orbiters
-      sortBy<Observable>((observable) => -(observable.orbiters || 0)),
-      // Makes a single Observables list for an easy search
-    ])([humans, marines, som, survivors, xenos].flat())[0];
+  function orbitMostRelevant() {
+    const mostRelevant = [humans, marines, som, survivors, xenos]
+      .flat()
+      .filter((observable) => isJobOrNameMatch(observable, searchQuery))
+      .sort((observable) => -(observable.orbiters || 0))[0];
+
     if (mostRelevant !== undefined) {
       act('orbit', {
         ref: mostRelevant.ref,
       });
     }
-  };
+  }
 
   return (
     <Section>
@@ -81,8 +75,8 @@ const ObservableSearch = (props) => {
           <Input
             autoFocus
             fluid
-            onEnter={(e, value) => orbitMostRelevant(value)}
-            onInput={(e) => setSearchQuery(e.target.value)}
+            onEnter={orbitMostRelevant}
+            onInput={(event, value) => setSearchQuery(value)}
             placeholder="Search..."
             value={searchQuery}
           />
@@ -146,6 +140,24 @@ const ObservableContent = (props) => {
   );
 };
 
+/** Sorts based on real name */
+export function sortByDisplayName(poiA: Observable, poiB: Observable): number {
+  const nameA = getDisplayName(poiA.full_name, poiA.nickname)
+    .replace(/^"/, '')
+    .toLowerCase();
+  const nameB = getDisplayName(poiB.full_name, poiB.nickname)
+    .replace(/^"/, '')
+    .toLowerCase();
+
+  if (nameA < nameB) {
+    return -1;
+  }
+  if (nameA > nameB) {
+    return 1;
+  }
+  return 0;
+}
+
 /**
  * Displays a collapsible with a map of observable items.
  * Filters the results if there is a provided search query.
@@ -160,16 +172,12 @@ const ObservableSection = (props: {
     return null;
   }
   const [searchQuery] = useLocalState<string>('searchQuery', '');
-  const filteredSection: Array<Observable> = flow([
-    filter<Observable>((observable) =>
-      isJobOrNameMatch(observable, searchQuery),
-    ),
-    sortBy<Observable>((observable) =>
-      getDisplayName(observable.full_name, observable.nickname)
-        .replace(/^"/, '')
-        .toLowerCase(),
-    ),
-  ])(section);
+  const filteredSection = section.filter((observable) =>
+    isJobOrNameMatch(observable, searchQuery),
+  );
+
+  filteredSection.sort(sortByDisplayName);
+
   if (!filteredSection.length) {
     return null;
   }
@@ -252,8 +260,7 @@ const ObservableIcon = (props: { icon: Observable['icon'] }) => {
   }
 
   return (
-    <Box
-      as="img"
+    <Image
       mr={1.5}
       src={`data:image/jpeg;base64,${icons[icon]}`}
       style={{
