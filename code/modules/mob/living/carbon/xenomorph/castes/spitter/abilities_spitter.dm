@@ -352,11 +352,11 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		if(affected.stat == DEAD)
 			continue
 		affected.throw_at(throwlocation, 6, 1.5, src, TRUE)
-	if(get_dist(owner.loc, loc) <= 1)
-		var/throwloc = owner.loc
+	for(var/mob/living/carbon/xenomorph/xeno AS in cheap_get_xenos_near(src,1))
+		var/throwloc = xeno.loc
 		for(var/x in 1 to 3)
-			throwloc = get_step(throwloc, owner.dir)
-			owner.throw_at(throwloc, 6, 1.6, src, TRUE)
+			throwloc = get_step(throwloc, xeno.dir)
+			xeno.throw_at(throwloc, 6, 1.6, src, TRUE)
 	qdel(src)
 
 // ***************************************
@@ -386,6 +386,8 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	det_time = 4 SECONDS
 
 /obj/item/explosive/grenade/globadier/heal/prime()
+	for(var/turf/effect_tile in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
+		new /obj/effect/temp_visual/heal(effect_tile)
 	for(var/mob/living/carbon/xenomorph/xeno AS in cheap_get_xenos_near(src,1))
 		var/healamount = (25 + (xeno.maxHealth * 0.03))
 		HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
