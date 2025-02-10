@@ -193,3 +193,9 @@
 				return FALSE
 			user.balloon_alert(user, "You cannot [key] while restrained")
 			return FALSE
+
+		if(emote_flags & EMOTE_ACTIVE_ITEM)
+			if(user.get_active_held_item() != null)
+				return TRUE
+			user.balloon_alert(user, "You need to hold an item to trick it.")
+			return FALSE
