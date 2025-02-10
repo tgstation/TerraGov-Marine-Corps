@@ -22,6 +22,7 @@ const ALTERNATE_ACTIONS: Record<string, AlternateAction> = {
 };
 
 enum ObscuringLevel {
+  NotHidden = 0,
   Completely = 1,
   Hidden = 2,
 }
