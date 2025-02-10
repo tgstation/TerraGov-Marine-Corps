@@ -42,7 +42,7 @@
 	fire_sound = 'sound/weapons/guns/fire/tgmc/kinetic/gun_mp19.ogg'
 	caliber = CALIBER_10X20_CASELESS //codex
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC, GUN_FIREMODE_AUTOBURST)
-	max_shells = 30 //codex
+	max_shells = 45 //codex
 	equip_slot_flags = ITEM_SLOT_BACK|ITEM_SLOT_BELT
 	type_of_casings = null
 	default_ammo_type = /obj/item/ammo_magazine/smg/standard_machinepistol
@@ -72,7 +72,7 @@
 	accuracy_mult = 1.1
 	accuracy_mult_unwielded = 0.9
 	recoil_unwielded = 0
-	fire_delay = 0.10 SECONDS
+	fire_delay = 0.15 SECONDS
 
 	scatter = 0
 	scatter_unwielded = 4
@@ -104,7 +104,7 @@
 	icon_state = "t90"
 	worn_icon_state = "t90"
 	caliber = CALIBER_10X20_CASELESS //codex
-	max_shells = 50 //codex
+	max_shells = 80 //codex
 	equip_slot_flags = ITEM_SLOT_BACK
 	wield_delay = 0.7 SECONDS
 	force = 20
@@ -134,7 +134,7 @@
 	accuracy_mult = 1.05
 	accuracy_mult_unwielded = 0.9
 	scatter = 1
-	fire_delay = 0.10 SECONDS
+	fire_delay = 0.15 SECONDS
 	scatter_unwielded = 8
 	aim_slowdown = 0.2
 	burst_amount = 0
@@ -160,7 +160,7 @@
 	icon_state = "t45"
 	worn_icon_state = "t45"
 	caliber = CALIBER_41AE //codex
-	max_shells = 40 //codex
+	max_shells = 55 //codex
 	fire_sound = 'sound/weapons/guns/fire/skorpevo.ogg'
 	unload_sound = 'sound/weapons/guns/interact/mp5_unload.ogg'
 	reload_sound = 'sound/weapons/guns/interact/mp5_reload.ogg'
@@ -198,7 +198,7 @@
 	aim_slowdown = 0.25
 	accuracy_mult = 1.15
 	accuracy_mult_unwielded = 0.85
-	fire_delay = 0.15 SECONDS
+	fire_delay = 0.20 SECONDS
 	burst_delay =  0.2 SECONDS
 	burst_amount = 3
 	scatter = 2

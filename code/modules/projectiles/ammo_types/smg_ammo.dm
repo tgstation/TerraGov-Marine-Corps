@@ -11,7 +11,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accuracy_var_low = 7
 	accuracy_var_high = 7
-	damage = 17.5
+	damage = 20
 	accurate_range = 4
 	damage_falloff = 1
 	sundering = 0.5
@@ -44,7 +44,7 @@
 	damage = 15
 	penetration = 15
 	armor_type = BOMB
-	sundering = 1
+	sundering = 0.5
 	damage_falloff = 1.7
 	shrapnel_chance = 0
 	///shatter effection duration when hitting mobs
