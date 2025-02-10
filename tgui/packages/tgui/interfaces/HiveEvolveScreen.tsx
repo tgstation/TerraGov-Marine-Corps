@@ -35,7 +35,7 @@ const CasteView = (props) => {
       {props.abilities
         ? abilities.map((ability) => (
             <Button
-              fluid={1}
+              fluid
               key={ability.name}
               color="transparent"
               tooltip={ability.desc}

@@ -14,7 +14,7 @@ export type LoadoutItemData = {
 
 export type LoadoutListData = {
   loadout_list: Loadout[];
-  setShowDesc: Dispatch<SetStateAction<string>>;
+  setShowDesc: Dispatch<SetStateAction<null | string>>;
 };
 
 export type LoadoutTabData = {

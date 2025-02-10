@@ -181,7 +181,7 @@ const PatientBasics = () => {
                     : 'label'
                   : 'red'
               }
-              bold={1}
+              bold
             >
               {revivable_string}
             </Box>

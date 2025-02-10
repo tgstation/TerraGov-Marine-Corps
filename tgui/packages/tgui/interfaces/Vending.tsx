@@ -210,7 +210,7 @@ const ProductEntry = (props: VendingProductEntryProps) => {
             onClick={() => act('vend', { vend: prod_ref })}
             disabled={!stock}
           >
-            <Box color={product_color} bold={1}>
+            <Box color={product_color} bold>
               Vend
             </Box>
           </Button>

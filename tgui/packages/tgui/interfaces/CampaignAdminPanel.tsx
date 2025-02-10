@@ -29,7 +29,7 @@ export const CampaignAdminPanel = (props) => {
           {data.faction_data.map((selected_faction) => (
             <Section mr={3} key={selected_faction.faction}>
               <Stack vertical>
-                <Stack.Item fontSize="150%" bold={1}>
+                <Stack.Item fontSize="150%" bold>
                   {selected_faction.faction}
                 </Stack.Item>
                 <Stack.Item mt={2}>
@@ -149,7 +149,7 @@ export const CampaignAdminPanel = (props) => {
           ))}
           <Section>
             <Stack vertical>
-              <Stack.Item fontSize="150%" bold={1}>
+              <Stack.Item fontSize="150%" bold>
                 Campaign Buttons
               </Stack.Item>
               <Stack.Item mt={2}>

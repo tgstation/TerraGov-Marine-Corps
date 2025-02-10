@@ -52,13 +52,14 @@ export const Sentry = (props) => {
             <LabeledList.Item label="Current Rounds">
               <ProgressBar
                 value={rounds / rounds_max}
-                content={rounds + ' out of ' + rounds_max}
                 ranges={{
                   good: [0.67, Infinity],
                   average: [0.33, 0.67],
                   bad: [-Infinity, 0.33],
                 }}
-              />
+              >
+                {rounds + ' out of ' + rounds_max}
+              </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
               buttons={

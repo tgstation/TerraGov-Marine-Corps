@@ -97,14 +97,13 @@ const CategoryBar = (props: CategoryBarProps) => {
       scrollableHorizontal
       buttons={
         <Input
-          grow
           placeholder="Search"
           value={categorySearch}
           onChange={(_: any, value: string) => setCategorySearch(value)}
         />
       }
     >
-      <Stack scrollableHorizontal>
+      <Stack>
         {/** these are not in stack items to have them directly next to eachother */}
         <Button
           textAlign="left"

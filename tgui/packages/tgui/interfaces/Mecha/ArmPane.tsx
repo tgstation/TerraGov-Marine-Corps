@@ -45,7 +45,7 @@ export const ArmPane = (props: { weapon: MechWeapon }) => {
           </Stack.Item>
         </Stack>
       </Stack.Item>
-      <Stack.Item vertical>
+      <Stack.Item>
         <LabeledList>
           <LabeledList.Item label={'Detach'}>
             <Button
