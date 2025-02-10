@@ -9,8 +9,8 @@ import {
 } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { TextInputModal } from './TextInputModal';
 import { ButtonKeybind } from './ButtonKeybind';
+import { TextInputModal } from './TextInputModal';
 
 const KEY_MODS = {
   SHIFT: true,
