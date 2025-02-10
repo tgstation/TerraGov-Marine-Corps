@@ -1,4 +1,0 @@
-author: "Rug-Dealer"
-delete-after: True
-changes:
-  - rscadd: "Ghosts can now view the reagents in pills, pressurized reagent canisters, and chem grenades on examine."

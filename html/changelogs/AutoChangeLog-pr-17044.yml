@@ -1,5 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - balance: "Non CIC overwatch consoles no longer have military functions"
-  - code_imp: "cleaned up Overwatch console code"
