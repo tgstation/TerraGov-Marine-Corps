@@ -198,12 +198,12 @@
 /mob/living/fire_act(burn_level)
 	if(!burn_level)
 		return
-	if(status_flags & (INCORPOREAL|GODMODE)) //Ignore incorporeal/invul targets
+	if(status_flags & (INCORPOREAL|GODMODE))
+		return FALSE
+	if(pass_flags & PASS_FIRE)
 		return FALSE
 	if(soft_armor.getRating(FIRE) >= 100)
 		to_chat(src, span_warning("You are untouched by the flames."))
-		return FALSE
-	if(pass_flags & PASS_FIRE) //Pass fire allow to cross fire without being affected.
 		return FALSE
 
 	take_overall_damage(rand(10, burn_level), BURN, FIRE, updating_health = TRUE, max_limbs = 4)

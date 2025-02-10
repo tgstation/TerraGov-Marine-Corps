@@ -3367,7 +3367,7 @@
 /obj/structure/window/reinforced/toughened{
 	dir = 8
 	},
-/obj/machinery/computer/camera_advanced/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/military/main,
 /obj/structure/table/reinforced,
 /turf/open/floor/prison/bright_clean,
 /area/sulaco/bridge)
