@@ -232,27 +232,27 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_dat()
 	var/dat
 	if(!operator)
-		dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>----------</A><BR>"
+		dat += "<BR><B>Operator:</b> <A href='byond://?src=[text_ref(src)];operation=change_operator'>----------</A><BR>"
 		return dat
-	dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>[operator.name]</A><BR>"
-	dat += "   <A href='?src=[text_ref(src)];operation=logout'>{Stop Overwatch}</A><BR>"
+	dat += "<BR><B>Operator:</b> <A href='byond://?src=[text_ref(src)];operation=change_operator'>[operator.name]</A><BR>"
+	dat += "   <A href='byond://?src=[text_ref(src)];operation=logout'>{Stop Overwatch}</A><BR>"
 	dat += "----------------------<br>"
 	if(overwatch_flags & OVERWATCH_ON_MONITOR)
 		dat += get_squad_info()
 		return dat
 
 	if(!current_squad)
-		dat += "<br>Current Squad: <A href='?src=[text_ref(src)];operation=pick_squad'>----------</A><BR>"
+		dat += "<br>Current Squad: <A href='byond://?src=[text_ref(src)];operation=pick_squad'>----------</A><BR>"
 		return dat
 
 	dat += "<br><b>[current_squad.name] Squad</A></b>   <br><br>"
 	dat += "----------------------<BR><BR>"
 	if(current_squad.squad_leader)
-		dat += "<B>Squad Leader:</B> <A href='?src=[text_ref(src)];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
+		dat += "<B>Squad Leader:</B> <A href='byond://?src=[text_ref(src)];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
 
-	dat += "<a href='?src=[text_ref(src)];operation=monitor'>Squad Monitor</a><br><br>"
+	dat += "<a href='byond://?src=[text_ref(src)];operation=monitor'>Squad Monitor</a><br><br>"
 	dat += "----------------------<br>"
-	dat += "<br><br><a href='?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
+	dat += "<br><br><a href='byond://?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
 	return dat
 
 ///Provides info on the currently selected squad
@@ -319,22 +319,22 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 			if(CONSCIOUS)
 				mob_state = "Conscious"
 				living_count++
-				conscious_text += "<tr><td><A href='?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+				conscious_text += "<tr><td><A href='byond://?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 			if(UNCONSCIOUS)
 				mob_state = "<b>Unconscious</b>"
 				living_count++
-				unconscious_text += "<tr><td><A href='?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+				unconscious_text += "<tr><td><A href='byond://?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 			if(DEAD)
 				if(overwatch_flags & OVERWATCH_HIDE_DEAD)
 					continue
 				mob_state = "<font color='red'>DEAD</font>"
-				dead_text += "<tr><td><A href='?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+				dead_text += "<tr><td><A href='byond://?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 		if((!H.key || !H.client) && H.stat != DEAD)
 			mob_state += " (SSD)"
 		var/obj/item/card/id/ID = H.wear_id
 		if(ID?.assigned_fireteam)
 			fteam = " \[[ID.assigned_fireteam]\]"
-		var/marine_infos = "<tr><td><A href='?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl][fteam]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
+		var/marine_infos = "<tr><td><A href='byond://?src=[text_ref(src)];operation=use_cam;cam_target=[text_ref(H)]'>[mob_name]</a></td><td>[role][act_sl][fteam]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
 		if(role in GLOB.jobs_squad_standard)
 			marine_text += marine_infos
@@ -390,11 +390,11 @@ GLOBAL_LIST_EMPTY(active_cas_targets)
 /obj/machinery/computer/camera_advanced/overwatch/proc/get_squad_info_ending()
 	var/dat = ""
 	dat += "----------------------<br>"
-	dat += "<A href='?src=[text_ref(src)];operation=refresh'>{Refresh}</a><br>"
-	dat += "<A href='?src=[text_ref(src)];operation=hide_dead'>{[(overwatch_flags & OVERWATCH_SORT_BY_HEALTH) ? "Sort by rank" : "Sort by health" ]}</a><br>"
-	dat += "<A href='?src=[text_ref(src)];operation=hide_dead'>{[(overwatch_flags & OVERWATCH_HIDE_DEAD) ? "Show Dead Marines" : "Hide Dead Marines" ]}</a><br>"
-	dat += "<A href='?src=[text_ref(src)];operation=choose_z'>{Change Locations Ignored}</a><br>"
-	dat += "<br><A href='?src=[text_ref(src)];operation=back'>{Back}</a>"
+	dat += "<A href='byond://?src=[text_ref(src)];operation=refresh'>{Refresh}</a><br>"
+	dat += "<A href='byond://?src=[text_ref(src)];operation=hide_dead'>{[(overwatch_flags & OVERWATCH_SORT_BY_HEALTH) ? "Sort by rank" : "Sort by health" ]}</a><br>"
+	dat += "<A href='byond://?src=[text_ref(src)];operation=hide_dead'>{[(overwatch_flags & OVERWATCH_HIDE_DEAD) ? "Show Dead Marines" : "Hide Dead Marines" ]}</a><br>"
+	dat += "<A href='byond://?src=[text_ref(src)];operation=choose_z'>{Change Locations Ignored}</a><br>"
+	dat += "<br><A href='byond://?src=[text_ref(src)];operation=back'>{Back}</a>"
 	return dat
 
 //This is an effect to be sure it is properly deleted and it does not interfer with existing lights too much.
