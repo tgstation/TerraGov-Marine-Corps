@@ -36,8 +36,6 @@
 	var/obj/vehicle/sealed/armored/owner
 	///The skill required to man this chair
 	var/skill_req = SKILL_LARGE_VEHICLE_VETERAN
-	///tile range we increase vision by
-	var/vis_range_mod = 1
 
 /obj/structure/bed/chair/vehicle_crew/Destroy()
 	owner = null
@@ -59,17 +57,18 @@
 		return FALSE
 	return ..()
 
+/obj/structure/bed/chair/vehicle_crew/proc/get_vis_range_mod()
+	return 1
+
 /obj/structure/bed/chair/vehicle_crew/post_buckle_mob(mob/buckling_mob)
 	. = ..()
 	buckling_mob.reset_perspective(owner)
-	if(vis_range_mod)
-		buckling_mob.client.view_size.add(vis_range_mod)
+	buckling_mob.client.view_size.add(get_vis_range_mod())
 
 /obj/structure/bed/chair/vehicle_crew/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
 	buckled_mob.reset_perspective()
-	if(vis_range_mod)
-		buckled_mob.client.view_size.reset_to_default()
+	buckled_mob.client.view_size.reset_to_default()
 
 /obj/structure/bed/chair/vehicle_crew/relaymove(mob/living/user, direct)
 	return owner.relaymove(arglist(args))
@@ -77,7 +76,9 @@
 /obj/structure/bed/chair/vehicle_crew/driver
 	name = "driver seat"
 	buckling_x = 12
-	vis_range_mod = 4
+
+/obj/structure/bed/chair/vehicle_crew/driver/get_vis_range_mod()
+	return 4
 
 /obj/structure/bed/chair/vehicle_crew/driver/post_buckle_mob(mob/buckling_mob)
 	. = ..()
@@ -94,6 +95,9 @@
 
 /obj/structure/bed/chair/vehicle_crew/gunner
 	name = "gunner seat"
+
+/obj/structure/bed/chair/vehicle_crew/gunner/get_vis_range_mod()
+	return (SSticker.mode.round_type_flags & MODE_HUMAN_ONLY) ? 4 : 1
 
 /obj/structure/bed/chair/vehicle_crew/gunner/post_buckle_mob(mob/buckling_mob)
 	. = ..()
@@ -122,7 +126,6 @@
 	pixel_y = 3
 	buckling_x = 0
 	buckling_y = 10
-	vis_range_mod = 4
 
 /obj/structure/bed/chair/vehicle_crew/driver/som/handle_layer()
 	return
@@ -134,7 +137,6 @@
 	pixel_y = 1
 	buckling_x = 0
 	buckling_y = 9
-	vis_range_mod = 4
 
 /obj/structure/bed/chair/vehicle_crew/gunner/som/handle_layer()
 	return
