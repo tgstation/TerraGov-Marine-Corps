@@ -1,4 +1,4 @@
-import { Component, useState } from 'react';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -7,7 +7,6 @@ import {
   Section,
   Stack,
 } from 'tgui-core/components';
-import { globalEvents } from 'tgui-core/events';
 
 import { useBackend } from '../../backend';
 import { TextInputModal } from './TextInputModal';
