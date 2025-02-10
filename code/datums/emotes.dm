@@ -197,5 +197,5 @@
 		if(emote_flags & EMOTE_ACTIVE_ITEM)
 			if(user.get_active_held_item() != null)
 				return TRUE
-			user.balloon_alert(user, "You need to hold an item to trick it.")
+			user.balloon_alert(user, "You need to hold an item to [key] it.")
 			return FALSE
