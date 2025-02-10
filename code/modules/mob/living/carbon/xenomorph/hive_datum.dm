@@ -96,7 +96,8 @@
 
 	var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
-	var/siloless_countdown = SSticker.mode?.get_siloless_collapse_countdown()
+	var/datum/game_mode/infestation/nuclear_war/mode = SSticker.mode
+	var/siloless_countdown = mode.get_siloless_collapse_countdown()
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
 	// Show all the death timers in milliseconds
 	.["hive_death_timers"] = list()
@@ -942,6 +943,7 @@ to_chat will check for valid clients itself already so no need to double check f
 
 	orphan_hud_timer = new(null, null, get_all_xenos(), D.orphan_hive_timer, "Orphan Hivemind Collapse: ${timer}", 150, -80)
 
+//This creates the hud timer for siloless collapse.
 /datum/hive_status/normal/proc/setup_siloless_hud_timer()
 	SIGNAL_HANDLER
 	var/datum/game_mode/infestation/nuclear_war/D = SSticker.mode
@@ -1069,7 +1071,9 @@ to_chat will check for valid clients itself already so no need to double check f
 
 
 /datum/hive_status/normal/on_shuttle_hijack(obj/docking_port/mobile/marine_dropship/hijacked_ship)
-	SSticker.mode.update_silo_death_timer(src)
+	if(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN)
+		var/datum/game_mode/infestation/nuclear_war/mode = SSticker.mode
+		mode.update_silo_death_timer(src)
 	GLOB.xeno_enter_allowed = FALSE
 	xeno_message("Our Ruler has commanded the metal bird to depart for the metal hive in the sky! Run and board it to avoid a cruel death!")
 	RegisterSignal(hijacked_ship, COMSIG_SHUTTLE_SETMODE, PROC_REF(on_hijack_depart))
