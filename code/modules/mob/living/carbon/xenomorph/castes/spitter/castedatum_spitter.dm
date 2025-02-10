@@ -85,6 +85,9 @@
 	// *** Speed *** //
 	speed = -0.8
 
+	// *** Health *** //
+	max_health = 320
+
 	// *** Ablities *** //
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,

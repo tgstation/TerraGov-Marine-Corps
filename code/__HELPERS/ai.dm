@@ -2,7 +2,7 @@
 #define NODE_GET_VALUE_OF_WEIGHT(IDENTIFIER, NODE, WEIGHT_NAME) NODE.weights[IDENTIFIER][WEIGHT_NAME]
 
 ///Returns a list of mobs/living via get_dist and same z level method, very cheap compared to range()
-/proc/cheap_get_living_near(atom/movable/source, distance)
+/proc/cheap_get_living_near(atom/source, distance)
 	. = list()
 	for(var/mob/living/nearby_living AS in GLOB.mob_living_list)
 		if(source.z != nearby_living.z)
@@ -25,7 +25,7 @@
 		. += nearby_human
 
 ///Returns a list of xenos via get_dist and same z level method, very cheap compared to range()
-/proc/cheap_get_xenos_near(atom/movable/source, distance)
+/proc/cheap_get_xenos_near(atom/source, distance)
 	. = list()
 	var/turf/source_turf = get_turf(source)
 	if(!source_turf)
@@ -40,7 +40,7 @@
 		. += nearby_xeno
 
 ///Returns a list of mechs via get_dist and same z level method, very cheap compared to range()
-/proc/cheap_get_mechs_near(atom/movable/source, distance)
+/proc/cheap_get_mechs_near(atom/source, distance)
 	. = list()
 	var/turf/source_turf = get_turf(source)
 	if(!source_turf)
@@ -55,7 +55,7 @@
 		. += nearby_mech
 
 ///Returns a list of vehicles via get_dist and same z level method, very cheap compared to range()
-/proc/cheap_get_tanks_near(atom/movable/source, distance)
+/proc/cheap_get_tanks_near(atom/source, distance)
 	. = list()
 	var/turf/source_turf = get_turf(source)
 	if(!source_turf)

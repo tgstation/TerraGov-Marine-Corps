@@ -151,12 +151,14 @@
 #define FIRE_GRENADE /obj/item/explosive/grenade/globadier/incen
 #define RESIN_GRENADE /obj/item/explosive/grenade/globadier/resin
 #define GAS_GRENADE /obj/item/explosive/grenade/globadier/gas
+#define HEAL_GRENADE /obj/item/explosive/grenade/globadier/heal
 //List of all images used for grenades, in the radial selection menu
 GLOBAL_LIST_INIT(globadier_images_list, list(
 	ACID_GRENADE = image('icons/xeno/effects.dmi', icon_state = "acid"),
 	FIRE_GRENADE = image('icons/effects/fire.dmi', icon_state = "purple_3"),
 	RESIN_GRENADE = image('icons/xeno/effects.dmi', icon_state = "sticky"),
-	GAS_GRENADE = image('icons/effects/effects.dmi', icon_state = "smoke")
+	GAS_GRENADE = image('icons/effects/effects.dmi', icon_state = "smoke"),
+	HEAL_GRENADE = image('icons/effects/effects.dmi', icon_state = "mech_toxin"),
 ))
 
 /datum/action/ability/activable/xeno/toss_grenade
@@ -219,7 +221,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	if(current_grenades <= 0)
 		owner.balloon_alert(owner, "No Grenades!")
 		return fail_activate()
-	var/obj/item/explosive/grenade/globadier/nade = new selected_grenade(owner.loc)
+	var/obj/item/explosive/grenade/globadier/nade = new selected_grenade(owner.loc, owner)
 	nade.activate(owner)
 	nade.throw_at(target,GLOBADIER_GRENADE_THROW_RANGE,GLOBADIER_GRENADE_THROW_SPEED)
 	owner.visible_message(span_xenowarning("\The [owner] throws something towards \the [target]!"), \
@@ -276,6 +278,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	det_time = 1 SECONDS
 	dangerous = TRUE
 	arm_sound = 'sound/voice/alien/yell_alt.ogg'
+	var/mob/living/carbon/xenomorph/owner
 
 /obj/item/explosive/grenade/globadier/prime()
 	var/datum/effect_system/smoke_spread/xeno/acid/light/A = new(get_turf(src))
@@ -296,8 +299,13 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	if(active)
 		var/curtime = timeleft(det_timer)
 		deltimer(det_timer)
-		det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), min((curtime + GLOBADIER_GRENADE_PICKUP_CD),2 SECONDS), TIMER_STOPPABLE)
+		det_timer = addtimer(CALLBACK(src, PROC_REF(prime)), min((curtime + GLOBADIER_GRENADE_PICKUP_CD), det_time), TIMER_STOPPABLE)
 	. = ..()
+
+///Assigns the xeno_owner to the grenade, for resin grenades
+/obj/item/explosive/grenade/globadier/Initialize(mapload, _xeno_owner)
+	. = ..()
+	owner = _xeno_owner
 
 // ***************************************
 // *********** Fire Grenade
@@ -305,7 +313,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 
 /obj/item/explosive/grenade/globadier/incen
 	name = "melting grenade"
-	desc = "A swirling mix of acid and purple sparks"
+	desc = "A swirling mix of lime and grape sparks"
 	greyscale_colors = "#9e1dd1"
 	det_time = 1.5 SECONDS
 
@@ -324,10 +332,19 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	greyscale_colors = "#6808e6"
 	det_time = 1.5 SECONDS
 
-
 /obj/item/explosive/grenade/globadier/resin/prime()
-	for(var/resin_tile in filled_turfs(get_turf(src), 0.5, "circle", pass_flags_checked = PASS_AIR))
-		new /obj/alien/resin/sticky/thin(resin_tile)
+	var/cannotbuild // Used to block resin placement if there is already resin on the tile
+	for(var/turf/resin_tile in filled_turfs(get_turf(src), 0.5, "circle", pass_flags_checked = PASS_AIR))
+		cannotbuild = FALSE
+		if((resin_tile.density || istype(resin_tile, /turf/open/space))) // No structures in space
+			continue
+
+		for(var/obj/O in resin_tile.contents)
+			if(istype(O, /obj/alien/resin))
+				cannotbuild = TRUE
+
+		if(!cannotbuild)
+			new /obj/alien/resin/sticky/thin(resin_tile)
 	for(var/mob/living/carbon/human/affected AS in cheap_get_humans_near(src,1))
 		var/throwlocation = affected.loc
 		for(var/x in 1 to 2)
@@ -335,6 +352,11 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		if(affected.stat == DEAD)
 			continue
 		affected.throw_at(throwlocation, 6, 1.5, src, TRUE)
+	if(get_dist(owner.loc, loc) <= 1)
+		var/throwloc = owner.loc
+		for(var/x in 1 to 3)
+			throwloc = get_step(throwloc, owner.dir)
+			owner.throw_at(throwloc, 6, 1.6, src, TRUE)
 	qdel(src)
 
 // ***************************************
@@ -353,6 +375,25 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	A.start()
 	qdel(src)
 
+// ***************************************
+// *********** Healing Grenade
+// ***************************************
+
+/obj/item/explosive/grenade/globadier/heal
+	name = "healing grenade"
+	desc = "A shimmering orb of gelatin that glows with life."
+	greyscale_colors = "#09ffde"
+	det_time = 4 SECONDS
+
+/obj/item/explosive/grenade/globadier/heal/prime()
+	for(var/mob/living/carbon/xenomorph/xeno AS in cheap_get_xenos_near(src,1))
+		var/healamount = (25 + (xeno.maxHealth * 0.03))
+		HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
+		new /obj/effect/temp_visual/telekinesis(get_turf(xeno))
+		if(owner.client)
+			var/datum/personal_statistics/personal_statistics = GLOB.personal_statistics_list[owner.ckey]
+			personal_statistics.heals++
+	qdel(src)
 
 // ***************************************
 // *********** Acid Mine
