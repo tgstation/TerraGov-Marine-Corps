@@ -8,6 +8,7 @@
  */
 
 #define COLOR_HOVER_MOUSE COLOR_ORANGE
+#define MAX_CHAR_NAME_DISPLAYED 22
 
 ///Unclickable Lobby UI objects
 /atom/movable/screen/text/lobby
@@ -69,7 +70,10 @@
 	hud.mymob.client?.prefs.ShowChoices(hud.mymob)
 
 /atom/movable/screen/text/lobby/clickable/setup_character/update_text()
-	maptext = "<span class='lobbytext'>[hud?.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown Character"]</span>"
+	var/nametouse = hud?.mymob.client ? hud.mymob.client.prefs.real_name : "Unknown Character"
+	if(length(nametouse) > MAX_CHAR_NAME_DISPLAYED)
+		nametouse = trim(nametouse, MAX_CHAR_NAME_DISPLAYED) + "..."
+	maptext = "<span class='lobbytext'>[nametouse]</span>"
 	if(registered)
 		return
 	RegisterSignal(hud.mymob.client, COMSIG_CLIENT_PREFERENCES_UIACTED, PROC_REF(update_text))
@@ -175,3 +179,5 @@
 	player.handle_playeR_POLLSing()
 	fetch_polls()
 
+#undef COLOR_HOVER_MOUSE
+#undef MAX_CHAR_NAME_DISPLAYED
