@@ -478,7 +478,7 @@
 		to_chat(operator, "[icon2html(src, operator)] [span_warning("The target's landing zone appears to be out of bounds.")]")
 		return
 	overwatch_flags |= OVERWATCH_BUSY //All set, let's do this.
-	var/warhead_type = GLOB.marine_main_ship.orbital_cannon.tray.warhead.name	//For the AI and Admin logs.
+	var/warhead_type = GLOB.orbital_cannon?.tray.warhead.name	//For the AI and Admin logs.
 
 	for(var/mob/living/silicon/ai/AI AS in GLOB.ai_list)
 		to_chat(AI, span_warning("NOTICE - Orbital bombardment triggered from overwatch consoles. Warhead type: [warhead_type]. Target: [AREACOORD_NO_Z(T)]"))
