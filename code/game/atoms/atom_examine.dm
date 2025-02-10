@@ -62,7 +62,7 @@
 		else if(CHECK_BITFIELD(reagents.reagent_flags, AMOUNT_SKILLCHECK))
 			if(isxeno(user))
 				return
-			if(user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE)
+			if((user.skills.getRating(SKILL_MEDICAL) >= SKILL_MEDICAL_NOVICE) || isobserver(usr))
 				. += "It contains these reagents:"
 				if(length(reagents.reagent_list))
 					for(var/datum/reagent/R in reagents.reagent_list)

@@ -287,9 +287,6 @@
 	return ..(shock_damage, source, siemens_coeff, def_zone)
 
 /mob/living/carbon/human/Topic(href, href_list)
-	. = ..()
-	if(.)
-		return
 	if(href_list["squadfireteam"])
 		if(usr.incapacitated() || get_dist(usr, src) >= 7 || !hasHUD(usr,"squadleader"))
 			return
@@ -297,7 +294,7 @@
 		if(!H.mind)
 			return
 		var/obj/item/card/id/ID = get_idcard()
-		if(!ID || !(ID.rank in GLOB.jobs_marines))//still a marine, with an ID.
+		if(!ID || !(ID.rank in GLOB.jobs_squad_roles))//still a marine, with an ID.
 			return
 		if(!(assigned_squad == H.assigned_squad)) //still same squad
 			return
@@ -305,7 +302,7 @@
 		if(!newfireteam || H.incapacitated() || get_dist(H, src) >= 7) //We might've moved away or gotten incapacitated in the meantime
 			return
 		ID = get_idcard()
-		if(!ID || !(ID.rank in GLOB.jobs_marines))//still a marine with an ID
+		if(!ID || !(ID.rank in GLOB.jobs_squad_roles))//still a marine with an ID
 			return
 		if(!(assigned_squad == H.assigned_squad)) //still same squad
 			return
