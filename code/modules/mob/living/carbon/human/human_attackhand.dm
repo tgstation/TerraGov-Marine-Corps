@@ -133,7 +133,7 @@
 			var/list/hit_report = list()
 			if(damage >= 4 && prob(25))
 				visible_message(span_danger("[human_user] has weakened [src]!"), null, null, 5)
-				apply_effect(3 SECONDS, WEAKEN)
+				apply_effect(3 SECONDS, EFFECT_PARALYZE)
 				hit_report += "(KO)"
 
 			damage += attack.damage
@@ -178,7 +178,7 @@
 			var/randn = rand(1, 100) + skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD - human_user.skills.getRating(SKILL_UNARMED) * UNARMED_SKILL_DISARM_MOD
 
 			if (randn <= 25)
-				apply_effect(3 SECONDS, WEAKEN)
+				apply_effect(3 SECONDS, EFFECT_PARALYZE)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				visible_message(span_danger("[human_user] pushes [src] over!"), null, null, 5)
 				log_combat(human_user, src, "pushed")

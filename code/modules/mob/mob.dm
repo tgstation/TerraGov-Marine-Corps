@@ -580,7 +580,7 @@
 /mob/proc/get_idcard(hand_first)
 	return
 
-/mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/proc/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
 /mob/forceMove(atom/destination)

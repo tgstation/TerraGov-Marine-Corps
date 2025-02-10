@@ -144,15 +144,15 @@
 #define STAMINA "stamina"
 //=================================================
 
-#define STUN "stun"
-#define WEAKEN "weaken"
-#define PARALYZE "paralyze"
-#define STAGGER "stagger"
-#define AGONY "agony" // Added in PAIN!
-#define STUTTER "stutter"
-#define EYE_BLUR "eye_blur"
-#define DROWSY "drowsy"
-#define SLUR "slur"
+#define EFFECT_STUN "stun"
+#define EFFECT_PARALYZE "paralyze"
+#define EFFECT_UNCONSCIOUS "unconscious"
+#define EFFECT_STAGGER "stagger"
+#define EFFECT_STAMLOSS "stamloss"
+#define EFFECT_STUTTER "stutter"
+#define EFFECT_EYE_BLUR "eye_blur"
+#define EFFECT_DROWSY "drowsy"
+
 //=================================================
 
 //damagetype
