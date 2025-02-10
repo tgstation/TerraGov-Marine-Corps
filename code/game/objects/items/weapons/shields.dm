@@ -49,7 +49,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_BULKY
-	attack_verb = list("shoved", "bashed")
+	attack_verb = list("shoves", "bashes")
 	soft_armor = list(MELEE = 40, BULLET = 20, LASER = 0, ENERGY = 70, BOMB = 0, BIO = 100, FIRE = 0, ACID = 0)
 	hard_armor = list(MELEE = 5, BULLET = 5, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
 	hit_sound = 'sound/effects/grillehit.ogg'
@@ -191,7 +191,7 @@
 	throw_speed = 1
 	throw_range = 4
 	w_class = WEIGHT_CLASS_SMALL
-	attack_verb = list("shoved", "bashed")
+	attack_verb = list("shoves", "bashes")
 	var/on_force = 10
 
 /obj/item/weapon/shield/energy/Initialize(mapload)

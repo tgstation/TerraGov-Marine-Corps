@@ -23,7 +23,7 @@
 	AddElement(/datum/element/connect_loc, connections)
 
 /obj/structure/largecrate/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_WOOD, -10, 5)
+	AddElement(/datum/element/debris, DEBRIS_WOOD, -40, 5)
 
 /obj/structure/largecrate/deconstruct(disassembled = TRUE, mob/living/blame_mob)
 	spawn_stuff()
@@ -234,7 +234,7 @@
 	. += span_notice("You need a blowtorch to weld this open!")
 
 /obj/structure/largecrate/random/barrel/add_debris_element()
-	AddElement(/datum/element/debris, DEBRIS_SPARKS, -15, 8, 1)
+	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
 /obj/structure/largecrate/random/barrel
 	name = "blue barrel"

@@ -143,6 +143,7 @@
 			data["show_status_bar"] = show_status_bar
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
+			data["hear_looc_anywhere_as_staff"] = hear_looc_anywhere_as_staff
 		if(KEYBIND_SETTINGS)
 			data["is_admin"] = user.client?.holder ? TRUE : FALSE
 			data["key_bindings"] = list()
@@ -943,6 +944,9 @@
 
 		if("split_admin_tabs")
 			split_admin_tabs = !split_admin_tabs
+
+		if("hear_looc_anywhere_as_staff")
+			hear_looc_anywhere_as_staff = !hear_looc_anywhere_as_staff
 
 		else //  Handle the unhandled cases
 			return

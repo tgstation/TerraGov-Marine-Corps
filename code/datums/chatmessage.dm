@@ -267,7 +267,7 @@
 		return
 
 	// Display visual above source
-	if(runechat_flags & (COMBAT_MESSAGE|EMOTE_MESSAGE))
+	if(runechat_flags & (COMBAT_MESSAGE|EMOTE_MESSAGE|OOC_MESSAGE))
 		new /datum/chatmessage(raw_message, speaker, src, (runechat_flags & EMOTE_MESSAGE ? list("emote", "italics") : list("italics")))
 	else
 		new /datum/chatmessage(lang_treat(speaker, message_language, raw_message, spans, null, TRUE), speaker, src, spans)

@@ -173,6 +173,7 @@
 	READ_FILE(S["radio_tts_flags"], radio_tts_flags)
 	READ_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	READ_FILE(S["split_admin_tabs"], split_admin_tabs)
+	READ_FILE(S["hear_looc_anywhere_as_staff"], hear_looc_anywhere_as_staff)
 
 	READ_FILE(S["key_bindings"], key_bindings)
 	READ_FILE(S["slot_draw_order"], slot_draw_order_pref)
@@ -267,6 +268,7 @@
 
 	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
 	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
+	hear_looc_anywhere_as_staff = sanitize_integer(hear_looc_anywhere_as_staff, FALSE, TRUE, initial(hear_looc_anywhere_as_staff))
 	return TRUE
 
 
@@ -344,6 +346,7 @@
 	// Admin
 	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
 	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
+	hear_looc_anywhere_as_staff = sanitize_integer(hear_looc_anywhere_as_staff, FALSE, TRUE, initial(hear_looc_anywhere_as_staff))
 
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
@@ -403,6 +406,7 @@
 	// Admin options
 	WRITE_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	WRITE_FILE(S["split_admin_tabs"], split_admin_tabs)
+	WRITE_FILE(S["hear_looc_anywhere_as_staff"], hear_looc_anywhere_as_staff)
 
 	return TRUE
 

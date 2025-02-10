@@ -3,6 +3,7 @@
 	display_name = "Crusher"
 	upgrade_name = ""
 	caste_desc = "A huge tanky xenomorph."
+	base_strain_type = /mob/living/carbon/xenomorph/crusher
 	caste_type_path = /mob/living/carbon/xenomorph/crusher
 
 	tier = XENO_TIER_THREE
@@ -21,7 +22,7 @@
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 485
+	max_health = 445
 
 	// *** Evolution *** //
 	upgrade_threshold = TIER_THREE_THRESHOLD
@@ -36,7 +37,7 @@
 	soft_armor = list(MELEE = 90, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 130, BIO = 100, FIRE = 50, ACID = 100)
 
 	// *** Sunder *** //
-	sunder_multiplier = 0.7
+	sunder_multiplier = 0.85
 
 	// *** Minimap Icon *** //
 	minimap_icon = "crusher"

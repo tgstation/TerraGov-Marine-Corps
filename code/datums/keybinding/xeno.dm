@@ -726,6 +726,42 @@
 	description = "Target a marine within two tiles of you to disorient and slows them. Marked enemies receive stronger debuffs and are stunned for a second."
 	keybind_signal = COMSIG_XENOABILITY_TAIL_TRIP
 
+/datum/keybinding/xeno/abduct
+	name = "Abduct"
+	full_name = "Praetorian: Abduct"
+	description = "After a delay, grab marines from a 7 tiles away. Canceling early has consequences."
+	keybind_signal = COMSIG_XENOABILITY_ABDUCT
+
+/datum/keybinding/xeno/dislocate
+	name = "Dislocate"
+	full_name = "Praetorian: Dislocate"
+	description = "Punch a marine and knock them back by two tiles."
+	keybind_signal = COMSIG_XENOABILITY_DISLOCATE
+
+/datum/keybinding/xeno/item_throw
+	name = "Item Throw"
+	full_name = "Praetorian: Item Throw"
+	description = "Pick up an item and throw it. Damage and range varies based on item's size."
+	keybind_signal = COMSIG_XENOABILITY_ITEM_THROW
+
+/datum/keybinding/xeno/tail_lash
+	name = "Tail Lash"
+	full_name = "Praetorian: Tail Lash"
+	description = "Knock back marines in a 2x3 radius where you're facing by two tiles."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_LASH
+
+/datum/keybinding/xeno/tail_lash_select
+	name = "Tail Lash (Select)"
+	full_name = "Praetorian: Select Tail Lash"
+	description = "Knock back marines in a 2x3 radius where you're facing by two tiles."
+	keybind_signal = COMSIG_XENOABILITY_TAIL_LASH_SELECT
+
+/datum/keybinding/xeno/advance_oppressor
+	name = "Advance (Oppressor)"
+	full_name = "Praetorian: Advance"
+	description = "Launch yourself with tremendous speed toward a location. Hitting a marine will cause them to be launched incredibly far."
+	keybind_signal = COMSIG_XENOABILITY_ADVANCE_OPPRESSOR
+
 /datum/keybinding/xeno/screech
 	name = "screech"
 	full_name = "Queen: Screech"
@@ -811,6 +847,12 @@
 	full_name = "Ravager: Toggle vampirism"
 	description = "While active, will increase the ravagers healing for a while for every time it hits a new enemy. Effects stack."
 	keybind_signal = COMSIG_XENOABILITY_VAMPIRISM
+
+/datum/keybinding/xeno/ravager_deathmark
+	name = "deathmark"
+	full_name = "Ravager: Deathmark"
+	description = "Mark yourself for death, filling your bloodthirst, but failing to deal enough damage to living creatures while it is active instantly kills you."
+	keybind_signal = COMSIG_XENOABILITY_DEATHMARK
 
 /datum/keybinding/xeno/ravage
 	name = "ravage"

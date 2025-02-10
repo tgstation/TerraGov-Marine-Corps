@@ -45,6 +45,7 @@
 	. = list()
 	.["version"] = GLOB.game_version
 	.["mode"] = GLOB.master_mode
+	.["identifier"] = CONFIG_GET(string/serversqlname)
 	.["respawn"] = GLOB.respawn_allowed
 	.["enter"] = GLOB.enter_allowed
 	.["vote"] = CONFIG_GET(flag/allow_vote_mode)
@@ -76,3 +77,14 @@
 	.["hard_popcap"] = CONFIG_GET(number/hard_popcap) || 0
 	.["extreme_popcap"] = CONFIG_GET(number/extreme_popcap) || 0
 	.["popcap"] = max(CONFIG_GET(number/soft_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/extreme_popcap)) //generalized field for this concept for use across ss13 codebases
+
+
+/datum/world_topic/ping
+	keyword = "ping"
+	log = FALSE
+
+
+/datum/world_topic/ping/Run(list/input)
+	. = 0
+	for (var/client/C in GLOB.clients)
+		++.

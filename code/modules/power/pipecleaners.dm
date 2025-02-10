@@ -189,7 +189,7 @@ By design, d1 is the smallest direction and d2 is the highest
 	throw_range = 5
 	atom_flags = CONDUCT
 	equip_slot_flags = ITEM_SLOT_BELT
-	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
+	attack_verb = list("whips", "lashes", "disciplines", "flogs")
 	singular_name = "pipe cleaner piece"
 	usesound = 'sound/items/deconstruct.ogg'
 

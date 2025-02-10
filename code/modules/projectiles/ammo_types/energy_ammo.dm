@@ -74,6 +74,47 @@
 			return
 		X.use_plasma(0.3 * X.xeno_caste.plasma_max * X.xeno_caste.plasma_regen_limit) //Drains 30% of max plasma on hit
 
+#define BFG_SOUND_DELAY_SECONDS 1
+/datum/ammo/energy/bfg
+	name = "bfg glob"
+	icon_state = "bfg_ball"
+	hud_state = "electrothermal"
+	hud_state_empty = "electrothermal_empty"
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_SPECIAL_PROCESS|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
+	shell_speed = 0.2
+	damage = 150
+	penetration = 50
+	max_range = 20
+	bullet_color = COLOR_PALE_GREEN_GRAY
+
+/datum/ammo/energy/bfg/ammo_process(obj/projectile/proj, damage)
+	if(proj.distance_travelled <= 2)
+		return
+	// range expands as it flies to avoid hitting the shooter and tank riders
+	var/bfg_range = 4
+	if(proj.distance_travelled < bfg_range)
+		bfg_range = (proj.distance_travelled - 2)
+	bfg_beam(proj, bfg_range, damage, penetration)
+
+	//handling for BFG sound. yes it's kinda wierd to use distance traveled and probably will break at high lag
+	//but this is super snowflake and I don't wanna bother something like making looping sounds attachable to projectiles today
+	//feel free to do it though as a TODO?
+	var/sound_delay_time = BFG_SOUND_DELAY_SECONDS/proj.projectile_speed
+	if(proj.distance_travelled % sound_delay_time)
+		playsound(proj, 'sound/weapons/guns/misc/bfg_fly.ogg', 30, FALSE)
+
+/datum/ammo/energy/bfg/on_hit_obj(obj/target_obj, obj/projectile/proj)
+	proj.proj_max_range -= 2
+
+/datum/ammo/energy/bfg/on_hit_turf(turf/target_turf, obj/projectile/proj)
+	proj.proj_max_range -= 2
+
+/datum/ammo/energy/bfg/drop_nade(turf/T)
+	explosion(T, 0, 0, 4, 0, 0)
+
+/datum/ammo/energy/bfg/do_at_max_range(turf/target_turf, obj/projectile/proj)
+	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+
 /datum/ammo/energy/lasburster
 	name = "lasburster bolt"
 	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN
@@ -290,7 +331,7 @@
 	staggerstun(target_mob, proj, max_range = 6, knockback = knockback_dist)
 
 /datum/ammo/energy/lasgun/marine/cripple
-	name = "impact laser blast"
+	name = "crippling laser blast"
 	icon_state = "overchargedlaser"
 	hud_state = "laser_disabler"
 	damage = 20
@@ -513,6 +554,17 @@
 
 /datum/ammo/energy/lasgun/marine/heavy_laser/do_at_max_range(turf/target_turf, obj/projectile/proj)
 	drop_nade(target_turf.density ? get_step_towards(target_turf, proj) : target_turf)
+
+/datum/ammo/energy/lasersentry
+	name = "laser sentry bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+	damage = 35
+	penetration = 15
+	sundering = 2
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_HITSCAN
+	hitscan_effect_icon = "beam"
+	bullet_color = COLOR_LASER_RED
 
 /datum/ammo/energy/plasma
 	name = "superheated plasma"

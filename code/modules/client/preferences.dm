@@ -182,6 +182,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/fast_mc_refresh = FALSE
 	///When enabled, will split the 'Admin' panel into several tabs.
 	var/split_admin_tabs = TRUE
+	///When enabled, can hear LOOC from anywhere in any situation.
+	///Mentors may only hear LOOC from anywhere if they are a ghost.
+	var/hear_looc_anywhere_as_staff = TRUE
 
 	/// New TGUI Preference preview
 	var/map_name = "player_pref_map"

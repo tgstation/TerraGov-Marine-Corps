@@ -136,7 +136,7 @@
 	penetration = 0
 
 /datum/ammo/bullet/shotgun/frag/drop_nade(turf/T)
-	explosion(T, weak_impact_range = 2)
+	explosion(T, weak_impact_range = 2, tiny = TRUE)
 
 /datum/ammo/bullet/shotgun/frag/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	drop_nade(get_turf(target_mob))

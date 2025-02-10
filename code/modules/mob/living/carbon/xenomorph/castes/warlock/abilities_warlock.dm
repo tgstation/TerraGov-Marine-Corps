@@ -399,7 +399,7 @@
 		for(var/turf/turf_to_check AS in turfs_to_check)
 			if((turf_to_check in target_turfs) || (turf_to_check in turfs_to_add))
 				continue
-			if(LinkBlocked(current_turf, turf_to_check, air_pass = TRUE))
+			if(LinkBlocked(current_turf, turf_to_check, PASS_AIR))
 				continue
 			turfs_to_add += turf_to_check
 			effect_list += new /obj/effect/xeno/crush_warning(turf_to_check)
@@ -582,14 +582,12 @@
 /datum/action/ability/activable/xeno/psy_blast/use_ability(atom/A)
 	owner.balloon_alert(owner, "We channel our psychic power")
 	generate_particles(A, 7)
-	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
 	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		end_channel()
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 		return fail_activate()
 
 	succeed_activate()
@@ -609,7 +607,6 @@
 
 	add_cooldown()
 	update_button_icon()
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
 
 /datum/action/ability/activable/xeno/psy_blast/update_button_icon()

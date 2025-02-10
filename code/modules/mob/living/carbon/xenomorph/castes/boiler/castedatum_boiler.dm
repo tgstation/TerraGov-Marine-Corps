@@ -3,7 +3,7 @@
 	display_name = "Boiler"
 	upgrade_name = ""
 	caste_desc = "Gross!"
-
+	base_strain_type = /mob/living/carbon/xenomorph/boiler
 	caste_type_path = /mob/living/carbon/xenomorph/boiler
 
 	tier = XENO_TIER_THREE
@@ -110,7 +110,7 @@
 	caste_desc = "Gross! The large creature is venting a hot steam."
 
 		// *** Ranged Attack *** //
-	spit_delay = 0.5 SECONDS
+	spit_delay = 0.75 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/airburst)
 
 	actions = list(
