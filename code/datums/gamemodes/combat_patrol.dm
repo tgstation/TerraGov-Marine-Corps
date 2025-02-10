@@ -163,5 +163,5 @@
 		var/mob/dead/observer/M = i
 		GLOB.key_to_time_of_role_death[M.key] -= respawn_time
 		M.playsound_local(M, 'sound/ambience/votestart.ogg', 75, 1)
-		M.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:center valign='top'><u>RESPAWN WAVE AVAILABLE</u></span><br>" + "YOU CAN NOW RESPAWN.", /atom/movable/screen/text/screen_text/command_order)
+		M.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("RESPAWN WAVE AVAILABLE", "YOU CAN NOW RESPAWN.", CENTER_ALIGN_TEXT), /atom/movable/screen/text/screen_text/command_order)
 		to_chat(M, "<br><font size='3'>[span_attack("Reinforcements are gathering to join the fight, you can now respawn to join a fresh patrol!")]</font><br>")
