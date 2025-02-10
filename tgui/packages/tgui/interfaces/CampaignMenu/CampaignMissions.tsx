@@ -122,7 +122,7 @@ export const CampaignMissions = (props) => {
             </Table.Row>
             <Table.Row>
               <Table.Cell color="label">Additional Rewards</Table.Cell>
-              <Table.Cell colspan="2">
+              <Table.Cell colSpan={2}>
                 {selectedMission?.mission_rewards}
               </Table.Cell>
             </Table.Row>

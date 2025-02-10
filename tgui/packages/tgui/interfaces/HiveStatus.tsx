@@ -5,6 +5,7 @@ import {
   Collapsible,
   Divider,
   Flex,
+  Image,
   ProgressBar,
   Section,
   Tooltip,
@@ -592,8 +593,7 @@ const PopulationPyramid = (_props: any) => {
                       bold
                       key={static_entry.name}
                     >
-                      <Box
-                        as="img"
+                      <Image
                         src={`data:image/jpeg;base64,${static_entry.minimap}`}
                         style={{
                           transform: 'scale(3) translateX(-3.5px)',
@@ -830,8 +830,7 @@ const XenoList = (_props: any) => {
                 </Flex.Item>
                 {/* Minimap icons */}
                 <Flex.Item width={minimap_width} mr={minimap_mr}>
-                  <Box
-                    as="img"
+                  <Image
                     src={`data:image/jpeg;base64,${static_entry.minimap}`}
                     style={{
                       transform: 'scale(2) translateX(2px)', // Upscaled from 7x7 to 14x14.

@@ -4,6 +4,7 @@ import {
   Button,
   Divider,
   Flex,
+  Image,
   Section,
   Table,
 } from 'tgui-core/components';
@@ -84,8 +85,7 @@ const constructResourceInfo = (
             justifyContent: 'center',
           }}
         >
-          <Box
-            as="img"
+          <Image
             src={`data:image/jpeg;base64,
                 ${icon}`}
             color="transparent"
@@ -117,9 +117,7 @@ const constructTierInfo = (tier: RewardTier) => {
 
   return (
     <Box mb="0.6em">
-      <Box bold margin>
-        {constructRarityText(type, probability)}
-      </Box>
+      <Box bold>{constructRarityText(type, probability)}</Box>
       <Table>
         {rewards_list.map((item, i) => (
           <Table.Row key={i}>{`> ${item}`}</Table.Row>

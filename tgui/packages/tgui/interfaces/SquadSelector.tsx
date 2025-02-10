@@ -42,7 +42,7 @@ export const SquadSelector = (props) => {
                     selected={selectedSquad === squad.name}
                   >
                     {squad.name}
-                    <Box contents={squad.leader} />
+                    <Box>{squad.leader}</Box>
                   </Button>
                 </Stack.Item>
               ))}

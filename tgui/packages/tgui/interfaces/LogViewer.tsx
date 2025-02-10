@@ -176,8 +176,6 @@ const CategoryViewer = (props: CategoryViewerProps) => {
       buttons={
         <>
           <Input
-            grow
-            fill
             placeholder="Search"
             value={search}
             onChange={(_: any, value: string) => setSearch(value)}
@@ -232,11 +230,7 @@ const CategoryViewer = (props: CategoryViewerProps) => {
 
             return (
               <Stack.Item key={entry.id}>
-                <Collapsible
-                  fitted
-                  tooltip={entry.timestamp}
-                  title={`[${entry.id}] - ${entry.message}`}
-                >
+                <Collapsible title={`[${entry.id}] - ${entry.message}`}>
                   <Stack vertical fill>
                     <Stack.Item>
                       <p font-family="Courier">{entry.message}</p>

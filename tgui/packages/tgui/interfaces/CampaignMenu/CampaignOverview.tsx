@@ -95,7 +95,7 @@ export const CampaignOverview = (props) => {
           </Table.Row>
           <Table.Row>
             <Table.Cell color="label">Additional Rewards</Table.Cell>
-            <Table.Cell colspan="2">{mission_rewards}</Table.Cell>
+            <Table.Cell colSpan={2}>{mission_rewards}</Table.Cell>
           </Table.Row>
         </Table>
       </Section>

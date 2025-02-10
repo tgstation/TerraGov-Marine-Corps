@@ -86,7 +86,7 @@ export const Sentry = (props) => {
             <LabeledList.Item
               buttons={
                 <Button
-                  selected={manual_override}
+                  selected={manual_override ? true : false}
                   onClick={() => act('manual')}
                   icon={manual_override ? 'check' : 'times'}
                 >

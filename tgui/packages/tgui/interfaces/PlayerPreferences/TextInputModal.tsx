@@ -28,14 +28,17 @@ export const TextInputModal = (props: TextInputModalData) => {
 
         <Flex.Item>
           <Button
-            content={button_text}
             color="good"
             tooltipPosition="right"
             onClick={() => {
               onSubmit(input);
             }}
-          />
-          <Button content="Cancel" color="bad" onClick={onBack} />
+          >
+            {button_text}
+          </Button>
+          <Button color="bad" onClick={onBack}>
+            Cancel
+          </Button>
         </Flex.Item>
       </Flex>
       <script type="application/javascript">

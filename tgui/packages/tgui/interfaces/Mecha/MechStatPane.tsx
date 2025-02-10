@@ -200,7 +200,7 @@ const PowerBar = (props) => {
   const { act, data } = useBackend<OperatorData>();
   const { power_level, power_max } = data;
   if (power_max === null) {
-    return <Box content={'No Power cell installed!'} />;
+    return <Box> No Power cell installed!</Box>;
   } else {
     return (
       <ProgressBar
