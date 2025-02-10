@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(evacuation)
 	priority_announce(
 		type = ANNOUNCEMENT_PRIORITY,
 		title = "Code Delta emergency declared. Evacuation in [EVACUATION_AUTOMATIC_DEPARTURE/600] minutes.",
-		message = global.config.Get(/datum/config_entry/string/alert_delta),
+		message = GET_CONFIG(/datum/config_entry/string/alert_delta),
 		sound = 'sound/misc/airraid.ogg',
 		color_override = "orange"
 	)
