@@ -63,7 +63,7 @@
 
 			H.do_attack_animation(src, ATTACK_EFFECT_YELLOWPUNCH)
 			playsound(loc, attack.attack_sound, 25, TRUE)
-			visible_message(span_danger("[H] [pick(attack.attack_verb)]ed [src]!"), null, null, 5)
+			visible_message(span_danger("[H] [pick(attack.attack_verb)] [src]!"), null, null, 5)
 			apply_damage(melee_damage + attack.damage, BRUTE, blocked = MELEE, updating_health = TRUE)
 
 
