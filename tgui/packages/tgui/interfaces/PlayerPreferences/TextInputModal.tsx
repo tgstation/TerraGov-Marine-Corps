@@ -36,7 +36,12 @@ export const TextInputModal = (props: TextInputModalData) => {
           >
             {button_text}
           </Button>
-          <Button color="bad" onClick={onBack}>
+          <Button
+            color="bad"
+            onClick={() => {
+              onBack(input);
+            }}
+          >
             Cancel
           </Button>
         </Flex.Item>

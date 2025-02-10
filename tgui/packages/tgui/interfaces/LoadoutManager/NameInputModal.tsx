@@ -30,15 +30,23 @@ export const NameInputModal = (props: NameInputModalData) => {
 
         <Flex.Item>
           <Button
-            content={button_text}
             color="good"
             tooltipPosition="right"
             onClick={() => {
               onSubmit(input);
               setInput('');
             }}
-          />
-          <Button content="Cancel" color="bad" onClick={onBack} />
+          >
+            {button_text}
+          </Button>
+          <Button
+            color="bad"
+            onClick={() => {
+              onBack(input);
+            }}
+          >
+            Cancel
+          </Button>
         </Flex.Item>
       </Flex>
     </Modal>
