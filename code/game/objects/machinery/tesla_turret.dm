@@ -211,9 +211,11 @@
 		/// Needs to have enough charge to hit at least one xeno
 		var/max_targets = max(trunc(battery.charge / active_cost), 0)
 		if(!max_targets)
+			hud_set_tesla_battery()
 			return
 		var/xeno_amount = length(zap_beam(src, max_range, 4, max_targets = max_targets))
 		if(!xeno_amount)
+			hud_set_tesla_battery()
 			return
 		battery.use(active_cost * xeno_amount)
 		playsound(src, 'sound/weapons/guns/fire/tesla.ogg', 60, TRUE)
