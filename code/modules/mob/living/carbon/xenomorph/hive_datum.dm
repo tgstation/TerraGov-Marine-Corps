@@ -96,8 +96,10 @@
 
 	var/hivemind_countdown = SSticker.mode?.get_hivemind_collapse_countdown()
 	.["hive_orphan_collapse"] = !isnull(hivemind_countdown) ? hivemind_countdown : 0
-	var/datum/game_mode/infestation/nuclear_war/mode = SSticker.mode
-	var/siloless_countdown = mode.get_siloless_collapse_countdown()
+	var/siloless_countdown
+	if(SSticker.mode?.round_type_flags & MODE_SILO_RESPAWN)
+		var/datum/game_mode/infestation/nuclear_war/mode = SSticker.mode
+		siloless_countdown = mode.get_siloless_collapse_countdown()
 	.["hive_silo_collapse"] = !isnull(siloless_countdown) ? siloless_countdown : 0
 	// Show all the death timers in milliseconds
 	.["hive_death_timers"] = list()
@@ -900,6 +902,7 @@ to_chat will check for valid clients itself already so no need to double check f
 	hive_flags = HIVE_CAN_HIJACK|HIVE_CAN_COLLAPSE_FROM_SILO
 	/// Timer ID for the orphan hive timer
 	var/atom/movable/screen/text/screen_timer/orphan_hud_timer
+	/// Timer ID for the siloless collapse hud timer
 	var/atom/movable/screen/text/screen_timer/siloless_hud_timer
 
 /datum/hive_status/normal/New()
