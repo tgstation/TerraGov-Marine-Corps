@@ -1235,7 +1235,7 @@ CLOTHING
 	cost = 100
 
 /datum/supply_packs/clothing/marine_outfits
-	name = "mMarine outfits"
+	name = "Marine outfits"
 	contains = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/storage/belt/marine,
