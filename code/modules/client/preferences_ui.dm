@@ -140,6 +140,7 @@
 			data["pixel_size"] = pixel_size
 			data["parallax"] = parallax
 			data["fullscreen_mode"] = fullscreen_mode
+			data["show_status_bar"] = show_status_bar
 			data["fast_mc_refresh"] = fast_mc_refresh
 			data["split_admin_tabs"] = split_admin_tabs
 			data["hear_looc_anywhere_as_staff"] = hear_looc_anywhere_as_staff
@@ -620,8 +621,7 @@
 
 		if("auto_fit_viewport")
 			auto_fit_viewport = !auto_fit_viewport
-			if(auto_fit_viewport && parent)
-				parent.fit_viewport()
+			parent?.attempt_auto_fit_viewport()
 
 		if("mute_xeno_health_alert_messages")
 			mute_xeno_health_alert_messages = !mute_xeno_health_alert_messages
@@ -790,6 +790,10 @@
 		if("fullscreen_mode")
 			fullscreen_mode = !fullscreen_mode
 			user.client?.set_fullscreen(fullscreen_mode)
+
+		if("show_status_bar")
+			show_status_bar = !show_status_bar
+			user.client?.toggle_status_bar(show_status_bar)
 
 		if("set_keybind")
 			var/kb_name = params["keybind_name"]

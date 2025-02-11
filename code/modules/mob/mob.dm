@@ -386,6 +386,13 @@
 		prefs.save_preferences()
 		winset(src, "infowindow.changelog", "font-style=;")
 
+/client/verb/hotkeys_help()
+	set name = "Hotkeys"
+	set category = "Preferences"
+
+	prefs.tab_index = KEYBIND_SETTINGS
+	prefs.ShowChoices(mob)
+
 /mob/Topic(href, href_list)
 	. = ..()
 	if(.)
