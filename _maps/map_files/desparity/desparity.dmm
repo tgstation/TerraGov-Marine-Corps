@@ -3602,7 +3602,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle10)
 "sX" = (
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 8
 	},
 /turf/open/floor/plating/dmg1,
@@ -4004,7 +4004,7 @@
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
 	dir = 4
 	},
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 1
 	},
 /turf/open/floor/podhatch{
@@ -4140,7 +4140,7 @@
 "vF" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -4995,7 +4995,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth/buildable,
 /area/lv624/ground/jungle10)
 "zX" = (
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -5342,7 +5342,7 @@
 "BJ" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/barricade/metal/deployable{
+/obj/structure/barricade/solid/deployable{
 	dir = 1
 	},
 /obj/item/stack/rods,

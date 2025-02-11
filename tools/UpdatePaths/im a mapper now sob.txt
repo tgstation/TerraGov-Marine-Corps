@@ -1,0 +1,1 @@
+/obj/structure/barricade/metal/deployable : /obj/structure/barricade/solid/deployable{@OLD}
