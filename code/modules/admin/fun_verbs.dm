@@ -435,16 +435,17 @@
 		else
 			return
 
+	var/to_show_text
 	var/anon = tgui_alert(usr, "Display who played the song?", "Credit Yourself?", list("No", "Yes", "Cancel"))
 	switch(anon)
 		if("Yes")
 			if(show)
-				to_chat(world, span_boldannounce("[src] played: <a href='[data["webpage_url"]]'>[title]</a>"))
+				to_show_text = "[src] played: <a href='[data["webpage_url"]]'>[title]</a>"
 			else
-				to_chat(world, span_boldannounce("[src] played some music"))
+				to_show_text = "[src] played some music"
 		if("No")
 			if(show)
-				to_chat(world, span_boldannounce("An admin played: <a href='[data["webpage_url"]]'>[title]</a>"))
+				to_show_text = "An admin played: <a href='[data["webpage_url"]]'>[title]</a>"
 		else
 			return
 	for(var/i in targets)
@@ -454,6 +455,7 @@
 			continue
 		if(C.prefs.toggles_sound & SOUND_MIDI)
 			C.tgui_panel?.play_music(web_sound_url, music_extra_data)
+			to_chat(C, span_boldannounce(to_show_text))
 
 	log_admin("[key_name(usr)] played web sound: [web_sound_input] - [title] - [style]")
 	message_admins("[ADMIN_TPMONTY(usr)] played web sound: [web_sound_input] - [title] - [style]")
