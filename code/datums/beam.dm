@@ -167,7 +167,8 @@
 	xenos.Cut(min(max_targets + 1, length(xenos) + 1))
 	for(var/mob/living/carbon/xenomorph/living AS in xenos)
 		if(!living)
-			return list()
+			xenos -= living
+			continue
 		if(living.stat == DEAD)
 			xenos -= living
 			continue
