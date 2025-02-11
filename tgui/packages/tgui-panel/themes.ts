@@ -62,6 +62,8 @@ export const setClientTheme = (name) => {
     // Buttons
     'changelog.background-color': themeColor.BUTTON,
     'changelog.text-color': themeColor.TEXT,
+    'discord.background-color': themeColor.BUTTON,
+    'discord.text-color': themeColor.TEXT,
     'rules.background-color': themeColor.BUTTON,
     'rules.text-color': themeColor.TEXT,
     'wiki.background-color': themeColor.BUTTON,
@@ -70,6 +72,8 @@ export const setClientTheme = (name) => {
     'forum.text-color': themeColor.TEXT,
     'github.background-color': themeColor.BUTTON,
     'github.text-color': themeColor.TEXT,
+    'webmap.background-color': themeColor.BUTTON,
+    'webmap.text-color': themeColor.TEXT,
     'report-issue.background-color': themeColor.BUTTON,
     'report-issue.text-color': themeColor.TEXT,
     'fullscreen-toggle.background-color': themeColor.BUTTON,
