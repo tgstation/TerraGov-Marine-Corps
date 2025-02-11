@@ -94,3 +94,21 @@
   TiviPlus:
   - server: Fixed certain things not saving in the DB
   - bugfix: fixed the time of day being offset
+2025-02-11:
+  TiviPlus:
+  - rscadd: Adding !! after your message will now make it bigger and fatter in runechat
+  - rscadd: added a top left dropdown and a preferences button to see keybinds
+  - qol: There is now a fullscreen keybind (F11 by default)
+  - qol: The command bar now only shows under the chat, making the gameplay window
+      larger
+  - qol: The status bar (bar showing the name of what you hover over) now only shows
+      as a small box in the bottom left, making the gameplay and chat windows larger.
+      It can also be turned off in prefs now
+  - bugfix: fixed the UI being broken on Opendream (probably)
+  - bugfix: chat will no longer flicker on 516
+  - bugfix: The game will now only use fonts shipped with the game, due to some players
+      not having all fonts installed/ship correctly. as a result of this the lobby
+      menu, runechat, screen orders, etc may look different
+  - code_imp: Aligned skin.dmf with Tg's skin.dmf to make porting simple
+  - code_imp: Autofit viewport no longer has an arbitrary 1 second delay outside of
+      during the user connecting
