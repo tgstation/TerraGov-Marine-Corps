@@ -69,7 +69,6 @@
     background-position: center, center;
   }
   .Button {
-    font: Inconsolata;
     color: hsl(110.1, 100%, 54.9%);
   }
   .Button:hover,
@@ -83,10 +82,13 @@
   }
   body {
     color: white;
-    font: 1.3rem Inconsolata;
+    font: 1.3rem;
   }
   .Section {
     border-radius: 0.16em;
+  }
+  .Section__title {
+    border-bottom: base.em(2px) solid colors.$primary;
   }
   .Section__titleText {
     color: hsl(110.1, 100%, 54.9%);
