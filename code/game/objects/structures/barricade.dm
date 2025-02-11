@@ -391,7 +391,7 @@
 
 #define CADE_UPGRADE_REQUIRED_SHEETS 1
 
-/obj/structure/barricade/metal
+/obj/structure/barricade/solid
 	name = "metal barricade"
 	desc = "A sturdy and easily assembled barricade made of metal plates, often used for quick fortifications. Use a blowtorch to repair."
 	icon = 'icons/obj/structures/barricades/metal.dmi'
@@ -410,16 +410,16 @@
 	///The type of upgrade and corresponding overlay we have attached
 	var/barricade_upgrade_type
 
-/obj/structure/barricade/metal/Initialize(mapload, mob/user)
+/obj/structure/barricade/solid/Initialize(mapload, mob/user)
 	. = ..()
 	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
 		return
 	modify_max_integrity(max_integrity + 75)
 
-/obj/structure/barricade/metal/add_debris_element()
+/obj/structure/barricade/solid/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
-/obj/structure/barricade/metal/update_overlays()
+/obj/structure/barricade/solid/update_overlays()
 	. = ..()
 	if(!barricade_upgrade_type)
 		return
@@ -442,7 +442,7 @@
 		if(CADE_TYPE_ACID)
 			. += image('icons/obj/structures/barricades/upgrades.dmi', icon_state = "+burn_upgrade_[damage_state]")
 
-/obj/structure/barricade/metal/attackby(obj/item/I, mob/user, params)
+/obj/structure/barricade/solid/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
@@ -478,7 +478,7 @@
 	update_icon()
 
 
-/obj/structure/barricade/metal/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
+/obj/structure/barricade/solid/proc/attempt_barricade_upgrade(obj/item/stack/sheet/metal/metal_sheets, mob/user, params)
 	if(barricade_upgrade_type)
 		balloon_alert(user, "Already upgraded")
 		return FALSE
@@ -527,7 +527,7 @@
 	update_icon()
 
 
-/obj/structure/barricade/metal/examine(mob/user)
+/obj/structure/barricade/solid/examine(mob/user)
 	. = ..()
 	switch(build_state)
 		if(BARRICADE_METAL_FIRM)
@@ -539,13 +539,13 @@
 
 	. += span_info("It is [barricade_upgrade_type ? "upgraded with [barricade_upgrade_type]" : "not upgraded"].")
 
-/obj/structure/barricade/metal/welder_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/solid/welder_act(mob/living/user, obj/item/I)
 	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, SKILL_ENGINEER_METAL, 1)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "Too damaged. Use metal sheets.")
 
 
-/obj/structure/barricade/metal/screwdriver_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/solid/screwdriver_act(mob/living/user, obj/item/I)
 	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
@@ -579,7 +579,7 @@
 			return TRUE
 
 
-/obj/structure/barricade/metal/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/solid/wrench_act(mob/living/user, obj/item/I)
 	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
@@ -635,7 +635,7 @@
 			return TRUE
 
 
-/obj/structure/barricade/metal/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/solid/crowbar_act(mob/living/user, obj/item/I)
 	if(LAZYACCESS(user.do_actions, src))
 		return FALSE
 	switch(build_state)
@@ -692,7 +692,7 @@
 			return TRUE
 
 
-/obj/structure/barricade/metal/ex_act(severity)
+/obj/structure/barricade/solid/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(rand(400, 600), BRUTE, BOMB)
@@ -718,7 +718,7 @@
 #define BARRICADE_PLASTEEL_ANCHORED 1
 #define BARRICADE_PLASTEEL_FIRM 2
 
-/obj/structure/barricade/plasteel
+/obj/structure/barricade/folding
 	name = "folding plasteel barricade"
 	desc = "A very sturdy barricade made out of plasteel panels, the pinnacle of strongpoints. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon = 'icons/obj/structures/barricades/plasteel.dmi'
@@ -746,22 +746,22 @@
 	///The skill type of this cade, used for fumble checks
 	var/skilltype = SKILL_ENGINEER_PLASTEEL
 
-/obj/structure/barricade/plasteel/Initialize(mapload, mob/user)
+/obj/structure/barricade/folding/Initialize(mapload, mob/user)
 	. = ..()
 	if(!user || !HAS_TRAIT(user, TRAIT_SUPERIOR_BUILDER))
 		return
 	modify_max_integrity(max_integrity + 100)
 
-/obj/structure/barricade/plasteel/add_debris_element()
+/obj/structure/barricade/folding/add_debris_element()
 	AddElement(/datum/element/debris, DEBRIS_SPARKS, -40, 8, 1)
 
-/obj/structure/barricade/plasteel/handle_barrier_chance(mob/living/M)
+/obj/structure/barricade/folding/handle_barrier_chance(mob/living/M)
 	if(closed)
 		return ..()
 	else
 		return FALSE
 
-/obj/structure/barricade/plasteel/examine(mob/user)
+/obj/structure/barricade/folding/examine(mob/user)
 	. = ..()
 
 	switch(build_state)
@@ -772,12 +772,12 @@
 		if(BARRICADE_PLASTEEL_LOOSE)
 			. += span_info("The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.")
 
-/obj/structure/barricade/plasteel/welder_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/folding/welder_act(mob/living/user, obj/item/I)
 	. = welder_repair_act(user, I, 85, 2.5 SECONDS, 0.3, skilltype, 1)
 	if(. == BELOW_INTEGRITY_THRESHOLD)
 		balloon_alert(user, "Too damaged. Use [barricade_type] sheets.")
 
-/obj/structure/barricade/plasteel/screwdriver_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/folding/screwdriver_act(mob/living/user, obj/item/I)
 	if(!isscrewdriver(I))
 		return
 
@@ -816,7 +816,7 @@
 			playsound(loc, 'sound/items/screwdriver.ogg', 25, 1)
 			build_state = BARRICADE_PLASTEEL_FIRM
 
-/obj/structure/barricade/plasteel/crowbar_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/folding/crowbar_act(mob/living/user, obj/item/I)
 	if(!iscrowbar(I))
 		return
 
@@ -834,7 +834,7 @@
 				balloon_alert_to_viewers("[linked ? "un" : "" ]linked")
 				linked = !linked
 				for(var/direction in GLOB.cardinals)
-					for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+					for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
 						cade.update_icon()
 				update_icon()
 		if(BARRICADE_PLASTEEL_LOOSE) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing.
@@ -856,7 +856,7 @@
 			playsound(loc, 'sound/items/deconstruct.ogg', 25, 1)
 			deconstruct(!get_self_acid())
 
-/obj/structure/barricade/plasteel/wrench_act(mob/living/user, obj/item/I)
+/obj/structure/barricade/folding/wrench_act(mob/living/user, obj/item/I)
 	if(!iswrench(I))
 		return
 
@@ -903,7 +903,7 @@
 			build_state = BARRICADE_PLASTEEL_ANCHORED
 			update_icon() //unanchored changes layer
 
-/obj/structure/barricade/plasteel/attackby(obj/item/I, mob/user, params)
+/obj/structure/barricade/folding/attackby(obj/item/I, mob/user, params)
 	. = ..()
 	if(.)
 		return
@@ -937,14 +937,14 @@
 	balloon_alert_to_viewers("Base repaired")
 	update_icon()
 
-/obj/structure/barricade/plasteel/attack_hand(mob/living/user)
+/obj/structure/barricade/folding/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
 
 	toggle_open(null, user)
 
-/obj/structure/barricade/plasteel/proc/toggle_open(state, atom/user)
+/obj/structure/barricade/folding/proc/toggle_open(state, atom/user)
 	if(state == closed)
 		return
 	playsound(loc, 'sound/items/ratchet.ogg', 25, 1)
@@ -958,22 +958,22 @@
 		update_icon()
 		return
 	for(var/direction in GLOB.cardinals)
-		for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+		for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
 			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked)
 				cade.toggle_open(closed)
 
 	update_icon()
 
-/obj/structure/barricade/plasteel/update_overlays()
+/obj/structure/barricade/folding/update_overlays()
 	. = ..()
 	if(!linked)
 		return
 	for(var/direction in GLOB.cardinals)
-		for(var/obj/structure/barricade/plasteel/cade in get_step(src, direction))
+		for(var/obj/structure/barricade/folding/cade in get_step(src, direction))
 			if(((dir & (NORTH|SOUTH) && get_dir(src, cade) & (EAST|WEST)) || (dir & (EAST|WEST) && get_dir(src, cade) & (NORTH|SOUTH))) && dir == cade.dir && cade.linked && cade.closed == closed)
 				. += image(icon, icon_state = "[barricade_type]_[closed ? "closed" : "open"]_connection_[get_dir(src, cade)]")
 
-/obj/structure/barricade/plasteel/ex_act(severity)
+/obj/structure/barricade/folding/ex_act(severity)
 	switch(severity)
 		if(EXPLODE_DEVASTATE)
 			take_damage(rand(450, 650), BRUTE, BOMB)
@@ -1061,7 +1061,7 @@
 		balloon_alert_to_viewers("Repaired")
 		update_icon()
 
-/obj/structure/barricade/metal/deployable
+/obj/structure/barricade/solid/deployable
 	icon = 'icons/obj/structures/barricades/folding.dmi'
 	icon_state = "folding_0"
 	max_integrity = 325
@@ -1075,7 +1075,7 @@
 	///What it deploys into. typecast version of internal_item
 	var/obj/item/weapon/shield/riot/marine/deployable/internal_shield
 
-/obj/structure/barricade/metal/deployable/Initialize(mapload, _internal_item, deployer)
+/obj/structure/barricade/solid/deployable/Initialize(mapload, _internal_item, deployer)
 	. = ..()
 	if(!_internal_item && !internal_shield)
 		return INITIALIZE_HINT_QDEL
@@ -1090,18 +1090,18 @@
 		is_wired = TRUE
 		climbable = FALSE
 
-/obj/structure/barricade/metal/deployable/get_internal_item()
+/obj/structure/barricade/solid/deployable/get_internal_item()
 	return internal_shield
 
-/obj/structure/barricade/metal/deployable/clear_internal_item()
+/obj/structure/barricade/solid/deployable/clear_internal_item()
 	internal_shield = null
 
-/obj/structure/barricade/metal/deployable/Destroy()
+/obj/structure/barricade/solid/deployable/Destroy()
 	if(internal_shield)
 		QDEL_NULL(internal_shield)
 	return ..()
 
-/obj/structure/barricade/metal/deployable/MouseDrop(over_object, src_location, over_location)
+/obj/structure/barricade/solid/deployable/MouseDrop(over_object, src_location, over_location)
 	if(!ishuman(usr))
 		return
 	var/mob/living/carbon/human/user = usr
@@ -1109,13 +1109,13 @@
 		return
 	disassemble(user)
 
-/obj/structure/barricade/metal/deployable/wire()
+/obj/structure/barricade/solid/deployable/wire()
 	. = ..()
 	//makes the shield item wired as well
 	internal_shield.is_wired = TRUE
 	internal_shield.modify_max_integrity(max_integrity + 50)
 
-/obj/structure/barricade/metal/deployable/attempt_barricade_upgrade()
+/obj/structure/barricade/solid/deployable/attempt_barricade_upgrade()
 	return //not upgradable
 
 
@@ -1147,7 +1147,7 @@
 // NONFOLDING PLASTEEL
 /*----------------------*/
 
-/obj/structure/barricade/metal/plasteel
+/obj/structure/barricade/solid/plasteel
 	name = "plasteel barricade"
 	desc = "A sturdy and easily assembled barricade made of reinforced plasteel plates, the pinnacle of strongpoints. Use a blowtorch to repair."
 	icon = 'icons/obj/structures/barricades/plasteel.dmi'
@@ -1158,14 +1158,14 @@
 	barricade_type = "new_plasteel"
 	soft_armor = list(MELEE = 0, BULLET = 30, LASER = 30, ENERGY = 30, BOMB = 0, BIO = 100, FIRE = 80, ACID = 50)
 
-/obj/structure/barricade/metal/plasteel/attempt_barricade_upgrade()
+/obj/structure/barricade/solid/plasteel/attempt_barricade_upgrade()
 	return //not upgradable
 
 /*----------------------*/
 // FOLDING METAL
 /*----------------------*/
 
-/obj/structure/barricade/plasteel/metal
+/obj/structure/barricade/folding/metal
 	name = "folding metal barricade"
 	desc = "A folding barricade made out of metal, making it slightly stronger than a normal metal barricade. Use a blowtorch to repair. Can be flipped down to create a path."
 	icon_state = "folding_metal_closed_0"
