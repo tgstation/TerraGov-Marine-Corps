@@ -1,0 +1,4 @@
+author: "PibeCantina"
+delete-after: True
+changes:
+  - qol: "Makes the platforms on gelida non dense"
