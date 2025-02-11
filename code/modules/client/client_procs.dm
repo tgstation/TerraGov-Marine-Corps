@@ -360,11 +360,13 @@
 	view_size.update_zoom_mode()
 
 	set_fullscreen(prefs.fullscreen_mode)
+	toggle_status_bar(prefs.show_status_bar)
 
 	winset(src, null, "mainwindow.title='[CONFIG_GET(string/title)]'")
 
 	Master.UpdateTickRate()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_CLIENT_CONNECT, src)
+	fully_created = TRUE
 
 
 
@@ -888,22 +890,24 @@
 	view = new_size
 	apply_clickcatcher()
 	mob.reload_fullscreens()
-	if(prefs.auto_fit_viewport)
-		INVOKE_NEXT_TICK(src, VERB_REF(fit_viewport), 1 SECONDS) //Delayed to avoid wingets from Login calls.
+	attempt_auto_fit_viewport()
 
 ///Change the fullscreen setting of the client
 /client/proc/set_fullscreen(fullscreen_mode)
-	if(fullscreen_mode)
-		winset(src, "mainwindow", "is-maximized=false;can-resize=false;titlebar=false")
-		winset(src, "mainwindow", "menu=null;statusbar=false")
-		winset(src, "mainwindow.split", "pos=0x0")
+	if (fullscreen_mode)
+		// ATTN!! ONCE 515.1631 IS REQUIRED REPLACE WITH winset(src, "mainwindow", "menu=;is-fullscreen=true") (and remember to replace the other call of course)
+		// this means no double maximise calls to make sure window fits, and supresses, titlebar, can-resize and is-maximized
+		// both implementations are functionally "windowed borderless"
+		winset(src, "mainwindow", "on-size=;titlebar=false;can-resize=false;menu=;is-maximized=false")
 		winset(src, "mainwindow", "is-maximized=true")
-		return
-	winset(src, "mainwindow", "is-maximized=false;can-resize=true;titlebar=true")
-	winset(src, "mainwindow", "menu=menu;statusbar=true")
-	winset(src, "mainwindow.split", "pos=3x0")
-	winset(src, "mainwindow", "is-maximized=true")
+	else
+		winset(src, "mainwindow", "menu=menu;titlebar=true;can-resize=true;is-maximized=true;on-size=attempt_auto_fit_viewport")
 
+/client/proc/toggle_status_bar(show_status_bar)
+	if (show_status_bar)
+		winset(src, "mapwindow.status_bar", "is-visible=true")
+	else
+		winset(src, "mapwindow.status_bar", "is-visible=false")
 
 ///Creates and applies a clickcatcher
 /client/proc/apply_clickcatcher()
