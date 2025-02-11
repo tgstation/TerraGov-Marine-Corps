@@ -6987,7 +6987,7 @@
 /turf/closed/mineral/smooth/bigred,
 /area/kutjevo/exterior/scrubland/south)
 "hws" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/mars/dirttosand/autosmooth,
@@ -9591,7 +9591,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/exterior/colony_central)
 "kxt" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/desertdam/asphalt/cement_sunbleached,
@@ -14839,7 +14839,7 @@
 /turf/open/floor/kutjevo/multi_tiles,
 /area/kutjevo/exterior/runoff_bridge)
 "pKK" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/mars/random/sand,
@@ -22225,7 +22225,7 @@
 /turf/open/floor/kutjevo/colors/orange,
 /area/kutjevo/interior/power)
 "xAr" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/research/containment/floor1,

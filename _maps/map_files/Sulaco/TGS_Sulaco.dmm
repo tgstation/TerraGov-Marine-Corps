@@ -2116,7 +2116,7 @@
 /turf/open/floor/prison,
 /area/sulaco/firingrange)
 "amd" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/machinery/line_nexter{
@@ -2497,7 +2497,7 @@
 /turf/open/floor/prison,
 /area/sulaco/briefing)
 "aoL" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/prison/marked,
@@ -24656,7 +24656,7 @@
 /turf/open/floor/tile/hydro,
 /area/sulaco/hydro)
 "ueP" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/machinery/camera/autoname{

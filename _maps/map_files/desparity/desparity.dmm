@@ -3264,7 +3264,7 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/engineering)
 "ri" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -6941,7 +6941,7 @@
 /turf/open/ground/grass/weedable,
 /area/lv624/ground/jungle9)
 "JU" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,

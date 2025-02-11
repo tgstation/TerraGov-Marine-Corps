@@ -7638,7 +7638,7 @@
 /obj/machinery/line_nexter{
 	dir = 8
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/mainship/sterile/side{
 	dir = 4
 	},
@@ -8348,7 +8348,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/cafeteria_port)
 "dPt" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/sterile/side{
@@ -19727,7 +19727,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/engineering/ce_room)
 "wgD" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/mono,

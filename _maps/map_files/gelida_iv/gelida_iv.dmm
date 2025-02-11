@@ -8432,7 +8432,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/gelida/outdoors/colony_streets/north_west_street)
 "fAV" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
 "fAZ" = (
@@ -30707,7 +30707,7 @@
 	},
 /area/gelida/indoors/a_block/dorms)
 "ugQ" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/prison/sterilewhite/full,
 /area/gelida/indoors/a_block/corpo)
