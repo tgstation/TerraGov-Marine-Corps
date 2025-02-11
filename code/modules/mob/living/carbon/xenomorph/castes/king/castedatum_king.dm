@@ -2,6 +2,7 @@
 	caste_name = "King"
 	display_name = "King"
 	upgrade_name = ""
+	base_strain_type = /mob/living/carbon/xenomorph/king
 	caste_type_path = /mob/living/carbon/xenomorph/king
 	caste_desc = "A primordial creature, evolved to smash the hardiest of defences and hunt the hardiest of prey."
 

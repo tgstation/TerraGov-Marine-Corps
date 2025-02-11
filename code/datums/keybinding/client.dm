@@ -46,3 +46,18 @@
 		return
 	user.mob.button_pressed_F12()
 	return TRUE
+
+/datum/keybinding/client/fullscreen
+	hotkey_keys = list("F11")
+	name = "fullscreen"
+	full_name = "Fullscreen"
+	description = "Swap to fullscreen."
+	keybind_signal = COMSIG_KB_CLIENT_FULLSCREEN_DOWN
+
+/datum/keybinding/client/fullscreen/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.prefs.fullscreen_mode = !user.prefs.fullscreen_mode
+	user.set_fullscreen(user.prefs.fullscreen_mode)
+	return TRUE

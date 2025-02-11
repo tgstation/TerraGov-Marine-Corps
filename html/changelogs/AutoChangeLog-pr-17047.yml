@@ -1,0 +1,5 @@
+author: "SandPoot"
+delete-after: True
+changes:
+  - rscadd: "Added Tesla turret, to shock xenos when they're too feisty!"
+  - code_imp: "zap_beam() returns affected xenos."

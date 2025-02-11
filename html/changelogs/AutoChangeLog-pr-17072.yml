@@ -1,0 +1,4 @@
+author: "SandPoot"
+delete-after: True
+changes:
+  - rscadd: "Fireman carried people can be laid on top of surgery tables directly instead of having to drop to grab them again and click on the table."

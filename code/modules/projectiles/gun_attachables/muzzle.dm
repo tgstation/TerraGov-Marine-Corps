@@ -36,7 +36,7 @@
 	throwforce = 10
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	melee_mod = 25
 	slot = ATTACHMENT_SLOT_MUZZLE
 	pixel_shift_x = 14 //Below the muzzle.
@@ -73,7 +73,7 @@
 	attack_speed = 8
 	attach_delay = 10 //Bayonets attach/detach quickly.
 	detach_delay = 10
-	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts")
 	melee_mod = 25
 	slot = ATTACHMENT_SLOT_MUZZLE
 	pixel_shift_x = 14 //Below the muzzle.

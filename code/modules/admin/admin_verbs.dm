@@ -555,15 +555,15 @@
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C,
 				type = MESSAGE_TYPE_MENTORCHAT,
-				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>")
+				html = "<span class='[color]'>[span_prefix("[span_tooltip(holder.rank.name, "MENTOR:")]")] [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C) && mob.stat == DEAD)
 			to_chat(C,
 				type = MESSAGE_TYPE_MENTORCHAT,
-				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
+				html = "<span class='[color]'>[span_prefix("[span_tooltip(holder.rank.name, "MENTOR:")]")] [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C))
 			to_chat(C,
 				type = MESSAGE_TYPE_MENTORCHAT,
-				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
+				html = "<span class='[color]'>[span_prefix("[span_tooltip(holder.rank.name, "MENTOR:")]")] [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 
 	var/list/pinged_admin_clients = check_admin_pings(msg)
 	if(length(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
@@ -1043,13 +1043,13 @@
 				else if(is_mentor(src))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = span_mentorsay("<size='4'></b>-- Mentor private message --</b></font>"))
+						html = span_mentorsay("<font size='4'></b>-- Mentor private message --</b></font>"))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
 						html = span_mentorsay("[holder.rank.name] PM from- <b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = span_notice("<i>Click on the mentor's name to reply.</i>"))
+						html = span_boldnotice("<i>Click on the mentor's name to reply.</i>"))
 					to_chat(src,
 						type = MESSAGE_TYPE_ADMINPM,
 						html = span_notice("<b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [span_linkify("[msg]")]"))

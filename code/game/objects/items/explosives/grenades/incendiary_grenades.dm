@@ -18,7 +18,7 @@
 		CRASH("flame_radius used without a valid turf parameter")
 	radius = clamp(radius, 1, 50) //Sanitize inputs
 
-	for(var/t in filled_turfs(epicenter, radius, "circle", air_pass = TRUE))
+	for(var/t in filled_turfs(epicenter, radius, "circle", pass_flags_checked = PASS_AIR))
 		var/turf/turf_to_flame = t
 		turf_to_flame.ignite(randfloat(burn_duration*0.75, burn_duration), burn_intensity, colour, burn_damage, fire_stacks)
 

@@ -3,7 +3,7 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Explosives", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Vehicles", "Factory"))
+GLOBAL_LIST_INIT(all_supply_groups, list("Operations", "Weapons", "Smartguns", "Explosives", "Armor", "Clothing", "Medical", "Engineering", "Supplies", "Imports", "Vehicles", "Factory"))
 
 /datum/supply_packs
 	var/name
@@ -239,7 +239,6 @@ WEAPONS
 		/obj/item/attachable/buildasentry,
 	)
 	cost = 250
-
 
 /datum/supply_packs/weapons/hsg_102_emplacement
 	name = "HSG-102 mounted heavy smartgun"
@@ -683,75 +682,6 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/heavymachinegun/small)
 	cost = 40
 
-/datum/supply_packs/weapons/smartgun
-	name = "SG-29 smart machine gun"
-	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
-	cost = 400
-
-/datum/supply_packs/weapons/smartgun_ammo
-	name = "SG-29 ammo drum"
-	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
-	cost = 50
-
-/datum/supply_packs/weapons/smart_minigun
-	name = "SG-85 smart gatling gun"
-	contains = list(/obj/item/weapon/gun/minigun/smart_minigun)
-	cost = 400
-
-/datum/supply_packs/weapons/smart_minigun_ammo
-	name = "SG-85 ammo bin"
-	contains = list(/obj/item/ammo_magazine/packet/smart_minigun)
-	cost = 50
-
-/datum/supply_packs/weapons/smart_minigun_powerpack
-	name = "SG-85 powerpack"
-	contains = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
-	cost = 150
-
-/datum/supply_packs/weapons/smarttarget_rifle
-	name = "SG-62 smart target rifle"
-	contains = list(/obj/item/weapon/gun/rifle/standard_smarttargetrifle)
-	cost = 400
-
-/datum/supply_packs/weapons/smarttarget_rifle_ammo
-	name = "SG-62 smart target rifle ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_smarttargetrifle)
-	cost = 35
-
-/datum/supply_packs/weapons/smarttarget_rifle_ammo_bin
-	name = "SG-62 smart target rifle ammo bin"
-	contains = list(/obj/item/ammo_magazine/packet/smart_targetrifle)
-	cost = 50
-
-/datum/supply_packs/weapons/spotting_rifle_ammo
-	name = "SG-153 spotting rifle ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle)
-	cost = 15
-
-/datum/supply_packs/weapons/spotting_rifle_ammo/highimpact
-	name = "SG-153 high impact spotting rifle ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact)
-
-/datum/supply_packs/weapons/spotting_rifle_ammo/heavyrubber
-	name = "SG-153 heavy rubber spotting rifle ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber)
-
-/datum/supply_packs/weapons/spotting_rifle_ammo/plasmaloss
-	name = "SG-153 tanglefoot spotting rifle ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss)
-
-/datum/supply_packs/weapons/spotting_rifle_ammo/tungsten
-	name = "SG-153 tungsten spotting rifle ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten)
-
-/datum/supply_packs/weapons/spotting_rifle_ammo/flak
-	name = "SG-153 flak spotting rifle ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak)
-
-/datum/supply_packs/weapons/spotting_rifle_ammo/incendiary
-	name = "SG-153 incendiary spotting rifle ammo"
-	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary)
-
 /datum/supply_packs/weapons/flamethrower
 	name = "FL-84 flamethrower"
 	contains = list(/obj/item/weapon/gun/flamer/big_flamer/marinestandard)
@@ -858,45 +788,81 @@ WEAPONS
 	contains = list(/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol)
 	cost = 10
 
-/datum/supply_packs/weapons/ltb_he_shell
-	name = "LTB HE tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
-	cost = 10
+/*******************************************************************************
+SMARTGUN
+*******************************************************************************/
+/datum/supply_packs/smartguns
+	group = "Smartguns"
+	containertype = /obj/structure/closet/crate/smart
 
-/datum/supply_packs/weapons/ltb_apfds_shell
-	name = "LTB APFDS tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/apfds)
-	cost = 10
+/datum/supply_packs/smartguns/smartgun
+	name = "SG-29 smart machine gun"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smartmachinegun)
+	cost = 400
 
-/datum/supply_packs/weapons/ltb_canister_shell
-	name = "LTB Canister tank shell"
-	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/canister)
-	cost = 10
+/datum/supply_packs/smartguns/smartgun_ammo
+	name = "SG-29 ammo drum"
+	contains = list(/obj/item/ammo_magazine/standard_smartmachinegun)
+	cost = 50
 
-/datum/supply_packs/weapons/ltaap_rounds
-	name = "LTAAP tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
-	cost = 10
+/datum/supply_packs/smartguns/smart_minigun
+	name = "SG-85 smart gatling gun"
+	contains = list(/obj/item/weapon/gun/minigun/smart_minigun)
+	cost = 400
 
-/datum/supply_packs/weapons/secondary_flamer_tank
-	name = "OMR Mk.3 flamer tank"
-	contains = list(/obj/item/ammo_magazine/tank/secondary_flamer_tank)
-	cost = 10
+/datum/supply_packs/smartguns/smart_minigun_ammo
+	name = "SG-85 ammo bin"
+	contains = list(/obj/item/ammo_magazine/packet/smart_minigun)
+	cost = 50
 
-/datum/supply_packs/weapons/cupola_rounds
-	name = "Cupola tank magazine"
-	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
-	cost = 10
+/datum/supply_packs/smartguns/smart_minigun_powerpack
+	name = "SG-85 powerpack"
+	contains = list(/obj/item/ammo_magazine/minigun_powerpack/smartgun)
+	cost = 150
 
-/datum/supply_packs/weapons/tow_rocket
-	name = "TOW missile"
-	contains = list(/obj/item/ammo_magazine/tank/tow_missile)
-	cost = 5 // marginally cheaper due to being a single loader
+/datum/supply_packs/smartguns/smarttarget_rifle
+	name = "SG-62 smart target rifle"
+	contains = list(/obj/item/weapon/gun/rifle/standard_smarttargetrifle)
+	cost = 400
 
-/datum/supply_packs/weapons/microrocket_pod
-	name = "Microrocket pod"
-	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
-	cost = 10
+/datum/supply_packs/smartguns/smarttarget_rifle_ammo
+	name = "SG-62 smart target rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_smarttargetrifle)
+	cost = 35
+
+/datum/supply_packs/smartguns/smarttarget_rifle_ammo_bin
+	name = "SG-62 smart target rifle ammo bin"
+	contains = list(/obj/item/ammo_magazine/packet/smart_targetrifle)
+	cost = 50
+
+/datum/supply_packs/smartguns/spotting_rifle_ammo
+	name = "SG-153 spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle)
+	cost = 15
+
+/datum/supply_packs/smartguns/spotting_rifle_ammo/highimpact
+	name = "SG-153 high impact spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/highimpact)
+
+/datum/supply_packs/smartguns/spotting_rifle_ammo/heavyrubber
+	name = "SG-153 heavy rubber spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/heavyrubber)
+
+/datum/supply_packs/smartguns/spotting_rifle_ammo/plasmaloss
+	name = "SG-153 tanglefoot spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/plasmaloss)
+
+/datum/supply_packs/smartguns/spotting_rifle_ammo/tungsten
+	name = "SG-153 tungsten spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/tungsten)
+
+/datum/supply_packs/smartguns/spotting_rifle_ammo/flak
+	name = "SG-153 flak spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/flak)
+
+/datum/supply_packs/smartguns/spotting_rifle_ammo/incendiary
+	name = "SG-153 incendiary spotting rifle ammo"
+	contains = list(/obj/item/ammo_magazine/rifle/standard_spottingrifle/incendiary)
 
 /*******************************************************************************
 EXPLOSIVES
@@ -1184,14 +1150,14 @@ ARMOR
 	cost = 400
 
 /datum/supply_packs/armor/modular/attachments/valkyrie_autodoc
-	name = "Valkyrie autodoc armor module"
+	name = "Valkyrie automedical system"
 	contains = list(
 		/obj/item/armor_module/module/valkyrie_autodoc,
 	)
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/fire_proof
-	name = "Surt fireproof module set"
+	name = "Surt thermal insulation system set"
 	contains = list(
 		/obj/item/armor_module/module/fire_proof,
 		/obj/item/armor_module/module/fire_proof_helmet,
@@ -1199,14 +1165,14 @@ ARMOR
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/tyr_extra_armor
-	name = "Tyr mark 2 armor module"
+	name = "Tyr Mk.2 armor reinforcement system"
 	contains = list(
 		/obj/item/armor_module/module/tyr_extra_armor,
 	)
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/mimir_environment_protection
-	name = "Mimir mark 2 module set"
+	name = "Mimir Mk.2 environmental resistance system set"
 	contains = list(
 		/obj/item/armor_module/module/mimir_environment_protection/mimir_helmet,
 		/obj/item/armor_module/module/mimir_environment_protection,
@@ -1214,12 +1180,12 @@ ARMOR
 	cost = 150
 
 /datum/supply_packs/armor/modular/attachments/hlin_bombimmune
-	name = "Hlin explosive armor module"
+	name = "Hlin explosive compensation system"
 	contains = list(/obj/item/armor_module/module/hlin_explosive_armor)
 	cost = 120
 
 /datum/supply_packs/armor/modular/attachments/artemis_mark_two
-	name = "Freyr mark 2 helmet module"
+	name = "Freyr Mk.2 visual assistance helmet system"
 	contains = list(
 		/obj/item/armor_module/module/binoculars/artemis_mark_two,
 	)
@@ -1269,7 +1235,7 @@ CLOTHING
 	cost = 100
 
 /datum/supply_packs/clothing/marine_outfits
-	name = "mMarine outfits"
+	name = "Marine outfits"
 	contains = list(
 		/obj/item/clothing/under/marine,
 		/obj/item/storage/belt/marine,
@@ -1592,6 +1558,11 @@ ENGINEERING
 	name = "Teleporter pads"
 	contains = list(/obj/effect/teleporter_linker)
 	cost = 500
+
+/datum/supply_packs/engineering/tesla_turret
+	name = "Tesla turret"
+	contains = list(/obj/item/tesla_turret)
+	cost = 600
 
 /*******************************************************************************
 SUPPLIES
@@ -2030,11 +2001,13 @@ VEHICLES
 
 /datum/supply_packs/vehicles
 	group = "Vehicles"
+	containertype = /obj/structure/closet/crate/weapon
 
 /datum/supply_packs/vehicles/motorbike
 	name = "All-terrain motorbike"
 	cost = 400
 	contains = list(/obj/vehicle/ridden/motorbike)
+	containertype = null
 
 /datum/supply_packs/vehicles/sidecar
 	name = "Motorbike sidecar upgrade"
@@ -2050,16 +2023,19 @@ VEHICLES
 	name = "Combat droid with weapon equipped"
 	contains = list(/obj/vehicle/unmanned/droid)
 	cost = 400
+	containertype = null
 
 /datum/supply_packs/vehicles/droid_scout
 	name = "Scout droid"
 	contains = list(/obj/vehicle/unmanned/droid/scout)
 	cost = 300
+	containertype = null
 
 /datum/supply_packs/vehicles/droid_powerloader
 	name = "Powerloader droid"
 	contains = list(/obj/vehicle/unmanned/droid/ripley)
 	cost = 300
+	containertype = null
 
 /datum/supply_packs/vehicles/droid_weapon
 	name = "Droid weapon"
@@ -2149,6 +2125,56 @@ VEHICLES
 	contains = list(/obj/item/cell/lasgun/heavy_laser, /obj/item/cell/lasgun/heavy_laser, /obj/item/cell/lasgun/heavy_laser)
 	cost = 50
 	containertype = /obj/structure/closet/crate/ammo
+
+/datum/supply_packs/vehicles/bfg_cannon
+	name = "Tank-mounted BFG 9500"
+	contains = list(/obj/item/armored_weapon/bfg)
+	cost = 1600
+
+/datum/supply_packs/vehicles/bfg_rounds
+	name = "Tank BFG antimatter container"
+	contains = list(/obj/item/ammo_magazine/tank/bfg)
+	cost = 200
+
+/datum/supply_packs/vehicles/ltb_he_shell
+	name = "LTB High Explosive tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltb_apfds_shell
+	name = "LTB APFDS tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/apfds)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltb_canister_shell
+	name = "LTB Canister tank shell"
+	contains = list(/obj/item/ammo_magazine/tank/ltb_cannon/canister)
+	cost = 10
+
+/datum/supply_packs/vehicles/secondary_flamer_tank
+	name = "Spray flamer tank"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_flamer_tank)
+	cost = 10
+
+/datum/supply_packs/vehicles/ltaap_rounds
+	name = "LTAAP tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/ltaap_chaingun)
+	cost = 10
+
+/datum/supply_packs/vehicles/cupola_rounds
+	name = "Cupola tank magazine"
+	contains = list(/obj/item/ammo_magazine/tank/secondary_cupola)
+	cost = 10
+
+/datum/supply_packs/vehicles/tow_rocket
+	name = "TOW Missile"
+	contains = list(/obj/item/ammo_magazine/tank/tow_missile)
+	cost = 5 // marginally cheaper due to being a single loader
+
+/datum/supply_packs/vehicles/microrocket_pod
+	name = "Microrocket pod"
+	contains = list(/obj/item/ammo_magazine/tank/microrocket_rack)
+	cost = 10
 
 /*******************************************************************************
 FACTORY

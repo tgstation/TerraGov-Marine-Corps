@@ -36,7 +36,7 @@
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to</b> TGMC High Command<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Lead the TGMC platoon and complete your mission. Support the marines and communicate with your command staff, execute orders.
 	"}
@@ -71,6 +71,7 @@ Godspeed, captain! And remember, you are not above the law."})
 			new_human.wear_id.paygrade = "O9"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "10"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/command/captain/campaign
 	outfit = /datum/outfit/job/command/captain_campaign
@@ -106,7 +107,7 @@ Godspeed, captain! And remember, you are not above the law."})
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> Captain<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you will need for the mission, keep good relations between command and the marines. Assist the captain if available.
 	"}
@@ -139,6 +140,7 @@ Make the TGMC proud!"})
 			new_human.wear_id.paygrade = "MO6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "M10" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 
 //Campaign version with specific loadout
@@ -175,7 +177,7 @@ Make the TGMC proud!"})
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Captain<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 3 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Take charge of one of the four squads, be their eyes and ears providing intel and additional shipside support via Orbital Bombardments.
 	"}
@@ -206,6 +208,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 			new_human.wear_id.paygrade = "O4"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "O5"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/command/staffofficer/campaign
 	outfit = /datum/outfit/job/command/staffofficer_campaign
@@ -235,7 +238,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: 100 hours<br /><br />
+		<b>Unlock Requirement</b>: 15 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Pilot the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
@@ -258,6 +261,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 			new_human.wear_id.paygrade = "O1"
 		if(6001 to INFINITY) // 100 hrs
 			new_human.wear_id.paygrade = "O2"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/command/transportofficer/radio_help_message(mob/M)
 	. = ..()
@@ -289,7 +293,7 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 15 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Pilot the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets.
 	"}
@@ -314,6 +318,7 @@ You are to ensure the Tadpole's survival and to transport marines around, acting
 			new_human.wear_id.paygrade = "O4"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "O5"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/command/pilot/radio_help_message(mob/M)
 	. = ..()
@@ -346,7 +351,7 @@ Though you are an officer, your authority is limited to the dropship and the Con
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 15 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Act as the spearhead of the operation
 	"}
@@ -376,6 +381,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 
 
@@ -404,7 +410,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 15 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Provide heavy fire support
 	"}
@@ -439,6 +445,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 
 //apc/jeep driver
@@ -463,7 +470,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 15 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Transport and support the frontline troops
 	"}
@@ -492,6 +499,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 			new_human.wear_id.paygrade = "E6"
 		if(60001 to INFINITY) // 1000 hrs
 			new_human.wear_id.paygrade = "E9A" //If you play way too much TGMC. 1000 hours.
+	new_human.wear_id.update_label()
 
 
 
@@ -526,7 +534,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Supervise the engineers and technicians on duty. Overview the ship’s engine. Teach what’s right and what’s wrong about engineering, cut corners and find places in any FOB that can easily be destroyed.
 	"}
@@ -551,6 +559,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 			new_human.wear_id.paygrade = "O4"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "O5"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/engineering/chief/radio_help_message(mob/M)
 	. = ..()
@@ -606,6 +615,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 			new_human.wear_id.paygrade = "CPO"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "SCPO"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/engineering/tech/radio_help_message(mob/M)
 	. = ..()
@@ -645,7 +655,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 1 hour playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		Requisition supplies to the battlefield. Ensure that the marines are reparing miners for more points. Supply the marines with deluxe equipment to ensure success.
 	"}
@@ -671,6 +681,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 			new_human.wear_id.paygrade = "O4"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "O5"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/requisitions/officer/radio_help_message(mob/M)
 	. = ..()
@@ -716,7 +727,7 @@ A happy ship is a well-functioning ship."})
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}
@@ -748,7 +759,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 			new_human.wear_id.paygrade = "MDR"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "CMO"
-
+	new_human.wear_id.update_label()
 
 //Medical Officer
 /datum/job/terragov/medical/medicalofficer
@@ -802,6 +813,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 			new_human.wear_id.paygrade = "GP"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "AP"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/medical/medicalofficer/radio_help_message(mob/M)
 	. = ..()
@@ -871,7 +883,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 			new_human.wear_id.paygrade = "APROF"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "PROF"
-
+	new_human.wear_id.update_label()
 
 
 /datum/job/terragov/civilian
@@ -927,6 +939,7 @@ It is also recommended that you gear up like a regular marine, or your 'internsh
 			new_human.wear_id.paygrade = "NT4"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "NT5"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/civilian/liaison/radio_help_message(mob/M)
 	. = ..()
@@ -966,7 +979,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 	html_description = {"
 		<b>Difficulty</b>: Soul Crushing<br /><br />
 		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Support and assist in every department of the TerraGov Marine Corps, use your incredibly developed skills to help the marines during their missions. You can talk to other synthetics or the AI on the :n channel. Serve your purpose.
 	"}
@@ -1004,6 +1017,7 @@ Use your office fax machine to communicate with corporate headquarters or to acq
 			new_human.wear_id.paygrade = "Mk.IV"
 		if(18001 to INFINITY) // 300 hrs
 			new_human.wear_id.paygrade = "Mk.V"
+	new_human.wear_id.update_label()
 
 /datum/job/terragov/silicon/synthetic/radio_help_message(mob/M)
 	. = ..()
@@ -1034,7 +1048,7 @@ In addition, being a Synthetic gives you knowledge in every field and specializa
 	html_description = {"
 		<b>Difficulty</b>: Easy<br /><br />
 		<b>You answer to the</b> acting Command Staff and the human crew<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 3 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Nuclear War<br /><br /><br />
 		<b>Duty</b>: Assist the crew whenever you’re needed, be the doorknob of the ship. Recon the areas for threats via cameras, report your findings to the crew at various communication channels. Follow your laws.
 	"}

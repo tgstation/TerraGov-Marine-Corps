@@ -3,6 +3,7 @@
 	display_name = "Gorger"
 	upgrade_name = ""
 	caste_desc = "A frightening looking, bulky alien creature that drips with a familiar red fluid."
+	base_strain_type = /mob/living/carbon/xenomorph/gorger
 	caste_type_path = /mob/living/carbon/xenomorph/gorger
 	primordial_message = "There is nothing we can't withstand."
 

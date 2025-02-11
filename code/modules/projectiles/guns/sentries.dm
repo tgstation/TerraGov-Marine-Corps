@@ -456,6 +456,7 @@
 	allowed_ammo_types = list(/obj/item/ammo_magazine/sentry/laser)
 
 	gun_firemode_list = list(GUN_FIREMODE_AUTOMATIC)
+	gun_features_flags = GUN_AMMO_COUNTER|GUN_DEPLOYED_FIRE_ONLY|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNT_BY_SHOTS_REMAINING|GUN_ENERGY
 
 	attachable_allowed = list(/obj/item/attachable/scope/unremovable/hsg_102)
 	starting_attachment_types = list(

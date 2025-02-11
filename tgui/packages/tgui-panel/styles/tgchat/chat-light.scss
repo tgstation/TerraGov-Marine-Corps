@@ -305,6 +305,11 @@ em {
   font-weight: bold;
 }
 
+.rlooc {
+  color: #507294;
+  font-weight: bold;
+}
+
 .hostooc {
   color: #000000;
   font-weight: bold;
@@ -1087,7 +1092,7 @@ h2.alert {
 
 .tooltip {
   font-style: italic;
-  border-bottom: 1px dashed #000;
+  border-bottom: 2px dotted;
 }
 
 $ooc_alert_bg_colors: (
