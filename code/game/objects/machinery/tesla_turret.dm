@@ -3,9 +3,17 @@
 	desc = "A turret that drains plasma of nearby xenomorphs."
 	icon = 'icons/obj/machines/deployable/sentry/tesla.dmi'
 	icon_state = "grounding_rod_open0"
-	max_integrity = 250
-	/// Battery to be used by the device, is moved into the deployable when deployed, and back when undeployed
+	max_integrity = 200
+
+	/// Variables to be used by the deployable, are moved into the deployable when deployed and back when undeployed.
+	/// Range, duh.
+	var/max_range = 5
+	/// Battery to run on
 	var/obj/item/cell/battery
+	/// Cost for having active but doing nothing
+	var/passive_cost = 25
+	/// Cost PER XENO to drain on shock
+	var/active_cost = 75
 
 /obj/item/tesla_turret/Initialize(mapload)
 	. = ..()
@@ -21,7 +29,10 @@
 
 /obj/item/tesla_turret/examine(mob/user)
 	. = ..()
-	if(!battery || !in_range(src, user))
+	if(!in_range(src, user))
+		return
+	if(!battery)
+		. += span_warning("It lacks a battery and will not turn on.")
 		return
 	. += span_notice("There is \a [battery] inside. [battery.charge]/[battery.maxcharge] left.")
 	. += span_notice("<b>Use</b> inhand or <b>Right-click</b> to remove it.")
@@ -33,8 +44,7 @@
 	if(!battery)
 		balloon_alert(user, "no battery")
 		return
-	if(!user.put_in_hands(battery))
-		battery.forceMove(drop_location())
+	user.put_in_hands(battery)
 	balloon_alert(user, "removed battery")
 	battery = null
 
@@ -53,6 +63,9 @@
 /obj/item/tesla_turret/attackby(obj/item/cell/inserting_item, mob/user, params)
 	. = ..()
 	if(!istype(inserting_item))
+		return
+	if(istype(inserting_item, /obj/item/cell/lasgun))
+		balloon_alert(user, "won't fit")
 		return
 	if(battery)
 		balloon_alert(user, "already has")
@@ -80,13 +93,17 @@
 	/// Is this running
 	VAR_PRIVATE/active = FALSE
 	/// Cost for having active but doing nothing
-	var/passive_cost = 50
+	var/passive_cost = 25
 	/// Cost PER XENO to drain on shock
-	var/active_cost = 100
+	var/active_cost = 75
 
 /obj/machinery/deployable/tesla_turret/Initialize(mapload, obj/item/tesla_turret/internal_item, mob/deployer)
 	. = ..()
-	if(internal_item?.battery)
+	if(internal_item)
+		max_range = internal_item.max_range
+		passive_cost = internal_item.passive_cost
+		active_cost = internal_item.active_cost
+
 		battery = internal_item.battery
 		internal_item.battery = null
 
@@ -96,7 +113,10 @@
 
 /obj/machinery/deployable/tesla_turret/examine(mob/user)
 	. = ..()
-	if(!battery || !in_range(src, user))
+	if(!in_range(src, user))
+		return
+	if(!battery)
+		. += span_warning("It lacks a battery and will not turn on.")
 		return
 	. += span_notice("There is \a [battery] inside. [battery.charge]/[battery.maxcharge] left.")
 	. += span_notice("<b>Right-click</b> to remove it.")
@@ -104,9 +124,18 @@
 		return
 	. += span_warning("It is currently active.")
 
+/obj/machinery/deployable/tesla_turret/get_mechanics_info()
+	. = ..()
+	. += "It passively uses [passive_cost] power."
+	. += "<br>"
+	. += "Per shock it drains [active_cost] per xenomorph hit."
+
 /obj/machinery/deployable/tesla_turret/attackby(obj/item/cell/inserting_item, mob/user, params)
 	. = ..()
 	if(!istype(inserting_item))
+		return
+	if(istype(inserting_item, /obj/item/cell/lasgun))
+		balloon_alert(user, "won't fit")
 		return
 	if(battery)
 		balloon_alert(user, "already has")
@@ -129,14 +158,16 @@
 	if(active)
 		balloon_alert(user, "turn off first")
 		return
-	if(!user.put_in_hands(battery))
-		battery.forceMove(drop_location())
+	user.put_in_hands(battery)
 	battery = null
 	balloon_alert(user, "removed battery")
 	update_appearance(UPDATE_ICON)
 
 /obj/machinery/deployable/tesla_turret/interact(mob/user)
 	. = ..()
+	// Tell me again why ghosts can call interact uninterrupted again?
+	if(istype(user, /mob/dead))
+		return
 	if(!battery)
 		balloon_alert(user, "no battery")
 		return
@@ -149,11 +180,13 @@
 	if(state)
 		active = TRUE
 		START_PROCESSING(SSobj, src)
+		resistance_flags |= UNACIDABLE
 		if(!silent)
 			balloon_alert_to_viewers("turned on")
 	else
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)
+		resistance_flags -= UNACIDABLE
 		if(!silent)
 			balloon_alert_to_viewers("turned off")
 	update_appearance(UPDATE_ICON)
@@ -190,6 +223,10 @@
 	if(battery)
 		var/obj/item/tesla_turret/internal = internal_item.resolve()
 		if(internal)
+			internal.max_range = max_range
+			internal.passive_cost = passive_cost
+			internal.active_cost = active_cost
+
 			internal.battery = battery
 			battery = null
 	return ..()

@@ -1562,7 +1562,7 @@ ENGINEERING
 /datum/supply_packs/engineering/tesla_turret
 	name = "Tesla turret"
 	contains = list(/obj/item/tesla_turret)
-	cost = 600
+	cost = 300
 
 /*******************************************************************************
 SUPPLIES
