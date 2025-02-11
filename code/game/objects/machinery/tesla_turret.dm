@@ -37,6 +37,14 @@
 	. += span_notice("There is \a [battery] inside. [battery.charge]/[battery.maxcharge] left.")
 	. += span_notice("<b>Use</b> inhand or <b>Right-click</b> to remove it.")
 
+/obj/item/tesla_turret/get_mechanics_info()
+	. = ..()
+	. += "It has a range of [max_range] tile\s."
+	. += "<br>"
+	. += "It passively uses [passive_cost] power."
+	. += "<br>"
+	. += "It will drain [active_cost] power per xenomorph hit."
+
 /obj/item/tesla_turret/attack_self(mob/living/user)
 	. = ..()
 	if(!in_range(src, user))
@@ -126,9 +134,12 @@
 
 /obj/machinery/deployable/tesla_turret/get_mechanics_info()
 	. = ..()
+	. += "<br>"
+	. += "It has a range of [max_range] tile\s."
+	. += "<br>"
 	. += "It passively uses [passive_cost] power."
 	. += "<br>"
-	. += "Per shock it drains [active_cost] per xenomorph hit."
+	. += "It will drain [active_cost] power per xenomorph hit."
 
 /obj/machinery/deployable/tesla_turret/attackby(obj/item/cell/inserting_item, mob/user, params)
 	. = ..()
