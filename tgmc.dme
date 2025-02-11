@@ -1107,6 +1107,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\game\objects\machinery\street_lamps.dm"
 #include "code\game\objects\machinery\suit_storage_unit.dm"
 #include "code\game\objects\machinery\teleporter.dm"
+#include "code\game\objects\machinery\tesla_turret.dm"
 #include "code\game\objects\machinery\washing_machine.dm"
 #include "code\game\objects\machinery\bots\bots.dm"
 #include "code\game\objects\machinery\bots\cleanbot.dm"
