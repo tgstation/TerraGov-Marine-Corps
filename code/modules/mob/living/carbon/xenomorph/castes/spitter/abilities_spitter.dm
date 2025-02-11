@@ -389,7 +389,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	for(var/turf/effect_tile in filled_turfs(get_turf(src), 1, "square", pass_flags_checked = PASS_AIR))
 		new /obj/effect/temp_visual/heal(effect_tile)
 	for(var/mob/living/carbon/xenomorph/xeno AS in cheap_get_xenos_near(src,1))
-		var/healamount = (25 + (xeno.maxHealth * 0.03))
+		var/healamount = (25 + (xeno.recovery_aura * xeno.maxHealth * 0.03))
 		HEAL_XENO_DAMAGE(xeno, healamount, FALSE)
 		new /obj/effect/temp_visual/telekinesis(get_turf(xeno))
 		if(owner.client)
