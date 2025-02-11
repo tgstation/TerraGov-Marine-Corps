@@ -38,9 +38,9 @@
 /datum/security_level/New()
 	. = ..()
 	if(lowering_to_configuration_key) // I'm not sure about you, but isn't there an easier way to do this?
-		lowering_body = CONFIG_GET(lowering_to_configuration_key)
+		lowering_body = global.config.Get(lowering_to_configuration_key)
 	if(elevating_to_configuration_key)
-		elevating_body = CONFIG_GET(elevating_to_configuration_key)
+		elevating_body = global.config.Get(elevating_to_configuration_key)
 
 /**
  * GREEN
