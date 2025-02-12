@@ -1,0 +1,8 @@
+author: "Sun-Soaked"
+delete-after: True
+changes:
+  - rscadd: "Adds 2 new abilities to Dancer: Baton Pass and Tail Hook"
+  - balance: "Reworks Dancer's Impale and Tail Trip to make them stronger."
+  - balance: "Reduces Dancer's speed slightly, while slightly increasing its HP and armor."
+  - balance: "Dancer's Dodge now lasts longer but has a longer cooldown."
+  - imageadd: "Adds 2 new aoe swing effects."
