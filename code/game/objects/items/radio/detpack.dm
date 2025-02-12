@@ -153,23 +153,20 @@
 	if(signal.data["code"] != code)
 		return
 
-	if(!armed)
-		if(!plant_target) //has to be planted on something to begin detonating.
-			return
-		armed = TRUE
-		//bombtick()
-		log_bomber(usr, "triggered", src)
-		detonation_pending = addtimer(CALLBACK(src, PROC_REF(do_detonate)), timer SECONDS, TIMER_STOPPABLE)
-		if(timer > 10)
-			sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_normal)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
-			addtimer(CALLBACK(src, PROC_REF(change_to_loud_sound)), timer-10)
-		else
-			sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_loud)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
-		update_icon()
+	if(armed)
+		disarm(FALSE)
+		return
+	if(!plant_target) //has to be planted on something to begin detonating.
+		return
+	armed = TRUE
+	log_bomber(usr, "triggered", src)
+	detonation_pending = addtimer(CALLBACK(src, PROC_REF(do_detonate)), timer SECONDS, TIMER_STOPPABLE)
+	if(timer > 10)
+		sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_normal)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
+		addtimer(CALLBACK(src, PROC_REF(change_to_loud_sound)), timer-10)
 	else
-		armed = FALSE
-		disarm()
-
+		sound_timer = addtimer(CALLBACK(src, PROC_REF(do_play_sound_loud)), 1 SECONDS, TIMER_LOOP|TIMER_STOPPABLE)
+	update_icon()
 
 /obj/item/detpack/Topic(href, href_list)
 	. = ..()
@@ -326,7 +323,7 @@
 	timer--
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 160 + (timer-timer*2)*10, FALSE) //Gets louder as we count down to armaggedon
 
-/obj/item/detpack/proc/disarm()
+/obj/item/detpack/proc/disarm(turn_off = TRUE)
 	if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 		timer = DETPACK_TIMER_MIN
 	if(sound_timer)
@@ -336,7 +333,8 @@
 		deltimer(detonation_pending)
 		detonation_pending = null
 	armed = FALSE
-	on = FALSE
+	if(turn_off)
+		on = FALSE
 	update_icon()
 
 /obj/item/detpack/proc/do_detonate()
