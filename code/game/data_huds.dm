@@ -748,3 +748,18 @@
 	if(internal_damage)
 		holder.icon_state = "hudwarn"
 	holder.icon_state = null
+
+/obj/machinery/deployable/tesla_turret/proc/hud_set_tesla_battery()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!battery)
+		holder.icon = 'icons/mob/hud/xeno_health.dmi'
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(battery.charge * 100 / battery.maxcharge, 10)
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
+	holder.icon_state = "plasma[amount]"

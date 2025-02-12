@@ -1,6 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed items being burnt by lava while mid throw"
-  - bugfix: "fixed things visually submerging mid throw"
-  - bugfix: "fixed mobs not being immediately ignited when landing in fire/lava"

@@ -69,3 +69,73 @@
   - imageadd: 'Button icons for: Abduct, Advance, Tail Lash, and Item Throw,'
   - bugfix: The display name for the Dancer strain has been changed to remove confusion
       within the Strain Swap menu and to differentiate itself from the base caste.
+2025-02-10:
+  Kuro020:
+  - balance: Shoulder fire has been removed from the game
+  Lumipharon:
+  - balance: Non CIC overwatch consoles no longer have military functions
+  - code_imp: cleaned up Overwatch console code
+  - bugfix: Fireteams work for SOM
+  - bugfix: Fireteams can now be assigned screenwide as intended, instead of only
+      when adjacent
+  - bugfix: fixed items being burnt by lava while mid throw
+  - bugfix: fixed things visually submerging mid throw
+  - bugfix: fixed mobs not being immediately ignited when landing in fire/lava
+  Rug-Dealer:
+  - rscadd: Ghosts can now view the reagents in pills, pressurized reagent canisters,
+      and chem grenades on examine.
+  - rscadd: Added assault crewman to Valhalla, allowing you to test tanks and APCs
+      again.
+  Runian:
+  - rscadd: Hivemind gets a new ability that lets them use acid jaws/maws without
+      having to fly over to use them.
+  SandPoot:
+  - bugfix: Fixed hivemind's health hud/ui.
+  TiviPlus:
+  - server: Fixed certain things not saving in the DB
+  - bugfix: fixed the time of day being offset
+2025-02-11:
+  TiviPlus:
+  - rscadd: Adding !! after your message will now make it bigger and fatter in runechat
+  - rscadd: added a top left dropdown and a preferences button to see keybinds
+  - qol: There is now a fullscreen keybind (F11 by default)
+  - qol: The command bar now only shows under the chat, making the gameplay window
+      larger
+  - qol: The status bar (bar showing the name of what you hover over) now only shows
+      as a small box in the bottom left, making the gameplay and chat windows larger.
+      It can also be turned off in prefs now
+  - bugfix: fixed the UI being broken on Opendream (probably)
+  - bugfix: chat will no longer flicker on 516
+  - bugfix: The game will now only use fonts shipped with the game, due to some players
+      not having all fonts installed/ship correctly. as a result of this the lobby
+      menu, runechat, screen orders, etc may look different
+  - code_imp: Aligned skin.dmf with Tg's skin.dmf to make porting simple
+  - code_imp: Autofit viewport no longer has an arbitrary 1 second delay outside of
+      during the user connecting
+2025-02-12:
+  Kuro020:
+  - balance: Laser Rifle and MG can no longer equip rail scope
+  Lumipharon:
+  - bugfix: fixed a visual issue with beams
+  - bugfix: fixed mobs not hearing the OB sound some times
+  PibeCantina:
+  - qol: Makes the platforms on gelida non dense
+  Runian:
+  - balance: Xenomorph prep no longer ends when the tad launches, but when the TAD
+      begins to land outside any marine base (e.g. outside of LZ).
+  - bugfix: The additional buildings in Kutjevo Refinery's LZ are considered marine
+      base for consistency.
+  - bugfix: The area outside of Kutjevo Refinery's LZ is no longer considered a marine
+      base and will allow Hivemind to build in it once shutters open.
+  SandPoot:
+  - rscadd: Added Tesla turret, to shock xenos when they're too feisty!
+  - code_imp: zap_beam() returns affected xenos.
+  - rscadd: Fireman carried people can be laid on top of surgery tables directly instead
+      of having to drop to grab them again and click on the table.
+  Sun-Soaked:
+  - qol: joining the fallen hive of Valhalla no longer removes you from the living
+      hive's larva queue.
+  yyzsong:
+  - balance: combat robots may now wear the mimir armour module
+  - spellcheck: Unarmed attacks vs xenomorphs should now display correctly
+  - spellcheck: mMarine -> Marine
