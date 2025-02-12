@@ -56,7 +56,7 @@ SUBSYSTEM_DEF(statpanels)
 
 			if(check_rights_for(target, R_DEBUG))
 				if(!("MC" in target.panel_tabs))
-					target.stat_panel.send_message("add_mc_tab")
+					target.stat_panel.send_message("add_mc_tab", target.holder.href_token)
 				if(target.stat_tab == "MC" && ((num_fires % mc_wait == 0) || target.prefs.fast_mc_refresh))
 					set_MC_tab(target)
 
