@@ -177,6 +177,8 @@
 			override = TRUE
 		if(SSticker.current_state == GAME_STATE_FINISHED)
 			override = TRUE
+		if(M.deadchat_override = TRUE)
+			override = TRUE
 		if(isnewplayer(M) && !override)
 			continue
 		if(M.stat != DEAD && !override)
