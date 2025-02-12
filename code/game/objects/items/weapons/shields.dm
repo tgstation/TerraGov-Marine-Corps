@@ -236,6 +236,11 @@
 	. = ..()
 	UnregisterSignal(carbon_owner, COMSIG_MOB_MOUSEDOWN)
 
+/datum/action/ability/activable/weapon_skill/shield_bash/ai_should_use(atom/target)
+	if(get_dist(owner, target) > 1)
+		return FALSE
+	return ..()
+
 /datum/action/ability/activable/weapon_skill/shield_bash/use_ability(atom/A)
 	succeed_activate()
 	add_cooldown()

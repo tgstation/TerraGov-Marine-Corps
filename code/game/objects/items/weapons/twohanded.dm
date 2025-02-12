@@ -241,6 +241,11 @@
 	/// Used for particles. Holds the particles instead of the mob. See particle_holder for documentation.
 	var/obj/effect/abstract/particle_holder/particle_holder
 
+/datum/action/ability/activable/weapon_skill/axe_sweep/ai_should_use(atom/target)
+	if(get_dist(owner, target) > 2)
+		return FALSE
+	return ..()
+
 /datum/action/ability/activable/weapon_skill/axe_sweep/use_ability(atom/A)
 	succeed_activate()
 	add_cooldown()

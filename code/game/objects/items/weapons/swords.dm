@@ -51,6 +51,13 @@
 		KEYBINDING_NORMAL = COMSIG_WEAPONABILITY_SWORDLUNGE,
 	)
 
+	var/lunge_range = 2
+
+/datum/action/ability/activable/weapon_skill/sword_lunge/ai_should_use(atom/target)
+	if(get_dist(owner, target) > lunge_range)
+		return FALSE
+	return ..()
+
 /datum/action/ability/activable/weapon_skill/sword_lunge/use_ability(atom/A)
 	var/mob/living/carbon/carbon_owner = owner
 
@@ -60,7 +67,7 @@
 
 	carbon_owner.visible_message(span_danger("[carbon_owner] charges towards \the [A]!"))
 	playsound(owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 0, 4)
-	carbon_owner.throw_at(A, 2, 1, carbon_owner)
+	carbon_owner.throw_at(A, lunge_range, 1, carbon_owner)
 	succeed_activate()
 	add_cooldown()
 

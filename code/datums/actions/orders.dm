@@ -13,6 +13,14 @@
 	. = ..()
 	UnregisterSignal(M, list(COMSIG_CIC_ORDER_SENT, COMSIG_CIC_ORDER_OFF_CD))
 
+/datum/action/skill/issue_order/ai_should_start_consider()
+	return TRUE
+
+/datum/action/skill/issue_order/ai_should_use(atom/target)
+	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+		return FALSE
+	return TRUE
+
 /datum/action/skill/issue_order/can_use_action()
 	. = ..()
 	if(!.)
@@ -61,6 +69,16 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_HOLDORDER,
 	)
+
+/datum/action/skill/issue_order/hold/ai_should_use(atom/target)
+	if(!isliving(target))
+		return FALSE
+	var/mob/living/living_target = target
+	if(living_target.faction == owner.faction)
+		return FALSE
+	if(living_target.stat)
+		return FALSE
+	return ..()
 
 /datum/action/skill/issue_order/focus
 	name = "Issue Focus Order"
