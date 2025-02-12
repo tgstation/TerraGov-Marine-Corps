@@ -577,8 +577,8 @@
 	consumed_on_threshold = FALSE
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
-	/// Creator of the debuff.
-	var/mob/living/carbon/xenomorph/debuff_creator
+	/// Pyrogen creator of the debuff.
+	var/mob/living/carbon/xenomorph/pyrogen/debuff_creator
 	/// Used for the fire effect.
 	var/obj/vis_melt_fire/visual_fire
 
@@ -600,7 +600,7 @@
 	debuff_owner.balloon_alert(debuff_owner, "Melting fire")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
-	if(new_creator && isxenopyrogen(new_creator)) // It is possible for a non-pyrogen to create this. We do not care for non-pyrogens.
+	if(new_creator && isxenopyrogen(new_creator)) // It is possible for a non-pyrogen to create this.
 		debuff_creator = new_creator
 
 /// on remove has owner set to null

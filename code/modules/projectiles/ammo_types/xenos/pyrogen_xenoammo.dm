@@ -25,7 +25,7 @@
 	new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(target_atom))
 	for(var/turf/affecting AS in RANGE_TURFS(1, target_atom))
 		var/obj/fire/melting_fire/new_fire = new(affecting)
-		if(proj.shot_from && isxenopyrogen(proj.shot_from))
+		if(proj.shot_from && isxenopyrogen(proj.shot_from)) // Exclusive to pyrogen, but doesn't hurt to double check.
 			new_fire.creator = proj.shot_from
 		for(var/atom/movable/fired AS in affecting)
 			if(isxeno(fired))

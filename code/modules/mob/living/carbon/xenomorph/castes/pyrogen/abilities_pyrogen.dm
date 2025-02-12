@@ -157,7 +157,7 @@
 
 	var/turf/owner_turf = get_turf(owner)
 	playsound(owner_turf, 'sound/effects/alien/prepare.ogg', 50)
-	new /obj/effect/xenomorph/firenado(owner_turf, target)
+	new /obj/effect/xenomorph/firenado(owner_turf, target, xeno_owner)
 
 	succeed_activate()
 	add_cooldown()
@@ -197,12 +197,14 @@
 	for(var/turf/turf_in_range AS in RANGE_TURFS(2, xeno_owner.loc)) // 5x5
 		if(!line_of_sight(xeno_owner, turf_in_range, 2))
 			continue
+
 		var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in turf_in_range.contents
-		if(fire_in_turf) // Refreshing the melting fire.
+		if(fire_in_turf)
 			fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
-			continue
-		var/obj/fire/melting_fire/new_fire = new(turf_in_range)
-		new_fire.creator = xeno_owner
+		else
+			fire_in_turf = new(turf_in_range)
+		fire_in_turf.creator = xeno_owner
+
 		for(var/mob/living/carbon/human/human_in_turf in turf_in_range.contents)
 			if(human_in_turf.stat == DEAD)
 				continue
@@ -273,11 +275,11 @@
 				continue
 			human_in_turf.take_overall_damage(25, BURN, FIRE, max_limbs = 2)
 		var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in turf_in_range.contents
-		if(fire_in_turf) // Refreshing the melting fire.
+		if(fire_in_turf)
 			fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
-			continue
-		var/obj/fire/melting_fire/new_fire = new(turf_in_range)
-		new_fire.creator = xeno_owner
+		else
+			fire_in_turf = new(turf_in_range)
+		fire_in_turf.creator = xeno_owner
 
 	succeed_activate()
 	add_cooldown()
