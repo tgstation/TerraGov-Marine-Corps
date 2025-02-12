@@ -1,4 +1,14 @@
 //Generic template for application to a xeno/ mob, contains specific obstacle dealing alongside targeting only humans, xenos of a different hive and sentry turrets
+/*
+*TODO: INVENTORY DATUM TO MAKE SORTED LIST OF WEAPONS, AMMO, MEDS, ETC.
+		UPDATE SUBLISTS ONLY AS NEEDED
+		I.E. REG NEW SIGS TO THEM WHEN ADDED TO LIST, TO CHECK ON MOVE/DESTROY/ETC
+
+*TODO:	MAKE FACTIONS (and/or IFF) ATOM LEVEL, AND MAKE THEM BITFLAGS
+		I.E. FACTION_SOM|FACTION_ICC
+		I.E. FACTION_TGMC|FACTION_NT|FACTION_NEUTRAL
+		I.E. FACTION_ICC|FACTION_SOM|FACTION_CLF
+*/
 
 /datum/ai_behavior/human
 	sidestep_prob = 25
@@ -12,11 +22,7 @@
 	///If the mob parent can heal itself and so should flee
 	var/can_heal = FALSE //for now
 
-	var/obj/item/weapon/gun/gun
-
-	var/obj/item/weapon/melee_weapon
-
-	var/gun_firing = FALSE
+	var/uses_weapons = TRUE //test, this base type will be useful for mobs like carp, where this will be false
 
 /datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
 	..()
@@ -39,113 +45,25 @@
 			ability_list += action
 
 /datum/ai_behavior/human/process()
-	if(!gun)
-		if(istype(mob_parent.r_hand, /obj/item/weapon/gun))
-			gun = mob_parent.r_hand
-		else if(istype(mob_parent.l_hand, /obj/item/weapon/gun))
-			gun = mob_parent.l_hand
-		else
-			equip_weapon() //hacky, but works for now
-		gun?.attack_self(mob_parent) //to wield. Surely this won't break anything???
-	if(gun)
-		//do gun stuff
-		distance_to_maintain = 5
-		check_gun_fire(atom_to_walk_to)
-	else
-		distance_to_maintain = 1 //maybe placeholder
-
-
-	if(mob_parent.notransform) //todo: whydis?
+	if(mob_parent.notransform)
 		return ..()
-	if(mob_parent.do_actions) //No activating more abilities if they're already in the progress of doing one
+	if(mob_parent.do_actions)
 		return ..()
 
 	for(var/datum/action/action in ability_list)
 		if(!action.ai_should_use(atom_to_walk_to))
 			continue
-		//xeno_action/activable is activated with a different proc for keybinded actions, so we gotta use the correct proc
-		if(istype(action, /datum/action/ability/activable)) //todo, for normal activatable actions
+		//activable is activated with a different proc for keybinded actions, so we gotta use the correct proc
+		if(istype(action, /datum/action/ability/activable))
 			var/datum/action/ability/activable/activable_action = action
 			activable_action.use_ability(atom_to_walk_to)
 		else
 			action.action_activate()
+
+	if(uses_weapons)
+		weapon_process()
+
 	return ..()
-
-/datum/ai_behavior/human/proc/equip_weapon() //unsafe atm, need to reg sigs for it being moved etc.
-	var/obj/item/new_weapon = locate(/obj/item/weapon/gun) in mob_parent
-	if(!new_weapon)
-		new_weapon = locate(/obj/item/weapon) in mob_parent
-	if(!new_weapon)
-		return FALSE
-	if((mob_parent.l_hand == new_weapon) || (mob_parent.r_hand == new_weapon))
-		return TRUE
-	if(!mob_parent.put_in_any_hand_if_possible(new_weapon))
-		return FALSE
-	if(istype(new_weapon, /obj/item/weapon/gun))
-		gun = new_weapon
-	else
-		melee_weapon = new_weapon
-	new_weapon.attack_self(mob_parent) //toggle on/wield/etc
-	return TRUE
-
-
-/datum/ai_behavior/human/proc/check_gun_fire(atom/target)
-	if((gun.loc != mob_parent) || ((mob_parent.l_hand != gun) && (mob_parent.r_hand != gun)))
-		gun = null
-		gun_firing = FALSE
-		return
-
-	if(gun_firing)
-		var/mob/living/living_target = target
-		if(!target || (istype(living_target) && living_target.stat == DEAD))
-			if(prob(75))
-				mob_parent.say(pick("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed."))
-			stop_fire()
-			return
-		if(!length(gun.chamber_items) || !gun.get_current_rounds(gun.chamber_items[gun.current_chamber_position]))
-			stop_fire()
-			reload_gun()
-			return
-		if(get_dist(target, mob_parent) > (target_distance + 2))
-			if(prob(50))
-				mob_parent.say(pick("Target out of range.", "Out of range.", "I lost them.", "Where'd they go?", "They're running!"))
-			stop_fire()
-			return
-		if(!line_of_sight(mob_parent, target))
-			if(prob(50))
-				mob_parent.say(pick("Target lost!", "Where'd they go?", "I lost sight of them!", "Where'd they go?", "They're running!", "Stop hiding!"))
-			stop_fire()
-			return
-		return
-
-	if(!target)
-		//reload if low?
-		return
-	if(!isliving(target)) //placeholder
-		return
-	if(!length(gun.chamber_items) || !gun.get_current_rounds(gun.chamber_items[gun.current_chamber_position]))
-		reload_gun()
-		return
-	if(get_dist(target, mob_parent) > target_distance) //placeholder range, will offscreen
-		return
-	//ammo_check?
-	if(!line_of_sight(mob_parent, target))
-		return
-	if(prob(90))
-		mob_parent.say(pick("Get some!!", "Engaging!", "Open fire!", "Firing!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Fire!!", "Gun them down!", "Shooting!", "Weapons free!", "Fuck you!!"))
-	gun.start_fire(mob_parent, target, get_turf(target))
-	gun_firing = TRUE
-	//gun.start_fire(datum/source, atom/object, turf/location, control, params, bypass_checks = FALSE)
-
-/datum/ai_behavior/human/proc/stop_fire()
-	gun.stop_fire()
-	gun_firing = FALSE
-
-/datum/ai_behavior/human/proc/reload_gun()
-	if(prob(90))
-		mob_parent.say(pick("Reloading!", "Cover me, reloading!", "Changing mag!", "Out of ammo!"))
-	var/new_ammo = gun.default_ammo_type ? gun.default_ammo_type : gun.allowed_ammo_types[1]
-	gun.reload(new new_ammo, mob_parent) //maybe add force = TRUE, if needed
 
 /datum/ai_behavior/human/look_for_new_state()
 	var/mob/living/living_parent = mob_parent
@@ -270,18 +188,9 @@
 		return
 	mob_parent.face_atom(attacked)
 	if(melee_weapon) //unsafe atm, need sigs for if its dropped
-		INVOKE_ASYNC(item_in_hand, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, attacked)
+		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, attacked)
 		return
 	mob_parent.UnarmedAttack(attacked, TRUE)
-
-
-	var/obj/item/item_in_hand = mob_parent.r_hand
-	if(!item_in_hand || istype(item_in_hand, /obj/item/weapon/twohanded/offhand)) //todo:we can make this better
-		item_in_hand = mob_parent.l_hand
-	if(!item_in_hand)
-		mob_parent.UnarmedAttack(attacked, TRUE)
-		return
-	INVOKE_ASYNC(item_in_hand, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, attacked)
 
 /datum/ai_behavior/human/register_action_signals(action_type)
 	switch(action_type)

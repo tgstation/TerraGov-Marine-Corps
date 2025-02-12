@@ -17,7 +17,7 @@
 	return TRUE
 
 /datum/action/skill/issue_order/ai_should_use(atom/target)
-	if(!can_use_ability(target, override_flags = ABILITY_IGNORE_SELECTED_ABILITY))
+	if(!can_use_action())
 		return FALSE
 	return TRUE
 
@@ -63,6 +63,10 @@
 		KEYBINDING_NORMAL = COMSIG_KB_MOVEORDER,
 	)
 
+/datum/action/skill/issue_order/move/ai_should_use(atom/target)
+	return FALSE //test only
+	//the fact the only arg is the current walk to target is not ideal... add a new arg of goal_node?
+
 /datum/action/skill/issue_order/hold
 	name = "Issue Hold Order"
 	order_type = AURA_HUMAN_HOLD
@@ -86,6 +90,9 @@
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_FOCUSORDER,
 	)
+
+/datum/action/skill/issue_order/focus/ai_should_use(atom/target)
+	return FALSE //test only
 
 /datum/action/skill/toggle_orders
 	name = "Show/Hide Order Options"
