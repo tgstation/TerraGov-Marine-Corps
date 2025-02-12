@@ -681,3 +681,27 @@ GLOBAL_LIST_INIT(slot_str_to_slot, list(
 		if(SLOT_IN_STORAGE)
 			return "Active Storage"
 
+
+///Get appropriate SLOT_IN_X for given slot
+/obj/item/proc/slot_to_in_storage_slot(slot)
+	switch(slot)
+		if(SLOT_SHOES)
+			return SLOT_IN_BOOT
+		if(SLOT_BACK)
+			return SLOT_IN_BACKPACK
+		if(SLOT_WEAR_SUIT)
+			return SLOT_IN_SUIT
+		if(SLOT_W_UNIFORM)
+			return SLOT_IN_ACCESSORY
+		if(SLOT_BELT)
+			return SLOT_IN_BELT
+		if(SLOT_S_STORE)
+			return SLOT_IN_S_HOLSTER
+		if(SLOT_L_STORE)
+			return SLOT_IN_L_POUCH
+		if(SLOT_R_STORE)
+			return SLOT_IN_R_POUCH
+		if(SLOT_HEAD)
+			return SLOT_IN_HEAD
+		else
+			return 0
