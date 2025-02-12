@@ -128,6 +128,20 @@
 			if(get_dist(source, nearby_xeno) < shorter_distance)
 				nearest_target = nearby_xeno
 				shorter_distance = get_dist(source, nearby_xeno)
+	if(target_flags & TARGET_FRIENDLY_MOB)
+		for(var/mob/living/nearby_mob AS in cheap_get_living_near(source, distance))
+			if(nearby_mob.stat == DEAD)
+				continue
+			if(nearby_mob.faction != attacker_faction)
+				continue
+			if(!nearby_mob.client)
+				continue
+			if(nearby_mob.alpha <= SCOUT_CLOAK_RUN_ALPHA)
+				continue
+			if(get_dist(source, nearby_mob) >= shorter_distance)
+				continue
+			nearest_target = nearby_mob
+			shorter_distance = get_dist(source, nearby_mob) //better to recalculate than to save the var
 	return nearest_target
 
 /**

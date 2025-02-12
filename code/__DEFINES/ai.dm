@@ -38,6 +38,7 @@
  */
 #define IDENTIFIER_XENO "identifies_xeno"
 #define IDENTIFIER_ZOMBIE "identifies_zombie"
+#define IDENTIFIER_HUMAN "identifies_human"
 
 
 //Flags for the get_nearest_target
@@ -47,10 +48,14 @@
 #define TARGET_XENO (1<<3)
 #define TARGET_UNMANNED_VEHICLE (1<<4)
 #define TARGET_FRIENDLY_XENO (1<<5)
-#define TARGET_HOSTILE (ALL &~ TARGET_FRIENDLY_XENO)
+#define TARGET_FRIENDLY_MOB (1<<6)
+#define TARGET_HOSTILE (ALL &~ (TARGET_FRIENDLY_XENO|TARGET_FRIENDLY_MOB))
 
 #define MAX_NODE_RANGE 15
 #define PATHFINDER_MAX_TRIES 200
+
+//AI will escort an ATOM up to this distance away from them
+#define AI_ESCORTING_MAX_DISTANCE 10
 
 GLOBAL_LIST_EMPTY(all_nodes)
 
