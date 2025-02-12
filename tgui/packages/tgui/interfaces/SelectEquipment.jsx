@@ -46,15 +46,14 @@ export const SelectEquipment = (props) => {
     (entry) => entry.name + entry.path,
   );
 
-  const visibleOutfits = flow([
-    filter((entry) => entry.category === tab),
-    filter(searchFilter),
-    sortBy(
-      (entry) => !entry.favorite,
-      (entry) => !entry.priority,
-      (entry) => entry.name,
-    ),
-  ])(outfits);
+  const visibleOutfits = outfits
+    .filter((entry) => entry.category === tab)
+    .filter(searchFilter)
+    .sort((a, b) => {
+      if (a.favorite !== b.favorite) return b.favorite - a.favorite;
+      if (a.priority !== b.priority) return b.priority - a.priority;
+      return a.name.localeCompare(b.name);
+    });
 
   const getOutfitEntry = (current_outfit) =>
     outfits.find((outfit) => getOutfitKey(outfit) === current_outfit);
