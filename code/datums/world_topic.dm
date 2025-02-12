@@ -57,6 +57,10 @@
 	.["revision_date"] = GLOB.revdata.date
 	.["hub"] = GLOB.hub_visibility
 
+	var/public_address = CONFIG_SET(string/public_address)
+	if(public_address)
+		.["public_address"] = public_address
+
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
 	var/list/afkmins = adm["afk"]
