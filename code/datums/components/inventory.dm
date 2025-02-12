@@ -9,6 +9,7 @@
 
 	var/list/gun_list
 	var/list/melee_list
+	var/list/ammo_list
 	var/list/medical_list
 	var/list/grenade_list
 	var/list/engineering_list
@@ -31,12 +32,14 @@
 	if(null_lists)
 		QDEL_NULL(gun_list)
 		QDEL_NULL(melee_list)
+		QDEL_NULL(ammo_list)
 		QDEL_NULL(medical_list)
 		QDEL_NULL(grenade_list)
 		QDEL_NULL(engineering_list)
 		return
 	gun_list = list()
 	melee_list = list()
+	ammo_list = list()
 	medical_list = list()
 	grenade_list = list()
 	engineering_list = list()
@@ -78,6 +81,9 @@
 	if(istype(new_item, /obj/item/explosive/grenade))
 		grenade_list_add(new_item)
 		return
+	if(istype(item, /obj/item/ammo_magazine) || istype(item, /obj/item/cell/lasgun))
+		ammo_list_add(new_item)
+		return
 	if(isitemstack(new_item))
 		if(istype(new_item, /obj/item/stack/medical))
 			medical_list_add(new_item)
@@ -100,25 +106,31 @@
 ///Adds an item to this list
 /datum/component/inventory/proc/melee_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	gun_list += new_item
+	melee_list += new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING), PROC_REF(melee_list_removal))
 
 ///Adds an item to this list
 /datum/component/inventory/proc/medical_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	gun_list += new_item
+	medical_list += new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING), PROC_REF(medical_list_removal))
+
+///Adds an item to this list
+/datum/component/inventory/proc/ammo_list_add(obj/item/new_item)
+	SIGNAL_HANDLER
+	ammo_list += new_item
+	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING), PROC_REF(ammo_list_removal))
 
 ///Adds an item to this list
 /datum/component/inventory/proc/grenade_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	gun_list += new_item
+	grenade_list += new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING), PROC_REF(grenade_list_removal))
 
 ///Adds an item to this list
 /datum/component/inventory/proc/engineering_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	gun_list += new_item
+	engineering_list += new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING), PROC_REF(engineering_list_removal))
 
 ///Removes an item from this list
@@ -130,25 +142,31 @@
 ///Removes an item from this list
 /datum/component/inventory/proc/melee_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	gun_list -= moving_item
+	melee_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 ///Removes an item from this list
 /datum/component/inventory/proc/medical_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	gun_list -= moving_item
+	medical_list -= moving_item
+	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
+
+///Removes an item from this list
+/datum/component/inventory/proc/ammo_list_removal(obj/item/moving_item)
+	SIGNAL_HANDLER
+	ammo_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 ///Removes an item from this list
 /datum/component/inventory/proc/grenade_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	gun_list -= moving_item
+	grenade_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 ///Removes an item from this list
 /datum/component/inventory/proc/engineering_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
-	gun_list -= moving_item
+	engineering_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING))
 
 
