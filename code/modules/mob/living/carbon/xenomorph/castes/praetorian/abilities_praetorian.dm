@@ -692,7 +692,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		human_mob.Paralyze(0.5 SECONDS)
 		human_mob.add_slowdown(0.8 * human_mobs.len)
 		human_mob.adjust_stagger(4 SECONDS * human_mobs.len)
-		human_mob.apply_effect(human_mobs.len >= 3 ? 1.5 SECONDS : 0.5 SECONDS, WEAKEN)
+		human_mob.apply_effect(human_mobs.len >= 3 ? 1.5 SECONDS : 0.5 SECONDS, EFFECT_PARALYZE)
 		INVOKE_ASYNC(human_mob, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, null, 0, FALSE, FALSE, TRUE)
 
 	if(human_mobs.len)
@@ -774,7 +774,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 	new /obj/effect/temp_visual/warrior/punch/weak(get_turf(carbon_target))
 	playsound(target, 'sound/weapons/punch1.ogg', 25, TRUE)
 
-	carbon_target.apply_effect(1 SECONDS, WEAKEN)
+	carbon_target.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 	carbon_target.adjust_stagger(3 SECONDS)
 	carbon_target.knockback(xeno_owner, 2, 2)
 	carbon_target.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, target_limb ? target_limb : 0, MELEE)
@@ -972,7 +972,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 			if(affected_human.stat == DEAD)
 				continue
 			affected_human.Paralyze(1 SECONDS)
-			affected_human.apply_effect(1 SECONDS, WEAKEN)
+			affected_human.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 			affected_human.adjust_stagger(3 SECONDS)
 			affected_human.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, updating_health = TRUE)
 			var/throwlocation = affected_human.loc
@@ -1035,7 +1035,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		return
 
 	living_hit.throw_at(get_step_rand(get_ranged_target_turf(living_hit, get_dir(xeno_owner, living_hit), 5)), 5, 5, src)
-	living_hit.apply_effect(2 SECONDS, WEAKEN)
+	living_hit.apply_effect(2 SECONDS, EFFECT_PARALYZE)
 	INVOKE_ASYNC(living_hit, TYPE_PROC_REF(/mob/living/carbon/human, apply_damage), xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, BRUTE, xeno_owner.zone_selected, MELEE)
 
 /// Cleans up after charge is finished.
