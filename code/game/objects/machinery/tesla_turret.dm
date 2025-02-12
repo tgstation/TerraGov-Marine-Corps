@@ -191,13 +191,11 @@
 	if(state)
 		active = TRUE
 		START_PROCESSING(SSobj, src)
-		resistance_flags |= UNACIDABLE
 		if(!silent)
 			balloon_alert_to_viewers("turned on")
 	else
 		active = FALSE
 		STOP_PROCESSING(SSobj, src)
-		resistance_flags -= UNACIDABLE
 		if(!silent)
 			balloon_alert_to_viewers("turned off")
 	update_appearance(UPDATE_ICON)
