@@ -80,6 +80,7 @@
 ///damage and sunder over time
 #define STATUS_EFFECT_MELTING /datum/status_effect/stacking/melting
 #define STATUS_EFFECT_MELTING_FIRE /datum/status_effect/stacking/melting_fire
+#define STATUS_EFFECT_MELTING_ACID /datum/status_effect/stacking/melting_acid
 ///damage over time
 #define STATUS_EFFECT_MICROWAVE /datum/status_effect/stacking/microwave
 ///armor reduction

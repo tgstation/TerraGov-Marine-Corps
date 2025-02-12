@@ -400,3 +400,152 @@
 	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
+/datum/action/ability/activable/xeno/corrosive_acid/thioacetic
+	desc = "Cover an object with acid to slowly melt it. Takes less time than usual."
+	ability_cost = 25
+	acid_type = /obj/effect/xenomorph/acid/weak
+	acid_speed_multiplier = 0.75 // 50% faster
+
+/datum/action/ability/activable/xeno/charge/acid_dash/thioacetic
+	ability_cost = 50
+	cooldown_duration = 15 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH_THIOACETIC,
+	)
+	charge_range = 7
+	do_acid_spray_act = FALSE
+
+/datum/action/ability/activable/xeno/acid_shroud/thioacetic
+	desc = "Creates a smokescreen below yourself."
+	ability_cost = 50
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_THIOACETIC,
+	)
+
+/datum/action/ability/activable/xeno/charge/acid_dash/thioacetic/mob_hit(datum/source, mob/living/living_target)
+	. = ..()
+	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target)))
+		return
+	var/mob/living/carbon/carbon_victim = living_target
+	carbon_victim.apply_damage(20, BURN, null, ACID)
+
+/datum/action/ability/activable/xeno/acidic_missile
+	name = "Acidic Missile"
+	action_icon_state = "pounce"
+	action_icon = 'icons/Xeno/actions/runner.dmi'
+	desc = "Slowly build up acid in preparation to launch yourself as an acidic missile. Can launch yourself early if desired. Will slow you down initially, but will ramp up speed at maximum acid of 5x5."
+	ability_cost = 100
+	cooldown_duration = 60 SECONDS
+	keybinding_signals = list(
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_MISSILE,
+	)
+	/// The particles effects from activation.
+	var/obj/effect/abstract/particle_holder/particle_holder
+	/// The timer id for the acid explode proc or acid increase proc.
+	var/timer_id
+	/// The acid level of the ability. Affects radius and movement speed.
+	var/acid_level = 0
+
+/datum/action/ability/activable/xeno/acidic_missile/can_use_ability(atom/A, silent = FALSE, override_flags)
+	. = ..()
+	if(!.)
+		return FALSE
+	if(xeno_owner.plasma_stored < ability_cost)
+		return FALSE
+
+/datum/action/ability/activable/xeno/acidic_missile/use_ability(atom/A)
+	if(!acid_level)
+		particle_holder = new(owner, /particles/acidder_steam)
+		particle_holder.pixel_y = -8
+		particle_holder.pixel_x = 10
+		increase_acid_level()
+		return
+	deltimer(timer_id)
+	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_complete))
+	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(on_stagger))
+	xeno_owner.xeno_flags |= XENO_LEAPING
+	xeno_owner.throw_at(A, HUNTER_POUNCE_RANGE, XENO_POUNCE_SPEED, xeno_owner)
+
+/// Cleans up after throw is finished.
+/datum/action/ability/activable/xeno/acidic_missile/proc/throw_complete(datum/source)
+	SIGNAL_HANDLER
+	UnregisterSignal(xeno_owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENOMORPH_LEAP_BUMP, COMSIG_MOVABLE_POST_THROW))
+	xeno_owner.xeno_flags &= ~XENO_LEAPING
+	INVOKE_ASYNC(src, PROC_REF(acid_explosion), FALSE, TRUE)
+
+/// Forcibly triggers the acid explosion at a reduced acid level.
+/datum/action/ability/activable/xeno/acidic_missile/proc/on_stagger(datum/source, amount, ignore_canstun)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(acid_explosion), TRUE)
+
+/// Increases acid level and handles its associated effects.
+/datum/action/ability/activable/xeno/acidic_missile/proc/increase_acid_level()
+	switch(acid_level)
+		if(0)
+			xeno_owner.add_atom_colour("#bcff70", FIXED_COLOR_PRIORITY)
+			xeno_owner.do_jitter_animation(100)
+			xeno_owner.add_movespeed_modifier(MOVESPEED_ID_ACIDIC_MISSILE, TRUE, 0, NONE, TRUE, 1.5)
+		if(1)
+			xeno_owner.do_jitter_animation(500)
+			xeno_owner.add_movespeed_modifier(MOVESPEED_ID_ACIDIC_MISSILE, TRUE, 0, NONE, TRUE, 1)
+		if(2)
+			xeno_owner.do_jitter_animation(1000)
+			xeno_owner.add_movespeed_modifier(MOVESPEED_ID_ACIDIC_MISSILE, TRUE, 0, NONE, TRUE, 0.5)
+		if(3)
+			xeno_owner.do_jitter_animation(4000)
+			xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_ACIDIC_MISSILE)
+			xeno_owner.emote("roar2")
+			timer_id = addtimer(CALLBACK(src, PROC_REF(acid_explosion), TRUE), 2.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+			return
+	acid_level++
+	timer_id = addtimer(CALLBACK(src, PROC_REF(increase_acid_level), TRUE), 1.6 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+
+/// Ends the ability and explodes with a radius based on acid level.
+/datum/action/ability/activable/xeno/acidic_missile/proc/acid_explosion(got_canceled = FALSE, do_emote = FALSE)
+	deltimer(timer_id)
+	QDEL_NULL(particle_holder)
+	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
+
+	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_ACIDIC_MISSILE)
+	xeno_owner.remove_atom_colour(FIXED_COLOR_PRIORITY, "#bcff70")
+	add_cooldown()
+
+	if(acid_level && got_canceled)
+		acid_level--
+
+	if(!acid_level)
+		return
+
+	if(do_emote)
+		xeno_owner.emote("roar4")
+
+	for(var/turf/acid_tile AS in RANGE_TURFS(acid_level - 1, xeno_owner.loc))
+		if(!line_of_sight(xeno_owner.loc, acid_tile))
+			continue
+		new /obj/effect/temp_visual/acid_splatter(acid_tile)
+		if(!locate(/obj/effect/xenomorph/spray) in acid_tile.contents)
+			new /obj/effect/xenomorph/spray(acid_tile, 3 SECONDS, 16)
+			for (var/atom/movable/atom_in_acid AS in acid_tile)
+				atom_in_acid.acid_spray_act(xeno_owner)
+	acid_level = 0
+
+	if(got_canceled)
+		fail_activate()
+		return
+	succeed_activate()
+
+/particles/acidder_steam
+	icon = 'icons/effects/particles/smoke.dmi'
+	icon_state = list("steam_1" = 1, "steam_2" = 1, "steam_3" = 2)
+	width = 100
+	height = 300
+	count = 50
+	spawning = 3
+	lifespan = 1.5 SECONDS
+	fade = 3 SECONDS
+	velocity = list(0, 0.3, 0)
+	position = list(5, 16, 0)
+	drift = generator(GEN_SPHERE, 0, 1, NORMAL_RAND)
+	friction = 0.1
+	gravity = list(0, 0.95)
+	grow = 0.1
