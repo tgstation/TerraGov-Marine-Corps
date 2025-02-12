@@ -1,0 +1,4 @@
+author: "distributivgesetz"
+delete-after: True
+changes:
+  - config: "Add PUBLIC_ADDRESS as a config option, serves to show the public IP for players to connect to."
