@@ -57,7 +57,7 @@
 	.["revision_date"] = GLOB.revdata.date
 	.["hub"] = GLOB.hub_visibility
 
-	var/public_address = CONFIG_SET(string/public_address)
+	var/public_address = CONFIG_GET(string/public_address)
 	if(public_address)
 		.["public_address"] = public_address
 
