@@ -297,3 +297,17 @@
 	if(.)
 		return
 	user.movement_locked = FALSE
+
+/datum/keybinding/mob/toggle_clickdrag
+	hotkey_keys = list("")
+	name = "toggle_clickdrag"
+	full_name = "Toggle Click-Drag"
+	description = "Toggles click-dragging on and off."
+	keybind_signal = COMSIG_KB_MOB_TOGGLE_CLICKDRAG
+
+/datum/keybinding/mob/toggle_clickdrag/down(client/user)
+	. = ..()
+	if(.)
+		return
+	user.clickdrag_override = !user.clickdrag_override
+	user.mob.balloon_alert(user.mob, "You can [!user.clickdrag_override ? "now" : "no longer"] click-drag")

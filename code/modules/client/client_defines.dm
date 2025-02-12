@@ -101,6 +101,9 @@
 	///Are we locking our movement input?
 	var/movement_locked = FALSE
 
+	// Are we overriding clickdrag?
+	var/clickdrag_override = FALSE
+
 	var/list/parallax_layers
 	var/list/parallax_layers_cached
 	var/atom/movable/movingmob
