@@ -160,7 +160,7 @@
 
 /obj/fire/melting_fire
 	name = "melting fire"
-	desc = "It feels cold to the touch.. yet it burns."
+	desc = "It feels cold to the touch, yet it burns."
 	icon_state = "xeno_fire"
 	flame_color = "purple"
 	light_on = FALSE
