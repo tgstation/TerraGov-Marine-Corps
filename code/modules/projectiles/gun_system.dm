@@ -875,7 +875,7 @@
 			playsound(src, empty_sound, 25, 1)
 			unload(after_fire = TRUE)
 	update_ammo_count()
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 	update_icon()
 	if(dual_wield && (gun_firemode == GUN_FIREMODE_SEMIAUTO || gun_firemode == GUN_FIREMODE_BURSTFIRE))
 		var/obj/item/weapon/gun/inactive_gun = gun_user.get_inactive_held_item()
@@ -1614,7 +1614,7 @@
 				new_rounds++
 		rounds = new_rounds
 		max_rounds = max_chamber_items + 1
-		gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+		gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 		return
 	var/total_rounds
 	var/total_max_rounds
@@ -1625,7 +1625,7 @@
 	if(!CHECK_BITFIELD(reciever_flags, AMMO_RECIEVER_DO_NOT_EMPTY_ROUNDS_AFTER_FIRE))
 		rounds += in_chamber ? rounds_per_shot : 0
 	max_rounds = total_max_rounds
-	gun_user?.hud_used.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
+	gun_user?.hud_used?.update_ammo_hud(src, get_ammo_list(), get_display_ammo_count())
 
 ///Checks to see if the current object in chamber is a worn magazine and if so unloads it
 /obj/item/weapon/gun/proc/drop_connected_mag(datum/source, mob/user)
