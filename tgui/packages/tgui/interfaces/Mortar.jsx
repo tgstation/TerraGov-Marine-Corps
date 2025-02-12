@@ -26,7 +26,7 @@ export const Mortar = (props) => {
                   minValue={0}
                   maxValue={255}
                   width="43px"
-                  onChange={(e, value) =>
+                  onChange={(value) =>
                     act('change_target_x', {
                       target_x: value,
                     })
@@ -39,7 +39,7 @@ export const Mortar = (props) => {
                   minValue={0}
                   maxValue={255}
                   width="43px"
-                  onChange={(e, value) =>
+                  onChange={(value) =>
                     act('change_target_y', {
                       target_y: value,
                     })
@@ -52,7 +52,7 @@ export const Mortar = (props) => {
                   minValue={-10}
                   width="43px"
                   maxValue={10}
-                  onChange={(e, value) =>
+                  onChange={(value) =>
                     act('change_dial_x', {
                       dial_one: value,
                     })
@@ -65,7 +65,7 @@ export const Mortar = (props) => {
                   minValue={-10}
                   maxValue={10}
                   width="43px"
-                  onChange={(e, value) =>
+                  onChange={(value) =>
                     act('change_dial_y', {
                       dial_two: value,
                     })
