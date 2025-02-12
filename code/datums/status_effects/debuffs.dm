@@ -577,6 +577,8 @@
 	consumed_on_threshold = FALSE
 	/// Owner of the debuff is limited to carbons.
 	var/mob/living/carbon/debuff_owner
+	/// Creator of the debuff.
+	var/mob/living/carbon/xenomorph/debuff_creator
 	/// Used for the fire effect.
 	var/obj/vis_melt_fire/visual_fire
 
@@ -586,7 +588,7 @@
 	layer = ABOVE_MOB_LAYER
 	vis_flags = VIS_INHERIT_DIR | VIS_INHERIT_ID | VIS_INHERIT_PLANE
 
-/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply)
+/datum/status_effect/stacking/melting_fire/on_creation(mob/living/new_owner, stacks_to_apply, atom/new_creator)
 	if(new_owner.status_flags & GODMODE || new_owner.stat == DEAD || new_owner.soft_armor?.getRating(FIRE) >= 100)
 		qdel(src)
 		return
@@ -598,6 +600,8 @@
 	debuff_owner.balloon_alert(debuff_owner, "Melting fire")
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 30)
 	RegisterSignal(debuff_owner, COMSIG_LIVING_DO_RESIST, PROC_REF(call_resist_debuff))
+	if(new_creator && isxenopyrogen(new_creator)) // It is possible for a non-pyrogen to create this. We do not care for non-pyrogens.
+		debuff_creator = new_creator
 
 /// on remove has owner set to null
 /datum/status_effect/stacking/melting_fire/on_remove()
@@ -620,12 +624,17 @@
 	else
 		visual_fire.icon_state = "melting_low_stacks"
 	playsound(debuff_owner.loc, "sound/bullets/acid_impact1.ogg", 4)
-	for(var/mob/living/carbon/xenomorph/pyrogen/nearby_pyrogen in cheap_get_xenos_near(debuff_owner, 10))
-		if(nearby_pyrogen.stat == DEAD)
-			continue
-		var/amount_to_heal = 2 // HEAL_XENO_DAMAGE requires it as a variable.
-		HEAL_XENO_DAMAGE(nearby_pyrogen, amount_to_heal, FALSE)
-		nearby_pyrogen.gain_plasma(5, TRUE)
+
+	if(QDELETED(debuff_creator) || debuff_creator.stat == DEAD)
+		return
+	var/amount_to_heal = 2 // HEAL_XENO_DAMAGE requires it as a variable.
+	HEAL_XENO_DAMAGE(debuff_creator, amount_to_heal, FALSE)
+	debuff_creator.gain_plasma(5, TRUE)
+
+/datum/status_effect/stacking/melting_fire/add_stacks(stacks_added, atom/xeno_cause)
+	. = ..()
+	if(xeno_cause && isxenopyrogen(xeno_cause))
+		debuff_creator = xeno_cause
 
 /// Called when the debuff's owner uses the Resist action for this debuff.
 /datum/status_effect/stacking/melting_fire/proc/call_resist_debuff()

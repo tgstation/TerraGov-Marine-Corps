@@ -201,16 +201,17 @@
 		if(fire_in_turf) // Refreshing the melting fire.
 			fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
 			continue
-		new /obj/fire/melting_fire(turf_in_range)
+		var/obj/fire/melting_fire/new_fire = new(turf_in_range)
+		new_fire.creator = xeno_owner
 		for(var/mob/living/carbon/human/human_in_turf in turf_in_range.contents)
 			if(human_in_turf.stat == DEAD)
 				continue
 			human_in_turf.take_overall_damage(30, BURN, FIRE, max_limbs = 2)
 			var/datum/status_effect/stacking/melting_fire/debuff = human_in_turf.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
-			if(!debuff)
-				human_in_turf.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 2)
+			if(debuff)
+				debuff.add_stacks(2, xeno_owner)
 				continue
-			debuff.add_stacks(2)
+			debuff = human_in_turf.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 2, xeno_owner)
 
 	succeed_activate()
 	add_cooldown()
@@ -275,7 +276,8 @@
 		if(fire_in_turf) // Refreshing the melting fire.
 			fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
 			continue
-		new /obj/fire/melting_fire(turf_in_range)
+		var/obj/fire/melting_fire/new_fire = new(turf_in_range)
+		new_fire.creator = xeno_owner
 
 	succeed_activate()
 	add_cooldown()
@@ -294,13 +296,17 @@
 	var/turf/turf_starting
 	/// The target turf that we will try to go to.
 	var/turf/turf_target
+	/// The pyrogen who created this effect.
+	var/mob/living/carbon/xenomorph/pyrogen/creator
 
-/obj/effect/xenomorph/firenado/Initialize(mapload, atom_target)
+/obj/effect/xenomorph/firenado/Initialize(mapload, atom_target, mob/living/carbon/xenomorph/pyrogen/new_creator)
 	. = ..()
 	if(!atom_target)
 		return INITIALIZE_HINT_QDEL
 	turf_starting = get_turf(src)
 	turf_target = get_turf(atom_target)
+	if(creator)
+		creator = new_creator
 
 	START_PROCESSING(SSfastprocess, src)
 	var/static/list/connections = list(
@@ -374,9 +380,9 @@
 		return
 	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)
-		debuff.add_stacks(PYROGEN_TORNADO_MELTING_FIRE_STACKS)
+		debuff.add_stacks(PYROGEN_TORNADO_MELTING_FIRE_STACKS, creator)
 	else
-		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_TORNADO_MELTING_FIRE_STACKS)
+		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, PYROGEN_TORNADO_MELTING_FIRE_STACKS, creator)
 	target.take_overall_damage(PYROGEN_TORNADE_HIT_DAMAGE, BURN, FIRE, max_limbs = 2)
 
 /// Returns a list of open turfs that do not contain melting fire.
@@ -395,5 +401,7 @@
 	var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in target_turf.contents
 	if(fire_in_turf)
 		fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
+		fire_in_turf.creator = creator
 		return
-	new /obj/fire/melting_fire(target_turf)
+	var/obj/fire/melting_fire/new_fire = new(target_turf)
+	new_fire.creator = creator

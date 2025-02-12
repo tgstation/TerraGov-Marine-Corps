@@ -23,9 +23,9 @@
 	SIGNAL_HANDLER
 	var/datum/status_effect/stacking/melting_fire/debuff = target.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 	if(debuff)
-		debuff.add_stacks(1)
-	else
-		target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 1)
+		debuff.add_stacks(1, src)
+		return
+	target.apply_status_effect(STATUS_EFFECT_MELTING_FIRE, 1, src)
 
 /mob/living/carbon/xenomorph/pyrogen/on_floored_trait_loss(datum/source)
 	. = ..()
