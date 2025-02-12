@@ -85,10 +85,16 @@
 	icon_state = "stone_fields"
 	minimap_color = MINIMAP_AREA_COLONY
 
+/area/kutjevo/exterior/space_port
+	name = "Kutjevo Complex - Northwest Space Port"
+	icon_state = "green"
+	always_unpowered = FALSE
+	ceiling = CEILING_NONE
+	minimap_color = MINIMAP_AREA_LZ
+
 /area/kutjevo/exterior/Northwest_Colony
 	name = "Kutjevo - Northwest Colony Grounds"
 	icon_state = "rf_dunes"
-	always_unpowered = FALSE
 	minimap_color = MINIMAP_AREA_COLONY
 	ambience = list('sound/effects/wind/wind_2_1.ogg' = 1, 'sound/effects/wind/wind_2_2.ogg' = 1, 'sound/effects/wind/wind_3_1.ogg' = 1, 'sound/effects/wind/wind_4_1.ogg' = 1, 'sound/effects/wind/wind_4_2.ogg' = 1, 'sound/effects/wind/wind_5_1.ogg' = 1)
 	min_ambience_cooldown = 10 SECONDS
@@ -223,18 +229,21 @@
 	icon_state = "Colony_int"
 	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_LZ
+	area_flags = MARINE_BASE
 
 /area/kutjevo/interior/complex/Northwest_Flight_Control
 	name =  "Kutjevo Complex - Northwest Flight Control Room"
 	icon_state = "Colony_int"
 	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_LZ
+	area_flags = MARINE_BASE
 
 /area/kutjevo/interior/complex/Northwest_Security_Checkpoint
 	name = "Kutjevo Complex - Northwest Security Checkpoint"
 	icon_state = "Colony_int"
 	ceiling = CEILING_METAL
 	minimap_color = MINIMAP_AREA_SEC
+	area_flags = MARINE_BASE
 
 //Out buildings + foremans
 /area/kutjevo/interior/power
