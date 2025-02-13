@@ -189,13 +189,10 @@
 	)
 
 /datum/action/ability/activable/xeno/inferno/use_ability(atom/target)
-	if(!do_after(xeno_owner, 0.8 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER))
-		return fail_activate()
-
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50)
 	new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(xeno_owner))
-	for(var/turf/turf_in_range AS in RANGE_TURFS(4, xeno_owner.loc)) // 9x9
-		if(!line_of_sight(xeno_owner, turf_in_range, 4))
+	for(var/turf/turf_in_range AS in RANGE_TURFS(2, xeno_owner.loc)) // 5x5
+		if(!line_of_sight(xeno_owner, turf_in_range, 2))
 			continue
 
 		var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in turf_in_range.contents
