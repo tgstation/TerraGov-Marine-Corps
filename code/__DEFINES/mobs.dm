@@ -144,15 +144,15 @@
 #define STAMINA "stamina"
 //=================================================
 
-#define STUN "stun"
-#define WEAKEN "weaken"
-#define PARALYZE "paralyze"
-#define STAGGER "stagger"
-#define AGONY "agony" // Added in PAIN!
-#define STUTTER "stutter"
-#define EYE_BLUR "eye_blur"
-#define DROWSY "drowsy"
-#define SLUR "slur"
+#define EFFECT_STUN "stun"
+#define EFFECT_PARALYZE "paralyze"
+#define EFFECT_UNCONSCIOUS "unconscious"
+#define EFFECT_STAGGER "stagger"
+#define EFFECT_STAMLOSS "stamloss"
+#define EFFECT_STUTTER "stutter"
+#define EFFECT_EYE_BLUR "eye_blur"
+#define EFFECT_DROWSY "drowsy"
+
 //=================================================
 
 //damagetype
@@ -829,6 +829,12 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 
 //Praetorian defines
 #define PRAE_CHARGEDISTANCE 5
+
+//Dancer defines
+#define DANCER_IMPALE_PENETRATION 20//armor penetration done by impale to marked targets
+#define DANCER_MAX_IMPALE_MULT 2.5 //the maximum multiplier dancer impale can gain from debuffs
+#define DANCER_NONHUMAN_IMPALE_MULT 1.5//the flat damage multiplier done by impale to non-carbon targets
+#define DANCER_DODGE_BATONPASS_CD 7 SECONDS//the cooldown value added to dodge by Baton Pass
 
 //misc
 
