@@ -27,6 +27,9 @@
 				return
 
 	else //store item
+		if(I.last_equipped_slot)
+			if(equip_to_slot_if_possible(I, I.last_equipped_slot, FALSE, FALSE, FALSE))
+				return
 		if(s_active?.on_attackby(s_active, I, src)) //stored in currently open storage
 			return TRUE
 		if(slot_requested)
