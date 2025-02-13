@@ -927,9 +927,6 @@
 // ***************************************
 // *********** Acid Melting
 // ***************************************
-/// Amount of damage done per tick by the acid melting status effect.
-#define STATUS_EFFECT_MELTING_ACID_DAMAGE 5
-
 /datum/status_effect/stacking/melting_acid
 	id = "melting_acid"
 	tick_interval = 1 SECONDS
@@ -965,7 +962,7 @@
 	particle_holder.particles.spawning = 1 + round(stacks / 2)
 	particle_holder.pixel_x = -2
 	particle_holder.pixel_y = 0
-	owner.apply_damage(STATUS_EFFECT_MELTING_ACID_DAMAGE, BURN, null, ACID)
+	owner.apply_damage(5, BURN, null, ACID)
 
 /atom/movable/screen/alert/status_effect/melting_acid
 	name = "Melting (Acid)"

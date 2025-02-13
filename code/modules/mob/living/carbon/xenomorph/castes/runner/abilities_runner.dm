@@ -400,29 +400,29 @@
 	playsound(owner, 'sound/voice/alien/pounce2.ogg', 30, frequency = -1)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
-/datum/action/ability/activable/xeno/corrosive_acid/thioacetic
+/datum/action/ability/activable/xeno/corrosive_acid/melter
 	desc = "Cover an object with acid to slowly melt it. Takes less time than usual."
 	ability_cost = 25
 	acid_type = /obj/effect/xenomorph/acid/weak
 	acid_speed_multiplier = 0.75 // 50% faster
 
-/datum/action/ability/activable/xeno/charge/acid_dash/thioacetic
+/datum/action/ability/activable/xeno/charge/acid_dash/melter
 	ability_cost = 50
 	cooldown_duration = 15 SECONDS
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH_THIOACETIC,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_DASH_MELTER,
 	)
 	charge_range = 7
 	do_acid_spray_act = FALSE
 
-/datum/action/ability/activable/xeno/acid_shroud/thioacetic
+/datum/action/ability/activable/xeno/acid_shroud/melter
 	desc = "Creates a smokescreen below yourself."
 	ability_cost = 50
 	keybinding_signals = list(
-		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_THIOACETIC,
+		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACID_SHROUD_MELTER,
 	)
 
-/datum/action/ability/activable/xeno/charge/acid_dash/thioacetic/mob_hit(datum/source, mob/living/living_target)
+/datum/action/ability/activable/xeno/charge/acid_dash/melter/mob_hit(datum/source, mob/living/living_target)
 	. = ..()
 	if(living_target.stat || isxeno(living_target) || !(iscarbon(living_target)))
 		return
@@ -436,6 +436,7 @@
 	desc = "Slowly build up acid in preparation to launch yourself as an acidic missile. Can launch yourself early if desired. Will slow you down initially, but will ramp up speed at maximum acid of 5x5."
 	ability_cost = 100
 	cooldown_duration = 60 SECONDS
+	use_state_flags = ABILITY_USE_BUSY
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_ACIDIC_MISSILE,
 	)
@@ -452,10 +453,12 @@
 		return FALSE
 	if(xeno_owner.plasma_stored < ability_cost)
 		return FALSE
+	if(length(xeno_owner.do_actions) && !LAZYACCESS(xeno_owner.do_actions, xeno_owner))
+		return FALSE
 
 /datum/action/ability/activable/xeno/acidic_missile/use_ability(atom/A)
 	if(!acid_level)
-		particle_holder = new(owner, /particles/acidder_steam)
+		particle_holder = new(owner, /particles/melter_steam)
 		particle_holder.pixel_y = -8
 		particle_holder.pixel_x = 10
 		increase_acid_level()
@@ -495,10 +498,21 @@
 			xeno_owner.do_jitter_animation(4000)
 			xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_ACIDIC_MISSILE)
 			xeno_owner.emote("roar2")
+			//if(do_after(owner, 2.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks))))
+			//	acid_explosion(TRUE)
 			timer_id = addtimer(CALLBACK(src, PROC_REF(acid_explosion), TRUE), 2.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
 			return
 	acid_level++
+	//if(do_after(xeno_owner, 1.6 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks))))
+	//	increase_acid_level()
+	//	return
+	//if(!acid_level)
+	//	return
+	//acid_explosion(TRUE)
 	timer_id = addtimer(CALLBACK(src, PROC_REF(increase_acid_level), TRUE), 1.6 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+
+/datum/action/ability/activable/xeno/acidic_missile/proc/do_after_checks()
+	return acid_level > 0 ? TRUE : FALSE
 
 /// Ends the ability and explodes with a radius based on acid level.
 /datum/action/ability/activable/xeno/acidic_missile/proc/acid_explosion(got_canceled = FALSE, do_emote = FALSE)
@@ -512,7 +526,6 @@
 
 	if(acid_level && got_canceled)
 		acid_level--
-
 	if(!acid_level)
 		return
 
@@ -527,14 +540,14 @@
 			new /obj/effect/xenomorph/spray(acid_tile, 3 SECONDS, 16)
 			for (var/atom/movable/atom_in_acid AS in acid_tile)
 				atom_in_acid.acid_spray_act(xeno_owner)
-	acid_level = 0
+	acid_level = 0 // Will cause do_after to end as well.
 
 	if(got_canceled)
 		fail_activate()
 		return
 	succeed_activate()
 
-/particles/acidder_steam
+/particles/melter_steam
 	icon = 'icons/effects/particles/smoke.dmi'
 	icon_state = list("steam_1" = 1, "steam_2" = 1, "steam_3" = 2)
 	width = 100

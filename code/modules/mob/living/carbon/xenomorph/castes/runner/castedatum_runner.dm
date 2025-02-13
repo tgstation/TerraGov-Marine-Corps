@@ -70,11 +70,11 @@
 		/datum/action/ability/activable/xeno/snatch,
 	)
 
-/datum/xeno_caste/runner/thioacetic
-	caste_type_path = /mob/living/carbon/xenomorph/runner/thioacetic
+/datum/xeno_caste/runner/melter
+	caste_type_path = /mob/living/carbon/xenomorph/runner/melter
 	upgrade_name = ""
 	caste_name = "Acid Runner"
-	display_name = "Thioacetic"
+	display_name = "Melter"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A fast, four-legged terror. It got acid covered all over it."
 
@@ -92,16 +92,16 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/corrosive_acid/thioacetic,
-		/datum/action/ability/activable/xeno/charge/acid_dash/thioacetic,
-		/datum/action/ability/activable/xeno/acid_shroud/thioacetic,
+		/datum/action/ability/activable/xeno/corrosive_acid/melter,
+		/datum/action/ability/activable/xeno/charge/acid_dash/melter,
+		/datum/action/ability/activable/xeno/acid_shroud/melter,
 		/datum/action/ability/xeno_action/xenohide,
 	)
 
-/datum/xeno_caste/runner/thioacetic/normal
+/datum/xeno_caste/runner/melter/normal
 	upgrade = XENO_UPGRADE_NORMAL
 
-/datum/xeno_caste/runner/thioacetic/primordial
+/datum/xeno_caste/runner/melter/primordial
 	upgrade_name = "Primordial"
 	caste_desc = "An agile acid-wielding predator. Its speed and corrosive touch spell doom for any who stand in its way."
 	primordial_message = "With our nimble movements and acidic touch, we close in and dissolve all resistance."
@@ -111,9 +111,9 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
-		/datum/action/ability/activable/xeno/corrosive_acid/thioacetic,
-		/datum/action/ability/activable/xeno/charge/acid_dash/thioacetic,
-		/datum/action/ability/activable/xeno/acid_shroud/thioacetic,
+		/datum/action/ability/activable/xeno/corrosive_acid/melter,
+		/datum/action/ability/activable/xeno/charge/acid_dash/melter,
+		/datum/action/ability/activable/xeno/acid_shroud/melter,
 		/datum/action/ability/activable/xeno/acidic_missile,
 		/datum/action/ability/xeno_action/xenohide,
 	)
