@@ -55,7 +55,7 @@
 	taste_multi = 0.9
 
 /datum/reagent/toxin/mutagen/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(10, AGONY)
+	L.apply_effect(10, EFFECT_STAMLOSS)
 	return ..()
 
 /datum/reagent/toxin/phoron

@@ -203,10 +203,6 @@ GUEST_BAN
 ## Comment this out to disable checking for the cid randomizer dll. (disabled if database isn't enabled or connected)
 CHECK_RANDOMIZER
 
-## Uncomment these to set a custom respawn timer; the delay is in ticks.
-#MARINE_RESPAWN 18000
-#XENO_RESPAWN 1200
-
 ## Automatic balance system
 IS_AUTOMATIC_BALANCE_ON
 
