@@ -1,6 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "aa" = (
-/turf/closed/banish_space{
+/turf/open/space/basic{
 	desc = "You realize the truth. There is no escape";
 	name = "End of the world"
 	},

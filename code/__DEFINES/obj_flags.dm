@@ -25,10 +25,9 @@
 #define XENO_DAMAGEABLE (1<<3) //xenos can damage this by slashing and spitting
 #define DROPSHIP_IMMUNE (1<<4) //dropship cannot land on it
 #define CRUSHER_IMMUNE (1<<5) //is immune to crusher's charge destruction
-#define BANISH_IMMUNE (1<<6) //is immune it wraith's banish ability
-#define PLASMACUTTER_IMMUNE (1<<7) //is immune to being cut by a plasmacutter
-#define PROJECTILE_IMMUNE (1<<8) //Cannot be hit by projectiles
-#define PORTAL_IMMUNE (1<<9) //Cannot be teleported by wraith's portals
+#define PLASMACUTTER_IMMUNE (1<<6) //is immune to being cut by a plasmacutter
+#define PROJECTILE_IMMUNE (1<<7) //Cannot be hit by projectiles
+#define PORTAL_IMMUNE (1<<8) //Cannot be teleported by wraith's portals
 
 #define RESIST_ALL (UNACIDABLE|INDESTRUCTIBLE|PLASMACUTTER_IMMUNE)
 

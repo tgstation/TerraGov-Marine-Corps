@@ -11563,7 +11563,7 @@
 	dir = 4
 	},
 /obj/effect/soundplayer/deltaplayer,
-/turf/closed/banish_space,
+/turf/open/space/basic,
 /area/space)
 "eho" = (
 /obj/effect/spawner/random/misc/structure/supplycrate,
@@ -14705,7 +14705,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/closed/banish_space,
+/turf/open/space/basic,
 /area/space)
 "hZq" = (
 /obj/machinery/air_alarm{
@@ -16563,7 +16563,7 @@
 /obj/structure/disposalpipe/segment/corner{
 	dir = 8
 	},
-/turf/closed/banish_space,
+/turf/open/space/basic,
 /area/space)
 "kcP" = (
 /obj/effect/decal/cleanable/cobweb,
@@ -24991,7 +24991,7 @@
 "uzL" = (
 /obj/structure/cable,
 /obj/structure/disposalpipe/segment,
-/turf/closed/banish_space,
+/turf/open/space/basic,
 /area/space)
 "uAc" = (
 /obj/structure/closet/crate,
