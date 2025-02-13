@@ -4884,7 +4884,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/cafeteria_officer)
 "eiy" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/structure/cable,
@@ -9062,7 +9062,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/hallways/port_ert)
 "hxT" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/machinery/line_nexter{
@@ -11634,7 +11634,7 @@
 /turf/open/floor/wood,
 /area/mainship/living/pilotbunks)
 "jDI" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/black{
@@ -11945,7 +11945,7 @@
 	},
 /area/mainship/hallways/hangar)
 "jPJ" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/plating,
 /area/mainship/hull/starboard_hull)
 "jPR" = (
@@ -14781,7 +14781,7 @@
 	},
 /area/mainship/hallways/hangar)
 "lZj" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/structure/cable,
@@ -18088,7 +18088,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/chemistry)
 "oGs" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,
 /turf/open/floor/plating,
@@ -21157,7 +21157,7 @@
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical/cmo_office)
 "riU" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -23560,7 +23560,7 @@
 /turf/open/floor/plating/plating_catwalk,
 /area/mainship/shipboard/firing_range)
 "tpi" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/plating,
@@ -25021,7 +25021,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/squads/req)
 "uCH" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/black,
@@ -26819,7 +26819,7 @@
 /turf/open/floor/mainship/floor,
 /area/mainship/living/pilotbunks)
 "vXI" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden,

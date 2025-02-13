@@ -984,10 +984,10 @@
 	},
 /area/lv624/lazarus/comms)
 "aAg" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -1773,7 +1773,7 @@
 /turf/open/floor/plating/ground/dirt,
 /area/lv624/ground/sand8)
 "aTl" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -11610,7 +11610,7 @@
 /turf/open/floor/plating/platebotc,
 /area/lv624/lazarus/canteen)
 "lBN" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -15616,7 +15616,7 @@
 /turf/open/floor/plating/ground/dirtgrassborder/autosmooth,
 /area/lv624/ground/caves/rock)
 "qrv" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,
@@ -17406,10 +17406,10 @@
 /turf/open/floor/plating,
 /area/lv624/lazarus/quartstorage)
 "sdo" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plating/ground/dirt,

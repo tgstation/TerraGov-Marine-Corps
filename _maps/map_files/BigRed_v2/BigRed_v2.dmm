@@ -2799,7 +2799,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aAR" = (
 /obj/machinery/vending/assist,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/tile/purple/whitepurple{
@@ -2972,7 +2972,7 @@
 /area/bigredv2/caves/lambda_lab)
 "aCu" = (
 /obj/effect/spawner/random/engineering/ore_box,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/tile/purple/whitepurple{
@@ -3070,7 +3070,7 @@
 /turf/open/floor/tile/purple/whitepurple,
 /area/bigredv2/caves/lambda_lab)
 "aDm" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/tile/purple/whitepurple{

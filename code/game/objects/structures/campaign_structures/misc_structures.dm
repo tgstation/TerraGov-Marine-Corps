@@ -4,7 +4,7 @@
 	icon = 'icons/obj/structures/barricades/metal.dmi'
 	icon_state = "metal_0"
 	mission_types = list(/datum/campaign_mission/destroy_mission/fire_support_raid)
-	spawn_object = /obj/structure/barricade/metal
+	spawn_object = /obj/structure/barricade/solid
 
 /obj/effect/landmark/campaign_structure/barricade/sandbags
 	name = "fire_support_raid_sandbags"

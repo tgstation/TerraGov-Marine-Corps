@@ -584,7 +584,7 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
-	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
+	var/obj/structure/barricade/solid/foundbarricade = locate(/obj/structure/barricade/solid) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
 	if(foundbarricade.barricade_upgrade_type)
@@ -602,7 +602,7 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
-	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
+	var/obj/structure/barricade/solid/foundbarricade = locate(/obj/structure/barricade/solid) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
 	if(foundbarricade.barricade_upgrade_type)
@@ -621,7 +621,7 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
-	var/obj/structure/barricade/metal/foundbarricade = locate(/obj/structure/barricade/metal) in loc
+	var/obj/structure/barricade/solid/foundbarricade = locate(/obj/structure/barricade/solid) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a barricade at [AREACOORD(src)]")
 	if(foundbarricade.barricade_upgrade_type)
@@ -639,7 +639,7 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
-	var/obj/structure/barricade/plasteel/foundbarricade = locate(/obj/structure/barricade/plasteel) in loc
+	var/obj/structure/barricade/folding/foundbarricade = locate(/obj/structure/barricade/folding) in loc
 	if(!foundbarricade)
 		CRASH("### MAP WARNING, [src] failed to find a plasteel barricade at [AREACOORD(src)]")
 	if(!foundbarricade.closed)

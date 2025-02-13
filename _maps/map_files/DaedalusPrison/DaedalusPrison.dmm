@@ -1632,7 +1632,7 @@
 /turf/open/floor/prison,
 /area/daedalusprison/inside/centralhalls)
 "btJ" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/item/ammo_casing/bullet,
 /obj/item/ammo_casing/bullet,
 /turf/open/floor/prison,
@@ -2470,7 +2470,7 @@
 /turf/open/floor/plating/ground/snow/layer0,
 /area/daedalusprison/outside/south)
 "cdc" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/prison/plate,
@@ -3439,7 +3439,7 @@
 /obj/machinery/atmospherics/pipe/manifold/green/hidden{
 	dir = 4
 	},
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/prison,
@@ -4329,13 +4329,13 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/centralhalls)
 "dDL" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood,
@@ -6414,7 +6414,7 @@
 	},
 /area/daedalusprison/inside/habitationsouth)
 "fmV" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/prison,
 /area/daedalusprison/inside/centralhalls)
 "fnc" = (
@@ -6884,7 +6884,7 @@
 /turf/open/floor/tile/dark/purple2/corner,
 /area/daedalusprison/inside/secoffices)
 "fHX" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/prison/red{
 	dir = 4
 	},
@@ -9533,7 +9533,7 @@
 	},
 /area/daedalusprison/inside/easternhalls)
 "ibl" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/prison/darkred/full,
 /area/daedalusprison/inside/centralhalls)
 "ibE" = (
@@ -9931,7 +9931,7 @@
 	},
 /area/daedalusprison/inside/barracks)
 "iqb" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -10725,7 +10725,7 @@
 	},
 /area/daedalusprison/inside/habitationnorth)
 "iVY" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/prison/darkred{
 	dir = 10
 	},
@@ -13984,7 +13984,7 @@
 	dir = 1
 	},
 /obj/effect/landmark/weed_node,
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/prison,
 /area/daedalusprison/inside/centralhalls)
 "lxp" = (
@@ -20910,7 +20910,7 @@
 /turf/open/floor/prison/plate,
 /area/daedalusprison/inside/security/warden)
 "rfq" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/item/ammo_casing/bullet,
@@ -21541,7 +21541,7 @@
 /area/daedalusprison/inside/habitationnorth)
 "rDq" = (
 /obj/effect/turf_decal/delivery,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/prison/whitegreen{
@@ -22527,7 +22527,7 @@
 	},
 /area/daedalusprison/inside/prisongarden)
 "ssm" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/prison/darkred{
@@ -22614,7 +22614,7 @@
 /area/daedalusprison/caves/northwest)
 "svM" = (
 /obj/effect/turf_decal/delivery,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/machinery/line_nexter{

@@ -29,7 +29,7 @@
 	return TRUE
 
 /obj/item/quikdeploy/cade
-	thing_to_deploy = /obj/structure/barricade/metal
+	thing_to_deploy = /obj/structure/barricade/solid
 	icon_state = "metal"
 	delay = 3 SECONDS
 
@@ -63,5 +63,5 @@
 	return TRUE
 
 /obj/item/quikdeploy/cade/plasteel
-	thing_to_deploy = /obj/structure/barricade/plasteel
+	thing_to_deploy = /obj/structure/barricade/folding
 	icon_state = "plasteel"

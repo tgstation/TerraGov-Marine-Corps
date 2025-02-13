@@ -554,7 +554,7 @@
 /turf/open/floor/wood,
 /area/campaign/tgmc_raiding/underground/command/captain)
 "ck" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/mainship/floor,
@@ -624,7 +624,7 @@
 /turf/open/floor/mainship/orange,
 /area/campaign/tgmc_raiding/underground/engineering)
 "cz" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/mainship/floor,
@@ -5431,7 +5431,7 @@
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/cafeteria)
 "vO" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/boxing)
 "vP" = (
@@ -6697,7 +6697,7 @@
 /turf/open/floor/plating/ground/mars/random/sand,
 /area/campaign/tgmc_raiding/colony/outdoor/east)
 "AP" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -10085,7 +10085,7 @@
 /turf/open/floor/mainship/floor,
 /area/campaign/tgmc_raiding/underground/living/offices)
 "Op" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/mainship/floor,

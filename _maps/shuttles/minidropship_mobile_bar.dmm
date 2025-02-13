@@ -97,7 +97,7 @@
 	dir = 4
 	},
 /obj/structure/reagent_dispensers/beerkeg,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/carpet/side{
@@ -120,7 +120,7 @@
 /obj/item/clothing/under/liaison_suit/galaxy_blue,
 /obj/item/book/manual/barman_recipes,
 /obj/item/reagent_containers/food/drinks/shaker,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/carpet/side{
@@ -231,7 +231,7 @@
 /area/shuttle/minidropship)
 "S" = (
 /obj/machinery/computer/camera_advanced/shuttle_docker/minidropship,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/machinery/camera/autoname/mainship/dropship_two,

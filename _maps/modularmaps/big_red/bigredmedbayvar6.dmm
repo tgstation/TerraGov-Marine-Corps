@@ -142,7 +142,7 @@
 "cV" = (
 /obj/structure/cable,
 /obj/effect/landmark/weed_node,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/tile/white,
@@ -585,7 +585,7 @@
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /obj/effect/landmark/weed_node,
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 1
 	},
 /turf/open/floor/tile/white,
@@ -614,7 +614,7 @@
 "lJ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/shard,
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -680,7 +680,7 @@
 	},
 /area/bigredv2/outside/medical)
 "nf" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -830,7 +830,7 @@
 "rA" = (
 /obj/structure/cable,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "rE" = (
@@ -901,7 +901,7 @@
 	},
 /area/bigredv2/outside/medical)
 "ts" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/tile/white,
@@ -942,7 +942,7 @@
 /turf/open/floor/tile/dark,
 /area/bigredv2/outside/medical)
 "ut" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/tile/green/whitegreen{
@@ -1267,7 +1267,7 @@
 /area/bigredv2/outside/medical)
 "AC" = (
 /obj/effect/landmark/weed_node,
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
@@ -1395,7 +1395,7 @@
 /turf/open/floor/tile/white,
 /area/bigredv2/outside/medical)
 "CK" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood/drip,
@@ -2456,7 +2456,7 @@
 	id = "Medical";
 	name = "Storm Shutters"
 	},
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/tile/white,

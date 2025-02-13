@@ -6303,7 +6303,7 @@
 /turf/open/urban/street/sidewalkfull,
 /area/metnal/outside/northwest)
 "ekz" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/structure/cable,
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
@@ -10859,7 +10859,7 @@
 /turf/open/floor/wood/alt_eleven,
 /area/metnal/inside/cafeteria)
 "hup" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 1
 	},
 /turf/open/floor/plate,
@@ -25567,7 +25567,7 @@
 /turf/open/floor/prison/plate,
 /area/metnal/inside/security)
 "raL" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/urban/wood/blackwood,
 /area/metnal/inside/bridge)
 "raX" = (

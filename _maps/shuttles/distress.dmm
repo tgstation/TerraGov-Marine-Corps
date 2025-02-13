@@ -178,7 +178,7 @@
 	},
 /area/shuttle/ert)
 "R" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /obj/effect/mapping_helpers/barricade/closed,
@@ -190,12 +190,12 @@
 	},
 /area/shuttle/ert)
 "U" = (
-/obj/structure/barricade/plasteel,
+/obj/structure/barricade/folding,
 /obj/effect/mapping_helpers/barricade/closed,
 /turf/open/shuttle/dropship/floor,
 /area/shuttle/ert)
 "W" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /obj/effect/mapping_helpers/barricade/closed,
