@@ -303,11 +303,6 @@
 	dir = 5
 	},
 /area/orion_outpost/surface/building/engineering)
-"bJ" = (
-/obj/machinery/power/geothermal,
-/obj/structure/cable,
-/turf/open/floor/bcircuit,
-/area/orion_outpost/surface/building/engineering)
 "bK" = (
 /obj/structure/table/mainship,
 /obj/structure/platform,
@@ -2833,6 +2828,10 @@
 /obj/structure/cable,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/surface/building/nebuilding)
+"oc" = (
+/obj/machinery/floor_warn_light/toggleable/generator,
+/turf/closed/wall/mainship/gray,
+/area/orion_outpost/surface/building/engineering)
 "od" = (
 /obj/machinery/floodlight/landing,
 /turf/open/floor/plating/ground/concrete,
@@ -3479,8 +3478,6 @@
 	},
 /area/orion_outpost/surface/building/administration)
 "qZ" = (
-/obj/structure/table/mainship,
-/obj/item/storage/toolbox/mechanical,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4083,6 +4080,13 @@
 "tP" = (
 /turf/open/floor/mainship/sterile/dark,
 /area/orion_outpost/surface/building/canteen)
+"tR" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/cold{
+	dir = 8
+	},
+/turf/open/floor/bcircuit,
+/area/orion_outpost/surface/building/engineering)
 "tS" = (
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
 	dir = 4
@@ -4585,6 +4589,12 @@
 "wr" = (
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/atc)
+"ws" = (
+/obj/structure/table/mainship,
+/turf/open/floor/mainship/orange{
+	dir = 10
+	},
+/area/orion_outpost/surface/building/engineering)
 "wt" = (
 /turf/closed/mineral/smooth,
 /area/orion_outpost/ground/outpostsw)
@@ -5735,6 +5745,13 @@
 "BQ" = (
 /turf/closed/wall/mainship/gray,
 /area/orion_outpost/surface/building/ammodepot)
+"BR" = (
+/obj/structure/cable,
+/obj/machinery/power/tbg_turbine/heat{
+	dir = 4
+	},
+/turf/open/floor/bcircuit,
+/area/orion_outpost/surface/building/engineering)
 "BS" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -6284,6 +6301,7 @@
 /area/orion_outpost/surface/building/command)
 "Eu" = (
 /obj/structure/table/mainship,
+/obj/item/storage/toolbox/mechanical,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -6328,6 +6346,13 @@
 /obj/structure/table/mainship,
 /turf/open/floor/mainship/mono,
 /area/orion_outpost/surface/building/cargo)
+"EG" = (
+/obj/structure/cable,
+/obj/machinery/power/monitor{
+	name = "Core Power Monitoring"
+	},
+/turf/open/floor/prison,
+/area/orion_outpost/surface/building/engineering)
 "EH" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/ground/mars/random/cave/darker,
@@ -6367,7 +6392,7 @@
 /area/orion_outpost/surface/building/medbay)
 "ES" = (
 /obj/effect/landmark/weed_node,
-/turf/open/floor/plating/ground/desertdam/grate/alternate,
+/turf/open/floor/prison,
 /area/orion_outpost/surface/building/engineering)
 "ET" = (
 /obj/machinery/camera/autoname/lz_camera,
@@ -7234,6 +7259,13 @@
 /obj/effect/ai_node,
 /turf/open/floor/plating/ground/concrete,
 /area/orion_outpost/ground/outpostcent)
+"JA" = (
+/obj/structure/cable,
+/obj/machinery/power/geothermal/tbg{
+	dir = 4
+	},
+/turf/open/floor/bcircuit,
+/area/orion_outpost/surface/building/engineering)
 "JB" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
 	color = "#7a8c54";
@@ -8267,10 +8299,6 @@
 	dir = 4
 	},
 /area/orion_outpost/surface/building/atc)
-"Ok" = (
-/obj/structure/cable,
-/turf/open/floor/prison,
-/area/orion_outpost/surface/building/engineering)
 "Om" = (
 /obj/machinery/landinglight/lz1{
 	dir = 8
@@ -8313,6 +8341,12 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/mainship/sterile/dark,
 /area/orion_outpost/surface/building/medbay)
+"Ov" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/open/floor/prison,
+/area/orion_outpost/surface/building/engineering)
 "Oy" = (
 /obj/structure/bed/chair/dropship/passenger{
 	dir = 8
@@ -9208,7 +9242,7 @@
 "SU" = (
 /obj/structure/cable,
 /obj/effect/landmark/corpsespawner/marine/engineer,
-/turf/open/floor/prison,
+/turf/open/floor/bcircuit,
 /area/orion_outpost/surface/building/engineering)
 "SW" = (
 /obj/structure/flora/grass/tallgrass/tallgrasscorner{
@@ -9253,6 +9287,11 @@
 /obj/structure/table/mainship,
 /turf/open/floor/wood,
 /area/orion_outpost/surface/building/administration)
+"Tf" = (
+/obj/effect/landmark/weed_node,
+/obj/structure/cable,
+/turf/open/floor/plating/ground/desertdam/grate/alternate,
+/area/orion_outpost/surface/building/engineering)
 "Th" = (
 /obj/effect/landmark/corpsespawner/marine/engineer,
 /turf/open/floor/mainship/mono,
@@ -9761,7 +9800,7 @@
 "Vv" = (
 /obj/effect/decal/cleanable/blood,
 /obj/structure/cable,
-/turf/open/floor/prison,
+/turf/open/floor/bcircuit,
 /area/orion_outpost/surface/building/engineering)
 "Vx" = (
 /obj/structure/window/framed/mainship/gray,
@@ -20602,7 +20641,7 @@ oX
 Eo
 Vp
 kL
-Xi
+oc
 Xi
 Xi
 Xi
@@ -20862,7 +20901,7 @@ kS
 er
 GI
 WA
-Xi
+oc
 XZ
 uk
 Vp
@@ -21132,7 +21171,7 @@ wF
 wF
 Vp
 vD
-Xi
+oc
 Xi
 Xi
 Xi
@@ -21266,7 +21305,7 @@ BA
 Th
 Yq
 Rz
-JL
+ws
 Xi
 Qp
 Qp
@@ -21391,15 +21430,15 @@ Pq
 Pq
 Pq
 Pq
-Xi
+oc
 qZ
-mu
+iz
 SU
 Vv
-iz
+hT
 ES
 TI
-Xi
+oc
 Pq
 Pq
 Pq
@@ -21525,11 +21564,11 @@ Pq
 Pq
 Xi
 pe
-Ok
-bJ
+mu
 hT
-bJ
-iz
+tR
+hT
+pc
 iz
 Xi
 Pq
@@ -21658,11 +21697,11 @@ Rw
 wF
 iz
 pc
-bJ
 hT
-bJ
+JA
+hT
 CJ
-iz
+Ov
 wF
 Rw
 Rw
@@ -21790,11 +21829,11 @@ sa
 wF
 iz
 pc
-bJ
 hT
-bJ
-ES
-iz
+BR
+hT
+Tf
+EG
 wF
 sa
 sa
@@ -21922,9 +21961,9 @@ Pq
 Xi
 iz
 iz
-bJ
+hT
 Nz
-bJ
+hT
 iz
 iz
 Xi
@@ -22051,15 +22090,15 @@ Pq
 Pq
 Pq
 Pq
-Xi
+oc
 pZ
-pc
+iz
 eo
 bs
 iz
-pc
+iz
 Xa
-Xi
+oc
 Pq
 Pq
 Pq
@@ -22317,10 +22356,10 @@ Xi
 Xi
 Xi
 Xi
-Xi
+oc
 Eo
 vD
-Xi
+oc
 Xi
 Xi
 Xi
@@ -22445,7 +22484,7 @@ cT
 on
 Nk
 QQ
-Xi
+oc
 Tl
 ih
 Rz
@@ -22589,7 +22628,7 @@ Eo
 eN
 zb
 qD
-Xi
+oc
 dx
 Yb
 Yb
@@ -22841,7 +22880,7 @@ cT
 Nk
 Nk
 QQ
-Xi
+oc
 Zo
 At
 jO
@@ -22850,7 +22889,7 @@ At
 bm
 Vh
 Vj
-Xi
+oc
 XC
 Le
 oX
@@ -22975,11 +23014,11 @@ Nk
 hP
 Xi
 Xi
+oc
 Xi
 Xi
 Xi
-Xi
-Xi
+oc
 Xi
 Ii
 Xi
