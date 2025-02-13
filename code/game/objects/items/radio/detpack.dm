@@ -1,6 +1,6 @@
 /obj/item/detpack
 	name = "detonation pack"
-	desc = "Programmable remotely triggered 'smart' explosive controlled via a signaler, used for demolitions and impromptu booby traps. Can be set to breach or demolition detonation patterns."
+	desc = "Programmable remotely triggered 'smart' explosive controlled via a signaler, used for demolitions and impromptu booby traps. Can be set to breach or demolition detonation patterns. Unique action to arm. Click on it with a signaller to copy over the signal code."
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
 	icon_state = "detpack_off"
@@ -46,7 +46,6 @@
 	if(armed)
 		. += "<b>It is armed!</b>"
 
-
 /obj/item/detpack/Destroy()
 	if(sound_timer)
 		deltimer(sound_timer)
@@ -87,16 +86,20 @@
 		var/obj/item/assembly/signaler/signaler = I
 		code = signaler.code
 		set_frequency(signaler.frequency)
-		to_chat(user, "You transfer the frequency and code of [signaler] to [src].")
+		balloon_alert(user, "Frequency copied over".")
+
+/obj/item/detpack/unique_action(mob/user, special_treatment)
+	on = !on
+	update_icon()
 
 /obj/item/detpack/attack_hand(mob/living/user)
 	if(armed)
-		to_chat(user, "<font color='warning'>Active anchor bolts are holding it in place! Disarm [src] first to remove it!</font>")
+		balloon_alert(user, "Disarm it first!")
 		return
 	if(plant_target)
 		user.visible_message(span_notice("[user] begins unsecuring [src] from [plant_target]."),
 		span_notice("You begin unsecuring [src] from [plant_target]."))
-		if(!do_after(user, 30, NONE, src, BUSY_ICON_BUILD))
+		if(!do_after(user, 3 SECONDS, NONE, src, BUSY_ICON_BUILD))
 			return
 		user.visible_message(span_notice("[user] unsecures [src] from [plant_target]."),
 		span_notice("You unsecure [src] from [plant_target]."))
