@@ -87,7 +87,7 @@
 		var/obj/item/assembly/signaler/signaler = I
 		code = signaler.code
 		set_frequency(signaler.frequency)
-		balloon_alert(user, "Frequency copied over".")
+		balloon_alert(user, "Frequency copied over")
 
 /obj/item/detpack/unique_action(mob/user, special_treatment)
 	on = !on
