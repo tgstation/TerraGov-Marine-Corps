@@ -44,8 +44,8 @@
 	damage = 15
 	penetration = 15
 	armor_type = BOMB
-	sundering = 1
-	damage_falloff = 2
+	sundering = 0.5
+	damage_falloff = 1.7
 	shrapnel_chance = 0
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 3 SECONDS
@@ -83,6 +83,7 @@
 
 /datum/ammo/bullet/smg/heavy
 	name = "heavy submachinegun bullet"
-	damage = 27.5
+	damage = 22.5
 	penetration = 10
 	sundering = 1
+
