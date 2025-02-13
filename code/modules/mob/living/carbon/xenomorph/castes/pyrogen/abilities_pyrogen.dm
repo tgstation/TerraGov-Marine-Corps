@@ -194,8 +194,8 @@
 
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50)
 	new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(xeno_owner))
-	for(var/turf/turf_in_range AS in RANGE_TURFS(2, xeno_owner.loc)) // 5x5
-		if(!line_of_sight(xeno_owner, turf_in_range, 2))
+	for(var/turf/turf_in_range AS in RANGE_TURFS(4, xeno_owner.loc)) // 9x9
+		if(!line_of_sight(xeno_owner, turf_in_range, 4))
 			continue
 
 		var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in turf_in_range.contents
