@@ -721,7 +721,7 @@ GLOBAL_LIST_INIT(layers_to_offset, list(
 /// How many  tornadoes we unleash when using the firestorm
 #define PYROGEN_FIRESTORM_TORNADE_COUNT 3
 /// Damage on fire tornado hit
-#define PYROGEN_TORNADE_HIT_DAMAGE 15
+#define PYROGEN_TORNADE_HIT_DAMAGE 50
 /// melting fire stacks on fire tornado hit
 #define PYROGEN_TORNADO_MELTING_FIRE_STACKS 2
 /// damage on direct hit with the heatray
