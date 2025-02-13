@@ -386,6 +386,13 @@
 		prefs.save_preferences()
 		winset(src, "infowindow.changelog", "font-style=;")
 
+/client/verb/hotkeys_help()
+	set name = "Hotkeys"
+	set category = "Preferences"
+
+	prefs.tab_index = KEYBIND_SETTINGS
+	prefs.ShowChoices(mob)
+
 /mob/Topic(href, href_list)
 	. = ..()
 	if(.)
@@ -580,7 +587,7 @@
 /mob/proc/get_idcard(hand_first)
 	return
 
-/mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
+/mob/proc/slip(slip_source_name, stun_level, paralyze_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
 /mob/forceMove(atom/destination)

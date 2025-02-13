@@ -299,8 +299,8 @@
 	patient.resuscitate() // time for a smoke
 	patient.emote("gasp")
 	patient.flash_act()
-	patient.apply_effect(10, EYE_BLUR)
-	patient.apply_effect(20 SECONDS, PARALYZE)
+	patient.apply_effect(10, EFFECT_EYE_BLUR)
+	patient.apply_effect(20 SECONDS, EFFECT_UNCONSCIOUS)
 
 	ghost = patient.get_ghost(TRUE) // just in case they re-entered their body
 	if(ghost) // register a signal to bring them into their body on reconnect

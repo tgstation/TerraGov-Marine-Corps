@@ -922,6 +922,7 @@
 // ***************************************
 /datum/status_effect/incapacitating/dancer_tagged
 	id = "dancer_tagged"
+	duration = 15 SECONDS
 
 // ***************************************
 // *********** Acid Melting

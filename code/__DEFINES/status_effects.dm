@@ -31,6 +31,8 @@
 
 #define STATUS_EFFECT_XENO_FEAST /datum/status_effect/xeno_feast
 
+#define STATUS_EFFECT_XENO_BATONPASS /datum/status_effect/baton_pass
+
 #define STATUS_EFFECT_RESIN_JELLY_COATING /datum/status_effect/resin_jelly_coating
 
 #define STATUS_EFFECT_PLASMA_SURGE /datum/status_effect/plasma_surge
