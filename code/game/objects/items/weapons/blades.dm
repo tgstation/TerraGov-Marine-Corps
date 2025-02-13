@@ -88,19 +88,6 @@
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashes", "stabs", "slices", "tears", "rips", "dices", "cuts", "hooks")
 
-//Try to do a fancy trick with your cool knife
-/obj/item/weapon/karambit/attack_self(mob/user)
-	. = ..()
-	if(!user.dextrous)
-		to_chat(user, span_warning("You don't have the dexterity to do this."))
-		return
-	if(user.incapacitated() || !isturf(user.loc))
-		to_chat(user, span_warning("You can't do this right now."))
-		return
-	if(user.do_actions)
-		return
-	do_trick(user)
-
 /obj/item/weapon/karambit/fade
 	icon_state = "karambit_fade"
 	worn_icon_state = "karambit_fade"
