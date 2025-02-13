@@ -24,11 +24,15 @@
 
 	var/uses_weapons = TRUE //test, this base type will be useful for mobs like carp, where this will be false
 
+	var/datum/inventory/mob_inventory
+
 /datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
 	..()
 	refresh_abilities()
 	mob_parent.a_intent = INTENT_HARM //Killing time
 	src.can_heal = can_heal
+
+	mob_inventory = new(mob_parent)
 
 /datum/ai_behavior/human/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))

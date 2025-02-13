@@ -21,11 +21,11 @@
 		return FALSE
 	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item()) //does this stop wielding or toggling in any cases?
 		return FALSE
-	var/list/gun_list = list()
-	for(var/thing AS in mob_parent)
-		if(!istype(thing, /obj/item/weapon/gun))
-			continue
-		gun_list += thing
+	var/list/gun_list = mob_inventory.gun_list
+	//for(var/thing AS in mob_parent)
+	//	if(!istype(thing, /obj/item/weapon/gun))
+	//		continue
+	//	gun_list += thing
 
 	var/obj/item/weapon/weapon_to_equip
 	for(var/obj/item/weapon/gun/option AS in gun_list)
@@ -59,11 +59,11 @@
 		return FALSE
 	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item()) //does this stop wielding or toggling in any cases?
 		return FALSE
-	var/list/melee_list = list()
-	for(var/thing AS in mob_parent)
-		if(!istype(thing, /obj/item/weapon))
-			continue
-		melee_list += thing
+	var/list/melee_list = mob_inventory.melee_list
+	//for(var/thing AS in mob_parent)
+	//	if(!istype(thing, /obj/item/weapon))
+	//		continue
+	//	melee_list += thing
 
 	var/obj/item/weapon/weapon_to_equip
 	for(var/obj/item/weapon/option AS in melee_list)
