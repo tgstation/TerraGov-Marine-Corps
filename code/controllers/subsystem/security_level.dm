@@ -14,7 +14,7 @@ SUBSYSTEM_DEF(security_level)
 	init_order = INIT_ORDER_SECURITY_LEVEL
 	/// Currently set security level
 	var/datum/security_level/current_security_level
-	/// A list of initialised security level datums.
+	/// Associative list of security level names -> datums
 	var/list/available_levels = list()
 
 /datum/controller/subsystem/security_level/Initialize()
