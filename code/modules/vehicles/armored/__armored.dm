@@ -624,6 +624,8 @@
 		return FALSE
 	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
 	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 3 SECONDS)
+	if(primary_weapon)
+		TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_EQUIPMENT(primary_weapon.type), new_weapon_dir == REVERSE_DIR(turret_overlay.dir) ? 1 SECONDS : 0.5 SECONDS)
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
 
