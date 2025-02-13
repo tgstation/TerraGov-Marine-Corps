@@ -23,8 +23,8 @@
 	var/list/datum/reagent/spit_reagents
 	///Amount of reagents transferred upon spit impact if any
 	var/reagent_transfer_amount
-	///Amount of stagger stacks imposed on impact if any
-	var/stagger_stacks
+	///Amount of stagger imposed on impact if any
+	var/stagger_duration
 	///Amount of slowdown stacks imposed on impact if any
 	var/slowdown_stacks
 	///These define the reagent transfer strength of the smoke caused by the spit, if any, and its aoe
@@ -45,7 +45,7 @@
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	damage = 40
-	stagger_stacks = 1.1 SECONDS
+	stagger_duration = 1.1 SECONDS
 	slowdown_stacks = 1.5
 	smoke_strength = 0.5
 	smoke_range = 0
@@ -70,7 +70,7 @@
 	if(isnestedhost(carbon_victim))
 		return
 
-	carbon_victim.adjust_stagger(stagger_stacks)
+	carbon_victim.adjust_stagger(stagger_duration)
 	carbon_victim.add_slowdown(slowdown_stacks)
 
 	set_reagents()
@@ -139,7 +139,7 @@
 	damage = 20 //minor; this is mostly just to provide confirmation of a hit
 	max_range = 40
 	bullet_color = COLOR_PURPLE
-	stagger_stacks = 2
+	stagger_duration = 1 SECONDS
 	slowdown_stacks = 3
 
 
@@ -149,7 +149,7 @@
 		var/mob/living/carbon/target_carbon = target_mob
 		if(target_carbon.issamexenohive(proj.firer))
 			return
-		target_carbon.adjust_stagger(stagger_stacks) //stagger briefly; useful for support
+		target_carbon.adjust_stagger(stagger_duration) //stagger briefly; useful for support
 		target_carbon.add_slowdown(slowdown_stacks) //slow em down
 
 
@@ -370,7 +370,7 @@
 	added_spit_delay = 1 SECONDS
 	spit_cost = 50
 	damage = 35
-	stagger_stacks = 2 SECONDS
+	stagger_duration = 2 SECONDS
 	slowdown_stacks = 3
 	ammo_behavior_flags = AMMO_XENO|AMMO_TARGET_TURF
 	bonus_projectiles_type = /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
@@ -383,7 +383,7 @@
 		var/mob/living/carbon/target_carbon = target_mob
 		if(target_carbon.issamexenohive(proj.firer))
 			return
-		target_carbon.adjust_stagger(stagger_stacks)
+		target_carbon.adjust_stagger(stagger_duration)
 		target_carbon.add_slowdown(slowdown_stacks)
 
 /datum/ammo/xeno/acid/airburst_bomblet/smokescreen
@@ -401,7 +401,7 @@
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS
 	max_range = 16
 	shell_speed = 1.5
-	stagger_stacks = 2 SECONDS
+	stagger_duration = 2 SECONDS
 	slowdown_stacks = 3
 	///How long it knocks down the target
 	var/knockdown_duration = 2 SECONDS
@@ -416,5 +416,5 @@
 	var/mob/living/carbon/target_carbon = target_mob
 	if(target_carbon.issamexenohive(proj.firer))
 		return
-	staggerstun(target_mob, proj, max_range, 0, knockdown_duration, stagger_stacks, slowdown_stacks, knockback)
+	staggerstun(target_mob, proj, max_range, 0, knockdown_duration, stagger_duration, slowdown_stacks, knockback)
 	target_carbon.apply_status_effect(STATUS_EFFECT_SHATTER, shatter_duration)
