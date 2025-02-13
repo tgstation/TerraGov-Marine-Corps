@@ -97,7 +97,7 @@
 
 	var/dat = {"
 Turned [on ? "On" : "Off"] -
-<A href='?src=[REF(src)];power=1'>Toggle</A><BR>
+<A href='byond://?src=[REF(src)];power=1'>Toggle</A><BR>
 <B>Frequency/Code</B> for electropack:<BR>
 Frequency:
 <A href='byond://?src=[REF(src)];freq=-10'>-</A>

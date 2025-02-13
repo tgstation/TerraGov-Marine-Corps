@@ -3,4 +3,4 @@
  */
 // prettier-ignore
 export type ArgumentsOf<F extends Function>
- = F extends (...args: infer A) => unknown ? A : never;
+  = F extends (...args: infer A) => unknown ? A : never;

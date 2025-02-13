@@ -108,9 +108,9 @@
 	if(M?.mode == SHUTTLE_IDLE)
 		if(is_reserved_level(M.z))
 			for(var/obj/docking_port/stationary/S in M.get_destinations())
-				dat += "<A href='?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
+				dat += "<A href='byond://?src=[REF(src)];move=[S.id]'>Send to [S.name]</A><br>"
 		else
-			dat += "<A href='?src=[REF(src)];depart=1'>Depart.</A><br>"
+			dat += "<A href='byond://?src=[REF(src)];depart=1'>Depart.</A><br>"
 
 	var/datum/browser/popup = new(user, "computer", M ? M.name : "shuttle", 300, 200)
 	popup.set_content("<center>[dat]</center>")

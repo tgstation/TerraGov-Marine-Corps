@@ -45,7 +45,7 @@
 	if(!locked)
 		message = "*****"
 
-	dat += "<HR>\n>[message]<BR>\n<A href='?src=[text_ref(src)];type=1'>1</A>-<A href='?src=[text_ref(src)];type=2'>2</A>-<A href='?src=[text_ref(src)];type=3'>3</A><BR>\n<A href='?src=[text_ref(src)];type=4'>4</A>-<A href='?src=[text_ref(src)];type=5'>5</A>-<A href='?src=[text_ref(src)];type=6'>6</A><BR>\n<A href='?src=[text_ref(src)];type=7'>7</A>-<A href='?src=[text_ref(src)];type=8'>8</A>-<A href='?src=[text_ref(src)];type=9'>9</A><BR>\n<A href='?src=[text_ref(src)];type=R'>R</A>-<A href='?src=[text_ref(src)];type=0'>0</A>-<A href='?src=[text_ref(src)];type=E'>E</A><BR>\n</TT>"
+	dat += "<HR>\n>[message]<BR>\n<A href='byond://?src=[text_ref(src)];type=1'>1</A>-<A href='byond://?src=[text_ref(src)];type=2'>2</A>-<A href='byond://?src=[text_ref(src)];type=3'>3</A><BR>\n<A href='byond://?src=[text_ref(src)];type=4'>4</A>-<A href='byond://?src=[text_ref(src)];type=5'>5</A>-<A href='byond://?src=[text_ref(src)];type=6'>6</A><BR>\n<A href='byond://?src=[text_ref(src)];type=7'>7</A>-<A href='byond://?src=[text_ref(src)];type=8'>8</A>-<A href='byond://?src=[text_ref(src)];type=9'>9</A><BR>\n<A href='byond://?src=[text_ref(src)];type=R'>R</A>-<A href='byond://?src=[text_ref(src)];type=0'>0</A>-<A href='byond://?src=[text_ref(src)];type=E'>E</A><BR>\n</TT>"
 
 	var/datum/browser/popup = new(user, "caselock", "<div align='center'>[src]</div>")
 	popup.set_content(dat)

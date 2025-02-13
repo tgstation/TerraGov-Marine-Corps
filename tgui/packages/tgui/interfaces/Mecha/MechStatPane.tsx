@@ -1,6 +1,3 @@
-import { toFixed } from 'common/math';
-
-import { useBackend } from '../../backend';
 import {
   Box,
   Button,
@@ -8,7 +5,10 @@ import {
   ProgressBar,
   Section,
   Stack,
-} from '../../components';
+} from 'tgui-core/components';
+import { toFixed } from 'tgui-core/math';
+
+import { useBackend } from '../../backend';
 import { KelvinZeroCelcius, OperatorData } from './data';
 
 export const MechStatPane = (props) => {
@@ -200,7 +200,7 @@ const PowerBar = (props) => {
   const { act, data } = useBackend<OperatorData>();
   const { power_level, power_max } = data;
   if (power_max === null) {
-    return <Box content={'No Power cell installed!'} />;
+    return <Box> No Power cell installed!</Box>;
   } else {
     return (
       <ProgressBar

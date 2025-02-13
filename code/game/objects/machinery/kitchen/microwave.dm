@@ -229,8 +229,8 @@
 		else
 			dat = {"<b>Ingredients:</b><br>[dat]"}
 		dat += {"<HR><BR>
-<a href='?src=[text_ref(src)];action=cook'>Turn on!</a><br>
-<a href='?src=[text_ref(src)];action=dispose'>Eject ingredients!</a>
+<a href='byond://?src=[text_ref(src)];action=cook'>Turn on!</a><br>
+<a href='byond://?src=[text_ref(src)];action=dispose'>Eject ingredients!</a>
 "}
 
 	var/datum/browser/popup = new(user, "microwave", "<div align='center'>Microwave Controls</div>")

@@ -1,5 +1,11 @@
+import {
+  Button,
+  LabeledList,
+  ProgressBar,
+  Section,
+} from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Button, LabeledList, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 type SentryData = {
@@ -46,13 +52,14 @@ export const Sentry = (props) => {
             <LabeledList.Item label="Current Rounds">
               <ProgressBar
                 value={rounds / rounds_max}
-                content={rounds + ' out of ' + rounds_max}
                 ranges={{
                   good: [0.67, Infinity],
                   average: [0.33, 0.67],
                   bad: [-Infinity, 0.33],
                 }}
-              />
+              >
+                {rounds + ' out of ' + rounds_max}
+              </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
               buttons={
@@ -79,7 +86,7 @@ export const Sentry = (props) => {
             <LabeledList.Item
               buttons={
                 <Button
-                  selected={manual_override}
+                  selected={manual_override ? true : false}
                   onClick={() => act('manual')}
                   icon={manual_override ? 'check' : 'times'}
                 >

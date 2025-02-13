@@ -1,0 +1,45 @@
+@use 'sass:map';
+
+$background: hsl(0, 0%, 7.5%);
+$button: hsl(0, 0%, 12.2%);
+$lightMode: hsl(0, 0%, 100%);
+$lightBorder: hsl(0, 0%, 73.3%);
+$lightHover: hsl(0, 0%, 91.8%);
+$scrollbar-color-multiplier: 1 !default;
+
+$_channel_map: (
+  'Say': hsl(213.6, 37.9%, 74.1%),
+  'Radio': hsl(120, 72.2%, 43.7%),
+  'Me': hsl(227, 63.5%, 60.2%),
+  'OOC': hsl(47.9, 100%, 40%),
+  'LOOC': hsl(180, 44.2%, 40.8%),
+  'XOOC': hsl(218.3, 100%, 42.4%),
+  'MOOC': hsl(218.3, 100%, 42.4%),
+  'Admin': hsl(300, 100%, 86.7%),
+  'Mentor': hsl(120, 50.7%, 39.8%),
+  'AI': hsl(332.2, 59.6%, 60.2%),
+  'io': hsl(209.6, 100%, 55.9%),
+  'Cmd': hsl(218.8, 50%, 54.5%),
+  'Engi': hsl(24.1, 75.5%, 53.5%),
+  'Hive': hsl(314.9, 54.1%, 45.3%),
+  'Med': hsl(169.9, 68.4%, 45.9%),
+  'CAS': hsl(349.9, 67.8%, 50%),
+  'Req': hsl(33.7, 44.9%, 49.8%),
+  'Alpha': hsl(0, 60.5%, 46.7%),
+  'Bravo': hsl(38, 62.3%, 55.3%),
+  'Charlie': hsl(300, 36.6%, 52.4%),
+  'Delta': hsl(228.1, 67.5%, 52.9%),
+);
+
+$channel_keys: map.keys($_channel_map) !default;
+
+$channel-map: ();
+
+@each $channel in $channel_keys {
+  $channel-map: map.merge(
+    $channel-map,
+    (
+      $channel: map.get($_channel_map, $channel),
+    )
+  );
+}

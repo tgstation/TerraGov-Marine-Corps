@@ -129,11 +129,11 @@
 	var/minute = (time - second) / 60
 	var/dat
 	if(!scanning)
-		dat += "<BR>[(timing ? "<A href='?src=[REF(src)];time=0'>Arming</A>" : "<A href='?src=[REF(src)];time=1'>Not Arming</A>")] [minute]:[second]"
-		dat += "<BR><A href='?src=[REF(src)];tp=-30'>-</A> <A href='?src=[REF(src)];tp=-1'>-</A> <A href='?src=[REF(src)];tp=1'>+</A> <A href='?src=[REF(src)];tp=30'>+</A>"
-	dat += "<BR><A href='?src=[REF(src)];scanning=[scanning?"0'>Armed":"1'>Unarmed (Movement sensor active when armed!)"]</A>"
-	dat += "<BR>Detection range: <A href='?src=[REF(src)];sense=down'>-</A> [sensitivity] <A href='?src=[REF(src)];sense=up'>+</A>"
-	dat += "<BR><BR><A href='?src=[REF(src)];refresh=1'>Refresh</A>"
+		dat += "<BR>[(timing ? "<A href='byond://?src=[REF(src)];time=0'>Arming</A>" : "<A href='byond://?src=[REF(src)];time=1'>Not Arming</A>")] [minute]:[second]"
+		dat += "<BR><A href='byond://?src=[REF(src)];tp=-30'>-</A> <A href='byond://?src=[REF(src)];tp=-1'>-</A> <A href='byond://?src=[REF(src)];tp=1'>+</A> <A href='byond://?src=[REF(src)];tp=30'>+</A>"
+	dat += "<BR><A href='byond://?src=[REF(src)];scanning=[scanning?"0'>Armed":"1'>Unarmed (Movement sensor active when armed!)"]</A>"
+	dat += "<BR>Detection range: <A href='byond://?src=[REF(src)];sense=down'>-</A> [sensitivity] <A href='byond://?src=[REF(src)];sense=up'>+</A>"
+	dat += "<BR><BR><A href='byond://?src=[REF(src)];refresh=1'>Refresh</A>"
 
 	var/datum/browser/popup = new(user, "prox", name)
 	popup.set_content(dat)

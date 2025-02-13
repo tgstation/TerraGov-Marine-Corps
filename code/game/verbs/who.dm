@@ -52,7 +52,7 @@
 							entry += " - <b>DEAD</b>"
 					else
 						entry += " - <b>DEAD</b>"
-			entry += " (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+			entry += " (<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 			Lines += entry
 	else
 		for(var/client/C in GLOB.clients)
@@ -92,7 +92,7 @@
 			if(check_other_rights(C, R_ADMIN, FALSE))
 				if(!check_rights(R_ADMIN, FALSE) && C.holder.fakekey)
 					continue
-				msg += "\t <a href='?_src_=holder;[HrefToken()];playerpanel=[REF(C.mob)]'>[C]</a> - [C.holder.rank]"
+				msg += "\t <a href='byond://?_src_=holder;[HrefToken()];playerpanel=[REF(C.mob)]'>[C]</a> - [C.holder.rank]"
 
 				if(C.holder.fakekey)
 					msg += " as ([C.holder.fakekey])"
@@ -107,7 +107,7 @@
 				if(C.is_afk())
 					msg += " (AFK)"
 
-				msg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				msg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				msg += "\n"
 				num_admins_online++
@@ -124,7 +124,7 @@
 				if(C.is_afk())
 					mentmsg += " (AFK)"
 
-				mentmsg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
+				mentmsg += "[isobserver(C.mob) || isnewplayer(C.mob) ? "" : " as [C.mob.real_name]"] (<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];moreinfo=[REF(C.mob)]'>?</A>)"
 
 				mentmsg += "\n"
 				num_mentors_online++

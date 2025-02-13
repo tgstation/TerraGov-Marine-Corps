@@ -30,20 +30,10 @@ jobs:
           key: ${{ runner.os }}-spacemandmm-${{ hashFiles('dependencies.sh') }}
           restore-keys: |
             ${{ runner.os }}-spacemandmm-
-      - name: Restore Yarn cache
-        uses: actions/cache@v4
+      - name: Setup Node
+        uses: ./.github/actions/setup_node
         with:
-          path: tgui/.yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('tgui/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Restore Node cache
-        uses: actions/cache@v4
-        with:
-          path: ~/.nvm
-          key: ${{ runner.os }}-node-${{ hashFiles('dependencies.sh') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          restore-yarn-cache: true
       - name: Restore Bootstrap cache
         uses: actions/cache@v4
         with:
@@ -72,7 +62,6 @@ jobs:
       - name: Install Tools
         run: |
           pip3 install setuptools
-          bash tools/ci/install_node.sh
           bash tools/ci/install_spaceman_dmm.sh dreamchecker
           bash tools/ci/install_ripgrep.sh
           tools/bootstrap/python -c ''
@@ -125,14 +114,12 @@ jobs:
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
-      - name: Restore BYOND cache
-        uses: actions/cache@v4
-        with:
-          path: ~/BYOND
-          key: ${{ runner.os }}-byond-${{ hashFiles('dependencies.sh') }}
+      - name: Setup Node
+        uses: ./.github/actions/setup_node
+      - name: Restore BYOND from Cache
+        uses: ./.github/actions/restore_or_install_byond
       - name: Compile All Maps
         run: |
-          bash tools/ci/install_byond.sh
           source $HOME/BYOND/byond/bin/byondsetup
           tools/build/build --ci dm -DCIBUILDING -DCITESTING -DALL_MAPS
       - name: Check client Compatibility
@@ -143,7 +130,7 @@ jobs:
 
   collect_data:
     if: ( !contains(github.event.head_commit.message, '[ci skip]') )
-    name: Collect data for other tasks
+    name: Collect data and setup caches for other tasks
     runs-on: ubuntu-22.04
     outputs:
       maps: ${{ steps.map_finder.outputs.maps }}
@@ -164,13 +151,14 @@ jobs:
       - name: Find Alternate Tests
         id: alternate_test_finder
         run: |
-          ALTERNATE_TESTS_JSON=$(jq -nRc '[inputs | capture("^(?<major>[0-9]+)\\.(?<minor>[0-9]+): (?<map>.+)$")]' .github/alternate_byond_versions.txt)
-          echo "alternate_tests=$ALTERNATE_TESTS_JSON" >> $GITHUB_OUTPUT
+          ALTERNATE_TESTS_JSON=$(jq -nRc '[inputs | capture("^(?<major>[0-9]+)\\.(?<minor>[0-9]+): (?<map>[^;]+);?(?<max_client_version>[0-9]+)?$")]' .github/alternate_byond_versions.txt)
       - name: Collect byond client version configuration
         id: max_required_byond_client
         #the regex here does not filter out non-numbers because error messages about no input are less helpful then error messages about bad input (which includes the bad input)
         run: |
           echo "max_required_byond_client=$(grep -Ev '^[[:blank:]]{0,}#{1,}|^[[:blank:]]{0,}$' .github/max_required_byond_client.txt | tail -n1)" >> $GITHUB_OUTPUT
+      - name: Set up BYOND cache
+        uses: ./.github/actions/restore_or_install_byond
 
   run_all_tests:
     if: ( !contains(github.event.head_commit.message, '[ci skip]') )
@@ -186,7 +174,7 @@ jobs:
     uses: ./.github/workflows/run_integration_tests.yml
     with:
       map: ${{ matrix.map }}
-      max_required_byond_client: ${{needs.collect_data.outputs.max_required_byond_client}}
+      max_required_byond_client: ${{ matrix.setup.max_client_version || needs.collect_data.outputs.max_required_byond_client }}
 
   run_alternate_tests:
     if: ( !contains(github.event.head_commit.message, '[ci skip]') && needs.collect_data.outputs.alternate_tests != '[]' )
@@ -224,13 +212,10 @@ jobs:
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
-      - name: Restore Yarn cache
-        uses: actions/cache@v4
+      - name: Setup Node
+        uses: ./.github/actions/setup_node
         with:
-          path: tgui/.yarn/cache
-          key: ${{ runner.os }}-yarn-${{ hashFiles('tgui/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          restore-yarn-cache: true
       - name: Compile
         run: pwsh tools/ci/build.ps1
         env:

@@ -89,7 +89,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 	var/dat
 
 	if(authenticated)
-		dat += "<BR>\[ <A HREF='?src=[text_ref(src)];logout=1'>LOG OUT</A>]"
+		dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];logout=1'>LOG OUT</A>]"
 		dat += "<center><h4>[SSmapping.configs[SHIP_MAP].map_name]</h4></center>"//get the current ship map name
 
 		dat += "<br><center><h3>[GLOB.current_orbit]</h3></center>" //display the current orbit level
@@ -105,7 +105,7 @@ GLOBAL_VAR_INIT(current_orbit,STANDARD_ORBIT)
 		dat += "</b></center>"
 
 	else
-		dat += "<BR>\[ <A HREF='?src=[text_ref(src)];login=1'>LOG IN</A> \]"
+		dat += "<BR>\[ <A href='byond://?src=[text_ref(src)];login=1'>LOG IN</A> \]"
 
 	var/datum/browser/popup = new(user, "Navigation", "<div align='center'>Navigation</div>")
 	popup.set_content(dat)

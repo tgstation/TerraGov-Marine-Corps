@@ -88,19 +88,19 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			title = "Resolved Tickets"
 	if(!l2b)
 		return
-	var/dat = "<A href='?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh</A><br><br>"
+	var/dat = "<A href='byond://?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh</A><br><br>"
 	for(var/I in l2b)
 		var/datum/admin_help/AH = I
 		if(AH.tier == TICKET_MENTOR && check_rights(R_ADMINTICKET|R_MENTOR, FALSE))
 			if(AH.initiator)
-				dat += "[span_adminnotice("<span class='adminhelp'>\[[AH.marked ? "X" : "  "]\] #[AH.id] Mentor Ticket")]: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+				dat += "[span_adminnotice("<span class='adminhelp'>\[[AH.marked ? "X" : "  "]\] #[AH.id] Mentor Ticket")]: <A href='byond://?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 			else
-				dat += "[span_adminnotice("<span class='adminhelp'>\[D\] #[AH.id] Mentor Ticket")]: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+				dat += "[span_adminnotice("<span class='adminhelp'>\[D\] #[AH.id] Mentor Ticket")]: <A href='byond://?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 		else if(AH.tier == TICKET_ADMIN && check_rights(R_ADMINTICKET, FALSE))
 			if(AH.initiator)
-				dat += "[span_adminnotice("<span class='adminhelp'>\[[AH.marked ? "X" : "  "]\] #[AH.id] Admin Ticket")]: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+				dat += "[span_adminnotice("<span class='adminhelp'>\[[AH.marked ? "X" : "  "]\] #[AH.id] Admin Ticket")]: <A href='byond://?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 			else
-				dat += "[span_adminnotice("<span class='adminhelp'>\[D\] #[AH.id] Admin Ticket")]: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+				dat += "[span_adminnotice("<span class='adminhelp'>\[D\] #[AH.id] Admin Ticket")]: <A href='byond://?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
 
 	var/datum/browser/browser = new(usr, "ahelp_list[state]", "<div align='center'>[title]</div>", 600, 480)
 	browser.set_content(dat)
@@ -317,7 +317,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		ref_src = "[REF(src)]"
 	. = ADMIN_FULLMONTY_NONAME(initiator.mob)
 	if(CONFIG_GET(flag/popup_admin_pm))
-		. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];adminpopup=[REF(initiator)]'>POPUP</A>)"
+		. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];adminpopup=[REF(initiator)]'>POPUP</A>)"
 
 //private
 /datum/admin_help/proc/HalfMonty(ref_src)
@@ -330,36 +330,36 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/ClosureLinks(ref_src)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
-	. = " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=mark'>MARK</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reject'>REJECT</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=icissue'>IC</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=close'>CLOSE</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RESOLVE</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=tier'>TIER</A>)"
+	. = " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=mark'>MARK</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reject'>REJECT</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=icissue'>IC</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=close'>CLOSE</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RESOLVE</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=tier'>TIER</A>)"
 
 
 //private
 /datum/admin_help/proc/ClosureLinksMentor(ref_src)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
-	. = " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=mark'>MARK</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=close'>CLOSE</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RESOLVE</A>)"
-	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=tier'>TIER</A>)"
+	. = " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=mark'>MARK</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=close'>CLOSE</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RESOLVE</A>)"
+	. += " (<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=tier'>TIER</A>)"
 
 
 //private
 /datum/admin_help/proc/LinkedReplyName(ref_src)
 	if(!ref_src)
 		ref_src = "[REF(src)]"
-	return "<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reply'>[initiator_key_name]</A>"
+	return "<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reply'>[initiator_key_name]</A>"
 
 
 //private
 /datum/admin_help/proc/TicketHref(msg, ref_src, action = "ticket")
 	if(!ref_src)
 		ref_src = "[REF(src)]"
-	return "<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=[action]'>[msg]</A>"
+	return "<A href='byond://?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=[action]'>[msg]</A>"
 
 
 //message from the initiator without a target, all admins will see this
@@ -997,7 +997,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 							if(!ai_found && isAI(found))
 								ai_found = 1
 							founds += "Name: [found.name]([found.real_name]) Key: [found.key] Ckey: [found.ckey] "
-							msg += "[original_word]<font size='1'>(<A HREF='?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(found)]'>?</A>|<A HREF='?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(found)]'>FLW</A>)</font> "
+							msg += "[original_word]<font size='1'>(<A href='byond://?_src_=holder;[HrefToken(TRUE)];moreinfo=[REF(found)]'>?</A>|<A href='byond://?_src_=holder;[HrefToken(TRUE)];observefollow=[REF(found)]'>FLW</A>)</font> "
 							continue
 		msg += "[original_word] "
 	if(external)
