@@ -432,15 +432,16 @@ GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 
 
-/mob/dead/observer/verb/teleport(area/A in GLOB.sorted_areas)
+/mob/dead/observer/verb/teleport()
 	set category = "Ghost"
 	set name = "Teleport"
 	set desc = "Teleport to an area."
 
-	if(!A)
+	var/area/newloc = tgui_input_list(usr, "Choose an area to teleport to.", "Teleport", GLOB.sorted_areas)
+	if(!newloc)
 		return
 
-	abstract_move(pick(get_area_turfs(A)))
+	abstract_move(pick(get_area_turfs(newloc)))
 	update_parallax_contents()
 
 
