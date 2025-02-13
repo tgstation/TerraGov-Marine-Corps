@@ -29,6 +29,7 @@
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
 	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
 	explosion_block = 2
+	pivot_step = TRUE
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,

@@ -81,6 +81,7 @@
 	RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, PROC_REF(on_mouseclick), TRUE)
 	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(display_speech_bubble), TRUE)
 	RegisterSignal(M, COMSIG_LIVING_DO_RESIST, TYPE_PROC_REF(/atom/movable, resisted_against), TRUE)
+	RegisterSignal(M, COMSIG_MOVABLE_KEYBIND_FACE_DIR, PROC_REF(on_turn), TRUE)
 	. = ..()
 	update_icon()
 	//tgmc addition start
@@ -97,10 +98,7 @@
 	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_R_ARM])
 	M?.hud_used?.remove_ammo_hud(equip_by_category[MECHA_L_ARM])
 	//tgmc addition end
-	UnregisterSignal(M, COMSIG_MOB_DEATH)
-	UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
-	UnregisterSignal(M, COMSIG_MOB_SAY)
-	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
+	UnregisterSignal(M, list(COMSIG_MOB_DEATH, COMSIG_MOB_MOUSEDOWN, COMSIG_MOB_SAY, COMSIG_LIVING_DO_RESIST, COMSIG_MOVABLE_KEYBIND_FACE_DIR))
 	M.clear_alert(ALERT_CHARGE)
 	M.clear_alert(ALERT_MECH_DAMAGE)
 	if(M.client)
