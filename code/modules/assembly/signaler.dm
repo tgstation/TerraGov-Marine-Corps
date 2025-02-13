@@ -1,6 +1,6 @@
 /obj/item/assembly/signaler
 	name = "remote signaling device"
-	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another. Use to activate, alt-click to open the menu."
+	desc = "Used to remotely activate devices. Allows for syncing when using a secure signaler on another. Unique action to activate, use to open the menu."
 	icon_state = "signaller"
 	worn_icon_state = "signaler"
 	wires = WIRE_RECEIVE | WIRE_PULSE | WIRE_RADIO_PULSE | WIRE_RADIO_RECEIVE
