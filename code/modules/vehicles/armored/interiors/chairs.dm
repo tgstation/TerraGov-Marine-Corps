@@ -57,17 +57,18 @@
 		return FALSE
 	return ..()
 
+/obj/structure/bed/chair/vehicle_crew/proc/get_vis_range_mod()
+	return 1
+
 /obj/structure/bed/chair/vehicle_crew/post_buckle_mob(mob/buckling_mob)
 	. = ..()
 	buckling_mob.reset_perspective(owner)
-	if(owner.vis_range_mod)
-		buckling_mob.client.view_size.set_view_radius_to("[owner.vis_range_mod]x[owner.vis_range_mod]")
+	buckling_mob.client.view_size.add(get_vis_range_mod())
 
 /obj/structure/bed/chair/vehicle_crew/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
 	buckled_mob.reset_perspective()
-	if(owner.vis_range_mod)
-		buckled_mob.client.view_size.reset_to_default()
+	buckled_mob.client.view_size.reset_to_default()
 
 /obj/structure/bed/chair/vehicle_crew/relaymove(mob/living/user, direct)
 	return owner.relaymove(arglist(args))
@@ -76,16 +77,27 @@
 	name = "driver seat"
 	buckling_x = 12
 
+/obj/structure/bed/chair/vehicle_crew/driver/get_vis_range_mod()
+	return 4
+
 /obj/structure/bed/chair/vehicle_crew/driver/post_buckle_mob(mob/buckling_mob)
 	. = ..()
+	buckling_mob.reset_perspective(owner)
+	ADD_TRAIT(buckling_mob, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	buckling_mob.update_sight()
 	owner.add_control_flags(buckling_mob, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 
 /obj/structure/bed/chair/vehicle_crew/driver/post_unbuckle_mob(mob/buckled_mob)
 	. = ..()
+	REMOVE_TRAIT(buckled_mob, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	buckled_mob.update_sight()
 	owner.remove_control_flags(buckled_mob, VEHICLE_CONTROL_DRIVE|VEHICLE_CONTROL_SETTINGS)
 
 /obj/structure/bed/chair/vehicle_crew/gunner
 	name = "gunner seat"
+
+/obj/structure/bed/chair/vehicle_crew/gunner/get_vis_range_mod()
+	return (SSticker.mode?.round_type_flags & MODE_HUMAN_ONLY) ? 4 : 1
 
 /obj/structure/bed/chair/vehicle_crew/gunner/post_buckle_mob(mob/buckling_mob)
 	. = ..()
