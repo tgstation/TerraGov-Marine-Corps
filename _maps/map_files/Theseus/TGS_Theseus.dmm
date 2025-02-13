@@ -7538,6 +7538,10 @@
 "cCR" = (
 /turf/open/floor/mainship/silver/corner,
 /area/mainship/command/cic)
+"cDs" = (
+/obj/machinery/dropship_part_fabricator,
+/turf/open/floor/mainship/mono,
+/area/mainship/hallways/hangar)
 "cFr" = (
 /obj/structure/cable,
 /turf/open/floor/mainship/mono,
@@ -8976,7 +8980,7 @@
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
 "fbJ" = (
-/obj/structure/dropship_equipment/shuttle/sentry_holder,
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
 /turf/open/floor/mainship/orange{
 	dir = 1
 	},
@@ -9195,7 +9199,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/command/airoom)
 "ftB" = (
-/obj/machinery/dropship_part_fabricator,
+/obj/machinery/dropship_part_fabricator/tadpole,
 /turf/open/floor/mainship/orange{
 	dir = 9
 	},
@@ -10527,7 +10531,7 @@
 	},
 /area/mainship/command/cic)
 "hrn" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
 /turf/open/floor/mainship/orange,
 /area/mainship/hallways/hangar)
 "hrH" = (
@@ -11755,7 +11759,7 @@
 /turf/open/floor/plating,
 /area/mainship/hallways/hangar)
 "jul" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
@@ -18738,7 +18742,7 @@
 /obj/effect/turf_decal/warning_stripes/thin{
 	dir = 6
 	},
-/turf/open/floor/plating/plating_catwalk,
+/turf/open/floor/mainship/cargo,
 /area/mainship/hallways/hangar)
 "uDw" = (
 /obj/structure/table/mainship/nometal,
@@ -19492,7 +19496,7 @@
 /turf/open/floor/mainship/red,
 /area/mainship/shipboard/port_point_defense)
 "vNA" = (
-/obj/structure/dropship_equipment/shuttle/sentry_holder,
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar)
 "vND" = (
@@ -42633,7 +42637,7 @@ bgb
 oPC
 hhA
 lvI
-lvI
+cDs
 bLH
 beU
 bgd

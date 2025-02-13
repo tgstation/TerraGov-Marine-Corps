@@ -652,6 +652,8 @@
 // shuttle signals
 #define COMSIG_SHUTTLE_SETMODE "shuttle_setmode"
 
+#define COMSIG_MINIDROPSHIP_BEGIN_LANDING "minidropship_begin_landing"
+
 #define COMSIG_DROPSHIP_EQUIPMENT_UNEQUIPPED "shuttle_equipment_unequipped"
 
 // xeno stuff

@@ -6690,6 +6690,12 @@
 	dir = 6
 	},
 /area/mainship/squads/general)
+"inS" = (
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "inU" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -14555,7 +14561,7 @@
 /turf/closed/wall/mainship/white,
 /area/medical/morgue)
 "rSQ" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
 /turf/open/floor/mainship/orange{
 	dir = 4
 	},
@@ -15417,6 +15423,12 @@
 /obj/machinery/vending/armor_supply,
 /turf/open/floor/mainship/mono,
 /area/mainship/hallways/hangar/droppod)
+"tcq" = (
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "tdm" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/wood,
@@ -18972,7 +18984,7 @@
 /turf/closed/wall/mainship,
 /area/mainship/hallways/hangar)
 "xtm" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
 /turf/open/floor/mainship/orange{
 	dir = 8
 	},
@@ -50802,7 +50814,7 @@ pLk
 uKp
 mJL
 osb
-osb
+inS
 xtm
 tzk
 dpY
@@ -51316,7 +51328,7 @@ mzs
 uKp
 vYo
 ctR
-ctR
+tcq
 rSQ
 duy
 fwq

@@ -910,6 +910,12 @@
 	},
 /turf/open/floor/mainship/sterile/dark,
 /area/mainship/medical)
+"aNJ" = (
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
+/turf/open/floor/mainship/orange{
+	dir = 4
+	},
+/area/mainship/hallways/hangar)
 "aOy" = (
 /obj/structure/mirror,
 /obj/structure/sink,
@@ -7745,7 +7751,7 @@
 	},
 /area/mainship/squads/general)
 "gzs" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
 /turf/open/floor/mainship/orange{
 	dir = 10
 	},
@@ -21867,6 +21873,12 @@
 /obj/structure/table/wood/gambling,
 /turf/open/floor/wood,
 /area/mainship/living/evacuation)
+"rMi" = (
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
+/turf/open/floor/mainship/orange{
+	dir = 8
+	},
+/area/mainship/hallways/hangar)
 "rMY" = (
 /obj/machinery/camera/autoname/mainship{
 	dir = 1
@@ -23677,7 +23689,7 @@
 /turf/open/floor/mainship/black,
 /area/mainship/hallways/repair_bay)
 "tuT" = (
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
 /turf/open/floor/mainship/orange{
 	dir = 6
 	},
@@ -36285,7 +36297,7 @@ dSy
 fcW
 mtB
 uLq
-uLq
+rMi
 gzs
 cSI
 mPK
@@ -36489,7 +36501,7 @@ dmG
 htw
 fsO
 wQY
-wQY
+aNJ
 tuT
 cSI
 mPK

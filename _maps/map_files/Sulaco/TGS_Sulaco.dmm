@@ -12154,7 +12154,7 @@
 /area/sulaco/maintenance/lower_maint)
 "eRL" = (
 /obj/effect/turf_decal/warning_stripes,
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "eTC" = (
@@ -24585,6 +24585,11 @@
 /obj/machinery/vending/uniform_supply,
 /turf/open/floor/prison,
 /area/mainship/living/pilotbunks)
+"ujP" = (
+/obj/effect/turf_decal/warning_stripes,
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
+/turf/open/floor/prison,
+/area/sulaco/hangar/storage)
 "ujW" = (
 /obj/structure/bed/chair/nometal{
 	dir = 4
@@ -24767,7 +24772,7 @@
 /area/sulaco/maintenance/upperdeck_north_maint)
 "uwV" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/shuttle/flare_launcher,
+/obj/structure/dropship_equipment/shuttle/nade_launcher,
 /obj/effect/turf_decal/warning_stripes,
 /obj/machinery/light/mainship{
 	dir = 4
@@ -27537,8 +27542,8 @@
 /area/mainship/living/basketball)
 "yfI" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/structure/dropship_equipment/shuttle/sentry_holder,
 /obj/effect/turf_decal/warning_stripes,
+/obj/structure/dropship_equipment/shuttle/tangle_emitter,
 /turf/open/floor/prison,
 /area/sulaco/hangar/storage)
 "yfM" = (
@@ -68763,7 +68768,7 @@ aPF
 aPF
 aPF
 wGp
-yle
+ujP
 yfI
 pWS
 aUL
