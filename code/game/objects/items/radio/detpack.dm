@@ -1,6 +1,6 @@
 /obj/item/detpack
 	name = "detonation pack"
-	desc = "Programmable remotely triggered 'smart' explosive controlled via a signaler, used for demolitions and impromptu booby traps. Can be set to breach or demolition detonation patterns. Unique action to arm. Click on it with a signaller to copy over the signal code."
+	desc = "Programmable remotely triggered 'smart' explosive controlled via a signaler, used for demolitions and impromptu booby traps. Can be set to breach or demolition detonation patterns. Unique action to arm. Click on it with a signaler to copy over the signal code."
 	gender = PLURAL
 	icon = 'icons/obj/det.dmi'
 	icon_state = "detpack_off"
