@@ -1,3 +1,7 @@
+#define TESLA_TURRET_MAX_RANGE 7
+#define TESLA_TURRET_COST_PASSIVE 25
+#define TESLA_TURRET_COST_ACTIVE 75
+
 /obj/item/tesla_turret
 	name = "tesla turret"
 	desc = "A turret that drains plasma of nearby xenomorphs."
@@ -7,13 +11,13 @@
 
 	/// Variables to be used by the deployable, are moved into the deployable when deployed and back when undeployed.
 	/// Range, duh.
-	var/max_range = 5
+	var/max_range = TESLA_TURRET_MAX_RANGE
 	/// Battery to run on
 	var/obj/item/cell/battery
 	/// Cost for having active but doing nothing
-	var/passive_cost = 25
+	var/passive_cost = TESLA_TURRET_COST_PASSIVE
 	/// Cost PER XENO to drain on shock
-	var/active_cost = 75
+	var/active_cost = TESLA_TURRET_COST_ACTIVE
 
 /obj/item/tesla_turret/Initialize(mapload)
 	. = ..()
@@ -95,15 +99,15 @@
 	allow_pass_flags = PASSABLE
 	hud_possible = list(MACHINE_HEALTH_HUD, MACHINE_AMMO_HUD)
 	/// Range, duh.
-	var/max_range = 5
+	var/max_range = TESLA_TURRET_MAX_RANGE
 	/// Battery to run on
 	var/obj/item/cell/battery
 	/// Is this running
 	VAR_PRIVATE/active = FALSE
 	/// Cost for having active but doing nothing
-	var/passive_cost = 25
+	var/passive_cost = TESLA_TURRET_COST_PASSIVE
 	/// Cost PER XENO to drain on shock
-	var/active_cost = 75
+	var/active_cost = TESLA_TURRET_COST_ACTIVE
 
 /obj/machinery/deployable/tesla_turret/Initialize(mapload, obj/item/tesla_turret/internal_item, mob/deployer)
 	. = ..()
@@ -255,3 +259,7 @@
 		return FALSE
 
 	return ..()
+
+#undef TESLA_TURRET_MAX_RANGE
+#undef TESLA_TURRET_COST_PASSIVE
+#undef TESLA_TURRET_COST_ACTIVE
