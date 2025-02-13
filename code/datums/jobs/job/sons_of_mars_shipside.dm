@@ -28,7 +28,7 @@
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to</b> SOM High Command<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 15 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Lead the SOM forces and complete your mission. Support the marines and communicate with your command staff, execute orders.
 	"}
@@ -81,7 +81,7 @@ Godspeed, commander! And remember, you are not above the law."})
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> commanding officer<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Lead your platoon on the field. Take advantage of the military staff and assets you will need for the mission, keep good relations between command and the marines. Assist your commander if available.
 	"}
@@ -133,7 +133,7 @@ Make the SOM proud!"})
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> Captain<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 3 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Take charge of one of the four squads, be their eyes and ears providing intel and additional shipside support via Orbital Bombardments.
 	"}
@@ -182,7 +182,7 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 3 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Choose between the Condor, a modular attack aircraft that provides close air support with a variety of weapons ranging from the inbuilt gatling to wing mounted rockets; or the Tadpole, a versatile dropship capable of fulfilling roles ranging from ambulance to mobile bunker.
 	"}
@@ -236,7 +236,7 @@ Though you are a warrant officer, your authority is limited to the dropship and 
 	html_description = {"
 		<b>Difficulty</b>:Very Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 15 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Act as the spearhead of the operation
 	"}
@@ -293,7 +293,7 @@ You can serve your Division in a variety of roles, so choose carefully."})
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Supervise the engineers and technicians on duty. Overview the ship’s engine. Teach what’s right and what’s wrong about engineering, cut corners and find places in any FOB that can easily be destroyed.
 	"}
@@ -402,7 +402,7 @@ requisitions line and later on to be ready to send supplies for marines who are 
 	html_description = {"
 		<b>Difficulty</b>: Medium<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 1 hour playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		Supply the SOM with deluxe equipment to ensure success.
 	"}
@@ -461,7 +461,7 @@ A happy base is a well-functioning base."})
 	html_description = {"
 		<b>Difficulty</b>: Hard<br /><br />
 		<b>You answer to the</b> acting Command Staff<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Campaign<br /><br /><br />
 		<b>Duty</b>: Communicate and lead your fellow medical staff (if available), supervise the medical department. Coordinate and teach fellow medical staff and corpsmen what they’re doing for treating an injury. Be the sole doctor in the Canterbury.
 	"}

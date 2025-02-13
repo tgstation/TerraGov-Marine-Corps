@@ -20,9 +20,9 @@
 	///How long the victim will be snared for
 	var/hit_immobilize = 2 SECONDS
 	///How long the victim will be KO'd
-	var/hit_weaken = 2 SECONDS
+	var/hit_paralyze = 2 SECONDS
 	///List for bodyparts that upon being hit cause the target to become weakened
-	var/list/weaken_list = list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
+	var/list/paralyze_list = list(BODY_ZONE_CHEST, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND)
 	///List for bodyparts that upon being hit cause the target to become ensnared
 	var/list/snare_list = list(BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_GROIN, BODY_ZONE_L_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
 
@@ -35,8 +35,8 @@
 	if(proj.def_zone == BODY_ZONE_HEAD)
 		human_victim.blind_eyes(hit_eye_blind)
 		human_victim.balloon_alert(human_victim, "The web blinds you!")
-	else if(proj.def_zone in weaken_list)
-		human_victim.apply_effect(hit_weaken, WEAKEN)
+	else if(proj.def_zone in paralyze_list)
+		human_victim.apply_effect(hit_paralyze, EFFECT_PARALYZE)
 		human_victim.balloon_alert(human_victim, "The web knocks you down!")
 	else if(proj.def_zone in snare_list)
 		human_victim.Immobilize(hit_immobilize, TRUE)

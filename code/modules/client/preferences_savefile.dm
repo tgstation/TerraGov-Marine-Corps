@@ -152,6 +152,7 @@
 	READ_FILE(S["toggles_sound"], toggles_sound)
 	READ_FILE(S["toggles_gameplay"], toggles_gameplay)
 	READ_FILE(S["fullscreen_mode"], fullscreen_mode)
+	READ_FILE(S["show_status_bar"], show_status_bar)
 	READ_FILE(S["show_typing"], show_typing)
 	READ_FILE(S["ghost_hud"], ghost_hud)
 	READ_FILE(S["windowflashing"], windowflashing)
@@ -172,6 +173,7 @@
 	READ_FILE(S["radio_tts_flags"], radio_tts_flags)
 	READ_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	READ_FILE(S["split_admin_tabs"], split_admin_tabs)
+	READ_FILE(S["hear_looc_anywhere_as_staff"], hear_looc_anywhere_as_staff)
 
 	READ_FILE(S["key_bindings"], key_bindings)
 	READ_FILE(S["slot_draw_order"], slot_draw_order_pref)
@@ -215,6 +217,7 @@
 	toggles_sound = sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
 	toggles_gameplay = sanitize_integer(toggles_gameplay, NONE, MAX_BITFLAG, initial(toggles_gameplay))
 	fullscreen_mode = sanitize_integer(fullscreen_mode, FALSE, TRUE, initial(fullscreen_mode))
+	show_status_bar = sanitize_integer(show_status_bar, FALSE, TRUE, initial(show_status_bar))
 	show_typing = sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud = sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing = sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
@@ -265,6 +268,7 @@
 
 	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
 	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
+	hear_looc_anywhere_as_staff = sanitize_integer(hear_looc_anywhere_as_staff, FALSE, TRUE, initial(hear_looc_anywhere_as_staff))
 	return TRUE
 
 
@@ -296,6 +300,7 @@
 	toggles_sound = sanitize_integer(toggles_sound, NONE, MAX_BITFLAG, initial(toggles_sound))
 	toggles_gameplay = sanitize_integer(toggles_gameplay, NONE, MAX_BITFLAG, initial(toggles_gameplay))
 	fullscreen_mode = sanitize_integer(fullscreen_mode, FALSE, TRUE, initial(fullscreen_mode))
+	show_status_bar = sanitize_integer(show_status_bar, FALSE, TRUE, initial(show_status_bar))
 	show_typing = sanitize_integer(show_typing, FALSE, TRUE, initial(show_typing))
 	ghost_hud = sanitize_integer(ghost_hud, NONE, MAX_BITFLAG, initial(ghost_hud))
 	windowflashing = sanitize_integer(windowflashing, FALSE, TRUE, initial(windowflashing))
@@ -341,6 +346,7 @@
 	// Admin
 	fast_mc_refresh = sanitize_integer(fast_mc_refresh, FALSE, TRUE, initial(fast_mc_refresh))
 	split_admin_tabs = sanitize_integer(split_admin_tabs, FALSE, TRUE, initial(split_admin_tabs))
+	hear_looc_anywhere_as_staff = sanitize_integer(hear_looc_anywhere_as_staff, FALSE, TRUE, initial(hear_looc_anywhere_as_staff))
 
 	WRITE_FILE(S["default_slot"], default_slot)
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
@@ -354,6 +360,7 @@
 	WRITE_FILE(S["toggles_sound"], toggles_sound)
 	WRITE_FILE(S["toggles_gameplay"], toggles_gameplay)
 	WRITE_FILE(S["fullscreen_mode"], fullscreen_mode)
+	WRITE_FILE(S["show_status_bar"], show_status_bar)
 	WRITE_FILE(S["show_typing"], show_typing)
 	WRITE_FILE(S["ghost_hud"], ghost_hud)
 	WRITE_FILE(S["windowflashing"], windowflashing)
@@ -399,6 +406,7 @@
 	// Admin options
 	WRITE_FILE(S["fast_mc_refresh"], fast_mc_refresh)
 	WRITE_FILE(S["split_admin_tabs"], split_admin_tabs)
+	WRITE_FILE(S["hear_looc_anywhere_as_staff"], hear_looc_anywhere_as_staff)
 
 	return TRUE
 

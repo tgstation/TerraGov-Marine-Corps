@@ -3,7 +3,7 @@
 	display_name = "Defender"
 	upgrade_name = ""
 	caste_desc = "An alien with an armored crest. It looks very tough."
-
+	base_strain_type = /mob/living/carbon/xenomorph/defender
 	caste_type_path = /mob/living/carbon/xenomorph/defender
 
 	tier = XENO_TIER_ONE

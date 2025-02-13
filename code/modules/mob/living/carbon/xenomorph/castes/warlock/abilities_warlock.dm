@@ -175,7 +175,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(1 SECONDS, 1 SECONDS)
+				H.apply_effects(paralyze = 1 SECONDS)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 6)
@@ -232,11 +232,11 @@
 	alpha = obj_integrity * 255 / max_integrity
 	if(obj_integrity <= 0)
 		release_projectiles()
-		owner.apply_effect(1 SECONDS, WEAKEN)
+		owner.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 
 /obj/effect/xeno/shield/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	release_projectiles()
-	owner.apply_effect(1 SECONDS, WEAKEN)
+	owner.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 	return ..()
 
 ///Unfeezes the projectiles on their original path
@@ -582,14 +582,12 @@
 /datum/action/ability/activable/xeno/psy_blast/use_ability(atom/A)
 	owner.balloon_alert(owner, "We channel our psychic power")
 	generate_particles(A, 7)
-	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	var/datum/ammo/energy/xeno/ammo_type = xeno_owner.ammo
 	xeno_owner.update_glow(3, 3, ammo_type.glow_color)
 
 	if(!do_after(xeno_owner, 1 SECONDS, IGNORE_TARGET_LOC_CHANGE, A, BUSY_ICON_DANGER) || !can_use_ability(A, FALSE) || !(A in range(get_screen_size(TRUE), owner)))
 		owner.balloon_alert(owner, "Our focus is disrupted")
 		end_channel()
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 		return fail_activate()
 
 	succeed_activate()
@@ -609,7 +607,6 @@
 
 	add_cooldown()
 	update_button_icon()
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, PSYCHIC_BLAST_ABILITY_TRAIT)
 	addtimer(CALLBACK(src, PROC_REF(end_channel)), 5)
 
 /datum/action/ability/activable/xeno/psy_blast/update_button_icon()

@@ -57,6 +57,10 @@
 	.["revision_date"] = GLOB.revdata.date
 	.["hub"] = GLOB.hub_visibility
 
+	var/public_address = CONFIG_GET(string/public_address)
+	if(public_address)
+		.["public_address"] = public_address
+
 	var/list/adm = get_admin_counts()
 	var/list/presentmins = adm["present"]
 	var/list/afkmins = adm["afk"]
@@ -77,3 +81,14 @@
 	.["hard_popcap"] = CONFIG_GET(number/hard_popcap) || 0
 	.["extreme_popcap"] = CONFIG_GET(number/extreme_popcap) || 0
 	.["popcap"] = max(CONFIG_GET(number/soft_popcap), CONFIG_GET(number/hard_popcap), CONFIG_GET(number/extreme_popcap)) //generalized field for this concept for use across ss13 codebases
+
+
+/datum/world_topic/ping
+	keyword = "ping"
+	log = FALSE
+
+
+/datum/world_topic/ping/Run(list/input)
+	. = 0
+	for (var/client/C in GLOB.clients)
+		++.
