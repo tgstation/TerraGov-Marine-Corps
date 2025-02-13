@@ -279,7 +279,7 @@
 		for(var/obj/effect/overlay/temp/laser_target/ob_lase AS in target_list)
 			if(ob_lase.lasertype != LASER_TYPE_OB)
 				continue
-			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(ob_lase)];selected_target=[REF(ob_lase)]'>[ob_lase]</a><br>"
+			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(ob_lase)];selected_target=[REF(ob_lase)]'>[ob_lase.name]</a><br>"
 	else
 		dat += "[span_warning("None")]<br>"
 	dat += "<b>Selected Target:</b><br>"
@@ -305,7 +305,7 @@
 	dat += "<B>[current_squad ? "[current_squad.name] " : ""]Laser Targets:</b><br>"
 	if(length(target_list))
 		for(var/obj/effect/overlay/temp/laser_target/lase AS in target_list) //for whatever reason we can fire railgun on any lase type... in practical terms, any type EXCEPT railgun
-			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(lase)];selected_target=[REF(lase)]'>[lase]</a><br>"
+			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(lase)];selected_target=[REF(lase)]'>[lase.name]</a><br>"
 	else
 		dat += "[span_warning("None")]<br>"
 	dat += "<b>Selected Target:</b><br>"

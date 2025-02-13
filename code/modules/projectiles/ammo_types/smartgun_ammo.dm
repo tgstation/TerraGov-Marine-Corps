@@ -81,7 +81,7 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 1 SECONDS, slowdown = 1, max_range = 12)
+	staggerstun(target_mob, proj, paralyze = 1 SECONDS, slowdown = 1, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/plasmaloss
 	name = "smart tanglefoot spotting bullet"

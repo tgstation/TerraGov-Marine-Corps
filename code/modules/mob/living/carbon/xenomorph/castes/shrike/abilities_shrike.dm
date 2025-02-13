@@ -190,7 +190,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(2 SECONDS, 2 SECONDS)
+				H.apply_effects(paralyze = 2 SECONDS)
 				shake_camera(H, 2, 1)
 			things_to_throw += affected
 
@@ -411,7 +411,7 @@
 			var/mob/living/carbon/human/H = movable_victim
 			if(H.stat == DEAD)
 				continue
-			H.apply_effects(1,1)
+			H.apply_effects(paralyze = 0.1 SECONDS)
 			H.adjust_stagger(2 SECONDS)
 			shake_camera(H, 2, 1)
 		else if(isitem(movable_victim))
