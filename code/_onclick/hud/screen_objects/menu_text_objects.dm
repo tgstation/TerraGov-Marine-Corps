@@ -120,24 +120,6 @@
 	var/mob/new_player/player = hud.mymob
 	player.try_to_observe()
 
-/atom/movable/screen/text/lobby/clickable/manifest
-	maptext = "<span class='lobbytext'>VIEW MANIFEST</span>"
-	icon_state = "manifest"
-
-/atom/movable/screen/text/lobby/clickable/manifest/Click()
-	. = ..()
-	var/mob/new_player/player = hud.mymob
-	player.view_manifest()
-
-/atom/movable/screen/text/lobby/clickable/xenomanifest
-	maptext = "<span class='lobbytext'>VIEW HIVE LEADERS</span>"
-	icon_state = "manifest"
-
-/atom/movable/screen/text/lobby/clickable/xenomanifest/Click()
-	. = ..()
-	var/mob/new_player/player = hud.mymob
-	player.view_xeno_manifest()
-
 /atom/movable/screen/text/lobby/clickable/background
 	maptext = "<span class='lobbytext'>BACKGROUND</span>"
 	icon_state = "background"
