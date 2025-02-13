@@ -36,6 +36,8 @@
 		/datum/job/terragov/squad/engineer = 5,
 		/datum/job/xenomorph = NUCLEAR_WAR_LARVA_POINTS_NEEDED,
 	)
+	//Timer for xenos collapsing when they have no silo or corrupted generators.
+	var/siloless_hive_timer
 
 /datum/game_mode/infestation/nuclear_war/post_setup()
 	. = ..()
@@ -63,10 +65,53 @@
 	if(round_stage == INFESTATION_MARINE_CRASHING)
 		round_finished = MODE_INFESTATION_M_MINOR
 		return
-	round_finished = MODE_INFESTATION_M_MAJOR
 
 /datum/game_mode/infestation/nuclear_war/get_hivemind_collapse_countdown()
 	var/eta = timeleft(orphan_hive_timer) MILLISECONDS
+	return !isnull(eta) ? round(eta) : 0
+
+//This starts and stops the siloless collapse timer
+/datum/game_mode/infestation/nuclear_war/proc/update_silo_death_timer(datum/hive_status/silo_owner)
+	if(!(silo_owner.hive_flags & HIVE_CAN_COLLAPSE_FROM_SILO))
+		return
+
+	//handle potential stopping
+	if(round_stage != INFESTATION_MARINE_DEPLOYMENT)
+		if(siloless_hive_timer)
+			deltimer(siloless_hive_timer)
+			siloless_hive_timer = null
+		return
+	if(length(GLOB.xeno_resin_silos_by_hive[XENO_HIVE_NORMAL]))
+		if(siloless_hive_timer)
+			deltimer(siloless_hive_timer)
+			siloless_hive_timer = null
+		return
+	if(GLOB.corrupted_generators)
+		if(siloless_hive_timer)
+			deltimer(siloless_hive_timer)
+			siloless_hive_timer = null
+		return
+	//handle starting
+	if(siloless_hive_timer)
+		return
+
+	silo_owner.xeno_message("We don't have any silos or corrupted generators! The hive will collapse if nothing is done.", "xenoannounce", 6, TRUE)
+	siloless_hive_timer = addtimer(CALLBACK(src, PROC_REF(siloless_hive_collapse)), NUCLEAR_WAR_SILO_COLLAPSE, TIMER_STOPPABLE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SILOLESS_COLLAPSE)
+
+///called by [/proc/update_silo_death_timer] after [NUCLEAR_WAR_SILO_COLLAPSE] elapses to end the round
+/datum/game_mode/infestation/nuclear_war/proc/siloless_hive_collapse()
+	if(!(round_type_flags & MODE_INFESTATION))
+		return
+	if(round_finished)
+		return
+	if(round_stage == INFESTATION_MARINE_CRASHING)
+		return
+	round_finished = MODE_INFESTATION_M_MAJOR
+
+//Gets the siloless collapse timer in miliseconds for the hud timer.
+/datum/game_mode/infestation/nuclear_war/proc/get_siloless_collapse_countdown()
+	var/eta = timeleft(siloless_hive_timer) MILLISECONDS
 	return !isnull(eta) ? round(eta) : 0
 
 /datum/game_mode/infestation/nuclear_war/check_finished()

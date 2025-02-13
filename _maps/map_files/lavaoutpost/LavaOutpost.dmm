@@ -163,8 +163,8 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/north)
 "bM" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/one)
 "bP" = (
@@ -2852,17 +2852,17 @@
 /turf/open/floor/plating,
 /area/lavaland/cave/central)
 "Ew" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/three)
 "Ey" = (
 /turf/open/floor/tile/white,
 /area/lavaland/security)
 "Ez" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /obj/machinery/light/small,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/three)
 "EB" = (
@@ -3035,9 +3035,9 @@
 /turf/closed/wall,
 /area/lavaland/cave/west)
 "Gg" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /obj/machinery/light/small,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/one)
 "Gh" = (
@@ -3895,8 +3895,8 @@
 /turf/open/lavaland/basalt,
 /area/lavaland/cave/central)
 "Qc" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/two)
 "Qi" = (
@@ -3904,11 +3904,11 @@
 /turf/open/liquid/lava/autosmoothing,
 /area/lavaland/lava)
 "Qm" = (
-/obj/machinery/power/geothermal,
 /obj/structure/cable,
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/lavaland/engie/two)
 "Qt" = (
