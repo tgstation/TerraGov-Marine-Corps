@@ -279,7 +279,7 @@
 		for(var/obj/effect/overlay/temp/laser_target/ob_lase AS in target_list)
 			if(ob_lase.lasertype != LASER_TYPE_OB)
 				continue
-			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(ob_lase)];selected_target=[REF(ob_lase)]'>[ob_lase]</a><br>"
+			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(ob_lase)];selected_target=[REF(ob_lase)]'>[ob_lase.name]</a><br>"
 	else
 		dat += "[span_warning("None")]<br>"
 	dat += "<b>Selected Target:</b><br>"
@@ -305,7 +305,7 @@
 	dat += "<B>[current_squad ? "[current_squad.name] " : ""]Laser Targets:</b><br>"
 	if(length(target_list))
 		for(var/obj/effect/overlay/temp/laser_target/lase AS in target_list) //for whatever reason we can fire railgun on any lase type... in practical terms, any type EXCEPT railgun
-			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(lase)];selected_target=[REF(lase)]'>[lase]</a><br>"
+			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(lase)];selected_target=[REF(lase)]'>[lase.name]</a><br>"
 	else
 		dat += "[span_warning("None")]<br>"
 	dat += "<b>Selected Target:</b><br>"
@@ -638,7 +638,7 @@
 
 	target.playsound_local(target, "sound/machines/dotprinter.ogg", 35)
 	to_chat(target, span_notice("<b><i>New message from [sender.real_name]:</b> [message]</i>"))
-	target.play_screen_text("<span class='maptext' style=font-size:24pt;text-align:left valign='top'><u>CIC MESSAGE FROM [sender.real_name]:</u></span><br>" + message, new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, sender), "#32cd32")
+	target.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("CIC MESSAGE FROM [sender.real_name]", message, LEFT_ALIGN_TEXT), new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, sender), "#32cd32")
 
 	var/list/tts_listeners = filter_tts_listeners(sender, target, null, RADIO_TTS_COMMAND)
 	if(!length(tts_listeners))

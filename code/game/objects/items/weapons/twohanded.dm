@@ -457,23 +457,23 @@
 	var/additional_damage = 75
 	///stun value in crush mode
 	var/crush_stun_amount = 2 SECONDS
-	///weaken value in crush mode
-	var/crush_weaken_amount = 4 SECONDS
+	///paralyze value in crush mode
+	var/crush_paralyze_amount = 4 SECONDS
 	///stun value in knockback mode
 	var/knockback_stun_amount = 2 SECONDS
-	///weaken value in knockback mode
-	var/knockback_weaken_amount = 2 SECONDS
+	///paralyze value in knockback mode
+	var/knockback_paralyze_amount = 2 SECONDS
 	///stun value
 	var/stun
-	///weaken value
-	var/weaken
+	///paralyze value
+	var/paralyze
 	///knockback value; 0 = crush mode, 1 = knockback mode
 	var/knockback
 
 /obj/item/weapon/twohanded/rocketsledge/Initialize(mapload)
 	. = ..()
 	stun = crush_stun_amount
-	weaken = crush_weaken_amount
+	paralyze = crush_paralyze_amount
 	knockback = 0
 	create_reagents(max_fuel, null, list(/datum/reagent/fuel = max_fuel))
 	AddElement(/datum/element/strappable)
@@ -528,14 +528,14 @@
 	. = ..()
 	if(knockback)
 		stun = crush_stun_amount
-		weaken = crush_weaken_amount
+		paralyze = crush_paralyze_amount
 		knockback = 0
 		balloon_alert(user, "Selected mode: CRUSH.")
 		playsound(loc, 'sound/machines/switch.ogg', 25)
 		return
 
 	stun = knockback_stun_amount
-	weaken = knockback_weaken_amount
+	paralyze = knockback_paralyze_amount
 	knockback = 1
 	balloon_alert(user, "Selected mode: KNOCKBACK.")
 	playsound(loc, 'sound/machines/switch.ogg', 25)
@@ -580,7 +580,7 @@
 			stun = knockback ? knockback_stun_amount : crush_stun_amount
 
 	if(!M.IsStun() && !M.IsParalyzed() && !isxenoqueen(M) && !isxenoking(M)) //Prevent chain stunning. Queen and King are protected.
-		M.apply_effects(stun,weaken)
+		M.apply_effects(stun,paralyze)
 
 	return ..()
 

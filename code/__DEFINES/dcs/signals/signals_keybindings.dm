@@ -14,6 +14,7 @@
 #define COMSIG_KB_CLIENT_GETHELP_DOWN "keybinding_client_gethelp_down"
 #define COMSIG_KB_CLIENT_SCREENSHOT_DOWN "keybinding_client_screenshot_down"
 #define COMSIG_KB_CLIENT_MINIMALHUD_DOWN "keybinding_client_minimalhud_down"
+#define COMSIG_KB_CLIENT_FULLSCREEN_DOWN "keybinding_client_fullscreen_down"
 #define COMSIG_KB_CLIENT_SAY_DOWN "keybinding_client_say_down"
 #define COMSIG_KB_CLIENT_RADIO_DOWN "keybinding_client_radio_down"
 #define COMSIG_KB_CLIENT_ME_DOWN "keybinding_client_me_down"
@@ -145,6 +146,8 @@
 #define COMSIG_XENOABILITY_DODGE "xenoability_dodge"
 #define COMSIG_XENOABILITY_IMPALE "xenoability_impale"
 #define COMSIG_XENOABILITY_TAIL_TRIP "xenoability_tail_trip"
+#define COMSIG_XENOABILITY_TAILHOOK "xenoability_tailhook"
+#define COMSIG_XENOABILITY_BATONPASS "xenoability_batonpass"
 #define COMSIG_XENOABILITY_XENO_SPIT "xenoability_xeno_spit"
 #define COMSIG_XENOABILITY_HIDE "xenoability_hide"
 #define COMSIG_XENOABILITY_NEUROTOX_STING "xenoability_neurotox_sting"
@@ -290,6 +293,11 @@
 #define COMSIG_XENOABILITY_HIVE_SUMMON "xenoability_hive_summon"
 
 #define COMSIG_XENOABILITY_SCATTER_SPIT "xenoability_scatter_spit"
+#define COMSIG_XENOABILITY_TOSS_GRENADE "xenoability_toss_grenade"
+#define COMSIG_XENOABILITY_PICK_GRENADE "xenoability_pick_grenade"
+#define COMSIG_XENOABILITY_ACID_MINE "xenoability_acid_mine"
+#define COMSIG_XENOABILITY_GAS_MINE "xenoability_gas_mine"
+#define COMSIG_XENOABILITY_ACID_ROCKET "xenoability_acid_rocket"
 
 #define COMSIG_XENOABILITY_WEB_SPIT "xenoability_web_spit"
 #define COMSIG_XENOABILITY_BURROW "xenoability_burrow"
