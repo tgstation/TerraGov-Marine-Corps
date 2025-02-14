@@ -442,8 +442,6 @@
 	)
 	/// The particles effects from activation.
 	var/obj/effect/abstract/particle_holder/particle_holder
-	/// The timer id for the acid explode proc or acid increase proc.
-	var/timer_id
 	/// The acid level of the ability. Affects radius and movement speed.
 	var/acid_level = 0
 
@@ -453,36 +451,36 @@
 		return FALSE
 	if(xeno_owner.plasma_stored < ability_cost)
 		return FALSE
-	if(length(xeno_owner.do_actions) && !LAZYACCESS(xeno_owner.do_actions, xeno_owner))
-		return FALSE
+	if(xeno_owner.xeno_flags & XENO_LEAPING)
+		return
 
 /datum/action/ability/activable/xeno/acidic_missile/use_ability(atom/A)
 	if(!acid_level)
+		if(length(xeno_owner.do_actions) && LAZYACCESS(xeno_owner.do_actions, xeno_owner))
+			return
 		particle_holder = new(owner, /particles/melter_steam)
 		particle_holder.pixel_y = -8
 		particle_holder.pixel_x = 10
-		increase_acid_level()
+		increase_acid_level(FALSE)
 		return
-	deltimer(timer_id)
 	RegisterSignal(xeno_owner, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_complete))
 	RegisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER, PROC_REF(on_stagger))
 	xeno_owner.xeno_flags |= XENO_LEAPING
 	xeno_owner.throw_at(A, HUNTER_POUNCE_RANGE, XENO_POUNCE_SPEED, xeno_owner)
 
-/// Cleans up after throw is finished.
+/// Completes the ability and triggers the acid explosion.
 /datum/action/ability/activable/xeno/acidic_missile/proc/throw_complete(datum/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(xeno_owner, list(COMSIG_XENO_OBJ_THROW_HIT, COMSIG_XENOMORPH_LEAP_BUMP, COMSIG_MOVABLE_POST_THROW))
-	xeno_owner.xeno_flags &= ~XENO_LEAPING
-	INVOKE_ASYNC(src, PROC_REF(acid_explosion), FALSE, TRUE)
+	INVOKE_ASYNC(src, PROC_REF(acid_explosion), TRUE, TRUE, FALSE, TRUE)
 
-/// Forcibly triggers the acid explosion at a reduced acid level.
+/// Completes the ability and triggers the acid explosion at a reduced acid level.
 /datum/action/ability/activable/xeno/acidic_missile/proc/on_stagger(datum/source, amount, ignore_canstun)
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, PROC_REF(acid_explosion), TRUE)
+	acid_level = max(0, acid_level - 1)
+	INVOKE_ASYNC(src, PROC_REF(acid_explosion), TRUE, TRUE, FALSE, TRUE)
 
 /// Increases acid level and handles its associated effects.
-/datum/action/ability/activable/xeno/acidic_missile/proc/increase_acid_level()
+/datum/action/ability/activable/xeno/acidic_missile/proc/increase_acid_level(require_acid_level = TRUE)
 	switch(acid_level)
 		if(0)
 			xeno_owner.add_atom_colour("#bcff70", FIXED_COLOR_PRIORITY)
@@ -498,40 +496,48 @@
 			xeno_owner.do_jitter_animation(4000)
 			xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_ACIDIC_MISSILE)
 			xeno_owner.emote("roar2")
-			//if(do_after(owner, 2.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks))))
-			//	acid_explosion(TRUE)
-			timer_id = addtimer(CALLBACK(src, PROC_REF(acid_explosion), TRUE), 2.5 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+			if(do_after(owner, 2.5 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks))))
+				acid_level--
+			if(!(xeno_owner.xeno_flags & XENO_LEAPING))
+				acid_explosion()
 			return
-	acid_level++
-	//if(do_after(xeno_owner, 1.6 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks))))
-	//	increase_acid_level()
-	//	return
-	//if(!acid_level)
-	//	return
-	//acid_explosion(TRUE)
-	timer_id = addtimer(CALLBACK(src, PROC_REF(increase_acid_level), TRUE), 1.6 SECONDS, TIMER_STOPPABLE|TIMER_UNIQUE)
+	if(do_after(xeno_owner, 1.6 SECONDS, IGNORE_HELD_ITEM|IGNORE_LOC_CHANGE, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(do_after_checks), require_acid_level)))
+		acid_level++
+		increase_acid_level()
+		return
+	if(xeno_owner.xeno_flags & XENO_LEAPING)
+		return
+	acid_level = max(0, acid_level - 1)
+	acid_explosion()
 
-/datum/action/ability/activable/xeno/acidic_missile/proc/do_after_checks()
-	return acid_level > 0 ? TRUE : FALSE
+/// Additional checks for do_after. They must have acid level, enough plasma, and must not be leaping.
+/datum/action/ability/activable/xeno/acidic_missile/proc/do_after_checks(require_acid_level = TRUE)
+	if(require_acid_level && !acid_level)
+		return FALSE
+	if(xeno_owner.plasma_stored < ability_cost)
+		return FALSE
+	if(xeno_owner.xeno_flags & XENO_LEAPING)
+		return FALSE
+	return TRUE
 
-/// Ends the ability and explodes with a radius based on acid level.
-/datum/action/ability/activable/xeno/acidic_missile/proc/acid_explosion(got_canceled = FALSE, do_emote = FALSE)
-	deltimer(timer_id)
+/// Resets everything related to the ability and ends/completes the ability.
+/datum/action/ability/activable/xeno/acidic_missile/proc/end_ability()
 	QDEL_NULL(particle_holder)
-	UnregisterSignal(xeno_owner, COMSIG_LIVING_STATUS_STAGGER)
-
+	UnregisterSignal(xeno_owner, list(COMSIG_MOVABLE_POST_THROW, COMSIG_LIVING_STATUS_STAGGER))
 	xeno_owner.remove_movespeed_modifier(MOVESPEED_ID_ACIDIC_MISSILE)
 	xeno_owner.remove_atom_colour(FIXED_COLOR_PRIORITY, "#bcff70")
+	if(xeno_owner.xeno_flags & XENO_LEAPING)
+		xeno_owner.xeno_flags &= ~XENO_LEAPING
+	acid_level = 0
 	add_cooldown()
+	succeed_activate()
 
-	if(acid_level && got_canceled)
-		acid_level--
-	if(!acid_level)
+/// Explodes with a radius based on acid level.
+/datum/action/ability/activable/xeno/acidic_missile/proc/acid_explosion(end_ability_afterward = TRUE, requires_plasma = TRUE, disallow_leaping = TRUE, do_emote = FALSE)
+	if(!acid_level || (requires_plasma && xeno_owner.plasma_stored < ability_cost) || (disallow_leaping && (xeno_owner.xeno_flags & XENO_LEAPING)))
+		if(end_ability_afterward)
+			end_ability()
 		return
-
-	if(do_emote)
-		xeno_owner.emote("roar4")
-
 	for(var/turf/acid_tile AS in RANGE_TURFS(acid_level - 1, xeno_owner.loc))
 		if(!line_of_sight(xeno_owner.loc, acid_tile))
 			continue
@@ -540,12 +546,10 @@
 			new /obj/effect/xenomorph/spray(acid_tile, 3 SECONDS, 16)
 			for (var/atom/movable/atom_in_acid AS in acid_tile)
 				atom_in_acid.acid_spray_act(xeno_owner)
-	acid_level = 0 // Will cause do_after to end as well.
-
-	if(got_canceled)
-		fail_activate()
-		return
-	succeed_activate()
+	if(do_emote)
+		xeno_owner.emote("roar4")
+	if(end_ability_afterward)
+		end_ability()
 
 /particles/melter_steam
 	icon = 'icons/effects/particles/smoke.dmi'
