@@ -1266,7 +1266,7 @@
 /datum/keybinding/xeno/inferno
 	name = "Inferno"
 	full_name = "Pyrogen: Inferno"
-	description = "After a windup, release a large radius of fire and burning nearby marines in the process."
+	description = "Immediately release a large radius of fire and burning nearby marines in the process."
 	keybind_signal = COMSIG_XENOABILITY_INFERNO
 
 /datum/keybinding/xeno/infernal_trigger
