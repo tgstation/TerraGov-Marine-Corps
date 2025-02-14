@@ -202,8 +202,10 @@
 		supply.add_overlay(anim_overlays)
 		animate(supply, time = 4 SECONDS, pixel_z = 0, easing=SINE_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
 	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] [span_boldnotice("Supply drop launched! Another launch will be available in [launch_cooldown/10] seconds.")]")
+	addtimer(CALLBACK(droploc, TYPE_PROC_REF(/turf, ceiling_debris)), 2.5 SECONDS)
 	addtimer(CALLBACK(src, PROC_REF(clean_supplydrop), supplies, anim_overlays), 4 SECONDS)
 
+/// handles cleanup of post-animation stuff (ie just after it lands)
 /obj/machinery/computer/supplydrop_console/proc/clean_supplydrop(list/supplies, anim_overlays)
 	for(var/obj/supply in supplies)
 		supply.cut_overlay(anim_overlays)
