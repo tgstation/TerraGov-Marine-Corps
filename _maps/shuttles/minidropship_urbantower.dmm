@@ -46,10 +46,19 @@
 /turf/open/floor/mainship/plate/outline,
 /area/shuttle/minidropship)
 "t" = (
-/obj/effect/attach_point/crew_weapon/minidropship,
-/obj/machinery/washing_machine,
-/obj/effect/urban/decal,
-/turf/open/floor/mainship/mono,
+/obj/structure/dropship_piece/tadpole/tadpole_nose/right{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/machinery/door_control{
+	dir = 1;
+	id = "minidropship_podlock";
+	name = "outer door-control"
+	},
+/obj/structure/dropship_piece/tadpole/cockpit/right{
+	dir = 1
+	},
+/turf/open/space/basic,
 /area/shuttle/minidropship)
 "v" = (
 /obj/structure/dropship_piece/glasstwo/tadpole,
@@ -61,17 +70,14 @@
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "x" = (
-/obj/structure/dropship_piece/tadpole/rearleft,
-/obj/structure/dropship_piece/tadpole/tadpole_nose/right{
+/obj/structure/dropship_piece/tadpole/tadpole_nose/left{
 	dir = 1;
 	pixel_y = 32
 	},
-/obj/machinery/door_control{
-	dir = 1;
-	id = "minidropship_podlock";
-	name = "outer door-control"
+/obj/structure/dropship_piece/tadpole/cockpit/left{
+	dir = 1
 	},
-/turf/template_noop,
+/turf/open/space/basic,
 /area/shuttle/minidropship)
 "D" = (
 /turf/open/floor/plating/plating_catwalk,
@@ -84,26 +90,17 @@
 /turf/open/floor/mainship/plate/outline,
 /area/shuttle/minidropship)
 "G" = (
-/obj/structure/dropship_piece/singlewindow/tadpole{
-	dir = 1
-	},
-/obj/structure/dropship_piece/tadpole/tadpole_nose{
-	dir = 1;
-	pixel_y = 32
-	},
 /turf/template_noop,
 /area/shuttle/minidropship)
 "I" = (
-/obj/structure/dropship_piece/tadpole/rearright,
-/obj/structure/dropship_piece/tadpole/tadpole_nose/left{
-	dir = 1;
-	pixel_y = 32
-	},
-/turf/template_noop,
+/obj/machinery/holopad,
+/obj/docking_port/mobile/marine_dropship/minidropship,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "L" = (
-/obj/machinery/holopad,
-/turf/open/floor/mainship/mono,
+/obj/effect/urban/decal/workers_decal,
+/obj/machinery/washing_machine,
+/turf/open/floor/mainship/plate/outline,
 /area/shuttle/minidropship)
 "M" = (
 /turf/template_noop,
@@ -119,8 +116,9 @@
 /turf/open/floor/mainship/plate,
 /area/shuttle/minidropship)
 "R" = (
-/obj/effect/urban/decal/workers_decal,
-/turf/open/floor/mainship/plate/outline,
+/obj/effect/attach_point/crew_weapon/minidropship,
+/obj/effect/urban/decal,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "S" = (
 /obj/machinery/door/poddoor/mainship/open{
@@ -147,9 +145,39 @@
 	},
 /turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
+"Y" = (
+/obj/structure/dropship_piece/singlewindow/tadpole{
+	dir = 1
+	},
+/obj/structure/dropship_piece/tadpole/tadpole_nose{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/structure/dropship_piece/two/weapon/leftleft{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/turf/open/floor/mainship/mono,
+/area/shuttle/minidropship)
 "Z" = (
-/obj/docking_port/mobile/marine_dropship/minidropship,
-/turf/open/floor/plating/plating_catwalk,
+/obj/structure/dropship_piece/singlewindow/tadpole{
+	dir = 1
+	},
+/obj/structure/dropship_piece/tadpole/tadpole_nose{
+	dir = 1;
+	pixel_y = 32
+	},
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/obj/structure/dropship_piece/two/weapon/rightright{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
@@ -165,47 +193,47 @@ M
 "}
 (2,1,1) = {"
 M
-I
+M
+x
 v
 S
 E
 E
 v
 b
-M
 "}
 (3,1,1) = {"
 M
 G
+Y
 m
 D
-t
-D
 R
+D
+L
 O
-M
 "}
 (4,1,1) = {"
 M
 G
-s
 Z
-L
+s
+D
+I
 D
 a
 O
-M
 "}
 (5,1,1) = {"
 M
-x
+M
+t
 V
 k
 E
 E
 V
 q
-M
 "}
 (6,1,1) = {"
 M
