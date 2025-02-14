@@ -1,0 +1,5 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - balance: "Everyone except spatial agents can only spawn mechs once"
+  - bugfix: "having just spawned a mech now does not prevent you from spawning ammo"

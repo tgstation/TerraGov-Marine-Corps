@@ -11,7 +11,7 @@
 	if(rtod - last_tgs_check < TGS_STATUS_THROTTLE)
 		return
 	last_tgs_check = rtod
-	var/server = CONFIG_GET(string/server)
+	var/server = CONFIG_GET(string/public_address) || CONFIG_GET(string/server)
 	return "Round ID: [GLOB.round_id] | Round Time: [gameTimestamp("hh:mm")] | Players: [length(GLOB.clients)] | Ground Map: [length(SSmapping.configs) ? SSmapping.configs[GROUND_MAP].map_name : "Loading..."] | Ship Map: [length(SSmapping.configs) ? SSmapping.configs[SHIP_MAP].map_name : "Loading..."] | Mode: [GLOB.master_mode] | Round Status: [SSticker.HasRoundStarted() ? (SSticker.IsRoundInProgress() ? "Active" : "Finishing") : "Starting"] | Link: [server ? server : "<byond://[world.internet_address]:[world.port]>"]"
 
 
