@@ -33,8 +33,6 @@
 	var/completed_segments = 0
 	///The current ID of the timer running
 	var/current_timer
-	///Overall seconds elapsed
-	var/seconds_elapsed = 0
 
 	///Check if someone is printing already
 	var/busy = FALSE
@@ -68,8 +66,7 @@
 
 	GLOB.nuke_disk_generators += src
 	RegisterSignal(SSdcs, COMSIG_GLOB_DROPSHIP_HIJACKED, PROC_REF(set_broken))
-	RegisterSignal(SSdcs, COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED, PROC_REF(toggle_power_overclocking), TRUE)
-	RegisterSignal(SSdcs, COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED, PROC_REF(toggle_power_overclocking), FALSE)
+	RegisterSignals(SSdcs, list(COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED, COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED), PROC_REF(toggle_power_overclocking))
 
 /obj/machinery/computer/nuke_disk_generator/Destroy()
 	GLOB.nuke_disk_generators -= src
@@ -79,11 +76,8 @@
 /obj/machinery/computer/nuke_disk_generator/process()
 	. = ..()
 	if(. || !current_timer)
-		if(running)
-			seconds_elapsed += 2 * current_overclock_multiplier
 		return
 
-	seconds_elapsed = (segment_time/10) * completed_segments
 	running = FALSE
 	deltimer(current_timer)
 	current_timer = null
@@ -116,7 +110,8 @@
 
 	data["message"] = message
 
-	data["progress"] = seconds_elapsed * 10 / (segment_time * total_segments) //*10 because we need to convert to deciseconds
+	var/percentage_time_elapsed = current_timer ? 1 - (timeleft(current_timer)*current_overclock_multiplier)/segment_time : 0
+	data["progress"] = (completed_segments + percentage_time_elapsed) / total_segments
 
 	data["time_left"] = current_timer ? round(timeleft(current_timer) * 0.1, 2) : "You shouldn't be seeing this, yell at coders."
 
@@ -197,8 +192,8 @@
 	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips_large.dmi', null, "[disk_color]_disk[current_timer ? "_on" : "_off"]", VERY_HIGH_FLOAT_LAYER))
 
 ///Enables/disables the overclock boost when colony power is active
-/obj/machinery/computer/nuke_disk_generator/proc/toggle_power_overclocking(enable_overclocking)
-	var/seconds_left = segment_time - timeleft(current_timer)
+/obj/machinery/computer/nuke_disk_generator/proc/toggle_power_overclocking(datum/source, enable_overclocking)
+	var/seconds_left = timeleft(current_timer)
 
 	if(enable_overclocking)
 		if(current_overclock_multiplier != 1) //Already activated!
@@ -208,6 +203,7 @@
 	else
 		if(current_overclock_multiplier == 1) //Already deactivated!
 			return
+		seconds_left *= current_overclock_multiplier
 		current_overclock_multiplier = 1
 
 

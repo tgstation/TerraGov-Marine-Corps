@@ -31,7 +31,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	. = ..()
 	RegisterSignals(SSdcs, list(COMSIG_GLOB_OPEN_TIMED_SHUTTERS_LATE, COMSIG_GLOB_OPEN_TIMED_SHUTTERS_XENO_HIVEMIND, COMSIG_GLOB_OPEN_SHUTTERS_EARLY, COMSIG_GLOB_TADPOLE_LANDED_OUT_LZ, COMSIG_GLOB_TADPOLE_RAPPEL_DEPLOYED_OUT_LZ), PROC_REF(activate_corruption))
 	update_icon()
-	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator", ABOVE_FLOAT_LAYER))
+	update_minimap_icon()
 
 	if(is_ground_level(z))
 		GLOB.generators_on_ground++
@@ -98,6 +98,11 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(corrupted)
 		. += image(icon, src, "overlay_corrupted", layer)
 
+/// Updates the minimap icon to whether the generator is running or not
+/obj/machinery/power/geothermal/proc/update_minimap_icon()
+	SSminimaps.remove_marker(src)
+	SSminimaps.add_marker(src, MINIMAP_FLAG_ALL, image('icons/UI_icons/map_blips.dmi', null, "generator[is_on ? "_on" : "_off"]", ABOVE_FLOAT_LAYER))
+
 /obj/machinery/power/geothermal/power_change()
 	return
 
@@ -124,6 +129,7 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 	if(power_gen_percent < 100)
 		power_gen_percent++
 		update_icon()
+		update_minimap_icon()
 		switch(power_gen_percent)
 			if(10)
 				balloon_alert_to_viewers("begins to whirr as it powers up.")
@@ -136,6 +142,8 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 /obj/machinery/power/geothermal/attack_alien(mob/living/carbon/xenomorph/xeno_attacker, damage_amount = xeno_attacker.xeno_caste.melee_damage, damage_type = BRUTE, armor_type = MELEE, effects = TRUE, armor_penetration = xeno_attacker.xeno_caste.melee_ap, isrightclick = FALSE)
 	. = ..()
 	if(corrupted) //you have no reason to interact with it if its already corrupted
+		return
+	if(xeno_attacker.status_flags & INCORPOREAL || HAS_TRAIT_FROM(xeno_attacker, TRAIT_TURRET_HIDDEN, STEALTH_TRAIT))
 		return
 
 	while(buildstate < GENERATOR_HEAVY_DAMAGE)
@@ -247,7 +255,6 @@ GLOBAL_VAR_INIT(generators_on_ground, 0)
 			return FALSE
 
 		playsound(loc, 'sound/items/welder2.ogg', 25, 1)
-		user.balloon_alert(user, "You burn the resin off.")
 		cut_overlay(GLOB.welding_sparks)
 		corrupted = 0
 		stop_processing()
@@ -352,7 +359,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	desc = "A marvel of modern engineering and a shining example of pioneering bluespace technology, able to power entire colonies with very little material consumption - perfectly suited for isolated areas on the outer rim.\nHighly volatile, but that shouldn't matter on some quiet backwater colony, right..?"
 	icon = 'icons/obj/machines/tbg.dmi'
 	power_generation_max = 5000000 //Powers an entire colony
-	time_to_break = 5 SECONDS
+	time_to_break = 10 SECONDS
 	voice_filter = "alimiter=0.9,acompressor=threshold=0.2:ratio=20:attack=10:release=50:makeup=2,highpass=f=1000"
 	//Stores whether we're in the turning off animation
 	var/winding_down = FALSE
@@ -379,6 +386,8 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /obj/machinery/power/geothermal/tbg/Destroy()
 	QDEL_NULL(ambient_soundloop)
 	QDEL_NULL(alarm_soundloop)
+	for(var/turbine AS in connected_turbines)
+		QDEL_NULL(turbine)
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/update_icon_state()
@@ -400,7 +409,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	COOLDOWN_START(src, toggle_power, 10 SECONDS)
 	ambient_soundloop.start()
 	GLOB.active_bluespace_generators++
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_BLUESPACE_GEN_ACTIVATED, TRUE)
 	return ..()
 
 /obj/machinery/power/geothermal/tbg/turn_off()
@@ -412,13 +421,12 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	ambient_soundloop.stop()
 	GLOB.active_bluespace_generators--
 	if(!GLOB.active_bluespace_generators)
-		SEND_SIGNAL(SSdcs, COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED)
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ALL_BLUESPACE_GEN_DEACTIVATED, FALSE)
 
 /// Updates the turbine animation after the winding down sound effect has finished
 /obj/machinery/power/geothermal/tbg/proc/finish_winding_down()
 	winding_down = FALSE
 	update_icon()
-
 
 /obj/machinery/power/geothermal/tbg/damage_generator()
 	if(buildstate >= GENERATOR_EXPLODING) //Already exploding; can't be damaged more than that!
@@ -458,11 +466,14 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		list(0, 15, 20, 15, 47 SECONDS),
 		list(0, 15, 20, 15, 49 SECONDS),
 		list(0, 15, 20, 15, 50 SECONDS),
-		list(0, 15, 20, 15, 52 SECONDS)
+		list(0, 15, 20, 15, 52 SECONDS),
+		list(0, 20, 24, 35, 56 SECONDS),
 	)
 	for(var/explosion_data in list_of_explosions)
 		var/turf/epicenter = locate(loc.x + rand(-2,2), loc.y + rand(-2,2), loc.z)
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(explosion), epicenter, explosion_data[1], explosion_data[2], explosion_data[3], explosion_data[4], explosion_data[4]), explosion_data[5])
+	//Destroy generator after big explosion happens
+	QDEL_IN(src, 56 SECONDS)
 
 /// Triggers alarm visual effects and queues alarm warnings for ongoing TBG meltdown
 /obj/machinery/power/geothermal/tbg/proc/trigger_alarms()
@@ -482,12 +493,11 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 		list("3", 34 SECONDS),
 		list("2", 35 SECONDS),
 		list("1", 36 SECONDS),
-		list("CATASTROPHIC MELTDOWN AVOIDED. HEAT LEVELS NOMINAL.", 40 SECONDS),
+		list("CATASTROPHIC MELTDOWN AVERTED. HEAT LEVELS NOMINAL.", 40 SECONDS),
 		list("ATTEMPTING TO CONTAIN EXTERNAL COMBUSTION PROCESS...", 44 SECONDS),
 		list("CONTAINMENT FAILED (1). RE-ATTEMPTING...", 47 SECONDS),
 		list("CONTAINMENT FAILED (2). RE-ATTEMPTING...", 49 SECONDS),
-		list("BLUESPACE CONTAINMENT SUCCESSFUL.", 53 SECONDS),
-		list("DISABLING ALERT SYSTEMS...", 55 SECONDS)
+		list("CONTAINMENT FAILED (3). SELF-DESTRUCT IMMINENT.", 53 SECONDS),
 	)
 	for(var/warning_data in warning_messages)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), warning_data[1]), warning_data[2])
@@ -516,6 +526,10 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	//The generator we are connected to
 	var/obj/machinery/power/geothermal/tbg/connected
 
+/obj/machinery/power/tbg_turbine/Destroy()
+	if(src in connected.connected_turbines)
+		connected.connected_turbines -= src
+	return ..()
 
 /obj/machinery/power/tbg_turbine/update_icon_state()
 	if(!connected)
