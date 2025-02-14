@@ -1,0 +1,4 @@
+author: "Barnet2"
+delete-after: True
+changes:
+  - spellcheck: "Increases command message length to 200 characters from 120 and 100"
