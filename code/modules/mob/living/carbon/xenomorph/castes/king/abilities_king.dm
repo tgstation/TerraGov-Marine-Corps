@@ -264,7 +264,7 @@
 			carbon_victim.adjust_stagger(6 SECONDS * severity)
 			carbon_victim.add_slowdown(6 * severity)
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
-			carbon_victim.apply_effect(1 SECONDS, WEAKEN)
+			carbon_victim.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 			to_chat(carbon_victim, "You are smashed to the ground!")
 		else if(isvehicle(victim) || ishitbox(victim))
 			var/obj/obj_victim = victim

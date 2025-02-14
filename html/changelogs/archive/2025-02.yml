@@ -139,3 +139,33 @@
   - balance: combat robots may now wear the mimir armour module
   - spellcheck: Unarmed attacks vs xenomorphs should now display correctly
   - spellcheck: mMarine -> Marine
+2025-02-13:
+  Cheese (Code), Kuro (sprites), Mack (Ideasguy):
+  - rscadd: Added Globadier, a new spitter strain.
+  Isy232:
+  - balance: Officer/FC gloves are now insulated.
+  Lumipharon:
+  - spellcheck: Grammar fix for the overwatch console
+  - bugfix: Signalling an exploding detpack now simply disarms again instead of completely
+      deactivating
+  - bugfix: fixed bloodthirster charge being stronger than intended
+  - bugfix: Laser sentry no longer has offscreen range
+  Mannybrado:
+  - balance: increases health of standard tad variant windows/cockpit wall to 600(was
+      500) to match other tad variants
+  Sun-Soaked:
+  - rscadd: 'Adds 2 new abilities to Dancer: Baton Pass and Tail Hook'
+  - balance: Reworks Dancer's Impale and Tail Trip to make them stronger.
+  - balance: Reduces Dancer's speed slightly, while slightly increasing its HP and
+      armor.
+  - balance: Dancer's Dodge now lasts longer but has a longer cooldown.
+  - imageadd: Adds 2 new aoe swing effects.
+  distributivgesetz:
+  - config: Add PUBLIC_ADDRESS as a config option, serves to show the public IP for
+      players to connect to.
+  ivanmixo:
+  - code_imp: The names of args in the apply effects procs are more sane
+  novaepee:
+  - imageadd: New Lobby Art from Astolfo!
+  yyzsong:
+  - balance: Marine squad leaders may now take the radiopack as a backpack option

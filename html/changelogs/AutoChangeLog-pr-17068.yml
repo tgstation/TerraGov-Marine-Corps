@@ -1,4 +1,0 @@
-author: "Mannybrado"
-delete-after: True
-changes:
-  - balance: "increases health of standard tad variant windows/cockpit wall to 600(was 500) to match other tad variants"
