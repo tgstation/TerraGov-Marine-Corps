@@ -158,8 +158,9 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/recon,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
 	name = "Assault Mecha"
@@ -171,8 +172,9 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/assault,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
 	name = "Vanguard Mecha"
@@ -184,5 +186,6 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/vanguard,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
