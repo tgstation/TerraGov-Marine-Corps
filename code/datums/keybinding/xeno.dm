@@ -259,7 +259,7 @@
 	keybind_signal = COMSIG_XENOABILITY_ACID_SHROUD
 	hotkey_keys = list("Q")
 
-/datum/keybinding/xeno/acid_shroud_acidder
+/datum/keybinding/xeno/acid_shroud_melter
 	name = "Melter: Acid Shroud"
 	full_name = "Melter: Acid Shroud"
 	description = "Create a smokescreen for a getaway."
@@ -714,7 +714,7 @@
 	keybind_signal = COMSIG_XENOABILITY_ACID_DASH
 	hotkey_keys = list("E")
 
-/datum/keybinding/xeno/acid_dash_acidder
+/datum/keybinding/xeno/acid_dash_melter
 	name = "Melter: Acid Dash"
 	full_name = "Melter: Acid Dash"
 	description = "Quickly dash, leaving acid in your path and knocking down the first marine hit. Has reset potential."
