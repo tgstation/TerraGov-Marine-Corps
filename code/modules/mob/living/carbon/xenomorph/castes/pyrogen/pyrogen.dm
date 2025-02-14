@@ -17,24 +17,6 @@
 /mob/living/carbon/xenomorph/pyrogen/Initialize(mapload)
 	. = ..()
 	RegisterSignal(src, COMSIG_XENOMORPH_POSTATTACK_LIVING, PROC_REF(on_postattack))
-	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
-
-/// Replaces nearby fires into melting fires. Melting fires inherits the properties of normal fire.
-/mob/living/carbon/xenomorph/pyrogen/proc/on_move(datum/source, atom/old_loc, movement_dir, forced, list/old_locs)
-	SIGNAL_HANDLER
-	var/list/turf/checked_turfs = get_adjacent_open_turfs(src)
-	checked_turfs += get_turf(src)
-
-	for(var/turf/checked_turf AS in checked_turfs)
-		var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in checked_turf.contents
-		for(var/obj/fire/fire_obj in checked_turf)
-			if(istype(fire_obj, /obj/fire/melting_fire))
-				continue
-			if(!fire_in_turf)
-				fire_in_turf = new(checked_turf)
-			fire_in_turf.burn_ticks = fire_obj.burn_ticks
-			fire_in_turf.burn_decay = fire_obj.burn_decay
-			qdel(fire_obj)
 
 /// Applies a single stack of melting fire to those that they attack.
 /mob/living/carbon/xenomorph/pyrogen/proc/on_postattack(mob/living/source, mob/living/target, damage)
