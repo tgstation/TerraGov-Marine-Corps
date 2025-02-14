@@ -21,7 +21,7 @@
 
 /// The maximum length we should use for sending messages with stuff like `message_member`,
 /// `message_squad` etc.
-#define MAX_COMMAND_MESSAGE_LENGTH 100
+#define MAX_COMMAND_MESSAGE_LENGTH 200
 
 ///Overwatch is on monitor mode
 #define OVERWATCH_ON_MONITOR (1<<0)
