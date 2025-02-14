@@ -297,15 +297,6 @@ SUBSYSTEM_DEF(ticker)
 	if(usr && !check_rights(R_SERVER))
 		return
 
-	if(istype(GLOB.tgs, /datum/tgs_api/v3210))
-		var/datum/tgs_api/v3210/API = GLOB.tgs
-		if(API.reboot_mode == 2)
-			graceful = TRUE
-	else if(istype(GLOB.tgs, /datum/tgs_api/v4))
-		var/datum/tgs_api/v4/API = GLOB.tgs
-		if(API.reboot_mode == 1)
-			graceful = TRUE
-
 	if(graceful)
 		to_chat_immediate(world, "<h3>[span_boldnotice("Shutting down...")]</h3>")
 		world.Reboot(FALSE)
