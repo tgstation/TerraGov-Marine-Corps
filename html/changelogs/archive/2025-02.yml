@@ -112,3 +112,30 @@
   - code_imp: Aligned skin.dmf with Tg's skin.dmf to make porting simple
   - code_imp: Autofit viewport no longer has an arbitrary 1 second delay outside of
       during the user connecting
+2025-02-12:
+  Kuro020:
+  - balance: Laser Rifle and MG can no longer equip rail scope
+  Lumipharon:
+  - bugfix: fixed a visual issue with beams
+  - bugfix: fixed mobs not hearing the OB sound some times
+  PibeCantina:
+  - qol: Makes the platforms on gelida non dense
+  Runian:
+  - balance: Xenomorph prep no longer ends when the tad launches, but when the TAD
+      begins to land outside any marine base (e.g. outside of LZ).
+  - bugfix: The additional buildings in Kutjevo Refinery's LZ are considered marine
+      base for consistency.
+  - bugfix: The area outside of Kutjevo Refinery's LZ is no longer considered a marine
+      base and will allow Hivemind to build in it once shutters open.
+  SandPoot:
+  - rscadd: Added Tesla turret, to shock xenos when they're too feisty!
+  - code_imp: zap_beam() returns affected xenos.
+  - rscadd: Fireman carried people can be laid on top of surgery tables directly instead
+      of having to drop to grab them again and click on the table.
+  Sun-Soaked:
+  - qol: joining the fallen hive of Valhalla no longer removes you from the living
+      hive's larva queue.
+  yyzsong:
+  - balance: combat robots may now wear the mimir armour module
+  - spellcheck: Unarmed attacks vs xenomorphs should now display correctly
+  - spellcheck: mMarine -> Marine
