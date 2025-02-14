@@ -1,0 +1,4 @@
+author: "Rug-Dealer"
+delete-after: True
+changes:
+  - rscadd: "Added *trick emote that lets you do tricks on weapons and items alike."
