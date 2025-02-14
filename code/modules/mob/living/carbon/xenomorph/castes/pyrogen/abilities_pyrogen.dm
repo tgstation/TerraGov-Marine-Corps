@@ -400,6 +400,7 @@
 	var/obj/fire/melting_fire/fire_in_turf = locate(/obj/fire/melting_fire) in target_turf.contents
 	if(fire_in_turf)
 		fire_in_turf.burn_ticks = initial(fire_in_turf.burn_ticks)
+		fire_in_turf.burn_decay = initial(fire_in_turf.burn_decay)
 		fire_in_turf.creator = creator
 		return
 	var/obj/fire/melting_fire/new_fire = new(target_turf)
