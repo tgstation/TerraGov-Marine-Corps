@@ -7,3 +7,4 @@
 #define EMOTE_RESTRAINT_CHECK (1<<3) //Checks if the mob is restrained before performing the emote
 #define NO_KEYBIND (1<<4) //This emote has no keybind
 #define EMOTE_ARMS_CHECK (1<<5) //Checks if the mob has arms
+#define EMOTE_ACTIVE_ITEM (1<<6) //Checks if the mob is actively holding an item
