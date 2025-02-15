@@ -169,3 +169,18 @@
   - imageadd: New Lobby Art from Astolfo!
   yyzsong:
   - balance: Marine squad leaders may now take the radiopack as a backpack option
+2025-02-15:
+  Barnet2:
+  - spellcheck: Increases command message length to 200 characters from 120 and 100
+  Lumipharon:
+  - bugfix: fixed hunter silence and sticky spit applying far less stagger than intended
+  - bugfix: fixed mech destruction effects
+  Neocloudy:
+  - spellcheck: New "titanic" weight class for any item larger than gigantic.
+  Rug-Dealer:
+  - rscadd: Added *trick emote that lets you do tricks on weapons and items alike.
+  TiviPlus:
+  - balance: Everyone except spatial agents can only spawn mechs once
+  - bugfix: having just spawned a mech now does not prevent you from spawning ammo
+  novaepee:
+  - rscadd: updating PoS medbay ONCE AGAIN for 2025!

@@ -1,4 +1,0 @@
-author: "Lumipharon"
-delete-after: True
-changes:
-  - bugfix: "fixed hunter silence and sticky spit applying far less stagger than intended"
