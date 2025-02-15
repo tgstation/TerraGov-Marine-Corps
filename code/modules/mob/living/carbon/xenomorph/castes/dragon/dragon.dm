@@ -21,8 +21,6 @@
 		/mob/living/carbon/xenomorph/proc/hijack,
 	)
 	xeno_flags = XENO_ROUNY // TODO: Get real sprites to use.
-	/// The created effects that need to be deleted later.
-	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms
 
 /mob/living/carbon/xenomorph/dragon/Initialize(mapload)
 	. = ..()
@@ -69,7 +67,7 @@
 			lower_left = locate(x + 1, y - 1, z)
 			upper_right = locate(x + 2, y + 1, z)
 
-	LAZYINITLIST(telegraphed_atoms)
+	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
 	var/turf/affected_turfs = block(lower_left, upper_right) // 2x3
 	for(var/turf/affected_turf AS in affected_turfs)
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
