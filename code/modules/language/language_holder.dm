@@ -111,6 +111,8 @@
 /datum/language_holder/xeno
 	languages = list(/datum/language/xenocommon)
 
+/datum/language_holder/xeno/dragon
+	languages = list(/datum/language/common, /datum/language/xenocommon)
 
 /datum/language_holder/universal/New()
 	. = ..()
