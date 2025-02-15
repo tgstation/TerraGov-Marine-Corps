@@ -122,7 +122,7 @@
 		return
 	var/damage_reduction = min(amount/2, plasma_stored)
 	use_plasma(ROUND_UP(damage_reduction))
-	amount += damage_reduction
+	amount_mod += damage_reduction
 
 /// Checks if the dragon can start to perform the special attack.
 /mob/living/carbon/xenomorph/dragon/proc/can_special_attack()
