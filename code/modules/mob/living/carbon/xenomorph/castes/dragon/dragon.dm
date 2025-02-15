@@ -32,10 +32,12 @@
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/dragon/UnarmedAttack(atom/clicked_atom, has_proximity, modifiers)
-	if(!ishuman(clicked_atom) && !isopenturf(clicked_atom)) // There are many adjacent things that should be attacked normally.
-		. = ..()
-	if(. || !can_attack())
+	if(!can_attack())
 		return
+	// The reason why this does not call parent is because a majority of them return FALSE despite doing their stuff successfully.
+	if(istype(clicked_atom, /turf/closed/wall/resin) || istype(clicked_atom, /obj/structure/mineral_door/resin))
+		return ..()
+	// TODO: Let them hit/interact with stuff like lights, vendors, APCs, etc.
 	try_special_attack(clicked_atom)
 
 /mob/living/carbon/xenomorph/dragon/RangedAttack(atom/clicked_atom, params)
@@ -68,13 +70,14 @@
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
 	ADD_TRAIT(src, TRAIT_IMMOBILE, XENO_TRAIT)
-	var/was_successful = do_after(src, 0.6 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_DANGER, prog_bar = null) && can_attack()
+	var/was_successful = do_after(src, 1.2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_DANGER) && can_attack()
 	REMOVE_TRAIT(src, TRAIT_IMMOBILE, XENO_TRAIT)
 	QDEL_LIST(telegraphed_atoms)
 	if(!was_successful)
 		return
 
 	var/damage = xeno_caste.melee_damage * xeno_melee_damage_modifier
+	var/played_sound = FALSE
 	for(var/turf/affected_tile AS in block(lower_left, upper_right))
 		for(var/atom/affected_atom AS in affected_tile)
 			if(isxeno(affected_atom))
@@ -85,6 +88,12 @@
 					continue
 				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5)
 				affected_living.knockback(src, 2, 2)
+				if(!played_sound)
+					played_sound = TRUE
+					playsound(src, get_sfx(SFX_ALIEN_BITE), 50, 1)
+				do_attack_animation(affected_living)
+				visible_message(span_danger("\The [src] smacks [affected_living]!"), \
+					span_danger("We smack [affected_living]!"), null, 5) // TODO: Better flavor.
 				continue
 			if(!isobj(affected_atom) || !(affected_atom.resistance_flags & XENO_DAMAGEABLE))
 				continue
