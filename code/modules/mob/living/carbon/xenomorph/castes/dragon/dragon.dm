@@ -32,9 +32,19 @@
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/dragon/UnarmedAttack(atom/clicked_atom, has_proximity, modifiers)
+	if(!ishuman(clicked_atom) && !isopenturf(clicked_atom)) // There are many adjacent things that should be attacked normally.
+		. = ..()
+	if(. || !can_attack())
+		return
+	try_special_attack(clicked_atom)
+
+/mob/living/carbon/xenomorph/dragon/RangedAttack(atom/clicked_atom, params)
+	. = ..()
 	if(!can_attack())
 		return
+	try_special_attack(clicked_atom)
 
+/mob/living/carbon/xenomorph/dragon/proc/try_special_attack(atom/clicked_atom)
 	face_atom(clicked_atom)
 	var/turf/lower_left
 	var/turf/upper_right
@@ -71,6 +81,8 @@
 				continue
 			if(isliving(affected_atom))
 				var/mob/living/affected_living = affected_atom
+				if(affected_living.stat == DEAD)
+					continue
 				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5)
 				affected_living.knockback(src, 2, 2)
 				continue
@@ -92,8 +104,11 @@
 /mob/living/carbon/xenomorph/dragon/proc/can_attack()
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return FALSE
+	if(lying_angle)
+		return FALSE
 	if(do_actions)
 		return FALSE
+	return TRUE
 
 /obj/effect/xeno/dragon_warning
 	icon = 'icons/effects/effects.dmi'
