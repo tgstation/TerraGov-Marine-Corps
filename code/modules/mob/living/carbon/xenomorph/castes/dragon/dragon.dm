@@ -113,7 +113,8 @@
 			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = src)
 	TIMER_COOLDOWN_START(src, COOLDOWN_DRAGON_BASIC_ATTACK, 4 SECONDS)
 
-/// Reduces damage taken by half as long they have plasma. Will always consume at least 1 plasma if any damage is taken.
+/// Reduces damage (after-armor) taken by half as long they have plasma. Will always consume at least 1 plasma if any damage is taken.
+// TODO: This needs to be BEFORE-ARMOR. Look at overriding `apply_damage` to do this!
 /mob/living/carbon/xenomorph/dragon/proc/taking_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
 	if(amount <= 0 || !plasma_stored || stat == DEAD || lying_angle)
