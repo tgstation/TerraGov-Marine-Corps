@@ -11,7 +11,7 @@
 	wound_type = "" // TODO: No wound sprites for this yet. Get some.
 
 	// *** Melee Attacks *** //
-	melee_damage = 60
+	melee_damage = 30
 
 	// *** Speed *** //
 	speed = -0.5
@@ -47,6 +47,12 @@
 		/datum/action/ability/activable/xeno/psydrain,
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
+		/datum/action/ability/activable/xeno/backhand,
+		/datum/action/ability/activable/xeno/fly,
+		/datum/action/ability/activable/xeno/tailswipe,
+		/datum/action/ability/activable/xeno/dragon_breath,
+		/datum/action/ability/activable/xeno/wind_current,
+		/datum/action/ability/activable/xeno/grab,
 		/datum/action/ability/xeno_action/hive_message,
 		/datum/action/ability/xeno_action/rally_hive,
 		/datum/action/ability/xeno_action/rally_minion,
@@ -61,3 +67,25 @@
 	caste_desc = "Ancient terror. Your end has come, and it bears my wings."
 	primordial_message = "Destruction is my creed; none shall withstand my fury."
 	upgrade = XENO_UPGRADE_PRIMO
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/activable/xeno/cocoon,
+		/datum/action/ability/xeno_action/call_of_the_burrowed,
+		/datum/action/ability/activable/xeno/backhand,
+		/datum/action/ability/activable/xeno/fly,
+		/datum/action/ability/activable/xeno/tailswipe,
+		/datum/action/ability/activable/xeno/dragon_breath,
+		/datum/action/ability/activable/xeno/wind_current,
+		/datum/action/ability/activable/xeno/grab,
+		/datum/action/ability/activable/xeno/miasma,
+		/datum/action/ability/activable/xeno/lightning_strike,
+		/datum/action/ability/activable/xeno/fire_storm,
+		/datum/action/ability/activable/xeno/ice_spike,
+		/datum/action/ability/xeno_action/hive_message,
+		/datum/action/ability/xeno_action/rally_hive,
+		/datum/action/ability/xeno_action/rally_minion,
+		/datum/action/ability/xeno_action/blessing_menu,
+	)

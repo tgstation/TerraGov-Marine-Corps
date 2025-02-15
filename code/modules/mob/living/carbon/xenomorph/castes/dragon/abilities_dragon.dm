@@ -1,3 +1,176 @@
+/datum/action/ability/activable/xeno/backhand
+	name = "Backhand"
+	action_icon_state = ""
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 10 SECONDS
+
+/datum/action/ability/activable/xeno/backhand/use_ability(atom/target)
+	xeno_owner.face_atom(target)
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(xeno_owner.dir)
+		if(NORTH)
+			lower_left = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 1, xeno_owner.y + 2, xeno_owner.z)
+		if(SOUTH)
+			lower_left = locate(xeno_owner.x - 1, xeno_owner.y - 2, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
+		if(WEST)
+			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 1, xeno_owner.z)
+		if(EAST)
+			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 1, xeno_owner.z)
+
+
+	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
+	var/turf/affected_turfs = block(lower_left, upper_right) // 3x2
+	for(var/turf/affected_turf AS in affected_turfs)
+		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
+
+	ADD_TRAIT(src, TRAIT_IMMOBILE, XENO_TRAIT)
+	var/was_successful = do_after(src, 1.2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_DANGER) && can_use_ability(target, TRUE)
+	REMOVE_TRAIT(src, TRAIT_IMMOBILE, XENO_TRAIT)
+	QDEL_LIST(telegraphed_atoms)
+	if(!was_successful)
+		return
+
+	var/damage = 60 * xeno_owner.xeno_melee_damage_modifier
+	var/played_sound = FALSE
+	for(var/turf/affected_tile AS in block(lower_left, upper_right))
+		for(var/atom/affected_atom AS in affected_tile)
+			if(isxeno(affected_atom))
+				continue
+			if(isliving(affected_atom))
+				var/mob/living/affected_living = affected_atom
+				if(affected_living.stat == DEAD)
+					continue
+				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5)
+				affected_living.knockback(xeno_owner, 2, 2)
+				if(!played_sound)
+					played_sound = TRUE
+					playsound(xeno_owner, get_sfx(SFX_ALIEN_BITE), 50, 1)
+				xeno_owner.do_attack_animation(affected_living)
+				xeno_owner.visible_message(span_danger("\The [xeno_owner] smacks [affected_living]!"), \
+					span_danger("We smack [affected_living]!"), null, 5) // TODO: Better flavor.
+				continue
+			if(!isobj(affected_atom) || !(affected_atom.resistance_flags & XENO_DAMAGEABLE))
+				continue
+			var/obj/affected_obj = affected_atom
+			if(isvehicle(affected_obj))
+				if(ismecha(affected_obj))
+					affected_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner)
+					continue
+				if(isarmoredvehicle(affected_obj) || ishitbox(affected_obj))
+					affected_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // Adjusted for 3x3 multitile vehicles.
+					continue
+				affected_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = src)
+				continue
+			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
+
+
+
+
+
+
+	for(var/turf/affected_tile AS in block(lower_left, upper_right))
+		affected_tile.Shake(duration = 0.1 SECONDS)
+		for(var/atom/movable/affected AS in affected_tile)
+			if(!ishuman(affected) || affected.move_resist >= MOVE_FORCE_OVERPOWERING)
+				continue
+			var/mob/living/carbon/human/affected_human = affected
+			if(affected_human.stat == DEAD)
+				continue
+			affected_human.Paralyze(1 SECONDS)
+			affected_human.apply_effect(1 SECONDS, EFFECT_PARALYZE)
+			affected_human.adjust_stagger(3 SECONDS)
+			affected_human.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, updating_health = TRUE)
+			var/throwlocation = affected_human.loc
+			for(var/x in 1 to 2)
+				throwlocation = get_step(throwlocation, owner.dir)
+			affected_human.throw_at(throwlocation, 2, 1, owner, TRUE)
+
+	xeno_owner.spin(4, 1)
+	xeno_owner.emote("tail")
+	playsound(xeno_owner, 'sound/weapons/alien_claw_block.ogg', 50, 1)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/fly
+	name = "Fly"
+	action_icon_state = ""
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 240 SECONDS
+
+/datum/action/ability/activable/xeno/tailswipe
+	name = "Tailswipe"
+	action_icon_state = ""
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 12 SECONDS
+
+/datum/action/ability/activable/xeno/dragon_breath
+	name = "Dragon Breath"
+	action_icon_state = ""
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 20 SECONDS
+
+/datum/action/ability/activable/xeno/wind_current
+	name = "Wind Current"
+	action_icon_state = ""
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 20 SECONDS
+
+/datum/action/ability/activable/xeno/grab
+	name = "Grab"
+	action_icon_state = ""
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 20 SECONDS
+
+/datum/action/ability/activable/xeno/miasma
+	name = "Miasma"
+	action_icon_state = ""
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 30 SECONDS
+
+
+/datum/action/ability/activable/xeno/lightning_strike
+	name = "Lightning Strike"
+	action_icon_state = ""
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 25 SECONDS
+
+
+/datum/action/ability/activable/xeno/fire_storm
+	name = "Fire Storm"
+	action_icon_state = ""
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 30 SECONDS
+
+/datum/action/ability/activable/xeno/ice_spike
+	name = "Ice Spike"
+	action_icon_state = ""
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 30 SECONDS
+
+
+
+
+
+
+
+
+
 /* Backhand, aka hurtful Oppressor's Tail Lash:
 	IF NO GRAB:
 		Just port the current unarmed attack and make it it's own ability.
@@ -67,3 +240,7 @@
 /* Psychic Channel:
 	TBA
 */
+
+/obj/effect/xeno/dragon_warning
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "shallnotpass"
