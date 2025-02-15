@@ -68,7 +68,7 @@
 			upper_right = locate(x + 2, y + 1, z)
 
 	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
-	var/turf/affected_turfs = block(lower_left, upper_right) // 2x3
+	var/turf/affected_turfs = block(lower_left, upper_right) // 3x2
 	for(var/turf/affected_turf AS in affected_turfs)
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
