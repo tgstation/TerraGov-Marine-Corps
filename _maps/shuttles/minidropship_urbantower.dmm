@@ -58,7 +58,7 @@
 /obj/structure/dropship_piece/tadpole/cockpit/right{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "v" = (
 /obj/structure/dropship_piece/glasstwo/tadpole,
