@@ -70,6 +70,15 @@
 	ADD_TRAIT(src, TRAIT_FLASHBANGIMMUNE, XENO_TRAIT)
 	if(xeno_caste.caste_flags & CASTE_STAGGER_RESISTANT)
 		ADD_TRAIT(src, TRAIT_STAGGER_RESISTANT, XENO_TRAIT)
+	if(xeno_caste.caste_flags & CASTE_STAGGER_IMMUNE)
+		ADD_TRAIT(src, TRAIT_STAGGERIMMUNE, XENO_TRAIT)
+	if(xeno_caste.caste_flags & CASTE_KNOCKBACK_IMMUNE)
+		RegisterSignal(src, COMSIG_MOVABLE_PRE_THROW, PROC_REF(cancel_knockback_throw))
+	if(xeno_caste.caste_flags & CASTE_SLOW_IMMUNE)
+		ADD_TRAIT(src, TRAIT_SLOWDOWNIMMUNE, XENO_TRAIT)
+	if(xeno_caste.caste_flags & CASTE_STUN_IMMUNE)
+		ADD_TRAIT(src, TRAIT_STUNIMMUNE, XENO_TRAIT)
+
 	hive.update_tier_limits()
 	if(CONFIG_GET(flag/xenos_on_strike))
 		replace_by_ai()
@@ -618,3 +627,8 @@ Returns TRUE when loc_weeds_type changes. Returns FALSE when it doesn’t change
 		set_light_range_power_color(0, 0)
 		set_light_on(FALSE)
 	set_light_range_power_color(glow, 4, color)
+
+/// Prevents this xenomorph from getting thrown.
+/mob/living/carbon/xenomorph/proc/cancel_knockback_throw(source)
+	SIGNAL_HANDLER
+	return COMPONENT_MOVABLE_BLOCK_PRE_THROW
