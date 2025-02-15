@@ -1,0 +1,6 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - balance: "mechs no longer have tank controls"
+  - bugfix: "block movement keybind now lets you turn while you strafe correctly in a mech"
+  - bugfix: "fixed mech turn sounds playing when they shouldnt"
