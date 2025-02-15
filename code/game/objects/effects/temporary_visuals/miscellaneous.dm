@@ -3,6 +3,11 @@
 	icon_state = "empdisable"
 	duration = 0.5 SECONDS
 
+/// Used for globadiers heal grenades
+/obj/effect/temp_visual/heal
+	name = "healing splatter"
+	icon_state = "mech_toxin"
+
 GLOBAL_LIST_EMPTY(blood_particles)
 /particles/splatter
 	icon = 'icons/effects/effects.dmi'

@@ -175,7 +175,7 @@
 				var/mob/living/carbon/human/H = affected
 				if(H.stat == DEAD)
 					continue
-				H.apply_effects(1 SECONDS, 1 SECONDS)
+				H.apply_effects(paralyze = 1 SECONDS)
 				shake_camera(H, 2, 1)
 			var/throwlocation = affected.loc
 			for(var/x in 1 to 6)
@@ -232,11 +232,11 @@
 	alpha = obj_integrity * 255 / max_integrity
 	if(obj_integrity <= 0)
 		release_projectiles()
-		owner.apply_effect(1 SECONDS, WEAKEN)
+		owner.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 
 /obj/effect/xeno/shield/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
 	release_projectiles()
-	owner.apply_effect(1 SECONDS, WEAKEN)
+	owner.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 	return ..()
 
 ///Unfeezes the projectiles on their original path
