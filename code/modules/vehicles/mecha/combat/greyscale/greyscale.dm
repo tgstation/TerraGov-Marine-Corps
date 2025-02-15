@@ -29,6 +29,7 @@
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
 	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
 	explosion_block = 2
+	pivot_step = TRUE
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -159,8 +160,10 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/recon,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
 	name = "Assault Mecha"
@@ -172,8 +175,10 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/assault,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
 	name = "Vanguard Mecha"
@@ -185,5 +190,7 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/vanguard,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
