@@ -108,7 +108,7 @@
 	- Restore 75 plasma after successful cast.
 */
 
-/datum/action/ability/activable/xeno/tail_swipe/use_ability(atom/target)
+/datum/action/ability/activable/xeno/tailswipe/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
 	var/turf/lower_left
@@ -197,7 +197,7 @@
 
 
 /// Stuns the vehicle's occupants and does damage to the vehicle itself.
-/datum/action/ability/activable/xeno/tail_swipe/proc/handle_vehicle_effects(obj/vehicle/vehicle, damage, ap)
+/datum/action/ability/activable/xeno/tailswipe/proc/handle_vehicle_effects(obj/vehicle/vehicle, damage, ap)
 	for(var/mob/living/living_occupant in vehicle.occupants)
 		living_occupant.apply_effect(1.5 SECONDS, EFFECT_PARALYZE)
 	vehicle.take_damage(damage, BRUTE, MELEE, armour_penetration = ap, blame_mob = xeno_owner)
