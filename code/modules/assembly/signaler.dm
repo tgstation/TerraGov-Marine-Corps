@@ -91,6 +91,7 @@ Code:
 	updateUsrDialog()
 
 /obj/item/assembly/signaler/unique_action(mob/user, special_treatment)
+	. = ..()
 	try_send_signal()
 
 /obj/item/assembly/signaler/proc/try_send_signal()

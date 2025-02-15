@@ -89,6 +89,7 @@
 		balloon_alert(user, "Frequency copied over")
 
 /obj/item/detpack/unique_action(mob/user, special_treatment)
+	. = ..()
 	on = !on
 	update_icon()
 
