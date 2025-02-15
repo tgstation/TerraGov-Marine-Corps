@@ -118,7 +118,7 @@
 /// Reduces damage taken by half as long they have plasma. Will always consume at least 1 plasma if any damage is taken.
 /mob/living/carbon/xenomorph/dragon/proc/taking_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
-	if(!amount || !plasma_stored || stat || lying_angle)
+	if(amount <= 0 || !plasma_stored || stat == DEAD || lying_angle)
 		return
 	var/damage_reduction = min(amount/2, plasma_stored)
 	use_plasma(ROUND_UP(damage_reduction))
