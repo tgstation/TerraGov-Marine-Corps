@@ -27,6 +27,7 @@
 /mob/living/carbon/xenomorph/dragon/Initialize(mapload)
 	. = ..()
 	playsound(loc, 'sound/voice/alien/xenos_roaring.ogg', 75, 0)
+	RegisterSignals(src, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taking_damage))
 
 /mob/living/carbon/xenomorph/dragon/death_cry()
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
@@ -113,6 +114,15 @@
 				continue
 			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = src)
 	TIMER_COOLDOWN_START(src, COOLDOWN_DRAGON_BASIC_ATTACK, 4 SECONDS)
+
+/// Reduces damage taken by half as long they have plasma. Will always consume at least 1 plasma if any damage is taken.
+/mob/living/carbon/xenomorph/dragon/proc/taking_damage(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	if(!amount || !plasma_stored || stat || lying_angle)
+		return
+	var/damage_reduction = min(amount/2, plasma_stored)
+	use_plasma(ROUND_UP(damage_reduction))
+	amount += damage_reduction
 
 /// Checks if the dragon can start to perform the special attack.
 /mob/living/carbon/xenomorph/dragon/proc/can_special_attack()
