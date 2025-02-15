@@ -33,11 +33,14 @@
 
 /mob/living/carbon/xenomorph/dragon/UnarmedAttack(atom/clicked_atom, has_proximity, modifiers)
 	// The reason why this does not call parent is because a majority of them return FALSE despite doing their stuff successfully.
+	// For now, we'll snowflake in some important things that must be attacked normally.
+	// TODO: Let them hit/interact with stuff like lights, vendors, APCs, etc without having this snowflake stuff.
 	if(istype(clicked_atom, /turf/closed/wall/resin) || istype(clicked_atom, /obj/structure/mineral_door/resin))
+		return ..()
+	if(isAPC(clicked_atom) || istype(clicked_atom, /obj/machinery/power/geothermal))
 		return ..()
 	if(!can_special_attack())
 		return
-	// TODO: Let them hit/interact with stuff like lights, vendors, APCs, etc.
 	try_special_attack(clicked_atom)
 
 /mob/living/carbon/xenomorph/dragon/RangedAttack(atom/clicked_atom, params)
