@@ -1,4 +1,0 @@
-author: "Cheese"
-delete-after: True
-changes:
-  - qol: "Strain keybinds now use the strain name, rather than the parent name, in the keybinding menu."
