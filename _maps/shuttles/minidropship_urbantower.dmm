@@ -77,7 +77,7 @@
 /obj/structure/dropship_piece/tadpole/cockpit/left{
 	dir = 1
 	},
-/turf/open/space/basic,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "D" = (
 /turf/open/floor/plating/plating_catwalk,
@@ -160,7 +160,7 @@
 /obj/effect/attach_point/weapon/minidropship{
 	equipment_offset_y = 25
 	},
-/turf/template_noop,
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 "Z" = (
 /obj/structure/dropship_piece/singlewindow/tadpole{
@@ -170,14 +170,14 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/obj/effect/attach_point/weapon/minidropship{
-	equipment_offset_y = 25
-	},
 /obj/structure/dropship_piece/two/weapon/rightright{
 	dir = 1;
 	pixel_y = 32
 	},
-/turf/template_noop,
+/obj/effect/attach_point/weapon/minidropship{
+	equipment_offset_y = 25
+	},
+/turf/open/floor/mainship/mono,
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
