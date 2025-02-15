@@ -2038,6 +2038,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\modules\projectiles\ammo_types\turret_ammo.dm"
 #include "code\modules\projectiles\ammo_types\tx54_ammo.dm"
 #include "code\modules\projectiles\ammo_types\volkite_ammo.dm"
+#include "code\modules\projectiles\ammo_types\xenos\dragon_xenoammo.dm"
 #include "code\modules\projectiles\ammo_types\xenos\energy_xenoammo.dm"
 #include "code\modules\projectiles\ammo_types\xenos\gas_xenoammo.dm"
 #include "code\modules\projectiles\ammo_types\xenos\huggers_xenoammo.dm"
