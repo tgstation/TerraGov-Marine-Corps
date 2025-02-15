@@ -386,7 +386,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 /obj/machinery/power/geothermal/tbg/Destroy()
 	QDEL_NULL(ambient_soundloop)
 	QDEL_NULL(alarm_soundloop)
-	for(var/turbine AS in connected_turbines)
+	for(var/obj/machinery/power/tbg_turbine/turbine AS in connected_turbines)
 		QDEL_NULL(turbine)
 	return ..()
 
@@ -527,7 +527,7 @@ GLOBAL_VAR_INIT(active_bluespace_generators, 0)
 	var/obj/machinery/power/geothermal/tbg/connected
 
 /obj/machinery/power/tbg_turbine/Destroy()
-	if(src in connected.connected_turbines)
+	if(src in connected?.connected_turbines)
 		connected.connected_turbines -= src
 	return ..()
 
