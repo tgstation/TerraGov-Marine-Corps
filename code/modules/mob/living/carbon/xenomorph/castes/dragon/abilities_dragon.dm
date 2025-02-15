@@ -37,9 +37,9 @@
 	for(var/turf/affected_turf AS in affected_turfs)
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
-	ADD_TRAIT(src, TRAIT_IMMOBILE, XENO_TRAIT)
-	var/was_successful = do_after(src, 1.2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_DANGER) && can_use_ability(target, TRUE)
-	REMOVE_TRAIT(src, TRAIT_IMMOBILE, XENO_TRAIT)
+	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER) && can_use_ability(target, TRUE)
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	QDEL_LIST(telegraphed_atoms)
 	if(!was_successful)
 		return
@@ -73,7 +73,7 @@
 				if(isarmoredvehicle(affected_obj) || ishitbox(affected_obj))
 					affected_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // Adjusted for 3x3 multitile vehicles.
 					continue
-				affected_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = src)
+				affected_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner)
 				continue
 			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 	succeed_activate()
@@ -133,9 +133,9 @@
 	for(var/turf/affected_turf AS in affected_turfs)
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
-	ADD_TRAIT(src, TRAIT_IMMOBILE, XENO_TRAIT)
-	var/was_successful = do_after(src, 1.2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_DANGER) && can_use_ability(target, TRUE)
-	REMOVE_TRAIT(src, TRAIT_IMMOBILE, XENO_TRAIT)
+	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER) && can_use_ability(target, TRUE)
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
 	QDEL_LIST(telegraphed_atoms)
 	if(!was_successful)
 		return
