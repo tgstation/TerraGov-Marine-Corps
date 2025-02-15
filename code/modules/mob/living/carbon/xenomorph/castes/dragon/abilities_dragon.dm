@@ -69,32 +69,6 @@
 				affected_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = src)
 				continue
 			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
-
-
-
-
-
-
-	for(var/turf/affected_tile AS in block(lower_left, upper_right))
-		affected_tile.Shake(duration = 0.1 SECONDS)
-		for(var/atom/movable/affected AS in affected_tile)
-			if(!ishuman(affected) || affected.move_resist >= MOVE_FORCE_OVERPOWERING)
-				continue
-			var/mob/living/carbon/human/affected_human = affected
-			if(affected_human.stat == DEAD)
-				continue
-			affected_human.Paralyze(1 SECONDS)
-			affected_human.apply_effect(1 SECONDS, EFFECT_PARALYZE)
-			affected_human.adjust_stagger(3 SECONDS)
-			affected_human.apply_damage(xeno_owner.xeno_caste.melee_damage * xeno_owner.xeno_melee_damage_modifier, STAMINA, updating_health = TRUE)
-			var/throwlocation = affected_human.loc
-			for(var/x in 1 to 2)
-				throwlocation = get_step(throwlocation, owner.dir)
-			affected_human.throw_at(throwlocation, 2, 1, owner, TRUE)
-
-	xeno_owner.spin(4, 1)
-	xeno_owner.emote("tail")
-	playsound(xeno_owner, 'sound/weapons/alien_claw_block.ogg', 50, 1)
 	succeed_activate()
 	add_cooldown()
 
