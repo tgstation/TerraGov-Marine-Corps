@@ -160,7 +160,7 @@
 /obj/effect/attach_point/weapon/minidropship{
 	equipment_offset_y = 25
 	},
-/turf/open/floor/mainship/mono,
+/turf/template_noop,
 /area/shuttle/minidropship)
 "Z" = (
 /obj/structure/dropship_piece/singlewindow/tadpole{
@@ -177,7 +177,7 @@
 	dir = 1;
 	pixel_y = 32
 	},
-/turf/open/floor/mainship/mono,
+/turf/template_noop,
 /area/shuttle/minidropship)
 
 (1,1,1) = {"
