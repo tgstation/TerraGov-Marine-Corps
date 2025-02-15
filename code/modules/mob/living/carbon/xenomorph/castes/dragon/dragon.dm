@@ -32,22 +32,23 @@
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
 
 /mob/living/carbon/xenomorph/dragon/UnarmedAttack(atom/clicked_atom, has_proximity, modifiers)
-	if(!can_attack())
-		return
 	// The reason why this does not call parent is because a majority of them return FALSE despite doing their stuff successfully.
 	if(istype(clicked_atom, /turf/closed/wall/resin) || istype(clicked_atom, /obj/structure/mineral_door/resin))
 		return ..()
+	if(!can_special_attack())
+		return
 	// TODO: Let them hit/interact with stuff like lights, vendors, APCs, etc.
 	try_special_attack(clicked_atom)
 
 /mob/living/carbon/xenomorph/dragon/RangedAttack(atom/clicked_atom, params)
 	. = ..()
-	if(!can_attack())
+	if(!can_special_attack())
 		return
 	try_special_attack(clicked_atom)
 
 /mob/living/carbon/xenomorph/dragon/proc/try_special_attack(atom/clicked_atom)
 	face_atom(clicked_atom)
+
 	var/turf/lower_left
 	var/turf/upper_right
 	switch(dir)
@@ -70,7 +71,7 @@
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
 	ADD_TRAIT(src, TRAIT_IMMOBILE, XENO_TRAIT)
-	var/was_successful = do_after(src, 1.2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_DANGER) && can_attack()
+	var/was_successful = do_after(src, 1.2 SECONDS, IGNORE_HELD_ITEM, src, BUSY_ICON_DANGER) && can_special_attack()
 	REMOVE_TRAIT(src, TRAIT_IMMOBILE, XENO_TRAIT)
 	QDEL_LIST(telegraphed_atoms)
 	if(!was_successful)
@@ -108,14 +109,17 @@
 				affected_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = src)
 				continue
 			affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = src)
+	TIMER_COOLDOWN_START(src, COOLDOWN_DRAGON_BASIC_ATTACK, 4 SECONDS)
 
-/// Checks if the dragon can start to perform an attack.
-/mob/living/carbon/xenomorph/dragon/proc/can_attack()
+/// Checks if the dragon can start to perform the special attack.
+/mob/living/carbon/xenomorph/dragon/proc/can_special_attack()
 	if(HAS_TRAIT(src, TRAIT_HANDS_BLOCKED))
 		return FALSE
 	if(lying_angle)
 		return FALSE
 	if(do_actions)
+		return FALSE
+	if(TIMER_COOLDOWN_CHECK(src, COOLDOWN_DRAGON_BASIC_ATTACK))
 		return FALSE
 	return TRUE
 
