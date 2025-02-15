@@ -1,0 +1,4 @@
+author: "Apple-107"
+delete-after: True
+changes:
+  - rscadd: "Card decks are now available for Marines in Character Customization and Marine Armaments Vendors"
