@@ -25,17 +25,19 @@
 /mob/living/carbon/xenomorph/dragon/Initialize(mapload)
 	. = ..()
 	playsound(loc, 'sound/voice/alien/xenos_roaring.ogg', 75, 0)
-	RegisterSignals(src, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taking_damage))
+	//RegisterSignals(src, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taking_damage))
 
 /mob/living/carbon/xenomorph/dragon/death_cry()
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
 
-/// Reduces damage (after-armor) taken by half as long they have plasma. Will always consume at least 1 plasma if any damage is taken.
-// TODO: This needs to be BEFORE-ARMOR. Look at overriding `apply_damage` to do this!
-/mob/living/carbon/xenomorph/dragon/proc/taking_damage(datum/source, amount, list/amount_mod)
-	SIGNAL_HANDLER
-	if(amount <= 0 || !plasma_stored || stat == DEAD || lying_angle)
-		return
-	var/damage_reduction = min(amount/2, plasma_stored)
-	use_plasma(ROUND_UP(damage_reduction))
-	amount_mod += damage_reduction
+/// If they have plasma, reduces their damage accordingly. Ratio is 4 plasma per 1 damage.
+/mob/living/carbon/xenomorph/dragon/apply_damage(damage = 0, damagetype = BRUTE, def_zone, blocked = 0, sharp = FALSE, edge = FALSE, updating_health = FALSE, penetration)
+	if((status_flags & GODMODE) || damage <= 0)
+		return FALSE
+	if(damagetype != BRUTE && damagetype != BURN)
+		return FALSE
+	if(stat != DEAD && plasma_stored)
+		var/damage_reduction = min(damage / 2, plasma_stored / 4)
+		use_plasma(ROUND_UP(damage_reduction * 4))
+		damage -= damage_reduction
+	return ..()
