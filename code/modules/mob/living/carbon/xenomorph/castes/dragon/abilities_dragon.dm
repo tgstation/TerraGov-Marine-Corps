@@ -196,8 +196,11 @@
 					span_danger("We tail swipes [affected_living]!"), null, 5) // TODO: Better flavor.
 				has_hit_anything = TRUE
 				continue
-			if(ishitbox(affected_atom))
-				var/obj/hitbox/vehicle_hitbox = affected_atom
+			if(!isobj(affected_atom))
+				continue
+			var/obj/affected_obj = affected_atom
+			if(ishitbox(affected_obj))
+				var/obj/hitbox/vehicle_hitbox = affected_obj
 				if(vehicle_hitbox.root in vehicles_already_affected_so_far)
 					continue
 				handle_vehicle_effects(vehicle_hitbox.root, damage * 1/3)
@@ -208,13 +211,13 @@
 				affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 				has_hit_anything = TRUE
 				continue
-			if(ismecha(affected_atom))
-				handle_vehicle_effects(affected_atom, damage * 3, 50)
-			else if(isarmoredvehicle(affected_atom))
-				handle_vehicle_effects(affected_atom, damage / 3)
+			if(ismecha(affected_obj))
+				handle_vehicle_effects(affected_obj, damage * 3, 50)
+			else if(isarmoredvehicle(affected_obj))
+				handle_vehicle_effects(affected_obj, damage / 3)
 			else
-				handle_vehicle_effects(affected_atom, damage)
-			vehicles_already_affected_so_far += affected_atom
+				handle_vehicle_effects(affected_obj, damage)
+			vehicles_already_affected_so_far += affected_obj
 			has_hit_anything = TRUE
 
 	playsound(xeno_owner, has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
