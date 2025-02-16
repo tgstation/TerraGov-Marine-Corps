@@ -282,6 +282,7 @@
 			grabbed_human.emote("scream")
 			grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
 			playsound(current_turf, 'sound/effects/alien/fireball.ogg', 50, 1)
+			new /obj/effect/temp_visual/xeno_fireball_explosion(current_turf)
 			grabbed_human.take_overall_damage(200 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, max_limbs = 6, updating_health = TRUE)
 			grabbed_human.knockback(xeno_owner, 5, 1)
 			xeno_owner.gain_plasma(250)
@@ -572,6 +573,7 @@
 		add_cooldown()
 		return
 
+	// TODO: Pick the closest human rather than a random one.
 	grabbed_human = pick(acceptable_humans)
 	RegisterSignal(grabbed_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(throw_completion))
 	ADD_TRAIT(grabbed_human, TRAIT_IMMOBILE, XENO_TRAIT)
@@ -689,11 +691,6 @@
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = ""
 	cooldown_duration = 30 SECONDS
-
-
-/* Psychic Channel:
-	TBA
-*/
 
 /obj/effect/xeno/dragon_warning
 	icon = 'icons/effects/effects.dmi'
