@@ -280,7 +280,6 @@
 
 	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
 	var/mob/living/carbon/human/grabbed_human = grab_ability?.grabbed_human
-	var/turf/current_turf = get_turf(xeno_owner)
 	if(grabbed_human)
 		xeno_owner.face_atom(grabbed_human)
 		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
@@ -291,8 +290,8 @@
 			xeno_owner.visible_message(span_danger("[xeno_owner] exhales a massive fireball right ontop of [grabbed_human]!"))
 			grabbed_human.emote("scream")
 			grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
-			playsound(current_turf, 'sound/effects/alien/fireball.ogg', 50, 1)
-			new /obj/effect/temp_visual/xeno_fireball_explosion(current_turf)
+			playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50, 1)
+			new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(grabbed_human))
 			var/datum/status_effect/stacking/melting_fire/debuff = grabbed_human.has_status_effect(STATUS_EFFECT_MELTING_FIRE)
 			if(debuff)
 				debuff.add_stacks(10)
@@ -440,7 +439,6 @@
 	for(var/turf/affected_turf AS in affected_turfs)
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
-	xeno_owner.setDir(turn(xeno_owner.dir, 180))
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
