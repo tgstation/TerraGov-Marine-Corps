@@ -312,8 +312,8 @@
 
 /// Ends the ability early.
 /datum/action/ability/activable/xeno/dragon_breath/deselect()
+	. = ..()
 	end_ability()
-	return ..()
 
 /// Checks if the ability is still usable and is currently grabbing a human.
 /datum/action/ability/activable/xeno/dragon_breath/proc/grab_extra_check()
