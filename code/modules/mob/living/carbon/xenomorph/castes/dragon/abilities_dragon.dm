@@ -47,10 +47,10 @@
 		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
-	xeno_owner.add_traits(list(TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
-	xeno_owner.remove_traits(list(TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	QDEL_LIST(telegraphed_atoms)
 
 	if(!was_successful)
