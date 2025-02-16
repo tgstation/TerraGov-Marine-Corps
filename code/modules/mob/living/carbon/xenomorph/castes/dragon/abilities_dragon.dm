@@ -204,15 +204,18 @@
 				vehicles_already_affected_so_far += vehicle_hitbox.root
 				has_hit_anything = TRUE
 				continue
-			if(isvehicle(affected_atom))
-				if(ismecha(affected_atom))
-					handle_vehicle_effects(affected_atom, damage * 3, 50)
-				else if(isarmoredvehicle(affected_atom))
-					handle_vehicle_effects(affected_atom, damage / 3)
-				else
-					handle_vehicle_effects(affected_atom, damage)
-				vehicles_already_affected_so_far += affected_atom
+			if(!isvehicle(affected_obj))
+				affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 				has_hit_anything = TRUE
+				continue
+			if(ismecha(affected_atom))
+				handle_vehicle_effects(affected_atom, damage * 3, 50)
+			else if(isarmoredvehicle(affected_atom))
+				handle_vehicle_effects(affected_atom, damage / 3)
+			else
+				handle_vehicle_effects(affected_atom, damage)
+			vehicles_already_affected_so_far += affected_atom
+			has_hit_anything = TRUE
 
 	playsound(xeno_owner, has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
 	if(has_hit_anything)
