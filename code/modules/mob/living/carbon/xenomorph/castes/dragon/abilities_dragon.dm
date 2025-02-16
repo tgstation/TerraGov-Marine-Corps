@@ -308,7 +308,7 @@
 
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
-	playsound(xeno_owner, 'sound/effects/alien/behemoth/primal_wrath_roar.ogg', 75, TRUE) // TODO: This sound is not really ideal.
+	playsound(xeno_owner, 'sound/effects/alien/behemoth/primal_wrath_roar.ogg', 75, TRUE)
 	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
 	xeno_owner.move_resist = initial(xeno_owner.move_resist)
 	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
