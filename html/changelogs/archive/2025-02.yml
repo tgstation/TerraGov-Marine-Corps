@@ -187,3 +187,18 @@
   - bugfix: having just spawned a mech now does not prevent you from spawning ammo
   novaepee:
   - rscadd: updating PoS medbay ONCE AGAIN for 2025!
+2025-02-16:
+  Apple-107:
+  - rscadd: Card decks are now available for Marines in Character Customization and
+      Marine Armaments Vendors
+  Lumipharon:
+  - bugfix: Mech pilots actually have mech skill
+  TiviPlus:
+  - balance: mech no longer has directional armor
+  - balance: the tank driver now gets the old periscopes tier of zoom and nightvision
+  - balance: the tank periscope has 1 extra range now
+  - bugfix: fixed periscope being usable while driving the tank
+  - balance: mechs no longer have tank controls
+  - bugfix: block movement keybind now lets you turn while you strafe correctly in
+      a mech
+  - bugfix: fixed mech turn sounds playing when they shouldnt
