@@ -25,7 +25,6 @@
 /mob/living/carbon/xenomorph/dragon/Initialize(mapload)
 	. = ..()
 	playsound(loc, 'sound/voice/alien/xenos_roaring.ogg', 75, 0)
-	//RegisterSignals(src, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taking_damage))
 
 /mob/living/carbon/xenomorph/dragon/death_cry()
 	playsound(loc, 'sound/voice/alien/king_died.ogg', 75, 0)
