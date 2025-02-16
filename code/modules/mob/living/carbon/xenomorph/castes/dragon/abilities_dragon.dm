@@ -153,9 +153,10 @@
 
 				animate(affected_living, pixel_z = affected_living.pixel_z + 16, layer = max(MOB_JUMP_LAYER, affected_living.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 				animate(pixel_z = affected_living.pixel_z - 16, layer = affected_living.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
+				affected_living.animation_spin(0.25 SECONDS, 1, affected_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
 				var/datum/component/jump/living_jump_component = affected_living.GetComponent(/datum/component/jump)
 				if(living_jump_component)
-					TIMER_COOLDOWN_START(affected_living, JUMP_COMPONENT_COOLDOWN, 0.5 SECONDS)
+					TIMER_COOLDOWN_START(affected_living, JUMP_COMPONENT_COOLDOWN, 0.25 SECONDS)
 
 				xeno_owner.do_attack_animation(affected_living)
 				xeno_owner.visible_message(span_danger("\The [xeno_owner] tail swipes [affected_living]!"), \
@@ -382,7 +383,7 @@
 					continue
 				affected_living.take_overall_damage(damage, BURN, FIRE, max_limbs = 6)
 				if(affected_living.move_resist < MOVE_FORCE_OVERPOWERING)
-					affected_living.knockback(xeno_owner, 4, 2)
+					affected_living.knockback(xeno_owner, 4, 1)
 
 				animate(affected_living, pixel_z = affected_living.pixel_z + 16, layer = max(MOB_JUMP_LAYER, affected_living.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 				animate(pixel_z = affected_living.pixel_z - 16, layer = affected_living.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
@@ -522,20 +523,20 @@
 /datum/action/ability/activable/xeno/grab/proc/no_longer_grabbing()
 	SIGNAL_HANDLER
 	xeno_owner.stop_pulling()
-	failed_to_grab()
 	UnregisterSignal(grabbing_item, COMSIG_QDELETING)
 	UnregisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED)
 	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	failed_to_grab()
 
 /datum/action/ability/activable/xeno/grab/proc/human_stat_changed(datum/source, mob/source_mob, new_stat)
 	SIGNAL_HANDLER
 	if(new_stat != DEAD)
 		return
 	xeno_owner.stop_pulling()
-	failed_to_grab()
 	UnregisterSignal(grabbing_item, COMSIG_QDELETING)
 	UnregisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED)
 	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+	failed_to_grab()
 
 /datum/action/ability/activable/xeno/grab/proc/taken_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
@@ -544,10 +545,10 @@
 	damage_taken_so_far += amount
 	if(damage_taken_so_far >= 500)
 		xeno_owner.stop_pulling()
-		failed_to_grab()
 		UnregisterSignal(grabbing_item, COMSIG_QDELETING)
 		UnregisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED)
 		UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+		failed_to_grab()
 
 /datum/action/ability/activable/xeno/miasma
 	name = "Miasma"
