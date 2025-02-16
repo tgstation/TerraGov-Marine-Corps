@@ -374,6 +374,37 @@
 		return
 	return ..()
 
+/obj/item/explosive/grenade/chem_grenade/healingfoam
+	name = "\improper PO3 LAJA Foam Grenade"
+	desc = "An advanced foam grenade designed by Parmesan Pharmaceuticals. Deploys a light foam infused with healing chemicals when activated."
+	stage = CG_READY
+	dangerous = FALSE
+	icon_state = "grenade_healfoam"
+	worn_icon_state = "grenade_healfoam"
+
+/obj/item/explosive/grenade/chem_grenade/Initialize(mapload)
+	. = ..()
+	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
+	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
+
+	B1.reagents.add_reagent(/datum/reagent/consumable/doctor_delight, 1)
+	B1.reagents.add_reagent(/datum/reagent/consumable/soymilk, 1.5)
+	B1.reagents.add_reagent(/datum/reagent/consumable/milk, 1.5)
+	B1.reagents.add_reagent(/datum/reagent/consumable/coffee/cafe_latte, 3.125)
+	B1.reagents.add_reagent(/datum/reagent/consumable/coffee/soy_latte, 3.125)
+	B1.reagents.add_reagent(/datum/reagent/consumable/cream, 2.5)
+	B1.reagents.add_reagent(/datum/reagent/consumable/tomatojuice, 1.875)
+	B1.reagents.add_reagent(/datum/reagent/fluorosurfactant, 15)
+
+	B2.reagents.add_reagent(/datum/reagent/medicine/neuraline, 1)
+	B2.reagents.add_reagent(/datum/reagent/medicine/hyronalin, 2)
+	B2.reagents.add_reagent(/datum/reagent/medicine/dylovene, 2)
+	B2.reagents.add_reagent(/datum/reagent/medicine/meralyne, 2.5)
+	B2.reagents.add_reagent(/datum/reagent/medicine/dermaline, 2.5)
+	B2.reagents.add_reagent(/datum/reagent/water, 15)
+
+	beakers += B1
+	beakers += B2
 
 #undef CG_READY
 #undef CG_WIRED

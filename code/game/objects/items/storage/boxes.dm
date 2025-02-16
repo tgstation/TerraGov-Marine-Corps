@@ -1287,6 +1287,13 @@
 	spawn_type = /obj/item/explosive/grenade/training
 	closed_overlay = "grenade_box_overlay_training"
 
+/obj/item/storage/box/visual/grenade/healfoam
+	name = "\improper P03 LAJA healfoam grenade box"
+	desc = "A secure box holding 12 Parmesan Pharmaceuticals healing foam grenades. Fancy and expensive."
+	spawn_number = 12
+	spawn_type = /obj/item/explosive/grenade/chem_grenade/healingfoam
+	closed_overlay = "grenade_box_overlay_grenade_healfoam"
+
 #undef BOX_OVERLAY_SHIFT_X
 #undef BOX_OVERLAY_SHIFT_Y
 

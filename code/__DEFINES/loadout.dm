@@ -118,6 +118,8 @@ GLOBAL_LIST_INIT(medic_gear_listed_products, list(
 		/obj/item/reagent_containers/hypospray/autoinjector/peridaxon_plus = list(CAT_MEDSUP, "Injector (Peridaxon Plus)", 1, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/synaptizine = list(CAT_MEDSUP, "Injector (Synaptizine)", 4, "corps-meds"),
 		/obj/item/reagent_containers/hypospray/autoinjector/neuraline = list(CAT_MEDSUP, "Injector (Neuraline)", 14, "corps-meds"),
+		/obj/item/storage/box/visual/grenade/healfoam = list(CAT_MEDSUP, "LAJA Healing Foam Grenades Box", 24, "corps-meds"), // 12 Grenades, 2 points per nade
+		/obj/item/explosive/grenade/chem_grenade/healingfoam = list(CAT_MEDSUP, "LAJA Healing Foam Grenade", 4, "corps-meds"), // 1 Grenade, 4 points per nade
 		/obj/effect/vendor_bundle/stretcher = list(CAT_MEDSUP, "Medivac Stretcher", 45, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced/big = list(CAT_MEDSUP, "Big hypospray", 10, "corps-tools"),
 		/obj/item/reagent_containers/hypospray/advanced = list(CAT_MEDSUP, "Hypospray", 2, "corps-tools"),
