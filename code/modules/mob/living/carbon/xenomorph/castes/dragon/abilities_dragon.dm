@@ -381,7 +381,8 @@
 				if(affected_living.stat == DEAD)
 					continue
 				affected_living.take_overall_damage(damage, BURN, FIRE, max_limbs = 6)
-				affected_living.knockback(xeno_owner, 4, 2)
+				if(affected_living.move_resist < MOVE_FORCE_OVERPOWERING)
+					affected_living.knockback(xeno_owner, 4, 2)
 
 				animate(affected_living, pixel_z = affected_living.pixel_z + 16, layer = max(MOB_JUMP_LAYER, affected_living.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
 				animate(pixel_z = affected_living.pixel_z - 16, layer = affected_living.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
@@ -417,17 +418,136 @@
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = ""
 	cooldown_duration = 20 SECONDS
-/* Grab, aka Gorger's Grab on Crack:
-	- Telegraphed.
-	- 1x3 line in front.
-	- Picks the first marine in list and passively grabs them.
-	- Slows down dragon (automatic, comes with the passive grab).
-	- If grabbing & take 300 damage (post-armor), end ability.
-	- To marines:
-		- Can't move on their own (aka TRAIT_IMMOBILE)
-		- Can still take out stuff, shoot, powerfist, whatever they do.
-	- Restore 250 plasma after successful grab.
-*/
+	/// The grab item that is grabbing the human.
+	var/obj/item/grab/grabbing_item
+	/// The human that we are trying to grab or are currently grabbing. Really only exists for determining if/when the grab ends.
+	var/mob/living/carbon/human/grabbed_human
+	/// Damage taken so far while actively grabbing.
+	var/damage_taken_so_far = 0
+
+/datum/action/ability/activable/xeno/grab/use_ability(atom/target)
+	xeno_owner.face_atom(target)
+
+	var/turf/lower_left
+	var/turf/upper_right
+	switch(xeno_owner.dir)
+		if(NORTH)
+			lower_left = locate(xeno_owner.x - 2, xeno_owner.y + 1, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 2, xeno_owner.z)
+		if(SOUTH)
+			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 2, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 2, xeno_owner.y - 1, xeno_owner.z)
+		if(WEST)
+			lower_left = locate(xeno_owner.x - 2, xeno_owner.y - 2, xeno_owner.z)
+			upper_right = locate(xeno_owner.x - 1, xeno_owner.y + 2, xeno_owner.z)
+		if(EAST)
+			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 2, xeno_owner.z)
+			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 2, xeno_owner.z)
+
+	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
+	var/turf/affected_turfs = block(lower_left, upper_right) // 5x2
+	for(var/turf/affected_turf AS in affected_turfs)
+		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
+
+	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER) && can_use_ability(target, TRUE)
+	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
+	QDEL_LIST(telegraphed_atoms)
+	if(!was_successful)
+		return
+
+	var/list/mob/living/carbon/human/acceptable_humans = list()
+	for(var/turf/affected_tile AS in block(lower_left, upper_right))
+		for(var/mob/living/carbon/human/affected_human in affected_tile)
+			if(affected_human.stat == DEAD)
+				continue
+			if(affected_human.move_resist >= MOVE_FORCE_OVERPOWERING)
+				continue
+			acceptable_humans += affected_human
+
+	if(!acceptable_humans.len) // Whiff.
+		playsound(xeno_owner, 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
+		succeed_activate()
+		add_cooldown()
+		return
+
+	grabbed_human = pick(acceptable_humans)
+	move_to_grab()
+
+/// Try to move the human to the front of us.
+/datum/action/ability/activable/xeno/grab/proc/move_to_grab()
+	grabbed_human.set_canmove(FALSE)
+	ADD_TRAIT(grabbed_human, TRAIT_IMMOBILE, XENO_TRAIT)
+	grabbed_human.pass_flags |= (PASS_MOB|PASS_XENO)
+	grabbed_human.throw_at(get_step(xeno_owner, xeno_owner.dir), 5, 5, xeno_owner)
+	RegisterSignal(grabbed_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(try_to_grab))
+
+/// Check if we can grab the now-thrown human.
+/datum/action/ability/activable/xeno/grab/proc/try_to_grab()
+	SIGNAL_HANDLER
+	UnregisterSignal(grabbed_human, COMSIG_MOVABLE_POST_THROW)
+	if(QDELETED(grabbed_human) || grabbed_human.stat == DEAD || !xeno_owner.Adjacent(grabbed_human))
+		failed_to_grab()
+		return
+	INVOKE_ASYNC(src, PROC_REF(try_to_grab_async)) // TODO: This is shit
+
+/// Check if we can grab the now-thrown human.
+/datum/action/ability/activable/xeno/grab/proc/try_to_grab_async()
+	if(!xeno_owner.start_pulling(grabbed_human))
+		failed_to_grab()
+		return
+	grabbing_item = xeno_owner.get_active_held_item()
+	if(!grabbing_item)
+		failed_to_grab()
+		return
+	succeeded_to_grab(grabbed_human)
+
+/// Cleans up any variables and traits that may be associated with the grab attempt.
+/datum/action/ability/activable/xeno/grab/proc/failed_to_grab()
+	grabbed_human.set_canmove(TRUE)
+	grabbed_human = null
+	grabbing_item = null
+
+/// Successfully grabbed the human.
+/datum/action/ability/activable/xeno/grab/proc/succeeded_to_grab()
+	RegisterSignal(grabbing_item, COMSIG_QDELETING, PROC_REF(no_longer_grabbing))
+	RegisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED, PROC_REF(human_stat_changed))
+	RegisterSignals(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE), PROC_REF(taken_damage))
+	damage_taken_so_far = 0
+	xeno_owner.gain_plasma(250)
+	playsound(xeno_owner, 'sound/voice/alien/pounce.ogg', 25, TRUE)
+	succeed_activate()
+	add_cooldown()
+
+/datum/action/ability/activable/xeno/grab/proc/no_longer_grabbing()
+	SIGNAL_HANDLER
+	xeno_owner.stop_pulling()
+	failed_to_grab()
+	UnregisterSignal(grabbing_item, COMSIG_QDELETING)
+	UnregisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED)
+	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+
+/datum/action/ability/activable/xeno/grab/proc/human_stat_changed(datum/source, mob/source_mob, new_stat)
+	SIGNAL_HANDLER
+	if(new_stat != DEAD)
+		return
+	xeno_owner.stop_pulling()
+	failed_to_grab()
+	UnregisterSignal(grabbing_item, COMSIG_QDELETING)
+	UnregisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED)
+	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
+
+/datum/action/ability/activable/xeno/grab/proc/taken_damage(datum/source, amount, list/amount_mod)
+	SIGNAL_HANDLER
+	if(amount <= 0)
+		return
+	damage_taken_so_far += amount
+	if(damage_taken_so_far >= 500)
+		xeno_owner.stop_pulling()
+		failed_to_grab()
+		UnregisterSignal(grabbing_item, COMSIG_QDELETING)
+		UnregisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED)
+		UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
 
 /datum/action/ability/activable/xeno/miasma
 	name = "Miasma"
