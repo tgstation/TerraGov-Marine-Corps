@@ -670,7 +670,7 @@
 		return
 	xeno_owner.stop_pulling()
 
-/// Stops grabbing if owner has taken 300+ damage since beginning the grab.
+/// Stops grabbing if owner has taken 300 or more damage since beginning the grab. Damage is calculated after soft armor and plasma reduction.
 /datum/action/ability/activable/xeno/grab/proc/taken_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
 	if(amount <= 0)
