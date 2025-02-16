@@ -138,6 +138,34 @@
 		return FALSE
 	return TRUE
 
+/datum/action/ability/activable/xeno/fly
+	name = "Fly"
+	action_icon_state = "shattering_roar"
+	action_icon = 'icons/Xeno/actions/dragon.dmi'
+	desc = ""
+	cooldown_duration = 240 SECONDS
+
+
+/datum/action/ability/activable/xeno/tailswipe/can_use_ability(atom/A, silent, override_flags)
+	return ..()
+
+/datum/action/ability/activable/xeno/tailswipe/use_ability(atom/target)
+	if(status_flags & INCORPOREAL)
+		return // TODO: Finish this portion later!
+
+	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	var/was_successful = do_after(xeno_owner, 5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+
+	if(!was_successful)
+		succeed_activate()
+		add_cooldown()
+		return
+
+	xeno_owner.change_form()
+
 /datum/action/ability/activable/xeno/tailswipe
 	name = "Tailswipe"
 	action_icon_state = "shattering_roar"

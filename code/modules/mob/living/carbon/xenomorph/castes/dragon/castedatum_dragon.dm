@@ -48,7 +48,7 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/backhand,
-		// TODO: Fly ability.
+		/datum/action/ability/activable/xeno/fly,
 		/datum/action/ability/activable/xeno/tailswipe,
 		/datum/action/ability/activable/xeno/dragon_breath,
 		/datum/action/ability/activable/xeno/wind_current,
@@ -75,7 +75,7 @@
 		/datum/action/ability/activable/xeno/cocoon,
 		/datum/action/ability/xeno_action/call_of_the_burrowed,
 		/datum/action/ability/activable/xeno/backhand,
-		// TODO: Fly ability.
+		/datum/action/ability/activable/xeno/fly,
 		/datum/action/ability/activable/xeno/tailswipe,
 		/datum/action/ability/activable/xeno/dragon_breath,
 		/datum/action/ability/activable/xeno/wind_current,
