@@ -24,3 +24,181 @@
   - code_imp: added a on-crit proc
   novaepee:
   - rscadd: Give shipside medical an overwatch console
+2025-02-05:
+  Lumipharon:
+  - qol: Hive status screen groups strains by parent type
+  Neocloudy:
+  - admin: Mentor ghosts may now see LOOC from anywhere.
+  - admin: Staff may turn off LOOC spying in preferences.
+  - qol: LOOC now outputs in runechat.
+  - qol: Mentor OOC is slightly darker.
+  - qol: Msay is now tagged with "MENTOR:" to reduce confusion for admins.
+  - soundadd: Admin tickets turned into mentor tickets will not play the admin bwoink
+      sound, instead using the mentor bwoink sound.
+  - bugfix: Mentor PMs will not be super small anymore.
+  Rug-Dealer:
+  - bugfix: Modular chest plates now have the correct description for the armor they
+      provide.
+  - bugfix: Some arm and leg plates no longer have descriptions that state they provide
+      high protection and encumbrance.
+  Runian:
+  - balance: Warlock is no longer immobilized when casting with their psyblast ability.
+  Xander3359:
+  - bugfix: Fix "Toggle Seethrough" toggle being lost when gaining primo
+  jonash07:
+  - qol: vendors now vend the item into your selected hand
+  yyzsong:
+  - spellcheck: Updates armour module stylization
+2025-02-07:
+  Cheese:
+  - bugfix: Acid Maw stats no longer also include acid jaw stats.
+  Lumipharon:
+  - balance: Disposable AP and sunder reduced from 100 and 100, to 50 and 25
+  - balance: Highpower pistol seasonal removed from the game
+  ivanmixo:
+  - bugfix: Some SOM and marine hvh outfits' holster contents are once again filled
+2025-02-08:
+  The_Man:
+  - rscadd: Added new verb "Toggle Health Scan" for spectators.
+  - qol: If "Toggle Health Scan" is enabled, spectators will health scan on click.
+2025-02-09:
+  Runian:
+  - rscadd: New strain for Praetorian called Oppressor.
+  - rscadd: 'Oppressor abilities: Abduct, Dislocate, Advance, Tail Lash, and Item
+      Throw.'
+  - imageadd: 'Button icons for: Abduct, Advance, Tail Lash, and Item Throw,'
+  - bugfix: The display name for the Dancer strain has been changed to remove confusion
+      within the Strain Swap menu and to differentiate itself from the base caste.
+2025-02-10:
+  Kuro020:
+  - balance: Shoulder fire has been removed from the game
+  Lumipharon:
+  - balance: Non CIC overwatch consoles no longer have military functions
+  - code_imp: cleaned up Overwatch console code
+  - bugfix: Fireteams work for SOM
+  - bugfix: Fireteams can now be assigned screenwide as intended, instead of only
+      when adjacent
+  - bugfix: fixed items being burnt by lava while mid throw
+  - bugfix: fixed things visually submerging mid throw
+  - bugfix: fixed mobs not being immediately ignited when landing in fire/lava
+  Rug-Dealer:
+  - rscadd: Ghosts can now view the reagents in pills, pressurized reagent canisters,
+      and chem grenades on examine.
+  - rscadd: Added assault crewman to Valhalla, allowing you to test tanks and APCs
+      again.
+  Runian:
+  - rscadd: Hivemind gets a new ability that lets them use acid jaws/maws without
+      having to fly over to use them.
+  SandPoot:
+  - bugfix: Fixed hivemind's health hud/ui.
+  TiviPlus:
+  - server: Fixed certain things not saving in the DB
+  - bugfix: fixed the time of day being offset
+2025-02-11:
+  TiviPlus:
+  - rscadd: Adding !! after your message will now make it bigger and fatter in runechat
+  - rscadd: added a top left dropdown and a preferences button to see keybinds
+  - qol: There is now a fullscreen keybind (F11 by default)
+  - qol: The command bar now only shows under the chat, making the gameplay window
+      larger
+  - qol: The status bar (bar showing the name of what you hover over) now only shows
+      as a small box in the bottom left, making the gameplay and chat windows larger.
+      It can also be turned off in prefs now
+  - bugfix: fixed the UI being broken on Opendream (probably)
+  - bugfix: chat will no longer flicker on 516
+  - bugfix: The game will now only use fonts shipped with the game, due to some players
+      not having all fonts installed/ship correctly. as a result of this the lobby
+      menu, runechat, screen orders, etc may look different
+  - code_imp: Aligned skin.dmf with Tg's skin.dmf to make porting simple
+  - code_imp: Autofit viewport no longer has an arbitrary 1 second delay outside of
+      during the user connecting
+2025-02-12:
+  Kuro020:
+  - balance: Laser Rifle and MG can no longer equip rail scope
+  Lumipharon:
+  - bugfix: fixed a visual issue with beams
+  - bugfix: fixed mobs not hearing the OB sound some times
+  PibeCantina:
+  - qol: Makes the platforms on gelida non dense
+  Runian:
+  - balance: Xenomorph prep no longer ends when the tad launches, but when the TAD
+      begins to land outside any marine base (e.g. outside of LZ).
+  - bugfix: The additional buildings in Kutjevo Refinery's LZ are considered marine
+      base for consistency.
+  - bugfix: The area outside of Kutjevo Refinery's LZ is no longer considered a marine
+      base and will allow Hivemind to build in it once shutters open.
+  SandPoot:
+  - rscadd: Added Tesla turret, to shock xenos when they're too feisty!
+  - code_imp: zap_beam() returns affected xenos.
+  - rscadd: Fireman carried people can be laid on top of surgery tables directly instead
+      of having to drop to grab them again and click on the table.
+  Sun-Soaked:
+  - qol: joining the fallen hive of Valhalla no longer removes you from the living
+      hive's larva queue.
+  yyzsong:
+  - balance: combat robots may now wear the mimir armour module
+  - spellcheck: Unarmed attacks vs xenomorphs should now display correctly
+  - spellcheck: mMarine -> Marine
+2025-02-13:
+  Cheese (Code), Kuro (sprites), Mack (Ideasguy):
+  - rscadd: Added Globadier, a new spitter strain.
+  Isy232:
+  - balance: Officer/FC gloves are now insulated.
+  Lumipharon:
+  - spellcheck: Grammar fix for the overwatch console
+  - bugfix: Signalling an exploding detpack now simply disarms again instead of completely
+      deactivating
+  - bugfix: fixed bloodthirster charge being stronger than intended
+  - bugfix: Laser sentry no longer has offscreen range
+  Mannybrado:
+  - balance: increases health of standard tad variant windows/cockpit wall to 600(was
+      500) to match other tad variants
+  Sun-Soaked:
+  - rscadd: 'Adds 2 new abilities to Dancer: Baton Pass and Tail Hook'
+  - balance: Reworks Dancer's Impale and Tail Trip to make them stronger.
+  - balance: Reduces Dancer's speed slightly, while slightly increasing its HP and
+      armor.
+  - balance: Dancer's Dodge now lasts longer but has a longer cooldown.
+  - imageadd: Adds 2 new aoe swing effects.
+  distributivgesetz:
+  - config: Add PUBLIC_ADDRESS as a config option, serves to show the public IP for
+      players to connect to.
+  ivanmixo:
+  - code_imp: The names of args in the apply effects procs are more sane
+  novaepee:
+  - imageadd: New Lobby Art from Astolfo!
+  yyzsong:
+  - balance: Marine squad leaders may now take the radiopack as a backpack option
+2025-02-15:
+  Barnet2:
+  - spellcheck: Increases command message length to 200 characters from 120 and 100
+  Cheese:
+  - qol: Strain keybinds now use the strain name, rather than the parent name, in
+      the keybinding menu.
+  Lumipharon:
+  - bugfix: fixed hunter silence and sticky spit applying far less stagger than intended
+  - bugfix: fixed mech destruction effects
+  Neocloudy:
+  - spellcheck: New "titanic" weight class for any item larger than gigantic.
+  Rug-Dealer:
+  - rscadd: Added *trick emote that lets you do tricks on weapons and items alike.
+  TiviPlus:
+  - balance: Everyone except spatial agents can only spawn mechs once
+  - bugfix: having just spawned a mech now does not prevent you from spawning ammo
+  novaepee:
+  - rscadd: updating PoS medbay ONCE AGAIN for 2025!
+2025-02-16:
+  Apple-107:
+  - rscadd: Card decks are now available for Marines in Character Customization and
+      Marine Armaments Vendors
+  Lumipharon:
+  - bugfix: Mech pilots actually have mech skill
+  TiviPlus:
+  - balance: mech no longer has directional armor
+  - balance: the tank driver now gets the old periscopes tier of zoom and nightvision
+  - balance: the tank periscope has 1 extra range now
+  - bugfix: fixed periscope being usable while driving the tank
+  - balance: mechs no longer have tank controls
+  - bugfix: block movement keybind now lets you turn while you strafe correctly in
+      a mech
+  - bugfix: fixed mech turn sounds playing when they shouldnt

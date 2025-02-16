@@ -799,8 +799,10 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			. = "huge"
 		if(WEIGHT_CLASS_GIGANTIC)
 			. = "gigantic"
+		if(WEIGHT_CLASS_GIGANTIC + 1 to INFINITY)
+			. = "titanic"
 		else
-			. = "?????"
+			. = "unknown size"
 
 ///Returns an assoc list of WEIGHT CLASS TEXT = DESCRIPTION based on the arg you provide.
 ///Used by examine tags for giving each weight class a special description.
@@ -814,10 +816,10 @@ GLOBAL_LIST_INIT(wallitems, typecacheof(list(
 			.[WEIGHT_CLASS_TOOLTIP] = "Fits in some standard containers and backpacks/satchels. Takes up some space."
 		if(WEIGHT_CLASS_BULKY)
 			.[WEIGHT_CLASS_TOOLTIP] = "Does not fit in standard containers."
-		if(WEIGHT_CLASS_HUGE, WEIGHT_CLASS_GIGANTIC)
+		if(WEIGHT_CLASS_HUGE to INFINITY)
 			.[WEIGHT_CLASS_TOOLTIP] = "Often can't be stored at all, except in uncommon specialized containers, like holsters for weapons."
 		else
-			.[WEIGHT_CLASS_TOOLTIP] = "Yell at coders, this isn't supposed to happen."
+			.[WEIGHT_CLASS_TOOLTIP] = "Yell at a coder, this item is a weight class that doesn't exist."
 
 /// Converts a semver string into a list of numbers
 /proc/semver_to_list(semver_string)

@@ -187,6 +187,7 @@
 	var/static/image/intoxicated_amount_image = image('icons/mob/hud/intoxicated.dmi', icon_state = "intoxicated_amount0")
 	var/static/image/intoxicated_high_image = image('icons/mob/hud/intoxicated.dmi', icon_state = "intoxicated_high")
 	var/static/image/hunter_silence_image = image('icons/mob/hud/human.dmi', icon_state = "silence_debuff")
+	var/static/image/dancer_marked_image = image('icons/mob/hud/human.dmi', icon_state = "marked_debuff")
 	var/static/image/hive_target_image = image('icons/mob/hud/human.dmi', icon_state = "hive_target")
 
 	xeno_reagent.overlays.Cut()
@@ -229,6 +230,9 @@
 	if(stat != DEAD)
 		if(IsMute())
 			xeno_debuff.overlays += hunter_silence_image
+
+	if(has_status_effect(STATUS_EFFECT_DANCER_TAGGED))
+		xeno_debuff.overlays += dancer_marked_image
 
 	if(HAS_TRAIT(src, TRAIT_HIVE_TARGET))
 		xeno_debuff.overlays += hive_target_image
@@ -748,3 +752,18 @@
 	if(internal_damage)
 		holder.icon_state = "hudwarn"
 	holder.icon_state = null
+
+/obj/machinery/deployable/tesla_turret/proc/hud_set_tesla_battery()
+	var/image/holder = hud_list[MACHINE_AMMO_HUD]
+
+	if(!holder)
+		return
+
+	if(!battery)
+		holder.icon = 'icons/mob/hud/xeno_health.dmi'
+		holder.icon_state = "plasma0"
+		return
+
+	var/amount = round(battery.charge * 100 / battery.maxcharge, 10)
+	holder.icon = 'icons/mob/hud/xeno_health.dmi'
+	holder.icon_state = "plasma[amount]"

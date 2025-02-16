@@ -71,21 +71,21 @@
 
 	var/dat
 	if(haspen)
-		dat += "<A href='?src=[text_ref(src)];pen=1'>Remove Pen</A><BR><HR>"
+		dat += "<A href='byond://?src=[text_ref(src)];pen=1'>Remove Pen</A><BR><HR>"
 	else
-		dat += "<A href='?src=[text_ref(src)];addpen=1'>Add Pen</A><BR><HR>"
+		dat += "<A href='byond://?src=[text_ref(src)];addpen=1'>Add Pen</A><BR><HR>"
 
 	//The topmost paper. I don't think there's any way to organise contents in byond, so this is what we're stuck with.	-Pete
 	if(toppaper)
 		var/obj/item/paper/P = toppaper
-		dat += "<A href='?src=[text_ref(src)];write=[text_ref(P)]'>Write</A> <A href='?src=[text_ref(src)];remove=[text_ref(P)]'>Remove</A> - <A href='?src=[text_ref(src)];read=[text_ref(P)]'>[P.name]</A><BR><HR>"
+		dat += "<A href='byond://?src=[text_ref(src)];write=[text_ref(P)]'>Write</A> <A href='byond://?src=[text_ref(src)];remove=[text_ref(P)]'>Remove</A> - <A href='byond://?src=[text_ref(src)];read=[text_ref(P)]'>[P.name]</A><BR><HR>"
 
 	for(var/obj/item/paper/P in src)
 		if(P==toppaper)
 			continue
-		dat += "<A href='?src=[text_ref(src)];remove=[text_ref(P)]'>Remove</A> - <A href='?src=[text_ref(src)];read=[text_ref(P)]'>[P.name]</A><BR>"
+		dat += "<A href='byond://?src=[text_ref(src)];remove=[text_ref(P)]'>Remove</A> - <A href='byond://?src=[text_ref(src)];read=[text_ref(P)]'>[P.name]</A><BR>"
 	for(var/obj/item/photo/Ph in src)
-		dat += "<A href='?src=[text_ref(src)];remove=[text_ref(Ph)]'>Remove</A> - <A href='?src=[text_ref(src)];look=[text_ref(Ph)]'>[Ph.name]</A><BR>"
+		dat += "<A href='byond://?src=[text_ref(src)];remove=[text_ref(Ph)]'>Remove</A> - <A href='byond://?src=[text_ref(src)];look=[text_ref(Ph)]'>[Ph.name]</A><BR>"
 
 	var/datum/browser/popup = new(user, "clipboard", "<div align='center'>Clipboard</div>")
 	popup.set_content(dat)

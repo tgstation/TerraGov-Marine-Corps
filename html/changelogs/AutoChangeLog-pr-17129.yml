@@ -1,0 +1,4 @@
+author: "yyzsong"
+delete-after: True
+changes:
+  - qol: "Acid Maws and Acid Jaws now notify ghosts when fired, and their point of impact may be jumped to."

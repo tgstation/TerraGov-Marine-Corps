@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(events)
 	var/normal = ""
 
 	for(var/datum/round_event_control/E in SSevents.control)
-		dat = "<BR><A href='?src=[REF(src)];[HrefToken()];force_event=[REF(E)]'>[E]</A>"
+		dat = "<BR><A href='byond://?src=[REF(src)];[HrefToken()];force_event=[REF(E)]'>[E]</A>"
 		normal 	+= dat
 
 	dat = normal
