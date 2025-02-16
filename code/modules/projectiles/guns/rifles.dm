@@ -1338,8 +1338,8 @@
 	)
 	caliber = CALIBER_10x27_CASELESS //codex
 	max_shells = 40 //codex
-	aim_slowdown = 0.85
-	wield_delay = 0.85 SECONDS
+	aim_slowdown = 0.65
+	wield_delay = 0.75 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/t62.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
@@ -1364,7 +1364,7 @@
 	attachable_offset = list("muzzle_x" = 12, "muzzle_y" = 22, "rail_x" = 15, "rail_y" = 22, "under_x" = 28, "under_y" = 16, "stock_x" = 12, "stock_y" = 14)
 	starting_attachment_types = list(/obj/item/weapon/gun/rifle/standard_spottingrifle, /obj/item/attachable/stock/strstock)
 
-	fire_delay = 0.5 SECONDS
+	fire_delay = 0.45 SECONDS
 	burst_amount = 0
 	accuracy_mult_unwielded = 0.4
 	accuracy_mult = 1.1
