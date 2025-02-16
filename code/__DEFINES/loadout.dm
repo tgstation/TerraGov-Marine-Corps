@@ -81,6 +81,7 @@ GLOBAL_LIST_INIT(engineer_gear_listed_products, list(
 		/obj/item/storage/box/explosive_mines = list(CAT_ENGSUP, "M20 mine box", 18, "engi-explosive"),
 		/obj/item/minelayer = list(CAT_ENGSUP, "M21 APRDS \"Minelayer\"", 5, "engi-explosive"),
 		/obj/item/storage/box/crate/minisentry = list(CAT_ENGSUP, "ST-580 point defense sentry kit", 50, "engi-other"),
+		/obj/item/tesla_turret = list(CAT_ENGSUP, "Tesla Turret", 75, "engi-other"),
 		/obj/structure/closet/crate/uav_crate = list(CAT_ENGSUP, "Iguana Unmanned Vehicle", 50, "engi-other"),
 		/obj/structure/closet/crate/uvt_crate = list(CAT_ENGSUP, "Skink Unmanned Vehicle", 5, "engi-other"),
 		/obj/item/attachable/buildasentry = list(CAT_ENGSUP, "Build-A-Sentry Attachment", 30, "engi-other"),
@@ -177,6 +178,7 @@ GLOBAL_LIST_INIT(commander_gear_listed_products, list(
 
 //A way to give them everything at once that still works with loadouts would be nice, but barring that make sure that your point calculation is set up so they don't get more than what they're supposed to
 GLOBAL_LIST_INIT(smartgunner_gear_listed_products, list(
+	/obj/effect/vendor_bundle/smartgunner = list(CAT_ESS, "KLTD Smart Goggles", 0, "white"),
 	/obj/item/weapon/gun/rifle/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Smart Machine Gun", 29, "sg-machinegun"), //If a smartgunner buys a SG-29, then they will have 16 points to purchase 4 SG-29 drums
 	/obj/item/ammo_magazine/standard_smartmachinegun = list(CAT_SGSUP, "SG-29 Ammo Drum", 4, "sg-machinegun"),
 	/obj/item/weapon/gun/minigun/smart_minigun = list(CAT_SGSUP, "SG-85 Smart Handheld Gatling Gun", 27, "sg-minigun"), //If a smartgunner buys a SG-85, then they should be able to buy only 1 powerpack and 2 ammo bins
@@ -540,6 +542,7 @@ GLOBAL_LIST_INIT(leader_clothes_listed_products, list(
 		/obj/item/storage/backpack/marine/satchel = list(CAT_BAK, "Satchel", 0, "black"),
 		/obj/item/storage/backpack/marine/standard = list(CAT_BAK, "Backpack", 0, "black"),
 		/obj/item/storage/holster/blade/machete/full = list(CAT_BAK, "Machete scabbard", 0, "black"),
+		/obj/item/storage/backpack/marine/radiopack = list(CAT_BAK, "Radio Pack", 0, "black"),
 		/obj/item/armor_module/storage/uniform/black_vest = list(CAT_WEB, "Tactical black vest", 0, "black"),
 		/obj/item/armor_module/storage/uniform/webbing = list(CAT_WEB, "Tactical webbing", 0, "black"),
 		/obj/item/armor_module/storage/uniform/holster = list(CAT_WEB, "Shoulder handgun holster", 0, "black"),
@@ -715,9 +718,6 @@ GLOBAL_LIST_INIT(loadout_role_essential_set, list(
 	),
 	SQUAD_SMARTGUNNER = list(
 		/obj/item/clothing/glasses/night/m56_goggles = 1,
-		/obj/item/storage/holster/belt/pistol/smart_pistol = 1,
-		/obj/item/weapon/gun/pistol/smart_pistol = 1,
-		/obj/item/ammo_magazine/pistol/standard_pistol/smart_pistol = 2,
 	),
 	SQUAD_LEADER = list(
 		/obj/item/explosive/plastique = 1,

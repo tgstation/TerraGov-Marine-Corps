@@ -221,6 +221,7 @@
 			/obj/item/compass = -1,
 			/obj/item/tool/hand_labeler = -1,
 			/obj/item/toy/deck/kotahi = -1,
+			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = 5,
 		),
 	)

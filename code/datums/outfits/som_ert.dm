@@ -143,6 +143,7 @@
 		/obj/item/reagent_containers/hypospray/advanced/combat_advanced = 1,
 	)
 
+
 /datum/outfit/job/som/ert/medic/standard_assaultrifle
 	suit_store = /obj/item/weapon/gun/rifle/som/mag_harness
 
@@ -383,6 +384,11 @@
 		/obj/item/tool/crowbar/red = 1,
 	)
 
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
+	)
+
 
 /datum/outfit/job/som/ert/veteran/shotgunner
 	belt = /obj/item/storage/belt/shotgun/som/flechette
@@ -548,6 +554,11 @@
 		/obj/item/reagent_containers/hypospray/autoinjector/isotonic = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/quickclot = 1,
 		/obj/item/reagent_containers/hypospray/autoinjector/dylovene = 1,
+	)
+
+	belt_contents = list(
+		/obj/item/weapon/gun/pistol/som/burst = 1,
+		/obj/item/ammo_magazine/pistol/som/extended = 6,
 	)
 
 

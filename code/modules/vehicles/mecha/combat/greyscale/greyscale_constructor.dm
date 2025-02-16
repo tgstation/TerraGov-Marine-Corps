@@ -176,7 +176,7 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	. = ..()
 	if(!.)
 		return
-	if(user.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+	if(user.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
 		return FALSE
 
 /obj/machinery/computer/mech_builder/ui_interact(mob/user, datum/tgui/ui)
@@ -224,8 +224,6 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 	if(.)
 		return
 
-	if(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA))
-		return FALSE
 	var/selected_part = params["bodypart"]
 	if(selected_part && !(selected_part in selected_primary))
 		return FALSE // non valid body parts
@@ -281,6 +279,12 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 			selected_name = new_name
 
 		if("assemble")
+			var/mob/living/user = usr
+			if(HAS_TRAIT(user, TRAIT_HAS_SPAWNED_MECH))
+				tgui_alert(user, "You have already deployed a mech!")
+				return FALSE
+			if(S_TIMER_COOLDOWN_TIMELEFT(src, COOLDOWN_MECHA))
+				return FALSE
 			for(var/key in selected_primary)
 				if(isnull(selected_primary[key]))
 					return FALSE
@@ -291,7 +295,9 @@ GLOBAL_LIST_INIT(greyscale_weapons_data, generate_greyscale_weapons_data())
 				return FALSE
 			addtimer(CALLBACK(src, PROC_REF(deploy_mech)), 1 SECONDS)
 			playsound(get_step(src, dir), 'sound/machines/elevator_move.ogg', 50, 0)
-			S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
+			if(!isspatialagentjob(user.job))
+				S_TIMER_COOLDOWN_START(src, COOLDOWN_MECHA, 5 MINUTES)
+				ADD_TRAIT(usr, TRAIT_HAS_SPAWNED_MECH, MECH_VENDOR_TRAIT)
 			return TRUE
 
 		if("add_weapon")

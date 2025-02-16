@@ -30,7 +30,7 @@
 	var/engine_off_sound = 'sound/vehicles/looping/tank_eng_interior_start.ogg'
 	/// sound to play inside the tank after the driver leaves
 	var/engine_off_interior_sound = 'sound/vehicles/looping/tank_eng_start.ogg'
-// tivi todo bfg interior sound use particle fire inside sound
+
 	///Cool and good turret overlay that allows independently swiveling guns
 	var/atom/movable/vis_obj/turret_overlay/turret_overlay = /atom/movable/vis_obj/turret_overlay
 	///Icon for the rotating turret icon. also should hold the icons for the weapon icons

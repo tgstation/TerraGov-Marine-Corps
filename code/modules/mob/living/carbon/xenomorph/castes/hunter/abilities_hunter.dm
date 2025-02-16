@@ -645,7 +645,7 @@
 			silence_multiplier = HUNTER_SILENCE_MULTIPLIER
 		to_chat(target, span_danger("Your mind convulses at the touch of something ominous as the world seems to blur, your voice dies in your throat, and everything falls silent!") ) //Notify privately
 		target.playsound_local(target, 'sound/effects/ghost.ogg', 25, 0, 1)
-		target.adjust_stagger(HUNTER_SILENCE_STAGGER_STACKS * silence_multiplier)
+		target.adjust_stagger(HUNTER_SILENCE_STAGGER_DURATION * silence_multiplier)
 		target.adjust_blurriness(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
 		target.adjust_ear_damage(HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier, HUNTER_SILENCE_SENSORY_STACKS * silence_multiplier)
 		target.apply_status_effect(/datum/status_effect/mute, HUNTER_SILENCE_MUTE_DURATION * silence_multiplier)
