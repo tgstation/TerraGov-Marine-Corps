@@ -134,16 +134,6 @@
 		return FALSE
 	return TRUE
 
-/datum/action/ability/activable/xeno/fly
-	name = "Fly"
-	action_icon_state = "shattering_roar"
-	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
-	cooldown_duration = 240 SECONDS
-/* Fly, aka odd Hivemind's Manifest:
-	TBD
-*/
-
 /datum/action/ability/activable/xeno/tailswipe
 	name = "Tailswipe"
 	action_icon_state = "shattering_roar"
