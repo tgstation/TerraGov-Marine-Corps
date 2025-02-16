@@ -63,8 +63,6 @@
 #define ARMORED_WRECKABLE (1<<9)
 ///Is currently a wreck
 #define ARMORED_IS_WRECK (1<<10)
-///Engine freq doesn't vary
-#define ARMORED_ENGINE_FREQ_NO_VARY (1<<11)
 
 #define MODULE_PRIMARY (1<<0)
 #define MODULE_SECONDARY (1<<1)

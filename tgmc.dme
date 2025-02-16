@@ -673,6 +673,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\datums\loadout\item_representation\uniform_representation.dm"
 #include "code\datums\looping_sounds\_looping_sound.dm"
 #include "code\datums\looping_sounds\machinery_sounds.dm"
+#include "code\datums\looping_sounds\tank.dm"
 #include "code\datums\looping_sounds\weather_sounds.dm"
 #include "code\datums\looping_sounds\xeno_sounds.dm"
 #include "code\datums\outfits\_outfit.dm"

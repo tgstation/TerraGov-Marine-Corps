@@ -17,19 +17,20 @@
 	light_range = 10
 	///Tank bitflags
 	var/armored_flags = ARMORED_HAS_PRIMARY_WEAPON|ARMORED_HAS_HEADLIGHTS
-	///Sound file(s) to play when we drive around
-	var/list/engine_sound = list('sound/vehicles/engine_rev_1.ogg', 'sound/vehicles/engine_rev_2.ogg')
-	///Sound file(s) to play inside the vehicle when we drive around
-	var/list/interior_engine_sound = list('sound/vehicles/engine_rev_interior_1.ogg', 'sound/vehicles/engine_rev_interior_2.ogg')
-	///Sound file(s) to play outside the vehicle when we've been idle for a while
-	var/list/idle_engine_sound = list('sound/vehicles/engine_idle_1.ogg', 'sound/vehicles/engine_idle_2.ogg', 'sound/vehicles/engine_idle_3.ogg')
-	///Sound file(s) to play inside the vehicle when we've been idle for a while
-	var/list/idle_interior_engine_sound = list('sound/vehicles/engine_idle_interior_1.ogg', 'sound/vehicles/engine_idle_interior_2.ogg')
-	///frequency to play the move sound with
-	var/engine_sound_length = 2 SECONDS
-	/// How long it takes to rev (vrrm vrrm!) TODO: merge this up to /vehicle here and on tg because of cars
-	COOLDOWN_DECLARE(enginesound_cooldown)
 
+	///sound loop that plays when we are not moving with a driver present
+	var/datum/looping_sound/idle_loop = /datum/looping_sound/tank_idle
+	/// sound loop that plays inside the tank when driver is in but we're not moving
+	var/datum/looping_sound/idle_inside_loop = /datum/looping_sound/tank_idle_interior
+	/// sound loop that plays while we move around
+	var/datum/looping_sound/drive_loop = /datum/looping_sound/tank_drive
+	/// sound that plays inside when we drive around
+	var/datum/looping_sound/drive_inside_loop = /datum/looping_sound/tank_drive_interior
+	/// sound to play outside the tank after the driver leaves
+	var/engine_off_sound = 'sound/vehicles/looping/tank_eng_interior_start.ogg'
+	/// sound to play inside the tank after the driver leaves
+	var/engine_off_interior_sound = 'sound/vehicles/looping/tank_eng_start.ogg'
+// tivi todo bfg interior sound use particle fire inside sound
 	///Cool and good turret overlay that allows independently swiveling guns
 	var/atom/movable/vis_obj/turret_overlay/turret_overlay = /atom/movable/vis_obj/turret_overlay
 	///Icon for the rotating turret icon. also should hold the icons for the weapon icons
@@ -120,6 +121,16 @@
 				icon_state += "_urban"
 			if(MAP_ARMOR_STYLE_DESERT)
 				icon_state += "_desert"
+
+	if(idle_loop)
+		idle_loop = new idle_loop(list(src))
+	if(idle_inside_loop)
+		idle_inside_loop = new idle_inside_loop()
+	if(drive_loop)
+		drive_loop = new drive_loop(list(src))
+	if(drive_inside_loop)
+		drive_inside_loop = new drive_inside_loop()
+
 	update_minimap_icon()
 	GLOB.tank_list += src
 
@@ -134,7 +145,15 @@
 		QDEL_NULL(gunner_utility_module)
 	if(damage_overlay)
 		QDEL_NULL(damage_overlay)
-	// can de delled before init makes these due to globs
+	if(idle_loop)
+		QDEL_NULL(idle_loop)
+	if(idle_inside_loop)
+		QDEL_NULL(idle_inside_loop)
+	if(drive_loop)
+		QDEL_NULL(drive_loop)
+	if(drive_inside_loop)
+		QDEL_NULL(drive_inside_loop)
+	// can be delled before init makes these due to globs
 	if(isatom(turret_overlay))
 		QDEL_NULL(turret_overlay)
 	if(isdatum(interior))
@@ -230,7 +249,6 @@
 	. = ..()
 	if(!.)
 		return
-	play_engine_sound()
 	after_move(direction)
 	forceMove(get_step(src, direction)) // still animates and calls moved() and all that stuff BUT we skip checks
 
@@ -284,24 +302,13 @@
 		living_occupant.Stagger((6 - severity) SECONDS)
 
 /obj/vehicle/sealed/armored/process()
-	if(driver_amount() == 0)
-		return PROCESS_KILL
 	if(cooldown_vehicle_move + 1 > world.time)
-		return // driver present but they look to be moving so dont play idle
-	playsound(src, islist(idle_engine_sound) ? pick(idle_engine_sound) : idle_engine_sound, 30, !(armored_flags & ARMORED_ENGINE_FREQ_NO_VARY), 10, channel=CHANNEL_TANK_DRIVING)
-	if(idle_interior_engine_sound && interior)
-		play_interior_sound(null, islist(idle_interior_engine_sound) ? pick(idle_interior_engine_sound) : idle_interior_engine_sound, 30, !(armored_flags & ARMORED_ENGINE_FREQ_NO_VARY), channel=CHANNEL_TANK_DRIVING)
-
-///Plays the engine sound for this vehicle if its not on cooldown
-/obj/vehicle/sealed/armored/proc/play_engine_sound(sound_freq)
-	if(!COOLDOWN_CHECK(src, enginesound_cooldown))
-		return
-	COOLDOWN_START(src, enginesound_cooldown, engine_sound_length)
-	///whether we play the outside sound for the interior or no
-	var/play_loc = interior_engine_sound ? src : get_turf(src)
-	playsound(play_loc, islist(engine_sound) ? pick(engine_sound) : engine_sound, 100, !(armored_flags & ARMORED_ENGINE_FREQ_NO_VARY), 20, frequency = sound_freq, channel = CHANNEL_TANK_DRIVING)
-	if(interior_engine_sound)
-		play_interior_sound(null, islist(interior_engine_sound) ? pick(interior_engine_sound) : interior_engine_sound, 60, !(armored_flags & ARMORED_ENGINE_FREQ_NO_VARY), channel = CHANNEL_TANK_DRIVING)
+		return // tank is currently trying to move around
+	if(drive_loop?.timer_id)
+		drive_loop.stop()
+		idle_loop?.start()
+		drive_inside_loop?.stop(occupants)
+		idle_inside_loop?.start(occupants.Copy(), TRUE)
 
 ///called when a mob tried to leave our interior
 /obj/vehicle/sealed/armored/proc/interior_exit(mob/leaver, datum/interior/inside, teleport)
@@ -376,6 +383,10 @@
 		else
 			secondary_icons = list(secondary_weapon.hud_state_empty, secondary_weapon.hud_state_empty)
 		M?.hud_used?.add_ammo_hud(secondary_weapon, secondary_icons, secondary_weapon?.ammo?.current_rounds)
+	if(idle_inside_loop?.timer_id)
+		idle_inside_loop.start(M, TRUE)
+	else if(drive_inside_loop?.timer_id)
+		drive_inside_loop.start(M, TRUE)
 
 /obj/vehicle/sealed/armored/after_add_occupant(mob/M)
 	. = ..()
@@ -387,25 +398,42 @@
 	if(. && (flag & VEHICLE_CONTROL_EQUIPMENT))
 		RegisterSignal(M, COMSIG_MOB_MOUSEDOWN, PROC_REF(on_mouseclick), TRUE)
 	if(. && (flag & VEHICLE_CONTROL_DRIVE) && !(datum_flags & DF_ISPROCESSING))
-		START_PROCESSING(SSobj, src)
+		START_PROCESSING(SSfastprocess, src)
+		idle_loop.start()
+		idle_inside_loop.start(occupants.Copy())
 
 /obj/vehicle/sealed/armored/remove_controller_actions_by_flag(mob/M, flag)
 	. = ..()
 	if(. && (flag & VEHICLE_CONTROL_EQUIPMENT))
 		UnregisterSignal(M, COMSIG_MOB_MOUSEDOWN)
 	if(. && (flag & VEHICLE_CONTROL_DRIVE) && (driver_amount() == 0))
-		STOP_PROCESSING(SSobj, src)
+		STOP_PROCESSING(SSfastprocess, src)
+		idle_loop?.stop()
+		drive_loop?.stop()
+		idle_inside_loop?.stop(occupants)
+		drive_inside_loop?.stop(occupants)
+		play_interior_sound(null, engine_off_interior_sound, 10, TRUE)
+		playsound(src, engine_off_sound, 30)
 
 /obj/vehicle/sealed/armored/remove_occupant(mob/M)
 	M?.hud_used?.remove_ammo_hud(primary_weapon)
 	M?.hud_used?.remove_ammo_hud(secondary_weapon)
 	UnregisterSignal(M, COMSIG_MOB_DEATH)
 	UnregisterSignal(M, COMSIG_LIVING_DO_RESIST)
+	idle_inside_loop?.output_atoms -= M
+	drive_inside_loop?.output_atoms -= M
 	return ..()
 
 /obj/vehicle/sealed/armored/relaymove(mob/living/user, direction)
 	. = ..()
-	if(!is_driver(user) && is_equipment_controller(user))
+	if(is_driver(user))
+		if(!drive_loop?.timer_id)
+			idle_loop?.stop()
+			drive_loop.start()
+			drive_inside_loop?.start(occupants.Copy())
+			idle_inside_loop?.stop(occupants)
+		return
+	if(is_equipment_controller(user))
 		swivel_turret(null, direction)
 
 /obj/vehicle/sealed/armored/projectile_hit(obj/projectile/proj, cardinal_move, uncrossing)
