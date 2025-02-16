@@ -144,6 +144,81 @@
 /datum/action/ability/activable/xeno/tailswipe/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
+	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
+	var/list/turf/affected_turfs = get_turfs_to_target()
+	for(var/turf/affected_turf AS in affected_turfs)
+		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
+
+	xeno_owner.setDir(turn(xeno_owner.dir, 180))
+	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	QDEL_LIST(telegraphed_atoms)
+
+	if(!was_successful)
+		succeed_activate()
+		add_cooldown()
+		return
+
+	var/damage = 55 * xeno_owner.xeno_melee_damage_modifier
+	var/has_hit_anything = FALSE
+	var/list/obj/vehicle/vehicles_already_affected_so_far = list() // To stop hitting something the same multitile vehicle twice.
+	for(var/turf/affected_tile AS in block(lower_left, upper_right))
+		for(var/atom/affected_atom AS in affected_tile)
+			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
+				continue
+			if(affected_atom in vehicles_already_affected_so_far)
+				continue
+			if(isxeno(affected_atom))
+				continue
+			if(isliving(affected_atom))
+				var/mob/living/affected_living = affected_atom
+				if(affected_living.stat == DEAD)
+					continue
+				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5)
+				affected_living.apply_effect(2 SECONDS, EFFECT_PARALYZE)
+
+				animate(affected_living, pixel_z = affected_living.pixel_z + 8, layer = max(MOB_JUMP_LAYER, affected_living.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
+				animate(pixel_z = affected_living.pixel_z - 8, layer = affected_living.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
+				affected_living.animation_spin(0.5 SECONDS, 1, affected_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
+				var/datum/component/jump/living_jump_component = affected_living.GetComponent(/datum/component/jump)
+				if(living_jump_component)
+					TIMER_COOLDOWN_START(affected_living, JUMP_COMPONENT_COOLDOWN, 0.25 SECONDS)
+
+				xeno_owner.do_attack_animation(affected_living)
+				xeno_owner.visible_message(span_danger("\The [xeno_owner] tail swipes [affected_living]!"), \
+					span_danger("We tail swipes [affected_living]!"), null, 5) // TODO: Better flavor.
+				has_hit_anything = TRUE
+				continue
+			if(ishitbox(affected_atom))
+				var/obj/hitbox/vehicle_hitbox = affected_atom
+				if(vehicle_hitbox.root in vehicles_already_affected_so_far)
+					continue
+				handle_vehicle_effects(vehicle_hitbox.root, damage * 1/3)
+				vehicles_already_affected_so_far += vehicle_hitbox.root
+				has_hit_anything = TRUE
+				continue
+			if(isvehicle(affected_atom))
+				if(ismecha(affected_atom))
+					handle_vehicle_effects(affected_atom, damage * 3, 50)
+				else if(isarmoredvehicle(affected_atom))
+					handle_vehicle_effects(affected_atom, damage / 3)
+				else
+					handle_vehicle_effects(affected_atom, damage)
+				vehicles_already_affected_so_far += affected_atom
+				has_hit_anything = TRUE
+
+	playsound(xeno_owner, has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
+	if(has_hit_anything)
+		xeno_owner.gain_plasma(75)
+
+	succeed_activate()
+	add_cooldown()
+
+/// Gets a 5x3 block of turfs that are not closed turf and can be seen by the owner.
+/datum/action/ability/activable/xeno/tailswipe/proc/get_turfs_to_target()
 	var/turf/lower_left
 	var/turf/upper_right
 	switch(xeno_owner.dir)
@@ -159,75 +234,16 @@
 		if(EAST)
 			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 2, xeno_owner.z)
 			upper_right = locate(xeno_owner.x + 3, xeno_owner.y + 2, xeno_owner.z)
-	xeno_owner.setDir(turn(xeno_owner.dir, 180))
 
-	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
-	var/turf/affected_turfs = block(lower_left, upper_right) // 5x3
-	for(var/turf/affected_turf AS in affected_turfs)
-		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
-
-	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER) && can_use_ability(target, TRUE)
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	QDEL_LIST(telegraphed_atoms)
-	if(!was_successful)
-		return
-
-	var/damage = 55 * xeno_owner.xeno_melee_damage_modifier
-	var/has_hit_anything = FALSE
-	var/list/atom/already_affected_so_far = list() // To prevent hitting the root/parent of multitile vehicles more than once.
-	for(var/turf/affected_tile AS in block(lower_left, upper_right))
-		for(var/atom/affected_atom AS in affected_tile)
-			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
-			if(affected_atom in already_affected_so_far)
-				continue
-			if(isxeno(affected_atom))
-				continue
-			if(isliving(affected_atom))
-				var/mob/living/affected_living = affected_atom
-				if(affected_living.stat == DEAD)
-					continue
-				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5)
-				affected_living.apply_effect(2 SECONDS, EFFECT_PARALYZE)
-
-				animate(affected_living, pixel_z = affected_living.pixel_z + 16, layer = max(MOB_JUMP_LAYER, affected_living.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
-				animate(pixel_z = affected_living.pixel_z - 16, layer = affected_living.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
-				affected_living.animation_spin(0.25 SECONDS, 1, affected_living.dir == WEST ? FALSE : TRUE, anim_flags = ANIMATION_PARALLEL)
-				var/datum/component/jump/living_jump_component = affected_living.GetComponent(/datum/component/jump)
-				if(living_jump_component)
-					TIMER_COOLDOWN_START(affected_living, JUMP_COMPONENT_COOLDOWN, 0.25 SECONDS)
-
-				xeno_owner.do_attack_animation(affected_living)
-				xeno_owner.visible_message(span_danger("\The [xeno_owner] tail swipes [affected_living]!"), \
-					span_danger("We tail swipes [affected_living]!"), null, 5) // TODO: Better flavor.
-				already_affected_so_far += affected_atom
-				has_hit_anything = TRUE
-				continue
-			if(ishitbox(affected_atom))
-				var/obj/hitbox/vehicle_hitbox = affected_atom
-				if(vehicle_hitbox.root in already_affected_so_far)
-					continue
-				handle_vehicle_effects(vehicle_hitbox.root, damage * 1/3)
-				already_affected_so_far += vehicle_hitbox.root
-				has_hit_anything = TRUE
-				continue
-			if(isvehicle(affected_atom))
-				if(ismecha(affected_atom))
-					handle_vehicle_effects(affected_atom, damage * 3, 50)
-				else if(isarmoredvehicle(affected_atom))
-					handle_vehicle_effects(affected_atom, damage / 3)
-				else
-					handle_vehicle_effects(affected_atom, damage)
-				already_affected_so_far += affected_atom
-				has_hit_anything = TRUE
-
-	playsound(xeno_owner, has_hit_anything ? 'sound/weapons/alien_claw_block.ogg' : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
-	if(has_hit_anything)
-		xeno_owner.gain_plasma(75)
-
-	succeed_activate()
-	add_cooldown()
+	var/list/turf/acceptable_turfs = list()
+	var/list/turf/possible_turfs = block(lower_left, upper_right)
+	for(var/turf/possible_turf AS in possible_turfs)
+		if(isclosedturf(possible_turf))
+			continue
+		if(!line_of_sight(xeno_owner, possible_turf, 3))
+			continue
+		acceptable_turfs += possible_turf
+	return acceptable_turfs
 
 /// Stuns the vehicle's occupants and does damage to the vehicle itself.
 /datum/action/ability/activable/xeno/tailswipe/proc/handle_vehicle_effects(obj/vehicle/vehicle, damage, ap)
