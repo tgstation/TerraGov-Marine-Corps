@@ -333,6 +333,8 @@
 	qdel(xeno_owner.GetComponent(/datum/component/automatedfire/autofire))
 	UnregisterSignal(xeno_owner, list(COMSIG_LIVING_DO_RESIST, COMSIG_MOB_MOUSEUP, COMSIG_MOB_MOUSEDRAG, COMSIG_MOB_MOUSEDOWN))
 	reset_fire()
+	succeed_activate()
+	add_cooldown()
 
 /// Gives 30 plasma to the ability owner and repeats itself.
 /datum/action/ability/activable/xeno/dragon_breath/proc/regenerate_plasma()
