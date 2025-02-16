@@ -231,7 +231,7 @@
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
 		if(!(mob in GLOB.xeno_mob_list) && admin) // If the verb caller is an admin and not a xeno mob, use their fakekey or key instead.
 			display_name = display_key
-		display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
+		display_name = "[ADMIN_TPMONTY(mob)]" // Admins get a clickable player panel.
 		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
 			display_name = "[mob.key]/([display_name])"
 		else
@@ -344,7 +344,7 @@
 		var/display_key = (holder?.fakekey ? "Administrator" : mob.key)
 		if(!((mob in GLOB.human_mob_list) || (mob in GLOB.ai_list)) && admin) // If the verb caller is an admin and not a human mob, use their fakekey or key instead.
 			display_name = display_key
-		display_name = "<a class='hidelink' href='?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>" // Admins get a clickable player panel.
+		display_name = "[ADMIN_TPMONTY(mob)]" // Admins get a clickable player panel.
 		if(!holder?.fakekey) // Show their key and their fakekey if they have one.
 			display_name = "[mob.key]/([display_name])"
 		else
