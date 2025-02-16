@@ -2,19 +2,102 @@
 	name = "Backhand"
 	action_icon_state = "shattering_roar"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
+	desc = "After a windup, deal high damage and a fair knock back to marines in front of you. Vehicles and mechas take more damage, but are not knocked back. If you are grabbing a marine, deal an incredible amount of damage instead."
 	cooldown_duration = 10 SECONDS
 
 /datum/action/ability/activable/xeno/backhand/use_ability(atom/target)
+	var/damage = 60 * xeno_owner.xeno_melee_damage_modifier
+	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
+	var/mob/living/carbon/human/grabbed_human = grab_ability?.grabbed_human
+	var/turf/current_turf = get_turf(xeno_owner)
+	if(grabbed_human)
+		xeno_owner.face_atom(grabbed_human)
+		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+		ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
+		xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
+		if(do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+			xeno_owner.visible_message(span_danger("[xeno_owner] slams [grabbed_human] into the ground!"))
+			grabbed_human.emote("scream")
+			playsound(current_turf, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
+			for(var/turf/turf_in_range AS in RANGE_TURFS(2, current_turf))
+				turf_in_range.Shake(duration = 0.25 SECONDS)
+				for(var/mob/living/living_in_range in turf_in_range.contents)
+					if(xeno_owner == living_in_range || grabbed_human == living_in_range)
+						continue
+					animate(living_in_range, pixel_z = living_in_range.pixel_z + 16, layer = max(MOB_JUMP_LAYER, living_in_range.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
+					animate(pixel_z = living_in_range.pixel_z - 16, layer = living_in_range.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
+					var/datum/component/jump/living_jump_component = living_in_range.GetComponent(/datum/component/jump)
+					if(living_jump_component)
+						TIMER_COOLDOWN_START(living_in_range, JUMP_COMPONENT_COOLDOWN, 0.5 SECONDS)
+			xeno_owner.stop_pulling()
+			grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
+			xeno_owner.gain_plasma(250)
+		xeno_owner.move_resist = initial(xeno_owner.move_resist)
+		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
+		succeed_activate()
+		add_cooldown()
+		return
+
 	xeno_owner.face_atom(target)
+	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
+	var/list/turf/affected_turfs = get_turfs_to_target()
+	for(var/turf/affected_turf AS in affected_turfs)
+		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
 
-	/* TODO: Grab comboing:
-		Big chat message in place of telegraph.area
-		After 3s, deal 150 brute damage (vs. melee defense) across 5 limbs.
-		Restore 250 plasma after successful cast.
-		End grab.
-	*/
+	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+	xeno_owner.add_traits(list(TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
+	xeno_owner.move_resist = initial(xeno_owner.move_resist)
+	xeno_owner.remove_traits(list(TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
+	QDEL_LIST(telegraphed_atoms)
 
+	if(!was_successful)
+		succeed_activate()
+		add_cooldown()
+		return
+
+	var/has_hit_anything = FALSE
+	for(var/turf/affected_tile AS in affected_turfs)
+		for(var/atom/affected_atom AS in affected_tile)
+			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
+				continue
+			if(isxeno(affected_atom))
+				continue
+			if(isliving(affected_atom))
+				var/mob/living/affected_living = affected_atom
+				if(affected_living.stat == DEAD)
+					continue
+				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5)
+				affected_living.knockback(xeno_owner, 2, 1)
+				xeno_owner.do_attack_animation(affected_living)
+				xeno_owner.visible_message(span_danger("\The [xeno_owner] smacks [affected_living]!"), \
+					span_danger("We smack [affected_living]!"), null, 5) // TODO: Better flavor.
+				has_hit_anything = TRUE
+				continue
+			if(!isobj(affected_atom))
+				continue
+			var/obj/affected_obj = affected_atom
+			if(!isvehicle(affected_obj))
+				affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
+				has_hit_anything = TRUE
+				continue
+			if(ismecha(affected_obj))
+				affected_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner) // 180
+			else if(isarmoredvehicle(affected_obj) || ishitbox(affected_obj))
+				affected_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // 20, adjusted for 3x3 multitile vehicles.
+			else
+				affected_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner) // 120
+			has_hit_anything = TRUE
+			continue
+
+	playsound(current_turf, has_hit_anything ? get_sfx(SFX_ALIEN_BITE) : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
+	if(has_hit_anything)
+		xeno_owner.gain_plasma(100)
+	succeed_activate()
+	add_cooldown()
+
+/// Gets a 3x2 block of turfs that are not closed turf and can be seen by the owner.
+/datum/action/ability/activable/xeno/backhand/proc/get_turfs_to_target()
 	var/turf/lower_left
 	var/turf/upper_right
 	switch(xeno_owner.dir)
@@ -31,58 +114,23 @@
 			lower_left = locate(xeno_owner.x + 1, xeno_owner.y - 1, xeno_owner.z)
 			upper_right = locate(xeno_owner.x + 2, xeno_owner.y + 1, xeno_owner.z)
 
-	var/list/obj/effect/xeno/dragon_warning/telegraphed_atoms = list()
-	var/turf/affected_turfs = block(lower_left, upper_right) // 3x2
-	for(var/turf/affected_turf AS in affected_turfs)
-		telegraphed_atoms += new /obj/effect/xeno/dragon_warning(affected_turf)
-
-	ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	var/was_successful = do_after(xeno_owner, 1.2 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER) && can_use_ability(target, TRUE)
-	REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, XENO_TRAIT)
-	QDEL_LIST(telegraphed_atoms)
-	if(!was_successful)
-		return
-
-	var/damage = 60 * xeno_owner.xeno_melee_damage_modifier
-	var/has_hit_anything = FALSE
-	for(var/turf/affected_tile AS in block(lower_left, upper_right))
-		for(var/atom/affected_atom AS in affected_tile)
-			if(!(affected_atom.resistance_flags & XENO_DAMAGEABLE))
-				continue
-			if(isxeno(affected_atom))
-				continue
-			if(isliving(affected_atom))
-				var/mob/living/affected_living = affected_atom
-				if(affected_living.stat == DEAD)
-					continue
-				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5)
-				affected_living.knockback(xeno_owner, 2, 2)
-				xeno_owner.do_attack_animation(affected_living)
-				xeno_owner.visible_message(span_danger("\The [xeno_owner] smacks [affected_living]!"), \
-					span_danger("We smack [affected_living]!"), null, 5) // TODO: Better flavor.
-				has_hit_anything = TRUE
-				continue
-			if(!isobj(affected_atom))
-				continue
-			var/obj/affected_obj = affected_atom
-			if(!isvehicle(affected_obj))
-				affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
-				has_hit_anything = TRUE
-				continue
-			if(ismecha(affected_obj))
-				affected_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner)
-			else if(isarmoredvehicle(affected_obj) || ishitbox(affected_obj))
-				affected_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // Adjusted for 3x3 multitile vehicles.
-			else
-				affected_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner)
-			has_hit_anything = TRUE
+	var/list/turf/acceptable_turfs = list()
+	var/list/turf/possible_turfs = block(lower_left, upper_right)
+	for(var/turf/possible_turf AS in possible_turfs)
+		if(isclosedturf(possible_turf))
 			continue
+		if(!line_of_sight(xeno_owner, possible_turf, 3))
+			continue
+		acceptable_turfs += possible_turf
+	return acceptable_turfs
 
-	playsound(xeno_owner, has_hit_anything ? get_sfx(SFX_ALIEN_BITE) : 'sound/effects/alien/tail_swipe2.ogg', 50, 1)
-	if(has_hit_anything)
-		xeno_owner.gain_plasma(100)
-	succeed_activate()
-	add_cooldown()
+/// An additional check for the do_after involving the grab synergy.
+/datum/action/ability/activable/xeno/backhand/proc/grab_extra_check()
+	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
+	var/mob/living/carbon/human/grabbed_human = grab_ability?.grabbed_human
+	if(!grabbed_human || !can_use_ability(grabbed_human, FALSE, ABILITY_USE_BUSY))
+		return FALSE
+	return TRUE
 
 /datum/action/ability/activable/xeno/fly
 	name = "Fly"
@@ -477,11 +525,11 @@
 
 /// Try to move the human to the front of us.
 /datum/action/ability/activable/xeno/grab/proc/move_to_grab()
+	RegisterSignal(grabbed_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(try_to_grab))
 	grabbed_human.set_canmove(FALSE)
 	ADD_TRAIT(grabbed_human, TRAIT_IMMOBILE, XENO_TRAIT)
 	grabbed_human.pass_flags |= (PASS_MOB|PASS_XENO)
 	grabbed_human.throw_at(get_step(xeno_owner, xeno_owner.dir), 5, 5, xeno_owner)
-	RegisterSignal(grabbed_human, COMSIG_MOVABLE_POST_THROW, PROC_REF(try_to_grab))
 
 /// Check if we can grab the now-thrown human.
 /datum/action/ability/activable/xeno/grab/proc/try_to_grab()
@@ -522,7 +570,6 @@
 
 /datum/action/ability/activable/xeno/grab/proc/no_longer_grabbing()
 	SIGNAL_HANDLER
-	xeno_owner.stop_pulling()
 	UnregisterSignal(grabbing_item, COMSIG_QDELETING)
 	UnregisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED)
 	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
@@ -533,22 +580,14 @@
 	if(new_stat != DEAD)
 		return
 	xeno_owner.stop_pulling()
-	UnregisterSignal(grabbing_item, COMSIG_QDELETING)
-	UnregisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED)
-	UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
-	failed_to_grab()
 
 /datum/action/ability/activable/xeno/grab/proc/taken_damage(datum/source, amount, list/amount_mod)
 	SIGNAL_HANDLER
 	if(amount <= 0)
 		return
 	damage_taken_so_far += amount
-	if(damage_taken_so_far >= 500)
+	if(damage_taken_so_far >= 300)
 		xeno_owner.stop_pulling()
-		UnregisterSignal(grabbing_item, COMSIG_QDELETING)
-		UnregisterSignal(grabbed_human, COMSIG_MOB_STAT_CHANGED)
-		UnregisterSignal(xeno_owner, list(COMSIG_XENOMORPH_BRUTE_DAMAGE, COMSIG_XENOMORPH_BURN_DAMAGE))
-		failed_to_grab()
 
 /datum/action/ability/activable/xeno/miasma
 	name = "Miasma"
