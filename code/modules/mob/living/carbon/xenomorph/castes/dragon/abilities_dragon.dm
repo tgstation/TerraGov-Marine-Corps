@@ -263,7 +263,7 @@
 	action_icon_state = "shattering_roar"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = ""
-	cooldown_duration = 20 SECONDS
+	cooldown_duration = 30 SECONDS
 	/// Current target that the xeno is targeting. This is for aiming.
 	var/current_target
 	/// The timer id for the timer that ends the ability.
