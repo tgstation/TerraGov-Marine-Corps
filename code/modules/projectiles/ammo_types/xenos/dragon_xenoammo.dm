@@ -22,8 +22,10 @@
 	drop_flame(target_turf.density ? proj : target_turf)
 
 /datum/ammo/xeno/dragon_spit/drop_flame(atom/target_atom)
-	new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(target_atom))
-	for(var/atom/movable/fired AS in get_turf(target_atom))
+	var/turf/atom_turf = get_turf(target_atom)
+	new /obj/effect/temp_visual/xeno_fireball_explosion(atom_turf)
+	new /obj/fire/melting_fire(atom_turf)
+	for(var/atom/movable/fired AS in atom_turf)
 		if(isxeno(fired))
 			continue
 		if(iscarbon(fired))
