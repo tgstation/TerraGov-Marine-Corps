@@ -32,7 +32,7 @@
 					var/datum/component/jump/living_jump_component = living_in_range.GetComponent(/datum/component/jump)
 					if(living_jump_component)
 						TIMER_COOLDOWN_START(living_in_range, JUMP_COMPONENT_COOLDOWN, 0.5 SECONDS)
-			grabbed_human.take_overall_damage(damage * 2.5, BRUTE, MELEE, max_limbs = 5) // 150
+			grabbed_human.take_overall_damage(damage * 2.5, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE) // 150
 			xeno_owner.gain_plasma(250)
 		xeno_owner.move_resist = initial(xeno_owner.move_resist)
 		xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
@@ -69,7 +69,7 @@
 				var/mob/living/affected_living = affected_atom
 				if(affected_living.stat == DEAD)
 					continue
-				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5)
+				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
 				affected_living.knockback(xeno_owner, 2, 1)
 				xeno_owner.do_attack_animation(affected_living)
 				xeno_owner.visible_message(span_danger("\The [xeno_owner] smacks [affected_living]!"), \
@@ -177,7 +177,7 @@
 				var/mob/living/affected_living = affected_atom
 				if(affected_living.stat == DEAD)
 					continue
-				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5)
+				affected_living.take_overall_damage(damage, BRUTE, MELEE, max_limbs = 5, updating_health = TRUE)
 				affected_living.apply_effect(2 SECONDS, EFFECT_PARALYZE)
 
 				animate(affected_living, pixel_z = affected_living.pixel_z + 8, layer = max(MOB_JUMP_LAYER, affected_living.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
@@ -282,7 +282,7 @@
 			grabbed_human.emote("scream")
 			grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
 			playsound(current_turf, 'sound/effects/alien/fireball.ogg', 50, 1)
-			grabbed_human.take_overall_damage(200 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, max_limbs = 6)
+			grabbed_human.take_overall_damage(200 * xeno_owner.xeno_melee_damage_modifier, BURN, FIRE, max_limbs = 6, updating_health = TRUE)
 			grabbed_human.knockback(xeno_owner, 5, 1)
 			xeno_owner.gain_plasma(250)
 		xeno_owner.move_resist = initial(xeno_owner.move_resist)
@@ -454,7 +454,7 @@
 				var/mob/living/affected_living = affected_atom
 				if(affected_living.stat == DEAD)
 					continue
-				affected_living.take_overall_damage(damage, BURN, FIRE, max_limbs = 6)
+				affected_living.take_overall_damage(damage, BURN, FIRE, max_limbs = 6, updating_health = TRUE)
 				if(affected_living.move_resist < MOVE_FORCE_OVERPOWERING)
 					affected_living.knockback(xeno_owner, 4, 1)
 
