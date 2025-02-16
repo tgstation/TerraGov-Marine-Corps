@@ -183,7 +183,7 @@
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
 	desc = "Immediately release a burst of fire in a 5x5 radius. All tiles are set on fire. Humans are set on fire and burnt."
 	ability_cost = 50
-	cooldown_duration = 13 SECONDS
+	cooldown_duration = 18 SECONDS
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_XENOABILITY_INFERNO,
 	)
