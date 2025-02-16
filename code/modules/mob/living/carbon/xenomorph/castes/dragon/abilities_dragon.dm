@@ -79,13 +79,17 @@
 			if(!isobj(affected_atom))
 				continue
 			var/obj/affected_obj = affected_atom
+			if(ishitbox(affected_obj))
+				affected_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // 20, adjusted for 3x3 multitile vehicles.
+				has_hit_anything = TRUE
+				continue
 			if(!isvehicle(affected_obj))
 				affected_obj.take_damage(damage, BRUTE, MELEE, blame_mob = xeno_owner)
 				has_hit_anything = TRUE
 				continue
 			if(ismecha(affected_obj))
 				affected_obj.take_damage(damage * 3, BRUTE, MELEE, armour_penetration = 50, blame_mob = xeno_owner) // 180
-			else if(isarmoredvehicle(affected_obj) || ishitbox(affected_obj))
+			else if(isarmoredvehicle(affected_obj))
 				affected_obj.take_damage(damage * 1/3, BRUTE, MELEE, blame_mob = xeno_owner) // 20, adjusted for 3x3 multitile vehicles.
 			else
 				affected_obj.take_damage(damage * 2, BRUTE, MELEE, blame_mob = xeno_owner) // 120
