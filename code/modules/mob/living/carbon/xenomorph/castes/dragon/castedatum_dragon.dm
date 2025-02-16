@@ -37,7 +37,7 @@
 	caste_traits = null
 
 	// *** Defense *** //
-	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 100, BIO = 60, FIRE = 200, ACID = 75)
+	soft_armor = list(MELEE = 75, BULLET = 75, LASER = 75, ENERGY = 75, BOMB = 60, BIO = 60, FIRE = 200, ACID = 75)
 
 	minimap_icon = "xenoking" // TODO: Replace this with a better minimap icon.
 
