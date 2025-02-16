@@ -126,7 +126,7 @@
 		acceptable_turfs += possible_turf
 	return acceptable_turfs
 
-/// An additional check for the do_after involving the grab synergy.
+/// Checks if the ability is still usable and is currently grabbing a human.
 /datum/action/ability/activable/xeno/backhand/proc/grab_extra_check()
 	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
 	var/mob/living/carbon/human/grabbed_human = grab_ability?.grabbed_human
