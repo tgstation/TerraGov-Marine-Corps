@@ -137,6 +137,8 @@
 
 /obj/machinery/deployable/tesla_turret/interact(mob/user)
 	. = ..()
+	if(user.stat == DEAD)
+		return
 	if(!battery)
 		balloon_alert(user, "no battery")
 		return
