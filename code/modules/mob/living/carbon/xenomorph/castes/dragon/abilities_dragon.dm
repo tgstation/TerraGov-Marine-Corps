@@ -142,7 +142,7 @@
 	name = "Tailswipe"
 	action_icon_state = "shattering_roar"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
+	desc = "After a windup, turn around and deal high damage along with a knockdown to marines behind you. Occupants of vehicles, including those inside mechas, are knocked down."
 	cooldown_duration = 12 SECONDS
 
 /datum/action/ability/activable/xeno/tailswipe/use_ability(atom/target)
@@ -203,7 +203,7 @@
 				var/obj/hitbox/vehicle_hitbox = affected_obj
 				if(vehicle_hitbox.root in vehicles_already_affected_so_far)
 					continue
-				handle_vehicle_effects(vehicle_hitbox.root, damage * 1/3)
+				handle_vehicle_effects(vehicle_hitbox.root, damage / 3)
 				vehicles_already_affected_so_far += vehicle_hitbox.root
 				has_hit_anything = TRUE
 				continue
@@ -265,7 +265,7 @@
 	name = "Dragon Breath"
 	action_icon_state = "shattering_roar"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
+	desc = "After a windup, gain the ability to continuously shoot fire balls with a large spread for a short time. If you are grabbing a marine, deal an incredible amount of damage and knock them back instead."
 	cooldown_duration = 30 SECONDS
 	/// Current target that the xeno is targeting. This is for aiming.
 	var/current_target
@@ -428,7 +428,7 @@
 	name = "Wind Current"
 	action_icon_state = "shattering_roar"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
+	desc = "After a windup, deal high damage and a knockback to marines in front of you. This also clear any gas in front of you."
 	cooldown_duration = 20 SECONDS
 
 /datum/action/ability/activable/xeno/wind_current/use_ability(atom/target)
@@ -537,6 +537,7 @@
 	action_icon_state = "shattering_roar"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
 	desc = ""
+	desc = "After a windup, drag a marine in front of you and initiate a passive grab allowing you to drag them as you move. They are unable to move on their volition, but are fully capable of fighting back. Your grab automatically breaks if you stop grabbing or take too much damage."
 	cooldown_duration = 20 SECONDS
 	/// The grab item that is grabbing the human.
 	var/obj/item/grab/grabbing_item
