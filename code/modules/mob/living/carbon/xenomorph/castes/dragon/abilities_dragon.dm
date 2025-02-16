@@ -13,27 +13,29 @@
 	if(grabbed_human)
 		xeno_owner.face_atom(grabbed_human)
 		xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
+		xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 		ADD_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
 		xeno_owner.visible_message(span_danger("[xeno_owner] lifts [grabbed_human] into the air and gets ready to slam!"))
 		if(do_after(xeno_owner, 3 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(grab_extra_check))))
+			xeno_owner.stop_pulling()
 			xeno_owner.visible_message(span_danger("[xeno_owner] slams [grabbed_human] into the ground!"))
 			grabbed_human.emote("scream")
+			grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
 			playsound(current_turf, 'sound/effects/alien/behemoth/seismic_fracture_explosion.ogg', 50, 1)
 			for(var/turf/turf_in_range AS in RANGE_TURFS(2, current_turf))
 				turf_in_range.Shake(duration = 0.25 SECONDS)
 				for(var/mob/living/living_in_range in turf_in_range.contents)
 					if(xeno_owner == living_in_range || grabbed_human == living_in_range)
 						continue
-					animate(living_in_range, pixel_z = living_in_range.pixel_z + 16, layer = max(MOB_JUMP_LAYER, living_in_range.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
-					animate(pixel_z = living_in_range.pixel_z - 16, layer = living_in_range.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
+					animate(living_in_range, pixel_z = living_in_range.pixel_z + 8, layer = max(MOB_JUMP_LAYER, living_in_range.layer), time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_OUT, flags = ANIMATION_END_NOW|ANIMATION_PARALLEL)
+					animate(pixel_z = living_in_range.pixel_z - 8, layer = living_in_range.layer, time = 0.25 SECONDS, easing = CIRCULAR_EASING|EASE_IN)
 					var/datum/component/jump/living_jump_component = living_in_range.GetComponent(/datum/component/jump)
 					if(living_jump_component)
 						TIMER_COOLDOWN_START(living_in_range, JUMP_COMPONENT_COOLDOWN, 0.5 SECONDS)
-			xeno_owner.stop_pulling()
-			grabbed_human.Shake(duration = 0.5 SECONDS) // Must stop pulling first for Shake to work.
+			grabbed_human.take_overall_damage(damage * 2.5, BRUTE, MELEE, max_limbs = 5) // 150
 			xeno_owner.gain_plasma(250)
 		xeno_owner.move_resist = initial(xeno_owner.move_resist)
-		REMOVE_TRAIT(xeno_owner, TRAIT_IMMOBILE, DRAGON_ABILITY_TRAIT)
+		xeno_owner.remove_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 		succeed_activate()
 		add_cooldown()
 		return
