@@ -382,7 +382,7 @@
 	icon_state = "grenade_healfoam"
 	worn_icon_state = "grenade_healfoam"
 
-/obj/item/explosive/grenade/chem_grenade/Initialize(mapload)
+/obj/item/explosive/grenade/chem_grenade/healingfoam/Initialize(mapload)
 	. = ..()
 	var/obj/item/reagent_containers/glass/beaker/B1 = new(src)
 	var/obj/item/reagent_containers/glass/beaker/B2 = new(src)
