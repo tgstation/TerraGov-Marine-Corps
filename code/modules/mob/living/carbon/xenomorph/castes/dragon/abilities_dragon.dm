@@ -311,8 +311,9 @@
 	RegisterSignal(xeno_owner, COMSIG_MOB_MOUSEDOWN, PROC_REF(start_fire))
 
 /// Ends the ability early.
-/datum/action/ability/activable/xeno/dragon_breath/deselect()
-	. = ..()
+/datum/action/ability/activable/xeno/dragon_breath/on_deselection()
+	if(!ability_timer)
+		return
 	end_ability()
 
 /// Checks if the ability is still usable and is currently grabbing a human.
