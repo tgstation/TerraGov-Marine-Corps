@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { Box, Button, Section, Stack, TextArea } from 'tgui-core/components';
 
 import { useBackend } from '../../backend';
-import { Box, Button, Section, Stack, TextArea } from '../../components';
 
 export const BackgroundInformation = (props) => {
   const { act, data } = useBackend<BackgroundInformationData>();

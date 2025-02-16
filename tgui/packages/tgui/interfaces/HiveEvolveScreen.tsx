@@ -1,5 +1,11 @@
+import {
+  Button,
+  Collapsible,
+  ProgressBar,
+  Section,
+} from 'tgui-core/components';
+
 import { useBackend } from '../backend';
-import { Button, Collapsible, ProgressBar, Section } from '../components';
 import { Window } from '../layouts';
 
 const EvolveProgress = (props) => (
@@ -29,7 +35,7 @@ const CasteView = (props) => {
       {props.abilities
         ? abilities.map((ability) => (
             <Button
-              fluid={1}
+              fluid
               key={ability.name}
               color="transparent"
               tooltip={ability.desc}
