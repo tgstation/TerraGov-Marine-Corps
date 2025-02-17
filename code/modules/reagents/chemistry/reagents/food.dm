@@ -141,7 +141,7 @@
 	if(prob(5))
 		to_chat(L, discomfort_message)
 	if(L.bodytemperature == targ_temp)
-		L.apply_effect(agony_amount, AGONY)
+		L.apply_effect(agony_amount, EFFECT_STAMLOSS)
 	return ..()
 
 /datum/reagent/consumable/capsaicin/condensed

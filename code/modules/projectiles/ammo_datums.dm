@@ -117,7 +117,7 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 	return
 
 ///Handles CC application on the victim
-/datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, weaken = 0, stagger = 0, slowdown = 0, knockback = 0, soft_size_threshold = 3, hard_size_threshold = 2)
+/datum/ammo/proc/staggerstun(mob/victim, obj/projectile/proj, max_range = 5, stun = 0, paralyze = 0, stagger = 0, slowdown = 0, knockback = 0, soft_size_threshold = 3, hard_size_threshold = 2)
 	if(!victim)
 		CRASH("staggerstun called without a mob target")
 	if(!isliving(victim))
@@ -142,20 +142,20 @@ GLOBAL_LIST_INIT(no_sticky_resin, typecacheof(list(/obj/item/clothing/mask/faceh
 			stun = 0
 
 	//Check for and apply hard CC.
-	if(hard_size_threshold >= victim.mob_size && (stun || weaken || knockback))
+	if(hard_size_threshold >= victim.mob_size && (stun || paralyze || knockback))
 		var/mob/living/living_victim = victim
 		if(living_victim.IsStun() || living_victim.IsParalyzed()) //Prevent chain stunning.
 			stun = 0
-			weaken = 0
+			paralyze = 0
 
-		if(stun || weaken)
-			var/list/stunlist = list(stun, weaken, stagger, slowdown)
+		if(stun || paralyze)
+			var/list/stunlist = list(stun, paralyze, stagger, slowdown)
 			if(SEND_SIGNAL(living_victim, COMSIG_LIVING_PROJECTILE_STUN, stunlist, armor_type, penetration))
 				stun = stunlist[1]
-				weaken = stunlist[2]
+				paralyze = stunlist[2]
 				stagger = stunlist[3]
 				slowdown = stunlist[4]
-			living_victim.apply_effects(stun,weaken)
+			living_victim.apply_effects(stun,paralyze)
 
 		if(knockback)
 			if(isxeno(victim))

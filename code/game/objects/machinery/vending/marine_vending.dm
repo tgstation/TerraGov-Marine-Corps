@@ -221,6 +221,7 @@
 			/obj/item/compass = -1,
 			/obj/item/tool/hand_labeler = -1,
 			/obj/item/toy/deck/kotahi = -1,
+			/obj/item/toy/deck = -1,
 			/obj/item/deployable_floodlight = 5,
 		),
 	)
@@ -1110,6 +1111,8 @@
 			/obj/item/armor_module/module/better_shoulder_lamp = -1,
 			/obj/item/armor_module/module/chemsystem = -1,
 			/obj/item/armor_module/module/eshield = -1,
+			/obj/item/armor_module/module/mirage = -1,
+			/obj/item/armor_module/module/armorlock = -1,
 		),
 		"Style Line" = list(
 			/obj/item/clothing/suit/modular/style/leather_jacket = -1,
@@ -1572,6 +1575,7 @@
 			/obj/item/ammo_magazine/tank/ltb_cannon/apfds = -1,
 			/obj/item/ammo_magazine/tank/ltb_cannon/canister = -1,
 			/obj/item/ammo_magazine/tank/ltaap_chaingun = -1,
+			/obj/item/ammo_magazine/tank/ltaap_chaingun/hv = -1,
 			/obj/item/ammo_magazine/tank/secondary_cupola = -1,
 			/obj/item/ammo_magazine/tank/secondary_flamer_tank = -1,
 			/obj/item/tank_module/overdrive = -1,

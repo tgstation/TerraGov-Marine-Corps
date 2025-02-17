@@ -33,6 +33,7 @@
 
 	var/static/list/connections = list(
 		COMSIG_ATOM_ENTERED = PROC_REF(on_cross),
+		COMSIG_TURF_JUMP_ENDED_HERE = PROC_REF(on_jump_landing),
 	)
 	AddElement(/datum/element/connect_loc, connections)
 	AddComponent(/datum/component/submerge_modifier, 10)
@@ -126,6 +127,11 @@
 	SIGNAL_HANDLER
 	affect_atom(crosser)
 
+///Effects applied to anything that jumps onto the fire
+/obj/fire/proc/on_jump_landing(datum/source, mob/living/jumper)
+	SIGNAL_HANDLER
+	affect_atom(jumper)
+
 ///Applies effects to an atom
 /obj/fire/proc/affect_atom(atom/affected)
 	return
@@ -154,7 +160,7 @@
 
 /obj/fire/melting_fire
 	name = "melting fire"
-	desc = "It feels cold to the touch.. yet it burns."
+	desc = "It feels cold to the touch, yet it burns."
 	icon_state = "xeno_fire"
 	flame_color = "purple"
 	light_on = FALSE

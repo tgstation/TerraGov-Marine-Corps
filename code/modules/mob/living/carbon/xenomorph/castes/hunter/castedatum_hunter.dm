@@ -3,7 +3,7 @@
 	display_name = "Hunter"
 	upgrade_name = ""
 	caste_desc = "A fast, powerful front line combatant."
-
+	base_strain_type = /mob/living/carbon/xenomorph/hunter
 	caste_type_path = /mob/living/carbon/xenomorph/hunter
 
 	tier = XENO_TIER_TWO

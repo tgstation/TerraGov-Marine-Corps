@@ -478,7 +478,7 @@
 	if(selected_type == log_type && selected_src == log_src)
 		slabel = "<b><font color='#ff8c8c'>\[[label]\]</font></b>"
 
-	return "<a href='?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
+	return "<a href='byond://?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
 
 
 /client/proc/get_asay()
@@ -555,15 +555,15 @@
 		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C,
 				type = MESSAGE_TYPE_MENTORCHAT,
-				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>")
+				html = "<span class='[color]'>[span_prefix("[span_tooltip(holder.rank.name, "MENTOR:")]")] [ADMIN_TPMONTY(mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C) && mob.stat == DEAD)
 			to_chat(C,
 				type = MESSAGE_TYPE_MENTORCHAT,
-				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
+				html = "<span class='[color]'>[span_prefix("[span_tooltip(holder.rank.name, "MENTOR:")]")] [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C))
 			to_chat(C,
 				type = MESSAGE_TYPE_MENTORCHAT,
-				html = "<span class='[color]'>[span_prefix("[holder.rank.name]:")] [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
+				html = "<span class='[color]'>[span_prefix("[span_tooltip(holder.rank.name, "MENTOR:")]")] [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(mob)] [ADMIN_FLW(mob)]: <span class='message linkify'>[msg]</span></span>")
 
 	var/list/pinged_admin_clients = check_admin_pings(msg)
 	if(length(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])
@@ -1043,13 +1043,13 @@
 				else if(is_mentor(src))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = span_mentorsay("<size='4'></b>-- Mentor private message --</b></font>"))
+						html = span_mentorsay("<font size='4'></b>-- Mentor private message --</b></font>"))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
 						html = span_mentorsay("[holder.rank.name] PM from- <b>[key_name(src, recipient, FALSE)]</b>: [span_linkify("[msg]")]"))
 					to_chat(recipient,
 						type = MESSAGE_TYPE_ADMINPM,
-						html = span_notice("<i>Click on the mentor's name to reply.</i>"))
+						html = span_boldnotice("<i>Click on the mentor's name to reply.</i>"))
 					to_chat(src,
 						type = MESSAGE_TYPE_ADMINPM,
 						html = span_notice("<b>[holder.rank.name] PM</b> to-<b>[key_name(recipient, src, TRUE)]</b>: [span_linkify("[msg]")]"))
@@ -1208,7 +1208,7 @@
 		html = "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
-		html = "<font color='red'>Admin PM from-<b><a href='?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
+		html = "<font color='red'>Admin PM from-<b><a href='byond://?priv_msg=[stealthkey]'>[adminname]</A></b>: [msg]</font>")
 	to_chat(C,
 		type = MESSAGE_TYPE_ADMINPM,
 		html = "<font color='red'><i>Click on the administrator's name to reply.</i></font>")
@@ -1268,11 +1268,11 @@
 	dat += "<table>"
 	if(SSjob.initialized && (!SSticker.HasRoundStarted()))
 		if(SSjob.ssjob_flags & SSJOB_OVERRIDE_JOBS_START)
-			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=false'>Do Not Override Game Mode Settings</A> (game mode settings deal with job scaling and roundstart-only jobs cleanup, which will require manual editing if used while overriden)"
+			dat += "<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=false'>Do Not Override Game Mode Settings</A> (game mode settings deal with job scaling and roundstart-only jobs cleanup, which will require manual editing if used while overriden)"
 		else
-			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=true'>Override Game Mode Settings</A> (if not selected, changes will be erased at roundstart)"
+			dat += "<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];overridejobsstart=true'>Override Game Mode Settings</A> (if not selected, changes will be erased at roundstart)"
 		dat += "<br /><hr />" // Add a clear new line
-	dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];clearalljobslots=1'>Remove all job slots</A><br />"
+	dat += "<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];clearalljobslots=1'>Remove all job slots</A><br />"
 	for(var/j in SSjob.joinable_occupations)
 		var/datum/job/job = j
 		count++
@@ -1284,14 +1284,14 @@
 		dat += "</td>"
 		dat += "<td>"
 		if(job.total_positions >= 0)
-			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];filljobslot=[job.title]'>Fill</A> | "
-			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];freejobslot=[job.title]'>Free</A> | "
-			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];addjobslot=[job.title]'>Add</A> | "
-			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];removejobslot=[job.title]'>Remove</A> | "
-			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];clearjobslots=[job.title]'>Remove all</A> | "
-			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];unlimitjobslot=[job.title]'>Unlimit</A></td>"
+			dat += "<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];filljobslot=[job.title]'>Fill</A> | "
+			dat += "<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];freejobslot=[job.title]'>Free</A> | "
+			dat += "<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];addjobslot=[job.title]'>Add</A> | "
+			dat += "<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];removejobslot=[job.title]'>Remove</A> | "
+			dat += "<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];clearjobslots=[job.title]'>Remove all</A> | "
+			dat += "<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];unlimitjobslot=[job.title]'>Unlimit</A></td>"
 		else
-			dat += "<A href='?src=[REF(usr.client.holder)];[HrefToken()];limitjobslot=[job.title]'>Limit</A></td>"
+			dat += "<A href='byond://?src=[REF(usr.client.holder)];[HrefToken()];limitjobslot=[job.title]'>Limit</A></td>"
 
 	browser.height = min(100 + count * 25, 700)
 	browser.set_content(dat.Join())

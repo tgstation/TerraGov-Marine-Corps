@@ -22,6 +22,7 @@
 	mech_type = EXOSUIT_MODULE_GREYSCALE
 	pixel_x = -16
 	soft_armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 0, ACID = 0)
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
 	move_delay = 3
 	max_equip_by_category = MECH_GREYSCALE_MAX_EQUIP
 	internal_damage_threshold = 15
@@ -29,6 +30,7 @@
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
 	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
 	explosion_block = 2
+	pivot_step = TRUE
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
 	var/list/datum/mech_limb/limbs = list(
 		MECH_GREY_TORSO = null,
@@ -57,9 +59,14 @@
 		var/datum/mech_limb/limb = new new_limb_type
 		limb.attach(src, key)
 
+/obj/vehicle/sealed/mecha/combat/greyscale/obj_destruction(damage_amount, damage_type, damage_flag, mob/living/blame_mob)
+	playsound(get_turf(src), SFX_EXPLOSION_MED, 100, TRUE) //destroy sound is normally very quiet
+	new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
+	for(var/mob/living/nearby_mob AS in cheap_get_living_near(src, 5))
+		shake_camera(nearby_mob, 4, 1)
+	return ..()
+
 /obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
-	var/obj/effect/temp_visual/explosion/explosion = new /obj/effect/temp_visual/explosion(loc, 4, LIGHT_COLOR_LAVA, FALSE, TRUE)
-	explosion.pixel_x = 16
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
 		limb?.detach(src)
@@ -67,7 +74,7 @@
 
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
-	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_LARGE_VEHICLE) < SKILL_LARGE_VEHICLE_VETERAN)
+	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
 		balloon_alert(entering_mob, "You don't know how to pilot this")
 		return FALSE
 	return ..()
@@ -154,8 +161,10 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/recon,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/recon/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/assault
 	name = "Assault Mecha"
@@ -167,8 +176,10 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/assault,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/assault/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/vanguard
 	name = "Vanguard Mecha"
@@ -180,5 +191,7 @@
 		MECH_GREY_L_ARM = /datum/mech_limb/arm/vanguard,
 	)
 
-/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill
+/obj/vehicle/sealed/mecha/combat/greyscale/vanguard/noskill // hvh type
 	mecha_flags = ADDING_ACCESS_POSSIBLE|CANSTRAFE|IS_ENCLOSED|HAS_HEADLIGHTS
+	pivot_step = FALSE
+	facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 0.5, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1.5)

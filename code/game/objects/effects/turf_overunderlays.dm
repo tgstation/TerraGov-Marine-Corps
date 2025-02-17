@@ -45,12 +45,3 @@
 
 /obj/effect/turf_underlay/shuttle/floor6
 	icon_state = "floor6"
-
-/obj/effect/turf_underlay/icefloor
-	icon = 'icons/turf/ice.dmi'
-	icon_state = "ice_floor"
-
-/obj/effect/turf_underlay/icefloor/Initialize(mapload)
-	setDir(pick(NORTH,SOUTH,EAST,WEST,NORTHEAST,NORTHWEST,SOUTHEAST,SOUTHWEST))
-	. = ..()
-

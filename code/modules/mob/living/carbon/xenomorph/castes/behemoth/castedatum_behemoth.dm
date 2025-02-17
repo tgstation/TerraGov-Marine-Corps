@@ -3,6 +3,7 @@
 	display_name = "Behemoth"
 	upgrade_name = ""
 	caste_desc = "Behemoths are known to like rocks. Perhaps we should give them one!"
+	base_strain_type = /mob/living/carbon/xenomorph/behemoth
 	caste_type_path = /mob/living/carbon/xenomorph/behemoth
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE

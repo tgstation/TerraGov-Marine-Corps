@@ -2530,8 +2530,8 @@
 /area/mainship/squads/alpha)
 "aZQ" = (
 /obj/machinery/atmospherics/components/unary/vent_pump/layer1{
-	on = 1;
-	dir = 8
+	dir = 8;
+	on = 1
 	},
 /turf/open/floor/mainship/mono,
 /area/mainship/living/numbertwobunks)
@@ -10177,6 +10177,12 @@
 	dir = 1
 	},
 /area/mainship/command/corporateliaison)
+"gNF" = (
+/obj/machinery/cic_maptable,
+/turf/open/floor/mainship/sterile/side{
+	dir = 9
+	},
+/area/mainship/medical/lower_medical)
 "gNV" = (
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer1{
@@ -12882,7 +12888,7 @@
 "lkZ" = (
 /obj/structure/table/mainship/nometal,
 /obj/structure/window/reinforced/toughened,
-/obj/machinery/computer/camera_advanced/overwatch/main,
+/obj/machinery/computer/camera_advanced/overwatch/military/main,
 /turf/open/floor/mainship/silver,
 /area/mainship/command/cic)
 "llf" = (
@@ -16607,14 +16613,14 @@
 /area/mainship/command/bridge)
 "rau" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/charlie,
+/obj/machinery/computer/camera_advanced/overwatch/military/charlie,
 /turf/open/floor/mainship/silver{
 	dir = 4
 	},
 /area/mainship/command/cic)
 "raw" = (
 /obj/structure/table/mainship/nometal,
-/obj/machinery/computer/camera_advanced/overwatch/delta,
+/obj/machinery/computer/camera_advanced/overwatch/military/delta,
 /turf/open/floor/mainship/silver{
 	dir = 8
 	},
@@ -19256,7 +19262,7 @@
 	},
 /area/mainship/engineering/lower_engineering)
 "vrv" = (
-/obj/machinery/cic_maptable,
+/obj/machinery/computer/camera_advanced/overwatch/medical,
 /turf/open/floor/mainship/sterile/side{
 	dir = 1
 	},
@@ -20114,7 +20120,7 @@
 	pixel_x = 17;
 	pixel_y = 16
 	},
-/obj/machinery/computer/camera_advanced/overwatch/alpha,
+/obj/machinery/computer/camera_advanced/overwatch/military/alpha,
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/silver{
 	dir = 4
@@ -20130,7 +20136,7 @@
 	pixel_x = -17;
 	pixel_y = 16
 	},
-/obj/machinery/computer/camera_advanced/overwatch/bravo,
+/obj/machinery/computer/camera_advanced/overwatch/military/bravo,
 /obj/structure/table/mainship/nometal,
 /turf/open/floor/mainship/mono,
 /area/mainship/command/cic)
@@ -51882,7 +51888,7 @@ bGZ
 lMe
 bJC
 hVU
-wsC
+gNF
 bJG
 qvE
 doe

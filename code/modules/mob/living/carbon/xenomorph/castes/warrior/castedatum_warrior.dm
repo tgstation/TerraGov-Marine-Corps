@@ -3,6 +3,7 @@
 	display_name = "Warrior"
 	upgrade_name = ""
 	caste_desc = "A powerful front line combatant."
+	base_strain_type = /mob/living/carbon/xenomorph/warrior
 	caste_type_path = /mob/living/carbon/xenomorph/warrior
 	tier = XENO_TIER_TWO
 	upgrade = XENO_UPGRADE_BASETYPE

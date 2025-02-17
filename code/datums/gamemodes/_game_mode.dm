@@ -489,7 +489,10 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.points_from_xenos] requisitions points gained from xenomorph sales."
 	if(GLOB.round_statistics.runner_items_stolen)
 		parts += "[GLOB.round_statistics.runner_items_stolen] items stolen by runners."
-
+	if(GLOB.round_statistics.acid_maw_fires)
+		parts += "[GLOB.round_statistics.acid_maw_fires] Acid Maw uses."
+	if(GLOB.round_statistics.acid_jaw_fires)
+		parts += "[GLOB.round_statistics.acid_jaw_fires] Acid Jaw uses."
 	if(GLOB.round_statistics.sandevistan_uses)
 		var/sandevistan_text = "[GLOB.round_statistics.sandevistan_uses] number of times someone was boosted by a sandevistan"
 		if(GLOB.round_statistics.sandevistan_gibs)
@@ -823,7 +826,7 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 	var/datum/action/report/R = new
 	C.player_details.player_actions += R
 	R.give_action(C.mob)
-	to_chat(C,"<span class='infoplain'><a href='?src=[REF(R)];report=1'>Show roundend report again</a></span>")
+	to_chat(C,"<span class='infoplain'><a href='byond://?src=[REF(R)];report=1'>Show roundend report again</a></span>")
 
 /datum/action/report
 	name = "Show roundend report"

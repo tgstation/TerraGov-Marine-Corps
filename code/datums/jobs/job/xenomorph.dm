@@ -66,7 +66,7 @@
 	html_description = {"
 		<b>Difficulty</b>: Soul crushing<br /><br />
 		<b>You answer to the</b> Queen Mother<br /><br />
-		<b>Unlock Requirement</b>: Starting Role<br /><br />
+		<b>Unlock Requirement</b>: 10 hours playtime (any role)<br /><br />
 		<b>Gamemode Availability</b>: Crash, Nuclear War<br /><br /><br />
 		<b>Duty</b>: Lead the hive and ensure success isn’t snatched away by your enemies. Manage the supply of psypoints
 	"}

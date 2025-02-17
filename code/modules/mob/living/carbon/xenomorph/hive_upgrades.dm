@@ -1,7 +1,7 @@
-#define PRIMORDIAL_TIER_ONE "Primordial tier one"
-#define PRIMORDIAL_TIER_TWO "Primordial tier two"
-#define PRIMORDIAL_TIER_THREE "Primordial tier three"
-#define PRIMORDIAL_TIER_FOUR "Primordial tier four"
+#define PRIMORDIAL_TIER_ONE "Primordial Tier One"
+#define PRIMORDIAL_TIER_TWO "Primordial Tier Two"
+#define PRIMORDIAL_TIER_THREE "Primordial Tier Three"
+#define PRIMORDIAL_TIER_FOUR "Primordial Tier Four"
 
 GLOBAL_LIST_INIT(upgrade_categories, list("Buildings", "Defences", "Xenos"))//, "Primordial"))//uncomment to unlock globally
 GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
@@ -175,7 +175,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/building/silo
 	name = "Larva Silo"
-	desc = "Constructs a silo that generates xeno larvas over time. Requires open space and time to place."
+	desc = "Constructs a silo that generates xeno larvas over time."
 	psypoint_cost = SILO_PRICE
 	icon = "larvasilo"
 	gamemode_flags = ABILITY_NUCLEARWAR
@@ -203,7 +203,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/building/evotower
 	name = "Evolution Tower"
-	desc = "Constructs a tower that increases the rate of evolution point generation by 0.2 and maturity point generation by 0.8 times per tower."
+	desc = "Constructs a tower that increases the rate of evolution point generation by 0.2 and maturity point generation by 0.4 per tower."
 	psypoint_cost = 300
 	icon = "evotower"
 	gamemode_flags = ABILITY_NUCLEARWAR
@@ -211,7 +211,7 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 
 /datum/hive_upgrade/building/psychictower
 	name = "Psychic Relay"
-	desc = "Constructs a tower that increases the slots of higher tier Xenomorphs."
+	desc = "Constructs a tower that increases the number of available slots of higher tier castes."
 	psypoint_cost = 300
 	icon = "maturitytower"
 	gamemode_flags = ABILITY_NUCLEARWAR
@@ -237,8 +237,8 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	building_type = /obj/structure/xeno/spawner
 
 /datum/hive_upgrade/building/acid_pool
-	name = "acid pool"
-	desc = "Constructs a pool that allows xenos to regenerate sunder in it while resting. Requires open space and time to place."
+	name = "Acid Pool"
+	desc = "Constructs a pool that allows xenos to regenerate sunder in it while resting."
 	psypoint_cost = 200
 	icon = "pool"
 	gamemode_flags = ABILITY_NUCLEARWAR
@@ -260,8 +260,8 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 		return FALSE
 
 /datum/hive_upgrade/building/acid_jaws
-	name = "acid jaws"
-	desc = "Constructs an acid maw that allows the hive to bombard it's enemies from afar. Requires open space and time to place."
+	name = "Acid Jaws"
+	desc = "Constructs an acid maw that allows the hive to bombard its enemies from afar. Must be placed outdoors."
 	psypoint_cost = 450
 	icon = "jaws"
 	gamemode_flags = ABILITY_NUCLEARWAR
@@ -282,14 +282,14 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 			to_chat(buyer, span_xenowarning("You cannot build in a dense location!"))
 		return FALSE
 	var/area/buildzone = get_area(buyer)
-	if(buildzone.ceiling > CEILING_UNDERGROUND)
+	if(buildzone.ceiling >= CEILING_UNDERGROUND)
 		if(!silent)
 			to_chat(buyer, span_xenowarning("We need open space to allow this structure to bombard enemies!"))
 		return FALSE
 
 /datum/hive_upgrade/building/acid_maw
-	name = "acid maw"
-	desc = "Constructs an acid maw that allows the hive to unleash it's most devastating bombardments from any location. Requires time to place and to prepare globs, but this structures acid is strong enough to eat through any cieling above it."
+	name = "Acid Maw"
+	desc = "Constructs an acid maw that allows the hive to unleash its most devastating bombardments from any location. This structure's acid is strong enough to eat through any ceiling above it, but it requires ten minutes to prepare each shot."
 	psypoint_cost = 1200
 	icon = "maw"
 	gamemode_flags = ABILITY_NUCLEARWAR
@@ -314,8 +314,8 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	category = "Defences"
 
 /datum/hive_upgrade/defence/turret
-	name = "Acid turret"
-	desc = "Places a acid spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
+	name = "Acid Turret"
+	desc = "Places a acid spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog, and on a weeded area."
 	icon = "acidturret"
 	psypoint_cost = XENO_TURRET_PRICE
 	gamemode_flags = ABILITY_NUCLEARWAR
@@ -371,8 +371,8 @@ GLOBAL_LIST_INIT(tier_to_primo_upgrade, list(
 	return ..()
 
 /datum/hive_upgrade/defence/turret/sticky
-	name = "Sticky resin turret"
-	desc = "Places a sticky spit spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog and on a weeded area."
+	name = "Sticky Resin Turret"
+	desc = "Places a sticky spit spitting resin turret under you. Must be at least 6 tiles away from other turrets, not near fog, and on a weeded area."
 	icon = "resinturret"
 	psypoint_cost = 50
 	turret_type = /obj/structure/xeno/xeno_turret/sticky

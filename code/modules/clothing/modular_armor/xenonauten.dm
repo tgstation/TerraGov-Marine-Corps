@@ -23,6 +23,8 @@
 		/obj/item/armor_module/module/chemsystem,
 		/obj/item/armor_module/module/eshield,
 		/obj/item/armor_module/module/eshield/overclocked,
+		/obj/item/armor_module/module/mirage,
+		/obj/item/armor_module/module/armorlock,
 
 		/obj/item/armor_module/storage/general,
 		/obj/item/armor_module/storage/ammo_mag,
@@ -54,6 +56,12 @@
 /obj/item/clothing/suit/modular/xenonauten/engineer
 	starting_attachments = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,
+		/obj/item/armor_module/storage/engineering,
+	)
+
+/obj/item/clothing/suit/modular/xenonauten/mirage_engineer
+	starting_attachments =  list(
+		/obj/item/armor_module/module/mirage,
 		/obj/item/armor_module/storage/engineering,
 	)
 

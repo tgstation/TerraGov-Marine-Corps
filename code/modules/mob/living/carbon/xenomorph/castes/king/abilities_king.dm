@@ -229,7 +229,7 @@
 
 	var/source = get_turf(owner)
 	var/dir_to_target = Get_Angle(source, target)
-	var/list/turf/turfs_to_attack = generate_true_cone(source, SHATTERING_ROAR_RANGE, 1, SHATTERING_ROAR_ANGLE, dir_to_target, bypass_window = TRUE, air_pass = TRUE)
+	var/list/turf/turfs_to_attack = generate_cone(source, SHATTERING_ROAR_RANGE, 1, SHATTERING_ROAR_ANGLE, dir_to_target, pass_flags_checked = PASS_AIR|PASS_GLASS)
 	execute_attack(1, turfs_to_attack, SHATTERING_ROAR_RANGE, target, source)
 
 	add_cooldown()
@@ -264,7 +264,7 @@
 			carbon_victim.adjust_stagger(6 SECONDS * severity)
 			carbon_victim.add_slowdown(6 * severity)
 			shake_camera(carbon_victim, 3 * severity, 3 * severity)
-			carbon_victim.apply_effect(1 SECONDS, WEAKEN)
+			carbon_victim.apply_effect(1 SECONDS, EFFECT_PARALYZE)
 			to_chat(carbon_victim, "You are smashed to the ground!")
 		else if(isvehicle(victim) || ishitbox(victim))
 			var/obj/obj_victim = victim
@@ -526,7 +526,7 @@ GLOBAL_LIST_EMPTY(active_summons)
 
 ///Sends a message to admins, prompting them if they want to cancel a psychic summon
 /datum/action/ability/xeno_action/psychic_summon/proc/request_admins()
-	var/canceltext = "[xeno_owner] is using [name] at [AREACOORD(xeno_owner)] [ADMIN_TPMONTY(xeno_owner)] <a href='?_src_=holder;[HrefToken(TRUE)];cancelsummon=[10 SECONDS]'>\[CANCEL SUMMON\]</a>"
+	var/canceltext = "[xeno_owner] is using [name] at [AREACOORD(xeno_owner)] [ADMIN_TPMONTY(xeno_owner)] <a href='byond://?_src_=holder;[HrefToken(TRUE)];cancelsummon=[10 SECONDS]'>\[CANCEL SUMMON\]</a>"
 	message_admins("[span_prefix("PSYCHIC SUMMON:")] <span class='message linkify'> [canceltext]</span>")
 	log_game("psychic summon started by [xeno_owner] at [AREACOORD(xeno_owner)], timerid to cancel: [10 SECONDS]")
 	notify_ghosts("<b>[xeno_owner]</b> has begun to summon at [AREACOORD(xeno_owner)]!", action = NOTIFY_JUMP)

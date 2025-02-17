@@ -55,19 +55,21 @@
 	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_DOWN))
 	if(jump_flags & JUMP_CHARGEABLE)
 		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(charge_jump))
-		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_UP, PROC_REF(do_jump))
+		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_UP, PROC_REF(start_jump))
 	else
-		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(do_jump))
+		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(start_jump))
 
 ///Starts charging the jump
 /datum/component/jump/proc/charge_jump(mob/living/jumper)
 	jump_start_time = world.timeofday
 
-///Performs the jump
-/datum/component/jump/proc/do_jump(mob/living/jumper)
+///handles pre-jump checks and setup of additional jump behavior.
+/datum/component/jump/proc/start_jump(mob/living/jumper)
 	SIGNAL_HANDLER
+
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
 		return
+
 	if(jumper.buckled)
 		return
 	if(jumper.incapacitated())
@@ -79,6 +81,15 @@
 			return
 		to_chat(jumper, span_warning("Catch your breath!"))
 		return
+
+	do_jump(jumper)
+	jumper.adjustStaminaLoss(stamina_cost)
+	//Forces all who ride to jump alongside the jumper.
+	for(var/mob/buckled_mob AS in jumper.buckled_mobs)
+		do_jump(buckled_mob)
+
+///Performs the jump
+/datum/component/jump/proc/do_jump(mob/living/jumper)
 
 	var/effective_jump_duration = jump_duration
 	var/effective_jump_height = jump_height
@@ -98,11 +109,10 @@
 	var/original_pass_flags = jumper.pass_flags
 
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_STARTED, effective_jump_height, effective_jump_duration)
-	jumper.adjustStaminaLoss(stamina_cost)
 	jumper.pass_flags |= effective_jumper_allow_pass_flags
 	ADD_TRAIT(jumper, TRAIT_SILENT_FOOTSTEPS, JUMP_COMPONENT)
 	jumper.add_nosubmerge_trait(JUMP_COMPONENT)
-	RegisterSignal(parent, COMSIG_MOB_THROW, PROC_REF(jump_throw))
+	RegisterSignal(jumper, COMSIG_MOB_THROW, PROC_REF(jump_throw))
 
 	jumper.add_filter(JUMP_COMPONENT, 2, drop_shadow_filter(color = COLOR_TRANSPARENT_SHADOW, size = 0.9))
 	var/shadow_filter = jumper.get_filter(JUMP_COMPONENT)
@@ -127,7 +137,7 @@
 	jumper.remove_traits(list(TRAIT_SILENT_FOOTSTEPS, TRAIT_NOSUBMERGE), JUMP_COMPONENT)
 	SEND_SIGNAL(jumper, COMSIG_ELEMENT_JUMP_ENDED, TRUE, 1.5, 2)
 	SEND_SIGNAL(jumper.loc, COMSIG_TURF_JUMP_ENDED_HERE, jumper)
-	UnregisterSignal(parent, COMSIG_MOB_THROW)
+	UnregisterSignal(jumper, COMSIG_MOB_THROW)
 
 ///Jump throw bonuses
 /datum/component/jump/proc/jump_throw(mob/living/thrower, target, thrown_thing, list/throw_modifiers)

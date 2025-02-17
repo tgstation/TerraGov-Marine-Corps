@@ -25,7 +25,7 @@
 	COOLDOWN_DECLARE(enginesound_cooldown)
 
 	///Cool and good turret overlay that allows independently swiveling guns
-	var/atom/movable/vis_obj/turret_overlay/turret_overlay
+	var/atom/movable/vis_obj/turret_overlay/turret_overlay = /atom/movable/vis_obj/turret_overlay
 	///Icon for the rotating turret icon. also should hold the icons for the weapon icons
 	var/turret_icon = 'icons/obj/armored/1x1/tinytank_gun.dmi'
 	///Iconstate for the rotating main turret
@@ -52,9 +52,18 @@
 	///Our driver utility module
 	var/obj/item/tank_module/gunner_utility_module
 	///list of weapons we allow to attach
-	var/list/permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer)
+	var/list/permitted_weapons = list(
+		/obj/item/armored_weapon,
+		/obj/item/armored_weapon/ltaap,
+		/obj/item/armored_weapon/secondary_weapon,
+		/obj/item/armored_weapon/secondary_flamer,
+	)
 	///list of mods we allow to attach
-	var/list/permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/passenger, /obj/item/tank_module/ability/zoom)
+	var/list/permitted_mods = list(
+		/obj/item/tank_module/overdrive,
+		/obj/item/tank_module/passenger,
+		/obj/item/tank_module/ability/zoom
+	)
 	///Minimap flags to use for this vehcile
 	var/minimap_flags = MINIMAP_FLAG_MARINE
 	///minimap iconstate to use for this vehicle
@@ -72,8 +81,6 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
-	///modifier to view range when manning a control chair
-	var/vis_range_mod = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
@@ -89,12 +96,8 @@
 		damage_overlay.layer = layer+0.001
 		vis_contents += damage_overlay
 	if(armored_flags & ARMORED_HAS_PRIMARY_WEAPON)
-		turret_overlay = new()
-		turret_overlay.icon = turret_icon
-		turret_overlay.base_icon_state = turret_icon_state
-		turret_overlay.icon_state = turret_icon_state
-		turret_overlay.setDir(dir)
-		turret_overlay.layer = layer+0.002
+		turret_overlay = new turret_overlay(null, src)
+		setDir(dir) //update turret offsets if needed
 		if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 			switch(SSmapping.configs[GROUND_MAP].armor_style)
 				if(MAP_ARMOR_STYLE_JUNGLE)
@@ -106,6 +109,8 @@
 				if(MAP_ARMOR_STYLE_DESERT)
 					turret_overlay.icon_state += "_desert"
 		vis_contents += turret_overlay
+	else
+		turret_overlay = null
 	if(armored_flags & ARMORED_HAS_MAP_VARIANTS)
 		switch(SSmapping.configs[GROUND_MAP].armor_style)
 			if(MAP_ARMOR_STYLE_JUNGLE)
@@ -130,7 +135,8 @@
 		QDEL_NULL(gunner_utility_module)
 	if(damage_overlay)
 		QDEL_NULL(damage_overlay)
-	if(turret_overlay)
+	// can de delled before init makes these due to globs
+	if(isatom(turret_overlay))
 		QDEL_NULL(turret_overlay)
 	if(isdatum(interior))
 		QDEL_NULL(interior)
@@ -616,6 +622,8 @@
 		return FALSE
 	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
 	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 3 SECONDS)
+	if(primary_weapon)
+		TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_EQUIPMENT(primary_weapon.type), new_weapon_dir == REVERSE_DIR(turret_overlay.dir) ? 1 SECONDS : 0.5 SECONDS)
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
 
@@ -680,6 +688,14 @@
 	///icon state for the secondary
 	var/image/secondary_overlay
 
+/atom/movable/vis_obj/turret_overlay/Initialize(mapload, obj/vehicle/sealed/armored/parent)
+	. = ..()
+	icon = parent.turret_icon
+	base_icon_state = parent.turret_icon_state
+	icon_state = parent.turret_icon_state
+	layer = parent.layer + 0.002
+	setDir(parent.dir)
+
 /atom/movable/vis_obj/turret_overlay/Destroy()
 	QDEL_NULL(primary_overlay)
 	return ..()
@@ -705,6 +721,26 @@
 	. = ..()
 	if(secondary_overlay)
 		update_appearance(UPDATE_OVERLAYS)
+
+/atom/movable/vis_obj/turret_overlay/offset
+	/**
+	 * in case snowflake offsets are needed of the turret, set this var to list(dir = list(x, y)) in initialize
+	 * when the parent vehicle rotates, we apply these snowflake offsets seperately. useful primarily for non-centered turrets
+	 */
+	var/list/turret_offsets
+
+/atom/movable/vis_obj/turret_overlay/offset/Initialize(mapload, obj/vehicle/sealed/armored/parent)
+	. = ..()
+	RegisterSignal(parent, COMSIG_ATOM_DIR_CHANGE, PROC_REF(update_offsets))
+	turret_offsets = list(TEXT_NORTH = list(10, 10), TEXT_EAST = list(-10, -10), TEXT_SOUTH = list(-100, -100), TEXT_WEST = list(100, 100))
+
+///sighandler for updating offsets on owning vehicle move
+/atom/movable/vis_obj/turret_overlay/offset/proc/update_offsets(obj/vehicle/sealed/armored/source, old_dir, new_dir)
+	SIGNAL_HANDLER
+	if(!turret_offsets["[new_dir]"])
+		return
+	pixel_x = turret_offsets["[new_dir]"][1]
+	pixel_y = turret_offsets["[new_dir]"][2]
 
 /atom/movable/vis_obj/tank_damage
 	name = "Tank damage overlay"

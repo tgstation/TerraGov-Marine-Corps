@@ -53,6 +53,13 @@
 	accuracy = 10
 	barricade_clear_distance = 4
 
+/datum/ammo/bullet/minigun/ltaap/hv
+	damage = 35
+	penetration = 30
+	ammo_behavior_flags = AMMO_BALLISTIC
+	hud_state = "hivelo_impact"
+	hud_state_empty = "hivelo_empty"
+
 /datum/ammo/bullet/auto_cannon
 	name = "autocannon high-velocity bullet"
 	hud_state = "minigun"
@@ -113,7 +120,7 @@
 	on_pierce_multiplier = 0.75
 
 /datum/ammo/bullet/railgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 4 SECONDS, slowdown = 2, knockback = 2)
+	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 4 SECONDS, slowdown = 2, knockback = 2)
 
 /datum/ammo/bullet/railgun/on_hit_turf(turf/target_turf, obj/projectile/proj)
 	proj.proj_max_range -= 3
@@ -173,7 +180,7 @@
 	on_pierce_multiplier = 0.85
 
 /datum/ammo/bullet/coilgun/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 0.2 SECONDS, slowdown = 1, knockback = 3)
+	staggerstun(target_mob, proj, paralyze = 0.2 SECONDS, slowdown = 1, knockback = 3)
 
 
 // SARDEN
@@ -202,7 +209,7 @@
 
 /datum/ammo/bullet/sarden/high_explosive/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/target_turf = get_turf(target_mob)
-	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
 	drop_nade(target_turf)
 
 /datum/ammo/bullet/sarden/high_explosive/on_hit_obj(obj/target_obj, obj/projectile/proj)

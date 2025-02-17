@@ -68,7 +68,9 @@ GLOBAL_LIST_INIT(known_implants, subtypesof(/obj/item/implant))
 	START_PROCESSING(SSobj, src)
 
 /obj/item/healthanalyzer/ui_state(mob/user)
-	return GLOB.not_incapacitated_state
+	if(!isobserver(user))
+		return GLOB.not_incapacitated_state
+	return GLOB.observer_state
 
 /obj/item/healthanalyzer/process()
 	if(get_turf(src) != get_turf(current_user) || get_dist(get_turf(current_user), get_turf(patient)) > track_distance || patient == current_user)

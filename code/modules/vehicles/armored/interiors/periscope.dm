@@ -16,22 +16,31 @@
 /obj/structure/periscope/link_interior(datum/interior/link)
 	owner = link.container
 
-/obj/structure/periscope/attack_hand(mob/living/user)
+/obj/structure/periscope/can_interact(mob/user)
+	. = ..()
+	if(user.client?.eye != user) // e.g someone looking outside already
+		return FALSE
+
+/obj/structure/periscope/interact(mob/user)
 	. = ..()
 	user.reset_perspective(owner)
 	ADD_TRAIT(user, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
 	user.update_sight()
-	user.client.view_size.set_view_radius_to(4.5)
+	user.client.view_size.set_view_radius_to(5.5)
 	RegisterSignals(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_DO_RESIST, COMSIG_MOB_LOGOUT), PROC_REF(stop_looking))
 
 ///signal handler for canceling the looking
 /obj/structure/periscope/proc/stop_looking(mob/source)
 	SIGNAL_HANDLER
-	UnregisterSignal(source, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_DO_RESIST, COMSIG_MOB_LOGOUT))
-	source.reset_perspective()
-	REMOVE_TRAIT(source, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
-	source.client.view_size.reset_to_default()
-	source.update_sight()
+	source.unset_interaction()
+
+/obj/structure/periscope/on_unset_interaction(mob/user)
+	. = ..()
+	UnregisterSignal(user, list(COMSIG_MOVABLE_MOVED, COMSIG_LIVING_DO_RESIST, COMSIG_MOB_LOGOUT))
+	user.reset_perspective()
+	REMOVE_TRAIT(user, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	user.client?.view_size.reset_to_default()
+	user.update_sight()
 
 /obj/structure/periscope/apc
 	name = "apc periscope"
