@@ -5,7 +5,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 	RETURN_TYPE(/datum/medal_persistence)
 	return (GLOB.medal_persistence_datums_by_ckey[ckey] ||= new /datum/medal_persistence(ckey))
 
-/proc/save_all_medals_and_seal()
+/proc/seal_persistent_medals()
 	var/is_forced = FALSE
 	if(IsAdminAdvancedProcCall())
 		if(tgui_input_list(usr, "Are you sure you want to save all medals and seal? This can result in players losing medals!", "Save All Medals and Seal", list("Yes", "No")) != "Yes")
@@ -19,8 +19,11 @@ GLOBAL_VAR(medal_persistence_sealed)
 		return
 
 	var/list/medal_persistence_datums_by_ckey = GLOB.medal_persistence_datums_by_ckey
+	// go over all medals just incase there are any unsaved ones, medals already in the db will not be re-saved so this costs little, even in a worst case scenario
 	for(var/datum/medal_persistence/medal_persistence as anything in medal_persistence_datums_by_ckey)
-		medal_persistence.save_medals_to_db()
+		for(var/name in medal_persistence.medals_by_real_name)
+			for(var/datum/persistent_medal_info/medal as anything in medal_persistence.medals_by_real_name[name])
+				medal_persistence.save_medal_to_db(null, medal) // not passing usr here even if forced, as this is a mass save
 
 	if(!GLOB.medal_persistence_sealed)
 		GLOB.medal_persistence_sealed = TRUE
@@ -51,10 +54,9 @@ GLOBAL_VAR(medal_persistence_sealed)
 	medal.issued_by_rank = issued_by_rank
 	medal.medal_uid = medal_uid
 	medal.medal_citation = medal_citation
-	medal.issued_at = SQLtime()
 	medals_by_real_name[issued_to_real_name] ||= list(medal)
 	medals_by_real_name[issued_to_real_name] += medal
-	save_medals_to_db()
+	save_medal_to_db(medal)
 	return medal
 
 /**
@@ -62,7 +64,7 @@ GLOBAL_VAR(medal_persistence_sealed)
  * - mob/user - The mob to send messages to.
  */
 /datum/medal_persistence/proc/load_medals_from_db(mob/user)
-	var/datum/db_query/query = SSdbcore.NewQuery("SELECT * FROM medals WHERE ckey = :ckey", list("ckey" = ckey))
+	var/datum/db_query/query = SSdbcore.NewQuery("SELECT * FROM medals WHERE ckey = :ckey AND deleted = 0", list("ckey" = ckey))
 	if(!query.warn_execute())
 		to_chat(user, span_warning("Failed to load medals!"))
 		qdel(query)
@@ -85,62 +87,68 @@ GLOBAL_VAR(medal_persistence_sealed)
 	qdel(query)
 
 /**
- * Save all medals to the database.
+ * Save the given medal to the database. If the id field is populated this does nothing.
  * - mob/user - The mob to send messages to.
+ * - datum/persistent_medal_info/medal - The medal to save.
  */
-/datum/medal_persistence/proc/save_medals_to_db(mob/user)
+/datum/medal_persistence/proc/save_medal_to_db(mob/user, datum/persistent_medal_info/medal)
 	if(SSblackbox.sealed) // medals are not updated if the blackbox is sealed
 		return
 
-	var/datum/db_query/query = SSdbcore.NewQuery("DELETE FROM [format_table_name("medals")] WHERE ckey = :ckey", list("ckey" = ckey))
+	if(medal.id)
+		return
+	var/datum/db_query/query = SSdbcore.NewQuery({"INSERT INTO [format_table_name("medals")] (
+		ckey,
+		issued_to_real_name,
+		issued_to_rank,
+		issued_by_real_name,
+		issued_by_rank,
+		medal_uid,
+		medal_citation,
+		is_posthumous
+	) VALUES (
+		:ckey,
+		:issued_to_real_name,
+		:issued_to_rank,
+		:issued_by_real_name,
+		:issued_by_rank,
+		:medal_uid,
+		:medal_citation,
+		:is_posthumous
+	)"}, list(
+		"ckey" = ckey,
+		"issued_to_real_name" = medal.issued_to_real_name,
+		"issued_to_rank" = medal.issued_to_rank,
+		"issued_by_real_name" = medal.issued_by_real_name,
+		"issued_by_rank" = medal.issued_by_rank,
+		"medal_uid" = medal.medal_uid,
+		"medal_citation" = medal.medal_citation,
+		"is_posthumous" = medal.is_posthumous,
+	))
 	if(!query.warn_execute())
-		stack_trace("Failed to reset medals for ckey [ckey]")
+		stack_trace("Failed to save medal for ckey [ckey]")
+		if(!isnull(user))
+			to_chat(user, span_warning("Failed to save medal!"))
 		qdel(query)
-		return FALSE
-	qdel(query)
+		continue
 
-	var/any_medal_failed_to_save = FALSE
-	for(var/real_name in medals_by_real_name)
-		for(var/datum/persistent_medal_info/medal as anything in medals_by_real_name[real_name])
-			var/datum/db_query/query = SSdbcore.NewQuery({"INSERT INTO [format_table_name("medals")] (
-				ckey,
-				issued_to_real_name,
-				issued_to_rank,
-				issued_by_real_name,
-				issued_by_rank,
-				medal_typepath,
-				medal_citation,
-				issued_at,
-				is_posthumous
-			) VALUES (
-				:ckey,
-				:issued_to_real_name,
-				:issued_to_rank,
-				:issued_by_real_name,
-				:issued_by_rank,
-				:medal_typepath,
-				:medal_citation,
-				:issued_at,
-				:is_posthumous
-			)"}, list(
-				"ckey" = ckey,
-				"issued_to_real_name" = medal.issued_to_real_name,
-				"issued_to_rank" = medal.issued_to_rank,
-				"issued_by_real_name" = medal.issued_by_real_name,
-				"issued_by_rank" = medal.issued_by_rank,
-				"medal_uid" = medal.medal_uid,
-				"medal_citation" = medal.medal_citation,
-				"issued_at" = medal.issued_at,
-				"is_posthumous" = medal.is_posthumous,
-			))
-			if(!query.warn_execute())
-				any_medal_failed_to_save = TRUE
-				stack_trace("Failed to save medal for ckey [ckey]")
-				qdel(query)
-				continue
-			qdel(query)
-	if(any_medal_failed_to_save)
-		to_chat(user, span_warning("Some of your medals failed to save!"))
+	medal.id = query.last_insert_id
+	qdel(query)
+	medals_by_real_name[medal.issued_to_real_name] ||= list(medal)
+	medals_by_real_name[medal.issued_to_real_name] += list(medal)
+
+/**
+ * Marks the given medal as deleted in the database.
+ * Deleted medals are not actually removed from the database, but are instead marked as deleted; incase they need to be restored.
+ * - datum/persistent_medal_info/medal - The medal to mark as deleted.
+ */
+/datum/medal_persistence/proc/mark_medal_as_deleted(datum/persistent_medal_info/medal)
+	if(medal.id)
+		var/datum/db_query/query = SSdbcore.NewQuery("UPDATE medals SET deleted = 1 WHERE id = :id", list("id" = medal.id))
+		if(!query.warn_execute())
+			stack_trace("Failed to mark medal as deleted!")
+		qdel(query)
+	medals_by_real_name[medal.issued_to_real_name] -= medal
 
 /**
  * Give all medals to a player.
@@ -167,6 +175,8 @@ GLOBAL_VAR(medal_persistence_sealed)
  */
 /datum/persistent_medal_info
 	var/datum/medal_persistence/medal_persistence //! The medal persistence object this medal is associated with
+
+	var/id //! The row id of the medal in the database
 
 	var/issued_to_real_name //! The real name of the player who was issued the medal
 	var/issued_to_rank //! The rank of the player who was issued the medal
@@ -195,6 +205,8 @@ GLOBAL_VAR(medal_persistence_sealed)
 /proc/load_persistent_medal_from_data(list/data)
 	RETURN_TYPE(/datum/persistent_medal_info)
 	var/datum/persistent_medal_info/medal = new
+
+	medal.id = data["id"]
 
 	medal.issued_to_real_name = data["issued_to_real_name"]
 	medal.issued_to_rank = data["issued_to_rank"]
@@ -251,5 +263,5 @@ GLOBAL_VAR(medal_persistence_sealed)
 
 	medal_persistence.medals_by_real_name[issued_to_real_name] -= src
 	ASYNC
-		medal_persistence.save_medals_to_db()
-	to_chat(medal_persistence.owner, span_notice("A medal was destroyed..."))
+		medal_persistence.mark_medal_as_deleted(src)
+		to_chat(medal_persistence.owner, span_notice("A medal was destroyed..."))
