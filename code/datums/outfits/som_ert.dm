@@ -33,7 +33,7 @@
 /datum/outfit/job/som/ert/standard/standard_assaultrifle
 	suit_store = /obj/item/weapon/gun/rifle/som/mag_harness
 	belt = /obj/item/storage/belt/marine/som/som_rifle
-	
+
 	backpack_contents = list(
 		/obj/item/storage/box/MRE/som = 1,
 		/obj/item/ammo_magazine/pistol/som = 2,
@@ -142,7 +142,6 @@
 		/obj/item/bodybag/cryobag = 1,
 		/obj/item/reagent_containers/hypospray/advanced/combat_advanced = 1,
 	)
-
 
 /datum/outfit/job/som/ert/medic/standard_assaultrifle
 	suit_store = /obj/item/weapon/gun/rifle/som/mag_harness
@@ -547,7 +546,7 @@
 		/obj/item/explosive/grenade/rad = 2,
 		/obj/item/explosive/grenade/incendiary/som = 1,
 	)
-	
+
 	suit_contents = list(
 		/obj/item/stack/medical/heal_pack/gauze = 1,
 		/obj/item/stack/medical/heal_pack/ointment = 1,

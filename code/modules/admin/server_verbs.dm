@@ -28,6 +28,7 @@
 	spawn(50)
 		world.Reboot(message)
 
+// todo I don't think this works. update to tgsv6 api please
 /datum/admins/proc/shutdown_server()
 	set category = "Server"
 	set name = "Shutdown Server"
@@ -67,14 +68,9 @@
 			to_chat(usr, span_danger("[required_state_message] The round start/end is not delayed."))
 			return
 		if (SSticker.current_state == GAME_STATE_PLAYING || SSticker.current_state == GAME_STATE_SETTING_UP)
-			#ifdef TGS_V3_API
 			if(alert("The round is currently in progress, continue with shutdown?", "Continue Shutting Down Server?", "Cancel", "Continue Shutting Down Server", "Cancel.") != "Continue Shutting Down Server")
 				return
 			waitforroundend = TRUE
-			#else
-			to_chat(usr, span_danger("Restarting during the round requires the server toolkit. No server toolkit detected. Please end the round and try again."))
-			return
-			#endif
 
 	to_chat(usr, span_danger("Alert: Delayed confirmation required. You will be asked to confirm again in 30 seconds."))
 	message_admins("[ADMIN_TPMONTY(usr)] initiated the shutdown process. You may abort this by pressing the shutdown server button again.")
@@ -108,8 +104,6 @@
 
 	to_chat(world, span_danger("Server shutting down[waitforroundend ? " after this round. " : ""].</span> <span class='notice'>Initiated by: [shuttingdown]"))
 	log_admin("Server shutting down[waitforroundend ? " after this round" : ""]. Initiated by: [shuttingdown]")
-
-#ifdef TGS_V3_API
 	if(GLOB.tgs)
 		var/datum/tgs_api/TA = GLOB.tgs
 		var/tgs3_path = CONFIG_GET(string/tgs3_commandline_path)
@@ -131,7 +125,6 @@
 		var/msg = "WARNING: Couldn't find tgstation-server3 api object, server could restart after shutdown, but it will very likely be just fine"
 		message_admins(msg)
 		log_admin(msg)
-#endif
 	if (waitforroundend)
 		return
 	sleep(world.tick_lag) //so messages can get sent to players.

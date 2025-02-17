@@ -456,7 +456,7 @@ engineer, construction, leadership, medical, surgery, pilot, police, powerloader
 	engineer = SKILL_ENGINEER_METAL
 	construction = SKILL_CONSTRUCTION_METAL
 	powerloader = SKILL_POWERLOADER_PRO
-	mech = SKILL_MECH_DEFAULT
+	mech = SKILL_MECH_TRAINED
 
 /datum/skills/assault_crewman
 	name = ASSAULT_CREWMAN

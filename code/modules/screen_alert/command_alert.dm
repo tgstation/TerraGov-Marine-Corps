@@ -1,4 +1,4 @@
-#define MAX_COMMAND_MESSAGE_LEN 120
+#define MAX_COMMAND_MESSAGE_LEN 200
 
 /atom/movable/screen/text/screen_text/command_order
 	maptext_height = 64

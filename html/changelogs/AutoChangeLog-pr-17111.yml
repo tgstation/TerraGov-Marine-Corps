@@ -1,0 +1,6 @@
+author: "breadhunt"
+delete-after: True
+changes:
+  - rscadd: "Unique action for signalers now sends the signal"
+  - rscadd: "Unique action for detpacks now turns them on/off"
+  - qol: "Balloon alerts added to some detpack messages"
