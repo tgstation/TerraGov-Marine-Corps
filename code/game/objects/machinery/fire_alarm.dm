@@ -52,7 +52,7 @@ FIRE ALARM
 
 	update_icon()
 
-/// wrapper so we can update the icon on `COMSIG_SECURITY_LEVEL_CHANGED`
+/// wrapper so we can update the icon on [COMSIG_SECURITY_LEVEL_CHANGED]
 /obj/machinery/firealarm/proc/on_alert_change(datum/source, datum/security_level/next_level, datum/security_level/previous_level)
 	SIGNAL_HANDLER
 	update_icon()

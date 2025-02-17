@@ -433,7 +433,7 @@
 	desc = "A small lighting fixture."
 	light_type = /obj/item/light_bulb/bulb
 
-/// Changes the light's appearance based on the security level
+/// Changes the light's appearance based on the security level when [COMSIG_SECURITY_LEVEL_CHANGED] sends a signal
 /obj/machinery/light/mainship/proc/on_alert_change(datum/source, datum/security_level/new_level, datum/security_level/previous_level)
 	SIGNAL_HANDLER
 	var/bulb_type = "tube" // the base light sprite

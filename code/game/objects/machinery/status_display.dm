@@ -33,7 +33,7 @@
 	if(is_mainship_level(z))
 		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
 
-/// Called on security level change, sets the active picture based on current level
+/// Called when [COMSIG_SECURITY_LEVEL_CHANGED] sends a signal, sets the active picture based on current level
 /obj/machinery/status_display/proc/on_alert_change(datum/source, datum/security_level/next_level, datum/security_level/previous_level)
 	SIGNAL_HANDLER
 	set_picture(next_level?.status_display_icon || "default")

@@ -16,6 +16,6 @@
 #define SEC_LEVEL_FLAG_CANNOT_SWITCH (1<<2)
 /// Turns shipside lights red.
 #define SEC_LEVEL_FLAG_RED_LIGHTS (1<<3)
-/// Opens SD shutters, shows evacuation and related options in comms console.
+/// Opens SD shutters, shows evacuation and related information in comms console.
 /// Also causes delta alarms to start playing.
 #define SEC_LEVEL_FLAG_IS_EMERGENCY (1<<4)
