@@ -169,3 +169,71 @@
   - imageadd: New Lobby Art from Astolfo!
   yyzsong:
   - balance: Marine squad leaders may now take the radiopack as a backpack option
+2025-02-15:
+  Barnet2:
+  - spellcheck: Increases command message length to 200 characters from 120 and 100
+  Cheese:
+  - qol: Strain keybinds now use the strain name, rather than the parent name, in
+      the keybinding menu.
+  Lumipharon:
+  - bugfix: fixed hunter silence and sticky spit applying far less stagger than intended
+  - bugfix: fixed mech destruction effects
+  Neocloudy:
+  - spellcheck: New "titanic" weight class for any item larger than gigantic.
+  Rug-Dealer:
+  - rscadd: Added *trick emote that lets you do tricks on weapons and items alike.
+  TiviPlus:
+  - balance: Everyone except spatial agents can only spawn mechs once
+  - bugfix: having just spawned a mech now does not prevent you from spawning ammo
+  novaepee:
+  - rscadd: updating PoS medbay ONCE AGAIN for 2025!
+2025-02-16:
+  Apple-107:
+  - rscadd: Card decks are now available for Marines in Character Customization and
+      Marine Armaments Vendors
+  Lumipharon:
+  - bugfix: Mech pilots actually have mech skill
+  TiviPlus:
+  - balance: mech no longer has directional armor
+  - balance: the tank driver now gets the old periscopes tier of zoom and nightvision
+  - balance: the tank periscope has 1 extra range now
+  - bugfix: fixed periscope being usable while driving the tank
+  - balance: mechs no longer have tank controls
+  - bugfix: block movement keybind now lets you turn while you strafe correctly in
+      a mech
+  - bugfix: fixed mech turn sounds playing when they shouldnt
+2025-02-17:
+  Lumipharon:
+  - qol: Large grassy rock piles can be jumped onto and walked upon
+  - code_imp: Fixed modular mapping creating dup entries in areas_in_z
+  Pariah919:
+  - balance: Behemoth no longer has heavy footstep sounds.
+  - sounddel: Behemoth no longer has heavy footstep sounds.
+  TiviPlus:
+  - qol: teleport verb menu is tgui now
+  - rscadd: Added the ability to set custom fonts for the chat
+  - qol: changed a bunch of options to tgchat, e.g you can reorder tabs now
+  - qol: Stat panel looks more tgui like now
+  - qol: you can set a style for the stat panel now
+  - qol: the stat panel now takes your chat settings by default. this can be unlinked
+      and set seperately
+  - qol: removed limit of chat highlights. it just warns you about performance now
+  - qol: the req menu buy button now turns red when you can't afford the cart
+  - bugfix: typing in the command bar will be detected by the typing indicator
+  - bugfix: fixed a tgui bluescreen in the cargo UI
+  - bugfix: fixed numerous issues with UIs bluescreening or otherwise bugging out
+  - bugfix: TGMC clientside (ie you as a player) works on 516 now
+  - bugfix: fixed a number of hrefs to work on 516
+  - imageadd: updated the tgui icon library
+  - code_imp: We now cache spritesheets across rounds
+  - refactor: TGUI now uses the centralized SS13 npm library
+  - admin: play internet sound will now display (optionally) who played the song and
+      other info such as the link and the artist
+  - code_imp: and many other changes not included in this changelog
+  breadhunt:
+  - rscadd: Unique action for signalers now sends the signal
+  - rscadd: Unique action for detpacks now turns them on/off
+  - qol: Balloon alerts added to some detpack messages
+  yyzsong:
+  - qol: Acid Maws and Acid Jaws now notify ghosts when fired, and their point of
+      impact may be jumped to.

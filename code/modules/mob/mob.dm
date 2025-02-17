@@ -340,7 +340,7 @@
 /mob/vv_get_dropdown()
 	. = ..()
 	. += "---"
-	.["Player Panel"] = "?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
+	.["Player Panel"] = "byond://?_src_=vars;[HrefToken()];playerpanel=[REF(src)]"
 
 /mob/vv_edit_var(var_name, var_value)
 	switch(var_name)

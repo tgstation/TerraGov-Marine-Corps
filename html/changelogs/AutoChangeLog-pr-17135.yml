@@ -1,0 +1,4 @@
+author: "nervere"
+delete-after: True
+changes:
+  - refactor: "Window flashing (i.e. taskbar notifications) while a ghost will now only trigger for stuff related to round re-entry and adminhelps, instead of it happening for everything."
