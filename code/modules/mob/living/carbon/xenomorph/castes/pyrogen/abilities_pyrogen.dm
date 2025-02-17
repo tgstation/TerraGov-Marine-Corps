@@ -177,7 +177,7 @@
 	name = "Inferno"
 	action_icon_state = "inferno"
 	action_icon = 'icons/Xeno/actions/pyrogen.dmi'
-	desc = "Immediately release a burst of fire in a 5x5 radius. All tiles are set on fire. Humans are set on fire and burnt."
+	desc = "After a short cast time, release a burst of fire in a 5x5 radius. All tiles are set on fire. Humans are set on fire and burnt."
 	ability_cost = 50
 	cooldown_duration = 18 SECONDS
 	keybinding_signals = list(
@@ -185,6 +185,9 @@
 	)
 
 /datum/action/ability/activable/xeno/inferno/use_ability(atom/target)
+	if(!do_after(xeno_owner, 0.5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER) || !can_use_ability(target, TRUE, ABILITY_IGNORE_PLASMA))
+		return fail_activate()
+
 	playsound(get_turf(xeno_owner), 'sound/effects/alien/fireball.ogg', 50)
 	new /obj/effect/temp_visual/xeno_fireball_explosion(get_turf(xeno_owner))
 	for(var/turf/turf_in_range AS in RANGE_TURFS(2, xeno_owner.loc)) // 5x5
