@@ -26,6 +26,8 @@
 	var/melee_damage = 10
 	/// The damage typing of the melee damage.
 	var/melee_damage_type = BRUTE
+	/// The armor typing of the melee damage.
+	var/melee_damage_armor = MELEE
 	///The amount of armour pen their melee attacks have
 	var/melee_ap = 0
 	///number of ticks between attacks for a caste.

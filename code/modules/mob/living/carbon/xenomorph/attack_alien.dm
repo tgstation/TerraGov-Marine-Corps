@@ -76,7 +76,7 @@
 		damage_mod += dam_bonus
 
 	if(!(signal_return & COMPONENT_BYPASS_ARMOR))
-		armor_block = MELEE
+		armor_block = X.xeno_caste.melee_damage_armor
 
 	for(var/i in damage_mod)
 		damage += i

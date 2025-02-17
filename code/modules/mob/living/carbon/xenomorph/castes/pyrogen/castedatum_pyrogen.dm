@@ -13,6 +13,7 @@
 	// *** Melee Attacks *** //
 	melee_damage = 22
 	melee_damage_type = BURN
+	melee_damage_armor = FIRE
 	attack_delay = 7
 
 	// *** Speed *** //
