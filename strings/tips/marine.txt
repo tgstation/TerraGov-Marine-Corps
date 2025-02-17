@@ -160,7 +160,7 @@ Gigachads leave the autodoc on automatic.
 You can fit tiny items into your helmet.
 The time it takes for you to wield your gun can be the difference between life and death.
 Switching to your sidearm is faster than reloading.
-You can preform a tactical reload by dragging a fresh magazine from your belt towards your gun.
+You can perform a tactical reload by dragging a fresh magazine from your belt towards your gun.
 With your sidearm in hand, right-click a pistol pouch to instantly reload.
 You can turn the safety of your gun on.
 Depending on the tactical situations, smoke grenades can do more harm than good.
