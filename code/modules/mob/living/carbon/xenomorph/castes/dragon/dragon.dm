@@ -57,13 +57,13 @@
 		return FALSE
 	if(!(status_flags & INCORPOREAL))
 		return ..()
+	if(isclosedturf(newloc) && !istype(newloc, /turf/closed/wall/resin))
+		return FALSE
 	for(var/atom/atom_on_turf AS in newloc.contents)
 		if(!atom_on_turf.CanPass(src, newloc))
 			if((atom_on_turf.resistance_flags & RESIST_ALL)) // Like hull windows.
 				return FALSE
 			if(istype(atom_on_turf, /obj/machinery/door/poddoor/timed_late))
-				return FALSE
-			if(isclosedturf(newloc) && !istype(newloc, /turf/closed/wall/resin))
 				return FALSE
 	abstract_move(newloc)
 
