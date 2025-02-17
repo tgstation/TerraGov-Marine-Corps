@@ -148,8 +148,7 @@ GLOBAL_VAR(medal_persistence_sealed)
  */
 /datum/medal_persistence/proc/give_medals_to(mob/living/target)
 	if(target.ckey != ckey)
-		stack_trace("Attempted to give medals to a player who does not match the ckey of the medal persistence object!")
-		return
+		CRASH("Attempted to give medals to a player who does not match the ckey of the medal persistence object!")
 
 	var/obj/item/storage/box/medal_box = new
 	medal_box.name = "medal box"
