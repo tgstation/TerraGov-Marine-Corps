@@ -4,9 +4,25 @@
 /atom/movable/screen/ghost/MouseEntered()
 	flick(icon_state + "_anim", src)
 
+/atom/movable/screen/ghost/toggle_health_scan
+	name = "Toggle health scan"
+	icon_state = "scan_health"
+	base_icon_state = "scan_health"
+	screen_loc = ui_ghost_slot1
+
+/atom/movable/screen/ghost/toggle_health_scan/Click()
+	var/mob/dead/observer/G = usr
+	G.toggle_health_scan()
+	update_appearance(UPDATE_ICON_STATE)
+
+/atom/movable/screen/ghost/toggle_health_scan/update_icon_state()
+	var/mob/dead/observer/G = usr
+	icon_state = "[base_icon_state][G.health_scan ? "_active" : ""]"
+
 /atom/movable/screen/ghost/follow_ghosts
 	name = "Follow"
 	icon_state = "follow_ghost"
+	screen_loc = ui_ghost_slot2
 
 /atom/movable/screen/ghost/follow_ghosts/Click()
 	var/mob/dead/observer/G = usr
@@ -31,6 +47,7 @@
 /atom/movable/screen/ghost/reenter_corpse
 	name = "Reenter corpse"
 	icon_state = "reenter_corpse"
+	screen_loc = ui_ghost_slot3
 
 /atom/movable/screen/ghost/reenter_corpse/Click()
 	var/mob/dead/observer/ghost = usr
@@ -46,12 +63,13 @@
 	. = ..()
 	var/atom/movable/screen/using
 
+	using = new /atom/movable/screen/ghost/toggle_health_scan(null, src)
+	static_inventory += using
+
 	using = new /atom/movable/screen/ghost/follow_ghosts(null, src)
-	using.screen_loc = ui_ghost_slot2
 	static_inventory += using
 
 	using = new /atom/movable/screen/ghost/reenter_corpse(null, src)
-	using.screen_loc = ui_ghost_slot3
 	static_inventory += using
 
 
