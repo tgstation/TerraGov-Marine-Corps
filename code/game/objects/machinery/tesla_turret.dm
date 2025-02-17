@@ -220,7 +220,7 @@
 		toggle(FALSE, TRUE)
 	hud_set_tesla_battery()
 
-/obj/machinery/deployable/tesla_turret/disassemble(mob/user)
+/obj/machinery/deployable/tesla_turret/disassemble(mob/marine)
 	if(active)
 		if(shock(marine, 70))
 			balloon_alert_to_viewers("sparks!")
