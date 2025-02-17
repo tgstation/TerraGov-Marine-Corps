@@ -29,8 +29,8 @@ GLOBAL_VAR(medal_persistence_sealed)
 					continue // Either wasn't issued (or was deleted)
 				if(isnull(holder) || holder.stat == DEAD) // womp
 					medals -= medal
+		medal_persistence.save_medals_to_db()
 
-	medal_persistence.save_medals_to_db()
 	GLOB.medal_persistence_sealed = TRUE
 	to_chat(world, span_notice("Persistent medals have been saved. Hope you didn't lose any!"))
 
@@ -248,5 +248,6 @@ GLOBAL_VAR(medal_persistence_sealed)
 	SIGNAL_HANDLER
 
 	medal_persistence.medals_by_real_name[issued_to_real_name] -= src
-	medal_persistence.save_medals_to_db()
+	ASYNC
+		medal_persistence.save_medals_to_db()
 	to_chat(medal_persistence.owner, span_notice("A medal was destroyed..."))

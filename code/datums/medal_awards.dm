@@ -101,7 +101,7 @@ GLOBAL_LIST_EMPTY(medal_awards)
 
 	// award if the player exists and is not dead
 	if(!is_posthumous && !isnull(medal_awardee))
-		var/datum/medal_persistence/medals = get_medal_persistence(medal_awardee.key)
+		var/datum/medal_persistence/medals = get_medal_persistence_for_ckey(medal_awardee.key)
 		var/datum/persistent_medal_info/medal = medals.award_medal(
 			awardee_real_name,
 			awardee_record.fields["rank"],

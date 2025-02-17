@@ -279,7 +279,7 @@ SUBSYSTEM_DEF(job)
 
 	if(!isxenosjob(job))
 		// try to give them their medals
-		var/datum/medal_persistence/medals = get_medal_persistence(player.ckey)
+		var/datum/medal_persistence/medals = get_medal_persistence_for_ckey(player.ckey)
 		medals.load_medals_from_db(player)
 		medals.give_medals_to(new_character)
 
