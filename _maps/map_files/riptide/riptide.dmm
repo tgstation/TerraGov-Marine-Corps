@@ -6048,7 +6048,6 @@
 /area/riptide/inside/chapel)
 "ejd" = (
 /obj/structure/table,
-/obj/item/storage/pill_bottle/packet/russian_red,
 /turf/open/floor/tile/blue,
 /area/riptide/inside/medical/offices)
 "eju" = (
