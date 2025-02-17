@@ -1478,6 +1478,7 @@ F// DM Environment file for baystation12.dme.
 #include "code\modules\buildmode\submodes\variable_edit.dm"
 #include "code\modules\client\client_defines.dm"
 #include "code\modules\client\client_procs.dm"
+#include "code\modules\client\medal_persistence.dm"
 #include "code\modules\client\message.dm"
 #include "code\modules\client\player_details.dm"
 #include "code\modules\client\preferences.dm"

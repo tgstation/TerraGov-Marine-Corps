@@ -137,7 +137,7 @@
 				to_chat(usr, span_warning("Only the Captain can award medals."))
 				return
 
-			if(give_medal_award(loc))
+			if(do_award_medal(usr))
 				visible_message(span_notice("[src] prints a medal."))
 
 		if("evacuation_start")

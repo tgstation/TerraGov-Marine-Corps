@@ -263,12 +263,9 @@
 /datum/admins/proc/award_medal()
 	set category = "Admin.Fun"
 	set name = "Award a Medal"
-
 	if(!check_rights(R_FUN))
 		return
-
-	give_medal_award()
-
+	do_award_medal(usr)
 
 /datum/admins/proc/custom_info()
 	set category = "Admin.Fun"
