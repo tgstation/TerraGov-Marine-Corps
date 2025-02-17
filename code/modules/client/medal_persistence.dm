@@ -1,8 +1,38 @@
 GLOBAL_LIST_EMPTY(medal_persistence_datums_by_ckey)
+GLOBAL_VAR(medal_persistence_sealed)
 
-/proc/get_medal_persistence(ckey)
+/proc/get_medal_persistence_for_ckey(ckey)
 	RETURN_TYPE(/datum/medal_persistence)
 	return (GLOB.medal_persistence_datums_by_ckey[ckey] ||= new /datum/medal_persistence(ckey))
+
+/proc/save_all_medals_and_seal(ignore_living_checks = FALSE)
+	if(GLOB.medal_persistence_sealed)
+		return
+
+	var/list/medal_persistence_datums_by_ckey = GLOB.medal_persistence_datums_by_ckey
+	if(ignore_living_checks)
+		for(var/datum/medal_persistence/medal_persistence in medal_persistence_datums_by_ckey)
+			medal_persistence.save_medals_to_db()
+		return
+
+	for(var/datum/medal_persistence/medal_persistence in medal_persistence_datums_by_ckey)
+		for(var/real_name in medal_persistence.medals_by_real_name)
+			var/mob/living/holder
+			for(var/mob/living/mob as anything in GLOB.mob_living_list)
+				if(mob.real_name == real_name)
+					holder = mob
+					break
+
+			var/list/datum/persistent_medal_info/medals = medal_persistence.medals_by_real_name[real_name]
+			for(var/datum/persistent_medal_info/medal in medals)
+				if(isnull(medal.medal))
+					continue // Either wasn't issued (or was deleted)
+				if(isnull(holder) || holder.stat == DEAD) // womp
+					medals -= medal
+
+	medal_persistence.save_medals_to_db()
+	GLOB.medal_persistence_sealed = TRUE
+	to_chat(world, span_notice("Persistent medals have been saved. Hope you didn't lose any!"))
 
 /datum/medal_persistence
 	var/ckey
@@ -23,6 +53,7 @@ GLOBAL_LIST_EMPTY(medal_persistence_datums_by_ckey)
 	medal_citation,
 )
 	var/datum/persistent_medal_info/medal = new
+	medal.medal_persistence = src
 	medal.issued_to_real_name = issued_to_real_name
 	medal.issued_to_rank = issued_to_rank
 	medal.issued_by_real_name = issued_by_real_name
@@ -40,16 +71,20 @@ GLOBAL_LIST_EMPTY(medal_persistence_datums_by_ckey)
  * - mob/user - The mob to send messages to.
  */
 /datum/medal_persistence/proc/load_medals_from_db(mob/user)
-	set waitfor = FALSE
-
 	var/datum/db_query/query = SSdbcore.NewQuery("SELECT * FROM medals WHERE ckey = :ckey", list("ckey" = ckey))
 	if(!query.warn_execute())
 		to_chat(user, span_warning("Failed to load medals!"))
 		qdel(query)
 		return
 
+	for(var/name in medals_by_real_name)
+		// qdel'ing the persistent medal info will not remove the medal from them
+		QDEL_LIST_ASSOC_VAL(medals_by_real_name[name])
+	medals_by_real_name = list()
+
 	while(query.NextRow())
 		var/datum/persistent_medal_info/medal = load_persistent_medal_from_data(query.item)
+		medal.medal_persistence = src
 		if(!medal)
 			stack_trace("Failed to load a medal from the database!")
 			continue
@@ -63,6 +98,9 @@ GLOBAL_LIST_EMPTY(medal_persistence_datums_by_ckey)
  * - mob/user - The mob to send messages to.
  */
 /datum/medal_persistence/proc/save_medals_to_db(mob/user)
+	if(SSblackbox.sealed) // medals are not updated if the blackbox is sealed
+		return
+
 	var/datum/db_query/query = SSdbcore.NewQuery("DELETE FROM [format_table_name("medals")] WHERE ckey = :ckey", list("ckey" = ckey))
 	if(!query.warn_execute())
 		stack_trace("Failed to reset medals for ckey [ckey]")
@@ -138,6 +176,8 @@ GLOBAL_LIST_EMPTY(medal_persistence_datums_by_ckey)
  * A datum to store persistent medal information.
  */
 /datum/persistent_medal_info
+	var/datum/medal_persistence/medal_persistence //! The medal persistence object this medal is associated with
+
 	var/issued_to_real_name //! The real name of the player who was issued the medal
 	var/issued_to_rank //! The rank of the player who was issued the medal
 
@@ -150,6 +190,13 @@ GLOBAL_LIST_EMPTY(medal_persistence_datums_by_ckey)
 
 	var/issued_at //! The time the medal was issued
 	var/is_posthumous //! Whether the medal was awarded posthumously
+
+/datum/persistent_medal_info/Destroy(force, ...)
+	if(medal)
+		// unregister BEFORE qdel'ing it
+		UnregisterSignal(medal, COMSIG_QDELETING)
+		QDEL_NULL(medal)
+	return ..()
 
 /**
  * Load a medal from a data record.
@@ -192,3 +239,14 @@ GLOBAL_LIST_EMPTY(medal_persistence_datums_by_ckey)
 		mob.put_in_hands(medal)
 		return
 	medal.forceMove(container)
+	RegisterSignal(medal, COMSIG_QDELETING, PROC_REF(on_medal_destroy))
+
+/**
+ * Handle the destruction of the medal.
+ */
+/datum/persistent_medal_info/proc/on_medal_destroy()
+	SIGNAL_HANDLER
+
+	medal_persistence.medals_by_real_name[issued_to_real_name] -= src
+	medal_persistence.save_medals_to_db()
+	to_chat(medal_persistence.owner, span_notice("A medal was destroyed..."))

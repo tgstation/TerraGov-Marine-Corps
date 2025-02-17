@@ -277,8 +277,13 @@ SUBSYSTEM_DEF(job)
 
 	job.after_spawn(new_character, player, joined_late) // note: this happens before new_character has a key!
 
-	return new_character
+	if(!isxenosjob(job))
+		// try to give them their medals
+		var/datum/medal_persistence/medals = get_medal_persistence(player.ckey)
+		medals.load_medals_from_db(player)
+		medals.give_medals_to(new_character)
 
+	return new_character
 
 /datum/controller/subsystem/job/proc/PopcapReached()
 	var/hpc = CONFIG_GET(number/hard_popcap)
