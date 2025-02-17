@@ -145,14 +145,41 @@
 	desc = ""
 	cooldown_duration = 240 SECONDS
 
-
-/datum/action/ability/activable/xeno/tailswipe/can_use_ability(atom/A, silent, override_flags)
+/datum/action/ability/activable/xeno/fly/can_use_ability(atom/A, silent, override_flags)
+	if(xeno_owner.status_flags & INCORPOREAL)
+		if(TIMER_COOLDOWN_CHECK(xeno_owner, COOLDOWN_DRAGON_CHANGE_FORM))
+			if(!silent)
+				xeno_owner.balloon_alert(xeno_owner, "already landing")
+			return FALSE
+		var/list/mob/living/carbon/xenomorph/nearby_xenos = cheap_get_xenos_near(xeno_owner, 7)
+		var/found_los_xenos = FALSE
+		for(var/mob/living/carbon/xenomorph/nearby_xeno AS in nearby_xenos)
+			if(nearby_xeno == xeno_owner)
+				continue
+			if(!xeno_owner.issamexenohive(nearby_xeno))
+				continue
+			if(line_of_sight(xeno_owner, nearby_xeno, 7))
+				found_los_xenos = TRUE
+				break
+		var/weeds_found = locate(/obj/alien/weeds) in xeno_owner.loc
+		if(!weeds_found && !found_los_xenos)
+			if(!silent)
+				if(nearby_xenos.len > 1)
+					xeno_owner.balloon_alert(xeno_owner, "no friendlies in sight")
+				else
+					xeno_owner.balloon_alert(xeno_owner, "no weeds")
+			return FALSE
+	if(TIMER_COOLDOWN_CHECK(xeno_owner, COOLDOWN_DRAGON_CHANGE_FORM))
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "already lifting")
+		return FALSE
 	return ..()
 
-/datum/action/ability/activable/xeno/tailswipe/use_ability(atom/target)
-	if(status_flags & INCORPOREAL)
-		return // TODO: Finish this portion later!
-
+/datum/action/ability/activable/xeno/fly/use_ability(atom/target)
+	if(xeno_owner.status_flags & INCORPOREAL)
+		xeno_owner.change_form()
+		return
+	xeno_owner.setDir(SOUTH)
 	xeno_owner.move_resist = MOVE_FORCE_OVERPOWERING
 	xeno_owner.add_traits(list(TRAIT_HANDS_BLOCKED, TRAIT_IMMOBILE), DRAGON_ABILITY_TRAIT)
 	var/was_successful = do_after(xeno_owner, 5 SECONDS, IGNORE_HELD_ITEM, xeno_owner, BUSY_ICON_DANGER, extra_checks = CALLBACK(src, PROC_REF(can_use_ability), target, FALSE, ABILITY_USE_BUSY))
