@@ -59,6 +59,12 @@
 		/obj/item/armor_module/storage/engineering,
 	)
 
+/obj/item/clothing/suit/modular/xenonauten/mirage_engineer
+	starting_attachments =  list(
+		/obj/item/armor_module/module/mirage,
+		/obj/item/armor_module/storage/engineering,
+	)
+
 /obj/item/clothing/suit/modular/xenonauten/lightmedical
 	starting_attachments = list(
 		/obj/item/armor_module/module/better_shoulder_lamp,

@@ -456,7 +456,7 @@
 // *********** Punch
 // ***************************************
 #define WARRIOR_PUNCH_SLOWDOWN 3
-#define WARRIOR_PUNCH_STAGGER 3
+#define WARRIOR_PUNCH_STAGGER 3 SECONDS
 #define WARRIOR_PUNCH_EMPOWER_MULTIPLIER 1.5
 #define WARRIOR_PUNCH_GRAPPLED_DAMAGE_MULTIPLIER 1.5
 #define WARRIOR_PUNCH_GRAPPLED_DEBUFF_MULTIPLIER 1.5
@@ -628,7 +628,7 @@
 	playsound(src, sound_effect, 50, 1)
 	shake_camera(src, 1, 1)
 	add_slowdown(slowdown_stacks)
-	adjust_stagger(stagger_stacks SECONDS)
+	adjust_stagger(stagger_stacks)
 	adjust_blurriness(slowdown_stacks)
 	apply_damage(punch_damage, BRUTE, target_limb ? target_limb : 0, MELEE)
 	apply_damage(punch_damage, STAMINA, updating_health = TRUE)

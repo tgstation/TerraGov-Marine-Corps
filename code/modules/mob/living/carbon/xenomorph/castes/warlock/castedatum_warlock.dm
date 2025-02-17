@@ -3,6 +3,7 @@
 	display_name = "Warlock"
 	upgrade_name = ""
 	caste_desc = "A powerful psychic xeno. The Warlock devastates enemies of the hive with its psychic might, but it's physically very frail."
+	base_strain_type = /mob/living/carbon/xenomorph/warlock
 	caste_type_path = /mob/living/carbon/xenomorph/warlock
 
 	tier = XENO_TIER_THREE

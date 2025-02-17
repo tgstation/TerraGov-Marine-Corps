@@ -29,7 +29,7 @@
 
 /datum/ammo/rocket/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	var/target_turf = get_turf(target_mob)
-	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
 	drop_nade(target_turf)
 
 /datum/ammo/rocket/on_hit_obj(obj/target_obj, obj/projectile/proj)
@@ -91,7 +91,7 @@
 		if(!(target_mob.status_flags & GODMODE))
 			target_mob.gib()
 	else
-		staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+		staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
 	drop_nade(target_turf)
 
 /datum/ammo/rocket/ltb/heavy/drop_nade(turf/target_turf)
@@ -320,8 +320,8 @@
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
 	damage = 100
-	penetration = 100
-	sundering = 100
+	penetration = 50
+	sundering = 25
 	max_range = 30
 
 /datum/ammo/rocket/som
@@ -639,11 +639,6 @@
 /datum/ammo/rocket/coilgun/high/drop_nade(turf/T)
 	explosion(T, 1, 4, 5, 6, 2)
 
-/datum/ammo/rocket/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	var/target_turf = get_turf(target_mob)
-	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
-	drop_nade(target_turf)
-
 /datum/ammo/rocket/coilgun/high/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	if(ishuman(target_mob) && prob(50)) //it only has AMMO_PASS_THROUGH_MOB so it can keep going if it gibs a mob
 		if(!(target_mob.status_flags & GODMODE))
@@ -651,7 +646,7 @@
 		proj.proj_max_range -= 5
 		return
 	proj.proj_max_range = 0
-	staggerstun(target_mob, proj, src.max_range, knockback = 1, hard_size_threshold = 3)
+	staggerstun(target_mob, proj, max_range, knockback = 1, hard_size_threshold = 3)
 
 /datum/ammo/rocket/icc_lowvel_heat
 	name = "Low Velocity HEAT shell"

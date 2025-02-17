@@ -3,6 +3,7 @@
 	display_name = "Praetorian"
 	upgrade_name = ""
 	caste_desc = "A giant ranged monster. It looks pretty strong."
+	base_strain_type = /mob/living/carbon/xenomorph/praetorian
 	caste_type_path = /mob/living/carbon/xenomorph/praetorian
 	tier = XENO_TIER_THREE
 	upgrade = XENO_UPGRADE_BASETYPE
@@ -92,27 +93,33 @@
 	caste_type_path = /mob/living/carbon/xenomorph/praetorian/dancer
 	upgrade_name = ""
 	caste_name = "Dancer Praetorian"
-	display_name = "Praetorian"
+	display_name = "Dancer"
 	upgrade = XENO_UPGRADE_BASETYPE
 	caste_desc = "A giant melee monster. It looks pretty strong."
 
 	// +2 melee damage
 	melee_damage = 25
 
-	// Loses some common armor (-5) for more speed (-0.3).
-	speed = -0.8
-	soft_armor = list(MELEE = 40, BULLET = 45, LASER = 45, ENERGY = 45, BOMB = 10, BIO = 40, FIRE = 45, ACID = 40)
+	// +30 hp
+	max_health = 420
+
+	// Gains more speed (-0.2).
+	speed = -0.7
+
+	// +10 melee armor
+	soft_armor = list(MELEE = 55, BULLET = 50, LASER = 50, ENERGY = 50, BOMB = 10, BIO = 40, FIRE = 50, ACID = 40)
 
 	// Loses ranged spit abilities for close combat combo abilities.
 	actions = list(
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/dodge,
+		/datum/action/ability/activable/xeno/tail_hook,
+		/datum/action/ability/activable/xeno/tail_trip,
+		/datum/action/ability/activable/xeno/impale,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/xeno_action/dodge,
-		/datum/action/ability/activable/xeno/impale,
-		/datum/action/ability/activable/xeno/tail_trip,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,
@@ -132,12 +139,69 @@
 		/datum/action/ability/xeno_action/xeno_resting,
 		/datum/action/ability/xeno_action/watch_xeno,
 		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/dodge,
+		/datum/action/ability/activable/xeno/tail_hook,
+		/datum/action/ability/activable/xeno/tail_trip,
+		/datum/action/ability/activable/xeno/impale,
 		/datum/action/ability/xeno_action/place_acidwell,
 		/datum/action/ability/activable/xeno/corrosive_acid,
-		/datum/action/ability/xeno_action/dodge,
-		/datum/action/ability/activable/xeno/impale,
-		/datum/action/ability/activable/xeno/tail_trip,
-		/datum/action/ability/activable/xeno/charge/acid_dash, // No unique primordial ability at the moment. Replace eventually with something cooler!
+		/datum/action/ability/activable/xeno/baton_pass,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
+
+/datum/xeno_caste/praetorian/oppressor
+	caste_type_path = /mob/living/carbon/xenomorph/praetorian/oppressor
+	upgrade_name = ""
+	caste_name = "Oppressor Praetorian"
+	display_name = "Oppressor"
+	upgrade = XENO_UPGRADE_BASETYPE
+	caste_desc = "A giant melee monster with a weird tail! It looks pretty strong."
+
+	// +2 melee damage
+	melee_damage = 25
+
+	// +10 armor
+	soft_armor = list(MELEE = 55, BULLET = 60, LASER = 60, ENERGY = 60, BOMB = 20, BIO = 50, FIRE = 60, ACID = 50)
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/abduct,
+		/datum/action/ability/activable/xeno/dislocate,
+		/datum/action/ability/activable/xeno/advance_oppressor,
+		/datum/action/ability/activable/xeno/tail_lash,
+		/datum/action/ability/xeno_action/pheromones,
+		/datum/action/ability/xeno_action/pheromones/emit_recovery,
+		/datum/action/ability/xeno_action/pheromones/emit_warding,
+		/datum/action/ability/xeno_action/pheromones/emit_frenzy,
+	)
+
+/datum/xeno_caste/praetorian/oppressor/normal
+	upgrade = XENO_UPGRADE_NORMAL
+
+/datum/xeno_caste/praetorian/oppressor/primordial
+	upgrade_name = "Primordial"
+	caste_desc = "A fearsome entity adept at using its brute strength to immobilize and relocate its foes. Approach with extreme caution or risk being torn from your comrades."
+	upgrade = XENO_UPGRADE_PRIMO
+	primordial_message = "With relentless power, we shatter their formations, seizing them in our grasp and rendering them helpless."
+
+	actions = list(
+		/datum/action/ability/xeno_action/xeno_resting,
+		/datum/action/ability/xeno_action/watch_xeno,
+		/datum/action/ability/activable/xeno/psydrain,
+		/datum/action/ability/xeno_action/place_acidwell,
+		/datum/action/ability/activable/xeno/corrosive_acid,
+		/datum/action/ability/activable/xeno/abduct,
+		/datum/action/ability/activable/xeno/dislocate,
+		/datum/action/ability/activable/xeno/advance_oppressor,
+		/datum/action/ability/activable/xeno/tail_lash,
+		/datum/action/ability/activable/xeno/item_throw,
 		/datum/action/ability/xeno_action/pheromones,
 		/datum/action/ability/xeno_action/pheromones/emit_recovery,
 		/datum/action/ability/xeno_action/pheromones/emit_warding,

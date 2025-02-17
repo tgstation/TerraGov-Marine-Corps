@@ -79,7 +79,7 @@
  * Creates the beam effects and places them in a line from the origin to the target. Sets their rotation to make the beams face the target, too.
  */
 /datum/beam/proc/Draw()
-	var/Angle = round(Get_Angle(origin,target))
+	var/Angle = round(Get_Angle(origin,get_turf(target)))
 	var/matrix/rot_matrix = matrix()
 	var/turf/origin_turf = get_turf(origin)
 	rot_matrix.Turn(Angle)
@@ -161,15 +161,22 @@
 	INVOKE_ASYNC(newbeam, TYPE_PROC_REF(/datum/beam, Start))
 	return newbeam
 
-/proc/zap_beam(atom/source, zap_range, damage, list/blacklistmobs)
-	for(var/mob/living/carbon/xenomorph/living AS in cheap_get_xenos_near(source, zap_range))
+/// Shocks xenos, returns shocked xenos.
+/proc/zap_beam(atom/source, zap_range, damage, list/blacklistmobs, max_targets = INFINITY)
+	var/list/xenos = cheap_get_xenos_near(source, zap_range)
+	xenos.Cut(min(max_targets + 1, length(xenos) + 1))
+	for(var/mob/living/carbon/xenomorph/living AS in xenos)
 		if(!living)
-			return
+			xenos -= living
+			continue
 		if(living.stat == DEAD)
+			xenos -= living
 			continue
 		if(living in blacklistmobs)
+			xenos -= living
 			continue
-		if(!check_path(source, living, TRUE, TRUE))
+		if(check_path(source, living, PASS_PROJECTILE|PASS_GLASS) != get_turf(living))
+			xenos -= living
 			continue
 		source.beam(living, icon_state="lightning[rand(1,12)]", time = 3, maxdistance = zap_range + 2)
 		if(living.xeno_caste.can_flags & CASTE_CAN_BE_GIVEN_PLASMA) //need 1 second more than the actual effect time
@@ -177,6 +184,7 @@
 			living.apply_status_effect(/datum/status_effect/plasmadrain, 3 SECONDS)
 		living.add_slowdown(2)
 		log_attack("[living] was zapped by [source]")
+	return xenos
 
 /// executes a BFG zap. just damages living mobs in an AOE from the source
 /proc/bfg_beam(atom/source, zap_range, damage, armor_pierce, list/blacklistmobs)
@@ -185,7 +193,7 @@
 			continue
 		if(target in blacklistmobs)
 			continue
-		if(!check_path(source, target, TRUE, TRUE))
+		if(check_path(source, target, PASS_PROJECTILE|PASS_GLASS) != get_turf(target))
 			continue
 		source.beam(target, icon_state="bfg", time = 3, maxdistance = zap_range + 2)
 		target.apply_damage(damage, BURN, BODY_ZONE_CHEST, ENERGY, FALSE, FALSE, TRUE, armor_pierce)

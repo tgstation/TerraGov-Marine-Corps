@@ -55,8 +55,9 @@
 
 /obj/item/clothing/gloves/marine/officer
 	name = "officer gloves"
-	desc = "Shiny and impressive. They look expensive."
+	desc = "Shiny and impressive while also insulating against electric shocks. They look expensive."
 	icon_state = "black"
+	siemens_coefficient = 0
 
 /obj/item/clothing/gloves/marine/officer/chief
 	name = "chief officer gloves"

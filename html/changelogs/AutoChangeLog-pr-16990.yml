@@ -1,4 +1,0 @@
-author: "yyzsong"
-delete-after: True
-changes:
-  - bugfix: "removes the ability to place jaws in caves on a few specific maps"

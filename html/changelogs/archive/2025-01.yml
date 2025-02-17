@@ -219,3 +219,49 @@
   - rscadd: Marine's Rank is now prefixed to their ID card
   TiviPlus:
   - bugfix: Fixes round time timestamps
+2025-01-28:
+  Lumipharon:
+  - balance: Razor untangle delay changed from 5 seconds to 2 seconds. Crusher charge
+      unchanged
+  - balance: Godmode prevents razor entanglement
+  TiviPlus:
+  - bugfix: 'Ravager: fixed deathmark not having a keybind'
+  - bugfix: 'Ravager: fixed deathmark not having a sprite set'
+  - rscadd: Adds the req-only BFG-9500 weapon for tank for 1600 points
+  - bugfix: fixed tank main gun being unable to fire if no secondary gun was equipped
+  - bugfix: tesla rifle no longer is blocked by LoS, and goes off density instead
+  - qol: All tank ammo and weapons have been moved from the weapons tab to the vehicles
+      tab
+  - bugfix: ACs can no longer use any mech related objects as intended
+  yyzsong:
+  - bugfix: removes the ability to place jaws in caves on a few specific maps
+2025-01-29:
+  00ze-cyclone:
+  - bugfix: you no longer switch from spread mode to spread mode the first time you
+      change mode on lasbine
+  - spellcheck: lasers from cripple mode are now properly named
+  Lumipharon:
+  - bugfix: Ghost runetext is no longer visible if the ghost itself is not
+  - bugfix: fixed a loadout exploit
+  - code_imp: Improved some path checking procs
+  TiviPlus:
+  - imageadd: added new lobby art by Zaha
+  - code_imp: Drastically reduced icons sent by reworking how lobby art is loaded
+  blackdav123:
+  - rscadd: Added two new beginner engi loadouts, point sentry and mortar.
+  - qol: Papers can now be read by using them in hand.
+  - spellcheck: Fixed typos in the beginner tutorial papers.
+  tyeagg:
+  - bugfix: tdf glove mob sprite
+2025-01-30:
+  TiviPlus:
+  - balance: maturity requirements for primordial have been lowered
+  jonash07:
+  - qol: You can now interact with xeno structures like tunnels as a baneling while
+      running
+  yyzsong:
+  - spellcheck: updates attack verbs to use the simple present tense like emotes instead
+      of the simple past tense.
+2025-01-31:
+  novaepee:
+  - imageadd: New Miner Sprites

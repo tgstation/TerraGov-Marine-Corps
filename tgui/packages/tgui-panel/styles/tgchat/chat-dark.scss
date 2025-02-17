@@ -284,7 +284,12 @@ em {
 }
 
 .looc {
-  color: #3a9696;
+  color: #d8b555;
+  font-weight: bold;
+}
+
+.looc_heard_staff {
+  color: #b09448;
   font-weight: bold;
 }
 
@@ -329,7 +334,7 @@ em {
   font-weight: bold;
 }
 .mentorooc {
-  color: #32b632;
+  color: #2b9e2b;
   font-weight: bold;
 }
 .maintainerooc {
@@ -1053,7 +1058,7 @@ h2.alert {
 
 .tooltip {
   font-style: italic;
-  border-bottom: 1px dashed #fff;
+  border-bottom: 2px dotted;
 }
 
 $ooc_alert_bg_colors: (

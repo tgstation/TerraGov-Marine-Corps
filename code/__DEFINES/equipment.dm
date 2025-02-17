@@ -75,7 +75,7 @@
 //bitflags that were previously under atom_flags, these only apply to items.
 //clothing specific stuff uses inventory_flags.
 //item_flags
-/// when an item has this it produces no "X has been hit by Y with Z" message with the default handler
+/// when an item has this it produces no "X [Z.attack_verb] Y with their Z!" message with the default handler
 #define NOBLUDGEON (1<<0)
 /// Deletes on drop instead of falling on the floor.
 #define DELONDROP (1<<1)

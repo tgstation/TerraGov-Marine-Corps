@@ -348,7 +348,7 @@
 	taste_description = "the colour blue and regret"
 
 /datum/reagent/radium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(effect_str/L.metabolism_efficiency, AGONY)
+	L.apply_effect(effect_str/L.metabolism_efficiency, EFFECT_STAMLOSS)
 	return ..()
 
 /datum/reagent/radium/reaction_turf(turf/T, volume)
@@ -392,7 +392,7 @@
 	taste_description = "the inside of a reactor"
 
 /datum/reagent/uranium/on_mob_life(mob/living/L, metabolism)
-	L.apply_effect(1/L.metabolism_efficiency, AGONY)//WHAT THE HELL DID YOU THINK WOULD HAPPEN
+	L.apply_effect(1/L.metabolism_efficiency, EFFECT_STAMLOSS)//WHAT THE HELL DID YOU THINK WOULD HAPPEN
 	return ..()
 
 /datum/reagent/uranium/reaction_turf(turf/T, reac_volume)

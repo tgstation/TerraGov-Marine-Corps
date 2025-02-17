@@ -1,0 +1,5 @@
+author: "Pariah919"
+delete-after: True
+changes:
+  - balance: "Behemoth no longer has heavy footstep sounds."
+  - sounddel: "Behemoth no longer has heavy footstep sounds."
