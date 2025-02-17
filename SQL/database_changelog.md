@@ -27,6 +27,7 @@ CREATE TABLE `medals` (
 	`medal_citation` VARCHAR(255) NOT NULL,
 	`issued_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`is_posthumous` TINYINT(1) UNSIGNED NOT NULL DEFAULT,
+	`deleted` TINYINT(1) UNSIGNED NOT NULL DEFAULT 0,
 	PRIMARY KEY (`id`));
 ```
 ----------------------------------------------------
