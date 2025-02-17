@@ -261,7 +261,7 @@ These act as a respawn mechanic growning a body and offering it up to ghosts.
 	// Blindness doenst't trigger with just the disability, you need to set_blindness
 
 	GLOB.offered_mob_list += occupant
-	notify_ghosts(span_boldnotice("A new clone is available! Name: [name]"), enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT)
+	notify_ghosts(span_boldnotice("A new clone is available! Name: [name]"), enter_link = "claim=[REF(occupant)]", source = src, action = NOTIFY_ORBIT, flashwindow = TRUE)
 
 	// Cleanup the timers
 	deltimer(timerid)

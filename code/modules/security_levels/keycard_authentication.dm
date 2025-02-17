@@ -77,20 +77,20 @@
 			var/datum/security_level/iter_level_datum = SSsecurity_level.available_levels[iter_level_text]
 			if(!(iter_level_datum.sec_level_flags & SEC_LEVEL_FLAG_CAN_SWITCH_WITH_AUTH))
 				continue
-			dat += "<li><a href='?src=[text_ref(src)];trigger_event=[iter_level_datum.name]'>Set alert level to [iter_level_datum.name]</a></li>"
+			dat += "<li><A href='byond://?src=[text_ref(src)];trigger_event=[iter_level_datum.name]'>Set alert level to [iter_level_datum.name]</a></li>"
 
-		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
-		dat += "<li><A href='?src=[text_ref(src)];trigger_event=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
+		dat += "<li><A href='byond://?src=[text_ref(src)];trigger_event=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
+		dat += "<li><A href='byond://?src=[text_ref(src)];trigger_event=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"
 		dat += "</ul>"
 
 	else if(screen == 2)
 		dat += "Please swipe your card to authorize the following event: <b>[event]</b>"
-		dat += "<p><A href='?src=[text_ref(src)];reset=1'>Back</A>"
+		dat += "<p><A href='byond://?src=[text_ref(src)];reset=1'>Back</A>"
 
 	else if(screen == 3)
 		dat += "Do you want to trigger the following event using your Silicon Privileges: <b>[event]</b>"
-		dat += "<p><A href='?src=[text_ref(src)];silicon_activate_event=1'>Activate</A>"
-		dat += "<p><A href='?src=[text_ref(src)];reset=1'>Back</A>"
+		dat += "<p><A href='byond://?src=[text_ref(src)];silicon_activate_event=1'>Activate</A>"
+		dat += "<p><A href='byond://?src=[text_ref(src)];reset=1'>Back</A>"
 
 	var/datum/browser/popup = new(user, "keycard_auth", "<div align='center'>Keycard Authentication Device</div>", 500, 250)
 	popup.set_content(dat)

@@ -101,6 +101,8 @@
 		private_message(href_list["priv_msg"], null)
 		return
 
+	if(href_list["commandbar_typing"])
+		handle_commandbar_typing(href_list)
 
 	switch(href_list["_src_"])
 		if("holder")
@@ -143,6 +145,9 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	if(byond_version >= 516)
+		winset(src, null, list("browser-options" = "find,refresh,byondstorage"))
+
 	//On creation of a client, add an entry into the GLOB list of the client with their stats
 	GLOB.personal_statistics_list[ckey] = new /datum/personal_statistics
 
@@ -154,6 +159,8 @@
 	tgui_panel = new(src, "browseroutput")
 
 	tgui_say = new(src, "tgui_say")
+
+	initialize_commandbar_spy()
 
 	GLOB.ahelp_tickets.ClientLogin(src)
 
@@ -1023,7 +1030,7 @@ GLOBAL_VAR_INIT(automute_on, null)
 /client/proc/check_panel_loaded()
 	if(stat_panel.is_ready())
 		return
-	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
+	to_chat(src, span_userdanger("Statpanel failed to load, click <a href='byond://?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel "))
 
 /**
  * Handles incoming messages from the stat-panel TGUI.

@@ -41,7 +41,7 @@
 		. += "[p_they(TRUE)] [p_are()] [tag_string]."
 	if(user.can_use_codex() && SScodex.get_codex_entry(get_codex_value()))
 		. += EXAMINE_SECTION_BREAK
-		. += span_notice("The codex has <a href='?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
+		. += span_notice("The codex has <a href='byond://?_src_=codex;show_examined_info=[REF(src)];show_to=[REF(user)]'>relevant information</a> available.")
 
 	if((get_dist(user,src) <= 2) && reagents)
 		. += EXAMINE_SECTION_BREAK

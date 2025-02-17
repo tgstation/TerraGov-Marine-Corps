@@ -7,13 +7,13 @@
 @use 'sass:meta';
 
 @use '../colors.scss' with (
-  $primary: #1a949c,
-  $label: #24dbe8,
-  $good: #1fb7c2,
-  $average: #c08d1e
+  $primary: hsl(183.7, 71.4%, 35.7%),
+  $label: hsl(184, 81%, 52.5%),
+  $good: hsl(184, 72.4%, 44.1%),
+  $average: hsl(41.1, 73%, 43.5%)
 );
 @use '../base.scss' with (
-  $color-bg: #121b1b,
+  $color-bg: hsl(180, 20%, 8.8%),
   $color-bg-grad-spread: 0%
 );
 
@@ -23,31 +23,31 @@
 
   // Components
   @include meta.load-css(
-    '../components/NoticeBox.scss',
-    $with: ('background-color': #137b83)
+    '~tgui-core/styles/components/NoticeBox',
+    $with: ('background-color': hsl(184.3, 74.7%, 29.4%))
   );
 
   @include meta.load-css(
-    '../components/Button.scss',
+    '~tgui-core/styles/components/Button',
     $with: (
-      'color-default': #24e8e840,
-      'color-disabled': #4a696a,
+      'color-default': hsla(180, 80%, 53%, 0.25),
+      'color-disabled': hsl(181.9, 17.8%, 35.3%),
       'color-selected': rgba(36, 232, 232, 0.25)
     )
   );
   @include meta.load-css(
-    '../components/Input.scss',
+    '~tgui-core/styles/components/Input',
     $with: ('border-color': colors.$primary)
   );
   @include meta.load-css(
-    '../components/ProgressBar.scss',
+    '~tgui-core/styles/components/ProgressBar',
     $with: (
       'background-color': rgba(0, 0, 0, 0.5),
       'color-default-fill': rgba(36, 219, 232, 0.65)
     )
   );
-  @include meta.load-css('../components/Modal.scss');
-  @include meta.load-css('../components/Section.scss');
+  @include meta.load-css('~tgui-core/styles/components/Modal');
+  @include meta.load-css('~tgui-core/styles/components/Section');
 
   // Layouts
   @include meta.load-css('../layouts/Layout.scss');
@@ -69,38 +69,40 @@
     background-position: center, center;
   }
   .Button {
-    font: Inconsolata;
-    color: #24dbe8;
+    color: hsl(184, 81%, 52.5%);
   }
   .Button:hover,
   .Button:focus {
-    color: #24dbe8;
-    background-color: #24e8ce5e;
+    color: hsl(184, 81%, 52.5%);
+    background-color: hsla(172, 81%, 52.5%, 0.369);
     transition: 0.1s;
   }
   .Button--selected {
-    color: #24dbe8;
+    color: hsl(184, 81%, 52.5%);
   }
   body {
     color: white;
-    font: 1.3rem Inconsolata;
+    font: 1.3rem;
   }
   .Section {
     border-radius: 0.16em;
   }
+  .Section__title {
+    border-bottom: base.em(2px) solid colors.$primary;
+  }
   .Section__titleText {
-    color: #24dbe8;
+    color: hsl(184, 81%, 52.5%);
   }
   .Tab {
-    color: #24dbe8;
+    color: hsl(184, 81%, 52.5%);
   }
   .Tab--selected {
-    color: #24dbe8;
-    border: 2px solid #24dbe8;
-    background-color: rgba(232, 212, 36, 0.25);
+    color: hsl(184, 81%, 52.5%);
+    border: 2px solid hsl(184, 81%, 52.5%);
+    background-color: hsla(54, 81%, 53%, 0.25);
   }
   ::selection {
-    background: #0080ff;
+    background: hsl(209.9, 100%, 50%);
   }
   .NoticeBox {
     border-radius: 0.16em;
