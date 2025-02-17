@@ -10,11 +10,12 @@ As a xeno, always thank your drones and hivelords for supporting the hive!
 Robot healthbars are not directly one to one with their actual health. They will still have some fight left in them after it shows their health has hit critical.
 As a xeno, you can drag any item, but you must wait through an actionbar before you can do so! Carrier loves dragging items for their traps!
 Most alien deaths are caused by over-aggression. Rein yourself in, or you may find yourself dying round after round.
-As a xeno, you have directional attack. Click any tile in the direction of a marine you want to click, and you slash them provided they're next to you. That said, marines can also do the same!
+As a xeno, you have directional attack (find this in game preference). Click any tile in the direction of a marine you want to click, and you slash them provided they're next to you. That said, marines can also do the same!
 As a xeno, if you have difficulty clicking marines, try using bump slash. You can use movement keys to slash marines. That said, clicking marines to slash them is faster than bump slashing!
 It is EXTREMELY IMPORTANT that you as a xenomorph have your abilities set up on keybinds. Ask for help if you don't know how in XOOC or mentorhelp.
 In the xeno tab, you can use the "crawl through vent" verb to quickly find and use vents in the floor without having to Alt-click them. You can also keybind it!
 As a xeno, it is faster to re-fill an empty acid well than rolling on the ground to put out a fire.
+As a xeno, you can instantly change to another caste of the same tier using the "Caste Swap" button under the aliens tab. Useful for when the hive needs a specific xeno.
 As a xeno, acid wells extinguish fire and explode into an acid cloud when destroyed. The Queen, the Shrike, praetorians, boilers, and hivelords can make acid wells.
 The Queen, the King, the Shrike, and hivelord have access to Queen's Blessing, a menu for the hive to use psychic points to give xenomorphs a cutting edge in the battlefield.
 If you have acid spit, you can spit at a welding fuel tank to blow it up. If the welding fuel is near hostiles, you might give them a pleasant surprise!
@@ -96,4 +97,3 @@ Tileswapping marines via help intent can have interesting consequences.
 As a boiler, you'll begin to glow with the more globules you have stored.
 If you see a red dot, RUN!
 Allowing marines to push caves only to block off their exit is hillariously effective.
-As a xeno, a Tier 3 unit takes up both a Tier 3 and Tier 2 slot.
