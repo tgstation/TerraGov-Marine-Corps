@@ -77,7 +77,7 @@
 			var/datum/security_level/iter_level_datum = SSsecurity_level.available_levels[iter_level_text]
 			if(!(iter_level_datum.sec_level_flags & SEC_LEVEL_FLAG_CAN_SWITCH_WITH_AUTH))
 				continue
-			dat += "<li><A href='byond://?src=[text_ref(src)];trigger_event=[iter_level_datum.name]'>Set alert level to [iter_level_datum.name]</a></li>"
+			dat += "<li><A href='byond://?src=[text_ref(src)];trigger_event=[iter_level_datum.name]'>Set alert level to [iter_level_datum.name]</A></li>"
 
 		dat += "<li><A href='byond://?src=[text_ref(src)];trigger_event=Grant Emergency Maintenance Access'>Grant Emergency Maintenance Access</A></li>"
 		dat += "<li><A href='byond://?src=[text_ref(src)];trigger_event=Revoke Emergency Maintenance Access'>Revoke Emergency Maintenance Access</A></li>"

@@ -189,7 +189,7 @@ FIRE ALARM
 		d2 = "<A href='byond://?src=[text_ref(src)];time=1'>Initiate Time Lock</A>"
 	var/second = round(time) % 60
 	var/minute = (round(time) - second) / 60
-	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [GLOB.marine_main_ship.get_security_level()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=[text_ref(src)];tp=-30'>-</A> <A href='byond://?src=[text_ref(src)];tp=-1'>-</A> <A href='byond://?src=[text_ref(src)];tp=1'>+</A> <A href='byond://?src=[text_ref(src)];tp=30'>+</A>"
+	var/dat = "<B>Fire alarm</B> [d1]\n<HR>The current alert level is: [SSsecurity_level.get_current_level_as_text()]</b><br><br>\nTimer System: [d2]<BR>\nTime Left: [(minute ? "[minute]:" : null)][second] <A href='byond://?src=[text_ref(src)];tp=-30'>-</A> <A href='byond://?src=[text_ref(src)];tp=-1'>-</A> <A href='byond://?src=[text_ref(src)];tp=1'>+</A> <A href='byond://?src=[text_ref(src)];tp=30'>+</A>"
 
 	var/datum/browser/popup = new(user, "firealarm", "<div align='center'>Fire alarm</div>")
 	popup.set_content(dat)
