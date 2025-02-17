@@ -281,7 +281,7 @@
 	var/minimap_icon = "acid_maw"
 	///list of paths that we can choose from when using this maw. converts to a list for radials on init (path = image)
 	var/list/maw_options = list(
-		/datum/maw_ammo/hugger/big,
+		/datum/maw_ammo/hugger,
 		/datum/maw_ammo/minion,
 	)
 
