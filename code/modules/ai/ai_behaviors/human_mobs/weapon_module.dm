@@ -38,7 +38,7 @@
 			equip_melee()
 		return FALSE
 
-	mob_parent.temporarilyRemoveItemFromInventory(weapon_to_equip)
+	mob_parent.temporarilyRemoveItemFromInventory(weapon_to_equip) //isn't unequippping it correctly. still has item_flags & IN_STORAGE
 	if(!mob_parent.put_in_hands(weapon_to_equip))
 		if(!melee_weapon && alt_equip)
 			equip_melee()

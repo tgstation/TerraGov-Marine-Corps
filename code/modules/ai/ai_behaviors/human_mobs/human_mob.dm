@@ -126,54 +126,70 @@
 	var/turf/obstacle_turf = get_step(mob_parent, direction)
 	if(obstacle_turf.atom_flags & AI_BLOCKED)
 		return
-	for(var/thing in obstacle_turf.contents)
-		if(istype(thing, /obj/structure/window_frame))
-			LAZYINCREMENT(mob_parent.do_actions, obstacle_turf)
-			addtimer(CALLBACK(src, PROC_REF(climb_window_frame), obstacle_turf), 2 SECONDS)
-			return COMSIG_OBSTACLE_DEALT_WITH
-		if(istype(thing, /obj/structure/closet))
-			var/obj/structure/closet/closet = thing
-			if(closet.open(mob_parent))
+	for(var/mob/mob_blocker in obstacle_turf.contents)
+		if(!mob_blocker.density)
+			continue
+		//todo: passflag stuff etc
+		return
+
+	var/should_jump = FALSE
+	var/mob/living/living_parent = mob_parent
+	var/can_jump = living_parent.can_jump()
+	for(var/obj/object in obstacle_turf.contents)
+		if(!object.density)
+			continue
+		if(can_jump && object.is_jumpable(mob_parent))
+			should_jump = TRUE
+			continue
+		if(isstructure(object))
+			var/obj/structure/structure = object
+			if(structure.climbable)
+				INVOKE_ASYNC(structure, TYPE_PROC_REF(/obj/structure, do_climb), mob_parent)
 				return COMSIG_OBSTACLE_DEALT_WITH
-			return
-		if(isstructure(thing))
-			var/obj/structure/obstacle = thing
-			if(!(obstacle.resistance_flags & INDESTRUCTIBLE)) //todo: do we need to check for obj_flags & CAN_BE_HIT ?
-				INVOKE_ASYNC(src, PROC_REF(attack_target), null, obstacle)
-				return COMSIG_OBSTACLE_DEALT_WITH
-		else if(istype(thing, /obj/machinery/door/airlock))
-			var/obj/machinery/door/airlock/lock = thing
-			if(!lock.density) //Airlock is already open no need to force it open again
-				continue
+		if(istype(object, /obj/machinery/door/airlock))
+			var/obj/machinery/door/airlock/lock = object
 			if(lock.operating) //Airlock already doing something
 				continue
 			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
-				INVOKE_ASYNC(src, PROC_REF(attack_target), null, thing) //ai is cheating
-				continue
+				INVOKE_ASYNC(src, PROC_REF(attack_target), null, object) //ai is cheating
+				return COMSIG_OBSTACLE_DEALT_WITH
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
-		if(istype(thing, /obj/vehicle))
-			INVOKE_ASYNC(src, PROC_REF(attack_target), null, thing)
+		if(!(object.resistance_flags & INDESTRUCTIBLE))
+			INVOKE_ASYNC(src, PROC_REF(attack_target), null, object)
 			return COMSIG_OBSTACLE_DEALT_WITH
+
+	if(should_jump)
+		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
+		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
+		return COMSIG_OBSTACLE_DEALT_WITH
+
 	if(ISDIAGONALDIR(direction) && ((deal_with_obstacle(null, turn(direction, -45)) & COMSIG_OBSTACLE_DEALT_WITH) || (deal_with_obstacle(null, turn(direction, 45)) & COMSIG_OBSTACLE_DEALT_WITH)))
 		return COMSIG_OBSTACLE_DEALT_WITH
 	//Ok we found nothing, yet we are still blocked. Check for blockers on our current turf
 	obstacle_turf = get_turf(mob_parent)
 	for(var/obj/structure/obstacle in obstacle_turf.contents)
-		if(obstacle.dir & direction && !(obstacle.resistance_flags & INDESTRUCTIBLE)) //todo: do we need to check for obj_flags & CAN_BE_HIT ?
+		if(!obstacle.density)
+			continue
+		if(!((obstacle.atom_flags & ON_BORDER) && (obstacle.dir & direction)))
+			continue
+		if(obstacle.is_jumpable(mob_parent))
+			should_jump = TRUE
+			continue
+		if(!(obstacle.resistance_flags & INDESTRUCTIBLE)) //todo: do we need to check for obj_flags & CAN_BE_HIT ?
 			INVOKE_ASYNC(src, PROC_REF(attack_target), null, obstacle)
 			return COMSIG_OBSTACLE_DEALT_WITH
+
+	//shitty dup code here for now
+	if(should_jump)
+		SEND_SIGNAL(mob_parent, COMSIG_AI_JUMP)
+		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
+		return COMSIG_OBSTACLE_DEALT_WITH
 
 /datum/ai_behavior/human/cleanup_current_action(next_action)
 	. = ..()
 	if(next_action == MOVING_TO_NODE)
 		return
-	if(!isxeno(mob_parent)) //todo
-		return
-	var/mob/living/living_mob = mob_parent
-	if(can_heal && living_mob.resting)
-		SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
-		UnregisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN)
 
 /datum/ai_behavior/human/cleanup_signals()
 	. = ..()
@@ -256,8 +272,8 @@
 	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
 	UnregisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN)
 
-///Move the ai mob on top of the window_frame
-/datum/ai_behavior/human/proc/climb_window_frame(turf/window_turf) //todo: add funny jump stuff
+///Move the ai mob on top of the structure
+/datum/ai_behavior/human/proc/climb_structure(turf/window_turf)
 	mob_parent.loc = window_turf
 	mob_parent.last_move_time = world.time
 	LAZYDECREMENT(mob_parent.do_actions, window_turf)
@@ -284,6 +300,17 @@
 /mob/living/simple_animal/hostile/carp/Initialize(mapload)
 	. = ..()
 	AddComponent(/datum/component/ai_controller, /datum/ai_behavior/human)
+
+//todo: move these
+
+///Can this be jumped over
+/atom/movable/proc/is_jumpable(mob/living/jumper)
+	if(allow_pass_flags & (PASS_LOW_STRUCTURE|PASS_TANK))
+		return TRUE
+
+///Checks if this mob can jump
+/mob/living/proc/can_jump()
+	return SEND_SIGNAL(src, COMSIG_LIVING_CAN_JUMP)
 
 //simple mob junk
 /*
@@ -359,4 +386,13 @@
 	playsound(src, projectilesound, 100, 1)
 	P.generate_bullet(GLOB.ammo_list[ammotype])
 	P.fire_at(targeted_atom, src, src)
+*/
+
+/*
+for(var/mob/mob in turf)
+	if(some_condition)
+		return
+for(var/obj/object in turf)
+	if(some_other_condition)
+		return
 */

@@ -37,7 +37,7 @@
 	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 
 /datum/component/jump/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_MOB_THROW))
+	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_KB_LIVING_JUMP_UP, COMSIG_MOB_THROW, COMSIG_AI_JUMP, COMSIG_LIVING_CAN_JUMP))
 
 /datum/component/jump/InheritComponent(datum/component/new_component, original_component, _jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
@@ -52,34 +52,38 @@
 	jump_flags = _jump_flags
 	jumper_allow_pass_flags = _jumper_allow_pass_flags
 
-	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_DOWN))
+	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_AI_JUMP, COMSIG_KB_LIVING_JUMP_UP, COMSIG_LIVING_CAN_JUMP))
+	RegisterSignal(parent, COMSIG_LIVING_CAN_JUMP, PROC_REF(can_jump))
 	if(jump_flags & JUMP_CHARGEABLE)
 		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(charge_jump))
-		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_UP, PROC_REF(start_jump))
+		RegisterSignals(parent, list(COMSIG_KB_LIVING_JUMP_UP, COMSIG_AI_JUMP), PROC_REF(start_jump))
 	else
-		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(start_jump))
+		RegisterSignals(parent, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_AI_JUMP), PROC_REF(start_jump))
 
 ///Starts charging the jump
 /datum/component/jump/proc/charge_jump(mob/living/jumper)
 	jump_start_time = world.timeofday
 
-///handles pre-jump checks and setup of additional jump behavior.
-/datum/component/jump/proc/start_jump(mob/living/jumper)
+/datum/component/jump/proc/can_jump(mob/living/jumper)
 	SIGNAL_HANDLER
-
 	if(TIMER_COOLDOWN_CHECK(jumper, JUMP_COMPONENT_COOLDOWN))
-		return
-
+		return FALSE
 	if(jumper.buckled)
-		return
+		return FALSE
 	if(jumper.incapacitated())
-		return
-
+		return FALSE
 	if(stamina_cost && (jumper.getStaminaLoss() > -stamina_cost))
 		if(isrobot(jumper) || issynth(jumper))
 			to_chat(jumper, span_warning("Your leg servos do not allow you to jump!"))
-			return
+			return FALSE
 		to_chat(jumper, span_warning("Catch your breath!"))
+		return FALSE
+	return TRUE
+
+///handles pre-jump checks and setup of additional jump behavior.
+/datum/component/jump/proc/start_jump(mob/living/jumper)
+	SIGNAL_HANDLER
+	if(!can_jump(jumper))
 		return
 
 	do_jump(jumper)

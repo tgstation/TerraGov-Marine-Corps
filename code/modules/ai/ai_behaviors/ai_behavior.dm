@@ -25,7 +25,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	///The standard ation of the AI, aka what it should do at the init or when going back to "normal" behavior
 	var/base_action = MOVING_TO_NODE
 	///Ref to the parent associated with this mind
-	var/mob/mob_parent
+	var/mob/mob_parent //todo: why god is this mob level
 	///An identifier associated with this behavior, used for accessing specific values of a node's weights
 	var/identifier
 	///How far will we look for targets
@@ -351,39 +351,30 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 		return
 	mob_parent.next_move_slowdown = 0
 	var/step_dir
-	if(get_dist(mob_parent, atom_to_walk_to) == distance_to_maintain)
+	var/dist_to_target = get_dist(mob_parent, atom_to_walk_to)
+
+	if(dist_to_target < distance_to_maintain) //away
+		step_dir = get_dir(atom_to_walk_to, mob_parent)
+	else if(dist_to_target > distance_to_maintain) //towards
+		step_dir = get_dir(mob_parent, atom_to_walk_to)
+	else //at dist
 		if(SEND_SIGNAL(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION)
 			return
 		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
 			step_dir = pick(CARDINAL_ALL_DIRS)
-			var/turf/next_turf = get_step(mob_parent, step_dir)
-			if(!(next_turf.atom_flags & AI_BLOCKED) && !mob_parent.Move(get_step(mob_parent, step_dir), step_dir))
-				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
-			else if(ISDIAGONALDIR(step_dir))
-				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown //Not perfect but good enough
-				mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))
-			return
-		if(prob(sidestep_prob))
+		else if(prob(sidestep_prob)) //shuffle about
 			step_dir = pick(LeftAndRightOfDir(get_dir(mob_parent, atom_to_walk_to)))
-			var/turf/next_turf = get_step(mob_parent, step_dir)
-			if(!(next_turf.atom_flags & AI_BLOCKED) && !mob_parent.Move(get_step(mob_parent, step_dir), step_dir))
-				SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir)
-			else if(ISDIAGONALDIR(step_dir))
-				mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
-				mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))
+	ai_complete_move(step_dir)
+
+///Makes a move in a given direction
+/datum/ai_behavior/proc/ai_complete_move(move_dir, try_sidestep = TRUE)
+	var/turf/new_loc = get_step(mob_parent, move_dir)
+	if(new_loc?.atom_flags & AI_BLOCKED)
 		return
-	if(get_dist(mob_parent, atom_to_walk_to) < distance_to_maintain) //We're too close, back it up
-		step_dir = get_dir(atom_to_walk_to, mob_parent)
-	else
-		step_dir = get_dir(mob_parent, atom_to_walk_to)
-	var/turf/next_turf = get_step(mob_parent, step_dir)
-	if(next_turf?.atom_flags & AI_BLOCKED || (!mob_parent.Move(next_turf, step_dir) && !(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, step_dir) & COMSIG_OBSTACLE_DEALT_WITH)))
-		step_dir = pick(LeftAndRightOfDir(step_dir))
-		next_turf = get_step(mob_parent, step_dir)
-		if(next_turf?.atom_flags & AI_BLOCKED)
-			return
-		if(mob_parent.Move(get_step(mob_parent, step_dir), step_dir) && ISDIAGONALDIR(step_dir))
-			mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
-	else if(ISDIAGONALDIR(step_dir))
+	if(!mob_parent.Move(new_loc, move_dir))
+		if(!(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, move_dir) & COMSIG_OBSTACLE_DEALT_WITH) && try_sidestep)
+			ai_complete_move(pick(LeftAndRightOfDir(move_dir)), FALSE)
+		return
+	if(ISDIAGONALDIR(move_dir))
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
-	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown))
+	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown * ( ISDIAGONALDIR(move_dir) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) //todo: probs dont even need this
