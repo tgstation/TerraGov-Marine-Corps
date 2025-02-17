@@ -28,6 +28,32 @@
 	var/mob/dead/observer/G = usr
 	G.follow()
 
+/atom/movable/screen/ghost/teleport
+	name = "Teleport"
+	icon_state = "teleport"
+	screen_loc = ui_ghost_slot4
+
+/atom/movable/screen/ghost/teleport/Click()
+	var/mob/dead/observer/G = usr
+	G.teleport()
+
+/atom/movable/screen/ghost/zoom
+	name = "Toggle Zoom"
+	icon_state = "zoom_in"
+	base_icon_state = "zoom"
+	screen_loc = ui_ghost_slot5
+
+/atom/movable/screen/ghost/zoom/Click()
+	var/mob/dead/observer/G = usr
+	G.toggle_zoom()
+	update_appearance(UPDATE_ICON_STATE)
+
+/atom/movable/screen/ghost/zoom/update_icon_state()
+	if(hud.mymob?.client.view != CONFIG_GET(string/default_view))
+		icon_state = "[base_icon_state]_out"
+	else
+		icon_state = "[base_icon_state]_in"
+
 // /atom/movable/screen/ghost/follow_xeno
 // 	name = "Follow Xeno"
 // 	icon_state = "follow_xeno"
@@ -72,6 +98,11 @@
 	using = new /atom/movable/screen/ghost/reenter_corpse(null, src)
 	static_inventory += using
 
+	using = new /atom/movable/screen/ghost/teleport(null, src)
+	static_inventory += using
+
+	using = new /atom/movable/screen/ghost/zoom(null, src)
+	static_inventory += using
 
 /datum/hud/ghost/show_hud(version = 0, mob/viewmob)
 	// don't show this HUD if observing; show the HUD of the observee
