@@ -180,8 +180,7 @@
 
 /obj/machinery/deployable/tesla_turret/interact(mob/user)
 	. = ..()
-	// Tell me again why ghosts can call interact uninterrupted again?
-	if(istype(user, /mob/dead))
+	if(isdead(user))
 		return
 	if(!battery)
 		balloon_alert(user, "no battery")
