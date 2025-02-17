@@ -372,6 +372,12 @@
 		holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]")
 		holder.overlays += image('icons/mob/hud/aura.dmi', src, "[aura_type]_aura")
 
+/mob/camera/aiEye/remote/hud/req
+	icon_state_on = "req_camera"
+
+/mob/camera/aiEye/remote/hud/medical
+	icon_state_on = "med_camera"
+
 /datum/action/innate/camera_off
 	name = "End Camera View"
 	background_icon_state = "template2"
