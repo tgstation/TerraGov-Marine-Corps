@@ -86,7 +86,7 @@
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
 			if(!next_target)
 				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
-					try_to_heal() //If we have some damage, look for some healing
+					INVOKE_ASYNC(src, PROC_REF(try_heal))
 					return
 				if(!goal_node) // We are randomly moving
 					var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction)

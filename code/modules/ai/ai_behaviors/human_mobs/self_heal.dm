@@ -1,8 +1,5 @@
 
 GLOBAL_LIST_INIT(ai_brute_heal_items, list(
-	/obj/item/stack/medical/heal_pack/gauze/sectoid,
-	/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
-	/obj/item/stack/medical/heal_pack/gauze,
 	/obj/item/reagent_containers/pill/bicaridine,
 	/obj/item/reagent_containers/hypospray/autoinjector/bicaridine,
 	/obj/item/reagent_containers/hypospray/advanced/bicaridine,
@@ -17,12 +14,12 @@ GLOBAL_LIST_INIT(ai_brute_heal_items, list(
 	/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
 	/obj/item/reagent_containers/hypospray/autoinjector/russian_red,
 	/obj/item/reagent_containers/hypospray/autoinjector/elite,
+	/obj/item/stack/medical/heal_pack/gauze/sectoid,
+	/obj/item/stack/medical/heal_pack/advanced/bruise_pack,
+	/obj/item/stack/medical/heal_pack/gauze,
 ))
 
 GLOBAL_LIST_INIT(ai_burn_heal_items, list(
-	/obj/item/stack/medical/heal_pack/gauze/sectoid,
-	/obj/item/stack/medical/heal_pack/advanced/burn_pack,
-	/obj/item/stack/medical/heal_pack/ointment,
 	/obj/item/reagent_containers/pill/kelotane,
 	/obj/item/reagent_containers/hypospray/autoinjector/kelotane,
 	/obj/item/reagent_containers/hypospray/advanced/kelotane,
@@ -37,6 +34,9 @@ GLOBAL_LIST_INIT(ai_burn_heal_items, list(
 	/obj/item/reagent_containers/hypospray/autoinjector/neuraline,
 	/obj/item/reagent_containers/hypospray/autoinjector/russian_red,
 	/obj/item/reagent_containers/hypospray/autoinjector/elite,
+	/obj/item/stack/medical/heal_pack/gauze/sectoid,
+	/obj/item/stack/medical/heal_pack/advanced/burn_pack,
+	/obj/item/stack/medical/heal_pack/ointment,
 ))
 
 GLOBAL_LIST_INIT(ai_tox_heal_items, list(
@@ -59,7 +59,7 @@ GLOBAL_LIST_INIT(ai_clone_heal_items, list(
 	/obj/item/reagent_containers/hypospray/autoinjector/elite,
 ))
 
-GLOBAL_LIST_INIT(ai_pain_heal_items, list( //add logic
+GLOBAL_LIST_INIT(ai_pain_heal_items, list(
 	/obj/item/reagent_containers/pill/tramadol,
 	/obj/item/reagent_containers/hypospray/autoinjector/tramadol,
 	/obj/item/reagent_containers/hypospray/advanced/tramadol,
@@ -88,8 +88,8 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 
 /datum/ai_behavior/human
 
-///Will try finding and resting on weeds
-/datum/ai_behavior/human/proc/try_to_heal()
+///Will try healing if possible
+/datum/ai_behavior/human/proc/try_heal()
 	if(prob(50))
 		mob_parent.say(pick("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!."))
 	var/mob/living/living_parent = mob_parent
@@ -124,15 +124,28 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 
 /datum/ai_behavior/human/proc/do_heal(damtype)
 	var/obj/item/heal_item
-	find_loop:
-		for(var/type AS in GLOB.ai_damtype_to_heal_list[damtype]) //TODO: MAKE THE MEDICAL LISTS SORTED LISTS, RESORT EACH TIME AN ITEM IS ADDED. SPLIT MED LIST INTO THE 5 TYPES + MISC, OR SOME SHIT
-			for(var/obj/item/stored_item AS in mob_inventory.medical_list)
-				if(stored_item.type != type)
-					continue
-				if(!stored_item.ai_should_use(mob_parent))
-					continue
-				heal_item = stored_item
-				break find_loop
+	var/list/med_list
+
+	switch(damtype)
+		if(BRUTE)
+			med_list = mob_inventory.brute_list
+		if(BURN)
+			med_list = mob_inventory.burn_list
+		if(TOX)
+			med_list = mob_inventory.tox_list
+		if(OXY)
+			med_list = mob_inventory.oxy_list
+		if(CLONE)
+			med_list = mob_inventory.clone_list
+		if(PAIN)
+			med_list = mob_inventory.pain_list
+
+	for(var/obj/item/stored_item AS in med_list)
+		if(!stored_item.ai_should_use(mob_parent))
+			continue
+		heal_item = stored_item
+		break
+
 	if(!heal_item)
 		return FALSE
 	change_action(MOB_HEALING)
@@ -165,6 +178,15 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 /obj/item/stack/medical/ai_use(mob/living/ai_mob)
 	//attackself calls this but doesn't return anything
 	attack(ai_mob, ai_mob)
+
+/obj/item/stack/medical/heal_pack/ai_should_use(mob/living/ai_mob)
+	if(!ishuman(ai_mob))
+		return FALSE
+	var/mob/living/carbon/human/human_mob = ai_mob
+	for(var/limb AS in human_mob.limbs)
+		if(can_heal_limb(limb))
+			return TRUE
+	return FALSE
 
 /obj/item/reagent_containers/ai_should_use(mob/living/ai_mob)
 	for(var/datum/reagent/reagent AS in reagents.reagent_list)

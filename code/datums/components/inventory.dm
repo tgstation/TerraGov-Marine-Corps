@@ -10,11 +10,19 @@
 	var/list/equipped_list
 
 	var/list/gun_list
-	var/list/melee_list //excludes bayo boot knife, includes shield
+	var/list/melee_list //excludes bayo boot knife due to type, includes shield
 	var/list/ammo_list
+	///generic stuff, splints etc?
 	var/list/medical_list
 	var/list/grenade_list
 	var/list/engineering_list
+
+	var/list/brute_list
+	var/list/burn_list
+	var/list/tox_list
+	var/list/oxy_list
+	var/list/clone_list
+	var/list/pain_list
 
 /datum/inventory/New(mob/living/new_owner)
 	. = ..()
@@ -44,6 +52,13 @@
 		QDEL_NULL(medical_list)
 		QDEL_NULL(grenade_list)
 		QDEL_NULL(engineering_list)
+
+		QDEL_NULL(brute_list)
+		QDEL_NULL(burn_list)
+		QDEL_NULL(tox_list)
+		QDEL_NULL(oxy_list)
+		QDEL_NULL(clone_list)
+		QDEL_NULL(pain_list)
 		return
 	equipped_list = list()
 	gun_list = list()
@@ -52,6 +67,13 @@
 	medical_list = list()
 	grenade_list = list()
 	engineering_list = list()
+
+	brute_list = list()
+	burn_list = list()
+	tox_list = list()
+	oxy_list = list()
+	clone_list = list()
+	pain_list = list()
 
 ///Handles an item being equipped, and its contents
 /datum/inventory/proc/item_equipped(mob/user, obj/item/equipped_item)
@@ -67,7 +89,7 @@
 	var/list/sort_list = list(equipped_item)
 	sort_list += get_stored(equipped_item) //internal storage stuff isnt populated if the mob has ai BEFORE the outfit
 
-	for(var/thing AS in sort_list)
+	for(var/thing in sort_list)
 		sort_item(thing)
 
 ///Recursive proc to retrieve all stored items inside something
@@ -75,7 +97,7 @@
 	var/list/sort_list = list()
 	if(thing.storage_datum)
 		sort_list += thing.contents
-	for(var/obj/item AS in thing.contents)
+	for(var/item in thing.contents)
 		sort_list += get_stored(item)
 	return sort_list
 
@@ -88,7 +110,7 @@
 	var/list/sort_list = list(unequipped_item)
 	sort_list += get_stored(unequipped_item) //internal storage stuff isnt populated if the mob has ai BEFORE the outfit
 
-	for(var/thing AS in sort_list)
+	for(var/obj/item/thing AS in sort_list)
 		SEND_SIGNAL(thing, COMSIG_INVENTORY_STORED_REMOVAL)
 
 /datum/inventory/proc/item_stored(mob/store_mob, obj/item/new_item, slot)
@@ -133,11 +155,40 @@
 	melee_list += new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(melee_list_removal))
 
-///Adds an item to this list
+///Adds an item to the relevant med lists
 /datum/inventory/proc/medical_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	medical_list += new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(medical_list_removal))
+	var/generic = TRUE
+	for(var/damtype in GLOB.ai_damtype_to_heal_list)
+		if(!(new_item.type in GLOB.ai_damtype_to_heal_list[damtype]))
+			continue
+		generic = FALSE
+		var/list/type_list
+		switch(damtype)
+			if(BRUTE)
+				type_list = brute_list
+			if(BURN)
+				type_list = burn_list
+			if(TOX)
+				type_list = tox_list
+			if(OXY)
+				type_list = oxy_list
+			if(CLONE)
+				type_list = clone_list
+			if(PAIN)
+				type_list = pain_list
+
+		type_list += new_item
+		var/list/old_list = type_list.Copy()
+		type_list.Cut()
+		for(var/type in GLOB.ai_damtype_to_heal_list[damtype])
+			for(var/obj/item/thing AS in old_list)
+				if(thing.type == type)
+					type_list += thing
+
+	if(generic)
+		medical_list += new_item
 
 ///Adds an item to this list
 /datum/inventory/proc/ammo_list_add(obj/item/new_item)
@@ -173,6 +224,12 @@
 /datum/inventory/proc/medical_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
 	medical_list -= moving_item
+	brute_list -= moving_item
+	burn_list -= moving_item
+	tox_list -= moving_item
+	oxy_list -= moving_item
+	clone_list -= moving_item
+	pain_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list
