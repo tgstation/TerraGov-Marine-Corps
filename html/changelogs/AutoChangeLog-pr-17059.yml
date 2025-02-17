@@ -1,0 +1,5 @@
+author: "Kuro020"
+delete-after: True
+changes:
+  - balance: "The marine standard smg, heavy smg and machine pistol's mag sizes have been increased"
+  - balance: "The ammo packets for the smgs have had their total bullet count increased"
