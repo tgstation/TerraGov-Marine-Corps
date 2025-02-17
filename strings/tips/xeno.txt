@@ -27,7 +27,7 @@ T4's and hivelords can place Gargoyles. These cheap structures will alert the hi
 If you find yourself dealing with extreme sunder as a xenomorph, consider asking your T4's/Hivelord to place down an Acid Pool. Resting on them will increase your sunder recovery rate.
 Digsites are visible on the minimap for all xenomorphs as yellow or green crosshair icons. Keep an eye on them- researchers can harvest them for req points.
 Some xenos have pheromones that can help the hive. Frenzy increases speed, Warding increases armor, and Recovery increases healing.
-The King has the strongest pheromones, followed by the Queen, praetorians, Hivemind, the Shrike and hivelords, defilers, and carriers. Drones have the weakest pheromones.
+The Queen and pheromone tower have the strongest pheromones, followed by the King and praetorians, Hivemind, the Shrike and hivelords, defilers, and carriers. Drones have the weakest pheromones.
 Some xenos can recycle the bodies of their fallen hive members. Use this to your advantage to prevent marines from getting points for their Requisitions orders!
 As a xeno, you can pounce past window frames and barricades without barbed wires.
 As a xeno, pouncing into a barricade with barbed wire causes you to bounce off the barricade.
