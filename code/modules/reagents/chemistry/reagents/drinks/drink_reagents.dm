@@ -378,7 +378,6 @@
 	description = "A gulp a day keeps the Medibot away! A mixture of juices that heals most damage types fairly quickly at the cost of hunger."
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	taste_description = "homely fruit"
-	nutriment_factor = - 1
 	custom_metabolism = REAGENTS_METABOLISM * 0.25 //Twice the rate of paracetamol
 	adj_dizzy = - 10
 
