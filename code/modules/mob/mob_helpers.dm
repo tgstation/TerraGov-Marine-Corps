@@ -349,7 +349,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	return BODYTEMP_NORMAL
 
 
-/proc/notify_ghost(mob/dead/observer/ghost, message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = TRUE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of a single ghosts.
+/proc/notify_ghost(mob/dead/observer/ghost, message, ghost_sound = null, enter_link = null, enter_text = null, atom/source = null, mutable_appearance/alert_overlay = null, action = NOTIFY_JUMP, flashwindow = FALSE, ignore_mapload = TRUE, ignore_key, header = null, notify_volume = 100, extra_large = FALSE) //Easy notification of a single ghosts.
 	if(!ghost)
 		return
 	if(ignore_mapload && SSatoms.initialized != INITIALIZATION_INNEW_REGULAR)	//don't notify for objects created during a map load
@@ -368,7 +368,7 @@ GLOBAL_LIST_INIT(organ_rel_size, list(
 	to_chat(ghost, "[(extra_large) ? "<br><hr>" : ""][span_deadsay("[message][(enter_link) ? " [full_enter_link]" : ""][track_link]")][(extra_large) ? "<hr><br>" : ""]")
 	if(ghost_sound)
 		SEND_SOUND(ghost, sound(ghost_sound, volume = notify_volume, channel = CHANNEL_NOTIFY))
-	if(flashwindow)
+	if(flashwindow) /* Consider using this only for notifications related to the ghost being able to re-enter the round. */
 		window_flash(ghost.client)
 
 	if(!source)
