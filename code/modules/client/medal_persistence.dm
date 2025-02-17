@@ -5,7 +5,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 	RETURN_TYPE(/datum/medal_persistence)
 	return (GLOB.medal_persistence_datums_by_ckey[ckey] ||= new /datum/medal_persistence(ckey))
 
-/proc/save_all_medals_and_seal(ignore_living_checks = FALSE)
+/proc/save_all_medals_and_seal()
 	var/is_forced = FALSE
 	if(IsAdminAdvancedProcCall())
 		if(tgui_input_list(usr, "Are you sure you want to save all medals and seal? This can result in players losing medals!", "Save All Medals and Seal", list("Yes", "No")) != "Yes")
@@ -13,40 +13,18 @@ GLOBAL_VAR(medal_persistence_sealed)
 		if(GLOB.medal_persistence_sealed && (tgui_input_list(usr, "Medals are already sealed. Do you want to force save?", "Force Save Medals", list("Yes", "No")) != "Yes"))
 			return
 		is_forced = TRUE
-		if(!ignore_living_checks && (tgui_input_list(usr, "Do you want to ignore living checks?", "Ignore Living Checks", list("Yes", "No")) == "Yes"))
-			ignore_living_checks = TRUE
+		message_admins("[ADMIN_LOOKUPFLW(usr)] is manually saving and sealing all medals.")
 
 	if(GLOB.medal_persistence_sealed && !is_forced)
 		return
 
 	var/list/medal_persistence_datums_by_ckey = GLOB.medal_persistence_datums_by_ckey
-	if(ignore_living_checks)
-		for(var/datum/medal_persistence/medal_persistence in medal_persistence_datums_by_ckey)
-			medal_persistence.save_medals_to_db()
-		if(!GLOB.medal_persistence_sealed)
-			GLOB.medal_persistence_sealed = TRUE
-			to_chat(world, span_notice("Persistent medals have been saved. Hope you didn't lose any!")) // no one loses medals; but use the same message anyway
-		return
-
 	for(var/datum/medal_persistence/medal_persistence as anything in medal_persistence_datums_by_ckey)
-		for(var/real_name in medal_persistence.medals_by_real_name)
-			var/mob/living/holder
-			for(var/mob/living/mob as anything in GLOB.mob_living_list)
-				if(mob.real_name == real_name)
-					holder = mob
-					break
-
-			var/list/datum/persistent_medal_info/medals = medal_persistence.medals_by_real_name[real_name]
-			for(var/datum/persistent_medal_info/medal as anything in medals)
-				if(isnull(medal.medal))
-					continue // Either wasn't issued (or was deleted)
-				if(isnull(holder) || holder.stat == DEAD) // womp
-					medals -= medal
 		medal_persistence.save_medals_to_db()
 
 	if(!GLOB.medal_persistence_sealed)
 		GLOB.medal_persistence_sealed = TRUE
-		to_chat(world, span_notice("Persistent medals have been saved. Hope you didn't lose any!"))
+		to_chat(world, span_notice("Persistent medals have been saved. No further medal issuances will be saved."))
 
 /datum/medal_persistence
 	var/ckey
@@ -56,14 +34,13 @@ GLOBAL_VAR(medal_persistence_sealed)
 /datum/medal_persistence/New(ckey)
 	ckey = ckey
 	owner = GLOB.player_details[ckey]
-	load_medals_from_db()
 
 /datum/medal_persistence/proc/award_medal(
 	issued_to_real_name,
 	issued_to_rank,
 	issued_by_real_name,
 	issued_by_rank,
-	medal_typepath,
+	medal_uid,
 	medal_citation,
 )
 	var/datum/persistent_medal_info/medal = new
@@ -72,7 +49,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 	medal.issued_to_rank = issued_to_rank
 	medal.issued_by_real_name = issued_by_real_name
 	medal.issued_by_rank = issued_by_rank
-	medal.medal_typepath = medal_typepath
+	medal.medal_uid = medal_uid
 	medal.medal_citation = medal_citation
 	medal.issued_at = SQLtime()
 	medals_by_real_name[issued_to_real_name] ||= list(medal)
@@ -151,7 +128,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 				"issued_to_rank" = medal.issued_to_rank,
 				"issued_by_real_name" = medal.issued_by_real_name,
 				"issued_by_rank" = medal.issued_by_rank,
-				"medal_typepath" = medal.medal_typepath,
+				"medal_uid" = medal.medal_uid,
 				"medal_citation" = medal.medal_citation,
 				"issued_at" = medal.issued_at,
 				"is_posthumous" = medal.is_posthumous,
@@ -199,7 +176,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 	var/issued_by_rank //! The rank of the player who issued the medal
 
 	var/obj/item/clothing/tie/medal/medal //! The medal object
-	var/obj/item/clothing/tie/medal/medal_typepath //! The typepath of the medal
+	var/obj/item/clothing/tie/medal/medal_uid //! The unique id of the medal
 	var/medal_citation //! The citation on the medal
 
 	var/issued_at //! The time the medal was issued
@@ -225,12 +202,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 	medal.issued_by_real_name = data["issued_by_real_name"]
 	medal.issued_by_rank = data["issued_by_rank"]
 
-	var/wanted_typepath = text2path(data["medal_typepath"])
-	if(!ispath(wanted_typepath, /obj/item/clothing/tie/medal))
-		stack_trace("Attempted to load a medal with an invalid typepath: [wanted_typepath]")
-		return null
-
-	medal.medal_typepath = wanted_typepath
+	medal.medal_uid = data["medal_uid"]
 	medal.medal_citation = data["medal_citation"]
 
 	medal.medal.recipient_name = medal.issued_to_real_name
@@ -242,12 +214,29 @@ GLOBAL_VAR(medal_persistence_sealed)
 
 	return medal
 
+/datum/persistent_medal_info/proc/get_metal_typepath_from_uid()
+	var/static/list/uid_map
+
+	if(isnull(uid_map))
+		uid_map = list()
+		for(var/datum/persistent_medal_info/medal_type as anything in subtypesof(/obj/item/clothing/tie/medal))
+			var/metal_uid = medal_type::medal_uid
+			if(medal_uid in uid_map)
+				stack_trace("duplicate medal_uid found: `[medal_uid]` in `[medal_type]` and `[uid_map[medal_uid]]`")
+			uid_map[medal.medal_uid] = medal_type
+	return uid_map[medal_uid]
+
 /**
  * Generate the medal and put it in the provided container.
  * - mob/container - The mob being awarded the medal.
  */
 /datum/persistent_medal_info/proc/award_to(atom/container)
-	medal = new medal_typepath
+	var/wanted_type = get_metal_typepath_from_uid()
+	if(isnull(wanted_type))
+		stack_trace("Failed to find a medal type for medal_uid `[medal_uid]`")
+		return
+
+	medal = new wanted_type
 	if(isliving(container))
 		var/mob/living/mob = container
 		mob.put_in_hands(medal)

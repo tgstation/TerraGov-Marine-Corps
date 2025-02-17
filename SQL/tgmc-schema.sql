@@ -386,7 +386,7 @@ CREATE TABLE `medals` (
 	`issued_to_rank` VARCHAR(255) NOT NULL,
 	`issued_by_real_name` VARCHAR(255) NOT NULL,
 	`issued_by_rank` VARCHAR(255) NOT NULL,
-	`medal_typepath` VARCHAR(255) NOT NULL,
+	`medal_uid` VARCHAR(255) NOT NULL,
 	`medal_citation` VARCHAR(255) NOT NULL,
 	`issued_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`is_posthumous` TINYINT(1) UNSIGNED NOT NULL DEFAULT,
