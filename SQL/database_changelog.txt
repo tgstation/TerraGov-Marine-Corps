@@ -9,6 +9,26 @@ INSERT INTO `SS13_schema_revision` (`major`, `minor`) VALUES (2, 2);
 In any query remember to add a prefix to the table names if you use one.
 
 ----------------------------------------------------
+
+Version 2.3, 02 February 2025, by ZephyrTFA
+Added `medals` to store persisten medals awared to a player.
+
+```
+CREATE TABLE `medals` (
+	`id` INT NOT NULL AUTO_INCREMENT,
+	`ckey` VARCHAR(32) NOT NULL,
+	`issued_to_real_name` VARCHAR(255) NOT NULL,
+	`issued_to_rank` VARCHAR(255) NOT NULL,
+	`issued_by_real_name` VARCHAR(255) NOT NULL,
+	`issued_by_rank` VARCHAR(255) NOT NULL,
+	`medal_typepath` VARCHAR(255) NOT NULL,
+	`medal_citation` VARCHAR(255) NOT NULL,
+	`issued_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`is_posthumous` TINYINT(1) UNSIGNED NOT NULL DEFAULT,
+	PRIMARY KEY (`id`));
+```
+----------------------------------------------------
+
 Version 2.2, 04 April 2024, by TiviPlus
 Added `tutorial_completions` to mark what ckeys have completed contextual tutorials.
 
