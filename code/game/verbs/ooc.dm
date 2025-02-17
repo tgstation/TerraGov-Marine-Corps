@@ -117,8 +117,8 @@
 				display_name = holder.fakekey
 
 		// Admins open straight to player panel
-		if(check_other_rights(recv_client, R_ADMIN|R_MENTOR, FALSE))
-			display_name = "[ADMIN_TPMONTY(usr)]"
+		if(check_other_rights(recv_client, R_ADMIN, FALSE))
+			display_name = "<a class='hidelink' href='byond://?_src_=holder;[HrefToken(TRUE)];playerpanel=[REF(usr)]'>[display_name]</a>"
 		var/avoid_highlight = recv_client == src
 		if(display_colour)
 			to_chat(recv_client, "<font color='[display_colour]'>[span_ooc("<span class='prefix'>OOC: [display_name]")]: <span class='message linkify'>[msg]</span></span></font>", avoid_highlighting = avoid_highlight)
