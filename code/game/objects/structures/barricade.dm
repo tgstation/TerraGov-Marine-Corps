@@ -9,7 +9,7 @@
 	obj_flags = CAN_BE_HIT | IGNORE_DENSITY | BLOCKS_CONSTRUCTION_DIR
 	resistance_flags = XENO_DAMAGEABLE
 	allow_pass_flags = PASS_DEFENSIVE_STRUCTURE|PASSABLE|PASS_WALKOVER
-	climb_delay = 20 //Leaping a barricade is universally much faster than clumsily climbing on a table or rack
+	climb_delay = 2 SECONDS
 	interaction_flags = INTERACT_CHECK_INCAPACITATED
 	max_integrity = 100
 	barrier_flags = HANDLE_BARRIER_CHANCE
