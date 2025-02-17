@@ -1,3 +1,5 @@
+//! Defines for security level subsystem + datum behavior.
+
 /// GREEN - Absolutely nothing of note!
 #define SEC_LEVEL_GREEN 1
 /// BLUE - Possible threats.
