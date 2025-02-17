@@ -95,23 +95,6 @@
 	radial_icon_state = "smoke_mortar"
 	smoke_type = /datum/effect_system/smoke_spread/xeno/neuro
 
-/datum/maw_ammo/smoke/acid_big
-	name = "strategic acid maw glob"
-	cooldown_time = 10 MINUTES
-	radial_icon_state = "acid_smoke_mortar"
-	smoke_type = /datum/effect_system/smoke_spread/xeno/acid
-	smokeradius = 12
-	duration = 10
-
-/datum/maw_ammo/smoke/acid_big/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
-	. = ..()
-	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
-
-/datum/maw_ammo/smoke/acid_big/on_impact(turf/target)
-	. = ..()
-	for(var/turf/newspray in view(smokeradius*0.5, target))
-		new /obj/effect/xenomorph/spray(newspray, duration*2, XENO_DEFAULT_ACID_PUDDLE_DAMAGE)
-
 /datum/maw_ammo/smoke/acid_small
 	name = "tactical acid maw glob"
 	cooldown_time = 3 MINUTES
@@ -128,11 +111,11 @@
 /datum/maw_ammo/hugger
 	name = "ball of huggers"
 	radial_icon_state = "hugger_ball"
-	cooldown_time = 3 MINUTES
+	cooldown_time = 10 MINUTES
 	/// range_turfs that huggers will be dropped around the target
-	var/drop_range = 8
+	var/drop_range = 9
 	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
-	var/hugger_count = 30
+	var/hugger_count = 60
 	///huggers to choose to spawn
 	var/list/hugger_options = list(
 		/obj/item/clothing/mask/facehugger,
@@ -148,6 +131,7 @@
 	var/obj/effect/temp_visual/hugger_ball_launch/anim = new(maw.loc)
 	anim.pixel_x = (maw.bound_width/2) - 16
 	animate(anim, anim.duration, easing=EASE_OUT|CUBIC_EASING, pixel_y=600)
+	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
 
 /datum/maw_ammo/hugger/impact_visuals(turf/target)
 	var/list/turf/turfs = RANGE_TURFS(drop_range, target)
@@ -178,19 +162,6 @@
 /datum/maw_ammo/hugger/on_impact(turf/target)
 	for(var/obj/item/clothing/mask/facehugger/paratrooper AS in spawned_huggers)
 		paratrooper.go_active()
-
-/datum/maw_ammo/hugger/big
-	name = "ball of huggers"
-	radial_icon_state = "hugger_ball"
-	cooldown_time = 10 MINUTES
-	/// range_turfs that huggers will be dropped around the target
-	drop_range = 9
-	/// how many huggers get dropped at once, does not stack on turfs if theres not enough turfs
-	hugger_count = 60
-
-/datum/maw_ammo/hugger/big/launch_animation(turf/target, obj/structure/xeno/acid_maw/maw)
-	. = ..()
-	playsound_z_humans(target.z, 'sound/voice/strategic_launch_detected.ogg', 100)
 
 /datum/maw_ammo/minion
 	name = "ball of minions"
