@@ -16,7 +16,7 @@
 	throw_range = 10
 	force = 10
 	attack_verb = list("slams", "whacks", "bashes", "thunks", "batters", "bludgeos", "thrashes")
-	var/max_water = 50
+	var/max_water = 70
 	var/last_use = 1
 	var/safety = 1
 	var/sprite_name = "fire_extinguisher"
@@ -34,7 +34,7 @@
 	throwforce = 2
 	w_class = WEIGHT_CLASS_SMALL
 	force = 3
-	max_water = 30
+	max_water = 50
 	sprite_name = "miniFE"
 
 /obj/item/tool/extinguisher/examine(mob/user)
