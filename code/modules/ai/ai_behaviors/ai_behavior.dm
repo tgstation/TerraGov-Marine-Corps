@@ -69,8 +69,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior/proc/start_ai()
 	if(escorted_atom)
 		global_set_escorted_atom(null, escorted_atom)
-	else
-		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(set_goal_node))
 	set_goal_node(null, null, GLOB.goal_nodes[identifier])
 	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
@@ -288,7 +286,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	UnregisterSignal(escorted_atom, list(COMSIG_ESCORTED_ATOM_CHANGING ,COMSIG_QDELETING, COMSIG_ESCORTING_ATOM_BEHAVIOUR_CHANGED))
 	escorted_atom = null
 	base_action = initial(base_action)
-	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom)) //this is getting overridden when ai target qdels or something. check where this is being called/why this sig is here
 
 ///Set the target distance to be normal (initial) or very low (almost passive)
 /datum/ai_behavior/proc/set_agressivity(datum/source, should_be_agressive = TRUE)

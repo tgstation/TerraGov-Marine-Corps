@@ -19,6 +19,17 @@
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE, PROC_REF(check_for_critical_health))
+	if(!escorted_atom)
+		RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
+	return ..()
+
+/datum/ai_behavior/xeno/clean_escorted_atom()
+	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
+
+/datum/ai_behavior/xeno/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
+	if(!weak_escort)
+		UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 	return ..()
 
 ///Refresh abilities-to-consider list
@@ -157,6 +168,7 @@
 	UnregisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE)
 	UnregisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED))
 	UnregisterSignal(mob_parent, COMSIG_XENOMORPH_TAKING_DAMAGE)
+	UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
 
 ///Signal handler to try to attack our target
 /datum/ai_behavior/xeno/proc/attack_target(datum/source, atom/attacked)
