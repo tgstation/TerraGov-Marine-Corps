@@ -117,7 +117,7 @@
 	desc = "An extremely rare golden medal awarded only by the TGMC. To recieve such a medal is the highest honor and as such, very few exist."
 	medal_uid = "medal_of_heroism"
 
-/obj/item/clothing/tie/medal/commendation
+/obj/item/clothing/tie/medal/letter/commendation
 	name = "letter of commendation"
 	desc = "A letter printed on cardstock often filled with praise for the person it is intended for."
 	icon = 'icons/obj/items/paper.dmi'
