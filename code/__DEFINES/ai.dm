@@ -22,6 +22,9 @@
 ///Ai component state where the ai tries to flee to heal
 #define MOVING_TO_SAFETY "moving_to_safety"
 
+///AI component state where we're healing
+#define MOB_HEALING "mob_healing"
+
 ///Ai component state where the ai just does nothing
 #define IDLE "idle"
 

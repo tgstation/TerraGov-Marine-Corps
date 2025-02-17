@@ -41,7 +41,7 @@
 		target.balloon_alert(user, "already busy")
 		return
 
-	var/datum/limb/affecting = user.client.prefs.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
+	var/datum/limb/affecting = user?.client?.prefs?.toggles_gameplay & RADIAL_MEDICAL ? radial_medical(target, user) : target.get_limb(user.zone_selected)
 
 	if(!affecting)
 		return FALSE
@@ -73,6 +73,7 @@
 		return
 
 	var/datum/limb/affecting = .
+	. = FALSE
 	var/mob/living/carbon/human/patient = M //If we've got to this point, the parent proc already checked they're human
 
 	if(affecting.limb_status & LIMB_DESTROYED)
@@ -100,6 +101,7 @@
 			if(!length(patient_limbs))
 				break
 	patient.balloon_alert(user, "Finished tending")
+	return TRUE //THIS MAY FUCK OTHER SHIT?
 
 /// return TRUE if a given limb can be healed by src, FALSE otherwise
 /obj/item/stack/medical/heal_pack/proc/can_heal_limb(datum/limb/affecting)

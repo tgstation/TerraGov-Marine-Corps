@@ -20,7 +20,7 @@
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
 	///If the mob parent can heal itself and so should flee
-	var/can_heal = FALSE //for now
+	var/can_heal = TRUE //TURN OFF FOR CARP ETC
 
 	var/uses_weapons = TRUE //test, this base type will be useful for mobs like carp, where this will be false
 
@@ -72,6 +72,8 @@
 /datum/ai_behavior/human/look_for_new_state()
 	var/mob/living/living_parent = mob_parent
 	switch(current_action)
+		if(MOB_HEALING)
+			return
 		if(ESCORTING_ATOM)
 			if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
 				look_for_next_node()
@@ -237,40 +239,6 @@
 				return
 
 	return ..()
-
-///Will try finding and resting on weeds
-/datum/ai_behavior/human/proc/try_to_heal()
-	if(prob(50))
-		mob_parent.say(pick("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!."))
-	//var/mob/living/living_mob = mob_parent
-	//todo: add some kitting/chem behavior or something
-	//SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
-	//RegisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(check_for_health))
-	//RegisterSignal(mob_parent, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(check_for_plasma))
-	return TRUE
-
-///Wait for the xeno to be full life and plasma to unrest
-/datum/ai_behavior/human/proc/check_for_health(mob/living/carbon/xenomorph/healing, list/heal_data) //todo
-	SIGNAL_HANDLER
-	//insert health check stuff here
-	//if(healing.health + heal_data[1] >= healing.maxHealth && healing.plasma_stored >= healing.xeno_caste.plasma_max * healing.xeno_caste.plasma_regen_limit)
-	//	SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
-	//	UnregisterSignal(mob_parent, list(COMSIG_XENOMORPH_HEALTH_REGEN, COMSIG_XENOMORPH_PLASMA_REGEN))
-
-///Called each time the ai takes damage; if we are below a certain health threshold, try to retreat
-/datum/ai_behavior/human/proc/check_for_critical_health(datum/source, damage)
-	SIGNAL_HANDLER
-	var/mob/living/living_mob = mob_parent
-	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
-		return
-	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
-	if(!next_target)
-		return
-	if(prob(50))
-		mob_parent.say(pick("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Medic!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning."))
-	target_distance = 15
-	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
-	UnregisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN)
 
 ///Move the ai mob on top of the structure
 /datum/ai_behavior/human/proc/climb_structure(turf/window_turf)
