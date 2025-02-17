@@ -109,6 +109,7 @@ As an engineer, det packs can be set on demolition mode for an explosive trap.
 As an engineer, you build barricades the fastest.
 As an engineer, repair the mining wells. These mining machines will mine phoron or platinum that can be used for requisitions, earning them more points!
 As an engineer, placing turrets on open spaces and without defenses is a poor choice.
+As an engineer, mutitoools can be used to locate a room APC for nuclear disks and intels.
 You can use a Terra experimental cell as a discount power cell!
 You can upgrade metal barricades by clicking them with metal!
 Bring at least 1 cell and 1 power control module to fix APCs for disks or intelligence computers.
