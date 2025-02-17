@@ -6,16 +6,29 @@ GLOBAL_VAR(medal_persistence_sealed)
 	return (GLOB.medal_persistence_datums_by_ckey[ckey] ||= new /datum/medal_persistence(ckey))
 
 /proc/save_all_medals_and_seal(ignore_living_checks = FALSE)
-	if(GLOB.medal_persistence_sealed)
+	var/is_forced = FALSE
+	if(IsAdminAdvancedProcCall())
+		if(tgui_input_list(usr, "Are you sure you want to save all medals and seal? This can result in players losing medals!", "Save All Medals and Seal", list("Yes", "No")) != "Yes")
+			return
+		if(GLOB.medal_persistence_sealed && (tgui_input_list(usr, "Medals are already sealed. Do you want to force save?", "Force Save Medals", list("Yes", "No")) != "Yes"))
+			return
+		is_forced = TRUE
+		if(!ignore_living_checks && (tgui_input_list(usr, "Do you want to ignore living checks?", "Ignore Living Checks", list("Yes", "No")) == "Yes"))
+			ignore_living_checks = TRUE
+
+	if(GLOB.medal_persistence_sealed && !is_forced)
 		return
 
 	var/list/medal_persistence_datums_by_ckey = GLOB.medal_persistence_datums_by_ckey
 	if(ignore_living_checks)
 		for(var/datum/medal_persistence/medal_persistence in medal_persistence_datums_by_ckey)
 			medal_persistence.save_medals_to_db()
+		if(!GLOB.medal_persistence_sealed)
+			GLOB.medal_persistence_sealed = TRUE
+			to_chat(world, span_notice("Persistent medals have been saved. Hope you didn't lose any!")) // no one loses medals; but use the same message anyway
 		return
 
-	for(var/datum/medal_persistence/medal_persistence in medal_persistence_datums_by_ckey)
+	for(var/datum/medal_persistence/medal_persistence as anything in medal_persistence_datums_by_ckey)
 		for(var/real_name in medal_persistence.medals_by_real_name)
 			var/mob/living/holder
 			for(var/mob/living/mob as anything in GLOB.mob_living_list)
@@ -24,15 +37,16 @@ GLOBAL_VAR(medal_persistence_sealed)
 					break
 
 			var/list/datum/persistent_medal_info/medals = medal_persistence.medals_by_real_name[real_name]
-			for(var/datum/persistent_medal_info/medal in medals)
+			for(var/datum/persistent_medal_info/medal as anything in medals)
 				if(isnull(medal.medal))
 					continue // Either wasn't issued (or was deleted)
 				if(isnull(holder) || holder.stat == DEAD) // womp
 					medals -= medal
 		medal_persistence.save_medals_to_db()
 
-	GLOB.medal_persistence_sealed = TRUE
-	to_chat(world, span_notice("Persistent medals have been saved. Hope you didn't lose any!"))
+	if(!GLOB.medal_persistence_sealed)
+		GLOB.medal_persistence_sealed = TRUE
+		to_chat(world, span_notice("Persistent medals have been saved. Hope you didn't lose any!"))
 
 /datum/medal_persistence
 	var/ckey
@@ -110,7 +124,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 
 	var/any_medal_failed_to_save = FALSE
 	for(var/real_name in medals_by_real_name)
-		for(var/datum/persistent_medal_info/medal in medals_by_real_name[real_name])
+		for(var/datum/persistent_medal_info/medal as anything in medals_by_real_name[real_name])
 			var/datum/db_query/query = SSdbcore.NewQuery({"INSERT INTO [format_table_name("medals")] (
 				ckey,
 				issued_to_real_name,
@@ -164,7 +178,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 	medal_box.name = "medal box"
 	medal_box.desc = "A box containing medals."
 
-	for(var/datum/persistent_medal_info/medal in medals_by_real_name[target.real_name])
+	for(var/datum/persistent_medal_info/medal as anything in medals_by_real_name[target.real_name])
 		medal.award_to(medal_box)
 
 	if(!target.put_in_hands(medal_box))
