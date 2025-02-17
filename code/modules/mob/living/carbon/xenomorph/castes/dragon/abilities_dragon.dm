@@ -5,6 +5,13 @@
 	desc = "After a windup, deal high damage and a fair knock back to marines in front of you. Vehicles and mechas take more damage, but are not knocked back. If you are grabbing a marine, deal an incredible amount of damage instead."
 	cooldown_duration = 10 SECONDS
 
+/datum/action/ability/activable/xeno/backhand/can_use_ability(atom/A, silent, override_flags)
+	if(xeno_owner.status_flags & INCORPOREAL)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+		return FALSE
+	return ..()
+
 /datum/action/ability/activable/xeno/backhand/use_ability(atom/target)
 	var/damage = 60 * xeno_owner.xeno_melee_damage_modifier
 	var/datum/action/ability/activable/xeno/grab/grab_ability = xeno_owner.actions_by_path[/datum/action/ability/activable/xeno/grab]
@@ -200,6 +207,13 @@
 	desc = "After a windup, turn around and deal high damage along with a knockdown to marines behind you. Occupants of vehicles, including those inside mechas, are knocked down."
 	cooldown_duration = 12 SECONDS
 
+/datum/action/ability/activable/xeno/tailswipe/can_use_ability(atom/A, silent, override_flags)
+	if(xeno_owner.status_flags & INCORPOREAL)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+		return FALSE
+	return ..()
+
 /datum/action/ability/activable/xeno/tailswipe/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
@@ -328,6 +342,13 @@
 	var/ability_timer
 	/// The timer id for the timer that gives plasma every second.
 	var/plasma_timer
+
+/datum/action/ability/activable/xeno/dragon_breath/can_use_ability(atom/A, silent, override_flags)
+	if(xeno_owner.status_flags & INCORPOREAL)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+		return FALSE
+	return ..()
 
 /datum/action/ability/activable/xeno/dragon_breath/use_ability(atom/target)
 	if(ability_timer)
@@ -486,6 +507,13 @@
 	desc = "After a windup, deal high damage and a knockback to marines in front of you. This also clear any gas in front of you."
 	cooldown_duration = 20 SECONDS
 
+/datum/action/ability/activable/xeno/wind_current/can_use_ability(atom/A, silent, override_flags)
+	if(xeno_owner.status_flags & INCORPOREAL)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
+		return FALSE
+	return ..()
+
 /datum/action/ability/activable/xeno/wind_current/use_ability(atom/target)
 	xeno_owner.face_atom(target)
 
@@ -602,13 +630,15 @@
 	var/damage_taken_so_far = 0
 
 /datum/action/ability/activable/xeno/grab/can_use_ability(atom/target, silent, override_flags)
-	. = ..()
-	if(!.)
+	if(xeno_owner.status_flags & INCORPOREAL)
+		if(!silent)
+			xeno_owner.balloon_alert(xeno_owner, "cannot while flying")
 		return FALSE
 	if(grabbed_human)
 		if(!silent)
 			xeno_owner.balloon_alert(xeno_owner, "already grabbing someone")
 		return FALSE
+	return ..()
 
 /datum/action/ability/activable/xeno/grab/use_ability(atom/target)
 	xeno_owner.face_atom(target)
