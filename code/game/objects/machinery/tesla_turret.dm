@@ -227,9 +227,13 @@
 		else
 			balloon_alert(marine, "turn off first!")
 		return
+	return ..()
+
+/obj/machinery/deployable/tesla_turret/post_disassemble(mob/user)
 	. = ..()
 	if(!.)
 		return
+
 	var/obj/item/tesla_turret/internal = internal_item.resolve()
 	if(!internal)
 		return
