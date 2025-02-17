@@ -149,7 +149,7 @@
 	name = "Fly"
 	action_icon_state = "shattering_roar"
 	action_icon = 'icons/Xeno/actions/dragon.dmi'
-	desc = ""
+	desc = "After a long cast time, fly into the air. If you're already flying, land with a delay. Landing causes nearby marines to take lots of damage with vehicles taking up to 3x as much."
 	cooldown_duration = 240 SECONDS
 
 /datum/action/ability/activable/xeno/fly/can_use_ability(atom/A, silent, override_flags)
