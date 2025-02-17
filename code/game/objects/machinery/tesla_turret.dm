@@ -63,8 +63,7 @@
 	if(!battery)
 		balloon_alert(user, "no battery")
 		return
-	if(!user.put_in_hands(battery))
-		battery.forceMove(drop_location())
+	user.put_in_hands(battery)
 	balloon_alert(user, "removed battery")
 	battery = null
 
@@ -221,25 +220,25 @@
 		toggle(FALSE, TRUE)
 	hud_set_tesla_battery()
 
-/obj/machinery/deployable/tesla_turret/MouseDrop(mob/living/carbon/human/marine)
-	if(marine != usr || !in_range(src, marine))
-		return
+/obj/machinery/deployable/tesla_turret/disassemble(mob/user)
 	if(active)
 		if(shock(marine, 70))
 			balloon_alert_to_viewers("sparks!")
 		else
 			balloon_alert(marine, "turn off first!")
 		return
-	if(battery)
-		var/obj/item/tesla_turret/internal = internal_item.resolve()
-		if(internal)
-			internal.max_range = max_range
-			internal.passive_cost = passive_cost
-			internal.active_cost = active_cost
+	. = ..()
+	if(!.)
+		return
+	var/obj/item/tesla_turret/internal = internal_item.resolve()
+	if(!internal)
+		return
+	internal.max_range = max_range
+	internal.passive_cost = passive_cost
+	internal.active_cost = active_cost
 
-			internal.battery = battery
-			battery = null
-	return ..()
+	internal.battery = battery
+	battery = null
 
 /obj/machinery/deployable/tesla_turret/update_icon_state()
 	. = ..()
