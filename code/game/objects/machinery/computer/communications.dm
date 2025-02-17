@@ -408,7 +408,7 @@
 
 		if(STATE_ALERT_LEVEL)
 			dat += "Current alert level: [SSsecurity_level.get_current_level_as_text()]<BR>"
-			if((SSsecurity_level.current_security_level.sec_level_flags & SEC_LEVEL_FLAG_IS_EMERGENCY) || SSevacuation.evac_status)
+			if((SSsecurity_level.current_security_level.sec_level_flags & SEC_LEVEL_FLAG_STATE_OF_EMERGENCY) || SSevacuation.evac_status)
 				if(SSevacuation.dest_status >= NUKE_EXPLOSION_ACTIVE)
 					dat += "<font color='red'><b>The self-destruct mechanism is active. [SSevacuation.evac_status != EVACUATION_STATUS_INITIATING ? "You have to manually deactivate the self-destruct mechanism." : ""]</b></font><BR>"
 				switch(SSevacuation.evac_status)

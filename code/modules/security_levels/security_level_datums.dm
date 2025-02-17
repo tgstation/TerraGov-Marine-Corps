@@ -100,7 +100,7 @@
 	status_display_icon = "redalert"
 	fire_alarm_light_color = LIGHT_COLOR_PINK
 	number_level = SEC_LEVEL_DELTA
-	sec_level_flags = (SEC_LEVEL_FLAG_CANNOT_SWITCH|SEC_LEVEL_FLAG_RED_LIGHTS|SEC_LEVEL_FLAG_IS_EMERGENCY)
+	sec_level_flags = (SEC_LEVEL_FLAG_CANNOT_SWITCH|SEC_LEVEL_FLAG_RED_LIGHTS|SEC_LEVEL_FLAG_STATE_OF_EMERGENCY)
 	lowering_sound = 'sound/misc/airraid.ogg'
 	elevating_sound = 'sound/misc/airraid.ogg'
 	elevating_to_configuration_key = /datum/config_entry/string/alert_delta

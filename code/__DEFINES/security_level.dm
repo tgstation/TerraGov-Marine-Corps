@@ -18,4 +18,4 @@
 #define SEC_LEVEL_FLAG_RED_LIGHTS (1<<3)
 /// Opens SD shutters, shows evacuation and related information in comms console.
 /// Also causes delta alarms to start playing.
-#define SEC_LEVEL_FLAG_IS_EMERGENCY (1<<4)
+#define SEC_LEVEL_FLAG_STATE_OF_EMERGENCY (1<<4)
