@@ -45,7 +45,7 @@
 	penetration = 15
 	armor_type = BOMB
 	sundering = 1
-	damage_falloff = 2.0
+	damage_falloff = 2
 	shrapnel_chance = 0
 	///shatter effection duration when hitting mobs
 	var/shatter_duration = 3 SECONDS
@@ -86,4 +86,3 @@
 	damage = 27.5
 	penetration = 10
 	sundering = 1
-
