@@ -200,6 +200,6 @@ GLOBAL_VAR_INIT(maint_all_access, FALSE)
 	SSblackbox.record_feedback(FEEDBACK_NESTED_TALLY, "keycard_auth_events", 1, list("emergency maintenance access", "disabled"))
 
 /obj/machinery/door/airlock/allowed(mob/M)
-	if(is_mainship_level(z) && GLOB.maint_all_access && (ACCESS_MARINE_ENGINEERING in req_access+req_one_access))
+	if(is_mainship_level(z) && GLOB.maint_all_access && (ACCESS_MARINE_ENGINEERING in (req_access+req_one_access)))
 		return TRUE
 	return ..(M)
