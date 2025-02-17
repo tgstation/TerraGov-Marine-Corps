@@ -6,7 +6,7 @@
 	name = "tesla turret"
 	desc = "A turret that drains plasma of nearby xenomorphs."
 	icon = 'icons/obj/machines/deployable/sentry/tesla.dmi'
-	icon_state = "grounding_rod_open0"
+	icon_state = "tesla_coil_handheld"
 	max_integrity = 200
 
 	/// Variables to be used by the deployable, are moved into the deployable when deployed and back when undeployed.
@@ -21,10 +21,6 @@
 
 /obj/item/tesla_turret/Initialize(mapload)
 	. = ..()
-	var/matrix/M = transform
-	M.Scale(0.75)
-	transform = M
-
 	AddComponent(/datum/component/deployable_item, /obj/machinery/deployable/tesla_turret, 2 SECONDS, 4 SECONDS)
 
 /obj/item/tesla_turret/Destroy()
@@ -91,8 +87,8 @@
 
 /obj/machinery/deployable/tesla_turret
 	icon = 'icons/obj/machines/deployable/sentry/tesla.dmi'
-	icon_state = "grounding_rod0"
-	base_icon_state = "grounding_rod"
+	icon_state = "defense_base_off"
+	base_icon_state = "defense_base"
 	density = TRUE
 	anchored = TRUE
 	resistance_flags = XENO_DAMAGEABLE
@@ -201,7 +197,7 @@
 		STOP_PROCESSING(SSobj, src)
 		if(!silent)
 			balloon_alert_to_viewers("turned off")
-	update_appearance(UPDATE_ICON)
+	update_appearance(UPDATE_OVERLAYS)
 
 /obj/machinery/deployable/tesla_turret/process()
 	if(!battery || !active || !battery.use(0))
@@ -247,9 +243,12 @@
 
 /obj/machinery/deployable/tesla_turret/update_icon_state()
 	. = ..()
-	icon_state = "[base_icon_state][!!battery]"
-	if(active)
-		icon_state = "[base_icon_state]hit"
+	icon_state = "[base_icon_state][battery ? "" : "_off"]"
+	hud_set_tesla_battery()
+
+/obj/machinery/deployable/tesla_turret/update_overlays()
+	. = ..()
+	. += "tesla_coil[active ? "_on" : ""]"
 	hud_set_tesla_battery()
 
 /// I hate this so much, thank you for having a flag called pass_projectile but it only does so up to proj.ammo.barricade_clear_distance
