@@ -3,6 +3,8 @@
 	icon_state = "xeno_fireball"
 	damage = 50
 	max_range = 5
+	damage_type = BURN
+	armor_type = FIRE
 	ammo_behavior_flags = AMMO_XENO|AMMO_SKIPS_ALIENS|AMMO_TARGET_TURF
 	bullet_color = null
 
