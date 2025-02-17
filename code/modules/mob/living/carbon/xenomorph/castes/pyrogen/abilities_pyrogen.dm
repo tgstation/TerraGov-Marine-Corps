@@ -26,10 +26,6 @@
 
 	add_cooldown()
 
-/datum/action/ability/activable/xeno/charge/fire_charge/on_cooldown_finish()
-	to_chat(xeno_owner, span_xenodanger("Our exoskeleton quivers as we are ready to scorch using [name] again."))
-	playsound(xeno_owner, 'sound/effects/alien/new_larva.ogg', 50, 0, 1)
-
 /datum/action/ability/activable/xeno/charge/fire_charge/ai_should_start_consider()
 	return TRUE
 
