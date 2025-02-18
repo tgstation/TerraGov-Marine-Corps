@@ -16,6 +16,8 @@
 
 	var/no_ff = TRUE //make this a flag
 
+	var/need_weapons = TRUE //flag
+
 	var/list/start_fire_chat = list("Get some!!", "Engaging!", "Open fire!", "Firing!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Fire!!", "Gun them down!", "Shooting!", "Weapons free!", "Fuck you!!")
 
 	var/list/reloading_chat = list("Reloading!", "Cover me, reloading!", "Changing mag!", "Out of ammo!")
@@ -28,17 +30,31 @@
 
 	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
 
+	//todo: these vars can be moved into weapon process unless I need to use them somewhere other than the equip procs
 	var/obj/item/weapon/primary
 	var/obj/item/weapon/secondary
 
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
+	if(need_weapons)
+		equip_weaponry()
+
 	if(gun)
 		check_gun_fire(atom_to_walk_to)
 
-/datum/ai_behavior/human/proc/equip_weaponry()
+/datum/ai_behavior/human/proc/equip_weaponry(datum/source)
+	SIGNAL_HANDLER
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
-		return FALSE
+		need_weapons = TRUE
+		return
+	if(!length(mob_inventory.melee_list) && !length(mob_inventory.gun_list))
+		need_weapons = TRUE
+		//find_weapon() //todo
+		return
+	INVOKE_ASYNC(src, PROC_REF(do_equip_weaponry))
+
+/datum/ai_behavior/human/proc/do_equip_weaponry()
+
 	var/obj/item/weapon/high_dam_melee_choice
 	var/obj/item/weapon/melee_choice
 	var/obj/item/weapon/shield/shield_choice
@@ -83,6 +99,7 @@
 		else if(!secondary && primary != high_dam_melee_choice  && !(primary.item_flags & TWOHANDED)) //no double melee
 			secondary = melee_choice
 
+	need_weapons = FALSE //fuck you if you somehow are unable to equip weapons at this point, you probs have no arms or something.
 	//equip block
 	if(primary)
 		if(isgun(primary))
@@ -92,7 +109,7 @@
 				primary.attack_self(mob_parent)
 		else
 			equip_melee(primary)
-			primary.attack_self(mob_parent)
+			primary.attack_self(mob_parent) //this failed on disarm (not knockover)
 	if(secondary)
 		if(isgun(secondary))
 			equip_gun(secondary)
@@ -124,12 +141,13 @@
 
 	RegisterSignals(new_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE) //hacky, can probs unfuck this later
 	melee_weapon = new_weapon
-	if(new_weapon == primary)
+	if(new_weapon == primary) //todo:this is triggering on rifles etc
 		distance_to_maintain = 1
 	return TRUE
 
 /datum/ai_behavior/human/proc/unequip_weapon(obj/item/weapon/old_weapon)
 	UnregisterSignal(old_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
+	need_weapons = TRUE //this may actually make a lot of stuff redundant? need to test
 	if(gun == old_weapon)
 		stop_fire()
 		gun = null
@@ -154,8 +172,8 @@
 			return //cant shoot yet
 		if(prob(90))
 			mob_parent.say(pick(start_fire_chat))
-		gun.start_fire(mob_parent, target, get_turf(target))
-		gun_firing = TRUE
+		if(gun.start_fire(mob_parent, target, get_turf(target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE) //failed to fire or not autofire
+			gun_firing = TRUE
 		return
 
 	if(fire_result == AI_FIRE_CAN_HIT)
@@ -206,6 +224,7 @@
 
 
 /datum/ai_behavior/human/proc/stop_fire()
+	//is there any case where we want this triggering from COMSIG_GUN_STOP_FIRE ?
 	gun_firing = FALSE
 	gun.stop_fire()
 
@@ -216,16 +235,32 @@
 	*/
 
 	var/obj/item/new_ammo
-	find_ammo_loop:
-		for(var/ammo_type in gun.allowed_ammo_types)
-			for(var/obj/item/ammo_option AS in mob_inventory.ammo_list)
-				if(ammo_option.type != ammo_type)
+	if(gun.reciever_flags & AMMO_RECIEVER_HANDFULS)
+		handful_loop:
+			for(var/obj/item/ammo_magazine/handful_option in mob_inventory.ammo_list)
+				if(handful_option.caliber != gun.caliber)
 					continue
-				new_ammo = ammo_option
-				break find_ammo_loop
+				new_ammo = handful_option
+				break handful_loop
+	else
+		find_ammo_loop:
+			for(var/ammo_type in gun.allowed_ammo_types)
+				for(var/obj/item/ammo_option AS in mob_inventory.ammo_list)
+					if(ammo_option.type != ammo_type)
+						continue
+					new_ammo = ammo_option
+					break find_ammo_loop
 	if(!new_ammo)
-		return //insert messaging etc
+		//drop gun - what about empty magharnessed guns tho? oh well
+		//insert messaging etc
+		return
 	if(prob(90))
 		mob_parent.say(pick(reloading_chat))
 	//new_ammo.attackby(gun, mob_parent)
-	gun.reload(new_ammo, mob_parent) //skips tac reload but w/e. use above if we want it
+	if((gun.reciever_flags & AMMO_RECIEVER_HANDFULS))
+		var/obj/item/ammo_magazine/handful_mag = new_ammo
+		while(handful_mag.current_rounds)
+			if(!gun.reload(handful_mag, mob_parent))
+				return
+	gun.reload(new_ammo, mob_parent) //skips tac reload but w/e. use above if we want it, although then we need to check for skills...
+	//note: force arg on reload will allow reloading closed chamber weapons, but also bypasses reload delays... funny rapid rockets
