@@ -10,7 +10,7 @@
 	hud_state_empty = "revolver_empty"
 	handful_amount = 7
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 45
+	damage = 0
 	penetration = 10
 	sundering = 3
 
@@ -19,7 +19,7 @@
 
 /datum/ammo/bullet/revolver/tp44
 	name = "standard revolver bullet"
-	damage = 40
+	damage = 0
 	penetration = 15
 	sundering = 1
 
@@ -29,7 +29,7 @@
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
 	hud_state = "revolver_small"
-	damage = 30
+	damage = 0
 
 /datum/ammo/bullet/revolver/small/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	staggerstun(target_mob, proj, slowdown = 0.5)
@@ -41,7 +41,7 @@
 	damage_falloff = 0
 	accuracy = 15
 	accurate_range = 15
-	damage = 30
+	damage = 0
 	penetration = 10
 
 /datum/ammo/bullet/revolver/judge
@@ -51,13 +51,13 @@
 	damage_falloff = 0
 	accuracy = 15
 	accurate_range = 15
-	damage = 70
+	damage = 0
 	penetration = 10
 
 /datum/ammo/bullet/revolver/heavy
 	name = "heavy revolver bullet"
 	hud_state = "revolver_heavy"
-	damage = 50
+	damage = 0
 	penetration = 5
 	accuracy = -10
 
@@ -69,7 +69,7 @@
 /datum/ammo/bullet/revolver/t76
 	name = "magnum bullet"
 	handful_amount = 5
-	damage = 100
+	damage = 0
 	penetration = 40
 	sundering = 0.5
 
@@ -80,7 +80,7 @@
 	name = "high-impact revolver bullet"
 	hud_state = "revolver_impact"
 	handful_amount = 6
-	damage = 50
+	damage = 0
 	penetration = 20
 	sundering = 3
 
