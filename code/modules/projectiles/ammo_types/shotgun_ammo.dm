@@ -17,7 +17,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 3
 	max_range = 15
-	damage = 100
+	damage = 0
 	penetration = 20
 	sundering = 7.5
 
@@ -31,7 +31,7 @@
 	icon_state = "beanbag"
 	hud_state = "shotgun_beanbag"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 15
+	damage = 0
 	max_range = 15
 	shrapnel_chance = 0
 	accuracy = 5
@@ -46,7 +46,7 @@
 	damage_type = BRUTE
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
 	max_range = 15
-	damage = 70
+	damage = 0
 	penetration = 15
 	sundering = 2
 	bullet_color = COLOR_TAN_ORANGE
@@ -66,14 +66,14 @@
 	accuracy_var_low = 8
 	accuracy_var_high = 8
 	max_range = 15
-	damage = 50
+	damage = 0
 	damage_falloff = 0.5
 	penetration = 15
 	sundering = 7
 
 /datum/ammo/bullet/shotgun/flechette/flechette_spread
 	name = "additional flechette"
-	damage = 40
+	damage = 0
 	sundering = 5
 
 /datum/ammo/bullet/shotgun/buckshot
@@ -88,7 +88,7 @@
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
+	damage = 0
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -104,7 +104,7 @@
 	accurate_range = 3
 	max_range = 10
 	shrapnel_chance = 15
-	damage = 30
+	damage = 0
 	damage_falloff = 3
 
 /datum/ammo/bullet/hefa_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -117,7 +117,7 @@
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 40
+	damage = 0
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/frag
@@ -131,7 +131,7 @@
 	accuracy_var_low = 8
 	accuracy_var_high = 8
 	max_range = 15
-	damage = 10
+	damage = 0
 	damage_falloff = 0.5
 	penetration = 0
 
@@ -152,7 +152,7 @@
 
 /datum/ammo/bullet/shotgun/frag/frag_spread
 	name = "additional frag shell"
-	damage = 5
+	damage = 0
 
 /datum/ammo/bullet/shotgun/sx16_buckshot
 	name = "shotgun buckshot shell" //16 gauge is between 12 and 410 bore.
@@ -165,7 +165,7 @@
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
-	damage = 25
+	damage = 0
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/sx16_buckshot/spread
@@ -183,7 +183,7 @@
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 50
+	damage = 0
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/heavy_buckshot/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -196,7 +196,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 4
 	max_range = 15
-	damage = 125
+	damage = 0
 	penetration = 50
 	sundering = 15
 
@@ -210,7 +210,7 @@
 	accuracy_var_high = 9
 	accurate_range = 3
 	max_range = 10
-	damage = 50
+	damage = 0
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/sx16_flechette
@@ -224,7 +224,7 @@
 	accuracy_var_low = 7
 	accuracy_var_high = 7
 	max_range = 15
-	damage = 15
+	damage = 0
 	damage_falloff = 0.5
 	penetration = 15
 
@@ -237,7 +237,7 @@
 	hud_state = "shotgun_slug"
 	shell_speed = 3
 	max_range = 15
-	damage = 40
+	damage = 0
 	penetration = 20
 
 /datum/ammo/bullet/shotgun/sx16_slug/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -253,7 +253,7 @@
 	bonus_projectiles_amount = 4
 	bonus_projectiles_scatter = 2
 	max_range = 15
-	damage = 17
+	damage = 0
 	damage_falloff = 0.25
 	penetration = 15
 	sundering = 1.5
@@ -268,7 +268,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 3
 	max_range = 15
-	damage = 60
+	damage = 0
 	penetration = 30
 	sundering = 3.5
 
@@ -286,12 +286,12 @@
 	accuracy_var_low = 10
 	accuracy_var_high = 10
 	max_range = 10
-	damage = 50
+	damage = 0
 	damage_falloff = 1
 
 /datum/ammo/bullet/shotgun/mbx900_buckshot/spread
 	name = "additional buckshot"
-	damage = 40
+	damage = 0
 
 /datum/ammo/bullet/shotgun/mbx900_sabot
 	name = "light shotgun sabot shell"
@@ -301,7 +301,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	shell_speed = 5
 	max_range = 30
-	damage = 50
+	damage = 0
 	penetration = 40
 	sundering = 3
 
@@ -312,7 +312,7 @@
 	hud_state = "shotgun_tracker"
 	shell_speed = 4
 	max_range = 30
-	damage = 5
+	damage = 0
 	penetration = 100
 
 /datum/ammo/bullet/shotgun/mbx900_tracker/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -325,7 +325,7 @@
 	hud_state = "shotgun_tracker"
 	shell_speed = 4
 	max_range = 30
-	damage = 5
+	damage = 0
 	penetration = 100
 
 /datum/ammo/bullet/shotgun/tracker/on_hit_mob(mob/target_mob, obj/projectile/proj)
