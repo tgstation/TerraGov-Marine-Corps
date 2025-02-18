@@ -174,11 +174,26 @@
 
 
 /datum/ai_behavior/human/proc/stop_fire()
-	gun.stop_fire()
 	gun_firing = FALSE
+	gun.stop_fire()
 
 /datum/ai_behavior/human/proc/reload_gun()
-	if(prob(90))
-		mob_parent.say(pick(reloading_chat))
+	/* for testing
 	var/new_ammo = gun.default_ammo_type ? gun.default_ammo_type : gun.allowed_ammo_types[1]
 	gun.reload(new new_ammo, mob_parent) //maybe add force = TRUE, if needed
+	*/
+
+	var/obj/item/new_ammo
+	find_ammo_loop:
+		for(var/ammo_type in gun.allowed_ammo_types)
+			for(var/obj/item/ammo_option AS in mob_inventory.ammo_list)
+				if(ammo_option.type != ammo_type)
+					continue
+				new_ammo = ammo_option
+				break find_ammo_loop
+	if(!new_ammo)
+		return //insert messaging etc
+	if(prob(90))
+		mob_parent.say(pick(reloading_chat))
+	//new_ammo.attackby(gun, mob_parent)
+	gun.reload(new_ammo, mob_parent) //skips tac reload but w/e. use above if we want it

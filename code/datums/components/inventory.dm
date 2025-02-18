@@ -149,19 +149,19 @@
 ///Adds an item to this list
 /datum/inventory/proc/gun_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	gun_list += new_item
-	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(gun_list_removal))
+	gun_list |= new_item
+	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(gun_list_removal), TRUE)//COMSIG_MOVABLE_MOVED is sent AFTER COMSIG_ATOM_ENTERED.. this is fucking annoying but eh
 
 ///Adds an item to this list
 /datum/inventory/proc/melee_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	melee_list += new_item
-	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(melee_list_removal))
+	melee_list |= new_item
+	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(melee_list_removal), TRUE)
 
 ///Adds an item to the relevant med lists
 /datum/inventory/proc/medical_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(medical_list_removal))
+	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(medical_list_removal), TRUE)
 	var/generic = TRUE
 	for(var/damtype in GLOB.ai_damtype_to_heal_list)
 		if(!(new_item.type in GLOB.ai_damtype_to_heal_list[damtype]))
@@ -182,6 +182,9 @@
 			if(PAIN)
 				type_list = pain_list
 
+		if(new_item in type_list) //we can just early return here, due to the signal issue mentioned above
+			return
+
 		type_list += new_item
 		var/list/old_list = type_list.Copy()
 		type_list.Cut()
@@ -191,25 +194,25 @@
 					type_list += thing
 
 	if(generic)
-		medical_list += new_item
+		medical_list |= new_item
 
 ///Adds an item to this list
 /datum/inventory/proc/ammo_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	ammo_list += new_item
-	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(ammo_list_removal))
+	ammo_list |= new_item
+	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(ammo_list_removal), TRUE)
 
 ///Adds an item to this list
 /datum/inventory/proc/grenade_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	grenade_list += new_item
-	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(grenade_list_removal))
+	grenade_list |= new_item
+	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(grenade_list_removal), TRUE)
 
 ///Adds an item to this list
 /datum/inventory/proc/engineering_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	engineering_list += new_item
-	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(engineering_list_removal))
+	engineering_list |= new_item
+	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(engineering_list_removal), TRUE)
 
 ///Removes an item from this list
 /datum/inventory/proc/gun_list_removal(obj/item/moving_item)
