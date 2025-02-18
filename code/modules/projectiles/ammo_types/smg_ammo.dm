@@ -11,7 +11,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accuracy_var_low = 7
 	accuracy_var_high = 7
-	damage = 20
+	damage = 0
 	accurate_range = 4
 	damage_falloff = 1
 	sundering = 0.5
@@ -20,7 +20,7 @@
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
 	hud_state = "smg_ap"
-	damage = 15
+	damage = 0
 	penetration = 30
 	sundering = 3
 
@@ -32,7 +32,7 @@
 	name = "hollow-point submachinegun bullet"
 	hud_state = "pistol_squash"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 35
+	damage = 0
 	penetration = 0
 	damage_falloff = 3
 	shrapnel_chance = 45
@@ -41,7 +41,7 @@
 	name = "squash-head submachinegun bullet"
 	hud_state = "pistol_squash"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 15
+	damage = 0
 	penetration = 15
 	armor_type = BOMB
 	sundering = 1
@@ -63,13 +63,13 @@
 	name = "incendiary submachinegun bullet"
 	hud_state = "smg_fire"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
-	damage = 18
+	damage = 0
 	penetration = 0
 
 /datum/ammo/bullet/smg/rad
 	name = "radioactive submachinegun bullet"
 	hud_state = "smg_rad"
-	damage = 15
+	damage = 0
 	penetration = 15
 	sundering = 1
 
@@ -83,6 +83,6 @@
 
 /datum/ammo/bullet/smg/heavy
 	name = "heavy submachinegun bullet"
-	damage = 27.5
+	damage = 0
 	penetration = 10
 	sundering = 1
