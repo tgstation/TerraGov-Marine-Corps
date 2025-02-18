@@ -10,9 +10,9 @@
 /datum/ai_behavior/human/proc/weapon_process()
 	if(!gun && (!melee_weapon || !(melee_weapon.item_flags & WIELDED)))
 		equip_gun(TRUE)
-	if(gun)
+	if(gun) //todo: probably make this behavior more gun specific, so smg/shotgun tries to stay closer
 		distance_to_maintain = 5
-		check_gun_fire(atom_to_walk_to)
+		check_gun_fire(atom_to_walk_to) //todo: shotguns (probably revovlers too) fail checks and don't fire. db fires once?
 	else
 		distance_to_maintain = 1 //maybe placeholder. melee range
 
@@ -21,14 +21,9 @@
 		return FALSE
 	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item()) //does this stop wielding or toggling in any cases?
 		return FALSE
-	var/list/gun_list = mob_inventory.gun_list
-	//for(var/thing AS in mob_parent)
-	//	if(!istype(thing, /obj/item/weapon/gun))
-	//		continue
-	//	gun_list += thing
 
 	var/obj/item/weapon/weapon_to_equip
-	for(var/obj/item/weapon/gun/option AS in gun_list)
+	for(var/obj/item/weapon/gun/option AS in mob_inventory.gun_list)
 		if(option.w_class <= weapon_to_equip?.w_class) //omega hacky for now, but generally we want to equip the bigger gun
 			continue
 		weapon_to_equip = option
@@ -38,7 +33,7 @@
 			equip_melee()
 		return FALSE
 
-	mob_parent.temporarilyRemoveItemFromInventory(weapon_to_equip) //isn't unequippping it correctly. still has item_flags & IN_STORAGE
+	mob_parent.temporarilyRemoveItemFromInventory(weapon_to_equip)
 	if(!mob_parent.put_in_hands(weapon_to_equip))
 		if(!melee_weapon && alt_equip)
 			equip_melee()
@@ -59,14 +54,9 @@
 		return FALSE
 	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item()) //does this stop wielding or toggling in any cases?
 		return FALSE
-	var/list/melee_list = mob_inventory.melee_list
-	//for(var/thing AS in mob_parent)
-	//	if(!istype(thing, /obj/item/weapon))
-	//		continue
-	//	melee_list += thing
 
 	var/obj/item/weapon/weapon_to_equip
-	for(var/obj/item/weapon/option AS in melee_list)
+	for(var/obj/item/weapon/option AS in mob_inventory.melee_list)
 		if(option.force <= weapon_to_equip?.force)
 			continue
 		//todo: account for wield force and activated force
@@ -94,17 +84,13 @@
 /datum/ai_behavior/human/proc/unequip_gun()
 	UnregisterSignal(gun, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 	gun = null
+	stop_fire()
 
 /datum/ai_behavior/human/proc/unequip_melee_weapon()
 	UnregisterSignal(melee_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
 	melee_weapon = null
 
 /datum/ai_behavior/human/proc/check_gun_fire(atom/target)
-	if((gun.loc != mob_parent) || ((mob_parent.l_hand != gun) && (mob_parent.r_hand != gun))) //placeholder, remove when sigs set up
-		gun = null
-		gun_firing = FALSE
-		return
-
 	if(QDELETED(target))
 		stop_fire()
 		return

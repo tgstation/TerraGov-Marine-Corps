@@ -83,11 +83,11 @@
 	if(equipped_item in equipped_list)
 		return
 	RegisterSignal(equipped_item, COMSIG_ATOM_ENTERED, PROC_REF(item_stored))
-	RegisterSignal(equipped_item, COMSIG_MOB_ITEM_UNEQUIPPED, PROC_REF(item_unequipped))
+	RegisterSignal(equipped_item, COMSIG_ITEM_REMOVED_INVENTORY, PROC_REF(item_unequipped))
 	equipped_list += equipped_item
 
 	var/list/sort_list = list(equipped_item)
-	sort_list += get_stored(equipped_item) //internal storage stuff isnt populated if the mob has ai BEFORE the outfit
+	sort_list += get_stored(equipped_item) NOTE TO SELF://internal storage stuff isnt populated if the mob has ai BEFORE the outfit
 
 	for(var/thing in sort_list)
 		sort_item(thing)
@@ -102,17 +102,20 @@
 	return sort_list
 
 ///Handles the removal of an item
-/datum/inventory/proc/item_unequipped(mob/user, obj/item/unequipped_item)
+/datum/inventory/proc/item_unequipped(obj/item/unequipped_item, mob/user)
 	SIGNAL_HANDLER
-	UnregisterSignal(unequipped_item, list(COMSIG_ATOM_ENTERED, COMSIG_MOB_ITEM_UNEQUIPPED))
+	if(unequipped_item.loc == owner)
+		return //still equipped
+	UnregisterSignal(unequipped_item, list(COMSIG_ATOM_ENTERED, COMSIG_ITEM_REMOVED_INVENTORY))
 	equipped_list -= unequipped_item
 
 	var/list/sort_list = list(unequipped_item)
-	sort_list += get_stored(unequipped_item) //internal storage stuff isnt populated if the mob has ai BEFORE the outfit
+	sort_list += get_stored(unequipped_item)
 
 	for(var/obj/item/thing AS in sort_list)
 		SEND_SIGNAL(thing, COMSIG_INVENTORY_STORED_REMOVAL)
 
+//wrapper due to arg order, can probs remove tho
 /datum/inventory/proc/item_stored(mob/store_mob, obj/item/new_item, slot)
 	SIGNAL_HANDLER
 	sort_item(new_item)
@@ -121,7 +124,7 @@
 	if(isgun(new_item))
 		gun_list_add(new_item)
 		return
-	if(istype(new_item, /obj/item/weapon))
+	if(istype(new_item, /obj/item/weapon) && !istype(new_item, /obj/item/weapon/twohanded/offhand)) //todo: boot knives excludes since theyre a different path
 		melee_list_add(new_item)
 		return
 	if(istype(new_item, /obj/item/explosive/grenade))
@@ -211,18 +214,24 @@
 ///Removes an item from this list
 /datum/inventory/proc/gun_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
+	if(!QDELETED(moving_item) && moving_item.loc == owner)
+		return //still in inventory
 	gun_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list
 /datum/inventory/proc/melee_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
+	if(!QDELETED(moving_item) && moving_item.loc == owner)
+		return //still in inventory
 	melee_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list
 /datum/inventory/proc/medical_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
+	if(!QDELETED(moving_item) && moving_item.loc == owner)
+		return //still in inventory
 	medical_list -= moving_item
 	brute_list -= moving_item
 	burn_list -= moving_item
@@ -235,18 +244,24 @@
 ///Removes an item from this list
 /datum/inventory/proc/ammo_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
+	if(!QDELETED(moving_item) && moving_item.loc == owner)
+		return //still in inventory
 	ammo_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list
 /datum/inventory/proc/grenade_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
+	if(!QDELETED(moving_item) && moving_item.loc == owner)
+		return //still in inventory
 	grenade_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
 ///Removes an item from this list
 /datum/inventory/proc/engineering_list_removal(obj/item/moving_item)
 	SIGNAL_HANDLER
+	if(!QDELETED(moving_item) && moving_item.loc == owner)
+		return //still in inventory
 	engineering_list -= moving_item
 	UnregisterSignal(moving_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL))
 
