@@ -367,7 +367,10 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 /datum/ai_behavior/proc/ai_complete_move(move_dir, try_sidestep = TRUE)
 	var/turf/new_loc = get_step(mob_parent, move_dir)
 	if(new_loc?.atom_flags & AI_BLOCKED)
-		return
+		move_dir = pick(LeftAndRightOfDir(move_dir))
+		new_loc = get_step(mob_parent, move_dir)
+		if(new_loc?.atom_flags & AI_BLOCKED)
+			return
 	if(!mob_parent.Move(new_loc, move_dir))
 		if(!(SEND_SIGNAL(mob_parent, COMSIG_OBSTRUCTED_MOVE, move_dir) & COMSIG_OBSTACLE_DEALT_WITH) && try_sidestep)
 			ai_complete_move(pick(LeftAndRightOfDir(move_dir)), FALSE)
