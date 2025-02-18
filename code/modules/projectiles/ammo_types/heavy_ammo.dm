@@ -12,7 +12,7 @@
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	accurate_range = 12
-	damage = 40 //Reduced damage due to vastly increased mobility
+	damage = 0 //Reduced damage due to vastly increased mobility
 	penetration = 40 //Reduced penetration due to vastly increased mobility
 	accuracy = 5
 	barricade_clear_distance = 2
@@ -26,7 +26,7 @@
 	accuracy_var_low = 3
 	accuracy_var_high = 3
 	accurate_range = 5
-	damage = 25
+	damage = 0
 	penetration = 15
 	shrapnel_chance = 25
 	sundering = 2.5
@@ -36,7 +36,7 @@
 	hud_state = "minigun"
 	hud_state_empty = "smartgun_empty"
 	accurate_range = 6
-	damage = 16
+	damage = 0
 	penetration = 15
 	shrapnel_chance = 15
 	sundering = 1.5
@@ -44,7 +44,7 @@
 
 /datum/ammo/bullet/minigun/ltaap
 	name = "chaingun bullet"
-	damage = 15
+	damage = 0
 	penetration = 20
 	sundering = 1
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_IFF
@@ -54,7 +54,7 @@
 	barricade_clear_distance = 4
 
 /datum/ammo/bullet/minigun/ltaap/hv
-	damage = 35
+	damage = 0
 	penetration = 30
 	ammo_behavior_flags = AMMO_BALLISTIC
 	hud_state = "hivelo_impact"
@@ -68,7 +68,7 @@
 	accurate_range_min = 6
 	accuracy_var_low = 3
 	accuracy_var_high = 3
-	damage = 30
+	damage = 0
 	penetration = 50
 	sundering = 1
 	max_range = 35
@@ -93,7 +93,7 @@
 	name = "autocannon smart-detonating bullet"
 	hud_state = "sniper_flak"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_TARGET_TURF
-	damage = 50
+	damage = 0
 	penetration = 30
 	sundering = 5
 	max_range = 30
@@ -113,7 +113,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
 	max_range = 14
-	damage = 150
+	damage = 0
 	penetration = 100
 	sundering = 20
 	bullet_color = COLOR_PULSE_BLUE
@@ -130,7 +130,7 @@
 	hud_state = "railgun_hvap"
 	shell_speed = 5
 	max_range = 21
-	damage = 100
+	damage = 0
 	penetration = 30
 	sundering = 50
 
@@ -141,7 +141,7 @@
 	name = "smart armor piercing railgun slug"
 	hud_state = "railgun_smart"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE|AMMO_IFF
-	damage = 100
+	damage = 0
 	penetration = 20
 	sundering = 20
 
@@ -155,7 +155,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOVABLE|AMMO_UNWIELDY
 	shell_speed = 4
 	max_range = 14
-	damage = 150
+	damage = 0
 	penetration = 100
 	sundering = 0
 	bullet_color = COLOR_PULSE_BLUE
@@ -173,7 +173,7 @@
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 5
 	max_range = 31
-	damage = 70
+	damage = 0
 	penetration = 35
 	sundering = 5
 	bullet_color = COLOR_PULSE_BLUE
@@ -190,7 +190,7 @@
 	hud_state = "alloy_spike"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 40
+	damage = 0
 	penetration = 40
 	sundering = 3.5
 
@@ -199,7 +199,7 @@
 	hud_state = "alloy_spike"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 25
+	damage = 0
 	penetration = 30
 	sundering = 0.5
 	max_range = 21
