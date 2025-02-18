@@ -11,7 +11,7 @@
 	hud_state_empty = "rifle_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accurate_range = 10
-	damage = 25
+	damage = 0
 	penetration = 20
 	damage_falloff = 0.25
 
@@ -21,11 +21,11 @@
 /datum/ammo/bullet/turret/gauss
 	name = "heavy gauss turret slug"
 	hud_state = "rifle_heavy"
-	damage = 60
+	damage = 0
 
 /datum/ammo/bullet/turret/mini
 	name = "small caliber autocannon bullet"
-	damage = 20
+	damage = 0
 	penetration = 20
 	ammo_behavior_flags = AMMO_BALLISTIC
 
@@ -34,7 +34,7 @@
 	name = "antimaterial bullet"
 	bullet_color = COLOR_SOFT_RED
 	accurate_range = 21
-	damage = 80
+	damage = 0
 	penetration = 50
 	sundering = 5
 
@@ -46,7 +46,7 @@
 	bonus_projectiles_amount = 6
 	bonus_projectiles_scatter = 5
 	max_range = 10
-	damage = 20
+	damage = 0
 	penetration = 40
 	damage_falloff = 1
 
@@ -56,7 +56,7 @@
 /datum/ammo/bullet/turret/spread
 	name = "additional buckshot"
 	max_range = 10
-	damage = 20
+	damage = 0
 	penetration = 40
 	damage_falloff = 1
 
@@ -68,7 +68,7 @@
 	damage_type = BURN
 	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_FLAME
 	armor_type = FIRE
-	damage = 30
+	damage = 0
 	max_range = 7
 	bullet_color = LIGHT_COLOR_FIRE
 
