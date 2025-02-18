@@ -18,7 +18,7 @@
 	accuracy = 40
 	accurate_range = 20
 	max_range = 14
-	damage = 200
+	damage = 0
 	penetration = 100
 	sundering = 100
 	bullet_color = LIGHT_COLOR_FIRE
@@ -47,12 +47,12 @@
 	hud_state = "rocket_he"
 	accurate_range = 20
 	max_range = 14
-	damage = 200
+	damage = 0
 	penetration = 75
 	sundering = 50
 
 /datum/ammo/rocket/he/unguided
-	damage = 100
+	damage = 0
 	ammo_behavior_flags = AMMO_SNIPER // We want this one to specifically go over onscreen range.
 
 /datum/ammo/rocket/he/unguided/drop_nade(turf/T)
@@ -62,7 +62,7 @@
 	name = "kinetic penetrator"
 	icon_state = "rocket_ap"
 	hud_state = "rocket_ap"
-	damage = 340
+	damage = 0
 	accurate_range = 15
 	penetration = 200
 	sundering = 0
@@ -77,7 +77,7 @@
 	accurate_range = 15
 	max_range = 40
 	penetration = 50
-	damage = 200
+	damage = 0
 	hud_state = "bigshell_he"
 	sundering = 20
 	barricade_clear_distance = 4
@@ -103,7 +103,7 @@
 	hud_state = "bigshell_he"
 	hud_state_empty = "shell_empty"
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_TARGET_TURF
-	damage = 100
+	damage = 0
 	penetration = 200
 	max_range = 30
 	shell_speed = 0.75
@@ -122,7 +122,7 @@
 	icon_state = "apfds"
 	hud_state = "bigshell_apfds"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	damage = 275
+	damage = 0
 	penetration = 75
 	shell_speed = 7
 	accurate_range = 24
@@ -147,7 +147,7 @@
 	damage_type = BURN
 	accuracy_var_low = 7
 	accurate_range = 15
-	damage = 200
+	damage = 0
 	penetration = 75
 	max_range = 20
 	sundering = 100
@@ -164,7 +164,7 @@
 	name = "thermobaric rocket"
 	hud_state = "rocket_thermobaric"
 	ammo_behavior_flags = AMMO_SNIPER
-	damage = 40
+	damage = 0
 	penetration = 25
 	max_range = 30
 	sundering = 2
@@ -195,13 +195,13 @@
 	name = "super thermobaric rocket"
 	hud_state = "rocket_thermobaric"
 	ammo_behavior_flags = AMMO_SNIPER
-	damage = 200
+	damage = 0
 	penetration = 75
 	max_range = 30
 	sundering = 100
 
 /datum/ammo/rocket/wp/unguided
-	damage = 100
+	damage = 0
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_INCENDIARY
 	effect_radius = 5
 
@@ -216,7 +216,7 @@
 	shell_speed = 2
 	accurate_range = 20
 	max_range = 30
-	damage = 100
+	damage = 0
 	penetration = 50
 	sundering = 50
 
@@ -228,7 +228,7 @@
 	icon_state = "recoilless_rifle_heat"
 	hud_state = "shell_heat"
 	ammo_behavior_flags = AMMO_SNIPER
-	damage = 200
+	damage = 0
 	penetration = 100
 	sundering = 0
 
@@ -256,7 +256,7 @@
 	ammo_behavior_flags = AMMO_SNIPER //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
 	max_range = 20
-	damage = 75
+	damage = 0
 	penetration = 50
 	sundering = 25
 
@@ -270,7 +270,7 @@
 	ammo_behavior_flags = AMMO_SNIPER
 	accurate_range = 21
 	max_range = 21
-	damage = 10
+	damage = 0
 	penetration = 0
 	sundering = 0
 	/// Smoke type created when projectile detonates.
@@ -310,7 +310,7 @@
 	ammo_behavior_flags = AMMO_SNIPER //We want this to specifically go farther than onscreen range.
 	accurate_range = 15
 	max_range = 20
-	damage = 75
+	damage = 0
 	penetration = 15
 	sundering = 25
 
@@ -319,7 +319,7 @@
 
 /datum/ammo/rocket/oneuse
 	name = "explosive rocket"
-	damage = 100
+	damage = 0
 	penetration = 50
 	sundering = 25
 	max_range = 30
@@ -331,7 +331,7 @@
 	ammo_behavior_flags = AMMO_SNIPER
 	accurate_range = 15
 	max_range = 20
-	damage = 80
+	damage = 0
 	penetration = 20
 	sundering = 20
 
@@ -344,7 +344,7 @@
 	hud_state = "rpg_le"
 	ammo_behavior_flags = AMMO_SNIPER
 	accurate_range = 15
-	damage = 60
+	damage = 0
 	penetration = 10
 
 /datum/ammo/rocket/som/light/drop_nade(turf/T)
@@ -354,7 +354,7 @@
 	name = "thermobaric RPG"
 	icon_state = "rpg_thermobaric"
 	hud_state = "rpg_thermobaric"
-	damage = 30
+	damage = 0
 
 /datum/ammo/rocket/som/thermobaric/drop_nade(turf/T)
 	explosion(T, 0, 4, 5, 0, 4, 4)
@@ -363,7 +363,7 @@
 	name = "HEAT RPG"
 	icon_state = "rpg_heat"
 	hud_state = "rpg_heat"
-	damage = 200
+	damage = 0
 	penetration = 100
 	sundering = 0
 	accuracy = -10 //Not designed for anti human use
@@ -382,7 +382,7 @@
 	name = "irrad RPG"
 	icon_state = "rpg_rad"
 	hud_state = "rpg_rad"
-	damage = 50
+	damage = 0
 	penetration = 10
 	///Base strength of the rad effects
 	var/rad_strength = 20
@@ -420,7 +420,7 @@
 	hud_state_empty = "shell_empty"
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_PASS_THROUGH_TURF
 	shell_speed = 2
-	damage = 90
+	damage = 0
 	penetration = 30
 	sundering = 25
 	max_range = 30
@@ -437,7 +437,7 @@
 	hud_state = "shell_apcr"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
 	shell_speed = 4
-	damage = 200
+	damage = 0
 	penetration = 70
 	sundering = 25
 
@@ -460,7 +460,7 @@
 	name = "low velocity high explosive shell"
 	hud_state = "shell_he"
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
-	damage = 50
+	damage = 0
 	penetration = 50
 	sundering = 35
 
@@ -475,7 +475,7 @@
 	hud_state = "shell_le"
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER
 	shell_speed = 3
-	damage = 30
+	damage = 0
 	penetration = 30
 	sundering = 5
 	bonus_projectiles_type = /datum/ammo/bullet/atgun_spread
@@ -519,7 +519,7 @@
 	icon_state = "apfds"
 	hud_state = "bigshell_apfds"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_PASS_THROUGH_TURF|AMMO_PASS_THROUGH_MOVABLE
-	damage = 300
+	damage = 0
 	penetration = 75
 	shell_speed = 4
 	accurate_range = 24
@@ -573,7 +573,7 @@
 /datum/ammo/rocket/homing/microrocket /// this is basically a tgmc version of the above
 	name = "homing HE microrocket"
 	shell_speed = 0.3
-	damage = 75
+	damage = 0
 	penetration = 40
 	sundering = 10
 	turn_rate = 10
@@ -587,7 +587,7 @@
 	ammo_behavior_flags = AMMO_TARGET_TURF|AMMO_SNIPER|AMMO_SPECIAL_PROCESS|AMMO_IFF
 	shell_speed = 0.3
 	turn_rate = 10
-	damage = 60
+	damage = 0
 	penetration = 30
 	sundering = 10
 	max_range = 30
@@ -607,7 +607,7 @@
 	accuracy = 10
 	accurate_range = 20
 	max_range = 40
-	damage = 300
+	damage = 0
 	penetration = 50
 	sundering = 10
 	bullet_color = LIGHT_COLOR_TUNGSTEN
@@ -621,7 +621,7 @@
 
 /datum/ammo/rocket/coilgun/low
 	shell_speed = 2
-	damage = 150
+	damage = 0
 	penetration = 40
 	sundering = 5
 
@@ -631,7 +631,7 @@
 /datum/ammo/rocket/coilgun/high
 	damage_falloff = 0
 	shell_speed = 4
-	damage = 450
+	damage = 0
 	penetration = 70
 	sundering = 20
 	ammo_behavior_flags = AMMO_SNIPER|AMMO_PASS_THROUGH_MOB
@@ -654,7 +654,7 @@
 	hud_state = "shell_heat"
 	ammo_behavior_flags = AMMO_SNIPER
 	shell_speed = 1
-	damage = 180
+	damage = 0
 	penetration = 100
 	sundering = 0
 
@@ -663,7 +663,7 @@
 
 /datum/ammo/rocket/icc_lowvel_high_explosive
 	name = "Low Velocity HE shell"
-	damage = 50
+	damage = 0
 	penetration = 100
 	sundering = 10
 	ammo_behavior_flags = AMMO_SNIPER // We want this to specifically go over onscreen range.
