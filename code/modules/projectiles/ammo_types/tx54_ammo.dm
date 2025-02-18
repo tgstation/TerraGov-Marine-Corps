@@ -19,7 +19,7 @@
 	shell_speed = 2
 	accurate_range = 12
 	max_range = 15
-	damage = 12			//impact damage from a grenade to the dome
+	damage = 0			//impact damage from a grenade to the dome
 	penetration = 0
 	sundering = 0
 	shrapnel_chance = 0
@@ -134,7 +134,7 @@
 	accuracy_var_high = 5
 	max_range = 4
 	shell_speed = 3
-	damage = 20
+	damage = 0
 	penetration = 20
 	sundering = 1.5
 	damage_falloff = 0
@@ -145,7 +145,7 @@
 /datum/ammo/bullet/tx54_spread/incendiary
 	name = "incendiary flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
-	damage = 15
+	damage = 0
 	penetration = 10
 	sundering = 1.5
 
@@ -164,7 +164,7 @@
 	name = "chemical bomblet"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_LEAVE_TURF
 	max_range = 3
-	damage = 5
+	damage = 0
 	penetration = 0
 	sundering = 0
 	shrapnel_chance = 0
@@ -201,7 +201,7 @@
 	name = "chemical bomblet"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_LEAVE_TURF
 	max_range = 4
-	damage = 5
+	damage = 0
 	penetration = 0
 	sundering = 0
 	///The foam type loaded in this ammo
@@ -233,7 +233,7 @@
 /datum/ammo/tx54/tank_cannister
 	name = "cannister"
 	icon_state = "cannister_shot"
-	damage = 30
+	damage = 0
 	penetration = 0
 	ammo_behavior_flags = AMMO_SNIPER
 	damage_falloff = 0.5
@@ -248,7 +248,7 @@
 	icon_state = "flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB
 	max_range = 7
-	damage = 50
+	damage = 0
 	penetration = 15
 	sundering = 2
 	damage_falloff = 1
