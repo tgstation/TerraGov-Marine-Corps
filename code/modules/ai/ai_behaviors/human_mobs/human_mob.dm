@@ -107,7 +107,7 @@
 			if(next_target == atom_to_walk_to)//We didn't find a better target
 				return
 			change_action(null, next_target)//We found a better target, change course!
-		if(MOVING_TO_SAFETY)
+		if(MOVING_TO_SAFETY) //todo: look at this and unfuck some of this behavior
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction)
 			if(!next_target)//We are safe, try to find some weeds
 				target_distance = initial(target_distance)

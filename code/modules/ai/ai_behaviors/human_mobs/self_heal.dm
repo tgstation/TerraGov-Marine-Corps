@@ -82,16 +82,17 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	PAIN = GLOB.ai_pain_heal_items,
 ))
 
-
-/obj/item/reagent_containers/hypospray/advanced/tramadol
 //obj/item/stack/medical/splint
 
 /datum/ai_behavior/human
+	var/list/healing_chat = list("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!.")
+
+	var/list/retreating_chat = list("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Medic!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning.")
 
 ///Will try healing if possible
 /datum/ai_behavior/human/proc/try_heal()
 	if(prob(50))
-		mob_parent.say(pick("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!."))
+		mob_parent.say(pick(healing_chat))
 	var/mob/living/living_parent = mob_parent
 
 	if(living_parent.on_fire)
@@ -162,7 +163,7 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	if(!next_target)
 		return
 	if(prob(50))
-		mob_parent.say(pick("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Medic!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning."))
+		mob_parent.say(pick(retreating_chat))
 	target_distance = 15
 	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
 	UnregisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN)
