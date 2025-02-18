@@ -375,7 +375,7 @@
 
 /datum/reagent/consumable/doctor_delight
 	name = "The Doctor's Delight"
-	description = "A gulp a day keeps the Medibot away! A mixture of juices that heals most damage types fairly quickly at the cost of hunger."
+	description = "A gulp a day keeps the Medibot away!... Or so the advertisements claim, anyway."
 	color = "#FF8CFF" // rgb: 255, 140, 255
 	taste_description = "homely fruit"
 	custom_metabolism = REAGENTS_METABOLISM * 0.25 //Twice the rate of paracetamol
