@@ -34,7 +34,6 @@
 	idle_inside_loop = /datum/looping_sound/som_tank_idle_interior
 	drive_loop = /datum/looping_sound/som_tank_drive
 	drive_inside_loop = /datum/looping_sound/som_tank_drive_interior
-	vis_range_mod = 4
 	faction = FACTION_SOM
 
 /obj/vehicle/sealed/armored/multitile/som_tank/Initialize(mapload)

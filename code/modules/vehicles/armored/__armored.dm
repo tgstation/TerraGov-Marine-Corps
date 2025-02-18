@@ -59,9 +59,18 @@
 	///Our driver utility module
 	var/obj/item/tank_module/gunner_utility_module
 	///list of weapons we allow to attach
-	var/list/permitted_weapons = list(/obj/item/armored_weapon, /obj/item/armored_weapon/ltaap, /obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer)
+	var/list/permitted_weapons = list(
+		/obj/item/armored_weapon,
+		/obj/item/armored_weapon/ltaap,
+		/obj/item/armored_weapon/secondary_weapon,
+		/obj/item/armored_weapon/secondary_flamer,
+	)
 	///list of mods we allow to attach
-	var/list/permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/passenger, /obj/item/tank_module/ability/zoom)
+	var/list/permitted_mods = list(
+		/obj/item/tank_module/overdrive,
+		/obj/item/tank_module/passenger,
+		/obj/item/tank_module/ability/zoom
+	)
 	///Minimap flags to use for this vehcile
 	var/minimap_flags = MINIMAP_FLAG_MARINE
 	///minimap iconstate to use for this vehicle
@@ -79,8 +88,6 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
-	///modifier to view range when manning a control chair
-	var/vis_range_mod = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
@@ -303,7 +310,7 @@
 		living_occupant.Stagger((6 - severity) SECONDS)
 
 /obj/vehicle/sealed/armored/process()
-	if(cooldown_vehicle_move + 1 > world.time)
+	if(cooldown_vehicle_move + 10 > world.time)
 		return // tank is currently trying to move around
 	if(drive_loop?.timer_id)
 		drive_loop.stop()
