@@ -4,6 +4,9 @@
 
 #define COMSIG_INVENTORY_STORED_REMOVAL "inventory_stored_removal"
 
+#define COMSIG_INVENTORY_DAT_GUN_ADDED "inventory_dat_gun_added"
+#define COMSIG_INVENTORY_DAT_MELEE_ADDED "inventory_dat_melee_added"
+
 /datum/inventory
 	var/mob/living/owner
 
@@ -151,12 +154,14 @@
 	SIGNAL_HANDLER
 	gun_list |= new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(gun_list_removal), TRUE)//COMSIG_MOVABLE_MOVED is sent AFTER COMSIG_ATOM_ENTERED.. this is fucking annoying but eh
+	SEND_SIGNAL(src, COMSIG_INVENTORY_DAT_GUN_ADDED)
 
 ///Adds an item to this list
 /datum/inventory/proc/melee_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
 	melee_list |= new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(melee_list_removal), TRUE)
+	SEND_SIGNAL(src, COMSIG_INVENTORY_DAT_MELEE_ADDED)
 
 ///Adds an item to the relevant med lists
 /datum/inventory/proc/medical_list_add(obj/item/new_item)

@@ -28,89 +28,121 @@
 
 	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
 
+	var/obj/item/weapon/primary
+	var/obj/item/weapon/secondary
+
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
-	if(!gun && (!melee_weapon || !(melee_weapon.item_flags & WIELDED)))
-		equip_gun(TRUE)
-	if(gun) //todo: probably make this behavior more gun specific, so smg/shotgun tries to stay closer
-		distance_to_maintain = 5
-		check_gun_fire(atom_to_walk_to) //todo: shotguns (probably revovlers too) fail checks and don't fire. db fires once?
-	else
-		distance_to_maintain = 1 //maybe placeholder. melee range
+	if(gun)
+		check_gun_fire(atom_to_walk_to)
 
-/datum/ai_behavior/human/proc/equip_gun(alt_equip = FALSE) //unsafe atm, need to reg sigs for it being moved etc.
+/datum/ai_behavior/human/proc/equip_weaponry()
 	if(mob_parent.incapacitated() || mob_parent.lying_angle)
 		return FALSE
-	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item()) //does this stop wielding or toggling in any cases?
-		return FALSE
+	var/obj/item/weapon/high_dam_melee_choice
+	var/obj/item/weapon/melee_choice
+	var/obj/item/weapon/shield/shield_choice
+	var/obj/item/weapon/gun/big_gun_choice
+	var/obj/item/weapon/gun/small_gun_choice
 
-	var/obj/item/weapon/weapon_to_equip
-	for(var/obj/item/weapon/gun/option AS in mob_inventory.gun_list)
-		if(option.w_class <= weapon_to_equip?.w_class) //omega hacky for now, but generally we want to equip the bigger gun
-			continue
-		weapon_to_equip = option
-
-	if(!weapon_to_equip)
-		if(!melee_weapon && alt_equip)
-			equip_melee()
-		return FALSE
-
-	mob_parent.temporarilyRemoveItemFromInventory(weapon_to_equip)
-	if(!mob_parent.put_in_hands(weapon_to_equip))
-		if(!melee_weapon && alt_equip)
-			equip_melee()
-		return FALSE
-
-	gun = weapon_to_equip
-	RegisterSignals(weapon_to_equip, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_gun))
-
-	if(!melee_weapon)
-		weapon_to_equip.attack_self(mob_parent) //wield gun
-	//are any (fireable) guns even NOT wieldable?
-	if(!(weapon_to_equip.item_flags & WIELDED) && alt_equip) //spare hand, lets fill it
-		equip_melee()
-	return TRUE
-
-/datum/ai_behavior/human/proc/equip_melee(alt_equip = FALSE) //unsafe atm, need to reg sigs for it being moved etc.
-	if(mob_parent.incapacitated() || mob_parent.lying_angle)
-		return FALSE
-	if(mob_parent.get_active_held_item() && mob_parent.get_inactive_held_item()) //does this stop wielding or toggling in any cases?
-		return FALSE
-
-	var/obj/item/weapon/weapon_to_equip
-	for(var/obj/item/weapon/option AS in mob_inventory.melee_list)
-		if(option.force <= weapon_to_equip?.force)
-			continue
+	//melee loop
+	for(var/obj/item/weapon/melee_option AS in mob_inventory.melee_list)
+		if((melee_option.force >= 50) && (melee_option.force >= high_dam_melee_choice?.force))
+			high_dam_melee_choice = melee_option
+		else if((melee_option.force < 50) && (melee_option.force >= melee_option?.force))
+			melee_choice = melee_option
+		if(istype(melee_option, /obj/item/weapon/shield) && melee_option.obj_integrity > shield_choice?.obj_integrity) //shield could be the best melee weapon full stop
+			shield_choice = melee_option
 		//todo: account for wield force and activated force
-		weapon_to_equip = option
 
-	if(!weapon_to_equip)
-		if(!melee_weapon && alt_equip)
-			equip_melee()
-		return FALSE
+	//gun loop
+	for(var/obj/item/weapon/gun/gun_option AS in mob_inventory.gun_list)
+		if((gun_option.w_class >= 4) && ((gun_option.fire_delay * 0.1 * gun_option.ammo_datum_type::damage) > (big_gun_choice?.fire_delay * 0.1 * big_gun_choice?.ammo_datum_type::damage)))
+			big_gun_choice = gun_option
+		if((gun_option.w_class < 4) && ((gun_option.fire_delay * 0.1 * gun_option.ammo_datum_type::damage) > (small_gun_choice?.fire_delay * 0.1 * small_gun_choice?.ammo_datum_type::damage)))
+			small_gun_choice = gun_option
 
-	mob_parent.temporarilyRemoveItemFromInventory(weapon_to_equip)
-	if(!mob_parent.put_in_hands(weapon_to_equip))
-		if(!melee_weapon && alt_equip)
-			equip_melee()
-		return FALSE
+	//logic block
+	if(shield_choice)
+		secondary = shield_choice
+	if(high_dam_melee_choice)
+		primary = high_dam_melee_choice
+	if(big_gun_choice)
+		if(!primary)
+			primary = big_gun_choice
+		else if(!secondary)
+			secondary = big_gun_choice
+	if(small_gun_choice)
+		if(!primary)
+			primary = small_gun_choice
+		else if(!secondary && primary != big_gun_choice && !(primary.item_flags & TWOHANDED)) //no double guns for now
+			secondary = small_gun_choice
+	if(melee_choice) //this will never equip pistol dagger. not necessarily a bad thing though
+		if(!primary)
+			primary = melee_choice
+		else if(!secondary && primary != high_dam_melee_choice  && !(primary.item_flags & TWOHANDED)) //no double melee
+			secondary = melee_choice
 
-	melee_weapon = weapon_to_equip
-	RegisterSignals(weapon_to_equip, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_melee_weapon))
+	//equip block
+	if(primary)
+		if(isgun(primary))
+			equip_gun(primary)
+			if(!secondary)
+				equip_melee(primary)
+				primary.attack_self(mob_parent)
+		else
+			equip_melee(primary)
+			primary.attack_self(mob_parent)
+	if(secondary)
+		if(isgun(secondary))
+			equip_gun(secondary)
+		else
+			if(isgun(primary))
+				equip_melee(secondary)
+			else //this is purely for shield, but we still need to reg the sigs. yes this is horrible
+				RegisterSignals(secondary, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE)
+			equip_melee(secondary)
+			secondary.attack_self(mob_parent)
 
-	melee_weapon.attack_self(mob_parent) //toggle on or wield 2 hander
-	if(!(weapon_to_equip.item_flags & WIELDED) && alt_equip) //spare hand, lets fill it
-		equip_gun()
+/datum/ai_behavior/human/proc/equip_gun(obj/item/weapon/new_weapon)
+	if(new_weapon != mob_parent.l_hand && new_weapon != mob_parent.r_hand)
+		mob_parent.temporarilyRemoveItemFromInventory(new_weapon)
+		if(!mob_parent.put_in_hands(new_weapon))
+			return FALSE
+
+	RegisterSignals(new_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE) //hacky, can probs unfuck this later
+	gun = new_weapon
+	if(new_weapon == primary)
+		distance_to_maintain = 5
 	return TRUE
 
-/datum/ai_behavior/human/proc/unequip_gun()
-	UnregisterSignal(gun, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
-	stop_fire()
-	gun = null
+/datum/ai_behavior/human/proc/equip_melee(obj/item/weapon/new_weapon)
+	if(new_weapon != mob_parent.l_hand && new_weapon != mob_parent.r_hand)
+		mob_parent.temporarilyRemoveItemFromInventory(new_weapon)
+		if(!mob_parent.put_in_hands(new_weapon))
+			return FALSE
 
-/datum/ai_behavior/human/proc/unequip_melee_weapon()
-	UnregisterSignal(melee_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
-	melee_weapon = null
+	RegisterSignals(new_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE) //hacky, can probs unfuck this later
+	melee_weapon = new_weapon
+	if(new_weapon == primary)
+		distance_to_maintain = 1
+	return TRUE
+
+/datum/ai_behavior/human/proc/unequip_weapon(obj/item/weapon/old_weapon)
+	UnregisterSignal(old_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED))
+	if(gun == old_weapon)
+		stop_fire()
+		gun = null
+		distance_to_maintain = 1
+	if(melee_weapon == old_weapon)
+		melee_weapon = null
+	if(primary == old_weapon)
+		primary = null
+	if(secondary == old_weapon)
+		secondary = null
+
+
+//shooting stuff
 
 /datum/ai_behavior/human/proc/check_gun_fire(atom/target) //change this horrible name oh god
 	var/fire_result = can_shoot_target(target)

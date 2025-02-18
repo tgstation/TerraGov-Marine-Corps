@@ -25,7 +25,7 @@
 
 /datum/ai_behavior/xeno/clean_escorted_atom()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom))
+	RegisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY, PROC_REF(global_set_escorted_atom)) //this shit is still fucked, but (probs) not due to my changes
 
 /datum/ai_behavior/xeno/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
 	if(!weak_escort)

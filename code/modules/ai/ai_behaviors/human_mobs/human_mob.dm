@@ -33,6 +33,9 @@
 	src.can_heal = can_heal
 
 	mob_inventory = new(mob_parent)
+	if(uses_weapons)
+		RegisterSignals(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED), PROC_REF(equip_weaponry)) //todo: this will spam if ai mobs are given loadouts instead of the other way around... but avoid that
+		equip_weaponry()
 
 /datum/ai_behavior/human/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
@@ -209,7 +212,7 @@
 	if(get_dist(attacked, mob_parent) > 1)
 		return
 	mob_parent.face_atom(attacked)
-	if(melee_weapon) //unsafe atm, need sigs for if its dropped
+	if(melee_weapon)
 		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, attacked)
 		return
 	mob_parent.UnarmedAttack(attacked, TRUE)
