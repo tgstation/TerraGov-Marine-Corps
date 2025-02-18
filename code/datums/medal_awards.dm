@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(medal_awards)
 	// award if the player exists and is not dead
 	if(!isnull(awardee) && !isnull(medal.medal_uid))
 		var/datum/medal_persistence/medals = get_medal_persistence_for_ckey(awardee.ckey)
-		var/datum/persistent_medal_info/medal = medals.award_medal(
+		var/datum/persistent_medal_info/medal_info = medals.award_medal(
 			awardee.real_name,
 			medal.recipient_rank,
 			issuer.real_name,
@@ -71,7 +71,7 @@ GLOBAL_LIST_EMPTY(medal_awards)
 			medal.medal_uid,
 			medal_citation,
 		)
-		medal.medal = medal
+		medal_info.medal = medal
 
 	if(!(awardee.real_name in GLOB.medal_awards))
 		var/datum/recipient_awards/new_award = new /datum/recipient_awards

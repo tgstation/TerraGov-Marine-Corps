@@ -130,7 +130,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 		if(!isnull(user))
 			to_chat(user, span_warning("Failed to save medal!"))
 		qdel(query)
-		continue
+		return
 
 	medal.id = query.last_insert_id
 	qdel(query)
@@ -231,10 +231,10 @@ GLOBAL_VAR(medal_persistence_sealed)
 	if(isnull(uid_map))
 		uid_map = list()
 		for(var/datum/persistent_medal_info/medal_type as anything in subtypesof(/obj/item/clothing/tie/medal))
-			var/metal_uid = medal_type::medal_uid
-			if(medal_uid in uid_map)
-				stack_trace("duplicate medal_uid found: `[medal_uid]` in `[medal_type]` and `[uid_map[medal_uid]]`")
-			uid_map[medal.medal_uid] = medal_type
+			var/uid = medal_type::medal_uid
+			if(uid in uid_map)
+				stack_trace("duplicate medal_uid found: `[uid]` in `[medal_type]` and `[uid_map[uid]]`")
+			uid_map[uid] = medal_type
 	return uid_map[medal_uid]
 
 /**
