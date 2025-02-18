@@ -237,3 +237,18 @@
   yyzsong:
   - qol: Acid Maws and Acid Jaws now notify ghosts when fired, and their point of
       impact may be jumped to.
+2025-02-18:
+  Kuro020:
+  - balance: The marine standard smg, heavy smg and machine pistol's mag sizes have
+      been increased
+  - balance: The ammo packets for the smgs have had their total bullet count increased
+  Lumipharon:
+  - balance: Tank turret rotation adds a delay to firing
+  Mannybrado:
+  - balance: nerf laser turret range by 1 tile (8 -> 7)
+  nervere:
+  - refactor: Window flashing (i.e. taskbar notifications) while a ghost will now
+      only trigger for stuff related to round re-entry and adminhelps, instead of
+      it happening for everything.
+  novaepee:
+  - imageadd: Another lobby art from Zaha!
