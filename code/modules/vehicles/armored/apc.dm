@@ -7,7 +7,7 @@
 	interior = /datum/interior/armored/transport
 	armored_flags = ARMORED_HAS_HEADLIGHTS|ARMORED_PURCHASABLE_TRANSPORT
 	permitted_weapons = list(/obj/item/armored_weapon/secondary_weapon, /obj/item/armored_weapon/secondary_flamer, /obj/item/armored_weapon/tow, /obj/item/armored_weapon/microrocket_pod)
-	permitted_mods = list(/obj/item/tank_module/overdrive, /obj/item/tank_module/ability/zoom, /obj/item/tank_module/interior/medical, /obj/item/tank_module/interior/clone_bay)
+	permitted_mods = list(/obj/item/tank_module/interior/medical, /obj/item/tank_module/interior/clone_bay)
 	required_entry_skill = SKILL_LARGE_VEHICLE_DEFAULT
 	minimap_icon_state = "apc"
 	turret_icon = null
