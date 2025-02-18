@@ -9,7 +9,7 @@
 	hud_state = "pistol"
 	hud_state_empty = "pistol_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 20
+	damage = 0
 	penetration = 5
 	accurate_range = 5
 	sundering = 1
@@ -17,14 +17,14 @@
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
 	hud_state = "pistol_light"
-	damage = 15
+	damage = 0
 	penetration = 5
 	sundering = 0.5
 
 /datum/ammo/bullet/pistol/tiny/ap
 	name = "light pistol bullet"
 	hud_state = "pistol_lightap"
-	damage = 22.5
+	damage = 0
 	penetration = 15 //So it can actually hurt something.
 	sundering = 0.5
 	damage_falloff = 1.5
@@ -33,7 +33,7 @@
 /datum/ammo/bullet/pistol/tranq
 	name = "tranq bullet"
 	hud_state = "pistol_tranq"
-	damage = 25
+	damage = 0
 	damage_type = STAMINA
 
 /datum/ammo/bullet/pistol/tranq/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -54,7 +54,7 @@
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
 	hud_state = "pistol_ap"
-	damage = 20
+	damage = 0
 	penetration = 12.5
 	shrapnel_chance = 15
 	sundering = 0.5
@@ -62,7 +62,7 @@
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
 	hud_state = "pistol_heavy"
-	damage = 30
+	damage = 0
 	penetration = 5
 	shrapnel_chance = 25
 	sundering = 2.15
@@ -70,7 +70,7 @@
 /datum/ammo/bullet/pistol/superheavy
 	name = "high impact pistol bullet"
 	hud_state = "pistol_superheavy"
-	damage = 45
+	damage = 0
 	penetration = 15
 	sundering = 3
 	damage_falloff = 0.75
@@ -91,13 +91,13 @@
 	damage_type = BURN
 	shrapnel_chance = 0
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
-	damage = 20
+	damage = 0
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
 	hud_state = "pistol_squash"
 	accuracy = 5
-	damage = 32
+	damage = 0
 	penetration = 10
 	shrapnel_chance = 25
 	sundering = 2
@@ -111,7 +111,7 @@
 	damage_type = BURN
 	ammo_behavior_flags = AMMO_INCENDIARY
 	shell_speed = 2
-	damage = 15
+	damage = 0
 
 
 /datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/target_mob, obj/projectile/proj)
