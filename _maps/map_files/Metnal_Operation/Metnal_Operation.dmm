@@ -1450,12 +1450,6 @@
 	},
 /turf/open/floor/prison/plate,
 /area/metnal/inside/quartermaster)
-"aZX" = (
-/obj/structure/nuke_disk_candidate{
-	set_associations = list("set1")
-	},
-/turf/open/floor/tile/dark,
-/area/metnal/inside/engineering)
 "bao" = (
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/plating/mainship,
@@ -46325,7 +46319,7 @@ jWq
 ogE
 iOC
 giG
-aZX
+iOC
 nxO
 hyA
 ujt
