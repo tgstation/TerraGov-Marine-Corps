@@ -15,7 +15,7 @@
 	identifier = IDENTIFIER_HUMAN
 	base_action = ESCORTING_ATOM
 	target_distance = 9
-	minimum_health = 0 //test only
+	minimum_health = 0.3 //placeholder value
 	//is_offered_on_creation = FALSE
 	///List of abilities to consider doing every Process()
 	var/list/ability_list = list()
@@ -239,12 +239,6 @@
 				return
 
 	return ..()
-
-///Move the ai mob on top of the structure
-/datum/ai_behavior/human/proc/climb_structure(turf/window_turf)
-	mob_parent.loc = window_turf
-	mob_parent.last_move_time = world.time
-	LAZYDECREMENT(mob_parent.do_actions, window_turf)
 
 /datum/ai_behavior/human/ranged
 	distance_to_maintain = 5

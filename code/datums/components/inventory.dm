@@ -87,7 +87,7 @@
 	equipped_list += equipped_item
 
 	var/list/sort_list = list(equipped_item)
-	sort_list += get_stored(equipped_item) NOTE TO SELF://internal storage stuff isnt populated if the mob has ai BEFORE the outfit
+	sort_list += get_stored(equipped_item) //NOTE TO SELF:internal storage stuff isnt populated if the mob has ai BEFORE the outfit
 
 	for(var/thing in sort_list)
 		sort_item(thing)
