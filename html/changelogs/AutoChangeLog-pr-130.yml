@@ -1,0 +1,4 @@
+author: "Meghan-Rossi"
+delete-after: True
+changes:
+  - bugfix: "LOOCs are now only visible on the same z-level, instead of being limited by x and y coordinates only."
