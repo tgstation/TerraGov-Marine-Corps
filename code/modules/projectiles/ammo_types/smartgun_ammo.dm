@@ -11,7 +11,7 @@
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accurate_range = 12
-	damage = 20
+	damage = 0
 	penetration = 15
 	sundering = 2
 
@@ -22,7 +22,7 @@
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
 	accurate_range = 12
-	damage = 10
+	damage = 0
 	penetration = 25
 	sundering = 1
 	damage_falloff = 0.1
@@ -33,7 +33,7 @@
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 40
+	damage = 0
 	max_range = 40
 	penetration = 30
 	sundering = 5
@@ -49,7 +49,7 @@
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_IFF
 	accurate_range = 12
-	damage = 30
+	damage = 0
 	penetration = 10
 	sundering = 1
 
@@ -59,7 +59,7 @@
 	hud_state = "spotrifle"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 50
+	damage = 0
 	max_range = 40
 	penetration = 25
 	sundering = 5
@@ -68,7 +68,7 @@
 /datum/ammo/bullet/spottingrifle/highimpact
 	name = "smart high-impact spotting bullet"
 	hud_state = "spotrifle_impact"
-	damage = 10
+	damage = 0
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/highimpact/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -77,7 +77,7 @@
 /datum/ammo/bullet/spottingrifle/heavyrubber
 	name = "smart heavy-rubber spotting bullet"
 	hud_state = "spotrifle_rubber"
-	damage = 10
+	damage = 0
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -86,7 +86,7 @@
 /datum/ammo/bullet/spottingrifle/plasmaloss
 	name = "smart tanglefoot spotting bullet"
 	hud_state = "spotrifle_plasmaloss"
-	damage = 10
+	damage = 0
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/plasmaloss/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -97,7 +97,7 @@
 /datum/ammo/bullet/spottingrifle/tungsten
 	name = "smart tungsten spotting bullet"
 	hud_state = "spotrifle_tungsten"
-	damage = 10
+	damage = 0
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/tungsten/on_hit_mob(mob/target_mob, obj/projectile/proj)
@@ -106,7 +106,7 @@
 /datum/ammo/bullet/spottingrifle/flak
 	name = "smart flak spotting bullet"
 	hud_state = "spotrifle_flak"
-	damage = 60
+	damage = 0
 	sundering = 0.5
 	airburst_multiplier = 0.5
 
@@ -118,5 +118,5 @@
 	hud_state = "spotrifle_incend"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_INCENDIARY
 	damage_type = BURN
-	damage = 10
+	damage = 0
 	sundering = 0.5
