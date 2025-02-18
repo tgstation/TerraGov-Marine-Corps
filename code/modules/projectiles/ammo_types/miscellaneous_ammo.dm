@@ -15,7 +15,7 @@
 	accuracy_var_low = 15
 	accuracy_var_high = 5
 	max_range = 6
-	damage = 30
+	damage = 0
 	penetration = 20
 	sundering = 3
 	damage_falloff = 0
@@ -23,7 +23,7 @@
 /datum/ammo/bullet/atgun_spread/incendiary
 	name = "incendiary flechette"
 	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_PASS_THROUGH_MOB|AMMO_INCENDIARY|AMMO_LEAVE_TURF
-	damage = 20
+	damage = 0
 	penetration = 10
 	sundering = 1.5
 
@@ -52,7 +52,7 @@
 	accurate_range = 15
 	damage_type = STAMINA
 	armor_type = BIO
-	damage = 70
+	damage = 0
 	penetration = 0
 	shrapnel_chance = 0
 	///percentage of xenos total plasma to drain when hit by a pepperball
@@ -68,7 +68,7 @@
 			X.use_plasma(plasma_drain)
 
 /datum/ammo/bullet/pepperball/pepperball_mini
-	damage = 40
+	damage = 0
 	drain_multiplier = 0.03
 	plasma_drain = 15
 
@@ -83,7 +83,7 @@
 	accuracy = 20
 	accurate_range = 15
 	max_range = 15
-	damage = 40
+	damage = 0
 	penetration = 50
 	shrapnel_chance = 75
 
@@ -96,7 +96,7 @@
 	ammo_behavior_flags = AMMO_INCENDIARY|AMMO_FLAME|AMMO_TARGET_TURF
 	armor_type = FIRE
 	max_range = 7
-	damage = 31
+	damage = 0
 	damage_falloff = 0
 	incendiary_strength = 30 //Firestacks cap at 20, but that's after armor.
 	bullet_color = LIGHT_COLOR_FIRE
@@ -145,7 +145,7 @@
 	icon_state = "spray_flamer"
 	max_range = 7
 	shell_speed = 0.3
-	damage = 6
+	damage = 0
 	burntime = 0.3 SECONDS
 
 /datum/ammo/flamethrower/sentry // is also a spray
@@ -153,7 +153,7 @@
 	icon_state = "spray_flamer"
 	max_range = 7
 	shell_speed = 0.3
-	damage = 6
+	damage = 0
 	burntime = 0.3 SECONDS
 
 /datum/ammo/water
@@ -191,7 +191,7 @@
 
 /datum/ammo/rocket/toy
 	name = "\improper toy rocket"
-	damage = 1
+	damage = 0
 
 /datum/ammo/rocket/toy/on_hit_mob(mob/target_mob, obj/projectile/proj)
 	to_chat(target_mob, "<font size=6 color=red>NO BUGS</font>")
@@ -212,7 +212,7 @@
 	var/nade_type = /obj/item/explosive/grenade
 	icon_state = "grenade"
 	armor_type = BOMB
-	damage = 15
+	damage = 0
 	accuracy = 15
 	max_range = 10
 
