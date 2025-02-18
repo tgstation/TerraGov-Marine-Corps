@@ -17,7 +17,7 @@
 	soft_armor = list(MELEE = 40, BULLET = 100 , LASER = 90, ENERGY = 60, BOMB = 60, BIO = 60, FIRE = 40, ACID = 40)
 	max_occupants = 20 //Clown car? Clown car.
 	enter_delay = 0.5 SECONDS
-	ram_damage = 25
+	ram_damage = 20
 	move_delay = 0.35 SECONDS
 	easy_load_list = list(
 		/obj/item/ammo_magazine/tank,
