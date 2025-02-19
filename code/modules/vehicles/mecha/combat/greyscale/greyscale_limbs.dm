@@ -2,6 +2,16 @@
 GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 
 /datum/mech_limb
+	/// Reference to the mech we are attached too. Remember, this will clean us up ind estroy already
+	var/obj/vehicle/sealed/mecha/combat/greyscale/owner
+	/// The name for this limb to display when examined
+	var/display_name = "CODE ERROR OOPSIE"
+	/// If set, instead of relaying damage to the owning mech will instead relay damage to this limb and will call [/proc/on_disable]
+	var/part_health = 0
+	/// for part_health, if the targetted zone is in this list will make this limb take damage
+	var/list/def_zones
+	///whether this has taken full damage and become disabled
+	var/disabled = FALSE
 	///when attached the mechs health is modified by this amount
 	var/health_mod = 0
 	///when attached the mechs armor is modified by this amount
@@ -21,6 +31,9 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 		return
 	update_colors(arglist(colors))
 
+/datum/mech_limb/Destroy(force, ...)
+	owner = null
+	return ..()
 
 /datum/mech_limb/proc/update_colors(color_one, color_two, ...)
 	if(!color_one && !color_two)
@@ -53,12 +66,16 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	if(istype(attached.limbs[slot], /datum/mech_limb))
 		attached.limbs[slot].detach(attached)
 	attached.limbs[slot] = src
+	owner = attached
 	attached.max_integrity += health_mod
 	attached.obj_integrity += health_mod
 	attached.move_delay += slowdown_mod
 
 	attached.soft_armor = attached.soft_armor.modifyRating(arglist(soft_armor_mod))
-	attached.update_icon()
+	attached.update_icon(UPDATE_OVERLAYS)
+	if(part_health)
+		RegisterSignal(attached, COMSIG_ATOM_TAKE_DAMAGE, PROC_REF(intercept_damage))
+		RegisterSignal(attached, COMSIG_ATOM_REPAIR_DAMAGE, PROC_REF(intercept_repair))
 
 /**
  * proc to call to remove this limb to the mech object
@@ -71,6 +88,8 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 		if(detached.limbs[slot] != src)
 			continue
 		detached.limbs[slot] = null
+	UnregisterSignal(owner, list(COMSIG_ATOM_TAKE_DAMAGE, COMSIG_ATOM_REPAIR_DAMAGE))
+	owner = null
 	detached.max_integrity -= health_mod
 	detached.obj_integrity -= health_mod
 	detached.move_delay -= slowdown_mod
@@ -79,17 +98,55 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	for(var/armor_type in removed_armor)
 		removed_armor[armor_type] = -removed_armor[armor_type]
 	detached.soft_armor = detached.soft_armor.modifyRating(arglist(removed_armor))
-	detached.update_icon()
+	detached.update_icon(UPDATE_OVERLAYS)
 
 /// Returns an overlay or list of overlays to use on the mech
 /datum/mech_limb/proc/get_overlays()
+	if(disabled)
+		return null
 	return icon2appearance(overlay_icon)
 
+/datum/mech_limb/proc/intercept_damage(datum/source, damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
+	SIGNAL_HANDLER
+	if(!(blame_mob.zone_selected in def_zones))
+		return
+	if(part_health <= 0)
+		return COMPONENT_NO_TAKE_DAMAGE // intentional, you're supposed to swap target yourself properly?
+	part_health = max(0, part_health-damage_amount)
+	if(part_health <= 0)
+		disable()
+	return COMPONENT_NO_TAKE_DAMAGE
 
+/datum/mech_limb/proc/intercept_repair(datum/source, repair_amount, mob/user)
+	SIGNAL_HANDLER
+	if(!(user.zone_selected in def_zones))
+		return
+	if(part_health >= initial(part_health))
+		return COMPONENT_NO_TAKE_DAMAGE // intentional, you're supposed to swap target yourself properly?
+	part_health = min(initial(part_health), part_health+repair_amount)
+	if(part_health >= initial(part_health))
+		reenable()
+	return COMPONENT_NO_TAKE_DAMAGE
+
+/datum/mech_limb/proc/disable()
+	if(disabled)
+		return FALSE
+	disabled = TRUE
+	owner.update_icon(UPDATE_OVERLAYS)
+	return TRUE
+
+/datum/mech_limb/proc/reenable()
+	if(!disabled)
+		return
+	disabled = FALSE
+	owner.update_icon(UPDATE_OVERLAYS)
+	return TRUE
 
 ///MECH HEAD
 /datum/mech_limb/head
-	health_mod = 200
+	display_name = "Head"
+	part_health = 200
+	def_zones = list(BODY_ZONE_HEAD, BODY_ZONE_PRECISE_EYES, BODY_ZONE_PRECISE_MOUTH)
 	/// greyscale config datum for the visor
 	var/visor_config
 	///amount accuracy is modified by
@@ -112,10 +169,28 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	visor_icon = SSgreyscale.GetColoredIconByType(visor_config, visor_color)
 
 /datum/mech_limb/head/get_overlays()
+	if(disabled)
+		return null
 	return list(icon2appearance(overlay_icon), icon2appearance(visor_icon), emissive_appearance(visor_icon))
 
+/datum/mech_limb/head/disable()
+	. = ..()
+	if(!.)
+		return
+	for(var/mob/occupant in owner.occupants)
+		REMOVE_TRAIT(occupant, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+		occupant.update_sight()
+
+/datum/mech_limb/head/reenable()
+	. = ..()
+	if(!.)
+		return
+	for(var/mob/occupant in owner.occupants)
+		ADD_TRAIT(occupant, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+		occupant.update_sight()
+
 /datum/mech_limb/head/recon
-	health_mod = 180
+	part_health = 180
 	accuracy_mod = 1.3
 	slowdown_mod = 0.2
 	light_range = 7
@@ -123,7 +198,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	visor_config = /datum/greyscale_config/mech_recon/visor
 
 /datum/mech_limb/head/assault
-	health_mod = 260
+	part_health = 260
 	accuracy_mod = 1.4
 	slowdown_mod = 0.3
 	light_range = 6
@@ -131,7 +206,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	visor_config = /datum/greyscale_config/mech_assault/visor
 
 /datum/mech_limb/head/vanguard
-	health_mod = 340
+	part_health = 340
 	accuracy_mod = 1.5
 	slowdown_mod = 0.4
 	light_range = 5
@@ -173,7 +248,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 
 //MECH ARMS
 /datum/mech_limb/arm
-	health_mod = 200
+	part_health = 200
 	/// Amount scatter is modified by when this arm shoots
 	var/scatter_mod = 0
 	///which slot this arm is equipped to when it is attached
@@ -181,6 +256,12 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 
 /datum/mech_limb/arm/attach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
 	arm_slot = slot
+	if(arm_slot == MECH_GREY_R_ARM) // this is on purpose, bodyzones dont cleanly convert to mech limbs
+		def_zones = list(BODY_ZONE_R_ARM, BODY_ZONE_PRECISE_R_HAND)
+		display_name = "Right Arm"
+	else
+		def_zones = list(BODY_ZONE_L_ARM, BODY_ZONE_PRECISE_L_HAND)
+		display_name = "Left Arm"
 	return ..()
 
 /datum/mech_limb/arm/detach(obj/vehicle/sealed/mecha/combat/greyscale/attached, slot)
@@ -188,24 +269,26 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	return ..()
 
 /datum/mech_limb/arm/get_overlays()
+	if(disabled)
+		return null
 	if(arm_slot == MECH_GREY_R_ARM)
 		return image(overlay_icon, icon_state = "right")
 	return image(overlay_icon, icon_state = "left")
 
 /datum/mech_limb/arm/recon
-	health_mod = 180
+	part_health = 180
 	scatter_mod = -10
 	slowdown_mod = 0.2
 	greyscale_type = /datum/greyscale_config/mech_recon/arms
 
 /datum/mech_limb/arm/assault
-	health_mod = 260
+	part_health = 260
 	scatter_mod = -17
 	slowdown_mod = 0.3
 	greyscale_type = /datum/greyscale_config/mech_assault/arms
 
 /datum/mech_limb/arm/vanguard
-	health_mod = 340
+	part_health = 340
 	scatter_mod = -25
 	slowdown_mod = 0.4
 	greyscale_type = /datum/greyscale_config/mech_vanguard/arms
@@ -213,19 +296,33 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 
 //MECH LEGS
 /datum/mech_limb/legs
-	health_mod = 300
+	display_name = "Legs"
+	part_health = 300
+	def_zones = list(BODY_ZONE_L_LEG, BODY_ZONE_R_LEG, BODY_ZONE_PRECISE_L_FOOT, BODY_ZONE_PRECISE_R_FOOT)
+
+/datum/mech_limb/legs/disable()
+	. = ..()
+	if(!.)
+		return
+	owner.move_delay *= 2
+
+/datum/mech_limb/legs/reenable()
+	. = ..()
+	if(!.)
+		return
+	owner.move_delay /= 2
 
 /datum/mech_limb/legs/recon
-	health_mod = 180
+	part_health = 180
 	slowdown_mod = -0.7
 	greyscale_type = /datum/greyscale_config/mech_recon/legs
 
 /datum/mech_limb/legs/assault
-	health_mod = 310
+	part_health = 310
 	slowdown_mod = -0.3
 	greyscale_type = /datum/greyscale_config/mech_assault/legs
 
 /datum/mech_limb/legs/vanguard
-	health_mod = 440
+	part_health = 440
 	slowdown_mod = 0.1
 	greyscale_type = /datum/greyscale_config/mech_vanguard/legs

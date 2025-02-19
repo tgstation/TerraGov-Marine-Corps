@@ -69,9 +69,18 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/Destroy()
 	for(var/key in limbs)
 		var/datum/mech_limb/limb = limbs[key]
-		limb?.detach(src)
+		if(limb)
+			limb.detach(src)
+			qdel(limb)
 	return ..()
 
+/obj/vehicle/sealed/mecha/combat/greyscale/examine(mob/user)
+	. = ..()
+	for(var/limb_key in limbs)
+		if(limb_key == MECH_GREY_TORSO)
+			continue
+		var/datum/mech_limb/limb = limbs[limb_key]
+		. += "It's " + limb.display_name + " has " + "[(limb.part_health / initial(limb.part_health))*100]" + "% integrity."
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
@@ -125,6 +134,9 @@
 
 	for(var/key in render_order)
 		if(key == MECHA_R_ARM)
+			var/datum/mech_limb/holding = limbs[MECH_GREY_R_ARM]
+			if(holding.disabled)
+				continue
 			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
 			if(right_gun)
 				var/mutable_appearance/r_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', right_gun.icon_state + "_right", appearance_flags = KEEP_APART)
@@ -132,6 +144,9 @@
 				. += r_gun
 			continue
 		if(key == MECHA_L_ARM)
+			var/datum/mech_limb/holding = limbs[MECH_GREY_L_ARM]
+			if(holding.disabled)
+				continue
 			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
 			if(left_gun)
 				var/mutable_appearance/l_gun = mutable_appearance('icons/mecha/mech_gun_overlays.dmi', left_gun.icon_state + "_left", appearance_flags = KEEP_APART)
