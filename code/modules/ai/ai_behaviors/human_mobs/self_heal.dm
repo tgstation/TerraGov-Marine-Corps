@@ -160,7 +160,8 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
 		return
 	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
-	if(!next_target)
+	if(!next_target) //no hostiles around
+		try_heal()
 		return
 	if(prob(50))
 		mob_parent.say(pick(retreating_chat))
