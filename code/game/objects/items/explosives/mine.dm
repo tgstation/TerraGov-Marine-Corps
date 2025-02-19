@@ -283,3 +283,17 @@ Stepping directly on the mine will also blow it up
 
 /obj/item/explosive/mine/anti_tank/fire_act(burn_level)
 	return //its highly exploitable if fire detonates these
+
+/obj/item/explosive/mine/pressure
+	name = "\improper M13 Pressure Rapid Deploy Mine"
+	desc = "A unusually light and small mine, designed to be rapidly deployed via automated systems, typically Minelayer mortar shells."
+	icon_state = "m13"
+	armed = TRUE
+	anchored = TRUE
+	iff_signal = 1
+
+/obj/item/explosive/mine/anti_tank/emp_act()
+	return
+
+/obj/item/explosive/mine/anti_tank/attackby(obj/item/I, mob/user, params)
+	return

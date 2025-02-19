@@ -499,6 +499,7 @@
 		/obj/item/mortal_shell/howitzer/incendiary,
 		/obj/item/mortal_shell/howitzer/plasmaloss,
 		/obj/item/mortal_shell/flare,
+		/obj/item/mortal_shell/howitzer/minelayer,
 	)
 	tally_type = TALLY_HOWITZER
 	cool_off_time = 10 SECONDS
@@ -725,6 +726,12 @@
 	icon_state = "howitzer_wp"
 	ammo_type = /datum/ammo/mortar/smoke/howi/wp
 
+/obj/item/mortal_shell/howitzer/minelayer
+	name = "\improper 150mm 'Minefield' minelayer artillery shell"
+	desc = "An 150mm artiliery shell, loaded with nanites that reconstruct into high explosive mines"
+	icon_state = "howitzer_ml"
+	ammo_type = /datum/ammo/mortar/howi/ml
+
 /obj/item/mortal_shell/rocket
 	ammo_type = /datum/ammo/mortar/rocket
 
@@ -856,6 +863,10 @@
 	new	/obj/item/mortal_shell/howitzer/plasmaloss(src)
 	new	/obj/item/mortal_shell/howitzer/plasmaloss(src)
 	new	/obj/item/mortal_shell/howitzer/plasmaloss(src)
+	new	/obj/item/mortal_shell/howitzer/minelayer(src)
+	new	/obj/item/mortal_shell/howitzer/minelayer(src)
+	new	/obj/item/mortal_shell/howitzer/minelayer(src)
+	new	/obj/item/mortal_shell/howitzer/minelayer(src)
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/flare(src)
 	new /obj/item/mortal_shell/flare(src)
