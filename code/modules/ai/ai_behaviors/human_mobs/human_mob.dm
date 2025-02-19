@@ -92,7 +92,7 @@ todo: wielded/activated force for weap logic
 /datum/ai_behavior/human/register_action_signals(action_type) //todo: probably a lot we can do here
 	switch(action_type)
 		if(MOVING_TO_ATOM)
-			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(do_melee_attack))
+			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(melee_interact))
 			if(ishuman(atom_to_walk_to))
 				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
 				return
@@ -147,6 +147,9 @@ todo: wielded/activated force for weap logic
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_ATOM)
+			if(istype(atom_to_walk_to, /obj/item/weapon) && get_dist(atom_to_walk_to, mob_parent) <= target_distance) //more temp snowflake... kinda needa a mode
+				if(get_dist(atom_to_walk_to, mob_parent) <= target_distance)
+					return
 			if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
@@ -206,12 +209,12 @@ todo: wielded/activated force for weap logic
 			if(lock.operating) //Airlock already doing something
 				continue
 			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
-				INVOKE_ASYNC(src, PROC_REF(do_melee_attack), null, object) //ai is cheating
+				INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object) //ai is cheating
 				return COMSIG_OBSTACLE_DEALT_WITH
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
 		if(!(object.resistance_flags & INDESTRUCTIBLE))
-			INVOKE_ASYNC(src, PROC_REF(do_melee_attack), null, object)
+			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, object)
 			return COMSIG_OBSTACLE_DEALT_WITH
 
 	if(should_jump)
@@ -232,7 +235,7 @@ todo: wielded/activated force for weap logic
 			should_jump = TRUE
 			continue
 		if(!(obstacle.resistance_flags & INDESTRUCTIBLE)) //todo: do we need to check for obj_flags & CAN_BE_HIT ?
-			INVOKE_ASYNC(src, PROC_REF(do_melee_attack), null, obstacle)
+			INVOKE_ASYNC(src, PROC_REF(melee_interact), null, obstacle)
 			return COMSIG_OBSTACLE_DEALT_WITH
 
 	//shitty dup code here for now
@@ -249,20 +252,24 @@ todo: wielded/activated force for weap logic
 		if(action.ai_should_start_consider())
 			ability_list += action
 
-///Signal handler to try to attack our target
-/datum/ai_behavior/human/proc/do_melee_attack(datum/source, atom/attacked)
+///Handles physical interactions, like attacks
+/datum/ai_behavior/human/proc/melee_interact(datum/source, atom/interactee)
 	SIGNAL_HANDLER
 	if(world.time < mob_parent.next_move)
 		return
-	if(!attacked)
-		attacked = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
-	if(get_dist(attacked, mob_parent) > 1)
+	if(!interactee)
+		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
+	if(get_dist(interactee, mob_parent) > 1)
 		return
-	mob_parent.face_atom(attacked)
+	if(istype(interactee, /obj/item/weapon)) //snowflake for now
+		mob_parent.UnarmedAttack(interactee, TRUE)
+		late_initialize()
+		return
+	mob_parent.face_atom(interactee)
 	if(melee_weapon)
-		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, attacked)
+		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, interactee)
 		return
-	mob_parent.UnarmedAttack(attacked, TRUE)
+	mob_parent.UnarmedAttack(interactee, TRUE)
 
 ///Says an audible message
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)

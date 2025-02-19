@@ -137,7 +137,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_action == FOLLOWING_PATH)
 		distance_to_maintain = 0
 	else if(current_action == ESCORTING_ATOM)
-		distance_to_maintain = 1 //Don't stay too close
+		distance_to_maintain = 2 //Don't stay too close
 	else
 		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
 	if(next_target)

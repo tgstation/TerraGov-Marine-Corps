@@ -51,9 +51,19 @@
 	if(!length(mob_inventory.melee_list) && !length(mob_inventory.gun_list))
 		need_weapons = TRUE
 		engagement_range = initial(engagement_range)
-		//find_weapon() //todo
+		find_weapon() //todo
 		return
 	INVOKE_ASYNC(src, PROC_REF(do_equip_weaponry))
+
+/datum/ai_behavior/human/proc/find_weapon(range = 1, list/exlusion_turfs)
+	var/list/search_list = list(get_turf(mob_parent))
+	search_list |= RANGE_TURFS(range, mob_parent)
+	for(var/turf/turf AS in search_list)
+		for(var/obj/obj in turf)
+			if(!istype(obj, /obj/item/weapon))
+				continue
+			change_action(MOVING_TO_ATOM, obj, 0)
+			return
 
 ///Tries to equip weaponry, and updates behavior appropriately
 /datum/ai_behavior/human/proc/do_equip_weaponry()
