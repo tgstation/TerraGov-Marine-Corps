@@ -1,0 +1,4 @@
+author: "Cheese (Ported from CM who ported it from RUTGMC)"
+delete-after: True
+changes:
+  - rscadd: "2 new cade types, made with plasteel and metal respectively."
