@@ -180,7 +180,7 @@
 	attack_verb = list("stamps")
 
 /obj/item/tool/stamp/qm
-	name = "Quartermaster's Stamp"
+	name = "quartermaster's Stamp"
 
 /obj/item/tool/stamp/captain
 	name = "captain's rubber stamp"
