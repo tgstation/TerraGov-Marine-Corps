@@ -172,7 +172,7 @@
 		if(fire_result != AI_FIRE_CAN_HIT)
 			return //cant shoot yet
 		if(prob(90))
-			mob_parent.say(pick(start_fire_chat))
+			try_speak(pick(start_fire_chat))
 		if(gun.start_fire(mob_parent, target, get_turf(target)) && gun.gun_firemode != GUN_FIREMODE_SEMIAUTO && gun.gun_firemode != GUN_FIREMODE_BURSTFIRE) //failed to fire or not autofire
 			gun_firing = TRUE
 		return
@@ -188,18 +188,18 @@
 			return //how'd you do this?
 		if(AI_FIRE_TARGET_DEAD) //todo: add chat cooldowns based on these defines
 			if(prob(75))
-				mob_parent.say(pick(dead_target_chat))
+				try_speak(pick(dead_target_chat))
 		if(AI_FIRE_NO_AMMO)
 			reload_gun()
 		if(AI_FIRE_OUT_OF_RANGE)
 			if(prob(50))
-				mob_parent.say(pick(out_range_chat))
+				try_speak(pick(out_range_chat))
 		if(AI_FIRE_NO_LOS)
 			if(prob(50))
-				mob_parent.say(pick(no_los_chat))
+				try_speak(pick(no_los_chat))
 		if(AI_FIRE_FRIENDLY_BLOCKED)
 			if(prob(50))
-				mob_parent.say(pick(friendly_blocked_chat))
+				try_speak(pick(friendly_blocked_chat))
 
 //inline before release unless needed
 /datum/ai_behavior/human/proc/can_shoot_target(atom/target)
@@ -230,11 +230,6 @@
 	gun.stop_fire()
 
 /datum/ai_behavior/human/proc/reload_gun()
-	/* for testing
-	var/new_ammo = gun.default_ammo_type ? gun.default_ammo_type : gun.allowed_ammo_types[1]
-	gun.reload(new new_ammo, mob_parent) //maybe add force = TRUE, if needed
-	*/
-
 	var/obj/item/new_ammo
 	if(gun.reciever_flags & AMMO_RECIEVER_HANDFULS)
 		handful_loop:
@@ -256,8 +251,7 @@
 		//insert messaging etc
 		return
 	if(prob(90))
-		mob_parent.say(pick(reloading_chat))
-	//new_ammo.attackby(gun, mob_parent)
+		try_speak(pick(reloading_chat))
 	if((gun.reciever_flags & AMMO_RECIEVER_HANDFULS))
 		var/obj/item/ammo_magazine/handful_mag = new_ammo
 		while(handful_mag.current_rounds)

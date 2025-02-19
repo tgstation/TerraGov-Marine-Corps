@@ -91,8 +91,8 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 
 ///Will try healing if possible
 /datum/ai_behavior/human/proc/try_heal()
-	if(prob(50))
-		mob_parent.say(pick(healing_chat))
+	if(prob(75))
+		try_speak(pick(healing_chat))
 	var/mob/living/living_parent = mob_parent
 
 	if(living_parent.on_fire)
@@ -164,7 +164,7 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 		try_heal()
 		return
 	if(prob(50))
-		mob_parent.say(pick(retreating_chat))
+		try_speak(pick(retreating_chat))
 	target_distance = 15
 	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
 	UnregisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN)

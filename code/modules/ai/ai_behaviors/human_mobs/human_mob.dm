@@ -1,14 +1,19 @@
 //Generic template for application to a xeno/ mob, contains specific obstacle dealing alongside targeting only humans, xenos of a different hive and sentry turrets
 /*
-*TODO: INVENTORY DATUM TO MAKE SORTED LIST OF WEAPONS, AMMO, MEDS, ETC.
-		UPDATE SUBLISTS ONLY AS NEEDED
-		I.E. REG NEW SIGS TO THEM WHEN ADDED TO LIST, TO CHECK ON MOVE/DESTROY/ETC
-
 *TODO:	MAKE FACTIONS (and/or IFF) ATOM LEVEL, AND MAKE THEM BITFLAGS
 		I.E. FACTION_SOM|FACTION_ICC
 		I.E. FACTION_TGMC|FACTION_NT|FACTION_NEUTRAL
 		I.E. FACTION_ICC|FACTION_SOM|FACTION_CLF
+TODO: voice commands
+
+TODO: pathfinding wizardry
+
+TODO: split distant_to_maintain
+
+todo: wielded/activated force for weap logic
 */
+
+#define AI_TALK_COOLDOWN "ai_talk_cooldown"
 
 /datum/ai_behavior/human
 	sidestep_prob = 25
@@ -52,11 +57,6 @@
 	UnregisterSignal(mob_parent, list(COMSIG_OBSTRUCTED_MOVE, ACTION_GIVEN, ACTION_REMOVED, COMSIG_HUMAN_DAMAGE_TAKEN, COMSIG_LIVING_SET_LYING_ANGLE))
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
 	return ..()
-
-/datum/ai_behavior/human/proc/recieve_message(atom/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
-	SIGNAL_HANDLER
-	//todo: audible commands, gooooo
-	return
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/human/proc/refresh_abilities()
@@ -252,6 +252,22 @@
 
 	return ..()
 
+///Says an audible message
+/datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)
+	if(mob_parent.incapacitated())
+		return
+	if(TIMER_COOLDOWN_CHECK(mob_parent, AI_TALK_COOLDOWN))
+		return
+	//maybe radio arg in the future for some things
+	mob_parent.say(message)
+	TIMER_COOLDOWN_START(mob_parent, AI_TALK_COOLDOWN, cooldown)
+
+///Reacts to a heard message
+/datum/ai_behavior/human/proc/recieve_message(atom/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	SIGNAL_HANDLER
+	//todo: audible commands, gooooo
+	return
+
 /datum/ai_behavior/human/ranged
 	distance_to_maintain = 5
 	minimum_health = 0.3
@@ -282,91 +298,11 @@
 	if(allow_pass_flags & (PASS_LOW_STRUCTURE|PASS_TANK))
 		return TRUE
 
+/obj/structure/barricade/is_jumpable(mob/living/jumper)
+	if(is_wired)
+		return FALSE
+	return ..()
+
 ///Checks if this mob can jump
 /mob/living/proc/can_jump()
 	return SEND_SIGNAL(src, COMSIG_LIVING_CAN_JUMP)
-
-//simple mob junk
-/*
-/mob/living/simple_animal/hostile/proc/MoveToTarget(list/possible_targets)//Step 5, handle movement between us and our target
-	stop_automated_movement = TRUE
-	if(!target || !CanAttack(target))
-		LoseTarget()
-		return FALSE
-	if(target in possible_targets)
-		var/turf/T = get_turf(src)
-		if(target.z != T.z)
-			LoseTarget()
-			return FALSE
-		var/target_distance = get_dist(targets_from,target)
-		if(ranged) //We ranged? Shoot at em
-			if(!target.Adjacent(targets_from) && ranged_cooldown <= world.time) //But make sure they're not in range for a melee attack and our range attack is off cooldown
-				OpenFire(target)
-		if(!Process_Spacemove()) //Drifting
-			walk(src, 0)
-			return TRUE
-		if(retreat_distance != null) //If we have a retreat distance, check if we need to run from our target
-			if(target_distance <= retreat_distance) //If target's closer than our retreat distance, run
-				walk_away(src,target,retreat_distance,move_to_delay)
-			else
-				Goto(target,move_to_delay,minimum_distance) //Otherwise, get to our minimum distance so we chase them
-		else
-			Goto(target,move_to_delay,minimum_distance)
-		if(target)
-			if(targets_from && isturf(targets_from.loc) && target.Adjacent(targets_from)) //If they're next to us, attack
-				MeleeAction()
-			else
-				if(rapid_melee > 1 && target_distance <= melee_queue_distance)
-					MeleeAction(FALSE)
-				in_melee = FALSE //If we're just preparing to strike do not enter sidestep mode
-			return TRUE
-		return FALSE
-
-	if(wall_smash)
-		if(target.loc != null && get_dist(targets_from, target.loc) <= vision_range) //We can't see our target, but he's in our vision range still
-			if(ranged_ignores_vision && ranged_cooldown <= world.time) //we can't see our target... but we can fire at them!
-				OpenFire(target)
-				Goto(target,move_to_delay,minimum_distance)
-				FindHidden()
-				return TRUE
-			else
-				if(FindHidden())
-					return TRUE
-	LoseTarget()
-	return FALSE
-
-/mob/living/simple_animal/hostile/proc/OpenFire(atom/A)
-	if(CheckFriendlyFire(A))
-		return
-	visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))
-
-
-	if(rapid > 1)
-		var/datum/callback/cb = CALLBACK(src, PROC_REF(Shoot), A)
-		for(var/i in 1 to rapid)
-			addtimer(cb, (i - 1)*rapid_fire_delay)
-	else
-		Shoot(A)
-	ranged_cooldown = world.time + ranged_cooldown_time
-
-
-/mob/living/simple_animal/hostile/proc/Shoot(atom/targeted_atom)
-	if(QDELETED(targeted_atom) || targeted_atom == targets_from.loc || targeted_atom == targets_from)
-		return
-	var/turf/startloc = get_turf(targets_from)
-	new casingtype(startloc)
-	playsound(src, projectilesound, 100, 1)
-	var/obj/projectile/P = new(startloc)
-	playsound(src, projectilesound, 100, 1)
-	P.generate_bullet(GLOB.ammo_list[ammotype])
-	P.fire_at(targeted_atom, src, src)
-*/
-
-/*
-for(var/mob/mob in turf)
-	if(some_condition)
-		return
-for(var/obj/object in turf)
-	if(some_other_condition)
-		return
-*/
