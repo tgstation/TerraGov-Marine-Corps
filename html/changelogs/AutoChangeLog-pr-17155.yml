@@ -1,0 +1,4 @@
+author: "TiviPlus"
+delete-after: True
+changes:
+  - qol: "Merged Object and weapons tabs into the ic tab"
