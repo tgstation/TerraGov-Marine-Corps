@@ -807,6 +807,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 			return FALSE
 	else
 		item.forceMove(parent)
+	RegisterSignal(item, COMSIG_MOVABLE_MOVED, PROC_REF(item_removed_from_storage))
 	item.on_enter_storage(parent)
 	if(length(holsterable_allowed))
 		for(var/holsterable_item in holsterable_allowed) //If our item is our snowflake item, it gets set as holstered_item
@@ -846,7 +847,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
  * * silent: defaults to FALSE, on subtypes this is used to prevent a sound from being played
  * * bypass_delay: if TRUE, will bypass draw delay
  */
-/datum/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE)
+/datum/storage/proc/remove_from_storage(obj/item/item, atom/new_location, mob/user, silent = FALSE, bypass_delay = FALSE, move_item = TRUE)
 	if(!istype(item))
 		return FALSE
 
@@ -866,8 +867,9 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		else
 			item.layer = initial(item.layer)
 			item.plane = initial(item.plane)
-		item.forceMove(new_location)
-	else
+		if(move_item)
+			item.forceMove(new_location)
+	else if(move_item)
 		item.moveToNullspace()
 
 	orient2hud()
@@ -877,7 +879,8 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 		show_to(M)
 
 	if(!QDELETED(item))
-		item.on_exit_storage(src)
+		UnregisterSignal(item, COMSIG_MOVABLE_MOVED)
+		item.on_exit_storage(src) //todo: this is not called for weapons equipped directly out of storage
 		item.mouse_opacity = initial(item.mouse_opacity)
 
 	for(var/limited_type in storage_type_limits_max)
@@ -1004,6 +1007,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	SIGNAL_HANDLER
 	if(isitem(movable_atom))
 		INVOKE_ASYNC(src, PROC_REF(remove_from_storage), movable_atom, null, usr, silent = TRUE, bypass_delay = TRUE)
+
+///Handles if the item is forcemoved out of storage
+/datum/storage/proc/item_removed_from_storage(obj/item/item)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(remove_from_storage), item, item.loc, null, FALSE, TRUE, FALSE)
 
 ///signal sent from /atom/proc/max_stack_merging()
 /datum/storage/proc/max_stack_merging(datum/source, obj/item/stack/stacks)

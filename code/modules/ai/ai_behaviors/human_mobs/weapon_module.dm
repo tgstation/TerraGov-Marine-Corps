@@ -18,6 +18,7 @@
 
 	var/need_weapons = TRUE //flag
 
+	//todo: add cooldowns
 	var/list/start_fire_chat = list("Get some!!", "Engaging!", "Open fire!", "Firing!", "Hostiles!", "Take them out!", "Kill 'em!", "Lets rock!", "Fire!!", "Gun them down!", "Shooting!", "Weapons free!", "Fuck you!!")
 
 	var/list/reloading_chat = list("Reloading!", "Cover me, reloading!", "Changing mag!", "Out of ammo!")
@@ -29,10 +30,6 @@
 	var/list/friendly_blocked_chat = list("Get out of the way!", "You're in my line!", "Clear the firing lane!", "Move!", "Holding fire!", "Stop blocking me damn it!")
 
 	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
-
-	//todo: these vars can be moved into weapon process unless I need to use them somewhere other than the equip procs
-	var/obj/item/weapon/primary
-	var/obj/item/weapon/secondary
 
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
@@ -49,11 +46,14 @@
 		return
 	if(!length(mob_inventory.melee_list) && !length(mob_inventory.gun_list))
 		need_weapons = TRUE
+		distance_to_maintain = initial(distance_to_maintain)
 		//find_weapon() //todo
 		return
 	INVOKE_ASYNC(src, PROC_REF(do_equip_weaponry))
 
 /datum/ai_behavior/human/proc/do_equip_weaponry()
+	var/obj/item/weapon/primary
+	var/obj/item/weapon/secondary
 
 	var/obj/item/weapon/high_dam_melee_choice
 	var/obj/item/weapon/melee_choice
@@ -121,6 +121,8 @@
 			equip_melee(secondary)
 			secondary.attack_self(mob_parent)
 
+	distance_to_maintain = primary.get_ai_combat_range()
+
 /datum/ai_behavior/human/proc/equip_gun(obj/item/weapon/new_weapon)
 	if(new_weapon != mob_parent.l_hand && new_weapon != mob_parent.r_hand)
 		mob_parent.temporarilyRemoveItemFromInventory(new_weapon)
@@ -129,8 +131,6 @@
 
 	RegisterSignals(new_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE) //hacky, can probs unfuck this later
 	gun = new_weapon
-	if(new_weapon == primary)
-		distance_to_maintain = 5
 	return TRUE
 
 /datum/ai_behavior/human/proc/equip_melee(obj/item/weapon/new_weapon)
@@ -141,8 +141,6 @@
 
 	RegisterSignals(new_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE) //hacky, can probs unfuck this later
 	melee_weapon = new_weapon
-	if(new_weapon == primary) //todo:this is triggering on rifles etc
-		distance_to_maintain = 1
 	return TRUE
 
 /datum/ai_behavior/human/proc/unequip_weapon(obj/item/weapon/old_weapon)
@@ -154,12 +152,6 @@
 		distance_to_maintain = 1
 	if(melee_weapon == old_weapon)
 		melee_weapon = null
-	if(primary == old_weapon)
-		primary = null
-	if(secondary == old_weapon)
-		secondary = null
-
-
 //shooting stuff
 
 /datum/ai_behavior/human/proc/check_gun_fire(atom/target) //change this horrible name oh god
@@ -204,7 +196,7 @@
 /datum/ai_behavior/human/proc/can_shoot_target(atom/target)
 	if(QDELETED(target) || !isliving(target)) //placeholder, logic for non mob targets like vehicles needed
 		return AI_FIRE_INVALID_TARGET
-	if(!length(gun.chamber_items) || !gun.get_current_rounds(gun.chamber_items[gun.current_chamber_position]))
+	if(gun.rounds <= 0)
 		return AI_FIRE_NO_AMMO
 	var/mob/living/living_target = target //todo: logic will change a bit when non mob targets come in
 	if(living_target.stat == DEAD)
@@ -264,3 +256,36 @@
 				return
 	gun.reload(new_ammo, mob_parent) //skips tac reload but w/e. use above if we want it, although then we need to check for skills...
 	//note: force arg on reload will allow reloading closed chamber weapons, but also bypasses reload delays... funny rapid rockets
+
+/////probs move
+///Optimal range for AI to fight at, using this weapon
+/obj/item/weapon/proc/get_ai_combat_range()
+	return 1
+
+//obj/item/weapon/twohanded/spear/get_ai_combat_range() //todo:no support for ranged melee yet
+//	return 2
+
+/obj/item/weapon/gun/get_ai_combat_range()
+	if((gun_features_flags & GUN_IFF) || (ammo_datum_type::ammo_behavior_flags & AMMO_IFF))
+		return 7 //hang in the back with IFF
+	return 5
+
+/obj/item/weapon/gun/shotgun/get_ai_combat_range()
+	if(ammo_datum_type == /datum/ammo/bullet/shotgun/buckshot)
+		return 1
+	return 5
+
+/obj/item/weapon/gun/smg/get_ai_combat_range()
+	return 3
+
+/obj/item/weapon/gun/pistol/get_ai_combat_range()
+	return 4
+
+/obj/item/weapon/gun/revolver/get_ai_combat_range()
+	return 4
+
+/obj/item/weapon/gun/launcher/get_ai_combat_range()
+	return 7
+
+/obj/item/weapon/gun/grenade_launcher/get_ai_combat_range()
+	return 7

@@ -152,14 +152,21 @@
 ///Adds an item to this list
 /datum/inventory/proc/gun_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	gun_list |= new_item
+	if(new_item in gun_list)
+		return
+	//I feel like there was some dumb ass reason why I wasn't able to do this... but with testing it works fine??
+	//might have been relevant for non weapons in storage?
+	//keep an eye on this.
+	gun_list += new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(gun_list_removal), TRUE)//COMSIG_MOVABLE_MOVED is sent AFTER COMSIG_ATOM_ENTERED.. this is fucking annoying but eh
 	SEND_SIGNAL(src, COMSIG_INVENTORY_DAT_GUN_ADDED)
 
 ///Adds an item to this list
 /datum/inventory/proc/melee_list_add(obj/item/new_item)
 	SIGNAL_HANDLER
-	melee_list |= new_item
+	if(new_item in melee_list)
+		return
+	melee_list += new_item
 	RegisterSignals(new_item, list(COMSIG_MOVABLE_MOVED, COMSIG_QDELETING, COMSIG_INVENTORY_STORED_REMOVAL), PROC_REF(melee_list_removal), TRUE)
 	SEND_SIGNAL(src, COMSIG_INVENTORY_DAT_MELEE_ADDED)
 

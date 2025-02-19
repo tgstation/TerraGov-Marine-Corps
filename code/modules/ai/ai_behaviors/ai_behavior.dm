@@ -127,7 +127,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		if(IDLE)
 			message_admins("[mob_parent] is idle")
 	#endif
-	if(next_action)
+	if(next_action) //TODO: this just overrides dist to maintain constantly which is fucking annoying. Need a better system, maybe a dedicated setter proc
 		current_action = next_action
 	if(current_action == FOLLOWING_PATH)
 		distance_to_maintain = 0
@@ -341,7 +341,7 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 
 /// Moves the ai toward its atom_to_walk_to
 /datum/ai_behavior/proc/ai_do_move()
-	if(!mob_parent?.canmove || mob_parent.do_actions)
+	if(!mob_parent?.canmove || mob_parent.do_actions) //todo: some do_actions allow movement, unsure if there is a way to trace this though
 		return
 	//This allows minions to be buckled to their atom_to_escort without disrupting the movement of atom_to_escort
 	if(current_action == ESCORTING_ATOM && (get_dist(mob_parent, atom_to_walk_to) <= 0)) //todo: Entirely remove this shitcode snowflake check for one specific interaction that doesn't specifically relate to ai_behavior
