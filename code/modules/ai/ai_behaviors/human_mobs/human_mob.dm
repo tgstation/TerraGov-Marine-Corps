@@ -256,8 +256,6 @@ TODO: pathfinding wizardry
 		return
 	if(!interactee)
 		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
-	//if(get_dist(interactee, mob_parent) > 1)
-	//	return
 	if(!mob_parent.CanReach(interactee, melee_weapon)) //todo: copy this for beno code, lots of other stuff too.
 		return
 	if(istype(interactee, /obj/item/weapon)) //snowflake for now
