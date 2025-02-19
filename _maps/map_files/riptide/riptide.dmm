@@ -10311,7 +10311,7 @@
 /turf/open/liquid/water/river,
 /area/riptide/inside/engineering/bridge)
 "hlZ" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/blood,
@@ -14420,7 +14420,7 @@
 /turf/open/floor/iron/dark/textured_half,
 /area/riptide/caves/pmc/toxins)
 "kkv" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/grimy,
@@ -14546,7 +14546,7 @@
 /turf/open/ground,
 /area/riptide/outside/beachlzone)
 "koz" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 8
 	},
 /turf/open/floor/wood/variable/wide,
@@ -20473,7 +20473,7 @@
 /turf/open/ground/grass/weedable,
 /area/riptide/outside/southjungle)
 "otv" = (
-/obj/structure/barricade/plasteel{
+/obj/structure/barricade/folding{
 	dir = 4
 	},
 /obj/effect/decal/cleanable/blood,
@@ -21233,7 +21233,7 @@
 /turf/open/floor/tile/bar,
 /area/riptide/inside/medical)
 "oRp" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -24224,7 +24224,7 @@
 /turf/open/floor/mainship/black/corner,
 /area/riptide/inside/syndicatehead)
 "qKL" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/green/hidden{
@@ -29558,7 +29558,7 @@
 /turf/open/floor/plating,
 /area/riptide/inside/syndicatestarboard)
 "ulh" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/plating,
