@@ -3,7 +3,7 @@
 #define DISPLAY_IN_TRANSIT 2
 
 /obj/machinery/computer/crew
-	name = "Crew monitoring computer"
+	name = "crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
 	icon_state = "computer"
 	screen_overlay = "crew"

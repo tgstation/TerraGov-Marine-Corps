@@ -87,7 +87,7 @@ The Grenade Launchers
 	var/obj/item/explosive/grenade/grenade_to_launch = object_to_fire
 	var/turf/user_turf = get_turf(src)
 	grenade_to_launch.forceMove(user_turf)
-	gun_user?.visible_message(span_danger("[gun_user] fires a grenade from [gun_user?.p_their()] [src]!"), span_warning("You fire [src]!"))
+	gun_user?.visible_message(span_danger("[gun_user] fires a grenade from [gun_user?.p_their()] [src.name]!"), span_warning("You fire [src]!"))
 	log_bomber(gun_user, "fired a grenade ([grenade_to_launch]) from", src, "at [AREACOORD(user_turf)]")
 	play_fire_sound(loc)
 	grenade_to_launch.launched_det_time()
