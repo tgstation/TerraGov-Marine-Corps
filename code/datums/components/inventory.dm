@@ -127,7 +127,7 @@
 	if(isgun(new_item))
 		gun_list_add(new_item)
 		return
-	if(istype(new_item, /obj/item/weapon) && !istype(new_item, /obj/item/weapon/twohanded/offhand)) //todo: boot knives excludes since theyre a different path
+	if((istype(new_item, /obj/item/weapon) && !istype(new_item, /obj/item/weapon/twohanded/offhand)) || istype(new_item, /obj/item/attachable/bayonetknife))
 		melee_list_add(new_item)
 		return
 	if(istype(new_item, /obj/item/explosive/grenade))
