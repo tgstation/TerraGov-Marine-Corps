@@ -187,10 +187,27 @@
 		visible_message("[icon2html(supply_pad, usr)] [span_warning("Launch aborted! No deployable object detected on the drop pad.")]")
 		return
 
-	supply_beacon.drop_location.visible_message(span_boldnotice("A supply drop appears suddenly!"))
-	playsound(supply_beacon.drop_location,'sound/effects/phasein.ogg', 50, TRUE)
-	playsound(supply_pad.loc,'sound/effects/phasein.ogg', 50, TRUE)
-	for(var/obj/C in supplies)
-		var/turf/TC = locate(supply_beacon.drop_location.x + x_offset, supply_beacon.drop_location.y + y_offset, supply_beacon.drop_location.z)
-		C.forceMove(TC)
-	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] [span_boldnotice("Supply drop teleported! Another launch will be available in [launch_cooldown/10] seconds.")]")
+	playsound(supply_pad.loc,'sound/effects/bamf.ogg', 50, TRUE)
+	var/turf/droploc = locate(supply_beacon.drop_location.x + x_offset, supply_beacon.drop_location.y + y_offset, supply_beacon.drop_location.z)
+	playsound(droploc, 'sound/items/fultext_deploy.ogg', 30, TRUE)
+	var/image/chute_cables = image('icons/effects/32x64.dmi', src, "chute_cables_static")
+	chute_cables.pixel_y -= 12
+	var/image/chute_canvas = image('icons/effects/64x64.dmi', src, "chute_animated")
+	chute_canvas.pixel_x -= 16
+	chute_canvas.pixel_y += 16
+	var/list/anim_overlays = list(chute_cables, chute_canvas)
+	for(var/obj/supply in supplies)
+		supply.forceMove(droploc)
+		supply.pixel_z = 400
+		supply.add_overlay(anim_overlays)
+		animate(supply, time = 4 SECONDS, pixel_z = 0, easing=SINE_EASING|EASE_OUT, flags = ANIMATION_PARALLEL)
+	supply_pad.visible_message("[icon2html(supply_pad, viewers(src))] [span_boldnotice("Supply drop launched! Another launch will be available in [launch_cooldown/10] seconds.")]")
+	addtimer(CALLBACK(droploc, TYPE_PROC_REF(/turf, ceiling_debris)), 2.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(clean_supplydrop), supplies, anim_overlays), 4 SECONDS)
+
+/// handles cleanup of post-animation stuff (ie just after it lands)
+/obj/machinery/computer/supplydrop_console/proc/clean_supplydrop(list/supplies, anim_overlays)
+	for(var/obj/supply in supplies)
+		supply.cut_overlay(anim_overlays)
+
+
