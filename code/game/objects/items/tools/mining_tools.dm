@@ -87,7 +87,8 @@
 	worn_icon_state = "plasmacutter"
 	w_class = WEIGHT_CLASS_BULKY
 	equip_slot_flags = ITEM_SLOT_BELT|ITEM_SLOT_BACK
-	force = 70
+	force = 5
+	force_activated = 70
 	damtype = BURN
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction
 	drill_verb = "cutting"
@@ -227,14 +228,14 @@
 				playsound(loc, 'sound/weapons/saberoff.ogg', 25)
 				balloon_alert(user, "Insufficient charge")
 				to_chat(user, span_warning("The plasma cutter abruptly shuts down due to a lack of power!"))
-		force = 5
+		force = initial(force)
 		damtype = BRUTE
 		heat = 0
 		set_light_on(FALSE)
 	else
 		icon_state = "plasma_cutter_on"
 		powered = TRUE
-		force = 70
+		force = force_activated
 		damtype = BURN
 		heat = 3800
 		set_light_on(TRUE)

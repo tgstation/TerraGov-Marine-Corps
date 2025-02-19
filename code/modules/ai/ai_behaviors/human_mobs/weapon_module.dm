@@ -60,6 +60,7 @@
 		return
 	INVOKE_ASYNC(src, PROC_REF(do_equip_weaponry))
 
+///Tries to equip weaponry, and updates behavior appropriately
 /datum/ai_behavior/human/proc/do_equip_weaponry()
 	var/obj/item/weapon/primary
 	var/obj/item/weapon/secondary
@@ -72,13 +73,13 @@
 
 	//melee loop
 	for(var/obj/item/weapon/melee_option AS in mob_inventory.melee_list)
-		if((melee_option.force >= 50) && (melee_option.force >= high_dam_melee_choice?.force))
+		var/melee_option_str = max(melee_option.force, melee_option.force_activated)
+		if((melee_option_str >= 50) && (melee_option_str >= max(high_dam_melee_choice?.force, high_dam_melee_choice?.force_activated)))
 			high_dam_melee_choice = melee_option
-		else if((melee_option.force < 50) && (melee_option.force >= melee_option?.force))
+		else if((melee_option_str < 50) && (melee_option_str >= max(melee_choice?.force, melee_choice?.force_activated)))
 			melee_choice = melee_option
 		if(istype(melee_option, /obj/item/weapon/shield) && melee_option.obj_integrity > shield_choice?.obj_integrity) //shield could be the best melee weapon full stop
 			shield_choice = melee_option
-		//todo: account for wield force and activated force
 
 	//gun loop
 	for(var/obj/item/weapon/gun/gun_option AS in mob_inventory.gun_list)

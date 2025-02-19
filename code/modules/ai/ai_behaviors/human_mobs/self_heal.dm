@@ -174,6 +174,8 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 /obj/item/proc/ai_should_use(mob/living/ai_mob)
 	return TRUE
 
+//more than just medical relevant
+
 /obj/item/proc/ai_use(mob/living/ai_mob)
 	return FALSE
 
