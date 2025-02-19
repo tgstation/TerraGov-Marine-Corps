@@ -10,3 +10,7 @@
   - rscadd: All species besides combat droids are now innately as fast as they would
       be while wearing shoes.
   - rscdel: Removed shoe speed boost.
+2025-02-19:
+  Meghan-Rossi:
+  - bugfix: LOOCs are now only visible on the same z-level, instead of being limited
+      by x and y coordinates only.
