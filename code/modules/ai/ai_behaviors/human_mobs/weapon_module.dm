@@ -31,6 +31,11 @@
 
 	var/list/dead_target_chat = list("Target down.", "Hostile down.", "Scratch one.", "I got one!", "Down for the count.", "Kill confirmed.")
 
+/datum/ai_behavior/human/set_distance_to_maintain(override_dist)
+	if(override_dist || (!gun && !melee_weapon))
+		return ..()
+	//we specifically don't want this randomly overridden
+
 ///Weapon stuff that happens during process
 /datum/ai_behavior/human/proc/weapon_process()
 	if(need_weapons)
@@ -46,7 +51,7 @@
 		return
 	if(!length(mob_inventory.melee_list) && !length(mob_inventory.gun_list))
 		need_weapons = TRUE
-		distance_to_maintain = initial(distance_to_maintain)
+		set_distance_to_maintain(initial(distance_to_maintain))
 		//find_weapon() //todo
 		return
 	INVOKE_ASYNC(src, PROC_REF(do_equip_weaponry))
@@ -121,7 +126,7 @@
 			equip_melee(secondary)
 			secondary.attack_self(mob_parent)
 
-	distance_to_maintain = primary.get_ai_combat_range()
+	set_distance_to_maintain(primary.get_ai_combat_range())
 
 /datum/ai_behavior/human/proc/equip_gun(obj/item/weapon/new_weapon)
 	if(new_weapon != mob_parent.l_hand && new_weapon != mob_parent.r_hand)
@@ -149,7 +154,7 @@
 	if(gun == old_weapon)
 		stop_fire()
 		gun = null
-		distance_to_maintain = 1
+		set_distance_to_maintain(melee_weapon ? melee_weapon.get_ai_combat_range(): initial(distance_to_maintain))
 	if(melee_weapon == old_weapon)
 		melee_weapon = null
 //shooting stuff

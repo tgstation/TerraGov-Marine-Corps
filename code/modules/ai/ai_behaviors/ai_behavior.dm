@@ -127,14 +127,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		if(IDLE)
 			message_admins("[mob_parent] is idle")
 	#endif
-	if(next_action) //TODO: this just overrides dist to maintain constantly which is fucking annoying. Need a better system, maybe a dedicated setter proc
+	if(next_action)
 		current_action = next_action
-	if(current_action == FOLLOWING_PATH)
-		distance_to_maintain = 0
-	else if(current_action == ESCORTING_ATOM)
-		distance_to_maintain = 1 //Don't stay too close
-	else
-		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
+	set_distance_to_maintain(special_distance_to_maintain)
 	if(next_target)
 		atom_to_walk_to = next_target
 		if(!registered_for_move)
@@ -145,6 +140,18 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		mob_parent.a_intent = INTENT_HELP
 	else
 		mob_parent.a_intent = INTENT_HARM
+
+///Overridable proc for setting distance to maintain in a single place
+/datum/ai_behavior/proc/set_distance_to_maintain(override_dist)
+	if(isnum(override_dist))
+		distance_to_maintain = override_dist
+		return
+	if(current_action == FOLLOWING_PATH)
+		distance_to_maintain = 0
+	else if(current_action == ESCORTING_ATOM)
+		distance_to_maintain = 1 //Don't stay too close
+	else
+		distance_to_maintain = initial(distance_to_maintain)
 
 ///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)
