@@ -8,9 +8,6 @@ TODO: voice commands
 
 TODO: pathfinding wizardry
 
-TODO: split distant_to_maintain
-
-todo: wielded/activated force for weap logic
 */
 
 #define AI_TALK_COOLDOWN "ai_talk_cooldown"
@@ -37,7 +34,7 @@ todo: wielded/activated force for weap logic
 /datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
 	..()
 	refresh_abilities()
-	mob_parent.a_intent = INTENT_HARM //Killing time
+	mob_parent.a_intent = INTENT_HARM
 	src.can_heal = can_heal
 
 	mob_inventory = new(mob_parent)
@@ -147,7 +144,7 @@ todo: wielded/activated force for weap logic
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_ATOM)
-			if(istype(atom_to_walk_to, /obj/item/weapon) && get_dist(atom_to_walk_to, mob_parent) <= target_distance) //more temp snowflake... kinda needa a mode
+			if(istype(atom_to_walk_to, /obj/item/weapon)) //more temp snowflake... kinda needa a mode
 				if(get_dist(atom_to_walk_to, mob_parent) <= target_distance)
 					return
 			if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
