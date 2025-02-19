@@ -1,0 +1,4 @@
+author: "ivanmixo"
+delete-after: True
+changes:
+  - balance: "Made some changes to curb stacking multiple snipers, check the PR for a more verbose explanation"
