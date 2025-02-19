@@ -70,7 +70,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(escorted_atom)
 		global_set_escorted_atom(null, escorted_atom)
 	RegisterSignal(SSdcs, COMSIG_GLOB_AI_GOAL_SET, PROC_REF(set_goal_node))
-	set_goal_node(null, null, GLOB.goal_nodes[identifier])
+	set_goal_node(null, null, GLOB.goal_nodes[mob_parent.faction])
 	RegisterSignal(goal_node, COMSIG_QDELETING, PROC_REF(clean_goal_node))
 	late_initialize()
 
@@ -252,9 +252,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	return
 
 ///Set the goal node
-/datum/ai_behavior/proc/set_goal_node(datum/source, identifier, obj/effect/ai_node/new_goal_node)
+/datum/ai_behavior/proc/set_goal_node(datum/source, obj/effect/ai_node/new_goal_node, node_faction)
 	SIGNAL_HANDLER
-	if(identifier && src.identifier != identifier)
+	if(node_faction != mob_parent.faction)
 		return
 	if(goal_node)
 		UnregisterSignal(goal_node, COMSIG_QDELETING)

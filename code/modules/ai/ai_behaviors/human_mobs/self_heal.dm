@@ -166,7 +166,7 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	if(prob(50))
 		try_speak(pick(retreating_chat))
 	target_distance = 15
-	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
+	change_action(MOVING_TO_SAFETY, next_target, INFINITY) //todo: infinite range doesnt get reset
 	UnregisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN)
 
 
