@@ -6,6 +6,10 @@
 #define AI_FIRE_FRIENDLY_BLOCKED (1<<5)
 #define AI_FIRE_TARGET_DEAD (1<<6)
 
+//TODO: split distance_to_maintain into:
+// engagement_distance - range to keep from a hostile we are fighting
+// follow/loiter distance - range to keep to everything else
+
 //code specific to ranged and melee weapons
 /datum/ai_behavior/human
 	var/obj/item/weapon/gun/gun

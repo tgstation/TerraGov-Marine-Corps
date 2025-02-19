@@ -24,6 +24,8 @@
 
 	var/uses_weapons = TRUE //test, this base type will be useful for mobs like carp, where this will be false
 
+	var/mob_listens = FALSE //can you actually give audible instructions. these all need to be flags.
+
 	var/datum/inventory/mob_inventory
 
 /datum/ai_behavior/human/New(loc, parent_to_assign, escorted_atom, can_heal = TRUE)
@@ -33,16 +35,28 @@
 	src.can_heal = can_heal
 
 	mob_inventory = new(mob_parent)
-	if(uses_weapons)
-		RegisterSignals(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED), PROC_REF(equip_weaponry)) //todo: this will spam if ai mobs are given loadouts instead of the other way around... but avoid that
-		RegisterSignal(mob_parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(equip_weaponry))
-		equip_weaponry()
 
 /datum/ai_behavior/human/start_ai()
 	RegisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE, TYPE_PROC_REF(/datum/ai_behavior, deal_with_obstacle))
 	RegisterSignals(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED), PROC_REF(refresh_abilities))
 	RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health)) //todo: this is specific at the species level, so only works for humans
+	if(uses_weapons)
+		RegisterSignals(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED), PROC_REF(equip_weaponry)) //todo: this will spam if ai mobs are given loadouts instead of the other way around... but avoid that
+		RegisterSignal(mob_parent, COMSIG_LIVING_SET_LYING_ANGLE, PROC_REF(equip_weaponry))
+		equip_weaponry()
+	if(mob_listens)
+		RegisterSignal(mob_parent, COMSIG_MOVABLE_HEAR, PROC_REF(recieve_message))
 	return ..()
+
+/datum/ai_behavior/human/cleanup_signals()
+	UnregisterSignal(mob_parent, list(COMSIG_OBSTRUCTED_MOVE, ACTION_GIVEN, ACTION_REMOVED, COMSIG_HUMAN_DAMAGE_TAKEN, COMSIG_LIVING_SET_LYING_ANGLE))
+	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
+	return ..()
+
+/datum/ai_behavior/human/proc/recieve_message(atom/source, message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	SIGNAL_HANDLER
+	//todo: audible commands, gooooo
+	return
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/human/proc/refresh_abilities()
@@ -196,12 +210,6 @@
 	. = ..()
 	if(next_action == MOVING_TO_NODE)
 		return
-
-/datum/ai_behavior/human/cleanup_signals()
-	. = ..()
-	UnregisterSignal(mob_parent, COMSIG_OBSTRUCTED_MOVE)
-	UnregisterSignal(mob_parent, list(ACTION_GIVEN, ACTION_REMOVED))
-	UnregisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN)
 
 ///Signal handler to try to attack our target
 /datum/ai_behavior/human/proc/attack_target(datum/source, atom/attacked)
