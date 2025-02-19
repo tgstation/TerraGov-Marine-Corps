@@ -106,6 +106,7 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 		return null
 	return icon2appearance(overlay_icon)
 
+///intercepts damage intended for the mech and applies it to this limb when needed
 /datum/mech_limb/proc/intercept_damage(datum/source, damage_amount, damage_type = BRUTE, armor_type = null, effects = TRUE, attack_dir, armour_penetration = 0, mob/living/blame_mob)
 	SIGNAL_HANDLER
 	if(!(blame_mob.zone_selected in def_zones))
@@ -117,17 +118,19 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 		disable()
 	return COMPONENT_NO_TAKE_DAMAGE
 
+///intercepts repair intended for the mech and applies it to this limb when needed
 /datum/mech_limb/proc/intercept_repair(datum/source, repair_amount, mob/user)
 	SIGNAL_HANDLER
 	if(!(user.zone_selected in def_zones))
 		return
 	if(part_health >= initial(part_health))
-		return COMPONENT_NO_TAKE_DAMAGE // intentional, you're supposed to swap target yourself properly?
+		return
 	part_health = min(initial(part_health), part_health+repair_amount)
 	if(part_health >= initial(part_health))
 		reenable()
 	return COMPONENT_NO_TAKE_DAMAGE
 
+///makes this limb "destroyed"
 /datum/mech_limb/proc/disable()
 	if(disabled)
 		return FALSE
@@ -135,12 +138,14 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	owner.update_icon(UPDATE_OVERLAYS)
 	return TRUE
 
+///makes this limb un-"destroyed"
 /datum/mech_limb/proc/reenable()
 	if(!disabled)
 		return
 	disabled = FALSE
 	owner.update_icon(UPDATE_OVERLAYS)
 	return TRUE
+
 
 ///MECH HEAD
 /datum/mech_limb/head

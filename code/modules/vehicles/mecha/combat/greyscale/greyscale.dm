@@ -166,6 +166,16 @@
 /obj/vehicle/sealed/mecha/combat/greyscale/throw_bounce(atom/hit_atom, turf/old_throw_source)
 	return //no bounce for us
 
+/obj/vehicle/sealed/mecha/combat/greyscale/needs_welder_repair(mob/user)
+	if(user.zone_selected == BODY_ZONE_CHEST || user.zone_selected == BODY_ZONE_PRECISE_GROIN)
+		return obj_integrity < max_integrity
+	for(var/key in limbs)
+		var/datum/mech_limb/limb = limbs[key]
+		if(!limb)
+			continue
+		if((user.zone_selected in limb.def_zones) && (limb.part_health < initial(limb?.part_health)))
+			return TRUE
+
 /obj/vehicle/sealed/mecha/combat/greyscale/recon
 	name = "Recon Mecha"
 	limbs = list(
