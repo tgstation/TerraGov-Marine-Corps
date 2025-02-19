@@ -98,7 +98,8 @@ GLOBAL_LIST_INIT(mech_bodytypes, list(MECH_RECON, MECH_ASSAULT, MECH_VANGUARD))
 	for(var/armor_type in removed_armor)
 		removed_armor[armor_type] = -removed_armor[armor_type]
 	detached.soft_armor = detached.soft_armor.modifyRating(arglist(removed_armor))
-	detached.update_icon(UPDATE_OVERLAYS)
+	if(!QDELING(detached))
+		detached.update_icon(UPDATE_OVERLAYS)
 
 /// Returns an overlay or list of overlays to use on the mech
 /datum/mech_limb/proc/get_overlays()
