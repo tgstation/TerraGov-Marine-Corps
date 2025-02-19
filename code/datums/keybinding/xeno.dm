@@ -286,27 +286,6 @@
 	keybind_signal = COMSIG_XENOABILITY_HIGH_PRESSURE_SPIT
 	hotkey_keys = list("E")
 
-/datum/keybinding/xeno/plow_charge
-	name = "plow_charge"
-	full_name = "Bull: Plow Charge"
-	description = "A charge that plows through the victims."
-	keybind_signal = COMSIG_XENOABILITY_BULLCHARGE
-	hotkey_keys = list("Q")
-
-/datum/keybinding/xeno/headbutt_charge
-	name = "headbutt_charge"
-	full_name = "Bull: Headbutt Charge"
-	description = "A charge that tosses the victim forward or backwards, depending on intent."
-	keybind_signal = COMSIG_XENOABILITY_BULLHEADBUTT
-	hotkey_keys = list("F")
-
-/datum/keybinding/xeno/gore_charge
-	name = "gore_charge"
-	full_name = "Bull: Gore Charge"
-	description = "A charge that gores the victim."
-	keybind_signal = COMSIG_XENOABILITY_BULLGORE
-	hotkey_keys = list("R")
-
 /datum/keybinding/xeno/throw_hugger
 	name = "throw_hugger"
 	full_name = "Carrier: Throw Hugger"
@@ -381,6 +360,13 @@
 	full_name = "Crusher: Rapid Advance"
 	description = "Charges up the crushers charge, then unleashes the full bulk of the crusher into a direction."
 	keybind_signal = COMSIG_XENOABILITY_ADVANCE
+	hotkey_keys = list("F")
+
+/datum/keybinding/xeno/scorched_earth
+	name = "Scorched Earth"
+	full_name = "Bull: Scorched Earth"
+	description = "When activated, gain three charges of Scorched Earth. These can be used to dash towards a targeted location, leaving damaging trails of plasma behind."
+	keybind_signal = COMSIG_XENOABILITY_SCORCHED_EARTH
 	hotkey_keys = list("F")
 
 /datum/keybinding/xeno/forward_charge

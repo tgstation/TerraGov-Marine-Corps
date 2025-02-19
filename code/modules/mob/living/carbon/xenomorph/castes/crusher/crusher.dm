@@ -46,3 +46,17 @@
 
 /mob/living/carbon/xenomorph/crusher/resisted_against(datum/source)
 	user_unbuckle_mob(source, source)
+
+/mob/living/carbon/xenomorph/crusher/bull
+	caste_base_type = /datum/xeno_caste/crusher/bull
+	name = "Bull"
+	desc = "A bright red alien with a matching temper."
+	icon = 'icons/Xeno/castes/bull.dmi'
+	icon_state = "Bull Walking"
+	mob_size = MOB_SIZE_XENO
+	pixel_x = -16
+	pixel_y = -3
+
+/mob/living/carbon/xenomorph/crusher/bull/primordial
+	upgrade = XENO_UPGRADE_PRIMO
+	upgrade_stored = TIER_THREE_THRESHOLD

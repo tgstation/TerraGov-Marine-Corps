@@ -156,12 +156,6 @@
 	var/flay_plasma_gain = 0
 	var/max_puppets = 0
 
-	// *** Crusher Abilities *** //
-	///The damage the stomp causes, counts armor
-	var/stomp_damage = 0
-	///How many tiles the Crest toss ability throws the victim.
-	var/crest_toss_distance = 0
-
 	// *** Gorger Abilities *** //
 	///Maximum amount of overheal that can be gained
 	var/overheal_max = 150

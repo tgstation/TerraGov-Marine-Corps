@@ -478,7 +478,6 @@
 		<a href='byond://?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> |
 		<br> Alien Tier 2:
 		<a href='byond://?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
-		<a href='byond://?src=[ref];transform=bull;mob=[REF(M)]'>Bull</a> |
 		<a href='byond://?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
 		<a href='byond://?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
 		<a href='byond://?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |

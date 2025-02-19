@@ -449,12 +449,8 @@ GLOBAL_LIST_INIT(bioscan_locations, list(
 		parts += "[GLOB.round_statistics.spitter_scatter_spits] number of times Spitters horked up scatter spits."
 	if(GLOB.round_statistics.ravager_endures)
 		parts += "[GLOB.round_statistics.ravager_endures] number of times Ravagers used Endure."
-	if(GLOB.round_statistics.bull_crush_hit)
-		parts += "[GLOB.round_statistics.bull_crush_hit] number of times Bulls crushed marines."
-	if(GLOB.round_statistics.bull_gore_hit)
-		parts += "[GLOB.round_statistics.bull_gore_hit] number of times Bulls gored marines."
-	if(GLOB.round_statistics.bull_headbutt_hit)
-		parts += "[GLOB.round_statistics.bull_headbutt_hit] number of times Bulls headbutted marines."
+	if(GLOB.round_statistics.bull_hit)
+		parts += "[GLOB.round_statistics.bull_hit] number of times Bulls gored marines."
 	if(GLOB.round_statistics.hunter_marks)
 		parts += "[GLOB.round_statistics.hunter_marks] number of times Hunters marked a target for death."
 	if(GLOB.round_statistics.ravager_rages)

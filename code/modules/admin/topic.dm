@@ -408,8 +408,6 @@ Status: [status ? status : "Unknown"] | Damage: [health ? health : "None"]
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/drone, location, null, delmob)
 			if("sentinel")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/sentinel, location, null, delmob)
-			if("bull")
-				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/bull, location, null, delmob)
 			if("hunter")
 				newmob = M.change_mob_type(/mob/living/carbon/xenomorph/hunter, location, null, delmob)
 			if("carrier")
