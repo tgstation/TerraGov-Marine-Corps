@@ -19,6 +19,7 @@ todo: wielded/activated force for weap logic
 	sidestep_prob = 25
 	identifier = IDENTIFIER_HUMAN
 	base_action = ESCORTING_ATOM
+	distance_to_maintain = 2
 	target_distance = 9
 	minimum_health = 0.3 //placeholder value
 	//is_offered_on_creation = FALSE
@@ -58,13 +59,14 @@ todo: wielded/activated force for weap logic
 	UnregisterSignal(mob_inventory, list(COMSIG_INVENTORY_DAT_GUN_ADDED, COMSIG_INVENTORY_DAT_MELEE_ADDED))
 	return ..()
 
-///Refresh abilities-to-consider list
-/datum/ai_behavior/human/proc/refresh_abilities()
-	SIGNAL_HANDLER
-	ability_list = list()
-	for(var/datum/action/action AS in mob_parent.actions)
-		if(action.ai_should_start_consider())
-			ability_list += action
+/datum/ai_behavior/human/set_combat_target(atom/new_target)
+	. = ..()
+	if(!.)
+		return
+	if(gun_firing)
+		stop_fire()
+	if(gun)
+		INVOKE_ASYNC(src, PROC_REF(check_gun_fire), combat_target)
 
 /datum/ai_behavior/human/process()
 	if(mob_parent.notransform)
@@ -73,7 +75,7 @@ todo: wielded/activated force for weap logic
 		return ..()
 
 	for(var/datum/action/action in ability_list)
-		if(!action.ai_should_use(atom_to_walk_to))
+		if(!action.ai_should_use(atom_to_walk_to)) //todo: some of these probably should be aimmed at combat_target somehow...
 			continue
 		//activable is activated with a different proc for keybinded actions, so we gotta use the correct proc
 		if(istype(action, /datum/action/ability/activable))
@@ -86,6 +88,37 @@ todo: wielded/activated force for weap logic
 		weapon_process()
 
 	return ..()
+
+/datum/ai_behavior/human/register_action_signals(action_type) //todo: probably a lot we can do here
+	switch(action_type)
+		if(MOVING_TO_ATOM)
+			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(do_melee_attack))
+			if(ishuman(atom_to_walk_to))
+				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
+				return
+			if(ismachinery(atom_to_walk_to))
+				RegisterSignal(atom_to_walk_to, COMSIG_PREQDELETED, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
+				return
+
+	return ..()
+
+/datum/ai_behavior/human/unregister_action_signals(action_type)
+	switch(action_type)
+		if(MOVING_TO_ATOM)
+			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
+			if(ishuman(atom_to_walk_to))
+				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
+				return
+			if(ismachinery(atom_to_walk_to))
+				UnregisterSignal(atom_to_walk_to, COMSIG_PREQDELETED)
+				return
+
+	return ..()
+
+/datum/ai_behavior/human/cleanup_current_action(next_action)
+	. = ..()
+	if(next_action == MOVING_TO_NODE)
+		return
 
 /datum/ai_behavior/human/look_for_new_state()
 	var/mob/living/living_parent = mob_parent
@@ -122,6 +155,7 @@ todo: wielded/activated force for weap logic
 				cleanup_current_action()
 				late_initialize()
 				return
+			set_combat_target(next_target)
 			if(next_target == atom_to_walk_to)//We didn't find a better target
 				return
 			change_action(null, next_target)//We found a better target, change course!
@@ -133,6 +167,7 @@ todo: wielded/activated force for weap logic
 				late_initialize()
 				RegisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN, PROC_REF(check_for_critical_health))
 				return
+			set_combat_target(next_target)
 			if(next_target == atom_to_walk_to)
 				return
 			change_action(null, next_target, INFINITY)
@@ -171,12 +206,12 @@ todo: wielded/activated force for weap logic
 			if(lock.operating) //Airlock already doing something
 				continue
 			if(lock.welded || lock.locked) //It's welded or locked, can't force that open
-				INVOKE_ASYNC(src, PROC_REF(attack_target), null, object) //ai is cheating
+				INVOKE_ASYNC(src, PROC_REF(do_melee_attack), null, object) //ai is cheating
 				return COMSIG_OBSTACLE_DEALT_WITH
 			lock.open(TRUE)
 			return COMSIG_OBSTACLE_DEALT_WITH
 		if(!(object.resistance_flags & INDESTRUCTIBLE))
-			INVOKE_ASYNC(src, PROC_REF(attack_target), null, object)
+			INVOKE_ASYNC(src, PROC_REF(do_melee_attack), null, object)
 			return COMSIG_OBSTACLE_DEALT_WITH
 
 	if(should_jump)
@@ -197,7 +232,7 @@ todo: wielded/activated force for weap logic
 			should_jump = TRUE
 			continue
 		if(!(obstacle.resistance_flags & INDESTRUCTIBLE)) //todo: do we need to check for obj_flags & CAN_BE_HIT ?
-			INVOKE_ASYNC(src, PROC_REF(attack_target), null, obstacle)
+			INVOKE_ASYNC(src, PROC_REF(do_melee_attack), null, obstacle)
 			return COMSIG_OBSTACLE_DEALT_WITH
 
 	//shitty dup code here for now
@@ -206,18 +241,21 @@ todo: wielded/activated force for weap logic
 		INVOKE_ASYNC(src, PROC_REF(ai_complete_move), direction, FALSE)
 		return COMSIG_OBSTACLE_DEALT_WITH
 
-/datum/ai_behavior/human/cleanup_current_action(next_action)
-	. = ..()
-	if(next_action == MOVING_TO_NODE)
-		return
+///Refresh abilities-to-consider list
+/datum/ai_behavior/human/proc/refresh_abilities()
+	SIGNAL_HANDLER
+	ability_list = list()
+	for(var/datum/action/action AS in mob_parent.actions)
+		if(action.ai_should_start_consider())
+			ability_list += action
 
 ///Signal handler to try to attack our target
-/datum/ai_behavior/human/proc/attack_target(datum/source, atom/attacked)
+/datum/ai_behavior/human/proc/do_melee_attack(datum/source, atom/attacked)
 	SIGNAL_HANDLER
 	if(world.time < mob_parent.next_move)
 		return
 	if(!attacked)
-		attacked = atom_to_walk_to
+		attacked = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
 	if(get_dist(attacked, mob_parent) > 1)
 		return
 	mob_parent.face_atom(attacked)
@@ -225,32 +263,6 @@ todo: wielded/activated force for weap logic
 		INVOKE_ASYNC(melee_weapon, TYPE_PROC_REF(/obj/item, melee_attack_chain), mob_parent, attacked)
 		return
 	mob_parent.UnarmedAttack(attacked, TRUE)
-
-/datum/ai_behavior/human/register_action_signals(action_type)
-	switch(action_type)
-		if(MOVING_TO_ATOM)
-			RegisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE, PROC_REF(attack_target))
-			if(ishuman(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
-				return
-			if(ismachinery(atom_to_walk_to))
-				RegisterSignal(atom_to_walk_to, COMSIG_PREQDELETED, TYPE_PROC_REF(/datum/ai_behavior, look_for_new_state))
-				return
-
-	return ..()
-
-/datum/ai_behavior/human/unregister_action_signals(action_type)
-	switch(action_type)
-		if(MOVING_TO_ATOM)
-			UnregisterSignal(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE)
-			if(ishuman(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_MOB_DEATH)
-				return
-			if(ismachinery(atom_to_walk_to))
-				UnregisterSignal(atom_to_walk_to, COMSIG_PREQDELETED)
-				return
-
-	return ..()
 
 ///Says an audible message
 /datum/ai_behavior/human/proc/try_speak(message, cooldown = 2 SECONDS)

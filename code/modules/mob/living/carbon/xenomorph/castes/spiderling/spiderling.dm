@@ -190,7 +190,7 @@
 	if(X.spiderling_state != SPIDERLING_ENRAGED)
 		X.spiderling_state = SPIDERLING_GUARDING
 		X.update_icons()
-	set_distance_to_maintain(0)
+	distance_to_maintain = 0
 	revert_to_default_escort()
 	atom_to_walk_to = escorted_atom
 	guarding_status = SPIDERLING_ATTEMPTING_GUARD

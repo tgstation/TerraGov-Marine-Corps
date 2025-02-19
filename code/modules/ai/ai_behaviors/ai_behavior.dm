@@ -8,8 +8,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 /datum/ai_behavior
 	///What atom is the ai moving to
 	var/atom/atom_to_walk_to
+	///The atom we want to attack at range, separate as we might not be moving in regards to it
+	var/atom/combat_target
 	///How far should we stay away from atom_to_walk_to
 	var/distance_to_maintain = 1
+	///Range to stay from a hostile target
+	var/engagement_range = 1
 	///Prob chance of sidestepping (left or right) when distance maintained with target
 	var/sidestep_prob = 0
 	///Current node to use for calculating action states: this is the mob's node
@@ -64,6 +68,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	escorted_atom = null
 	mob_parent = null
 	atom_to_walk_to = null
+	clear_combat_target()
 
 ///Register ai behaviours
 /datum/ai_behavior/proc/start_ai()
@@ -129,7 +134,12 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	#endif
 	if(next_action)
 		current_action = next_action
-	set_distance_to_maintain(special_distance_to_maintain)
+	if(current_action == FOLLOWING_PATH)
+		distance_to_maintain = 0
+	else if(current_action == ESCORTING_ATOM)
+		distance_to_maintain = 1 //Don't stay too close
+	else
+		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
 	if(next_target)
 		atom_to_walk_to = next_target
 		if(!registered_for_move)
@@ -140,18 +150,6 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		mob_parent.a_intent = INTENT_HELP
 	else
 		mob_parent.a_intent = INTENT_HARM
-
-///Overridable proc for setting distance to maintain in a single place
-/datum/ai_behavior/proc/set_distance_to_maintain(override_dist)
-	if(isnum(override_dist))
-		distance_to_maintain = override_dist
-		return
-	if(current_action == FOLLOWING_PATH)
-		distance_to_maintain = 0
-	else if(current_action == ESCORTING_ATOM)
-		distance_to_maintain = 1 //Don't stay too close
-	else
-		distance_to_maintain = initial(distance_to_maintain)
 
 ///Try to find a node to go to. If ignore_current_node is true, we will just find the closest current_node, and not the current_node best adjacent node
 /datum/ai_behavior/proc/look_for_next_node(ignore_current_node = TRUE, should_reset_goal_nodes = FALSE)
@@ -357,9 +355,13 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	var/step_dir
 	var/dist_to_target = get_dist(mob_parent, atom_to_walk_to)
 
-	if(dist_to_target < distance_to_maintain) //away
+	var/desired_range = distance_to_maintain
+	if(current_action == MOVING_TO_ATOM && (atom_to_walk_to == combat_target))
+		desired_range = engagement_range
+
+	if(dist_to_target < desired_range) //away
 		step_dir = get_dir(atom_to_walk_to, mob_parent)
-	else if(dist_to_target > distance_to_maintain) //towards
+	else if(dist_to_target > desired_range) //towards
 		step_dir = get_dir(mob_parent, atom_to_walk_to)
 	else //at dist
 		if(SEND_SIGNAL(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION)
@@ -385,3 +387,19 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(ISDIAGONALDIR(move_dir))
 		mob_parent.next_move_slowdown += (DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER - 1) * mob_parent.cached_multiplicative_slowdown
 	mob_parent.set_glide_size(DELAY_TO_GLIDE_SIZE(mob_parent.cached_multiplicative_slowdown + mob_parent.next_move_slowdown * ( ISDIAGONALDIR(move_dir) ? DIAG_MOVEMENT_ADDED_DELAY_MULTIPLIER : 1 ) )) //todo: probs dont even need this
+
+/datum/ai_behavior/proc/set_combat_target(atom/new_target)
+	if(combat_target == new_target)
+		return
+	if(combat_target)
+		clear_combat_target(combat_target)
+	combat_target = new_target
+	RegisterSignal(combat_target, COMSIG_QDELETING, PROC_REF(clear_combat_target))
+	return TRUE
+
+/datum/ai_behavior/proc/clear_combat_target(atom/source)
+	SIGNAL_HANDLER
+	if(!combat_target)
+		return
+	UnregisterSignal(combat_target, COMSIG_QDELETING)
+	combat_target = null
