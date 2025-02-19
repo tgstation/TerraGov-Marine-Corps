@@ -130,12 +130,12 @@ todo: wielded/activated force for weap logic
 				look_for_next_node()
 				return
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction)
-			if(!next_target)
+			if(!next_target || !line_of_sight(mob_parent, next_target))
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_NODE, FOLLOWING_PATH)
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
-			if(!next_target)
+			if(!next_target || !line_of_sight(mob_parent, next_target))
 				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
 					INVOKE_ASYNC(src, PROC_REF(try_heal))
 					return
@@ -154,7 +154,7 @@ todo: wielded/activated force for weap logic
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
 			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
-			if(!next_target)//We didn't find a target
+			if(!next_target || !line_of_sight(mob_parent, next_target))//We didn't find a target
 				cleanup_current_action()
 				late_initialize()
 				return
@@ -164,7 +164,7 @@ todo: wielded/activated force for weap logic
 			change_action(null, next_target)//We found a better target, change course!
 		if(MOVING_TO_SAFETY) //todo: look at this and unfuck some of this behavior
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction)
-			if(!next_target)//We are safe, try to find some weeds
+			if(!next_target || !line_of_sight(mob_parent, next_target))//We are safe, try to find some weeds
 				target_distance = initial(target_distance)
 				cleanup_current_action()
 				late_initialize()
@@ -176,7 +176,7 @@ todo: wielded/activated force for weap logic
 			change_action(null, next_target, INFINITY)
 		if(IDLE)
 			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction)
-			if(!next_target)
+			if(!next_target || !line_of_sight(mob_parent, next_target))
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 
@@ -260,6 +260,8 @@ todo: wielded/activated force for weap logic
 	if(!interactee)
 		interactee = atom_to_walk_to //this seems like it should be combat_target, but the only time this should come up is if combat_target IS atom_to_walk_to
 	if(get_dist(interactee, mob_parent) > 1)
+		return
+	if(!CanReach(mob_parent, interactee))
 		return
 	if(istype(interactee, /obj/item/weapon)) //snowflake for now
 		mob_parent.UnarmedAttack(interactee, TRUE)
