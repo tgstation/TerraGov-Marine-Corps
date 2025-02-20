@@ -25,7 +25,7 @@ SUBSYSTEM_DEF(security_level)
 	return SS_INIT_SUCCESS
 
 /datum/controller/subsystem/security_level/stat_entry()
-	return ..("Current Level: [uppertext(current_security_level.name)]")
+	return ..("Current Level: [uppertext(get_current_level_as_text())]")
 
 /**
  * Sets a new security level as our current level. This is how anything should be changing the security level.
