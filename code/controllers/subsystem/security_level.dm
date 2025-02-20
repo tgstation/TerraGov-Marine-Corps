@@ -3,10 +3,7 @@
  *
  * Subsystem that controls the security level of the marine ship.
  *
- * See [/datum/security_level] for usage.
- *
- * This replaces hardcoded security levels with a new system that makes new security levels extremely
- * easy to implement, and existing ones extremely easy to modify.
+ * See [/datum/security_level] for usage (implementing new levels, modifying existing, etc).
  */
 SUBSYSTEM_DEF(security_level)
 	name = "Security Level"
