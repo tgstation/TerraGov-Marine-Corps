@@ -200,4 +200,4 @@ GLOBAL_VAR(human_ai_goal)
 	var/message = pick(";TO ME MY MEN!", ";REGROUP TO ME!", ";FOLLOW MY LEAD!", ";RALLY ON ME!", ";FORWARD!")
 	owner.say(message)
 
-	new /obj/effect/ai_node/goal(get_turf(owner), owner, owner.faction)
+	QDEL_IN(new /obj/effect/ai_node/goal(get_turf(owner), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)
