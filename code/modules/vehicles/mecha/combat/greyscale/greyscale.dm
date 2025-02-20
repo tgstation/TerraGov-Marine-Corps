@@ -90,6 +90,9 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/add_occupant(mob/M)
 	. = ..()
+	var/datum/mech_limb/holding = limbs[MECH_GREY_HEAD]
+	if(!holding || holding.disabled)
+		return
 	ADD_TRAIT(M, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
 	M.update_sight()
 
