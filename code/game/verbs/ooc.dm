@@ -573,7 +573,7 @@
 	if(fully_created)
 		INVOKE_ASYNC(src, VERB_REF(fit_viewport))
 	else //Delayed to avoid wingets from Login calls.
-		addtimer(CALLBACK(src, VERB_REF(fit_viewport), 1 SECONDS))
+		addtimer(CALLBACK(src, VERB_REF(fit_viewport)), 1 SECONDS)
 
 /client/verb/policy()
 	set name = "Show Policy"
