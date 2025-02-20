@@ -15,6 +15,8 @@ SUBSYSTEM_DEF(dbcore)
 
 	var/connection  // Arbitrary handle returned from rust_g.
 
+	var/db_daemon_started = FALSE
+
 /datum/controller/subsystem/dbcore/Initialize()
 	//We send warnings to the admins during subsystem init, as the clients will be New'd and messages
 	//will queue properly with goonchat
@@ -50,6 +52,7 @@ SUBSYSTEM_DEF(dbcore)
 		qdel(query_round_shutdown)
 	if(IsConnected())
 		Disconnect()
+	stop_db_daemon()
 
 //nu
 /datum/controller/subsystem/dbcore/can_vv_get(var_name)
@@ -73,6 +76,8 @@ SUBSYSTEM_DEF(dbcore)
 
 	if(!CONFIG_GET(flag/sql_enabled))
 		return FALSE
+
+	start_db_daemon()
 
 	var/user = CONFIG_GET(string/feedback_login)
 	var/pass = CONFIG_GET(string/feedback_password)
@@ -275,6 +280,47 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 		. = Query.Execute(async)
 	qdel(Query)
 
+/datum/controller/subsystem/dbcore/proc/start_db_daemon()
+	set waitfor = FALSE
+
+	if (db_daemon_started)
+		return
+
+	db_daemon_started = TRUE
+
+	var/daemon = CONFIG_GET(string/db_daemon)
+	if (!daemon)
+		return
+
+	ASSERT(fexists(daemon), "Configured db_daemon doesn't exist")
+
+	var/list/result = world.shelleo("echo \"Starting ezdb daemon, do not close this window\" && [daemon]")
+	var/result_code = result[1]
+	if (!result_code || result_code == 1)
+		return
+
+	stack_trace("Failed to start DB daemon: [result_code]\n[result[3]]")
+
+/datum/controller/subsystem/dbcore/proc/stop_db_daemon()
+	set waitfor = FALSE
+
+	if (!db_daemon_started)
+		return
+
+	db_daemon_started = FALSE
+
+	var/daemon = CONFIG_GET(string/db_daemon)
+	if (!daemon)
+		return
+
+	switch (world.system_type)
+		if (MS_WINDOWS)
+			var/list/result = world.shelleo("Get-Process | ? { $_.Path -eq '[daemon]' } | Stop-Process")
+			ASSERT(result[1], "Failed to stop DB daemon: [result[3]]")
+		if (UNIX)
+			var/list/result = world.shelleo("kill $(pgrep -f '[daemon]')")
+			ASSERT(result[1], "Failed to stop DB daemon: [result[3]]")
+
 /datum/db_query
 	// Inputs
 	var/connection
@@ -376,7 +422,7 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 			return FALSE
 
 /datum/db_query/proc/slow_query_check()
-	message_admins("HEY! A database query timed out. Did the server just hang? <a href='?_src_=holder;[HrefToken()];slowquery=yes'>\[YES\]</a>|<a href='?_src_=holder;[HrefToken()];slowquery=no'>\[NO\]</a>")
+	message_admins("HEY! A database query timed out. Did the server just hang? <a href='byond://?_src_=holder;[HrefToken()];slowquery=yes'>\[YES\]</a>|<a href='byond://?_src_=holder;[HrefToken()];slowquery=no'>\[NO\]</a>")
 
 /datum/db_query/proc/NextRow(async = TRUE)
 	Activity("NextRow")
