@@ -194,6 +194,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 /datum/persistent_medal_info/Destroy(force, ...)
 	if(medal)
 		QDEL_NULL(medal)
+	medal_persistence = null
 	return ..()
 
 /**
