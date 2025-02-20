@@ -8,7 +8,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 /proc/seal_persistent_medals()
 	var/is_forced = FALSE
 	if(IsAdminAdvancedProcCall())
-		if(tgui_input_list(usr, "Are you sure you want to save all medals and seal? This can result in players losing medals!", "Save All Medals and Seal", list("Yes", "No")) != "Yes")
+		if(tgui_input_list(usr, "Are you sure you want to save all medals and seal?", "Save All Medals and Seal", list("Yes", "No")) != "Yes")
 			return
 		if(GLOB.medal_persistence_sealed && (tgui_input_list(usr, "Medals are already sealed. Do you want to force save?", "Force Save Medals", list("Yes", "No")) != "Yes"))
 			return
