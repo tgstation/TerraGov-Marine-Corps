@@ -10,7 +10,7 @@
 	bubble_icon = "alienroyal"
 	icon = 'icons/Xeno/castes/hivemind.dmi'
 	status_flags = GODMODE | INCORPOREAL
-	resistance_flags = RESIST_ALL|BANISH_IMMUNE
+	resistance_flags = RESIST_ALL
 	pass_flags = PASS_LOW_STRUCTURE|PASSABLE|PASS_FIRE //to prevent hivemind eye to catch fire when crossing lava
 	density = FALSE
 
@@ -128,7 +128,7 @@
 	update_movespeed()
 	if(status_flags & INCORPOREAL)
 		status_flags = NONE
-		resistance_flags = BANISH_IMMUNE
+		resistance_flags = NONE
 		pass_flags = PASS_LOW_STRUCTURE|PASS_MOB|PASS_XENO
 		density = TRUE
 		hive.xenos_by_upgrade[upgrade] -= src
