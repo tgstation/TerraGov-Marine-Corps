@@ -148,7 +148,7 @@
 		return
 
 	chassis.visible_message("[chassis] honks its horn!")
-	playsound(chassis, 'sound/vehicles/horns/armored_horn.ogg', 70)
+	playsound(chassis.loc, 'sound/vehicles/horns/armored_horn.ogg', 70)
 	TIMER_COOLDOWN_START(chassis, COOLDOWN_ARMORED_HORN, 15 SECONDS) //To keep people's eardrums intact
 
 /datum/action/vehicle/sealed/armored/strafe
@@ -181,7 +181,6 @@
 
 /datum/action/vehicle/sealed/armored/smoke_screen/New(Target)
 	. = ..()
-
 	visual_references[VREF_MUTABLE_AMMO_COUNTER] = mutable_appearance(null, null, ACTION_LAYER_MAPTEXT, FLOAT_PLANE)
 
 /datum/action/vehicle/sealed/armored/smoke_screen/action_activate(trigger_flags)
@@ -190,12 +189,12 @@
 	if(TIMER_COOLDOWN_CHECK(chassis, COOLDOWN_ARMORED_SMOKE))
 		return
 	if(!shots_remaining)
-		playsound(chassis, 'sound/weapons/guns/interact/m92_cocked.ogg', 40, TRUE)
+		playsound(chassis.loc, 'sound/weapons/guns/interact/m92_cocked.ogg', 40, TRUE)
 		return
 
 	shots_remaining --
 	chassis.visible_message("[chassis] pops smoke!")
-	playsound(chassis, 'sound/weapons/guns/fire/grenadelauncher.ogg', 80, TRUE)
+	playsound(chassis.loc, 'sound/weapons/guns/fire/grenadelauncher.ogg', 80, TRUE)
 	TIMER_COOLDOWN_START(chassis, COOLDOWN_ARMORED_SMOKE, 2 SECONDS)
 
 	var/list/source_turfs = list()
