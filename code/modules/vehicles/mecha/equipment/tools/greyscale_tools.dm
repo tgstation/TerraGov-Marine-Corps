@@ -1,33 +1,49 @@
-/obj/item/mecha_parts/mecha_equipment/armor/melee
-	name = "melee armor booster"
-	desc = "Increases armor against melee attacks by 15%."
+/obj/vehicle/sealed/mecha
+	/// How much energy we use per mech dash
+	var/dash_power_consumption = 500
+	/// dash_range
+	var/dash_range = 1
+
+/obj/item/mecha_parts/mecha_equipment/armor/booster
+	name = "medium booster"
+	desc = "Determines boosting speed and power. Balanced option. Sets dash consumption to 200 and dash range to 3, and boost consumption per step to 50."
 	icon_state = "armor_melee"
 	iconstate_name = "armor_melee"
-	protect_name = "Melee Armor"
+	protect_name = "Medium Booster"
 	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	slowdown = 0.5
-	armor_mod = list(MELEE = 15)
+	slowdown = -2.0
+	armor_mod = list()
+	/// How much energy we use when we dash
+	var/dash_consumption = 200
+	/// How many tiles our dash carries us
+	var/dash_range = 3
+	/// how much energy we use per step when boosting
+	var/boost_consumption = 50
 
-/obj/item/mecha_parts/mecha_equipment/armor/acid
-	name = "caustic armor booster"
-	desc = "Increases armor against acid attacks by 15%."
+/obj/item/mecha_parts/mecha_equipment/armor/booster/attach(obj/vehicle/sealed/mecha/M, attach_right)
+	. = ..()
+	chassis.overload_step_energy_drain_min = boost_consumption
+	chassis.leg_overload_coeff = 0 // forces min usage
+	chassis.dash_power_consumption = dash_consumption
+	chassis.dash_range = dash_range
+
+/obj/item/mecha_parts/mecha_equipment/armor/booster/detach(atom/moveto)
+	chassis.overload_step_energy_drain_min = initial(chassis.overload_step_energy_drain_min)
+	chassis.leg_overload_coeff = initial(chassis.leg_overload_coeff)
+	chassis.dash_power_consumption = initial(chassis.dash_power_consumption)
+	chassis.dash_range = initial(chassis.dash_range)
+	return ..()
+
+
+/obj/item/mecha_parts/mecha_equipment/armor/booster/lightweight
+	name = "lightweight booster"
+	desc = "Determines boosting speed and power. Lightweight option. Sets dash consumption to 300 and dash range to 4, and boost consumption per step to 25."
 	icon_state = "armor_acid"
 	iconstate_name = "armor_acid"
-	protect_name = "Caustic Armor"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	slowdown = 0.4
-	armor_mod = list(ACID = 15)
-
-/obj/item/mecha_parts/mecha_equipment/armor/explosive
-	name = "explosive armor booster"
-	desc = "Increases armor against explosions by 25%."
-	icon_state = "armor_explosive"
-	iconstate_name = "armor_explosive"
-	protect_name = "Explosive Armor"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	slowdown = 0.3
-	armor_mod = list(BOMB = 25)
-
+	protect_name = "Lightweight Booster"
+	dash_consumption = 300
+	dash_range = 4
+	boost_consumption = 25
 
 /obj/item/mecha_parts/mecha_equipment/generator/greyscale
 	name = "phoron engine"
@@ -118,19 +134,6 @@
 	else
 		chassis.destroy_passenger_action_type(ability_to_grant)
 	return ..()
-
-/obj/item/mecha_parts/mecha_equipment/ability/dash
-	name = "actuator safety override"
-	desc = "A haphazard collection of electronics that allows the user to override standard safety inputs to increase speed, at the cost of extremely high power usage."
-	icon_state = "booster"
-	mech_flags = EXOSUIT_MODULE_GREYSCALE
-	ability_to_grant = /datum/action/vehicle/sealed/mecha/mech_overload_mode
-	///sound to loop when the dash is activated
-	var/datum/looping_sound/mech_overload/sound_loop
-
-/obj/item/mecha_parts/mecha_equipment/ability/dash/Initialize(mapload)
-	. = ..()
-	sound_loop = new
 
 /obj/item/mecha_parts/mecha_equipment/ability/zoom
 	name = "enhanced zoom"

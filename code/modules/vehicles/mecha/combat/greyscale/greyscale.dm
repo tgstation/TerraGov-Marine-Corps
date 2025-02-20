@@ -43,6 +43,12 @@
 	var/obj/effect/abstract/particle_holder/holder_left
 	///right particle smoke holder
 	var/obj/effect/abstract/particle_holder/holder_right
+	/// Stores the time at which we last moved.
+	var/last_mousedown_time
+	/// Stores the direction of the last movement made.
+	var/last_move_dir
+	/// The timing for activating a dash by double tapping a movement key.
+	var/double_tap_timing = 0.18 SECONDS
 
 /obj/vehicle/sealed/mecha/combat/greyscale/Initialize(mapload)
 	holder_left = new(src, /particles/mecha_smoke)
@@ -72,6 +78,9 @@
 		limb?.detach(src)
 	return ..()
 
+/obj/vehicle/sealed/mecha/combat/greyscale/generate_actions()
+	. = ..()
+	initialize_passenger_action_type(/datum/action/vehicle/sealed/mecha/mech_overload_mode)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/mob_try_enter(mob/entering_mob, mob/user, loc_override = FALSE)
 	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
@@ -88,6 +97,58 @@
 	REMOVE_TRAIT(M, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
 	M.update_sight()
 	return ..()
+
+/obj/vehicle/sealed/mecha/combat/greyscale/grant_controller_actions_by_flag(mob/M, flag)
+	. = ..()
+	if(. && (flag & VEHICLE_CONTROL_DRIVE))
+		RegisterSignal(M, COMSIG_KB_MOVEMENT_EAST_DOWN, PROC_REF(dash_east))
+		RegisterSignal(M, COMSIG_KB_MOVEMENT_NORTH_DOWN, PROC_REF(dash_north))
+		RegisterSignal(M, COMSIG_KB_MOVEMENT_SOUTH_DOWN, PROC_REF(dash_south))
+		RegisterSignal(M, COMSIG_KB_MOVEMENT_WEST_DOWN, PROC_REF(dash_west))
+
+/obj/vehicle/sealed/mecha/combat/greyscale/remove_controller_actions_by_flag(mob/M, flag)
+	. = ..()
+	if(. && (flag & VEHICLE_CONTROL_DRIVE))
+		UnregisterSignal(M, list(COMSIG_KB_MOVEMENT_EAST_DOWN, COMSIG_KB_MOVEMENT_NORTH_DOWN, COMSIG_KB_MOVEMENT_SOUTH_DOWN, COMSIG_KB_MOVEMENT_WEST_DOWN))
+
+/// Checks if we can dash to the east.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_east()
+	SIGNAL_HANDLER
+	check_dash(EAST)
+
+/// Checks if we can dash to the north.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_north()
+	SIGNAL_HANDLER
+	check_dash(NORTH)
+
+/// Checks if we can dash to the south.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_south()
+	SIGNAL_HANDLER
+	check_dash(SOUTH)
+
+/// Checks if we can dash to the west.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/dash_west()
+	SIGNAL_HANDLER
+	check_dash(WEST)
+
+/// Checks if we can dash in the specified direction, and activates the ability if so.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/check_dash(direction)
+	if(last_move_dir == direction && last_mousedown_time + double_tap_timing > world.time)
+		if(!use_power(dash_power_consumption))
+			for(var/mob/occupant AS in return_drivers())
+				balloon_alert(occupant, "Not enough for dash")
+			return
+		activate_dash(direction)
+		return
+	last_mousedown_time = world.time
+	last_move_dir = direction
+
+/// Does a dash in the specified direction.
+/obj/vehicle/sealed/mecha/combat/greyscale/proc/activate_dash(direction)
+	var/turf/target_turf = get_step(src, direction)
+	for(var/i in 1 to dash_range)
+		target_turf = get_step(target_turf, direction)
+	throw_at(target_turf, dash_range, 1, src, FALSE, TRUE, TRUE)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_icon()
 	. = ..()
@@ -153,6 +214,9 @@
 			continue
 		var/datum/mech_limb/limb = limbs[key]
 		. += limb.get_overlays()
+
+	var/state = leg_overload_mode ? "booster_active" : "booster"
+	. += image('icons/mecha/mecha_ability_overlays.dmi', icon_state = state, layer=layer+0.001)
 
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
