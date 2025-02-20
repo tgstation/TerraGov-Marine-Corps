@@ -47,7 +47,7 @@
 	damage = 15
 	penetration = 20
 	sundering = 1
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_IFF
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_BETTER_COVER_RNG|AMMO_IFF
 	damage_falloff = 1
 	accurate_range = 7
 	accuracy = 10

@@ -2950,7 +2950,7 @@
 	},
 /area/shuttle/drop1/lz1)
 "cum" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/machinery/atmospherics/pipe/simple/green/hidden,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -4903,7 +4903,7 @@
 /turf/open/floor/tile/dark2,
 /area/lawankaoutpost/colony/mining)
 "eeu" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /obj/effect/landmark/weed_node,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
@@ -9902,7 +9902,7 @@
 /turf/open/floor,
 /area/lawankaoutpost/colony/landingzoneone)
 "ikQ" = (
-/obj/structure/barricade/metal,
+/obj/structure/barricade/solid,
 /turf/open/floor/tile/white,
 /area/lawankaoutpost/colony/medbay)
 "ikS" = (
@@ -10264,7 +10264,7 @@
 	},
 /area/lawankaoutpost/colony/operations_storage)
 "iCC" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 4
 	},
 /turf/open/floor/tile/red/whitered{
@@ -13103,7 +13103,7 @@
 /turf/open/ground/grass/weedable,
 /area/lawankaoutpost/colony/hydroponics)
 "kWI" = (
-/obj/structure/barricade/metal{
+/obj/structure/barricade/solid{
 	dir = 8
 	},
 /turf/open/floor/tile/white,

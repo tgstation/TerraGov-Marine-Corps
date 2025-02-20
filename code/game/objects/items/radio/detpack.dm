@@ -21,6 +21,7 @@
 	var/atom/plant_target = null //which atom the detpack is planted on
 	var/target_drag_delay = null //store this for restoration later
 	var/boom = FALSE //confirms whether we actually detted.
+	var/boom_direction //which direction we were planted in; determines which way breach detpacks blast through walls
 	var/detonation_pending
 	var/sound_timer
 	var/datum/radio_frequency/radio_connection
@@ -293,6 +294,7 @@
 		var/location
 		location = target
 		forceMove(location)
+		boom_direction = get_dir(user, location)
 
 		log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
 		message_admins("[ADMIN_TPMONTY(user)] planted [src.name] on [target.name] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
@@ -367,11 +369,11 @@
 	plant_target.ex_act(EXPLODE_DEVASTATE)
 	plant_target = null
 	if(det_mode == TRUE) //If we're on demolition mode, big boom.
-		explosion(det_location, 3, 5, 6, 0, 6)
+		explosion(det_location, 0, 7, 9, 0, 7)
 	else //if we're not, focused boom.
-		explosion(det_location, 2, 2, 3, 0, 3, throw_range = FALSE)
-	qdel(src)
-
+		if(iswallturf(det_location)) //Breach the other side of the wall if planted on one
+			det_location = get_step(det_location, boom_direction)
+		explosion(det_location, 3, 4, 4, 0, 4)
 
 /obj/item/detpack/attack(mob/M as mob, mob/user as mob, def_zone)
 	return

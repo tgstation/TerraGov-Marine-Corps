@@ -24,7 +24,7 @@
 
 /obj/machinery/washing_machine/verb/start()
 	set name = "Start Washing"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	if(!isliving(usr)) //ew ew ew usr, but it's the only way to check.

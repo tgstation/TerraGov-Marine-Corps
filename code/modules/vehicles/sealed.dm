@@ -1,12 +1,11 @@
 /obj/vehicle/sealed
 	atom_flags = PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
+	faction = null
 	var/enter_delay = 2 SECONDS
 	var/mouse_pointer
 	var/headlights_toggle = FALSE
 	///Modifiers for directional damage reduction
 	var/list/facing_modifiers = list(VEHICLE_FRONT_ARMOUR = 1, VEHICLE_SIDE_ARMOUR = 1, VEHICLE_BACK_ARMOUR = 1)
-	///Current owning faction
-	var/faction
 
 /obj/vehicle/sealed/generate_actions()
 	. = ..()

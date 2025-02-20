@@ -79,7 +79,7 @@
 	return TRUE
 
 /obj/machinery/gibber/verb/eject()
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Empty Gibber"
 	set src in oview(1)
 

@@ -14,6 +14,7 @@
 	light_range = 1.5
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
+	faction = null
 
 	var/gives_webbing = FALSE
 	var/vendor_role //to be compared with job.type to only allow those to use that machine.
@@ -26,8 +27,6 @@
 
 	var/list/categories
 	var/list/listed_products
-	///The faction of that vendor, can be null
-	var/faction
 
 /obj/machinery/marine_selector/Initialize(mapload)
 	. = ..()
