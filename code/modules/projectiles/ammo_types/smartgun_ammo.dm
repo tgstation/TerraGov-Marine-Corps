@@ -33,14 +33,13 @@
 	hud_state = "smartgun"
 	hud_state_empty = "smartgun_empty"
 	ammo_behavior_flags = AMMO_BALLISTIC
-	damage = 40
+	damage = 50
 	max_range = 40
 	penetration = 30
-	sundering = 5
+	sundering = 3.5
 	shell_speed = 4
 	damage_falloff = 0.5
 	accurate_range = 25
-	accurate_range_min = 3
 
 /datum/ammo/bullet/cupola
 	name = "cupola bullet"
@@ -81,7 +80,7 @@
 	sundering = 0.5
 
 /datum/ammo/bullet/spottingrifle/heavyrubber/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 1 SECONDS, slowdown = 1, max_range = 12)
+	staggerstun(target_mob, proj, paralyze = 1 SECONDS, slowdown = 1, max_range = 12)
 
 /datum/ammo/bullet/spottingrifle/plasmaloss
 	name = "smart tanglefoot spotting bullet"

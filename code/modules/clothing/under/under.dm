@@ -190,14 +190,14 @@
 
 /obj/item/clothing/under/verb/toggle()
 	set name = "Toggle Suit Sensors"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 	set_sensors(usr)
 
 
 /obj/item/clothing/under/verb/rollsuit()
 	set name = "Roll Down Jumpsuit"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in usr
 	if(!isliving(usr))
 		return

@@ -50,7 +50,7 @@
 
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_BETTER_COVER_RNG|AMMO_SNIPER
 	damage = 100
 	penetration = 35
 	sundering = 0
@@ -112,7 +112,7 @@
 	damage_falloff = 4
 
 /datum/ammo/bullet/shotgun/mech/on_hit_mob(mob/target_mob, obj/projectile/proj)
-	staggerstun(target_mob, proj, weaken = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
+	staggerstun(target_mob, proj, paralyze = 2 SECONDS, stagger = 2 SECONDS, knockback = 2, slowdown = 0.5, max_range = 3)
 
 /datum/ammo/energy/lasgun/marine/mech
 	name = "superheated laser bolt"
@@ -135,7 +135,7 @@
 
 /datum/ammo/energy/lasgun/marine/mech/lance_strike
 	name = "particle lance"
-	ammo_behavior_flags = AMMO_ENERGY|AMMO_SNIPER|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_BETTER_COVER_RNG|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB
 	damage_type = BRUTE
 	damage = 100
 	armor_type = MELEE

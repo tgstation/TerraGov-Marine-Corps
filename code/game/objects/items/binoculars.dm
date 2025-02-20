@@ -157,7 +157,7 @@
 	to_chat(user, span_notice("NOW SENDING COORDINATES TO [linked_mortars[selected_mortar].name] AT: LONGITUDE [mortar.x]. LATITUDE [mortar.y]."))
 
 /obj/item/binoculars/tactical/verb/toggle_mode(mob/user)
-	set category = "Object"
+	set category = "IC.Object"
 	set name = "Toggle Laser Mode"
 	if(!user && isliving(loc))
 		user = loc

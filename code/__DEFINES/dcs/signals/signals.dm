@@ -236,6 +236,10 @@
 #define COMSIG_ATOM_EXITED "atom_exited"						//from base of atom/Exited(): (atom/movable/exiting, direction)
 #define COMSIG_ATOM_BUMPED "atom_bumped"						///from base of atom/Bumped(): (/atom/movable)
 #define COMSIG_ATOM_DIR_CHANGE "atom_dir_change"				//from base of atom/setDir(): (old_dir, new_dir)
+///from base of atom/movable/keybind_face_direction(): (dir). Called before turning with the movement lock key.
+#define COMSIG_MOVABLE_KEYBIND_FACE_DIR "keybind_face_dir"
+	///ignores the movement lock key, used for turning while strafing in a mech
+	#define COMSIG_IGNORE_MOVEMENT_LOCK (1<<0)
 #define COMSIG_ATOM_CANREACH "atom_can_reach"					//from internal loop in atom/movable/proc/CanReach(): (list/next)
 	#define COMPONENT_BLOCK_REACH (1<<0)
 #define COMSIG_ATOM_ATTACK_HAND "atom_attack_hand"				//from base of atom/attack_hand(mob/living/user)

@@ -88,79 +88,79 @@
 /obj/machinery/computer/camera_advanced/overwatch/military/get_dat()
 	var/dat
 	if(!operator)
-		dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>----------</A><BR>"
+		dat += "<BR><B>Operator:</b> <A href='byond://?src=[text_ref(src)];operation=change_operator'>----------</A><BR>"
 		return dat
-	dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>[operator.name]</A><BR>"
-	dat += "   <A href='?src=[text_ref(src)];operation=logout'>{Stop Overwatch}</A><BR>"
+	dat += "<BR><B>Operator:</b> <A href='byond://?src=[text_ref(src)];operation=change_operator'>[operator.name]</A><BR>"
+	dat += "   <A href='byond://?src=[text_ref(src)];operation=logout'>{Stop Overwatch}</A><BR>"
 	dat += "----------------------<br>"
 	if(overwatch_flags & OVERWATCH_ON_MONITOR)
 		dat += get_squad_info()
 		return dat
 
 	if(!current_squad) //No squad has been set yet. Pick one.
-		dat += "<br>Current Squad: <A href='?src=[text_ref(src)];operation=pick_squad'>----------</A><BR>"
+		dat += "<br>Current Squad: <A href='byond://?src=[text_ref(src)];operation=pick_squad'>----------</A><BR>"
 		return dat
 
 	dat += "<br><b>[current_squad.name] Squad</A></b>   "
-	dat += "<A href='?src=[text_ref(src)];operation=message'>\[Message Squad\]</a><br><br>"
+	dat += "<A href='byond://?src=[text_ref(src)];operation=message'>\[Message Squad\]</a><br><br>"
 	dat += "----------------------<BR><BR>"
 	if(current_squad.squad_leader)
-		dat += "<B>Squad Leader:</B> <A href='?src=[text_ref(src)];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
-		dat += "<A href='?src=[text_ref(src)];operation=sl_message'>\[MSG\]</a> "
-		dat += "<A href='?src=[text_ref(src)];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
+		dat += "<B>Squad Leader:</B> <A href='byond://?src=[text_ref(src)];operation=use_cam;cam_target=\ref[current_squad.squad_leader]'>[current_squad.squad_leader.name]</a> "
+		dat += "<A href='byond://?src=[text_ref(src)];operation=sl_message'>\[MSG\]</a> "
+		dat += "<A href='byond://?src=[text_ref(src)];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
 	else
-		dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=[text_ref(src)];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
+		dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='byond://?src=[text_ref(src)];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
 
 	dat += "<B>Primary Objective:</B> "
 	if(current_squad.primary_objective)
-		dat += "[current_squad.primary_objective] <a href='?src=[text_ref(src)];operation=set_primary'>\[Set\]</a><br>"
+		dat += "[current_squad.primary_objective] <a href='byond://?src=[text_ref(src)];operation=set_primary'>\[Set\]</a><br>"
 	else
-		dat += "<b><font color=red>NONE!</font></b> <a href='?src=[text_ref(src)];operation=set_primary'>\[Set\]</a><br>"
+		dat += "<b><font color=red>NONE!</font></b> <a href='byond://?src=[text_ref(src)];operation=set_primary'>\[Set\]</a><br>"
 	dat += "<b>Secondary Objective:</b> "
 	if(current_squad.secondary_objective)
-		dat += "[current_squad.secondary_objective] <a href='?src=[text_ref(src)];operation=set_secondary'>\[Set\]</a><br>"
+		dat += "[current_squad.secondary_objective] <a href='byond://?src=[text_ref(src)];operation=set_secondary'>\[Set\]</a><br>"
 	else
-		dat += "<b><font color=red>NONE!</font></b> <a href='?src=[text_ref(src)];operation=set_secondary'>\[Set\]</a><br>"
+		dat += "<b><font color=red>NONE!</font></b> <a href='byond://?src=[text_ref(src)];operation=set_secondary'>\[Set\]</a><br>"
 	dat += "<br>"
-	dat += "<A href='?src=[text_ref(src)];operation=insubordination'>Report a marine for insubordination</a><BR>"
-	dat += "<A href='?src=[text_ref(src)];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
-	dat += "<a href='?src=[text_ref(src)];operation=monitor'>Squad Monitor</a><br>"
+	dat += "<A href='byond://?src=[text_ref(src)];operation=insubordination'>Report a marine for insubordination</a><BR>"
+	dat += "<A href='byond://?src=[text_ref(src)];operation=squad_transfer'>Transfer a marine to another squad</a><BR><BR>"
+	dat += "<a href='byond://?src=[text_ref(src)];operation=monitor'>Squad Monitor</a><br>"
 	dat += "----------------------<br>"
 
 	dat += get_firesupport_data()
 
-	dat += "<br><br><a href='?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
+	dat += "<br><br><a href='byond://?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
 	return dat
 
 /obj/machinery/computer/camera_advanced/overwatch/military/main/get_dat()
 	var/dat
 	if(!operator)
-		dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>----------</A><BR>"
+		dat += "<BR><B>Operator:</b> <A href='byond://?src=[text_ref(src)];operation=change_operator'>----------</A><BR>"
 		return dat
-	dat += "<BR><B>Operator:</b> <A href='?src=[text_ref(src)];operation=change_operator'>[operator.name]</A><BR>"
-	dat += "   <A href='?src=[text_ref(src)];operation=logout'>{Stop Overwatch}</A><BR>"
+	dat += "<BR><B>Operator:</b> <A href='byond://?src=[text_ref(src)];operation=change_operator'>[operator.name]</A><BR>"
+	dat += "   <A href='byond://?src=[text_ref(src)];operation=logout'>{Stop Overwatch}</A><BR>"
 	dat += "----------------------<br>"
 	if(overwatch_flags & OVERWATCH_ON_MONITOR)
 		dat += get_squad_info()
 		return dat
 
 	for(var/datum/squad/S AS in watchable_squads)
-		dat += "<b>[S.name] Squad</b> <a href='?src=[text_ref(src)];operation=message;current_squad=[text_ref(S)]'>\[Message Squad\]</a><br>"
+		dat += "<b>[S.name] Squad</b> <a href='byond://?src=[text_ref(src)];operation=message;current_squad=[text_ref(S)]'>\[Message Squad\]</a><br>"
 		if(S.squad_leader)
-			dat += "<b>Leader:</b> <a href='?src=[text_ref(src)];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
-			dat += "<a href='?src=[text_ref(src)];operation=sl_message;current_squad=[text_ref(S)]'>\[MSG\]</a><br>"
+			dat += "<b>Leader:</b> <a href='byond://?src=[text_ref(src)];operation=use_cam;cam_target=\ref[S.squad_leader]'>[S.squad_leader.name]</a> "
+			dat += "<a href='byond://?src=[text_ref(src)];operation=sl_message;current_squad=[text_ref(S)]'>\[MSG\]</a><br>"
 		else
 			dat += "<b>Leader:</b> <font color=red>NONE</font><br>"
 		if(S.overwatch_officer)
 			dat += "<b>Squad Overwatch:</b> [S.overwatch_officer.name]<br>"
 		else
 			dat += "<b>Squad Overwatch:</b> <font color=red>NONE</font><br>"
-		dat += "<A href='?src=[text_ref(src)];operation=monitor;squad_id=[S.id]'>[S.name] Squad Monitor</a><br>"
+		dat += "<A href='byond://?src=[text_ref(src)];operation=monitor;squad_id=[S.id]'>[S.name] Squad Monitor</a><br>"
 	dat += "----------------------<br>"
 
 	dat += get_firesupport_data()
 
-	dat += "<A href='?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
+	dat += "<A href='byond://?src=[text_ref(src)];operation=refresh'>{Refresh}</a>"
 	return dat
 
 /obj/machinery/computer/camera_advanced/overwatch/military/Topic(href, href_list)
@@ -279,7 +279,7 @@
 		for(var/obj/effect/overlay/temp/laser_target/ob_lase AS in target_list)
 			if(ob_lase.lasertype != LASER_TYPE_OB)
 				continue
-			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(ob_lase)];selected_target=[REF(ob_lase)]'>[ob_lase]</a><br>"
+			dat += "<a href='byond://?src=[REF(src)];operation=use_cam;cam_target=[REF(ob_lase)];selected_target=[REF(ob_lase)]'>[ob_lase.name]</a><br>"
 	else
 		dat += "[span_warning("None")]<br>"
 	dat += "<b>Selected Target:</b><br>"
@@ -290,7 +290,7 @@
 		selected_target = null
 	else
 		dat += "<font color='green'>[selected_target.name]</font><br>"
-	dat += "<A href='?src=[text_ref(src)];operation=dropbomb'>\[FIRE!\]</a><br>"
+	dat += "<A href='byond://?src=[text_ref(src)];operation=dropbomb'>\[FIRE!\]</a><br>"
 	dat += "----------------------<BR>"
 
 	dat += "<b>Rail Gun Control</b><br>"
@@ -305,7 +305,7 @@
 	dat += "<B>[current_squad ? "[current_squad.name] " : ""]Laser Targets:</b><br>"
 	if(length(target_list))
 		for(var/obj/effect/overlay/temp/laser_target/lase AS in target_list) //for whatever reason we can fire railgun on any lase type... in practical terms, any type EXCEPT railgun
-			dat += "<a href='?src=[REF(src)];operation=use_cam;cam_target=[REF(lase)];selected_target=[REF(lase)]'>[lase]</a><br>"
+			dat += "<a href='byond://?src=[REF(src)];operation=use_cam;cam_target=[REF(lase)];selected_target=[REF(lase)]'>[lase.name]</a><br>"
 	else
 		dat += "[span_warning("None")]<br>"
 	dat += "<b>Selected Target:</b><br>"
@@ -316,7 +316,7 @@
 		selected_target = null
 	else
 		dat += "<font color='green'>[selected_target.name]</font><br>"
-	dat += "<A href='?src=[text_ref(src)];operation=shootrailgun'>\[FIRE!\]</a><br>"
+	dat += "<A href='byond://?src=[text_ref(src)];operation=shootrailgun'>\[FIRE!\]</a><br>"
 	dat += "----------------------<br>"
 	return dat
 
@@ -638,7 +638,7 @@
 
 	target.playsound_local(target, "sound/machines/dotprinter.ogg", 35)
 	to_chat(target, span_notice("<b><i>New message from [sender.real_name]:</b> [message]</i>"))
-	target.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("CIC MESSAGE FROM [sender.real_name]", message, LEFT_ALIGN_TEXT), new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, sender), "#32cd32")
+	target.play_screen_text(HUD_ANNOUNCEMENT_FORMATTING("CIC MESSAGE FROM [sender.real_name]", capitalize(message), LEFT_ALIGN_TEXT), new /atom/movable/screen/text/screen_text/picture/potrait/custom_mugshot(null, null, sender), "#32cd32")
 
 	var/list/tts_listeners = filter_tts_listeners(sender, target, null, RADIO_TTS_COMMAND)
 	if(!length(tts_listeners))

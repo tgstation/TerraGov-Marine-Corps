@@ -81,8 +81,6 @@
 	var/list/easy_load_list
 	///Wether we are strafing
 	var/strafe = FALSE
-	///modifier to view range when manning a control chair
-	var/vis_range_mod = 0
 
 /obj/vehicle/sealed/armored/Initialize(mapload)
 	easy_load_list = typecacheof(easy_load_list)
@@ -624,6 +622,8 @@
 		return FALSE
 	playsound(src, 'sound/effects/tankswivel.ogg', 80,1)
 	TIMER_COOLDOWN_START(src, COOLDOWN_TANK_SWIVEL, 3 SECONDS)
+	if(primary_weapon)
+		TIMER_COOLDOWN_START(src, COOLDOWN_MECHA_EQUIPMENT(primary_weapon.type), new_weapon_dir == REVERSE_DIR(turret_overlay.dir) ? 1 SECONDS : 0.5 SECONDS)
 	turret_overlay.setDir(new_weapon_dir)
 	return TRUE
 

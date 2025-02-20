@@ -32,7 +32,6 @@ var turfname = "";
 var imageRetryDelay = 500;
 var imageRetryLimit = 50;
 var menu = document.getElementById('menu');
-var under_menu = document.getElementById('under_menu');
 var statcontentdiv = document.getElementById('statcontent');
 var storedimages = [];
 var split_admin_tabs = false;
@@ -58,20 +57,20 @@ function createStatusTab(name) {
 	if (!verb_tabs.includes(name) && !permanent_tabs.includes(name)) {
 		return;
 	}
-	var B = document.createElement("BUTTON");
-	B.onclick = function () {
+	var button = document.createElement("DIV");
+	button.onclick = function () {
 		tab_change(name);
 		this.blur();
+		statcontentdiv.focus();
 	};
-	B.id = name;
-	B.textContent = name;
-	B.className = "button";
+	button.id = name;
+	button.textContent = name;
+	button.className = "button";
 	//ORDERING ALPHABETICALLY
-	B.style.order = ({"Status": 1, "MC": 2, "Tickets": 3})[name] || name.charCodeAt(0);
+	button.style.order = ({"Status": 1, "MC": 2, "Tickets": 3})[name] || name.charCodeAt(0);
 	//END ORDERING
-	menu.appendChild(B);
+	menu.appendChild(button);
 	SendTabToByond(name);
-	under_menu.style.height = menu.clientHeight + 'px';
 }
 
 function removeStatusTab(name) {
@@ -85,7 +84,6 @@ function removeStatusTab(name) {
 	}
 	menu.removeChild(document.getElementById(name));
 	TakeTabFromByond(name);
-	under_menu.style.height = menu.clientHeight + 'px';
 }
 
 function sortVerbs() {
@@ -99,10 +97,6 @@ function sortVerbs() {
 		}
 		return 0;
 	})
-}
-
-window.onresize = function () {
-	under_menu.style.height = menu.clientHeight + 'px';
 }
 
 function addPermanentTab(name) {
@@ -257,7 +251,7 @@ function tab_change(tab) {
 		draw_debug();
 	} else if (tab == "Tickets") {
 		draw_tickets();
-		//draw_interviews();
+		draw_interviews();
 	} else if (tab == "SDQL2") {
 		draw_sdql2();
 	} else if (tab == turfname) {
@@ -358,6 +352,7 @@ function draw_status() {
 		} else {
 			var div = document.createElement("div");
 			div.textContent = status_tab_parts[i];
+			div.className = "status-info";
 			document.getElementById("statcontent").appendChild(div);
 		}
 	}
@@ -440,24 +435,7 @@ function draw_listedturf() {
 	var table = document.createElement("table");
 	for (var i = 0; i < turfcontents.length; i++) {
 		var part = turfcontents[i];
-		if (storedimages[part[1]] == null && part[2]) {
-			var img = document.createElement("img");
-			img.src = part[2];
-			img.id = part[1];
-			storedimages[part[1]] = part[2];
-			img.onerror = iconError;
-			table.appendChild(img);
-		} else {
-			var img = document.createElement("img");
-			img.onerror = iconError;
-			img.src = storedimages[part[1]];
-			img.id = part[1];
-			table.appendChild(img);
-		}
-		var b = document.createElement("div");
-		var clickcatcher = "";
-		b.className = "link";
-		b.onmousedown = function (part) {
+		var clickfunc = function (part) {
 			// The outer function is used to close over a fresh "part" variable,
 			// rather than every onmousedown getting the "part" of the last entry.
 			return function (e) {
@@ -485,6 +463,26 @@ function draw_listedturf() {
 				window.location.href = clickcatcher;
 			}
 		}(part);
+		if (storedimages[part[1]] == null && part[2]) {
+			var img = document.createElement("img");
+			img.src = part[2];
+			img.id = part[1];
+			storedimages[part[1]] = part[2];
+			img.onerror = iconError;
+			img.onmousedown = clickfunc;
+			table.appendChild(img);
+		} else {
+			var img = document.createElement("img");
+			img.onerror = iconError;
+			img.onmousedown = clickfunc;
+			img.src = storedimages[part[1]];
+			img.id = part[1];
+			table.appendChild(img);
+		}
+		var b = document.createElement("div");
+		var clickcatcher = "";
+		b.className = "link";
+		b.onmousedown = clickfunc;
 		b.textContent = part[0];
 		table.appendChild(b);
 		table.appendChild(document.createElement("br"));
@@ -707,10 +705,29 @@ function draw_verbs(cat) {
 function set_theme(which) {
 	if (which == "light") {
 		document.body.className = "";
+		document.documentElement.className = 'light';
 		set_style_sheet("browserOutput_white");
 	} else if (which == "dark") {
 		document.body.className = "dark";
+		document.documentElement.className = 'dark';
 		set_style_sheet("browserOutput");
+	}
+}
+
+function set_font_size(size) {
+	document.body.style.setProperty('font-size', size);
+}
+
+function set_tabs_style(style) {
+	if (style == "default") {
+		menu.classList.add('menu-wrap');
+		menu.classList.remove('tabs-classic');
+	} else if (style == "classic") {
+		menu.classList.add('menu-wrap');
+		menu.classList.add('tabs-classic');
+	} else if (style == "scrollable") {
+		menu.classList.remove('menu-wrap');
+		menu.classList.remove('tabs-classic');
 	}
 }
 
@@ -968,7 +985,8 @@ Byond.subscribeTo('add_admin_tabs', function (ht) {
 	addPermanentTab("Tickets");
 });
 
-Byond.subscribeTo('add_mc_tab', function () {
+Byond.subscribeTo('add_mc_tab', function (ht) {
+	href_token = ht;
 	addPermanentTab("MC");
 });
 
