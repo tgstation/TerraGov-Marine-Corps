@@ -314,7 +314,7 @@
 		return // tank is currently trying to move around
 	if(drive_loop?.timer_id)
 		drive_loop.stop()
-		idle_loop?.start()
+		idle_loop?.start(skip_startsound=TRUE)
 		drive_inside_loop?.stop(occupants)
 		idle_inside_loop?.start(occupants.Copy(), TRUE)
 
