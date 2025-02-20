@@ -65,21 +65,24 @@
 
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
-		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 25)
+		var/bite_nutrition = ((reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) / reagents.total_volume) * bitesize * 18.75)
+		if(reagents.total_volume < bitesize)
+			bite_nutrition = reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 18.75
+		var/fullness = C.nutrition + (C.reagents.get_reagent_amount(/datum/reagent/consumable/nutriment) * 18.75) + bite_nutrition //adds our next bite to our total nutrition in body and stomach
 		if(M == user)								//If you're eating it yourself
 			var/mob/living/carbon/H = M
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
-			if(fullness <= 50)
+			if(fullness <= NUTRITION_STARVING)
 				balloon_alert(user, "hungrily chews [src]")
-			if(fullness > 50 && fullness <= 150)
+			if(fullness > NUTRITION_STARVING && fullness <= NUTRITION_HUNGRY)
 				balloon_alert(user, "hungrily eats [src]")
-			if(fullness > 150 && fullness <= 350)
+			if(fullness > NUTRITION_HUNGRY && fullness <= NUTRITION_WELLFED)
 				balloon_alert(user, "takes bite of [src]")
-			if(fullness > 350 && fullness <= 550)
-				balloon_alert(user, "unwillingly chews [src]")
-			if(fullness > 550)
+			if(fullness > NUTRITION_WELLFED && fullness <= NUTRITION_OVERFED)
+				balloon_alert(user, "nibbles on [src]")
+			if(fullness > NUTRITION_OVERFED)
 				balloon_alert(user, "cannot eat more of [src]")
 				return FALSE
 		else
@@ -87,7 +90,7 @@
 			if(ishuman(H) && (H.species.species_flags & ROBOTIC_LIMBS))
 				balloon_alert(user, "can't eat food")
 				return
-			if(fullness <= 550)
+			if(fullness <= NUTRITION_OVERFED)
 				balloon_alert_to_viewers("tries to feed [M]")
 			else
 				balloon_alert_to_viewers("tries to feed [M] but can't")
