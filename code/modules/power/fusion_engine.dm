@@ -296,7 +296,7 @@
 		return
 
 	if(!is_on)
-		. += span_info("It looks offline.")
+		. += span_info("It seems like it's offline.")
 	else
 		. += span_info("The power gauge reads: [power_gen_percent]%")
 	if(fusion_cell)

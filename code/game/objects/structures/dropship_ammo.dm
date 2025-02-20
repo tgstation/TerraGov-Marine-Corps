@@ -536,8 +536,8 @@
 
 //Minirockets are effectively just da small rockets.
 /obj/structure/ship_ammo/cas/minirocket
-	name = "mini rocket stack"
-	desc = "A pack of explosive laser guided mini rockets. Moving this will require some sort of lifter."
+	name = "mini-rocket stack"
+	desc = "A pack of explosive, laser-guided mini-rockets. Moving this will require some sort of lifter."
 	icon_state = "minirocket"
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	equipment_type = /obj/structure/dropship_equipment/cas/weapon/minirocket_pod

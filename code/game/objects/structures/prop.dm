@@ -209,13 +209,13 @@
 
 //RND Props
 /obj/machinery/prop/r_n_d/protolathe
-	name = "Protolathe"
+	name = "protolathe"
 	icon = 'icons/obj/machines/research.dmi'
 	desc = "Protolathe, used to be used to print tools and such."
 	icon_state = "protolathe"
 
 /obj/machinery/prop/computer/rdconsole
-	name = "R&D Console"
+	name = "\improper R&D console"
 	icon = 'icons/obj/machines/computer.dmi'
 	desc = "A research console."
 	icon_state = "computer"
@@ -223,15 +223,15 @@
 	broken_icon = "computer_blue_broken"
 
 /obj/machinery/prop/r_n_d/server
-	name = "R&D Server"
+	name = "\improper R&D server"
 	icon = 'icons/obj/machines/research.dmi'
-	desc = "A research server"
+	desc = "A research server."
 	icon_state = "server"
 
 /obj/machinery/prop/computer/rdservercontrol
-	name = "R&D Server Controller"
+	name = "\improper R&D server controller"
 	icon = 'icons/obj/machines/computer.dmi'
-	desc = "Oversees all research"
+	desc = "Oversees all research."
 	icon_state = "computer"
 	screen_overlay = "rdcomp"
 	broken_icon = "computer_blue_broken"
@@ -243,16 +243,16 @@
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/computer/crew
-	name = "Crew monitoring computer"
+	name = "crew monitoring computer"
 	desc = "Used to monitor active health sensors built into most of the crew's uniforms."
 	icon_state = "computer"
 	screen_overlay = "crew"
 	icon = 'icons/obj/machines/computer.dmi'
 
 /obj/machinery/prop/r_n_d/server/alt
-	name = "Alternate R&D Server"
+	name = "alternate R&D server"
 	icon = 'icons/obj/machines/research.dmi'
-	desc = "A research server"
+	desc = "A research server."
 	icon_state = "server_alt"
 //End RND props
 

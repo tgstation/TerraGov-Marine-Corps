@@ -410,7 +410,7 @@
 
 ///Replacement rappel cord, necessary to fully repair a damaged rappel system
 /obj/item/spare_cord
-	name = "Replacement rappel cord box"
+	name = "replacement rappel cord box"
 	desc = "A box full of expensive, plasteel-infused spare rappel cord for a rappel system. Click on a rappel system to replace any damaged cord, making the system functional again."
 	icon = 'icons/obj/structures/prop/mainship.dmi'
 	icon_state = "cordbox"

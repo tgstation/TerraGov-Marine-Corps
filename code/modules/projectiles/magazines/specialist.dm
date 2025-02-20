@@ -298,7 +298,7 @@
 	bonus_overlay = "rpg_thermobaric"
 
 /obj/item/ammo_magazine/rocket/som/rad
-	name = "\improper 84mm  irrad RPG"
+	name = "\improper 84mm irrad RPG"
 	desc = "A irrad warhead for the V-71 rocket launcher. Releases a devastating milisecond burst of radiation, debilitating anything caught in the blast radius."
 	icon_state = "rpg_rad"
 	default_ammo = /datum/ammo/rocket/som/rad
