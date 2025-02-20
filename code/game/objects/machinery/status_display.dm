@@ -28,6 +28,16 @@
 	var/index1			// display index for scrolling messages or 0 if non-scrolling
 	var/index2
 
+/obj/machinery/status_display/Initialize(mapload)
+	. = ..()
+	if(is_mainship_level(z))
+		RegisterSignal(SSsecurity_level, COMSIG_SECURITY_LEVEL_CHANGED, PROC_REF(on_alert_change))
+
+/// Called when [COMSIG_SECURITY_LEVEL_CHANGED] sends a signal, sets the active picture based on current level
+/obj/machinery/status_display/proc/on_alert_change(datum/source, datum/security_level/next_level, datum/security_level/previous_level)
+	SIGNAL_HANDLER
+	set_picture(next_level?.status_display_icon || "default")
+
 /// Immediately blank the display.
 /obj/machinery/status_display/proc/remove_display()
 	cut_overlays()
@@ -38,6 +48,8 @@
 /// Immediately change the display to the given picture.
 /obj/machinery/status_display/proc/set_picture(state)
 	remove_display()
+	if(!(state in GLOB.status_display_icons))
+		return
 	add_overlay(state)
 
 
