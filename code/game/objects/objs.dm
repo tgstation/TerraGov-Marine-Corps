@@ -432,6 +432,10 @@
 	SEND_SIGNAL(src, COMSIG_ITEM_UNDEPLOY, user)
 	return TRUE
 
+/// Handles successful disassembly tasks on a deployable, cannot be used for failure checks as disassembly has completed already
+/obj/proc/post_disassemble(mob/user)
+	return TRUE
+
 /obj/plasmacutter_act(mob/living/user, obj/item/I)
 	if(!isplasmacutter(I) || user.do_actions)
 		return FALSE
