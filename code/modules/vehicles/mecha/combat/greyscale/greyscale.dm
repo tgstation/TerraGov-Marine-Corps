@@ -135,7 +135,7 @@
 	for(var/key in render_order)
 		if(key == MECHA_R_ARM)
 			var/datum/mech_limb/holding = limbs[MECH_GREY_R_ARM]
-			if(holding.disabled)
+			if(!holding || holding?.disabled)
 				continue
 			var/obj/item/mecha_parts/mecha_equipment/right_gun = equip_by_category[MECHA_R_ARM]
 			if(right_gun)
@@ -145,7 +145,7 @@
 			continue
 		if(key == MECHA_L_ARM)
 			var/datum/mech_limb/holding = limbs[MECH_GREY_L_ARM]
-			if(holding.disabled)
+			if(!holding || holding.disabled)
 				continue
 			var/obj/item/mecha_parts/mecha_equipment/left_gun = equip_by_category[MECHA_L_ARM]
 			if(left_gun)
@@ -161,8 +161,7 @@
 
 /obj/vehicle/sealed/mecha/combat/greyscale/setDir(newdir)
 	. = ..()
-	if(!QDELING(src))
-		update_icon() //when available pass UPDATE_OVERLAYS since this is just for layering order
+	update_icon() //when available pass UPDATE_OVERLAYS since this is just for layering order
 
 /obj/vehicle/sealed/mecha/combat/greyscale/throw_bounce(atom/hit_atom, turf/old_throw_source)
 	return //no bounce for us
