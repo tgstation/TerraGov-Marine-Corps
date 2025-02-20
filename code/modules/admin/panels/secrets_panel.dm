@@ -1,11 +1,5 @@
-/datum/admins/proc/secrets_panel()
-	set name = "Secrets Panel"
-	set category = "Admin"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
+ADMIN_VERB(utility_panel, R_DEBUG, "Utility Panel", "Utility panel with miscellaneous functions", ADMIN_CATEGORY_DEBUG)
+	var/ref = "[REF(user.holder)];[HrefToken()]"
 	var/dat = "<b>Use responsibly.</b><hr>"
 
 
@@ -30,6 +24,6 @@
 		<a href='byond://?src=[ref];secrets=rejuvall'>Rejuv ALL cliented mobs</a><br>
 		"}
 
-	var/datum/browser/browser = new(usr, "secretspanel", "<div align='center'>Mode Panel</div>")
+	var/datum/browser/browser = new(user, "secretspanel", "<div align='center'>Mode Panel</div>")
 	browser.set_content(dat)
 	browser.open()

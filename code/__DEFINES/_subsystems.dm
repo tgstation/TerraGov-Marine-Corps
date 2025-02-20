@@ -79,7 +79,8 @@
 #define INIT_ORDER_GARBAGE 27
 #define INIT_ORDER_DBCORE 25
 #define INIT_ORDER_SERVER_MAINT 23
-#define INIT_ORDER_INPUT 21
+#define INIT_ORDER_INPUT 22
+#define INIT_ORDER_ADMIN_VERBS 21 // needs to be pretty high, admins can't do much without it
 #define INIT_ORDER_VIS 20
 #define INIT_ORDER_SOUNDS 19
 #define INIT_ORDER_INSTRUMENTS 17

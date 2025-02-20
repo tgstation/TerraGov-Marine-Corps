@@ -27,6 +27,8 @@
 #define TICKET_ADMIN 2
 
 //Admin Permissions
+/// Used for signifying that all admins can use this regardless of actual permissions
+#define R_NONE NONE
 #define R_ADMIN (1<<0)
 #define R_MENTOR (1<<1)
 #define R_BAN (1<<2)
@@ -142,3 +144,7 @@
 
 /// for asay pings, this is the index in the return list for [/proc/check_admin_pings] that contains the message modified with underlines for the spotted names
 #define ADMINSAY_PING_UNDERLINE_NAME_INDEX "!underlined_names"
+
+/// Used in logging uses of admin verbs (and sometimes some non-admin or debug verbs) to the blackbox
+/// Only pass it a string key, the verb being used.
+#define BLACKBOX_LOG_ADMIN_VERB(the_verb) SSblackbox.record_feedback("tally", "admin_verb", 1, the_verb)
