@@ -253,15 +253,3 @@ GLOBAL_VAR(medal_persistence_sealed)
 		mob.put_in_hands(medal)
 		return
 	medal.forceMove(container)
-	RegisterSignal(medal, COMSIG_QDELETING, PROC_REF(on_medal_destroy))
-
-/**
- * Handle the destruction of the medal.
- */
-/datum/persistent_medal_info/proc/on_medal_destroy()
-	SIGNAL_HANDLER
-
-	medal_persistence.medals_by_real_name[issued_to_real_name] -= src
-	ASYNC
-		medal_persistence.mark_medal_as_deleted(src)
-		to_chat(medal_persistence.owner, span_notice("A medal was destroyed..."))
