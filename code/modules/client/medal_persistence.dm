@@ -239,7 +239,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 
 /**
  * Generate the medal and put it in the provided container.
- * - mob/container - The mob being awarded the medal.
+ * - atom/container - The place we want to create the medal. puts in in the hands of living mobs
  */
 /datum/persistent_medal_info/proc/award_to(atom/container)
 	var/wanted_type = get_metal_typepath_from_uid()
