@@ -599,7 +599,7 @@ WEAPONS
 	cost = 1000
 
 /datum/supply_packs/weapons/shotguntracker
-	name = "12 gauge tracker thells"
+	name = "12 gauge tracker shells"
 	contains = list(/obj/item/ammo_magazine/shotgun/tracker)
 	cost = 50
 	available_against_xeno_only = TRUE
