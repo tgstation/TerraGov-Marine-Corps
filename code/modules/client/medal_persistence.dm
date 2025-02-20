@@ -71,7 +71,6 @@ GLOBAL_VAR(medal_persistence_sealed)
 		return
 
 	for(var/name in medals_by_real_name)
-		// qdel'ing the persistent medal info will not remove the medal from them
 		QDEL_LIST_ASSOC_VAL(medals_by_real_name[name])
 	medals_by_real_name = list()
 
