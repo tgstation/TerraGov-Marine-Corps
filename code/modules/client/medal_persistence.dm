@@ -27,7 +27,7 @@ GLOBAL_VAR(medal_persistence_sealed)
 
 	if(!GLOB.medal_persistence_sealed)
 		GLOB.medal_persistence_sealed = TRUE
-		to_chat(world, span_notice("Persistent medals have been saved. No further medal issuances will be saved."))
+	to_chat(world, span_notice("Persistent Medals have been saved and sealed. No further medal issuances will be saved without admin intervention."))
 
 /datum/medal_persistence
 	var/ckey
