@@ -28,7 +28,7 @@
 	internal_damage_threshold = 15
 	internal_damage_probability = 5
 	possible_int_damage = MECHA_INT_FIRE|MECHA_INT_SHORT_CIRCUIT
-	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED
+	mecha_flags = ADDING_ACCESS_POSSIBLE | CANSTRAFE | IS_ENCLOSED | HAS_HEADLIGHTS | MECHA_SKILL_LOCKED | MECHA_SPIN_WHEN_NO_ANGLE
 	explosion_block = 2
 	pivot_step = TRUE
 	/// keyed list. values are types at init, otherwise instances of mecha limbs, order is layer order as well
@@ -77,6 +77,16 @@
 	if((mecha_flags & MECHA_SKILL_LOCKED) && entering_mob.skills.getRating(SKILL_MECH) < SKILL_MECH_TRAINED)
 		balloon_alert(entering_mob, "You don't know how to pilot this")
 		return FALSE
+	return ..()
+
+/obj/vehicle/sealed/mecha/combat/greyscale/add_occupant(mob/M)
+	. = ..()
+	ADD_TRAIT(M, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	M.update_sight()
+
+/obj/vehicle/sealed/mecha/combat/greyscale/remove_occupant(mob/M)
+	REMOVE_TRAIT(M, TRAIT_SEE_IN_DARK, VEHICLE_TRAIT)
+	M.update_sight()
 	return ..()
 
 /obj/vehicle/sealed/mecha/combat/greyscale/update_icon()

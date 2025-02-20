@@ -443,7 +443,7 @@
 	icon = 'icons/obj/machines/deployable/sentry/laser.dmi'
 	fire_sound = 'sound/weapons/guns/fire/laser.ogg'
 
-	turret_range = 8
+	turret_range = 7
 	deploy_time = 5 SECONDS
 	max_shells = 500
 	fire_delay = 0.2 SECONDS

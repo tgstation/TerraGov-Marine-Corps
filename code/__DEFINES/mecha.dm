@@ -21,6 +21,8 @@
 #define MECHA_SKILL_LOCKED (1<<11)
 ///Is currently suffering from an EMP
 #define MECHA_EMPED (1<<12)
+///Whether to immeditely spin when we dont have enough angle on the target
+#define MECHA_SPIN_WHEN_NO_ANGLE (1<<12)
 
 #define MECHA_MELEE (1 << 0)
 #define MECHA_RANGED (1 << 1)

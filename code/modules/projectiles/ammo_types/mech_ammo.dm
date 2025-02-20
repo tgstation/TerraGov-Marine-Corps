@@ -50,7 +50,7 @@
 
 /datum/ammo/bullet/sniper/mech
 	name = "light anti-tank bullet"
-	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_SNIPER
+	ammo_behavior_flags = AMMO_BALLISTIC|AMMO_BETTER_COVER_RNG|AMMO_SNIPER
 	damage = 100
 	penetration = 35
 	sundering = 0
@@ -135,7 +135,7 @@
 
 /datum/ammo/energy/lasgun/marine/mech/lance_strike
 	name = "particle lance"
-	ammo_behavior_flags = AMMO_ENERGY|AMMO_SNIPER|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB
+	ammo_behavior_flags = AMMO_ENERGY|AMMO_BETTER_COVER_RNG|AMMO_HITSCAN|AMMO_PASS_THROUGH_MOVABLE|AMMO_PASS_THROUGH_MOB
 	damage_type = BRUTE
 	damage = 100
 	armor_type = MELEE

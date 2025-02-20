@@ -320,7 +320,8 @@
 #define COMSIG_XENOABILITY_FIRECHARGE "xenoability_firecharge"
 #define COMSIG_XENOABILITY_FIRENADO "xenoability_firenado"
 #define COMSIG_XENOABILITY_FIREBALL "xenoability_fireball"
-#define COMSIG_XENOABILITY_HEATRAY "xenoability_heatray"
+#define COMSIG_XENOABILITY_INFERNO "xenoability_inferno"
+#define COMSIG_XENOABILITY_INFERNAL_TRIGGER "xenoability_infernal_trigger"
 
 #define COMSIG_XENOABILITY_TENDRILS "xenoability_tendrils"
 #define COMSIG_XENOABILITY_ORGANICBOMB "xenoability_puppeteerorganicbomb"

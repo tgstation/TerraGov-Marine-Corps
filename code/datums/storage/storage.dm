@@ -446,7 +446,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 /datum/storage/verb/toggle_gathering_mode()
 	set name = "Switch Gathering Method"
-	set category = "Object"
+	set category = "IC.Object"
 
 	collection_mode = !collection_mode
 	if(collection_mode)
@@ -456,7 +456,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 /datum/storage/verb/toggle_draw_mode()
 	set name = "Switch Storage Drawing Method"
-	set category = "Object"
+	set category = "IC.Object"
 
 	draw_mode = !draw_mode
 	if(draw_mode)

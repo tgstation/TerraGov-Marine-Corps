@@ -404,7 +404,7 @@
 
 /obj/machinery/cryopod/verb/eject()
 	set name = "Eject Pod"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in view(0)
 
 	if(usr.incapacitated(TRUE) || usr.loc != src)
@@ -433,7 +433,7 @@
 
 /obj/machinery/cryopod/verb/move_inside()
 	set name = "Enter Pod"
-	set category = "Object"
+	set category = "IC.Object"
 	set src in oview(1)
 
 	move_inside_wrapper(usr, usr)
