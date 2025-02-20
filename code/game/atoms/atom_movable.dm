@@ -2,6 +2,8 @@
 	layer = OBJ_LAYER
 	glide_size = 8
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|LONG_GLIDE
+	///The faction this AM is associated with, if any
+	var/faction = null
 	var/last_move = null
 	var/last_move_time = 0
 	var/anchored = FALSE

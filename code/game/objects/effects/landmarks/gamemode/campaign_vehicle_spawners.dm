@@ -1,7 +1,6 @@
 /obj/effect/landmark/campaign/vehicle_spawner
 	icon = 'icons/effects/campaign_effects.dmi'
-	///Faction associated with this spawner
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 	///Mech type for this spawner
 	var/vehicle_type
 

@@ -11,8 +11,7 @@
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
-	///The faction of this loadout vendor
-	var/faction = VENDOR_FACTION_NEUTRAL
+	faction = VENDOR_FACTION_NEUTRAL
 
 /obj/machinery/loadout_vendor/Initialize(mapload)
 	. = ..()

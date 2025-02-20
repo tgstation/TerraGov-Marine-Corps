@@ -8,6 +8,7 @@
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
 	atom_flags = PREVENT_CONTENTS_EXPLOSION
 	resistance_flags = NONE
+	faction = FACTION_NEUTRAL
 
 	//Mob
 	///Whether a mob is alive or dead. TODO: Move this to living - Nodrak
@@ -113,8 +114,6 @@
 
 	/// Can they interact with station electronics
 	var/has_unlimited_silicon_privilege = 0
-	///The faction this mob belongs to
-	var/faction = FACTION_NEUTRAL
 
 	/// what icon the mob uses for speechbubbles
 	var/bubble_icon = "default"

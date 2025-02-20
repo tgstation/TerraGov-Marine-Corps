@@ -303,8 +303,7 @@ GLOBAL_LIST_INIT(faction_to_campaign_door_signal, list(
 	resistance_flags = DROPSHIP_IMMUNE|RESIST_ALL
 	open_layer = UNDER_TURF_LAYER
 	closed_layer = ABOVE_WINDOW_LAYER
-	///Faction associated with the door, for signal purposes
-	var/faction = FACTION_TERRAGOV
+	faction = FACTION_TERRAGOV
 
 /obj/machinery/door/poddoor/campaign/Initialize(mapload)
 	RegisterSignal(SSdcs, GLOB.faction_to_campaign_door_signal[faction], PROC_REF(open))

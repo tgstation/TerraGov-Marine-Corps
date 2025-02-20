@@ -6,10 +6,9 @@
 /obj/effect/landmark/patrol_point
 	name = "Patrol exit point"
 	icon = 'icons/effects/campaign_effects.dmi'
+	faction = FACTION_TERRAGOV
 	///ID to link with an associated start point
 	var/id = null
-	///Faction this belongs to for minimap purposes
-	var/faction = FACTION_TERRAGOV
 	///minimap icon state
 	var/minimap_icon = "patrol_1"
 	///List of open turfs around the point to deploy onto

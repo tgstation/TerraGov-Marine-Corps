@@ -96,8 +96,7 @@ GLOBAL_LIST_INIT(quick_loadouts, init_quick_loadouts())
 	light_range = 1
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
-	///The faction of this quick load vendor
-	var/faction = FACTION_NEUTRAL
+	faction = FACTION_NEUTRAL
 	//the different tabs in the vendor
 	var/list/categories = list(
 		"Squad Marine",

@@ -13,6 +13,8 @@
 	resistance_flags = INDESTRUCTIBLE|UNACIDABLE
 	interaction_flags = INTERACT_MACHINE_TGUI
 
+	faction = FACTION_TERRAGOV
+
 	///Whether this computer is activated by the event yet
 	var/active = FALSE
 	///How much supply points you get for completing the terminal
@@ -32,9 +34,6 @@
 	var/printing = FALSE
 	///When we reach max progress and get the points
 	var/printing_complete = FALSE
-	///What faction has launched the intel process
-	var/faction = FACTION_TERRAGOV
-
 
 /obj/machinery/computer/intel_computer/Initialize(mapload)
 	. = ..()
