@@ -295,5 +295,5 @@ Stepping directly on the mine will also blow it up
 /obj/item/explosive/mine/anti_tank/emp_act()
 	return
 
-/obj/item/explosive/mine/anti_tank/attackby(obj/item/I, mob/user, params)
+/obj/item/explosive/mine/pressure/attackby(obj/item/I, mob/user, params)
 	return
