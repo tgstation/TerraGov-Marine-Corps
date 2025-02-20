@@ -247,6 +247,7 @@
 	RegisterSignal(parent, ATOM_RECALCULATE_STORAGE_SPACE, PROC_REF(recalculate_storage_space))
 	RegisterSignals(parent, list(COMSIG_ITEM_EQUIPPED, COMSIG_ITEM_DROPPED), PROC_REF(update_verbs))
 	RegisterSignal(parent, COMSIG_ITEM_QUICK_EQUIP, PROC_REF(on_quick_equip_request))
+	RegisterSignal(parent, COMSIG_ATOM_INITIALIZED_ON, PROC_REF(item_init_in_parent))
 
 ///Unregisters our signals from parent. Used when parent loses storage but is not destroyed
 /datum/storage/proc/unregister_storage_signals(atom/parent)
@@ -270,6 +271,7 @@
 		COMSIG_ITEM_EQUIPPED,
 		COMSIG_ITEM_DROPPED,
 		COMSIG_ITEM_QUICK_EQUIP,
+		COMSIG_ATOM_INITIALIZED_ON,
 	))
 
 /// Almost 100% of the time the lists passed into set_holdable are reused for each instance
@@ -789,6 +791,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 /datum/storage/proc/should_access_delay(obj/item/accessed, mob/user, taking_out)
 	return FALSE
 
+///Stores an item properly if its spawned directly into parent
+/datum/storage/proc/item_init_in_parent(datum/source, obj/item/new_item)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(handle_item_insertion), new_item)
+
 /**
  * This proc handles items being inserted. It does not perform any checks of whether an item can or can't be inserted.
  * That's done by can_be_inserted()
@@ -880,7 +887,7 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 
 	if(!QDELETED(item))
 		UnregisterSignal(item, COMSIG_MOVABLE_MOVED)
-		item.on_exit_storage(src) //todo: this is not called for weapons equipped directly out of storage
+		item.on_exit_storage(src)
 		item.mouse_opacity = initial(item.mouse_opacity)
 
 	for(var/limited_type in storage_type_limits_max)
@@ -890,6 +897,11 @@ GLOBAL_LIST_EMPTY(cached_storage_typecaches)
 	parent.update_icon()
 
 	return TRUE
+
+///Handles if the item is forcemoved out of storage
+/datum/storage/proc/item_removed_from_storage(obj/item/item)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, PROC_REF(remove_from_storage), item, item.loc, null, FALSE, TRUE, FALSE)
 
 ///Refills the storage from the refill_types item
 /datum/storage/proc/do_refill(obj/item/storage/refiller, mob/user)
