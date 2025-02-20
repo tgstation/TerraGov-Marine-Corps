@@ -296,7 +296,7 @@ ADMIN_VERB(player_panel, R_BAN, "Player Panel", "View the player panel", ADMIN_C
 
 
 ADMIN_VERB(player_panel_extended, R_BAN, "Player Panel Extended", "View the extended player panel", ADMIN_CATEGORY_MAIN)
-	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
+	var/ref = "[REF(user.holder)];[HrefToken()]"
 	var/dat = "<table border=0 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
 
 	for(var/mob/M in sortmobs())
@@ -335,14 +335,14 @@ ADMIN_VERB(player_panel_extended, R_BAN, "Player Panel Extended", "View the exte
 
 	dat += "</table>"
 
-	log_admin("[key_name(usr)] opened the extended player panel.")
+	log_admin("[key_name(user)] opened the extended player panel.")
 
 
-	var/datum/browser/browser = new(usr, "players", "<div align='center'>Player Panel Extended</div>", 800, 600)
+	var/datum/browser/browser = new(user.mob, "players", "<div align='center'>Player Panel Extended</div>", 800, 600)
 	browser.set_content(dat)
 	browser.open()
 
-ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_BAN, "Show Player Panel", mob/M in GLOB.mob_list)
+ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_BAN, "Show Player Panel", mob/M in world)
 	if(!istype(M))
 		return
 
@@ -508,7 +508,7 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_BAN, "Show Player Panel", mob/
 
 	log_admin("[key_name(user)] opened the player panel of [key_name(M)].")
 
-	var/datum/browser/browser = new(user, "player_panel_[key_name(M)]", "<div align='center'>Player Panel [key_name(M)]</div>", 575, 555)
+	var/datum/browser/browser = new(user.mob, "player_panel_[key_name(M)]", "<div align='center'>Player Panel [key_name(M)]</div>", 575, 555)
 	browser.set_content(body)
 	browser.open()
 	BLACKBOX_LOG_ADMIN_VERB("Show Player Panel")

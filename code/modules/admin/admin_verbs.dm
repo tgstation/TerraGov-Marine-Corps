@@ -90,8 +90,8 @@ ADMIN_VERB_AND_CONTEXT_MENU(give_mob, R_ADMIN, "Give Mob", ADMIN_VERB_NO_DESCRIP
 
 	given_living.take_over(mob_received, TRUE)
 
-ADMIN_VERB_AND_CONTEXT_MENU(rejuvenate, R_ADMIN, "Rejuvenate", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/L in GLOB.mob_living_list)
-	if(tgui_alert(user, "Are you sure you want to rejuvenate [key_name(L)]?", "Rejuvenate", "Yes", "No") != "Yes")
+ADMIN_VERB_AND_CONTEXT_MENU(rejuvenate, R_ADMIN, "Rejuvenate", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/L in world)
+	if(tgui_alert(user, "Are you sure you want to rejuvenate [key_name(L)]?", "Confirm", list("Rejuvenate", "Yes", "No")) != "Yes")
 		return
 
 	if(!istype(L))
@@ -389,11 +389,11 @@ ADMIN_VERB(msay, R_ADMIN|R_MENTOR, "msay", "Speak in the private mentor channel"
 		else if(is_mentor(C) && user.mob.stat == DEAD)
 			to_chat(C,
 				type = MESSAGE_TYPE_MENTORCHAT,
-				html = "<span class='[color]'>[span_prefix("[span_tooltip(user.holder.rank.name, "MENTOR:")]")] [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(user.mob)] [ADMIN_FLW(user.mob)]: <span class='message linkify'>[msg]</span></span>")
+				html = "<span class='[color]'>[span_prefix("[span_tooltip(user.holder.rank.name, "MENTOR:")]")] [key_name_admin(user, TRUE, TRUE, FALSE)] [ADMIN_JMP(user.mob)] [ADMIN_FLW(user.mob)]: <span class='message linkify'>[msg]</span></span>")
 		else if(is_mentor(C))
 			to_chat(C,
 				type = MESSAGE_TYPE_MENTORCHAT,
-				html = "<span class='[color]'>[span_prefix("[span_tooltip(user.holder.rank.name, "MENTOR:")]")] [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(user.mob)] [ADMIN_FLW(user.mob)]: <span class='message linkify'>[msg]</span></span>")
+				html = "<span class='[color]'>[span_prefix("[span_tooltip(user.holder.rank.name, "MENTOR:")]")] [key_name_admin(user, TRUE, FALSE, FALSE)] [ADMIN_JMP(user.mob)] [ADMIN_FLW(user.mob)]: <span class='message linkify'>[msg]</span></span>")
 
 	var/list/pinged_admin_clients = check_admin_pings(msg)
 	if(length(pinged_admin_clients) && pinged_admin_clients[ADMINSAY_PING_UNDERLINE_NAME_INDEX])

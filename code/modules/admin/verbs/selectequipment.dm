@@ -1,5 +1,5 @@
 
-ADMIN_VERB_AND_CONTEXT_MENU(cmd_select_equipment, R_FUN, "Select equipment", "Select a mobs equipment", ADMIN_CATEGORY_FUN, mob/target in GLOB.human_mob_list)
+ADMIN_VERB_AND_CONTEXT_MENU(cmd_select_equipment, R_FUN, "Select equipment", "Select a mobs equipment", ADMIN_CATEGORY_FUN, mob/target in GLOB.human_mob_list|GLOB.observer_list)
 	var/datum/select_equipment/ui = new(user.mob, target)
 	ui.ui_interact(user.mob)
 

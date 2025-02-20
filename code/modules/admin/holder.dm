@@ -122,18 +122,12 @@
 		owner.holder = null
 		owner = null
 
-/client/proc/deadmin()
-	set name = "De-Admin"
-	set category = "Admin"
-	set desc = "Temporarily remove your admin powers."
-
-	if(!holder)
-		return
-
-	holder.deactivate()
-
-	log_admin("[key_name(usr)] de-adminned themselves.")
-	message_admins("[ADMIN_TPMONTY(usr)] de-adminned themselves.")
+ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY_MAIN)
+	user.holder.deactivate()
+	to_chat(user, span_interface("You are now a normal player."))
+	log_admin("[key_name(user)] deadminned themselves.")
+	message_admins("[key_name_admin(user)] deadminned themselves.")
+	BLACKBOX_LOG_ADMIN_VERB("Deadmin")
 
 
 /proc/GenerateToken()
