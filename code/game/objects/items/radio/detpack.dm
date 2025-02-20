@@ -374,6 +374,7 @@
 		if(iswallturf(det_location)) //Breach the other side of the wall if planted on one
 			det_location = get_step(det_location, boom_direction)
 		explosion(det_location, 3, 4, 4, 0, 4)
+	qdel(src)
 
 /obj/item/detpack/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
