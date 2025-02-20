@@ -82,12 +82,28 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	PAIN = GLOB.ai_pain_heal_items,
 ))
 
-//obj/item/stack/medical/splint
-
 /datum/ai_behavior/human
+	///Chat lines for trying to heal
 	var/list/healing_chat = list("Healing, cover me!", "Healing over here.", "Where's the damn medic?", "Medic!", "Treating wounds.", "It's just a flesh wound.", "Need a little help here!", "Cover me!.")
-
+	///Chat lines for retreating on low health
 	var/list/retreating_chat = list("Falling back!", "Cover me, I'm hit!", "I'm hit!", "Medic!", "Disengaging!", "Help me!", "Need a little help here!", "Tactical withdrawal.", "Repositioning.")
+
+///Reacts if the mob is below the min health threshold
+/datum/ai_behavior/human/proc/check_for_critical_health(datum/source, damage)
+	SIGNAL_HANDLER
+	var/mob/living/living_mob = mob_parent
+	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
+		return
+	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
+	if(!next_target || !line_of_sight(mob_parent, next_target)) //no hostiles around
+		INVOKE_ASYNC(src, PROC_REF(try_heal))
+		return
+	if(prob(50))
+		try_speak(pick(retreating_chat))
+	target_distance = 15
+	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
+	UnregisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN)
+
 
 ///Will try healing if possible
 /datum/ai_behavior/human/proc/try_heal()
@@ -109,6 +125,8 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 		PAIN = 0,
 	)
 
+	change_action(MOB_HEALING)
+
 	if(iscarbon(mob_parent))
 		var/mob/living/carbon/carbon_parent = mob_parent
 		dam_list[PAIN] = carbon_parent.getShock_Stage() * 3 //pain is pretty important, but has low numbers and takes time to change
@@ -117,12 +135,25 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	var/list/priority_list = sortTim(dam_list.Copy(), /proc/cmp_numeric_dsc, TRUE)
 	for(var/damtype in priority_list)
 		if(dam_list[damtype] <= dam_threshold)
-			return
+			continue
 		if(do_heal(damtype))
 			continue //cycle through all dam types
 
+	if(ishuman(mob_parent))
+		var/mob/living/carbon/human/human_parent = mob_parent
+		var/list/broken_limbs = list()
+		for(var/datum/limb/limb AS in human_parent.limbs)
+			if(!(limb.limb_status & LIMB_BROKEN) || (limb.limb_status & LIMB_SPLINTED))
+				continue
+			broken_limbs += limb
+		for(var/broken_limb in broken_limbs)
+			if(!do_splint(broken_limb))
+				//send sig to call for help splinting
+				break
 
+	change_action(MOVING_TO_NODE)
 
+///Tries to heal damage of a given type
 /datum/ai_behavior/human/proc/do_heal(damtype)
 	var/obj/item/heal_item
 	var/list/med_list
@@ -149,26 +180,18 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 
 	if(!heal_item)
 		return FALSE
-	change_action(MOB_HEALING)
 	heal_item.ai_use(mob_parent)
-	change_action(MOVING_TO_NODE) //MOVING_TO_SAFETY
 	return TRUE
 
-/datum/ai_behavior/human/proc/check_for_critical_health(datum/source, damage)
-	SIGNAL_HANDLER
-	var/mob/living/living_mob = mob_parent
-	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
-		return
-	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
-	if(!next_target || !line_of_sight(mob_parent, next_target)) //no hostiles around
-		try_heal()
-		return
-	if(prob(50))
-		try_speak(pick(retreating_chat))
-	target_distance = 15
-	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
-	UnregisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN)
-
+///Tries to splint a limb
+/datum/ai_behavior/human/proc/do_splint(datum/limb/broken_limb)
+	var/obj/item/stack/medical/splint/splint = locate(/obj/item/stack/medical/splint) in mob_inventory.medical_list
+	if(!splint)
+		return FALSE
+	mob_parent.zone_selected = broken_limb.name //why god do we rely on the limb name, which isnt a define?
+	if(splint.attack(mob_parent, mob_parent))
+		. = TRUE
+	mob_parent.zone_selected = BODY_ZONE_CHEST
 
 //to move/////////////////////////
 /obj/item/proc/ai_should_use(mob/living/ai_mob)

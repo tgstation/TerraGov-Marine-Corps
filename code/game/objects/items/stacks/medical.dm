@@ -248,6 +248,8 @@
 		return
 	if(affecting.apply_splints(src, user == M ? (applied_splint_health*max(user.skills.getRating(SKILL_MEDICAL) - 1, 0)) : applied_splint_health*user.skills.getRating(SKILL_MEDICAL), user, M))
 		use(1)
+		return TRUE
+	return FALSE
 
 
 #undef BANDAGE
