@@ -94,8 +94,10 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	var/mob/living/living_mob = mob_parent
 	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
 		return
+	if(mob_parent.incapacitated() || mob_parent.lying_angle) //todo: maybe remove or change this when we add team healing
+		return
 	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
-	if(!next_target || !line_of_sight(mob_parent, next_target)) //no hostiles around
+	if(!next_target) // || !line_of_sight(mob_parent, next_target)) //this can create issues where they try heal when the closest is out of sight, but other hostiles ARE in LOS
 		INVOKE_ASYNC(src, PROC_REF(try_heal))
 		return
 	if(prob(50))
