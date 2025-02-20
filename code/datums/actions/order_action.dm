@@ -182,6 +182,10 @@ GLOBAL_VAR(human_ai_goal)
 	arrow_type = /atom/movable/screen/arrow/rally_order_arrow
 	visual_type = /obj/effect/temp_visual/order/rally_order
 
+/datum/action/innate/order/rally_order/send_order(atom/target, datum/squad/squad, faction = FACTION_TERRAGOV)
+	. = ..()
+	QDEL_IN(new /obj/effect/ai_node/goal(get_turf(target), owner, owner.faction), CIC_ORDER_COOLDOWN * 2)
+
 /datum/action/innate/order/rally_order/personal
 	keybinding_signals = list(
 		KEYBINDING_NORMAL = COMSIG_KB_RALLYORDER,
