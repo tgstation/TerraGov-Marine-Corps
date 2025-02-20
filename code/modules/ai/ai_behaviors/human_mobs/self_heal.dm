@@ -160,13 +160,13 @@ GLOBAL_LIST_INIT(ai_damtype_to_heal_list, list(
 	if(!can_heal || living_mob.health - damage > minimum_health * living_mob.maxHealth)
 		return
 	var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
-	if(!next_target) //no hostiles around
+	if(!next_target || !line_of_sight(mob_parent, next_target)) //no hostiles around
 		try_heal()
 		return
 	if(prob(50))
 		try_speak(pick(retreating_chat))
 	target_distance = 15
-	change_action(MOVING_TO_SAFETY, next_target, INFINITY) //todo: infinite range doesnt get reset
+	change_action(MOVING_TO_SAFETY, next_target, INFINITY)
 	UnregisterSignal(mob_parent, COMSIG_HUMAN_DAMAGE_TAKEN)
 
 

@@ -65,6 +65,8 @@
 			continue
 		if(source_turf.z != nearby_tank.z)
 			continue
+		if(nearby_tank.armored_flags & ARMORED_IS_WRECK) //wrecks are decorative currently, probably remove this if they ever become repairable
+			continue
 		var/bound_max = 1
 		if(nearby_tank.hitbox)
 			bound_max = max(nearby_tank.hitbox.bound_height, nearby_tank.hitbox.bound_width) / 32
@@ -84,35 +86,49 @@
 		for(var/mob/living/nearby_human AS in cheap_get_humans_near(source, distance))
 			if(nearby_human.stat == DEAD || nearby_human.faction == attacker_faction || nearby_human.alpha <= SCOUT_CLOAK_RUN_ALPHA)
 				continue
-			if(get_dist(source, nearby_human) < shorter_distance)
-				nearest_target = nearby_human
-				shorter_distance = get_dist(source, nearby_human) //better to recalculate than to save the var
+			if(get_dist(source, nearby_human) >= shorter_distance)
+				continue
+			nearest_target = nearby_human
+			shorter_distance = get_dist(source, nearby_human) //better to recalculate than to save the var
 	if(target_flags & TARGET_XENO)
 		nearby_xeno_list = cheap_get_xenos_near(source, shorter_distance - 1)
 		for(var/mob/nearby_xeno AS in nearby_xeno_list)
-			if(source.issamexenohive(nearby_xeno))
+			if(attacker_hive == nearby_xeno.get_xeno_hivenumber())
 				continue
 			if(nearby_xeno.stat == DEAD || nearby_xeno.alpha <= HUNTER_STEALTH_RUN_ALPHA)
 				continue
 			if((nearby_xeno.status_flags & GODMODE) || (nearby_xeno.status_flags & INCORPOREAL)) //No attacking invulnerable/ai's eye!
 				continue
-			if(get_dist(source, nearby_xeno) < shorter_distance)
-				nearest_target = nearby_xeno
-				shorter_distance = get_dist(source, nearby_xeno)
+			if(get_dist(source, nearby_xeno) >= shorter_distance)
+				continue
+			nearest_target = nearby_xeno
+			shorter_distance = get_dist(source, nearby_xeno)
 	if(target_flags & TARGET_HUMAN_TURRETS)
-		for(var/atom/nearby_turret AS in GLOB.marine_turrets)
+		for(var/obj/machinery/deployable/mounted/sentry/nearby_turret AS in GLOB.marine_turrets)
 			if(source.z != nearby_turret.z)
 				continue
-			if(!(get_dist(source, nearby_turret) < shorter_distance))
+			if((GLOB.faction_to_iff[attacker_faction] == nearby_turret.iff_signal))
+				continue
+			if(get_dist(source, nearby_turret) >= shorter_distance)
 				continue
 			nearest_target = nearby_turret
-	if(target_flags & TARGET_UNMANNED_VEHICLE)
-		for(var/atom/nearby_vehicle AS in GLOB.unmanned_vehicles)
-			if(source.z != nearby_vehicle.z)
+			shorter_distance = get_dist(source, nearby_turret)
+	if(target_flags & TARGET_VEHICLE)
+		for(var/obj/vehicle/sealed/nearby_vehicle AS in (cheap_get_tanks_near(source, distance) + cheap_get_mechs_near(source, distance)))
+			if(nearby_vehicle.faction == attacker_faction)
 				continue
-			if(!(get_dist(source, nearby_vehicle) < shorter_distance))
+			if(get_dist(source, nearby_vehicle) >= shorter_distance)
 				continue
 			nearest_target = nearby_vehicle
+			shorter_distance = get_dist(source, nearby_vehicle)
+	if(target_flags & TARGET_UNMANNED_VEHICLE)
+		for(var/atom/nearby_unmanned AS in GLOB.unmanned_vehicles)
+			if(source.z != nearby_unmanned.z)
+				continue
+			if(get_dist(source, nearby_unmanned) >= shorter_distance)
+				continue
+			nearest_target = nearby_unmanned
+			shorter_distance = get_dist(source, nearby_unmanned)
 	if(target_flags & TARGET_FRIENDLY_XENO)
 		if(!nearby_xeno_list)
 			nearby_xeno_list = cheap_get_xenos_near(source, shorter_distance - 1)
@@ -125,16 +141,17 @@
 				continue
 			if(nearby_xeno.stat == DEAD)
 				continue
-			if(get_dist(source, nearby_xeno) < shorter_distance)
-				nearest_target = nearby_xeno
-				shorter_distance = get_dist(source, nearby_xeno)
+			if(get_dist(source, nearby_xeno) >= shorter_distance)
+				continue
+			nearest_target = nearby_xeno
+			shorter_distance = get_dist(source, nearby_xeno)
 	if(target_flags & TARGET_FRIENDLY_MOB)
 		for(var/mob/living/nearby_mob AS in cheap_get_living_near(source, distance))
 			if(nearby_mob.stat == DEAD)
 				continue
 			if(nearby_mob.faction != attacker_faction)
 				continue
-			if(!nearby_mob.client)
+			if(!nearby_mob.client) //todo: this might not actually be desirable. Useful for escort atm, but bad for npc on npc teamwork/healing etc
 				continue
 			if(nearby_mob.alpha <= SCOUT_CLOAK_RUN_ALPHA)
 				continue

@@ -209,17 +209,30 @@
 
 //inline before release unless needed
 /datum/ai_behavior/human/proc/can_shoot_target(atom/target)
-	if(QDELETED(target) || !isliving(target)) //placeholder, logic for non mob targets like vehicles needed
+	if(QDELETED(target))
 		return AI_FIRE_INVALID_TARGET
 	if(gun.rounds <= 0)
 		return AI_FIRE_NO_AMMO
-	var/mob/living/living_target = target //todo: logic will change a bit when non mob targets come in
-	if(living_target.stat == DEAD)
-		return AI_FIRE_TARGET_DEAD
-	if(get_dist(target, mob_parent) > target_distance) //placeholder range, will offscreen
+
+	if(isliving(target))
+		var/mob/living/living_target = target
+		if(living_target.stat == DEAD)
+			return AI_FIRE_TARGET_DEAD
+	else //must be obj
+		if(isarmoredvehicle(target))
+			var/obj/vehicle/sealed/armored/armored_target = target
+			if(armored_target.armored_flags & ARMORED_IS_WRECK)
+				return AI_FIRE_TARGET_DEAD
+		if(ismachinery(target))
+			var/obj/machinery/machinery_target = target
+			if(machinery_target.machine_stat & BROKEN)
+				return AI_FIRE_TARGET_DEAD
+
+	if(get_dist(target, mob_parent) > target_distance)
 		return AI_FIRE_OUT_OF_RANGE
 	if(!line_of_sight(mob_parent, target))
 		return AI_FIRE_NO_LOS
+
 	if(no_ff && !(gun.gun_features_flags & GUN_IFF) && !(gun.ammo_datum_type::ammo_behavior_flags & AMMO_IFF)) //ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
 		var/list/turf_line = get_line(mob_parent, target)
 		turf_line.Cut(1, 2) //don't count our own turf
@@ -263,7 +276,7 @@
 		while(handful_mag.current_rounds)
 			if(!gun.reload(handful_mag, mob_parent))
 				return
-	gun.reload(new_ammo, mob_parent) //skips tac reload but w/e. use above if we want it, although then we need to check for skills...
+	gun.reload(new_ammo, mob_parent) //skips tac reload but w/e. if we want it, then we need to check for skills...
 	//note: force arg on reload will allow reloading closed chamber weapons, but also bypasses reload delays... funny rapid rockets
 
 /////probs move
@@ -271,8 +284,8 @@
 /obj/item/weapon/proc/get_ai_combat_range()
 	return 1
 
-//obj/item/weapon/twohanded/spear/get_ai_combat_range() //todo:no support for ranged melee yet
-//	return 2
+/obj/item/weapon/twohanded/spear/get_ai_combat_range()
+	return 2
 
 /obj/item/weapon/gun/get_ai_combat_range()
 	if((gun_features_flags & GUN_IFF) || (ammo_datum_type::ammo_behavior_flags & AMMO_IFF))

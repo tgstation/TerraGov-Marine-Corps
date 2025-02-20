@@ -142,12 +142,11 @@ GLOBAL_LIST_EMPTY(goal_nodes)
 /obj/effect/ai_node/goal
 	name = "AI goal"
 	invisibility = INVISIBILITY_OBSERVER
+	faction = FACTION_XENO
 	///Who made that ai_node
 	var/mob/creator
 	///The image added to the creator screen
 	var/image/goal_image
-	///Faction associated with this node
-	var/faction = FACTION_XENO
 
 /obj/effect/ai_node/goal/Initialize(mapload, mob/new_creator, new_faction)
 	. = ..()

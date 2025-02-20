@@ -52,6 +52,8 @@
 #define TARGET_UNMANNED_VEHICLE (1<<4)
 #define TARGET_FRIENDLY_XENO (1<<5)
 #define TARGET_FRIENDLY_MOB (1<<6)
+///Tanks and mechs
+#define TARGET_VEHICLE (1<<7)
 #define TARGET_HOSTILE (ALL &~ (TARGET_FRIENDLY_XENO|TARGET_FRIENDLY_MOB))
 
 #define MAX_NODE_RANGE 15
@@ -68,4 +70,4 @@ GLOBAL_LIST_EMPTY(ai_instances_active)
 //To be implemented in later updates
 GLOBAL_LIST_EMPTY(nodes_with_enemies)
 GLOBAL_LIST_EMPTY(nodes_with_construction)
-#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/obj/structure/catwalk) in turf_to_check)
+#define can_cross_lava_turf(turf_to_check) (!islava(turf_to_check) || locate(/obj/structure/catwalk) in turf_to_check) //todo: this needs work
