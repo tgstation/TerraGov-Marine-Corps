@@ -24420,11 +24420,7 @@
 "bzC" = (
 /obj/effect/turf_decal/warning_stripes,
 /obj/structure/cable,
-/obj/machinery/power/geothermal{
-	desc = "A thermoelectric generator fueled by searing hot uranium!";
-	fail_rate = 5;
-	name = "thermoelectric generator"
-	},
+/obj/structure/prop/mainship/brokengen,
 /turf/open/floor/plating,
 /area/prison/pirate)
 "bzD" = (
