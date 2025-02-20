@@ -286,7 +286,7 @@ Stepping directly on the mine will also blow it up
 
 /obj/item/explosive/mine/pressure
 	name = "\improper M13 Pressure Rapid Deploy Mine"
-	desc = "A unusually light and small mine, designed to be rapidly deployed via automated systems, typically Minelayer mortar shells."
+	desc = "An unusually light and small mine, designed to be rapidly deployed via automated systems, typically Minelayer mortar shells."
 	icon_state = "m13"
 	armed = TRUE
 	anchored = TRUE

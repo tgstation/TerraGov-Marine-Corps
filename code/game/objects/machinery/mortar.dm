@@ -728,7 +728,7 @@
 
 /obj/item/mortal_shell/howitzer/minelayer
 	name = "\improper 150mm 'Minefield' minelayer artillery shell"
-	desc = "An 150mm artiliery shell, loaded with nanites that reconstruct into high explosive mines"
+	desc = "An 150mm artillery shell, loaded with nanites that reconstruct into high explosive mines."
 	icon_state = "howitzer_ml"
 	ammo_type = /datum/ammo/mortar/howi/ml
 
