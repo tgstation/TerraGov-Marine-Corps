@@ -463,7 +463,7 @@ GLOBAL_LIST_INIT(sentry_ignore_List, set_sentry_ignore_List())
 	if(target.loc == loc)
 		return TRUE
 	var/turf/starting_turf = get_turf(src)
-	var/list/turf/path = getline(starting_turf, target)
+	var/list/turf/path = get_line(starting_turf, target)
 	var/turf/target_turf = path[length(path)-1]
 	path -= starting_turf
 	if(!length(path))

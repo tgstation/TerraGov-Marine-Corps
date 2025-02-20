@@ -169,7 +169,7 @@
 		buffer_distance = get_dist(nearby_hostile, src)
 		if (distance <= buffer_distance) //If we already found a target that's closer
 			continue
-		path = getline(src, nearby_hostile)
+		path = get_line(src, nearby_hostile)
 		path -= get_turf(src)
 		if(!length(path)) //Can't shoot if it's on the same turf
 			continue

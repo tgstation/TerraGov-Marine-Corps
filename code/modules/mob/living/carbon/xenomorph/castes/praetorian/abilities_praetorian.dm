@@ -663,7 +663,7 @@ GLOBAL_LIST_INIT(acid_spray_hit, typecacheof(list(/obj/structure/barricade, /obj
 		add_cooldown(1 SECONDS)
 		return
 	xeno_owner.face_atom(targetted_turf)
-	turf_line = getline(get_step(xeno_owner, get_cardinal_dir(xeno_owner, targetted_turf)), check_path(xeno_owner, targetted_turf, PASS_THROW))
+	turf_line = get_line(get_step(xeno_owner, get_cardinal_dir(xeno_owner, targetted_turf)), check_path(xeno_owner, targetted_turf, PASS_THROW))
 	LAZYINITLIST(telegraphed_atoms)
 	for(var/turf/turf_from_line AS in turf_line)
 		telegraphed_atoms += new /obj/effect/xeno/abduct_warning(turf_from_line)
