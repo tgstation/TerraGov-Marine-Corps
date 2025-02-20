@@ -159,7 +159,6 @@
 
 ADMIN_VERB(ban_panel, R_BAN, "Ban Panel", "Opens the Ban panel.", ADMIN_CATEGORY_MAIN)
 	user.holder.banpanel()
-	BLACKBOX_LOG_ADMIN_VERB("Banning Panel")
 
 /datum/admins/proc/banpanel(player_key, player_ip, player_cid, role, duration = 1440, applies_to_admins, reason, edit_id, page, admin_key)
 	if(!check_rights(R_BAN))
@@ -596,7 +595,6 @@ ADMIN_VERB(ban_panel, R_BAN, "Ban Panel", "Opens the Ban panel.", ADMIN_CATEGORY
 
 ADMIN_VERB(unban_panel, R_BAN, "Unban Panel", "Opens the Ban panel.", ADMIN_CATEGORY_MAIN)
 	user.holder.unbanpanel()
-	BLACKBOX_LOG_ADMIN_VERB("Unbanning Panel")
 
 /datum/admins/proc/unbanpanel(player_key, admin_key, player_ip, player_cid, page = 0)
 	if(!check_rights(R_BAN))

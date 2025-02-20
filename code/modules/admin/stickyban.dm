@@ -482,4 +482,3 @@ ADMIN_VERB(stickybanpanel, R_BAN, "Sticky Ban Panel", "Opens the Sticky Ban pane
 	var/datum/browser/browser = new(user.mob, "stickybans", "<div align='center'>Sticky Bans</div>", 700, 400)
 	browser.set_content(html)
 	browser.open()
-	BLACKBOX_LOG_ADMIN_VERB("Stickyban Panel")

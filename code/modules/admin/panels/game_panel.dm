@@ -13,7 +13,6 @@ ADMIN_VERB(game_panel, R_ADMIN, "Game Panel", "View the game panel", ADMIN_CATEG
 	var/datum/browser/browser = new(user.mob, "gamepanel", "<div align='center'>Game Panel</div>", 220, 250)
 	browser.set_content(dat)
 	browser.open()
-	BLACKBOX_LOG_ADMIN_VERB("Game Panel")
 
 
 /datum/admins/proc/create_mob(mob/user)

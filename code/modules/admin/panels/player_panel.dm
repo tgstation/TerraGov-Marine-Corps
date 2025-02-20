@@ -292,7 +292,6 @@ ADMIN_VERB(player_panel, R_BAN, "Player Panel", "View the player panel", ADMIN_C
 	var/datum/browser/browser = new(usr, "players", "<div align='center'>Player Panel</div>", 700, 500)
 	browser.set_content(dat)
 	browser.open()
-	BLACKBOX_LOG_ADMIN_VERB("Player Panel")
 
 
 ADMIN_VERB(player_panel_extended, R_BAN, "Player Panel Extended", "View the extended player panel", ADMIN_CATEGORY_MAIN)
@@ -511,4 +510,3 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(show_player_panel, R_BAN, "Show Player Panel", mob/
 	var/datum/browser/browser = new(user.mob, "player_panel_[key_name(M)]", "<div align='center'>Player Panel [key_name(M)]</div>", 575, 555)
 	browser.set_content(body)
 	browser.open()
-	BLACKBOX_LOG_ADMIN_VERB("Show Player Panel")

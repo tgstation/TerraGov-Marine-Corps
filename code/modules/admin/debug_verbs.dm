@@ -36,14 +36,12 @@ ADMIN_VERB(delete_all, R_DEBUG, "Delete Instances", "Delete all instances of som
 
 	log_admin("[key_name(user)] deleted all instances of [hsbitem] ([del_amt]).")
 	message_admins("[ADMIN_TPMONTY(user.mob)] deleted all instances of [hsbitem] ([del_amt]).")
-	BLACKBOX_LOG_ADMIN_VERB("Delete all")
 
 ADMIN_VERB(generate_powernets, R_DEBUG, "Generate Powernets", "Regenerate all powernets.", ADMIN_CATEGORY_DEBUG)
 	SSmachines.makepowernets()
 
 	log_admin("[key_name(user)] has remade powernets.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has remade powernets.")
-	BLACKBOX_LOG_ADMIN_VERB("Remake powernets")
 
 
 ADMIN_VERB(debug_mob_lists, R_DEBUG, "Debug Mob Lists", "Debug mob globals", ADMIN_CATEGORY_DEBUG)
@@ -121,7 +119,6 @@ ADMIN_VERB(debug_mob_lists, R_DEBUG, "Debug Mob Lists", "Debug mob globals", ADM
 
 	log_admin("[key_name(user)] is debugging the [choice] list.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] is debugging the [choice] list.")
-	BLACKBOX_LOG_ADMIN_VERB("Debug mob lists")
 
 
 ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATEGORY_DEBUG, object as text)
@@ -146,7 +143,6 @@ ADMIN_VERB(spawn_atom, R_SPAWN, "Spawn", "(atom path) Spawn an atom", ADMIN_CATE
 			A.atom_flags |= ADMIN_SPAWNED
 
 	log_admin("[key_name(user)] spawned [amount] x [chosen] at [AREACOORD(user.mob)]")
-	BLACKBOX_LOG_ADMIN_VERB("Spawn Atom") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB_AND_CONTEXT_MENU(delete_atom, R_DEBUG, "Delete", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_HIDDEN, atom/target as obj|mob|turf in world)
 	if(alert(user, "Are you sure you want to delete: [target]?", "Delete", "Yes", "No") != "Yes")
@@ -166,7 +162,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(delete_atom, R_DEBUG, "Delete", ADMIN_VERB_NO_DESCRI
 		return
 
 	qdel(target)
-	BLACKBOX_LOG_ADMIN_VERB("Delete atom")
 
 ADMIN_VERB(restart_controller, R_DEBUG, "Restart Controller", "Restart one of the various periodic loop controllers for the game (be careful!)", ADMIN_CATEGORY_DEBUG, controller in list("Master", "Failsafe"))
 	switch(controller)
@@ -198,7 +193,6 @@ ADMIN_VERB(debug_controller, R_DEBUG, "Debug Controller", "Debug the various per
 
 	log_admin("[key_name(user)] is debugging the [controller] controller.")
 	message_admins("Admin [key_name_admin(user)] is debugging the [controller] controller.")
-	BLACKBOX_LOG_ADMIN_VERB("Debug controller")
 
 ADMIN_VERB(reestablish_db_connection, R_DEBUG, "Reestablish DB Connection", "Attempts to (re)establish the DB Connection", ADMIN_CATEGORY_SERVER)
 	if(!CONFIG_GET(flag/sql_enabled))
@@ -224,7 +218,6 @@ ADMIN_VERB(reestablish_db_connection, R_DEBUG, "Reestablish DB Connection", "Att
 	else
 		log_admin("Database connection re-established!")
 		message_admins("Database connection re-established!")
-	BLACKBOX_LOG_ADMIN_VERB("Reestablish DB connection")
 
 /// A debug verb to try and re-establish a connection with the TTS server and to refetch TTS voices.
 /// Since voices are cached beforehand, this is unlikely to update preferences.
@@ -238,7 +231,6 @@ ADMIN_VERB(reestablish_tts_connection, R_DEBUG, "Re-establish Connection To TTS"
 		return
 	message_admins("[key_name_admin(user)] successfully re-established the connection to the TTS HTTP server.")
 	log_admin("[key_name(user)] successfully re-established the connection to the TTS HTTP server.")
-	BLACKBOX_LOG_ADMIN_VERB("Reestablish TTS connection")
 
 ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.", ADMIN_CATEGORY_DEBUG)
 	GLOB.error_cache.show_to(user)
@@ -251,7 +243,6 @@ ADMIN_VERB(view_runtimes, R_DEBUG, "View Runtimes", "Opens the runtime viewer.",
 			warning = "There are a TON of runtimes, clicking any button (especially \"linear\") WILL LIKELY crash the server"
 		// Not using TGUI alert, because it's view runtimes, stuff is probably broken
 		alert(user, "[warning]. Proceed with caution. If you really need to see the runtimes, download the runtime log and view it in a text editor.", "HEED THIS WARNING CAREFULLY MORTAL")
-	BLACKBOX_LOG_ADMIN_VERB("View Runtimes")
 
 ADMIN_VERB(spatial_agent, R_FUN, "Spatial Agent", "Become a spatial agent", ADMIN_CATEGORY_DEBUG)
 	var/mob/M = user.mob
@@ -276,7 +267,6 @@ ADMIN_VERB(spatial_agent, R_FUN, "Spatial Agent", "Become a spatial agent", ADMI
 
 		log_admin("[key_name(H)] became a spatial agent.")
 		message_admins("[ADMIN_TPMONTY(H)] became a spatial agent.")
-	BLACKBOX_LOG_ADMIN_VERB("Spatial Agent")
 
 ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "Show the impact of a bomb with overlays", ADMIN_CATEGORY_DEBUG)
 	var/devastation_range = 0
@@ -433,7 +423,6 @@ ADMIN_VERB(check_bomb_impacts, R_DEBUG, "Check Bomb Impact", "Show the impact of
 			affected_turf.maptext = "N (null)"
 
 	addtimer(CALLBACK(GLOBAL_PROC, PROC_REF(wipe_color_and_text), wipe_colours), 10 SECONDS)
-	BLACKBOX_LOG_ADMIN_VERB("Check Bomb impact")
 
 /proc/wipe_color_and_text(list/atom/wiping)
 	for(var/i in wiping)
@@ -470,12 +459,9 @@ ADMIN_VERB(cmd_display_del_log, R_DEBUG, "Display del() Log", "Display del's log
 	dellog += "</ol>"
 
 	user << browse(dellog.Join(), "window=dellog")
-	BLACKBOX_LOG_ADMIN_VERB("Show Del log")
 
 ADMIN_VERB(debug_statpanel, R_DEBUG, "Debug Stat Panel", "Toggles local debug of the stat panel", ADMIN_CATEGORY_DEBUG)
 	user.stat_panel.send_message("create_debug")
-	BLACKBOX_LOG_ADMIN_VERB("Debug stat panel")
 
 ADMIN_VERB(display_sendmaps, R_DEBUG, "Send Maps Profile", "View the profile.", ADMIN_CATEGORY_DEBUG)
 	user << link("?debug=profile&type=sendmaps&window=test")
-	BLACKBOX_LOG_ADMIN_VERB("Sendmaps profile")

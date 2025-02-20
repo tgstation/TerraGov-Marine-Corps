@@ -86,4 +86,3 @@ ADMIN_VERB(mode_panel, R_ADMIN, "Mode Panel", "View the gamemode panel", ADMIN_C
 	var/datum/browser/browser = new(user.mob, "modepanel", "<div align='center'>Mode Panel</div>", 600, 500)
 	browser.set_content(dat)
 	browser.open()
-	BLACKBOX_LOG_ADMIN_VERB("Mode Panel")

@@ -212,7 +212,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(cmd_select_equipment, R_FUN, "Select equipment", "Se
 			if(tgui_alert(usr,"Drop Items in Pockets? No will delete them.", "Robust quick dress shop", list("Yes", "No")) == "No")
 				delete_pocket = TRUE
 
-	BLACKBOX_LOG_ADMIN_VERB("Select Equipment") // If you are copy-pasting this, ensure the 4th parameter is unique to the new proc!
 	for(var/obj/item/item in human_target.get_equipped_items(include_pockets = delete_pocket))
 		qdel(item)
 

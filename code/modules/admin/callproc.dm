@@ -241,7 +241,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(call_proc_datum, R_DEBUG, "Atom ProcCall", datum/th
 	var/msg = "[key_name(user)] called [thing]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"]."
 	message_admins(msg)
 	admin_ticket_log(thing, msg)
-	BLACKBOX_LOG_ADMIN_VERB("Atom ProcCall")
 
 	var/returnval = WrapAdminProcCall(thing, procname, lst) // Pass the lst as an argument list to the proc
 	. = user.get_callproc_returnval(returnval,procname)

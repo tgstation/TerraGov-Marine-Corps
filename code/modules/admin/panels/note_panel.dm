@@ -1,6 +1,5 @@
 ADMIN_VERB(note_panel, R_BAN, "Note Panel", "View a players notes panel", ADMIN_CATEGORY_MAIN)
 	browse_messages()
-	BLACKBOX_LOG_ADMIN_VERB("Note Panel")
 
 /proc/create_message(type, target_key, admin_ckey, text, timestamp, server, secret, logged = 1, browse, expiry, note_severity)
 	if(!SSdbcore.Connect())

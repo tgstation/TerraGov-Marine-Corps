@@ -11,7 +11,6 @@ ADMIN_VERB(hide_verbs, R_NONE, "Adminverbs - Hide All", "Hide most of your admin
 	add_verb(user, /client/proc/show_verbs)
 
 	to_chat(user, span_interface("Almost all of your adminverbs have been hidden."))
-	BLACKBOX_LOG_ADMIN_VERB("Hide All Adminverbs")
 
 ADMIN_VERB(aghost, R_ADMIN|R_MENTOR, "Aghost", "Allows you to ghost and re-enter body at will.", ADMIN_CATEGORY_MAIN)
 
@@ -30,7 +29,6 @@ ADMIN_VERB(aghost, R_ADMIN|R_MENTOR, "Aghost", "Allows you to ghost and re-enter
 	log_admin("[key_name(ghost)] admin ghosted at [AREACOORD(ghost)].")
 	if(M.stat != DEAD)
 		message_admins("[ADMIN_TPMONTY(ghost)] admin ghosted.")
-	BLACKBOX_LOG_ADMIN_VERB("Aghost")
 
 ADMIN_VERB(invisimin, R_ADMIN, "Invisimin", "Toggles ghost-like invisibility.", ADMIN_CATEGORY_MAIN)
 	var/mob/M = user.mob
@@ -50,7 +48,6 @@ ADMIN_VERB(invisimin, R_ADMIN, "Invisimin", "Toggles ghost-like invisibility.", 
 	log_admin("[key_name(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
 	if(!check_rights(R_DBRANKS))
 		message_admins("[ADMIN_TPMONTY(M)] has [(M.invisibility == INVISIBILITY_MAXIMUM) ? "enabled" : "disabled"] invisimin.")
-	BLACKBOX_LOG_ADMIN_VERB("Invisimin")
 
 ADMIN_VERB(stealth_mode, R_ADMIN, "Stealth Mode", "Allows you to change your ckey for non-admins to see.", ADMIN_CATEGORY_MAIN)
 	if(user.holder.fakekey)
@@ -67,7 +64,6 @@ ADMIN_VERB(stealth_mode, R_ADMIN, "Stealth Mode", "Allows you to change your cke
 	log_admin("[key_name(user)] has turned stealth mode [user.holder.fakekey ? "on - [user.holder.fakekey]" : "off"].")
 	if(!check_rights(R_DBRANKS))
 		message_admins("[ADMIN_TPMONTY(user.mob)] has turned stealth mode [user.holder.fakekey ? "on - [user.holder.fakekey]" : "off"].")
-	BLACKBOX_LOG_ADMIN_VERB("Stealth mode")
 
 
 ADMIN_VERB_AND_CONTEXT_MENU(give_mob, R_ADMIN, "Give Mob", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/given_living in GLOB.mob_living_list)
@@ -449,7 +445,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(object_say, R_ADMIN, "Osay", atom/movable/target in
 	target.say(message, sanitize = FALSE)
 	log_admin("[key_name(user)] made [target] at [AREACOORD(target)] say \"[message]\"")
 	message_admins(span_adminnotice("[key_name_admin(user)] made [target] at [AREACOORD(target)]. say \"[message]\""))
-	BLACKBOX_LOG_ADMIN_VERB("Object Say")
 
 ADMIN_VERB(jump, R_ADMIN, "Jump", "Teleports you to a location", ADMIN_CATEGORY_MAIN)
 	if(isnewplayer(user.mob))
@@ -465,7 +460,6 @@ ADMIN_VERB(jump, R_ADMIN, "Jump", "Teleports you to a location", ADMIN_CATEGORY_
 	log_admin("[key_name(user.mob)] jumped to [A] at [AREACOORD(T)].")
 	if(!isobserver(user.mob))
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [A] at [ADMIN_TPMONTY(T)].")
-	BLACKBOX_LOG_ADMIN_VERB("Jump")
 
 
 ADMIN_VERB_AND_CONTEXT_MENU(get_mob, R_ADMIN, "Get Mob", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/M in GLOB.mob_living_list)
@@ -484,7 +478,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(get_mob, R_ADMIN, "Get Mob", ADMIN_VERB_NO_DESCRIPTI
 
 	log_admin("[key_name(user)] teleported [key_name(M)] to themselves [AREACOORD(M.loc)].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] teleported [ADMIN_TPMONTY(M)] to themselves.")
-	BLACKBOX_LOG_ADMIN_VERB("Get mob")
 
 ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "Send Mob", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/M in GLOB.mob_living_list)
 	if(!istype(M))
@@ -500,7 +493,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "Send Mob", ADMIN_VERB_NO_DESCRIP
 
 	log_admin("[key_name(user)] teleported [key_name(M)] to [AREACOORD(T)].")
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(T)].")
-	BLACKBOX_LOG_ADMIN_VERB("Send mob")
 
 
 /datum/admins/proc/jump_area(area/A in GLOB.sorted_areas)
@@ -598,7 +590,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(send_mob, R_ADMIN, "Send Mob", ADMIN_VERB_NO_DESCRIP
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(private_message_context, R_ADMIN|R_MENTOR, "Admin PM Mob", mob/target in GLOB.player_list)
 	user.private_message(target.client, null)
-	BLACKBOX_LOG_ADMIN_VERB("Admin PM Mob (context)")
 
 ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private message a mob or client", ADMIN_CATEGORY_MAIN)
 	var/mob/picked = user.holder.apicker("Select target:", "Private Message", list(APICKER_MOB, APICKER_CLIENT))
@@ -606,7 +597,6 @@ ADMIN_VERB(private_message_panel, R_ADMIN|R_MENTOR, "Private Message", "Private 
 		return
 
 	user.private_message(picked.client, null)
-	BLACKBOX_LOG_ADMIN_VERB("Admin PM Mob (panel)")
 
 
 /client/proc/ticket_reply(whom)
@@ -1026,7 +1016,6 @@ ADMIN_VERB(delete_squad, R_ADMIN, "Delete a squad", "Delete a selected squad", A
 	var/msg = "[key_name(user)] has deleted a squad. ID:[id_to_del]."
 	message_admins(msg)
 	log_admin(msg)
-	BLACKBOX_LOG_ADMIN_VERB("Delete Squad")
 
 ADMIN_VERB(job_slots, R_ADMIN, "Job Slots", "Open Job slot management panel", ADMIN_CATEGORY_MAIN)
 	var/datum/browser/browser = new(usr, "jobmanagement", "Manage Free Slots", 700)
@@ -1035,7 +1024,6 @@ ADMIN_VERB(job_slots, R_ADMIN, "Job Slots", "Open Job slot management panel", AD
 
 	if(!SSjob.initialized)
 		return
-	BLACKBOX_LOG_ADMIN_VERB("Job Slots")
 
 	dat += "<table>"
 	if(SSjob.initialized && (!SSticker.HasRoundStarted()))
@@ -1079,7 +1067,6 @@ ADMIN_VERB(mcdb, R_BAN, "Open MCDB", "Opens the MCDB in your browser", ADMIN_CAT
 		return
 
 	DIRECT_OUTPUT(user, link(CONFIG_GET(string/dburl)))
-	BLACKBOX_LOG_ADMIN_VERB("MCDB")
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(check_fingerprints, R_ADMIN, "Check Fingerprints", atom/A)
 	var/dat = "<br>"
@@ -1093,12 +1080,10 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(check_fingerprints, R_ADMIN, "Check Fingerprints", 
 	var/datum/browser/browser = new(usr, "fingerprints_[A]", "Fingerprints on [A]")
 	browser.set_content(dat)
 	browser.open(FALSE)
-	BLACKBOX_LOG_ADMIN_VERB("Check fingerprints")
 
 
 ADMIN_VERB(get_togglebuildmode, R_SPAWN, "Toggle Build mode", "Toggles build mode", ADMIN_CATEGORY_FUN)
 	togglebuildmode(user.mob)
-	BLACKBOX_LOG_ADMIN_VERB("Toggle Build mode")
 
 ADMIN_VERB(toggle_admin_tads, R_FUN, "Toggle Tadpole Restrictions", "Toggles ability to spawn meme tadpole models", ADMIN_CATEGORY_FUN)
 	if(SSticker.mode.enable_fun_tads)
@@ -1109,7 +1094,6 @@ ADMIN_VERB(toggle_admin_tads, R_FUN, "Toggle Tadpole Restrictions", "Toggles abi
 		SSticker.mode.enable_fun_tads = TRUE
 		message_admins("[ADMIN_TPMONTY(usr)] toggled Tadpole restrictions on.")
 		log_admin("[key_name(usr)] toggled Tadpole restrictions on.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle Tadpole Restrictions")
 
 //returns TRUE to let the dragdrop code know we are trapping this event
 //returns FALSE if we don't plan to trap the event
@@ -1144,7 +1128,6 @@ ADMIN_VERB(toggle_admin_tads, R_FUN, "Toggle Tadpole Restrictions", "Toggles abi
 
 	message_admins(span_adminnotice("[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name]."))
 	log_admin("[key_name(usr)] stuffed [frommob.key] into [tomob.name].")
-	BLACKBOX_LOG_ADMIN_VERB("Ghost Drag Control")
 
 	tomob.ckey = frommob.ckey
 	tomob.client?.init_verbs()
@@ -1184,7 +1167,6 @@ ADMIN_VERB(mass_replace, R_SPAWN, "Mass replace atom", "Mass replace an atom", A
 	var/afterlogging = "[replaced] amounts of atoms replaced"
 	log_admin(afterlogging)
 	message_admins(afterlogging)
-	BLACKBOX_LOG_ADMIN_VERB("Mass Replace")
 
 ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "Smite", "Smite a player with divine power.", ADMIN_CATEGORY_FUN, mob/living/target in world)
 	var/punishment = tgui_input_list(user, "Choose a punishment", "DIVINE SMITING", GLOB.smites)
@@ -1198,7 +1180,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(admin_smite, R_ADMIN|R_FUN, "Smite", "Smite a player
 	if (configuration_success == FALSE)
 		return
 	smite.effect(src, target)
-	BLACKBOX_LOG_ADMIN_VERB("Smite")
 
 /client/proc/punish_log(whom, punishment) //log and push to chat the smite victim and punishing admin
 	var/msg = "[key_name_admin(src)] punished [key_name_admin(whom)] with [punishment]."
@@ -1215,7 +1196,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(show_traitor_panel, R_ADMIN, "Show Objective Panel",
 		to_chat(user, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
 		return
 	target_mind.traitor_panel()
-	BLACKBOX_LOG_ADMIN_VERB("Objective Panel")
 
 ADMIN_VERB(set_xeno_stat_buffs, R_ADMIN, "Set Xeno Buffs", "Allows you to change stats for all xenos. It is a multiplicator buff, so input 100 to put everything back to normal", ADMIN_CATEGORY_MAIN)
 	var/multiplicator_buff_wanted = tgui_input_number(user, "Input the factor in percentage that will multiply xeno stat", "100 is normal stat, 200 is doubling health, regen and melee attack")
@@ -1229,4 +1209,3 @@ ADMIN_VERB(set_xeno_stat_buffs, R_ADMIN, "Set Xeno Buffs", "Allows you to change
 	var/logging = "[usr.ckey] has multiplied all health, melee damage and regen of xeno by [multiplicator_buff_wanted]%"
 	log_admin(logging)
 	message_admins(logging)
-	BLACKBOX_LOG_ADMIN_VERB("Set xeno buffs")

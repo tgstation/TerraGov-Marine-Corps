@@ -1,6 +1,5 @@
 ADMIN_VERB(edit_admin_permissions, R_PERMISSIONS, "Permissions Panel", "Edit admin permissions", ADMIN_CATEGORY_SERVER)
 	user.holder.edit_admin_permissions()
-	BLACKBOX_LOG_ADMIN_VERB("Permissions Panel")
 
 /datum/admins/proc/edit_admin_permissions(action, target, operation, page)
 	if(!check_rights(R_PERMISSIONS))

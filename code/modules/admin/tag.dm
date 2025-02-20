@@ -56,7 +56,6 @@ ADMIN_VERB(display_tags, R_DEBUG, "View Tags", "View all tagged datums", ADMIN_C
 		to_chat(user, "Error: you are not an admin!")
 		return
 	holdersrc.index_tags()
-	BLACKBOX_LOG_ADMIN_VERB("View Tags")
 
 /datum/admins/proc/index_tags()
 	var/index = 0

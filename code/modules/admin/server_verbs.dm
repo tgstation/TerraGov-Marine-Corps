@@ -17,7 +17,6 @@ ADMIN_VERB(restart, R_SERVER, "Restart", "Restarts the server after a short paus
 
 	log_admin("[key_name(user)] initiated a restart.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] initiated a restart.")
-	BLACKBOX_LOG_ADMIN_VERB("Restart")
 
 	spawn(50)
 		world.Reboot(message)
@@ -81,7 +80,6 @@ ADMIN_VERB(shutdown_server, R_SERVER, "Shutdown Server", "Shuts the server down.
 	message_admins("[ADMIN_TPMONTY(user.mob)] is shutting down the server[waitforroundend ? " after this round" : ""]. You may abort this by pressing the shutdown server button again within 30 seconds.")
 
 	sleep(31 SECONDS) //to give the admins that final second to hit the confirm button on the cancel prompt.
-	BLACKBOX_LOG_ADMIN_VERB("Shutdown")
 	if(!shuttingdown)
 		to_chat(world, span_notice("Server shutdown was aborted"))
 		return
@@ -127,7 +125,6 @@ ADMIN_VERB(toggle_ooc, R_SERVER, "Toggle OOC", "Toggles OOC for non-admins.", AD
 
 	log_admin("[key_name(user)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] [GLOB.ooc_allowed ? "enabled" : "disabled"] OOC.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle OOC")
 
 ADMIN_VERB(toggle_looc, R_SERVER, "Toggle LOOC", "Toggles LOOC for non-admins.", ADMIN_CATEGORY_SERVER)
 	if(CONFIG_GET(flag/looc_enabled))
@@ -139,7 +136,6 @@ ADMIN_VERB(toggle_looc, R_SERVER, "Toggle LOOC", "Toggles LOOC for non-admins.",
 
 	log_admin("[key_name(user)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has [CONFIG_GET(flag/looc_enabled) ? "enabled" : "disabled"] LOOC.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle LOOC")
 
 ADMIN_VERB(toggle_deadchat, R_SERVER, "Toggle Deadchat", "Toggles deadchat for non-admins.", ADMIN_CATEGORY_SERVER)
 	GLOB.dsay_allowed = !GLOB.dsay_allowed
@@ -151,7 +147,6 @@ ADMIN_VERB(toggle_deadchat, R_SERVER, "Toggle Deadchat", "Toggles deadchat for n
 
 	log_admin("[key_name(user)] [GLOB.dsay_allowed ? "enabled" : "disabled"] deadchat.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] [GLOB.dsay_allowed ? "enabled" : "disabled"] deadchat.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle Deadchat")
 
 ADMIN_VERB(toggle_deadooc, R_SERVER, "Toggle Dead OOC", "Toggles OOC for dead non-admins.", ADMIN_CATEGORY_SERVER)
 	GLOB.dooc_allowed = !GLOB.dooc_allowed
@@ -163,7 +158,6 @@ ADMIN_VERB(toggle_deadooc, R_SERVER, "Toggle Dead OOC", "Toggles OOC for dead no
 
 	log_admin("[key_name(user)] [GLOB.dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] [GLOB.dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle Dead OOC")
 
 ADMIN_VERB(start, R_SERVER, "Start Round", "Starts the round early.", ADMIN_CATEGORY_SERVER)
 	if(SSticker.current_state != GAME_STATE_STARTUP && SSticker.current_state != GAME_STATE_PREGAME)
@@ -193,7 +187,6 @@ ADMIN_VERB(start, R_SERVER, "Start Round", "Starts the round early.", ADMIN_CATE
 	SSticker.start_immediately = TRUE
 	log_admin("[key_name(user)] [msg]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] [msg]")
-	BLACKBOX_LOG_ADMIN_VERB("Start Round")
 
 ADMIN_VERB(toggle_join, R_SERVER, "Toggle Joining", "Players can still log into the server, but marines won't be able to join the game as a new mob.", ADMIN_CATEGORY_SERVER)
 	GLOB.enter_allowed = !GLOB.enter_allowed
@@ -205,7 +198,6 @@ ADMIN_VERB(toggle_join, R_SERVER, "Toggle Joining", "Players can still log into 
 
 	log_admin("[key_name(user)] [GLOB.enter_allowed ? "enabled" : "disabled"] new player joining.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] [GLOB.enter_allowed ? "enabled" : "disabled"] new player joining.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle Joining")
 
 ADMIN_VERB(toggle_respawn, R_SERVER, "Toggle Respawn", "Allows players to respawn.", ADMIN_CATEGORY_SERVER)
 	GLOB.respawn_allowed = !GLOB.respawn_allowed
@@ -217,7 +209,6 @@ ADMIN_VERB(toggle_respawn, R_SERVER, "Toggle Respawn", "Allows players to respaw
 
 	log_admin("[key_name(user)] [GLOB.respawn_allowed ? "enabled" : "disabled"] respawning.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] [GLOB.respawn_allowed ? "enabled" : "disabled"] respawning.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle Respawn")
 
 ADMIN_VERB(set_respawn_time, R_SERVER, "Set Respawn Timer", "Sets the global respawn timer.", ADMIN_CATEGORY_SERVER)
 	var/time = tgui_input_number(user, "How many ticks should the timer be?")
@@ -228,7 +219,6 @@ ADMIN_VERB(set_respawn_time, R_SERVER, "Set Respawn Timer", "Sets the global res
 
 	log_admin("[key_name(user)] set the respawn time to [SSticker.mode?.respawn_time * 0.1] seconds.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] set the respawn time to [SSticker.mode?.respawn_time * 0.1] seconds.")
-	BLACKBOX_LOG_ADMIN_VERB("Set Respawn Time")
 
 ADMIN_VERB(end_round, R_SERVER, "End Round", "Immediately ends the round, be very careful", ADMIN_CATEGORY_SERVER)
 	if(!SSticker?.mode)
@@ -251,7 +241,6 @@ ADMIN_VERB(end_round, R_SERVER, "End Round", "Immediately ends the round, be ver
 
 	log_admin("[key_name(user)] has made the round end early - [winstate].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has made the round end early - [winstate].")
-	BLACKBOX_LOG_ADMIN_VERB("End Round")
 
 ADMIN_VERB(delay_start, R_SERVER, "Delay Round Start", "Delay the start of the round", ADMIN_CATEGORY_SERVER)
 	if(!SSticker)
@@ -273,7 +262,6 @@ ADMIN_VERB(delay_start, R_SERVER, "Delay Round Start", "Delay the start of the r
 		to_chat(world, span_boldnotice("The game will start in [DisplayTimeText(newtime)]."))
 		log_admin("[key_name(user)] set the pre-game delay to [DisplayTimeText(newtime)].")
 		message_admins("[ADMIN_TPMONTY(user.mob)] set the pre-game delay to [DisplayTimeText(newtime)].")
-	BLACKBOX_LOG_ADMIN_VERB("Delay Round start")
 
 ADMIN_VERB(delay_end, R_SERVER, "Delay Round End", "Delay the round end", ADMIN_CATEGORY_SERVER)
 	if(!SSticker)
@@ -296,7 +284,6 @@ ADMIN_VERB(delay_end, R_SERVER, "Delay Round End", "Delay the round end", ADMIN_
 
 	log_admin("[key_name(user)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].")
 	message_admins("<hr><h4>[ADMIN_TPMONTY(user.mob)] [SSticker.delay_end ? "delayed the round-end[SSticker.admin_delay_notice ? " for reason: [SSticker.admin_delay_notice]" : ""]" : "made the round end normally"].</h4><hr>")
-	BLACKBOX_LOG_ADMIN_VERB("Delay Round End")
 
 ADMIN_VERB(toggle_gun_restrictions, R_FUN, "Toggle Gun Restrictions", "Toggle restriction on MP guns", ADMIN_CATEGORY_FUN)
 	if(!config)
@@ -321,7 +308,6 @@ ADMIN_VERB(toggle_synthetic_restrictions, R_FUN, "Toggle Synthetic Restrictions"
 
 	log_admin("[key_name(user)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle synth gun restrictions")
 
 ADMIN_VERB(reload_admins, R_SERVER, "Reload Admins", "Manually load all admins from the .txt", ADMIN_CATEGORY_SERVER)
 	if(alert(user, "Are you sure you want to reload admins?", "Reload admins", list("No", "Yes")) != "Yes")
@@ -331,7 +317,6 @@ ADMIN_VERB(reload_admins, R_SERVER, "Reload Admins", "Manually load all admins f
 
 	log_admin("[key_name(user)] manually reloaded admins.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] manually reloaded admins.")
-	BLACKBOX_LOG_ADMIN_VERB("Reload Admins")
 
 ADMIN_VERB(change_ground_map, R_SERVER, "Change Ground Map", "Change Ground Map for the next round.", ADMIN_CATEGORY_SERVER)
 	var/list/maprotatechoices = list()
@@ -367,7 +352,6 @@ ADMIN_VERB(change_ground_map, R_SERVER, "Change Ground Map", "Change Ground Map 
 
 	log_admin("[key_name(user)] changed the map to [VM.map_name].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] changed the map to [VM.map_name].")
-	BLACKBOX_LOG_ADMIN_VERB("Change Ground Map")
 
 ADMIN_VERB(change_ship_map, R_SERVER, "Change Ship Map", "Change Ship Map for the next round.", ADMIN_CATEGORY_SERVER)
 	var/list/maprotatechoices = list()
@@ -403,7 +387,6 @@ ADMIN_VERB(change_ship_map, R_SERVER, "Change Ship Map", "Change Ship Map for th
 
 	log_admin("[key_name(user)] changed the ship map to [VM.map_name].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] changed the ship map to [VM.map_name].")
-	BLACKBOX_LOG_ADMIN_VERB("Change Ship Map")
 
 ADMIN_VERB(panic_bunker, R_SERVER, "Toggle Panic Bunker", "Toggle new players being permitted to join the server.", ADMIN_CATEGORY_SERVER)
 	if(!CONFIG_GET(flag/sql_enabled))
@@ -414,14 +397,12 @@ ADMIN_VERB(panic_bunker, R_SERVER, "Toggle Panic Bunker", "Toggle new players be
 
 	log_admin("[key_name(user)] has [CONFIG_GET(flag/panic_bunker) ? "enabled" : "disabled"] the panic bunker.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has [CONFIG_GET(flag/panic_bunker) ? "enabled" : "disabled"] the panic bunker.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle Panic bunker")
 
 ADMIN_VERB(mode_check, R_SERVER, "Toggle Mode Check", "Toggle checking if the round can end.", ADMIN_CATEGORY_SERVER)
 	SSticker.roundend_check_paused = !SSticker.roundend_check_paused
 
 	log_admin("[key_name(user)] has [SSticker.roundend_check_paused ? "disabled" : "enabled"] gamemode end condition checking.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has [SSticker.roundend_check_paused ? "disabled" : "enabled"] gamemode end condition checking.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle mode check")
 
 ADMIN_VERB(toggle_cdn, R_SERVER, "Toggle CDN", "Toggle the Content Delivery Network for asset download.", ADMIN_CATEGORY_SERVER)
 	var/static/admin_disabled_cdn_transport = null
@@ -448,18 +429,15 @@ ADMIN_VERB(toggle_cdn, R_SERVER, "Toggle CDN", "Toggle the Content Delivery Netw
 		SSassets.transport.dont_mutate_filenames = TRUE
 		message_admins("[key_name_admin(user)] disabled the CDN asset transport")
 		log_admin("[key_name(user)] disabled the CDN asset transport")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle CDN")
 
 ADMIN_VERB(toggle_valhalla, R_SERVER, "Toggle Valhalla joining", "Toggle players ability to join valhalla.", ADMIN_CATEGORY_SERVER)
 	GLOB.valhalla_allowed = !GLOB.valhalla_allowed
 
 	log_admin("[key_name(user)] [GLOB.valhalla_allowed ? "enabled" : "disabled"] valhalla joining.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] [GLOB.valhalla_allowed ? "enabled" : "disabled"] valhalla joining.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle Valhalla")
 
 ADMIN_VERB(toggle_sdd_possesion, R_SERVER, "Toggle taking over SSD mobs", "Allows players to take over SSD mobs.", ADMIN_CATEGORY_SERVER)
 	GLOB.ssd_posses_allowed = !GLOB.ssd_posses_allowed
 
 	log_admin("[key_name(user)] [GLOB.ssd_posses_allowed ? "enabled" : "disabled"] taking over SSD mobs.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] [GLOB.ssd_posses_allowed ? "enabled" : "disabled"] taking over SSD mobs.")
-	BLACKBOX_LOG_ADMIN_VERB("Toggle SSD Mobs")

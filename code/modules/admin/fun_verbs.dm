@@ -16,7 +16,6 @@ ADMIN_VERB(set_view_range, R_FUN, "Set View Range", "Sets custom view range for 
 
 	log_admin("[key_name(user)] changed their view range to [user.view].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] changed their view range to [user.view].")
-	BLACKBOX_LOG_ADMIN_VERB("Set view range")
 
 ADMIN_VERB(emp, R_FUN, "EM Pulse", "Release an EMP of your size of choice", ADMIN_CATEGORY_FUN)
 	var/heavy = input(user, "Range of heavy pulse.", "EM Pulse") as num|null
@@ -34,7 +33,6 @@ ADMIN_VERB(emp, R_FUN, "EM Pulse", "Release an EMP of your size of choice", ADMI
 
 	log_admin("[key_name(user,)] created an EM Pulse ([heavy], [light]) at [AREACOORD(user.mob)].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] created an EM Pulse ([heavy], [light]) at [ADMIN_VERBOSEJMP(user.mob)].")
-	BLACKBOX_LOG_ADMIN_VERB("EM Pulse")
 
 ADMIN_VERB(queen_report, R_FUN, "Queen Mother Report", "Play a Queen mother report to xenos.", ADMIN_CATEGORY_FUN)
 	var/customname = tgui_input_text(user, "What do you want the title of this report to be?", "Report Title", "Queen Mother Directive", encode = FALSE)
@@ -53,7 +51,6 @@ ADMIN_VERB(queen_report, R_FUN, "Queen Mother Report", "Play a Queen mother repo
 
 	log_admin("[key_name(user)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] created a Queen Mother report.")
-	BLACKBOX_LOG_ADMIN_VERB("QM Report")
 
 ADMIN_VERB(rouny_all, R_FUN, "Toggle Glob Xeno Rouny", "Toggle all living xenos into rouny versions of themselves", ADMIN_CATEGORY_FUN)
 	for(var/mob/living/carbon/xenomorph/xenotorouny in GLOB.xeno_mob_list)
@@ -62,7 +59,6 @@ ADMIN_VERB(rouny_all, R_FUN, "Toggle Glob Xeno Rouny", "Toggle all living xenos 
 		xenotorouny.xeno_flags ^= XENO_ROUNY
 	log_admin("[key_name(user)] toggled global rounification")
 	message_admins("[ADMIN_TPMONTY(user.mob)] toggled global rounification.")
-	BLACKBOX_LOG_ADMIN_VERB("Global Rounification")
 
 
 ADMIN_VERB(hive_status, R_FUN, "Check Hive Status", "Check the status of the hive.", ADMIN_CATEGORY_FUN)
@@ -73,7 +69,6 @@ ADMIN_VERB(hive_status, R_FUN, "Check Hive Status", "Check the status of the hiv
 
 	log_admin("[key_name(user)] checked the hive status.")
 	message_admins("[key_name_admin(user)] checked the hive status.")
-	BLACKBOX_LOG_ADMIN_VERB("Hive status")
 
 ADMIN_VERB(ai_report, R_FUN, "AI Report", "Create an AI report to players", ADMIN_CATEGORY_FUN)
 	var/customname = tgui_input_text(user, "What do you want the AI to be called?.", "AI Report", "AI", encode = FALSE)
@@ -97,7 +92,6 @@ ADMIN_VERB(ai_report, R_FUN, "AI Report", "Create an AI report to players", ADMI
 
 	log_admin("[key_name(user)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has created an AI report: [input]")
-	BLACKBOX_LOG_ADMIN_VERB("AI report")
 
 ADMIN_VERB(command_report, R_FUN, "Command Report", "Create a custom command report", ADMIN_CATEGORY_FUN)
 	var/customname = tgui_input_text(user, "Pick a title for the report.", "Title", "TGMC Update", encode = FALSE)
@@ -122,7 +116,6 @@ ADMIN_VERB(command_report, R_FUN, "Command Report", "Create a custom command rep
 
 	log_admin("[key_name(user)] has created a command report: [input]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has created a command report.")
-	BLACKBOX_LOG_ADMIN_VERB("Command report")
 
 ADMIN_VERB(narrate_global, R_FUN, "Global Narrate", "Directly send text to everyone", ADMIN_CATEGORY_FUN)
 	var/msg = tgui_input_text(user, "Enter the text you wish to appear to everyone.", "Global Narrate", multiline = TRUE , encode = FALSE, max_length = INFINITY)
@@ -134,7 +127,6 @@ ADMIN_VERB(narrate_global, R_FUN, "Global Narrate", "Directly send text to every
 
 	log_admin("GlobalNarrate: [key_name(user)] : [msg]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] used Global Narrate: [msg]")
-	BLACKBOX_LOG_ADMIN_VERB("Narrate Global")
 
 ADMIN_VERB_AND_CONTEXT_MENU(narrate_direct, R_FUN, "Direct Narrate", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/M in GLOB.mob_list)
 	var/msg = tgui_input_text(user, "Enter the text you wish to appear to your target.", "Direct Narrate", multiline = TRUE, encode = FALSE)
@@ -145,8 +137,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(narrate_direct, R_FUN, "Direct Narrate", ADMIN_VERB_
 
 	log_admin("DirectNarrate: [key_name(user)] to [key_name(M)]: [msg]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] used Direct Narrate on [ADMIN_TPMONTY(M)]: [msg]")
-	BLACKBOX_LOG_ADMIN_VERB("Narrate Direct")
-
 ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN, "Subtle Message", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_FUN, mob/M in GLOB.mob_list)
 	var/msg = tgui_input_text(user, "Subtle PM to [key_name(M)]:", "Subtle Message", "", multiline = TRUE, encode = FALSE)
 
@@ -163,7 +153,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(subtle_message, R_FUN, "Subtle Message", ADMIN_VERB_
 	admin_ticket_log(M, "[key_name_admin(user)] used Subtle Message: [sanitize(msg)]")
 	log_admin("SubtleMessage: [key_name(user)] to [key_name(M)]: [msg]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
-	BLACKBOX_LOG_ADMIN_VERB("Subtle Message")
 
 ADMIN_VERB(award_medal, R_FUN, "Award a Medal", "Award a medal to a marine player", ADMIN_CATEGORY_FUN)
 	give_medal_award()
@@ -191,7 +180,6 @@ ADMIN_VERB(custom_info, R_FUN, "Change Custom Info", "Set a custom info to show 
 
 	log_admin("[key_name(user)] has changed the custom event text: [GLOB.custom_info]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has changed the custom event text.")
-	BLACKBOX_LOG_ADMIN_VERB("Custom info")
 
 
 /client/verb/custom_info()
@@ -233,7 +221,6 @@ ADMIN_VERB(sound_file, R_SOUND, "Play Imported Sound", "Play a sound imported fr
 
 	log_admin("[key_name(user)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] played sound '[S]' for [heard_midi] player(s). [length(GLOB.clients) - heard_midi] player(s) [style == "Global" ? "have disabled admin midis" : "were out of view"].")
-	BLACKBOX_LOG_ADMIN_VERB("Imported sound")
 
 ADMIN_VERB(sound_web, R_SOUND, "Play Internet Sound", "Play a sound using a link to a website.", ADMIN_CATEGORY_FUN)
 	var/ytdl = CONFIG_GET(string/invoke_youtubedl)
@@ -338,7 +325,6 @@ ADMIN_VERB(sound_web, R_SOUND, "Play Internet Sound", "Play a sound using a link
 
 	log_admin("[key_name(user)] played web sound: [web_sound_input] - [title] - [style]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] played web sound: [web_sound_input] - [title] - [style]")
-	BLACKBOX_LOG_ADMIN_VERB("Internet Sound")
 
 ADMIN_VERB(sound_stop, R_SOUND, "Stop Regular Sounds", "Stop all sounds currently playing.", ADMIN_CATEGORY_FUN)
 	for(var/mob/M in GLOB.player_list)
@@ -347,7 +333,6 @@ ADMIN_VERB(sound_stop, R_SOUND, "Stop Regular Sounds", "Stop all sounds currentl
 
 	log_admin("[key_name(user)] stopped regular sounds.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] stopped regular sounds.")
-	BLACKBOX_LOG_ADMIN_VERB("Stop sounds")
 
 ADMIN_VERB(music_stop, R_SOUND, "Stop Playing Music", "Stop currently playing internet sound.", ADMIN_CATEGORY_FUN)
 	for(var/i in GLOB.clients)
@@ -357,7 +342,6 @@ ADMIN_VERB(music_stop, R_SOUND, "Stop Playing Music", "Stop currently playing in
 
 	log_admin("[key_name(user)] stopped the currently playing music.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] stopped the currently playing music.")
-	BLACKBOX_LOG_ADMIN_VERB("Stop Music")
 
 ADMIN_VERB(announce, R_FUN, "Admin Announce", "Do an admin announcement to all players.", ADMIN_CATEGORY_FUN)
 	var/message = tgui_input_text(user, "Global message to send:", "Admin Announce", multiline = TRUE, encode = FALSE, max_length = INFINITY)
@@ -370,7 +354,6 @@ ADMIN_VERB(announce, R_FUN, "Admin Announce", "Do an admin announcement to all p
 	log_admin("Announce: [key_name(user)] : [message]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] Announces:")
 	send_ooc_announcement(message, "From [user.holder.fakekey ? "Administrator" : user.ckey]", style = OOC_ALERT_ADMIN)
-	BLACKBOX_LOG_ADMIN_VERB("Admin announce")
 
 ADMIN_VERB(force_distress, R_FUN, "Distress Beacon", "Call a distress beacon manually.", ADMIN_CATEGORY_FUN)
 	if(!SSticker?.mode)
@@ -426,7 +409,6 @@ ADMIN_VERB(force_distress, R_FUN, "Distress Beacon", "Call a distress beacon man
 
 	log_admin("[key_name(user)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name]. Min: [min], Max: [max].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [SSticker.mode.picked_call.name] Min: [min], Max: [max].")
-	BLACKBOX_LOG_ADMIN_VERB("Distress Beacon")
 
 ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strength at your location.", ADMIN_CATEGORY_FUN)
 	var/choice = tgui_input_list(user, "What size explosion would you like to produce?", "Drop Bomb", list("CANCEL", "CAS: Widow Maker", "CAS: Banshee", "CAS: Keeper", "CAS: Fatty", "CAS: Napalm", "Small Bomb", "Medium Bomb", "Big Bomb", "Maxcap", "Custom Bomb"))
@@ -485,7 +467,6 @@ ADMIN_VERB(drop_bomb, R_FUN, "Drop Bomb", "Cause an explosion of varying strengt
 
 	log_admin("[key_name(user)] dropped a [choice] at [AREACOORD(user.mob)].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] dropped a [choice] at [ADMIN_VERBOSEJMP(user.mob)].")
-	BLACKBOX_LOG_ADMIN_VERB("Drop Bomb")
 
 /proc/delayed_detonate_bomb(turf/impact, input_devastation_range, input_heavy_impact_range, input_light_impact_range, input_flash_range, input_flame_range, input_throw_range, ceiling_debris)
 	if(ceiling_debris)
@@ -517,7 +498,6 @@ ADMIN_VERB(drop_dynex_bomb, R_FUN, "Drop DynEx Bomb", "Cause an explosion of var
 		dyn_explosion(epicenter, ex_power)
 		message_admins("[ADMIN_LOOKUPFLW(user.mob)] creating an admin explosion of power [ex_power] at [epicenter.loc].")
 		log_admin("[key_name(user)] created a admin explosion of power [ex_power] at [epicenter.loc].")
-		BLACKBOX_LOG_ADMIN_VERB("Drop DynEx Bomb")
 
 ADMIN_VERB(change_security_level, R_FUN, "Set Security Level", "Set the security level of the ship", ADMIN_CATEGORY_FUN)
 	var/sec_level = tgui_input_list(user, "It's currently code [GLOB.marine_main_ship.get_security_level()]. Choose the new security level.", "Set Security Level", list("green", "blue", "red", "delta") - GLOB.marine_main_ship.get_security_level())
@@ -531,7 +511,6 @@ ADMIN_VERB(change_security_level, R_FUN, "Set Security Level", "Set the security
 
 	log_admin("[key_name(user)] changed the security level to code [sec_level].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] changed the security level to code [sec_level].")
-	BLACKBOX_LOG_ADMIN_VERB("Set Security Level")
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(rank_and_equipment, R_FUN, "Rank and Equipment", mob/living/carbon/human/H in GLOB.human_mob_list)
 	var/dat = "<br>"
@@ -567,7 +546,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(rank_and_equipment, R_FUN, "Rank and Equipment", mo
 	var/datum/browser/browser = new(user.mob, "edit_rank_[key_name(H)]", "<div align='center'>Edit Rank [key_name(H)]</div>", 400, 350)
 	browser.set_content(dat)
 	browser.open(FALSE)
-	BLACKBOX_LOG_ADMIN_VERB("Rank And Equipment")
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(edit_appearance, R_FUN, "Edit Appearance", mob/living/carbon/human/H in GLOB.human_mob_list)
 	if(!istype(H))
@@ -596,7 +574,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(edit_appearance, R_FUN, "Edit Appearance", mob/livi
 	var/datum/browser/browser = new(user.mob, "edit_appearance_[key_name(H)]", "<div align='center'>Edit Appearance [key_name(H)]</div>")
 	browser.set_content(dat)
 	browser.open(FALSE)
-	BLACKBOX_LOG_ADMIN_VERB("Edit Appearance")
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(offer, R_ADMIN, "Offer Mob", mob/living/L in GLOB.mob_living_list)
 	if(L.client)
@@ -625,7 +602,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(offer, R_ADMIN, "Offer Mob", mob/living/L in GLOB.m
 
 	log_admin("[key_name(user)] has offered [key_name_admin(L)].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has offered [ADMIN_TPMONTY(L)].")
-	BLACKBOX_LOG_ADMIN_VERB("Offer Mob")
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(xeno_panel, R_FUN, "Xeno Panel", mob/living/carbon/xenomorph/X in GLOB.xeno_mob_list)
 	if(!istype(X))
@@ -640,8 +616,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(xeno_panel, R_FUN, "Xeno Panel", mob/living/carbon/
 	var/datum/browser/browser = new(user.mob, "xeno_panel_[key_name(X)]", "<div align='center'>Xeno Panel [key_name(X)]</div>")
 	browser.set_content(dat)
 	browser.open(FALSE)
-	BLACKBOX_LOG_ADMIN_VERB("Xeno Panel")
-
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(release, R_FUN, "Release Obj", obj/OB in world)
 	var/mob/M = user.mob
@@ -666,7 +640,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(release, R_FUN, "Release Obj", obj/OB in world)
 
 	log_admin("[key_name(user)] has released [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has released [O] ([O.type]).")
-	BLACKBOX_LOG_ADMIN_VERB("Release Obj")
 
 ADMIN_VERB_ONLY_CONTEXT_MENU(possess, R_FUN, "Possess Obj", obj/O in world)
 	var/mob/M = user.mob
@@ -679,7 +652,6 @@ ADMIN_VERB_ONLY_CONTEXT_MENU(possess, R_FUN, "Possess Obj", obj/O in world)
 
 	log_admin("[key_name(user)] has possessed [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has possessed [O] ([O.type]).")
-	BLACKBOX_LOG_ADMIN_VERB("Possess Obj")
 
 ADMIN_VERB_AND_CONTEXT_MENU(imaginary_friend, R_FUN|R_MENTOR, "Imaginary Friend", ADMIN_VERB_NO_DESCRIPTION, ADMIN_CATEGORY_MAIN, mob/living/living_mob AS in GLOB.mob_living_list)
 	if(istype(user.mob, /mob/camera/imaginary_friend))
@@ -714,7 +686,6 @@ ADMIN_VERB_AND_CONTEXT_MENU(imaginary_friend, R_FUN|R_MENTOR, "Imaginary Friend"
 	admin_ticket_log(friend_owner, "[key_name_admin(C)] became an imaginary friend of [key_name(friend_owner)]")
 	log_admin("[key_name(IF)] started being imaginary friend of [key_name(friend_owner)].")
 	message_admins("[ADMIN_TPMONTY(IF)] started being imaginary friend of [ADMIN_TPMONTY(friend_owner)].")
-	BLACKBOX_LOG_ADMIN_VERB("Imaginary Friend")
 
 ADMIN_VERB(force_dropship, R_FUN, "Force Dropship", "Force a dropship to move", ADMIN_CATEGORY_DEBUG)
 	if(!length(SSshuttle.dropships) && !SSshuttle.canterbury)
@@ -782,7 +753,6 @@ ADMIN_VERB(force_dropship, R_FUN, "Force Dropship", "Force a dropship to move", 
 
 	log_admin("[key_name(user)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""] [success].")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has moved [D.name] ([D.id]) to [target] ([target.id])[instant ? " instantly" : ""] [success].")
-	BLACKBOX_LOG_ADMIN_VERB("Force Dropship")
 
 ADMIN_VERB(play_cinematic, R_FUN, "Play Cinematic", "Play a selected cinematic", ADMIN_CATEGORY_FUN)
 	var/datum/cinematic/choice = tgui_input_list(user, "Choose a cinematic to play.", "Play Cinematic", subtypesof(/datum/cinematic))
@@ -793,7 +763,6 @@ ADMIN_VERB(play_cinematic, R_FUN, "Play Cinematic", "Play a selected cinematic",
 
 	log_admin("[key_name(user)] played the [choice] cinematic.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] played the [choice] cinematic.")
-	BLACKBOX_LOG_ADMIN_VERB("Play Cinematic")
 
 ADMIN_VERB(set_tip, R_FUN, "Set Tip", "Set a tip of the round", ADMIN_CATEGORY_FUN)
 	var/tip = tgui_input_text(user, "Please specify your tip that you want to send to the players.", "Tip", multiline = TRUE, encode = FALSE)
@@ -808,14 +777,12 @@ ADMIN_VERB(set_tip, R_FUN, "Set Tip", "Set a tip of the round", ADMIN_CATEGORY_F
 
 	log_admin("[key_name(user)] set a tip of the round: [tip]")
 	message_admins("[ADMIN_TPMONTY(user.mob)] set a tip of the round.")
-	BLACKBOX_LOG_ADMIN_VERB("Set tip")
 
 ADMIN_VERB(ghost_interact, R_FUN, "Ghost Interact", "Toggle ghost interact mode", ADMIN_CATEGORY_FUN)
 	user.holder.ghost_interact = !user.holder.ghost_interact
 
 	log_admin("[key_name(user)] has [user.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
 	message_admins("[ADMIN_TPMONTY(user.mob)] has [user.holder.ghost_interact ? "enabled" : "disabled"] ghost interact.")
-	BLACKBOX_LOG_ADMIN_VERB("Ghost Interact")
 
 ADMIN_VERB(run_weather, R_FUN, "Run Weather", "Triggers a weather on the z-level you choose.", ADMIN_CATEGORY_FUN)
 	var/weather_type = tgui_input_list(user, "Choose a weather", "Weather", subtypesof(/datum/weather))
@@ -831,7 +798,6 @@ ADMIN_VERB(run_weather, R_FUN, "Run Weather", "Triggers a weather on the z-level
 
 	message_admins("[key_name_admin(user)] started weather of type [weather_type] on the z-level [z_level].")
 	log_admin("[key_name(user)] started weather of type [weather_type] on the z-level [z_level].")
-	BLACKBOX_LOG_ADMIN_VERB("Run Weather")
 
 ///client verb to set round end sound
 ADMIN_VERB(set_round_end_sound, R_SOUND, "Set Round End Sound", "Set a sound to play when the server restarts", ADMIN_CATEGORY_FUN, S as sound)
@@ -839,7 +805,6 @@ ADMIN_VERB(set_round_end_sound, R_SOUND, "Set Round End Sound", "Set a sound to 
 
 	log_admin("[key_name(user)] set the round end sound to [S]")
 	message_admins("[key_name_admin(user)] set the round end sound to [S]")
-	BLACKBOX_LOG_ADMIN_VERB("Set Round End Sound") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 ADMIN_VERB(adjust_gravity, R_FUN, "Adjust Gravity", "Adjusts gravity/jump components of all mobs.", ADMIN_CATEGORY_FUN)
 	var/choice = tgui_input_list(user, "What would you like to set gravity to?", "Gravity adjustment", list("Standard gravity", "Low gravity", "John Woo", "Exceeding orbital velocity"))
@@ -864,4 +829,3 @@ ADMIN_VERB(adjust_gravity, R_FUN, "Adjust Gravity", "Adjusts gravity/jump compon
 			return
 
 	log_admin("[key_name(user)] set gravity to [choice].")
-	BLACKBOX_LOG_ADMIN_VERB("Set Gravity")

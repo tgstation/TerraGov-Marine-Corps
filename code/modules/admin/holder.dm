@@ -127,7 +127,6 @@ ADMIN_VERB(deadmin, R_NONE, "DeAdmin", "Shed your admin powers.", ADMIN_CATEGORY
 	to_chat(user, span_interface("You are now a normal player."))
 	log_admin("[key_name(user)] deadminned themselves.")
 	message_admins("[key_name_admin(user)] deadminned themselves.")
-	BLACKBOX_LOG_ADMIN_VERB("Deadmin")
 
 
 /proc/GenerateToken()
