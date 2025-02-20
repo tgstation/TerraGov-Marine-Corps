@@ -192,6 +192,7 @@
 #define COMSIG_XENOABILITY_TOGGLE_CHARGE "xenoability_toggle_charge"
 #define COMSIG_XENOABILITY_CRESTTOSS "xenoability_cresttoss"
 #define COMSIG_XENOABILITY_ADVANCE "xenoability_advance"
+#define COMSIG_XENOABILITY_SCORCHED_EARTH "xenoability_scorched_earth"
 
 #define COMSIG_XENOABILITY_DEVOUR "xenoability_devour"
 #define COMSIG_XENOABILITY_DRAIN "xenoability_drain"
@@ -200,10 +201,6 @@
 #define COMSIG_XENOABILITY_PSYCHIC_LINK "xenoability_psychic_link"
 #define COMSIG_XENOABILITY_CARNAGE "xenoability_carnage"
 #define COMSIG_XENOABILITY_FEAST "xenoability_feast"
-
-#define COMSIG_XENOABILITY_BULLCHARGE "xenoability_bullcharge"
-#define COMSIG_XENOABILITY_BULLHEADBUTT "xenoability_bullheadbutt"
-#define COMSIG_XENOABILITY_BULLGORE "xenoability_bullgore"
 
 #define COMSIG_XENOABILITY_TAIL_SWEEP "xenoability_tail_sweep"
 #define COMSIG_XENOABILITY_FORWARD_CHARGE "xenoability_forward_charge"

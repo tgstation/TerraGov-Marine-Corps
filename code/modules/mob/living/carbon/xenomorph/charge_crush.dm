@@ -3,9 +3,7 @@
 
 #define CHARGE_CRUSH (1<<0)
 #define CHARGE_BULL (1<<1)
-#define CHARGE_BULL_HEADBUTT (1<<2)
-#define CHARGE_BULL_GORE (1<<3)
-#define CHARGE_BEHEMOTH (1<<4)
+#define CHARGE_BEHEMOTH (1<<2)
 
 #define STOP_CRUSHER_ON_DEL (1<<0)
 
@@ -34,7 +32,6 @@
 	var/steps_for_charge = 7
 	var/max_steps_buildup = 14
 	var/crush_living_damage = 20
-	var/next_special_attack = 0 //Little var to keep track on special attack timers.
 	var/plasma_use_multiplier = 1
 	///If this charge should keep momentum on dir change and if it can charge diagonally
 	var/agile_charge = FALSE
@@ -226,7 +223,7 @@
 						span_danger("We run [victim] over!"), null, 5)
 					victim.take_overall_damage(CHARGE_SPEED(src) * 10, BRUTE,MELEE, max_limbs = 3)
 					animation_flash_color(victim)
-			if(CHARGE_BULL, CHARGE_BULL_HEADBUTT, CHARGE_BULL_GORE) //Xeno Bull
+			if(CHARGE_BULL)
 				if(MODULUS(valid_steps_taken, 4) == 0)
 					playsound(charger, SFX_ALIEN_FOOTSTEP_LARGE, 50)
 			if(CHARGE_BEHEMOTH)
@@ -268,7 +265,7 @@
 	if(charger.incapacitated() || charger.now_pushing)
 		return NONE
 
-	if(charge_type & (CHARGE_BULL|CHARGE_BULL_HEADBUTT|CHARGE_BULL_GORE|CHARGE_BEHEMOTH) && !isliving(crushed))
+	if(charge_type & (CHARGE_BULL|CHARGE_BEHEMOTH) && !isliving(crushed))
 		do_stop_momentum()
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
 
@@ -338,54 +335,6 @@
 		span_xenowarning("We ram into [crushed_turf] and skid to a halt!"))
 		do_stop_momentum(FALSE)
 		return COMPONENT_MOVABLE_PREBUMP_STOPPED
-
-
-/datum/action/ability/xeno_action/ready_charge/bull_charge
-	action_icon_state = "bull_ready_charge"
-	action_icon = 'icons/Xeno/actions/bull.dmi'
-	charge_type = CHARGE_BULL
-	speed_per_step = 0.15
-	steps_for_charge = 5
-	max_steps_buildup = 10
-	crush_living_damage = 37
-	plasma_use_multiplier = 2
-
-
-/datum/action/ability/xeno_action/ready_charge/bull_charge/give_action(mob/living/L)
-	. = ..()
-	RegisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE, PROC_REF(toggle_charge_type))
-
-
-/datum/action/ability/xeno_action/ready_charge/bull_charge/remove_action(mob/living/L)
-	UnregisterSignal(L, COMSIG_XENOACTION_TOGGLECHARGETYPE)
-	return ..()
-
-
-/datum/action/ability/xeno_action/ready_charge/bull_charge/proc/toggle_charge_type(datum/source, new_charge_type = CHARGE_BULL)
-	SIGNAL_HANDLER
-	if(charge_type == new_charge_type)
-		return
-
-	var/mob/living/carbon/xenomorph/charger = owner
-	if(charger.is_charging >= CHARGE_ON)
-		do_stop_momentum()
-
-	switch(new_charge_type)
-		if(CHARGE_BULL)
-			charge_type = CHARGE_BULL
-			crush_sound = initial(crush_sound)
-			to_chat(owner, span_notice("Now charging normally."))
-		if(CHARGE_BULL_HEADBUTT)
-			charge_type = CHARGE_BULL_HEADBUTT
-			to_chat(owner, span_notice("Now headbutting on impact."))
-		if(CHARGE_BULL_GORE)
-			charge_type = CHARGE_BULL_GORE
-			crush_sound = SFX_ALIEN_TAIL_ATTACK
-			to_chat(owner, span_notice("Now goring on impact."))
-
-/datum/action/ability/xeno_action/ready_charge/bull_charge/on_xeno_upgrade()
-	var/mob/living/carbon/xenomorph/X = owner
-	agile_charge = (X.upgrade == XENO_UPGRADE_PRIMO)
 
 /datum/action/ability/xeno_action/ready_charge/queen_charge
 	action_icon_state = "queen_ready_charge"
@@ -569,15 +518,10 @@
 	switch(charge_datum.charge_type)
 		if(CHARGE_CRUSH)
 			Paralyze(CHARGE_SPEED(charge_datum) * 2 SECONDS)
-		if(CHARGE_BULL_HEADBUTT)
-			Paralyze(CHARGE_SPEED(charge_datum) * 1.5 SECONDS)
 		if(CHARGE_BULL)
-			Paralyze(0.2 SECONDS)
-		if(CHARGE_BULL_GORE)
+			Paralyze(CHARGE_SPEED(charge_datum) * 1.5 SECONDS)
 			adjust_stagger(CHARGE_SPEED(charge_datum) * 1 SECONDS)
 			adjust_slowdown(CHARGE_SPEED(charge_datum) * 1)
-			reagents.add_reagent(/datum/reagent/toxin/xeno_ozelomelyn, 10)
-			playsound(charger,'sound/effects/spray3.ogg', 15, TRUE)
 
 	if(anchored)
 		charge_datum.do_stop_momentum(FALSE)
@@ -603,40 +547,16 @@
 			charger.visible_message(span_danger("[charger] rams [src]!"),
 			span_xenodanger("We ram [src]!"))
 			charge_datum.speed_down(1) //Lose one turf worth of speed.
-			GLOB.round_statistics.bull_crush_hit++
-			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_crush_hit")
 			return PRECRUSH_PLOWED
 
-		if(CHARGE_BULL_GORE)
-			if(world.time > charge_datum.next_special_attack)
-				charge_datum.next_special_attack = world.time + 2 SECONDS
-				var/turf/destination = get_step(loc, charger.dir)
-				if(destination)
-					throw_at(destination, 1, 1, charger, FALSE)
-				charger.visible_message(span_danger("[charger] gores [src]!"),
-					span_xenowarning("We gore [src] and skid to a halt!"))
-				GLOB.round_statistics.bull_gore_hit++
-				SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_gore_hit")
-
-
-		if(CHARGE_BULL_HEADBUTT)
-			var/fling_dir = charger.a_intent == INTENT_HARM ? charger.dir : REVERSE_DIR(charger.dir)
-			var/fling_dist = min(round(CHARGE_SPEED(charge_datum)) + 2, 3)
-			var/turf/destination = loc
-			var/turf/temp
-
-			for(var/i in 1 to fling_dist)
-				temp = get_step(destination, fling_dir)
-				if(!temp)
-					break
-				destination = temp
-			if(destination != loc)
-				throw_at(destination, fling_dist, 1, charger, TRUE)
-
-			charger.visible_message(span_danger("[charger] rams into [src] and flings [p_them()] away!"),
-				span_xenowarning("We ram into [src] and skid to a halt!"))
-			GLOB.round_statistics.bull_headbutt_hit++
-			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_headbutt_hit")
+		if(CHARGE_BULL)
+			var/turf/destination = get_step(loc, charger.dir)
+			if(destination)
+				throw_at(destination, 1, 1, charger, FALSE)
+			charger.visible_message(span_danger("[charger] gores [src]!"),
+				span_xenowarning("We gore [src] and skid to a halt!"))
+			GLOB.round_statistics.bull_hit++
+			SSblackbox.record_feedback("tally", "round_statistics", 1, "bull_hit")
 
 	charge_datum.do_stop_momentum(FALSE)
 	return PRECRUSH_STOPPED
