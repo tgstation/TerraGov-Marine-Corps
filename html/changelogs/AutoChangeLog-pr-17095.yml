@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - qol: "Replaced crates teleporting with an animation where they fall from the sky"

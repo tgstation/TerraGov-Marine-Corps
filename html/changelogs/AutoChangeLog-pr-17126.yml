@@ -1,6 +1,0 @@
-author: "breadhunt"
-delete-after: True
-changes:
-  - balance: "Demolition detpack explosion: 3, 5, 6 -> 0, 7, 9"
-  - balance: "Breach detpack explosion: 2, 2, 3 -> 3, 4, 4"
-  - balance: "Breach charge will now explode on the opposite side of a wall, if it is planted on a wall"

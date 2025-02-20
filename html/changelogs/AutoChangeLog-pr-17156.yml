@@ -1,4 +1,0 @@
-author: "TiviPlus"
-delete-after: True
-changes:
-  - code_imp: "It is now possible to set up a DB by just running ezdb.bat in tools/ezdb when running the game locally"
