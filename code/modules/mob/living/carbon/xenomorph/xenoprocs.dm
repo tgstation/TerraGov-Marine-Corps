@@ -15,9 +15,9 @@
 			var/oldloc = loc
 			var/oldmechaloc = mecha.loc
 
-			var/mecha_passmob = (mecha.density) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
+			var/mecha_passmob = (mecha.allow_pass_flags & PASS_MOB) // we give PASS_MOB to both mobs to avoid bumping other mobs during swap.
 			var/src_passmob = (pass_flags & PASS_MOB)
-			mecha.density = FALSE
+			mecha.allow_pass_flags |= PASS_MOB
 			pass_flags |= PASS_MOB
 
 			if(!moving_diagonally) //the diagonal move already does this for us
@@ -27,8 +27,8 @@
 
 			if(!src_passmob)
 				pass_flags &= ~PASS_MOB
-			if(mecha_passmob)
-				mecha.density = TRUE
+			if(!mecha_passmob)
+				mecha.allow_pass_flags &= ~PASS_MOB
 
 			now_pushing = FALSE
 
