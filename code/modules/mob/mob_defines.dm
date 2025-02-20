@@ -33,6 +33,8 @@
 	var/track_blood = 0
 	var/feet_blood_color
 	var/datum/skills/skills
+	/// Allows a mob to hear dchat regardless of other factors.
+	var/deadchat_override = FALSE
 
 
 	//Movement
