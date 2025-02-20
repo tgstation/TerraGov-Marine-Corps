@@ -193,8 +193,6 @@ GLOBAL_VAR(medal_persistence_sealed)
 
 /datum/persistent_medal_info/Destroy(force, ...)
 	if(medal)
-		// unregister BEFORE qdel'ing it
-		UnregisterSignal(medal, COMSIG_QDELETING)
 		QDEL_NULL(medal)
 	return ..()
 
