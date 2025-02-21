@@ -54,8 +54,8 @@
 
 /datum/action/ability/activable/xeno/scorched_earth
 	name = "Scorched Earth"
-	//action_icon_state = "stomp"
-	//action_icon = 'icons/Xeno/actions/crusher.dmi'
+	action_icon_state = "scorched_earth"
+	action_icon = 'icons/Xeno/actions/crusher.dmi'
 	desc = "When activated, gain three charges of Scorched Earth. These can be used to dash towards a targeted location, leaving damaging trails of plasma behind."
 	ability_cost = 250
 	cooldown_duration = 3 MINUTES
@@ -91,12 +91,13 @@
 	visual_references[VREF_MUTABLE_SCORCHED_EARTH] = null
 
 /datum/action/ability/activable/xeno/scorched_earth/update_button_icon()
-	if(current_charges)
-		button.cut_overlay(visual_references[VREF_MUTABLE_SCORCHED_EARTH])
-		var/mutable_appearance/number = visual_references[VREF_MUTABLE_SCORCHED_EARTH]
-		number.maptext = MAPTEXT("[maximum_charges ? "[current_charges]/[maximum_charges]" : ""]")
-		visual_references[VREF_MUTABLE_SCORCHED_EARTH] = number
-		button.add_overlay(visual_references[VREF_MUTABLE_SCORCHED_EARTH])
+	if(!current_charges)
+		return ..()
+	button.cut_overlay(visual_references[VREF_MUTABLE_SCORCHED_EARTH])
+	var/mutable_appearance/number = visual_references[VREF_MUTABLE_SCORCHED_EARTH]
+	number.maptext = MAPTEXT("[current_charges ? "[current_charges]/[maximum_charges]" : ""]")
+	visual_references[VREF_MUTABLE_SCORCHED_EARTH] = number
+	button.add_overlay(visual_references[VREF_MUTABLE_SCORCHED_EARTH])
 	return ..()
 
 /datum/action/ability/activable/xeno/scorched_earth/can_use_ability(atom/atom_target, silent = FALSE, override_flags)
@@ -171,6 +172,8 @@
 	deltimer(grace_period_timer)
 	if(current_charges)
 		current_charges = 0
+	button.cut_overlay(visual_references[VREF_MUTABLE_SCORCHED_EARTH])
+	update_button_icon()
 
 /obj/fire/scorched_earth
 	name = "Scorched Earth"
