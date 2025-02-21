@@ -44,7 +44,7 @@
 	RegisterSignal(parent, COMSIG_KB_VEHICLE_NEW_OCCUPANT, PROC_REF(set_external_user))
 
 /datum/component/jump/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_UP, COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_KB_LIVING_JUMP, COMSIG_MOB_THROW, COMSIG_KB_VEHICLE_NEW_OCCUPANT))
+	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_UP, COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_MOB_THROW, COMSIG_KB_VEHICLE_NEW_OCCUPANT))
 	set_external_user()
 
 /datum/component/jump/InheritComponent(datum/component/new_component, original_component, _jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
