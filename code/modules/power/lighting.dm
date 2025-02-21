@@ -436,15 +436,12 @@
 /// Changes the light's appearance based on the security level when [COMSIG_SECURITY_LEVEL_CHANGED] sends a signal
 /obj/machinery/light/mainship/proc/on_alert_change(datum/source, datum/security_level/new_level, datum/security_level/previous_level)
 	SIGNAL_HANDLER
-	var/bulb_type = "tube" // the base light sprite
-	if(istype(src, /obj/machinery/light/mainship/small))
-		bulb_type = "bulb"
 	var/most_recent_level_red_lights = ((previous_level.sec_level_flags & SEC_LEVEL_FLAG_RED_LIGHTS))
 	if(!(new_level.sec_level_flags & SEC_LEVEL_FLAG_RED_LIGHTS) && most_recent_level_red_lights)
 		var/area/active_area = get_area(src)
 		if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
 			return
-		base_icon_state = bulb_type
+		base_icon_state = initial(base_icon_state)
 		light_color = bulb_colour
 		light_range = brightness
 		update_light()
@@ -453,7 +450,7 @@
 		var/area/active_area = get_area(src)
 		if(!active_area.power_light || status != LIGHT_OK) //do not adjust unpowered or broken bulbs
 			return
-		base_icon_state = "[bulb_type]_red"
+		base_icon_state = "[initial(base_icon_state)]_red"
 		light_color = COLOR_SOMEWHAT_LIGHTER_RED
 		light_range = 7.5
 		if(prob(75)) //randomize light range on most lights, patchy lighting gives a sense of danger

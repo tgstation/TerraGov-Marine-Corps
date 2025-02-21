@@ -37,7 +37,7 @@
 
 /datum/security_level/New()
 	. = ..()
-	if(lowering_to_configuration_key) // I'm not sure about you, but isn't there an easier way to do this?
+	if(lowering_to_configuration_key) // This is normally forbidden, but CONFIG_GET expects a typepath and not a var
 		lowering_body = global.config.Get(lowering_to_configuration_key)
 	if(elevating_to_configuration_key)
 		elevating_body = global.config.Get(elevating_to_configuration_key)

@@ -27,6 +27,8 @@ SUBSYSTEM_DEF(security_level)
 /**
  * Sets a new security level as our current level. This is how anything should be changing the security level.
  *
+ * Returns `TRUE` if there's a change in the level, `FALSE` otherwise.
+ *
  * Produces a signal: [COMSIG_SECURITY_LEVEL_CHANGED].
  * Can use it for world objects that react to the security level being updated. (red lights, etc)
  *
@@ -36,8 +38,8 @@ SUBSYSTEM_DEF(security_level)
  */
 /datum/controller/subsystem/security_level/proc/set_level(new_level, announce = TRUE)
 	new_level = istext(new_level) ? new_level : number_level_to_text(new_level)
-	if(new_level == current_security_level.name) // If we are already at the desired level, do nothing
-		return
+	if(new_level == current_security_level.name) // If we are already at the desired level, don't bother
+		return FALSE
 
 	var/datum/security_level/selected_level = available_levels[new_level]
 
@@ -51,6 +53,7 @@ SUBSYSTEM_DEF(security_level)
 	current_security_level = selected_level
 	SEND_SIGNAL(src, COMSIG_SECURITY_LEVEL_CHANGED, selected_level, previous_level)
 	SSblackbox.record_feedback(FEEDBACK_TALLY, "security_level_changes", 1, selected_level.name, previous_level)
+	return TRUE
 
 /**
  * Returns the current security level as a number

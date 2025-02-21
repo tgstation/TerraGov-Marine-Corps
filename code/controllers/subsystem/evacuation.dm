@@ -86,15 +86,15 @@ SUBSYSTEM_DEF(evacuation)
 	evac_time = world.time
 	evac_status = EVACUATION_STATUS_INITIATING
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_EVACUATION_STARTED)
+	var/sec_level_changed = SSsecurity_level.set_level(SEC_LEVEL_DELTA, FALSE) // TRUE if we weren't already on Delta alert
 	priority_announce(
 		type = ANNOUNCEMENT_PRIORITY,
-		title = "Code Delta emergency declared. Evacuation in [EVACUATION_AUTOMATIC_DEPARTURE/600] minutes.",
-		message = global.config.Get(/datum/config_entry/string/alert_delta),
-		sound = 'sound/misc/airraid.ogg',
-		color_override = "orange"
+		title = "[sec_level_changed ? "Code Delta emergency declared. " : ""]Evacuation in [EVACUATION_AUTOMATIC_DEPARTURE/600] minutes.",
+		message = "Emergency evacuation has been triggered. Please proceed to the escape pods.[sec_level_changed ? "\n\n[CONFIG_GET(string/alert_delta)]" : ""]",
+		sound = 'sound/AI/evacuate.ogg',
+		color_override = sec_level_changed ? "purple" : "orange"
 	)
 	xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
-	SSsecurity_level.set_level(SEC_LEVEL_DELTA, FALSE)
 	pod_list = SSshuttle.escape_pods.Copy()
 	for(var/obj/docking_port/mobile/escape_pod/pod AS in pod_list)
 		pod.prep_for_launch()

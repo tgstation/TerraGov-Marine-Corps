@@ -139,22 +139,23 @@
 	var/current_level_name = selected_level.name
 	var/current_level_color = selected_level.announcement_color
 
-	var/active_title
+	var/active_subtitle
 	var/active_message
 	var/active_sound
 
 	if(current_level_number > previous_level_number)
-		active_title = "Attention! Security level elevated to [uppertext(current_level_name)]:"
+		active_subtitle = "Security level elevated to [uppertext(current_level_name)]:"
 		active_message = selected_level.elevating_body
 		active_sound = selected_level.elevating_sound
 	else
-		active_title = "Attention! Security level lowered to [uppertext(current_level_name)]:"
+		active_subtitle = "Security level lowered to [uppertext(current_level_name)]:"
 		active_message = selected_level.lowering_body
 		active_sound = selected_level.lowering_sound
 
 	priority_announce(
 		type = ANNOUNCEMENT_REGULAR,
-		title = active_title,
+		title = "Attention!",
+		subtitle = active_subtitle,
 		message = active_message,
 		sound = active_sound,
 		color_override = current_level_color
