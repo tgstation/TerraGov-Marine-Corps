@@ -1,0 +1,4 @@
+author: "antropod"
+delete-after: True
+changes:
+  - qol: "Quick equip (pressing E) will try to put an item to the slot it was drawn from."
