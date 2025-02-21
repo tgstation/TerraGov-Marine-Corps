@@ -74,7 +74,6 @@
 	light_power = 0.5
 	light_color = LIGHT_COLOR_BLUE
 	explosion_block = 1
-	faction = null
 
 	///Whether this vendor is active or not.
 	var/active = TRUE

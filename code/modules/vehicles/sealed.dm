@@ -1,6 +1,5 @@
 /obj/vehicle/sealed
 	atom_flags = PREVENT_CONTENTS_EXPLOSION|CRITICAL_ATOM
-	faction = null
 	var/enter_delay = 2 SECONDS
 	var/mouse_pointer
 	var/headlights_toggle = FALSE
