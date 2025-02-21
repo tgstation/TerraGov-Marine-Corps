@@ -1,0 +1,4 @@
+author: "Isy232"
+delete-after: True
+changes:
+  - qol: "Starting alien weed nodes have a much higher chance to be sticky weed nodes rather than regular weed nodes."
