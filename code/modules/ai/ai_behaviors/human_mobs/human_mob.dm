@@ -126,18 +126,18 @@ TODO: pathfinding wizardry
 			if(get_dist(escorted_atom, mob_parent) > AI_ESCORTING_MAX_DISTANCE)
 				look_for_next_node()
 				return
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction)
-			if(!next_target || !line_of_sight(mob_parent, next_target))
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+			if(!next_target)
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 		if(MOVING_TO_NODE, FOLLOWING_PATH)
-			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
-			if(!next_target || !line_of_sight(mob_parent, next_target))
+			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+			if(!next_target)
 				if(can_heal && living_parent.health <= minimum_health * 2 * living_parent.maxHealth)
 					INVOKE_ASYNC(src, PROC_REF(try_heal))
 					return
 				if(!goal_node) // We are randomly moving
-					var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction)
+					var/atom/mob_to_follow = get_nearest_target(mob_parent, AI_ESCORTING_MAX_DISTANCE, TARGET_FRIENDLY_MOB, mob_parent.faction, need_los = TRUE)
 					if(mob_to_follow)
 						set_escorted_atom(null, mob_to_follow, TRUE)
 						return
@@ -150,8 +150,8 @@ TODO: pathfinding wizardry
 			if(!weak_escort && escorted_atom && get_dist(escorted_atom, mob_parent) > target_distance)
 				change_action(ESCORTING_ATOM, escorted_atom)
 				return
-			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction)
-			if(!next_target || !line_of_sight(mob_parent, next_target))//We didn't find a target
+			var/atom/next_target = get_nearest_target(mob_parent, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+			if(!next_target)//We didn't find a target
 				cleanup_current_action()
 				late_initialize()
 				return
@@ -160,8 +160,8 @@ TODO: pathfinding wizardry
 				return
 			change_action(null, next_target)//We found a better target, change course!
 		if(MOVING_TO_SAFETY) //todo: look at this and unfuck some of this behavior
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction)
-			if(!next_target || !line_of_sight(mob_parent, next_target))//We are safe, try to find some weeds
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+			if(!next_target)//We are safe, try to find some weeds
 				target_distance = initial(target_distance)
 				cleanup_current_action()
 				late_initialize()
@@ -172,8 +172,8 @@ TODO: pathfinding wizardry
 				return
 			change_action(null, next_target, INFINITY)
 		if(IDLE)
-			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction)
-			if(!next_target || !line_of_sight(mob_parent, next_target))
+			var/atom/next_target = get_nearest_target(escorted_atom, target_distance, TARGET_HOSTILE, mob_parent.faction, need_los = TRUE)
+			if(!next_target)
 				return
 			change_action(MOVING_TO_ATOM, next_target)
 

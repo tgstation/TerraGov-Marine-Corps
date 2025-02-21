@@ -75,7 +75,7 @@
 		. += nearby_tank
 
 ///Returns the nearest target that has the right target flag
-/proc/get_nearest_target(atom/source, distance, target_flags, attacker_faction, attacker_hive)
+/proc/get_nearest_target(atom/source, distance, target_flags, attacker_faction, attacker_hive, need_los = FALSE)
 	if(!source)
 		return
 	var/atom/nearest_target
@@ -87,6 +87,8 @@
 			if(nearby_human.stat == DEAD || nearby_human.faction == attacker_faction || nearby_human.alpha <= SCOUT_CLOAK_RUN_ALPHA)
 				continue
 			if(get_dist(source, nearby_human) >= shorter_distance)
+				continue
+			if(need_los && !line_of_sight(source, nearby_human))
 				continue
 			nearest_target = nearby_human
 			shorter_distance = get_dist(source, nearby_human) //better to recalculate than to save the var
@@ -101,6 +103,8 @@
 				continue
 			if(get_dist(source, nearby_xeno) >= shorter_distance)
 				continue
+			if(need_los && !line_of_sight(source, nearby_xeno))
+				continue
 			nearest_target = nearby_xeno
 			shorter_distance = get_dist(source, nearby_xeno)
 	if(target_flags & TARGET_HUMAN_TURRETS)
@@ -111,6 +115,8 @@
 				continue
 			if(get_dist(source, nearby_turret) >= shorter_distance)
 				continue
+			if(need_los && !line_of_sight(source, nearby_turret))
+				continue
 			nearest_target = nearby_turret
 			shorter_distance = get_dist(source, nearby_turret)
 	if(target_flags & TARGET_VEHICLE)
@@ -119,6 +125,8 @@
 				continue
 			if(get_dist(source, nearby_vehicle) >= shorter_distance)
 				continue
+			if(need_los && !line_of_sight(source, nearby_vehicle))
+				continue
 			nearest_target = nearby_vehicle
 			shorter_distance = get_dist(source, nearby_vehicle)
 	if(target_flags & TARGET_UNMANNED_VEHICLE)
@@ -126,6 +134,8 @@
 			if(source.z != nearby_unmanned.z)
 				continue
 			if(get_dist(source, nearby_unmanned) >= shorter_distance)
+				continue
+			if(need_los && !line_of_sight(source, nearby_unmanned))
 				continue
 			nearest_target = nearby_unmanned
 			shorter_distance = get_dist(source, nearby_unmanned)
@@ -143,6 +153,8 @@
 				continue
 			if(get_dist(source, nearby_xeno) >= shorter_distance)
 				continue
+			if(need_los && !line_of_sight(source, nearby_xeno))
+				continue
 			nearest_target = nearby_xeno
 			shorter_distance = get_dist(source, nearby_xeno)
 	if(target_flags & TARGET_FRIENDLY_MOB)
@@ -156,6 +168,8 @@
 			if(nearby_mob.alpha <= SCOUT_CLOAK_RUN_ALPHA)
 				continue
 			if(get_dist(source, nearby_mob) >= shorter_distance)
+				continue
+			if(need_los && !line_of_sight(source, nearby_mob))
 				continue
 			nearest_target = nearby_mob
 			shorter_distance = get_dist(source, nearby_mob) //better to recalculate than to save the var
