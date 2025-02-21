@@ -24,7 +24,7 @@
 	succeed_activate()
 
 	playsound(xeno_owner.loc, 'sound/effects/refill.ogg', 50, 1)
-	var/turflist = get_line(xeno_owner, target)
+	var/turflist = get_traversal_line(xeno_owner, target)
 	spray_turfs(turflist)
 	add_cooldown()
 

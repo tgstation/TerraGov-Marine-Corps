@@ -1203,7 +1203,7 @@ GLOBAL_LIST_INIT(survivor_outfits, typecacheof(/datum/outfit/job/survivor))
  * Returns the last turf in the list it can successfully path to
 */
 /proc/check_path(atom/start, atom/end, pass_flags_checked = NONE)
-	var/list/path_to_target = get_line(start, end)
+	var/list/path_to_target = get_line(start, end) //we don't use traversal because link blocked checks both diags as needed
 	var/line_count = 1
 	while(line_count < length(path_to_target))
 		if(LinkBlocked(path_to_target[line_count], path_to_target[line_count + 1], pass_flags_checked))

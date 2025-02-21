@@ -168,7 +168,7 @@
 	var/current_target = get_turf(target)
 	switch(burn_type)
 		if(FLAMER_STREAM_STRAIGHT)
-			var/path_to_target = get_line(start_location, current_target)
+			var/path_to_target = get_traversal_line(start_location, current_target)
 			path_to_target -= start_location
 			recursive_flame_straight(1, old_turfs, path_to_target, range, current_target, flame_max_wall_pen)
 		if(FLAMER_STREAM_CONE)
