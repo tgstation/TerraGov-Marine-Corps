@@ -62,7 +62,7 @@
 		for(var/obj/obj in turf)
 			if(!istype(obj, /obj/item/weapon))
 				continue
-			change_action(MOVING_TO_ATOM, obj, 0)
+			change_action(MOVING_TO_ATOM, obj, list(0, 1))
 			return
 
 ///Tries to equip weaponry, and updates behavior appropriately
@@ -282,32 +282,32 @@
 /////probs move
 ///Optimal range for AI to fight at, using this weapon
 /obj/item/weapon/proc/get_ai_combat_range()
-	return 1
+	return list(0, 1)
 
 /obj/item/weapon/twohanded/spear/get_ai_combat_range()
 	return 2
 
 /obj/item/weapon/gun/get_ai_combat_range()
 	if((gun_features_flags & GUN_IFF) || (ammo_datum_type::ammo_behavior_flags & AMMO_IFF))
-		return 7 //hang in the back with IFF
-	return 5
+		return list(5, 7) //hang in the back with IFF
+	return list(4, 5)
 
 /obj/item/weapon/gun/shotgun/get_ai_combat_range()
 	if(ammo_datum_type == /datum/ammo/bullet/shotgun/buckshot)
 		return 1
-	return 5
+	return list(4, 5)
 
 /obj/item/weapon/gun/smg/get_ai_combat_range()
-	return 3
+	return list(3, 4)
 
 /obj/item/weapon/gun/pistol/get_ai_combat_range()
-	return 4
+	return list(3, 4)
 
 /obj/item/weapon/gun/revolver/get_ai_combat_range()
-	return 4
+	return list(3, 4)
 
 /obj/item/weapon/gun/launcher/get_ai_combat_range()
-	return 7
+	return list(7, 8)
 
 /obj/item/weapon/gun/grenade_launcher/get_ai_combat_range()
-	return 7
+	return list(6, 8)

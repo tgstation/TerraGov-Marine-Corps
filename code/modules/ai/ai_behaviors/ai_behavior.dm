@@ -10,9 +10,9 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	var/atom/atom_to_walk_to
 	///The atom we want to attack at range, separate as we might not be moving in regards to it
 	var/atom/combat_target
-	///How far should we stay away from atom_to_walk_to
+	///How far should we stay away from atom_to_walk_to. This can be a single number or a list
 	var/distance_to_maintain = 1
-	///Range to stay from a hostile target
+	///Range to stay from a hostile target. This can be a single number or a list
 	var/engagement_range = 1
 	///Prob chance of sidestepping (left or right) when distance maintained with target
 	var/sidestep_prob = 0
@@ -112,7 +112,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		UnregisterSignal(goal_node, COMSIG_QDELETING)
 
 ///Cleanup old state vars, start the movement towards our new target
-/datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
+/datum/ai_behavior/proc/change_action(next_action, atom/next_target, list/special_distance_to_maintain)
 	if(QDELETED(mob_parent))
 		return
 	cleanup_current_action(next_action)
@@ -137,7 +137,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 	if(current_action == FOLLOWING_PATH)
 		distance_to_maintain = 0
 	else if(current_action == ESCORTING_ATOM)
-		distance_to_maintain = 2 //Don't stay too close
+		distance_to_maintain = list(1, 3) //Don't stay too close //todo: can make this a var to be adjustable
 	else
 		distance_to_maintain = isnull(special_distance_to_maintain) ? initial(distance_to_maintain) : special_distance_to_maintain
 	if(next_target)
@@ -351,25 +351,36 @@ These are parameter based so the ai behavior can choose to (un)register the sign
 	if(current_action == ESCORTING_ATOM && (get_dist(mob_parent, atom_to_walk_to) <= 0)) //todo: Entirely remove this shitcode snowflake check for one specific interaction that doesn't specifically relate to ai_behavior
 		return
 	mob_parent.next_move_slowdown = 0
-	var/step_dir
 	var/dist_to_target = get_dist(mob_parent, atom_to_walk_to)
 
-	var/desired_range = distance_to_maintain
+	var/list/desired_range = distance_to_maintain
 	if(current_action == MOVING_TO_ATOM && (atom_to_walk_to == combat_target))
 		desired_range = engagement_range
 
-	if(dist_to_target < desired_range) //away
-		step_dir = get_dir(atom_to_walk_to, mob_parent)
-	else if(dist_to_target > desired_range) //towards
-		step_dir = get_dir(mob_parent, atom_to_walk_to)
-	else //at dist
-		if(SEND_SIGNAL(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION)
+	//lets assume its actually a range for now. list(3, 5)
+	var/min_range = min(desired_range)
+	var/max_range = max(desired_range)
+
+	var/list/dir_options = list()
+
+	if((dist_to_target >= min_range) && (dist_to_target <= max_range)) //in optimal range
+		if((SEND_SIGNAL(mob_parent, COMSIG_STATE_MAINTAINED_DISTANCE) & COMSIG_MAINTAIN_POSITION))
 			return
 		if(!get_dir(mob_parent, atom_to_walk_to)) //We're right on top, move out of it
-			step_dir = pick(CARDINAL_ALL_DIRS)
-		else if(prob(sidestep_prob)) //shuffle about
-			step_dir = pick(LeftAndRightOfDir(get_dir(mob_parent, atom_to_walk_to)))
-	ai_complete_move(step_dir)
+			ai_complete_move(pick(CARDINAL_ALL_DIRS))
+			return
+		if(prob(50)) //placeholder number, will probs be a var like sidestep prob, so they're not just constantly wiggling about
+			return
+		if(prob(sidestep_prob)) //shuffle about
+			dir_options += LeftAndRightOfDir(get_dir(mob_parent, atom_to_walk_to))
+	if(dist_to_target > min_range) //above min range, its valid to come closer
+		dir_options += get_dir(mob_parent, atom_to_walk_to)
+	if(dist_to_target < max_range) //less than max range, its valid to walk away
+		dir_options += get_dir(atom_to_walk_to, mob_parent)
+
+	if(!length(dir_options))
+		return
+	ai_complete_move(pick(dir_options))
 
 ///Makes a move in a given direction
 /datum/ai_behavior/proc/ai_complete_move(move_dir, try_sidestep = TRUE)

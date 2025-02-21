@@ -16,7 +16,7 @@ TODO: pathfinding wizardry
 	sidestep_prob = 25
 	identifier = IDENTIFIER_HUMAN
 	base_action = ESCORTING_ATOM
-	distance_to_maintain = 2
+	distance_to_maintain = list(2, 3)
 	target_distance = 9
 	minimum_health = 0.3 //placeholder value
 	//is_offered_on_creation = FALSE
@@ -285,7 +285,7 @@ TODO: pathfinding wizardry
 	return
 
 /datum/ai_behavior/human/ranged
-	distance_to_maintain = 5
+	distance_to_maintain = list(4, 6)
 	minimum_health = 0.3
 
 /datum/ai_behavior/human/suicidal
