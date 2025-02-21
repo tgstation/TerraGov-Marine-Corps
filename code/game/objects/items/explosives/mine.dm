@@ -292,7 +292,7 @@ Stepping directly on the mine will also blow it up
 	anchored = TRUE
 	iff_signal = 1
 
-/obj/item/explosive/mine/anti_tank/emp_act()
+/obj/item/explosive/mine/pressure/emp_act()
 	return
 
 /obj/item/explosive/mine/pressure/attackby(obj/item/I, mob/user, params)
