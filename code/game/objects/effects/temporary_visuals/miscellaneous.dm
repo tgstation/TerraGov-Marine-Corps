@@ -253,6 +253,12 @@ GLOBAL_LIST_EMPTY(blood_particles)
 	icon_state = "splatter"
 	duration = 0.8 SECONDS
 
+/obj/effect/temp_visual/xadar_blast
+	name = "acid cascade"
+	icon = 'icons/Xeno/96x96.dmi'
+	icon_state = "xadar_splash"
+	duration = 0.4 SECONDS
+
 /obj/effect/temp_visual/acid_bath
 	name = "acid bath"
 	icon = 'icons/obj/items/projectiles.dmi'

@@ -352,11 +352,11 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 		if(affected.stat == DEAD)
 			continue
 		affected.throw_at(throwlocation, 6, 1.5, src, TRUE)
-	for(var/mob/living/carbon/xenomorph/xeno AS in cheap_get_xenos_near(src,1))
-		var/throwloc = xeno.loc
-		for(var/x in 1 to 3)
-			throwloc = get_step(throwloc, xeno.dir)
-			xeno.throw_at(throwloc, 6, 1.6, src, TRUE)
+	if(get_dist(owner.loc, loc) <= 1)
+		var/throwloc = owner.loc
+		for(var/x in 1 to 6)
+			throwloc = get_step(throwloc, owner.dir)
+			owner.throw_at(throwloc, 6, 1.6, src, TRUE)
 	qdel(src)
 
 // ***************************************
@@ -548,7 +548,7 @@ GLOBAL_LIST_INIT(globadier_images_list, list(
 	if(!do_after(xeno_owner, 0.8 SECONDS, NONE, xeno_owner, BUSY_ICON_DANGER))
 		return fail_activate()
 
-	if(!prob(5))
+	if(!prob(1))
 		playsound(xeno_owner.loc, 'sound/effects/blobattack.ogg', 50, 1)
 	else
 		playsound(xeno_owner.loc, 'sound/effects/kaboom.ogg', 50, 1)
