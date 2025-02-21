@@ -36,10 +36,11 @@
 	damage = 40
 	max_range = 40
 	penetration = 30
-	sundering = 4
+	sundering = 5
 	shell_speed = 4
 	damage_falloff = 0.5
 	accurate_range = 25
+	accurate_range_min = 3
 
 /datum/ammo/bullet/cupola
 	name = "cupola bullet"

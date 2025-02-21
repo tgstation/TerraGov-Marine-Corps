@@ -1338,8 +1338,8 @@
 	)
 	caliber = CALIBER_10x27_CASELESS //codex
 	max_shells = 40 //codex
-	aim_slowdown = 0.65
-	wield_delay = 0.75 SECONDS
+	aim_slowdown = 0.85
+	wield_delay = 0.85 SECONDS
 	fire_sound =  'sound/weapons/guns/fire/t62.ogg'
 	dry_fire_sound = 'sound/weapons/guns/fire/m41a_empty.ogg'
 	unload_sound = 'sound/weapons/guns/interact/T42_unload.ogg'
