@@ -189,6 +189,7 @@
 	var/static/image/intoxicated_amount_image = image('icons/mob/hud/intoxicated.dmi', icon_state = "intoxicated_amount0")
 	var/static/image/intoxicated_high_image = image('icons/mob/hud/intoxicated.dmi', icon_state = "intoxicated_high")
 	var/static/image/hunter_silence_image = image('icons/mob/hud/human.dmi', icon_state = "silence_debuff")
+	var/static/image/dancer_marked_image = image('icons/mob/hud/human.dmi', icon_state = "marked_debuff")
 	var/static/image/hive_target_image = image('icons/mob/hud/human.dmi', icon_state = "hive_target")
 
 	xeno_reagent.overlays.Cut()
@@ -237,6 +238,9 @@
 	if(stat != DEAD)
 		if(IsMute())
 			xeno_debuff.overlays += hunter_silence_image
+
+	if(has_status_effect(STATUS_EFFECT_DANCER_TAGGED))
+		xeno_debuff.overlays += dancer_marked_image
 
 	if(HAS_TRAIT(src, TRAIT_HIVE_TARGET))
 		xeno_debuff.overlays += hive_target_image
