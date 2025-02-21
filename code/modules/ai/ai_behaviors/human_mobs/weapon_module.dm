@@ -144,6 +144,7 @@
 		if(!mob_parent.put_in_hands(new_weapon))
 			return FALSE
 
+	SEND_SIGNAL(new_weapon, COMSIG_AI_EQUIPPED_GUN, mob_parent) //todo: make another sig for belt strap to trigger off
 	RegisterSignals(new_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE) //hacky, can probs unfuck this later
 	gun = new_weapon
 	return TRUE
@@ -154,6 +155,7 @@
 		if(!mob_parent.put_in_hands(new_weapon))
 			return FALSE
 
+	SEND_SIGNAL(new_weapon, COMSIG_AI_EQUIPPED_MELEE, mob_parent)
 	RegisterSignals(new_weapon, list(COMSIG_QDELETING, COMSIG_MOVABLE_MOVED), PROC_REF(unequip_weapon), TRUE) //hacky, can probs unfuck this later
 	melee_weapon = new_weapon
 	return TRUE

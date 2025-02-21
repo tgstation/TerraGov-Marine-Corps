@@ -584,6 +584,10 @@
 
 ///AI mob wants to jump
 #define COMSIG_AI_JUMP "ai_jump"
+///AI mob equipped a melee weapon
+#define COMSIG_AI_EQUIPPED_GUN "ai_equipped_gun"
+///AI mob equipped a melee weapon
+#define COMSIG_AI_EQUIPPED_MELEE "ai_equipped_melee"
 
 //mob/dead/observer
 #define COMSIG_OBSERVER_CLICKON "observer_clickon"				//from mob/dead/observer/ClickOn(): (atom/A, params)
