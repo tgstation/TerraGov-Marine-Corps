@@ -230,11 +230,11 @@
 
 	if(get_dist(target, mob_parent) > target_distance)
 		return AI_FIRE_OUT_OF_RANGE
-	if(!line_of_sight(mob_parent, target))
+	if(!line_of_sight(mob_parent, target)) //todo: this proc could have checks for friendlies in it
 		return AI_FIRE_NO_LOS
 
 	if(no_ff && !(gun.gun_features_flags & GUN_IFF) && !(gun.ammo_datum_type::ammo_behavior_flags & AMMO_IFF)) //ammo_datum_type is always populated, with the last loaded ammo type. This shouldnt be an issue since we check ammo first
-		var/list/turf_line = get_line(mob_parent, target)
+		var/list/turf_line = get_traversal_line(mob_parent, target)
 		turf_line.Cut(1, 2) //don't count our own turf
 		for(var/turf/line_turf AS in turf_line)
 			for(var/mob/line_mob in line_turf) //todo: add checks for vehicles etc
