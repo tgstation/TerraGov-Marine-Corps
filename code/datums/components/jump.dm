@@ -29,23 +29,21 @@
 	var/jumper_allow_pass_flags
 	///When the jump started. Only relevant for charged jumps
 	var/jump_start_time = null
-
+	///A 3rd party that controls the jumping of parent. Probably a vehicle driver
 	var/external_user
 
-/datum/component/jump/Initialize(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags, mob/living/_external_user)
+/datum/component/jump/Initialize(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 	. = ..()
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
 
-	if(_external_user)
-		set_external_user(new_user = _external_user)
-
 	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
-	RegisterSignal(parent, COMSIG_KB_VEHICLE_NEW_OCCUPANT, PROC_REF(set_external_user))
+	RegisterSignal(parent, COMSIG_VEHICLE_GRANT_CONTROL_FLAG, PROC_REF(set_external_user))
 
 /datum/component/jump/UnregisterFromParent()
-	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_UP, COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_MOB_THROW, COMSIG_KB_VEHICLE_NEW_OCCUPANT))
-	set_external_user()
+	UnregisterSignal(parent, list(COMSIG_KB_LIVING_JUMP_UP, COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_MOB_THROW, COMSIG_VEHICLE_GRANT_CONTROL_FLAG))
+	if(external_user)
+		remove_external_user()
 
 /datum/component/jump/InheritComponent(datum/component/new_component, original_component, _jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
 	set_vars(_jump_duration, _jump_cooldown, _stamina_cost, _jump_height, _jump_sound, _jump_flags, _jumper_allow_pass_flags)
@@ -68,19 +66,24 @@
 		RegisterSignal(parent, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(start_jump))
 
 ///Sets an external controller, such as a vehicle driver
-/datum/component/jump/proc/set_external_user(datum/source, mob/living/new_user)
+/datum/component/jump/proc/set_external_user(datum/source, mob/new_user, control_flags = VEHICLE_CONTROL_DRIVE)
 	SIGNAL_HANDLER
-	if(external_user)
+	if(!(control_flags & VEHICLE_CONTROL_DRIVE))
+		return
+	if(external_user) //I don't know how you have 2 drivers, and I don't want to know
 		remove_external_user()
 	if(new_user)
 		external_user = new_user
 		RegisterSignal(external_user, COMSIG_KB_LIVING_JUMP_DOWN, PROC_REF(start_jump))
-		RegisterSignal(external_user, COMSIG_KB_VEHICLE_OCCUPANT_LEFT, PROC_REF(remove_external_user))
+		RegisterSignal(parent, COMSIG_VEHICLE_REVOKE_CONTROL_FLAG, PROC_REF(remove_external_user))
 
 ///Unsets an external controller
-/datum/component/jump/proc/remove_external_user(datum/source, mob/living/old_user)
+/datum/component/jump/proc/remove_external_user(datum/source, mob/old_user, control_flags = VEHICLE_CONTROL_DRIVE)
 	SIGNAL_HANDLER
-	UnregisterSignal(external_user, list(COMSIG_KB_LIVING_JUMP_DOWN, COMSIG_KB_VEHICLE_OCCUPANT_LEFT))
+	if(!(control_flags & VEHICLE_CONTROL_DRIVE))
+		return
+	UnregisterSignal(external_user, COMSIG_KB_LIVING_JUMP_DOWN)
+	UnregisterSignal(parent, COMSIG_VEHICLE_REVOKE_CONTROL_FLAG)
 	external_user = null
 
 ///Starts charging the jump
