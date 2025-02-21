@@ -30,9 +30,9 @@
 	return ..()
 
 /datum/ai_behavior/xeno/set_escorted_atom(datum/source, atom/atom_to_escort, new_escort_is_weak)
+	. = ..()
 	if(!new_escort_is_weak)
 		UnregisterSignal(SSdcs, COMSIG_GLOB_AI_MINION_RALLY)
-	return ..()
 
 ///Refresh abilities-to-consider list
 /datum/ai_behavior/xeno/proc/refresh_abilities()
@@ -223,8 +223,8 @@
 			living_mob.do_resist()
 		return TRUE
 	SEND_SIGNAL(mob_parent, COMSIG_XENOABILITY_REST)
-	RegisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(check_for_health))
-	RegisterSignal(mob_parent, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(check_for_plasma))
+	RegisterSignal(mob_parent, COMSIG_XENOMORPH_HEALTH_REGEN, PROC_REF(check_for_health), TRUE) //resting can occasionally fail, if you're stunned etc
+	RegisterSignal(mob_parent, COMSIG_XENOMORPH_PLASMA_REGEN, PROC_REF(check_for_plasma), TRUE)
 	return TRUE
 
 ///Wait for the xeno to be full life and plasma to unrest

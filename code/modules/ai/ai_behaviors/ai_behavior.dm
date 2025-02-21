@@ -112,7 +112,7 @@ Registers signals, handles the pathfinding element addition/removal alongside ma
 		UnregisterSignal(goal_node, COMSIG_QDELETING)
 
 ///Cleanup old state vars, start the movement towards our new target
-/datum/ai_behavior/proc/change_action(next_action, atom/next_target, list/special_distance_to_maintain)
+/datum/ai_behavior/proc/change_action(next_action, atom/next_target, special_distance_to_maintain)
 	if(QDELETED(mob_parent))
 		return
 	cleanup_current_action(next_action)
