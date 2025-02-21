@@ -203,7 +203,8 @@
 	ui_view = new(null, null, src)
 	if(enclosed)
 		internal_tank = new (src)
-	RegisterSignals(src, list(COMSIG_MOVABLE_MOVED, COMSIG_ELEMENT_JUMP_ENDED), PROC_REF(play_stepsound))
+	RegisterSignal(src, COMSIG_MOVABLE_MOVED, PROC_REF(play_stepsound))
+	RegisterSignal(src, COMSIG_ELEMENT_JUMP_ENDED, PROC_REF(on_jump_land))
 
 	spark_system.set_up(2, 0, src)
 	spark_system.attach(src)
@@ -612,6 +613,10 @@
 			speech_bubble_recipients.Add(M.client)
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), image('icons/mob/talk.dmi', src, "machine[say_test(speech_args[SPEECH_MESSAGE])]",MOB_LAYER+1), speech_bubble_recipients, 30)
 
+///Stuff that happens when a mech finishes a jump
+/obj/vehicle/sealed/mecha/proc/on_jump_land()
+	SIGNAL_HANDLER
+	playsound(loc, 'sound/effects/alien/behemoth/stomp.ogg', 30, TRUE)
 
 /////////////////////////
 ////// Access stuff /////
