@@ -310,3 +310,8 @@
   ivanmixo:
   - balance: Made some changes to curb stacking multiple snipers, check the PR for
       a more verbose explanation
+2025-02-21:
+  Lumipharon:
+  - bugfix: fixed spears and other ranged melee items not being able to attack over
+      some objects as intended
+  - balance: Removed healing from non medical reagents
