@@ -336,21 +336,10 @@
 /datum/action/ability/activable/xeno/landslide/proc/get_affected_turfs(turf/origin_turf, direction, range)
 	if(!origin_turf || !direction || !range)
 		return
-	var/list/turf/turfs_list = list(origin_turf)
-	var/list/turf/turfs_to_check = list()
-	for(var/turf/turf_to_check AS in get_line(origin_turf, get_ranged_target_turf(origin_turf, direction, range)))
-		if(turf_to_check in turfs_list)
-			continue
-		turfs_to_check += turf_to_check
-	for(var/turf/turf_to_check AS in turfs_to_check)
-		for(var/turf/adjacent_turf AS in get_adjacent_open_turfs(turf_to_check))
-			if((adjacent_turf in turfs_to_check) || (adjacent_turf in turfs_list))
-				continue
-			turfs_to_check += adjacent_turf
-	for(var/turf/turf_to_check AS in turfs_to_check)
-		if(LinkBlocked(origin_turf, turf_to_check) || !line_of_sight(origin_turf, turf_to_check, range))
-			continue
-		turfs_list += turf_to_check
+	var/turf/end_turf = check_path(origin_turf, get_ranged_target_turf(origin_turf, direction, range), pass_flags_checked = NONE)
+	var/list/turf/turfs_list = get_traversal_line(origin_turf, end_turf)
+	for(var/turf/turf_to_check AS in turfs_list)
+		turfs_list |= get_adjacent_open_turfs(turf_to_check)
 	return turfs_list
 
 /**
